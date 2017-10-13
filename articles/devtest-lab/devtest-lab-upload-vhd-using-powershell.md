@@ -1,6 +1,6 @@
 ---
-title: "disque dur virtuel d’aaaUpload fichier tooAzure DevTest Labs, à l’aide de PowerShell | Documents Microsoft"
-description: "Télécharger le compte de stockage de toolab du fichier de disque dur virtuel à l’aide de PowerShell"
+title: "Télécharger un fichier de disque dur virtuel vers Azure DevTest Labs avec PowerShell | Microsoft Docs"
+description: "Télécharger le fichier de disque dur virtuel dans le compte de stockage du laboratoire avec PowerShell"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 9c3ee96e212457b0ef8203714b419350cb97f895
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3c43ef77b8fa10cd6dbd726968264f32f7a3dd0f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="upload-vhd-file-toolabs-storage-account-using-powershell"></a>Télécharger le compte de stockage de toolab du fichier de disque dur virtuel à l’aide de PowerShell
+# <a name="upload-vhd-file-to-labs-storage-account-using-powershell"></a>Télécharger le fichier de disque dur virtuel dans le compte de stockage du laboratoire avec PowerShell
 
 [!INCLUDE [devtest-lab-upload-vhd-selector](../../includes/devtest-lab-upload-vhd-selector.md)]
 
-Dans Azure DevTest Labs, les fichiers de disque dur virtuel peuvent être utilisé toocreate des images personnalisées, qui sont des ordinateurs virtuels tooprovision utilisé. Hello étapes suivantes vous guident à l’aide de PowerShell tooupload compte de stockage d’un disque dur virtuel fichier tooa du laboratoire. Une fois que vous avez téléchargé votre fichier de disque dur virtuel, hello [étapes section](#next-steps) répertorie certains articles qui expliquent comment toocreate une image personnalisée à partir de hello téléchargé le fichier de disque dur virtuel. Pour plus d’informations sur les disques et les disques durs virtuels dans Azure, consultez [À propos des disques et des VHD pour les machines virtuelles Azure](../virtual-machines/linux/about-disks-and-vhds.md).
+Dans Azure DevTest Labs, les fichiers de disque dur virtuel peuvent être utilisés pour créer des images personnalisées, qui servent à approvisionner des machines virtuelles. Les étapes suivantes vous guident lors de l’utilisation de PowerShell pour charger un fichier de disque dur virtuel sur le compte de stockage d’un laboratoire. Une fois que vous avez téléchargé votre fichier de disque dur virtuel, consultez la [section Étapes suivantes](#next-steps) qui répertorie quelques articles qui expliquent comment créer une image personnalisée à partir du fichier de disque dur virtuel téléchargé. Pour plus d’informations sur les disques et les disques durs virtuels dans Azure, consultez [À propos des disques et des VHD pour les machines virtuelles Azure](../virtual-machines/linux/about-disks-and-vhds.md).
 
 ## <a name="step-by-step-instructions"></a>Instructions pas à pas
 
-les étapes suivantes de Hello parcours vous aide à télécharger un disque dur virtuel du fichier tooAzure DevTest Labs, à l’aide de PowerShell. 
+Les étapes suivantes vous guident lors du téléchargement d’un fichier de disque dur virtuel dans Azure DevTest Labs avec PowerShell. 
 
-1. Connectez-vous à toohello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Connectez-vous au [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. Sélectionnez **davantage de services**, puis sélectionnez **DevTest Labs** à partir de la liste de hello.
+1. Sélectionnez **Plus de services**, puis **DevTest Labs** dans la liste.
 
-1. Dans liste hello labs, sélectionnez lab souhaité de hello.  
+1. Sélectionnez le laboratoire souhaité dans la liste des laboratoires.  
 
-1. Dans le panneau de hello lab, sélectionnez **Configuration**. 
+1. Dans le panneau du laboratoire, sélectionnez **Configuration**. 
 
-1. Atelier de hello **Configuration** panneau, sélectionnez **les images personnalisées (VHD)**.
+1. Dans le panneau **Configuration** du laboratoire, sélectionnez **Custom images (VHDs)** (Images personnalisées (disques durs virtuels)).
 
-1. Sur hello **les images personnalisées** panneau, sélectionnez **+ ajouter**. 
+1. Dans le panneau **Images personnalisées**, sélectionnez **+Ajouter**. 
 
-1. Sur hello **image personnalisée** panneau, sélectionnez **disque dur virtuel**.
+1. Dans le panneau **Image personnalisée**, sélectionnez **Disque dur virtuel**.
 
-1. Sur hello **VHD** panneau, sélectionnez **télécharger un disque dur virtuel à l’aide de PowerShell**.
+1. Dans le panneau **Disque dur virtuel**, sélectionnez **Upload a VHD using PowerShell** (Télécharger un disque dur virtuel à l’aide de PowerShell).
 
     ![Télécharger un disque dur virtuel à l’aide de PowerShell](./media/devtest-lab-upload-vhd-using-powershell/upload-image-using-psh.png)
 
-1. Sur hello **télécharger une image à l’aide de PowerShell** panneau copie hello généré PowerShell script tooa et éditeur de texte.
+1. Dans le panneau **Charger un disque dur virtuel avec PowerShell**, copiez le script PowerShell généré dans un éditeur de texte.
 
-1. Modifier hello **LocalFilePath** paramètre Hello **Add-AzureVhd** applet de commande toopoint toohello emplacement de fichier de disque dur virtuel souhaité tooupload de hello.
+1. Modifiez le paramètre **LocalFilePath** de l’applet de commande **Add-AzureVhd** pour pointer vers l’emplacement du fichier VHD à télécharger.
 
-1. À l’invite de PowerShell, exécutez hello **Add-AzureVhd** applet de commande (avec hello modifié **LocalFilePath** paramètre).
+1. À l’invite de PowerShell, exécutez l’applet de commande **Add-AzureVhd** (avec le paramètre **LocalFilePath** modifié).
 
 > [!WARNING] 
 > 
-> processus Hello de téléchargement d’un fichier de disque dur virtuel peut être longue, en fonction de la taille de hello du fichier de disque dur virtuel hello et votre vitesse de connexion.
+> Le processus de téléchargement d’un fichier de disque dur virtuel peut durer un certain temps en fonction de sa taille et de votre vitesse de connexion.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- [Créer une image personnalisée dans Azure DevTest Labs à partir d’un fichier de disque dur virtuel à l’aide de hello portail Azure](devtest-lab-create-template.md)
+- [Créer une image personnalisée dans Azure DevTest Labs à partir d’un fichier de disque dur virtuel à l’aide du portail Azure](devtest-lab-create-template.md)
 - [Créer une image personnalisée dans Azure DevTest Labs à partir d’un fichier de disque dur virtuel à l’aide de PowerShell](devtest-lab-create-custom-image-from-vhd-using-powershell.md)

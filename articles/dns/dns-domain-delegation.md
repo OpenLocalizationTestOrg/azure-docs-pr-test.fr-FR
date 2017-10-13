@@ -1,6 +1,6 @@
 ---
-title: "Présentation de délégation DNS aaaAzure | Documents Microsoft"
-description: "Comprendre comment délégation de domaine toochange et Azure DNS d’utiliser le nom de serveurs tooprovide domaine héberge."
+title: "Aperçu de la délégation Azure DNS | Microsoft Docs"
+description: "Découvrez comment modifier la délégation de domaine et les serveurs de noms Azure DNS pour fournir l’hébergement d’un domaine."
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -13,61 +13,61 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/12/2017
 ms.author: gwallace
-ms.openlocfilehash: eaf2d2e345004b4d631e8d81d548b8ca23277d05
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 31a500502a4d3e729ecb79929ed6c1de156d6259
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="delegation-of-dns-zones-with-azure-dns"></a>Délégation de zones DNS dans Azure DNS
 
-DNS Azure vous permet de toohost une zone DNS et gérer les enregistrements DNS de hello pour un domaine dans Azure. Dans l’ordre pour les requêtes DNS pour un tooreach de domaine DNS d’Azure, domaine de hello a toobe déléguée tooAzure DNS dans le domaine parent hello. N’oubliez pas d’Azure DNS n’est pas de domaines hello. Cet article explique comment la délégation de domaine fonctionne et comment toodelegate tooAzure de domaines DNS.
+Azure DNS vous permet d’héberger une zone DNS et de gérer les enregistrements DNS pour un domaine dans Azure. Pour que les requêtes DNS d’un domaine atteignent Azure DNS, le domaine doit être délégué à Azure DNS à partir du domaine parent. GardeN’oubliez pas qu’Azure DNS n’est pas le bureau d’enregistrement de domaines. Cet article explique le fonctionnement de la délégation de domaine et indique comment déléguer des domaines à Azure DNS.
 
 ## <a name="how-dns-delegation-works"></a>Fonctionnement de la délégation DNS
 
 ### <a name="domains-and-zones"></a>Zones et domaines
 
-Hello Domain Name System est une hiérarchie de domaines. hiérarchie de Hello démarre à partir du domaine de « root » hello, dont le nom est simplement «**.**'.  Puis viennent les domaines de niveau supérieur, tels que « com », « net », « org », « uk » ou « jp ».  Vous trouvez ensuite les domaines de second niveau, comme « org.uk » ou « co.jp ».  Et ainsi de suite. domaines Hello Bonjour hiérarchie DNS sont hébergés à l’aide des zones DNS distinctes. Ces zones sont distribuées globalement, hébergé par les serveurs de noms DNS monde hello.
+DNS est une hiérarchie de domaines. Celle-ci démarre à partir du domaine « racine », dont le nom est simplement « **.** ».  Puis viennent les domaines de niveau supérieur, tels que « com », « net », « org », « uk » ou « jp ».  Vous trouvez ensuite les domaines de second niveau, comme « org.uk » ou « co.jp ».  Et ainsi de suite. Les domaines de la hiérarchie DNS sont hébergés à l’aide de zones DNS distinctes. Ces zones sont globalement distribuées, et hébergées par des serveurs DNS dans le monde entier.
 
-**Zone DNS** -un domaine est un nom unique dans hello Domain Name System, par exemple, « contoso.com ». Une zone DNS est toohost utilisé hello les enregistrements DNS pour un domaine particulier. Par exemple, le domaine hello « contoso.com » peut contenir plusieurs enregistrements DNS tels que « mail.contoso.com » (pour un serveur de messagerie) et « www.contoso.com » (pour un site Web).
+Une **zone DNS** est un nom unique dans le système DNS, par exemple, « contoso.com ». Une zone DNS permet d’héberger les enregistrements DNS d’un domaine particulier. Par exemple, le domaine « contoso.com » peut contenir plusieurs enregistrements DNS, tels que « mail.contoso.com » (pour un serveur de messagerie) et « www.contoso.com » (pour un site web).
 
-Un **bureau d’enregistrement de domaines** est une société qui fournit des noms de domaine Internet. Il vérifie le domaine Internet de hello toouse est disponible et vous permettre de toopurchase il. Une fois que le nom de domaine hello est inscrit, vous êtes propriétaire de juridique de hello pour le nom de domaine hello. Si vous disposez déjà d’un domaine Internet, vous allez utiliser hello actuel domaine bureau d’enregistrement toodelegate tooAzure DNS.
+Un **bureau d’enregistrement de domaines** est une société qui fournit des noms de domaine Internet. Il vérifie si le domaine Internet que vous souhaitez utiliser est disponible. Vous pouvez ensuite l’acheter. Une fois inscrit, le nom de domaine est votre propriété légale. Si vous disposez déjà d’un domaine Internet, vous allez utiliser le bureau d’enregistrement de domaines actuel pour la délégation à Azure DNS.
 
-toofind plus d’informations sur le propriétaire d’un nom de domaine donné, ou pour plus d’informations sur la façon de toobuy un domaine, consultez [gestion de domaine Internet dans Azure AD](https://msdn.microsoft.com/library/azure/hh969248.aspx).
+Pour plus d'informations sur le propriétaire d'un nom de domaine donné ou sur l'achat d'un domaine, consultez la page [Gestion des domaines Internet dans Azure AD](https://msdn.microsoft.com/library/azure/hh969248.aspx).
 
 ### <a name="resolution-and-delegation"></a>Résolution et délégation
 
 Deux types de serveur DNS sont disponibles :
 
 * Un serveur DNS *faisant autorité* héberge les zones DNS. Il répond aux requêtes DNS pour les enregistrements de ces zones uniquement.
-* Un serveur DNS *récursif* n’héberge pas de zones DNS. Il répond à toutes les requêtes DNS en appelant des données du hello toogather de serveurs DNS faisant autorité dont il a besoin.
+* Un serveur DNS *récursif* n’héberge pas de zones DNS. Il répond à toutes les requêtes DNS, en appelant des serveurs DNS faisant autorité pour rassembler les données dont il a besoin.
 
-Azure DNS fournit un service DNS faisant autorité.  Il ne fournit pas un service DNS récursif. Services de cloud computing et machines virtuelles dans Azure sont configuré automatiquement toouse un service DNS récursive qui est fourni séparément dans le cadre de l’infrastructure Azure. Pour plus d’informations sur comment toochange ces paramètres DNS, consultez [résolution de noms dans Azure](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
+Azure DNS fournit un service DNS faisant autorité.  Il ne fournit pas un service DNS récursif. Les services cloud et machines virtuelles contenus dans Azure sont automatiquement configurés pour utiliser un service DNS récursif, fourni séparément, dans le cadre de l’infrastructure Azure. Pour savoir comment modifier ces paramètres DNS, voir [Résolution de noms dans Azure](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server).
 
-Clients DNS dans les ordinateurs ou appareils mobiles appellent généralement toutes les requêtes DNS hello les applications clientes doivent un tooperform de serveur DNS récursif.
+Les clients DNS des PC ou appareils mobiles appellent généralement un serveur DNS récursif pour effectuer les requêtes DNS dont les applications clientes ont besoin.
 
-Lorsqu’un serveur DNS récursif reçoit une requête pour un enregistrement DNS, tel que « www.contoso.com », il doit d’abord toofind hello nom serveur hébergement hello zone pour le domaine « contoso.com » de hello. serveur de noms toofind hello, il commence à des serveurs de noms racine hello et à partir de là, recherche les serveurs de noms hello hébergeant hello 'com' zone. Il interroge ensuite hello 'com' nom toofind hello nom serveurs hébergeant hello « contoso.com » zone.  Enfin, il est en mesure de tooquery ces serveurs de noms pour « www.contoso.com ».
+Lorsqu’un serveur DNS récursif reçoit une requête pour un enregistrement DNS tel que « www.contoso.com », il doit d’abord rechercher le serveur de noms qui héberge la zone pour le domaine « contoso.com ». Pour ce faire, il commence par les serveurs de noms racines, puis il recherche les serveurs de noms hébergeant la zone « com ». Il interroge ensuite les serveurs de noms « com » pour trouver les serveurs de noms hébergeant la zone « contoso.com ».  Enfin, il est en mesure de rechercher « www.contoso.com » parmi ces serveurs de noms.
 
-Cette procédure est appelée la résolution du nom DNS de hello. Parler, la résolution DNS inclut des étapes supplémentaires, telles que les enregistrements CNAME suivantes, mais qui n’est pas important toounderstanding le fonctionnement de la délégation DNS.
+On parle dans ce cas de résolution de noms DNS. À strictement parler, la résolution DNS inclut toutefois des étapes supplémentaires, telles que le suivi des enregistrements CNAME, mais ce n’est pas important pour comprendre le fonctionnement de la délégation DNS.
 
-Comment une zone parente 'point' toohello des serveurs de noms pour une zone enfant ? Elle utilise pour cela un type spécial d’enregistrement DNS appelé enregistrement NS (pour « serveur de noms »). Par exemple, zone racine de hello contient les enregistrements NS pour « com » et affiche les serveurs de noms hello pour la zone de « com » hello. À son tour, la zone de « com » hello contient des enregistrements NS pour « contoso.com », qui affiche les serveurs de noms hello pour la zone de « contoso.com » hello. Configurer les enregistrements NS hello pour une zone enfant dans une zone parente est appelé domaine de hello délégation.
+Comment une zone parente « pointe-t-elle » vers les serveurs de noms d’une zone enfant ? Elle utilise pour cela un type spécial d’enregistrement DNS appelé enregistrement NS (pour « serveur de noms »). Par exemple, la zone racine contient les enregistrements NS pour « com » et affiche les serveurs de noms pour la zone « com ». La zone « com », quant à elle, contient les enregistrements NS pour « contoso.com » et affiche les serveurs de noms pour la zone « contoso.com ». La configuration d’enregistrements NS pour une zone enfant dans une zone parente est appelée « délégation de domaine ».
 
-Hello suivant image montre un exemple de requête DNS. partners.contoso.NET et hello contoso.net sont des zones DNS de Azure.
+L’image suivante montre un exemple de requête DNS. contoso.net et partners.contoso.net sont des zones Azure DNS.
 
 ![Dns-nameserver](./media/dns-domain-delegation/image1.png)
 
-1. Hello les demandes des clients `www.partners.contoso.net` à partir de leur serveur DNS local.
-1. serveur DNS local de Hello n’a pas d’enregistrement de hello, il est un serveur de noms racine demande tootheir.
-1. serveur de noms racine Hello n’a pas d’enregistrement de hello, mais il connaît l’adresse hello Hello `.net` le serveur, il fournit ce serveur DNS de toohello adresse
-1. Hello DNS envoie hello demande toohello `.net` serveur de noms, il n’a pas hello enregistrement mais ne savez adresse hello hello contoso.net du serveur de noms. Dans ce cas, il s’agit d’une zone DNS hébergée dans Azure DNS.
-1. zone de Hello `contoso.net` n’a pas d’enregistrement de hello mais connaît le nom du serveur hello de `partners.contoso.net` et répond avec qui. Dans ce cas, il s’agit d’une zone DNS hébergée dans Azure DNS.
-1. demandes de serveur DNS de Hello en adresse IP hello `partners.contoso.net` de hello `partners.contoso.net` zone. Il contient l’enregistrement A de hello et répond avec l’adresse IP de hello.
-1. serveur DNS de Hello fournit hello IP adresse toohello
-1. Hello se connecte du site Web toohello `www.partners.contoso.net`.
+1. Le client demande `www.partners.contoso.net` à partir du serveur DNS local.
+1. Le serveur DNS local ne dispose pas de l’enregistrement. Aussi, il effectue une demande auprès du serveur de noms racine.
+1. Le serveur de noms racine ne dispose pas de l’enregistrement, mais il connaît l’adresse du serveur de noms `.net` et la fournit au serveur DNS.
+1. Le serveur DNS envoie la demande au serveur de noms `.net`. Il ne possède pas l’enregistrement, mais il connaît l’adresse du serveur de noms contoso.net. Dans ce cas, il s’agit d’une zone DNS hébergée dans Azure DNS.
+1. La zone `contoso.net` ne possède pas d’enregistrement, mais elle connaît le serveur de noms `partners.contoso.net` et l’envoie en guise de réponse. Dans ce cas, il s’agit d’une zone DNS hébergée dans Azure DNS.
+1. Le serveur DNS demande l’adresse IP de `partners.contoso.net` à partir de la zone `partners.contoso.net`. Elle contient l’enregistrement A et peut alors envoyer comme réponse l’adresse IP.
+1. Le serveur DNS fournit l’adresse IP au client
+1. Le client se connecte au site web `www.partners.contoso.net`.
 
-Chaque délégation a en fait deux copies d’enregistrements NS de hello. l’une dans la zone parente de hello pointant toohello enfant et l’autre dans la zone enfant de hello lui-même. zone de 'contoso.net' Hello contient des enregistrements hello NS 'contoso.net' (dans les enregistrements NS du toohello ajout dans « net »). Ces enregistrements sont appelés des enregistrements NS faisant autoritées, et ils se trouvent au sommet de hello de zone enfant de hello.
+Chaque délégation a en fait deux copies des enregistrements NS : une dans la zone parent qui pointe vers la zone enfant et l’autre dans la zone enfant elle-même. La zone « contoso.net » contient les enregistrements NS pour « contoso.net » (en plus des enregistrements NS dans « net »). Il s’agit d’enregistrements NS faisant autorité ; ils se trouvent au sommet de la zone enfant.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Découvrez comment trop[déléguer votre tooAzure de domaine DNS](dns-delegate-domain-azure-dns.md)
+Découvrez comment [déléguer votre domaine à Azure DNS](dns-delegate-domain-azure-dns.md).
 

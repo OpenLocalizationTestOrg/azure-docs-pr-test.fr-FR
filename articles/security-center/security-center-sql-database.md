@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure service Centre de sécurité et de la base de données SQL Azure | Documents Microsoft"
+title: Azure Security Center et service SQL Database | Microsoft Docs
 description: "Cet article explique comment Security Center peut vous aider à sécuriser vos bases de données dans Azure SQL Database."
 services: sql-database
 documentationcenter: na
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 173590500f0ce64140f214ada24b9692e01dbd4c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 46dd298a5664d914e55d45c5b7599d5983287476
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-security-center-and-azure-sql-database-service"></a>Azure Security Center et service SQL Database
-[Centre de sécurité Azure](https://azure.microsoft.com/documentation/services/security-center/) vous aide à empêcher, détecter et répondre toothreats. Il fournit une surveillance de la sécurité et une gestion des stratégies intégrées pour l’ensemble de vos abonnements Azure, vous aidant ainsi à détecter les menaces qui pourraient passer inaperçues. De plus, il est compatible avec un vaste écosystème de solutions de sécurité.
+[Azure Security Center](https://azure.microsoft.com/documentation/services/security-center/) vous aide à vous empêcher, détecter et répondre aux menaces. Il fournit une surveillance de la sécurité et une gestion des stratégies intégrées pour l’ensemble de vos abonnements Azure, vous aidant ainsi à détecter les menaces qui pourraient passer inaperçues. De plus, il est compatible avec un vaste écosystème de solutions de sécurité.
 
 Cet article explique comment Security Center peut vous aider à sécuriser vos bases de données dans Azure SQL Database.
 
 ## <a name="why-use-security-center"></a>Pourquoi utiliser Security Center ?
-Centre de sécurité vous permet de protéger les données dans la base de données SQL en offrant une visibilité sécurité hello de tous vos serveurs et bases de données. Avec Security Center, vous pouvez :
+Security Center vous aide à protéger les données dans SQL Database en fournissant une visibilité sur la sécurité de tous vos serveurs et bases de données. Avec Security Center, vous pouvez :
 
 * définir des stratégies pour l’audit et le chiffrement de SQL Database ;
-* Surveillance de la sécurité hello des ressources de base de données SQL dans tous vos abonnements.
+* surveiller la sécurité des ressources SQL Database dans tous vos abonnements ;
 * identifier et corriger rapidement les problèmes de sécurité ;
 * intégrer les alertes de la [détection de menaces Azure SQL Database](../sql-database/sql-database-threat-detection.md).
 
-En outre, toohelping protéger vos ressources de base de données SQL, le centre de sécurité fournit également la surveillance de la sécurité et de gestion pour les machines virtuelles, Services de cloud computing, Services d’application, les réseaux virtuels et bien plus encore. Pour en savoir plus sur Security Center, cliquez [ici](security-center-intro.md).
+En plus de vous aider à protéger vos ressources SQL Database, Security Center fournit également l’analyse de la sécurité et la gestion des machines virtuelles, services cloud, App Services et réseaux virtuels Azure, notamment. Pour en savoir plus sur Security Center, cliquez [ici](security-center-intro.md).
 
-## <a name="prerequisites"></a>Composants requis
-tooget a démarré avec le centre de sécurité, vous devez disposer d’un tooMicrosoft d’abonnement Azure. niveau gratuit de Hello du centre de sécurité est activée dans votre abonnement. Pour plus d’informations sur les niveaux Gratuit et Standard de Security Center, consultez [Tarification de Security Center](https://azure.microsoft.com/pricing/details/security-center/).
+## <a name="prerequisites"></a>Conditions préalables
+Pour utiliser le Centre de sécurité, vous devez disposer d’un abonnement à Microsoft Azure. Le niveau Gratuit de Security Center est activé avec votre abonnement. Pour plus d’informations sur les niveaux Gratuit et Standard de Security Center, consultez [Tarification de Security Center](https://azure.microsoft.com/pricing/details/security-center/).
 
-Le Centre de sécurité prend en charge l’accès en fonction du rôle. toolearn en savoir plus sur le contrôle d’accès basé sur un rôle (RBAC) dans Azure, consultez [contrôle d’accès basé sur le rôle d’Active Directory Azure](../active-directory/role-based-access-control-configure.md). Hello Forum aux questions du centre de sécurité fournit des informations sur [la gestion des autorisations dans le centre de sécurité](security-center-faq.md#permissions).
+Le Centre de sécurité prend en charge l’accès en fonction du rôle. Pour plus d’informations sur le contrôle d’accès en fonction du rôle, consultez [Contrôle d’accès en fonction du rôle Azure Active Directory](../active-directory/role-based-access-control-configure.md). La FAQ de Security Center fournit des informations sur la [gestion des autorisations dans Security Center](security-center-faq.md#permissions).
 
 ## <a name="access-security-center"></a>Accéder au Centre de sécurité
-Vous accéder au centre de sécurité à partir de hello [portail Azure](https://azure.microsoft.com/features/azure-portal/). [Connectez-vous au portail de toohello](https://portal.azure.com/) et sélectionnez hello **option de centre de sécurité**.
+Le Centre de sécurité est accessible à partir du [portail Azure](https://azure.microsoft.com/features/azure-portal/). [Connectez-vous au portail](https://portal.azure.com/) et sélectionnez **l’option Security Center**.
 
 ![Vidéos de Security Center][1]
 
-Hello **centre de sécurité** panneau s’ouvre.
+Le panneau **Security Center** s’ouvre.
 ![Panneau Security Center][2]
 
 ## <a name="set-security-policy"></a>Définir une stratégie de sécurité
-Une stratégie de sécurité définit l’ensemble de hello de contrôles qui sont recommandés pour les ressources hello spécifié abonnement ou groupe de ressources. Dans le centre de sécurité, vous définissez des stratégies pour vos abonnements ou les groupes de ressources en fonction de la société tooyour aux besoins de sécurité et de type hello d’applications ou de la sensibilité des données hello dans chaque abonnement.
+Une stratégie de sécurité définit l’ensemble des contrôles recommandés pour les ressources d’un abonnement ou groupe de ressources spécifique. Dans Security Center, vous devez définir des stratégies pour vos abonnements ou groupes de ressources en fonction des exigences de sécurité de votre société et du type d’applications ou du niveau de confidentialité des données de chaque abonnement.
 
-Recommandations pour l’audit SQL et le chiffrement transparent des données SQL (TDE), vous pouvez définir une stratégie tooshow.
+Vous pouvez définir une stratégie pour afficher les recommandations d’audit SQL et de chiffrement SQL Transparent Data Encryption (TDE).
 
-* Lorsque vous activez **détection des menaces et de l’audit SQL**, centre de sécurité vous recommande que l’audit d’accès tooAzure de base de données activée pour la conformité, avancées de détection et à des fins d’investigation.
+* Lorsque vous activez **l’audit et la détection des menaces SQL**, Security Center recommande l’activation de l’audit de l’accès à Azure SQL Database à des fins de conformité, de détection avancée et d’examen.
 * Lorsque vous activez **SQL Transparent Data Encryption**, Security Center recommande l’activation du chiffrement au repos pour votre base de données Azure SQL Database, ainsi que pour les sauvegardes associées et les fichiers journaux de transaction.
 
-tooset une stratégie de sécurité, sélectionnez hello **stratégie** vignette sur le panneau de centre de sécurité hello. Sur hello **stratégie de sécurité** panneau, sélectionnez hello abonnement sur lequel la stratégie de sécurité tooenable hello. Sélectionnez **stratégie de prévention de** et **sur** hello recommandations de sécurité que vous souhaitez toouse pour cet abonnement.
+Pour définir une stratégie de sécurité, sélectionnez la vignette **Stratégie** dans le panneau Security Center. Sur le panneau **Stratégie de sécurité**, sélectionnez l’abonnement pour lequel vous souhaitez activer la stratégie de sécurité. Sélectionnez **Stratégie de prévention** et cliquez sur **Activé** pour les recommandations de sécurité que vous voulez utiliser pour cet abonnement.
 ![Stratégie de sécurité][3]
 
-toolearn, voir [définir des stratégies de sécurité](security-center-policies.md).
+Pour plus d’informations, consultez [Définir des stratégies de sécurité](security-center-policies.md).
 
 ## <a name="manage-security-recommendation"></a>Gérer les recommandations de sécurité
-Centre de sécurité analyse régulièrement l’état de la sécurité de vos ressources Azure hello. Lorsqu’il identifie des failles de sécurité potentielles, il crée des recommandations. recommandations de Hello vous guident tout au long des processus de hello de configuration de contrôles de hello si nécessaire.
+Le Centre de sécurité analyse l’état de sécurité de vos ressources Azure à intervalles réguliers. Lorsqu’il identifie des failles de sécurité potentielles, il crée des recommandations. Ces recommandations vous guident tout au long du processus de configuration des contrôles nécessaires.
 
-Après avoir défini une stratégie de sécurité, le centre de sécurité analyse état de sécurité hello des vulnérabilités potentielles tooidentify ressources. recommandations de Hello sont affichées sous forme de tableau, où chaque ligne représente une recommandation particulière. Utilisez hello tableau suivant comme un toohelp de référence que vous comprenez les recommandations de hello disponibles pour la base de données SQL Azure et quelles chaque recommandation ne si vous l’appliquez. Sélectionner une recommandation ouvre l’article tooan qui explique comment tooimplement hello recommandation dans le centre de sécurité.
+Une fois que vous avez défini une stratégie de sécurité, Security Center analyse l’état de la sécurité de vos ressources pour identifier les vulnérabilités potentielles. Les recommandations s’affichent dans un tableau où chaque ligne correspond à une recommandation. Utilisez le tableau suivant comme référence pour comprendre les recommandations disponibles pour Azure SQL Database, et le rôle de chaque recommandation si vous l’appliquez. En sélectionnant une recommandation, vous accédez à un article qui explique comment l’implémenter dans Security Center.
 
 | Recommandation | Description |
 | --- | --- |
@@ -72,39 +72,39 @@ Après avoir défini une stratégie de sécurité, le centre de sécurité analy
 | [Activer l’audit et la détection des menaces sur les bases de données SQL](security-center-enable-auditing-on-sql-databases.md) |Recommande l’activation de l’audit et de la détection des menaces pour les bases de données SQL Database. (Service SQL Database uniquement. N’inclut pas Microsoft SQL Server en cours d’exécution sur vos machines virtuelles.) |
 | [Activer Transparent Data Encryption](security-center-enable-transparent-data-encryption.md) |Recommande l’activation du chiffrement pour les bases de données SQL. (Service SQL Database uniquement.) |
 
-recommandations toosee pour vos ressources Azure, sélectionnez hello **recommandations** vignette sur le panneau de centre de sécurité hello. Sur hello **recommandations** panneau, sélectionnez une recommandation toosee les détails. Dans cet exemple, nous allons sélectionner **Activer l’audit et la détection des menaces sur les serveurs SQL**.
+Pour afficher les recommandations pour vos ressources Azure, sélectionnez la vignette **Recommandations** dans le panneau Security Center. Dans le panneau **Recommandations**, sélectionnez une recommandation pour en afficher les détails. Dans cet exemple, nous allons sélectionner **Activer l’audit et la détection des menaces sur les serveurs SQL**.
 
 ![Recommandations][4]
 
-Comme illustré ci-dessous montre le centre de sécurité hello de serveurs SQL Server où l’audit et détection ne sont pas activés. Une fois que vous activez l’audit, vous pouvez configurer les paramètres de détection des menaces et alertes de sécurité de tooreceive des paramètres de messagerie. La détection des menaces vous avertit qu’il détecte des activités de base de données anormales qui indiquent de base de données des toohello des menaces de sécurité potentielles. alertes de Hello sont affichées dans le tableau de bord de centre de sécurité hello.
+Comme illustré ci-dessous, Security Center vous indique les serveurs SQL pour lesquels l’audit et la détection des menaces ne sont pas activés. Une fois que vous avez activé l’audit, vous pouvez configurer les paramètres de détection des menaces et de messagerie pour recevoir des alertes de sécurité. La détection des menaces vous alerte si des activités de base de données anormales, indiquant la présence potentielle de menaces de sécurité pour la base de données, sont détectées. Les alertes sont affichées dans le tableau de bord de Security Center.
 ![Audit et détection des menaces][5]
 
-Suivez les étapes de hello dans [détection des menaces de base de données SQL Bonjour Azure portal](../sql-database/sql-database-threat-detection-portal.md) tooturn sur et configurer la détection des menaces et liste de hello tooconfigure d’adresses de messagerie qui recevront les alertes de sécurité lors de la détection des activités anormales sont.
+Suivez les étapes de la rubrique [Détection de menaces pour les bases de données SQL dans le portail Azure](../sql-database/sql-database-threat-detection-portal.md) pour activer et configurer la détection des menaces (Threat Detection) et configurer la liste des adresses électroniques qui recevront les alertes de sécurité lors de la détection d’activités anormales.
 
-toolearn en savoir plus sur les recommandations, consultez [gestion des recommandations de sécurité](security-center-recommendations.md).
+Pour en savoir plus sur les recommandations, consultez [Gestion des recommandations de sécurité](security-center-recommendations.md).
 
 ## <a name="monitor-security-health"></a>Surveiller l’intégrité de la sécurité
-Après avoir activé [des stratégies de sécurité](security-center-policies.md) pour les ressources d’un abonnement, le centre de sécurité analysera sécurité hello des vulnérabilités potentielles tooidentify ressources.  Vous pouvez afficher l’état de la sécurité de vos ressources hello Bonjour **contrôle d’intégrité de sécurité** vignette. Lorsque vous cliquez sur **données** Bonjour **contrôle d’intégrité de sécurité** vignette, hello **ressources de données** panneau s’ouvre avec les recommandations de SQL pour des problèmes tels que l’audit et transparent chiffrement des données n’est ne pas activé. Elle contient également des recommandations pour l’état d’intégrité général hello de base de données hello.
+Une fois que vous avez activé les [stratégies de sécurité](security-center-policies.md) pour les ressources d’un abonnement, Azure Security Center analyse la sécurité de vos ressources afin d’identifier les vulnérabilités potentielles.  Vous pouvez visualiser l’état de sécurité de vos ressources dans la vignette **Intégrité de la sécurité des ressources**. Lorsque vous cliquez sur l’option **Données** de la vignette **Intégrité de la sécurité des ressources**, le panneau **Ressources de données** s’ouvre et affiche des recommandations SQL relatives aux problèmes, telles que la désactivation de la fonction d’audit ou de Transparent Data Encryption. Il contient également des recommandations pour l’état général de la base de données.
 ![Intégrité de la sécurité des ressources][6]
 
-toolearn, voir [contrôle d’intégrité de la sécurité](security-center-monitoring.md).
+Pour plus d’informations, consultez [Contrôle de l’intégrité de la sécurité](security-center-monitoring.md).
 
-## <a name="manage-and-respond-toosecurity-alerts"></a>Gérer et répondre toosecurity alertes
-Centre de sécurité collecte, analyse automatiquement et intègre des données de journal de [SQL Azure la détection des menaces](../sql-database/sql-database-threat-detection.md), ainsi que d’autres ressources Azure, les menaces réelles toodetect et réduire les faux positifs. Une liste des alertes de sécurité hiérarchisée est indiquée dans le centre de sécurité, ainsi que de hello informations dont vous avez besoin tooquickly examiner le problème de hello et des recommandations sur la manière tooremediate une attaque.
+## <a name="manage-and-respond-to-security-alerts"></a>Gérer et répondre aux alertes de sécurité
+Security Center collecte, analyse et intègre automatiquement les données de journaux provenant de la [Détection des menaces Azure SQL](../sql-database/sql-database-threat-detection.md), ainsi que d’autres ressources Azure, pour détecter les menaces réelles et réduire le nombre de faux positifs. Une liste hiérarchisée d’alertes de sécurité est affichée dans le Centre de sécurité, ainsi que les informations nécessaires pour trouver rapidement la cause d’une attaque et des recommandations sur la façon d’y remédier.
 
-alertes toosee, sélectionnez hello **alertes de sécurité** vignette sur le panneau de centre de sécurité hello. Sur hello **alertes de sécurité** panneau, sélectionnez une alerte toolearn en savoir plus sur les événements hello ayant déclenché l’alerte de hello et, si elle existe, les étapes doivent tootake tooremediate une attaque. Dans cet exemple, nous allons sélectionner **Injection potentielle de code SQL**.
+Pour consulter les alertes, sélectionnez la vignette **Alertes de sécurité** dans le panneau Security Center. Dans le panneau **Alertes de sécurité**, sélectionnez une alerte de sécurité pour en savoir plus sur les événements qui l’ont déclenchée et, le cas échéant, les étapes à suivre pour y remédier. Dans cet exemple, nous allons sélectionner **Injection potentielle de code SQL**.
 ![Alertes de sécurité][7]
 
-Comme illustré ci-dessous, le centre de sécurité fournit des détails supplémentaires qui offrent un aperçu de quel alerte déclenchée hello, hello la ressource, de cible lorsque hello applicable adresse IP source et des recommandations sur la façon de tooremediate.
+Comme indiqué ci-dessous, Security Center fournit des informations supplémentaires qui permettent d’en savoir plus sur ce qui a déclenché l’alerte, sur la ressource cible, sur l’adresse IP source (le cas échéant) et sur la manière de remédier au problème.
 ![Injection potentielle de code SQL][8]
 
-toolearn, voir [répond et de la gestion des alertes de toosecurity](security-center-managing-and-responding-alerts.md).
+Pour en savoir plus, consultez [Gestion et résolution des alertes de sécurité](security-center-managing-and-responding-alerts.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Forum aux questions du centre de sécurité](security-center-faq.md) : Forum aux questions sur l’utilisation hello service de recherche.
-* [Guide de planification et les opérations du centre de sécurité](security-center-planning-and-operations-guide.md) - suivent un ensemble d’étapes et tâches toooptimize votre utilisation du centre de sécurité basée sur les exigences de sécurité de votre organisation et le modèle de gestion de cloud.
+* [FAQ Security Center](security-center-faq.md) : découvrez les réponses aux questions les plus souvent posées à propos de l’utilisation de ce service.
+* [Guide des opérations et de planification de Security Center](security-center-planning-and-operations-guide.md) : couvre un ensemble d’étapes et de tâches pour optimiser votre utilisation de Security Center en fonction des critères de sécurité et du modèle de gestion cloud de votre entreprise.
 * [Sécurité des données de Security Center](security-center-data-security.md) : découvrez comment Security Center collecte et traite des données sur vos ressources Azure, notamment des informations de configuration, des métadonnées, des journaux des événements, des fichiers de vidage sur incident et plus encore.
-* [La gestion des incidents de sécurité](security-center-incident.md) -en savoir plus de la sécurité de hello toouse fonctionnalité disponible dans le centre de sécurité tooassist d’alerte dans la gestion des incidents de sécurité.
+* [Gestion des incidents de sécurité](security-center-incident.md) : apprenez à utiliser la fonction d’alerte de sécurité dans Security Center pour mieux gérer les incidents de sécurité.
 
 <!--Image references-->
 [1]: ./media/security-center-sql-database/security-center.png

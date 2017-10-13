@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> Vous ne pouvez pas utiliser des applications inscrites dans hello **Applications** onglet hello classique [portail de gestion Azure](https://manage.windowsazure.com/) pour cela.
+> Vous ne pouvez pas utiliser d'applications inscrites sous l'onglet **Applications** du [portail de gestion Azure](https://manage.windowsazure.com/) classique à cette fin.
 > 
 > 
 

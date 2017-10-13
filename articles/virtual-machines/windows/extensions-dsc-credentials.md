@@ -1,6 +1,6 @@
 ---
-title: "informations d’identification d’aaaPassing tooAzure à l’aide de DSC | Documents Microsoft"
-description: "Vue d’ensemble sur le passage en toute sécurité les informations d’identification virtuels tooAzure à l’aide de la Configuration d’état souhaité PowerShell"
+title: "Transfert des informations d’identification à Azure à l’aide de DSC | Microsoft Docs"
+description: "Vue d’ensemble du transfert sécurisé des informations d’identification aux machines virtuelles Azure à l’aide de la Configuration de l’état souhaité PowerShell"
 services: virtual-machines-windows
 documentationcenter: 
 author: zjalexander
@@ -16,23 +16,23 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: na
 ms.date: 09/15/2016
 ms.author: zachal
-ms.openlocfilehash: 306ecd3fd481f49a0beca5052fc7531a52999330
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: acd768c0219ec23c0453a65c575faf5213d9c616
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="passing-credentials-toohello-azure-dsc-extension-handler"></a>Passer des informations d’identification toohello Azure Gestionnaire d’extensions DSC
+# <a name="passing-credentials-to-the-azure-dsc-extension-handler"></a>Transfert des informations d’identification au gestionnaire de l’extension de Configuration de l’état souhaité (DSC) Azure
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-Cet article traite l’extension de Configuration d’état souhaité hello pour Azure. Vous trouverez une vue d’ensemble du Gestionnaire d’extensions hello DSC à [Gestionnaire d’extensions Azure DSC Introduction toohello](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+Cet article traite de l’extension de Configuration de l’état souhaité pour Azure. Vous trouverez une vue d’ensemble du gestionnaire de l’extension DSC dans [Présentation du gestionnaire de l’extension de Configuration de l’état souhaité Azure](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
 ## <a name="passing-in-credentials"></a>Passage d’informations d’identification
-Dans le cadre du processus de configuration hello, vous devrez peut-être tooset des comptes d’utilisateurs, accéder aux services ou installer un programme dans un contexte utilisateur. toodo ces éléments, vous avez besoin des informations d’identification tooprovide. 
+Dans le cadre du processus de configuration, vous devrez peut-être configurer des comptes d’utilisateur, accéder aux services ou installer un programme dans un contexte utilisateur. Pour effectuer ces opérations, vous devez fournir les informations d’identification. 
 
-DSC permet des configurations paramétrables dans laquelle les informations d’identification sont passées dans la configuration de hello et stockées en toute sécurité dans les fichiers MOF. Hello Gestionnaire d’extensions Azure simplifie la gestion des informations d’identification en fournissant une gestion automatique de certificats. 
+DSC permet d’effectuer des configurations paramétrables dans lesquelles les informations d’identification sont transmises à la configuration et stockées en toute sécurité dans les fichiers MOF. Le Gestionnaire d’extensions Azure simplifie la gestion des informations d’identification en fournissant une gestion automatique des certificats. 
 
-Tenez compte des hello script de configuration DSC qui crée un compte d’utilisateur local avec le mot de passe spécifié hello suivant :
+Examinez le script de configuration DSC suivant qui crée un compte d’utilisateur local avec le mot de passe spécifié :
 
 *user_configuration.ps1*
 
@@ -60,13 +60,13 @@ configuration Main
 } 
 ```
 
-Il est important tooinclude *nœud localhost* dans le cadre de la configuration de hello. Si cette instruction est manquante, hello étapes suivantes ne fonctionnent pas comme gestionnaire d’extensions hello recherche plus particulièrement d’instruction de localhost nœud hello. Il est également important de conversion de type hello de tooinclude *[PsCredential]*, comme ce type spécifique déclenche les informations d’identification de hello extension tooencrypt hello. 
+Il est important d’inclure l’ *hôte local du nœud* dans le cadre de la configuration. Si cette instruction est manquante, les étapes suivantes ne fonctionnent pas, car le gestionnaire d’extensions recherche spécifiquement l’instruction relative à l’hôte local du nœud. Il est également important d’inclure le caractère *[PsCredential]*, car ce type spécifique déclenche l’extension pour chiffrer les informations d’identification. 
 
-Publier ce stockage tooblob de script :
+Publiez ce script sur le stockage d’objets blob :
 
 `Publish-AzureVMDscConfiguration -ConfigurationPath .\user_configuration.ps1`
 
-Définir une extension de configuration DSC Azure hello et fournir des informations d’identification hello :
+Définissez l’extension DSC Azure et fournissez les informations d’identification :
 
 ```
 $configurationName = "Main"
@@ -80,16 +80,16 @@ $vm = Set-AzureVMDSCExtension -VM $vm -ConfigurationArchive $configurationArchiv
 $vm | Update-AzureVM
 ```
 ## <a name="how-credentials-are-secured"></a>Sécurisation des informations d’identification
-L’exécution de ce code invite à entrer les informations d’identification. Une fois celles-ci fournies, elles sont stockées en mémoire brièvement. Lorsqu’il est publié avec `Set-AzureVmDscExtension` applet de commande, il est transmis via HTTPS toohello machine virtuelle, où Azure stocke chiffrées sur le disque, à l’aide de certificats d’ordinateur virtuel local hello. Il est brièvement déchiffrée en mémoire et re-chiffrée toopass il tooDSC.
+L’exécution de ce code invite à entrer les informations d’identification. Une fois celles-ci fournies, elles sont stockées en mémoire brièvement. Lorsqu’elles sont publiées avec l’applet de commande `Set-AzureVmDscExtension` , elles sont transmises via le protocole HTTPS à la machine virtuelle, où elles sont stockées de manière chiffrée sur le disque par Azure, à l’aide du certificat local de la machine virtuelle. Elles sont ensuite déchiffrées brièvement en mémoire, puis rechiffrées pour leur transfert à DSC.
 
-Ce comportement est différent de celui [à l’aide de configurations sécurisées sans le Gestionnaire d’extensions hello](https://msdn.microsoft.com/powershell/dsc/securemof). Hello environnement Azure offre un moyen tootransmit configuration de données en toute sécurité via les certificats. Lorsque vous utilisez le Gestionnaire d’extensions hello DSC, il n’existe aucun tooprovide besoin $CertificatePath ou un $CertificateID / entrée $Thumbprint dans ConfigurationData.
+Ce comportement diffère de l’ [utilisation de configurations sécurisées sans le gestionnaire d’extensions](https://msdn.microsoft.com/powershell/dsc/securemof). L’environnement Windows Azure permet de transmettre des données de configuration en toute sécurité via des certificats. Lors de l’utilisation du gestionnaire d’extensions DSC, il est inutile de fournir une entrée $CertificatePath ou $CertificateID/$Thumbprint dans ConfigurationData.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur le Gestionnaire d’extensions Azure DSC hello, consultez [Gestionnaire d’extensions Azure DSC Introduction toohello](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+Pour plus d’informations sur le gestionnaire d’extensions DSC Azure, voir [Présentation du gestionnaire d’extensions de configuration d’état souhaité Microsoft Azure](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-Examinez hello [modèle Azure Resource Manager pour l’extension de hello DSC](extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Examinez le [modèle Azure Resource Manager pour l’extension DSC](extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Pour plus d’informations sur PowerShell DSC, [visitez le centre de documentation PowerShell hello](https://msdn.microsoft.com/powershell/dsc/overview). 
+Pour plus informations sur DSC PowerShell, [voir le centre de documentation PowerShell](https://msdn.microsoft.com/powershell/dsc/overview). 
 
-Vous pouvez gérer avec PowerShell DSC, des fonctionnalités supplémentaires toofind [parcourir la galerie PowerShell de hello](https://www.powershellgallery.com/packages?q=DscResource&x=0&y=0) pour plus de ressources DSC.
+Pour accéder aux fonctionnalités supplémentaires que vous pouvez gérer avec DSC PowerShell, [parcourez PowerShell Gallery](https://www.powershellgallery.com/packages?q=DscResource&x=0&y=0) pour voir des ressources DSC supplémentaires.
 

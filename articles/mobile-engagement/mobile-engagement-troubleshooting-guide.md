@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure Mobile Engagement dépannage des repères"
+title: "Guide de résolution des problèmes d’Azure Mobile Engagement"
 description: "Guide de dépannage pour Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
@@ -14,99 +14,99 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: dd69bfd7019907c3e1da8df590db3b5f61606173
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 93b5e3f4892f974bf9df28955956136528470e03
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-mobile-engagement---troubleshooting-guide"></a>Azure Mobile Engagement - Guide de dépannage
 ## <a name="introduction"></a>Introduction
-Hello suivant le guide de dépannage vous aidera à comprendre les causes principales de certains problèmes couramment affichées et vous permettent de tootroubleshoot vous-même. 
+Le guide de dépannage qui suit vous aidera à comprendre les causes principales de certains problèmes couramment rencontrés et vous permettra de les résoudre vous-même. 
 
 ## <a name="general"></a>Généralités
-En règle générale, vous devez toujours vous assurer suivant de hello :
+En règle générale, vous devez systématiquement vérifier les éléments suivants :
 
-1. Vérifiez que vous avez parcouru toutes les étapes de hello requis pour l’intégration, comme décrit dans notre [didacticiels de mise en route](mobile-engagement-windows-store-dotnet-get-started.md)
-2. Vous utilisez la version la plus récente de développement platform SDK hello hello. 
-3. Tester sur un appareil réel et un émulateur, car certains problèmes sont tooemulator spécifique uniquement. 
+1. Assurez-vous que vous avez exécuté toutes les opérations requises pour l’intégration, comme décrit dans nos [didacticiels de prise en main](mobile-engagement-windows-store-dotnet-get-started.md)
+2. que vous utilisez bien la dernière version du kit de développement logiciel de la plateforme, 
+3. que vous effectuez les tests sur un périphérique réel et un émulateur, car certains problèmes sont spécifiques à l’émulateur, 
 4. que vous n’atteignez pas les limites/seuils d’Engagement Mobile qui sont mentionnés [ici](../azure-subscription-service-limits.md)
-5. Si vous n’êtes pas en mesure de tooconnect toohello Mobile Engagement service principal ou voir les données ne pas chargées en continu, puis vérifiez qu’il n’y a aucun incident de service en cours en vérifiant [ici](https://azure.microsoft.com/status/)
+5. Si vous n’êtes pas en mesure de vous connecter au backend du service Engagement Mobile ou si voyez pas les données chargées en continu, assurez-vous qu’il n’y a pas d’incident de service en cours [ici](https://azure.microsoft.com/status/)
 
 ## <a name="monitor-issues"></a>problèmes d’« Analyse »
-### <a name="i-am-not-seeing-my-device-showing-up-on-hello-monitor-tab"></a>Je ne vois pas mon appareil apparaît sur l’onglet de surveillance hello
-Onglet surveiller montre la plateforme Mobile Engagement de hello périphériques connectés tooyour en temps réel. Si vous procédez à un débogage sur un émulateur et un périphérique, vous devez voir au moins une session ici. Si l’application hello a été distribuée, vous verrez hello jauge reflètent les dispositifs de hello plateforme toohello connectés en temps réel de Sessions actives. 
+### <a name="i-am-not-seeing-my-device-showing-up-on-the-monitor-tab"></a>Mon périphérique n’apparaît pas sous l’onglet Analyse
+L’onglet Analyse affiche les périphériques connectés à votre plate-forme Mobile Engagement en temps réel. Si vous procédez à un débogage sur un émulateur et un périphérique, vous devez voir au moins une session ici. Si l’application a été distribuée, les périphériques connectés à la plate-forme en temps réel apparaîtront dans la jauge Sessions actives. 
 
-Si vous ne voyez pas votre appareil sur l’onglet de surveillance hello, il est probablement un problème d’intégration du Kit de développement logiciel. Certaines tootroubleshoot de tootake étapes courantes sont les suivantes :
+Si vous ne voyez pas votre appareil dans l’onglet Analyse, il s’agit probablement un problème d’intégration du SDK. Voici quelques opérations à effectuer pour résoudre les problèmes courants :
 
-1. Assurez-vous que vous utilisez la chaîne de connexion correcte hello dans les applications mobiles hello et il est à partir de la section « clés » hello Kit de développement logiciel pas hello API section « clés ». chaîne de connexion Hello connecte à votre instance de toohello application mobile de l’application Mobile Engagement de hello dans lequel vous verrez votre appareil sur l’onglet de surveillance hello. 
-2. Pour la plateforme Windows - si votre page substitue hello `OnNavigatedTo` (méthode), vérifiez les toocall que `base.OnNavigatedTo(e)`.
-3. Si vous intégrez Mobile Engagement dans une application mobile existante, vous pouvez également vous assurer qu’il ne manque toutes les étapes en examinant hello avancé des étapes d’intégration [ici](mobile-engagement-windows-store-integrate-engagement.md)
-4. Assurez-vous de vous envoyez au moins un/activité à l’écran en substituant page hello avec EngagementActivity selon la plateforme hello vous travaillez comme décrit dans hello [prise en main des didacticiels](mobile-engagement-windows-store-dotnet-get-started.md).
+1. Assurez-vous que vous utilisez la chaîne de connexion correcte dans l’application mobile et qu’elle est issue de la section Clés de la section du kit de développement logiciel et non de la section des clés de l’API. La chaîne de connexion connecte votre application mobile à l’instance de l’application Engagement Mobile et votre périphérique apparaît dans l’onglet Analyse. 
+2. Pour la plateforme Windows - si votre page remplace la méthode `OnNavigatedTo`, assurez-vous d’appeler `base.OnNavigatedTo(e)`.
+3. Si vous intégrez Mobile Engagement à une application mobile existante, vous pouvez également vérifier que vous n’avez manqué aucune opération en regardant les étapes d’intégration avancées [ici](mobile-engagement-windows-store-integrate-engagement.md)
+4. Vérifiez que vous envoyez au moins un écran/une activité en remplaçant la page par EngagementActivity selon la plateforme que vous utilisez, comme décrit dans les [didacticiels de prise en main](mobile-engagement-windows-store-dotnet-get-started.md).
 
-### <a name="i-am-seeing-hello-monitor-tab-showing-a-session-even-when-i-have-disconnected-or-closed-my-app-emulator"></a>J’obtiens un onglet de surveillance hello montrant une session même lorsque j’ai déconnecté ou fermé mon application / émulateur.
-Si vous êtes seule plateforme de toohello connecté hello à ce stade et que vous utilisez une application de hello émulateur tooopen cela est probablement dû tooemulator quirks. En général, vous devez tooensure que vous revenez écran d’accueil du toohello sur l’émulateur hello pour hello application session toodisconnect avec succès. En outre, sur la plateforme Windows, pendant le débogage avec Visual Studio, vous devrez peut-être tooensure que dans Visual Studio, vous allez toohello **les événements du cycle de vie** barre de menus et cliquez sur **Suspend** tooreally fermer session de Hello. Voir [Didacticiel Windows](mobile-engagement-windows-store-dotnet-get-started.md) pour plus de détails. 
+### <a name="i-am-seeing-the-monitor-tab-showing-a-session-even-when-i-have-disconnected-or-closed-my-app-emulator"></a>Je vois un onglet Surveiller une session, même si j’ai déconnecté ou fermé mon application/émulateur.
+Si vous êtes le seul connecté à la plate-forme à ce stade, et si vous utilisez un émulateur pour ouvrir l’application, cela est probablement dû à des particularités de l’émulateur. En général, vous devez vous assurer que vous revenez à l’écran d’accueil de l’émulateur pour que la session de l’application se déconnecte correctement. En outre, sur la plateforme Windows, pendant le débogage avec Visual Studio, il se peut que vous deviez vous assurer que, dans Visual Studio, vous pouvez accéder à la barre de menus **Événements de cycle de vie** et cliquer sur **Interrompre** pour vraiment fermer la session. Voir [Didacticiel Windows](mobile-engagement-windows-store-dotnet-get-started.md) pour plus de détails. 
 
 ## <a name="analytics-issues"></a>Problèmes d’« Analyse »
 ### <a name="i-am-not-seeing-any-data-refreshed-data-on-analytics-tab"></a>Je ne vois pas de données/de données actualisées sur l’onglet Analyse
 Les données d’analyse sont recalculées régulièrement et l’actualisation peut prendre jusqu’à 24 heures. Ces données ne sont pas extraites en temps réel et elles seront actualisées pendant cette période de 24 heures.
-Assurez-vous cependant que vous envoyez au moins un écran ou activité toohello plateforme principale d’une substitution au moins une page avec `EngagementActivity` ou en appelant `SendActivity` explicitement. 
+Assurez-vous toutefois que vous envoyez au moins un écran ou une activité au serveur principal de plateforme soit en remplaçant au moins une page par `EngagementActivity`, soit ou en appelant explicitement `SendActivity`. 
 
-### <a name="i-am-seeing-incorrectly-captured-datetime-for-a-device-on-hello-analytics-tab"></a>J’obtiens incorrectement capturée date/heure pour un périphérique sur l’onglet d’Analytique hello
-Hello laps de temps pour l’Analytique est basée sur la date hello à partir des paramètres de périphérique hello utilisateurs. Par conséquent, vérifiez que hello périphérique a date de hello correctement définie. 
+### <a name="i-am-seeing-incorrectly-captured-datetime-for-a-device-on-the-analytics-tab"></a>Je vois une date/heure mal définie pour un appareil sur l’onglet Analyse
+La période d’analyse est basée sur la date à partir des paramètres de périphérique de l’utilisateur. Par conséquent, vérifiez que la date du périphérique est correctement définie. 
 
 ## <a name="segment-issues"></a>Problèmes « Segment »
 ### <a name="i-created-a-segment-and-it-is-showing-up-as-greyed-out-or-not-showing-any-data"></a>J’ai créé un segment et il s’affiche en grisé, ou il n’affiche pas toutes les données
-Création de segment n’est pas en temps réel au moment de hello. Il est calculé à hello en que même temps que les données analytique hello sont agrégées et par conséquent, il peut prendre jusqu'à 24 heures. Vous devez revenir plus tard, mais en attendant vous devez également vous assurer que vos applications mobiles sont en effet envoie des données de la hello sur base hello dont vous former des segments de hello. Par exemple, Si un événement dites « foo » n’est pas envoyé par n’importe quel appareil mobile, puis il ne serait pas toutes les données de segment pour un segment créé avec EventName = foo comme critère de hello. Vous devez également vérifier votre tooensure d’intégration du Kit de développement logiciel votre application mobile envoie des données de hello correctement. 
+Actuellement, la création de segment ne se fait pas en temps réel. Elle est calculée pendant l’agrégation des données d’analyse, et donc, peut prendre jusqu’à 24 heures. Vous devez contrôler plus tard, mais dans l’intervalle, vous devez également vous assurer que vos applications mobiles envoient effectivement les données sur la base avec laquelle vous formez les segments. Par exemple, si un événement, par exemple « foo », n’est pas envoyé par un appareil mobile, il n’y aura aucune donnée correspondant à un segment créé avec EventName = foo pour critère. Vous pouvez également vérifier votre intégration de kit de développement logiciel pour vous assurer que votre application mobile envoie les données correctement. 
 
 ## <a name="reach-or-push-notifications-issues"></a>Problèmes de notifications Push ou « Reach »
 ### <a name="my-push-messages-are-not-being-delivered"></a>Mes messages Push ne sont pas remis
-1. Essayez d’envoyer des notifications tooa test appareil premier tooensure que tous les composants de hello - application mobile, le service SDK et hello sont toodeliver correctement connectés et en mesure des notifications push. 
-2. Toujours notifier hello la plus simple ' hors de l’application ' abord via une campagne qui n’est pas programmée et ni n’importe quel critère d’audience spécifié. C’est encore tooprove que la connectivité de notification fonctionne correctement. 
-3. Si vous rencontrez des problèmes à remettre les notifications dans l’application, puis il est également une bonne première étape tootry envoi d’une notification de la sortie de l’application tout d’abord. 
-4. Vérifiez que hello 'Push' Native' est correctement configuré pour votre application mobile. En fonction de la plateforme de hello qu’il soit implique clés (Android, Windows) ou des certificats (iOS). Voir [Interface utilisateur - Paramètres](mobile-engagement-user-interface-settings.md)
-5. Hors de l’application notifications peut également être bloquées par hello utilisateur via hello que système d’exploitation mobile par conséquent, vérifiez que ce n’est pas le cas de hello. 
-6. Assurez-vous que vous ne définissez pas hello *ignorer Audience, push seront envoyés toousers via hello API* option Bonjour **campagne** section d’une couverture de campagne, car cela permet de garantir que push notifications uniquement envoyés via des API. 
-7. Assurez-vous que vous testez votre campagne push avec à la fois un appareil connecté via le Wi-Fi et téléphone opérateur réseau tooeliminate hello connexion réseau comme une source possible de problèmes.
-8. Vous assurer que hello système date/heure sur votre appareil/émulateur est correct, car n’importe quel appareil synchronisé sera également interférer avec les notifications toodeliver de hello services de notifications Push capacité. 
+1. Essayez d’envoyer des notifications à un périphérique de test avant de vous assurer que tous les composants (application mobile, kit de développement de logiciel et services) sont connectés correctement et en mesure de livrer des notifications Push. 
+2. Envoyez toujours la « notification hors application » la plus simple d’abord, via une campagne non planifiée et n’ayant pas de critère d’audience spécifié. Il s’agit à nouveau de prouver que la connectivité de notification fonctionne correctement. 
+3. Si vous rencontrez des problèmes de livraison des notifications dans l’application, il peut être judicieux de commencer par envoyer une notification hors application d’abord. 
+4. Assurez-vous que le « Push natif » est correctement configuré pour votre application mobile. Selon la plate-forme, il fera appel à des clés (Android, Windows) ou à des certificats (iOS). Voir [Interface utilisateur - Paramètres](mobile-engagement-user-interface-settings.md)
+5. Les notifications hors application peuvent également être bloquées par l’utilisateur via le système d’exploitation mobile et donc, assurez-vous que ce n’est pas le cas. 
+6. Assurez-vous que vous ne définissez pas l’option *Ignorer Audience, Push sera envoyé aux utilisateurs via l’API* dans la section **Campagne** de la couverture campagne, car cela garantit que les notifications Push ne pourraient être envoyées que via des API. 
+7. Assurez-vous de tester votre campagne Push avec deux périphériques connectés via un réseau WiFi et votre opérateur téléphonique pour éliminer la connexion réseau en tant que source potentielle de problèmes.
+8. Assurez-vous que la date/heure système de votre périphérique/émulateur est correcte, parce que n’importe quel périphérique hors synchronisation interférera avec la possibilité de service de notification Push pour remettre des notifications. 
 
 Vous trouverez d’autres instructions de dépannage spécifiques de plateforme ci-dessous :
 
 1. **iOS** 
    
-   * Assurez-vous que les certificats de hello sont valides et non expirées pour iOS, des Notifications Push. 
+   * Assurez-vous que les certificats sont valides et non expirés pour les Notifications Push iOS. 
    * Vérifiez que vous configurez correctement un certificat de *Production* dans votre application Mobile Engagement. 
-   * Assurez-vous d’effectuer le test sur un *périphérique physique réel.* Simulateur iOS de Hello ne peut pas traiter les messages push.
-   * Vérifiez que hello Qu'identificateur de lot est correctement configuré dans les applications mobiles hello. Consultez les instructions de hello [ici](https://developer.apple.com/library/prerelease/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6)
-   * Lors du test, utilisez la distribution « Ad Hoc » dans votre profil d’approvisionnement mobile. Vous ne serez pas en mesure de tooreceive notification si votre application est compilée à l’aide de « Debug »
+   * Assurez-vous d’effectuer le test sur un *périphérique physique réel.* Le simulateur iOS ne peut pas traiter les messages push.
+   * Vérifiez que l’identificateur d’offres groupées est correctement configuré dans l’application mobile. Suivez les instructions disponibles [ici](https://developer.apple.com/library/prerelease/ios/documentation/IDEs/Conceptual/AppDistributionGuide/AddingCapabilities/AddingCapabilities.html#//apple_ref/doc/uid/TP40012582-CH26-SW6)
+   * Lors du test, utilisez la distribution « Ad Hoc » dans votre profil d’approvisionnement mobile. Vous ne pourrez pas recevoir de notification si votre application est compilée à l’aide de « Debug »
 2. **Android**
    
-   * Assurez-vous que vous avez spécifié le nombre de projet hello correct dans le fichier AndroidManifest.xml de votre application mobile qui est suivi par le caractère \n. 
+   * Vérifiez que vous avez spécifié le numéro de projet correct dans les fichiers AndroidManifest.xml de votre application mobile suivie du caractère \n. 
      
            <meta-data android:name="engagement:gcm:sender" android:value="************\n" />
-   * Vérifiez que vous ne sont pas manquant ou mal configuré des autorisations dans le fichier de manifeste Android hello 
-   * Assurez-vous que le numéro de projet hello vous ajoutez tooyour client application est à partir de hello même compte où vous avez obtenu hello GCM clé du serveur. Une incompatibilité entre les hello deux empêchera votre push sortantes. 
-   * Si vous recevez le système des notifications mais pas dans l’application puis passez en revue hello [spécifier une icône pour la section notifications](mobile-engagement-android-get-started.md) comme probablement que vous ne spécifiez pas les icônes corrects hello dans le fichier de manifeste Android hello. 
-   * Si vous envoyez une notification BigPicture, puis de sorte que, si vous disposez de serveurs de l’image externe, puis ils ont besoin toosupport en mesure de toobe HTTP « GET » et « HEAD ».
+   * Assurez-vous qu’il ne manque pas une autorisation ou que l’une d’elle n’est pas mal configurée dans le fichier manifeste Android. 
+   * Assurez-vous que le numéro de projet que vous ajoutez à votre application cliente provient du même compte que celui où vous avez obtenu la clé du serveur GCM. Toute incompatibilité entre les deux empêchera la sortie de vos notifications push. 
+   * Si vous recevez des notifications système, mais pas dans l’application, passez en revue la [section Spécifier une icône de notifications](mobile-engagement-android-get-started.md) , car il est probable que vous ne spécifiez pas l’icône correcte dans le fichier manifeste Android. 
+   * Si vous envoyez une notification BigPicture, assurez-vous, au cas où vous disposez de serveurs d’images externes, qu’ils sont en mesure de prendre en charge HTTP « GET » et « HEAD ».
 3. **Windows**
    
-   * Assurez-vous que vous avez associé application hello à une application du Windows Store valide. Dans Visual Studio - avoir tooright sur le projet hello et sélectionnez option de « Associer avec magasin d’applications » et application hello sélectionnez que vous avez créé dans hello du Windows Store. Cette application du Windows Store doit être hello même d’où vous avez obtenu tooconfigure d’informations d’identification hello push natif dans le portail Mobile Engagement de hello.
-   * Si vous recevez des notifications Push hors application, mais pas dans les applications avec l’intégration `EngagementOverlay` , assurez-vous qu’il existe un élément de grille racine dans votre page. EngagementOverlay utilise le premier élément « Grille » hello, qu'il se trouve dans votre xaml fichier tooadd deux affichages web sur votre page. Si vous souhaitez toolocate où seront définies affichages web, vous pouvez définir une grille nommée « EngagementGrid » comme suit, toutefois, vous devez tooensure est suffisamment hauteur et largeur de hello suivantes deux vues qui affiche la notification de hello et hello suivant web annonce de notification dans l’application :
+   * Assurez-vous que vous avez associé l’application à une application Windows Store valide. Dans Visual Studio, vous devez cliquer avec le bouton droit sur le projet et sélectionner l’option « Associate App with Store » et sélectionnez l’application que vous avez créée dans Windows Store. Cette application Windows Store doit être identique à celle de laquelle vous avez obtenu les informations d’identification Push native pour configurer le portail Mobile Engagement.
+   * Si vous recevez des notifications Push hors application, mais pas dans les applications avec l’intégration `EngagementOverlay` , assurez-vous qu’il existe un élément de grille racine dans votre page. EngagementOverlay utilise le premier élément « Grid » qu’elle trouve dans le fichier .xaml pour ajouter deux vues web à votre page. Si vous souhaitez localiser l’endroit où les vues web seront placées, vous pouvez définir une grille nommée « EngagementGrid » ainsi, tout en vous assurant cependant que la hauteur et la largeur des deux vues web qui se suivent afficheront la notification et l’annonce qui suit en tant que notification d’application :
      
            <Grid x:Name="EngagementGrid"></Grid>
 
-### <a name="i-created-a-push-notificationannouncement-campaign-and-even-after-it-sent-me-hello-notification-it-is-showing-as-active-what-does-it-mean"></a>J’ai créé une annonce de notification push / / de campagne et même après qu’il me hello notification envoyée, il est affiché en tant que 'Active'. Qu’est-ce que cela signifie ?
-Hello **campagne** que vous avez créé dans Mobile Engagement est appelé, car il est une longue signification de notification push plateforme mobile engagement de tooyour de connexion de nouveaux périphériques, ils seront automatiquement envoyés notification de hello vous configurez ici, tant qu’ils répondent à critère hello que vous définissez de campagne de hello. Il ne s’agit pas d’une notification unique, émise une fois pour toutes. Vous devez toomanually cliquez sur hello **Terminer** bouton campagne de hello tooterminate afin qu’il n’envoie plus les notifications. 
+### <a name="i-created-a-push-notificationannouncement-campaign-and-even-after-it-sent-me-the-notification-it-is-showing-as-active-what-does-it-mean"></a>J’ai créé une notification Push/annonce/campagne et même après qu’il m’ait envoyé la notification, il est affiché en tant qu’« Actif ». Qu’est-ce que cela signifie ?
+La **campagne** que vous avez créée dans Mobile Engagement est appelée ainsi parce qu’il s’agit d’une notification Push à long terme, ce qui signifie que lorsque de nouveaux appareils se connectent à votre plate-forme d’engagement mobile, ils reçoivent automatiquement une notification que vous configurez à ce niveau, s’ils répondent aux critères que vous avez définis dans la campagne. Il ne s’agit pas d’une notification unique, émise une fois pour toutes. Vous devez cliquer manuellement sur le bouton **Terminer** pour mettre fin à la campagne afin qu’elle n’envoie pas d’autres notifications. 
 
-### <a name="i-created-a-push-campaign-and-i-am-receiving-notifications-successfully-however-whenever-i-open-up-hello-app-i-get-hello-same-notification-even-when-i-had-actioned-it-before"></a>J’ai créé une campagne push et je reçois des notifications correctement toutefois chaque fois que vous ouvrez l’application hello, j’obtiens hello même notification même lorsque j’avais déclenchée avant ?
-Il s’agit probablement toohappen pendant le test et si vous utilisez des émulateurs ou une infrastructure de test comme TestFlight. Que se passe-t-il ici est qu’à chaque application d’exécuter l’instance, il est l’acquisition d’un nouvel ID d’appareil et en l’envoyant principal tooour provoquent tootreat de plateforme Mobile Engagement hello en tant qu’un nouveau périphérique et l’envoi de notification de hello. 
+### <a name="i-created-a-push-campaign-and-i-am-receiving-notifications-successfully-however-whenever-i-open-up-the-app-i-get-the-same-notification-even-when-i-had-actioned-it-before"></a>J’ai créé une campagne Push et je reçois des notifications indiquant qu’elle est réussie. Toutefois chaque fois que j’ouvre l’application, j’obtiens la notification qui a motivé mon action ?
+Cette erreur est susceptible de se produire pendant le test et si vous utilisez des émulateurs ou certains frameworks tels que TestFlight. Dans ce cas précis, chaque application exécute une instance, détecte un nouvel ID de périphérique l’envoie à notre serveur principal, ce qui fait que la plateforme Mobile Engagement le traite comme nouveau périphérique et envoie la notification. 
 
 ## <a name="getting-support"></a>Obtenir une assistance
-Si vous êtes vous-même problème de hello tooresolve impossible, vous pouvez :
+Si vous ne parvenez pas à résoudre le problème vous-même, vous pouvez :
 
-1. Recherchez votre problème dans les threads existants hello sur StackOverflow forum et [forum MSDN](https://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=azuremobileengagement) et si pas puis poser une question. 
-2. Si vous trouvez une fonctionnalité manquante ajouter/vote puis pour demande de hello sur notre [UserVoice forum](https://feedback.azure.com/forums/285737-mobile-engagement/)
-3. Si vous avez ouvert de Microsoft prennent en charge un incident de support en fournissant hello les détails suivants : 
+1. Recherchez votre problème dans les threads existants sur le forum StackOverflow et le [forum MSDN](https://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=azuremobileengagement) et, s’il n’y en a pas, posez une question. 
+2. Si vous trouvez une fonctionnalité manquante, ajoutez / votez pour la demande sur notre [forum UserVoice](https://feedback.azure.com/forums/285737-mobile-engagement/)
+3. Si vous bénéficiez d’une assistance Microsoft, ouvrez un incident de support en fournissant les détails suivants : 
    * ID d’abonnement Azure
    * Plate-forme (par exemple, iOS, Android etc.)
    * ID d'application

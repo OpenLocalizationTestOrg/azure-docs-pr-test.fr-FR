@@ -1,6 +1,6 @@
 ---
-title: "sources de données aaaSupported dans Azure Data Catalog | Documents Microsoft"
-description: "Cet article répertorie les spécifications hello actuellement pris en charge des sources de données."
+title: "Sources de données prises en charge dans Azure Data Catalog | Microsoft Docs"
+description: "Cet article répertorie les spécifications des sources de données prises en charge actuellement."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: 4bfcabf31bf9fd781c939a5026abc42a5407df32
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d6867c73bc6ea3c238cceef8a68466d451f3365c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="supported-data-sources-in-azure-data-catalog"></a>Sources de données prises en charge dans Azure Data Catalog
 
-Vous pouvez publier des métadonnées à l’aide d’une API publique ou un clic-une fois outil d’inscription, ou en entrant manuellement les informations directement toohello Azure Data Catalog de portail web. Hello tableau suivant récapitule toutes les sources de données pris en charge par le catalogue de hello aujourd'hui et hello des fonctionnalités de publication pour chacun. Est également répertoriées hello des outils de données externes que chaque source de données peut lancer à partir de notre expérience du portail « open in ». Hello deuxième table contient une spécification plus technique de chaque propriété de connexion de source de données.
+Vous pouvez publier des métadonnées à l’aide d’une API publique ou d’un outil d’inscription par simple clic, ou en entrant manuellement les informations directement dans le portail web Azure Data Catalog. Le tableau ci-dessous récapitule toutes les sources de données actuellement prises en charge par le catalogue, ainsi que les fonctionnalités de publication disponibles pour chacune d’elles. Sont également répertoriés les outils de données externes que chaque source de données peut initier à partir du portail. Le deuxième tableau contient une spécification plus technique de chaque propriété de connexion de source de données.
 
 
 ## <a name="list-of-supported-data-sources"></a>Liste des sources de données prises en charge
@@ -443,12 +443,12 @@ Vous pouvez publier des métadonnées à l’aide d’une API publique ou un cli
     </tr>
 </table>
 
-Si vous devez prendre en charge des sources supplémentaires, envoyez un toohello de demande de fonctionnalité [forum Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
+Si vous avez besoin d’une prise en charge de sources supplémentaires, envoyez une demande de fonctionnalité au [forum Azure Data Catalog](http://go.microsoft.com/fwlink/?LinkID=616424&clcid=0x409).
 
 
 ## <a name="data-source-reference-specification"></a>Spécification de référence de la source de données
 > [!NOTE]
-> Hello **structure DSL** colonne Bonjour tableau suivant répertorie uniquement hello propriétés de connexion pour le jeu de propriétés « address » sont utilisées par Azure Data Catalog. Autrement dit, sac de propriétés « address » peut contenir d’autres propriétés de connexion de source de données hello persiste Azure Data Catalog, mais n’utilise pas.
+> La colonne **Structure DSL** du tableau ci-dessous répertorie uniquement les propriétés de connexion du conteneur de propriétés « address » qui sont utilisées par Azure Data Catalog. Autrement dit, le jeu de propriétés « address » peut contenir d’autres propriétés de connexion de la source de données qu’Azure Data Catalog conserve mais n’utilise pas.
 
 <table>
     <tr>
@@ -970,7 +970,7 @@ Si vous devez prendre en charge des sources supplémentaires, envoyez un toohell
       </td>
     </tr>
     <tr>
-      <td>Autre (aucun Hello ci-dessus)</td>
+      <td>Autre (aucune des options ci-dessus)</td>
       <td>\*</td>
       <td>\*</td>
       <td>

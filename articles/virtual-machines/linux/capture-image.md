@@ -1,6 +1,6 @@
 ---
-title: "aaaCapture une image d’un VM Linux dans Azure à l’aide de CLI 2.0 | Documents Microsoft"
-description: "Capturer une image d’un toouse de machine virtuelle Azure pour les déploiements de mass à l’aide de hello Azure CLI 2.0."
+title: "Capturer l’image d’une machine virtuelle Linux dans Azure à l’aide de l’interface CLI 2.0 | Microsoft Docs"
+description: "Capturez une image d’une machine virtuelle Azure à utiliser pour les déploiements de masse à l’aide de l’interface Azure CLI 2.0."
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,55 +15,55 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: cynthn
-ms.openlocfilehash: 9558332a86186b282775097428df462709373012
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 19b573f77f2ee84600955d00d30bdb16c84e3623
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toocreate-an-image-of-a-virtual-machine-or-vhd"></a>Comment toocreate une image d’un ordinateur virtuel ou un disque dur virtuel
+# <a name="how-to-create-an-image-of-a-virtual-machine-or-vhd"></a>Créer une image d’une machine virtuelle ou d’un disque dur virtuel
 
-<!-- generalize, image - extended version of hello tutorial-->
+<!-- generalize, image - extended version of the tutorial-->
 
-toocreate plusieurs copies d’un ordinateur virtuel (VM) toouse dans Azure, capturer une image de machine virtuelle de hello ou hello du disque dur virtuel du système d’exploitation. toocreate une image, vous devez supprimer les informations de compte personnel qui le rend plus sûre toodeploy plusieurs fois. Bonjour vous annuler le déploiement d’un ordinateur virtuel existant comme suit, désallouer et créer une image. Vous pouvez utiliser cette image de toocreate machines virtuelles sur n’importe quel groupe de ressources au sein de votre abonnement.
+Pour créer plusieurs copies d’une machine virtuelle à utiliser dans Azure, capturez une image de la machine virtuelle ou du disque dur virtuel du système d’exploitation. Pour créer une image, vous devez supprimer les informations de compte personnel. Cela vous permet ainsi d’effectuer plusieurs déploiements de façon plus sécurisée. Les étapes suivantes vous permettent de déprovisionner une machine virtuelle actuelle, de la libérer et de créer une image. Vous pouvez utiliser cette image pour créer des machines virtuelles dans n’importe quel groupe de ressources de votre abonnement.
 
-Si vous souhaitez toocreate une copie de votre VM Linux existante pour la sauvegarde ou de débogage, ou téléchargez un VHD Linux spécialisées à partir d’une machine virtuelle locale, consultez [télécharger et créer un VM Linux à partir de l’image de disque personnalisé](upload-vhd.md).  
+Si vous souhaitez créer une copie de votre machine virtuelle Linux actuelle à des fins de sauvegarde ou de débogage, ou charger un disque dur virtuel Linux spécialisé à partir d’une machine virtuelle locale, consultez [Charger et créer une machine virtuelle Linux à partir d’une image de disque personnalisée](upload-vhd.md).  
 
-Vous pouvez également utiliser **GARNITURE** toocreate votre configuration personnalisée. Pour plus d’informations sur l’utilisation du programme de compression, consultez [comment une machine virtuelle Linux toouse GARNITURE toocreate images dans Azure](build-image-with-packer.md).
+Vous pouvez également utiliser **Packer** pour créer votre configuration personnalisée. Pour plus d’informations sur l’utilisation de Packer, consultez [Comment utiliser Packer pour créer des images de machines virtuelles Linux dans Azure](build-image-with-packer.md).
 
 
 ## <a name="before-you-begin"></a>Avant de commencer
-Vérifiez que vous remplissez hello suivant des conditions préalables :
+Assurez-vous de satisfaire les prérequis suivants :
 
-* Vous avez besoin d’une machine virtuelle de Azure créé dans le modèle de déploiement hello Gestionnaire de ressources à l’aide de disques gérés. Si vous n’avez pas créé un VM Linux, vous pouvez utiliser hello [portal](quick-create-portal.md), hello [CLI d’Azure](quick-create-cli.md), ou [modèles Resource Manager](create-ssh-secured-vm-from-template.md). Configurer hello machine virtuelle en fonction des besoins. Par exemple, [ajoutez des disques de données](add-disk.md), appliquez des mises à jour et installez des applications. 
+* Vous avez besoin d’une machine virtuelle Azure créée avec le modèle de déploiement Resource Manager à l’aide de disques managés. Si vous n’avez pas créé de machine virtuelle Linux, vous pouvez utiliser le [portail](quick-create-portal.md), l’interface [Azure CLI](quick-create-cli.md) ou les [modèles Resource Manager](create-ssh-secured-vm-from-template.md). Configurez la machine virtuelle en fonction de vos besoins. Par exemple, [ajoutez des disques de données](add-disk.md), appliquez des mises à jour et installez des applications. 
 
-* Vous devez également toohave hello dernières [Azure CLI 2.0](/cli/azure/install-az-cli2) installé et être connecté à l’aide du compte Azure tooan [ouverture de session az](/cli/azure/#login).
+* Vous devez également disposer de la dernière version d’[Azure CLI 2.0](/cli/azure/install-az-cli2) et vous connecter à un compte Azure avec la commande [az login](/cli/azure/#login).
 
 ## <a name="quick-commands"></a>Commandes rapides
 
-Pour une version simplifiée de cette rubrique, pour les tests, l’évaluation ou en savoir plus sur les machines virtuelles dans Azure, consultez [créer une image personnalisée d’une machine virtuelle de Azure à l’aide de hello CLI](tutorial-custom-images.md).
+Pour une version simplifiée de cette rubrique, pour tester, évaluer ou découvrir les machines virtuelles dans Azure, consultez [Créer une image personnalisée d’une machine virtuelle Azure à l’aide de l’interface CLI](tutorial-custom-images.md).
 
 
-## <a name="step-1-deprovision-hello-vm"></a>Étape 1 : Annuler le déploiement hello machine virtuelle
-Vous annulez le déploiement hello machine virtuelle, à l’aide des données de l’agent de machine virtuelle Azure hello et toodelete les fichiers d’ordinateur spécifique. Hello d’utilisation `waagent` avec hello *-deprovision + utilisateur* paramètre sur votre source de Linux VM. Pour plus d’informations, consultez hello [guide de l’utilisateur Linux Agent Azure](../windows/agent-user-guide.md).
+## <a name="step-1-deprovision-the-vm"></a>Étape 1 : Déprovisionnement de la machine virtuelle
+Déprovisionnez la machine virtuelle à l’aide de l’agent de machine virtuelle Azure pour supprimer les fichiers et les données propres à la machine. Utilisez la commande `waagent` avec le paramètre *-deprovision+user* sur votre machine virtuelle Linux source. Pour plus d’informations, consultez le [Guide d’utilisateur de l’agent Linux Azure](../windows/agent-user-guide.md).
 
-1. Se connecter tooyour VM Linux à l’aide d’un client SSH.
-2. Dans la fenêtre SSH hello, tapez hello de commande suivante :
+1. Connectez-vous à votre machine virtuelle Linux en utilisant un client SSH.
+2. Dans la fenêtre SSH, tapez la commande suivante :
    
     ```bash
     sudo waagent -deprovision+user
     ```
 <br>
    > [!NOTE]
-   > Uniquement, exécutez cette commande sur une machine virtuelle que vous avez l’intention de toocapture en tant qu’image. Il ne garantit pas cette image hello est effacée de toutes les informations sensibles ou appropriée pour la redistribution. Hello *+ utilisateur* paramètre supprime également le dernier compte d’utilisateur configuré hello. Si vous souhaitez que les informations d’identification de compte tookeep Bonjour machine virtuelle, utilisez simplement *-deprovision* compte d’utilisateur tooleave hello en place.
+   > Exécutez uniquement cette commande sur une machine virtuelle que vous souhaitez capturer en tant qu’image. Cela ne garantit pas que l’image est exempte de toute information sensible ou qu’elle convient pour la redistribution. Le paramètre *+user* supprime également le dernier compte d’utilisateur configuré. Si vous souhaitez conserver les informations d’identification de compte dans la machine virtuelle, utilisez simplement *-deprovision* pour conserver le compte utilisateur.
  
-3. Type **y** toocontinue. Vous pouvez ajouter hello **-force** paramètre tooavoid cette étape de confirmation.
-4. Une fois la commande hello terminée, tapez **quitter**. Cette étape ferme le client SSH de hello.
+3. Tapez **y** pour continuer. Vous pouvez ajouter le paramètre **-force** pour éviter cette étape de confirmation.
+4. Une fois la commande terminée, tapez **exit**. Cette étape ferme le client SSH.
 
 ## <a name="step-2-create-vm-image"></a>Étape 2 : Créer une image de machine virtuelle
-Utilisez Bonjour Azure CLI 2.0 toomark Bonjour machine virtuelle comme généralisé et capturer l’image de hello. Bonjour les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Les noms de paramètre sont par exemple *myResourceGroup*, *myVnet* et *myVM*.
+Utilisez l’interface Azure CLI 2.0 pour marquer la machine virtuelle comme étant généralisée et capturer l’image. Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Les noms de paramètre sont par exemple *myResourceGroup*, *myVnet* et *myVM*.
 
-1. Désallouer hello machine virtuelle qui vous a été annulé avec [az vm désallouer](/cli//azure/vm#deallocate). exemple Hello désalloue hello ordinateur virtuel nommé *myVM* dans le groupe de ressources hello nommé *myResourceGroup*:
+1. Libérez la machine virtuelle dont vous avez annulé le déploiement à l’aide de la commande [az vm deallocate](/cli//azure/vm#deallocate). L’exemple suivant libère la machine virtuelle nommée *myVM* dans le groupe de ressources nommé *myResourceGroup* :
    
     ```azurecli
     az vm deallocate \
@@ -71,7 +71,7 @@ Utilisez Bonjour Azure CLI 2.0 toomark Bonjour machine virtuelle comme général
       --name myVM
     ```
 
-2. Hello de marque machine virtuelle comme généralisée avec [az vm généraliser](/cli//azure/vm#generalize). Hello suivants exemple marques hello hello VM nommée *myVM* dans le groupe de ressources hello nommé *myResourceGroup* comme généralisé :
+2. Définissez l’état de la machine virtuelle sur généralisé avec [az vm generalize](/cli//azure/vm#generalize). L’exemple suivant marque comme généralisée la machine virtuelle nommée *myVM* dans le groupe de ressources nommé *myResourceGroup* :
    
     ```azurecli
     az vm generalize \
@@ -79,7 +79,7 @@ Utilisez Bonjour Azure CLI 2.0 toomark Bonjour machine virtuelle comme général
       --name myVM
     ```
 
-3. Créez une image de la ressource d’ordinateur virtuel hello avec [az image création](/cli//azure/image#create). Hello exemple suivant crée une image nommée *myImage* dans le groupe de ressources hello nommé *myResourceGroup* à l’aide de la ressource de machine virtuelle hello nommé *myVM*:
+3. Créez à présent une image de la ressource de machine virtuelle à l’aide de la commande [az image create](/cli//azure/image#create). L’exemple suivant crée une image nommée *myImage* dans le groupe de ressources nommé *myResourceGroup* à l’aide de la ressource de machine virtuelle nommée *myVM* :
    
     ```azurecli
     az image create \
@@ -88,10 +88,10 @@ Utilisez Bonjour Azure CLI 2.0 toomark Bonjour machine virtuelle comme général
     ```
    
    > [!NOTE]
-   > Hello image est créée dans hello même groupe de ressources que votre ordinateur virtuel source. Vous pouvez créer des machines virtuelles dans n’importe quel groupe de ressources de votre abonnement à partir de cette image. À partir d’un point de vue de gestion, vous pouvez toocreate un groupe de ressources spécifique pour vos ressources d’ordinateurs virtuels et des images.
+   > L’image est créée dans le même groupe de ressources que votre machine virtuelle source. Vous pouvez créer des machines virtuelles dans n’importe quel groupe de ressources de votre abonnement à partir de cette image. En matière de gestion, peut-être voudrez-vous créer un groupe de ressources spécifique pour vos ressources de machine virtuelle et vos images.
 
-## <a name="step-3-create-a-vm-from-hello-captured-image"></a>Étape 3 : Créer une machine virtuelle à partir de l’image de hello capturée
-Créer une machine virtuelle à l’aide d’image hello vous avez créé avec [az vm créer](/cli/azure/vm#create). Hello exemple suivant crée un ordinateur virtuel nommé *myVMDeployed* à partir de l’image hello nommée *myImage*:
+## <a name="step-3-create-a-vm-from-the-captured-image"></a>Étape 3 : créer une machine virtuelle à partir de l’image capturée
+Créez une machine virtuelle à l’aide de l’image que vous avez créée en utilisant la commande [az vm create](/cli/azure/vm#create). L’exemple suivant crée une machine virtuelle nommée *myVMDeployed* à partir de l’image nommée *myImage* :
 
 ```azurecli
 az vm create \
@@ -102,9 +102,9 @@ az vm create \
    --ssh-key-value ~/.ssh/id_rsa.pub
 ```
 
-### <a name="creating-hello-vm-in-another-resource-group"></a>Création de hello machine virtuelle dans un autre groupe de ressources 
+### <a name="creating-the-vm-in-another-resource-group"></a>Création de la machine virtuelle dans un autre groupe de ressources 
 
-Vous pouvez créer des machines virtuelles à partir d’une image dans n’importe quel groupe de ressources de votre abonnement. toocreate une machine virtuelle dans un autre groupe de ressources à l’image de hello, spécifiez l’ID tooyour image hello ressource complète. Utilisez [liste d’images az](/cli/azure/image#list) tooview une liste d’images. Hello la sortie est similaire toohello l’exemple suivant :
+Vous pouvez créer des machines virtuelles à partir d’une image dans n’importe quel groupe de ressources de votre abonnement. Pour créer une machine virtuelle dans un groupe de ressources différent de celui de l’image, indiquez l’ID de ressource complet de votre image. Utilisez la commande [az image list](/cli/azure/image#list) pour afficher une liste d’images. Le résultat ressemble à l’exemple suivant :
 
 ```json
 "id": "/subscriptions/guid/resourceGroups/MYRESOURCEGROUP/providers/Microsoft.Compute/images/myImage",
@@ -112,7 +112,7 @@ Vous pouvez créer des machines virtuelles à partir d’une image dans n’impo
    "name": "myImage",
 ```
 
-Hello exemple suivant utilise [az vm créer](/cli/azure/vm#create) toocreate une machine virtuelle dans un autre groupe de ressources à l’image source de hello en spécifiant l’ID de ressource d’image hello :
+L’exemple suivant utilise la commande [az vm create](/cli/azure/vm#create) pour créer une machine virtuelle dans un groupe de ressources différent de celui de l’image source en spécifiant l’ID de ressource d’image :
 
 ```azurecli
 az vm create \
@@ -124,9 +124,9 @@ az vm create \
 ```
 
 
-## <a name="step-4-verify-hello-deployment"></a>Étape 4 : Vérifier le déploiement de hello
+## <a name="step-4-verify-the-deployment"></a>Étape 4 : Vérifier le déploiement
 
-Maintenant SSH toohello machine virtuelle vous avez créé le déploiement de hello tooverify et commencer à utiliser hello nouvelle machine virtuelle. tooconnect via SSH, rechercher l’adresse IP de hello ou nom de domaine complet de votre machine virtuelle avec [afficher de machine virtuelle az](/cli/azure/vm#show):
+Maintenant, exécutez le SSH sur la machine virtuelle que vous avez créée pour vérifier le déploiement et lancez le déploiement et le démarrage de l’utilisation de la nouvelle machine virtuelle. Pour vous connecter via le protocole SSH, recherchez l’adresse IP ou le nom de domaine complet de votre machine virtuelle à l’aide de la commande [az vm show](/cli/azure/vm#show) :
 
 ```azurecli
 az vm show \
@@ -136,11 +136,11 @@ az vm show \
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez créer plusieurs machines virtuelles à partir de votre image de machine virtuelle source. Si vous avez besoin d’image de tooyour toomake des modifications : 
+Vous pouvez créer plusieurs machines virtuelles à partir de votre image de machine virtuelle source. Si vous devez apporter des modifications à votre image : 
 
 - Créez une machine virtuelle à partir de votre image.
 - Apportez les mises à jour ou modifications de configuration requises.
-- Suivez hello les étapes à nouveau toodeprovision, désallouer, généraliser et créer une image.
-- Utilisez cette nouvelle image pour les déploiements futurs. Si vous le souhaitez, supprimez l’image d’origine de hello.
+- Suivez de nouveau ces étapes pour annuler le déploiement, libérer, généraliser et créer une image.
+- Utilisez cette nouvelle image pour les déploiements futurs. Si vous le souhaitez, supprimez l’image d’origine.
 
-Pour plus d’informations sur la gestion de vos machines virtuelles avec hello CLI, consultez [Azure CLI 2.0](/cli/azure/overview).
+Pour plus d’informations sur la gestion de vos machines virtuelles avec l’interface de ligne de commande, consultez [Azure CLI 2.0](/cli/azure/overview).

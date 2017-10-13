@@ -1,6 +1,6 @@
 ---
-title: application de Java aaaCompute intensif sur une machine virtuelle | Documents Microsoft
-description: "Découvrez comment toocreate une machine virtuelle Azure qui exécute une application Java de calcul intensif qui peut être surveillée par une autre application Java."
+title: "Application Java nécessitant beaucoup de ressources système sur une machine virtuelle | Microsoft Docs"
+description: "Apprenez à créer une machine virtuelle Azure qui exécute une application de calcul intensif Java qu'une autre application Java peut surveiller."
 services: virtual-machines-windows
 documentationcenter: java
 author: rmcmurray
@@ -15,104 +15,104 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: 02a198802a8d78bd444cd5a9197a78cb94f48e3b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8c51c0bb37e25ad61fe58a85dd641dabe0a1958c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toorun-a-compute-intensive-task-in-java-on-a-virtual-machine"></a>Comment toorun nécessitant une tâche dans Java sur un ordinateur virtuel
+# <a name="how-to-run-a-compute-intensive-task-in-java-on-a-virtual-machine"></a>Exécution d'une tâche nécessitant beaucoup de ressources en langage Java sur une machine virtuelle
 > [!IMPORTANT] 
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello.
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager.
 
-Avec Azure, vous pouvez utiliser une tâche de calcul intensif toohandle machine virtuelle. Par exemple, un ordinateur virtuel peut gérer des tâches et de remettre machines tooclient de résultats ou des applications mobiles. Après avoir lu cet article, vous devez comprendre comment toocreate une machine virtuelle qui exécute une application Java de calcul intensif qui peut être surveillée par une autre application Java.
+Azure permet d'utiliser une machine virtuelle pour gérer les tâches nécessitant beaucoup de ressources. Par exemple, une machine virtuelle peut gérer des tâches et fournir des résultats à des ordinateurs clients ou à des applications mobiles. Après avoir lu cet article, vous serez en mesure de créer une machine virtuelle exécutée sur une application Java nécessitant beaucoup de ressources et pouvant être surveillée par une autre application Java.
 
-Ce didacticiel suppose que vous savez comment les applications console toocreate Java, peut importer l’application de bibliothèques tooyour Java et peut générer une archive Java (JAR). Aucune connaissance de Microsoft Azure n'est nécessaire.
+Ce didacticiel part du principe que vous savez créer des applications console Java, importer des bibliothèques dans votre application Java et générer une archive Java (JAR). Aucune connaissance de Microsoft Azure n'est nécessaire.
 
 Vous apprendrez à effectuer les opérations suivantes :
 
-* Comment toocreate un ordinateur virtuel avec un Kit de développement Java (JDK) déjà installé.
-* Comment tooremotely du journal dans la machine virtuelle de tooyour.
-* Comment toocreate un service bus espace de noms.
-* Comment toocreate une application Java qui effectue une tâche de calcul intensif.
-* Comment toocreate une application Java qui surveille hello progression de la tâche de calcul intensif hello.
-* Comment toorun hello des applications Java.
-* Comment toostop hello des applications Java.
+* créer une machine virtuelle déjà dotée d'un kit de développement Java (JDK) ;
+* vous connecter à distance à votre machine virtuelle ;
+* création d'un espace de noms Service Bus ;
+* créer une application Java exécutant une tâche qui nécessite beaucoup de ressources ;
+* créer une application Java surveillant la progression de la tâche qui nécessite beaucoup de ressources ;
+* exécuter les applications Java ;
+* arrêter les applications Java.
 
-Ce didacticiel utilise hello problème commercial pour la tâche de calcul intensif hello. Hello Voici un exemple de tâche de calcul intensif hello en cours d’exécution hello Java application.
+Dans le cadre de ce didacticiel, la tâche nécessitant beaucoup de ressources repose sur le problème du voyageur de commerce. Vous trouverez ci-dessous un exemple d'application Java qui exécute la tâche nécessitant beaucoup de ressources.
 
 ![Résolution du problème du voyageur de commerce][solver_output]
 
-Hello Voici un exemple de tâche de calcul intensif Java application analyse hello de hello.
+Vous trouverez ci-dessous un exemple d'application Java qui surveille la tâche nécessitant beaucoup de ressources :
 
 ![Client du problème du voyageur de commerce][client_output]
 
 [!INCLUDE [create-account-and-vms-note](../../../../includes/create-account-and-vms-note.md)]
 
-## <a name="toocreate-a-virtual-machine"></a>toocreate une machine virtuelle
-1. Connectez-vous à toohello [portail Azure classic](https://manage.windowsazure.com).
+## <a name="to-create-a-virtual-machine"></a>Création d’une machine virtuelle
+1. Connectez-vous au [portail Azure Classic](https://manage.windowsazure.com).
 2. Cliquez sur **New**, sur **Compute**, sur **Virtual machine**, puis sur **From Gallery**.
-3. Bonjour **sélection d’image de machine virtuelle** boîte de dialogue, sélectionnez **JDK 7 Windows Server 2012**.
-   Notez que **JDK 6 Windows Server 2012** au cas où vous avez des applications héritées qui ne sont pas encore prêt toorun JDK 7.
+3. Dans la boîte de dialogue **Sélectionner une image de machine virtuelle**, sélectionnez **Windows Server 2012 JDK 7**.
+   Notez que **Windows Server 2012 JDK 6** est disponible si vous ne pouvez pas exécuter certaines de vos applications héritées dans JDK 7.
 4. Cliquez sur **Suivant**.
-5. Bonjour **configuration d’ordinateur virtuel** boîte de dialogue :
-   1. Spécifiez un nom pour la machine virtuelle de hello.
-   2. Spécifiez toouse de taille hello pour la machine virtuelle de hello.
-   3. Entrez un nom pour l’administrateur de hello dans hello **nom d’utilisateur** champ. N’oubliez pas ce nom et hello mot de passe que vous devrez entrer ensuite, vous allez les utiliser lorsque vous vous connectez à distance dans la machine virtuelle de toohello.
-   4. Entrez un mot de passe Bonjour **nouveau mot de passe** champ et entrez-la dans hello **confirmer** champ. Il s’agit de mot de passe hello.
+5. Dans la boîte de dialogue **Configuration de la machine virtuelle** :
+   1. Entrez un nom pour la machine virtuelle.
+   2. Entrez la taille de la machine virtuelle.
+   3. Entrez un nom pour l'administrateur dans le champ **Nom d'utilisateur** . Notez le nom et le mot de passe que vous allez entrer, car vous les utiliserez pour vous connecter à distance à votre machine virtuelle.
+   4. Entrez un mot de passe dans le champ **Nouveau mot de passe**, puis entrez-le de nouveau dans le champ **Confirmer**. Il s'agit du mot de passe du compte Administrateur.
    5. Cliquez sur **Suivant**.
-6. Bonjour suivant **configuration d’ordinateur virtuel** boîte de dialogue :
-   1. Pour **service de cloud computing**, utiliser la valeur par défaut hello **créer un service cloud**.
-   2. Hello valeur pour **nom DNS du service Cloud** doit être unique sur cloudapp.net. Si nécessaire, modifiez cette valeur afin qu'Azure indique qu'elle est unique.
+6. Dans la boîte de dialogue **Configuration de la machine virtuelle** suivante :
+   1. Pour le **Service cloud**, utilisez le paramètre par défaut **Créer un nouveau service cloud**.
+   2. La valeur du **Nom du cloud Service DNS** doit être unique sur cloudapp.net. Si nécessaire, modifiez cette valeur afin qu'Azure indique qu'elle est unique.
    3. Indiquez une région, un groupe d'affinités ou un réseau virtuel. Dans le cadre de ce didacticiel, indiquez une région comme **Bretagne**.
    4. Pour **Storage Account**, sélectionnez **Use an automatically generated storage account**.
    5. Pour **Availability Set**, sélectionnez **(None)**.
    6. Cliquez sur **Suivant**.
-7. Bonjour final **configuration d’ordinateur virtuel** boîte de dialogue :
-   1. Accepter les entrées de point de terminaison par défaut hello.
+7. Dans la dernière boîte de dialogue **Configuration de la machine virtuelle** :
+   1. Validez les entrées de points de terminaison par défaut.
    2. Cliquez sur **Terminé**.
 
-## <a name="tooremotely-log-in-tooyour-virtual-machine"></a>journal de tooremotely dans la machine virtuelle de tooyour
-1. Ouvrez une session sur toohello [portail Azure classic](https://manage.windowsazure.com).
+## <a name="to-remotely-log-in-to-your-virtual-machine"></a>Connexion distante à votre machine virtuelle
+1. Connectez-vous au [portail Azure Classic](https://manage.windowsazure.com).
 2. Cliquez sur **Machines virtuelles**.
-3. Cliquez sur nom hello hello virtuels que vous souhaitez toolog dans.
+3. Cliquez sur le nom de la machine virtuelle à laquelle vous voulez vous connecter.
 4. Cliquez sur **Connecter**.
-5. Répondre toohello invites en tant que machine virtuelle de toohello tooconnect nécessaires. À l’invite de mot de passe et le nom de l’administrateur hello, utilisez les valeurs de hello que vous avez fourni lors de la création de la machine virtuelle de hello.
+5. Répondez aux invites pour vous connecter à la machine virtuelle. Lorsque vous y êtes invité, entrez le nom d’administrateur et le mot de passe fournis lors de la création de la machine virtuelle.
 
-Notez que les fonctionnalités Azure Service Bus hello requiert hello Baltimore CyberTrust Root certificat toobe est installé dans le cadre de votre JRE **cacerts** stocker. Ce certificat est automatiquement inclus dans hello Java Runtime Environment (JRE) utilisé par ce didacticiel. Si vous n’avez pas de ce certificat dans votre JRE **cacerts** stockage, consultez [Ajout d’un toohello certificat magasin de certificats d’autorité de certification Java] [ add_ca_cert] pour plus d’informations sur l’ajout d’il (ainsi que informations sur l’affichage des certificats de hello dans votre magasin cacerts).
+Notez que la fonctionnalité Azure Service Bus requiert l'installation du certificat racine Baltimore CyberTrust dans le magasin **cacerts** de votre environnement JRE. Ce certificat est automatiquement inclus dans l'environnement JRE (Java Runtime Environment) utilisé par ce didacticiel. Si vous ne disposez pas de ce certificat dans le magasin **cacerts** de votre environnement JRE, consultez la rubrique [Ajout d’un certificat au magasin de certificats d’autorité de certification Java][add_ca_cert] pour plus d’informations sur l’ajout de celui-ci (et sur l’affichage des certificats de votre magasin cacerts).
 
-## <a name="how-toocreate-a-service-bus-namespace"></a>Comment toocreate un service bus espace de noms
-les files d’attente de toobegin à l’aide du Service Bus dans Azure, vous devez d’abord créer un espace de noms de service. Ce dernier fournit un conteneur d’étendue pour l’adressage des ressources Service Bus au sein de votre application.
+## <a name="how-to-create-a-service-bus-namespace"></a>Création d’un espace de noms Service Bus
+Pour commencer à utiliser les files d'attente Service Bus dans Azure, vous devez d'abord créer un espace de noms de service. Ce dernier fournit un conteneur d’étendue pour l’adressage des ressources Service Bus au sein de votre application.
 
-toocreate un espace de noms de service :
+Pour créer un espace de noms de service :
 
-1. Ouvrez une session sur toohello [portail Azure classic](https://manage.windowsazure.com).
-2. Dans le volet de navigation inférieure gauche hello Hello portail Azure classic, cliquez sur **Service Bus, contrôle d’accès et la mise en cache**.
-3. Dans le volet supérieur gauche de hello Hello portail Azure classic, cliquez sur hello **Service Bus** nœud, puis cliquez sur hello **nouveau** bouton.  
+1. Connectez-vous au [portail Azure Classic](https://manage.windowsazure.com).
+2. En bas du volet de navigation gauche du Portail Azure Classic, cliquez sur **Service Bus, Access Control et Cache**.
+3. Dans le volet supérieur gauche du Portail Azure Classic, cliquez sur le nœud **Service Bus**, puis sur le bouton **Nouveau**.  
    ![Capture d'écran du nœud Service Bus][svc_bus_node]
-4. Bonjour **créer un nouveau Namespace de Service** boîte de dialogue, entrez un **Namespace**, puis toomake assurer qu’il est unique, cliquez sur le **vérifier la disponibilité** bouton.  
+4. Dans la boîte de dialogue **Créer un espace de noms de service**, entrez un **Espace de noms**, puis vérifiez qu’il est unique en cliquant sur le bouton **Vérifier la disponibilité**.  
    ![Capture d'écran Créer un espace de noms][create_namespace]
-5. Après avoir vérifié que le nom d’espace de noms hello est disponible, cliquez sur le pays ou la région dans laquelle votre espace de noms doit être hébergé, puis cliquez sur hello **créer de Namespace** bouton.  
+5. Après avoir vérifié que le nom de l'espace de noms est disponible, choisissez le pays ou la région où votre espace de noms sera hébergé, puis cliquez sur le bouton **Créer un espace de noms** .  
    
-   espace de noms de Hello que vous avez créé apparaît dans hello portail Azure classic et prend un tooactivate moment. Attendez que l’état hello est **Active** avant de passer à l’étape suivante de hello.
+   L’espace de noms que vous avez créé apparaît alors dans le portail Azure Classic. Son activation peut prendre un peu de temps. Attendez que l’état **Actif** apparaisse avant de passer à l’étape suivante.
 
-## <a name="obtain-hello-default-management-credentials-for-hello-namespace"></a>Obtenir hello par défaut gestion des informations d’identification pour l’espace de noms hello
-Dans les opérations de gestion de tooperform commande, telles que la création d’une file d’attente, sur hello le nouvel espace de noms, vous avez besoin d’informations d’identification de gestion tooobtain hello pour l’espace de noms.
+## <a name="obtain-the-default-management-credentials-for-the-namespace"></a>Obtention d'informations d'identification de gestion par défaut pour l'espace de noms
+Pour pouvoir effectuer des opérations de gestion telles que la création d'une file d'attente sur le nouvel espace de noms, vous devez obtenir les informations d'identification de gestion associées.
 
-1. Dans le volet de navigation gauche hello, cliquez sur hello **Service Bus** nœud pour afficher la liste de hello des espaces de noms disponibles.
+1. Dans le volet de navigation gauche, cliquez sur le nœud **Service Bus** pour afficher la liste des espaces de noms disponibles.
    ![Capture d'écran Available Namespaces][avail_namespaces]
-2. Sélectionnez l’espace de noms hello que vous venez de créer à partir de la liste hello indiqué.
+2. Sélectionnez l’espace de noms que vous venez de créer dans la liste affichée.
    ![Capture d’écran Liste d’espaces de noms][namespace_list]
-3. Hello droite **propriétés** volet répertorie les propriétés hello pour le nouvel espace de noms.
+3. Le volet **Propriétés** de droite répertorie les propriétés du nouvel espace de noms.
    ![Capture d'écran du volet Propriétés][properties_pane]
-4. Hello **clé par défaut** est masqué. Cliquez sur hello **vue** bouton informations d’identification de sécurité toodisplay hello.
+4. La **Clé par défaut** est masquée. Cliquez sur le bouton **Afficher** pour afficher les informations d'identification de sécurité.
    ![Capture d'écran Clé par défaut][default_key]
-5. Prenez note de hello **émetteur par défaut** et hello **clé par défaut** car vous utiliserez ces informations ci-dessous tooperform opérations avec l’espace de noms.
+5. Notez **l’Émetteur par défaut** et la **Clé par défaut**, car vous devrez utiliser ces informations ci-dessous pour accomplir les opérations relatives à l’espace de noms.
 
-## <a name="how-toocreate-a-java-application-that-performs-a-compute-intensive-task"></a>Comment toocreate une application Java qui effectue une tâche de calcul intensif
-1. Sur votre ordinateur de développement (qui n’a pas de machine virtuelle de hello toobe que vous avez créés), téléchargement hello [SDK Azure pour Java](https://azure.microsoft.com/develop/java/).
-2. Créez une application de console Java à l’aide du code d’exemple hello à fin hello de cette section. Dans ce didacticiel, nous allons utiliser **TSPSolver.java** comme nom de fichier hello Java. Modifier hello **votre\_service\_bus\_espace de noms**, **votre\_service\_bus\_propriétaire**et **votre\_service\_bus\_clé** des espaces réservés toouse service bus **espace de noms**, **émetteur par défaut** et  **Clé par défaut** valeurs, respectivement.
-3. Après le codage, exportation hello application tooa exécutable archive Java (JAR) et hello de package requis bibliothèques dans hello généré JAR. Dans ce didacticiel, nous allons utiliser **TSPSolver.jar** comme nom de fichier JAR hello généré.
+## <a name="how-to-create-a-java-application-that-performs-a-compute-intensive-task"></a>Création d'une application Java exécutant une tâche qui nécessite beaucoup de ressources
+1. Sur votre ordinateur de développement (qui n'est pas forcément celui où se trouve la machine virtuelle que vous avez créée), téléchargez le [Kit de développement logiciel (SDK) Azure pour Java](https://azure.microsoft.com/develop/java/).
+2. Créez une application console Java à l'aide de l'exemple de code disponible à la fin de cette section. Dans le cadre de ce didacticiel, nous utiliserons le nom de fichier Java **TSPSolver.java** . Modifiez les espaces réservés **your\_service\_bus\_namespace**, **your\_service\_bus\_owner** et **your\_service\_bus\_key** pour utiliser respectivement vos valeurs Service Bus **Espace de noms**, **Émetteur par défaut** et **Clé par défaut**.
+3. Après le codage, exportez l'application dans une archive Java exécutable (JAR) et créez un package contenant les bibliothèques requises dans le fichier JAR généré. Dans le cadre de ce didacticiel, nous utiliserons le nom **TSPSolver.jar** pour désigner le fichier JAR généré.
 
 <p/>
 
@@ -131,7 +131,7 @@ Dans les opérations de gestion de tooperform commande, telles que la création 
 
     public class TSPSolver {
 
-        //  Value specifying how often tooprovide an update toohello console.
+        //  Value specifying how often to provide an update to the console.
         private static long loopCheck = 100000000;  
 
         private static long nTimes = 0, nLoops=0;
@@ -235,12 +235,12 @@ Dans les opérations de gestion de tooperform commande, telles que la création 
 
                 service = ServiceBusService.create(config);
 
-                int numCities = 10;  // Use as hello default, if no value is specified at command line.
+                int numCities = 10;  // Use as the default, if no value is specified at command line.
                 if (args.length != 0)
                 {
                     if (args[0].toLowerCase().compareTo("createqueue")==0)
                     {
-                        // No processing toooccur other than creating hello queue.
+                        // No processing to occur other than creating the queue.
                         QueueInfo queueInfo = new QueueInfo("TSPQueue");
 
                         service.createQueue(queueInfo);
@@ -252,7 +252,7 @@ Dans les opérations de gestion de tooperform commande, telles que la création 
 
                     if (args[0].toLowerCase().compareTo("deletequeue")==0)
                     {
-                        // No processing toooccur other than deleting hello queue.
+                        // No processing to occur other than deleting the queue.
                         service.deleteQueue("TSPQueue");
 
                         System.out.println("Queue named TSPQueue was deleted.");
@@ -261,7 +261,7 @@ Dans les opérations de gestion de tooperform commande, telles que la création 
                     }
 
                     // Neither creating or deleting a queue.
-                    // Assume hello value passed in is hello number of cities toosolve.
+                    // Assume the value passed in is the number of cities to solve.
                     numCities = Integer.valueOf(args[0]);  
                 }
 
@@ -299,9 +299,9 @@ Dans les opérations de gestion de tooperform commande, telles que la création 
 
 
 
-## <a name="how-toocreate-a-java-application-that-monitors-hello-progress-of-hello-compute-intensive-task"></a>Comment toocreate une application Java qui surveille hello la progression de la tâche de calcul intensif hello
-1. Sur votre ordinateur de développement, créez une application de console Java à l’aide du code d’exemple hello à fin hello de cette section. Dans ce didacticiel, nous allons utiliser **TSPClient.java** comme nom de fichier hello Java. Comme indiqué précédemment, modifiez hello **votre\_service\_bus\_espace de noms**, **votre\_service\_bus\_propriétaire**, et **votre\_service\_bus\_clé** des espaces réservés toouse service bus **espace de noms**, **émetteur par défaut**et **clé par défaut** valeurs, respectivement.
-2. Exporter hello application tooa JAR exécutable hello de package requis bibliothèques dans hello généré JAR. Dans ce didacticiel, nous allons utiliser **TSPClient.jar** comme nom de fichier JAR hello généré.
+## <a name="how-to-create-a-java-application-that-monitors-the-progress-of-the-compute-intensive-task"></a>Création d'une application Java surveillant la progression de la tâche qui nécessite beaucoup de ressources
+1. Sur votre ordinateur de développement, créez une application console Java à l'aide de l'exemple de code disponible à la fin de cette section. Dans le cadre de ce didacticiel, nous utiliserons le nom **TSPClient.java** pour désigner le fichier Java. Comme indiqué plus haut, modifiez les espaces réservés **your\_service\_bus\_namespace**, **your\_service\_bus\_owner** et **your\_service\_bus\_key** pour utiliser respectivement vos valeurs Service Bus **Espace de noms**, **Émetteur par défaut** et **Clé par défaut**.
+2. Exportez l'application dans un fichier JAR exécutable et créez un package contenant les bibliothèques requises dans le fichier JAR généré. Dans le cadre de ce didacticiel, nous utiliserons le nom **TSPClient.jar** pour désigner le fichier JAR généré.
 
 <p/>
 
@@ -340,7 +340,7 @@ Dans les opérations de gestion de tooperform commande, telles que la création 
 
                     BrokeredMessage message;
 
-                    int waitMinutes = 3;  // Use as hello default, if no value is specified at command line.
+                    int waitMinutes = 3;  // Use as the default, if no value is specified at command line.
                     if (args.length != 0)
                     {
                         waitMinutes = Integer.valueOf(args[0]);  
@@ -366,7 +366,7 @@ Dans les opérations de gestion de tooperform commande, telles que la création 
                         if (null != message && null != message.getMessageId())
                         {
 
-                            // Display hello queue message.
+                            // Display the queue message.
                             byte[] b = new byte[200];
 
                             System.out.print("From queue: ");
@@ -383,7 +383,7 @@ Dans les opérations de gestion de tooperform commande, telles que la création 
                             System.out.println();
                             if (s.compareTo("Complete") == 0)
                             {
-                                // No more processing toooccur.
+                                // No more processing to occur.
                                 date = new Date();
                                 System.out.println("Finished at " + dateFormat.format(date) + ".");
                                 break;
@@ -391,7 +391,7 @@ Dans les opérations de gestion de tooperform commande, telles que la création 
                         }
                         else
                         {
-                            // hello queue is empty.
+                            // The queue is empty.
                             System.out.println("Queue is empty. Sleeping for another " + waitString);
                             Thread.sleep(60000 * waitMinutes);
                         }
@@ -415,14 +415,14 @@ Dans les opérations de gestion de tooperform commande, telles que la création 
 
     }
 
-## <a name="how-toorun-hello-java-applications"></a>Comment toorun hello des applications Java
-Exécuter des applications de calcul intensif hello, première file d’attente de hello toocreate, puis toosolve hello problème Saleseman en déplacement, qui ajoute hello meilleur itinéraire toohello service bus file d’attente actuelle. Hello lors de l’application de calcul intensif est en cours d’exécution (ou par la suite), résultats de toodisplay exécution hello client à partir de la file d’attente de bus de service hello.
+## <a name="how-to-run-the-java-applications"></a>Exécution des applications Java
+Exécutez l'application nécessitant beaucoup de ressources pour créer la file d'attente, puis pour résoudre le problème du voyageur de commerce afin d'ajouter le meilleur itinéraire actuel à la file d'attente Service Bus. Pendant (ou après) l'exécution de l'application nécessitant beaucoup de ressources, exécutez le client pour afficher les résultats de la file d'attente Service Bus.
 
-### <a name="toorun-hello-compute-intensive-application"></a>application de calcul intensif hello toorun
-1. Ouvrez une session sur l’ordinateur virtuel de tooyour.
+### <a name="to-run-the-compute-intensive-application"></a>Exécution de l'application nécessitant beaucoup de ressources
+1. Connectez-vous à votre machine virtuelle.
 2. Créez un dossier où vous exécuterez votre application. Par exemple, **C:\TSP**.
-3. Copie **TSPSolver.jar** trop**c:\TSP**,
-4. Créez un fichier nommé **c:\TSP\cities.txt** avec hello suivant le contenu.
+3. Copiez **TSPSolver.jar** sous **C:\TSP**.
+4. Créez un fichier intitulé **C:\TSP\cities.txt** avec le contenu ci-dessous.
    
         City_1, 1002.81, -1841.35
         City_2, -953.55, -229.6
@@ -474,44 +474,44 @@ Exécuter des applications de calcul intensif hello, première file d’attente 
         City_48, 363.68, 768.21
         City_49, -120.3, -463.13
         City_50, 588.51, 679.33
-5. À une invite de commandes, modifiez les répertoires tooc:\TSP.
-6. Assurez-vous dossier de JRE hello bin se trouve dans la variable d’environnement PATH hello.
-7. Vous aurez besoin de file d’attente du bus toocreate hello service avant d’exécuter des permutations de solveur PVC hello. Exécutez hello suivant la file d’attente de commande toocreate hello service bus.
+5. Depuis une invite de commandes, accédez au répertoire c:\TSP.
+6. Vérifiez que le dossier Bin de JRE se trouve dans la variable d'environnement PATH.
+7. Vous devez créer la file d'attente Service Bus avant d'exécuter les permutations de solveur TSP. Exécutez la commande ci-dessous pour créer la file d'attente de bus de services.
    
         java -jar TSPSolver.jar createqueue
-8. Maintenant que hello file d’attente est créée, vous pouvez exécuter des permutations de solveur PVC hello. Par exemple, exécutez hello suivant solveur de hello toorun commande 8 villes.
+8. Maintenant que la file d’attente est créée, vous pouvez exécuter les permutations de solveur TSP. Par exemple, exécutez la commande suivante afin d’exécuter le solveur pour 8 villes.
    
         java -jar TSPSolver.jar 8
    
-   Si vous n'entrez aucun nombre, l'exécution portera sur 10 villes. Comme le solveur de hello recherche les itinéraires les plus courts en cours, il ajoute les file d’attente toohello.
+   Si vous n'entrez aucun nombre, l'exécution portera sur 10 villes. Dès que le solveur trouve les itinéraires les plus courts, il les ajoute à la file d’attente.
 
 > [!NOTE]
-> Hello plus grande hello nombre que vous spécifiez, solveur de hello plu hello s’exécutera. Par exemple, une exécution portant sur 14 villes peut prendre quelques minutes, et une exécution portant sur 15 villes peut prendre des heures. Augmentez too16 ou davantage de villes, vous risquez de jours du runtime (finalement semaines, mois et année). Il s’agit en raison de l’augmentation rapide toohello nombre hello de permutations évaluées par le solveur de hello en tant que nombre hello de villes.
+> Plus le nombre spécifié est élevé, plus l’exécution du solveur est longue. Par exemple, une exécution portant sur 14 villes peut prendre quelques minutes, et une exécution portant sur 15 villes peut prendre des heures. Au-delà de 16 villes, l'exécution peut prendre des jours (voire des semaines, des mois et des années). Cette lenteur est due à la hausse rapide du nombre de permutations évaluées par le solveur à mesure que le nombre de villes augmente.
 > 
 > 
 
-### <a name="how-toorun-hello-monitoring-client-application"></a>Comment toorun hello analyse de l’application client
-1. Ouvrez une session sur l’ordinateur tooyour où vous allez exécuter l’application cliente de hello. Cela n’a pas besoin toobe hello même ordinateur en cours d’exécution hello **TSPSolver** application, bien qu’il peut l’être.
+### <a name="how-to-run-the-monitoring-client-application"></a>Exécution de la surveillance de l'application cliente
+1. Connectez-vous à l'ordinateur où vous exécuterez l'application cliente. Il ne doit pas nécessairement s'agir de l'ordinateur qui exécute l'application **TSPSolver** .
 2. Créez un dossier où vous exécuterez votre application. Par exemple, **C:\TSP**.
-3. Copie **TSPClient.jar** trop**c:\TSP**,
-4. Assurez-vous dossier de JRE hello bin se trouve dans la variable d’environnement PATH hello.
-5. À une invite de commandes, modifiez les répertoires tooc:\TSP.
-6. Exécutez hello commande suivante.
+3. Copiez **TSPClient.jar** sous **C:\TSP**,
+4. Vérifiez que le dossier Bin de JRE se trouve dans la variable d'environnement PATH.
+5. Depuis une invite de commandes, accédez au répertoire c:\TSP.
+6. Exécutez la commande ci-dessous.
    
         java -jar TSPClient.jar
    
-    Si vous le souhaitez, spécifiez hello nombre de toosleep minutes entre la vérification de la file d’attente de hello, en passant un argument de ligne de commande. Hello période par défaut en mode veille pour la vérification de la file d’attente hello est 3 minutes, qui est utilisé si aucun argument de ligne de commande est passé trop**TSPClient**. Si vous souhaitez toouse une autre valeur pour l’intervalle de veille hello, par exemple, une minute, exécutez hello commande suivante.
+    Vous pouvez éventuellement spécifier le nombre de minutes de veille entre les vérifications de la file d’attente via un argument de ligne de commande. La période de veille par défaut de la vérification de la file d'attente est de 3 minutes et elle est appliquée si aucun argument de ligne de commande n'est transmis à **TSPClient**. Si vous souhaitez utiliser une autre valeur pour l’intervalle de veille (une minute, par exemple), exécutez la commande suivante :
    
         java -jar TSPClient.jar 1
    
-    Hello client exécute jusqu'à ce qu’elle voit un message de la file d’attente de « Terminé ». Notez que si vous exécutez plusieurs occurrences de solveur de hello sans exécutant hello client, vous devrez peut-être le client de hello toorun file d’attente de plusieurs fois toocompletely hello vide. Vous pouvez également supprimer la file d’attente hello et puis recréez-le. file d’attente de toodelete hello, exécutez hello **TSPSolver** (pas **TSPClient**) commande.
+    Le client s'exécutera jusqu'à ce qu'il voie le message de file d'attente « Terminé ». Notez que si vous exécutez plusieurs occurrences du solveur sans exécuter le client, vous serez peut-être amené à exécuter le client plusieurs fois pour vider entièrement la file d'attente. Vous pouvez également supprimer la file d’attente puis la recréer. Pour supprimer la file d’attente, exécutez la commande **TSPSolver** (et non **TSPClient**) ci-dessous.
    
         java -jar TSPSolver.jar deletequeue
    
-    Solveur de Hello s’exécute jusqu'à ce qu’il a terminé d’examiner des tous les itinéraires.
+    Le solveur s’exécutera jusqu’à ce qu’il ait examiné tous les itinéraires.
 
-## <a name="how-toostop-hello-java-applications"></a>Comment toostop hello des applications Java
-Pour les applications clientes et les solveur de hello, vous pouvez appuyer sur **Ctrl + C** tooexit si vous souhaitez tooend toonormal préalable achèvement.
+## <a name="how-to-stop-the-java-applications"></a>Arrêt des applications Java
+Pour quitter les applications solveur et cliente avant la fin normale, vous pouvez appuyer sur **Ctrl+C** .
 
 [solver_output]:media/java-run-compute-intensive-task/WA_JavaTSPSolver.png
 [client_output]:media/java-run-compute-intensive-task/WA_JavaTSPClient.png

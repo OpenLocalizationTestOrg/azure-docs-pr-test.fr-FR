@@ -1,6 +1,6 @@
 ---
-title: "aaaGet main de la détection des menaces de l’entrepôt de données SQL"
-description: "Comment tooget démarrer avec la détection des menaces"
+title: Prise en main de Threat Detection pour SQL Data Warehouse
+description: "Prise en main de la détection de menaces"
 services: sql-data-warehouse
 documentationcenter: 
 author: ronortloff
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: dec0b734849e7f52434e099db0b38fbf0bf6ad53
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f4a2376fe4fb710d031c35ca7fdbf4c7bb0f3caa
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-threat-detection"></a>Prise en main de la détection de menaces
 > [!div class="op_single_selector"]
@@ -29,49 +29,49 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a name="overview"></a>Vue d'ensemble
-La détection des menaces détecte des activités de base de données anormales indiquant de base de données des toohello des menaces de sécurité potentielles. Threat Detection est disponible en version préliminaire et est pris en charge pour SQL Data Warehouse.
+Threat Detection permet de détecter les activités base de données anormales indiquant la présence potentielle de menaces de sécurité pour la base de données. Threat Detection est disponible en version préliminaire et est pris en charge pour SQL Data Warehouse.
 
-La détection des menaces fournit une nouvelle couche de sécurité, ce qui permet aux clients toodetect et de répond toopotential menaces qu’ils se produisent en fournissant des alertes de sécurité sur les activités anormales. Les utilisateurs peuvent Explorer à l’aide d’événements suspects hello [audit de l’entrepôt de données SQL Azure](sql-data-warehouse-auditing-overview.md) toodetermine s’ils résultent d’une tentative de tooaccess, violation ou exploiter les données dans l’entrepôt de données hello.
-La détection des menaces rend les menaces potentielles tooaddress simple toohello données de l’entrepôt sans hello besoin toobe un expert en sécurité ou gérer des systèmes de surveillance de la sécurité avancée.
+Threat Detection fournit une nouvelle couche de sécurité qui permet aux clients de détecter les menaces potentielles et d’y répondre à mesure qu’elles se présentent en générant des alertes de sécurité sur les activités anormales. Les utilisateurs peuvent explorer les événements suspects à l’aide de l’ [audit d’Azure SQL Data Warehouse](sql-data-warehouse-auditing-overview.md) pour déterminer s’ils sont le résultat d’une tentative d’accès, d’une violation ou d’une exploitation des données dans l’entrepôt de données.
+Threat Detection vous permet de réagir facilement aux menaces potentielles envers l'entrepôt de données sans avoir à acquérir une expertise de la sécurité ou à gérer des systèmes de surveillance de la sécurité avancés.
 
-Par exemple, il détecte certaines activités de base de données anormales indiquant des tentatives d’injection SQL potentielles. Injection SQL est un des hello Web application problèmes de sécurité courants sur hello Internet, les applications utilisées tooattack piloté par les données. Les attaquants profiter d’application vulnérabilités tooinject des instructions SQL malveillantes dans les champs de saisie d’application, de violation ou de modification des données dans la base de données hello.
+Par exemple, il détecte certaines activités de base de données anormales indiquant des tentatives d’injection SQL potentielles. L’injection SQL représente l’un des problèmes de sécurité auxquels sont le plus exposées les applications web, et est utilisée pour cibler les applications pilotées par des données. Les pirates exploitent les vulnérabilités des applications pour injecter des instructions SQL nuisibles dans les champs de saisie d’application afin de violer ou modifier les données contenues dans la base de données.
 
 ## <a name="set-up-threat-detection-for-your-database"></a>Configurer Threat Detection pour votre base de données
-1. Lancement hello portail Azure à l’adresse [https://portal.azure.com](https://portal.azure.com).
-2. Accédez à panneau de configuration toohello Hello souhaité toomonitor SQL Data Warehouse. Dans le panneau des paramètres de hello, sélectionnez **audit et la détection des menaces**.
+1. Accédez à l’adresse [https://portal.azure.com](https://portal.azure.com)et exécutez le portail Azure.
+2. Accédez au volet de configuration de l'entrepôt SQL Data Warehouse que voulez surveiller. Dans le panneau Paramètres, sélectionnez **Audit et détection des menaces**.
    
     ![Volet de navigation][1]
-3. Bonjour **audit et la détection des menaces** activer Panneau de configuration **ON** l’audit, qui affiche les paramètres de détection de menace hello.
+3. Dans le panneau de configuration **Audit et détection des menaces**, **activez** l’audit pour afficher les paramètres Détection des menaces.
    
     ![Volet de navigation][2]
 4. **Activez** la détection des menaces.
-5. Configurez la liste hello d’adresses de messagerie qui recevront les alertes de sécurité lors de la détection des activités de l’entrepôt de données anormales.
-6. Cliquez sur **enregistrer** Bonjour **détection d’audit et de menaces** toosave Panneau de configuration hello nouvelle ou mis à jour stratégie de détection des menaces et de l’audit.
+5. Configurez la liste des adresses électroniques qui recevront les alertes de sécurité en cas de détection d'activités anormales sur l'entrepôt de données.
+6. Cliquez sur **Enregistrer** dans le panneau de configuration **Audit et détection des menaces** pour enregistrer la stratégie d’audit et de détection des menaces que vous avez créée ou modifiée.
    
     ![Volet de navigation][3]
 
 ## <a name="explore-anomalous-data-warehouse-activities-upon-detection-of-a-suspicious-event"></a>Explorer les activités anormales sur l'entrepôt de données en cas de détection d'un événement suspect
 1. Vous recevrez une notification par courrier électronique lorsque des activités anormales sont détectées au niveau de la base de données. <br/>
-   messagerie de Hello fournit des informations sur les événements de sécurité anormaux hello, y compris la nature hello d’activités anormales de hello, nom de la base de données, heure de serveur hello et de nom de l’événement. En outre, il fournit des informations sur les causes possibles et recommandé actions tooinvestigate et atténuer la base de données du toohello de menaces potentielles hello.<br/>
+   Le courrier électronique contiendra des informations sur l’événement de sécurité suspect, notamment la nature des activités anormales, le nom de la base de données, le nom du serveur et l’heure de l’événement. Il fournit également des informations sur les causes possibles et les mesures recommandées afin d’examiner et atténuer la menace potentielle pesant sur la base de données.<br/>
    
     ![Volet de navigation][4]
-2. Dans le message électronique de hello, cliquez sur hello **le journal d’audit Azure SQL** lien lance hello portail classique Azure et afficher les enregistrements de l’audit pertinentes hello en temps hello d’événement de suspectes hello.
+2. Dans le courrier électronique, cliquez sur le lien **Azure SQL Auditing Log** pour ouvrir le portail Azure Classic et afficher les enregistrements d’audit pertinents au moment de l’événement suspect.
    
     ![Volet de navigation][5]
-3. Cliquez sur hello audit enregistrements tooview plus de détails sur les activités de base de données suspecte hello comme instruction SQL, IP raison et le client d’échec.
+3. Cliquez sur les enregistrements d’audit pour afficher plus de détails sur les activités de base de données suspects, comme l’instruction SQL, la cause de l’échec et l’adresse IP client.
    
     ![Volet de navigation][6]
-4. Dans le panneau des enregistrements d’audit hello, cliquez sur **ouvrir dans Excel** tooopen un préconfiguré excel tooimport de modèle et d’exécuter une analyse plus approfondie du journal d’audit de hello en temps hello d’événement de suspectes hello.<br/>
-   **Remarque :** dans Excel 2010 ou version ultérieure, Power Query et hello **combinaison rapide** paramètre est requis
+4. Dans le panneau des enregistrements d’audit, cliquez sur **Ouvrir dans Excel** pour ouvrir un modèle Excel préconfiguré à importer et exécuter une analyse plus approfondie du journal d’audit au moment de l’événement suspect.<br/>
+   **Remarque :** dans Excel 2010 ou version ultérieure, les paramètres Power Query et **Combinaison rapide** sont requis
    
     ![Volet de navigation][7]
-5. tooconfigure hello **combinaison rapide** le paramètre - Bonjour **POWER QUERY** onglet de ruban, sélectionnez **Options** boîte de dialogue Options toodisplay hello. Sélectionnez la section de confidentialité hello et choisissez hello deuxième option - « Ignorer les niveaux de confidentialité hello et potentiellement améliorer les performances » :
+5. Pour configurer le paramètre **Combinaison rapide** : sous l’onglet du ruban **POWER QUERY**, sélectionnez **Options** pour afficher la boîte de dialogue correspondante. Sélectionnez la section Confidentialité et choisissez la deuxième option « gnore the Privacy Levels and potentially improve performance » :
    
     ![Volet de navigation][8]
-6. les journaux d’audit tooload SQL, assurez-vous que hello les paramètres dans l’onglet Paramètres de hello sont correctement définies et puis sélectionnez hello 'Data' ruban et cliquez sur le bouton Actualiser tout de hello.
+6. Pour charger les journaux d’audit SQL, vérifiez que les paramètres de l’onglet Paramètres sont correctement définis, puis sélectionnez le ruban « Données » et cliquez sur le bouton « Actualiser tout ».
    
     ![Volet de navigation][9]
-7. résultats de Hello s’affichent dans hello **les journaux d’Audit SQL** feuille qui vous permet d’effectuer une analyse toorun des activités anormales de hello qui ont été détectés et d’atténuer l’impact hello d’événement de sécurité hello dans votre application.
+7. Les résultats s’affichent dans la feuille **SQL Audit Logs** , qui vous permet d’analyser de manière plus approfondie les activités anormales détectées et de limiter l’impact de l’événement de sécurité sur votre application.
 
 <!--Image references-->
 [1]: ./media/sql-data-warehouse-security-threat-detection/1_td_click_on_settings.png

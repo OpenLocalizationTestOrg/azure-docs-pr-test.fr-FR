@@ -1,6 +1,6 @@
 ---
-title: aaaOverview de hello du cycle de vie des Services fiables de Azure Service Fabric | Documents Microsoft
-description: "En savoir plus sur les événements de cycle de vie différent hello dans les services fiables Service Fabric"
+title: "Vue d’ensemble du cycle de vie de Reliable Services dans Azure Service Fabric | Microsoft Docs"
+description: "En savoir plus sur les différents événements de cycle de vie de Reliable Services dans Service Fabric"
 services: Service-Fabric
 documentationcenter: java
 author: PavanKunapareddyMSFT
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/30/2017
 ms.author: pakunapa;
-ms.openlocfilehash: 6d48c217d12bc5248c2da57b544aac747cecd872
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 80eb68346dd05c256c60725eb082aa0651fe7cbd
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="reliable-services-lifecycle-overview"></a>Vue d’ensemble du cycle de vie de Reliable Services
 > [!div class="op_single_selector"]
@@ -26,48 +26,48 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Quand vous réfléchissez à hello de cycles de vie des Services fiables, principes de base hello du cycle de vie hello sont hello plus importante. En général :
+Lorsque l’on songe aux cycles de vie de Reliable Services, les principes de base du cycle de vie sont les plus importants. En général :
 
 * Lors du démarrage
   * Les services sont construits
-  * Ils ont une tooconstruct opportunité et retournent zéro ou plusieurs écouteurs
-  * Tous les écouteurs retournés sont ouverte, ce qui permet la communication avec le service hello
-  * du Service Hello runAsync est appelée, permettant de hello toodo de service à long terme ou de travail d’arrière-plan
+  * Ils ont l’opportunité de se construire et de renvoyer zéro ou plusieurs écouteurs
+  * Les écouteurs retournés sont ouverts, ce qui permet la communication avec le service
+  * La méthode runAsync du service est appelée, ce qui permet au service d’exécuter des tâches de longue durée ou d’arrière-plan
 * Lors de l’arrêt
-  * toorunAsync passé jeton d’annulation Hello est annulée et les écouteurs hello sont fermées.
-  * Une fois cette opération terminée, objet de service hello lui-même est détruite
+  * Le jeton d’annulation passé à runAsync est annulé et les écouteurs sont fermés
+  * Une fois cette opération terminée, l’objet de service lui-même est détruit
 
-Il n’y a plus d’informations sur hello exact de classement de ces événements. En particulier, commande hello d’événements peut varier légèrement selon que hello Service fiable est sans état ou avec état. En outre, pour les services avec état, nous avons toodeal avec le scénario principal swap hello. Au cours de cette séquence, rôle hello des principaux est transféré tooanother réplica (ou est restauré) sans arrêt du service hello. Enfin, nous avons toothink sur les conditions d’erreur ou d’échec.
+Il existe plus d’informations sur l’ordre exact de ces événements. En particulier, l’ordre des événements peut varier légèrement selon que le Reliable Service est un service sans état ou avec état. En outre, pour les services avec état, nous devons gérer le scénario d’échange principal. Au cours de cette séquence, le rôle principal est transféré vers un autre réplica (ou revient) sans que le service ne s’arrête. Enfin, nous devons penser aux conditions d’erreur ou d’échec.
 
 ## <a name="stateless-service-startup"></a>Démarrage de service sans état
-Hello de cycle de vie d’un service sans état est assez simple. Voici l’ordre hello des événements :
+Le cycle de vie d’un service sans état est assez simple. Voici l’ordre des événements :
 
-1. Hello Service est construit
+1. Le service est construit
 2. Ensuite, deux choses se produisent en parallèle :
     - `StatelessService.createServiceInstanceListeners()` est appelée et les écouteurs retournés sont ouverts (`CommunicationListener.openAsync()` est appelée sur chaque écouteur)
-    - méthode de runAsync du service de Hello (`StatelessService.runAsync()`) est appelé
-3. Le cas échéant, méthode d’onOpenAsync hello du service est appelée (plus précisément, `StatelessService.onOpenAsync()` est appelée. Il s’agit d’un remplacement rare, mais il est disponible).
+    - La méthode runAsync (`StatelessService.runAsync()`) du service est appelée
+3. Si elle est présente, la méthode onOpenAsync propre au service est appelée (en l’occurrence, c’est `StatelessService.onOpenAsync()` qui est appelée). Il s’agit d’un remplacement rare, mais il est disponible).
 
-Il est important toonote qu’il n’existe aucun classement entre hello appels toocreate et les écouteurs hello ouvert et runAsync. les écouteurs Hello peut s’ouvrir avant le démarrage de runAsync. De même, runAsync peut finir appelé avant que les écouteurs de communication hello sont ouverts, ou même ont été construits. Si aucune synchronisation n’est requise, elle est considérée comme un implémenteur de toohello exercice. Solutions courantes :
+Il est important de noter qu’il n’existe pas d’ordre particulier entre les appels pour créer et ouvrir les écouteurs, et runAsync. Les écouteurs peuvent s’ouvrir avant que la méthode runAsync ne soit démarrée. De même, runAsync peut être appelée avant que les écouteurs de communication ne soient ouverts ou même construits. Si une synchronisation est nécessaire, elle est considérée comme un exercice à exécuter par le responsable d’implémentation. Solutions courantes :
 
-* Parfois, les écouteurs ne peuvent pas fonctionner avant que d’autres informations ne soient créées ou un travail effectué. Pour les services sans état qui travail peut se faire dans le constructeur du service hello pendant hello `createServiceInstanceListeners()` appeler, ou dans le cadre de la construction de hello d’écouteur hello lui-même.
-* Parfois hello code dans runAsync ne veut pas toostart jusqu'à ce que les écouteurs hello sont ouverts. Dans ce cas, une coordination supplémentaire est nécessaire. Une solution courante consiste à certains indicateur dans les écouteurs hello indiquant quand ils ont terminé, qui est sélectionné dans runAsync avant de poursuivre le travail de tooactual.
+* Parfois, les écouteurs ne peuvent pas fonctionner avant que d’autres informations ne soient créées ou un travail effectué. Pour les services sans état, ce travail peut généralement s’exécuter dans le constructeur du service, au cours de l’appel `createServiceInstanceListeners()`, ou dans le cadre de la construction de l’écouteur lui-même.
+* Parfois, le code de runAsync ne démarre pas tant que les écouteurs ne sont pas ouverts. Dans ce cas, une coordination supplémentaire est nécessaire. Une solution courante consiste à utiliser un indicateur dans les écouteurs, indiquant quand ceux-ci ont terminé, ce qui est vérifié dans runAsync avant de poursuivre le travail réel.
 
 ## <a name="stateless-service-shutdown"></a>Arrêt de service sans état
-Lorsque vous arrêtez un service sans état, hello même modèle est suivi, dans le sens inverse :
+Lorsque vous arrêtez un service sans état, le même modèle est suivi dans l’ordre inverse :
 
 1. En parallèle
     - Les écouteurs ouverts sont fermés (`CommunicationListener.closeAsync()` est appelée sur chaque écouteur)
-    - jeton d’annulation Hello passé trop`runAsync()` est annulée (vérification du jeton d’annulation hello `isCancelled` propriété retourne la valeur est true et si elle est appelée du jeton hello `throwIfCancellationRequested` méthode lève une exception un `CancellationException`)
-2. Une fois `closeAsync()` se termine sur chaque port d’écoute et `runAsync()` termine également du service hello `StatelessService.onCloseAsync()` méthode est appelée, le cas échéant (c’est à nouveau un remplacement rare).
-3. Après avoir `StatelessService.onCloseAsync()` terminée, objet de service hello est détruite.
+    - Le jeton d’annulation passé à `runAsync()` est annulé (en vérifiant que la propriété `isCancelled` du jeton d’annulation retourne la valeur true et que, si elle est appelée, la méthode `throwIfCancellationRequested` du jeton lève une `CancellationException`).
+2. Lorsque `closeAsync()` se termine sur chaque écouteur et que `runAsync()` se termine également, la méthode `StatelessService.onCloseAsync()` du service est appelée, le cas échéant (il s’agit à nouveau d’un remplacement rare).
+3. Lorsque `StatelessService.onCloseAsync()` se termine, l’objet de service est détruit
 
 ## <a name="notes-on-service-lifecycle"></a>Remarques sur le cycle de vie du service
-* Les deux hello `runAsync()` méthode et hello `createServiceInstanceListeners` appels sont facultatifs. Un service peut avoir l’un des deux, les deux ou aucun. Par exemple, si le service de hello ne tout le travail dans les appels de toouser de réponse, il est inutile pour qu’il tooimplement `runAsync()`. Que les écouteurs de communication hello et son code associé sont nécessaires. De même, créer et de retourner des écouteurs de communication sont facultative, comme hello service devra peut-être uniquement en arrière-plan toodo de travail et seulement doit tooimplement`runAsync()`
-* Il n’est valide pour un service toocomplete `runAsync()` avec succès et le retour à partir de celui-ci. Cela n’est pas considéré comme une condition d’échec et représente le travail d’arrière-plan hello de fin de service hello. Pour les services fiables avec état `runAsync()` serait être rappelée si le service de hello ont été rétrogradé du serveur principal et ensuite promu tooprimary précédent.
-* Si un service s’arrête de `runAsync()` en levant une exception inattendue, il s’agit d’une défaillance et objet de service hello est arrêté et une erreur d’intégrité est signalée.
-* Il n’existe aucune limite de temps au retour de ces méthodes, vous immédiatement perdez hello capacité toowrite et par conséquent ne peut pas se terminer tout travail réel. Il est recommandé de retourner aussi rapidement que possible lors de la réception de demande d’annulation hello. Si votre service ne répond pas les appels d’API de toothese dans un délai raisonnable que service Fabric peut forcer mettre fin à votre service. En général, cela se produit uniquement lors de mises à niveau d’application ou lorsqu’un service est en cours de suppression. Par défaut, ce délai d’attente est de 15 minutes.
-* Échecs Bonjour `onCloseAsync()` résultat du chemin d’accès dans `onAbort()` appelée qui est une opportunité de meilleur effort dernière chance pour hello service tooclean des et libérer toutes les ressources qu’ils ont demandé.
+* La méthode `runAsync()` et l’appel `createServiceInstanceListeners` sont facultatifs. Un service peut avoir l’un des deux, les deux ou aucun. Par exemple, si le service effectue tout son travail en réponse aux appels d’utilisateur, il est inutile d’implémenter `runAsync()`. Seuls les écouteurs de communication et le code associé sont nécessaires. De même, la création et le renvoi d’écouteurs de communication sont facultatifs, car le service peut n’avoir que du travail en arrière-plan à exécuter et n’a donc besoin d’implémenter que `runAsync()`
+* Il est valide pour un service de terminer `runAsync()` correctement et d’en revenir. Cela n’est pas considéré comme une condition d’échec et correspond à la fin du travail en arrière-plan du service. Pour les Reliable Services avec état, `runAsync()` est appelée à nouveau si le service a été rétrogradé depuis la fonction principale, puis promu de nouveau à la fonction principale.
+* Si un service quitte `runAsync()` en levant une exception inattendue, il s’agit d’un échec, l’objet de service est arrêté et une erreur d’intégrité est signalée.
+* S’il n’existe pas de limite de temps sur le retour de ces méthodes, vous perdez immédiatement la possibilité d’écrire, et vous ne pouvez donc pas effectuer de travail réel. Il est recommandé de procéder au renvoi aussi rapidement que possible dès la réception de la demande d’annulation. Si votre service ne répond pas à ces appels d’API dans un délai raisonnable, Service Fabric peut mettre fin à votre service. En général, cela se produit uniquement lors de mises à niveau d’application ou lorsqu’un service est en cours de suppression. Par défaut, ce délai d’attente est de 15 minutes.
+* Les échecs dans le chemin d’accès `onCloseAsync()` entraînent l’appel de `onAbort()` qui constitue une opportunité de dernière chance pour le service de nettoyer et de libérer les ressources demandées.
 
 > [!NOTE]
 > Les services fiables avec état ne sont pas encore pris en charge par Java.
@@ -75,6 +75,6 @@ Lorsque vous arrêtez un service sans état, hello même modèle est suivi, dans
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Introduction tooReliable Services](service-fabric-reliable-services-introduction.md)
+* [Présentation de Reliable Services](service-fabric-reliable-services-introduction.md)
 * [Démarrage rapide de Reliable Services](service-fabric-reliable-services-quick-start.md)
 * [Utilisation avancée de Reliable Services](service-fabric-reliable-services-advanced-usage.md)

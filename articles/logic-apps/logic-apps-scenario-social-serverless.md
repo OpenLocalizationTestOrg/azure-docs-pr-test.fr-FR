@@ -1,6 +1,6 @@
 ---
-title: "aaaScenario - créer un tableau de bord client insights avec Azure sans serveur | Documents Microsoft"
-description: "Exemple de comment vous pouvez générer un client de toomanage du tableau de bord des commentaires, les données de réseaux sociale et bien plus encore avec Azure Logic Apps et fonctions de Azure."
+title: "Scenario : créer un tableau de bord Insights client avec Azure Serverless | Microsoft Docs"
+description: "Exemple de création d’un tableau de bord pour gérer des commentaires client, des données sociales, etc. avec Azure Logic Apps et Azure Functions."
 keywords: 
 services: logic-apps
 author: jeffhollan
@@ -15,95 +15,95 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/29/2017
 ms.author: jehollan
-ms.openlocfilehash: db175e895e37aa795a9c34bf4d65566bf68f8c37
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0b6e118cb13ab8185d8eeb42bec6147155967967
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-real-time-customer-insights-dashboard-with-azure-logic-apps-and-azure-functions"></a>Créer un tableau de bord Insights client en temps réel avec Azure Logic Apps et Azure Functions
 
-Windows Azure tools sans fournissent des fonctionnalités puissantes tooquickly créer et héberger des applications dans le cloud de hello, sans avoir toothink sur l’infrastructure.  Dans ce scénario, nous sera créer un tableau de bord tootrigger des commentaires des clients, l’analyse des commentaires avec machine learning et publier insights une source comme Power BI ou Azure Data Lake.
+Les outils Azure Serverless fournissent de puissantes fonctionnalités pour générer rapidement et héberger des applications dans le cloud, sans avoir à réfléchir à l’infrastructure.  Dans ce scénario, nous allons créer un tableau de bord qui se déclenchera lors de commentaires client, pour analyser les commentaires liés à Machine Learning et publier une source telle que Power BI ou Azure Data Lake.
 
-## <a name="overview-of-hello-scenario-and-tools-used"></a>Vue d’ensemble du scénario de hello et outils utilisés
+## <a name="overview-of-the-scenario-and-tools-used"></a>Vue d’ensemble du scénario et des outils utilisés
 
-Dans commande tooimplement cette solution, nous mettons à profit hello deux principaux composants d’applications sans serveur dans Azure : [Azure fonctions](https://azure.microsoft.com/services/functions/) et [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/).
+Pour implémenter cette solution, nous allons tirer parti des deux principaux composants des applications sans serveur dans Azure : [Azure Functions](https://azure.microsoft.com/services/functions/) et [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/).
 
-Logique d’applications est un moteur de flux de travail sans serveur dans le cloud de hello.  Il fournit l’orchestration pour les composants sans serveur et connecte également tooover les 100 services et API.  Pour ce scénario, nous allons créer un tootrigger d’application logique sur les commentaires des clients.  Connecteurs hello qui peuvent aider à réaction toocustomer commentaires quelques-uns des Outlook.com, Office 365, le d’enquête, Twitter et une requête HTTP [à partir d’un formulaire web](https://blogs.msdn.microsoft.com/logicapps/2017/01/30/calling-a-logic-app-from-an-html-form/).  Flux de travail hello ci-dessous, nous analyse un #sqlhelp sur Twitter.
+Logic Apps est un moteur de flux de travail sans serveur dans le cloud.  Il permet d’orchestrer les composants sans serveur, et se connecte également à plus de 100 services et API.  Pour ce scénario, nous allons créer une application logique qui se déclenchera lors des commentaires des clients.  Voici certains des connecteurs qui peuvent aider à réagir aux commentaires client : Outlook.com, Office 365, Survey Monkey, Twitter et une requête HTTP [à partir d’un formulaire web](https://blogs.msdn.microsoft.com/logicapps/2017/01/30/calling-a-logic-app-from-an-html-form/).  Pour le flux de travail ci-dessous, nous allons surveiller un mot-dièse sur Twitter.
 
-Fonctions fournissent sans calcul dans le cloud de hello.  Dans ce scénario, nous allons utiliser tweet tooflag de fonctions d’Azure à partir des clients basés sur une série de prédéfinies par mots clés.
+Les fonctions fournissent le mode de calcul sans serveur dans le cloud.  Dans ce scénario, nous allons utiliser Azure Functions pour marquer les tweets de clients en fonction d’une série de mots-clés prédéfinis.
 
-ensemble de la solution Hello peut être [génération dans Visual Studio](logic-apps-deploy-from-vs.md) et [déployé en tant que partie d’un modèle de ressource](logic-apps-create-deploy-template.md).  Procédure pas à pas vidéo du scénario de hello est également [sur Channel 9](http://aka.ms/logicappsdemo).
+La solution complète peut être [générée dans Visual Studio](logic-apps-deploy-from-vs.md) et [déployée dans le cadre d’un modèle de ressource](logic-apps-create-deploy-template.md).  Une vidéo de procédure pas à pas du scénario existe également [sur Channel 9](http://aka.ms/logicappsdemo).
 
-## <a name="build-hello-logic-app-tootrigger-on-customer-data"></a>Build hello logique application tootrigger sur les données des clients
+## <a name="build-the-logic-app-to-trigger-on-customer-data"></a>Générer l’application logique à déclencher sur des données du client
 
-Après avoir [création d’une application logique](logic-apps-create-a-logic-app.md) dans Visual Studio ou hello portail Azure :
+Après avoir [créé une application logique](logic-apps-create-a-logic-app.md) dans Visual Studio ou le portail Azure :
 
 1. Ajoutez un déclencheur pour **On New Tweets (Aux nouveaux tweets)** de Twitter.
-2. Configurer hello déclencheur toolisten tootweets sur un mot clé ou un #sqlhelp.
+2. Configurez le déclencheur pour qu’il écoute les tweets sur un mot-clé ou un mot-dièse.
 
    > [!NOTE]
-   > propriété de périodicité Hello sur le déclencheur de hello détermine la fréquence de vérification application logique de hello pour les nouveaux éléments sur les déclencheurs d’interrogation
+   > La propriété de périodicité du déclencheur détermine la fréquence à laquelle l’application logique recherche de nouveaux éléments dans les déclencheurs d’interrogation.
 
    ![Exemple de déclencheur Twitter][1]
 
-Cette application se déclenche sur tous les nouveaux tweets.  Nous pouvons ensuite prendre ces données tweet et comprendre plus de sentiment hello exprimé.  Pour cela, nous utilisons hello [Service cognitifs Azure](https://azure.microsoft.com/services/cognitive-services/) sentiment toodetect du texte.
+Cette application se déclenche sur tous les nouveaux tweets.  Nous pouvons ensuite prendre ces données de tweet et comprendre davantage les opinions exprimées.  Pour ce faire, nous utilisons [Azure Cognitive Service](https://azure.microsoft.com/services/cognitive-services/).
 
 1. Cliquez sur **Nouvelle étape**.
-1. Sélectionner ou rechercher hello **texte Analytique** connecteur
-1. Sélectionnez hello **détecter un sentiments** opération
-1. Si vous y êtes invité, fournissez une clé de Services cognitifs valide pour le service de texte Analytique de hello
-1. Ajouter hello **texte Tweet** comme hello tooanalyze de texte.
+1. Sélectionnez ou recherchez le connecteur **Analyse de texte**.
+1. Sélectionnez l’opération **Detect Sentiment (Détecter le sentiment)**.
+1. Si vous y êtes invité, indiquez une clé Cognitive Services valide pour le service d’analyse de texte.
+1. Ajouter le **Tweet text (Texte du tweet)** à analyser.
 
-Maintenant que nous avons hello tweet données et des informations sur les tweet hello, un nombre de tous les autres connecteurs peut-être être pertinente :
-* Power BI - ajouter des lignes tooStreaming jeu de données : vue tweets sur un tableau de bord Power BI en temps réel.
-* Azure Data Lake - Ajout d’un fichier : complément client données tooan Azure Data Lake dataset tooinclude travaux de l’analytique.
+Maintenant que nous disposons des données du tweet et d’informations sur celui-ci, plusieurs autres connecteurs peuvent être pertinents :
+* Power BI - Ajouter des lignes au jeu de données de streaming : afficher des tweets dans un tableau de bord Power BI en temps réel.
+* Azure Data Lake - Ajouter un fichier : ajouter des données client à un jeu de données Azure Data Lake à inclure dans des travaux analytiques.
 * SQL - Ajouter des lignes : stocker des données dans une base de données pour les récupérer ultérieurement.
 * Slack - Envoyer un message : alerter un canal Slack en cas de commentaires négatifs nécessitant des actions.
 
-Une fonction de Azure peut également être utilisé toodo plus personnalisée de calcul sur des données de hello.
+Une fonction Azure permet également d’effectuer des calculs plus personnalisés des données.
 
-## <a name="enriching-hello-data-with-an-azure-function"></a>Enrichir les données de salutation avec une fonction d’Azure
+## <a name="enriching-the-data-with-an-azure-function"></a>Enrichissement des données avec une fonction Azure
 
-Nous pouvons créer une fonction, nous devons toohave une application de la fonction dans notre abonnement Azure.  Pour plus d’informations sur la création d’une fonction d’Azure dans le portail de hello peuvent [se trouve ici](../azure-functions/functions-create-first-azure-function-azure-portal.md)
+Avant de pouvoir créer une fonction, nous devons disposer d’une application de fonction dans notre abonnement Azure.  Des informations détaillées sur la création d’une fonction Azure dans le portail [se trouvent ici](../azure-functions/functions-create-first-azure-function-azure-portal.md).
 
-Pour une fonction toobe appelée directement à partir d’une application logique, il a besoin toohave HTTP déclencher la liaison.  Nous vous recommandons d’utiliser des hello **HttpTrigger** modèle.
+Pour qu’une fonction soit appelée directement à partir d’une application logique, elle doit posséder une liaison de déclencheur HTTP.  Nous vous recommandons d’utiliser le modèle **HttpTrigger**.
 
-Dans ce scénario, le corps de la demande de hello Azure fonction hello serait texte tweet de hello.  Dans le code de la fonction hello, il suffit de définir la logique de si le texte de tweet hello contient un mot clé ou une expression.  fonction Hello proprement dit peut rester simple ou complexe que nécessaire pour le scénario de hello.
+Dans ce scénario, le corps de la requête de la fonction Azure est le texte de tweet.  Dans le code de fonction, définissez simplement une logique si le texte de tweet contient un mot-clé ou une expression.  La fonction proprement dite peut rester simple ou être plus complexe selon les besoins du scénario.
 
-Extrémité hello de fonction hello, simplement retourner une application de la logique de toohello de réponse avec des données.  Il peut s’agir d’une valeur booléenne simple (par exemple, `containsKeyword`) ou d’un objet complexe.
+À la fin de la fonction, retournez simplement une réponse à l’application logique avec certaines données.  Il peut s’agir d’une valeur booléenne simple (par exemple, `containsKeyword`) ou d’un objet complexe.
 
 ![Étape de configuration d’une fonction Azure][2]
 
 > [!TIP]
-> Lors de l’accès à une réponse complexe à partir d’une fonction dans une application logique, utilisez l’action d’analyse de JSON hello.
+> Lorsque vous accédez à une réponse complexe d’une fonction dans une application logique, utilisez l’action Analyser JSON.
 
-Une fois que la fonction hello est enregistrée, il peut être ajouté dans l’application logique de hello créée ci-dessus.  Dans l’application hello logique :
+Une fois la fonction enregistrée, elle peut être ajoutée dans l’application logique créée ci-dessus.  Dans l’application logique :
 
-1. Cliquez sur tooadd un **nouvelle étape**
-1. Sélectionnez hello **Azure fonctions** connecteur
-1. Sélectionnez les toochoose une fonction existante, puis parcourir la fonction toohello créée
-1. Envoyer Bonjour **texte Tweet** pour hello **corps de la demande**
+1. Cliquez pour ajouter une **Nouvelle étape**.
+1. Sélectionnez le connecteur **Azure Functions**.
+1. Sélectionnez une fonction existante, puis accédez à la fonction créée.
+1. Envoyez le **Texte du tweet** comme **Corps de la requête**.
 
-## <a name="running-and-monitoring-hello-solution"></a>En cours d’exécution et la surveillance des solutions de hello
+## <a name="running-and-monitoring-the-solution"></a>Exécution et surveillance de la solution
 
-Un des avantages de hello de la création d’orchestrations sans serveur dans les applications de la logique est débogage enrichi de hello et ses fonctionnalités de surveillance.  Toute exécution (en cours ou historique) peut être consultée à partir de Visual Studio, hello portail Azure, ou via l’API REST de hello et kits de développement logiciel.
+L’un des avantages de la création d’orchestrations sans serveur dans Logic Apps est la fonctionnalité enrichie de débogage et de surveillance.  Toute exécution (actuelle ou historique) peut être affichée dans Visual Studio, le portail Azure ou via l’API REST et les Kits de développement logiciel (SDK).
 
-Un des hello plus simple façons tootest une application de logique est à l’aide de hello **exécuter** bouton dans le Concepteur de hello.  En cliquant sur **exécuter** sera continuer déclencheur de hello toopoll toutes les 5 secondes jusqu'à ce qu’un événement est détecté et donnent une vue active fur hello exécuter.
+L’une des méthodes les plus simples de tester une application logique consiste à utiliser le bouton **Exécuter** dans le concepteur.  Si vous cliquez sur **Exécuter**, vous continuez d’interroger le déclencheur toutes les 5 secondes jusqu’à ce qu’un événement soit détecté, et fournissez un affichage en direct à mesure de la progression de l’exécution.
 
-Historiques d’exécution précédentes peuvent être affichés sur le panneau de vue d’ensemble de hello dans hello portail Azure, ou à l’aide de Visual Studio Cloud Explorer de hello.
+Les historiques d’exécutions précédentes peuvent être affichés dans le panneau Vue d’ensemble du portail Azure ou à l’aide de Visual Studio Cloud Explorer.
 
 ## <a name="creating-a-deployment-template-for-automated-deployments"></a>Création d’un modèle de déploiement pour les déploiements automatisés
 
-Une fois qu’une solution a été développée, il peut être capturé et déployée via un tooany de modèle de déploiement Azure région Azure dans Bonjour.  Cela est utile pour modifier les paramètres des différentes versions de ce flux de travail, mais également pour intégrer cette solution à un pipeline de génération et de mise en production.  Les détails sur la création d’un modèle de déploiement se trouvent [dans cet article](logic-apps-create-deploy-template.md).
+Une fois qu’une solution a été développée, elle peut être capturée et déployée via un modèle de déploiement Azure vers toute région Azure du monde.  Cela est utile pour modifier les paramètres des différentes versions de ce flux de travail, mais également pour intégrer cette solution à un pipeline de génération et de mise en production.  Les détails sur la création d’un modèle de déploiement se trouvent [dans cet article](logic-apps-create-deploy-template.md).
 
-Azure fonctions peuvent également être incorporées dans le modèle de déploiement hello - donc hello ensemble de la solution avec toutes les dépendances peut être géré comme un seul modèle.  Vous trouverez un exemple d’un modèle de déploiement de fonction Bonjour [référentiel de modèle de démarrage rapide Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic).
+La solution Azure Functions peut aussi être intégrée au modèle de déploiement. De cette façon, la solution complète avec toutes les dépendances peut être gérée comme un seul et même modèle.  Vous trouverez un exemple de modèle de déploiement de fonction dans le [référentiel de modèles de démarrage rapide Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/101-function-app-create-dynamic).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Voir d’autres exemples et scénarios relatifs à Azure Logic Apps](logic-apps-examples-and-scenarios.md)
 * [Regarder une vidéo de procédure pas à pas sur la création de cette solution de bout en bout](http://aka.ms/logicappsdemo)
-* [Découvrez comment toohandle et intercepter des exceptions au sein d’une application de logique](logic-apps-exception-handling.md)
+* [Découvrir comment gérer et intercepter les exceptions dans une application logique](logic-apps-exception-handling.md)
 
 <!-- Image References -->
 [1]: ./media/logic-apps-scenario-social-serverless/twitter.png

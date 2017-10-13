@@ -1,6 +1,6 @@
 ---
-title: "aaaDownload un disque dur virtuel Windows à partir de Azure | Documents Microsoft"
-description: "Téléchargez un disque dur virtuel Windows à l’aide de hello portail Azure."
+title: "Télécharger un VHD Windows à partir d’Azure | Microsoft Docs"
+description: "Téléchargez un VHD Windows à l’aide du Portail Azure."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,68 +15,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/26/2017
 ms.author: davidmu
-ms.openlocfilehash: d0ca8842db98f22751f01648c0ba4e5cde090043
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d8bf89a4b7c2a158302f9ba09a182a3d8d062adc
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="download-a-windows-vhd-from-azure"></a>Télécharger un VHD Windows à partir d’Azure
 
-Dans cet article, vous apprendrez comment toodownload un [(VHD) du disque dur virtuel Windows](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) fichier à partir d’Azure à l’aide hello portail Azure. 
+Dans cet article, vous apprendrez à télécharger un fichier de [disque dur virtuel (VHD) Windows](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) à partir d’Azure à l’aide du Portail Azure. 
 
-Machines virtuelles (VM) en cours d’utilisation Azure [disques](managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) comme un toostore place un système d’exploitation, des applications et des données. Toutes les machines virtuelles Azure possèdent au moins deux disques : un disque de système d’exploitation Windows et un disque temporaire. disque de système d’exploitation Hello est initialement créé à partir d’une image et disque de système d’exploitation hello et image de hello sont des disques durs virtuels stockés dans un compte de stockage Azure. Les machines virtuelles peuvent également disposer d’un ou plusieurs disques de données, également stockés sur les VHD.
+Les machines virtuelles dans Azure utilisent des [disques](managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) comme emplacement de stockage d’un système d’exploitation, d’applications et de données. Toutes les machines virtuelles Azure possèdent au moins deux disques : un disque de système d’exploitation Windows et un disque temporaire. Le disque de système d’exploitation est initialement créé à partir d’une image. Tant le disque que l’image sont des disques VHD stockés dans un compte de stockage Azure. Les machines virtuelles peuvent également disposer d’un ou plusieurs disques de données, également stockés sur les VHD.
 
-## <a name="stop-hello-vm"></a>Arrêter hello machine virtuelle
+## <a name="stop-the-vm"></a>Arrêtez la machine virtuelle.
 
-Un disque dur virtuel ne peut être téléchargé à partir d’Azure, si elle est attachée tooa machine virtuelle en cours d’exécution. Vous devez toodownload de machine virtuelle hello toostop un disque dur virtuel. Si vous voulez toouse un disque dur virtuel en tant qu’un [image](tutorial-custom-images.md) toocreate autres machines virtuelles avec de nouveaux disques, vous utilisez [Sysprep](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation) toogeneralize hello du système d’exploitation contenu dans le fichier de hello et arrêtez la machine virtuelle de hello. toouse hello disque dur virtuel en tant que disque d’une nouvelle instance d’un ordinateur virtuel existant ou d’un disque de données, vous seulement devez toostop et désallouer hello machine virtuelle.
+Il n’est pas possible de télécharger un disque VHD associé à une machine virtuelle en cours d’exécution à partir d’Azure. Il vous faut arrêter la machine virtuelle pour télécharger un VHD. Si vous souhaitez utiliser un VHD en tant [qu’image](tutorial-custom-images.md) afin de créer d’autres machines virtuelles avec de nouveaux disques, utilisez [Sysprep](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep--generalize--a-windows-installation) pour généraliser le système d’exploitation contenu dans le fichier, puis arrêtez la machine virtuelle. Pour utiliser le VHD en tant que disque d’une nouvelle instance d’une machine virtuelle ou d’un disque de données existant, il vous suffit d’arrêter et de libérer de la machine virtuelle.
 
-toouse hello de disque dur virtuel en tant qu’une image toocreate autres machines virtuelles, procédez comme suit :
+Pour utiliser le VHD en tant qu’image pour créer d’autres machines virtuelles, suivez les étapes ci-dessous :
 
-1.  Si vous n’avez pas déjà fait, connectez-vous à toohello [portail Azure](https://portal.azure.com/).
-2.  [Se connecter toohello VM](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
-3.  Sur la machine virtuelle de hello, ouvrez la fenêtre d’invite de commandes hello en tant qu’administrateur.
-4.  Basculez hello trop*%windir%\system32\sysprep* et exécutez sysprep.exe.
-5.  Dans la boîte de dialogue Outil de préparation système hello, sélectionnez **entrer le système Out-of-Box Experience (OOBE)**et vous assurer que **Generalize** est sélectionnée.
+1.  Si ce n’est pas déjà fait, connectez-vous au [portail Azure](https://portal.azure.com/).
+2.  [Connectez-vous à la machine virtuelle](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+3.  Sur la machine virtuelle, ouvrez la fenêtre d’invite de commandes en tant qu’administrateur.
+4.  Remplacez le répertoire par *%windir%\system32\sysprep* et exécutez sysprep.exe.
+5.  Dans la boîte de dialogue Outil de préparation du système, sélectionnez **Entrer en mode OOBE (Out-of-Box Experience) du système** et vérifiez que **Généraliser** est sélectionné.
 6.  Dans Options d’arrêt, sélectionnez **Arrêter**, puis cliquez sur **OK**. 
 
-toouse hello disque dur virtuel en tant que disque d’une nouvelle instance d’un ordinateur virtuel existant ou d’un disque de données, procédez comme suit :
+Pour utiliser le VHD en tant que disque d’une nouvelle instance d’une machine virtuelle ou d’un disque de données existant, suivez les étapes ci-dessous :
 
-1.  Dans menu Hub hello hello portail Azure, cliquez sur **virtuels**.
-2.  Sélectionnez hello machine virtuelle à partir de la liste de hello.
-3.  Dans le panneau hello pour hello machine virtuelle, cliquez sur **arrêter**.
+1.  Dans le menu Hub du Portail Azure, cliquez sur **Machines virtuelles**.
+2.  Sélectionnez la machine virtuelle dans la liste.
+3.  Dans le panneau de la machine virtuelle, cliquez sur **Arrêter**.
 
     ![Arrêter la machine virtuelle](./media/download-vhd/export-stop.png)
 
 ## <a name="generate-sas-url"></a>Générer une URL de SAP
 
-fichier de disque dur virtuel toodownload hello, vous devez toogenerate une [signature d’accès partagé (SAS)](../../storage/common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) URL. Lorsque l’URL de hello est généré, un délai d’expiration est affecté toohello URL.
+Pour télécharger le fichier VHD, vous devez générer une URL de [signature d’accès partagé (SAP)](../../storage/common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Un délai d’expiration est affecté à l’URL lors de sa génération.
 
-1.  Dans menu hello du panneau hello pour hello machine virtuelle, cliquez sur **disques**.
-2.  Sélectionnez le disque du système d’exploitation hello pour hello machine virtuelle, puis cliquez sur **exporter**.
-3.  Définir le délai d’expiration de hello de hello URL trop*36000*.
+1.  Dans le menu du panneau de la machine virtuelle, cliquez sur **Disques**.
+2.  Sélectionnez le disque de système d’exploitation de la machine virtuelle, puis cliquez sur **Exporter**.
+3.  Fixez le délai d’expiration de l’URL sur *36000*.
 4.  Cliquez sur **Générer l’URL**.
 
     ![Générer une URL](./media/download-vhd/export-generate.png)
 
 > [!NOTE]
-> délai d’expiration de Hello est augmentée de hello par défaut tooprovide suffisamment de temps toodownload hello grand fichier de disque dur virtuel pour un système d’exploitation Windows. Vous pouvez vous attendre un fichier de disque dur virtuel qui contient tootake de système d’exploitation Windows Server hello plusieurs toodownload heures en fonction de votre connexion. Si vous téléchargez un disque dur virtuel pour un disque de données, la durée par défaut de hello est suffisante. 
+> Le délai d’expiration est augmenté par rapport à la valeur par défaut afin de laisser suffisamment de temps pour télécharger le fichier volumineux de VHD pour un système d’exploitation Windows Server. En général, le téléchargement d’un fichier de VHD contenant le système d’exploitation Windows prend plusieurs heures, en fonction de la connexion. Si vous téléchargez un VHD pour un disque de données, le délai par défaut est suffisant. 
 > 
 > 
 
 ## <a name="download-vhd"></a>Télécharger un VHD
 
-1.  URL hello qui a été généré, cliquez sur fichier de disque dur virtuel de téléchargement hello.
+1.  Sous l’URL générée, cliquez sur Télécharger le fichier de disque dur virtuel.
 
     ![Télécharger un VHD](./media/download-vhd/export-download.png)
 
-2.  Vous devrez peut-être tooclick **enregistrer** dans le téléchargement de hello navigateur toostart hello. nom par défaut de Hello pour le fichier de disque dur virtuel hello est *abcd*.
+2.  Vous devrez peut-être cliquer sur **Enregistrer** dans le navigateur pour commencer le téléchargement. Le nom par défaut du fichier VHD est *abcd*.
 
-    ![Cliquez sur Enregistrer dans le navigateur de hello](./media/download-vhd/export-save.png)
+    ![Cliquez sur Enregistrer dans le navigateur](./media/download-vhd/export-save.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Découvrez comment trop[télécharger un tooAzure de fichier de disque dur virtuel](upload-generalized-managed.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+- Découvrez comment [charger un fichier de VHD sur Azure](upload-generalized-managed.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 - [Créez des disques gérés à partir de disques non gérés dans un compte de stockage](attach-disk-ps.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 - [Gérez des disques Azure avec PowerShell](tutorial-manage-data-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

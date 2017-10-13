@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Marketo | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Marketo."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Marketo."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/09/2017
 ms.author: jeedes
-ms.openlocfilehash: 87f88cde4f027f99a83c1ab3b318247bb4d658ac
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e146fd5a8075bc9c7ba049b25e5f301fc2645ed9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-marketo"></a>Didacticiel : Intégration d’Azure Active Directory à Marketo
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Marketo avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Marketo à Azure Active Directory (Azure AD).
 
-Intégration de Marketo avec Azure AD offre hello avantages suivants :
+L’intégration de Marketo à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooMarketo
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooMarketo (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès Marketo.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Marketo (via l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec Marketo, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à Marketo, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Marketo pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de Marketo à partir de la galerie de hello
+1. Ajout de Marketo depuis la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-marketo-from-hello-gallery"></a>Ajout de Marketo à partir de la galerie de hello
-intégration de hello tooconfigure de Marketo dans Azure AD, vous devez tooadd Marketo à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-marketo-from-the-gallery"></a>Ajout de Marketo depuis la galerie
+Pour configurer l’intégration de Marketo à Azure AD, vous devez ajouter Marketo, depuis la galerie, à votre liste d’applications SaaS gérées.
 
-**tooadd Marketo à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Marketo depuis la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **Marketo**.
+4. Dans la zone de recherche, tapez **Marketo**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **Marketo**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le panneau des résultats, sélectionnez **Marketo**, puis cliquez sur **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Marketo grâce à un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Marketo est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Marketo doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Marketo équivalent dans Azure AD. En d’autres termes, il faut établir une relation entre l’utilisateur Azure AD et l’utilisateur Marketo associé.
 
-Dans Marketo, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Marketo, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **Nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec Marketo, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Marketo, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test de Marketo](#creating-a-marketo-test-user)**  -toohave un équivalent de Britta Simon dans Marketo est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Marketo](#creating-a-marketo-test-user)** pour avoir un équivalent de Britta Simon dans Marketo qui est lié à la représentation d’un utilisateur Azure AD.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application de Marketo.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Marketo.
 
-**tooconfigure Azure AD single sign-on avec Marketo, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Marketo, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **Marketo** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **Marketo**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_samlbase.png)
 
-3. Sur hello **Marketo domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Marketo Domain and URLs** (Domaine et URL Marketo), réalisez les étapes suivantes :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_url.png)
 
-    a. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://saml.marketo.com/sp`
+    a. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://saml.marketo.com/sp`
 
-    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://login.marketo.com/saml/assertion/\<munchkinid\>`
+    b. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://login.marketo.com/saml/assertion/\<munchkinid\>`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs hello URL d’identificateur et de réponse réelle. Contact [équipe de support technique de Marketo](http://investors.marketo.com/contactus.cfm) tooget ces valeurs.
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur et l’URL de réponse réels. Pour obtenir ces valeurs, contactez [l’équipe de support Marketo](http://investors.marketo.com/contactus.cfm).
  
-4. Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_certificate.png) 
 
@@ -125,174 +125,174 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_general_400.png)
 
-6. Sur hello **Marketo Configuration** , cliquez sur **configurer de Marketo** tooopen **configurer l’authentification** fenêtre. Hello de copie **URL de déconnexion, ID d’entité SAML et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
+6. Pour ouvrir la fenêtre **Configurer l’authentification**, dans la section **Configuration de Marketo**, cliquez sur **Configurer Marketo**. Copiez **l’URL de déconnexion, l’ID d’entité SAML et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
 
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_configure.png) 
 
-7. tooget Munchkin des Id de votre application, connectez-vous en tooMarketo à l’aide des informations d’identification d’administrateur et procédez comme suit :
+7. Pour obtenir l’ID Munchkin de votre application, connectez-vous à Marketo à l’aide des informations d’identification d’administrateur et procédez comme suit :
    
-    a. Ouvrez une session dans l’application tooMarketo à l’aide des informations d’identification d’administrateur.
+    a. Connectez-vous à l’application Marketo à l’aide des informations d’identification de l’administrateur.
    
-    b. Cliquez sur hello **Admin** bouton du volet de navigation supérieure hello.
+    b. Dans le volet de navigation supérieur, cliquez sur le bouton **Administrateur**.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_06.png) 
    
-    c. Parcourir les menus d’intégration toohello, cliquez sur hello **lien de Munchkin**.
+    c. Accédez au menu Intégration et cliquez sur le **lien Munchkin**.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_11.png)
    
-    d. Copiez hello Id Munchkin indiqué sur l’écran hello et terminer votre URL de réponse dans l’Assistant de configuration hello Azure AD.
+    d. Copiez l’ID Munchkin indiqué sur l’écran et complétez votre URL de réponse dans l’Assistant de configuration Azure AD.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_12.png) 
 
-8. tooconfigure hello SSO dans l’application hello, procédez comme hello étapes ci-dessous :
+8. Pour configurer l’authentification unique de l’application, suivez les étapes ci-dessous :
    
-    a. Ouvrez une session dans l’application tooMarketo à l’aide des informations d’identification d’administrateur.
+    a. Connectez-vous à l’application Marketo à l’aide des informations d’identification de l’administrateur.
    
-    b. Cliquez sur hello **Admin** bouton du volet de navigation supérieure hello.
+    b. Dans le volet de navigation supérieur, cliquez sur le bouton **Administrateur**.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_06.png) 
    
-    c. Parcourir les menus d’intégration toohello, cliquez sur **Single Sign On**.
+    c. Accédez au menu Intégration et cliquez sur **Authentification unique**.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_07.png) 
    
-    d. tooenable hello paramètres SAML, cliquez sur **modifier** bouton.
+    d. Pour activer les paramètres SAML, cliquez sur le bouton **Modifier**.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_08.png) 
    
     e. **Activez** les paramètres d’authentification unique.
    
-    f. Hello de coller **ID d’entité SAML**, Bonjour **ID de l’émetteur** zone de texte.
+    f. Collez l’**ID d’entité SAML** dans la zone de texte **ID de l’émetteur**.
    
-    g. Bonjour **ID d’entité** zone de texte, entrez l’URL hello `http://saml.marketo.com/sp`.
+    g. Dans la zone de texte **ID d’entité**, tapez l’URL `http://saml.marketo.com/sp`.
    
-    h. Sélectionnez hello emplacement de l’ID d’utilisateur en tant que **élément identificateur de nom**.
+    h. Sélectionnez l’emplacement d’ID utilisateur en tant **qu’élément Identificateur de nom**.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_09.png)
    
     > [!NOTE]
-    > Si votre identificateur de l’utilisateur n’est pas valeur UPN puis modifier la valeur dans l’onglet d’attributs hello hello.
+    > Si votre identificateur d’utilisateur n’est pas une valeur UPN, alors changez la valeur dans l’onglet Attribut.
    
-    i. Téléchargez le certificat hello, qui vous avez téléchargé à partir de l’Assistant de configuration d’Azure AD. **Enregistrer** hello paramètres.
+    i. Chargez le certificat que vous avez téléchargé à partir de l’Assistant de configuration Azure AD. **Enregistrez** les paramètres.
    
-    j. Modifier les paramètres des Pages de redirection hello.
+    j. Modifiez les paramètres des pages de redirection.
    
-    k. Hello de coller **SAML Sign-On URL du Service unique** Bonjour **URL de connexion** zone de texte.
+    k. Collez l’**URL du service d’authentification unique SAML** dans la zone de texte **URL de connexion**.
    
-    l. Hello de coller **URL de déconnexion** Bonjour **URL de déconnexion** zone de texte.
+    l. Collez l’**URL de déconnexion** dans la zone de texte **URL de déconnexion**.
    
-    m. Bonjour **URL d’erreur**, copie votre **URL de l’instance Marketo** et cliquez sur **enregistrer** bouton toosave paramètres.
+    m. Dans l’**URL d’erreur**, copiez l’**URL de votre instance Marketo**, puis cliquez sur le bouton **Enregistrer** pour enregistrer les paramètres.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_10.png)
 
-9. tooenable hello SSO pour les utilisateurs, hello complet suivant des actions :
+9. Pour activer l’authentification unique pour les utilisateurs, procédez comme suit :
    
-    a. Ouvrez une session dans l’application tooMarketo à l’aide des informations d’identification d’administrateur.
+    a. Connectez-vous à l’application Marketo à l’aide des informations d’identification de l’administrateur.
    
-    b. Cliquez sur hello **Admin** bouton du volet de navigation supérieure hello.
+    b. Dans le volet de navigation supérieur, cliquez sur le bouton **Administrateur**.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_06.png) 
    
-    c. Accédez toohello **sécurité** menu et cliquez sur **les paramètres de connexion**.
+    c. Accédez au menu **Sécurité** et cliquez sur **Paramètres de connexion**.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_13.png)
    
-    d. Vérifiez hello **nécessitent la SSO** option et **enregistrer** hello paramètres.
+    d. Vérifiez l’option **Exiger l’authentification unique** et **enregistrez** les paramètres.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_14.png)
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-marketo-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-marketo-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-marketo-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-marketo-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-marketo-test-user"></a>Créer un utilisateur de test Marketo
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Marketo. Suivez ces étapes de toocreate un utilisateur dans la plateforme de Marketo.
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Marketo. Pour créer un utilisateur dans la plateforme Marketo, suivez ces étapes.
 
-1. Ouvrez une session dans l’application tooMarketo à l’aide des informations d’identification d’administrateur.
+1. Connectez-vous à l’application Marketo à l’aide des informations d’identification de l’administrateur.
 
-2. Cliquez sur hello **Admin** bouton du volet de navigation supérieure hello.
+2. Dans le volet de navigation supérieur, cliquez sur le bouton **Administrateur**.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_06.png) 
 
-3. Accédez toohello **sécurité** menu et cliquez sur **les utilisateurs et les rôles**
+3. Accédez au menu **Sécurité** et cliquez sur **Utilisateurs et rôles**
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_19.png)  
 
-4. Cliquez sur hello **inviter un nouvel utilisateur** lien sur l’onglet utilisateurs de hello
+4. Dans l’onglet Utilisateurs, cliquez sur le lien **Inviter un nouvel utilisateur**
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_15.png) 
 
-5. Bonjour de remplissage hello inviter un nouvel utilisateur Assistant informations suivantes
+5. Dans l’Assistant d’invitation d’un nouvel utilisateur, renseignez les informations suivantes.
    
-    a. Entrez hello utilisateur **par courrier électronique** adresse dans la zone de texte hello
+    a. Entrez l’adresse **e-mail** de l’utilisateur dans la zone de texte.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_16.png)
    
-    b. Entrez hello **prénom** dans la zone de texte hello
+    b. Entrez le **prénom** dans la zone de texte.
    
-    c. Entrez hello **nom** dans la zone de texte hello
+    c. Entrez le **nom** dans la zone de texte
    
     d. Cliquez sur **Suivant**
 
-6. Bonjour **autorisations** onglet, sélectionnez hello **userRoles** et cliquez sur **suivant**
+6. Dans l’onglet **Autorisations**, sélectionnez les **rôles d’utilisateur** et cliquez sur **Suivant**
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_17.png)
-7. Cliquez sur hello **envoyer** bouton invitation d’utilisateur toosend hello
+7. Pour envoyer l’invitation d’utilisateur, cliquez sur le bouton **Envoyer**
    
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_18.png)
 
-8. Utilisateur reçoit une notification par courrier électronique de hello et a tooclick hello lier et modifier le compte de hello tooactivate hello mot de passe. 
+8. L’utilisateur recevra une notification par e-mail. Pour activer le compte, il devra cliquer sur le lien et modifier le mot de passe. 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooMarketo.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Marketo.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooMarketo, effectuez hello comme suit :**
+**Pour affecter Britta Simon à Marketo, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Marketo**.
+2. Dans la liste des applications, sélectionnez **Marketo**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-marketo-tutorial/tutorial_marketo_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -300,7 +300,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -308,13 +308,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque Marketo hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour Marketo application.
+Lorsque vous cliquez sur la mosaïque Marketo dans le volet d’accès, vous êtes connecté automatiquement à votre application Marketo.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

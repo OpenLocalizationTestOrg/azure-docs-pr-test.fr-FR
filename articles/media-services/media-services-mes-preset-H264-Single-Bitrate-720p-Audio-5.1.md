@@ -1,6 +1,6 @@
 ---
-title: "aaaH264 de transmission unique – 720 pixels – Audio 5.1 | Documents Microsoft"
-description: "rubrique de Hello donne une vue d’ensemble de hello ** h264 – vitesse de transmission unique – 720 pixels – Audio 5.1* * présélection de tâches."
+title: "H264 - Vitesse de transmission unique - 720 pixels - Audio 5.1 | Microsoft Docs"
+description: "La rubrique présente une vue d’ensemble de la présélection de travaux **H264 - Vitesse de transmission unique - 720 pixels - Audio 5.1**."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: juliako
-ms.openlocfilehash: 32b8b104dd288954310e044c05c3bc67f8b8d27f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 629ef7690f25dc6de1773a83cf967544cdf16682
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="h264-single-bitrate-720p-audio-51"></a>H264 – Vitesse de transmission unique – 720 pixels – Audio 5.1
-`Media Encoder Standard` définit un ensemble de présélections d’encodage à utiliser lors de la création de travaux d’encodage. Vous pouvez utiliser un `preset name` toospecify dans le format que tooencode votre fichier multimédia. Sinon, vous pouvez créer vos propres présélections basées sur JSON ou XML (à l’aide de l’encodage UTF-8 ou UTF-16). Vous pouvez ensuite transmettre encodeur personnalisé toohello prédéfini de hello. Pour la liste de tous les hello hello présélection noms pris en charge par ce `Media Encoder Standard` encodeur, consultez [Présélections de tâches pour Media Encoder Standard](media-services-mes-presets-overview.md).  
+`Media Encoder Standard` définit un ensemble de présélections d’encodage à utiliser lors de la création des travaux d’encodage. Vous pouvez utiliser un `preset name` afin de spécifier le format dans lequel vous souhaitez encoder votre fichier multimédia. Sinon, vous pouvez créer vos propres présélections basées sur JSON ou XML (à l’aide de l’encodage UTF-8 ou UTF-16). Vous pouvez ensuite transmettre la présélection personnalisée à l’encodeur. Pour obtenir la liste de tous les noms de présélections pris en charge par cet encodeur `Media Encoder Standard`, consultez [Présélections de tâches pour Media Encoder Standard](media-services-mes-presets-overview.md).  
   
- Cette rubrique montre hello `H264 Single Bitrate 720p Audio 5.1` prédéfinie au format XML et JSON.  
+ Cette rubrique présente la présélection `H264 Single Bitrate 720p Audio 5.1` aux formats XML et JSON.  
   
- Cette présélection produit un fichier MP4 unique avec une vitesse de transmission de 4 500 kbit/s, et de l’audio AAC 5.1. Pour obtenir des informations détaillées sur le profil, vitesse de transmission, d’échantillonnage, le taux, etc. cela prédéfinies, examiner hello XML ou JSON défini ci-dessous. Pour des explications signifie de chaque élément et les valeurs valides de hello pour chaque élément, consultez hello [schéma Media Encoder Standard](media-services-mes-schema.md).  
+ Cette présélection produit un fichier MP4 unique avec une vitesse de transmission de 4 500 kbit/s, et de l’audio AAC 5.1. Pour plus d’informations sur le profil, la vitesse de transmission, la fréquence d’échantillonnage, etc. de cette présélection, examinez le format XML ou JSON défini ci-dessous. Pour connaître la signification des différents éléments et les valeurs valides pour chaque élément, consultez [Schéma Media Encoder Standard](media-services-mes-schema.md).  
   
  XML  
   

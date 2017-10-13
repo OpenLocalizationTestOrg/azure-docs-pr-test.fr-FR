@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toochange hello durée de vie par défaut pour une application personnalisée | Documents Microsoft"
-description: "Comment les stratégies de durée de vie de jeton tooupdate pour votre application que vous développez sur Azure AD"
+title: "Modifier les valeurs par défaut de la durée de vie des jetons pour une application personnalisée | Microsoft Docs"
+description: "Comment mettre à jour les stratégies de durée de vie des jetons pour l’application que vous développez sur Azure AD"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,23 +13,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 6e1aa1f2a7c33c1f55c5fb619c618ad43cd96273
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a28eacd820ed28a6470992ce86b060e886c00bcb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toochange-hello-token-lifetime-defaults-for-a-custom-developed-application"></a>La durée de vie toochange hello par défaut pour une application personnalisée
+# <a name="how-to-change-the-token-lifetime-defaults-for-a-custom-developed-application"></a>Modifier les valeurs par défaut de la durée de vie des jetons pour une application personnalisée
 
-Azure AD Premium permet aux développeurs d’application et client administrateurs tooconfigure hello durée de vie des jetons émis pour les clients non confidentielle. Stratégies de durée de vie de jeton sont définies sur un client à l’échelle ou ressources hello en cours d’accès.
+Azure AD Premium permet aux développeurs d’applications et aux administrateurs de locataires de configurer la durée de vie des jetons émis pour les clients non confidentiels. Les stratégies de durée de vie des jetons sont définies à l’échelle d’un locataire ou en fonction des ressources accessibles.
 
- * tooset une stratégie de durée de vie de jeton, vous devez les hello toodownload [Module PowerShell Azure AD](https://www.powershellgallery.com/packages/AzureADPreview).
+ * Pour définir une stratégie de durée de vie de jeton, vous devez télécharger le [module Azure AD PowerShell](https://www.powershellgallery.com/packages/AzureADPreview).
 
- * Exécutez hello **organisation de se connecter-confirmer** commande.
+ * Exécutez la commande **Connect-AzureAD -Confirm**.
 
- * Voici un exemple de stratégie qui définit le jeton d’actualisation hello âge max facteur unique. Créez la stratégie de hello :```New-AzureADPolicy -Definition @('{"TokenLifetimePolicy":{"Version":1, "MaxAgeSingleFactor":"until-revoked"}}') -DisplayName "OrganizationDefaultPolicyScenario" -IsOrganizationDefault $true -Type "TokenLifetimePolicy"```
+ * Voici un exemple de stratégie qui définit le jeton d’actualisation à facteur unique d’âge maximal. Créez la stratégie : ```New-AzureADPolicy -Definition @('{"TokenLifetimePolicy":{"Version":1, "MaxAgeSingleFactor":"until-revoked"}}') -DisplayName "OrganizationDefaultPolicyScenario" -IsOrganizationDefault $true -Type "TokenLifetimePolicy"```
 
- * Hello d’extraction [durée de vie de jeton configuration](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes) document toolearn comment toocreate autres personnalisé.
+ * Consultez l’article [Durées de vie des jetons configurables dans Azure Active Directory (version préliminaire publique)](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes) pour apprendre à créer d’autres stratégies personnalisées.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Durées de vie des jetons configurables dans Azure Active Directory (version préliminaire publique)](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-configurable-token-lifetimes)<br>

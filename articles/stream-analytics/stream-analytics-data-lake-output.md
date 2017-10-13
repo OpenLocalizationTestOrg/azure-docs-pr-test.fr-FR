@@ -1,5 +1,5 @@
 ---
-title: "aaaStream la sortie de magasin de données Analytique Lake | Documents Microsoft"
+title: Sortie de Stream Analytics Data Lake Store| Microsoft Docs
 description: "Configuration de l’authentification et de l’autorisation d’Azure Data Lake Store dans un travail Stream Analytics"
 keywords: 
 services: stream-analytics
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/28/2017
 ms.author: samacha
-ms.openlocfilehash: 183cf51edb2e49ac3e42257e67a8077b95777258
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3d867df3ef875d5cc41de418c3d1d269ff751fda
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="stream-analytics-data-lake-store-output"></a>Sortie de Stream Analytics Data Lake Store
-Les travaux Stream Analytics prennent en charge plusieurs méthodes de sortie, dont [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/). Azure Data Lake Store est un référentiel d'entreprise à très grande échelle pour les charges de travail d'analyse du Big Data. Data Lake Store vous permet de toostore les données de n’importe quelle vitesse de taille, de type et de réception pour l’analytique opérationnelle et exploratoire.
+Les travaux Stream Analytics prennent en charge plusieurs méthodes de sortie, dont [Azure Data Lake Store](https://azure.microsoft.com/services/data-lake-store/). Azure Data Lake Store est un référentiel d'entreprise à très grande échelle pour les charges de travail d'analyse du Big Data. Data Lake Store vous permet de stocker des données de toute taille, de tout type et de toute vitesse d’ingestion en vue d’une analyse opérationnelle et exploratoire.
 
 ## <a name="authorize-a-data-lake-store-account"></a>Autoriser un compte Data Lake Store
-1. Si Data Lake Store est sélectionnée comme une sortie Bonjour portail Azure, vous devez utiliser tooauthorize votre Data Lake Store existant ou d’un toorequest accéder toohello Data Lake Store via hello portail classique.
+1. Quand vous sélectionnez Data Lake Store comme sortie dans le portail Azure, vous êtes invité à autoriser l’utilisation de votre Data Lake Store existant ou à demander l’accès au Data Lake Store via le portail Azure Classic.
    
    ![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-authorization.png)  
    
-2. Si vous avez déjà accès tooData Lake Store, cliquez sur « Autoriser » et pendant un bref instant une page s’affiche indiquant « Tooauthorization redirection ». page de Hello se fermera automatiquement et vous n’aurez page hello qui vous permettrait tooconfigure hello Data Lake Store sortie.
+2. Si vous avez déjà accès à Data Lake Store, cliquez sur Autoriser maintenant. Pendant un bref instant, une page s’affiche avec le message suivant : « Redirection de l’autorisation... ». La page se ferme automatiquement pour laisser place à la page permettant de configurer la sortie Data Lake Store.
 
-Si vous n'êtes pas inscrit à Data Lake Store, vous pouvez suivre la demande des hello de support pour les tooinitiate de lien hello « Connexion », ou suivez hello [obtenir des instructions démarrées](../data-lake-store/data-lake-store-get-started-portal.md).
+Si vous n’êtes pas inscrit à Data Lake Store, cliquez sur le lien « Inscrivez-vous maintenant » pour faire une demande d’inscription ou suivez les [instructions de prise en main](../data-lake-store/data-lake-store-get-started-portal.md).
 
-## <a name="configure-hello-data-lake-store-output-properties"></a>Configurer les propriétés de sortie hello Data Lake Store
-Une fois que vous avez compte Data Lake Store de hello authentifié, vous pouvez configurer les propriétés de hello pour votre sortie Data Lake Store. tableau Hello ci-dessous est liste hello des noms de propriétés et leur tooconfigure description que votre Data Lake Store de sortie.
+## <a name="configure-the-data-lake-store-output-properties"></a>Configurer les propriétés de sortie de Data Lake Store
+Une fois le compte Data Lake Store authentifié, vous pouvez configurer les propriétés de votre sortie Data Lake Store. Le tableau ci-dessous répertorie les noms de propriétés et leur description pour configurer votre sortie Data Lake Store.
 
 <table>
 <tbody>
@@ -44,23 +44,23 @@ Une fois que vous avez compte Data Lake Store de hello authentifié, vous pouvez
 </tr>
 <tr>
 <td>Alias de sortie</td>
-<td>Il s’agit d’un nom convivial utilisé dans les requêtes toodirect hello requête sortie toothis Data Lake Store.</td>
+<td>Nom convivial utilisé dans les requêtes pour diriger la sortie de requête vers Data Lake Store.</td>
 </tr>
 <tr>
 <td>Compte Data Lake Store</td>
-<td>nom Hello hello du compte de stockage où vous envoyez votre sortie. Une liste des comptes Data Lake Store hello à l’utilisateur connecté a accès à s’affiche.</td>
+<td>Nom du compte de stockage où vous envoyez votre sortie. Une liste s’affiche avec les comptes Data Lake Store auxquels peut accéder l’utilisateur enregistré.</td>
 </tr>
 <tr>
 <td>Séquence d’octets préfixe du chemin d’accès [<I>facultative</I>]</td>
-<td>Hello toowrite de chemin d’accès du fichier vos fichiers au sein de hello spécifié le compte de magasin Data Lake. <BR>{date}, {time}<BR>Exemple 1 : dossier1/journaux/{date}/{heure}<BR>Exemple 2 : dossier1/journaux/{date}</td>
+<td>Chemin de fichier utilisé pour écrire vos fichiers dans le compte Data Lake Store spécifié. <BR>{date}, {time}<BR>Exemple 1 : dossier1/journaux/{date}/{heure}<BR>Exemple 2 : dossier1/journaux/{date}</td>
 </tr>
 <tr>
 <td>Format de la date [<I>facultatif</I>]</td>
-<td>Si le jeton de date hello est utilisé dans le chemin d’accès de hello préfixe, vous pouvez sélectionner le format de date hello dans lequel vos fichiers sont organisés. Exemple : JJ/MM/AAAA</td>
+<td>Si le jeton de la date est utilisé dans le chemin d’accès du préfixe, vous pouvez sélectionner le format de date dans lequel vos fichiers sont organisés. Exemple : JJ/MM/AAAA</td>
 </tr>
 <tr>
 <td>Format de l’heure [<I>facultatif</I>]</td>
-<td>Si le jeton de durée hello est utilisé dans le chemin d’accès de hello préfixe, spécifiez le format d’heure hello dans lequel vos fichiers sont organisés. Valeur de hello uniquement pris en charge actuellement est HH.</td>
+<td>Si le jeton de l’heure est utilisé dans le chemin d’accès du préfixe, spécifiez le format d’heure dans lequel vos fichiers sont organisés. Actuellement, la seule valeur possible est HH.</td>
 </tr>
 <tr>
 <td>Format de sérialisation de l’événement</td>
@@ -68,7 +68,7 @@ Une fois que vous avez compte Data Lake Store de hello authentifié, vous pouvez
 </tr>
 <tr>
 <td>Encodage</td>
-<td>S’il s’agit du format CSV ou JSON, un encodage doit être spécifié. UTF-8 est hello uniquement une prise en charge de format d’encodage pour l’instant.</td>
+<td>S’il s’agit du format CSV ou JSON, un encodage doit être spécifié. UTF-8 est le seul format d’encodage actuellement pris en charge.</td>
 </tr>
 <tr>
 <td>Délimiteur</td>
@@ -76,15 +76,15 @@ Une fois que vous avez compte Data Lake Store de hello authentifié, vous pouvez
 </tr>
 <tr>
 <td>Format</td>
-<td>Applicable uniquement pour la sérialisation JSON. Ligne séparée spécifie la sortie de hello sera formatée en par chaque objet JSON séparé par une nouvelle ligne. Le tableau spécifie que sortie de hello sera mise en forme en tant que tableau d’objets JSON.</td>
+<td>Applicable uniquement pour la sérialisation JSON. « Séparé par une ligne » spécifie que la sortie sera mise en forme avec chaque objet JSON séparé par une nouvelle ligne. « Tableau » spécifie que la sortie sera mise en forme en tant que tableau d’objets JSON.</td>
 </tr>
 </tbody>
 </table>
 
 ## <a name="renew-data-lake-store-authorization"></a>Renouveler une autorisation Data Lake Store
-Actuellement, il agit d’une limitation où le jeton d’authentification hello doit toobe actualisée manuellement tous les 90 jours pour tous les travaux avec une sortie de Data Lake Store. Vous devez également toore-authentifier votre compte Data Lake Store si vous avez modifié votre mot de passe depuis la création ou de dernière authentification de votre travail. Un symptôme de ce problème est aucune sortie de travail et une erreur dans les journaux des opérations de hello indiquant la nécessité pour l’autorisation de nouveau.
+Il existe actuellement une limitation selon laquelle le jeton d’authentification doit être actualisé manuellement tous les 90 jours pour tous les travaux impliquant une sortie Data Lake Store. Vous devez également réauthentifier votre compte Data Lake Store si son mot de passe a été modifié depuis la création ou la dernière authentification de votre travail. L’absence de sortie du travail et une erreur d’authentification de l’utilisateur dans les journaux des opérations constituent des symptômes de ce problème.
 
-tooresolve ce problème, arrêtez votre travail en cours d’exécution et accédez de sortie tooyour Data Lake Store. Cliquez sur le lien de « Renouveler l’autorisation » hello et pendant une brève période une page s’affiche indiquant « Redirection tooauthorization.. ». page de Hello se fermera automatiquement et en cas de réussite, indiquera « Autorisation a été renouvelée ». Vous devez tooclick « Enregistrer » en bas de hello de page de hello, puis pouvez continuer en redémarrant votre travail à partir de la perte de données heure du dernier arrêt tooavoid de hello.
+Pour le résoudre, arrêtez le travail en cours d’exécution et accédez à votre sortie Data Lake Store. Cliquez sur le lien « Renouveler l’autorisation ». Pendant un bref instant, vous voyez une page indiquant « Redirection de l’autorisation... ». La page se ferme automatiquement et si l’opération réussit, vous voyez le message suivant : « L’autorisation a été correctement renouvelée ». Vous devrez ensuite cliquer sur Enregistrer au bas de la page, puis redémarrer votre travail à partir de l’heure du dernier arrêt pour éviter toute perte de données.
 
 ![](media/stream-analytics-data-lake-output/stream-analytics-data-lake-output-renew-authorization.png)
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Technologies et Services de sécurité | Documents Microsoft"
-description: "article de Hello fournit une liste organisée de technologies et services de sécurité dans Azure."
+title: "Services et technologies de sécurité Azure | Microsoft Docs"
+description: "Cet article fournit une liste des services et technologies de sécurité Azure."
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/02/2016
 ms.author: yurid
-ms.openlocfilehash: 100b7bba46dce5f989bde2f6d930f298beb901a1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0bea62a43cf6cac9132fe64f2d6c54e52def4c55
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-security-services-and-technologies"></a>Services et technologies de sécurité Azure
-Dans nos discussions avec les clients Azure actuels et futurs, nous mettons souvent demandées « avoir une liste de sécurité de hello tous les services et les technologies que Azure a toooffer ? »
+Dans nos discussions avec les clients Azure actuels et futurs, une question revient souvent : « Avez-vous une liste de tous les services et technologies de sécurité proposés par Azure ? ».
 
-Nous sommes conscients que lorsque vous évaluez vos options techniques de fournisseur de service de cloud, il est utile toohave ce genre de liste que vous pouvez utiliser toodig vers le bas lorsque plus approfondie des temps de hello vous convient.
+Nous sommes conscients que lorsque vous évaluez les options techniques des fournisseurs de service Cloud, il est utile de disposer d’une telle liste pour analyser les différentes options plus profondément lorsque vous êtes prêt.
 
-Hello Voici notre effort initial en fournissant une liste. Au fil du temps, cette liste sera modifiée et développée, tout comme Azure. liste de Hello est classé et liste hello de catégories augmentera également au fil du temps. Assurez-vous que toocheck cette page sur une toostay régulièrement à jour sur nos services liés à la sécurité et les technologies.
+Ce document fournit une première version de cette liste. Au fil du temps, cette liste sera modifiée et développée, tout comme Azure. La liste est classée par catégories, et la liste des catégories évoluera également au fil du temps. Veillez à consulter cette page régulièrement pour vous tenir au courant de l’évolution de nos technologies et services liés à la sécurité.
 
 ## <a name="azure-security---general"></a>Sécurité de Windows Azure – Généralités
 * [Centre de sécurité Azure](https://azure.microsoft.com/documentation/services/security-center/)

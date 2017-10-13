@@ -1,10 +1,10 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="tooinstall-regular-updates-via-hello-azure-classic-portal"></a>mises à jour régulières de tooinstall via hello portail Azure classic
-1. Sur hello **périphériques** page, sélectionnez hello périphérique sur lequel tooinstall les mises à jour.
-2. Accédez trop**périphériques** > **Maintenance** et faites défiler trop**mises à jour logicielles**.
-3. toocheck des mises à jour, cliquez sur **vérifier les mises à jour** bas hello de page de hello.
-4. Un message s’affiche si des mises à jour logicielles sont disponibles. Cliquez sur **installer les mises à jour** toobegin mise à jour d’appareil de hello.
+#### <a name="to-install-regular-updates-via-the-azure-classic-portal"></a>Pour installer des mises à jour périodiques par le biais du portail Azure Classic
+1. À la page **Appareils** , sélectionnez l’appareil sur lequel vous souhaitez installer les mises à jour.
+2. Accédez à **Appareils** > **Maintenance**, puis faites défiler l’écran jusqu’à l’option **Mises à jour logicielles**.
+3. Pour vérifier si des mises à jour sont disponibles, cliquez sur **Vérifier les mises à jour** en bas de la page.
+4. Un message s’affiche si des mises à jour logicielles sont disponibles. Cliquez sur **Installer les mises à jour** pour lancer la mise à jour de l’appareil.
    
-    Vous serez averti lorsque la mise à jour hello est correctement installé.
+    Un message s’affiche lorsque la mise à jour est correctement installée.
 

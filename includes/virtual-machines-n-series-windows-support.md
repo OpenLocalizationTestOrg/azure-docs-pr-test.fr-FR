@@ -15,5 +15,5 @@
 | Windows Server 2012 R2 | [376.84](http://us.download.nvidia.com/Windows/Quadro_Certified/376.84/376.84-tesla-desktop-winserver2008-2012r2-64bit-international-whql.exe) (.exe) |
 
 > [!NOTE]
-> Les liens de téléchargement de pilotes Tesla sont à jour au moment de la publication. Pour les pilotes les plus récents hello, visitez hello [NVIDIA](http://www.nvidia.com/) site Web.
+> Les liens de téléchargement de pilotes Tesla sont à jour au moment de la publication. Pour les pilotes les plus récents, visitez le site Web de [NVIDIA](http://www.nvidia.com/).
 >

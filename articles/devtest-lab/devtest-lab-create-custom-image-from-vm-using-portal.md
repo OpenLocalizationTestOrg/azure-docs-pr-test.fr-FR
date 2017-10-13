@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate une image personnalisée de Azure DevTest Labs à partir d’une machine virtuelle | Documents Microsoft"
-description: "Découvrez comment une image personnalisée dans Azure DevTest Labs à partir d’une machine virtuelle configurés à l’aide de toocreate hello portail Azure"
+title: "Créer une image personnalisée Azure DevTest Labs à partir d’une machine virtuelle | Microsoft Docs"
+description: "Découvrez comment créer une image personnalisée dans Azure DevTest Labs à partir d’une machine virtuelle approvisionnée à l’aide du portail Azure"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 7dccb79d3db4aae676c7bd2f6b800301210491e2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9d2dcf7164985508d691e8a0c123efaf3b8aa19a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-custom-image-from-a-vm"></a>Créer une image personnalisée à partir d’une machine virtuelle
 
@@ -26,29 +26,29 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="step-by-step-instructions"></a>Instructions pas à pas
 
-Vous pouvez créer une image personnalisée à partir d’une machine virtuelle configurée et ensuite utiliser cette image personnalisée de toocreate machines virtuelles identiques. Hello suit illustre comment toocreate personnalisé de l’image à partir d’une machine virtuelle :
+Vous pouvez créer une image personnalisée à partir d’une machine virtuelle approvisionnée et ensuite utiliser cette image personnalisée pour créer d’autres machines virtuelles identiques. Les étapes suivantes expliquent comment créer une image personnalisée à partir d’une machine virtuelle :
 
-1. Connectez-vous à toohello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Connectez-vous au [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. Sélectionnez **davantage de services**, puis sélectionnez **DevTest Labs** à partir de la liste de hello.
+1. Sélectionnez **Plus de services**, puis **DevTest Labs** dans la liste.
 
-1. Dans liste hello labs, sélectionnez lab souhaité de hello.  
+1. Sélectionnez le laboratoire souhaité dans la liste des laboratoires.  
 
-1. Dans le panneau de hello lab, sélectionnez **mes machines virtuelles**.
+1. Sur le panneau du laboratoire, sélectionnez **Mes machines virtuelles**.
  
-1. Sur hello **mes machines virtuelles** panneau, sélectionnez hello machine virtuelle à partir de laquelle image personnalisée de toocreate hello.
+1. Dans le panneau **Mes machines virtuelles** du laboratoire, sélectionnez la machine virtuelle à partir de laquelle vous souhaitez créer l’image personnalisée.
 
-1. Dans le panneau de la machine virtuelle de hello, sélectionnez **créer une image personnalisée (VHD)**.
+1. Sur le panneau de la machine virtuelle, sélectionnez **Créer une image personnalisée (VHD)**.
 
     ![Élément de menu Créer une image personnalisée](./media/devtest-lab-create-template/create-custom-image.png)
 
-1. Sur hello **créer une image** panneau, entrez un nom et une description pour votre image personnalisée. Ces informations s’affichent dans la liste hello des bases lorsque vous créez une machine virtuelle.
+1. Dans le panneau **Créer une image** , entrez un nom et une description pour votre image personnalisée. Ces informations s’affichent dans la liste de bases lorsque vous créez une machine virtuelle.
 
     ![Panneau Créer une image personnalisée](./media/devtest-lab-create-template/create-custom-image-blade.png)
 
-1. Déterminez si sysprep a été exécutée sur la machine virtuelle de hello. Si sysprep de hello n’a pas été exécutée sur la machine virtuelle de hello, spécifiez si vous souhaitez que sysprep s’exécuter quand une machine virtuelle est créée à partir de cette image personnalisée.
+1. Choisissez si sysprep a été exécuté sur la machine virtuelle. Si sysprep n’a pas été exécuté sur la machine virtuelle, sélectionnez si vous souhaitez exécuter sysprep lorsqu’une machine virtuelle est créée à partir de cette image personnalisée.
 
-1. Sélectionnez **OK** lorsque toocreate terminé hello image personnalisée.
+1. Cliquez sur **OK** lorsque vous avez terminé de créer l’image personnalisée.
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
@@ -59,4 +59,4 @@ Vous pouvez créer une image personnalisée à partir d’une machine virtuelle 
 
 ##<a name="next-steps"></a>Étapes suivantes
 
-- [Ajouter un laboratoire tooyour de machine virtuelle](./devtest-lab-add-vm-with-artifacts.md)
+- [Ajout d’une machine virtuelle à votre laboratoire](./devtest-lab-add-vm-with-artifacts.md)

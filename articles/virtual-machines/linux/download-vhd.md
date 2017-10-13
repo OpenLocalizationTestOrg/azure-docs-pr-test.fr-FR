@@ -1,6 +1,6 @@
 ---
-title: "aaaDownload un VHD Linux à partir de Azure | Documents Microsoft"
-description: "Télécharger un VHD Linux à l’aide de hello CLI d’Azure et hello portail Azure."
+title: "Télécharger un disque VHD Linux à partir d’Azure | Microsoft Docs"
+description: "Télécharger un disque VHD Linux à l’aide de l’interface de ligne de commande Azure et du portail Azure."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,27 +15,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/26/2017
 ms.author: davidmu
-ms.openlocfilehash: 7e08e985a64a6be581b8f5eedcce60fbd314eaf1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3eb88478b43f8e3a36ae04bf3703f238e8cb1f3e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="download-a-linux-vhd-from-azure"></a>Télécharger un disque VHD Linux à partir d’Azure
 
-Dans cet article, vous apprendrez comment toodownload un [(VHD) du disque dur virtuel Linux](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) fichier à partir d’Azure à l’aide hello CLI d’Azure et le portail Azure. 
+Dans cet article, vous allez découvrir comment télécharger un fichier de [disque dur virtuel (VHD) Linux](about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) à partir d’Azure à l’aide d’Azure CLI et du portail Azure. 
 
-Machines virtuelles (VM) en cours d’utilisation Azure [disques](../windows/managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) comme un toostore place un système d’exploitation, des applications et des données. Toutes les machines virtuelles Azure possèdent au moins deux disques : un disque de système d’exploitation Windows et un disque temporaire. disque de système d’exploitation Hello est initialement créé à partir d’une image et disque de système d’exploitation hello et image de hello sont des disques durs virtuels stockés dans un compte de stockage Azure. Les machines virtuelles peuvent également disposer d’un ou plusieurs disques de données, également stockés sur les VHD.
+Les machines virtuelles dans Azure utilisent des [disques](../windows/managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) comme emplacement de stockage d’un système d’exploitation, des applications et des données. Toutes les machines virtuelles Azure possèdent au moins deux disques : un disque de système d’exploitation Windows et un disque temporaire. Le disque de système d’exploitation est initialement créé à partir d’une image. Tant le disque que l’image sont des disques VHD stockés dans un compte de stockage Azure. Les machines virtuelles peuvent également disposer d’un ou plusieurs disques de données, également stockés sur les VHD.
 
 Si ce n’est déjà fait, installez [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2).
 
-## <a name="stop-hello-vm"></a>Arrêter hello machine virtuelle
+## <a name="stop-the-vm"></a>Arrêtez la machine virtuelle.
 
-Un disque dur virtuel ne peut être téléchargé à partir d’Azure, si elle est attachée tooa machine virtuelle en cours d’exécution. Vous devez toodownload de machine virtuelle hello toostop un disque dur virtuel. Si vous voulez toouse un disque dur virtuel en tant qu’un [image](tutorial-custom-images.md) toocreate autres machines virtuelles avec de nouveaux disques, vous devez toodeprovision et généraliser le système d’exploitation de hello contenue dans hello de fichiers et d’arrêter hello machine virtuelle. toouse hello disque dur virtuel en tant que disque d’une nouvelle instance d’un ordinateur virtuel existant ou d’un disque de données, vous seulement devez toostop et désallouer hello machine virtuelle.
+Il n’est pas possible de télécharger un disque VHD associé à une machine virtuelle en cours d’exécution à partir d’Azure. Vous devez arrêter la machine virtuelle pour télécharger un disque VHD. Si vous souhaitez utiliser un disque VHD en tant [qu’image](tutorial-custom-images.md) pour créer d’autres machines virtuelles avec de nouveaux disques, vous devez déprovisionner et généraliser le système d’exploitation contenu dans le fichier, puis arrêter la machine virtuelle. Pour utiliser le disque VHD en tant que disque d’une nouvelle instance d’une machine virtuelle ou d’un disque de données existant, il vous suffit d’arrêter et de libérer la machine virtuelle.
 
-toouse hello de disque dur virtuel en tant qu’une image toocreate autres machines virtuelles, procédez comme suit :
+Pour utiliser le disque VHD en tant qu’image pour créer d’autres machines virtuelles, suivez les étapes ci-dessous :
 
-1. Utiliser SSH, nom du compte hello et hello adresse IP publique de hello VM tooconnect tooit et annuler le déploiement. Bonjour + utilisateur paramètre supprime également le dernier compte d’utilisateur configuré hello. Si vous sont cuisson des informations d’identification de compte dans toohello VM, laissez cette + paramètre de l’utilisateur. Hello exemple suivant supprime hello dernier compte d’utilisateur configuré :
+1. Utilisez SSH, le nom du compte et l’adresse IP publique de la machine virtuelle pour vous y connecter et la déprovisionner. Le paramètre +user supprime également le dernier compte d’utilisateur approvisionné. Si vous sauvegardez les informations d’identification du compte sur la machine virtuelle, n’insérez pas ce paramètre +user. L’exemple suivant permet de supprimer le dernier compte d’utilisateur approvisionné :
 
     ```bash
     ssh azureuser@40.118.249.235
@@ -43,50 +43,50 @@ toouse hello de disque dur virtuel en tant qu’une image toocreate autres machi
     exit 
     ```
 
-2. Se connecter tooyour compte Azure avec [ouverture de session az](https://docs.microsoft.com/cli/azure/#login).
-3. Arrêter et désallouer hello machine virtuelle.
+2. Connectez-vous à votre compte Azure avec [az login](https://docs.microsoft.com/cli/azure/#login).
+3. Arrêtez et libérez la machine virtuelle.
 
     ```azurecli
     az vm deallocate --resource-group myResourceGroup --name myVM
     ```
 
-4. Généraliser hello machine virtuelle. 
+4. Généralisez la machine virtuelle. 
 
     ```azurecli
     az vm generalize --resource-group myResourceGroup --name myVM
     ``` 
 
-toouse hello disque dur virtuel en tant que disque d’une nouvelle instance d’un ordinateur virtuel existant ou d’un disque de données, procédez comme suit :
+Pour utiliser le disque VHD en tant que disque d’une nouvelle instance d’une machine virtuelle ou d’un disque de données existant, suivez les étapes ci-dessous :
 
-1.  Connectez-vous à toohello [portail Azure](https://portal.azure.com/).
-2.  Dans le menu du Hub hello, cliquez sur **virtuels**.
-3.  Sélectionnez hello machine virtuelle à partir de la liste de hello.
-4.  Dans le panneau hello pour hello machine virtuelle, cliquez sur **arrêter**.
+1.  Connectez-vous au [portail Azure](https://portal.azure.com/).
+2.  Dans le menu Hub, cliquez sur **Machines virtuelles**.
+3.  Sélectionnez la machine virtuelle dans la liste.
+4.  Dans le panneau de la machine virtuelle, cliquez sur **Arrêter**.
 
     ![Arrêter la machine virtuelle](./media/download-vhd/export-stop.png)
 
 ## <a name="generate-sas-url"></a>Générer une URL de SAP
 
-fichier de disque dur virtuel toodownload hello, vous devez toogenerate une [signature d’accès partagé (SAS)](../../storage/common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) URL. Lorsque l’URL de hello est généré, un délai d’expiration est affecté toohello URL.
+Pour télécharger le fichier VHD, vous devez générer une URL de [signature d’accès partagé (SAP)](../../storage/common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Un délai d’expiration est affecté à l’URL lors de sa génération.
 
-1.  Dans menu hello du panneau hello pour hello machine virtuelle, cliquez sur **disques**.
-2.  Sélectionnez le disque du système d’exploitation hello pour hello machine virtuelle, puis cliquez sur **exporter**.
+1.  Dans le menu du panneau de la machine virtuelle, cliquez sur **Disques**.
+2.  Sélectionnez le disque de système d’exploitation de la machine virtuelle, puis cliquez sur **Exporter**.
 3.  Cliquez sur **Générer l’URL**.
 
     ![Générer une URL](./media/download-vhd/export-generate.png)
 
-## <a name="download-vhd"></a>Télécharger un VHD
+## <a name="download-vhd"></a>Télécharger un disque VHD
 
-1.  URL hello qui a été généré, cliquez sur fichier de disque dur virtuel de téléchargement hello.
+1.  Sous l’URL générée, cliquez sur Télécharger le fichier de disque dur virtuel.
 
     ![Télécharger un VHD](./media/download-vhd/export-download.png)
 
-2.  Vous devrez peut-être tooclick **enregistrer** dans le téléchargement de hello navigateur toostart hello. nom par défaut de Hello pour le fichier de disque dur virtuel hello est *abcd*.
+2.  Vous devrez peut-être cliquer sur **Enregistrer** dans le navigateur pour commencer le téléchargement. Le nom par défaut du fichier VHD est *abcd*.
 
-    ![Cliquez sur Enregistrer dans le navigateur de hello](./media/download-vhd/export-save.png)
+    ![Cliquez sur Enregistrer dans le navigateur](./media/download-vhd/export-save.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Découvrez comment trop[télécharger et de créer un VM Linux à partir du disque personnalisé avec hello Azure CLI 2.0](upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). 
-- [Gérer les disques Azure hello CLI d’Azure](tutorial-manage-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+- Découvrez comment [charger et créer une machine virtuelle Linux à partir d’un disque personnalisé avec Azure CLI 2.0](upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). 
+- [Gestion des disques Azure avec l’interface de ligne de commande Azure](tutorial-manage-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 

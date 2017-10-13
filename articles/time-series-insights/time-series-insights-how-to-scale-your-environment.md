@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooscale votre environnement Azure temps série Insights | Documents Microsoft"
-description: "Ce didacticiel décrit comment tooscale votre environnement de la série de temps Azure Insights"
+title: "Mise à l’échelle de votre environnement Azure Time Series Insights | Microsoft Docs"
+description: "Ce tutoriel explique comment mettre à l’échelle votre environnement Azure Time Series Insights."
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -8,22 +8,22 @@ author: sandshadow
 manager: almineev
 editor: cgronlun
 ms.assetid: 
-ms.service: time-series-insights
+ms.service: tsi
 ms.devlang: na
 ms.topic: how-to-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/19/2017
 ms.author: edett
-ms.openlocfilehash: 55eda388997589185bd34228762b95e182b228ba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ba6bd1ab05bb7e24dd1bc307218e7a772fbde601
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooscale-your-time-series-insights-environment"></a>Comment tooscale votre environnement un aperçu en temps série
+# <a name="how-to-scale-your-time-series-insights-environment"></a>Mise à l’échelle de votre environnement Time Series Insights
 
-Ce didacticiel décrit comment tooscale votre environnement Insights de série de temps.
+Ce tutoriel explique comment mettre à l’échelle votre environnement Time Series Insights.
 
 > [!NOTE]
 > La mise à l’échelle sur différents types de référence n’est pas autorisée. Un environnement avec une référence S1 ne peut pas être converti en environnement S2.
@@ -44,12 +44,12 @@ Ce didacticiel décrit comment tooscale votre environnement Insights de série d
 
 Les capacités sont mises à l’échelle de façon linéaire. Par conséquent, une référence S1 avec la capacité 2 prend en charge 2 Go (2 millions) d’événements par débit d’entrée par jour et 60 Go (60 millions d’événements) par mois.
 
-## <a name="changing-hello-capacity-of-your-environment"></a>Modification de la capacité de hello de votre environnement
+## <a name="changing-the-capacity-of-your-environment"></a>Modifier la capacité de votre environnement
 
-1. Bonjour portail Azure, sélectionnez hello environnement dont vous souhaitez toochange.
+1. Dans le portail Azure, sélectionnez l’environnement dont vous voulez changer la capacité.
 1. Sous Paramètres, cliquez sur Configurer.
-1. Utilisez hello capacité curseur tooselect hello capacité qui répond aux exigences de hello pour vos tarifs en entrée et la capacité de stockage.
+1. Utilisez le curseur de capacité pour sélectionner la capacité conforme à la configuration requise pour les débits d’entrée et la capacité de stockage.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Vérifiez que la nouvelle capacité de hello est suffisante tooprevent de limitation. Pour plus d’informations, consultez hello *votre environnement peut être mise en route limitée* section [ici](time-series-insights-diagnose-and-solve-problems.md).
+* Vérifiez que la nouvelle capacité est suffisante pour éviter la limitation. Pour plus d’informations, consultez *Votre environnement pourrait être sujet à des limitations* [ici](time-series-insights-diagnose-and-solve-problems.md).

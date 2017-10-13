@@ -1,6 +1,6 @@
 ---
-title: aaaInstall RStudio avec R Server sur HDInsight - Azure | Documents Microsoft
-description: Comment tooinstall RStudio avec R Server sur HDInsight.
+title: Installer RStudio avec R Server sur HDInsight - Azure | Microsoft Docs
+description: Comment installer RStudio avec R Server sur HDInsight.
 services: hdinsight
 documentationcenter: 
 author: bradsev
@@ -15,61 +15,61 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/19/2017
 ms.author: bradsev
-ms.openlocfilehash: b3a23021fcf99217e8f551f8b2e89bf1f1e5b967
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 416420d855505508735ebd8526e93efdb230ad53
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="installing-rstudio-with-r-server-on-hdinsight"></a>Installation de RStudio avec R Server sur HDInsight
 
-Cet article décrit comment tooinstall hello version (gratuit) communautaire de [RStudio Server](https://www.rstudio.com/products/rstudio-server/) sur le nœud de périmètre hello d’un cluster à l’aide d’un script personnalisé. RStudio Server fournit un IDE sur navigateur utilisable par des clients distants ; il est très répandu sous Linux. Il existe actuellement plusieurs environnements de développement intégré (IDE) disponibles pour R, notamment :
+Cet article explique comment installer la version (gratuite) communautaire de [RStudio Server](https://www.rstudio.com/products/rstudio-server/) sur le nœud périphérique d’un cluster à l’aide d’un script personnalisé. RStudio Server fournit un IDE sur navigateur utilisable par des clients distants ; il est très répandu sous Linux. Il existe actuellement plusieurs environnements de développement intégré (IDE) disponibles pour R, notamment :
 
 - [Outils R pour Visual Studio](https://www.visualstudio.com/en-us/features/rtvs-vs.aspx) (RTVS) de Microsoft ; 
 - [RStudio Server](https://www.rstudio.com/products/rstudio-server/) ; 
 - [StatET](http://www.walware.de/goto/statet) sur Eclipse de WalWare.
 
-avantages de Hello de l’installation de serveur de RStudio sur le nœud de périmètre hello d’un cluster HDInsight sont qu’il offre une expérience complète de l’IDE pour le développement de hello et de l’exécution de scripts R R Server sur le cluster de hello. Cette configuration peut être considérablement plus productive à utiliser par défaut de hello Console R.
+L’installation de RStudio Server sur le nœud périphérique d’un cluster HDInsight présente l’avantage d’offrir une expérience d’IDE complète pour le développement et l’exécution de scripts R avec R Server sur le cluster. Cette configuration peut être considérablement plus productive que l’utilisation par défaut de la console R.
 
 > [!NOTE]
-> Hello procédure décrite dans cet article est uniquement pertinente si vous n’avez pas sélectionné tooinstall édition community de RStudio serveur lors de la configuration de votre cluster. Si vous l’avez ajouté pendant la configuration, puis les tooaccess il vous cliquez sur hello **tableaux de bord de serveur R** vignette Bonjour Azure entrée portail pour votre cluster, puis sur hello **R Studio Server** vignette. 
+> La procédure décrite dans cet article s'applique uniquement si vous n’avez pas choisi d'installer RStudio Server Community Edition lors de la configuration de votre cluster. Si vous l’avez ajouté lors de l’approvisionnement, vous pouvez y accéder en cliquant sur la mosaïque **Tableaux de bord R Server** dans l’entrée de votre cluster sur le Portail Azure, puis en cliquant sur la mosaïque **R Studio Server**. 
 
-Si vous préférez toouse hello commerciale sous licence Pro version du serveur de RStudio, vous devez suivre des instructions d’installation à partir de hello [RStudio Server](https://www.rstudio.com/products/rstudio/download-server/).
+Si vous préférez utiliser la version commerciale Pro sous licence de RStudio Server, vous devez suivre les instructions d’installation de [RStudio Server](https://www.rstudio.com/products/rstudio/download-server/).
 
 > [!NOTE]
-> Si vous utilisez un cluster HDInsight pour lequel R a été installé à l’aide de hello [installer une Action de Script R](hdinsight-hadoop-r-scripts-linux.md), étapes hello dans ce document ne fonctionneront pas correctement car elles nécessitent un serveur R sur le cluster HDInsight de hello.
+> Si vous utilisez un cluster HDInsight pour lequel R Server a été installé à l’aide de l’option [Installer une action de script R](hdinsight-hadoop-r-scripts-linux.md), la procédure décrite dans ce document ne fonctionnera pas correctement, car il faut qu’un R Server se trouve sur le cluster HDInsight.
 >
 > 
 
 ## <a name="prerequisites"></a>Composants requis
 
 * Un cluster Azure HDInsight avec R Server installé. Pour obtenir des instructions, consultez la page [Prise en main de R Server sur les clusters HDInsight](hdinsight-hadoop-r-server-get-started.md).
-* Un client SSH. Pour les distributions Linux et Unix ou Macintosh OS X, hello `ssh` commande est fournie avec le système d’exploitation de hello. Pour Windows, nous vous recommandons de [Cygwin](http://www.redhat.com/services/custom/cygwin/) avec hello [OpenSSH option](https://www.youtube.com/watch?v=CwYSvvGaiWU), ou [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).  
+* Un client SSH. Pour les distributions Linux et Unix ou pour Macintosh OS X, la commande `ssh` est fournie avec le système d'exploitation. Pour Windows, nous vous recommandons [Cygwin](http://www.redhat.com/services/custom/cygwin/) avec [l’option OpenSSH](https://www.youtube.com/watch?v=CwYSvvGaiWU) ou [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html).  
 
-## <a name="install-rstudio-on-hello-cluster-using-a-custom-script"></a>Installer RStudio sur cluster hello à l’aide d’un script personnalisé
+## <a name="install-rstudio-on-the-cluster-using-a-custom-script"></a>Installation de RStudio sur le cluster à l’aide d’un script personnalisé
 
-Voici les étapes hello :
+Voici la procédure à suivre :
 
-1. Identifier le nœud de périmètre hello du cluster de hello. Pour un cluster HDInsight avec R Server, voici convention d’affectation de noms de hello pour le nœud principal et le nœud de périmètre.
+1. Identifiez le nœud de périmètre du cluster. Concernant le cluster HDInsight avec R Server, voici la convention d’affectation de noms pour le nœud principal et le nœud de périmètre.
    * Nœud principal `CLUSTERNAME-ssh.azurehdinsight.net`
    * Nœud de périmètre `CLUSTERNAME-ed-ssh.azurehdinsight.net` 
 
-2. SSH dans le nœud de périmètre hello du cluster hello à l’aide du modèle d’affectation de noms de hello fourni à l’étape 1. Pour en savoir plus, voir [Utilisation de SSH avec Hadoop Linux sur HDInsight depuis Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).
+2. Établissez une connexion SSH dans le nœud périphérique du cluster selon le modèle d’affectation de noms fourni à l’étape 1. Pour en savoir plus, voir [Utilisation de SSH avec Hadoop Linux sur HDInsight depuis Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-3. Une fois que vous êtes connecté, devenir un utilisateur racine sur le cluster de hello. Dans la session SSH hello, utilisez hello de commande suivante :
+3. Une fois que vous êtes connecté, devenez un utilisateur racine sur le cluster. Dans la session SSH, utilisez la commande suivante :
 
         sudo su -
 
-4. Télécharger un script personnalisé de hello tooinstall RStudio. Utilisez hello de commande suivante :
+4. Téléchargez le script personnalisé pour installer RStudio. Utilisez la commande suivante :
 
         wget http://mrsactionscripts.blob.core.windows.net/rstudio-server-community-v01/InstallRStudio.sh
 
-5. Modifier les autorisations de hello sur le fichier de script personnalisé hello et exécuter le script de hello. Utilisez hello suivant de commandes :
+5. Modifiez les autorisations sur le fichier de script personnalisé et exécutez le script. Utilisez les commandes suivantes :
 
         chmod 755 InstallRStudio.sh
         ./InstallRStudio.sh
 
-6. Si vous avez utilisé un mot de passe SSH lors de la création d’un cluster HDInsight avec R Server, vous pouvez ignorer cette étape et passez toohello ensuite. Si vous avez utilisé une clé SSH à la place cluster hello de toocreate, vous devez définir un mot de passe pour votre utilisateur SSH. Vous avez besoin de ce mot de passe lors de la connexion tooRStudio. Exécutez hello suivant de commandes :
+6. Si vous avez utilisé un mot de passe SSH en créant un cluster HDInsight avec R Server, vous pouvez ignorer cette étape et passer à la suivante. Si vous avez utilisé à la place une clé SSH pour créer le cluster, vous devez définir un mot de passe pour votre utilisateur SSH. Vous avez besoin de ce mot de passe pour vous connecter à RStudio. Exécutez les commandes suivantes :
 
         passwd USERNAME
         Current Kerberos password:
@@ -78,43 +78,43 @@ Voici les étapes hello :
         Current Kerberos password:
 
 
-7. Lorsque vous êtes invité à entrer le **Mot de passe Kerberos actuel**, appuyez sur **ENTRÉE**.  Notez que vous devez remplacer `USERNAME` par un utilisateur SSH pour votre cluster HDInsight. Si votre mot de passe est correctement défini, vous devez voir hello message suivant :
+7. Lorsque vous êtes invité à entrer le **Mot de passe Kerberos actuel**, appuyez sur **ENTRÉE**.  Notez que vous devez remplacer `USERNAME` par un utilisateur SSH pour votre cluster HDInsight. Si votre mot de passe est défini correctement, le message suivant s’affiche :
 
         passwd: password updated successfully
 
-    Quittez la session SSH hello.
+    Quittez la session SSH.
 
-8. Créer un cluster de toohello tunnel SSH en mappant `ssh -L localhost:8787:localhost:8787 USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net` sur hello HDInsight le cluster toohello ordinateur du client. Vous devez créer un tunnel SSH avant d’ouvrir une nouvelle session de navigateur.
+8. Créez un tunnel SSH vers le cluster en mappant `ssh -L localhost:8787:localhost:8787 USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net` sur le cluster HDInsight à l’ordinateur client. Vous devez créer un tunnel SSH avant d’ouvrir une nouvelle session de navigateur.
 
-   * Sur un client Linux ou un client Windows avec [Cygwin](http://www.redhat.com/services/custom/cygwin/), ouvrez une session Terminal Server et utiliser hello de commande suivante :
+   * Sur un client Linux ou un client Windows avec [Cygwin](http://www.redhat.com/services/custom/cygwin/), ouvrez une session de terminal et utilisez la commande suivante :
 
              ssh -L localhost:8787:localhost:8787 USERNAME@CLUSTERNAME-ed-ssh.azurehdinsight.net
 
-       Remplacez **nom d’utilisateur** à un utilisateur SSH pour votre cluster HDInsight, puis remplacez **CLUSTERNAME** avec nom hello de votre cluster HDInsight.
+       Remplacez **USERNAME** par un utilisateur SSH de votre cluster HDInsight et **CLUSTERNAME** par le nom de votre cluster HDInsight.
        Vous pouvez également utiliser une clé SSH plutôt qu’un mot de passe en ajoutant `-i id_rsa_key`.        
    * Si vous utilisez un client Windows avec PuTTY
 
      1. Ouvrez PuTTY et saisissez vos informations de connexion.
-     2. Bonjour **catégorie** toohello de la section gauche de la boîte de dialogue hello, développez **connexion**, développez **SSH**, puis sélectionnez **Tunnels**.
-     3. Fournir hello suivant les informations de hello **réacheminement de port Options contrôlant SSH** formulaire :
+     2. Dans la rubrique **Catégorie** située à gauche dans la boîte de dialogue, développez **Connexion** et **SSH**, puis sélectionnez **Tunnels**.
+     3. Indiquez les informations suivantes dans le formulaire des **Options de contrôle de transfert du port SSH** .
 
-        * **Port source** -hello port client hello que vous souhaitez tooforward. Par exemple, **8787**.
-        * **Destination** - hello destination doit être mappée ordinateur du client local toohello. Par exemple, **localhost:8787**.
+        * **Port source** : le port sur le client que vous souhaitez transférer. Par exemple, **8787**.
+        * **Destination** - La destination doit être mappée à l’ordinateur client local. Par exemple, **localhost:8787**.
 
             ![Création d’un tunnel SSH](./media/hdinsight-hadoop-r-server-install-r-studio/createsshtunnel.png "Création d’un tunnel SSH")
 
-     4. Cliquez sur **ajouter** tooadd hello paramètres, puis cliquez sur **ouvrir** tooopen une connexion SSH.
-     5. Lorsque vous y êtes invité, connectez-vous toohello server tooestablish un tunnel hello SSH la session et l’activer.
+     4. Cliquez sur **Ajouter** pour ajouter les paramètres, puis cliquez sur **Ouvrir** pour ouvrir une connexion SSH.
+     5. Lorsque vous y êtes invité, connectez-vous au serveur pour établir une session SSH et activer le tunnel.
 
-9. Ouvrez un navigateur web, puis entrez hello suivant URL basée sur le port hello que vous avez entré pour un tunnel de hello :
+9. Ouvrez un navigateur web et entrez l’URL suivante en fonction du port que vous avez entré pour le tunnel :
 
         http://localhost:8787/ 
 
-10. Vous êtes invité à tooenter hello SSH nom d’utilisateur et mot de passe tooconnect toohello cluster. Si vous avez utilisé une clé SSH lors de la création du cluster de hello, vous devez entrer un mot de passe hello créé à l’étape 5.
+10. Vous êtes invité à entrer le nom d’utilisateur SSH et le mot de passe pour vous connecter au cluster. Si vous avez utilisé une clé SSH en créant le cluster, vous devez entrer le mot de passe que vous avez créé à l’étape 5.
 
-    ![Se connecter tooR Studio](./media/hdinsight-hadoop-r-server-install-r-studio/connecttostudio.png "créer un tunnel SSH")
+    ![Connexion à R Studio](./media/hdinsight-hadoop-r-server-install-r-studio/connecttostudio.png "Création d’un tunnel SSH")
 
-11. tootest si hello RStudio installation a réussi, vous pouvez exécuter un script de test qui exécute des tâches de MapReduce et Spark R sur le cluster de hello. toodownload hello test script toorun dans RStudio, revenez en arrière toohello SSH console, puis entrez hello suivant de commandes :
+11. Pour tester si l’installation de RStudio s’est bien déroulée, vous pouvez exécuter un script de test qui exécute des travaux R MapReduce et Spark sur le cluster. Pour télécharger le script de test à exécuter dans RStudio, revenez à la console SSH et entrez les commandes suivantes :
 
     *    Si vous avez créé un cluster Hadoop avec R, utilisez cette commande :
 
@@ -123,11 +123,11 @@ Voici les étapes hello :
 
             wget http://mrsactionscripts.blob.core.windows.net/rstudio-server-community-v01/testhdi_spark.r
 
-12. Dans RStudio, vous voyez hello tester le script que vous avez téléchargé. Double-cliquez sur hello fichier tooopen, sélectionnez le contenu du fichier de hello hello, puis cliquez sur **exécuter**. Vous devez voir la sortie hello Bonjour **Console** volet :
+12. Dans RStudio, vous verrez le script de test que vous avez téléchargé. Double-cliquez sur le fichier pour l’ouvrir, sélectionnez son contenu, puis cliquez sur **Exécuter**. Vous devriez voir la sortie dans le volet **Console** :
 
-   ![Tester l’installation de hello](./media/hdinsight-hadoop-r-server-install-r-studio/test-r-script.png "tester hello installation")
+   ![Test de l’installation](./media/hdinsight-hadoop-r-server-install-r-studio/test-r-script.png "Test de l’installation")
 
-Une autre option serait tootype `source(testhdi.r)` ou `source(testhdi_spark.r)` script de hello tooexecute.
+Vous pouvez également taper `source(testhdi.r)` ou `source(testhdi_spark.r)` pour exécuter le script.
 
 ## <a name="see-also"></a>Voir aussi
 

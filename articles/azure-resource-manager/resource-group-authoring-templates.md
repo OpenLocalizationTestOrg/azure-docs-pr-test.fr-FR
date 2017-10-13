@@ -1,6 +1,6 @@
 ---
-title: "le Gestionnaire de ressources d’aaaAzure structure de modèle et la syntaxe | Documents Microsoft"
-description: "Décrit la structure de hello et les propriétés de modèles Azure Resource Manager à l’aide de la syntaxe déclarative JSON."
+title: "Structure et syntaxe du modèle Azure Resource Manager | Microsoft Docs"
+description: "Décrit la structure et les propriétés des modèles Azure Resource Manager à l’aide de la syntaxe JSON déclarative."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/14/2017
 ms.author: tomfitz
-ms.openlocfilehash: b0709852f8777c91cc1704d6bca16257a017d515
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dc9b64062d7f68c83aa090eec96744819a5ca423
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="understand-hello-structure-and-syntax-of-azure-resource-manager-templates"></a>Comprendre la structure de hello et syntaxe des modèles Azure Resource Manager
-Cette rubrique décrit la structure hello d’un modèle Azure Resource Manager. Elle présente hello différentes sections d’un modèle et hello des propriétés qui sont disponibles dans ces sections. modèle de Hello se compose de JSON et les expressions que vous pouvez utiliser les valeurs tooconstruct pour votre déploiement. Pour obtenir un didacticiel étape par étape permettant de créer un modèle, voir [Créer votre premier modèle Azure Resource Manager](resource-manager-create-first-template.md).
+# <a name="understand-the-structure-and-syntax-of-azure-resource-manager-templates"></a>Comprendre la structure et la syntaxe des modèles Azure Resource Manager
+Cette rubrique décrit la structure d’un modèle Azure Resource Manager. Elle présente les différentes sections d’un modèle et les propriétés disponibles dans ces sections. Le modèle se compose d’un JSON et d’expressions que vous pouvez utiliser pour construire des valeurs pour votre déploiement. Pour obtenir un didacticiel étape par étape permettant de créer un modèle, voir [Créer votre premier modèle Azure Resource Manager](resource-manager-create-first-template.md).
 
 ## <a name="template-format"></a>Format de modèle
-Dans la structure la plus simple, un modèle contient hello suivant d’éléments :
+Dans sa structure la plus simple, un modèle contient les éléments suivants :
 
 ```json
 {
@@ -39,14 +39,14 @@ Dans la structure la plus simple, un modèle contient hello suivant d’élémen
 
 | Nom de l'élément | Requis | Description |
 |:--- |:--- |:--- |
-| $schema |Oui |Emplacement du fichier de schéma JSON hello qui décrit la version de hello du langage de modèle hello. Utilisez les URL hello indiqué dans le précédent exemple de hello. |
-| contentVersion |Oui |Version du modèle hello (par exemple, 1.0.0.0). Vous pouvez fournir n’importe quelle valeur pour cet élément. Lorsque vous déployez des ressources à l’aide du modèle de hello, cette valeur peut être utilisé toomake que ce modèle hello est utilisé. |
-| parameters |Non |Les valeurs fournies lorsque le déploiement est exécuté le déploiement de ressources toocustomize. |
-| variables |Non |Valeurs qui sont utilisées en tant que fragments JSON dans les expressions de langage de modèle hello modèle toosimplify. |
+| $schema |Oui |Emplacement du fichier de schéma JSON qui décrit la version du langage du modèle. Utilisez l’URL indiquée dans l’exemple précédent. |
+| contentVersion |Oui |Version du modèle (par exemple, 1.0.0.0). Vous pouvez fournir n’importe quelle valeur pour cet élément. Quand vous déployez des ressources à l'aide du modèle, cette valeur permet de vous assurer que le bon modèle est utilisé. |
+| parameters |Non |Valeurs fournies lors de l'exécution du déploiement pour personnaliser le déploiement des ressources. |
+| variables |Non |Valeurs utilisées en tant que fragments JSON dans le modèle pour simplifier les expressions du langage du modèle. |
 | les ressources |Oui |Types de ressource déployés ou mis à jour dans un groupe de ressources. |
 | outputs |Non |Valeurs retournées après le déploiement. |
 
-Chaque élément contient des propriétés que vous définissez. Hello, l’exemple suivant contient une syntaxe complète de hello pour un modèle :
+Chaque élément contient des propriétés que vous définissez. L’exemple suivant présente la syntaxe complète d’un modèle :
 
 ```json
 {
@@ -62,7 +62,7 @@ Chaque élément contient des propriétés que vous définissez. Hello, l’exem
             "minLength": <minimum-length-for-string-or-array>,
             "maxLength": <maximum-length-for-string-or-array-parameters>,
             "metadata": {
-                "description": "<description-of-hello parameter>" 
+                "description": "<description-of-the parameter>" 
             }
         }
     },
@@ -117,14 +117,14 @@ Chaque élément contient des propriétés que vous définissez. Hello, l’exem
 }
 ```
 
-Nous examinons sections hello du modèle hello plus en détail plus loin dans cette rubrique.
+Nous allons examiner les sections du modèle de manière plus approfondie plus loin dans cette rubrique.
 
 ## <a name="expressions-and-functions"></a>Expressions et fonctions
-syntaxe de base Hello du modèle de hello est JSON. Toutefois, les expressions et fonctions étendent hello JSON de valeurs disponibles dans le modèle de hello.  Les expressions sont écrites dans les littéraux de chaîne JSON dont le premier et dernier caractères sont des crochets de hello : `[` et `]`, respectivement. valeur de Hello d’expression de hello est évaluée lorsque le modèle de hello est déployé. Alors qu’écrite sous la forme d’un littéral de chaîne, les résultats hello de l’évaluation d’expression de hello peut être de type JSON différent, tel qu’un tableau ou d’un entier, en fonction de l’expression réelle de hello.  toohave une chaîne littérale commencer par un crochet `[`, mais pas soit interprétée comme une expression, ajoutez une crochet supplémentaire toostart hello chaîne `[[`.
+La syntaxe de base du modèle est JSON. Toutefois, les expressions et fonctions étendent les valeurs JSON disponibles dans le modèle.  Les expressions sont écrites dans les littéraux de chaîne JSON dont le premier et dernier caractères sont les crochets : `[` et `]`, respectivement. La valeur de l’expression est évaluée lorsque le modèle est déployé. Bien qu’écrit sous la forme d’un littéral de chaîne, le résultat de l’évaluation de l’expression peut être d’un type différent de JSON, tel qu’un tableau ou un entier, en fonction de l’expression réelle.  Pour avoir une chaîne littérale qui commence par un crochet `[`, sans qu’elle soit interprétée comme une expression, ajoutez un crochet supplémentaire. La chaîne commence alors par `[[`.
 
-En règle générale, vous utilisez des expressions avec les opérations de tooperform des fonctions de configuration de déploiement de hello. Comme en JavaScript, les appels de fonction sont formatés comme suit : `functionName(arg1,arg2,arg3)`. Référencer des propriétés en utilisant des opérateurs de point et [index] hello.
+En général, vous utilisez des expressions avec des fonctions pour effectuer des opérations de configuration du déploiement. Comme en JavaScript, les appels de fonction sont formatés comme suit : `functionName(arg1,arg2,arg3)`. Pour référencer des propriétés, vous utilisez les opérateurs point et [index].
 
-Hello, l’exemple suivant montre comment plusieurs fonctions lors de la construction de toouse valeurs :
+L'exemple suivant vous indique comment utiliser plusieurs fonctions lors de la construction de valeurs :
 
 ```json
 "variables": {
@@ -134,12 +134,12 @@ Hello, l’exemple suivant montre comment plusieurs fonctions lors de la constru
 }
 ```
 
-Pour hello une liste complète des fonctions de modèle, consultez [fonctions de modèle Azure Resource Manager](resource-group-template-functions.md). 
+Pour obtenir la liste complète des fonctions de modèle, consultez [Fonctions des modèles Azure Resource Manager](resource-group-template-functions.md). 
 
-## <a name="parameters"></a>Paramètres
-Dans la section Paramètres de hello du modèle de hello, vous spécifiez les valeurs que vous pouvez entrer lorsque vous déployez hello des ressources. Ces valeurs de paramètres permettent de déploiement de hello toocustomize en fournissant des valeurs qui sont adaptés pour un environnement particulier (par exemple, le développement, test et production). Vous n’avez pas de paramètres de tooprovide dans votre modèle, mais sans les paramètres de votre modèle est toujours déployer hello ressources mêmes avec hello même des noms, des emplacements et des propriétés.
+## <a name="parameters"></a>parameters
+C’est dans la section des paramètres du modèle que vous pouvez spécifier les valeurs que vous pouvez saisir lors du déploiement des ressources. Ces valeurs de paramètre vous permettent de personnaliser le déploiement grâce à des valeurs adaptées à un environnement particulier (par exemple développement, test et production). Il est inutile de fournir des paramètres dans votre modèle, mais sans les paramètres, votre modèle déploie toujours les mêmes ressources avec les mêmes noms, emplacements et propriétés.
 
-Vous définissez des paramètres par hello suivant structure :
+Vous définissez des paramètres avec la structure suivante :
 
 ```json
 "parameters": {
@@ -152,7 +152,7 @@ Vous définissez des paramètres par hello suivant structure :
         "minLength": <minimum-length-for-string-or-array>,
         "maxLength": <maximum-length-for-string-or-array-parameters>,
         "metadata": {
-            "description": "<description-of-hello parameter>" 
+            "description": "<description-of-the parameter>" 
         }
     }
 }
@@ -160,17 +160,17 @@ Vous définissez des paramètres par hello suivant structure :
 
 | Nom de l'élément | Requis | Description |
 |:--- |:--- |:--- |
-| nom_paramètre |Oui |Nom du paramètre hello. Doit être un identificateur JavaScript valide. |
-| type |Oui |Type de valeur de paramètre hello. Consultez la liste hello des types autorisés après ce tableau. |
-| defaultValue |Non |Valeur par défaut pour le paramètre hello, si aucune valeur n’est fournie pour le paramètre hello. |
-| allowedValues |Non |Tableau de valeurs autorisées pour toomake de paramètre hello assurer que la valeur de droite hello est fourni. |
-| minValue |Non |valeur minimale de Hello pour les paramètres de type int, cette valeur est incluse. |
-| maxValue |Non |valeur maximale de Hello pour les paramètres de type int, cette valeur est incluse. |
-| minLength |Non |longueur minimale de Hello pour secureString, de chaîne et les paramètres de type tableau, cette valeur est incluse. |
-| maxLength |Non |longueur maximale de Hello pour secureString, de chaîne et les paramètres de type tableau, cette valeur est incluse. |
-| description |Non |Description du paramètre hello qui est affichée toousers via le portail de hello. |
+| nom_paramètre |Oui |Nom du paramètre. Doit être un identificateur JavaScript valide. |
+| type |Oui |Type de la valeur du paramètre. La liste des types autorisés est présentée après ce tableau. |
+| defaultValue |Non |Valeur par défaut du paramètre, si aucune valeur n'est fournie pour le paramètre. |
+| allowedValues |Non |Tableau des valeurs autorisées pour le paramètre afin de vous assurer que la bonne valeur a bien été fournie. |
+| minValue |Non |Valeur minimale pour les paramètres de type int, cette valeur est inclusive. |
+| maxValue |Non |Valeur maximale pour les paramètres de type int. Cette valeur est inclusive. |
+| minLength |Non |Valeur minimale pour les paramètres de type string, secureString et array. Cette valeur est inclusive. |
+| maxLength |Non |Valeur maximale pour les paramètres de type string, secureString et array. Cette valeur est inclusive. |
+| Description |Non |Description du paramètre qui apparaît aux utilisateurs dans le portail. |
 
-Hello les valeurs et les types autorisés sont :
+Les valeurs et types autorisés sont :
 
 * **string**
 * **secureString**
@@ -180,19 +180,19 @@ Hello les valeurs et les types autorisés sont :
 * **secureObject**
 * **array**
 
-toospecify un paramètre comme facultatif, fournissent un defaultValue (peut être d’une chaîne vide). 
+Pour spécifier un paramètre comme facultatif, fournissez une valeur defaultValue (peut être une chaîne vide). 
 
-Si vous spécifiez un nom de paramètre dans votre modèle qui correspond à un paramètre de modèle de hello hello commande toodeploy, il est ambiguïté sur les valeurs hello que vous fournissez. Le Gestionnaire de ressources résout cette confusion en ajoutant le suffixe de hello **modèle** paramètre de modèle toohello. Par exemple, si vous incluez un paramètre nommé **ResourceGroupName** dans votre modèle, il est en conflit avec hello **ResourceGroupName** paramètre Bonjour [ Nouveau-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment) applet de commande. Pendant le déploiement, vous êtes invité à tooprovide une valeur pour **ResourceGroupNameFromTemplate**. En règle générale, vous devez éviter cette confusion en nommant ne pas de paramètres avec le même nom en tant que paramètres utilisés pour les opérations de déploiement de hello.
+Si vous spécifiez dans votre modèle un nom de paramètre qui correspond à un paramètre de la commande servant à déployer le modèle, il existe une ambiguïté potentielle concernant les valeurs que vous fournissez. Resource Manager élimine ce risque de confusion en ajoutant le suffixe **romTemplate** au paramètre du modèle. Par exemple, si vous incluez dans votre modèle un paramètre nommé **ResourceGroupName**, celui-ci est en conflit avec le paramètre **ResourceGroupName** dans l’applet de commande [New-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment). Pendant le déploiement, vous êtes invité à fournir une valeur pour **ResourceGroupNameFromTemplate**. En général, vous devez éviter cette confusion en ne nommant pas les paramètres avec un nom identique à celui des paramètres utilisés pour les opérations de déploiement.
 
 > [!NOTE]
-> Tous les mots de passe, les clés et autres secrets doivent utiliser hello **secureString** type. Si vous passez des données sensibles dans un objet JSON, utilisez hello **secureObject** type. Il est impossible de lire les paramètres du modèle dont le type est secureString ou secureObject après le déploiement de la ressource. 
+> Tous les mots de passe, clés et autres secrets doivent utiliser le type **secureString** . Si vous transmettez des données sensibles dans un objet JSON, utilisez le type **secureObject**. Il est impossible de lire les paramètres du modèle dont le type est secureString ou secureObject après le déploiement de la ressource. 
 > 
-> Par exemple, hello entrée suivante dans l’historique de déploiement hello affiche hello valeur pour une chaîne et un objet, mais pas pour secureString et secureObject.
+> Par exemple, l’entrée suivante dans l’historique de déploiement indique la valeur pour une chaîne et un objet, mais pas pour secureString et secureObject.
 >
 > ![afficher les valeurs de déploiement](./media/resource-group-authoring-templates/show-parameters.png)  
 >
 
-Hello suivant montre l’exemple de comment toodefine paramètres :
+L’exemple suivant vous indique comment définir les paramètres :
 
 ```json
 "parameters": {
@@ -230,12 +230,12 @@ Hello suivant montre l’exemple de comment toodefine paramètres :
 }
 ```
 
-Pour la tooinput hello valeurs de paramètre, au cours du déploiement, consultez [déployer une application avec le modèle Azure Resource Manager](resource-group-template-deploy.md). 
+Pour plus d’informations sur la saisie des valeurs de paramètre au cours du déploiement, consultez [Déployer une application avec un modèle Azure Resource Manager](resource-group-template-deploy.md). 
 
 ## <a name="variables"></a>variables
-Dans la section de variables hello, vous construisez des valeurs qui peuvent être utilisées dans l’ensemble de votre modèle. Vous n’avez pas besoin de toodefine variables, mais ils simplifient souvent votre modèle en réduisant les expressions complexes.
+Dans la section des variables, vous définissez des valeurs pouvant être utilisées dans votre modèle. Il est inutile de définir des variables, mais elles simplifient souvent votre modèle en réduisant les expressions complexes.
 
-Vous définissez des variables avec hello suivant structure :
+Vous définissez des variables avec la structure suivante :
 
 ```json
 "variables": {
@@ -246,7 +246,7 @@ Vous définissez des variables avec hello suivant structure :
 }
 ```
 
-Hello suivant montre l’exemple de comment toodefine une variable qui est construite à partir de deux valeurs de paramètre :
+L'exemple suivant vous indique comment définir une variable qui est construite à partir de deux valeurs de paramètre :
 
 ```json
 "variables": {
@@ -254,7 +254,7 @@ Hello suivant montre l’exemple de comment toodefine une variable qui est const
 }
 ```
 
-Hello l’exemple suivant montre une variable qui est un type complexe de JSON et les variables qui sont construits à partir d’autres variables :
+L'exemple suivant vous indique une variable qui est un type complexe de JSON et des variables qui sont construites à partir d'autres variables :
 
 ```json
 "parameters": {
@@ -283,10 +283,10 @@ Hello l’exemple suivant montre une variable qui est un type complexe de JSON e
 }
 ```
 
-## <a name="resources"></a>Ressources
-Dans la section relative aux ressources hello, vous définissez des ressources hello qui sont déployés ou mis à jour. Cette section peut se compliquer, car vous devez comprendre hello types que vous déployez des valeurs tooprovide hello. Hello propres à la ressource valeurs (apiVersion, type et propriétés) que vous avez besoin de tooset [définir des ressources dans les modèles Azure Resource Manager](/azure/templates/). 
+## <a name="resources"></a>les ressources
+Dans la section des ressources, vous définissez les ressources déployées ou mises à jour. Cette section gagne en complexité, car vous devez connaître les types que vous déployez pour fournir les valeurs adéquates. Concernant les valeurs spécifiques aux ressources (apiVersion, type et properties) que vous devez définir, voir [Définir les ressources des modèles Azure Resource Manager](/azure/templates/). 
 
-Vous définissez des ressources par hello suivant structure :
+Vous définissez des ressources avec la structure suivante :
 
 ```json
 "resources": [
@@ -329,19 +329,19 @@ Vous définissez des ressources par hello suivant structure :
 
 | Nom de l'élément | Requis | Description |
 |:--- |:--- |:--- |
-| condition | Non | Valeur booléenne qui indique si les ressources hello sont déployée. |
-| apiVersion |Oui |Version de toouse d’API REST hello pour la création de ressources de hello. |
-| type |Oui |Type de ressource de hello. Cette valeur est une combinaison de l’espace de noms hello de fournisseur de ressources hello et type de ressource hello (tel que **/storageaccounts**). |
-| name |Oui |Nom de ressource de hello. Hello doit respecter les restrictions de composant URI définies dans la norme RFC 3986. En outre, les services Azure qui exposent les parties de toooutside de nom de ressource hello valider toomake de nom hello qu’il se n'agit pas d’une tentative toospoof une autre identité. |
-| location |Varie |Emplacements géographiques pris en charge de hello fournissait des ressources. Vous pouvez sélectionner un des emplacements disponibles de hello, mais en général rend sens toopick qui tooyour fermer des utilisateurs. En règle générale, il peut s’avérer utile ressources tooplace qui interagissent entre eux dans hello même région. La plupart des types de ressources nécessitent un emplacement, mais certains types (par exemple, une affectation de rôle) ne nécessitent aucun emplacement. Voir [Définir l’emplacement des ressources dans les modèles Azure Resource Manager](resource-manager-template-location.md). |
-| tags |Non |Balises qui sont associés à des ressources de hello. Voir [Appliquer des balises aux ressources dans les modèles Azure Resource Manager](resource-manager-template-tags.md). |
-| commentaires |Non |Vos commentaires pour documenter les ressources hello dans votre modèle. |
-| copy |Non |Si plusieurs instances est nécessaire, hello le nombre de ressources toocreate. mode par défaut de Hello est parallèle. Spécifiez le mode série quand ne pas tous ou hello toodeploy de ressources à hello même temps. Pour plus d’informations, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md). |
-| dependsOn |Non |Les ressources qui doivent être déployées avant le déploiement de cette ressource. Le Gestionnaire de ressources évalue des dépendances hello entre les ressources et les déploie dans l’ordre correct de hello. Quand les ressources ne dépendent les unes des autres, leur déploiement se fait en parallèle. Hello valeur peut être une liste séparée par des virgules d’une ressource de noms ou des identificateurs de ressources unique. Répertoriez uniquement les ressources qui sont déployées dans ce modèle. Les ressources qui ne sont pas définies dans ce modèle doivent déjà exister. Évitez d’ajouter des dépendances inutiles, car cela risque de ralentir votre déploiement et de créer des dépendances circulaires. Pour savoir comment définir des dépendances, consultez [Définition de dépendances dans les modèles Azure Resource Manager](resource-group-define-dependencies.md). |
-| properties |Non |Paramètres de configuration spécifiques aux ressources. les valeurs Hello pour les propriétés de hello sont même hello en tant que valeurs hello vous fournissez dans le corps de la demande hello pour hello API REST opération (méthode PUT) toocreate hello ressource. Vous pouvez également spécifier un toocreate de tableau copie plusieurs instances d’une propriété. Pour plus d’informations, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md). |
-| les ressources |Non |Ressources enfants qui dépendent des ressources hello en cours de définition. Fournir uniquement les types de ressources qui sont autorisées par schéma hello de ressource du parent hello. Hello type qualifié complet de la ressource enfant de hello inclut le type de ressource hello parent tels que **Microsoft.Web/sites/extensions**. Dépendance sur la ressource parent de hello n’est pas nécessaire. Vous devez la définir explicitement. |
+| condition | Non | Valeur booléenne indiquant si la ressource est déployée. |
+| apiVersion |Oui |La version de l'API REST à utiliser pour la création de la ressource. |
+| type |Oui |Type de la ressource. Cette valeur est une combinaison de l’espace de noms du fournisseur de ressources et du type de ressource (comme **Microsoft.Storage/storageAccounts**). |
+| name |Oui |Nom de la ressource. Le nom doit respecter les restrictions de composant d'URI définies dans le document RFC3986. En outre, les services Azure qui exposent le nom de la ressource à des parties externes valident du nom pour s’assurer qu’il ne s’agit pas d’une tentative d’usurpation d’identité. |
+| location |Varie |Emplacements géographiques de la ressource fournie pris en charge. Vous pouvez sélectionner l’un des emplacements disponibles, mais en général, il est judicieux de choisir celui qui est proche de vos utilisateurs. En règle générale, il est également judicieux de placer dans la même région les ressources qui interagissent entre elles. La plupart des types de ressources nécessitent un emplacement, mais certains types (par exemple, une affectation de rôle) ne nécessitent aucun emplacement. Voir [Définir l’emplacement des ressources dans les modèles Azure Resource Manager](resource-manager-template-location.md). |
+| tags |Non |Balises associées à la ressource. Voir [Appliquer des balises aux ressources dans les modèles Azure Resource Manager](resource-manager-template-tags.md). |
+| commentaires |Non |Vos commentaires pour documenter les ressources dans votre modèle |
+| copy |Non |Si plusieurs instances sont nécessaires, le nombre de ressources à créer. Le mode par défaut est parallèle. Spécifiez le mode série si vous ne souhaitez pas que toutes les ressources soient déployées en même temps. Pour plus d’informations, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md). |
+| dependsOn |Non |Les ressources qui doivent être déployées avant le déploiement de cette ressource. Resource Manager évalue les dépendances entre les ressources et les déploie dans le bon ordre. Quand les ressources ne dépendent les unes des autres, leur déploiement se fait en parallèle. La valeur peut être une liste séparée par des virgules de noms de ressource ou d’identificateurs de ressource uniques. Répertoriez uniquement les ressources qui sont déployées dans ce modèle. Les ressources qui ne sont pas définies dans ce modèle doivent déjà exister. Évitez d’ajouter des dépendances inutiles, car cela risque de ralentir votre déploiement et de créer des dépendances circulaires. Pour savoir comment définir des dépendances, consultez [Définition de dépendances dans les modèles Azure Resource Manager](resource-group-define-dependencies.md). |
+| properties |Non |Paramètres de configuration spécifiques aux ressources. Les valeurs de propriétés sont identiques à celles que vous fournissez dans le corps de la requête pour l’opération d’API REST (méthode PUT) pour créer la ressource. Vous pouvez également spécifier une copie en groupe pour créer plusieurs instances d’une propriété. Pour plus d’informations, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md). |
+| les ressources |Non |Ressources enfants qui dépendent de la ressource qui est définie. Fournissez uniquement des types de ressources qui sont autorisés par le schéma de la ressource parente. Le type complet de la ressource enfant inclut le type de ressource parente, par exemple **Microsoft.Web/sites/extensions**. La dépendance envers la ressource parente n’est pas induite. Vous devez la définir explicitement. |
 
-section de ressources Hello contient un tableau de toodeploy de ressources hello. Au sein de chaque ressource, vous pouvez également définir un tableau de ressources enfant. Par conséquent, la structure de la section de ressources peut ressembler à ce qui suit :
+La section des ressources contient un tableau des ressources à déployer. Au sein de chaque ressource, vous pouvez également définir un tableau de ressources enfant. Par conséquent, la structure de la section de ressources peut ressembler à ce qui suit :
 
 ```json
 "resources": [
@@ -367,7 +367,7 @@ section de ressources Hello contient un tableau de toodeploy de ressources hello
 
 Pour plus d’informations sur la définition des ressources enfants, voir [Définir le nom et le type d’une ressource enfant dans un modèle Resource Manager](resource-manager-template-child-resource.md).
 
-Hello **condition** élément spécifie si les ressources hello sont déployé. valeur Hello pour cet élément résout tootrue ou false. Par exemple, toospecify si un compte de stockage est déployé, utilisez :
+L’élément **condition** indique si la ressource est déployée. La valeur de cet élément est résolue en true ou false. Par exemple, pour spécifier si un compte de stockage est déployé, utilisez :
 
 ```json
 {
@@ -386,7 +386,7 @@ Hello **condition** élément spécifie si les ressources hello sont déployé. 
 
 Pour obtenir un exemple d’utilisation d’une ressource nouvelle ou existante, voir [Modèle de condition New ou Existing](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResources.NewOrExisting.json).
 
-toospecify si un ordinateur virtuel est déployé avec un mot de passe ou la clé SSH, définir deux versions de la machine virtuelle de hello dans votre modèle, **condition** toodifferentiate utilisation. Transmettre un paramètre qui spécifie quels toodeploy de scénario.
+Pour spécifier si une machine virtuelle est déployée avec un mot de passe ou une clé SSH, définissez deux versions de la machine virtuelle dans votre modèle, puis utilisez l’élément **condition** pour différencier l’utilisation. Transmettre un paramètre qui spécifie le scénario à déployer.
 
 ```json
 {
@@ -429,12 +429,12 @@ toospecify si un ordinateur virtuel est déployé avec un mot de passe ou la cl�
 }
 ``` 
 
-Pour obtenir un exemple de l’utilisation d’un mot de passe ou d’un ordinateur virtuel de toodeploy clé SSH, consultez [modèle de condition de nom d’utilisateur ou de SSH](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).
+Pour obtenir un exemple d’utilisation d’un mot de passe ou d’une clé SSH pour déployer une machine virtuelle, voir [Modèle de condition Username ou SSH](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).
 
-## <a name="outputs"></a>outputs
-Dans la section de sorties hello, vous spécifiez des valeurs qui sont retournées à partir de déploiement. Par exemple, vous pouvez retourner hello URI tooaccess une ressource déployée.
+## <a name="outputs"></a>Sorties
+Dans la section des sorties, vous spécifiez des valeurs retournées à partir du déploiement. Par exemple, vous pouvez retourner l'URI d'accès à une ressource déployée.
 
-Hello suivant montre structure hello d’une définition de sortie :
+L'exemple suivant illustre la structure de la définition d'une sortie :
 
 ```json
 "outputs": {
@@ -447,11 +447,11 @@ Hello suivant montre structure hello d’une définition de sortie :
 
 | Nom de l'élément | Requis | Description |
 |:--- |:--- |:--- |
-| outputName |Oui |Nom de la valeur de sortie hello. Doit être un identificateur JavaScript valide. |
-| type |Oui |Type de valeur de sortie hello. Les valeurs de sortie prend en charge hello même types en tant que paramètres d’entrée du modèle. |
+| outputName |Oui |Nom de la valeur de sortie. Doit être un identificateur JavaScript valide. |
+| type |Oui |Type de la valeur de sortie. Les valeurs de sortie prennent en charge les mêmes types que les paramètres d'entrée du modèle. |
 | value |Oui |Expression du langage du modèle évaluée et retournée sous forme de valeur de sortie. |
 
-Hello suivant montre une valeur qui est retournée dans la section des sorties hello.
+L'exemple suivant montre une valeur retournée dans la section des sorties.
 
 ```json
 "outputs": {
@@ -466,7 +466,7 @@ Pour plus d’informations sur le fonctionnement de la sortie, consultez [Partag
 
 ## <a name="template-limits"></a>Limites de modèle
 
-Limiter la taille de hello de votre modèle too1 Mo et chaque paramètre Ko d’un fichier too64. limite de 1 Mo Hello applique état final de toohello du modèle de hello après que qu’il a été développée avec les définitions de ressource itératif et valeurs des variables et paramètres. 
+Limitez la taille de votre modèle à 1 Mo et celle de chaque fichier de paramètres à 64 ko. La limite de 1 Mo s’applique à l’état final du modèle une fois développé avec les définitions des ressources itératives et les valeurs des variables et des paramètres. 
 
 Vous devez également respecter les limites suivantes :
 
@@ -476,10 +476,10 @@ Vous devez également respecter les limites suivantes :
 * 64 valeurs de sortie
 * 24 576 caractères dans une expression de modèle
 
-Vous pouvez dépasser certaines limites de modèle en utilisant un modèle imbriqué. Pour plus d’informations, consultez l’article [Utilisation de modèles liés lors du déploiement des ressources Azure](resource-group-linked-templates.md). nombre de hello tooreduce de paramètres, des variables ou des sorties, vous pouvez combiner plusieurs valeurs dans un objet. Pour plus d’informations, consultez l’article [Objects as parameters](resource-manager-objects-as-parameters.md) (Utiliser un objet en tant que paramètre).
+Vous pouvez dépasser certaines limites de modèle en utilisant un modèle imbriqué. Pour plus d’informations, consultez l’article [Utilisation de modèles liés lors du déploiement des ressources Azure](resource-group-linked-templates.md). Pour réduire le nombre de paramètres, de variables ou de sorties, vous pouvez combiner plusieurs valeurs dans un même objet. Pour plus d’informations, consultez l’article [Objects as parameters](resource-manager-objects-as-parameters.md) (Utiliser un objet en tant que paramètre).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* tooview des modèles complète pour divers types de solutions, consultez hello [modèles de démarrage rapide Azure](https://azure.microsoft.com/documentation/templates/).
-* Pour plus d’informations sur les fonctions hello que vous pouvez utiliser à partir d’un modèle, consultez [fonctions de modèle Azure Resource Manager](resource-group-template-functions.md).
-* plusieurs modèles pendant le déploiement, reportez-vous à toocombine [à l’aide de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
-* Vous devrez peut-être les ressources toouse qui existent dans un autre groupe de ressources. Ce scénario est classique quand vous utilisez des comptes de stockage ou des réseaux virtuels qui sont partagés entre plusieurs groupes de ressources. Pour plus d’informations, consultez hello [fonction resourceId](resource-group-template-functions-resource.md#resourceid).
+* Pour afficher des modèles complets pour de nombreux types de solutions, consultez [Modèles de démarrage rapide Azure](https://azure.microsoft.com/documentation/templates/).
+* Pour plus d’informations sur les fonctions que vous pouvez utiliser dans un modèle, consultez [Fonctions des modèles Azure Resource Manager](resource-group-template-functions.md).
+* Pour combiner plusieurs modèles lors du déploiement, consultez [Utilisation de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
+* Vous devrez peut-être utiliser des ressources qui existent au sein d'un groupe de ressources différent. Ce scénario est classique quand vous utilisez des comptes de stockage ou des réseaux virtuels qui sont partagés entre plusieurs groupes de ressources. Pour plus d'informations, consultez la [fonction resourceId](resource-group-template-functions-resource.md#resourceid).

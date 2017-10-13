@@ -1,6 +1,6 @@
 ---
-title: aaaEnable la synchronisation hors connexion pour votre application Mobile de Azure (Android)
-description: "Découvrez comment toouse App Service Mobile Apps toocache et la synchronisation de données hors connexion dans votre application Android"
+title: Activation de la synchronisation hors connexion pour votre application Azure Mobile App (Android)
+description: "Découvrez comment utiliser Service Mobile App pour mettre en cache et synchroniser des données hors connexion dans votre application Android"
 documentationcenter: android
 author: ggailey777
 manager: syntaxc4
@@ -13,48 +13,48 @@ ms.devlang: java
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 34508c7394610cf9127e1753637940826b8fd06a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 304323c1816302e8c1f68f36a029aee55e02c54e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="enable-offline-sync-for-your-android-mobile-app"></a>Activation de la synchronisation hors connexion pour votre application mobile Android
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Ce didacticiel décrit la fonctionnalité de synchronisation hors connexion hello des applications mobiles Azure pour Android. Synchronisation hors connexion permet toointeract des utilisateurs finaux avec une application mobile&mdash;affichage, l’ajout ou la modification des données&mdash;même quand il n’existe aucune connexion réseau. Les modifications sont stockées dans une base de données locale. Une fois que l’appareil de hello est remis en ligne, ces modifications sont synchronisées avec le serveur principal à distance hello.
+Ce didacticiel traite de la fonctionnalité de synchronisation hors connexion d’Azure Mobile Apps pour Android. La synchronisation hors connexion permet aux utilisateurs finaux d’interagir avec une application mobile &mdash;pour afficher, ajouter ou modifier des données&mdash;, même lorsqu’il n’existe aucune connexion réseau. Les modifications sont stockées dans une base de données locale. Une fois l'appareil de nouveau en ligne, ces modifications sont synchronisées avec le serveur principal distant.
 
-S’il s’agit de votre première expérience avec les applications mobiles Azure, vous devez d’abord terminer didacticiel de hello [créer une application Android]. Si vous n’utilisez pas hello téléchargé le projet de démarrage rapide de serveur, vous devez ajouter projet tooyour de packages d’extension hello données access. Pour plus d’informations sur les packages d’extension de serveur, consultez [fonctionne avec serveur principal de .NET hello SDK pour les applications mobiles Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
+Si vous n’avez aucune expérience d’Azure Mobile Apps, vous devez commencer par suivre le didacticiel [Création d’une application Android]. Si vous n’utilisez pas le projet de serveur du démarrage rapide téléchargé, vous devez ajouter les packages d’extension d’accès aux données à votre projet. Pour plus d'informations sur les packages d'extension de serveur, consultez [Fonctionnement avec le Kit de développement logiciel (SDK) du serveur principal .NET pour Azure Mobile Apps](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md).
 
-toolearn en savoir plus sur la fonctionnalité de synchronisation hors connexion hello, consultez rubrique de hello [synchronisation des données hors connexion dans les applications mobiles Azure].
+Pour plus d’informations sur la fonctionnalité de synchronisation hors connexion, consultez la rubrique [Synchronisation des données hors connexion dans Azure Mobile Apps].
 
-## <a name="update-hello-app-toosupport-offline-sync"></a>Mettre à jour de la synchronisation hors connexion des toosupport application hello
-Avec la synchronisation hors connexion, vous lecture/écriture de tooand à partir d’un *table de synchronisation* (à l’aide de hello *IMobileServiceSyncTable* interface), qui fait partie d’un **SQLite** base de données sur votre appareil.
+## <a name="update-the-app-to-support-offline-sync"></a>Mettre à jour l’application pour prendre en charge la synchronisation hors connexion
+Avec la synchronisation hors connexion, vous disposez d’un accès en lecture et en écriture à partir d’une *table de synchronisation* (à l’aide de l’interface *IMobileServiceSyncTable*), qui fait partie d’une base de données **SQLite** sur votre appareil.
 
-les modifications toopush et par extraction de données entre les périphériques hello et Azure Mobile Services, vous utilisez un *contexte de synchronisation* (*MobileServiceClient.SyncContext*), qui vous initialisez avec la base de données locale hello données toostore localement.
+Pour envoyer et extraire des modifications entre l’appareil et Azure Mobile Services, faites appel à un *contexte de synchronisation* (*MobileServiceClient.SyncContext*), que vous initialisez avec la base de données locale utilisée pour stocker des données localement.
 
-1. Dans `TodoActivity.java`, commentez la définition existante de hello de `mToDoTable` et supprimez les commentaires de version de la table hello synchronisation :
+1. Dans `TodoActivity.java`, commentez la définition existante de `mToDoTable` et supprimez les marques de commentaires de la version de table de synchronisation :
    
         private MobileServiceSyncTable<ToDoItem> mToDoTable;
-2. Bonjour `onCreate` méthode, commentez l’initialisation d’existant hello de `mToDoTable` et supprimez les commentaires de cette définition :
+2. Dans la méthode `onCreate`, commentez l’initialisation existante de `mToDoTable` et supprimez les marques de commentaires de cette définition :
    
         mToDoTable = mClient.getSyncTable("ToDoItem", ToDoItem.class);
-3. Dans `refreshItemsFromTable` Commentez la définition de hello de `results` et supprimez les commentaires de cette définition :
+3. Dans `refreshItemsFromTable` commentez la définition de `results` et supprimez les marque de commentaires de cette définition :
    
         // Offline Sync
         final List<ToDoItem> results = refreshItemsFromMobileServiceTableSyncTable();
-4. Commentez la définition de hello de `refreshItemsFromMobileServiceTable`.
-5. Supprimez les commentaires de la définition de hello de `refreshItemsFromMobileServiceTableSyncTable`:
+4. Commentez la définition de `refreshItemsFromMobileServiceTable`.
+5. Supprimez les marques de commentaires de la définition de `refreshItemsFromMobileServiceTableSyncTable`:
    
         private List<ToDoItem> refreshItemsFromMobileServiceTableSyncTable() throws ExecutionException, InterruptedException {
-            //sync hello data
+            //sync the data
             sync().get();
             Query query = QueryOperations.field("complete").
                     eq(val(false));
             return mToDoTable.read(query).get();
         }
-6. Supprimez les commentaires de la définition de hello de `sync`:
+6. Supprimez les marques de commentaires de la définition de `sync`:
    
         private AsyncTask<Void, Void, Void> sync() {
             AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
@@ -73,33 +73,33 @@ les modifications toopush et par extraction de données entre les périphérique
             return runAsyncTask(task);
         }
 
-## <a name="test-hello-app"></a>Application de test hello
-Dans cette section, vous testez le comportement de hello avec Wi-Fi sur et mettez hors tension Wi-Fi toocreate un scénario hors connexion.
+## <a name="test-the-app"></a>Test de l'application
+Dans cette section, vous testez le comportement de l’application avec le Wi-Fi activé, puis vous désactivez le Wi-Fi pour créer un scénario hors connexion.
 
-Lorsque vous ajoutez des éléments de données, elles sont conservées dans le magasin de SQLite hello local, mais pas synchronisés toohello des services mobiles jusqu'à ce que vous appuyez sur hello **Actualiser** bouton. Autres applications peuvent avoir des exigences différentes concernant lorsque les données doivent toobe synchronisé, mais à des fins de démonstration ce didacticiel propose hello demander explicitement.
+Lorsque vous ajoutez des éléments de données, ils sont stockés dans le magasin local SQLite, mais ils ne sont synchronisés avec le service mobile que si vous appuyez sur le bouton **Actualiser** . D’autres applications peuvent avoir des besoins différents concernant la fréquence de synchronisation des données, mais à des fins de démonstration, l’utilisateur doit en faire explicitement la requête dans le cadre de ce didacticiel.
 
-Lorsque vous appuyez sur ce bouton, une nouvelle tâche en arrière-plan démarre. Il transmet d’abord toutes les modifications apportées toohello magasin local à l’aide du contexte de synchronisation, puis extrait tous les modifié des données à partir de la table locale de toohello Azure.
+Lorsque vous appuyez sur ce bouton, une nouvelle tâche en arrière-plan démarre. Elle commence par transmettre toutes les modifications apportées dans le magasin local à l’aide du contexte de synchronisation, puis extrait tous les données modifiées à partir d’Azure vers la table locale.
 
 ### <a name="offline-testing"></a>Test hors connexion
-1. Appareil de hello sur place ou le simulateur dans *Mode avion*. Cela crée un scénario hors connexion.
-2. Ajoutez des *tâches* , ou marquez-en certaines comme terminées. Quittez hello appareil ou simulateur (ou application hello fermeture forcée) et redémarrez. Vérifiez que vos modifications ont été rendues persistantes sur l’appareil de hello, car ils sont conservés dans le magasin de SQLite hello local.
-3. Afficher le contenu de hello Hello Azure *TodoItem* telles que la table avec un outil SQL *SQL Server Management Studio*, ou un client REST comme *Fiddler* ou  *Postman*. Vérifiez que de nouveaux éléments de hello *pas* été synchronisés toohello server
+1. Mettez l’appareil ou le simulateur en *Mode avion*. Cela crée un scénario hors connexion.
+2. Ajoutez des *tâches* , ou marquez-en certaines comme terminées. Quittez l’appareil ou le simulateur (ou forcez la fermeture de l’application) et redémarrez. Vérifiez que vos modifications persistent sur l’appareil, car elles sont stockées dans le magasin SQLite local.
+3. Affichez le contenu de la table *TodoItem* d’Azure avec un outil SQL, par exemple *SQL Server Management Studio* ou un client REST, comme *Fiddler* ou *Postman*. Vérifiez que les nouveaux éléments n’ont *pas* été synchronisés avec le serveur
    
-       + Pour un service principal Node.js, consultez toohello [portail Azure](https://portal.azure.com/), dans votre application Mobile sur principal **Tables facile** > **TodoItem** contenu de hello tooview Hello `TodoItem` table.
-       + Pour un service principal .NET, table hello d’affichage de contenu avec un outil SQL comme *SQL Server Management Studio*, ou un client REST comme *Fiddler* ou *Postman*.
-4. Activer Wi-Fi dans le simulateur ou l’appareil de hello. Ensuite, appuyez sur hello **Actualiser** bouton.
-5. Affichez de nouveau les données de salutation TodoItem Bonjour portail Azure. Hello que nouvelles et modifiées TodoItems doit maintenant apparaître.
+       + Pour un backend Node.js, accédez au [portail Azure](https://portal.azure.com/), puis dans votre backend d’application mobile, cliquez sur **Tables faciles** > **TodoItem** pour afficher le contenu de la table `TodoItem`.
+       + Pour un backend .NET, affichez le contenu de la table avec un outil SQL, par exemple *SQL Server Management Studio* ou un client REST, comme *Fiddler* ou *Postman*.
+4. Activez le Wi-Fi sur le simulateur ou l’appareil. Appuyez ensuite sur le bouton **Actualiser** .
+5. Affichez à nouveau les données TodoItem sur le portail Azure. Les nouveaux éléments TodoItems et ceux modifiés doivent maintenant s'afficher.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
-* [synchronisation des données hors connexion dans les applications mobiles Azure]
-* [Couverture du cloud : La synchronisation hors connexion dans Services mobiles Azure] \(Remarque : hello vidéo se trouve sur les Services mobiles, mais la synchronisation hors connexion fonctionne de façon similaire dans les applications mobiles Azure\)
+* [Synchronisation des données hors connexion dans Azure Mobile Apps]
+* [Cloud Cover : synchronisation hors connexion dans Azure Mobile Services]\(remarque : le contexte de la vidéo est Mobile Services, mais la synchronisation hors connexion fonctionne de la même manière dans Azure Mobile Apps\)
 
 <!-- URLs. -->
 
-[synchronisation des données hors connexion dans les applications mobiles Azure]: app-service-mobile-offline-data-sync.md
+[Synchronisation des données hors connexion dans Azure Mobile Apps]: app-service-mobile-offline-data-sync.md
 
-[créer une application Android]: app-service-mobile-android-get-started.md
+[Création d’une application Android]: app-service-mobile-android-get-started.md
 
-[Couverture du cloud : La synchronisation hors connexion dans Services mobiles Azure]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
+[Cloud Cover : synchronisation hors connexion dans Azure Mobile Services]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 [Azure Friday: Offline-enabled apps in Azure Mobile Services]: http://azure.microsoft.com/documentation/videos/azure-mobile-services-offline-enabled-apps-with-donna-malayeri/
 

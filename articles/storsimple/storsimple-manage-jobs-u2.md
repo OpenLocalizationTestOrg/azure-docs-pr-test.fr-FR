@@ -1,6 +1,6 @@
 ---
-title: "aaaView et gérer des tâches de StorSimple | Documents Microsoft"
-description: "Décrit la page de travaux du service Gestionnaire StorSimple hello et comment toouse il tootrack récente, en cours et planifiées travaux de sauvegarde."
+title: "Affichage et gestion des tâches StorSimple | Microsoft Docs"
+description: "Décrit la page Tâches du service StorSimple Manager et explique comment l’utiliser pour effectuer le suivi des tâches de sauvegarde planifiées, actuelles et récentes."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,70 +14,70 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: d6ecdcbc3d8a4757c2328303f268e51c8ce26b65
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6df1b27ce76de7a781ecc40af8430114d80b20d6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-manager-service-tooview-and-manage-storsimple-jobs-update-2"></a>Utilisez hello StorSimple Manager service tooview et gérer des travaux de StorSimple (Update 2)
+# <a name="use-the-storsimple-manager-service-to-view-and-manage-storsimple-jobs-update-2"></a>Utilisez le service StorSimple Manager pour afficher et gérer les tâches StorSimple (Mise à jour 2)
 [!INCLUDE [storsimple-version-selector-manage-jobs](../../includes/storsimple-version-selector-manage-jobs.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Hello **travaux** page fournit un portail centralisé unique pour l’affichage et la gestion des travaux qui ont été démarrées sur les périphériques connectés tooyour le service StorSimple Manager. Vous pouvez consulter les tâches planifiées, en cours d'exécution, terminées, annulées et en échec pour plusieurs appareils. Les résultats sont présentés sous forme de tableau. 
+La page **Tâches** est un portail centralisé unique qui permet de consulter et de gérer les tâches qui ont été lancées sur les appareils connectés à votre service StorSimple Manager. Vous pouvez consulter les tâches planifiées, en cours d'exécution, terminées, annulées et en échec pour plusieurs appareils. Les résultats sont présentés sous forme de tableau. 
 
 ![Page Tâches](./media/storsimple-manage-jobs-u2/jobs.png)
 
-Vous pouvez rechercher rapidement les travaux qui hello que vous intéressent en filtrant sur des champs tels que :
+Vous pouvez rechercher rapidement les tâches qui vous intéressent en filtrant sur les champs, à savoir :
 
 * **État** : les tâches peuvent être en cours d'exécution, terminées, annulées, en échec, en cours d'annulation ou terminées avec des erreurs.
-* **Depuis et vers** – travaux peuvent être filtrées hello en fonction de date et la plage horaire.
-* **Type** – type de tâche hello peut être une sauvegarde, une sauvegarde manuelle, restauration, clone, basculement de l’appareil, créer un volume attaché localement, modifier le volume, mettez à jour, prennent en charge le package ou la configuration de périphérique virtuel.
-* **Appareils** – travaux sont initiés sur un certain service tooyour de périphérique connecté.
-  Hello travaux filtrés est ensuite sous forme de tableau sur la base de hello de hello suivant d’attributs :
+* **De et À** : les tâches peuvent être filtrées selon la date et l'heure.
+* **Type** : le type de tâche peut être sauvegarde, sauvegarde manuelle, restauration, clonage, basculement d'appareil, créer un volume épinglé localement, modifier le volume, mettre à jour, prendre en charge le package ou approvisionnement de l'appareil virtuel.
+* **Appareils** : les tâches sont initiées sur un certain appareil connecté à votre service.
+  Les tâches filtrées sont ensuite affichées sous forme de tableau sur la base des attributs suivants :
   
   * **Type** : sauvegarde, sauvegarde manuelle, restauration, clonage, basculement d'appareil, créer un volume épinglé localement, modifier le volume, mettre à jour, prendre en charge le package ou approvisionnement de l'appareil virtuel.
   * **État** : en cours d'exécution, terminées, annulées, en échec, en cours d'annulation ou terminées avec des erreurs.
-  * **Entité** – les travaux hello peuvent être associés à un volume, une stratégie de sauvegarde ou un périphérique. Par exemple, une tâche de clonage est associée à un volume, tandis qu'une tâche de sauvegarde planifiée est associée à une stratégie de sauvegarde. Une tâche d’appareil est créée à la suite d’une récupération d'urgence ou d’une opération de restauration.
-  * **APPAREIL** hello – nom de l’appareil hello sur quel hello travail a été démarré.
-  * **Démarré sur** – heure hello auxquelles hello travail a démarré.
-  * **Progression** – hello pourcentage de réalisation d’une tâche en cours d’exécution. Pour une tâche terminée, le pourcentage doit toujours être de 100 %.
+  * **Entité** : les tâches peuvent être associées à un volume, une stratégie de sauvegarde ou un appareil. Par exemple, une tâche de clonage est associée à un volume, tandis qu'une tâche de sauvegarde planifiée est associée à une stratégie de sauvegarde. Une tâche d’appareil est créée à la suite d’une récupération d'urgence ou d’une opération de restauration.
+  * **Appareil** : nom de l'appareil sur lequel la tâche a été lancée.
+  * **Démarré le** : heure à laquelle la tâche a été lancée.
+  * **Progression** : pourcentage d'achèvement d'une tâche en cours d'exécution. Pour une tâche terminée, le pourcentage doit toujours être de 100 %.
 
-Hello de la liste des travaux est actualisée toutes les 30 secondes.
+La liste des tâches est actualisée toutes les 30 secondes.
 
-Vous pouvez effectuer hello suivant d’actions relatives à la tâche sur cette page :
+Cette page vous permet d’effectuer diverses actions liées aux tâches, à savoir :
 
 * Affichage des détails d’une tâche
 * Annulation d’une tâche
 
 ## <a name="view-job-details"></a>Affichage des détails d’une tâche
-Effectuer hello suivant détaille de hello tooview étapes d’un travail.
+Pour afficher les détails d’une tâche, procédez comme suit.
 
-#### <a name="tooview-job-details"></a>Détails de la tâche tooview
-1. Sur hello **travaux** page, affichez ou les travaux hello vous intéressent en exécutant une requête avec les filtres appropriés. Vous pouvez rechercher des tâches terminées, en cours d'exécution ou annulées.
+#### <a name="to-view-job-details"></a>Pour afficher les détails d’une tâche
+1. Dans la page **Tâches** , affichez la ou les tâches qui vous intéressent en exécutant une requête avec les filtres appropriés. Vous pouvez rechercher des tâches terminées, en cours d'exécution ou annulées.
 2. Sélectionnez une tâche.
-3. Au bas de hello de page de hello, cliquez sur **détails**.
-4. Bonjour **détails de la tâche sauvegarde** boîte de dialogue, vous pouvez afficher le statut de hello, détails, les statistiques de temps et les statistiques de données.
+3. En bas de la page, cliquez sur **Détails**.
+4. Dans la boîte de dialogue **Détails de la tâche de sauvegarde** , vous pouvez consulter l'état, les détails, les statistiques temporelles et les statistiques de données.
    
     ![Page Détails de la tâche](./media/storsimple-manage-jobs-u2/JobDetails.png)
 
 ## <a name="cancel-a-job"></a>Annulation d’une tâche
-Effectuer hello suivant les étapes toocancel un travail en cours d’exécution.
+Pour annuler une tâche en cours d’exécution, procédez comme suit.
 
 > [!NOTE]
-> Certaines tâches, telles que la modification d’un type de volume volume toochange hello ou étendre un volume, ne peut pas être annulées.
+> Certaines tâches, telles que la modification d'un volume pour modifier le type de volume ou l'extension d'un volume, ne peuvent pas être annulées.
 > 
 > 
 
-### <a name="toocancel-a-job"></a>toocancel un travail
-1. Sur hello **travaux** page, affichez ou les travaux en cours d’exécution hello que vous souhaitez toocancel en exécutant une requête avec les filtres appropriés.
-2. Sélectionnez le travail de hello.
-3. Au bas de hello de page de hello, cliquez sur **Annuler**.
+### <a name="to-cancel-a-job"></a>Pour annuler une tâche
+1. Dans la page **Tâches** , affichez les tâches en cours d’exécution que vous voulez annuler en exécutant une requête avec les filtres appropriés.
+2. Sélectionnez la tâche.
+3. En bas de la page, cliquez sur **Annuler**.
 4. Cliquez sur **Oui**lorsque vous êtes invité à confirmer l’opération.
 
 Cette tâche est à présent annulée.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment trop[gérer vos stratégies de sauvegarde StorSimple](storsimple-manage-backup-policies.md).
-* Découvrez comment trop[utilisez hello tooadminister du service StorSimple Manager de votre appareil StorSimple](storsimple-manager-service-administration.md).
+* En savoir plus sur la [gestion de vos stratégies de sauvegarde StorSimple](storsimple-manage-backup-policies.md).
+* Découvrez comment [utiliser le service StorSimple Manager pour gérer votre appareil StorSimple](storsimple-manager-service-administration.md).
 

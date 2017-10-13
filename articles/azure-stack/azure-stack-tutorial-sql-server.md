@@ -1,6 +1,6 @@
 ---
-title: "aaaMake SQL des bases de données utilisateurs d’Azure pile disponible tooyour | Documents Microsoft"
-description: "Didacticiel tooinstall hello du fournisseur de ressources SQL Server et créer des offres qui permettent de créer des bases de données SQL Azure pile utilisateurs."
+title: "Mettre des bases de données SQL à la disposition de vos utilisateurs Azure Stack | Microsoft Docs"
+description: "Didacticiel pour installer le fournisseur de ressources SQL Server et de créer des offres permettant aux utilisateurs d’Azure Stack de créer des bases de données SQL."
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -11,77 +11,79 @@ ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: tutorial
 ms.date: 7/03/2017
 ms.author: erikje
 ms.custom: mvc
-ms.openlocfilehash: 778513ba982981895afe2d57b3b5dda71ead8886
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f774888ba3921d0688feddac669ed1dca4667441
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="make-sql-databases-available-tooyour-azure-stack-users"></a>Rendre les bases de données SQL utilisateurs d’Azure pile tooyour disponibles
+# <a name="make-sql-databases-available-to-your-azure-stack-users"></a>Mettre des bases de données SQL à la disposition de vos utilisateurs Azure Stack
 
-En tant qu’administrateur de cloud Azure Stack, vous pouvez créer des offres qui permettent aux utilisateurs de créer des bases de données SQL qu’ils peuvent utiliser avec leurs applications cloud natives, sites web et charges de travail. En fournissant ces personnalisé, à la demande, les utilisateurs de bases de données en nuage tooyour, vous pouvez enregistrer les temps et des ressources. tooset cet accès, vous allez :
+En tant qu’administrateur de cloud Azure Stack, vous pouvez créer des offres qui permettent aux utilisateurs de créer des bases de données SQL qu’ils peuvent utiliser avec leurs applications cloud natives, sites web et charges de travail. En fournissant à vos utilisateurs ces bases de données cloud à la demande et personnalisées, vous pouvez leur faire gagner du temps et économiser des ressources. Pour effectuer cette configuration, vous allez effectuer les étapes suivantes :
 
 > [!div class="checklist"]
-> * Déployer le fournisseur de ressources SQL Server hello
+> * Déployer le fournisseur de ressources SQL Server
 > * Créer une offre
-> * Offre de hello de test
+> * Tester l’offre
 
-## <a name="deploy-hello-sql-server-resource-provider"></a>Déployer le fournisseur de ressources SQL Server hello
+## <a name="deploy-the-sql-server-resource-provider"></a>Déployer le fournisseur de ressources SQL Server
 
-processus de déploiement Hello est décrit en détail dans hello [bases de données SQL d’utilisation sur un article de la pile de Azure](azure-stack-sql-resource-provider-deploy.md)et est composé de hello principal comme suit :
+Le processus de déploiement est décrit en détail dans l’[article Utiliser des bases de données SQL sur Azure Stack](azure-stack-sql-resource-provider-deploy.md), et se compose des étapes principales suivantes :
 
-1.  [Déployer le fournisseur de ressources SQL hello]( azure-stack-sql-resource-provider-deploy.md#deploy-the-resource-provider).
-2.  [Vérifier le déploiement de hello]( azure-stack-sql-resource-provider-deploy.md#verify-the-deployment-using-the-azure-stack-portal).
-3.  [Fournir une capacité en vous connectant tooa hébergeant SQL server]( azure-stack-sql-resource-provider-deploy.md#provide-capacity-by-connecting-to-a-hosting-sql-server).
+1. [Déployez un fournisseur de ressources SQL]( azure-stack-sql-resource-provider-deploy.md#deploy-the-resource-provider).
+2. [Vérifiez le déploiement]( azure-stack-sql-resource-provider-deploy.md#verify-the-deployment-using-the-azure-stack-portal).
+3. Fournissez de la capacité par le biais d’une connexion à un serveur SQL d’hébergement.
 
 ## <a name="create-an-offer"></a>Créer une offre
 
-1.  [Définissez un quota](azure-stack-setting-quotas.md) et nommez-le *SQLServerQuota*. Sélectionnez **Microsoft.SQLAdapter** pour hello **Namespace** champ.
-2.  [Créer un plan](azure-stack-create-plan.md). Nommez-le *TestSQLServerPlan*, sélectionnez hello **Microsoft.SQLAdapter** service, et **SQLServerQuota** quota.
+1.  [Définissez un quota](azure-stack-setting-quotas.md) et nommez-le *SQLServerQuota*. Sélectionnez **Microsoft.SQLAdapter** pour le champ **Namespace**.
+2.  [Créez un plan](azure-stack-create-plan.md). Nommez-le *TestSQLServerPlan*, puis sélectionnez le service **Microsoft.SQLAdapter** et le quota **SQLServerQuota**.
 
     > [!NOTE]
-    > toolet utilisateurs créer d’autres applications, d’autres services peuvent être nécessaires dans le plan de hello. Par exemple, les fonctions Azure requiert ce plan hello inclure hello **Microsoft.Storage** de service, tandis que Wordpress requiert **Microsoft.MySQLAdapter**.
+    > Pour permettre aux utilisateurs de créer d’autres applications, il est possible que d’autres services soient exigés dans le plan. Par exemple, Azure Functions exige que le plan inclue le service **Microsoft.Storage**, tandis que Wordpress exige **Microsoft.MySQLAdapter**.
     > 
     >
 
-3.  [Créer une offre](azure-stack-create-offer.md), nommez-le **TestSQLServerOffer** et sélectionnez hello **TestSQLServerPlan** plan.
+3.  [Créez une offre](azure-stack-create-offer.md), nommez-la **TestSQLServerOffer**, puis sélectionnez le plan **TestSQLServerPlan**.
 
-## <a name="test-hello-offer"></a>Offre de hello de test
+## <a name="test-the-offer"></a>Tester l’offre
 
-Maintenant que vous avez déployé le fournisseur de ressources SQL Server hello et créé une offre, vous pouvez vous connecter en tant qu’utilisateur, s’abonner toohello offre et créer une base de données.
+Maintenant que vous avez déployé le fournisseur de ressources SQL Server et créé une offre, vous pouvez vous connecter en tant qu’utilisateur, vous abonner à l’offre, puis créer une base de données.
 
-### <a name="subscribe-toohello-offer"></a>S’abonner toohello offre
-1. Se connecter toohello le portail Azure pile (https://portal.local.azurestack.external) en tant que client.
+### <a name="subscribe-to-the-offer"></a>S’abonner à l’offre
+1. Connectez-vous au portail Azure Stack (https://portal.local.azurestack.external) en tant que locataire.
 2. Cliquez sur **Prendre un abonnement**, puis tapez **TestSQLServerSubscription** sous **Nom d’affichage**.
 3. Cliquez sur **Sélectionner une offre** > **TestSQLServerOffer** > **Créer**.
 4. Cliquez sur **Plus de services** > **Abonnements** > **TestSQLServerSubscription** > **Fournisseurs de ressources**.
-5. Cliquez sur **inscrire** toohello suivant **Microsoft.SQLAdapter** fournisseur.
+5. Cliquez sur **Inscrire** en regard du fournisseur **Microsoft.SQLAdapter**.
 
 ### <a name="create-a-sql-database"></a>Créer une base de données SQL
 
 1. Cliquez sur **+** > **Données et stockage** > **Base de données SQL**.
-2. Valeurs par défaut de congé hello pour les champs hello, ou vous peuvent utiliser ces exemples :
+2. Conservez les valeurs par défaut pour les champs ou utilisez les exemples suivants :
     - **Nom de la base de données** : SQLdb
     - **Taille maximale (en Mo)** : 100
     - **Abonnement** : TestSQLOffer
     - **Groupe de ressources** : SQL-RG
-3. Cliquez sur **les paramètres de connexion**, entrez les informations d’identification pour la base de données hello, puis cliquez sur **OK**.
-4. Cliquez sur **référence (SKU)** > sélectionnez hello SKU SQL que vous avez créé pour le serveur d’hébergement SQL de hello > **OK**.
+3. Cliquez sur **Paramètres de connexion**, entrez les informations d’identification pour la base de données, puis cliquez sur **OK**.
+4. Cliquez sur **Référence** > sélectionnez le SKU SQL que vous avez créé pour le serveur d’hébergement SQL > **OK**.
 5. Cliquez sur **Créer**.
+
+## <a name="next-steps"></a>Étapes suivantes
 
 Dans ce didacticiel, vous avez appris à :
 
 > [!div class="checklist"]
-> * Déployer le fournisseur de ressources SQL Server hello
+> * Déployer le fournisseur de ressources SQL Server
 > * Créer une offre
-> * Offre de hello de test
+> * Tester l’offre
 
-Comment toolearn de didacticiel suivant toohello d’avance pour :
+Passez au didacticiel suivant pour savoir comment :
 
 > [!div class="nextstepaction"]
-> [Que web, mobiles et les utilisateurs de API apps tooyour disponibles]( azure-stack-tutorial-app-service.md)
+> [Rendre les applications web, mobiles et API disponibles pour vos utilisateurs]( azure-stack-tutorial-app-service.md)
 

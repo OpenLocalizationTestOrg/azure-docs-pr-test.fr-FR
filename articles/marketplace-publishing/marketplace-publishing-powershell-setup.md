@@ -1,6 +1,6 @@
 ---
-title: aaaSet des PowerShell toocreate une machine virtuelle pour hello Marketplace | Documents Microsoft
-description: "Instructions pour configurer Azure PowerShell et l’utiliser comme un processus facultatif toodeploy d’images de machine virtuelle toocreate, de flux et vendent sur, hello Azure Marketplace"
+title: "Configuration de PowerShell pour créer une machine virtuelle pour Marketplace | Microsoft Docs"
+description: "Instructions pour configurer Azure PowerShell et l’utiliser comme processus facultatif pour créer des images de machines virtuelles à déployer et à vendre sur Azure Marketplace"
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/04/2016
 ms.author: hascipio
-ms.openlocfilehash: cd2ebad7472248b8f921706e1a8c82d41f33b9cc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bbcce5093d2bbd5326523063db7d0e565fe4de6d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="set-up-azure-powershell-toocreate-an-offer-for-hello-azure-marketplace"></a>Configurer Azure PowerShell toocreate offre hello Azure Marketplace
-Pour plus d’informations sur la façon de tooset de PowerShell dans Azure, consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview). Une approche simple est la méthode certificat toouse hello, qui télécharge et importe un certificat nécessaire pour l’authentification. tooobtain hello nécessaire de certificat, utilisez hello **Get-AzurePublishSettingsFile** applet de commande. Enregistrer le fichier de hello lorsque vous êtes invité. certificat de hello tooimport dans une session PowerShell, utilisez hello **Import-AzurePublishSettingsFile** applet de commande.
+# <a name="set-up-azure-powershell-to-create-an-offer-for-the-azure-marketplace"></a>Configurer Azure PowerShell pour créer une offre pour Azure Marketplace
+Pour plus d’informations sur la configuration de PowerShell dans Azure, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview). Une approche simple consiste à utiliser la méthode de certificat, qui télécharge et importe le certificat nécessaire à l’authentification. Pour obtenir le certificat requis, utilisez l’applet de commande **Get-AzurePublishSettingsFile** . Enregistrez le fichier lorsque vous y êtes invité. Pour importer le certificat dans une session PowerShell, utilisez l’applet de commande **Import-AzurePublishSettingsFile** .
 
-tooconfigure et magasin hello commune Microsoft Azure paramètres d’abonnement pour la session de PowerShell hello, utiliser hello **Set-AzureSubscription** et **Select-AzureSubscription** applets de commande :
+Pour configurer et stocker les paramètres d’abonnement Microsoft Azure communs pour la session PowerShell, utilisez les applets de commande **Set-AzureSubscription** et **Select-AzureSubscription** :
 
         Set-AzureSubscription -SubscriptionName “mySubName” -CurrentStorageAccountName “mystorageaccount”
         Select-AzureSubscription -SubscriptionName "mySubName" –Current
 
-commande premier Hello associe un compte de stockage par défaut abonnement hello (nécessaire pour certaines opérations de configuration de machine virtuelle).  Hello effectue ensuite les abonnement hello hello celui en cours (reconnu par les autres applets de commande).
+La première commande associe un compte de stockage par défaut à l’abonnement (nécessaire pour certaines opérations d’approvisionnement de la machine virtuelle).  La seconde définit l’abonnement comme abonnement actif (reconnu par les autres applets de commande).
 
 ## <a name="see-also"></a>Voir aussi
-* [Mise en route : comment toopublish une toohello offre Azure Marketplace](marketplace-publishing-getting-started.md)
-* [Création d’une image de machine virtuelle pour hello Marketplace](marketplace-publishing-vm-image-creation.md)
+* [Mise en route : publication d’une offre dans Azure Marketplace](marketplace-publishing-getting-started.md)
+* [Création d’une image de machine virtuelle pour Azure Marketplace](marketplace-publishing-vm-image-creation.md)
 

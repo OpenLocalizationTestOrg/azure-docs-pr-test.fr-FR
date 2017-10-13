@@ -1,6 +1,6 @@
 ---
-title: aaaArchive les journaux de Diagnostic Azure | Documents Microsoft
-description: "Découvrez comment tooarchive votre Azure journaux de Diagnostic pour une rétention à long terme dans un compte de stockage."
+title: Archivage des journaux de diagnostic Azure | Microsoft Docs
+description: "Découvrez comment archiver vos journaux de diagnostic Azure pour une conservation à long terme dans un compte de stockage."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: johnkem
-ms.openlocfilehash: bc9edbd3a649023a728b7fe77130dba2b6e6370d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dbc5f89001dcb6cd1ab061cb0a9632e4e5d2c1c7
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="archive-azure-diagnostic-logs"></a>Archivage des journaux de diagnostic Azure
-Dans cet article, nous montrons comment vous pouvez utiliser hello portail Azure, les PowerShell Cmdlets, CLI, ou placez les API tooarchive votre [des journaux de diagnostic Azure](monitoring-overview-of-diagnostic-logs.md) dans un compte de stockage. Cette option est utile si vous souhaitez que tooretain journaux de votre diagnostic avec une stratégie de rétention pour l’audit, d’analyse statique ou de sauvegarde. compte de stockage Hello n’a pas de toobe dans hello même abonnement en tant que ressource hello générant des journaux tant qu’utilisateur hello configure hello paramètre a des abonnements de tooboth accès RBAC appropriés.
+Dans cet article, nous vous expliquons comment utiliser le portail Azure, les applets de commande PowerShell, l’interface de ligne de commande ou l’API REST pour archiver vos [journaux de diagnostic Azure](monitoring-overview-of-diagnostic-logs.md) dans un compte de stockage. Cette option est utile si vous voulez conserver vos journaux de diagnostic avec une stratégie de rétention facultative à des fins d’audit, d’analyse statique ou de sauvegarde. Il n’est pas nécessaire que le compte de stockage se trouve dans le même abonnement que la ressource générant des journaux, à condition que l’utilisateur qui configure le paramètre ait un accès RBAC approprié aux deux abonnements.
 
 ## <a name="prerequisites"></a>Composants requis
-Avant de commencer, vous devez trop[créer un compte de stockage](../storage/storage-create-storage-account.md) toowhich, vous pouvez archiver vos journaux de diagnostic. Nous vous recommandons vivement de ne pas utiliser un compte de stockage existant qui comporte des données d’autres, non suivi stockées afin que vous pouvez mieux contrôler les accès toomonitoring données. Toutefois, si vous archivez également votre journal d’activité et le compte de stockage tooa métriques des diagnostics, il peut être judicieux toouse ce compte de stockage pour vos journaux de diagnostic ainsi tookeep toutes les données d’analyse dans un emplacement central. compte de stockage Hello que vous utilisez doit être un compte de stockage polyvalentes, pas un compte de stockage d’objets blob.
+Avant de commencer, vous devez [créer un compte de stockage](../storage/storage-create-storage-account.md) sur lequel vous pouvez archiver vos journaux de diagnostic. Nous vous recommandons vivement de ne pas utiliser un compte de stockage existant sur lequel sont stockées d’autres données de non-analyse, afin de pouvoir mieux contrôler l’accès aux données d’analyse. En revanche, si vous archivez également votre journal d’activité et des métriques de diagnostic sur un compte de stockage, il peut être judicieux d’utiliser également ce compte pour vos journaux de diagnostic, afin de centraliser toutes vos données d’analyse. Le compte de stockage que vous utilisez doit être un compte de stockage à usage général, et non un compte de stockage Blob.
 
 ## <a name="diagnostic-settings"></a>Paramètres de diagnostic
-tooarchive votre diagnostic se connecte à l’aide d’une des méthodes hello ci-dessous, vous définissez un **paramètre de diagnostic** pour une ressource particulière. Un paramètre de diagnostic pour une ressource définit les catégories de hello des journaux et données de mesure envoyées destination tooa (compte de stockage, espace de noms de concentrateurs d’événements ou Analytique de journal). Il définit également la stratégie de rétention hello (nombre de jours tooretain) pour les événements de chaque catégorie de journaux et les données métriques stockées dans un compte de stockage. Si une stratégie de rétention est définie à toozero, événements de cette catégorie de journal sont stockés indéfiniment (c'est-à-dire toosay, indéfiniment). Une stratégie de rétention peut également être définie sur n’importe quel nombre de jours entre 1 et 2147483647. [Vous trouverez plus d’informations sur les paramètres de diagnostic ici](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings). Stratégies de rétention sont appliquées par jour, donc à hello fin d’une journée (UTC), consigne un jour hello qui est désormais au-delà de la stratégie de rétention hello seront supprimés. Par exemple, si vous aviez une stratégie de rétention d’un jour, au début de hello du jour hello aujourd'hui hello des journaux de hello avant-hier seraient supprimés
+Pour archiver vos journaux de diagnostic à l’aide de l’une des méthodes ci-dessous, vous devez définir un **paramètre de diagnostic** pour chaque ressource. Un paramètre de diagnostic pour une ressource définit les catégories de journaux et les données métriques envoyées vers une destination (compte de stockage, espace de noms Event Hubs ou Log Analytics). Il définit également la stratégie de rétention (nombre de jours de conservation) pour les événements de chaque catégorie de journal et de données métriques stockés dans un compte de stockage. Si la stratégie de rétention est définie sur zéro, les événements de cette catégorie de journal sont stockés indéfiniment (c’est-à-dire pour toujours). Une stratégie de rétention peut également être définie sur n’importe quel nombre de jours entre 1 et 2147483647. [Vous trouverez plus d’informations sur les paramètres de diagnostic ici](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings). Les stratégies de rétention sont appliquées sur une base quotidienne. Donc, à la fin d’une journée (UTC), les journaux de la journée qui est désormais au-delà de la stratégie de rétention sont supprimés. Par exemple, si vous aviez une stratégie de rétention d’une journée, au début de la journée d’aujourd’hui les journaux d’avant-hier seraient supprimés.
 
-## <a name="archive-diagnostic-logs-using-hello-portal"></a>Archive des journaux de diagnostic à l’aide du portail de hello
-1. Dans le portail de hello, accédez tooAzure moniteur, puis cliquez sur **les paramètres de Diagnostic**
+## <a name="archive-diagnostic-logs-using-the-portal"></a>Archivage des journaux de diagnostic à l’aide du portail
+1. Dans le portail, accédez à Azure Monitor, puis cliquez sur **Paramètres de diagnostic**
 
     ![Section Surveillance d’Azure Monitor](media/monitoring-archive-diagnostic-logs/diagnostic-settings-blade.png)
 
-2. Vous pouvez également filtrer la liste de hello par type de ressource ou le groupe de ressources, puis cliquez sur ressources hello pour laquelle vous aimeriez tooset un paramètre de diagnostic.
+2. Vous pouvez également filtrer la liste par type ou groupe de ressources, puis cliquez sur la ressource pour laquelle vous souhaitez définir un paramètre de diagnostic.
 
-3. Si aucun paramètre n’existe sur la ressource hello que vous avez sélectionné, vous êtes invité à toocreate un paramètre. Cliquez sur « Activer les diagnostics ».
+3. S’il n’existe aucun paramètre sur la ressource que vous avez sélectionnée, vous êtes invité à créer un paramètre. Cliquez sur « Activer les diagnostics ».
 
    ![Ajouter le paramètre de diagnostic - aucun paramètre existant](media/monitoring-archive-diagnostic-logs/diagnostic-settings-none.png)
 
-   S’il existe des paramètres existants sur les ressources hello, vous verrez une liste de paramètres déjà configuré sur cette ressource. Cliquez sur « Ajouter le paramètre de diagnostic ».
+   S’il existe des paramètres existants sur la ressource, vous verrez une liste de paramètres déjà configurés sur cette ressource. Cliquez sur « Ajouter le paramètre de diagnostic ».
 
    ![Ajouter le paramètre de diagnostic - paramètres existants](media/monitoring-archive-diagnostic-logs/diagnostic-settings-multiple.png)
 
-3. Donnez à votre définition d’un nom et la case hello pour **exporter tooStorage compte**, puis sélectionnez un compte de stockage. Si vous le souhaitez, vous pouvez définir un nombre de jours tooretain ces journaux à l’aide de hello **rétention (jours)** curseurs. Une durée de rétention de zéro jours stocke les journaux hello indéfiniment.
+3. Donnez un nom à votre paramètre et cochez la case **Exporter vers un compte de stockage**, puis sélectionnez un compte de stockage. Si vous le souhaitez, vous pouvez également définir un nombre de jours de conservation de ces journaux à l’aide des curseurs **Rétention (jours)** . Si la valeur zéro est appliquée à la rétention, les journaux sont stockés pour une durée indéfinie.
    
    ![Ajouter le paramètre de diagnostic - paramètres existants](media/monitoring-archive-diagnostic-logs/diagnostic-settings-configure.png)
     
 4. Cliquez sur **Enregistrer**.
 
-Après quelques instants, le nouveau paramètre de hello s’affiche dans la liste des paramètres pour cette ressource, et les journaux de diagnostic sont archivées toothat stockage compte dès que les nouvelles données d’événement sont générées.
+Après quelques instants, le nouveau paramètre apparaît dans la liste des paramètres de cette ressource, et les journaux de diagnostic sont archivés dans ce compte de stockage dès que de nouvelles données d’événement sont générées.
 
 ## <a name="archive-diagnostic-logs-via-azure-powershell"></a>Archivage des journaux de diagnostic à l’aide d’Azure PowerShell
 ```
@@ -59,30 +59,30 @@ Set-AzureRmDiagnosticSetting -ResourceId /subscriptions/s1id1234-5679-0123-4567-
 
 | Propriété | Requis | Description |
 | --- | --- | --- |
-| ResourceId |Oui |ID de ressource de la ressource hello sur lequel vous souhaitez tooset un paramètre de diagnostic. |
-| StorageAccountId |Non |ID de ressource de hello toowhich de compte de stockage des journaux de Diagnostic doit être enregistré. |
-| Catégories |Non |Liste de séparées par des virgules des tooenable de catégories de journal. |
+| ResourceId |OUI |ID de la ressource pour laquelle vous voulez définir un paramètre de diagnostic. |
+| StorageAccountId |Non |ID de ressource du compte de stockage dans lequel les journaux de diagnostic doivent être enregistrés. |
+| Catégories |Non |Liste séparée par des virgules des catégories de journaux à activer. |
 | Activé |OUI |Valeur booléenne indiquant si les diagnostics sont activés ou désactivés pour cette ressource. |
 | RetentionEnabled |Non |Valeur booléenne indiquant si une stratégie de rétention est activée pour cette ressource. |
-| RetentionInDays |Non |Nombre de jours pendant lesquels les événements doivent être conservés, compris entre 1 et 2147483647. Une valeur égale à zéro stocke les journaux hello indéfiniment. |
+| RetentionInDays |Non |Nombre de jours pendant lesquels les événements doivent être conservés, compris entre 1 et 2147483647. Une valeur de zéro signifie que les journaux seront stockés pour une durée indéfinie. |
 
-## <a name="archive-diagnostic-logs-via-hello-cross-platform-cli"></a>Journaux de diagnostic archive via hello Cross-Platform CLI
+## <a name="archive-diagnostic-logs-via-the-cross-platform-cli"></a>Archivage des journaux de diagnostic à l’aide de l’interface de ligne de commande multiplateforme
 ```
 azure insights diagnostic set --resourceId /subscriptions/s1id1234-5679-0123-4567-890123456789/resourceGroups/testresourcegroup/providers/Microsoft.Network/networkSecurityGroups/testnsg --storageId /subscriptions/s1id1234-5679-0123-4567-890123456789/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage –categories networksecuritygroupevent,networksecuritygrouprulecounter --enabled true
 ```
 
 | Propriété | Requis | Description |
 | --- | --- | --- |
-| ResourceId |Oui |ID de ressource de la ressource hello sur lequel vous souhaitez tooset un paramètre de diagnostic. |
-| storageId |Non |ID de ressource de journaux de diagnostic de toowhich hello compte de stockage doit être enregistré. |
-| Catégories |Non |Liste de séparées par des virgules des tooenable de catégories de journal. |
+| ResourceId |OUI |ID de la ressource pour laquelle vous voulez définir un paramètre de diagnostic. |
+| storageId |Non |ID de ressource du compte de stockage dans lequel les journaux de diagnostic doivent être enregistrés. |
+| Catégories |Non |Liste séparée par des virgules des catégories de journaux à activer. |
 | Activé |OUI |Valeur booléenne indiquant si les diagnostics sont activés ou désactivés pour cette ressource. |
 
-## <a name="archive-diagnostic-logs-via-hello-rest-api"></a>Archive des journaux de diagnostic via l’API REST de hello
-[Consultez ce document](https://docs.microsoft.com/rest/api/monitor/servicediagnosticsettings) pour plus d’informations sur la façon dont vous pouvez configurer un paramètre de diagnostic à l’aide de hello API REST du moniteur de Azure.
+## <a name="archive-diagnostic-logs-via-the-rest-api"></a>Archivage des journaux de diagnostic à l’aide de l’API REST
+[Consultez ce document](https://docs.microsoft.com/rest/api/monitor/servicediagnosticsettings) pour obtenir plus d’informations sur la configuration d’un paramètre de diagnostic à l’aide de l’API REST Azure Monitor.
 
-## <a name="schema-of-diagnostic-logs-in-hello-storage-account"></a>Schéma des journaux de diagnostic dans le compte de stockage hello
-Une fois que vous avez configuré d’archivage, un conteneur de stockage est créé dans le compte de stockage hello dès qu’un événement se produit dans une des catégories du journal hello que vous avez activé. BLOB Hello conteneur hello suivez hello même format entre les journaux de Diagnostic et hello journal d’activité. structure Hello de ces objets BLOB est la suivante :
+## <a name="schema-of-diagnostic-logs-in-the-storage-account"></a>Schéma des journaux de diagnostic dans le compte de stockage
+Une fois que vous avez configuré l’archivage, un conteneur de stockage est créé dans le compte de stockage dès qu’un événement se produit dans les catégories de journaux que vous avez activées. Les objets blob au sein du conteneur suivent le même format dans les journaux de diagnostic et le journal d’activité. La structure de ces objets blob est la suivante :
 
 > insights-logs-{nom de la catégorie de journal}/resourceId=/SUBSCRIPTIONS/{ID d’abonnement}/RESOURCEGROUPS/{nom du groupe de ressources}/PROVIDERS/{nom du fournisseur de ressources}/{type de ressource}/{nom de la ressource}/y={année, quatre chiffres}/m={mois, deux chiffres}/d={jour, deux chiffres}/h={heure, deux chiffres, format 24 h}/m=00/PT1H.json
 > 
@@ -100,9 +100,9 @@ Voici un exemple de nom d’objet blob :
 > 
 > 
 
-Chaque objet blob PT1H.json contient un objet blob de JSON d’événements qui se sont produites dans heure hello spécifié dans l’URL de blob hello (par exemple, h = 12). Pendant hello heure actuelle, les événements sont ajoutés toohello PT1H.json fichier qu’ils se produisent. valeur de minute de Hello (m = 00) est toujours 00, étant donné que les événements du journal de diagnostics sont divisées en objets BLOB individuels par heure.
+Chaque objet blob PT1H.json contient un objet blob d’événements JSON qui se sont produits pendant l’heure spécifiée dans l’URL de l’objet blob (par exemple, h=12). Pendant l’heure en cours, les événements sont ajoutés au fichier PT1H.json à mesure qu’ils se produisent. La valeur de minute (m = 00) est toujours 00, étant donné que les événements du journal de diagnostic sont répartis en différents objets blob par heure.
 
-Dans le fichier de PT1H.json hello, chaque événement est stocké dans le tableau « enregistrements de hello », sous ce format :
+Dans le fichier PT1H.json, chaque événement est stocké dans le tableau « enregistrements », au format suivant :
 
 ```
 {
@@ -129,18 +129,18 @@ Dans le fichier de PT1H.json hello, chaque événement est stocké dans le table
 
 | Nom de l'élément | Description |
 | --- | --- |
-| time |Horodatage lors de l’événement de hello a été généré par hello du traitement du service Azure hello demande événement hello correspondant. |
-| resourceId |ID de ressource de hello affectées les ressources. |
-| operationName |Nom de l’opération de hello. |
-| category |Catégorie du journal des événements de hello. |
-| properties |Jeu de `<Key, Value>` paires (c'est-à-dire, Dictionary) hello décrivant les événements hello. |
+| time |Horodatage lorsque l’événement a été généré par le service Azure traitant la demande correspondant à l’événement. |
+| resourceId |ID de ressource de la ressource affectée. |
+| operationName |Nom de l’opération. |
+| category |Catégorie de journal de l’événement. |
+| properties |Jeu de paires `<Key, Value>` (p. ex. Dictionary) décrivant les détails de l’événement. |
 
 > [!NOTE]
-> propriétés de Hello et l’utilisation de ces propriétés peuvent varier en fonction de la ressource de hello.
+> Les propriétés et l’utilisation de ces propriétés peuvent varier en fonction de la ressource.
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Télécharger des objets blob pour analyse](../storage/storage-dotnet-how-to-use-blobs.md)
-* [Flux diagnostic enregistre l’espace de noms tooan concentrateurs d’événements](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Diffuser en continu les journaux de diagnostic sur un espace de noms Event Hubs](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 * [En savoir plus sur les journaux de diagnostic](monitoring-overview-of-diagnostic-logs.md)

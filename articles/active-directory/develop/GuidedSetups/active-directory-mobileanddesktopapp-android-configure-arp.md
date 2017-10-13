@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure AD v2 Android mise en route : configuration | Documents Microsoft"
-description: "Cet article explique comment une application Android peut obtenir un jeton d’accès et appeler une ou plusieurs API Microsoft Graph qui nécessitent des jetons d’accès à partir du point de terminaison Azure Active Directory v2"
+title: "Prise en main d’Azure AD v2 avec les applications Android - Configuration | Documents Microsoft"
+description: "Cet article explique comment une application Android peut obtenir un jeton d’accès et appeler l’API Microsoft Graph ou des API qui nécessitent des jetons d’accès à partir d’un point de terminaison Azure Active Directory v2."
 services: active-directory
 documentationcenter: dev-center-name
 author: andretms
@@ -15,26 +15,26 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: eaa41805c92212154ee8d51d3eb3aee1202eef1f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c09937582118ebcc5b8cbc1f43a0a2019f2f7a89
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-## <a name="add-hello-applications-registration-information-tooyour-app"></a>Ajouter une application de l’application hello d’enregistrement d’informations tooyour
+## <a name="add-the-applications-registration-information-to-your-app"></a>Ajouter les informations d’inscription de l’application à votre application
 
-Dans cette étape, vous avez besoin d’un projet de tooyour tooadd hello ID Client.
+Dans cette étape, vous devez ajouter l’ID client à votre projet.
 
 1.  Ouvrez `MainActivity` (sous `app` > `java` > *`{host}.{namespace}`*).
-2.  Remplacez la ligne hello commençant par `final static String CLIENT_ID` avec :
+2.  Remplacez la ligne commençant par `final static String CLIENT_ID` par :
 ```java
-final static String CLIENT_ID = "[Enter hello application Id here]";
+final static String CLIENT_ID = "[Enter the application Id here]";
 ```
 3. Ouvrez `app` > `manifests` > `AndroidManifest.xml`.
-4. Ajouter hello suivant activité trop`manifest\application` nœud. Ce Registre une `BrowserTabActivity` tooallow hello tooresume du système d’exploitation de votre application après l’achèvement de l’authentification de hello :
+4. Ajoutez l’activité suivante au nœud `manifest\application`. Cette opération inscrit une activité `BrowserTabActivity` pour autoriser le système d’exploitation à reprendre l’exécution de votre application une fois l’authentification effectuée :
 
 ```xml
-<!--Intent filter toocapture System Browser calling back tooour app after Sign In-->
+<!--Intent filter to capture System Browser calling back to our app after Sign In-->
 <activity
     android:name="com.microsoft.identity.client.BrowserTabActivity">
     <intent-filter>
@@ -43,8 +43,8 @@ final static String CLIENT_ID = "[Enter hello application Id here]";
         <category android:name="android.intent.category.BROWSABLE" />
 
         <!--Add in your scheme/host from registered redirect URI-->
-        <!--By default, hello scheme should be similar too'msal[appId]' -->
-        <data android:scheme="msal[Enter hello application Id here]"
+        <!--By default, the scheme should be similar to 'msal[appId]' -->
+        <data android:scheme="msal[Enter the application Id here]"
             android:host="auth" />
     </intent-filter>
 </activity>

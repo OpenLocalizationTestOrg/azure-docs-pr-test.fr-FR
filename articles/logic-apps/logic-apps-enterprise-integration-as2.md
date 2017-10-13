@@ -1,5 +1,5 @@
 ---
-title: "messages aaaAS2 pour l’intégration d’entreprise B2B - Azure Logic Apps | Documents Microsoft"
+title: "Messages AS2 pour l’intégration d’entreprise B2B - Azure Logic Apps | Microsoft Docs"
 description: "Échangez des messages AS2 dans le cadre d’une intégration d’entreprise B2B avec Azure Logic Apps"
 services: logic-apps
 documentationcenter: .net,nodejs,java
@@ -14,168 +14,168 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/08/2017
 ms.author: LADocs; mandia
-ms.openlocfilehash: 23f9d74dd0ad807e9cdaedb320d60496cfef9bc3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91b2f16611b88aa4b9395ca301d88042065ad9dd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="exchange-as2-messages-for-enterprise-integration-with-logic-apps"></a>Échangez des messages AS2 dans le cadre d’une intégration d’entreprise avec Logic Apps
 
-Avant de pouvoir échanger des messages AS2 pour Azure Logic Apps, vous devez créer un contrat AS2 et le stocker dans votre compte d’intégration. Voici les étapes de hello pour l’accord de toocreate un AS2.
+Avant de pouvoir échanger des messages AS2 pour Azure Logic Apps, vous devez créer un contrat AS2 et le stocker dans votre compte d’intégration. Voici les étapes de création d’un contrat AS2.
 
 ## <a name="before-you-start"></a>Avant de commencer
 
-Voici les éléments hello que vous devez :
+Voici les éléments dont vous avez besoin :
 
 * Un [compte d’intégration](../logic-apps/logic-apps-enterprise-integration-accounts.md) déjà défini et associé à votre abonnement Azure
-* Au moins deux [partenaires](logic-apps-enterprise-integration-partners.md) qui sont déjà définis dans votre compte d’intégration et configuré avec un qualificateur hello AS2 sous **des identités d’entreprise**
+* Au moins deux [partenaires](logic-apps-enterprise-integration-partners.md) déjà définis dans votre compte d’intégration et configurés avec le qualificateur AS2 sous **Identités d’entreprise**
 
 > [!NOTE]
-> Lorsque vous créez un accord, le contenu dans le fichier de contrat hello hello doit correspondre au type de contrat de hello.    
+> Lorsque vous créez un contrat, le contenu du fichier de contrat doit correspondre au type de contrat.    
 
 Une fois que vous avez [créé un compte d’intégration](../logic-apps/logic-apps-enterprise-integration-accounts.md) et [ajouté des partenaires](logic-apps-enterprise-integration-partners.md), vous pouvez créer un contrat AS2 en procédant comme suit.
 
 ## <a name="create-an-as2-agreement"></a>Créer un contrat AS2
 
-1.  Connectez-vous à toohello [portail Azure](http://portal.azure.com "portail Azure").  
+1.  Connectez-vous au [portail Azure](http://portal.azure.com "portail Azure").  
 
-2.  Dans le menu de gauche hello, sélectionnez **davantage de services**. Dans la zone de recherche de hello, entrez **intégration** comme filtre. Dans la liste des résultats hello, sélectionnez **comptes d’intégration**.
+2.  Dans le menu de gauche, cliquez sur **Plus de services**. Dans la zone de recherche, entrez **intégration** comme filtre. Sélectionnez **Comptes d’intégration** dans la liste des résultats.
 
     > [!TIP]
-    > Si vous ne voyez pas **davantage de services**, vous pouvez avoir des menus de hello tooexpand tout d’abord. Haut hello du menu de hello réduit, sélectionnez **menu Afficher**.
+    > Si vous ne voyez pas l’option **Plus de services**, vous devez d’abord développer le menu. En haut du menu réduit, sélectionnez **Afficher le menu**.
 
     ![Plus de services, filtrer sur « intégration », sélectionner « Comptes d’intégration »](./media/logic-apps-enterprise-integration-agreements/overview-1.png)
 
-3. Bonjour **comptes d’intégration** panneau qui s’ouvre, le compte d’intégration hello sélectionnez où vous souhaitez l’accord de hello toocreate.
+3. Dans le panneau **Comptes d’intégration** qui s’affiche, sélectionnez le compte d’intégration dans lequel vous souhaitez créer le contrat.
 Si aucun compte d’intégration ne s’affiche, [créez-en un](../logic-apps/logic-apps-enterprise-integration-accounts.md "Tout sur les comptes d’intégration").  
 
-    ![Sélectionnez compte d’intégration hello où toocreate hello accord](./media/logic-apps-enterprise-integration-overview/overview-3.png)
+    ![Sélectionnez le compte d’intégration dans lequel vous souhaitez créer le contrat](./media/logic-apps-enterprise-integration-overview/overview-3.png)
 
-4. Choisissez hello **accords** vignette. Si vous n’avez pas une vignette de contrats, ajoutez d’abord les mosaïques hello.
+4. Choisissez la mosaïque **Contrats**. Si vous ne voyez pas la mosaïque Contrats, commencez par ajouter la mosaïque.
 
     ![Choisissez la mosaïque « Contrats »](./media/logic-apps-enterprise-integration-agreements/agreement-1.png)
 
-5. Dans le panneau des accords hello qui s’ouvre, choisissez **ajouter**.
+5. Dans le panneau Contrats qui s’affiche, sélectionnez **Ajouter**.
 
     ![Choisir « Ajouter »](./media/logic-apps-enterprise-integration-agreements/agreement-2.png)
 
-6. Sous **Ajouter**, entrez le **nom** de votre contrat. Pour le **type de contrat**, sélectionnez **AS2**. Sélectionnez hello **partenaire hôte**, **identité de l’hôte**, **partenaire invité**, et **invité identité** pour votre accord.
+6. Sous **Ajouter**, entrez le **nom** de votre contrat. Pour le **type de contrat**, sélectionnez **AS2**. Sélectionnez le **partenaire hôte**, **l’identité de l’hôte**, le **partenaire invité** et **l’identité de l’invité** pour votre contrat.
 
     ![Renseigner les détails relatifs au contrat](./media/logic-apps-enterprise-integration-agreements/agreement-3.png)  
 
     | Propriété | Description |
     | --- | --- |
-    | Nom |Nom de contrat de hello |
+    | Nom |Nom du contrat. |
     | Type de contrat | Doit être AS2 |
-    | Partenaire hôte |Un contrat nécessite un partenaire hôte et un partenaire invité. partenaire d’accueil Hello représente l’organisation hello qui configure l’accord de hello. |
-    | Identité de l’hôte |Un identificateur pour le partenaire d’accueil hello |
-    | Partenaire invité |Un contrat nécessite un partenaire hôte et un partenaire invité. partenaire invité de Hello représente l’organisation hello qui effectue l’entreprise avec le partenaire d’accueil hello. |
-    | identité de l’invité |Un identificateur de partenaire invité de hello |
-    | Paramètres de réception |Ces propriétés s’appliquent tooall les messages reçus par un accord. |
-    | Paramètres d’envoi |Ces propriétés s’appliquent tooall les messages envoyés par un accord. |
+    | Partenaire hôte |Un contrat nécessite un partenaire hôte et un partenaire invité. Le partenaire hôte représente l’organisation qui configure le contrat. |
+    | Identité de l’hôte |Identificateur du partenaire hôte. |
+    | Partenaire invité |Un contrat nécessite un partenaire hôte et un partenaire invité. Le partenaire invité représente l’organisation qui travaille avec le partenaire hôte. |
+    | identité de l’invité |Identificateur du partenaire invité. |
+    | Paramètres de réception |Ces propriétés s’appliquent à tous les messages reçus par un contrat. |
+    | Paramètres d’envoi |Ces propriétés s’appliquent à tous les messages envoyés par un contrat. |
 
 ## <a name="configure-how-your-agreement-handles-received-messages"></a>Configuration du traitement des messages reçus
 
-Maintenant que vous avez défini les propriétés de l’accord hello, vous pouvez configurer comment cet accord identifie et traite les messages entrants reçus à partir de votre partenaire via ce contrat.
+Maintenant que vous avez défini les propriétés du contrat, vous pouvez configurer la manière dont ce contrat identifie et traite les messages entrants reçus par votre partenaire par l’intermédiaire de ce contrat.
 
 1.  Sous **Ajouter**, sélectionnez **Paramètres de réception**.
-Configurez ces propriétés en fonction de votre accord avec le partenaire hello qui échange des messages avec vous. Pour obtenir des descriptions de propriété, consultez le tableau de hello dans cette section.
+Configurez ces propriétés selon le contrat conclu avec le partenaire qui échange des messages avec vous. Pour obtenir les descriptions des propriétés, consultez le tableau de cette section.
 
     ![Configurer les « Paramètres de réception »](./media/logic-apps-enterprise-integration-agreements/agreement-4.png)
 
-2. Si vous le souhaitez, vous pouvez remplacer les propriétés de hello de messages entrants en sélectionnant **remplacer les propriétés du message**.
+2. Si vous le souhaitez, vous pouvez remplacer les propriétés des messages entrants en cochant la case **Remplacer les propriétés du message**.
 
-3. toorequire signé de tous les toobe de messages entrants, sélectionnez **Message doit être signé**. À partir de hello **certificat** , sélectionnez un existant [certificat public du partenaire invité](../logic-apps/logic-apps-enterprise-integration-certificates.md) pour la validation de signature hello sur les messages de type hello. Ou créer le certificat de hello, si vous n’en avez pas.
+3. Sélectionnez **Le message doit être signé** pour demander la signature de tous les messages entrants. Dans la liste **Certificat**, sélectionnez un [certificat public de partenaire invité](../logic-apps/logic-apps-enterprise-integration-certificates.md) existant pour valider la signature dans les messages. Sinon, créez le certificat si vous n’en possédez pas.
 
-4.  sélectionner de tous les toobe de messages entrants chiffrés, toorequire **Message doit être chiffré**. À partir de hello **certificat** , sélectionnez un existant [certificat privé du partenaire hôte](../logic-apps/logic-apps-enterprise-integration-certificates.md) pour le déchiffrement des messages entrants. Ou créer le certificat de hello, si vous n’en avez pas.
+4.  Sélectionnez **Le message doit être chiffré** pour exiger que tous les messages entrants soient chiffrés. Dans la liste **Certificat**, sélectionnez un [certificat privé de partenaire hôte](../logic-apps/logic-apps-enterprise-integration-certificates.md) existant pour déchiffrer les messages entrants. Sinon, créez le certificat si vous n’en possédez pas.
 
-5. toorequire toobe de messages compressé, sélectionnez **Message doit être compressé**.
+5. Pour exiger que les messages soit compressés, sélectionnez **Le message doit être compressé**.
 
-6. toosend une notification de disposition de messages synchrone (MDN) pour les messages reçus, sélectionnez **envoyer le MDN**.
+6. Pour envoyer une notification de réception du message (MDN) synchrone pour les messages reçus, sélectionnez **Envoyer un MDN**.
 
-7. toosend signé MDN pour les messages reçus, sélectionnez **envoyer le MDN signé**.
+7. Pour envoyer un MDN signé pour les messages reçus, sélectionnez **Envoyer un MDN signé**.
 
-8. Sélectionnez des MDN asynchrones pour les messages reçus, toosend **envoyez un MDN asynchrone**.
+8. Pour envoyer un MDN asynchrone pour les messages reçus, sélectionnez **Envoyer un MDN asynchrone**.
 
-9. Une fois que vous avez terminé, assurez-vous que toosave vos paramètres en choisissant **OK**.
+9. Une fois que vous avez terminé, cliquez sur **OK** pour enregistrer vos paramètres.
 
-À présent, votre contrat toohandle prêt entrante messages conformes tooyour les paramètres sélectionnés.
+Votre contrat est maintenant prêt à traiter les messages entrants qui sont conformes aux paramètres que vous avez sélectionnés.
 
 | Propriété | Description |
 | --- | --- |
 | Override message properties |Indique que les propriétés dans les messages reçus peuvent être remplacées. |
-| Le message doit être signé |Requiert toobe messages signé numériquement. Configurer le certificat public de partenaire invité hello pour vérifier la signature.  |
-| Le message doit être chiffré |Requiert toobe de messages chiffré. Les messages non chiffrés sont rejetés. Configurer un certificat privé de partenaire hôte hello pour le déchiffrement des messages de type hello.  |
-| Le message doit être compressé |Requiert toobe messages compressé. Les messages non compressés sont rejetés. |
-| Texte du MDN |Hello par défaut message disposition notification (MDN) toobe toohello envoyé expéditeur du message. |
-| Send MDN (Envoyer MDN) |Requiert toobe MDN envoyé. |
-| Send signed MDN (Envoyer MDN signé) |Requiert toobe MDN signé. |
-| MIC Algorithm (Algorithme MIC) |Sélectionnez toouse d’algorithme hello pour signer les messages. |
-| Send asynchronous MDN (Envoyer MDN asynchrone) | Requiert toobe de messages envoyé de façon asynchrone. |
-| URL | Spécifiez les URL hello où toosend hello MDN. |
+| Le message doit être signé |Exige que les messages soient signés numériquement. Configurez le certificat public du partenaire invité pour la vérification de signature.  |
+| Le message doit être chiffré |Exige que les messages soient chiffrés. Les messages non chiffrés sont rejetés. Configurez le certificat privé du partenaire hôte pour déchiffrer les messages.  |
+| Le message doit être compressé |Exige que les messages soient compressés. Les messages non compressés sont rejetés. |
+| Texte du MDN |La notification de réception du message (MDN) par défaut à envoyer à l’expéditeur du message. |
+| Send MDN (Envoyer MDN) |Exige que le MDN soit envoyé. |
+| Send signed MDN (Envoyer MDN signé) |Exige que le MDN soit signé. |
+| MIC Algorithm (Algorithme MIC) |Sélectionnez l’algorithme à utiliser pour la signature du message. |
+| Send asynchronous MDN (Envoyer MDN asynchrone) | Exige que les messages soient envoyés de manière asynchrone. |
+| URL | Spécifiez l’URL vers laquelle envoyer les MDN. |
 
 ## <a name="configure-how-your-agreement-sends-messages"></a>Configuration de l’envoi des messages
 
-Vous pouvez configurer comment cet accord identifie et gère les messages sortants que vous envoyez des partenaires tooyour via ce contrat.
+Vous pouvez configurer la manière dont votre contrat identifie et traite les messages sortants que vous envoyez à vos partenaires par l’intermédiaire de ce contrat.
 
 1.  Sous **Ajouter**, sélectionnez **Paramètres d’envoi**.
-Configurez ces propriétés en fonction de votre accord avec le partenaire hello qui échange des messages avec vous. Pour obtenir des descriptions de propriété, consultez le tableau de hello dans cette section.
+Configurez ces propriétés selon le contrat conclu avec le partenaire qui échange des messages avec vous. Pour obtenir les descriptions des propriétés, consultez le tableau de cette section.
 
-    ![Définir les propriétés de « Paramètres d’envoi » hello](./media/logic-apps-enterprise-integration-agreements/agreement-51.png)
+    ![Définissez les propriétés de « Paramètres d’envoi »](./media/logic-apps-enterprise-integration-agreements/agreement-51.png)
 
-2. toosend messages signés tooyour partenaire, sélectionnez **activer la signature des messages**. Pour signer les messages hello, Bonjour **algorithme MIC** liste, sélectionnez hello *certificat privé du partenaire hôte algorithme MIC*. Et Bonjour **certificat** , sélectionnez un existant [certificat privé du partenaire hôte](../logic-apps/logic-apps-enterprise-integration-certificates.md).
+2. Sélectionnez l’option **Activer la signature des messages** pour envoyer des messages signés à votre partenaire. Pour signer les messages, sélectionnez *l’algorithme MIC de certificat privé du partenaire hôte* dans la liste **Algorithme MIC**. Dans la liste **Certificat**, sélectionnez un [certificat privé de partenaire hôte](../logic-apps/logic-apps-enterprise-integration-certificates.md).
 
-3. toosend des messages chiffrés toohello partenaire, sélectionnez **activer le chiffrement de message**. Pour chiffrer les messages hello, Bonjour **algorithme de chiffrement** liste, sélectionnez hello *algorithme de certificat public de partenaire invité*.
-Et Bonjour **certificat** , sélectionnez un existant [certificat public du partenaire invité](../logic-apps/logic-apps-enterprise-integration-certificates.md).
+3. Sélectionnez l’option **Activer le chiffrement des messages** pour envoyer des messages chiffrés au partenaire. Pour chiffrer les messages, sélectionnez *l’algorithme de certificat public du partenaire invité* dans la liste **Algorithme de chiffrement**.
+Dans la liste **Certificat**, sélectionnez un [certificat public de partenaire invité](../logic-apps/logic-apps-enterprise-integration-certificates.md).
 
-4. message de type hello toocompress, sélectionnez **activer la compression des messages**.
+4. Pour compresser les messages, sélectionnez **Activer la compression des messages**.
 
-5. en-tête de content-type toounfold hello HTTP sur une seule ligne, sélectionnez **dérouler les en-têtes HTTP**.
+5. Sélectionnez l’option **Dérouler les en-têtes HTTP** pour dérouler l’en-tête de type de contenu HTTP sur une seule ligne.
 
-6. tooreceive MDN synchrones pour hello envoyé des messages, sélectionnez **exiger le MDN**.
+6. Pour recevoir des MDN synchrones pour les messages envoyés, sélectionnez **Exiger le MDN**.
 
-7. tooreceive signé MDN pour les messages hello envoyé, sélectionnez **exiger le MDN signé**.
+7. Pour recevoir des MDN signés pour les messages envoyés, sélectionnez **Exiger le MDN signé**.
 
-8. tooreceive MDN asynchrones pour hello envoyé des messages, sélectionnez **exiger le MDN asynchrone**. Si vous sélectionnez cette option, entrez les URL hello où toosend hello MDN.
+8. Pour recevoir des MDN asynchrones pour les messages envoyés, sélectionnez **Exiger le MDN asynchrone**. Si vous sélectionnez cette option, saisissez l’URL à laquelle envoyer les MDN.
 
-9. toorequire non-répudiation de réception, sélectionnez **activer NRR**.  
+9. Pour exiger la non-répudiation de réception, sélectionnez **Activer NRR**.  
 
-10. toospecify algorithme format toouse Bonjour MIC ou signature Bonjour sortant des en-têtes de message de type hello AS2 ou MDN, sélectionnez **format d’algorithme SHA2**.  
+10. Pour spécifier le format d’algorithme à utiliser dans le MIC ou pour la signature dans les en-têtes sortants des messages AS2 ou des MDN, sélectionnez **Format de l’algorithme SHA2**.  
 
-11. Une fois que vous avez terminé, assurez-vous que toosave vos paramètres en choisissant **OK**.
+11. Une fois que vous avez terminé, cliquez sur **OK** pour enregistrer vos paramètres.
 
-Votre accord est à présent prêt toohandle les messages qui se conforment tooyour sélectionné Paramètres sortants.
+Votre contrat est maintenant prêt à traiter les messages sortants qui sont conformes aux paramètres que vous avez sélectionnés.
 
 | Propriété | Description |
 | --- | --- |
-| Enable message signing (Activer la signature des messages) |Nécessite tous les messages sont envoyés à partir de toobe d’accord hello signé. |
-| MIC Algorithm (Algorithme MIC) |Bonjour toouse algorithme pour signer les messages. Configure le certificat privé de partenaire hôte hello algorithme MIC pour la signature des messages de type hello. |
-| Certificat |Sélectionnez toouse de certificat hello pour signer les messages. Configure un certificat privé de partenaire hôte hello pour la signature des messages de type hello. |
-| Enable message encryption (Activer le chiffrement du message) |Exige que tous les messages envoyés à partir du contrat soient chiffrés. Configure l’algorithme de certificat public hello invité partenaire pour le chiffrement des messages de type hello. |
-| Algorithme de chiffrement |Bonjour toouse algorithme de chiffrement pour le chiffrement du message. Configure un certificat public de partenaire invité hello pour le chiffrement des messages de type hello. |
-| Certificat |messages de salutation certificat toouse tooencrypt. Configure un certificat privé de partenaire invité hello pour le chiffrement des messages de type hello. |
+| Enable message signing (Activer la signature des messages) |Exige que tous les messages envoyés à partir du contrat soient signés. |
+| MIC Algorithm (Algorithme MIC) |L’algorithme à utiliser pour la signature du message. Configurez l’algorithme MIC de certificat privé du partenaire hôte pour signer les messages. |
+| Certificat |Sélectionnez le certificat à utiliser pour la signature des messages. Configurez le certificat privé du partenaire hôte pour signer les messages. |
+| Enable message encryption (Activer le chiffrement du message) |Exige que tous les messages envoyés à partir du contrat soient chiffrés. Configure l’algorithme de certificat public du partenaire invité pour chiffrer les messages. |
+| Algorithme de chiffrement |L’algorithme de chiffrement à utiliser pour le chiffrement des messages. Configure le certificat public du partenaire invité pour chiffrer les messages. |
+| Certificat |Le certificat à utiliser pour chiffrer les messages. Configure le certificat privé du partenaire invité pour chiffrer les messages. |
 | Enable message compression (Activer la compression des messages) |Exige que tous les messages envoyés à partir du contrat soient compressés. |
-| Dérouler les en-têtes HTTP |Place un en-tête de content-type HTTP hello sur une seule ligne. |
+| Dérouler les en-têtes HTTP |Déroule l’en-tête de type de contenu HTTP sur une seule ligne. |
 | Exiger le MDN |Exige l’envoi d’un MDN pour tous les messages envoyés à partir du contrat. |
-| Exiger le MDN signé |Nécessite tous les MDN envoyés accord toothis toobe signé. |
-| Exiger le MDN asynchrone |Requiert un contrat de toothis de toobe envoyé MDN asynchrone. |
-| URL |Spécifiez les URL hello où toosend hello MDN. |
-| Enable NRR (Activer NRR) |Requiert la non-répudiation de réception (NRR), un attribut de communication qui constitue une preuve que les données hello a été reçue comme traité. |
-| Format de l’algorithme SHA2 |Sélectionnez toouse de format d’algorithme dans hello MIC ou signature Bonjour en-têtes de message de type hello AS2 ou MDN sortants |
+| Exiger le MDN signé |Exige que tous les MDN envoyés dans le cadre de ce contrat soient signés. |
+| Exiger le MDN asynchrone |Exige l’envoi d’un MDN asynchrone à ce contrat. |
+| URL |Spécifiez l’URL vers laquelle envoyer les MDN. |
+| Enable NRR (Activer NRR) |Exige la non-répudiation de réception (NRR), un attribut de communication qui fournit une preuve de réception des données. |
+| Format de l’algorithme SHA2 |Sélectionnez le format d’algorithme à utiliser dans le MIC ou pour la signature dans les en-têtes sortants des messages AS2 ou des MDN. |
 
 ## <a name="find-your-created-agreement"></a>Comment retrouver le contrat que vous avez créé
 
-1.  Une fois que vous terminez la définition de toutes les propriétés de votre accord, sur hello **ajouter** panneau, choisissez **OK** toofinish créer votre accord et le panneau de compte d’intégration tooyour retour.
+1.  Après avoir défini toutes les propriétés de votre contrat, dans le panneau **Ajouter**, cliquez sur **OK** pour terminer la création de votre contrat et revenir au panneau de votre compte d’intégration.
 
     Le contrat que vous venez d’ajouter s’affiche dans votre liste **Contrats**.
 
-2.  Vous pouvez également afficher vos contrats dans la vue d’ensemble de votre compte d’intégration. Dans le panneau de compte integration, choisissez **vue d’ensemble**, puis sélectionnez hello **accords** vignette. 
+2.  Vous pouvez également afficher vos contrats dans la vue d’ensemble de votre compte d’intégration. Dans le panneau de votre compte d’intégration, choisissez **Vue d’ensemble**, puis sélectionnez la mosaïque **Contrats**. 
 
-    ![Choisissez « Accord » vignette tooview tous les contrats](./media/logic-apps-enterprise-integration-agreements/agreement-6.png)
+    ![Sélectionner la mosaïque « Contrats » pour afficher tous les contrats](./media/logic-apps-enterprise-integration-agreements/agreement-6.png)
 
-## <a name="view-hello-swagger"></a>Swagger hello de vue
-Consultez hello [swagger détails](/connectors/as2/). 
+## <a name="view-the-swagger"></a>Afficher Swagger
+Consultez les [détails sur Swagger](/connectors/as2/). 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [En savoir plus sur hello Pack d’intégration Enterprise](logic-apps-enterprise-integration-overview.md "en savoir plus sur le Pack d’intégration Enterprise")  
+* [En savoir plus sur Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "Découvrez Enterprise Integration Pack")  

@@ -1,6 +1,6 @@
 ---
-title: "aaaOverview de l’infrastructure de Service et de conteneurs | Documents Microsoft"
-description: "Une vue d’ensemble de l’infrastructure de Service et hello utiliser des applications de conteneurs toodeploy microservice. Cet article fournit un aperçu de comment les conteneurs peuvent être utilisés et hello des fonctionnalités disponibles dans l’infrastructure de Service."
+title: "Vue d’ensemble de Service Fabric et des conteneurs | Microsoft Docs"
+description: "Voici une vue d’ensemble de Service Fabric et de la méthode à suivre pour déployer des applications de microservices au moyen de conteneurs. Cet article fournit une vue d’ensemble de l’utilisation de conteneurs et des fonctionnalités disponibles dans Service Fabric."
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -12,82 +12,84 @@ ms.devlang: dotnet
 ms.topic: article
 ms.tgt_pltfrm: NA
 ms.workload: NA
-ms.date: 5/16/2017
+ms.date: 9/20/2017
 ms.author: msfussell
-ms.openlocfilehash: fce94c4b476351c90f23f706aab8bc17319cce22
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f47a855b94a29a2e9bbf4ca509e68612423aa65d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="service-fabric-and-containers"></a>Service Fabric et conteneurs
 > [!NOTE]
-> Cette fonctionnalité est en préversion pour Linux.  Déploiement de cluster du Service Fabric tooa dans Windows 10 n’est pas prise en charge des conteneurs encore (prochainement). 
+> Le déploiement de conteneurs sur un cluster Service Fabric sous Windows 10 n’est pas encore pris en charge. 
 >   
 
 ## <a name="introduction"></a>Introduction
-Azure Service Fabric est un [orchestrateur](service-fabric-cluster-resource-manager-introduction.md) de services sur un cluster de machines. Il profite des nombreuses années d’expérience de Microsoft en matière d’utilisation et d’optimisation de services à très grande échelle. Les services peuvent être développés de nombreuses façons, à l’aide de hello [Service Fabric, modèles de programmation](service-fabric-choose-framework.md) toodeploying [invité exécutables](service-fabric-deploy-existing-app.md). Par défaut, Service Fabric déploie et active ces services en tant que processus. Processus fournissent l’activation de la plus rapide de hello et utilisation de densité la plus élevée des ressources hello dans un cluster. Service Fabric peut également déployer des services dans les images de conteneur. Important, vous pouvez combiner des services dans les processus et services dans des conteneurs hello même application. 
-
-## <a name="containers-and-service-fabric-roadmap"></a>Feuille de route des conteneurs et de Service Fabric
-Dans les versions à venir, de nombreuses améliorations sont planifiées concernant l’orchestration des conteneurs avec Service Fabric. Les améliorations comprennent des fonctionnalités pour une meilleure mise en réseau avec la prise en charge des réseaux virtuels au sein d’une application, des fonctionnalités de sécurité, des diagnostics améliorés et une prise en charge des outils. L’infrastructure de service vous permet d’applications toocreate mélange des conteneurs empaquetés avec le code existant (par exemple, les applications IIS MVC) avec les services développés à l’aide de modèles de programmation de Service Fabric hello.  Vous pouvez exécuter plusieurs de ces applications sur un seul cluster. 
+Azure Service Fabric est un [orchestrateur](service-fabric-cluster-resource-manager-introduction.md) de services sur un cluster de machines. Il profite des nombreuses années d’expérience de Microsoft en matière d’utilisation et d’optimisation de services à très grande échelle. Les services peuvent être développés de nombreuses façons, via des [modèles de programmation de Service Fabric](service-fabric-choose-framework.md) ou via le déploiement [d’exécutables invités](service-fabric-deploy-existing-app.md). Par défaut, Service Fabric déploie et active ces services en tant que processus. Ces processus assurent l’activation la plus rapide et offrent la densité la plus élevée en matière de ressources dans un cluster. Service Fabric peut également déployer des services dans les images de conteneur. Important : dans les conteneurs, vous pouvez combiner des processus et des services au sein de la même application.   
 
 ## <a name="what-are-containers"></a>Qu’est-ce qu’un conteneur ?
-Les conteneurs sont encapsulées, déployables individuellement composants qui s’exécutent en tant qu’instances isolées sur hello même avantage tootake de noyau de virtualisation qui fournit d’un système d’exploitation. Par conséquent, chaque application et ses bibliothèques runtime, les dépendances et système exécutent à l’intérieur d’un conteneur en mode du conteneur isolé toohello un accès privé complet de constructions de système d’exploitation. En même temps que la portabilité, ce degré d’isolement des ressources et de sécurité est principal avantage de hello pour l’utilisation de conteneurs avec l’infrastructure de Service, qui exécute les services dans le processus.
+Les conteneurs sont des composants encapsulés pouvant être déployés au cas par cas, qui sont exécutés en tant qu’instances isolées sur le même noyau. Ils tirent parti de la virtualisation fournie par le système d’exploitation. Cela signifie que chaque application, son runtime, ses dépendances et ses bibliothèques système s’exécutent au sein d’un conteneur bénéficiant d’un accès privé complet à leur propre vue isolée du conteneur sur les constructions du système d’exploitation. En parallèle avec la portabilité, ce degré de sécurité et d’isolement des ressources est le principal avantage associé à l’utilisation de conteneurs avec Service Fabric, qui exécute les services dans des processus, par ailleurs.
 
-Les conteneurs sont une technologie de virtualisation qui virtualise hello le système d’exploitation sous-jacent à partir d’applications. Conteneurs de fournissent un environnement immuable toorun d’applications avec différents degrés d’isolation. Les conteneurs s’exécutent directement sur le noyau de hello et ont une vue isolée hello du système de fichiers et d’autres ressources. Ordinateurs comparés toovirtual, conteneurs ont hello suivant avantages :
+La technologie d’un conteneur virtualise le système d’exploitation sous-jacent par rapport aux applications. Les conteneurs offrent un environnement immuable permettant aux applications de s’exécuter avec un certain degré d’isolation. Les conteneurs s’exécutent directement sur le noyau et disposent d’une vue isolée sur le système de fichiers et d’autres ressources. Par rapport aux machines virtuelles, les conteneurs présentent les avantages suivants :
 
-* **Petite**: conteneurs utilisent un seul espace et la couche de versions et mises à jour tooincrease l’efficacité du stockage.
-* **Fast**: conteneurs n’ont pas tooboot un système d’exploitation, afin qu’ils peuvent démarrer beaucoup plus rapidement, généralement en secondes.
-* **Portabilité**: une image d’application en conteneur peut être porté toorun dans le cloud hello, en local, dans les machines virtuelles, ou directement sur les ordinateurs physiques.
-* **Gouvernance des ressources**: un conteneur peut limiter les ressources physiques hello qu’elle peut consommer sur son ordinateur hôte.
+* **Une taille réduite** : les conteneurs utilisent un espace de stockage unique ainsi que les versions et mises à jour de la couche pour une efficacité accrue.
+* **Démarrage rapide** : comme les conteneurs n’ont pas besoin d’initialiser l’intégralité d’un système d’exploitation, ils peuvent démarrer beaucoup plus rapidement, généralement en quelques secondes.
+* **Portabilité** : une image d’application en conteneur peut être portée de manière à s’exécuter dans le cloud ou sur site, à l’intérieur de machines virtuelles ou directement sur des machines physiques.
+* **Gouvernance des ressources** : le nombre de ressources physiques qu’un conteneur peut consommer sur son hôte peut être limité.
 
-## <a name="container-types"></a>Types de conteneur
-L’infrastructure de service prend en charge les conteneurs Linux et Windows et prend également en charge le mode d’isolation Hyper-V sur hello ce dernier. 
+## <a name="container-types-and-supported-environments"></a>Types de conteneurs et environnements pris en charge
+Service Fabric prend en charge les conteneurs à la fois sur Linux et Windows, et prend également en charge le mode d’isolation Hyper-V sur ce dernier. 
+
+> [!NOTE]
+> Le déploiement de conteneurs sur un cluster Service Fabric sous Windows 10 n’est pas pris en charge actuellement. 
+> 
 
 ### <a name="docker-containers-on-linux"></a>Conteneurs Docker sur Linux
-Docker fournit les principales API toocreate et gérer des conteneurs sur les conteneurs de noyau Linux. Hub d’ancrage est un référentiel central de toostore et récupérer des images de conteneur.
-Pour obtenir un didacticiel, consultez [déployer un tooService de conteneur Docker Fabric](service-fabric-get-started-containers-linux.md).
+Docker fournit des API de haut niveau pour créer et gérer des conteneurs en plus des conteneurs du noyau Linux. Docker Hub est un référentiel central permettant de stocker et de récupérer des images de conteneur.
+Pour obtenir un didacticiel, consultez [Déployer un conteneur Docker sur Service Fabric](service-fabric-get-started-containers-linux.md).
 
 ### <a name="windows-server-containers"></a>Conteneurs Windows Server
-Windows Server 2016 fournit deux types de conteneurs qui diffèrent au niveau de hello d’isolation fourni. Conteneurs Windows Server et Docker sont similaires, car les deux ont l’espace de noms et le fichier d’isolation mais partage hello noyau du système avec l’hôte hello sur que s’exécutent. Sur Linux, cette isolation est généralement fournie par `cgroups` et `namespaces`. Les conteneurs Windows Server se comportent de la même manière.
+Windows Server 2016 fournit deux types de conteneurs, qui proposent des niveaux d’isolation différents. Les conteneurs Windows Server sont similaires aux conteneurs Docker, en ce sens qu’ils proposent tous l’isolation des systèmes de fichiers et espaces de noms. Toutefois, ils partagent le noyau avec l’hôte sur lequel ils s’exécutent. Sur Linux, cette isolation est généralement fournie par `cgroups` et `namespaces`. Les conteneurs Windows Server se comportent de la même manière.
 
-Conteneurs Windows Hyper-V fournissent plus d’isolation et la sécurité, car chaque conteneur ne partage pas le noyau du système d’exploitation hello avec d’autres conteneurs ou avec l’hôte de hello. Grâce à ce niveau élevé d’isolation à des fins de sécurité, les conteneurs Hyper-V ciblent les scénarios de multilocation hostiles.
-Pour obtenir un didacticiel, consultez [déployer un tooService de conteneur Windows Fabric](service-fabric-get-started-containers.md).
+Les conteneurs Windows avec prise en charge Hyper-V proposent un niveau d’isolation et de sécurité plus élevé, car aucun d’entre eux ne partage le noyau du système d’exploitation avec les autres, ni avec l’hôte. Grâce à ce niveau élevé d’isolation à des fins de sécurité, les conteneurs compatibles Hyper-V sont destinés à des scénarios hostiles d’architecture mutualisée.
+Pour obtenir un didacticiel, consultez [Déployer un conteneur Windows sur Service Fabric](service-fabric-get-started-containers.md).
 
-Hello figure ci-dessous montre hello différents types de virtualisation et niveaux d’isolement disponibles dans le système d’exploitation de hello.
+La figure suivante illustre les différents types de virtualisation et niveaux d’isolation disponibles dans le système d’exploitation.
 ![Plateforme Service Fabric][Image1]
 
 ## <a name="scenarios-for-using-containers"></a>Scénarios d’utilisation des conteneurs
 Voici des exemples pour lesquels le conteneur est un bon choix :
 
-* **IIS de courbes d’élévation et MAJ**: Si vous disposez [ASP.NET MVC](https://www.asp.net/mvc) applications que vous souhaitez toocontinue toouse, placez-les dans un conteneur au lieu de les faire migrer tooASP.NET Core. Ces applications ASP.NET MVC dépendent des services Internet (IIS, Internet Information Services). Vous pouvez empaqueter ces applications dans les images de conteneur à partir de hello précréés image IIS et les déployer avec Service Fabric. Consultez [Images de conteneur sur Windows Server](https://msdn.microsoft.com/virtualization/windowscontainers/quick_start/quick_start_images) pour savoir comment les images toocreate IIS.
-* **Mélange de conteneurs et de microservices Service Fabric** : utilisez une image de conteneur existante pour une partie de votre application. Par exemple, vous pouvez utiliser hello [conteneur NGINX](https://hub.docker.com/_/nginx/) hello web frontal de vos applications et services avec état pour hello plus intensif principal calcul.
-* **Réduire l’impact des services de « voisin bruyant »**: vous pouvez utiliser la possibilité de gouvernance des ressources hello des ressources de hello toorestrict conteneurs utilisé par un service sur un ordinateur hôte. Si les services peuvent consommer beaucoup de ressources et affecter les performances de hello d’autres (par exemple, une opération longue et de requête similaire), envisagez de placer ces services dans les conteneurs qui ont la gouvernance des ressources.
+* **Opération lift-and-shift pour IIS** : si vous avez des applications [ASP.NET MVC](https://www.asp.net/mvc) et que vous souhaitez continuer à les utiliser, placez-les dans un conteneur au lieu de les migrer vers ASP.NET Core. Ces applications ASP.NET MVC dépendent des services Internet (IIS, Internet Information Services). Vous pouvez empaqueter ces applications dans des images de conteneur à partir de l’image IIS créée au préalable, puis les déployer avec Service Fabric. Pour plus d’informations sur les conteneurs Windows, consultez la page [Images conteneurs sur Windows Server](https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-server).
+* **Mélange de conteneurs et de microservices Service Fabric** : utilisez une image de conteneur existante pour une partie de votre application. Par exemple, vous pouvez utiliser le [conteneur NGINX](https://hub.docker.com/_/nginx/) pour le système frontal web de votre application et les services avec état pour les calculs les plus intenses du back-end.
+* **Réduction de l’impact des services de « voisins bruyants »** : vous pouvez utiliser la capacité de gouvernance des ressources des conteneurs pour limiter les ressources utilisées par un service sur un hôte. Si les services sont susceptibles de consommer un grand nombre de ressources et, de ce fait, d’affecter les performances d’autres services (opération de type requête exécutée sur le long terme, par exemple), vous pouvez envisager de les placer dans des conteneurs soumis à la gouvernance des ressources.
 
 ## <a name="service-fabric-support-for-containers"></a>Prise en charge des conteneurs par Service Fabric
-Actuellement, Service Fabric prend en charge le déploiement de conteneurs Docker sur Linux et de conteneurs Windows Server sur Windows Server 2016. Il prend également en charge le mode d’isolation Hyper-V. 
+Service Fabric prend en charge le déploiement de conteneurs Docker sous Linux et de conteneurs Windows Server sous Windows Server 2016. Il gère également le mode d’isolation Hyper-V. 
 
-Bonjour Service Fabric [modèle d’application](service-fabric-application-model.md), un conteneur représente un hôte d’application dans le service de plusieurs réplicas sont placés. Service Fabric peut exécuter n’importe quel conteneur, et scénario de hello est similaire toohello [scénario d’exécutable invité](service-fabric-deploy-existing-app.md), où vous empaquetez une application existante à l’intérieur d’un conteneur. Ce scénario est hello-cas d’usage courant pour les conteneurs, et exécution d’une application écrite à l’aide de n’importe quel langage ou des infrastructures, mais ne pas à l’aide de modèles de programmation de l’infrastructure de Service intégrés hello sont des exemples.
+Dans le [modèle d’application](service-fabric-application-model.md)Service Fabric, un conteneur représente un hôte d’application sur lequel sont placés plusieurs réplicas de service. Service Fabric peut exécuter n’importe quel conteneur et le scénario est identique au [scénario des exécutables invités](service-fabric-deploy-existing-app.md), dans lequel vous empaquetez une application existante au sein d’un conteneur. Ce scénario est le cas d’utilisation courant pour les conteneurs et les exemples incluent l’exécution d’une application écrite à l’aide de n’importe quel langage ou n’importe quelle infrastructure, mais pas à l’aide des modèles de programmation Service Fabric intégrés.
 
-En outre, vous pouvez également exécuter des services Service Fabric à l’intérieur de conteneurs. Prise en charge pour les services de l’infrastructure de Service en cours d’exécution à l’intérieur des conteneurs est limité actuellement, mais toobe améliorée dans les versions à venir.
+En outre, vous pouvez également exécuter des [services Service Fabric à l’intérieur de conteneurs](service-fabric-services-inside-containers.md). Cette prise en charge, pour l’instant limitée, sera améliorée dans les versions à venir.
 
-* **Les services sans état fiables dans des conteneurs**: services fiable sans état à l’aide des Services fiables hello modèles de programmation sont uniquement pris en charge sous Linux. La prise en charge des services sans état dans les conteneurs Windows est planifiée pour une version à venir.
-* **Les services avec état dans des conteneurs**: ces services utilisent hello Reliable Actors ou des Services fiables modèle de programmation. La prise en charge de l’exécution des services avec état dans les conteneurs sera ajoutée dans une version à venir.
-
-Service Fabric dispose de plusieurs fonctionnalités de gestion des conteneurs, qui vous aident à créer des applications composées de microservices mis en conteneur. Service Fabric offre hello suivant de fonctionnalités pour les services en conteneur :
+Service Fabric dispose de plusieurs fonctionnalités de gestion des conteneurs, qui vous aident à créer des applications composées de microservices mis en conteneur. Service Fabric offre les fonctionnalités suivantes pour les services en conteneur :
 
 * Activation et déploiement d’images de conteneur
-* Gouvernance des ressources.
+* Gouvernance des ressources, notamment la définition des valeurs des ressources par défaut sur les clusters Azure.
 * Authentification de référentiels.
-* Mappage de port toohost port du conteneur.
+* Mappage des ports de conteneur aux ports hôtes.
 * Découverte et communication entre des conteneurs.
-* Capacité tooconfigure et définir des variables d’environnement.
+* Possibilité de configurer et de définir des variables d’environnement.
+* Possibilité de définir des identifiants de sécurité sur le conteneur.
+* Différents modes de mise en réseau pour les conteneurs.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans cet article, vous avez appris ce qu’était un conteneur. Vous savez désormais que Service Fabric est un orchestrateur de conteneurs et qu’il fournit des fonctionnalités de prise en charge des conteneurs. Comme prochaine étape, nous passe en revue quelques exemples d’hello fonctionnalités tooshow vous comment toouse les.
+Dans cet article, vous avez appris ce qu’était un conteneur. Vous savez désormais que Service Fabric est un orchestrateur de conteneurs et qu’il fournit des fonctionnalités de prise en charge des conteneurs. Nous allons désormais parcourir ces différentes fonctionnalités, afin de vous indiquer comment les utiliser.
 
-[Déployer un tooService de conteneur Windows Fabric sur Windows Server 2016](service-fabric-get-started-containers.md)
+[Créer sa première application conteneur Service Fabric sous Windows](service-fabric-get-started-containers.md)
 
-[Déployer un tooService de conteneur Docker Fabric sur Linux](service-fabric-get-started-containers-linux.md)
+[Créer sa première application conteneur Service Fabric sous Linux](service-fabric-get-started-containers-linux.md)
+
+[En savoir plus sur les conteneurs Windows](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/)
 
 [Image1]: media/service-fabric-containers/Service-Fabric-Types-of-Isolation.png

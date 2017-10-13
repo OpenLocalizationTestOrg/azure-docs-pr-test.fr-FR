@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure Documentation Analytique de flux - didacticiels, référence de l’API | Documents Microsoft"
-description: "En savoir plus analytique de IoT toorun Bonjour de cloud avec le traitement des événements d’entièrement géré. Analysez en temps réel des données d’applications, de détecteurs, d’appareils et autres."
+title: "Documentation Azure Stream Analytics - Didacticiels, informations de référence sur les API | Microsoft Docs"
+description: "Apprenez à exécuter des analyses IoT dans le cloud avec le traitement des événements entièrement géré. Analysez en temps réel des données d’applications, de détecteurs, d’appareils et autres."
 services: stream-analytics
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 05/23/2017
 ms.author: carolz
-ms.openlocfilehash: 4015137b0f39f86ada69d92e77e72b77b799d2d6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: dc8aa21d89ce575d29d3a9c08909eb5617d7b8a5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="stream-analytics-documentation"></a>Documentation Stream Analytics
 
-Découvrez comment analytique d’Internet des objets (IoT) toorun Bonjour cloud avec le flux de données Analytique, un moteur de traitement des événements entièrement géré. Didacticiels et autres documentations vous indiquent comment tooanalyze des données en temps réel à partir d’applications, capteurs, appareils, réseaux sociaux et bien plus encore. 
+Découvrez comment exécuter des analyses IoT dans le cloud avec Stream Analytics, un moteur de traitement des événements entièrement géré. Des didacticiels et d’autres documents vous montrent comment analyser les données en temps réel à partir d’applications, de capteurs, d’appareils, de réseaux sociaux et autres. 
 
 <ul class="panelContent cardsFTitle">
      <li>

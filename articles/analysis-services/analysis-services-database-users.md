@@ -1,6 +1,6 @@
 ---
-title: "aaaManage de la base de données des rôles et les utilisateurs dans Azure Analysis Services | Documents Microsoft"
-description: "Découvrez comment toomanage base de données les rôles et les utilisateurs sur un serveur Analysis Services dans Azure."
+title: "Gérer les rôles et les utilisateurs dans Azure Analysis Services | Microsoft Docs"
+description: "Découvrez comment gérer les rôles et les utilisateurs sur un serveur Analysis Services dans Azure."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,46 +15,46 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: 2ad069a6bcce11bc43347625cb32ec400d48af18
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d0bc7d7514f111b4bbde33bd60ae21264bd797fc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manage-database-roles-and-users"></a>Gérer les rôles et les utilisateurs de base de données
 
-Au niveau de base de données de modèle hello, tous les utilisateurs doivent appartenir tooa rôle. Les rôles définissent les utilisateurs disposant d’autorisations spécifiques pour la base de données model hello. N’importe quel utilisateur ou groupe de sécurité ajouté tooa rôle doit avoir un compte dans un locataire Azure AD Bonjour même abonnement que hello serveur.
+Au niveau de la base de données du modèle, tous les utilisateurs doivent appartenir à un rôle. Les rôles définissent les utilisateurs disposant d’autorisations spécifiques pour la base de données du modèle. Tout utilisateur ou groupe de sécurité ajouté à un rôle doit avoir un compte dans un client Azure AD dans le même abonnement que le serveur.
 
-Comment définir des rôles est différent selon outil hello que vous utilisez, mais effet de hello est hello identiques.
+Le mode de définition des rôles est différent selon l’outil utilisé, mais l’effet est le même.
 
 Les autorisations des rôles incluent :
-*  **Administrateur** -les utilisateurs disposent des autorisations complètes pour la base de données hello. Les rôles de base de données avec des autorisations d’administrateur sont différents des administrateurs de serveur.
-*  **Processus** -les utilisateurs peuvent se connecter tooand effectuer des opérations de traitement sur la base de données hello et analyser les données de base de données de modèle.
-*  **Lecture** -les utilisateurs peuvent utiliser un client application tooconnect tooand analyser les données de base de données de modèle.
+*  **Administrateur** : les utilisateurs disposent des autorisations complètes pour la base de données. Les rôles de base de données avec des autorisations d’administrateur sont différents des administrateurs de serveur.
+*  **Processus** : les utilisateurs peuvent se connecter et effectuer des opérations de traitement sur la base de données et analyser les données des bases de données du modèle.
+*  **Lecture** : les utilisateurs peuvent utiliser une application cliente pour se connecter et analyser les données des bases de données du modèle.
 
-Lorsque vous créez un projet de modèle tabulaire, vous créez des rôles et ajoutez des rôles de toothose des utilisateurs ou des groupes à l’aide du Gestionnaire de rôles dans SSDT. Lorsque tooa déployé server, vous utilisez SSMS, [applets de commande PowerShell Analysis Services](https://msdn.microsoft.com/library/hh758425.aspx), ou [Tabular Model Scripting Language](https://msdn.microsoft.com/library/mt614797.aspx) (TMSL) tooadd ou supprimer des rôles et des membres de l’utilisateur.
+Lorsque vous créez un projet de modèle tabulaire, vous créez des rôles et ajoutez des utilisateurs ou des groupes à ces rôles à l’aide du Gestionnaire de rôles dans SSDT. Lors du déploiement sur un serveur, vous utilisez SSMS, [applets de commande PowerShell Analysis Services](https://msdn.microsoft.com/library/hh758425.aspx) ou [Tabular Model Scripting Language](https://msdn.microsoft.com/library/mt614797.aspx) (TMSL) pour ajouter ou supprimer des rôles et des membres utilisateur.
 
-## <a name="tooadd-or-manage-roles-and-users-in-ssdt"></a>tooadd ou gérer des rôles et des utilisateurs dans SSDT  
+## <a name="to-add-or-manage-roles-and-users-in-ssdt"></a>Pour ajouter ou gérer des rôles et des utilisateurs dans SSDT  
   
 1.  Dans SSDT > **Tabular Model Explorer**, cliquez avec le bouton droit sur **Rôles**.  
   
 2.  Dans le **Gestionnaire de rôles**, cliquez sur **Nouveau**.  
   
-3.  Tapez un nom pour le rôle de hello.  
+3.  Entrez ensuite le nom du rôle.  
   
-     Par défaut, nom hello de rôle par défaut de hello est numéroté de façon incrémentielle pour chaque nouveau rôle. Il est recommandé de que taper un nom qui identifie clairement le type de membre hello, par exemple, directeurs financiers ou responsables des ressources humaines.  
+     Par défaut, le nom de rôle par défaut est numéroté de façon incrémentielle pour chaque nouveau rôle. Il est recommandé de saisir un nom qui identifie clairement le type de membre, par exemple, directeurs financiers ou spécialistes des ressources humaines.  
   
-4.  Sélectionnez une des hello les autorisations suivantes :  
+4.  Sélectionnez l’une des autorisations suivantes :  
   
     |Autorisation|Description|  
     |----------------|-----------------|  
-    |**Aucun**|Les membres ne peuvent pas de modifier le schéma de modèle hello et ne peut pas interroger les données.|  
-    |**Lire**|Les membres peuvent interroger des données (selon les filtres de lignes), mais Impossible de modifier le schéma de modèle hello.|  
-    |**Lecture et traitement**|Les membres peuvent interroger des données (selon les filtres au niveau des lignes) et l’exécution des opérations traiter et traiter tout, mais Impossible de modifier le schéma de modèle hello.|  
-    |**Processus**|Les membres peuvent exécuter des processus et traiter toutes les opérations. Impossible de modifier le schéma de modèle hello et ne peut pas interroger les données.|  
-    |**Administrateur**|Les membres peuvent modifier le schéma de modèle hello et interroger toutes les données.|   
+    |**Aucun**|Les membres ne peuvent pas modifier le schéma de modèle et ne peuvent pas interroger les données.|  
+    |**Lire**|Les membres peuvent interroger des données (selon les filtres de lignes) mais ne peuvent pas modifier le schéma de modèle.|  
+    |**Lecture et traitement**|Les membres peuvent interroger des données (selon les filtres au niveau des lignes) et exécuter des processus et traiter toutes les opérations, mais ne peuvent pas modifier le schéma de modèle.|  
+    |**Processus**|Les membres peuvent exécuter des processus et traiter toutes les opérations. Ils ne peuvent pas modifier le schéma de modèle et ne peuvent pas interroger les données.|  
+    |**Administrateur**|Les membres peuvent modifier le schéma de modèle et interroger toutes les données.|   
   
-5.  Dans le cas des rôles de hello création a lu ou autorisation en lecture et de processus, vous pouvez ajouter des filtres de lignes à l’aide d’une formule DAX. Cliquez sur hello **les filtres de lignes** onglet, sélectionnez une table, puis cliquez sur hello **filtre DAX** champ, puis tapez une formule DAX.
+5.  Si le rôle que vous créez a l’autorisation de Lecture ou de Lecture et processus, vous pouvez ajouter des filtres de lignes à l’aide d’une formule DAX. Cliquez sur l’onglet **Filtres de lignes**, sélectionnez une table, puis cliquez sur le champ **Filtre DAX**, puis tapez une formule DAX.
   
 6.  Cliquez sur **Membres** > **Ajouter externe**.  
   
@@ -62,11 +62,11 @@ Lorsque vous créez un projet de modèle tabulaire, vous créez des rôles et aj
  
      ![Rôles et les utilisateurs dans l’Explorateur de modèles tabulaires](./media/analysis-services-database-users/aas-roles-tmexplorer.png)
 
-9. Déployer tooyour Azure Analysis Services serveur.
+9. Déployez votre serveur Azure Analysis Services.
 
 
-## <a name="tooadd-or-manage-roles-and-users-in-ssms"></a>tooadd ou gérer des rôles et des utilisateurs dans SSMS
-tooa de rôles et les utilisateurs tooadd déployé la base de données model, vous devez être connecté toohello serveur en tant qu’un administrateur de serveur ou est déjà dans un rôle de base de données avec des autorisations d’administrateur.
+## <a name="to-add-or-manage-roles-and-users-in-ssms"></a>Pour ajouter ou gérer des rôles et des utilisateurs dans SSMS
+Pour ajouter des rôles et des utilisateurs à une base de données du modèle déployée, vous devez être connecté au serveur en tant qu’administrateur de serveur ou déjà dans un rôle de base de données avec des autorisations d’administrateur.
 
 1. Dans Object Exporer, cliquez avec le bouton droit sur **Rôles** > **Nouveau rôle**.
 
@@ -75,22 +75,22 @@ tooa de rôles et les utilisateurs tooadd déployé la base de données model, v
 3. Sélectionnez une autorisation.
    |Autorisation|Description|  
    |----------------|-----------------|  
-   |**Contrôle total (administrateur)**|Les membres peuvent modifier le schéma de modèle hello, traiter et interroger toutes les données.| 
-   |**Base de données de processus**|Les membres peuvent exécuter des processus et traiter toutes les opérations. Impossible de modifier le schéma de modèle hello et ne peut pas interroger les données.|  
-   |**Lire**|Les membres peuvent interroger des données (selon les filtres de lignes), mais Impossible de modifier le schéma de modèle hello.|  
+   |**Contrôle total (administrateur)**|Les membres peuvent modifier le schéma de modèle, le processus et interroger toutes les données.| 
+   |**Base de données de processus**|Les membres peuvent exécuter des processus et traiter toutes les opérations. Ils ne peuvent pas modifier le schéma de modèle et ne peuvent pas interroger les données.|  
+   |**Lire**|Les membres peuvent interroger des données (selon les filtres de lignes) mais ne peuvent pas modifier le schéma de modèle.|  
   
 4. Cliquez sur **Appartenance**, puis entrez un utilisateur ou un groupe dans votre client Azure AD par adresse e-mail.
 
      ![Ajouter un utilisateur](./media/analysis-services-database-users/aas-roles-adduser-ssms.png)
 
-5. Si le rôle que vous créez hello possède une autorisation de lecture, vous pouvez ajouter des filtres de lignes à l’aide d’une formule DAX. Cliquez sur **les filtres de lignes**, sélectionnez une table, puis tapez une formule DAX dans hello **filtre DAX** champ. 
+5. Si le rôle que vous créez a l’autorisation de Lecture, vous pouvez ajouter des filtres de lignes à l’aide d’une formule DAX. Cliquez sur **Filtres de lignes**, sélectionnez une table, puis tapez une formule DAX dans le champ **Filtre DAX**. 
 
-## <a name="tooadd-roles-and-users-by-using-a-tmsl-script"></a>tooadd rôles et les utilisateurs à l’aide d’un script TMSL
-Vous pouvez exécuter un script TMSL dans la fenêtre XMLA hello dans SSMS, ou à l’aide de PowerShell. Hello d’utilisation [CreateOrReplace](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-commands/createorreplace-command-tmsl) commande et hello [rôles](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-objects/roles-object-tmsl) objet.
+## <a name="to-add-roles-and-users-by-using-a-tmsl-script"></a>Pour ajouter des rôles et des utilisateurs à l’aide d’un script TMSL
+Vous pouvez exécuter un script TMSL dans la fenêtre XMLA dans SSMS ou à l’aide de PowerShell. Utilisez la commande [CreateOrReplace](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-commands/createorreplace-command-tmsl) et l’objet [Rôles](https://docs.microsoft.com/sql/analysis-services/tabular-models-scripting-language-objects/roles-object-tmsl).
 
 **Exemple de script TMSL**
 
-Dans cet exemple, un utilisateur externe B2B et un groupe sont ajoutés rôle d’analyste toohello avec les autorisations de lecture pour la base de données SalesBI hello. Les deux hello utilisateur externe et de groupe doit être dans le même client Azure AD.
+Dans cet exemple, un utilisateur externe B2B et un groupe sont ajoutés au rôle d’analyste avec des autorisations de Lecture pour la base de données SalesBI. L’utilisateur externe et le groupe doivent être dans le même client Azure AD.
 
 ```
 {
@@ -101,7 +101,7 @@ Dans cet exemple, un utilisateur externe B2B et un groupe sont ajoutés rôle d�
     },
     "role": {
       "name": "Users",
-      "description": "All allowed users tooquery hello model",
+      "description": "All allowed users to query the model",
       "modelPermission": "read",
       "members": [
         {
@@ -118,23 +118,23 @@ Dans cet exemple, un utilisateur externe B2B et un groupe sont ajoutés rôle d�
 }
 ```
 
-## <a name="tooadd-roles-and-users-by-using-powershell"></a>tooadd rôles et les utilisateurs à l’aide de PowerShell
-Hello [SqlServer](https://msdn.microsoft.com/library/hh758425.aspx) module fournit spécifiques à une tâche de base de données Gestion des applets de commande et hello à usage général Invoke-ASCmd applet de commande qui accepte une requête d’écriture de scripts langage TMSL (Tabular Model) ou un script. Hello suivant d’applets de commande est utilisé pour la gestion des utilisateurs et des rôles de base de données.
+## <a name="to-add-roles-and-users-by-using-powershell"></a>Pour ajouter des rôles et des utilisateurs à l’aide de Powershell
+Le module [SqlServer](https://msdn.microsoft.com/library/hh758425.aspx) fournit des applets de commande de gestion de bases de données spécifiques à chaque tâche, ainsi que l’applet de commande Invoke-ASCmd à usage général, qui accepte un script ou une requête utilisant le langage de script de modèle tabulaire (TMSL). Les applets de commande suivantes sont utilisées pour la gestion des utilisateurs et des rôles de bases de données.
   
 |Applet de commande|Description|
 |------------|-----------------| 
-|[Add-RoleMember](https://msdn.microsoft.com/library/hh510167.aspx)|Ajouter un rôle de base de données de membre tooa.| 
+|[Add-RoleMember](https://msdn.microsoft.com/library/hh510167.aspx)|Ajoute un membre à un rôle de base de données.| 
 |[Remove-RoleMember](https://msdn.microsoft.com/library/hh510173.aspx)|Supprime un membre d’un rôle de base de données.|   
 |[Invoke-ASCmd](https://msdn.microsoft.com/library/hh479579.aspx)|Exécute un script TMSL.|
 
 ## <a name="row-filters"></a>Filtres de lignes  
 Les filtres de lignes définissent les lignes d’une table qui peuvent être interrogées par les membres d’un rôle donné. Les filtres de lignes sont définis pour chaque table dans un modèle à l’aide de formules DAX.  
   
-Les filtres de lignes peuvent être définis uniquement pour les rôles avec des autorisations de Lecture et de Lecture et processus. Par défaut, si un filtre de lignes n’est pas défini pour une table particulière, les membres peuvent interroger toutes les lignes de la table de hello, sauf si le filtrage croisé s’applique à partir d’une autre table.
+Les filtres de lignes peuvent être définis uniquement pour les rôles avec des autorisations de Lecture et de Lecture et processus. Par défaut, si un filtre de lignes n’est pas défini pour une table en particulier, les membres peuvent interroger toutes les lignes de la table, sauf si le filtrage croisé s’applique à partir d’une autre table.
   
- Les filtres de lignes nécessitent une formule DAX, qui doit prendre la valeur TRUE/FALSE, les lignes de hello toodefine qui peuvent être interrogées par les membres de ce rôle particulier de tooa. Les lignes non incluses dans hello formule DAX ne peut pas être interrogés. Par exemple, hello table Customers avec hello suivant l’expression de filtres de lignes, *= clients [pays] = « France »*, les membres du rôle Sales de hello peuvent visualiser uniquement les clients Bonjour USA.  
+ Les filtres de lignes nécessitent une formule DAX, qui doit correspondre à une valeur TRUE/FALSE, pour définir les lignes qui peuvent être interrogées par les membres de ce rôle en particulier. Les lignes non incluses dans la formule DAX ne peuvent pas être interrogées. Par exemple, la table Clients avec l’expression de filtres de la ligne suivante, *=Customers [Country] = “USA”*, les membres du rôle Ventes peuvent voir uniquement les clients aux États-Unis.  
   
-Les filtres de lignes s’appliquent toohello spécifié lignes et les lignes associées. Lorsqu’une table possède plusieurs relations, filtres appliquent la sécurité pour la relation de hello est active. Les filtres de lignes sont croisés avec d’autres filtres de lignes définis pour les tables associées, par exemple :  
+Les filtres de lignes s’appliquent aux lignes spécifiées et aux lignes connexes. Lorsqu’une table possède plusieurs relations, les filtres appliquent la sécurité de la relation qui est active. Les filtres de lignes sont croisés avec d’autres filtres de lignes définis pour les tables associées, par exemple :  
   
 |Table|Expression DAX|  
 |-----------|--------------------|  
@@ -142,9 +142,9 @@ Les filtres de lignes s’appliquent toohello spécifié lignes et les lignes as
 |ProductCategory|=ProductCategory[Name]=”Bicycles”|  
 |Transactions|=Transactions[Year]=2016|  
   
- effet net de Hello est membres peuvent interroger les lignes de données où client de hello réside aux États-Unis de hello, catégorie de produit hello correspond à des bicyclettes et l’année hello est 2016. Les utilisateurs ne peuvent pas interroger les transactions en dehors des États-Unis de hello, qui ne sont pas bicyclettes ou transactions pas de 2016, sauf si elles sont membres d’un autre rôle qui accorde ces autorisations.
+ L’effet net est que les membres peuvent interroger les lignes de données pour lesquelles le client réside aux États-Unis, la catégorie de produits est bicyclettes et l’année est 2016. Les utilisateurs ne peuvent pas interroger les transactions en dehors des États-Unis, qui ne sont pas des bicyclettes ou les transactions hors de 2016, sauf si ils sont membres d’un autre rôle qui accorde ces autorisations.
   
- Vous pouvez utiliser le filtre de hello, *= False()*, les lignes tooall toodeny accès pour une table entière.
+ Vous pouvez utiliser le filtre, *= FALSE()*, pour refuser l’accès à toutes les lignes pour une table entière.
 
 ## <a name="next-steps"></a>Étapes suivantes
   [Gérer les administrateurs de serveur](analysis-services-server-admins.md)   

@@ -1,6 +1,6 @@
 ---
-title: aaaMigrate disques de machines virtuelles Azure tooManaged | Documents Microsoft
-description: "Migrer des machines virtuelles créées à l’aide de disques non managés dans toouse de comptes de stockage des disques gérés."
+title: "Migrer des machines virtuelles Azure vers des disques gérés | Microsoft Docs"
+description: "Migrez des machines virtuelles créées à l’aide de disques non gérés dans des comptes de stockage afin d’utiliser des disques gérés."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,53 +15,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: cynthn
-ms.openlocfilehash: 29420f13c4ffd5b25726e0ef1aafe89347286a89
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e23697b390e03bd2b71f2c905882070d864d62ed
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="migrate-azure-vms-toomanaged-disks-in-azure"></a>Migrer des machines virtuelles Azure tooManaged des disques dans Azure
+# <a name="migrate-azure-vms-to-managed-disks-in-azure"></a>Migrer des machines virtuelles Azure vers des disques gérés dans Azure
 
-Des disques gérés Azure simplifie la gestion du stockage en supprimant la nécessité de hello tooseparately gérer les comptes de stockage.  Vous pouvez également migrer votre toobenefit de disques tooManaged machines virtuelles Azure existante à partir d’une meilleure fiabilité des machines virtuelles sur un ensemble de disponibilité. Elle garantit que les disques hello des différentes machines virtuelles dans un ensemble de disponibilité sera suffisamment isolés à partir de chaque autre point unique tooavoid d’échecs. Il place automatiquement les disques de différentes machines virtuelles dans un ensemble de disponibilité dans différentes unités d’échelle de stockage (horodatages) qui limite l’impact hello de pannes d’unité de montée en puissance du stockage uniques dû en raison d’échecs toohardware et logiciels.
+Les disques gérés du service Azure Managed Disks simplifient la gestion de votre stockage en éliminant la nécessité de gérer séparément les comptes de stockage.  Vous pouvez également migrer vos machines virtuelles Azure existantes vers des disques gérés afin de tirer parti de la fiabilité accrue des machines virtuelles dans un groupe à haute disponibilité. Cela permet de s’assurer que les disques des différentes machines virtuelles d’un groupe à haute disponibilité sont suffisamment isolés les uns des autres pour éviter les points de défaillance uniques. Les disques des différentes machines virtuelles d’un groupe à haute disponibilité sont automatiquement placés dans des unités d’échelle (tampons) de stockage distinctes, ce qui limite l’impact des défaillances d’unités d’échelle de stockage uniques dues à des défaillances matérielles et logicielles.
 Selon vos besoins, vous avez le choix entre deux types d’options de stockage :
 
-- Les [disques gérés Premium](../../storage/common/storage-premium-storage.md) sont des supports basés sur des disques SSD (Solide State Drive) qui assurent de hautes performances et une faible latence pour les machines virtuelles dont les charges de travail nécessitent de nombreuses E/S. Vous pouvez tirer parti de la vitesse de hello et les performances de ces disques par des disques gérés migration tooPremium.
+- Les [disques gérés Premium](../../storage/common/storage-premium-storage.md) sont des supports basés sur des disques SSD (Solide State Drive) qui assurent de hautes performances et une faible latence pour les machines virtuelles dont les charges de travail nécessitent de nombreuses E/S. Vous pouvez tirer parti de la vitesse et des performances des disques gérés Premium en migrant vers ces disques.
 
-- [Standard de disques gérés](../../storage/common/storage-standard-storage.md) utiliser le lecteur de disque dur (HDD) en fonction des supports de stockage et les mieux adaptés pour le développement et de Test et d’autres charges de travail peu fréquentes d’accès qui sont moins sensibles tooperformance variabilité.
+- Les [disques gérés Standard](../../storage/common/storage-standard-storage.md) utilisent un support de stockage basé sur un lecteur de disque dur (HDD) et sont mieux adaptés aux charges de travail de développement/test et d’accès peu fréquent, qui sont moins sensibles à la variabilité des performances.
 
-Vous pouvez migrer des disques tooManaged dans les scénarios suivants :
+Vous pouvez migrer vers des disques gérés dans les cas de figure suivants :
 
 | Migrer...                                            | Lien vers la documentation                                                                                                                                                                                                                                                                  |
 |----------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Convertir des machines virtuelles de manière autonome et les machines virtuelles dans un jeu de disponibilité toomanaged des disques   | [Convertir les disques de machines virtuelles toouse géré](convert-unmanaged-to-managed-disks.md) |
-| Une seule machine virtuelle à partir de tooResource classique Manager sur des disques gérés     | [Migrer une machine virtuelle unique](migrate-single-classic-to-resource-manager.md)  | 
-| Tous les ordinateurs virtuels de hello dans un réseau virtuel à partir de tooResource classique Manager sur des disques gérés     | [Migrer les ressources IaaS classique tooResource Manager](migration-classic-resource-manager-ps.md) , puis [convertir un ordinateur virtuel à partir de disques toomanaged de disques non managé](convert-unmanaged-to-managed-disks.md) | 
+| Convertir des machines virtuelles autonomes et des machines virtuelles dans un groupe à haute disponibilité en disques gérés   | [Convertir des machines virtuelles pour utiliser des disques gérés](convert-unmanaged-to-managed-disks.md) |
+| Une machine virtuelle unique du modèle Classic vers le modèle Resource Manager sur des disques gérés     | [Migrer une machine virtuelle unique](migrate-single-classic-to-resource-manager.md)  | 
+| Toutes les machines virtuelles d’un réseau virtuel du modèle Classic vers le modèle Resource Manager sur des disques gérés     | [Migration de ressources IaaS d’un environnement Classic vers Resource Manager](migration-classic-resource-manager-ps.md), puis [Convertir une machine virtuelle à partir de disques non gérés vers des disques gérés](convert-unmanaged-to-managed-disks.md) | 
 
 
 
 
 
 
-## <a name="plan-for-hello-conversion-toomanaged-disks"></a>Planifier pour la conversion de hello tooManaged disques
+## <a name="plan-for-the-conversion-to-managed-disks"></a>Planification de la conversion en disques gérés
 
-Cette section vous aide à toomake hello meilleure décision sur les types de machine virtuelle et le disque.
+Cette section vous aide à prendre la meilleure décision concernant les types de machines virtuelles et de disques.
 
 
-## <a name="location"></a>Lieu
+## <a name="location"></a>Emplacement
 
-Choisissez un emplacement où Azure Managed Disks est disponible. Si vous déplacez des disques gérés tooPremium, vérifiez également que le stockage Premium est disponible dans la région de hello lorsque vous prévoyez de toomove à. Pour obtenir des informations à jour sur les emplacements disponibles, consultez [Services Azure par région](https://azure.microsoft.com/regions/#services) .
+Choisissez un emplacement où Azure Managed Disks est disponible. Si vous effectuez une migration vers des disques gérés Premium, assurez-vous également que le stockage Premium est disponible dans la région où vous prévoyez la migration. Pour obtenir des informations à jour sur les emplacements disponibles, consultez [Services Azure par région](https://azure.microsoft.com/regions/#services) .
 
 ## <a name="vm-sizes"></a>Tailles de machine virtuelle
 
-Si vous effectuez une migration tooPremium des disques gérés, vous tooupdate hello taille êtes de hello VM tooPremium taille capable de stockage disponible dans la région de hello où se trouve la machine virtuelle. Passez en revue les tailles de machine virtuelle hello qui sont capables de stockage Premium. spécifications de taille de machine virtuelle Azure Hello sont répertoriées dans [tailles des machines virtuelles](sizes.md).
-Passez en revue les caractéristiques de performances hello d’ordinateurs virtuels qui fonctionnent avec un stockage Premium et choisissez hello plus approprié taille de machine virtuelle qui convient le mieux à votre charge de travail. Assurez-vous qu’il y suffisamment de bande passante disponible sur votre trafic de disque de machine virtuelle toodrive hello.
+Si vous effectuez une migration vers des disques gérés Premium, vous devez mettre à jour la taille de la machine virtuelle par rapport à la capacité de stockage Premium disponible dans la région où se trouve la machine virtuelle. Passez en revue les tailles de machine virtuelle compatibles avec le stockage Premium. Les spécifications des tailles des machines virtuelles Azure sont répertoriées dans la section [Tailles des machines virtuelles](sizes.md).
+Passez en revue les caractéristiques de performances des machines virtuelles fonctionnant avec Premium Storage et choisissez la taille de machine virtuelle la mieux adaptée à votre charge de travail. Assurez-vous que la bande passante disponible est suffisante sur votre machine virtuelle pour gérer le trafic du disque.
 
 ## <a name="disk-sizes"></a>Tailles du disque
 
 **Disques gérés Premium**
 
-Il existe sept types de disques gérés Premium qui peuvent être utilisés avec votre machine virtuelle, chacun d’eux présentant des limites d’E/S par seconde et de débit spécifiques. Prenez en compte ces limites lorsque vous choisissez hello le type de disque Premium pour votre machine virtuelle en fonction des besoins de hello de votre application en termes de capacité, les performances, l’évolutivité, et des pics.
+Il existe sept types de disques gérés Premium qui peuvent être utilisés avec votre machine virtuelle, chacun d’eux présentant des limites d’E/S par seconde et de débit spécifiques. Prenez en compte ces limites lors de la sélection du type de disque Premium pour votre machine virtuelle en fonction des besoins en capacité, en performances, en extensibilité et en charges maximales de votre application.
 
 | Type de disque Premium  | P4    | P6    | P10   | P20   | P30   | P40   | P50   | 
 |---------------------|-------|-------|-------|-------|-------|-------|-------|
@@ -71,7 +71,7 @@ Il existe sept types de disques gérés Premium qui peuvent être utilisés avec
 
 **Disques gérés Standard**
 
-Il existe sept types de disques gérés Standard qui peuvent être utilisés avec votre machine virtuelle. Chacun d’eux dispose d’une capacité différente, mais ils partagent les mêmes limites d’E/S par seconde et de débit. Choisissez le type hello de disques gérés Standard selon les besoins en capacité hello de votre application.
+Il existe sept types de disques gérés Standard qui peuvent être utilisés avec votre machine virtuelle. Chacun d’eux dispose d’une capacité différente, mais ils partagent les mêmes limites d’E/S par seconde et de débit. Choisissez le type de disque géré Standard selon les besoins en capacité de votre application.
 
 | Type de disque Standard  | S4               | S6               | S10              | S20              | S30              | S40              | S50              | 
 |---------------------|---------------------|---------------------|------------------|------------------|------------------|------------------|------------------| 
@@ -83,11 +83,11 @@ Il existe sept types de disques gérés Standard qui peuvent être utilisés ave
 
 **Disques gérés Premium**
 
-Par défaut, la mise en cache de stratégie est *en lecture seule* pour tous les hello disques de données Premium, et *en lecture-écriture* hello Premium système d’exploitation attaché toohello machine virtuelle. Ce paramètre de configuration est recommandé tooachieve hello des performances optimales IOs de votre application. Pour les disques de données en écriture seule ou avec d'importantes opérations d'écriture (par ex., les fichiers journaux de SQL Server), désactivez la mise en cache du disque pour de meilleures performances de l'application.
+Par défaut, la stratégie de mise en cache est *Lecture seule* pour tous les disques de données Premium et *Lecture-écriture* pour le disque du système d’exploitation Premium attaché à la machine virtuelle. Ce paramètre de configuration est recommandé pour optimiser les performances des E/S de votre application. Pour les disques de données en écriture seule ou avec d'importantes opérations d'écriture (par ex., les fichiers journaux de SQL Server), désactivez la mise en cache du disque pour de meilleures performances de l'application.
 
 ## <a name="pricing"></a>Tarification
 
-Hello de révision [prix des disques gérés](https://azure.microsoft.com/en-us/pricing/details/managed-disks/). Tarification de disques gérés de Premium est identique hello les disques Premium non managé. En revanche, la tarification des disques gérés Standard est différente de celle des disques non gérés Standard.
+Consultez la [tarification des disques gérés](https://azure.microsoft.com/en-us/pricing/details/managed-disks/). La tarification des disques gérés Premium est identique à celle des disques non gérés Premium. En revanche, la tarification des disques gérés Standard est différente de celle des disques non gérés Standard.
 
 
 

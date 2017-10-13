@@ -1,8 +1,8 @@
-### <a name="gwipnoconnection"></a>passerelle de réseau local toomodify hello 'GatewayIpAddress' - aucune connexion de passerelle
+### <a name="gwipnoconnection"></a> Pour modifier la passerelle de réseau local GatewayIpAddress - sans connexion de passerelle
 
-Si le périphérique VPN de hello que vous souhaitez tooconnect toohas modifié son adresse IP publique, vous devez tooreflect de passerelle du réseau local d’hello toomodify qui changent. Utilisez hello exemple toomodify une passerelle de réseau local qui n’a pas d’une connexion de passerelle.
+Si le périphérique VPN auquel vous souhaitez vous connecter a changé son adresse IP publique, vous devez modifier la passerelle de réseau local pour refléter cette modification. Utilisez l’exemple fourni pour modifier une passerelle de réseau local sans connexion de passerelle.
 
-Lorsque vous modifiez cette valeur, vous pouvez également modifier les préfixes d’adresse hello en hello même temps. Être vraiment toouse hello nom existant de votre passerelle de réseau local dans les paramètres actuels de commande toooverwrite hello. Si vous utilisez un autre nom, vous créez une nouvelle passerelle de réseau local, au lieu de remplacer hello existant.
+Lorsque vous modifiez cette valeur, vous pouvez également modifier les préfixes d’adresse en même temps. Veillez à utiliser le nom existant de votre passerelle de réseau local pour remplacer les paramètres actuels. Si vous utilisez un nom différent, vous créerez une nouvelle passerelle de réseau local au lieu de remplacer la passerelle existante.
 
 ```powershell
 New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
@@ -10,34 +10,34 @@ New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
 -GatewayIpAddress "5.4.3.2" -ResourceGroupName MyRGName
 ```
 
-### <a name="gwipwithconnection"></a>passerelle de réseau local toomodify hello 'GatewayIpAddress' - connexion à la passerelle existante
+### <a name="gwipwithconnection"></a>Pour modifier la passerelle de réseau local GatewayIpAddress - avec une connexion de passerelle existante
 
-Si le périphérique VPN de hello que vous souhaitez tooconnect toohas modifié son adresse IP publique, vous devez tooreflect de passerelle du réseau local d’hello toomodify qui changent. Si une passerelle connexion existe déjà, vous devez d’abord connexion de hello tooremove. Une fois la connexion de hello est supprimée, vous pouvez modifier l’adresse IP de passerelle hello et recréez une nouvelle connexion. Vous pouvez également modifier les préfixes d’adresse hello en hello même temps. Cela entraînera une interruption de votre connexion VPN. Lorsque vous modifiez l’adresse IP de passerelle hello, vous n’avez pas besoin passerelle VPN de hello toodelete. Vous devez uniquement la connexion de hello tooremove.
+Si le périphérique VPN auquel vous souhaitez vous connecter a changé son adresse IP publique, vous devez modifier la passerelle de réseau local pour refléter cette modification. S’il existe déjà une connexion de passerelle, vous devez tout d’abord supprimer la connexion. Une fois la connexion supprimée, vous pouvez modifier l’adresse IP de la passerelle et recréer une connexion. Vous pouvez également modifier les préfixes d’adresse en même temps. Cela entraînera une interruption de votre connexion VPN. Lorsque vous modifiez l’adresse IP de la passerelle, vous n’avez pas besoin de supprimer la passerelle VPN. Vous devez uniquement supprimer la connexion.
  
 
-1. Supprimer la connexion de hello. Vous trouverez le nom hello de la connexion à l’aide d’applet de commande hello 'Get-AzureRmVirtualNetworkGatewayConnection'.
+1. Supprimez la connexion. Vous trouverez le nom de votre connexion en utilisant l’applet de commande « Get-AzureRmVirtualNetworkGatewayConnection ».
 
   ```powershell
   Remove-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName `
   -ResourceGroupName MyRGName
   ```
-2. Modifiez la valeur de 'GatewayIpAddress' hello. Vous pouvez également modifier les préfixes d’adresse hello en hello même temps. Être vraiment toouse hello nom existant de vos paramètres actuels de réseau local passerelle toooverwrite hello. Si vous ne le faites pas, vous créez une nouvelle passerelle de réseau local, au lieu de remplacer hello existant.
+2. Modifiez la valeur « GatewayIpAddress ». Vous pouvez également modifier les préfixes d’adresse en même temps. Veillez à utiliser le nom existant de votre passerelle de réseau local pour remplacer les paramètres actuels. Si vous ne le faites pas, vous créerez une nouvelle passerelle de réseau local au lieu de remplacer la passerelle existante.
 
   ```powershell
   New-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName `
   -Location "West US" -AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24') `
   -GatewayIpAddress "104.40.81.124" -ResourceGroupName MyRGName
   ```
-3. Créer la connexion de hello. Dans cet exemple, nous allons configurer un type de connexion IPsec. Lorsque vous recréez votre connexion, utilisez le type de connexion hello est spécifié pour votre configuration. Pour les types de connexion supplémentaires, consultez hello [applet de commande PowerShell](https://msdn.microsoft.com/library/mt603611.aspx) page.  nom de VirtualNetworkGateway tooobtain hello, vous pouvez exécuter l’applet de commande 'Get-AzureRmVirtualNetworkGateway' hello.
+3. Créez la connexion. Dans cet exemple, nous allons configurer un type de connexion IPsec. Lorsque vous recréez votre connexion, utilisez le type de connexion spécifié pour votre configuration. Pour les autres types de connexion, consultez la page sur [les applets de commande PowerShell](https://msdn.microsoft.com/library/mt603611.aspx) .  Pour obtenir le nom de VirtualNetworkGateway, vous pouvez exécuter l’applet de commande « Get-AzureRmVirtualNetworkGateway ».
    
-    Définir les variables de hello.
+    Définissez les variables.
 
   ```powershell
   $local = Get-AzureRMLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName `
   $vnetgw = Get-AzureRmVirtualNetworkGateway -Name RMGateway -ResourceGroupName MyRGName
   ```
    
-    Créer la connexion de hello.
+    Créez la connexion.
 
   ```powershell 
   New-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName -ResourceGroupName MyRGName `

@@ -1,6 +1,6 @@
 ---
-title: "aaaGet a démarré avec un exemple de HBase sur HDInsight - Azure | Documents Microsoft"
-description: "Suivez cette toostart d’exemple Apache HBase à l’aide de hadoop dans HDInsight. Créer des tables à partir du shell HBase de hello et les interroger à l’aide de la ruche."
+title: "Prise en main d’un exemple HBase sur HDInsight - Azure | Microsoft Docs"
+description: "Suivez cet exemple Apache HBase pour commencer à utiliser Hadoop sur HDInsight. Créez des tables à partir de l’interpréteur de commandes HBase et interrogez-les à l’aide de Hive."
 keywords: commande hbase, exemple hbase
 services: hdinsight
 documentationcenter: 
@@ -16,65 +16,65 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: jgao
-ms.openlocfilehash: 43419780142b320b16180a2b1f25020dee2f7a11
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2f3cb99c832b6e17ac932112c1d397fa0c8afeca
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-an-apache-hbase-example-in-hdinsight"></a>Prise en main d’un exemple Apache HBase dans HDInsight
 
-Découvrez comment créer des tables de HBase toocreate un cluster HBase dans HDInsight, et interroger des tables à l’aide de ruche. Pour obtenir des informations générales sur HBase, voir [Vue d’ensemble de HDInsight HBase][hdinsight-hbase-overview].
+Découvrez comment créer un cluster HBase dans HDInsight, créer des tables HBase et les interroger à l’aide de Hive. Pour obtenir des informations générales sur HBase, voir [Vue d’ensemble de HDInsight HBase][hdinsight-hbase-overview].
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 ## <a name="prerequisites"></a>Composants requis
-Avant de commencer la tentative de cet exemple HBase, vous devez disposer de hello éléments suivants :
+Avant d’essayer cet exemple HBase, vous devez disposer des éléments suivants :
 
 * **Un abonnement Azure**. Consultez la page [Obtention d’un essai gratuit d’Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * [Secure Shell(SSH)](hdinsight-hadoop-linux-use-ssh-unix.md). 
 * [curl](http://curl.haxx.se/download.html).
 
 ## <a name="create-hbase-cluster"></a>Créer un cluster HBase
-Hello procédure suivante utilise une toocreate de modèle Azure Resource Manager un version 3.4 HBase de basés sur Linux cluster et hello dépendants compte par défaut le stockage Azure. paramètres de hello toounderstand utilisés dans la procédure de hello et d’autres méthodes de création de cluster, consultez [Hadoop basé sur Linux de créer des clusters dans HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
+La procédure suivante utilise un modèle Azure Resource Manager pour créer un cluster HBase basé sur Linux version 3.4 et le compte Stockage Azure dépendant par défaut. Pour comprendre les paramètres utilisés dans la procédure et d’autres méthodes de création de cluster, consultez [Création de clusters Hadoop basés sur Linux dans HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
 
-1. Cliquez sur hello suit image tooopen hello template Bonjour portail Azure. modèle de Hello se trouve dans un conteneur d’objets blob publics. 
+1. Cliquez sur l’image suivante pour ouvrir le modèle dans le portail Azure. Le modèle est situé dans un conteneur d’objets blob public. 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-tutorial-get-started-linux/deploy-to-azure.png" alt="Deploy tooAzure"></a>
-2. À partir de hello **les déploiement personnalisé** panneau, entrez hello valeurs suivantes :
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-tutorial-get-started-linux/deploy-to-azure.png" alt="Deploy to Azure"></a>
+2. Dans le panneau **Déploiement personnalisé**, entrez les valeurs suivantes :
    
-   * **Abonnement**: sélectionnez votre abonnement Azure est utilisé toocreate hello cluster.
+   * **Abonnement** : sélectionnez l’abonnement Azure utilisé pour créer le cluster.
    * **Groupe de ressources** : créez un groupe Azure Resource Manager ou utilisez un groupe existant.
-   * **Emplacement**: spécifiez l’emplacement hello hello du groupe de ressources. 
-   * **ClusterName**: entrez un nom pour le cluster de HBase hello.
-   * **Nom de connexion et mot de passe de cluster**: nom de connexion par défaut hello est **admin**.
-   * **Mot de passe et le nom d’utilisateur SSH**: nom d’utilisateur par défaut de hello est **sshuser**.  Vous pouvez le renommer.
+   * **Emplacement** : spécifiez l’emplacement du groupe de ressources. 
+   * **Nom de cluster** : saisissez le nom du cluster HBase.
+   * **Nom d’utilisateur et mot de passe de cluster** : le nom de connexion par défaut est **admin**.
+   * **Nom d’utilisateur SSH et mot de passe** : le nom d’utilisateur par défaut est **sshuser**.  Vous pouvez le renommer.
      
      Tous les autres paramètres sont facultatifs.  
      
-     Chaque cluster possède une dépendance de compte Stockage Azure. Après avoir supprimé un cluster, les données de salutation conservent dans le compte de stockage hello. nom du compte de stockage Hello cluster par défaut est le nom de cluster hello avec « store » ajouté. Il est codé en dur dans la section de variables de modèle hello.
-3. Sélectionnez **J’accepte les conditions susmentionnées générales toohello**, puis cliquez sur **bon**. Il prend environ 20 minutes toocreate un cluster.
+     Chaque cluster possède une dépendance de compte Stockage Azure. Après avoir supprimé un cluster, les données sont conservées dans le compte de stockage. Le nom du compte de stockage par défaut du cluster est le nom du cluster suivi du suffixe « store ». Il est codé en dur dans la section des variables du modèle.
+3. Sélectionnez **J’accepte les termes et conditions mentionnés ci-dessus**, puis cliquez sur **Acheter**. La création d’un cluster prend environ 20 minutes.
 
 > [!NOTE]
-> Après la suppression d’un cluster HBase, vous pouvez créer un autre cluster HBase à l’aide de hello même conteneur d’objets blob par défaut. nouveau cluster de Hello récupère les tables de HBase hello créées hello cluster d’origine. des incohérences tooavoid, nous vous conseillons de désactiver les tables HBase hello avant de supprimer le cluster de hello.
+> Après la suppression d’un cluster HBase, vous pouvez créer un autre cluster HBase à l’aide du même conteneur d’objets blob par défaut. Le nouveau cluster utilise les tables HBase créées dans le cluster d’origine. Pour éviter toute incohérence, nous vous recommandons de désactiver les tables HBase avant de supprimer le cluster.
 > 
 > 
 
 ## <a name="create-tables-and-insert-data"></a>Créer des tables et insérer des données
-Vous pouvez utiliser SSH tooconnect tooHBase clusters et utilisent des tables de HBase Shell toocreate HBase, insérer des données et interroger des données. Pour en savoir plus, voir [Utilisation de SSH avec Hadoop Linux sur HDInsight depuis Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).
+Vous pouvez utiliser SSH pour vous connecter à des clusters HBase, puis HBase Shell pour créer des tables HBase et insérer et interroger des données. Pour en savoir plus, voir [Utilisation de SSH avec Hadoop Linux sur HDInsight depuis Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-Pour la plupart des personnes, les données apparaissent sous forme de hello :
+Pour la plupart des utilisateurs, les données s’affichent sous la forme tabulaire :
 
 ![Données tabulaires HBase HDInsight][img-hbase-sample-data-tabular]
 
-Dans HBase (il s’agit d’une implémentation de BigTable), hello même données ressemble à :
+Dans HBase (une implémentation de BigTable), certaines données ont l’aspect suivant :
 
 ![Données bigtable HBase HDInsight][img-hbase-sample-data-bigtable]
 
 
-**toouse hello shell HBase**
+**Pour utiliser l’interpréteur de commandes HBase**
 
-1. À partir de SSH, exécutez hello HBase commande suivante :
+1. À partir de SSH, exécutez la commande HBase suivante :
    
     ```bash
     hbase shell
@@ -103,20 +103,20 @@ Dans HBase (il s’agit d’une implémentation de BigTable), hello même donné
     get 'Contacts', '1000'
     ```
    
-    Vous devez voir hello mêmes résultats comme à l’aide de la commande d’analyse hello, car il y a qu’une seule ligne.
+    Comme il n’y a qu’une seule ligne, les résultats sont les mêmes qu’avec la commande d’analyse.
    
-    Pour plus d’informations sur le schéma de la table HBase hello, consultez [Introduction tooHBase conception de schéma][hbase-schema]. Pour obtenir plus de commandes HBase, consultez le [Guide de référence Apache HBase][hbase-quick-start].
-5. Sortie hello shell
+    Pour en savoir plus sur le schéma de la table Hbase, voir [Introduction à la conception de schéma HBase][hbase-schema]. Pour obtenir plus de commandes HBase, consultez le [Guide de référence Apache HBase][hbase-quick-start].
+5. Quittez l’interpréteur de commandes.
    
     ```hbaseshell
     exit
     ```
 
-**toobulk charger des données dans la table HBase de contacts hello**
+**Pour charger des données en bloc dans la table de contacts HBase**
 
 HBase propose plusieurs méthodes pour charger des données dans des tables.  Pour en savoir plus, consultez la rubrique [Chargement en bloc](http://hbase.apache.org/book.html#arch.bulk.load).
 
-Vous trouverez un exemple de fichier de données dans un conteneur de blobs public, *wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*.  contenu Hello hello du fichier de données est :
+Vous trouverez un exemple de fichier de données dans un conteneur de blobs public, *wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*.  Le contenu du fichier de données est le suivant :
 
     8396    Calvin Raji      230-555-0191    230-555-0191    5415 San Gabriel Dr.
     16600   Karen Wu         646-555-0113    230-555-0192    9265 La Paz
@@ -129,32 +129,32 @@ Vous trouverez un exemple de fichier de données dans un conteneur de blobs publ
     4761    Caleb Alexander  670-555-0141    230-555-0199    4775 Kentucky Dr.
     16443   Terry Chander    998-555-0171    230-555-0200    771 Northridge Drive
 
-Vous pouvez éventuellement créer un fichier texte et télécharger le compte de stockage propre fichier tooyour de hello. Pour obtenir des instructions de hello, consultez [télécharger des données pour les travaux Hadoop dans HDInsight][hdinsight-upload-data].
+Si vous le souhaitez, vous pouvez créer un fichier texte et le télécharger dans votre propre compte de stockage. Pour obtenir des instructions, consultez la rubrique [Téléchargement de données pour les tâches Hadoop dans HDInsight][hdinsight-upload-data].
 
 > [!NOTE]
-> Cette procédure utilise la table de Contacts HBase hello que vous avez créé dans la dernière procédure de hello.
+> Cette procédure utilise la table de contacts HBase créée dans la dernière procédure.
 > 
 
-1. À partir de SSH, exécutez hello suivant commande tootransform hello tooStoreFiles du fichier de données et stocker à un chemin d’accès relatif spécifié par Dimporttsv.bulk.output.  Si vous êtes dans le HBase Shell, utilisez tooexit de commande exit hello.
+1. Depuis SSH, exécutez la commande suivante pour transformer le fichier de données en StoreFiles et le stocker au niveau d’un chemin d’accès relatif spécifié par Dimporttsv.bulk.output.  Si vous êtes dans le Shell HBase, utilisez la commande Quitter pour sortir.
 
     ```bash   
     hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.columns="HBASE_ROW_KEY,Personal:Name,Personal:Phone,Office:Phone,Office:Address" -Dimporttsv.bulk.output="/example/data/storeDataFileOutput" Contacts wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
     ```
 
-2. Exécutez hello suivant des données de commande tooupload hello à partir de la table HBase à toohello /example/data/storeDataFileOutput :
+2. Exécutez la commande suivante pour charger les données à partir de /example/data/storeDataFileOutput vers la table HBase :
    
     ```bash
     hbase org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles /example/data/storeDataFileOutput Contacts
     ```
 
-3. Vous pouvez ouvrir hello shell HBase et utiliser le contenu de la table hello analyse commande toolist hello.
+3. Vous pouvez ouvrir l’interpréteur de commandes HBase et utiliser la commande d’analyse pour répertorier le contenu de la table.
 
-## <a name="use-hive-tooquery-hbase"></a>Utiliser la ruche tooquery HBase
+## <a name="use-hive-to-query-hbase"></a>Utiliser Hive pour interroger HBase
 
-Vous pouvez interroger les données des tables HBase à l’aide de Hive. Dans cette section, vous créez une table Hive qui mappe la table HBase à toohello et utilise les données de salutation tooquery dans votre table HBase.
+Vous pouvez interroger les données des tables HBase à l’aide de Hive. Dans cette section, vous créez une table Hive qui correspond à la table HBase et l’utilise pour interroger les données de votre table HBase.
 
-1. Ouvrez **PuTTY**et vous connecter toohello cluster.  Consultez les instructions hello dans la procédure précédente de hello.
-2. À partir de la session SSH hello, utilisez hello suivant commande toostart Beeline :
+1. Ouvrez **PuTTY**et connectez-vous au cluster.  Consultez les instructions de la procédure précédente.
+2. Dans la session SSH, utilisez la commande suivante pour démarrer Beeline :
 
     ```bash
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
@@ -162,7 +162,7 @@ Vous pouvez interroger les données des tables HBase à l’aide de Hive. Dans c
 
     Pour plus d’informations sur Beeline, consultez [Utilisation de Hive avec Hadoop dans HDInsight via Beeline](hdinsight-hadoop-use-hive-beeline.md).
        
-3. Exécutez hello suivant HiveQL script toocreate une table Hive qui mappe la table HBase à toohello. Assurez-vous que vous avez créé la table d’exemple hello mentionné plus haut dans ce didacticiel à l’aide de shell HBase de hello avant d’exécuter cette instruction.
+3. Exécutez le script HiveQL suivant pour créer une table Hive mappant à la table HBase. Avant d'exécuter cette instruction, vous devez avoir créé l'exemple de table référencé dans ce didacticiel en utilisant l’interpréteur de commandes HBase.
 
     ```hiveql   
     CREATE EXTERNAL TABLE hbasecontacts(rowkey STRING, name STRING, homephone STRING, officephone STRING, officeaddress STRING)
@@ -171,7 +171,7 @@ Vous pouvez interroger les données des tables HBase à l’aide de Hive. Dans c
     TBLPROPERTIES ('hbase.table.name' = 'Contacts');
     ```
 
-4. Exécutez hello HiveQL script tooquery hello données dans la table HBase à hello suivantes :
+4. Exécutez le script HiveQL suivant pour interroger les données dans la table HBase :
 
     ```hiveql   
     SELECT count(rowkey) FROM hbasecontacts;
@@ -179,16 +179,16 @@ Vous pouvez interroger les données des tables HBase à l’aide de Hive. Dans c
 
 ## <a name="use-hbase-rest-apis-using-curl"></a>Utilisation des API REST HBase à l’aide de Curl
 
-API REST Hello est sécurisé via [l’authentification de base](http://en.wikipedia.org/wiki/Basic_access_authentication). Vous sont toujours effectuer des demandes à l’aide de HTTP sécurisée (HTTPS) toohelp vous assurer que vos informations d’identification sont envoyées en toute sécurité toohello server.
+L’API REST est sécurisée à l’aide de l’ [authentification de base](http://en.wikipedia.org/wiki/Basic_access_authentication). Vous devrez toujours effectuer les demandes à l’aide du protocole Secure HTTP (HTTPS) pour vous assurer que vos informations d’identification sont envoyées en toute sécurité au serveur.
 
-2. Utilisez hello commande toolist hello existant HBase tables suivantes :
+2. Utilisez la commande suivante pour répertorier les tables HBase existantes :
 
     ```bash
     curl -u <UserName>:<Password> \
     -G https://<ClusterName>.azurehdinsight.net/hbaserest/
     ```
 
-3. Utilisez hello suivant commande toocreate une nouvelle table HBase avec les familles de deux colonnes :
+3. Utilisez la commande suivante pour créer une table HBase avec deux familles de colonnes :
 
     ```bash   
     curl -u <UserName>:<Password> \
@@ -199,8 +199,8 @@ API REST Hello est sécurisé via [l’authentification de base](http://en.wikip
     -v
     ```
 
-    schéma de Hello est fournie au format JSon de hello.
-4. Utilisez hello suivant de commande tooinsert des données :
+    Le schéma est fourni au format JSon.
+4. Utilisez la commande suivante pour insérer des données :
 
     ```bash   
     curl -u <UserName>:<Password> \
@@ -211,14 +211,14 @@ API REST Hello est sécurisé via [l’authentification de base](http://en.wikip
     -v
     ```
    
-    Vous devez en base64 encoder les valeurs hello spécifiés dans le commutateur -d de hello. Dans l’exemple de hello :
+    Vous devez coder en base64 les valeurs spécifiées dans le commutateur -d. Dans l’exemple :
    
    * MTAwMA==: 1000
    * UGVyc29uYWw6TmFtZQ==: Personal:Name
    * Sm9obiBEb2xl: John Dole
      
-     [clé de ligne false](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html#operation_cell_store_single) vous permet de tooinsert plusieurs valeurs (par lot).
-5. Utilisez hello suivant commande tooget une ligne :
+     [false-row-key](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html#operation_cell_store_single) vous permet d’insérer plusieurs valeurs (par lot).
+5. Utilisez la commande suivante pour obtenir une ligne :
    
     ```bash 
     curl -u <UserName>:<Password> \
@@ -232,30 +232,30 @@ Pour plus d’informations sur HBase Rest, voir le [Guide de référence Apache 
 > [!NOTE]
 > Thrift n’est pas pris en charge par HBase dans HDInsight.
 >
-> Lorsque vous utilisez Curl ou toute autre communication reste avec WebHCat, vous devez vous authentifier les demandes hello en fournissant le nom d’utilisateur hello et mot de passe administrateur de cluster HDInsight hello. Vous devez également utiliser le nom du cluster hello comme partie d’identificateur de ressource uniforme (URI) de hello utilisé serveur toohello de toosend hello demandes :
+> Lorsque vous utilisez Curl ou toute autre communication REST avec WebHCat, vous devez authentifier les demandes en fournissant le nom d'utilisateur et le mot de passe de l'administrateur du cluster HDInsight. Vous devez également utiliser le nom du cluster dans l’URI (Uniform Resource Identifier) utilisé pour envoyer les demandes au serveur :
 > 
 >   
 >        curl -u <UserName>:<Password> \
 >        -G https://<ClusterName>.azurehdinsight.net/templeton/v1/status
 >   
->    Vous devez recevoir un toohello similaire de réponse suivant la réponse :
+>    Vous devez recevoir une réponse similaire à celle-ci :
 >   
 >        {"status":"ok","version":"v1"}
    
 
 
 ## <a name="check-cluster-status"></a>Vérification du statut du cluster
-HBase dans HDInsight est livré avec une interface utilisateur web pour la surveillance des clusters. À l’aide de l’interface utilisateur Web de hello, vous pouvez demander des statistiques ou des informations sur les régions.
+HBase dans HDInsight est livré avec une interface utilisateur web pour la surveillance des clusters. Elle vous permet de demander des statistiques ou des informations sur les régions.
 
-**tooaccess hello HBase Master UI**
+**Pour accéder à l’interface utilisateur principale HBase**
 
-1. L’authentification à hello hello Ambari Web UI à https://&lt;nomcluster >. azurehdinsight.net.
-2. Cliquez sur **HBase** à partir du menu de gauche hello.
-3. Cliquez sur **liens rapides** hello haut de page hello, point toohello active soigneur nœud lien et puis cliquez sur **HBase Master UI**.  l’interface utilisateur de Hello est ouvert dans un autre onglet de navigateur :
+1. Connectez-vous à l’interface utilisateur web d’Ambari à l’adresse https://&lt;Clustername>.azurehdinsight.net.
+2. Dans le menu de gauche, cliquez sur **HBase**.
+3. Cliquez sur **Liens rapides** en haut de la page, pointez vers le lien de nœud Zookeeper actif, puis cliquez sur **HBase Master UI (Interface utilisateur principale HBase)**.  L’interface utilisateur est ouverte dans un autre onglet de navigateur :
 
   ![Interface utilisateur principale HDInsight HBase](./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-hmaster-ui.png)
 
-  Hello HBase Master UI contient hello les sections suivantes :
+  L’interface utilisateur principale HBase comporte les sections suivantes :
 
   - serveurs de région
   - serveurs de sauvegarde
@@ -263,8 +263,8 @@ HBase dans HDInsight est livré avec une interface utilisateur web pour la surve
   - tâches
   - attributs logiciels
 
-## <a name="delete-hello-cluster"></a>Supprimer le cluster de hello
-des incohérences tooavoid, nous vous conseillons de désactiver les tables HBase hello avant de supprimer le cluster de hello.
+## <a name="delete-the-cluster"></a>Suppression du cluster
+Pour éviter toute incohérence, nous vous recommandons de désactiver les tables HBase avant de supprimer le cluster.
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -273,9 +273,9 @@ des incohérences tooavoid, nous vous conseillons de désactiver les tables HBas
 Si vous rencontrez des problèmes lors de la création de clusters HDInsight, reportez-vous aux [exigences de contrôle d’accès](hdinsight-administer-use-portal-linux.md#create-clusters).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans cet article, vous avez appris comment toocreate un cluster HBase et comment afficher et les tables toocreate hello données dans ces tables à partir de hello shell HBase. Vous avez également appris comment toouse une ruche des requêtes sur les données dans les tables HBase et comment toouse hello HBase c# API REST toocreate une table HBase et récupérer des données à partir de la table de hello.
+Dans cet article, vous avez appris à créer un cluster HBase, à créer des tables et à afficher les données de ces tables à partir de l’interpréteur de commandes HBase. Vous avez également appris à utiliser une requête Hive pour interroger les données des tables HBase et à utiliser les API REST C# HBase pour créer une table HBase et en extraire les données.
 
-toolearn, voir :
+Pour plus d'informations, consultez les rubriques suivantes :
 
 * [Vue d’ensemble de HDInsight HBase][hdinsight-hbase-overview] : HBase est une base de données NoSQL open source Apache basée sur Hadoop qui fournit un accès aléatoire et une forte cohérence pour de grandes quantités de données non structurées et semi-structurées.
 
@@ -292,7 +292,6 @@ toolearn, voir :
 [hdinsight-hbase-overview]: hdinsight-hbase-overview.md
 [hdinsight-hbase-provision-vnet]: hdinsight-hbase-provision-vnet.md
 [hdinsight-versions]: hdinsight-component-versioning.md
-[hbase-twitter-sentiment]: hdinsight-hbase-analyze-twitter-sentiment.md
 [azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/
 [azure-member-offers]: http://azure.microsoft.com/pricing/member-offers/
 [azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/

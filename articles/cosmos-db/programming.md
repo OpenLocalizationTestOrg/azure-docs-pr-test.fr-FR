@@ -1,6 +1,6 @@
 ---
-title: "programmation de JavaScript côté aaaServer pour la base de données Azure Cosmos | Documents Microsoft"
-description: "Découvrez comment toowrite de base de données Azure Cosmos toouse procédures stockées, les déclencheurs de base de données et les fonctions définies par l’utilisateur (UDF) dans JavaScript. Obtenez notamment des conseils en matière de programmation de base de données."
+title: "Programmation en JavaScript côté serveur pour Azure Cosmos DB | Microsoft Docs"
+description: "Découvrez comment utiliser Azure Cosmos DB pour écrire des procédures stockées, des déclencheurs de base de données et des fonctions définies par l’utilisateur en JavaScript. Obtenez notamment des conseils en matière de programmation de base de données."
 keywords: "Déclencheurs de base de données, procédure stockée, procédure stockée, programme de base de données, sproc, documentdb, azure, Microsoft azure"
 services: cosmos-db
 documentationcenter: 
@@ -15,47 +15,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2016
 ms.author: andrl
-ms.openlocfilehash: 5a011d1c4b0b5908d5de73607a1bc328ed1711d0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8cddc7a8c9aa677b9c93bee3a7e05c226cc1f655
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-cosmos-db-server-side-programming-stored-procedures-database-triggers-and-udfs"></a>Programmation Azure Cosmos DB côté serveur : procédures stockées, déclencheurs de base de données et fonctions définies par l’utilisateur
-Découvrez comment l’exécution transactionnelle de JavaScript intégrée au langage d’Azure Cosmos DB permet aux développeurs d’écrire des **procédures stockées**, des **déclencheurs** et des **fonctions définies par l’utilisateur (FDU)** en mode natif dans une version [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/) pour JavaScript. Cela vous permet de logique d’application toowrite base de données programme qui peut être livrée et exécutée directement sur les partitions de stockage de base de données hello. 
+Découvrez comment l’exécution transactionnelle de JavaScript intégrée au langage d’Azure Cosmos DB permet aux développeurs d’écrire des **procédures stockées**, des **déclencheurs** et des **fonctions définies par l’utilisateur (FDU)** en mode natif dans une version [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/) pour JavaScript. Vous pouvez ainsi écrire une logique d’application de programme de base de données qui peut être expédiée et exécutée directement dans les partitions de stockage de base de données. 
 
-Nous vous recommandons de mise en route démarrée par regarder hello suivant vidéo, où Andrew Liu fournit une brève introduction de tooCosmos de base de données modèle de programmation côté serveur de base de données. 
+Nous vous recommandons de commencer par regarder la vidéo suivante, dans laquelle Andrew Liu présente brièvement le modèle de programmation de base de données côté serveur d’Azure Cosmos DB. 
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-Demo-A-Quick-Intro-to-Azure-DocumentDBs-Server-Side-Javascript/player]
 > 
 > 
 
-Ensuite, retourner toothis article, où vous allez apprendre toohello de réponses hello suivant questions :  
+Ensuite, revenez à cet article dans lequel vous découvrirez les réponses aux questions suivantes :  
 
 * Comment écrire une procédure stockée, un déclencheur ou une fonction définie par l'utilisateur à l'aide de JavaScript ?
 * Comment Azure Cosmos DB offre-il une garantie ACID ?
 * Comment les transactions fonctionnent-elles dans Azure Cosmos DB ?
 * Qu'est-ce que les pré-déclencheurs et les post-déclencheurs, et comment procède-t-on pour leur écriture ?
 * Comment enregistrer et exécuter une procédure stockée, un déclencheur ou une fonction définie par l'utilisateur sur la base de l'architecture REST avec HTTP ?
-* Les kits de développement logiciel Cosmos DB toocreate disponible et exécutez et procédures stockées, déclencheurs, UDF ?
+* Quels sont les kits SDK Azure Cosmos DB disponibles pour créer et exécuter des procédures stockées, des déclencheurs et des fonctions définies par l’utilisateur ?
 
-## <a name="introduction-toostored-procedure-and-udf-programming"></a>Introduction tooStored procédure et la programmation des UDF
-Cette approche de *« JavaScript sous la forme d’un jour modern T-SQL »* évite aux développeurs d’application de la complexité hello des incompatibilités au niveau du système de type et les technologies de mappage relationnel objet. Elle comporte également plusieurs avantages intrinsèques qui peuvent être des applications riches toobuild utilisé :  
+## <a name="introduction-to-stored-procedure-and-udf-programming"></a>Introduction à la programmation de procédures stockées et de fonctions définies par l’utilisateur
+Cette approche du *« JavaScript en tant que langage T-SQL actualisé »* libère les développeurs d’applications des complexités liées aux incompatibilités de système de type et aux technologies de mappage de relationnel objet. Elle présente également une série d'avantages intrinsèques pouvant être utilisés pour créer des applications enrichies :  
 
-* **Logique procédurale :** JavaScript sous la forme d’un langage de programmation de haut niveau, fournit une interface riche et familière de tooexpress une logique métier. Vous pouvez effectuer des séquences de données toohello proche des opérations complexes.
+* **Logique procédurale :** JavaScript en tant que langage de programmation de haut niveau offre une interface riche et familière permettant d’exprimer la logique métier. Vous pouvez effectuer des séquences d'opérations complexes plus proches des données.
 * **Transactions atomiques :** Azure Cosmos DB garantit que les opérations de base de données effectuées dans un déclencheur ou une procédure stockée sont atomiques. Cela permet à une application de combiner des applications connexes en un seul lot de façon à ce que toutes réussissent ou qu’aucune ne réussisse. 
-* **Performances :** hello fait que JSON est le système de type de langage Javascript toohello intrinsèquement mappé et est également permet à l’unité de stockage dans la base de données Cosmos hello pour un nombre d’optimisations de matérialisation différée de JSON documents dans la mémoire tampon de hello pool des rendre disponibles à la demande toohello l’exécution de code. Il existe des gains de performance plus associés avec l’envoi de journaux de base de données toohello de logique métier :
+* **Performances :** le fait que JSON soit intrinsèquement mappé au système en langage Javascript et qu’il constitue l’unité de base du stockage dans Azure Cosmos DB permet une série d’optimisations telles que la matérialisation différée de documents JSON dans le pool de mémoires tampons et leur transmission au code en cours d’exécution. Il existe d'autres avantages en matière de performances en lien avec l'expédition de la logique métier à la base de données :
   
-  * Traitement par lot - Les développeurs peuvent regrouper les opérations telles que les insertions et les envoyer en bloc. coût de la latence du trafic réseau Hello et des transactions distinctes hello magasin toocreate généraux sont considérablement réduites. 
-  * Précompilation – Cosmos DB précompilation des procédures stockées, déclencheurs et définies par l’utilisateur (UDF) de fonctions tooavoid le coût de compilation JavaScript pour chaque appel. Hello surcharge de la création de code d’octet hello pour la logique procédurale de hello est amorti tooa présenter d’avantage.
-  * Séquencement - De nombreuses opérations requièrent un effet secondaire (« déclencheur ») qui implique potentiellement d'effectuer une ou plusieurs opérations de stockage secondaires. À part l’atomicité, il est plus performant lorsque déplacées toohello server. 
-* **Encapsulation :** les procédures stockées peuvent être logique toogroup utilisé dans un seul emplacement. Ceci présente deux avantages :
-  * Il ajoute une couche d’abstraction sur les données brutes de hello, qui permet aux données architectes tooevolve leurs applications indépendamment à partir des données de hello. Cela est particulièrement avantageux lorsque les données de salutation sont sans schéma, en raison des hypothèses fragile toohello qui peuvent nécessiter une toobe intégrée application hello s’ils ont toodeal avec des données directement.  
-  * Cette abstraction permet aux entreprises de sécuriser leurs données en rationalisant l’accès à partir de scripts de hello hello.  
+  * Traitement par lot - Les développeurs peuvent regrouper les opérations telles que les insertions et les envoyer en bloc. Le coût lié à la latence du trafic réseau et la surcharge en matière de stockage pour créer des transactions séparées sont considérablement réduits. 
+  * Précompilation : Azure Cosmos DB précompile les procédures stockées, les déclencheurs et les fonctions définies par l’utilisateur pour éviter les frais de compilation JavaScript liés à chaque appel. La surcharge liée à la création du code d'octet pour la logique procédurale est amortie à une valeur minimale.
+  * Séquencement - De nombreuses opérations requièrent un effet secondaire (« déclencheur ») qui implique potentiellement d'effectuer une ou plusieurs opérations de stockage secondaires. En dehors de l'atomicité, ceci est plus performant lors du déplacement vers le serveur. 
+* **Encapsulation :** Les procédures stockées peuvent être utilisées pour regrouper la logique métier à un endroit. Ceci présente deux avantages :
+  * Une couche d'abstraction est ajoutée aux données brutes, ce qui permet aux architectes de données de faire évoluer leurs applications indépendamment des données. Ceci est particulièrement avantageux lorsque les données ne présentent pas de schéma, en raison des hypothèses fragiles devant être intégrées à l'application si elles doivent gérer des données directement.  
+  * Cette abstraction permet aux entreprises d'assurer la sécurité de leurs données en simplifiant l'accès à partir des scripts.  
 
-Hello création et l’exécution des déclencheurs de base de données, d’une procédure stockée et d’opérateurs de requête personnalisée est pris en charge par le biais hello [API REST](/rest/api/documentdb/), [Azure DocumentDB Studio](https://github.com/mingaliu/DocumentDBStudio/releases), et [client SDK](documentdb-sdk-dotnet.md) sur de nombreuses plateformes, y compris .NET, Node.js et JavaScript.
+La création et l’exécution de déclencheurs de base de données, de procédures stockées et d’opérateurs de requêtes personnalisés sont prises en charge par le biais de [l’API REST](/rest/api/documentdb/), [d’Azure Document DB Studio](https://github.com/mingaliu/DocumentDBStudio/releases) et de [Kits SDK clients](documentdb-sdk-dotnet.md) sur de nombreuses plateformes, dont .NET, Node.js et JavaScript.
 
-Ce didacticiel utilise hello [SDK Node.js avec Q promesses](http://azure.github.io/azure-documentdb-node-q/) tooillustrate syntaxe et l’utilisation de procédures stockées, des déclencheurs et des UDF.   
+Ce didacticiel utilise le [kit SDK Node.js avec Q Promises](http://azure.github.io/azure-documentdb-node-q/) pour illustrer la syntaxe et l’utilisation des procédures stockées, des déclencheurs et des fonctions définies par l’utilisateur.   
 
 ## <a name="stored-procedures"></a>Procédures stockées
 ### <a name="example-write-a-simple-stored-procedure"></a>Exemple : Écriture d’une simple procédure stockée
@@ -72,9 +72,9 @@ Commençons par une simple procédure stockée qui renvoie une réponse « Hell
     }
 
 
-Les procédures stockées sont enregistrées par collection, et elles peuvent s'appliquer à tout document et toute pièce jointe figurant dans cette collection. Hello extrait de code suivant montre comment tooregister hello helloWorld procédure stockée avec une collection. 
+Les procédures stockées sont enregistrées par collection, et elles peuvent s'appliquer à tout document et toute pièce jointe figurant dans cette collection. L'extrait de code suivant indique comment enregistrer la procédure stockée helloWorld avec une collection. 
 
-    // register hello stored procedure
+    // register the stored procedure
     var createdStoredProcedure;
     client.createStoredProcedureAsync('dbs/testdb/colls/testColl', helloWorldStoredProc)
         .then(function (response) {
@@ -85,9 +85,9 @@ Les procédures stockées sont enregistrées par collection, et elles peuvent s'
         });
 
 
-Une fois la procédure stockée hello est inscrit, nous pouvons exécuter par rapport à la collection de hello et lire hello les résultats au client de hello. 
+Une fois que la procédure stockée est enregistrée, nous pouvons l'exécuter sur la base de la collection et renvoyer les résultats au client. 
 
-    // execute hello stored procedure
+    // execute the stored procedure
     client.executeStoredProcedureAsync('dbs/testdb/colls/testColl/sprocs/helloWorld')
         .then(function (response) {
             console.log(response.result); // "Hello, World"
@@ -96,12 +96,12 @@ Une fois la procédure stockée hello est inscrit, nous pouvons exécuter par ra
         });
 
 
-objet de contexte Hello fournit l’accès tooall les opérations qui peuvent être effectuées sur le stockage de base de données Cosmos, ainsi que pour accéder aux objets de demande et de réponse toohello. Dans ce cas, nous avons utilisé hello objet tooset hello corps de réponse de réponse hello qui a été envoyé arrière toohello client. Pour plus d’informations, consultez toohello [JavaScript de base de données Azure Cosmos server documentation SDK](http://azure.github.io/azure-documentdb-js-server/).  
+L’objet context donne accès à toutes les opérations pouvant être effectuées dans le stockage Azure Cosmos DB, ainsi que l’accès aux objets request et response. En l'occurrence, nous avons utilisé l'objet response pour définir le corps de la réponse renvoyée au client. Pour plus d’informations, consultez la [documentation du kit SDK du serveur JavaScript Azure Cosmos DB](http://azure.github.io/azure-documentdb-js-server/).  
 
-Nous développer cet exemple et ajouter plusieurs fonctionnalités de la base de données toohello de procédure stockée. Les procédures stockées peuvent créer, mettre à jour, lire, interroger et supprimer des documents et pièces jointes à l’intérieur de la collection de hello.    
+Extrapolons à partir de cet exemple et ajoutons à la procédure stockée d'autres fonctionnalités liées à la base de données. Les procédures stockées peuvent créer, mettre à jour, lire, interroger et supprimer des documents et des pièces jointes au sein de la collection.    
 
-### <a name="example-write-a-stored-procedure-toocreate-a-document"></a>Exemple : Écrire une procédure stockée de toocreate un document
-extrait de code Hello suivant montre comment toouse hello toointeract d’objet de contexte avec des ressources de base de données Cosmos.
+### <a name="example-write-a-stored-procedure-to-create-a-document"></a>Exemple : Écriture d’une procédure stockée pour créer un document
+L’extrait de code suivant indique comment utiliser l’objet context pour interagir avec les ressources Azure Cosmos DB.
 
     var createDocumentStoredProc = {
         id: "createMyDocument",
@@ -120,19 +120,19 @@ extrait de code Hello suivant montre comment toouse hello toointeract d’objet 
     }
 
 
-Cette procédure stockée accepte comme entrée documentToCreate, corps hello d’un toobe document créé dans la collection actuelle de hello. Toutes ces opérations sont asynchrones et dépendent de rappels de fonction JavaScript. fonction de rappel Hello possède deux paramètres, un pour l’objet d’erreur hello hello échoue et l’autre pour hello créé l’objet. À l’intérieur du rappel de hello, les utilisateurs peuvent gérer l’exception de hello ou lever une erreur. Si un rappel n’est pas fourni, et il existe une erreur, le runtime de base de données Azure Cosmos hello génère une erreur.   
+Cette procédure stockée prend en entrée documentToCreate, le corps d'un document à créer dans la collection actuelle. Toutes ces opérations sont asynchrones et dépendent de rappels de fonction JavaScript. La fonction de rappel présente deux paramètres, un pour l'objet d'erreur en cas d'échec de l'opération et un pour l'objet créé. À l'intérieur du rappel, les utilisateurs peuvent gérer l'exception ou générer une erreur. Si aucun rappel n’est fourni et qu’une erreur se produit, le runtime d’Azure Cosmos DB génère une erreur.   
 
-Dans l’exemple hello ci-dessus, le rappel de hello génère une erreur en cas d’échec de l’opération de hello. Sinon, il définit les id hello Hello créé le document en tant que corps hello du client de toohello réponse hello. Voici la façon dont cette procédure stockée est exécutée avec des paramètres d'entrée.
+Dans l'exemple ci-dessous, la fonction de rappel génère une erreur si l'opération a échoué. Dans le cas contraire, elle définit l'ID du document créé en tant que corps de la réponse au client. Voici la façon dont cette procédure stockée est exécutée avec des paramètres d'entrée.
 
-    // register hello stored procedure
+    // register the stored procedure
     client.createStoredProcedureAsync('dbs/testdb/colls/testColl', createDocumentStoredProc)
         .then(function (response) {
             var createdStoredProcedure = response.resource;
 
-            // run stored procedure toocreate a document
+            // run stored procedure to create a document
             var docToCreate = {
                 id: "DocFromSproc",
-                book: "hello Hitchhiker’s Guide toohello Galaxy",
+                book: "The Hitchhiker’s Guide to the Galaxy",
                 author: "Douglas Adams"
             };
 
@@ -148,16 +148,16 @@ Dans l’exemple hello ci-dessus, le rappel de hello génère une erreur en cas 
     });
 
 
-Notez que cette procédure stockée peut tootake modifié un tableau d’instances de document en tant qu’entrée et créer les hello même stockée dans l’exécution de la procédure au lieu de réseau de plusieurs demandes toocreate d'entre eux individuellement. Cela peut être utilisé tooimplement un importateur en bloc efficace pour DB Cosmos (décrit plus loin dans ce didacticiel).   
+Notez que cette procédure stockée peut être modifiée pour accepter en entrée un tableau de corps de document et pour les créer dans la même exécution de procédure stockée au lieu de plusieurs demandes du réseau visant à les créer chacune séparément. Ceci permet de mettre en œuvre une importation en bloc efficace pour Azure Cosmos DB (un point que nous aborderons plus tard dans ce didacticiel).   
 
-exemple Hello décrit a montré comment toouse des procédures stockées. Nous allons aborder les déclencheurs et les fonctions définies par l’utilisateur (UDF) plus loin dans le didacticiel de hello.
+L'exemple décrit ci-dessus a illustré la façon d'utiliser des procédures stockées. Nous verrons les déclencheurs et les fonctions définies par l'utilisateur plus loin dans ce didacticiel.
 
 ## <a name="database-program-transactions"></a>Transactions de programme de base de données
 Une transaction dans une base de données classique peut être définie comme étant une séquence d'opérations effectuées en tant qu'unité de travail logique unique. Chaque transaction offre des **garanties ACID**. ACID est un acronyme bien connu qui est l’abréviation de quatre propriétés : Atomicité, Cohérence, Isolation et Durabilité.  
 
-En bref, l’atomicité garantit que tout le travail hello effectué à l’intérieur d’une transaction est considéré comme une unité unique où soit sont validées ou none. Cohérence permet de s’assurer que les données de salutation sont toujours en bon état interne entre les transactions. Isolation garantit que deux transactions n’interfèrent avec d’autres : en général, la plupart des systèmes de fournissent plusieurs niveaux d’isolement qui peuvent être utilisés selon les besoins de l’application hello. Durabilité garantit que toute modification est validée dans la base de données hello sera toujours présente.   
+En bref, l'atomicité permet de s'assurer que tout le travail effectué au sein d'une transaction est traité en tant que simple unité validée dans son intégralité ou aucunement. La cohérence permet de s'assurer que les données sont toujours dans un état interne correct d'une transaction à l'autre. L'isolation, quant à elle, permet de garantir qu'aucune transaction n'interfère avec les autres. Généralement, la plupart des systèmes commerciaux fournissent plusieurs niveaux d'isolation pouvant être utilisés en fonction des besoins des applications. Enfin, la durabilité permet de s'assurer que toute modification validée dans la base de données sera toujours présente.   
 
-Dans la base de données Cosmos, JavaScript est hébergé dans hello même espace mémoire en tant que base de données hello. Par conséquent, les demandes effectuées au sein des procédures stockées et les déclencheurs s’exécutent dans hello même étendue d’une session de base de données. Cela permet de Cosmos DB tooguarantee ACID pour toutes les opérations qui font partie d’un seul procédure stocké/déclencheur. Tenez compte de hello suit stocké la définition de la procédure :
+Dans Azure Cosmos DB, JavaScript est hébergé dans le même espace mémoire que la base de données. Par conséquent, les demandes effectuées au sein de procédures stockées et de déclencheurs s'exécutent dans la même étendue qu'une session de base de données. Cela permet à Azure Cosmos DB de garantir ACID pour toutes les opérations qui font partie d’une procédure stockée ou d’un déclencheur. Envisageons la définition de procédure stockée suivante :
 
     // JavaScript source code
     var exchangeItemsSproc = {
@@ -175,24 +175,24 @@ Dans la base de données Cosmos, JavaScript est hébergé dans hello même espac
                 function (err, documents, responseOptions) {
                     if (err) throw new Error("Error" + err.message);
 
-                    if (documents.length != 1) throw "Unable toofind both names";
+                    if (documents.length != 1) throw "Unable to find both names";
                     player1Document = documents[0];
 
                     var filterQuery2 = 'SELECT * FROM Players p where p.id = "' + playerId2 + '"';
                     var accept2 = collection.queryDocuments(collection.getSelfLink(), filterQuery2, {},
                         function (err2, documents2, responseOptions2) {
                             if (err2) throw new Error("Error" + err2.message);
-                            if (documents2.length != 1) throw "Unable toofind both names";
+                            if (documents2.length != 1) throw "Unable to find both names";
                             player2Document = documents2[0];
                             swapItems(player1Document, player2Document);
                             return;
                         });
-                    if (!accept2) throw "Unable tooread player details, abort ";
+                    if (!accept2) throw "Unable to read player details, abort ";
                 });
 
-            if (!accept) throw "Unable tooread player details, abort ";
+            if (!accept) throw "Unable to read player details, abort ";
 
-            // swap hello two players’ items
+            // swap the two players’ items
             function swapItems(player1, player2) {
                 var player1ItemSave = player1.item;
                 player1.item = player2.item;
@@ -200,91 +200,91 @@ Dans la base de données Cosmos, JavaScript est hébergé dans hello même espac
 
                 var accept = collection.replaceDocument(player1._self, player1,
                     function (err, docReplaced) {
-                        if (err) throw "Unable tooupdate player 1, abort ";
+                        if (err) throw "Unable to update player 1, abort ";
 
                         var accept2 = collection.replaceDocument(player2._self, player2,
                             function (err2, docReplaced2) {
-                                if (err) throw "Unable tooupdate player 2, abort"
+                                if (err) throw "Unable to update player 2, abort"
                             });
 
-                        if (!accept2) throw "Unable tooupdate player 2, abort";
+                        if (!accept2) throw "Unable to update player 2, abort";
                     });
 
-                if (!accept) throw "Unable tooupdate player 1, abort";
+                if (!accept) throw "Unable to update player 1, abort";
             }
         }
     }
 
-    // register hello stored procedure in Node.js client
+    // register the stored procedure in Node.js client
     client.createStoredProcedureAsync(collection._self, exchangeItemsSproc)
         .then(function (response) {
             var createdStoredProcedure = response.resource;
         }
     );
 
-Cette procédure stockée utilise des transactions au sein d’un jeu application tootrade des éléments entre deux lecteurs en une seule opération. Hello stockées deux documents procédure tentatives tooread que chaque lecteur toohello correspondant ID passée en tant qu’argument. Si les deux documents de lecteur sont trouvés, puis procédure stockée hello met à jour les documents hello en échangeant leurs éléments. Si des erreurs se produisent le long de la façon de hello, elle lève une exception de JavaScript qui abandonne implicitement des transactions de hello.
+Cette procédure stockée utilise des transactions au sein d'une application de jeu pour échanger des éléments entre deux joueurs en une seule opération. Elle essaie de lire deux documents, correspondant chacun aux ID de joueur transmis en tant qu'arguments. Si les deux documents de joueur sont trouvés, la procédure stockée les met à jour en intervertissant leurs éléments. Si des erreurs se produisent en chemin, elle génère une exception JavaScript qui annule implicitement la transaction.
 
-Si hello procédure stockée hello de collection est inscrit sur est une collection de partition unique, documents de hello tooall étendue au sein de la collection de hello est hello transaction. Si la collection de hello est partitionnée, les procédures stockées sont exécutées dans la portée de transaction hello d’une clé de partition unique. Stockée de chaque exécution de la procédure doit comporter une valeur de clé de partition toohello étendue hello de la transaction doit s’exécuter sous. Pour plus d’informations, consultez [Partitionnement dans Azure Cosmos DB](partition-data.md).
+Si la collection de la procédure stockée est enregistrée sur une collection à partition unique, la transaction est étendue à tous les documents au sein de la collection. Si la collection est partitionnée, les procédures stockées sont exécutées dans l’étendue de transaction d’une clé de partition unique. Chaque exécution de procédure stockée doit alors inclure une valeur de clé de partition correspondant à l’étendue sous laquelle la transaction doit être exécutée. Pour plus d’informations, consultez [Partitionnement dans Azure Cosmos DB](partition-data.md).
 
 ### <a name="commit-and-rollback"></a>Validation et restauration
-Les transactions sont intégrées de façon approfondie et native dans le modèle de programmation JavaScript d’Azure Cosmos DB. Dans une fonction JavaScript, toutes les opérations sont automatiquement encapsulées dans une transaction unique. Si hello JavaScript se termine sans qu’aucune exception, base de données toohello hello opérations sont validées. En effet, hello « instructions BEGIN TRANSACTION » et « COMMIT TRANSACTION » dans les bases de données relationnelles sont implicites dans la base de données Cosmos.  
+Les transactions sont intégrées de façon approfondie et native dans le modèle de programmation JavaScript d’Azure Cosmos DB. Dans une fonction JavaScript, toutes les opérations sont automatiquement encapsulées dans une transaction unique. Si le code JavaScript s'exécute sans erreur, les opérations dans la base de données sont validées. En effet, les instructions BEGIN TRANSACTION et COMMIT TRANSACTION des bases de données relationnelles sont implicites dans Azure Cosmos DB.  
 
-S’il existe une exception est propagée à partir du script de hello, le runtime JavaScript Cosmos DB annule toute transaction de hello. Comme indiqué précédemment dans hello exemple, en levant une exception est équivalent effectivement tooa « ROLLBACK TRANSACTION » dans la base de données Cosmos.
+Si une exception est propagée à partir du script, le runtime JavaScript d’Azure Cosmos DB annule toute la transaction. Comme le montre l’exemple précédent, la génération d’une exception équivaut à une instruction ROLLBACK TRANSACTION dans Azure Cosmos DB.
 
 ### <a name="data-consistency"></a>Cohérence des données
-Déclencheurs et procédures stockées sont toujours exécutées sur le réplica principal de hello du conteneur de base de données Azure Cosmos hello. Cela permet de s'assurer que les lectures à partir des procédures stockées offrent une cohérence forte. Les requêtes utilisant les fonctions définies par l’utilisateur peuvent être exécutées sur hello principal ou de n’importe quel réplica secondaire, mais nous nous assurons que toomeet hello demandée au niveau de cohérence en choisissant de réplica approprié de hello.
+Les procédures stockées et les déclencheurs sont toujours exécutés dans le réplica principal du conteneur Azure Cosmos DB. Cela permet de s'assurer que les lectures à partir des procédures stockées offrent une cohérence forte. Les requêtes utilisant des fonctions définies par l'utilisateur peuvent être exécutées dans le réplica principal ou n'importe quel réplica secondaire, mais nous veillons à répondre au niveau de cohérence demandé en choisissant le réplica approprié.
 
 ## <a name="bounded-execution"></a>Exécution limitée
-Toutes les opérations de base de données Cosmos doivent se terminer dans le serveur hello spécifié durée du délai d’attente de la demande. Cette contrainte s’applique également à des fonctions de tooJavaScript (procédures stockées, déclencheurs et fonctions définies par l’utilisateur). Si une opération ne se termine pas avec ce délai, hello transaction est restaurée. Fonctions JavaScript doivent terminer délai hello ou implémenter une exécution toobatch/reprise de modèle en fonction de continuation.  
+Toutes les opérations Azure Cosmos DB doivent s’effectuer avant l’expiration de la demande spécifiée par le serveur. Cette contrainte s'applique également aux fonctions JavaScript (procédures stockées, déclencheurs et fonctions définies par l'utilisateur). Si une opération n'est pas terminée dans ce délai imparti, la transaction est annulée. Les fonctions JavaScript doivent s'exécuter dans ce délai ou mettre en œuvre un modèle basé sur la continuation pour traiter par lots/reprendre l'exécution.  
 
-Dans le développement de toosimplify commande stockées procédures et déclencheurs toohandle des limites de temps, toutes les fonctions sous l’objet de collection hello (pour créer, lire, remplacer et supprimer des documents et des pièces jointes) retournent une valeur booléenne qui représente si qui l’opération sera effectuée. Si cette valeur est false, cela indique que délai hello est sur tooexpire et que cette procédure hello doit encapsuler l’exécution des requêtes.  Opérations en file d’attente toohello préalable première opération de magasin non accepté est garanti que toocomplete si la procédure stockée hello est terminée dans le temps et ne pas en file d’attente d’autres requêtes.  
+Afin de simplifier le développement de procédures stockées et de déclencheurs pour gérer les limites de temps, toutes les fonctions sous l'objet de collection (pour la création, la lecture, le remplacement et la suppression de documents et de pièces jointes) renvoient une valeur booléenne qui indique si l'opération arrivera à son terme. Si cette valeur est false, cela indique que la limite de temps est sur le point d'arriver à échéance et que la procédure doit clôturer l'exécution.  Les opérations mises en file d'attente avant la première opération de stockage non acceptée sont assurées de s'exécuter si la procédure stockée s'exécute à temps et ne place pas d'autres demandes dans la file d'attente.  
 
-Les fonctions JavaScript sont également liées lors de la consommation de ressources. COSMOS DB réserve le débit par la collection en fonction de la taille de hello configuré d’un compte de base de données. Le débit est exprimé en unités normalisées de processeur, de mémoire et de consommation d'E/S, appelées unités de demande. Les fonctions JavaScript peuvent utiliser d’un grand nombre d’unités réservées dans un délai court et peuvent obtenir limitée si limite la collection hello est atteinte. Procédures stockées utilisant beaucoup de ressources peuvent également être disponibilité tooensure mis en quarantaine des opérations de base de données primitif.  
+Les fonctions JavaScript sont également liées lors de la consommation de ressources. Azure Cosmos DB réserve le débit par collection en fonction de la taille configurée d’un compte de base de données. Le débit est exprimé en unités normalisées de processeur, de mémoire et de consommation d'E/S, appelées unités de demande. Les fonctions JavaScript peuvent potentiellement utiliser un nombre élevé d'unités de demande en peu de temps, et la limite de débit peut être restreinte si la limite de la collection est atteinte. Les procédures stockées gourmandes en ressources peuvent également être mises en quarantaine pour garantir la disponibilité des opérations de base de données primitives.  
 
 ### <a name="example-bulk-importing-data-into-a-database-program"></a>Exemple : importation de données en bloc dans un programme de base de données
-Voici un exemple d’une procédure stockée qui est écrit toobulk-importer des documents dans une collection. Remarque hello stockage l’exécution des procédures handles limitées en vérifiant hello booléen valeur de retour à partir de createDocument, et puis utilise hello le nombre de documents insérées dans chaque appel de la progression de tootrack et de reprise de la procédure stockée hello sur des lots.
+Ci-dessous se trouve un exemple de procédure stockée qui a été écrite pour importer des documents en bloc dans une collection. Notez la façon dont la procédure stockée gère l'exécution liée en vérifiant la valeur de retour booléenne à partir de createDocument, puis utilise le nombre de documents insérés dans chaque appel de la procédure stockée pour effectuer le suivi de la progression et la reprendre d'un lot à un autre.
 
     function bulkImport(docs) {
         var collection = getContext().getCollection();
         var collectionLink = collection.getSelfLink();
 
-        // hello count of imported docs, also used as current doc index.
+        // The count of imported docs, also used as current doc index.
         var count = 0;
 
         // Validate input.
-        if (!docs) throw new Error("hello array is undefined or null.");
+        if (!docs) throw new Error("The array is undefined or null.");
 
         var docsLength = docs.length;
         if (docsLength == 0) {
             getContext().getResponse().setBody(0);
         }
 
-        // Call hello create API toocreate a document.
+        // Call the create API to create a document.
         tryCreate(docs[count], callback);
 
         // Note that there are 2 exit conditions:
-        // 1) hello createDocument request was not accepted. 
-        //    In this case hello callback will not be called, we just call setBody and we are done.
-        // 2) hello callback was called docs.length times.
-        //    In this case all documents were created and we don’t need toocall tryCreate anymore. Just call setBody and we are done.
+        // 1) The createDocument request was not accepted. 
+        //    In this case the callback will not be called, we just call setBody and we are done.
+        // 2) The callback was called docs.length times.
+        //    In this case all documents were created and we don’t need to call tryCreate anymore. Just call setBody and we are done.
         function tryCreate(doc, callback) {
             var isAccepted = collection.createDocument(collectionLink, doc, callback);
 
-            // If hello request was accepted, callback will be called.
-            // Otherwise report current count back toohello client, 
-            // which will call hello script again with remaining set of docs.
+            // If the request was accepted, callback will be called.
+            // Otherwise report current count back to the client, 
+            // which will call the script again with remaining set of docs.
             if (!isAccepted) getContext().getResponse().setBody(count);
         }
 
-        // This is called when collection.createDocument is done in order tooprocess hello result.
+        // This is called when collection.createDocument is done in order to process the result.
         function callback(err, doc, options) {
             if (err) throw err;
 
-            // One more document has been inserted, increment hello count.
+            // One more document has been inserted, increment the count.
             count++;
 
             if (count >= docsLength) {
-                // If we created all documents, we are done. Just set hello response.
+                // If we created all documents, we are done. Just set the response.
                 getContext().getResponse().setBody(count);
             } else {
                 // Create next document.
@@ -295,7 +295,7 @@ Voici un exemple d’une procédure stockée qui est écrit toobulk-importer des
 
 ## <a id="trigger"></a> Déclencheurs de base de données
 ### <a name="database-pre-triggers"></a>Pré-déclencheurs de base de données
-Azure Cosmos DB fournit des déclencheurs qui sont exécutés ou déclenchés par une opération sur un document. Par exemple, vous pouvez spécifier un déclencheur avant lorsque vous créez un document – ce déclencheur préliminaire s’exécutera avant la création de document de hello. Hello Voici un exemple de comment pré-déclencheurs peuvent être des propriétés de hello toovalidate utilisées d’un document qui est en cours de création :
+Azure Cosmos DB fournit des déclencheurs qui sont exécutés ou déclenchés par une opération sur un document. Par exemple, vous pouvez spécifier un pré-déclencheur lorsque vous créez un document ; ce pré-déclencheur s'exécutera avant la création du document Voici un exemple de la façon dont les pré-déclencheurs peuvent être utilisés pour valider les propriétés d'un document en cours de création.
 
     var validateDocumentContentsTrigger = {
         id: "validateDocumentContents",
@@ -303,7 +303,7 @@ Azure Cosmos DB fournit des déclencheurs qui sont exécutés ou déclenchés pa
             var context = getContext();
             var request = context.getRequest();
 
-            // document toobe created in hello current operation
+            // document to be created in the current operation
             var documentToCreate = request.getBody();
 
             // validate properties
@@ -312,7 +312,7 @@ Azure Cosmos DB fournit des déclencheurs qui sont exécutés ou déclenchés pa
                 documentToCreate["my timestamp"] = ts.getTime();
             }
 
-            // update hello document that will be created
+            // update the document that will be created
             request.setBody(documentToCreate);
         },
         triggerType: TriggerType.Pre,
@@ -320,7 +320,7 @@ Azure Cosmos DB fournit des déclencheurs qui sont exécutés ou déclenchés pa
     }
 
 
-Et hello code d’inscription côté client Node.js correspondant pour le déclencheur de hello :
+Ainsi que le code d'enregistrement côté client Node.js correspondant pour le déclencheur :
 
     // register pre-trigger
     client.createTriggerAsync(collection.self, validateDocumentContentsTrigger)
@@ -347,9 +347,9 @@ Et hello code d’inscription côté client Node.js correspondant pour le décle
     });
 
 
-Les pré-déclencheurs ne peuvent pas avoir de paramètres en entrée. objet de demande Hello peut être le message de demande utilisé toomanipulate hello associé hello opération. Ici, déclencheur avant de hello est en cours d’exécution avec la création d’un document hello et corps du message de demande hello contient hello document toobe est créé au format JSON.   
+Les pré-déclencheurs ne peuvent pas avoir de paramètres en entrée. L'objet request peut être utilisé pour manipuler le message de demande associé à l'opération. Ici, le pré-déclencheur est exécuté avec la création d'un document et le corps du message de demande contient le document à créer au format JSON.   
 
-Lorsque les déclencheurs sont enregistrées, les utilisateurs peuvent spécifier des opérations de hello, il peut s’exécuter avec. Ce déclencheur a été créé avec TriggerOperation.Create, ce qui signifie que suivant de hello n’est pas autorisée.
+Lorsque les déclencheurs sont enregistrés, les utilisateurs peuvent spécifier les opérations avec lesquelles il peut s'exécuter. Ce déclencheur a été créé avec TriggerOperation.Create, ce qui signifie que le code suivant n'est pas autorisé.
 
     var options = { preTriggerInclude: "validateDocumentContents" };
 
@@ -364,9 +364,9 @@ Lorsque les déclencheurs sont enregistrées, les utilisateurs peuvent spécifie
     // Fails, can’t use a create trigger in a replace operation
 
 ### <a name="database-post-triggers"></a>Post-déclencheurs de base de données
-Les post-déclencheurs, comme les pré-déclencheurs, sont associés à une opération dans un document et n'acceptent pas de paramètres en entrée. Ils ne s’exécutent **après** opération de hello est terminée et ont accès toohello réponse message qui est envoyé toohello client.   
+Les post-déclencheurs, comme les pré-déclencheurs, sont associés à une opération dans un document et n'acceptent pas de paramètres en entrée. Ils s'exécutent **après** la fin de l'opération et ils ont accès au message de réponse qui est envoyé au client.   
 
-Hello, l’exemple suivant montre les post-déclencheurs en action :
+L'exemple suivant montre les post-déclencheurs en action :
 
     var updateMetadataTrigger = {
         id: "updateMetadata",
@@ -382,11 +382,11 @@ Hello, l’exemple suivant montre les post-déclencheurs en action :
             var filterQuery = 'SELECT * FROM root r WHERE r.id = "_metadata"';
             var accept = collection.queryDocuments(collection.getSelfLink(), filterQuery,
                 updateMetadataCallback);
-            if(!accept) throw "Unable tooupdate metadata, abort";
+            if(!accept) throw "Unable to update metadata, abort";
 
             function updateMetadataCallback(err, documents, responseOptions) {
                 if(err) throw new Error("Error" + err.message);
-                         if(documents.length != 1) throw 'Unable toofind metadata document';
+                         if(documents.length != 1) throw 'Unable to find metadata document';
 
                          var metadataDocument = documents[0];
 
@@ -395,9 +395,9 @@ Hello, l’exemple suivant montre les post-déclencheurs en action :
                          metadataDocument.createdNames += " " + createdDocument.id;
                          var accept = collection.replaceDocument(metadataDocument._self,
                                metadataDocument, function(err, docReplaced) {
-                                      if(err) throw "Unable tooupdate metadata, abort";
+                                      if(err) throw "Unable to update metadata, abort";
                                });
-                         if(!accept) throw "Unable tooupdate metadata, abort";
+                         if(!accept) throw "Unable to update metadata, abort";
                          return;                    
             }                                                                                            
         },
@@ -406,14 +406,14 @@ Hello, l’exemple suivant montre les post-déclencheurs en action :
     }
 
 
-déclencheur de Hello peut être inscrit comme indiqué dans hello suivant l’exemple.
+Le déclencheur peut être enregistré comme indiqué dans l'exemple suivant.
 
     // register post-trigger
     client.createTriggerAsync('dbs/testdb/colls/testColl', updateMetadataTrigger)
         .then(function(createdTrigger) { 
             var docToCreate = { 
                 name: "artist_profile_1023",
-                artist: "hello Band",
+                artist: "The Band",
                 albums: ["Hellujah", "Rotators", "Spinning Top"]
             };
 
@@ -432,14 +432,14 @@ déclencheur de Hello peut être inscrit comme indiqué dans hello suivant l’e
     });
 
 
-Ce déclencheur interroge pour le document de métadonnées hello et met à jour avec des détails sur le document de hello nouvellement créé.  
+Ce déclencheur interroge le document de métadonnées et le met à jour avec des informations relatives au document qui vient d'être créé.  
 
-Une chose importante toonote est hello **transactionnelle** l’exécution des déclencheurs dans la base de données Cosmos. Ce déclencheur après s’exécute en tant que partie de hello même transaction que la création de hello hello document d’origine. Par conséquent, si nous lève une exception à partir de post-déclencheur de hello (par exemple si nous sommes le document de métadonnées hello tooupdate impossible), toute transaction de hello échouera et être restaurée. Aucun document n'est créé et une exception est renvoyée.  
+Un élément important à noter est l’exécution **transactionnelle** des déclencheurs dans Azure Cosmos DB. Ce post-déclencheur s'exécute dans le cadre de la même transaction que la création du document initial. Par conséquent, si nous générons une exception à partir du post-déclencheur (supposons que nous ne soyons pas en mesure de mettre à jour le document de métadonnées), la transaction entière échoue et est annulée. Aucun document n'est créé et une exception est renvoyée.  
 
 ## <a id="udf"></a>Fonctions définies par l’utilisateur
-Fonctions définies par l’utilisateur (UDF) sont la grammaire du langage de requête utilisé tooextend hello DocumentDB API SQL et implémentent la logique métier personnalisée. Elles peuvent uniquement être appelées à partir de requêtes. Ils n’ont pas d’objet de contexte d’accès toohello et sont censées toobe utilisé en tant que calcul seule JavaScript. Par conséquent, l’UDF peuvent être exécuté sur les réplicas secondaires de hello Cosmos DB service.  
+Les fonctions définies par l’utilisateur (FDU) permettent d’étendre la grammaire du langage de requête SQL de l’API DocumentDB et de mettre en œuvre une logique métier personnalisée. Elles peuvent uniquement être appelées à partir de requêtes. Elles n'ont pas accès à l'objet de contexte et sont destinées à être utilisées en tant que JavaScript en calcul seul. Par conséquent, elles peuvent être exécutées sur des réplicas secondaires du service Azure Cosmos DB.  
 
-Hello exemple suivant crée un fichier UDF toocalculate impôt basée sur les taux de différents supports de revenu et utilise alors à l’intérieur d’une requête toofind toutes les personnes qui les taxes payant plus de 20 000 $.
+L'exemple suivant crée une fonction définie par l'utilisateur pour calculer les impôts sur la base des taux de différentes tranches de revenu, puis utilise celle-ci au sein d'une requête pour trouver toutes les personnes ayant payé des impôts supérieurs à 20 000 $.
 
     var taxUdf = {
         id: "tax",
@@ -458,7 +458,7 @@ Hello exemple suivant crée un fichier UDF toocalculate impôt basée sur les ta
     }
 
 
-Hello UDF peut ensuite être utilisé dans les requêtes comme Bonjour suivant l’exemple :
+La fonction définie par l'utilisateur peut ensuite être utilisée dans des requêtes comme dans l'exemple suivant :
 
     // register UDF
     client.createUserDefinedFunctionAsync('dbs/testdb/colls/testColl', taxUdf)
@@ -479,12 +479,12 @@ Hello UDF peut ensuite être utilisé dans les requêtes comme Bonjour suivant l
     });
 
 ## <a name="javascript-language-integrated-query-api"></a>API de requête intégrée au langage JavaScript
-En outre tooissuing les requêtes à l’aide de la grammaire SQL de DocumentDB, hello Kit de développement logiciel côté serveur vous permet de requêtes tooperform optimisé à l’aide d’une interface JavaScript fluent sans aucune connaissance de SQL. requête de JavaScript Hello QU'API vous permet de requêtes de build tooprogrammatically en passant des fonctions de prédicat dans une fonction enchaînée appelle, avec un tooECMAScript5 familiers syntaxe intégrés du tableau et les bibliothèques JavaScript comme lodash. Les requêtes sont analysées par hello JavaScript runtime toobe exécutée efficacement les indices de DB Azure Cosmos.
+En plus de l’émission de requêtes à l’aide de la grammaire SQL de DocumentDB, le kit SDK côté serveur vous permet d’effectuer des requêtes optimisées à l’aide d’une interface JavaScript fluide sans aucune connaissance de SQL. L’API de requête JavaScript permet de créer des requêtes par programme en transmettant des fonctions de prédicat dans des appels de fonction chaînables, avec une syntaxe connue des types prédéfinis de Array ECMAScript5 et des bibliothèques JavaScript courantes, telles que lodash. Les requêtes sont analysées par le runtime JavaScript pour être exécutées efficacement à l’aide d’index Azure Cosmos DB.
 
 > [!NOTE]
-> `__`(trait de soulignement double) est un alias trop`getContext().getCollection()`.
+> `__` (trait de soulignement double) est un alias pour `getContext().getCollection()`.
 > <br/>
-> En d’autres termes, vous pouvez utiliser `__` ou `getContext().getCollection()` tooaccess hello API de requête de JavaScript.
+> En d’autres termes, vous pouvez utiliser `__` ou `getContext().getCollection()` pour accéder à l’API de requête JavaScript.
 > 
 > 
 
@@ -503,7 +503,7 @@ Commence un appel chaîné qui doit se terminer par value().
 <b>filter(predicateFunction [, options] [, callback])</b>
 <ul>
 <li>
-Filtre hello d’entrée à l’aide d’une fonction de prédicat qui retourne la valeur true/false dans l’ordre toofilter documents d’entrée/sortie dans le jeu résultant de hello. Ce comportement similaire tooa clause WHERE dans SQL.
+Filtre l’entrée à l’aide d’une fonction de prédicat qui renvoie true/false afin de filtrer les documents d’entrée dans le jeu résultant. Ce comportement est semblable à celui d’une clause WHERE dans SQL.
 </li>
 </ul>
 </li>
@@ -511,7 +511,7 @@ Filtre hello d’entrée à l’aide d’une fonction de prédicat qui retourne 
 <b>map(transformationFunction [, options] [, callback])</b>
 <ul>
 <li>
-Applique une projection d’une fonction de transformation qui mappe chaque élément d’entrée tooa JavaScript objet ou une valeur. Cela a un comportement similaire clause SELECT tooa dans SQL.
+Applique une projection à partir d’une fonction de transformation qui mappe chaque élément d’entrée à une valeur ou un objet JavaScript. Ce comportement est semblable à celui d’une clause SELECT dans SQL.
 </li>
 </ul>
 </li>
@@ -519,7 +519,7 @@ Applique une projection d’une fonction de transformation qui mappe chaque él�
 <b>pluck([propertyName] [, options] [, callback])</b>
 <ul>
 <li>
-Il s’agit d’un raccourci pour une carte qui extrait la valeur hello d’une propriété unique de chaque élément d’entrée.
+Ceci est un raccourci pour un mappage qui extrait la valeur d’une propriété unique de chaque élément d’entrée.
 </li>
 </ul>
 </li>
@@ -527,7 +527,7 @@ Il s’agit d’un raccourci pour une carte qui extrait la valeur hello d’une 
 <b>flatten([isShallow] [, options] [, callback])</b>
 <ul>
 <li>
-Combine et aplatissement des tableaux à partir de chaque élément d’entrée dans un tableau à une seule tooa. Le système de comporte tooSelectMany similaires dans LINQ.
+Combine et aplatit les tableaux à partir de chaque élément d’entrée en un seul tableau. Ce comportement est semblable à SelectMany dans LINQ.
 </li>
 </ul>
 </li>
@@ -535,7 +535,7 @@ Combine et aplatissement des tableaux à partir de chaque élément d’entrée 
 <b>sortBy([predicate] [, options] [, callback])</b>
 <ul>
 <li>
-Générer un nouvel ensemble de documents en triant les documents hello dans le flux de document d’entrée hello croissant à l’aide de hello fonction de prédicat. Cela a un comportement similaire tooa clause ORDER BY dans SQL.
+Produit un nouvel ensemble de documents en les triant dans le flux du document d’entrée dans l’ordre croissant à l’aide du prédicat donné. Ce comportement est semblable à celui d’une clause ORDER BY dans SQL.
 </li>
 </ul>
 </li>
@@ -543,34 +543,34 @@ Générer un nouvel ensemble de documents en triant les documents hello dans le 
 <b>sortByDescending([predicate] [, options] [, callback])</b>
 <ul>
 <li>
-Générer un nouvel ensemble de documents en triant les documents hello dans le flux de document d’entrée hello décroissant à l’aide de hello fonction de prédicat. Cela a un comportement similaire clause ORDER BY x DESC de tooa dans SQL.
+Produit un nouvel ensemble de documents en les triant dans le flux du document d’entrée dans l’ordre décroissant à l’aide du prédicat donné. Ce comportement est semblable à celui d’une clause ORDER BY x DESC dans SQL.
 </li>
 </ul>
 </li>
 </ul>
 
 
-Lorsque inclus dans des fonctions de prédicat ou sélecteur, hello constructions JavaScript suivantes obtenir automatiquement optimisé toorun directement sur l’index de base de données Azure Cosmos :
+Quand elles sont incluses dans les fonctions de prédicat et/ou de sélecteur, les constructions JavaScript suivantes sont automatiquement optimisées pour s’exécuter directement sur les index Azure Cosmos DB :
 
 * Opérateurs simples : = + - * / % | ^ &amp; == != === !=== &lt; &gt; &lt;= &gt;= || &amp;&amp; &lt;&lt; &gt;&gt; &gt;&gt;&gt;! ~
-* Littéraux, y compris le littéral d’objet hello : {}
+* Littéraux, y compris le littéral d’objet : {}
 * var, return
 
-Hello construit du code JavaScript suivant n’a pas obtenir optimisée pour les index de base de données Azure Cosmos de :
+Les constructions JavaScript suivantes ne sont pas optimisées pour les index Azure Cosmos DB :
 
 * Flux de contrôle (par exemple, if, for, while)
 * Appels de fonction
 
 Pour plus d’informations, voir [JSDocs côté serveur](http://azure.github.io/azure-documentdb-js-server/).
 
-### <a name="example-write-a-stored-procedure-using-hello-javascript-query-api"></a>Exemple : Écrire une procédure stockée à l’aide des API de requête hello JavaScript
-Hello suivant l’exemple de code est un exemple d’utilisation de la hello API de requête de JavaScript dans le contexte hello d’une procédure stockée. Insère un document donné par le paramètre d’entrée, Hello procédure stockée et met à jour d’un document de métadonnées, à l’aide de hello `__.filter()` méthode, avec minSize, maxSize et totalSize en fonction de propriété de taille du document d’entrée hello.
+### <a name="example-write-a-stored-procedure-using-the-javascript-query-api"></a>Exemple : Écrire une procédure stockée à l’aide de l’API de requête JavaScript
+L’exemple de code suivant illustre comment l’API de requête JavaScript peut être utilisée dans le contexte d’une procédure stockée. La procédure stockée insère un document donné par un paramètre d’entrée et met à jour les métadonnées de document, à l’aide de la méthode `__.filter()` avec minSize, maxSize et totalSize basées sur la propriété de taille du document d’entrée.
 
     /**
      * Insert actual doc and update metadata doc: minSize, maxSize, totalSize based on doc.size.
      */
     function insertDocumentAndUpdateMetadata(doc) {
-      // HTTP error codes sent tooour callback funciton by DocDB server.
+      // HTTP error codes sent to our callback funciton by DocDB server.
       var ErrorCode = {
         RETRY_WITH: 449,
       }
@@ -578,22 +578,22 @@ Hello suivant l’exemple de code est un exemple d’utilisation de la hello API
       var isAccepted = __.createDocument(__.getSelfLink(), doc, {}, function(err, doc, options) {
         if (err) throw err;
 
-        // Check hello doc (ignore docs with invalid/zero size and metaDoc itself) and call updateMetadata.
+        // Check the doc (ignore docs with invalid/zero size and metaDoc itself) and call updateMetadata.
         if (!doc.isMetadata && doc.size > 0) {
-          // Get hello meta document. We keep it in hello same collection. it's hello only doc that has .isMetadata = true.
+          // Get the meta document. We keep it in the same collection. it's the only doc that has .isMetadata = true.
           var result = __.filter(function(x) {
             return x.isMetadata === true
           }, function(err, feed, options) {
             if (err) throw err;
 
             // We assume that metadata doc was pre-created and must exist when this script is called.
-            if (!feed || !feed.length) throw new Error("Failed toofind hello metadata document.");
+            if (!feed || !feed.length) throw new Error("Failed to find the metadata document.");
 
-            // hello metadata document.
+            // The metadata document.
             var metaDoc = feed[0];
 
             // Update metaDoc.minSize:
-            // for 1st document use doc.Size, for all hello rest see if it's less than last min.
+            // for 1st document use doc.Size, for all the rest see if it's less than last min.
             if (metaDoc.minSize == 0) metaDoc.minSize = doc.size;
             else metaDoc.minSize = Math.min(metaDoc.minSize, doc.size);
 
@@ -603,12 +603,12 @@ Hello suivant l’exemple de code est un exemple d’utilisation de la hello API
             // Update metaDoc.totalSize.
             metaDoc.totalSize += doc.size;
 
-            // Update/replace hello metadata document in hello store.
+            // Update/replace the metadata document in the store.
             var isAccepted = __.replaceDocument(metaDoc._self, metaDoc, function(err) {
               if (err) throw err;
-              // Note: in case concurrent updates causes conflict with ErrorCode.RETRY_WITH, we can't read hello meta again 
-              //       and update again because due tooSnapshot isolation we will read same exact version (we are in same transaction).
-              //       We have tootake care of that on hello client side.
+              // Note: in case concurrent updates causes conflict with ErrorCode.RETRY_WITH, we can't read the meta again 
+              //       and update again because due to Snapshot isolation we will read same exact version (we are in same transaction).
+              //       We have to take care of that on the client side.
             });
             if (!isAccepted) throw new Error("replaceDocument(metaDoc) returned false.");
           });
@@ -618,8 +618,8 @@ Hello suivant l’exemple de code est un exemple d’utilisation de la hello API
       if (!isAccepted) throw new Error("createDocument(actual doc) returned false.");
     }
 
-## <a name="sql-toojavascript-cheat-sheet"></a>Aide-mémoire de tooJavascript SQL
-Hello tableau suivant présente les différentes requêtes SQL et les requêtes de JavaScript correspondantes hello.
+## <a name="sql-to-javascript-cheat-sheet"></a>Aide-mémoire SQL vers Javascript
+Le tableau suivant présente différentes requêtes SQL et les requêtes JavaScript correspondantes.
 
 Comme pour les requêtes SQL, les clés de propriété de document (par exemple, `doc.id`) respectent la casse.
 
@@ -632,26 +632,26 @@ Comme pour les requêtes SQL, les clés de propriété de document (par exemple
 |SELECT docs.id, docs.message AS msg<br>FROM docs<br>WHERE docs.id="X998_Y998"|__.chain()<br>&nbsp;&nbsp;&nbsp;&nbsp;.filter(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;return doc.id ==="X998_Y998";<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;.map(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;return {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;id: doc.id,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;msg: doc.message<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;};<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>.value();|5|
 |SELECT VALUE tag<br>FROM docs<br>JOIN tag IN docs.Tags<br>ORDER BY docs._ts|__.chain()<br>&nbsp;&nbsp;&nbsp;&nbsp;.filter(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;return doc.Tags &amp;&amp; Array.isArray(doc.Tags);<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;.sortBy(function(doc) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;return doc._ts;<br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>&nbsp;&nbsp;&nbsp;&nbsp;.pluck("Tags")<br>&nbsp;&nbsp;&nbsp;&nbsp;.flatten()<br>&nbsp;&nbsp;&nbsp;&nbsp;.value()|6|
 
-Hello descriptions suivantes expliquent chaque requête de table hello ci-dessus.
+Les descriptions suivantes expliquent chaque requête du tableau ci-dessus.
 1. Renvoie tous les documents (paginés avec jeton de continuation) tels quels.
-2. Projets hello id, le message (alias toomsg) et l’action à partir de tous les documents.
-3. Requêtes pour les documents avec le prédicat de hello : id = « X998_Y998 ».
-4. Requêtes pour les documents qui ont une propriété de balises et de balises est un tableau qui contient la valeur de hello 123.
-5. Requêtes pour les documents avec un prédicat, id = « X998_Y998 » et l’id de hello puis projets et de message (alias toomsg).
-6. Les filtres pour les documents qui ont une propriété de tableau, les balises, et trie les documents qui en résultent hello par la propriété du système hello _ts timestamp et projette ensuite + aplatit le tableau de balises hello.
+2. Projette l’ID, le message (alias msg) et l’action de tous les documents.
+3. Requêtes pour les documents avec le prédicat : id = "X998_Y998".
+4. Requêtes pour les documents comportant une propriété Tags, et Tags est un tableau contenant la valeur 123.
+5. Interroge les documents avec un prédicat, id = "X998_Y998", puis projette l’ID et le message (alias msg).
+6. Filtre les documents comportant une propriété de tableau, Tags, trie les documents résultants par la propriété système _ts timestamp, puis projette et aplatit le tableau Tags.
 
 
 ## <a name="runtime-support"></a>Prise en charge du runtime
-[API du côté serveur JavaScript pour DocumentDB](http://azure.github.io/azure-documentdb-js-server/) hello prend en charge la plupart des hello grand public des fonctionnalités de langage JavaScript standard par [ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
+L’[API côté serveur JavaScript DocumentDB](http://azure.github.io/azure-documentdb-js-server/) offre la prise en charge de la plupart des fonctionnalités de langage JavaScript répondant à la norme [ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
 
 ### <a name="security"></a>Sécurité
-JavaScript des procédures stockées et déclencheurs sont sandbox afin que les effets de hello d’un script ne pas renvoyer les toohello autres sans passer par le biais d’isolation des transactions hello instantané au niveau de base de données hello. environnements d’exécution Hello regroupées sont nettoyés du contexte de hello après chaque exécution. Par conséquent, elles sont garanties toobe sans échec de toutes les effets secondaires involontaires entre eux.
+Les déclencheurs et les procédures stockées JavaScript sont exécutés dans le bac à sable (sandbox) de façon à ce que les effets d'un script ne soient divulgués à un autre sans passer par l'isolement de transaction de capture instantanée au niveau de la base de données. Les environnements d'exécution sont regroupés mais leur contexte est nettoyé après chaque exécution. Par conséquent, ils sont assurés d'être préservés de tout effet secondaire inattendu les uns des autres.
 
 ### <a name="pre-compilation"></a>Précompilation
-Les procédures stockées, déclencheurs et des UDF sont format du code précompilé implicitement toohello octets dans le coût de compilation de commande tooavoid lors de chaque appel du script hello. Cela permet de s'assurer que les appels de procédures stockées sont rapides et présentent un encombrement réduit.
+Les procédures stockées, les déclencheurs et les fonctions définies par l'utilisateur sont précompilés de façon implicite en format de code d'octet afin d'éviter les frais de compilation à chaque appel de script. Cela permet de s'assurer que les appels de procédures stockées sont rapides et présentent un encombrement réduit.
 
 ## <a name="client-sdk-support"></a>Prise en charge du kit SDK client
-En outre toohello API DocumentDB pour [Node.js](documentdb-sdk-node.md) client, la base de données Azure Cosmos a [.NET](documentdb-sdk-dotnet.md), [.NET Core](documentdb-sdk-dotnet-core.md), [Java](documentdb-sdk-java.md), [ JavaScript](http://azure.github.io/azure-documentdb-js/), et [kits de développement logiciel Python](documentdb-sdk-python.md) pour hello API DocumentDB. Les procédures stockées, les déclencheurs et les fonctions définies par l'utilisateur peuvent être créés et exécutés au moyen de l'un de ces kits SDK également. Hello suivant montre l’exemple de comment toocreate et exécuter une procédure stockée à l’aide du client de .NET hello. Notez comment hello .NET sont passés dans hello procédure stockée au format JSON et lire.
+En plus de l’API DocumentDB pour le client [Node.js](documentdb-sdk-node.md), Azure Cosmos DB propose [.NET](documentdb-sdk-dotnet.md), [.NET Core](documentdb-sdk-dotnet-core.md), [Java](documentdb-sdk-java.md), [JavaScript](http://azure.github.io/azure-documentdb-js/) et les [Kits SDK Python](documentdb-sdk-python.md) pour l’API DocumentDB. Les procédures stockées, les déclencheurs et les fonctions définies par l'utilisateur peuvent être créés et exécutés au moyen de l'un de ces kits SDK également. Voici un exemple de la façon de créer et d'exécuter une procédure stockée au moyen du client .NET. Notez la façon dont les types .NET sont transmis dans la procédure stockée au format JSON et lus.
 
     var markAntiquesSproc = new StoredProcedure
     {
@@ -684,7 +684,7 @@ En outre toohello API DocumentDB pour [Node.js](documentdb-sdk-node.md) client, 
     Document createdDocument = await client.ExecuteStoredProcedureAsync<Document>(UriFactory.CreateStoredProcedureUri("db", "coll", "sproc"), document, 1920);
 
 
-Cet exemple montre comment toouse hello [DocumentDB .NET API](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) toocreate un déclencheur préalable et créer un document avec déclencheur hello activé. 
+Cet exemple illustre l’utilisation de l’[API .NET DocumentDB](/dotnet/api/overview/azure/cosmosdb?view=azure-dotnet) pour créer un prédéclencheur et un document dans lequel le déclencheur est activé. 
 
     Trigger preTrigger = new Trigger()
     {
@@ -705,7 +705,7 @@ Cet exemple montre comment toouse hello [DocumentDB .NET API](/dotnet/api/overvi
         });
 
 
-Et hello l’exemple suivant montre comment toocreate un utilisateur défini (fonction) (UDF) et l’utiliser dans un [requête DocumentDB API SQL](documentdb-sql-query.md).
+Enfin, l’exemple suivant décrit comment créer une fonction définie par l’utilisateur et l’utiliser une [requête SQL de l’API DocumentDB](documentdb-sql-query.md).
 
     UserDefinedFunction function = new UserDefinedFunction()
     {
@@ -723,7 +723,7 @@ Et hello l’exemple suivant montre comment toocreate un utilisateur défini (fo
     }
 
 ## <a name="rest-api"></a>API REST
-Toutes les opérations Azure Cosmos DB peuvent être effectuées sur la base de l’architecture REST. Les procédures stockées, les déclencheurs et les fonctions définies par l'utilisateur peuvent être enregistrés dans une collection au moyen de HTTP POST. Hello Voici un exemple d’une procédure stockée de tooregister :
+Toutes les opérations Azure Cosmos DB peuvent être effectuées sur la base de l’architecture REST. Les procédures stockées, les déclencheurs et les fonctions définies par l'utilisateur peuvent être enregistrés dans une collection au moyen de HTTP POST. Voici un exemple de la façon d'enregistrer une procédure stockée :
 
     POST https://<url>/sprocs/ HTTP/1.1
     authorization: <<auth>>
@@ -746,7 +746,7 @@ Toutes les opérations Azure Cosmos DB peuvent être effectuées sur la base de 
     }
 
 
-Hello procédure stockée est enregistrée en exécutant une demande POST sur hello URI dbs/testdb/colls/testColl/procédures stockées contenant hello corps hello toocreate de procédure stockée. Les déclencheurs et les fonctions définies par l'utilisateur peuvent être inscrits de la même façon en émettant une demande POST sur /triggers et /udfs respectivement.
+La procédure stockée est enregistrée en exécutant une requête POST sur la base de l’URI dbs/testdb/colls/testColl/sprocs avec le corps contenant la procédure stockée à créer. Les déclencheurs et les fonctions définies par l'utilisateur peuvent être inscrits de la même façon en émettant une demande POST sur /triggers et /udfs respectivement.
 Cette procédure stockée peut ensuite être exécutée en émettant une demande POST sur son lien de ressource :
 
     POST https://<url>/sprocs/<sproc> HTTP/1.1
@@ -754,16 +754,16 @@ Cette procédure stockée peut ensuite être exécutée en émettant une demande
     x-ms-date: Thu, 07 Aug 2014 03:43:20 GMT
 
 
-    [ { "name": "TestDocument", "book": "Autumn of hello Patriarch"}, "Price", 200 ]
+    [ { "name": "TestDocument", "book": "Autumn of the Patriarch"}, "Price", 200 ]
 
 
-Ici, la procédure stockée de toohello d’entrée de hello est passé dans le corps de la demande hello. Notez que l’entrée de hello est passée comme un tableau JSON des paramètres d’entrée. Hello stockées procédure prend hello la première entrée sous la forme d’un document qui est un corps de réponse. réponse Hello que nous de réception est la suivante :
+Ici, la valeur entrée pour la procédure stockée est transmise dans le corps de la requête. Notez que la valeur entrée est transmise en tant que tableau JSON de paramètres d'entrée. La procédure stockée prend la première entrée en tant que document correspondant à un corps de réponse. La réponse reçue se présente comme suit :
 
     HTTP/1.1 200 OK
 
     { 
       name: 'TestDocument',
-      book: ‘Autumn of hello Patriarch’,
+      book: ‘Autumn of the Patriarch’,
       id: ‘V7tQANV3rAkDAAAAAAAAAA==‘,
       ts: 1407830727,
       self: ‘dbs/V7tQAA==/colls/V7tQANV3rAk=/docs/V7tQANV3rAkDAAAAAAAAAA==/’,
@@ -773,7 +773,7 @@ Ici, la procédure stockée de toohello d’entrée de hello est passé dans le 
     }
 
 
-Contrairement aux procédures stockées, les déclencheurs ne peuvent pas être exécutés directement. À la place, ils sont exécutés au sein d'une opération dans un document. Nous pouvons spécifier hello déclencheurs toorun avec une demande à l’aide d’en-têtes HTTP. Hello Voici demande toocreate un document.
+Contrairement aux procédures stockées, les déclencheurs ne peuvent pas être exécutés directement. À la place, ils sont exécutés au sein d'une opération dans un document. Nous pouvons spécifier les déclencheurs à exécuter avec une demande au moyen d'en-têtes HTTP. Voici une demande de création de document.
 
     POST https://<url>/docs/ HTTP/1.1
     authorization: <<auth>>
@@ -784,23 +784,23 @@ Contrairement aux procédures stockées, les déclencheurs ne peuvent pas être 
 
     {
        "name": "newDocument",
-       “title”: “hello Wizard of Oz”,
+       “title”: “The Wizard of Oz”,
        “author”: “Frank Baum”,
        “pages”: 92
     }
 
 
-Ici, toobe de déclencheur préliminaire hello exécuter avec la demande de hello est spécifié dans l’en-tête de x-ms-documentdb-pre-trigger-include de hello. En conséquence, tous les déclencheurs après figurent dans l’en-tête de x-ms-documentdb-post-trigger-include hello. Notez que les pré- et post-déclencheurs peuvent tous deux être spécifiés pour une demande donnée.
+Ici, le pré-déclencheur devant s'exécuter avec la demande est spécifié dans l'en-tête x-ms-documentdb-pre-trigger-include. De même, tous les post-déclencheurs sont fournis dans l'en-tête x-ms-documentdb-post-trigger-include. Notez que les pré- et post-déclencheurs peuvent tous deux être spécifiés pour une demande donnée.
 
 ## <a name="sample-code"></a>Exemple de code
 Vous trouverez d’autres exemples de code côté serveur (notamment [bulk-delete](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples/stored-procedures/bulkDelete.js) et [update](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples/stored-procedures/update.js)) dans notre [référentiel GitHub](https://github.com/Azure/azure-documentdb-js-server/tree/master/samples).
 
-Vous souhaitez tooshare votre procédure stockée impressionnant ? Envoyez-nous une requête d’extraction ! 
+Vous souhaitez partager votre remarquable procédure stockée ? Envoyez-nous une requête d’extraction ! 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Une fois que vous avez une ou plusieurs procédures stockées, déclencheurs et fonctions définies par l’utilisateur créées, vous pouvez les charger et les afficher dans hello portail Azure à l’aide de l’Explorateur de données.
+Après avoir créé des procédures stockées, des déclencheurs et des fonctions définies par l’utilisateur, vous pouvez les charger et les afficher dans le portail Azure à l’aide de l’Explorateur de données.
 
-Vous pouvez également trouver des éléments suivants de hello références et ressources utiles dans votre chemin d’accès toolearn plus en détail la programmation côté serveur de base de données Azure Cosmos :
+Pour en savoir plus sur la programmation Azure Cosmos DB côté serveur, vous pouvez également trouver utiles les références et les ressources suivantes :
 
 * [Kits SDK Azure Cosmos DB](documentdb-sdk-dotnet.md)
 * [Studio DocumentDB](https://github.com/mingaliu/DocumentDBStudio/releases)
@@ -808,5 +808,5 @@ Vous pouvez également trouver des éléments suivants de hello références et 
 * [JavaScript ECMA-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm)
 * [Extensibilité de la base de données sécurisée et portable](http://dl.acm.org/citation.cfm?id=276339) 
 * [Architecture de base de données orientée services](http://dl.acm.org/citation.cfm?id=1066267&coll=Portal&dl=GUIDE) 
-* [Hébergement hello Runtime .NET dans Microsoft SQL server](http://dl.acm.org/citation.cfm?id=1007669)
+* [Hébergement du Runtime .NET dans Microsoft SQL Server](http://dl.acm.org/citation.cfm?id=1007669)
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaCapture des données à partir de concentrateurs d’événements dans Azure Data Lake Store | Documents Microsoft"
-description: "Données de toocapture utilisation Azure Data Lake Store à partir des concentrateurs d’événements"
+title: "Capturer des données Event Hubs dans Azure Data Lake Store | Microsoft Docs"
+description: "Utiliser Azure Data Lake Store pour capturer des données Event Hubs"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -13,40 +13,40 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/28/2017
 ms.author: nitinme
-ms.openlocfilehash: 09b17bd0b47043bd2c83dba72c01a8064f206a0a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a9e69576958ae96d22a4eb03d0df429f0b307298
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-azure-data-lake-store-toocapture-data-from-event-hubs"></a>Données de toocapture utilisation Azure Data Lake Store à partir des concentrateurs d’événements
+# <a name="use-azure-data-lake-store-to-capture-data-from-event-hubs"></a>Utiliser Azure Data Lake Store pour capturer des données Event Hubs
 
-Découvrez comment toouse données toocapture de Azure Data Lake Store reçues par Azure Event Hubs.
+Découvrez comment utiliser Azure Data Lake Store pour capturer les données reçues par Azure Event Hubs.
 
 ## <a name="prerequisites"></a>Composants requis
 
 * **Un abonnement Azure**. Consultez la page [Obtention d’un essai gratuit d’Azure](https://azure.microsoft.com/pricing/free-trial/).
 
-* **Un compte Azure Data Lake Store**. Pour obtenir des instructions sur la façon de voir d’un seul, toocreate [prise en main Azure Data Lake Store](data-lake-store-get-started-portal.md).
+* **Un compte Azure Data Lake Store**. Pour savoir comment en créer un, consultez [Prise en main d’Azure Data Lake Store](data-lake-store-get-started-portal.md).
 
-*  **Un espace de noms Event Hubs**. Pour obtenir des instructions, consultez [Créer un espace de noms Event Hubs](../event-hubs/event-hubs-create.md#create-an-event-hubs-namespace). Assurez-vous que le compte Data Lake Store de hello et espace de noms de concentrateurs d’événements hello sont Bonjour même abonnement Azure.
+*  **Un espace de noms Event Hubs**. Pour obtenir des instructions, consultez [Créer un espace de noms Event Hubs](../event-hubs/event-hubs-create.md#create-an-event-hubs-namespace). Vérifiez que le compte Data Lake Store et l’espace de noms Event Hubs appartiennent au même abonnement Azure.
 
 
-## <a name="assign-permissions-tooevent-hubs"></a>Affecter des autorisations tooEvent concentrateurs
+## <a name="assign-permissions-to-event-hubs"></a>Affecter des autorisations à Event Hubs
 
-Dans cette section, vous créez un dossier dans le compte de hello où vous souhaitez toocapture les données de hello de concentrateurs d’événements. Vous également affectez des autorisations tooEvent concentrateurs afin qu’il peut écrire des données dans un compte Data Lake Store. 
+Dans cette section, vous allez créer un dossier au sein du compte dans lequel vous souhaitez capturer les données Event Hubs. Vous allez également affecter des autorisations à Event Hubs pour qu’il puisse écrire des données dans un compte Data Lake Store. 
 
-1. Ouvrez hello Data Lake Store compte sur lequel vous souhaitez toocapture les données à partir de concentrateurs d’événements, puis cliquez sur **Explorateur de données**.
+1. Ouvrez le compte Data Lake Store dans lequel vous souhaitez capturer les données Event Hubs, puis cliquez sur **Explorateur de données**.
 
     ![Explorateur de données Data Lake Store](./media/data-lake-store-archive-eventhub-capture/data-lake-store-open-data-explorer.png "Explorateur de données Data Lake Store")
 
-2.  Cliquez sur **nouveau dossier** , puis entrez un nom pour le dossier dans lequel les données de salutation toocapture.
+2.  Cliquez sur **Nouveau dossier**, puis entrez un nom pour le dossier dans lequel vous souhaitez capturer les données.
 
     ![Créer un dossier dans Data Lake Store](./media/data-lake-store-archive-eventhub-capture/data-lake-store-create-new-folder.png "Créer un dossier dans Data Lake Store")
 
-3. Affecter des autorisations au niveau de la racine de hello Hello Data Lake Store. 
+3. Affectez des autorisations à la racine du compte Data Lake Store. 
 
-    a. Cliquez sur **Explorateur de données**, sélectionnez racine hello hello compte Data Lake Store, puis cliquez sur **accès**.
+    a. Cliquez sur **Explorateur de données**, sélectionnez la racine du compte Data Lake Store, puis cliquez sur **Accès**.
 
     ![Affecter des autorisations pour la racine du compte Data Lake Store](./media/data-lake-store-archive-eventhub-capture/data-lake-store-assign-permissions-to-root.png "Affecter des autorisations pour la racine du compte Data Lake Store")
 
@@ -56,15 +56,15 @@ Dans cette section, vous créez un dossier dans le compte de hello où vous souh
     
     Cliquez sur **Sélectionner**.
 
-    c. Sous **Affecter des autorisations**, cliquez sur **Sélectionner des autorisations**. Définissez **autorisations** trop**Execute**. Définissez **ajouter à** trop**ce dossier et tous les enfants**. Définissez **ajouter en tant que** trop**une entrée d’autorisation accès et une entrée d’autorisation par défaut**.
+    c. Sous **Affecter des autorisations**, cliquez sur **Sélectionner des autorisations**. Définissez **Autorisations** à **Exécuter**. Définissez **Ajouter à** sur **Ce dossier et tous ses enfants**. Définissez **Ajouter en tant que** sur **Une entrée d’autorisation d’accès et une entrée d’autorisation par défaut**.
 
     ![Affecter des autorisations pour la racine du compte Data Lake Store](./media/data-lake-store-archive-eventhub-capture/data-lake-store-assign-eventhub-sp1.png "Affecter des autorisations pour la racine du compte Data Lake Store")
 
     Cliquez sur **OK**.
 
-4. Affecter des autorisations pour le dossier hello sous le compte Data Lake Store où vous souhaitez que les données de toocapture.
+4. Affectez des autorisations pour le dossier situé dans le compte Data Lake Store où vous voulez capturer des données.
 
-    a. Cliquez sur **Explorateur de données**, sélectionnez le dossier de hello Bonjour compte Data Lake Store, puis cliquez sur **accès**.
+    a. Cliquez sur **Explorateur de données**, sélectionnez le dossier du compte Data Lake Store, puis cliquez sur **Accès**.
 
     ![Affecter des autorisations pour le dossier Data Lake Store](./media/data-lake-store-archive-eventhub-capture/data-lake-store-assign-permissions-to-folder.png "Affecter des autorisations pour le dossier Data Lake Store")
 
@@ -74,52 +74,52 @@ Dans cette section, vous créez un dossier dans le compte de hello où vous souh
     
     Cliquez sur **Sélectionner**.
 
-    c. Sous **Affecter des autorisations**, cliquez sur **Sélectionner des autorisations**. Définissez **autorisations** trop**lecture, écriture,** et **Execute**. Définissez **ajouter à** trop**ce dossier et tous les enfants**. Enfin, définissez **ajouter en tant que** trop**une entrée d’autorisation accès et une entrée d’autorisation par défaut**.
+    c. Sous **Affecter des autorisations**, cliquez sur **Sélectionner des autorisations**. Définissez **Autorisations** sur **Lecture, écriture** et **exécution**. Définissez **Ajouter à** sur **Ce dossier et tous ses enfants**. Enfin, définissez **Ajouter en tant que** sur **Une entrée d’autorisation d’accès et une entrée d’autorisation par défaut**.
 
     ![Affecter des autorisations pour le dossier Data Lake Store](./media/data-lake-store-archive-eventhub-capture/data-lake-store-assign-eventhub-sp-folder.png "Affecter des autorisations pour le dossier Data Lake Store")
     
     Cliquez sur **OK**. 
 
-## <a name="configure-event-hubs-toocapture-data-toodata-lake-store"></a>Configurer le service Event Hubs toocapture data tooData Lake Store
+## <a name="configure-event-hubs-to-capture-data-to-data-lake-store"></a>Configurer Event Hubs pour capturer des données et les envoyer vers Data Lake Store
 
-Dans cette section, vous allez créer un Event Hub dans un espace de noms Event Hubs. Vous configurez également hello concentrateur d’événements toocapture données tooan compte Azure Data Lake Store. Cette section part du principe que vous avez déjà créé un espace de noms Event Hubs.
+Dans cette section, vous allez créer un Event Hub dans un espace de noms Event Hubs. Vous allez également configurer l’Event Hub pour capturer des données et les envoyer vers un compte Azure Data Lake Store. Cette section part du principe que vous avez déjà créé un espace de noms Event Hubs.
 
-2. À partir de hello **vue d’ensemble** volet de l’espace de noms hello concentrateurs d’événements, cliquez sur **+ concentrateur d’événements**.
+2. Dans le volet **Vue d’ensemble** de l’espace de noms Event Hubs, cliquez sur **+ Event Hub**.
 
     ![Créer un Event Hub](./media/data-lake-store-archive-eventhub-capture/data-lake-store-create-event-hub.png "Créer un Event Hub")
 
-3. Fournissez suivant de hello valeurs tooconfigure toocapture des concentrateurs d’événements data Lake tooData Store.
+3. Fournissez les valeurs suivantes pour configurer Event Hubs de manière à capturer des données et à les envoyer vers Data Lake Store.
 
     ![Créer un Event Hub](./media/data-lake-store-archive-eventhub-capture/data-lake-store-configure-eventhub.png "Créer un Event Hub")
 
-    a. Fournissez un nom pour hello concentrateur d’événements.
+    a. Donnez un nom à l’Event Hub.
     
-    b. Pour ce didacticiel, définissez **nombre de partitions** et **rétention des messages** toohello les valeurs par défaut.
+    b. Pour ce didacticiel, définissez **Nombre de partitions** et **Rétention des messages** sur les valeurs par défaut.
     
-    c. Définissez **Capture** trop**sur**. Ensemble hello **fenêtre de temps** (fréquence toocapture) et **taille de fenêtre** (toocapture de taille de données). 
+    c. Définissez **Capture** sur **Activé**. Définissez la **Fenêtre de temps** (fréquence de capture) et la **Fenêtre de taille** (taille des données à capturer). 
     
-    d. Pour **capturer le fournisseur**, sélectionnez **Azure Data Lake Store** et sélectionnez hello hello Data Lake Store que vous avez créé précédemment. Pour **le chemin d’accès de données Lake**, entrez le nom hello du dossier hello créé Bonjour compte Data Lake Store. Vous devez uniquement le dossier de toohello tooprovide hello chemin d’accès relatif.
+    d. Pour **Fournisseur de capture**, sélectionnez **Azure Data Lake Store**, puis sélectionnez le Data Lake Store que vous avez créé précédemment. Pour **Chemin Data Lake**, entrez le nom du dossier que vous avez créé dans le compte Data Lake Store. Vous devez uniquement fournir le chemin relatif du dossier.
 
-    e. Laissez hello **formats de nom de fichier de capture exemple** toohello par défaut. Cette option détermine la structure de dossiers de hello est créé sous le dossier de capture hello.
+    e. Pour l’option **Exemples de formats de nom de fichier de capture**, conservez la valeur par défaut. Cette option détermine la structure de dossiers qui est créée sous le dossier de capture.
 
     f. Cliquez sur **Créer**.
 
-## <a name="test-hello-setup"></a>Programme d’installation de test hello
+## <a name="test-the-setup"></a>Tester la configuration
 
-Vous pouvez maintenant tester la solution de hello en envoyant des données toohello concentrateur d’événements Azure. Suivez les instructions de hello à [envoyer des événements de concentrateurs d’événements tooAzure](../event-hubs/event-hubs-dotnet-framework-getstarted-send.md). Une fois que vous démarrez l’envoi de données de hello, consultez données hello dans Data Lake Store à l’aide de la structure de dossiers hello spécifié. Par exemple, vous voyez une structure de dossiers, comme indiqué dans hello suivant capture d’écran, dans votre Data Lake Store.
+Vous pouvez maintenant tester la solution en envoyant des données vers Azure Event Hub. Suivez les instructions de la rubrique [Envoyer des événements vers les hubs d’événements Azure avec .NET Framework](../event-hubs/event-hubs-dotnet-framework-getstarted-send.md). Une fois que vous démarrez l’envoi des données, vous pouvez voir les données dans Data Lake Store avec la structure de dossiers que vous avez spécifiée. Vous pouvez voir une structure de dossiers, telle que celle de la capture d’écran ci-dessous, dans Data Lake Store.
 
 ![Exemple de données EventHub dans Data Lake Store](./media/data-lake-store-archive-eventhub-capture/data-lake-store-eventhub-data-sample.png "Exemple de données EventHub dans Data Lake Store")
 
 > [!NOTE]
-> Même si vous n’avez pas les messages entrants dans les concentrateurs d’événements, les concentrateurs d’événements écrit des fichiers vides avec uniquement les en-têtes hello dans hello compte Data Lake Store. Hello fichiers sont écrits à hello même intervalle de temps que vous avez fourni lors de la création de concentrateurs d’événements hello.
+> Même si aucun message n’entre dans Event Hubs, celui-ci écrit des fichiers vides avec en-tête dans le compte Data Lake Store. Les fichiers sont écrits au même intervalle de temps que celui que vous avez configuré lors de la création des Event Hubs.
 > 
 >
 
 ## <a name="analyze-data-in-data-lake-store"></a>Analyse des données dans Data Lake Store
 
-Une fois les données de salutation Data Lake Store, vous pouvez exécuter des tâches analytiques tooprocess et faites vos données de hello. Consultez [USQL Avro exemple](https://github.com/Azure/usql/tree/master/Examples/AvroExamples) sur la façon de toodo ce à l’aide d’Analytique de LAC de données Azure.
+Une fois les données dans Data Lake Store, vous pouvez exécuter des tâches analytiques pour traiter et analyser les données. Pour plus d’informations sur cette procédure à l’aide d’Azure Data Lake Analytics, consultez [Exemple Avro USQL](https://github.com/Azure/usql/tree/master/Examples/AvroExamples).
   
 
 ## <a name="see-also"></a>Voir aussi
 * [Sécuriser les données dans Data Lake Store](data-lake-store-secure-data.md)
-* [Copier des données d’objets BLOB de stockage Azure tooData Lake Store](data-lake-store-copy-data-azure-storage-blob.md)
+* [Copier des données d’objets blob Azure Storage vers Data Lake Store](data-lake-store-copy-data-azure-storage-blob.md)

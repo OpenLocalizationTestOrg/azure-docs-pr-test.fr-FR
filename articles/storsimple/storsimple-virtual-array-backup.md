@@ -1,6 +1,6 @@
 ---
-title: didacticiel de sauvegarde Azure StorSimple Virtual Array aaaMicrosoft | Documents Microsoft
-description: "Décrit comment tooback des StorSimple Virtual Array et les volumes."
+title: Didacticiel de sauvegarde de Microsoft Azure StorSimple Virtual Array | Microsoft Azure
+description: "Décrit comment sauvegarder des partages et des volumes StorSimple Virtual Array."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -15,61 +15,61 @@ ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 7a015fd594f8f56c48fab149a2736be9dec2c24b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c926f0c80ce56cac3106ad97ec3ec2e18a8e2cc6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="back-up-shares-or-volumes-on-your-storsimple-virtual-array"></a>Sauvegarde de partages ou de volumes sur votre StorSimple Virtual Array
 
-## <a name="overview"></a>Vue d'ensemble
+## <a name="overview"></a>Vue d’ensemble
 
-Hello StorSimple Virtual Array est un hybride cloud stockage local périphérique virtuel qui peut être configuré comme un serveur de fichiers ou un serveur iSCSI. unité de stockage virtuelle Hello permet hello utilisateur toocreate des sauvegardes planifiées et manuelles de tous les partages de hello ou volumes sur l’appareil de hello. Configuré comme serveur de fichiers, il permet également la récupération au niveau de l’élément. Ce didacticiel décrit comment toocreate planifiées et sauvegardes manuelles et effectuer la récupération au niveau élément toorestore un fichier supprimé sur votre tableau virtuel.
+StorSimple Virtual Array est un périphérique virtuel local de stockage cloud hybride qui peut être configuré comme un serveur de fichiers ou un serveur iSCSI. Le tableau virtuel vous permet de créer des sauvegardes planifiées et manuelles de l’ensemble des partages ou des volumes sur l’appareil. Configuré comme serveur de fichiers, il permet également la récupération au niveau de l’élément. Ce didacticiel vous explique comment créer des sauvegardes planifiées et manuelles et effectuer une récupération au niveau de l’élément pour restaurer un fichier supprimé sur votre tableau virtuel.
 
-Ce didacticiel s’applique toohello StorSimple tableaux virtuels uniquement. Pour plus d’informations sur la 8000 série, accédez trop[créer une sauvegarde pour appareil de 8000 série](storsimple-manage-backup-policies-u2.md)
+Ce didacticiel s’applique uniquement aux instances StorSimple Virtual Array. Pour plus d’informations sur la gamme 8000, accédez à [Create a backup for 8000 series device](storsimple-manage-backup-policies-u2.md) (Créer une sauvegarde pour un appareil de la gamme 8000).
 
 ## <a name="back-up-shares-and-volumes"></a>Sauvegarder des partages et des volumes
 
-Les sauvegardes fournissent une protection jusqu’à une date et une heure, et optimisent la récupération tout en réduisant les délais de restauration pour les partages et les sauvegardes. Vous pouvez sauvegarder un partage ou un volume sur votre appareil StorSimple de deux manières : **planifiée** ou **manuelle**. Chacune des méthodes de hello est expliqué dans les sections suivantes de hello.
+Les sauvegardes fournissent une protection jusqu’à une date et une heure, et optimisent la récupération tout en réduisant les délais de restauration pour les partages et les sauvegardes. Vous pouvez sauvegarder un partage ou un volume sur votre appareil StorSimple de deux manières : **planifiée** ou **manuelle**. Chacune des méthodes est abordée dans les sections suivantes.
 
-## <a name="change-hello-backup-start-time"></a>Modifier l’heure de début de la sauvegarde hello
+## <a name="change-the-backup-start-time"></a>Modifier l’heure de début de la sauvegarde
 
 > [!NOTE]
-> Dans cette version, les sauvegardes planifiées sont créés par une stratégie par défaut qui s’exécute tous les jours à une heure spécifiée et la sauvegarde de tous les partages de hello ou volumes sur l’appareil de hello. Il n’est pas possible de toocreate des stratégies personnalisées pour les sauvegardes planifiées pour l’instant.
+> Dans cette version, les sauvegardes planifiées sont créées à l’aide d’une stratégie par défaut qui s'exécute tous les jours à un moment précis et sauvegarde tous les partages ou volumes sur l'appareil. Il n'est pour l’instant pas possible de créer des stratégies personnalisées pour les sauvegardes planifiées.
 
 
-Votre StorSimple Virtual Array a une stratégie de sauvegarde par défaut qui commence à une heure spécifiée (22:30) et sauvegarde toutes les hello partages ou volumes sur l’appareil de hello une fois par jour. Vous pouvez modifier le temps de hello auxquelles démarrage de la sauvegarde hello, mais les fréquences de hello et hello rétention (qui spécifie le nombre de hello de sauvegardes tooretain) ne peut pas être modifiée. Au cours de ces sauvegardes, un appareil virtuel entier hello est sauvegardé. Cela pourrait potentiellement hello les performances du périphérique de hello et affecter des charges de travail hello déployés sur le périphérique de hello. Par conséquent, nous vous recommandons de planifier ces sauvegardes pendant les heures creuses.
+Votre instance StorSimple Virtual Array comporte une stratégie de sauvegarde par défaut qui démarre à une heure spécifique de la journée (22h30) et sauvegarde une fois par jour tous les partages ou volumes sur l’appareil. Vous pouvez modifier l'heure à laquelle la sauvegarde démarre, mais la fréquence et la durée de rétention (qui spécifie le nombre de sauvegardes à conserver) ne peuvent pas être modifiées. Au cours de ces sauvegardes, l’ensemble de l’appareil virtuel est sauvegardé. Cela pourrait affecter les performances de l’appareil et les charges de travail déployées dessus. Par conséquent, nous vous recommandons de planifier ces sauvegardes pendant les heures creuses.
 
- heure de début de sauvegarde par défaut de hello toochange, effectuer hello Bonjour comme suit [portail Azure](https://portal.azure.com/).
+ Pour modifier l’heure de début par défaut de la sauvegarde, suivez la procédure suivante dans le [portail Azure](https://portal.azure.com/).
 
-#### <a name="toochange-hello-start-time-for-hello-default-backup-policy"></a>toochange hello heure de début de stratégie de sauvegarde par défaut hello
+#### <a name="to-change-the-start-time-for-the-default-backup-policy"></a>Pour modifier l'heure de début de la stratégie de sauvegarde par défaut
 
-1. Accédez trop**périphériques**. liste de Hello des appareils inscrits auprès du service Gestionnaire de périphériques StorSimple s’affichera. 
+1. Accédez à la page **Appareils**. La liste des appareils enregistrés avec votre service StorSimple Device Manager s’affiche. 
    
-    ![Accédez toodevices](./media/storsimple-virtual-array-backup/changebuschedule1.png)
+    ![accéder à la page appareils](./media/storsimple-virtual-array-backup/changebuschedule1.png)
 
-2. Sélectionnez votre appareil, puis cliquez dessus. Hello **paramètres** panneau s’affiche. Accédez trop**gérer > stratégies de sauvegarde**.
+2. Sélectionnez votre appareil, puis cliquez dessus. Le panneau **Paramètres** s’affiche. Accédez à **Gérer > Stratégies de sauvegarde**.
    
     ![sélectionner votre appareil](./media/storsimple-virtual-array-backup/changebuschedule2.png)
 
-3. Bonjour **stratégies de sauvegarde** panneau, heure de début hello par défaut est 22:30. Vous pouvez spécifier la nouvelle heure de début hello pour une planification quotidienne de hello dans le fuseau horaire.
+3. Dans le panneau **Stratégies de sauvegarde**, l’heure de début par défaut est 22:30. Vous pouvez spécifier la nouvelle heure de début de la sauvegarde quotidienne dans le fuseau horaire de l’appareil.
    
-    ![Accédez toobackup stratégies](./media/storsimple-virtual-array-backup/changebuschedule5.png)
+    ![accéder aux stratégies de sauvegarde](./media/storsimple-virtual-array-backup/changebuschedule5.png)
 
-4. Cliquez sur **Enregistrer**.
+4. Cliquez sur **Save**.
 
 ### <a name="take-a-manual-backup"></a>Exécuter une sauvegarde manuelle
 
-En outre tooscheduled des sauvegardes, vous pouvez exécuter une sauvegarde de (à la demande) manuelle de données de l’appareil à tout moment.
+Outre les sauvegardes planifiées, vous pouvez à tout moment effectuer une sauvegarde manuelle (à la demande) sur les données de l’appareil.
 
-#### <a name="toocreate-a-manual-backup"></a>toocreate une sauvegarde manuelle
+#### <a name="to-create-a-manual-backup"></a>Création d’une sauvegarde manuelle
 
-1. Accédez trop**périphériques**. Sélectionnez votre appareil et avec le bouton droit **...**  à hello plus à droite de la ligne sélectionnée de hello. Dans le menu contextuel de hello, sélectionnez **sauvegarde**.
+1. Accédez à la page **Appareils**. Sélectionnez votre appareil, puis cliquez sur **...**, tout à droite sur la ligne sélectionnée. Dans le menu contextuel, sélectionnez **Take backup** (Effectuer la sauvegarde).
    
-    ![Accédez tootake sauvegarde](./media/storsimple-virtual-array-backup/takebackup1m.png)
+    ![accéder à l’option d’exécution de la sauvegarde](./media/storsimple-virtual-array-backup/takebackup1m.png)
 
-2. Bonjour **sauvegarde** panneau, cliquez sur **sauvegarde**. Cette opération sauvegarde tous les partages de hello sur le serveur de fichiers hello ou tous les volumes hello sur votre serveur iSCSI. 
+2. Dans le panneau **Take backup** (Effectuer la sauvegarde), cliquez sur **Take backup** (Effectuer la sauvegarde). Cette opération sauvegarde tous les partages sur le fichier de serveurs, ou l’ensemble des volumes sur votre serveur iSCSI. 
    
     ![démarrage de sauvegarde](./media/storsimple-virtual-array-backup/takebackup2m.png)
    
@@ -77,37 +77,37 @@ En outre tooscheduled des sauvegardes, vous pouvez exécuter une sauvegarde de (
    
     ![démarrage de sauvegarde](./media/storsimple-virtual-array-backup/takebackup3m.png) 
    
-    Une fois le travail de hello terminé, vous êtes averti à nouveau. processus de sauvegarde Hello démarre ensuite.
+    Une fois le travail terminé, vous être de nouveau averti. Le processus de sauvegarde peut démarrer.
    
     ![travail de sauvegarde créé](./media/storsimple-virtual-array-backup/takebackup4m.png)
 
-3. progression de hello tootrack de sauvegardes de hello et examinez les détails de la tâche hello, cliquez sur la notification de hello. Vous accéderez trop **détails de la tâche**.
+3. Pour suivre l’avancement de vos sauvegardes et consulter les détails du travail, cliquez sur la notification. Vous accédez à **Détails du travail**.
    
      ![détails du travail de sauvegarde](./media/storsimple-virtual-array-backup/takebackup5m.png)
 
-4. Une fois hello sauvegarde est terminée, passez trop**Gestion > catalogue de sauvegarde**. Vous verrez un instantané cloud de tous les partages de hello (ou volumes) sur votre appareil.
+4. Une fois la sauvegarde terminée, accédez à **Gestion > Catalogue de sauvegarde**. Vous verrez un instantané cloud de tous les partages (ou volumes) sur votre appareil.
    
     ![Sauvegarde terminée](./media/storsimple-virtual-array-backup/takebackup19m.png) 
 
 ## <a name="view-existing-backups"></a>Afficher les sauvegardes existantes
-tooview les sauvegardes existantes hello, effectuer hello Bonjour portail Azure comme suit.
+Pour afficher les sauvegardes existantes, procédez comme suit dans le portail Azure.
 
-#### <a name="tooview-existing-backups"></a>sauvegardes existantes tooview
+#### <a name="to-view-existing-backups"></a>Pour afficher les sauvegardes existantes
 
-1. Accédez trop**périphériques** panneau. Sélectionnez votre appareil, puis cliquez dessus. Bonjour **paramètres** panneau, accédez trop**Gestion > catalogue de sauvegarde**.
+1. Accédez au panneau **Appareils**. Sélectionnez votre appareil, puis cliquez dessus. Dans le panneau **Paramètres**, accédez à **Gestion > Catalogue de sauvegarde**.
    
-    ![Accédez toobackup catalogue](./media/storsimple-virtual-array-backup/viewbackups1.png)
-2. Spécifiez hello suivant toobe de critères utilisé pour le filtrage :
+    ![Accéder au catalogue de sauvegarde](./media/storsimple-virtual-array-backup/viewbackups1.png)
+2. Spécifiez les critères suivants à utiliser pour le filtrage :
    
     - **Période** : peut être **Dernière heure**, **Dernières 24 heures**, **Derniers 7 jours**, **30 derniers jours**, **Année dernière** et **Date personnalisée**.
     
-    - **Appareils** – permet de sélectionner à partir de la liste de hello des serveurs de fichiers ou des serveurs iSCSI inscrits auprès du service Gestionnaire de périphériques StorSimple.
+    - **Appareils** : effectuez votre sélection dans la liste des serveurs de fichiers ou des serveurs iSCSI enregistrés avec votre service de gStorSimple Device Manager.
    
     - **Initialisé** : peut être automatiquement **Planifié** (par une stratégie de sauvegarde) ou lancé **Manuellement** (par vous).
    
     ![Filtrer les sauvegardes](./media/storsimple-virtual-array-backup/viewbackups2.png)
 
-3. Cliquez sur **Apply**. liste filtrée des sauvegardes Hello s’affiche dans hello **catalogue de sauvegarde** panneau. Uniquement 100 éléments de sauvegarde peuvent s’afficher simultanément.
+3. Cliquez sur **Apply**. La liste filtrée des sauvegardes s’affiche dans le panneau **Catalogue de sauvegarde**. Uniquement 100 éléments de sauvegarde peuvent s’afficher simultanément.
    
     ![Catalogue de sauvegarde mis à jour](./media/storsimple-virtual-array-backup/viewbackups3.png)
 

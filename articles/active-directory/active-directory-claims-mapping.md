@@ -11,43 +11,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2017
 ms.author: billmath
-ms.openlocfilehash: ff07b9954d5c2ce71ab0ffd0db49fde15f323586
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 78dbbe085fca26ad529c6262ba852f3c06ace404
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="claims-mapping-in-azure-active-directory-public-preview"></a>Mappage de revendications dans Azure Active Directory (préversion publique)
 
 >[!NOTE]
->Cette fonctionnalité remplace et remplace hello [personnalisation des revendications](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-claims-customization) proposés via le portail de hello aujourd'hui. Si vous personnalisez des revendications à l’aide du portail de hello en outre toohello méthode graphique/PowerShell détaillées dans ce document sur hello même application, les jetons émis pour cette application va ignorer la configuration hello dans le portail de hello.
-Configurations effectuées par le biais des méthodes hello détaillées dans ce document n’apparaîtront pas dans le portail de hello.
+>Cette fonctionnalité remplace la [personnalisation des revendications](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-claims-customization) offerte au moyen du portail aujourd'hui. Si vous personnalisez des revendications à l’aide du portail en plus de la méthode Graph/PowerShell détaillée dans ce document sur la même application, les jetons émis pour celle-ci ignorent la configuration définie dans le portail.
+Les configurations effectuées au moyen des méthodes décrites dans ce document n’apparaissent pas dans le portail.
 
-Cette fonctionnalité est utilisée par le locataire administrateurs toocustomize hello revendications émises dans les jetons pour une application spécifique du client. Vous pouvez utiliser des stratégies de mappage de revendications pour effectuer les opérations suivantes :
+Les administrateurs de locataire utilisent cette fonctionnalité pour personnaliser les revendications émises dans des jetons pour une application spécifique dans leur locataire. Vous pouvez utiliser des stratégies de mappage de revendications pour effectuer les opérations suivantes :
 
 - sélectionner les revendications incluses dans les jetons ;
 - créer des types de revendications inexistants ;
-- Choisissez ou modifiez la source hello de données émises dans les revendications spécifiques.
+- choisir ou modifier la source des données émises dans des revendications spécifiques.
 
 >[!NOTE]
->Cette fonctionnalité est actuellement disponible en préversion publique. Préparez-vous à toorevert ou supprimer toutes les modifications. Hello fonctionnalité est disponible dans n’importe quel abonnement Azure Active Directory (Azure AD) au cours de la version préliminaire publique. Toutefois, lorsque la fonctionnalité de hello devient disponible de manière générale, certains aspects de la fonctionnalité de hello peuvent nécessiter un abonnement premium à Azure Active Directory.
+>Cette fonctionnalité est actuellement disponible en préversion publique. Soyez prêt à rétablir ou à supprimer les modifications. La fonctionnalité est disponible dans tout abonnement Azure Active Directory (Azure AD) durant la période de préversion publique. Toutefois, lorsque la fonctionnalité sera généralement disponible, il se peut que certains de ses aspects nécessitent un abonnement Azure Active Directory Premium.
 
 ## <a name="claims-mapping-policy-type"></a>Type de stratégie de mappage de revendications
-Dans Azure AD, un objet de **stratégie** représente un ensemble de règles appliquées à des applications individuelles ou à toutes les applications d’une organisation. Chaque type de stratégie a une structure unique, avec un ensemble de propriétés qui sont ensuite appliquées toowhich tooobjects qu'ils sont attribués.
+Dans Azure AD, un objet de **stratégie** représente un ensemble de règles appliquées à des applications individuelles ou à toutes les applications d’une organisation. Chaque type de stratégie présente une structure unique avec un ensemble de propriétés qui sont ensuite appliquées aux objets auxquels elles sont affectées.
 
-Revendications d’un mappage de stratégie est un type de **stratégie** objet qui modifie hello de revendications émis dans les jetons émis pour des applications spécifiques.
+Une stratégie de mappage de revendications est un type d’objet de **stratégie** qui modifie les revendications comprises dans les jetons émis pour des applications spécifiques.
 
 ## <a name="claim-sets"></a>Ensembles de revendications
 Il existe des ensembles de revendications qui définissent comment et quand ils sont utilisés dans des jetons.
 
 ### <a name="core-claim-set"></a>Ensemble de revendications principal
-Revendications présentes dans les noyaux hello revendications sont présentes dans chaque jeton, quelle que soit la stratégie. Ces revendications sont également considérées comme restreintes, et ne peuvent pas être modifiées.
+Les revendications dans l’ensemble de revendications principal sont présentes dans chaque jeton, quelle que soit la stratégie. Ces revendications sont également considérées comme restreintes, et ne peuvent pas être modifiées.
 
 ### <a name="basic-claim-set"></a>Ensemble de revendications de base
-ensemble de revendications basic de Hello inclut les revendications hello qui sont émises par défaut pour les jetons (dans le jeu de revendications addition toohello core). Ces revendications peuvent être omises ou modifiées à l’aide de revendications hello mappage de stratégies.
+L’ensemble de revendications de base inclut les revendications émises par défaut pour les jetons (en plus de l’ensemble de revendications principal). Ces revendications peuvent être omises ou modifiées à l’aide des stratégies de mappage de revendications.
 
 ### <a name="restricted-claim-set"></a>Ensemble de revendications restreint
-Les revendications restreintes ne peuvent pas être modifiées à l’aide d’une stratégie. source de données Hello ne peut pas être modifié, et aucune transformation n’est appliquée lors de la génération de ces revendications.
+Les revendications restreintes ne peuvent pas être modifiées à l’aide d’une stratégie. La source de données ne peut pas être modifiée, et aucune transformation n’est appliquée lors de la génération de ces revendications.
 
 #### <a name="table-1-json-web-token-jwt-restricted-claim-set"></a>Tableau 1 : ensemble de revendications restreint JSON Web Token (JWT)
 |Type de revendication (nom)|
@@ -234,7 +234,7 @@ Les revendications restreintes ne peuvent pas être modifiées à l’aide d’u
 |http://schemas.microsoft.com/identity/claims/scope|
 
 ## <a name="claims-mapping-policy-properties"></a>Propriétés de stratégie de mappage de revendications
-Utilisez les propriétés de hello de mappage de stratégie toocontrol les revendications qui sont émises, et où les données de salutation en provenance de revendications. Si aucune stratégie n’est définie, système de hello émet des jetons contenant l’ensemble de revendications principal hello hello base du jeu de revendications et toutes les revendications facultatif hello application a choisi tooreceive.
+Les propriétés d’une stratégie de mappage de revendications permettent de contrôler les revendications émises et l’origine des données. Si aucune stratégie n’est définie, le système émet des jetons contenant l’ensemble de revendications principal, l’ensemble de revendications de base et des revendications facultatives que l’application a choisi de recevoir.
 
 ### <a name="include-basic-claim-set"></a>Ensemble de revendications de base Include
 
@@ -242,13 +242,13 @@ Utilisez les propriétés de hello de mappage de stratégie toocontrol les reven
 
 **Type de données :** valeur booléenne (True ou False)
 
-**Résumé :** cette propriété détermine si les ensemble de revendications basic de hello est inclus dans les jetons concernés par cette stratégie. 
+**Résumé :** cette propriété détermine si l’ensemble de revendications de base est inclus dans les jetons affectés par cette stratégie. 
 
-- Si set tooTrue, toutes les revendications dans le jeu de revendications basic de hello est émis dans les jetons affectées par la stratégie de hello. 
-- Si set tooFalse, les revendications dans le jeu de revendications basic de hello n’est pas dans les jetons hello, sauf s’ils sont individuellement ajoutés dans la propriété de schéma de revendications hello Hello même stratégie.
+- Si la valeur est True, toutes les revendications de l’ensemble de revendications de base sont émises dans les jetons affectés par la stratégie. 
+- Si la valeur est False, les revendications de l’ensemble de revendications de base ne figurent pas dans les jetons, sauf si elles sont ajoutées individuellement à la propriété de schéma de revendications de la même stratégie.
 
 >[!NOTE] 
->Revendications présentes dans les noyaux hello revendications sont présents dans chaque jeton, indépendamment de ce que cette propriété est définie. 
+>Les revendications de l’ensemble de revendications principal sont présentes dans chaque jeton, indépendamment de la définition de cette propriété. 
 
 ### <a name="claims-schema"></a>Schéma de revendications
 
@@ -256,28 +256,28 @@ Utilisez les propriétés de hello de mappage de stratégie toocontrol les reven
 
 **Type de données :** objet blob JSON avec une ou plusieurs entrées de schéma de revendication
 
-**Résumé :** cette propriété définit les revendications qui sont présentes dans les jetons hello affectées par la stratégie de hello, en outre toohello base de revendications ensemble et les principaux hello.
-Pour chaque entrée de schéma de revendication définie dans cette propriété, certaines informations sont requises. Vous devez spécifier d'où proviennent les données de salutation (**valeur** ou **paire Source/ID**), et les données de salutation de revendication est émise comme (**Type de revendication**).
+**Résumé :** cette propriété définit les revendications présentes dans les jetons affectés par la stratégie, en plus de l’ensemble de revendications de base et de l’ensemble de revendications principal.
+Pour chaque entrée de schéma de revendication définie dans cette propriété, certaines informations sont requises. Vous devez spécifier l’origine des données (**Value** ou **Paire Source/ID**), et la revendication à laquelle les données ont trait (**Type de revendication**).
 
 ### <a name="claim-schema-entry-elements"></a>Éléments d’entrée du schéma de revendication
 
-**Valeur :** élément la valeur hello définit une valeur statique en tant que toobe de données hello émis dans une revendication de hello.
+**Value :** l’élément Value définit une valeur statique en tant que données à émettre dans la revendication.
 
-**Paire source/ID :** hello Source et de définissent des éléments de code où les données de salutation hello revendication en provenance de. 
+**Paire Source/ID :** les éléments Source et ID définissent la provenance des données de la revendication. 
 
-élément de Source de Hello doit être définie tooone suivants de hello : 
+L’élément Source doit être l’un des suivants : 
 
 
-- « utilisateur » : les données de salutation Bonjour de revendication est une propriété sur l’objet utilisateur de hello. 
-- « application » : les données de salutation Bonjour de revendication est une propriété sur le principal de service d’application (client) hello. 
-- « ressource » : les données de salutation Bonjour de revendication est une propriété sur le principal du service ressources hello.
-- « public » : données hello dans hello revendication sont une propriété sur le principal du service hello qui est public hello du jeton de hello (soit hello client ou ressources principal de service).
-- « company » : données hello Bonjour de revendication est une propriété sur l’objet de société du client de ressource hello.
-- « transformation » : les données de salutation Bonjour de revendication est à partir de la transformation des revendications (voir la section hello « transformation des revendications » plus loin dans cet article). 
+- « user » : les données de la revendication sont une propriété définie sur l’objet User. 
+- « application » : les données de la revendication sont une propriété définie sur le principal du service de l’application (client). 
+- « resource » : les données de la revendication sont une propriété définie sur le principal du service de la ressource.
+- « audience » : les données de la revendication sont une propriété définie sur le principal du service qui est l’audience du jeton (principal du service du client ou de la ressource ).
+- « company » : les données de la revendication sont une propriété définie sur l’objet Company du client de la ressource.
+- « transformation » : les données de la revendication proviennent d’une transformation de revendications (voir la section « Transformation de revendications » plus loin dans cet article). 
 
-Si la source de hello est transformation, hello **TransformationID** élément doit être inclus dans cette définition de la revendication également.
+Si la source est une transformation, l’élément **TransformationID** doit également être inclus dans cette définition de revendication.
 
-élément de code Hello identifie dont la propriété sur la source de hello fournit la valeur de hello pour hello revendication. Hello tableau suivant répertorie les valeurs hello d’ID valide pour chaque valeur de la Source.
+L’élément ID identifie la propriété définie sur la source qui fournit la valeur de la revendication. Le tableau suivant répertorie les valeurs d’ID valides pour chaque valeur de Source.
 
 #### <a name="table-3-valid-id-values-per-source"></a>Tableau 3 : valeurs d’ID valides par source
 |Source|ID|Description|
@@ -326,17 +326,17 @@ Si la source de hello est transformation, hello **TransformationID** élément d
 |application, ressource, audience|tags|Balise de principal du service|
 |Entreprise|tenantcountry|Pays du locataire|
 
-**TransformationID :** hello TransformationID l’élément doit être fourni que si hello élément Source est défini trop « transformation ».
+**TransformationID :** l’élément TransformationID doit être fourni uniquement si l’élément Source est défini sur « transformation ».
 
-- Cet élément doit correspondre à un élément d’entrée de transformation hello Bonjour ID hello **ClaimsTransformation** propriété qui définit la façon dont les données hello pour cette revendication sont générées.
+- Cet élément doit correspondre à l’élément d’ID de l’entrée de transformation dans la propriété **ClaimsTransformation** qui définit la façon dont les données de cette revendication sont générées.
 
-**Type de revendication :** hello **JwtClaimType** et **SamlClaimType** éléments définissent cette entrée de schéma de revendication fait référence à de revendication.
+**Type de revendication :** les éléments **JwtClaimType** et **SamlClaimType** définissent la revendication à laquelle cette entrée de schéma de revendication fait référence.
 
-- Hello JwtClaimType doit contenir le nom hello de toobe de revendication hello émis dans les jetons Web JSON.
-- Hello SamlClaimType doit contenir hello URI Hello revendication toobe émis dans les jetons SAML.
+- L’élément JwtClaimType doit contenir le nom de la revendication que les jetons JWT doivent émettre.
+- L’élément SamlClaimType doit contenir l’URI de la revendication que les jetons SAML doivent émettre.
 
 >[!NOTE]
->Les noms et les URI de revendications de hello restreint revendication ensemble ne peut pas être utilisé pour les éléments de type de revendication hello. Pour plus d’informations, consultez hello « Exceptions et restrictions » plus loin dans cet article.
+>Les noms et URI des revendications dans l’ensemble de revendications restreint ne peuvent pas être utilisés pour les éléments de type de revendication. Pour plus d’informations, consultez la section « Exceptions et restrictions » plus loin dans cet article.
 
 ### <a name="claims-transformation"></a>Transformation de revendications
 
@@ -344,38 +344,38 @@ Si la source de hello est transformation, hello **TransformationID** élément d
 
 **Type de données :** blob JSON avec une ou plusieurs entrées de transformation 
 
-**Résumé :** utiliser cette propriété tooapply transformations toosource les données communes, données de sortie toogenerate hello pour les revendications sont précisées dans hello schéma de revendications.
+**Résumé :** cette propriété permet d’appliquer des transformations communes à des données sources afin de générer les données de sortie pour les revendications spécifiées dans le schéma de revendications.
 
-**ID :** utilisation hello ID élément tooreference cette entrée de transformation Bonjour une entrée de schéma de revendications TransformationID. Cette valeur doit être unique pour chaque entrée de transformation au sein de cette stratégie.
+**ID :** l’élément ID permet de faire référence à cette entrée de transformation dans l’entrée de schéma de revendication TransformationID. Cette valeur doit être unique pour chaque entrée de transformation au sein de cette stratégie.
 
-**TransformationMethod :** élément TransformationMethod de hello identifie l’opération donnée effectuée toogenerate hello pour hello revendication.
+**TransformationMethod :** l’élément TransformationMethod identifie l’opération effectuée pour générer les données de la revendication.
 
-Selon la méthode hello choisie, un ensemble d’entrées et sorties est attendu. Ils sont définis à l’aide de hello **InputClaims**, **InputParameters** et **OutputClaims** éléments.
+Selon la méthode choisie, un ensemble d’entrées et sorties est attendu. Celles-ci sont définies à l’aide des éléments **InputClaims**, **InputParameters** et **OutputClaims**.
 
 #### <a name="table-4-transformation-methods-and-expected-inputs-and-outputs"></a>Tableau 4 : méthodes de transformation et entrées et sorties attendues
 |Méthode de transformation|Entrée attendue|Sortie attendue|Description|
 |-----|-----|-----|-----|
 |Join|string1, string2, séparateur|outputClaim|Joint les chaînes d’entrée à l’aide d’un séparateur. Par exemple : string1:"foo@bar.com", string2:"sandbox", separator:"." produit outputClaim:"foo@bar.com.sandbox"|
-|ExtractMailPrefix|mail|outputClaim|Extrait la partie locale de hello d’une adresse e-mail. Par exemple : mail:"foo@bar.com" produit outputClaim:"foo". Si aucun @ signe est présent, puis de la chaîne d’entrée de replacer hello est retourné tel.|
+|ExtractMailPrefix|mail|outputClaim|Extrait la partie locale d’une adresse de courrier. Par exemple : mail:"foo@bar.com" produit outputClaim:"foo". Si aucun signe @ n’est présent, la chaîne d’entrée originale est retournée telle quelle.|
 
-**InputClaims :** utiliser un InputClaims élément toopass hello de données à partir d’une transformation de revendication schéma entrée tooa. Il possède deux attributs : **ClaimTypeReferenceId** et **TransformationClaimType**.
+**InputClaims :** un élément InputClaims permet de transmettre les données d’une entrée de schéma de revendication à une transformation. Il possède deux attributs : **ClaimTypeReferenceId** et **TransformationClaimType**.
 
-- **ClaimTypeReferenceId** est jointe à un élément ID de hello revendication schéma entrée toofind hello approprié revendication d’entrée. 
-- **TransformationClaimType** toogive utilisé n’est une entrée de toothis de nom unique. Ce nom doit correspondre à une des entrées hello attendu pour la méthode de transformation hello.
+- L’attribut **ClaimTypeReferenceId** est joint à l’élément ID de l’entrée de schéma de revendication pour rechercher la revendication d’entrée appropriée. 
+- L’attribut **TransformationClaimType** est utilisé pour donner un nom unique à cette entrée. Ce nom doit correspondre à l’une des entrées attendues pour la méthode de transformation.
 
-**InputParameters :** utiliser un toopass d’élément InputParameters une transformation tooa de valeur constante. Il possède deux attributs : **Value** et **ID**.
+**InputParameters :** un élément InputParameters permet de transmettre une valeur constante à une transformation. Il possède deux attributs : **Value** et **ID**.
 
-- **Valeur** hello réelle valeur constante toobe passé.
-- **ID** toogive utilisé n’est une entrée de toothis de nom unique. Ce nom doit correspondre à une des entrées hello attendu pour la méthode de transformation hello.
+- L’attribut **Value** est la valeur de constante réelle à transmettre.
+- L’attribut **ID** est utilisé pour donner un nom unique à cette entrée. Ce nom doit correspondre à l’une des entrées attendues pour la méthode de transformation.
 
-**OutputClaims :** utilisez un OutputClaims élément toohold hello données générées par une transformation et pouvoir le lier une entrée de schéma tooa revendication. Il possède deux attributs : **ClaimTypeReferenceId** et **TransformationClaimType**.
+**OutputClaims :** un élément OutputClaims permet conserver les données générées par une transformation, et de les lier à une entrée de schéma de revendication. Il possède deux attributs : **ClaimTypeReferenceId** et **TransformationClaimType**.
 
-- **ClaimTypeReferenceId** est jointe avec l’ID de hello d’entrée schéma de hello revendication toofind hello une revendication de sortie appropriée.
-- **TransformationClaimType** toogive utilisé n’est une sortie de toothis de nom unique. Ce nom doit correspondre à une des sorties hello attendu pour la méthode de transformation hello.
+- L’attribut **ClaimTypeReferenceId** est joint à l’élément ID de l’entrée de schéma de revendication pour rechercher la revendication de sortie appropriée.
+- L’attribut **TransformationClaimType** est utilisé pour donner un nom unique à cette sortie. Ce nom doit correspondre à l’une des sorties attendues pour la méthode de transformation.
 
 ### <a name="exceptions-and-restrictions"></a>Exceptions et restrictions
 
-**NameID de SAML et UPN :** hello les attributs à partir de laquelle vous source les valeurs NameID et UPN hello et hello transformations qui sont autorisées, les revendications sont limités.
+**NameID et UPN SAML :** les attributs à partir desquels vous obtenez les valeurs NameID et UPN ainsi que les transformations de revendications autorisées sont limités.
 
 #### <a name="table-5-attributes-allowed-as-a-data-source-for-saml-nameid"></a>Tableau 5 : attributs autorisés en tant que sources de données pour NameID SAML
 |Source|ID|Description|
@@ -404,104 +404,104 @@ Selon la méthode hello choisie, un ensemble d’entrées et sorties est attendu
 |Méthode de transformation|Restrictions|
 | ----- | ----- |
 |ExtractMailPrefix|Aucune|
-|Join|suffixe Hello jointe doit être un domaine vérifié du client de ressource hello.|
+|Join|Le suffixe joint doit être un domaine vérifié du locataire de ressources.|
 
 ### <a name="custom-signing-key"></a>Clé de signature personnalisée
-Toohello objet principal de service pour un effet tootake de stratégie de mappage de revendications doit être affectée à une clé de signature personnalisée. Tous les jetons émis qui ont été affectés par la stratégie de hello sont signés avec cette clé. Les applications doivent être tooaccept configuré les jetons signés avec cette clé. Cela garantit que les jetons ont été modifiés par le créateur de hello Hello un accusé de réception de revendications stratégie de mappage. Cela protège les applications contre des stratégies de mappage de revendications créées par des acteurs malveillants.
+Une clé de signature personnalisée doit être affectée à l’objet de principal du service pour qu’une stratégie de mappage de revendications entre en vigueur. Tous les jetons émis qui ont été affectés par la stratégie sont signés avec cette clé. Les applications doivent être configurées pour accepter les jetons signés avec cette clé. Cela garantit la reconnaissance que les jetons ont été modifiés par le créateur de la stratégie de mappage de revendications. Cela protège les applications contre des stratégies de mappage de revendications créées par des acteurs malveillants.
 
 ### <a name="cross-tenant-scenarios"></a>Scénarios inter-locataires
-Stratégies de mappage ne s’appliquent pas aux utilisateurs de tooguest de revendications. Si un utilisateur invité tente tooaccess une application avec des revendications de mappage stratégie attribuée tooits service principal, jeton de valeur par défaut de hello est publié (stratégie de hello n’a aucun effet).
+Les stratégies de mappage de revendications ne s’appliquent pas aux utilisateurs invités. Si un utilisateur invité tente d’accéder à une application avec une stratégie de mappage de revendications assignée à son principal du service, le jeton par défaut est émis (la stratégie est sans effet).
 
 ## <a name="claims-mapping-policy-assignment"></a>Attribution de stratégie de mappage de revendications
-Stratégies de mappage ne peuvent être assignées tooservice des objets principal de revendications.
+Des stratégies de mappage de revendications peuvent être attribuées uniquement à des objets de principal du service.
 
 ### <a name="example-claims-mapping-policies"></a>Exemples de stratégies de mappage de revendications
 
-Dans Azure AD, de nombreux scénarios sont possibles où vous pouvez personnaliser des revendications émises dans des jetons pour des principaux du service spécifiques. Dans cette section, nous guider quelques scénarios courants qui peuvent vous aider à comprendre comment toouse hello déclare le type de stratégie de mappage.
+Dans Azure AD, de nombreux scénarios sont possibles où vous pouvez personnaliser des revendications émises dans des jetons pour des principaux du service spécifiques. Cette section décrit quelques scénarios courants qui peuvent vous aider à comprendre comment utiliser le type de stratégie de mappage de revendications.
 
-#### <a name="prerequisites"></a>Composants requis
-Bonjour exemple suivant, vous créez, mettre à jour, liez et supprimez des stratégies pour les principaux de service. Si vous êtes de nouveau tooAzure AD, nous vous recommandons que vous découvrez comment tooget une annonce Azure client avant de procéder à ces exemples. 
+#### <a name="prerequisites"></a>Conditions préalables
+Dans les exemples suivants, vous créez, mettez à jour, liez et supprimez des stratégies pour les principaux du service. Si vous débutez avec Azure AD, nous vous recommandons de vous documenter sur l’obtention d’un locataire Azure Active Directory avant de continuer avec ces exemples. 
 
-tooget démarré, hello comme suit :
+Pour commencer, suivez les étapes ci-dessous :
 
 
-1. Télécharger le dernier hello [version préliminaire publique de Module PowerShell Azure AD](https://www.powershellgallery.com/packages/AzureADPreview/2.0.0.127).
-2.  Exécutez hello Connect commande toosign dans tooyour compte d’administrateur Azure AD. Exécutez cette commande chaque fois que vous démarrez une nouvelle session.
+1. Téléchargez la dernière [préversion publique du module Azure AD PowerShell](https://www.powershellgallery.com/packages/AzureADPreview/2.0.0.127).
+2.  Exécutez la commande Connect pour vous connecter à votre compte d'administrateur Azure AD. Exécutez cette commande chaque fois que vous démarrez une nouvelle session.
     
      ``` powershell
     Connect-AzureAD -Confirm
     
     ```
-3.  toosee toutes les stratégies qui ont été créés dans votre organisation, hello exécution suivant la commande. Nous vous recommandons d’exécuter cette commande après la plupart des opérations Bonjour suivant des scénarios, toocheck vos stratégies sont créés en tant que prévu.
+3.  Pour afficher toutes les stratégies qui ont été créées dans votre organisation, exécutez la commande suivante. Nous vous conseillons d’exécuter cette commande après la plupart des opérations dans les scénarios suivants afin de vérifier que vos stratégies sont créées comme prévu.
    
     ``` powershell
         Get-AzureADPolicy
     
     ```
-#### <a name="example-create-and-assign-a-policy-tooomit-hello-basic-claims-from-tokens-issued-tooa-service-principal"></a>Exemple : Créer et attribuer une stratégie tooomit hello base de revendications à partir de principal du service tooa jetons émis.
-Dans cet exemple, vous créez une stratégie qui supprime les ensemble de revendications basic de hello toolinked des jetons émis principaux de service.
+#### <a name="example-create-and-assign-a-policy-to-omit-the-basic-claims-from-tokens-issued-to-a-service-principal"></a>Exemple : créer et attribuer une stratégie pour omettre les revendications de base des jetons émis pour un principal du service.
+Dans cet exemple, vous créez une stratégie qui supprime l’ensemble de revendications de base des jetons émis pour des principaux du service liés.
 
 
-1. Créez une stratégie de mappage de revendications. Cette stratégie, les principaux du service lié toospecific, supprime hello revendication base ensemble de jetons.
-    1. stratégie de hello toocreate, exécutez la commande suivante : 
+1. Créez une stratégie de mappage de revendications. Cette stratégie, liée à des principaux du service spécifiques, supprime l’ensemble de revendications de base des jetons.
+    1. Pour créer la stratégie, exécutez la commande suivante : 
     
      ``` powershell
     New-AzureADPolicy -Definition @('{"ClaimsMappingPolicy":{"Version":1,"IncludeBasicClaimSet":"false"}}') -DisplayName "OmitBasicClaims” -Type "ClaimsMappingPolicy"
     ```
-    2. toosee votre nouvelle stratégie et tooget hello stratégie ObjectId, hello exécution suivant de commandes :
+    2. Pour voir votre nouvelle stratégie et obtenir son ObjectId, exécutez la commande suivante :
     
      ``` powershell
     Get-AzureADPolicy
     ```
-2.  Affecter le principal du service tooyour hello stratégie. Vous devez également tooget hello ObjectId de votre principal de service. 
-    1.  toosee principaux de service d’ensemble de l’entreprise, vous pouvez interroger Microsoft Graph. Ou, dans l’Explorateur d’Azure AD Graph, connectez-vous tooyour compte Azure AD.
-    2.  Lorsque vous avez hello ObjectId de votre hello service principal, exécutez commande suivante :  
+2.  Affectez la stratégie au principal de service. Vous devez également obtenir l’ObjectId de votre principal du service. 
+    1.  Pour afficher tous les principaux du service de votre organisation, vous pouvez interroger Microsoft Graph. Ou bien, dans l’explorateur Azure AD Graph, connectez-vous à votre compte Azure AD.
+    2.  Une fois que vous disposez de l’ObjectId de votre principal du service, exécutez la commande suivante :  
      
      ``` powershell
-    Add-AzureADServicePrincipalPolicy -Id <ObjectId of hello ServicePrincipal> -RefObjectId <ObjectId of hello Policy>
+    Add-AzureADServicePrincipalPolicy -Id <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
     ```
-#### <a name="example-create-and-assign-a-policy-tooinclude-hello-employeeid-and-tenantcountry-as-claims-in-tokens-issued-tooa-service-principal"></a>Exemple : Créer et affecter un tooinclude stratégie hello EmployeeID et TenantCountry comme tooa principal du service d’émission des revendications dans les jetons.
-Dans cet exemple, vous créez une stratégie qui ajoute hello EmployeeID et TenantCountry tootokens émis toolinked principaux de service. Hello EmployeeID est émis en tant que type de revendication de nom hello dans les jetons SAML et les jetons Web JSON. Hello TenantCountry est émis comme pays de hello revendication dans les jetons SAML et les jetons Web JSON. Dans cet exemple, nous continuons de demandes de basic de hello tooinclude définies dans les jetons hello.
+#### <a name="example-create-and-assign-a-policy-to-include-the-employeeid-and-tenantcountry-as-claims-in-tokens-issued-to-a-service-principal"></a>Exemple : créer et attribuer une stratégie pour inclure EmployeeID et TenantCountry en tant que revendications dans des jetons émis pour un principal du service.
+Dans cet exemple, vous créez une stratégie qui ajoute EmployeeID et TenantCountry à des jetons émis pour des principaux du service liés. EmployeeID est émis en tant que type de revendication de nom dans les jetons SAML et JWT. TenantCountry est émis en tant que type de revendication de pays dans les jetons SAML et JWT. Dans cet exemple, nous continuons à inclure les ensembles de revendications de base dans les jetons.
 
-1. Créez une stratégie de mappage de revendications. Cette stratégie, les principaux du service lié toospecific, ajoute hello EmployeeID et TenantCountry tootokens de revendications.
-    1. stratégie de hello toocreate, exécutez la commande suivante :  
+1. Créez une stratégie de mappage de revendications. Cette stratégie liée à des principaux du service spécifiques ajoute les revendications EmployeeID et TenantCountry aux jetons.
+    1. Pour créer la stratégie, exécutez la commande suivante :  
      
      ``` powershell
     New-AzureADPolicy -Definition @('{"ClaimsMappingPolicy":{"Version":1,"IncludeBasicClaimSet":"true", "ClaimsSchema": [{"Source":"user","ID":"employeeid","SamlClaimType":"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name","JwtClaimType":"name"},{"Source":"company","ID":" tenantcountry ","SamlClaimType":" http://schemas.xmlsoap.org/ws/2005/05/identity/claims/country ","JwtClaimType":"country"}]}}') -DisplayName "ExtraClaimsExample” -Type "ClaimsMappingPolicy"
     ```
     
-    2. toosee votre nouvelle stratégie et tooget hello stratégie ObjectId, hello exécution suivant de commandes :
+    2. Pour voir votre nouvelle stratégie et obtenir son ObjectId, exécutez la commande suivante :
      
      ``` powershell  
     Get-AzureADPolicy
     ```
-2.  Affecter le principal du service tooyour hello stratégie. Vous devez également tooget hello ObjectId de votre principal de service. 
-    1.  toosee principaux de service d’ensemble de l’entreprise, vous pouvez interroger Microsoft Graph. Ou, dans l’Explorateur d’Azure AD Graph, connectez-vous tooyour compte Azure AD.
-    2.  Lorsque vous avez hello ObjectId de votre hello service principal, exécutez commande suivante :  
+2.  Affectez la stratégie au principal de service. Vous devez également obtenir l’ObjectId de votre principal du service. 
+    1.  Pour afficher tous les principaux du service de votre organisation, vous pouvez interroger Microsoft Graph. Ou bien, dans l’explorateur Azure AD Graph, connectez-vous à votre compte Azure AD.
+    2.  Une fois que vous disposez de l’ObjectId de votre principal du service, exécutez la commande suivante :  
      
      ``` powershell
-    Add-AzureADServicePrincipalPolicy -Id <ObjectId of hello ServicePrincipal> -RefObjectId <ObjectId of hello Policy>
+    Add-AzureADServicePrincipalPolicy -Id <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
     ```
-#### <a name="example-create-and-assign-a-policy-that-uses-a-claims-transformation-in-tokens-issued-tooa-service-principal"></a>Exemple : Créer et attribuer une stratégie qui utilise une transformation des revendications dans les jetons émis principal du service tooa.
-Dans cet exemple, vous créez une stratégie qui émet une revendication personnalisée « JoinedData » tooJWTs émis toolinked principaux du service. Cette revendication contient une valeur créée en joignant les données hello stockées dans l’attribut d’extensionattribute1 hello sur l’objet d’utilisateur de hello ayant « .sandbox ». Dans cet exemple, les demandes de basic de hello définies dans les jetons hello est exclue.
+#### <a name="example-create-and-assign-a-policy-that-uses-a-claims-transformation-in-tokens-issued-to-a-service-principal"></a>Exemple : créer et attribuer une stratégie qui utilise une transformation de revendications dans des jetons émis pour un principal du service.
+Dans cet exemple, vous créez une stratégie qui émet une revendication personnalisée « JoinedData » pour des jetons JWT émis pour des principaux du service liés. Cette revendication contient une valeur créée en joignant les données stockées dans l’attribut extensionattribute1 sur l’objet utilisateur avec « .sandbox ». Dans cet exemple, nous excluons l’ensemble de revendications de base des jetons.
 
 
-1. Créez une stratégie de mappage de revendications. Cette stratégie, les principaux du service lié toospecific, ajoute hello EmployeeID et TenantCountry tootokens de revendications.
-    1. stratégie de hello toocreate, exécutez la commande suivante : 
+1. Créez une stratégie de mappage de revendications. Cette stratégie liée à des principaux du service spécifiques ajoute les revendications EmployeeID et TenantCountry aux jetons.
+    1. Pour créer la stratégie, exécutez la commande suivante : 
      
      ``` powershell
     New-AzureADPolicy -Definition @('{"ClaimsMappingPolicy":{"Version":1,"IncludeBasicClaimSet":"true", "ClaimsSchema":[{"Source":"user","ID":"extensionattribute1"},{"Source":"transformation","ID":"DataJoin","TransformationId":"JoinTheData","JwtClaimType":"JoinedData"}],"ClaimsTransformation":[{"ID":"JoinTheData","TransformationMethod":"Join","InputClaims":[{"ClaimTypeReferenceId":"extensionattribute1","TransformationClaimType":"string1"}], "InputParameters": [{"Id":"string2","Value":"sandbox"},{"Id":"separator","Value":"."}],"OutputClaims":[{"ClaimTypeReferenceId":"DataJoin","TransformationClaimType":"outputClaim"}]}]}}') -DisplayName "TransformClaimsExample” -Type "ClaimsMappingPolicy"
     ```
     
-    2. toosee votre nouvelle stratégie et tooget hello stratégie ObjectId, hello exécution suivant de commandes : 
+    2. Pour voir votre nouvelle stratégie et obtenir son ObjectId, exécutez la commande suivante : 
      
      ``` powershell
     Get-AzureADPolicy
     ```
-2.  Affecter le principal du service tooyour hello stratégie. Vous devez également tooget hello ObjectId de votre principal de service. 
-    1.  toosee principaux de service d’ensemble de l’entreprise, vous pouvez interroger Microsoft Graph. Ou, dans l’Explorateur d’Azure AD Graph, connectez-vous tooyour compte Azure AD.
-    2.  Lorsque vous avez hello ObjectId de votre hello service principal, exécutez commande suivante : 
+2.  Affectez la stratégie au principal de service. Vous devez également obtenir l’ObjectId de votre principal du service. 
+    1.  Pour afficher tous les principaux du service de votre organisation, vous pouvez interroger Microsoft Graph. Ou bien, dans l’explorateur Azure AD Graph, connectez-vous à votre compte Azure AD.
+    2.  Une fois que vous disposez de l’ObjectId de votre principal du service, exécutez la commande suivante : 
      
      ``` powershell
-    Add-AzureADServicePrincipalPolicy -Id <ObjectId of hello ServicePrincipal> -RefObjectId <ObjectId of hello Policy>
+    Add-AzureADServicePrincipalPolicy -Id <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
     ```

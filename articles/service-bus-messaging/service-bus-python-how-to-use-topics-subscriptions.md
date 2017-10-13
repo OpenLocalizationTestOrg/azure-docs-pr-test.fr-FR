@@ -1,6 +1,6 @@
 ---
-title: rubriques de Azure Service Bus aaaHow toouse avec Python | Documents Microsoft
-description: "Découvrez comment toouse Azure Service Bus rubriques et abonnements à partir de Python."
+title: Utilisation des rubriques Azure Service Bus avec Python | Microsoft Docs
+description: "Découvrez comment utiliser les rubriques et abonnements Service Bus Azure depuis Python."
 services: service-bus-messaging
 documentationcenter: python
 author: sethmanheim
@@ -14,31 +14,31 @@ ms.devlang: python
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: 1171cbe8061bb3d73e2ce92ecc0cf45afae37054
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 15269f9728e9dc45e6436e53b1859f76d4a7a0c9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-service-bus-topics-and-subscriptions-with-python"></a>Comment toouse Service Bus rubriques et les abonnements avec Python
+# <a name="how-to-use-service-bus-topics-and-subscriptions-with-python"></a>Utilisation des rubriques et abonnements Service Bus avec Python
 
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-Cet article décrit comment toouse Service Bus rubriques et abonnements. exemples de Hello sont écrites dans Python et utiliser hello [package SDK de Python Azure][Azure Python package]. Hello scénarios abordés incluent **création de rubriques et abonnements**, **création de filtres d’abonnement**, **envoi rubrique tooa de messages**, **réception les messages à partir d’un abonnement**, et **suppression des rubriques et abonnements**. Pour plus d’informations sur les rubriques et les abonnements, consultez hello [étapes](#next-steps) section.
+Cet article explique comment utiliser les rubriques et les abonnements Service Bus. Ces exemples sont écrits en Python et utilisent le [package du Kit de développement logiciel (SDK) Azure Python][Azure Python package]. Les scénarios couverts incluent la **création de rubriques et d’abonnements**, la **création de filtres d’abonnement**, **l’envoi de messages à une rubrique**, la **réception de messages en provenance d’un abonnement** et enfin la **suppression de rubriques et d’abonnements**. Pour plus d’informations sur les rubriques et les abonnements, consultez la section [Étapes suivantes](#next-steps).
 
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
 > [!NOTE] 
-> Si vous avez besoin tooinstall Python ou hello [package Azure Python][Azure Python package], consultez hello [Guide d’Installation de Python](../python-how-to-install.md).
+> Si vous devez installer Python ou le [package Azure Python][Azure Python package], consultez le [Guide d’installation de Python](../python-how-to-install.md).
 
 ## <a name="create-a-topic"></a>Création d'une rubrique
-Hello **ServiceBusService** objet vous permet de toowork aux rubriques. Ajoutez les éléments suivants de hello haut hello de n’importe quel fichier Python dans lequel vous souhaitez tooprogrammatically accès Service Bus :
+L’objet **ServiceBusService** permet d’utiliser des rubriques. Ajoutez ce qui suit vers le début de chaque fichier Python dans lequel vous souhaitez accéder à Service Bus par programme :
 
 ```python
 from azure.servicebus import ServiceBusService, Message, Topic, Rule, DEFAULT_RULE_NAME
 ```
 
-Hello de code suivant crée un **ServiceBusService** objet. Remplacez `mynamespace`, `sharedaccesskeyname` et `sharedaccesskey` par un espace de noms, un nom et une valeur de clé de signature d’accès partagé (SAP) réels.
+Le code suivant crée un objet **ServiceBusService**. Remplacez `mynamespace`, `sharedaccesskeyname` et `sharedaccesskey` par un espace de noms, un nom et une valeur de clé de signature d’accès partagé (SAP) réels.
 
 ```python
 bus_service = ServiceBusService(
@@ -47,13 +47,13 @@ bus_service = ServiceBusService(
     shared_access_key_value='sharedaccesskey')
 ```
 
-Vous pouvez obtenir les valeurs hello pour le nom de la clé SAS hello et la valeur à partir de hello [portail Azure][Azure portal].
+Vous pouvez obtenir les valeurs pour la valeur et le nom de la clé SAP à partir du [portail Azure][Azure portal].
 
 ```python
 bus_service.create_topic('mytopic')
 ```
 
-Hello `create_topic` méthode prend également en charge des options supplémentaires, qui permettent de paramètres de rubrique toooverride par défaut comme taille de rubrique toolive ou maximale de temps de message. Hello exemple suivant définit hello rubrique maximale taille too5 Go et heure toolive (TTL) de 1 minute :
+La méthode `create_topic` prend également en charge des options supplémentaires, qui vous permettent de remplacer les paramètres de rubrique par défaut, comme la durée de vie du message ou la taille maximale de la rubrique. L’exemple suivant définit la taille maximale de la rubrique sur 5 Go et la durée de vie de message (TTL) sur 1 minute :
 
 ```python
 topic_options = Topic()
@@ -64,33 +64,33 @@ bus_service.create_topic('mytopic', topic_options)
 ```
 
 ## <a name="create-subscriptions"></a>Création d’abonnements
-Abonnements tootopics sont également créés par hello **ServiceBusService** objet. Les abonnements sont nommés et peuvent avoir un filtre facultatif qui limite l’ensemble hello de messages remis de file d’attente virtuelle de l’abonnement toohello.
+Les abonnements à des rubriques sont également créés à l’aide de l’objet **ServiceBusService**. Les abonnements sont nommés et peuvent être assortis d'un filtre facultatif qui limite l'ensemble des messages transmis à la file d'attente virtuelle de l'abonnement.
 
 > [!NOTE]
-> Abonnements sont persistantes et continuent jusqu'à ce que soit leur tooexist ou hello rubrique toowhich êtes abonné, elles sont supprimées.
+> Les abonnements sont persistants et continuent à exister jusqu’à leur suppression ou celle de la rubrique à laquelle ils sont abonnés.
 > 
 > 
 
-### <a name="create-a-subscription-with-hello-default-matchall-filter"></a>Créer un abonnement avec le filtre par défaut (MatchAll) hello
-Hello **MatchAll** filtre est hello par défaut qui est utilisé si aucun filtre n’est spécifiée lors de la création d’un abonnement. Hello lorsque **MatchAll** filtre est utilisé, la rubrique de toohello publié tous les messages sont placés dans la file d’attente virtuelle de l’abonnement hello. Hello exemple suivant crée un abonnement nommé `AllMessages` et utilise hello par défaut **MatchAll** filtre.
+### <a name="create-a-subscription-with-the-default-matchall-filter"></a>Création d’un abonnement avec le filtre par défaut (MatchAll)
+Le filtre **MatchAll** est le filtre utilisé par défaut si aucun filtre n’est spécifié lors de la création d’un abonnement. Lorsque le filtre **MatchAll** est utilisé, tous les messages publiés dans la rubrique sont placés dans la file d’attente virtuelle de l’abonnement. L’exemple suivant crée un abonnement intitulé `AllMessages` et utilise le filtre par défaut **MatchAll**.
 
 ```python
 bus_service.create_subscription('mytopic', 'AllMessages')
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>Création d’abonnements avec des filtres
-Vous pouvez également définir des filtres qui vous permettent de toospecify lesquelles messages envoyés tooa rubrique doit apparaître dans un abonnement à une rubrique spécifique.
+Vous pouvez également définir des filtres pour spécifier quels sont les messages, parmi ceux envoyés à une rubrique, qui doivent apparaître dans un abonnement de rubrique spécifique.
 
-Bonjour type de filtre pris en charge par les abonnements plus souple est un **SqlFilter**, qui implémente un sous-ensemble de SQL92. Filtres SQL fonctionnent sur les propriétés hello de messages hello qui sont publiées toohello rubrique. Pour plus d’informations sur les expressions hello qui peut être utilisé avec un filtre SQL, consultez hello [SqlFilter.SqlExpression] [ SqlFilter.SqlExpression] syntaxe.
+Le type de filtre le plus flexible pris en charge par les abonnements est **SqlFilter**, qui implémente un sous-ensemble de SQL92. Les filtres SQL opèrent au niveau des propriétés des messages publiés dans la rubrique. Pour plus d’informations sur les expressions utilisables avec un filtre SQL, consultez la syntaxe de [SqlFilter.SqlExpression][SqlFilter.SqlExpression].
 
-Vous pouvez ajouter des filtres tooa abonnement à l’aide de hello **créer\_règle** méthode Hello **ServiceBusService** objet. Cette méthode vous permet d’abonnement existant tooadd nouveaux filtres tooan.
+Vous pouvez ajouter des filtres à un abonnement en utilisant la méthode **create\_rule** de l’objet **ServiceBusService**. Cette méthode vous permet d’ajouter de nouveaux filtres à un abonnement existant.
 
 > [!NOTE]
-> Étant donné que le filtre par défaut de hello est appliqué automatiquement tooall nouveaux abonnements, vous devez d’abord supprimer filtre par défaut de hello ou hello **MatchAll** remplace tous les autres filtres que vous pouvez spécifier. Vous pouvez supprimer la règle par défaut de hello à l’aide de hello `delete_rule` méthode Hello **ServiceBusService** objet.
+> Comme le filtre par défaut est appliqué automatiquement à tous les nouveaux abonnements, vous devez commencer par supprimer le filtre par défaut, sans quoi le filtre **MatchAll** remplace tous les autres filtres spécifiés. Vous pouvez supprimer la règle par défaut en utilisant la méthode `delete_rule` de l’objet **ServiceBusService**.
 > 
 > 
 
-Hello exemple suivant crée un abonnement nommé `HighMessages` avec un **SqlFilter** qui sélectionne uniquement les messages qui ont personnalisé `messagenumber` propriété supérieure à 3 :
+L’exemple suivant crée l’abonnement `HighMessages` avec un objet **SqlFilter** qui ne sélectionne que les messages dont la propriété personnalisée `messagenumber` a une valeur supérieure à 3 :
 
 ```python
 bus_service.create_subscription('mytopic', 'HighMessages')
@@ -103,7 +103,7 @@ bus_service.create_rule('mytopic', 'HighMessages', 'HighMessageFilter', rule)
 bus_service.delete_rule('mytopic', 'HighMessages', DEFAULT_RULE_NAME)
 ```
 
-De même, hello exemple suivant crée un abonnement nommé `LowMessages` avec un **SqlFilter** qui sélectionne uniquement les messages qui ont un `messagenumber` propriété inférieur ou égal too3 :
+De même, l’exemple suivant crée l’abonnement `LowMessages` avec un objet **SqlFilter** qui ne sélectionne que les messages dont la propriété `messagenumber` a une valeur inférieure ou égale à 3 :
 
 ```python
 bus_service.create_subscription('mytopic', 'LowMessages')
@@ -116,12 +116,12 @@ bus_service.create_rule('mytopic', 'LowMessages', 'LowMessageFilter', rule)
 bus_service.delete_rule('mytopic', 'LowMessages', DEFAULT_RULE_NAME)
 ```
 
-Désormais, lorsqu’un message est envoyé trop`mytopic` qu’il est toujours remis tooreceivers abonné toohello **AllMessages** abonnement à une rubrique et remis de manière sélective tooreceivers abonné toohello **HighMessages**  et **LowMessages** abonnements à la rubrique (selon le contenu du message hello).
+À présent, dès lors qu’un message est envoyé à `mytopic`, il est toujours remis aux destinataires abonnés à l’abonnement de rubrique **AllMessages** et est remis de manière sélective aux destinataires abonnés aux abonnements de rubrique **HighMessages** et **LowMessages** (en fonction du contenu du message).
 
-## <a name="send-messages-tooa-topic"></a>Rubrique tooa de messages d’envoi
-toosend une rubrique de Service Bus message tooa, votre application doit utiliser hello `send_topic_message` méthode Hello **ServiceBusService** objet.
+## <a name="send-messages-to-a-topic"></a>Envoi de messages à une rubrique
+Pour envoyer un message à une rubrique Service Bus, votre application doit utiliser la méthode `send_topic_message` de l’objet **ServiceBusService**.
 
-Hello exemple suivant montre comment le test de toosend cinq messages trop`mytopic`. Notez que hello `messagenumber` varie en fonction de valeur de la propriété de chaque message sur l’itération hello de boucle de hello (détermine les abonnements reçoivent) :
+L’exemple suivant montre comment envoyer cinq messages de test à `mytopic`. Notez que la valeur de la propriété `messagenumber` de chaque message varie au niveau de l’itération de la boucle (ce qui détermine les abonnements qui le reçoivent) :
 
 ```python
 for i in range(5):
@@ -129,21 +129,21 @@ for i in range(5):
     bus_service.send_topic_message('mytopic', msg)
 ```
 
-Rubriques Service Bus prend en charge une taille maximale de 256 Ko Bonjour [niveau Standard](service-bus-premium-messaging.md) et 1 Mo Bonjour [niveau Premium](service-bus-premium-messaging.md). en-tête Hello, qui inclut les standard hello et les propriétés de l’application personnalisée, peut avoir une taille maximale de 64 Ko. Il n’existe aucune limite sur le nombre de hello de messages conservés dans une rubrique mais hello de taille totale des messages hello détenus par une rubrique est une extrémité de fin. Cette taille de rubrique est définie au moment de la création. La limite maximale est de 5 Go. Pour plus d’informations sur les quotas, consultez [Quotas Service Bus][Service Bus quotas].
+Les rubriques Service Bus prennent en charge une taille de message maximale de 256 Ko dans le [niveau Standard](service-bus-premium-messaging.md) et de 1 Mo dans le [niveau Premium](service-bus-premium-messaging.md). L’en-tête, qui comprend les propriétés d’application standard et personnalisées, peut avoir une taille maximale de 64 Ko. Si une rubrique n'est pas limitée par le nombre de messages qu'elle peut contenir, elle l'est en revanche par la taille totale des messages qu'elle contient. Cette taille de rubrique est définie au moment de la création. La limite maximale est de 5 Go. Pour plus d’informations sur les quotas, consultez [Quotas Service Bus][Service Bus quotas].
 
 ## <a name="receive-messages-from-a-subscription"></a>Réception des messages d’un abonnement
-Les messages sont reçus à partir d’un abonnement à l’aide de hello `receive_subscription_message` méthode sur hello **ServiceBusService** objet :
+La méthode `receive_subscription_message` de l’objet **ServiceBusService** permet de recevoir les messages associés à un abonnement.
 
 ```python
 msg = bus_service.receive_subscription_message('mytopic', 'LowMessages', peek_lock=False)
 print(msg.body)
 ```
 
-Les messages sont supprimés de l’abonnement de hello lorsqu’elles sont lues lorsque hello paramètre `peek_lock` est défini trop**False**. Vous pouvez lire (aperçu) et verrouiller le message de type hello sans le supprimer de la file d’attente hello en définissant le paramètre hello `peek_lock` trop**True**.
+Les messages sont supprimés de l’abonnement au fur et à mesure de leur lecture si le paramètre `peek_lock` est défini sur **False**. Vous pouvez lire (afficher un aperçu) et verrouiller le message sans le supprimer de la file d’attente en définissant le paramètre `peek_lock` sur **True**.
 
-Hello le comportement de la lecture et de suppression de message de type hello comme partie de hello opération de réception est le modèle le plus simple hello et convient le mieux pour les scénarios dans lesquels une application peut tolérer ne pas traiter un message dans l’événement hello d’un échec. toounderstand, envisagez un scénario dans les problèmes liés aux consommateurs de hello hello reçoit la demande et puis se bloque avant de le traiter. Comme Service Bus sera ont marqué hello message comme consommé, puis lors de l’application hello redémarre et commence à consommer des messages, elle aura manqué message de type hello qui a été consommée toohello préalable incident.
+Le comportement de lecture et de suppression du message dans le cadre de l'opération de réception est le modèle le plus simple et le mieux adapté aux scénarios dans lesquels une application est capable de tolérer le non-traitement d'un message en cas d'échec. Pour mieux comprendre, imaginez un scénario dans lequel le consommateur émet la demande de réception et subit un incident avant de la traiter. Comme Service Bus a marqué le message comme étant consommé, lorsque l’application redémarre et recommence à consommer des messages, elle manque le message consommé avant l’incident.
 
-Si hello `peek_lock` paramètre est défini trop**True**, hello réception devient une opération en deux étapes, ce qui rend possible toosupport les applications qui ne peut pas tolérer des messages manquants. Lorsque le Service Bus reçoit une demande, il recherche hello suivant message toobe consommé, il verrouille tooprevent autres consommateurs le reçoivent et le retourne toohello application. Une fois l’application hello termine le traitement de message de type hello (ou stocke de manière fiable pour un traitement ultérieur), il termine hello deuxième étape du hello processus de réception en appelant `delete` méthode sur hello **Message** objet. Hello `delete` méthode marque le message de type hello comme ayant été consommé et le supprime de l’abonnement de hello.
+Si le paramètre `peek_lock` est défini sur **True**, la réception devient une opération en deux étapes, qui autorise une prise en charge des applications qui ne peuvent pas tolérer de messages manquants. Lorsque Service Bus reçoit une demande, il recherche le prochain message à consommer, le verrouille pour empêcher d'autres consommateurs de le recevoir, puis le renvoie à l'application. Dès lors que l’application a terminé le traitement du message (ou qu’elle l’a stocké de manière fiable pour un traitement ultérieur), elle accomplit la deuxième étape du processus de réception en appelant la méthode `delete` sur l’objet **Message**. La méthode `delete` marque le message comme étant consommé et le supprime de l’abonnement.
 
 ```python
 msg = bus_service.receive_subscription_message('mytopic', 'LowMessages', peek_lock=True)
@@ -152,28 +152,28 @@ print(msg.body)
 msg.delete()
 ```
 
-## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Comment toohandle application tombe en panne et messages illisibles
-Service Bus fournit toohelp fonctionnalité que surmonter les erreurs dans votre application ou les difficultés du traitement d’un message. Si une application du récepteur ne peut pas tooprocess hello message pour une raison quelconque, elle peut appeler hello `unlock` méthode sur hello **Message** objet. Cette opération provoquent le message de type hello toounlock Service Bus au sein de l’abonnement de hello et rendre disponible toobe de nouveau reçu, soit hello par même consommation d’application ou par une autre application consommatrice.
+## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Gestion des blocages d’application et des messages illisibles
+Service Bus intègre des fonctionnalités destinées à faciliter la récupération à la suite d’erreurs survenues dans votre application ou de difficultés à traiter un message. Si une application réceptrice ne parvient pas à traiter le message, pour une raison quelconque, elle appelle la méthode `unlock` pour l’objet **Message**. Cela amène Service Bus à déverrouiller le message dans l’abonnement et à le rendre à nouveau disponible en réception, pour la même application consommatrice ou pour une autre.
 
-Il existe également un délai d’attente d’un message verrouillé au sein de l’abonnement de hello, et si l’application hello échoue le message de type hello tooprocess avant de délai d’attente de verrou hello expire (par exemple, si de l’application hello se bloque), puis Service Bus déverrouille le message de type hello automatiquement et le rend disponible toobe de nouveau reçu.
+De même, il faut savoir qu’un message verrouillé dans un abonnement est assorti d’un délai d’expiration et que si l’application ne parvient pas à traiter le message dans le temps imparti (par exemple, si l’application subit un incident), Service Bus déverrouille le message automatiquement et le rend à nouveau disponible en réception.
 
-Bonjour événement hello application se bloque après le traitement de message de type hello mais avant hello `delete` méthode est appelée, puis le message de type hello sera redistribué toohello application lors de son redémarrage. Cela est souvent appelé *au moins une fois le traitement*, autrement dit, chaque message est traité au moins une fois, mais dans certain hello situations le même message peut être redistribué. Si le scénario de hello ne peut pas tolérer le traitement dupliqué, les développeurs d’applications doivent ajouter une logique supplémentaire tootheir application toohandle en double remise du message. Cela est souvent obtenue à l’aide de hello **MessageId** propriété de message de type hello, qui reste constante entre les tentatives de remise.
+Si l’application subit un incident après le traitement du message, mais avant l’appel de la méthode `delete`, le message est à nouveau remis à l’application lorsqu’elle redémarre. Dans ce type de traitement, souvent appelé *Au moins une fois*, chaque message est traité au moins une fois. Toutefois, dans certaines circonstances, un même message peut être remis une nouvelle fois. Toutefois, dans certaines circonstances, un même message peut être remis une nouvelle fois. Pour ce faire, il suffit souvent d’utiliser la propriété **MessageId** du message, qui reste constante pendant les tentatives de remise.
 
 ## <a name="delete-topics-and-subscriptions"></a>Suppression de rubriques et d'abonnements
-Rubriques et les abonnements sont persistants et doivent être explicitement supprimés via hello [portail Azure] [ Azure portal] ou par programme. Hello suivant montre comment la rubrique de hello toodelete nommé `mytopic`:
+Les rubriques et les abonnements sont persistants et doivent être supprimés de façon explicite par le biais du [portail Azure][Azure portal] ou par programme. L’exemple suivant indique comment supprimer la rubrique nommée `mytopic` :
 
 ```python
 bus_service.delete_topic('mytopic')
 ```
 
-Suppression d’une rubrique supprime également tous les abonnements qui sont inscrits auprès de rubrique de hello. Les abonnements peuvent aussi être supprimés de manière indépendante. Hello de code suivant montre comment toodelete un abonnement nommé `HighMessages` de hello `mytopic` rubrique :
+La suppression d’une rubrique a également pour effet de supprimer les abonnements inscrits dans la rubrique. Les abonnements peuvent aussi être supprimés de manière indépendante. Le code suivant montre comment supprimer l’abonnement `HighMessages` de la rubrique `mytopic` :
 
 ```python
 bus_service.delete_subscription('mytopic', 'HighMessages')
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez appris les notions de base de hello des rubriques Service Bus, suivez ces liens de toolearn plus.
+Maintenant que vous avez appris les principes de base des rubriques Service Bus, consultez ces liens pour en savoir plus.
 
 * Consultez [Files d’attente, rubriques et abonnements][Queues, topics, and subscriptions].
 * Référence pour [SqlFilter.SqlExpression][SqlFilter.SqlExpression].

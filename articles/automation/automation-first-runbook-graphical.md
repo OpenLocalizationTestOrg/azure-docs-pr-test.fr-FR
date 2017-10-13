@@ -1,9 +1,9 @@
 ---
-title: "runbook graphique de première aaaMy dans Azure Automation | Documents Microsoft"
-description: "Didacticiel qui vous guide tout au long de la création de hello, test et la publication d’un runbook graphique simple."
+title: "Mon premier Runbook graphique dans Azure Automation | Microsoft Docs"
+description: "Ce didacticiel vous familiarise avec la création, le test et la publication d'un Runbook graphique simple."
 services: automation
 documentationcenter: 
-author: mgoedtel
+author: eslesar
 manager: jwhit
 editor: 
 keywords: "runbook, modèle de runbook, automatisation des runbooks, runbook azure"
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/17/2017
 ms.author: magoedte;bwren
-ms.openlocfilehash: 964cf8bae75ca597959bfc39b2b07c22bbc9acb5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b8accf16c43b7a01233742161e68db6f831a2d30
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="my-first-graphical-runbook"></a>Mon premier Runbook graphique
 
@@ -27,157 +27,157 @@ ms.lasthandoff: 10/06/2017
 > * [Graphique](automation-first-runbook-graphical.md)
 > * [PowerShell](automation-first-runbook-textual-powershell.md)
 > * [Workflow PowerShell](automation-first-runbook-textual.md)
-> 
+> * [Python](automation-first-runbook-textual-python2.md)
 > 
 
-Ce didacticiel vous guide dans la création de hello d’un [runbook graphique](automation-runbook-types.md#graphical-runbooks) dans Azure Automation.  Nous allons commencer avec un simple runbook qui teste et publie pendant que nous expliquons comment tootrack hello état du travail de runbook hello.  Puis nous modifions hello runbook tooactually gérer des ressources Azure, dans ce cas de démarrer une machine virtuelle Azure.  Ensuite, nous allons terminer didacticiel de hello en rendant hello runbook plus fiable en ajoutant des paramètres du runbook et des liaisons conditionnelles.
+Ce didacticiel vous familiarise avec la création d’un [Runbook graphique](automation-runbook-types.md#graphical-runbooks) dans Azure Automation.  Nous commençons par un simple runbook que nous testons et publions tout en expliquant comment suivre l’état du travail du runbook.  Nous modifions ensuite le runbook pour gérer les ressources Azure, en démarrant dans ce cas une machine virtuelle Azure.  Enfin, nous terminons ce didacticiel en renforçant le Runbook grâce à l’ajout des paramètres de Runbook et des liens conditionnels.
 
 ## <a name="prerequisites"></a>Composants requis
-toocomplete ce didacticiel, vous devez hello suivant.
+Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
 
-* Abonnement Azure.  Si vous n’avez pas encore d’abonnement, vous pouvez [activer vos avantages abonnés MSDN](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) ou <a href="/pricing/free-account/" target="_blank">[créer un compte gratuit](https://azure.microsoft.com/free/).
-* [Compte d’automatisation Azure](automation-sec-configure-azure-runas-account.md) toohold hello runbook et authentifier les ressources tooAzure.  Ce compte doit avoir l’autorisation toostart et arrêter l’ordinateur virtuel de hello.
-* Une machine virtuelle Azure.  Nous arrêterons et démarrerons cet ordinateur afin qu'il ne soit pas en production.
+* Abonnement Azure. Si vous n’avez pas encore d’abonnement, vous pouvez [activer vos avantages abonnés MSDN](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) ou créer [un compte gratuit](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* [compte Automation](automation-offering-get-started.md) pour le stockage du Runbook et l’authentification auprès des ressources Azure.  Ce compte doit avoir l’autorisation de démarrer et d’arrêter la machine virtuelle.
+* Une machine virtuelle Azure. Nous arrêtons et démarrons cette machine afin qu’elle ne soit pas une machine virtuelle de production.
 
 ## <a name="step-1---create-runbook"></a>Étape 1 - Création d’un Runbook
-Nous commençons par créer un simple runbook qui génère du texte hello *Hello World*.
+Nous commençons par créer un Runbook simple qui renvoie le texte *Hello World*.
 
-1. Bonjour portail Azure, ouvrez votre compte Automation.  
-   page compte d’automatisation Hello vous donne un aperçu rapide des ressources de hello dans ce compte.  Vous devriez déjà posséder certains éléments multimédias.  La plupart d'entre eux est des modules hello sont inclus automatiquement dans un compte Automation.  Vous devez également avoir la ressource d’informations d’identification hello qui est mentionné dans hello [conditions préalables](#prerequisites).
-2. Cliquez sur hello **Runbooks** vignette tooopen hello liste des runbooks.<br> ![Contrôle des Runbooks](media/automation-first-runbook-graphical/runbooks-resources-tile.png)
-3. Créer un runbook en cliquant sur hello **ajouter un runbook** bouton, puis **créer un runbook**.
-4. Nommez hello hello runbook *MyFirstRunbook graphique*.
-5. Dans ce cas, nous allons toocreate un [runbook graphique](automation-graphical-authoring-intro.md) ainsi sélectionnez **Graphical** pour **le type de Runbook**.<br> ![Nouveau Runbook](media/automation-first-runbook-graphical/create-new-runbook.png)<br>
-6. Cliquez sur **créer** toocreate hello runbook et l’éditeur graphique de hello ouvert.
+1. Dans le portail Azure, ouvrez votre compte Automation.  
+   La page du compte Automation vous offre un aperçu rapide des ressources de ce compte.  Vous devriez déjà posséder certains éléments multimédias.  La plupart de ces éléments représentent les modules automatiquement inclus dans un nouveau compte Automation.  Vous devriez également disposer de la ressource d’informations d’identification mentionnée dans les [composants requis](#prerequisites).
+2. Cliquez sur la vignette **Runbooks** pour ouvrir la liste des runbooks.<br> ![Contrôle des Runbooks](media/automation-first-runbook-graphical/runbooks-resources-tile.png)
+3. Créez un Runbook en cliquant sur le bouton **Ajouter un Runbook** puis**Créer un Runbook**.
+4. Nommez le Runbook *MyFirstRunbook-Graphical*.
+5. Dans ce cas précis, nous allons créer un [Runbook graphique](automation-graphical-authoring-intro.md) ; vous devez donc sélectionner **Graphique** dans le champ **Type de Runbook**.<br> ![Nouveau Runbook](media/automation-first-runbook-graphical/create-new-runbook.png)<br>
+6. Cliquez sur **Créer** pour créer le Runbook et ouvrez l’éditeur graphique.
 
-## <a name="step-2---add-activities-toohello-runbook"></a>Étape 2 : ajouter des activités toohello runbook
-Hello contrôle bibliothèque hello les côté gauche de l’éditeur de hello vous permet de tooselect activités tooadd tooyour runbook.  Nous allons tooadd un **Write-Output** applet de commande toooutput texte hello runbook.
+## <a name="step-2---add-activities-to-the-runbook"></a>Étape 2 : Ajout d’activités au Runbook
+Le contrôle Bibliothèque à gauche de l’éditeur vous permet de sélectionner des activités à ajouter à votre Runbook.  Nous allons ajouter une applet de commande **Write-Output** pour extraire du texte du Runbook.
 
-1. Bonjour contrôle de la bibliothèque, cliquez sur dans la zone de texte Rechercher hello et type **Write-Output**.  résultats de la recherche Hello seront affichera ci-dessous. <br> ![Microsoft.PowerShell.Utility](media/automation-first-runbook-graphical/search-powershell-cmdlet-writeoutput.png)
-2. Faites défiler bas toohello de liste de hello.  Vous pouvez soit avec le bouton **Write-Output** et sélectionnez **ajouter toocanvas** ou cliquez sur hello ellipse toohello applet de commande suivante, puis sélectionnez **ajouter toocanvas**.
-3. Cliquez sur hello **Write-Output** activité sur la zone de dessin hello.  Cette opération ouvre le panneau de contrôle hello Configuration, ce qui vous permet d’activité de hello tooconfigure.
-4. Hello **étiquette** par défaut est le nom de toohello d’applet de commande hello, mais nous pouvons modifier toosomething plus convivial. Modifier trop*écrire Hello World toooutput*.
-5. Cliquez sur **paramètres** tooprovide des valeurs pour les paramètres de l’applet de commande hello.  
-   Certaines applets de commande ont plusieurs jeux de paramètres, et vous devez tooselect l’un toouse vous. Dans ce cas, **Write-Output** n'a qu’un seul jeu de paramètres, vous n’avez pas besoin de tooselect une. <br> ![Propriétés Write-Output](media/automation-first-runbook-graphical/write-output-properties-b.png)
-6. Sélectionnez hello **InputObject** paramètre.  Il s’agit paramètre hello où nous spécifions hello texte toosend toohello le flux de sortie.
-7. Bonjour **source de données** liste déroulante, sélectionnez **expression PowerShell**.  Hello **source de données** déroulante propose différentes sources que vous utilisez toopopulate une valeur de paramètre.  
-   Vous pouvez utiliser la sortie de ces sources, par exemple une autre activité, un élément multimédia Automation ou une expression PowerShell.  Dans ce cas, nous voulons simplement nous texte hello de toooutput *Hello World*. Nous pouvons utiliser une expression PowerShell et spécifiez une chaîne.
-8. Bonjour **Expression** , tapez *« Hello World »* puis cliquez sur **OK** deux fois le canevas de toohello tooreturn.<br> ![PowerShell Expression](media/automation-first-runbook-graphical/expression-hello-world.png)
-9. Enregistrer les runbook hello en cliquant sur **enregistrer**.<br> ![Enregistrer un Runbook](media/automation-first-runbook-graphical/runbook-toolbar-save-revised20165.png)
+1. Dans le contrôle Bibliothèque, cliquez dans la zone de recherche et tapez **Write-Output**.  Les résultats de recherche seront affichés ci-dessous. <br> ![Microsoft.PowerShell.Utility](media/automation-first-runbook-graphical/search-powershell-cmdlet-writeoutput.png)
+2. Faites défiler jusqu'au bas de la liste.  Vous pouvez cliquer avec le bouton droit sur **Write-Output** et sélectionner **Ajouter au canevas** ou cliquer sur les points de suspension en regard de l’applet de commande, puis sélectionner **Ajouter au canevas**.
+3. Cliquez sur l’activité **Write-Output** sur le canevas.  Le panneau du contrôle Configuration qui vous permet de configurer l’activité s’ouvre.
+4. Par défaut, le champ **Étiquette** affiche le nom de l’applet de commande, mais nous pouvons le modifier pour le rendre plus convivial. Remplacez-le par *Write Hello World to output*.
+5. Cliquez sur **Paramètres** pour renseigner les paramètres de l’applet de commande.  
+   Certaines applets de commande comportent plusieurs jeux de paramètres, et vous devez choisir lequel utiliser. Dans ce cas précis, **Write-Output** ne comporte qu’un seul paramètre défini ; vous n’avez donc pas besoin d’en sélectionner un. <br> ![Propriétés Write-Output](media/automation-first-runbook-graphical/write-output-properties-b.png)
+6. Sélectionnez le paramètre **InputObject** .  Il s’agit du paramètre où nous spécifions le texte à envoyer au flux de sortie.
+7. Dans le menu déroulant **Source de données**, sélectionnez **Expression PowerShell**.  Le menu déroulant **Source de données** fournit différentes sources que vous utilisez pour renseigner un paramètre.  
+   Vous pouvez utiliser la sortie de ces sources, par exemple une autre activité, un élément multimédia Automation ou une expression PowerShell.  Dans notre cas, nous voulons simplement extraire le texte *Hello World*. Nous pouvons utiliser une expression PowerShell et spécifiez une chaîne.
+8. Dans le champ **Expression**, tapez *« Hello World »*, puis cliquez deux fois sur **OK** pour revenir au canevas.<br> ![PowerShell Expression](media/automation-first-runbook-graphical/expression-hello-world.png)
+9. Enregistrez le Runbook en cliquant sur **Enregistrer**.<br> ![Enregistrer un Runbook](media/automation-first-runbook-graphical/runbook-toolbar-save-revised20165.png)
 
-## <a name="step-3---test-hello-runbook"></a>Étape 3 : Test hello runbook
-Avant que nous publions hello runbook toomake il disponible en production, nous souhaitons tootest il toomake assurer qu’il fonctionne correctement.  Lorsque vous testez un Runbook, vous exécutez sa version **Brouillon** et affichez sa sortie de manière interactive.
+## <a name="step-3---test-the-runbook"></a>Étape 3 : Test du Runbook
+Avant publier le Runbook pour le rendre disponible en production, nous voulons le tester pour s’assurer qu'il fonctionne correctement.  Lorsque vous testez un Runbook, vous exécutez sa version **Brouillon** et affichez sa sortie de manière interactive.
 
-1. Cliquez sur **volet Test** Panneau de Test tooopen hello.<br> ![Volet de test](media/automation-first-runbook-graphical/runbook-toolbar-test-revised20165.png)
-2. Cliquez sur **Démarrer** test de hello toostart.  Ce doit être l’option de hello uniquement activé.
-3. A [tâche du runbook](automation-runbook-execution.md) est créé et son état affiché dans le volet de hello.  
-   état de la tâche Hello démarre en tant que *en file d’attente* indiquant qu’il est en attente d’un runbook worker dans hello toobecome de cloud disponible.  Il déplace ensuite trop*départ* lorsqu’un processus de travail tâche de hello, les revendications, puis *en cours d’exécution* au démarrage de runbook de hello réellement en cours d’exécution.  
-4. Fin de la tâche du runbook hello, sa sortie s’affiche. Dans notre cas, nous devrions voir *Hello World*.<br> ![Hello World](media/automation-first-runbook-graphical/runbook-test-results.png)
-5. Fermez le canevas toohello tooreturn hello Test lame.
+1. Cliquez sur **Panneau de test** pour ouvrir le panneau Test.<br> ![Volet de test](media/automation-first-runbook-graphical/runbook-toolbar-test-revised20165.png)
+2. Cliquez sur **Démarrer** pour démarrer le test.  Ce doit être la seule option activée.
+3. Une [tâche de Runbook](automation-runbook-execution.md) est créée et son état apparaît dans le volet.  
+   L’état initial du travail est *Mis en file d’attente* pour indiquer que la tâche attend qu’un Runbook Worker du cloud devienne disponible.  La tâche prend ensuite l’état *Démarrage en cours* lorsqu’un Worker sélectionne la tâche, puis l’état *En cours d’exécution* lorsque le Runbook commence à s’exécuter.  
+4. Lorsque la tâche du Runbook est terminée, sa sortie s'affiche. Dans notre cas, nous devrions voir *Hello World*.<br> ![Hello World](media/automation-first-runbook-graphical/runbook-test-results.png)
+5. Fermez le panneau Test pour revenir au canevas.
 
-## <a name="step-4---publish-and-start-hello-runbook"></a>Étape 4 : publier et démarrer hello runbook
-Hello runbook que vous avez créée est toujours en mode brouillon. Nous devons toopublish avant de l’exécuter en production.  Lorsque vous publiez un runbook, vous remplacez la version publiée existante de hello avec brouillon hello.  Dans notre cas, nous n’avez pas une version publiée encore, car nous avons créé hello runbook.
+## <a name="step-4---publish-and-start-the-runbook"></a>Étape 4 : Publication et démarrage du Runbook
+Le runbook que nous avons créé est toujours en mode brouillon. Nous devons le publier pour pouvoir l'exécuter en production.  Lorsque vous publiez un Runbook, vous écrasez la version publiée existante par la version brouillon.  Dans notre cas, nous n'avons pas encore de version publiée car nous venons de créer le Runbook.
 
-1. Cliquez sur **publier** toopublish hello runbook, puis **Oui** lorsque vous y êtes invité.<br> ![Publier](media/automation-first-runbook-graphical/runbook-toolbar-publish-revised20166.png)
-2. Si vous faites défiler les runbook de hello tooview gauche Bonjour **Runbooks** panneau, il affiche un **état de création** de **publié**.
-3. Panneau de hello défilement arrière toohello tooview droite pour **MyFirstRunbook**.  
-   Hello options haut hello nous permettent de toostart hello runbook, planifier son toostart à un moment donné dans hello futures ou créer un [webhook](automation-webhooks.md) afin de pouvoir être démarrée par un appel HTTP.
-4. Nous voulons simplement nous toostart hello runbook cliquez alors sur **Démarrer** , puis **Oui** lorsque vous y êtes invité.<br> ![Démarrer un Runbook](media/automation-first-runbook-graphical/runbook-controls-start-revised20165.png)
-5. Un panneau de travail est ouvert pour la tâche du runbook hello que nous avons créés.  Nous pouvons fermer ce panneau, mais dans ce cas nous laisser ouverte afin de nous pouvons observer la progression du travail hello.
-6. état de la tâche Hello est indiqué dans **récapitulatif** et correspondances hello états que nous avons vu lorsque nous avons testé hello runbook.<br> ![Résumé des tâches](media/automation-first-runbook-graphical/runbook-job-summary.png)
-7. Une fois hello runbook état indique *terminé*, cliquez sur **sortie**. Hello **sortie** panneau est ouvert, et nous pouvons voir notre *Hello World* dans le volet de hello.<br> ![Résumé des tâches](media/automation-first-runbook-graphical/runbook-job-output.png)  
-8. Panneau de sortie de fermeture hello.
-9. Cliquez sur **tous les journaux** Panneau de flux tooopen hello pour la tâche du runbook hello.  Nous devons uniquement voir *Hello World* dans la sortie de hello flux, mais cela peut afficher les autres flux pour un travail de runbook telles que des commentaires et d’erreur si hello runbook écrit toothem.<br> ![Résumé des tâches](media/automation-first-runbook-graphical/runbook-job-AllLogs.png)
-10. Fermez la lame de tous les journaux hello et panneau de hello travail panneau tooreturn toohello MyFirstRunbook.
-11. Cliquez sur **travaux** Panneau de travaux tooopen hello pour ce runbook.  Celle-ci répertorie toutes les tâches de hello créées par ce runbook. Nous devons uniquement voir une tâche répertoriée dans la mesure où nous avons uniquement les travaux hello qu’une seule fois.<br> ![Tâches](media/automation-first-runbook-graphical/runbook-control-jobs.png)
-12. Vous pouvez cliquer sur ce travail tooopen hello même volet de travail que nous avons vu lorsque nous avons commencé hello runbook.  Ainsi, vous toogo à temps et consulter les détails de hello d’un travail qui a été créé pour un runbook donné.
+1. Cliquez sur **Publier** pour publier le Runbook, puis sur **Oui** quand vous y êtes invité.<br> ![Publier](media/automation-first-runbook-graphical/runbook-toolbar-publish-revised20166.png)
+2. Si vous faites défiler la page vers la gauche pour visualiser le panneau **Runbooks**, celui-ci affiche **l’État de création** **Publié**.
+3. Faites défiler la page vers la droite pour visualiser le panneau **MyFirstRunbook**.  
+   Les options de la partie supérieure nous permettent de démarrer le Runbook, de planifier son démarrage à un moment ultérieur ou de créer un [Webhook](automation-webhooks.md) afin de le démarrer par le biais d’un appel HTTP.
+4. Comme nous voulons simplement démarrer le Runbook, cliquez sur **Démarrer**, puis sur **Oui** quand vous y êtes invité.<br> ![Démarrer un Runbook](media/automation-first-runbook-graphical/runbook-controls-start-revised20165.png)
+5. Un panneau de tâche est ouvert pour la tâche du Runbook que nous avons créée.  Nous pouvons fermer ce panneau mais, dans ce cas, nous le laissons ouvert afin de suivre la progression de la tâche.
+6. L’état de la tâche est indiqué dans le champ **Résumé de la tâche** et correspond aux états que nous avons constatés lors du test du Runbook.<br> ![Résumé des tâches](media/automation-first-runbook-graphical/runbook-job-summary.png)
+7. Lorsque le Runbook prend l’état *Terminé*, cliquez sur **Sortie**. Le panneau **Sortie** s’ouvre, affichant *Hello World*.<br> ![Résumé des tâches](media/automation-first-runbook-graphical/runbook-job-output.png)  
+8. Fermez le panneau Sortie.
+9. Cliquez sur **Tous les journaux** pour ouvrir le panneau Flux de la tâche du Runbook.  Seul le message *Hello World* devrait apparaître dans le flux de sortie, mais d’autres flux peuvent s’afficher pour une tâche de Runbook, notamment Mode détaillé et Erreur si le Runbook consigne ces informations.<br> ![Résumé des tâches](media/automation-first-runbook-graphical/runbook-job-AllLogs.png)
+10. Fermez le panneau Tous les journaux et le panneau Tâche pour revenir au panneau MyFirstRunbook.
+11. Cliquez sur **Tâches** pour ouvrir le panneau Tâches de ce Runbook.  Il répertorie toutes les tâches créées par ce Runbook. Une seule tâche doit apparaître, car nous n’avons exécuté la tâche qu’une seule fois.<br> ![Travaux](media/automation-first-runbook-graphical/runbook-control-jobs.png)
+12. Vous pouvez cliquer sur ce travail pour ouvrir le même volet du travail que nous avons consulté au démarrage du runbook.  Cela vous permet de revenir en arrière et d’afficher les détails de toute tâche créée pour un Runbook donné.
 
 ## <a name="step-5---create-variable-assets"></a>Étape 5 - Créer des ressources de variables
-Nous avons testé et publié notre Runbook, mais jusqu'à présent, il ne fait rien d'utile. Nous souhaitons toohave gérer les ressources Azure.  Avant de configurer la hello runbook tooauthenticate, nous nous créer un ID d’abonnement toohold variable hello et à le référencer une fois que nous configurons tooauthenticate d’activité hello à l’étape 6 ci-dessous.  Y compris un contexte d’abonnement toohello référence vous permet de travail tooeasily entre plusieurs abonnements.  Avant de continuer, copiez votre ID d’abonnement à partir de hello option abonnements de volet de Navigation hello.  
+Nous avons testé et publié notre Runbook, mais jusqu'à présent, il ne fait rien d'utile. Nous voulons qu’il gère les ressources Azure.  Avant de configurer le Runbook pour l’authentification, nous créons une variable qui contiendra l’ID d’abonnement. Nous la référencerons après avoir configuré l’authentification à l’étape 6 ci-dessous.  L’ajout d’une référence au contexte de l’abonnement vous permet de gérer facilement plusieurs abonnements.  Avant de poursuivre, copiez votre ID d’abonnement depuis l’option Abonnements du panneau de navigation.  
 
-1. Dans le panneau de comptes Automation hello, cliquez sur hello **actifs** vignette et hello **actifs** panneau est ouvert.
-2. Dans le panneau des ressources hello, cliquez sur hello **Variables** vignette.
-3. Dans le panneau Variables de hello, cliquez sur **ajouter une variable**.<br>![Variable Automation](media/automation-first-runbook-graphical/create-new-subscriptionid-variable.png)
-4. Dans Panneau de variable hello nouvelle, Bonjour **nom** , entrez **AzureSubscriptionId** et Bonjour **valeur** Entrez votre ID d’abonnement.  Conserver *chaîne* pour hello **Type** et valeur par défaut de hello **chiffrement**.  
-5. Cliquez sur **créer** variable de hello toocreate.  
+1. Dans le panneau Comptes Automation, cliquez sur la vignette **Ressources**. Le panneau **Ressources** s’ouvre.
+2. Dans le panneau Ressources, cliquez sur la vignette **Variables** .
+3. Dans le panneau Variables, cliquez sur **Ajouter une variable**.<br>![Variable Automation](media/automation-first-runbook-graphical/create-new-subscriptionid-variable.png)
+4. Dans la zone **Nom** du panneau Nouvelle variable, entrez **AzureSubscriptionId**, puis dans la zone **Valeur**, entrez votre ID d’abonnement.  Conservez la sélection *chaîne* pour **Type** et la valeur par défaut pour le **chiffrement**.  
+5. Cliquez sur **Créer** pour créer la variable.  
 
-## <a name="step-6---add-authentication-toomanage-azure-resources"></a>Étape 6 : ajouter l’authentification toomanage ressources Azure
-Maintenant que nous disposons d’une variable toohold notre ID d’abonnement, nous pouvons configurer notre tooauthenticate runbook avec hello exécuter en tant qu’informations d’identification qui sont visées tooin hello [conditions préalables](#prerequisites).  Il suffit d’ajouter hello Azure exécuter en tant que connexion **Asset** et **Add-AzureRMAccount** applet de commande toohello canevas.  
+## <a name="step-6---add-authentication-to-manage-azure-resources"></a>Étape 6 - Ajouter une authentification pour gérer les ressources Azure
+Maintenant que nous disposons d’une variable pour contenir l’ID d’abonnement, nous pouvons configurer le Runbook pour l’authentification à l’aide des informations d’identification mentionnées dans les [conditions préalables](#prerequisites).  Il suffit pour cela d’ajouter au canevas la **Ressource** de connexion Azure et l’applet de commande **Add-AzureRMAccount**.  
 
-1. Éditeur graphique de hello ouvrir en cliquant sur **modifier** sur le panneau de MyFirstRunbook hello.<br> ![Modifier un Runbook](media/automation-first-runbook-graphical/runbook-controls-edit-revised20165.png)
-2. Nous ne devons hello **écrire Hello World toooutput** , par conséquent, faites un clic droit et sélectionnez **supprimer**.
-3. Bonjour contrôle de la bibliothèque, développez **connexions** et ajoutez **AzureRunAsConnection** toohello de zone de dessin en sélectionnant **ajouter toocanvas**.
-4. Dans la zone de dessin hello, sélectionnez **AzureRunAsConnection** et, dans le volet de contrôle de Configuration hello, tapez **obtenir exécuter en tant que connexion** Bonjour **étiquette** zone de texte.  Il s’agit hello connexion
-5. Dans le contrôle de la bibliothèque de hello, tapez **Add-AzureRmAccount** dans la zone de texte Rechercher hello.
-6. Ajouter **Add-AzureRmAccount** toohello la zone de dessin.<br> ![Add-AzureRMAccount](media/automation-first-runbook-graphical/search-powershell-cmdlet-addazurermaccount.png)
-7. Placez le curseur sur **obtenir exécuter en tant que connexion** jusqu'à ce qu’un cercle apparaît sous forme de hello hello. Cliquez sur le cercle de hello et faites glisser la flèche de hello trop**Add-AzureRmAccount**.  flèche Hello que vous avez créé est un *lien*.  Hello runbook démarre avec **obtenir exécuter en tant que connexion** , puis exécutez **Add-AzureRmAccount**.<br> ![Créer un lien entre des activités](media/automation-first-runbook-graphical/runbook-link-auth-activities.png)
-8. Dans la zone de dessin hello, sélectionnez **Add-AzureRmAccount** et Bonjour Configuration contrôler le type de volet **connexion tooAzure** Bonjour **étiquette** zone de texte.
-9. Cliquez sur **paramètres** et panneau de Configuration de paramètre d’activité hello s’affiche.
-10. **AzureRmAccount ajouter** a plusieurs jeux de paramètres, donc nous tooselect un avant que nous pouvons fournir des valeurs de paramètre.  Cliquez sur **paramètre la valeur** , puis sélectionnez hello **ServicePrincipalCertificatewithSubscriptionId** jeu de paramètres.
-11. Une fois que vous sélectionnez le jeu de paramètres hello, paramètres de hello s’affichent dans le panneau de Configuration de paramètre d’activité hello.  Cliquez sur **APPLICATIONID**.<br> ![Ajouter des paramètres de compte Azure RM](media/automation-first-runbook-graphical/add-azurermaccount-params.png)
-12. Dans le panneau de la valeur du paramètre hello, sélectionnez **sortie d’activité** pour hello **source de données** et sélectionnez **obtenir exécuter en tant que connexion** à partir de la liste hello, Bonjour **champ chemin d’accès** type de zone de texte **ApplicationId**, puis cliquez sur **OK**.  Nous spécifions nom hello de propriété de hello pour le chemin d’accès du champ hello, car l’activité hello génère un objet avec plusieurs propriétés.
-13. Cliquez sur **CERTIFICATETHUMBPRINT**et dans le panneau de la valeur du paramètre hello, sélectionnez **sortie d’activité** pour hello **source de données**.  Sélectionnez **obtenir exécuter en tant que connexion** à partir de la liste hello, Bonjour **chemin d’accès du champ** type de zone de texte **CertificateThumbprint**, puis cliquez sur **OK**.
-14. Cliquez sur **SERVICEPRINCIPAL**et dans le panneau de la valeur du paramètre hello, sélectionnez **ConstantValue** pour hello **source de données**, cliquez sur hello option **True**, puis cliquez sur **OK**.
-15. Cliquez sur **TENANTID**et dans le panneau de la valeur du paramètre hello, sélectionnez **sortie d’activité** pour hello **source de données**.  Sélectionnez **obtenir exécuter en tant que connexion** à partir de la liste hello, Bonjour **chemin d’accès du champ** type de zone de texte **TenantId**, puis cliquez sur **OK** à deux reprises.  
-16. Dans le contrôle de la bibliothèque de hello, tapez **Set-AzureRmContext** dans la zone de texte Rechercher hello.
-17. Ajouter **Set-AzureRmContext** toohello la zone de dessin.
-18. Dans la zone de dessin hello, sélectionnez **Set-AzureRmContext** et Bonjour Configuration contrôler le type de volet **Id d’abonnement spécifier** Bonjour **étiquette** zone de texte.
-19. Cliquez sur **paramètres** et panneau de Configuration de paramètre d’activité hello s’affiche.
-20. **Set-AzureRmContext** a plusieurs jeux de paramètres, donc nous tooselect un avant que nous pouvons fournir des valeurs de paramètre.  Cliquez sur **paramètre la valeur** , puis sélectionnez hello **SubscriptionId** jeu de paramètres.  
-21. Une fois que vous sélectionnez le jeu de paramètres hello, paramètres de hello s’affichent dans le panneau de Configuration de paramètre d’activité hello.  Cliquez sur **SubscriptionID**
-22. Dans le panneau de la valeur du paramètre hello, sélectionnez **ressource de Variable** pour hello **source de données** et sélectionnez **AzureSubscriptionId** à partir de la liste de hello, puis cliquez sur **OK**  à deux reprises.   
-23. Placez le curseur sur **connexion tooAzure** jusqu'à ce qu’un cercle apparaît sous forme de hello hello. Cliquez sur le cercle de hello et faites glisser la flèche de hello trop**Id d’abonnement spécifier**.
+1. Ouvrez l’éditeur graphique en cliquant sur **Modifier** dans le panneau MyFirstRunbook.<br> ![Modifier un Runbook](media/automation-first-runbook-graphical/runbook-controls-edit-revised20165.png)
+2. Étant donné que **Write Hello World to output** ne nous est plus utile, cliquez dessus avec le bouton droit et sélectionnez **Supprimer**.
+3. Dans la bibliothèque, développez **Connexions** et ajoutez **AzureRunAsConnection** au canevas en sélectionnant **Ajouter au canevas**.
+4. Dans le canevas, sélectionnez **AzureRunAsConnection**, puis dans le panneau de contrôle Configuration, tapez **Get Run As Connection** (Obtenir une connexion d’identification) dans la zone de texte **Étiquette**.  Il s’agit de la connexion.
+5. Dans la commande Bibliothèque, tapez **Add-AzureRmAccount** dans la zone de recherche.
+6. Ajoutez **Ajoutez-AzureRmAccount** au canevas.<br> ![Add-AzureRMAccount](media/automation-first-runbook-graphical/search-powershell-cmdlet-addazurermaccount.png)
+7. Pointez sur **Get Run As Connection** (Obtenir une connexion d’identification) jusqu’à ce qu’un cercle apparaisse au bas de la forme. Cliquez sur le cercle et faites glisser la flèche vers **Add-AzureRmAccount**.  La flèche que vous avez créée est un *lien*.  Le runbook démarre avec **Get Run As Connection**. Exécutez **Add-AzureRmAccount**.<br> ![Créer un lien entre des activités](media/automation-first-runbook-graphical/runbook-link-auth-activities.png)
+8. Dans le canevas, sélectionnez **Add-AzureRmAccount** et le type de panneau de contrôle Configuration **Login to Azure** (Connexion à Azure) dans la zone de texte **Étiquette**.
+9. Cliquez sur **Paramètres** pour afficher le panneau Configuration des paramètres d’activité.
+10. **Add-AzureRmAccount** comporte plusieurs jeux de paramètres et vous devez donc en sélectionner un pour fournir les valeurs de paramètre.  Cliquez sur **Jeu de paramètres**, puis sélectionnez le jeu de paramètres **ServicePrincipalCertificatewithSubscriptionId**.
+11. Une fois que vous sélectionnez le jeu de paramètres, les paramètres apparaissent dans le panneau Configuration des paramètres d’activité.  Cliquez sur **APPLICATIONID**.<br> ![Ajouter des paramètres de compte Azure RM](media/automation-first-runbook-graphical/add-azurermaccount-params.png)
+12. Dans le panneau Valeur du paramètre, sélectionnez **Sortie d’activité** pour **Source de données** et sélectionnez **Get Run As Connection** (Obtenir une connexion d’identification) dans la liste. Puis, dans la zone de texte **Chemin du champ**, saisissez **ApplicationId** et cliquez sur **OK**.  Nous allons spécifier le nom de la propriété du chemin du champ car l’activité génère un objet contenant plusieurs propriétés.
+13. Cliquez sur **CERTIFICATETHUMBPRINT** puis, dans le panneau Valeur du paramètre, sélectionnez **Sortie de l’activité** comme **Source de données**.  Sélectionnez **Get Run As Connection** (Obtenir une connexion d’identification) dans la liste, puis, dans la zone de texte **Chemin du champ**, entrez **CertificateThumbprint** et cliquez sur **OK**.
+14. Cliquez sur **SERVICEPRINCIPALNAME** puis, dans le panneau Valeur du paramètre, sélectionnez **ConstantValue** comme **source de données**, cliquez sur l’option **True**, puis cliquez sur **OK**.
+15. Cliquez sur **TENANTID** puis, dans le panneau Valeur du paramètre, sélectionnez **Sortie de l’activité** comme **Source de données**.  Sélectionnez **Get Run As Connection** (Obtenir une connexion d’identification) dans la liste, puis, dans la zone de texte **Chemin du champ**, entrez **TenantId** et cliquez deux fois sur **OK**.  
+16. Dans la commande Bibliothèque, tapez **Set-AzureRmContext** dans la zone de recherche.
+17. Ajoutez **Set-AzureRmContext** au canevas.
+18. Dans le canevas, sélectionnez **Set-AzureRmContext**, puis dans le panneau de contrôle Configuration, tapez **Specify Subscription Id** (Spécifier un ID d’abonnement) dans la zone de texte **Étiquette**.
+19. Cliquez sur **Paramètres** pour afficher le panneau Configuration des paramètres d’activité.
+20. **Set-AzureRmContext** comporte plusieurs jeux de paramètres et vous devez donc en sélectionner un pour fournir les valeurs de paramètre.  Cliquez sur **Jeu de paramètres**, puis sélectionnez le jeu de paramètres **SubscriptionId**.  
+21. Une fois que vous sélectionnez le jeu de paramètres, les paramètres apparaissent dans le panneau Configuration des paramètres d’activité.  Cliquez sur **SubscriptionID**
+22. Dans le panneau Valeur du paramètre, sélectionnez **Ressource de variable** comme **Source de données** et sélectionnez **AzureSubscriptionId** dans la liste, puis cliquez à deux reprises sur **OK**.   
+23. Pointez sur **Login to Azure** (Connexion à Azure) jusqu’à ce qu’un cercle apparaisse au bas de la forme. Cliquez sur le cercle et faites glisser la flèche vers **Specify Subscription Id**(Spécifier un ID d’abonnement).
 
-Votre runbook doit ressembler à hello suivant à ce stade : <br>![Configuration de l’authentification de runbook](media/automation-first-runbook-graphical/runbook-auth-config.png)
+À ce stade, votre Runbook doit ressembler à ce qui suit :  <br>![Configuration de l’authentification de runbook](media/automation-first-runbook-graphical/runbook-auth-config.png)
 
-## <a name="step-7---add-activity-toostart-a-virtual-machine"></a>Étape 7 : ajouter l’activité toostart une machine virtuelle
-Ici, nous ajoutons un **Start-AzureRmVM** toostart d’activité une machine virtuelle.  Vous pouvez choisir n’importe quel ordinateur virtuel dans votre abonnement Azure et pour maintenant vous codez nom dans l’applet de commande hello.
+## <a name="step-7---add-activity-to-start-a-virtual-machine"></a>Étape 7 - Ajouter une activité pour démarrer une machine virtuelle
+Nous ajoutons maintenant une activité **Start-AzureRmVM** pour démarrer une machine virtuelle.  Vous pouvez choisir n’importe quelle machine virtuelle dans votre abonnement Azure, et pour l’instant, coder ce nom dans l’applet de commande.
 
-1. Dans le contrôle de la bibliothèque de hello, tapez **Start-Azure Resource Manager** dans la zone de texte Rechercher hello.
-2. Ajouter **Start-AzureRmVM** toohello canevas puis cliquez et faites-le glisser en dessous **Id d’abonnement spécifier**.
-3. Placez le curseur sur **Id d’abonnement spécifier** jusqu'à ce qu’un cercle apparaît sous forme de hello hello.  Cliquez sur le cercle de hello et faites glisser la flèche de hello trop**Start-AzureRmVM**.
-4. Sélectionnez **Start-AzureRmVM**.  Cliquez sur **paramètres** , puis **paramètre la valeur** tooview hello définit pour **Start-AzureRmVM**.  Sélectionnez hello **ResourceGroupNameParameterSetName** jeu de paramètres. Notez que des points d’exclamation apparaissent en regard des paramètres **ResourceGroupName** et **Name**.  Ils indiquent que ces paramètres sont obligatoires.  Notez également que les deux attendent des valeurs de chaîne.
-5. Sélectionnez **Name**.  Sélectionnez **expression PowerShell** pour hello **source de données** et tapez Bonjour nom d’ordinateur virtuel de hello entouré de guillemets doubles qui nous commençons avec ce runbook.  Cliquez sur **OK**.<br>![Valeur du paramètre Name Start-AzureRmVM](media/automation-first-runbook-graphical/runbook-startvm-nameparameter.png)
-6. Sélectionnez **ResourceGroupName**. Utilisez **expression PowerShell** pour hello **source de données** et tapez Bonjour nom du groupe de ressources hello entouré de guillemets doubles.  Cliquez sur **OK**.<br> ![Paramètres Start-AzureRmVM](media/automation-first-runbook-graphical/startazurermvm-params.png)
-7. Cliquez sur volet de Test afin que nous puissions tester hello runbook.
-8. Cliquez sur **Démarrer** test de hello toostart.  Une fois terminée, vérifiez que l’ordinateur virtuel hello a été démarré.
+1. Dans la commande Bibliothèque, tapez **Start-AzureRm** dans la zone de recherche.
+2. Ajoutez **Start-AzureRmVM** au canevas, puis faites-le glisser sous **Specify Subscription Id** (Spécifier un ID d’abonnement).
+3. Pointez sur **Specify Subscription Id** (Spécifier un ID d’abonnement) jusqu’à ce qu’un cercle apparaisse au bas de la forme.  Cliquez sur le cercle et faites glisser la flèche vers **Start-AzureRmVM**.
+4. Sélectionnez **Start-AzureRmVM**.  Cliquez sur **Paramètres**, puis sur **Jeu de paramètres** afin d’afficher les jeux pour **Start-AzureRmVM**.  Sélectionnez le jeu de paramètres **ResourceGroupNameParameterSetName** . Notez que des points d’exclamation apparaissent en regard des paramètres **ResourceGroupName** et **Name**.  Ils indiquent que ces paramètres sont obligatoires.  Notez également que les deux attendent des valeurs de chaîne.
+5. Sélectionnez **Name**.  Sélectionnez **Expression PowerShell** pour **Source de données** et tapez entre guillemets doubles le nom de la machine virtuelle que nous démarrons avec ce Runbook.  Cliquez sur **OK**.<br>![Valeur du paramètre Name Start-AzureRmVM](media/automation-first-runbook-graphical/runbook-startvm-nameparameter.png)
+6. Sélectionnez **ResourceGroupName**. Utilisez **Expression PowerShell** pour **Source de données** et tapez le nom du groupe de ressources entre guillemets doubles.  Cliquez sur **OK**.<br> ![Paramètres Start-AzureRmVM](media/automation-first-runbook-graphical/startazurermvm-params.png)
+7. Cliquez sur le volet de test afin de tester le Runbook.
+8. Cliquez sur **Démarrer** pour démarrer le test.  Une fois le test terminé, vérifiez que la machine virtuelle a démarré.
 
-Votre runbook doit ressembler à hello suivant à ce stade : <br>![Configuration de l’authentification de runbook](media/automation-first-runbook-graphical/runbook-startvm.png)
+À ce stade, votre Runbook doit ressembler à ce qui suit :  <br>![Configuration de l’authentification de runbook](media/automation-first-runbook-graphical/runbook-startvm.png)
 
-## <a name="step-8---add-additional-input-parameters-toohello-runbook"></a>Étape 8 - ajouter des paramètres d’entrée supplémentaires toohello runbook
-Notre runbook démarre actuellement hello virtual machine dans le groupe de ressources hello que nous avons spécifié dans hello **AzureRmVM de début** applet de commande.  Notre runbook peut être plus utile si nous pouvons spécifier à la fois au démarrage hello runbook.  Nous ajoutons maintenant des paramètres d’entrée toohello runbook tooprovide cette fonctionnalité.
+## <a name="step-8---add-additional-input-parameters-to-the-runbook"></a>Étape 8 - Ajouter des paramètres d’entrée supplémentaires au Runbook
+Notre runbook démarre actuellement la machine virtuelle dans le groupe de ressources que nous avons spécifié dans l’applet de commande **AzureRmVM-Start**.  Il serait plus utile si nous pouvions spécifier ces deux éléments au démarrage du runbook.  Nous allons à présent ajouter des paramètres d’entrée au Runbook pour fournir cette fonctionnalité.
 
-1. Éditeur graphique de hello ouvrir en cliquant sur **modifier** sur hello **MyFirstRunbook** volet.
-2. Cliquez sur **d’entrée et de sortie** , puis **Ajout de l’entrée** volet de paramètre d’entrée du Runbook tooopen hello.<br> ![Entrée et sortie de Runbook](media/automation-first-runbook-graphical/runbook-toolbar-InputandOutput-revised20165.png)
-3. Spécifiez *VMName* pour hello **nom**.  Conserver *chaîne* pour hello **Type**, mais modifier **obligatoire** trop*Oui*.  Cliquez sur **OK**.
-4. Créez un paramètre d’entrée obligatoire ensuite appelé *ResourceGroupName* puis cliquez sur **OK** tooclose hello **d’entrée et sortie** volet.<br> ![Paramètres d'entrée de Runbook](media/automation-first-runbook-graphical/start-azurermvm-params-outputs.png)
-5. Sélectionnez hello **Start-AzureRmVM** activité, puis cliquez sur **paramètres**.
-6. Hello de modification **source de données** pour **nom** trop**Runbook entrée** , puis sélectionnez **VMName**.<br>
-7. Hello de modification **source de données** pour **ResourceGroupName** trop**Runbook entrée** , puis sélectionnez **ResourceGroupName**.<br> ![Paramètres Start-AzureVM](media/automation-first-runbook-graphical/start-azurermvm-params-runbookinput.png)
-8. Enregistrer les runbook hello et ouvrir le volet de Test hello.  Notez que vous pouvez maintenant fournir des valeurs pour hello deux variables d’entrée que vous utilisez dans le test de hello.
-9. Volet de Test hello fermer.
-10. Cliquez sur **publier** toopublish hello nouvelle version du runbook de hello.
-11. Arrêter la machine virtuelle hello que vous avez démarrées à l’étape précédente de hello.
-12. Cliquez sur **Démarrer** toostart hello runbook.  Type Bonjour **VMName** et **ResourceGroupName** pour la machine virtuelle de hello que vous allez toostart.<br> ![Start Runbook](media/automation-first-runbook-graphical/runbook-start-inputparams.png)
-13. Lorsque hello runbook est terminée, vérifiez que l’ordinateur virtuel hello a été démarré.
+1. Ouvrez l’éditeur graphique en cliquant sur **Modifier** dans le volet **MyFirstRunbook**.
+2. Cliquez sur **Entrée et sortie**, puis sur **Ajouter une entrée** pour ouvrir le volet Paramètre d’entrée de Runbook.<br> ![Entrée et sortie de Runbook](media/automation-first-runbook-graphical/runbook-toolbar-InputandOutput-revised20165.png)
+3. Spécifiez *VMName* dans le champ **Nom**.  Conservez la sélection *chaîne* pour le champ **Type**, mais définissez la valeur **Obligatoire** sur *Oui*.  Cliquez sur **OK**.
+4. Créez un second paramètre d’entrée obligatoire appelé *ResourceGroupName*, puis cliquez sur **OK** pour fermer le panneau **Entrée et sortie**.<br> ![Paramètres d'entrée de Runbook](media/automation-first-runbook-graphical/start-azurermvm-params-outputs.png)
+5. Sélectionnez l’activité **Start-AzureRmVM**, puis cliquez sur **Paramètres**.
+6. Changez la **Source de données** de **Name** en **Entrée de Runbook**, puis sélectionnez **VMName**.<br>
+7. Changez la **Source de données** de **ResourceGroupName** en **Entrée de Runbook**, puis sélectionnez **ResourceGroupName**.<br> ![Paramètres Start-AzureVM](media/automation-first-runbook-graphical/start-azurermvm-params-runbookinput.png)
+8. Enregistrez le Runbook et ouvrez le volet de test.  Notez que vous pouvez désormais fournir des valeurs pour les deux variables d’entrée que vous utilisez dans le test.
+9. Fermez le volet de test.
+10. Cliquez sur **Publier** pour publier la nouvelle version du Runbook.
+11. Arrêtez la machine virtuelle que vous avez démarrée à l'étape précédente.
+12. Cliquez sur **Démarrer** pour démarrer le Runbook.  Tapez les valeurs **VMName** et **ResourceGroupName** pour la machine virtuelle que vous allez démarrer.<br> ![Start Runbook](media/automation-first-runbook-graphical/runbook-start-inputparams.png)
+13. Une fois le Runbook terminé, vérifiez que la machine virtuelle a démarré.
 
 ## <a name="step-9---create-a-conditional-link"></a>Étape 9 - Création d’un lien conditionnel
-Nous avons à présent modifier hello runbook afin qu’il tente uniquement toostart hello virtual machine s’il n’est pas déjà démarré.  Pour cela, vous devez ajouter un **Get-AzureRmVM** runbook toohello applet de commande qui obtient l’état de niveau de l’instance de la machine virtuelle de hello hello. Puis vous ajoutez un module de code PowerShell Workflow appelé **obtenir le statut** avec PowerShell un extrait de code de toodetermine hello ordinateur virtuel est en cours d’exécution ou arrêté.  Un lien conditionnel de hello **obtenir le statut** module s’exécute uniquement **Start-AzureRmVM** si l’état d’exécution actuel hello est arrêté.  Enfin, nous avons un tooinform message si hello machine virtuelle a été démarrée correctement ou non à l’aide hello applet de commande PowerShell Write-Output de sortie.
+Nous modifions maintenant le Runbook afin qu’il tente de démarrer la machine virtuelle uniquement si elle n’est pas déjà démarrée.  Pour cela, vous ajoutez au Runbook une applet de commande **Get-AzureRmVM** qui obtient l’état du niveau d’instance de la machine virtuelle. Ensuite, vous ajoutez un module de code Workflow PowerShell appelé **Obtenir l’état** à un extrait de code PowerShell pour déterminer si l’état de la machine virtuelle est en cours d’exécution ou arrêté.  Un lien conditionnel à partir du module **Obtenir l’état** exécute **Start-AzureRmVM** seulement si l’état d’exécution en cours est arrêté.  Enfin, nous générons un message vous informant si la machine virtuelle a été démarrée avec succès ou non à l’aide de l’applet de commande PowerShell Write-Output.
 
-1. Ouvrez **MyFirstRunbook** dans l’éditeur graphique de hello.
-2. Supprimer le lien entre hello **spécifiez Id d’abonnement** et **Start-AzureRmVM** en cliquant dessus et en appuyant sur hello *supprimer* clé.
-3. Dans le contrôle de la bibliothèque de hello, tapez **Get-AzureRm** dans la zone de texte Rechercher hello.
-4. Ajouter **Get-AzureRmVM** toohello la zone de dessin.
-5. Sélectionnez **Get-AzureRmVM** , puis **paramètre la valeur** tooview hello définit pour **Get-AzureRmVM**.  Sélectionnez hello **GetVirtualMachineInResourceGroupNameParamSet** jeu de paramètres.  Notez que des points d’exclamation apparaissent en regard des paramètres **ResourceGroupName** et **Name**.  Ils indiquent que ces paramètres sont obligatoires.  Notez également que les deux attendent des valeurs de chaîne.
+1. Ouvrez **MyFirstRunbook** dans l’éditeur graphique.
+2. Supprimez le lien entre **Specify Subscription Id** (Spécifier un ID d’abonnement) et **Start-AzureRmVM** en cliquant dessus, puis en appuyant sur la touche *Supprimer*.
+3. Dans la commande Bibliothèque, tapez **Get-AzureRm** dans la zone de recherche.
+4. Ajoutez **Get-AzureRmVM** au canevas.
+5. Sélectionnez **Get-AzureRmVM** puis **Jeu de paramètres** afin d’afficher les jeux pour **Get-AzureRmVM**.  Sélectionnez le jeu de paramètres **GetVirtualMachineInResourceGroupNameParamSet** .  Notez que des points d’exclamation apparaissent en regard des paramètres **ResourceGroupName** et **Name**.  Ils indiquent que ces paramètres sont obligatoires.  Notez également que les deux attendent des valeurs de chaîne.
 6. Pour le paramètre **Name** sous **Source de données**, sélectionnez **Entrée du Runbook** puis **VMName**.  Cliquez sur **OK**.
 7. Pour le paramètre **ResourceGroupName** sous **Source de données**, sélectionnez **Entrée de Runbook**, puis **ResourceGroupName**.  Cliquez sur **OK**.
 8. Pour le paramètre **Status** sous **Source de données**, sélectionnez **Valeur constante**, puis cliquez sur **True**.  Cliquez sur **OK**.  
-9. Créer un lien à partir de **Id d’abonnement spécifier** trop**Get-AzureRmVM**.
-10. Dans le contrôle de la bibliothèque hello, développez **contrôle de Runbook** et ajoutez **Code** toohello la zone de dessin.  
-11. Créer un lien à partir de **Get-AzureRmVM** trop**Code**.  
-12. Cliquez sur **Code** et dans le volet de Configuration hello, étiquette également modifier**obtenir le statut de**.
-13. Sélectionnez **Code** paramètre et hello **éditeur de Code** panneau s’affiche.  
-14. Dans l’éditeur de code hello, collez hello suivant extrait de code :
+9. Créez un lien entre **Specify Subscription Id** (Spécifier un ID d’abonnement) et **Get-AzureRmVM**.
+10. Dans la commande Bibliothèque, développez **Contrôle de Runbook** et ajoutez **Code** au canevas.  
+11. Créez un lien entre **Get-AzureRmVM** et **Code**.  
+12. Cliquez sur **Code** et dans le panneau Configuration, changez l’étiquette en **Obtenir l’état**.
+13. Sélectionnez le paramètre **Code** pour afficher le panneau **Éditeur de code**.  
+14. Dans l’éditeur de code, collez l’extrait de code suivant :
     
      ```
      $StatusesJson = $ActivityOutput['Get-AzureRmVM'].StatusesText
@@ -189,25 +189,25 @@ Nous avons à présent modifier hello runbook afin qu’il tente uniquement toos
      }
      $StatusOut
      ```
-15. Créer un lien à partir de **obtenir le statut** trop**Start-AzureRmVM**.<br> ![Runbook avec module de code](media/automation-first-runbook-graphical/runbook-startvm-get-status.png)  
-16. Sélectionnez le lien de hello et dans le volet de Configuration hello, modifiez **appliquer la condition** trop**Oui**.   Lien de hello note active ligne tooa en pointillé indiquant qu’activité de cible de hello s’exécute uniquement si la condition de hello résout tootrue.  
-17. Pourquoi **expression de Condition**, type *$ActivityOutput [« obtenir le statut'] - eq « Stopped »*.  **Start-AzureRmVM** exécute désormais uniquement si l’ordinateur virtuel de hello est arrêté.
-18. Bonjour contrôle de la bibliothèque, développez **applets de commande** , puis **Microsoft.PowerShell.Utility**.
-19. Ajouter **Write-Output** canevas toohello à deux reprises.<br> ![Runbook avec Write-Output](media/automation-first-runbook-graphical/runbook-startazurermvm-complete.png)
-20. Sur hello première **Write-Output** contrôler, cliquez sur **paramètres** et modifiez hello **étiquette** valeur trop*notifier le démarrage de machine virtuelle*.
-21. Pour **InputObject**, modifiez **source de données** trop**expression PowerShell** et tapez Bonjour expression *« $VMName a démarré ».* .
-22. Sur hello deuxième **Write-Output** contrôler, cliquez sur **paramètres** et modifiez hello **étiquette** valeur trop*notifier VM Démarrer a échoué*
-23. Pour **InputObject**, modifiez **source de données** trop**expression PowerShell** et tapez Bonjour expression *« $VMName ne peut pas démarrer ».* .
-24. Créer un lien à partir de **Start-AzureRmVM** trop**notifier le démarrage de machine virtuelle** et **notifier VM démarrer échec**.
-25. Sélectionnez le lien de hello trop**notifier le démarrage de machine virtuelle** et modifiez **appliquer la condition** trop**True**.
-26. Pourquoi **expression de Condition**, type *$ActivityOutput [« Start-AzureRmVM']. IsSuccessStatusCode - eq $true*.  Cette Write-Output contrôler s’exécute désormais uniquement si l’ordinateur virtuel de hello a démarré correctement.
-27. Sélectionnez le lien de hello trop**notifier VM démarrer échec** et modifiez **appliquer la condition** trop**True**.
-28. Pourquoi **expression de Condition**, type *$ActivityOutput [« Start-AzureRmVM']. IsSuccessStatusCode - ne $true*.  Cette Write-Output contrôler maintenant ne fonctionne que si l’ordinateur virtuel de hello n’est pas démarré avec succès.
-29. Enregistrer les runbook hello et ouvrir le volet de Test hello.
-30. Démarrer hello runbook avec l’ordinateur virtuel de hello s’est arrêté, et il doit commencer.
+15. Créez un lien entre **Obtenir l’état** et **Start-AzureRmVM**.<br> ![Runbook avec module de code](media/automation-first-runbook-graphical/runbook-startvm-get-status.png)  
+16. Sélectionnez le lien puis dans le panneau Configuration, changez **Appliquer la condition** en **Oui**.   Notez que le lien se transforme en une ligne pointillée indiquant que l’activité cible s’exécute uniquement si la condition produit la valeur true.  
+17. Dans la zone **Expression de condition**, tapez *$ActivityOutput[’Get Status’] -eq "Stopped"*.  **Start-AzureRmVM** s’exécute uniquement si la machine virtuelle est arrêtée.
+18. Dans le contrôle Bibliothèque, développez **Applets de commande**, puis **Microsoft.PowerShell.Utility**.
+19. Ajoutez **Write-Output** au canevas à deux reprises.<br> ![Runbook avec Write-Output](media/automation-first-runbook-graphical/runbook-startazurermvm-complete.png)
+20. Sur le premier contrôle **Write-Output**, cliquez sur **Paramètres** et changez la valeur de **Étiquette** en *Notify VM Started*.
+21. Pour **InputObject**, définissez le champ **Source de données** sur **Expression PowerShell**, puis tapez l’expression *"$VMName démarrée."*.
+22. Sur le second contrôle **Write-Output**, cliquez sur **Paramètres** et changez la valeur de **Étiquette** en *Notify VM Start Failed*
+23. Pour **InputObject**, changez **Source de données** en **Expression PowerShell** puis tapez l’expression *"$VMName n’a pas pu démarrer."*.
+24. Créez un lien entre **Start-AzureRmVM** et **Notify VM Started** ainsi que **Notify VM Start Failed**.
+25. Sélectionnez le lien vers **Notify VM Started** et changez **Appliquer la condition** en **True**.
+26. Dans la zone **Expression de condition**, tapez *$ActivityOutput[’Start-AzureRmVM’].IsSuccessStatusCode -eq $true*.  Ce contrôle Write-Output s’exécute désormais uniquement si la machine virtuelle a démarré correctement.
+27. Sélectionnez le lien vers **Notify VM Start Failed** et changez **Appliquer la condition** en **True**.
+28. Dans la zone **Expression de condition**, tapez *$ActivityOutput[’Start-AzureRmVM’].IsSuccessStatusCode -ne $true*.  Ce contrôle Write-Output s’exécute désormais uniquement si la machine virtuelle n’a pas démarré correctement.
+29. Enregistrez le Runbook et ouvrez le volet de test.
+30. Démarrez le Runbook avec la machine virtuelle arrêtée, et il devrait démarrer.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* toolearn plus sur la création de graphiques, consultez [création graphique dans Azure Automation](automation-graphical-authoring-intro.md)
-* tooget main runbook PowerShell, consultez [mon premier runbook de PowerShell](automation-first-runbook-textual-powershell.md)
-* tooget a démarré avec des runbooks de flux de travail PowerShell, consultez [mon premier runbook de flux de travail PowerShell](automation-first-runbook-textual.md)
+* Pour en savoir plus sur la création graphique, consultez [Création de graphiques dans Azure Automation](automation-graphical-authoring-intro.md)
+* Pour une prise en main des Runbooks PowerShell, consultez [Mon premier Runbook PowerShell](automation-first-runbook-textual-powershell.md)
+* Pour une prise en main des Runbooks de workflow PowerShell, consultez [Mon premier Runbook PowerShell Workflow](automation-first-runbook-textual.md)
 

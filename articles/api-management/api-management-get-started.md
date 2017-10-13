@@ -1,6 +1,6 @@
 ---
-title: "aaaManage votre première API de gestion des API Azure | Documents Microsoft"
-description: "Découvrez comment toocreate API, ajouter des opérations et commencer à la gestion des API."
+title: "Gérer votre première API dans Gestion des API Azure | Microsoft Docs"
+description: "Découvrez comment créer des API et ajouter des opérations et comment prendre en main Gestion des API."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,67 +14,67 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 7d43f33aa359c4d1e605e9fb41e43d323ca6a777
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6e76d1ee08f804637999ef2ebf5d25becf6a0408
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-your-first-api-in-azure-api-management"></a>Gérer votre première API dans Gestion des API Azure
-## <a name="overview"></a>Vue d’ensemble
-Ce guide vous explique comment tooquickly prise en main d’à l’aide de la gestion des API Azure et votre premier appel d’API.
+## <a name="overview"> </a>Vue d’ensemble
+Ce guide décrit la prise en main rapide de la gestion des API Azure et la création de votre premier appel d’API.
 
-## <a name="concepts"></a>Qu’est-ce que Gestion des API Azure ?
-Vous pouvez utiliser Gestion des API Azure tootake n’importe quel serveur principal et lancer un programme API à part entière basé sur celui-ci.
+## <a name="concepts"> </a>Qu’est-ce que Gestion des API Azure ?
+Vous pouvez utiliser la gestion des API Azure pour prendre n’importe quel serveur principal et lancer un programme d’API à part entière qui repose sur ce dernier.
 
 Scénarios courants :
 
 * **Sécurisation d’infrastructures mobiles** par régulation de l’accès à l’aide de clés d’API pour éviter les attaques par déni de service (DOS) en utilisant la limitation ou des stratégies de sécurité avancées, telles que la validation de jeton JWT
-* **L’activation des écosystèmes partenaire ISV** en offrant l’intégration de partenaire rapide via le développeur de hello, portail et la création d’un toodecouple de façade API à partir des implémentations internes qui ne sont pas de la consommation du partenaire.
-* **Exécution d’un programme API interne** en offrant un emplacement centralisé pour toocommunicate d’organisation hello sur la disponibilité de hello et de la plus récente des modifications tooAPIs, régulation d’accès basé sur les comptes de société, toutes basées sur un canal sécurisé entre Hello passerelle API et hello back-end.
+* **Activation d’écosystèmes de partenaires ISV** en proposant une intégration rapide des partenaires via le portail des développeurs et la création d’une façade d’API afin de se dissocier des implémentations internes qui ne sont pas appropriées à la consommation des partenaires.
+* **Exécution d’un programme d’API interne** en offrant un emplacement centralisé à l’organisation pour communiquer sur la disponibilité et les dernières modifications apportées aux API, tout en régulant l’accès basé sur des comptes professionnels, tous basés sur un canal sécurisé entre la passerelle de l’API et le serveur principal.
 
-système de Hello est constitué par hello suivant des composants :
+Le système est constitué des composants suivants :
 
-* Hello **passerelle API** est le point de terminaison hello qui :
+* La **passerelle d’API** est le point de terminaison qui :
   
-  * Accepte les API appelle et les route les serveurs principaux tooyour.
+  * accepte les appels d’API et les dirige vers vos serveurs principaux ;
   * vérifie les clés d’API, les jetons JWT, les certificats et les autres informations d’identification ;
   * applique des quotas d’utilisation et des limites de débit ;
-  * Transforme votre API hello volée, sans modification de code.
+  * transforme votre API à la volée sans modification de code ;
   * met en cache les réponses du serveur principal lorsqu’il est configuré ;
   * enregistre les métadonnées relatives aux appels à des fins d’analyse.
-* Hello **portail de publication** est hello interface d’administration dans lequel vous configurez votre programme API. Utilisez-le pour :
+* Le **portail des éditeurs** est l’interface d’administration où vous configurez votre programme d’API. Utilisez-le pour :
   
   * définir ou importer le schéma d’API ;
   * intégrer des API aux produits sous forme de packages ;
-  * Configurer des stratégies, telles que les quotas ou transformations sur hello API.
+  * définir des stratégies, telles que des quotas ou des transformations sur les API ;
   * obtenir des informations issues de l’analyse ;
   * gérer les utilisateurs.
-* Hello **portail des développeurs** sert de présence du site web principal hello pour les développeurs, où ils peuvent :
+* Le **portail des développeurs** est le principal lieu sur le web où les développeurs peuvent :
   
   * lire la documentation de l’API ;
-  * Essayer une API via une console interactive de hello.
-  * Créer un compte et vous abonner tooget API clés.
+  * essayer une API via la console interactive ;
+  * créer un compte et s’abonner pour obtenir les clés d’une API ;
   * accéder aux analyses relatives à leur propre utilisation.
 
-## <a name="create-service-instance"></a>Création d’une instance du service Gestion des API
+## <a name="create-service-instance"> </a>Création d’une instance du service Gestion des API
 > [!NOTE]
-> toocomplete ce didacticiel, vous avez besoin d’un compte Azure. Si vous ne possédez pas de compte, vous pouvez créer un compte gratuit en quelques minutes. Pour plus d’informations, consultez la rubrique [Version d’évaluation gratuite d’Azure][Azure Free Trial].
+> Pour suivre ce didacticiel, vous avez besoin d'un compte Azure. Si vous ne possédez pas de compte, vous pouvez créer un compte gratuit en quelques minutes. Pour plus d’informations, consultez la rubrique [Version d’évaluation gratuite d’Azure][Azure Free Trial].
 > 
 > 
 
-Hello première étape de travail avec la gestion des API est toocreate une instance de service. Connectez-vous à toohello [Azure Portal] [ Azure Portal] et cliquez sur **nouveau**, **Web + Mobile**, **gestion des API**.
+La première étape de travail avec Gestion des API consiste à créer une instance de service. Connectez-vous au [Portail Azure][Azure Portal] et cliquez sur **Nouveau**, **Web + mobile**, **Gestion des API**.
 
 ![Nouvelle instance Gestion des API][api-management-create-instance-menu]
 
-Pour **nom**, spécifiez un toouse de nom de sous-domaine unique pour l’URL du service hello.
+Pour le **nom**, spécifiez un nom de sous-domaine unique à utiliser pour l’URL du service.
 
-Choisissez hello souhaité **abonnement**, **groupe de ressources** et **emplacement** pour votre instance de service.
+Choisissez **l’abonnement**, le **groupe de ressources** et **l’emplacement** souhaités pour votre instance de service.
 
-Entrez **Contoso Ltd.** pour hello **nom de l’organisation**, puis entrez votre adresse de messagerie dans hello **E-Mail administrateur** champ.
+Entrez **Contoso Ltd.** pour le **nom de l’organisation**, ainsi que votre adresse de messagerie dans le champ **Adresse de messagerie de l’administrateur**.
 
 > [!NOTE]
-> Cette adresse de messagerie est utilisée pour les notifications de hello système de gestion des API. Pour plus d’informations, consultez [comment tooconfigure notifications et modèles dans Azure API Management de messagerie][How tooconfigure notifications and email templates in Azure API Management].
+> Cette adresse de messagerie est utilisée pour les notifications provenant du système Gestion des API. Pour plus d’informations, consultez [Configuration des notifications et des modèles de messages électroniques dans Gestion des API Azure][How to configure notifications and email templates in Azure API Management].
 > 
 > 
 
@@ -83,40 +83,40 @@ Entrez **Contoso Ltd.** pour hello **nom de l’organisation**, puis entrez votr
 Les instances du service Gestion des API sont disponibles dans trois niveaux : Développeur, Standard et Premium.
 
 > [!NOTE]
-> Hello niveau développeur est pour le développement, le test et des programmes d’API pilotes lorsque la haute disponibilité n’est pas un problème. Dans hello Standard et les niveaux Premium, vous pouvez faire évoluer votre toohandle de nombre d’unités réservées plus de trafic. les niveaux Standard et Premium Hello fournissent votre service de gestion des API avec hello plus de puissance de traitement et de performances. Vous pouvez effectuer ce didacticiel à l’aide de n’importe quel niveau. Pour en savoir plus sur les niveaux du service Gestion des API, consultez la page relative à la [tarification du service Gestion des API][API Management pricing].
+> Le niveau Développeur est réservé aux programmes d’API de développement, de test et pilote pour lesquels la haute disponibilité n’est pas un problème. Aux niveaux Standard et Premium, vous pouvez étendre le nombre d’unités réservées pour gérer davantage de trafic. Les niveaux Standard et Premium permettent à votre service Gestion des API de disposer de la puissance de traitement et des performances maximales. Vous pouvez effectuer ce didacticiel à l’aide de n’importe quel niveau. Pour en savoir plus sur les niveaux du service Gestion des API, consultez la page relative à la [tarification du service Gestion des API][API Management pricing].
 > 
 > 
 
-Cliquez sur **créer** toostart votre instance du service de configuration.
+Cliquez sur **Créer** pour démarrer la configuration de votre instance de service.
 
 ![Nouveau service Gestion des API][api-management-instance-created]
 
-Après la création de l’instance de service de hello, étape suivante de hello est toocreate ou importer une API.
+Une fois l’instance de service créée, l’étape suivante consiste à créer ou à importer une API.
 
-## <a name="create-api"></a>Importation d’une API
-Une API se compose d’un ensemble d’opérations pouvant être appelées à partir d’une application cliente. Opérations d’API sont traitées tooexisting des services web.
+## <a name="create-api"> </a>Importation d’une API
+Une API se compose d’un ensemble d’opérations pouvant être appelées à partir d’une application cliente. Les opérations de l’API sont transmises par proxy aux services web existants.
 
-Il est possible de créer des API (et d’ajouter des opérations) manuellement ou de les importer. Dans ce didacticiel, nous allons importer hello API pour un service web de calculatrice exemple fourni par Microsoft et hébergé sur Azure.
+Il est possible de créer des API (et d’ajouter des opérations) manuellement ou de les importer. Dans ce didacticiel, nous allons importer l’API pour un exemple de service Web de calculatrice fourni par Microsoft et hébergé sur Azure.
 
 > [!NOTE]
-> Pour obtenir des conseils sur la création d’une API et l’ajout manuel des opérations, consultez [comment toocreate API](api-management-howto-create-apis.md) et [comment tooadd opérations tooan API](api-management-howto-add-operations.md).
+> Pour plus d’informations sur la création d’une API et l’ajout manuel d’opérations, consultez les rubriques [Création d’API](api-management-howto-create-apis.md) et [Ajout d’opérations à une API](api-management-howto-add-operations.md).
 > 
 > 
 
-API est configurés à partir du portail de publication hello. tooreach, cliquez sur **portail de publication** à partir de la barre d’outils du service hello.
+Les API sont configurées à partir du portail des éditeurs. Pour y accéder, cliquez sur **Portail des éditeurs** à partir de la barre d’outils de services.
 
 ![Portail des éditeurs][api-management-management-console]
 
-calcul de hello tooimport API, cliquez sur **API** de hello **gestion des API** menu sur hello gauche, puis cliquez sur **API d’importation**.
+Pour importer l’API de calculatrice, cliquez sur **API** dans le menu **Gestion des API** à gauche, puis sur **Importer l’API**.
 
 ![Bouton Importer l’API][api-management-import-api]
 
-Effectuez hello suivant les étapes tooconfigure hello calculatrice API :
+Procédez comme suit pour configurer l’API de calculatrice :
 
-1. Cliquez sur **From URL**, entrez **http://calcapi.cloudapp.net/calcapi.json** dans hello **URL du document de spécification** texte, puis cliquez sur hello **Swagger**  case d’option.
-2. Type **calc** dans hello **suffixe d’URL d’API Web** zone de texte.
-3. Cliquez sur Bonjour **produits (facultatifs)** et sélectionnez **Starter**.
-4. Cliquez sur **enregistrer** tooimport hello API.
+1. Cliquez sur **À partir d’une URL**, entrez **http://calcapi.cloudapp.net/calcapi.json** dans la zone de texte **URL du document de spécification**, et cliquez sur la case d’option **Swagger**.
+2. Entrez **calc** dans la zone de texte **Suffixe de l’URL d’API web**.
+3. Cliquez dans la zone **Produits (facultatif)** et choisissez **Starter**.
+4. Cliquez sur **Enregistrer** pour importer l’API.
 
 ![Ajouter une nouvelle API][api-management-import-new-api]
 
@@ -125,95 +125,95 @@ Effectuez hello suivant les étapes tooconfigure hello calculatrice API :
 > 
 > 
 
-Une fois les API hello est importé, hello page Résumé pour l’API de hello s’affiche dans le portail de publication hello.
+Une fois l’API importée, la page Résumé de l’API s’affiche dans le portail des éditeurs.
 
 ![Résumé des API][api-management-imported-api-summary]
 
-Hello section API comporte plusieurs onglets. Hello **Résumé** onglet affiche les mesures de base et de plus d’informations sur les API de hello. Hello [paramètres](api-management-howto-create-apis.md#configure-api-settings) onglet est utilisée configuration hello tooview et modifier d’API. Hello [Operations](api-management-howto-add-operations.md) onglet est les opérations utilisées toomanage hello l’API. Hello **sécurité** onglet peut être l’authentification de la passerelle tooconfigure utilisé pour le serveur principal de hello à l’aide de l’authentification de base ou [authentification mutuelle des certificats](api-management-howto-mutual-certificates.md)et tooconfigure [ autorisation de l’utilisateur à l’aide d’OAuth 2.0](api-management-howto-oauth2.md).  Hello **problèmes** onglet est tooview utilisé les problèmes signalés par les développeurs de hello qui sont à l’aide de votre API. Hello **produits** onglet est produits hello tooconfigure utilisé qui contiennent cette API.
+La section API comporte plusieurs onglets. L’onglet **Résumé** affiche les mesures de base et les informations concernant l’API. L’onglet [Paramètres](api-management-howto-create-apis.md#configure-api-settings) permet d’afficher et de modifier la configuration d’une API. L’onglet [Opérations](api-management-howto-add-operations.md) permet de gérer les opérations de l’API. L’onglet **Sécurité** permet de configurer l’authentification de la passerelle pour le serveur principal à l’aide de l’authentification de base ou de [l’authentification mutuelle des certificats](api-management-howto-mutual-certificates.md) et de configurer l’[autorisation de l’utilisateur à l’aide d’OAuth 2.0](api-management-howto-oauth2.md).  L’onglet **Problèmes** est utilisé pour afficher les problèmes signalés par les développeurs qui utilisent votre API. L’onglet **Produits** permet de configurer les produits qui contiennent cette API.
 
 Par défaut, chaque instance Gestion des API est fournie avec deux exemples de produits :
 
 * **Starter**
 * **Illimité**
 
-Dans ce didacticiel, hello API de calculatrice de base a été ajouté produit des Starter toohello lorsque hello API a été importé.
+Dans ce didacticiel, l’API de calculatrice de base a été ajoutée au produit Starter lors de l’importation de l’API.
 
-Dans l’ordre toomake appelle tooan API, les développeurs doivent tout d’abord s’abonnent produit tooa qui leur donne accès tooit. Les développeurs peuvent s’abonner tooproducts dans le portail des développeurs hello ou les administrateurs peuvent s’abonner tooproducts les développeurs dans le portail de publication hello. Vous êtes un administrateur depuis la création d’instance gestion des API de hello Bonjour étapes précédentes dans le didacticiel de hello, donc vous sentez déjà abonnés tooevery produit par défaut.
+Pour créer des appels à une API, les développeurs doivent commencer par s’abonner à un produit qui leur permet d’y accéder. Ils peuvent s’abonner aux produits dans le portail des développeurs,ou les administrateurs peuvent les y abonner dans le portail des éditeurs. Vous êtes considéré comme un administrateur puisque vous avez créé l’instance Gestion des API lors des étapes précédentes du didacticiel. Vous êtes également abonné à tous les produits par défaut.
 
-## <a name="call-operation"></a>Appeler une opération à partir du portail des développeurs hello
-Opérations peuvent être appelées directement depuis le portail des développeurs hello, qui fournit un moyen pratique de tooview et tester le fonctionnement d’une API hello. Dans cette étape du didacticiel, vous appelez l’API du calcul de base hello **ajouter deux entiers** opération. Cliquez sur **portail des développeurs** à partir du menu de hello en hello haut à droite de portail de publication hello.
+## <a name="call-operation"> </a>Appel d’une opération à partir du portail des développeurs
+Les opérations peuvent être directement appelées depuis le portail des développeurs, qui permet d’afficher et de tester les opérations d’une API. Dans cette étape du didacticiel, vous appellerez l’opération **Ajouter deux entiers** de l’API de calculatrice de base. Cliquez sur **Portail des développeurs** dans le menu en haut à droite du portail des éditeurs.
 
 ![Portail des développeurs][api-management-developer-portal-menu]
 
-Cliquez sur **API** dans le menu du haut hello, puis cliquez sur **calculatrice de base** toosee hello opérations disponibles.
+Cliquez sur **API** dans le menu supérieur, puis sur **Calculatrice de base** pour afficher les opérations disponibles.
 
 ![Portail des développeurs][api-management-developer-portal-calc-api]
 
-Notez les descriptions d’exemple hello et les paramètres qui ont été importées avec hello API et opérations, en fournissant une documentation pour les développeurs hello qui utilisera cette opération. Ces descriptions peuvent également être ajoutées lorsque des opérations sont ajoutées manuellement.
+Vous remarquerez les exemples de descriptions et de paramètres importés avec l’API et les opérations, qui fournissent de la documentation aux développeurs qui utiliseront cette opération. Ces descriptions peuvent également être ajoutées lorsque des opérations sont ajoutées manuellement.
 
-toocall hello **ajouter deux entiers** opération, cliquez sur **essayez-la**.
+Pour appeler l’opération **Ajouter deux entiers**, cliquez sur **Essayer**.
 
 ![Essayer][api-management-developer-portal-calc-api-console]
 
-Vous pouvez entrer des valeurs pour les paramètres de hello ou conserver les valeurs par défaut hello, puis cliquez sur **envoyer**.
+Vous pouvez entrer des valeurs pour les paramètres ou conserver les valeurs par défaut, puis cliquer sur **Envoyer**.
 
 ![HTTP Get][api-management-invoke-get]
 
-Une fois une opération est appelée, le portail des développeurs hello affiche hello **état de la réponse**, hello **les en-têtes de réponse**et n’importe quel **contenu de la réponse**.
+Après l’appel d’une opération, le portail des développeurs affiche le **statut de réponse**, les **en-têtes de réponse**, et tout **contenu de la réponse**.
 
 ![Réponse][api-management-invoke-get-response]
 
-## <a name="view-analytics"></a>Affichage des analyses
-analytique tooview de calculatrice de base, portail de publication commutateur toohello arrière en sélectionnant **gérer** à partir du menu de hello en hello supérieur droit du portail des développeurs hello.
+## <a name="view-analytics"> </a>Affichage des analyses
+Pour afficher les analyses relatives à Calculatrice de base, revenez au portail des éditeurs en sélectionnant **Gérer** dans le menu en haut à droite du portail des développeurs.
 
 ![Gérer][api-management-manage-menu]
 
-vue par défaut pour le portail de publication hello Hello est hello **tableau de bord**, qui fournit une vue d’ensemble de votre instance de la gestion des API.
+La vue par défaut du portail des éditeurs correspond au **tableau de bord**, lequel offre un aperçu de votre instance Gestion des API.
 
 ![tableau de bord][api-management-dashboard]
 
-Pointez la souris de hello sur graphique hello pour **calculatrice de base** toosee des métriques hello spécifiques pour l’utilisation de hello Hello API pour une période donnée.
+Passez la souris sur le graphique relatif à **Calculatrice de base** pour afficher les mesures spécifiques de l’utilisation de l’API à une période donnée.
 
 > [!NOTE]
-> Si vous ne voyez pas toutes les lignes de votre graphique, basculez le portail des développeurs toohello arrière effectuer des appels dans hello API, attendez quelques instants et puis revenir toohello le tableau de bord.
+> Si vous ne voyez aucune ligne sur votre graphique, revenez au portail des développeurs et créez des appels dans l’API, patientez et revenez au tableau de bord.
 > 
 > 
 
-Cliquez sur **afficher les détails** tooview page de résumé hello pour hello API, y compris une version supérieure de métriques de hello affiché.
+Cliquez sur **Afficher les détails** pour afficher la page Résumé de l’API, incluant une version plus importante des mesures affichées.
 
 ![Analyse][api-management-mouse-over]
 
 ![Résumé][api-management-api-summary-metrics]
 
-Pour les métriques détaillées et des rapports, cliquez sur **Analytique** de hello **gestion des API** menu à gauche de hello.
+Pour des mesures et des rapports détaillés, cliquez sur **Analyse** dans le menu **Gestion des API** à gauche.
 
-![Vue d'ensemble][api-management-analytics-overview]
+![Vue d’ensemble][api-management-analytics-overview]
 
-Hello **Analytique** section a hello suivant quatre onglets :
+La section **Analyse** comporte les quatre onglets suivants :
 
-* **Un coup de œil** fournit de l’utilisation globale et des mesures de santé, également hello développeurs, produits principaux, API supérieur et opérations supérieure.
+* **Aperçu rapide** présente l’utilisation générale et les mesures d’intégrité ainsi que les produits, les API, les opérations et les développeurs principaux.
 * **Utilisation** fournit une présentation détaillée des appels d’API et de la bande passante, y compris une représentation géographique.
 * **Intégrité** se concentre sur les codes d'état, les taux de réussite en cache, les temps de réponse et les temps de réponse d'API et de service.
-* **Activité** fournit des rapports qui explorent sur une activité spécifique par le développeur, produit, API et opération hello.
+* **Activité** fournit des rapports qui présentent une analyse des activités spécifiques par développeur, produit, API et opération.
 
-## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment trop[protéger votre API avec les limites de taux](api-management-howto-product-with-rules.md).
+## <a name="next-steps"> </a>Étapes suivantes
+* Découvrez comment [protéger votre API avec des limites de débit](api-management-howto-product-with-rules.md).
 
 [Azure Free Trial]: http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=api_management_hero_a
 
 [Create an API Management instance]: #create-service-instance
 [Create an API]: #create-api
 [Add an operation]: #add-operation
-[Add hello new API tooa product]: #add-api-to-product
-[Subscribe toohello product that contains hello API]: #subscribe
-[Call an operation from hello Developer Portal]: #call-operation
+[Add the new API to a product]: #add-api-to-product
+[Subscribe to the product that contains the API]: #subscribe
+[Call an operation from the Developer Portal]: #call-operation
 [View analytics]: #view-analytics
 [Next steps]: #next-steps
 
 
-[How toomanage developer accounts in Azure API Management]: api-management-howto-create-or-invite-developers.md
+[How to manage developer accounts in Azure API Management]: api-management-howto-create-or-invite-developers.md
 [Configure API settings]: api-management-howto-create-apis.md#configure-api-settings
-[How tooconfigure notifications and email templates in Azure API Management]: api-management-howto-configure-notifications.md
+[How to configure notifications and email templates in Azure API Management]: api-management-howto-configure-notifications.md
 [Responses]: api-management-howto-add-operations.md#responses
 [How create and publish a product]: api-management-howto-add-products.md
 [API Management pricing]: http://azure.microsoft.com/pricing/details/api-management/

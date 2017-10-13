@@ -1,6 +1,6 @@
 ---
-title: aaaAzure Service de conteneur - Forum aux questions | Documents Microsoft
-description: "Questions fréquemment posées sur le Service de conteneur Azure, un service qui simplifie la création de hello, la configuration et gestion d’un cluster de machines virtuelles toorun Docker conteneur applications."
+title: Azure Container Service - Forum Aux Questions | Microsoft Docs
+description: "Réponses aux questions fréquemment posées sur Azure Container Service, un service qui simplifie la création, la configuration et la gestion d’un cluster de machines virtuelles pour exécuter des applications de conteneur Docker."
 services: container-service
 documentationcenter: 
 author: dlepow
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 03/28/2017
+ms.date: 08/30/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017, mvc
-ms.openlocfilehash: 373d32a8d61b471b9b8fea349288aebc6fa826b1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cbc7e5a404f3be171597baf693f614ff5cc6e768
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 [!INCLUDE [container-service-faq.md](../../../includes/container-service-faq.md)]

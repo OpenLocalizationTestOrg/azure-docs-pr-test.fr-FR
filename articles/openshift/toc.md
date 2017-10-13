@@ -2,7 +2,7 @@
 # Démarrages rapides
 ## [OpenShift : modèle de communauté](https://azure.microsoft.com/en-us/resources/templates/openshift-origin-rhel/)
 # Didacticiels
-## [Déployer des machines virtuelles de tooAzure](/azure/virtual-machines/linux/openshift-get-started)
+## [Déployer sur des machines virtuelles Azure](/azure/virtual-machines/linux/openshift-get-started)
 # Ressources
 ## [Feuille de route Azure](https://azure.microsoft.com/roadmap/)
 ## [Modèle de conteneur OpenShift](https://github.com/Microsoft/openshift-container-platform)

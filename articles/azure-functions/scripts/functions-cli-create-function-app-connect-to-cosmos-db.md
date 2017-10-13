@@ -1,10 +1,10 @@
 ---
-title: "aaaCreate une fonction d’Azure qui se connecte tooan base de données Azure Cosmos | Documents Microsoft"
-description: "Le Script CLI Azure exemple : création d’une fonction d’Azure qui se connecte tooan base de données Azure Cosmos"
+title: "Créer une fonction Azure qui se connecte à une base de données Azure Cosmos DB | Documents Microsoft"
+description: "Exemple de script Azure CLI - Créer une fonction Azure qui se connecte à une base de données Azure Cosmos DB"
 services: functions
 documentationcenter: functions
 author: rachelappel
-manager: erikre
+manager: cfowler
 editor: 
 tags: functions
 ms.assetid: 
@@ -16,52 +16,52 @@ ms.workload:
 ms.date: 04/20/2017
 ms.author: rachelap
 ms.custom: mvc
-ms.openlocfilehash: 0fbc1ebec2dfd480e0cf3ca64f9febcec8af9a04
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c2c3530df62a1f291be51739a7918f7b8ab08487
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-an-azure-function-that-connects-tooan-azure-cosmos-db"></a>Créez une fonction d’Azure qui se connecte tooan base de données Azure Cosmos
+# <a name="create-an-azure-function-that-connects-to-an-azure-cosmos-db"></a>Créer une fonction Azure Functions qui se connecte à une base de données Azure Cosmos DB
 
-Cet exemple de script crée une application de la fonction Azure et connecte à base de données de la base de données Azure Cosmos tooan.
+Cet exemple de script crée une Function App Azure et se connecte à une base de données Azure Cosmos DB.
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez tooinstall et que vous utilisez hello CLI localement, cette rubrique requiert que vous exécutez hello CLI d’Azure version 2.0 ou ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0 ou une version ultérieure pour poursuivre la procédure décrite dans cet article. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Exemple de script
 
-Cet exemple crée une application Azure (fonction) et ajoute un paramètres de clé tooapp Cosmos DB des accès et le point de terminaison.
+Cet exemple crée une Function App Azure et ajoute un point de terminaison et une clé d’accès Cosmos DB aux paramètres d’application.
 
-[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/create-function-app-connect-to-cosmos-db/create-function-app-connect-to-cosmos-db.sh "Create an Azure Function that connects tooan Azure Cosmos DB")]
+[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/create-function-app-connect-to-cosmos-db/create-function-app-connect-to-cosmos-db.sh "Create an Azure Function that connects to an Azure Cosmos DB")]
 
 ## <a name="clean-up-deployment"></a>Nettoyer le déploiement
 
-Après exécution de l’exemple de script hello, hello suivi peut être groupe de ressources utilisé tooremove hello et toutes les ressources associées.
+Une fois l’exemple de script exécuté, la commande suivante permet de supprimer le groupe de ressources et toutes les ressources associées.
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script utilise hello suivant les commandes. Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.
+Ce script utilise les commandes suivantes. Chaque commande du tableau renvoie à une documentation spécifique.
 
 | Commande | Remarques |
 |---|---|
-| [az login](https://docs.microsoft.com/cli/azure/#login) | TooAzure de connexion. |
-| [az group create](https://docs.microsoft.com/cli/azure/group#create) | Crée un groupe de ressources avec un emplacement. |
+| [az login](https://docs.microsoft.com/cli/azure/#login) | Connexion à Azure. |
+| [az group create](https://docs.microsoft.com/cli/azure/group#az_group_create) | Crée un groupe de ressources avec un emplacement. |
 | [az storage account create](https://docs.microsoft.com/cli/azure/storage/account) | Créez un compte de stockage. |
-| [az functionapp create](https://docs.microsoft.com/cli/azure/functionapp#create) | Crée une Function App. |
-| [az documentdb create](https://docs.microsoft.com/cli/azure/documentdb#create) | Crée une base de données DocumentDB. |
-| [az group delete](https://docs.microsoft.com/cli/azure/group#delete) | Nettoyer |
+| [az functionapp create](https://docs.microsoft.com/cli/azure/functionapp#az_functionapp_create) | Crée une Function App. |
+| [az documentdb create](https://docs.microsoft.com/cli/azure/documentdb#az_documentdb_create) | Crée une base de données DocumentDB. |
+| [az group delete](https://docs.microsoft.com/cli/azure/group#az_group_delete) | Nettoyer |
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
 
-Vous trouverez des exemples supplémentaires de script CLI de fonctions Azure Bonjour [documentation Azure fonctions](../functions-cli-samples.md).
+Vous trouverez des exemples supplémentaires de scripts CLI Azure Functions dans la [documentation d’Azure Functions](../functions-cli-samples.md).
 
 
 

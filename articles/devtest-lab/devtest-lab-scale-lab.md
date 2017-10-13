@@ -1,6 +1,6 @@
 ---
-title: aaaScale quotas et limites dans votre laboratoire dans Azure DevTest Labs | Documents Microsoft
-description: "Découvrez comment tooscale un laboratoire dans Azure DevTest Labs"
+title: "Limites et quotas de mise à l’échelle dans votre laboratoire Azure DevTest Labs | Microsoft Docs"
+description: "Découvrez comment mettre à l’échelle un laboratoire dans Azure DevTest Labs"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 7fb429c0aabdfbce3a4a5aa6d9259daa2ee270d3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f11ed42b474e4f208eac92689bfa33fb188d15a1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scale-quotas-and-limits-in-devtest-labs"></a>Limites et quotas de mise à l’échelle dans votre laboratoire Azure DevTest Labs
-Lorsque vous travaillez dans DevTest Labs, vous pouvez remarquer qu’il existe certaine toosome de limites par défaut des ressources Azure, ce qui peuvent affecter les services de DevTest Labs hello. Ces limites sont visées tooas **quotas**.
+Lorsque vous travaillez dans DevTest Labs, vous pouvez remarquer un certain nombre de limites par défaut qui s’appliquent à certaines ressources Azure, ce qui peut affecter le service DevTest Labs. Ces limites sont appelées **quotas**.
 
 > [!NOTE]
-> Hello service de DevTest Labs n’impose des quotas. Des quotas, que vous pouvez rencontrer sont contraintes par défaut de hello abonnement global Azure.
+> Le service DevTest Labs n’impose aucun quota. Les quotas que vous pouvez rencontrer sont les contraintes par défaut de l’abonnement Azure global.
 
 Vous pouvez utiliser chaque ressource Azure jusqu’à ce que vous ayez atteint son quota. Chaque abonnement a des quotas distincts et l’utilisation est suivie par abonnement.
 
 Par exemple, chaque abonnement possède un quota par défaut de 20 cœurs. Par conséquent, si vous créez des machines virtuelles dans votre laboratoire avec quatre cœurs, vous pouvez uniquement créer cinq machines virtuelles. 
 
-[Abonnement Azure et les limites de Service](https://docs.microsoft.com/azure/azure-subscription-service-limits) répertorie certaines des quotas plus courants de hello pour les ressources Azure. Hello plus couramment utilisés dans un laboratoire de ressources, et pour lequel vous pouvez rencontrer quotas, incluent cœurs de l’ordinateur virtuel, les adresses IP publiques, interface réseau, disques gérés, attribution de rôle RBAC et circuits ExpressRoute.
+La page [Abonnement Azure et limites de service](https://docs.microsoft.com/azure/azure-subscription-service-limits) dresse la liste des quotas les plus courants pour les ressources Azure. Les ressources couramment utilisées dans un laboratoire, et pour lesquelles vous pouvez rencontrer des quotas, incluent les noyaux de machine virtuelle, les adresses IP publiques, l’interface réseau, les disques managés, l’attribution de rôle RBAC et les circuits ExpressRoute.
 
 ## <a name="view-your-usage-and-quotas"></a>Voir votre utilisation et les quotas
-Ces étapes expliquent comment tooview hello quotas actuelles dans votre abonnement pour les ressources Azure spécifiques et toosee le pourcentage de chaque quota que vous avez utilisé.
+Ces étapes vous montrent comment afficher les quotas actuels de votre abonnement pour des ressources Azure spécifiques, ainsi que le pourcentage utilisé pour chaque quota.
 
-1. Connectez-vous à toohello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Sélectionnez **plus Services**, puis sélectionnez **facturation** à partir de la liste de hello.
-1. Dans le panneau de facturation hello, sélectionnez un abonnement.
+1. Connectez-vous au [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Sélectionnez **Autres services**, puis **Facturation** dans la liste.
+1. Dans le panneau Facturation, sélectionnez un abonnement.
 4. Sélectionnez **Utilisation + quotas**.
 
    ![Bouton Utilisation et quotas](./media/devtest-lab-scale-lab/devtestlab-usage-and-quotas.png)
 
-   Hello utilisation + quotas panneau s’affiche, qui répertorie les différentes ressources disponibles dans ce pourcentage d’abonnement et hello de quota hello qui est utilisé par la ressource.
+   Le panneau Utilisation + quotas s’affiche. Il répertorie les différentes ressources disponibles dans cet abonnement et le pourcentage de quota utilisé par la ressource.
 
    ![Quotas et utilisation](./media/devtest-lab-scale-lab/devtestlab-view-quotas.png)
 
 ## <a name="requesting-more-resources-in-your-subscription"></a>Demander plus de ressources dans votre abonnement
-Si vous atteignez une limite de quota, hello par défaut d’une ressource dans un abonnement peut être augmenter de limite maximale de tooa, comme décrit dans [abonnement Azure et limites de Service](https://docs.microsoft.com/azure/azure-subscription-service-limits).
+Si vous atteignez le plafond d’un quota, la limite par défaut d’une ressource dans un abonnement peut être augmentée jusqu’à une limite maximale, comme décrit dans [Abonnement Azure et limites de service](https://docs.microsoft.com/azure/azure-subscription-service-limits).
 
-Ces étapes vous indiquent comment toorequest un quota augmenter via hello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+Ces étapes vous montrent comment demander une augmentation du quota au moyen du [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
 1. Sélectionnez **Autres services**, **Facturation**, puis **Utilisation + quotas**.
-1. Dans l’utilisation de hello + Panneau de quotas, sélectionnez hello **demande augmenter** bouton.
+1. Dans le panneau Utilisation + quotas, sélectionnez le bouton **Demander une augmentation**.
 
    ![Bouton Demander une augmentation](./media/devtest-lab-scale-lab/devtestlab-request-increase.png)
 
-1. toocomplete et soumettre la demande de hello, remplissez les informations de hello requis sur tous les trois onglets de hello **nouveau prend en charge la demande** formulaire.
+1. Pour finaliser et envoyer la demande, remplissez les informations requises sous les trois onglets du formulaire **Nouvelle demande de support**.
 
    ![Formulaire Demander une augmentation](./media/devtest-lab-scale-lab/devtestlab-support-form.png)
 
-[Comprendre les limites de Azure et augmentent](https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests/) fournit plus d’informations sur le contact de support Azure toorequest un quota augmentation.
+La page [Understanding Azure Limits and Increases (Présentation des limites et des augmentations Azure)](https://azure.microsoft.com/blog/azure-limits-quotas-increase-requests/) vous explique plus en détail comment contacter le support Azure pour demander une augmentation du quota.
 
 
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ### <a name="next-steps"></a>Étapes suivantes
-* Explorer hello [galerie de modèles de DevTest Labs Azure Resource Manager QuickStart](https://github.com/Azure/azure-devtestlab/tree/master/Samples).
+* Explorez la [Galerie de modèles de démarrage rapide d’Azure Resource Manager DevTest Labs](https://github.com/Azure/azure-devtestlab/tree/master/Samples).

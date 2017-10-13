@@ -1,6 +1,6 @@
 ---
-title: "utilisation de tooenable aaaSending utilisateur contexte expériences dans Azure Application Insights | Documents Microsoft"
-description: "Suivez les déplacements des utilisateurs dans votre service après avoir assigné à chacun d’eux une chaîne d’ID unique et permanente dans Application Insights."
+title: "Envoi d’ID de contexte utilisateur pour activer les expériences d’utilisation dans Azure Application Insights | Microsoft Docs"
+description: "Suivez les déplacements des utilisateurs dans votre service en affectant une chaîne d’ID unique et permanente à chacun d’eux dans Application Insights."
 services: application-insights
 documentationcenter: 
 author: abgreg
@@ -12,47 +12,45 @@ ms.devlang: csharp
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: bwren
-ms.openlocfilehash: 0e6c2348f53a3ea970060334179b0dd070925e82
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e16866501fd34f0b998ba929771a423866759b55
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-#  <a name="sending-user-context-tooenable-usage-experiences-in-azure-application-insights"></a>Utilisation de tooenable de contexte utilisateur envoi expériences dans Azure Application Insights
+#  <a name="send-user-context-ids-to-enable-usage-experiences-in-azure-application-insights"></a>Envoyer des ID de contexte utilisateur pour activer les expériences d’utilisation dans Azure Application Insights
 
 ## <a name="tracking-users"></a>Suivi des utilisateurs
 
-Application Insights permet de vous toomonitor et effectuer le suivi de vos utilisateurs via un ensemble d’outils de l’utilisation de produit : 
+Application Insights vous permet de surveiller et suivre vos utilisateurs par le biais d’un ensemble d’outils d’utilisation du produit : 
 * [Utilisateurs, sessions, événements](https://docs.microsoft.com/azure/application-insights/app-insights-usage-segmentation)
 * [Entonnoirs](https://docs.microsoft.com/azure/application-insights/usage-funnels)
 * [Rétention](https://docs.microsoft.com/azure/application-insights/app-insights-usage-retention)
 * Cohortes
 * [Classeurs](https://docs.microsoft.com/azure/application-insights/app-insights-usage-workbooks)
 
-Dans tootrack commande quelles un utilisateur effectue au fil du temps, Application Insights nécessite un ID pour chaque utilisateur ou de la session. Incluez ces ID dans chaque vue personnalisée de page ou d’événement personnalisé.
+Afin d’assurer le suivi des actions d’un utilisateur au fil du temps, Application Insights nécessite un ID pour chaque utilisateur ou chaque session. Incluez les ID suivants dans chaque vue personnalisée de page ou d’événement personnalisé.
 - Utilisateurs, Entonnoirs, Rétention et Cohortes : incluez l’ID d’utilisateur.
 - Sessions : incluez l’ID de session.
 
-Si votre application est intégrée à hello [SDK JavaScript](https://docs.microsoft.com/azure/application-insights/app-insights-javascript#set-up-application-insights-for-your-web-page), utilisateur, ID de suivi est effectué automatiquement.
+Si votre application est intégrée dans le [Kit de développement logiciel (SDK) JavaScript](https://docs.microsoft.com/azure/application-insights/app-insights-javascript#set-up-application-insights-for-your-web-page), l’ID d’utilisateur est suivi automatiquement.
 
 ## <a name="choosing-user-ids"></a>Choix d’ID d’utilisateur
 
-ID d’utilisateur doivent être persistantes sur tootrack de sessions utilisateur comment les utilisateurs se comporteront au fil du temps. Il existe différentes approches pour la persistance hello ID.
+Les ID d’utilisateur doivent être conservés d’une session utilisateur à l’autre pour permettre de suivre le comportement des utilisateurs au fil du temps. Il existe différents moyens de conserver l’ID.
 - Définition d’un utilisateur dont vous disposez déjà dans votre service.
-- Si le service de hello a accès tooa navigateur, il peut passer navigateur de hello un cookie avec un ID qu’il contient. ID de Hello est conservées pour tant que cookie de hello demeure dans le navigateur de l’utilisateur hello.
-- Si nécessaire, vous pouvez utiliser un nouvel ID de chaque session, mais les résultats hello sur les utilisateurs seront limitées. Par exemple, vous ne serez en mesure de toosee comment le comportement de l’utilisateur change au fil du temps.
+- Si le service a accès à un navigateur, il peut transmettre au navigateur un cookie contenant un ID. L’ID est conservé tant que le cookie reste dans le navigateur de l’utilisateur.
+- Si nécessaire, vous pouvez utiliser un nouvel ID à chaque session, mais les résultats sur les utilisateurs seront limités. Par exemple, vous ne pourrez pas voir l’évolution du comportement de l’utilisateur au fil du temps.
 
-Hello ID doit être un Guid ou une autre chaîne de chaque utilisateur assez complexe tooidentify identifie de façon unique. Par exemple, il peut s’agir d’un nombre aléatoire long.
+L’ID doit être un identificateur unique ou une autre chaîne assez complexe pour permettre l’identification spécifique de chaque utilisateur. Par exemple, il peut s’agir d’un nombre aléatoire long.
 
-Si l’ID de hello contienne des informations personnelles sur l’utilisateur de hello, il n’est pas une tooApplication de toosend Insights valeur appropriée en tant qu’un ID utilisateur. Vous pouvez envoyer un ID un [ID de l’utilisateur authentifié](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#authenticated-users), mais il ne remplit pas la nécessité d’ID d’utilisateur hello pour les scénarios d’utilisation.
+Si l’ID contient des informations personnelles sur l’utilisateur, cette valeur ne peut pas être envoyée à Application Insights en tant qu’ID d’utilisateur. Vous pouvez envoyer un ID en tant qu’[ID d’utilisateur authentifié](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#authenticated-users), mais cela ne satisfait pas les critères requis pour l’ID d’utilisateur dans les scénarios d’usage.
 
-## <a name="aspnet-apps-set-user-context-in-an-itelemetryinitializer"></a>Applications ASP.NET : définissez le contexte utilisateur dans ITelemetryInitializer
+## <a name="aspnet-apps-setting-the-user-context-in-an-itelemetryinitializer"></a>Applications ASP.NET : définition du contexte utilisateur dans ITelemetryInitializer
 
-Créez un initialiseur de télémétrie, comme décrit en détail [ici](https://docs.microsoft.com/azure/application-insights/app-insights-api-filtering-sampling#add-properties-itelemetryinitializer)et ensemble hello Context.User.Id et hello Context.Session.Id.
+Créez un initialiseur de télémétrie, comme décrit en détail [ici](https://docs.microsoft.com/azure/application-insights/app-insights-api-filtering-sampling#add-properties-itelemetryinitializer), puis définissez Context.User.Id et Context.Session.Id.
 
-Cet exemple définit l’identificateur hello utilisateur ID tooan qui expire après une session de hello. Si possible, utilisez un ID d’utilisateur qui se conserve d’une session à l’autre.
-
-*C#*
+Cet exemple configure l’ID d’utilisateur en tant qu’identificateur expirant à la fin de la session. Si possible, utilisez un ID d’utilisateur qui se conserve d’une session à l’autre.
 
 ```C#
 
@@ -64,7 +62,7 @@ Cet exemple définit l’identificateur hello utilisateur ID tooan qui expire ap
     namespace MvcWebRole.Telemetry
     {
       /*
-       * Custom TelemetryInitializer that sets hello user ID.
+       * Custom TelemetryInitializer that sets the user ID.
        *
        */
       public class MyTelemetryInitializer : ITelemetryInitializer
@@ -72,17 +70,17 @@ Cet exemple définit l’identificateur hello utilisateur ID tooan qui expire ap
         public void Initialize(ITelemetry telemetry)
         {
             // For a full experience, track each user across sessions. For an incomplete view of user 
-            // behavior within a session, store user ID on hello HttpContext Session.
-            // Set hello user ID if we haven't done so yet.
+            // behavior within a session, store user ID on the HttpContext Session.
+            // Set the user ID if we haven't done so yet.
             if (HttpContext.Current.Session["UserId"] == null)
             {
                 HttpContext.Current.Session["UserId"] = Guid.NewGuid();
             }
 
-            // Set hello user id on hello Application Insights telemetry item.
+            // Set the user id on the Application Insights telemetry item.
             telemetry.Context.User.Id = (string)HttpContext.Current.Session["UserId"];
 
-            // Set hello session id on hello Application Insights telemetry item.
+            // Set the session id on the Application Insights telemetry item.
             telemetry.Context.Session.Id = HttpContext.Current.Session.SessionID;
         }
       }
@@ -90,8 +88,8 @@ Cet exemple définit l’identificateur hello utilisateur ID tooan qui expire ap
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-- l’utilisation de tooenable rencontre, démarrer l’envoi de [événements personnalisés](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) ou [des consultations de page](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).
-- Si vous envoyez déjà hello l’utilisation des outils toolearn Explorer les événements personnalisés ou des vues de la page, comment les utilisateurs utiliser votre service.
+- Pour activer les expériences d’utilisation, commencez à envoyer des [événements personnalisés](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) ou des [affichages de page](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).
+- Si vous envoyez déjà des événements personnalisés ou des affichages de page, explorez les outils d’utilisation pour savoir comment les utilisateurs emploient votre service.
     * [Vue d’ensemble de l’utilisation](app-insights-usage-overview.md)
     * [Utilisateurs, Sessions et Événements](app-insights-usage-segmentation.md)
     * [Entonnoirs](usage-funnels.md)

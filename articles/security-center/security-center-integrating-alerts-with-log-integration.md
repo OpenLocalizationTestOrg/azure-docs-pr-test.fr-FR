@@ -1,5 +1,5 @@
 ---
-title: "alertes du centre de sécurité Azure aaaIntegrating avec Azure journal intégration | Documents Microsoft"
+title: "Intégration des alertes de l’Azure Security Center avec les journaux Azure | Microsoft Docs"
 description: "Cet article vous aidera à vous familiariser avec l’intégration des alertes du Centre de sécurité avec les journaux Azure."
 services: security-center
 documentationcenter: na
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/23/2017
 ms.author: terrylan
-ms.openlocfilehash: 2649036ee990bf0f48fa0cb35c7495ac932c29ed
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d13e5b87c446e587091551b22d80fe568d5d8093
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="integrating-azure-security-center-alerts-with-azure-log-integration"></a>Intégration des alertes de l’Azure Security Center avec les journaux Azure
-De nombreuses opérations de sécurité et les équipes de réponse aux incidents s’appuient sur une solution d’informations sur la sécurité et de gestion des événements (SIEM) en tant que point de départ pour le triage et examen des alertes de sécurité de hello. Avec l’intégration des journaux Azure, vous pouvez intégrer les alertes d’Azure Security Center à votre solution SIEM.
+De nombreuses équipes de sécurité et d’intervention utilisent une solution SIEM (Security Information and Event Management) comme point de départ pour le triage et l’examen des alertes de sécurité. Avec l’intégration des journaux Azure, vous pouvez intégrer les alertes d’Azure Security Center à votre solution SIEM.
 
 L’intégration des journaux Azure prend actuellement en charge HP ArcSight, Splunk et IBM QRadar.
 
 ## <a name="what-logs-can-i-integrate"></a>Quels journaux puis-je intégrer ?
 Azure génère une journalisation complète pour chaque service. Ces journaux sont classés de la façon suivante :
 
-* **Des journaux de contrôle/gestion** qui offrent une visibilité en hello les opérations de création de gestionnaire de ressources Azure, UPDATE et DELETE. Ces événements de plan de contrôle sont signalées Bonjour Azure journaux d’activité
-* **Journaux de données de plan** qui offrent une visibilité en hello déclenchés lors de l’utilisation d’une ressource Azure. Un exemple est le journal des événements Windows hello, où vous pouvez obtenir des informations sur les événements de sécurité de canal de sécurité de l’Observateur d’événements hello. Les événements de plan de données (qui sont générés par une machine virtuelle ou un service Azure) sont signalés par les journaux de diagnostic Azure.
+* **Journaux de contrôle/gestion**, qui vous offrent une visibilité sur les opérations CREATE, UPDATE et DELETE d’Azure Resource Manager. Ces événements de plan de contrôle sont signalés dans les journaux d’activité Azure
+* **Journaux des plans de données**, qui vous offrent une visibilité sur les événements déclenchés lors de l’utilisation d’une ressource Azure. Le journal des événements Windows, où vous pouvez obtenir des informations sur les événements de sécurité du canal de sécurité de l’observateur d’événements est un exemple. Les événements de plan de données (qui sont générés par une machine virtuelle ou un service Azure) sont signalés par les journaux de diagnostic Azure.
 
-Intégration des journaux Azure prend actuellement en charge l’intégration de hello :
+L’intégration des journaux Azure prend actuellement en charge l’intégration de :
 
 * Journaux des machines virtuelles Azure
 * Journaux d’audit Azure
@@ -40,10 +40,10 @@ Intégration des journaux Azure prend actuellement en charge l’intégration de
 ## <a name="install-azure-log-integration"></a>Installer l’intégration des journaux Azure
 Téléchargez [Intégration des journaux Azure](https://www.microsoft.com/download/details.aspx?id=53324).
 
-Hello service d’intégration Azure log collecte les données de télémétrie d’ordinateur hello sur lequel il est installé.  Les données de télémétrie recueillies sont les suivantes :
+Le service d’intégration des journaux Azure collecte les données de télémétrie à partir de l’ordinateur sur lequel il est installé.  Les données de télémétrie recueillies sont les suivantes :
 
 * Les exceptions qui se produisent pendant l’exécution de l’intégration des journaux Azure
-* Métriques sur le nombre de hello de requêtes et des événements traités
+* Des métriques concernant le nombre de requêtes et d’événements traités
 * Des statistiques sur les options de ligne de commande Azlog.exe utilisées
 
 > [!NOTE]
@@ -52,40 +52,40 @@ Hello service d’intégration Azure log collecte les données de télémétrie 
 >
 
 ## <a name="integrate-azure-audit-logs-and-security-center-alerts"></a>Intégrer les alertes des journaux d’audit Azure et de Security Center
-1. Invite de commandes ouverte hello et **cd** dans **c:\Program Files\Microsoft Azure journal intégration**.
-2. Exécutez hello **azlog createazureid** commande toocreate une [Principal de Service Azure Active Directory](../active-directory/active-directory-application-objects.md) Bonjour Azure Active Directory (AD), les clients qui hébergent hello abonnements Azure.
+1. Ouvrez l’invite de commandes et **cd** dans **c:\Program Files\Microsoft Azure Log Integration**.
+2. Exécutez la commande **azlog createazureid** pour créer un [Principal du service Azure Active Directory](../active-directory/active-directory-application-objects.md) dans les locataires Azure Active Directory (AD) qui hébergent les abonnements Azure.
 
     Vous êtes invité à entrer vos identifiants de connexion Azure.
 
    > [!NOTE]
-   > Vous devez être l’abonnement hello propriétaire ou un Coadministrateur de l’abonnement de hello.
+   > Vous devez être le propriétaire ou un coadministrateur de l’abonnement.
    >
    >
 
-    TooAzure de l’authentification est effectuée via Azure AD.  Création d’un principal de service pour l’intégration d’Azure log crée hello Azure AD identity donné accès tooread à partir d’abonnements Azure.
-3. Exécutez hello **azlog autoriser <SubscriptionID>**  tooassign accès en lecture sur hello abonnement toohello principal du service créé à l’étape 2 de la commande. Si vous ne spécifiez pas un **SubscriptionID**, puis de principal du service hello est attribué hello lecteur rôle tooall abonnements toowhich vous avez accès.
+    L’authentification à Azure s’effectue avec Azure AD.  La création d’un principal du service pour l’intégration de journaux Azure crée l’identité Azure AD qui aura un accès en lecture aux abonnements Azure.
+3. Exécutez la commande **azlog authorize<SubscriptionID>** pour affecter un accès en lecture à l’abonnement au principal du service créé à l’étape 2. Si vous ne spécifiez pas de **SubscriptionID**, le principal du service se voit affecter le rôle Lecteur pour tous les abonnements auxquels vous avez accès.
 
    > [!NOTE]
-   > Avertissements peuvent s’afficher si vous exécutez hello **autoriser** commande immédiatement après hello **createazureid** commande. Il existe une latence entre la création de compte de hello Azure AD et quand le compte de hello est disponible pour utilisation. Si vous attendez environ 10 secondes après l’exécution de hello **createazureid** commande toorun hello **autoriser** de commandes, puis vous ne devez pas voir ces avertissements.
+   > Des avertissements peuvent s’afficher si vous exécutez la commande **authorize** immédiatement après la commande **createazureid**. Il existe un temps de latence entre la création du compte Azure AD et la disponibilité du compte pour une utilisation. Si vous patientez environ 10 secondes après l’exécution de la commande **createazureid** avant d’exécuter la commande **authorize**, vous ne devriez pas voir ces avertissements.
    >
    >
-4. Vérifier hello suivant tooconfirm de dossiers qui hello les journaux d’Audit JSON :
+4. Vérifiez que les fichiers JSON de journaux d’audit sont présents dans les dossiers suivants :
 
    * **c:\Users\azlog\AzureResourceManagerJson**
    * **c:\Users\azlog\AzureResourceManagerJsonLD**
-5. Vérifiez hello suivant tooconfirm dossiers figurant dans les alertes du centre de sécurité :
+5. Vérifiez que les alertes Security Center existent dans les dossiers suivants :
 
    * **c:\Users\azlog\ AzureSecurityCenterJson**
    * **c:\Users\azlog\AzureSecurityCenterJsonLD**
-6. Configurer hello SIEM fichier redirecteur connecteur toohello dossier approprié. procédure de Hello dépend hello SIEM que vous utilisez.
+6. Configurez le connecteur du redirecteur de fichiers SIEM sur le dossier approprié. La procédure varie en fonction du SIEM que vous utilisez.
 
 ## <a name="next-steps"></a>Étapes suivantes
-toolearn en savoir plus sur les journaux d’activité Azure et les définitions de propriétés, consultez :
+Pour plus d’informations sur les journaux d’activité Azure et les définitions de propriétés, consultez :
 
 * [Opérations d’audit avec Resource Manager](../azure-resource-manager/resource-group-audit.md)
 
-toolearn en savoir plus sur le centre de sécurité, voir hello :
+Pour plus d’informations sur le Centre de sécurité, consultez les rubriques suivantes :
 
-* [Toosecurity répond et de la gestion des alertes dans le centre de sécurité Azure](security-center-managing-and-responding-alerts.md) : en savoir comment les alertes toosecurity toomanage et y répondre.
-* [Forum aux questions sur Azure Security Center](security-center-faq.md) : Forum aux questions sur l’utilisation hello service de recherche.
-* [Blog de sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : obtenir les dernières informations de sécurité Azure hello et informations.
+* [Gestion et résolution des alertes de sécurité dans Azure Security Center](security-center-managing-and-responding-alerts.md) : découvrez comment gérer et résoudre les alertes de sécurité.
+* [FAQ Azure Security Center](security-center-faq.md) : forum aux questions concernant l’utilisation de ce service.
+* [Blog sur la sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : découvrez les dernières nouvelles et informations sur la sécurité Azure.

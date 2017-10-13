@@ -1,6 +1,6 @@
 ---
-title: application de Xamarin.Android aaaAdd push notifications tooyour | Documents Microsoft
-description: "Découvrez comment toouse du Service d’applications Azure et Azure Notification Hubs toosend push notifications tooyour Xamarin.Android application"
+title: "Ajout de notifications Push à votre application Xamarin.Android | Microsoft Docs"
+description: "Découvrez comment utiliser Azure App Service et Azure Notification Hubs pour envoyer des notifications Push à votre application Xamarin Android."
 services: app-service\mobile
 documentationcenter: xamarin
 author: ysxu
@@ -14,22 +14,22 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/12/2016
 ms.author: yuaxu
-ms.openlocfilehash: c93d1d0cae06ab15e3e3e5c4b342808b2cd49113
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c3757d56fb1792092710740dc5ffbd64f18730cf
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="add-push-notifications-tooyour-xamarinandroid-app"></a>Ajouter une application de Xamarin.Android de tooyour de notifications push
+# <a name="add-push-notifications-to-your-xamarinandroid-app"></a>Ajouter des notifications push à votre application Xamarin.Android
 [!INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Dans ce didacticiel, vous allez ajouter toohello de notifications push [démarrage rapide de Xamarin.Android](app-service-mobile-windows-store-dotnet-get-started.md) de projet afin qu’une notification push est envoyée toohello périphérique chaque fois qu’un enregistrement est inséré.
+Dans ce didacticiel, vous ajoutez des notifications Push au projet [Démarrage rapide Xamarin.Android](app-service-mobile-windows-store-dotnet-get-started.md) afin qu'une notification Push soit envoyée chaque fois qu'un enregistrement est inséré.
 
-Si vous n’utilisez pas hello téléchargé le projet de démarrage rapide de serveur, vous devez serez hello package d’extension de notification push. Consultez [fonctionne avec serveur principal de .NET hello SDK pour les applications mobiles Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) pour plus d’informations.
+Si vous n’utilisez pas le projet de serveur du démarrage rapide téléchargé, vous devrez ajouter le package d’extension de notification Push. Consultez [Fonctionnement avec le Kit de développement logiciel (SDK) du serveur principal .NET pour Azure Mobile Apps](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) pour plus d’informations.
 
-## <a name="prerequisites"></a>Composants requis
-Ce didacticiel requiert hello qui suit :
+## <a name="prerequisites"></a>Conditions préalables
+Ce didacticiel requiert les éléments suivants :
 
 * Un compte Google actif. Vous pouvez vous connecter à un compte Google sur [accounts.google.com](http://go.microsoft.com/fwlink/p/?LinkId=268302).
 * Le composant client [Google Cloud Messaging](http://components.xamarin.com/view/GCMClient/).
@@ -40,28 +40,28 @@ Ce didacticiel requiert hello qui suit :
 ## <a id="register"></a>Activation de Firebase Cloud Messaging
 [!INCLUDE [notification-hubs-enable-firebase-cloud-messaging](../../includes/notification-hubs-enable-firebase-cloud-messaging.md)]
 
-## <a name="configure-azure-toosend-push-requests"></a>Configurer les demandes de transmission toosend Azure
+## <a name="configure-azure-to-send-push-requests"></a>Configuration d’Azure pour l’envoi de demandes push
 [!INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push-for-firebase.md)]
 
-## <a id="update-server"></a>Mettre à jour des notifications push de hello serveur projet toosend
+## <a id="update-server"></a>Mettre à jour le projet de serveur pour l’envoi de notifications Push
 [!INCLUDE [app-service-mobile-update-server-project-for-push-template](../../includes/app-service-mobile-update-server-project-for-push-template.md)]
 
-## <a id="configure-app"></a>Configurer le projet de client hello pour les notifications push
+## <a id="configure-app"></a>Configurer le projet client pour les notifications push
 [!INCLUDE [mobile-services-xamarin-android-push-configure-project](../../includes/mobile-services-xamarin-android-push-configure-project.md)]
 
-## <a id="add-push"></a>Ajouter une application de tooyour de code de notifications push
+## <a id="add-push"></a>Ajouter le code des notifications push à votre application
 [!INCLUDE [app-service-mobile-xamarin-android-push-add-to-app](../../includes/app-service-mobile-xamarin-android-push-add-to-app.md)]
 
 ## <a name="test"></a>Tester les notifications push dans votre application
-Vous pouvez tester l’application hello à l’aide d’un périphérique virtuel dans l’émulateur de hello. Des étapes de configuration supplémentaires sont requises lors de l’exécution sur un émulateur.
+Vous pouvez tester l’application à l’aide d’un appareil virtuel dans l’émulateur. Des étapes de configuration supplémentaires sont requises lors de l’exécution sur un émulateur.
 
-1. Assurez-vous que vous déployez tooor débogage sur un périphérique virtuel qui a APIs Google définir comme cible de hello, comme indiqué ci-dessous dans le Gestionnaire de périphériques virtuels Android (AVD) hello.
+1. Assurez-vous de procéder au déploiement ou au débogage sur un périphérique virtuel sur lequel les API Google sont définis comme cible, comme indiqué dans le Gestionnaire d’appareil virtuel Android (AVD).
    
     ![](./media/app-service-mobile-xamarin-android-get-started-push/google-apis-avd-settings.png)
-2. Ajouter un appareil Android de Google compte toohello en cliquant sur **applications** > **paramètres** > **Ajouter compte**, puis suivez les invites hello.
+2. Ajouter un compte Google à l’appareil Android en cliquant sur **Applications** > **Paramètres** > **Ajouter un compte**, puis suivez les invites.
    
     ![](./media/app-service-mobile-xamarin-android-get-started-push/add-google-account.png)
-3. Exécutez hello d’application todolist comme avant et insérer un nouvel élément de tâche. Cette fois-ci, une icône de notification s’affiche dans la zone de notification hello. Vous pouvez ouvrir hello notification tiroir tooview hello texte intégral de la notification de hello.
+3. Exécutez normalement l’application todolist et insérez un nouvel élément todo. Cette fois, une icône de notification s’affiche dans la zone de notification. Vous pouvez ouvrir le tiroir de notification pour afficher le texte intégral de la notification.
    
     ![](./media/app-service-mobile-xamarin-android-get-started-push/android-notifications.png)
 

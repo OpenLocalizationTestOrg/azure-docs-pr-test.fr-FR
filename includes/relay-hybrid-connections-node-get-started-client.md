@@ -2,13 +2,13 @@
 
 Créez un fichier JavaScript appelé `sender.js`.
 
-### <a name="add-hello-relay-npm-package"></a>Ajouter un package de relais NPM hello
+### <a name="add-the-relay-npm-package"></a>Ajout du package NPM de relais
 
 Exécutez `npm install hyco-ws` à partir d’une invite de commandes de nœud dans votre dossier de projet.
 
-### <a name="write-some-code-toosend-messages"></a>Écrivez du code toosend messages
+### <a name="write-some-code-to-send-messages"></a>Écriture de code pour envoyer des messages
 
-1. Ajoutez hello suivant `constants` haut toohello Hello `sender.js` fichier.
+1. Ajoutez le `constants` suivant au début du fichier `sender.js`.
    
     ```js
     const WebSocket = require('hyco-ws');
@@ -18,14 +18,14 @@ Exécutez `npm install hyco-ws` à partir d’une invite de commandes de nœud d
             output: process.stdout
         });;
     ```
-2. Ajouter hello suivant constantes toohello `sender.js` fichier hello hybride détails de connexion. Remplacez les espaces réservés de hello entre crochets avec les valeurs hello obtenues lors de la création de la connexion hybride hello.
+2. Ajoutez les constantes suivantes au fichier `sender.js` pour les détails de la connexion hybride. Remplacez les espaces réservés entre crochets par les valeurs obtenues lors de la création de la connexion hybride.
    
-   1. `const ns`-hello d’espace de noms de relais. Être toouse vraiment hello complet espace de noms ; par exemple, `{namespace}.servicebus.windows.net`.
-   2. `const path`-nom hello de la connexion hybride hello.
-   3. `const keyrule`-nom hello de la clé SAS hello.
-   4. `const key`-valeur de la clé SAS de hello.
+   1. `const ns` - L’espace de noms du relais. Veillez à utiliser le nom de l’espace de noms complet, par exemple `{namespace}.servicebus.windows.net`.
+   2. `const path` - Le nom de la connexion hybride.
+   3. `const keyrule` - Le nom de la clé SAS.
+   4. `const key` - La valeur de la clé SAS.
 
-3. Ajouter hello suivant code toohello `sender.js` fichier :
+3. Ajoutez le code suivant au fichier `sender.js` :
    
     ```js
     WebSocket.relayedConnect(

@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à O.C. Tanner - AppreciateHub | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et O.C. Tanner - AppreciateHub."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et O.C. Tanner - AppreciateHub."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,119 +13,119 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: jeedes
-ms.openlocfilehash: 45052cf56e35746d7df5910162e40e3bbcad1aca
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9af12372b30d9ee1575e46be3b4144fc3b73ec69
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-oc-tanner---appreciatehub"></a>Didacticiel : Intégration d’Azure Active Directory à O.C. Tanner - AppreciateHub.
 
-Dans ce didacticiel, vous apprendrez comment toointegrate O.C. Tanner - AppreciateHub à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer O.C. Tanner - AppreciateHub à Azure Active Directory (Azure AD).
 
-L’intégration d’O.C. Tanner - AppreciateHub avec Azure AD offre hello avantages suivants :
+L’intégration d’O.C. Tanner - AppreciateHub à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooO.C. Tanner - AppreciateHub.
-- Vous pouvez activer vos utilisateurs tooautomatically get signé sur tooO.C. Tanner - AppreciateHub (par le biais de l’authentification unique) avec leur compte Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à O.C. Tanner - AppreciateHub.
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à O.C. Tanner - AppreciateHub (par le biais de l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-intégration d’Azure AD avec O.C. de tooconfigure Tanner - AppreciateHub, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à O.C. Tanner - AppreciateHub, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement O.C. Un abonnement Tanner - AppreciateHub pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout d’O.C. Tanner - AppreciateHub à partir de la galerie de hello
+1. Ajout d’O.C. Tanner - AppreciateHub à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-oc-tanner---appreciatehub-from-hello-gallery"></a>Ajout d’O.C. Tanner - AppreciateHub à partir de la galerie de hello
-intégration de hello tooconfigure de O.C. Tanner - AppreciateHub dans Azure AD, vous devez tooadd O.C. Tanner - AppreciateHub à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-oc-tanner---appreciatehub-from-the-gallery"></a>Ajout d’O.C. Tanner - AppreciateHub à partir de la galerie
+Pour configurer l’intégration d’O.C. Tanner - AppreciateHub à Azure AD, vous devez ajouter O.C. Tanner - AppreciateHub à partir de la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd O.C. Tanner - AppreciateHub à partir de la galerie hello, effectuer hello comme suit :**
+**Pour ajouter O.C. Tanner - AppreciateHub à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **O.C. Tanner - AppreciateHub**.
+4. Dans la zone de recherche, tapez **O.C. Tanner - AppreciateHub**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-oc-tanner-tutorial/tutorial_octannerappreciatehub_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **O.C. Tanner - AppreciateHub**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le panneau des résultats, sélectionnez **O.C. Tanner - AppreciateHub**, puis cliquez sur **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-oc-tanner-tutorial/tutorial_octannerappreciatehub_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec O.C. Tanner - AppreciateHub au moyen d’un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans O.C. Tanner - AppreciateHub est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans O.C. Tanner - AppreciateHub doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur O.C. Tanner - AppreciateHub équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur O.C. Tanner - AppreciateHub associé doit être établie.
 
-Dans O.C. Valeur hello Tanner - AppreciateHub, affecter hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans O.C. Tanner - AppreciateHub, assignez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec O.C. Tanner - AppreciateHub, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec O.C. Tanner - AppreciateHub, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test O.C. Tanner - utilisateur de test AppreciateHub](#creating-a-oc-tanner---appreciatehub-test-user)**  -toohave un équivalent de Britta Simon dans O.C. Tanner - AppreciateHub est lié toohello la représentation sous forme de Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test O.C. Tanner - AppreciateHub](#creating-a-oc-tanner---appreciatehub-test-user)** pour avoir un équivalent de Britta Simon dans O.C. Tanner - AppreciateHub lié à la représentation Azure AD associée.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurer l’authentification unique dans votre O.C. Tanner - AppreciateHub.
+Dans cette section, vous activez l’authentification unique Azure AD dans le portail Azure et configurez l’authentification unique dans votre application O.C. Tanner - AppreciateHub.
 
-**tooconfigure Azure AD single sign-on avec O.C. Tanner - AppreciateHub, effectuer hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec O.C. Tanner - AppreciateHub, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **O.C. Tanner - AppreciateHub** cliquez sur **Authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **O.C. Tanner - AppreciateHub** cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-oc-tanner-tutorial/tutorial_octannerappreciatehub_samlbase.png)
 
-3. Sur hello **O.C. Tanner - AppreciateHub domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL O.C. Tanner - AppreciateHub**, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-oc-tanner-tutorial/tutorial_octannerappreciatehub_url.png)
 
-    a. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<companyname>.appreciatehub.com/fed/sp/authnResponse20`
+    a. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<companyname>.appreciatehub.com/fed/sp/authnResponse20`
 
     > [!NOTE] 
-    > Cette valeur n’est pas la valeur réelle. Mettre à jour cette valeur avec l’URL de réponse réelle hello. Pour obtenir cette valeur, contactez [l’équipe du support technique O.C. Tanner - équipe de support AppreciateHub](mailto:sso@octanner.com) tooget cette valeur.
+    > Cette valeur n’est pas la valeur réelle. Mettez à jour la valeur avec l’URL de réponse réelle. Pour obtenir cette valeur, contactez [l’équipe du support technique O.C. Tanner - AppreciateHub](mailto:sso@octanner.com).
 
-    b. Fichier de métadonnées hello ouverte à l’aide du lien de hello : [https://fed.appreciatehub.com/fed/sp/metadata](https://fed.appreciatehub.com/fed/sp/metadata).
+    b. Ouvrez le fichier de métadonnées à l’aide du lien suivant : [https://fed.appreciatehub.com/fed/sp/metadata](https://fed.appreciatehub.com/fed/sp/metadata).
    
-    c. Recherchez hello **md:AssertionConsumerService** nœud. 
+    c. Recherchez le nœud **md:AssertionConsumerService** . 
    
-    d. Copier la valeur hello Hello **emplacement** attribut. 
+    d. Copiez la valeur de l’attribut **Location** . 
    
     ![Configurer les paramètres d’application][12]
    
-    e. Bonjour **URL de connexion** zone de texte, juste après valeur hello que vous avez obtenu à l’étape précédente de hello.
+    e. Dans la zone de texte **URL de connexion** , collez la valeur que vous avez obtenue à l’étape précédente.
 
-4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-oc-tanner-tutorial/tutorial_octannerappreciatehub_certificate.png) 
 
@@ -133,68 +133,68 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-oc-tanner-tutorial/tutorial_general_400.png)
 
-6. tooconfigure l’authentification unique sur **O.C. Tanner - AppreciateHub** côté, vous devez hello toosend téléchargé **Metadata XML** trop[O.C. Tanner - AppreciateHub](mailto:sso@octanner.com).
+6. Pour configurer l’authentification unique côté **O.C. Tanner - AppreciateHub**, vous devez envoyer le fichier **XML de métadonnées** téléchargé à [l’équipe du support technique O.C. Tanner - AppreciateHub](mailto:sso@octanner.com).
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-oc-tanner-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-oc-tanner-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-oc-tanner-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-oc-tanner-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-oc-tanner---appreciatehub-test-user"></a>Création d’un utilisateur de test O.C. Tanner - AppreciateHub
 
-objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans O.C. Tanner - AppreciateHub.
+L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans O.C. Tanner - AppreciateHub.
 
-**toocreate un utilisateur appelé Britta Simon dans O.C. Tanner - AppreciateHub, effectuer hello comme suit :**
+**Pour créer un utilisateur nommé Britta Simon dans O.C. Tanner - AppreciateHub, procédez comme suit :**
 
-Demandez à [l’équipe du support technique O.C. Tanner - équipe de support AppreciateHub](mailto:sso@octanner.com) toocreate un utilisateur qui a comme hello d’attribut nameID même valeur en tant que nom d’utilisateur hello de Britta Simon dans Azure AD.
+Demandez à [l’équipe du support technique O.C. Tanner - AppreciateHub](mailto:sso@octanner.com) de créer un utilisateur dont l’attribut nameID est identique au nom d’utilisateur de Britta Simon dans Azure AD.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooO.C. Tanner - AppreciateHub.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à O.C. Tanner - AppreciateHub.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooO.C. Tanner - AppreciateHub, effectuer hello comme suit :**
+**Pour affecter Britta Simon à O.C. Tanner - AppreciateHub, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **O.C. Tanner - AppreciateHub**.
+2. Dans la liste des applications, sélectionnez **O.C. Tanner - AppreciateHub**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-oc-tanner-tutorial/tutorial_octannerappreciatehub_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -202,7 +202,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -210,12 +210,12 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.  
-Lorsque vous cliquez sur hello O.C. Tanner - vignette AppreciateHub dans hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour O.C. Tanner - AppreciateHub.
+L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.  
+Quand vous cliquez sur la vignette O.C. Tanner - AppreciateHub dans le volet d’accès, vous devez être connecté automatiquement à votre application O.C. Tanner - AppreciateHub.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

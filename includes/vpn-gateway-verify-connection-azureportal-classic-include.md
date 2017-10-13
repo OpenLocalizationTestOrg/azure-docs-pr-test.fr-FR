@@ -1,13 +1,13 @@
-Bonjour portail Azure, vous pouvez afficher l’état de la connexion hello pour une passerelle VPN de réseau virtuel classique en naviguant toohello connexion. Hello étapes suivantes montrent une façon toonavigate tooyour connexion et vérifiez.
+Dans le portail Azure, vous pouvez afficher l’état de la connexion pour une passerelle VPN de réseau virtuel classique en accédant à cette dernière. Les étapes suivantes montrent un moyen d’accéder à votre connexion pour la vérifier.
 
-1. Bonjour [portail Azure](http://portal.azure.com), cliquez sur **toutes les ressources** et accédez tooyour de réseau virtuel classique.
-2. Dans le panneau de réseau virtuel hello, cliquez sur **vue d’ensemble** tooaccess hello **connexions VPN** section du Panneau de hello.
-3. Sur le graphique de connexions VPN hello, cliquez sur le site de hello.
+1. Dans le [portail Azure](http://portal.azure.com), cliquez sur **Toutes les ressources** et accédez à votre réseau virtuel classique.
+2. Dans le panneau de réseau virtuel, cliquez sur **Vue d’ensemble** pour accéder à la section **Connexions VPN** du panneau.
+3. Dans le graphique de connexions VPN, cliquez sur le site.
 
     ![Site local](./media/vpn-gateway-verify-connection-azureportal-classic/localsitename.png "site local")
-4. Sur hello **les connexions VPN de Site à site** panneau, afficher des informations de hello sur votre site.
+4. Dans le panneau **Connexion VPN de site à site**, affichez les informations concernant votre site.
 
     ![État de la connexion](./media/vpn-gateway-verify-connection-azureportal-classic/siteconnectstatus.png "état de la connexion")
-5. tooview plus d’informations sur la connexion de hello, cliquez sur nom hello Hello de hello connexion tooopen **connexion VPN Site à site** panneau.
+5. Pour afficher plus d’informations sur la connexion, cliquez sur le nom de la connexion pour ouvrir le panneau **Connexion VPN site à site**.
 
     ![En savoir plus sur l’état de la connexion](./media/vpn-gateway-verify-connection-azureportal-classic/connections4.png "Plus d’informations sur l’état de la connexion")

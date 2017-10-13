@@ -1,5 +1,5 @@
 ---
-title: "aaaScheduler limites et des valeurs par défaut"
+title: "Limites et valeurs par défaut de Scheduler"
 description: "Limites et valeurs par défaut de Scheduler"
 services: scheduler
 documentationcenter: .NET
@@ -14,27 +14,27 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: 6fe0600d3ce3249d5aab1b877369b175316b5437
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: db6b1c196cb468f41c7a7ce34758de346b522abb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scheduler-limits-and-defaults"></a>Limites et valeurs par défaut de Scheduler
 ## <a name="scheduler-quotas-limits-defaults-and-throttles"></a>Limitations, valeurs par défaut, limites et quotas de Scheduler
 [!INCLUDE [scheduler-limits-table](../../includes/scheduler-limits-table.md)]
 
-## <a name="hello-x-ms-request-id-header"></a>Hello x-ms-request-id en-tête
-Chaque demande adressée à hello service Planificateur renvoie un en-tête de réponse nommé**x-ms-request-id**. Cet en-tête contient une valeur opaque qui identifie de façon unique la demande de hello.
+## <a name="the-x-ms-request-id-header"></a>L'en-tête x-ms-request-id
+Chaque requête adressée au service de Scheduler retourne un en-tête de réponse nommé**x-ms-request-id**. Cet en-tête contient une valeur opaque qui identifie de façon unique la requête.
 
-Si une demande est régulièrement défectueux et que vous avez vérifié que la demande de hello est correctement formulée, vous pouvez utiliser cette tooMicrosoft d’erreur valeur tooreport hello. Dans votre rapport, inclure la valeur de hello durée approximative de x-ms-request-id hello cette demande hello a été apportée, hello identificateur d’abonnement de hello, collection de travaux et/ou de travail, et hello du type d’opération hello a tenté de demande.
+Si une requête échoue constamment et que vous avez vérifié qu'elle est formulée correctement, vous pouvez utiliser cette valeur pour signaler l'erreur à Microsoft. Dans votre rapport, incluez la valeur de x-ms-request-id, l’heure approximative de la requête, l’identificateur de l’abonnement, la collection de travaux et/ou la tâche et le type d’opération tenté par la requête.
 
 ## <a name="see-also"></a>Voir aussi
  [Présentation d'Azure Scheduler](scheduler-intro.md)
 
  [Concepts, terminologie et hiérarchie d’entités d’Azure Scheduler](scheduler-concepts-terms.md)
 
- [Prise en main du planificateur Bonjour portail Azure](scheduler-get-started-portal.md)
+ [Prise en main de Scheduler dans le portail Azure](scheduler-get-started-portal.md)
 
  [Plans et facturation dans Azure Scheduler](scheduler-plans-billing.md)
 

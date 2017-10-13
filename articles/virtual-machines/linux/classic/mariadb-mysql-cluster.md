@@ -1,5 +1,5 @@
 ---
-title: aaaRun un MariaDB (MySQL) de cluster sur Azure | Documents Microsoft
+title: "Exécuter un cluster MariaDB (MySQL) sur Azure | Microsoft Docs"
 description: "Création d’un cluster MySQL MariaDB + Galera sur des machines virtuelles Azure"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,66 +15,66 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 04/15/2015
 ms.author: asabbour
-ms.openlocfilehash: f9a4d6c45d76478a8a3526b407c7bbe6aeb40423
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 53e9bf18b26338212411ea7c4f260eb308486738
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="mariadb-mysql-cluster-azure-tutorial"></a>Cluster MariaDB (MySQL) : didacticiel Azure
 > [!IMPORTANT]
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Azure Resource Manager](../../../resource-manager-deployment-model.md) et classique. Cet article décrit le modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources Azure hello.
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Azure Resource Manager](../../../resource-manager-deployment-model.md) et classique. Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Azure Resource Manager.
 
 > [!NOTE]
-> Cluster MariaDB entreprise est désormais disponible dans hello Azure Marketplace. nouvelle offre de Hello déploient automatiquement un cluster MariaDB Galera sur Azure Resource Manager. Vous devez utiliser la nouvelle offre à partir de hello [Azure Marketplace](https://azure.microsoft.com/en-us/marketplace/partners/mariadb/cluster-maxscale/).
+> Le cluster MariaDB Enterprise est désormais disponible dans Azure Marketplace. La nouvelle offre déploiera automatiquement un cluster MariaDB Galera sur Azure Resource Manager. Vous devez utiliser la nouvelle offre à partir [d’Azure Marketplace](https://azure.microsoft.com/en-us/marketplace/partners/mariadb/cluster-maxscale/).
 >
 >
 
-Cet article vous explique comment toocreate un multimaître [Galera](http://galeracluster.com/products/) cluster de [MariaDBs](https://mariadb.org/en/about/) (un remplacement dans le désordre solide, évolutive et fiable pour MySQL) toowork dans un environnement hautement disponible sur Azure machines virtuelles.
+Cet article vous montre comment créer un cluster [Galera](http://galeracluster.com/products/) multimaîtres de [MariaDB](https://mariadb.org/en/about/) (un remplacement de dernière minute solide, évolutif et fiable pour MySQL), qui fonctionnera dans un environnement à haute disponibilité dans des machines virtuelles Azure.
 
 ## <a name="architecture-overview"></a>Présentation de l'architecture
-Cet article décrit comment les étapes hello toocomplete suivant :
+Cet article décrit comment effectuer les opérations suivantes :
 
 - Créer un cluster à trois nœuds.
-- Disques de données hello distinct à partir du disque du système d’exploitation hello.
-- Créer des disques de données hello dans le paramètre de RAID 0/agrégé par bande tooincrease IOPS.
-- Utiliser l’équilibrage de charge Azure toobalance hello de charge pour les nœuds de hello trois.
-- toominimize répétitive fonctionne, créez une image de machine virtuelle contient MariaDB + Galera et l’utiliser toocreate hello autres machines virtuelles du cluster.
+- Séparer les disques de données du disque du système d’exploitation.
+- Créer des disques de données avec le paramètre RAID 0/agrégation pour augmenter le nombre d’E/S par seconde.
+- Utiliser l’équilibreur de charge Azure pour équilibrer la charge pour les trois nœuds.
+- Pour réduire les tâches répétitives, créez une image de machine virtuelle contenant MariaDB + Galera et utilisez-la pour créer d'autres machines virtuelles de cluster.
 
 ![Architecture du système](./media/mariadb-mysql-cluster/Setup.png)
 
 > [!NOTE]
-> Cette rubrique utilise hello [CLI d’Azure](../../../cli-install-nodejs.md) outils, vous devez donc vous assurer toodownload les et les connecter des instructions toohello conséquente tooyour abonnement Azure. Si vous avez besoin d’une commande de toohello de référence disponibles dans hello CLI d’Azure, consultez hello [référence des commandes CLI d’Azure](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2). Vous devez également trop[créer une clé SSH pour l’authentification] et prenez note de l’emplacement du fichier .pem hello.
+> Comme cette rubrique utilise les outils [Azure CLI](../../../cli-install-nodejs.md), veillez à les télécharger et à les connecter à votre abonnement Azure en suivant les instructions. Si vous avez besoin d’une référence pour les commandes disponibles dans l’interface de ligne de commande Azure, consultez [Référence des commandes de l’interface de ligne de commande Azure](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2). Vous devrez également [créer une clé SSH pour l’authentification] et noter l’emplacement du fichier .pem.
 >
 >
 
-## <a name="create-hello-template"></a>Créer le modèle de hello
+## <a name="create-the-template"></a>Créer le modèle
 ### <a name="infrastructure"></a>Infrastructure
-1. Créer un groupe d’affinités de toohold hello ressources ensemble.
+1. Créez un groupe d’affinités pour contenir les ressources.
 
         azure account affinity-group create mariadbcluster --location "North Europe" --label "MariaDB Cluster"
 2. Créez un réseau virtuel.
 
         azure network vnet create --address-space 10.0.0.0 --cidr 8 --subnet-name mariadb --subnet-start-ip 10.0.0.0 --subnet-cidr 24 --affinity-group mariadbcluster mariadbvnet
-3. Créer un toohost de compte de stockage de tous les disques de notre. Vous ne doivent pas placer plus de 40 disques très sollicités sur hello même tooavoid de compte de stockage atteint la limite du compte de stockage hello 20 000 e/s. Dans ce cas, vous êtes bien inférieur à cette limite, donc vous devez stocker toutes les informations sur le même compte pour plus de simplicité de hello.
+3. Créez un compte de stockage pour héberger tous vos disques. Vous ne devez pas placer plus de 40 disques à utilisation intensive sur le même compte de stockage pour éviter d’atteindre la limite d’E/S par seconde du compte de stockage (20 000). Dans le cas présent, vous êtes bien en dessous de cette limite. Pour des raisons de simplification, vous allez donc stocker tout sur le même compte.
 
         azure storage account create mariadbstorage --label mariadbstorage --affinity-group mariadbcluster
-4. Rechercher le nom hello d’image de machine virtuelle hello CentOS 7.
+4. Recherchez le nom de l’image de machine virtuelle CentOS 7.
 
         azure vm image list | findstr CentOS
-   sortie de Hello sera quelque chose comme `5112500ae3b842c8b9c604889f8753c3__OpenLogic-CentOS-70-20140926`.
+   La sortie sera identique à `5112500ae3b842c8b9c604889f8753c3__OpenLogic-CentOS-70-20140926`.
 
-   Utilisez ce nom dans hello suivant l’étape.
-5. Créer le modèle d’ordinateur virtuel hello et remplacez /path/to/key.pem avec chemin d’accès hello où vous avez stocké la clé SSH .pem hello généré.
+   Utilisez ce nom dans l’étape suivante.
+5. Créez le modèle de machine virtuelle et remplacez /path/to/key.pem par le chemin d’accès où vous avez stocké la clé .pem SSH générée.
 
         azure vm create --virtual-network-name mariadbvnet --subnet-names mariadb --blob-url "http://mariadbstorage.blob.core.windows.net/vhds/mariadbhatemplate-os.vhd"  --vm-size Medium --ssh 22 --ssh-cert "/path/to/key.pem" --no-ssh-password mariadbtemplate 5112500ae3b842c8b9c604889f8753c3__OpenLogic-CentOS-70-20140926 azureuser
-6. Joindre des données de 500 Go quatre disques toohello machine virtuelle pour une utilisation dans une configuration RAID de hello.
+6. Attachez quatre disques de données de 500 Go à la machine virtuelle à utiliser dans la configuration RAID.
 
         FOR /L %d IN (1,1,4) DO azure vm disk attach-new mariadbhatemplate 512 http://mariadbstorage.blob.core.windows.net/vhds/mariadbhatemplate-data-%d.vhd
-7. Utiliser SSH toosign toohello modèle machine virtuelle que vous avez créé au mariadbhatemplate.cloudapp.net:22 et connectez-vous à l’aide de votre clé privée.
+7. Utilisez SSH pour accéder au modèle de machine virtuelle que vous avez créé sur mariadbhatemplate.cloudapp.net:22 et connectez-vous à l’aide de votre clé privée.
 
 ### <a name="software"></a>Logiciel
-1. Obtenir la racine de hello.
+1. Obtenez la racine.
 
         sudo su
 
@@ -84,78 +84,78 @@ Cet article décrit comment les étapes hello toocomplete suivant :
 
               yum install mdadm
 
-    b. Créer la configuration de RAID 0/stripe hello avec un système de fichiers EXT4.
+    b. Créez la configuration RAID0/agrégation avec un système de fichiers EXT4.
 
               mdadm --create --verbose /dev/md0 --level=stripe --raid-devices=4 /dev/sdc /dev/sdd /dev/sde /dev/sdf
               mdadm --detail --scan >> /etc/mdadm.conf
               mkfs -t ext4 /dev/md0
-    c. Créer le répertoire de point de montage hello.
+    c. Créez le répertoire de point de montage.
 
               mkdir /mnt/data
-    d. Récupérer hello UUID d’un périphérique RAID hello nouvellement créé.
+    d. Récupérez l’UUID de l’appareil RAID nouvellement créé.
 
               blkid | grep /dev/md0
     e. Modifiez /etc/fstab.
 
               vi /etc/fstab
-    f. Ajout automatique de tooenable périphérique hello le montage de redémarrage, en remplaçant hello UUID avec la valeur de hello obtenu à partir de hello précédente **blkid de** commande.
+    f. Ajoutez l’appareil afin d’activer le montage automatique au redémarrage, en remplaçant l’UUID par la valeur obtenue avec la commande **blkid** précédente.
 
               UUID=<UUID FROM PREVIOUS>   /mnt/data ext4   defaults,noatime   1 2
-    g. Montez la nouvelle partition de hello.
+    g. Montez la nouvelle partition.
 
               mount /mnt/data
 
 3. Installez MariaDB.
 
-    a. Créer un fichier de MariaDB.repo hello.
+    a. Créez le fichier MariaDB.repo.
 
                 vi /etc/yum.repos.d/MariaDB.repo
 
-    b. Renseignez les fichiers de référentiel hello avec hello suivant le contenu :
+    b. Renseignez le fichier repo avec le contenu suivant :
 
               [mariadb]
               name = MariaDB
               baseurl = http://yum.mariadb.org/10.0/centos7-amd64
               gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
               gpgcheck=1
-    c. conflits de tooavoid, supprimer postfix existant et mariadb-libs.
+    c. Supprimez les fichiers postfix et mariadb-libs existants pour éviter les conflits.
 
            yum remove postfix mariadb-libs-*
     d. Installez MariaDB avec Galera.
 
            yum install MariaDB-Galera-server MariaDB-client galera
 
-4. Déplacer hello MySQL Active toohello RAID de niveau bloc l’unité de données.
+4. Déplacez le répertoire de données MySQL vers l’appareil en mode bloc RAID.
 
-    a. Copier le répertoire MySQL en cours de hello dans son nouvel emplacement et supprimer l’ancien répertoire de hello.
+    a. Copiez le répertoire actuel de MySQL dans son nouvel emplacement et supprimez l’ancien répertoire.
 
            cp -avr /var/lib/mysql /mnt/data  
            rm -rf /var/lib/mysql
-    b. Définir des autorisations pour le nouveau répertoire de hello en conséquence.
+    b. Définissez les autorisations sur le nouveau répertoire en conséquence.
 
            chown -R mysql:mysql /mnt/data && chmod -R 755 /mnt/data/
 
-    c. Créer un lien symbolique qui pointe hello ancien répertoire toohello nouvel emplacement sur hello partition RAID.
+    c. Créez un lien symlink pointant l’ancien répertoire vers le nouvel emplacement sur la partition RAID.
 
            ln -s /mnt/data/mysql /var/lib/mysql
 
-5. Étant donné que [SELinux interfère avec les opérations de cluster hello](http://galeracluster.com/documentation-webpages/configuration.html#selinux), il est nécessaire toodisable pour hello session active. Modifier `/etc/selinux/config` toodisable pour des redémarrages ultérieurs.
+5. Étant donné que [SELinux interfère avec les opérations de cluster](http://galeracluster.com/documentation-webpages/configuration.html#selinux), il est nécessaire de le désactiver pour la session active. Modifiez `/etc/selinux/config` pour le désactiver pour les redémarrages suivants.
 
             setenforce 0
 
-            then editing `/etc/selinux/config` tooset `SELINUX=permissive`
+            then editing `/etc/selinux/config` to set `SELINUX=permissive`
 6. Validez l’exécution de MySQL.
 
    a. Démarrez MySQL.
 
            service mysql start
-   b. Sécuriser l’installation de MySQL hello, définir le mot de passe racine hello, supprimer les utilisateurs anonymes toodisable racine distant connexion et supprimer la base de données de test hello.
+   b. Sécurisez l’installation de MySQL, définissez le mot de passe racine, supprimez les utilisateurs anonymes, en désactivant la connexion racine à distance et en supprimant la base de données de test.
 
            mysql_secure_installation
-   c. Créez un utilisateur de base de données hello pour les opérations de cluster et éventuellement pour vos applications.
+   c. Créez un utilisateur de la base de données pour les opérations de cluster et, éventuellement, vos applications.
 
            mysql -u root -p
-           GRANT ALL PRIVILEGES ON *.* too'cluster'@'%' IDENTIFIED BY 'p@ssw0rd' WITH GRANT OPTION; FLUSH PRIVILEGES;
+           GRANT ALL PRIVILEGES ON *.* TO 'cluster'@'%' IDENTIFIED BY 'p@ssw0rd' WITH GRANT OPTION; FLUSH PRIVILEGES;
            exit
 
    d. Arrêtez MySQL.
@@ -163,81 +163,81 @@ Cet article décrit comment les étapes hello toocomplete suivant :
             service mysql stop
 7. Créez un espace réservé de configuration.
 
-   a. Modifier hello MySQL configuration toocreate un espace réservé pour les paramètres de cluster hello. Ne remplacez pas hello  **`<Variables>`**  ou supprimez les commentaires maintenant. Ces opérations auront lieu une fois que vous aurez créé une machine virtuelle à partir de ce modèle.
+   a. Modifiez la configuration de MySQL pour créer un espace réservé pour les paramètres du cluster. Ne remplacez pas **`<Variables>`** et ne supprimez pas les commentaires maintenant. Ces opérations auront lieu une fois que vous aurez créé une machine virtuelle à partir de ce modèle.
 
             vi /etc/my.cnf.d/server.cnf
-   b. Modifier hello  **[galera]**  section et il effacer.
+   b. Modifiez la section **[galera]** et effacez-la.
 
-   c. Modifier hello **[mariadb]** section.
+   c. Modifiez la section **[mariadb]**.
 
            wsrep_provider=/usr/lib64/galera/libgalera_smm.so
            binlog_format=ROW
            wsrep_sst_method=rsync
-           bind-address=0.0.0.0 # When set too0.0.0.0, hello server listens tooremote connections
+           bind-address=0.0.0.0 # When set to 0.0.0.0, the server listens to remote connections
            default_storage_engine=InnoDB
            innodb_autoinc_lock_mode=2
 
-           wsrep_sst_auth=cluster:p@ssw0rd # CHANGE: Username and password you created for hello SST cluster MySQL user
+           wsrep_sst_auth=cluster:p@ssw0rd # CHANGE: Username and password you created for the SST cluster MySQL user
            #wsrep_cluster_name='mariadbcluster' # CHANGE: Uncomment and set your desired cluster name
            #wsrep_cluster_address="gcomm://mariadb1,mariadb2,mariadb3" # CHANGE: Uncomment and Add all your servers
            #wsrep_node_address='<ServerIP>' # CHANGE: Uncomment and set IP address of this server
-           #wsrep_node_name='<NodeName>' # CHANGE: Uncomment and set hello node name of this server
-8. Ouvrir les ports requis sur le pare-feu à l’aide de FirewallD sur CentOS 7 hello.
+           #wsrep_node_name='<NodeName>' # CHANGE: Uncomment and set the node name of this server
+8. Ouvrez les ports requis sur le pare-feu à l’aide de FirewallD sur CentOS 7.
 
    * MySQL : `firewall-cmd --zone=public --add-port=3306/tcp --permanent`
    * GALERA : `firewall-cmd --zone=public --add-port=4567/tcp --permanent`
    * GALERA IST : `firewall-cmd --zone=public --add-port=4568/tcp --permanent`
    * RSYNC : `firewall-cmd --zone=public --add-port=4444/tcp --permanent`
-   * Recharger hello pare-feu :`firewall-cmd --reload`
+   * Rechargez le pare-feu : `firewall-cmd --reload`
 
-9. Optimiser le système hello pour les performances. Pour plus d’informations, consultez la section [Stratégie d’optimisation des performances](optimize-mysql.md).
+9. Optimisez le système pour les performances. Pour plus d’informations, consultez la section [Stratégie d’optimisation des performances](optimize-mysql.md).
 
-   a. Modifiez le fichier de configuration MySQL hello à nouveau.
+   a. Modifiez de nouveau le fichier de configuration MySQL.
 
             vi /etc/my.cnf.d/server.cnf
-   b. Modifier hello **[mariadb]** section et ajouter hello suivant le contenu :
+   b. Modifiez la section **[mariadb]** et ajoutez le contenu ci-dessous :
 
    > [!NOTE]
-   > Nous recommandons que innodb\_buffer\_pool_size soit égal à 70 % de la mémoire de votre machine virtuelle. Dans cet exemple, il a été défini à 2,45 Go pour le support hello machine virtuelle Azure avec 3,5 Go de RAM.
+   > Nous recommandons que innodb\_buffer\_pool_size soit égal à 70 % de la mémoire de votre machine virtuelle. Dans cet exemple, cette valeur a été définie sur 2,45 Go pour le support de machine virtuelle Azure avec 3,5 Go de RAM.
    >
    >
 
-           innodb_buffer_pool_size = 2508M # hello buffer pool contains buffered data and hello index. This is usually set too70 percent of physical memory.
+           innodb_buffer_pool_size = 2508M # The buffer pool contains buffered data and the index. This is usually set to 70 percent of physical memory.
            innodb_log_file_size = 512M #  Redo logs ensure that write operations are fast, reliable, and recoverable after a crash
-           max_connections = 5000 # A larger value will give hello server more time toorecycle idled connections
-           innodb_file_per_table = 1 # Speed up hello table space transmission and optimize hello debris management performance
-           innodb_log_buffer_size = 128M # hello log buffer allows transactions toorun without having tooflush hello log toodisk before hello transactions commit
-           innodb_flush_log_at_trx_commit = 2 # hello setting of 2 enables hello most data integrity and is suitable for Master in MySQL cluster
+           max_connections = 5000 # A larger value will give the server more time to recycle idled connections
+           innodb_file_per_table = 1 # Speed up the table space transmission and optimize the debris management performance
+           innodb_log_buffer_size = 128M # The log buffer allows transactions to run without having to flush the log to disk before the transactions commit
+           innodb_flush_log_at_trx_commit = 2 # The setting of 2 enables the most data integrity and is suitable for Master in MySQL cluster
            query_cache_size = 0
-10. Arrêter MySQL, désactiver le service MySQL de s’exécuter sur tooavoid démarrage interrompre le cluster de hello lors de l’ajout d’un nœud et annuler le déploiement d’ordinateur de hello.
+10. Arrêtez MySQL, désactivez l’exécution du service MySQL au démarrage pour éviter de désorganiser le cluster lors de l’ajout d’un nœud, puis annulez l’approvisionnement de la machine.
 
         service mysql stop
         chkconfig mysql off
         waagent -deprovision
-11. Capturer hello machine virtuelle via le portail de hello. (Actuellement, [émettre &#1268; dans les outils de CLI d’Azure hello](https://github.com/Azure/azure-xplat-cli/issues/1268) décrit les faits hello que les images capturées par les outils CLI d’Azure hello ne capturent pas de disques de données hello attaché.)
+11. Capturez la machine virtuelle via le portail. (Actuellement, le [problème n° 1268 dans les outils d’interface de ligne de commande Azure](https://github.com/Azure/azure-xplat-cli/issues/1268) décrit le fait que les images capturées par les outils de l’interface de ligne de commande Azure ne capturent pas les disques de données attachés.)
 
-    a. Arrêt de la machine de hello via le portail de hello.
+    a. Arrêtez la machine virtuelle à l’aide du portail.
 
-    b. Cliquez sur **Capture** et spécifiez le nom de l’image en tant que hello **mariadb-galera-image**. Fournissez une description et cochez « J’ai exécuté waagent. »
+    b. Cliquez sur **Capturer** et spécifiez le nom de l’image en tant que **mariadb-galera-image**. Fournissez une description et cochez « J’ai exécuté waagent. »
       
-      ![Capture de machine virtuelle de hello](./media/mariadb-mysql-cluster/Capture2.PNG)
+      ![Capture de la machine virtuelle](./media/mariadb-mysql-cluster/Capture2.PNG)
 
-## <a name="create-hello-cluster"></a>Créer le cluster de hello
-Créez trois machines virtuelles avec modèle hello créé, puis configurez et démarrez hello cluster.
+## <a name="create-the-cluster"></a>Création du cluster
+Créez trois machines virtuelles à partir du modèle que vous venez de créer, puis configurez et démarrez le cluster.
 
-1. Créer hello première machine virtuelle CentOS 7 VM de hello mariadb-galera-image de l’image vous avez créé, en fournissant hello informations suivantes :
+1. Créez la première machine virtuelle CentOS 7 à partir de l’image mariadb-galera-image créée, en fournissant les informations suivantes :
 
  - Nom du réseau virtuel : mariadbvnet
  - Sous-réseau : mariadb
  - Taille de la machine : moyenne
- - Nom du service cloud : mariadbha (ou le nom que vous souhaitez toobe accessible via mariadbha.cloudapp.net)
+ - Nom du service cloud : mariadbha (ou le nom auquel vous souhaitez accéder via mariadbha.cloudapp.net)
  - Nom de la machine : mariadb1
  - Nom d’utilisateur : azureuser
  - Accès SSH : activé
- - En fichier .pem de hello SSH certificat et en remplaçant /path/to/key.pem avec chemin d’accès hello où vous avez stocké la clé SSH .pem hello généré.
+ - Passez le fichier .pem de certificat SSH en remplaçant /path/to/key.pem par le chemin d’accès où vous avez stocké la clé .pem SSH générée.
 
    > [!NOTE]
-   > Hello commandes suivantes sont répartis sur plusieurs lignes par souci de clarté, mais vous devez entrer chacun une seule ligne.
+   > Les commandes ci-dessous sont réparties sur plusieurs lignes pour plus de clarté, mais vous devez les entrer chacune sur une seule ligne.
    >
    >
         azure vm create
@@ -250,7 +250,7 @@ Créez trois machines virtuelles avec modèle hello créé, puis configurez et d
         --ssh 22
         --vm-name mariadb1
         mariadbha mariadb-galera-image azureuser
-2. Créez deux machines virtuelles en les connectant un service de cloud toohello mariadbha. Modifier le nom de machine virtuelle hello et hello port tooa unique port SSH pas en conflit avec d’autres machines virtuelles dans hello même service cloud.
+2. Créez deux machines virtuelles supplémentaires en les connectant au service cloud mariadbha. Modifiez le nom de la machine virtuelle et le port SSH sur un port unique qui n’est pas en conflit avec d’autres machines virtuelles dans le même service cloud.
 
         azure vm create
         --virtual-network-name mariadbvnet
@@ -274,16 +274,16 @@ Créez trois machines virtuelles avec modèle hello créé, puis configurez et d
         --ssh 24
         --vm-name mariadb3
         --connect mariadbha mariadb-galera-image azureuser
-3. Vous devez tooget hello adresse IP interne de chacune des machines virtuelles de hello trois pour l’étape suivante de hello :
+3. Vous devrez obtenir l’adresse IP interne de chacune des trois machines virtuelles pour l’étape suivante :
 
     ![Obtention d’une adresse IP virtuelle](./media/mariadb-mysql-cluster/IP.png)
-4. Utiliser SSH toosign toohello trois sur des machines virtuelles et de modifier le fichier de configuration hello sur chacun d’eux.
+4. Utilisez SSH pour vous connecter aux trois machines virtuelles et modifiez le fichier de configuration sur chacune d’elles.
 
         sudo vi /etc/my.cnf.d/server.cnf
 
-    Supprimez les commentaires  **`wsrep_cluster_name`**  et  **`wsrep_cluster_address`**  en supprimant hello  **#**  au début de hello de ligne de hello.
-    En outre, remplacez  **`<ServerIP>`**  dans  **`wsrep_node_address`**  et  **`<NodeName>`**  dans  **`wsrep_node_name`**  avec hello IP de la machine virtuelle d’adresses et de nom, respectivement, et de ne pas commenter les lignes ainsi.
-5. Démarrer le cluster de hello sur MariaDB1 et laissez-le s’exécutent au démarrage.
+    Supprimez les marques de commentaires **`wsrep_cluster_name`** et **`wsrep_cluster_address`** en supprimant **#** au début de la ligne.
+    Remplacez également **`<ServerIP>`** dans **`wsrep_node_address`** et **`<NodeName>`** dans **`wsrep_node_name`** par l’adresse IP et le nom de la machine virtuelle, et annulez ces marques de commentaires.
+5. Démarrez le cluster sur MariaDB1 et laissez-le s’exécuter au démarrage.
 
         sudo service mysql bootstrap
         chkconfig mysql on
@@ -292,35 +292,35 @@ Créez trois machines virtuelles avec modèle hello créé, puis configurez et d
         sudo service mysql start
         chkconfig mysql on
 
-## <a name="load-balance-hello-cluster"></a>Cluster d’équilibrage de charge hello
-Lorsque vous avez créé des machines virtuelles de hello en cluster, vous avez ajouté les dans un ensemble de disponibilité appelé clusteravset tooensure qu’ils ont été placées sur différents domaines d’erreur et de mise à jour et que Azure jamais effectue une maintenance sur toutes les machines à la fois. Cette configuration requise hello toobe pris en charge par hello contrat de niveau de service Azure (SLA).
+## <a name="load-balance-the-cluster"></a>Équilibrage de la charge du cluster
+Lorsque vous avez créé les machines virtuelles en cluster, vous les avez ajoutées dans un groupe à haute disponibilité appelé clusteravset pour être sûr qu’ils sont placés sur différents domaines d’erreur et de mise à jour et qu’Azure n’effectue jamais de maintenance sur toutes les machines en même temps. Cette configuration remplit les critères pour être prise en charge par ce contrat de niveau de service (SLA) Azure.
 
-Maintenant utiliser des demandes de toobalance d’équilibrage de charge Azure entre trois nœuds de hello.
+Maintenant, utilisez l’équilibreur de charge Azure pour équilibrer les demandes entre les trois nœuds.
 
-Exécutez hello suivant de commandes sur votre ordinateur à l’aide de hello CLI d’Azure.
+Exécutez les commandes ci-dessous sur votre ordinateur à l’aide de l’interface de ligne de commande Azure.
 
-structure de paramètres de commande Hello est :`azure vm endpoint create-multiple <MachineName> <PublicPort>:<VMPort>:<Protocol>:<EnableDirectServerReturn>:<Load Balanced Set Name>:<ProbeProtocol>:<ProbePort>`
+La structure des paramètres de commande est la suivante : `azure vm endpoint create-multiple <MachineName> <PublicPort>:<VMPort>:<Protocol>:<EnableDirectServerReturn>:<Load Balanced Set Name>:<ProbeProtocol>:<ProbePort>`
 
     azure vm endpoint create-multiple mariadb1 3306:3306:tcp:false:MySQL:tcp:3306
     azure vm endpoint create-multiple mariadb2 3306:3306:tcp:false:MySQL:tcp:3306
     azure vm endpoint create-multiple mariadb3 3306:3306:tcp:false:MySQL:tcp:3306
 
-Hello CLI définit hello charge équilibrage sonde intervalle too15 secondes, ce qui peuvent être un peu trop longues. Modifier dans le portail hello sous **points de terminaison** pour une des machines virtuelles de hello.
+L’interface de ligne de commande définit l’intervalle de sondage de l’équilibreur de charge sur 15 secondes, ce qui peut être un peu trop long. Modifiez cette valeur dans le portail sous **Points de terminaison** pour toutes les machines virtuelles.
 
 ![Ajouter un point de terminaison](./media/mariadb-mysql-cluster/Endpoint.PNG)
 
-Sélectionnez **hello Reconfigure Balanced définir**.
+Sélectionnez **Reconfigurer le jeu d’équilibrage de la charge**.
 
-![Reconfigurer hello-jeu d’équilibrage](./media/mariadb-mysql-cluster/Endpoint2.PNG)
+![Reconfigurer le jeu d’équilibrage de la charge](./media/mariadb-mysql-cluster/Endpoint2.PNG)
 
-Modification **intervalle de sondage** too5 secondes et enregistrer vos modifications.
+Modifiez **l’intervalle de sondage** sur 5 secondes, puis enregistrez vos modifications.
 
 ![Modifier l’intervalle de sondage](./media/mariadb-mysql-cluster/Endpoint3.PNG)
 
-## <a name="validate-hello-cluster"></a>Validez le cluster de hello
-travail Hello est effectuée. cluster de Hello doit maintenant être accessible à `mariadbha.cloudapp.net:3306`, qui atteint l’équilibrage de charge hello et acheminer les demandes entre hello trois machines virtuelles sans heurts et efficacement.
+## <a name="validate-the-cluster"></a>Valider le cluster
+La partie la plus complexe du travail est terminée. Le cluster doit maintenant être accessible à `mariadbha.cloudapp.net:3306`, qui atteint l’équilibreur de charge et achemine les demandes entre les trois machines virtuelles de manière fluide et efficace.
 
-Utiliser votre tooconnect de client favori MySQL, ou vous connecter à partir d’un des tooverify de machines virtuelles de hello l’utilisation de ce cluster.
+Utilisez le client MySQL de votre choix pour vous connecter ou connectez-vous à partir de l’une des machines virtuelles pour vérifier que ce cluster fonctionne.
 
      mysql -u cluster -h mariadbha.cloudapp.net -p
 
@@ -333,7 +333,7 @@ Ensuite, créez une base de données et insérez-y des données.
     INSERT INTO TestTable (value)  VALUES ('Value2');
     SELECT * FROM TestTable;
 
-vous avez créé de la base de données Hello renvoie hello tableau suivant :
+La base de données que vous venez de créer retourne le tableau suivant :
 
     +----+--------+
     | id | value  |
@@ -343,18 +343,18 @@ vous avez créé de la base de données Hello renvoie hello tableau suivant :
     +----+--------+
     2 rows in set (0.00 sec)
 
-<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
+<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>Étapes suivantes
-Dans cet article, vous avez créé un cluster MariaDB + Galera hautement disponible à trois nœuds sur des machines virtuelles Azure exécutant CentOS 7. machines virtuelles de Hello sont à charge équilibrée avec équilibrage de charge Azure.
+Dans cet article, vous avez créé un cluster MariaDB + Galera hautement disponible à trois nœuds sur des machines virtuelles Azure exécutant CentOS 7. La charge des machines virtuelles est équilibrée grâce à l’équilibreur de charge Azure.
 
-Vous souhaiterez peut-être toolook à [une autre façon toocluster MySQL sur Linux](mysql-cluster.md) ainsi que les méthodes trop[optimiser et de tester les performances de MySQL sur les machines virtuelles Azure Linux](optimize-mysql.md).
+Vous souhaiterez peut-être étudier [une autre façon de mettre MySQL en cluster sur Linux](mysql-cluster.md) et quelques méthodes pour [optimiser et tester les performances de MySQL sur les machines virtuelles Linux Azure](optimize-mysql.md).
 
 <!--Anchors-->
 [Architecture overview]:#architecture-overview
-[Creating hello template]:#creating-the-template
-[Creating hello cluster]:#creating-the-cluster
-[Load balancing hello cluster]:#load-balancing-the-cluster
-[Validating hello cluster]:#validating-the-cluster
+[Creating the template]:#creating-the-template
+[Creating the cluster]:#creating-the-cluster
+[Load balancing the cluster]:#load-balancing-the-cluster
+[Validating the cluster]:#validating-the-cluster
 [Next steps]:#next-steps
 
 <!--Image references-->
@@ -363,4 +363,4 @@ Vous souhaiterez peut-être toolook à [une autre façon toocluster MySQL sur Li
 [Galera]:http://galeracluster.com/products/
 [MariaDBs]:https://mariadb.org/en/about/
 [créer une clé SSH pour l’authentification]:http://www.jeff.wilcox.name/2013/06/secure-linux-vms-with-ssh-certificates/
-[issue #1268 in hello Azure CLI]:https://github.com/Azure/azure-xplat-cli/issues/1268
+[issue #1268 in the Azure CLI]:https://github.com/Azure/azure-xplat-cli/issues/1268

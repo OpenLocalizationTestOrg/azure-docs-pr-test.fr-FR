@@ -1,6 +1,6 @@
 ---
-title: "données aaaSerialize dans Hadoop - Microsoft Avro Library - Azure | Documents Microsoft"
-description: "Découvrez comment tooserialize et désérialiser des données dans Hadoop dans HDInsight à l’aide de hello Microsoft Avro Library toopersist toomemory, d’une base de données ou d’un fichier."
+title: "Sérialisation des données dans Hadoop - Microsoft Avro Library - Azure | Microsoft Docs"
+description: "Découvrez comment sérialiser et désérialiser des données dans Hadoop sur HDInsight à l’aide de Microsoft Avro Library pour les conserver dans une mémoire, une base de données ou un fichier."
 keywords: avro,hadoop avro
 services: hdinsight
 documentationcenter: 
@@ -17,109 +17,109 @@ ms.topic: article
 ms.date: 08/09/2017
 ms.author: jgao
 ms.custom: hdiseo17may2017
-ms.openlocfilehash: f364f8e855a54c0fc160e9a106ec8d5b30c6db23
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d06bf8ff4a21e4f4b29593bac32bfa2b32601fc4
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="serialize-data-in-hadoop-with-hello-microsoft-avro-library"></a>Sérialisation des données dans Hadoop avec hello Microsoft Avro Library
+# <a name="serialize-data-in-hadoop-with-the-microsoft-avro-library"></a>Sérialisation des données dans Hadoop avec Microsoft Avro Library
 
 >[!NOTE]
->Hello Avro SDK n’est plus pris en charge par Microsoft. bibliothèque de Hello est la Communauté open source pris en charge. sources de Hello pour la bibliothèque de hello se trouvent dans [Github](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro).
+>Le SDK Avro n’est plus pris en charge par Microsoft. La bibliothèque est prise en charge par la communauté open source. Les sources de la bibliothèque se trouvent dans [Github](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro).
 
-Cette rubrique montre comment toouse hello [Microsoft Avro Library](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro) tooserialize objets et autres données structures dans le flux de données toopersist les toomemory, une base de données ou un fichier. Il montre également comment toodeserialize les objets d’origine de toorecover hello.
+Cette rubrique illustre comment utiliser la bibliothèque [Microsoft Avro Library](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro) afin de sérialiser des objets et d’autres structures de données dans des flux pour les conserver dans une mémoire, une base de données ou un fichier. Elle montre également comment les désérialiser pour récupérer les objets d’origine.
 
 [!INCLUDE [windows-only](../../includes/hdinsight-windows-only.md)]
 
 ## <a name="apache-avro"></a>Apache Avro
-Hello <a href="https://hadoopsdk.codeplex.com/wikipage?title=Avro%20Library" target="_blank">Microsoft Avro Library</a> implémente hello système de sérialisation des données Apache Avro pour l’environnement de Microsoft.NET hello. Apache Avro fournit un format compact d'échange des données binaires pour la sérialisation. Il utilise <a href="http://www.json.org" target="_blank">JSON</a> toodefine un schéma indépendant du langage qui couvre l’interopérabilité des langages. Les données sérialisées dans un langage peuvent être lues dans un autre langage. Les langages C, C++, C#, Java, PHP, Python et Ruby sont actuellement pris en charge. Vous trouverez des informations détaillées sur le format de hello Bonjour <a href="http://avro.apache.org/docs/current/spec.html" target="_blank">Apache Avro spécification</a>. 
+La bibliothèque <a href="https://hadoopsdk.codeplex.com/wikipage?title=Avro%20Library" target="_blank">Microsoft Avro Library</a> met en œuvre le système de sérialisation des données Apache Avro pour l’environnement Microsoft.NET. Apache Avro fournit un format compact d'échange des données binaires pour la sérialisation. Elle utilise le format <a href="http://www.json.org" target="_blank">JSON</a> pour définir un schéma sans langage spécifié qui assure l’interopérabilité des langages. Les données sérialisées dans un langage peuvent être lues dans un autre langage. Les langages C, C++, C#, Java, PHP, Python et Ruby sont actuellement pris en charge. Vous pouvez trouver des informations détaillées sur ce format dans la <a href="http://avro.apache.org/docs/current/spec.html" target="_blank">Spécification Apache Avro</a>. 
 
 >[!NOTE]
->Hello Microsoft Avro Library ne prend pas en charge hello procédure distante (RPC) les appels partie de cette spécification.
+>Microsoft Avro Library ne prend pas en charge la partie RPC (appels de procédure distante) de cette spécification.
 >
 
-représentation sous forme de Hello sérialisée d’un objet Bonjour Avro système se compose de deux parties : schéma et la valeur réelle. schéma de Avro Hello décrit le modèle de données indépendant du langage hello de données hello sérialisé avec JSON. Il est présenté côte à côte avec une représentation binaire des données. Permet à chaque toobe objet écrit avec aucun frais généraux par valeur, effectuer sérialisation rapide et hello représentation sous forme de petits ayant schéma hello distinct à partir de la représentation binaire de hello.
+La représentation sérialisée d’un objet dans le système Avro est composée de deux parties : schéma et valeur réelle. Le schéma Avro décrit le modèle de données indépendant du langage des données sérialisées avec JSON. Il est présenté côte à côte avec une représentation binaire des données. Le fait de séparer le schéma de la représentation binaire permet l’écriture de chaque objet sans surcharge par valeur, ce qui permet d’accélérer la sérialisation et de réduire la représentation.
 
-## <a name="hello-hadoop-scenario"></a>scénario de Hadoop Hello
-format de sérialisation Apache Avro Hello est largement utilisé dans Azure HDInsight et d’autres environnements d’Apache Hadoop. Avro fournit un moyen pratique de toorepresent des structures de données complexes au sein d’un travail Hadoop MapReduce. format Hello Avro fichiers (fichier conteneur d’objet Avro) a été modèle de programmation conçu toosupport hello distribué MapReduce. fonctionnalité de clé Hello qui permet la distribution de hello est les fichiers hello « divisible » dans les sens hello qu’un qui peut rechercher n’importe quel point dans un fichier et commence à lire à partir d’un bloc particulier.
+## <a name="the-hadoop-scenario"></a>Scénario Hadoop
+Le format de sérialisation Apache Avro est largement utilisé dans Azure HDInsight et dans d’autres environnements Apache Hadoop. Avro offre un moyen pratique pour représenter des structures de données complexes dans une tâche Hadoop MapReduce. Le format des fichiers Avro (fichier conteneur d’objets Avro) a été conçu pour prendre en charge le modèle de programmation MapReduce distribué. La fonctionnalité clé qui permet la distribution est la possibilité de fractionner les fichiers : il est ainsi possible de rechercher un point quelconque dans un fichier et de commencer la lecture à partir d'un bloc particulier.
 
 ## <a name="serialization-in-avro-library"></a>Sérialisation dans Avro Library
-Hello bibliothèque .NET pour Avro prend en charge deux méthodes de sérialisation d’objets :
+La bibliothèque .NET pour Avro prend en charge deux types de sérialisations d'objets :
 
-* **réflexion** -schéma JSON hello pour les types de hello est généré automatiquement à partir des données de hello attributs de contrat de toobe de types .NET hello sérialisé.
-* **enregistrement générique** -JSON d’un schéma est explicitement spécifié dans un enregistrement représenté par hello [ **AvroRecord** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) classe lorsque aucun des types .NET ne sont présent schéma toodescribe hello hello données toobe sérialisé.
+* **Réflexion** - Le schéma JSON des types est automatiquement généré à partir des attributs de contrat de données des types .NET à sérialiser.
+* **Enregistrement générique** - Un schéma JSON est spécifié de manière explicite dans un enregistrement représenté par la classe [**AvroRecord**](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) lorsqu’aucun type .NET n’est présent pour décrire le schéma des données à sérialiser.
 
-Lorsque le schéma de données hello est connu writer de hello tooboth et lecteur de flux de hello, les données de salutation peuvent être envoyées sans son schéma. Dans le cas lorsqu’un fichier conteneur d’objet Avro est utilisé, schéma de hello est stocké dans le fichier de hello. Autres paramètres, tels que codec hello utilisé pour la compression de données, peuvent être spécifiés. Ces scénarios sont décrites plus en détail et notamment hello, exemple de code suivant :
+Lorsque le schéma de données est connu par l'enregistreur et le lecteur du flux, les données peuvent être envoyées sans le schéma associé. Si un fichier conteneur d’objets Avro est utilisé, le schéma est stocké dans le fichier. D’autres paramètres, tels que le codec utilisé pour la compression des données, peuvent être spécifiés. Ces scénarios sont présentés plus en détail et illustrés dans les exemples de code ci-après :
 
 ## <a name="install-avro-library"></a>Installation d’Avro Library
-Hello Voici requis avant d’installer la bibliothèque de hello :
+Les éléments suivants sont requis avant d’installer la bibliothèque :
 
 * <a href="http://www.microsoft.com/download/details.aspx?id=17851" target="_blank">Microsoft .NET Framework 4</a>
 * <a href="http://james.newtonking.com/json" target="_blank">Newtonsoft Json.NET</a> (version 6.0.4 ou ultérieure)
 
-Notez que hello Newtonsoft.Json.dll dépendance est automatiquement téléchargé avec installation hello Hello Microsoft Avro Library. procédure de Hello est fourni dans hello suivant la section :
+Notez que la dépendance Newtonsoft.Json.dll est également téléchargée automatiquement lors de l’installation de la bibliothèque Microsoft Avro Library. Cette procédure est indiquée dans la section suivante :
 
-Hello Microsoft Avro Library est distribuée comme package NuGet qui peut être installé à partir de Visual Studio via hello procédure :
+La bibliothèque Microsoft Avro Library est distribuée en tant que package NuGet pouvant être installé à partir de Visual Studio via la procédure suivante :
 
-1. Sélectionnez hello **projet** onglet -> **gérer les Packages NuGet...**
-2. Recherchez « Microsoft.Hadoop.Avro » Bonjour **recherche en ligne** boîte.
-3. Cliquez sur hello **installer** bouton ensuite trop**Microsoft Azure HDInsight Avro Library**.
+1. Sélectionnez l'onglet **Projet** -> **Gérer les packages NuGet...**
+2. Recherchez « Microsoft.Hadoop.Avro » dans la zone **Recherche en ligne** .
+3. Cliquez sur le bouton **Installer** en regard de **Microsoft Azure HDInsight Avro Library**.
 
-Notez que hello Newtonsoft.Json.dll (> = 6.0.4) dépendance est également téléchargée automatiquement avec hello Microsoft Avro Library.
+Notez que la dépendance Newtonsoft.Json.dll (>= .6.0.4) est également téléchargée automatiquement avec Microsoft Avro Library.
 
-Hello code source Microsoft Avro Library est disponible à l’adresse [Github](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro).
+Le code source Microsoft Avro Library est disponible dans [Github](https://github.com/Azure/azure-sdk-for-net/tree/master/src/ServiceManagement/HDInsight/Microsoft.Hadoop.Avro).
 
 ## <a name="compile-schemas-using-avro-library"></a>Compiler des schémas à l'aide d’Avro Library
-Hello Microsoft Avro Library contient une génération de code qui permet de créer des types c# automatiquement en fonction de hello précédemment défini un schéma JSON. utilitaire de génération de code Hello n’est pas distribuée sous forme binaire exécutable, mais peut être facilement créé via hello procédure :
+La bibliothèque Microsoft Avro Library contient un utilitaire de génération de code qui permet de créer automatiquement des types C# basés sur le schéma JSON défini précédemment. L’utilitaire de génération de code n’est pas distribué comme un code exécutable binaire, mais peut être créé sans difficulté via la procédure suivante :
 
-1. Télécharger le fichier .zip de hello avec la version la plus récente du code source de HDInsight SDK à partir de hello <a href="http://hadoopsdk.codeplex.com/SourceControl/latest#" target="_blank">Microsoft .NET SDK pour Hadoop</a>. (Cliquez sur hello **télécharger** icône, pas hello **télécharge** onglet.)
-2. Extrayez hello répertoire tooa HDInsight SDK machine hello avec .NET Framework 4 installé et connecté toohello Internet pour télécharger les packages NuGet dépendance nécessaire. Ci-dessous, nous partons du principe que le code source de hello est tooC:\SDK extraits.
-3. Atteindre le dossier toohello C:\SDK\src\Microsoft.Hadoop.Avro.Tools et exécutez build.bat. (hello appels de fichier MSBuild à partir de la distribution de 32 bits hello Hello .NET Framework. Si vous souhaitez que la version 64 bits de hello toouse, modifiez build.bat, suivant les commentaires hello à l’intérieur du fichier de hello.) Assurez-vous que la build de hello a réussi. (Sur certains systèmes, MSBuild peut générer des avertissements. Ces avertissements n’affectent pas les utilitaire hello tant qu’il n’y a aucune erreur de build.)
-4. utilitaire de Hello compilé se trouve dans C:\SDK\Bin\Unsigned\Release\Microsoft.Hadoop.Avro.Tools.
+1. Téléchargez le fichier .zip avec la dernière version du code source du Kit de développement logiciel (SDK) HDInsight sur <a href="http://hadoopsdk.codeplex.com/SourceControl/latest#" target="_blank">Kit de développement logiciel (SDK) Microsoft .NET pour Hadoop</a>. (Cliquez sur l’icône **Télécharger**, pas sur l’onglet **Téléchargements**.)
+2. Extrayez le Kit de développement logiciel (SDK) HDInsight dans un répertoire sur l’ordinateur où .NET Framework 4 a été installé et qui est connecté à Internet afin de télécharger les packages NuGet de dépendance nécessaires. Nous supposons ci-après que le code source est extrait dans C:\SDK.
+3. Accédez au dossier C:\SDK\src\Microsoft.Hadoop.Avro.Tools et exécutez build.bat. (Le fichier appelle MSBuild à partir de la distribution 32 bits de .NET Framework. Si vous voulez utiliser la version 64 bits, modifiez build.bat en suivant les commentaires à l’intérieur du fichier.) Assurez-vous que la génération est réussie. (Sur certains systèmes, MSBuild peut générer des avertissements. Ceux-ci n’affectent pas l’utilitaire tant qu’il n’existe aucune erreur de génération.)
+4. L’utilitaire compilé se trouve à l’emplacement suivant : C:\SDK\Bin\Unsigned\Release\Microsoft.Hadoop.Avro.Tools.
 
-tooget familiarisé avec la syntaxe de ligne de commande hello, exécutez hello de commande suivante à partir du dossier hello où l’utilitaire de génération de code hello se trouve :`Microsoft.Hadoop.Avro.Tools help /c:codegen`
+Pour vous familiariser avec la syntaxe de la ligne de commande, exécutez la commande suivante depuis le dossier où se trouve l’utilitaire de génération de code : `Microsoft.Hadoop.Avro.Tools help /c:codegen`.
 
-utilitaire de hello tootest, vous pouvez générer des classes c# à partir du fichier de schéma JSON exemple hello fourni avec le code source de hello. Exécutez hello de commande suivante :
+Pour tester l’utilitaire, vous pouvez générer des classes C# à partir du fichier de schéma JSON de l’exemple fourni avec le code source. Exécutez la commande suivante :
 
     Microsoft.Hadoop.Avro.Tools codegen /i:C:\SDK\src\Microsoft.Hadoop.Avro.Tools\SampleJSON\SampleJSONSchema.avsc /o:
 
-Il est supposé tooproduce deux fichiers c# dans le répertoire en cours de hello : SensorData.cs et Location.cs.
+Cette commande est censée créer deux fichiers C# dans le répertoire actif : SensorData.cs et Location.cs.
 
-logique de hello toounderstand utilitaire de génération de code hello est à l’aide lors de la conversion de types tooC # hello JSON schéma, consultez hello fichier GenerationVerification.feature dans C:\SDK\src\Microsoft.Hadoop.Avro.Tools\Doc.
+Pour comprendre la logique utilisée par l’utilitaire de génération de code lorsque le schéma JSON est converti en types C#, reportez-vous au fichier GenerationVerification.feature, situé à l’emplacement suivant : C:\SDK\src\Microsoft.Hadoop.Avro.Tools\Doc.
 
-Espaces de noms sont extraites à partir d’un schéma JSON hello, à l’aide de la logique de hello décrite dans le fichier hello mentionné dans le paragraphe précédent hello. Espaces de noms extraites hello schéma ont priorité sur tout ce qui est fourni avec le paramètre /n hello dans la ligne de commande d’utilitaire hello. Si vous souhaitez que les espaces de noms toooverride hello dans un schéma hello, utilisez le paramètre de /nf hello. Par exemple, toochange exécuter tous les espaces de noms hello SampleJSONSchema.avsc toomy.own.nspace, hello la commande suivante :
+Les espaces de noms sont extraits du schéma JSON suivant la logique décrite dans le fichier mentionné au paragraphe précédent. Les espaces de noms extraits du schéma sont prioritaires sur tout ce qui est fourni avec le paramètre /n sur la ligne de commande de l’utilitaire. Si vous voulez remplacer les espaces de noms contenus dans le schéma, utilisez le paramètre /nf. Par exemple, pour changer tous les espaces de noms du schéma SampleJSONSchema.avsc en my.own.nspace, exécutez la commande suivante :
 
     Microsoft.Hadoop.Avro.Tools codegen /i:C:\SDK\src\Microsoft.Hadoop.Avro.Tools\SampleJSON\SampleJSONSchema.avsc /o:. /nf:my.own.nspace
 
-## <a name="about-hello-samples"></a>À propos des exemples de hello
-Six exemples fournis dans cette rubrique illustrent différents scénarios pris en charge par hello Microsoft Avro Library. Hello Microsoft Avro Library est conçue toowork avec n’importe quel flux de données. Dans ces exemples, les données sont manipulées à l’aide de flux de mémoire plutôt que de flux de fichiers ou de bases de données pour des questions de simplicité et de cohérence. approche Hello effectuée dans un environnement de production dépend des exigences de scénario hello, source de données et de volume, les contraintes de performances et d’autres facteurs.
+## <a name="about-the-samples"></a>À propos des exemples
+Les six exemples fournis dans cette rubrique illustrent chacun un scénario différent pris en charge par Microsoft Avro Library. Microsoft Avro Library est conçu pour fonctionner avec n'importe quel flux. Dans ces exemples, les données sont manipulées à l’aide de flux de mémoire plutôt que de flux de fichiers ou de bases de données pour des questions de simplicité et de cohérence. L’approche au sein d’un environnement de production dépend des exigences du scénario, de la source et du volume des données, des contraintes en matière de performances et d’autres facteurs.
 
-Hello premier deux exemples indiquent comment tooserialize et désérialiser les données en mémoire tampon de flux de données à l’aide de la réflexion et enregistrements génériques. Hello dans ces deux cas est supposé que le schéma toobe partagée entre hello lecteurs et writers hors-bande.
+Les deux premiers exemples montrent comment sérialiser et désérialiser des données dans des mémoires tampons de flux de mémoire à l’aide de la réflexion et d’enregistrements génériques. Le schéma dans ces deux cas est supposé être partagé entre les lecteurs et les enregistreurs hors bande.
 
-afficher des exemples de troisième et quatrième Hello comment tooserialize et désérialiser des données à l’aide de fichiers de conteneur objet hello Avro. Lorsque les données stockées dans un fichier de conteneur Avro, son schéma est toujours stockée avec lui, car le schéma de hello doit être partagé pour la désérialisation.
+Les troisième et quatrième exemples montrent comment sérialiser et désérialiser des données avec les fichiers conteneurs d’objets Avro. Lorsque les données sont stockées dans un fichier conteneur Avro, leur schéma est toujours stocké avec, car il doit être partagé pour la désérialisation.
 
-Hello contenant par exemple hello quatre premiers exemples peuvent être téléchargés à partir de hello <a href="http://code.msdn.microsoft.com/Serialize-data-with-the-86055923" target="_blank">exemples de code Azure</a> site.
+L’échantillon contenant les quatre premiers exemples peut être téléchargé sur le site des <a href="http://code.msdn.microsoft.com/Serialize-data-with-the-86055923" target="_blank">exemples de code Azure</a> .
 
-Hello cinquième exemple montre comment toouse un codec de compression personnalisé pour Avro les fichiers de conteneur d’objets. Un exemple contenant du code de hello pour cet exemple peut être téléchargé à partir de hello <a href="http://code.msdn.microsoft.com/Serialize-data-with-the-67159111" target="_blank">exemples de code Azure</a> site.
+Le cinquième exemple montre comment utiliser un codec de compression personnalisé pour les fichiers conteneurs d’objets Avro. Un échantillon contenant le code de cet exemple peut être téléchargé sur le site des <a href="http://code.msdn.microsoft.com/Serialize-data-with-the-67159111" target="_blank">exemples de code Azure</a> .
 
-Hello sixième montre comment toouse Avro sérialisation tooupload données tooAzure stockage d’objets Blob et puis les analyser à l’aide de la ruche avec un cluster HDInsight (Hadoop). Il peut être téléchargé à partir de hello <a href="https://code.msdn.microsoft.com/Using-Avro-to-upload-data-ae81b1e3" target="_blank">exemples de code Azure</a> site.
+Le sixième exemple montre comment utiliser la sérialisation Avro pour télécharger des données dans le stockage d’objets blob Azure, puis les analyser à l’aide de Hive avec un cluster HDInsight (Hadoop). Vous pouvez le télécharger sur le site <a href="https://code.msdn.microsoft.com/Using-Avro-to-upload-data-ae81b1e3" target="_blank">exemples de code Azure</a> .
 
-Voici des liens toohello six échantillons présentés dans la rubrique de hello :
+Les liens suivants renvoient aux six exemples que nous avons examinés dans la rubrique :
 
-* <a href="#Scenario1">**Sérialisation avec réflexion** </a> -toobe types sérialisé sur le schéma JSON hello est généré automatiquement à partir des données de hello attributs de contrat.
-* <a href="#Scenario2">**Sérialisation avec enregistrement générique** </a> -hello JSON schéma est explicitement spécifié dans un enregistrement lorsqu’aucun type .NET n’est disponible pour la réflexion.
-* <a href="#Scenario3">**Sérialisation à l’aide des fichiers de conteneur d’objets avec la réflexion** </a> -hello JSON schéma est automatiquement créé et partagé avec des données via un fichier conteneur d’objet Avro hello sérialisé.
-* <a href="#Scenario4">**Sérialisation à l’aide des fichiers de conteneur d’objets avec enregistrement générique** </a> -schéma JSON hello est explicitement spécifié avant la sérialisation de hello et partagé avec des données via un fichier conteneur d’objet Avro hello.
-* <a href="#Scenario5">**Sérialisation à l’aide des fichiers de conteneur d’objets avec un codec de compression personnalisé** </a> -hello montre comment toocreate un Avro de l’objet fichier conteneur avec une implémentation .NET personnalisé du codec de compression de données hello Deflate.
-* <a href="#Scenario6">**À l’aide des données de tooupload Avro pourquoi le service Microsoft Azure HDInsight** </a> -hello illustre comment Avro sérialisation interagit avec hello service HDInsight. Un active Azure abonnement et accès tooan Azure HDInsight de cluster requis toorun cet exemple.
+* <a href="#Scenario1">**Sérialisation avec réflexion**</a> - Le schéma JSON pour les types à sérialiser est automatiquement généré à partir des attributs de contrat de données.
+* <a href="#Scenario2">**Sérialisation avec enregistrement générique**</a> - Le schéma JSON est spécifié de manière explicite dans un enregistrement lorsqu’aucun type .NET n’est disponible pour la réflexion.
+* <a href="#Scenario3">**Sérialisation à l’aide de fichiers conteneurs d’objets avec réflexion**</a> - Le schéma JSON est automatiquement créé et partagé en même temps que les données sérialisées, via un fichier conteneur d’objets Avro.
+* <a href="#Scenario4">**Sérialisation à l’aide de fichiers conteneurs d’objets avec enregistrement générique**</a> - Le schéma JSON est spécifié de manière explicite avant la sérialisation et partagé en même temps que les données sérialisées, via un fichier conteneur d’objets Avro.
+* <a href="#Scenario5">**Sérialisation à l’aide de fichiers conteneurs d’objets avec un codec de compression personnalisé**</a> - L’exemple montre comment créer un fichier conteneur d’objets Avro avec une implémentation .NET personnalisée du codec de compression de données Deflate.
+* <a href="#Scenario6">**Utilisation d’Avro pour télécharger des données pour le service Microsoft Azure HDInsight**</a> - L’exemple illustre comment la sérialisation Avro interagit avec le service HDInsight. Un abonnement Azure actif et l’accès à un cluster Azure HDInsight sont requis pour exécuter cet exemple.
 
 ## <a name="Scenario1"></a>Exemple 1 : sérialisation avec réflexion
-schéma JSON Hello pour les types de hello peut être automatiquement créé par hello Microsoft Avro Library via la réflexion à partir des données de hello attributs de contrat de toobe hello c# objets sérialisés. Hello Microsoft Avro Library crée un [ **IAvroSeralizer<T>**  ](http://msdn.microsoft.com/library/dn627341.aspx) tooidentify hello champs toobe sérialisé.
+Le schéma JSON des types peut être généré automatiquement par la bibliothèque Microsoft Avro Library via la réflexion, à partir des attributs de contrat de données des objets C# à sérialiser. La bibliothèque Microsoft Avro Library crée un [**IAvroSeralizer<T>**](http://msdn.microsoft.com/library/dn627341.aspx) pour identifier les champs à sérialiser.
 
-Dans cet exemple, objets (un **SensorData** classe avec un membre **emplacement** struct) sont des flux de mémoire tooa sérialisé, et ce flux est ensuite désérialisé. Hello résultat est ensuite comparé toohello initiale d’instance tooconfirm que hello **SensorData** objet récupéré est identique toohello d’origine.
+Dans cet exemple, les objets (classe **SensorData** avec struct **Location** de membre) sont sérialisés dans un flux de mémoire qui est à son tour désérialisé. Le résultat est ensuite comparé avec l’instance d’origine pour vérifier que l’objet **SensorData** récupéré est identique à l’original.
 
-schéma Hello dans cet exemple est supposé toobe partagée entre hello lecteurs et writers, le format de conteneur objet hello Avro n’est pas requis. Pour obtenir un exemple de procédure tooserialize et désérialiser des données dans les mémoires tampons en utilisant la réflexion avec le format de conteneur d’objet hello lorsque le schéma de hello doit être partagé avec les données de salutation, consultez <a href="#Scenario3">sérialisation à l’aide des fichiers de conteneur d’objets avec la réflexion</a>.
+Le schéma présenté dans cet exemple étant supposé partagé entre les lecteurs et les enregistreurs, le format de conteneur d'objet Avro n'est pas requis. Pour un exemple de sérialisation et de désérialisation de données dans des mémoires tampons à l’aide de la réflexion avec le format de conteneur d’objet lorsque le schéma doit être partagé avec les données, consultez le scénario relatif à la <a href="#Scenario3">Sérialisation à l’aide de fichiers conteneurs d’objets avec réflexion</a>.
 
     namespace Microsoft.Hadoop.Avro.Sample
     {
@@ -154,7 +154,7 @@ schéma Hello dans cet exemple est supposé toobe partagée entre hello lecteurs
         }
 
         //This class contains all methods demonstrating
-        //hello usage of Microsoft Avro Library
+        //the usage of Microsoft Avro Library
         public class AvroSample
         {
 
@@ -176,21 +176,21 @@ schéma Hello dans cet exemple est supposé toobe partagée entre hello lecteurs
                     //Create a data set by using sample class and struct
                     var expected = new SensorData { Value = new byte[] { 1, 2, 3, 4, 5 }, Position = new Location { Room = 243, Floor = 1 } };
 
-                    //Serialize hello data toohello specified stream
+                    //Serialize the data to the specified stream
                     avroSerializer.Serialize(buffer, expected);
 
 
                     Console.WriteLine("Deserializing Sample Data Set...");
 
-                    //Prepare hello stream for deserializing hello data
+                    //Prepare the stream for deserializing the data
                     buffer.Seek(0, SeekOrigin.Begin);
 
-                    //Deserialize data from hello stream and cast it toohello same type used for serialization
+                    //Deserialize data from the stream and cast it to the same type used for serialization
                     var actual = avroSerializer.Deserialize(buffer);
 
                     Console.WriteLine("Comparing Initial and Deserialized Data Sets...");
 
-                    //Finally, verify that deserialized data matches hello original one
+                    //Finally, verify that deserialized data matches the original one
                     bool isEqual = this.Equal(expected, actual);
 
                     Console.WriteLine("Result of Data Set Identity Comparison is {0}", isEqual);
@@ -219,16 +219,16 @@ schéma Hello dans cet exemple est supposé toobe partagée entre hello lecteurs
                 //illustrating different serializing approaches
                 AvroSample Sample = new AvroSample();
 
-                //Serialization toomemory using reflection
+                //Serialization to memory using reflection
                 Sample.SerializeDeserializeObjectUsingReflection();
 
                 Console.WriteLine(sectionDivider);
-                Console.WriteLine("Press any key tooexit.");
+                Console.WriteLine("Press any key to exit.");
                 Console.Read();
             }
         }
     }
-    // hello example is expected toodisplay hello following output:
+    // The example is expected to display the following output:
     // SERIALIZATION USING REFLECTION
     //
     // Serializing Sample Data Set...
@@ -236,15 +236,15 @@ schéma Hello dans cet exemple est supposé toobe partagée entre hello lecteurs
     // Comparing Initial and Deserialized Data Sets...
     // Result of Data Set Identity Comparison is True
     // ----------------------------------------
-    // Press any key tooexit.
+    // Press any key to exit.
 
 
 ## <a name="sample-2-serialization-with-a-generic-record"></a>Exemple 2 : sérialisation avec enregistrement générique
-Un schéma JSON peut être explicitement spécifié dans un enregistrement générique quand la réflexion ne peut pas être utilisée, car il est impossible de représenter les données de salutation via les classes .NET avec un contrat de données. Cette méthode est plus lente que celle qui utilise la réflexion. Dans ce cas, schéma hello pour les données de salutation peut également être dynamique, autrement dit, ne pas connu au moment de la compilation. Données représentées en tant que valeurs séparées par des virgules (CSV) des fichiers dont le schéma est inconnu jusqu'à ce qu’il est transformé le format Avro toohello au moment de l’exécution est un exemple de ce type de scénario dynamique.
+Un schéma JSON peut être spécifié de manière explicite dans un enregistrement générique lorsque la réflexion ne peut pas être utilisée, car les données ne peuvent pas être représentées à l’aide de classes .NET avec un contrat de données. Cette méthode est plus lente que celle qui utilise la réflexion. Dans ce cas, le schéma des données peut également être dynamique, c’est-à-dire inconnu au moment de la compilation. Voici un exemple de ce type de scénario dynamique : des données représentées sous forme de fichiers CSV dont le schéma est inconnu tant qu’il n’a pas été transformé en format Avro au moment de l’exécution.
 
-Cet exemple montre comment toocreate et utiliser une [ **AvroRecord** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) tooexplicitly spécifier un schéma JSON, comment toopopulate avec hello et comment puis tooserialize et de le désérialiser. résultat de Hello est ensuite comparé toohello initiale d’instance tooconfirm qui hello enregistrement récupéré est identique toohello d’origine.
+Cet exemple montre comment créer et utiliser un [**AvroRecord**](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) pour spécifier explicitement un schéma JSON, comment le remplir avec les données, puis comment le sérialiser/désérialiser. Le résultat est ensuite comparé avec l’instance d’origine pour confirmer que l’enregistrement récupéré est identique à l’original.
 
-schéma Hello dans cet exemple est supposé toobe partagée entre hello lecteurs et writers, le format de conteneur objet hello Avro n’est pas requis. Pour obtenir un exemple de procédure tooserialize et désérialiser des données dans les mémoires tampons à l’aide d’un enregistrement générique avec le format de conteneur d’objet hello lorsque le schéma de hello doit être incluse avec les données sérialisée de hello, consultez hello <a href="#Scenario4">sérialisation à l’aide du conteneur d’objets fichiers avec enregistrement générique</a> exemple.
+Le schéma présenté dans cet exemple étant supposé partagé entre les lecteurs et les enregistreurs, le format de conteneur d'objet Avro n'est pas requis. Pour un exemple de sérialisation et de désérialisation de données dans des mémoires tampons à l’aide d’un enregistrement générique avec le format de conteneur d’objet lorsque le schéma doit être inclus avec les données sérialisées, consultez l’exemple de <a href="#Scenario4">Sérialisation à l’aide de fichiers conteneurs d’objets avec enregistrement générique</a>.
 
     namespace Microsoft.Hadoop.Avro.Sample
     {
@@ -258,20 +258,20 @@ schéma Hello dans cet exemple est supposé toobe partagée entre hello lecteurs
     using Microsoft.Hadoop.Avro;
 
     //This class contains all methods demonstrating
-    //hello usage of Microsoft Avro Library
+    //the usage of Microsoft Avro Library
     public class AvroSample
     {
 
         //Serialize and deserialize sample data set by using a generic record.
-        //A generic record is a special class with hello schema explicitly defined in JSON.
-        //All serialized data should be mapped toohello fields of hello generic record,
+        //A generic record is a special class with the schema explicitly defined in JSON.
+        //All serialized data should be mapped to the fields of the generic record,
         //which in turn is then serialized.
         public void SerializeDeserializeObjectUsingGenericRecords()
         {
             Console.WriteLine("SERIALIZATION USING GENERIC RECORD\n");
-            Console.WriteLine("Defining hello Schema and creating Sample Data Set...");
+            Console.WriteLine("Defining the Schema and creating Sample Data Set...");
 
-            //Define hello schema in JSON
+            //Define the schema in JSON
             const string Schema = @"{
                                 ""type"":""record"",
                                 ""name"":""Microsoft.Hadoop.Avro.Specifications.SensorData"",
@@ -294,14 +294,14 @@ schéma Hello dans cet exemple est supposé toobe partagée entre hello lecteurs
                                     ]
                             }";
 
-            //Create a generic serializer based on hello schema
+            //Create a generic serializer based on the schema
             var serializer = AvroSerializer.CreateGeneric(Schema);
             var rootSchema = serializer.WriterSchema as RecordSchema;
 
             //Create a memory stream buffer
             using (var stream = new MemoryStream())
             {
-                //Create a generic record toorepresent hello data
+                //Create a generic record to represent the data
                 dynamic location = new AvroRecord(rootSchema.GetField("Location").TypeSchema);
                 location.Floor = 1;
                 location.Room = 243;
@@ -312,19 +312,19 @@ schéma Hello dans cet exemple est supposé toobe partagée entre hello lecteurs
 
                 Console.WriteLine("Serializing Sample Data Set...");
 
-                //Serialize hello data
+                //Serialize the data
                 serializer.Serialize(stream, expected);
 
                 stream.Seek(0, SeekOrigin.Begin);
 
                 Console.WriteLine("Deserializing Sample Data Set...");
 
-                //Deserialize hello data into a generic record
+                //Deserialize the data into a generic record
                 dynamic actual = serializer.Deserialize(stream);
 
                 Console.WriteLine("Comparing Initial and Deserialized Data Sets...");
 
-                //Finally, verify hello results
+                //Finally, verify the results
                 bool isEqual = expected.Location.Floor.Equals(actual.Location.Floor);
                 isEqual = isEqual && expected.Location.Room.Equals(actual.Location.Room);
                 isEqual = isEqual && ((byte[])expected.Value).SequenceEqual((byte[])actual.Value);
@@ -341,33 +341,33 @@ schéma Hello dans cet exemple est supposé toobe partagée entre hello lecteurs
             //illustrating different serializing approaches
             AvroSample Sample = new AvroSample();
 
-            //Serialization toomemory using generic record
+            //Serialization to memory using generic record
             Sample.SerializeDeserializeObjectUsingGenericRecords();
 
             Console.WriteLine(sectionDivider);
-            Console.WriteLine("Press any key tooexit.");
+            Console.WriteLine("Press any key to exit.");
             Console.Read();
         }
     }
     }
-    // hello example is expected toodisplay hello following output:
+    // The example is expected to display the following output:
     // SERIALIZATION USING GENERIC RECORD
     //
-    // Defining hello Schema and creating Sample Data Set...
+    // Defining the Schema and creating Sample Data Set...
     // Serializing Sample Data Set...
     // Deserializing Sample Data Set...
     // Comparing Initial and Deserialized Data Sets...
     // Result of Data Set Identity Comparison is True
     // ----------------------------------------
-    // Press any key tooexit.
+    // Press any key to exit.
 
 
 ## <a name="sample-3-serialization-using-object-container-files-and-serialization-with-reflection"></a>Exemple 3 : sérialisation à l'aide de fichiers conteneurs d'objets et sérialisation avec réflexion
-Cet exemple est un scénario toohello similaire Bonjour <a href="#Scenario1"> premier exemple</a>, où les schémas hello sont implicitement spécifié avec la réflexion. Hello différence est qu’ici, schéma de hello n’est pas supposé que toobe connu du lecteur toohello qui désérialise ce paquet. Hello **SensorData** toobe d’objets sérialisés et leur schéma spécifié de manière implicite sont stockées dans un fichier conteneur d’objet Avro représenté par hello [ **AvroContainer** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.avrocontainer.aspx) classe.
+Cet exemple est similaire au scénario du <a href="#Scenario1"> premier exemple</a> où le schéma est spécifié implicitement avec la réflexion. La différence est que, dans le présent exemple, le schéma n’est pas supposé être connu du lecteur qui le désérialise. Les objets **SensorData** à sérialiser et leurs schémas associés spécifiés de manière implicite sont stockés dans un fichier conteneur d’objet représenté par la classe [**AvroContainer**](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.avrocontainer.aspx).
 
-les données de salutation sont sérialisées dans cet exemple par [ **SequentialWriter<SensorData>**  ](http://msdn.microsoft.com/library/dn627340.aspx) et désérialisés avec [ **SequentialReader<SensorData>** ](http://msdn.microsoft.com/library/dn627340.aspx). résultat de Hello est puis toohello comparés initial d’instances tooensure identité.
+Dans cet exemple, les données sont sérialisées avec [**SequentialWriter<SensorData>**](http://msdn.microsoft.com/library/dn627340.aspx) et désérialisées avec [**SequentialReader<SensorData>**](http://msdn.microsoft.com/library/dn627340.aspx). Le résultat est ensuite comparé aux instances d’origine afin d’en vérifier l’identité.
 
-Bonjour Bonjour d’objet de données du fichier conteneur est compressé par défaut de hello [ **Deflate** ] [ deflate-100] codec de compression à partir de .NET Framework 4. Consultez hello <a href="#Scenario5"> cinquième exemple</a> dans cette rubrique toolearn comment toouse une version plus récente et supérieure de hello [ **Deflate** ] [ deflate-110] compression codec disponible dans .NET Framework 4.5.
+Les données du fichier conteneur d’objet sont compressées à l’aide du codec de compression [**Deflate**][deflate-100] par défaut issu de .NET Framework 4. Consultez le <a href="#Scenario5">cinquième exemple</a> de cette rubrique pour savoir comment utiliser une version ultérieure et plus récente du codec de compression [**Deflate**][deflate-110] disponible dans .NET Framework 4.5.
 
     namespace Microsoft.Hadoop.Avro.Sample
     {
@@ -402,12 +402,12 @@ Bonjour Bonjour d’objet de données du fichier conteneur est compressé par d�
         }
 
         //This class contains all methods demonstrating
-        //hello usage of Microsoft Avro Library
+        //the usage of Microsoft Avro Library
         public class AvroSample
         {
 
-            //Serializes and deserializes hello sample data set by using reflection and Avro object container files.
-            //Serialized data is compressed with hello Deflate codec.
+            //Serializes and deserializes the sample data set by using reflection and Avro object container files.
+            //Serialized data is compressed with the Deflate codec.
             public void SerializeDeserializeUsingObjectContainersReflection()
             {
 
@@ -423,25 +423,25 @@ Bonjour Bonjour d’objet de données du fichier conteneur est compressé par d�
                             new SensorData { Value = new byte[] { 6, 7, 8, 9 }, Position = new Location { Room = 244, Floor = 1 } }
                         };
 
-                //Serializing and saving data toofile.
+                //Serializing and saving data to file.
                 //Creating a memory stream buffer.
                 using (var buffer = new MemoryStream())
                 {
                     Console.WriteLine("Serializing Sample Data Set...");
 
-                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects toostream.
-                    //Data is compressed using hello Deflate codec.
+                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects to stream.
+                    //Data is compressed using the Deflate codec.
                     using (var w = AvroContainer.CreateWriter<SensorData>(buffer, Codec.Deflate))
                     {
                         using (var writer = new SequentialWriter<SensorData>(w, 24))
                         {
-                            // Serialize hello data toostream by using hello sequential writer
+                            // Serialize the data to stream by using the sequential writer
                             testData.ForEach(writer.Write);
                         }
                     }
 
-                    //Save stream toofile
-                    Console.WriteLine("Saving serialized data toofile...");
+                    //Save stream to file
+                    Console.WriteLine("Saving serialized data to file...");
                     if (!WriteFile(buffer, path))
                     {
                         Console.WriteLine("Error during file operation. Quitting method");
@@ -464,17 +464,17 @@ Bonjour Bonjour d’objet de données du fichier conteneur est compressé par d�
 
                     Console.WriteLine("Deserializing Sample Data Set...");
 
-                    //Prepare hello stream for deserializing hello data
+                    //Prepare the stream for deserializing the data
                     buffer.Seek(0, SeekOrigin.Begin);
 
-                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from hello given stream.
-                    //It allows iterating over hello deserialized objects because it implements hello IEnumerable<T> interface.
+                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from the given stream.
+                    //It allows iterating over the deserialized objects because it implements the IEnumerable<T> interface.
                     using (var reader = new SequentialReader<SensorData>(
                         AvroContainer.CreateReader<SensorData>(buffer, true)))
                     {
                         var results = reader.Objects;
 
-                        //Finally, verify that deserialized data matches hello original one
+                        //Finally, verify that deserialized data matches the original one
                         Console.WriteLine("Comparing Initial and Deserialized Data Sets...");
                         int count = 1;
                         var pairs = testData.Zip(results, (serialized, deserialized) => new { expected = serialized, actual = deserialized });
@@ -487,7 +487,7 @@ Bonjour Bonjour d’objet de données du fichier conteneur est compressé par d�
                     }
                 }
 
-                //Delete hello file
+                //Delete the file
                 RemoveFile(path);
             }
 
@@ -501,7 +501,7 @@ Bonjour Bonjour d’objet de données du fichier conteneur est compressé par d�
                 return left.Position.Equals(right.Position) && left.Value.SequenceEqual(right.Value);
             }
 
-            //Saving memory stream tooa new file with hello given path
+            //Saving memory stream to a new file with the given path
             private bool WriteFile(MemoryStream InputStream, string path)
             {
                 if (!File.Exists(path))
@@ -517,7 +517,7 @@ Bonjour Bonjour d’objet de données du fichier conteneur est compressé par d�
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during creation and writing toohello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during creation and writing to the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                         return false;
                     }
@@ -530,7 +530,7 @@ Bonjour Bonjour d’objet de données du fichier conteneur est compressé par d�
                 }
             }
 
-            //Reading a file content by using hello given path tooa memory stream
+            //Reading a file content by using the given path to a memory stream
             private bool ReadFile(MemoryStream OutputStream, string path)
             {
                 try
@@ -543,7 +543,7 @@ Bonjour Bonjour d’objet de données du fichier conteneur est compressé par d�
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("hello following exception was thrown during reading from hello file \"{0}\"", path);
+                    Console.WriteLine("The following exception was thrown during reading from the file \"{0}\"", path);
                     Console.WriteLine(e.Message);
                     return false;
                 }
@@ -560,7 +560,7 @@ Bonjour Bonjour d’objet de données du fichier conteneur est compressé par d�
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during deleting hello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during deleting the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                     }
                 }
@@ -579,35 +579,35 @@ Bonjour Bonjour d’objet de données du fichier conteneur est compressé par d�
                 //illustrating different serializing approaches
                 AvroSample Sample = new AvroSample();
 
-                //Serialization using reflection tooAvro object container file
+                //Serialization using reflection to Avro object container file
                 Sample.SerializeDeserializeUsingObjectContainersReflection();
 
                 Console.WriteLine(sectionDivider);
-                Console.WriteLine("Press any key tooexit.");
+                Console.WriteLine("Press any key to exit.");
                 Console.Read();
             }
         }
     }
-    // hello example is expected toodisplay hello following output:
+    // The example is expected to display the following output:
     // SERIALIZATION USING REFLECTION AND AVRO OBJECT CONTAINER FILES
     //
     // Serializing Sample Data Set...
-    // Saving serialized data toofile...
+    // Saving serialized data to file...
     // Reading data from file...
     // Deserializing Sample Data Set...
     // Comparing Initial and Deserialized Data Sets...
     // For Pair 1 result of Data Set Identity Comparison is True
     // For Pair 2 result of Data Set Identity Comparison is True
     // ----------------------------------------
-    // Press any key tooexit.
+    // Press any key to exit.
 
 
 ## <a name="sample-4-serialization-using-object-container-files-and-serialization-with-generic-record"></a>Exemple 4 : sérialisation à l'aide de fichiers conteneurs d'objets et sérialisation avec enregistrement générique
-Cet exemple est un scénario toohello similaire Bonjour <a href="#Scenario2"> deuxième exemple</a>, où les schémas hello sont spécifié explicitement avec JSON. Hello différence est qu’ici, schéma de hello n’est pas supposé que toobe connu du lecteur toohello qui désérialise ce paquet.
+Cet exemple est similaire au scénario du <a href="#Scenario2"> deuxième exemple</a> où le schéma est spécifié explicitement avec le format JSON. La différence est que, dans le présent exemple, le schéma n’est pas supposé être connu du lecteur qui le désérialise.
 
-jeu de données de test Hello sont collecté dans une liste de [ **AvroRecord** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) objets via le schéma défini explicitement JSON et stockées dans un fichier conteneur d’objet représenté par hello [ **AvroContainer** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.avrocontainer.aspx) classe. Ce fichier conteneur crée un writer qui est des données hello tooserialize utilisés, non compressées, flux de mémoire tooa qui est ensuite enregistrée tooa fichier. Hello [ **Codec.Null** ](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.codec.null.aspx) paramètre utilisé pour la création du lecteur de hello Spécifie que ces données ne sont pas compressées.
+Le jeu de données de test est collecté dans une liste d’objets [**AvroRecord**](http://msdn.microsoft.com/library/microsoft.hadoop.avro.avrorecord.aspx) via un schéma JSON défini explicitement, puis stocké dans un fichier conteneur d’objet représenté par la classe [**AvroContainer**](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.avrocontainer.aspx). Ce fichier conteneur crée un enregistreur qui permet de sérialiser les données décompressées dans un flux de mémoire qui est ensuite enregistré dans un fichier. Le paramètre [**Codec.Null**](http://msdn.microsoft.com/library/microsoft.hadoop.avro.container.codec.null.aspx) utilisé pour créer le lecteur spécifie que ces données ne sont pas compressées.
 
-les données de salutation sont ensuite lire hello du fichier et désérialisées dans une collection d’objets. Cette collection est comparé toohello la liste initiale de tooconfirm d’enregistrements Avro qu’ils sont identiques.
+Les données sont ensuite lues à partir du fichier et désérialisées dans une collection d'objets. Cette dernière est ensuite comparée à la liste initiale d'enregistrements Avro pour confirmer qu'ils sont identiques.
 
     namespace Microsoft.Hadoop.Avro.Sample
     {
@@ -621,7 +621,7 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
         using Microsoft.Hadoop.Avro;
 
         //This class contains all methods demonstrating
-        //hello usage of Microsoft Avro Library
+        //the usage of Microsoft Avro Library
         public class AvroSample
         {
 
@@ -634,9 +634,9 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
                 //Path for Avro object container file
                 string path = "AvroSampleGenericRecordNullCodec.avro";
 
-                Console.WriteLine("Defining hello Schema and creating Sample Data Set...");
+                Console.WriteLine("Defining the Schema and creating Sample Data Set...");
 
-                //Define hello schema in JSON
+                //Define the schema in JSON
                 const string Schema = @"{
                                 ""type"":""record"",
                                 ""name"":""Microsoft.Hadoop.Avro.Specifications.SensorData"",
@@ -659,11 +659,11 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
                                     ]
                             }";
 
-                //Create a generic serializer based on hello schema
+                //Create a generic serializer based on the schema
                 var serializer = AvroSerializer.CreateGeneric(Schema);
                 var rootSchema = serializer.WriterSchema as RecordSchema;
 
-                //Create a generic record toorepresent hello data
+                //Create a generic record to represent the data
                 var testData = new List<AvroRecord>();
 
                 dynamic expected1 = new AvroRecord(rootSchema);
@@ -682,26 +682,26 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
                 expected2.Value = new byte[] { 6, 7, 8, 9 };
                 testData.Add(expected2);
 
-                //Serializing and saving data toofile.
+                //Serializing and saving data to file.
                 //Create a MemoryStream buffer.
                 using (var buffer = new MemoryStream())
                 {
                     Console.WriteLine("Serializing Sample Data Set...");
 
-                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects toostream.
+                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects to stream.
                     //Data is not compressed (Null compression codec).
                     using (var writer = AvroContainer.CreateGenericWriter(Schema, buffer, Codec.Null))
                     {
                         using (var streamWriter = new SequentialWriter<object>(writer, 24))
                         {
-                            // Serialize hello data toostream by using hello sequential writer
+                            // Serialize the data to stream by using the sequential writer
                             testData.ForEach(streamWriter.Write);
                         }
                     }
 
-                    Console.WriteLine("Saving serialized data toofile...");
+                    Console.WriteLine("Saving serialized data to file...");
 
-                    //Save stream toofile
+                    //Save stream to file
                     if (!WriteFile(buffer, path))
                     {
                         Console.WriteLine("Error during file operation. Quitting method");
@@ -709,7 +709,7 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
                     }
                 }
 
-                //Reading and deserializing hello data.
+                //Reading and deserializing the data.
                 //Create a memory stream buffer.
                 using (var buffer = new MemoryStream())
                 {
@@ -724,11 +724,11 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
 
                     Console.WriteLine("Deserializing Sample Data Set...");
 
-                    //Prepare hello stream for deserializing hello data
+                    //Prepare the stream for deserializing the data
                     buffer.Seek(0, SeekOrigin.Begin);
 
-                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from hello given stream.
-                    //It allows iterating over hello deserialized objects because it implements hello IEnumerable<T> interface.
+                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from the given stream.
+                    //It allows iterating over the deserialized objects because it implements the IEnumerable<T> interface.
                     using (var reader = AvroContainer.CreateGenericReader(buffer))
                     {
                         using (var streamReader = new SequentialReader<object>(reader))
@@ -737,7 +737,7 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
 
                             Console.WriteLine("Comparing Initial and Deserialized Data Sets...");
 
-                            //Finally, verify hello results
+                            //Finally, verify the results
                             var pairs = testData.Zip(results, (serialized, deserialized) => new { expected = (dynamic)serialized, actual = (dynamic)deserialized });
                             int count = 1;
                             foreach (var pair in pairs)
@@ -752,7 +752,7 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
                     }
                 }
 
-                //Delete hello file
+                //Delete the file
                 RemoveFile(path);
             }
 
@@ -760,7 +760,7 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
             //Helper methods
             //
 
-            //Saving memory stream tooa new file with hello given path
+            //Saving memory stream to a new file with the given path
             private bool WriteFile(MemoryStream InputStream, string path)
             {
                 if (!File.Exists(path))
@@ -776,7 +776,7 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during creation and writing toohello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during creation and writing to the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                         return false;
                     }
@@ -789,7 +789,7 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
                 }
             }
 
-            //Reading a file content by using hello given path tooa memory stream
+            //Reading a file content by using the given path to a memory stream
             private bool ReadFile(MemoryStream OutputStream, string path)
             {
                 try
@@ -802,13 +802,13 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("hello following exception was thrown during reading from hello file \"{0}\"", path);
+                    Console.WriteLine("The following exception was thrown during reading from the file \"{0}\"", path);
                     Console.WriteLine(e.Message);
                     return false;
                 }
             }
 
-            //Deleting file by using hello given path
+            //Deleting file by using the given path
             private void RemoveFile(string path)
             {
                 if (File.Exists(path))
@@ -819,7 +819,7 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during deleting hello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during deleting the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                     }
                 }
@@ -834,44 +834,44 @@ les données de salutation sont ensuite lire hello du fichier et désérialisée
 
                 string sectionDivider = "---------------------------------------- ";
 
-                //Create an instance of hello AvroSample class and invoke methods
+                //Create an instance of the AvroSample class and invoke methods
                 //illustrating different serializing approaches
                 AvroSample Sample = new AvroSample();
 
-                //Serialization using generic record tooAvro object container file
+                //Serialization using generic record to Avro object container file
                 Sample.SerializeDeserializeUsingObjectContainersGenericRecord();
 
                 Console.WriteLine(sectionDivider);
-                Console.WriteLine("Press any key tooexit.");
+                Console.WriteLine("Press any key to exit.");
                 Console.Read();
             }
         }
     }
-    // hello example is expected toodisplay hello following output:
+    // The example is expected to display the following output:
     // SERIALIZATION USING GENERIC RECORD AND AVRO OBJECT CONTAINER FILES
     //
-    // Defining hello Schema and creating Sample Data Set...
+    // Defining the Schema and creating Sample Data Set...
     // Serializing Sample Data Set...
-    // Saving serialized data toofile...
+    // Saving serialized data to file...
     // Reading data from file...
     // Deserializing Sample Data Set...
     // Comparing Initial and Deserialized Data Sets...
     // For Pair 1 result of Data Set Identity Comparison is True
     // For Pair 2 result of Data Set Identity Comparison is True
     // ----------------------------------------
-    // Press any key tooexit.
+    // Press any key to exit.
 
 
 
 
 ## <a name="sample-5-serialization-using-object-container-files-with-a-custom-compression-codec"></a>Exemple 5: sérialisation à l'aide de fichiers conteneurs d'objets avec un codec de compression personnalisé
-Hello cinquième exemple montre comment toouse un codec de compression personnalisé pour Avro les fichiers de conteneur d’objets. Un exemple contenant du code de hello pour cet exemple peut être téléchargé à partir de hello [exemples de code Azure](http://code.msdn.microsoft.com/Serialize-data-with-the-67159111) site.
+Le cinquième exemple montre comment utiliser un codec de compression personnalisé pour les fichiers conteneurs d’objets Avro. Un échantillon contenant le code de cet exemple peut être téléchargé sur le site des [exemples de code Azure](http://code.msdn.microsoft.com/Serialize-data-with-the-67159111) .
 
-Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Required+Codecs) permet l’utilisation d’un codec de compression facultatif (en outre trop**Null** et **Deflate** par défaut). Cet exemple n’implémente pas un nouveau codec telles que Snappy (indiqué en tant qu’un codec facultatif pris en charge dans hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#snappy)). Il montre comment toouse hello implémentation .NET Framework 4.5 de hello [ **Deflate** ] [ deflate-110] codec, qui offre un meilleur algorithme de compression en fonction de hello [zlib](http://zlib.net/) bibliothèque de compression à la version de .NET Framework 4 hello par défaut.
+La [Spécification Avro](http://avro.apache.org/docs/current/spec.html#Required+Codecs) autorise l'utilisation d'un codec de compression facultatif (outre les codecs **Null** et **Deflate** par défaut). Cet exemple n’implémente pas un nouveau codec tel que Snappy (mentionné comme codec facultatif pris en charge dans la [Spécification Avro](http://avro.apache.org/docs/current/spec.html#snappy)). Il montre comment utiliser l’implémentation .NET Framework 4.5 du codec [**Deflate**][deflate-110], qui offre un algorithme de compression, basé sur la bibliothèque de compression [zlib](http://zlib.net/), plus efficace que celui de la version par défaut .NET Framework 4.
 
     //
-    // This code needs toobe compiled with hello parameter Target Framework set as ".NET Framework 4.5"
-    // tooensure hello desired implementation of hello Deflate compression algorithm is used.
+    // This code needs to be compiled with the parameter Target Framework set as ".NET Framework 4.5"
+    // to ensure the desired implementation of the Deflate compression algorithm is used.
     // Ensure your C# project is set up accordingly.
     //
 
@@ -914,13 +914,13 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
         #region Defining custom codec based on .NET Framework V.4.5 Deflate
         //Avro.NET codec class contains two methods,
         //GetCompressedStreamOver(Stream uncompressed) and GetDecompressedStreamOver(Stream compressed),
-        //which are hello key ones for data compression.
-        //tooenable a custom codec, one needs tooimplement these methods for hello required codec.
+        //which are the key ones for data compression.
+        //To enable a custom codec, one needs to implement these methods for the required codec.
 
         #region Defining Compression and Decompression Streams
         //DeflateStream (class from System.IO.Compression namespace that implements Deflate algorithm)
         //cannot be directly used for Avro because it does not support vital operations like Seek.
-        //Thus one needs tooimplement two classes inherited from stream
+        //Thus one needs to implement two classes inherited from stream
         //(one for compressed and one for decompressed stream)
         //that use Deflate compression and implement all required features.
         internal sealed class CompressionStreamDeflate45 : Stream
@@ -930,7 +930,7 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
 
             public CompressionStreamDeflate45(Stream buffer)
             {
-                Debug.Assert(buffer != null, "Buffer is not allowed toobe null.");
+                Debug.Assert(buffer != null, "Buffer is not allowed to be null.");
 
                 this.compressionStream = new DeflateStream(buffer, CompressionLevel.Fastest, true);
                 this.buffer = buffer;
@@ -1086,7 +1086,7 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
         #endregion
 
         #region Define Codec
-        //Define hello actual codec class containing hello required methods for manipulating streams:
+        //Define the actual codec class containing the required methods for manipulating streams:
         //GetCompressedStreamOver(Stream uncompressed) and GetDecompressedStreamOver(Stream compressed).
         //Codec class uses classes for compressed and decompressed streams defined above.
         internal sealed class DeflateCodec45 : Codec
@@ -1123,9 +1123,9 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
         #endregion
 
         #region Define modified Codec Factory
-        //Define modified codec factory toobe used in hello reader.
-        //It catches hello attempt toouse "Deflate" and provide  a custom codec.
-        //For all other cases, it relies on hello base class (CodecFactory).
+        //Define modified codec factory to be used in the reader.
+        //It catches the attempt to use "Deflate" and provide  a custom codec.
+        //For all other cases, it relies on the base class (CodecFactory).
         internal sealed class CodecFactoryDeflate45 : CodecFactory
         {
 
@@ -1143,14 +1143,14 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
 
         #region Sample Class with demonstration methods
         //This class contains methods demonstrating
-        //hello usage of Microsoft Avro Library
+        //the usage of Microsoft Avro Library
         public class AvroSample
         {
 
             //Serializes and deserializes sample data set by using reflection and Avro object container files.
-            //Serialized data is compressed with hello custom compression codec (Deflate of .NET Framework 4.5).
+            //Serialized data is compressed with the custom compression codec (Deflate of .NET Framework 4.5).
             //
-            //This sample uses memory stream for all operations related tooserialization, deserialization and
+            //This sample uses memory stream for all operations related to serialization, deserialization and
             //object container manipulation, though file stream could be easily used.
             public void SerializeDeserializeUsingObjectContainersReflectionCustomCodec()
             {
@@ -1167,28 +1167,28 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
                             new SensorData { Value = new byte[] { 6, 7, 8, 9 }, Position = new Location { Room = 244, Floor = 1 } }
                         };
 
-                //Serializing and saving data toofile.
+                //Serializing and saving data to file.
                 //Creating a memory stream buffer.
                 using (var buffer = new MemoryStream())
                 {
                     Console.WriteLine("Serializing Sample Data Set...");
 
-                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects toostream.
-                    //Here hello custom codec is introduced. For convenience, hello next commented code line shows how toouse built-in Deflate.
-                    //Note that because hello sample deals with different IMPLEMENTATIONS of Deflate, built-in and custom codecs are interchangeable
+                    //Create a SequentialWriter instance for type SensorData, which can serialize a sequence of SensorData objects to stream.
+                    //Here the custom codec is introduced. For convenience, the next commented code line shows how to use built-in Deflate.
+                    //Note that because the sample deals with different IMPLEMENTATIONS of Deflate, built-in and custom codecs are interchangeable
                     //in read-write operations.
                     //using (var w = AvroContainer.CreateWriter<SensorData>(buffer, Codec.Deflate))
                     using (var w = AvroContainer.CreateWriter<SensorData>(buffer, new DeflateCodec45()))
                     {
                         using (var writer = new SequentialWriter<SensorData>(w, 24))
                         {
-                            // Serialize hello data toostream using hello sequential writer
+                            // Serialize the data to stream using the sequential writer
                             testData.ForEach(writer.Write);
                         }
                     }
 
-                    //Save stream toofile
-                    Console.WriteLine("Saving serialized data toofile...");
+                    //Save stream to file
+                    Console.WriteLine("Saving serialized data to file...");
                     if (!WriteFile(buffer, path))
                     {
                         Console.WriteLine("Error during file operation. Quitting method");
@@ -1211,20 +1211,20 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
 
                     Console.WriteLine("Deserializing Sample Data Set...");
 
-                    //Prepare hello stream for deserializing hello data
+                    //Prepare the stream for deserializing the data
                     buffer.Seek(0, SeekOrigin.Begin);
 
                     //Because of SequentialReader<T> constructor signature, an AvroSerializerSettings instance is required
                     //when codec factory is explicitly specified.
-                    //You may comment hello line below if you want toouse built-in Deflate (see next comment).
+                    //You may comment the line below if you want to use built-in Deflate (see next comment).
                     AvroSerializerSettings settings = new AvroSerializerSettings();
 
-                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from hello given stream.
-                    //It allows iterating over hello deserialized objects because it implements hello IEnumerable<T> interface.
-                    //Here hello custom codec factory is introduced.
-                    //For convenience, hello next commented code line shows how toouse built-in Deflate
+                    //Create a SequentialReader instance for type SensorData, which deserializes all serialized objects from the given stream.
+                    //It allows iterating over the deserialized objects because it implements the IEnumerable<T> interface.
+                    //Here the custom codec factory is introduced.
+                    //For convenience, the next commented code line shows how to use built-in Deflate
                     //(no explicit Codec Factory parameter is required in this case).
-                    //Note that because hello sample deals with different IMPLEMENTATIONS of Deflate, built-in and custom codecs are interchangeable
+                    //Note that because the sample deals with different IMPLEMENTATIONS of Deflate, built-in and custom codecs are interchangeable
                     //in read-write operations.
                     //using (var reader = new SequentialReader<SensorData>(AvroContainer.CreateReader<SensorData>(buffer, true)))
                     using (var reader = new SequentialReader<SensorData>(
@@ -1232,7 +1232,7 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
                     {
                         var results = reader.Objects;
 
-                        //Finally, verify that deserialized data matches hello original one
+                        //Finally, verify that deserialized data matches the original one
                         Console.WriteLine("Comparing Initial and Deserialized Data Sets...");
                         bool isEqual;
                         int count = 1;
@@ -1246,7 +1246,7 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
                     }
                 }
 
-                //Delete hello file
+                //Delete the file
                 RemoveFile(path);
             }
         #endregion
@@ -1259,7 +1259,7 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
                 return left.Position.Equals(right.Position) && left.Value.SequenceEqual(right.Value);
             }
 
-            //Saving memory stream tooa new file with hello given path
+            //Saving memory stream to a new file with the given path
             private bool WriteFile(MemoryStream InputStream, string path)
             {
                 if (!File.Exists(path))
@@ -1275,7 +1275,7 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during creation and writing toohello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during creation and writing to the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                         return false;
                     }
@@ -1288,7 +1288,7 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
                 }
             }
 
-            //Reading file content by using hello given path tooa memory stream
+            //Reading file content by using the given path to a memory stream
             private bool ReadFile(MemoryStream OutputStream, string path)
             {
                 try
@@ -1301,7 +1301,7 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("hello following exception was thrown during reading from hello file \"{0}\"", path);
+                    Console.WriteLine("The following exception was thrown during reading from the file \"{0}\"", path);
                     Console.WriteLine(e.Message);
                     return false;
                 }
@@ -1318,7 +1318,7 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("hello following exception was thrown during deleting hello file \"{0}\"", path);
+                        Console.WriteLine("The following exception was thrown during deleting the file \"{0}\"", path);
                         Console.WriteLine(e.Message);
                     }
                 }
@@ -1338,58 +1338,58 @@ Hello [Avro spécification](http://avro.apache.org/docs/current/spec.html#Requir
                 //illustrating different serializing approaches
                 AvroSample Sample = new AvroSample();
 
-                //Serialization using reflection tooAvro object container file using custom codec
+                //Serialization using reflection to Avro object container file using custom codec
                 Sample.SerializeDeserializeUsingObjectContainersReflectionCustomCodec();
 
                 Console.WriteLine(sectionDivider);
-                Console.WriteLine("Press any key tooexit.");
+                Console.WriteLine("Press any key to exit.");
                 Console.Read();
             }
         }
     }
-    // hello example is expected toodisplay hello following output:
+    // The example is expected to display the following output:
     // SERIALIZATION USING REFLECTION, AVRO OBJECT CONTAINER FILES AND CUSTOM CODEC
     //
     // Serializing Sample Data Set...
-    // Saving serialized data toofile...
+    // Saving serialized data to file...
     // Reading data from file...
     // Deserializing Sample Data Set...
     // Comparing Initial and Deserialized Data Sets...
     // For Pair 1 result of Data Set Identity Comparison is True
     //For Pair 2 result of Data Set Identity Comparison is True
     // ----------------------------------------
-    // Press any key tooexit.
+    // Press any key to exit.
 
-## <a name="sample-6-using-avro-tooupload-data-for-hello-microsoft-azure-hdinsight-service"></a>Exemple 6 : À l’aide de données de tooupload Avro pourquoi le service Microsoft Azure HDInsight
-Hello sixième illustre certaines toointeracting de programmation techniques associées avec le service Azure HDInsight de hello. Un exemple contenant du code de hello pour cet exemple peut être téléchargé à partir de hello [exemples de code Azure](https://code.msdn.microsoft.com/Using-Avro-to-upload-data-ae81b1e3) site.
+## <a name="sample-6-using-avro-to-upload-data-for-the-microsoft-azure-hdinsight-service"></a>Exemple 6 : utilisation d'Avro pour télécharger des données pour le service Microsoft Azure HDInsight
+Le sixième exemple illustre quelques techniques de programmation liées à l’interaction avec le service Azure HDInsight. Un échantillon contenant le code de cet exemple peut être téléchargé sur le site des [exemples de code Azure](https://code.msdn.microsoft.com/Using-Avro-to-upload-data-ae81b1e3) .
 
-exemple Hello hello tâche suivantes :
+L’exemple effectue les tâches suivantes :
 
-* Se connecte tooan cluster du service HDInsight existant.
-* Sérialise plusieurs fichiers CSV et télécharge le stockage d’objets Blob tooAzure hello résultat. (fichiers CSV de hello sont distribuées avec l’exemple hello et représentent un extrait des données historiques de Stock de l’American Express distribués par [Infochimps](http://www.infochimps.com/) pendant hello 1970-2010. exemple Hello lit les données de fichier CSV, convertit hello tooinstances des enregistrements de hello **Stock** de classe et les sérialise ensuite en utilisant la réflexion. Définition du type de stock est créée à partir d’un schéma JSON via hello utilitaire de génération de code Microsoft Avro Library.
-* Crée une table externe appelée **Stocks** dans la ruche et lie les données toohello téléchargé à l’étape précédente de hello.
-* Exécute une requête à l’aide de la ruche sur hello **Stocks** table.
+* Établit la connexion à un cluster existant du service HDInsight.
+* Sérialise plusieurs fichiers CSV et télécharge le résultat dans le stockage d'objets blob Azure. (Les fichiers CSV sont distribués avec l’exemple et représentent un extrait des données historiques de la bourse AMEX distribuées par [Infochimps](http://www.infochimps.com/) pour la période 1970-2010. L’exemple lit les données du fichier CSV, convertit les enregistrements en instances de classe **Stock**, puis les sérialise en utilisant la réflexion. La définition du type Stock est créée à partir d’un schéma JSON à l’aide de l’utilitaire de génération de code Microsoft Avro Library.
+* Crée une nouvelle table externe nommée **Stocks** dans Hive et la lie aux données téléchargées à l’étape précédente.
+* Exécute une requête avec Hive sur la table **Stocks** .
 
-En outre, exemple hello effectue une procédure de nettoyage avant et après avoir effectué les opérations principales. Au cours de hello nettoyage, toutes hello liées dossiers et objets Blob Azure sont supprimés et hello ruche table est supprimée. Vous pouvez également appeler la procédure de nettoyage hello à partir de la ligne de commande exemple hello.
+En outre, l'exemple exécute une procédure de nettoyage avant et après avoir effectué des opérations majeures. Pendant le nettoyage, l’ensemble des dossiers et des données d’objets blob Azure associés sont supprimés, ainsi que la table Hive. Vous pouvez également appeler la procédure de nettoyage à partir de la ligne de commande de l’exemple.
 
-exemple Hello a hello suivant des conditions préalables :
+L'exemple nécessite les éléments suivants :
 
 * Un abonnement Microsoft Azure actif et son ID d’abonnement.
-* Un certificat de gestion pour l’abonnement hello avec la clé privée correspondante de hello. certificat de Hello doit être installé dans hello actuel utilisateur stockage privé sur toorun hello exemple hello machine utilisée.
+* Un certificat de gestion pour l’abonnement avec la clé privée correspondante. Le certificat doit être installé dans le stockage privé de l’utilisateur actuel sur l’ordinateur utilisé pour exécuter l’exemple.
 * Un cluster HDInsight actif.
-* Un compte Azure Storage lié de cluster HDInsight de toohello à partir de la condition préalable précédente hello, ainsi que de la clé d’accès primaire ou secondaire correspondante hello.
+* Un compte Stockage Azure lié au cluster HDInsight par les conditions préalables précédentes, ainsi que la clé d’accès primaire ou secondaire correspondante.
 
-Toutes les informations de hello à la configuration requise de hello doivent être entré toohello exemple de fichier de configuration avant l’exécution d’exemple hello. Il existe deux façons possibles toodo il :
+Toutes les informations des conditions préalables doivent être entrées dans le fichier de configuration de l’exemple avant que ce dernier ne soit exécuté. Il existe deux façons d'effectuer cette opération :
 
-* Modifier le fichier app.config de hello dans le répertoire racine de l’exemple hello et générer des exemple hello
-* Tout d’abord créer exemple hello et modifiez AvroHDISample.exe.config dans le répertoire de build hello
+* Modifier le fichier app.config dans le répertoire racine de l’exemple, puis créer l’exemple.
+* D’abord créer l’exemple, puis modifier AvroHDISample.exe.config dans le répertoire de build.
 
-Dans les deux cas, toutes les modifications doivent être effectuées dans hello  **<appSettings>**  section de paramètres. Suivez les commentaires du fichier hello hello.
-Hello exemple est exécuté à partir de la ligne de commande hello en exécutant la commande suivante (où hello fichier .zip avec l’exemple hello a été considérée comme toobe extrait tooC:\AvroHDISample ; si dans le cas contraire, utilisez hello pertinentes du fichier chemin d’accès) de hello :
+Dans les deux cas, toutes les modifications doivent être effectuées dans la section des paramètres **<appSettings>**. Suivez les commentaires dans le fichier.
+L’exemple est exécuté à partir de la ligne de commande avec la commande suivante (où le fichier .zip avec l’exemple était censé avoir été extrait sous C:\AvroHDISample ; sinon, utilisez le chemin de fichier approprié) :
 
     AvroHDISample run C:\AvroHDISample\Data
 
-tooclean cluster hello, exécutez hello de commande suivante :
+Pour nettoyer le cluster, exécutez la commande suivante :
 
     AvroHDISample clean
 

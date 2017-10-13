@@ -1,5 +1,5 @@
-Les autres démarrages rapides de cette collection reposent sur ce démarrage rapide. Si vous prévoyez toocontinue toowork Démarrages rapides suivants ou avec des didacticiels de hello, ne pas nettoyer les ressources hello créés dans cette rapide démarrent. 
+Les autres démarrages rapides de cette collection reposent sur ce démarrage rapide. Si vous souhaitez continuer à utiliser d’autres démarrages rapides ou les didacticiels, ne nettoyez pas les ressources créées dans ce démarrage rapide. 
 
-Si vous n’envisagez pas de toocontinue, cliquez sur hello **groupe de ressources** pour l’application de fonction hello dans le portail de hello, puis cliquez sur **supprimer**. 
+Sinon, cliquez sur le **groupe de ressources** de la Function App dans le portail, puis sur **Supprimer**. 
 
-![Sélectionnez toodelete de groupe de ressources hello à partir de l’application de fonction hello.](./media/functions-quickstart-cleanup/functions-app-delete-resource-group.png)
+![Sélectionnez le groupe de ressources à supprimer de la Function App.](./media/functions-quickstart-cleanup/functions-app-delete-resource-group.png)

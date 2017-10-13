@@ -1,6 +1,6 @@
 ---
-title: "les files d’attente d’aaaHow toouse Azure Service Bus avec Python | Documents Microsoft"
-description: "Découvrez comment toouse Azure Service Bus de files d’attente à partir de Python."
+title: "Utilisation des files d’attente Azure Service Bus avec Python | Microsoft Docs"
+description: "Découvrez comment utiliser les files d'attente Service Bus Azure depuis Python."
 services: service-bus-messaging
 documentationcenter: python
 author: sethmanheim
@@ -14,35 +14,35 @@ ms.devlang: python
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm;lmazuel
-ms.openlocfilehash: bceb84d04ff3445c3087a9c246c583d6630f07af
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e1e81ad1d7b4fe0e044917f090cac59dfd5b6332
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-service-bus-queues-with-python"></a>Comment toouse Service Bus de files d’attente avec Python
+# <a name="how-to-use-service-bus-queues-with-python"></a>Utilisation des files d’attente Service Bus avec Python
 
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-Cet article décrit comment les files d’attente de toouse Service Bus. exemples de Hello sont écrites dans Python et utiliser hello [package Python Azure Service Bus][Python Azure Service Bus package]. Hello scénarios abordés incluent **création de files d’attente, envoyer et recevoir des messages**, et **la suppression de files d’attente**.
+Cet article décrit l’utilisation des files d’attente Service Bus. Les exemples sont écrits en Python et utilisent le [package Python Azure Service Bus][Python Azure Service Bus package]. Les scénarios couverts dans ce guide sont les suivants : **création de files d’attente, envoi et réception de messages** et **suppression de files d’attente**.
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 > [!NOTE]
-> tooinstall Python ou hello [package Python Azure Service Bus][Python Azure Service Bus package], consultez hello [Guide d’Installation de Python](../python-how-to-install.md).
+> Pour installer Python ou le [package Python Azure Service Bus][Python Azure Service Bus package], consultez le [Python Installation Guide (Guide d’installation de Python)](../python-how-to-install.md).
 > 
 > 
 
 ## <a name="create-a-queue"></a>Création d’une file d’attente
-Hello **ServiceBusService** objet vous permet de toowork avec les files d’attente. Ajoutez hello suivant code haut hello de n’importe quel fichier Python dans lequel vous souhaitez tooprogrammatically accès Service Bus :
+L’objet **ServiceBusService** permet d’utiliser des files d’attente. Ajoutez le code suivant au début de chaque fichier Python dans lequel vous souhaitez accéder à Service Bus par programme :
 
 ```python
 from azure.servicebus import ServiceBusService, Message, Queue
 ```
 
-Hello de code suivant crée un **ServiceBusService** objet. Remplacez `mynamespace`, `sharedaccesskeyname` et `sharedaccesskey` par votre espace de noms, le nom et la valeur de clé de signature d’accès partagé (SAP).
+Le code suivant crée un objet **ServiceBusService**. Remplacez `mynamespace`, `sharedaccesskeyname` et `sharedaccesskey` par votre espace de noms, le nom et la valeur de clé de signature d’accès partagé (SAP).
 
 ```python
 bus_service = ServiceBusService(
@@ -51,13 +51,13 @@ bus_service = ServiceBusService(
     shared_access_key_value='sharedaccesskey')
 ```
 
-Hello valeurs pour le nom de la clé SAS hello et valeur sont accessibles dans hello [portail Azure] [ Azure portal] informations de connexion, ou dans Visual Studio de hello **propriétés** volet lors de la sélection Bonjour espace de noms Service Bus dans l’Explorateur de serveurs (comme indiqué dans la section précédente de hello).
+Le nom et la valeur de la clé de signature d’accès partagé se trouvent dans les informations de connexion du [portail Azure][Azure portal] ou dans le volet **Propriétés** de Visual Studio quand vous sélectionnez l’espace de noms Service Bus dans l’Explorateur de serveurs (comme indiqué dans la section précédente).
 
 ```python
 bus_service.create_queue('taskqueue')
 ```
 
-Hello `create_queue` méthode prend également en charge des options supplémentaires, qui vous permettent de paramètres de file d’attente par défaut toooverride telles que message toolive TTL (time) ou taille maximale de file d’attente. Hello exemple suivant définit hello file d’attente maximale taille too5 Go et à la minute de too1 de valeur de durée de vie hello :
+La méthode `create_queue` prend également en charge des options supplémentaires, qui vous permettent de remplacer les paramètres de file d’attente par défaut comme la durée de vie (TTL) du message ou la taille maximale de la file d’attente. L’exemple suivant définit la taille maximale de la file d’attente sur 5 Go et la durée de vie de message sur 1 minute :
 
 ```python
 queue_options = Queue()
@@ -67,31 +67,31 @@ queue_options.default_message_time_to_live = 'PT1M'
 bus_service.create_queue('taskqueue', queue_options)
 ```
 
-## <a name="send-messages-tooa-queue"></a>Envoyer la file d’attente de messages tooa
-toosend une file d’attente Service Bus de messages tooa, votre application appelle hello `send_queue_message` méthode sur hello **ServiceBusService** objet.
+## <a name="send-messages-to-a-queue"></a>Envoi de messages à une file d'attente
+Pour envoyer un message à une file d’attente Service Bus, votre application appelle la méthode `send_queue_message` sur l’objet **ServiceBusService**.
 
-Hello exemple suivant montre comment toosend une file d’attente toohello test nommé `taskqueue` à l’aide de `send_queue_message`:
+L’exemple suivant indique comment envoyer un message test à la file d’attente nommée `taskqueue` au moyen de la méthode `send_queue_message` :
 
 ```python
 msg = Message(b'Test Message')
 bus_service.send_queue_message('taskqueue', msg)
 ```
 
-Les files d’attente Service Bus prend en charge une taille maximale de 256 Ko Bonjour [niveau Standard](service-bus-premium-messaging.md) et 1 Mo Bonjour [niveau Premium](service-bus-premium-messaging.md). en-tête Hello, qui inclut les standard hello et les propriétés de l’application personnalisée, peut avoir une taille maximale de 64 Ko. Il n’existe aucune limite du nombre de hello de messages dans une file d’attente mais hello de taille totale des messages hello détenus par une file d’attente est une extrémité de fin. Cette taille de file d'attente est définie au moment de la création. La limite maximale est de 5 Go. Pour plus d’informations sur les quotas, consultez [Quotas Service Bus][Service Bus quotas].
+Les files d’attente Service Bus prennent en charge une taille de message maximale de 256 Ko dans le [niveau Standard](service-bus-premium-messaging.md) et d’1 Mo dans le [niveau Premium](service-bus-premium-messaging.md). L’en-tête, qui comprend les propriétés d’application standard et personnalisées, peut avoir une taille maximale de 64 Ko. Si une file d'attente n'est pas limitée par le nombre de messages qu'elle peut contenir, elle l'est en revanche par la taille totale des messages qu'elle contient. Cette taille de file d'attente est définie au moment de la création. La limite maximale est de 5 Go. Pour plus d’informations sur les quotas, consultez [Quotas Service Bus][Service Bus quotas].
 
 ## <a name="receive-messages-from-a-queue"></a>Réception des messages d'une file d'attente
-Les messages sont reçus à partir d’une file d’attente à l’aide de hello `receive_queue_message` méthode sur hello **ServiceBusService** objet :
+La méthode `receive_queue_message` de l’objet **ServiceBusService** permet de recevoir les messages d’une file d’attente :
 
 ```python
 msg = bus_service.receive_queue_message('taskqueue', peek_lock=False)
 print(msg.body)
 ```
 
-Les messages sont supprimés de la file d’attente hello lorsqu’elles sont lues lorsque hello paramètre `peek_lock` est défini trop**False**. Vous pouvez lire (aperçu) et verrouiller le message de type hello sans le supprimer de la file d’attente hello en définissant le paramètre hello `peek_lock` trop**True**.
+Les messages sont supprimés de la file d’attente au fur et à mesure de leur lecture, si le paramètre `peek_lock` est défini sur **False**. Vous pouvez lire (afficher un aperçu) et verrouiller le message sans le supprimer de la file d’attente en définissant le paramètre `peek_lock` sur **True**.
 
-Hello le comportement de la lecture et de suppression de message de type hello comme partie de hello opération de réception est le modèle le plus simple hello et convient le mieux pour les scénarios dans lesquels une application peut tolérer ne pas traiter un message dans l’événement hello d’un échec. toounderstand, envisagez un scénario dans les problèmes liés aux consommateurs de hello hello reçoit la demande et puis se bloque avant de le traiter. Comme Service Bus sera ont marqué hello message comme consommé, puis lors de l’application hello redémarre et commence à consommer des messages, elle aura manqué message de type hello qui a été consommée toohello préalable incident.
+Le comportement de lecture et de suppression du message dans le cadre de l'opération de réception est le modèle le plus simple et le mieux adapté aux scénarios dans lesquels une application est capable de tolérer le non-traitement d'un message en cas d'échec. Pour mieux comprendre, imaginez un scénario dans lequel le consommateur émet la demande de réception et subit un incident avant de la traiter. Comme Service Bus a marqué le message comme étant consommé, lorsque l’application redémarre et recommence à consommer des messages, elle manque le message consommé avant l’incident.
 
-Si hello `peek_lock` paramètre est défini trop**True**, hello réception devient une opération en deux étapes, ce qui rend possible toosupport les applications qui ne peut pas tolérer des messages manquants. Lorsque le Service Bus reçoit une demande, il recherche hello suivant message toobe consommé, il verrouille tooprevent autres consommateurs le reçoivent et le retourne toohello application. Une fois l’application hello termine le traitement de message de type hello (ou stocke de manière fiable pour un traitement ultérieur), il termine hello deuxième étape du hello processus de réception en appelant hello **supprimer** méthode sur hello **Message** objet. Hello **supprimer** méthode marquer le message de type hello comme ayant été consommé et supprimez-le de la file d’attente hello.
+Si le paramètre `peek_lock` est défini sur **True**, la réception devient une opération en deux étapes, qui autorise une prise en charge des applications qui ne peuvent pas tolérer de messages manquants. Lorsque Service Bus reçoit une demande, il recherche le prochain message à consommer, le verrouille pour empêcher d'autres consommateurs de le recevoir, puis le renvoie à l'application. Dès lors que l’application a terminé le traitement du message (ou qu’elle l’a stocké de manière fiable pour un traitement ultérieur), elle accomplit la deuxième étape du processus de réception en appelant la méthode **delete** sur l’objet **Message**. La méthode **delete** marque le message comme étant consommé et le supprime de la file d’attente.
 
 ```python
 msg = bus_service.receive_queue_message('taskqueue', peek_lock=True)
@@ -100,15 +100,15 @@ print(msg.body)
 msg.delete()
 ```
 
-## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Comment toohandle application tombe en panne et messages illisibles
-Service Bus fournit toohelp fonctionnalité que surmonter les erreurs dans votre application ou les difficultés du traitement d’un message. Si une application du récepteur ne peut pas tooprocess hello message pour une raison quelconque, elle peut appeler hello **déverrouiller** méthode sur hello **Message** objet. Cette opération provoquent le message de type hello toounlock Service Bus au sein de la file d’attente hello et rendre disponible toobe de nouveau reçu, soit hello par même consommation d’application ou par une autre application consommatrice.
+## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Gestion des blocages d’application et des messages illisibles
+Service Bus intègre des fonctionnalités destinées à faciliter la récupération à la suite d’erreurs survenues dans votre application ou de difficultés à traiter un message. Si une application réceptrice ne parvient pas à traiter le message pour une raison quelconque, elle appelle la méthode **unlock** pour l’objet **Message**. Service Bus déverrouille alors le message dans la file d’attente et le rend à nouveau disponible en réception, pour la même application consommatrice ou pour une autre.
 
-Il existe également un délai d’attente d’un message verrouillé dans la file d’attente hello, et si l’échec de l’application hello tooprocess hello message avant hello délai d’attente de verrou expire (par exemple, si de l’application hello se bloque), puis Service Bus déverrouille message de type hello automatiquement et le rendre disponible toobe de nouveau reçu.
+De même, il faut savoir qu’un message verrouillé dans une file d’attente est assorti d’un délai d’expiration et que si l’application ne parvient pas à traiter le message dans le temps imparti (par exemple, si l’application subit un incident), Service Bus déverrouille le message automatiquement et le rend à nouveau disponible en réception.
 
-Bonjour événement hello application se bloque après le traitement de message de type hello mais avant hello **supprimer** méthode est appelée, puis le message de type hello sera redistribué toohello application lors de son redémarrage. Cela est souvent appelé **au moins une fois le traitement**, autrement dit, chaque message est traité au moins une fois, mais dans certain hello situations le même message peut être redistribué. Si le scénario de hello ne peut pas tolérer le traitement dupliqué, les développeurs d’applications doivent ajouter une logique supplémentaire tootheir application toohandle en double remise du message. Cela est souvent obtenue à l’aide de hello **MessageId** propriété de message de type hello, qui reste constante entre les tentatives de remise.
+Si l’application subit un incident après le traitement du message, mais avant l’appel de la méthode **delete**, le message est à nouveau remis à l’application lorsqu’elle redémarre. Lors de cette opération souvent appelée **Au moins une fois**, chaque message est traité au moins une fois. Toutefois, dans certaines circonstances, un même message peut être remis une nouvelle fois. Toutefois, dans certaines circonstances, un même message peut être remis une nouvelle fois. Pour ce faire, il suffit souvent d’utiliser la propriété **MessageId** du message, qui reste constante pendant les tentatives de remise.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez appris les notions de base de hello de files d’attente Service Bus, consultez ces articles de toolearn plus.
+Maintenant que vous avez appris les principes de base des files d'attente Service Bus, consultez ces liens pour en savoir plus.
 
 * [Files d’attente, rubriques et abonnements][Queues, topics, and subscriptions]
 

@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à MobileXpense | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et MobileXpense."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et MobileXpense."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,115 +13,115 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: jeedes
-ms.openlocfilehash: b9d109f9d4244f8a7eb8b49b0d980cd3df0fc59d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 030a1fc9f36d6fcfa607552d85ce232e36eaa64b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-mobilexpense"></a>Didacticiel : Intégration d’Azure Active Directory à MobileXpense
 
-Dans ce didacticiel, vous apprendrez comment toointegrate MobileXpense avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer MobileXpense à Azure Active Directory (Azure AD).
 
-Intégration MobileXpense à Azure AD offre hello avantages suivants :
+L’intégration de MobileXpense à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooMobileXpense
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooMobileXpense (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à MobileXpense
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à MobileXpense (via l’authentification unique) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Prérequis
 
-tooconfigure intégration d’Azure AD avec MobileXpense, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à MobileXpense, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement MobileXpense pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de MobileXpense à partir de la galerie de hello
+1. Ajout de MobileXpense à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-mobilexpense-from-hello-gallery"></a>Ajout de MobileXpense à partir de la galerie de hello
-intégration de hello tooconfigure de MobileXpense dans Azure AD, vous devez tooadd MobileXpense à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-mobilexpense-from-the-gallery"></a>Ajout de MobileXpense à partir de la galerie
+Pour configurer l’intégration de MobileXpense à Azure AD, vous devez ajouter MobileXpense à partir de la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd MobileXpense à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter MobileXpense à partir de la galerie, effectuez les étapes suivantes :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **MobileXpense**.
+4. Dans la zone de recherche, tapez **MobileXpense**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-mobilexpense-tutorial/tutorial_mobilexpense_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **MobileXpense**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le volet de résultats, sélectionnez **MobileXpense**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-mobilexpense-tutorial/tutorial_mobilexpense_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec MobileXpense pour un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans MobileXpense est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans MobileXpense doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur MobileXpense équivalent à un utilisateur dans Azure AD. En d’autres termes, une relation doit être établie entre un utilisateur Azure AD et l’utilisateur associé dans MobileXpense.
 
-Dans MobileXpense, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans MobileXpense, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec MobileXpense, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec MobileXpense, vous devez effectuer les deux actions essentielles suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test MobileXpense](#creating-a-mobilexpense-test-user)**  -toohave un équivalent de Britta Simon dans MobileXpense est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test MobileXpense](#creating-a-mobilexpense-test-user)** pour avoir un équivalent de Britta Simon dans MobileXpense lié à la représentation Azure AD de l’utilisateur.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application MobileXpense.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application MobileXpense.
 
-**tooconfigure Azure AD single sign-on avec MobileXpense, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec MobileXpense, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, sur hello **MobileXpense** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **MobileXpense**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-mobilexpense-tutorial/tutorial_mobilexpense_samlbase.png)
 
-3. Sur hello **MobileXpense domaine et les URL** section, si vous le souhaitez application hello tooconfigure **IDP** en mode initié par :
+3. Dans la section **Domaines et URL MobileXpense**, si vous souhaitez configurer l’application en mode initié par le **fournisseur d’identité (IDP)** :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-mobilexpense-tutorial/tutorial_mobilexpense_url11.png)
 
-    Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<sub domain>.mobilexpense.com/SSO/SAML20/SAML/AssertionConsumerService.aspx`
+    Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<sub domain>.mobilexpense.com/SSO/SAML20/SAML/AssertionConsumerService.aspx`
 
-4. Vérifiez **afficher les paramètres d’URL avancés**, si vous le souhaitez application hello tooconfigure **SP** en mode initié par :
+4. Cochez **Afficher les paramètres d’URL avancés** si vous souhaitez configurer l’application en mode initié par le **fournisseur de service** :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-mobilexpense-tutorial/tutorial_mobilexpense_url22.png)
 
-Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle ::`https://<sub domain>.mobilexpense.com/<customername>`
+Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<sub domain>.mobilexpense.com/<customername>`
 
 > [!NOTE] 
-> Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs avec l’URL de réponse réelle hello et URL de connexion. Contact [équipe de support Client de MobileXpense](http://www.mobilexpense.net/contact) tooget ces valeurs. 
+> Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de réponse et l’URL de connexion réelles. Pour obtenir ces valeurs, contactez l’[équipe de support technique MobileXpense](http://www.mobilexpense.net/contact). 
 
-5. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+5. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-mobilexpense-tutorial/tutorial_mobilexpense_certificate.png) 
 
@@ -129,64 +129,64 @@ Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello m
 
     ![Configurer l’authentification unique](./media/active-directory-saas-mobilexpense-tutorial/tutorial_general_400.png)
 
-8. tooconfigure l’authentification unique sur **MobileXpense** côté, vous devez hello toosend téléchargé **Metadata XML** trop[équipe de support MobileXpense](http://www.mobilexpense.net/contact).
+8. Pour configurer l’authentification unique côté **MobileXpense**, vous devez envoyer le fichier **XML de métadonnées** téléchargé à l’[équipe de support technique MobileXpense](http://www.mobilexpense.net/contact).
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-mobilexpense-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-mobilexpense-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-mobilexpense-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-mobilexpense-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-mobilexpense-test-user"></a>Création d’un utilisateur de test MobileXpense
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans MobileXpense. fonctionnent avec [équipe de support MobileXpense](http://www.mobilexpense.net/contact) pour ajouter des utilisateurs de hello de plateforme de MobileXpense hello. Les utilisateurs doivent être créés et activés avant que vous utilisiez l’authentification unique. 
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans MobileXpense. Collaborez avec l’[équipe du support technique MobileXpense](http://www.mobilexpense.net/contact) pour ajouter des utilisateurs dans la plateforme MobileXpense. Les utilisateurs doivent être créés et activés avant que vous utilisiez l’authentification unique. 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooMobileXpense.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en accordant l’accès à MobileXpense.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooMobileXpense, effectuez hello comme suit :**
+**Pour affecter Britta Simon à MobileXpense, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **MobileXpense**.
+2. Dans la liste des applications, sélectionnez **MobileXpense**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-mobilexpense-tutorial/tutorial_mobilexpense_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -194,7 +194,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -202,14 +202,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque MobileXpense hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour MobileXpense application.
+Quand vous cliquez sur la mosaïque MobileXpense dans le volet d’accès, vous devez être automatiquement connecté à votre application MobileXpense.
 Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](https://msdn.microsoft.com/library/dn308586). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

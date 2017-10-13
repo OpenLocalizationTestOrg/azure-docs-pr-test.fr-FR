@@ -1,9 +1,9 @@
 ---
-title: "aaaCreate un interne l’équilibrage de charge - CLI d’Azure classic | Documents Microsoft"
-description: "Découvrez comment un équilibreur de charge interne à l’aide de toocreate hello CLI d’Azure dans le modèle de déploiement classique de hello"
+title: "Créer un équilibrage de charge interne à l’aide de la CLI Azure dans le modèle de déploiement classique | Microsoft Docs"
+description: "Découvrez comment créer un équilibreur de charge interne à l'aide de l’interface de ligne de commande Azure (CLI) dans le modèle de déploiement classique"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 editor: 
 tags: azure-service-management
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: ef29dfda5f7a75a411bbabe8b688a31c6bf81113
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f740633230b2479f77d7d09a31dbbf3f72ffb174
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-creating-an-internal-load-balancer-classic-using-hello-azure-cli"></a>Prise en main la création d’un équilibreur de charge interne (classique) à l’aide de hello CLI d’Azure
+# <a name="get-started-creating-an-internal-load-balancer-classic-using-the-azure-cli"></a>Créer un équilibreur de charge interne (classique) à l’aide de l’interface de ligne de commande (CLI) Azure
 
 > [!div class="op_single_selector"]
 > * [PowerShell](../load-balancer/load-balancer-get-started-ilb-classic-ps.md)
@@ -31,24 +31,24 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!IMPORTANT]
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md).  Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello. Découvrez comment trop[effectuer ces étapes à l’aide du modèle de gestionnaire de ressources hello](load-balancer-get-started-ilb-arm-cli.md).
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md).  Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager. Découvrez comment [effectuer ces étapes à l’aide du modèle Resource Manager](load-balancer-get-started-ilb-arm-cli.md).
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
-## <a name="toocreate-an-internal-load-balancer-set-for-virtual-machines"></a>toocreate un équilibreur de charge interne défini pour les machines virtuelles
+## <a name="to-create-an-internal-load-balancer-set-for-virtual-machines"></a>Pour créer un jeu d’équilibrage de charge interne pour les machines virtuelles
 
-toocreate un équilibreur de charge interne défini et hello serveurs qui y enverront leur tooit le trafic, vous devez procéder comme suit de hello :
+Pour créer un jeu d’équilibrage de charge interne et les serveurs qui y envoient leur trafic, vous devez procéder comme suit :
 
-1. Créer une instance d’interne l’équilibrage de charge qui sera le point de terminaison hello d’entrant trafic toobe équilibrée entre les serveurs hello d’un jeu d’équilibrage de la charge.
-2. Ajoutez les machines virtuelles toohello qui recevront le trafic entrant de hello correspondantes des points de terminaison.
-3. Configurez les serveurs hello qui enverront hello trafic toobe à charge équilibrée toosend leur trafic toohello adresse IP virtuelle (VIP) de l’instance d’équilibrage de charge interne hello.
+1. Créez une instance d’équilibrage de charge interne comme point de terminaison du trafic entrant qui doit être équilibré entre les serveurs d’un jeu d’équilibrage de charge.
+2. Ajoutez les points de terminaison correspondants aux machines virtuelles qui reçoivent le trafic entrant.
+3. Configurez les serveurs qui envoient le trafic à l’adresse IP virtuelle (VIP) de l’instance d’équilibrage de charge interne.
 
 ## <a name="step-by-step-creating-an-internal-load-balancer-using-cli"></a>Créer par étapes un équilibreur de charge interne à l’aide de l’interface de ligne de commande CLI
 
-Ce guide montre comment toocreate un équilibreur de charge interne selon hello scénario ci-dessus.
+Ce guide indique comment créer un équilibreur de charge interne selon le scénario ci-dessus.
 
-1. Si vous n’avez jamais utilisé CLI d’Azure, consultez [installer et configurer hello CLI d’Azure](../cli-install-nodejs.md) et suivez les instructions de hello point toohello où vous sélectionnez votre compte Azure et votre abonnement.
-2. Exécutez hello **configuration azure mode** mode commande tooswitch tooclassic, comme indiqué ci-dessous.
+1. Si vous n’avez jamais utilisé l’interface de ligne de commande Azure, consultez [Installer et configurer l’interface de ligne de commande Azure](../cli-install-nodejs.md) et suivez les instructions jusqu’à l’étape où vous sélectionnez votre compte et votre abonnement Azure.
+2. Exécutez la commande **azure config mode** pour passer en mode classique, comme illustré ci-dessous.
 
     ```azurecli
     azure config mode asm
@@ -60,11 +60,11 @@ Ce guide montre comment toocreate un équilibreur de charge interne selon hello 
 
 ## <a name="create-endpoint-and-load-balancer-set"></a>Création d'un point de terminaison et d'un jeu d'équilibrage de charge
 
-scénario de Hello suppose hello des machines virtuelles « DB1 » et « DB2 » dans un service cloud appelé « mytestcloud ». Ces deux machines virtuelles utilisent un réseau virtuel appelé mon « testvnet » avec un sous-réseau « sous-réseau-1 ».
+Le scénario suppose que les machines virtuelles « DB1 » et « DB2 » figurent dans un service cloud appelé « mytestcloud ». Ces deux machines virtuelles utilisent un réseau virtuel appelé mon « testvnet » avec un sous-réseau « sous-réseau-1 ».
 
-Ce guide créera un jeu d'équilibrage de charge en utilisant le port 1433 comme port privé et 1433 comme port local.
+Ce guide crée un jeu d’équilibrage de charge en utilisant le port 1433 comme port privé et 1433 comme port local.
 
-Il s’agit d’un scénario courant où vous avez des machines virtuelles SQL sur l’utilisation de back-end hello que ne sera pas exposé un serveurs de base de données de charge interne équilibrage tooguarantee hello directement à l’aide d’une adresse IP publique.
+Il s'agit d'un scénario courant dans lequel vous utilisez des machines virtuelles SQL sur le serveur principal avec un équilibreur de charge interne afin de garantir que les serveurs de base de données ne soient pas exposés directement à l'aide d'une adresse IP publique.
 
 ### <a name="step-1"></a>Étape 1
 
@@ -76,9 +76,9 @@ azure service internal-load-balancer add --serviceName mytestcloud --internalLBN
 
 Pour plus d'informations, consultez `azure service internal-load-balancer --help` .
 
-Vous pouvez vérifier les propriétés de l’équilibrage de charge interne hello à l’aide de la commande hello `azure service internal-load-balancer list` *nom du service cloud*.
+Vous pouvez vérifier les propriétés de l’équilibreur de charge interne à l'aide de la commande `azure service internal-load-balancer list` *nom du service cloud*.
 
-Cet exemple suit un exemple de sortie de hello :
+Voici un exemple de sortie :
 
     azure service internal-load-balancer list my-testcloud
     info:    Executing command service internal-load-balancer list
@@ -91,7 +91,7 @@ Cet exemple suit un exemple de sortie de hello :
 
 ### <a name="step-2"></a>Étape 2
 
-Vous configurez équilibreur de charge interne hello définir lorsque vous ajoutez le premier point de terminaison hello. Vous allez associer hello point de terminaison, de machines virtuelles et de sonde port toohello équilibreur de charge interne défini dans cette étape.
+Vous configurez le jeu d'équilibrage de charge interne lorsque vous ajoutez le premier point de terminaison. Vous pouvez associer le point de terminaison, la machine virtuelle et le port de sonde au jeu d’équilibrage de charge interne au cours de cette étape.
 
 ```azurecli
 azure vm endpoint create db1 1433 --local-port 1433 --protocol tcp --probe-port 1433 --probe-protocol tcp --probe-interval 300 --probe-timeout 600 --internal-load-balancer-name ilbset
@@ -99,13 +99,13 @@ azure vm endpoint create db1 1433 --local-port 1433 --protocol tcp --probe-port 
 
 ### <a name="step-3"></a>Étape 3 :
 
-Vérifiez la configuration de hello d’équilibrage de charge avec `azure vm show` *nom d’ordinateur virtuel*
+Vérifier la configuration de l’équilibreur de charge avec `azure vm show` *nom de la machine virtuelle*
 
 ```azurecli
 azure vm show DB1
 ```
 
-résultat de Hello sera :
+La sortie se présente comme suit :
 
     azure vm show DB1
     info:    Executing command vm show
@@ -156,7 +156,7 @@ résultat de Hello sera :
 
 ## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a>Création d'un point de terminaison de Bureau à distance pour une machine virtuelle
 
-Vous pouvez créer un trafic réseau de tooforward point de terminaison Bureau à distance à partir d’un port local tooa de port public pour un ordinateur virtuel spécifique à l’aide de `azure vm endpoint create`.
+Vous pouvez créer un point de terminaison de Bureau à distance pour transférer le trafic réseau à partir d’un port public vers un port local pour une machine virtuelle spécifique à l’aide d’ `azure vm endpoint create`.
 
 ```azurecli
 azure vm endpoint create web1 54580 -k 3389
@@ -164,9 +164,9 @@ azure vm endpoint create web1 54580 -k 3389
 
 ## <a name="remove-virtual-machine-from-load-balancer"></a>Suppression d’une machine virtuelle de l’équilibreur de charge
 
-Vous pouvez supprimer un ordinateur virtuel à partir d’un équilibreur de charge interne défini par la suppression du point de terminaison hello associé. Une fois que le point de terminaison hello est supprimé, hello virtual machine n’appartiennent à équilibrage de charge toohello définie plus.
+Vous pouvez supprimer une machine virtuelle d'un jeu d’équilibrage de charge interne en supprimant le point de terminaison associé. Une fois le point de terminaison supprimé, la machine virtuelle n'appartient plus au jeu d'équilibrage de charge.
 
-À l’aide d’exemple hello ci-dessus, vous pouvez supprimer le point de terminaison de hello créé pour l’ordinateur virtuel « DB1 » à partir de l’équilibreur de charge interne « ilbset » en à l’aide de la commande hello `azure vm endpoint delete`.
+À l’aide de l’exemple ci-dessus, vous pouvez supprimer le point de terminaison créé pour la machine virtuelle « DB1 » de l’équilibreur de charge interne « ilbset » à l’aide de la commande `azure vm endpoint delete`.
 
 ```azurecli
 azure vm endpoint delete DB1 tcp-1433-1433

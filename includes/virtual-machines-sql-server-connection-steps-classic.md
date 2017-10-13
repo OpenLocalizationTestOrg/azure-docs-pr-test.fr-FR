@@ -1,23 +1,23 @@
-### <a name="determine-hello-dns-name-of-hello-virtual-machine"></a>Déterminer le nom DNS de hello de machine virtuelle de hello
-tooconnect toohello du moteur de base de données SQL Server à partir d’un autre ordinateur, vous devez connaître hello système DNS (Domain Name) nom de l’ordinateur virtuel de hello. (Il s’agit d’ordinateur virtuel des hello tooidentify utilise hello nom hello internet. Vous pouvez utiliser des adresses IP de hello, mais l’adresse hello peut-être changer lorsque Azure déplace des ressources pour la redondance ou la maintenance. nom DNS de Hello sera stable, car elle peut être redirigé la nouvelle adresse IP de tooa.)  
+### <a name="determine-the-dns-name-of-the-virtual-machine"></a>Détermination du nom DNS de la machine virtuelle
+Pour vous connecter au moteur de base de données SQL Server à partir d'un autre ordinateur, vous devez connaître le nom DNS de la machine virtuelle. Il s'agit du nom utilisé par Internet pour identifier une machine virtuelle. Vous pouvez utiliser l'adresse IP, mais celle-ci peut être modifiée lorsqu'Azure déplace des ressources pour des raisons de redondance ou de maintenance. Le nom DNS reste stable, car il peut être redirigé vers une nouvelle adresse IP.  
 
-1. Bonjour portail Azure (ou à partir de l’étape précédente de hello), sélectionnez **machines virtuelles (classiques)**.
+1. Dans le portail Azure (ou à partir de l’étape précédente), sélectionnez **Machines virtuelles (classique)**.
 2. Sélectionnez votre machine virtuelle SQL.
-3. Sur hello **virtuels** panneau, hello de copie **nom DNS** pour la machine virtuelle de hello.
+3. Dans le panneau **Machine virtuelle**, copiez le **Nom DNS** de la machine virtuelle.
    
     ![Nom DNS](./media/virtual-machines-sql-server-connection-steps/sql-vm-dns-name.png)
 
-### <a name="connect-toohello-database-engine-from-another-computer"></a>Se connecter toohello du moteur de base de données à partir d’un autre ordinateur
-1. Sur un ordinateur connecté toohello internet, ouvrez SQL Server Management Studio.
-2. Bonjour **connecter tooServer** ou **connecter tooDatabase moteur** la boîte de dialogue hello **nom du serveur** , entrez le nom DNS de hello de machine virtuelle de hello (déterminée Bonjour la tâche précédente) et un numéro de port de point de terminaison public au format hello de *NomDNS, numéro_port* comme **mysqlvm.cloudapp.net,57500**.
+### <a name="connect-to-the-database-engine-from-another-computer"></a>Connexion au moteur de base de données à partir d'un autre ordinateur
+1. Sur un ordinateur connecté à Internet, ouvrez SQL Server Management Studio.
+2. Dans la boîte de dialogue **Se connecter au serveur** ou **Se connecter au moteur de base de données**, dans la zone **Nom du serveur**, entrez le nom DNS de la machine virtuelle (déterminé lors de la tâche précédente), ainsi que le numéro de port d’un point de terminaison public au format *NomDNS,numéro_port* tel que **mysqlvm.cloudapp.net,57500**.
    
     ![Connexion en utilisant SSMS](./media/virtual-machines-sql-server-connection-steps/33Connect-SSMS.png)
    
-    Si vous avez oublié le numéro de port du point de terminaison public hello que vous avez créé précédemment, vous pouvez le trouver dans hello **points de terminaison** zone Hello **machine virtuelle** panneau.
+    Si vous ne connaissez pas le numéro de port du point de terminaison public créé précédemment, vous le trouverez dans la zone **Points de terminaison** du panneau **Machine virtuelle**.
    
     ![Port public](./media/virtual-machines-sql-server-connection-steps/sql-vm-port-number.png)
-3. Bonjour **authentification** boîte, sélectionnez **l’authentification SQL Server**.
-4. Bonjour **connexion** zone, entrez un nom hello d’une connexion que vous avez créé dans une tâche précédente.
-5. Bonjour **mot de passe** boîte, un mot de passe hello type de connexion hello que vous créez dans une tâche précédente.
+3. Dans la zone **Authentification**, sélectionnez **Authentification SQL Server**.
+4. Dans la zone **Connexion** , entrez le nom d'une connexion créée lors d'une tâche précédente.
+5. Dans la zone **Mot de passe** , entrez le mot de passe de connexion que vous avez créé lors d'une tâche précédente.
 6. Cliquez sur **Connecter**.
 

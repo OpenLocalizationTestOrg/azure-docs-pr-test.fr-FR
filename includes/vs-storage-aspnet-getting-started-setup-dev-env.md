@@ -1,31 +1,31 @@
-## <a name="set-up-hello-development-environment"></a>Configuration d’environnement de développement hello
+## <a name="set-up-the-development-environment"></a>Configuration de l’environnement de développement
 
-Cette section vous guide Configuration de votre environnement de développement, y compris la création d’une application ASP.NET MVC, ajoutez une connexion de Services connectés, ajoutez un contrôleur, et en spécifiant hello nécessaire directives d’espace de noms.
+Cette section vous guide lors de la configuration d’un environnement de déploiement. Cela inclut la création d’une application MVC ASP.NET, l’ajout d’une connexion Services connectés et d’un contrôleur et la spécification des directives requises portant sur les espaces de noms.
 
 ### <a name="create-an-aspnet-mvc-app-project"></a>Création d’un projet d’application MVC ASP.NET
 
 1. Ouvrez Visual Studio.
 
-1. Sélectionnez **fichier -> Nouveau -> projet** à partir du menu principal de hello
+1. Sélectionnez **Fichier -> Nouveau -> Projet** dans le menu principal.
 
-1. Sur hello **nouveau projet** boîte de dialogue, spécifiez les options de hello en hello figure suivante :
+1. Dans la boîte de dialogue **Nouveau projet**, spécifiez les options requises, comme indiqué dans la figure suivante :
 
     ![Création d’un projet ASP.NET](./media/vs-storage-aspnet-getting-started-setup-dev-env/vs-storage-aspnet-getting-started-setup-dev-env-1.png)
 
 1. Sélectionnez **OK**.
 
-1. Sur hello **nouveau projet ASP.NET** boîte de dialogue, spécifiez les options de hello en hello figure suivante :
+1. Dans la boîte de dialogue **Nouveau projet ASP.NET**, spécifiez les options requises, comme indiqué dans la figure suivante :
 
     ![Spécification de MVC](./media/vs-storage-aspnet-getting-started-setup-dev-env/vs-storage-aspnet-getting-started-setup-dev-env-2.png)
 
 1. Sélectionnez **OK**.
 
-### <a name="use-connected-services-tooconnect-tooan-azure-storage-account"></a>Utiliser le compte de stockage Azure des Services connectés tooconnect tooan
+### <a name="use-connected-services-to-connect-to-an-azure-storage-account"></a>Utiliser la fonctionnalité Services connectés pour se connecter à un compte de stockage Azure
 
-1. Bonjour **l’Explorateur de solutions**, cliquez sur le projet de hello et dans le menu contextuel de hello, sélectionnez **Ajouter -> Service connecté**.
+1. Dans l’**Explorateur de solutions** de Visual Studio, cliquez avec le bouton droit sur le projet, puis sélectionnez **Ajouter -> Service connecté** dans le menu contextuel.
 
-1. Sur hello **ajouter un Service connecté** boîte de dialogue, sélectionnez **Azure Storage**, puis sélectionnez **configurer**.
+1. Dans la boîte de dialogue **Ajouter un service connecté**, choisissez **Stockage Azure**, puis cliquez sur le bouton **Configurer**.
 
     ![Boîte de dialogue Ajouter un service connecté](./media/vs-storage-aspnet-getting-started-setup-dev-env/vs-storage-aspnet-getting-started-setup-dev-env-3.png)
 
-1. Sur hello **Azure Storage** boîte de dialogue, sélectionnez hello compte de stockage Azure souhaité avec lequel vous souhaitez toowork, puis sélectionnez **ajouter**.
+1. Dans la boîte de dialogue **Stockage Azure**, sélectionnez le compte de stockage Azure que vous souhaitez utiliser, puis cliquez sur **Ajouter**.

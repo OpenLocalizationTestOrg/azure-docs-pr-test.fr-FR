@@ -1,6 +1,6 @@
 ---
-title: aaaAzure Notification Hubs - recommandations de diagnostic
-description: "Instructions sur comment toodiagnose commun problèmes avec Azure Notification Hubs."
+title: "Azure Notification Hubs : instructions relatives au diagnostic"
+description: "Instructions sur la méthode de diagnostic des problèmes courants avec Azure Notification Hubs."
 services: notification-hubs
 documentationcenter: Mobile
 author: ysxu
@@ -14,108 +14,108 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: e374278f2bfdfad36ba091e8846059cd184c17ef
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 32e3a2e6f840afd865375a622cfae0d33ba65090
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-notification-hubs---diagnosis-guidelines"></a>Azure Notification Hubs : instructions relatives au diagnostic
 ## <a name="overview"></a>Vue d'ensemble
-Une des questions les plus fréquentes hello soumises par nos clients d’Azure Notification Hubs est comment toofigure out pourquoi ils ne voient pas une notification envoyée à partir de leur serveur principal d’application s’affichent sur l’appareil client de hello, où et pourquoi les notifications ont été supprimées et comment toofix cela. Dans cet article nous allons examiner hello différentes raisons pour lesquelles des notifications peuvent être perdues ou ne se terminent pas sur les appareils hello. Nous allons également des manières dans laquelle vous pouvez analyser et déterminer la cause première hello. 
+Une des questions les plus courantes de nos clients Azure Notification Hubs est de savoir comment déterminer pourquoi ils ne voient pas une notification envoyée à partir de leur serveur principal d’application sur le périphérique client : où et pourquoi les notifications ont-elles été supprimées et comment résoudre ce problème. Dans cet article nous allons examiner les différentes raisons pour lesquelles les notifications peuvent être perdues ou n’arrivent pas sur les périphériques. Nous allons également examiner des méthodes vous permettant d’analyser et de déterminer la cause principale du problème. 
 
-Tout d’abord, il est critique toounderstand comment Azure Notification Hubs pousse les appareils toohello des notifications.
+Tout d’abord, il est essentiel de comprendre comment Azure Notification Hubs envoie des notifications aux appareils.
 ![][0]
 
-Dans un flux de notification d’envoi par défaut, le message de type hello est envoyé de hello **principale** trop**Azure Notification Hub (NH)** qui est à son tour un traitement sur toutes les inscriptions hello tenant hello du compte configuré autrement dit, toutes les inscriptions de hello nécessitant une notification push de hello tooreceive balises & toodetermine expressions de balise « cibles ». Ces inscriptions peuvent s’étendre sur tout ou partie de nos plateformes prises en charge : iOS, Google, Windows, Windows Phone, Kindle et Baidu pour Android en Chine. Une fois que les cibles de hello sont établies, NH puis push notifications, divisé en plusieurs lots d’inscriptions, toohello périphérique spécifiques à la plateforme **du Service de Notification Push (PNS)** -par exemple, APNS d’Apple, GCM pour Google etc.. NH authentifie avec hello que PNS respectifs basé sur les informations d’identification hello que vous définissez Bonjour portail classique Azure sur la page Configurer un concentrateur de Notification de hello. Hello PNS transmet ensuite respectifs hello-notifications-toohello **les périphériques clients**. Il s’agit de plateforme hello recommandé des notifications push de façon toodeliver et Remarque qu’hello dernier tronçon de remise de notification a lieu entre la plateforme de hello PNS et de périphérique de hello. Il y a donc quatre composants principaux (*client*, *serveur principal d’application*, *Azure Notification Hubs (NH)* et *services de notification Push [PNS]*), chacun d’eux pouvant être à l’origine de la perte de notifications. Plus de détails sur cette architecture sont disponibles sur la page [Vue d’ensemble de Notification Hubs].
+Dans un flux de notification d’envoi par défaut, le message est envoyé à partir du **serveur principal d’application** à **Azure Notification Hub (NH)**, qui à son tour effectue un traitement sur toutes les inscriptions en prenant en compte les balises et les expressions de balises configurées pour déterminer les « cibles » : par exemple, tous les enregistrements qui ont besoin de recevoir la notification Push. Ces inscriptions peuvent s’étendre sur tout ou partie de nos plateformes prises en charge : iOS, Google, Windows, Windows Phone, Kindle et Baidu pour Android en Chine. Une fois les cibles établies, NH transmet les notifications, réparties sur plusieurs lots d’inscriptions, au **service de notification Push (PNS)** propre à la plateforme de l’appareil : par exemple, APNs pour Apple, GCM pour Google, etc. NH s’authentifie avec le PNS respectif, conformément aux informations d’identification que vous définissez dans le portail Azure Classic dans la page Configuration de Notification Hubs. Le PNS transmet alors les notifications aux **appareils clients** respectifs. Il s’agit de la méthode recommandée pour la plateforme pour fournir des notifications Push. Notez que le dernier tronçon de remise des notifications s’effectue entre le PNS de la plateforme et le périphérique. Il y a donc quatre composants principaux (*client*, *serveur principal d’application*, *Azure Notification Hubs (NH)* et *services de notification Push [PNS]*), chacun d’eux pouvant être à l’origine de la perte de notifications. Plus de détails sur cette architecture sont disponibles sur la page [Vue d’ensemble de Notification Hubs].
 
-Toodeliver échec notifications peuvent se produire au cours de hello initiale intermédiaires/test phase qui peut indiquer un problème de configuration ou il peut se produire en production où tout ou partie des hello notifications peut-être être mise en route supprimée indiquant une application plus approfondie la messagerie ou problème de modèle. Dans la section de hello, ci-dessous nous allons examiner différents scénarios de notifications déposé allant toohello plus rare type courant, que certains d'entre eux vous souhaiterez peut-être évident et d’autres pas bien. 
+L’échec de la remise de notifications peut se produire pendant la phase initiale de test/de mise en lots. Cela peut indiquer un problème de configuration. Il peut également se produire lors de la production, où l’ensemble ou une partie des notifications peut être égarée, ce qui indique un problème de modèle d’application ou de messagerie plus sérieux. Dans la section ci-dessous, nous allons examiner différents scénarios de notifications supprimées allant des plus courants aux plus rares : certains vous sembleront peut-être évidents mais d’autres moins. 
 
 ## <a name="azure-notifications-hub-mis-configuration"></a>Mauvaise configuration d’Azure Notification Hubs
-Azure Notification Hubs doit tooauthenticate lui-même dans le contexte de hello de toohello de développeur hello application toobe toosuccessfully peut envoyer des notifications PNS respectifs. Ceci est rendu possible par le développeur hello création d’un compte de développeur dans un appel de respectifs hello (Google, Apple, etc. de Windows) et puis inscrire leur application où obtenir des informations d’identification qui doivent toobe configuré dans le portail hello sous Notification Section de configuration de concentrateurs. Si aucune notification n’apportez via la première étape doit être tooensure que les informations d’identification correctes hello sont configurées dans hello Hub de Notification leur mise en correspondance avec l’application hello créé sous son compte de développeur spécifique de plate-forme. Vous trouverez notre [didacticiels de mise en route] toogo utile sur ce processus de manière étape par étape. Voici certaines configurations erronées communes :
+Azure Notification Hubs a besoin de s’authentifier dans le contexte de l’application du développeur pour pouvoir envoyer avec succès des notifications aux PNS respectifs. Pour cela, le développeur doit créer un compte de développeur avec la plateforme correspondante (Google, Apple, Windows, etc.) et inscrire son application où il obtient des informations d’identification à configurer dans le portail sous la section de configuration de Notification Hubs. Si vous n’obtenez aucune notification, la première étape consiste à s’assurer que les informations d’identification adéquates sont configurées dans Notification Hub, en les faisant correspondre à l’application créée dans votre compte de développeur spécifique à la plate-forme. Nos [Didacticiels de prise en main] sont utiles pour traiter ce processus étape par étape. Voici certaines configurations erronées communes :
 
 1. **Généralités**
    
-    a) Vérifiez que que votre nom de hub de notification (sans les fautes de frappe) est hello même :
+    a) Assurez-vous que le nom de votre hub de notification (sans fautes de frappe) est le même :
    
-   * Lorsque vous inscrivez à partir du client de hello, 
-   * Où vous envoyez des notifications à partir du serveur principal hello,  
-   * Où vous avez configuré les informations d’identification PNS de hello et 
-   * Dont informations d’identification SAP que vous avez configuré sur hello client et hello principal. 
+   * à l’endroit où vous vous inscrivez sur le client 
+   * à l’endroit où vous envoyez des notifications depuis le serveur principal  
+   * à l’endroit où vous avez configuré les informations d’identification PNS 
+   * pour les informations d’identification SAS que vous avez configurées sur le client et le serveur principal. 
      
-     (b) Vérifiez que vous utilisez hello SAS configuration chaînes sur le client de hello et principal d’application hello. En règle générale, vous devez utiliser hello **DefaultListenSharedAccessSignature** sur le client de hello et **DefaultFullSharedAccessSignature** sur le serveur principal d’application hello (ce qui donne l’autorisation toobe toohello de notification en mesure de toosend NH)
+     b) Assurez-vous que vous utilisez les chaînes de configuration SAS adéquates sur le client et le serveur principal d’application. En règle générale, vous devez utiliser **DefaultListenSharedAccessSignature** sur le client et **DefaultFullSharedAccessSignature** sur le serveur d’application principal (ce qui autorise l’envoi de notifications à NH)
 2. **Configuration d’Apple Push Notification Service (APNS)**
    
-    Vous devez disposer de deux hubs différents : un pour la production et un autre pour vos essais. Cela signifie que le téléchargement de certificat hello que vous allez toouse dans concentrateur indépendant de bac à sable environnement tooa et certificat hello que vous allez toouse dans le hub de production tooa distinct. N’essayez pas de tooupload différents types de certificats toohello même concentrateur telle qu’elle peut entraîner des échecs de notification vers le bas de la ligne de hello. Si vous trouvez vous-même dans un emplacement où vous avez téléchargé par inadvertance les différents types de certificat toohello même concentrateur, il est recommandé concentrateur de hello toodelete et les frais de début. Si, pour une raison quelconque, vous n’êtes pas toodelete en mesure de concentrateur de hello puis à hello très moins, vous devez supprimer toutes les inscriptions existantes hello du concentrateur de hello. 
+    Vous devez disposer de deux hubs différents : un pour la production et un autre pour vos essais. Il convient donc de télécharger le certificat que vous utiliserez dans un environnement de bac à sable (sandbox) sur un hub et le certificat que vous utiliserez en production sur un hub distinct. N’essayez pas de télécharger différents types de certificats sur le même hub, car cela pourrait provoquer des défaillances de notification plus tard. Si vous avez téléchargé par inadvertance différents types de certificat sur le même hub, il est recommandé de supprimer le hub et de recommencer. Si vous ne pouvez pas supprimer le hub pour une raison quelconque, vous devez au moins supprimer tous les enregistrements existants du hub. 
 3. **Configuration de Google Cloud Messaging (GCM)** 
    
     a) Assurez-vous que vous activez « Google Cloud Messaging pour Android » dans votre projet cloud. 
    
     ![][2]
    
-    (b) Vérifiez que vous créez une clé « serveur » lors de l’obtention des informations d’identification hello quels NH utilisera tooauthenticate avec GCM. 
+    b) Veillez à créer une « clé serveur » lors de l’obtention des informations d’identification qu’utilisera NH pour s’authentifier avec GCM. 
    
     ![][3]
    
-    (c) Vérifiez que vous devez configurer « ID de projet » sur le client hello qui est une entité entièrement numérique que vous pouvez obtenir à partir du tableau de bord hello :
+    c) Assurez-vous que vous avez configuré l’« ID de projet » sur le client. C’est une entité entièrement numérique que vous pouvez obtenir à partir du tableau de bord :
    
     ![][1]
 
 ## <a name="application-issues"></a>Problèmes de l’application
 1) **Balises/expressions de balises**
 
-Si vous utilisez des balises ou toosegment d’expressions de balise votre public, il est toujours possible que lorsque vous envoyez des notifications de hello, il n’existe aucune cible n’a été trouvée basées sur des expressions de balises/balise hello que vous spécifiez dans votre appel d’envoi. Il est préférable de tooreview votre tooensure les enregistrements qu’il existe des balises qui correspondent lorsque vous envoyez une notification et vérifiez accusé de réception hello uniquement à partir de clients hello avec ces enregistrements. Par exemple, Si tous les enregistrements avec NH ont été réalisés avec par exemple la balise « Politique » et que vous envoyez une notification avec la balise « Sports », il ne sera pas envoyé tooany appareil. Un cas complexe peut impliquer des expressions de balises où vous n’êtes inscrit qu’avec « Balise A » OR « Balise B », mais les expressions de balises que vous ciblez lors de l’envoi de notifications sont « Balise A && Balise B ». Bonjour diagnostiquer automatiquement section conseils ci-dessous, il existe dans laquelle vous pouvez consulter vos enregistrements, ainsi que les balises hello qu’ils ont des méthodes. 
+Si vous utilisez des balises ou des expressions de balises pour segmenter votre public, il est possible que lorsque vous envoyez la notification, aucune cible ne soit trouvée, selon les balises/expressions de balises que vous spécifiez dans votre appel d’envoi. Il est préférable de consulter vos enregistrements pour vous assurer qu’il existe des balises correspondantes lorsque vous envoyez une notification, puis de vérifier l’accusé de réception uniquement à partir des clients avec les enregistrements correspondants. Par exemple, si tous vos enregistrements avec NH ont été réalisés avec la balise « Politique » et que vous envoyez une notification avec la balise « Sports », elle ne sera envoyée à aucun appareil. Un cas complexe peut impliquer des expressions de balises où vous n’êtes inscrit qu’avec « Balise A » OR « Balise B », mais les expressions de balises que vous ciblez lors de l’envoi de notifications sont « Balise A && Balise B ». Dans la section de conseils pour le diagnostic personnel ci-dessous, nous vous proposons des méthodes pour examiner vos inscriptions ainsi que leurs balises. 
 
 2) **Problèmes liés aux modèles**
 
-Si vous utilisez des modèles, assurez-vous que vous suivez les indications hello décrites à [des conseils de modèle]. 
+Si vous utilisez des modèles, assurez-vous que vous suivez les instructions décrites dans nos [Conseils relatifs aux modèles]. 
 
 3) **Inscriptions non valides**
 
-En supposant que hello que Hub de Notification a été correctement configuré et toutes les expressions de balises/balises ont été utilisées correctement résultant dans la zone Rechercher hello de cibles valides des notifications de hello toowhich doivent toobe envoyé, NH déclenche de plusieurs lots de traitement en parallèle - chaque lot envoi de messages ensemble tooa d’inscriptions. 
+En supposant que le hub de notification est correctement configuré et que les balises/expressions de balises ont été utilisées correctement afin de trouver des cibles valides auxquelles envoyer les notifications, NH déclenche plusieurs lots de traitement en parallèle, chaque lot envoyant des messages à un ensemble d’inscriptions. 
 
 > [!NOTE]
-> Étant donné que nous hello du traitement en parallèle, nous ne garantissent pas commande hello dans le hello notifications seront remises. 
+> Étant donné que le traitement est effectué en parallèle, l’ordre dans lequel les notifications sont remises n’est pas garanti. 
 > 
 > 
 
-Azure Notifications Hub est optimisé pour un modèle de remise de message « au plus une fois ». Cela signifie que nous tentons une déduplication afin qu’aucune notification n’est remise tooa périphérique plusieurs fois. tooensure cela nous via les inscriptions hello et assurez-vous qu’un seul message est envoyé par l’identificateur de l’appareil avant envoi réellement toohello de message hello PNS. Comme chaque lot est envoyé toohello PNS, qui à son tour est d’accepter et valider les enregistrements de hello, il est possible que hello PNS détecte une erreur avec un ou plusieurs des inscriptions de hello dans un lot, renvoie une erreur de tooAzure NH et arrête le traitement et la suppression qui traitement par lots complètement. Cela est particulièrement vrai pour un APNS qui utilise un protocole de flux TCP. Bien que nous sommes optimisé au plus une fois remise, dans ce cas, nous supprimons hello défaillant d’inscription à partir de notre base de données, puis les nouvelles tentatives de remise des notifications pour reste hello d’appareils hello dans ce lot.
+Azure Notifications Hub est optimisé pour un modèle de remise de message « au plus une fois ». Cela signifie qu’il entreprend une déduplication, afin qu’aucune notification ne soit remise plusieurs fois à un même périphérique. Pour s’en assurer, il est nécessaire d’examiner les inscriptions et de vérifier qu’un seul message est envoyé par identificateur de périphérique, avant son envoi au PNS. Étant donné que chaque lot est envoyé au PNS, qui à son tour accepte et valide les inscriptions, il est possible que le PNS détecte une erreur sur une ou plusieurs inscriptions d’un lot, renvoie une erreur à Azure NH, arrête le traitement et supprime ainsi l’intégralité du lot. Cela est particulièrement vrai pour un APNS qui utilise un protocole de flux TCP. Bien que notre configuration soit optimisée pour la remise « au plus une fois », nous supprimons dans ce cas l’enregistrement défaillant de notre base de données, puis réessayons la remise des notifications pour le reste des appareils du lot.
 
-Vous pouvez obtenir des informations sur l’erreur de tentative de remise a échoué hello par rapport à une inscription à l’aide de hello API REST de Azure Notification Hubs : [par Message télémétrie : obtenir de télémétrie de Message de Notification](https://msdn.microsoft.com/library/azure/mt608135.aspx) et [PNS commentaires](https://msdn.microsoft.com/library/azure/mt705560.aspx). Consultez hello [SendRESTExample](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/SendRestExample) par exemple de code.
+Des messages d’erreur peuvent s’afficher lorsqu’une tentative de remise vis-à-vis d’une inscription utilisant les API REST d’Azure Notification Hubs échoue : [Per Message Telemetry: Get Notification Message Telemetry](https://msdn.microsoft.com/library/azure/mt608135.aspx) (Télémétrie par message : télémétrie d’obtention de messages de notification) et les [commentaires PNS](https://msdn.microsoft.com/library/azure/mt705560.aspx). Voir le répertoire [SendRESTExample](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/SendRestExample) pour un exemple de code.
 
 ## <a name="pns-issues"></a>Problèmes de PNS
-Une fois que le message de notification d’appel a été reçu par Bonjour PNS respectifs, il s’agit de sa responsabilité toodeliver hello toohello de périphérique de notification. Azure Notification Hubs est en dehors de l’image hello ici et n’a aucun contrôle quand ou si la notification de hello est en train de toobe remis toohello appareil. Étant donné que les services de notification de plateforme hello sont assez fiables, notifications généralement des appareils tooreach hello en quelques secondes de hello PNS. Si hello PNS toutefois limite Azure Notification Hubs applique une stratégie d’interruption exponentielle et si hello PNS reste inaccessible pendant 30 minutes, nous avoir une stratégie de placer tooexpire et supprimer définitivement les ces messages. 
+Lorsque le message de notification a été reçu par le PNS respectif, il est de sa responsabilité de remettre la notification au périphérique. Azure Notification Hubs n’intervient pas et n’a aucun contrôle sur le moment de livraison ou la livraison en elle-même à l’appareil. Étant donné que les services de notification de plateforme sont assez solides, les notifications ont tendance à atteindre les périphériques en quelques secondes à partir du PNS. Toutefois, si le PNS connaît un goulot d’étranglement, Azure Notification Hubs applique une stratégie d’interruption exponentielle : si le PNS reste inaccessible pendant 30 minutes, il existe une stratégie pour faire expirer et supprimer ces messages définitivement. 
 
-Si un système PNS tente toodeliver une notification mais hello appareil est hors connexion, notification de hello est stockée par hello PNS pour une période de temps limitée et remise toohello appareil lorsqu’il est disponible. Seule une notification récente est stockée pour une application donnée. Si plusieurs notifications sont envoyées à l’appareil de hello est hors connexion, chaque nouvelle notification provoque la notification préalable de hello toobe ignoré. Ce comportement de conserver uniquement les notifications les plus récents hello est tooas auxquels des notifications dans APNS de fusion et de réduction dans GCM (qui utilise une clé de réduction). Si l’appareil de hello reste hors connexion pendant une longue période, les notifications qui ont été stockées pour celle-ci sont ignorées. Source : [Aide sur APNs] & [Aide sur GCM]
+Si un PNS tente de remettre une notification, mais que le périphérique est en mode hors connexion, la notification est stockée par le PNS pendant une période limitée et remise au périphérique lorsqu’il est disponible. Seule une notification récente est stockée pour une application donnée. Si plusieurs notifications sont envoyées lorsque le périphérique est hors connexion, chaque nouvelle notification provoque la suppression de la notification préalable. Ce comportement consistant à ne conserver que la dernière notification est appelé fusion des notifications dans APN et réduction dans GCM (qui utilise une clé de réduction). Si le périphérique reste hors connexion pendant une longue période, les notifications qui ont été stockées sont ignorées. Source : [Aide sur APNs] & [Aide sur GCM]
 
-Avec Azure Notification Hubs - vous pouvez transmettre une clé de fusion via un en-tête HTTP à l’aide de hello générique `SendNotification` API (par exemple, pour le Kit de développement logiciel .NET – `SendNotificationAsync`) qui accepte également les en-têtes HTTP qui sont passées en tant qu’est toohello PNS respectifs. 
+Avec Azure Notification Hubs : vous pouvez transmettre une clé de fusion avec un en-tête HTTP avec `SendNotification` l'API générique (par exemple, pour le kit de développement logiciel .NET –`SendNotificationAsync`), qui transmet également les en-têtes HTTP tels quels au PNS respectif. 
 
 ## <a name="self-diagnose-tips"></a>Conseils pour le diagnostic personnel
-Ici, nous allons examiner hello différents moyens toodiagnose et racine provoquent des problèmes de concentrateur de Notification :
+Nous examinerons ici les différents moyens pour diagnostiquer et trouver les causes des problèmes de Notification Hub :
 
 ### <a name="verify-credentials"></a>Vérification des informations d’identification
 1. **Portail des développeurs PNS**
    
-    Les vérifier au hello respectifs PNS developer portal (APNS, GCM, WNS, etc.) à l’aide de notre [didacticiels de mise en route].
+    Vérifiez-les dans le portail des développeurs PNS respectif (APNS, GCM, WNS, etc.) à l’aide de nos [Didacticiels de prise en main].
 2. **Portail Azure Classic**
    
-    Accédez toohello configurer onglet tooreview et correspondent aux informations d’identification hello avec ceux obtenus à partir du portail des développeurs hello PNS. 
+    Accédez à l’onglet Configurer pour examiner et faire correspondre les informations d’identification avec celles obtenues sur le portail des développeurs PNS. 
    
     ![][4]
 
 ### <a name="verify-registrations"></a>Vérification des inscriptions
 1. **Visual Studio**
    
-    Si vous utilisez Visual Studio pour le développement vous pouvez connecter tooMicrosoft Azure et afficher et gérer un ensemble de services Azure, y compris le Hub de Notifications à partir de « Explorateur de serveurs ». Cela est particulièrement utile pour votre environnement de développement et de test. 
+    Si vous utilisez Visual Studio à des fins de développement, vous pouvez vous connecter à Microsoft Azure et afficher et gérer un ensemble de services Azure, y compris Notifications Hub depuis l’« Explorateur de serveurs ». Cela est particulièrement utile pour votre environnement de développement et de test. 
    
     ![][9]
    
-    Vous pouvez afficher et gérer toutes les inscriptions hello dans votre concentrateur qui sont classées correctement pour l’inscription de plateforme, natif ou modèle de toutes les balises, identificateur de la solution, date d’expiration hello et les id d’enregistrement. Vous pouvez également modifier une inscription volée hello - ce qui est utile par exemple si vous souhaitez tooedit de balises. 
+    Vous pouvez afficher et gérer toutes les inscriptions dans votre hub, où elles sont classées par plate-forme, inscription native ou par modèle, balise, identificateur PNS, ID d’enregistrement et date d’expiration. Vous pouvez également modifier un enregistrement à la volée, ce qui s’avère utile si vous souhaitez modifier toutes les balises par exemple. 
    
     ![][8]
    
    > [!NOTE]
-   > Inscriptions tooedit de fonctionnalités Visual Studio doivent uniquement être utilisées pendant le développement et de test avec un nombre limité d’enregistrements. Envisagez de vos enregistrements en bloc, s’il se produit une toofix nécessaire à l’aide des fonctionnalités de l’inscription d’exportation/importation hello décrites ici - [les enregistrements d’exportation/importation](https://msdn.microsoft.com/library/dn790624.aspx)
+   > Les fonctionnalités de Visual Studio pour modifier les enregistrements doivent uniquement servir au cours du développement/test, avec un nombre limité d’enregistrements. Si vous avez besoin de corriger vos enregistrements en bloc, envisagez d'utiliser la fonctionnalité d'exportation/importation d'enregistrements ici : [Exportation/importation d'enregistrements](https://msdn.microsoft.com/library/dn790624.aspx)
    > 
    > 
 2. **Explorateur Service Bus**
@@ -125,16 +125,16 @@ Ici, nous allons examiner hello différents moyens toodiagnose et racine provoqu
 ### <a name="verify-message-notifications"></a>Vérification des notifications de messages
 1. **Portail Azure Classic**
    
-    Vous pouvez accéder toohello « Debug » onglet toosend test notifications tooyour les clients sans avoir besoin de n’importe quel serveur principal de service des et en cours d’exécution. 
+    Vous pouvez accéder à l’onglet « Debug » pour envoyer des notifications de test à vos clients sans avoir besoin d’un serveur principal de service en cours d’exécution. 
    
     ![][7]
 2. **Visual Studio**
    
-    Vous pouvez également envoyer des notifications de test à partir de confort hello de Visual Studio :
+    Vous pouvez également envoyer des notifications de test à partir de Visual Studio :
    
     ![][10]
    
-    Vous pouvez en savoir plus sur hello Visual Studio Notification Hub Azure explorer les fonctionnalités ici : 
+    Vous en saurez davantage sur les fonctionnalités de l’Explorateur Azure Visual Studio Notification Hub ici : 
    
    * [Vue d’ensemble de l’Explorateur de serveurs Visual Studio]
    * [Billet de blog concernant l’Explorateur de serveurs de Visual Studio : 1]
@@ -143,19 +143,19 @@ Ici, nous allons examiner hello différents moyens toodiagnose et racine provoqu
 ### <a name="debug-failed-notifications-review-notification-outcome"></a>Débogage de notifications ayant échoué/analyse des résultats de notification
 **Propriété EnableTestSend**
 
-Lorsque vous envoyez une notification via des concentrateurs de Notification, initialement il simplement Obtient la file d’attente pour toodo NH traitement toofigure out toutes ses cibles, puis finalement NH envoie celui-ci toohello PNS. Cela signifie que lorsque vous utilisez l’API REST ou des clients de hello SDK, hello retour réussi de votre envoi appel seul moyen qui hello message a été correctement la file d’attente avec le Hub de Notification. Il ne donne pas une idée de ce qui s’est produite lors de la NH obtenu au final toosend hello message tooPNS. Si votre notification n’est pas arrivée au périphérique de client hello, il est possible que lorsque NH essayées toodeliver hello message tooPNS, erreur lors de la taille de charge utile par exemple hello dépassé hello nombre maximum par hello PNS ou sont des informations d’identification de hello configurées dans NH tooget etc. non valide une idée des erreurs PNS hello, nous avons introduit une propriété appelée [EnableTestSend fonctionnalité]. Cette propriété est automatiquement activée lorsque vous envoyez le test des messages à partir de portail de hello ou client Visual Studio et vous permet de toosee détaillée les informations de débogage. Vous pouvez utiliser cette fonction via des API prenant l’exemple hello Hello .NET SDK, où il n’est disponible actuellement et serez ajouté tooall kits de développement logiciel client par la suite. toouse avec l’appel REST hello, simplement ajouter un paramètre de chaîne de requête appelé « test » à fin hello de votre appel d’envoi, par exemple 
+Lorsque vous envoyez une notification via Notification Hubs, elle est d’abord placée en file d’attente, pour être traitée par NH afin de déterminer toutes ses cibles. NH l’envoie ensuite au PNS. Lorsque vous utilisez l’API REST ou un Kit de développement logiciel (SDK) client, le retour réussi de votre appel d’envoi signifie donc uniquement que le message a été correctement placé dans la file d’attente de Notification Hub. Il ne permet pas de voir ce qui s’est passé lorsque NH a finalement envoyé le message à PNS. Si votre notification n’est pas arrivée sur le périphérique client, il est possible que lorsque NH a tenté de remettre le message au PNS, une erreur s’est produite, par exemple, la taille de la charge utile a dépassé le maximum autorisé par le PNS ou les informations d’identification configurées dans NH n’étaient pas valides, etc. Pour obtenir un aperçu des erreurs PNS, nous avons introduit une propriété appelée [fonctionnalité EnableTestSend]. Cette propriété est activée automatiquement lorsque vous envoyez des messages de test à partir du portail ou du client Visual Studio et vous permet de voir les informations de débogage détaillées. Vous pouvez utiliser cette fonction via les API, en prenant l’exemple du Kit de développement logiciel (SDK) .NET, dans lequel elle est disponible dès maintenant et sera ajoutée par la suite à tous les Kits de développement logiciel (SDK) clients. Pour utiliser cette option avec l’appel REST, ajoutez simplement un paramètre querystring appelé « test » à la fin de votre appel d’envoi, par exemple 
 
     https://mynamespace.servicebus.windows.net/mynotificationhub/messages?api-version=2013-10&test
 
 *Exemple (Kit de développement logiciel (SDK) .NET)*
 
-Supposons que vous utilisez le Kit de développement .NET toosend une notification toast natif :
+Supposons que vous utilisiez le Kit de développement logiciel (SDK) .NET pour envoyer une notification toast native :
 
     NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(connString, hubName);
     var result = await hub.SendWindowsNativeNotificationAsync(toast);
     Console.WriteLine(result.State);
 
-`result.State`sera simplement état `Enqueued` à fin hello d’exécution hello sans idée tout ce qui est devenu tooyour push. Vous pouvez désormais utiliser hello `EnableTestSend` propriété booléenne lors de l’initialisation hello `NotificationHubClient` et vous pouvez obtenir l’état détaillé sur les erreurs PNS hello rencontré lors de l’envoi de notification de hello. appel d’envoi Hello ici prendra plus de temps tooreturn, car elle renvoie uniquement une fois NH a remis le résultat hello toodetermine hello notification tooPNS. 
+`result.State` affichera simplement `Enqueued` à la fin de l’exécution, sans information sur ce qui est arrivé à votre notification Push. Vous pouvez désormais utiliser la propriété booléenne `EnableTestSend` lors de l’initialisation de `NotificationHubClient` et obtenir l’état détaillé des erreurs PNS rencontrées lors de l’envoi de la notification. L’appel d’envoi prendra plus de temps, car il retourne uniquement après que NH a envoyé la notification au PNS pour en déterminer le résultat. 
 
     bool enableTestSend = true;
     NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(connString, hubName, enableTestSend);
@@ -173,31 +173,31 @@ Supposons que vous utilisez le Kit de développement .NET toosend une notificati
     DetailedStateAvailable
     windows
     7619785862101227384-7840974832647865618-3
-    hello Token obtained from hello Token Provider is wrong
+    The Token obtained from the Token Provider is wrong
 
-Ce message indique les informations d’identification non valides sont configurées dans le hub de notification hello ou un problème avec les enregistrements de hello sur le concentrateur de hello et hello recommandé cours seraient toodelete cette inscription et permettent de client de hello recréer avant l’envoi de hello Message. 
+Ce message indique que des informations d’identification non valides sont configurées dans le hub de notification ou qu’il existe un problème avec les inscriptions sur le hub. La marche à suivre recommandée consiste à supprimer cet enregistrement afin de permettre au client de le recréer avant d’envoyer le message. 
 
 > [!NOTE]
-> Notez que l’utilisation de cette propriété hello est très limitée et par conséquent, vous devez uniquement l’utiliser dans un environnement de développement et de test avec un ensemble limité d’inscriptions. Nous envoyer uniquement les notifications de débogage too10 périphériques. Nous avons également une limite de traitement du débogage envoie toobe 10 par minute. 
+> Notez que l’utilisation de cette propriété est très limitée et par conséquent, vous devez uniquement l’utiliser dans un environnement de développement et de test avec un ensemble limité d’enregistrements. Nous envoyons uniquement des notifications de débogage à 10 périphériques. Nous avons également une limite de traitement des envois de débogage de 10 par minute. 
 > 
 > 
 
 ### <a name="review-telemetry"></a>Révision de la télémétrie
 1. **Utiliser le portail Azure Classic**
    
-    portail de Hello vous permet de tooget un aperçu rapide de toutes les activités de hello sur votre concentrateur de Notification. 
+    Le portail vous permet d’obtenir un aperçu rapide de toutes les activités sur votre hub de notification. 
    
-    un) à partir de l’onglet de « tableau de bord » hello, vous pouvez afficher une vue agrégée des inscriptions de hello, notifications ainsi que des erreurs par la plateforme. 
+    a) Sous l’onglet « tableau de bord », vous pouvez afficher une vue agrégée des enregistrements, des notifications et des erreurs par plateforme. 
    
     ![][5]
    
-    (b) vous pouvez également ajouter plusieurs autres métriques spécifique de plate-forme à partir de l’onglet tootake étudier plus particulièrement en toute erreur spécifique PNS retournée quand NH tente toosend hello notification toohello PNS de hello « Analyse ». 
+    b) Vous pouvez également ajouter plusieurs autres mesures spécifiques à la plate-forme à partir de l’onglet « Analyse » pour étudier plus précisément toute erreur spécifique au PNS retournée lorsque NH tente de lui envoyer la notification. 
    
     ![][6]
    
-    c) vous devez commencer par examiner les hello **les Messages entrants**, **opérations d’inscription**, **Notifications réussies** et passez hello de tooreview onglet tooper plateforme Erreurs spécifiques PNS. 
+    c) Vous devez commencer par examiner les **messages entrants**, les **opérations d’enregistrement** et les **notifications réussies**, puis accéder à l’onglet par plateforme pour examiner les erreurs spécifiques au PNS. 
    
-    d) si vous avez notification hello hub mal configuré avec les paramètres d’authentification hello puis vous verrez l’erreur d’authentification PNS. Il s’agit d’une bonne indication toocheck hello PNS des informations de. 
+    Si vous avez mal configuré les paramètres d’authentification du hub de notification, vous verrez une erreur d’authentification PNS. Il s’agit d’une bonne indication vous poussant à vérifier les informations d’identification PNS. 
 
 2) **Accès par programme**
 
@@ -207,7 +207,7 @@ Plus de détails ici :
 * [Exemple d’accès à la télémétrie via les API] 
 
 > [!NOTE]
-> Plusieurs fonctionnalités liées à la télémétrie, comme **l’Exportation/importation des enregistrements**, **l’accès à la télémétrie au moyen des API**, etc., sont uniquement disponibles en niveau Standard. Si vous essayez de toouse ces fonctionnalités si vous êtes dans gratuit ou de niveau de base puis vous obtiendrez l’effet de toothis exception message lors de l’utilisation de hello SDK et un HTTP 403 (interdit) lors de leur utilisation directement à partir de l’API REST de hello. Assurez-vous que vous avez déplacé des tooStandard niveau via le portail classique Azure.  
+> Plusieurs fonctionnalités liées à la télémétrie, comme **l’Exportation/importation des enregistrements**, **l’accès à la télémétrie au moyen des API**, etc., sont uniquement disponibles en niveau Standard. Si vous essayez d’utiliser ces fonctionnalités et que vous disposez d’un niveau Libre ou De base, vous obtenez un message d’exception lors de l’utilisation du Kit de développement logiciel (SDK) et une erreur HTTP 403 (interdit) lorsque vous les utilisez directement à partir des API REST. Assurez-vous que vous n’êtes pas passé au niveau Standard par le biais du portail Azure Classic.  
 > 
 > 
 
@@ -226,8 +226,8 @@ Plus de détails ici :
 
 <!-- LINKS -->
 [Vue d’ensemble de Notification Hubs]: notification-hubs-push-notification-overview.md
-[didacticiels de mise en route]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
-[des conseils de modèle]: https://msdn.microsoft.com/library/dn530748.aspx 
+[Didacticiels de prise en main]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
+[Conseils relatifs aux modèles]: https://msdn.microsoft.com/library/dn530748.aspx 
 [Aide sur APNs]: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW4
 [Aide sur GCM]: http://developer.android.com/google/gcm/adv.html
 [Export/Import Registrations]: http://msdn.microsoft.com/library/dn790624.aspx
@@ -236,7 +236,7 @@ Plus de détails ici :
 [Vue d’ensemble de l’Explorateur de serveurs Visual Studio]: http://msdn.microsoft.com/library/windows/apps/xaml/dn792122.aspx 
 [Billet de blog concernant l’Explorateur de serveurs de Visual Studio : 1]: http://azure.microsoft.com/blog/2014/04/09/deep-dive-visual-studio-2013-update-2-rc-and-azure-sdk-2-3/#NotificationHubs 
 [Billet de blog concernant l’Explorateur de serveurs de Visual Studio : 2]: http://azure.microsoft.com/blog/2014/08/04/announcing-release-of-visual-studio-2013-update-3-and-azure-sdk-2-4/ 
-[EnableTestSend fonctionnalité]: http://msdn.microsoft.com/library/microsoft.servicebus.notifications.notificationhubclient.enabletestsend.aspx
+[fonctionnalité EnableTestSend]: http://msdn.microsoft.com/library/microsoft.servicebus.notifications.notificationhubclient.enabletestsend.aspx
 [Accès par programme à la télémétrie]: http://msdn.microsoft.com/library/azure/dn458823.aspx
 [Exemple d’accès à la télémétrie via les API]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/FetchNHTelemetryInExcel
 

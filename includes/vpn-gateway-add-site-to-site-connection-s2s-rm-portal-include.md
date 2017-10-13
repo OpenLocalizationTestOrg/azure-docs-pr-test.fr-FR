@@ -1,16 +1,16 @@
-1. Accédez à panneau de hello ouvrir tooand pour votre passerelle de réseau virtuel. Il existe plusieurs façons toonavigate. Dans notre exemple, nous avons accédé toohello passerelle 'VNet1GW' en accédant trop**TestVNet1 -> vue d’ensemble -> connecté périphériques -> VNet1GW**.
-2. Dans le panneau de hello pour VNet1GW, cliquez sur **connexions**. En haut de hello du panneau des connexions hello, cliquez sur **+ ajouter** tooopen hello **ajouter une connexion** panneau.
+1. Accédez au panneau de votre passerelle de réseau virtuel et ouvrez-le. Vous pouvez y accéder de plusieurs manières. Dans notre exemple, nous avons accédé à la passerelle VNet1GW en accédant à **TestVNet1 -> Vue d’ensemble -> Appareils connectés -> VNet1GW**.
+2. Sur le panneau de VNet1GW, cliquez sur **Connexions**. En haut du panneau Connexions, cliquez sur **+ Ajouter** pour ouvrir le panneau **Ajouter une connexion**.
 
     ![Créer une connexion de site à site](./media/vpn-gateway-add-site-to-site-connection-s2s-rm-portal-include/connection1.png)
 
-3. Sur hello **ajouter une connexion** panneau, hello, renseignez les valeurs toocreate votre connexion.
+3. Sur le panneau **Ajouter une connexion**, renseignez les valeurs pour créer votre connexion.
 
   - **Nom** : nommez votre connexion. Nous utilisons **VNet1toSite2** dans notre exemple.
   - **Type de connexion** : sélectionnez **Site à site (IPSec)**.
-  - **Passerelle de réseau virtuel :** valeur de hello est fixe, car vous vous connectez à partir de cette passerelle.
-  - **Passerelle de réseau local :** cliquez sur **choisir une passerelle de réseau local** et sélectionnez hello passerelle de réseau local que vous souhaitez toouse. Dans notre exemple, nous utilisons **Site2**.
-  - **Clé partagée :** valeur hello ici doit correspondre à valeur hello que vous utilisez pour votre périphérique VPN de site local. Dans l’exemple de hello, nous avons utilisé « abc123 », mais vous pouvez (et doivent) utiliser quelque chose de plus complexe. Hello important est cette valeur hello que vous spécifiez ici doit être hello que même valeur que vous avez spécifié lors de la configuration de votre périphérique VPN.
-  - Hello restantes pour **abonnement**, **groupe de ressources**, et **emplacement** sont fixes.
+  - **Passerelle de réseau virtuel** : la valeur est fixe, car vous vous connectez à partir de cette passerelle.
+  - **Passerelle de réseau local** : cliquez sur **Choisir une passerelle de réseau local** et sélectionnez la passerelle de réseau local que vous souhaitez utiliser. Dans notre exemple, nous utilisons **Site2**.
+  - **Clé partagée** : la valeur doit correspondre à celle que vous utilisez pour votre périphérique VPN local. Dans l’exemple, nous avons utilisé « abc123 », mais vous pouvez (et devriez) utiliser une valeur plus complexe. L’important, c’est que la valeur que vous spécifiez ici doit être identique à celle spécifiée lors de la configuration de votre périphérique VPN.
+  - Les autres valeurs pour **abonnement**, **groupe de ressources**, et **emplacement** sont fixes.
 
-4. Cliquez sur **OK** toocreate votre connexion. Vous verrez *création d’une connexion* flash sur l’écran hello.
-5. Vous pouvez afficher les connexions hello Bonjour **connexions** Panneau de passerelle de réseau virtuel hello. Hello état passe de *inconnu* trop*connexion*, puis trop*Succeeded*.
+4. Cliquez sur **OK** pour créer votre connexion. Le message *Création de la connexion* clignote à l'écran.
+5. Vous pouvez afficher la connexion dans le panneau **Connexions** de la passerelle de réseau virtuel. L’état passe de *Inconnu* à *Connexion*, puis à *Réussi*.

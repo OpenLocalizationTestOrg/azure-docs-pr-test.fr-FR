@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate à l’aide de relais d’un espace de noms de type hello portail Azure | Documents Microsoft"
-description: "Comment un espace de noms de relais à l’aide de toocreate hello portail Azure."
+title: "Créer un espace de noms de type Relay à l’aide du portail Azure | Microsoft Docs"
+description: "Procédure de création d’un espace de noms Relay à l’aide du portail Azure."
 services: service-bus-relay
 documentationcenter: .net
 author: sethmanheim
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 08/23/2017
 ms.author: sethm
-ms.openlocfilehash: ab3abedbe63aa2d806ffd3a0db7e4aa3c99c4b0d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 27cc817fd4fc2d88b0b7d87f99d58795a6b8b864
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="create-a-relay-namespace-using-hello-azure-portal"></a>Créer un espace de noms de relais à l’aide de hello portail Azure
-Un espace de noms est un conteneur commun pour tous les composants Azure Relay. Plusieurs Relays peuvent résider dans un seul espace de noms, et les espaces de noms servent souvent de conteneurs d’applications. Il existe actuellement deux façons différentes toocreate un espace de noms de relais.
+# <a name="create-a-relay-namespace-using-the-azure-portal"></a>Créer un espace de noms Relay à l’aide du Portail Azure
+Un espace de noms est un conteneur commun pour tous les composants Azure Relay. Plusieurs Relays peuvent résider dans un seul espace de noms, et les espaces de noms servent souvent de conteneurs d’applications. Il existe actuellement deux façons différentes de créer un espace de noms Relay.
 
 1. Portail Azure (cet article)
 2. Modèles [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)
 
-## <a name="create-a-namespace-in-hello-azure-portal"></a>Créer un espace de noms Bonjour portail Azure
+## <a name="create-a-namespace-in-the-azure-portal"></a>Créer un espace de noms dans le Portail Azure
 
 [!INCLUDE [relay-create-namespace-portal](../../includes/relay-create-namespace-portal.md)]
 

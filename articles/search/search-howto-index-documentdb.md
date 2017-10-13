@@ -1,6 +1,6 @@
 ---
-title: "aaaIndexing une source de données de base de données Cosmos pour Azure Search | Documents Microsoft"
-description: "Cet article vous explique comment toocreate un indexeur Azure Search avec DB Cosmos en tant que source de données."
+title: "Indexation d’une source de données Cosmos DB pour Recherche Azure | Microsoft Docs"
+description: "Cet article vous indique comment créer un indexeur Recherche Azure avec Cosmos DB en tant que source de données."
 services: search
 documentationcenter: 
 author: chaosrealm
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: NA
 ms.workload: search
 ms.date: 08/10/2017
 ms.author: eugenesh
-ms.openlocfilehash: 195c9bc026ee1591679dc425ef083a32a3c86be6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f1791393b1e59721cc5a1030927cd00d74a5f13
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="connecting-cosmos-db-with-azure-search-using-indexers"></a>Connexion de Cosmos DB à Recherche Azure à l’aide d’indexeurs
 
-Si vous souhaitez tooimplement expérience d’une recherche sur vos données Cosmos DB, vous pouvez utiliser un Azure Search indexeur toopull de données dans un index Azure Search. Dans cet article, nous vous indiquons comment toointegrate base de données Azure Cosmos avec Azure Search sans avoir toowrite n’importe quelle infrastructure d’indexation de code toomaintain.
+Si vous souhaitez mettre en place une excellente expérience de recherche sur vos données Cosmos DB, vous pouvez utiliser un indexeur Recherche Azure pour extraire les données et les placer dans un index Recherche Azure. Dans cet article, nous allons vous montrer comment intégrer Recherche Azure dans Azure Cosmos DB sans avoir à écrire le moindre code pour mettre l’infrastructure d’indexation à jour.
 
-tooset d’un indexeur Cosmos DB, vous devez avoir un [service Azure Search](search-create-service-portal.md)et créer un index, la source de données et enfin indexeur de hello. Vous pouvez créer ces objets à l’aide de hello [portal](search-import-data-portal.md), [.NET SDK](/dotnet/api/microsoft.azure.search), ou [API REST](/rest/api/searchservice/) pour tous les langages non .NET. 
+Pour configurer un indexeur Cosmos DB, vous avez besoin d’un [Service Recherche Azure](search-create-service-portal.md) et vous devez créer un index, une source de données et enfin l’indexeur. Vous pouvez créer ces objets à l’aide du [portail](search-import-data-portal.md), du [Kit de développement logiciel (SDK) .NET](/dotnet/api/microsoft.azure.search) ou de [l’API REST](/rest/api/searchservice/) pour tous les langages autres que .NET. 
 
-Si vous optez pour le portail de hello, hello [Assistant Importer des données](search-import-data-portal.md) vous guide tout au long de la création de hello de toutes ces ressources.
+Si vous optez pour le portail, [l’Assistant Importation de données](search-import-data-portal.md) vous guide dans la création de toutes ces ressources.
 
 > [!NOTE]
-> COSMOS DB est hello nouvelle génération de DocumentDB. Bien que la modification du nom de produit hello, syntaxe est hello même qu’avant. Continuer toospecify `documentdb` comme indiqué dans cet article de l’indexeur. 
+> Cosmos DB est la nouvelle génération de DocumentDB. Bien que le nom du produit ait été modifié, la syntaxe reste identique. Continuez à spécifier `documentdb` comme indiqué dans cet article sur l’indexeur. 
 
 > [!TIP]
-> Vous pouvez lancer hello **importer des données** Assistant à partir de hello Cosmos de base de données du tableau de bord toosimplify l’indexation pour cette source de données. Dans la navigation de gauche, accédez trop**Collections** > **ajouter Azure Search** tooget a démarré.
+> Vous pouvez lancer l’Assistant **Importation de données** sur le tableau de bord Cosmos DB afin de simplifier l’indexation de cette source de données. Dans la navigation de gauche, accédez à **Collections** > **Ajouter la Recherche Azure** pour commencer.
 
 <a name="Concepts"></a>
 ## <a name="azure-search-indexer-concepts"></a>Concepts d’indexeur Azure Search
-Azure Search prend en charge hello création et la gestion des sources de données (y compris la base de données Cosmos) et indexeurs qui fonctionnent sur les sources de données.
+Recherche Azure prend en charge la création et la gestion de sources de données (dont Cosmos DB) et d’indexeurs qui fonctionnent en s’appuyant sur ces dernières.
 
-A **source de données** spécifie hello données tooindex, les informations d’identification et les stratégies pour identifier les modifications apportées aux données hello (tels que les documents modifiés ou supprimés à l’intérieur de votre collection). source de données Hello définie en tant que ressources indépendantes de sorte qu’il peut être utilisé par plusieurs indexeurs.
+Une **source de données** spécifie les données à indexer, les informations d’identification et les stratégies pour identifier les modifications des données (par exemple, les documents modifiés ou supprimés dans votre collection). La source de données est définie en tant que ressource indépendante de manière à pouvoir être utilisée par plusieurs indexeurs.
 
-Un **indexeur** décrit hello flux des données à partir de votre source de données dans un index de recherche cible. Un indexeur peut servir à :
+Un **indexeur** décrit le flux de données de votre source de données vers un index de recherche cible. Un indexeur peut servir à :
 
-* Effectuer une copie ponctuelle des données de hello toopopulate un index.
-* Un index avec des modifications dans la source de données hello selon un calendrier de synchronisation. planification de Hello fait partie de la définition d’indexeur hello.
-* Appeler l’index de tooan mises à jour à la demande en fonction des besoins.
+* effectuer une copie unique des données pour remplir un index ;
+* synchroniser un index avec les modifications apportées à la source de données selon une planification. La planification fait partie de la définition de l'indexeur ;
+* Appeler des mises à jour d'un index à la demande en fonction des besoins.
 
 <a name="CreateDataSource"></a>
 ## <a name="step-1-create-a-data-source"></a>Étape 1 : Création d’une source de données
-toocreate une source de données, effectuez une publication :
+Pour créer une source de données, effectuez un POST :
 
     POST https://[service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
@@ -67,22 +67,22 @@ toocreate une source de données, effectuez une publication :
         }
     }
 
-corps de la Hello de demande de hello contient la définition de source de données hello, qui doit inclure hello suivant des champs :
+Le corps de la requête contient la définition de la source de données, qui doit inclure les champs suivants :
 
-* **nom**: choisissez toorepresent de n’importe quel nom de votre base de données de la base de données Cosmos.
+* **nom** : choisissez un nom pour représenter votre base de données Cosmos DB.
 * **type** : doit être `documentdb`.
 * **credentials**:
   
-  * **connectionString**: obligatoire. Spécifier la base de données de la base de données Azure Cosmos de tooyour de hello connexion info Bonjour suivant le format :`AccountEndpoint=<Cosmos DB endpoint url>;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>`
+  * **connectionString**: obligatoire. Indiquez les informations de connexion à votre base de données Azure Cosmos DB au format suivant : `AccountEndpoint=<Cosmos DB endpoint url>;AccountKey=<Cosmos DB auth key>;Database=<Cosmos DB database id>`
 * **container**:
   
-  * **name**: obligatoire. Spécifiez des id de hello de hello Cosmos DB collection toobe indexé.
-  * **query**: facultatif. Vous pouvez spécifier une requête de tooflatten un document JSON arbitraire dans un schéma plat Azure Search peut indexer.
+  * **name**: obligatoire. Spécifiez l’ID de la collection Cosmos DB à indexer.
+  * **query**: facultatif. Vous pouvez spécifier une requête pour obtenir un schéma plat à partir d'un document JSON arbitraire de manière à ce qu'Azure Search puisse procéder à l'indexation.
 * **dataChangeDetectionPolicy** : recommandé. Consultez la section [Indexation des documents modifiés](#DataChangeDetectionPolicy).
 * **dataDeletionDetectionPolicy**: facultatif. Consultez la section [Indexation des documents supprimés](#DataDeletionDetectionPolicy).
 
-### <a name="using-queries-tooshape-indexed-data"></a>À l’aide de requêtes tooshape données indexées
-Vous pouvez spécifier un tooflatten de requête de base de données Cosmos des propriétés imbriquées ou des tableaux JSON propriétés de projet et filtrer hello toobe de données indexée. 
+### <a name="using-queries-to-shape-indexed-data"></a>Utilisation de requêtes pour formater les données indexées
+Vous pouvez spécifier une requête Cosmos DB pour aplatir les propriétés imbriquées ou tableaux, projeter des propriétés JSON et filtrer les données à indexer. 
 
 Exemple de document :
 
@@ -116,9 +116,9 @@ Requête d’aplatissage de tableau :
 
 <a name="CreateIndex"></a>
 ## <a name="step-2-create-an-index"></a>Étape 2 : Création d’un index
-Créez un index Azure Search cible si vous n'en possédez pas déjà un. Vous pouvez créer un index à l’aide de hello [interface utilisateur du portail Azure](search-create-index-portal.md), hello [API REST de Index créer](/rest/api/searchservice/create-index) ou [Index, classe](/dotnet/api/microsoft.azure.search.models.index).
+Créez un index Azure Search cible si vous n'en possédez pas déjà un. Vous pouvez créer un index avec [l’interface utilisateur du portail Azure](search-create-index-portal.md), [l’API Création d’index](/rest/api/searchservice/create-index) ou la [classe Index](/dotnet/api/microsoft.azure.search.models.index).
 
-Bonjour à l’exemple suivant crée un index avec un champ d’id et la description :
+L'exemple suivant crée un index avec un champ ID et un champ Description :
 
     POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
     Content-Type: application/json
@@ -141,10 +141,10 @@ Bonjour à l’exemple suivant crée un index avec un champ d’id et la descrip
        }]
      }
 
-Vérifiez que hello schéma de l’index cible est compatible avec le schéma hello de documents JSON hello ou sortie hello de projection de votre requête personnalisée.
+Assurez-vous que le schéma de votre index cible est compatible avec le schéma des documents JSON source ou la sortie de votre projection de requête personnalisée.
 
 > [!NOTE]
-> Pour les collections partitionnées, clé de document par défaut hello est Cosmos DB `_rid` propriété, qui est renommée trop`rid` dans Azure Search. De même, les valeurs `_rid` de Cosmos DB contiennent des caractères qui ne sont pas valides dans les clés de Recherche Azure. Pour cette raison, hello `_rid` valeurs sont codées en Base64.
+> Pour les collections partitionnées, la clé de document par défaut est la propriété `_rid` de Cosmos DB, qui est renommée en `rid` dans Recherche Azure. De même, les valeurs `_rid` de Cosmos DB contiennent des caractères qui ne sont pas valides dans les clés de Recherche Azure. Par conséquent, les valeurs `_rid` sont codées en Base64.
 > 
 > 
 
@@ -163,7 +163,7 @@ Vérifiez que hello schéma de l’index cible est compatible avec le schéma he
 <a name="CreateIndexer"></a>
 ## <a name="step-3-create-an-indexer"></a>Étape 3 : Création d’un indexeur
 
-Une fois que la source de données et d’index hello ont été créées, vous êtes indexeur de hello toocreate prêt :
+Une fois l'index et la source de données créés, vous êtes prêt à créer l’indexeur :
 
     POST https://[service name].search.windows.net/indexers?api-version=2016-09-01
     Content-Type: application/json
@@ -176,30 +176,30 @@ Une fois que la source de données et d’index hello ont été créées, vous �
       "schedule" : { "interval" : "PT2H" }
     }
 
-Cet indexeur s’exécute toutes les deux heures (intervalle de planification est défini trop « PT2H »). toorun un indexeur toutes les 30 minutes, définissez intervalle de salutation trop « PT30M ». intervalle de pris en charge le plus court Hello est de 5 minutes. Bonjour planification est facultative : en cas d’omission, un indexeur s’exécute qu’une seule fois lorsqu’il est créé. Toutefois, vous pouvez à tout moment exécuter un indexeur à la demande.   
+Cet indexeur s’exécute toutes les deux heures (intervalle de planification défini sur « PT2H »). Pour exécuter un indexeur toutes les 30 minutes, définissez l’intervalle sur « PT30M ». Le plus court intervalle pris en charge est de 5 minutes. La planification est facultative : en cas d’omission, un indexeur ne s’exécute qu’une seule fois lorsqu’il est créé. Toutefois, vous pouvez à tout moment exécuter un indexeur à la demande.   
 
-Pour plus d’informations sur hello créer des API indexeur, l’extraction [créer un indexeur](https://docs.microsoft.com/rest/api/searchservice/create-indexer).
+Pour plus d’informations sur l’API Créer un indexeur, consultez [Créer un indexeur](https://docs.microsoft.com/rest/api/searchservice/create-indexer).
 
 <a id="RunIndexer"></a>
 ### <a name="running-indexer-on-demand"></a>Exécution de l’indexeur à la demande
-Dans toorunning Ajout périodiquement selon une planification, un indexeur peut également être appelé à la demande :
+En plus de l'exécution périodique planifiée, un indexeur peut également être appelé à la demande :
 
     POST https://[service name].search.windows.net/indexers/[indexer name]/run?api-version=2016-09-01
     api-key: [Search service admin key]
 
 > [!NOTE]
-> Lors de l’API d’exécution est retournée avec succès, appel de l’indexeur hello a été planifiée mais hello traitement se produit de façon asynchrone. 
+> Lors de l’API s’exécute avec succès, l’appel de l’indexeur a été planifié, mais le traitement réel se produit de façon asynchrone. 
 
-Vous pouvez surveiller l’état de l’indexeur dans le portail de hello ou hello obtenir indexeur état API, qui nous allons décrire ensuite hello. 
+Vous pouvez surveiller l’état de l’indexeur dans le portail ou à l’aide de l’API Get Indexer Status, que nous décrivons par la suite. 
 
 <a name="GetIndexerStatus"></a>
 ### <a name="getting-indexer-status"></a>Obtention de l’état de l’indexeur
-Vous pouvez récupérer hello statut et l’exécution de l’historique d’un indexeur :
+Vous pouvez récupérer l'historique d'état et d'exécution d'un indexeur :
 
     GET https://[service name].search.windows.net/indexers/[indexer name]/status?api-version=2016-09-01
     api-key: [Search service admin key]
 
-réponse de Hello contient état global de l’indexeur, appel de l’indexeur dernière (ou en cours) hello et historique hello des appels récents de l’indexeur.
+La réponse contient l'état d'intégrité global de l'indexeur, le dernier appel de l'indexeur (ou celui en cours), ainsi que l'historique des appels récents de l'indexeur.
 
     {
         "status":"running",
@@ -227,28 +227,28 @@ réponse de Hello contient état global de l’indexeur, appel de l’indexeur d
         }]
     }
 
-L’historique d’exécution contient des toohello 50 dernières exécutions, qui sont triées dans l’ordre chronologique inverse (de sorte que l’exécution de la plus récente de hello en premier dans la réponse de hello).
+L'historique d'exécution contient les 50 exécutions les plus récentes, classées par ordre chronologique inverse (la dernière exécution est répertoriée en premier dans la réponse).
 
 <a name="DataChangeDetectionPolicy"></a>
 ## <a name="indexing-changed-documents"></a>Indexation des documents modifiés
-objectif Hello d’une donnée de modifier la stratégie de détection est tooefficiently identifient les éléments de données modifiées. Actuellement, la stratégie de hello uniquement pris en charge est hello `High Water Mark` stratégie à l’aide de hello `_ts` (timestamp) cette propriété est fournie par la base de données Cosmos, qui est spécifiée comme suit :
+L'objectif d'une stratégie de détection des changements de données est d'identifier efficacement les données modifiées. La seule stratégie actuellement prise en charge est la stratégie `High Water Mark` qui utilise la propriété `_ts` (horodatage) fournie par Cosmos DB, spécifiée comme suit :
 
     {
         "@odata.type" : "#Microsoft.Azure.Search.HighWaterMarkChangeDetectionPolicy",
         "highWaterMarkColumnName" : "_ts"
     }
 
-À l’aide de cette stratégie est fortement recommandé les performances de l’indexeur bon tooensure. 
+Cette stratégie est vivement recommandée pour garantir de bonnes performances pour l’indexeur. 
 
-Si vous utilisez une requête personnalisée, assurez-vous que hello `_ts` propriété est projetée par requête de hello.
+Si vous utilisez une requête personnalisée, assurez-vous que la propriété `_ts` est projetée par la requête.
 
 <a name="IncrementalProgress"></a>
 ### <a name="incremental-progress-and-custom-queries"></a>Progression incrémentielle et requêtes personnalisées
-Incrémentielles de progression pendant l’indexation de garantit que si l’exécution de l’indexeur est interrompue par des erreurs temporaires ou la limite de temps d’exécution, indexeur de hello peut reprendre là où il s’hors tension de la prochaine fois que qu’il s’exécute, au lieu d’avoir des index toore hello ensemble de la collection à partir de zéro. Ceci est particulièrement important lors de l’indexation de grandes collections. 
+Dans le cas où l’exécution de l’indexeur est interrompue par des échecs passagers ou un dépassement du délai d’exécution, une progression incrémentielle pendant une indexation veille à ce que l’indexeur puisse reprendre là il en était lors de sa dernière exécution, afin de ne pas avoir à tout réindexer depuis le début. Ceci est particulièrement important lors de l’indexation de grandes collections. 
 
-tooenable incrémentielles de progression lors de l’utilisation d’une requête personnalisée, assurez-vous que votre requête trie les résultats de hello en hello `_ts` colonne. Cela permet de périodiques ponctuels que Azure Search utilise tooprovide incrémentielles de progression en présence de hello d’échecs.   
+Pour activer la progression incrémentielle lors de l’utilisation d’une requête personnalisée, assurez-vous que votre requête classe les résultats par la colonne `_ts`. Ceci permet de créer des points de contrôle périodiques dont Azure Search se sert pour proposer la progression incrémentielle en cas d’erreurs.   
 
-Dans certains cas, même si votre requête contient un `ORDER BY [collection alias]._ts` clause, Azure Search ne peut pas déduire les cette requête hello est triée par hello `_ts`. Vous pouvez indiquer à Azure Search que les résultats sont triés à l’aide de hello `assumeOrderByHighWaterMarkColumn` propriété de configuration. toospecify cet indicateur, créer ou mettre à jour l’indexeur comme suit : 
+Dans certains cas, il se peut qu’Azure Search ne déduise pas que la requête est ordonnée par `_ts`, même si elle contient une clause `ORDER BY [collection alias]._ts`. Vous pouvez indiquer à Azure Search que les résultats sont triés à l’aide de la propriété de configuration `assumeOrderByHighWaterMarkColumn`. Pour ce faire, créez ou mettez à jour l’indexeur comme suit : 
 
     {
      ... other indexer definition properties
@@ -258,17 +258,17 @@ Dans certains cas, même si votre requête contient un `ORDER BY [collection ali
 
 <a name="DataDeletionDetectionPolicy"></a>
 ## <a name="indexing-deleted-documents"></a>Indexation des documents supprimés
-Lorsque des lignes sont supprimées à partir de la collection de hello, vous souhaitez normalement toodelete ces lignes à partir de l’index de recherche hello également. objectif de Hello d’une stratégie de détection de suppression de données est tooefficiently identifient les éléments de données supprimées. Actuellement, la stratégie de hello uniquement pris en charge est hello `Soft Delete` stratégie (suppression est marquée avec un indicateur quelconque), qui est spécifié comme suit :
+Lorsque des lignes sont supprimées de la collection, vous devez normalement supprimer ces lignes de l'index de recherche. L'objectif d'une stratégie de détection des suppressions de données est d'identifier efficacement les éléments de données supprimés. La seule stratégie actuellement prise en charge est la stratégie `Soft Delete` (où la suppression est signalée par un indicateur quelconque), spécifiée comme suit :
 
     {
         "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
-        "softDeleteColumnName" : "hello property that specifies whether a document was deleted",
-        "softDeleteMarkerValue" : "hello value that identifies a document as deleted"
+        "softDeleteColumnName" : "the property that specifies whether a document was deleted",
+        "softDeleteMarkerValue" : "the value that identifies a document as deleted"
     }
 
-Si vous utilisez une requête personnalisée, assurez-vous que cette propriété hello référencée par `softDeleteColumnName` est projetée par requête de hello.
+Si vous utilisez une requête personnalisée, assurez-vous que la propriété référencée par `softDeleteColumnName` est projetée par la requête.
 
-Bonjour à l’exemple suivant crée une source de données avec une stratégie de soft-suppression :
+L'exemple suivant crée une source de données avec des conseils pour une stratégie de suppression en douceur :
 
     POST https://[Search service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
@@ -293,7 +293,7 @@ Bonjour à l’exemple suivant crée une source de données avec une stratégie 
     }
 
 ## <a name="NextSteps"></a>Étapes suivantes
-Félicitations ! Vous avez appris comment toointegrate base de données Azure Cosmos avec Azure Search à l’aide hello indexeur pour la base de données Cosmos.
+Félicitations ! Vous avez appris à intégrer Recherche Azure dans Azure Cosmos DB à l’aide de l’indexeur pour Cosmos DB.
 
-* toolearn comment plus sur la base de données Azure Cosmos, consultez hello [page de service de base de données Cosmos](https://azure.microsoft.com/services/documentdb/).
-* toolearn comment plus sur Azure Search, consultez hello [page de service de recherche](https://azure.microsoft.com/services/search/).
+* Pour en savoir plus sur Azure Cosmos DB, consultez la [page du service Cosmos DB](https://azure.microsoft.com/services/documentdb/).
+* Pour en savoir plus sur Azure Search, consultez la [page du service Search](https://azure.microsoft.com/services/search/).

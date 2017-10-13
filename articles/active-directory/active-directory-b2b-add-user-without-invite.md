@@ -1,6 +1,6 @@
 ---
-title: aaaAdd B2B collaboration utilisateurs tooAzure Active Directory sans invitation | Documents Microsoft
-description: "Vous pouvez permettre à un utilisateur invité d’ajouter d’autres tooyour d’utilisateurs invités Azure AD sans échange une invitation dans Azure Active Directory B2B collaboration."
+title: "Ajouter des utilisateurs B2B Collaboration à Azure Active Directory sans invitation | Microsoft Docs"
+description: "Vous pouvez permettre à un utilisateur invité d’ajouter d’autres utilisateurs invités à votre Azure AD sans échanger d’invitation dans Azure Active Directory B2B Collaboration."
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -15,21 +15,21 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
-ms.openlocfilehash: 459d99b9f856a35973d1b2cbfabdc23fe40c8f44
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 91b9477cdb679851e7d8d2942c06999a05f64e46
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="add-b2b-collaboration-guest-users-without-an-invitation"></a>Ajouter des utilisateurs invités B2B Collaboration sans invitation
 
-Vous pouvez autoriser un utilisateur, par exemple un partenaire représentatif, tooadd les utilisateurs de hello partenaire tooyour organisation sans avoir besoin de toobe invitations échangé. Il vous suffit est lui accorder les privilèges d’énumération dans le répertoire de hello vous utilisez pour l’organisation du partenaire hello 
+Vous pouvez autoriser un utilisateur, tel qu’un représentant de partenaire, à ajouter des utilisateurs du partenaire vers votre organisation sans avoir à échanger des invitations. Il vous suffit d’accorder à cet utilisateur des privilèges d’énumération dans le répertoire que vous utilisez pour l’organisation partenaire. 
 
 Accordez ces privilèges lorsque :
 
-1. Un utilisateur d’organisation d’hôte hello (par exemple, WoodGrove) invite un utilisateur à partir de l’organisation partenaire de hello (par exemple, Sam@litware.com) en tant qu’invité.
-2. admin Hello dans l’organisation d’hôte hello définit les stratégies qui permettent de Sam tooidentify et ajouter d’autres utilisateurs de l’organisation partenaire de hello (Litware).
-3. Maintenant Sam peut ajouter d’autres utilisateurs d’annuaire de Litware toohello WoodGrove, des groupes ou des applications sans avoir besoin de toobe des invitations à participer à échanger. Si Sam dispose de privilèges d’énumération appropriée de hello dans Litware, il se produit automatiquement.
+1. Un utilisateur de l’organisation hôte (par exemple, WoodGrove) invite un utilisateur d’une organisation partenaire (par exemple, Sam@litware.com) en tant qu’invité.
+2. L’administrateur de l’organisation hôte définit les stratégies qui permettent à Sam d’identifier et d’ajouter d’autres utilisateurs de l’organisation partenaire (Litware).
+3. Maintenant, Sam peut ajouter d’autres utilisateurs Litware au répertoire, à des groupes et à des applications WoodGrove sans avoir besoin d’utiliser des invitations. Si Sam possède les privilèges d’énumération appropriés de Litware, cela se produit automatiquement.
 
 ### <a name="next-steps"></a>Étapes suivantes
 
@@ -37,8 +37,8 @@ Consultez les autres articles sur la collaboration B2B d'Azure AD :
 
 * [Qu’est-ce qu’Azure AD B2B Collaboration ?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Comment les administrateurs Azure Active Directory ajoutent-ils des utilisateurs B2B Collaboration ?](active-directory-b2b-admin-add-users.md)
-* [Comment les professionnels de l’information ajoutent-ils des utilisateurs B2B Collaboration ?](active-directory-b2b-iw-add-users.md)
-* [éléments Hello Hello e-mail d’invitation B2B collaboration](active-directory-b2b-invitation-email.md)
+* [Comment les professionnels de l’information ajoutent-ils des utilisateurs B2B Collaboration ?](active-directory-b2b-iw-add-users.md)
+* [Éléments de l’e-mail d’invitation de B2B Collaboration](active-directory-b2b-invitation-email.md)
 * [Utilisation d’une invitation B2B Collaboration](active-directory-b2b-redemption-experience.md)
 * [Attribution de licences Azure AD B2B Collaboration](active-directory-b2b-licensing.md)
 * [Résolution des problèmes d’Azure Active Directory B2B Collaboration](active-directory-b2b-troubleshooting.md)

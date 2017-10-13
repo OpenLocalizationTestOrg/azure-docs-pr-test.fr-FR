@@ -1,6 +1,6 @@
 ---
-title: "préparer l’aaaPortal StorSimple Virtual Array | Documents Microsoft"
-description: "Toodeploy didacticiel premier tableau de virtuel StorSimple implique la préparation hello portail Azure"
+title: "Préparation du portail pour StorSimple Virtual Array | Microsoft Docs"
+description: "Le premier didacticiel de déploiement de StorSimple Virtual Array implique la préparation du portail Azure"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -15,50 +15,50 @@ ms.workload: NA
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 5332b235e7296a9274f2e7dafcdf72f4b9cdadf6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3d0801053721f98ce7a2b0fcbe3c65da8dbdd8d3
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="deploy-storsimple-virtual-array---prepare-hello-azure-portal"></a>Déployer des StorSimple Virtual Array - préparer hello portail Azure
+# <a name="deploy-storsimple-virtual-array---prepare-the-azure-portal"></a>Déploiement de StorSimple Virtual Array - Préparation du portail Azure
 
 ![](./media/storsimple-virtual-array-deploy1-portal-prep/getstarted4.png)
-## <a name="overview"></a>Vue d'ensemble
+## <a name="overview"></a>Vue d’ensemble
 
-Il s’agit hello premier article de hello série de didacticiels de déploiement requis toocompletely déployer votre tableau virtuel en tant que serveur de fichiers ou un serveur iSCSI à l’aide du modèle de gestionnaire de ressources hello. Cet article décrit toocreate de préparation requises hello et configurer votre service de gestionnaire de périphériques StorSimple préalable tooprovisioning un tableau virtuel. Cet article contient également des liens out tooa configuration liste de vérification et de configuration de conditions préalables au déploiement.
+Il s’agit du premier article de la série de didacticiels sur le déploiement nécessaire pour déployer complètement votre tableau virtuel en tant que serveur de fichiers ou serveur iSCSI à l’aide du modèle Resource Manager. Cet article décrit la préparation nécessaire pour créer et configurer votre service StorSimple Device Manager avant la configuration d'un tableau virtuel. Cet article contient également des liens vers une liste de vérification de la configuration du déploiement ainsi que la configuration requise.
 
-Vous avez besoin des privilèges toocomplete hello le programme d’installation et configuration de processus administrateur. Nous recommandons de consulter la liste de vérification de configuration hello déploiement avant de commencer. Préparation de portail Hello prend moins de 10 minutes.
+Vous avez besoin de privilèges d’administrateur pour terminer le processus d’installation et de configuration. Nous vous recommandons de consulter la liste de contrôle de configuration du déploiement avant de commencer. La préparation du portail prend moins de 10 minutes.
 
-les informations de Hello publiées dans cet article s’appliquent déploiement toohello StorSimple virtuels des baies de Bonjour portail Azure et Microsoft Azure Government Cloud.
+Les informations publiées dans cet article s’appliquent au déploiement de StorSimple Virtual Array dans le portail Azure, ainsi que dans Microsoft Azure Government Cloud.
 
 ### <a name="get-started"></a>Prise en main
-flux de travail de déploiement Hello se compose de la préparation du portail de hello, configuration d’un tableau virtuel dans votre environnement virtualisé et terminé l’installation de hello. tooget main le déploiement de StorSimple Virtual Array hello en tant que serveur de fichiers ou un serveur iSCSI, vous devez toohello toorefer suivant le tableau des ressources.
+Le flux de travail du déploiement se compose de la préparation du portail, de la configuration d'un tableau virtuel dans votre environnement virtualisé et de la finalisation de la configuration. Pour commencer le déploiement de StorSimple Virtual Array en tant que serveur de fichiers ou serveur iSCSI, vous devrez consulter les ressources suivantes au format tableau.
 
 #### <a name="deployment-articles"></a>Articles sur le déploiement
 
-toodeploy votre tableau virtuel StorSimple, consultez toohello suivant articles Bonjour prescrit la séquence.
+Consultez les articles suivants dans l'ordre indiqué pour déployer votre instance StorSimple Virtual Array.
 
 | **#** | **Dans cette étape** | **Procédez comme suit …** | **Et utilisez ces documents.** |
 | --- | --- | --- | --- |
-| 1. |**Configurer hello portail Azure** |Créez et configurez votre service de gestionnaire de périphériques StorSimple préalable tooprovisioning un tableau virtuel StorSimple. |[Préparer le portail de hello](storsimple-virtual-array-deploy1-portal-prep.md) |
-| 2. |**Configurer hello Virtual Array** |Pour Hyper-V, configurer et connecter tooa StorSimple Virtual Array sur un système hôte exécutant Hyper-V sur Windows Server 2012 R2, Windows Server 2012 ou Windows Server 2008 R2. <br></br> <br></br> Pour VMware, configurer et connecter tooa StorSimple Virtual Array sur un système hôte exécutant VMware ESXi 5.5 et versions ultérieures.<br></br> |[Configuration d’un tableau virtuel dans Hyper-V](storsimple-virtual-array-deploy2-provision-hyperv.md) <br></br> <br></br> [Configuration d’un tableau virtuel dans VMware](storsimple-virtual-array-deploy2-provision-vmware.md) |
-| 3. |**Configurer hello Virtual Array** |Pour votre serveur de fichiers, exécuter le programme d’installation initiale, inscrire votre serveur de fichiers StorSimple et terminer l’installation du périphérique hello. Vous pouvez ensuite configurer les partages SMB. <br></br> <br></br> Pour votre serveur iSCSI, exécuter le programme d’installation initiale, inscrire votre serveur d’iSCSI StorSimple et terminer l’installation du périphérique hello. Vous pouvez ensuite configurer les volumes iSCSI. |[Configuration d’un tableau virtuel comme serveur de fichiers](storsimple-virtual-array-deploy3-fs-setup.md)<br></br> <br></br>[Configuration d’un virtuel tableau comme serveur iSCSI](storsimple-virtual-array-deploy3-iscsi-setup.md) |
+| 1. |**Configuration du portail Azure** |Créez et configurez votre service StorSimple Device Manager avant de configurer une instance StorSimple Virtual Array. |[Préparation du portail](storsimple-virtual-array-deploy1-portal-prep.md) |
+| 2. |**Configuration du tableau virtuel** |Pour Hyper-V, configurez et connectez-vous à une instance StorSimple Virtual Array sur un système hôte exécutant Hyper-V sur Windows Server 2012 R2, Windows Server 2012 ou Windows Server 2008 R2. <br></br> <br></br> Pour VMware, configurez et connectez-vous à une instance StorSimple Virtual Array sur un système hôte exécutant VMware ESXi 5.5 et versions ultérieures.<br></br> |[Configuration d’un tableau virtuel dans Hyper-V](storsimple-virtual-array-deploy2-provision-hyperv.md) <br></br> <br></br> [Configuration d’un tableau virtuel dans VMware](storsimple-virtual-array-deploy2-provision-vmware.md) |
+| 3. |**Configuration du tableau virtuel** |Pour votre serveur de fichiers, effectuez la configuration initiale, inscrivez votre serveur de fichiers StorSimple, puis finalisez la configuration de l’appareil. Vous pouvez ensuite configurer les partages SMB. <br></br> <br></br> Pour votre serveur iSCSI, effectuez la configuration initiale, inscrivez votre serveur iSCSI StorSimple, puis finalisez la configuration de l’appareil. Vous pouvez ensuite configurer les volumes iSCSI. |[Configuration d’un tableau virtuel comme serveur de fichiers](storsimple-virtual-array-deploy3-fs-setup.md)<br></br> <br></br>[Configuration d’un tableau virtuel comme serveur iSCSI](storsimple-virtual-array-deploy3-iscsi-setup.md) |
 
-Vous pouvez maintenant commencer tooset des hello portail Azure.
+Vous pouvez maintenant commencer à configurer le portail Azure.
 
 ## <a name="configuration-checklist"></a>Liste de contrôle de la configuration
 
-liste de vérification de configuration Hello décrit les informations de hello que vous avez besoin de toocollect avant de configurer les logiciels hello sur votre tableau virtuel StorSimple. Préparation ces informations à l’avance le temps permet de rationaliser les processus de hello du déploiement de l’appareil StorSimple hello dans votre environnement. Selon que votre StorSimple Virtual Array est déployé en tant que serveur de fichiers ou un serveur iSCSI, vous devez un des hello suivant des listes de contrôle.
+La liste de contrôle de la configuration présente les informations dont vous avez besoin avant de configurer le logiciel sur votre instance StorSimple Virtual Array. L’étude préalable de ces informations simplifie le déploiement de l’appareil StorSimple dans votre environnement. Selon que votre instance StorSimple Virtual Array sera déployée comme serveur de fichiers ou serveur iSCSI, suivez l’une des listes de contrôle suivantes.
 
-* Télécharger hello [StorSimple Virtual Array fichier Server Configuration Checklist](http://download.microsoft.com/download/E/E/6/EE690BB0-B442-4B84-8165-4731EE727ACF/MicrosoftAzureStorSimpleVirtualArrayFileServerConfigurationChecklist.pdf).
-* Télécharger hello [StorSimple Virtual Array iSCSI liste de vérification de Configuration serveur](http://download.microsoft.com/download/E/E/6/EE690BB0-B442-4B84-8165-4731EE727ACF/MicrosoftAzureStorSimpleVirtualArrayiSCSIServerConfigurationChecklist.pdf).
+* Téléchargez la [liste de vérification de la configuration du serveur de fichiers StorSimple Virtual Array](http://download.microsoft.com/download/E/E/6/EE690BB0-B442-4B84-8165-4731EE727ACF/MicrosoftAzureStorSimpleVirtualArrayFileServerConfigurationChecklist.pdf).
+* Téléchargez la [liste de vérification de la configuration du serveur iSCSI StorSimple Virtual Array](http://download.microsoft.com/download/E/E/6/EE690BB0-B442-4B84-8165-4731EE727ACF/MicrosoftAzureStorSimpleVirtualArrayiSCSIServerConfigurationChecklist.pdf).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Vous trouverez hello configuration requise pour votre service de gestionnaire de périphériques StorSimple votre StorSimple Virtual Array et réseau de centre de données hello.
+Vous trouverez ici les conditions préalables à la configuration de votre service StorSimple Device Manager, de votre instance StorSimple Virtual Array et du réseau de votre centre de données.
 
-### <a name="for-hello-storsimple-device-manager-service"></a>Pourquoi le service du Gestionnaire de périphériques StorSimple
+### <a name="for-the-storsimple-device-manager-service"></a>Pour le service StorSimple Device Manager
 
 Avant de commencer, assurez-vous que :
 
@@ -66,107 +66,107 @@ Avant de commencer, assurez-vous que :
 * Vous disposez d’un compte de stockage Microsoft Azure doté d’informations d’identification d’accès.
 * Votre abonnement Microsoft Azure devrait être activé pour le service StorSimple Device Manager.
 
-### <a name="for-hello-storsimple-virtual-array"></a>Pourquoi StorSimple Virtual Array
+### <a name="for-the-storsimple-virtual-array"></a>Pour StorSimple Virtual Array
 
 Avant de déployer un tableau virtuel, assurez-vous que :
 
-* Vous avez accès tooa hôte système exécutant Hyper-V sur Windows Server 2008 R2 ou version ultérieure ou VMware (ESXi 5.5 ou version ultérieure) qui peut être utilisé tooa configurer un périphérique.
-* système d’hôte Hello est en mesure de toodedicate hello suivant tooprovision de ressources de votre tableau virtuel :
+* Vous avez accès à un système hôte exécutant Hyper-V sur Windows Server 2008 R2 ou une version ultérieure ou VMware (ESXi 5.5 ou une version ultérieure) permettant de configurer un appareil.
+* Le système hôte est en mesure de dédier les ressources suivantes pour configurer votre tableau virtuel :
   
   * Un minimum de 4 cœurs.
-  * Au moins 8 Go de RAM. Si vous envisagez d’unité de stockage tooconfigure hello virtuelle en tant que serveur de fichiers, 8 Go prend en charge 2 millions de fichiers. Vous avez besoin de 16 Go de RAM toosupport 2-4 millions de fichiers.
+  * Au moins 8 Go de RAM. Si vous envisagez de configurer le tableau virtuel en tant que serveur de fichiers, 8 Go prennent en charge 2 millions de fichiers. Vous avez besoin de 16 Go de RAM pour prendre en charge 2 à 4 millions de fichiers.
   * Une interface réseau.
   * Un disque virtuel de 500 Go pour les données système.
 
-### <a name="for-hello-datacenter-network"></a>Pour le réseau de centre de données hello
+### <a name="for-the-datacenter-network"></a>Pour le réseau du centre de données
 
 Avant de commencer, assurez-vous que :
 
-* réseau Hello dans votre centre de données est configurée conformément aux exigences de mise en réseau hello pour votre appareil StorSimple. Pour plus d’informations, consultez hello [StorSimple Virtual Array requise](storsimple-ova-system-requirements.md).
+* Le réseau de votre centre de données est configuré conformément à la configuration réseau requise pour votre appareil StorSimple. Pour plus d'informations, consultez la [Configuration système requise pour StorSimple Virtual Array](storsimple-ova-system-requirements.md).
 * Votre instance StorSimple Virtual Array a une bande passante Internet dédiée de 5 Mbits/s (ou plus) disponible à tout moment. La bande passante ne doit pas être partagée avec d’autres applications.
 
 ## <a name="step-by-step-preparation"></a>Préparation étape par étape
 
-Utilisez hello suivant tooprepare des instructions pas à votre portail pour hello service du Gestionnaire de périphériques StorSimple.
+Utilisez la procédure pas à pas suivante afin de préparer votre portail pour le service StorSimple Device Manager.
 
 ## <a name="step-1-create-a-new-service"></a>Étape 1 : Création d’un nouveau service
 
-Une seule instance du service de gestionnaire de périphériques StorSimple hello peut gérer plusieurs groupes virtuel StorSimple. Effectuer hello suivant les étapes toocreate une instance de service du Gestionnaire de périphériques StorSimple hello. Si vous avez un toomanage du service Gestionnaire de périphériques StorSimple existant vos réseaux virtuels, ignorez cette étape et passez trop[étape 2 : clé d’inscription Get hello](#step-2-get-the-service-registration-key).
+Une seule instance du service StorSimple Device Manager peut gérer plusieurs instances StorSimple Virtual Array. Procédez comme suit pour créer une instance du service StorSimple Device Manager. Si vous disposez d'un service StorSimple Device Manager existant pour gérer vos tableaux virtuels, ignorez cette étape et passez à l’[Étape 2 : Obtention de la clé d’inscription](#step-2-get-the-service-registration-key).
 
 [!INCLUDE [storsimple-virtual-array-create-new-service](../../includes/storsimple-virtual-array-create-new-service.md)]
 
 > [!IMPORTANT]
-> Si vous n’avez pas activé la création automatique d’un compte de stockage hello avec votre service, vous devez toocreate au moins un compte de stockage une fois que vous avez créé un service.
+> Si vous n’avez pas activé la création automatique d’un compte de stockage avec votre service, vous devez créer au moins un compte de stockage après avoir créé un service.
 > 
-> * Si vous n’avez pas créé un compte de stockage automatiquement, passez trop[configurer un nouveau compte de stockage pour le service de hello](#optional-step-configure-a-new-storage-account-for-the-service) pour obtenir des instructions détaillées.
-> * Si vous avez activé la création automatique d’un compte de stockage hello, passez trop[étape 2 : clé d’inscription Get hello](#step-2-get-the-service-registration-key).
+> * Si vous n’avez pas créé de compte de stockage automatiquement, accédez à la page [Configuration d’un compte de stockage pour le service](#optional-step-configure-a-new-storage-account-for-the-service) pour obtenir des instructions détaillées.
+> * Si vous avez activé la création automatique d’un compte de stockage, passez à l’ [étape 2 : Obtention de la clé d’inscription](#step-2-get-the-service-registration-key).
 > 
 > 
 
-## <a name="step-2-get-hello-service-registration-key"></a>Étape 2 : Obtenir la clé d’inscription hello
+## <a name="step-2-get-the-service-registration-key"></a>étape 2 : Obtention de la clé d’inscription
 
-Une fois hello service du Gestionnaire de périphériques StorSimple est en cours d’exécution, vous devez clé d’inscription tooget hello. Cette clé est utilisée tooregister et connecter votre appareil StorSimple hello service.
+Une fois le service StorSimple Device Manager opérationnel, vous devez obtenir la clé d’inscription. Cette clé est utilisée pour inscrire et connecter votre appareil StorSimple auprès du service.
 
-Effectuer hello comme suit dans hello [portail Azure](https://portal.azure.com/).
+Procédez comme suit dans le [portail Azure](https://portal.azure.com/).
 
 [!INCLUDE [storsimple-virtual-array-get-service-registration-key](../../includes/storsimple-virtual-array-get-service-registration-key.md)]
 
 > [!NOTE]
-> clé d’inscription Hello est tooregister utilisé toutes hello appareils StorSimple le Gestionnaire de périphériques nécessitant le tooregister avec votre service de gestionnaire de périphériques StorSimple.
+> La clé d’inscription au service sert à inscrire tous les appareils StorSimple Device Manager que vous devez inscrire auprès du service StorSimple Device Manager.
 > 
 > 
 
-## <a name="step-3-download-hello-virtual-array-image"></a>Étape 3 : Télécharger l’image du tableau virtuel hello
+## <a name="step-3-download-the-virtual-array-image"></a>Étape 3 : Téléchargement de l'image du tableau virtuel
 
-Une fois la clé d’inscription hello, vous devez toodownload hello tableau virtuel approprié image tooprovision un tableau virtuel sur votre système hôte. images de tableau virtuel Hello sont propres au système d’exploitation et peuvent être téléchargées à partir de la page de démarrage rapide de hello Bonjour portail Azure.
+Après avoir obtenu la clé d'inscription du service, vous devrez télécharger l'image du tableau virtuel approprié pour configurer un tableau virtuel sur votre système hôte. Les images du tableau virtuel sont spécifiques au système d'exploitation et peuvent être téléchargées depuis la page Démarrage rapide du portail Azure.
 
 > [!IMPORTANT]
-> Hello logiciel s’exécutant sur hello StorSimple Virtual Array ne peut être utilisé avec hello service du Gestionnaire de périphériques StorSimple.
+> Le logiciel exécuté sur StorSimple Virtual Array peut uniquement servir en association avec le service StorSimple Device Manager.
 > 
 > 
 
-Effectuer hello comme suit dans hello [portail Azure](https://portal.azure.com/).
+Procédez comme suit dans le [portail Azure](https://portal.azure.com/).
 
-#### <a name="tooget-hello-virtual-array-image"></a>image du tableau virtuel hello tooget
+#### <a name="to-get-the-virtual-array-image"></a>Pour obtenir l'image du tableau virtuel
 
-1. L’authentification à hello [portail Azure](https://portal.azure.com/). 
-2. Bonjour portail Azure, cliquez sur **Parcourir > gestionnaires d’appareil StorSimple**.
-3. Sélectionnez un service StorSimple Device Manager existant. Bonjour **le Gestionnaire de périphériques StorSimple** panneau, cliquez sur **Quick Start**. 
-4. Cliquez sur hello correspondant toohello image du lien que vous souhaitez toodownload de hello Microsoft Download Center. fichiers d’image Hello sont environ 4,8 Go.
+1. Connectez-vous au [portail Azure](https://portal.azure.com/). 
+2. Dans le portail Azure, cliquez sur **Parcourir > Instances de StorSimple Device Manager**.
+3. Sélectionnez un service StorSimple Device Manager existant. Dans le panneau **Instance de StorSimple Device Manager**, cliquez sur **Démarrage rapide**. 
+4. Cliquez sur le lien correspondant à l’image que vous souhaitez télécharger à partir du Centre de téléchargement Microsoft. Les fichiers image ont une taille d’environ 4,8 Go.
    
    * VHDX pour Hyper-V sur Windows Server 2012 et versions ultérieures
    * VHD pour Hyper-V sur Windows Server 2008 R2 et versions ultérieures
    * VMDK pour VMWare ESXi 5.5 et versions ultérieures
-5. Téléchargez et décompressez hello fichier tooa lecteur local, une annotation d’où se trouve le fichier décompressé de hello.
+5. Téléchargez et décompressez le fichier sur un lecteur local et notez l’emplacement du fichier décompressé.
 
-## <a name="optional-step-configure-a-new-storage-account-for-hello-service"></a>Étape facultative : configurer un nouveau compte de stockage pour le service de hello
+## <a name="optional-step-configure-a-new-storage-account-for-the-service"></a>Étape facultative : configuration d’un nouveau compte de stockage pour le service
 
-Cette étape est facultative et doit être exécutée uniquement si vous n’avez pas activé la création automatique d’un compte de stockage hello avec votre service.
+Il s’agit d’une étape facultative que vous devez exécuter uniquement si vous n’avez pas activé la création automatique d’un compte de stockage avec votre service.
 
-Si vous avez besoin d’un compte de stockage Azure dans une région différente de toocreate, consultez [comment toocreate un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account) pour obtenir des instructions pas à pas.
+Si vous devez créer un compte de stockage Azure dans une autre région, consultez la rubrique [Créez un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account) pour obtenir des instructions détaillées.
 
-Effectuer hello comme suit dans hello [portail Azure](https://ms.portal.azure.com/) sur hello le Gestionnaire de périphériques StorSimple service page tooadd un compte de stockage Microsoft Azure existant.
+Procédez comme suit dans le [portail Azure](https://ms.portal.azure.com/) sur la page du service StorSimple Device Manager pour ajouter un compte de stockage Microsoft Azure existant.
 
-#### <a name="tooadd-a-storage-account-credential-that-has-hello-same-azure-subscription-as-hello-device-manager-service"></a>tooadd une information d’identification du compte de stockage qui a hello même abonnement Azure en tant que service du Gestionnaire de périphériques hello
+#### <a name="to-add-a-storage-account-credential-that-has-the-same-azure-subscription-as-the-device-manager-service"></a>Pour ajouter une information d’identification de compte de stockage bénéficiant de la même inscription Azure que le service Device Manager
 
-1. Accédez tooyour service Gestionnaire de périphériques, sélectionnez et double-cliquez dessus. Cette opération ouvre hello **vue d’ensemble** panneau.
-2. Sélectionnez **informations d’identification du compte de stockage** dans hello **Configuration** section.
-3. Cliquez sur **Add**.
-4. Bonjour **ajouter un compte de stockage** panneau, hello suivant :
+1. Accédez au service Device Manager, sélectionnez-le et double-cliquez. Cette opération provoque l’ouverture du panneau **Vue d’ensemble**.
+2. Sélectionnez **Informations d’identification du compte de stockage** dans la section **Configuration**.
+3. Cliquez sur **Ajouter**.
+4. Dans le panneau **Ajouter un compte de stockage**, procédez comme suit :
    
     1. Pour **Abonnement**, sélectionnez **Actuel**.
    
-    2. Fournissez le nom hello de votre compte de stockage Azure.
+    2. Fournissez le nom de votre compte de stockage Azure.
    
-    3. Sélectionnez **activer** toocreate un canal sécurisé pour la communication réseau entre votre cloud de hello et des appareils StorSimple. Sélectionnez **Désactiver** uniquement si vous évoluez au sein d’un cloud privé.
+    3. Sélectionnez **Activer** afin de créer un canal sécurisé pour la communication réseau entre votre appareil StorSimple et le cloud. Sélectionnez **Désactiver** uniquement si vous évoluez au sein d’un cloud privé.
    
-    4. Cliquez sur **Add**. Vous êtes averti une fois le compte de stockage hello est créé avec succès.<br></br>
+    4. Cliquez sur **Ajouter**. Un message s’affiche pour vous informer une fois le compte de stockage correctement créé.<br></br>
    
      ![Ajouter une information d’identification de compte de stockage existant](./media/storsimple-virtual-array-manage-storage-accounts/ova-add-storageacct.png)
 
 ## <a name="next-step"></a>Étape suivante
 
-étape suivante de Hello est tooprovision une machine virtuelle pour votre StorSimple Virtual Array. Selon votre système d’exploitation hôte, consultez hello des instructions dans :
+L'étape suivante consiste à configurer une machine virtuelle pour votre instance StorSimple Virtual Array. Selon votre système d'exploitation hôte, consultez les instructions détaillées dans :
 
 * [Configurer StorSimple Virtual Array dans Hyper-V](storsimple-virtual-array-deploy2-provision-hyperv.md)
 * [Configurer StorSimple Virtual Array dans VMware](storsimple-virtual-array-deploy2-provision-vmware.md)

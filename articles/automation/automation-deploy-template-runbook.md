@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy un modèle Azure Resource Manager dans un runbook Azure Automation | Documents Microsoft"
-description: "Comment toodeploy un modèle de gestionnaire de ressources Azure stockée dans le stockage Azure à partir d’un runbook"
+title: "Déployer un modèle Azure Resource Manager dans un runbook Azure Automation | Microsoft Docs"
+description: "Comment déployer un modèle Azure Resource Manager stocké dans Stockage Azure à partir d’un runbook"
 services: automation
 documentationcenter: dev-center-name
 author: eslesar
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: powershell
 ms.workload: TBD
 ms.date: 07/09/2017
 ms.author: eslesar
-ms.openlocfilehash: f489a8e8635a48f5a6a2f1a88e1c803f56f01832
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e511eee2f9eac3969b15ad3d45558dc7034f330a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="deploy-an-azure-resource-manager-template-in-an-azure-automation-powershell-runbook"></a>Déployer un modèle Azure Resource Manager dans un runbook PowerShell Azure Automation
 
@@ -25,22 +25,22 @@ Vous pouvez écrire un [runbook PowerShell Azure Automation](automation-first-ru
 
 Ainsi, vous pouvez automatiser le déploiement de ressources Azure. Vous pouvez gérer vos modèles Resource Manager dans un emplacement central et sécurisé, tel que Stockage Azure.
 
-Dans cette rubrique, nous créons un runbook PowerShell qui utilise un modèle de gestionnaire de ressources stocké dans [Azure Storage](../storage/common/storage-introduction.md) toodeploy un nouveau compte de stockage Azure.
+Dans cette rubrique, nous créons un runbook PowerShell qui utilise un modèle Resource Manager stocké dans [Stockage Azure](../storage/common/storage-introduction.md) pour déployer un nouveau compte de stockage Azure.
 
 ## <a name="prerequisites"></a>Composants requis
 
-toocomplete ce didacticiel, vous devez hello suivant :
+Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
 
 * Abonnement Azure. Si vous n’avez pas encore d’abonnement, vous pouvez [activer vos avantages abonnés MSDN](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) ou <a href="/pricing/free-account/" target="_blank">[créer un compte gratuit](https://azure.microsoft.com/free/).
-* [Compte Automation](automation-sec-configure-azure-runas-account.md) toohold hello runbook et authentifier les ressources tooAzure.  Ce compte doit avoir l’autorisation toostart et arrêter l’ordinateur virtuel de hello.
-* [Compte de stockage Azure](../storage/common/storage-create-storage-account.md) dans le modèle de gestionnaire de ressources hello toostore
-* Azure Powershell installé sur un ordinateur local. Consultez [installer et configurer Azure Powershell](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0) pour plus d’informations sur la façon tooget Azure PowerShell.
+* [compte Automation](automation-sec-configure-azure-runas-account.md) pour le stockage du Runbook et l’authentification auprès des ressources Azure.  Ce compte doit avoir l’autorisation de démarrer et d’arrêter la machine virtuelle.
+* [Compte de stockage Azure](../storage/common/storage-create-storage-account.md) dans lequel stocker le modèle Resource Manager
+* Azure Powershell installé sur un ordinateur local. Pour plus d'informations sur l’obtention d’Azure PowerShell, consultez la section [Installation et configuration d'Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.1.0).
 
-## <a name="create-hello-resource-manager-template"></a>Créer le modèle de gestionnaire de ressources hello
+## <a name="create-the-resource-manager-template"></a>Créer le modèle Resource Manager
 
 Pour cet exemple, nous utilisons un modèle Resource Manager qui déploie un nouveau compte de stockage Azure.
 
-Dans un éditeur de texte, copiez hello suivant du texte :
+Dans un éditeur de texte, copiez le texte suivant :
 
 ```json
 {
@@ -87,39 +87,39 @@ Dans un éditeur de texte, copiez hello suivant du texte :
 }
 ```
 
-Enregistrer le fichier de hello localement sous `TemplateTest.json`.
+Enregistrez le fichier localement sous le nom `TemplateTest.json`.
 
-## <a name="save-hello-resource-manager-template-in-azure-storage"></a>Enregistrer le modèle de gestionnaire de ressources hello dans le stockage Azure
+## <a name="save-the-resource-manager-template-in-azure-storage"></a>Enregistrer le modèle Resource Manager dans Stockage Azure
 
-Maintenant, nous utiliser PowerShell toocreate un partage de fichiers de stockage Azure et télécharger hello `TemplateTest.json` fichier.
-Pour obtenir des instructions sur le partage toocreate un fichier et télécharger un fichier Bonjour portail Azure, consultez [prise en main avec un stockage de fichier Azure sur Windows](../storage/files/storage-dotnet-how-to-use-files.md).
+Maintenant, nous allons utiliser PowerShell pour créer un partage de fichiers Stockage Azure et charger le fichier `TemplateTest.json`.
+Pour obtenir des instructions sur la création d’un partage de fichier et sur le chargement d’un fichier sur le portail Azure, consultez [Bien démarrer avec le stockage de fichiers Azure sur Windows](../storage/files/storage-dotnet-how-to-use-files.md).
 
-Lancez PowerShell sur votre ordinateur local et exécutez hello suivant de commandes toocreate un partage de fichiers et partage de fichiers toothat hello Gestionnaire de ressources du modèle.
+Lancez PowerShell sur votre ordinateur local et exécutez les commandes suivantes pour créer un partage de fichiers et y charger le modèle Resource Manager.
 
 ```powershell
-# Login tooAzure
+# Login to Azure
 Login-AzureRmAccount
 
-# Get hello access key for your storage account
+# Get the access key for your storage account
 $key = Get-AzureRmStorageAccountKey -ResourceGroupName 'MyAzureAccount' -Name 'MyStorageAccount'
 
-# Create an Azure Storage context using hello first access key
+# Create an Azure Storage context using the first access key
 $context = New-AzureStorageContext -StorageAccountName 'MyStorageAccount' -StorageAccountKey $key[0].value
 
 # Create a file share named 'resource-templates' in your Azure Storage account
 $fileShare = New-AzureStorageShare -Name 'resource-templates' -Context $context
 
-# Add hello TemplateTest.json file toohello new file share
-# "TemplatePath" is hello path where you saved hello TemplateTest.json file
+# Add the TemplateTest.json file to the new file share
+# "TemplatePath" is the path where you saved the TemplateTest.json file
 $templateFile = 'C:\TemplatePath'
 Set-AzureStorageFileContent -ShareName $fileShare.Name -Context $context -Source $templateFile
 ```
 
-## <a name="create-hello-powershell-runbook-script"></a>Créer le script du runbook PowerShell hello
+## <a name="create-the-powershell-runbook-script"></a>Créer le script de runbook PowerShell
 
-Maintenant nous créons un script PowerShell qui obtient hello `TemplateTest.json` à partir du stockage Azure et déploie hello modèle toocreate un nouveau compte de stockage Azure.
+Nous allons maintenant créer un script PowerShell qui récupère le fichier `TemplateTest.json` de Stockage Azure et déploie le modèle pour créer un compte de stockage Azure.
 
-Dans un éditeur de texte, collez hello suivant du texte :
+Dans un éditeur de texte, collez le texte suivant :
 
 ```powershell
 param (
@@ -142,7 +142,7 @@ param (
 
 
 
-# Authenticate tooAzure if running from Azure Automation
+# Authenticate to Azure if running from Azure Automation
 $ServicePrincipalConnection = Get-AutomationConnection -Name "AzureRunAsConnection"
 Add-AzureRmAccount `
     -ServicePrincipal `
@@ -150,7 +150,7 @@ Add-AzureRmAccount `
     -ApplicationId $ServicePrincipalConnection.ApplicationId `
     -CertificateThumbprint $ServicePrincipalConnection.CertificateThumbprint | Write-Verbose
 
-#Set hello parameter values for hello Resource Manager template
+#Set the parameter values for the Resource Manager template
 $Parameters = @{
     "storageAccountType"="Standard_LRS"
     }
@@ -162,23 +162,23 @@ Get-AzureStorageFileContent -ShareName 'resource-templates' -Context $Context -p
 
 $TemplateFile = Join-Path -Path 'C:\Temp' -ChildPath $StorageFileName
 
-# Deploy hello storage account
+# Deploy the storage account
 New-AzureRmResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateFile $TemplateFile -TemplateParameterObject $Parameters 
 ``` 
 
-Enregistrer le fichier de hello localement sous `DeployTemplate.ps1`.
+Enregistrez le fichier localement sous le nom `DeployTemplate.ps1`.
 
-## <a name="import-and-publish-hello-runbook-into-your-azure-automation-account"></a>Importer et publier le runbook de hello dans votre compte Azure Automation
+## <a name="import-and-publish-the-runbook-into-your-azure-automation-account"></a>Importer et publier le runbook dans votre compte Azure Automation
 
-Maintenant nous utiliser PowerShell tooimport hello runbook dans votre compte Azure Automation et puis publier hello runbook.
-Pour plus d’informations sur la façon tooimport et publier un runbook Bonjour portail Azure, consultez [création ou importation d’un runbook dans Azure Automation](automation-creating-importing-runbook.md).
+Nous allons maintenant utiliser PowerShell pour importer le runbook dans votre compte Azure Automation, puis publier le runbook.
+Pour plus d’informations sur la façon d’importer et de publier un runbook dans le portail Azure, consultez [Création ou importation d’un runbook dans Azure Automation](automation-creating-importing-runbook.md).
 
-tooimport `DeployTemplate.ps1` dans votre compte Automation en tant qu’un runbook PowerShell, exécutez hello suivant de commandes PowerShell :
+Pour importer `DeployTemplate.ps1` dans votre compte Automation en tant que runbook PowerShell, exécutez les commandes PowerShell suivantes :
 
 ```powershell
-# MyPath is hello path where you saved DeployTemplate.ps1
-# MyResourceGroup is hello name of hello Azure ResourceGroup that contains your Azure Automation account
-# MyAutomationAccount is hello name of your Automation account
+# MyPath is the path where you saved DeployTemplate.ps1
+# MyResourceGroup is the name of the Azure ResourceGroup that contains your Azure Automation account
+# MyAutomationAccount is the name of your Automation account
 $importParams = @{
     Path = 'C:\MyPath\DeployTemplate.ps1'
     ResourceGroupName = 'MyResourceGroup'
@@ -187,7 +187,7 @@ $importParams = @{
 }
 Import-AzureRmAutomationRunbook @
 
-# Publish hello runbook
+# Publish the runbook
 $publishParams = @{
     ResourceGroupName = 'MyResourceGroup'
     AutomationAccountName = 'MyAutomationAccount'
@@ -196,16 +196,16 @@ $publishParams = @{
 Publish-AzureRmAutomationRunbook @publishParams
 ```
 
-## <a name="start-hello-runbook"></a>Démarrer hello runbook
+## <a name="start-the-runbook"></a>Démarrer le runbook
 
-Maintenant nous allons commencer hello runbook par appel hello [AzureRmAutomationRunbook de début](https://docs.microsoft.com/powershell/module/azurerm.automation/start-azurermautomationrunbook?view=azurermps-4.1.0) applet de commande.
+Maintenant, nous démarrons le runbook en appelant l’applet de commande [Start-AzureRmAutomationRunbook](https://docs.microsoft.com/powershell/module/azurerm.automation/start-azurermautomationrunbook?view=azurermps-4.1.0).
 
-Pour plus d’informations sur comment toostart un runbook dans hello portail Azure, consultez [démarrage d’un runbook dans Azure Automation](automation-starting-a-runbook.md).
+Pour plus d’informations sur la façon de démarrer un runbook dans le portail Azure, consultez [Démarrage d’un Runbook dans Azure Automation](automation-starting-a-runbook.md).
 
-Exécutez hello suivant les commandes dans la console PowerShell hello :
+Dans la console PowerShell, exécutez les commandes suivantes :
 
 ```powershell
-# Set up hello parameters for hello runbook
+# Set up the parameters for the runbook
 $runbookParams = @{
     ResourceGroupName = 'MyResourceGroup'
     StorageAccountName = 'MyStorageAccount'
@@ -213,7 +213,7 @@ $runbookParams = @{
     StorageFileName = 'TemplateTest.json' 
 }
 
-# Set up parameters for hello Start-AzureRmAutomationRunbook cmdlet
+# Set up parameters for the Start-AzureRmAutomationRunbook cmdlet
 $startParams = @{
     ResourceGroupName = 'MyResourceGroup'
     AutomationAccountName = 'MyAutomationAccount'
@@ -221,26 +221,26 @@ $startParams = @{
     Parameters = $runbookParams
 }
 
-# Start hello runbook
+# Start the runbook
 $job = Start-AzureRmAutomationRunbook @startParams
 ```
 
-Hello s’exécute le runbook, et vous pouvez vérifier son état en exécutant `$job.Status`.
+Le runbook s’exécute, et vous pouvez vérifier son état en exécutant `$job.Status`.
 
-Hello runbook Obtient le modèle de gestionnaire de ressources hello et l’utilise toodeploy un nouveau compte de stockage Azure.
-Vous pouvez voir que le nouveau compte de stockage hello a été créé en exécutant hello de commande suivante :
+Le runbook récupère le modèle Resource Manager et l’utilise pour déployer un nouveau compte de stockage Azure.
+Vous pouvez voir que le nouveau compte de stockage a été créé en exécutant la commande suivante :
 ```powershell
 Get-AzureRmStorageAccount
 ```
 
 ## <a name="summary"></a>Résumé
 
-Et voilà ! Maintenant vous pouvez utiliser Azure Automation et Azure Storage et Gestionnaire de ressources modèles toodeploy toutes vos ressources Azure.
+Et voilà ! Maintenant, vous pouvez utiliser Azure Automation, Stockage Azure et des modèles Resource Manager pour déployer toutes vos ressources Azure.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* toolearn savoir plus sur les modèles du Gestionnaire de ressources, consultez [vue d’ensemble du Gestionnaire de ressources Azure](../azure-resource-manager/resource-group-overview.md)
-* tooget a démarré avec le stockage Azure, consultez [Introduction tooAzure stockage](../storage/common/storage-introduction.md).
-* toofind autres runbooks Azure Automation utiles, consultez [Runbook et module galeries pour Azure Automation](automation-runbook-gallery.md).
-* toofind autres modèles de gestionnaire de ressources utiles, consultez [modèles de démarrage rapide Azure](https://azure.microsoft.com/resources/templates/)
+* Pour en savoir plus sur les modèles Resource Manager, consultez [Vue d’ensemble d’Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+* Pour démarrer avec Stockage Azure, consultez [Introduction à Azure Storage](../storage/common/storage-introduction.md).
+* Pour rechercher d’autres runbooks Azure Automation utiles, consultez [Galeries de runbooks et de modules pour Azure Automation](automation-runbook-gallery.md).
+* Pour rechercher d’autres modèles Resource Manager utiles, consultez [Modèles de démarrage rapide Azure](https://azure.microsoft.com/resources/templates/).
 

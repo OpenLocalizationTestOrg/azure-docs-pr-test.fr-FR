@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toocomplete une vérification de l’accès | Documents Microsoft"
-description: "Une fois que vous avez démarré une vérification de l’accès dans Azure AD Privileged Identity Management, découvrez comment toocomplete il et vue hello résultats"
+title: "Compléter une révision de sécurité | Microsoft Docs"
+description: "Après avoir démarré une vérification d’accès dans Azure AD Privileged Identity Management, découvrez comment la compléter et afficher les résultats"
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,43 +15,43 @@ ms.workload: identity
 ms.date: 06/06/2017
 ms.author: kgremban
 ms.custom: pim
-ms.openlocfilehash: f99ddf3ebcf80b51110326064d584f33d8e1679a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ca2a1c7c287e4cf6b1b50cfb0068861b6f525596
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toocomplete-an-access-review-in-azure-ad-privileged-identity-management"></a>Comment toocomplete un accès passez en revue dans Azure AD Privileged Identity Management
-Les administrateurs de rôle privilégié peuvent examiner un accès privilégié une fois qu’une [révision de la sécurité a été démarrée](active-directory-privileged-identity-management-how-to-start-security-review.md). Azure AD Privileged Identity Management (PIM) envoie automatiquement un message électronique demandant aux utilisateurs tooreview leur accès. Si un utilisateur n’a pas reçu un message électronique, vous pouvez envoyer les instructions de hello [façon tooperform examiner une sécurité](active-directory-privileged-identity-management-how-to-perform-security-review.md).
+# <a name="how-to-complete-an-access-review-in-azure-ad-privileged-identity-management"></a>Comment effectuer une révision de l’accès dans Azure AD Privileged Identity Management ?
+Les administrateurs de rôle privilégié peuvent examiner un accès privilégié une fois qu’une [révision de la sécurité a été démarrée](active-directory-privileged-identity-management-how-to-start-security-review.md). Azure AD Privileged Identity Management (PIM) envoie automatiquement un e-mail demandant aux utilisateurs d'examiner leur accès. Si un utilisateur n'a pas reçu d’e-mail, vous pouvez lui envoyer les instructions dans [comment effectuer une révision de sécurité](active-directory-privileged-identity-management-how-to-perform-security-review.md).
 
-Après la période de révision de sécurité hello ou tous les utilisateurs de hello ont terminé leurs examiner automatique, suivez les étapes de hello dans cette revue de hello toomanage article et afficher les résultats de hello.
+Après la période de révision de sécurité, ou après que tous les utilisateurs ont terminé leur auto-examen, suivez les étapes décrites dans cet article pour gérer la révision et afficher les résultats.
 
 ## <a name="manage-security-reviews"></a>Gérer les révisions de sécurité
-1. Accédez toohello [portail Azure](https://portal.azure.com/) et sélectionnez hello **Azure AD Privileged Identity Management** application sur votre tableau de bord.
-2. Sélectionnez hello **accès révisions** section du tableau de bord hello.
-3. Sélectionnez la vérification de l’accès hello que vous souhaitez toomanage.
+1. Accédez à la [portail Azure](https://portal.azure.com/) et sélectionnez l’application **Azure AD Privileged Identity Management** sur votre tableau de bord.
+2. Sélectionnez la section **Révisions de l’accès** du tableau de bord.
+3. Sélectionnez la révision d’accès que vous souhaitez gérer.
 
-Sur le panneau des détails de vérification de l’accès hello, il existe un nombre options pour la gestion de cette révision.
+Le panneau de détails de la révision d’accès comporte plusieurs options pour la gestion de cette révision.
 
 ![Boutons de révision d’accès PIM - capture d’écran][1]
 
 ### <a name="remind"></a>Rappeler
-Si une vérification de l’accès est configurée afin que les utilisateurs de hello examiner eux-mêmes, hello **rappeler** bouton envoie une notification. 
+Si une vérification de l’accès est configurée de sorte que les utilisateurs doivent eux-mêmes la réviser, le bouton **Rappeler** envoie une notification. 
 
 ### <a name="stop"></a>Arrêter
-Toutes les révisions d’accès ont une date de fin, mais vous pouvez utiliser hello **arrêter** bouton toofinish il tôt. Tous les utilisateurs n’ont pas été vérifiées à ce stade, ils ne sont pas en mesure de tooafter vous arrêtez la révision de hello. Vous ne pouvez pas redémarrer une révision arrêtée.
+Toutes les révisions d’accès ont une date de fin, mais vous pouvez utiliser le bouton **Arrêter** pour les terminer plus tôt. Si les utilisateurs n’ont pas été révisés à cette date, ils ne pourront plus le faire une fois la révision arrêtée. Vous ne pouvez pas redémarrer une révision arrêtée.
 
 ### <a name="apply"></a>Appliquer
-Au terme d’une vérification de l’accès, soit parce que vous atteint la date de fin hello ou s’est arrêté manuellement, hello **appliquer** bouton implémente résultat hello de revue de hello. Si accès un utilisateur l’a été refusé dans la révision de hello, il s’agit d’étape hello qui va supprimer leur attribution de rôle.  
+Lorsqu’une vérification de l’accès est terminé, soit parce qu’elle a atteint la date de fin ou après un arrêt manuel, le bouton **Appliquer** implémente le résultat de la révision. Si l’accès d’un utilisateur a été refusé lors de la révision, cette étape supprimera l’affectation de son rôle.  
 
 ### <a name="export"></a>Exportation
-Si vous souhaitez les résultats de hello tooapply de révision de sécurité hello manuellement, vous pouvez exporter la révision de hello. Hello **exporter** bouton démarre le téléchargement d’un fichier CSV. Vous pouvez gérer les résultats de hello dans Excel ou d’autres programmes qui s’ouvrent les fichiers CSV.
+Si vous souhaitez appliquer manuellement les résultats de la révision de sécurité, vous pouvez exporter la révision. Le bouton **Exporter** fait démarrer le téléchargement d'un fichier CSV. Vous pouvez gérer les résultats dans Excel ou d'autres programmes qui s'ouvrent les fichiers CSV.
 
 ### <a name="delete"></a>Supprimer
-Si vous n’êtes pas intéressé par hello examiner les autres, supprimez-le. Hello **supprimer** bouton supprime hello révision hello application PIM.
+Si vous n'êtes plus intéressé par la révision, supprimez-la. Le bouton **Supprimer** permet de supprimer la révision de l'application PIM.
 
 > [!IMPORTANT]
-> Pas obtenir un avertissement avant que la suppression se produit, vous devez donc vous assurer que vous souhaitez toodelete passez en revue. 
+> La suppression ayant lieu sans affichage préalable d’un avertissement, assurez-vous que vous voulez supprimer cette révision. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]

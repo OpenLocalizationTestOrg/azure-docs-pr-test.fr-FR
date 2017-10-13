@@ -1,5 +1,5 @@
 ---
-title: aaaDeploy SAP IDE EHP7 SP3 pour la version 6.0 de ERP SAP sur Azure | Documents Microsoft
+title: "Déploiement de SAP IDES EHP7 SP3 pour SAP ERP 6.0 sur Azure | Microsoft Docs"
 description: "Déploiement de SAP IDES EHP7 SP3 pour SAP ERP 6.0 sur Azure"
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,112 +16,112 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 09/16/2016
 ms.author: hermannd
-ms.openlocfilehash: 26d88c7b48a91d35602464c4f89ca7a30502c4b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91eed294077ff72d0760018b10c98f32db88f3be
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="deploy-sap-ides-ehp7-sp3-for-sap-erp-60-on-azure"></a>Déploiement de SAP IDES EHP7 SP3 pour SAP ERP 6.0 sur Azure
-Cet article décrit comment toodeploy un SAP IDE fonctionnant avec SQL Server et le système d’exploitation de Windows hello sur Azure via hello bibliothèque de matériel du Cloud SAP (SAP CAL) 3.0. captures d’écran Hello montrent étape par étape hello. toodeploy une autre solution, suivez hello les mêmes étapes.
+Cet article explique comment déployer un système SAP IDES exécuté avec SQL Server et le système d’exploitation Windows sur Azure via SAP Cloud Appliance Library (SAP CAL) 3.0. Les captures d’écran montrent la procédure étape par étape. Pour déployer une autre solution, suivez la même procédure.
 
-toostart avec hello SAP licences d’accès client, accédez toohello [SAP Cloud application bibliothèque](https://cal.sap.com/) site Web. SAP possède également un blog sur hello nouvelle [SAP Cloud Appliance bibliothèque 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience). 
+Pour démarrer avec SAP CAL, accédez au site web [SAP Cloud Appliance Library](https://cal.sap.com/). Il existe également un blog SAP sur le nouveau [SAP Cloud Appliance Library 3.0](http://scn.sap.com/community/cloud-appliance-library/blog/2016/05/27/sap-cloud-appliance-library-30-came-with-a-new-user-experience). 
 
 > [!NOTE]
-Comme de 29 mai 2017, vous pouvez utiliser le modèle de déploiement du Gestionnaire de ressources Azure hello en outre toohello préféré au moins un déploiement classique de modèle toodeploy hello licences d’accès client SAP. Nous vous recommandons d’utiliser le nouveau modèle de déploiement Resource Manager hello et de ne pas tenir compte de modèle de déploiement classique hello.
+Depuis le 29 mai 2017, vous pouvez utiliser le modèle de déploiement Azure Resource Manager en plus du modèle de déploiement classique pour déployer SAP CAL. Nous vous recommandons d’utiliser le nouveau modèle de déploiement Resource Manager et d’ignorer le modèle de déploiement classique.
 
-Si vous déjà créé un compte SAP licences d’accès client qui utilise le modèle classique de hello, *vous devez toocreate un autre compte de licences d’accès client SAP*. Ce compte doit tooexclusively déployer dans Azure à l’aide du modèle de gestionnaire de ressources hello.
+Si vous avez déjà créé un compte SAP CAL qui utilise le modèle classique, *vous devez créer un autre compte SAP CAL*. Ce compte doit être destiné exclusivement au déploiement dans Azure à l’aide du modèle Resource Manager.
 
-Après vous être connecté toohello licence d’accès client SAP, première page de hello vous conduit généralement toohello **Solutions** page. solutions Hello proposées sur hello SAP licences d’accès client sont en augmentation, donc vous devrez peut-être tooscroll mal les solutions hello toofind vous souhaitez. solution IDE de SAP basés sur Windows Hello mis en surbrillance est exclusivement disponible sur Azure décrit les processus de déploiement hello :
+Après vous être connecté à SAP CAL, la première page vous conduit généralement à la page **Solutions**. Les solutions proposées sur SAP CAL sont toujours plus nombreuses, si bien que vous devrez peut-être en faire défiler plusieurs avant de trouver celle souhaitée. La solution SAP IDES basée sur Windows mise en surbrillance disponible exclusivement sur Azure montre le processus de déploiement :
 
 ![Solutions SAP CAL](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic1.jpg)
 
-### <a name="create-an-account-in-hello-sap-cal"></a>Créer un compte dans hello licences d’accès client SAP
-1. toosign dans toohello SAP CAL pour hello première fois, utilisez votre utilisateur S SAP ou autre utilisateur enregistré dans SAP. Définissez ensuite un compte d’accès client SAP qui est utilisé par les appareils de toodeploy hello licences d’accès client SAP sur Azure. Dans la définition du compte de hello, vous devez :
+### <a name="create-an-account-in-the-sap-cal"></a>Création d’un compte dans SAP CAL
+1. Lorsque vous vous connectez à SAP CAL pour la première fois, utilisez votre identifiant SAP S-User ou un autre identifiant utilisateur enregistré auprès de SAP. Ensuite, définissez un compte SAP CAL utilisé par SAP CAL pour déployer des appliances sur Azure. Dans la définition du compte, procédez comme suit :
 
-    a. Sélectionnez le modèle de déploiement hello sur Azure (Gestionnaire de ressources ou classique).
+    a. Sélectionnez le modèle de déploiement sur Azure (Resource Manager ou Classic).
 
-    b. Entrez votre abonnement Azure. Abonnement tooone uniquement peut être affecté à un compte de la licence d’accès client SAP. Si vous avez besoin de plus d’un abonnement, vous devez toocreate un autre compte de licences d’accès client SAP.
+    b. Entrez votre abonnement Azure. Un compte SAP CAL ne peut être assigné qu’à un seul abonnement. Si vous avez besoin de plusieurs abonnements, vous devez créer un autre compte SAP CAL.
     
-    c. Donnez à hello SAP CAL autorisation toodeploy dans votre abonnement Azure.
+    c. Accordez à SAP CAL l’autorisation d’effectuer des déploiements dans votre abonnement Azure.
 
     > [!NOTE]
-    les étapes suivantes Hello montrent comment toocreate une licence d’accès client SAP compte pour les déploiements de gestionnaire de ressources. Si vous avez déjà un compte de licence d’accès client SAP qui est le modèle de déploiement classique toohello lié, vous *devez* toofollow ces toocreate étapes un nouveau compte de licences d’accès client SAP. nouveau compte de licences d’accès client SAP Hello doit toodeploy dans le modèle de gestionnaire de ressources hello.
+    Les étapes suivantes montrent comment créer un compte SAP CAL pour les déploiements Resource Manager. Si vous disposez déjà d’un compte SAP CAL lié au modèle de déploiement Classic, vous *devez* suivre ces étapes pour créer un nouveau compte SAP CAL. Le nouveau compte SAP CAL doit être déployé dans le modèle Resource Manager.
 
-2. toocreate une licence d’accès client SAP nouveau compte, hello **comptes** page affiche deux possibilités pour Azure : 
+2. Pour créer un nouveau compte SAP CAL, vous disposez de deux choix dans la page **Compte** pour Azure : 
 
-    a. **Microsoft Azure (classique)** est le modèle de déploiement classique hello et n’est plus recommandée.
+    a. **Microsoft Azure (Classic)** est le modèle de déploiement classique et n’est plus recommandé.
 
-    b. **Microsoft Azure** est le nouveau modèle de déploiement Resource Manager hello.
+    b. **Microsoft Azure** est le nouveau modèle de déploiement Resource Manager.
 
-    ![Comptes SAP CAL](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic-2a.PNG)
+    ![Comptes SAP CAL](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic-2a.PNG)
 
-    toodeploy dans le modèle de gestionnaire de ressources hello, sélectionnez **Microsoft Azure**.
+    Pour déployer dans le modèle Resource Manager, sélectionnez **Microsoft Azure**.
 
-    ![Comptes SAP CAL](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic3c.PNG)
+    ![Comptes SAP CAL](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic3c.PNG)
 
-3. Entrez hello Azure **ID d’abonnement** qui se trouvent sur hello portail Azure. 
+3. Entrez **l’ID d’abonnement** Azure qui se trouve sur le portail Azure. 
 
     ![ID d’abonnement SAP CAL](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic3c.PNG)
 
-4. toodeploy de licences d’accès client SAP tooauthorize hello en hello abonnement Azure que vous avez définies, cliquez sur **Authorize**. Hello suivant page s’affiche dans l’onglet du navigateur hello :
+4. Pour autoriser le déploiement de SAP CAL dans l’abonnement Azure que vous avez défini, cliquez sur **Autoriser**. La page suivante s’affiche dans l’onglet du navigateur :
 
     ![Connexion aux services cloud d’Internet Explorer](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic4c.PNG)
 
-5. Si plusieurs utilisateurs est répertorié, choisissez le compte Microsoft hello coadministrator de hello toobe lié Hello abonnement Azure que vous avez sélectionné. Hello suivant page s’affiche dans l’onglet du navigateur hello :
+5. Si plusieurs utilisateurs sont répertoriés, choisissez le compte Microsoft lié en tant que coadministrateur de l’abonnement Azure que vous avez sélectionné. La page suivante s’affiche dans l’onglet du navigateur :
 
     ![Confirmation des services cloud d’Internet Explorer](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic5a.PNG)
 
-6. Cliquez sur **Accepter**. Si l’autorisation de hello est réussie, hello définition du compte de licences d’accès client SAP s’affiche à nouveau. Après une courte période, un message confirme que le processus d’autorisation de hello a réussi.
+6. Cliquez sur **Accepter**. Si l’autorisation est accordée, la définition du compte SAP CAL s’affiche à nouveau. Après une courte période, un message confirme que le processus d’autorisation a réussi.
 
-7. tooassign hello nouvellement créée tooyour utilisateur du compte de licences d’accès client SAP, entrez votre **ID utilisateur** dans hello de zone de texte hello droit et cliquez sur **ajouter**. 
+7. Pour assigner le compte SAP CAL nouvellement créé à votre utilisateur, entrez votre identifiant utilisateur dans la zone de texte **User ID** (Identifiant utilisateur) à droite, puis cliquez sur **Add** (Ajouter). 
 
-    ![Association de compte toouser](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic8a.PNG)
+    ![Association du compte à l’utilisateur](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic8a.PNG)
 
-8. Cliquez sur votre compte utilisateur de hello utiliser toosign dans toohello SAP licences d’accès client, de tooassociate **révision**. 
+8. Pour associer votre compte à l’utilisateur que vous utilisez pour vous connecter à SAP CAL, cliquez sur **Review** (Revoir). 
 
-9. association de hello toocreate entre votre utilisateur et le compte de licences d’accès client SAP hello nouvellement créé, cliquez sur **créer**.
+9. Pour créer l’association entre votre utilisateur et le compte SAP CAL nouvellement créé, cliquez sur **Créer**.
 
-    ![Association tooaccount utilisateur](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic9b.PNG)
+    ![Association d’un utilisateur au compte](./media/cal-ides-erp6-ehp7-sp3-sql/s4h-pic9b.PNG)
 
-Vous avez correctement créé un compte SAP CAL capable d’effectuer les tâches suivantes :
+Vous avez correctement créé un compte SAP CAL capable d’effectuer ce qui suit :
 
-- Utilisez le modèle de déploiement du Gestionnaire de ressources hello.
+- Utiliser le modèle de déploiement Resource Manager.
 - Déployer des systèmes SAP dans votre abonnement Azure.
 
 > [!NOTE]
-Avant de pouvoir déployer des solutions SAP IDE hello basée sur Windows et SQL Server, vous devrez peut-être toosign pour un abonnement de licence d’accès client SAP. Dans le cas contraire, les solutions hello risquent d’apparaître en tant que **verrouillé** sur la page de vue d’ensemble de hello.
+Avant de pouvoir déployer la solution SAP IDES basée sur Windows et SQL Server, vous devrez peut-être souscrire à un abonnement SAP CAL. Sinon, la solution risque d’apparaître comme **Verrouillée** dans la page de vue d’ensemble.
 
 ### <a name="deploy-a-solution"></a>Déployer une solution
-1. Après avoir configuré un compte de la licence d’accès client SAP, sélectionnez **hello solution SAP IDE sur Windows et SQL Server** solution. Cliquez sur **création d’une Instance**et vérifiez les conditions d’utilisation et les termes du contrat de hello. 
+1. Après avoir configuré un compte SAP CAL, sélectionnez la solution **Solution SAP IDES sur Windows et SQL Server**. Cliquez sur **Créer une instance** et vérifiez les conditions d’utilisation. 
 
-2. Sur hello **Mode de base : création d’une Instance** page, vous devez :
+2. Sur la page **Basic Mode: Create Instance** (Mode de base : Créer une instance), procédez comme suit :
 
     a. Entrez une instance **Nom**.
 
-    b. Sélectionnez une région Azure dans le champ **Region** (Région). Vous devrez peut-être une tooget d’abonnement de licence d’accès client SAP plusieurs régions Azure proposées.
+    b. Sélectionnez une **Région** Azure. Vous aurez peut-être besoin d’un abonnement SAP CAL pour avoir le choix entre plusieurs régions Azure.
 
-    c.  Entrez le masque de hello **mot de passe** solution hello, comme indiqué :
+    c.  Entrez le **Mot de passe** maître pour la solution, comme indiqué :
 
-    ![Mode de base SAP CAL : créer une instance](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic10a.png)
+    ![SAP CAL - Mode de base : Créer une instance](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic10a.png)
 
-3. Cliquez sur **Créer**. Après un certain temps, selon la taille de hello et la complexité de la solution de hello (licence d’accès client SAP fournit une estimation hello), hello état est affiché comme actif et prêt à être utilisé : 
+3. Cliquez sur **Create**. Après un délai variable en fonction de la taille et de la complexité de la solution (SAP CAL en donne une estimation), la solution apparaît comme active et prête à être utilisée : 
 
-    ![Instances SAP CAL](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic12a.png)
+    ![Instances de SAP CAL](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic12a.png)
 
-4. groupe de ressources toofind hello et tous ses objets qui ont été créés par hello des licences d’accès client SAP, accédez toohello portail Azure. machine virtuelle de Hello sont accessibles en commençant par le même nom qui a été fourni en hello SAP licences d’accès client de l’instance de hello.
+4. Pour trouver le groupe de ressources et tous ses objets créés par SAP CAL, accédez au portail Azure. Les machines virtuelles sont repérables car elles commencent par le nom d’instance qui a été spécifié dans SAP CAL.
 
     ![Objets du groupe de ressources](./media/cal-ides-erp6-ehp7-sp3-sql/ides_resource_group.PNG)
 
-5. Sur le portail de licences d’accès client SAP hello, accédez toohello déployé instances, puis cliquez sur **connexion**. Hello suivant la fenêtre contextuelle s’affiche : 
+5. Dans le portail SAP CAL, accédez aux instances déployées, puis cliquez sur **Connect** (Connexion). La fenêtre indépendante suivante apparaît : 
 
-    ![Se connecter toohello Instance](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic14a.PNG)
+    ![Connexion à l’instance](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic14a.PNG)
 
-6. Avant de pouvoir utiliser un des systèmes de toohello déployé tooconnect hello options, cliquez sur **Getting Started Guide**. noms de documentation Hello hello utilisateurs pour chacune des méthodes de connectivité hello. les mots de passe Hello pour les utilisateurs sont définies de mot de passe principal toohello que vous avez défini au début de hello hello du processus de déploiement. Dans la documentation de hello, les autres utilisateurs plus fonctionnelles sont répertoriés avec leur mot de passe, vous pouvez utiliser toosign dans toohello déployé le système.
+6. Avant de pouvoir utiliser l’une des options de connexion aux systèmes déployés, cliquez sur **Getting Started Guide** (Guide de prise en main). La documentation désigne les utilisateurs pour chacune des méthodes de connectivité. Le mot de passe principal défini au début du processus de déploiement définit les mots de passe de ces utilisateurs. Dans la documentation, d’autres utilisateurs plus fonctionnels sont répertoriés avec leurs mots de passe, que vous pouvez utiliser pour vous connecter au système déployé.
 
     ![Documentation de présentation de SAP](./media/cal-ides-erp6-ehp7-sp3-sql/ides-pic15.jpg)
 
 En quelques heures, un système SAP IDES sain est déployé dans Azure.
 
-Si vous avez acheté un abonnement de licence d’accès client SAP, SAP prend entièrement en charge déploiements au travers de hello licences d’accès client SAP sur Azure. file d’attente de la prise en charge Hello est BC-VCM-licences d’accès client.
+Si vous avez acheté un abonnement SAP CAL, SAP prend entièrement en charge les déploiements via SAP CAL sur Azure. La file d’attente de prise en charge est BC-VCM-CAL.
 

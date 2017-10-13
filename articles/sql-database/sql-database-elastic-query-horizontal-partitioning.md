@@ -1,6 +1,6 @@
 ---
-title: "aaaReporting sur les bases de données à grande échelle cloud | Documents Microsoft"
-description: "Comment tooset les requêtes élastiques sur les partitions horizontales"
+title: "Création de rapports sur des bases de données cloud mises à l’échelle | Microsoft Docs"
+description: "comment configurer des requêtes élastiques sur les partitions horizontales"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/27/2016
 ms.author: mlandzic
-ms.openlocfilehash: 78986c2040bf308195bf7c77e64d4f37273fcf36
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 62b5bcd26aa1ed219fb38970916e0e8847ceb577
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="reporting-across-scaled-out-cloud-databases-preview"></a>Création de rapports sur des bases de données cloud mises à l’échelle (version préliminaire)
 ![Requête sur plusieurs partitions][1]
 
-Les bases de données partitionnées répartissent des lignes sur une mise à l’échelle vers la couche données. schéma de Hello est identique sur toutes les bases de données participantes, également connus sous le partitionnement horizontal. En utilisant une requête élastique, vous pouvez créer des rapports qui couvrent toutes les bases de données d’une base de données partitionnée.
+Les bases de données partitionnées répartissent des lignes sur une mise à l’échelle vers la couche données. Le schéma est identique sur toutes les bases de données participantes, également connu sous le terme partitionnement horizontal. En utilisant une requête élastique, vous pouvez créer des rapports qui couvrent toutes les bases de données d’une base de données partitionnée.
 
 Pour démarrer rapidement, consultez la rubrique [Création de rapports sur des bases de données cloud mises à l’échelle](sql-database-elastic-query-getting-started.md).
 
 Pour les bases de données non partitionnées, consultez [Interroger plusieurs bases de données cloud avec différents schémas](sql-database-elastic-query-vertical-partitioning.md). 
 
-## <a name="prerequisites"></a>Composants requis
-* Créer une carte de partitions à l’aide de la bibliothèque cliente de base de données élastique hello. Consultez la rubrique [Gestion des cartes de partitions](sql-database-elastic-scale-shard-map-management.md). Ou utilisez l’exemple d’application hello dans [prise en main des outils de base de données élastique](sql-database-elastic-scale-get-started.md).
-* Vous pouvez aussi consulter [existant de la migration des bases de données bases de données tooscaled](sql-database-elastic-convert-to-use-elastic-tools.md).
-* utilisateur de Hello doit posséder les autorisations ALTER ANY EXTERNAL DATA SOURCE. Cette autorisation est incluse avec l’autorisation ALTER DATABASE hello.
-* Les autorisations ALTER ANY EXTERNAL DATA SOURCE sont toohello nécessaires toorefer source de données sous-jacente.
+## <a name="prerequisites"></a>Configuration requise
+* Créez une carte de partitions à l’aide d’une bibliothèque de base de données élastique cliente. Consultez la rubrique [Gestion des cartes de partitions](sql-database-elastic-scale-shard-map-management.md). Ou utilisez l’exemple d’application de la rubrique [Prise en main des outils de base de données élastiques](sql-database-elastic-scale-get-started.md).
+* Vous pouvez également consulter la rubrique [Migrer des bases de données existantes vers des bases de données mises à l’échelle](sql-database-elastic-convert-to-use-elastic-tools.md).
+* L’utilisateur doit posséder l’autorisation ALTER ANY EXTERNAL DATA SOURCE. Cette autorisation est incluse dans l’autorisation ALTER DATABASE.
+* Les autorisations ALTER ANY EXTERNAL DATA SOURCE sont nécessaires pour faire référence à la source de données sous-jacente.
 
 ## <a name="overview"></a>Vue d'ensemble
-Ces instructions créent représentation des métadonnées hello de votre couche données partitionnées dans base de données de requête élastique hello. 
+Ces instructions créent une représentation des métadonnées de votre couche de données partitionnées dans la base de données de requête élastique. 
 
 1. [CREATE MASTER KEY](https://msdn.microsoft.com/library/ms174382.aspx)
 2. [CREATE DATABASE SCOPED CREDENTIAL](https://msdn.microsoft.com/library/mt270260.aspx)
@@ -44,7 +44,7 @@ Ces instructions créent représentation des métadonnées hello de votre couche
 4. [CREATE EXTERNAL TABLE](https://msdn.microsoft.com/library/dn935021.aspx) 
 
 ## <a name="11-create-database-scoped-master-key-and-credentials"></a>1.1 Créer la clé principale et les informations d’identification de la base de données
-informations d’identification Hello sont utilisée par hello requête élastique tooconnect tooyour bases de données distantes.  
+Les informations d'identification sont utilisées par la requête élastique pour se connecter à vos bases de données distantes.  
 
     CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'password';
     CREATE DATABASE SCOPED CREDENTIAL <credential_name>  WITH IDENTITY = '<username>',  
@@ -52,7 +52,7 @@ informations d’identification Hello sont utilisée par hello requête élastiq
     [;]
 
 > [!NOTE]
-> Vérifiez que hello *»\<nom d’utilisateur\>»* ne comprend aucun *»@servername»* suffixe. 
+> Vérifiez que *« \<nom d’utilisateur\> »* ne contient pas le suffixe *« @servername »*. 
 > 
 > 
 
@@ -79,11 +79,11 @@ Syntaxe :
         SHARD_MAP_NAME='ShardMap' 
     );
 
-Récupérer la liste de hello de sources de données externes en cours : 
+Récupérez la liste des sources de données externes actuelles : 
 
     select * from sys.external_data_sources; 
 
-source de données externe Hello fait référence à votre carte de partitions. Une requête élastique utilise ensuite la source de données externe hello et hello sous-jacent partition carte tooenumerate hello bases de données participant à la couche de données hello. carte de partitions hello tooread utilisés sont Hello mêmes informations d’identification et tooaccess hello des données sur les partitions hello lors du traitement de hello d’une requête élastique. 
+La source de données externe fait référence au mappage de partitions. Une requête élastique utilise ensuite la source de données externe et le mappage de la partition sous-jacents pour énumérer les bases de données qui interviennent dans les couches de données. Les mêmes informations d’identification sont utilisées pour lire la carte de partitions et accéder aux données présentes sur les partitions pendant le traitement d’une requête élastique. 
 
 ## <a name="13-create-external-tables"></a>1.3 Créer des tables externes
 Syntaxe :  
@@ -122,34 +122,34 @@ Syntaxe :
         DISTRIBUTION=SHARDED(ol_w_id)
     ); 
 
-Récupérer la liste hello des tables externes à partir de la base de données actuelle hello : 
+Récupérer la liste des tables externes à partir de la base de données en cours : 
 
     SELECT * from sys.external_tables; 
 
-toodrop des tables externes :
+Pour supprimer des bases de données externes :
 
     DROP EXTERNAL TABLE [ database_name . [ schema_name ] . | schema_name. ] table_name[;]
 
 ### <a name="remarks"></a>Remarques
-Hello données\_clause SOURCE définit la source de données externe hello (une carte de partitions) qui est utilisé pour une table externe hello.  
+La clause DATA\_SOURCE définit la source de données externe (une carte de partitions dans le cas d’un partitionnement horizontal) qui est utilisée pour la table externe.  
 
-Hello schéma\_nom et l’objet\_mappent les clauses de nom table de tooa de définition de table externe hello dans un schéma différent. Si omis, schéma hello d’objet distant de hello est considéré comme étant toobe « dbo » et son nom est nom de la table externe identiques toohello toobe en cours de définition. Cela est utile si hello nom de votre table distante est déjà utilisé dans la base de données hello où vous souhaitez une table externe toocreate hello. Par exemple, vous toodefine une tooget table externe une vue agrégée des affichages catalogue ou sur vos données à l’échelle des vues de gestion dynamique de niveau. Étant donné que les affichages catalogue et vues de gestion dynamique existent déjà localement, vous ne pouvez pas utiliser leur nom pour la définition de la table externe hello. Au lieu de cela, utilisez un autre nom et d’utiliser la vue de catalogue hello ou hello nom DMV Bonjour schéma\_nom et/ou objet\_clauses de nom. (Consultez l’exemple hello ci-dessous.) 
+Les clauses SCHEMA\_NAME et OBJECT\_NAME mappent la définition de table externe à une table dans un schéma différent. En cas d’omission, le schéma de l’objet distant est supposé de type « dbo » et son nom est supposé être identique au nom de la table externe en cours de définition. Ceci est particulièrement utile si le nom de votre table distante est déjà utilisé dans la base de données dans laquelle vous souhaitez créer la table externe. Par exemple, vous souhaitez définir une table externe pour obtenir une vue agrégée des affichages de catalogue ou de vues de gestion dynamiques sur la couche des données mise à l’échelle. Dans la mesure où les affichages catalogue et les vues de gestion dynamique existent déjà localement, vous ne pouvez pas utiliser leur nom pour la définition de la table externe. Vous devez utiliser un autre nom et le nom de la vue de catalogue ou de la vue de gestion dynamique dans les clauses SCHEMA\_NAME et/ou OBJECT\_NAME. (Voir l’exemple ci-dessous.) 
 
-DISTRIBUTION Hello spécifie la distribution des données hello utilisée pour cette table. processeur de requêtes Hello utilise les informations hello fournies dans le plans de requête plus efficace de hello DISTRIBUTION clause toobuild hello.  
+La clause DISTRIBUTION spécifie la distribution des données utilisée pour cette table. Le processeur de requêtes utilise les informations fournies dans la clause DISTRIBUTION pour créer les plans de requête les plus efficaces.  
 
-1. **PARTITIONNÉE** signifie que les données sont partitionnées horizontalement sur les bases de données hello. Hello clé de partitionnement pour la distribution des données hello est hello **< sharding_column_name >** paramètre.
-2. **RÉPLIQUÉES** signifie que des copies identiques de la table de hello sont présents sur chaque base de données. Il s’agit de votre tooensure responsabilité que les réplicas hello sont identiques entre les bases de données hello.
-3. **ROUND\_(Round Robin)** signifie que la table hello est partitionnée horizontalement à l’aide d’une méthode de distribution de dépend de l’application. 
+1. **SHARDED** signifie que les données sont partitionnées horizontalement entre les bases de données. La clé de partitionnement pour la distribution des données figure dans le paramètre **<nom_colonne_partitionnement>**.
+2. **REPLICATED** signifie que des copies identiques de la table sont présentes sur chaque base de données. La responsabilité de vous assurer que les réplicas sont identiques d’une base de données à l’autre vous incombe.
+3. **ROUND\_ROBIN** signifie que la table est partitionnée horizontalement à l’aide d’une méthode de distribution liée à l’application. 
 
-**Couche de données référence**: une table externe hello DDL fait référence la source de données externe tooan. source de données externe Hello spécifie une carte de partitions qui procure une table externe hello toolocate nécessaire des informations de hello toutes les bases de données hello dans votre couche données. 
+**Référence de couche de données**: la table externe DDL fait référence à une source de données externe. La source de données externe spécifie un mappage de partition qui fournit à la table externe les informations nécessaires à la localisation de toutes les bases de données de votre couche de données. 
 
-### <a name="security-considerations"></a>Considérations relatives à la sécurité
-Les utilisateurs avec une table externe accès toohello automatiquement accéder toohello les tables distantes sous-jacentes sous les informations d’identification hello donné dans la définition de source de données externe hello. Évitez indésirable élévation de privilèges via les informations d’identification hello hello externe de source de données. Utilisez GRANT ou REVOKE pour une table externe, comme s'il s'agissait d'une table standard.  
+### <a name="security-considerations"></a>Sécurité
+Les utilisateurs ayant accès à la table externe acquièrent un accès automatique aux tables distantes sous-jacentes avec les informations d’identification fournies dans la définition de source de données externe. Évitez une élévation de privilèges non souhaitée par le biais d’informations d'identification de la source de données externe. Utilisez GRANT ou REVOKE pour une table externe, comme s'il s'agissait d'une table standard.  
 
 Une fois votre table externe et votre source de données externe définies, vous pouvez utiliser l’ensemble T-SQL complet sur vos tables externes.
 
 ## <a name="example-querying-horizontal-partitioned-databases"></a>Exemple : interrogation de bases de données partitionnées horizontales
-Hello requête suivante effectue une jointure tridirectionnelle entre entrepôts, les commandes et les lignes de commande et utilise plusieurs agrégats et un filtre sélectif. Il suppose que le partitionnement (1) horizontal (partitionnement) et (2) qu’entrepôts, les commandes et les lignes de commande sont partitionnées par la colonne d’id de l’entrepôt hello, et cette requête élastique hello peut colocaliser les jointures hello sur les partitions hello et traiter la partie de la requête hello sur hello coûteuse de hello partitions en parallèle. 
+La requête suivante effectue une jonction tridirectionnelle entre les entrepôts, les commandes et les lignes de commande, et utilise plusieurs agrégats et un filtre sélectif. Elle suppose (1) un partitionnement horizontal (partitionnement) et (2) que les entrepôts, les commandes et lignes de commande sont partitionnées par la colonne d’id de l’entrepôt et que la requête élastique peut placer des jointures sur les partitions et traiter la partie coûteuse de la requête sur les partitions en parallèle. 
 
     select  
          w_id as warehouse,
@@ -167,14 +167,14 @@ Hello requête suivante effectue une jointure tridirectionnelle entre entrepôts
     group by w_id, o_c_id 
 
 ## <a name="stored-procedure-for-remote-t-sql-execution-spexecuteremote"></a>Procédure stockée pour l’exécution de T-SQL à distance : sp\_execute_remote
-Requête élastique présente également une procédure stockée qui offre un accès direct toohello partitions. Hello procédure stockée est appelée [sp\_exécuter \_distant](https://msdn.microsoft.com/library/mt703714) et peut être utilisé tooexecute des procédures stockées distantes ou le code T-SQL sur des bases de données distantes hello. Il prend hello paramètres suivants : 
+La requête élastique introduit également une procédure stockée qui offre un accès direct aux partitions. La procédure stockée est appelée [sp\_execute\_remote](https://msdn.microsoft.com/library/mt703714) et peut être utilisée pour exécuter le code T-SQL ou les procédures stockées distantes sur des bases de données distantes. Les paramètres suivants sont pris en compte : 
 
-* Nom de source de données (nvarchar) : nom hello hello externe de source de données de type SGBDR. 
-* Requête (nvarchar) : hello T-SQL toobe de requête exécutée sur chaque partition. 
-* Déclaration de paramètre (nvarchar) - facultatif : chaîne avec les définitions de type de données pour les paramètres de hello utilisés dans le paramètre de requête hello (comme sp_executesql). 
+* Nom de la source de données (nvarchar) : nom de la source de données externe de type SGBDR. 
+* Requête (nvarchar) : requête T-SQL à exécuter sur chaque partition. 
+* Déclaration de paramètre (nvarchar) : facultatif : chaîne contenant des définitions de type de données correspondant aux paramètres utilisés dans le paramètre de requête (par exemple, sp_executesql). 
 * Liste de valeurs de paramètre : facultative : valeurs de paramètre de liste séparées par des virgules (par exemple, sp_executesql).
 
-Hello sp\_exécuter\_distant utilise hello prévue hello appel paramètres tooexecute hello donné l’instruction T-SQL sur des bases de données distantes hello de source de données externe. Elle utilise les informations d’identification hello de hello données externes tooconnect toohello shardmap manager base de données source et de bases de données distantes hello.  
+sp\_execute\_remote utilise la source de données externe fournie dans les paramètres d’appel pour exécuter l’instruction T-SQL donnée sur toutes les bases de données distantes. Il utilise les informations d’identification de la source de données externe pour se connecter à la base de données shardmap et aux bases de données distantes.  
 
 Exemple : 
 
@@ -183,13 +183,13 @@ Exemple :
         N'select count(w_id) as foo from warehouse' 
 
 ## <a name="connectivity-for-tools"></a>Connectivité des outils
-Utilisez tooconnect de chaînes de connexion SQL Server standard votre application, votre BI et données intégration outils toohello base de données avec vos définitions de table externe. Assurez-vous que SQL Server est pris en charge comme source de données pour votre outil. Ensuite référencer la base de données de requête élastique hello comme tout autre outil de toohello de connexion de base de données SQL Server et utiliser des tables externes à partir de votre application ou un outil comme si elles étaient des tables locales. 
+Utilisez des chaînes de connexion SQL Server standard pour connecter votre application, vos outils d’intégration BI et des données de la base de données avec vos définitions de table externe. Assurez-vous que SQL Server est pris en charge comme source de données pour votre outil. Référencez la base de données de requête élastique comme n’importe quelle autre base de données SQL Server connectée à l’outil et utilisez des tables externes à partir de votre outil ou votre application comme s’il s’agissait de tables locales. 
 
 ## <a name="best-practices"></a>Meilleures pratiques
-* Assurez-vous que cette base de données de point de terminaison de la requête élastique hello a reçu toutes les partitions via hello que pare-feu de base de données SQL et la base de données access toohello shardmap.  
-* Valider ou appliquer la distribution des données définie par une table externe hello hello. Si la distribution réelle des données est différente de la distribution hello spécifiée dans votre définition de la table, vos requêtes peuvent donner des résultats inattendus. 
-* Requête élastique actuellement n’effectue pas élimination de partition lorsque les prédicats de clé de partitionnement hello elle permettrait toosafely exclure certaines partitions à partir du traitement.
-* Requête élastique mieux adaptée pour les requêtes où la plupart des calculs de hello peut être effectuée sur les partitions hello. Vous obtenez généralement hello meilleurs résultats avec des prédicats de filtre sélectif qui peut être évaluée sur les partitions hello ou des jointures sur hello clés qui peuvent être effectuées de manière alignées sur toutes les partitions de partitionnement. Autres modèles de requête peuvent nécessiter des tooload grandes quantités de données à partir du nœud principal hello partitions toohello et peuvent être lent
+* Assurez-vous que la base de données du point de terminaison de requête élastique est autorisée à accéder à la base de données de mappage de partition et à toutes les partitions via les pare-feu de base de données SQL.  
+* Validez ou appliquez la distribution de données définie par la table externe. Si la distribution réelle des données est différente de la distribution spécifiée dans la définition de votre table, vos requêtes peuvent donner des résultats inattendus. 
+* La requête élastique n’effectue pas d’élimination de partition lorsque les prédicats de clé de partitionnement permettent d’exclure en toute sécurité certaines partitions du traitement.
+* Une requête élastique est mieux adaptée aux requêtes dont la plus grande partie du calcul peut être effectuée sur les partitions. De manière générale, vous obtenez les meilleures performances de requête avec des prédicats de filtres sélectifs pouvant être évalués sur des partitions ou des jonctions via les clés de partitionnement qui peuvent être effectuées de manière alignée sur toutes les partitions. D’autres modèles de requête peuvent nécessiter le chargement de grandes quantités de données dans le nœud principal, à partir des partitions, ce qui peut nuire aux performances.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

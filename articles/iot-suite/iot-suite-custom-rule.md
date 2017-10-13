@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate une règle personnalisée dans Azure IoT Suite | Documents Microsoft"
-description: "Comment toocreate une règle personnalisée dans une Suite de IoT solution préconfigurée."
+title: "Création d’une règle personnalisée dans Azure IoT Suite | Microsoft Docs"
+description: "Comment créer une règle personnalisée dans une solution IoT Suite préconfigurée."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,56 +15,56 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 6c5bb2ca54f3f17b99ad482e727c8e9fa28d7fe5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d58c27234ea05a82aaa3e8d72f70c1449980df09
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-a-custom-rule-in-hello-remote-monitoring-preconfigured-solution"></a>Créer une règle personnalisée dans hello solution préconfigurée de surveillance à distance
+# <a name="create-a-custom-rule-in-the-remote-monitoring-preconfigured-solution"></a>Création d’une règle personnalisée dans la solution de surveillance à distance préconfigurée
 
 ## <a name="introduction"></a>Introduction
 
-Dans les solutions hello préconfiguré, vous pouvez configurer [les règles qui se déclenchent lorsqu’une télémétrie valeur pour un appareil atteint un seuil spécifique][lnk-builtin-rule]. [Utiliser la télémétrie dynamique avec hello solution préconfigurée de surveillance à distance] [ lnk-dynamic-telemetry] décrit comment vous pouvez ajouter des valeurs de données de télémétrie personnalisées, telles que *ExternalTemperature* tooyour solution. Cet article vous explique comment des types de règle personnalisée de toocreate de télémétrie dynamique dans votre solution.
+Dans les solutions préconfigurées, vous pouvez configurer [des règles qui se déclenchent lorsqu’une valeur de télémétrie d’un périphérique atteint un seuil spécifique][lnk-builtin-rule]. La page [Utilisation de la télémétrie dynamique avec la solution préconfigurée de surveillance à distance][lnk-dynamic-telemetry] vous explique comment ajouter des valeurs de télémétrie personnalisées, telles que *ExternalTemperature*, à votre solution. Cet article vous montre comment créer une règle personnalisée pour les types de télémétrie dynamiques dans votre solution.
 
-Ce didacticiel utilise un simple Node.js appareil simulé toogenerate télémétrie dynamique toosend toohello solution préconfigurée back-end. Puis, vous ajoutez des règles personnalisées Bonjour **RemoteMonitoring** solution Visual Studio et déployer ce tooyour back-end personnalisé abonnement Azure.
+Ce didacticiel utilise un appareil simulé Node.js simple pour générer la télémétrie dynamique à envoyer vers le serveur principal de la solution préconfigurée. Vous ajoutez ensuite des règles personnalisées dans la solution Visual Studio **RemoteMonitoring** et déployez ce serveur principal personnalisé sur votre abonnement Azure.
 
-toocomplete ce didacticiel, vous devez :
+Pour suivre ce didacticiel, vous avez besoin des éléments suivants :
 
 * Un abonnement Azure actif. Si vous ne possédez pas de compte, vous pouvez créer un compte d’évaluation gratuit en quelques minutes. Pour plus d’informations, consultez la rubrique [Version d’évaluation gratuite d’Azure][lnk_free_trial].
-* [Node.js] [ lnk-node] version 0.12.x ou ultérieure toocreate un appareil simulé.
-* Visual Studio 2015 ou Visual Studio 2017 toomodify hello préconfiguré solution précédent se terminer par vos nouvelles règles.
+* [Node.js][lnk-node] version 0.12.x ou ultérieure pour créer un appareil simulé.
+* Visual Studio 2015 ou Visual Studio 2017 pour modifier le serveur principal de la solution préconfigurée avec vos nouvelles règles.
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
-Prenez note du nom de la solution hello que vous avez choisie pour votre déploiement. Vous aurez besoin de ce nom plus tard dans ce didacticiel.
+Notez le nom de solution que vous avez choisi pour votre déploiement. Vous aurez besoin de ce nom plus tard dans ce didacticiel.
 
 [!INCLUDE [iot-suite-send-external-temperature](../../includes/iot-suite-send-external-temperature.md)]
 
-Vous pouvez arrêter l’application de console hello Node.js lorsque vous avez vérifié qu’il envoie **ExternalTemperature** toohello de télémétrie de solution préconfigurée. Maintenir les fenêtre de console hello étant donné que vous exécutez cette application de console Node.js à nouveau après avoir ajouté des solutions de toohello hello règle personnalisée.
+Vous pouvez arrêter l’application de console Node.js lorsque vous avez vérifié qu’il envoie la télémétrie **ExternalTemperature** à la solution préconfigurée. Gardez la fenêtre de console ouverte car vous exécuterez à nouveau cette application de console Node.js après avoir ajouté la règle personnalisée à la solution.
 
 ## <a name="rule-storage-locations"></a>Emplacements de stockage des règles
 
 Les informations sur les règles sont conservées dans deux emplacements :
 
-* **DeviceRulesNormalizedTable** – cette table stocke un normalisé référencer toohello les règles définies par le portail de solution hello. Lorsque le portail de solution hello affiche les règles de l’appareil, il interroge cette table pour les définitions de règles hello.
-* **DeviceRules** blob – cet objet blob stocke toutes les règles de hello définies pour toutes les inscrits et sont définies comme une exécution de traitements référence toohello d’entrée Analytique de flux de données Azure.
+* Table **DeviceRulesNormalizedTable** : cette table stocke une référence normalisée aux règles définies par le portail de la solution. Lorsque le portail de la solution affiche les règles des appareils, il interroge cette table sur les définitions de règles.
+* Objet blob **DeviceRules** : cet objet blob stocke toutes les règles définies pour tous les appareils inscrits et est défini comme une entrée de référence pour les travaux Azure Stream Analytics.
  
-Lorsque vous mettez à jour une règle existante ou définissez une nouvelle règle dans le portail de solution hello, table de hello et blob sont mises à jour tooreflect hello modifications. règle Hello définition affichée dans le portail de hello provient du magasin de tables hello et règle hello définition référencée par les tâches de flux de données Analytique hello proviennent d’objet blob de hello. 
+Lorsque vous mettez à jour une règle existante ou définissez une nouvelle règle dans le portail de la solution, la table et l’objet blob sont mis à jour pour refléter les modifications. La définition des règles affichée dans le portail provient du magasin de tables et la définition des règles référencée par les travaux Stream Analytics provient de l’objet blob. 
 
-## <a name="update-hello-remotemonitoring-visual-studio-solution"></a>Mettre à jour hello RemoteMonitoring Visual Studio solution
+## <a name="update-the-remotemonitoring-visual-studio-solution"></a>Mise à jour de la solution Visual Studio RemoteMonitoring
 
-Hello étapes suivantes vous montrent comment toomodify hello tooinclude de solution RemoteMonitoring Visual Studio, une règle qui utilise hello **ExternalTemperature** télémétrie envoyé à partir de l’appareil simulé de hello :
+Les étapes suivantes vous montrent comment modifier la solution Visual Studio RemoteMonitoring pour inclure une nouvelle règle qui utilise la télémétrie **ExternalTemperature** envoyée depuis l’appareil simulé :
 
-1. Si vous n'avez pas déjà fait, hello du clone **azure-iot-de surveillance à distance** emplacement approprié de référentiel tooa sur votre ordinateur local à l’aide de hello Git commande suivante :
+1. Si vous ne l'avez pas déjà fait, clonez le référentiel **azure-iot-remote-monitoring** dans un emplacement approprié sur votre ordinateur local à l’aide de la commande Git suivante :
 
     ```
     git clone https://github.com/Azure/azure-iot-remote-monitoring.git
     ```
 
-2. Dans Visual Studio, ouvrez le fichier de RemoteMonitoring.sln de hello à partir de votre copie locale de hello **azure-iot-de surveillance à distance** référentiel.
+2. Dans Visual Studio, ouvrez le fichier RemoteMonitoring.sln à partir de votre copie locale du référentiel **azure-iot-remote-monitoring**.
 
-3. Ouvrez le fichier hello Infrastructure\Models\DeviceRuleBlobEntity.cs et ajoutez un **ExternalTemperature** propriété comme suit :
+3. Ouvrez le fichier Infrastructure\Models\DeviceRuleBlobEntity.cs et ajoutez une propriété **ExternalTemperature** comme suit :
 
     ```csharp
     public double? Temperature { get; set; }
@@ -72,7 +72,7 @@ Hello étapes suivantes vous montrent comment toomodify hello tooinclude de solu
     public double? ExternalTemperature { get; set; }
     ```
 
-4. Dans hello du même fichier, ajoutez une **ExternalTemperatureRuleOutput** propriété comme suit :
+4. Dans le même fichier, ajoutez une propriété **ExternalTemperatureRuleOutput** comme suit :
 
     ```csharp
     public string TemperatureRuleOutput { get; set; }
@@ -80,7 +80,7 @@ Hello étapes suivantes vous montrent comment toomodify hello tooinclude de solu
     public string ExternalTemperatureRuleOutput { get; set; }
     ```
 
-5. Ouvrez le fichier de hello Infrastructure\Models\DeviceRuleDataFields.cs et ajoutez les éléments suivants de hello **ExternalTemperature** après hello existant **humidité** propriété :
+5. Ouvrez le fichier Infrastructure\Models\DeviceRuleDataFields.cs et ajoutez la propriété **ExternalTemperature** suivante après la propriété **Humidity** existante :
 
     ```csharp
     public static string ExternalTemperature
@@ -89,7 +89,7 @@ Hello étapes suivantes vous montrent comment toomodify hello tooinclude de solu
     }
     ```
 
-6. Dans l’hello du même fichier, mettre à jour hello **_availableDataFields** méthode tooinclude **ExternalTemperature** comme suit :
+6. Dans le même fichier, mettez à jour la méthode **_availableDataFields** pour inclure **ExternalTemperature** comme suit :
 
     ```csharp
     private static List<string> _availableDataFields = new List<string>
@@ -98,7 +98,7 @@ Hello étapes suivantes vous montrent comment toomodify hello tooinclude de solu
     };
     ```
 
-7. Ouvrez le fichier hello Infrastructure\Repository\DeviceRulesRepository.cs et modifier hello **BuildBlobEntityListFromTableRows** méthode comme suit :
+7. Ouvrez le fichier Infrastructure\Repository\DeviceRulesRepository.cs et modifiez la méthode **BuildBlobEntityListFromTableRows** comme suit :
 
     ```csharp
     else if (rule.DataField == DeviceRuleDataFields.Humidity)
@@ -113,29 +113,29 @@ Hello étapes suivantes vous montrent comment toomodify hello tooinclude de solu
     }
     ```
 
-## <a name="rebuild-and-redeploy-hello-solution"></a>Régénérer et redéployer les solutions de hello.
+## <a name="rebuild-and-redeploy-the-solution"></a>Procédez maintenant à la régénération et au redéploiement de la solution.
 
-Vous pouvez désormais déployer la solution de mise à jour de hello tooyour abonnement Azure.
+Vous pouvez maintenant déployer la solution mise à jour sur votre abonnement Azure.
 
-1. Ouvrez une invite de commandes avec élévation de privilèges et accédez racine toohello de votre copie locale du référentiel de hello azure-iot-de surveillance à distance.
+1. Ouvrez une invite de commandes avec élévation de privilèges et accédez à la racine de votre copie locale du référentiel azure-iot-remote-monitoring.
 
-2. toodeploy votre solution de mise à jour, exécutez hello suivant de commande en remplaçant **{nom du déploiement}** avec nom hello de votre déploiement de solutions préconfigurées que vous avez notée précédemment :
+2. Pour déployer votre solution mise à jour, exécutez la commande suivante en remplaçant **{deployment name}** par le nom du déploiement de votre solution préconfigurée que vous avez noté précédemment :
 
     ```
     build.cmd cloud release {deployment name}
     ```
 
-## <a name="update-hello-stream-analytics-job"></a>Mettre à jour de la tâche de flux de données Analytique hello
+## <a name="update-the-stream-analytics-job"></a>Mise à jour du travail Stream Analytics
 
-Lorsque le déploiement de hello est terminé, vous pouvez mettre à jour hello flux Analytique toouse hello nouvelle règle définitions des travaux.
+Lorsque le déploiement est terminé, vous pouvez mettre à jour le travail Stream Analytics pour utiliser les nouvelles définitions de règles.
 
-1. Bonjour portail Azure, accédez à groupe de ressources toohello qui contient des ressources de votre solution préconfigurée. Ce groupe de ressources a hello même nom que vous avez spécifié pour hello solution pendant le déploiement de hello.
+1. Dans le portail Azure, accédez au groupe de ressources contenant les ressources de votre solution préconfigurée. Ce groupe de ressources possède le même nom que vous avez spécifié pour la solution lors du déploiement.
 
-2. Accédez toohello {nom du déploiement}-travail de l’Analytique des flux de règles. 
+2. Accédez au travail Stream Analytics {deployment name}-Rules. 
 
-3. Cliquez sur **arrêter** tâche de flux de données Analytique hello toostop de s’exécuter. (Vous devez attendre hello toostop de travail de diffusion en continu avant de pouvoir modifier la requête de hello.)
+3. Cliquez sur **Arrêter** pour arrêter l’exécution du travail Stream Analytics. (Vous devez attendre l’arrêt du travail de diffusion avant de pouvoir modifier la requête).
 
-4. Cliquez sur **Requête**. Modifier hello de hello requête tooinclude **sélectionnez** instruction pour **ExternalTemperature**. Hello exemple suivant montre hello complet de la requête avec hello nouveau **sélectionnez** instruction :
+4. Cliquez sur **Requête**. Modifiez la requête afin d’inclure l’instruction **SELECT** pour **ExternalTemperature**. L’exemple suivant montre la requête complète avec la nouvelle instruction **SELECT** :
 
     ```
     WITH AlarmsData AS 
@@ -190,39 +190,39 @@ Lorsque le déploiement de hello est terminé, vous pouvez mettre à jour hello 
     FROM AlarmsData
     ```
 
-5. Cliquez sur **enregistrer** toochange hello mis à jour la requête de la règle.
+5. Cliquez sur **Enregistrer** pour modifier la requête de la règle mise à jour.
 
-6. Cliquez sur **Démarrer** tâche de flux de données Analytique hello toostart à nouveau d’exécuter.
+6. Cliquez sur **Démarrer** pour redémarrer le travail Stream Analytics.
 
-## <a name="add-your-new-rule-in-hello-dashboard"></a>Ajouter votre nouvelle règle dans le tableau de bord hello
+## <a name="add-your-new-rule-in-the-dashboard"></a>Ajout de votre nouvelle règle dans le tableau de bord
 
-Vous pouvez maintenant ajouter hello **ExternalTemperature** périphérique tooa de règle dans le tableau de bord de solution hello.
+Vous pouvez maintenant ajouter la règle **ExternalTemperature** à un appareil dans le tableau de bord de la solution.
 
-1. Accédez portal de solution toohello.
+1. Accédez au portail de la solution.
 
-2. Accédez toohello **périphériques** Panneau de configuration.
+2. Accédez au volet **Appareils**.
 
-3. Recherchez hello personnalisé périphérique vous avez créé qui envoie **ExternalTemperature** télémétrie et hello **détails de l’appareil** du panneau, cliquez sur **ajouter une règle**.
+3. Recherchez l’appareil personnalisé que vous avez créé qui envoie la télémétrie **ExternalTemperature**, et dans le volet **Informations sur l’appareil**, cliquez sur **Ajouter une règle**.
 
 4. Sélectionnez **ExternalTemperature** dans **Champ de données**.
 
-5. Définissez **seuil** too56. Cliquez ensuite sur **Enregistrer et afficher les règles**.
+5. Définissez le **Seuil** sur 56. Cliquez ensuite sur **Enregistrer et afficher les règles**.
 
-6. Retourner l’historique de toohello du tableau de bord tooview hello alarme.
+6. Retournez au tableau de bord pour afficher l’historique des alertes.
 
-7. Dans la fenêtre de console hello vous reste ouvert, démarrer l’envoi de toobegin d’une application hello Node.js console **ExternalTemperature** les données de télémétrie.
+7. Dans la fenêtre de console que vous avez laissée ouverte, démarrez l’application de console Node.js pour commencer l’envoi des données de télémétrie **ExternalTemperature**.
 
-8. Notez que hello **alarme historique** tableau présente les nouvelles alertes lors de la nouvelle règle de hello est déclenchée.
+8. Notez que la table **Historique des alertes** affiche les nouvelles alertes lorsque la nouvelle règle est déclenchée.
  
 ## <a name="additional-information"></a>Informations supplémentaires
 
-Opérateur de hello modification  **>**  est plus complexe et dépasse hello les étapes décrites dans ce didacticiel. Tout opérateur vous le souhaitez, vous pouvez modifier toouse de tâche de flux de données Analytique hello, reflétant l’opérateur dans le portail de solution hello est une tâche plus complexe. 
+La modification de l’opérateur **>** est plus complexe et dépasse le cadre de ce didacticiel. Alors que vous pouvez modifier le travail Stream Analytics pour utiliser l’opérateur souhaité, l’action de refléter cet opérateur dans le portail de la solution représente une tâche plus complexe. 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez vu comment toocreate des règles personnalisées, vous pouvez en savoir plus sur les solutions hello préconfiguré :
+Maintenant que vous avez vu comment créer des règles personnalisées, vous pouvez en apprendre plus sur les solutions préconfigurées :
 
-- [Solution de Azure IoT Suite l’analyse à distance préconfiguré tooyour application logique de connexion][lnk-logic-app]
-- [Solution préconfigurée de métadonnées informations de périphérique dans le contrôle à distance hello][lnk-devinfo].
+- [Connecter Logic App à la solution préconfigurée de surveillance à distance Azure IoT Suite][lnk-logic-app]
+- [Métadonnées relatives aux informations d’appareil dans la solution préconfigurée de surveillance à distance][lnk-devinfo].
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

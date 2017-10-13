@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure AD métadonnées de fédération | Documents Microsoft"
-description: "Cet article décrit le document de métadonnées de fédération hello Azure Active Directory publie des services qui acceptent les jetons d’Azure Active Directory."
+title: "Métadonnées de fédération Azure AD | Microsoft Docs"
+description: "Cet article décrit le document de métadonnées de fédération publié par Azure Active Directory pour les services qui acceptent les jetons Azure Active Directory."
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,41 +15,41 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 23535bcd5eeb3e9b2e17d89a9b0420fc98bd3895
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ecafb02a6ac13d1c3cd1fe77ef710cd8525e32b0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="federation-metadata"></a>Métadonnées de fédération
-Azure Active Directory (Azure AD) publie un document de métadonnées de fédération pour les services qui est configuré tooaccept les jetons de sécurité hello émis par Azure AD. format de document de métadonnées de fédération Hello est décrite dans hello [Web Services Federation Language (WS-Federation) Version 1.2](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html), qui étend [métadonnées pour hello OASIS Security Assertion Markup Language (SAML) v2.0](http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf).
+Azure Active Directory (Azure AD) publie un document de métadonnées de fédération pour les services qui sont configurés pour accepter les jetons de sécurité émis par Azure AD. Le format de document des métadonnées de fédération est décrit dans la page [Web Services Federation Language (WS-Federation) Version 1.2 (Langage WS-Federation [Web Services Federation Language] version 1.2)](http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.html), qui étend les [métadonnées pour la spécification SAML (Security Assertion Markup Language) OASIS v2.0](http://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf).
 
 ## <a name="tenant-specific-and-tenant-independent-metadata-endpoints"></a>Points de terminaison de métadonnées spécifiques ou indépendants du client
 Azure AD publie des points de terminaison spécifiques et indépendants du client.
 
-Les points de terminaison spécifiques du client sont conçus pour un client donné. métadonnées de fédération spécifiques du client Hello incluent des informations sur le client hello, y compris l’émetteur spécifique du client et les informations de point de terminaison. Les applications qui limitent l’accès tooa un seul locataire utilisent des points de terminaison spécifiques du client.
+Les points de terminaison spécifiques du client sont conçus pour un client donné. Les métadonnées de fédération spécifiques du client contiennent des informations sur le client, y compris des informations sur l’émetteur et le point de terminaison propres au client. Les applications qui limitent l’accès à un seul client utilisent des points de terminaison spécifiques du client.
 
-Points de terminaison indépendant du client fournissent des informations qui sont communes locataires Azure AD de tooall. Ces informations s’appliquent tootenants hébergé sur *login.microsoftonline.com* et est partagé entre les clients. Les points de terminaison indépendants du client sont recommandés pour les applications mutualisées, car ils ne sont pas associés à un client particulier.
+Les points de terminaison indépendants du client fournissent des informations qui sont communes à tous les clients Azure AD. Ces informations s’appliquent aux clients hébergés sur *login.microsoftonline.com* et sont partagées entre les clients. Les points de terminaison indépendants du client sont recommandés pour les applications mutualisées, car ils ne sont pas associés à un client particulier.
 
 ## <a name="federation-metadata-endpoints"></a>Points de terminaison de métadonnées de fédération
 Azure AD publie des métadonnées de fédération dans `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.
 
-Pour **les points de terminaison spécifiques du client**, hello `TenantDomainName` peut être un des types suivants de hello :
+Pour les **points de terminaison spécifiques du client**, le `TenantDomainName` peut être de l’un des types suivants :
 
 * Un nom de domaine enregistré d’un client Azure AD, par exemple `contoso.onmicrosoft.com`.
-* Hello immuable locataire ID du domaine de hello, par exemple `72f988bf-86f1-41af-91ab-2d7cd011db45`.
+* L’ID client non modifiable du domaine, tel que `72f988bf-86f1-41af-91ab-2d7cd011db45`.
 
-Pour **les points de terminaison indépendant du locataire**, hello `TenantDomainName` est `common`. Ce document répertorie uniquement les éléments de métadonnées de fédération de hello qui sont les clients Azure AD tooall courants qui sont hébergés au niveau login.microsoftonline.com.
+Pour les **points de terminaison indépendants du client**, le `TenantDomainName` est `common`. Ce document répertorie uniquement les éléments de métadonnées de fédération communs à tous les clients Azure AD, hébergés à l’adresse login.microsoftonline.com.
 
-Par exemple, un point de terminaison propre à un client peut être `https://login.microsoftonline.com/contoso.onmicrosoft.com/FederationMetadata/2007-06/FederationMetadata.xml`. point de terminaison indépendant du locataire Hello est [https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml](https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml). Vous pouvez afficher le document de métadonnées de fédération hello en tapant cette URL dans un navigateur.
+Par exemple, un point de terminaison propre à un client peut être `https://login.microsoftonline.com/contoso.onmicrosoft.com/FederationMetadata/2007-06/FederationMetadata.xml`. Le point de terminaison indépendant du client est [https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml](https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml). Vous pouvez afficher le document de métadonnées de fédération en tapant cette URL dans un navigateur.
 
 ## <a name="contents-of-federation-metadata"></a>Contenu des métadonnées de fédération
-Hello section suivante fournit les informations requises par les services qui consomment des jetons hello émis par Azure AD.
+La section suivante fournit les informations nécessaires aux services qui utilisent des jetons émis par Azure AD.
 
 ### <a name="entity-id"></a>L’ID d’entité
-Hello `EntityDescriptor` élément contient un `EntityID` attribut. Hello valeur Hello `EntityID` attribut représente l’émetteur de hello, autrement dit, hello jeton de sécurité service d’émission de jeton émis hello. Il est l’émetteur de hello toovalidate important lorsque vous recevez un jeton.
+L’élément `EntityDescriptor` contient un attribut `EntityID`. La valeur de l’attribut `EntityID` représente l’émetteur, autrement dit, le service d’émission de jeton de sécurité (STS) qui a émis le jeton. Il est important de valider l’émetteur lorsque vous recevez un jeton.
 
-Hello métadonnées suivantes présentent un exemple spécifique du client `EntityDescriptor` élément avec un `EntityID` élément.
+Les métadonnées suivantes montrent un exemple d’élément `EntityDescriptor` propre au client avec un élément `EntityID`.
 
 ```
 <EntityDescriptor
@@ -57,9 +57,9 @@ xmlns="urn:oasis:names:tc:SAML:2.0:metadata"
 ID="_b827a749-cfcb-46b3-ab8b-9f6d14a1294b"
 entityID="https://sts.windows.net/72f988bf-86f1-41af-91ab-2d7cd011db45/">
 ```
-Vous pouvez remplacer les ID de client hello dans le point de terminaison indépendant du locataire hello par votre toocreate d’ID de client spécifiques du client `EntityID` valeur. valeur de résultat Hello sera hello identique à celle de l’émetteur de jeton de hello. stratégie de Hello permet à un émetteur de hello toovalidate application mutualisée pour un client donné.
+Vous pouvez remplacer l’ID client dans le point de terminaison indépendant du client par votre ID client pour créer une valeur `EntityID` propre au client . La valeur qui en résulte est identique à celle de l’émetteur du jeton. La stratégie permet à une application mutualisée de valider l’émetteur pour un client donné.
 
-Hello métadonnées suivantes présentent un exemple indépendant du locataire `EntityID` élément. Notez bien que hello `{tenant}` est un littéral, pas un espace réservé.
+Les métadonnées suivantes montrent un exemple d’élément `EntityID` indépendant du client. Notez que le `{tenant}` est un littéral et non un espace réservé.
 
 ```
 <EntityDescriptor
@@ -69,11 +69,11 @@ entityID="https://sts.windows.net/{tenant}/">
 ```
 
 ### <a name="token-signing-certificates"></a>Certificats de signature de jeton
-Lorsqu’un service reçoit un jeton émis par un client Azure AD, hello signature du jeton de hello doit être validée avec une clé de signature qui est publiée dans le document de métadonnées de fédération hello. les métadonnées de fédération de Hello incluent la partie publique de hello des certificats hello clients de hello utilisent pour la signature de jetons. nombre d’octets bruts Hello certificat s’affichent dans hello `KeyDescriptor` élément. certificat de signature de jeton de Hello n’est valide pour la signature hello uniquement lorsque la valeur de hello `use` attribut est `signing`.
+Lorsqu’un service reçoit un jeton émis par un client Azure AD, la signature du jeton doit être validée avec une clé de signature qui est publiée dans le document des métadonnées de fédération. Les métadonnées de fédération incluent la partie publique des certificats utilisés par les clients pour la signature de jetons. Les octets bruts du certificat s’affichent dans l’élément `KeyDescriptor` . Le certificat de signature de jetons est valide pour la signature uniquement si la valeur de l’attribut `use` est `signing`.
 
-Un document de métadonnées de fédération publié par Azure AD peut avoir plusieurs clés de signature, par exemple quand Azure AD s’apprête hello tooupdate certificat de signature. Lorsqu’un document de métadonnées de fédération comprend plusieurs certificats, un service qui valide les jetons hello doit prendre en charge tous les certificats dans le document de hello.
+Un document des métadonnées de fédération publié par Azure AD peut avoir plusieurs clés de signature, par exemple lorsqu’Azure AD se prépare à mettre à jour le certificat de signature. Lorsqu’un document des métadonnées de fédération comprend plusieurs certificats, un service qui valide les jetons doit prendre en charge tous les certificats du document.
 
-Hello métadonnées suivantes présentent un exemple `KeyDescriptor` élément avec une clé de signature.
+Les métadonnées suivantes montrent un exemple d’élément `KeyDescriptor` avec une clé de signature.
 
 ```
 <KeyDescriptor use="signing">
@@ -87,29 +87,29 @@ MIIDPjCCAiqgAwIBAgIQVWmXY/+9RqFA/OG9kFulHDAJBgUrDgMCHQUAMC0xKzApBgNVBAMTImFjY291
 </KeyDescriptor>
   ```
 
-Hello `KeyDescriptor` élément apparaît dans deux emplacements dans le document de métadonnées de fédération hello ; dans les sections hello WS-Federation-specific et SAML-specific de hello. les certificats Hello publiés dans les deux sections sont hello, même.
+L’élément `KeyDescriptor` apparaît à deux emplacements du document des métadonnées de fédération : dans la section propre à WS-Federation et dans la section propre à SAML. Les certificats publiés dans les deux sections sont identiques.
 
-Dans la section de hello WS-Federation-specific, un lecteur de métadonnées WS-Federation lit les certificats hello d’un `RoleDescriptor` élément avec hello `SecurityTokenServiceType` type.
+Dans la section WS-Federation, un lecteur de métadonnées WS-Federation lit les certificats d’un élément `RoleDescriptor` avec le type `SecurityTokenServiceType`.
 
-Hello métadonnées suivantes présentent un exemple `RoleDescriptor` élément.
+Les métadonnées suivantes montrent un exemple d’élément `RoleDescriptor` .
 
 ```
 <RoleDescriptor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xsi:type="fed:SecurityTokenServiceType"protocolSupportEnumeration="http://docs.oasis-open.org/wsfed/federation/200706">
 ```
 
-Dans la section de hello SAML-specific, un lecteur de métadonnées WS-Federation lit les certificats hello d’un `IDPSSODescriptor` élément.
+Dans la section SAML, un lecteur de métadonnées WS-Federation lit les certificats d’un élément `IDPSSODescriptor` .
 
-Hello métadonnées suivantes présentent un exemple `IDPSSODescriptor` élément.
+Les métadonnées suivantes montrent un exemple d’élément `IDPSSODescriptor` .
 
 ```
 <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
 ```
-Il n’existe aucune différence au format hello des certificats spécifiques du client et indépendants du client.
+Il n’existe aucune différence de format entre les certificats spécifiques du client et ceux indépendants du client.
 
 ### <a name="ws-federation-endpoint-url"></a>URL de point de terminaison WS-Federation
-métadonnées de fédération Hello incluent hello URL Azure AD utilise pour la connexion et déconnexion uniques dans le protocole WS-Federation. Ce point de terminaison s’affiche dans hello `PassiveRequestorEndpoint` élément.
+Les métadonnées de fédération incluent l’URL qu’utilise Azure AD pour la connexion et la déconnexion dans le protocole WS-Federation. Ce point de terminaison s’affiche dans l’élément `PassiveRequestorEndpoint` .
 
-Hello métadonnées suivantes présentent un exemple `PassiveRequestorEndpoint` , élément pour un point de terminaison spécifiques du client.
+Les métadonnées suivantes montrent un exemple d’élément `PassiveRequestorEndpoint` pour un point de terminaison propre au client.
 
 ```
 <fed:PassiveRequestorEndpoint>
@@ -120,7 +120,7 @@ https://login.microsoftonline.com/72f988bf-86f1-41af-91ab-2d7cd011db45/wsfed
 </EndpointReference>
 </fed:PassiveRequestorEndpoint>
 ```
-Pour le point de terminaison indépendant du locataire hello, hello URL WS-Federation apparaît dans le point de terminaison hello WS-Federation, comme illustré dans hello suivant l’exemple.
+Pour le point de terminaison indépendant du client, l’URL WS-Federation apparaît dans le point de terminaison WS-Federation, comme illustré dans l’exemple suivant.
 
 ```
 <fed:PassiveRequestorEndpoint>
@@ -133,11 +133,11 @@ https://login.microsoftonline.com/common/wsfed
 ```
 
 ### <a name="saml-protocol-endpoint-url"></a>URL de point de terminaison de protocole SAML
-métadonnées de fédération Hello incluent hello URL qu’Azure AD utilise pour l’authentification unique et la déconnexion uniques dans le protocole SAML 2.0. Ces points de terminaison s’affichent dans hello `IDPSSODescriptor` élément.
+Les métadonnées de fédération incluent l’URL qu’utilise Azure AD pour la connexion et la déconnexion dans le protocole SAML 2.0. Ces points de terminaison s’affichent dans l’élément `IDPSSODescriptor` .
 
-Hello connexion et déconnexion URL apparaissent dans hello `SingleSignOnService` et `SingleLogoutService` éléments.
+Les URL de connexion et de déconnexion s’affichent dans les éléments `SingleSignOnService` et `SingleLogoutService`.
 
-Hello métadonnées suivantes présentent un exemple `PassiveResistorEndpoint` pour un point de terminaison spécifiques du client.
+Les métadonnées suivantes montrent un exemple d’élément `PassiveResistorEndpoint` pour un point de terminaison propre au client.
 
 ```
 <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -147,7 +147,7 @@ Hello métadonnées suivantes présentent un exemple `PassiveResistorEndpoint` p
   </IDPSSODescriptor>
 ```
 
-De même points de terminaison hello points de terminaison de protocole SAML 2.0 commun hello sont publiés dans les métadonnées de fédération indépendantes du locataire hello, comme indiqué dans hello suivant l’exemple.
+De la même façon, les points de terminaison communs du protocole SAML 2.0 sont publiés dans les métadonnées de fédération indépendantes du client, comme illustré dans l’exemple suivant.
 
 ```
 <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">

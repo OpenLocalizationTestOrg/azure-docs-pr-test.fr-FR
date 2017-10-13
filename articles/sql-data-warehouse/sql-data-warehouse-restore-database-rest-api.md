@@ -1,5 +1,5 @@
 ---
-title: "aaaRestore un entrepôt de données SQL Azure (API REST) | Documents Microsoft"
+title: "Restauration d’un entrepôt Azure SQL Data Warehouse (API REST) | Microsoft Docs"
 description: "Tâches d’API REST permettant de restaurer un Azure SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: cf6678d71aafff71b1ea715f447e41e25f20d1b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8656607611e7518e42b51b91774f55abec15c228
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="restore-an-azure-sql-data-warehouse-rest-api"></a>Restauration d’un Azure SQL Data Warehouse (API REST)
 > [!div class="op_single_selector"]
@@ -30,38 +30,38 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Dans cet article, vous allez apprendre comment toorestore un à l’aide de l’entrepôt de données SQL Azure hello API REST.
+Dans cet article, vous allez apprendre à restaurer un Azure SQL Data Warehouse à l’aide de l’API REST.
 
 ## <a name="before-you-begin"></a>Avant de commencer
-**Vérifiez votre capacité de DTU.** Chaque SQL Data Warehouse est hébergé par un serveur SQL (par exemple, myserver.database.windows.net) qui dispose d’un quota DTU par défaut.  Avant de pouvoir restaurer un entrepôt de données SQL, vérifiez que hello que votre SQL server dispose d’assez restantes du quota UDBD pour base de données hello en cours de restauration. toolearn comment toocalculate DTU nécessaire ou toorequest plus DTU, consultez [demander une modification du quota DTU][Request a DTU quota change].
+**Vérifiez votre capacité de DTU.** Chaque SQL Data Warehouse est hébergé par un serveur SQL (par exemple, myserver.database.windows.net) qui dispose d’un quota DTU par défaut.  Avant de pouvoir restaurer un SQL Data Warehouse, vérifiez que le quota DTU restant sur le serveur SQL est suffisant pour la base de données en cours de restauration. Pour savoir comment calculer la capacité DTU nécessaire ou pour demander davantage de capacité DTU, consultez la rubrique [Demander une modification du quota DTU][Request a DTU quota change].
 
 ## <a name="restore-an-active-or-paused-database"></a>Restauration d’une base de données active ou en pause
-toorestore une base de données :
+Pour restaurer une base de données :
 
-1. Obtenir la liste de hello des points de restauration de base de données à l’aide d’opération de Points de restauration de base de données de Get hello.
-2. Commencer la restauration à l’aide de hello [demande de restauration de base de données de création] [ Create database restore request] opération.
-3. Suivi hello de la restauration à l’aide de hello [état de l’opération de base de données] [ Database operation status] opération.
+1. Suivez la procédure d’obtention de la liste des points de restauration de la base de données.
+2. Lancez la restauration en suivant la procédure [Création d’une demande de restauration de base de données][Create database restore request].
+3. Surveillez l’état de la restauration en suivant la procédure [Statut d’opération de base de données][Database operation status].
 
 > [!NOTE]
-> Une fois la restauration de hello est terminée, vous pouvez configurer votre base de données récupérée en suivant [configurer votre base de données après récupération][Configure your database after recovery].
+> Une fois la restauration terminée, vous pouvez configurer votre base de données restaurée en suivant les instructions de la section [Configurer votre base de données après récupération][Configure your database after recovery].
 > 
 > 
 
 ## <a name="restore-a-deleted-database"></a>restauration d’une base de données supprimée.
-toorestore une base de données supprimée :
+Pour restaurer une base de données supprimée :
 
-1. Répertorier toutes les bases de données supprimées pouvant être restaurée à l’aide de hello [pouvant être restaurée de la liste des bases de données supprimées] [ List restorable dropped databases] opération.
-2. Obtenir les détails de hello pour hello supprimé base de données toorestore à l’aide de hello [Get peuvent être restaurée supprimé la base de données] [ Get restorable dropped database] opération.
-3. Commencer la restauration à l’aide de hello [demande de restauration de base de données de création] [ Create database restore request] opération.
-4. Suivi hello de la restauration à l’aide de hello [état de l’opération de base de données] [ Database operation status] opération.
+1. Obtenez la liste de toutes vos bases de données supprimées pouvant être restaurées en suivant la procédure [Liste des bases de données supprimées pouvant être restaurées][List restorable dropped databases].
+2. Obtenez des informations détaillées sur la base de données que vous voulez restaurer en suivant la procédure [Obtention de base de données supprimée pouvant être restaurée][Get restorable dropped database].
+3. Lancez la restauration en suivant la procédure [Création d’une demande de restauration de base de données][Create database restore request].
+4. Surveillez l’état de la restauration en suivant la procédure [Statut d’opération de base de données][Database operation status].
 
 > [!NOTE]
-> consultez de votre base de données après restauration de hello, tooconfigure [configurer votre base de données après récupération][Configure your database after recovery].
+> Pour configurer votre base de données une fois la restauration terminée, consultez la page [Configurer votre base de données après récupération][Configure your database after recovery].
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
-toolearn sur les fonctionnalités de continuité d’activité d’entreprise hello des éditions de base de données SQL Azure, lisez hello [vue d’ensemble de base de données SQL Azure business la continuité des activités][Azure SQL Database business continuity overview].
+Pour plus d’informations sur les fonctionnalités de continuité d’activité des éditions d’Azure SQL Database, consultez la rubrique [Vue d’ensemble de la continuité des activités Azure SQL Database][Azure SQL Database business continuity overview].
 
 <!--Image references-->
 
@@ -69,7 +69,7 @@ toolearn sur les fonctionnalités de continuité d’activité d’entreprise he
 [Azure SQL Database business continuity overview]: ../sql-database/sql-database-business-continuity.md
 [Request a DTU quota change]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
 [Configure your database after recovery]: ../sql-database/sql-database-disaster-recovery.md#configure-your-database-after-recovery
-[How tooinstall and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
+[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Overview]: ./sql-data-warehouse-restore-database-overview.md
 [Portal]: ./sql-data-warehouse-restore-database-portal.md
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md

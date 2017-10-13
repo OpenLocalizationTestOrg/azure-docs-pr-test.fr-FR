@@ -1,28 +1,28 @@
 
-### <a name="toosign-up-for-a-blitline-account"></a>toosign pour un compte Blitline
-1. Connectez-vous à toohello [portail de gestion Azure](https://manage.windowsazure.com/).
-2. Dans le volet inférieur de hello hello du portail de gestion, cliquez sur **nouveau**.
+### <a name="to-sign-up-for-a-blitline-account"></a>Création d’un compte Blitline
+1. Connectez-vous au [portail de gestion Azure](https://manage.windowsazure.com/).
+2. Dans le volet inférieur du portail de gestion, cliquez sur **New**.
    
     ![command-bar-new][command-bar-new]
 3. Cliquez sur **Store**.
    
     ![blitline-store][blitline-store]
-4. Bonjour **choisir un module complémentaire** boîte de dialogue, sélectionnez **Blitline** et cliquez sur la flèche vers la droite hello.
-5. Bonjour **personnaliser le module complémentaire** hello select de boîte de dialogue **Blitline** plan de toosign pour.
-6. Entrez un nom tooidentify votre **Blitline** de service dans vos paramètres Azure, ou utiliser la valeur par défaut hello **Blitline**. Les noms doivent contenir entre 1 et 100 caractères et ne peuvent inclure que des lettres, des chiffres, des tirets, des points et des traits de soulignement. nom de Hello doit être unique dans la liste des articles de magasin de l’abonnement Azure.
+4. Dans la boîte de dialogue **Sélectionner un module complémentaire**, sélectionnez **Blitline**, puis cliquez sur la flèche droite.
+5. Dans la boîte de dialogue **Personnaliser un module complémentaire**, sélectionnez le plan **Blitline** de votre choix pour l’inscription.
+6. Entrez un nom pour identifier le service **Blitline** dans les paramètres Azure ou utilisez la valeur par défaut **Blitline**. Les noms doivent contenir entre 1 et 100 caractères et ne peuvent inclure que des lettres, des chiffres, des tirets, des points et des traits de soulignement. Le nom doit être unique dans la liste des éléments de l’Azure Store auxquels vous êtes abonné.
    
     ![store-screen-1][store-screen-1]
-7. Choisissez une valeur pour la région de hello ; par exemple, ouest des États-Unis. 
-8. Cliquez sur droite hello.
-9. Sur hello **passez en revue le bon** onglet, passez en revue le plan de hello et les informations de tarification et passez en revue les conditions juridiques hello. Si vous acceptez toohello termes du contrat, cliquez sur la case à cocher hello. Après avoir cliqué sur hello case à cocher, votre compte Blitline commencera hello processus de configuration. 
+7. Choisissez une valeur pour la région ; par exemple, Bretagne. 
+8. Cliquez sur la flèche droite.
+9. Sous l’onglet **Review Purchase** , vérifiez le plan et les informations tarifaires, ainsi que les conditions juridiques. Si vous acceptez les conditions juridiques, cliquez sur la coche. Votre compte Blitline lance alors le processus de déploiement. 
 
-toouse Blitline, vous devez toohave votre ID d’Application.
+Pour utiliser Blitline, vous devez disposer de l’ID de l’application.
 
-### <a name="toofind-your-blitline-application-id"></a>toofind votre ID d’Application Blitline
+### <a name="to-find-your-blitline-application-id"></a>Recherche de l’ID de l’application Blitline
 1. Cliquez sur **Connection Info**.
    
     ![blitline-connection-info-button][blitline-connection-info-button]
-2. Bonjour *informations de connexion* boîte de dialogue, vous pouvez voir votre ID d’Application
+2. Dans la boîte de dialogue *Connection info* , l’ID de l’application s’affiche.
    
     ![blitline-connection-info][blitline-connection-info]
 

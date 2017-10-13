@@ -1,5 +1,5 @@
 ---
-title: cluster de Azure Kubernetes aaaMonitor avec Datadog | Documents Microsoft
+title: Surveiller le cluster Azure Kubernetes avec Datadog | Microsoft Docs
 description: "Surveillance du cluster Kubernetes dans Azure Container Service à l’aide de Datadog"
 services: container-service
 documentationcenter: 
@@ -16,28 +16,28 @@ ms.workload: na
 ms.date: 12/09/2016
 ms.author: bburns
 ms.custom: mvc
-ms.openlocfilehash: bccd8b59a048e0f791172fcfc4eeba6370dafcc0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 40b34457447a8f80d8cdf77579750e0c42df22d0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitor-an-azure-container-service-cluster-with-datadog"></a>Surveiller un cluster Azure Container Service avec Datadog
 
 ## <a name="prerequisites"></a>Composants requis
 Cette procédure pas à pas suppose que vous avez [créé un cluster Kubernetes à l’aide d’Azure Container Service](container-service-kubernetes-walkthrough.md).
 
-Il suppose également que vous avez hello `az` cli Azure et `kubectl` outils sont installés.
+Elle suppose également que vous avez installé l’outil `az` de l’interface Azure CLI et l’outil `kubectl`.
 
-Vous pouvez tester si vous avez hello `az` outil est installé en exécutant :
+Vous pouvez tester si l’outil `az` est installé en exécutant :
 
 ```console
 $ az --version
 ```
 
-Si vous n’avez pas hello `az` outil est installé, il existe des instructions [ici](https://github.com/azure/azure-cli#installation).
+Si l’outil `az` n’est pas installé, suivez les instructions figurant [ici](https://github.com/azure/azure-cli#installation).
 
-Vous pouvez tester si vous avez hello `kubectl` outil est installé en exécutant :
+Vous pouvez tester si l’outil `kubectl` est installé en exécutant :
 
 ```console
 $ kubectl version
@@ -52,13 +52,13 @@ $ az acs kubernetes install-cli
 ## <a name="datadog"></a>DataDog
 Datadog est un service de surveillance qui regroupe les données de surveillance provenant de vos conteneurs dans votre cluster Azure Container Service. Datadog intègre un tableau de bord Docker Integration qui affiche des mesures spécifiques dans vos conteneurs. Les mesures recueillies à partir de vos conteneurs sont classées par processeur, mémoire, réseau et E/S. Datadog fractionne les mesures en conteneurs et images.
 
-Vous devez tout d’abord trop[créer un compte](https://www.datadoghq.com/lpg/)
+Vous devez d’abord [créer un compte](https://www.datadoghq.com/lpg/).
 
-## <a name="installing-hello-datadog-agent-with-a-daemonset"></a>L’installation de hello Datadog Agent avec un DaemonSet
-DaemonSets sont utilisés par Kubernetes toorun une instance unique d’un conteneur sur chaque hôte de cluster de hello.
+## <a name="installing-the-datadog-agent-with-a-daemonset"></a>Installation de l’Agent Datadog avec un DaemonSet
+Les DaemonSets sont utilisés par DaemonSet pour exécuter une instance unique d’un conteneur sur chaque hôte du cluster.
 Ils sont parfaits pour exécuter des agents de surveillance.
 
-Une fois que vous êtes connecté à Datadog, vous pouvez suivre hello [Datadog instructions](https://app.datadoghq.com/account/settings#agent/kubernetes) agents de Datadog tooinstall sur votre cluster à l’aide d’un DaemonSet.
+Lorsque vous êtes connecté à Datadog, suivez les [instructions de Datadog](https://app.datadoghq.com/account/settings#agent/kubernetes) pour installer des agents Datadog sur votre cluster à l’aide d’un DaemonSet.
 
 ## <a name="conclusion"></a>Conclusion
-Et voilà ! Une fois que les agents hello sont activés et en cours d’exécution vous devez voir des données dans la console hello dans quelques minutes. Vous pouvez visiter hello intégré [kubernetes le tableau de bord](https://app.datadoghq.com/screen/integration/kubernetes) toosee un résumé de votre cluster.
+Et voilà ! Dès que les agents sont en cours d’exécution, des données s’affichent dans la console après quelques minutes. Vous pouvez consulter le [tableau de bord intégré de Kubernetes](https://app.datadoghq.com/screen/integration/kubernetes) pour obtenir une synthèse de votre cluster.

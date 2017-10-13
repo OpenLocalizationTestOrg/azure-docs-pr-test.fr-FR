@@ -1,6 +1,6 @@
 ---
-title: "Création de rapports aaaAccess - Azure RBAC. | Documents Microsoft"
-description: "Générer un rapport que répertorie toutes les modifications dans tooyour d’accès abonnements Azure, avec contrôle d’accès basée sur hello 90 derniers jours."
+title: "Accès aux rapports - Contrôle d’accès en fonction du rôle Azure | Microsoft Docs"
+description: "Générez un rapport qui répertorie toutes les modifications d’accès à vos abonnements Azure avec contrôle d’accès basé sur les rôles au cours des 90 derniers jours."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -15,35 +15,35 @@ ms.date: 07/17/2017
 ms.author: andredm
 ms.reviewer: rqureshi
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 9ad85d3d8e66ce167032638a35e4afffb46d3892
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4e8028ab43ed02ef0c0a1374326b07f72f97d9d9
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-an-access-report-for-role-based-access-control"></a>Créer un rapport d’accès pour le contrôle d’accès en fonction du rôle
-Chaque fois qu’un utilisateur accorde ou révoque l’accès au sein de vos abonnements, les modifications de hello sont consignées dans les événements de Azure. Vous pouvez créer accès modifier l’historique des rapports toosee toutes les modifications pour hello 90 derniers jours.
+Chaque fois qu’un utilisateur autorise ou interdit l’accès dans vos abonnements, les modifications sont consignées dans les événements Azure. Vous pouvez créer des rapports d’historique de modification d’accès pour voir toutes les modifications apportées au cours des 90 derniers jours.
 
 ## <a name="create-a-report-with-azure-powershell"></a>Créer un rapport avec Azure PowerShell
-toocreate un accès à modifier le rapport d’historique dans PowerShell, utilisez hello [Get-AzureRMAuthorizationChangeLog](/powershell/module/azurerm.resources/get-azurermauthorizationchangelog) commande.
+Pour créer un rapport d’historique des modifications d’accès dans PowerShell, utilisez la commande [Get-AzureRMAuthorizationChangeLog](/powershell/module/azurerm.resources/get-azurermauthorizationchangelog).
 
-Lorsque vous appelez cette commande, vous pouvez spécifier la propriété hello aux affectations de répertoriées, y compris les hello suivant :
+Lorsque vous appelez cette commande, vous pouvez spécifier quelle propriété des affectations répertorier, y compris les suivantes :
 
 | Propriété | Description |
 | --- | --- |
 | **Action** |Si l’accès a été autorisé ou interdit |
-| **Appelant** |le propriétaire de Hello responsable de l’accès hello modifier |
-| **PrincipalId** | Identificateur unique de l’application qui a été attribuée le rôle de hello, groupe ou utilisateur de hello de Hello |
-| **PrincipalName** |Hello nom d’utilisateur de hello, groupe ou application |
-| **PrincipalType** |Indique si l’attribution de hello a pour un utilisateur, un groupe ou une application |
-| **RoleDefinitionId** |Hello GUID du rôle hello qui a été accordé ou révoqué |
-| **RoleName** |rôle Hello qui a été accordé ou révoqué |
-| **Portée** | Identificateur unique de Hello d’abonnement de hello, groupe de ressources ou ressource hello assignation s’applique également| 
-| **ScopeName** |Hello nom d’abonnement de hello, groupe de ressources ou ressource |
-| **ScopeType** |Indique si l’attribution de hello a à portée de la ressource, groupe de ressources ou abonnement de hello |
-| **Timestamp** |hello date et l’heure que l’accès a été modifié. |
+| **Appelant** |Le propriétaire responsable de la modification d’accès |
+| **PrincipalId** | L’identificateur unique de l’utilisateur, du groupe ou d’une application auquel ou à laquelle le rôle a été assigné |
+| **PrincipalName** |Le nom de l’utilisateur, du groupe ou de l’application |
+| **PrincipalType** |Si l’affectation était pour un utilisateur, un groupe ou une application |
+| **RoleDefinitionId** |Le GUID du rôle qui a été accordé ou refusé |
+| **RoleName** |Le rôle qui a été accordé ou refusé |
+| **Portée** | L’identificateur unique de l’abonnement, du groupe de ressources ou d’une ressource auquel ou à laquelle l’affectation s’applique | 
+| **ScopeName** |Le nom de l’abonnement, du groupe de ressources ou de la ressource |
+| **ScopeType** |Si l’étendue de l’affectation était au niveau de l’abonnement, du groupe de ressources ou de la ressource |
+| **Timestamp** |La date et l’heure de la modification d’accès |
 
-Cet exemple de commande répertorie toutes les modifications d’accès dans l’abonnement hello pour hello sept derniers jours :
+Cet exemple de commande répertorie toutes les modifications d’accès de l’abonnement au cours des sept derniers jours :
 
 ```
 Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::FromDays(7)) | FT Caller,Action,RoleName,PrincipalType,PrincipalName,ScopeType,ScopeName
@@ -52,14 +52,14 @@ Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::From
 ![PowerShell Get-AzureRMAuthorizationChangeLog - capture d’écran](./media/role-based-access-control-configure/access-change-history.png)
 
 ## <a name="create-a-report-with-azure-cli"></a>Créer un rapport avec l’interface de ligne de commande Azure
-toocreate un rapport historique des modifications accès Bonjour Azure interface de ligne de commande (CLI), utilisez hello `azure role assignment changelog list` commande.
+Pour créer un rapport d’historique des modifications d’accès dans l’interface de ligne de commande Azure, utilisez la commande `azure role assignment changelog list` .
 
-## <a name="export-tooa-spreadsheet"></a>Exporter la feuille de calcul tooa
-toosave hello rapport ou manipuler des données de hello, exportation hello accès se transforme en un fichier .csv. Vous pouvez ensuite afficher les rapports hello dans une feuille de calcul pour la révision.
+## <a name="export-to-a-spreadsheet"></a>Exporter vers une feuille de calcul
+Pour enregistrer le rapport ou manipuler les données, exportez les modifications d’accès vers un fichier .csv. Vous pouvez ensuite afficher le rapport dans une feuille de calcul pour révision.
 
 ![ChangeLog affiché en tant que feuille de calcul - capture d’écran](./media/role-based-access-control-configure/change-history-spreadsheet.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 * Utilisation des [rôles personnalisés dans le contrôle d’accès en fonction du rôle (RBAC) Azure](role-based-access-control-custom-roles.md)
-* Découvrez comment toomanage [RBAC Azure avec powershell](role-based-access-control-manage-access-powershell.md)
+* En savoir plus sur la gestion du [contrôle d’accès en fonction du rôle Azure avec PowerShell](role-based-access-control-manage-access-powershell.md)
 

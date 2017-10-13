@@ -1,6 +1,6 @@
 ---
-title: "débit aaaProvision pour la base de données Azure Cosmos | Documents Microsoft"
-description: "Découvrez comment tooset mis en service le débit de votre base de données Azure Cosmos containsers, collections, graphiques et les tables."
+title: "Approvisionner le débit pour Azure Cosmos DB | Microsoft Docs"
+description: "Découvrez comment définir un débit approvisionné pour vos conteneurs, collections, graphes et tables Azure Cosmos DB."
 services: cosmos-db
 author: mimig1
 manager: jhubbard
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/12/2017
 ms.author: mimig
-ms.openlocfilehash: c143f4aace466b7109168a50e2eb80ddeca6400e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d541bb19ba7e5ecb44c9fe91b1e232d4d9c2170e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="set-throughput-for-azure-cosmos-db-containers"></a>Définir le débit des conteneurs Azure Cosmos DB
 
-Vous pouvez définir le débit pour les conteneurs de votre base de données Azure Cosmos Bonjour portail Azure ou à l’aide de hello kits de développement logiciel client. 
+Vous pouvez définir le débit de vos conteneurs Azure Cosmos DB dans le portail Azure ou à l’aide des SDK clients. 
 
-Hello tableau suivant répertorie le débit hello disponible pour les conteneurs :
+Le tableau suivant répertorie les débits disponibles pour les conteneurs :
 
 <table border="0" cellspacing="0" cellpadding="0">
     <tbody>
@@ -46,43 +46,43 @@ Hello tableau suivant répertorie le débit hello disponible pour les conteneurs
     </tbody>
 </table>
 
-## <a name="tooset-hello-throughput-by-using-hello-azure-portal"></a>débit de hello tooset à l’aide de hello portail Azure
+## <a name="to-set-the-throughput-by-using-the-azure-portal"></a>Pour définir le débit à l’aide du portail Azure
 
-1. Dans une nouvelle fenêtre, ouvrez hello [portail Azure](https://portal.azure.com).
-2. Dans la barre de gauche hello, cliquez sur **base de données Azure Cosmos**, ou cliquez sur **plus Services** au bas de hello, puis faites défiler trop**bases de données**, puis cliquez sur **base de données Azure Cosmos**.
+1. Dans une nouvelle fenêtre, ouvrez le [portail Azure](https://portal.azure.com).
+2. Dans la barre de gauche, cliquez sur **Azure Cosmos DB** ou sur **Plus de services** en bas, accédez à **Bases de données**, puis sélectionnez **Azure Cosmos DB**.
 3. Sélectionnez votre compte Azure Cosmos DB.
-4. Dans la nouvelle fenêtre de hello, cliquez sur **Explorateur de données (version préliminaire)** dans le menu de navigation hello.
-5. Dans la nouvelle fenêtre de hello, votre base de données et le conteneur, puis cliquez sur **échelle & paramètres**.
-6. Dans la nouvelle fenêtre de hello, tapez Bonjour nouvelle valeur de débit Bonjour **débit** zone, puis cliquez sur **enregistrer**.
+4. Dans la nouvelle fenêtre, cliquez sur **Explorateur de données (préversion)** dans le menu de navigation.
+5. Dans la nouvelle fenêtre, développez la base de données et le conteneur, puis cliquez sur **Scale & Settings** (Mise à l’échelle & paramètres).
+6. Dans la nouvelle fenêtre, tapez la nouvelle valeur de débit dans la zone **Débit**, puis cliquez sur **Enregistrer**.
 
 <a id="set-throughput-sdk"></a>
 
-## <a name="tooset-hello-throughput-by-using-hello-documentdb-api-for-net"></a>débit de hello tooset à l’aide de hello API DocumentDB pour .NET
+## <a name="to-set-the-throughput-by-using-the-documentdb-api-for-net"></a>Pour définir le débit à l’aide de l’API DocumentDB pour .NET
 
 ```C#
-//Fetch hello resource toobe updated
+//Fetch the resource to be updated
 Offer offer = client.CreateOfferQuery()
     .Where(r => r.ResourceLink == collection.SelfLink)    
     .AsEnumerable()
     .SingleOrDefault();
 
-// Set hello throughput toohello new value, for example 12,000 request units per second
+// Set the throughput to the new value, for example 12,000 request units per second
 offer = new OfferV2(offer, 12000);
 
-//Now persist these changes toohello database by replacing hello original resource
+//Now persist these changes to the database by replacing the original resource
 await client.ReplaceOfferAsync(offer);
 ```
 
 ## <a name="throughput-faq"></a>Forum Aux Questions sur le débit
 
-**Puis-je définir mon accessible sans de débit à 400 ur/s ?**
+**Puis-je définir mon débit sur une valeur inférieure à 400 unités de demande/s ?**
 
-400 ur/s est le débit minimal de hello sont disponible sur les collections de partitions uniques Cosmos DB (2500 ur/s est hello minimale pour les collections partitionnées). Demander des unités sont définis dans des intervalles de 100 ur/s, mais le débit ne peut pas être défini too100 ur/s ou toute valeur inférieure à 400 ur/s. Si vous avez besoin d’une méthode économique de toodevelop et Cosmos de base de données de test, vous pouvez utiliser hello libre [Azure Cosmos DB émulateur](local-emulator.md), que vous pouvez déployer localement sans frais. 
+Cette valeur de 400 unités de demande/s correspond au débit minimal disponible sur les collections à partition unique Cosmos DB (une valeur de 2 500 unités de demande/s correspond à la valeur minimale pour les collections partitionnées). Les unités de demande sont définies par intervalles de 100 unités de demande/s, mais le débit ne peut pas avoir la valeur 100 unités de demande/s ou toute valeur inférieure à 400 unités de demande/s. Si vous recherchez une méthode économique pour développer et tester Cosmos DB, vous pouvez utiliser gratuitement l’[Émulateur Azure Cosmos DB](local-emulator.md), que vous pouvez déployer localement sans frais. 
 
-**Comment définir le débit à l’aide de hello MongoDB API ?**
+**Comment définir le débit à l’aide de l’API MongoDB ?**
 
-Il n’existe aucun débit de tooset extension MongoDB API. Hello recommandation est toouse hello API DocumentDB, comme indiqué dans [débit de hello tooset à l’aide de hello API DocumentDB pour .NET](#set-throughput-sdk).
+Il n’existe aucune extension d’API MongoDB pour définir le débit. Nous vous recommandons d’utiliser l’API DocumentDB, comme indiqué dans [Pour définir le débit à l’aide de l’API DocumentDB pour .NET](#set-throughput-sdk).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-toolearn en savoir plus sur la configuration et de cours planète à l’échelle avec Cosmos DB, consultez [de partitionnement et de mise à l’échelle avec Cosmos DB](partition-data.md).
+Pour plus d’informations sur l’approvisionnement et la mise à l’échelle avec Cosmos DB, consultez [Partitioning and scaling with Cosmos DB (Partitionnement et mise à l’échelle avec Cosmos DB)](partition-data.md).

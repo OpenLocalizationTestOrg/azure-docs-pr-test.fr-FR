@@ -1,6 +1,6 @@
 ---
-title: "des vulnérabilités d’aaaRemediate du système d’exploitation dans le centre de sécurité Azure | Documents Microsoft"
-description: "Ce document vous montre comment tooimplement hello recommandation du centre de sécurité Azure ** corriger le système d’exploitation des vulnérabilités **."
+title: "Corriger les vulnérabilités du système d’exploitation dans Azure Security Center | Microsoft Docs"
+description: "Ce document vous montre comment implémenter la recommandation Azure Security Center **Remediate OS vulnerabilities** (Corriger les vulnérabilités du système d’exploitation)."
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -12,77 +12,101 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 06/16/2017
+ms.date: 09/11/2017
 ms.author: terrylan
-ms.openlocfilehash: 704103f7fb15835943d74b665d2bd56cb5e0a36d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 39879c22278a55f841e294cda5a89bec2bdf6988
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="remediate-os-vulnerabilities-in-azure-security-center"></a>Corriger les vulnérabilités du système d’exploitation dans Azure Security Center
-Centre de sécurité Azure analyse tous les jours de votre système d’exploitation de l’ordinateur virtuel (VM) (système d’exploitation) pour les configurations qui pourrait rendre hello VM plus vulnérables tooattack et recommande la configuration change tooaddress ces vulnérabilités. Centre de sécurité vous recommande de résoudre les vulnérabilités lors de la configuration du système d’exploitation de votre machine virtuelle ne correspond pas à des règles de configuration recommandée de hello.
+Azure Security Center analyse quotidiennement le système d’exploitation de vos machines virtuelles et ordinateurs et recherche les configurations qui pourraient les rendre plus vulnérables aux attaques. Security Center vous recommande de résoudre les vulnérabilités lorsque la configuration du système d’exploitation ne correspond pas aux règles de configuration recommandées et d’apporter des modifications à la configuration pour supprimer ces vulnérabilités.
 
 > [!NOTE]
-> Pour plus d’informations sur les configurations spécifiques hello en cours d’analyse, consultez hello [liste des règles de configuration recommandée](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335).
+> Consultez la [liste des règles de configuration recommandées](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335) pour plus d’informations sur les configurations surveillées.
 >
 >
 
-## <a name="implement-hello-recommendation"></a>Implémenter la recommandation de hello
+## <a name="implement-the-recommendation"></a>Implémenter la recommandation
+La correction des vulnérabilités du système d’exploitation est présentée sous forme de recommandations dans Security Center. Cette recommandation s’affichera dans **Recommandations** et dans **Calcul**.
 
-> [!NOTE]
-> Ce document présente le service de hello à l’aide d’un exemple de déploiement.  Ce document n'est pas un guide pas à pas.
->
->
+Dans cet exemple, nous allons examiner la recommandation **Corriger les vulnérabilités du système d’exploitation (par Microsoft)** dans **Calcul**.
+1. Dans le menu principal de Security Center, sélectionnez **Calcul**.
 
-1. Bonjour **recommandations** panneau, sélectionnez **les vulnérabilités du système d’exploitation corriger**.
-   ![Remediate OS vulnerabilities][1]
+   ![Corriger les vulnérabilités du système d’exploitation][1]
 
-    Hello **les vulnérabilités du système d’exploitation corriger** panneau s’ouvre et répertorie vos machines virtuelles avec des configurations de système d’exploitation qui ne correspondent pas hello les règles de configuration recommandée.  Pour chaque machine virtuelle, panneau de hello identifie :
+2. Dans **Calcul**, sélectionnez **Corriger les vulnérabilités du système d’exploitation (par Microsoft)**. Le tableau de bord **Incompatibilité des vulnérabilités du système d’exploitation (par Microsoft)**s’ouvre.
 
-   * **Échec de règles** --nombre hello de règles hello configuration de système d’exploitation de l’ordinateur virtuel a échoué.
-   * **DERNIÈRE analyse** --hello date et heure que le centre de sécurité analysés dernière configuration de système d’exploitation de la machine virtuelle hello.
-   * **ÉTAT** --hello l’état actuel de la vulnérabilité de hello :
+   ![Corriger les vulnérabilités du système d’exploitation][2]
 
-     * Ouvrez : hello vulnérabilité n'a pas été traitée encore
-     * En cours d’exécution : Une vulnérabilité de hello est actuellement appliquée, aucune action n’est requise par vous
-     * Résolu : une vulnérabilité de hello a déjà été traitée (lorsque hello a été résolu, entrée de hello est grisée)
-   * **GRAVITÉ** --toutes les vulnérabilités sont définies à gravité tooa basse, ce qui signifie une vulnérabilité doit être traitée, mais ne nécessite pas une attention immédiate.
+  La partie supérieure du tableau de bord indique :
 
-2. Sélectionnez une machine virtuelle. Un panneau pour cette machine virtuelle s’ouvre et affiche les règles hello qui ont échoué.
-   ![Règles de configuration ayant échoué][2]
+  - Le nombre total de règles par niveau de gravité que la configuration du système d’exploitation de vos machines virtuelles et ordinateurs ne respecte pas.
+  - Le nombre total de règles par type que la configuration du système d’exploitation de vos machines virtuelles et ordinateurs ne respecte pas.
+  - Le nombre total de règles que vos configurations de système d’exploitation Windows et Linux ne respectent pas.
 
-3. Sélectionnez une règle. Dans cet exemple, nous allons sélectionner **Le mot de passe doit respecter des exigences de complexité**. Un panneau s’ouvre décrivant impact de règle et hello hello a échoué. Passez en revue les détails de hello et prendre en compte la façon dont les configurations de système d’exploitation sont appliquées.
-  ![Description de la règle d’échec hello][3]
+  La partie inférieure du tableau de bord répertorie toutes les règles non respectées par vos ordinateurs et machines virtuelles, ainsi que le niveau de gravité de la mise à jour manquante. Cette liste comprend les éléments suivants :
 
-  Centre de sécurité utilise des identificateurs uniques de tooassign énumération CCE (Common Configuration) pour les règles de configuration. Hello informations suivantes est fournie sur ce panneau :
+  - **CCEID** : identificateur unique CCE pour la règle. Security Center utilise CCE (Common Configuration Enumeration) pour affecter des identificateurs uniques pour les règles de configuration.
+  - **NOM** : nom de la règle non respectée.
+  - **TYPE DE RÈGLE** : clé de Registre, stratégie de sécurité OU stratégie d’audit.
+  - **NO. DE MACHINES VIRTUELLES ET D’ORDINATEURS** : nombre total de machines virtuelles et d’ordinateurs ne respectant pas cette règle.
+  - **GRAVITÉ DE LA RÈGLE** : valeur de gravité CCE (critique, important ou avertissement).
+  - **ÉTAT**: état actuel de la recommandation :
+
+    - **Ouverte**: la recommandation n’a pas encore été prise en compte.
+    - **En cours** : la recommandation est actuellement appliquée à ces ressources ; aucune action de votre part n’est nécessaire.
+    - **Résolue** : la recommandation a déjà été achevée. (Une fois problème résolu, l’entrée est grisée).
+
+3. Sélectionnez une règle non respectée dans la liste pour afficher les détails.
+
+   ![Règles de configuration ayant échoué][3]
+
+  Ce panneau contient les informations suivantes :
 
   - NOM : nom de règle
-  - GRAVITÉ : valeur de gravité CCE (critique, important ou avertissement)
-  - CCIED--Identificateur unique de CCE pour la règle de hello
-  - DESCRIPTION : description de la règle
+  - CCIED : identificateur unique CCE pour la règle
+  - Version du système d’exploitation : version du système d’exploitation de la machine virtuelle ou de l’ordinateur.
+  - GRAVITÉ DE LA RÈGLE : valeur de gravité CCE (critique, important ou avertissement).
+  - DESCRIPTION COMPLÈTE : description de la règle.
   - VULNÉRABILITÉ : explication de la vulnérabilité ou du risque si la règle n’est pas appliquée
-  - IMPACT : impact sur l’activité lorsque la règle est appliquée
-  - VALEUR attendue : Valeur de prévu lorsque le centre de sécurité analyse la configuration de votre système d’exploitation de la machine virtuelle par rapport à la règle de hello
-  - OPÉRATION de règle : Des règles utilisées par le centre de sécurité lors de l’analyse de configuration de votre système d’exploitation de la machine virtuelle par rapport à la règle de hello
-  - VALEUR réelle : La valeur retournée après l’analyse de configuration de votre système d’exploitation de la machine virtuelle par rapport à la règle de hello
-  - RÉSULTAT DE L’ÉVALUATION : résultat de l’analyse : réussite ou échec
+  - IMPACT POTENTIEL : impact sur l’activité lorsque la règle est appliquée.
+  - CONTRE-MESURE : étapes correctives.
+  - VALEUR ATTENDUE : valeur attendue lorsque Security Center analyse la configuration du système d’exploitation de votre machine virtuelle par rapport à la règle
+  - VALEUR RÉELLE : valeur retournée après analyse de la configuration du système d’exploitation de votre machine virtuelle par rapport à la règle
+  - OPÉRATION DE LA RÈGLE : opération de règle utilisée par Security Center lors de l’analyse de la configuration du système d’exploitation de votre machine virtuelle par rapport à la règle
 
-## <a name="see-also"></a>Voir aussi
-Cet article vous a montré comment tooimplement hello centre de sécurité « vulnérabilités de correction du système d’exploitation » de recommandation. Vous pouvez consulter le jeu de hello des règles de configuration [ici](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335). Centre de sécurité utilise des identificateurs uniques de tooassign CCE (Common Configuration Enumeration) pour les règles de configuration. Visitez hello [CCE](https://nvd.nist.gov/cce/index.cfm) site pour plus d’informations.
+4. Sélectionnez l’icône **Recherche** dans le ruban supérieur. Recherche ouvre la liste des espaces de travail ayant des machines virtuelles et des ordinateurs avec la vulnérabilité de système d’exploitation sélectionnée. Ce panneau de sélection d’espaces de travail s’affiche uniquement si la règle sélectionnée s’applique à plusieurs machines virtuelles connectées à différents espaces de travail.
 
-toolearn en savoir plus sur le centre de sécurité, consultez hello suivant des ressources :
+  ![Espaces de travail répertoriés][4]
+
+5. Sélectionnez un espace de travail. Une requête de recherche Log Analytics filtrée sur l’espace de travail avec la vulnérabilité de système d’exploitation s’ouvre.
+
+  ![Espace de travail avec vulnérabilité de système d’exploitation][5]
+
+6. Sélectionnez un ordinateur dans la liste pour plus d’informations. Un autre résultat de recherche s’ouvre avec les informations filtrées uniquement pour cet ordinateur.
+
+  ![Filtré sur cet ordinateur][6]
+
+## <a name="next-steps"></a>Étapes suivantes
+Cet article vous a montré comment implémenter la recommandation de Security Center « Corriger les vulnérabilités du système d’exploitation ». Vous pouvez consulter l’ensemble des règles de configuration [ici](https://gallery.technet.microsoft.com/Azure-Security-Center-a789e335). Security Center utilise CCE (Common Configuration Enumeration) pour affecter des identificateurs uniques pour les règles de configuration. Visitez le site [CCE](https://nvd.nist.gov/cce/index.cfm) pour plus d’informations.
+
+Pour plus d’informations sur Security Center, consultez les ressources suivantes :
 
 * [Plateformes prises en charge dans Azure Security Center](security-center-os-coverage.md) : répertorie les machines virtuelles Windows et Linux prises en charge.
-* [Définition des stratégies de sécurité dans le centre de sécurité Azure](security-center-policies.md) -en savoir comment les stratégies de sécurité tooconfigure pour vos abonnements Azure et les groupes de ressources.
+* [Définition des stratégies de sécurité dans Azure Security Center](security-center-policies.md) : découvrez comment configurer des stratégies de sécurité pour vos groupes de ressources et abonnements Azure.
 * [Gestion des recommandations de sécurité dans Azure Security Center](security-center-recommendations.md) : découvrez la façon dont les recommandations peuvent vous aider à protéger vos ressources Azure.
-* [Contrôle d’intégrité de la sécurité dans le centre de sécurité Azure](security-center-monitoring.md) -en savoir comment toomonitor hello d’intégrité de vos ressources Azure.
-* [Gestion et répond toosecurity alertes dans le centre de sécurité Azure](security-center-managing-and-responding-alerts.md) -en savoir comment les alertes toosecurity toomanage et y répondre.
-* [Surveillance des solutions de partenaire avec Azure Security Center](security-center-partner-solutions.md) -en savoir comment toomonitor hello état d’intégrité de vos solutions de partenaire.
-* [Forum aux questions sur Azure Security Center](security-center-faq.md) -Forum aux questions sur l’utilisation hello service de recherche.
+* [Surveillance de l’intégrité de la sécurité dans Azure Security Center](security-center-monitoring.md) : découvrez comment surveiller l’intégrité de vos ressources Azure.
+* [Gestion et résolution des alertes de sécurité dans Azure Security Center](security-center-managing-and-responding-alerts.md) : découvrez comment gérer et résoudre les alertes de sécurité.
+* [Surveillance des solutions de partenaire avec Azure Security Center](security-center-partner-solutions.md) : découvrez comment surveiller l’état d’intégrité de vos solutions de partenaire.
+* [FAQ Azure Security Center](security-center-faq.md) : forum aux questions concernant l’utilisation de ce service.
 * [Blog sur la sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : accédez à des billets de blog sur la sécurité et la conformité Azure.
 
 <!--Image references-->
-[1]: ./media/security-center-remediate-os-vulnerabilities/recommendation.png
-[2]:./media/security-center-remediate-os-vulnerabilities/vm-remediate-os-vulnerabilities.png
+[1]: ./media/security-center-remediate-os-vulnerabilities/compute-blade.png
+[2]:./media/security-center-remediate-os-vulnerabilities/os-vulnerabilities.png
 [3]: ./media/security-center-remediate-os-vulnerabilities/vulnerability-details.png
+[4]: ./media/security-center-remediate-os-vulnerabilities/search.png
+[5]: ./media/security-center-remediate-os-vulnerabilities/log-search.png
+[6]: ./media/security-center-remediate-os-vulnerabilities/search-results.png

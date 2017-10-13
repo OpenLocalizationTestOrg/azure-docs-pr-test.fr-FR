@@ -1,6 +1,6 @@
 ---
-title: "partenaires aaaCreate pour les messages de l’entreprise-entreprise (B2B) - Azure Logic Apps | Documents Microsoft"
-description: "Découvrez comment l’intégration de tooyour tooadd partenaires compte avec hello Pack d’intégration Enterprise et Logic Apps"
+title: "Création de partenaires pour les messages d’entreprise à entreprise (B2B) - Azure Logic Apps | Microsoft Docs"
+description: "Découvrez comment ajouter des partenaires à votre compte d’intégration avec Enterprise Integration Pack et Logic Apps"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,75 +15,75 @@ ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8dc70a8f441fcf228ed178029dcdbac940d794b3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 950cb449b53f400f0f0f860caf5415bbb5212269
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="add-or-update-partners-in-business-to-business-agreements-in-your-workflow"></a>Ajout ou mise à jour des partenaires dans les contrats d’entreprise à entreprise de votre flux de travail
 
-Les partenaires sont des entités qui participent aux transactions d’entreprise à entreprise (B2B) et qui échangent des messages entre eux. Avant de pouvoir créer des partenaires qui vous représentent et qui représentent une autre organisation dans le cadre de ces transactions, vous devez partager des informations qui identifient et valident les messages envoyés par chacun. Une fois que vous présentent ces détails et que vous êtes prêt toostart votre relation commerciale, vous pouvez créer des partenaires dans votre toorepresent de compte d’intégration vous à la fois.
+Les partenaires sont des entités qui participent aux transactions d’entreprise à entreprise (B2B) et qui échangent des messages entre eux. Avant de pouvoir créer des partenaires qui vous représentent et qui représentent une autre organisation dans le cadre de ces transactions, vous devez partager des informations qui identifient et valident les messages envoyés par chacun. Après avoir discuté de ces détails et quand vous serez prêt à initier cette relation commerciale, vous pouvez créer des partenaires dans votre compte d’intégration pour vous représenter, ainsi que l’organisation.
 
 ## <a name="what-roles-do-partners-have-in-your-integration-account"></a>Quels rôles jouent les partenaires dans votre compte d’intégration ?
 
-toodefine plus d’informations sur les messages hello échangés entre partenaires, vous créez des accords entre les partenaires. Toutefois, avant de pouvoir créer un accord, vous devez avoir ajouté le compte d’au moins deux serveurs partenaires d’intégration tooyour. Votre organisation doit faire partie du contrat de hello hello **partenaire hôte**. Hello autre partenaire, ou **partenaire invité** représente hello organisation qui échange des messages avec votre organisation. partenaire invité de Hello peut être une autre société, ou même un service de votre organisation.
+Pour définir les détails relatifs aux messages échangés entre les partenaires, vous pouvez créer des contrats entre ces partenaires. Toutefois, avant de pouvoir créer un contrat, vous devez avoir ajouté au moins deux partenaires à votre compte d’intégration. Votre organisation doit faire partie du contrat, en tant que **partenaire hôte**. L’autre partenaire, ou **partenaire invité**, représente l’organisation qui échange des messages avec votre organisation. Le partenaire invité peut être une autre entreprise ou même un service au sein de votre organisation.
 
 Après avoir ajouté ces partenaires, vous pouvez créer un contrat.
 
-Réception et paramètres d’envoi sont orientés hello point de vue de hello Hosted partenaire. Par exemple, hello paramètres de réception dans un accord déterminent comment les partenaires hello hébergé reçoit les messages envoyés à partir d’un partenaire invité. De même, les paramètres d’envoi hello sur l’accord de hello indiquent comment les partenaires hello hébergé envoie partenaire de messages toohello invité.
+Les paramètres de réception et d’envoi sont basés du point de vue du partenaire hébergé. Par exemple, les paramètres de réception dans un contrat déterminent la façon dont le partenaire hébergé reçoit les messages envoyés à partir d’un partenaire invité. De même, les paramètres d’envoi du contrat indiquent la façon dont le partenaire hébergé envoie des messages au partenaire invité.
 
-## <a name="how-toocreate-a-partner"></a>Comment toocreate un partenaire ?
+## <a name="how-to-create-a-partner"></a>Création d’un partenaire
 
-1. Bonjour portail Azure, sélectionnez **Parcourir**.
+1. Dans le portail Azure, sélectionnez **Parcourir**.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-1.png)
 
-2. Dans la zone de recherche de filtre hello, entrez **intégration**, puis sélectionnez **comptes d’intégration** dans la liste des résultats hello.
+2. Entrez **intégration** dans la zone de recherche de filtre et sélectionnez **Comptes d’intégration** dans la liste des résultats.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-2.png)
 
-3. Sélectionnez le compte d’intégration hello où vous souhaitez tooadd vos partenaires.
+3. Sélectionnez le compte d’intégration dans lequel vous souhaitez ajouter vos partenaires.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-3.png)
 
-4. Sélectionnez hello **partenaires** vignette.
+4. Sélectionnez la mosaïque **Partenaires**.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-1.png)
 
-5. Dans le panneau de partenaires hello, choisissez **ajouter**.
+5. Dans le panneau Partenaires, choisissez **Ajouter**.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-2.png)
 
-6. Entrez un nom pour votre partenaire, puis sélectionnez un **qualificateur**. Enfin, vous devez entrer un **valeur** toohelp identifier des documents qui entrent dans vos applications.
+6. Entrez un nom pour votre partenaire, puis sélectionnez un **qualificateur**. Enfin, entrez une **valeur** pour identifier les documents qui entrent dans vos applications.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-3.png)
 
-7. progression de hello toosee pour votre processus de création de partenaire, sélectionnez hello *représentant une cloche* icône de notification.
+7. Sélectionnez l’icône de notification en forme de *cloche* pour afficher la progression du processus de création du partenaire.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-4.png)
 
-8. tooconfirm vos nouveaux partenaires a été correctement ajouté, sélectionnez hello **partenaires** vignette.
+8. Pour vérifier que vos nouveaux partenaires ont été correctement ajoutés, sélectionnez la mosaïque **Partenaires**.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-5.png)
 
-    Une fois que vous sélectionnez la vignette de partenaires hello, vous verrez également partenaires nouvellement ajoutés dans le panneau de partenaires hello.
+    Une fois la mosaïque Partenaires sélectionnée, le nouveau partenaire doit également se trouver dans le panneau Partenaires.
 
     ![](./media/logic-apps-enterprise-integration-partners/partner-6.png)
 
-## <a name="how-tooedit-existing-partners-in-your-integration-account"></a>Comment des partenaires de tooedit existant dans votre compte d’intégration
+## <a name="how-to-edit-existing-partners-in-your-integration-account"></a>Comment modifier des partenaires existants dans votre compte d’intégration
 
-1. Sélectionnez hello **partenaires** vignette.
-2. Une fois le panneau de partenaires hello s’ouvre, sélectionnez partenaire hello tooedit.
-3. Sur hello **partenaire de mise à jour** vignette, apportez vos modifications.
-4. Une fois que vous avez terminé, choisissez **enregistrer**, ou sélectionnez de vos modifications, toocancel **ignorer**.
+1. Sélectionnez la mosaïque **Partenaires**.
+2. Une fois le panneau Partenaires ouvert, sélectionnez le partenaire à modifier.
+3. Sur la mosaïque **Mettre à jour le partenaire**, apportez les modifications nécessaires.
+4. Une fois que vous avez terminé, sélectionnez **Enregistrer**. Si vous souhaitez annuler vos modifications, cliquez sur **Abandonner**.
 
     ![](./media/logic-apps-enterprise-integration-partners/edit-1.png)
 
-## <a name="how-toodelete-a-partner"></a>Comment toodelete un partenaire
+## <a name="how-to-delete-a-partner"></a>Suppression d’un partenaire
 
-1. Sélectionnez hello **partenaires** vignette.
-2. Une fois le panneau de partenaire hello s’ouvre, sélectionnez partenaire hello que vous souhaitez toodelete.
+1. Sélectionnez la mosaïque **Partenaires**.
+2. Une fois le panneau Partenaires ouvert, sélectionnez le partenaire à supprimer.
 3. Choisissez **Supprimer**.
 
     ![](./media/logic-apps-enterprise-integration-partners/delete-1.png)

@@ -14,151 +14,151 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 05/01/2017
 ms.author: eugenesh
-ms.openlocfilehash: 4dd9591072b44eeabae6eac1182b4eea10fd4a22
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 356ceb98106d080d8c24dedc3547bee33750156e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="indexer-operations-azure-search-service-rest-api-2015-02-28-preview"></a>Opérations de l'indexeur (API REST du service Azure Search : 2015-02-28-Preview)
 > [!NOTE]
-> Cet article décrit les indexeurs Bonjour [2015-02-28-Preview REST API](search-api-2015-02-28-preview.md). Cette version de l'API ajoute des versions préliminaires d’un indexeur de stockage d’objets blob Azure avec extraction des documents et un indexeur de stockage de tables Azure, ainsi que d’autres améliorations. Hello API prend également en charge les indexeurs (GA) généralement disponibles, y compris les indexeurs pour la base de données SQL Azure, SQL Server sur des machines virtuelles Azure et base de données Azure Cosmos.
+> Cet article décrit les indexeurs dans la version [API REST 2015-02-28-Preview](search-api-2015-02-28-preview.md). Cette version de l'API ajoute des versions préliminaires d’un indexeur de stockage d’objets blob Azure avec extraction des documents et un indexeur de stockage de tables Azure, ainsi que d’autres améliorations. L’API prend également en charge les indexeurs en disponibilité générale (GA), y compris les indexeurs pour base de données SQL Azure, SQL Server sur des machines virtuelles Azure et Azure Cosmos DB.
 > 
 > 
 
 ## <a name="overview"></a>Vue d'ensemble
-Azure Search peut s’intégrer directement avec des sources de données courantes, suppression hello besoin toowrite code tooindex vos données. tooset de cela, vous pouvez appeler toocreate des API Azure Search hello et gérer **indexeurs** et **des sources de données**. 
+Azure Search peut s'intégrer directement à des sources de données courantes, ce qui évite d'avoir à écrire du code pour indexer vos données. Pour configurer cela, vous pouvez appeler l’API Recherche Azure pour créer et gérer des **indexeurs** et des **sources de données**. 
 
-Un **indexeur** est une ressource qui connecte des sources de données à des index de recherche cibles. Un indexeur est utilisé dans hello suivant façons : 
+Un **indexeur** est une ressource qui connecte des sources de données à des index de recherche cibles. Un indexeur est utilisé pour : 
 
-* Effectuer une copie ponctuelle des données de hello toopopulate un index.
-* Un index avec des modifications dans la source de données hello selon un calendrier de synchronisation. planification de Hello fait partie de la définition d’indexeur hello.
-* Appeler à la demande tooupdate un index en fonction des besoins. 
+* effectuer une copie unique des données pour remplir un index ;
+* synchroniser un index avec les modifications apportées à la source de données selon une planification. La planification fait partie de la définition de l'indexeur ;
+* appeler à la demande pour mettre à jour un index en fonction des besoins. 
 
-Un **indexeur** est utile lorsque vous souhaitez index tooan de mises à jour régulières. Vous pouvez configurer une planification incluse dans le cadre d'une définition d'indexeur, ou l'exécuter à la demande à l'aide de la commande [Exécuter l'indexeur](#RunIndexer) 
+Un **indexeur** est utile lorsque vous souhaitez mettre un index régulièrement à jour. Vous pouvez configurer une planification incluse dans le cadre d'une définition d'indexeur, ou l'exécuter à la demande à l'aide de la commande [Exécuter l'indexeur](#RunIndexer) 
 
-A **source de données** spécifie les données toobe indexée, informations d’identification tooaccess hello des données et stratégies tooenable Azure Search tooefficiently identifier les modifications apportées aux données hello (tel que modifié ou supprimé des lignes dans une table de base de données). Elle est définie comme une ressource indépendante utilisable par plusieurs indexeurs.
+Une **source de données** spécifie les données à indexer, les informations d'identification nécessaires pour accéder aux données et les stratégies pour permettre à Azure Search d'identifier correctement les modifications de données (telles que des lignes modifiées ou supprimées dans une table de base de données). Elle est définie en tant que ressource indépendante utilisable par plusieurs indexeurs.
 
-Hello les sources de données suivantes est actuellement prises en charge :
+Les sources de données actuellement prises en charge sont les suivantes :
 
 * **Base de données Azure SQL** et **SQL Server sur les machines virtuelles Azure**. Pour obtenir une procédure pas à pas ciblée, consultez [cet article](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md). 
 * **Azure Cosmos DB**. Pour obtenir une procédure pas à pas ciblée, consultez [cet article](search-howto-index-documentdb.md). 
-* **Stockage d’objets Blob Azure**, y compris formats de document suivants de hello : PDF, Microsoft Office (DOCX/DOC, XSLX/XLS, PPTX/PPT, MSG), HTML, XML, ZIP et texte brut des fichiers (y compris le JSON). Pour obtenir une procédure pas à pas ciblée, consultez [cet article](search-howto-indexing-azure-blob-storage.md).
+* **Stockage d'objets blob azure**, notamment les formats de document suivants : Microsoft Office (DOCX/DOC, XSLX/XLS, PPTX/PPT, MSG), HTML, XML, ZIP et fichiers texte brut (y compris JSON). Pour obtenir une procédure pas à pas ciblée, consultez [cet article](search-howto-indexing-azure-blob-storage.md).
 * **Stockage Table Azure**. Pour obtenir une procédure pas à pas ciblée, consultez [cet article](search-howto-indexing-azure-tables.md).
 
-Nous envisageons d’ajouter la prise en charge pour les sources de données supplémentaires dans hello futures. toohelp nous hiérarchiser ces décisions, veuillez fournir vos commentaires sur hello [forum de commentaires d’Azure Search](http://feedback.azure.com/forums/263029-azure-search).
+Nous envisageons d'ajouter une prise en charge de sources de données supplémentaires à l'avenir. Pour nous aider à classer ces décisions par ordre de priorité, indiquez vos commentaires sur le [forum des commentaires Azure Search](http://feedback.azure.com/forums/263029-azure-search).
 
-Consultez [limites de Service](search-limits-quotas-capacity.md) pour maximum limite les ressources de source tooindexer et les données associées.
+Consultez les [Limites du service](search-limits-quotas-capacity.md) pour les limites maximales liées à l’indexeur et aux sources de données.
 
 ## <a name="typical-usage-flow"></a>Flux d'utilisation typique
 Vous pouvez créer et gérer des index dans le service Azure Search par le biais de simples requêtes HTTP (POST, GET, PUT, DELETE) sur une ressource `data source` ou `indexer` spécifique.
 
 La configuration de l'indexation automatique est généralement un processus en quatre étapes :
 
-1. Identifier la source de données de hello qui contient les données hello doit toobe indexé. Gardez à l’esprit que Azure Search ne peut-être pas en charge tous les types de données hello présents dans votre source de données. Consultez [prise en charge des types de données](https://msdn.microsoft.com/library/azure/dn798938.aspx) pour la liste hello.
+1. Identifiez la source de données contenant les données à indexer. N'oubliez pas qu'Azure Search ne prend peut-être pas en charge tous les types de données présents dans votre source de données. Pour obtenir la liste, consultez [Types de données pris en charge](https://msdn.microsoft.com/library/azure/dn798938.aspx) .
 2. Créez un index Azure Search dont le schéma est compatible avec votre source de données.
 3. Créez une source de données Azure Search comme décrit dans [Création d'une source de données](#CreateDataSource).
 4. Créez un indexeur Azure Search comme décrit dans [Création d'indexeur](#CreateIndexer).
 
-Vous devez prévoir de créer un indexeur pour chaque association source de données/index cible. Vous pouvez avoir plusieurs indexeurs écrivant dans hello même index et que vous pouvez réutiliser hello même source de données pour plusieurs indexeurs. Toutefois, un indexeur peut uniquement utiliser une source de données à la fois et ne peut écrire tooa seul index. 
+Vous devez prévoir de créer un indexeur pour chaque association source de données/index cible. Vous pouvez avoir plusieurs indexeurs écrivant dans le même index et réutiliser la même source de données pour plusieurs indexeurs. Toutefois, un indexeur ne peut consommer qu'une source de données à la fois, et ne peut écrire que dans un seul index. 
 
-Après avoir créé un indexeur, vous pouvez récupérer son état d’exécution à l’aide de hello [obtenir le statut indexeur](#GetIndexerStatus) opération. Vous pouvez également exécuter un indexeur à tout moment (au lieu d’ou ajout toorunning il périodiquement selon une planification) à l’aide de hello [exécuter l’indexeur](#RunIndexer) opération.
+Après avoir créé un indexeur, vous pouvez récupérer son état d'exécution à l'aide de l'opération [Get Indexer Status](#GetIndexerStatus) . Vous pouvez également exécuter un indexeur à tout moment (au lieu de ou en plus de son exécution périodique planifiée) à l'aide de l'opération [Run Indexer](#RunIndexer) .
 
 <!-- MSDN has 2 art files plus a API topic link list -->
 
 
 ## <a name="create-data-source"></a>Création d'une source de données
-Dans Azure Search, une source de données est utilisée avec les indexeurs, qui fournit des informations de connexion hello pour l’actualisation des données ad hoc ou planifiée d’un index de la cible. Vous pouvez créer une source de données au sein d'un service Azure Search à l'aide d'une requête HTTP POST.
+Dans Azure Search, une source de données est utilisée avec les indexeurs afin de fournir les informations de connexion pour l'actualisation ad hoc ou planifiée des données d'un index cible. Vous pouvez créer une source de données au sein d'un service Azure Search à l'aide d'une requête HTTP POST.
 
     POST https://[service name].search.windows.net/datasources?api-version=[api-version]
     Content-Type: application/json
     api-key: [admin key]
 
-Vous pouvez également utiliser une requête PUT et spécifiez le nom de source de données hello sur hello URI. Si la source de données hello n’existe pas, il sera créé.
+Vous pouvez également utiliser une requête PUT en spécifiant le nom de source de données sur l'URI. Si la source de données n'existe pas, elle est créée.
 
     PUT https://[service name].search.windows.net/datasources/[datasource name]?api-version=[api-version]
 
 > [!NOTE]
-> nombre maximal de Hello de sources de données autorisé varie en fonction du niveau de tarification. service gratuit de Hello permet à des sources de données too3. Le service standard autorise 50 sources de données. Pour plus d’informations, consultez [Limites de service](search-limits-quotas-capacity.md) .
+> Le nombre maximal de sources de données que vous pouvez créer varie en fonction du niveau de tarification. Le service gratuit autorise jusqu'à 3 sources de données. Le service standard autorise 50 sources de données. Pour plus d’informations, consultez [Limites de service](search-limits-quotas-capacity.md) .
 > 
 > 
 
 **Requête**
 
-Le protocole HTTPS est requis pour toutes les requêtes de service. Hello **créer une Source de données** demande peut être construite à l’aide d’une méthode POST ou PUT. Lors de l’utilisation de POST, vous devez fournir un nom de source de données dans le corps de la demande, ainsi que la définition de source de données hello hello. Avec PUT, nom de hello fait partie de l’URL de hello. Si la source de données hello n’existe pas, il est créé. S’il existe déjà, il est mis à jour toohello nouvelle définition. 
+Le protocole HTTPS est requis pour toutes les requêtes de service. La requête **Create Data Source** peut être construite à l'aide d'une méthode POST ou PUT. Si vous utilisez une méthode POST, fournissez un nom de source de données dans le corps de la requête avec la définition de source de données. Avec la méthode PUT, le nom fait partie de l'URL. Si la source de données n’existe pas, elle est créée. Si elle existe déjà, elle est mise à jour en fonction de la nouvelle définition. 
 
-nom de source de données Hello doit être en minuscules, commencer par une lettre ou un chiffre, contenir sans barres obliques ni points et être inférieure à 128 caractères. Après avoir démarré le nom de source de données hello par une lettre ou un chiffre, reste hello du nom de hello peut inclure toute lettre, le numéro et des tirets, tant que les tirets hello ne soient pas contigus. Pour en savoir plus, consultez [Règles d'affectation des noms](https://msdn.microsoft.com/library/azure/dn857353.aspx) .
+Le nom de source de données doit être en minuscules, commencer par une lettre ou un chiffre, ne contenir ni barres obliques ni points, et comprendre moins de 128 caractères. Après la lettre ou le chiffre du début, le nom de source de données peut comprendre des lettres ou chiffres quelconques, ainsi que des tirets (non consécutifs). Pour en savoir plus, consultez [Règles d'affectation des noms](https://msdn.microsoft.com/library/azure/dn857353.aspx) .
 
-Hello `api-version` est requis. version actuelle de Hello est `2015-02-28`.
+Le paramètre `api-version` est obligatoire. La version actuelle est `2015-02-28`.
 
 **En-têtes de requête**
 
-Hello suivant liste décrit hello requis et les en-têtes de demande facultatif. 
+La liste suivante décrit les en-têtes de requête obligatoires et facultatifs. 
 
-* `Content-Type`: requis. Définissez cette propriété trop`application/json`
-* `api-key`: obligatoire. Hello `api-key` est utilisé tooauthenticate hello demande tooyour service de recherche. Il s’agit d’une valeur de chaîne, d’un service de tooyour unique. Hello **créer une Source de données** demande doit inclure un `api-key` en-tête défini la clé d’administration tooyour (en tant que clé de requête tooa exécutée). 
+* `Content-Type`: requis. À définir avec la valeur `application/json`
+* `api-key`: requis. L'en-tête `api-key` est utilisé pour authentifier la requête auprès de votre service de recherche. Il s'agit d'une valeur de type chaîne de caractères, unique pour votre service. La requête **Create Data Source** doit inclure un en-tête `api-key` défini avec la valeur de votre clé d’administration (par opposition à une clé de requête). 
 
-Vous devez également les URL de demande du nom tooconstruct hello hello service. Vous pouvez obtenir le nom du service hello et `api-key` à partir de votre tableau de bord de service Bonjour [Azure Portal](https://portal.azure.com/). Consultez [créer un service de recherche dans le portail de hello](search-create-service-portal.md) de l’aide de navigation de page.
+Vous avez également besoin du nom du service pour construire l'URL de la requête. Vous pouvez obtenir le nom du service et l’en-tête `api-key` sur votre tableau de bord de service du [Portail Azure](https://portal.azure.com/). Pour obtenir de l'aide sur la navigation dans les pages, consultez [Création d'un service Search dans le portail](search-create-service-portal.md) .
 
 <a name="CreateDataSourceRequestSyntax"></a>
 **Syntaxe du corps de la requête**
 
-corps Hello de demande de hello contient une définition de source de données, qui inclut le type de source de données hello, données de salutation tooread informations d’identification, ainsi qu’une détection de changement des données facultatives et identifient les stratégies qui sont utilisée tooefficiently de détection de suppression de données modifiées ou les données supprimées dans la source de données hello lorsqu’il est utilisé avec un indexeur planifié à intervalles réguliers. 
+Le corps de la requête contient une définition de source de données, qui inclut le type de la source de données, des informations d'identification pour lire les données, ainsi que des stratégies facultatives de détection des modifications et suppressions de données, qui permettent d'identifier efficacement les données modifiées ou supprimées dans la source de données quand celle-ci est utilisée avec un indexeur planifié à intervalles réguliers. 
 
-syntaxe Hello pour structurer la charge utile de demande hello est comme suit. Vous trouverez un exemple de requête dans cette rubrique.
+La syntaxe de structuration de la charge utile de la requête est la suivante. Vous trouverez un exemple de requête dans cette rubrique.
 
     { 
-        "name" : "Required for POST, optional for PUT. hello name of hello data source",
+        "name" : "Required for POST, optional for PUT. The name of the data source",
         "description" : "Optional. Anything you want, or nothing at all",
         "type" : "Required. Must be one of 'azuresql', 'documentdb', 'azureblob', or 'azuretable'",
         "credentials" : { "connectionString" : "Required. Connection string for your data source" },
-        "container" : { "name" : "Required. hello name of hello table, collection, or blob container you wish tooindex" },
+        "container" : { "name" : "Required. The name of the table, collection, or blob container you wish to index" },
         "dataChangeDetectionPolicy" : { Optional. See below for details }, 
         "dataDeletionDetectionPolicy" : { Optional. See below for details }
     }
 
-La demande contient hello propriétés suivantes : 
+La requête peut contenir les propriétés suivantes : 
 
-* `name`: requis. nom Hello hello de source de données. Un nom de source de données doit uniquement contenir des lettres minuscules, des chiffres ou des tirets, ne peut commencer ni se terminer par des tirets, et est limitée too128 caractères.
+* `name`: requis. Nom de la source de données. Un nom de source de données doit uniquement contenir des lettres minuscules, des chiffres ou des tirets, ne peut pas commencer ni se terminer par des tirets et est limité à 128 caractères.
 * `description`: une description facultative. 
-* `type`: requis. Doit être un des types de sources de données hello pris en charge :
+* `type`: requis. Doit être de l'un des types de sources de données pris en charge :
   * `azuresql` - Base de données Azure SQL ou SQL Server sur les machines virtuelles Azure
   * `documentdb` - Azure Cosmos DB
   * `azureblob` - Stockage Blob Azure
   * `azuretable` - Stockage Table Azure
 * `credentials`:
-  * Hello requis `connectionString` propriété spécifie la chaîne de connexion hello pour la source de données hello. format Hello hello de chaîne de connexion dépend du type de source de données hello : 
-    * Pour SQL Azure, il s’agit de chaîne de connexion SQL Server habituelle hello. Si vous utilisez la chaîne de connexion hello hello tooretrieve portail Azure, utilisez hello `ADO.NET connection string` option.
-    * Pour la base de données Azure Cosmos, chaîne de connexion hello doit être Bonjour suivant le format : `"AccountEndpoint=https://[your account name].documents.azure.com;AccountKey=[your account key];Database=[your database id]"`. Toutes les valeurs de hello sont requises. Vous pouvez les trouver dans hello [portail Azure](https://portal.azure.com/).  
-    * Pour les objets Blob Azure et le stockage de Table, il s’agit de chaîne de connexion de compte de stockage hello. le format Hello est décrit [ici](https://azure.microsoft.com/documentation/articles/storage-configure-connection-string/). Un protocole de point de terminaison HTTPS est obligatoire.  
-* `container`, requise : Spécifie hello tooindex de données à l’aide de hello `name` et `query` propriétés : 
+  * La propriété `connectionString` obligatoire spécifie la chaîne de connexion pour la source de données. Le format de la chaîne de connexion dépend du type de source de données : 
+    * Pour Azure SQL, il s'agit de la chaîne de connexion SQL Server habituelle. Si vous utilisez le Portail Azure pour obtenir la chaîne de connexion, sélectionnez l’option `ADO.NET connection string` .
+    * Pour Azure Cosmos DB, la chaîne de connexion doit avoir le format suivant : `"AccountEndpoint=https://[your account name].documents.azure.com;AccountKey=[your account key];Database=[your database id]"`. Toutes les valeurs sont obligatoires. Elles sont disponibles sur le [Portail Azure](https://portal.azure.com/).  
+    * Pour le Stockage Blob et Table Azure, il s’agit de la chaîne de connexion du compte de stockage. Ce format est décrit [ici](https://azure.microsoft.com/documentation/articles/storage-configure-connection-string/). Un protocole de point de terminaison HTTPS est obligatoire.  
+* `container`, obligatoire : spécifie les données à indexer en utilisant les propriétés `name` et `query` : 
   * `name` (obligatoire) :
-    * SQL Azure : Spécifie hello table ou vue. Vous pouvez utiliser des noms qualifiés par schéma, tels que `[dbo].[mytable]`.
-    * DocumentDB : Spécifie la collection de hello. 
-    * Stockage d’objets Blob Azure : Spécifie un conteneur de stockage hello.
-    * Stockage de Table Azure : Spécifie le nom hello de table de hello. 
+    * Azure SQL : spécifie la table ou la vue. Vous pouvez utiliser des noms qualifiés par schéma, tels que `[dbo].[mytable]`.
+    * DocumentDB : spécifie la collection. 
+    * Stockage Blob Azure : spécifie le conteneur de stockage.
+    * Stockage Table Azure : spécifie le nom de la table. 
   * `query`(facultatif) :
-    * DocumentDB : vous permet de toospecify une requête qui aplanit une disposition de document JSON arbitraire dans un schéma plat Azure Search peut indexer.  
-    * Stockage d’objets Blob Azure : vous permet de toospecify un dossier virtuel dans le conteneur d’objets blob hello. Par exemple, pour le chemin d’accès de l’objet blob `mycontainer/documents/blob.pdf`, `documents` peut être utilisée comme dossier virtuel de hello.
-    * Stockage de Table Azure : vous permet de toospecify une requête que les filtres hello ensemble de toobe lignes importée.
+    * DocumentDB : vous permet permettant de spécifier une requête qui aplanit une disposition de document JSON arbitraire dans un schéma plat qu'Azure Search peut indexer.  
+    * Stockage d'objets blob Azure : vous permet de spécifier un dossier virtuel dans le conteneur d'objets blob. Par exemple, pour le chemin d’accès aux objets blob `mycontainer/documents/blob.pdf`, `documents` peut être utilisé comme dossier virtuel.
+    * Stockage Table Azure : vous permet de spécifier une requête qui filtre l’ensemble de lignes à importer.
     * Azure SQL : requête non prise en charge. Si vous avez besoin de cette fonctionnalité, veuillez voter pour [cette suggestion](https://feedback.azure.com/forums/263029-azure-search/suggestions/9893490-support-user-provided-query-in-sql-indexer)
-* Hello facultatif `dataChangeDetectionPolicy` et `dataDeletionDetectionPolicy` propriétés sont décrites ci-dessous.
+* Les propriétés facultatives `dataChangeDetectionPolicy` et `dataDeletionDetectionPolicy` sont décrites ci-dessous.
 
 <a name="DataChangeDetectionPolicies"></a>
 **Stratégies de détection des modifications de données**
 
-objectif Hello d’une donnée de modifier la stratégie de détection est tooefficiently identifient les éléments de données modifiées. Stratégies prises en charge varient selon le type de source de données hello. Les sections ci-dessous décrivent chaque stratégie. 
+L'objectif d'une stratégie de détection des changements de données est d'identifier efficacement les données modifiées. Les stratégies prises en charge varient selon le type de source de données. Les sections ci-dessous décrivent chaque stratégie. 
 
 ***Stratégie de détection des modifications de limite supérieure*** 
 
-Utilisez cette stratégie lorsque votre source de données contient une colonne ou propriété répondant hello suivant des critères :
+Utilisez cette stratégie lorsque votre source de données contient une colonne ou une propriété qui répond aux critères suivants :
 
-* Toutes les insertions spécifient une valeur pour la colonne de hello. 
-* Élément de tooan toutes les mises à jour également modifier valeur hello de colonne de hello. 
-* valeur Hello de cette colonne augmente à chaque modification.
-* Les requêtes que vous utilisent un clause filtre similaire qui suit toohello `WHERE [High Water Mark Column] > [Current High Water Mark Value]` peuvent être exécutées efficacement.
+* Toutes les insertions spécifient une valeur pour la colonne. 
+* Toutes les mises à jour d'un élément modifient également la valeur de la colonne. 
+* La valeur de cette colonne augmente à chaque modification.
+* Les requêtes qui utilisent une clause de filtre similaire à la clause `WHERE [High Water Mark Column] > [Current High Water Mark Value]` suivante peuvent être exécutées efficacement.
 
-Par exemple, lors de l’utilisation de sources de données SQL Azure, une liste indexées `rowversion` colonne est hello le candidat idéal pour une utilisation avec la stratégie de limite supérieure hello. 
+Par exemple, en cas d'utilisation de sources de données Azure SQL, une colonne `rowversion` indexée est parfaitement indiquée pour une utilisation avec la stratégie de limite supérieure. 
 
 Cette stratégie peut être spécifiée comme suit :
 
@@ -167,24 +167,24 @@ Cette stratégie peut être spécifiée comme suit :
         "highWaterMarkColumnName" : "[a row version or last_updated column name]" 
     } 
 
-Lorsque vous utilisez des sources de données de base de données Azure Cosmos, vous devez utiliser hello `_ts` cette propriété est fournie par la base de données Azure Cosmos. 
+En cas d'utilisation de sources de données Azure Cosmos DB, vous devez utiliser la propriété `_ts` fournie par Azure Cosmos DB. 
 
-Lorsque vous utilisez des sources de données d’objets Blob Azure, Azure Search automatiquement utilise une limite supérieure Modifier stratégie de détection en fonction de l’horodatage de dernière modification d’un objet blob ; vous n’avez pas besoin toospecify une telle stratégie vous-même.   
+Lors de l'utilisation de sources de données d'objets blob Azure, Azure Search utilise automatiquement utilise une stratégie de détection de modification de limite supérieure basée sur l’horodatage de la dernière modification d’un objet blob ; vous n'avez pas besoin de spécifier une telle stratégie vous-même.   
 
 ***Stratégie SQL de détection des modifications intégrée***
 
-Si votre base de données SQL prend en charge le [suivi des modifications](https://msdn.microsoft.com/library/bb933875.aspx), nous recommandons d'utiliser la stratégie SQL de suivi des modifications intégrée. Cette stratégie permet le suivi des modifications plus efficace de hello et permet des lignes de tooidentify supprimé d’Azure Search sans que vous ayez toohave une colonne explicite « suppression réversible » dans votre schéma.
+Si votre base de données SQL prend en charge le [suivi des modifications](https://msdn.microsoft.com/library/bb933875.aspx), nous recommandons d'utiliser la stratégie SQL de suivi des modifications intégrée. Cette stratégie assure le suivi des modifications le plus efficace et permet à Azure Search d'identifier les lignes supprimées sans que le schéma doive contenir une colonne « suppression réversible » explicite.
 
-Suivi des modifications intégrée sont prise en charge avec hello versions de base de données SQL Server suivantes : 
+Le suivi intégré des modifications est pris en charge à partir des versions de base de données SQL Server suivantes : 
 
 * SQL Server 2008 R2, si vous utilisez SQL Server on Azure VMs.
 * Azure SQL Database V12, si vous utilisez Azure SQL Database.  
 
 En cas d'utilisation d'une stratégie SQL de suivi des modifications intégrée, ne spécifiez pas de stratégie de détection des suppressions de données distincte. Cette stratégie intègre la prise en charge de l'identification des lignes supprimées. 
 
-Elle n’est utilisable que sur des tables, non sur des vues. Vous devez tooenable suivi des modifications pour table hello à l’aide d’avant de pouvoir utiliser cette stratégie. Pour plus d’informations, consultez la section [Activer et désactiver le suivi des modifications](https://msdn.microsoft.com/library/bb964713.aspx) .    
+Elle peut être utilisée uniquement avec des tables, non avec des vues. Pour pouvoir appliquer cette stratégie, vous devez activer le suivi des modifications sur la table. Consultez [Activer et désactiver le suivi des modifications](https://msdn.microsoft.com/library/bb964713.aspx) pour obtenir des instructions.    
 
-Lorsque vous structurez hello **créer une Source de données** demander, SQL stratégie le suivi intégré peut être spécifié comme suit :
+Lors de la structuration de la requête **Create Data Source** , vous pouvez spécifier une stratégie SQL de suivi des modifications intégrée comme suit :
 
     { 
         "@odata.type" : "#Microsoft.Azure.Search.SqlIntegratedChangeTrackingPolicy" 
@@ -193,23 +193,23 @@ Lorsque vous structurez hello **créer une Source de données** demander, SQL st
 <a name="DataDeletionDetectionPolicies"></a>
 **Stratégies de détection des suppressions de données**
 
-objectif de Hello d’une stratégie de détection de suppression de données est tooefficiently identifient les éléments de données supprimées. Actuellement, la stratégie de hello uniquement pris en charge est hello `Soft Delete` stratégie, qui permet l’identification des éléments en fonction de la valeur hello supprimés un `soft delete` colonne ou propriété dans la source de données hello. Cette stratégie peut être spécifiée comme suit :
+L'objectif d'une stratégie de détection des suppressions de données est d'identifier efficacement les données supprimées. Actuellement, la seule stratégie de prise en charge est la stratégie `Soft Delete`, qui permet d'identifier les éléments supprimés selon la valeur d’une colonne ou propriété `soft delete` dans la source de données : Cette stratégie peut être spécifiée comme suit :
 
     { 
         "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy",
-        "softDeleteColumnName" : "hello column that specifies whether a row was deleted", 
-        "softDeleteMarkerValue" : "hello value that identifies a row as deleted" 
+        "softDeleteColumnName" : "the column that specifies whether a row was deleted", 
+        "softDeleteMarkerValue" : "the value that identifies a row as deleted" 
     }
 
 > [!NOTE]
-> Seules les colonnes contenant des valeurs de type chaîne de caractères, entier ou booléennes sont prises en charge. Hello valeur utilisée comme `softDeleteMarkerValue` doit être une chaîne, même si la colonne correspondante de hello contient des entiers ou des valeurs booléennes. Par exemple, si la valeur hello qui apparaît dans votre source de données est 1, utilisez `"1"` comme hello `softDeleteMarkerValue`.    
+> Seules les colonnes contenant des valeurs de type chaîne de caractères, entier ou booléennes sont prises en charge. La valeur utilisée en tant que `softDeleteMarkerValue` doit être une chaîne de caractère, même si la colonne correspondante contient des entiers ou des valeurs booléennes. Par exemple, si la valeur figurant dans votre source de données est 1, utilisez `"1"` comme `softDeleteMarkerValue`.    
 > 
 > 
 
 <a name="CreateDataSourceRequestExamples"></a>
 **Exemples de corps de requête**
 
-Si vous avez l’intention de source de données toouse hello avec un indexeur qui s’exécute sur une planification, cet exemple montre comment modifier les toospecify et la suppression des stratégies de détection : 
+Si vous prévoyez d'utiliser la source de données avec un indexeur exécuté selon une planification, cet exemple montre comment spécifier des stratégies de détection des modifications et des suppressions : 
 
     { 
         "name" : "asqldatasource",
@@ -221,7 +221,7 @@ Si vous avez l’intention de source de données toouse hello avec un indexeur q
         "dataDeletionDetectionPolicy" : { "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy", "softDeleteColumnName" : "IsDeleted", "softDeleteMarkerValue" : "true" }
     }
 
-Si vous envisagez uniquement la source de données toouse hello pour une copie ponctuelle des données de hello, les stratégies hello peuvent être omis :
+Si vous souhaitez utiliser la source de données uniquement pour une copie ponctuelle des données, vous pouvez omettre les stratégies :
 
     { 
         "name" : "asqldatasource",
@@ -238,23 +238,23 @@ Pour une requête réussie : « 201 Créé ».
 <a name="UpdateDataSource"></a>
 
 ## <a name="update-data-source"></a>Mise à jour d'une source de données
-Vous pouvez mettre à jour une source de données existante à l'aide d'une requête HTTP PUT. Vous spécifiez nom hello de tooupdate de source de données hello sur l’URI de la demande hello :
+Vous pouvez mettre à jour une source de données existante à l'aide d'une requête HTTP PUT. Vous spécifiez le nom de la source de données à mettre à jour dans l'URI de la requête :
 
     PUT https://[service name].search.windows.net/datasources/[datasource name]?api-version=[api-version]
     Content-Type: application/json
     api-key: [admin key]
 
-Hello `api-version` est requis. version actuelle de Hello est `2015-02-28`. Pour plus d’informations, notamment sur d’autres versions, consultez [Versions d’API Recherche Azure](https://msdn.microsoft.com/library/azure/dn864560.aspx).
+Le paramètre `api-version` est obligatoire. La version actuelle est `2015-02-28`. Pour plus d’informations, notamment sur d’autres versions, consultez [Versions d’API Recherche Azure](https://msdn.microsoft.com/library/azure/dn864560.aspx).
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Requête**
 
-Hello syntaxe du corps de demande est hello même que pour [demande de créer une Source de données](#CreateDataSourceRequestSyntax).
+La syntaxe du corps de la requête est la même que celle des [requêtes Create Data Source](#CreateDataSourceRequestSyntax).
 
-Certaines propriétés ne peuvent pas être mises à jour dans une source de données existante. Par exemple, vous ne pouvez pas modifier type hello d’une source de données existante.  
+Certaines propriétés ne peuvent pas être mises à jour dans une source de données existante. Par exemple, vous ne pouvez pas modifier le type d'une source de données existante.  
 
-Si vous ne souhaitez pas chaîne de connexion toochange hello pour une source de données existante, vous pouvez spécifier hello littéral `<unchanged>` pour la chaîne de connexion hello. Cela est utile dans les situations où vous devez tooupdate une source de données, mais n’avez pas chaîne de connexion accès pratique toohello puisqu’il s’agit des données de sécurité sensibles.
+Si vous ne souhaitez pas modifier la chaîne de connexion d’une source de données existante, vous pouvez spécifier la chaîne littérale `<unchanged>` comme chaîne de connexion. Cette méthode est utile lorsque vous devez mettre à jour une données source mais que vous n'avez pas facilement accès à la chaîne de connexion car il s’agit de données de sécurité sensibles.
 
 **Réponse**
 
@@ -263,14 +263,14 @@ Pour une requête réussie : 201 Créé est renvoyé si une source de données a
 <a name="ListDataSource"></a>
 
 ## <a name="list-data-sources"></a>Liste des sources de données
-Hello **liste des Sources de données** opération renvoie une liste des sources de données hello dans votre service Azure Search. 
+L'opération **List Data Sources** renvoie une liste des sources de données dans votre service Azure Search. 
 
     GET https://[service name].search.windows.net/datasources?api-version=[api-version]
     api-key: [admin key]
 
-Hello `api-version` est requis. version actuelle de Hello est `2015-02-28`. 
+Le paramètre `api-version` est obligatoire. La version actuelle est `2015-02-28`. 
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Réponse**
 
@@ -287,35 +287,35 @@ Voici un exemple de corps de réponse :
         }]
     }
 
-Notez que vous pouvez filtrer la réponse hello vers le bas les propriétés de hello toojust que vous intéresse. Par exemple, si vous souhaitez uniquement la liste des noms de source de données, utilisez hello OData `$select` option de requête :
+Notez que vous pouvez filtrer la réponse de manière à afficher uniquement les propriétés qui vous intéressent. Par exemple, si vous voulez uniquement une liste des noms de sources de données, utilisez l'option de requête OData `$select` :
 
     GET /datasources?api-version=205-02-28&$select=name
 
-Dans ce cas, réponse hello hello exemple ci-dessus apparaît comme suit : 
+Dans ce cas, la réponse de l'exemple ci-dessus apparaît comme suit : 
 
     {
       "value" : [ { "name": "datasource1" }, ... ]
     }
 
-Il s’agit d’une bande de passante toosave technique utile si vous avez un grand nombre de sources de données dans votre service de recherche.
+Cette technique est utile pour économiser de la bande passante si votre service Search contient un nombre important de sources de données.
 
 <a name="GetDataSource"></a>
 
 ## <a name="get-data-source"></a>Obtention de source de données
-Hello **obtenir la Source de données** opération Obtient la définition de source de données hello à partir d’Azure Search.
+L'opération d'obtention de source de données ( **Get Data Source** ) renvoie la définition de source de données d'Azure Search.
 
     GET https://[service name].search.windows.net/datasources/[datasource name]?api-version=[api-version]
     api-key: [admin key]
 
-Hello `api-version` est requis. version actuelle de Hello est `2015-02-28`. 
+Le paramètre `api-version` est obligatoire. La version actuelle est `2015-02-28`. 
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Réponse**
 
 Code d'état : 200 OK est retourné pour une réponse correcte.
 
-réponse de Hello est similaire tooexamples dans [créer une Source de données exemple demandes](#CreateDataSourceRequestExamples): 
+La réponse est similaire aux exemples dans [Exemple de requêtes Create Data Source](#CreateDataSourceRequestExamples): 
 
     { 
         "name" : "asqldatasource",
@@ -333,26 +333,26 @@ réponse de Hello est similaire tooexamples dans [créer une Source de données 
     }
 
 > [!NOTE]
-> Ne définissez pas hello `Accept` en-tête de demande trop`application/json;odata.metadata=none` lorsque l’appel de cette API, car cela provoque `@odata.type` toobe attribut omis de la réponse de hello et que vous ne sera pas en mesure de toodifferentiate entre la modification de données et la détection de suppression de données stratégies de types différents. 
+> Lors de l’appel de cette API, ne définissez pas l’en-tête de requête `Accept` sur `application/json;odata.metadata=none`. L’attribut `@odata.type` serait omis dans la réponse, et vous ne pourriez pas faire la différence entre les types de stratégies de détection de modification et de suppression de données. 
 > 
 > 
 
 <a name="DeleteDataSource"></a>
 
 ## <a name="delete-data-source"></a>Suppression de sources de données 
-Hello **supprimer la Source de données** opération supprime une source de données à partir de votre service Azure Search.
+L'opération de suppression de sources de données ( **Delete Data Source** ) supprime une source de données de votre service Azure Search.
 
     DELETE https://[service name].search.windows.net/datasources/[datasource name]?api-version=[api-version]
     api-key: [admin key]
 
 > [!NOTE]
-> Si des indexeurs font référence à des sources de données hello que vous supprimez, opération de suppression hello continue. Toutefois, ces indexeurs passeront à un état d'erreur lors de leur prochaine exécution.  
+> Si des indexeurs font référence à la source de données que vous supprimez, l'opération de suppression continue. Toutefois, ces indexeurs passeront à un état d'erreur lors de leur prochaine exécution.  
 > 
 > 
 
-Hello `api-version` est requis. version actuelle de Hello est `2015-02-28`. 
+Le paramètre `api-version` est obligatoire. La version actuelle est `2015-02-28`. 
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Réponse**
 
@@ -367,56 +367,56 @@ Vous pouvez créer un indexeur dans un service Azure Search à l'aide d'une requ
     Content-Type: application/json
     api-key: [admin key]
 
-Vous pouvez également utiliser une requête PUT et spécifiez le nom de source de données hello sur hello URI. Si la source de données hello n’existe pas, il sera créé.
+Vous pouvez également utiliser une requête PUT en spécifiant le nom de source de données sur l'URI. Si la source de données n'existe pas, elle est créée.
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=[api-version]
 
 > [!NOTE]
-> nombre maximal de Hello d’indexeurs autorisé varie en fonction du niveau de tarification. service gratuit de Hello permet des too3 indexeurs. Le service standard autorise 50 indexeurs. Pour plus d’informations, consultez [Limites de service](search-limits-quotas-capacity.md) .
+> Le nombre maximal d'indexeurs que vous pouvez créer varie en fonction du niveau de tarification. Le service gratuit autorise jusqu'à 3 indexeurs. Le service standard autorise 50 indexeurs. Pour plus d’informations, consultez [Limites de service](search-limits-quotas-capacity.md) .
 > 
 > 
 
-Hello `api-version` est requis. version actuelle de Hello est `2015-02-28`. 
+Le paramètre `api-version` est obligatoire. La version actuelle est `2015-02-28`. 
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 <a name="CreateIndexerRequestSyntax"></a>
 **Syntaxe du corps de la requête**
 
-corps de Hello de demande de hello contient une définition d’indexeur, qui spécifie la source de données hello et des index cible de hello pour l’indexation, ainsi que de planification d’indexation facultatif et de paramètres. 
+Le corps de la requête contient une définition de l'indexeur, qui spécifie la source de données et l'index cible pour l'indexation, ainsi qu'une planification d'indexation et des paramètres facultatifs. 
 
-syntaxe Hello pour structurer la charge utile de demande hello est comme suit. Vous trouverez un exemple de requête dans cette rubrique.
+La syntaxe de structuration de la charge utile de la requête est la suivante. Vous trouverez un exemple de requête dans cette rubrique.
 
     { 
-        "name" : "Required for POST, optional for PUT. hello name of hello indexer",
+        "name" : "Required for POST, optional for PUT. The name of the indexer",
         "description" : "Optional. Anything you want, or null",
-        "dataSourceName" : "Required. hello name of an existing data source",
-        "targetIndexName" : "Required. hello name of an existing index",
+        "dataSourceName" : "Required. The name of an existing data source",
+        "targetIndexName" : "Required. The name of an existing index",
         "schedule" : { Optional. See Indexing Schedule below. },
         "parameters" : { Optional. See Indexing Parameters below. },
         "fieldMappings" : { Optional. See Field Mappings below. },
-        "disabled" : Optional boolean value indicating whether hello indexer is disabled. False by default.  
+        "disabled" : Optional boolean value indicating whether the indexer is disabled. False by default.  
     }
 
 **Planification de l'indexeur**
 
-Un indexeur peut éventuellement spécifier une planification. Si une planification est présente, indexeur de hello exécutera périodiquement selon une planification. Planification a hello suivant d’attributs :
+Un indexeur peut éventuellement spécifier une planification. Si une planification est présente, l'indexeur sera exécuté périodiquement, conformément à la planification. La planification dispose des attributs suivants :
 
-* `interval`: requis. Valeur de durée qui spécifie un intervalle ou une période d'exécution pour l'indexeur. Hello plus petite autorisée intervalle est de 5 minutes. Hello plus longue est un jour. Il doit être formaté en tant que valeur « dayTimeDuration » XSD (un sous-ensemble limité d'une valeur de [durée ISO 8601](http://www.w3.org/TR/xmlschema11-2/#dayTimeDuration) ). modèle Hello pour cela est : `"P[nD][T[nH][nM]]"`. Exemples : `PT15M` toutes les 15 minutes, `PT2H` toutes les deux heures. 
-* `startTime`: requis. Une date et heure UTC lors de l’exécution de l’indexeur hello doit commencer. 
+* `interval`: requis. Valeur de durée qui spécifie un intervalle ou une période d'exécution pour l'indexeur. L'intervalle minimal autorisé est de 5 minutes, l'intervalle maximal autorisé est d'une journée. Il doit être formaté en tant que valeur « dayTimeDuration » XSD (un sous-ensemble limité d'une valeur de [durée ISO 8601](http://www.w3.org/TR/xmlschema11-2/#dayTimeDuration) ). Le modèle est le suivant : `"P[nD][T[nH][nM]]"`. Exemples : `PT15M` toutes les 15 minutes, `PT2H` toutes les deux heures. 
+* `startTime`: requis. Date/heure UTC (temps universel coordonné) à laquelle l'exécution de l'indexeur doit commencer. 
 
 **Paramètres d'indexeur**
 
-Un indexeur peut éventuellement spécifier plusieurs paramètres qui affectent son comportement. Tous les paramètres de hello sont facultatifs.  
+Un indexeur peut éventuellement spécifier plusieurs paramètres qui affectent son comportement. Tous les paramètres sont facultatifs.  
 
-* `maxFailedItems`: nombre de hello d’éléments qui peuvent échouer toobe indexée avant une exécution de l’indexeur soit considérée comme un échec. La valeur par défaut est 0. Informations sur les éléments ayant échouées sont retournées par hello [obtenir le statut indexeur](#GetIndexerStatus) opération. 
-* `maxFailedItemsPerBatch`: nombre de hello d’éléments qui peuvent échouer toobe indexés dans chaque lot avant une exécution de l’indexeur soit considérée comme un échec. La valeur par défaut est 0.
-* `base64EncodeKeys`: spécifie si les clés de document doivent être codées en base 64. Azure Search impose des restrictions relatives aux caractères qui peuvent être présents dans une clé de document. Toutefois, les valeurs hello dans votre source de données peuvent contenir des caractères qui ne sont pas valides. S’il est nécessaire tooindex ces valeurs en tant que clés de document, cet indicateur peut être défini tootrue. La valeur par défaut est `false`.
-* `batchSize`: Spécifie le nombre hello d’éléments qui sont lues à partir de la source de données hello et indexés comme un lot unique des performances de tooimprove de commande. par défaut de Hello varie selon le type de source de données hello : il s’agit de 1000 pour SQL Azure et base de données Azure Cosmos et 10 pour le stockage d’objets Blob Azure.
+* `maxFailedItems` : nombre d'éléments dont l'indexation peut échouer avant que l'exécution de l'indexeur soit considérée comme un échec. La valeur par défaut est 0. Des informations sur les éléments qui ont échoué sont renvoyées par l'opération [Get Indexer Status](#GetIndexerStatus) . 
+* `maxFailedItemsPerBatch` : nombre d'éléments dont l'indexation peut échouer dans chaque lot avant que l'exécution de l'indexeur soit considérée comme un échec. La valeur par défaut est 0.
+* `base64EncodeKeys`: spécifie si les clés de document doivent être codées en base 64. Azure Search impose des restrictions relatives aux caractères qui peuvent être présents dans une clé de document. Toutefois, les valeurs dans vos données source peuvent contenir des caractères non valides. S'il est nécessaire d'indexer ces valeurs en tant que clés de document, cet indicateur peut être défini sur true. La valeur par défaut est `false`.
+* `batchSize`: spécifie le nombre d’éléments lus à partir de la source de données et indexés comme un lot unique afin d’améliorer les performances. La valeur par défaut varie selon le type de source de données : 1 000 pour Azure SQL et Azure Cosmos DB, et 10 pour le Stockage Blob Azure.
 
 **Mappages de champs**
 
-Vous pouvez utiliser les mappages de champ toomap un nom de champ dans hello données source tooa autre nom de champ dans des index cible de hello. Par exemple, considérez une table source avec un champ `_id`. Azure Search n’autorise pas un nom de champ commençant par un trait de soulignement pour le champ de hello doit être renommé. Cela est possible à l’aide de hello `fieldMappings` propriété d’indexeur hello comme suit : 
+Vous pouvez utiliser des mappages de champs pour mapper un nom de champ dans la source de données sur un autre nom de champ dans l'index cible. Par exemple, considérez une table source avec un champ `_id`. Azure Search n'autorise pas un nom de champ commençant par un trait de soulignement. Le champ doit être renommé. Pour cela, utilisez la propriété `fieldMappings` de l'indexeur comme suit : 
 
     "fieldMappings" : [ { "sourceFieldName" : "_id", "targetFieldName" : "id" } ] 
 
@@ -432,20 +432,20 @@ Les noms de champs sources et cibles sont sensibles à la casse.
 <a name="FieldMappingFunctions"></a>
 ***Fonctions de mappage de champs***
 
-Mappages de champs peuvent également être des valeurs de champ de source de tootransform utilisé à l’aide de *mappage des fonctions*.
+Les mappages de champs peuvent également être utilisés pour transformer des valeurs de champs source à l'aide de *fonctions de mappage*.
 
-Seule une de ces fonctions est actuellement prise en charge : `jsonArrayToStringCollection`. Il analyse un champ qui contient une chaîne mise en forme en tant que tableau JSON dans un champ de la collection (EDM.String) dans des index cible de hello. Elle est conçue pour une utilisation avec l'indexeur SQL Azure en particulier, car SQL ne dispose pas d'un type de données de collection natif. Elle peut être utilisée comme suit : 
+Seule une de ces fonctions est actuellement prise en charge : `jsonArrayToStringCollection`. Elle analyse un champ qui contient une chaîne formatée sous forme de tableau JSON dans un champ Collection(Edm.String) dans l'index cible. Elle est conçue pour une utilisation avec l'indexeur SQL Azure en particulier, car SQL ne dispose pas d'un type de données de collection natif. Elle peut être utilisée comme suit : 
 
     "fieldMappings" : [ { "sourceFieldName" : "tags", "mappingFunction" : { "name" : "jsonArrayToStringCollection" } } ] 
 
-Par exemple, si hello champ source contient la chaîne de hello `["red", "white", "blue"]`, puis le champ cible de hello de type `Collection(Edm.String)` sera rempli avec les valeurs hello trois `"red"`, `"white"` et `"blue"`.
+Par exemple, si le champ source contient la chaîne de caractères `["red", "white", "blue"]`, le champ cible de type `Collection(Edm.String)` sera rempli avec les valeurs `"red"`, `"white"` et `"blue"`.
 
-Notez que hello `targetFieldName` propriété est facultative ; si omis, hello `sourceFieldName` valeur est utilisée. 
+Notez que la propriété `targetFieldName` est facultative. Si elle n'est pas définie, la valeur `sourceFieldName` est utilisée. 
 
 <a name="CreateIndexerRequestExamples"></a>
 **Exemples de corps de requête**
 
-Hello exemple suivant crée un indexeur qui copie les données à partir de la table de hello référencée par hello `ordersds` toohello de source de données `orders` index selon une planification qui commence le 1er janvier 2015 UTC et s’exécute toutes les heures. Chaque appel de l’indexeur est réussi si pas plus de 5 éléments échouent toobe indexé dans chaque lot, et pas plus de 10 éléments échouent toobe au total. 
+L'exemple suivant crée un indexeur qui copie les données de la table référencée par la source de données `ordersds` vers l'index `orders` selon une planification qui commence le 1er janvier 2015 UTC et s'exécute toutes les heures. Chaque appel de l'indexeur est réussi si l'indexation n'échoue pas pour plus de 5 éléments par lot, et pour plus de 10 éléments au total. 
 
     {
         "name" : "myindexer",
@@ -463,19 +463,19 @@ Pour une requête réussie : « 201 Créé ».
 <a name="UpdateIndexer"></a>
 
 ## <a name="update-indexer"></a>Mise à jour d'un indexeur
-Vous pouvez mettre à jour un indexeur existant à l'aide d'une requête HTTP PUT. Vous spécifiez nom hello de hello indexeur tooupdate sur l’URI de la demande hello :
+Vous pouvez mettre à jour un indexeur existant à l'aide d'une requête HTTP PUT. Vous spécifiez le nom de l'indexeur à mettre à jour dans l'URI de la requête :
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=[api-version]
     Content-Type: application/json
     api-key: [admin key]
 
-Hello `api-version` est requis. version actuelle de Hello est `2015-02-28`. 
+Le paramètre `api-version` est obligatoire. La version actuelle est `2015-02-28`. 
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Requête**
 
-Hello syntaxe du corps de demande est hello même que pour [créer un indexeur demande](#CreateIndexerRequestSyntax).
+La syntaxe du corps de la requête est la même que pour les [requêtes Create Indexer](#CreateIndexerRequestSyntax).
 
 **Réponse**
 
@@ -484,15 +484,15 @@ Pour une requête réussie : 201 Créé si un indexeur a été créé, et 204 Pa
 <a name="ListIndexers"></a>
 
 ## <a name="list-indexers"></a>Liste des indexeurs
-Hello **liste des indexeurs** opération renvoie la liste hello des indexeurs dans votre service Azure Search. 
+L'opération **List Indexers** renvoie la liste des indexeurs utilisés dans votre service Azure Search. 
 
     GET https://[service name].search.windows.net/indexers?api-version=[api-version]
     api-key: [admin key]
 
 
-Hello `api-version` est requis. version d’évaluation Hello `2015-02-28-Preview`. [Contrôle de version Azure Search](https://msdn.microsoft.com/library/azure/dn864560.aspx) .
+Le paramètre `api-version` est obligatoire. La version préliminaire est `2015-02-28-Preview`. [Contrôle de version Azure Search](https://msdn.microsoft.com/library/azure/dn864560.aspx) .
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Réponse**
 
@@ -511,35 +511,35 @@ Voici un exemple de corps de réponse :
       }]
     }
 
-Notez que vous pouvez filtrer la réponse hello vers le bas les propriétés de hello toojust que vous intéresse. Par exemple, si vous souhaitez uniquement la liste des noms d’indexeur, utilisez hello OData `$select` option de requête :
+Notez que vous pouvez filtrer la réponse de manière à afficher uniquement les propriétés qui vous intéressent. Par exemple, si vous voulez uniquement une liste de noms d'indexeurs, utilisez l'option de requête OData `$select` :
 
     GET /indexers?api-version=2014-10-20-Preview&$select=name
 
-Dans ce cas, réponse hello hello exemple ci-dessus apparaît comme suit : 
+Dans ce cas, la réponse de l'exemple ci-dessus apparaît comme suit : 
 
     {
       "value" : [ { "name": "myindexer" } ]
     }
 
-Il s’agit d’une bande de passante toosave technique utile si vous avez un grand nombre d’indexeurs dans votre service de recherche.
+Cette technique est utile pour économiser de la bande passante si votre service Search contient un grand nombre d'indexeurs.
 
 <a name="GetIndexer"></a>
 
 ## <a name="get-indexer"></a>Obtention d'indexeur
-Hello **Get Indexer** opération Obtient la définition d’indexeur hello à partir d’Azure Search.
+L'opération d'obtention d'indexeur **Get Indexer** obtient la définition d'indexeur auprès d'Azure Search.
 
     GET https://[service name].search.windows.net/indexers/[indexer name]?api-version=[api-version]
     api-key: [admin key]
 
-Hello `api-version` est requis. version d’évaluation Hello `2015-02-28-Preview`. 
+Le paramètre `api-version` est obligatoire. La version préliminaire est `2015-02-28-Preview`. 
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Réponse**
 
 Code d'état : 200 OK est retourné pour une réponse correcte.
 
-réponse de Hello est similaire tooexamples dans [indexeur de créer des exemples de demandes](#CreateIndexerRequestExamples): 
+La réponse est similaire aux exemples dans [Exemple de requêtes Create Indexer](#CreateIndexerRequestExamples): 
 
     {
         "name" : "myindexer",
@@ -554,16 +554,16 @@ réponse de Hello est similaire tooexamples dans [indexeur de créer des exemple
 <a name="DeleteIndexer"></a>
 
 ## <a name="delete-indexer"></a>Suppression d'indexeur
-Hello **supprimer l’indexeur** opération supprime un indexeur de votre service Azure Search.
+L'opération de suppression d'un indexeur ( **Delete Indexer** ) supprime un indexeur de votre service Azure Search.
 
     DELETE https://[service name].search.windows.net/indexers/[indexer name]?api-version=[api-version]
     api-key: [admin key]
 
-Lors de la suppression d’un indexeur, les exécutions d’indexeur hello en cours à ce moment-là exécutera toocompletion, mais aucun autre n’est planifiée. Toouse tentatives qu'un indexeur inexistant génère le code d’état HTTP 404 introuvable. 
+Quand un indexeur est supprimé, les exécutions d'indexeur en cours sont exécutées complètement, mais aucune autre exécution n'est planifiée. Les tentatives d'utilisation d'un indexeur inexistant génèrent le code d'état HTTP 404 Introuvable. 
 
-Hello `api-version` est requis. version d’évaluation Hello `2015-02-28-Preview`. 
+Le paramètre `api-version` est obligatoire. La version préliminaire est `2015-02-28-Preview`. 
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Réponse**
 
@@ -572,14 +572,14 @@ Code d'état : 204 Pas de contenu est renvoyé en cas de réponse correcte.
 <a name="RunIndexer"></a>
 
 ## <a name="run-indexer"></a>Exécuter l'indexeur
-Dans toorunning Ajout périodiquement selon une planification, un indexeur peut également être appelé à la demande via hello **exécuter l’indexeur** opération : 
+En plus de l'exécution périodique planifiée, un indexeur peut également être appelé à la demande via l'opération **Run Indexer** : 
 
     POST https://[service name].search.windows.net/indexers/[indexer name]/run?api-version=[api-version]
     api-key: [admin key]
 
-Hello `api-version` est requis. version d’évaluation Hello `2015-02-28-Preview`. 
+Le paramètre `api-version` est obligatoire. La version préliminaire est `2015-02-28-Preview`. 
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Réponse**
 
@@ -588,21 +588,21 @@ Code d'état : 202 Accepté est retourné en cas de réponse correcte.
 <a name="GetIndexerStatus"></a>
 
 ## <a name="get-indexer-status"></a>Get Indexer Status
-Hello **obtenir le statut indexeur** opération récupère hello actuel état et l’exécution de l’historique d’un indexeur : 
+L'opération d'obtention de l'état de l'indexeur ( **Get Indexer Status** ) récupère l'état actuel et l'historique d'exécution d'un indexeur : 
 
     GET https://[service name].search.windows.net/indexers/[indexer name]/status?api-version=[api-version]
     api-key: [admin key]
 
 
-Hello `api-version` est requis. version d’évaluation Hello `2015-02-28-Preview`. 
+Le paramètre `api-version` est obligatoire. La version préliminaire est `2015-02-28-Preview`. 
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Réponse**
 
 Code d'état : 200 OK en cas de réponse correcte.
 
-corps de réponse Hello contient des informations sur l’état de santé global indexeur, appel de l’indexeur dernière hello, ainsi que l’historique de hello des appels de l’indexeur récentes (le cas échéant). 
+Le corps de la réponse contient des informations sur l'état d'intégrité global de l'indexeur, le dernier appel de l'indexeur, ainsi que l'historique des appels récents de l'indexeur (le cas échéant). 
 
 Voici un exemple de corps de réponse : 
 
@@ -634,49 +634,49 @@ Voici un exemple de corps de réponse :
 
 **État de l'indexeur**
 
-État de l’indexeur peut être une des valeurs suivantes de hello :
+Les valeurs possibles pour l’état de l’indexeur sont les suivantes :
 
-* `running`Indique que cet indexeur hello s’exécute normalement. Notez que certaines des exécutions des indexeurs hello peuvent encore échouer, afin qu’il soit un Bonjour de toocheck conseillé `lastResult` propriété également. 
-* `error`Indique que cet indexeur hello a rencontré une erreur qui ne peut pas être corrigée sans intervention humaine. Par exemple, les informations d’identification de source de données hello a peut-être expiré, ou schéma hello hello source de données ou des index cible de hello a changé moyen. 
+* `running` Indique que l'indexeur s'exécute normalement. Notez que, comme certaines exécutions de l'indexeur peuvent encore échouer, nous recommandons de vérifier également la propriété `lastResult` . 
+* `error` Indique que l'indexeur a rencontré une erreur qui ne peut pas être corrigée sans intervention humaine. Par exemple, il se peut que les informations d'identification de la source de données aient expiré, ou que le schéma de la source de données ou de l'index cible ait subitement changé. 
 
 **Résultat d'exécution de l'indexeur**
 
-Un résultat d'exécution de l'indexeur contient des informations sur une seule exécution de l'indexeur. Hello dernier résultat est présenté comme hello `lastResult` propriété d’état de l’indexeur hello. Autres résultats récents, le cas échéant, sont retournés en tant que hello `executionHistory` propriété d’état de l’indexeur hello. 
+Un résultat d'exécution de l'indexeur contient des informations sur une seule exécution de l'indexeur. Le dernier résultat est présenté comme la propriété `lastResult` de l'état de l'indexeur. Les autres résultats récents éventuels sont renvoyés en tant que propriété `executionHistory` de l'état de l'indexeur. 
 
-Résultat de l’exécution d’indexeur contient hello propriétés suivantes : 
+Le résultat d'exécution de l'indexeur contient les propriétés suivantes : 
 
-* `status`: hello état d’exécution. Pour plus d'informations, consultez [État d'exécution de l'indexeur](#IndexerExecutionStatus) ci-dessous. 
+* `status`: état d'une exécution. Pour plus d'informations, consultez [État d'exécution de l'indexeur](#IndexerExecutionStatus) ci-dessous. 
 * `errorMessage`: message d'erreur pour un échec d'exécution. 
-* `startTime`: hello en heure UTC lorsque cette exécution a commencé.
-* `endTime`: hello en heure UTC lorsque cette exécution s’est terminée. Cette valeur n’est pas définie si l’exécution de hello est toujours en cours.
+* `startTime`: heure UTC à laquelle cette exécution a commencé.
+* `endTime`: heure UTC à laquelle cette exécution s'est achevée. Cette valeur n'est pas définie si l'exécution est encore en cours.
 * `errors`: tableau d’éventuelles erreurs au niveau des éléments. Chaque entrée contient une clé de document (`key` propriété) et un message d'erreur (`errorMessage` propriété). 
-* `itemsProcessed`: hello le nombre d’éléments de source de données (par exemple, les lignes de table) qui hello indexeur a tenté de tooindex durant cette exécution. 
-* `itemsFailed`: hello le nombre d’éléments qui ont échoué pendant cette exécution.  
-* `initialTrackingState`: toujours `null` pour la première exécution d’indexeur hello, ou si les données de salutation stratégie de suivi des modifications n’est pas activé sur la source de données hello utilisée. Si une telle stratégie est activée, cette valeur indique hello première (la plus basse) valeur suivi des modifications traitée par cette exécution lors des exécutions suivantes. 
-* `finalTrackingState`: toujours `null` si la stratégie de suivi des modifications des données de la hello n’est pas activé sur la source de données hello utilisée. Sinon, indique hello plus récente (le plus élevé) valeur suivi des modifications a été traitée par cette exécution. 
+* `itemsProcessed`: nombre d'éléments de source de données (par exemple, lignes de table) que l'indexeur a tenté d'indexer durant cette exécution. 
+* `itemsFailed` : nombre d'éléments dont l'exécution a échoué au cours de cette opération.  
+* `initialTrackingState` : toujours `null` pour la première exécution de l'indexeur, ou si la stratégie de suivi des modifications des données n'est pas activée dans la source de données utilisée. Si une telle stratégie est activée, cette valeur est, lors des exécutions suivantes, la première valeur (la plus basse) de suivi des modifications traitée au cours cette exécution. 
+* `finalTrackingState` : toujours `null` si la stratégie de suivi des modifications des données n'est pas activée dans la source de données utilisée. Sinon, indique la dernière valeur (la plus élevée) de suivi des modifications correctement traitée par cette exécution. 
 
 <a name="IndexerExecutionStatus"></a>
 **État d’exécution de l’indexeur**
 
-État de l’exécution d’indexeur capture l’état hello d’une seule exécution. Il peut avoir hello valeurs suivantes :
+L'état d'exécution de l'indexeur reflète l'état d'une seule exécution. Il peut avoir les valeurs suivantes :
 
-* `success`Indique que l’exécution d’indexeur hello s’est terminée avec succès.
-* `inProgress`Indique que l’exécution d’indexeur hello est en cours d’exécution. 
-* `transientFailure` indique qu'une exécution de l'indexeur a échoué. Pour plus d'informations, consultez la propriété `errorMessage`. Échec de Hello peut-être exiger ou non une intervention humaine toofix - par exemple, la résolution d’une incompatibilité de schéma entre la source de données hello et des index cible de hello requiert une action de l’utilisateur, n’est pas le cas d’un temps d’arrêt de source de données temporaires. Les appels de l'indexeur continuent conformément à la planification, si celle-ci est définie. 
-* `persistentFailure`Indique que cet indexeur hello a échoué d’une manière qui requiert une intervention humaine. Les exécutions planifiées de l'indexeur s'arrêtent. Après avoir corrigé le problème de hello, utilisez les exécutions de réinitialiser les API indexeur toorestart hello planifiée. 
-* `reset`Indique que cet indexeur hello a été réinitialisé par un tooReset appel API d’indexeur (voir ci-dessous). 
+* `success` indique que l'exécution de l'indexeur s'est terminée correctement.
+* `inProgress` indique que l'exécution de l'indexeur est en cours. 
+* `transientFailure` indique qu'une exécution de l'indexeur a échoué. Pour plus d'informations, consultez la propriété `errorMessage`. Il se peut de l'échec nécessite une intervention humaine pour le corriger. Par exemple, la correction d'une incompatibilité de schéma entre la source de données et l'index cible requiert une action de l'utilisateur, contrairement à un temps d'arrêt temporaire de la source de données. Les appels de l'indexeur continuent conformément à la planification, si celle-ci est définie. 
+* `persistentFailure` indique un échec de l'indexeur nécessitant probablement une intervention humaine. Les exécutions planifiées de l'indexeur s'arrêtent. Après avoir corrigé le problème, utilisez l'API Reset Indexer pour redémarrer les exécutions planifiées. 
+* `reset` indique que l'indexeur a été réinitialisé par un appel à l'API Reset Indexer (voir ci-dessous). 
 
 <a name="ResetIndexer"></a>
 
 ## <a name="reset-indexer"></a>Réinitialisation de l'indexeur
-Hello **réinitialiser l’indexeur** opération réinitialise hello suivi d’état associé hello indexeur. Cela vous permet de tootrigger à partir de zéro réindexation (par exemple, si votre schéma de source de données a changé) ou la stratégie de détection toochange hello données modifiées pour une source de données associée à hello indexeur.   
+L'opération de réinitialisation de l'indexeur ( **Reset Indexer** ) réinitialise l'état de suivi des modifications associé à l'indexeur. Cela vous permet de déclencher une réindexation complète (par exemple, si votre schéma de source de données a changé) ou de modifier la stratégie de détection des modifications de données pour une source de données associée à l'indexeur.   
 
     POST https://[service name].search.windows.net/indexers/[indexer name]/reset?api-version=[api-version]
     api-key: [admin key]
 
-Hello `api-version` est requis. version d’évaluation Hello `2015-02-28-Preview`. 
+Le paramètre `api-version` est obligatoire. La version préliminaire est `2015-02-28-Preview`. 
 
-Hello `api-key` doit être une clé d’administration (en tant que clé de requête tooa exécutée). Consultez la section de l’authentification toohello de [API REST du Service recherche](https://msdn.microsoft.com/library/azure/dn798935.aspx) toolearn plus d’informations sur les clés. [Créer un service de recherche dans le portail de hello](search-create-service-portal.md) explique comment les URL du service tooget hello et les propriétés de clé utilisées dans la demande de hello.
+La clé `api-key` doit être une clé d'administration (par opposition à une clé de requête). Pour plus d'informations sur les clés, consultez la section relative à l'authentification dans [API REST de service Azure Search](https://msdn.microsoft.com/library/azure/dn798935.aspx) . [Création d'un service Search dans le portail](search-create-service-portal.md) (en anglais) indique comment obtenir l'URL du service et les propriétés de clé utilisées dans la requête.
 
 **Réponse**
 
@@ -719,7 +719,7 @@ Code d'état : 204 Pas de contenu en cas de réponse correcte.
 <tr>
 <td>char, nchar, varchar, nvarchar</td>
 <td>Edm.String<br/>Collection(Edm.String)</td>
-<td>Consultez [fonctions de mappage de champ](#FieldMappingFunctions) dans ce document pour plus d’informations sur la façon de tootransform une colonne de chaîne dans une collection (EDM.String)</td>
+<td>Consultez [Fonctions de mappage de champs](#FieldMappingFunctions) dans le présent document pour plus de détails sur la transformation d’une colonne au format chaîne en Collection(Edm.String)</td>
 </tr>
 <tr>
 <td>smalldatetime, datetime, datetime2, date, datetimeoffset</td>
@@ -734,12 +734,12 @@ Code d'état : 204 Pas de contenu en cas de réponse correcte.
 <tr>
 <td>Geography</td>
 <td>Edm.GeographyPoint</td>
-<td>Seules les instances de geography de type POINT avec SRID 4326 (valeur par défaut hello) sont pris en charge.</td>
+<td>Seules les instances Geography de type POINT avec SRID 4326 (valeur par défaut) sont prises en charge</td>
 </tr>
 <tr>
 <td>rowversion</td>
 <td>N/A</td>
-<td>Colonnes de la version de ligne ne peut pas être stockés dans l’index de recherche hello, mais elles peuvent être utilisées pour le suivi des modifications</td>
+<td>Les colonnes de version de ligne ne peuvent pas être stockées dans l'index de recherche, mais peuvent être utilisées pour le suivi des modifications</td>
 </tr>
 <tr>
 <td>time, timespan<br>binary, varbinary, image<br>xml, geometry, types CLR</td>
@@ -788,7 +788,7 @@ Code d'état : 204 Pas de contenu en cas de réponse correcte.
 <tr>
 <td>Objets point GeoJSON</td>
 <td>Edm.GeographyPoint</td>
-<td>Points GeoJSON sont des objets JSON Bonjour suivant le format : {« type » : « Point », « coordonnées » : [long, lat]} </td>
+<td>Les points GeoJSON sont des objets JSON au format suivant : { "type" : "Point", "coordonnées" : [long, lat] } </td>
 </tr>
 <tr>
 <td>Autres objets JSON</td>

@@ -1,6 +1,6 @@
 ---
-title: "contrôleur de périphérique aaaReplace un StorSimple 8000 series | Documents Microsoft"
-description: "Explique comment tooremove et remplacer un ou deux modules de contrôleur sur votre appareil de série StorSimple 8000."
+title: "Remplacer un contrôleur sur un appareil de la gamme StorSimple 8000 | Microsoft Docs"
+description: "Explique comment retirer et remplacer un module de contrôleur, ou les deux, sur votre appareil de la gamme StorSimple 8000."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,76 +14,76 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: alkohli
-ms.openlocfilehash: 76d42529da42dff2a214fb840a52392a7f1a97ee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 849eccff114c2fd6d952e44d095d0cc89a238675
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="replace-a-controller-module-on-your-storsimple-device"></a>Remplacement d’un module de contrôleur sur votre appareil StorSimple
 ## <a name="overview"></a>Vue d'ensemble
-Ce didacticiel explique comment tooremove et remplacer un ou deux modules de contrôleur dans un appareil StorSimple. Elle explique également hello sous-jacent logique pour les scénarios de remplacement de contrôleur simple et double hello.
+Ce didacticiel explique comment retirer et remplacer un module de contrôleur, ou les deux, dans un appareil StorSimple. Il aborde également la logique sous-jacente pour les scénarios de remplacement d’un seul et de deux contrôleurs.
 
 > [!NOTE]
-> Tooperforming préalable un remplacement de contrôleur, nous vous recommandons de toujours à jour votre version la plus récente toohello contrôleur du microprogramme.
+> Avant d’effectuer un remplacement de contrôleur, nous vous recommandons de toujours mettre à jour le microprogramme de votre contrôleur vers la dernière version.
 > 
-> tooprevent endommager l’appareil StorSimple tooyour, n’éjectez pas le contrôleur de hello tant que hello DEL hello suivantes :
+> Pour éviter d’endommager votre appareil StorSimple, n’éjectez pas le contrôleur tant que les voyants LED ne se présentent pas dans l’une des configurations suivantes :
 > 
 > * Tous les témoins lumineux sont éteints.
 > * Le voyant LED 3, ![icône en forme de coche verte](./media/storsimple-controller-replacement/HCS_GreenCheckIcon.png), et ![icône en forme de croix rouge](./media/storsimple-controller-replacement/HCS_RedCrossIcon.png) clignotent, et les voyants LED 0 et 7 sont **allumés**.
 
 
-Hello tableau suivant montre les scénarios de remplacement de contrôleur hello pris en charge.
+Le tableau suivant indique les scénarios de remplacement de contrôleurs pris en charge.
 
 | Cas | Scénario de remplacement | Procédure applicable |
 |:--- |:--- |:--- |
-| 1 |Un seul contrôleur est dans un état d’échec, hello autre contrôleur est intègre et actif. |[Unique de remplacement du contrôleur](#replace-a-single-controller), qui décrit hello [logique derrière un remplacement de contrôleur unique](#single-controller-replacement-logic), ainsi que de hello [procédure de remplacement](#single-controller-replacement-steps). |
-| 2 |Les deux contrôleurs hello ont échoué et doivent être remplacés. châssis de Hello, les disques et boîtier sont intègres. |[Remplacement du double contrôleur](#replace-both-controllers), qui décrit hello [logique derrière un double remplacement de contrôleur](#dual-controller-replacement-logic), ainsi que de hello [procédure de remplacement](#dual-controller-replacement-steps). |
-| 3 |Contrôleurs de hello même appareil ou à partir de différents appareils sont échangés. châssis de Hello, les disques et les boîtiers sont intègres. |Un message d’alerte s’affiche pour signaler la mauvaise correspondance d’un emplacement. |
-| 4 |Un seul contrôleur est manquant et hello autres échoue de contrôleur. |[Remplacement du double contrôleur](#replace-both-controllers), qui décrit hello [logique derrière un double remplacement de contrôleur](#dual-controller-replacement-logic), ainsi que de hello [procédure de remplacement](#dual-controller-replacement-steps). |
-| 5 |Un seul contrôleur ou les deux sont en panne. Impossible d’accéder à des périphériques de hello via la console série de hello ou la communication à distance de Windows PowerShell. |[contacter le support Microsoft](storsimple-8000-contact-microsoft-support.md) pour suivre une procédure de remplacement de contrôleur manuelle. |
-| 6 |les contrôleurs de Hello ont une autre version, qui peut être due à :<ul><li>Les versions de logiciel des contrôleurs sont différentes.</li><li>Les versions de microprogramme des contrôleurs sont différentes.</li></ul> |Si les versions des logiciels hello contrôleurs sont différentes, la logique de remplacement hello détecte qu’et mises à jour hello version du logiciel sur un contrôleur de remplacement hello.<br><br>Si les versions de microprogramme hello contrôleurs sont différentes et hello ancienne version du microprogramme **pas** automatiquement mise à niveau, un message d’alerte s’affiche dans hello portail Azure. Vous devez rechercher les mises à jour et installer les mises à jour du microprogramme hello.</br></br>Si les versions de microprogramme hello contrôleurs sont différentes et ancienne version de microprogramme hello est automatiquement mise à niveau, logique de remplacement de contrôleur hello détecte et après le démarrage du contrôleur de hello, microprogramme de hello sera mis à jour automatiquement. |
+| 1 |Un seul contrôleur est en panne, l’autre est intègre et actif. |[Remplacement d’un seul contrôleur](#replace-a-single-controller), qui décrit la [logique sous-jacente au remplacement d’un seul contrôleur](#single-controller-replacement-logic), ainsi que la [procédure de remplacement](#single-controller-replacement-steps). |
+| 2 |Les deux contrôleurs sont en panne et doivent être remplacés. Le châssis, les disques et leur boîtier sont intègres. |[Remplacement des deux contrôleurs](#replace-both-controllers), qui décrit la [logique sous-jacente au remplacement des deux contrôleurs](#dual-controller-replacement-logic), ainsi que la [procédure de remplacement](#dual-controller-replacement-steps). |
+| 3 |Des contrôleurs sont intervertis dans le même appareil ou dans différents appareils. Le châssis, les disques et leur boîtier sont intègres. |Un message d’alerte s’affiche pour signaler la mauvaise correspondance d’un emplacement. |
+| 4 |Il manque un contrôleur et l’autre contrôleur est en panne. |[Remplacement des deux contrôleurs](#replace-both-controllers), qui décrit la [logique sous-jacente au remplacement des deux contrôleurs](#dual-controller-replacement-logic), ainsi que la [procédure de remplacement](#dual-controller-replacement-steps). |
+| 5 |Un seul contrôleur ou les deux sont en panne. Vous ne pouvez pas accéder à l’appareil via la console série ni la communication à distance Windows PowerShell. |[contacter le support Microsoft](storsimple-8000-contact-microsoft-support.md) pour suivre une procédure de remplacement de contrôleur manuelle. |
+| 6 |La version de build des contrôleurs est différente. Deux causes sont possible :<ul><li>Les versions de logiciel des contrôleurs sont différentes.</li><li>Les versions de microprogramme des contrôleurs sont différentes.</li></ul> |Si les versions de logiciel des contrôleurs sont différentes, la logique de remplacement le détecte et met à jour la version du logiciel sur le contrôleur de remplacement.<br><br>Si les versions de microprogramme des contrôleurs sont différentes et l’ancienne version ne peut **pas** être mise à niveau automatiquement, un message d’alerte s’affiche dans le portail Azure. Vous devez rechercher et installer les mises à jour du microprogramme.</br></br>Si les versions de microprogramme des contrôleurs sont différentes et que l’ancienne version peut être mise à niveau automatiquement, la logique de remplacement du contrôleur le détecte et, une fois le contrôleur démarré, le microprogramme est automatiquement mis à jour. |
 
-Vous devez tooremove un module de contrôleur en cas d’échec. Un ou deux modules de contrôleur hello peuvent échouer, ce qui peut entraîner un remplacement d’un contrôleur unique ou un double remplacement de contrôleur. Pour les procédures de remplacement et la logique de hello derrière eux, voir hello :
+Vous devez retirer un module de contrôleur s’il est tombé en panne. Un seul contrôleur ou les deux peuvent tomber en panne, ce qui entraîne le remplacement d’un seul ou de deux contrôleurs. Pour les procédures de remplacement et la logique sous-jacente, voir les rubriques suivantes :
 
 * [Remplacer un seul contrôleur](#replace-a-single-controller)
 * [Remplacer les deux contrôleurs](#replace-both-controllers)
 * [Retirer un contrôleur](#remove-a-controller)
 * [Insérer un contrôleur](#insert-a-controller)
-* [Identifier le contrôleur actif de hello sur votre appareil](#identify-the-active-controller-on-your-device)
+* [Identifier le contrôleur actif sur votre appareil](#identify-the-active-controller-on-your-device)
 
 > [!IMPORTANT]
-> Avant de supprimer et remplacement d’un contrôleur, passez en revue les informations de sécurité de hello dans [remplacement de composant matériel StorSimple](storsimple-8000-hardware-component-replacement.md).
+> Avant le retrait et le remplacement d’un contrôleur, voir les informations de sécurité dans [Remplacement des composants matériels StorSimple](storsimple-8000-hardware-component-replacement.md).
 > 
 > 
 
 ## <a name="replace-a-single-controller"></a>Remplacer un seul contrôleur
-Lorsqu’un des contrôleurs hello deux sur l’appareil de Microsoft Azure StorSimple hello a échoué, est défectueux ou est manquant, vous devez tooreplace un seul contrôleur.
+Quand l’un des deux contrôleurs de l’appareil Microsoft Azure StorSimple tombe en panne, ne fonctionne pas correctement ou est absent, vous devez le remplacer.
 
 ### <a name="single-controller-replacement-logic"></a>Logique de remplacement d’un seul contrôleur
-Dans un remplacement de contrôleur simple, vous devez tout d’abord supprimer contrôleur hello. (contrôleur restant de hello dans l’appareil de hello est contrôleur actif de hello). Lorsque vous insérez le contrôleur de remplacement hello, hello actions suivantes se produisent :
+Pour remplacer un seul contrôleur, vous devez d’abord retirer le contrôleur défectueux. (Le contrôleur restant dans l’appareil devient le contrôleur actif.) Quand le contrôleur de remplacement est inséré, les actions suivantes se produisent :
 
-1. contrôleur de remplacement Hello commence immédiatement à communiquer avec l’appareil StorSimple hello.
-2. Un instantané d’hello disque dur virtuel (VHD) pour le contrôleur actif de hello est copié sur le contrôleur de remplacement hello.
-3. instantané d’Hello est modifié afin que lorsque le contrôleur de remplacement hello démarre à partir de ce disque dur virtuel, il est reconnu comme un contrôleur de secours.
-4. Lorsque des modifications de hello sont terminées, contrôleur de remplacement hello démarrera en tant que contrôleur de secours hello.
-5. Lorsque les deux contrôleurs hello sont en cours d’exécution, le cluster de hello est en ligne.
+1. Le contrôleur de remplacement commence immédiatement à communiquer avec l’appareil StorSimple.
+2. Un instantané du disque dur virtuel (VHD) du contrôleur actif est copié sur le contrôleur de remplacement.
+3. L’instantané est modifié pour que le contrôleur de remplacement soit reconnu en tant que contrôleur de secours quand il démarre à partir de ce disque dur virtuel (VHD).
+4. Quand les modifications sont terminées, le contrôleur de remplacement démarre en tant que contrôleur de secours.
+5. Quand les deux contrôleurs sont en cours d’exécution, le cluster est mis en ligne.
 
 ### <a name="single-controller-replacement-steps"></a>Procédure de remplacement d’un seul contrôleur
-Terminer hello comme suit si un des contrôleurs de hello dans votre appareil Microsoft Azure StorSimple échoue. (hello autre contrôleur doit être actif et en cours d’exécution. Si les deux contrôleurs de panne ou de dysfonctionnement, passez trop[procédure de remplacement des deux contrôleurs](#dual-controller-replacement-steps).)
+En cas d’échec de l’un des contrôleurs de votre appareil Microsoft Azure StorSimple, procédez comme suit. (L’autre contrôleur doit être actif et opérationnel. Si les deux contrôleurs sont en panne ou fonctionnent mal, voir [Procédure de remplacement des deux contrôleurs](#dual-controller-replacement-steps).)
 
 > [!NOTE]
-> Il peut prendre 30 et 45 minutes hello contrôleur toorestart et complètement récupérer à partir de la procédure de remplacement d’un contrôleur unique hello. durée totale Hello hello ensemble de la procédure, y compris le branchement des câbles de hello, est 2 heures environ.
+> Entre 30 et 45 minutes peuvent être nécessaires au redémarrage et à la récupération complète du contrôleur à l’issue de la procédure de son remplacement. La durée totale de la procédure (branchement des câbles compris) est approximativement de 2 heures.
 
 
-#### <a name="tooremove-a-single-failed-controller-module"></a>tooremove un module de contrôleur unique
-1. Bonjour Azure portail, accédez toohello service du Gestionnaire de périphériques StorSimple, cliquez sur **périphériques**, puis cliquez sur nom hello du périphérique hello que vous souhaitez toomonitor.
-2. Accédez trop**analyse > état du matériel**. état Hello contrôleur 0 ou contrôleur 1 doit être rouge, ce qui indique un échec.
+#### <a name="to-remove-a-single-failed-controller-module"></a>Pour retirer un seul module de contrôleur défectueux
+1. Dans le portail Azure, accédez au service StorSimple Device Manager, cliquez sur **Appareils**, puis sur le nom de l’appareil à surveiller.
+2. Accédez à **Surveiller > Hardware health** (Intégrité matérielle). L’état de Contrôleur 0 ou Contrôleur 1 doit être rouge, ce qui indique une défaillance.
    
    > [!NOTE]
-   > Hello de contrôleur défectueux dans un remplacement de contrôleur unique est toujours un contrôleur de secours.
+   > Le contrôleur défectueux est toujours un contrôleur de secours dans le cadre du remplacement d’un seul contrôleur.
    
-3. Utilisez la Figure 1 et hello suivant table toolocate hello Échec du module de contrôleur.
+3. Utilisez la figure 1 et le tableau ci-après pour repérer le module de contrôleur défectueux.
    
     ![Fond du panier des modules du boîtier principal de l’appareil](./media/storsimple-controller-replacement/IC740994.png)
    
@@ -95,136 +95,136 @@ Terminer hello comme suit si un des contrôleurs de hello dans votre appareil Mi
    | 2 |PCM 1 |
    | 3 |Contrôleur 0 |
    | 4 |Contrôleur 1 |
-4. Sur le contrôleur défectueux de hello, supprimez tous les câbles de réseau hello connecté hello ports de données. Si vous utilisez un modèle 8600, également supprimer hello que qui connectent du contrôleur EBOD hello contrôleur toohello les câbles SAS.
-5. Suivez les étapes de hello dans [supprimer un contrôleur de](#remove-a-controller) tooremove hello Échec de contrôleur.
-6. Remplacement de fabrique hello installation Bonjour même emplacement à partir de quel contrôleur défectueux hello a été supprimé. Cela déclenche la logique de remplacement de contrôleur simple hello. Pour plus d’informations, voir [Logique de remplacement d’un seul contrôleur](#single-controller-replacement-logic).
-7. Alors que la logique de remplacement de contrôleur simple hello progresse en arrière-plan de hello, rebranchez les câbles de hello. Prendre tooconnect soins tous les câbles hello hello exactement identique, qu’ils ont été connectés avant le remplacement de hello.
-8. Une fois hello contrôleur a redémarré, vérifiez hello **état du contrôleur** et hello **état du Cluster** Bonjour Azure tooverify portail qui hello contrôleur tooa précédent état est sain et est en mode veille.
+4. Retirez tous les câbles réseau connectés aux ports de données sur le contrôleur défectueux. Si vous utilisez un modèle 8600, débranchez également les câbles SAS reliant le contrôleur au contrôleur EBOD.
+5. Suivez les étapes de la procédure [Retrait d’un contrôleur](#remove-a-controller) pour retirer le contrôleur défectueux.
+6. Installez le contrôleur de remplacement dans le même emplacement que celui duquel vous avez retiré le contrôleur défectueux. La logique de remplacement d’un seul contrôleur est ainsi déclenchée. Pour plus d’informations, voir [Logique de remplacement d’un seul contrôleur](#single-controller-replacement-logic).
+7. Pendant que la logique de remplacement d’un seul contrôleur se déroule en arrière-plan, rebranchez les câbles. Veillez à rebrancher tous les câbles exactement comme ils l’étaient avant le remplacement.
+8. Une fois que le contrôleur a redémarré, vérifiez l’**état du contrôleur** et l’**état du cluster** dans le portail Azure pour vous assurer que le contrôleur est à nouveau intègre et en mode veille.
 
 > [!NOTE]
-> Si vous analysez un appareil hello via la console série de hello, vous pouvez voir plusieurs redémarrages pendant que la récupération à partir de la procédure de remplacement hello de contrôleur de hello. Lorsque le menu de console série hello est présent, vous savez que le remplacement de hello est terminée. Si le menu de hello n’apparaît pas dans les deux heures de remplacement du contrôleur hello, veuillez [contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md).
+> Si vous utilisez la console série pour surveiller l’appareil, il est possible que vous assistiez à plusieurs redémarrages pendant la récupération du contrôleur suite à la procédure de remplacement. Vous savez que la procédure de remplacement est terminée quand le menu de la console série s’affiche. Si ce menu ne s’affiche pas dans un délai de deux heures après le début du remplacement du contrôleur, veuillez [contacter le support Microsoft](storsimple-8000-contact-microsoft-support.md).
 >
-> À partir de mise à jour 4, vous pouvez également utiliser les applets de commande hello `Get-HCSControllerReplacementStatus` dans l’interface Windows PowerShell hello de hello toomonitor hello état du processus de remplacement de contrôleur hello.
+> À partir d’Update 4, vous pouvez également utiliser l’applet de commande `Get-HCSControllerReplacementStatus` dans l’interface Windows PowerShell de l’appareil pour surveiller l’état du processus de remplacement du contrôleur.
 > 
 
 ## <a name="replace-both-controllers"></a>Remplacer les deux contrôleurs
-Lorsque les deux contrôleurs sur l’appareil de Microsoft Azure StorSimple hello ont échoué, sont défectueux ou sont manquantes, vous devez tooreplace les deux contrôleurs. 
+Quand les deux contrôleurs de l’appareil Microsoft Azure StorSimple tombent en panne, ne fonctionnent pas correctement ou sont absents, vous devez les remplacez tous les deux. 
 
 ### <a name="dual-controller-replacement-logic"></a>Logique de remplacement de deux contrôleurs
-Dans un remplacement de deux contrôleurs, vous devez d’abord retirer les deux contrôleurs en panne, puis insérer les contrôleurs de rechange. Lors de l’insertion de deux contrôleurs de remplacement hello, hello actions suivantes se produisent :
+Dans un remplacement de deux contrôleurs, vous devez d’abord retirer les deux contrôleurs en panne, puis insérer les contrôleurs de rechange. Quand les deux contrôleurs de remplacement sont insérés, les actions suivantes se produisent :
 
-1. contrôleur de remplacement Hello dans l’emplacement 0 vérifie suivant de hello :
+1. Le contrôleur de remplacement inséré dans l’emplacement 0 vérifie ce qui suit :
    
-   1. Il utilise les versions actuelles de hello microprogrammes et logiciels ?
-   2. Il est une partie du cluster de hello ?
-   3. Contrôleur d’homologue hello en cours d’exécution et en cluster ?
+   1. Utilise-t-il les versions actuelles du microprogramme et du logiciel ?
+   2. Fait-il partie du cluster ?
+   3. Le contrôleur homologue est-il en cours d’exécution et en cluster ?
       
-      Si aucune de ces conditions sont remplies, hello contrôleur recherche sauvegarde quotidienne la plus récente hello (situé dans hello **nonDOMstorage** sur le lecteur S). Hello contrôleur copies hello instantané le plus récent de hello disque dur virtuel à partir de la sauvegarde de hello.
-2. contrôleur Hello dans l’emplacement 0 utilise tooimage d’instantané hello lui-même.
-3. Pendant ce temps, contrôleur hello dans l’emplacement 1 attend pour l’acquisition d’images de contrôleur 0 toocomplete hello et démarrer.
-4. Une fois que le contrôleur 0 démarre, le contrôleur 1 détecte cluster hello créé par le contrôleur 0, ce qui déclenche la logique de remplacement de contrôleur simple hello. Pour plus d’informations, voir [Logique de remplacement d’un seul contrôleur](#single-controller-replacement-logic).
-5. Ensuite, les deux contrôleurs sont en cours d’exécution et cluster de hello est mis en ligne.
+      Si aucune de ces conditions n’est remplie, le contrôleur recherche la dernière sauvegarde quotidienne (située dans le répertoire **nonDOMstorage** sur le lecteur S). Le contrôleur copie le dernier instantané du VHD à partir de la sauvegarde.
+2. Le contrôleur inséré dans l’emplacement 0 utilise l’instantané pour créer une image de lui-même.
+3. Pendant ce temps, le contrôleur inséré dans l’emplacement 1 attend que le contrôleur 0 termine la création de l’image et démarre.
+4. Une fois que le contrôleur 0 démarre, le contrôleur 1 détecte le cluster créé par le contrôleur 0, ce qui déclenche la logique de remplacement d’un seul contrôleur. Pour plus d’informations, voir [Logique de remplacement d’un seul contrôleur](#single-controller-replacement-logic).
+5. Ensuite, les deux contrôleurs s’exécutent et le cluster est mis en ligne.
 
 > [!IMPORTANT]
-> Après un double remplacement de contrôleur, après avoir configuré l’appareil StorSimple hello, il est essentiel de prendre un manuel de sauvegarde de l’appareil de hello. Les sauvegardes quotidiennes de la configuration de l’appareil se déclenchent uniquement après un délai de 24 heures. Travailler avec [Support technique de Microsoft](storsimple-8000-contact-microsoft-support.md) toomake une sauvegarde manuelle de votre appareil.
+> À l’issue d’un remplacement de deux contrôleurs, une fois l’appareil StorSimple configuré, il est primordial d’effectuer une sauvegarde manuelle de celui-ci. Les sauvegardes quotidiennes de la configuration de l’appareil se déclenchent uniquement après un délai de 24 heures. Pour effectuer une sauvegarde manuelle de votre appareil, collaborez avec le [support Microsoft](storsimple-8000-contact-microsoft-support.md) .
 
 
 ### <a name="dual-controller-replacement-steps"></a>Procédure de remplacement des deux contrôleurs
-Ce flux de travail est requis lorsque les deux contrôleurs hello dans votre appareil Microsoft Azure StorSimple ont échoué. Cela peut se produire dans un centre de données dans laquelle système de refroidissement hello cesse de fonctionner, et par conséquent, les deux contrôleurs hello échouent sur une courte période de temps. Selon si l’appareil StorSimple hello est désactivé ou activé, si vous utilisez un 8600 ou un modèle 8100, un autre ensemble d’étapes est nécessaire.
+Ce flux de travail doit être suivi quand les deux contrôleurs de votre appareil Microsoft Azure StorSimple sont en panne. Cette situation peut se produire dans un centre de données dont le système de refroidissement cesse de fonctionner, entraînant rapidement une panne des deux contrôleurs. La procédure à suivre diffère selon que l’appareil StorSimple est sous ou hors tension, et selon le modèle utilisé (8600 ou 8100).
 
 > [!IMPORTANT]
-> Il peut accepter des heures de too1 45 minutes pour hello contrôleur toorestart et complètement récupérer à partir d’une procédure de remplacement des deux contrôleurs. durée totale Hello hello ensemble de la procédure, y compris le branchement des câbles de hello, est approximativement de 2 heures.
+> Entre 45 minutes et 1 heure peuvent être nécessaires au redémarrage et à la récupération complète du contrôleur à l’issue de la procédure de remplacement des deux contrôleurs. La durée totale de la procédure (branchement des câbles compris) est approximativement de 2,5 heures.
 
-#### <a name="tooreplace-both-controller-modules"></a>tooreplace deux modules de contrôleur
-1. Si l’appareil de hello est mis hors tension, ignorez cette étape et passez toohello prochaine étape. Si l’appareil de hello est activée, désactiver le dispositif de hello.
+#### <a name="to-replace-both-controller-modules"></a>Pour remplacer les deux modules de contrôleur
+1. Si l’appareil est éteint, ignorez cette étape et passez à la suivante. Si l’appareil est allumé, éteignez-le.
    
-   1. Si vous utilisez un modèle 8600, boîtier principal de hello préalable désactiver, puis désactivez hello boîtiers.
-   2. Attendez que l’appareil de hello arrêt complet. Hello toutes les DEL Bonjour arrière appareil de hello sera désactivée.
-2. Supprimez tous les câbles réseau hello qui sont des ports de données toohello connecté. Si vous utilisez un modèle 8600, également supprimer hello que qui connectent les boîtiers de hello boîtier principal toohello les câbles SAS.
-3. Supprimez les deux contrôleurs de l’appareil StorSimple hello. Pour plus d’informations, consultez [Retrait d’un contrôleur](#remove-a-controller).
-4. Insérer le modèle de remplacement hello du contrôleur 0 tout d’abord, puis insérez le contrôleur 1. Pour plus d’informations, voir [Insertion d’un contrôleur](#insert-a-controller). Cela déclenche la logique de remplacement de contrôleur double hello. Pour plus d’informations, voir [Logique de remplacement de deux contrôleurs](#dual-controller-replacement-logic).
-5. Alors que la logique de remplacement de contrôleur hello progresse en arrière-plan de hello, rebranchez les câbles de hello. Prendre tooconnect soins tous les câbles hello hello exactement identique, qu’ils ont été connectés avant le remplacement de hello. Consultez hello des instructions détaillées pour votre modèle Bonjour câble votre section du périphérique de [installer votre appareil StorSimple 8100](storsimple-8100-hardware-installation.md) ou [installer votre appareil StorSimple 8600](storsimple-8600-hardware-installation.md).
-6. Activer l’appareil StorSimple hello. Si vous utilisez un modèle 8600 :
+   1. Si vous utilisez un modèle 8600, éteignez d’abord le boîtier principal, puis le boîtier EBOD.
+   2. Patientez jusqu’à l’arrêt complet de l’appareil. Tous les voyants LED à l’arrière de l’appareil doivent être éteints.
+2. Retirez tous les câbles réseau connectés aux ports de données. Si vous utilisez un modèle 8600, débranchez également les câbles SAS reliant le boîtier principal au boîtier EBOD.
+3. Retirez les deux contrôleurs de l’appareil StorSimple. Pour plus d’informations, consultez [Retrait d’un contrôleur](#remove-a-controller).
+4. Insérez d’abord le modèle de remplacement du contrôleur 0, puis celui du contrôleur 1. Pour plus d’informations, voir [Insertion d’un contrôleur](#insert-a-controller). La logique de remplacement des deux contrôleurs est ainsi déclenchée. Pour plus d’informations, voir [Logique de remplacement de deux contrôleurs](#dual-controller-replacement-logic).
+5. Pendant que la logique de remplacement des deux contrôleurs se déroule en arrière-plan, rebranchez les câbles. Veillez à rebrancher tous les câbles exactement comme ils l’étaient avant le remplacement. Voir les instructions détaillées relatives à votre modèle dans la section sur le branchement des câbles de votre appareil de la rubrique [Installation de votre appareil StorSimple 8100](storsimple-8100-hardware-installation.md) ou [Installation de votre appareil StorSimple 8600](storsimple-8600-hardware-installation.md).
+6. Mettez sous tension l’appareil StorSimple. Si vous utilisez un modèle 8600 :
    
-   1. Assurez-vous que hello boîtiers est activée en premier.
-   2. Attendez que hello boîtiers est en cours d’exécution.
-   3. Allumez le boîtier principal de hello.
-   4. Une fois le premier contrôleur de hello redémarre et est dans un état sain, système de hello s’exécute.
+   1. Veillez à activer le boîtier EBOD en premier.
+   2. Attendez que le boîtier EBOD soit opérationnel.
+   3. Mettez sous tension le boîtier principal.
+   4. Une fois que le premier contrôleur redémarre et que son intégrité est vérifiée, le système redémarre.
       
       > [!NOTE]
-      > Si vous analysez un appareil hello via la console série de hello, vous pouvez voir plusieurs redémarrages pendant que la récupération à partir de la procédure de remplacement hello de contrôleur de hello. Lorsque le menu de console série hello s’affiche, vous savez que le remplacement de hello est terminée. Si le menu de hello n’apparaît pas dans les 2 heures de remplacement du contrôleur hello, veuillez [contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md).
+      > Si vous utilisez la console série pour surveiller l’appareil, il est possible que vous assistiez à plusieurs redémarrages pendant la récupération du contrôleur suite à la procédure de remplacement. Vous savez que la procédure de remplacement est terminée quand le menu de la console série s’affiche. Si ce menu ne s’affiche pas dans un délai de 2,5 heures après le début du remplacement du contrôleur, veuillez [contacter le support Microsoft](storsimple-8000-contact-microsoft-support.md).
      
 ## <a name="remove-a-controller"></a>Retirer un contrôleur
-Utilisez hello suivant la procédure tooremove un module de contrôleur défectueux à partir de votre appareil StorSimple.
+Utilisez les procédures suivantes pour retirer un module de contrôleur défectueux de votre appareil StorSimple.
 
 > [!NOTE]
-> Hello suivant illustrations est pour le contrôleur 0. Pour le contrôleur 1, leur présentation doit être inversée.
+> Les illustrations suivantes concernent le contrôleur 0. Pour le contrôleur 1, leur présentation doit être inversée.
 
 
-#### <a name="tooremove-a-controller-module"></a>tooremove un module de contrôleur
-1. Saisissez le verrou du module hello entre votre pouce et.
-2. Pressez doucement votre pouce et votre index toorelease ensemble hello verrou du contrôleur.
+#### <a name="to-remove-a-controller-module"></a>Pour retirer un module de contrôleur
+1. Saisissez le verrou du module entre le pouce et l’index.
+2. Pressez doucement le pouce et l’index pour libérer le verrou du contrôleur.
    
     ![Libération du verrou du contrôleur](./media/storsimple-controller-replacement/IC741047.png)
    
     **Figure 2** Libération du verrou du contrôleur
-3. Utilisation des verrous de hello en tant que handle tooslide hello contrôleur hors du châssis de hello.
+3. Utilisez le verrou comme une poignée pour faire glisser le contrôleur hors du châssis.
    
     ![Glissement du contrôleur hors du châssis](./media/storsimple-controller-replacement/IC741048.png)
    
-    **Figure 3** insertion du contrôleur hors du châssis de hello hello
+    **Figure 3** Extraction du contrôleur hors du châssis
 
 ## <a name="insert-a-controller"></a>Insérer un contrôleur
-Utilisez hello suivant la procédure tooinstall un module de contrôleur lorsque vous supprimez un module est défectueux de votre appareil StorSimple.
+Utilisez la procédure suivante pour installer un module de contrôleur d’usine après avoir retiré un module défectueux de votre appareil StorSimple.
 
-#### <a name="tooinstall-a-controller-module"></a>tooinstall un module de contrôleur
-1. Vérifiez toosee en n’importe quel toohello dommages connecteurs d’interface. N’installez pas de module de hello si des broches du connecteur hello sont endommagées ou tordues.
-2. Faites glisser le module de contrôleur hello dans le châssis de hello tandis que hello loquet entièrement libéré.
+#### <a name="to-install-a-controller-module"></a>Pour installer un module de contrôleur
+1. Vérifiez que les connecteurs d’interface sont en bon état. N’installez pas le module si des broches sont endommagées ou tordues dans les connecteurs.
+2. Faites glisser le module de contrôleur dans le châssis avec le verrou entièrement libéré.
    
     ![Insertion du contrôleur dans le châssis](./media/storsimple-controller-replacement/IC741053.png)
    
-    **Figure 4** insertion du contrôleur dans le châssis de hello
-3. Module de contrôleur hello inséré, commencer fermeture du verrou de hello lors de la poursuite de l’opération du module de contrôleur toopush hello dans le châssis de hello. Hello engagement du loquet entraîne contrôleur de hello tooguide en place.
+    **Figure 4** Insertion du contrôleur dans le châssis
+3. Une fois le module de contrôleur inséré, commencez à fermer le verrou tout en continuant de pousser le module dans le châssis. L’engagement du verrou entraîne la mise en place du contrôleur.
    
     ![Fermeture du verrou du contrôleur](./media/storsimple-controller-replacement/IC741054.png)
    
-    **Figure 5** fermeture du verrou du contrôleur hello
-4. Vous avez terminé quand le loquet de hello s’enclenche. Hello **OK** DEL doit maintenant s’allumer.
+    **Figure 5** Fermeture du verrou du contrôleur
+4. Vous avez terminé quand le verrou s’enclenche. Le voyant LED **OK** doit maintenant être allumé.
    
    > [!NOTE]
-   > Il peut prendre jusqu'à minutes too5 pour contrôleur de hello et hello LED tooactivate.
+   > L’activation du contrôleur et du voyant LED peut prendre jusqu’à 5 minutes.
   
-5. tooverify que le remplacement de hello a réussi, Bonjour portail Azure, accédez tooyour appareil, puis accédez trop**moniteur** > **l’intégrité du matériel**et vous assurer que les deux contrôleurs 0 et contrôleur 1 sont intègres (état est vert).
+5. Pour vérifier que le remplacement a réussi, dans le portail Azure, accédez à votre appareil, sélectionnez **Surveiller** > **Hardware health** (Intégrité matérielle), puis vérifiez que les contrôleurs 0 et 1 sont signalés comme étant intègres (état en vert).
 
-## <a name="identify-hello-active-controller-on-your-device"></a>Identifier le contrôleur actif de hello sur votre appareil
-Il existe de nombreuses situations, notamment la première fois l’inscription ou contrôleur de remplacement, nécessitant de votre contrôleur actif de hello toolocate sur un appareil StorSimple. contrôleur actif de Hello traite tous les hello mise en réseau et microprogramme opérations de disque. Vous pouvez utiliser une des hello suivant le contrôleur actif de méthodes tooidentify hello :
+## <a name="identify-the-active-controller-on-your-device"></a>Identifier le contrôleur actif sur votre appareil
+Dans de nombreuses situations, notamment lors de la première inscription de l’appareil ou du premier remplacement du contrôleur, vous devez trouver le contrôleur actif sur un appareil StorSimple. Le contrôleur actif traite toutes les opérations de mise en réseau et de microprogramme du disque. Vous pouvez utiliser les méthodes suivantes pour identifier le contrôleur actif :
 
-* [Utiliser le contrôleur actif de hello tooidentify portail Azure hello](#use-the-azure-portal-to-identify-the-active-controller)
-* [Utiliser Windows PowerShell pour le contrôleur actif de StorSimple tooidentify hello](#use-windows-powershell-for-storsimple-to-identify-the-active-controller)
-* [Vérifier le contrôleur actif de hello périphérique physique tooidentify hello](#check-the-physical-device-to-identify-the-active-controller)
+* [Utiliser le portail Azure pour identifier le contrôleur actif](#use-the-azure-portal-to-identify-the-active-controller)
+* [Utiliser Windows PowerShell pour StorSimple pour identifier le contrôleur actif](#use-windows-powershell-for-storsimple-to-identify-the-active-controller)
+* [Vérifier l’appareil physique pour identifier le contrôleur actif](#check-the-physical-device-to-identify-the-active-controller)
 
 Chacune de ces procédures est décrite ci-dessous.
 
-### <a name="use-hello-azure-portal-tooidentify-hello-active-controller"></a>Utiliser le contrôleur actif de hello tooidentify portail Azure hello
-Dans hello portail Azure, accédez tooyour appareil, puis trop**moniteur** > **l’intégrité du matériel**, faites défiler la fenêtre toohello **contrôleurs** section. Dans cette section, vous pouvez vérifier quel contrôleur est actif.
+### <a name="use-the-azure-portal-to-identify-the-active-controller"></a>Utiliser le portail Azure pour identifier le contrôleur actif
+Dans le portail Azure, accédez à votre appareil, sélectionnez **Surveiller** > **Hardware health** (Intégrité matérielle), puis faites défiler l’écran jusqu’à la section **Contrôleurs**. Dans cette section, vous pouvez vérifier quel contrôleur est actif.
 
 ![Identifier le contrôleur actif dans le portail Azure](./media/storsimple-controller-replacement/IC752072.png)
 
-**Figure 6** contrôleur actif de hello montrant portail Azure
+**Figure 6** Portail Azure montrant le contrôleur actif
 
-### <a name="use-windows-powershell-for-storsimple-tooidentify-hello-active-controller"></a>Utiliser Windows PowerShell pour le contrôleur actif de StorSimple tooidentify hello
-Lorsque vous accédez à votre appareil via la console série de hello, un message de bannière est présenté. message de bannière Hello contient des informations de base telles que le modèle de hello, nom, version du logiciel installé et l’état du contrôleur hello vous accédez à. Hello suivant image montre un exemple de message de bannière :
+### <a name="use-windows-powershell-for-storsimple-to-identify-the-active-controller"></a>Utiliser Windows PowerShell pour StorSimple pour identifier le contrôleur actif
+Quand vous accédez à votre appareil via la console série, un message de bannière s’affiche. Ce message contient des informations de base sur l’appareil, telles que le modèle, le nom, la version logicielle installée et l’état du contrôleur auquel vous accédez. L’image suivante représente un exemple de message de bannière :
 
 ![Message de bannière série](./media/storsimple-controller-replacement/IC741098.png)
 
 **Figure 7** Message de bannière indiquant que le contrôleur 0 est actif
 
-Vous pouvez utiliser toodetermine de message de bannière hello que hello contrôleur que vous soyez connecté toois actives ou passives.
+Vous pouvez utiliser le message de bannière pour déterminer si le contrôleur auquel vous êtes connecté est actif ou passif.
 
-### <a name="check-hello-physical-device-tooidentify-hello-active-controller"></a>Vérifier le contrôleur actif de hello périphérique physique tooidentify hello
-contrôleur actif de hello tooidentify sur votre appareil, recherchez hello bleu DEL au-dessus du port hello DATA 5 sur hello arrière du boîtier principal de hello.
+### <a name="check-the-physical-device-to-identify-the-active-controller"></a>Vérifier l’appareil physique pour identifier le contrôleur actif
+Pour identifier le contrôleur actif sur votre appareil, localisez le voyant LED bleu au-dessus du port DATA 5, à l’arrière du boîtier principal.
 
-Si cette LED clignote, hello contrôleur est actif et hello autre contrôleur est en mode veille. Utilisez hello suivant schéma et de table comme une aide.
+Si ce voyant clignote, le contrôleur est actif et l’autre contrôleur est en mode veille. Utilisez le schéma et le tableau suivants pour vous aider.
 
 ![Fond de panier du boîtier principal de l’appareil avec ports de données](./media/storsimple-controller-replacement/IC741055.png)
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaXEvent code de mémoire tampon en anneau pour la base de données SQL | Documents Microsoft"
-description: "Fournit un exemple de code Transact-SQL qui est effectué facile et rapide à l’aide de la cible de mémoire tampon en anneau hello, dans la base de données SQL Azure."
+title: "Code de la mémoire tampon en anneau XEvent pour SQL Database | Microsoft Docs"
+description: "Fournit un exemple de code Transact-SQL simple et rapide en utilisant la cible de la mémoire tampon en anneau, dans Azure SQL Database."
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -16,33 +16,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: genemi
-ms.openlocfilehash: 21df748d9999d6837d2b5bbe4a3f47fb351b4633
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6fbefe151901ac3b15d93712422878fc4d6206f1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="ring-buffer-target-code-for-extended-events-in-sql-database"></a>Code cible de la mémoire tampon en anneau pour les événements étendus dans SQL Database
 
 [!INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-Vous souhaitez un exemple de code complet pour hello plus simple rapidement toocapture et fournir les informations pour un événement étendu pendant un test. Hello plus simple pour les données d’événements étendus est hello [cible de mémoire tampon en anneau](http://msdn.microsoft.com/library/ff878182.aspx).
+Vous pouvez utiliser un exemple de code complet pour capturer et signaler le plus simplement et rapidement possible les informations liées à un événement étendu pendant un test. La cible la plus simple pour les données d’événement étendu est la [cible de la mémoire tampon en anneau](http://msdn.microsoft.com/library/ff878182.aspx).
 
 Cette rubrique présente un exemple de code Transact-SQL qui :
 
-1. Crée une table avec toodemonstrate de données avec.
+1. Crée une table contenant des données pour la démonstration.
 2. Crée une session pour un événement étendu existant, à savoir **sqlserver.sql_statement_starting**.
    
-   * événement Hello est limitée tooSQL les instructions qui contiennent une chaîne particulière de la mise à jour : **instruction comme '% mise à jour tabEmployee %'**.
-   * Choisit de sortie de hello toosend de cible de tooa d’événement hello du type de mémoire tampon en anneau, à savoir **package0.ring_buffer**.
-3. Démarre la session d’événements hello.
+   * L’événement est limité aux instructions SQL qui contiennent une chaîne Update particulière : **statement LIKE '%UPDATE tabEmployee%'**.
+   * Choisit d’envoyer la sortie de l’événement vers une cible de type mémoire tampon en anneau, à savoir **package0.ring_buffer**.
+3. Démarre la session d’événement.
 4. Émet un ensemble d’instructions SQL UPDATE simples.
-5. Émet une sortie des événements SQL SELECT instruction tooretrieve à partir de la mémoire tampon en anneau de hello.
+5. Émet une instruction SQL SELECT pour récupérer la sortie d’événement de la mémoire tampon en anneau.
    
    * **sys.dm_xe_database_session_targets** et d’autres vues de gestion dynamique (DMV) sont incluses.
-6. Arrête la session d’événements hello.
-7. Suppressions hello cible de mémoire tampon en anneau, toorelease ses ressources.
-8. Supprime la session d’événements hello et tableau de démonstration hello.
+6. Arrête la session d’événement.
+7. Supprime la cible de la mémoire tampon en anneau pour libérer ses ressources.
+8. Supprime la session d’événement et la table de démonstration.
 
 ## <a name="prerequisites"></a>Composants requis
 
@@ -51,14 +51,14 @@ Cette rubrique présente un exemple de code Transact-SQL qui :
   
   * Vous pouvez aussi [créer une base de données de démonstration **AdventureWorksLT**](sql-database-get-started.md) en quelques minutes.
 * SQL Server Management Studio (ssms.exe), dans l’idéal, la version de sa dernière mise à jour mensuelle. 
-  Vous pouvez télécharger hello ssms.exe plus récentes à partir de :
+  Vous pouvez télécharger la dernière version de ssms.exe :
   
   * À partir de la rubrique [Télécharger SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx).
-  * [Un téléchargement de toohello lien direct.](http://go.microsoft.com/fwlink/?linkid=616025)
+  * [En utilisant un lien direct vers le téléchargement.](http://go.microsoft.com/fwlink/?linkid=616025)
 
 ## <a name="code-sample"></a>Exemple de code
 
-Avec très peu de modifications, hello exemple de code suivant mémoire tampon en anneau peut être exécuté sur la base de données SQL Azure ou Microsoft SQL Server. différence de Hello est présence hello du nœud de hello 'base de _données' dans le nom hello de certaines vues de gestion dynamique (DMV), utilisée dans la clause FROM de hello à l’étape 5. Par exemple :
+Après quelques modifications mineures, vous pouvez exécuter l’exemple suivant de code de mémoire tampon en anneau sur Azure SQL Database ou Microsoft SQL Server. La différence se limite à la présence du nœud « _database » dans le nom de certaines vues de gestion dynamique (DMV) utilisées dans la clause FROM à l’étape 5. Par exemple :
 
 * sys.dm_xe**_database**_session_targets
 * sys.dm_xe_session_targets
@@ -220,13 +220,13 @@ GO
 
 ## <a name="ring-buffer-contents"></a>Contenu de la mémoire tampon en anneau
 
-Nous avons utilisé les exemples de code hello ssms.exe toorun.
+Nous avons utilisé ssms.exe pour exécuter l’exemple de code.
 
-résultats de hello tooview, nous avez cliqué sur hello cellule sous l’en-tête de colonne hello **target_data_XML**.
+Pour afficher les résultats, nous avons cliqué sur la cellule sous l’en-tête de colonne **target_data_XML**.
 
-Ensuite, dans le volet de résultats hello nous avez cliqué sur hello cellule sous l’en-tête de colonne hello **target_data_XML**. Cliquez sur créé un autre onglet fichier dans ssms.exe affiché dans le hello contenu de la cellule de résultat hello au format XML.
+Puis, dans le volet de résultats, nous avons cliqué sur la cellule sous l’en-tête de colonne **target_data_XML**. Ce clic a créé un autre onglet Fichier dans ssms.exe pour afficher (au format XML) le contenu de la cellule de résultat.
 
-Hello est affiché dans le bloc de hello. Elle semble longue, mais ne comprend que deux éléments **<event>** .
+La sortie est présentée dans le bloc suivant. Elle semble longue, mais ne comprend que deux éléments **<event>** .
 
 &nbsp;
 
@@ -320,7 +320,7 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM tabEmployee;
 
 #### <a name="release-resources-held-by-your-ring-buffer"></a>Libérer les ressources détenues par votre mémoire tampon en anneau
 
-Lorsque vous avez terminé avec votre mémoire tampon en anneau, vous pouvez le supprimer et libérer ses ressources émettant un **ALTER** à hello qui suit :
+Quand vous n’avez plus besoin de votre mémoire tampon en anneau, vous pouvez la supprimer et libérer ses ressources à l’aide d’une instruction **ALTER** , comme suit :
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -330,7 +330,7 @@ GO
 ```
 
 
-définition de Hello de votre session d’événements est mis à jour, mais pas supprimée. Ultérieurement, vous pouvez ajouter une autre instance de la session d’événements tooyour hello mémoire tampon en anneau :
+La définition de votre session d’événement est mise à jour, mais pas supprimée. Vous pouvez ajouter ultérieurement une autre instance de la mémoire tampon en anneau à votre session d’événement :
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -345,11 +345,11 @@ ALTER EVENT SESSION eventsession_gm_azuresqldb51
 
 ## <a name="more-information"></a>Plus d’informations
 
-rubrique de principal Hello pour les événements étendus sur la base de données SQL Azure est :
+La rubrique principale sur les événements étendus dans Base de données SQL Azure est :
 
 * La rubrique [Considérations relatives aux événements étendus dans Azure SQL Database](sql-database-xevent-db-diff-from-svr.md) décrit les différences à prendre en compte entre les événements étendus dans Azure SQL Database et ceux dans Microsoft SQL Server.
 
-Autres rubriques d’exemples de code pour les événements étendus sont disponibles au hello suivant liens. Toutefois, vous devez vérifier régulièrement les tout toosee exemple qu’exemple hello cible Microsoft SQL Server par rapport à la base de données SQL Azure. Vous pouvez décider si des modifications mineures sont nécessaires toorun hello exemple.
+Vous trouverez d’autres rubriques d’exemples de code pour les événements étendus en suivant le lien ci-dessous. Toutefois, vous devez vérifier régulièrement les exemples pour voir s’ils ciblent Microsoft SQL Server ou la base de données SQL Azure. Vous pouvez ensuite déterminer si vous devez apporter quelques modifications mineures avant d’exécuter un exemple.
 
 * Exemple de code pour Azure SQL Database : [Code cible du fichier d’événements pour les événements étendus dans SQL Database](sql-database-xevent-code-event-file.md)
 
@@ -357,5 +357,5 @@ Autres rubriques d’exemples de code pour les événements étendus sont dispon
 ('lock_acquired' event.)
 
 - Code sample for SQL Server: [Determine Which Queries Are Holding Locks](http://msdn.microsoft.com/library/bb677357.aspx)
-- Code sample for SQL Server: [Find hello Objects That Have hello Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
+- Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->

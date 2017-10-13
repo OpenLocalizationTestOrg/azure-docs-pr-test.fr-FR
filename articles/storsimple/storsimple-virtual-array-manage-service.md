@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy service du Gestionnaire de périphériques StorSimple | Documents Microsoft"
-description: "Explique comment toocreate et delete hello service Gestionnaire de périphériques StorSimple Bonjour portail Azure et décrit comment toomanage hello clé d’inscription de service."
+title: "Déployer le service StorSimple Device Manager | Microsoft Docs"
+description: "Cet article décrit comment créer et supprimer le service StorSimple Device Manager dans le Portail Azure, ainsi que la procédure de gestion de la clé d’inscription du service."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,102 +14,102 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/29/2016
 ms.author: alkohli
-ms.openlocfilehash: 9064053addc7b3dfcce08b47e81b38c2e0e1b559
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1881a0625b107ae1a90e5b772f5296a4d728973d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="deploy-hello-storsimple-device-manager-service-for-storsimple-virtual-array"></a>Déployer le service du Gestionnaire de périphériques StorSimple hello pour StorSimple Virtual Array
+# <a name="deploy-the-storsimple-device-manager-service-for-storsimple-virtual-array"></a>Déployer le service StorSimple Device Manager pour StorSimple Virtual Array
 ## <a name="overview"></a>Vue d'ensemble
 
-Hello le Gestionnaire de périphériques StorSimple service s’exécute dans Microsoft Azure et connecte les appareils StorSimple toomultiple. Après avoir créé le service de hello, vous pouvez l’utiliser appareils hello toomanage hello Microsoft Azure portail s’exécutant dans un navigateur. Cela vous permet de toomonitor tous les périphériques hello connecté toohello StorSimple le Gestionnaire de périphériques de service à partir d’un emplacement unique et centralisé, réduisant les tâches administratives.
+Le service StorSimple Device Manager s’exécute dans Microsoft Azure et se connecte à plusieurs appareils StorSimple. Après avoir créé le service, vous pouvez l’utiliser pour gérer les appareils à partir du portail Microsoft Azure s’exécutant dans un navigateur. Vous pouvez ainsi surveiller tous les appareils qui sont connectés au service StorSimple Device Manager à partir d’un emplacement central unique, ce qui réduit la charge administrative.
 
-Hello courantes tâches connexes tooa service du Gestionnaire de périphériques StorSimple sont les suivantes :
+Les tâches courantes associées à un service StorSimple Device Manager sont les suivantes :
 
-* Créer un service
+* Création d’un service
 * Supprimer un service
-* Obtenir la clé d’inscription hello
-* Régénérer la clé d’inscription hello
+* Obtenir la clé d’inscription du service
+* Régénération de la clé d’inscription de service
 
-Ce didacticiel explique comment tooperform de hello les tâches précédentes. informations Hello contenues dans cet article sont applicable uniquement tooStorSimple réseaux virtuels. Pour plus d’informations sur la série StorSimple 8000, accédez trop[déployer un service StorSimple Manager](storsimple-manage-service.md).
+Ce didacticiel explique comment exécuter chacune des tâches ci-dessus. Les informations contenues dans cet article s’appliquent uniquement aux tableaux virtuels StorSimple. Pour plus d’informations sur la gamme StorSimple 8000, consultez la page [déployer un service StorSimple Manager](storsimple-manage-service.md).
 
-## <a name="create-a-service"></a>Créer un service
+## <a name="create-a-service"></a>Création d’un service
 
-toocreate un service, vous devez toohave :
+Pour créer un service, vous avez besoin des éléments suivants :
 
 * Un abonnement avec un contrat Entreprise
 * Un compte de stockage Microsoft Azure actif
-* informations de facturation sont utilisées pour la gestion de l’accès de Hello
+* Les informations de facturation utilisées pour la gestion des accès
 
-Vous pouvez également choisir de toogenerate un compte de stockage lorsque vous créez le service de hello.
+Vous pouvez également choisir de générer un compte de stockage lorsque vous créez le service.
 
-Un seul service peut gérer plusieurs appareils. Cependant, un appareil ne peut pas couvrir plusieurs services. Une grande entreprise peut avoir plusieurs toowork d’instances de service avec différents abonnements, organisations ou emplacements de déploiement.
+Un seul service peut gérer plusieurs appareils. Cependant, un appareil ne peut pas couvrir plusieurs services. Une grande entreprise peut avoir plusieurs instances de service pour utiliser différents abonnements, organisations ou même emplacements de déploiement.
 
 > [!NOTE]
-> Vous avez besoin des instances distinctes d’unités de gestionnaire de périphériques StorSimple service toomanage StorSimple 8000 series et les tableaux de virtuel StorSimple.
+> Vous devez créer des instances distinctes du service StorSimple Device Manager pour gérer les appareils de la gamme StorSimple 8000 et les baies StorSimple Virtual Array.
 
 
-Effectuer hello suivant les étapes toocreate un service.
+Procédez comme suit pour créer un service.
 
 [!INCLUDE [storsimple-virtual-array-create-new-service](../../includes/storsimple-virtual-array-create-new-service.md)]
 
 ## <a name="delete-a-service"></a>Supprimer un service
 
-Avant de supprimer un service, assurez-vous qu’aucun appareil connecté ne l’utilise. Si le service de hello est en cours d’utilisation, désactiver les périphériques de hello connecté. Hello désactiver l’opération sera le serveur de connexion hello entre l’appareil de hello et service de hello, mais conserver les données d’appareil hello dans le cloud de hello.
+Avant de supprimer un service, assurez-vous qu’aucun appareil connecté ne l’utilise. Si le service est en cours d’utilisation, désactivez les appareils connectés. L’opération de désactivation rompt la connexion entre l’appareil et le service, mais conserve les données de l’appareil dans le cloud.
 
 > [!IMPORTANT]
-> Après la suppression d’un service, opération de hello ne peut pas être annulée. N’importe quel appareil qui utilise hello service devez toobe usine avant de pouvoir être utilisé avec un autre service. Dans ce scénario, les données locales de hello sur le périphérique de hello, ainsi que la configuration de hello, seront perdues.
+> Après qu’un service a été supprimé, l’opération ne peut pas être annulée. Un appareil qui utilisait le service doit être réinitialisé aux paramètres d’usine avant de pouvoir être utilisé avec un autre service. Dans ce scénario, les données locales de l’appareil, ainsi que la configuration, seront perdues.
  
 
-Effectuer hello suivant les étapes toodelete un service.
+Pour supprimer un service, procédez comme suit.
 
-#### <a name="toodelete-a-service"></a>toodelete un service
+#### <a name="to-delete-a-service"></a>Pour supprimer un service
 
-1. Accédez trop**toutes les ressources**. Recherchez votre service StorSimple Device Manager. Sélectionnez service hello que vous souhaitez toodelete.
+1. Sélectionnez **Toutes les ressources**. Recherchez votre service StorSimple Device Manager. Sélectionnez le service à supprimer.
    
-    ![Sélectionnez service toodelete](./media/storsimple-virtual-array-manage-service/deleteservice2.png)
-2. Accédez tooensure de tableau de bord de service tooyour il n’y aucun périphérique connecté toohello service. S’il n’y a aucun appareil inscrit auprès de ce service, vous verrez également un effet de toohello de message de bannière. Cliquez sur **Supprimer**.
+    ![Sélectionner le service à supprimer](./media/storsimple-virtual-array-manage-service/deleteservice2.png)
+2. Accédez à votre tableau de bord des services pour vous assurer qu’aucun appareil n’est connecté au service. Si aucun appareil n’est inscrit auprès de ce service, vous en êtes également averti par un message de bannière. Cliquez sur **Supprimer**.
    
     ![Suppression du service](./media/storsimple-virtual-array-manage-service/deleteservice3.png)
 
-3. Lorsque vous êtes invité à confirmer l’opération, cliquez sur **Oui** dans la notification de confirmation hello. 
+3. Lorsque vous êtes invité à confirmer l’opération, cliquez sur **Oui** dans la notification de confirmation. 
    
     ![Confirmer la suppression du service](./media/storsimple-virtual-array-manage-service/deleteservice4.png)
-4. Il peut prendre quelques minutes pour hello service toobe est supprimé. Une fois hello service est correctement supprimé, vous serez averti.
+4. La suppression du service peut nécessiter quelques minutes. Une fois le service supprimé, vous en êtes informé par un message.
    
     ![Suppression du service réussie](./media/storsimple-virtual-array-manage-service/deleteservice6.png)
 
-liste Hello des services va être actualisée.
+La liste des services est actualisée.
 
  ![Liste des services mise à jour](./media/storsimple-virtual-array-manage-service/deleteservice7.png)
 
-## <a name="get-hello-service-registration-key"></a>Obtenir la clé d’inscription hello
-Une fois que vous avez créé un service, vous devez tooregister votre appareil StorSimple hello service. tooregister votre premier appareil StorSimple, vous devez serez hello clé d’inscription de service. tooregister autres périphériques avec un service StorSimple existant, vous devez la clé d’enregistrement hello et hello clé de chiffrement (qui est généré sur le premier périphérique de hello lors de l’inscription). Pour plus d’informations sur la clé de chiffrement de données de service hello, consultez [sécurité StorSimple](storsimple-security.md). Vous pouvez obtenir la clé d’inscription de hello en accédant à hello **clés** panneau pour votre service.
+## <a name="get-the-service-registration-key"></a>Obtenir la clé d’inscription du service
+Une fois que vous avez créé un service, vous devez inscrire votre appareil StorSimple auprès du service. Pour inscrire votre premier appareil StorSimple, vous avez besoin de la clé d’inscription du service. Pour inscrire des appareils supplémentaires avec un service StorSimple existant, vous avez besoin de la clé d’inscription et de la clé de chiffrement des données du service (générée sur le premier appareil lors de l’inscription). Pour plus d’informations sur la clé de chiffrement des données du service, consultez la rubrique [Sécurité StorSimple](storsimple-security.md). Vous pouvez obtenir la clé d’inscription en accédant au panneau **Clés** relatif à votre service.
 
-Effectuer hello après la clé d’inscription étapes tooget hello.
+Procédez comme suit pour obtenir la clé d’inscription du service.
 
-#### <a name="tooget-hello-service-registration-key"></a>clé d’inscription tooget hello
-1. Bonjour **le Gestionnaire de périphériques StorSimple** panneau, accédez trop**gestion &gt;**  **clés**.
+#### <a name="to-get-the-service-registration-key"></a>Pour obtenir la clé d’inscription du service
+1. Dans le panneau **Instance de StorSimple Device Manager**, accédez à **Gestion &gt;** **Clés**.
    
    ![Panneau Clés](./media/storsimple-virtual-array-manage-service/getregkey2.png)
-2. Bonjour **clés** blade, une clé d’inscription de service apparaît. Copiez la clé d’inscription de hello à l’aide d’icône de copie hello. 
+2. Une clé d’inscription du service apparaît dans le panneau **Clés**. Copiez la clé d’inscription à l’aide de l’icône de copie. 
 
-Conservez la clé d’inscription hello dans un emplacement sûr. Vous devez cette clé, comme clé de chiffrement de données de service de hello, tooregister des appareils supplémentaires auprès de ce service. Après avoir obtenu la clé d’inscription hello, vous devez tooconfigure votre appareil via hello Windows PowerShell pour StorSimple interface.
+Conservez la clé d’inscription du service dans un emplacement sûr. Vous aurez besoin de cette clé, ainsi que de la clé de chiffrement des données du service, pour enregistrer des appareils supplémentaires auprès du service. Après avoir obtenu la clé d’inscription du service, vous devez configurer votre appareil via l’interface Windows PowerShell pour StorSimple.
 
-## <a name="regenerate-hello-service-registration-key"></a>Régénérer la clé d’inscription hello
-Si vous êtes tooperform requis la rotation des clés ou si la liste hello des administrateurs de service a changé, vous devez tooregenerate une clé d’inscription de service. Lorsque vous régénérez la clé de hello, clé hello est utilisé uniquement pour l’inscription des appareils suivants. appareils Hello déjà inscrites ne sont pas affectés par ce processus.
+## <a name="regenerate-the-service-registration-key"></a>Régénérer la clé d’inscription du service
+Vous devez régénérer une clé d’inscription du service si vous êtes amené à effectuer une rotation des clés ou si la liste des administrateurs du service a changé. Lorsque vous régénérez la clé, la nouvelle clé est utilisée uniquement pour l’enregistrement des appareils suivants. Les appareils déjà enregistrés ne sont pas affectés par ce processus.
 
-Effectuer hello suivant les étapes tooregenerate une clé d’inscription de service.
+Procédez comme suit pour régénérer une clé d’inscription du service.
 
-#### <a name="tooregenerate-hello-service-registration-key"></a>clé d’inscription tooregenerate hello
-1. Bonjour **le Gestionnaire de périphériques StorSimple** panneau, accédez trop**gestion &gt;**  **clés**.
+#### <a name="to-regenerate-the-service-registration-key"></a>Pour régénérer la clé d’inscription du service
+1. Dans le panneau **Instance de StorSimple Device Manager**, accédez à **Gestion &gt;** **Clés**.
    
    ![Panneau Clés](./media/storsimple-virtual-array-manage-service/getregkey2.png)
-2. Bonjour **clés** panneau, cliquez sur **régénérer**.
+2. Dans le panneau **Clés**, cliquez sur **Régénérer**.
    
    ![Cliquer sur Régénérer](./media/storsimple-virtual-array-manage-service/getregkey5.png)
-3. Bonjour **clé d’inscription régénérer** panneau, révision hello action requise lorsque hello les clés sont régénérées. Tous les périphériques suivants hello qui sont inscrits auprès de ce service utilise la nouvelle clé d’inscription de hello. Cliquez sur **régénérer** tooconfirm. Vous serez averti une fois l’inscription de hello est terminée.
+3. Dans le panneau **Régénérer la clé d’inscription du service**, vérifiez l’action requise lors de la régénération des clés. Tous les appareils qui seront inscrits auprès de ce service par la suite utiliseront la nouvelle clé d’inscription. Cliquez sur **Régénérer** pour confirmer l’opération. Une fois l’inscription terminée, vous en êtes informé par un message.
    
    ![Confirmer la régénération de la clé](./media/storsimple-virtual-array-manage-service/getregkey3.png)
 4. Une nouvelle clé d’inscription du service s’affiche.
@@ -119,6 +119,6 @@ Effectuer hello suivant les étapes tooregenerate une clé d’inscription de se
    Copiez cette clé et sauvegardez-la pour enregistrer tout nouvel appareil auprès de ce service.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment trop[prise en main](storsimple-virtual-array-deploy1-portal-prep.md) avec un tableau virtuel StorSimple.
-* Découvrez comment trop[administrer votre appareil StorSimple](storsimple-ova-web-ui-admin.md).
+* Découvrez comment [prendre en main](storsimple-virtual-array-deploy1-portal-prep.md) une solution StorSimple Virtual Array.
+* Découvrez comment [gérer votre appareil StorSimple](storsimple-ova-web-ui-admin.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "le stockage de disques géré d’aaaConvert Azure à partir de toopremium standard et vice versa | Documents Microsoft"
-description: "Comment tooconvert Azure le stockage de disques géré à partir de toopremium standard et vice versa, à l’aide de CLI d’Azure."
+title: Convertir le stockage Managed Disks Azure de standard en premium, et vice versa | Microsoft Docs
+description: "Comment convertir le stockage Managed Disks Azure de standard en premium, et vice versa, à l’aide de l’interface de ligne de commande Azure."
 services: virtual-machines-linux
 documentationcenter: 
 author: ramankum
@@ -15,91 +15,91 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: ramankum
-ms.openlocfilehash: 261d77202f7fd381085c4e25211a5d0026f43b01
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0380b4aaa23b4aaba4c67d05e2d62f3ef41d6a32
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="convert-azure-managed-disks-storage-from-standard-toopremium-and-vice-versa"></a>Convertir Azure le stockage des disques géré à partir de toopremium standard et vice versa
+# <a name="convert-azure-managed-disks-storage-from-standard-to-premium-and-vice-versa"></a>Convertir le stockage Managed Disks Azure de standard en premium, et vice versa
 
-Managed Disks propose deux options de stockage : [Premium](../../storage/storage-premium-storage.md) (SSD) et [Standard](../../storage/storage-standard-storage.md) (HDD). Il vous permet de basculer tooeasily d’options hello deux avec un temps mort minimal selon vos besoins de performances. Cette fonctionnalité n’est pas disponible pour les disques non gérés. Toutefois, vous pouvez facilement [convertir les disques toomanaged](convert-unmanaged-to-managed-disks.md) commutateur tooeasily entre les options hello deux.
+Managed Disks propose deux options de stockage : [Premium](../../storage/storage-premium-storage.md) (SSD) et [Standard](../../storage/storage-standard-storage.md) (HDD). Il vous permet de basculer facilement entre les deux options avec une interruption minimale adaptée à vos besoins de performances. Cette fonctionnalité n’est pas disponible pour les disques non gérés. Toutefois, vous pouvez facilement [effectuer des conversions en disques gérés](convert-unmanaged-to-managed-disks.md) pour basculer facilement entre les deux options.
 
-Cet article explique comment tooconvert des disques gérés par à partir de toopremium standard et vice versa à l’aide de CLI d’Azure. Si vous avez besoin de tooinstall ou mettre à niveau, consultez [installer Azure CLI 2.0](/cli/azure/install-azure-cli.md). 
+Cet article vous montre comment convertir des disques gérés de standard en premium, et vice versa, à l’aide de l’interface de ligne de commande Azure. Si vous devez installer ou mettre à niveau l’interface, consultez [Installation d’Azure CLI 2.0](/cli/azure/install-azure-cli.md). 
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-* conversion de Hello nécessite un redémarrage de machine virtuelle de hello, par conséquent, planifier la migration de votre stockage de disques hello pendant une fenêtre de maintenance existant. 
-* Si vous utilisez des disques non managés, tout d’abord [convertir les disques toomanaged](convert-unmanaged-to-managed-disks.md) toouse tooswitch de cet article entre les options de stockage hello deux. 
+* La conversion nécessite un redémarrage de la machine virtuelle. Par conséquent, planifiez la migration de vos stockages sur disques au cours d’une fenêtre de maintenance préexistante. 
+* Si vous utilisez des disques non gérés, tout d’abord [effectuez des conversions en disques gérés](convert-unmanaged-to-managed-disks.md) afin d’utiliser cet article pour basculer entre les deux options de stockage. 
 
 
-## <a name="convert-all-hello-managed-disks-of-a-vm-from-standard-toopremium-and-vice-versa"></a>Convertir toutes les hello gérés disques d’une machine virtuelle à partir de toopremium standard et vice versa
+## <a name="convert-all-the-managed-disks-of-a-vm-from-standard-to-premium-and-vice-versa"></a>Convertir tous les disques gérés d’une machine virtuelle de standard en premium, et vice versa
 
-Bonjour l’exemple suivant, nous montrons comment tooswitch tous hello disques d’une machine virtuelle à partir du stockage de toopremium standard. des disques gérés par toouse premium, votre machine virtuelle doit utiliser un [taille de machine virtuelle](sizes.md) qui prend en charge le stockage premium. Cet exemple bascule également taille tooa qui prend en charge le stockage premium.
+Dans l’exemple suivant, nous montrons comment faire passer tous les disques d’une machine virtuelle du stockage standard au stockage premium. Pour utiliser des disques gérés premium, votre machine virtuelle doit utiliser une [taille de machine virtuelle](sizes.md) qui prend en charge le stockage premium. Cet exemple passe également à une taille prenant en charge le stockage premium.
 
  ```azurecli
 
-#resource group that contains hello virtual machine
+#resource group that contains the virtual machine
 rgName='yourResourceGroup'
 
-#Name of hello virtual machine
+#Name of the virtual machine
 vmName='yourVM'
 
 #Premium capable size 
-#Required only if converting from standard toopremium
+#Required only if converting from standard to premium
 size='Standard_DS2_v2'
 
 #Choose between Standard_LRS and Premium_LRS based on your scenario
 sku='Premium_LRS'
 
-#Deallocate hello VM before changing hello size of hello VM
+#Deallocate the VM before changing the size of the VM
 az vm deallocate --name $vmName --resource-group $rgName
 
-#Change hello VM size tooa size that supports premium storage 
-#Skip this step if converting storage from premium toostandard
+#Change the VM size to a size that supports premium storage 
+#Skip this step if converting storage from premium to standard
 az vm resize --resource-group $rgName --name $vmName --size $size
 
-#Update hello sku of all hello data disks 
+#Update the sku of all the data disks 
 az vm show -n $vmName -g $rgName --query storageProfile.dataDisks[*].managedDisk -o tsv \
  | awk -v sku=$sku '{system("az disk update --sku "sku" --ids "$1)}'
 
-#Update hello sku of hello OS disk
+#Update the sku of the OS disk
 az vm show -n $vmName -g $rgName --query storageProfile.osDisk.managedDisk -o tsv \
 | awk -v sku=$sku '{system("az disk update --sku "sku" --ids "$1)}'
 
 az vm start --name $vmName --resource-group $rgName
 
 ```
-## <a name="convert-a-managed-disk-from-standard-toopremium-and-vice-versa"></a>Convertir un disque géré à partir de toopremium standard et vice versa
+## <a name="convert-a-managed-disk-from-standard-to-premium-and-vice-versa"></a>Convertir un disque géré de standard en premium, et vice versa
 
-Pour votre charge de travail de développement et de test, vous voudrez mélange toohave de disques standard et premium tooreduce votre coût. Vous pouvez l’effectuer en mettant à niveau toopremium stockage, seuls les disques hello qui nécessitent de meilleures performances. Bonjour l’exemple suivant, nous montrons comment tooswitch un seul disque d’un ordinateur virtuel à partir du stockage de toopremium standard et vice versa. des disques gérés par toouse premium, votre machine virtuelle doit utiliser un [taille de machine virtuelle](sizes.md) qui prend en charge le stockage premium. Cet exemple bascule également taille tooa qui prend en charge le stockage premium.
+Pour votre charge de travail de développement/test, vous souhaiterez peut-être mélanger disques standard et disques premium pour réduire les coûts. Vous pouvez le faire en effectuant une mise à niveau vers le stockage premium, uniquement pour les disques qui nécessitent de meilleures performances. Dans l’exemple suivant, nous montrons comment faire passer un seul disque d’une machine virtuelle du stockage standard au stockage premium, et vice versa. Pour utiliser des disques gérés premium, votre machine virtuelle doit utiliser une [taille de machine virtuelle](sizes.md) qui prend en charge le stockage premium. Cet exemple passe également à une taille prenant en charge le stockage premium.
 
  ```azurecli
 
-#resource group that contains hello managed disk
+#resource group that contains the managed disk
 rgName='yourResourceGroup'
 
 #Name of your managed disk
 diskName='yourManagedDiskName'
 
 #Premium capable size 
-#Required only if converting from standard toopremium
+#Required only if converting from standard to premium
 size='Standard_DS2_v2'
 
 #Choose between Standard_LRS and Premium_LRS based on your scenario
 sku='Premium_LRS'
 
-#Get hello parent VM Id 
+#Get the parent VM Id 
 vmId=$(az disk show --name $diskName --resource-group $rgName --query managedBy --output tsv)
 
-#Deallocate hello VM before changing hello size of hello VM
+#Deallocate the VM before changing the size of the VM
 az vm deallocate --ids $vmId 
 
-#Change hello VM size tooa size that supports premium storage 
-#Skip this step if converting storage from premium toostandard
+#Change the VM size to a size that supports premium storage 
+#Skip this step if converting storage from premium to standard
 az vm resize --ids $vmId --size $size
 
-# Update hello sku
+# Update the sku
 az disk update --sku $sku --name $diskName --resource-group $rgName 
 
 az vm start --ids $vmId 

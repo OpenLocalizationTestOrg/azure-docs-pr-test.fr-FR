@@ -1,5 +1,5 @@
 ---
-title: "aaaLearn comment toouse hello dans les applications de la logique d’un connecteur Twitter | Documents Microsoft"
+title: "Découvrez comment utiliser le connecteur Twitter dans les applications logiques | Microsoft Docs"
 description: "Vue d’ensemble du connecteur Twitter avec les paramètres d’API REST"
 services: 
 documentationcenter: 
@@ -15,93 +15,93 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: ead4e4dc95bf894fd72b908c5375b407ba27642d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: be8163043535833ce45b3d50939a537406cf8152
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-twitter-connector"></a>Prise en main connecteur de Twitter hello
-Avec le connecteur de Twitter hello, vous pouvez :
+# <a name="get-started-with-the-twitter-connector"></a>Prise en main du connecteur Twitter
+Le connecteur Twitter vous permet d’effectuer les opérations suivantes :
 
 * publier et recevoir des tweets ;
 * accéder à des fils d’actualités, des amis et des abonnés ;
-* Effectuez l’une des hello autres actions et les déclencheurs décrites ci-dessous  
+* exécuter la totalité des actions et des déclencheurs décrits ci-dessous.  
 
-toouse [n’importe quel connecteur](apis-list.md), vous devez tout d’abord toocreate une application logique. Vous pouvez démarrer maintenant en [créant une application logique](../logic-apps/logic-apps-create-a-logic-app.md).  
+Pour utiliser [n’importe quel connecteur](apis-list.md), vous devez commencer par créer une application logique. Vous pouvez démarrer maintenant en [créant une application logique](../logic-apps/logic-apps-create-a-logic-app.md).  
 
-## <a name="connect-tootwitter"></a>Se connecter tooTwitter
-Avant que votre application logique peut accéder à n’importe quel service, vous devez tout d’abord toocreate un *connexion* toohello service. Une [connexion](connectors-overview.md) permet d’assurer la connectivité entre une application logique et un autre service.  
+## <a name="connect-to-twitter"></a>Se connecter à Twitter
+Pour que votre application logique puisse accéder à un service, vous devez commencer par créer une *connexion* à celui-ci. Une [connexion](connectors-overview.md) permet d’assurer la connectivité entre une application logique et un autre service.  
 
-### <a name="create-a-connection-tootwitter"></a>Créer un tooTwitter de connexion
-> [!INCLUDE [Steps toocreate a connection tooTwitter](../../includes/connectors-create-api-twitter.md)]
+### <a name="create-a-connection-to-twitter"></a>Créer une connexion à Twitter
+> [!INCLUDE [Steps to create a connection to Twitter](../../includes/connectors-create-api-twitter.md)]
 > 
 > 
 
 ## <a name="use-a-twitter-trigger"></a>Utiliser un déclencheur Twitter
-Un déclencheur est un événement qui peut être utilisé toostart hello flux de travail défini dans une application logique. [En savoir plus sur les déclencheurs](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Un déclencheur est un événement qui peut être utilisé pour lancer le flux de travail défini dans une application logique. [En savoir plus sur les déclencheurs](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-Dans cet exemple, je vous indiquent comment toouse hello **lors de la validation d’un tweet nouvelle** déclencher toosearch pour #Seattle et, si #Seattle est trouvée, mettre à jour un fichier dans l’échange avec texte hello tweet de hello. Dans un exemple d’entreprise, vous pourriez Rechercher nom hello de votre société et mettre à jour une base de données SQL avec texte hello tweet de hello.
+Dans cet exemple, nous allons vous indiquer comment utiliser le déclencheur **When a new tweet is posted** (Quand un nouveau tweet est publié) pour rechercher #Seattle et, si le texte #Seattle est trouvé, pour mettre à jour un fichier dans Dropbox avec le texte du tweet. Dans un contexte d’entreprise, vous pourriez rechercher le nom de votre société et mettre à jour une base de données SQL avec le texte du tweet.
 
-1. Entrez *twitter* dans la zone de recherche de hello sur le Concepteur d’applications hello logique, puis sélectionnez hello **Twitter - lors de la validation d’un tweet nouvelle** déclencheur   
+1. Entrez *twitter* dans la zone de recherche du concepteur d’applications logiques, puis sélectionnez le déclencheur **Twitter - When a new tweet is posted** (Twitter - Quand un nouveau tweet est publié).   
    ![Image de déclencheur Twitter 1](./media/connectors-create-api-twitter/trigger-1.png)  
-2. Entrez *#Seattle* Bonjour **rechercher du texte** contrôle  
+2. Entrez *#Seattle* dans le contrôle **Search Text** (Texte de recherche).  
    ![Image de déclencheur Twitter 2](./media/connectors-create-api-twitter/trigger-2.png) 
 
-À ce stade, votre application logique a été configurée avec un déclencheur qui commence une série de hello autres déclencheurs et les actions dans le flux de travail hello. 
+À ce stade, votre application logique a été configurée avec un déclencheur qui lance une série d’autres déclencheurs et actions dans le flux de travail. 
 
 > [!NOTE]
-> Pour un toobe application logique fonctionnelle, il doit contenir au moins un déclencheur et une action. Suivez les étapes de hello de hello suivant section tooadd une action.  
+> Pour qu’une application logique soit fonctionnelle, elle doit contenir au moins un déclencheur et une action. Suivez la procédure décrite ci-après pour ajouter une action.  
 > 
 > 
 
 ## <a name="add-a-condition"></a>Ajouter une condition
-Étant donné que nous intéresse uniquement tweet d’utilisateurs avec plus de 50 utilisateurs, une condition qui confirme que le nombre de hello imposait doit d’abord être ajoutée toohello logique application.  
+Étant donné que nous sommes uniquement intéressés par les tweets publiés par des utilisateurs disposant de plus de 50 abonnés, nous devons commencer par ajouter à l’application logique une condition confirmant le nombre d’abonnés.  
 
-1. Sélectionnez **+ nouvelle étape** action de hello tooadd vous aimeriez tootake quand #Seattle se trouve dans un tweet nouveau  
+1. Sélectionnez **+ Nouvelle étape** pour ajouter l’action à exécuter quand le texte #Seattle est trouvé dans un nouveau tweet.  
    ![Image d’action Twitter 1](../../includes/media/connectors-create-api-twitter/action-1.png)  
-2. Sélectionnez hello **ajouter une condition** lien.  
+2. Sélectionnez le lien **Ajouter une condition**.  
    ![Image de condition Twitter 1](../../includes/media/connectors-create-api-twitter/condition-1.png)   
-   Cette opération ouvre hello **Condition** contrôle où vous pouvez vérifier des conditions telles que *est égal à*, *est inférieur à*, *est supérieur à*, *contient*, etc..  
+   Cette opération ouvre le contrôle **Condition** qui vous permet de sélectionner des conditions telles que *est égal à*, *est inférieur à*, *est supérieur à*, *contient*, etc.  
    ![Image de condition Twitter 2](../../includes/media/connectors-create-api-twitter/condition-2.png)   
-3. Sélectionnez hello **choisir une valeur** contrôle.  
-   Dans ce contrôle, vous pouvez sélectionner une ou plusieurs des propriétés de hello à partir des actions précédentes ou les déclencheurs en tant que valeur hello dont la condition sera évaluée tootrue ou false.
+3. Sélectionnez le contrôle **Choisir une valeur**.  
+   Dans ce contrôle, vous pouvez sélectionner une ou plusieurs des propriétés des actions ou déclencheurs précédents en tant que valeur dont la condition sera évaluée comme étant vraie ou fausse.
    ![Image de condition Twitter 3](../../includes/media/connectors-create-api-twitter/condition-3.png)   
-4. Sélectionnez hello **...**  liste de hello tooexpand de propriétés afin de voir toutes les propriétés de hello qui sont disponibles.        
+4. Sélectionnez le bouton **...** pour développer la liste de propriétés et visualiser toutes les propriétés disponibles.        
    ![Image de condition Twitter 4](../../includes/media/connectors-create-api-twitter/condition-4.png)   
-5. Sélectionnez hello **nombre de suivis** propriété.    
+5. Sélectionnez la propriété **Followers count** (Nombre d’abonnés).    
    ![Image de condition Twitter 5](../../includes/media/connectors-create-api-twitter/condition-5.png)   
-6. Notez que les suivis hello propriété count est présent dans le contrôle de valeurs hello.    
+6. Notez que la propriété Followers count (Nombre d’abonnés) figure désormais dans le contrôle de valeur.    
    ![Image de condition Twitter 6](../../includes/media/connectors-create-api-twitter/condition-6.png)   
-7. Sélectionnez **est supérieur à** à partir de la liste des opérateurs hello.    
+7. Sélectionnez **est supérieur à** dans la liste des opérateurs.    
    ![Image de condition Twitter 7](../../includes/media/connectors-create-api-twitter/condition-7.png)   
-8. Entrez 50 comme hello opérande pour hello *est supérieur à* opérateur.  
-   Hello condition est maintenant ajoutée. Enregistrez votre travail à l’aide de hello **enregistrer** lien dans le menu hello ci-dessus.    
+8. Entrez 50 en tant qu’opérande pour l’opérateur *est supérieur à*.  
+   La condition est à présent ajoutée. Enregistrez votre travail à l’aide du lien **Enregistrer** dans le menu supérieur.    
    ![Image de condition Twitter 8](../../includes/media/connectors-create-api-twitter/condition-8.png)   
 
 ## <a name="use-a-twitter-action"></a>Utiliser une action Twitter
-Une action est une opération effectuée par flux de travail hello défini dans une application logique. [En savoir plus sur les actions](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).  
+Une action est une opération effectuée par le flux de travail défini dans une application logique. [En savoir plus sur les actions](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).  
 
-Maintenant que vous avez ajouté un déclencheur, suivez ces étapes de tooadd une action qui publie un tweet nouveau contenu hello de tweet hello trouvés par le déclencheur de hello. Pour les besoins de hello de cette procédure pas à pas uniquement des tweets d’utilisateurs avec plus de 50 suivis seront publiées.  
+Une fois le déclencheur ajouté, procédez comme suit pour ajouter une action qui publiera un nouveau tweet avec le contenu des tweets trouvés par le déclencheur. Pour les besoins de cette procédure pas à pas, seuls les tweets émanant d’utilisateurs disposant de plus de 50 abonnés seront publiés.  
 
-Dans l’étape suivante de hello, vous allez ajouter une action Twitter qui publie un tweet à l’aide de certaines des propriétés de hello de chaque tweet qui a été validé par un utilisateur qui a plus de 50 suivis.  
+À l’étape suivante, vous allez ajouter une action Twitter qui publiera un tweet en utilisant certaines des propriétés de chaque tweet ayant été publié par un utilisateur comptant plus de 50 abonnés.  
 
-1. Sélectionnez **Ajouter une action**. Contrôle de recherche hello dans laquelle vous pouvez rechercher d’autres actions et les déclencheurs s’ouvre.  
+1. Sélectionnez **Ajouter une action**. Cette opération ouvre le contrôle de recherche qui vous permet de rechercher d’autres actions et déclencheurs.  
    ![Image de condition Twitter 9](../../includes/media/connectors-create-api-twitter/condition-9.png)   
-2. Entrez *twitter* dans la zone de recherche hello, puis sélectionnez hello **Twitter - valider un tweet** action. Cette opération ouvre hello **valider un tweet** contrôler où vous devrez entrer tous les détails pour tweet hello en cours de publication.      
+2. Entrez *twitter* dans la zone de recherche, puis sélectionnez l’action **Twitter - Post a tweet** (Twitter - Publier un tweet). Cette opération ouvre le contrôle **Post a tweet** (Publier un tweet) dans lequel vous entrerez tous les détails concernant le tweet en cours de publication.      
    ![Image d’action Twitter 1-5](../../includes/media/connectors-create-api-twitter/action-1-5.png)   
-3. Sélectionnez hello **tweetez-texte** contrôle. Toutes les sorties à partir des actions précédentes et des déclencheurs dans l’application logique de hello sont désormais visibles. Vous pouvez sélectionner une de ces et les utiliser en tant que partie du texte de tweet hello de tweet de nouveau hello.     
+3. Sélectionnez le contrôle **Tweet text** (Texte du tweet). Toutes les sorties des actions et déclencheurs précédents dans l’application logique sont désormais visibles. Vous pouvez sélectionner les actions et déclencheurs de votre choix et les utiliser comme partie du texte du nouveau tweet.     
    ![Image d’action Twitter 2](../../includes/media/connectors-create-api-twitter/action-2.png)   
 4. Sélectionnez **Nom d’utilisateur**.   
-5. Entrez *indique :* dans le contrôle de texte tweet hello. Effectuez cette opération immédiatement après avoir sélectionné le nom d’utilisateur.  
+5. Entrez *dit :* dans le contrôle du texte du tweet. Effectuez cette opération immédiatement après avoir sélectionné le nom d’utilisateur.  
 6. Sélectionnez *Tweet text* (Texte du tweet).       
    ![Image d’action Twitter 3](../../includes/media/connectors-create-api-twitter/action-3.png)   
-7. Enregistrez votre travail et envoyer un tweet avec hello #Seattle #sqlhelp tooactivate votre flux de travail.  
+7. Enregistrez votre travail et envoyez un tweet avec le mot-dièse #Seattle pour activer votre workflow.  
 
 
-## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
+## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
 
-Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/twitterconnector/). 
+Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/twitterconnector/). 
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md)

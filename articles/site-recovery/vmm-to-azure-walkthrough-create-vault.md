@@ -1,6 +1,6 @@
 ---
-title: "aaaSet d’un coffre pour tooAzure de réplication (avec System Center VMM) d’Hyper-V à l’aide d’Azure Site Recovery | Documents Microsoft"
-description: "Résume les étapes hello vous devez tooset d’un coffre pour tooAzure de réplication (avec VMM) d’Hyper-V à l’aide d’Azure Site Recovery"
+title: "Configurer un coffre pour la réplication Hyper-V (avec System Center VMM) vers Azure à l’aide d’Azure Site Recovery | Microsoft Docs"
+description: "Résume les étapes requises pour configurer un coffre pour la réplication Hyper-V (avec VMM) vers Azure à l’aide d’Azure Site Recovery"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/23/2017
 ms.author: raynew
-ms.openlocfilehash: f2c90f3c8b0a48db1e57fefd9829d29cffff8d43
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: af453ec27ba15ad8c59cf9f544584ad18dc0f74a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="step-7-set-up-a-vault-for-hyper-v-replication"></a>Étape 7 : configurer un coffre pour la réplication Hyper-V
 
-Cet article décrit comment configurer un coffre tooset et spécifier ce que vous souhaitez tooreplicate à partir de votre emplacement local, tooAzure à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) service Bonjour portail Azure.
+Cet article explique comment configurer un coffre, et spécifier ce que vous souhaitez répliquer à partir de l’emplacement local, sur Azure à l’aide du service [Azure Site Recovery](site-recovery-overview.md) dans le portail Azure.
 
 
-Ajouter des commentaires et questions bas hello de cet article, ou sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Publiez des commentaires et des questions au bas de cet article, ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 ## <a name="create-a-recovery-services-vault"></a>Créer un coffre Recovery Services
 
@@ -35,11 +35,11 @@ Ajouter des commentaires et questions bas hello de cet article, ou sur hello [Fo
 
 ## <a name="select-a-protection-goal"></a>Sélectionner un objectif de protection
 
-Sélectionnez les éléments tooreplicate, et où vous souhaitez que tooreplicate à.
+Sélectionnez les éléments à répliquer et l’emplacement de la réplication.
 
 1. Cliquez sur **Coffres Recovery Services** > coffre.
-2. Bonjour ressource Menu, cliquez sur **Site Recovery** > **préparer l’Infrastructure** > **objectif de Protection**.
-3. Dans **objectif de Protection**, sélectionnez **tooAzure** > **Oui, avec Hyper-V**. Sélectionnez **Oui** tooconfirm vous n VMM. 
+2. Dans le menu Ressource, cliquez sur **Site Recovery** > **Préparer l’infrastructure** > **Objectif de protection**.
+3. Dans **Objectif de protection**, sélectionnez **To Azure (Vers Azure)** > **, puis Oui, avec Hyper-V**. Sélectionnez **Oui** pour confirmer que vous utilisez VMM. 
 
      ![Sélectionner des objectifs](./media/vmm-to-azure-walkthrough-create-vault/choose-goals.png)
 
@@ -47,4 +47,4 @@ Sélectionnez les éléments tooreplicate, et où vous souhaitez que tooreplicat
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Accédez trop[étape 8 : configurer la source et cible](vmm-to-azure-walkthrough-source-target.md)
+Aller à l’[Étape 8 : configurer la source et la cible](vmm-to-azure-walkthrough-source-target.md)

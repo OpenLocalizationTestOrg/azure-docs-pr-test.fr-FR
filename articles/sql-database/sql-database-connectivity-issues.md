@@ -1,6 +1,6 @@
 ---
-title: aaaFix une erreur de connexion SQL, erreur temporaire | Documents Microsoft
-description: "Découvrez comment tootroubleshoot, diagnostiquer et empêcher une erreur de connexion SQL ou d’une erreur temporaire dans la base de données SQL Azure. "
+title: "Corriger une erreur de connexion SQL, erreur temporaire | Microsoft Docs"
+description: "Découvrez comment diagnostiquer, résoudre et empêcher une erreur de connexion SQL ou une erreur temporaire dans Base de données SQL Azure. "
 keywords: "connexion SQL,chaîne de connexion,problèmes de connectivité,erreur temporaire,erreur de connexion"
 services: sql-database
 documentationcenter: 
@@ -13,63 +13,63 @@ ms.custom: develop apps
 ms.workload: sql-database
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
+ms.topic: troubleshooting
 ms.date: 06/13/2017
 ms.author: daleche
-ms.openlocfilehash: d225e610b9e88170ab53ca16d615bd07220603cc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5260d6afd24ae0a9c60ee609b54f04bf901f219d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="troubleshoot-diagnose-and-prevent-sql-connection-errors-and-transient-errors-for-sql-database"></a>Diagnostiquer, résoudre et empêcher les erreurs de connexion SQL et les erreurs temporaires de Base de données SQL
-Cet article décrit comment tooprevent, résoudre les problèmes, diagnostiquer et limiter les erreurs de connexion et les erreurs temporaires que votre application cliente rencontre lorsqu’il interagit avec la base de données SQL Azure. Découvrez comment tooconfigure logique de nouvelle tentative, générer la chaîne de connexion hello et ajuster d’autres paramètres de connexion.
+Cet article décrit comment empêcher, résoudre, diagnostiquer et limiter les erreurs de connexion et les erreurs temporaires que votre application cliente rencontre lorsqu’elle interagit avec Base de données SQL Azure. Découvrez comment configurer une logique de nouvelle tentative, générer la chaîne de connexion et ajuster les autres paramètres de connexion.
 
 <a id="i-transient-faults" name="i-transient-faults"></a>
 
 ## <a name="transient-errors-transient-faults"></a>Erreurs temporaires
-Une erreur temporaire s’explique par une cause sous-jacente qui se résout d’elle-même en peu de temps. Une cause occasionnelle d’erreurs temporaires est hello système Azure déplace rapidement matériel ressources toobetter l’équilibrage de charge différentes charges de travail. La plupart de ces événements de reconfiguration se terminent souvent en moins de 60 secondes. Pendant ce laps de temps reconfiguration, peut avoir une connectivité émet tooAzure base de données SQL. Les applications se connectant tooAzure base de données SQL doit être générée tooexpect ces erreurs temporaires, handle en implémentant la logique dans leur code au lieu de les surfaces toousers comme des erreurs d’application de nouvelle tentative.
+Une erreur temporaire s’explique par une cause sous-jacente qui se résout d’elle-même en peu de temps. Les erreurs temporaires surviennent de temps en temps lorsque le système Azure réaffecte rapidement des ressources matérielles pour mieux équilibrer les différentes charges de travail. La plupart de ces événements de reconfiguration se terminent souvent en moins de 60 secondes. Durant cette reconfiguration, vous pouvez connaître des problèmes de connectivité avec Azure SQL Database. Les applications se connectant à Azure SQL Database doivent pouvoir tenir compte de ces erreurs temporaires, et les gérer en implémentant une logique de nouvelle tentative dans leur code au lieu de les exposer aux utilisateurs en cas d'erreurs d'application.
 
-Si votre programme client utilise ADO.NET, votre programme est informé d’erreur temporaire de hello par throw hello d’un **SqlException**. Hello **nombre** propriété peut être comparée à la liste hello des erreurs temporaires haut hello de rubrique de hello : [codes d’erreur SQL pour les applications clientes de base de données SQL](sql-database-develop-error-messages.md).
+Si votre programme client utilise ADO.NET, votre programme est informé de l’erreur temporaire par la levée d’une exception **SqlException**. La propriété **Number** peut être comparée à la liste des erreurs temporaires au début de la rubrique : [Codes d’erreur SQL pour les applications clientes SQL Database](sql-database-develop-error-messages.md).
 
 <a id="connection-versus-command" name="connection-versus-command"></a>
 
 ### <a name="connection-versus-command"></a>Connexion ou commande
-Vous allez tentatives de connexion de SQL hello ou établir de nouveau, selon les éléments suivants de hello :
+Vous allez réessayer la connexion SQL ou la rétablir, en fonction de ce qui suit :
 
-* **Une erreur temporaire se produit pendant une tentative de connexion**: connexion de hello doit être renouvelée après retarder pendant quelques secondes.
-* **Une erreur temporaire se produit pendant une commande de requête SQL**: commande hello ne doit pas être réessayée immédiatement. Au lieu de cela, après un délai de connexion de hello fraîchement convient. Commande hello peut être retentée.
+* **Une erreur temporaire survient pendant une tentative de connexion**: la connexion doit être retentée après un délai de quelques secondes.
+* **Une erreur temporaire se produit pendant une commande de requête SQL** : cette dernière ne doit pas être retentée immédiatement. Au lieu de cela, après qu’un certain délai se soit écoulé, la connexion doit être établie. Ensuite, la commande peut être relancée.
 
 <a id="j-retry-logic-transient-faults" name="j-retry-logic-transient-faults"></a>
 
 ### <a name="retry-logic-for-transient-errors"></a>Logique de nouvelle tentative pour les erreurs temporaires
 Les programmes clients qui rencontrent occasionnellement une erreur temporaire sont plus solides lorsqu’ils contiennent une logique de nouvelle tentative.
 
-Lorsque votre programme communique avec la base de données SQL Azure via un intergiciel (middleware) tiers 3e, obtenir des informations auprès du fournisseur de hello si hello intergiciel (middleware) contient la logique de nouvelle tentative pour les erreurs temporaires.
+Si votre programme communique avec Azure SQL Database via un intergiciel (middleware) tiers, renseignez-vous auprès du fournisseur pour savoir s’il contient une logique de nouvelle tentative pour les erreurs temporaires.
 
 <a id="principles-for-retry" name="principles-for-retry"></a>
 
 #### <a name="principles-for-retry"></a>Principes de nouvelle tentative
-* Une tentative de tooopen une connexion doit être renouvelé si l’erreur de hello est temporaire.
+* Une tentative d’ouverture de connexion doit être renouvelée si l’erreur est temporaire.
 * Une instruction SQL SELECT qui échoue avec une erreur temporaire ne doit pas être retentée directement.
   
-  * Au lieu de cela, établir une nouvelle connexion et recommencez hello SELECT.
-* Lorsqu’une instruction SQL UPDATE échoue avec une erreur temporaire, une nouvelle connexion doit être établie avant nouvelle tentative de mise à jour de hello.
+  * Au lieu de cela, établir une nouvelle connexion et relancer l’instruction SELECT.
+* Si une instruction SQL UPDATE échoue avec une erreur temporaire, une nouvelle connexion doit être établie avant que l’instruction UPDATE ne soit retentée.
   
-  * logique de nouvelle tentative Hello doit s’assurer que, soit en utilisant transaction de base de données entière hello terminée que hello ensemble de la transaction est restaurée.
+  * La logique de nouvelle tentative doit s’assurer que la transaction de base de données est complètement terminée ou que la transaction a été annulée.
 
 #### <a name="other-considerations-for-retry"></a>Autres considérations
-* Un programme de traitement par lots qui est démarré automatiquement après les heures de travail, et qui s’achève avant matin, supportent patient toovery avec des périodes de temps entre les nouvelles tentatives.
-* Un programme de l’interface utilisateur doit prendre en compte hello tendance toogive d’après une attente de trop longue.
+* Un programme de commandes démarré automatiquement après les heures de travail et qui s’achève avant le matin peut être très patient entre deux tentatives.
+* Un programme d’interface utilisateur doit prendre en compte la tendance qu’ont les hommes à l’abandon en cas d’attente trop longue.
   
-  * Toutefois, hello solution ne doit pas être tooretry après quelques secondes, car cette stratégie peut inonder le système hello avec des requêtes.
+  * Toutefois, la solution ne consiste pas à retenter l’opération à chaque seconde, car une telle stratégie pourrait submerger le système de requêtes.
 
 #### <a name="interval-increase-between-retries"></a>Augmentation de l’intervalle entre les tentatives
-Nous vous recommandons de patienter 5 secondes avant votre première tentative. Une nouvelle tentative après un délai inférieur à 5 secondes risque de service de cloud hello insurmontable. Pour chaque nouvelle tentative ultérieure délai de hello doit croître de manière exponentielle, jusqu'à tooa maximale de 60 secondes.
+Nous vous recommandons de patienter 5 secondes avant votre première tentative. Si vous effectuez une nouvelle tentative avant 5 secondes, vous risquez de submerger le service cloud. Pour chaque nouvelle tentative, le délai doit augmenter de manière exponentielle, sans dépasser 60 secondes.
 
-En savoir plus sur hello *la période de blocage* pour les clients qui utilisent ADO.NET est disponible dans [le regroupement de connexion SQL Server (ADO.NET)](http://msdn.microsoft.com/library/8xx3tyca.aspx).
+Pour en savoir plus sur la *période de blocage* des clients qui utilisent ADO.NET, consultez la page [Regroupement de connexions SQL Server (ADO.NET)](http://msdn.microsoft.com/library/8xx3tyca.aspx).
 
-Vous pouvez également vous tooset un nombre maximal de tentatives avant que le programme de hello s’arrête automatiquement.
+Vous pouvez également définir le nombre maximal de tentatives avant l’arrêt automatique du programme.
 
 #### <a name="code-samples-with-retry-logic"></a>Exemples de code avec la logique de nouvelle tentative
 Vous trouverez des exemples de code avec logique de nouvelle tentative dans divers langages de programmation ici :
@@ -79,92 +79,92 @@ Vous trouverez des exemples de code avec logique de nouvelle tentative dans dive
 <a id="k-test-retry-logic" name="k-test-retry-logic"></a>
 
 #### <a name="test-your-retry-logic"></a>Tester votre logique de nouvelle tentative
-tootest votre logique de nouvelle tentative, vous devez simuler ou provoquer une erreur que peuvent être corrigées pendant que votre programme est en cours d’exécution.
+Pour tester la logique de nouvelle tentative, vous devez simuler ou provoquer une erreur pouvant être corrigée alors que votre programme est en cours d’exécution.
 
-##### <a name="test-by-disconnecting-from-hello-network"></a>En déconnectant hello réseau de test
-Vous pouvez tester votre logique de nouvelle tentative consiste toodisconnect votre ordinateur client à partir de hello réseau pendant l’exécution du programme de hello. Erreur de Hello sera :
+##### <a name="test-by-disconnecting-from-the-network"></a>Test par le biais de la déconnexion du réseau
+Pour tester votre logique de nouvelle tentative, vous pouvez déconnecter votre ordinateur client du réseau pendant l’exécution du programme. Vous obtiendrez l’erreur suivante :
 
 * **SqlException.Number** = 11001
 * Message : « Hôte inconnu »
 
-Comme tout d’abord, la partie de hello nouvelle tentative, votre programme peut corriger des fautes d’orthographe hello et tentez ensuite tooconnect.
+Dans le cadre de la première nouvelle tentative, votre programme peut corriger les fautes d’orthographe et tenter de se connecter.
 
-toomake ce pratique, vous déconnecter votre ordinateur à partir du réseau de hello avant de commencer votre programme. Ensuite, votre programme reconnaît un paramètre d’exécution qui provoque hello du programme :
+Pour concrétiser cela, vous pouvez débrancher votre ordinateur du réseau avant lancer votre programme. Votre programme reconnaît alors un paramètre d’exécution qui fait en sorte que le programme :
 
-1. Ajoutez temporairement 11001 liste tooits des erreurs tooconsider comme temporaire.
+1. Ajoute temporairement 11001 à sa liste d’erreurs à considérer comme provisoire.
 2. Tente sa première connexion comme d’habitude.
-3. Une fois l’erreur de hello est interceptée, supprimez 11001 hello liste.
-4. Afficher un message indiquant l’ordinateur de hello tooplug hello utilisateur dans un réseau de hello.
-   * Suspendre davantage d’exécution à l’aide soit hello **Console.ReadLine** méthode ou une boîte de dialogue avec un bouton OK. utilisateur de Hello appuie sur la touche hello une fois que l’ordinateur de hello connecté hello réseau.
-5. Essayez à nouveau tooconnect, attendu de réussite.
+3. Une fois l’erreur détectée, supprime 11001 de sa liste.
+4. Affiche un message indiquant à l’utilisateur de connecter l’ordinateur au réseau.
+   * Suspend toute exécution à l’aide de la méthode **Console.ReadLine** ou d’une boîte de dialogue contenant un bouton OK. L’utilisateur appuie sur la touche Entrée après la connexion de l’ordinateur au réseau.
+5. Essaie de nouveau de se connecter, et attend la réussite.
 
-##### <a name="test-by-misspelling-hello-database-name-when-connecting"></a>Lors de la connexion de test par le nom de base de données hello faute d’orthographe
-Votre programme peut faire volontairement mal orthographié le nom d’utilisateur hello avant la première tentative de connexion hello. Erreur de Hello sera :
+##### <a name="test-by-misspelling-the-database-name-when-connecting"></a>Teste en fournissant un nom de base de données mal orthographié au moment de la connexion
+Votre programme peut délibérément mal orthographier le nom d’utilisateur avant la première tentative de connexion. Vous obtiendrez l’erreur suivante :
 
 * **SqlException.Number** = 18456
 * Message : « Échec de la connexion pour l’utilisateur 'WRONG_MyUserName' »
 
-Comme tout d’abord, la partie de hello nouvelle tentative, votre programme peut corriger des fautes d’orthographe hello et tentez ensuite tooconnect.
+Dans le cadre de la première nouvelle tentative, votre programme peut corriger les fautes d’orthographe et tenter de se connecter.
 
-toomake ce pratique, votre programme peut reconnaître un paramètre d’exécution qui provoque hello du programme :
+Pour mettre cela en pratique, votre programme peut reconnaître un paramètre d’exécution, qui fait en sorte que le programme :
 
-1. Ajoutez temporairement 18456 liste tooits des erreurs tooconsider comme temporaire.
-2. Ajouter volontairement les nom d’utilisateur toohello 'WRONG_'.
-3. Une fois l’erreur de hello est interceptée, supprimez 18456 hello liste.
-4. Supprimez 'WRONG_' hello nom d’utilisateur.
-5. Essayez à nouveau tooconnect, attendu de réussite.
+1. Ajoute temporairement 18456 à sa liste d’erreurs à prendre en compte comme provisoire.
+2. Ajoute volontairement ’WRONG_’ au nom d’utilisateur.
+3. Une fois l’erreur détectée, supprime 18456 de la liste.
+4. Supprime ’WRONG_’ du nom d’utilisateur.
+5. Essaie de nouveau de se connecter, et attend la réussite.
 
 <a id="net-sqlconnection-parameters-for-connection-retry" name="net-sqlconnection-parameters-for-connection-retry"></a>
 
 ### <a name="net-sqlconnection-parameters-for-connection-retry"></a>Paramètres de connexion .NET Sql pour les nouvelles tentatives de connexion
-Si votre programme client connecte tootooAzure base de données SQL à l’aide de la classe de .NET Framework hello **System.Data.SqlClient.SqlConnection**, vous devez utiliser .NET 4.6.1 ou version ultérieure (ou .NET Core) afin de vous pouvez tirer parti de sa fonctionnalité de nouvelle tentative de connexion. Détails de la fonctionnalité de hello sont [ici](http://go.microsoft.com/fwlink/?linkid=393996).
+Si votre programme client se connecte à Azure SQL Database à l’aide de la classe .NET Framework **System.Data.SqlClient.SqlConnection**, vous devez utiliser .NET 4.6.1 ou une version ultérieure (ou .NET Core) afin de pouvoir tirer parti de la fonctionnalité de nouvelle tentative de connexion. Les détails de la fonctionnalité sont disponibles [ici](http://go.microsoft.com/fwlink/?linkid=393996).
 
 <!--
-2015-11-30, FwLink 393996 points toodn632678.aspx, which links tooa downloadable .docx related tooSqlClient and SQL Server 2014.
+2015-11-30, FwLink 393996 points to dn632678.aspx, which links to a downloadable .docx related to SqlClient and SQL Server 2014.
 -->
 
 
-Lorsque vous générez hello [chaîne de connexion](http://msdn.microsoft.com/library/System.Data.SqlClient.SqlConnection.connectionstring.aspx) pour votre **SqlConnection** de l’objet, vous devez coordonner les valeurs hello entre hello paramètres suivants :
+Lorsque vous générez la [chaîne de connexion](http://msdn.microsoft.com/library/System.Data.SqlClient.SqlConnection.connectionstring.aspx) pour votre objet **SqlConnection** , vous devez coordonner les valeurs entre les paramètres suivants :
 
 * ConnectRetryCount &nbsp;&nbsp;*(La valeur par défaut est 1. La plage s’étend de 0 à 255.)*
 * ConnectRetryInterval &nbsp;&nbsp;*(La valeur par défaut est 1 seconde. La plage s’étend de 1 à 60.)*
 * Délai d’expiration de connexion &nbsp;&nbsp;*(La valeur par défaut est 15 secondes. La plage s’étend de 0 à 2147483647.)*
 
-Plus précisément, vos valeurs choisies doivent rendre hello suivant true d’égalité :
+Plus précisément, les valeurs que vous choisissez doivent vérifier la formule suivante :
 
 * Délai d’expiration de connexion = ConnectRetryCount × ConnectionRetryInterval
 
-Par exemple, si hello count = 3 et l’intervalle = 10 secondes, un délai d’expiration uniquement 29 secondes pas assez donnerait système de hello suffisamment de temps pour son nouvelle 3e et dernière tentative de connexion : 29 < 3 * 10.
+Par exemple, si ConnectRetryCount = 3 et ConnectionRetryInterval = 10 secondes, un délai d’expiration de 29 secondes seulement ne laissera pas suffisamment de temps au système pour sa 3e et dernière tentative de connexion, 29 étant inférieur à 3 × 10.
 
 <a id="connection-versus-command" name="connection-versus-command"></a>
 
 ### <a name="connection-versus-command"></a>Connexion ou commande
-Hello **ConnectRetryCount** et **ConnectRetryInterval** paramètres permettent de votre **SqlConnection** opération hello de nouvelle tentative d’objet de connexion sans indiquant ou déranger votre programme, telle que le programme de contrôle de tooyour de retour. nouvelles tentatives de Hello peuvent se produire dans hello suivant situations :
+Les paramètres **ConnectRetryCount** et **ConnectRetryInterval** permettent à votre objet **SqlConnection** de recommencer l’opération de connexion sans notification à votre programme ou renvoi du contrôle à celui-ci. Les nouvelles tentatives peuvent se produire dans les situations suivantes :
 
 * Appel de méthode mySqlConnection.Open
 * Appel de méthode mySqlConnection.Execute
 
-Il existe une subtilité. Si une erreur temporaire se produit pendant que votre *requête* est en cours d’exécution, votre **SqlConnection** ne l’opération de connexion pas de nouvelle tentative hello et certainement qu’il ne tente pas de votre requête de l’objet. Toutefois, **SqlConnection** très rapidement les vérifications hello connexion avant d’envoyer votre requête pour l’exécution. Si la vérification rapide de hello détecte un problème de connexion, **SqlConnection** l’opération hello de nouvelles tentatives de connexion. Si la nouvelle tentative de hello réussit, vous interrogez est envoyé pour l’exécution.
+Il existe une subtilité. Si une erreur temporaire se produit pendant l’exécution de votre *requête* , votre objet **SqlConnection** ne retente pas l’opération de connexion, et ne relance certainement pas votre requête. Toutefois, **SqlConnection** vérifie très rapidement la connexion avant d’envoyer votre requête pour exécution. Si la vérification rapide détecte un problème de connexion, **SqlConnection** réessaye l’opération de connexion. Si la nouvelle tentative réussit, votre requête est envoyée pour exécution.
 
 #### <a name="should-connectretrycount-be-combined-with-application-retry-logic"></a>Le paramètre ConnectRetryCount doit-il être combiné avec la logique de nouvelle tentative d’application ?
-Supposons que votre application possède une logique de nouvelle tentative personnalisée robuste. Il peut réessayer hello 4 fois l’opération de connexion. Si vous ajoutez **ConnectRetryInterval** et **ConnectRetryCount** = 3 tooyour chaîne de connexion, vous augmenterez too4 de nombre de nouvelles tentatives hello * 3 = 12 effectue une nouvelle tentative. Vous ne souhaitez peut-être pas un si grand nombre de nouvelles tentatives.
+Supposons que votre application possède une logique de nouvelle tentative personnalisée robuste. Elle peut réessayer l’opération de connexion 4 fois. Si vous ajoutez **ConnectRetryInterval** et **ConnectRetryCount** = 3 à votre chaîne de connexion, vous augmentez le nombre de nouvelles tentatives à 4 * 3, soit 12 nouvelles tentatives. Vous ne souhaitez peut-être pas un si grand nombre de nouvelles tentatives.
 
 <a id="a-connection-connection-string" name="a-connection-connection-string"></a>
 
-## <a name="connections-tooazure-sql-database"></a>TooAzure de connexions de base de données SQL
+## <a name="connections-to-azure-sql-database"></a>Connexion à Azure SQL Database
 <a id="c-connection-string" name="c-connection-string"></a>
 
 ### <a name="connection-connection-string"></a>Connexion : chaîne de connexion
-chaîne de connexion Hello nécessaire pour la connexion tooAzure base de données SQL est légèrement différente de la chaîne hello pour la connexion tooMicrosoft SQL Server. Vous pouvez copier la chaîne de connexion hello pour votre base de données à partir de hello [portail Azure](https://portal.azure.com/).
+La chaîne de connexion nécessaire à la connexion à Azure SQL Database est légèrement différente de celle qui sert à se connecter à Microsoft SQL Server. Il est possible de copier la chaîne de connexion de votre base de données à partir du [portail Azure](https://portal.azure.com/).
 
 [!INCLUDE [sql-database-include-connection-string-20-portalshots](../../includes/sql-database-include-connection-string-20-portalshots.md)]
 
 <a id="b-connection-ip-address" name="b-connection-ip-address"></a>
 
 ### <a name="connection-ip-address"></a>Connexion : adresse IP
-Vous devez configurer hello de base de données SQL server tooaccept communication à partir de l’adresse IP de hello d’ordinateur hello qui héberge votre programme client. Pour ce faire, modification des paramètres de pare-feu hello via hello [portail Azure](https://portal.azure.com/).
+Vous devez configurer le serveur de base de données SQL pour accepter les communications à partir de l’adresse IP de l’ordinateur qui héberge votre programme client. Pour ce faire, vous devez modifier les paramètres du pare-feu via le [portail Azure](https://portal.azure.com/).
 
-Si vous oubliez d’adresse IP de hello tooconfigure, votre programme échouera avec un message d’erreur pratique qui indique les adresses IP nécessaires hello.
+Si vous oubliez de configurer l’adresse IP, votre programme échouera en envoyant un message d’erreur pratique indiquant l’adresse IP nécessaire.
 
 [!INCLUDE [sql-database-include-ip-address-22-portal](../../includes/sql-database-include-ip-address-22-v12portal.md)]
 
@@ -173,11 +173,11 @@ Pour plus d’informations, consultez [Procédure : configuration des paramètr
 <a id="c-connection-ports" name="c-connection-ports"></a>
 
 ### <a name="connection-ports"></a>Connexion : ports
-En règle générale, vous devez uniquement tooensure que le port 1433 est ouvert pour les communications sortantes sur ordinateur hello hébergeant programme client.
+En règle générale, vous devez simplement vous assurer que le port 1433 est ouvert pour la communication sortante sur l’ordinateur qui héberge le programme client.
 
-Par exemple, lorsque votre programme client est hébergé sur un ordinateur Windows, hello le pare-feu Windows sur l’ordinateur hôte de hello vous permet de tooopen le port 1433 :
+Par exemple, lorsque votre programme client est hébergé sur un ordinateur Windows, le pare-feu Windows sur l’ordinateur hôte vous permet d’ouvrir le port 1433 :
 
-1. Ouvrez le panneau de configuration de hello
+1. Ouvrir le panneau de configuration
 2. &gt; Tous les éléments du Panneau de configuration
 3. &gt; Pare-feu Windows
 4. &gt; Paramètres avancés
@@ -192,16 +192,16 @@ Pour obtenir des informations générales sur la configuration des ports et l’
 <a id="d-connection-ado-net-4-5" name="d-connection-ado-net-4-5"></a>
 
 ### <a name="connection-adonet-461"></a>Connexion : ADO.NET 4.6.1
-Si votre programme utilise les classes ADO.NET comme **System.Data.SqlClient.SqlConnection** tooconnect tooAzure base de données SQL, nous vous recommandons d’utiliser .NET Framework version 4.6.1 ou une version ultérieure.
+Si votre programme utilise des classes ADO.NET comme **System.Data.SqlClient.SqlConnection** pour se connecter à Azure SQL Database, nous vous recommandons d’utiliser .NET Framework version 4.6.1 ou ultérieure.
 
 ADO.NET 4.6.1 :
 
-* Pour la base de données SQL Azure, il existe une meilleure fiabilité, lorsque vous ouvrez une connexion à l’aide de hello **SqlConnection.Open** (méthode). Hello **ouvrir** méthode intègre désormais une meilleure mécanismes de nouvelle tentative efforts dans les erreurs de tootransient de réponse, pour certaines erreurs au sein de la période de délai de connexion hello.
-* Prend en charge le regroupement de connexions. Cela inclut une vérification efficace qui hello connexion fonctionne objet il donne à votre programme.
+* Pour Azure SQL Database, l’ouverture d’une connexion à l’aide de la méthode **SqlConnection.Open** garantit une meilleure fiabilité. La méthode **Open** intègre désormais de meilleurs mécanismes de nouvelle tentative en réponse à des défaillances temporaires, pour certaines erreurs se produisant avant le délai d’expiration de la connexion.
+* Prend en charge le regroupement de connexions. Cela contribue à garantir que l’objet de connexion qu’il donne à votre programme fonctionne.
 
-Lorsque vous utilisez un objet de connexion à partir d’un pool de connexions, nous recommandons que votre programme Fermez temporairement les connexion hello lorsque vous l’utilisez pas immédiatement. Ouvrir une connexion n’est pas coûteuse hello création d’une connexion consiste.
+Lorsque vous utilisez un objet de connexion à partir d’un pool de connexions, nous conseillons de faire en sorte que votre programme interrompe temporairement la connexion lorsque vous ne l’utilisez pas immédiatement. La réouverture d’une connexion n’est pas aussi coûteuse que la création d’une nouvelle connexion.
 
-Si vous utilisez ADO.NET 4.0 ou version antérieure, nous vous conseillons toohello dernière ADO.NET.
+Si vous utilisez ADO.NET 4.0 ou une version antérieure, nous vous recommandons d’effectuer une mise à niveau vers la dernière version d’ADO.NET.
 
 * Depuis novembre 2015, [ADO.NET 4.6.1](http://blogs.msdn.com/b/dotnet/archive/2015/11/30/net-framework-4-6-1-is-now-available.aspx)est disponible au téléchargement.
 
@@ -211,7 +211,7 @@ Si vous utilisez ADO.NET 4.0 ou version antérieure, nous vous conseillons toohe
 <a id="d-test-whether-utilities-can-connect" name="d-test-whether-utilities-can-connect"></a>
 
 ### <a name="diagnostics-test-whether-utilities-can-connect"></a>Diagnostic : vérifier si les utilitaires peuvent se connecter
-Si votre programme échoue tooconnect tooAzure base de données SQL, une option de diagnostic est tooconnect tootry avec un programme de l’utilitaire. Dans l’idéal, l’utilitaire de hello se connecte à l’aide de hello même bibliothèque que votre programme utilise.
+Si votre programme ne peut pas se connecter à Azure SQL Database, une option de diagnostic consiste à essayer de se connecter à un programme utilitaire. Dans l’idéal, l’utilitaire se connecte à l’aide de la bibliothèque que votre programme utilise.
 
 Sur un ordinateur Windows, vous pouvez essayer ces utilitaires :
 
@@ -222,16 +222,16 @@ Une fois connecté, faites un test avec une courte requête SQL SELECT.
 
 <a id="f-diagnostics-check-open-ports" name="f-diagnostics-check-open-ports"></a>
 
-### <a name="diagnostics-check-hello-open-ports"></a>Diagnostics : Vérifiez les ports ouverts hello
-Supposons que vous pensez que les tentatives de connexion échouent en raison de problèmes de tooport. Sur votre ordinateur, vous pouvez exécuter un utilitaire qui génère un rapport sur les configurations de port hello.
+### <a name="diagnostics-check-the-open-ports"></a>Diagnostic : vérifier les ports ouverts
+Supposons que vous soupçonnez que les tentatives de connexion échouent en raison de problèmes de port. Depuis votre ordinateur, vous pouvez exécuter un utilitaire qui génère des rapports sur les configurations de port.
 
-Sur Linux hello utilitaires suivants peuvent être utiles :
+Sous Linux, les utilitaires suivants peuvent vous être utiles :
 
 * `netstat -nap`
 * `nmap -sS -O 127.0.0.1`
-  * (Remplacez hello exemple valeur toobe votre adresse IP.)
+  * (Modifiez la valeur de l’exemple pour refléter votre adresse IP).
 
-Sur Windows hello [PortQry.exe](http://www.microsoft.com/download/details.aspx?id=17148) utilitaire peut être utile. Voici une exécution de l’exemple qui interrogées situation de port hello sur un serveur de base de données SQL Azure, et qui a été exécuté sur un ordinateur portable :
+Sous Windows, l’utilitaire [PortQry.exe](http://www.microsoft.com/download/details.aspx?id=17148) peut s’avérer utile. Voici une exécution de l’exemple qui demandé l’état d’un port sur un serveur de base de données SQL Azure, et qui a été exécuté sur un ordinateur portable :
 
 ```
 [C:\Users\johndoe\]
@@ -240,8 +240,8 @@ Sur Windows hello [PortQry.exe](http://www.microsoft.com/download/details.aspx?i
 Querying target system called:
  johndoesvr9.database.windows.net
 
-Attempting tooresolve name tooIP address...
-Name resolved too23.100.117.95
+Attempting to resolve name to IP address...
+Name resolved to 23.100.117.95
 
 querying...
 TCP port 1433 (ms-sql-s service): LISTENING
@@ -256,11 +256,11 @@ TCP port 1433 (ms-sql-s service): LISTENING
 ### <a name="diagnostics-log-your-errors"></a>Diagnostic : consignation des erreurs dans un journal
 Un problème intermittent est parfois mieux diagnostiqué par la détection d’une tendance générale observée sur plusieurs jours ou semaines.
 
-Votre client peut aider à consigner toutes les erreurs qu’il rencontre un diagnostic. Vous pouvez être entrées de journal en mesure de toocorrelate hello avec les données d’erreur base de données SQL Azure se connecte lui-même en interne.
+Votre client peut aider à consigner toutes les erreurs qu’il rencontre un diagnostic. Vous pourrez mettre en corrélation les entrées de journal avec des informations sur les erreurs de base consignées en interne par Azure SQL Database elle-même.
 
-Enterprise Library 6 (EntLib60) offre tooassist de classes managée .NET avec la journalisation :
+Enterprise Library 6 (EntLib60) offre des classes .NET gérées afin de faciliter la journalisation :
 
-* [5 - en tant que simple comme relevant hors tension un journal : à l’aide de hello bloc d’Application de journalisation](http://msdn.microsoft.com/library/dn440731.aspx)
+* [5 - Un jeu d’enfants : utilisation du bloc d’application de journalisation](http://msdn.microsoft.com/library/dn440731.aspx)
 
 <a id="h-diagnostics-examine-logs-errors" name="h-diagnostics-examine-logs-errors"></a>
 
@@ -269,13 +269,13 @@ Voici certaines instructions Transact-SQL SELECT qui permettent d’interroger l
 
 | Interrogation de journaux | Description |
 |:--- |:--- |
-| `SELECT e.*`<br/>`FROM sys.event_log AS e`<br/>`WHERE e.database_name = 'myDbName'`<br/>`AND e.event_category = 'connectivity'`<br/>`AND 2 >= DateDiff`<br/>&nbsp;&nbsp;`(hour, e.end_time, GetUtcDate())`<br/>`ORDER BY e.event_category,`<br/>&nbsp;&nbsp;`e.event_type, e.end_time;` |Hello [sys.event_log](http://msdn.microsoft.com/library/dn270018.aspx) affichage propose des informations sur les événements individuels, y compris celles qui peut provoquer des erreurs temporaires ou des défaillances de connectivité.<br/><br/>Dans l’idéal, vous pouvez mettre en corrélation hello **heure_début** ou **end_time** valeurs avec des informations lorsque votre programme client a rencontré des problèmes.<br/><br/>**Conseil :** vous devez vous connecter toohello **master** de base de données toorun cela. |
-| `SELECT c.*`<br/>`FROM sys.database_connection_stats AS c`<br/>`WHERE c.database_name = 'myDbName'`<br/>`AND 24 >= DateDiff`<br/>&nbsp;&nbsp;`(hour, c.end_time, GetUtcDate())`<br/>`ORDER BY c.end_time;` |Hello [sys.database_connection_stats](http://msdn.microsoft.com/library/dn269986.aspx) affichage offre le décompte agrégé des types d’événements de diagnostic supplémentaires.<br/><br/>**Conseil :** vous devez vous connecter toohello **master** de base de données toorun cela. |
+| `SELECT e.*`<br/>`FROM sys.event_log AS e`<br/>`WHERE e.database_name = 'myDbName'`<br/>`AND e.event_category = 'connectivity'`<br/>`AND 2 >= DateDiff`<br/>&nbsp;&nbsp;`(hour, e.end_time, GetUtcDate())`<br/>`ORDER BY e.event_category,`<br/>&nbsp;&nbsp;`e.event_type, e.end_time;` |La vue [sys.event_log](http://msdn.microsoft.com/library/dn270018.aspx) propose des informations sur les événements individuels, notamment ceux qui peuvent causer des erreurs temporaires ou des problèmes de connectivité.<br/><br/>Dans l’idéal, vous pouvez mettre en corrélation les valeurs **start_time** ou **end_time** avec les informations indiquant quand votre programme client a rencontré des problèmes.<br/><br/>**CONSEIL :** vous devez vous connecter à la base de données **principale** pour exécuter cette procédure. |
+| `SELECT c.*`<br/>`FROM sys.database_connection_stats AS c`<br/>`WHERE c.database_name = 'myDbName'`<br/>`AND 24 >= DateDiff`<br/>&nbsp;&nbsp;`(hour, c.end_time, GetUtcDate())`<br/>`ORDER BY c.end_time;` |La vue [sys.database_connection_stats](http://msdn.microsoft.com/library/dn269986.aspx) agrège des nombres de différents types d’événements, pour permettre des diagnostics supplémentaires.<br/><br/>**CONSEIL :** vous devez vous connecter à la base de données **principale** pour exécuter cette procédure. |
 
 <a id="d-search-for-problem-events-in-the-sql-database-log" name="d-search-for-problem-events-in-the-sql-database-log"></a>
 
-### <a name="diagnostics-search-for-problem-events-in-hello-sql-database-log"></a>Diagnostics : Rechercher des événements de problème dans le journal de base de données SQL hello
-Vous pouvez rechercher des entrées sur les événements du problème dans le journal hello de base de données SQL Azure. Essayez de hello suivant l’instruction Transact-SQL SELECT Bonjour **master** base de données :
+### <a name="diagnostics-search-for-problem-events-in-the-sql-database-log"></a>Diagnostics : Rechercher les événements liés aux problèmes dans le journal de base de données SQL
+Vous pouvez rechercher des entrées sur les problèmes survenus dans le journal de base de données SQL Azure. Essayez l’instruction Transact-SQL SELECT qui suit dans la base de données **MASTER** :
 
 ```
 SELECT
@@ -304,7 +304,7 @@ ORDER BY
 
 
 #### <a name="a-few-returned-rows-from-sysfnxetelemetryblobtargetreadfile"></a>quelques-unes d’entre elles ont renvoyé des lignes de sys.fn_xe_telemetry_blob_target_read_file
-Vous trouverez plus loin une ligne renvoyée qui ressemble à ce qui suit . les valeurs null Hello indiquées ne sont pas souvent null dans d’autres lignes.
+Vous trouverez plus loin une ligne renvoyée qui ressemble à ce qui suit . Les valeurs null indiquées ne sont en général pas nulles dans d’autres lignes.
 
 ```
 object_name                   timestamp                    error  state  is_success  database_name
@@ -316,25 +316,25 @@ database_xml_deadlock_report  2015-10-16 20:28:01.0090000  NULL   NULL   NULL   
 <a id="l-enterprise-library-6" name="l-enterprise-library-6"></a>
 
 ## <a name="enterprise-library-6"></a>Enterprise Library 6
-Enterprise Library 6 (EntLib60) est une infrastructure de classes .NET qui vous permet d’implémenter des clients robustes de services de cloud computing, y compris service de base de données SQL Azure hello. Vous pouvez localiser la zone tooeach dédié de rubriques dans lequel EntLib60 peut aider en premier sur le site :
+Enterprise Library 6 (EntLib60) est une infrastructure de classes .NET qui vous permet d’implémenter des clients de cloud fiables, et notamment le service Azure SQL Database. Vous pouvez rechercher des rubriques dédiées à chaque zone dans laquelle EntLib60 peut être utile en visitant dans un premier temps :
 
 * [Enterprise Library 6 - avril 2013](http://msdn.microsoft.com/library/dn169621%28v=pandp.60%29.aspx)
 
 La logique de nouvelle tentative pour la gestion des erreurs temporaires est un domaine où EntLib60 peut être utile :
 
-* [4 - perseverance, le Secret de toutes les luttes : à l’aide de hello bloc applicatif de défaillance de gestion](http://msdn.microsoft.com/library/dn440719%28v=pandp.60%29.aspx)
+* [4 - La persévérance, le secret de la réussite : utilisation du bloc applicatif de gestion des erreurs temporaires](http://msdn.microsoft.com/library/dn440719%28v=pandp.60%29.aspx)
 
 > [!NOTE]
-> Hello code source pour EntLib60 est disponible pour le public [télécharger](http://go.microsoft.com/fwlink/p/?LinkID=290898). Microsoft n’a aucune fonctionnalité supplémentaire de plans toomake mises à jour ou la maintenance des mises à jour tooEntLib.
+> Le code source pour EntLib60 est disponible au public en [téléchargement](http://go.microsoft.com/fwlink/p/?LinkID=290898). Microsoft ne prévoit pas d’apporter des mises à jour de maintenance ou de fonctionnalité supplémentaires à EntLib.
 > 
 > 
 
 <a id="entlib60-classes-for-transient-errors-and-retry" name="entlib60-classes-for-transient-errors-and-retry"></a>
 
 ### <a name="entlib60-classes-for-transient-errors-and-retry"></a>Classes EntLib60 pour les erreurs temporaires et les nouvelles tentatives
-Hello EntLib60 classes suivantes est particulièrement utile pour la logique de nouvelle tentative. Tous ces sont dans ou sont encore plus sous, hello d’espace de noms **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling**:
+Les classes EntLib60 suivantes sont particulièrement utiles pour la logique de nouvelle tentative. Toutes se trouvent dans ou sous l’espace de noms **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** :
 
-*Dans l’espace de noms hello **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling**:*
+*Dans l’espace de noms **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling** :*
 
 * **RetryPolicy**
   
@@ -345,35 +345,35 @@ Hello EntLib60 classes suivantes est particulièrement utile pour la logique de 
   
   * **ExecuteCommand**
 
-Dans l’espace de noms hello **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TestSupport**:
+Dans l’espace de noms **Microsoft.Practices.EnterpriseLibrary.TransientFaultHandling.TestSupport**:
 
 * **AlwaysTransientErrorDetectionStrategy**
 * **NeverTransientErrorDetectionStrategy**
 
-Voici tooinformation liens sur EntLib60 :
+Voici des liens vers des informations sur EntLib60 :
 
-* Libre [télécharger de Book : tooMicrosoft Guide du développeur Enterprise Library, 2nd Edition](http://www.microsoft.com/download/details.aspx?id=41145)
+* [Livre électronique : Guide du développeur de Microsoft Enterprise Library, 2e édition](http://www.microsoft.com/download/details.aspx?id=41145)
 * Meilleures pratiques : [Conseils généraux sur les nouvelles tentatives](../best-practices-retry-general.md) comprend une excellente présentation approfondie de la logique de nouvelle tentative.
 * Téléchargement NuGet de [Bibliothèque d’entreprise - Bloc applicatif de gestion des erreurs 6.0 temporaires de Microsoft](http://www.nuget.org/packages/EnterpriseLibrary.TransientFaultHandling/)
 
 <a id="entlib60-the-logging-block" name="entlib60-the-logging-block"></a>
 
-### <a name="entlib60-hello-logging-block"></a>EntLib60 : bloc de journalisation hello
-* bloc de journalisation Hello est une solution souple et configurable qui vous permet de :
+### <a name="entlib60-the-logging-block"></a>EntLib60 : le bloc de journalisation
+* Le bloc de journalisation est une solution très flexible et configurable qui vous permet de :
   
   * Créer et stocker des messages du journal dans de nombreux emplacements.
   * Classer et filtrer les messages.
   * Recueillir des informations contextuelles utiles pour le débogage et le suivi, ainsi que pour les exigences d’audit et de journalisation en général.
-* bloc de journalisation Hello résume hello journalisation des fonctionnalités à partir de la destination du journal hello afin que le code de l’application hello est cohérent, quelle que soit l’emplacement de hello et le type de banque de journalisation hello cible.
+* Le bloc de journalisation extrait les fonctionnalités issues de la destination de journalisation de façon que le code d’application soit cohérent, quels que soient l’emplacement et le type du magasin de journalisation cible.
 
-Pour plus d’informations, consultez : [5 - en tant que simple comme relevant hors tension un journal : à l’aide de hello bloc d’Application de journalisation](https://msdn.microsoft.com/library/dn440731%28v=pandp.60%29.aspx)
+Pour plus de détails, consultez [5 - Un jeu d’enfants : utilisation du bloc d’application de journalisation](https://msdn.microsoft.com/library/dn440731%28v=pandp.60%29.aspx)
 
 <a id="entlib60-istransient-method-source-code" name="entlib60-istransient-method-source-code"></a>
 
 ### <a name="entlib60-istransient-method-source-code"></a>Code source de la méthode EntLib60 IsTransient
-Ensuite, à partir de hello **SqlDatabaseTransientErrorDetectionStrategy** de classe, est le code source hello c# hello **IsTransient** (méthode). code source de Hello clarifie les erreurs ont été analysés toobe temporaire et worthy de nouvelle tentative, à compter d’avril 2013.
+Ensuite, à partir de la classe **SqlDatabaseTransientErrorDetectionStrategy**, le code source C# pour la méthode **IsTransient**. Le code source clarifie les erreurs considérées comme temporaires qui peuvent faire l’objet de nouvelles tentatives depuis avril 2013.
 
-Nombreuses **//comment** lignes ont été supprimées de cette lisibilité tooemphasize de copie.
+De nombreuses lignes **//comment** ont été supprimées de cette copie pour en augmenter la lisibilité.
 
 ```
 public bool IsTransient(Exception ex)
@@ -383,21 +383,21 @@ public bool IsTransient(Exception ex)
     SqlException sqlException;
     if ((sqlException = ex as SqlException) != null)
     {
-      // Enumerate through all errors found in hello exception.
+      // Enumerate through all errors found in the exception.
       foreach (SqlError err in sqlException.Errors)
       {
         switch (err.Number)
         {
             // SQL Error Code: 40501
-            // hello service is currently busy. Retry hello request after 10 seconds.
-            // Code: (reason code toobe decoded).
+            // The service is currently busy. Retry the request after 10 seconds.
+            // Code: (reason code to be decoded).
           case ThrottlingCondition.ThrottlingErrorNumber:
-            // Decode hello reason code from hello error message to
-            // determine hello grounds for throttling.
+            // Decode the reason code from the error message to
+            // determine the grounds for throttling.
             var condition = ThrottlingCondition.FromError(err);
 
-            // Attach hello decoded values as additional attributes to
-            // hello original SQL exception.
+            // Attach the decoded values as additional attributes to
+            // the original SQL exception.
             sqlException.Data[condition.ThrottlingMode.GetType().Name] =
               condition.ThrottlingMode.ToString();
             sqlException.Data[condition.GetType().Name] = condition;
@@ -416,7 +416,7 @@ public bool IsTransient(Exception ex)
           case 233:
           case 64:
             // DBNETLIB Error Code: 20
-            // hello instance of SQL Server you attempted tooconnect to
+            // The instance of SQL Server you attempted to connect to
             // does not support encryption.
           case (int)ProcessNetLibErrorCode.EncryptionNotSupported:
             return true;
@@ -443,7 +443,7 @@ public bool IsTransient(Exception ex)
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour le dépannage d’autres problèmes de connexion de base de données SQL Azure courants, visitez [connexion de résoudre les problèmes tooAzure base de données SQL](sql-database-troubleshoot-common-connection-issues.md).
+* Pour résoudre les autres problèmes de connexion courants à Azure SQL Database, consultez [Résolution des problèmes de connexion à Azure SQL Database](sql-database-troubleshoot-common-connection-issues.md).
 * [Regroupement de connexions SQL Server (ADO.NET)](http://msdn.microsoft.com/library/8xx3tyca.aspx)
-* [*Une nouvelle tentative* est une Apache 2.0 concédé sous licence général d’une nouvelle tentative de la bibliothèque, écrite **Python**, tâche de hello toosimplify d’ajout de toojust de comportement de nouvelle tentative sur quoi que ce soit.](https://pypi.python.org/pypi/retrying)
+* [*Nouvelle tentative* est une bibliothèque de nouvelle tentative sous licence Apache 2.0 à usage général écrite en langage **Python**, pour simplifier la tâche consistant à ajouter des comportements de nouvelle tentative dans toutes les situations.](https://pypi.python.org/pypi/retrying)
 

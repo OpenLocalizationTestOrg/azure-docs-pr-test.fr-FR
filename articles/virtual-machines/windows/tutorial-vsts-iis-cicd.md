@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate un pipeline de l’élément de configuration/CD dans Azure avec Team Services | Documents Microsoft"
-description: "Découvrez comment toocreate un Visual Studio Team Services pipeline pour l’intégration continue et de remise qui déploie un tooIIS d’application web sur une machine virtuelle Windows"
+title: "Création d’un pipeline CI/CD dans Azure avec Team Services | Microsoft Docs"
+description: "Découvrez comment créer un pipeline Visual Studio Team Services pour une intégration continue et une fourniture qui déploie une application web vers IIS sur une machine virtuelle Windows"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,42 +16,42 @@ ms.workload: infrastructure
 ms.date: 05/12/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: b758a124c4742854dd3b543f747fd8700f954414
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a587f58fad2ec74c7633823c4d34f900e7c01f7e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-a-continuous-integration-pipeline-with-visual-studio-team-services-and-iis"></a>Création d’un pipeline d’intégration continue avec Visual Studio Team Services et IIS
-génération de hello tooautomate, de test et des phases de déploiement du développement d’applications, vous pouvez utiliser une intégration continue et le pipeline de déploiement de (l’élément de configuration/CD). Dans ce didacticiel, vous créez un pipeline CI/CD à l’aide de Visual Studio Team Services et d’une machine virtuelle Windows (VM) dans Azure qui exécute IIS. Vous allez apprendre à effectuer les actions suivantes :
+Pour automatiser les phases de création, de test et de déploiement du développement de l’application, vous pouvez utiliser un pipeline d’intégration et de déploiement continus (CI/CD). Dans ce didacticiel, vous créez un pipeline CI/CD à l’aide de Visual Studio Team Services et d’une machine virtuelle Windows (VM) dans Azure qui exécute IIS. Vous allez apprendre à effectuer les actions suivantes :
 
 > [!div class="checklist"]
-> * Publier un projet d’équipe Services ASP.NET web application tooa
+> * Publier une application web ASP.NET dans un projet Team Services
 > * Créer une définition de build qui est déclenchée par les validations de code
 > * Installer et configurer IIS sur une machine virtuelle dans Azure
-> * Ajouter un groupe de déploiement hello tooa de l’instance IIS dans Team Services
-> * Créez une version définition toopublish web tooIIS de packages de déploiement
-> * Tester le pipeline de l’élément de configuration/CD hello
+> * Ajouter l’instance IIS à un groupe de déploiement dans Team Services
+> * Créer une définition de version pour publier les nouveaux packages de déploiement web sur IIS
+> * test du pipeline CI/CD
 
-Ce didacticiel nécessite hello Azure PowerShell version 3.6 ou version ultérieure du module. Exécutez `Get-Module -ListAvailable AzureRM` version de hello toofind. Si vous avez besoin de tooupgrade, consultez [installez Azure PowerShell module](/powershell/azure/install-azurerm-ps).
+Ce didacticiel requiert le module Azure PowerShell version 3.6 ou ultérieure. Exécutez `Get-Module -ListAvailable AzureRM` pour trouver la version. Si vous devez effectuer une mise à niveau, consultez [Installer le module Azure PowerShell](/powershell/azure/install-azurerm-ps).
 
 
 ## <a name="create-project-in-team-services"></a>Création d’un projet dans Team Services
-Visual Studio Team Services simplifie la collaboration et permet le développement sans recours à une solution de gestion de code en local. Team Services offre des fonctionnalités de test de code, de création et d’analyse de l’application dans le cloud. Vous pouvez choisir le référentiel de contrôle de version et l’IDE qui conviennent le mieux au développement de votre code. Pour ce didacticiel, vous pouvez utiliser un compte gratuit toocreate une base d’application web ASP.NET et le pipeline de l’élément de configuration/CD. Si vous n’avez pas encore de compte Team Services, [créez-en un](http://go.microsoft.com/fwlink/?LinkId=307137).
+Visual Studio Team Services simplifie la collaboration et permet le développement sans recours à une solution de gestion de code en local. Team Services offre des fonctionnalités de test de code, de création et d’analyse de l’application dans le cloud. Vous pouvez choisir le référentiel de contrôle de version et l’IDE qui conviennent le mieux au développement de votre code. Pour ce didacticiel, vous pouvez utiliser un compte gratuit pour créer une application web ASP.NET de base et un pipeline CI/CD. Si vous n’avez pas encore de compte Team Services, [créez-en un](http://go.microsoft.com/fwlink/?LinkId=307137).
 
-processus de validation code toomanage hello, définitions de build et définitions de version, créez un projet dans Team Services, comme suit :
+Pour gérer le processus de validation de code, de définition de build et de définition de version, créez un projet dans Team Services en procédant comme suit :
 
 1. Ouvrez votre tableau de bord Team Services dans un navigateur web et choisissez **Nouveau projet**.
-2. Entrez *myWebApp* pour hello **nom du projet**. Laissez toutes les autres toouse de valeurs par défaut *Git* contrôle de version et *Agile* processus de l’élément de travail.
-3. Choisir hello trop**partager avec** *membres de l’équipe*, puis sélectionnez **créer**.
-5. Une fois que votre projet a été créé, choisir hello trop**initialiser avec un fichier Lisez-moi ou la gitignore**, puis **initialiser**.
-6. À l’intérieur de votre nouveau projet, choisissez **tableaux de bord** haut de hello, puis sélectionnez **ouvert dans Visual Studio**.
+2. Entrez *myWebApp* comme **nom de projet**. Laissez toutes les autres valeurs par défaut pour utiliser le contrôle de version *Git* et le processus d’élément de travail *Agile*.
+3. Choisissez l’option **Partager avec** *Membres de l’équipe*, puis sélectionnez **Créer**.
+5. Une fois votre projet créé, sélectionnez l’option **Initialize with a README or gitignore** (Initialiser avec un fichier README ou gitignore), puis **Initialiser**.
+6. À l’intérieur de votre nouveau projet, choisissez **Tableaux de bord** en haut, puis sélectionnez **Ouvrir dans Visual Studio**.
 
 
 ## <a name="create-aspnet-web-application"></a>Création d’une application web ASP.NET
-Dans l’étape précédente de hello, vous avez créé un projet dans Team Services. étape finale de Hello ouvre votre nouveau projet dans Visual Studio. Vous gérez vos validations code Bonjour **Team Explorer** fenêtre. Créez une copie locale de votre nouveau projet, puis créez une application web ASP.NET à partir d’un modèle comme suit :
+À l’étape précédente, vous avez créé un projet dans Team Services. La dernière étape ouvre votre nouveau projet dans Visual Studio. Vous gérez vos validations de code dans la fenêtre **Team Explorer**. Créez une copie locale de votre nouveau projet, puis créez une application web ASP.NET à partir d’un modèle comme suit :
 
-1. Sélectionnez **Clone** toocreate un référentiel git local de votre projet Team Services.
+1. Sélectionnez **Cloner** pour créer un référentiel git local de votre projet Team Services.
     
     ![Clonage du référentiel à partir du projet Team Services](media/tutorial-vsts-iis-cicd/clone_repo.png)
 
@@ -59,42 +59,42 @@ Dans l’étape précédente de hello, vous avez créé un projet dans Team Serv
 
     ![Création de la solution d’application web](media/tutorial-vsts-iis-cicd/new_solution.png)
 
-3. Sélectionnez **Web** modèles, puis choisissez hello **Application Web ASP.NET** modèle.
-    1. Entrez un nom pour votre application, tel que *myWebApp*, puis décochez la case hello pour **créer le répertoire pour la solution**.
-    2. Si l’option de hello est disponible, hello désactivez case à cocher trop**ajouter Application Insights tooproject**. Application Insights a besoin votre application web avec Azure Application Insights vous tooauthorize. tookeep il simple dans ce didacticiel, ignorez ce processus.
+3. Sélectionnez les modèles **web**, puis choisissez le modèle **Application web ASP.NET**.
+    1. Entrez un nom pour votre application, tel que *myWebApp*, et décochez la case **Créer un répertoire pour la solution**.
+    2. Si l’option est disponible, décochez la case **Add Application Insights to project** (Ajouter Application Insights au projet). Application Insights nécessite que vous autorisiez votre application web dans Azure Application Insights. Pour faire simple, dans ce didacticiel, ignorez cette procédure.
     3. Sélectionnez **OK**.
-4. Choisissez **MVC** à partir de la liste des modèles hello.
+4. Dans la liste des modèles, choisissez **MVC**.
     1. Pour **Modifier l’authentification**, sélectionnez **Aucune authentification**, puis sélectionnez **OK**.
-    2. Sélectionnez **OK** toocreate votre solution.
-5. Bonjour **Team Explorer** fenêtre, choisissez **modifications**.
+    2. Sélectionnez **OK** pour créer votre solution.
+5. Dans la fenêtre **Team Explorer**, choisissez **Modifications**.
 
-    ![Valider le référentiel git de modifications locales tooTeam Services](media/tutorial-vsts-iis-cicd/commit_changes.png)
+    ![Validation des modifications locales dans le référentiel git Team Services](media/tutorial-vsts-iis-cicd/commit_changes.png)
 
-6. Dans la zone de texte de validation hello, entrez un message tel que *la validation initiale*. Choisissez **valider tous les et synchronisation** à partir du menu déroulant de hello.
+6. Dans la zone de texte de validation, entrez un message tel que *Validation initiale*. Dans le menu déroulant, choisissez **Commit All and Sync** (Tout valider et synchroniser).
 
 
 ## <a name="create-build-definition"></a>Création d’une définition de build
-Dans les Services d’équipe, vous utilisez un toooutline de définition de build comment votre application doit être créée. Dans ce didacticiel, nous créer une définition de base que prend notre code source, génère hello solution, puis crée web déployer le package, nous pouvons utiliser toorun hello web application sur un serveur IIS.
+Dans Team Services, vous utilisez une définition de build pour montrer la manière dont votre application doit être conçue. Dans ce didacticiel, nous créons une définition de base qui prend notre code source, génère la solution, puis crée le package de déploiement web que nous pouvons utiliser pour exécuter l’application web sur un serveur IIS.
 
-1. Dans votre projet de Services d’équipe, choisissez **générer & version** haut de hello, puis sélectionnez **génère**.
+1. Dans votre projet Team Services, choisissez l’option **Build & Release** (Générer et publier) en haut, puis sélectionnez **Builds**.
 3. Sélectionnez **+ Nouvelle définition**.
-4. Choisissez hello **ASP.NET (version préliminaire)** modèle et sélectionnez **appliquer**.
-5. Laissez par défaut de hello toutes les valeurs de la tâche. Sous **obtenir les sources**, vérifiez que hello *myWebApp* référentiel et *master* branche sont sélectionnés.
+4. Choisissez le modèle **ASP.NET (préversion)** et sélectionnez **Appliquer**.
+5. Laissez les valeurs par défaut pour les tâches. Sous **Obtenir les sources**, assurez-vous que le référentiel *myWebApp* et la branche *master* sont sélectionnés.
 
     ![Création d’une définition de build dans le projet Team Services](media/tutorial-vsts-iis-cicd/create_build_definition.png)
 
-6. Sur hello **déclencheurs** onglet, déplacez le curseur hello pour **activer ce déclencheur** trop*activé*.
-7. Enregistrer la définition de build hello et file d’attente une nouvelle build en sélectionnant **enregistrer et de file d’attente** , puis **enregistrer et de file d’attente** à nouveau. Laissez les valeurs par défaut hello et sélectionnez **file d’attente**.
+6. Sur l’onglet **Déclencheurs**, déplacez le curseur **Enable this trigger** (Activer ce déclencheur) sur *Activé*.
+7. Enregistrez la définition de build et mettez en file d’attente une nouvelle build en sélectionnant **Save & queue** (Enregistrer et mettre en file d’attente), puis de nouveau **Save & queue** (Enregistrer et mettre en file d’attente). Conservez les valeurs par défaut et sélectionnez **File d’attente**.
 
-Espion que build de hello est planifiée sur un agent hébergé, puis commence à toobuild. Hello la sortie est similaire toohello l’exemple suivant :
+Vérifiez que la build est planifiée sur un agent hébergé, puis commencez la génération. Le résultat ressemble à l’exemple suivant :
 
 ![Génération réussie du projet Team Services](media/tutorial-vsts-iis-cicd/successful_build.png)
 
 
 ## <a name="create-virtual-machine"></a>Create virtual machine
-tooprovide un toorun plateforme votre application web ASP.NET, vous avez besoin d’une machine virtuelle Windows qui exécute IIS. Team Services utilise une toointeract de l’agent avec une instance IIS hello que vous validez le code et les builds sont déclenchées.
+Pour fournir une plateforme sur laquelle exécuter votre application web ASP.NET, vous avez besoin d’une machine virtuelle Windows qui exécute IIS. Team Services utilise un agent pour interagir avec l’instance IIS lorsque vous validez le code et que les builds sont déclenchées.
 
-Créez une machine virtuelle Windows Server 2016 à l’aide de [cet exemple de script](../scripts/virtual-machines-windows-powershell-sample-create-vm.md?toc=%2fpowershell%2fmodule%2ftoc.json). Il prend quelques minutes pour hello script toorun et créer hello machine virtuelle. Une fois que hello machine virtuelle a été créé, ouvrez le port 80 pour le trafic web avec [Add-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.resources/new-azurermresourcegroup) comme suit :
+Créez une machine virtuelle Windows Server 2016 à l’aide de [cet exemple de script](../scripts/virtual-machines-windows-powershell-sample-create-vm.md?toc=%2fpowershell%2fmodule%2ftoc.json). Il faut quelques minutes pour que le script s’exécute et crée la machine virtuelle. Une fois la machine virtuelle créée, ouvrez le port 80 pour le trafic web avec [Add-AzureRmNetworkSecurityRuleConfig](/powershell/module/azurerm.resources/new-azurermresourcegroup) comme suit :
 
 ```powershell
 Get-AzureRmNetworkSecurityGroup `
@@ -113,19 +113,19 @@ Add-AzureRmNetworkSecurityRuleConfig `
 Set-AzureRmNetworkSecurityGroup
 ```
 
-tooconnect tooyour machine virtuelle, obtenir l’adresse IP publique de hello avec [Get-AzureRmPublicIpAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress) comme suit :
+Pour vous connecter à votre machine virtuelle, obtenez l’adresse IP publique avec [Get-AzureRmPublicIpAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress) comme suit :
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName $resourceGroup | Select IpAddress
 ```
 
-Créer une machine virtuelle de tooyour session Bureau à distance :
+Créez une session Bureau à distance vers votre machine virtuelle :
 
 ```cmd
 mstsc /v:<publicIpAddress>
 ```
 
-Sur la machine virtuelle de hello, ouvrez un **administrateur PowerShell** invite de commandes. Installez IIS et les fonctionnalités .NET requises comme suit :
+Sur la machine virtuelle, ouvrez une invite de commande **Administrateur PowerShell**. Installez IIS et les fonctionnalités .NET requises comme suit :
 
 ```powershell
 Install-WindowsFeature Web-Server,Web-Asp-Net45,NET-Framework-Features
@@ -133,104 +133,104 @@ Install-WindowsFeature Web-Server,Web-Asp-Net45,NET-Framework-Features
 
 
 ## <a name="create-deployment-group"></a>Créer un groupe de déploiement
-serveur IIS toohello du package de déploiement de toopush out web de hello, vous définissez un groupe de déploiement dans les Services d’équipe. Ce groupe vous permet de toospecify quels serveurs sont cible hello de nouvelles builds que vous validez tooTeam code Services et les builds sont terminées.
+Pour diffuser le package de déploiement web vers le serveur IIS, vous définissez un groupe de déploiement dans Team Services. Ce groupe vous permet de spécifier quels serveurs sont la cible de nouvelles builds lorsque vous validez du code dans Team Services et que les builds sont terminées.
 
 1. Dans Team Services, choisissez **Build & Release** (Générer et publier), puis sélectionnez **Groupes de déploiement**.
 2. Choisissez **Add Deployment group** (Ajouter un groupe de déploiement).
-3. Entrez un nom pour le groupe de hello, tel que *myIIS*, puis sélectionnez **créer**.
-4. Bonjour **enregistrer des ordinateurs** section, vérifiez que *Windows* est sélectionné, puis la case hello trop**utiliser un jeton d’accès personnel dans le script de hello pour l’authentification**.
-5. Sélectionnez **copier le script tooclipboard**.
+3. Entrez un nom pour le groupe, tel que *myIIS*, puis sélectionnez **Créer**.
+4. Dans la section **Register machines** (Enregistrer des ordinateurs), assurez-vous que l’option *Windows* est sélectionnée, puis cochez la case **Use a personal access token in the script for authentication** (Utiliser un jeton d’accès personnel dans le script pour l’authentification).
+5. Sélectionnez **Copy script to clipboard** (Copier le script dans le Presse-papiers).
 
 
-### <a name="add-iis-vm-toohello-deployment-group"></a>Ajouter le groupe de déploiement IIS VM toohello
-Avec le groupe de déploiement hello créé, ajoutez chaque groupe toohello d’instances IIS. Team Services génère un script qui télécharge et configure un agent sur hello machine virtuelle qui reçoit le nouveau site web déploiement de packages, puis applique tooIIS.
+### <a name="add-iis-vm-to-the-deployment-group"></a>Ajouter une machine virtuelle IIS au groupe de déploiement
+Une fois le groupe de déploiement créé, ajoutez-y chaque instance IIS. Team Services génère un script qui télécharge et configure un agent sur la machine virtuelle qui reçoit les nouveaux packages de déploiement web, puis l’applique à IIS.
 
-1. Dans hello **administrateur PowerShell** session sur votre machine virtuelle, coller et exécuter le script hello copié à partir de Team Services.
-2. Lorsque les balises tooconfigure demandées pour l’agent hello, choisissez *Y* et entrez *web*.
-3. Lorsque vous y êtes invité pour le compte d’utilisateur hello, appuyez sur *retourner* tooaccept, hello par défaut.
-4. Attendez que toofinish de script hello avec un message *vstsagent.account.computername de Service a démarré correctement*.
-5. Bonjour **groupes de déploiement** page Hello **générer & version** menu, ouvrez hello *myIIS* groupe de déploiement. Sur hello **Machines** , vérifiez que votre machine virtuelle est répertorié.
+1. Dans la session **Administrateur PowerShell** sur votre machine virtuelle, collez le script copié à partir de Team Services et exécutez-le.
+2. Lorsque vous êtes invité à configurer les balises pour l’agent, choisissez *Y* et entrez *web*.
+3. Lorsque vous êtes invité à indiquer le compte d’utilisateur, appuyez sur *Retour* pour accepter les valeurs par défaut.
+4. Attendez que le script se termine avec un message de type *Service vstsagent.account.computername démarré correctement*.
+5. Dans la page **Groupes de déploiement** du menu **Build & Release** (Générer et publier), ouvrez le groupe de déploiement *myIIS*. Sur l’onglet **Machines**, vérifiez que votre machine virtuelle est répertoriée.
 
-    ![Machine virtuelle correctement ajouté le groupe de déploiement de Services tooTeam](media/tutorial-vsts-iis-cicd/deployment_group.png)
+    ![Machine virtuelle ajoutée au groupe de déploiement Team Services](media/tutorial-vsts-iis-cicd/deployment_group.png)
 
 
 ## <a name="create-release-definition"></a>Création d’une définition de mise en production
-toopublish vos builds, vous créez une définition de version dans Team Services. Cette définition est déclenchée automatiquement en cas de réussite de la génération de votre application. Vous choisissez toopush de groupe de déploiement hello votre site web déployer le package à et définissez les paramètres IIS appropriés hello.
+Pour publier vos builds, vous créez une définition de mise en production dans Team Services. Cette définition est déclenchée automatiquement en cas de réussite de la génération de votre application. Vous choisissez le groupe de déploiement dans lequel distribuer votre application web et définissez les paramètres IIS appropriés.
 
-1. Choisissez **Build & Release** (Générer et publier), puis sélectionnez **Builds**. Choisissez la définition de build hello créée à l’étape précédente.
-2. Sous **récemment terminé**, choisissez la build la plus récente hello, puis sélectionnez **version**.
-3. Choisissez **Oui** toocreate une définition de mise en production.
-4. Choisissez hello **vide** modèle, puis sélectionnez **suivant**.
-5. Vérifiez la définition de build de projet et source hello sont renseignées avec votre projet.
-6. Sélectionnez hello **déploiement continu** case à cocher, puis sélectionnez **créer**.
-7. Sélectionnez zone de liste déroulante hello suivant trop**+ ajouter des tâches** et choisissez *ajouter une phase de déploiement de groupe*.
+1. Choisissez **Build & Release** (Générer et publier), puis sélectionnez **Builds**. Sélectionnez la définition de build créée à l’étape précédente.
+2. Sous **Effectuées récemment**, choisissez la build la plus récente, puis sélectionnez **Mise en production**.
+3. Choisissez **Oui** pour créer une définition de mise en production.
+4. Choisissez le modèle **vide**, puis sélectionnez **Suivant**.
+5. Vérifiez que le projet et la définition de build source sont renseignés avec votre projet.
+6. Cochez la case **Déploiement continu**, puis sélectionnez **Créer**.
+7. Sélectionnez la liste déroulante en regard de **+ Ajouter des tâches** et choisissez *Add a deployment group phase* (Ajouter une phase de déploiement de groupe).
     
-    ![Ajouter la définition de tâche toorelease Team Services](media/tutorial-vsts-iis-cicd/add_release_task.png)
+    ![Ajouter une tâche à la définition de mise en production dans Team Services](media/tutorial-vsts-iis-cicd/add_release_task.png)
 
-8. Choisissez **ajouter** suivant trop**IIS Web application Deploy(Preview)**, puis sélectionnez **fermer**.
-9. Sélectionnez hello **s’exécutent sur le groupe de déploiement** tâche parente.
-    1. Pour **groupe de déploiement**, sélectionnez le déploiement de hello groupe que vous avez créé précédemment, comme *myIIS*.
-    2. Bonjour **balises d’ordinateurs** boîte, sélectionnez **ajouter** et choisissez hello *web* balise.
+8. Choisissez **Ajouter** en regard de **IIS Web App Deploy (Preview)** (Déploiement d’application web IIS (préversion)), puis sélectionnez **Fermer**.
+9. Sélectionnez la tâche parente **Run on deployment group** (Exécuter sur le groupe de déploiement).
+    1. Pour **Groupe de déploiement**, sélectionnez le groupe de déploiement que vous avez créé précédemment, par exemple *myIIS*.
+    2. Dans la zone **Machine tags** (Balises de machine), sélectionnez **Ajouter** et choisissez la balise *web*.
     
     ![Tâche de groupe de déploiement de définition de mise en production pour IIS](media/tutorial-vsts-iis-cicd/release_definition_iis.png)
  
-11. Sélectionnez hello **déploiement : déploiement de l’application Web de IIS** tâche tooconfigure votre IIS instance des paramètres comme suit :
+11. Sélectionnez la tâche **Déployer : déploiement de l’application web IIS** pour configurer les paramètres de votre instance IIS comme suit :
     1. Pour **Nom du site web**, entrez *Site web par défaut*.
-    2. Laissez hello tous les autres paramètres par défaut.
+    2. Laissez tous les autres paramètres par défaut.
 12. Choisissez **Enregistrer**, puis sélectionnez **OK** deux fois.
 
 
 ## <a name="create-a-release-and-publish"></a>Création d’une version et publication
-Vous pouvez désormais distribuer votre package de déploiement web en tant que nouvelle version. Cette étape communique avec l’agent de hello sur chaque instance qui fait partie du groupe de déploiement hello, exécute un push de web de hello déployer le package, puis configure l’application web IIS toorun hello mis à jour.
+Vous pouvez désormais distribuer votre package de déploiement web en tant que nouvelle version. Cette étape communique avec l’agent sur chaque instance qui fait partie du groupe de déploiement, distribue le package de déploiement web, puis configure IIS pour exécuter l’application web mise à jour.
 
 1. Dans votre définition de mise en production, sélectionnez **+ Mise en production**, puis choisissez **Créer une mise en production**.
-2. Vérifiez que la build la plus récente hello est sélectionné dans la liste déroulante hello, avec **déploiement automatisé : après la création de la version**. Sélectionnez **Créer**.
-3. Une petite bannière apparaît comme haut hello de votre définition de la mise en production, *version 'Version 1' a été créée*. Sélectionnez hello version lien.
-4. Ouvrez hello **journaux** onglet progression de la version toowatch hello.
+2. Vérifiez que la build la plus récente est sélectionnée dans la liste déroulante, ainsi que **Déploiement automatisé : après la création de la mise en production**. Sélectionnez **Créer**.
+3. Une petite bannière apparaît en haut de votre définition de mise en production, par exemple *La mise en production 'Mise en production-1' a été créée*. Sélectionnez le lien de la mise en production.
+4. Ouvrez l’onglet **Journaux** pour surveiller la progression de la mise en production.
     
     ![Réussite de la mise en production Team Services et de la distribution du package de déploiement web](media/tutorial-vsts-iis-cicd/successful_release.png)
 
-5. Une fois la mise en production hello est terminée, ouvrez un navigateur web et entrez hello IIP adresse publique de votre machine virtuelle. Votre application web ASP.NET est en cours d’exécution.
+5. Une fois la mise en production terminée, ouvrez un navigateur web et entrez l’adresse IP publique de votre machine virtuelle. Votre application web ASP.NET est en cours d’exécution.
 
     ![Application web ASP.NET s’exécutant sur une machine virtuelle IIS](media/tutorial-vsts-iis-cicd/running_web_app.png)
 
 
-## <a name="test-hello-whole-cicd-pipeline"></a>Pipeline de l’élément de configuration/CD ensemble test hello
-Votre application web s’exécutant sur IIS, essayez à présent pipeline de l’élément de configuration/CD hello ensemble. Une fois que vous apportez une modification dans Visual Studio et de validation, que votre code, une build est déclenchée, qui déclenche ensuite une version de votre site web mis à jour déployer le package tooIIS :
+## <a name="test-the-whole-cicd-pipeline"></a>Test de l’ensemble du pipeline CI/CD
+Votre application web s’exécutant sur IIS, testez à présent l’ensemble du pipeline CI/CD. Lorsque vous apportez une modification dans Visual Studio et validez votre code, une build est déclenchée, qui déclenche ensuite une mise en production de votre package de déploiement web mis à jour sur IIS :
 
-1. Dans Visual Studio, ouvrez hello **l’Explorateur de solutions** fenêtre.
-2. Accédez tooand ouvrir *myWebApp | Vues | Accueil | Index.cshtml*
-3. Modifiez la ligne 6 tooread :
+1. Dans Visual Studio, ouvrez la fenêtre **Explorateur de solutions**.
+2. Recherchez et ouvrez *myWebApp | Vues | Accueil | Index.cshtml*
+3. Modifiez la ligne 6 en :
 
     `<h1>ASP.NET with VSTS and CI/CD!</h1>`
 
-4. Enregistrez le fichier de hello.
-5. Ouvrez hello **Team Explorer** fenêtre, sélectionnez hello *myWebApp* de projet, puis choisissez **modifications**.
-6. Entrez un message de validation, tel que *l’élément de configuration de test/CD pipeline*, puis choisissez **tous de la validation et la synchronisation** à partir du menu déroulant de hello.
-7. Dans l’espace de travail de Team Services, une nouvelle build est déclenchée à partir de la validation de code hello. 
+4. Enregistrez le fichier.
+5. Ouvrez la fenêtre **Team Explorer**, sélectionnez le projet *myWebApp*, puis choisissez **Modifications**.
+6. Entrez un message de validation, tel que *Test du pipeline CI/CD*, puis choisissez **Commit All and Sync** (Tout valider et synchroniser) dans le menu déroulant.
+7. Dans l’espace de travail de Team Services, une nouvelle build est déclenchée à partir de la validation du code. 
     - Choisissez **Build & Release** (Générer et publier), puis sélectionnez **Builds**. 
-    - Choisissez votre définition de build, puis sélectionnez hello **en file d’attente et en cours d’exécution** toowatch build comme hello build progresse.
-9. Une fois la génération de hello est réussie, une nouvelle version est déclenchée.
-    - Choisissez **générer & version**, puis **versions** envoyée tooyour IIS VM de package de déploiement web de hello de toosee. 
-    - Sélectionnez hello **Actualiser** état de l’icône tooupdate hello. Hello lorsque *environnements* colonne affiche une coche verte, mise en production hello a été déployée tooIIS.
-11. appliquer les modifications toosee, actualiser votre site Web d’IIS dans un navigateur.
+    - Choisissez votre définition de build, puis sélectionnez la build **en file d’attente et en cours d’exécution** pour afficher la progression.
+9. Une fois la génération réussie, une nouvelle mise en production est déclenchée.
+    - Choisissez **Build & Release** (Générer et publier), puis **Mises en production**, pour voir le package de déploiement web distribué sur votre machine virtuelle IIS. 
+    - Sélectionnez l’icône **Actualiser** pour mettre à jour l’état. Lorsque la colonne *Environnements* affiche une coche verte, cela signifie que la mise en production a bien été déployée sur IIS.
+11. Pour afficher les modifications que vous avez appliquées, actualisez votre site web IIS dans un navigateur.
 
     ![Application web ASP.NET s’exécutant sur une machine virtuelle IIS à partir d’un pipeline CI/CD](media/tutorial-vsts-iis-cicd/running_web_app_cicd.png)
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez créé une application web ASP.NET dans les Services d’équipe et tooIIS packages lors de la validation de chaque code de déployer de build configuré et définitions version toodeploy un site web. Vous avez appris à effectuer les actions suivantes :
+Dans ce didacticiel, vous avez créé une application web ASP.NET dans Team Services et configuré des définitions de build et de mise en production pour déployer de nouveaux packages de déploiement web sur IIS lors de la validation de chaque code. Vous avez appris à effectuer les actions suivantes :
 
 > [!div class="checklist"]
-> * Publier un projet d’équipe Services ASP.NET web application tooa
+> * Publier une application web ASP.NET dans un projet Team Services
 > * Créer une définition de build qui est déclenchée par les validations de code
 > * Installer et configurer IIS sur une machine virtuelle dans Azure
-> * Ajouter un groupe de déploiement hello tooa de l’instance IIS dans Team Services
-> * Créez une version définition toopublish web tooIIS de packages de déploiement
-> * Tester le pipeline de l’élément de configuration/CD hello
+> * Ajouter l’instance IIS à un groupe de déploiement dans Team Services
+> * Créer une définition de version pour publier les nouveaux packages de déploiement web sur IIS
+> * test du pipeline CI/CD
 
-Avancer toolearn de didacticiel suivant toohello comment toosecure un serveur web avec les certificats SSL.
+Passez au didacticiel suivant pour savoir comment mieux protéger les serveurs SSL à l’aide des certificats SSL.
 
 > [!div class="nextstepaction"]
 > [Sécuriser un serveur web avec SSL](tutorial-secure-web-server.md)

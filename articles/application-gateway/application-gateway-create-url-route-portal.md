@@ -1,9 +1,9 @@
 ---
-title: "aaaCreate basée sur un chemin d’accès de règle - passerelle d’Application Azure - Azure Portal | Documents Microsoft"
-description: "Découvrez comment toocreate une règle basée sur le chemin d’accès pour une passerelle d’application à l’aide de hello portail"
+title: "Créer une règle basée sur un chemin pour une passerelle Application Gateway - Portail Azure | Microsoft Docs"
+description: "Découvrez comment créer une règle basée sur le chemin pour une passerelle Application Gateway à l’aide du portail Azure."
 services: application-gateway
 documentationcenter: na
-author: georgewallace
+author: davidmu1
 manager: timlt
 editor: 
 tags: azure-resource-manager
@@ -14,77 +14,77 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/03/2017
-ms.author: gwallace
-ms.openlocfilehash: 21cb52c426ca5f7dfedf07a96e87fbc85d243647
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: davidmu
+ms.openlocfilehash: b207e7e7bd83e56db68288190c7bedafa8b5b7fa
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-a-path-based-rule-for-an-application-gateway-by-using-hello-portal"></a>Créer une règle basée sur le chemin d’accès pour une passerelle d’application à l’aide du portail de hello
+# <a name="create-a-path-based-rule-for-an-application-gateway-by-using-the-azure-portal"></a>Créer une règle basée sur le chemin pour une passerelle Application Gateway à l’aide du portail Azure
 
 > [!div class="op_single_selector"]
 > * [Portail Azure](application-gateway-create-url-route-portal.md)
 > * [Commandes PowerShell pour Azure Resource Manager](application-gateway-create-url-route-arm-ps.md)
 > * [Azure CLI 2.0](application-gateway-create-url-route-cli.md)
 
-Le routage basé sur le chemin d’accès URL permet d’itinéraires tooassociate vous basés sur le chemin de l’URL de demande Http hello. Il vérifie s’il existe un pool de back-end tooa itinéraire configuré pour les URL hello répertorié dans hello passerelle d’Application et envoie toohello de trafic réseau hello défini par pool de back-end. Une utilisation courante pour le routage basé sur l’URL est équilibrer les demandes de tooload pour les pools de serveur principal toodifferent différents types de contenu.
+Grâce au routage basé sur le chemin d’URL, vous pouvez associer des itinéraires basés sur le chemin d’URL de requêtes HTTP. Il vérifie s’il existe une route vers un pool de serveur back-end configuré pour les URL listées dans la passerelle d’application, puis envoie le trafic réseau vers le pool défini. Une utilisation courante du routage basé sur le chemin d’URL consiste à équilibrer la charge des demandes pour différents types de contenu entre différents pools de serveurs principaux.
 
-Le routage basé sur des URL introduit une nouvelle passerelle de tooapplication de type de règle. La passerelle d’application a deux types de règles : des règles de base et des règles basées sur un chemin. Hello du type de règle de base, fournit service tourniquet pour les principaux hello pools lors de règles basées sur le chemin d’accès en outre distribution Round robin de tooround, prend également le modèle de chemin d’accès de l’URL de demande hello en compte tout en appuyant sur le pool principal approprié de hello.
+Les passerelles Application Gateway ont deux types de règles : des règles de base et des règles basées sur un chemin. Le type de règle de base fournit un service de tourniquet pour les pools back-end. En plus de distribuer les tourniquets, les règles basées sur le chemin utilisent également le modèle de chemin d’accès de la requête URL au moment de choisir le pool principal.
 
 ## <a name="scenario"></a>Scénario
 
-Hello scénario suivant passe par la création d’une règle basée sur le chemin d’accès dans une passerelle d’application existant.
-Hello scénario part du principe que vous avez déjà suivi les étapes de hello trop[créer une passerelle d’Application](application-gateway-create-gateway-portal.md).
+Le scénario suivant crée une règle basée sur le chemin sur une passerelle Application Gateway existante.
+Le scénario suppose que vous avez déjà suivi la procédure dans [Créer une passerelle Application Gateway avec le portail](application-gateway-create-gateway-portal.md).
 
-![itinéraire d’URL][scenario]
+![Itinéraire d’URL][scenario]
 
-## <a name="createrule"></a>Créer une règle basée sur le chemin d’accès hello
+## <a name="createrule"></a>Créer la règle basée sur le chemin
 
-Une règle basée sur le chemin d’accès requiert son propre port d’écoute, avant de créer la règle de hello être tooverify que vous avez un toouse écouteur disponible.
+Une règle basée sur le chemin nécessite un écouteur qui lui est propre. Avant de créer la règle, veillez à vérifier que vous disposez d’un écouteur à utiliser.
 
 ### <a name="step-1"></a>Étape 1
 
-Accédez toohello [portail Azure](http://portal.azure.com) et sélectionnez une passerelle d’application existant. Cliquer sur **Règles**
+Accédez au [portail Azure](http://portal.azure.com) et sélectionnez une passerelle Application Gateway existante. Cliquer sur **Règles**.
 
 ![Vue d’ensemble d’Application Gateway][1]
 
 ### <a name="step-2"></a>Étape 2
 
-Cliquez sur **basée sur le chemin d’accès** bouton tooadd une règle basée sur le chemin d’accès.
+Cliquez sur le bouton **Basé sur le chemin** pour ajouter une nouvelle règle basée sur le chemin.
 
 ### <a name="step-3"></a>Étape 3 :
 
-Hello **ajouter une règle basée sur le chemin d’accès** panneau a deux sections. première section de Hello est où vous avez défini l’écouteur de hello, nom hello de règle de hello et les paramètres de chemin d’accès par défaut hello. paramètres de chemin d’accès par défaut Hello sont pour les itinéraires qui ne relèvent pas de l’itinéraire de basée sur le chemin d’accès personnalisées hello. Hello deuxième section Hello **ajouter une règle basée sur le chemin d’accès** lame est où vous définissez les règles de chemin d’accès hello eux-mêmes.
+Le panneau **Add path-based rule (Ajouter une règle basée sur le chemin)** comporte deux sections. La première section est celle où vous avez défini l’écouteur, le nom de la règle et les paramètres de chemin par défaut. Les paramètres de chemin par défaut sont des itinéraires qui ne relèvent pas de l’itinéraire personnalisé basé sur le chemin. La deuxième section du panneau **Add path-based rule (Ajouter une règle basée sur le chemin)** est celle où vous définissez les règles basées sur le chemin elles-mêmes.
 
 **Paramètres de base**
 
-* **Nom** -cette valeur est une règle de toohello nom convivial qui est accessible dans le portail de hello.
-* **Écouteur** -cette valeur est le port d’écoute hello est utilisé pour la règle de hello.
-* **Par défaut du pool principal** -ce paramètre est le paramètre hello qui définit hello principal toobe est utilisé pour la règle par défaut de hello
-* **Paramètres HTTP par défaut** -ce paramètre est le paramètre hello qui définit toobe de paramètres hello HTTP utilisé pour la règle par défaut de hello.
+* **Nom** : nom convivial de la règle accessible dans le portail.
+* **Écouteur** : écouteur utilisé pour la règle.
+* **Pool principal par défaut** : pool principal à utiliser pour la règle par défaut.
+* **Paramètres HTTP par défaut** : paramètres HTTP à utiliser pour la règle par défaut.
 
-**Path-based rules (Règles basées sur le chemin)**
+**Paramètres de la règle basée sur le chemin**
 
-* **Nom** -cette valeur est une règle nom toopath convivial.
-* **Chemins d’accès** -ce paramètre définit hello chemin hello règle recherche lors de la transmission du trafic
-* **Pool principal** -ce paramètre est le paramètre hello qui définit hello principal toobe est utilisé pour la règle de hello
-* **Paramètre HTTP** -ce paramètre est le paramètre hello qui définit toobe de paramètres hello HTTP utilisé pour la règle de hello.
+* **Nom** : nom convivial de la règle basée sur le chemin.
+* **Chemins d’accès** - chemin d’accès que la règle recherche pour transférer le trafic.
+* **Pool principal** : pool principal à utiliser pour la règle.
+* **Paramètre HTTP** : paramètres HTTP à utiliser avec la règle.
 
 > [!IMPORTANT]
-> Chemins d’accès : liste hello de toomatch de modèles de chemin d’accès. Chacun doit commencer par / et hello uniquement une «\*» est autorisé à hello fin. /xyz, /xyz* ou /xyz/* sont des exemples valides.  
+> Le paramètre **Chemins d’accès** constitue la liste de modèles de chemin d’accès à utiliser pour la correspondance. Chaque modèle doit commencer par une barre oblique. L’astérisque n’est autorisé qu’à la fin. Exemples valides : /xyz, /xyz*, et /xyz/*.  
 
 ![Ajouter un panneau Règle basée sur le chemin contenant toutes les informations][2]
 
-Ajout d’une règle basée sur le chemin d’accès de tooan passerelle d’application existant est un processus simple via le portail de hello. Après avoir créé une règle basée sur le chemin d’accès, il peut être modifié tooadd des règles supplémentaires. 
+L’ajout d’une règle basée sur le chemin à une passerelle Application Gateway existante est un processus simple via le portail Azure. Après avoir créé une règle basée sur le chemin, vous pouvez la modifier pour inclure des règles supplémentaires. 
 
-![ajouter des règles supplémentaires basés sur le chemin][3]
+![Ajouter des règles supplémentaires basées sur le chemin][3]
 
-Cette étape configure une route basée sur un chemin. Il toounderstand important que les demandes ne sont pas réécrit, comme les demandes proviennent de la passerelle d’application inspecte la demande de hello et basic en hello url modèle envoie hello demande toohello approprié back-end.
+Cette étape configure une route basée sur un chemin. Il est important de comprendre que les requêtes ne sont pas réécrites. Au fil de l’arrivée des requêtes, la passerelle Application Gateway examine la requête et, en fonction du modèle d’URL, envoie la requête au pool principal approprié.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-toolearn tooconfigure le déchargement SSL avec la passerelle d’Application Azure, voir [configurer le déchargement SSL](application-gateway-ssl-portal.md)
+Pour découvrir comment configurer le déchargement SSL avec la passerelle Azure Application Gateway, consultez [Configurer une passerelle Application Gateway pour le déchargement SSL à l’aide du portail Azure](application-gateway-ssl-portal.md).
 
 [1]: ./media/application-gateway-create-url-route-portal/figure1.png
 [2]: ./media/application-gateway-create-url-route-portal/figure2.png

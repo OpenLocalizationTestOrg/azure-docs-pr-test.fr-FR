@@ -1,6 +1,6 @@
 ---
-title: "aaaView activités Windows Azure consigne les ressources toomonitor | Documents Microsoft"
-description: "Utilisez hello activité enregistre les erreurs et les actions de l’utilisateur tooreview. Affiche le portail Azure, PowerShell, l’interface CLI Azure et REST."
+title: "Afficher les journaux d’activité Azure pour surveiller les ressources | Microsoft Docs"
+description: "Utilisez les journaux d’activité pour passer en revue les actions et les erreurs des utilisateurs. Affiche le portail Azure, PowerShell, l’interface CLI Azure et REST."
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,75 +14,75 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: tomfitz
-ms.openlocfilehash: 8430ed2a9c1dfe5f13423a55d358e590b0facb22
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9f90bc80c146c6c2da04aacbc110f7d389c0baa2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="view-activity-logs-tooaudit-actions-on-resources"></a>Afficher l’activité enregistre les actions de tooaudit sur les ressources
+# <a name="view-activity-logs-to-audit-actions-on-resources"></a>Afficher les journaux d’activité pour auditer les actions sur les ressources
 Les journaux d’activité vous permettent de déterminer :
 
-* les opérations effectuées sur les ressources hello dans votre abonnement
-* qui a lancé une opération hello (bien que les opérations générées par un service principal ne retournent pas d’un utilisateur en tant que l’appelant de hello)
-* Lorsque l’opération de hello s’est produite
-* état Hello d’opération de hello
-* les valeurs Hello d’autres propriétés qui peuvent vous aider à effectuer des recherches sur les opération hello
+* Les opérations qui ont été effectuées sur les ressources de votre abonnement
+* Les utilisateurs qui ont lancé l’opération (même si les opérations lancées par un service principal ne retournent pas d’utilisateur en tant qu’appelant)
+* Le moment où a eu lieu l’opération
+* L’état de l’opération
+* Les valeurs d’autres propriétés qui peuvent vous aider à effectuer des recherches sur l’opération
 
 [!INCLUDE [resource-manager-audit-limitations](../../includes/resource-manager-audit-limitations.md)]
 
-Vous pouvez récupérer des informations à partir des journaux d’activité hello via le portail hello, PowerShell, CLI d’Azure, API REST de Insights, ou [Insights .NET bibliothèque](https://www.nuget.org/packages/Microsoft.Azure.Insights/).
+Vous pouvez récupérer des informations dans les journaux d’activité par le biais du portail, de PowerShell, de l’interface de ligne de commande Azure, de l’API REST Insights ou de [Insights .NET Library](https://www.nuget.org/packages/Microsoft.Azure.Insights/).
 
 ## <a name="portal"></a>Portail
-1. journaux d’activité hello tooview via le portail de hello, sélectionnez **analyse**.
+1. Pour afficher les journaux d’activité via le portail, sélectionnez **Surveiller**.
    
     ![sélectionner les journaux d’activité](./media/resource-group-audit/select-monitor.png)
 
-   Ou, tooautomatically filtrer le journal d’activité hello pour une ressource particulière ou d’un groupe de ressources, sélectionnez **le journal d’activité** à partir de ce panneau des ressources. Notez que ce journal d’activité hello est filtré automatiquement par la ressource de hello sélectionné.
+   Pour afficher automatiquement le journal d’activité d’une ressource ou d’un groupe de ressources en particulier, sélectionnez **Journal d’activité** à partir du panneau correspondant. Notez que le journal d’activité est automatiquement filtré sur la dernière ressource sélectionnée.
    
     ![filtrer par ressource](./media/resource-group-audit/filtered-by-resource.png)
-2. Bonjour **le journal d’activité** panneau, vous voyez un résumé des dernières opérations.
+2. Le panneau **Journal d’activité** affiche un résumé des opérations récentes.
    
     ![afficher des actions](./media/resource-group-audit/audit-summary.png)
-3. nombre de hello toorestrict d’opérations affichée, sélectionnez différentes conditions. Par exemple, hello image suivante montre hello **Timespan** et **événement déclenché par** champs modifiés tooview hello mesures par un utilisateur particulier ou d’une application pour hello du mois passé. Sélectionnez **appliquer** tooview les résultats de hello de votre requête.
+3. Pour limiter le nombre d’opérations affichées, sélectionnez d’autres conditions. Par exemple, l’illustration suivante indique les champs **Intervalle de temps** et **Événement lancé par** modifiés pour afficher les actions effectuées par un utilisateur ou une application au cours du mois passé. Sélectionnez **Appliquer** pour afficher les résultats de votre requête.
    
     ![définir des options de filtre](./media/resource-group-audit/set-filter.png)
 
-4. Si vous avez besoin de requête de hello toorun plus tard, sélectionnez **enregistrer** et donnez un nom à des requêtes de hello.
+4. Si vous avez besoin d’exécuter la requête ultérieurement, sélectionnez **Enregistrer** et attribuez un nom à votre requête.
    
     ![enregistrer la requête](./media/resource-group-audit/save-query.png)
-5. tooquickly exécuter une requête, vous pouvez sélectionner une requêtes de hello intégrées, telles que de déploiement a échoué.
+5. Pour exécuter rapidement une requête, vous pouvez sélectionner une des requêtes intégrées, telles que les déploiements ayant échoué.
 
     ![sélectionner la requête](./media/resource-group-audit/select-quick-query.png)
 
-   requête Hello définit automatiquement les valeurs de filtre hello requis.
+   La requête sélectionnée définit automatiquement les valeurs de filtre requis.
 
     ![afficher les erreurs de déploiement](./media/resource-group-audit/view-failed-deployment.png)   
 
-6. Sélectionnez une des hello operations toosee un résumé des événements de hello.
+6. Sélectionnez l’une des opérations pour afficher un résumé de l’événement.
 
     ![afficher l’opération](./media/resource-group-audit/view-operation.png)  
 
 ## <a name="powershell"></a>PowerShell
-1. les entrées de journal tooretrieve, exécutez hello **Get-AzureRmLog** commande. Vous fournissez des paramètres supplémentaires toofilter hello liste d’entrées. Si vous ne spécifiez pas une heure de début et de fin, les entrées pour hello dernière heure sont retournées. Par exemple, les opérations de hello tooretrieve pour un groupe de ressources au cours de la dernière heure de hello exécutent :
+1. Pour récupérer les entrées de journal, exécutez la commande **Get-AzureRmLog** . Vous spécifiez des paramètres supplémentaires pour filtrer la liste des entrées. Si vous ne spécifiez pas une heure de début et de fin, les entrées de la dernière heure sont retournées. Par exemple, pour récupérer les opérations d’un groupe de ressources pendant la dernière heure d’exécution :
 
   ```powershell
   Get-AzureRmLog -ResourceGroup ExampleGroup
   ```
    
-    Bonjour à l’exemple suivant montre comment l’activité de hello toouse du journal tooresearch les opérations effectuées pendant une durée spécifiée. Hello les dates de début et de fin sont spécifiées dans un format de date.
+    L’exemple suivant montre comment utiliser le journal d’activité pour rechercher les opérations effectuées pendant une période spécifique. Les dates de début et de fin sont indiquées dans un format de date.
 
   ```powershell
   Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime 2015-08-28T06:00 -EndTime 2015-09-10T06:00
   ```
 
-    Ou bien, vous pouvez utiliser les fonctions toospecify hello date plage de dates, par exemple hello 14 derniers jours.
+    Vous pouvez également utiliser les fonctions de date pour spécifier la plage de dates, par exemple, les 14 derniers jours.
    
   ```powershell 
   Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-14)
   ```
 
-2. En fonction de l’heure de début hello que vous spécifiez, les commandes précédentes hello peuvent retourner une longue liste des opérations de groupe de ressources hello. Vous pouvez filtrer les résultats de hello pour ce que vous recherchez en fournissant des critères de recherche. Par exemple, si vous essayez de tooresearch comment une application web a été arrêtée, vous pouvez exécuter hello de commande suivante :
+2. En fonction de l’heure de début que vous spécifiez, les commandes précédentes peuvent retourner une longue liste d’opérations pour le groupe de ressources. Vous pouvez filtrer les résultats de votre recherche en fournissant des critères de recherche. Par exemple, si vous recherchez la manière dont une application web a été arrêtée, vous pouvez exécuter la commande suivante :
 
   ```powershell
   Get-AzureRmLog -ResourceGroup ExampleGroup -StartTime (Get-Date).AddDays(-14) | Where-Object OperationName -eq Microsoft.Web/sites/stop/action
@@ -108,7 +108,7 @@ Vous pouvez récupérer des informations à partir des journaux d’activité he
   SubStatus         : OK
   ```
 
-3. Vous pouvez rechercher des actions de hello effectuées par un utilisateur particulier, même pour un groupe de ressources qui n’existe plus.
+3. Vous pouvez rechercher les actions effectuées par un utilisateur particulier, même pour un groupe de ressources qui n’existe plus.
 
   ```powershell 
   Get-AzureRmLog -ResourceGroup deletedgroup -StartTime (Get-Date).AddDays(-14) -Caller someone@contoso.com
@@ -120,7 +120,7 @@ Vous pouvez récupérer des informations à partir des journaux d’activité he
   Get-AzureRmLog -ResourceGroup ExampleGroup -Status Failed
   ```
 
-5. Vous concentrer sur une erreur en examinant le message d’état hello pour cette entrée.
+5. Vous pouvez vous focaliser sur une erreur en examinant le message d’état pour cette entrée.
    
         ((Get-AzureRmLog -Status Failed -ResourceGroup ExampleGroup -DetailedOutput).Properties[1].Content["statusMessage"] | ConvertFrom-Json).error
    
@@ -132,7 +132,7 @@ Vous pouvez récupérer des informations à partir des journaux d’activité he
 
 
 ## <a name="azure-cli"></a>Interface de ligne de commande Azure
-* les entrées de journal tooretrieve, que vous exécutez hello **groupe azure journal afficher** commande.
+* Pour récupérer les entrées de journal, exécutez la commande **azure group log show** .
 
   ```azurecli
   azure group log show ExampleGroup --json
@@ -140,11 +140,11 @@ Vous pouvez récupérer des informations à partir des journaux d’activité he
 
 
 ## <a name="rest-api"></a>API REST
-opérations de REST Hello pour travailler avec le journal d’activité hello font partie de hello [Insights REST API](https://msdn.microsoft.com/library/azure/dn931943.aspx). les événements de journal d’activité tooretrieve, consultez [liste des événements de gestion hello dans un abonnement](https://msdn.microsoft.com/library/azure/dn931934.aspx).
+Les opérations REST à utiliser avec le journal d’activité font partie de l’ [API REST Insights](https://msdn.microsoft.com/library/azure/dn931943.aspx). Pour récupérer les événements du journal d’activité, consultez [Liste des événements de gestion dans un abonnement](https://msdn.microsoft.com/library/azure/dn931934.aspx).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Journaux d’activité Azure sont utilisables avec Power BI toogain supérieur perspectives détaillées sur les actions hello dans votre abonnement. Consultez le billet de blog sur [l’affichage et l’analyse des journaux d’activité Azure dans Power BI](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/).
-* toolearn sur la définition des stratégies de sécurité, consultez [Azure Role-based Access Control](../active-directory/role-based-access-control-configure.md).
-* toolearn sur les commandes hello pour l’affichage des opérations de déploiement, consultez [afficher les opérations de déploiement](resource-manager-deployment-operations.md).
-* toolearn tooprevent des suppressions sur une ressource pour tous les utilisateurs, voir [verrouiller les ressources avec Azure Resource Manager](resource-group-lock-resources.md).
+* Les journaux d’activité Azure sont utilisables avec Power BI pour obtenir des informations plus détaillées sur les actions de votre abonnement. Consultez le billet de blog sur [l’affichage et l’analyse des journaux d’activité Azure dans Power BI](https://azure.microsoft.com/blog/analyze-azure-audit-logs-in-powerbi-more/).
+* Pour en savoir plus sur la définition de stratégies de sécurité, consultez [Contrôle d’accès en fonction du rôle Azure](../active-directory/role-based-access-control-configure.md).
+* Pour en savoir plus sur les commandes permettant d’afficher les opérations de déploiement, consultez [Voir les opérations de déploiement](resource-manager-deployment-operations.md).
+* Pour savoir comment empêcher des suppressions sur une ressource pour tous les utilisateurs, consultez [Verrouiller des ressources avec Azure Resource Manager](resource-group-lock-resources.md).
 

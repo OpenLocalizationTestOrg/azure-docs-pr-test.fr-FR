@@ -1,6 +1,6 @@
 ---
-title: "aaaMonitor, diagnostiquer et résoudre les problèmes de stockage Azure | Documents Microsoft"
-description: "Utiliser les fonctionnalités, comme analytique de stockage, journalisation, côté client et les autres outils tiers tooidentify, diagnostiquer et résoudre les problèmes liés au stockage Azure."
+title: "Analyse, diagnostic et résolution des problèmes de stockage Azure | Microsoft Docs"
+description: "Utilisation de fonctionnalités telles que l’analyse du stockage, la journalisation côté client et d’autres outils tiers pour identifier, diagnostiquer et résoudre les problèmes liés à Azure Storage."
 services: storage
 documentationcenter: 
 author: fhryo-msft
@@ -14,191 +14,191 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: fhryo-msft
-ms.openlocfilehash: 43f34a4ccbc3071cdb489958252498a1f88e1a34
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1a9c9354b665294778886441cc6d7f02adb1163f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitor-diagnose-and-troubleshoot-microsoft-azure-storage"></a>Surveiller, diagnostiquer et résoudre les problèmes liés à Microsoft Azure Storage
 [!INCLUDE [storage-selector-portal-monitoring-diagnosing-troubleshooting](../../../includes/storage-selector-portal-monitoring-diagnosing-troubleshooting.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Le diagnostic et la résolution des problèmes dans une application distribuée hébergée dans un environnement cloud peuvent s'avérer plus complexes que dans des environnements traditionnels. Les applications peuvent être déployées dans une infrastructure PaaS ou IaaS, localement, sur un appareil mobile ou selon une formule combinée. En règle générale, le trafic du réseau de votre application peut traverser les réseaux publics et privés et votre application peut utiliser plusieurs technologies de stockage tels que les Tables de stockage Microsoft Azure, les objets BLOB, les files d’attente, ou stocke les fichiers de données tooother tels que relationnelle et les bases de données de document.
+Le diagnostic et la résolution des problèmes dans une application distribuée hébergée dans un environnement cloud peuvent s'avérer plus complexes que dans des environnements traditionnels. Les applications peuvent être déployées dans une infrastructure PaaS ou IaaS, localement, sur un appareil mobile ou selon une formule combinée. Le trafic réseau de votre application traverse généralement des réseaux publics et privés, et votre application peut utiliser différentes technologies de stockage, comme Stockage Table, Stockage Blob, Stockage File d’attente ou Stockage Fichier de Microsoft Azure, en plus d’autres magasins de données, comme des bases de données relationnelles et de documents.
 
-toomanage de telles applications correctement vous devez surveiller de manière proactive et comprendre comment toodiagnose et résoudre les problèmes de tous les aspects de ces derniers, leurs technologies connexes. En tant qu’utilisateur des services de stockage Azure, vous devez en permanence surveiller les services de stockage hello votre application utilise des modifications inattendues de comportement (par exemple, la plus lente que le temps de réponse habituel) et utiliser toocollect de journalisation plus détaillées des données et tooanalyze un problème de profondeur. vous obtenez à partir de la surveillance et la journalisation des informations de diagnostic Hello aidera à vous toodetermine hello cause première de hello émettre votre application a rencontré. Vous pouvez résoudre les problème de hello et déterminer les étapes appropriées à hello suivre tooremediate il. Le stockage Azure est un service Azure et constitue une partie importante de la plupart de hello des solutions aux clients de déployer toohello infrastructure Azure. Le stockage Azure inclut des fonctionnalités d’analyse toosimplify, diagnostiquer et résoudre les problèmes de stockage dans vos applications basées sur le cloud.
+Pour gérer avec succès de telles applications, vous devez les analyser de façon proactive et savoir comment diagnostiquer et résoudre n'importe quel problème associé à leur fonctionnement et leurs technologies associées. En tant qu'utilisateur des services Azure Storage, vous devez surveiller en permanence les services de stockage utilisés par votre application afin de détecter tout comportement imprévu (par ex., des temps de réponse plus lents que d'habitude), et utiliser la journalisation afin de collecter davantage de données détaillées et analyser chaque problème en profondeur. Les informations de diagnostic obtenues via l'analyse et la journalisation vous aideront à déterminer la cause première du problème rencontré par votre application. Vous pouvez alors résoudre le problème et déterminer la procédure appropriée pour y remédier. Azure Storage est l'un des principaux services de Azure et un élément essentiel de la plupart des solutions que les clients déploient dans l'infrastructure Azure. Azure Storage inclut des fonctionnalités qui permettent de simplifier l'analyse, le diagnostic et la résolution des problèmes de stockage rencontrés par vos applications sur le cloud.
 
 > [!NOTE]
-> Hello stockage Azure ne prend pas en charge la journalisation pour l’instant.
+> Azure Files ne prend pas en charge pas la journalisation pour l’instant.
 > 
 
-Pour un guide pratique tooend bout en bout résolution des problèmes dans les applications de stockage Azure, consultez [dépannage à l’aide d’Azure Storage Metrics et journalisation, AzCopy et l’Analyseur de Message de bout en bout](../storage-e2e-troubleshooting.md).
+Pour obtenir un guide pratique de bout en bout pour la résolution des problèmes dans les applications Azure Storage, consultez [Résolution des problèmes de bout en bout avec les métriques et la journalisation Azure, AzCopy et Message Analyzer](../storage-e2e-troubleshooting.md).
 
 * [Introduction]
   * [Organisation de ce guide]
-* [votre service de stockage de surveillance]
+* [Analyse de votre service de stockage]
   * [Analyse de l’état d’intégrité du service]
   * [Analyse de la capacité]
   * [Analyse de la disponibilité]
   * [Analyse des performances]
-* [diagnostiquer les problèmes de stockage]
+* [Diagnostic des problèmes de stockage]
   * [Problèmes d’état d’intégrité du service]
   * [Problèmes de performances]
   * [Erreurs de diagnostic]
   * [Problèmes d’émulateur de stockage]
   * [Outils de journalisation du stockage]
   * [Utilisation des outils de journalisation réseau]
-* [le suivi de bout en bout]
+* [Suivi de bout en bout]
   * [Corrélation des données de journalisation]
   * [ID de la demande client]
-  * [ID demande serveur]
+  * [ID de la demande serveur]
   * [Horodatages]
-* [conseils de dépannage]
-  * [mesures affichent AverageE2ELatency haute et basse AverageServerLatency]
-  * [Affichent les métriques AverageE2ELatency basse et AverageServerLatency basse mais hello client rencontre une latence élevée]
+* [Instructions pour la résolution des problèmes]
+  * [Les métriques indiquent une valeur AverageE2ELatency élevée et une valeur AverageServerLatency faible]
+  * [Les métriques indiquent une valeur AverageE2ELatency faible et une valeur AverageServerLatency faible, mais le client constate une latence élevée]
   * [Les métriques indiquent une valeur AverageServerLatency élevée]
   * [Vous constatez des retards inattendus dans la livraison des messages d’une file d’attente]
-  * [métriques indiquent une augmentation dans PercentThrottlingError]
-  * [métriques indiquent une augmentation dans PercentTimeoutError]
+  * [Les métriques indiquent une augmentation de la valeur PercentThrottlingError]
+  * [Les métriques indiquent une augmentation de la valeur PercentTimeoutError]
   * [Les métriques indiquent une augmentation de la valeur PercentNetworkError]
-  * [Hello client reçoit les messages HTTP 403 (interdit)]
-  * [Hello client reçoit les messages HTTP 404 (introuvable)]
-  * [Hello client reçoit les messages HTTP 409 (conflit)]
-  * [PercentSuccess basse affichent les métriques ou les entrées de journal analytique ont des opérations avec état de la transaction de ClientOtherErrors]
+  * [Le client reçoit des messages HTTP 403 (Forbidden)]
+  * [Le client reçoit des messages HTTP 404 (Not found)]
+  * [Le client reçoit des messages HTTP 409 (Conflict)]
+  * [Les métriques indiquent une valeur PercentSuccess faible ou les entrées du journal d’analyse incluent des opérations avec un statut de transaction ClientOtherErrors]
   * [Les métriques de capacité indiquent une augmentation inattendue de l’utilisation de la capacité de stockage]
   * [Vous constatez des redémarrages inattendus des machines virtuelles associées à un grand nombre de disques durs virtuels]
-  * [Votre problème survient à l’aide de l’émulateur de stockage hello pour le développement ou de test]
-  * [Vous rencontrez des problèmes d’installation Bonjour Azure SDK pour .NET]
+  * [Votre problème provient de l’utilisation de l’émulateur de stockage pour le développement ou les tests]
+  * [Vous rencontrez des problèmes pendant l’installation du Kit de développement logiciel (SDK) Azure pour .NET]
   * [Vous rencontrez un autre problème avec un service de stockage]
-  * [Résolution des problèmes de stockage de fichiers Azure dans Windows](../files/storage-troubleshoot-windows-file-connection-problems.md)   
-  * [Résolution des problèmes de stockage de fichiers Azure dans Linux](../files/storage-troubleshoot-linux-file-connection-problems.md)
-* [annexes]
-  * [annexe 1 : à l’aide du trafic HTTP et HTTPS du toocapture Fiddler]
-  * [annexe 2 : à l’aide d’un trafic réseau Wireshark toocapture]
-  * [annexe 3 : à l’aide de trafic de réseau Microsoft Message Analyzer toocapture]
-  * [Annexe 4 : À l’aide de données de journaux et de métriques tooview Excel]
+  * [Résolution des problèmes Azure Files avec Windows](../files/storage-troubleshoot-windows-file-connection-problems.md)   
+  * [Résolution des problèmes Azure Files avec Linux](../files/storage-troubleshoot-linux-file-connection-problems.md)
+* [Annexes]
+  * [Annexe 1 : utilisation de Fiddler pour capturer le trafic HTTP et HTTPS]
+  * [Annexe 2 : utilisation de Wireshark pour capturer le trafic réseau]
+  * [Annexe 3 : utilisation de l’analyseur de message Microsoft pour capturer le trafic réseau]
+  * [Annexe 4 : utilisation d’Excel pour afficher les métriques et les données de journalisation]
   * [Annexe 5 : analyse avec Application Insights pour Visual Studio Team Services]
 
 ## <a name="introduction"></a>Introduction
-Problèmes de ce indique guide vous comment toouse des fonctionnalités telles qu’Analytique de stockage Azure, de journalisation côté client de hello bibliothèque cliente de stockage Azure et autres tooidentify des outils tiers, diagnostiquez et résoudre les problèmes de stockage Azure.
+Ce guide vous explique comment utiliser des fonctionnalités telles que Azure Storage Analytics, la journalisation côté client dans la bibliothèque cliente de Azure Storage, et d’autres outils tiers permettant d’identifier, diagnostiquer et résoudre les problèmes liés à Azure Storage.
 
 ![][1]
 
-Ce guide est prévu toobe lecture principalement par les développeurs de services en ligne qui utilisent des Services de stockage Azure et les professionnels de l’informatique chargés de gérer ces services en ligne. Ce guide vise Hello est :
+Ce guide est destiné principalement aux développeurs de services en ligne qui utilisent les services Azure Storage et aux professionnels de l’informatique responsables de la gestion de tels services en ligne. Ce guide a pour objectifs de :
 
-* toohelp vous conservez le contrôle d’intégrité hello et les performances de vos comptes de stockage Azure.
-* tooprovide des processus nécessaires de hello et toohelp outils vous décidez si un problème dans une application ou un problème est lié tooAzure stockage.
-* tooprovide vous avec des instructions pour résoudre les problèmes liés à tooAzure stockage.
+* Vous aider à maintenir l'état d'intégrité et les performances de vos comptes Azure Storage.
+* Mettre à votre disposition les processus et outils nécessaires pour vous aider à déterminer si un problème rencontré dans une application est lié à Azure Storage.
+* Mettre à votre disposition des mesures concrètes pour la résolution des problèmes liés à Azure Storage.
 
 ### <a name="how-this-guide-is-organized"></a>Organisation de ce guide
-Hello la section «[votre service de stockage de surveillance]» décrit comment toomonitor hello intégrité et les performances de vos services de stockage Azure à l’aide d’Azure Storage Analytique Metrics (Storage Metrics).
+La section «[Analyse de votre service de stockage]» explique comment analyser l'état d'intégrité et les performances de vos services Azure Storage à l'aide des métriques Azure Storage Analytics (métriques de stockage).
 
-Hello la section «[diagnostiquer les problèmes de stockage]» décrit comment toodiagnose problèmes à l’aide d’Azure Storage Analytique Logging (Storage Logging). Il décrit également comment tooenable à l’aide de journalisation côté client hello des fonctionnalités de l’une des bibliothèques clientes de hello telles que hello bibliothèque cliente de stockage pour .NET ou d’un hello SDK Azure pour Java.
+La section «[Diagnostic des problèmes de stockage]» explique comment diagnostiquer les problèmes à l'aide de la journalisation Azure Storage Analytics (journalisation du stockage). Elle explique également comment activer la journalisation côté client à l'aide des fonctionnalités dans une des bibliothèques clientes, telles que la bibliothèque cliente de stockage pour .NET ou le Kit de développement logiciel (SDK) pour Java.
 
-Hello la section «[le suivi de bout en bout]» décrit comment vous pouvez mettre en corrélation les informations hello contenues dans les différents fichiers journaux et les données de métriques.
+La section «[Suivi de bout en bout]» explique comment mettre en corrélation les informations contenues dans divers fichiers journaux et les données métriques.
 
-Hello la section «[conseils de dépannage]» fournit des conseils de dépannage pour les hello problèmes liés au stockage courants que vous pouvez rencontrer.
+La section «[Instructions pour la résolution des problèmes]» fournit des instructions pour la résolution de certains des problèmes de stockage communs.
 
-Hello »[annexes]» incluent des informations sur l’utilisation d’autres outils tels que Wireshark et Netmon pour l’analyse de réseau des données du paquet, Fiddler pour analyser les messages HTTP/HTTPS, et Microsoft Message Analyzer pour mettre en corrélation les données du journal.
+La section «[Annexes]» inclut des informations concernant l'utilisation d'autres outils tels que Wireshark et Netmon pour l'analyse des données des paquets réseau, Fiddler pour l'analyse des messages HTTP/HTTPS, et l'analyseur de message Microsoft pour la mise en corrélation des données de journalisation.
 
 ## <a name="monitoring-your-storage-service"></a>Analyse de votre service de stockage
-Si vous connaissez les outils d’analyse de performances Windows, vous pouvez considérer les métriques de stockage comme l’équivalent, dans Azure Storage, des compteurs de l’Analyseur de performances Windows. Dans les mesures de stockage, vous trouverez un ensemble complet de métriques (compteurs dans la terminologie de l’Analyseur de performances Windows), telles que la disponibilité du service, le nombre total de demandes tooservice, ou le pourcentage de demandes réussies tooservice. Pour obtenir une liste complète des métriques disponibles de hello, consultez [schéma de Table de métriques Storage Analytique](http://msdn.microsoft.com/library/azure/hh343264.aspx). Vous pouvez spécifier si vous souhaitez toocollect de service de stockage hello et des mesures agrégées toutes les heures ou toutes les minutes. Pour plus d’informations sur les métriques de tooenable et analyse vos comptes de stockage, voir [l’activation des métriques de stockage et l’affichage des données de métriques](http://go.microsoft.com/fwlink/?LinkId=510865).
+Si vous connaissez les outils d’analyse de performances Windows, vous pouvez considérer les métriques de stockage comme l’équivalent, dans Azure Storage, des compteurs de l’Analyseur de performances Windows. Les métriques de stockage incluent un vaste éventail de métriques (appelées compteurs dans la terminologie de l’Analyseur de performances Windows) telles que la disponibilité du service, le nombre total de demandes du service ou le pourcentage de demandes réussies du service. Pour obtenir une liste de toutes les métriques disponibles, consultez l’article [Schéma de table de métriques Storage Analytics](http://msdn.microsoft.com/library/azure/hh343264.aspx). Vous pouvez spécifier si vous désirez que le service de stockage collecte et agrège les métriques toutes les heures ou toutes les minutes. Pour plus d’informations sur la façon d’activer les métriques et d’analyser vos comptes de stockage, consultez la section [Activation de Storage Metrics et affichage des données de métriques](http://go.microsoft.com/fwlink/?LinkId=510865).
 
-Vous pouvez choisir les métriques toutes les heures souhaitées toodisplay Bonjour [portail Azure](https://portal.azure.com) et configurer des règles pour avertir les administrateurs par courrier électronique chaque fois qu’une mesure horaire dépasse un seuil spécifique. Pour plus d’informations, consultez [Réception de notifications d’alerte](/azure/monitoring-and-diagnostics/monitoring-overview-alerts.md). 
+Vous pouvez sélectionner les métriques horaires à afficher dans le [portail Azure](https://portal.azure.com) et configurer les règles de notification par e-mail des administrateurs lorsqu’une métrique horaire dépasse un seuil spécifique. Pour plus d’informations, consultez [Réception de notifications d’alerte](/azure/monitoring-and-diagnostics/monitoring-overview-alerts.md). 
 
-service de stockage Hello collecte les mesures à l’aide de son mieux, mais ne peut pas enregistrer chaque opération de stockage.
+Le service de stockage collecte les métriques du mieux qu’il peut, mais peut ne pas enregistrer toutes les opérations de stockage.
 
-Bonjour portail Azure, vous pouvez afficher les métriques, telles que la disponibilité, nombre total de demandes et les numéros de latence moyenne pour un compte de stockage. Une règle de notification a également été configurée tooalert administrateur si disponibilité tombe sous un certain niveau. À partir de l’affichage de ces données, une zone possible pour un examen est le pourcentage de réussite de service table hello est inférieure à 100 % (pour plus d’informations, consultez la section de hello »[PercentSuccess basse affichent les métriques ou les entrées de journal analytique ont des opérations avec état de la transaction de ClientOtherErrors]»).
+Dans le portail Azure, vous pouvez afficher des métriques telles que la disponibilité, le nombre total de demandes et les valeurs de latence moyenne pour un compte de stockage. Une règle de notification a également été configurée afin d'alerter l'administrateur lorsque la disponibilité chute en dessous d'un certain niveau. Lorsque ces données sont affichées, l'un des possibles éléments d'enquête est la présence d'un pourcentage inférieur à 100 % dans le service de table (pour plus d'informations, voir la section «[Les métriques indiquent une valeur PercentSuccess faible ou les entrées du journal d’analyse incluent des opérations avec un statut de transaction ClientOtherErrors]»).
 
-Vous devez surveiller en continu votre tooensure d’applications Azure qu’ils sont sains et performant que celui attendu par :
+Vous devez surveiller en permanence vos applications Azure afin de vous assurer qu’elles sont intègres et fonctionnent comme prévu en :
 
-* L’établissement des métriques de ligne de base de l’application qui sera vous toocompare les données actuelles et identifier les modifications importantes de comportement hello du stockage Azure et votre application. les valeurs Hello vos métriques de ligne de base sera, dans de nombreux cas, spécifiques à l’application et vous devez les définir lorsque vous testez les performances de votre application.
-* L’enregistrement des métriques par minute et leur utilisation toomonitor activement pour des erreurs inattendues et les anomalies telles que des pics du nombre d’erreurs ou des taux de demandes.
-* Les métriques par heure de l’enregistrement à l’aide les valeurs moyennes de toomonitor comme moyen de nombre d’erreurs et taux de demandes.
-* Examen des problèmes potentiels à l’aide des outils de diagnostic comme décrit plus loin dans la section de hello »[diagnostiquer les problèmes de stockage]. »
+* Établissant certaines métriques de base pour l'application, qui vous permettront de comparer les données actuelles et d'identifier toute modification significative dans le comportement du stockage Azure et votre application. Les valeurs de vos métriques de base seront, dans de nombreux cas, spécifiques à l'application et doivent être établies lors des tests de performances de votre application.
+* Enregistrant les métriques par minute et en les utilisant pour analyser activement les erreurs inattendues et anomalies telles que les pics au niveau du nombre d'erreurs ou du taux de demandes.
+* Enregistrant les métriques horaires et en les utilisant pour analyser les valeurs moyennes telles que le nombre d'erreurs et le taux de demandes moyens.
+* Enquêtant sur les problèmes potentiels à l'aide des outils de diagnostic abordés plus bas dans la section «[Diagnostic des problèmes de stockage]».
 
-graphiques Hello Bonjour suivant image illustrent comment hello moyenne qui se produit pour les métriques permettre masquer des pics dans l’activité. les métriques de Hello apparaissent tooshow un taux stable de demandes, lors de la minute hello métriques révèlent fluctuations hello qui sont réellement en cours.
+Les graphiques de l’image suivante illustrent comment la moyenne établie pour les métriques horaires peut cacher certains pics d'activité. Les métriques horaires s'affichent pour indiquer un taux de demandes stable ; les métriques par minute révèlent les fluctuations réelles.
 
 ![][3]
 
-Hello reste de cette section décrit les mesures que vous devez surveiller et pourquoi.
+La suite de cette section décrit quelles métriques vous devriez analyser et pourquoi.
 
 ### <a name="monitoring-service-health"></a>Analyse de l’état d’intégrité du service
-Vous pouvez utiliser hello [portail Azure](https://portal.azure.com) tooview hello intégrité hello stockage service (et autres services Azure) dans tous les hello régions Azure monde hello. Cela vous permet toosee immédiatement si un problème en dehors de votre contrôle affecte hello service de stockage dans la région de hello que vous utilisez pour votre application.
+Vous pouvez utiliser le [portail Azure](https://portal.azure.com) pour afficher l’état du service de stockage (et d’autres services Azure) dans toutes les régions Azure de par le monde. Vous pouvez ainsi savoir immédiatement si un problème sur lequel vous n’avez pas de contrôle affecte la région dans laquelle vous utilisez l’application.
 
-Hello [portail Azure](https://portal.azure.com) peut également fournir des notifications d’incidents affectant hello divers services Azure.
-Remarque : Ces informations n’étaient précédemment disponibles, ainsi que des données historiques sur hello [tableau de bord de Service Azure](http://status.azure.com).
+Le [portail Azure](https://portal.azure.com) peut également envoyer des notifications des incidents qui affectent les divers services Azure.
+Remarque : ces informations étaient auparavant accessibles avec les données d’historique, sur le [tableau de bord du service Azure](http://status.azure.com).
 
-Lors de hello [portail Azure](https://portal.azure.com) collecte les informations d’intégrité à l’intérieur de hello centres de données Azure (analyse intégrale), vous pouvez également envisager d’adopter des transactions de synthèse toogenerate approche extérieur régulièrement accéder à votre application web hébergé par Azure à partir de plusieurs emplacements. Hello services proposés par [Dynatrace](http://www.dynatrace.com/en/synthetic-monitoring) et Application Insights pour Visual Studio Team Services sont des exemples de cette approche de l’extérieur. Pour plus d’informations sur Application Insights pour Visual Studio Team Services, consultez l’annexe de hello »[annexe 5 : surveiller avec Application Insights pour Visual Studio Team Services](#appendix-5). »
+Le [portail Azure](https://portal.azure.com) recueille les informations d’état à l’intérieur des centres de données Azure (analyse de l’intérieur vers l’extérieur), mais vous pouvez également adopter une approche de l’extérieur vers l’intérieur et générer des transactions synthétiques qui accèdent périodiquement à votre application web Azure à partir de plusieurs emplacements. Les services offerts par [Dynatrace](http://www.dynatrace.com/en/synthetic-monitoring) et Application Insights pour Visual Studio Team Services sont des exemples de ce type d’approche. Pour plus d’informations sur Application Insights pour Visual Studio Team Services, consultez «[Annexe 5 : analyse avec Application Insights pour Visual Studio Team Services](#appendix-5)».
 
 ### <a name="monitoring-capacity"></a>Analyse de la capacité
-Métriques de stockage stocke uniquement les métriques de capacité pour le service d’objets blob hello parce que BLOB généralement proportion de plus grande hello des données stockées (au moment de hello d’écriture, il n’est pas possible toouse Storage Metrics toomonitor hello capacité vos tables et les files d’attente) . Vous pouvez trouver ces données Bonjour **$MetricsCapacityBlob** table si vous avez activé l’analyse pour hello service Blob. Storage Metrics enregistre les données une fois par jour, et vous pouvez utiliser la valeur hello hello **RowKey** toodetermine indique si les lignes hello contient une entité qui lie les données toouser (valeur **données**) ou (de données analytique valeur **analytique**). Chaque entité stockée contient des informations sur la quantité de hello de stockage utilisé (**capacité** mesurée en octets) et le nombre actuel de hello de conteneurs (**ContainerCount**) et les objets BLOB ( **ObjectCount**) en cours d’utilisation dans le compte de stockage hello. Pour plus d’informations sur les métriques de capacité hello stockées Bonjour **$MetricsCapacityBlob** de table, consultez [schéma de Table de métriques Storage Analytique](http://msdn.microsoft.com/library/azure/hh343264.aspx).
+Les métriques de stockage enregistrent uniquement les métriques de capacité pour le service d’objet blob, car les objets blob constituent généralement la majeure partie des données stockées (lors de l'écriture, il n'est pas possible d'utiliser les métriques de stockage pour analyser la capacité de vos tables et files d'attente). Ces données sont accessibles dans la table **$MetricsCapacityBlob** si vous avez activé l'analyse pour le service d'objet blob. Les métriques de stockage enregistrent ces données une fois par jour, et vous pouvez utiliser la valeur de la **RowKey** pour déterminer si la ligne contient une entité associée à des données utilisateur (valeur **data**) ou des données d’analyse (valeur **analytics**). Chaque entité stockée contient des informations sur la quantité de stockage utilisée (**Capacity** mesurée en octets) et le nombre actuel de conteneurs (**ContainerCount**) et d’objets blob (**ObjectCount**) utilisés dans le compte de stockage. Pour plus d’informations sur les métriques de capacité stockées dans la table **$MetricsCapacityBlob** , consultez [Schéma de table de métriques Storage Analytics](http://msdn.microsoft.com/library/azure/hh343264.aspx).
 
 > [!NOTE]
-> Vous devez surveiller ces valeurs pour un avertissement que vous vous rapprochez des limites de capacité hello de votre compte de stockage. Bonjour portail Azure, vous pouvez ajouter toonotify de règles d’alerte si l’utilisation du stockage d’agrégation dépasse ou tombe en dessous des seuils que vous spécifiez.
+> Ces valeurs doivent être analysées en guise de préavertissement lorsque vous approchez des limites de capacité de votre compte de stockage. Dans le portail Azure, vous pouvez ajouter des règles d’alerte pour être averti lorsque l’utilisation agrégée du stockage dépasse les seuils que vous définissez ou chute en dessous de ces seuils.
 > 
 > 
 
-Pour l’estimation de taille hello des différents objets de stockage tels que les objets BLOB, consultez hello blog post [présentation stockage de la facturation Azure – bande passante, Transactions et capacité](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/07/09/understanding-windows-azure-storage-billing-bandwidth-transactions-and-capacity.aspx).
+Pour plus d’informations sur l’estimation de la taille des divers objets de stockage tels que les objets blob, consultez le billet de blog [Understanding Azure Storage Billing – Bandwidth, Transactions, and Capacity](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/07/09/understanding-windows-azure-storage-billing-bandwidth-transactions-and-capacity.aspx)(Présentation de la facturation du stockage Azure - bande passante, transactions et capacité).
 
 ### <a name="monitoring-availability"></a>Analyse de la disponibilité
-Vous devez surveiller la disponibilité hello hello de services de stockage dans votre compte de stockage en surveillant la valeur hello Bonjour **disponibilité** colonne hello tables de métriques par heure ou minute : **$ MetricsHourPrimaryTransactionsBlob**, **$MetricsHourPrimaryTransactionsTable**, **$MetricsHourPrimaryTransactionsQueue**, **$ MetricsMinutePrimaryTransactionsBlob**, **$MetricsMinutePrimaryTransactionsTable**, **$MetricsMinutePrimaryTransactionsQueue**, **$ MetricsCapacityBlob**. Hello **disponibilité** colonne contient une valeur de pourcentage qui indique la disponibilité hello hello service d’ou opération hello API représenté par hello ligne (hello **RowKey** indique si les lignes hello contient métriques pour service hello dans son ensemble ou pour une opération d’API spécifique).
+Vous devez analyser la disponibilité des services de stockage dans votre compte de stockage en examinant la colonne **Availability** de vos tables de métriques horaires ou par minute — **$MetricsHourPrimaryTransactionsBlob**, **$MetricsHourPrimaryTransactionsTable**, **$MetricsHourPrimaryTransactionsQueue**, **$MetricsMinutePrimaryTransactionsBlob**, **$MetricsMinutePrimaryTransactionsTable**, **$MetricsMinutePrimaryTransactionsQueue**, **$MetricsCapacityBlob**. La colonne **Availability** contient une valeur de pourcentage qui indique la disponibilité du service ou de l’opération API représentée par la ligne (la **RowKey** s’affiche si la ligne contient des métriques pour l’ensemble du service ou pour une opération API spécifique).
 
-Toute valeur inférieure à 100 % indique que certaines demandes de stockage échouent. Vous pouvez voir pourquoi elles échouent en examinant hello des autres colonnes de données de métriques hello qui affichent les hello un nombre de demandes avec différents types d’erreur tel que **ServerTimeoutError**. Vous devriez toosee **disponibilité** automne temporairement inférieure à 100 % pour des raisons telles que des délais d’attente du serveur temporaire pendant que le service de hello déplace les partitions toobetter équilibrer la charge demande ; hello logique dans votre application cliente de nouvelle tentative doit gérer ces conditions transitoires. article de Hello [les Messages d’état et les opérations de journalisation de stockage Analytique](http://msdn.microsoft.com/library/azure/hh343260.aspx) listes hello des types de transactions qui inclut des métriques de stockage dans son **disponibilité** calcul.
+Toute valeur inférieure à 100 % indique que certaines demandes de stockage échouent. Vous pouvez connaître la raison de l'échec en examinant les autres colonnes dans les données métriques qui indiquent les nombres de demandes avec différents types d'erreur, tels que **ServerTimeoutError**. Il est normal que la valeur de la colonne **Availability** descende provisoirement en dessous de 100% pour des raisons telles que des délais d'expiration de serveur temporaires, lorsque le service déplace des partitions afin de mieux équilibrer la charge de la demande ; la logique de nouvelle tentative dans votre application client doit gérer ces conditions intermittentes. L’article [Opérations et messages d’état enregistrés Storage Analytics](http://msdn.microsoft.com/library/azure/hh343260.aspx) répertorie les types de transactions que Storage Metrics inclut dans son calcul **Disponibilité** .
 
-Bonjour [portail Azure](https://portal.azure.com), vous pouvez ajouter des règles d’alerte toonotify vous si **disponibilité** pour un service tombe en dessous d’un seuil que vous spécifiez.
+Dans le [portail Azure](https://portal.azure.com), vous pouvez ajouter des règles d’alerte pour être averti lorsque la valeur **Availability** pour un service chute en dessous d’un seuil que vous spécifiez.
 
-Hello »[conseils de dépannage]» dans ce guide décrit certaines système stockage service problèmes connexes tooavailability courantes.
+La section «[Instructions pour la résolution des problèmes]» de ce guide décrit certains des problèmes de service de stockage liés à la disponibilité.
 
 ### <a name="monitoring-performance"></a>Analyse des performances
-performances de hello toomonitor hello de services de stockage, vous pouvez utiliser hello suivant des métriques à partir de hello toutes les heures et minutes des tables de métriques.
+Pour analyser les performances de vos services de stockage, vous pouvez utiliser les métriques suivantes des tables de métriques horaires ou par minute.
 
-* Hello valeurs Bonjour **AverageE2ELatency** et **AverageServerLatency** colonnes indiquent le service de stockage hello hello temps moyen ou le type d’opération API prend tooprocess demandes. **AverageE2ELatency** est une mesure de la latence de bout en bout qui inclut la durée hello de la demande de hello tooread et envoyer une réponse de hello dans la demande hello tooprocess Ajout toohello temps nécessaire (par conséquent inclut latence du réseau une fois la demande de hello atteint de service de stockage hello) ; **AverageServerLatency** est une mesure du temps de traitement simplement hello et par conséquent exclut toute latence du réseau associé toocommunicating avec le client de hello. Consultez la section de hello »[mesures affichent AverageE2ELatency haute et basse AverageServerLatency]» plus loin dans ce guide pour une présentation de la raison pour laquelle il peut y avoir une différence significative entre ces deux valeurs.
-* Hello valeurs Bonjour **TotalIngress** et **TotalEgress** colonnes indiquent la quantité totale de hello de données, en octets, à venir de tooand passe hors de votre service de stockage ou à un type d’opération API spécifique.
-* Hello valeurs Bonjour **TotalRequests** colonne Afficher hello nombre de demandes de service de stockage de l’opération de l’API de hello reçoit. **TotalRequests** hello le nombre total de demandes de service de stockage hello reçoit.
+* Les valeurs des colonnes **AverageE2ELatency** et **AverageServerLatency** indiquent le temps moyen nécessaire au service de stockage ou à l’opération API pour traiter les demandes. **AverageE2ELatency** est une mesure de la latence de bout en bout, qui inclut le temps nécessaire pour lire la demande et envoyer la réponse, en plus du temps nécessaire pour traiter la demande (elle inclut donc la latence réseau lorsque la demande parvient au service de stockage) ; **AverageServerLatency** est une mesure du seul temps de traitement et n’inclut donc aucune latence réseau associée à la communication avec le client. Voir la section «[Les métriques indiquent une valeur AverageE2ELatency élevée et une valeur AverageServerLatency faible]» plus bas dans ce guide pour examiner les raisons d'une éventuelle différence importante entre ces deux valeurs.
+* Les valeurs dans les colonnes **TotalIngress** et **TotalEgress** indiquent le volume total des données (en octets) entrant dans et sortant de votre service de stockage, ou via un type d’opération API spécifique.
+* Les valeurs dans la colonne **TotalRequests** indiquent le nombre total de demandes que le service de stockage de l'opération API reçoit. **TotalRequests** est le nombre total de demandes que le service de stockage reçoit.
 
 Toute modification inattendue de ces valeurs est généralement l’indicateur d’un problème qui doit faire l’objet d’une enquête.
 
-Bonjour [portail Azure](https://portal.azure.com), vous pouvez ajouter des règles d’alerte toonotify vous si une des mesures de performances hello pour ce service passent en dessous ou dépassez un seuil que vous spécifiez.
+Dans le [portail Azure](https://portal.azure.com), vous pouvez ajouter des règles d’alerte pour être averti lorsque des métriques de performances pour ce service chutent en dessous ou dépassent un seuil que vous spécifiez.
 
-Hello »[conseils de dépannage]» dans ce guide décrit certaines système stockage service problèmes connexes tooperformance courantes.
+La section «[Instructions pour la résolution des problèmes]» de ce guide décrit certains des problèmes de service de stockage liés aux performances.
 
 ## <a name="diagnosing-storage-issues"></a>Diagnostic des problèmes de stockage
 Il existe différentes façons de savoir si votre application a rencontré un problème, dont :
 
-* Une défaillance majeure qui provoque le fonctionnement de toocrash ou toostop l’application hello.
-* Des modifications significatives à partir des valeurs de ligne de base de métriques hello vous analysez comme décrit dans la section précédente de hello »[votre service de stockage de surveillance]. »
+* Défaillance majeure qui provoque un blocage de l'application ou son arrêt.
+* Changements significatifs des valeurs de base dans les métriques que vous analysez, tel qu'indiqué dans la section précédente «[Analyse de votre service de stockage]».
 * Rapports des utilisateurs de votre application indiquant qu'une certaine opération ne s'est pas effectuée comme prévu ou qu'une fonctionnalité est défectueuse.
 * Erreurs générées au sein de votre application et affichées dans les fichiers journaux ou via d'autres méthodes de notification.
 
-En règle générale, les services de stockage de problèmes connexes tooAzure se répartissent dans quatre grandes catégories :
+Les problèmes associés aux services de stockage Azure se répartissent généralement en quatre catégories principales :
 
-* Votre application rencontre un problème de performances, signalées par vos utilisateurs, ou révélées par les modifications des métriques de performances hello.
-* Il existe un problème avec l’infrastructure de stockage Azure hello dans une ou plusieurs régions.
-* Votre application rencontre une erreur, signalées par vos utilisateurs, ou révélées par une augmentation de l’une des mesures de comptage erreur hello analysées.
-* Au cours de développement et de test, vous pouvez utiliser l’émulateur de stockage local hello ; Vous pouvez rencontrer certains problèmes qui se rapportent spécifiquement toousage de l’émulateur de stockage hello.
+* Votre application connaît un problème de performances signalé par les utilisateurs ou révélé par des changements dans les métriques de performances.
+* Il existe un problème au niveau de l'infrastructure Azure Storage dans une ou plusieurs régions.
+* Votre application connaît un problème de performances signalé par les utilisateurs ou révélé par une augmentation dans les métriques de nombre d'erreurs que vous analysez.
+* Pendant le développement et les tests, il se peut que vous utilisiez l'émulateur de stockage local et rencontriez des problèmes spécifiques à son utilisation.
 
-Hello sections suivantes décrivent les étapes hello doit suivre toodiagnose et résoudre les problèmes dans chacun de ces quatre catégories. Hello la section «[conseils de dépannage]» plus loin dans ce guide fournit plus de détails pour certains problèmes courants que vous pouvez rencontrer.
+Les sections suivantes expliquent les étapes à suivre pour le diagnostic et la résolution des problèmes dans chacune de ces quatre catégories. La section «[Instructions pour la résolution des problèmes]» plus bas dans ce guide aborde plus en détail certains des problèmes que vous pouvez être amené à rencontrer.
 
 ### <a name="service-health-issues"></a>Problèmes d’état d’intégrité du service
-Les problèmes d’état du service sont généralement des problèmes sur lesquels vous n’avez pas de contrôle. Hello [portail Azure](https://portal.azure.com) fournit des informations sur les problèmes en cours avec les services Azure, y compris les services de stockage. Si vous avez opté pour le stockage géo-redondant avec accès en lecture lorsque vous avez créé votre compte de stockage, puis dans l’événement hello de vos données n’est pas disponible dans l’emplacement principal de hello, votre application peut basculer temporairement copie en lecture seule de toohello dans l’emplacement secondaire de hello. toodo, votre application doit être en mesure de tooswitch entre l’utilisation des emplacements de stockage principal et secondaire hello et être en mesure de toowork dans un mode de fonctionnalité réduite avec des données en lecture seule. bibliothèques de Client de stockage Azure Hello autorisent toodefine une stratégie de nouvelle tentative qui permettre lire à partir du stockage secondaire en cas d’échec d’une lecture à partir du stockage principal. Votre application doit également toobe savoir que les données hello dans l’emplacement secondaire de hello soient finalement cohérentes. Pour plus d’informations, voir blog de hello [Options de redondance de stockage Azure et Read Access Geo Redundant Storage](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/).
+Les problèmes d’état du service sont généralement des problèmes sur lesquels vous n’avez pas de contrôle. Le [portail Azure](https://portal.azure.com) fournit des informations sur n’importe quel problème en cours avec les services Azure, y compris les services de stockage. Si vous avez opté pour un stockage géo-redondant avec accès en lecture lors de la création de votre compte de stockage, lorsque vos données ne sont plus accessibles depuis l'emplacement principal, votre application peut passer provisoirement à une copie en lecture seule sur l'emplacement secondaire. Pour ce faire, votre application doit être capable de passer indifféremment des emplacements de stockage principaux aux emplacements de stockage secondaires, et de fonctionner dans un mode de fonctionnalités réduites, avec des données en lecture seule. Les bibliothèques clientes Azure Storage vous permettent de définir une stratégie de nouvelle tentative afin de passer à une lecture depuis le stockage secondaire lorsque la lecture depuis le stockage principal échoue. Votre application doit également être capable de reconnaître que les données de l’emplacement secondaire sont cohérentes. Pour plus d’informations, consultez le billet de blog [Azure Storage Redundancy Options and Read Access Geo Redundant Storage](https://blogs.msdn.microsoft.com/windowsazurestorage/2013/12/11/windows-azure-storage-redundancy-options-and-read-access-geo-redundant-storage/).
 
 ### <a name="performance-issues"></a>Problèmes de performances
-performances Hello d’une application peuvent être subjective, en particulier à partir d’une perspective de l’utilisateur. Par conséquent, il est important toohave toohelp de ligne de base des métriques disponibles vous identifiez où il existe un problème de performances. De nombreux facteurs peuvent affecter les performances de hello d’un service de stockage Azure à partir de la perspective d’application client hello. Ces facteurs peuvent avoir lieu dans le service de stockage hello, dans le client de hello ou dans l’infrastructure de réseau hello ; Par conséquent, il est important toohave une stratégie pour identifier l’origine hello du problème de performances hello.
+Les performances d’une application peuvent être subjectives, en particulier du point de vue de l’utilisateur. C'est pourquoi il est important de disposer de métriques de base afin de vous aider à identifier les problèmes de performances éventuels. De nombreux facteurs peuvent affecter les performances d'un service de stockage Azure du point de vue de l'application cliente. Ces facteurs peuvent affecter le service de stockage, l'infrastructure cliente ou l'infrastructure réseau ; il est donc important d'établir une stratégie d'identification de la cause initiale du problème de performances.
 
-Après avoir identifié l’emplacement probable hello de cause hello du problème de performances hello de métriques de hello, vous pouvez ensuite utiliser hello journal fichiers toofind détaillées toodiagnose d’informations et résoudre les problème hello.
+Après avoir identifié l'emplacement probable de la cause du problème de performances à partir des métriques, vous pouvez utiliser les fichiers journaux afin de disposer d'informations détaillées pour un diagnostic et une résolution en profondeur du problème.
 
-Hello la section «[conseils de dépannage]» plus loin dans ce guide fournit plus d’informations sur certaines des performances courants liés les problèmes qui vous pouvez rencontrer.
+La section «[Instructions pour la résolution des problèmes]» plus bas dans ce guide aborde plus en détail certains des problèmes de performances que vous pouvez être amené à rencontrer.
 
 ### <a name="diagnosing-errors"></a>Erreurs de diagnostic
-Les utilisateurs de votre application peuvent vous avertir des erreurs signalées par l’application cliente de hello. Les métriques de stockage enregistrent également les décomptes des différents types d’erreurs de vos services de stockage, tels que **NetworkError**, **ClientTimeoutError** ou **AuthorizationError**. Les métriques de stockage enregistrent uniquement les décomptes des différents types d'erreurs, mais vous pouvez obtenir des informations plus détaillées concernant les demandes individuelles en examinant les journaux côté serveur, côté client et réseau. En règle générale, code d’état HTTP hello retourné par le service de stockage hello donnent une indication de l’échec de demande de hello.
+Les utilisateurs de votre application peuvent vous signaler des erreurs identifiées par l'application cliente. Les métriques de stockage enregistrent également les décomptes des différents types d’erreurs de vos services de stockage, tels que **NetworkError**, **ClientTimeoutError** ou **AuthorizationError**. Les métriques de stockage enregistrent uniquement les décomptes des différents types d'erreurs, mais vous pouvez obtenir des informations plus détaillées concernant les demandes individuelles en examinant les journaux côté serveur, côté client et réseau. Le code d'état HTTP renvoyé par le service de stockage peut généralement servir d'indication pour expliquer l'échec de la demande.
 
 > [!NOTE]
-> Souvenez-vous que vous devriez toosee certaines erreurs intermittentes : par exemple, les erreurs en raison de conditions de réseau tootransient, ou les erreurs d’application.
+> N’oubliez pas que vous devriez voir des erreurs intermittentes : les erreurs dues à des problèmes réseau temporaires ou les erreurs d’application par exemple.
 > 
 > 
 
-Hello ressources suivantes sont utiles pour comprendre les codes d’état et d’erreur liés au stockage :
+Les ressources suivantes sont utiles pour comprendre les codes d’état et d’erreur liés au stockage :
 
 * [Codes d'erreur API REST communs](http://msdn.microsoft.com/library/azure/dd179357.aspx)
 * [Codes d’erreur de service BLOB](http://msdn.microsoft.com/library/azure/dd179439.aspx)
@@ -206,72 +206,72 @@ Hello ressources suivantes sont utiles pour comprendre les codes d’état et d�
 * [Codes d'erreur de service de table](http://msdn.microsoft.com/library/azure/dd179438.aspx)
 * [Codes d’erreur de service de fichier](https://msdn.microsoft.com/library/azure/dn690119.aspx)
 
-### <a name="storage-emulator-issues"></a>Problèmes liés à l’émulateur de stockage
-Bonjour Azure SDK comprend un émulateur de stockage que vous pouvez exécuter sur une station de travail de développement. Cet émulateur simule la majeure partie du comportement hello de services de stockage Azure hello et est utile lors du développement et de test, ce qui vous toorun les applications qui utilisent les services de stockage Azure sans hello ont besoin pour un abonnement Azure et un compte de stockage Azure.
+### <a name="storage-emulator-issues"></a>Problèmes d’émulateur de stockage
+Le Kit de développement logiciel (SDK) Azure inclut un émulateur de stockage que vous pouvez exécuter sur une station de travail de développement. Cet émulateur simule la plupart des comportements des services de stockage Azure et est utile lors du développement et des tests, vous permettant d’exécuter les applications qui utilisent les services de stockage Azure sans avoir besoin d’un abonnement et d’un compte de stockage Azure.
 
-Hello »[conseils de dépannage]» dans ce guide décrit certains problèmes courants rencontrés à l’aide de l’émulateur de stockage hello.
+La section «[Instructions pour la résolution des problèmes]» de ce guide décrit certains des problèmes liés à l'utilisation de l'émulateur de stockage.
 
 ### <a name="storage-logging-tools"></a>Outils de journalisation du stockage
-La journalisation du stockage permet de journaliser côté serveur les demandes de stockage dans votre compte de stockage Azure. Pour plus d’informations sur la journalisation du côté serveur tooenable et hello d’accès aux données du journal, consultez [l’activation de la journalisation du stockage et l’accès aux données du journal](http://go.microsoft.com/fwlink/?LinkId=510867).
+La journalisation du stockage permet de journaliser côté serveur les demandes de stockage dans votre compte de stockage Azure. Pour plus d’informations concernant l’activation de la journalisation côté serveur et l’accès aux données de journalisation, consultez [Activation de la journalisation du stockage et accès aux données des journaux](http://go.microsoft.com/fwlink/?LinkId=510867).
 
-Hello bibliothèque cliente de stockage pour .NET vous permet de toocollect les données de journal côté client qui associe les opérations toostorage effectuées par votre application. Pour plus d’informations, consultez [journalisation avec hello bibliothèque cliente de stockage .NET côté Client](http://go.microsoft.com/fwlink/?LinkId=510868).
+La bibliothèque cliente de stockage pour .NET vous permet de collecter les données de journalisation côté client, liées aux opérations de stockage réalisées par votre application. Pour plus d’informations, consultez [Journalisation côté client avec la bibliothèque cliente de stockage .NET](http://go.microsoft.com/fwlink/?LinkId=510868).
 
 > [!NOTE]
-> Dans certains cas (par exemple, les échecs d’autorisation SAP), un utilisateur peut signaler une erreur pour laquelle vous ne pouvez trouver aucune donnée de requête dans hello journaux de stockage côté serveur. Vous pouvez utiliser des fonctionnalités de journalisation hello de hello bibliothèque cliente de stockage tooinvestigate si hello hello provient du fait de client de hello ou réseau de hello tooinvestigate outils d’analyse de réseau.
+> Dans certains cas (par ex., erreurs d’autorisation SAS), il peut arriver qu’un utilisateur signale une erreur pour laquelle vous ne trouvez aucune donnée de demande dans les journaux de stockage côté serveur. Vous pouvez utiliser les fonctionnalités de journalisation de la bibliothèque cliente de stockage pour savoir si la cause du problème se situe au niveau client ou utiliser les outils d'analyse de réseau pour examiner le réseau.
 > 
 > 
 
 ### <a name="using-network-logging-tools"></a>Utilisation des outils de journalisation réseau
-Vous pouvez capturer le trafic de hello entre hello client et serveur tooprovide détaillée des informations sur hello données hello client et serveur sont l’échange et hello sous-jacent des conditions du réseau. Parmi les outils de journalisation réseau utiles, on retrouve :
+Vous pouvez capturer le trafic entre le client et le serveur afin d'obtenir des informations détaillées concernant les données échangées entre le client et le serveur, et concernant les conditions réseau sous-jacentes. Parmi les outils de journalisation réseau utiles, on retrouve :
 
-* [Fiddler](http://www.telerik.com/fiddler) est un proxy qui vous permet d’en-têtes de hello tooexamine et les données de charge utile des messages de demande et de réponse HTTP et HTTPS de débogage gratuitement sur Internet. Pour plus d’informations, consultez [annexe 1 : trafic HTTP et HTTPS à l’aide de Fiddler toocapture](#appendix-1).
-* [Microsoft Network Monitor (Netmon)](http://www.microsoft.com/download/details.aspx?id=4865) et [Wireshark](http://www.wireshark.org/) est des analyseurs de protocole qui vous permettent de tooview réseau libre paquet des informations détaillées sur un large éventail de protocoles réseau. Pour plus d’informations sur Wireshark, consultez «[annexe 2 : le trafic de réseau à l’aide de Wireshark toocapture](#appendix-2)».
-* Microsoft Message Analyzer est un outil de Microsoft qui remplace Netmon et qui, en outre, toocapturing réseau données du paquet, vous aide à tooview et analyser les données de journal hello capturées à partir d’autres outils. Pour plus d’informations, consultez «[annexe 3 : le trafic de réseau à l’aide de l’Analyseur de Message Microsoft toocapture](#appendix-3)».
-* Si vous voulez tooperform un toocheck de test de connectivité de base que votre ordinateur client peut se connecter service de stockage Azure toohello réseau hello, cela est impossible à l’aide de la norme de hello **ping** outil sur le client de hello. Toutefois, vous pouvez utiliser hello [ **tcping** outil](http://www.elifulkerson.com/projects/tcping.php) toocheck connectivité.
+* [Fiddler](http://www.telerik.com/fiddler) est un proxy de débogage web gratuit qui vous permet d’examiner les en-têtes et données de charge utile des messages de requête et de réponse HTTP et HTTPS. Pour plus d’informations, consultez [Annexe 1 : utilisation de Fiddler pour capturer le trafic HTTP et HTTPS](#appendix-1).
+* Le [Moniteur réseau Microsoft (Netmon)](http://www.microsoft.com/download/details.aspx?id=4865) et [Wireshark](http://www.wireshark.org/) sont des analyseurs de protocole réseau gratuits qui vous permettent d’afficher des informations détaillées concernant les paquets pour de nombreux protocoles réseau. Pour plus d’informations sur Wireshark, consultez «[Annexe 2 : utilisation de Wireshark pour capturer le trafic réseau](#appendix-2)».
+* L'analyseur de message Microsoft est un outil de Microsoft qui remplace Netmon et qui, en plus de capturer les données des paquets réseau, vous aide à afficher et analyser les données de journalisation capturées à partir d'autres outils. Pour plus d’informations, consultez «[Annexe 3 : utilisation de l’analyseur de message Microsoft pour capturer le trafic réseau](#appendix-3)».
+* Si vous souhaitez effectuer un test de connectivité de base pour vérifier que votre ordinateur client peut se connecter au service de stockage Azure via le réseau, vous ne pouvez pas le faire en utilisant l'outil **ping** standard sur le client. Mais l'outil [**tcping**](http://www.elifulkerson.com/projects/tcping.php) vous permet de vérifier la connectivité.
 
-Dans de nombreux cas, les données de journal hello de Storage Logging et hello bibliothèque cliente de stockage seront suffisante toodiagnose un problème, mais dans certains scénarios, vous devrez peut-être hello plus d’informations sur ces outils de journalisation de réseau pouvant fournir. Par exemple, permet de messages HTTP et HTTPS tooview en-tête et la charge utile de données envoyées tooand hello à partir de services de stockage, ce qui vous permettrait tooexamine comment une application cliente à l’aide de Fiddler tooview retente les opérations de stockage. Les analyseurs de protocole tels que Wireshark fonctionnent au niveau de paquets hello l’activation de données TCP tooview, ce qui permettraient tootroubleshoot perdu de paquets et les problèmes de connectivité. L’analyseur de message est capable de fonctionner au niveau des couches HTTP et TCP.
+Dans de nombreux cas, les données de journalisation issues de la journalisation du stockage et de la bibliothèque cliente de stockage seront suffisantes pour diagnostiquer un problème, mais dans certains scénarios, il se peut que vous ayez besoin de plus d’informations que celles fournies par ces outils de journalisation réseau. Par exemple, utiliser Fiddler pour afficher les messages HTTP et HTTPS vous permet d'afficher les données d'en-tête et de charge utile envoyées aux et par les services de stockage, ce qui vous permet de vérifier comment une application cliente effectue les nouvelles tentatives d'opérations de stockage. Les analyseurs de protocole tels que Wireshark fonctionnent au niveau des paquets et vous permettent d'afficher les données TCP afin de résoudre les problèmes de perte de paquets et de connectivité. L’analyseur de message est capable de fonctionner au niveau des couches HTTP et TCP.
 
 ## <a name="end-to-end-tracing"></a>Suivi de bout en bout
-Le suivi de bout en bout basé sur plusieurs fichiers journaux est une technique utile pour l’identification des problèmes potentiels. Vous pouvez utiliser les informations de date/heure hello à partir de vos données métriques comme une indication d’où toostart recherche dans les fichiers journaux hello hello détaillées des informations qui vous aideront à résoudre les problème de hello.
+Le suivi de bout en bout basé sur plusieurs fichiers journaux est une technique utile pour l’identification des problèmes potentiels. Vous pouvez utiliser les informations de date/heure de vos données métriques pour savoir où commencer à chercher des informations plus détaillées dans vos fichiers journaux afin de résoudre le problème.
 
 ### <a name="correlating-log-data"></a>Corrélation des données de journalisation
-Lorsque vous affichez les journaux des applications clientes, les traces de réseau et stockage côté serveur enregistrement est critique toobe toocorrelate en mesure de demandes sur hello différents fichiers journaux. les fichiers journaux Hello incluent un nombre de champs différents qui sont utiles en tant qu’identificateurs de corrélation. id de demande client Hello est hello plus utiles toouse toocorrelate entrées de champ dans différents journaux de hello. Toutefois dans certains cas, il peut être utile toouse id de demande de serveur hello ou les horodatages. Hello sections suivantes fournissent plus de détails sur ces options.
+Lors de l'affichage des journaux à partir des applications clientes, des suivis réseau et du stockage côté serveur, leur journalisation est essentielle afin de pouvoir mettre en corrélation les demandes à travers différents fichiers journaux. Les fichiers journaux incluent un certain nombre de champs différents, utiles en tant qu'identificateurs de corrélation. L'ID de demande client est le champ le plus utile pour mettre en corrélation les entrées dans les différents journaux. Toutefois, il peut parfois être utile d'utiliser l'ID de demande serveur ou les horodatages. Les sections suivantes expliquent plus en détail ces options.
 
 ### <a name="client-request-id"></a>ID de la demande client
-Bibliothèque cliente de stockage de Hello génère automatiquement un id de demande client unique pour chaque demande.
+La bibliothèque cliente de stockage génère automatiquement un ID de demande client unique pour chaque demande.
 
-* Bonjour journal côté client qui hello bibliothèque cliente de stockage crée, id de demande client hello s’affiche dans hello **ID de demande Client** champ de chaque entrée de journal relative toohello demande.
-* Dans une trace réseau tel que celui capturé par Fiddler, id de demande client hello est visible dans les messages de demande comme hello **x-ms-client-request-id** valeur d’en-tête HTTP.
-* Dans le journal de Storage Logging hello côté serveur, l’id de demande client hello s’affiche dans la colonne d’ID de demande Client hello.
+* Dans le journal côté client créé par la bibliothèque cliente de stockage, l'ID de demande client s'affiche dans le champ **ID de demande client** de chaque entrée de journal associée à la demande.
+* Dans un suivi réseau comme celui capturé par Fiddler, l'ID de demande client s'affiche dans les messages de demande comme valeur d'en-tête HTTP **x-ms-client-request-id**.
+* Dans le journal de journalisation du stockage côté serveur, l’ID de demande client s’affiche dans la colonne ID de demande client.
 
 > [!NOTE]
-> Il est possible pour plusieurs demandes tooshare hello même id de demande client, car le client de hello permettre affecter cette valeur (bien que la bibliothèque cliente de stockage de hello assigne une nouvelle valeur automatiquement). Dans les cas de hello de nouvelles tentatives à partir du client de hello, toutes les tentatives de partagent hello même id de demande client. Dans les cas de hello d’un lot envoyé à partir du client de hello, lot de hello a un id de demande client unique.
+> Plusieurs demandes peuvent partager le même ID de demande client, car le client peut affecter cette valeur (même si la bibliothèque cliente de stockage affecte une nouvelle valeur automatiquement). Quand le client effectue de nouvelles tentatives, ces dernières partagent le même ID de demande client. Quand un lot est envoyé par le client, le lot a un seul ID de demande client.
 > 
 > 
 
 ### <a name="server-request-id"></a>ID de la demande serveur
-service de stockage Hello génère automatiquement un ID de demande de serveur.
+Le service de stockage génère automatiquement les ID de demande serveur.
 
-* Dans le journal de Storage Logging hello côté serveur, id de demande de serveur hello apparaît hello **en-tête d’ID de demande** colonne.
-* Dans une trace réseau tel que celui capturé par Fiddler, id de demande de serveur hello apparaît dans les messages de réponse comme hello **x-ms-request-id** valeur d’en-tête HTTP.
-* Bonjour journal côté client qui hello bibliothèque cliente de stockage crée, id de demande de serveur hello s’affiche dans hello **opération texte** colonne d’entrée du journal hello présentant les détails de la réponse du serveur hello.
+* Dans le journal de journalisation du stockage côté serveur, l'ID de demande serveur s'affiche dans la colonne **En-tête d’ID de demande**.
+* Dans un suivi réseau comme celui capturé par Fiddler, l'ID de demande serveur s'affiche dans les messages de réponse comme valeur d'en-tête HTTP **x-ms-request-id** .
+* Dans le journal côté client créé par la bibliothèque cliente de stockage, l'ID de demande serveur s'affiche dans la colonne **Texte de l’opération** pour l'entrée de journal qui affiche les détails de la réponse du serveur.
 
 > [!NOTE]
-> service de stockage Hello toujours attribue à un serveur unique demande id tooevery demande qu’il reçoit, par conséquent, chaque nouvelle tentative à partir du client de hello et chaque opération inclus dans un lot a un id de demande de serveur unique.
+> Le service de stockage affecte toujours un ID de demande serveur unique à chaque demande qu’il reçoit. Par conséquent, chaque nouvelle tentative du client et chaque opération incluse dans un lot a un ID de demande serveur unique.
 > 
 > 
 
-Si hello bibliothèque cliente de stockage lève une **StorageException** dans le client de hello, hello **RequestInformation** propriété contient un **RequestResult** objet qui inclut un **%%ServiceRequestID%%** propriété. Vous pouvez également accéder à un objet **RequestResult** à partir d’une instance **OperationContext**.
+Si la bibliothèque cliente de stockage génère une **StorageException** dans le client, la propriété **RequestInformation** contient un objet **RequestResult** qui inclut une propriété **ServiceRequestID**. Vous pouvez également accéder à un objet **RequestResult** à partir d’une instance **OperationContext**.
 
-Hello, exemple de code ci-dessous montre comment tooset personnalisé **ClientRequestId** valeur en attachant une **OperationContext** service de stockage toohello hello demande de l’objet. Il montre également comment tooretrieve hello **ServerRequestId** valeur à partir du message de réponse hello.
+L’exemple de code ci-dessous montre comment définir une valeur **ClientRequestId** personnalisée en associant un objet **OperationContext** à la demande du service de stockage. Il montre également comment récupérer la valeur **ServerRequestId** à partir du message de réponse.
 
 ```csharp
-//Parse hello connection string for hello storage account.
+//Parse the connection string for the storage account.
 const string ConnectionString = "DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key";
 CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-// Create an Operation Context that includes custom ClientRequestId string based on constants defined within hello application along with a Guid.
+// Create an Operation Context that includes custom ClientRequestId string based on constants defined within the application along with a Guid.
 OperationContext oc = new OperationContext();
 oc.ClientRequestID = String.Format("{0} {1} {2} {3}", HOSTNAME, APPNAME, USERID, Guid.NewGuid().ToString());
 
@@ -283,13 +283,13 @@ try
     using (var fs = File.OpenWrite(downloadToPath))
     {
         blob.DownloadToStream(fs, null, null, oc);
-        Console.WriteLine("\t Blob downloaded toofile: {0}", downloadToPath);
+        Console.WriteLine("\t Blob downloaded to file: {0}", downloadToPath);
     }
 }
 catch (StorageException storageException)
 {
     Console.WriteLine("Storage exception {0} occurred", storageException.Message);
-    // Multiple results may exist due tooclient side retry logic - each retried operation will have a unique ServiceRequestId
+    // Multiple results may exist due to client side retry logic - each retried operation will have a unique ServiceRequestId
     foreach (var result in oc.RequestResults)
     {
             Console.WriteLine("HttpStatus: {0}, ServiceRequestId {1}", result.HttpStatusCode, result.ServiceRequestID);
@@ -298,37 +298,37 @@ catch (StorageException storageException)
 ```
 
 ### <a name="timestamps"></a>Horodatages
-Vous pouvez également utiliser les horodatages toolocate liées des entrées de journal, mais soyez prudent de n’importe quel horloge maximal autorisé entre le client de hello et le serveur qui peut-être exister. Vous devez rechercher plus ou moins de 15 minutes pour les entrées de côté serveur en fonction de l’horodatage hello sur le client de hello correspondantes. N’oubliez pas que hello blob les métadonnées pour les objets BLOB de hello contenant des mesures indiquent la plage de temps hello pour les métriques hello stockées dans l’objet blob de hello ; Cela est utile si vous avez de nombreux objets BLOB de métriques pour hello même heures ou minutes.
+Vous pouvez également utiliser les horodatages pour trouver des entrées de journal associées, mais sans oublier les éventuelles variations d'horloges entre le client et le serveur. Votre recherche des entrées côté serveur correspondantes doit s'appliquer dans une plage de plus ou moins 15minutes par rapport à l'horodatage sur le client. N’oubliez pas que les métadonnées des objets blob contenant des métriques indiquent la plage de temps pour les métriques stockées dans l’objet blob ; ce qui est utile lorsque vous avez plusieurs objets blob de métriques pour la même minute ou heure.
 
 ## <a name="troubleshooting-guidance"></a>Instructions pour la résolution des problèmes
-Cette section vous aidera à faire de diagnostic hello et résolution des problèmes de certains des problèmes courants de hello votre application peuvent rencontrer lors de l’utilisation des services de stockage Azure hello. Utiliser la liste hello ci-dessous un problème spécifique de toolocate hello informations tooyour pertinentes.
+Cette section est destinée à vous aider à diagnostiquer et résoudre certains des problèmes communs que votre application est susceptible de rencontrer lors de l’utilisation des services de stockage Azure. La liste ci-dessous permet d’identifier les informations pertinentes pour un problème spécifique.
 
 **Arbre de décision pour la résolution des problèmes**
 
 ---
-Le problème rapport toohello les performances de l’un des services de stockage hello ?
+Votre problème concerne-t-il les performances d'un des services de stockage ?
 
-* [mesures affichent AverageE2ELatency haute et basse AverageServerLatency]
-* [Affichent les métriques AverageE2ELatency basse et AverageServerLatency basse mais hello client rencontre une latence élevée]
+* [Les métriques indiquent une valeur AverageE2ELatency élevée et une valeur AverageServerLatency faible]
+* [Les métriques indiquent une valeur AverageE2ELatency faible et une valeur AverageServerLatency faible, mais le client constate une latence élevée]
 * [Les métriques indiquent une valeur AverageServerLatency élevée]
 * [Vous constatez des retards inattendus dans la livraison des messages d’une file d’attente]
 
 ---
-Le problème rapport Disponibilité toohello de l’un des services de stockage hello ?
+Votre problème concerne-t-il la disponibilité d’un des services de stockage ?
 
-* [métriques indiquent une augmentation dans PercentThrottlingError]
-* [métriques indiquent une augmentation dans PercentTimeoutError]
+* [Les métriques indiquent une augmentation de la valeur PercentThrottlingError]
+* [Les métriques indiquent une augmentation de la valeur PercentTimeoutError]
 * [Les métriques indiquent une augmentation de la valeur PercentNetworkError]
 
 ---
  Votre application client reçoit-elle une réponse HTTP 4XX (telle que 404) d’un service de stockage ?
 
-* [Hello client reçoit les messages HTTP 403 (interdit)]
-* [Hello client reçoit les messages HTTP 404 (introuvable)]
-* [Hello client reçoit les messages HTTP 409 (conflit)]
+* [Le client reçoit des messages HTTP 403 (Forbidden)]
+* [Le client reçoit des messages HTTP 404 (Not found)]
+* [Le client reçoit des messages HTTP 409 (Conflict)]
 
 ---
-[PercentSuccess basse affichent les métriques ou les entrées de journal analytique ont des opérations avec état de la transaction de ClientOtherErrors]
+[Les métriques indiquent une valeur PercentSuccess faible ou les entrées du journal d’analyse incluent des opérations avec un statut de transaction ClientOtherErrors]
 
 ---
 [Les métriques de capacité indiquent une augmentation inattendue de l’utilisation de la capacité de stockage]
@@ -337,31 +337,31 @@ Le problème rapport Disponibilité toohello de l’un des services de stockage 
 [Vous constatez des redémarrages inattendus des machines virtuelles associées à un grand nombre de disques durs virtuels]
 
 ---
-[Votre problème survient à l’aide de l’émulateur de stockage hello pour le développement ou de test]
+[Votre problème provient de l’utilisation de l’émulateur de stockage pour le développement ou les tests]
 
 ---
-[Vous rencontrez des problèmes d’installation Bonjour Azure SDK pour .NET]
+[Vous rencontrez des problèmes pendant l’installation du Kit de développement logiciel (SDK) Azure pour .NET]
 
 ---
 [Vous rencontrez un autre problème avec un service de stockage]
 
 ---
 ### <a name="metrics-show-high-AverageE2ELatency-and-low-AverageServerLatency"></a>Les métriques indiquent une valeur AverageE2ELatency élevée et une valeur AverageServerLatency faible
-Hello l’illustration ci-dessous à partir de hello [portail Azure](https://portal.azure.com) outil d’analyse montre un exemple où hello **AverageE2ELatency** est beaucoup plus importante que hello **AverageServerLatency**.
+L’illustration de l’outil d’analyse du [portail Azure](https://portal.azure.com) donne un exemple où la valeur **AverageE2ELatency** est nettement supérieure à la valeur **AverageServerLatency**.
 
 ![][4]
 
-Notez que service de stockage hello ne calcule des mesures de hello **AverageE2ELatency** pour des demandes réussies et, contrairement aux **AverageServerLatency**, inclut hello temps client de hello toosend hello données et recevoir l’accusé de réception à partir du service de stockage hello. Par conséquent, une différence entre **AverageE2ELatency** et **AverageServerLatency** est peut-être en raison de l’application toohello client en cours lents toorespond ou échéance tooconditions sur le réseau de hello.
+Notez que le service de stockage calcule uniquement la métrique **AverageE2ELatency** pour les demandes réussies et, contrairement à la valeur **AverageServerLatency**, inclut le temps nécessaire au client pour envoyer les données et recevoir l’accusé de réception du service de stockage. Par conséquent, une différence entre les valeurs **AverageE2ELatency** et **AverageServerLatency** peut être due à une réponse lente de l’application client ou aux conditions sur le réseau.
 
 > [!NOTE]
-> Vous pouvez également afficher **E2ELatency** et **ServerLatency** les données du journal pour les opérations de stockage individuel Bonjour Storage Logging.
+> Vous pouvez également afficher les valeurs **E2ELatency** et **ServerLatency** pour des opérations de stockage individuelles dans les données de journalisation du stockage.
 > 
 > 
 
 #### <a name="investigating-client-performance-issues"></a>Enquête sur les problèmes de performances client
-Les raisons possibles pour le client hello répond lentement sont ayant un nombre limité de connexions disponibles ou les threads ou faible sur les ressources, telles que la bande passante processeur, mémoire ou le réseau. Vous pouvez être problème de hello en mesure de tooresolve en modifiant toobe de code hello client plus efficace (par exemple en utilisant le service de stockage de toohello appels asynchrones) ou à l’aide d’une Machine virtuelle supérieure (avec davantage de cœurs et de la mémoire).
+Les raisons possibles à une réponse lente du client incluent un nombre limité de connexions ou threads disponibles, ou l’insuffisance de ressources telles que le processeur, la mémoire ou la bande passante réseau. Il se peut que le problème puisse être résolu en modifiant le code client afin de le rendre plus efficace (par exemple, en utilisant des appels asynchrones vers le service de stockage), ou en utilisant une machine virtuelle plus puissante (avec davantage de cœurs et de mémoire).
 
-Pour les services de table et de la file d’attente hello, algorithme de Nagle hello peut également provoquer haute **AverageE2ELatency** rapport trop**AverageServerLatency**: pour plus d’informations consultez hello [de Nagle Algorithme n’est pas convivial aux petites requêtes](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/06/25/nagle-s-algorithm-is-not-friendly-towards-small-requests.aspx). Vous pouvez désactiver l’algorithme Nagle de hello dans le code à l’aide de hello **ServicePointManager** classe Bonjour **System.Net** espace de noms. Vous devez le faire avant de vous rendre n’importe quelle table de toohello appelle ou les services de file d’attente dans votre application, car cela n’affecte pas les connexions qui sont déjà ouverts. Hello exemple suivant provient de hello **Application_Start** méthode dans un rôle de travail.
+Pour les services Table et File d’attente, l’algorithme Nagle peut également provoquer de valeurs élevées de **AverageE2ELatency** par rapport à **AverageServerLatency** : pour plus d’informations, consultez le billet [Nagle’s Algorithm is Not Friendly towards Small Requests](http://blogs.msdn.com/b/windowsazurestorage/archive/2010/06/25/nagle-s-algorithm-is-not-friendly-towards-small-requests.aspx). Vous pouvez désactiver l’algorithme Nagle dans le code en utilisant la classe **ServicePointManager** dans l’espace de noms **System.Net**. Cette opération doit être effectuée avant de réaliser des appels vers les services de table et de file d’attente dans votre application, car elle n’affecte pas les connexions déjà ouvertes. L’exemple suivant provient de la méthode **Application_Start** dans un rôle de travail.
 
 ```csharp
 var storageAccount = CloudStorageAccount.Parse(connStr);
@@ -371,38 +371,38 @@ ServicePoint queueServicePoint = ServicePointManager.FindServicePoint(storageAcc
 queueServicePoint.UseNagleAlgorithm = false;
 ```
 
-Vous devez vérifier hello côté client journaux toosee combien votre application cliente soumet des demandes et .NET générales liées à des goulots d’étranglement de performances dans votre client telles que le processeur, le garbage collection .NET, l’utilisation du réseau ou mémoire. La première étape pour la résolution des problèmes des applications clientes .NET consiste à consulter la section [Débogage, suivi et profilage](http://msdn.microsoft.com/library/7fe0dd2y).
+Vous devez consulter les journaux côté client pour savoir combien de demandes votre application cliente soumet, et vérifier la présence dans votre client de goulots d’étranglement au niveau des performances générales de .NET, telles que l’UC, .NET garbage collection, l’utilisation du réseau ou la mémoire. La première étape pour la résolution des problèmes des applications clientes .NET consiste à consulter la section [Débogage, suivi et profilage](http://msdn.microsoft.com/library/7fe0dd2y).
 
 #### <a name="investigating-network-latency-issues"></a>Enquête sur les problèmes de latence du réseau
-Latence de bout en bout élevée hello réseau à l’origine est généralement en raison de conditions de tootransient. Vous pouvez enquêter sur les problèmes de réseau provisoires et permanents (par ex., les paquets perdus) à l'aide d'outils tels que Wireshark ou l'analyseur de message Microsoft.
+Une latence de bout en bout élevée, causée par le réseau, est généralement associée à des conditions provisoires. Vous pouvez enquêter sur les problèmes de réseau provisoires et permanents (par ex., les paquets perdus) à l'aide d'outils tels que Wireshark ou l'analyseur de message Microsoft.
 
-Pour plus d’informations sur l’utilisation des problèmes de réseau tootroubleshoot Wireshark, consultez «[annexe 2 : à l’aide d’un trafic réseau Wireshark toocapture]. »
+Pour plus d’informations sur l’utilisation de Wireshark pour résoudre les problèmes de réseau, consultez «[Annexe 2 : utilisation de Wireshark pour capturer le trafic réseau]».
 
-Pour plus d’informations sur l’utilisation des problèmes de réseau Microsoft Message Analyzer tootroubleshoot, consultez «[annexe 3 : à l’aide de trafic de réseau Microsoft Message Analyzer toocapture]. »
+Pour plus d’informations sur l’utilisation de l’analyseur de message Microsoft pour résoudre les problèmes de réseau, consultez la section «[Annexe 3 : utilisation de l’analyseur de message Microsoft pour capturer le trafic réseau]».
 
-### <a name="metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency"></a>Affichent les métriques AverageE2ELatency basse et AverageServerLatency basse mais hello client rencontre une latence élevée
-Dans ce scénario, la cause la plus probable hello est un retard dans les demandes de stockage hello atteindre le service de stockage hello. Vous devez examiner la raison pour laquelle les requêtes hello client ne sont pas rendant via le service d’objets blob toohello.
+### <a name="metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency"></a>Les métriques indiquent une valeur AverageE2ELatency faible et une valeur AverageServerLatency faible, mais le client constate une latence élevée
+Dans ce scénario, la cause la plus probable est un retard des demandes de stockage à atteindre le service de stockage. Vous devez enquêter sur la raison pour laquelle les demandes envoyées par le client ne parviennent pas au service d'objet blob.
 
-Pour retarder l’envoi de demandes de client de hello fait qu’il n’y a un nombre limité de connexions disponibles ou les threads.
+Les raisons possibles à un retard de l’envoi des demandes par le client incluent un nombre limité de connexions ou threads disponibles.
 
-Vous devez également vérifier si les client hello exécute après plusieurs tentatives et étudier la raison de hello hello cas. toodetermine si hello client effectue plusieurs tentatives, vous pouvez :
+Vous devez également vérifier si le client effectue plusieurs nouvelles tentatives et, si c’est le cas, enquêter sur la raison. Pour déterminer si le client effectue plusieurs tentatives, vous pouvez :
 
-* Examinez les journaux de stockage Analytique hello. Si plusieurs tentatives sont produisent, vous verrez plusieurs opérations avec hello même ID de demande client, mais avec un autre serveur ID de demande.
-* Examinez les journaux du client hello. Les nouvelles tentatives apparaissent dans la journalisation documentée.
-* Déboguer votre code et vérifiez les propriétés de hello Hello **OperationContext** objet associé à la demande de hello. Si l’opération de hello a tenté d’exécuter, hello **RequestResults** inclut plusieurs demande de serveur unique ID de propriété. Vous pouvez également vérifier le début de hello et mettre fin à la fois pour chaque demande. Pour plus d’informations, voir l’exemple de code hello dans la section de hello [ID demande serveur].
+* Examiner les journaux d’analyse de stockage. En cas de tentatives répétées, plusieurs opérations avec le même ID de demande client mais différents ID de demande serveur apparaissent.
+* Examiner les journaux du client. Les nouvelles tentatives apparaissent dans la journalisation documentée.
+* Déboguer votre code et vérifier les propriétés de l’objet **OperationContext** associé à la demande. Si l’opération a effectué une nouvelle tentative, la propriété **RequestResults** inclut plusieurs ID de demande d’un seul serveur. Vous pouvez également vérifier les heures de début et de fin de chaque demande. Pour plus d’informations, voir l’exemple de code de la section « [ID de la demande serveur]».
 
-S’il n’y a aucun problème dans le client de hello, vous devez examiner les problèmes potentiels de réseau telles qu’une perte de paquets. Vous pouvez utiliser des outils tels que des problèmes de réseau tooinvestigate Wireshark ou Microsoft Message Analyzer.
+En l’absence de problèmes au niveau du client, vous pouvez enquêter sur la présence de problèmes potentiels au niveau du réseau, tels que la perte de paquets. Vous pouvez utiliser des outils tels que Wireshark ou l’analyseur de message Microsoft pour enquêter sur les problèmes de réseau.
 
-Pour plus d’informations sur l’utilisation des problèmes de réseau tootroubleshoot Wireshark, consultez «[annexe 2 : à l’aide d’un trafic réseau Wireshark toocapture]. »
+Pour plus d’informations sur l’utilisation de Wireshark pour résoudre les problèmes de réseau, consultez «[Annexe 2 : utilisation de Wireshark pour capturer le trafic réseau]».
 
-Pour plus d’informations sur l’utilisation des problèmes de réseau Microsoft Message Analyzer tootroubleshoot, consultez «[annexe 3 : à l’aide de trafic de réseau Microsoft Message Analyzer toocapture]. »
+Pour plus d’informations sur l’utilisation de l’analyseur de message Microsoft pour résoudre les problèmes de réseau, consultez la section «[Annexe 3 : utilisation de l’analyseur de message Microsoft pour capturer le trafic réseau]».
 
 ### <a name="metrics-show-high-AverageServerLatency"></a>Les métriques indiquent une valeur AverageServerLatency élevée
-Dans les cas de hello élevée **AverageServerLatency** pour les demandes de téléchargement d’objet blob, vous devez utiliser hello Storage Logging consigne toosee s’il existe des requêtes répétées pour hello même d’objets blob (ou ensemble d’objets BLOB). Demandes de téléchargement pour l’objet blob, vous devez examiner les blocs client hello de taille utilise (par exemple, moins de 64 Ko peut entraîner de frais généraux, sauf si hello lit se trouvent également dans les blocs inférieure à 64 Ko segments), et si plusieurs clients sont téléchargement bloque toohello même objet BLOB en parallèle. Vous devez également vérifier les métriques par minute de hello des pics de nombre hello de demandes entraîner le dépassement hello par seconde objectifs d’évolutivité : consultez également «[métriques indiquent une augmentation dans PercentTimeoutError]. »
+En présence d'une valeur **AverageServerLatency** élevée pour les demandes de téléchargement d'objet blob, vous devez utiliser les journaux de journalisation du stockage pour savoir si des demandes répétées ont été envoyées pour le même objet blob (ou ensemble d'objets blob). Pour les demandes de chargement d’objet blob, vous devez enquêter sur la taille de blocs utilisés par le client (par exemple, des blocs de taille inférieure à 64 K peuvent entraîner des charges plus lourdes, sauf si les lectures se font également par blocs de taille inférieure à 64 K) et savoir si plusieurs clients chargent des blocs sur le même objet blob en parallèle. Vous devez également vérifier dans les métriques par minute la présence de pics au niveau du nombre de demandes, provoquant un dépassement des valeurs cibles d’extensibilité par seconde : consultez également la section «[Les métriques indiquent une augmentation de la valeur PercentTimeoutError]».
 
-Si vous voyez haute **AverageServerLatency** pour les demandes de téléchargement d’objet blob lorsqu’il sont répétés demandes hello même objet blob ou un ensemble d’objets BLOB, puis vous devez prendre en compte la mise en cache de ces objets BLOB à l’aide d’Azure Cache ou hello de diffusion de contenu Azure Network (CDN). Pour les demandes de téléchargement, vous pouvez améliorer le débit de hello à l’aide d’une plus grande taille de bloc. Pour les requêtes tootables, il est également possible tooimplement cache côté client sur les clients qui effectuent hello même des opérations de requête et où hello données ne changent pas fréquemment.
+Si vous constatez une valeur **AverageServerLatency** élevée pour les demandes de téléchargement d'objet blob lorsque des demandes répétées sont envoyées pour le même objet blob ou ensemble d'objets blob, vous devez envisager la mise en cache de ces objets blob à l'aide du cache Azure ou du réseau de distribution de contenu Azure. Pour les demandes de chargement, vous devez améliorer le débit en augmentant la taille des blocs. Pour les requêtes sur des tables, il est également possible d’implémenter une mise en cache côté client sur les clients qui effectuent les mêmes opérations de requête et où les données ne changent pas fréquemment.
 
-Haute **AverageServerLatency** valeurs peuvent également être un symptôme de tables mal conçus au début ou à des requêtes que les résultats dans les opérations d’analyse, ou qui suivent hello ajouter/anti-modèle. Voir la section «[métriques indiquent une augmentation dans PercentThrottlingError]» pour plus d'informations.
+Des valeurs **AverageServerLatency** élevées peuvent également indiquer la présence de tables mal conçues ou de requêtes donnant lieu à des opérations d'analyse ou qui suivent l'anti-modèle d'ajout/ajout de préfixe. Voir la section «[Les métriques indiquent une augmentation de la valeur PercentThrottlingError]» pour plus d'informations.
 
 > [!NOTE]
 > Pour obtenir une liste de contrôle exhaustive des performances, consultez [Liste de contrôle des performances et de l’extensibilité de Microsoft Azure Storage](storage-performance-checklist.md).
@@ -410,38 +410,38 @@ Haute **AverageServerLatency** valeurs peuvent également être un symptôme de 
 > 
 
 ### <a name="you-are-experiencing-unexpected-delays-in-message-delivery"></a>Vous constatez des retards inattendus dans la livraison des messages d’une file d’attente
-Si vous rencontrez un délai entre hello une application ajoute un message tooa file d’attente et hello le temps qu’il devient tooread disponible à partir de la file d’attente hello, puis hello suivant le problème de hello toodiagnose étapes à suivre :
+Si vous constatez un retard entre le moment où une application ajoute un message à une file d'attente et le moment où ce dernier peut être lu à partir de la file d'attente, procédez comme suit pour diagnostiquer le problème :
 
-* Vérifiez l’application hello est ajouté avec succès la file d’attente de toohello de messages hello. Vérifiez qu’application hello n’est pas une nouvelle tentative hello **AddMessage** méthode plusieurs fois avant de réussir. journaux de bibliothèque cliente de stockage Hello affichera les tentatives répétées d’opérations de stockage.
-* Vérifiez qu’il n’existe aucune horloge maximal autorisé entre le rôle de travail hello qui ajoute la file d’attente toohello hello et rôle de travail hello qui lit le message de type hello à partir de la file d’attente de hello qui rend apparaissent comme s’il existe un décalage dans le traitement.
-* Vérifiez si le rôle de travail hello qui lit des messages hello à partir de la file d’attente hello est défectueux. Si un client de file d’attente appelle hello **GetMessage** méthode échoue mais toorespond avec un accusé de réception, le message de type hello reste invisible sur la file d’attente hello jusqu'à hello **invisibilityTimeout** expiration. À ce stade, le message de type hello devient disponible pour traiter à nouveau.
-* Vérifiez si la longueur de file d’attente hello augmente au fil du temps. Cela peut se produire si vous n’avez pas suffisamment tooprocess disponible travailleurs hello tous messages placement des informations sur les autres processus de travail sur la file d’attente hello. Vous devez également vérifier hello métriques toosee si le nombre de messages, ce qui peut indiquer de retrait de supprimer les requêtes échouent et hello répété message de type hello toodelete tentatives ayant échoué.
-* Examinez les journaux de Storage Logging hello pour les opérations de file d’attente qui ont plus que prévu **E2ELatency** et **ServerLatency** valeurs sur une longue période de temps que d’habitude.
+* Vérifiez que l'application ajoute avec succès les messages à la file d'attente. Vérifiez que l'application n'effectue pas plusieurs tentatives de la méthode **AddMessage** avant d'effectuer l'opération avec succès. Les journaux de la bibliothèque cliente de stockage affichent toutes les tentatives répétées d'opérations de stockage.
+* Vérifiez l'absence de variations d'horloges entre le rôle de travail qui ajoute le message à la file d'attente et le rôle de travail qui lit le message à partir de la file d'attente, donnant l'impression d'un retard de traitement.
+* Vérifiez si le rôle de travail qui lit les messages à partir de la file d'attente échoue. Si un client de file d’attente appelle la méthode **GetMessage**, mais ne parvient pas à répondre avec un accusé de réception, le message demeurera invisible dans la file d’attente jusqu’à ce que la période **invisibilityTimeout** ait expiré. Ce n'est qu'à ce moment que le message pourra à nouveau être traité.
+* Vérifiez si la longueur de la file d'attente augmente avec le temps. Cela peut arriver si vous ne disposez pas d'assez de travailleurs pour traiter les messages que les autres travailleurs placent dans la file d'attente. Vous devez également consulter les métriques indiquant si les demandes de suppression échouent et le décompte de résorption de file d’attente des messages, pouvant indiquer l'échec de tentatives répétées de supprimer le message.
+* Vérifiez dans les journaux de journalisation du stockage la présence d’opérations de file d’attente présentant des valeurs **E2ELatency** et **ServerLatency** supérieures à celles prévues, pendant une période plus longue que prévu.
 
 ### <a name="metrics-show-an-increase-in-PercentThrottlingError"></a>Les métriques indiquent une augmentation de la valeur PercentThrottlingError
-Erreurs de limitation se produisent quand vous dépassez les objectifs d’évolutivité hello d’un service de stockage. service de stockage Hello fait cette tooensure que sans un client ou un client peut utiliser hello service à des frais de hello d’autres personnes. Pour plus d’informations sur les cibles d’évolutivité des comptes de stockage et les cibles de performances des partitions dans les comptes de stockage, voir [Objectifs de performance et évolutivité d'Azure Storage](storage-scalability-targets.md).
+Les erreurs de limitation se produisent lorsque vous dépassez les valeurs cibles d’évolutivité d’un service de stockage. Le service de stockage effectue cette opération afin de s’assurer qu’aucun client ne peut utiliser le service au détriment des autres utilisateurs. Pour plus d’informations sur les cibles d’évolutivité des comptes de stockage et les cibles de performances des partitions dans les comptes de stockage, voir [Objectifs de performance et évolutivité d'Azure Storage](storage-scalability-targets.md).
 
-Si hello **PercentThrottlingError** mesures montrent une augmentation en pourcentage hello de demandes qui ont échoué avec une erreur de limitation, vous devez tooinvestigate un des deux scénarios :
+Si la métrique **PercentThrottlingError** indique une augmentation du pourcentage de demandes qui échouent avec une erreur de limitation, vous devez enquêter sur un des deux scénarios suivants :
 
 * [Augmentation provisoire de la valeur PercentThrottlingError]
 * [Augmentation permanente de l’erreur PercentThrottlingError]
 
-Une augmentation de **PercentThrottlingError** se produit souvent à hello en même temps qu’une augmentation du nombre hello de demandes de stockage, ou lorsque vous avez initialement votre application de test de charge. Cela peut également se manifester dans client hello en tant que « 503 serveur occupé » ou des messages d’état HTTP de « 500 opération Timeout » à partir d’opérations de stockage.
+Une augmentation de la valeur **PercentThrottlingError** se produit souvent en même temps qu'une augmentation du nombre de demandes de stockage, ou lors des tests initiaux de la charge de votre application. Elle peut également se manifester dans le client sous forme de messages d’état HTTP « 503 Server Busy » ou « 500 Operation Timeout » à partir des opérations de stockage.
 
 #### <a name="transient-increase-in-PercentThrottlingError"></a>Augmentation provisoire de la valeur PercentThrottlingError
-Si vous rencontrez des pics de valeur hello **PercentThrottlingError** qui coïncident avec des périodes de forte activité de l’application hello, vous devez implémenter une (non linéaire) exponentiel et stratégie des nouvelles tentatives dans votre client : cela est de réduire la charge d’immédiate de hello sur la partition de hello et d’aide toosmooth de votre application les pics de trafic. Pour plus d’informations sur la façon dont les stratégies de nouvelle tentative tooimplement à l’aide de hello bibliothèque cliente de stockage, consultez [Microsoft.WindowsAzure.Storage.RetryPolicies Namespace](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.retrypolicies.aspx).
+Si vous constatez des pics de la valeur **PercentThrottlingError** qui coïncident avec des périodes de forte activité de l’application, implémentez une stratégie d’interruption des nouvelles tentatives exponentielle (non linéaire) dans votre client. Cela réduira la charge immédiate sur la partition et aidera votre application à aplanir les pics de trafic. Pour plus d’informations sur la façon d’implémenter des stratégies de nouvelle tentative à l’aide de la bibliothèque cliente de stockage, voir [Espace de noms Microsoft.WindowsAzure.Storage.RetryPolicies](http://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.retrypolicies.aspx).
 
 > [!NOTE]
-> Vous pouvez également voir les pics de valeur hello **PercentThrottlingError** qui coïncident pas avec des périodes de forte activité de l’application hello : hello probable ici est le service de stockage de hello déplacement de partitions tooimprove charge l’équilibrage de la.
+> Vous pouvez également constater des pics de la valeur **PercentThrottlingError** qui ne coïncident pas avec des périodes de forte activité de l’application. La cause la plus probable est le déplacement de partitions, par le service de stockage, pour améliorer l’équilibrage de la charge.
 > 
 > 
 
 #### <a name="permanent-increase-in-PercentThrottlingError"></a>Augmentation permanente de l’erreur PercentThrottlingError
-Si vous voyez une valeur élevée pour **PercentThrottlingError** suivant une augmentation permanente de vos volumes de transactions, ou lorsque vous exécutez votre charge initiale des tests sur votre application, il vous suffit de tooevaluate comment votre application est l’utilisation de partitions de stockage, et si elle est proche des objectifs d’évolutivité hello pour un compte de stockage. Par exemple, si vous rencontrez le problème de limitation sur une file d’attente (compte comme une seule partition), puis vous devez envisager d’utiliser les transactions hello toospread files d’attente supplémentaires sur plusieurs partitions. Si vous rencontrez le problème de limitation sur une table, vous devez tooconsider à l’aide d’un autre toospread de schéma de partitionnement vos transactions sur plusieurs partitions à l’aide d’une plus large gamme de valeurs de clé de partition. Une des causes courantes de ce problème sont hello ajouter/ajouter anti-modèle où vous sélectionnez la date de hello en tant que clé de partition hello et ensuite toutes les données sur un jour donné est écrit tooone partition : lors du chargement, cela peut provoquer un goulot d’étranglement de l’écriture. Vous devez envisager une conception de partitionnement différente ou évaluer s'il ne vaudrait pas mieux utiliser un stockage d'objets blob. Vous devez également vérifier si hello limitation se produit suite à des pics de votre trafic et examiner les méthodes de votre modèle de demandes de lissage.
+Si vous constatez une valeur constamment élevée pour **PercentThrottlingError** à la suite d'une augmentation permanente de vos volumes de transaction, ou lorsque vous effectuez vos tests de charge initiaux sur votre application, vous devez évaluer comment votre application utilise les partitions de stockage et si elle approche des cibles d'évolutivité pour un compte de stockage. Par exemple, si vous constatez des erreurs de limitation dans une file d'attente (considérée comme une partition unique), vous devez envisager l'utilisation de files d'attente supplémentaires afin de distribuer les transactions à travers plusieurs partitions. Si vous constatez des erreurs de limitation sur une table, vous devez envisager l’utilisation d’un schéma de partitionnement différent afin de distribuer vos transactions à travers plusieurs partitions en utilisant une plage de valeurs de clé de partition plus large. Une cause fréquente à ce problème est l’anti-modèle d’ajout/ajout de préfixe où vous sélectionnez la date en tant que clé de partition, pour ensuite écrire toutes les données d’un jour spécifique sur une partition : en cas de charge, cela peut entraîner un goulot d’étranglement d’écriture. Vous devez envisager une conception de partitionnement différente ou évaluer s'il ne vaudrait pas mieux utiliser un stockage d'objets blob. Vous devez également vérifier si la limitation se produit suite à des pics de votre trafic et rechercher des moyens d'assouplir votre modèle de demandes.
 
-Si vous distribuez vos transactions sur plusieurs partitions, vous devez connaître toujours des limites de l’évolutivité de hello définies pour le compte de stockage hello. Par exemple, si vous avez utilisé les files de dix attente chaque maximum hello de traitement de 2 000 messages de 1 Ko par seconde, vous serez à hello limite globale de 20 000 messages par seconde pour le compte de stockage hello. Si vous devez tooprocess plus de 20 000 entités par seconde, vous devez envisager d’utiliser plusieurs comptes de stockage. Vous devez également garder à l’esprit que taille hello de vos demandes et entités a un impact sur lorsque le service de stockage hello limite vos clients : Si vous avez supérieure des demandes et des entités, vous pouvez être limitée plus tôt.
+Si vous distribuez vos transactions à travers plusieurs partitions, vous devez tenir compte des limites d'évolutivité définies pour le compte de stockage. Par exemple, si vous utilisez dix files d'attente, chacune avec une capacité de traitement maximum de 2000 messages de 1Ko par seconde, votre limite globale sera de 20 000 messages par seconde pour le compte de stockage. Si vous devez traiter plus de 20 000 entités par seconde, vous devez envisager l’utilisation de plusieurs comptes de stockage. Vous devez également garder à l’esprit que la taille de vos demandes et entités a un impact sur le moment où le service de stockage limite vos clients : si vous recevez des demandes et entités plus larges, vous pourrez être limité plus tôt.
 
-Création de requête inefficace peut également expliquer limites d’extensibilité toohit hello pour les partitions de table. Par exemple, une requête avec un filtre qui sélectionne uniquement un pour cent des entités de hello dans une partition mais qui analyse toutes les entités hello dans une partition devez tooaccess chaque entité. Chaque entité lire sera comptabilisée nombre total de hello de transactions dans cette partition ; Par conséquent, vous pouvez facilement atteindre les objectifs d’évolutivité hello.
+Une requête mal conçue peut également vous amener à atteindre les limites d'évolutivité pour les partitions de table. Par exemple, une requête avec un filtre qui ne sélectionne qu'un pour cent des entités dans une partition, mais recherche toutes les entités dans une partition devra accéder à chaque entité. Chaque lecture d’entité sera ajoutée au décompte total de transactions dans cette partition, vous amenant à atteindre rapidement les cibles d’évolutivité.
 
 > [!NOTE]
 > Vos tests de performances doivent mettre à jour toutes les requêtes mal conçues dans votre application.
@@ -449,120 +449,120 @@ Création de requête inefficace peut également expliquer limites d’extensibi
 > 
 
 ### <a name="metrics-show-an-increase-in-PercentTimeoutError"></a>Les métriques indiquent une augmentation de la valeur PercentTimeoutError
-Vos métriques indiquent une augmentation de la valeur **PercentTimeoutError** pour un de vos services de stockage. À hello même moment, hello client reçoit un volume important de messages d’état HTTP de « 500 opération Timeout » à partir d’opérations de stockage.
+Vos métriques indiquent une augmentation de la valeur **PercentTimeoutError** pour un de vos services de stockage. En même temps, le client reçoit un grand nombre de messages d'état HTTP « 500 Operation Timeout » à partir des opérations de stockage.
 
 > [!NOTE]
-> Vous pouvez voir des erreurs de délai d’attente temporairement en tant que service de stockage hello charge des demandes de soldes en déplaçant un serveur tooa partition.
+> Il se peut qu’apparaissent des erreurs de délai d’expiration provisoires lorsque le service de stockage équilibre les demandes en déplaçant une partition vers un nouveau serveur.
 > 
 > 
 
-Hello **PercentTimeoutError** métrique est une agrégation de hello suivant des métriques : **erreur ClientTimeoutError**, **erreur AnonymousClientTimeoutError**,  **Erreur SASClientTimeoutError**, **ServerTimeoutError**, **AnonymousServerTimeoutError**, et **SASServerTimeoutError**.
+La métrique **PercentTimeoutError** est un agrégat des métriques suivantes : **ClientTimeoutError**, **AnonymousClientTimeoutError**, **SASClientTimeoutError**, **ServerTimeoutError**, **AnonymousServerTimeoutError** et **SASServerTimeoutError**.
 
-délais d’attente du serveur Hello sont dus à une erreur sur le serveur de hello. délais d’attente du client Hello se produisent car une opération sur le serveur de hello a dépassé le délai d’attente hello spécifié par hello client ; par exemple, un client à l’aide de la bibliothèque cliente de stockage de hello peut définir un délai d’attente pour une opération à l’aide de hello **ServerTimeout** propriété Hello **QueueRequestOptions** classe.
+Les délais d'expiration du serveur sont provoqués par une erreur sur le serveur. Les délais d’expiration clients se produisent lorsqu’une opération sur le serveur a dépassé le délai d’expiration spécifié par le client ; par exemple, un client qui utilise la bibliothèque cliente de stockage peut définir un délai d’expiration pour une opération en utilisant la propriété **ServerTimeout** de la classe **QueueRequestOptions**.
 
-Délais d’attente du serveur indiquent un problème avec le service de stockage hello requiert une investigation. Vous pouvez utiliser des mesures toosee si vous atteignez les limites d’extensibilité hello pour le service de hello et tooidentify des pics d’activité dans le trafic qui peut être la cause du problème. Si le problème de hello est intermittent, il peut être dû équilibrage tooload d’activité dans le service hello. Si le problème de hello est persistant et n’est pas dû à votre application en appuyant sur les limites d’extensibilité hello du service de hello, vous devez déclencher un problème de prise en charge. Pour les délais d’attente du client, vous devez décider si hello timeout est valeur tooan approprié dans le client de hello et : valeur de délai d’attente de modification hello définies dans hello client ou examiner comment vous pouvez améliorer les performances de hello d’opérations hello dans le service de stockage hello, pour exemple en optimisant les requêtes de votre table ou de la réduction de taille hello de vos messages.
+Les délais d'expiration du serveur indiquent un problème au niveau du service de stockage, qui exige une enquête plus approfondie. Vous pouvez utiliser les métriques pour savoir si vous atteignez les limites d'évolutivité pour le service et identifier les pics de trafic susceptibles d'être la cause de ce problème. Si le problème est intermittent, il peut être dû à une activité d'équilibrage de charge dans le service. Si le problème persiste et n'est pas provoqué par le fait que votre application a atteint les limites d'évolutivité du service, vous devez signaler le problème au support. Pour les délais d’expiration clients, vous devez décider si le délai d’expiration est défini sur une valeur appropriée dans le client et soit modifier la valeur de délai d’expiration dans le client, soit rechercher un moyen d’améliorer les performances des opérations dans le service de stockage, par exemple, en optimisant vos requêtes de table ou en réduisant la taille de vos messages.
 
 ### <a name="metrics-show-an-increase-in-PercentNetworkError"></a>Les métriques indiquent une augmentation de la valeur PercentNetworkError
-Vos métriques indiquent une augmentation de la valeur **PercentNetworkError** pour un de vos services de stockage. Hello **PercentNetworkError** métrique est une agrégation de hello suivant des métriques : **erreur NetworkError**, **erreur AnonymousNetworkError**, et  **Erreur SASNetworkError**. Ces modifications se produisent lorsque le service de stockage hello détecte une erreur réseau lorsque le client de hello effectue une demande de stockage.
+Vos métriques indiquent une augmentation de la valeur **PercentNetworkError** pour un de vos services de stockage. La métrique **PercentNetworkError** est un agrégat des métriques suivantes : **NetworkError**, **AnonymousNetworkError** et **SASNetworkError**. Cela se produit lorsque le service de stockage détecte une erreur de réseau associée à une demande de stockage du client.
 
-Bonjour cause la plus courante de cette erreur est un client déconnexion avant l’expiration d’un délai d’attente dans le service de stockage hello. Vous devez examiner le code de hello dans votre toounderstand client quand et pourquoi hello client se déconnecte service de stockage hello. Vous pouvez également utiliser Wireshark, Microsoft Message Analyzer ou problèmes de connectivité réseau Tcping tooinvestigate à partir du client de hello. Ces outils sont décrits dans hello [annexes].
+La cause la plus fréquente de cette erreur est une déconnexion du client avant l'expiration d'un délai dans le service de stockage. Vous devez contrôler le code dans votre client afin de comprendre pourquoi et quand le client s'est déconnecté du service de stockage. Vous pouvez également utiliser Wireshark, l'analyseur de message Microsoft ou Tcping pour enquêter sur les problèmes de connectivité réseau à partir du client. Ces outils sont décrits dans la section [Annexes].
 
-### <a name="the-client-is-receiving-403-messages"></a>Hello client reçoit les messages HTTP 403 (interdit)
-Si votre application cliente qui émet les erreurs HTTP 403 (interdit), une cause possible est que le client hello utilise une Signature d’accès partagé (SAS) a expiré lorsqu’il envoie une demande de stockage (bien que les autres causes possibles incluent l’horloge inclinaison, valide les clés et vide en-têtes). Si une clé SAS expirée est la cause de hello, vous ne verrez pas toutes les entrées dans les données de journal Storage Logging hello côté serveur. Hello tableau suivant montre un exemple à partir du journal hello côté client généré par hello bibliothèque cliente de stockage qui illustre ce problème :
+### <a name="the-client-is-receiving-403-messages"></a>Le client reçoit des messages HTTP 403 (Forbidden)
+Si votre application client génère des erreurs HTTP403 (Forbidden), l'une des causes probables est l'utilisation par le client d'une signature d'accès partagé (SAS) arrivée à expiration lors de l'envoi d'une demande de stockage (d'autres causes possibles incluent les variations d'horloges, les clés non valides et les en-têtes vides). Si une clé SAS arrivée à expiration est la cause, aucune entrée ne s'affiche dans les données de journalisation du stockage côté serveur. Le tableau suivant inclut un exemple de journal côté client généré par la bibliothèque cliente de stockage, qui illustre ce type de problème :
 
 | Source | Commentaires | Commentaires | ID de la demande client | Operation Text |
 | --- | --- | --- | --- | --- |
 | Microsoft.WindowsAzure.Storage |Information |3 |85d077ab-… |Démarrage de l'opération avec l'emplacement Primary par mode d'emplacement PrimaryOnly. |
-| Microsoft.WindowsAzure.Storage |Information |3 |85d077ab-… |Démarrage synchrone demande toohttps://domemaildist.blob.core.windows.netazureimblobcontainer/blobCreatedViaSAS.txt?sv=2014-02-14&amp;sr = c&amp;si = mypolicy&amp;sig = OFnd4Rd7z01fIvh % 2BmcR6zbudIH2F5Ikm % 2FyhNYZEmJNQ % 3D&amp;api-version = 2014-02-14. |
+| Microsoft.WindowsAzure.Storage |Information |3 |85d077ab-… |Démarrage d’une demande synchrone vers https://domemaildist.blob.core.windows.netazureimblobcontainer/blobCreatedViaSAS.txt?sv=2014-02-14&amp;sr=c&amp;si=mypolicy&amp;sig=OFnd4Rd7z01fIvh%2BmcR6zbudIH2F5Ikm%2FyhNYZEmJNQ%3D&amp;api-version=2014-02-14. |
 | Microsoft.WindowsAzure.Storage |Information |3 |85d077ab-… |Attente de la réponse. |
-| Microsoft.WindowsAzure.Storage |Avertissement |2 |85d077ab-… |Exception levée pendant l’attente de réponse : serveur hello a renvoyé une erreur : (403) interdit... |
+| Microsoft.WindowsAzure.Storage |Avertissement |2 |85d077ab-… |Exception levée pendant l’attente de la réponse : Le serveur distant a renvoyé une erreur : (403) Forbidden. |
 | Microsoft.WindowsAzure.Storage |Information |3 |85d077ab-… |Réponse reçue. Code d'état = 403, ID de la demande = 9d67c64a-64ed-4b0d-9515-3b14bbcdc63d, Content-MD5 = , ETag = . |
-| Microsoft.WindowsAzure.Storage |Avertissement |2 |85d077ab-… |Exception levée pendant l’opération de hello : serveur hello a renvoyé une erreur : (403) interdit... |
-| Microsoft.WindowsAzure.Storage |Information |3 |85d077ab-… |Vérifie si l’opération de hello doit être retentée. Nombre de tentatives = 0, le code d’état HTTP = 403, Exception = hello de serveur distant a retourné une erreur : (403) interdit... |
-| Microsoft.WindowsAzure.Storage |Information |3 |85d077ab-… |emplacement de Hello suivant a été défini tooPrimary, selon le mode d’emplacement hello. |
-| Microsoft.WindowsAzure.Storage |Error |1 |85d077ab-… |La stratégie de nouvelle tentative n’a pas autorisé de nouvelle tentative. Échec avec le serveur distant de hello a renvoyé une erreur : (403) interdit. |
+| Microsoft.WindowsAzure.Storage |Avertissement |2 |85d077ab-… |Exception levée pendant l’opération : Le serveur distant a renvoyé une erreur : (403) Forbidden. |
+| Microsoft.WindowsAzure.Storage |Information |3 |85d077ab-… |Vérification si l’opération doit être tentée à nouveau. Nombre de nouvelles tentatives = 0, Code d’état HTTP = 403, Exception = Le serveur distant a renvoyé une erreur : (403) Forbidden. |
+| Microsoft.WindowsAzure.Storage |Information |3 |85d077ab-… |L'emplacement suivant a été défini sur Primary, sur base du mode d'emplacement. |
+| Microsoft.WindowsAzure.Storage |Error |1 |85d077ab-… |La stratégie de nouvelle tentative n’a pas autorisé de nouvelle tentative. Échec avec Le serveur distant a renvoyé une erreur : (403) Forbidden. |
 
-Dans ce scénario, vous devez examiner la raison pour laquelle un jeton SAS hello arrive à expiration avant que les clients hello envoyant server de jeton toohello hello :
+Dans ce scénario, vous devez rechercher pourquoi le jeton SAS expire avant que le client n'envoie le jeton au serveur :
 
-* En règle générale, vous ne devez pas définir une heure de début lorsque vous créez un SAS pour un client de toouse immédiatement. S’il existe de petites différences d’horloge entre l’hôte hello génération à l’aide de SAS hello hello heure actuelle et le service de stockage hello, il est possible pour tooreceive de service de stockage hello un SAS qui n’est pas valide.
-* Vous ne devez pas définir une durée d'expiration très courte pour une SAS. Là encore, les différences de petite horloge entre l’hôte hello génération hello SAS et service de stockage hello peut entraîner tooa SAS apparemment expire le plus tôt que prévu.
-* De hello le paramètre de version dans la clé SAS hello (par exemple **sv = 2015-04-05**) faire correspondre la version hello Hello bibliothèque cliente de stockage que vous utilisez ? Nous vous recommandons de toujours utiliser la version la plus récente de hello hello [bibliothèque cliente de stockage](https://www.nuget.org/packages/WindowsAzure.Storage/).
-* Si vous régénérez vos clés d’accès de stockage, cela peut invalider tous les jetons SAS existants. Cela peut être un problème si vous générez des jetons SAP avec un délai d’expiration longs pour toocache d’applications client.
+* Généralement, vous ne devez pas définir d'heure de début lorsque vous créez une SAS à utiliser immédiatement par un client. S'il existe de faibles variations d'horloges entre l'hôte qui génère la SAS sur base de l'heure actuelle et le service de stockage, il est possible que le service de stockage reçoive une SAS qui n'est pas encore valide.
+* Vous ne devez pas définir une durée d'expiration très courte pour une SAS. À nouveau, de petites variations d'horloges entre l'hôte qui génère la SAS et le service de stockage peuvent donner l'impression que la SAS a expiré plus tôt que prévu.
+* Le paramètre de version dans la clé SAS (par exemple **sv=2015-04-05**) correspond-il à la version de la bibliothèque cliente de stockage que vous utilisez ? Vous devez toujours utiliser la dernière version de la [bibliothèque cliente de stockage](https://www.nuget.org/packages/WindowsAzure.Storage/).
+* Si vous régénérez vos clés d’accès de stockage, cela peut invalider tous les jetons SAS existants. Un problème peut survenir si vous générez des jetons SAS avec une durée d'expiration longue pour les applications clientes dans le cache.
 
-Si vous utilisez des jetons de SAP toogenerate hello bibliothèque cliente de stockage, il est facile toobuild un jeton valide. Toutefois, si vous êtes à l’aide des API REST de stockage de hello et construire des jetons SAS hello manuellement Lisez attentivement les rubrique hello [déléguer l’accès avec une Signature d’accès partagé](http://msdn.microsoft.com/library/azure/ee395415.aspx).
+Si vous utilisez la bibliothèque cliente de stockage pour générer des jetons SAS, il est facile de créer un jeton valide. Mais si vous utilisez l’API REST Stockage et créez des jetons SAS manuellement, vous devez lire avec attention la rubrique [Délégation de l’accès avec une signature d’accès partagé](http://msdn.microsoft.com/library/azure/ee395415.aspx).
 
-### <a name="the-client-is-receiving-404-messages"></a>Hello client reçoit les messages HTTP 404 (introuvable)
-Si l’application cliente de hello reçoit un message HTTP 404 (introuvable) à partir du serveur de hello, cela implique que hello objet hello le client a tenté de toouse (par exemple, une entité, table, blob, conteneur ou file d’attente) n’existe pas dans le service de stockage hello. Il existe un certain nombre de raisons possibles à ce problème, dont :
+### <a name="the-client-is-receiving-404-messages"></a>Le client reçoit des messages HTTP 404 (Not found)
+Si l’application client reçoit un message HTTP 404 (Non trouvé) du serveur, cela signifie que l’objet que le client tentait d’utiliser (tel qu’une entité, une table, un objet blob, un conteneur ou une file d’attente) n’existe pas dans le service de stockage. Il existe un certain nombre de raisons possibles à ce problème, dont :
 
-* [Hello objet client ou un autre processus supprimés hello]
+* [Le client ou un autre processus a supprimé l’objet]
 * [Problème d’autorisation de signature d’accès partagé (SAS)]
-* [Code JavaScript côté client n’a pas l’objet d’autorisation tooaccess hello]
+* [Le code JavaScript du côté client n’est pas autorisé à accéder à l’objet]
 * [Défaillance réseau]
 
-#### <a name="client-previously-deleted-the-object"></a>Hello objet client ou un autre processus supprimés hello
-Dans les scénarios où hello client tente de tooread, mise à jour ou supprimer des données dans un service de stockage qu’il est généralement facile tooidentify dans hello côté serveur connecte à une opération précédente qui a supprimé l’objet hello en question à partir du service de stockage hello. Très souvent, les données de journal hello illustre cet objet de hello supprimé un autre utilisateur ou processus. Dans le journal de Storage Logging hello côté serveur, hello-type d’opération et les colonnes de clé objet demandé affichent lorsqu’un client supprimé un objet.
+#### <a name="client-previously-deleted-the-object"></a>Le client ou un autre processus a supprimé l’objet
+Dans les scénarios où le client tente de lire, mettre à jour ou supprimer des données dans un service de stockage, il est habituellement facile d'identifier dans les journaux côté serveur une précédente opération qui a supprimé l'objet en question du service de stockage. Très souvent, les données de journalisation indiquent qu'un autre utilisateur ou processus a supprimé l'objet. Dans le journal de journalisation du stockage côté serveur, les colonnes operation-type et requested-object-key s'affichent lorsqu'un client a supprimé un objet.
 
-Dans le scénario hello dans lequel un client tente de tooinsert un objet, il ne peut pas être immédiatement évident pourquoi cela entraîne une réponse HTTP 404 (introuvable), étant donné que hello client crée un nouvel objet. Toutefois, si le client de hello consiste à créer un objet blob de que celle-ci doit être en mesure de toofind conteneur d’objets blob hello, si le client de hello crée un message, qu'il doit être en mesure de toofind une file d’attente, et si le client de hello consiste à ajouter une ligne il doit être table de hello toofind en mesure de.
+Dans le scénario où un client tente d'insérer un objet, la raison pour laquelle cette opération génère une réponse HTTP404 (Not found) peut ne pas être immédiatement identifiable, car le client est en train de créer un objet. Toutefois, si le client crée un objet blob, il doit être possible de trouver son conteneur ; si le client crée le message, il doit être possible de trouver sa file d'attente, et si le client ajoute une ligne, il doit être possible de trouver sa table.
 
-Vous pouvez utiliser le journal côté client hello toogain de bibliothèque cliente de stockage hello que plus détaillée de comprendre quand hello en envoyant des requêtes spécifiques service de stockage toohello.
+Vous pouvez utiliser le journal côté client de la bibliothèque cliente de stockage pour obtenir des informations plus détaillées concernant l'instant où le client envoie des demandes spécifiques au service de stockage.
 
-Hello suivant de journal côté client généré par la bibliothèque cliente de stockage de hello illustre hello problème lorsque le client de hello ne trouve pas le conteneur de hello pour blob hello que création. Ce journal inclut des détails de hello après les opérations de stockage :
+Le journal côté client suivant, généré par la bibliothèque cliente de stockage, illustre le problème d'un client incapable de trouver le conteneur de l'objet blob qu'il est en train de créer. Ce journal inclut les détails des opérations de stockage suivantes :
 
 | ID de la demande | Opération |
 | --- | --- |
-| 07b26a5d-... |**DeleteIfExists** conteneur d’objets blob méthode toodelete hello. Notez que cette opération inclut un **HEAD** demande toocheck existence hello du conteneur de hello. |
-| e2d06d78… |**CreateIfNotExists** conteneur d’objets blob méthode toocreate hello. Notez que cette opération inclut un **HEAD** demande qui vérifie l’existence de hello du conteneur de hello. Hello **HEAD** renvoie un message 404, mais continue. |
-| de8b1c3c-... |**UploadFromStream** objet blob de méthode toocreate hello. Hello **PUT** demande échoue avec un message 404 |
+| 07b26a5d-... |**DeleteIfExists** pour supprimer le conteneur de l'objet blob. Notez que cette opération inclut une demande **HEAD** pour vérifier l’existence du conteneur. |
+| e2d06d78… |**CreateIfNotExists** pour créer le conteneur de l'objet blob. Notez que cette opération inclut une demande **HEAD** qui vérifie l’existence du conteneur. La demande **HEAD** renvoie un message 404, mais continue. |
+| de8b1c3c-... |**UploadFromStream** pour créer l'objet blob. La demande **PUT** échoue avec un message 404. |
 
 Entrées du journal :
 
 | ID de la demande | Operation Text |
 | --- | --- |
-| 07b26a5d-... |Démarrage de la demande synchrone toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer. |
+| 07b26a5d-... |Démarrage d'une demande synchrone vers https://domemaildist.blob.core.windows.net/azuremmblobcontainer. |
 | 07b26a5d-... |StringToSign = HEAD............x-ms-client-request-id:07b26a5d-....x-ms-date:Tue, 03 Jun 2014 10:33:11 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | 07b26a5d-... |Attente de la réponse. |
 | 07b26a5d-... |Réponse reçue. Code d’état = 200, ID de la demande = eeead849-...Content-MD5 = , ETag =    &quot;0x8D14D2DC63D059B&quot;. |
-| 07b26a5d-... |En-têtes de réponse ont été traités avec succès, d’autres hello d’opération de hello. |
+| 07b26a5d-... |Les en-têtes de réponse ont été traités avec succès ; passage à la suite de l'opération. |
 | 07b26a5d-... |Téléchargement du corps de la réponse. |
 | 07b26a5d-... |Opération exécutée avec succès. |
-| 07b26a5d-... |Démarrage de la demande synchrone toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer. |
+| 07b26a5d-... |Démarrage d'une demande synchrone vers https://domemaildist.blob.core.windows.net/azuremmblobcontainer. |
 | 07b26a5d-... |StringToSign = DELETE............x-ms-client-request-id:07b26a5d-....x-ms-date:Tue, 03 Jun 2014 10:33:12    GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | 07b26a5d-... |Attente de la réponse. |
 | 07b26a5d-... |Réponse reçue. Code d'état = 202, ID de la demande = 6ab2a4cf-..., Content-MD5 = , ETag = . |
-| 07b26a5d-... |En-têtes de réponse ont été traités avec succès, d’autres hello d’opération de hello. |
+| 07b26a5d-... |Les en-têtes de réponse ont été traités avec succès ; passage à la suite de l'opération. |
 | 07b26a5d-... |Téléchargement du corps de la réponse. |
 | 07b26a5d-... |Opération exécutée avec succès. |
-| e2d06d78-... |Démarrage de la requête asynchrone toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer.</td> |
+| e2d06d78-... |Démarrage d'une demande synchrone vers https://domemaildist.blob.core.windows.net/azuremmblobcontainer.</td> |
 | e2d06d78-... |StringToSign = HEAD............x-ms-client-request-id:e2d06d78-....x-ms-date:Tue, 03 Jun 2014 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | e2d06d78-... |Attente de la réponse. |
-| de8b1c3c-... |Démarrage de la demande synchrone toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer/blobCreated.txt. |
+| de8b1c3c-... |Démarrage d'une demande synchrone vers https://domemaildist.blob.core.windows.net/azuremmblobcontainer/blobCreated.txt. |
 | de8b1c3c-... |StringToSign = PUT...64.qCmF+TQLPhq/YYK50mP9ZQ==........x-ms-blob-type:BlockBlob.x-ms-client-request-id:de8b1c3c-....x-ms-date:Tue, 03 Jun 2014 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer/blobCreated.txt. |
-| de8b1c3c-... |Préparation des données de la demande toowrite. |
-| e2d06d78-... |Exception levée pendant l’attente de réponse : serveur hello a renvoyé une erreur : (404) introuvable... |
+| de8b1c3c-... |Préparation de l'écriture des données de la demande. |
+| e2d06d78-... |Exception levée pendant l’attente de la réponse : Le serveur distant a renvoyé une erreur : (404) Not Found. |
 | e2d06d78-... |Réponse reçue. Code d'état = 404, ID de la demande = 353ae3bc-..., Content-MD5 = , ETag = . |
-| e2d06d78-... |En-têtes de réponse ont été traités avec succès, d’autres hello d’opération de hello. |
+| e2d06d78-... |Les en-têtes de réponse ont été traités avec succès ; passage à la suite de l'opération. |
 | e2d06d78-... |Téléchargement du corps de la réponse. |
 | e2d06d78-... |Opération exécutée avec succès. |
-| e2d06d78-... |Démarrage de la requête asynchrone toohttps://domemaildist.blob.core.windows.net/azuremmblobcontainer. |
+| e2d06d78-... |Démarrage d'une demande synchrone vers https://domemaildist.blob.core.windows.net/azuremmblobcontainer. |
 | e2d06d78-... |StringToSign = PUT...0.........x-ms-client-request-id:e2d06d78-....x-ms-date:Tue, 03 Jun 2014 10:33:12 GMT.x-ms-version:2014-02-14./domemaildist/azuremmblobcontainer.restype:container. |
 | e2d06d78-... |Attente de la réponse. |
 | de8b1c3c-... |Écriture des données de la demande. |
 | de8b1c3c-... |Attente de la réponse. |
-| e2d06d78-... |Exception levée pendant l’attente de réponse : serveur hello a renvoyé une erreur : (409) conflit... |
+| e2d06d78-... |Exception levée pendant l’attente de la réponse : Le serveur distant a renvoyé une erreur : (409) Conflict. |
 | e2d06d78-... |Réponse reçue. Code d’état = 409, ID de la demande = c27da20e-..., Content-MD5 = , ETag = . |
 | e2d06d78-... |Erreur de téléchargement du corps de la réponse. |
-| de8b1c3c-... |Exception levée pendant l’attente de réponse : serveur hello a renvoyé une erreur : (404) introuvable... |
+| de8b1c3c-... |Exception levée pendant l’attente de la réponse : Le serveur distant a renvoyé une erreur : (404) Not Found. |
 | de8b1c3c-... |Réponse reçue. Code d’état = 404, ID de la demande = 0eaeab3e-..., Content-MD5 = , ETag = . |
-| de8b1c3c-... |Exception levée pendant l’opération de hello : serveur hello a renvoyé une erreur : (404) introuvable... |
-| de8b1c3c-... |La stratégie de nouvelle tentative n’a pas autorisé de nouvelle tentative. Échec avec le serveur distant de hello a renvoyé une erreur : (404) introuvable... |
-| e2d06d78-... |La stratégie de nouvelle tentative n’a pas autorisé de nouvelle tentative. Échec avec le serveur distant de hello a renvoyé une erreur : (409) conflit... |
+| de8b1c3c-... |Exception levée pendant l’opération : Le serveur distant a renvoyé une erreur : (404) Not Found. |
+| de8b1c3c-... |La stratégie de nouvelle tentative n’a pas autorisé de nouvelle tentative. Échec avec Le serveur distant a renvoyé une erreur : (404) Not Found. |
+| e2d06d78-... |La stratégie de nouvelle tentative n’a pas autorisé de nouvelle tentative. Échec avec Le serveur distant a renvoyé une erreur : (409) Conflict. |
 
-Dans cet exemple, les journaux hello montre que le client hello est entrelacement des demandes à partir de hello **CreateIfNotExists** (méthode) (demande id e2d06d78...) avec les requêtes hello de hello **UploadFromStream** () (méthode) de8b1c3c-...) ; Cela se produit, car l’application cliente de hello consiste à appeler ces méthodes de façon asynchrone. Vous devez modifier le code asynchrone hello hello tooensure de client qu’il crée le conteneur de hello avant de tenter de tooupload tout objet blob tooa de données dans le conteneur. Idéalement, vous devriez créer tous vos conteneurs à l’avance.
+Dans cet exemple, le journal indique que le client entrelace les demandes de la méthode **CreateIfNotExists** (ID de demande e2d06d78…) avec les demandes de la méthode **UploadFromStream** (de8b1c3c-...) ; cela est dû au fait que l’application cliente appelle ces méthodes de façon asynchrone. Vous devez modifier le code asynchrone dans le client de façon à ce qu'il crée le conteneur avant de tenter de charger des données dans un objet blob de ce conteneur. Idéalement, vous devriez créer tous vos conteneurs à l’avance.
 
 #### <a name="SAS-authorization-issue"></a>Problème d’autorisation de signature d’accès partagé (SAP)
-Si l’application cliente de hello tente toouse une clé SAS qui n’inclut pas les autorisations nécessaires hello pour l’opération de hello, le service de stockage hello retourne un client toohello du message HTTP 404 (introuvable). À hello même moment, vous verrez également une valeur différente de zéro pour **erreur SASAuthorizationError** dans les mesures hello.
+Si l’application cliente tente d’utiliser une clé SAS qui n’inclut pas les autorisations requises pour l’opération, le service de stockage renvoie un message HTTP 404 (Non trouvé) au client. Vous verrez également apparaître une valeur **SASAuthorizationError** non nulle dans les métriques.
 
-Hello tableau suivant montre un exemple de message de journal côté serveur à partir du fichier journal de Storage Logging hello :
+Le tableau suivant donne un exemple de message de journal côté serveur à partir du fichier journal de journalisation du stockage :
 
 | Nom | Valeur |
 | --- | --- |
@@ -573,15 +573,15 @@ Hello tableau suivant montre un exemple de message de journal côté serveur à 
 | Type d'authentification| Sas                          |
 | Type de service       | Blob                         |
 | URL de la demande        | https://domemaildist.blob.core.windows.net/azureimblobcontainer/blobCreatedViaSAS.txt |
-| nbsp;              |   ?sv=2014-02-14&sr=c&si=mypolicy&sig=XXXXX&;api-version=2014-02-14 |
+| &nbsp;                 |   ?sv=2014-02-14&sr=c&si=mypolicy&sig=XXXXX&;api-version=2014-02-14 |
 | Request ID header  | a1f348d5-8032-4912-93ef-b393e5252a3b |
 | ID de la demande client  | 2d064953-8436-4ee0-aa0c-65cb874f7929 |
 
 
-Vous devez examiner la raison pour laquelle votre application cliente tente de tooperform une opération n’a pas été accordé des autorisations pour.
+Vous devez rechercher pourquoi l’application cliente tente d’effectuer une opération qu’elle n’est pas autorisée à effectuer.
 
-#### <a name="JavaScript-code-does-not-have-permission"></a>Code JavaScript côté client n’a pas l’objet d’autorisation tooaccess hello
-Si vous utilisez un client JavaScript et le service de stockage hello renvoie les messages HTTP 404, vous recherchez hello erreurs JavaScript dans le navigateur de hello suivantes :
+#### <a name="JavaScript-code-does-not-have-permission"></a>Le code JavaScript du côté client n’est pas autorisé à accéder à l’objet
+Si vous utilisez un client JavaScript et que le service de stockage renvoie des messages HTTP 404, vous devez vérifier la présence des erreurs JavaScript suivantes dans le navigateur :
 
 ```
 SEC7120: Origin http://localhost:56309 not found in Access-Control-Allow-Origin header.
@@ -589,19 +589,19 @@ SCRIPT7002: XMLHttpRequest: Network Error 0x80070005, Access is denied.
 ```
 
 > [!NOTE]
-> Vous pouvez utiliser les outils de développement F12 hello dans Internet Explorer tootrace hello messages échangés entre le navigateur de hello et le service de stockage hello lors de la résolution des problèmes de JavaScript côté client.
+> Vous pouvez utiliser les Outils de développement F12 dans Internet Explorer pour procéder au suivi des messages échangés entre le navigateur et le service de stockage lors de la résolution des problèmes JavaScript côté client.
 > 
 > 
 
-Ces erreurs se produisent, car le navigateur web de hello implémente hello [stratégie d’origine](http://www.w3.org/Security/wiki/Same_Origin_Policy) provient de la restriction de sécurité qui empêche une page web à partir de l’appel d’une API dans un autre domaine à partir de la page de hello domaine hello.
+Ces erreurs sont dues au fait que le navigateur implémente la restriction de sécurité [same origin policy](http://www.w3.org/Security/wiki/Same_Origin_Policy) , qui empêche une page web d’appeler une API dans un domaine différent de celui dont la page provient.
 
-toowork autour hello problème de JavaScript, vous pouvez configurer Cross-origine partage de ressources (CORS) pour hello stockage service hello client accède. Pour plus d’informations, voir [Prise en charge du service Partage des ressources cross-origine (CORS) pour les services Azure Storage](http://msdn.microsoft.com/library/azure/dn535601.aspx).
+Pour contourner le problème JavaScript, vous devez configurer le service Partage des ressources cross-origin (CORS) pour le service de stockage auquel le client accède. Pour plus d’informations, voir [Prise en charge du service Partage des ressources cross-origine (CORS) pour les services Azure Storage](http://msdn.microsoft.com/library/azure/dn535601.aspx).
 
-Hello suivant l’exemple de code montre comment tooconfigure votre service blob tooallow JavaScript qui s’exécute dans hello tooaccess du domaine Contoso un objet blob dans votre service de stockage d’objets blob :
+L'exemple de code suivant montre comment configurer votre service d'objet blob afin de permettre l'exécution de JavaScript dans le domaine Contoso pour accéder à un objet blob dans votre service de stockage d'objets blob :
 
 ```csharp
 CloudBlobClient client = new CloudBlobClient(blobEndpoint, new StorageCredentials(accountName, accountKey));
-// Set hello service properties.
+// Set the service properties.
 ServiceProperties sp = client.GetServiceProperties();
 sp.DefaultServiceVersion = "2013-08-15";
 CorsRule cr = new CorsRule();
@@ -616,18 +616,18 @@ client.SetServiceProperties(sp);
 ```
 
 #### <a name="network-failure"></a>Défaillance réseau
-Dans certains cas, les paquets réseau perdue peuvent entraîner des service de stockage toohello retournant cliente de toohello de messages HTTP 404. Par exemple, lorsque votre application cliente est suppression d’une entité de service de table hello vous voyez hello client lève une exception de stockage reporting une « HTTP 404 (introuvable) » le message d’état à partir du service de table hello. Lorsque vous examinez la table hello dans le service de stockage de table hello, vous consultez que service de hello n’a supprimé l’entité de hello comme demandé.
+Dans certaines circonstances, la perte de paquets réseau peut amener le service de stockage à renvoyer des messages HTTP 404 au client. Par exemple, lorsque l'application cliente supprime une entité du service de table, le client génère une exception de stockage avec un message d'état « HTTP 404 (Not Found) » du service de table. Lorsque vous recherchez la table dans le service de stockage de table, vous constatez que le service a supprimé l'entité comme prévu.
 
-Détails de l’exception dans le client de hello Hello incluent l’id de demande hello (7e84f12d...) affecté par le service de table hello pour demande de hello : vous pouvez utiliser cette détails de la demande d’informations toolocate hello dans les journaux de stockage côté serveur hello en recherchant dans hello  **en-tête de l’id de demande** colonne dans le fichier journal de hello. Vous pouvez également utiliser hello métriques tooidentify lors de défaillances tel que cela se produisent et ensuite rechercher les fichiers de journaux hello selon hello hello ponctualité enregistrement cette erreur. Ce journal de saisie indique que hello delete a échoué avec un message d’état HTTP (404) « Client » autre erreur. Hello même entrée de journal inclut également les id de demande hello généré par le client hello Bonjour **client-request-id** colonne (813ea74f...).
+Les détails de l’exception dans le client incluent l’ID de demande (7e84f12d...) affecté par le service de Table pour la demande : vous pouvez utiliser ces informations pour rechercher les détails de la demande dans les journaux de stockage côté serveur en effectuant une recherche dans la colonne **request-id-header** du fichier journal. Vous pouvez également utiliser les métriques pour savoir quand ce type d’erreurs se produit, puis effectuer une recherche dans les fichiers journaux sur base de l’heure à laquelle les métriques ont enregistré cette erreur. L’entrée du journal indique que la suppression a échoué avec un message d’état « HTTP (404) Client Other Error ». La même entrée du journal inclut l’ID de la demande généré par le client dans la colonne **client-request-id** (813ea74f…).
 
-Hello côté serveur inclut également une autre entrée par hello même **client-request-id** valeur (813ea74f...) pour une suppression pour hello même entité et de hello même client. Cette opération de suppression réussie a eu lieu très peu de temps avant la demande d’échec de la suppression de hello.
+Le journal côté serveur inclut également une autre entrée avec la même valeur **client-request-id** (813ea74f…) pour une opération de suppression réussie de la même entité, et provenant du même client. Cette opération de suppression réussie s'est produite peu avant l'échec de la demande de suppression.
 
-cause la plus probable Hello de ce scénario est que le client hello a envoyé une demande de suppression pour hello entité toohello service de table, ce qui a réussi, mais n’a pas reçu d’accusé de réception du serveur hello (peut-être en raison d’un problème de réseau temporaire tooa). client de Hello automatiquement retentée opération de hello (à l’aide de hello même **client-request-id**), et cette nouvelle tentative a échoué, car l’entité de hello a déjà été supprimée.
+La cause la plus probable de ce scénario est que le client a envoyé une demande de suppression de l'entité au service de table, qui a réussi, mais n'a pas reçu d'accusé de réception du serveur (peut-être à cause d'un problème de réseau provisoire). Le client a ensuite tenté automatiquement d’effectuer à nouveau l’opération (en utilisant le même **client-request-id**). Cette tentative a échoué, car l’entité avait déjà été supprimée.
 
-Si ce problème se produit fréquemment, vous devez examiner pourquoi les clients hello échoue tooreceive les accusés de réception à partir du service de table hello. Si le problème de hello est intermittent, vous devez intercepter l’erreur « HTTP (404) introuvable » de hello et consigner dans le client de hello, mais autoriser hello client toocontinue.
+Si ce problème se produit fréquemment, vous devez rechercher pourquoi le client ne reçoit pas les accusés de réception du service de table. Si le problème est intermittent, vous devez capturer l’erreur « HTTP (404) Not Found » et la journaliser dans le client, mais permettre au client de continuer.
 
-### <a name="the-client-is-receiving-409-messages"></a>Hello client reçoit les messages HTTP 409 (conflit)
-Hello tableau suivant montre un extrait de journal côté serveur hello deux opérations du client : **DeleteIfExists** suivie immédiatement de **CreateIfNotExists** à l’aide de hello le même nom de conteneur d’objets blob. Notez que chaque opération du client génère deux demandes envoyées toohello server, tout d’abord un **GetContainerProperties** toocheck de demande si le conteneur de hello existe, suivie de hello **DeleteContainer** ou  **CreateContainer** demande.
+### <a name="the-client-is-receiving-409-messages"></a>Le client reçoit des messages HTTP 409 (Conflict)
+Le tableau suivant inclut un extrait du journal côté serveur pour deux opérations client : **DeleteIfExists** suivie de **CreateIfNotExists** avec le même nom de conteneur d’objet blob. Notez que chaque opération cliente génère l’envoi de deux demandes au serveur : d’abord une demande **GetContainerProperties** afin de vérifier l’existence du conteneur, puis la demande **DeleteContainer** ou **CreateContainer**.
 
 | Timestamp | Opération | Résultat | Nom du conteneur | ID de la demande client |
 | --- | --- | --- | --- | --- |
@@ -636,61 +636,61 @@ Hello tableau suivant montre un extrait de journal côté serveur hello deux op�
 | 05:10:13.8987407 |GetContainerProperties |404 |mmcont |bc881924-… |
 | 05:10:14.2147723 |CreateContainer |409 |mmcont |bc881924-… |
 
-Hello code dans l’application cliente de hello supprime et recrée ensuite immédiatement un conteneur d’objets blob à l’aide de hello même nom : hello **CreateIfNotExists** (méthode) (Client demande ID bc881924-...) finit par échouer avec hello HTTP 409 (conflit) erreur. Lorsqu’un client supprime les conteneurs d’objets blob, tables ou les files d’attente qu'est une brève période avant le nom de hello redevient disponible.
+Le code de l’application cliente supprime puis recrée immédiatement un conteneur d’objets blob du même nom : la méthode **CreateIfNotExists** (ID de demande client bc881924-...) échoue avec l’erreur HTTP 409 (Conflit). Lorsqu’un client supprime des conteneurs d’objet blob, des tables ou des files d’attente, le nom devient à nouveau disponible après une courte période.
 
-application cliente de Hello doit utiliser des noms de conteneur unique chaque fois qu’il crée de nouveaux conteneurs si le modèle de suppression/recréez hello est courant.
+Chaque fois qu'elle crée des conteneurs, l'application cliente utilise des noms de conteneur uniques si le modèle de suppression/recréation est commun.
 
 ### <a name="metrics-show-low-percent-success"></a>Les métriques indiquent une valeur PercentSuccess faible ou les entrées du journal d’analyse incluent des opérations avec un statut de transaction ClientOtherErrors
-Hello **PercentSuccess** métrique capture % hello des opérations qui ont réussi, en fonction de leur Code d’état HTTP. Opérations avec des codes d’état de 2XX count comme réussies, tandis que les opérations avec des codes d’état dans les plages 3XX, 4XX et 5XX sont comptées comme ayant échoué et inférieure hello **PercentSucess** valeur métrique. Dans les fichiers journaux de stockage côté serveur hello, ces opérations sont enregistrées avec un statut de transaction **ClientOtherErrors**.
+La métrique **PercentSuccess** capture le pourcentage d'opérations réussies sur base de leur code d'état HTTP. Les opérations avec des codes d’état 2XX sont considérées comme réussies ; celles avec des codes d’état dans les plages 3XX, 4XX et 5XX sont considérées comme non réussies et réduisent la valeur de la métrique **PercentSucess** . Dans les fichiers journaux de stockage côté serveur, ces opérations sont enregistrées avec un statut de transaction **ClientOtherErrors**.
 
-Il est important toonote que ces opérations sont terminées et par conséquent n’affectent pas les autres métriques telles que la disponibilité. Voici quelques exemples d'opérations qui s'exécutent avec succès, mais qui génèrent des codes d'état HTTP d'échec :
+Il est important de noter que ces opérations ont été réalisées avec succès et n'affectent donc pas d'autres métriques telles que la disponibilité. Voici quelques exemples d'opérations qui s'exécutent avec succès, mais qui génèrent des codes d'état HTTP d'échec :
 
-* **ResourceNotFound** (pas trouvé 404), par exemple à partir d’une commande GET demande tooa d’objets blob qui n’existe pas.
-* **ResouceAlreadyExists** (409 conflit), par exemple à partir d’un **CreateIfNotExist** opération où les ressources hello existant déjà.
-* **ConditionNotMet** (non modifié 304), par exemple à partir d’une opération conditionnelle telles que lorsqu’un client envoie une **ETag** valeur et HTTP **If-None-Match** en-tête toorequest une image uniquement se Il a été mis à jour depuis la dernière opération de hello.
+* **ResourceNotFound** (Not Found 404), par exemple, à partir d'une demande GET vers un objet blob qui n'existe pas.
+* **ResouceAlreadyExists** (Conflict 409), par exemple, à partir d’une opération **CreateIfNotExist** où la ressource existe déjà.
+* **ConditionNotMet** (Not Modified 304), par exemple, à partir d’une opération conditionnelle, comme lorsqu’un client envoie une valeur **ETag** et un en-tête HTTP **If-None-Match** pour demander une image uniquement si elle a été mise à jour depuis la dernière opération.
 
-Vous trouverez une liste de codes d’erreur courants API REST qui retournent des services de stockage hello sur la page de hello [Codes d’erreur courants REST API](http://msdn.microsoft.com/library/azure/dd179357.aspx).
+Vous trouverez une liste des codes d’erreur API REST communs renvoyés par les services de stockage à la page [Codes d’erreur API REST communs](http://msdn.microsoft.com/library/azure/dd179357.aspx).
 
 ### <a name="capacity-metrics-show-an-unexpected-increase"></a>Les métriques de capacité indiquent une augmentation inattendue de l’utilisation de la capacité de stockage
-Si vous voyez soudaine, des modifications inattendues dans l’utilisation des capacités de votre compte de stockage, vous pouvez examiner les raisons de hello en examinant en premier vos métriques de disponibilité ; par exemple, une augmentation nombre hello de demandes d’échec de la suppression peut entraîner des tooan augmentation montant hello du stockage blob que vous utilisez en tant qu’opérations de nettoyage spécifique d’application pour que vous attendent toobe la libération de l’espace ne fonctionne pas comme prévu ( exemple, car il est utilisés pour la libération de l’espace des jetons SAS hello ont expiré).
+Si vous constatez des changements soudains, inattendus dans l'utilisation de la capacité de votre compte de stockage, vous pouvez rechercher les raisons en consultant d’abord vos métriques de disponibilité. Par exemple, une augmentation du nombre de demandes de suppression qui échouent peut provoquer une augmentation du volume de stockage blob que vous utilisez, car les opérations de nettoyage spécifiques de l'application supposées libérer de l'espace peuvent ne pas fonctionner comme prévu (par exemple, suite à l'expiration des jetons SAS utilisés pour libérer de l'espace).
 
 ### <a name="you-are-experiencing-unexpected-reboots"></a>Vous constatez des redémarrages inattendus des machines virtuelles Azure associées à un grand nombre de disques durs virtuels
-Si une Machine virtuelle Azure (VM) a un grand nombre de disques durs virtuels attachés qui sont Bonjour même compte de stockage, vous pourriez dépasser les objectifs d’évolutivité hello pour un compte de stockage individuel à l’origine de hello VM toofail. Vous devez vérifier les métriques par minute hello pour le compte de stockage hello (**TotalRequests**/**TotalIngress**/**TotalEgress**) pour les pics d’activité qui dépassent les objectifs d’évolutivité hello pour un compte de stockage. Consultez la section de hello »[métriques indiquent une augmentation dans PercentThrottlingError]» pour obtenir de l’aide à déterminer si la limitation s’est produite sur votre compte de stockage.
+Si une machine virtuelle Azure est associée à un grand nombre de disques durs virtuels dans le même compte de stockage, vous risquez de dépasser les cibles d’évolutivité pour un compte de stockage individuel, ce qui provoquera une panne de la machine virtuelle. Vous devez consulter les métriques par minute pour le compte de stockage (**TotalRequests**/**TotalIngress**/**TotalEgress**) et vérifier la présence de pics dépassant les cibles d’évolutivité pour un compte de stockage. La section «[Les métriques indiquent une augmentation de la valeur PercentThrottlingError]» vous aidera à déterminer si une limitation a été appliquée à votre compte de stockage.
 
-En général, chaque entrée individuelle ou une opération de sortie sur un disque dur virtuel à partir d’un ordinateur virtuel traduit trop**Page obtenir** ou **Put Page** opérations sur hello sous-jacent d’objet blob de pages. Par conséquent, vous pouvez utiliser hello estimé IOPS pour votre environnement tootune le nombre de disques durs virtuels vous pouvez avoir dans un seul compte de stockage basé sur le comportement de hello spécifiques de votre application. Nous déconseillons d’avoir plus de 40 disques dans un compte de stockage unique. Consultez [évolutivité du stockage Azure et les objectifs de performances](storage-scalability-targets.md) pour plus d’informations des objectifs d’évolutivité actuelle hello pour les comptes de stockage, notamment hello demande totale taux total de bande passante et de type hello du compte de stockage vous utilisez .
-Si vous dépassez les cibles d’extensibilité hello pour votre compte de stockage, vous devez placer vos disques durs virtuels plusieurs autre activité de stockage comptes tooreduce hello dans chaque compte.
+En général, chaque opération d’entrée ou de sortie individuelle sur un disque dur virtuel à partir d’une machine virtuelle traduit les opérations **Get Page** ou **Put Page** sur l’objet blob de la page sous-jacente. Vous pouvez donc utiliser les opérations d’E/S par seconde (IOPS) estimées pour votre environnement pour déterminer le nombre de disques durs virtuels que vous pouvez avoir dans un compte de stockage unique, sur base du comportement spécifique de votre application. Nous déconseillons d’avoir plus de 40 disques dans un compte de stockage unique. Pour obtenir des détails sur les cibles d’extensibilité actuelles des comptes de stockage, en particulier le taux de demandes total et la bande passante totale pour le type de compte de stockage que vous utilisez, consultez [Objectifs de performance et évolutivité d’Azure Storage](storage-scalability-targets.md).
+Si vous dépassez les cibles d’évolutivité pour votre compte de stockage, vous devez placer vos disques durs virtuels dans plusieurs comptes de stockage différents afin de réduire l’activité dans chaque compte individuel.
 
-### <a name="your-issue-arises-from-using-the-storage-emulator"></a>Votre problème survient à l’aide de l’émulateur de stockage hello pour le développement ou de test
-En général, vous utilisez l’émulateur de stockage hello pendant le développement et testez exigence de hello tooavoid pour un compte de stockage Azure. Hello les problèmes courants qui peuvent se produire lorsque vous utilisez l’émulateur de stockage hello sont :
+### <a name="your-issue-arises-from-using-the-storage-emulator"></a>Votre problème provient de l’utilisation de l’émulateur de stockage pour le développement ou les tests
+On utilise généralement un émulateur de stockage lors du développement et des tests afin d'éviter l'utilisation d'un compte de stockage Azure. Voici les problèmes communs que vous êtes susceptible de rencontrer lors de l’utilisation de l’émulateur de stockage :
 
-* [Fonction « X » ne fonctionne pas dans l’émulateur de stockage hello]
-* [Erreur « les valeur hello pour un des en-têtes de hello HTTP n’est pas le format correct de hello » lorsque l’utilisation hello émulateur de stockage]
-* [L’émulateur de stockage hello en cours d’exécution nécessite des privilèges d’administrateur]
+* [La fonctionnalité « X » ne fonctionne pas dans l’émulateur de stockage]
+* [Erreur « The value for one of the HTTP headers is not in the correct format » (Le format de la valeur d’un des en-têtes HTTP est incorrect) lors de l’utilisation de l’émulateur de stockage]
+* [L’exécution de l’émulateur de stockage exige des privilèges d’administration]
 
-#### <a name="feature-X-is-not-working"></a>Fonction « X » ne fonctionne pas dans l’émulateur de stockage hello
-l’émulateur de stockage Hello ne prend pas en charge toutes les fonctionnalités de hello de services de stockage Azure hello comme service de fichiers hello. Pour plus d’informations, consultez [hello d’utilisation émulateur de stockage pour le développement et le test](storage-use-emulator.md).
+#### <a name="feature-X-is-not-working"></a>La fonctionnalité « X » ne fonctionne pas dans l’émulateur de stockage
+L'émulateur de stockage ne prend pas en charge toutes les fonctionnalités des services de stockage Azure (par ex., le service de fichiers). Pour plus d’informations, consultez [Utilisation de l’émulateur de stockage Azure pour le développement et le test](storage-use-emulator.md).
 
-Pour les fonctionnalités hello stockage émulateur ne pas en charge, utilisez le service de stockage Azure hello dans le cloud de hello.
+Pour accéder à ces fonctions non prises en charge par l’émulateur de stockage, vous devez utiliser le service de stockage Azure dans le cloud.
 
-#### <a name="error-HTTP-header-not-correct-format"></a>Erreur « les valeur hello pour un des en-têtes de hello HTTP n’est pas le format correct de hello » lorsque l’utilisation hello émulateur de stockage
-Vous testez votre application qui utilisent hello bibliothèque cliente de stockage par rapport à hello stockage local émulateur et appels de méthodes comme **CreateIfNotExists** échec avec l’erreur de hello un message « hello valeur pour un des en-têtes de hello HTTP n’est pas dans format correct Hello. » Cela indique que hello version de l’émulateur de stockage hello que vous utilisez ne prend pas en charge la version hello de bibliothèque cliente de hello stockage que vous utilisez. Hello bibliothèque cliente de stockage ajoute l’en-tête de hello **x-ms-version** tooall hello rend les demandes. Si l’émulateur de stockage hello ne reconnaît pas la valeur hello Bonjour **x-ms-version** en-tête, il rejette la demande de hello.
+#### <a name="error-HTTP-header-not-correct-format"></a>Erreur « The value for one of the HTTP headers is not in the correct format » (Le format de la valeur d’un des en-têtes HTTP est incorrect) lors de l’utilisation de l’émulateur de stockage
+Vous testez votre application qui utilise la bibliothèque cliente de stockage dans l'émulateur de stockage local, et les appels de méthode comme **CreateIfNotExists** échouent avec le message d'erreur « La valeur de l’un des en-têtes HTTP n’a pas un format correct ». Cela indique que la version de l'émulateur de stockage que vous utilisez ne prend pas en charge la version de la bibliothèque cliente de stockage que vous utilisez. La bibliothèque cliente de stockage ajoute l'en-tête **x-ms-version** à toutes les demandes qu'elle effectue. Si l'émulateur de stockage ne reconnaît pas la valeur dans l'en-tête **x-ms-version** , il refuse la demande.
 
-Vous pouvez utiliser hello Client de bibliothèque de stockage des journaux toosee hello valeur Hello **en-tête x-ms-version** qu’il envoie. Vous pouvez également afficher la valeur hello hello **en-tête x-ms-version** si vous utilisez des demandes de Fiddler tootrace hello à partir de votre application cliente.
+Vous pouvez utiliser les journaux de la bibliothèque cliente de stockage pour afficher la valeur de l' **en-tête x-ms-version** envoyée. Vous pouvez également afficher la valeur de l' **en-tête x-ms-version** si vous utilisez Fiddler pour procéder au suivi des demandes à partir de votre application cliente.
 
-Ce scénario se produit généralement si vous installez et utilisez la version la plus récente hello Hello bibliothèque cliente de stockage sans mettre à jour de l’émulateur de stockage hello. Vous devez installer la version la plus récente de l’émulateur de stockage hello hello ou utiliser le stockage cloud au lieu de l’émulateur de hello pour le développement et de test.
+Ce scénario se produit généralement lorsque vous installez et utilisez la dernière version de la bibliothèque cliente de stockage sans mettre à jour l’émulateur de stockage. Vous devez soit installer la dernière version de l’émulateur de stockage, soit utiliser le stockage cloud au lieu de l’émulateur pour le développement et les tests.
 
-#### <a name="storage-emulator-requires-administrative-privileges"></a>L’émulateur de stockage hello en cours d’exécution nécessite des privilèges d’administrateur
-Vous êtes invité pour les informations d’identification d’administrateur lorsque vous exécutez l’émulateur de stockage hello. Cela se produit uniquement lorsque vous initialisez l’émulateur de stockage hello pour hello première fois. Après avoir initialisé l’émulateur de stockage hello, vous n’avez pas besoin des privilèges d’administrateur toorun nouveau.
+#### <a name="storage-emulator-requires-administrative-privileges"></a>L’exécution de l’émulateur de stockage exige des privilèges d’administration
+Vous êtes invité à entrer vos informations d'identification d'administrateur lorsque vous exécutez l'émulateur de stockage. Cela ne se produit que lors de la toute première initialisation de l'émulateur de stockage. Une fois qu'il a été initialisé, vous n'avez plus besoin de privilèges d'administration pour l'exécuter à nouveau.
 
-Pour plus d’informations, consultez [hello d’utilisation émulateur de stockage pour le développement et le test](storage-use-emulator.md). Notez que vous pouvez également initialiser l’émulateur de stockage hello dans Visual Studio, qui nécessite également des privilèges d’administrateur.
+Pour plus d’informations, consultez [Utilisation de l’émulateur de stockage Azure pour le développement et le test](storage-use-emulator.md). Notez que vous pouvez également initialiser l’émulateur de stockage dans Visual Studio, qui exige également des privilèges d’administration.
 
-### <a name="you-are-encountering-problems-installing-the-Windows-Azure-SDK"></a>Vous rencontrez des problèmes d’installation Bonjour Azure SDK pour .NET
-Lorsque vous essayez tooinstall hello SDK, il échoue lors de l’émulateur de stockage hello tooinstall sur votre ordinateur local. journal d’installation Hello contient hello suivant des messages :
+### <a name="you-are-encountering-problems-installing-the-Windows-Azure-SDK"></a>Vous rencontrez des problèmes pendant l’installation du Kit de développement logiciel (SDK) Azure pour .NET
+Lorsque vous tentez d'installer le Kit de développement logiciel (SDK), vous ne parvenez pas à installer l'émulateur de stockage sur votre machine locale. Le journal d'installation contient un des messages suivants :
 
-* CAQuietExec : Erreur : Impossible de tooaccess l’instance SQL
-* CAQuietExec : Erreur : Impossible de toocreate la base de données
+* CAQuietExec:  Error: Unable to access SQL instance (CAQuietExec :  Erreur : Impossible d’accéder à l’instance SQL)
+* CAQuietExec:  Error: Unable to create database (CAQuietExec :  Erreur : Impossible de créer la base de données)
 
-cause de Hello est un problème avec une installation existante de la base de données locale. Par défaut, l’émulateur de stockage hello utilise LocalDB toopersist données lors de la simulation des services de stockage Azure hello. Vous pouvez réinitialiser votre instance de base de données locale en exécutant hello suivant de commandes dans une fenêtre d’invite de commandes avant d’essayer de tooinstall hello SDK.
+Cela est dû à un problème au niveau de l'installation LocalDB existante. Par défaut, l'émulateur de stockage utilise LocalDB pour conserver les données lorsqu'il simule les services de stockage Azure. Vous pouvez réinitialiser votre instance LocalDB en exécutant les commandes suivantes dans une fenêtre d'invite de commandes avant de tenter d'installer le Kit de développement logiciel (SDK).
 
 ```
 sqllocaldb stop v11.0
@@ -699,135 +699,135 @@ delete %USERPROFILE%\WAStorageEmulatorDb3*.*
 sqllocaldb create v11.0
 ```
 
-Hello **supprimer** commande supprime les anciens fichiers de base de données à partir des précédentes installations de l’émulateur de stockage hello.
+La commande **delete** supprime tous les anciens fichiers de base de données des installations précédentes de l'émulateur de stockage.
 
 ### <a name="you-have-a-different-issue-with-a-storage-service"></a>Vous rencontrez un autre problème avec un service de stockage
-Si les sections de résolution précédente hello n’incluent pas de problème hello que vous rencontrez avec un service de stockage, vous devez adopter hello suivant approche toodiagnosing et résoudre vos problèmes.
+Si les sections de résolution des problèmes précédentes n’incluent pas le problème que vous rencontrez avec un service de stockage, vous devez adopter l’approche suivante pour diagnostiquer et résoudre votre problème.
 
-* Vérifiez votre toosee métriques s’il en existe toute modification à partir de votre comportement attendu de la ligne de base. À partir des mesures hello, vous pouvez être en mesure de toodetermine si le problème de hello est temporaire ou définitive et les opérations de stockage hello problème affecte.
-* Vous pouvez utiliser les informations de métriques hello toohelp recherche de vos données de journal côté serveur pour des informations détaillées sur les erreurs qui se produisent. Ces informations peuvent vous aider à dépanner et résoudre le problème de hello.
-* Si informations hello dans les journaux côté serveur hello ne sont pas suffisant problème de hello tootroubleshoot avec succès, vous pouvez utiliser hello bibliothèque cliente de stockage des journaux de côté client tooinvestigate hello comportement de votre application cliente et des outils tels que Fiddler, Wireshark, et Microsoft Message Analyzer tooinvestigate votre réseau.
+* Consultez vos métriques afin d'identifier tout changement par rapport au comportement de base normal. Sur base des métriques, vous pouvez déterminer si le problème est provisoire ou permanent, ainsi que les opérations de stockage affectées par le problème.
+* Vous pouvez utiliser les informations des métriques afin de faciliter vos recherches dans vos données de journalisation côté serveur et obtenir des informations plus détaillées concernant les erreurs rencontrées. Ces informations peuvent vous aider à analyser et résoudre le problème.
+* Si les informations des journaux côté serveur ne suffisent pas pour résoudre le problème, vous pouvez utiliser les journaux côté client de la bibliothèque cliente de stockage pour enquêter sur le comportement de votre application cliente, ainsi que des outils tels que Fiddler, Wireshark et l'analyseur de message Microsoft pour enquêter sur votre réseau.
 
-Pour plus d’informations sur l’utilisation de Fiddler, consultez «[annexe 1 : à l’aide du trafic HTTP et HTTPS du toocapture Fiddler]. »
+Pour plus d’informations sur l’utilisation de Fiddler, consultez «[Annexe 1 : utilisation de Fiddler pour capturer le trafic HTTP et HTTPS]».
 
-Pour plus d’informations sur l’utilisation de Wireshark, consultez «[annexe 2 : à l’aide d’un trafic réseau Wireshark toocapture]. »
+Pour plus d’informations sur l’utilisation de Wireshark, consultez «[Annexe 2 : utilisation de Wireshark pour capturer le trafic réseau]».
 
-Pour plus d’informations sur l’utilisation de Microsoft Message Analyzer, consultez «[annexe 3 : à l’aide de trafic de réseau Microsoft Message Analyzer toocapture]. »
+Pour plus d’informations sur l’utilisation de l’analyseur de message Microsoft, consultez «[Annexe 3 : utilisation de l’analyseur de message Microsoft pour capturer le trafic réseau]».
 
 ## <a name="appendices"></a>Annexes
-les annexes Hello décrivent plusieurs outils qui peuvent s’avérer utile lorsque le diagnostic et la résolution des problèmes de stockage Azure (et d’autres services). Ces outils ne font pas partie de Azure Storage, et certains d'entre eux sont des produits tiers. Par conséquent, les outils hello présentées dans ces annexes ne sont pas couvertes par un contrat de prise en charge que vous auriez conclus avec Microsoft Azure ou le stockage Azure, et par conséquent, dans le cadre de votre processus d’évaluation, vous devez examiner hello licences et prise en charge des options disponibles à partir de fournisseurs de Hello de ces outils.
+Les annexes décrivent plusieurs outils qui peuvent s’avérer utiles lors du diagnostic et de la résolution des problèmes liés à Azure Storage (et aux autres services). Ces outils ne font pas partie de Azure Storage, et certains d'entre eux sont des produits tiers. En tant que tels, les outils décrits dans les annexes ne sont couverts par aucun contrat de support technique que vous pourriez avoir établi avec Microsoft Azure ou Azure Storage ; vous devez donc procéder à votre propre évaluation et examiner les options de licence et de support technique disponibles proposées par les fournisseurs de ces outils.
 
-### <a name="appendix-1"></a>Annexe 1 : À l’aide de Fiddler toocapture HTTP et le trafic HTTPS
-[Fiddler](http://www.telerik.com/fiddler) est un outil utile pour l’analyse du trafic HTTP et HTTPS hello entre votre application cliente et le hello service de stockage Azure que vous utilisez.
+### <a name="appendix-1"></a>Annexe 1 : utilisation de Fiddler pour capturer le trafic HTTP et HTTPS
+[Fiddler](http://www.telerik.com/fiddler) est un outil utile pour l’analyse du trafic HTTP et HTTPS entre votre application cliente et le service de stockage Azure que vous utilisez.
 
 > [!NOTE]
-> Fiddler peut décoder le trafic HTTPS ; Vous devez lire attentivement documentation de Fiddler hello toounderstand comment il le fait et les implications de sécurité toounderstand hello.
+> Fiddler est capable de décoder le trafic HTTPS ; vous devez lire avec attention la documentation de Fiddler pour vous familiariser avec ce processus et comprendre les implications en matière de sécurité.
 > 
 > 
 
-Cette annexe fournit une brève procédure pas à pas comment tooconfigure Fiddler toocapture le trafic entre l’ordinateur local de hello où vous avez installé Fiddler et hello des services de stockage Azure.
+Cette annexe explique brièvement comment configurer Fiddler pour capturer le trafic entre la machine locale sur laquelle vous avez installé Fiddler et les services de stockage Azure.
 
-Après avoir lancé Fiddler, il commence à capturer le trafic HTTP et HTTPS de votre ordinateur local. Hello Voici certaines commandes utiles pour le contrôle Fiddler :
+Après avoir lancé Fiddler, il commence à capturer le trafic HTTP et HTTPS de votre ordinateur local. Voici quelques commandes utiles pour contrôler Fiddler :
 
-* Arrêt et démarrage de la capture du trafic. Sur le menu principal de hello, accédez trop**fichier** puis cliquez sur **capturer le trafic** tootoggle capture et désactiver.
-* Enregistrement des données de trafic capturées. Sur le menu principal de hello, accédez trop**fichier**, cliquez sur **enregistrer**, puis cliquez sur **toutes les Sessions**: cela vous permet du trafic de hello toosave dans un fichier d’Archive de la Session. Vous pouvez recharger une Archive de Session pour l’analyse, ou l’envoyer demande de prise en charge tooMicrosoft.
+* Arrêt et démarrage de la capture du trafic. Dans le menu principal, accédez à **File**, puis cliquez sur **Capture Traffic** pour activer et désactiver la capture.
+* Enregistrement des données de trafic capturées. Dans le menu principal, accédez à **File**, cliquez sur **Save**, puis sur **All Sessions** : cela vous permet d’enregistrer le trafic dans un fichier d’archive de la session. Vous pouvez charger à nouveau ultérieurement un fichier Session Archive à des fins d'analyse, ou l'envoyer, si nécessaire, au support Microsoft.
 
-quantité de hello toolimit de trafic que Fiddler capture, vous pouvez utiliser des filtres que vous configurez dans hello **filtres** hello onglet suivant capture d’écran montre un filtre qui capture uniquement le trafic envoyé toohello  **contosoemaildist.table.Core.Windows.NET** point de terminaison de stockage :
+Pour limiter le volume de trafic capturé par Fiddler, vous pouvez utiliser des filtres que vous configurez dans l'onglet **Filters** . La capture d'écran suivante illustre un filtre qui capture uniquement le trafic envoyé au point de terminaison de stockage **contosoemaildist.table.core.windows.net** :
 
 ![][5]
 
-### <a name="appendix-2"></a>Annexe 2 : À l’aide du trafic réseau Wireshark toocapture
-[Wireshark](http://www.wireshark.org/) est un analyseur de protocole réseau qui vous permet de tooview paquet des informations détaillées sur un large éventail de protocoles réseau.
+### <a name="appendix-2"></a>Annexe 2 : utilisation de Wireshark pour capturer le trafic réseau
+[Wireshark](http://www.wireshark.org/) est un analyseur de protocole réseau qui vous permet d’afficher des informations détaillées concernant les paquets pour de nombreux protocoles réseau.
 
-Hello procédure suivante vous montre comment toocapture paquet des informations détaillées sur le trafic à partir de l’ordinateur local de hello où vous avez installé le service de table Wireshark toohello dans votre compte de stockage Azure.
+La procédure suivante explique comment capturer des informations détaillées concernant les paquets pour le trafic à partir de la machine locale où vous avez installé Wireshark, vers le service de table de votre compte de stockage Azure.
 
 1. Lancez Wireshark sur votre ordinateur local.
-2. Bonjour **Démarrer** section, d’une interface de réseau local sélectionnez hello ou d’interfaces qui sont connecté toohello internet.
+2. Dans la section **Start** , sélectionnez l'interface réseau locale ou des interfaces connectées à Internet.
 3. Cliquez sur **Capture Options**.
-4. Ajouter un filtre toohello **filtre de Capture** zone de texte. Par exemple, **héberger contosoemaildist.table.core.windows.net** configurera Wireshark toocapture uniquement tooor les paquets envoyés à partir du point de terminaison du service hello table Bonjour **contosoemaildist** stockage compte. Extraire hello [la liste complète des filtres de Capture](http://wiki.wireshark.org/CaptureFilters).
+4. Ajoutez un filtre à la zone de texte **Capture Filter** . Par exemple, **host contosoemaildist.table.core.windows.net** configurera Wireshark pour capturer uniquement les paquets envoyés au ou par le point de terminaison de stockage du service de table dans le compte de stockage **contosoemaildist**. Consultez la [liste complète des filtres de capture](http://wiki.wireshark.org/CaptureFilters).
    
    ![][6]
-5. Cliquez sur **Start**. Wireshark est prêt à capturer toutes les tooor envoi de paquets hello à partir du point de terminaison de service hello table que vous utilisez votre application cliente sur votre ordinateur local.
-6. Lorsque vous avez terminé, cliquez sur le menu principal hello **Capture** , puis **arrêter**.
-7. toosave hello capturées dans un Wireshark capturer fichier, cliquez sur le menu principal hello **fichier** , puis **enregistrer**.
+5. Cliquez sur **Start**. Wireshark commence à capturer tous les paquets envoyés au ou par le point de terminaison de stockage du service de table lors de l'utilisation de votre application cliente sur votre ordinateur local.
+6. Lorsque vous avez terminé, dans le menu principal, cliquez sur **Capture**, puis sur **Stop**.
+7. Pour enregistrer les données capturées dans un fichier de capture Wireshark, dans le menu principal, cliquez sur **File**, puis sur **Save**.
 
-WireShark met en surbrillance toutes les erreurs qui existent dans hello **packetlist** fenêtre. Vous pouvez également utiliser hello **Expert Info** fenêtre (cliquez sur **analyser**, puis **Expert Info**) tooview un résumé des erreurs et avertissements.
+WireShark met en évidence toutes les erreurs détectées dans la fenêtre **packetlist** . Vous pouvez également utiliser la fenêtre **Expert Info** (cliquez sur **Analyze**, puis sur **Expert Info**) pour afficher un récapitulatif des erreurs et avertissements.
 
 ![][7]
 
-Vous pouvez également choisir les données TCP tooview hello comme couche d’application hello peut la voir en cliquant sur hello données TCP et en sélectionnant **suivez le flux TCP**. Cette option est particulièrement utile si vous avez capturé votre image mémoire sans filtre de capture. Pour plus d’informations, consultez [Following TCP Streams](http://www.wireshark.org/docs/wsug_html_chunked/ChAdvFollowTCPSection.html)(Suivi du flux TCP).
+Vous pouvez également choisir d'afficher les données TCP telles que la couche d'application les voit en cliquant avec le bouton droit sur les données TCP et en sélectionnant **Suivre le flux TCP**. Cette option est particulièrement utile si vous avez capturé votre image mémoire sans filtre de capture. Pour plus d’informations, consultez [Following TCP Streams](http://www.wireshark.org/docs/wsug_html_chunked/ChAdvFollowTCPSection.html)(Suivi du flux TCP).
 
 ![][8]
 
 > [!NOTE]
-> Pour plus d’informations sur l’utilisation de Wireshark, consultez hello [Guide de l’utilisateur Wireshark](http://www.wireshark.org/docs/wsug_html_chunked).
+> Pour plus d’informations sur l’utilisation de Wireshark, consultez le [Guide d’utilisation de Wireshark](http://www.wireshark.org/docs/wsug_html_chunked).
 > 
 > 
 
-### <a name="appendix-3"></a>Annexe 3 : À l’aide de trafic de réseau Microsoft Message Analyzer toocapture
-Vous pouvez utiliser Microsoft Message Analyzer toocapture HTTP et le trafic HTTPS dans un tooFiddler de manière similaire et capturer le trafic réseau dans un tooWireshark de façon similaire.
+### <a name="appendix-3"></a>Annexe 3 : utilisation de l’analyseur de message Microsoft pour capturer le trafic réseau
+Vous pouvez utiliser l’analyseur de message Microsoft pour capturer le trafic HTTP et HTTPS de la même façon qu’avec Fiddler, et le trafic réseau de la même façon qu’avec Wireshark.
 
 #### <a name="configure-a-web-tracing-session-using-microsoft-message-analyzer"></a>Configuration d'une nouvelle session de suivi Web à l'aide de l'analyseur de message Microsoft
-tooconfigure une session web pour le trafic HTTP et HTTPS à l’aide de Microsoft Message Analyzer, exécuter l’application de l’Analyseur de Message Microsoft hello, puis sur hello **fichier** menu, cliquez sur **/Trace de Capture**. Dans la liste hello des scénarios de trace disponibles, sélectionnez **Proxy Web**. Puis Bonjour **Configuration du scénario Trace** Panneau de configuration, Bonjour **HostnameFilter** zone de texte, ajouter des noms de vos points de terminaison de stockage hello (vous pouvez rechercher ces noms Bonjour [portail Azure](https://portal.azure.com)). Par exemple, si hello nom de votre compte de stockage Azure est **contosodata**, vous devez ajouter hello suivant toohello **HostnameFilter** zone de texte :
+Pour configurer une nouvelle session de suivi web pour le trafic HTTP et HTTPS à l’aide de l’analyseur de message Microsoft, exécutez l’application Analyseur de message Microsoft et, dans le menu **File**, cliquez sur **Capture/Trace**. Dans la liste des scénarios de suivi disponibles, sélectionnez **Web Proxy**. Ensuite, dans le panneau **Trace Scenario Configuration**, dans la zone de texte **HostnameFilter**, ajoutez les noms de vos points de terminaison de stockage (ces noms figurent dans le [portail Azure](https://portal.azure.com)). Par exemple, si le nom de votre compte de stockage Azure est **contosodata**, vous devez ajouter ce qui suit dans la zone de texte **HostnameFilter** :
 
 ```
 contosodata.blob.core.windows.net contosodata.table.core.windows.net contosodata.queue.core.windows.net
 ```
 
 > [!NOTE]
-> Un caractère d’espace sépare les noms d’hôtes hello.
+> Un caractère espace sépare les noms d’hôte.
 > 
 > 
 
-Lorsque vous êtes prêt toostart collecte des données de trace, cliquez sur hello **Start With** bouton.
+Lorsque vous êtes prêt à commencer la collecte des données de suivi, cliquez sur le bouton **Start With** .
 
-Pour plus d’informations sur hello Microsoft Message Analyzer **Proxy Web** de trace, consultez [Microsoft-PEF-WebProxy fournisseur](http://technet.microsoft.com/library/jj674814.aspx).
+Pour plus d’informations concernant le suivi **Web Proxy** de l’analyseur de message Microsoft, consultez la section [Fournisseur Microsoft-PEF-WebProxy](http://technet.microsoft.com/library/jj674814.aspx).
 
-Hello intégré **Proxy Web** trace dans l’Analyseur de Message de Microsoft est basée sur Fiddler ; il peut capturer le trafic HTTPS côté client et afficher les messages non chiffrés de HTTPS. Hello **Proxy Web** fonctionnement de trace en configurant un proxy local pour tout le trafic HTTP et HTTPS qui lui donne un accès toounencrypted messages.
+Le suivi **Web Proxy** intégré de l'analyseur de message Microsoft est basé sur Fiddler ; il est capable de capturer le trafic HTTPS côté client et d'afficher les messages HTTPS non chiffrés. Le suivi **Web Proxy** fonctionne via la configuration d'un proxy local pour tout le trafic HTTP et HTTPS, lui permettant d'accéder aux messages non chiffrés.
 
 #### <a name="diagnosing-network-issues-using-microsoft-message-analyzer"></a>Diagnostic des problèmes de réseau à l'aide de l'analyseur de message Microsoft
-En outre toousing hello Microsoft Message Analyzer **Proxy Web** détails toocapture de suivi de hello le trafic HTTP/HTTPs entre l’application cliente de hello et le service de stockage hello, vous pouvez également utiliser intégrées de hello  **Couche de liaison locale** suivi des informations relatives aux paquets réseau toocapture. Cela permet de vous toocapture données similaires toothat que vous pouvez capturer avec Wireshark et diagnostiquer les problèmes de réseau telles que les paquets ignorés.
+En plus d’utiliser le suivi **Web Proxy** de l’analyseur de message Microsoft pour capturer le détail du trafic HTTP/HTTPS entre l’application cliente et le service de stockage, vous pouvez utiliser le suivi **Local Link Layer** intégré pour capturer les informations relatives aux paquets réseau. Cela vous permet de capturer des données similaires à celles que vous capturez avec Wireshark et de diagnostiquer les problèmes de réseau tels que les paquets perdus.
 
-Hello capture d’écran suivante montre un exemple **couche de liaison locale** trace avec certaines **d’information** messages Bonjour **DiagnosisTypes** colonne. En cliquant sur une icône dans hello **DiagnosisTypes** colonne affiche les détails de hello de message de type hello. Dans cet exemple, le serveur de hello retransmis message #305, car il n’a pas reçu d’accusé de réception à partir du client de hello :
+La capture d’écran suivante illustre un exemple de suivi **Local Link Layer** avec des messages **d’information** dans la colonne **DiagnosisTypes**. Cliquer sur une icône dans la colonne **DiagnosisTypes** affiche les détails du message. Dans cet exemple, le serveur a retransmis le message #305, car il n'a reçu aucun accusé de réception du client :
 
 ![][9]
 
-Lorsque vous créez la session de trace hello dans l’Analyseur de Message de Microsoft, vous pouvez spécifier des filtres tooreduce hello quantité bruit dans la trace de hello. Sur hello **capturer /trace** page où vous définissez la trace de hello, cliquez sur hello **configurer** lier ensuite trop**Microsoft-Windows-NDIS-PacketCapture**. Hello suivant capture d’écran montre une configuration qui permet de filtrer le trafic TCP pour les adresses IP de hello des trois services de stockage :
+Lorsque vous créez la session de suivi dans l'analyseur de message Microsoft, vous pouvez spécifier des filtres afin de limiter le nombre de parasites dans le suivi. Sur la page **Capture / Trace** où vous définissez le suivi, cliquez sur le lien **Configure** à côté de **Microsoft-Windows-NDIS-PacketCapture**. La capture d'écran suivante illustre une configuration qui filtre le trafic TCP pour les adresses IP de trois services de stockage :
 
 ![][10]
 
-Pour plus d’informations sur la trace de la couche de liaison locale de Microsoft Message Analyzer de hello, consultez [Microsoft-PEF-NDIS-PacketCapture fournisseur](http://technet.microsoft.com/library/jj659264.aspx).
+Pour plus d’informations concernant le suivi Local Link Layer de l’analyseur de message Microsoft, consultez [Fournisseur Microsoft-PEF-NDIS-PacketCapture](http://technet.microsoft.com/library/jj659264.aspx).
 
-### <a name="appendix-4"></a>Annexe 4 : À l’aide de données de journaux et de métriques tooview Excel
-De nombreux outils permettent de données de métriques de stockage hello toodownload à partir du stockage de table Windows Azure dans un format délimité qui rend les données de salutation tooload facile dans Excel pour consultation et l’analyse. Les données de journalisation du stockage d’objets blob Azure sont déjà dans un format délimité qui peut être chargé dans Excel. Toutefois, vous devrez tooadd les en-têtes de colonnes appropriés en fonction des informations hello à [le Format de journal Analytique stockage](http://msdn.microsoft.com/library/azure/hh343259.aspx) et [schéma de Table de métriques Storage Analytique](http://msdn.microsoft.com/library/azure/hh343264.aspx).
+### <a name="appendix-4"></a>Annexe 4 : utilisation d’Excel pour afficher les métriques et les données de journalisation
+De nombreux outils vous permettent de télécharger les données métriques de stockage à partir du stockage de table Azure dans un format délimité, permettant leur chargement aisé dans Excel afin de les consulter ou les analyser. Les données de journalisation du stockage d’objets blob Azure sont déjà dans un format délimité qui peut être chargé dans Excel. Toutefois, vous devez ajouter des en-têtes de colonnes appropriés sur la base des informations des sections [Format de journal de Storage Analytics](http://msdn.microsoft.com/library/azure/hh343259.aspx) et [Schéma de table de métriques Storage Analytics](http://msdn.microsoft.com/library/azure/hh343264.aspx).
 
-tooimport vos données Storage Logging dans Excel après avoir le télécharger depuis le stockage blob :
+Pour importer vos données de journalisation du stockage dans Excel, après les avoir téléchargées à partir stockage d’objets blob :
 
-* Sur hello **données** menu, cliquez sur **à partir du texte**.
-* Parcourir le fichier de journal toohello tooview et cliquez sur **importation**.
-* À l’étape 1 de hello **Assistant Importation de texte**, sélectionnez **délimité**.
+* Dans le menu **Data**, cliquez sur **From Text**.
+* Accédez au fichier journal que vous souhaitez afficher et cliquez sur **Import**.
+* À l’étape 1 du **Text Import Wizard**, sélectionnez **Delimited**.
 
-À l’étape 1 de hello **Assistant Importation de texte**, sélectionnez **point-virgule** comme hello seul délimiteur et choisissez les guillemets doubles comme hello **qualificateur de texte**. Puis cliquez sur **Terminer** et choisissez où tooplace hello des données dans votre classeur.
+À l’étape 1 du **Text Import Wizard**, sélectionnez **Semicolon** comme unique délimiteur et guillemet double comme **Text qualifier**. Ensuite, cliquez sur **Finish** et sélectionnez l'emplacement des données dans votre classeur.
 
 ### <a name="appendix-5"></a>Annexe 5 : analyse avec Application Insights pour Visual Studio Team Services
-Vous pouvez également utiliser les fonctionnalités d’Application Insights hello pour Visual Studio Team Services dans le cadre de votre analyse des performances et disponibilité. Cet outil permet de :
+Vous pouvez également utiliser la fonctionnalité Application Insights pour Visual Studio Team Services dans le cadre de votre analyse de performances et de disponibilité. Cet outil permet de :
 
-* Vous assurer que votre service Web est disponible et réactif. Si votre application est un site web ou une application de périphérique qui utilise un service web, il peut tester votre URL de quelques minutes à partir d’emplacements monde hello et vous permettent de savoir il s'existe un problème.
-* Rapidement diagnostiquer tous les problèmes ou exceptions de performances rencontrés par votre service Web. Découvrez si l'UC ou d'autres ressources sont en difficulté, obtenez les traces de la pile à partir des exceptions et effectuez des recherches aisées dans les suivis de journalisation. Si hello chutes de performances de l’application sous les limites acceptables, nous puissions vous envoyer un message électronique. Vous pouvez analyser les services Web .NET et Java.
+* Vous assurer que votre service Web est disponible et réactif. Que votre application soit destinée à un site web ou à un appareil qui utilise un service web, il peut tester votre URL toutes les quelques minutes depuis différents emplacements de par le monde et vous signaler tout problème éventuel.
+* Rapidement diagnostiquer tous les problèmes ou exceptions de performances rencontrés par votre service Web. Découvrez si l'UC ou d'autres ressources sont en difficulté, obtenez les traces de la pile à partir des exceptions et effectuez des recherches aisées dans les suivis de journalisation. Si les performances de l’application chutent en deçà des limites acceptables, nous pouvons vous envoyer un e-mail. Vous pouvez analyser les services Web .NET et Java.
 
-Vous trouverez plus d’informations dans la [Présentation d’Application Insights](../../application-insights/app-insights-overview.md).
+Plus d’informations sont disponibles dans [Présentation d’Application Insights](../../application-insights/app-insights-overview.md).
 
 <!--Anchors-->
 [Introduction]: #introduction
 [Organisation de ce guide]: #how-this-guide-is-organized
 
-[votre service de stockage de surveillance]: #monitoring-your-storage-service
+[Analyse de votre service de stockage]: #monitoring-your-storage-service
 [Analyse de l’état d’intégrité du service]: #monitoring-service-health
 [Analyse de la capacité]: #monitoring-capacity
 [Analyse de la disponibilité]: #monitoring-availability
 [Analyse des performances]: #monitoring-performance
 
-[diagnostiquer les problèmes de stockage]: #diagnosing-storage-issues
+[Diagnostic des problèmes de stockage]: #diagnosing-storage-issues
 [Problèmes d’état d’intégrité du service]: #service-health-issues
 [Problèmes de performances]: #performance-issues
 [Erreurs de diagnostic]: #diagnosing-errors
@@ -835,47 +835,47 @@ Vous trouverez plus d’informations dans la [Présentation d’Application Insi
 [Outils de journalisation du stockage]: #storage-logging-tools
 [Utilisation des outils de journalisation réseau]: #using-network-logging-tools
 
-[le suivi de bout en bout]: #end-to-end-tracing
+[Suivi de bout en bout]: #end-to-end-tracing
 [Corrélation des données de journalisation]: #correlating-log-data
 [ID de la demande client]: #client-request-id
-[ID demande serveur]: #server-request-id
+[ID de la demande serveur]: #server-request-id
 [Horodatages]: #timestamps
 
-[conseils de dépannage]: #troubleshooting-guidance
-[mesures affichent AverageE2ELatency haute et basse AverageServerLatency]: #metrics-show-high-AverageE2ELatency-and-low-AverageServerLatency
-[Affichent les métriques AverageE2ELatency basse et AverageServerLatency basse mais hello client rencontre une latence élevée]: #metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency
+[Instructions pour la résolution des problèmes]: #troubleshooting-guidance
+[Les métriques indiquent une valeur AverageE2ELatency élevée et une valeur AverageServerLatency faible]: #metrics-show-high-AverageE2ELatency-and-low-AverageServerLatency
+[Les métriques indiquent une valeur AverageE2ELatency faible et une valeur AverageServerLatency faible, mais le client constate une latence élevée]: #metrics-show-low-AverageE2ELatency-and-low-AverageServerLatency
 [Les métriques indiquent une valeur AverageServerLatency élevée]: #metrics-show-high-AverageServerLatency
 [Vous constatez des retards inattendus dans la livraison des messages d’une file d’attente]: #you-are-experiencing-unexpected-delays-in-message-delivery
 
-[métriques indiquent une augmentation dans PercentThrottlingError]: #metrics-show-an-increase-in-PercentThrottlingError
+[Les métriques indiquent une augmentation de la valeur PercentThrottlingError]: #metrics-show-an-increase-in-PercentThrottlingError
 [Augmentation provisoire de la valeur PercentThrottlingError]: #transient-increase-in-PercentThrottlingError
 [Augmentation permanente de l’erreur PercentThrottlingError]: #permanent-increase-in-PercentThrottlingError
-[métriques indiquent une augmentation dans PercentTimeoutError]: #metrics-show-an-increase-in-PercentTimeoutError
+[Les métriques indiquent une augmentation de la valeur PercentTimeoutError]: #metrics-show-an-increase-in-PercentTimeoutError
 [Les métriques indiquent une augmentation de la valeur PercentNetworkError]: #metrics-show-an-increase-in-PercentNetworkError
 
-[Hello client reçoit les messages HTTP 403 (interdit)]: #the-client-is-receiving-403-messages
-[Hello client reçoit les messages HTTP 404 (introuvable)]: #the-client-is-receiving-404-messages
-[Hello objet client ou un autre processus supprimés hello]: #client-previously-deleted-the-object
+[Le client reçoit des messages HTTP 403 (Forbidden)]: #the-client-is-receiving-403-messages
+[Le client reçoit des messages HTTP 404 (Not found)]: #the-client-is-receiving-404-messages
+[Le client ou un autre processus a supprimé l’objet]: #client-previously-deleted-the-object
 [Problème d’autorisation de signature d’accès partagé (SAS)]: #SAS-authorization-issue
-[Code JavaScript côté client n’a pas l’objet d’autorisation tooaccess hello]: #JavaScript-code-does-not-have-permission
+[Le code JavaScript du côté client n’est pas autorisé à accéder à l’objet]: #JavaScript-code-does-not-have-permission
 [Défaillance réseau]: #network-failure
-[Hello client reçoit les messages HTTP 409 (conflit)]: #the-client-is-receiving-409-messages
+[Le client reçoit des messages HTTP 409 (Conflict)]: #the-client-is-receiving-409-messages
 
-[PercentSuccess basse affichent les métriques ou les entrées de journal analytique ont des opérations avec état de la transaction de ClientOtherErrors]: #metrics-show-low-percent-success
+[Les métriques indiquent une valeur PercentSuccess faible ou les entrées du journal d’analyse incluent des opérations avec un statut de transaction ClientOtherErrors]: #metrics-show-low-percent-success
 [Les métriques de capacité indiquent une augmentation inattendue de l’utilisation de la capacité de stockage]: #capacity-metrics-show-an-unexpected-increase
 [Vous constatez des redémarrages inattendus des machines virtuelles associées à un grand nombre de disques durs virtuels]: #you-are-experiencing-unexpected-reboots
-[Votre problème survient à l’aide de l’émulateur de stockage hello pour le développement ou de test]: #your-issue-arises-from-using-the-storage-emulator
-[Fonction « X » ne fonctionne pas dans l’émulateur de stockage hello]: #feature-X-is-not-working
-[Erreur « les valeur hello pour un des en-têtes de hello HTTP n’est pas le format correct de hello » lorsque l’utilisation hello émulateur de stockage]: #error-HTTP-header-not-correct-format
-[L’émulateur de stockage hello en cours d’exécution nécessite des privilèges d’administrateur]: #storage-emulator-requires-administrative-privileges
-[Vous rencontrez des problèmes d’installation Bonjour Azure SDK pour .NET]: #you-are-encountering-problems-installing-the-Windows-Azure-SDK
+[Votre problème provient de l’utilisation de l’émulateur de stockage pour le développement ou les tests]: #your-issue-arises-from-using-the-storage-emulator
+[La fonctionnalité « X » ne fonctionne pas dans l’émulateur de stockage]: #feature-X-is-not-working
+[Erreur « The value for one of the HTTP headers is not in the correct format » (Le format de la valeur d’un des en-têtes HTTP est incorrect) lors de l’utilisation de l’émulateur de stockage]: #error-HTTP-header-not-correct-format
+[L’exécution de l’émulateur de stockage exige des privilèges d’administration]: #storage-emulator-requires-administrative-privileges
+[Vous rencontrez des problèmes pendant l’installation du Kit de développement logiciel (SDK) Azure pour .NET]: #you-are-encountering-problems-installing-the-Windows-Azure-SDK
 [Vous rencontrez un autre problème avec un service de stockage]: #you-have-a-different-issue-with-a-storage-service
 
-[annexes]: #appendices
-[annexe 1 : à l’aide du trafic HTTP et HTTPS du toocapture Fiddler]: #appendix-1
-[annexe 2 : à l’aide d’un trafic réseau Wireshark toocapture]: #appendix-2
-[annexe 3 : à l’aide de trafic de réseau Microsoft Message Analyzer toocapture]: #appendix-3
-[Annexe 4 : À l’aide de données de journaux et de métriques tooview Excel]: #appendix-4
+[Annexes]: #appendices
+[Annexe 1 : utilisation de Fiddler pour capturer le trafic HTTP et HTTPS]: #appendix-1
+[Annexe 2 : utilisation de Wireshark pour capturer le trafic réseau]: #appendix-2
+[Annexe 3 : utilisation de l’analyseur de message Microsoft pour capturer le trafic réseau]: #appendix-3
+[Annexe 4 : utilisation d’Excel pour afficher les métriques et les données de journalisation]: #appendix-4
 [Annexe 5 : analyse avec Application Insights pour Visual Studio Team Services]: #appendix-5
 
 <!--Image references-->

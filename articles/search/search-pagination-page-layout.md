@@ -1,5 +1,5 @@
 ---
-title: "résultats de la recherche de toopage aaaHow dans Azure Search | Documents Microsoft"
+title: "Navigation dans les résultats de recherche de Recherche Azure | Microsoft Docs"
 description: "Pagination dans Azure Search, un service de recherche cloud hébergé sur Microsoft Azure."
 services: search
 documentationcenter: 
@@ -14,36 +14,36 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 08/29/2016
 ms.author: heidist
-ms.openlocfilehash: e3abc1ca4d5994b0a77955379081a4fcfa5a7fa7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1054e15a2751c53aad5dbc8054c4cec41102dee9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toopage-search-results-in-azure-search"></a>Affichage des résultats de recherche de toopage dans Azure Search
-Cet article fournit des conseils sur l’affichage des résultats de page, tels que le total des nombres, récupération de document, ordres de tri et la navigation toouse hello API REST de Service Azure Search tooimplement éléments standard d’une recherche.
+# <a name="how-to-page-search-results-in-azure-search"></a>Navigation dans les résultats de recherche d’Azure Search
+Cet article explique comment utiliser l’API REST de service Azure Search pour implémenter les éléments standard d’une page de résultats de recherche, comme les totaux, l’extraction de documents, les ordres de tri et la navigation.
 
-Dans tous les cas mentionnés ci-dessous, les options de page qui contribuent des données ou des informations tooyour page de résultats sont spécifiées via hello [recherche dans le Document](http://msdn.microsoft.com/library/azure/dn798927.aspx) tooyour de demandes envoyées Service Azure Search. Les demandes incluent une commande GET, chemin d’accès et les paramètres de requête qui informent le service hello ce qui est demandé et comment tooformulate hello réponse.
+Dans tous les cas mentionnés ci-après, les options de page qui fournissent des données ou des informations à votre page de résultats de recherche sont spécifiées par le biais des demandes [Recherche de documents](http://msdn.microsoft.com/library/azure/dn798927.aspx) envoyées à votre service Azure Search. Ces demandes incluent une commande GET, un chemin d’accès et des paramètres de requête informant le service de ce qui est demandé et de la manière dont formuler la réponse.
 
 > [!NOTE]
-> Une demande valide inclut plusieurs éléments, parmi lesquels une URL de service et un chemin d’accès, un verbe HTTP, `api-version`, etc. Par souci de concision, nous tronquées hello exemples toohighlight hello simplement la syntaxe toopagination pertinentes. Consultez hello [API REST de Service Azure Search](http://msdn.microsoft.com/library/azure/dn798935.aspx) pour plus d’informations sur la syntaxe de requête.
+> Une demande valide inclut plusieurs éléments, parmi lesquels une URL de service et un chemin d’accès, un verbe HTTP, `api-version`, etc. Par souci de concision, nous avons tronqué les exemples afin de mettre en évidence la syntaxe se rapportant à la pagination uniquement. Consultez [API REST de service Azure Search](http://msdn.microsoft.com/library/azure/dn798935.aspx) pour en savoir plus sur la syntaxe de demande.
 > 
 > 
 
 ## <a name="total-hits-and-page-counts"></a>Nombre total de résultats et nombre de pages
-Affichage hello total nombre de résultats retournés à partir d’une requête, puis de retourner les résultats en segments plus petits, n’est fondamental toovirtually toutes les pages de recherche.
+L’affichage du nombre total des résultats d’une requête et la présentation de ces résultats en blocs plus petits sont des éléments de base sur presque toutes les pages de recherche.
 
 ![][1]
 
-Dans Azure Search, vous utilisez hello `$count`, `$top`, et `$skip` paramètres tooreturn ces valeurs. Hello suivant montre un exemple de demande pour le nombre total d’accès, retourné sous la forme `@OData.count`:
+Dans Azure Search, vous utilisez les paramètres `$count`, `$top` et `$skip` pour renvoyer ces valeurs. L’exemple suivant illustre une demande du nombre total de résultats, renvoyé sous la forme `@OData.count`:
 
         GET /indexes/onlineCatalog/docs?$count=true
 
-Récupérer des documents dans des groupes de 15 et indiquent également le nombre total d’accès hello, en commençant à la première page de hello :
+Récupérez des documents par groupes de 15 et affichez le nombre total de résultats à partir de la première page :
 
         GET /indexes/onlineCatalog/docs?search=*$top=15&$skip=0&$count=true
 
-Pagination des résultats requiert deux `$top` et `$skip`, où `$top` spécifie combien tooreturn d’éléments dans un lot, et `$skip` spécifie combien tooskip d’éléments. Bonjour, l’exemple suivant chaque page affiche hello ensuite 15 d’éléments, indiquée par sauts incrémentielle de hello Bonjour `$skip` paramètre.
+La pagination des résultats nécessite `$top` et `$skip`, où `$top` indique le nombre d’éléments à renvoyer dans un lot, et `$skip` spécifie le nombre d’éléments à ignorer. Dans l’exemple suivant, chaque page affiche les 15 éléments suivants, conformément aux sauts incrémentiels indiqués dans le paramètre `$skip` .
 
         GET /indexes/onlineCatalog/docs?search=*$top=15&$skip=0&$count=true
 
@@ -52,51 +52,51 @@ Pagination des résultats requiert deux `$top` et `$skip`, où `$top` spécifie 
         GET /indexes/onlineCatalog/docs?search=*$top=15&$skip=30&$count=true
 
 ## <a name="layout"></a>Disposition
-Sur une page de résultats, vous pourriez tooshow une image miniature, un sous-ensemble des champs et une page de produit complet tooa lien.
+Vous souhaiterez peut-être afficher une miniature, un sous-ensemble de champs et un lien vers la fiche produit complète sur vos pages de résultats de recherche.
 
  ![][2]
 
-Dans Azure Search, vous utiliseriez `$select` et une recherche des commandes tooimplement cette expérience.
+Dans Azure Search, vous pouvez utiliser pour cela `$select` et une commande de recherche.
 
-tooreturn un sous-ensemble des champs d’une disposition en mosaïque :
+Pour renvoyer un sous-ensemble de champs relatif à une disposition en mosaïque :
 
         GET /indexes/ onlineCatalog/docs?search=*&$select=productName,imageFile,description,price,rating 
 
-Images et fichiers multimédias ne sont pas directement interrogeables et doivent être stockées dans une autre plate-forme de stockage, telles que le stockage Blob Azure, les coûts de tooreduce. Dans les index hello et des documents, définissez un champ qui stocke l’adresse URL de hello du contenu externe de hello. Vous pouvez ensuite utiliser le champ de hello comme une référence d’image. URL d’image de toohello Hello doit être dans le document de hello.
+Les images et les fichiers multimédias ne peuvent pas faire l’objet de recherches directes et doivent être stockés sur une autre plateforme de stockage, comme l’espace de stockage Azure Blob, afin de limiter les coûts. Dans les index et les documents, définissez un champ destiné à stocker l’adresse URL du contenu externe. Vous pourrez utiliser ce champ comme référence d’image. L’URL de l’image doit se trouver dans le document.
 
-tooretrieve page d’une description de produit pour un **onClick** événement, utilisez [recherche de Document](http://msdn.microsoft.com/library/azure/dn798929.aspx) toopass dans la clé de hello de hello document tooretrieve. type de données Hello de clé de hello est `Edm.String`. Dans cet exemple, il s’agit de *246810*. 
+Pour récupérer une page de description de produit relative à un événement **onClick** , utilisez la [recherche de document](http://msdn.microsoft.com/library/azure/dn798929.aspx) afin d’indiquer la clé du document à récupérer. Le type de données de la clé est `Edm.String`. Dans cet exemple, il s’agit de *246810*. 
 
         GET /indexes/onlineCatalog/docs/246810
 
 ## <a name="sort-by-relevance-rating-or-price"></a>Tri par pertinence, évaluation ou prix
-Les ordres de tri souvent par défaut toorelevance, mais il est commun toomake autre les ordres de tri disponibles afin que les clients peuvent remanier rapidement les résultats existants dans un ordre de classement différent.
+Les données sont souvent triées par défaut en fonction de la pertinence, mais il est courant de proposer d’autres ordres de tri afin que les clients puissent rapidement réorganiser les résultats existants.
 
  ![][3]
 
-Dans Azure Search, le tri est basé sur hello `$orderby` expression pour tous les champs qui sont indexés en tant que`"Sortable": true.`
+Dans Azure Search, le tri repose sur l’expression `$orderby` pour tous les champs indexés comme étant `"Sortable": true.`
 
-La pertinence est clairement liée aux profils de score. Vous pouvez utiliser hello score par défaut, qui repose sur l’ordre de toorank statistiques et d’analyse de texte tous les résultats, avec des scores élevés va toodocuments avec des correspondances plus ou plus forts sur un terme à rechercher.
+La pertinence est clairement liée aux profils de score. Vous pouvez utiliser le score par défaut, qui repose sur l’analyse de texte et les statistiques pour ordonner tous les résultats : dans ce cas, les documents présentant des correspondances plus nombreuses ou plus fortes affichent un score plus élevé.
 
-Ordres de tri de remplacement sont généralement associés **onClick** événements rappeler tooa méthode qui génère l’ordre de tri hello. Par exemple, avec cet élément de page :
+D’autres ordres de tri sont souvent associés aux événements **onClick** qui renvoient à une méthode permettant de générer l’ordre de tri. Par exemple, avec cet élément de page :
 
  ![][4]
 
-Vous devez créer une méthode qui accepte une option de tri hello sélectionné en tant qu’entrée et retourne une liste ordonnée de critères hello associés à cette option.
+Vous pouvez créer la méthode qui accepte l’option de tri sélectionnée comme entrée, et renvoie une liste ordonnée conforme aux critères associés à cette option.
 
  ![][5]
 
 > [!NOTE]
-> Hello de calcul de score par défaut est suffisant pour de nombreux scénarios, nous vous recommandons de baser pertinence sur un profil de score personnalisé à la place. Un profil de score personnalisé vous donne un tooboost de façon dont les éléments qui sont les plus avantageux tooyour business. Consultez [Ajout de profils de calcul de score](http://msdn.microsoft.com/library/azure/dn798928.aspx) pour en savoir plus. 
+> Si le score par défaut suffit dans de nombreuses situations, nous vous recommandons tout de même de baser la pertinence sur un profil de score personnalisé. Un profil de score personnalisé accorde plus d’importance aux éléments qui avantagent votre entreprise. Consultez [Ajout de profils de calcul de score](http://msdn.microsoft.com/library/azure/dn798928.aspx) pour en savoir plus. 
 > 
 > 
 
 ## <a name="faceted-navigation"></a>Navigation à facettes
-Navigation de la recherche est courante dans une page de résultats, souvent située à côté de hello ou en haut d’une page. Dans Azure Search, la navigation à facettes permet une recherche autonome en fonction de filtres prédéfinis. Consultez [Navigation à facettes dans Azure Search](search-faceted-navigation.md) pour en savoir plus.
+Les options de navigation de recherche sont communes à toutes les pages de résultats et se trouvent souvent sur le côté ou en haut de la page. Dans Azure Search, la navigation à facettes permet une recherche autonome en fonction de filtres prédéfinis. Consultez [Navigation à facettes dans Azure Search](search-faceted-navigation.md) pour en savoir plus.
 
-## <a name="filters-at-hello-page-level"></a>Filtres au niveau de la page hello
-Si votre conception de solution inclus des pages de recherche dédié pour certains types de contenu (par exemple, une application de vente au détail en ligne qui a les services répertoriés en hello haut hello), vous pouvez insérer une expression de filtre avec une **onClick** événement tooopen une page dans un état pré-filtrée. 
+## <a name="filters-at-the-page-level"></a>Filtres au niveau de la page
+Si votre solution inclut des pages de recherche dédiées à certains types de contenu (par exemple, une application de vente au détail en ligne avec des départements figurant en haut de la page), vous pouvez associer une expression de filtre à un événement **onClick** pour ouvrir une page préfiltrée. 
 
-Vous pouvez envoyer un filtre avec ou sans expression de recherche. Par exemple, hello de demande suivant filtre sur le nom de marque, ne retourner que les documents qui lui correspondent.
+Vous pouvez envoyer un filtre avec ou sans expression de recherche. Par exemple, la demande suivante applique un filtre en fonction du nom de la marque et ne renvoie que les documents correspondants.
 
         GET /indexes/onlineCatalog/docs?$filter=brandname eq ‘Microsoft’ and category eq ‘Games’
 

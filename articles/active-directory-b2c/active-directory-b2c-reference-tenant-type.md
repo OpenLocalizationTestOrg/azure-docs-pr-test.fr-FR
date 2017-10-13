@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C : Disponibilité régionale et résidence des données | Microsoft Docs"
-description: "Une rubrique sur les types de clients d’Azure Active Directory B2C hello"
+description: Une rubrique sur les types de clients Azure Active Directory B2C
 services: active-directory-b2c
 documentationcenter: 
 author: gsacavdm
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/10/2017
 ms.author: gsacavdm
-ms.openlocfilehash: d382921fe9d62183b6d52c47d62f952dabd116c4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: facd66f0324e382ea7609a035de8129ba433846f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-b2c-region-availability--data-residency"></a>Azure Active Directory B2C : Disponibilité régionale et résidence des données
-Disponibilité de la région et la délégation de données sont deux concepts très différents qui s’appliquent différemment tooAzure AD B2C reste hello de Azure. Cet article expliquent hello les différences entre ces deux concepts et comparer la façon dont elles s’appliquent tooAzure et Azure Active Directory B2C.
+La disponibilité régionale et la résidence des données sont deux concepts très différents qui ne s’appliquent pas à Azure Active Directory B2C de la même façon qu’à Azure. Cet article explique les différences entre ces deux concepts et compare la manière dont ils s’appliquent à Azure et Azure Active Directory B2C.
 
 ## <a name="summary"></a>Résumé
-Azure AD B2C est **généralement disponible dans le monde** avec l’option hello pour **délégation de données dans un État-Unis ou Europe**.
+Azure Active Directory B2C est **généralement disponible dans le monde entier** avec l’option de **résidence des données aux États-Unis ou en Europe**.
 
 ## <a name="concepts"></a>Concepts
-* **Disponibilité de la région** fait référence toowhere un service est disponible pour utilisation.
-* **Délégation de données** fait référence utilisateur toowhere les données sont stockées.
+* La **disponibilité régionale** fait référence à l’endroit où se trouve le service pour utilisation.
+* La **résidence des données** fait référence à l’endroit où sont stockées les données des utilisateurs.
 
 ## <a name="region-availability"></a>Disponibilité des régions
-Azure AD B2C est disponible dans le monde entier via hello cloud public Azure. 
+Azure Active Directory B2C est disponible dans le monde entier via le cloud public Azure. 
 
-Cela diffère de modèle de hello la plupart des autres suivent des services Azure risquent de disponibilité avec la délégation de données. Vous pouvez voir des exemples dans les deux Azure [produits disponibles par région](https://azure.microsoft.com/regions/services/) page et hello [calculatrice de prix Active Directory B2C](https://azure.microsoft.com/pricing/details/active-directory-b2c/).
+Cela diffère du modèle suivi par la plupart des autres services Azure qui associent la disponibilité à la résidence des données. C’est le cas par exemple dans la page [Produits disponibles par région](https://azure.microsoft.com/regions/services/) et la [calculatrice de tarification Active Directory B2C](https://azure.microsoft.com/pricing/details/active-directory-b2c/).
 
 ## <a name="data-residency"></a>Résidence des données
 Azure Active Directory B2C conserve les données des utilisateurs aux États-Unis ou en Europe.
@@ -42,23 +42,23 @@ La résidence des données est déterminée selon le pays/la région sélectionn
 
 ![Capture d’écran d’un client de la version préliminaire](./media/active-directory-b2c-reference-tenant-type/data-residency-b2c-tenant.png)
 
-Données se trouvent aux États-Unis hello pour hello suivant pays/régions :
+Les données des pays/régions suivants sont conservées aux États-Unis :
 
 > États-Unis, Canada, Costa Rica, République dominicaine, Salvador, Guatemala, Mexique, Panama, Porto Rico et Trinité-et-Tobago
 
-Données se trouvent en Europe pour hello suivant pays/régions :
+Les données des pays/régions suivants sont conservées en Europe :
 
 > Algérie, Autriche, Azerbaïdjan, Bahreïn, Biélorussie, Belgique, Bulgarie, Croatie, Chypre, République tchèque, Danemark, Égypte, Estonie, Finlande, France, Allemagne, Grèce, Hongrie, Islande, Irlande, Israël, Italie, Jordanie, Kazakhstan, Kenya, Koweït, Lettonie, Liban, Liechtenstein, Lituanie, Luxembourg, Macédoine, Malte, Monténégro, Maroc, Pays-Bas, Nigeria, Norvège , Oman, Pakistan, Pologne, Portugal, Qatar, Roumanie, Russie, Arabie saoudite, Serbie, Slovaquie, Slovénie, Afrique du Sud, Espagne, Suède, Suisse, Tunisie, Turquie, Ukraine, Émirats Arabes Unis et Royaume-Uni.
 
-Hello autres pays/régions sont dans le processus de hello de toohello liste ajoutée.  Pour l’instant, vous pouvez toujours utiliser Azure AD B2C en choisissant une des pays/régions de hello ci-dessus.
+Les autres pays/régions sont en cours d’ajout à cette liste.  Pour le moment, vous pouvez toujours utiliser Azure Active Directory B2C en choisissant l’un des pays ci-dessus.
 
 > Afghanistan, Argentine, Australie, Brésil, Chili, Colombie, Équateur, RAS de Hong Kong, Inde, Indonésie, Irak, Japon, Corée, Malaisie, Nouvelle-Zélande, Paraguay, Pérou, Philippines, Singapour, Sri Lanka, Taïwan, Thaïlande, Uruguay et Venezuela.
 
 ## <a name="preview-tenant"></a>Client de la version préliminaire
-Si vous avez créé un client B2C pendant la période d’évaluation d’Azure AD B2C, il est probable que votre **type de client** indique **Client de la version préliminaire**. Si c’est le cas de hello, vous devez utiliser votre client uniquement pour le développement et à des fins de tests et pas pour les applications de production.
+Si vous avez créé un client B2C pendant la période d’évaluation d’Azure AD B2C, il est probable que votre **type de client** indique **Client de la version préliminaire**. Si c’est le cas, vous DEVEZ utiliser votre client uniquement à des fins de développement et de test, mais PAS pour les applications de production.
 
 > [!IMPORTANT]
-> Il n’existe aucun chemin d’accès de la migration à partir d’un client de B2C B2C locataire tooa production à l’échelle d’aperçu. Notez que des problèmes connus lorsque vous supprimez un client Aperçu B2C et recréer un B2C de production à l’échelle de locataire avec hello le même nom de domaine. Vous avez toocreate un locataire B2C de production à l’échelle avec un nom de domaine différent.
+> Il n’existe aucun chemin de migration à partir d’un client B2C de la version préliminaire vers un client B2C de mise à l’échelle pour production. Notez qu’il existe des problèmes connus liés à la suppression d’un client B2C en version préliminaire et à la recréation d’un client B2C de mise à l’échelle pour production portant le même nom de domaine. Vous devez créer un client B2C de mise à l’échelle pour production portant un nom de domaine différent.
 
 
 ![Capture d’écran d’un client de la version préliminaire](./media/active-directory-b2c-reference-tenant-type/preview-b2c-tenant.png)

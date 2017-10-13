@@ -1,6 +1,6 @@
 ---
-title: "liste de compatibilité de fédération aaaAzure AD"
-description: "Cette page a non-Microsoft fournisseurs d’identité qui peuvent être utilisé tooimplement l’authentification unique."
+title: "Liste de compatibilité de fédération Azure AD"
+description: "Cette page présente les fournisseurs d’identité non-Microsoft qui peuvent être utilisés pour mettre en œuvre l’authentification unique."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: ac2f9ad324c8ca6b587b73ea465426ad6b074b03
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bce5867017647764546d872d97943d5d4f01f2d2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-ad-federation-compatibility-list"></a>Liste de compatibilité de fédération Azure AD
-Azure Active Directory fournit l’authentification unique et une sécurité de l’accès aux applications améliorée pour Office 365 et d’autres ressources de Microsoft Online Services pour des implémentations hybrides et uniquement dans le cloud ne nécessitant aucune solution non-Microsoft. À l’instar de la plupart des services Microsoft Online, Office 365 est intégré à Azure Active Directory pour les services de répertoire, l’authentification et l’autorisation. Azure Active Directory fournit également des toothousands l’authentification uniques d’applications SaaS et localement les applications web. Consultez la galerie d’applications Azure Active Directory hello pour les applications SaaS pris en charge.
+Azure Active Directory fournit l’authentification unique et une sécurité de l’accès aux applications améliorée pour Office 365 et d’autres ressources de Microsoft Online Services pour des implémentations hybrides et uniquement dans le cloud ne nécessitant aucune solution non-Microsoft. À l’instar de la plupart des services Microsoft Online, Office 365 est intégré à Azure Active Directory pour les services de répertoire, l’authentification et l’autorisation. En outre, Azure Active Directory fournit l’authentification unique à des milliers d’applications SaaS et à des applications web locales. Consultez la galerie d’applications Azure Active Directory pour connaître les applications SaaS prises en charge.
 
-Pour les organisations ayant investi dans les solutions de fédération de non Microsoft, cette rubrique contient des conseils pour la configuration de l’authentification unique pour les utilisateurs de Windows Server Active Directory avec les services Microsoft Online services à l’aide de fournisseurs d’identité de non Microsoft à partir de hello « Azure Active Directory federation compatibilité liste » ci-dessous. 
+Pour les entreprises qui ont investi dans des solutions de fédération non-Microsoft, cette rubrique contient des conseils relatifs à la configuration de l’authentification unique des utilisateurs Windows Server Active Directory avec les services Microsoft Online à l’aide de fournisseurs d’identité non-Microsoft qui sont inclus dans la « liste de compatibilité de fédération Azure Active Directory » ci-dessous. 
 
 ![](./media/active-directory-aadconnect-federation-compatibility/oxford2.jpg)   
 [Oxford Computer Group](http://oxfordcomputergroup.com/), organisme tiers, a testé, de la part de Microsoft, ces expériences d’authentification unique à l’aide de fournisseurs d’identité non-Microsoft par rapport à un ensemble de cas d’utilisation courants avec Azure Active Directory.
@@ -31,9 +31,9 @@ Pour les organisations ayant investi dans les solutions de fédération de non M
 Pour plus d’informations sur la façon dont votre fournisseur d’identité tiers peut être répertorié ici, contactez Oxford Computer Groupe à l’adresse [idp@oxfordcomputergroup.com](mailto:idp@oxfordcomputergroup.com).
 
 > [!IMPORTANT]
-> Groupe d’ordinateurs Oxford testé uniquement les fonctionnalités de fédération hello de ces scénarios d’authentification unique. Groupe d’ordinateurs Oxford n’a pas effectué les tests de synchronisation de hello, l’authentification à deux facteurs, composants etc. de ces scénarios d’authentification unique.
+> Oxford Computer Group a uniquement testé la fonctionnalité de fédération de ces scénarios d’authentification unique. Oxford Computer Group n’a pas testé les composants de synchronisation, d’authentification à 2 facteurs, etc., de ces scénarios d’authentification unique.
 > 
-> Utilisation de connexion par un autre ID tooUPN n’est pas également testée dans ce programme.
+> Par ailleurs, l’utilisation de la connexion au moyen d’un ID secondaire à UPN n’est pas testée dans ce programme.
 > 
 > 
 
@@ -64,15 +64,15 @@ Pour plus d’informations sur la façon dont votre fournisseur d’identité ti
 
 
 > [!IMPORTANT]
-> Étant donné que ce sont des produits tiers, Microsoft ne fournit pas de prise en charge pour le déploiement de hello, configuration, dépannage, aux meilleures pratiques, etc. problèmes et questions concernant ces fournisseurs d’identité. Pour la prise en charge et des questions concernant ces fournisseurs d’identité, contactez directement le tiers hello pris en charge.
+> Étant donné qu’il s’agit de produits tiers, Microsoft n’offre aucun support technique concernant les problèmes et questions liés au déploiement, à la configuration, au dépannage, aux meilleures pratiques, etc., de ces fournisseurs d’identité tiers. Pour toute question sur ces fournisseurs d’identité et pour bénéficier d’un support technique, contactez directement les éditeurs tiers pris en charge.
 > 
-> L’interopérabilité de ces fournisseurs d’identité tiers avec les services cloud Microsoft a uniquement été testée à l’aide des protocoles WS-Federation et WS-Trust. Test n’incluait pas à l’aide du protocole SAML de hello.
+> L’interopérabilité de ces fournisseurs d’identité tiers avec les services cloud Microsoft a uniquement été testée à l’aide des protocoles WS-Federation et WS-Trust. Le protocole SAML n’a pas fait l’objet de tests.
 > 
 
 
 ## <a name="azure-active-directory"></a>Azure Active Directory
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification : 
+Voici la matrice de prise en charge de scénarios de cette expérience d’authentification : 
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -87,7 +87,7 @@ Pour plus d’informations sur l’utilisation d’Azure Active Directory avec u
 
 ## <a name="authanvil-single-sign-on-45"></a>AuthAnvil Single Sign On 4.5
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -100,7 +100,7 @@ Pour plus d’informations, consultez [AuthAnvil Single Sign On](https://help.sc
 
 ## <a name="big-ip-with-access-policy-manager-big-ip-ver-113x--116x"></a>BIG-IP avec Access Policy Manager BIG-IP ver. 11.3x – 11.6x
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique : 
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique : 
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -110,11 +110,11 @@ Hello Voici la matrice de prise en charge de scénario de hello pour cette expé
 
 Pour plus d’informations sur BIG-IP Access Policy Manager, consultez [BIG-IP Access Policy Manager.](https://f5.com/products/modules/access-policy-manager) 
 
-Pour obtenir des instructions de BIG-IP Access Policy Manager hello sur la tooconfigure télécharger cette tooyour d’expérience d’authentification unique STS tooprovide hello des utilisateurs Active Directory, hello pdf [BIG-IP](http://www.f5.com/pdf/deployment-guides/microsoft-office-365-idp-dg.pdf).
+Pour obtenir des instructions sur la façon de configurer ce STS pour fournir une expérience d’authentification unique à vos utilisateurs Active Directory avec BIG-IP Access Policy Manager, téléchargez le fichier pdf [BIG-IP](http://www.f5.com/pdf/deployment-guides/microsoft-office-365-idp-dg.pdf).
 
 ## <a name="bitglass"></a>BitGlass
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -126,7 +126,7 @@ Pour plus d’informations sur BitGlass, consultez [BitGlass](http://www.bitglas
 
 ## <a name="ca-secure-cloud"></a>CA Secure Cloud
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -138,7 +138,7 @@ Pour plus d’informations sur CA Secure Cloud, consultez [CA Secure Cloud](http
 
 ## <a name="ca-siteminder-1252-sp1-cumulative-release-4"></a>CA SiteMinder 12.52 SP1 version cumulative 4
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique : 
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique : 
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -150,7 +150,7 @@ Pour plus d’informations sur CA SiteMinder, consultez [CA SiteMinder Federatio
 
 ## <a name="centrify"></a>Centrify
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -162,7 +162,7 @@ Pour plus d’informations sur Centrify, consultez [Centrify](http://www.centrif
 
 ## <a name="dell-one-identity-cloud-access-manager-v71"></a>Dell One Identity Cloud Access Manager v7.1
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -172,11 +172,11 @@ Hello Voici la matrice de prise en charge de scénario de hello pour cette expé
 
 Pour plus d’informations sur Dell One Identity Cloud Access Manager, consultez [Dell One Identity Cloud Access Manager](http://software.dell.com/products/cloud-access-manager).
 
- Pour obtenir des instructions hello sur tooconfigure cette tooyour d’expérience d’authentification unique STS tooprovide hello utilisateurs Office 365, voir [configurer des utilisateurs Office 365](http://documents.software.dell.com/dell-one-identity-cloud-access-manager/7.1/how-to-configure-microsoft-office-365). 
+ Pour savoir comment configurer ce STS afin de fournir l’expérience d’authentification unique à vos utilisateurs Office 365, consultez [Configure Office 365 Users](http://documents.software.dell.com/dell-one-identity-cloud-access-manager/7.1/how-to-configure-microsoft-office-365). 
 
 ## <a name="digitalpersona-composite-authentication"></a>Authentification composite DigitalPersona  
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -189,7 +189,7 @@ Pour plus d’informations, consultez [DigitalPersona Composite Authentication](
 
 ## <a name="ibm-tivoli-federated-identity-manager-622"></a>IBM Tivoli Federated Identity Manager 6.2.2
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique : 
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique : 
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -201,7 +201,7 @@ Pour plus d’informations sur IBM Tivoli Federated Identity Manager, consultez 
 
 ## <a name="icewall-federation-version-30"></a>IceWall Federation Version 3.0
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -213,7 +213,7 @@ Pour plus d’informations sur IceWall Federation, consultez [IceWall Federation
 
 ## <a name="memority"></a>Memority
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification : 
+Voici la matrice de prise en charge de scénarios de cette expérience d’authentification : 
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -226,7 +226,7 @@ Pour plus d’informations sur l’utilisation de Memority, consultez [Memority]
 
 ## <a name="netiq-access-manager-4x"></a>NetIQ Access Manager 4.x
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -238,7 +238,7 @@ Pour plus d’informations, consultez [NetIQ Access Manager](https://www.netiq.c
 
 ## <a name="okta"></a>Okta
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique : 
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique : 
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -250,7 +250,7 @@ Pour plus d’informations sur Okta, consultez [Okta](https://www.okta.com/).
 
 ## <a name="onelogin"></a>OneLogin
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique : 
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique : 
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -262,7 +262,7 @@ Pour plus d’informations sur OneLogin, consultez [OneLogin](https://www.onelog
 
 ## <a name="optimal-idm-virtual-identity-server-federation-services"></a>Optimal IDM Virtual Identity Server Federation Services
 
-suivant de Hello est hello matrice de scénario prise en charge cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -270,7 +270,7 @@ suivant de Hello est hello matrice de scénario prise en charge cette expérienc
 | Applications clientes riches (p. ex., Lync, abonnement Office, CRM) |Pris en charge |Authentification Windows intégrée |
 | Clients de messagerie riches (p. ex., Outlook et ActiveSync) |Pris en charge |
 
-Pour plus d’informations sur le client Voir stratégies d’accès [tooOffice de limitation de l’accès 365 Services selon hello emplacement Hello Client](https://technet.microsoft.com/library/hh526961.aspx).
+Pour plus d’informations sur les stratégies d’accès des clients, consultez [Limiting Access to Office 365 Services Based on the Location of the Client](https://technet.microsoft.com/library/hh526961.aspx).
 
 
 
@@ -278,7 +278,7 @@ Pour plus d’informations sur le client Voir stratégies d’accès [tooOffice 
 
 ## <a name="pingfederate-611-72-8x"></a>PingFederate 6.11, 7.2, 8.x
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -286,7 +286,7 @@ Hello Voici la matrice de prise en charge de scénario de hello pour cette expé
 | Applications clientes riches (p. ex., Lync, abonnement Office, CRM) |Pris en charge |Aucun |
 | Clients de messagerie riches (p. ex., Outlook et ActiveSync) |Pris en charge |Aucun |
 
-Pour hello obtenir des instructions sur comment tooconfigure ce STS tooprovide hello l’authentification unique sur expérience tooyour les utilisateurs Active Directory, consultez hello suivantes : 
+Pour obtenir des instructions sur la façon de configurer ce STS afin de fournir une expérience d’authentification unique à vos utilisateurs Active Directory avec PingFederate, consultez l’une des rubriques suivantes : 
 
 - [PingFederate 6.11](http://go.microsoft.com/fwlink/?LinkID=266321)
 - [PingFederate 7.2](http://documentation.pingidentity.com/display/PF72/PingFederate+7.2)
@@ -294,7 +294,7 @@ Pour hello obtenir des instructions sur comment tooconfigure ce STS tooprovide h
 
 ## <a name="radiantone-cfs-30"></a>RadiantOne CFS 3.0
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique : 
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique : 
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -306,7 +306,7 @@ Pour plus d’informations sur RadiantOne CFS, consultez [RadiantOne CFS](http:/
 
 ## <a name="sailpoint-identitynow"></a>Sailpoint IdentityNow
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -318,7 +318,7 @@ Pour plus d’informations, consultez [Sailpoint IdentityNow](https://www.sailpo
 
 ## <a name="secureauth-idp-720"></a>SecureAuth IdP 7.2.0
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique : 
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique : 
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -343,7 +343,7 @@ Pour plus d’informations sur SecureAuth, consultez [SecureAuth IdP](http://go.
 
 ## <a name="signgo-53"></a>Sign&go 5.3
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -351,11 +351,11 @@ Hello Voici la matrice de prise en charge de scénario de hello pour cette expé
 | Applications clientes riches (p. ex., Lync, abonnement Office, CRM) |Pris en charge |Aucun |
 | Clients de messagerie riches (p. ex., Outlook et ActiveSync) |Pris en charge |Aucun |
 
-Sign&go 5.3 prend en charge l’authentification Kerberos via la configuration d’un contrat Kerberos.  Pour obtenir une assistance avec cette configuration, contactez Ilex ou la vue guide d’installation de hello [Sign & go](http://www.ilex-international.com/docs/sign&go_wsfederation_en.pdf)
+Sign&go 5.3 prend en charge l’authentification Kerberos via la configuration d’un contrat Kerberos.  Pour obtenir de l’aide sur cette configuration, contactez Ilex ou consultez le guide d’installation et de configuration [Sign&go](http://www.ilex-international.com/docs/sign&go_wsfederation_en.pdf).
 
 ## <a name="softbank-technology-online-service-gate"></a>Portail du service en ligne SoftBank Technology
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |
@@ -367,7 +367,7 @@ Pour plus d’informations sur Online Service Gate de SoftBank Technology, consu
 
 ## <a name="vmware-workspace-one"></a>VMware Workspace One
 
-Hello Voici la matrice de prise en charge de scénario de hello pour cette expérience d’authentification unique :
+Voici la matrice de prise en charge des scénarios pour cette expérience d’authentification unique :
 
 | Client | Support | Exceptions |
 | --- | --- | --- |

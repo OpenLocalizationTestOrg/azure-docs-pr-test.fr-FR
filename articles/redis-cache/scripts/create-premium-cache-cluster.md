@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure exemple de Script CLI - créer un Cache de Redis Azure Premium avec clustering | Documents Microsoft"
+title: "Exemple de script Azure CLI - Créer un Cache Redis Azure Premium avec clustering | Microsoft Docs"
 description: "Exemple de script Azure CLI - Créer un Cache Redis Azure Premium avec clustering"
 services: redis-cache
 documentationcenter: 
@@ -13,17 +13,17 @@ ms.devlang: azurecli
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: tbd
-ms.date: 04/14/2017
+ms.date: 08/30/2017
 ms.author: sdanie
-ms.openlocfilehash: ca34d40059b282cb2abc7e3e2b8771226029744c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 45b2a500751830f6ca19fe8450a7781cb0fcb618
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-premium-azure-redis-cache-with-clustering"></a>Créer un Cache Redis Azure Premium avec clustering
 
-Dans ce scénario, vous découvrez comment toocreate activé un niveau Premium de 6 Go du Cache Redis Azure avec le clustering et deux partitions.
+Ce scénario explique comment créer un Cache Redis Azure Premium de 6 Go avec clustering activé et deux partitions.
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
@@ -35,16 +35,16 @@ Dans ce scénario, vous découvrez comment toocreate activé un niveau Premium d
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script utilise hello suivant de commandes toocreate un groupe de ressources et d’un cache redis de niveau Premium avec activation des clusters. Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.
+Ce script utilise les commandes suivantes pour créer un groupe de ressources et un Cache Redis Premium avec clustering activé. Chaque commande du tableau renvoie à une documentation spécifique.
 
 | Commande | Remarques |
 |---|---|
-| [az group create](https://docs.microsoft.com/cli/azure/group#create) | Crée un groupe de ressources dans lequel toutes les ressources sont stockées. |
-| [az redis create](https://docs.microsoft.com/cli/azure/redis#create) | Créez une instance de Cache Redis. |
+| [az group create](https://docs.microsoft.com/cli/azure/group#az_group_create) | Crée un groupe de ressources dans lequel toutes les ressources sont stockées. |
+| [az redis create](https://docs.microsoft.com/cli/azure/redis#az_redis_create) | Créez une instance de Cache Redis. |
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
 
-Vous trouverez des exemples supplémentaires de script CLI de Cache Redis Azure Bonjour [documentation du Cache Redis Azure](../cli-samples.md).
+Vous pouvez trouver des exemples supplémentaires de scripts CLI de cache Redis Azure dans la [documentation du cache Redis Azure](../cli-samples.md).

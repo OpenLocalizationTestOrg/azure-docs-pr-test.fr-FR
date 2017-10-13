@@ -1,6 +1,6 @@
 ---
-title: "aaaOverview Hello Azure événement concentrateurs API .NET Framework | Documents Microsoft"
-description: "Un résumé de certaines hello clé événement concentrateurs client .NET Framework API."
+title: "Vue d’ensemble des API Azure Event Hubs .NET Framework | Microsoft Docs"
+description: "Résumé de certaines des principales API clientes Event Hubs .NET Framework."
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: b0e12e43f91b025d7aa4ca03e664b9ff31b04097
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bc525e7ca8b21e9e5f1e36b3152d71420b041700
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="event-hubs-net-framework-api-overview"></a>Vue d’ensemble de l’API Event Hubs .NET Framework
-Cet article récapitule certaines des clé de hello API clientes de concentrateurs d’événements, .NET Framework. Il en existe deux catégories : les API de gestion et les API du runtime. API d’exécution sont constitués de toutes les opérations nécessaires toosend et recevoir un message. Opérations de gestion activer toomanage un état d’entité de concentrateurs d’événements en création, mise à jour et supprimant des entités.
+Cet article passe en revue certaines des principales API clientes Event Hubs .NET Framework. Il en existe deux catégories : les API de gestion et les API du runtime. Les API du runtime comportent toutes les opérations nécessaires pour envoyer et recevoir un message. Les opérations de gestion vous permettent de gérer l’état d’une entité Event Hubs en créant, modifiant et supprimant des entités.
 
-Les scénarios d’analyse couvrent la gestion et l’exécution. Pour la documentation de référence détaillée sur hello API .NET, consultez hello [.NET Service Bus](/dotnet/api/microsoft.servicebus.messaging) et [EventProcessorHost API](/dotnet/api/microsoft.azure.eventhubs.processor) références.
+Les scénarios d’analyse couvrent la gestion et l’exécution. Pour obtenir une documentation de référence détaillée sur les API .NET, consultez les informations de référence de [l’API .NET Service Bus](/dotnet/api/microsoft.servicebus.messaging) et de [l’API EventProcessorHost](/dotnet/api/microsoft.azure.eventhubs.processor).
 
 ## <a name="management-apis"></a>API de gestion
-tooperform hello après les opérations de gestion, vous devez avoir **gérer** autorisations sur l’espace de noms hello concentrateurs d’événements :
+Pour effectuer les opérations de gestion suivantes, vous devez avoir des autorisations de **gestion** sur l’espace de noms Event Hubs :
 
 ### <a name="create"></a>Créer
 ```csharp
-// Create hello event hub
+// Create the event hub
 var ehd = new EventHubDescription(eventHubName);
 ehd.PartitionCount = SampleManager.numPartitions;
 await namespaceManager.CreateEventHubAsync(ehd);
@@ -62,7 +62,7 @@ var eventHubClient = EventHubClient.Create("Event Hub name");
 
 ### <a name="publish-message"></a>Publier un message
 ```csharp
-// Create hello device/temperature metric
+// Create the device/temperature metric
 var info = new MetricEvent() { DeviceId = random.Next(SampleManager.NumDevices), Temperature = random.Next(100) };
 var data = new EventData(new byte[10]); // Byte array
 var data = new EventData(Stream); // Stream 
@@ -80,10 +80,10 @@ await client.SendAsync(data);
 
 ### <a name="create-consumer"></a>Créer un consommateur
 ```csharp
-// Create hello Event Hubs client
+// Create the Event Hubs client
 var eventHubClient = EventHubClient.Create(EventHubName);
 
-// Get hello default consumer group
+// Get the default consumer group
 var defaultConsumerGroup = eventHubClient.GetDefaultConsumerGroup();
 
 // All messages
@@ -109,11 +109,11 @@ msg = UnicodeEncoding.UTF8.GetString(info);
 ```
 
 ## <a name="event-processor-host-apis"></a>API de l’hôte du processeur d’événements
-Ces API fournissent des processus tooworker résilience qui peuvent devenir indisponibles, en répartissant les partitions sur la disposition des employés.
+Ces API offrent une résilience aux processus de travail qui peuvent devenir indisponibles, en distribuant les partitions sur les workers disponibles.
 
 ```csharp
-// Checkpointing is done within hello SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
-// Use hello EventData.Offset value for checkpointing yourself, this value is unique per partition.
+// Checkpointing is done within the SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
+// Use the EventData.Offset value for checkpointing yourself, this value is unique per partition.
 
 var eventHubConnectionString = System.Configuration.ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"];
 var blobConnectionString = System.Configuration.ConfigurationManager.AppSettings["AzureStorageConnectionString"]; // Required for checkpoint/state
@@ -122,11 +122,11 @@ var eventHubDescription = new EventHubDescription(EventHubName);
 var host = new EventProcessorHost(WorkerName, EventHubName, defaultConsumerGroup.GroupName, eventHubConnectionString, blobConnectionString);
 await host.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-// tooclose
+// To close
 await host.UnregisterEventProcessorAsync();
 ```
 
-Hello [IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor) interface est défini comme suit :
+L’interface [IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor) est définie comme suit :
 
 ```csharp
 public class SimpleEventProcessor : IEventProcessor
@@ -169,12 +169,12 @@ public class SimpleEventProcessor : IEventProcessor
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-toolearn en savoir plus sur les scénarios de concentrateurs d’événements, consultez ces liens :
+Pour en savoir plus sur les scénarios des concentrateurs d’événements, consultez ces liens :
 
 * [Nouveautés des concentrateurs d'événements Azure ?](event-hubs-what-is-event-hubs.md)
 * [Guide de programmation de concentrateurs d’événements](event-hubs-programming-guide.md)
 
-références de l’API .NET Hello sont ici :
+Les informations de référence de l'API .NET se trouvent ici :
 
 * [Microsoft.ServiceBus.Messaging](/dotnet/api/microsoft.servicebus.messaging)
 * [Microsoft.Azure.EventHubs.EventProcessorHost](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessorhost)

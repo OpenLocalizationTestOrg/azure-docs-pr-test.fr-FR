@@ -1,6 +1,6 @@
 ---
-title: "aaaGet main à l’aide de Baidu Azure Notification Hubs | Documents Microsoft"
-description: "Dans ce didacticiel, vous apprendrez comment appareils tooAndroid toouse Azure Notification Hubs toopush des notifications à l’aide de Baidu."
+title: "Prendre en main Azure Notification Hubs à l’aide de Baidu | Microsoft Docs"
+description: "Dans ce didacticiel, vous découvrirez comment utiliser Azure Notification Hubs pour envoyer des notifications Push à un appareil Android à l’aide de Baidu."
 services: notification-hubs
 documentationcenter: android
 author: ysxu
@@ -14,149 +14,149 @@ ms.tgt_pltfrm: mobile-baidu
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: yuaxu
-ms.openlocfilehash: 2767fdd3bb04674e7a531634237cc05cd8c21cb8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: df3bbda15e1245b6068c2b8290d0c96856051f1f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-notification-hubs-using-baidu"></a>Prendre en main Notification Hubs à l’aide de Baidu
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Push de cloud Baidu est un service de cloud chinois que vous pouvez utiliser des périphériques de toomobile toosend push notifications. Ce service est utile en Chine, où remettre des notifications push tooAndroid est complexe en raison de la présence de hello de magasins d’applications différents et par émission de données des services, en outre disponibilité toohello des appareils Android qui ne sont pas généralement connecté tooGCM (Google Le cloud de messagerie).
+Le service de transmission Push dans le cloud de Baidu est un service cloud chinois que vous pouvez utiliser pour envoyer des notifications Push à des appareils mobiles. Ce service est utile en Chine, où la remise de notifications Push à Android est complexe en raison de la présence de différents magasins d’applications et de services de transmission de type push, outre la disponibilité d’appareils Android qui ne sont généralement pas connectés à Google Cloud Messaging (GCM).
 
 ## <a name="prerequisites"></a>Composants requis
 Ce didacticiel requiert les éléments suivants :
 
-* SDK Android (nous supposons que vous utilisez Eclipse), que vous pouvez télécharger à partir de hello <a href="http://go.microsoft.com/fwlink/?LinkId=389797">site Android</a>
+* Kit de développement logiciel Android SDK (nous supposons que vous utilisez Eclipse), que vous pouvez télécharger à partir du <a href="http://go.microsoft.com/fwlink/?LinkId=389797">site Android</a>
 * [Kit de développement logiciel (SDK) Mobile Services pour Android]
-* [Push Baidu Android SDK]
+* [Kit de développement logiciel (SDK) Android pour transmissions push Baidu]
 
 > [!NOTE]
-> toocomplete ce didacticiel, vous devez disposer d’un compte Azure actif. Si vous ne possédez pas de compte, vous pouvez créer un compte d'évaluation gratuit en quelques minutes. Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-baidu-get-started%2F).
+> Pour suivre ce didacticiel, vous avez besoin d'un compte Azure actif. Si vous ne possédez pas de compte, vous pouvez créer un compte d'évaluation gratuit en quelques minutes. Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fnotification-hubs-baidu-get-started%2F).
 > 
 > 
 
 ## <a name="create-a-baidu-account"></a>Création d’un compte Baidu
-toouse Baidu, vous devez disposer d’un compte Baidu. Si vous avez déjà un, ouvrez une session dans toohello [Baidu portail] et ignorer l’étape suivante de toohello. Dans le cas contraire, consultez hello suivant les instructions sur la façon de toocreate un compte Baidu.  
+Pour utiliser Baidu, vous devez disposer d’un compte Baidu. Si vous en avez déjà un, connectez-vous au [portail Baidu] et passez à l’étape suivante. Dans le cas contraire, consultez les instructions ci-après pour créer un compte Baidu.  
 
-1. Accédez toohello [Baidu portail] et cliquez sur hello**登录**(**connexion**) lien. Cliquez sur**立即注册**toostart processus d’inscription hello.
+1. Accédez au [portail Baidu] et cliquez sur le lien **登录** (**Connexion**). Cliquez sur **立即注册** pour démarrer le processus d’inscription d’un compte.
    
    ![][1]
-2. Entrez les détails de hello requis : code adresse, un mot de passe et la vérification de téléphone/messagerie, puis cliquez sur **inscription**.
+2. Entrez les informations requises (téléphone/adresse de messagerie, mot de passe et code de vérification), puis cliquez sur **Inscription**.
    
    ![][2]
-3. Vous recevrez une adresse de messagerie toohello par courrier électronique que vous avez entré avec un tooactivate lien votre compte Baidu.
+3. Vous allez recevoir un courrier électronique à l’adresse e-mail que vous avez entrée avec un lien permettant d’activer votre compte Baidu.
    
    ![][3]
-4. Connectez-vous au compte de messagerie tooyour, ouvrir la messagerie de l’activation de Baidu hello, cliquez sur tooactivate de lien d’activation hello votre compte Baidu.
+4. Connectez-vous à votre compte de messagerie, ouvrez le courrier électronique d’activation Baidu, puis cliquez sur le lien d’activation pour activer votre compte Baidu.
    
    ![][4]
 
-Une fois que vous avez un compte Baidu activé, connectez-vous à toohello [Baidu portail].
+Une fois que vous possédez un compte Baidu activé, connectez-vous au [portail Baidu].
 
 ## <a name="register-as-a-baidu-developer"></a>Inscription en tant que développeur Baidu
-1. Une fois que vous avez ouvert une session dans toohello [Baidu portail], cliquez sur**更多 >>** (**plus**).
+1. Une fois que êtes connecté au [portail Baidu], cliquez sur **更多>>** (**plus**).
    
       ![][5]
-2. Faites défiler hello**站长与开发者服务 (administrateur Web et Services de développement)** et cliquez sur**百度开放云平台**(**Baidu ouvrir plateforme cloud**).
+2. Faites défiler la section **站长与开发者服务 (Administrateur Web et Services de développement)** et cliquez sur **百度开放云平台** (**Plateforme cloud ouverte Baidu**).
    
       ![][6]
-3. Dans la page suivante de hello, cliquez sur**开发者服务**(**Services de développement**) dans l’angle supérieur droit de hello.
+3. Sur la page suivante, cliquez sur **开发者服务** (**Services de développement**) dans le coin supérieur droit.
    
       ![][7]
-4. Dans la page suivante de hello, cliquez sur**注册开发者**(**inscrit les développeurs**) à partir du menu hello dans l’angle supérieur droit de hello.
+4. Sur la page suivante, cliquez sur **注册开发者** (**Développeurs inscrits**) dans le menu dans le coin supérieur droit.
    
       ![][8]
-5. Entrez votre nom, une description et un numéro de téléphone portable pour la réception d’un message texte de vérification, puis cliquez sur **送验证码** (**Envoyer un code de vérification**). Pour les numéros de téléphone international, vous devez tooenclose indicatif du pays hello entre parenthèses. Voici un exemple de numéro en France : **(33)123456789**.
+5. Entrez votre nom, une description et un numéro de téléphone portable pour la réception d’un message texte de vérification, puis cliquez sur **送验证码** (**Envoyer un code de vérification**). Pour les numéros de téléphone internationaux, vous devez placer l’indicatif téléphonique du pays entre parenthèses. Voici un exemple de numéro en France : **(33)123456789**.
    
       ![][9]
-6. Vous recevrez ensuite un message texte avec un code de vérification, comme indiqué dans hello l’exemple suivant :
+6. Vous recevrez ensuite un message texte comportant un numéro de vérification, comme illustré dans l’exemple suivant :
    
       ![][10]
-7. Entrez le numéro de vérification hello à partir du message de type hello dans**验证码**(**code de Confirmation**).
-8. Pour finir, terminez l’inscription de développeur hello en cliquant sur Accepter hello Baidu contrat**提交**(**Submit**). Vous verrez hello suivant page sur la réussite de l’inscription :
+7. Entrez le numéro de vérification à partir du message dans **验证码** (**Code de confirmation**).
+8. Enfin, terminez l’inscription du développeur en acceptant le contrat Baidu et en cliquant sur **提交** (**Envoyer**). Une fois l’inscription effectuée, la page ci-après s’affiche :
    
       ![][11]
 
 ## <a name="create-a-baidu-cloud-push-project"></a>Créer un projet Baidu de transmission Push dans le cloud
 Quand vous créez un projet Baidu de transmission Push dans le cloud, vous recevez un ID d’application, une clé API et une clé secrète.
 
-1. Une fois que vous avez ouvert une session dans toohello [Baidu portail], cliquez sur**更多 >>** (**plus**).
+1. Une fois que êtes connecté au [portail Baidu], cliquez sur **更多>>** (**plus**).
    
       ![][5]
-2. Faites défiler hello**站长与开发者服务**(**administrateur Web et des Services de développement**) et cliquez sur**百度开放云平台**(**Baidu ouvrir plateforme cloud**).
+2. Faites défiler la section **站长与开发者服** (**Administrateur Web et Services de développement**) et cliquez sur **百度开放云平台** (**Plateforme cloud ouverte Baidu**).
    
       ![][6]
-3. Dans la page suivante de hello, cliquez sur**开发者服务**(**Services de développement**) dans l’angle supérieur droit de hello.
+3. Sur la page suivante, cliquez sur **开发者服务** (**Services de développement**) dans le coin supérieur droit.
    
       ![][7]
-4. Dans la page suivante de hello, cliquez sur**云推送**(**Cloud Push**) à partir de hello**云服务**(**Services de cloud computing**) section.
+4. Sur la page suivante, cliquez sur **云推送** (**Cloud Push**) à partir de la section **云服务** (**Services cloud**).
    
       ![][12]
-5. Une fois que vous êtes un développeur inscrit, vous voyez**管理控制台**(**Console de gestion**) au menu du haut hello. Cliquez sur **开发者服务管理** (**Gestion des services des développeurs**).
+5. Une fois que vous êtes un développeur enregistré, vous voyez **管理控制台** (**Console de gestion**) dans le menu supérieur. Cliquez sur **开发者服务管理** (**Gestion des services des développeurs**).
    
       ![][13]
-6. Dans la page suivante de hello, cliquez sur**创建工程**(**créer un projet**).
+6. Sur la page suivante, cliquez sur **创建工程** (**Créer un projet**).
    
       ![][14]
 7. Entrez un nom d’application et cliquez sur **创建** (**Créer**).
    
       ![][15]
-8. Une fois qu’un projet push cloud Baidu a été créé, vous voyez apparaître une page présentant **l’ID d’application**, la **clé API** et la **clé secrète**. Prenez note de la clé d’API hello et une clé secrète, que nous utiliserons plus tard.
+8. Une fois qu’un projet push cloud Baidu a été créé, vous voyez apparaître une page présentant **l’ID d’application**, la **clé API** et la **clé secrète**. Prenez note de la clé API et de la clé secrète que nous utiliserons ultérieurement.
    
       ![][16]
-9. Configurez le projet hello pour les notifications push en cliquant sur**云推送**(**Cloud Push**) dans le volet gauche de hello.
+9. Configurez le projet pour les notifications push en cliquant sur **云推送** (**Cloud Push**) dans le volet gauche.
    
       ![][31]
-10. Sur la page suivante de hello, cliquez sur hello**推送设置**(**Push paramètres**) bouton.
+10. Sur la page suivante, cliquez sur le bouton **推送设置** (**Paramètres Push**).
     
     ![][32]  
-11. Sur la page de configuration hello, ajouter le nom du package hello que vous utiliserez dans votre projet Android dans hello**应用包名**(**package d’Application**) champ, puis cliquez sur**保存设置**() **Enregistrer**).  
+11. Sur la page de configuration, ajoutez le nom du package que vous utiliserez dans votre projet Android dans le champ **应用包名** (**Package d’application**), puis cliquez sur **保存设置** (**Enregistrer**).  
     
     ![][33]
 
-Vous consultez hello**保存成功 !** (**Enregistrement réussi !**).
+Vous voyez apparaître le message **保存成功！** (**Enregistrement réussi !**).
 
 ## <a name="configure-your-notification-hub"></a>Configuration de votre hub de notification
-1. Connectez-vous à toohello [portail classique Azure], puis cliquez sur **+ nouveau** bas hello écran hello.
+1. Connectez-vous au [Portail Azure Classic], puis cliquez sur **+NOUVEAU** en bas de l’écran.
 2. Cliquez sur **Services d’application**, sur **Service Bus**, sur **Hub de notification**, puis cliquez sur **Création rapide**.
-3. Fournissez un nom pour votre **Hub de Notification**, sélectionnez hello **région** et hello **Namespace** où ce hub de notification est créé, puis cliquez sur  **Créer un Hub de Notification**.  
+3. Fournissez un nom dans le champ **Hub de notification**, renseignez les champs **Région** et **Espace de noms** pour indiquer où ce hub de notification sera créé, puis cliquez sur **Créer un hub de notification**.  
    
       ![][17]
-4. Espace de noms hello dans lequel vous avez créé votre hub de notification, puis **concentrateurs de Notification** haut hello.
+4. Cliquez sur l’espace de noms dans lequel vous avez créé votre hub de notification, puis cliquez sur **Notification Hubs** dans la partie supérieure.
    
       ![][18]
-5. Concentrateur de notification Sélectionnez hello créé, puis cliquez sur **configurer** à partir du menu du haut hello.
+5. Sélectionnez le hub de notification que vous avez créé, puis cliquez sur **Configurer** dans le menu supérieur.
    
       ![][19]
-6. Faites défiler vers le bas toohello **les paramètres de notification baidu** section et entrez la clé d’API de hello et une clé secrète que vous avez obtenue à partir de la console de Baidu hello précédemment pour votre projet Baidu cloud push. Cliquez sur **Enregistrer**.
+6. Faites défiler l’écran vers le bas jusqu’à la section **Paramètres de notification Baidu** et entrez la clé API et la clé secrète que vous avez obtenues précédemment à partir de la console Baidu pour votre projet Baidu de transmission push dans le cloud. Cliquez sur **Enregistrer**.
    
       ![][20]
-7. Cliquez sur hello **tableau de bord** onglet en haut de hello hello hub de notification, puis cliquez sur **afficher la chaîne de connexion**.
+7. Cliquez sur l’onglet **Tableau de bord** dans la partie supérieure du hub de notification, puis cliquez sur **Afficher la chaîne de connexion**.
    
       ![][21]
-8. Prenez note de hello **DefaultListenSharedAccessSignature** et **DefaultFullSharedAccessSignature** de hello **d’accéder aux informations de connexion** fenêtre.
+8. Prenez note des valeurs **DefaultListenSharedAccessSignature** et **DefaultFullSharedAccessSignature** dans la fenêtre **Accès aux informations de connexion**.
    
     ![][22]
 
-## <a name="connect-your-app-toohello-notification-hub"></a>Se connecter à votre hub de notification d’application toohello
+## <a name="connect-your-app-to-the-notification-hub"></a>Connexion de votre application au hub de notification
 1. Dans Eclipse ADT, créez un projet Android (**File** > **New** > **Android Application Project**).
    
     ![][23]
-2. Entrez un **nom de l’Application** et assurez-vous que hello **Minimum nécessaire le Kit de développement** version est définie trop**API 16 : Android 4.1**.
+2. Entrez un **nom d’application** et vérifiez que la version de **Kit de développement logiciel (SDK) minimum obligatoire** est définie sur **API 16 : Android 4.1**.
    
     ![][24]
-3. Cliquez sur **suivant** et continuer après l’Assistant de hello jusqu'à hello **créer une activité** fenêtre s’affiche. Assurez-vous que **activité vide** est sélectionné et enfin sélectionnez **Terminer** toocreate une Application Android.
+3. Cliquez sur **Next** et continuez à suivre l’Assistant jusqu’à ce que la fenêtre **Create Activity** s’affiche. Assurez-vous que l’option **Blank Activity** est sélectionnée, puis cliquez sur **Finish** pour créer une application Android.
    
     ![][25]
-4. Vérifiez que hello **cible de Build de projet** est défini correctement.
+4. Assurez-vous que la **cible de génération du projet** est définie correctement.
    
     ![][26]
-5. Téléchargez hello concentrateurs-notification-0.4.jar fichier hello **fichiers** onglet Hello [Notification-Hubs-Android-SDK sur Bintray](https://bintray.com/microsoftazuremobile/SDK/Notification-Hubs-Android-SDK/0.4). Ajouter hello fichier toohello **libs** dossier de votre projet Eclipse et actualisation hello *libs* dossier.
-6. Téléchargez et décompressez hello [Push Baidu Android SDK], ouvrez hello **libs** dossier, puis hello de copie **pushservice-x.y.z** jar de fichiers et de hello **armeabi**  &  **mips** dossiers Bonjour **libs** dossier de votre application Android.
-7. Ouvrez hello **AndroidManifest.xml** fichier de votre Android de projet et ajouter des autorisations hello requis par hello Baidu SDK.
+5. Téléchargez le fichier notification-hubs-0.4.jar à partir de l’onglet **Fichiers** du [Notification-Hubs-Android-SDK sur Bintray](https://bintray.com/microsoftazuremobile/SDK/Notification-Hubs-Android-SDK/0.4). Ajoutez le fichier au dossier **libs** de votre projet Eclipse, puis actualisez le dossier *libs* .
+6. Téléchargez et décompressez le [Kit de développement logiciel (SDK) Android pour transmissions push Baidu], ouvrez le dossier **libs**, puis copiez le fichier jar **pushservice-x.y.z** et les dossiers **armeabi** & **mips** dans le dossier **libs** de votre application Android.
+7. Ouvrez le fichier **AndroidManifest.xml** de votre projet Android et ajoutez les autorisations requises par le Kit de développement logiciel (SDK) Baidu.
    
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -170,10 +170,10 @@ Vous consultez hello**保存成功 !** (**Enregistrement réussi !**).
         <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
         <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
         <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
-8. Ajouter hello **android : name** propriété tooyour **application** élément **AndroidManifest.xml**, en remplaçant *votre_nom_de_projet* (pour exemple, **com.example.BaiduTest**). Assurez-vous que ce nom de projet correspond à hello une que vous avez configuré dans la console hello Baidu.
+8. Ajoutez la propriété **android:name** à votre élément **application** dans le fichier **AndroidManifest.xml** en remplaçant *yourprojectname* par votre nom de projet (par exemple, **com.example.BaiduTest**). Assurez-vous que ce nom de projet correspond à celui que vous avez configuré dans la console Baidu.
    
         <application android:name="yourprojectname.DemoApplication"
-9. Ajouter hello configuration au sein de l’élément de l’application hello après hello suivante **. MainActivity** élément d’activité, en remplaçant *votre_nom_de_projet* (par exemple, **com.example.BaiduTest**) :
+9. Ajoutez la configuration ci-après dans l’élément application après l’élément d’activité **.MainActivity** en remplaçant *yourprojectname* par votre nom de projet (par exemple, **com.example.BaiduTest**) :
    
         <receiver android:name="yourprojectname.MyPushMessageReceiver">
             <intent-filter>
@@ -212,12 +212,12 @@ Vous consultez hello**保存成功 !** (**Enregistrement réussi !**).
                 <action android:name="com.baidu.android.pushservice.action.PUSH_SERVICE" />
             </intent-filter>
         </service>
-10. Ajouter une nouvelle classe nommée **ConfigurationSettings.java** toohello projet.
+10. Ajoutez une nouvelle classe appelée **ConfigurationSettings.java** au projet.
     
      ![][28]
     
      ![][29]
-11. Ajoutez hello suivant tooit de code :
+11. Ajoutez-lui le code suivant :
     
         public class ConfigurationSettings {
                 public static String API_KEY = "...";
@@ -225,8 +225,8 @@ Vous consultez hello**保存成功 !** (**Enregistrement réussi !**).
                 public static String NotificationHubConnectionString = "...";
             }
     
-    Valeur hello **API_KEY** avec ce que vous avez récupérés sous projet hello Baidu cloud précédemment, **NotificationHubName** avec votre nom de hub de notification à partir de hello portail classique Azure et  **NotificationHubConnectionString** avec DefaultListenSharedAccessSignature de hello portail classique Azure.
-12. Ajouter une nouvelle classe nommée **DemoApplication.java**et ajoutez hello suivant tooit de code :
+    Définissez **API_KEY** sur la valeur que vous avez récupérée précédemment du projet cloud Baidu, **NotificationHubName** sur le nom de votre hub de notification issu du portail Azure Classic et **NotificationHubConnectionString** sur la valeur DefaultListenSharedAccessSignature issue du portail Azure Classic.
+12. Ajoutez une nouvelle classe appelée **DemoApplication.java**et ajoutez-lui le code suivant :
     
         import com.baidu.frontia.FrontiaApplication;
     
@@ -236,7 +236,7 @@ Vous consultez hello**保存成功 !** (**Enregistrement réussi !**).
                 super.onCreate();
             }
         }
-13. Ajoutez une autre classe nommée **MyPushMessageReceiver.java**et ajoutez hello suivant tooit de code. Il est la classe hello handles hello des notifications push reçus à partir du serveur de push Baidu hello.
+13. Ajoutez une autre nouvelle classe appelée **MyPushMessageReceiver.java**et ajoutez-lui le code suivant. Il s’agit de la classe qui gère les notifications Push reçues à partir du serveur push Baidu.
     
         import java.util.List;
         import android.content.Context;
@@ -246,7 +246,7 @@ Vous consultez hello**保存成功 !** (**Enregistrement réussi !**).
         import com.microsoft.windowsazure.messaging.NotificationHub;
     
         public class MyPushMessageReceiver extends FrontiaPushMessageReceiver {
-            /** TAG tooLog */
+            /** TAG to Log */
             public static NotificationHub hub = null;
             public static String mChannelId, mUserId;
             public static final String TAG = MyPushMessageReceiver.class
@@ -344,29 +344,29 @@ Vous consultez hello**保存成功 !** (**Enregistrement réussi !**).
                 Log.d(TAG, messageString);
             }
         }
-14. Ouvrez **MainActivity.java**et ajoutez hello suivant toohello **onCreate** méthode :
+14. Ouvrez **MainActivity.java** et ajoutez le code suivant à la méthode **onCreate** :
     
             PushManager.startWork(getApplicationContext(),
                     PushConstants.LOGIN_TYPE_API_KEY, ConfigurationSettings.API_KEY);
-15. Ouvrez hello suivant les instructions d’importation haut hello :
+15. Ouvrez les instructions d’importation suivantes en haut :
     
             import com.baidu.android.pushservice.PushConstants;
             import com.baidu.android.pushservice.PushManager;
 
-## <a name="send-notifications-tooyour-app"></a>Envoyer des notifications tooyour application
-Vous pouvez tester rapidement la réception de notifications dans votre application en envoyant des notifications Bonjour [portail Azure](https://portal.azure.com/) à l’aide de hello **envoyer** bouton sur le concentrateur de notification hello, comme indiqué dans hello suivant d’écran :
+## <a name="send-notifications-to-your-app"></a>Envoi de notifications à votre application
+Vous pouvez tester rapidement la réception de notifications dans votre application en envoyant des notifications dans le [Portail Azure](https://portal.azure.com/) à l’aide du bouton **Envoyer** sur le hub de notification, comme illustré ci-dessous :
 
 ![](./media/notification-hubs-baidu-get-started/notification-hub-test-send-baidu.png)
 
-Les notifications Push sont normalement envoyées dans un service principal tel que Mobile Services ou ASP.NET à l’aide d’une bibliothèque compatible. Si une bibliothèque n’est pas disponible pour votre serveur principal, vous pouvez utiliser les API REST de hello toosend directement les messages de notification.
+Les notifications Push sont normalement envoyées dans un service principal tel que Mobile Services ou ASP.NET à l’aide d’une bibliothèque compatible. Si une bibliothèque n’est pas disponible pour votre serveur principal, vous pouvez utiliser l’API REST directement pour envoyer des messages de notification.
 
-Dans ce didacticiel, nous plus de simplicité et simplement montrent le test de votre application cliente en envoyant des notifications à l’aide de hello SDK .NET pour les concentrateurs de notification dans une application console à la place d’un service principal. Nous vous recommandons de hello [utiliser Notification Hubs toopush notifications toousers](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md) didacticiel en tant qu’étape suivante de hello pour envoyer des notifications à partir d’un serveur principal d’ASP.NET. Toutefois, hello méthodes suivantes peut servir pour envoyer des notifications :
+Dans ce didacticiel, nous nous contentons pour plus de simplicité de tester votre application cliente en envoyant des notifications à l’aide du Kit de développement logiciel (SDK) .NET pour Notification Hubs dans une application console au lieu d’un service principal. Nous vous recommandons de consulter le didacticiel [Utiliser Notification Hubs pour envoyer des notifications Push aux utilisateurs](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md) comme prochaine étape pour envoyer des notifications à partir d’un serveur principal ASP.NET. Toutefois, les approches suivantes peuvent servir à envoyer des notifications :
 
-* **Interface REST**: peut prendre en charge notification sur toute plateforme principale à l’aide de hello [interface REST](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx).
-* **Kit de développement logiciel Microsoft Azure Notification Hubs .NET**: Bonjour Gestionnaire de Package Nuget pour Visual Studio, exécutez [Install-Package Microsoft.Azure.NotificationHubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
-* **Node.js**: [comment toouse concentrateurs de Notification à partir de Node.js](notification-hubs-nodejs-push-notification-tutorial.md).
-* **Applications mobiles**: pour obtenir un exemple de notifications toosend à partir d’un serveur principal Azure App Service Mobile Apps intégré avec Notification Hubs, consultez [ajouter push notifications tooyour application mobile](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md).
-* **Java / PHP**: pour obtenir un exemple de comment toosend des notifications à l’aide de hello API REST, consultez « Comment toouse concentrateurs de Notification à partir de Java/PHP » ([Java](notification-hubs-java-push-notification-tutorial.md) | [PHP](notification-hubs-php-push-notification-tutorial.md)).
+* **Interface REST** : vous pouvez prendre en charge les notifications sur n’importe quel serveur principal à l’aide de [l’interface REST](http://msdn.microsoft.com/library/windowsazure/dn223264.aspx).
+* **SDK .NET Microsoft Azure Notification Hubs**: dans le Gestionnaire de package Nuget pour Visual Studio, exécutez [Install-Package Microsoft.Azure.NotificationHubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/).
+* **Node.js** : [Utilisation de Notification Hubs à partir de Node.js](notification-hubs-nodejs-push-notification-tutorial.md).
+* **Applications mobiles Azure**: pour découvrir un exemple de la procédure d’envoi de notifications à partir d’une application mobile Azure intégrée à Notification Hubs, consultez l’article [Add push notifications for Mobile Apps](../app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md) (Ajouter des notifications Push pour Mobile Apps).
+* **Java/PHP** : pour voir un exemple d’envoi de notifications au moyen des API REST, consultez « Utilisation de Notification Hubs depuis Java/PHP » ([Java](notification-hubs-java-push-notification-tutorial.md) | [PHP](notification-hubs-php-push-notification-tutorial.md)).
 
 ## <a name="optional-send-notifications-from-a-net-console-app"></a>(Facultatif) Envoi de notifications à partir d’une application de console .NET.
 Dans cette section, nous montrons comment envoyer une notification à l’aide d’une application console .NET.
@@ -374,17 +374,17 @@ Dans cette section, nous montrons comment envoyer une notification à l’aide d
 1. Créez une application console Visual C# :
    
     ![][30]
-2. Dans la fenêtre de Console du Gestionnaire de Package de hello, définissez hello **projet par défaut** tooyour nouveau projet d’application console et puis, dans la fenêtre de console hello, exécutez hello de commande suivante :
+2. Dans la fenêtre Console du gestionnaire de package, choisissez **Projet par défaut** comme nouveau projet d’application console, puis exécutez la commande suivante dans la fenêtre de console :
    
         Install-Package Microsoft.Azure.NotificationHubs
    
-    Cette instruction ajoute une référence de toohello Azure Notification Hubs SDK à l’aide de hello <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">package NuGet de concentrateurs Microsoft.Azure.Notification</a>.
+    Cette instruction ajoute une référence au Kit de développement logiciel (SDK) Azure Notification Hubs à l’aide du <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">package NuGet Microsoft.Azure.Notification Hubs</a>.
    
     ![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-package-manager.png)
-3. Les fichiers ouverts hello **Program.cs** et ajoutez hello qui suit à l’aide d’instruction :
+3. Ouvrez le fichier **Program.cs** et ajoutez l’instruction using suivante :
    
         using Microsoft.Azure.NotificationHubs;
-4. Dans votre `Program` de classe, ajoutez hello suivant de méthode et remplacer *DefaultFullSharedAccessSignatureSASConnectionString* et *NotificationHubName* avec les valeurs hello dont vous disposez.
+4. Dans votre classe `Program`, ajoutez la méthode ci-après et remplacez *DefaultFullSharedAccessSignatureSASConnectionString* et *NotificationHubName* par les valeurs dont vous disposez.
    
         private static async void SendNotificationAsync()
         {
@@ -392,19 +392,19 @@ Dans cette section, nous montrons comment envoyer une notification à l’aide d
             string message = "{\"title\":\"((Notification title))\",\"description\":\"Hello from Azure\"}";
             var result = await hub.SendBaiduNativeNotificationAsync(message);
         }
-5. Ajouter hello suivant des lignes dans votre **Main** méthode :
+5. Ajoutez les lignes suivantes dans votre méthode **Main** :
    
          SendNotificationAsync();
          Console.ReadLine();
 
 ## <a name="test-your-app"></a>Test de l'application
-tootest cette application avec un téléphone réelle, seulement se connecter hello ordinateur tooyour de téléphone à l’aide d’un câble USB. Cette action charge votre application sur un téléphone de hello attaché.
+Pour tester cette application avec un téléphone réel, connectez simplement le téléphone à votre ordinateur à l’aide d’un câble USB. Cette action charge votre application sur le téléphone attaché.
 
-Cliquez sur cette application avec l’émulateur hello, hello Eclipse haut la barre d’outils de tootest **exécuter**, puis sélectionnez votre application : il démarre hello émulateur, chargement, et s’exécute hello application.
+Pour tester cette application avec l’émulateur, dans la barre d’outils supérieure d’Eclipse, cliquez sur **Run**, puis sélectionnez votre application : elle démarre l’émulateur, puis charge et exécute l’application.
 
-application Hello récupère hello 'userId' et 'channelId' hello services de notifications Push de Baidu et inscrit avec le hub de notification hello.
+L’application récupère les paramètres userId et channelId à partir du service de notification push Baidu et s’inscrit auprès du hub de notification.
 
-toosend une notification de test, vous pouvez utiliser l’onglet débogage de hello Hello portail classique Azure. Si vous avez créé d’application de console .NET hello pour Visual Studio, appuyez sur touche F5 de hello dans l’application de Visual Studio toorun hello. application Hello envoie une notification qui s’affiche dans la zone de notification supérieur de hello de votre appareil ou l’émulateur.
+Pour envoyer une notification de test, vous pouvez utiliser l’onglet de débogage du Portail Azure Classic. Si vous avez intégré l’application de console .NET, appuyez sur la touche F5 dans Visual Studio pour exécuter l’application. L’application envoie une notification qui s’affiche dans la zone de notification supérieure de votre appareil ou de l’émulateur.
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-baidu-get-started/BaiduRegistration.png
@@ -443,6 +443,6 @@ toosend une notification de test, vous pouvez utiliser l’onglet débogage de h
 
 <!-- URLs. -->
 [Kit de développement logiciel (SDK) Mobile Services pour Android]: https://go.microsoft.com/fwLink/?LinkID=280126&clcid=0x409
-[Push Baidu Android SDK]: http://developer.baidu.com/wiki/index.php?title=docs/cplat/push/sdk/clientsdk
-[portail classique Azure]: https://manage.windowsazure.com/
-[Baidu portail]: http://www.baidu.com/
+[Kit de développement logiciel (SDK) Android pour transmissions push Baidu]: http://developer.baidu.com/wiki/index.php?title=docs/cplat/push/sdk/clientsdk
+[Portail Azure Classic]: https://manage.windowsazure.com/
+[portail Baidu]: http://www.baidu.com/

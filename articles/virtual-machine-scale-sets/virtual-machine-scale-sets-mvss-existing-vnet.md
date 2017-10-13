@@ -1,6 +1,6 @@
 ---
 title: "Référencer un réseau virtuel existant dans un modèle de groupe identique Azure | Microsoft Docs"
-description: "Découvrez le modèle d’ensemble d’échelle de Machine virtuelle Azure existante tooan réseau tooadd un virtuel"
+description: "Découvrez comment ajouter un réseau virtuel à un modèle de groupe de machines virtuelles identiques Azure existant"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: negat
-ms.openlocfilehash: c3034b577e17abc4643dc26d7c38ad643fa26322
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 28117d467b491704aed8d45e5eba42530579dfa2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="add-reference-tooan-existing-virtual-network-in-an-azure-scale-set-template"></a>Ajouter un réseau virtuel existant tooan de référence dans un modèle de jeu de mise à l’échelle Azure
+# <a name="add-reference-to-an-existing-virtual-network-in-an-azure-scale-set-template"></a>Ajouter une référence à un réseau virtuel existant dans un modèle de groupe identique Azure
 
-Cet article explique comment toomodify hello [échelle viable minimale définie modèle](./virtual-machine-scale-sets-mvss-start.md) toodeploy dans un réseau virtuel existant au lieu de créer un nouveau.
+Cet article explique comment modifier le [modèle de groupe identique viable minimal](./virtual-machine-scale-sets-mvss-start.md) pour un déploiement dans un réseau virtuel existant au lieu d’en créer un.
 
-## <a name="change-hello-template-definition"></a>Modifier la définition de modèle hello
+## <a name="change-the-template-definition"></a>Modifier la définition du modèle
 
-Notre modèle de jeu minimale viable peut être consulté [ici](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json), et notre modèle de déploiement de mise à l’échelle hello défini dans un réseau virtuel peut être affichée [ici](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json). Examinons hello diff utilisé toocreate ce modèle (`git diff minimum-viable-scale-set existing-vnet`) élément par élément :
+Notre modèle de groupe identique viable minimal peut être consulté [ici](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json) et notre modèle de déploiement de groupe identique sur un réseau virtuel existant peut être consulté [ici](https://raw.githubusercontent.com/gatneil/mvss/existing-vnet/azuredeploy.json). Examinons le différentiel utilisé pour créer ce modèle (`git diff minimum-viable-scale-set existing-vnet`), élément par élément :
 
-Tout d’abord, nous ajoutons un paramètre `subnetId`. Cette chaîne est passée dans la configuration du jeu de mise à l’échelle hello, ce qui permet l’ensemble d’échelle de hello sous-réseau créés au préalable de hello tooidentify toodeploy les machines virtuelles en. Cette chaîne doit avoir la forme de hello : `/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Network/virtualNetworks/<virtual-network-name>/subnets/<subnet-name>`. Par exemple, toodeploy hello où le surapprovisionnement dans un réseau virtuel existant avec le nom `myvnet`, sous-réseau `mysubnet`, groupe de ressources `myrg`et d’abonnement `00000000-0000-0000-0000-000000000000`, hello IDSousRéseau serait : `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet`.
+Tout d’abord, nous ajoutons un paramètre `subnetId`. Cette chaîne est transférée dans la configuration du groupe identique, ce qui permet au groupe identique d’identifier le sous-réseau précréé pour y déployer des machines virtuelles. Cette chaîne doit être au format : `/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Network/virtualNetworks/<virtual-network-name>/subnets/<subnet-name>`. Par exemple, pour déployer le groupe identique sur un réseau virtuel existant avec le nom `myvnet`, le sous-réseau `mysubnet`, le groupe de ressources `myrg` et l’abonnement `00000000-0000-0000-0000-000000000000`, l’ID du sous-réseau serait : `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet`.
 
 ```diff
      },
@@ -42,7 +42,7 @@ Tout d’abord, nous ajoutons un paramètre `subnetId`. Cette chaîne est passé
    },
 ```
 
-Ensuite, nous pouvons supprimer la ressource de réseau virtuel hello de hello `resources` de tableau, dans la mesure où nous utilisent un réseau virtuel existant et que vous n’avez pas besoin toodeploy un nouveau.
+Ensuite, nous pouvons supprimer la ressource de réseau virtuel à partir du tableau `resources`, dans la mesure où nous utilisons un réseau virtuel existant et n’avons pas besoin d’en déployer un nouveau.
 
 ```diff
    "variables": {},
@@ -70,7 +70,7 @@ Ensuite, nous pouvons supprimer la ressource de réseau virtuel hello de hello `
 -    },
 ```
 
-réseau virtuel de Hello existe déjà avant le déploiement du modèle de hello, donc il n’existe aucun besoin toospecify une clause dependsOn à l’échelle de hello défini toohello des réseaux virtuels. Par conséquent, nous supprimons ces lignes :
+Le réseau virtuel existe déjà avant que le modèle ne soit déployé, il est donc inutile de spécifier une clause dependsOn du groupe identique vers le réseau virtuel. Par conséquent, nous supprimons ces lignes :
 
 ```diff
      {
@@ -86,7 +86,7 @@ réseau virtuel de Hello existe déjà avant le déploiement du modèle de hello
          "capacity": 2
 ```
 
-Enfin, nous passons Bonjour `subnetId` paramètre défini par l’utilisateur de hello (au lieu d’utiliser `resourceId` id de hello tooget d’un réseau virtuel dans hello est du même déploiement, qui est le modèle de jeu de niveau viable minimale hello).
+Enfin, nous transmettons le paramètre `subnetId` défini par l’utilisateur (au lieu d’utiliser `resourceId` pour obtenir l’ID d’un réseau virtuel dans le même déploiement, ce que fait le modèle de groupe identique viable minimal).
 
 ```diff
                        "name": "myIpConfig",

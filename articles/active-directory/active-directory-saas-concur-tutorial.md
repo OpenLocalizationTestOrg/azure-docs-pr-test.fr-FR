@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Concur | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et de Concur."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Concur."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,114 +13,114 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: jeedes
-ms.openlocfilehash: 1012bf8c6f036306d0ca90689415d5e22e449989
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0b44437b3dcf69dae3587529da7d12e7809b9f55
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-concur"></a>Didacticiel : Intégration d’Azure Active Directory à Concur
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Concur avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Concur à Azure Active Directory (Azure AD).
 
-Intégration de Concur à Azure AD offre hello avantages suivants :
+L’intégration de Concur à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooConcur
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooConcur (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à Concur.
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Concur (par l’intermédiaire de l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus d’informations sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Prérequis
 
-tooconfigure intégration d’Azure AD à Concur, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD avec Concur, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Concur pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de Concur à partir de la galerie de hello
+1. Ajout de Concur à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
 >[!NOTE]
->configuration de Hello de votre abonnement Concur pour l’authentification unique fédérée via SAML est une tâche distincte, ce qui vous devez contacter [équipe de support Client de Concur](https://www.concur.co.in/contact) tooperform. 
+>La configuration de votre abonnement Concur pour l’authentification unique fédérée par le biais de SAML constitue une tâche séparée qui doit être effectuée par l’[équipe de support technique Concur](https://www.concur.co.in/contact) à votre demande. 
 
-## <a name="adding-concur-from-hello-gallery"></a>Ajout de Concur à partir de la galerie de hello
-intégration de hello tooconfigure de Concur dans Azure AD, vous devez tooadd Concur à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-concur-from-the-gallery"></a>Ajout de Concur à partir de la galerie
+Pour configurer l’intégration de Concur avec Azure AD, vous devez ajouter Concur dans la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd Concur à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Concur à partir de la galerie, effectuez les étapes suivantes :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **Concur**.
+4. Dans la zone de recherche, tapez **Concur**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-concur-tutorial/tutorial_concur_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **Concur**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le volet de résultats, sélectionnez **Concur**, puis cliquez sur **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-concur-tutorial/tutorial_concur_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Concur avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Concur est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Concur doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Concur équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur Concur associé doit être établie.
 
-Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans Concur.
+Pour cela, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **Nom d’utilisateur** dans Concur.
 
-tooconfigure et test Azure AD l’authentification unique avec Concur, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Concur, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test de Concur](#creating-a-concur-test-user)**  -toohave un équivalent de Britta Simon dans Concur est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Concur](#creating-a-concur-test-user)** pour avoir un équivalent de Britta Simon dans Concur lié à la représentation Azure AD associée.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application de Concur.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Concur.
 
-**tooconfigure Azure AD single sign-on avec Concur, procédez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Concur, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, sur hello **Concur** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, dans la page d’intégration de l’application **Concur**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-concur-tutorial/tutorial_concur_samlbase.png)
 
-3. Sur hello **approuvent le domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL Concur**, effectuez les étapes suivantes :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-concur-tutorial/tutorial_concur_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, valeur hello de type hello suivant le modèle à l’aide de :`https://www.concursolutions.com/UI/SSO/<OrganizationId>`
+    a. Dans la zone de texte **URL de connexion**, tapez la valeur au format suivant : `https://www.concursolutions.com/UI/SSO/<OrganizationId>`
 
-    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<customer-domain>.concursolutions.com`
+    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<customer-domain>.concursolutions.com`
 
     > [!NOTE] 
-    > Ces valeurs ne sont pas hello réel. Mise à jour ces valeurs avec hello réel connectent URL et l’identificateur. Contact [équipe de support Client de Concur](https://www.concur.co.in/contact) tooget ces valeurs. 
+    > Il ne s’agit pas des valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Pour obtenir ces valeurs, contactez l’[équipe de support technique Concur](https://www.concur.co.in/contact). 
 
-4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier XML de hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier XML sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-concur-tutorial/tutorial_concur_certificate.png) 
 
@@ -129,68 +129,68 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
     ![Configurer l’authentification unique](./media/active-directory-saas-concur-tutorial/tutorial_general_400.png)
 <CS>
 
-6. tooconfigure l’authentification unique sur **Concur** côté, vous devez hello toosend téléchargé **Metadata XML** prise en charge tooConcur. Ils définir ce hello toohave de paramètre connexion SSO SAML correctement des deux côtés.
+6. Pour configurer l’authentification unique du côté **Concur**, vous devez envoyer le **XML de métadonnées** téléchargé aux techniciens du support technique Concur. Ils configurent ce paramètre pour que la connexion SSO SAML soit définie correctement des deux côtés.
 
   >[!NOTE]
-  >configuration de Hello de votre abonnement Concur pour l’authentification unique fédérée via SAML est une tâche distincte, ce qui vous devez contacter [équipe de support Client de Concur](https://www.concur.co.in/contact) tooperform. 
+  >La configuration de votre abonnement Concur pour l’authentification unique fédérée par le biais de SAML constitue une tâche séparée qui doit être effectuée par l’[équipe de support technique Concur](https://www.concur.co.in/contact) à votre demande. 
   
 <CE>
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-concur-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-concur-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-concur-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-concur-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-concur-test-user"></a>Création d’un utilisateur de test Concur
 
-Application prend en charge hello juste configuration en temps utilisateur et une fois que les utilisateurs de l’authentification sont créés automatiquement dans l’application hello.
+L’application prend en charge l’approvisionnement d’utilisateur juste-à-temps, et après authentification, les utilisateurs sont créés automatiquement dans l’application.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooConcur.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Concur.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooConcur, effectuez hello comme suit :**
+**Pour affecter Britta Simon à Concur, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Concur**.
+2. Dans la liste des applications, sélectionnez **Concur**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-concur-tutorial/tutorial_concur_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -198,7 +198,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -206,14 +206,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque Concur hello hello volet d’accès, vous devez obtenir la page de connexion de l’application de Concur.
-Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md). 
+Quand vous cliquez sur la mosaïque Concur dans le panneau d’accès, la page de connexion de l’application Concur doit apparaître.
+Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 * [Configurer l’approvisionnement de l’utilisateur](active-directory-saas-concur-provisioning-tutorial.md)
 

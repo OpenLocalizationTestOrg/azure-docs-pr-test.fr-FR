@@ -1,5 +1,5 @@
 ---
-title: "aaaModeling l’architecture mutualisée dans Azure Search | Documents Microsoft"
+title: "Modélisation d’une architecture mutualisée dans la Recherche Azure | Microsoft Docs"
 description: "Découvrez les modèles de conception courants pour les applications SaaS mutualisées lors de l’utilisation de Recherche Azure."
 services: search
 manager: jhubbard
@@ -13,33 +13,33 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 10/26/2016
 ms.author: ashmaka
-ms.openlocfilehash: dd46cda772d32566b9aaa18d407f12fdf178bd43
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fd1b0c7cc8210d27fdc500bf4e5641bedfe93cff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="design-patterns-for-multitenant-saas-applications-and-azure-search"></a>Modèles de conception pour les applications SaaS mutualisées et Recherche Azure
-Une application multi-locataire est celle qui fournit hello services et des fonctionnalités tooany autant de clients qui ne peuvent pas voir ou partager des données hello de n’importe quel autre client. Ce document aborde les stratégies d’isolation de client pour les applications mutualisées conçues avec Recherche Azure.
+Une application mutualisée est une application qui fournit les mêmes services et fonctionnalités à plusieurs clients qui ne peuvent pas voir ni partager les données d’un autre client. Ce document aborde les stratégies d’isolation de client pour les applications mutualisées conçues avec Recherche Azure.
 
 ## <a name="azure-search-concepts"></a>Concepts de Recherche Azure
-Comme solution de recherche en tant que service, Azure Search permet la recherche riches de développeurs tooadd rencontre tooapplications sans gérer n’importe quelle infrastructure ou de devenir un expert dans la recherche. Les données sont téléchargées toohello service et stockées dans le cloud de hello. À l’aide de simples demandes toohello API Azure Search, hello puis modifiées et des données recherchées. Vous trouverez une vue d’ensemble du service de hello dans [cet article](http://aka.ms/whatisazsearch). Avant d’aborder les modèles de conception, il est important toounderstand certains concepts dans Azure Search.
+En tant que solution SaaS (search-as-a-service), Recherche Azure permet aux développeurs d’ajouter des expériences de recherche enrichies dans les applications sans avoir à gérer d’infrastructure, ni devenir un expert en matière de recherche. Les données sont téléchargées vers le service, puis stockées dans le cloud. À l’aide de requêtes simples dans l’API Recherche Azure, les données peuvent ensuite être modifiées et faire l’objet de recherches. [Cet article](http://aka.ms/whatisazsearch)présente une vue d’ensemble du service. Avant d’aborder les modèles de conception, il est important de comprendre certains concepts de Recherche Azure.
 
 ### <a name="search-services-indexes-fields-and-documents"></a>Rechercher des services, des index, des champs et des documents
-Lorsque vous utilisez Azure Search, un s’abonne tooa *service de recherche*. Comme les données sont téléchargée tooAzure recherche, il est stocké dans un *index* au sein du service de recherche hello. Un seul service peut contenir plusieurs index. toouse hello concepts familiers de bases de données, service de recherche hello peut être comparés de tooa index hello au sein d’un service peuvent être comparés de tootables au sein d’une base de données.
+Lorsque vous utilisez Recherche Azure, vous vous abonnez à un *service de recherche*. Lorsque les données sont téléchargées vers Recherche Azure, elles sont stockées dans un *index* au sein du service de recherche. Un seul service peut contenir plusieurs index. Pour utiliser les concepts familiers des bases de données, le service de recherche peut être comparé à une base de données, tandis que les index au sein d’un service peuvent être comparés aux tables dans une base de données.
 
-Chaque index au sein d’un service de recherche possède son propre schéma, qui est défini par un certain nombre de *champs*personnalisables. Données sont ajoutées index Azure Search de tooan sous forme de hello de personne *documents*. Chaque document doit être téléchargé tooa un index particulier et doit tenir schéma de cet index. Lors de la recherche des données à l’aide d’Azure Search, les requêtes de recherche en texte intégral hello sont émis par rapport à un index particulier.  toocompare toothose de ces concepts de base de données, les champs peuvent être comparés de toocolumns dans une table et les documents peuvent être comparés de toorows.
+Chaque index au sein d’un service de recherche possède son propre schéma, qui est défini par un certain nombre de *champs*personnalisables. Les données sont ajoutées à un index Recherche Azure sous la forme de *documents*individuels. Chaque document doit être téléchargé dans un index spécifique et doit respecter le schéma de cet index. Lors de la recherche de données à l’aide de Recherche Azure, les requêtes de recherche en texte intégral sont exécutées sur un index spécifique.  Pour comparer ces concepts à ceux d’une base de données, les champs peuvent être comparés aux colonnes d’une table et les documents peuvent être comparés aux lignes.
 
 ### <a name="scalability"></a>Extensibilité
-N’importe quel service Azure Search Bonjour Standard [tarification](https://azure.microsoft.com/pricing/details/search/) peut évoluer en deux dimensions : stockage et disponibilité.
+Tout service Recherche Azure dans le [niveau tarifaire](https://azure.microsoft.com/pricing/details/search/) Standard peut évoluer en deux dimensions : stockage et disponibilité.
 
-* *Partitions* peut être ajouté de stockage de hello tooincrease d’un service de recherche.
-* *Réplicas* peuvent être ajoutées tooa service tooincrease hello un débit de demandes capable de gérer un service de recherche.
+* *partitions* pour augmenter le stockage d’un service de recherche.
+* *réplicas* à un service pour augmenter le débit des requêtes qu’un service de recherche peut gérer.
 
-Ajout et suppression de partitions et réplicas sur permettra capacité hello de hello recherche service toogrow avec la quantité de hello de données et le trafic de demandes d’application hello. Dans commande pour un tooachieve de service de recherche une lecture [SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/), elle nécessite deux réplicas. Dans commande pour un service tooachieve en lecture-écriture [SLA](https://azure.microsoft.com/support/legal/sla/search/v1_0/), il requiert trois réplicas.
+L’ajout et la suppression de partitions et de réplicas lorsque nécessaire permet à la capacité du service de recherche d’augmenter en fonction de la quantité de données et du trafic demandés par l’application. Pour qu’un service de recherche obtienne un [Contrat de niveau de service](https://azure.microsoft.com/support/legal/sla/search/v1_0/)en lecture, deux réplicas sont nécessaires. Pour qu’un service obtienne un [Contrat de niveau de service](https://azure.microsoft.com/support/legal/sla/search/v1_0/)en lecture et en écriture, trois réplicas sont nécessaires.
 
 ### <a name="service-and-index-limits-in-azure-search"></a>Limites du service et de l’index dans Recherche Azure
-Il existe quelques différents [niveaux tarifaires](https://azure.microsoft.com/pricing/details/search/) dans Azure Search, chacun des niveaux de hello dispose de différents [limites et quotas](search-limits-quotas-capacity.md). Certaines de ces limites sont à hello au niveau du service, certaines sont au niveau d’index hello et certaines sont au niveau de partition hello.
+Il existe différents [niveaux tarifaires](https://azure.microsoft.com/pricing/details/search/) dans la Recherche Azure et chaque niveau présente des [limites et quotas](search-limits-quotas-capacity.md) différents. Certaines de ces limites se situent au niveau du service, certaines au niveau de l’index, et d’autres au niveau de la partition.
 
 |  | De base | Standard1 | Standard2 | Standard3 | Standard3 HD |
 | --- | --- | --- | --- | --- | --- |
@@ -53,85 +53,85 @@ Il existe quelques différents [niveaux tarifaires](https://azure.microsoft.com/
 | Nombre maximal d’index par service |5 |50 |200 |200 |3000 (1 000 index max. par partition) |
 
 #### <a name="s3-high-density"></a>Haute densité S3
-Dans le niveau de tarification d’Azure Search S3, il est une option pour le mode haute densité (HD) hello spécifiquement conçu pour les scénarios multi-locataires. Dans de nombreux cas, il est nécessaire toosupport un grand nombre de clients plus petits sous un avantages de hello tooachieve service unique de simplicité et une meilleure rentabilité.
+Dans le niveau tarifaire S3 de Recherche Azure, il existe une option pour le mode haute densité (HD) conçu spécifiquement pour les scénarios mutualisés. Dans de nombreux cas, il est nécessaire de prendre en charge un grand nombre de clients plus petits sous un seul service pour tirer parti des avantages de simplicité et de rentabilité.
 
-S3 HD permet hello de nombreux petits index toobe empaquetés sous gestion hello d’un service de recherche par commercial tooscale de capacité hello des index sur des partitions hello capacité toohost plusieurs index dans un seul service.
+S3 HD permet de réunir les nombreux index de petite taille sous la gestion d’un seul service de recherche en troquant la possibilité d’augmenter la taille des instances des index à l’aide de partitions contre la possibilité d’héberger plus d’index dans un seul service.
 
-Concrètement, un service de S3 peut avoir entre 1 et 200 index ensemble susceptible d’héberger des milliards documents de too1.4. Un disque dur S3 sur hello autre part permettrait aux index individuels tooonly monter too1 millions de documents, mais il peut gérer des index too1000 par partition (haut too3000 par service) avec un nombre de documents total de 200 millions par partition (les too600 millions par service).
+Concrètement, un service S3 peut avoir entre 1 et 200 index qui, ensemble, peuvent héberger jusqu’à 1,4 milliard de documents. À l’inverse, un niveau S3 HD ne permettrait aux index individuels que d’atteindre 1 million de documents, mais il peut gérer jusqu’à 1 000 index par partition (jusqu’à 3 000 par service), soit au total 200 millions de documents par partition (jusqu’à 600 millions par service).
 
 ## <a name="considerations-for-multitenant-applications"></a>Considérations relatives aux applications mutualisées
-Applications mutualisées doivent distribuer efficacement les ressources entre les locataires hello tout en conservant un niveau de confidentialité entre hello différents clients. Il existe quelques considérations lors de la conception d’architecture hello pour une telle application :
+Les applications mutualisées doivent distribuer efficacement les ressources entre les clients tout en conservant un certain niveau de confidentialité entre les différents clients. Il existe quelques considérations à prendre en compte lors de la conception de l’architecture pour ce type d’application :
 
-* *Isolation des locataires :* les développeurs d’applications doivent tootake mesures tooensure qu’aucune clients ont non autorisé ou indésirables d’accéder aux données de toohello d’autres clients. Au-delà de la perspective hello de confidentialité des données, stratégies d’isolation de client requièrent une gestion efficace des ressources partagées et la protection bruyantes voisins.
+* *Isolation des clients :* les développeurs d’applications doivent prendre les mesures appropriées pour s’assurer qu’aucun client ne bénéficie d’un accès non autorisé ou non désiré aux données d’autres clients. Au-delà de la confidentialité des données, les stratégies d’isolation des clients nécessitent une gestion efficace des ressources partagées et la protection contre les voisins bruyants.
 * *Coût des ressources cloud :* comme pour toute autre application, les solutions logicielles doivent rester compétitives au niveau du coût en tant que composant d’une application mutualisée.
-* *Facilité d’opérations :* lors du développement d’une architecture mutualisée, hello impact sur les opérations de l’application hello et la complexité est un facteur important. La Recherche Azure bénéficie d’un [Contrat de niveau de service de 99,9 %](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
-* *Encombrement global :* applications mutualisées peuvent nécessiter que les locataires serve tooeffectively qui sont réparties entre les globe hello.
-* *Évolutivité :* les développeurs d’applications doivent tooconsider leur rapprochement entre maintenir un niveau suffisamment faible de la complexité des applications et de conception hello application tooscale avec le nombre de clients et hello la taille des données de clients et charge de travail.
+* *Facilité des opérations :* lors du développement d’une architecture mutualisée, l’impact sur les opérations et la complexité de l’application est un facteur important. La Recherche Azure bénéficie d’un [Contrat de niveau de service de 99,9 %](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
+* *Envergure internationale :* les applications mutualisées devront peut-être servir efficacement des clients qui sont répartis dans le monde entier.
+* *Évolutivité :* les développeurs d’applications doivent trouver l’équilibre entre le fait de maintenir un niveau de complexité des applications suffisamment faible et la conception de l’application de façon à ce qu’elle évolue avec le nombre de clients, ainsi que la taille des données et la charge de travail des clients.
 
-Azure Search offre quelques limites qui peuvent être des données et la charge de travail clients tooisolate utilisé.
+Recherche Azure propose quelques limites qui peuvent être utilisées pour isoler les données et la charge de travail des clients.
 
 ## <a name="modeling-multitenancy-with-azure-search"></a>Modélisation d’une architecture mutualisée avec Recherche Azure
-Dans les cas de hello d’un scénario multi-locataire, développeur de l’application hello consomme un ou plusieurs services de recherche et diviser les locataires des clients entre les services, les index ou les deux. Recherche Azure offre quelques modèles courants pour la modélisation d’un scénario mutualisé :
+Dans le cas d’un scénario mutualisé, le développeur de l’application consomme un ou plusieurs services de recherche et répartit les clients entre les services, les index ou les deux. Recherche Azure offre quelques modèles courants pour la modélisation d’un scénario mutualisé :
 
 1. *Index par client :* chaque client a son propre index dans un service de recherche qui est partagé avec d’autres clients.
 2. *Service par client :* chaque client possède son propre service Recherche Azure dédié, pour un niveau de séparation maximal entre les données et la charge de travail.
 3. *Combinaison des deux :* les clients les plus volumineux et actifs se voient attribuer des services dédiés, tandis que les clients plus petits se voient attribuer des index individuels au sein de services partagés.
 
 ## <a name="1-index-per-tenant"></a>1. Index par client
-![Une image de modèle d’index pour chaque locataire hello](./media/search-modeling-multitenant-saas-applications/azure-search-index-per-tenant.png)
+![Une image du modèle d’index par client](./media/search-modeling-multitenant-saas-applications/azure-search-index-per-tenant.png)
 
 Dans un modèle d’index par client, plusieurs clients occupent un seul service Recherche Azure où chaque client a son propre index.
 
-Les clients bénéficient de l’isolation des données, car toutes les requêtes de recherche et les opérations sur les documents sont émises au niveau de l’index dans Recherche Azure. Dans la couche d’application hello, il est reconnaissance du besoin hello toodirect hello index appropriés de différents clients trafic toohello tout en gérant des ressources au niveau de service hello sur tous les locataires.
+Les clients bénéficient de l’isolation des données, car toutes les requêtes de recherche et les opérations sur les documents sont émises au niveau de l’index dans Recherche Azure. Dans la couche d’application, il est entendu qu’il est nécessaire de diriger le trafic des divers clients vers les index appropriés, tout en gérant les ressources au niveau du service pour tous les clients.
 
-Un attribut de clé du modèle d’index pour chaque locataire hello consiste hello hello application developer toooversubscribe hello la capacité d’un service de recherche entre les clients de l’application hello. Si les locataires hello ont une distribution inégale de la charge de travail, combinaison optimale de hello de clients peuvent être distribués sur un service de recherche d’index tooaccommodate un nombre de hautement les locataires actives, beaucoup de ressources lors du traitement d’une longue file de simultanément clients moins actifs. trouver un compromis Hello est impossibilité hello hello modèle toohandle situations où chaque client est simultanément très actif.
+Un attribut clé du modèle d’index par client est la possibilité pour le développeur d’applications d’augmenter la capacité d’un service de recherche pour les clients de l’application. Si la répartition de la charge de travail est inégale entre les clients, la combinaison optimale des clients peut être distribuée entre les index d’un service de recherche pour prendre en charge un nombre de clients très actifs, gourmands en ressources, tout en gérant simultanément une longue file de clients moins actifs. Le compromis réside dans l’incapacité du modèle à gérer les situations où chaque client est simultanément très actif.
 
-modèle d’index pour chaque locataire Hello servant de base de hello un modèle de coût de la variable, où un service Azure Search entier est acheté initial et rempli par la suite avec les clients. Cela permet à toobe capacité inutilisée désigné pour les versions d’évaluation et les comptes gratuits.
+Le modèle d’index par client sert de base à un modèle de coût variable, où un service Recherche Azure entier est acheté d’avance, puis rempli avec des clients. Cela permet d’attribuer la capacité inutilisée aux essais et aux comptes gratuits.
 
-Pour les applications avec un encombrement global, modèle d’index pour chaque locataire hello ne peut pas être hello plus efficace. Si les clients d’une application sont répartis entre les globe hello, un service distinct peut être nécessaire pour chaque zone peut dupliquer les coûts sur chacun d’eux.
+Pour les applications avec une envergure internationale, le modèle d’index par client n’est peut-être pas le plus efficace. Si les clients d’une application sont répartis dans le monde entier, un service distinct peut être nécessaire pour chaque région, ce qui peut dupliquer les coûts pour chacun d’eux.
 
-Azure Search permet de montée en puissance hello des index individuels de hello et nombre total de hello de toogrow d’index. Si une tarification approprié niveau choisie, les partitions et réplicas peuvent être ajoutés au service de recherche toohello lorsqu’un index individuel au sein du service de hello devient trop importante en termes de stockage ou le trafic réseau.
+Recherche Azure permet la croissance des index individuels et du nombre total d’index. Si un niveau tarifaire approprié est choisi, des réplicas et des partitions peuvent être ajoutés au service de recherche entier lorsqu’un index individuel au sein du service devient trop important en termes de stockage ou de trafic.
 
-Si le nombre total de hello d’index devient trop volumineux pour un seul service, un autre service a toobe configuré tooaccommodate hello de nouveaux clients. Si les index toobe déplacée entre les services de recherche lors de l’ajout de nouveaux services, les données de salutation à partir de l’index de hello ont toobe copié manuellement à partir d’un seul index toohello autres que Azure Search n’autorise pas un toobe index déplacé.
+Si le nombre total d’index devient trop important pour un seul service, un autre service doit être configuré pour prendre en charge les nouveaux clients. Si les index doivent être déplacés entre les services de recherche lorsque de nouveaux services sont ajoutés, les données de l’index doivent être copiées manuellement d’un index vers l’autre car le déplacement d’un index n’est pas autorisé dans Recherche Azure.
 
 ## <a name="2-service-per-tenant"></a>2. Service par client
-![Une image de modèle de service pour chaque locataire hello](./media/search-modeling-multitenant-saas-applications/azure-search-service-per-tenant.png)
+![Une image du modèle de service par client](./media/search-modeling-multitenant-saas-applications/azure-search-service-per-tenant.png)
 
 Dans une architecture de service par client, chaque client possède son propre service de recherche.
 
-Dans ce modèle, application hello atteint le niveau maximal de hello d’isolation pour ses clients. Chaque service bénéficie d’un débit et d’un stockage dédiés pour gérer les requêtes de recherche, ainsi que des clés d’API distinctes.
+Dans ce modèle, l’application atteint le niveau maximal d’isolation pour ses clients. Chaque service bénéficie d’un débit et d’un stockage dédiés pour gérer les requêtes de recherche, ainsi que des clés d’API distinctes.
 
-Pour les applications, où chaque client a un grand encombrement ou charge de travail hello a peu de variabilité de client tootenant, hello par client de service modèle est un choix efficace ressources ne sont pas partagées entre les charges de travail différents clients.
+Pour les applications où chaque client a une grande envergure ou si la charge de travail varie peu d’un client à l’autre, le modèle de service par client constitue un choix efficace car les ressources ne sont pas partagées entre les charges de travail de différents clients.
 
-Un service par le modèle de client également propose hello d’un modèle de coût fixe et prévisible. N’existe aucun investissements dans un service de recherche jusqu'à ce qu’il existe un toofill client, toutefois hello coût par client est supérieur à un modèle d’index pour chaque locataire.
+Un modèle de service par client offre également l’avantage d’un modèle à coût prévisible et fixe. Il n’existe aucun investissement initial pour un service de recherche entier jusqu'à ce qu’il y ait un client pour le remplir. Cependant, le coût par client est supérieur au modèle d’index par client.
 
-modèle de service pour chaque locataire Hello est un choix efficace pour les applications avec un encombrement global. Dans les clients distribués géographiquement, il est facile toohave service de chaque client dans la région appropriée hello.
+Le modèle de service par client constitue une solution efficace pour les applications d’envergure internationale. Avec des clients répartis géographiquement, il est facile de placer le service de chaque client dans la région appropriée.
 
-difficultés de Hello dans ce modèle de mise à l’échelle se présentent lorsque les locataires individuels prévoit leur service. Azure Search ne prend pas en charge la mise à niveau hello tarification d’un service de recherche, pour toutes les données aurait toobe copié manuellement tooa nouveau service.
+Les défis liés à la mise à l’échelle de ce modèle se présentent lorsque la croissance des clients individuels surpasse celle de leur service. Actuellement, Recherche Azure ne prend pas en charge la mise à niveau du niveau de tarification d’un service de recherche, donc toutes les données doivent être copiées manuellement vers un nouveau service.
 
 ## <a name="3-mixing-both-models"></a>3. Combinaison des deux modèles
 Un autre modèle pour la modélisation mutualisée est de combiner les stratégies d’index par client et de service par client.
 
-En combinant les modèles de hello deux, les clients plus grand d’une application peuvent occupent services dédiés hello long fin de moins de clients actifs, plus petits peut occuper un index dans un service partagé. Ce modèle garantit que les clients plus grande hello ont des performances élevées à partir du service de hello tout en aidant tooprotect hello plus petits clients à partir de n’importe quel voisin bruyant.
+En mélangeant les deux modèles, les clients les plus volumineux d’une application peuvent occuper des services dédiés, tandis que la longue file de clients moins actifs et plus petits peut occuper des index dans un service partagé. Ce modèle garantit que les clients les plus volumineux bénéficient toujours de performances élevées du service tout en protégeant les clients plus petits des voisins bruyants.
 
-Cependant, l’implémentation de cette stratégie repose sur la capacité à prévoir quels clients nécessiteront un service dédié au lieu d’un index dans un service partagé. La complexité des applications augmente avec hello besoin toomanage les deux de ces modèles de l’architecture mutualisées.
+Cependant, l’implémentation de cette stratégie repose sur la capacité à prévoir quels clients nécessiteront un service dédié au lieu d’un index dans un service partagé. La complexité de l’application augmente avec la nécessité de gérer les deux modèles d’architecture mutualisée.
 
 ## <a name="achieving-even-finer-granularity"></a>Atteindre une granularité encore plus fine
-Hello ci-dessus scénarios multi-locataires toomodel modèles conception dans Azure Search supposent une étendue uniforme, où chaque client est un ensemble de l’instance d’une application. Toutefois, les applications peuvent parfois gérer plusieurs étendues plus petites.
+Les modèles de conception ci-dessus pour les scénarios mutualisés dans Recherche Azure supposent qu’il existe une étendue uniforme, où chaque client constitue une instance entière d’une application. Toutefois, les applications peuvent parfois gérer plusieurs étendues plus petites.
 
-Si les modèles par client de service et les index de chaque locataire ne sont pas des étendues suffisamment petites, il est possible toomodel un tooachieve index un degré de davantage de granularité.
+Si les modèles service par client et index par client ne sont pas des étendues suffisamment petites, il est possible de modéliser un index pour atteindre un degré de granularité encore plus fin.
 
-toohave un index unique se comportent différemment pour les points de terminaison clients différents, un champ peut être ajouté tooan des index qui désigne une certaine valeur pour chaque client possible. Chaque fois qu’un client appelle Azure Search tooquery ou modifier un index, le code hello à partir de l’application cliente de hello spécifie la valeur appropriée de hello pour ce champ à l’aide de la recherche d’Azure [filtre](https://msdn.microsoft.com/library/azure/dn798921.aspx) fonctionnalité au moment de la requête.
+Pour qu’un seul index se comporte différemment pour des points de terminaison clients différents, il est possible d’ajouter un champ à un index qui désigne une certaine valeur pour chaque client possible. À chaque fois qu’un client appelle Recherche Azure pour interroger ou modifier un index, le code de l’application cliente spécifie la valeur appropriée pour ce champ à l’aide de la fonctionnalité [filter](https://msdn.microsoft.com/library/azure/dn798921.aspx) de Recherche Azure au moment de la requête.
 
-Cette méthode peut être utilisé tooachieve les fonctionnalités des comptes d’utilisateurs distincts, les niveaux d’autorisation distinct et les applications même complètement distinctes.
+Cette méthode peut être utilisée pour obtenir une fonctionnalité de comptes d’utilisateurs distincts, de niveaux d’autorisation distincts et même d’applications distinctes.
 
 > [!NOTE]
-> Hello approche décrite ci-dessus tooconfigure un index unique de tooserve plusieurs locataires affecte hello pertinence pour les résultats de recherche. Les scores de pertinence de recherche sont calculées dans une étendue au niveau de l’index, pas une portée au niveau du client, pour les données de tous les clients sont intégrées dans les statistiques sous-jacentes de scores de pertinence hello tels que la fréquence du terme.
+> Utiliser l’approche décrite ci-dessus pour configurer un index unique pour servir plusieurs locataires affecte la pertinence des résultats de recherche. Les notes de pertinence de la recherche sont calculées au niveau de l’index et non au niveau du locataire. Ainsi, toutes les données des locataires sont incorporées dans les statistiques sous-jacentes des notes de pertinence, comme la fréquence des termes.
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Azure Search est un vaste choix pour de nombreuses applications [en savoir plus sur les fonctionnalités du service hello robuste](http://aka.ms/whatisazsearch). Lorsque l’évaluation hello différents modèles pour les applications multi-locataires de conception, envisagez de hello [différents niveaux de tarification](https://azure.microsoft.com/pricing/details/search/) et hello respectif [limites de service](search-limits-quotas-capacity.md) toobest adapter toofit d’Azure Search des charges de travail et les architectures de toutes tailles.
+Recherche Azure est un outil de premier choix pour de nombreuses applications, [en savoir plus sur les fonctionnalités puissantes du service](http://aka.ms/whatisazsearch). Lorsque vous évaluez les différents modèles de conception pour les applications mutualisées, consultez les [différents niveaux tarifaires](https://azure.microsoft.com/pricing/details/search/) et les [limites de service](search-limits-quotas-capacity.md) respectives pour mieux adapter la Recherche Azure aux architectures et aux charges de travail de toutes tailles.
 
-Des questions sur Azure Search et scénarios multi-locataires peuvent être dirigées tooazuresearch_contact@microsoft.com.
+Toutes questions relatives à Recherche Azure et les scénarios partagés au sein d’une architecture mutualisée peuvent être envoyés vers azuresearch_contact@microsoft.com.
 

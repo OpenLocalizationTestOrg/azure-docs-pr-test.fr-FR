@@ -1,6 +1,6 @@
 ---
-title: aaaDifferences entre les Services de cloud computing et le Service Fabric | Documents Microsoft
-description: "Une vue d’ensemble conceptuelle pour la migration d’applications à partir des Services de cloud computing tooService l’ensemble fibre optique."
+title: "Différences entre les services cloud et Service Fabric | Microsoft Docs"
+description: "Aperçu conceptuel pour apprendre à migrer des applications à partir des services cloud vers Service Fabric."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: bbc5ef4fe0fe1b0da55454cb6b766925030198fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 26c0256f6fa299551d92e9bcd058ca359d8c85b3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="learn-about-hello-differences-between-cloud-services-and-service-fabric-before-migrating-applications"></a>En savoir plus sur les différences de hello entre les Services de cloud computing et le Service Fabric avant de migrer les applications.
-Microsoft Azure Service Fabric est la plate-forme d’application hello cloud de nouvelle génération pour les applications distribuées hautement évolutives et hautement fiables. Elle introduit de nombreuses nouvelles fonctionnalités d’empaquetage, de déploiement, de mise à niveau et de gestion des applications cloud distribuées. 
+# <a name="learn-about-the-differences-between-cloud-services-and-service-fabric-before-migrating-applications"></a>Découvrez les différences entre les services cloud et Service Fabric avant de migrer les applications.
+Microsoft Azure Service Fabric est la plateforme d’applications cloud nouvelle génération pour les applications distribuées hautement évolutives et fiables. Elle introduit de nombreuses nouvelles fonctionnalités d’empaquetage, de déploiement, de mise à niveau et de gestion des applications cloud distribuées. 
 
-Il s’agit d’une application de toomigrating guide Introduction à partir des Services de cloud computing tooService l’ensemble fibre optique. Il se concentre essentiellement sur les différences d’architecture et de conception entre les services cloud et Service Fabric.
+Ceci est un guide pour apprendre à migrer des applications à partir des services cloud vers Service Fabric. Il se concentre essentiellement sur les différences d’architecture et de conception entre les services cloud et Service Fabric.
 
 ## <a name="applications-and-infrastructure"></a>Applications et infrastructure
-Une différence fondamentale entre les Services de cloud computing et le Service Fabric est relation hello entre les machines virtuelles, les charges de travail et applications. Une charge de travail est défini en tant que code hello écrire tooperform une tâche spécifique ou de fournir un service.
+L’une des principales différences entre les services cloud et Service Fabric est la relation entre les machines virtuelles, les charges de travail et les applications. Une charge de travail correspond au code que vous écrivez pour effectuer une tâche spécifique ou fournir un service.
 
-* **Les services cloud visent à déployer des applications en tant que machines virtuelles.** code Hello que vous écrivez est l’instance de machine virtuelle tooa étroitement couplées, tel qu’un Web ou d’un rôle de travail. toodeploy une charge de travail dans les Services de cloud computing est toodeploy un ou plusieurs ordinateurs virtuels instances cette charge de travail d’exécution hello. Il n’existe pas de séparation entre les applications et les machines virtuelles, et par conséquent, les applications ne sont pas associées à une définition formelle. Une application peut être considérée comme un ensemble d’instances de rôle web ou de travail au sein d’un déploiement de services cloud ou comme un déploiement complet de services cloud. Dans cet exemple, une application est représentée comme un ensemble d’instances de rôle.
+* **Les services cloud visent à déployer des applications en tant que machines virtuelles.** Le code que vous écrivez est étroitement lié à une instance de machine virtuelle, par exemple un rôle web ou de travail. Déployer une charge de travail dans les services cloud revient à déployer une ou plusieurs instances de machines virtuelles qui exécutent la charge de travail. Il n’existe pas de séparation entre les applications et les machines virtuelles, et par conséquent, les applications ne sont pas associées à une définition formelle. Une application peut être considérée comme un ensemble d’instances de rôle web ou de travail au sein d’un déploiement de services cloud ou comme un déploiement complet de services cloud. Dans cet exemple, une application est représentée comme un ensemble d’instances de rôle.
 
 ![Topologie et applications de service cloud][1]
 
-* **Service Fabric est sur le déploiement applications tooexisting machines virtuelles ou des ordinateurs exécutant le Service Fabric sur Windows ou Linux.** services Hello que vous écrivez sont complètement dissociées de hello sous-jacent d’infrastructure, qui est abstrait par la plate-forme d’application hello Service Fabric, pour une application peut être déployée toomultiple environnements. Une charge de travail dans l’infrastructure de Service est appelé un « service », et un ou plusieurs services sont regroupées dans une application formellement défini qui s’exécute sur la plate-forme d’application Service Fabric hello. Plusieurs applications peuvent être déployé tooa les cluster Service Fabric unique.
+* **Service Fabric vise à déployer des applications sur des machines virtuelles existantes ou sur des ordinateurs exécutant Service Fabric sur Windows ou Linux.** Les services que vous écrivez sont complètement dissociés de l’infrastructure sous-jacente, qui est éliminée par la plateforme d’application de Service Fabric. De ce fait, une application peut être déployée dans plusieurs environnements. Une charge de travail dans Service Fabric est appelée un « service », et un ou plusieurs services peuvent être regroupés dans une application formellement définie qui s’exécute sur la plateforme d’application Service Fabric. Plusieurs applications peuvent être déployées dans un seul cluster Service Fabric.
 
 ![Topologie et applications Service Fabric][2]
 
 Service Fabric correspond à une couche de plateforme d’application qui s’exécute sur Windows ou Linux, alors que les services cloud constituent un système de déploiement de machines virtuelles gérées par Azure avec des charges de travail jointes.
-modèle d’application Service Fabric Hello présente plusieurs avantages :
+Le modèle d’application Service Fabric présente plusieurs avantages :
 
-* Temps de déploiement rapide. La création d’instances de machine virtuelle peut prendre beaucoup de temps. Dans l’infrastructure de Service, les machines virtuelles sont déployées uniquement une fois que tooform un cluster qui héberge hello plate-forme d’application Service Fabric. À ce stade, les packages d’applications peuvent être déployé toohello cluster très rapidement.
-* Hébergement de haute densité. Dans les services cloud, une machine virtuelle de rôle de travail héberge une charge de travail. Dans l’infrastructure de Service, les applications sont distinctes de hello machines virtuelles qui s’exécutent, ce qui signifie que vous pouvez déployer un grand nombre d’applications tooa petit nombre de machines virtuelles, qui peuvent réduire les coûts globaux des déploiements plus importants.
-* Hello Service Fabric plateforme peut exécuter n’importe où qui comporte des ordinateurs Windows Server ou Linux, qu’il s’agisse de Azure ou localement. plateforme de Hello fournit une couche d’abstraction sur l’infrastructure sous-jacente de hello permettant d’exécuter votre application sur différents environnements. 
-* Gestion des applications distribuées. Service Fabric est une plateforme que non seulement les hôtes d’applications distribuées, mais aussi vous aide à gérer leur cycle de vie indépendamment hello hébergeant la machine virtuelle ou du cycle de vie de l’ordinateur.
+* Temps de déploiement rapide. La création d’instances de machine virtuelle peut prendre beaucoup de temps. Dans Service Fabric, les machines virtuelles sont déployées une seule fois pour former un cluster qui héberge la plateforme d’application Service Fabric. À ce stade, les packages d’application peuvent être déployés vers le cluster très rapidement.
+* Hébergement de haute densité. Dans les services cloud, une machine virtuelle de rôle de travail héberge une charge de travail. Dans Service Fabric, les applications sont séparées des machines virtuelles qui les exécutent, ce qui signifie que vous pouvez déployer un grand nombre d’applications sur un petit nombre de machines virtuelles. Résultat : une diminution des coûts globaux pour des déploiements plus importants.
+* La plateforme Service Fabric peut s’exécuter sur n’importe quel système incluant des ordinateurs Windows Server ou Linux, qu’il s’agisse d’Azure ou d’un système sur site. La plateforme fournit une couche d’abstraction au-dessus de l’infrastructure sous-jacente pour permettre d’exécuter votre application sur différents environnements. 
+* Gestion des applications distribuées. La plateforme Service Fabric ne se contente pas d’héberger les applications distribuées : elle permet également de gérer leur cycle de vie indépendamment de la machine virtuelle hôte ou du cycle de vie de la machine.
 
 ## <a name="application-architecture"></a>Architecture de l'application
-Hello architecture d’une application de Services de cloud computing inclut généralement plusieurs dépendances du service externe, telles que le Bus de Service Table Azure et stockage d’objets Blob, SQL, Redis et d’autres toomanage hello état et les données d’une application et la communication entre serveur Web Rôles de travail et dans un déploiement de Services de cloud computing. Voici un exemple d’application de services cloud complète :  
+L’architecture d’une application de service cloud inclut généralement de nombreuses dépendances de services externes, comme Service Bus, les tables et le stockage d’objets blob Azure, SQL, Redis etc., pour gérer l’état et les données d’une application et la communication entre les rôles web et de travail dans un déploiement de services cloud. Voici un exemple d’application de services cloud complète :  
 
 ![Architecture des services cloud][9]
 
-Applications de service Fabric peuvent également choisir toouse hello mêmes services externes dans une application complète. Cet exemple montre l’architecture des Services de Cloud hello la plus simple de migration à partir des Services de cloud computing tooService Fabric est déploiement de Services de cloud computing de hello uniquement tooreplace avec une application de Service Fabric, en conservant hello architecture globale hello identiques. Hello Web et rôles de travail peuvent être tooService porté a généré l’infrastructure des services sans état avec des modifications minimales du code.
+Les applications Service Fabric peuvent également opter pour l’utilisation des mêmes services externes dans l’ensemble d’une application. Cet exemple d’architecture de services cloud montre que la manière la plus simple d’effectuer une migration des services cloud vers Service Fabric est de remplacer uniquement le déploiement des services cloud par une application Service Fabric, tout en conservant l’architecture globale. Les rôles web et de travail peuvent être transférés vers les services sans état de Service Fabric avec peu de modifications du code.
 
 ![Architecture Service Fabric après une migration simple][10]
 
-À ce stade, le système de hello doit continuer toowork hello même qu’avant. En tirant profit des fonctionnalités avec état de Service Fabric, les magasins d’état externe peuvent être internalisés sous forme de services avec état le cas échéant. Cela est plus complexe qu’une simple migration de rôles Web et Worker tooService sans état services de Fabric, car il nécessite l’écriture des services personnalisés qui fournissent l’application tooyour de fonctionnalités équivalentes des services externes hello comme avant. Hello les avantages suivants : 
+À ce stade, le système doit continuer à fonctionner comme avant. En tirant profit des fonctionnalités avec état de Service Fabric, les magasins d’état externe peuvent être internalisés sous forme de services avec état le cas échéant. Cela est plus complexe qu’une simple migration de rôles web et de travail vers les services sans état Service Fabric, car il est nécessaire d’écrire les services personnalisés qui fournissent à votre application des fonctionnalités équivalentes à celles fournies auparavant par les services externes. Les avantages sont les suivants : 
 
 * Suppression des dépendances externes 
-* Unification de déploiement de hello, la gestion et les modèles de mise à niveau. 
+* Unification des modèles de mise à niveau, de gestion et de déploiement 
 
 Voici un exemple d’architecture résultant de l’internalisation de ces services :
 
@@ -66,32 +66,32 @@ Voici un exemple d’architecture résultant de l’internalisation de ces servi
 La plupart des applications de service cloud sont constituées de plusieurs niveaux. De même, une application Service Fabric se compose de plusieurs services (généralement de nombreux services). La communication directe et la communication via un stockage durable externe constituent deux modèles de communication courants.
 
 ### <a name="direct-communication"></a>Communication directe
-Avec la communication directe, les niveaux peuvent communiquer directement par le biais du point de terminaison exposé par chacun d’entre eux. Dans les environnements sans état comme Services de cloud computing, cette sélection d’une instance d’un rôle de machine virtuelle, soit au hasard des moyens ou alternée toobalance charge et connexion tooits point de terminaison directement.
+Avec la communication directe, les niveaux peuvent communiquer directement par le biais du point de terminaison exposé par chacun d’entre eux. Dans les environnements sans état tels que les services cloud, cela signifie qu’une instance d’un rôle de machine virtuelle doit être sélectionnée, soit au hasard, soit par tourniquet (round-robin), afin d’équilibrer la charge, et que la connexion au point de terminaison doit se faire directement.
 
 ![Communication directe des services cloud][5]
 
- La communication directe est un modèle de communication courant dans Service Fabric. Hello principale différence entre l’infrastructure de Service et les Services de cloud computing est que, dans les Services de cloud computing, vous vous connectez tooa machine virtuelle, tandis que dans l’infrastructure de Service vous connectez tooa service. Cette distinction est importante pour plusieurs raisons :
+ La communication directe est un modèle de communication courant dans Service Fabric. La principale différence entre Service Fabric et les services cloud est que dans les services cloud, vous vous connectez à une machine virtuelle, tandis que dans Service Fabric, vous vous connectez à un service. Cette distinction est importante pour plusieurs raisons :
 
-* Services dans l’infrastructure de Service ne sont pas des machines virtuelles toohello liée qui les hébergent ; Services peut déplacer dans un cluster de hello et en fait, attendu toomove autour pour diverses raisons : ressource d’équilibrage, le basculement, mises à niveau de l’application et l’infrastructure et les contraintes de placement ou de la charge. Cela signifie que l’adresse d’une instance de service peut changer à tout moment. 
+* Les services dans Service Fabric ne sont pas liés aux machines virtuelles qui les hébergent ; les services peuvent se déplacer au sein du cluster et en réalité, ils doivent même se déplacer pour différentes raisons : équilibrage des ressources, basculement, mises à niveau de l’application et de l’infrastructure, contraintes de positionnement ou de charge. Cela signifie que l’adresse d’une instance de service peut changer à tout moment. 
 * Une machine virtuelle dans Service Fabric peut héberger plusieurs services, chacun avec des points de terminaison uniques.
 
-L’infrastructure de service fournit un mécanisme de découverte de service, appelé hello Service d’affectation de noms, qui peut être utilisé tooresolve les adresses de point de terminaison des services. 
+Service Fabric fournit un mécanisme de découverte de service, appelé service d’affectation de noms, qui peut être utilisé pour résoudre les adresses de point de terminaison des services. 
 
 ![Communication directe Service Fabric][6]
 
 ### <a name="queues"></a>Files d’attente
-Un mécanisme de communication commun entre les couches dans les environnements sans état tels que les Services de cloud computing est toouse un toodurably de file d’attente de stockage externe stocker les tâches de travail à partir d’une couche tooanother. Un scénario courant consiste à un niveau web qui envoie des travaux tooan file d’attente Azure ou le Bus de Service où les instances de rôle de travail peuvent dequeue et traiter les travaux hello.
+Pour communiquer entre les niveaux dans des environnements sans état tels que les services cloud, il est courant d’utiliser une file d’attente de stockage externe pour enregistrer durablement les tâches de travail d’un niveau à l’autre. Il est fréquent qu’un niveau web envoie les travaux à un Service Bus ou à une file d’attente Azure où les instances de rôle de travail peuvent enlever les travaux de la file d’attente et les traiter.
 
 ![Communication par file d’attente des services cloud][7]
 
-Hello même modèle de communication peut être utilisé dans l’infrastructure de Service. Cela peut être utile lorsque vous migrez un tooService d’application Services de cloud computing existant l’ensemble fibre optique. 
+Le même modèle de communication peut être utilisé dans Service Fabric. Cela peut être utile lors de la migration d’une application existante d’un service cloud vers Service Fabric. 
 
 ![Communication directe Service Fabric][8]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Hello la plus simple de migration à partir de tooService de Services de cloud computing Fabric est tooreplace uniquement hello déploiement des Services de Cloud avec une application de Service Fabric, en conservant hello architecture globale de votre application à peu près hello identiques. Bonjour à l’article suivant fournit un guide toohelp convertir un tooa Web ou rôle de travail de service sans état de l’infrastructure de Service.
+Le moyen le plus simple de migrer des services cloud vers Service Fabric est de remplacer uniquement le déploiement des services cloud par une application Service Fabric, tout en conservant l’architecture globale de votre application presque inchangée. L’article suivant fournit un guide pour vous aider à convertir un rôle web ou de travail en service sans état Service Fabric.
 
-* [Migration simple : convertir un tooa Web ou rôle de travail de service sans état du Service Fabric](service-fabric-cloud-services-migration-worker-role-stateless-service.md)
+* [Migration simple : convertir un rôle web ou de travail en service sans état Service Fabric](service-fabric-cloud-services-migration-worker-role-stateless-service.md)
 
 <!--Image references-->
 [1]: ./media/service-fabric-cloud-services-migration-differences/topology-cloud-services.png

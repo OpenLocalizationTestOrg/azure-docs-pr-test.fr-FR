@@ -14,72 +14,72 @@ ms.tgt_pltfrm: na
 ms.workload: backup-recovery
 ms.date: 06/29/2017
 ms.author: anoopkv
-ms.openlocfilehash: 5be995f137d0c0efaf3050b5366a107098cae15a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 091f0884417535427c52beee7bcdc5ed1dd83315
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-vmware-vcenter-server-in-azure-site-recovery"></a>Gérer un serveur VMware vCenter dans Azure Site Recovery
-Cet article traite de hello diverses opérations de récupération de Site qui peuvent être effectuées sur un serveur VMware vCenter.
+Cet article présente les différentes opérations Site Recovery qui peuvent être effectuées sur un serveur VMware vCenter.
 
 ## <a name="prerequisites"></a>Composants requis
 
 **Prise en charge du serveur VMware vCenter et de l’hôte VMware vSphere ESX** | **Détails** |
 |--- | --- |
-|**Serveurs VMware locaux** | Un ou plusieurs serveurs VMware vSphere exécutant la version 6.0, 5.5, 5.1 avec les dernières mises à jour. Les serveurs doivent se trouver dans le même réseau que le serveur de configuration hello (ou un serveur de processus distinct) de hello.<br/><br/> Nous vous recommandons un vCenter server toomanage hôtes, exécutant 6.0 ou 5.5 avec les dernières mises à jour de hello. Seules les fonctionnalités disponibles dans la version 5.5 sont prises en charge lorsque du déploiement de la version 6.0.|
+|**Serveurs VMware locaux** | Un ou plusieurs serveurs VMware vSphere exécutant la version 6.0, 5.5, 5.1 avec les dernières mises à jour. Les serveurs doivent se trouver dans le même réseau que le serveur de configuration (ou un serveur de processus distinct).<br/><br/> Nous recommandons un serveur vCenter pour gérer les hôtes vSphere exécutant la version 6.0 ou 5.5 avec les dernières mises à jour. Seules les fonctionnalités disponibles dans la version 5.5 sont prises en charge lorsque du déploiement de la version 6.0.|
 
 ## <a name="prepare-an-account-for-automatic-discovery"></a>Préparer un compte pour la découverte automatique
-Les besoins de récupération de site accès tooVMware hello processus serveur tooautomatically découvrir les ordinateurs virtuels et pour le basculement et la restauration des machines virtuelles.
+Site Recovery a besoin d’accéder à VMware pour que le serveur de processus découvre automatiquement des machines virtuelles ainsi que pour le basculement et la restauration automatique des machines virtuelles.
 
-* **Migrer**: Si vous souhaitez uniquement toomigrate tooAzure de machines virtuelles VMware, sans jamais les échoue de nouveau, vous pouvez utiliser un compte de VMware avec un rôle en lecture seule. Ce type de rôle peut exécuter le basculement mais ne peut pas arrêter les machines source protégées. Cela n’est pas nécessaire pour la migration.
-* **Réplication/récupération**: Si vous souhaitez que le compte de hello toodeploy réplication complète (replicate, basculement, la restauration automatique) doit être toorun en mesure des opérations telles que la création et la suppression de disques, la mise sous tension sur l’ordinateur virtuel.
+* **Migrer** : si vous souhaitez uniquement migrer des machines virtuelles VMware vers Azure, sans jamais procéder à leur restauration automatique, vous pouvez utiliser un compte VMware avec un rôle en lecture seule. Ce type de rôle peut exécuter le basculement mais ne peut pas arrêter les machines source protégées. Cela n’est pas nécessaire pour la migration.
+* **Réplication/restauration** : si vous souhaitez déployer la réplication complète (réplication, basculement et restauration automatique), le compte doit être en mesure d’exécuter des opérations telles que la création et la suppression de disques, l’alimentation de machines virtuelles, etc.
 * **Découverte automatique** : au moins un compte en lecture seule est nécessaire.
 
 
 |**Tâches :** | **Nécessite un compte/rôle** | **Autorisations** | **Détails**|
 |--- | --- | --- | ---|
-|**Le serveur de processus découvre automatiquement les machines virtuelles VMware** | Vous devez disposer d’au moins un utilisateur en lecture seule | Objet de centre de données -> propager tooChild objet rôle = lecture seule | Utilisateur affecté au niveau du centre de données et a accès tooall hello objets dans le centre de données hello.<br/><br/> accès toorestrict, affecter hello **aucun accès** rôle avec hello **propager toochild** objet, telles que les objets enfants toohello (hôtes de vSphere, magasins de données, machines virtuelles et réseaux).|
-|**Type de basculement** | Vous devez disposer d’au moins un utilisateur en lecture seule | Objet de centre de données -> propager tooChild objet rôle = lecture seule | Utilisateur affecté au niveau du centre de données et a accès tooall hello objets dans le centre de données hello.<br/><br/> accès toorestrict, affecter hello **aucun accès** rôle avec hello **propager toochild** toohello (hôtes de vSphere, magasins de données, machines virtuelles et réseaux) des objets enfants de l’objet.<br/><br/> Utile à des fins de migration, mais pas pour la réplication complète, le basculement et la restauration automatique.|
-|**Basculement et restauration automatique** | Nous vous suggérons de vous créez un rôle (AzureSiteRecoveryRole) avec les autorisations hello requis, puis affectez hello rôle tooa VMware utilisateur ou un groupe | Objet de centre de données -> propager tooChild objet rôle = AzureSiteRecoveryRole<br/><br/> Banque de données -> Allouer de l’espace, parcourir la banque de données, opérations de fichier de bas niveau, supprimer le fichier, mettre à jour les fichiers de machine virtuelle<br/><br/> Réseau -> Attribution de réseau<br/><br/> Ressource -> pool tooresource d’affecter un ordinateur virtuel, migrez la machine virtuelle hors tension, migrer sous tension sur la machine virtuelle<br/><br/> Tâches -> Créer une tâche, Mettre à jour une tâche<br/><br/> Machine virtuelle -> Configuration<br/><br/> Machine virtuelle -> Interagir -> répondre à la question, connexion d’appareil, configurer un support de CD, configurer une disquette, mettre hors tension, mettre sous tension, installation des outils VMware<br/><br/> Machine virtuelle -> Stock -> Créer, inscrire, désinscrire<br/><br/> Machine virtuelle -> Approvisionnement -> Autoriser le téléchargement de machines virtuelles, autoriser le chargement de fichiers de machine virtuelle<br/><br/> Machine virtuelle -> Instantanés -> Supprimer les instantanés | Utilisateur affecté au niveau du centre de données et a accès tooall hello objets dans le centre de données hello.<br/><br/> accès toorestrict, affecter hello **aucun accès** rôle avec hello **propager toochild** objet, telles que les objets enfants toohello (hôtes de vSphere, magasins de données, machines virtuelles et réseaux).|
+|**Le serveur de processus découvre automatiquement les machines virtuelles VMware** | Vous devez disposer d’au moins un utilisateur en lecture seule | Objet de centre de données -> Propager vers l’objet enfant, rôle = lecture seule | L’utilisateur est affecté au niveau du centre de données et a accès à tous les objets dans le centre de données.<br/><br/> Pour restreindre l’accès, attribuez le rôle **Aucun accès** avec l’objet **Propager vers enfant** aux objets enfants (hôtes vSphere, banques de données, machines virtuelles et réseaux).|
+|**Type de basculement** | Vous devez disposer d’au moins un utilisateur en lecture seule | Objet de centre de données -> Propager vers l’objet enfant, rôle = lecture seule | L’utilisateur est affecté au niveau du centre de données et a accès à tous les objets dans le centre de données.<br/><br/> Pour restreindre l’accès, attribuez le rôle **Aucun accès** avec l’objet **Propager vers enfant** aux objets enfants (hôtes vSphere, banques de données, machines virtuelles et réseaux).<br/><br/> Utile à des fins de migration, mais pas pour la réplication complète, le basculement et la restauration automatique.|
+|**Basculement et restauration automatique** | Nous vous suggérons de créer un rôle (AzureSiteRecoveryRole) avec les autorisations nécessaires, puis d’attribuer le rôle à un utilisateur ou à un groupe d’utilisateurs VMware | Objet de centre de données -> Propager vers l’objet enfant, rôle = AzureSiteRecoveryRole<br/><br/> Banque de données -> Allouer de l’espace, parcourir la banque de données, opérations de fichier de bas niveau, supprimer le fichier, mettre à jour les fichiers de machine virtuelle<br/><br/> Réseau -> Attribution de réseau<br/><br/> Ressource -> Affecter les machines virtuelles au pool de ressources, migrer des machines virtuelles hors tension, migrer des machines virtuelles sous tension<br/><br/> Tâches -> Créer une tâche, Mettre à jour une tâche<br/><br/> Machine virtuelle -> Configuration<br/><br/> Machine virtuelle -> Interagir -> répondre à la question, connexion d’appareil, configurer un support de CD, configurer une disquette, mettre hors tension, mettre sous tension, installation des outils VMware<br/><br/> Machine virtuelle -> Stock -> Créer, inscrire, désinscrire<br/><br/> Machine virtuelle -> Approvisionnement -> Autoriser le téléchargement de machines virtuelles, autoriser le chargement de fichiers de machine virtuelle<br/><br/> Machine virtuelle -> Instantanés -> Supprimer les instantanés | L’utilisateur est affecté au niveau du centre de données et a accès à tous les objets dans le centre de données.<br/><br/> Pour restreindre l’accès, attribuez le rôle **Aucun accès** avec l’objet **Propager vers enfant** aux objets enfants (hôtes vSphere, banques de données, machines virtuelles et réseaux).|
 
-## <a name="create-an-account-tooconnect-toovmware-vcenter-server-vmware-vsphere-exsi-host"></a>Créer un serveur compte tooconnect tooVMware vCenter / VMware vSphere EXSi hôte
-1. Connexion en hello Configuration serveur et lancer hello cspsconfigtool.exe à l’aide du raccourci hello hello bureau.
-2. Cliquez sur **ajouter un compte** sur hello **gérer le compte** onglet.
+## <a name="create-an-account-to-connect-to-vmware-vcenter-server-vmware-vsphere-exsi-host"></a>Créer un compte pour se connecter au serveur VMware vCenter/à l’hôte VMware vSphere EXSi
+1. Connectez-vous au serveur de configuration et exécutez le fichier cspsconfigtool.exe à l’aide du raccourci sur le bureau.
+2. Cliquez sur **Ajouter un compte** dans l’onglet **Gérer les comptes**.
 
   ![add-account](./media/site-recovery-vmware-to-azure-manage-vcenter/addaccount.png)
-3. Détails du compte hello et cliquez sur OK tooadd hello compte. Hello compte doit pouvoir hello répertoriés dans hello [préparer un compte pour la découverte automatique](#prepare-an-account-for-automatic-discovery) section.
+3. Fournissez les détails du compte puis cliquez sur OK pour ajouter le compte. Le compte doit avoir les privilèges répertoriés dans la section [Préparer un compte pour la découverte automatique](#prepare-an-account-for-automatic-discovery).
 
   >[!NOTE]
-  Il prend environ 15 minutes pour toobe d’informations de compte hello synchronisation permanente avec le service de récupération de Site hello.
+  La synchronisation des informations du compte avec le service Site Recovery dure environ 15 minutes.
 
 
 ## <a name="associate-a-vmware-vcenter-vmware-vsphere-esx-host-add-vcenter"></a>Associer un serveur VMware vCenter/hôte VMware vSphere ESX (ajouter vCenter)
-* On hello portail Azure, accédez trop*YourRecoveryServicesVault* > **Infrastructure Site Recovery** > **serveurs de Configuration**  >  *ConfigurationServer*
-* Dans la page des détails du serveur de Configuration hello, cliquez sur Bonjour + vCenter bouton.
+* Sur le portail Azure, accédez à *YourRecoveryServicesVault* > **Site Recovery Infrastructure** > **Configuration Servers** > *ConfigurationServer*
+* Dans la page des détails du serveur de configuration, cliquez sur le bouton +vCenter.
 
 [!INCLUDE [site-recovery-add-vcenter](../../includes/site-recovery-add-vcenter.md)]
 
-## <a name="modify-credentials-used-tooconnect-toohello-vcenter-server-vsphere-esxi-host"></a>Modifier les informations d’identification utilisées tooconnect toohello vCenter server / vSphere ESXi hôte
+## <a name="modify-credentials-used-to-connect-to-the-vcenter-server-vsphere-esxi-host"></a>Modifier les informations d’identification utilisées pour se connecter au serveur vCenter/à l’hôte vSphere ESXi
 
-1. Connexion en hello Configuration serveur et lancer hello cspsconfigtool.exe
-2. Cliquez sur **ajouter un compte** sur hello **gérer le compte** onglet.
+1. Se connecter au serveur de configuration et exécuter le fichier cspconfigtool.exe
+2. Cliquez sur **Ajouter un compte** dans l’onglet **Gérer les comptes**.
 
   ![add-account](./media/site-recovery-vmware-to-azure-manage-vcenter/addaccount.png)
-3. Fournir les informations du nouveau compte hello et cliquez sur OK tooadd hello compte. Hello compte doit pouvoir hello répertoriés dans hello [préparer un compte pour la découverte automatique](#prepare-an-account-for-automatic-discovery) section.
-4. On hello portail Azure, accédez trop*YourRecoveryServicesVault* > **Infrastructure Site Recovery** > **serveurs de Configuration**  >  *ConfigurationServer*
-5. Dans la page des détails du serveur de Configuration hello, cliquez sur hello **actualisation du serveur** bouton.
-6. Une fois la tâche de serveur hello actualisation est terminée, sélectionnez hello vCenter Server tooopen hello vCenter page Résumé.
-7. Sélectionnez hello récemment ajouté de compte Bonjour **compte de l’hôte serveur/vSphere vCenter** champ et cliquez sur hello **enregistrer** bouton.
+3. Fournissez les nouveaux détails du compte puis cliquez sur OK pour ajouter le compte. Le compte doit avoir les privilèges répertoriés dans la section [Préparer un compte pour la découverte automatique](#prepare-an-account-for-automatic-discovery).
+4. Sur le portail Azure, accédez à *YourRecoveryServicesVault* > **Site Recovery Infrastructure** > **Configuration Servers** > *ConfigurationServer*
+5. Dans la page des détails du serveur de configuration, cliquez sur le bouton **Refresh Server**.
+6. Une fois l’actualisation du serveur terminée, sélectionnez le serveur vCenter pour ouvrir la page du résumé vCenter.
+7. Sélectionnez le compte qui vient d’être ajouté dans le champ **vCenter server/vSphere host account**, puis cliquez sur le bouton **Save**.
 
   ![modify-account](./media/site-recovery-vmware-to-azure-manage-vcenter/modify-vcente-creds.png)
 
 ## <a name="delete-a-vcenter-in-azure-site-recovery"></a>Supprimer un serveur vCenter dans Azure Site Recovery
-1. On hello portail Azure, accédez trop*YourRecoveryServicesVault* > **Infrastructure Site Recovery** > **serveurs de Configuration**  >  *ConfigurationServer*
-2. Dans la page des détails du serveur de Configuration hello sélectionnez hello vCenter Server tooopen hello vCenter page Résumé.
-3. Cliquez sur hello **supprimer** bouton toodelete hello vCenter
+1. Sur le portail Azure, accédez à *YourRecoveryServicesVault* > **Site Recovery Infrastructure** > **Configuration Servers** > *ConfigurationServer*
+2. Dans la page des détails du serveur de configuration, sélectionnez le serveur vCenter pour ouvrir la page de résumé vCenter.
+3. Cliquez sur le bouton **Delete** pour supprimer le serveur vCenter
 
   ![delete-account](./media/site-recovery-vmware-to-azure-manage-vcenter/delete-vcenter.png)
 
 > [!NOTE]
-Si vous avez besoin de toomodify hello vCenter IP adresse/nom de domaine complet, détails du Port, vous devez toodelete hello du serveur vCenter et ajoutez à nouveau.
+Si vous devez modifier les détails concernant l’adresse IP, le nom de domaine complet et le port du serveur vCenter, vous devez supprimer le serveur vCenter et l’ajouter à nouveau.

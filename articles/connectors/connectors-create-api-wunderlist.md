@@ -1,6 +1,6 @@
 ---
-title: "connecteur d’aaaWunderlist je n logique Azure applications | Documents Microsoft"
-description: "Créer un tooWunderlist de connexion et utiliser cette toobuild de connexion à votre flux de travail dans les applications de logique."
+title: Connecteur Wunderlist dans Azure Logic Apps | Microsoft Docs
+description: "Créez une connexion à Wunderlist et utilisez cette connexion pour générer votre flux de travail dans les applications logiques."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 8b960a0bd8a16d51933dfc75e7291c8a0ae0f923
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 899110992cc52ca5edf1706320fd5570473de784
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-wunderlist-connector"></a>Prise en main connecteur de Wunderlist hello
-Wunderlist une liste de tâches et personnes de tâche manager toohelp obtenir son travail terminé.  Si vous partagez une liste des courses par exemple un, vous travaillez sur un projet ou planification des vacances, Wunderlist facilite toocapture, partager et de votre to¬dos. Wunderlist est instantanément synchronisé entre votre téléphone, votre tablette et votre ordinateur, pour vous permettre d’accéder à toutes vos tâches à partir de n’importe quel endroit.
+# <a name="get-started-with-the-wunderlist-connector"></a>Prise en main du connecteur Wunderlist
+Wunderlist fournit un gestionnaire de tâches et de listes de tâches pour aider les utilisateurs à travailler efficacement.  Si vous partagez une liste de courses avec un proche, si vous travaillez sur un projet ou planifiez des vacances, Wunderlist facilite la capture, le partage et le suivi de vos listes de tâches. Wunderlist est instantanément synchronisé entre votre téléphone, votre tablette et votre ordinateur, pour vous permettre d’accéder à toutes vos tâches à partir de n’importe quel endroit.
 
 Commencez par créer une application logique. Pour cela, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-toowunderlist"></a>Créer un tooWunderlist de connexion
-toocreate Logic apps avec Wunderlist, vous devez d’abord créer un **connexion** puis fournissez les informations de hello pour hello propriétés suivantes :
+## <a name="create-a-connection-to-wunderlist"></a>Créer une connexion à Wunderlist
+Pour créer des applications logiques avec Wunderlist, vous devez d’abord créer une **connexion**, puis fournir les détails pour les propriétés suivantes :
 
 | Propriété | Requis | Description |
 | --- | --- | --- |
 | Jeton |Oui |Fournir des informations d’identification Wunderlist |
 
-Après avoir créé la connexion de hello, vous pouvez utiliser les actions de hello tooexecute et écouter les déclencheurs de hello.
+Après avoir créé la connexion, vous pouvez l’utiliser pour exécuter les actions et écouter les déclencheurs.
 
-> [!INCLUDE [Steps toocreate a connection tooWunderlist](../../includes/connectors-create-api-wunderlist.md)]
+> [!INCLUDE [Steps to create a connection to Wunderlist](../../includes/connectors-create-api-wunderlist.md)]
 > 
 
-## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
+## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
 
-Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/wunderlist/).
+Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/wunderlist/).
 
 ## <a name="more-connectors"></a>Autres connecteurs
-Revenir en arrière toohello [liste des API](apis-list.md).
+Revenir à la [liste des API](apis-list.md).

@@ -1,6 +1,6 @@
 ---
-title: point de terminaison v2.0 aaaChanges toohello AD Azure | Documents Microsoft
-description: "Une description des modifications sont apportées protocoles de version préliminaire publique toohello application modèle v2.0."
+title: "Modifications apportées au point de terminaison Azure AD v2.0 | Microsoft Docs"
+description: "Description des modifications apportées aux protocoles de version préliminaire publique v2.0 du modèle d’application."
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,28 +15,28 @@ ms.topic: article
 ms.date: 09/16/2016
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: d7b28a481e12d5dbbc4a10110193bdbd754f4929
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ae73833a68db14804dc40eaf07ff7d3effaa9052
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="important-updates-toohello-v20-authentication-protocols"></a>V2.0 de toohello mises à jour importantes des protocoles d’authentification
-À l’intention des développeurs ! Sur hello deux prochaines semaines, nous allons quelques mises à jour les protocoles d’authentification tooour v2.0 qui peuvent signifier que les dernières modifications de toutes les applications que vous avez écrit pendant votre période d’évaluation.  
+# <a name="important-updates-to-the-v20-authentication-protocols"></a>Mises à jour importantes des protocoles d’authentification v2.0
+À l’intention des développeurs ! Au cours des deux prochaines semaines, nous allons apporter quelques mises à jour à nos protocoles d’authentification v2.0, qui peuvent impliquer des modifications de dernière minute pour les applications que vous avez écrites pendant la période de la version préliminaire.  
 
 ## <a name="who-does-this-affect"></a>Quelles sont les applications concernées ?
-Toutes les applications qui ont été écrits toouse hello v2.0 convergent de point de terminaison d’authentification
+Les applications qui ont été écrites pour utiliser le point de terminaison d’authentification convergé v2.0 :
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize
 ```
 
-Plus d’informations sur le point de terminaison hello v2.0 trouverez [ici](active-directory-appmodel-v2-overview.md).
+Pour plus d’informations sur le point de terminaison v2.0, cliquez [ici](active-directory-appmodel-v2-overview.md).
 
-Si vous avez créé une application à l’aide du point de terminaison v2.0 hello en codant directement toohello v2.0 protocole, à l’aide de notre middlewares web OpenID Connect ou OAuth, ou l’autre authentification de tooperform 3e partie bibliothèques, vous devez être préparé tootest vos projets et la marque modifications si nécessaire.
+Si vous avez développé une application utilisant le point de terminaison v2.0 en la codant directement dans le protocole v2.0, à l’aide de nos intergiciels web OpenID Connect ou OAuth ou à l’aide d’autres bibliothèques tierces pour effectuer l’authentification, vous devez vous préparer à tester vos projets et à leur apporter les modifications nécessaires.
 
 ## <a name="who-doesnt-this-affect"></a>Quelles sont les applications non concernées ?
-Toutes les applications qui ont été écrits sur le point de terminaison d’authentification de production Azure AD hello,
+Les applications qui ont été écrites par rapport au point de terminaison d’authentification Azure AD de production :
 
 ```
 https://login.microsoftonline.com/common/oauth2/authorize
@@ -44,11 +44,11 @@ https://login.microsoftonline.com/common/oauth2/authorize
 
 Ce protocole n’est pas susceptible de subir des modifications.
 
-En outre, si votre application **uniquement** utilise notre bibliothèque ADAL tooperform l’authentification, vous n’aurez toochange quoi que ce soit.  La bibliothèque ADAL a protégé à votre application des modifications de hello.  
+En outre, si votre application utilise **uniquement** notre bibliothèque ADAL pour effectuer l’authentification, vous n’avez pas à modifier quoi que ce soit.  ADAL protège votre application des modifications.  
 
-## <a name="what-are-hello-changes"></a>Quelles sont les modifications hello ?
-### <a name="removing-hello-x5t-value-from-jwt-headers"></a>Valeur de x5t hello suppression des en-têtes de JSON
-point de terminaison Hello v2.0 utilise des jetons JWT largement, qui contient une section d’en-tête paramètres avec les métadonnées pertinentes sur le jeton de hello.  Si vous décodez en-tête hello de l’un de nos jetons Web JSON en cours, vous trouveriez quelque chose comme :
+## <a name="what-are-the-changes"></a>Quelles sont les modifications ?
+### <a name="removing-the-x5t-value-from-jwt-headers"></a>Suppression de la valeur x5t des en-têtes JWT
+Le point de terminaison v2.0 utilise largement les jetons JWT, qui contiennent une section de paramètres d’en-tête avec des métadonnées pertinentes sur le jeton.  Si vous décodez l’en-tête de l’un de nos jetons JWT actuels, le résultat ressemble à ce qui suit :
 
 ```
 { 
@@ -59,23 +59,23 @@ point de terminaison Hello v2.0 utilise des jetons JWT largement, qui contient u
 }
 ```
 
-Les deux propriétés de « x5t » et « enfant » hello identifient où la clé publique de hello qui doit être signature du jeton utilisé toovalidate hello récupérées à partir du point de terminaison des métadonnées de OpenID Connect hello.
+Où les propriétés « x5t » et « kid » identifient la clé publique à utiliser pour valider la signature du jeton, récupérée à partir du point de terminaison des métadonnées OpenID Connect.
 
-modification Hello que nous faisons ici est la propriété de hello « x5t » de tooremove.  Vous pouvez continuer toouse hello même toovalidate de mécanismes de jetons, mais doit dépendre uniquement hello « enfant » propriété tooretrieve hello clé publique appropriée, comme spécifié dans hello protocole OpenID Connect. 
+La modification que nous effectuons ici consiste à supprimer la propriété « x5t ».  Vous pouvez continuer à utiliser les mêmes mécanismes pour valider les jetons, mais vous devez utiliser uniquement la propriété « kid » pour récupérer la clé publique appropriée, comme spécifié dans le protocole OpenID Connect. 
 
 > [!IMPORTANT]
-> **Votre travail : Assurez-vous que votre application ne dépend pas d’existence hello de valeur de x5t hello.**
+> **Votre tâche : vous assurer que votre application ne dépend pas de l’existence de la valeur x5t.**
 > 
 > 
 
 ### <a name="removing-profileinfo"></a>Suppression de profile_info
-Auparavant, point de terminaison hello v2.0 a été retournant un objet JSON encodé en base 64 dans les réponses jeton appelés `profile_info`.  Lors de la demande un jeton d’accès à partir du point de terminaison v2.0 hello en envoyant une demande pour :
+Auparavant, le point de terminaison v2.0 retournait un objet JSON encodé en Base64 dans les réponses de jeton `profile_info`.  Lorsque vous demandiez un jeton d’accès à partir du point de terminaison v2.0 en envoyant une requête à :
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/token
 ```
 
-réponse de Hello ressemblerait à hello suivant l’objet JSON :
+La réponse ressemblait à l’objet JSON suivant :
 
 ```
 { 
@@ -88,9 +88,9 @@ réponse de Hello ressemblerait à hello suivant l’objet JSON :
 }
 ```
 
-Hello `profile_info` valeur contenue plus d’informations sur utilisateur hello connecté à l’application hello - leur nom complet, prénom, nom, adresse de messagerie, identificateur et ainsi de suite.  Principalement, hello `profile_info` a été utilisé pour le cache de jetons et d’affichage.
+La valeur `profile_info` contenait des informations sur l’utilisateur connecté à l’application : son nom d’affichage, son prénom, son nom, son adresse de messagerie, son identificateur, etc.  Le paramètre `profile_info` était essentiellement utilisé pour la mise en cache des jetons et l’affichage.
 
-Nous sommes en train de supprimer hello `profile_info` valeur – mais ne vous inquiétez pas, nous fournissons toujours cette toodevelopers informations dans un emplacement légèrement différent.  Au lieu de `profile_info`, point de terminaison hello v2.0 retournent désormais une `id_token` dans chaque réponse de jeton :
+Nous procédons actuellement à la suppression de la valeur `profile_info` , mais ne vous inquiétez pas, nous fournirons toujours ces informations aux développeurs à un endroit légèrement différent.  À la place du paramètre `profile_info`, le point de terminaison v2.0 retourne désormais un paramètre `id_token` dans chaque réponse de jeton :
 
 ```
 { 
@@ -103,17 +103,17 @@ Nous sommes en train de supprimer hello `profile_info` valeur – mais ne vous i
 }
 ```
 
-Vous pouvez décoder et analyser hello id_token tooretrieve hello les mêmes informations que vous avez reçu de profile_info.  Hello id_token est un JSON Web Token (JWT), avec le contenu, tel que spécifié par OpenID Connect.  Hello code pour ce faire, doit être très semblable, vous devez simplement intermédiaire de hello tooextract tooaccess hello JSON objet décodera segment (corps hello) de hello id_token et base64.
+Vous pouvez décoder et analyser le paramètre id_token pour récupérer les informations que vous receviez de profile_info.  Le paramètre id_token est un jeton JWT (JSON Web Token) comportant du contenu, comme spécifié par OpenID Connect.  Le code permettant d’effectuer cette opération est très semblable : il vous suffit d’extraire le segment de milieu (le corps) du paramètre id_token et de le décoder en Base64 pour accéder à l’objet JSON qu’il contient.
 
-Sur hello deux prochaines semaines, vous devez coder vos informations d’utilisateur application tooretrieve hello à partir de deux hello `id_token` ou `profile_info`; selon ce qui est présent.  De cette façon lorsque hello est modifié, votre application peut gérer en toute transparence de transition hello de `profile_info` trop`id_token` sans interruption.
+Au cours des deux prochaines semaines, vous devrez coder votre application pour récupérer les informations utilisateur des paramètres `id_token` ou `profile_info` selon celui qui sera présent.  Ce faisant, lorsque la modification sera effectuée, votre application pourra gérer en toute transparence la transition de `profile_info` à `id_token` sans interruption.
 
 > [!IMPORTANT]
-> **Votre travail : Assurez-vous que votre application ne dépend pas d’existence hello Hello `profile_info` valeur.**
+> **Votre tâche : vérifier que votre application ne dépend pas de l’existence de la valeur `profile_info`.**
 > 
 > 
 
 ### <a name="removing-idtokenexpiresin"></a>Suppression de id_token_expires_in
-Similaire trop`profile_info`, nous allons supprimer également hello `id_token_expires_in` paramètre des réponses.  Auparavant, point de terminaison hello v2.0 retourne une valeur pour `id_token_expires_in` avec chaque réponse id_token, par exemple dans une réponse autoriser :
+Comme pour le paramètre `profile_info`, nous allons également supprimer le paramètre `id_token_expires_in` dans les réponses.  Auparavant, le point de terminaison v2.0 retournait une valeur pour le paramètre `id_token_expires_in` avec chaque réponse id_token, par exemple dans une réponse d’autorisation :
 
 ```
 https://myapp.com?id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsI...&id_token_expires_in=3599...
@@ -132,15 +132,15 @@ Ou dans une réponse de jeton :
 }
 ```
 
-Hello `id_token_expires_in` valeur indiquerait nombre hello de secondes hello id_token reste valide pour.  Maintenant, nous allons supprimer hello `id_token_expires_in` valeur complètement.  Au lieu de cela, vous pouvez utiliser la norme d’OpenID Connect hello `nbf` et `exp` validité de hello tooexamine d’un id_token de revendications.  Consultez hello [référence de jeton v2.0](active-directory-v2-tokens.md) pour plus d’informations sur ces revendications.
+La valeur `id_token_expires_in` indiquait le nombre de secondes pendant lesquelles le paramètre id_token restait valide.  À présent, nous allons supprimer complètement la valeur `id_token_expires_in` .  À la place, vous pourrez utiliser les revendications OpenID Connect `nbf` et `exp` standard pour examiner la validité d’un paramètre id_token.  Pour plus d’informations sur ces revendications, consultez les [Informations de référence sur les jetons v2.0](active-directory-v2-tokens.md)
 
 > [!IMPORTANT]
-> **Votre travail : Assurez-vous que votre application ne dépend pas d’existence hello Hello `id_token_expires_in` valeur.**
+> **Votre tâche : vérifier que votre application ne dépend pas de l’existence de la valeur `id_token_expires_in`.**
 > 
 > 
 
-### <a name="changing-hello-claims-returned-by-scopeopenid"></a>Modification revendications hello renvoyées par scope = openid
-Cette modification sera hello plus significatif – en fait, cela affectera presque chaque application qui utilise le point de terminaison hello v2.0.  Plusieurs applications envoi demandes toohello v2.0 point de terminaison à l’aide de hello `openid` étendue, comme :
+### <a name="changing-the-claims-returned-by-scopeopenid"></a>Modification des revendications retournées par scope=openid
+Cette modification sera la plus importante : de fait, elle concerne pratiquement toutes les applications qui utilisent le point de terminaison v2.0.  De nombreuses applications envoient des requêtes vers le point de terminaison v2.0 en utilisant l’étendue `openid`, comme :
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -151,9 +151,9 @@ client_id=...
 &scope=openid offline_access https://outlook.office.com/mail.read
 ```
 
-Aujourd'hui, lorsque les utilisateur hello consentement pour hello `openid` étendue, votre application reçoit une mine d’informations sur l’utilisateur de hello en hello résultant id_token.  Ces revendications peuvent inclure son nom, son nom d’utilisateur par défaut, son adresse de messagerie, son ID objet, etc.
+Aujourd’hui, lorsque l’utilisateur autorise l’étendue `openid`, votre application reçoit une mine d’informations sur l’utilisateur dans le paramètre id_token résultant.  Ces revendications peuvent inclure son nom, son nom d’utilisateur par défaut, son adresse de messagerie, son ID objet, etc.
 
-Cette mise à jour, nous modifions les informations hello que hello `openid` étendue permet à votre application l’accès à comform toobetter avec hello OpenID Connect de spécification.  Hello `openid` étendue uniquement votre application toosign hello utilisateur et de recevoir un identificateur spécifique à l’application pour l’utilisateur de hello Bonjour `sub` de hello id_token de revendication.  Hello des revendications dans une id_token avec uniquement hello `openid` étendue accordée sera inclut pas les informations d’identification personnelle.  Exemples de revendication contenus dans le paramètre id_token :
+Au cours de cette mise à jour, nous allons modifier les informations auxquelles l’étendue `openid` permet à votre application d’accéder afin d’assurer une meilleure conformité avec la spécification OpenID Connect.  L’étendue `openid` permettra uniquement à votre application de connecter l’utilisateur et de recevoir un identificateur propre à l’application pour l’utilisateur dans la revendication `sub` du paramètre id_token.  Les revendications contenues dans un paramètre id_token avec uniquement l’étendue `openid` accordée seront dépourvues des informations d’identification personnelle.  Exemples de revendication contenus dans le paramètre id_token :
 
 ```
 { 
@@ -169,12 +169,12 @@ Cette mise à jour, nous modifions les informations hello que hello `openid` ét
 }
 ```
 
-Si vous souhaitez tooobtain informations d’identification personnelle (PII) sur l’utilisateur de hello dans votre application, toorequest des autorisations supplémentaires à partir de l’utilisateur de hello est nécessaire à votre application.  Nous vous présentons prise en charge de deux étendues à partir de la spécification OpenID Connect de hello : hello `email` et `profile` étendues – qui vous toodo donc.
+Si vous souhaitez obtenir des informations d’identification personnelle (PII) sur l’utilisateur dans votre application, votre application devra lui demander des autorisations supplémentaires.  Nous introduisons la prise en charge de deux nouvelles étendues de la spécification OpenID Connect, les étendues `email` et `profile`, qui vous permettront d’effectuer cette opération.
 
-* Hello `email` étendue est très simple : il permet d’adresse de messagerie principale de votre application l’accès toohello l’utilisateur via hello `email` hello id_token de revendication.  Notez que hello `email` revendication pas sera toujours présente dans id_tokens : elle sera inclus si elle est disponible dans le profil de l’utilisateur hello.
-* Hello `profile` étendue permet à votre tooall d’accès application autres informations de base utilisateur hello-le nom, le nom d’utilisateur par défaut, ID d’objet et ainsi de suite.
+* L’étendue `email` est très directe : elle permet à votre application d’accéder à l’adresse de messagerie principale de l’utilisateur via la revendication `email` contenue dans le paramètre id_token.  Notez que la revendication `email` n’est pas toujours présente dans le paramètre id_token : elle n’est incluse que si elle est disponible dans le profil de l’utilisateur.
+* L’étendue `profile` permet à votre application d’accéder à toutes les autres informations de base sur l’utilisateur (nom, nom d’utilisateur par défaut, ID objet, etc.).
 
-Cela vous permet de toocode votre application de façon minimale divulgation – vous pouvez demander à utilisateur de hello pour simplement hello information que votre application requiert toodo son travail.  Si vous souhaitez toocontinue mise en route du jeu complet de hello des informations utilisateur qui reçoit actuellement votre application, vous devez inclure toutes les étendues de trois dans vos demandes d’autorisation :
+Vous pouvez ainsi coder votre application en en divulguant le moins possible : vous pouvez vous contenter de demander à l’utilisateur les informations nécessaires à l’exécution de votre application.  Si vous souhaitez continuer à obtenir les informations utilisateur complètes reçues actuellement par votre application, vous devez inclure les trois étendues dans vos demandes d’autorisation :
 
 ```
 https://login.microsoftonline.com/common/oauth2/v2.0/authorize?
@@ -185,55 +185,55 @@ client_id=...
 &scope=openid profile email offline_access https://outlook.office.com/mail.read
 ```
 
-Votre application peut commencer à envoyer hello `email` et `profile` étendues immédiatement et point de terminaison hello v2.0 acceptera ces deux étendues et commencer à demander des autorisations aux utilisateurs selon les besoins.  Toutefois, hello modifier dans interprétation hello Hello `openid` étendue ne prendront effet que de quelques semaines.
+Votre application peut commencer à envoyer immédiatement les étendues `email` et `profile`, et le point de terminaison v2.0 acceptera ces deux étendues et commencera à demander des autorisations aux utilisateurs, si nécessaire.  Toutefois, la modification de l’interprétation de l’étendue `openid` ne prendra pas effet avant quelques semaines.
 
 > [!IMPORTANT]
-> **Votre travail : ajouter hello `profile` et `email` étendues si votre application nécessite des informations sur l’utilisateur de hello.**  Notez que la bibliothèque ADAL inclut ces deux autorisations dans les requêtes par défaut. 
+> **Votre tâche : ajouter les étendues `profile` et `email` si votre application a besoin d’informations sur l’utilisateur.**  Notez que la bibliothèque ADAL inclut ces deux autorisations dans les requêtes par défaut. 
 > 
 > 
 
-### <a name="removing-hello-issuer-trailing-slash"></a>Suppression hello émetteur barre oblique de fin.
-Auparavant, valeur d’émetteur hello qui apparaît dans les jetons à partir du point de terminaison hello v2.0 a duré formulaire de hello
+### <a name="removing-the-issuer-trailing-slash"></a>Suppression de la barre oblique finale dans la valeur issuer
+Auparavant, la valeur issuer qui apparaissait dans les jetons du point de terminaison v2.0 prenait la forme suivante :
 
 ```
 https://login.microsoftonline.com/{some-guid}/v2.0/
 ```
 
-Où le guid de hello a été tenantId hello du client hello Azure AD qui a émis le jeton de hello.  Avec ces modifications, valeur d’émetteur hello devient
+Où le GUID était l’ID du locataire Azure AD qui a émis le jeton.  Avec ces modifications, la valeur issuer devient :
 
 ```
 https://login.microsoftonline.com/{some-guid}/v2.0 
 ```
 
-dans les deux jetons et dans le document de découverte hello OpenID Connect.
+dans les deux jetons et dans le document de découverte OpenID Connect.
 
 > [!IMPORTANT]
-> **Votre travail : Assurez-vous que votre application accepte une valeur d’émetteur hello avec et sans barre oblique de fin lors de la validation de l’émetteur.**
+> **Votre travail : vous assurer que votre application accepte la valeur issuer avec et sans barre oblique finale lors de la validation de l’émetteur.**
 > 
 > 
 
 ## <a name="why-change"></a>Pourquoi introduire des modifications ?
-la motivation principale Hello pour l’introduction de ces modifications est toobe conforme à hello OpenID Connect la spécification standard.  En étant OpenID Connect conforme, nous espérons que toominimize les différences entre l’intégration avec les services d’identité de Microsoft et à d’autres services d’identité dans l’industrie de hello.  Il convient de leurs bibliothèques d’authentification open source favorite tooenable développeurs toouse sans avoir des différences de Microsoft tooaccommodate tooalter hello bibliothèques.
+La principale motivation ayant amené à introduire ces modifications est la conformité à la spécification standard OpenID Connect.  Avec cette conformité, nous espérons réduire les différences entre l’intégration aux services d’identité de Microsoft et l’intégration aux autres services d’identité du secteur d’activité.  Nous souhaitons permettre aux développeurs d’utiliser leurs bibliothèques d’authentification open source favorites sans avoir à les modifier pour prendre en compte les différences de Microsoft.
 
 ## <a name="what-can-you-do"></a>Que pouvez-vous faire ?
-À compter d’aujourd'hui, vous pouvez commencer à effectuer toutes les modifications de hello décrites ci-dessus.  Vous devez immédiatement :
+Dès aujourd’hui, vous pouvez commencer à effectuer toutes les modifications décrites ci-dessus.  Vous devez immédiatement :
 
-1. **Supprimez toutes les dépendances hello `x5t` paramètre d’en-tête.**
-2. **Transition hello de façon à gérer `profile_info` trop`id_token` dans les réponses de jeton.**
-3. **Supprimez toutes les dépendances hello `id_token_expires_in` paramètre de la réponse.**
-4. **Ajouter hello `profile` et `email` étendues tooyour application si votre application a besoin des informations utilisateur de base.**
+1. **Supprimer toutes les dépendances dans le paramètre d’en-tête `x5t`.**
+2. **Gérer en douceur la transition entre les paramètres `profile_info` et `id_token` dans les réponses de jeton.**
+3. **Supprimer toutes les dépendances dans le paramètre de réponse `id_token_expires_in`.**
+4. **Ajouter les étendues `profile` et `email` à votre application, si celle-ci a besoin d’informations utilisateur de base.**
 5. **Accepter les valeurs issuer dans les jetons avec et sans barre oblique finale.**
 
-Notre [documentation du protocole v2.0](active-directory-v2-protocols.md) a déjà été mis à jour tooreflect ces modifications, donc vous pouvez l’utiliser comme référence pour aider aux mettre à jour votre code.
+Notre [documentation relative au protocole v2.0](active-directory-v2-protocols.md) a déjà été mise à jour pour refléter ces modifications. Vous pouvez donc l’utiliser à titre de référence pour vous aider à mettre à jour votre code.
 
-Si vous avez d’autres questions sur l’étendue de hello des modifications de hello, vous pouvez tooreach libre hors toous sur Twitter à @AzureAD.
+Si vous avez d’autres questions sur l’étendue de ces modifications, n’hésitez pas à nous contacter sur Twitter à @AzureAD.
 
 ## <a name="how-often-will-protocol-changes-occur"></a>Quelle sera la fréquence des modifications du protocole ?
-Nous ne prévoient pas les dernières modifications toohello protocoles d’authentification.  Nous sommes intentionnellement regroupement de ces modifications dans une version afin que vous n’avez pas à nouveau tôt toogo via ce type de processus de mise à jour.  Bien entendu, nous continuerons tooadd fonctionnalités toohello convergé service d’authentification v2.0 dont vous pouvez tirer parti de, mais ces modifications doivent être additif et saut pas de code existant.
+Nous ne prévoyons pas d’apporter d’autres modifications de ce type aux protocoles d’authentification.  Nous regroupons intentionnellement ces modifications dans une seule version afin que vous n’ayez pas à effectuer de nouveau ce type de mise à jour dans un temps rapproché.  Bien entendu, nous continuerons d’ajouter des fonctionnalités au service d’authentification v2.0 convergé dont vous pourrez bénéficier. Néanmoins, ces modifications devraient constituer des ajouts et pas une rupture du code existant.
 
-Enfin, nous aimerions toosay Merci d’essayer les choses pendant la période d’évaluation hello.  analyses de Hello et l’expérience de nos premiers ont été inestimable jusqu’ici, et nous espérons que vous allez continuer tooshare votre avis et des idées.
+Pour finir, nous souhaitons vous remercier d’avoir procédé à des essais pendant cette version préliminaire.  Les informations et les expériences de nos utilisateurs précoces nous ont été très utiles jusqu’à présent, et nous espérons que vous continuerez de partager vos opinions et vos idées.
 
 Codez bien !
 
-Hello Division d’identité Microsoft
+La Division d’identité de Microsoft
 

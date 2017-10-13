@@ -1,6 +1,6 @@
 ---
-title: "persistance des données aaaHow tooconfigure Premium Azure Redis cache"
-description: "Découvrez comment tooconfigure et gérer persistance des données de vos instances de Cache Redis Azure de niveau Premium"
+title: "Comment configurer la persistance des données pour un Cache Redis Azure Premium"
+description: "Découvrez comment configurer et gérer la persistance des données pour vos instances de Cache Redis Azure de niveau Premium"
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/24/2017
 ms.author: sdanie
-ms.openlocfilehash: 62feb6f5522e0270487f045eb303bf852434143d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 638f0154d3a4fd091197a2da86374a053b31c4c0
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-tooconfigure-data-persistence-for-a-premium-azure-redis-cache"></a>La persistance des données tooconfigure Premium Azure Redis cache
-Cache Redis Azure a différentes offres de cache qui fournissent une certaine flexibilité hello les choix de la taille du cache et de fonctionnalités, y compris les fonctionnalités de niveau Premium telles que le clustering, la persistance et la prise en charge du réseau virtuel. Cet article décrit comment persistance tooconfigure dans une prime Cache Redis Azure instance.
+# <a name="how-to-configure-data-persistence-for-a-premium-azure-redis-cache"></a>Comment configurer la persistance des données pour un Cache Redis Azure Premium
+Le Cache Redis Azure offre différents types de caches permettant de choisir en toute flexibilité parmi plusieurs tailles et fonctionnalités de caches en toute flexibilité, notamment les fonctionnalités de couche Premium telles que le clustering, la persistance et la prise en charge du réseau virtuel. Cet article décrit comment configurer la persistance dans une instance Premium de Cache Redis Azure.
 
-Pour plus d’informations sur d’autres fonctionnalités de cache premium, consultez [couche de présentation toohello Azure Redis Cache Premium](cache-premium-tier-intro.md).
+Pour plus d’informations sur les autres fonctionnalités du cache Premium, consultez [Introduction au niveau Premium du Cache Redis Azure](cache-premium-tier-intro.md).
 
 ## <a name="what-is-data-persistence"></a>Qu’est-ce que la persistance des données ?
-[Persistance de redis](https://redis.io/topics/persistence) vous permet de toopersist les données stockées dans Redis. Vous pouvez également effectuer des captures instantanées et sauvegarder les données hello, que vous pouvez charger en cas de défaillance matérielle. Il s’agit d’un énorme avantage par rapport Basic ou niveau Standard où tous les hello les données est stockée en mémoire et il peut y avoir de perdre des données en cas de défaillance dans lequel les nœuds de Cache sont arrêtés. 
+La [persistance Redis](https://redis.io/topics/persistence) vous permet de conserver les données stockées dans Redis. Vous pouvez également prendre des instantanés et sauvegarder les données que vous pouvez charger en cas de défaillance matérielle. Il s’agit d’un avantage substantiel par rapport au niveau De base ou Standard, où toutes les données sont stockées en mémoire et il existe un risque de perte de données en cas de défaillance des nœuds de cache. 
 
-Cache Redis Azure offre la persistance de Redis à l’aide de hello suivant de modèles :
+Le Cache Redis Azure offre la persistance Redis à l’aide des modèles suivants :
 
-* **Persistance de RDB** -persistance de RDB lorsque (base de données Redis) est configuré, le Cache Redis Azure persiste un instantané du cache Redis de hello dans un format binaire toodisk selon une fréquence de sauvegarde peut être configurée de Redis. Si un événement catastrophique désactive hello principal et cache de réplica se produit, le cache de hello est reconstruit à l’aide d’instantané le plus récent hello. En savoir plus sur hello [avantages](https://redis.io/topics/persistence#rdb-advantages) et [inconvénients](https://redis.io/topics/persistence#rdb-disadvantages) de persistance de RDB.
-* **Persistance d’UNEDE** -persistance d’UNEDE lorsque (ajouter un seul fichier) est configuré, le Cache Redis Azure enregistre chaque journal de tooa écriture opération qui est enregistré au moins une fois par seconde à un compte de stockage Azure. Si un événement catastrophique désactive hello principal et cache de réplica se produit, le cache de hello est reconstruit à l’aide d’opérations d’écriture stockée hello. En savoir plus sur hello [avantages](https://redis.io/topics/persistence#aof-advantages) et [inconvénients](https://redis.io/topics/persistence#aof-disadvantages) de persistance d’UNEDE.
+* **Persistance RDB** : Quand la persistance RDB (base de données Redis) est configurée, le Cache Redis Azure conserve un instantané du cache Redis dans un format binaire Redis sur le disque selon une fréquence de sauvegarde configurable. Si un événement catastrophique se produit et provoque la désactivation du cache principal et du réplica, le cache est reconstruit à l’aide de l’instantané le plus récent. Découvrez-en plus sur les [avantages](https://redis.io/topics/persistence#rdb-advantages) et les [inconvénients](https://redis.io/topics/persistence#rdb-disadvantages) de la persistance RDB.
+* **Persistance AOF** : Lorsque la persistance AOF (Append Only File) est configurée, le Cache Redis Azure enregistre chaque opération d’écriture dans un journal qui est enregistré au moins une fois par seconde dans un compte de stockage Azure. Si un événement catastrophique se produit et provoque la désactivation du cache principal et du réplica, le cache est reconstruit à l’aide des opérations d’écriture stockées. Découvrez-en plus sur les [avantages](https://redis.io/topics/persistence#aof-advantages) et les [inconvénients](https://redis.io/topics/persistence#aof-disadvantages) de la persistance AOF.
 
-Persistance est configurée de hello **nouveau Cache Redis** panneau pendant la création du cache et sur hello **menu ressource** pour premium existante met en cache.
+La persistance est configurée à partir du panneau **Nouveau Cache Redis** lors de la création du cache et du **menu Ressource** pour les caches Premium existants.
 
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-premium-create.md)]
 
@@ -41,67 +41,67 @@ Une fois que vous avez sélectionné un niveau tarifaire Premium, cliquez sur **
 
 ![Persistance Redis][redis-cache-persistence]
 
-Hello étapes dans la section suivante de hello décrivent comment tooconfigure persistance Redis sur votre nouveau cache premium. Une fois que la persistance de Redis est configuré, cliquez sur **créer** toocreate votre premium nouveau cache avec Redis persistance.
+Les étapes de la section suivante décrivent comment configurer la persistance Redis sur votre nouveau cache Premium. Une fois la persistance Redis configurée, cliquez sur **Créer** pour créer votre cache Premium avec la persistance Redis.
 
 ## <a name="enable-redis-persistence"></a>Activation de la persistance Redis
 
-Redis la persistance est activée sur hello **Redis la persistance des données** panneau en choisissant soit **RDB** ou **UNEDE** persistance. Pour les nouveaux caches, ce panneau est accessible au cours du processus de création du cache hello, comme décrit dans la section précédente de hello. Pour les caches existants, hello **Redis la persistance des données** lame est accessible à partir de hello **menu ressource** pour votre cache.
+Le panneau **Persistance des données Redis** permet de configurer la persistance Redis en sélectionnant la persistance **RDB** ou **AOF**. Pour les nouveaux caches, ce panneau est accessible pendant la création du cache, comme décrit dans la section précédente. Pour les caches existants, le panneau **Persistance des données Redis** est accessible à partir du **menu Ressource** de votre cache.
 
 ![Paramètres Redis][redis-cache-settings]
 
 
 ## <a name="configure-rdb-persistence"></a>Configuration de la persistance RDB
 
-persistance de RDB tooenable, cliquez sur **RDB**. persistance de RDB toodisable sur un cache premium précédemment activé, cliquez sur **désactivé**.
+Pour activer la persistance RDB, cliquez sur **RDB**. Pour désactiver la persistance RDB sur un cache Premium précédemment activé, cliquez sur **Désactivé**.
 
 ![Persistance RDB Redis][redis-cache-rdb-persistence]
 
-tooconfigure hello intervalle de sauvegarde, sélectionnez un **fréquence de sauvegarde** à partir de la liste déroulante de hello. Vous avez le choix entre **15 minutes**, **30 minutes**, **60 minutes**, **6 heures**, **12 heures** et **24 heures**. Cet intervalle commence le comptage vers le bas après l’opération de sauvegarde précédente hello terminée avec succès et quand il s’écoule une nouvelle sauvegarde est lancée.
+Pour configurer l’intervalle de sauvegarde, sélectionnez une **Fréquence de sauvegarde** dans la liste déroulante. Vous avez le choix entre **15 minutes**, **30 minutes**, **60 minutes**, **6 heures**, **12 heures** et **24 heures**. Cet intervalle débute au moment où l’opération de sauvegarde précédente s’est terminée correctement. Une fois l’intervalle écoulé, une nouvelle sauvegarde est lancée.
 
-Cliquez sur **compte de stockage** tooselect hello toouse de compte de stockage et choisissez soit hello **clé primaire** ou **clé secondaire** toouse de hello **stockage Clé** liste déroulante. Vous devez choisir un compte de stockage Bonjour même région que le cache de hello et un **stockage Premium** compte est recommandé, car le stockage premium a un débit plus élevé. 
+Cliquez sur **Compte de stockage** pour sélectionner le compte de stockage à utiliser, puis, dans la liste déroulante **Clé de stockage**, choisissez d’utiliser la **Clé primaire** ou la **Clé secondaire**. Vous devez choisir un compte de stockage situé dans la même région que le cache. Un compte **Stockage Premium** est recommandé, car ce type de stockage offre un débit plus élevé. 
 
 > [!IMPORTANT]
-> Si la clé de stockage hello pour votre compte de persistance est régénérée, vous devez reconfigurer la clé souhaitée hello hello **clé de stockage** liste déroulante.
+> Si la clé de stockage pour votre compte de persistance est régénérée, vous devez reconfigurer la clé souhaitée dans la liste déroulante **Clé de stockage** .
 > 
 > 
 
-Cliquez sur **OK** configuration de persistance toosave hello.
+Cliquez sur **OK** pour enregistrer la configuration de persistance.
 
-prochaine sauvegarde Hello (ou première sauvegarde pour les nouveaux caches) est lancée une fois que l’intervalle de fréquence de sauvegarde hello est écoulé.
+La sauvegarde suivante (ou première sauvegarde pour les nouveaux caches) est lancée une fois que l'intervalle de fréquence de sauvegarde est écoulé.
 
 ## <a name="configure-aof-persistence"></a>Configuration de la persistance AOF
 
-persistance d’UNEDE tooenable, cliquez sur **UNEDE**. persistance d’UNEDE toodisable sur un cache premium précédemment activé, cliquez sur **désactivé**.
+Pour activer la persistance AOF, cliquez sur **AOF**. Pour désactiver la persistance AOF sur un cache Premium précédemment activé, cliquez sur **Désactivé**.
 
 ![Persistance AOF Redis][redis-cache-aof-persistence]
 
-persistance d’UNEDE tooconfigure, spécifiez un **premier compte de stockage**. Ce compte de stockage doit être Bonjour même région que le cache de hello et un **stockage Premium** compte est recommandé, car le stockage premium a un débit plus élevé. Vous pouvez éventuellement configurer un compte de stockage supplémentaire nommé **Deuxième compte de stockage**. Si un deuxième compte de stockage est configuré, hello écritures toohello réplica cache sont écrites toothis deuxième compte de stockage. Pour chaque compte de stockage configuré, choisissez soit hello **clé primaire** ou **clé secondaire** toouse de hello **clé de stockage** liste déroulante. 
+Pour configurer la persistance AOF, spécifiez un **Premier compte de stockage**. Ce compte de stockage doit se trouver dans la même région que le cache. Un compte **Stockage Premium** est recommandé, car ce type de stockage offre un débit plus élevé. Vous pouvez éventuellement configurer un compte de stockage supplémentaire nommé **Deuxième compte de stockage**. Si un deuxième compte de stockage est configuré, les opérations d’écriture dans le cache de réplica sont enregistrées dans ce deuxième compte de stockage. Pour chaque compte de stockage configuré, sélectionnez la **clé primaire** ou **clé secondaire** à utiliser dans la liste déroulante **Clé de stockage**. 
 
 > [!IMPORTANT]
-> Si la clé de stockage hello pour votre compte de persistance est régénérée, vous devez reconfigurer la clé souhaitée hello hello **clé de stockage** liste déroulante.
+> Si la clé de stockage pour votre compte de persistance est régénérée, vous devez reconfigurer la clé souhaitée dans la liste déroulante **Clé de stockage** .
 > 
 > 
 
-Lors de la persistance UNEDE est activée, écrire le cache de toohello opérations sont enregistrées toohello désigné du compte de stockage (ou des comptes si vous avez configuré un deuxième compte de stockage). En cas de hello d’une défaillance catastrophique que prend deux vers le bas hello principal et le cache de réplica, hello stockée UNEDE journal est utilisé du cache de toorebuild hello.
+Lorsque la persistance AOF est activée, les opérations d’écriture dans le cache sont enregistrées dans le compte de stockage désigné (ou les comptes si vous avez configuré un deuxième compte de stockage). En cas de défaillance catastrophique affectant à la fois le cache principal et le réplica, le journal AOF stocké est utilisé pour reconstruire le cache.
 
 ## <a name="persistence-faq"></a>Forum aux questions sur la persistance
-Hello liste suivante contient toocommonly des réponses aux questions sur la persistance du Cache Redis Azure.
+La liste suivante présente différentes réponses aux questions les plus fréquemment posées sur la persistance du Cache Redis Azure.
 
 * [Puis-je activer la persistance sur un cache créé précédemment ?](#can-i-enable-persistence-on-a-previously-created-cache)
-* [Puis-je activer la persistance UNEDE et RDB à hello même temps ?](#can-i-enable-aof-and-rdb-persistence-at-the-same-time)
+* [Puis-je activer la persistance AOF et RDB en même temps ?](#can-i-enable-aof-and-rdb-persistence-at-the-same-time)
 * [Quel modèle de persistance dois-je choisir ?](#which-persistence-model-should-i-choose)
-* [Que se passe-t-il si j’ai mis à l’échelle tooa une taille différente et la restauration d’une sauvegarde effectuée avant l’opération de mise à l’échelle de hello ?](#what-happens-if-i-have-scaled-to-a-different-size-and-a-backup-is-restored-that-was-made-before-the-scaling-operation)
+* [Que se passe-t-il si j’ai mis à l’échelle vers une taille différente et si une sauvegarde antérieure à l’opération de mise à l’échelle, est restaurée ?](#what-happens-if-i-have-scaled-to-a-different-size-and-a-backup-is-restored-that-was-made-before-the-scaling-operation)
 
 
 ### <a name="rdb-persistence"></a>Persistance RDB
-* [Puis-je modifier la fréquence de sauvegarde RDB hello après avoir créé le cache de hello ?](#can-i-change-the-rdb-backup-frequency-after-i-create-the-cache)
+* [Puis-je modifier la fréquence de sauvegarde RDB après avoir créé le cache ?](#can-i-change-the-rdb-backup-frequency-after-i-create-the-cache)
 * [Pourquoi, si la fréquence de sauvegarde RDB est de 60 minutes, y a-t-il un délai supérieur à 60 minutes entre les sauvegardes ?](#why-if-i-have-an-rdb-backup-frequency-of-60-minutes-there-is-more-than-60-minutes-between-backups)
-* [Que passe-t-il d’anciennes sauvegardes RDB toohello lorsqu’une nouvelle sauvegarde est effectuée ?](#what-happens-to-the-old-rdb-backups-when-a-new-backup-is-made)
+* [Qu’advient-il des anciennes sauvegardes RDB quand une nouvelle sauvegarde est effectuée ?](#what-happens-to-the-old-rdb-backups-when-a-new-backup-is-made)
 
 ### <a name="aof-persistence"></a>Persistance AOF
 * [Quand dois-je utiliser un deuxième compte de stockage ?](#when-should-i-use-a-second-storage-account)
 * [La persistance AOF affecte-t-elle le débit, la latence ou les performances de mon cache ?](#does-aof-persistence-affect-throughout-latency-or-performance-of-my-cache)
-* [Comment puis-je supprimer le compte de stockage deuxième hello ?](#how-can-i-remove-the-second-storage-account)
+* [Comment puis-je supprimer le deuxième compte de stockage ?](#how-can-i-remove-the-second-storage-account)
 * [Qu’est-ce qu’une réécriture et comment affecte-t-elle mon cache ?](#what-is-a-rewrite-and-how-does-it-affect-my-cache)
 * [À quoi dois-je attendre lors de la mise à l’échelle d’un cache avec la persistance AOF activée ?](#what-should-i-expect-when-scaling-a-cache-with-aof-enabled)
 * [Comment sont organisées mes données AOF dans le stockage ?](#how-is-my-aof-data-organized-in-storage)
@@ -110,62 +110,62 @@ Hello liste suivante contient toocommonly des réponses aux questions sur la per
 ### <a name="can-i-enable-persistence-on-a-previously-created-cache"></a>Puis-je activer la persistance sur un cache créé précédemment ?
 Oui, la persistance Redis peut être configurée lors de la création du cache ou sur les caches Premium existants.
 
-### <a name="can-i-enable-aof-and-rdb-persistence-at-hello-same-time"></a>Puis-je activer la persistance UNEDE et RDB à hello même temps ?
+### <a name="can-i-enable-aof-and-rdb-persistence-at-the-same-time"></a>Puis-je activer la persistance AOF et RDB en même temps ?
 
-Non, vous pouvez activer uniquement RDB ou UNEDE, mais pas les deux à hello même temps.
+Non, vous pouvez uniquement activer RDB ou AOF, mais pas les deux en même temps.
 
 ### <a name="which-persistence-model-should-i-choose"></a>Quel modèle de persistance dois-je choisir ?
 
-Persistance d’UNEDE enregistre chaque tooa écriture du journal, qui a un impact sur le débit, persistance qui enregistre les sauvegardes en fonction de hello comparé RDB configuré d’intervalle de sauvegarde, avec un impact minimal sur les performances. Choisissez la persistance d’UNEDE si votre objectif principal est toominimize une perte de données, et vous pouvez gérer une diminution du débit de votre cache. Choisissez la persistance de RDB si vous le souhaitez toomaintain un débit optimal sur votre cache, mais toujours un mécanisme de récupération de données.
+La persistance AOF enregistre chaque écriture dans un journal, ce qui a un impact sur le débit, par rapport à la persistance RDB qui enregistre des sauvegardes à l’intervalle de sauvegarde configuré, avec un impact minimal sur les performances. Choisissez la persistance AOF si votre objectif principal est de minimiser la perte de données et si vous pouvez gérer une réduction du débit de votre cache. Choisissez la persistance RDB si vous souhaitez maintenir un débit optimal de votre cache mais avez quand même besoin d’un mécanisme de récupération de données.
 
-* En savoir plus sur hello [avantages](https://redis.io/topics/persistence#rdb-advantages) et [inconvénients](https://redis.io/topics/persistence#rdb-disadvantages) de persistance de RDB.
-* En savoir plus sur hello [avantages](https://redis.io/topics/persistence#aof-advantages) et [inconvénients](https://redis.io/topics/persistence#aof-disadvantages) de persistance d’UNEDE.
+* Découvrez-en plus sur les [avantages](https://redis.io/topics/persistence#rdb-advantages) et les [inconvénients](https://redis.io/topics/persistence#rdb-disadvantages) de la persistance RDB.
+* Découvrez-en plus sur les [avantages](https://redis.io/topics/persistence#aof-advantages) et les [inconvénients](https://redis.io/topics/persistence#aof-disadvantages) de la persistance AOF.
 
 Pour plus d’informations sur les performances lors de l’utilisation de persistance AOF, consultez [La persistance affecte-t-elle le débit, la latence ou les performances de mon cache ?](#does-aof-persistence-affect-throughout-latency-or-performance-of-my-cache)
 
-### <a name="what-happens-if-i-have-scaled-tooa-different-size-and-a-backup-is-restored-that-was-made-before-hello-scaling-operation"></a>Que se passe-t-il si j’ai mis à l’échelle tooa une taille différente et la restauration d’une sauvegarde effectuée avant l’opération de mise à l’échelle de hello ?
+### <a name="what-happens-if-i-have-scaled-to-a-different-size-and-a-backup-is-restored-that-was-made-before-the-scaling-operation"></a>Que se passe-t-il si j’ai mis à l’échelle vers une taille différente et si une sauvegarde antérieure à l’opération de mise à l’échelle, est restaurée ?
 
 Pour la persistance RDB et AOF :
 
-* Si vous avez mis à l’échelle tooa plus grande taille, il n’existe aucun impact.
-* Si vous avez monté en tooa plus petite taille, et que vous avez personnalisé [bases de données](cache-configure.md#databases) qui est supérieur à hello [limite de bases de données](cache-configure.md#databases) pour votre nouvelle taille, dans les bases de données n’est pas restaurées. Pour en savoir plus, voir [Les paramètres personnalisés de mes bases de données sont-ils affectés au cours de la mise à l’échelle ?](cache-how-to-scale.md#is-my-custom-databases-setting-affected-during-scaling)
-* Si vous avez à l’échelle tooa plus petite taille, et il n’est pas assez de place dans hello toohold de taille plus petite toutes les données de hello depuis la dernière clés de sauvegarde, hello seront supprimés pendant le processus de restauration hello, généralement à l’aide hello [allkeys-lru](http://redis.io/topics/lru-cache) éviction stratégie.
+* Si vous avez mis à l’échelle vers une plus grande taille, cela n’a aucun impact.
+* Si vous avez mis à l’échelle vers une taille plus petite et que vous avez un paramètre personnalisé de [bases de données](cache-configure.md#databases) supérieur à la [limite des bases de données](cache-configure.md#databases) pour votre nouvelle taille, les données de ces bases de données ne sont pas restaurées. Pour en savoir plus, voir [Les paramètres personnalisés de mes bases de données sont-ils affectés au cours de la mise à l’échelle ?](cache-how-to-scale.md#is-my-custom-databases-setting-affected-during-scaling)
+* Si vous avez mis à l’échelle vers une plus petite taille et que l’espace est insuffisant pour contenir toutes les données issues de la dernière sauvegarde, les clés sont supprimées lors du processus de restauration, généralement à l’aide de la stratégie d’éviction [allkeys-lru](http://redis.io/topics/lru-cache) .
 
-### <a name="can-i-change-hello-rdb-backup-frequency-after-i-create-hello-cache"></a>Puis-je modifier la fréquence de sauvegarde RDB hello après avoir créé le cache de hello ?
-Oui, vous pouvez modifier la fréquence de sauvegarde hello pour la persistance RDB sur hello **Redis la persistance des données** panneau. Pour obtenir des instructions, consultez la page [Configuration de la persistance Redis](#configure-redis-persistence).
+### <a name="can-i-change-the-rdb-backup-frequency-after-i-create-the-cache"></a>Puis-je modifier la fréquence de sauvegarde RDB après avoir créé le cache ?
+Oui, vous pouvez modifier la fréquence de sauvegarde pour la persistance RDB dans le panneau **Persistance des données Redis**. Pour obtenir des instructions, consultez la page [Configuration de la persistance Redis](#configure-redis-persistence).
 
 ### <a name="why-if-i-have-an-rdb-backup-frequency-of-60-minutes-there-is-more-than-60-minutes-between-backups"></a>Pourquoi, si la fréquence de sauvegarde RDB est de 60 minutes, y a-t-il un délai supérieur à 60 minutes entre les sauvegardes ?
-intervalle de fréquence de sauvegarde Hello RDB persistance ne démarre pas jusqu'à ce que le processus de sauvegarde précédente hello est bien terminée. Si la fréquence de sauvegarde hello est de 60 minutes, et il prend une toosuccessfully de 15 minutes de processus de sauvegarde complète, de sauvegarde suivant hello ne démarre pas tant que 75 minutes après hello heure de début de sauvegarde précédente de hello.
+L’intervalle de fréquence de sauvegarde avec la persistance RDB ne démarre qu’une fois le processus de sauvegarde précédent terminé. Si la fréquence de sauvegarde est de 60 minutes et que l’exécution d’un processus de sauvegarde prend 15 minutes, la sauvegarde suivante ne démarre que 75 minutes après l’heure de début de la sauvegarde précédente.
 
-### <a name="what-happens-toohello-old-rdb-backups-when-a-new-backup-is-made"></a>Que passe-t-il d’anciennes sauvegardes RDB toohello lorsqu’une nouvelle sauvegarde est effectuée ?
-Toutes les sauvegardes de persistance RDB à l’exception de hello plus récente sont automatiquement supprimés. Cette suppression peut ne pas avoir lieu immédiatement, mais les anciennes sauvegardes ne sont pas conservées indéfiniment.
+### <a name="what-happens-to-the-old-rdb-backups-when-a-new-backup-is-made"></a>Qu’advient-il des anciennes sauvegardes RDB quand une nouvelle sauvegarde est effectuée ?
+Toutes les sauvegardes avec la persistance RDB à l’exception de la plus récente sont supprimées automatiquement. Cette suppression peut ne pas avoir lieu immédiatement, mais les anciennes sauvegardes ne sont pas conservées indéfiniment.
 
 
 ### <a name="when-should-i-use-a-second-storage-account"></a>Quand dois-je utiliser un deuxième compte de stockage ?
 
-Vous devez utiliser un deuxième compte de stockage pour la persistance d’UNEDE lorsque vous pensez que vous avez le plus élevé que les opérations de jeu attendu sur le cache de hello.  La configuration de compte de stockage secondaire hello garantit que votre cache n’atteint pas les limites de bande passante de stockage.
+Vous devez utiliser un deuxième compte de stockage pour la persistance AOF lorsque vous pensez que vous avez plus d’opérations que prévues définies sur le cache.  La configuration du deuxième compte de stockage permet de vous assurer que votre cache n’atteindra pas les limites de bande passante de stockage.
 
 ### <a name="does-aof-persistence-affect-throughout-latency-or-performance-of-my-cache"></a>La persistance AOF affecte-t-elle le débit, la latence ou les performances de mon cache ?
 
-Persistance d’UNEDE affecte le débit en environ 15 à 20 % lorsque le cache de hello est sous charge maximale (UC et charge du serveur à la fois sous 90 %). Il doit être pas les problèmes de latence lorsque le cache de hello est dans ces limites. Toutefois, le cache de hello atteint ces limites plus tôt avec UNEDE activée.
+La persistance AOF affecte le débit d’environ 15 à 20 % lorsque le cache n’a pas atteint la charge maximale (charges de l’UC et du serveur inférieures à 90 %). Il ne devrait pas y avoir de problèmes de latence lorsque le cache se trouve dans ces limites. Toutefois, le cache atteindra plus rapidement ces limites avec la persistance AOF activée.
 
-### <a name="how-can-i-remove-hello-second-storage-account"></a>Comment puis-je supprimer le compte de stockage deuxième hello ?
+### <a name="how-can-i-remove-the-second-storage-account"></a>Comment puis-je supprimer le deuxième compte de stockage ?
 
-Vous pouvez supprimer le compte de stockage secondaire hello UNEDE persistance en définissant le deuxième compte de stockage hello toobe même hello en tant que premier compte de stockage hello. Pour obtenir des instructions, consultez la page [Configuration de la persistance AOF](#configure-aof-persistence).
+Vous pouvez supprimer le compte de stockage secondaire pour la persistance AOF en définissant le deuxième compte de stockage de manière à ce qu’il soit identique au premier compte de stockage. Pour obtenir des instructions, consultez la page [Configuration de la persistance AOF](#configure-aof-persistence).
 
 ### <a name="what-is-a-rewrite-and-how-does-it-affect-my-cache"></a>Qu’est-ce qu’une réécriture et comment affecte-t-elle mon cache ?
 
-Lorsque le fichier UNEDE de hello est suffisante, une réécriture est automatiquement mise en attente sur le cache de hello. fichier d’UNEDE hello Hello réécriture est redimensionné avec hello nombre minimal de jeu de données en cours d’opérations nécessaires toocreate hello. Au cours de réécritures, attendre tooreach des limites de performances plus tôt en particulier lors du traitement de grands jeux de données. Réécritures inférieur produisent souvent comme fichier d’UNEDE hello devient supérieure, mais prendra beaucoup de temps quand il se produit.
+Lorsque le fichier AOF devient suffisamment volumineux, une réécriture est automatiquement mise en file d’attente dans le cache. La réécriture redimensionne le fichier AOF avec l’ensemble minimal d’opérations nécessaires pour créer le jeu de données en cours. Durant les réécritures, attendez-vous à atteindre plus rapidement les limites de performances, en particulier lors du traitement de grands jeux de données. Les réécritures s’effectueront moins souvent au fur et à mesure que le fichier AOF deviendra volumineux, mais elles prendront un temps considérable le cas échéant.
 
 ### <a name="what-should-i-expect-when-scaling-a-cache-with-aof-enabled"></a>À quoi dois-je attendre lors de la mise à l’échelle d’un cache avec la persistance AOF activée ?
 
-Si le fichier d’UNEDE hello au moment de hello de mise à l’échelle est suffisamment importante, puis attendez hello échelle opération tootake plus longtemps que prévu, car il sera recharger les fichiers hello après mise à l’échelle.
+Si le fichier AOF est particulièrement volumineux au moment de la mise à l’échelle, attendez-vous à ce que l’opération de mise à l’échelle soit plus longue que prévue, étant donné qu’elle rechargera le fichier une fois la mise à l’échelle terminée.
 
-Pour plus d’informations sur la mise à l’échelle, consultez [que se passe-t-il si j’ai mis à l’échelle tooa une taille différente et la restauration d’une sauvegarde effectuée avant l’opération de mise à l’échelle de hello ?](#what-happens-if-i-have-scaled-to-a-different-size-and-a-backup-is-restored-that-was-made-before-the-scaling-operation)
+Pour en savoir plus sur la mise à l’échelle, consultez [Que se passe-t-il si j’ai mis à l’échelle vers une taille différente et si une sauvegarde antérieure à l’opération de mise à l’échelle est restaurée ?](#what-happens-if-i-have-scaled-to-a-different-size-and-a-backup-is-restored-that-was-made-before-the-scaling-operation)
 
 ### <a name="how-is-my-aof-data-organized-in-storage"></a>Comment sont organisées mes données AOF dans le stockage ?
 
-Les données stockées dans des fichiers UNEDE sont divisées en plusieurs objets BLOB de pages par des performances de l’enregistrement de hello données toostorage tooincrease du nœud. Hello tableau suivant affiche les objets BLOB de pages combien est utilisés pour chaque niveau de tarification :
+Les données stockées dans des fichiers AOF sont divisées en plusieurs objets blob de pages par nœud afin d’augmenter les performances d’enregistrement des données dans le stockage. Le tableau suivant montre comment de nombreux objets blob de pages sont utilisés pour chaque niveau tarifaire :
 
 | Niveau Premium | Objets blob |
 |--------------|-------|
@@ -174,15 +174,15 @@ Les données stockées dans des fichiers UNEDE sont divisées en plusieurs objet
 | P3           | 16 par partition   |
 | P4           | 20 par partition   |
 
-Lorsque le clustering est activé, chaque partition dans le cache de hello possède son propre ensemble d’objets BLOB de page, comme indiqué dans le tableau précédent de hello. Par exemple, un cache P2 avec trois partitions distribue son fichier AOF entre 24 objets blob de pages (8 objets blob par partition, avec 3 partitions).
+Lorsque le clustering est activé, chaque partition dans le cache a son propre ensemble d’objets blob de pages, comme indiqué dans le tableau précédent. Par exemple, un cache P2 avec trois partitions distribue son fichier AOF entre 24 objets blob de pages (8 objets blob par partition, avec 3 partitions).
 
-Après une réécriture, deux jeux de fichiers AOF se trouvent dans le stockage. Réécritures se produisent en arrière-plan de hello et ajoutez toohello premier jeu de fichiers, alors que le jeu qui sont envoyés du cache de toohello au cours de réécriture de hello ajoutent toohello deuxième jeu. Une sauvegarde est temporairement stockée pendant les réécritures en cas d’échec, mais elle est immédiatement supprimée à la fin de la réécriture.
+Après une réécriture, deux jeux de fichiers AOF se trouvent dans le stockage. Les réécritures s’effectuent en arrière-plan et s’ajoutent au premier jeu de fichiers, alors que les opérations définies qui sont envoyées dans le cache lors de la réécriture s’ajoutent au deuxième jeu. Une sauvegarde est temporairement stockée pendant les réécritures en cas d’échec, mais elle est immédiatement supprimée à la fin de la réécriture.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Découvrez comment mettre en cache des fonctionnalités par toouse plus premium.
+Découvrez comment utiliser davantage de fonctionnalités de cache de niveau Premium.
 
-* [Couche de présentation toohello Azure Redis Cache Premium](cache-premium-tier-intro.md)
+* [Introduction au niveau Premium du Cache Redis Azure](cache-premium-tier-intro.md)
 
 <!-- IMAGES -->
 

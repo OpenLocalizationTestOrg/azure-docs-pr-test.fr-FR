@@ -1,5 +1,5 @@
 ---
-title: aaaManage logic apps dans Visual Studio - Azure Logic Apps | Documents Microsoft
+title: "Gestion d’applications logiques dans Visual Studio - Azure Logic Apps | Microsoft Docs"
 description: "Gestion d’applications logiques et d’autres ressources à l’aide de Visual Studio Cloud Explorer"
 author: klam
 manager: anneta
@@ -15,15 +15,15 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 12/19/2016
 ms.author: LADocs; klam
-ms.openlocfilehash: 419f83eb062b56e4ac2642dea4de1a025f747521
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a5bf24de1a7a2b6d4c1ae6416c95d83ef7506da3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manage-your-logic-apps-with-visual-studio-cloud-explorer"></a>Gestion de vos applications logiques à l’aide de Visual Studio Cloud Explorer
 
-Bien que hello [portail Azure](https://portal.azure.com/) offre un excellent moyen de vous toodesign et gérer Azure Logic Apps, vous pouvez utiliser Visual Studio Cloud Explorer pour la gestion de nombreuses ressources Azure, y compris les applications de la logique. Visual Studio Cloud Explorer vous permet de parcourir, de gérer, de modifier et de télécharger des applications logiques publiées. Les tâches de gestion incluent notamment l’activation, la désactivation et l’affichage de l’historique des exécutions. 
+Bien que le [Portail Azure](https://portal.azure.com/) vous offre un excellent moyen de concevoir et de gérer des applications logiques Azure, vous pouvez utiliser Visual Studio Cloud Explorer pour gérer un grand nombre de vos ressources Azure, y compris les applications logiques. Visual Studio Cloud Explorer vous permet de parcourir, de gérer, de modifier et de télécharger des applications logiques publiées. Les tâches de gestion incluent notamment l’activation, la désactivation et l’affichage de l’historique des exécutions. 
 
 Avant de pouvoir accéder à vos applications logiques et les gérer dans Visual Studio, installez et configurez ces outils Visual Studio pour Azure Logic Apps. 
 
@@ -32,54 +32,54 @@ Avant de pouvoir accéder à vos applications logiques et les gérer dans Visual
 * [Visual Studio 2015 ou Visual Studio 2017](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
 * [Dernier kit de développement logiciel (SDK) Azure](https://azure.microsoft.com/downloads/) (2.9.1 ou supérieur)
 * [Visual Studio Cloud Explorer](https://marketplace.visualstudio.com/items?itemName=MicrosoftCloudExplorer.CloudExplorerforVisualStudio2015)
-* Web toohello d’accès lorsque vous utilisez le concepteur incorporé hello
+* Accès au web lors de l’utilisation du concepteur intégré
 
 ## <a name="install-visual-studio-tools-for-logic-apps"></a>Installer les outils Visual Studio pour Logic Apps
 
-Après avoir installé les composants requis de hello, téléchargez et installez les outils d’applications logique hello Azure pour Visual Studio.
+Après avoir installé les prérequis, téléchargez et installez les outils Azure Logic Apps pour Visual Studio.
 
-1. Ouvrez Visual Studio. Sur hello **outils** menu, sélectionnez **Extensions et mises à jour**.
-2. Développez hello **Online** catégorie, vous pouvez rechercher en ligne Bonjour galerie Visual Studio.
+1. Ouvrez Visual Studio. Dans le menu **Outils**, sélectionnez **Extensions et mises à jour**.
+2. Développez la catégorie **En ligne** pour effectuer une recherche en ligne dans la galerie Visual Studio.
 3. Parcourez les résultats ou recherchez **Logic Apps** jusqu’à ce que vous trouviez **Outils Azure Logic Apps pour Visual Studio**.
-4. toodownload et installer une extension hello, cliquez sur **télécharger**.
+4. Pour télécharger et installer l’extension, cliquez sur **Télécharger**.
 5. Redémarrez Visual Studio après l’installation.
 
 > [!NOTE]
-> hello de toodownload Azure logique applications Tools pour Visual Studio accéder directement, toohello [Visual Studio Marketplace](https://visualstudiogallery.msdn.microsoft.com/e25ad307-46cf-412e-8ba5-5b555d53d2d9).
+> Pour télécharger directement les outils Azure Logic Apps pour Visual Studio, accédez à [Visual Studio Marketplace](https://visualstudiogallery.msdn.microsoft.com/e25ad307-46cf-412e-8ba5-5b555d53d2d9).
 
 ## <a name="browse-for-logic-apps-in-cloud-explorer"></a>Recherche d’applications logiques dans Cloud Explorer
 
-1.  tooopen Cloud Explorer, sur hello **vue** menu, choisissez **Cloud Explorer**.
+1.  Pour ouvrir Cloud Explorer, sur le menu **Affichage**, choisissez **Cloud Explorer**.
 2.  Recherchez votre application logique, par groupe de ressources ou par type de ressource. 
 
-    * Si vous y accédez par type de ressource, sélectionnez votre abonnement Azure, développez hello **Logic Apps** section et sélectionnez votre application logique. 
-    * Si vous y accédez par groupe de ressources, développez le groupe de ressources hello où votre application logique et sélectionnez votre application logique.
+    * Si vous les parcourez par type de ressource, sélectionnez un abonnement Azure, développez la section **Logic Apps**, puis sélectionnez une application logique. 
+    * Si vous y accédez par groupe de ressources, développez le groupe de ressources qui contient votre application logique, puis sélectionnez votre application logique.
 
-    les commandes tooview pour votre application logique, avec le bouton droit de votre application logique, ou bas hello du Cloud Explorer, choisissez hello **Actions** menu.
+    Pour afficher les commandes de votre application logique, cliquez avec le bouton droit sur votre application logique, ou en bas de Cloud Explorer, choisissez le menu **Actions**.
 
     ![Accès à votre application logique](./media/logic-apps-manage-from-vs/browse.png)
 
 ## <a name="edit-your-logic-app-with-logic-apps-designer"></a>Modifier votre application logique avec le Concepteur d’applications logiques
 
-À partir du Cloud Explorer, vous pouvez ouvrir une application actuellement déployé logique Bonjour même concepteur que vous utilisez dans hello portail Azure. 
+Dans Cloud Explorer, vous pouvez ouvrir une application logique actuellement déployée dans le même concepteur que celui que vous utilisez dans le portail Azure. 
 
-* tooedit votre application logique, dans l’Explorateur de Cloud, avec le bouton droit de votre application logique, puis sélectionnez **ouvert avec l’éditeur d’application logique**. 
+* Pour modifier votre application logique, dans Cloud Explorer, cliquez avec le bouton droit sur votre application logique, puis sélectionnez **Ouvrir avec l'éditeur d'application logique**. 
 
-* toopublish votre toohello mises à jour le cloud, choisissez **publier**. 
+* Pour publier vos mises à jour dans le cloud, choisissez **Publier**. 
 
-* toostart une nouvelle exécution, choisissez **exécuter un déclencheur**.
+* Pour démarrer une nouvelle exécution, choisissez **Déclencheur d'exécution**.
 
 ![Concepteur Logic Apps](./media/logic-apps-manage-from-vs/designer.png)
 
-À partir du concepteur hello, vous pouvez également **télécharger** une application logique. Cette action est la définition de la logique d’application hello automatiquement et enregistre la définition de hello sous la forme d’un modèle de déploiement Azure Resource Manager. Vous pouvez ajouter ce projet de déploiement modèle tooyour groupe de ressources Azure.
+Dans le concepteur, vous pouvez également **Télécharger** une application logique. Cette action paramètre automatiquement la définition de l’application logique et l’enregistre sous la forme d’un modèle de déploiement Azure Resource Manager. Vous pouvez ajouter ce modèle de déploiement à votre projet de groupe de ressources Azure.
 
 ## <a name="browse-your-logic-app-run-history"></a>Parcourir votre historique des exécutions d’une application logique
 
-hello tooview l’historique de votre application logique, d’exécution avec le bouton droit de votre application logique, puis sélectionnez **ouvrir l’historique d’exécution**. tooreorder votre historique d’exécution basée sur n’importe quel en-tête de colonne de hello indiqué, sélectionnez Propriétés hello.
+Pour afficher l’historique des exécutions de votre application logique, cliquez avec le bouton droit sur votre application logique et sélectionnez **Ouvrir l’historique des exécutions**. Pour réorganiser votre historique des exécutions en fonction de l’une des propriétés affichées, sélectionnez l’en-tête de colonne.
 
 ![Historique d’exécution](media/logic-apps-manage-from-vs/runs.png)
 
-hello tooshow l’historique d’une instance d’exécution pour pouvoir consulter hello exécuter des résultats, y compris les entrées de hello et des sorties à partir de chaque étape, double-cliquez sur un des hello exécuter des instances.
+Pour afficher l’historique des exécutions d’une instance et voir les résultats de l’exécution, notamment les entrées et sorties de chaque étape, double-cliquez sur l’une des instances d’exécution.
 
 ![Exécution des résultats de l’historique, des entrées et des sorties](./media/logic-apps-manage-from-vs/history.png)
 

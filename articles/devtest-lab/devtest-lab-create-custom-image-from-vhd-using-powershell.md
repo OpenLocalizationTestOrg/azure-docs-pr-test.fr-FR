@@ -1,5 +1,5 @@
 ---
-title: "aaaCreate une image personnalisée de Azure DevTest Labs à partir d’un fichier de disque dur virtuel à l’aide de PowerShell | Documents Microsoft"
+title: "Créer une image personnalisée dans Azure DevTest Labs à partir d’un fichier de disque dur virtuel à l’aide de PowerShell | Microsoft Docs"
 description: "Automatiser la création d’une image personnalisée dans Azure DevTest Labs à partir d’un fichier de disque dur virtuel avec PowerShell"
 services: devtest-lab,virtual-machines
 documentationcenter: na
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 39b4005fa46cdf86cf0800ca376128134bcfb650
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a4729f70aae80a13233fbe96a5d8a56c0c9d01d3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-custom-image-from-a-vhd-file-using-powershell"></a>Créer une image personnalisée à partir d’un fichier de disque dur virtuel avec PowerShell
 
@@ -30,22 +30,22 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="step-by-step-instructions"></a>Instructions pas à pas
 
-Hello étapes suivantes vous aider à créer une image personnalisée à partir d’un fichier de disque dur virtuel à l’aide de PowerShell :
+La procédure suivante décrit comment créer une image personnalisée à partir d’un fichier de disque dur virtuel avec PowerShell :
 
-1. À l’invite de PowerShell, ouvrez une session dans tooyour compte Azure avec hello après appel toohello **AzureRmAccount de connexion** applet de commande.  
+1. À l’invite de PowerShell, connectez-vous à votre compte Azure avec l’appel suivant à l’applet de commande **Login-AzureRmAccount**.  
     
     ```PowerShell
     Login-AzureRmAccount
     ```
 
-1.  Sélectionnez hello souhaité d’abonnement Azure en appelant hello **sélectionnez-AzureRmSubscription** applet de commande. Remplacez hello suivant l’espace réservé pour hello **$subscriptionId** variable avec un ID d’abonnement Azure valide. 
+1.  Sélectionnez l’abonnement Azure souhaité en appelant l’applet de commande **Select-AzureRmSubscription**. Remplacez l’espace suivant réservé à la variable **$subscriptionId** par un ID d’abonnement Azure valide. 
 
     ```PowerShell
     $subscriptionId = '<Specify your subscription ID here>'
     Select-AzureRmSubscription -SubscriptionId $subscriptionId
     ```
 
-1.  Obtenir un objet lab de hello en appelant hello **Get-AzureRmResource** applet de commande. Remplacez hello suivant des espaces réservés pour hello **$labRg** et **$labName** variables avec hello appropriées des valeurs pour votre environnement. 
+1.  Récupérez l’objet de laboratoire en appelant l’applet de commande **Get-AzureRmResource**. Remplacez les espaces suivants réservés aux variables **$labRg** et **$labName** par les valeurs appropriées pour votre environnement. 
 
     ```PowerShell
     $labRg = '<Specify your lab resource group name here>'
@@ -53,62 +53,62 @@ Hello étapes suivantes vous aider à créer une image personnalisée à partir 
     $lab = Get-AzureRmResource -ResourceId ('/subscriptions/' + $subscriptionId + '/resourceGroups/' + $labRg + '/providers/Microsoft.DevTestLab/labs/' + $labName)
     ```
  
-1.  Obtenir compte de stockage lab hello et compte de stockage lab valeurs de clés à partir de l’objet de laboratoire hello. 
+1.  Récupérez les valeurs de clé du compte de stockage et du compte de stockage du laboratoire dans l’objet de laboratoire. 
 
     ```PowerShell
     $labStorageAccount = Get-AzureRmResource -ResourceId $lab.Properties.defaultStorageAccount 
     $labStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $labStorageAccount.ResourceGroupName -Name $labStorageAccount.ResourceName)[0].Value
     ```
 
-1.  Remplacez hello suivant l’espace réservé pour hello **$vhdUri** variable avec hello URI tooyour téléchargé le fichier de disque dur virtuel. Vous pouvez obtenir l’URI du fichier de disque dur virtuel hello à partir du panneau d’objets blob du compte de stockage hello Bonjour portail Azure.
+1.  Remplacez l’espace suivant réservé à la variable **$vhdUri** par l’URI vers le fichier VHD chargé. Vous pouvez obtenir l’URI du fichier de disque dur virtuel dans le panneau d’objet blob du compte de stockage, dans le portail Azure.
 
     ```PowerShell
-    $vhdUri = '<Specify hello VHD URI here>'
+    $vhdUri = '<Specify the VHD URI here>'
     ```
 
-1.  Créer à l’aide de hello personnalisée hello **New-AzureRmResourceGroupDeployment** applet de commande. Remplacez hello suivant des espaces réservés pour hello **$customImageName** et **$customImageDescription** noms toomeaningful de variables pour votre environnement.
+1.  Créez l’image personnalisée avec l’applet de commande **New-AzureRmResourceGroupDeployment**. Remplacez les espaces suivants réservés aux variables **$customImageName** et **$customImageDescription** par des noms significatifs pour votre environnement.
 
     ```PowerShell
-    $customImageName = '<Specify hello custom image name>'
-    $customImageDescription = '<Specify hello custom image description>'
+    $customImageName = '<Specify the custom image name>'
+    $customImageDescription = '<Specify the custom image description>'
 
     $parameters = @{existingLabName="$($lab.Name)"; existingVhdUri=$vhdUri; imageOsType='windows'; isVhdSysPrepped=$false; imageName=$customImageName; imageDescription=$customImageDescription}
 
     New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Name CreateCustomImage -TemplateUri 'https://raw.githubusercontent.com/Azure/azure-devtestlab/master/Samples/201-dtl-create-customimage-from-vhd/azuredeploy.json' -TemplateParameterObject $parameters
     ```
 
-## <a name="powershell-script-toocreate-a-custom-image-from-a-vhd-file"></a>PowerShell script toocreate une image personnalisée à partir d’un fichier de disque dur virtuel
+## <a name="powershell-script-to-create-a-custom-image-from-a-vhd-file"></a>Script PowerShell pour créer une image personnalisée à partir d’un fichier de disque dur virtuel
 
-Hello PowerShell script suivant peut être utilisé toocreate une image personnalisée à partir d’un fichier de disque dur virtuel. Remplacer les espaces réservés de hello (début et de fin avec crochets pointus) avec les valeurs appropriées hello à vos besoins. 
+Le script PowerShell suivant peut être utilisé pour créer une image personnalisée à partir d’un fichier de disque dur virtuel. Remplacez les espaces réservés (entre crochets) par les valeurs adaptées à vos besoins. 
 
 ```PowerShell
-# Log in tooyour Azure account.  
+# Log in to your Azure account.  
 Login-AzureRmAccount
 
-# Select hello desired Azure subscription. 
+# Select the desired Azure subscription. 
 $subscriptionId = '<Specify your subscription ID here>'
 Select-AzureRmSubscription -SubscriptionId $subscriptionId
 
-# Get hello lab object.
+# Get the lab object.
 $labRg = '<Specify your lab resource group name here>'
 $labName = '<Specify your lab name here>'
 $lab = Get-AzureRmResource -ResourceId ('/subscriptions/' + $subscriptionId + '/resourceGroups/' + $labRg + '/providers/Microsoft.DevTestLab/labs/' + $labName)
 
-# Get hello lab storage account and lab storage account key values.
+# Get the lab storage account and lab storage account key values.
 $labStorageAccount = Get-AzureRmResource -ResourceId $lab.Properties.defaultStorageAccount 
 $labStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $labStorageAccount.ResourceGroupName -Name $labStorageAccount.ResourceName)[0].Value
 
-# Set hello URI of hello VHD file.  
-$vhdUri = '<Specify hello VHD URI here>'
+# Set the URI of the VHD file.  
+$vhdUri = '<Specify the VHD URI here>'
 
-# Set hello custom image name and description values.
-$customImageName = '<Specify hello custom image name>'
-$customImageDescription = '<Specify hello custom image description>'
+# Set the custom image name and description values.
+$customImageName = '<Specify the custom image name>'
+$customImageDescription = '<Specify the custom image description>'
 
-# Set up hello parameters object.
+# Set up the parameters object.
 $parameters = @{existingLabName="$($lab.Name)"; existingVhdUri=$vhdUri; imageOsType='windows'; isVhdSysPrepped=$false; imageName=$customImageName; imageDescription=$customImageDescription}
 
-# Create hello custom image. 
+# Create the custom image. 
 New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Name CreateCustomImage -TemplateUri 'https://raw.githubusercontent.com/Azure/azure-devtestlab/master/Samples/201-dtl-create-customimage-from-vhd/azuredeploy.json' -TemplateParameterObject $parameters
 ```
 
@@ -119,4 +119,4 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $lab.ResourceGroupName -Na
 
 ##<a name="next-steps"></a>Étapes suivantes
 
-- [Ajouter un laboratoire tooyour de machine virtuelle](./devtest-lab-add-vm-with-artifacts.md)
+- [Ajout d’une machine virtuelle à votre laboratoire](./devtest-lab-add-vm-with-artifacts.md)

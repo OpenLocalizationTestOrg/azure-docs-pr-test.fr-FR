@@ -1,5 +1,5 @@
 ---
-title: "aaaTroubleshooting hybride Azure Active Directory joint des périphériques de bas niveau | Documents Microsoft"
+title: "Dépanner des appareils hybrides de bas niveau joints à Azure Active Directory | Microsoft Docs"
 description: "Dépannez des appareils hybrides de bas niveau joints à Azure Active Directory."
 services: active-directory
 documentationcenter: 
@@ -14,15 +14,15 @@ ms.topic: article
 ms.date: 08/17/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: edd56b89579fac6b427732902284ad9c568b87b4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 715fca79e488ae3759926181c244a42026f4a554
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="troubleshooting-hybrid-azure-active-directory-joined-down-level-devices"></a>Dépanner des appareils hybrides de bas niveau joints à Azure Active Directory 
 
-Cette rubrique est applicable toohello uniquement suivant des appareils : 
+Cette rubrique s’applique uniquement aux appareils suivants : 
 
 - Windows 7 
 - Windows 8.1 
@@ -33,7 +33,7 @@ Cette rubrique est applicable toohello uniquement suivant des appareils :
 
 Pour Windows 10 ou Windows Server 2016, consultez la page [Dépanner des appareils hybrides Windows 10 et Windows Server 2016 joints à Azure Active Directory](device-management-troubleshoot-hybrid-join-windows-current.md).
 
-Cette rubrique suppose que vous avez [configuré hybride Azure Active Directory des appareils joints à un](device-management-hybrid-azuread-joined-devices-setup.md) hello toosupport les scénarios suivants :
+Cette rubrique suppose que vous avez [configuré les appareils hybrides joints à Azure Active Directory](device-management-hybrid-azuread-joined-devices-setup.md) de façon à prendre en charge les scénarios suivants :
 
 - Accès conditionnel basé sur les appareils
 
@@ -45,35 +45,35 @@ Cette rubrique suppose que vous avez [configuré hybride Azure Active Directory 
 
 
 
-Cette rubrique fournit des conseils sur la façon dont des problèmes potentiels de tooresolve de résolution des problèmes.  
+Cette rubrique vous fournit des conseils sur la façon de résoudre les problèmes potentiels.  
 
 **Bon à savoir :** 
 
-- nombre maximal de Hello de périphériques par utilisateur est centré sur l’appareil. Par exemple, si *jdoe* et *jharnett* tooa connexion périphérique, un enregistrement distinct (DeviceID) est créé pour chacun d’eux Bonjour **utilisateur** onglet info.  
+- Le nombre maximal d’appareils par utilisateur dépend de l’appareil. Par exemple, si *jdoe* et *jharnett* se connectent à un appareil, une inscription (DeviceID) distincte est créée pour chacun d’eux dans l’onglet d’informations **UTILISATEUR**.  
 
-- l’inscription initiale de Hello / joindre des appareils est configuré tooperform une tentative d’ouverture de session ou verrouiller / déverrouiller. Un délai de cinq minutes peut être déclenché par une tâche du Planificateur de tâches. 
+- L’inscription / jointure d’appareils initiale est configurée pour effectuer une tentative à l’ouverture de session ou au verrouillage / déverrouillage. Un délai de cinq minutes peut être déclenché par une tâche du Planificateur de tâches. 
 
-- Une réinstallation du système d’exploitation de hello ou une manuelle annuler l’inscription et réinscrivez peuvent créer une nouvelle inscription sur Azure AD et résultats dans plusieurs entrées sous l’onglet d’informations utilisateur hello dans hello portail Azure. 
+- La réinstallation du système d’exploitation de même qu’une désinscription / réinscription manuelle sont susceptibles de créer une nouvelle inscription sur Azure AD et d’aboutir à plusieurs entrées sous l’onglet d’informations UTILISATEUR sur le Portail Azure. 
 
 
-## <a name="step-1-retrieve-hello-registration-status"></a>Étape 1 : Récupération de l’état de l’inscription de hello 
+## <a name="step-1-retrieve-the-registration-status"></a>Étape 1 : Récupérer l’état de l’inscription 
 
-**état de l’inscription de hello tooverify :**  
+**Pour vérifier l’état de l’inscription :**  
 
-1. Invite de commandes ouverte hello en tant qu’administrateur 
+1. Ouvrez une invite de commandes en tant qu’administrateur. 
 
 2. Saisissez `"%programFiles%\Microsoft Workplace Join\autoworkplace.exe /i"`
 
-Cette commande affiche une boîte de dialogue qui vous offre plus de détails sur l’état de jointure hello.
+Cette commande affiche une boîte de dialogue qui vous donne plus de détails sur l’état de la jonction.
 
 ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/01.png)
 
 
-## <a name="step-2-evaluate-hello-hybrid-azure-ad-join-status"></a>Étape 2 : Évaluer l’état de jointure hello hybrides Azure AD 
+## <a name="step-2-evaluate-the-hybrid-azure-ad-join-status"></a>Étape 2 : Évaluer l’état de la jointure Azure AD hybride 
 
-Si la jointure de hello hybrides Azure AD n’a pas réussi, boîte de dialogue hello vous offre plus d’informations sur le problème hello qui s’est produite.
+Si la jointure Azure AD hybride n’a pas réussi, la boîte de dialogue vous fournit des informations sur le problème qui s’est produit.
 
-**les problèmes les plus courants Hello sont :**
+**Les tâches les plus courantes sont :**
 
 - Une mauvaise configuration d’AD FS ou d’Azure AD
 
@@ -87,26 +87,26 @@ Si la jointure de hello hybrides Azure AD n’a pas réussi, boîte de dialogue 
 
     ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/04.png)
 
-- Hello service ne répond pas 
+- Le service ne répond pas. 
 
     ![Workplace Join pour Windows](./media/active-directory-device-registration-troubleshoot-windows-legacy/05.png)
 
-Vous trouverez également des informations d’état hello dans le journal des événements hello sous **Applications et Services Log\Microsoft-jonction**.
+Vous pouvez également trouver les informations d’état dans le journal des événements sous **Applications and Services Log\Microsoft-Workplace Join**.
   
-**causes les plus courantes Hello pour une jointure de Azure AD hybride ayant échoué sont :** 
+**Voici les causes les plus courantes d’échec d’une jointure Azure AD hybride :** 
 
-- Votre ordinateur n’est pas sur le réseau interne de hello organisation ou un réseau privé virtuel sans connexion tooan locaux contrôleur de domaine Active Directory.
+- Votre ordinateur n’est pas sur le réseau interne de l’entreprise ou un réseau privé virtuel sans connexion à un contrôleur de domaine Active Directory local.
 
-- Vous êtes connecté sur l’ordinateur tooyour avec un compte d’ordinateur local. 
+- Vous êtes connecté à votre ordinateur avec un compte d’ordinateur local. 
 
 - Problèmes de configuration du service : 
 
-  - Hello serveur de fédération a été configuré toosupport **WIAORMULTIAUTHN**. 
+  - Le serveur de fédération a été configuré pour prendre en charge **WIAORMULTIAUTHN**. 
 
-  - Il n’existe aucun objet de Point de connexion qui pointe le nom de domaine vérifié tooyour dans Azure AD dans la forêt hello AD où appartient hello ordinateur.
+  - Il n’existe aucun objet de point de connexion de service qui pointe vers le nom de votre domaine vérifié dans Azure AD dans la forêt Active Directory à laquelle l’ordinateur appartient.
 
-  - Un utilisateur a atteint la limite de hello des périphériques. 
+  - Un utilisateur a atteint la limite d’appareils. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour toute question, consultez hello [Forum aux questions sur la gestion des appareils](device-management-faq.md)  
+Pour toute question, consultez [FAQ sur la gestion des appareils](device-management-faq.md)  

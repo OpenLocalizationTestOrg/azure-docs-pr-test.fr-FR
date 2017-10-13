@@ -1,6 +1,6 @@
 ---
-title: "Propriétés du groupe aaaManage dans Azure Active Directory | Documents Microsoft"
-description: "Comment tooedit hello propriétés et autres paramètres de configuration pour un groupe dans Azure Active Directory"
+title: "Gérer des propriétés de groupe dans Azure Active Directory | Microsoft Docs"
+description: "Comment modifier les propriétés et les autres paramètres de configuration d’un groupe dans Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -16,28 +16,28 @@ ms.date: 08/01/2017
 ms.author: curtand
 ms.reviewer: kairaz.contractor
 ms.custom: H1Hack27Feb2017;it-pro
-ms.openlocfilehash: aa17c62b4824e5c2de8adc1d34cd9618f3e722f0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b4baccafc0a9178223dbf64c664fc34ab9f7f916
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="manage-hello-settings-for-a-group-in-azure-active-directory"></a>Gérer les paramètres de hello pour un groupe dans Azure Active Directory
-Cet article explique comment toochange hello paramètres pour un groupe dans Azure Active Directory (Azure AD).
+# <a name="manage-the-settings-for-a-group-in-azure-active-directory"></a>Gérer les paramètres des groupes dans Azure Active Directory
+Cet article explique comment modifier les paramètres d’un groupe dans Azure Active Directory (Azure AD).
 
-## <a name="how-do-i-find-and-change-hello-settings"></a>Comment rechercher et modifier les paramètres de hello ?
-1. Connectez-vous à toohello [centre d’administration Azure AD](https://aad.portal.azure.com) avec un compte qui est un administrateur global pour le répertoire de hello.
-2. Sélectionnez **davantage de services**, entrez **utilisateurs et groupes** dans hello de zone de texte, puis sélectionnez **entrée**.
+## <a name="how-do-i-find-and-change-the-settings"></a>Comment rechercher et modifier les paramètres ?
+1. Connectez-vous au [centre d’administration Azure AD](https://aad.portal.azure.com) en utilisant un compte d’administrateur général pour le répertoire.
+2. Sélectionnez **Plus de services**, saisissez **Utilisateurs et groupes** dans la zone de texte, puis sélectionnez **Entrée**.
 
    ![Ouverture du panneau Utilisateurs et groupes](./media/active-directory-groups-settings-azure-portal/search-user-management.png)
-3. Sur hello **utilisateurs et groupes** panneau, sélectionnez **tous les groupes**.
+3. Dans le panneau **Utilisateurs et groupes**, sélectionnez **Tous les groupes**.
 
-   ![Hello ouverture tous les groupes de panneau](./media/active-directory-groups-settings-azure-portal/view-groups-blade.png)
-4. Sur hello **utilisateurs et groupes - tous les groupes** panneau, sélectionnez un groupe.
-5. Sur hello **groupe - *groupname***  panneau, sélectionnez **propriétés**.
+   ![Ouverture de tous les panneaux de groupes](./media/active-directory-groups-settings-azure-portal/view-groups-blade.png)
+4. Dans le panneau **Utilisateurs et groupes - Tous les groupes** , sélectionnez un groupe.
+5. Dans le panneau **Groupe - *NomGroupe*** sélectionnez **Propriétés**.
 
-   ![Panneau des propriétés hello ouverture](./media/active-directory-groups-settings-azure-portal/select-group-properties.png)
-6. Lorsque vous avez terminé la modification des propriétés pour le groupe de hello, sélectionnez **enregistrer**.    
+   ![Ouverture du panneau Propriétés](./media/active-directory-groups-settings-azure-portal/select-group-properties.png)
+6. Lorsque vous avez terminé la modification des propriétés du groupe, sélectionnez **Enregistrer**.    
 
    ![Enregistrement des modifications de propriétés](./media/active-directory-groups-settings-azure-portal/save-group-properties.png)
 

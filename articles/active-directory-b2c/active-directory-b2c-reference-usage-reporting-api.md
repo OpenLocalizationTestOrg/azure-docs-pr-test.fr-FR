@@ -12,31 +12,31 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 08/04/2017
 ms.author: joroja
-ms.openlocfilehash: f01f0d1d12464e38f892f1fdd5c7408a3b4cd1aa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 52180b760046d273c5a75720df0a73532d0343ad
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="accessing-usage-reports-in-azure-ad-b2c-via-hello-reporting-api"></a>L’accès aux rapports d’utilisation dans Azure AD B2C via hello API de création de rapports
+# <a name="accessing-usage-reports-in-azure-ad-b2c-via-the-reporting-api"></a>Accès aux rapports d’utilisation dans Azure AD B2C via l’API de création de rapports
 
-Azure Active Directory B2C (Azure AD B2C) fournit une authentification basée sur la connexion des utilisateurs et de l’authentification multifacteur d’Azure. L’authentification est fournie pour les utilisateurs finals de votre famille d’applications à travers les fournisseurs d’identité. Lorsque vous connaissez le nombre de hello d’utilisateurs inscrits dans le locataire hello, fournisseurs hello ils utilisées tooregister et le nombre de hello d’authentifications par type, vous pouvez répondre aux questions telles que :
-* Nombre d’utilisateurs à partir de chaque type de fournisseur d’identité (par exemple, un compte Microsoft ou LinkedIn) ont enregistré Bonjour 10 derniers jours ?
-* Le nombre des authentifications à l’aide de l’authentification multifacteur ont abouti Bonjour le mois dernier ?
+Azure Active Directory B2C (Azure AD B2C) fournit une authentification basée sur la connexion des utilisateurs et de l’authentification multifacteur d’Azure. L’authentification est fournie pour les utilisateurs finals de votre famille d’applications à travers les fournisseurs d’identité. Quand vous connaissez le nombre d’utilisateurs inscrits dans le locataire, les fournisseurs qu’ils ont utilisés pour s’inscrire et le nombre d’authentifications par type, vous pouvez répondre à des questions comme celles-ci :
+* Combien d’utilisateurs de chaque type de fournisseur d’identité (par exemple un compte Microsoft ou LinkedIn) se sont inscrits au cours des 10 derniers jours ?
+* Combien d’authentifications utilisant l’authentification multifacteur ont réussi au cours du mois dernier ?
 * Combien d’authentifications basées sur la connexion ont été effectuées ce mois-ci ? Par jour ? Par application ?
-* Comment puis-je évaluer hello attendu coût mensuel de mon activité du client Azure AD B2C ?
+* Comment puis-je estimer le coût mensuel prévu de l’activité de mon locataire Azure AD B2C ?
 
-Cet article se concentre sur l’activité de toobilling des rapports liés, qui est basée sur hello nombre d’utilisateurs, facturables signe dans basés sur des authentifications et d’authentifications multifacteur.
+Cet article se concentre sur les rapports liés à l’activité de facturation, qui est basée sur le nombre d’utilisateurs, les authentifications facturables basées sur la connexion et les authentifications multifacteurs.
 
 
-## <a name="prerequisites"></a>Composants requis
-Avant de commencer, vous devez étapes hello toocomplete [tooaccess de conditions préalables hello Azure AD reporting API](https://azure.microsoft.com/documentation/articles/active-directory-reporting-api-getting-started/). Créer une application, obtenir une clé secrète pour elle et grant il accéder à des rapports du locataire tooyour Azure AD B2C des droits. Des exemples *Script Bash* et *Script Python* sont également fournis ici. 
+## <a name="prerequisites"></a>Prérequis
+Avant de commencer, vous devez effectuer les étapes décrites dans [Prérequis pour accéder aux API de création de rapports d’Azure AD](https://azure.microsoft.com/documentation/articles/active-directory-reporting-api-getting-started/). Créez une application, obtenez une clé secrète pour celle-ci et accordez-lui des autorisations d’accès aux rapports de votre client Azure AD B2C. Des exemples *Script Bash* et *Script Python* sont également fournis ici. 
 
 ## <a name="powershell-script"></a>Script PowerShell
-Ce script illustre la création de hello de quatre rapports d’utilisation à l’aide de hello `TimeStamp` paramètre et hello `ApplicationId` filtre.
+Ce script montre la création de quatre rapports d’utilisation avec le paramètre `TimeStamp` et le filtre `ApplicationId`.
 
 ```powershell
-# This script will require hello Web Application and permissions setup in Azure Active Directory
+# This script will require the Web Application and permissions setup in Azure Active Directory
 
 # Constants
 $ClientID      = "your-client-application-id-here"  
@@ -49,44 +49,44 @@ $oauth         = Invoke-RestMethod -Method Post -Uri $loginURL/$tenantdomain/oau
 if ($oauth.access_token -ne $null) {
     $headerParams  = @{'Authorization'="$($oauth.token_type) $($oauth.access_token)"}
 
-    Write-host Data from hello tenantUserCount report
+    Write-host Data from the tenantUserCount report
     Write-host ====================================================
-     # Returns a JSON document for hello report
+     # Returns a JSON document for the report
     $myReport = (Invoke-WebRequest -Headers $headerParams -Uri "https://graph.windows.net/$tenantdomain/reports/tenantUserCount?api-version=beta")
     Write-host $myReport.Content
 
-    Write-host Data from hello tenantUserCount report with datetime filter
+    Write-host Data from the tenantUserCount report with datetime filter
     Write-host ====================================================
     $myReport = (Invoke-WebRequest -Headers $headerParams -Uri "https://graph.windows.net/$tenantdomain/reports/tenantUserCount?%24filter=TimeStamp+gt+2016-10-15&api-version=beta")
     Write-host $myReport.Content
 
-    Write-host Data from hello b2cAuthenticationCountSummary report
+    Write-host Data from the b2cAuthenticationCountSummary report
     Write-host ====================================================
     $myReport = (Invoke-WebRequest -Headers $headerParams -Uri "https://graph.windows.net/$tenantdomain/reports/b2cAuthenticationCountSummary?api-version=beta")
     Write-host $myReport.Content
 
-    Write-host Data from hello b2cAuthenticationCount report with datetime filter
+    Write-host Data from the b2cAuthenticationCount report with datetime filter
     Write-host ====================================================
     $myReport = (Invoke-WebRequest -Headers $headerParams -Uri "https://graph.windows.net/$tenantdomain/reports/b2cAuthenticationCount?%24filter=TimeStamp+gt+2016-09-20+and+TimeStamp+lt+2016-10-03&api-version=beta")
     Write-host $myReport.Content
 
-    Write-host Data from hello b2cAuthenticationCount report with ApplicationId filter
+    Write-host Data from the b2cAuthenticationCount report with ApplicationId filter
     Write-host ====================================================
-    # Returns a JSON document for hello " " report
+    # Returns a JSON document for the " " report
         $myReport = (Invoke-WebRequest -Headers $headerParams -Uri "https://graph.windows.net/$tenantdomain/reports/b2cAuthenticationCount?%24filter=ApplicationId+eq+ada78934-a6da-4e69-b816-10de0d79db1d&api-version=beta")
     Write-host $myReport.Content
 
-    Write-host Data from hello b2cMfaRequestCountSummary
+    Write-host Data from the b2cMfaRequestCountSummary
     Write-host ====================================================
     $myReport = (Invoke-WebRequest -Headers $headerParams -Uri "https://graph.windows.net/$tenantdomain/reports/b2cMfaRequestCountSummary?api-version=beta")
     Write-host $myReport.Content
 
-    Write-host Data from hello b2cMfaRequestCount report with datetime filter
+    Write-host Data from the b2cMfaRequestCount report with datetime filter
     Write-host ====================================================
     $myReport = (Invoke-WebRequest -Headers $headerParams -Uri "https://graph.windows.net/$tenantdomain/reports/b2cMfaRequestCount?%24filter=TimeStamp+gt+2016-09-10+and+TimeStamp+lt+2016-10-04&api-version=beta")
     Write-host $myReport.Content
 
-    Write-host Data from hello b2cMfaRequestCount report with ApplicationId filter
+    Write-host Data from the b2cMfaRequestCount report with ApplicationId filter
     Write-host ====================================================
     $myReport = (Invoke-WebRequest -Headers $headerParams -Uri "https://graph.windows.net/$tenantdomain/reports/b2cMfaRequestCountSummary?%24filter=ApplicationId+eq+ada78934-a6da-4e69-b816-10de0d79db1d&api-version=beta")
      Write-host $myReport.Content
@@ -98,39 +98,39 @@ if ($oauth.access_token -ne $null) {
 
 
 ## <a name="usage-report-definitions"></a>Définitions de rapport d’utilisation
-* **tenantUserCount**: hello nombre d’utilisateurs dans le locataire hello par type de fournisseur d’identité, par jour Bonjour 30 derniers jours. (Le cas échéant, un `TimeStamp` filtre fournit le nombre de comptes utilisateur à partir d’une date spécifiée de toohello date actuelle). rapport de Hello fournit :
-  * **TotalUserCount**: hello nombre de tous les objets utilisateur.
-  * **OtherUserCount**: hello du nombre d’utilisateurs d’Azure Active Directory (pas les utilisateurs Azure AD B2C).
-  * **LocalUserCount**: hello du nombre de comptes d’utilisateur Azure AD B2C créé avec le client de toohello local Azure Active Directory B2C d’informations d’identification.
+* **tenantUserCount** : le nombre d’utilisateurs dans le locataire par type de fournisseur d’identité, par jour, au cours des 30 derniers jours. (Facultatif : un filtre `TimeStamp` fournit le nombre d’utilisateurs à partir d’une date spécifiée jusqu’à la date du jour.) Le rapport fournit les éléments suivants :
+  * **TotalUserCount** : nombre de tous les objets utilisateur.
+  * **OtherUserCount** : nombre d’utilisateurs d’Azure Active Directory (pas les utilisateurs d’Azure AD B2C).
+  * **LocalUserCount** : nombre de comptes utilisateur Azure AD B2C créés avec les informations d’identification locales du locataire Azure AD B2C.
 
-* **AlternateIdUserCount**: nombre de hello d’Azure AD B2C utilisateurs inscrits avec des fournisseurs d’identité externe (par exemple, Facebook, un compte Microsoft ou un autre client Azure Active Directory, également appelée tooas un `OrgId`).
+* **AlternateIdUserCount** : nombre d’utilisateurs d’Azure AD B2C inscrits auprès de fournisseurs d’identité externes (par exemple Facebook, un compte Microsoft ou un autre locataire Azure Active Directory, également appelé `OrgId`).
 
-* **b2cAuthenticationCountSummary**: résumé du nombre de quotidienne hello d’authentifications facturables sur hello 30 derniers jours, par jour et par type de flux d’authentification.
+* **b2cAuthenticationCountSummary** : récapitulatif du nombre quotidien d’authentifications facturables au cours des 30 derniers jours, par jour et par type de flux d’authentification.
 
-* **b2cAuthenticationCount**: hello du nombre d’authentifications dans un laps de temps. valeur par défaut Hello est hello 30 derniers jours.  (Facultatif : hello et fermants `TimeStamp` paramètres définissent une période de temps spécifique.) hello sortie inclut `StartTimeStamp` (première date de l’activité de ce client) et `EndTimeStamp` (dernière mise à jour).
+* **b2cAuthenticationCount** : nombre d’authentifications dans une période de temps définie. La période par défaut est celle des 30 derniers jours.  (Facultatif : les paramètres `TimeStamp` de début et de fin définissent une période spécifique.) La sortie inclut `StartTimeStamp` (première date d’activité de ce locataire ) et `EndTimeStamp` (dernière mise à jour).
 
-* **b2cMfaRequestCountSummary**: résumé du nombre de quotidienne hello d’authentification multifacteur, par jour et par type (SMS ou vocales).
+* **b2cMfaRequestCountSummary** : récapitulatif du nombre quotidien d’authentifications multifacteurs, par jour et par type (SMS ou vocales).
 
 
-## <a name="limitations"></a>Limites
-Les données du compteur sont actualisées toutes les 24 heures too48. Les authentifications sont mises à jour plusieurs fois par jour. Lorsque vous utilisez hello `ApplicationId` filtre, une réponse de rapport vide peut être due tooone des conditions suivantes :
-  * ID de l’application Hello n’existe pas dans le locataire de hello. Assurez-vous qu’il est correct.
-  * ID de l’application Hello existe, mais aucune donnée n’a été trouvée dans hello période de rapport. Passez en revue vos paramètres de date/heure.
+## <a name="limitations"></a>Limitations
+Les données du décompte d’utilisateurs sont actualisées toutes les 24 à 48 heures. Les authentifications sont mises à jour plusieurs fois par jour. Quand vous utilisez le filtre `ApplicationId`, une réponse de rapport vide peut être due à une des conditions suivantes :
+  * L’ID d’application n’existe pas dans le locataire. Assurez-vous qu’il est correct.
+  * L’ID d’application existe, mais aucune donnée n’a été trouvée dans la période du rapport. Passez en revue vos paramètres de date/heure.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 ### <a name="monthly-bill-estimates-for-azure-ad"></a>Estimations de la facturation mensuelle pour Azure AD
-Lorsque vous associez [hello plus Azure AD B2C tarification actuelle disponible](https://azure.microsoft.com/pricing/details/active-directory-b2c/), vous pouvez estimer quotidiennes, hebdomadaire et mensuelle consommation Azure.  Une estimation est particulièrement utile quand vous prévoyez des changements de comportement du locataire qui peuvent avoir un impact sur le coût global. Vous pouvez examiner les coûts réels dans votre [abonnement Azure lié](active-directory-b2c-how-to-enable-billing.md).
+Lorsque vous utilisez également [la tarification Azure AD B2C la plus récente disponible](https://azure.microsoft.com/pricing/details/active-directory-b2c/), vous pouvez estimer la consommation Azure quotidienne, hebdomadaire et mensuelle.  Une estimation est particulièrement utile quand vous prévoyez des changements de comportement du locataire qui peuvent avoir un impact sur le coût global. Vous pouvez examiner les coûts réels dans votre [abonnement Azure lié](active-directory-b2c-how-to-enable-billing.md).
 
 ### <a name="options-for-other-output-formats"></a>Options pour les autres formats de sortie
-Hello de code suivant montre des exemples d’envoi tooJSON de sortie et une liste de valeurs de nom XML :
+Le code suivant montre des exemples de l’envoi de la sortie vers JSON, vers une liste de valeurs de noms et vers XML :
 ```powershell
-# toooutput tooJSON use following line in hello PowerShell sample
+# to output to JSON use following line in the PowerShell sample
 $myReport.Content | Out-File -FilePath b2cUserJourneySummaryEvents.json -Force
 
-# toooutput hello content tooa name value list
+# to output the content to a name value list
 ($myReport.Content | ConvertFrom-Json).value | Out-File -FilePath name-your-file.txt -Force
 
-# toooutput hello content in XML use hello following line
+# to output the content in XML use the following line
 (($myReport.Content | ConvertFrom-Json).value | ConvertTo-Xml).InnerXml | Out-File -FilePath name-your-file.xml -Force
 ```

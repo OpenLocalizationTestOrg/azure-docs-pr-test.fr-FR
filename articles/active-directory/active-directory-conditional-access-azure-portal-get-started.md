@@ -1,8 +1,8 @@
 ---
-title: "aaaGet a démarré avec un accès conditionnel dans Azure Active Directory | Documents Microsoft"
+title: "Bien démarrer avec l’accès conditionnel dans Azure Active Directory | Microsoft Docs"
 description: "Testez l’accès conditionnel à l’aide d’une condition d’emplacement."
 services: active-directory
-keywords: "tooapps d’accès conditionnel, l’accès conditionnel avec Azure AD, sécuriser l’accès aux ressources toocompany, les stratégies d’accès conditionnel"
+keywords: "accès conditionnel aux applications, accès conditionnel à Azure AD, accès sécurisé aux ressources d’entreprise, stratégies d’accès conditionnel"
 documentationcenter: 
 author: MarkusVi
 manager: femila
@@ -15,35 +15,35 @@ ms.workload: identity
 ms.date: 07/31/2017
 ms.author: markvi
 ms.reviewer: calebb
-ms.openlocfilehash: 4521f5a34f5882e026f5e58a7127d8c55cba2f0b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cd53e8be32d1e98aaf9f72177895871dba69df86
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-conditional-access-in-azure-active-directory"></a>Bien démarrer avec l’accès conditionnel dans Azure Active Directory
 
-Accès conditionnel est une fonctionnalité d’Azure Active Directory qui permet des conditions toodefine vous sous lequel les utilisateurs autorisés peuvent accéder à vos applications. 
+L’accès conditionnel est une fonctionnalité d’Azure Active Directory, qui vous permet de définir les conditions dans lesquelles les utilisateurs autorisés peuvent accéder à vos applications. 
 
 Cette rubrique fournit des instructions pour tester un accès conditionnel en fonction d’une condition d’emplacement dans votre environnement.  
 
 
 ## <a name="scenario-description"></a>Description du scénario
 
-Une condition courante dans de nombreuses organisations est tooonly exiger l’authentification multifacteur pour tooapps d’accès qui n’est pas effectuée à partir de l’intranet d’entreprise de hello. Azure Active Directory vous permet d’atteindre cet objectif facilement grâce à une stratégie d’accès conditionnel basée sur l’emplacement. Cette rubrique fournit des instructions détaillées pour configurer une stratégie de ce type. Hello tire parti de la stratégie [des adresses IP approuvées](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips) toodistinguish entre les tentatives d’accès effectuées à partir de hello d’entreprise de l’intranet et tous les autres emplacements.
+De nombreuses organisations veulent limiter l’utilisation de l’authentification multifacteur aux tentatives d’accès aux applications, qui n’émanent pas de l’intranet de l’entreprise. Azure Active Directory vous permet d’atteindre cet objectif facilement grâce à une stratégie d’accès conditionnel basée sur l’emplacement. Cette rubrique fournit des instructions détaillées pour configurer une stratégie de ce type. Celle-ci utilise des [adresses IP approuvées](../multi-factor-authentication/multi-factor-authentication-whats-next.md#trusted-ips) pour faire la distinction entre les tentatives d’accès provenant de l’intranet de l’entreprise et celles provenant de tous les autres emplacements.
 
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Prérequis
 
-Hello scénario décrit dans cette rubrique part du principe que vous êtes familiarisé avec les concepts de hello décrites dans [accès conditionnel Azure Active Directory](active-directory-conditional-access-azure-portal.md).
+Le scénario décrit dans cette rubrique suppose que vous connaissiez les concepts abordés dans [Accès conditionnel Azure Active Directory](active-directory-conditional-access-azure-portal.md).
 
-tootest ce scénario, vous devez :
+Pour tester ce scénario, vous allez :
 
 - Créer un utilisateur de test 
 
-- Attribuer un utilisateur de test de toohello licence Azure AD Premium
+- Affecter une licence Azure AD Premium à cet utilisateur
 
-- Configurer une application gérée et affecter votre tooit d’utilisateur de test
+- Configurer une application gérée et lui affecter votre utilisateur de test
 
 - Configurer les adresses IP approuvées
 
@@ -52,29 +52,29 @@ Pour plus d’informations sur les adresses IP approuvées, consultez [Adresses 
 
 ## <a name="policy-configuration-steps"></a>Configuration de la stratégie
 
-**tooconfigure votre stratégie d’accès conditionnel, faire :**
+**Pour configurer votre stratégie d’accès conditionnel, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello barre de navigation gauche, cliquez sur **Azure Active Directory**. 
+1. Dans la barre de navigation gauche du portail Azure, cliquez sur **Azure Active Directory**. 
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/01.png)
 
-2. Sur hello **Azure Active Directory** panneau, Bonjour **gérer** , cliquez sur **accès conditionnel**.
+2. Dans le panneau **Azure Active Directory**, sous la section **Gérer**, cliquez sur **Accès conditionnel**.
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/02.png)
  
-3. Sur hello **accès conditionnel** panneau, tooopen hello **nouveau** lame, dans la barre d’outils hello en haut de hello, cliquez sur **ajouter**.
+3. Dans le panneau **Accès conditionnel**, pour ouvrir le panneau **Nouveau**, cliquez sur **Ajouter** dans la barre d’outils située en haut.
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/03.png)
 
-4. Sur hello **nouveau** panneau, Bonjour **nom** zone de texte, tapez un nom pour votre stratégie.
+4. Dans le champ **Nom** du panneau **Nouveau**, indiquez le nom de votre stratégie.
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/04.png)
 
-5. Bonjour **affectation** , cliquez sur **utilisateurs et groupes**.
+5. Dans la section **Affectation**, cliquez sur **Utilisateurs et groupes**.
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/05.png)
 
-6. Sur hello **utilisateurs et groupes** panneau, effectuer hello comme suit :
+6. Dans le panneau **Utilisateurs et groupes**, procédez comme suit :
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/06.png)
 
@@ -82,15 +82,15 @@ Pour plus d’informations sur les adresses IP approuvées, consultez [Adresses 
 
     b. Cliquez sur **Sélectionner**.
 
-    c. Sur hello **sélectionnez** panneau, sélectionnez votre utilisateur test, puis cliquez sur **sélectionnez**.
+    c. Dans le panneau **Sélectionner**, sélectionnez votre utilisateur de test, puis cliquez sur **Sélectionner**.
 
-    d. Sur hello **utilisateurs et groupes** panneau, cliquez sur **fait**.
+    d. Dans le panneau **Utilisateurs et groupes**, cliquez sur **Terminé**.
 
-7. Sur hello **nouveau** panneau, tooopen hello **applications Cloud** panneau, Bonjour **affectation** , cliquez sur **applications Cloud**.
+7. Dans le panneau **Nouveau**, pour ouvrir le panneau **Applications cloud**, cliquez sur **Applications cloud** dans la section **Affectation**.
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/07.png)
 
-8. Sur hello **applications Cloud** panneau, effectuer hello comme suit :
+8. Dans le panneau **Applications cloud**, procédez comme suit :
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/08.png)
 
@@ -98,19 +98,19 @@ Pour plus d’informations sur les adresses IP approuvées, consultez [Adresses 
 
     b. Cliquez sur **Sélectionner**.
 
-    c. Sur hello **sélectionnez** panneau, sélectionnez votre application cloud, puis cliquez sur **sélectionnez**.
+    c. Dans le panneau **Sélectionner**, sélectionnez votre application cloud, puis cliquez sur **Sélectionner**.
 
-    d. Sur hello **applications Cloud** panneau, cliquez sur **fait**.
+    d. Dans le panneau **Applications cloud**, cliquez sur **Terminé**.
 
-9. Sur hello **nouveau** panneau, tooopen hello **Conditions** panneau, Bonjour **affectation** , cliquez sur **Conditions**.
+9. Dans le panneau **Nouveau**, pour ouvrir le panneau **Conditions**, cliquez sur **Conditions** dans la section **Affectation**.
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/09.png)
 
-10. Sur hello **Conditions** panneau, tooopen hello **emplacements** panneau, cliquez sur **emplacements**.
+10. Dans le panneau **Conditions**, pour ouvrir le panneau **Emplacements**, cliquez sur **Emplacements**.
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/10.png)
 
-11. Sur hello **emplacements** panneau, effectuer hello comme suit :
+11. Dans le panneau **Emplacements**, procédez comme suit :
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/11.png)
 
@@ -124,13 +124,13 @@ Pour plus d’informations sur les adresses IP approuvées, consultez [Adresses 
 
     d. Cliquez sur **Done**.
 
-12. Sur hello **Conditions** panneau, cliquez sur **fait**.
+12. Dans le panneau **Conditions**, cliquez sur **Terminé**.
 
-13. Sur hello **nouveau** panneau, tooopen hello **Grant** panneau, Bonjour **contrôles** , cliquez sur **Grant**.
+13. Dans le panneau **Nouveau**, pour ouvrir le panneau **Octroyer**, cliquez sur **Octroyer** dans la section **Contrôles**.
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/13.png)
 
-14. Sur hello **Grant** panneau, effectuer hello comme suit :
+14. Dans le panneau **Grant (Autoriser)**, procédez comme suit :
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/14.png)
 
@@ -138,16 +138,16 @@ Pour plus d’informations sur les adresses IP approuvées, consultez [Adresses 
 
     b. Cliquez sur **Sélectionner**.
 
-15. Sur hello **nouveau** panneau, sous **activer la stratégie**, cliquez sur **sur**.
+15. Dans le panneau **Nouveau**, sous **Activer la stratégie**, cliquez sur **Activé**.
 
     ![Accès conditionnel](./media/active-directory-conditional-access-azure-portal-get-started/15.png)
 
-16. Sur hello **nouveau** panneau, cliquez sur **créer**.
+16. Dans le panneau **Nouveau**, cliquez sur **Créer**.
 
 
-## <a name="testing-hello-policy"></a>Test de la stratégie de hello
+## <a name="testing-the-policy"></a>Test de la stratégie
 
-tootest votre stratégie, vous devez accéder à votre application à partir d’un appareil qui : 
+Pour tester votre stratégie, vous devez accéder à votre application à partir d’un appareil : 
 
 1. dont l’adresse IP figure parmi les adresses IP approuvées que vous avez configurées ; 
 
@@ -158,5 +158,5 @@ L’authentification multifacteur ne doit être requise que si la tentative de c
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Si vous souhaitez que toolearn plus d’informations sur l’accès conditionnel, consultez [accès conditionnel Azure Active Directory](active-directory-conditional-access-azure-portal.md).
+Pour en savoir plus sur l’accès conditionnel, consultez [Accès conditionnel Azure Active Directory](active-directory-conditional-access-azure-portal.md).
 

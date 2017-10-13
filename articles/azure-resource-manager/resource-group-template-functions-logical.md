@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Gestionnaire de ressources fonctions de modèle - logiques | Documents Microsoft"
-description: "Décrit toouse de fonctions hello dans un gestionnaire de ressources Azure modèle toodetermine les valeurs logiques."
+title: "Fonctions de modèle Azure Resource Manager - logiques | Documents Microsoft"
+description: "Décrit les fonctions à utiliser dans un modèle Azure Resource Manager pour déterminer les valeurs logiques."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 08/01/2017
+ms.date: 09/05/2017
 ms.author: tomfitz
-ms.openlocfilehash: aec6341fbde00b4eba3b4539ff9a9aec774333fd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d16264abf64ef88dfb24948fc04e33de619f4e3f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="logical-functions-for-azure-resource-manager-templates"></a>Fonctions logiques pour les modèles Azure Resource Manager
 
@@ -39,8 +39,8 @@ Vérifie si les deux valeurs de paramètres sont true.
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |booléenne |Hello première valeur toocheck si a la valeur true. |
-| arg2 |Oui |booléenne |Hello deuxième valeur toocheck si a la valeur true. |
+| arg1 |Oui |booléenne |La première valeur pour vérifier si c’est true. |
+| arg2 |Oui |booléenne |La deuxième valeur pour vérifier si c’est true. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -48,7 +48,7 @@ Retourne **True** si les valeurs sont true ; sinon, renvoie **False**.
 
 ### <a name="examples"></a>Exemples
 
-Hello suivant montre l’exemple de comment toouse les fonctions logiques.
+[L’exemple de modèle](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/andornot.json) suivant montre comment utiliser des fonctions logiques.
 
 ```json
 {
@@ -72,7 +72,7 @@ Hello suivant montre l’exemple de comment toouse les fonctions logiques.
 }
 ```
 
-est résultat Hello hello précédant l’exemple suivant :
+La sortie de l’exemple précédent est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -80,24 +80,35 @@ est résultat Hello hello précédant l’exemple suivant :
 | orExampleOutput | Bool | true |
 | notExampleOutput | Bool | False |
 
+Pour déployer cet exemple de modèle avec Azure CLI, utilisez :
+
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/andornot.json
+```
+
+Pour déployer cet exemple de modèle avec PowerShell, utilisez :
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/andornot.json
+```
 
 ## <a name="bool"></a>bool
 `bool(arg1)`
 
-Convertit hello tooa de paramètre boolean.
+Convertit le paramètre en valeur booléenne.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |chaîne ou entier |Hello tooa tooconvert de valeur booléenne. |
+| arg1 |Oui |chaîne ou entier |La valeur à convertir en booléen. |
 
 ### <a name="return-value"></a>Valeur de retour
-Une valeur booléenne de hello de valeur convertie.
+Valeur booléenne de la valeur convertie.
 
 ### <a name="examples"></a>Exemples
 
-Hello suivant montre l’exemple de comment bool toouse par une chaîne ou un entier.
+[L’exemple de modèle](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/bool.json) suivant montre comment utiliser bool avec une chaîne ou un entier.
 
 ```json
 {
@@ -125,7 +136,7 @@ Hello suivant montre l’exemple de comment bool toouse par une chaîne ou un en
 }
 ```
 
-Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
+La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -133,6 +144,18 @@ Hello de sortie à partir de hello précédent exemple hello valeurs par défaut
 | falseString | Bool | False |
 | trueInt | Bool | true |
 | falseInt | Bool | False |
+
+Pour déployer cet exemple de modèle avec Azure CLI, utilisez :
+
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/bool.json
+```
+
+Pour déployer cet exemple de modèle avec PowerShell, utilisez :
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/bool.json
+```
 
 ## <a name="if"></a>if
 `if(condition, trueValue, falseValue)`
@@ -143,9 +166,9 @@ Retourne une valeur indiquant si une condition est true ou false.
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| condition |Oui |booléenne |Bonjour valeur toocheck si elle a la valeur true. |
-| trueValue |Oui | chaîne, int, objet ou tableau |valeur de Hello tooreturn quand hello condition est vraie. |
-| falseValue |Oui | chaîne, int, objet ou tableau |valeur de Hello tooreturn lorsque hello condition est false. |
+| condition |Oui |booléenne |La valeur pour vérifier si c’est true. |
+| trueValue |Oui | chaîne, int, objet ou tableau |La valeur à retourner lorsque la condition est true. |
+| falseValue |Oui | chaîne, int, objet ou tableau |La valeur à retourner lorsque la condition est false. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -153,7 +176,7 @@ Retourne le deuxième paramètre lorsque le premier paramètre est **True** ; s
 
 ### <a name="remarks"></a>Remarques
 
-Vous pouvez utiliser cet ensemble de tooconditionally de fonction à une propriété de ressource. Hello suivant n’est pas un modèle complet, mais il montre les parties pertinentes d’hello pour la définition de manière conditionnelle hello à haute disponibilité.
+Vous pouvez utiliser cette fonction pour définir de manière conditionnelle une propriété de ressource. L’exemple suivant n’est pas un modèle complet, mais il affiche les parties pertinentes pour la définition de manière conditionnelle du groupe à haute disponibilité.
 
 ```json
 {
@@ -199,7 +222,7 @@ Vous pouvez utiliser cet ensemble de tooconditionally de fonction à une propri�
 
 ### <a name="examples"></a>Exemples
 
-Hello suivant montre l’exemple de comment toouse hello `if` (fonction).
+[L’exemple de modèle](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/if.json) suivant montre comment utiliser la fonction `if`.
 
 ```json
 {
@@ -220,25 +243,35 @@ Hello suivant montre l’exemple de comment toouse hello `if` (fonction).
 }
 ```
 
-est résultat Hello hello précédant l’exemple suivant :
+La sortie de l’exemple précédent est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
 | yesOutput | String | yes |
 | noOutput | String | no |
 
+Pour déployer cet exemple de modèle avec Azure CLI, utilisez :
+
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/if.json
+```
+
+Pour déployer cet exemple de modèle avec PowerShell, utilisez :
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/if.json
+```
 
 ## <a name="not"></a>not
 `not(arg1)`
 
-Convertit la valeur booléenne tooits inverse la valeur.
+Convertit la valeur booléenne à sa valeur opposée.
 
-### <a name="parameters"></a>Paramètres
+### <a name="parameters"></a>parameters
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |booléenne |Hello tooconvert de valeur. |
-
+| arg1 |Oui |booléenne |La valeur à convertir. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -246,7 +279,7 @@ Retourne **True** lorsque le paramètre est **False**. Retourne **False** lorsqu
 
 ### <a name="examples"></a>Exemples
 
-Hello suivant montre l’exemple de comment toouse les fonctions logiques.
+[L’exemple de modèle](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/andornot.json) suivant montre comment utiliser des fonctions logiques.
 
 ```json
 {
@@ -270,7 +303,7 @@ Hello suivant montre l’exemple de comment toouse les fonctions logiques.
 }
 ```
 
-est résultat Hello hello précédant l’exemple suivant :
+La sortie de l’exemple précédent est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -278,7 +311,19 @@ est résultat Hello hello précédant l’exemple suivant :
 | orExampleOutput | Bool | true |
 | notExampleOutput | Bool | False |
 
-Hello exemple suivant utilise **pas** avec [est égal à](resource-group-template-functions-comparison.md#equals).
+Pour déployer cet exemple de modèle avec Azure CLI, utilisez :
+
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/andornot.json
+```
+
+Pour déployer cet exemple de modèle avec PowerShell, utilisez :
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/andornot.json
+```
+
+[L’exemple de modèle](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/not-equals.json) suivant utilise **not** avec [equals](resource-group-template-functions-comparison.md#equals).
 
 ```json
 {
@@ -294,12 +339,23 @@ Hello exemple suivant utilise **pas** avec [est égal à](resource-group-templat
     }
 ```
 
-est résultat Hello hello précédant l’exemple suivant :
+La sortie de l’exemple précédent est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
 | checkNotEquals | Bool | true |
 
+Pour déployer cet exemple de modèle avec Azure CLI, utilisez :
+
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/not-equals.json
+```
+
+Pour déployer cet exemple de modèle avec PowerShell, utilisez :
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/not-equals.json
+```
 
 ## <a name="or"></a>ou
 `or(arg1, arg2)`
@@ -310,8 +366,8 @@ Vérifie si l’une des valeurs du paramètre est true.
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |booléenne |Hello première valeur toocheck si a la valeur true. |
-| arg2 |Oui |booléenne |Hello deuxième valeur toocheck si a la valeur true. |
+| arg1 |Oui |booléenne |La première valeur pour vérifier si c’est true. |
+| arg2 |Oui |booléenne |La deuxième valeur pour vérifier si c’est true. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -319,7 +375,7 @@ Retourne **True** si la valeur est true ; sinon, **False**.
 
 ### <a name="examples"></a>Exemples
 
-Hello suivant montre l’exemple de comment toouse les fonctions logiques.
+[L’exemple de modèle](https://github.com/Azure/azure-docs-json-samples/blob/master/azure-resource-manager/functions/andornot.json) suivant montre comment utiliser des fonctions logiques.
 
 ```json
 {
@@ -343,7 +399,7 @@ Hello suivant montre l’exemple de comment toouse les fonctions logiques.
 }
 ```
 
-est résultat Hello hello précédant l’exemple suivant :
+La sortie de l’exemple précédent est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -351,10 +407,21 @@ est résultat Hello hello précédant l’exemple suivant :
 | orExampleOutput | Bool | true |
 | notExampleOutput | Bool | False |
 
+Pour déployer cet exemple de modèle avec Azure CLI, utilisez :
+
+```azurecli-interactive
+az group deployment create -g functionexamplegroup --template-uri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/andornot.json
+```
+
+Pour déployer cet exemple de modèle avec PowerShell, utilisez :
+
+```powershell
+New-AzureRmResourceGroupDeployment -ResourceGroupName functionexamplegroup -TemplateUri https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/functions/andornot.json
+```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour obtenir une description des sections de hello dans un modèle Azure Resource Manager, consultez [les modèles de programmation Azure Resource Manager](resource-group-authoring-templates.md).
-* consultez de plusieurs modèles toomerge [à l’aide de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
-* tooiterate un nombre spécifié de fois lors de la création d’un type de ressource, consultez [créer plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
-* toosee modèle de hello toodeploy que vous avez créé, voir [déployer une application avec le modèle Azure Resource Manager](resource-group-template-deploy.md).
+* Pour obtenir une description des sections d’un modèle Azure Resource Manager, consultez [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
+* Pour fusionner plusieurs modèles, consultez [Utilisation de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
+* Pour itérer un nombre de fois spécifié lors de la création d'un type de ressource, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
+* Pour savoir comment déployer le modèle que vous avez créé, consultez [Déploiement d’une application avec un modèle Azure Resource Manager](resource-group-template-deploy.md).
 

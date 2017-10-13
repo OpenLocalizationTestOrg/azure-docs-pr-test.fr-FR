@@ -1,6 +1,6 @@
 ---
-title: "utilisation des données dans le journal Analytique aaaAnalyze | Documents Microsoft"
-description: "Utilisez le tableau de bord de l’utilisation hello dans le journal Analytique tooview la quantité de données est envoyé service Analytique de journal de toohello et résolution des problèmes grandes quantités de données sont envoyées."
+title: "Analyser l’utilisation des données dans Log Analytics | Microsoft Docs"
+description: "Utilisez le tableau de bord Utilisation de Log Analytics pour afficher la quantité de données envoyées au service Log Analytics pour résoudre les problèmes empêchant d’envoyer de grandes quantités de données."
 services: log-analytics
 documentationcenter: 
 author: MGoedtel
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/21/2017
 ms.author: magoedte
-ms.openlocfilehash: c30373dd6edbe3ff900fbebc865575fee61ce14c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9a4709f298131722e9c473a19f7eee0aebf7e1e6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="analyze-data-usage-in-log-analytics"></a>Analyser l’utilisation des données dans Log Analytics
-Analytique de journal inclut des informations sur le volume hello de données collectées, les ordinateurs envoyé des données de hello et hello différents types de données envoyées.  Hello d’utilisation **l’utilisation du journal Analytique** quantité de hello toosee du tableau de bord de données envoyés de service de journal Analytique toohello. tableau de bord Hello affiche la quantité de données collecté par chaque solution et la quantité de données, vos ordinateurs envoient.
+Log Analytics inclut des informations sur la quantité de données collectées, les ordinateurs qui envoient les données et les différents types de données envoyées.  Utilisez le tableau de bord **Utilisation de Log Analytics** pour voir la quantité de données envoyées au service Log Analytics. Le tableau de bord affiche la quantité de données collectées par chaque solution et la quantité de données que vos ordinateurs envoient.
 
-## <a name="understand-hello-usage-dashboard"></a>Comprendre le tableau de bord d’utilisation hello
-Hello **l’utilisation du journal Analytique** tableau de bord affiche hello informations suivantes :
+## <a name="understand-the-usage-dashboard"></a>Comprendre le tableau de bord Utilisation
+Le tableau de bord **Utilisation de Log Analytics** affiche les informations suivantes :
 
 - Volume de données
     - Volume de données dans le temps (en fonction de la portée temporelle actuelle)
@@ -38,94 +38,94 @@ Hello **l’utilisation du journal Analytique** tableau de bord affiche hello in
     - Nœuds d’automatisation et de contrôle
     - Nœuds de sécurité
 - Performances
-    - Durée des données d’index et toocollect
+    - Temps nécessaire pour recueillir et indexer les données
 - Liste de requêtes
 
 ![tableau de bord utilisation](./media/log-analytics-usage/usage-dashboard01.png)
 
-### <a name="toowork-with-usage-data"></a>toowork avec les données d’utilisation
-1. Si vous n’avez pas déjà fait, connectez-vous à toohello [portail Azure](https://portal.azure.com) à l’aide de votre abonnement Azure.
-2. Sur hello **Hub** menu, cliquez sur **davantage de services** et, dans la liste hello des ressources, tapez **Analytique de journal**. Comme vous commencez à taper, hello filtres de la liste en fonction de votre entrée. Cliquez sur **Log Analytics**.  
+### <a name="to-work-with-usage-data"></a>Utilisation des données d’utilisation
+1. Si ce n’est pas déjà fait, connectez-vous au [portail Azure](https://portal.azure.com) à l’aide de votre abonnement Azure.
+2. Dans le menu **Hub**, cliquez sur **Plus de services** et, dans la liste des ressources, tapez **Log Analytics**. Au fur et à mesure de la saisie, la liste est filtrée. Cliquez sur **Log Analytics**.  
     ![Hub Azure](./media/log-analytics-usage/hub.png)
-3. Hello **Analytique de journal** tableau de bord affiche une liste de vos espaces de travail. Sélectionnez un espace de travail.
-4. Bonjour *espace de travail* tableau de bord, cliquez sur **l’utilisation du journal Analytique**.
-5. Sur hello **l’utilisation du journal Analytique** tableau de bord, cliquez sur **heure : dernières 24 heures** intervalle de temps toochange hello.  
+3. Le tableau de bord **Log Analytics** affiche la liste de vos espaces de travail. Sélectionnez un espace de travail.
+4. Dans le tableau de bord *Espace de travail*, cliquez sur **Utilisation de Log Analytics**.
+5. Dans le tableau de bord **Utilisation de Log Analytics**, cliquez sur **Heure : 24 dernières heures** pour modifier l’intervalle de temps.  
     ![Intervalle de temps](./media/log-analytics-usage/time.png)
-6. Panneaux de catégorie vue hello d’utilisation qui montrent les domaines vous intéressent. Un panneau et cliquez sur un élément qu’il contient tooview décrit plus en détail dans [recherche de journal](log-analytics-log-searches.md).  
+6. Affichez les panneaux de catégorie d’utilisation qui montrent les domaines qui vous intéressent. Choisissez un panneau, puis cliquez dessus pour afficher plus de détails dans [Recherche de journal](log-analytics-log-searches.md).  
     ![Exemple de panneau d’utilisation des données](./media/log-analytics-usage/blade.png)
-7. Tableau de bord de recherche de journal hello, examinez les résultats de hello qui sont retournées à partir de la recherche de hello.  
+7. Dans le tableau de bord Recherche de journal, passez en revue les résultats renvoyés par la recherche.  
     ![exemple de recherche de journal d’utilisation](./media/log-analytics-usage/usage-log-search.png)
 
 ## <a name="create-an-alert-when-data-collection-is-higher-than-expected"></a>Créer une alerte lorsque la collection de données est plus volumineuse que prévu
-Cette section décrit comment toocreate une alerte si :
+Cette section décrit la création d’une alerte si :
 - Le volume de données dépasse une quantité spécifiée.
-- Volume de données est prédite tooexceed un montant spécifié.
+- Le volume de données est censé dépasser une quantité spécifiée.
 
-Les [alertes](log-analytics-alerts-creating.md) Log Analytics utilisent des requêtes de recherche. Hello requête suivante a un résultat lorsqu’il y a plus de 100 Go de données collectées dans hello des dernières 24 heures :
+Les [alertes](log-analytics-alerts-creating.md) Log Analytics utilisent des requêtes de recherche. La requête suivante obtient un résultat quand plus de 100 Go de données sont collectés dans les dernières 24 heures :
 
 `Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(Quantity,1024)) as DataGB by Type | where DataGB > 100`
 
-Hello requête suivante utilise un simple toopredict formule plus de 100 Go de données seront envoyées par jour : 
+La requête suivante utilise une formule simple pour prévoir le moment où plus de 100 Go de données seront envoyés en une journée : 
 
 `Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(mul(Quantity,8),1024)) as EstimatedGB by Type | where EstimatedGB > 100`
 
-tooalert sur un volume de données différents, modification hello 100 Bonjour nombre toohello Go que vous voulez tooalert sur des requêtes.
+Pour alerter sur un volume de données différent, remplacez la valeur de 100 dans les requêtes par le nombre de Go pour lequel vous souhaitez créer une alerte.
 
-Utilisez les étapes hello décrites dans [créer une règle d’alerte](log-analytics-alerts-creating.md#create-an-alert-rule) toobe informé de la collecte de données est plus élevée que prévu.
+Utilisez les étapes décrites dans [Création d’une règle d’alerte](log-analytics-alerts-creating.md#create-an-alert-rule) pour être averti lorsque la collection de données est plus volumineuse que prévu.
 
-Lorsque vous créez l’alerte hello pour la première requête de hello--lorsqu’il existe plus de 100 Go de données dans les 24 heures, définissez le :
-- **Nom** trop*volume de données supérieure à 100 Go des dernières 24 heures*
-- **Gravité** trop*avertissement*
-- **Requête de recherche** trop`Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(Quantity,1024)) as DataGB by Type | where DataGB > 100`
-- **Fenêtre de temps** trop*24 heures*.
-- **Fréquence des alertes** toobe une heure dans la mesure où les données d’utilisation hello met à jour uniquement une fois par heure.
-- **Générer une alerte en fonction de** toobe *nombre de résultats*
-- **Nombre de résultats** toobe *supérieur à 0*
+Lors de la création de l’alerte pour la première requête, lorsque plus de 100 Go de données sont collectés en 24 heures, définissez :
+- **Nom** sur *Data volume greater than 100 GB in 24 hours* (Volume de données supérieur à 10 Go en 24 heures)
+- **Gravité** sur *Avertissement*
+- **Requête de recherche** sur `Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(Quantity,1024)) as DataGB by Type | where DataGB > 100`
+- **Fenêtre de temps** sur *24 heures*
+- **Fréquence des alertes** sur une heure, car les données d’utilisation sont uniquement mises à jour une fois par heure.
+- **Générer l’alerte selon** sur *nombre de résultats*
+- **Nombre de résultats** sur *Greater than 0* (Supérieur à 0)
 
-Utilisez les étapes hello décrites dans [ajouter des actions tooalert règles](log-analytics-alerts-actions.md) configurer une action de courrier électronique, webhook ou runbook pour la règle d’alerte hello.
+Utilisez les étapes décrites dans [Ajouter des actions à des règles d’alerte dans Log Analytics](log-analytics-alerts-actions.md) pour configurer une action de messagerie, de webhook ou de runbook pour la règle d’alerte.
 
-Lorsque création alerte hello pour requête de deuxième hello, lorsqu’il est prévu qu’il y aura plus de 100 Go de données des dernières 24 heures, définissez le :
-- **Nom** trop*volume de données attendu toogreater à 100 Go dans les 24 heures*
-- **Gravité** trop*avertissement*
-- **Requête de recherche** trop`Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(mul(Quantity,8),1024)) as EstimatedGB by Type | where EstimatedGB > 100`
-- **Fenêtre de temps** trop*3 heures*.
-- **Fréquence des alertes** toobe une heure dans la mesure où les données d’utilisation hello met à jour uniquement une fois par heure.
-- **Générer une alerte en fonction de** toobe *nombre de résultats*
-- **Nombre de résultats** toobe *supérieur à 0*
+Lors de la création de l’alerte pour la seconde requête, lorsqu’il est prévu que plus de 100 Go de données seront collectés en 24 heures, définissez :
+- **Nom** à *Data volume expected to greater than 100 GB in 24 hours* (Volume de données attendu supérieur à 10 Go en 24 heures)
+- **Gravité** sur *Avertissement*
+- **Requête de recherche** sur `Type=Usage QuantityUnit=MBytes IsBillable=true | measure sum(div(mul(Quantity,8),1024)) as EstimatedGB by Type | where EstimatedGB > 100`
+- **Fenêtre de temps** sur *3 Hours* (3 heures)
+- **Fréquence des alertes** sur une heure, car les données d’utilisation sont uniquement mises à jour une fois par heure.
+- **Générer l’alerte selon** sur *nombre de résultats*
+- **Nombre de résultats** sur *Greater than 0* (Supérieur à 0)
 
-Lorsque vous recevez une alerte, utilisez les étapes de hello Bonjour suivant tootroubleshoot section pourquoi l’utilisation est plus élevée que prévu.
+Lorsque vous recevez une alerte, utilisez les étapes de la section suivante pour résoudre les problèmes à l’origine d’une utilisation plus importante que prévu.
 
 ## <a name="troubleshooting-why-usage-is-higher-than-expected"></a>Résolution des problèmes à l’origine d’une utilisation plus importante que prévu
-tableau de bord d’utilisation Hello vous aide à tooidentify pourquoi l’utilisation (et donc les coûts) est plus élevé que vous attendez.
+Le tableau de bord Utilisation vous aide à identifier pourquoi l’utilisation (et donc les coûts) est plus importante que ce que vous attendez.
 
 Une utilisation plus importante est due à l’un des éléments suivants, voire les deux :
-- Plus de données que prévu envoyé tooLog Analytique
-- Plus de nœuds que prévu d’envoi de données tooLog Analytique
+- Plus de données que prévu sont envoyées à Log Analytics
+- Plus de nœuds que prévu envoient des données à Log Analytics
 
 ### <a name="check-if-there-is-more-data-than-expected"></a>Vérifier s’il y a plus de données que prévu 
-Il existe deux sections principales de la page de l’utilisation de hello qui aident à identifier la cause hello collecté par la plupart des données toobe.
+Deux sections clés de la page Utilisation vous permettent de déterminer ce qui est à l’origine du trop grand nombre de données collectées.
 
-Hello *volume de données au fil du temps* graphique montre le volume total de hello des données envoyées et ordinateurs hello envoyant hello la plupart des données. graphique de Hello haut hello permet toosee si la croissance de votre utilisation des données globales, reste stable ou décroissant. liste Hello des ordinateurs affiche les ordinateurs de hello 10 envoi hello la plupart des données.
+Le graphique *Volume de données dans le temps* représente le volume total de données envoyées et les ordinateurs envoyant le plus de données. Le graphique en haut vous permet de voir si votre utilisation des données globales augmente, reste stable ou diminue. La liste des ordinateurs montre les 10 ordinateurs envoyant le plus de données.
 
-Hello *volume de données par la solution* graphique montre le volume de hello des données envoyées par chaque solution et les solutions hello envoi hello la plupart des données. graphique Hello haut hello affiche le volume total de hello des données envoyées par chaque solution au fil du temps. Ces informations vous permettent de tooidentify si une solution envoie des données, sur hello montant de données, ou moins de données au fil du temps. la liste de solutions Hello montre solutions hello 10 envoi hello la plupart des données. 
+Le graphique *Volume de données par solution* représente le volume de données envoyé par chaque solution et les solutions envoyant le plus de données. Le graphique en haut montre affiche le volume total des données envoyées par chaque solution au fil du temps. Ces informations vous permettent de déterminer si une solution envoie plus de données, environ la même quantité de données, ou moins de données au fil du temps. La liste des solutions montre les 10 solutions envoyant le plus de données. 
 
-Ces deux graphiques affichent toutes les données. Certaines données sont facturables, et les autres données sont libres. toofocus uniquement sur les données qui facturables, modifier la requête hello sur hello recherche page tooinclude `IsBillable=true`.  
+Ces deux graphiques affichent toutes les données. Certaines données sont facturables, et les autres données sont libres. Pour vous concentrer uniquement sur les données facturables, modifiez la requête sur la page de recherche pour inclure `IsBillable=true`.  
 
 ![graphiques de volume de données](./media/log-analytics-usage/log-analytics-usage-data-volume.png)
 
-Examinez hello *volume de données au fil du temps* graphique. solutions de hello toosee et types de données qui envoient des hello la plupart des données pour un ordinateur spécifique, cliquez sur nom hello d’ordinateur de hello. Cliquez sur nom hello de hello premier ordinateur dans la liste de hello.
+Examinez le graphique *Volume de données dans le temps*. Pour voir les solutions et les types de données qui envoient le plus de données d’un ordinateur spécifique, cliquez sur le nom de l’ordinateur. Cliquez sur le nom du premier ordinateur dans la liste.
 
-Bonjour suivant capture d’écran, hello *gestion du journal / Perf* type de données envoie hello la plupart des données pour l’ordinateur de hello. 
+Dans la capture d’écran suivante, le type de données *Gestion des journaux/Performance* envoie le plus de données pour l’ordinateur. 
 
 ![volume de données pour un ordinateur](./media/log-analytics-usage/log-analytics-usage-data-volume-computer.png)
 
-Ensuite, revenez toohello *utilisation* tableau de bord et examinez hello *volume de données par la solution* graphique. les ordinateurs de hello toosee envoi hello la plupart des données d’une solution, cliquez sur nom hello de solution hello dans la liste de hello. Cliquez sur nom hello de solution de première hello dans la liste de hello. 
+Ensuite, revenez au tableau de bord *Utilisation* et examinez le graphique *Volume de données par solution*. Pour voir les ordinateurs envoyant le plus de données pour une solution, cliquez sur le nom de la solution dans la liste. Cliquez sur le nom de la première solution dans la liste. 
 
-Bonjour suivant capture d’écran, il confirme que hello *acmetomcat* ordinateur envoie hello la plupart des données pour la solution de gestion des journaux de hello.
+La capture d’écran suivante confirme que l’ordinateur *acmetomcat* envoie le plus de données pour la solution de gestion des journaux.
 
 ![volume de données pour une solution](./media/log-analytics-usage/log-analytics-usage-data-volume-solution.png)
 
-Si nécessaire, effectuer des analyses supplémentaires tooidentify des volumes importants au sein d’un type de données ou de la solution. Les exemples de requêtes incluent :
+Si nécessaire, effectuez des analyses supplémentaires pour identifier des volumes importants au sein d’une solution ou d’un type de données. Les exemples de requêtes incluent :
 
 + une solution de **sécurité**
   - `Type=SecurityEvent | measure count() by EventID`
@@ -143,31 +143,31 @@ Si nécessaire, effectuer des analyses supplémentaires tooidentify des volumes 
 + le type de données **AzureDiagnostics**
   - `Type=AzureDiagnostics | measure count() by ResourceProvider, ResourceId`
 
-Utilisez hello étapes tooreduce hello volume de journaux collecté suivant :
+Pour réduire le volume de journaux collectés, procédez comme suit :
 
-| Source du volume de données important | Comment volume de données tooreduce |
+| Source du volume de données important | Comment réduire le volume de données |
 | -------------------------- | ------------------------- |
-| Événements de sécurité            | Sélectionnez [les événements de sécurité courants ou minimaux](https://blogs.technet.microsoft.com/msoms/2016/11/08/filter-the-security-events-the-oms-security-collects/). <br> Modifier les événements de hello sécurité d’audit stratégie toocollect uniquement si nécessaire. En particulier, passez en revue les événements toocollect hello nécessaire pour <br> - [plateforme de filtrage de l’audit](https://technet.microsoft.com/library/dd772749(WS.10).aspx) <br> - [registre de l’audit](https://docs.microsoft.com/windows/device-security/auditing/audit-registry)<br> - [système de fichiers de l’audit](https://docs.microsoft.com/windows/device-security/auditing/audit-file-system)<br> - [objet de noyau d’audit](https://docs.microsoft.com/windows/device-security/auditing/audit-kernel-object)<br> - [manipulation du descripteur de l’audit](https://docs.microsoft.com/windows/device-security/auditing/audit-handle-manipulation)<br> - [stockage amovible de l’audit](https://docs.microsoft.com/windows/device-security/auditing/audit-removable-storage) |
-| Compteurs de performances       | Modifiez la [configuration du compteur de performances](log-analytics-data-sources-performance-counters.md) de façon à : <br> -Réduire la fréquence de hello de collection <br> - Réduire le nombre de compteurs de performance |
-| Journaux d’événements                 | Modifiez la [configuration du journal d’événements](log-analytics-data-sources-windows-events.md) de façon à : <br> -Réduire le nombre de hello des journaux des événements collectés <br> - Collecter uniquement les niveaux d’événement requis Par exemple, ne collectez pas les événements de niveau *Informations*. |
-| syslog                     | Modifiez la [configuration du syslog](log-analytics-data-sources-syslog.md) de façon à : <br> -Réduire le nombre hello des installations collectées <br> - Collecter uniquement les niveaux d’événement requis Par exemple, ne collectez pas les événements de niveau *Informations* et *Débogage*. |
-| AzureDiagnostics           | Modifiez la collection de journaux de ressources pour : <br> -Réduire le nombre de hello de ressources envoi des journaux tooLog Analytique <br> - Collecter uniquement les journaux nécessaires |
-| Données de la solution à partir d’ordinateurs que vous n’avez pas besoin de solution de hello | Utilisez [solution ciblant](../operations-management-suite/operations-management-suite-solution-targeting.md) données toocollect uniquement des groupes d’ordinateurs requis. |
+| Événements de sécurité            | Sélectionnez [les événements de sécurité courants ou minimaux](https://blogs.technet.microsoft.com/msoms/2016/11/08/filter-the-security-events-the-oms-security-collects/). <br> Modifier la stratégie d’audit de sécurité pour collecter les événements nécessaires uniquement. Plus particulièrement, examinez la nécessité de collecter des événements pour : <br> - [plateforme de filtrage de l’audit](https://technet.microsoft.com/library/dd772749(WS.10).aspx) <br> - [registre de l’audit](https://docs.microsoft.com/windows/device-security/auditing/audit-registry)<br> - [système de fichiers de l’audit](https://docs.microsoft.com/windows/device-security/auditing/audit-file-system)<br> - [objet de noyau d’audit](https://docs.microsoft.com/windows/device-security/auditing/audit-kernel-object)<br> - [manipulation du descripteur de l’audit](https://docs.microsoft.com/windows/device-security/auditing/audit-handle-manipulation)<br> - [stockage amovible de l’audit](https://docs.microsoft.com/windows/device-security/auditing/audit-removable-storage) |
+| Compteurs de performances       | Modifiez la [configuration du compteur de performances](log-analytics-data-sources-performance-counters.md) de façon à : <br> - Réduire la fréquence de collecte <br> - Réduire le nombre de compteurs de performance |
+| Journaux d’événements                 | Modifiez la [configuration du journal d’événements](log-analytics-data-sources-windows-events.md) de façon à : <br> - Réduire le nombre de journaux des événements collectés <br> - Collecter uniquement les niveaux d’événement requis Par exemple, ne collectez pas les événements de niveau *Informations*. |
+| syslog                     | Modifiez la [configuration du syslog](log-analytics-data-sources-syslog.md) de façon à : <br> - Réduire le nombre d’installations collectées <br> - Collecter uniquement les niveaux d’événement requis Par exemple, ne collectez pas les événements de niveau *Informations* et *Débogage*. |
+| AzureDiagnostics           | Modifiez la collection de journaux de ressources pour : <br> - Réduire le nombre de journaux d’envoi de ressources à Log Analytics <br> - Collecter uniquement les journaux nécessaires |
+| Données de solution d’ordinateurs n’ayant pas besoin de la solution | Utilisez le [ciblage de solution](../operations-management-suite/operations-management-suite-solution-targeting.md) pour collecter des données des groupes d’ordinateurs requis uniquement. |
 
 ### <a name="check-if-there-are-more-nodes-than-expected"></a>Vérifier s’il y a plus de nœuds que prévu
-Si vous êtes sur hello *par nœud (OMS)* tarification, puis que vous êtes facturé en fonction hello les nombre de nœuds et les solutions que vous utilisez. Vous pouvez voir combien de nœuds de chaque offre est utilisés dans hello *offres* section du tableau de bord d’utilisation hello.
+Si vous utilisez le niveau tarifaire *Par nœud (OMS)*, vous êtes facturé en fonction du nombre de nœuds et de solutions que vous utilisez. Vous pouvez voir le nombre de nœuds utilisés par offre dans la section *Offres* du tableau de bord d’utilisation.
 
 ![tableau de bord utilisation](./media/log-analytics-usage/log-analytics-usage-offerings.png)
 
-Cliquez sur **afficher tous les...**  tooview hello la liste complète des ordinateurs envoyant des données pour l’offre de sélectionné hello.
+Cliquez sur **Afficher tout...**  pour consulter la liste complète des ordinateurs envoyant des données pour l’offre sélectionnée.
 
-Utilisez [solution ciblant](../operations-management-suite/operations-management-suite-solution-targeting.md) données toocollect uniquement des groupes d’ordinateurs requis.
+Utilisez le [ciblage de solution](../operations-management-suite/operations-management-suite-solution-targeting.md) pour collecter des données des groupes d’ordinateurs requis uniquement.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Consultez [connecter recherche Analytique de journal](log-analytics-log-searches.md) toolearn comment toouse hello recherche language. Vous pouvez utiliser des requêtes recherche tooperform des analyses supplémentaires sur les données d’utilisation hello.
-* Utilisez les étapes hello décrites dans [créer une règle d’alerte](log-analytics-alerts-creating.md#create-an-alert-rule) toobe averti lorsqu’un critère de recherche est remplie.
-* Utilisez [solution ciblant](../operations-management-suite/operations-management-suite-solution-targeting.md) données toocollect uniquement des groupes d’ordinateurs requis
+* Consultez [Recherche de données à l’aide de recherches de journal](log-analytics-log-searches.md) pour apprendre à utiliser le langage de recherche. Vous pouvez utiliser des requêtes de recherche pour effectuer des analyses supplémentaires sur les données d’utilisation.
+* Utilisez les étapes décrites dans [Création d’une règle d’alerte](log-analytics-alerts-creating.md#create-an-alert-rule) pour être averti lorsqu’un critère de recherche est rempli.
+* Utiliser le [ciblage de solution](../operations-management-suite/operations-management-suite-solution-targeting.md) pour collecter des données des groupes d’ordinateurs requis uniquement
 * Sélectionnez [les événements de sécurité courants ou minimaux](https://blogs.technet.microsoft.com/msoms/2016/11/08/filter-the-security-events-the-oms-security-collects/).
 * Modifier la [configuration du compteur de performances](log-analytics-data-sources-performance-counters.md)
 * Modifier la [configuration du journal d’événements](log-analytics-data-sources-windows-events.md)

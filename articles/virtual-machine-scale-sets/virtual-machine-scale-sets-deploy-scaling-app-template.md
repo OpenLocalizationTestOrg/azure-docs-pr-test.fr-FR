@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy une application sur un ensemble d’échelle de machine virtuelle Azure | Documents Microsoft"
-description: "En savoir plus toodeploy une application simple d’échelle sur une échelle de machine virtuelle à l’aide d’un modèle Azure Resource Manager."
+title: "Déployez une application sur un groupe de machines virtuelles identiques Azure | Microsoft Docs"
+description: "Apprenez à déployer une application de mise à l’échelle automatique simple sur un jeu de mise à l’échelle de machines virtuelles identiques à l’aide d’un modèle Azure Resource Manager."
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: rwike77
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/24/2017
 ms.author: ryanwi
-ms.openlocfilehash: 6fccc310312cabfcdddfcbcd2d154fc5cc440417
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 07883a33382cc660b043c99872312a9e77228253
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="deploy-an-autoscaling-app-using-a-template"></a>Déploiement d’une application de mise à l’échelle à l’aide d’un modèle
 
-[Les modèles de gestionnaire de ressources Azure](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment) est un excellent moyen toodeploy groupes de ressources liées. Ce didacticiel s’appuie [déployer un ensemble d’échelle simple](virtual-machine-scale-sets-mvss-start.md) et décrit le toodeploy une application simple d’échelle sur une échelle à l’aide d’un modèle Azure Resource Manager.  Vous pouvez également configurer échelle à l’aide de PowerShell, CLI ou hello portail. Pour plus d’informations, consultez [Vue d’ensemble de la mise à l’échelle automatique](virtual-machine-scale-sets-autoscale-overview.md).
+Les [modèles Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment) constituent un excellent moyen de déployer des groupes de ressources liées. Ce didacticiel se base sur [Déploiement d’un jeu de mise à l’échelle simple](virtual-machine-scale-sets-mvss-start.md) et décrit comment déployer une application de mise à l’échelle automatique simple sur un jeu de mise à l’échelle à l’aide d’un modèle Azure Resource Manager.  Vous pouvez également configurer la mise à l’échelle automatique en utilisant PowerShell, CLI ou le portail. Pour plus d’informations, consultez [Vue d’ensemble de la mise à l’échelle automatique](virtual-machine-scale-sets-autoscale-overview.md).
 
 ## <a name="two-quickstart-templates"></a>Deux modèles de démarrage rapide
-Lorsque vous déployez un jeu de mise à l’échelle, vous pouvez installer de nouveaux logiciels sur une image de plateforme à l’aide d’une [extension de machine virtuelle](../virtual-machines/virtual-machines-windows-extensions-features.md). Les extensions de machine virtuelle sont de petites applications permettant d’exécuter des tâches de configuration et d’automatisation post-déploiement sur des machines virtuelles Azure, comme le déploiement d’une application. Deux modèles différents sont fournis dans [Azure/azure-démarrage rapide-modèles](https://github.com/Azure/azure-quickstart-templates) qui indiquent comment une application de l’échelle automatique sur une échelle de toodeploy définie à l’aide des extensions de machine virtuelle.
+Lorsque vous déployez un jeu de mise à l’échelle, vous pouvez installer de nouveaux logiciels sur une image de plateforme à l’aide d’une [extension de machine virtuelle](../virtual-machines/virtual-machines-windows-extensions-features.md). Les extensions de machine virtuelle sont de petites applications permettant d’exécuter des tâches de configuration et d’automatisation post-déploiement sur des machines virtuelles Azure, comme le déploiement d’une application. Deux modèles différents sont fournis dans [Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) et montrent comment déployer une application de mise à l’échelle automatique sur un jeu de mise à l’échelle à l’aide des extensions de machine virtuelle.
 
 ### <a name="python-http-server-on-linux"></a>Serveur HTTP Python sur Linux
-Hello [serveur HTTP de Python sur Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) exemple de modèle déploie une application simple échelle en cours d’exécution sur un ensemble d’échelle Linux.  [Bouteille](http://bottlepy.org/docs/dev/), une infrastructure web de Python et un serveur HTTP simple sont déployés sur chaque machine virtuelle dans l’échelle de hello définie à l’aide d’un script personnalisé, extension de machine virtuelle. mise à l’échelle Hello définie échelles lors de l’utilisation moyenne du processeur sur tous les ordinateurs virtuels est supérieur à 60 % de mise à l’échelle lorsque hello utilisation moyenne du processeur est inférieure à 30 %.
+Le modèle [serveur HTTP Python sur Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) déploie une application simple de mise à l’échelle automatique simple sur un jeu de mise à l’échelle Linux.  [Bottle](http://bottlepy.org/docs/dev/), un framework web de Python et un serveur HTTP simple sont déployés sur chaque machine virtuelle dans le jeu de mise à l’échelle à l’aide d’une extension de machine virtuelle à script personnalisé. Le jeu de mise à l’échelle monte en puissance lorsque l’utilisation moyenne de l’UC entre toutes les machines virtuelles est supérieure à 60 % et descend en puissance lorsque l’utilisation moyenne est inférieure à 30 %.
 
-En outre toohello ensemble d’échelle de ressource, hello *azuredeploy.json* exemple de modèle déclare également le réseau virtuel, adresse IP publique, équilibrage de charge et les ressources de paramètres de mise à l’échelle.  Pour plus d’informations sur la création de ces ressources dans un modèle, consultez la page [Jeu de mise à l’échelle Linux avec mise à l’échelle automatique](virtual-machine-scale-sets-linux-autoscale.md).
+En plus de la ressource de jeu de mise à l’échelle, l’exemple de modèle *azuredeploy.json* déclare également le réseau virtuel, l’adresse IP publique, l’équilibrage de charge et les paramètres de mise à l’échelle automatique.  Pour plus d’informations sur la création de ces ressources dans un modèle, consultez la page [Jeu de mise à l’échelle Linux avec mise à l’échelle automatique](virtual-machine-scale-sets-linux-autoscale.md).
 
-Bonjour *azuredeploy.json* modèle, hello `extensionProfile` propriété Hello `Microsoft.Compute/virtualMachineScaleSets` ressource spécifie une extension de script personnalisé. `fileUris`Spécifie l’emplacement des scripts hello. Dans ce cas, deux fichiers : *workserver.py*, qui définit un serveur HTTP simple, et *installserver.sh*, qui est installé d’eau et démarre hello serveur HTTP. `commandToExecute`Spécifie les hello commande toorun après avoir déployé un ensemble d’échelle hello.
+Dans le modèle *azuredeploy.json*, la propriété `extensionProfile` de la ressource `Microsoft.Compute/virtualMachineScaleSets` spécifie une extension à script personnalisé. `fileUris` spécifie l’emplacement du ou des scripts. Dans ce cas, nous avons deux fichiers : *workserver.py*, qui définit un serveur HTTP simple, et *installserver.sh*, qui installe Bottle et démarre le serveur HTTP. `commandToExecute` spécifie la commande à exécuter une fois le jeu de mise à l’échelle déployé.
 
 ```json
           "extensionProfile": {
@@ -59,11 +59,11 @@ Bonjour *azuredeploy.json* modèle, hello `extensionProfile` propriété Hello `
 ```
 
 ### <a name="aspnet-mvc-application-on-windows"></a>Application ASP.NET MVC sur Windows
-Hello [application ASP.NET MVC sur Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) exemple de modèle déploie une application ASP.NET MVC simple s’exécutant dans IIS sur l’ensemble d’échelle de Windows.  IIS et hello application MVC sont déployés à l’aide de hello [PowerShell souhaité (DSC de) la configuration d’état](virtual-machine-scale-sets-dsc.md) extension de machine virtuelle.  mise à l’échelle Hello configurer échelles (sur l’instance de la machine virtuelle à la fois) lorsque l’utilisation du processeur est supérieur à 50 % pendant 5 minutes. 
+L’exemple de modèle [Application ASP.NET MVC sur Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) déploie une application ASP.NET MVC simple dans IIS sur un jeu de mise à l’échelle Windows.  IIS et l’application MVC sont déployés à l’aide de l’extension de machine virtuelle [Configuration d’état souhaité (DSC) PowerShell](virtual-machine-scale-sets-dsc.md).  Le jeu de mise à l’échelle monte en puissance (sur une instance de machine virtuelle à la fois) lorsque l’utilisation de l’UC dépasse 50 % pendant 5 minutes. 
 
-En outre toohello ensemble d’échelle de ressource, hello *azuredeploy.json* exemple de modèle déclare également le réseau virtuel, adresse IP publique, équilibrage de charge et les ressources de paramètres de mise à l’échelle. Ce modèle illustre également la mise à niveau de l’application.  Pour plus d’informations sur la création de ces ressources dans un modèle, consultez la page [Jeu de mise à l’échelle Windows avec mise à l’échelle automatique](virtual-machine-scale-sets-windows-autoscale.md).
+En plus de la ressource de jeu de mise à l’échelle, l’exemple de modèle *azuredeploy.json* déclare également le réseau virtuel, l’adresse IP publique, l’équilibrage de charge et les paramètres de mise à l’échelle automatique. Ce modèle illustre également la mise à niveau de l’application.  Pour plus d’informations sur la création de ces ressources dans un modèle, consultez la page [Jeu de mise à l’échelle Windows avec mise à l’échelle automatique](virtual-machine-scale-sets-windows-autoscale.md).
 
-Bonjour *azuredeploy.json* modèle, hello `extensionProfile` propriété Hello `Microsoft.Compute/virtualMachineScaleSets` ressource spécifie un [configuration d’état souhaité (DSC)](virtual-machine-scale-sets-dsc.md) extension qui installe IIS et une valeur par défaut application Web à partir d’un package Web Deploy.  Hello *IISInstall.ps1* script installe IIS sur l’ordinateur virtuel de hello et se trouve dans hello *DSC* dossier.  application web MVC est Hello se trouve dans hello *WebDeploy* dossier.  script d’installation toohello Hello chemins d’accès et de l’application web hello sont définis dans hello `powershelldscZip` et `webDeployPackage` paramètres Bonjour *azuredeploy.parameters.json* fichier. 
+Dans le modèle *azuredeploy.json*, la propriété `extensionProfile` de la ressource `Microsoft.Compute/virtualMachineScaleSets` spécifie une extension [Configuration d’état souhaité (DSC)](virtual-machine-scale-sets-dsc.md) qui installe IIS et une application par défaut à partir d’un package WebDeploy.  Le script *IISInstall.ps1* installe IIS sur la machine virtuelle et se trouve dans le dossier *DSC*.  L’application web MVC se trouve dans le dossier *WebDeploy*.  Les chemins d’accès pour le script d’installation et de l’application web sont définis dans les paramètres `powershelldscZip` et `webDeployPackage` dans le fichier *azuredeploy.parameters.json*. 
 
 ```json
           "extensionProfile": {
@@ -93,11 +93,11 @@ Bonjour *azuredeploy.json* modèle, hello `extensionProfile` propriété Hello `
           }
 ```
 
-## <a name="deploy-hello-template"></a>Déployer le modèle de hello
-hello toodeploy façon la plus simple de Hello [serveur HTTP de Python sur Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) ou [application ASP.NET MVC sur Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) modèle est toouse hello **déployer tooAzure** bouton trouvé Bonjour dans les fichiers Lisez-moi de hello dans GitHub.  Vous pouvez également utiliser PowerShell ou CLI d’Azure toodeploy hello exemples de modèles.
+## <a name="deploy-the-template"></a>Déployer le modèle
+Le moyen le plus simple pour déployer le modèle [serveur HTTP Python sur Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) ou [application ASP.NET MVC sur Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) consiste à utiliser le bouton **Déployer dans Azure** qui se trouve dans les fichiers Lisez-moi dans GitHub.  Vous pouvez également utiliser PowerShell ou l’interface Azure CLI pour déployer les exemples de modèles.
 
 ### <a name="powershell"></a>PowerShell
-Hello de copie [serveur HTTP de Python sur Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) ou [application ASP.NET MVC sur Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) fichiers à partir du dossier de tooa hello GitHub dépôt sur votre ordinateur local.  Ouvrez hello *azuredeploy.parameters.json* fichier et mise à jour des valeurs par défaut hello Hello `vmssName`, `adminUsername`, et `adminPassword` paramètres. Enregistrer hello suite du script PowerShell trop*deploy.ps1* Bonjour même dossier que hello *azuredeploy.json* modèle. toodeploy Bonjour exemple modèle exécuter Bonjour *deploy.ps1* script à partir d’une fenêtre de commande PowerShell.
+Copiez les fichiers de [serveur HTTP Python sur Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) ou [application ASP.NET MVC sur Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) du référentiel GitHub dans un dossier sur votre ordinateur local.  Ouvrez le fichier *azuredeploy.parameters.json* et de mettez à jour les valeurs par défaut des paramètres `vmssName`, `adminUsername` et `adminPassword`. Enregistrez le script PowerShell suivant dans *deploy.ps1* dans le même dossier que le modèle *azuredeploy.json*. Pour déployer l’exemple de modèle, exécutez le script *deploy.ps1* à partir d’une fenêtre de commande PowerShell.
 
 ```powershell
 param(
@@ -163,7 +163,7 @@ if($resourceProviders.length) {
 $resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
 if(!$resourceGroup)
 {
-    Write-Host "Resource group '$resourceGroupName' does not exist. toocreate a new resource group, please enter a location.";
+    Write-Host "Resource group '$resourceGroupName' does not exist. To create a new resource group, please enter a location.";
     if(!$resourceGroupLocation) {
         $resourceGroupLocation = Read-Host "resourceGroupLocation";
     }
@@ -174,7 +174,7 @@ else{
     Write-Host "Using existing resource group '$resourceGroupName'";
 }
 
-# Start hello deployment
+# Start the deployment
 Write-Host "Starting deployment...";
 if(Test-Path $parametersFilePath) {
     New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
@@ -191,7 +191,7 @@ IFS=$'\n\t'
 
 # -e: immediately exit if any command has a non-zero exit status
 # -o: prevents errors in a pipeline from being masked
-# IFS new value is less likely toocause confusing bugs when looping arrays or arguments (e.g. $@)
+# IFS new value is less likely to cause confusing bugs when looping arrays or arguments (e.g. $@)
 
 usage() { echo "Usage: $0 -i <subscriptionId> -g <resourceGroupName> -n <deploymentName> -l <resourceGroupLocation>" 1>&2; exit 1; }
 
@@ -238,12 +238,12 @@ if [[ -z "$deploymentName" ]]; then
 fi
 
 if [[ -z "$resourceGroupLocation" ]]; then
-    echo "Enter a location below toocreate a new resource group else skip this"
+    echo "Enter a location below to create a new resource group else skip this"
     echo "ResourceGroupLocation:"
     read resourceGroupLocation
 fi
 
-#templateFile Path - template file toobe used
+#templateFile Path - template file to be used
 templateFilePath="template.json"
 
 if [ ! -f "$templateFilePath" ]; then
@@ -264,7 +264,7 @@ if [ -z "$subscriptionId" ] || [ -z "$resourceGroupName" ] || [ -z "$deploymentN
     usage
 fi
 
-#login tooazure using your credentials
+#login to azure using your credentials
 az account show 1> /dev/null
 
 if [ $? != 0 ];
@@ -272,7 +272,7 @@ then
     az login
 fi
 
-#set hello default subscription id
+#set the default subscription id
 az account set --name $subscriptionId
 
 set +e

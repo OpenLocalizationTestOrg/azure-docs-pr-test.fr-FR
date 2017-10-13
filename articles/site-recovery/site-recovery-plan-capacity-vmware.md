@@ -1,6 +1,6 @@
 ---
-title: "aaaPlan la capacité et de mise à l’échelle pour tooAzure de réplication VMware avec Azure Site Recovery | Documents Microsoft"
-description: "Utilisez cette capacité tooplan de l’article et la mise à l’échelle lors de la réplication tooAzure les ordinateurs virtuels VMware avec Azure Site Recovery"
+title: "Planifier la capacité et la mise à l’échelle de la réplication VMware vers Azure avec Azure Site Recovery | Microsoft Docs"
+description: "Utilisez cet article pour planifier la capacité et la mise à l’échelle pendant la réplication des machines virtuelles VMware vers Azure avec Azure Site Recovery"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,88 +14,88 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/24/2017
 ms.author: rayne
-ms.openlocfilehash: 7ca9147d1b4611f6b4a67c3de3f27fb9878f4c4f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8b580ac239bfb6d7b633fb03d4cfb91b168b0610
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="plan-capacity-and-scaling-for-vmware-replication-with-azure-site-recovery"></a>Planifier la capacité et la mise à l’échelle de la réplication VMware avec Azure Site Recovery
 
-Utilisez cette toofigure article planification de la capacité et la mise à l’échelle lors de la réplication locale sur les ordinateurs virtuels VMware et tooAzure des serveurs physiques avec [Azure Site Recovery](site-recovery-overview.md).
+Utilisez cet article pour déterminer la planification de la capacité et de la mise à l’échelle pendant la réplication de serveurs physiques et de machines virtuelles VMware locales vers Azure avec [Azure Site Recovery](site-recovery-overview.md).
 
 ## <a name="how-do-i-start-capacity-planning"></a>Comment dois-je commencer la planification de la capacité ?
 
-Collecter des informations sur votre environnement de réplication en exécutant hello [planification de déploiement Azure Site Recovery](https://aka.ms/asr-deployment-planner-doc) pour la réplication de VMware. [En savoir plus](site-recovery-deployment-planner.md) sur cet outil. Vous rassemblez ainsi des informations sur la compatibilité des machines virtuelles, le nombre de disques par machines virtuelles et l’activité des données par disque. outil de Hello couvre également les besoins en bande passante et hello Azure infrastructure nécessaire pour le basculement de réplication et de test réussi.
+Collectez des informations sur votre environnement de réplication en exécutant l’outil [Azure Site Recovery Deployment Planner](https://aka.ms/asr-deployment-planner-doc) pour la réplication VMware. [En savoir plus](site-recovery-deployment-planner.md) sur cet outil. Vous rassemblez ainsi des informations sur la compatibilité des machines virtuelles, le nombre de disques par machines virtuelles et l’activité des données par disque. L’outil couvre également les exigences en bande passante du réseau et l’infrastructure Azure requise pour la réussite de la réplication et du test de basculement.
 
 ## <a name="capacity-considerations"></a>Considérations relatives à la capacité
 
 **Composant** | **Détails** |
 --- | --- | ---
-**Réplication** | **Taux de modification quotidien maximal :** un ordinateur protégé peut uniquement utiliser un serveur de traitement, et un serveur de processus unique peut gérer un taux de changement quotidien jusqu'à too2 to. 2 To est donc maximale des données quotidiennes hello modifier taux est prise en charge pour un ordinateur protégé.<br/><br/> **Débit maximal :** un ordinateur répliqué peut appartenir tooone compte de stockage dans Azure. Un compte de stockage standard peut gérer un maximum de 20 000 demandes par seconde, et nous vous recommandons de conserver nombre hello d’opérations d’entrée/sortie par seconde (IOPS) sur un too20 machine source, 000. Par exemple, si vous disposez d’un ordinateur source avec 5 disques, et chaque disque génère 120 IOPS (taille de 8 Ko) sur l’ordinateur source de hello, puis il sera dans hello Azure limite des e/s de disque de 500 par. (nombre de hello de comptes de stockage requis est machine source au total de toohello égal IOPS, divisé par 20 000.)
-**Serveur de configuration** | serveur de configuration Hello doit être en mesure de toohandle hello quotidienne modification capacité dans toutes les charges de travail en cours d’exécution sur les ordinateurs protégés, et suffisamment de bande passante toocontinuously doit répliquer les données tooAzure stockage.<br/><br/> Comme meilleure pratique, recherchez le serveur de configuration de hello sur hello même réseau et le segment de réseau local en tant que machines que vous voulez tooprotect de hello. Il peut se trouver sur un autre réseau, mais les ordinateurs que vous souhaitez tooprotect doit avoir la couche réseau 3 visibilité tooit.<br/><br/> Recommandations de taille pour le serveur de configuration hello sont résumées dans le tableau hello Bonjour suivant la section.
-**Serveur de traitement** | premier serveur de processus Hello est installé par défaut sur le serveur de configuration hello. Vous pouvez déployer tooscale de serveurs de processus supplémentaire de votre environnement. <br/><br/> serveur de processus Hello reçoit des données de réplication à partir des ordinateurs protégés et il optimise avec la mise en cache, la compression et le chiffrement. Il envoie ensuite hello données tooAzure. ordinateur de serveur de processus Hello doit avoir suffisamment ressources tooperform ces tâches.<br/><br/> serveur de processus Hello utilise un cache sur disque. Utilisez un disque distinct du cache de 600 Go ou plus de modifications données toohandle stockées dans l’événement hello d’un goulot d’étranglement du réseau ou d’une panne.
+**Réplication** | **Taux de modification par jour maximal** : une machine protégée ne peut utiliser qu’un serveur de processus, et un seul serveur de processus peut gérer un taux de modification de 2 To par jour au maximum. Par conséquent, 2 To est le taux de modification quotidien maximal de données pris en charge pour une machine protégée.<br/><br/> **Débit maximum** : un ordinateur répliqué peut appartenir à un compte de stockage dans Azure. Un compte de stockage standard peut gérer un maximum de 20 000 requêtes par seconde, et nous vous recommandons de conserver le nombre d’opérations d’entrée/sortie par seconde (IOPS) sur un ordinateur source à 20 000. Par exemple, si vous disposez d’une machine source à 5 disques et si chaque disque génère 120 IOPS (taille de 8 Ko) sur la machine source, la limite de 500 IOPS sur le disque Azure est respectée. (Le nombre de comptes de stockage requis est égal au nombre d’E/S par seconde total de la machine source divisé par 20 000).
+**Serveur de configuration** | Le serveur de configuration doit être en mesure de gérer le taux de modification quotidien pour toutes les charges de travail en cours d’exécution sur des machines protégées, et il a besoin d’une bande passante suffisante pour permettre la réplication continue des données sur Stockage Azure.<br/><br/> À titre de meilleure pratique, placez le serveur de configuration sur le même réseau et le même segment de réseau local que les machines à protéger. Il peut se trouver sur un réseau différent, mais les ordinateurs à protéger doivent avoir une visibilité de réseau de couche 3.<br/><br/> Les recommandations en matière de taille du serveur de configuration sont résumées dans le tableau de la section suivante.
+**Serveur de traitement** | Le premier serveur de processus est installé par défaut sur le serveur de configuration. Vous pouvez déployer des serveurs de processus supplémentaires pour étendre votre environnement. <br/><br/> le serveur de processus reçoit les données de réplication des machines protégées et les optimise grâce à la mise en cache, la compression et le chiffrement avant de les transmettre à Azure. Les données sont ensuite envoyées vers Azure. Le serveur de processus doit disposer de ressources suffisantes pour effectuer ces tâches.<br/><br/> Le serveur de processus utilise un cache disque. Utilisez un disque de cache distinct de 600 Go ou plus pour gérer les modifications apportées aux données stockées en cas de goulot d’étranglement ou de panne.
 
-## <a name="size-recommendations-for-hello-configuration-server"></a>Recommandations de taille pour le serveur de configuration hello
+## <a name="size-recommendations-for-the-configuration-server"></a>Recommandations de taille pour le serveur de configuration
 
 **UC** | **Mémoire** | **Taille du disque cache** | **Taux de modification des données** | **Machines protégées**
 --- | --- | --- | --- | ---
 8 processeurs virtuels (2 sockets * 4 cœurs à 2,5 gigahertz [GHz]) | 16 Go | 300 Go | 500 Go ou moins | Répliquez moins de 100 machines.
-12 processeurs virtuels (2 sockets * 6 cœurs à 2,5 GHz) | 18 Go | 600 Go | 500 Go too1 to | Répliquez entre 100 et 150 machines.
-16 processeurs virtuels (2 sockets * 8 cœurs à 2,5 GHz) | 32 Go | 1 To | 1 to too2 to | Répliquez entre 150 et 200 machines.
-Déployer un autre serveur de traitement | | | > 2 To | Déployer des serveurs de traitement supplémentaires si vous effectuez une réplication plus de 200 ordinateurs, ou si des modifications des données quotidiennes de hello taux dépasse 2 To.
+12 processeurs virtuels (2 sockets * 6 cœurs à 2,5 GHz) | 18 Go | 600 Go | 500 Go à 1 To | Répliquez entre 100 et 150 machines.
+16 processeurs virtuels (2 sockets * 8 cœurs à 2,5 GHz) | 32 Go | 1 To | 1 To à 2 To | Répliquez entre 150 et 200 machines.
+Déployer un autre serveur de traitement | | | > 2 To | Déployez des serveurs de traitement supplémentaires si vous effectuez la réplication de plus de 200 ordinateurs, ou si le taux de changement des données quotidien dépasse 2 To.
 
 Où :
 
 * Chaque ordinateur source est configuré avec 3 disques de 100 Go chacune.
 * Nous avons utilisé le stockage de référence de 8 disques SAP de 10 K tr/min avec RAID 10 pour les mesures de disque cache.
 
-## <a name="size-recommendations-for-hello-process-server"></a>Recommandations de taille pour le serveur de processus hello
+## <a name="size-recommendations-for-the-process-server"></a>Recommandations de taille pour le serveur de processus
 
-Si vous devez tooprotect plus de 200 ordinateurs, ou les taux de modification quotidien hello sont supérieure à 2 To, vous pouvez ajouter des processus serveurs toohandle hello charge de la réplication. tooscale out, vous pouvez :
+Si vous souhaitez protéger plus de 200 machines ou si le taux de modification quotidien est supérieur à 2 To, vous pouvez ajouter des serveurs de processus pour gérer la charge de réplication. Pour augmenter la taille des instances, vous pouvez :
 
-* Augmenter le nombre de hello des serveurs de configuration. Par exemple, vous pouvez protéger les machines too400 avec deux serveurs de configuration.
-* Ajouter des serveurs de processus et utiliser ces serveurs de configuration hello toohandle le trafic au lieu de (ou en plus).
+* Augmentez le nombre de serveurs de configuration. Par exemple, vous pouvez protéger jusqu’à 400 machines avec deux serveurs de configuration.
+* Ajoutez d’autres serveurs de processus et utilisez-les pour gérer le trafic à la place (ou en plus) du serveur de configuration.
 
-Hello tableau suivant décrit un scénario dans lequel :
+Le tableau suivant décrit un scénario dans lequel :
 
-* Vous ne planifiez pas de serveur de configuration toouse hello en tant que processus serveur.
+* Vous n’envisagez pas d’utiliser le serveur de configuration en tant que serveur de processus.
 * Vous avez configuré un serveur de processus supplémentaire.
-* Vous avez configuré le serveur de processus supplémentaire de machines virtuelles protégées toouse hello.
+* Vous avez configuré des machines virtuelles protégées pour utiliser le serveur de processus supplémentaire.
 * Chaque ordinateur source protégé est configuré avec trois disques de 100 Go chacun.
 
 **Serveur de configuration** | **Serveur de traitement supplémentaire** | **Taille du disque cache** | **Taux de modification des données** | **Machines protégées**
 --- | --- | --- | --- | ---
 8 processeurs virtuels (2 sockets * 4 cœurs @ 2,5 GHz), 16 Go de mémoire | 4 processeurs virtuels (2 sockets * 2 cœurs @ 2,5 GHz), 8 Go de mémoire | 300 Go | 250 Go ou moins | Répliquez 85 machines ou moins.
-8 processeurs virtuels (2 sockets * 4 cœurs @ 2,5 GHz), 16 Go de mémoire | 8 processeurs virtuels (2 sockets * 4 cœurs @ 2,5 GHz), 12 Go de mémoire | 600 Go | 250 Go too1 to | Répliquez entre 85 et 150 machines.
-12 processeurs virtuels (2 sockets * 6 cœurs @ 2,5 GHz), 18 Go de mémoire | 12 processeurs virtuels (2 sockets * 6 cœurs @ 2,5 GHz), 24 Go de mémoire | 1 To | 1 to too2 to | Répliquez entre 150 et 225 machines.
+8 processeurs virtuels (2 sockets * 4 cœurs @ 2,5 GHz), 16 Go de mémoire | 8 processeurs virtuels (2 sockets * 4 cœurs @ 2,5 GHz), 12 Go de mémoire | 600 Go | 250 Go à 1 To | Répliquez entre 85 et 150 machines.
+12 processeurs virtuels (2 sockets * 6 cœurs @ 2,5 GHz), 18 Go de mémoire | 12 processeurs virtuels (2 sockets * 6 cœurs @ 2,5 GHz), 24 Go de mémoire | 1 To | 1 To à 2 To | Répliquez entre 150 et 225 machines.
 
-Hello dans laquelle vous mettez à l’échelle vos serveurs différemment selon votre préférence pour un modèle de montée en puissance parallèle ou la montée en puissance parallèle.  Vous pouvez aboutir à une montée en puissance avec le développement de serveurs de configuration et de processus haut de gamme, ou à une montée en charge avec le déploiement d’un nombre de serveurs supérieur avec moins de ressources. Par exemple, si vous avez besoin de machines de 220 tooprotect, vous pouvez effectuer de hello suivantes :
+La façon dont vous allez mettre à niveau vos serveurs dépend de votre préférence pour un modèle de type Scale up ou Scale out.  Vous pouvez aboutir à une montée en puissance avec le développement de serveurs de configuration et de processus haut de gamme, ou à une montée en charge avec le déploiement d’un nombre de serveurs supérieur avec moins de ressources. Par exemple, si vous avez besoin de protéger les 220 machines, vous pouvez effectuer des opérations suivantes :
 
-* Configurer le serveur de configuration hello avec 12 processeurs virtuels, 18 Go de mémoire et un serveur de processus supplémentaire avec 12 processeurs, 24 Go de mémoire. Configurer les ordinateurs protégés toouse hello serveur processus supplémentaire uniquement.
-* Configurer deux serveurs de configuration (2 x 8 processeurs, 16 Go de RAM) et deux serveurs de processus supplémentaire (1 x 8 processeurs et 4 processeurs x 1 toohandle 135 + 85 [220] ordinateurs). Configurer des machines protégées toouse hello processus supplémentaire uniquement les serveurs.
+* Configurez le serveur de configuration avec 12 processeurs virtuels, 18 Go de mémoire et un serveur de traitement supplémentaire avec 12 processeurs virtuels, 24 Go de mémoire. Configurer les machines protégées de sorte qu’elles utilisent le serveur de traitement supplémentaire uniquement.
+* Configurez deux serveurs de configuration (2 x 8 processeurs virtuels, 16 Go de RAM) et deux serveurs de traitement supplémentaires (1 x 8 processeurs virtuels et 4 processeurs virtuels x 1 pour gérer les 135 + 85 (220) machines). Configurer les machines protégées de sorte qu’elles utilisent les serveurs de traitement supplémentaires uniquement.
 
 
 ## <a name="control-network-bandwidth"></a>Contrôler la bande passante réseau
 
-Une fois que vous avez utilisé hello [outil de planification de déploiement de hello](site-recovery-deployment-planner.md) toocalculate hello passante nécessaire pour la réplication (la réplication initiale hello et puis delta), vous pouvez contrôler la quantité de hello de bande passante utilisée pour la réplication à l’aide de deux des options :
+Après avoir utilisé [l’outil Deployment Planner](site-recovery-deployment-planner.md) pour calculer la bande passante nécessaire à la réplication (réplication initiale et delta), vous pouvez contrôler la quantité de bande passante utilisée pour la réplication à l’aide de ces deux options :
 
-* **Limiter la bande passante**: le trafic de VMware qui réplique tooAzure passe par un serveur de processus spécifique. Vous pouvez limiter la bande passante sur les ordinateurs hello en cours d’exécution en tant que serveurs de traitement.
-* **Influencer la bande passante**: vous pouvez influer sur la bande passante hello utilisée pour la réplication à l’aide de deux clés de Registre :
-  * Hello **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\UploadThreadsPerVM** valeur de Registre spécifie le nombre de hello de threads qui sont utilisés pour le transfert de données (la réplication initiale ou delta) d’un disque. Une valeur plus élevée augmente la bande passante du réseau hello utilisée pour la réplication.
-  * Hello **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\DownloadThreadsPerVM** Spécifie le nombre de hello de threads utilisés pour le transfert de données pendant la restauration automatique.
+* **Limiter la bande passante**: le trafic VMware qui est répliqué sur Azure passe par un serveur de processus spécifique. Vous pouvez limiter la bande passante sur les machines qui s’exécutent en tant que serveurs de processus.
+* **Influer sur la bande passante** : vous pouvez influer sur la bande passante utilisée pour la réplication à l’aide de quelques clés de Registre :
+  * La valeur de Registre **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\UploadThreadsPerVM** détermine le nombre de threads utilisés pour le transfert des données (réplication initiale ou différentielle) sur un disque. Une valeur plus élevée permet d’augmenter la bande passante réseau utilisée pour la réplication.
+  * La valeur de Registre **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\DownloadThreadsPerVM** détermine le nombre de threads utilisés pour le transfert des données pendant la restauration automatique.
 
 ### <a name="throttle-bandwidth"></a>Limiter la bande passante
 
-1. Ouvrez hello le composant logiciel enfichable MMC Azure Backup sur agissant de machine hello en tant que serveur de processus hello. Par défaut, un raccourci pour la sauvegarde est disponible sur le bureau de hello ou Bonjour suivant du dossier : C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin.
-2. Dans le composant logiciel enfichable hello, cliquez sur **modifier les propriétés**.
+1. Ouvrez le composant logiciel enfichable MMC Azure Backup sur la machine qui fait office de serveur de processus. Par défaut, un raccourci vers Backup est créé sur le Bureau, ou dans le dossier suivant : C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin.
+2. Dans le composant logiciel enfichable, cliquez sur **Modifier les propriétés**.
 
-    ![Propriétés de toochange option composant logiciel enfichable MMC d’écran de Azure Backup](./media/site-recovery-vmware-to-azure/throttle1.png)
-3. Sur hello **limitation** onglet, sélectionnez **activer l’utilisation de la bande passante internet de limitation pour les opérations de sauvegarde**. Définir des limites de hello pour le travail et non liés au travail heures. Les plages valides sont de Mbits/s des too102 de 512 Kbits/s par seconde.
+    ![Capture d’écran de l’option enfichable MMC d’Azure Backup pour modifier les propriétés](./media/site-recovery-vmware-to-azure/throttle1.png)
+3. Sous l’onglet **Limitation**, sélectionnez la case **Activer la limitation de la bande passante sur Internet pour les opérations de sauvegarde**. Définissez les limites pour les heures ouvrées et non ouvrées. Les plages valides vont de 512 Kbits/s à 102 Mbits/s par seconde.
 
     ![Capture d’écran de la boîte de dialogue Propriétés d’Azure Backup](./media/site-recovery-vmware-to-azure/throttle2.png)
 
-Vous pouvez également utiliser hello [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409.aspx) de limitation tooset applet de commande. Voici un exemple :
+Vous pouvez également utiliser l’applet de commande [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409.aspx) pour définir la limitation. Voici un exemple :
 
     $mon = [System.DayOfWeek]::Monday
     $tue = [System.DayOfWeek]::Tuesday
@@ -105,41 +105,41 @@ Vous pouvez également utiliser hello [Set-OBMachineSetting](https://technet.mic
 
 ### <a name="influence-network-bandwidth-for-a-vm"></a>Influer sur la bande passante réseau d’une machine virtuelle
 
-1. Dans le Registre de l’ordinateur virtuel de hello, accédez trop**HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication**.
-   * tooinfluence hello la bande passante le trafic sur un disque de réplication, modifier la valeur hello **UploadThreadsPerVM**, ou créez la clé de hello si elle n’existe pas.
-   * la bande passante de hello tooinfluence pour le trafic de la restauration automatique d’Azure, modifier la valeur hello **DownloadThreadsPerVM**.
-2. Hello par défaut est 4. Dans un réseau « surapprovisionnée », ces clés de Registre doivent être modifiées à partir des valeurs par défaut de hello. Hello maximal est 32. Surveiller le trafic toooptimize hello valeur.
+1. Dans le registre de machine virtuelle, accédez à **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication**.
+   * Pour influer sur le trafic de la bande passante sur un disque de réplication, modifiez la valeur du paramètre **UploadThreadsPerVM**, ou créez la clé si elle n’existe pas.
+   * Pour influer sur la bande passante utilisée pour le trafic lié à la restauration automatique à partir d’Azure, modifiez la valeur du paramètre **DownloadThreadsPerVM**.
+2. La valeur par défaut est 4. Dans un réseau « surutilisé », ces clés de Registre doivent être modifiées par rapport aux valeurs par défaut. La valeur maximale est de 32. Surveillez le trafic pour optimiser la valeur.
 
 
 ## <a name="deploy-additional-process-servers"></a>Déployer d’autres serveurs de traitement
 
-Si vous avez tooscale votre déploiement au-delà de 200 machines sources, ou vous avez un total quotidien évolution du taux de plus de 2 To, vous devez le volume de trafic de processus supplémentaire serveurs toohandle hello. Suivez ces tooset obtenir des instructions de configuration de serveur de processus hello. Après avoir configuré le serveur de hello, vous migrez source machines toouse il.
+Si vous devez monter en charge votre déploiement au-delà de 200 machines source ou que votre taux d’évaluation quotidien total dépasse 2 To, vous avez besoin de serveurs de traitement supplémentaires pour gérer le volume de trafic. Suivez ces instructions pour configurer le serveur de processus. Après avoir configuré le serveur, vous pouvez migrer les ordinateurs source pour les utiliser.
 
-1. Dans **serveurs de récupération de Site**, cliquez sur le serveur de configuration hello, puis cliquez sur **serveur de processus**.
+1. Dans **Serveurs Site Recovery**, cliquez sur le serveur de configuration, puis sur **Serveur de processus**.
 
-    ![Capture d’écran de récupération de Site serveurs option tooadd un serveur de processus](./media/site-recovery-vmware-to-azure/migrate-ps1.png)
+    ![Capture d’écran de l’option de serveurs de Site Recovery pour ajouter un serveur de traitement](./media/site-recovery-vmware-to-azure/migrate-ps1.png)
 2. Dans **Type de serveur** cliquez sur **Serveur de processus (local)**.
 
     ![Capture d’écran de la boîte de dialogue du serveur de traitement](./media/site-recovery-vmware-to-azure/migrate-ps2.png)
-3. Téléchargez le fichier du programme d’installation de Site Recovery unifiée hello et exécutez-le tooinstall hello processus serveur. Il est également inscrit dans le coffre hello.
-4. Dans **avant de commencer**, sélectionnez **ajouter tooscale de serveurs de processus supplémentaire déploiement**.
-5. Assistant hello complète Bonjour même façon que lorsque vous [configurer](#step-2-set-up-the-source-environment) serveur de configuration hello.
+3. Téléchargez le fichier d’installation unifiée Site Recovery et exécutez-le pour installer le serveur de processus. Cela l’inscrit également dans le coffre.
+4. Dans la zone **Avant de commencer**, sélectionnez **l’ajout de serveurs de traitement supplémentaires pour effectuer un déploiement avec montée en puissance**.
+5. Terminez l’Assistant comme vous l’avez fait lors de la [configuration](#step-2-set-up-the-source-environment) du serveur de configuration.
 
     ![Capture d’écran de l’assistant de configuration unifié Azure Site Recovery](./media/site-recovery-vmware-to-azure/add-ps1.png)
-6. Dans **détails du serveur de Configuration**, spécifiez l’adresse IP de hello hello du serveur de configuration et hello phrase secrète. le mot de passe tooobtain hello, exécutez **[SiteRecoveryInstallationFolder]\home\sysystems\bin\genpassphrase.exe – n** sur le serveur de configuration hello.
+6. Dans **Détails du serveur de configuration**, spécifiez l’adresse IP du serveur de configuration et la phrase secrète. Pour récupérer la phrase secrète, exécutez la commande suivante : **[DossierInstallationSiteRecovery]\home\sysystems\bin\genpassphrase.exe –n** sur le serveur de configuration.
 
     ![Capture d’écran de la page Détails du serveur de configuration](./media/site-recovery-vmware-to-azure/add-ps2.png)
 
-### <a name="migrate-machines-toouse-hello-new-process-server"></a>Migrer des machines toouse hello nouveau serveur de processus
-1. Dans **paramètres** > **serveurs de récupération de Site**, cliquez sur le serveur de configuration hello, puis développez **serveurs de traitement**.
+### <a name="migrate-machines-to-use-the-new-process-server"></a>Migrez les machines pour utiliser le nouveau serveur de traitement
+1. Dans **Paramètres** > **Serveurs Site Recovery**, cliquez sur le serveur de configuration, puis développez **Serveurs de processus**.
 
     ![Capture d’écran de la boîte de dialogue du serveur de traitement](./media/site-recovery-vmware-to-azure/migrate-ps2.png)
-2. Cliquez sur le serveur de processus hello en cours d’utilisation, puis cliquez sur **commutateur**.
+2. Cliquez avec le bouton droit sur le serveur de processus en cours d’utilisation et sélectionnez **Basculer**.
 
     ![Capture d’écran de la boîte de dialogue Serveur de configuration](./media/site-recovery-vmware-to-azure/migrate-ps3.png)
-3. Dans **serveur de processus cible sélectionnez**, sélectionnez hello nouveau processus serveur souhaité toouse, puis sélectionnez les ordinateurs virtuels hello gère ce serveur hello. Cliquez sur hello icône tooget d’informations sur le serveur de hello. toohelp que vous devez charger les décisions, hello moyenne espace suffisant tooreplicate chaque ordinateur virtuel sélectionné toohello nouveau serveur de processus s’affiche. Cliquez sur toostart de case à cocher hello toohello nouveau serveur de processus de réplication.
+3. Dans **Sélectionner un serveur de traitement cible**, sélectionnez le nouveau serveur de processus à utiliser, puis les machines virtuelles que le serveur va gérer. Cliquez sur l’icône d’information pour obtenir des informations sur le serveur. Pour vous aider à prendre des décisions quant à la charge, l’espace moyen nécessaire à la réplication de chaque machine virtuelle sélectionnée vers le nouveau serveur de processus s’affiche. Cliquez sur la coche pour commencer la réplication vers le nouveau serveur de traitement.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Téléchargez et exécutez hello [planification de déploiement Azure Site Recovery](https://aka.ms/asr-deployment-planner)
+Télécharger et exécuter l’outil [Azure Site Recovery Deployment Planner](https://aka.ms/asr-deployment-planner).

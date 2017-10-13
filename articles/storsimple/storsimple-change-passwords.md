@@ -1,6 +1,6 @@
 ---
-title: "les mots de passe aaaChange via le Gestionnaire de périphériques StorSimple | Documents Microsoft"
-description: "Décrit comment toouse hello toochange du service StorSimple Manager vos mots de passe d’administrateur de gestionnaire d’instantanés StorSimple et de périphérique."
+title: "Modifier les mots de passe à l’aide de StorSimple Device Manager | Microsoft Docs"
+description: "Explique comment utiliser le service StorSimple Manager pour modifier vos mots de passe du Gestionnaire d'instantanés StorSimple et d’administrateur de l’appareil."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: b2836eb4d3a05e1d2a5eeeeefe66c75f63ba38ed
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d890b59595628ca3eeff1df258847c2bb54d29ff
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-hello-storsimple-manager-service-toochange-your-storsimple-passwords"></a>Utilisez hello StorSimple Manager service toochange vos mots de passe StorSimple
+# <a name="use-the-storsimple-manager-service-to-change-your-storsimple-passwords"></a>Utilisation du service StorSimple Manager pour modifier vos mots de passe StorSimple
 ## <a name="overview"></a>Vue d'ensemble
-Hello portail Azure classic **configurer** page contient tous les paramètres de périphérique hello que vous pouvez reconfigurer sur un appareil StorSimple qui est géré par un service StorSimple Manager. Ce didacticiel explique comment vous pouvez utiliser hello **configurer** page toochange votre administrateur de l’appareil ou le mot de passe de gestionnaire d’instantanés StorSimple.
+La page **Configurer** du portail Azure Classic contient tous les paramètres reconfigurables d’un appareil StorSimple géré par un service StorSimple Manager. Ce didacticiel explique comment utiliser la page **Configurer** pour modifier le mot de passe d’administrateur de l’appareil ou le mot de passe StorSimple de Snapshot Manager.
 
-## <a name="change-hello-device-administrator-password"></a>Mot de passe de l’administrateur d’appareil modification hello
-Lorsque vous utilisez Windows PowerShell interface tooaccess hello StorSimple, vous êtes tooenter requis un mot de passe administrateur. Lorsque l’appareil StorSimple première hello est inscrit auprès d’un service, un mot de passe par défaut hello pour cette interface est *Password1*. Sécurité hello de vos données, vous êtes toochange requis ce mot de passe à fin hello du processus d’inscription de hello. Vous ne pouvez pas quitter processus d’inscription de hello sans modifier ce mot de passe. Pour plus d’informations, consultez [étape 3 : configurer et inscrire l’appareil hello via Windows PowerShell pour StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
+## <a name="change-the-device-administrator-password"></a>Modification du mot de passe d’administrateur de l’appareil
+Quand vous utilisez l’interface Windows PowerShell pour accéder à l’appareil StorSimple, vous devez entrer un mot de passe d’administrateur de l’appareil. À l’inscription du premier appareil StorSimple auprès d’un service, le mot de passe par défaut de cette interface est *Password1*. Pour assurer la sécurité de vos données, il vous est demandé de modifier ce mot de passe à la fin de l’inscription. Vous ne pouvez pas quitter le processus d'inscription sans modifier ce mot de passe. Pour plus d’informations, voir [Étape 3 : Configuration et inscription de l’appareil via Windows PowerShell pour StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
 
-mot de passe Hello tout d’abord défini via l’interface Windows PowerShell de hello lors de l’inscription peut ensuite être modifié via hello portail Azure classic. Effectuer hello suivant les étapes toochange hello administrateur mot de passe.
+Le mot de passe qui a été défini initialement dans l’interface Windows PowerShell au moment de l’inscription peut ensuite être modifié via le portail Azure Classic. Pour modifier le mot de passe d’administrateur de l’appareil, procédez comme suit.
 
-#### <a name="toochange-hello-device-administrator-password"></a>mot de passe de l’administrateur d’appareil toochange hello
-1. Dans le portail classique hello, cliquez sur **périphériques** > **configurer** pour votre appareil.
-2. Faites défiler vers le bas toohello **mot de passe administrateur de l’appareil** section. Fournir un mot de passe administrateur contenant entre 8 caractères too15. mot de passe Hello doit être une combinaison d’au moins 3 caractères majuscules, minuscules, numériques et spéciaux.
-3. Confirmer le mot de passe hello.
-4. Cliquez sur **enregistrer** bas hello de page de hello.
+#### <a name="to-change-the-device-administrator-password"></a>Pour modifier le mot de passe d’administrateur de l’appareil
+1. Dans le portail Classic, cliquez sur **Appareils** > **Configurer** pour votre appareil.
+2. Faites défiler l’écran vers le bas jusqu’à la section **Mot de passe de l’administrateur de l’appareil** . Indiquez un mot de passe Administrateur contenant entre 8 et 15 caractères. Le mot de passe doit contenir une combinaison d’au moins 3 caractères en majuscules, en minuscules, numériques et spéciaux.
+3. Confirmez le mot de passe.
+4. Cliquez sur **Enregistrer** au bas de la page.
 
-mot de passe administrateur Hello périphérique doit maintenant être mis à jour. Vous pouvez utiliser cette interface Windows PowerShell de mot de passe modifié tooaccess hello.
+Le mot de passe Administrateur d’appareil doit maintenant être à jour. Vous pouvez utiliser ce mot de passe modifié pour accéder à l’interface Windows PowerShell.
 
-## <a name="change-hello-storsimple-snapshot-manager-password"></a>Modifier le mot de passe de gestionnaire d’instantanés StorSimple hello
-Gestionnaire d’instantanés StorSimple logiciel réside sur l’hôte Windows et permet aux administrateurs toomanage les sauvegardes de votre appareil StorSimple dans l’écran hello locaux et les instantanés cloud.
+## <a name="change-the-storsimple-snapshot-manager-password"></a>Modification du mot de passe du Gestionnaire d’instantanés StorSimple
+Le Gestionnaire d’instantanés StorSimple réside sur l’ordinateur hôte Windows et permet aux administrateurs de gérer les sauvegardes de votre appareil StorSimple sous la forme d’instantanés cloud ou locaux.
 
-Lorsque vous configurez un appareil de gestionnaire d’instantanés StorSimple, vous serez invité tooprovide hello IP adresse et le mot de passe tooauthenticate d’appareil de votre périphérique de stockage. Ce mot de passe est d’abord configuré via l’interface Windows PowerShell de hello. Pour plus d’informations, consultez [étape 3 : configurer et inscrire l’appareil hello via Windows PowerShell pour StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
+Au moment de configurer un appareil dans le Gestionnaire d’instantanés StorSimple, vous êtes invité à fournir l’adresse IP et le mot de passe de votre appareil de stockage afin de l’authentifier. Ce mot de passe est d’abord configuré via l’interface Windows PowerShell. Pour plus d’informations, voir [Étape 3 : Configuration et inscription de l’appareil via Windows PowerShell pour StorSimple](storsimple-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).
 
-mot de passe Hello tout d’abord défini via l’interface Windows PowerShell de hello lors de l’inscription peut ensuite être modifié via le portail classique de hello. Effectuer hello suivant de mot de passe du Gestionnaire d’instantanés StorSimple étapes toochange hello.
+Le mot de passe qui a été défini initialement dans l’interface Windows PowerShell au moment de l’inscription peut ensuite être modifié via le portail Classic. Pour modifier le mot de passe du Gestionnaire d’instantanés StorSimple, procédez comme suit.
 
-#### <a name="toochange-hello-storsimple-snapshot-manager-password"></a>mot de passe toochange hello Gestionnaire d’instantanés StorSimple
-1. Dans le portail classique hello, cliquez sur **périphériques** > **configurer** pour votre appareil.
-2. Faites défiler vers le bas toohello **StorSimple Snapshot Manager** section. Entrez un mot de passe 14 ou 15 caractères. Assurez-vous que ce mot de passe hello contienne une combinaison d’au moins 3 caractères majuscules, minuscules, numériques et spéciaux.
-3. Confirmer le mot de passe hello.
-4. Cliquez sur **enregistrer** bas hello de page de hello.
+#### <a name="to-change-the-storsimple-snapshot-manager-password"></a>Pour modifier le mot de passe du Gestionnaire d’instantanés StorSimple
+1. Dans le portail Classic, cliquez sur **Appareils** > **Configurer** pour votre appareil.
+2. Faites défiler l’écran vers le bas jusqu’à la section **Gestionnaire d’instantanés StorSimple** . Entrez un mot de passe 14 ou 15 caractères. Assurez-vous que le mot de passe contient une combinaison d’au moins 3 caractères en majuscules, en minuscules, numériques et spéciaux.
+3. Confirmez le mot de passe.
+4. Cliquez sur **Enregistrer** au bas de la page.
 
-mot de passe de gestionnaire d’instantanés StorSimple Hello doit maintenant être mis à jour.
+Le mot de passe du Gestionnaire d’instantanés StorSimple doit maintenant être mis à jour.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * En savoir plus sur la [sécurité StorSimple](storsimple-security.md).
 * En savoir plus sur la [modification de la configuration de votre appareil](storsimple-modify-device-config.md).
-* En savoir plus sur [à l’aide de hello tooadminister du service StorSimple Manager votre appareil StorSimple](storsimple-manager-service-administration.md).
+* En savoir plus sur [l’utilisation du service StorSimple Manager pour gérer votre appareil StorSimple](storsimple-manager-service-administration.md).
 

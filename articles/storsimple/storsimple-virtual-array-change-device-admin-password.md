@@ -1,6 +1,6 @@
 ---
-title: "mot de passe de l’administrateur d’appareil aaaChange StorSimple Virtual Array | Documents Microsoft"
-description: "Décrit comment toouse hello soit portail Azure ou StorSimple Virtual Array web UI toochange hello appareil mot de passe administrateur."
+title: "Modifier le mot de passe administrateur de l’appareil StorSimple Virtual Array | Microsoft Docs"
+description: "Explique comment utiliser le portail Azure ou l’interface utilisateur web de StorSimple Virtual Array pour modifier le mot de passe administrateur de l’appareil."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -15,67 +15,67 @@ ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 531b395df7aeade0a909360797c6b0f0abd9fd1e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 260a23003d705e6598da8c51bb5a96f2539a0014
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="change-hello-storsimple-virtual-array-device-administrator-password-via-storsimple-device-manager"></a>Modifier le mot de passe hello StorSimple Virtual Array appareil administrateur via le Gestionnaire de périphériques StorSimple
+# <a name="change-the-storsimple-virtual-array-device-administrator-password-via-storsimple-device-manager"></a>Modifier le mot de passe administrateur de l’appareil StorSimple Virtual Array via StorSimple Device Manager
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Lorsque vous utilisez hello Windows PowerShell interface tooaccess hello StorSimple Virtual Array, vous êtes tooenter requis un mot de passe administrateur. Lorsque l’appareil StorSimple hello est tout d’abord configuré et démarré, le mot de passe par défaut hello est *Password1*. Pour une sécurité hello de vos données, un mot de passe par défaut hello expire hello première fois que vous vous connectez et vous est requis toochange ce mot de passe.
+Quand vous utilisez l’interface Windows PowerShell pour accéder au StorSimple Virtual Array, vous devez entrer un mot de passe administrateur pour l’appareil. Lorsque l'appareil StorSimple est d'abord configuré puis démarré, le mot de passe par défaut est *Password1*. Pour garantir la sécurité de vos données, le mot de passe par défaut expire dès votre première connexion et vous devez donc le modifier.
 
-Vous pouvez également utiliser soit hello web local UI ou hello toochange portail Azure hello appareil administrateur mot de passe à tout moment une fois l’appareil de hello est déployé dans votre environnement de production. Chacune de ces procédures est décrite dans cet article.
+Vous pouvez également utiliser l’interface utilisateur web locale ou le portail Azure pour modifier à tout moment le mot de passe administrateur une fois l’appareil déployé dans votre environnement de production. Chacune de ces procédures est décrite dans cet article.
 
  ![Panneau Appareils](./media/storsimple-virtual-array-change-device-admin-password/ova-devices-blade.png)
 
-## <a name="use-hello-azure-portal-toochange-hello-password"></a>Mot de passe hello hello toochange portail Azure
+## <a name="use-the-azure-portal-to-change-the-password"></a>Utiliser le portail Azure pour modifier le mot de passe
 
-Effectuer hello suivant les étapes toochange hello appareil mot de passe administrateur via hello portail Azure.
+Procédez comme suit pour modifier le mot de passe administrateur de l’appareil via le portail Azure.
 
-#### <a name="toochange-hello-device-administrator-password-via-hello-azure-portal"></a>mot de passe administrateur toochange pour hello appareil via hello portail Azure
+#### <a name="to-change-the-device-administrator-password-via-the-azure-portal"></a>Pour modifier le mot de passe administrateur de l’appareil via le portail Azure
 
-1. Sur la page d’accueil hello service, sélectionnez votre service, double-cliquez sur service hello nom, puis dans hello **gestion** , cliquez sur **périphériques**. Cette opération ouvre hello **périphériques** panneau qui répertorie tous vos appareils StorSimple Virtual Array.
+1. Dans la page d’accueil du service, sélectionnez votre service, double-cliquez sur le nom du service, puis dans la section **Gestion**, cliquez sur **Appareils**. Le panneau **Appareils**, qui répertorie tous vos appareils StorSimple Virtual Array, s’ouvre.
 
-2. Bonjour **périphériques** panneau, double-cliquez sur le périphérique hello qui nécessite un changement de mot de passe.
+2. Dans le panneau **Appareils**, double-cliquez sur l’appareil dont le mot de passe doit être modifié.
 
-3. Bonjour **paramètres** panneau pour votre appareil, cliquez sur **sécurité**.
+3. Dans le panneau **Paramètres** de votre appareil, cliquez sur **Sécurité**.
 
-4. Bonjour **paramètres de sécurité** panneau, hello suivant :
+4. Dans le panneau **Paramètres de sécurité**, procédez comme suit :
    
-   1. Faites défiler vers le bas toohello **mot de passe administrateur de l’appareil** section. Fournir un mot de passe administrateur contenant entre 8 caractères too15.
-   2. Confirmer le mot de passe hello.
-   3. Cliquez sur **enregistrer** haut hello du Panneau de hello.
+   1. Faites défiler l’écran vers le bas jusqu’à la section **Mot de passe de l’administrateur de l’appareil** . Indiquez un mot de passe Administrateur contenant entre 8 et 15 caractères.
+   2. Confirmez le mot de passe.
+   3. Cliquez sur **Enregistrer** dans la partie supérieure du panneau.
 
-mise à jour de mot de passe administrateur de périphérique Hello. Vous pouvez utiliser ce périphérique de hello tooaccess mot de passe modifié localement.
+Le mot de passe administrateur de l’appareil est maintenant à jour. Vous pouvez utiliser ce mot de passe modifié pour accéder à l’appareil localement.
 
 ![Panneau Paramètres de sécurité](./media/storsimple-virtual-array-change-device-admin-password/ova-change-device-pwd.png)
 
-## <a name="use-hello-local-web-ui-toochange-hello-password"></a>Utilisez hello web local UI toochange hello mot de passe
+## <a name="use-the-local-web-ui-to-change-the-password"></a>Utiliser l’interface utilisateur web locale pour modifier le mot de passe
 
-Effectuer hello suivant les étapes toochange hello appareil mot de passe administrateur via l’interface utilisateur de web locale hello.
+Procédez comme suit pour modifier le mot de passe d’administrateur de l’appareil via l’interface utilisateur web locale.
 
-#### <a name="toochange-hello-device-administrator-password-via-hello-local-web-ui"></a>mot de passe administrateur toochange pour hello appareil via l’interface utilisateur de web locale hello
+#### <a name="to-change-the-device-administrator-password-via-the-local-web-ui"></a>Pour modifier le mot de passe administrateur de l’appareil via l’interface utilisateur web locale
 
-1. Dans l’interface utilisateur de web locale hello, cliquez sur **Maintenance** > **modification de mot de passe** pour votre appareil.
+1. Dans l’interface utilisateur web locale, cliquez sur **Maintenance** > **Modifier le mot de passe** pour votre appareil.
    
     ![change password1](./media/storsimple-virtual-array-change-device-admin-password/image40.png)
-2. Entrez hello **mot de passe actuel**.
-3. Fournissez un **nouveau mot de passe**. mot de passe Hello doit être au moins 8 caractères. Il doit contenir 3 des 4 suivants de hello : caractères majuscules, minuscules, numériques et spéciaux.
+2. Entrez le **mot de passe actuel**.
+3. Fournissez un **nouveau mot de passe**. Le mot de passe doit comporter au moins 8 caractères. Il doit contenir 3 caractères sur 4 en majuscules, minuscules, chiffres et caractères spéciaux.
    
-    Notez que votre mot de passe ne peut pas être hello identique hello derniers 24 mots de passe.
-4. Entrez à nouveau tooconfirm de mot de passe hello il.
+    Notez que votre mot de passe ne peut pas être identique aux 24 derniers mots de passe.
+4. Entrez de nouveau le mot de passe pour le confirmer.
    
     ![change password2](./media/storsimple-virtual-array-change-device-admin-password/image41.png)
-5. Au bas de hello de page de hello, cliquez sur **appliquer**. nouveau mot de passe Hello est maintenant appliquée. Si la modification de mot de passe hello ne réussit pas, vous consultez hello l’erreur suivante :
+5. En bas de cette page, cliquez sur **Appliquer**. Le nouveau mot de passe est maintenant appliqué. Si la modification du mot de passe échoue, l’erreur suivante s’affiche :
    
     ![password error](./media/storsimple-virtual-array-change-device-admin-password/image42.png)
    
-    Une fois le mot de passe hello est correctement mise à jour, vous êtes averti. Vous pouvez ensuite utiliser ce périphérique de hello tooaccess mot de passe modifié localement.
+    Vous êtes averti une fois le mot de passe correctement mis à jour. Vous pouvez ensuite utiliser ce mot de passe modifié pour accéder à l’appareil localement.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Découvrez comment trop[administrer votre StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
+Découvrez comment [gérer votre StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).
 

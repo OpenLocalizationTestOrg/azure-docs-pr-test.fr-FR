@@ -1,6 +1,6 @@
 ---
-title: "tooAzure d’ordinateurs virtuels Hyper-V aaaReplicate dans le portail classique de hello | Documents Microsoft"
-description: "Cet article décrit comment tooreplicate Hyper-V virtual machines tooAzure lorsque les ordinateurs ne sont pas gérées dans des clouds VMM."
+title: "Répliquer des machines virtuelles Hyper-V sur Azure dans le portail Classic | Microsoft Docs"
+description: "Cet article décrit comment répliquer des machines virtuelles Hyper-V vers Azure lorsque les machines ne sont pas gérées dans des clouds VMM."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 02/21/2017
 ms.author: raynew
-ms.openlocfilehash: 12d08d950a79e956436cb03ffc87ab40e86c589e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 438f32ee3605e2dd0c46de7993a359cc269262fe
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="replicate-between-on-premises-hyper-v-virtual-machines-and-azure-without-vmm-with-azure-site-recovery"></a>Réplication de machines virtuelles Hyper-V en local dans Azure (sans VMM) avec Azure Site Recovery
 > [!div class="op_single_selector"]
@@ -28,46 +28,46 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Cet article décrit comment tooreplicate local tooAzure d’ordinateurs virtuels Hyper-V, à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) service Bonjour portail Azure. Dans ce scénario, les serveurs Hyper-V ne sont pas gérés dans des clouds VMM.
+Cet article explique comment répliquer des machines virtuelles Hyper-V locales sur Azure à l’aide du service [Azure Site Recovery](site-recovery-overview.md), dans le portail Azure. Dans ce scénario, les serveurs Hyper-V ne sont pas gérés dans des clouds VMM.
 
-Après avoir lu cet article, validez les commentaires en bas de hello ou poser des questions techniques sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Après avoir lu cet article, envoyez vos commentaires en bas ou posez vos questions techniques sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
-## <a name="site-recovery-in-hello-azure-portal"></a>Récupération de site Bonjour portail Azure
+## <a name="site-recovery-in-the-azure-portal"></a>Site Recovery dans le portail Azure
 
-Azure dispose de deux [modèles de déploiement](../resource-manager-deployment-model.md) différents pour créer et utiliser des ressources : le déploiement Azure Resource Manager et le déploiement classique. Azure a également deux portails : hello portail Azure classic et hello portail Azure.
+Azure dispose de deux [modèles de déploiement](../resource-manager-deployment-model.md) différents pour créer et utiliser des ressources : le déploiement Azure Resource Manager et le déploiement classique. Azure offre également deux portails : le Portail Azure Classic et le Portail Azure.
 
-Cet article décrit comment toodeploy dans le portail classique de hello. portail classique de Hello peut être utilisé toomaintain des archivages existants. Impossible de créer des coffres à l’aide du portail classique de hello.
+Cet article explique comment effectuer le déploiement dans le Portail Classic. Le portail classique peut être utilisé pour gérer les coffres existants. Il est impossible de créer des coffres à l’aide du portail classique.
 
 ## <a name="site-recovery-in-your-business"></a>Site Recovery dans votre entreprise
 
-Les organisations besoin d’une stratégie BCDR qui détermine comment les applications et les données restent en cours d’exécution et disponibles pendant le temps d’arrêt planifiés et non planifiés et récupérer les conditions de travail toonormal dès que possible. Voici ce que Site Recovery peut faire :
+Les organisations ont besoin d’une stratégie BCDR qui détermine la façon dont les applications et les données demeurent opérationnelles et disponibles pendant les temps d’arrêt prévus et imprévus, et qui précise comment rétablir au plus vite des conditions de travail normales. Voici ce que Site Recovery peut faire :
 
 * Protection hors site pour les applications professionnelles s’exécutant sur des machines virtuelles Hyper-V
-* Un tooset emplacement unique, gérer et surveiller la réplication, le basculement et récupération.
-* Basculement simple tooAzure et la restauration (restore) à partir des serveurs hôtes tooHyper-V Azure dans votre site local.
+* Fourniture d’un emplacement unique pour configurer, gérer et surveiller la réplication, le basculement et la récupération
+* Basculement simple vers Azure et restauration depuis Azure sur des serveurs hôtes Hyper-V dans votre site local
 * Plans de récupération incluant plusieurs machines virtuelles et permettant ainsi le basculement simultané de charges de travail d’applications hiérarchisées
 
 ## <a name="azure-prerequisites"></a>Conditions préalables pour Azure
 * Vous avez besoin d’un compte [Microsoft Azure](https://azure.microsoft.com/) . Vous pouvez commencer par une version d’ [essai gratuit](https://azure.microsoft.com/pricing/free-trial/).
-* Vous avez besoin d’un stockage Azure compte toostore répliquée de données. compte de Hello doit géo-réplication activée. Il doit être en hello même région que le coffre Azure Site Recovery hello et être associé hello même abonnement. [En savoir plus sur Azure Storage](../storage/common/storage-introduction.md). Notez que nous ne prend en charge le déplacement des comptes de stockage créés à l’aide de hello [nouveau portail Azure](../storage/common/storage-create-storage-account.md) plusieurs groupes de ressources.
-* Vous devez un réseau virtuel Azure afin que les machines virtuelles Azure sera connecté tooa réseau lorsque vous basculez à partir de votre site principal.
+* Vous avez besoin d’un compte de stockage Azure pour stocker les données répliquées. La géo-réplication doit être activée pour ce compte. Il doit se trouver dans la même région que le coffre Azure Site Recovery et être associé au même abonnement. [En savoir plus sur le stockage Azure](../storage/common/storage-introduction.md). Notez que nous ne prenons pas en charge le déplacement des comptes de stockage créés à l’aide du [nouveau portail Azure](../storage/common/storage-create-storage-account.md) dans les groupes de ressources.
+* Vous devez disposer d’un réseau virtuel Azure afin que les machines virtuelles puissent se connecter à un réseau lorsque vous procédez à un basculement depuis votre site principal.
 
 ## <a name="hyper-v-prerequisites"></a>Conditions préalables liées à Hyper-V
-* Dans le site de hello source locale, vous devez un ou plusieurs serveurs en cours d’exécution **Windows Server 2012 R2** rôle hello Hyper-V est installé ou **Microsoft Hyper-V Server 2012 R2**. Ce serveur doit :
+* Dans le site local source, vous devez disposer d’un ou de plusieurs serveurs exécutant **Windows Server 2012 R2** avec le rôle Hyper-V ou **Microsoft Hyper-V Server 2012 R2**. Ce serveur doit :
 * contenir une ou plusieurs machines virtuelles ;
-* Être connecté toohello Internet, directement ou via un proxy.
-* Exécuter les correctifs hello décrites dans l’article [2961977](https://support.microsoft.com/en-us/kb/2961977 "KB2961977").
+* être connecté à Internet, directement ou via un proxy ;
+* exécuter les correctifs décrits dans l’article [2961977](https://support.microsoft.com/en-us/kb/2961977 "KB2961977").
 
 ## <a name="virtual-machine-prerequisites"></a>Configuration requise pour les machines virtuelles
-Machines virtuelles tooprotect doivent respecter les [spécifications de la machine virtuelle Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
+Les machines virtuelles à protéger doivent présenter la [configuration requise pour les machines virtuelles Azure](site-recovery-support-matrix-to-azure.md#failed-over-azure-vm-requirements).
 
 ## <a name="provider-and-agent-prerequisites"></a>Conditions préalables requises par les fournisseurs et les agents
-Dans le cadre du déploiement d’Azure Site Recovery, vous allez installer hello fournisseur Azure Site Recovery et hello Azure Recovery Services Agent sur chaque serveur Hyper-V. Notez les points suivants :
+Dans le cadre du déploiement de Microsoft Azure Site Recovery, vous allez installer le fournisseur Azure Site Recovery et l’agent associé sur chaque serveur Hyper-V. Notez les points suivants :
 
-* Nous vous recommandons toujours exécuté l’agent et les versions les plus récentes de hello fournisseur hello. Ils sont disponibles dans le portail Site Recovery hello.
-* Tous les serveurs Hyper-V dans un coffre doit avoir hello même les versions de hello fournisseur et l’agent.
-* Fournisseur qui s’exécute sur le serveur de hello Hello connecte tooSite récupération sur hello internet. Vous pouvez effectuer cela sans un proxy, les paramètres de proxy hello actuellement configurées sur le serveur d’Hyper-V hello ou avec les paramètres de proxy personnalisés que vous configurez pendant l’installation du fournisseur. Vous devez toomake que vous souhaitez toouse au serveur proxy hello peut accéder à ces URL hello pour la connexion tooAzure :
+* Il est recommandé de toujours utiliser la dernière version de ce fournisseur et de cet agent. Ceux-ci sont disponibles dans le portail Site Recovery.
+* Tous les serveurs Hyper-V d’un coffre doivent disposer des mêmes versions du fournisseur et de l’agent.
+* Le fournisseur exécuté sur le serveur se connecte à Site Recovery via Internet. Vous pouvez effectuer cette action sans proxy, au moyen des paramètres de proxy actuellement configurés sur le serveur Hyper-V, ou à l’aide des paramètres de proxy personnalisés que vous avez configurés lors de l’installation du fournisseur. Vous devez vous assurer que le serveur proxy que vous souhaitez utiliser peut accéder à ces URL pour se connecter à Azure :
 
   * *.accesscontrol.windows.net
   * *.backup.windowsazure.com
@@ -77,152 +77,152 @@ Dans le cadre du déploiement d’Azure Site Recovery, vous allez installer hell
   - https://www.msftncsi.com/ncsi.txt
   - time.windows.com
   - time.nist.gov
-* De plus autoriser les adresses IP de hello décrites dans [plages d’adresses IP Azure Datacenter](https://www.microsoft.com/download/details.aspx?id=41653) et le protocole HTTPS (443). Vous avez des plages d’IP tooallow hello Hello région Azure que vous envisagez de toouse et celle de l’ouest des États-Unis.
+* Autorisez également les adresses IP décrites dans les [Plages d’adresses IP du centre de données Azure](https://www.microsoft.com/download/details.aspx?id=41653) et le protocole HTTPS (443). Vous devez autoriser les plages IP de la région Azure que vous prévoyez d’utiliser, ainsi que celles de la région États-Unis de l'Ouest.
 
-Ce graphique montre les canaux de communication différentes hello et les ports utilisés par la récupération de Site pour l’orchestration et la réplication
+Cette illustration montre les différents canaux et ports de communication utilisés par Azure Site Recovery pour l’orchestration et la réplication.
 
 ![Topologie B2A](./media/site-recovery-hyper-v-site-to-azure-classic/b2a-topology.png)
 
 ## <a name="step-1-create-a-vault"></a>Étape 1 : Créer un coffre
-1. Connectez-vous à toohello [portail de gestion](https://portal.azure.com).
+1. Connectez-vous au [portail de gestion](https://portal.azure.com).
 2. Développez **Data Services** > **Recovery Services**, puis cliquez sur **Coffre Site Recovery**.
 3. Cliquez sur **Créer nouveau** > **Création rapide**.
-4. Dans **nom**, entrez un coffre de hello tooidentify nom convivial.
-5. Dans **région**, sélectionnez hello région géographique pour le coffre hello. les régions toocheck pris en charge consultez disponibilité géographique dans [détails de la tarification de Azure Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/).
+4. Dans **Name**, entrez un nom convivial pour identifier le coffre.
+5. Dans **Region**, sélectionnez la région géographique du coffre. Pour vérifier les régions prises en charge, consultez la section relative aux disponibilités géographiques sur la page [Tarification d’Azure Site Recovery](https://azure.microsoft.com/pricing/details/site-recovery/).
 6. Cliquez sur **Create vault**.
 
     ![Nouveau coffre](./media/site-recovery-hyper-v-site-to-azure-classic/vault.png)
 
-Vérifiez tooconfirm de barre d’état hello qui hello coffre a été créé avec succès. Hello est répertorié en tant que **Active** sur la page Services de récupération de la principale hello.
+Vérifiez la barre d’état pour vous assurer que le coffre a été créé correctement. Le coffre apparaît comme **Actif** sur la page principale Recovery Services.
 
 ## <a name="step-2-create-a-hyper-v-site"></a>Étape 2 : Créer un site Hyper-V
-1. Dans la page des Services de récupération hello, cliquez sur page de démarrage rapide de hello coffre tooopen hello. Démarrage rapide peut également être ouvert à tout moment à l’aide d’icône de hello.
+1. Dans la page Recovery Services, cliquez sur le coffre pour ouvrir la page Démarrage rapide. Vous pouvez aussi ouvrir cette page à tout moment au moyen de l’icône.
 
-    ![Démarrage rapide](./media/site-recovery-hyper-v-site-to-azure-classic/quick-start-icon.png)
-2. Dans la liste déroulante de hello, sélectionnez **entre un site de Hyper-V local et Azure**.
+    ![Quick Start](./media/site-recovery-hyper-v-site-to-azure-classic/quick-start-icon.png)
+2. Dans la liste déroulante, sélectionnez **Entre un site Hyper-V local et Microsoft Azure**.
 
     ![Scénario de site Hyper-V](./media/site-recovery-hyper-v-site-to-azure-classic/select-scenario.png)
 3. Sur la page **Créer un site Hyper-V**, cliquez sur **Créer un site Hyper-V**. Spécifiez un nom de site et enregistrez-le.
 
     ![Site Hyper-V](./media/site-recovery-hyper-v-site-to-azure-classic/create-site.png)
 
-## <a name="step-3-install-hello-provider-and-agent"></a>Étape 3 : Installer hello fournisseur et l’agent
-Installez hello fournisseur et l’agent sur chaque serveur Hyper-V dont les machines virtuelles que vous souhaitez tooprotect.
+## <a name="step-3-install-the-provider-and-agent"></a>Étape 3 : Installer le fournisseur et l’agent
+Installez le fournisseur et l’agent sur chaque serveur Hyper-V hébergeant les machines virtuelles que vous souhaitez protéger.
 
-Si vous installez sur un cluster Hyper-V, effectue les étapes 5 à 11 sur chaque nœud de cluster de basculement hello. Une fois que tous les nœuds sont enregistrés et la protection est activée, les machines virtuelles seront protégés même s’ils sont migrés sur les nœuds de cluster de hello.
+Si vous les installez sur un cluster Hyper-V, exécutez les étapes 5 à 11 sur chaque nœud du cluster de basculement. Une fois que tous les nœuds sont enregistrés et que la protection est activée, les machines virtuelles sont protégées, même si elles sont migrées d’un nœud vers un autre dans le cluster.
 
 1. Dans **Préparer les serveurs Hyper-V**, cliquez sur **Télécharger une clé d’inscription**.
-2. Sur hello **télécharger la clé d’inscription** , cliquez sur **télécharger** site toohello suivant. Télécharger un emplacement sûr hello tooa clé qui est facilement accessible par le serveur de hello Hyper-V. clé de Hello est valide pendant 5 jours après sa génération.
+2. Sur la page **Télécharger une clé d’inscription**, cliquez sur l’option **Télécharger** située en regard du site. Téléchargez la clé dans un lieu sûr facilement accessible par le serveur Hyper-V. Une fois générée, la clé est valide pendant 5 jours.
 
     ![Clé d’enregistrement](./media/site-recovery-hyper-v-site-to-azure-classic/download-key.png)
-3. Cliquez sur **téléchargement hello fournisseur** version la plus récente tooobtain hello.
-4. Exécutez le fichier hello sur chaque serveur Hyper-V que vous souhaitez tooregister dans le coffre hello. fichier de Hello installe deux composants :
-   * **Le fournisseur Azure Site Recovery**: gère la communication et l’orchestration entre le serveur de hello Hyper-V et le portail Azure Site Recovery hello.
-   * **Azure Recovery Services Agent**: gère le transport de données entre des ordinateurs virtuels en cours d’exécution sur le serveur d’Hyper-V source hello et le stockage Azure.
-5. Dans **Microsoft Update** , vous pouvez opter pour l’installation de mises à jour. Avec ce paramètre est activé, les mises à jour de fournisseur et l’Agent seront installés selon la stratégie de Microsoft Update tooyour.
+3. Cliquez sur **Télécharger le fournisseur** pour obtenir sa dernière version.
+4. Exécutez le fichier sur chaque serveur Hyper-V à inscrire dans le coffre. Le fichier installe deux composants :
+   * **Fournisseur Azure Site Recovery**: gère la communication et l’orchestration entre le serveur Hyper-V et le portail Microsoft Azure Site Recovery.
+   * **Agent Azure Recovery Services**: gère le transport de données entre les machines virtuelles en cours d’exécution sur le serveur Hyper-V source et Microsoft Azure Storage.
+5. Dans **Microsoft Update** , vous pouvez opter pour l’installation de mises à jour. Une fois ce paramètre activé, les mises à jour du fournisseur et de l’agent sont installées en fonction de votre stratégie Microsoft Update.
 
     ![Mises à jour Microsoft](./media/site-recovery-hyper-v-site-to-azure-classic/provider1.png)
-6. Dans **Installation** spécifier où vous souhaitez tooinstall hello fournisseur et l’Agent sur hello serveur Hyper-V.
+6. Dans le champ **Installation** , indiquez où vous souhaitez installer le fournisseur et l’agent sur le serveur Hyper-V.
 
     ![Emplacement d’installation](./media/site-recovery-hyper-v-site-to-azure-classic/provider2.png)
-7. Une fois l’installation terminée continuer server de hello tooregister le programme d’installation dans le coffre hello.
-8. Sur hello **paramètres du coffre** , cliquez sur **Parcourir** fichier de clé tooselect hello. Spécifier l’abonnement Azure Site Recovery de hello, nom du coffre hello, et hello Hyper-V site toowhich hello Hyper-V serveur appartient.
+7. Une fois l’installation terminée, poursuivez la procédure pour inscrire le serveur dans le coffre.
+8. Sur la page **Paramètres du coffre**, cliquez sur **Parcourir** pour sélectionner le fichier de clé. Spécifiez l’abonnement Azure Site Recovery, le nom du coffre et le site Hyper-V auquel appartient le serveur Hyper-V.
 
     ![Enregistrement du serveur](./media/site-recovery-hyper-v-site-to-azure-classic/provider8.PNG)
-9. Sur hello **connexion Internet** page que vous spécifiez comment hello fournisseur connecte tooAzure Site Recovery. Sélectionnez **utiliser les paramètres du proxy système par défaut** paramètres de la connexion d’Internet toouse hello par défaut configurés sur le serveur de hello. Si vous ne spécifiez pas une valeur par défaut de hello valeur paramètres seront utilisés.
+9. Sur la page **Connexion Internet** , indiquez la façon dont le fournisseur se connecte à Microsoft Azure Site Recovery. Sélectionnez **Utiliser les paramètres proxy par défaut du système** pour utiliser les paramètres de connexion Internet par défaut configurés sur le serveur. Si vous n’indiquez aucune valeur, les paramètres par défaut seront utilisés.
 
    ![Paramètres Internet](./media/site-recovery-hyper-v-site-to-azure-classic/provider7.PNG)
-10. L’enregistrement démarre serveur hello de tooregister dans le coffre hello.
+10. Le serveur est alors inscrit dans le coffre.
 
     ![Enregistrement du serveur](./media/site-recovery-hyper-v-site-to-azure-classic/provider15.PNG)
-11. Une fois l’inscription terminée métadonnées hello Hyper-V server est extraites par Azure Site Recovery et serveur de hello est affiché sur hello **Sites Hyper-V** onglet hello **serveurs** page dans le coffre hello.
+11. Une fois l’inscription terminée, les métadonnées du serveur Hyper-V sont récupérées par Azure Site Recovery et le serveur s’affiche dans l’onglet **Sites Hyper-V**, sur la page **Serveurs** du coffre.
 
-### <a name="install-hello-provider-from-hello-command-line"></a>Installer hello fournisseur à partir de la ligne de commande hello
-En guise d’alternative, vous pouvez installer hello fournisseur Azure Site Recovery à partir de la ligne de commande hello. Vous devez utiliser cette méthode si vous souhaitez tooinstall hello fournisseur sur un ordinateur exécutant Windows Server Core 2012 R2. Exécutez à partir de la ligne de commande hello comme suit :
+### <a name="install-the-provider-from-the-command-line"></a>Installer le fournisseur à partir de la ligne de commande
+Vous avez également la possibilité d’installer le fournisseur Azure Site Recovery à partir de la ligne de commande. Nous vous recommandons d’utiliser cette méthode si vous souhaitez installer le fournisseur sur un ordinateur exécutant Windows Server Core 2012 R2. Utilisez la ligne de commande ci-dessous :
 
-1. Téléchargez hello fournisseur de fichiers et d’enregistrement clé tooa dossier d’installation. par exemple C:\ASR.
+1. Téléchargez le fichier d’installation du fournisseur et la clé d’inscription dans un dossier, par exemple C:\ASR.
 2. Ouvrez une invite de commandes en tant qu’administrateur et saisissez la commande suivante :
 
         C:\Windows\System32> CD C:\ASR
         C:\ASR> AzureSiteRecoveryProvider.exe /x:. /q
-3. Installez ensuite hello fournisseur en exécutant :
+3. Installez ensuite le fournisseur en exécutant :
 
         C:\ASR> setupdr.exe /i
-4. Exécutez hello suivant toocomplete inscription :
+4. Exécutez la commande suivante pour terminer l’enregistrement :
 
         CD C:\Program Files\Microsoft Azure Site Recovery Provider
-        C:\Program Files\Microsoft Azure Site Recovery Provider\> DRConfigurator.exe /r  /Friendlyname <friendly name of hello server> /Credentials <path of hello credentials file> /EncryptionEnabled <full file name toosave hello encryption certificate>         
+        C:\Program Files\Microsoft Azure Site Recovery Provider\> DRConfigurator.exe /r  /Friendlyname <friendly name of the server> /Credentials <path of the credentials file> /EncryptionEnabled <full file name to save the encryption certificate>         
 
 Les paramètres sont les suivants :
 
-* **/ Informations d’identification**: spécifiez l’emplacement hello de clé d’inscription de hello vous avez téléchargé.
-* **/ FriendlyName**: spécifiez un serveur hôte de nom tooidentify hello Hyper-V. Ce nom apparaîtra dans le portail de hello
-* **/EncryptionEnabled**: facultatif. Spécifier si vous souhaitez tooencrypt réplica machines virtuelles Azure (au niveau de chiffrement de rest).
-* **/proxyAddress** ; **/proxyport** ; **/proxyUsername** ; **/proxyPassword** : facultatifs. Spécifiez des paramètres de proxy si vous souhaitez toouse un proxy personnalisé, ou votre proxy existant nécessite une authentification.
+* **/Credentials**: spécifiez l’emplacement de la clé d’inscription que vous avez téléchargée.
+* **/FriendlyName**: spécifiez un nom pour identifier le serveur hôte Hyper-V. Ce nom apparaîtra dans le portail
+* **/EncryptionEnabled**: facultatif. Spécifiez si vous souhaitez chiffrer les machines virtuelles de réplication dans Azure (chiffrement au repos).
+* **/proxyAddress** ; **/proxyport** ; **/proxyUsername** ; **/proxyPassword** : facultatifs. Spécifiez les paramètres de proxy si vous souhaitez utiliser un proxy personnalisé ; sinon, votre serveur proxy existant requiert une authentification.
 
 ## <a name="step-4-create-an-azure-storage-account"></a>Étape 4 : Création d’un compte de stockage Azure
-* Dans **préparer les ressources** sélectionnez **créer un compte de stockage** toocreate si vous n’en avez un compte de stockage Azure. compte de Hello doit avoir la géo-réplication activée. Il doit être en hello même région que le coffre Azure Site Recovery hello et être associé hello même abonnement.
+* Dans la zone **Préparer des ressources**, sélectionnez l’option **Créer un compte de stockage** pour créer un compte de stockage Azure, si nécessaire. La géo-réplication doit être activée pour ce compte. Ce dernier doit se trouver dans la même région que le coffre Microsoft Azure Site Recovery et être associé au même abonnement.
 
     ![Créer un compte de stockage](./media/site-recovery-hyper-v-site-to-azure-classic/create-resources.png)
 
 > [!NOTE]
-> 1. Nous ne prennent pas en charge déplacement hello de comptes de stockage créé à l’aide de hello [nouveau portail Azure](../storage/common/storage-create-storage-account.md) plusieurs groupes de ressources.
-> 2. [Migration de comptes de stockage](../azure-resource-manager/resource-group-move-resources.md) entre les ressources groupes dans hello même abonnement ou entre abonnements n’est pas prise en charge pour les comptes de stockage utilisés pour le déploiement de Site Recovery.
+> 1. Nous ne prenons pas en charge le déplacement des comptes de stockage créés à l’aide du [nouveau Portail Azure](../storage/common/storage-create-storage-account.md) dans les groupes de ressources.
+> 2. [La migration de comptes de stockage](../azure-resource-manager/resource-group-move-resources.md) entre les groupes de ressources d’un même abonnement ou de plusieurs abonnements n’est pas prise en charge pour les comptes de stockage utilisés pour le déploiement de Site Recovery.
 >
 
 ## <a name="step-5-create-and-configure-protection-groups"></a>Étape 5 : Créer et configurer des groupes de protection
-Groupes de protection sont des groupements logiques d’ordinateurs virtuels que vous souhaitez à l’aide de tooprotect hello mêmes paramètres de protection. Vous appliquez le groupe de protection de tooa de paramètres de protection, et ces paramètres sont appliqués tooall ordinateurs virtuels que vous ajoutez toohello groupe.
+Les groupes de protection sont des regroupements logiques incluant les machines virtuelles que vous voulez protéger au moyen de ces paramètres de protection. Vous appliquez des paramètres de protection à un groupe de protection, et ces paramètres sont appliqués à toutes les machines virtuelles que vous ajoutez au groupe.
 
 1. Dans **Créer et configurer des groupes de protection**, cliquez sur **Créer un nouveau groupe de protection**. Si la configuration requise n’est pas respectée, un message s’affiche. Vous pouvez cliquer sur **Afficher les détails** pour obtenir plus d’informations.
-2. Bonjour **groupes de Protection** sous l’onglet Ajouter un groupe de protection. Spécifiez un nom, le site de Hyper-V source hello, la cible de hello **Azure**, votre nom de l’abonnement Azure Site Recovery et hello compte de stockage Azure.
+2. Sur l’onglet **Groupes de protection** , ajoutez un groupe de protection. Spécifiez un nom, le site Hyper-V source, le système **Azure**cible, le nom de votre abonnement Azure Site Recovery et votre compte Azure Storage.
 
     ![Groupe de protection](./media/site-recovery-hyper-v-site-to-azure-classic/protection-group.png)
-3. Dans **les paramètres de réplication** ensemble hello **fréquence de copie** toospecify la fréquence à laquelle delta de données hello doit être synchronisée entre hello source et cible. Vous pouvez définir too30 secondes, 5 minutes ou 15 minutes.
+3. Dans **Paramètres de réplication**, définissez l’option **Copier la fréquence** pour indiquer la fréquence de synchronisation du delta des données entre les systèmes cible et source. Vous pouvez choisir une fréquence de 30 secondes, 5 minutes ou 15 minutes.
 4. Dans la zone **Conserver les points de récupération** , indiquez le nombre d’heures de stockage de l’historique de récupération.
-5. Dans **fréquence des instantanés cohérents au niveau applicatif** vous pouvez spécifier si les instantanés tootake qui utilisent tooensure Volume Shadow Copy Service (VSS) que les applications sont dans un état cohérent lors de l’instantané hello. Par défaut, aucun instantané n’est créé. Vérifiez que cette valeur est accessible sans que nombre hello de points de récupération supplémentaires que vous configurez. Cela est uniquement pris en charge si l’ordinateur virtuel de hello exécute un système d’exploitation de Windows.
-6. Dans **heure de début de la réplication initiale** spécifiez quand la réplication initiale des machines virtuelles dans le groupe de protection hello doit être envoyée tooAzure.
+5. Dans la zone **Fréquence des instantanés cohérents au niveau applicatif** , vous pouvez indiquer si le système doit créer des instantanés en utilisant le service VSS (Volume Shadow Copy Service) pour garantir que les applications présentent un état cohérent lors de la création de l’instantané. Par défaut, aucun instantané n’est créé. Assurez-vous que cette valeur est inférieure au nombre de points de récupération supplémentaires que vous configurez. Cette option est uniquement prise en charge lorsque la machine virtuelle exécute un système d’exploitation Windows.
+6. Dans la zone **Heure de début de la réplication initiale** , spécifiez à quel moment la réplication initiale des machines virtuelles au sein du groupe de protection doit être envoyée à Microsoft Azure.
 
     ![Groupe de protection](./media/site-recovery-hyper-v-site-to-azure-classic/protection-group2.png)
 
 ## <a name="step-6-enable-virtual-machine-protection"></a>Étape 6 : Activer la protection des machines virtuelles
-Ajouter la protection tooenable du groupe de protection tooa machines virtuelles pour eux.
+Ajoutez des machines virtuelles à un groupe de protection pour activer leur protection.
 
 > [!NOTE]
 > La protection des machines virtuelles exécutant Linux avec une adresse IP statique n’est pas prise en charge.
 >
 >
 
-1. Sur hello **Machines** onglet hello groupe de protection, cliquez sur ** Ajouter les ordinateurs virtuels tooprotection groupes de protection de tooenable **.
-2. Sur hello **activer la Protection des machines virtuelles** page Sélectionnez hello machines virtuelles tooprotect.
+1. Dans l’onglet **Machines** du groupe de protection, cliquez sur **Ajouter des machines virtuelles à des groupes de protection pour activer la protection**.
+2. Dans la page **Activer la protection pour les machines virtuelles** , sélectionnez les machines virtuelles à protéger.
 
     ![Activer la protection pour les machines virtuelles](./media/site-recovery-hyper-v-site-to-azure-classic/add-vm.png)
 
-    travaux d’activer la Protection Hello commence. Vous pouvez suivre la progression sur hello **travaux** onglet. Après le travail finaliser la Protection de hello machine virtuelle de hello s’exécute est prêt pour le basculement.
+    Les tâches d’activation de la protection démarrent. Effectuez un suivi de la progression sur l’onglet **Tâches** . Lorsque la tâche de finalisation de la protection s’exécute, la machine virtuelle est prête à être basculée.
 3. Une fois la protection activée, vous pouvez effectuer les opérations suivantes :
 
-   * Afficher les ordinateurs virtuels dans **éléments protégés** > **groupes de Protection** > *protectiongroup_name*  >  **Virtuels** vous pouvez descendre détails toomachine Bonjour **propriétés** onglet...
-   * Configurer les propriétés de basculement hello pour une machine virtuelle dans **éléments protégés** > **groupes de Protection** > *protectiongroup_name*  >  **Virtuels** *virtual_machine_name* > **configurer**. Vous pouvez configurer les éléments suivants :
+   * afficher les machines virtuelles dans le champ **Éléments protégés** > **Groupes de protection** > *nom_groupeprotection* > **Machines virtuelles**. Vous pouvez accéder aux détails de la machine dans l’onglet **Propriétés** ;
+   * configurer les propriétés du basculement des machines virtuelles dans **Éléments protégés** > **Groupes de protection** > *nom_groupeprotection* > **Machines virtuelles** *nom_machine_virtuelle* > **Configurer**. Vous pouvez configurer les éléments suivants :
 
-     * **Nom**: nom hello de machine virtuelle de hello dans Azure.
-     * **Taille**: hello taille cible de l’ordinateur virtuel hello qui bascule.
+     * **Nom**: nom de la machine virtuelle dans Microsoft Azure.
+     * **Taille**: taille cible de la machine virtuelle ayant basculé.
 
        ![Configurer les propriétés des machines virtuelles](./media/site-recovery-hyper-v-site-to-azure-classic/vm-properties.png)
    * Configurez les paramètres supplémentaires des machines virtuelles dans le champ *Éléments protégés** > **Groupes de protection** > *nom_groupeprotection* > **Machines virtuelles** *nom_machine_virtuelle* > **Configurer**, notamment :
 
-     * **Cartes réseau**: nombre de hello de cartes réseau est dicté par taille hello que vous spécifiez pour la machine virtuelle cible hello. Vérifiez [spécifications de taille de machine virtuelle](../virtual-machines/linux/sizes.md) nombre hello de cartes réseau prises en charge par la taille de machine virtuelle hello.
+     * **Cartes réseau**: le nombre de cartes réseau est défini par la taille spécifiée pour la machine virtuelle cible. Vérifiez dans les [spécifications de taille de machine virtuelle](../virtual-machines/linux/sizes.md) le nombre de cartes réseau prises en charge par une machine virtuelle de cette taille.
 
-       Lorsque vous modifiez taille hello pour un ordinateur virtuel et enregistrez les paramètres de hello, numéro hello de carte réseau change lorsque vous ouvrez **configurer** hello de page prochaine. nombre de Hello de cartes réseau de machines virtuelles cible est minimal de nombre hello de cartes réseau sur l’ordinateur virtuel source et le nombre maximal de cartes réseau prises en charge par la taille de hello de machine virtuelle de hello choisie. Vous trouverez l'explication ci-dessous :
+       Lorsque vous modifiez la taille d’une machine virtuelle et enregistrez les paramètres, le nombre de cartes réseau changera lors de la prochaine ouverture de la page **Configurer** . Le nombre de cartes réseau des machines virtuelles cible est au minimum le nombre de cartes réseau sur la machine virtuelle source et au maximum le nombre de cartes réseau prises en charge par la machine virtuelle choisie en fonction de sa taille. Vous trouverez l'explication ci-dessous :
 
-       * Si le nombre de hello de cartes réseau sur l’ordinateur source de hello est inférieur ou égal toohello le nombre de cartes autorisé pour la taille de la machine cible hello, puis cible de hello aura hello même nombre de cartes en tant que source de hello.
-       * Si nombre hello de cartes pour l’ordinateur virtuel de hello source dépasse nombre hello autorisé pour la taille cible hello puis la taille maximale de la cible hello est utilisé.
-       * Par exemple, si un ordinateur source possède deux cartes réseau et prend en charge la taille de la machine cible hello quatre, l’ordinateur cible hello aura deux cartes. Si hello source ordinateur possède deux cartes, mais hello taille cible pris en charge uniquement en charge l’un de l’ordinateur cible hello aura qu’un seul adaptateur.
+       * Si le nombre de cartes réseau sur la machine source est inférieur ou égal au nombre de cartes autorisé pour la taille de la machine cible, la cible présente le même nombre de cartes que la source.
+       * Si le nombre de cartes de la machine virtuelle source dépasse la valeur de taille cible autorisée, la taille cible maximale est utilisée.
+       * Par exemple, si une machine source présente deux cartes réseau et que la taille de la machine cible en accepte quatre, la machine cible présentera deux cartes. Si la machine source inclut deux cartes, mais que la taille cible prise en charge accepte une seule carte, la machine cible présentera une seule carte.
 
-     * **Réseau Azure**: spécifiez la machine virtuelle de hello réseau toowhich hello doivent basculer. Si l’ordinateur virtuel de hello possède plusieurs cartes réseau de tous les adaptateurs doivent toohello connecté même réseau Azure.
-     * **Sous-réseau** pour chaque carte réseau sur l’ordinateur virtuel de hello, sous-réseau hello select dans la machine de hello toowhich hello réseau Azure doit se connecter après le basculement.
-     * **Adresse IP de cibler**: une adresse IP si l’adaptateur réseau de l’ordinateur virtuel source hello est configuré toouse statique d’adresses vous pouvez ensuite spécifier adresse hello pour tooensure de machine virtuelle cible hello qui hello machine a hello même adresse IP après un basculement .  Si vous ne spécifiez pas une adresse IP puis n’importe quelle adresse disponible sera affecté au moment du basculement de hello. Si vous spécifiez une adresse en cours d’utilisation, le basculement échoue.
+     * **Réseau Microsoft Azure**: indiquez le réseau vers lequel la machine virtuelle doit basculer. Si la machine virtuelle présente plusieurs cartes réseau, l’ensemble des cartes doit être connecté au même réseau Microsoft Azure.
+     * **Sous-réseau** : pour chaque carte réseau de la machine virtuelle, sélectionnez le sous-réseau dans le réseau Microsoft Azure auquel la machine doit se connecter après le basculement.
+     * **Adresse IP cible**: si la carte réseau de la machine virtuelle source est configurée pour utiliser une adresse IP statique, vous pouvez indiquer l’adresse IP de la machine virtuelle cible, afin de vérifier que la machine présente la même adresse IP après le basculement.  Si vous n’en indiquez aucune, n’importe quelle adresse disponible sera affectée lors du basculement. Si vous spécifiez une adresse en cours d’utilisation, le basculement échoue.
 
      > [!NOTE]
-     > [Migration des réseaux](../azure-resource-manager/resource-group-move-resources.md) entre les ressources groupes dans hello même abonnement ou entre abonnements n’est pas prise en charge pour les réseaux utilisés pour le déploiement de Site Recovery.
+     > La [migration des réseaux](../azure-resource-manager/resource-group-move-resources.md) entre les groupes de ressources d’un même abonnement ou de plusieurs abonnements n’est pas prise en charge pour les réseaux utilisés pour le déploiement de Site Recovery.
      >
 
      ![Configurer les propriétés des machines virtuelles](./media/site-recovery-hyper-v-site-to-azure-classic/multiple-nic.png)
@@ -231,48 +231,48 @@ Ajouter la protection tooenable du groupe de protection tooa machines virtuelles
 
 
 ## <a name="step-7-create-a-recovery-plan"></a>Étape 7 : créer un plan de récupération
-Dans le déploiement de hello tootest de commande, vous pouvez exécuter un test de basculement pour un seul ordinateur virtuel ou d’un plan de récupération qui contient un ou plusieurs ordinateurs virtuels. [En savoir plus](site-recovery-create-recovery-plans.md) sur la création d’un plan de récupération.
+Pour tester le déploiement, vous pouvez exécuter un basculement de test pour une seule machine virtuelle ou un plan de récupération qui contient une ou plusieurs machines virtuelles. [En savoir plus](site-recovery-create-recovery-plans.md) sur la création d’un plan de récupération.
 
-## <a name="step-8-test-hello-deployment"></a>Étape 8 : Tester le déploiement de hello
-Il existe deux façons toorun un tooAzure de basculement de test.
+## <a name="step-8-test-the-deployment"></a>Étape 8 : tester le déploiement
+Il existe deux manières d’exécuter un test de basculement vers Azure.
 
-* **Test de basculement sans réseau Azure**: ce type de test de basculement vérifie que l’ordinateur virtuel hello s’affiche correctement dans Azure. ordinateur virtuel de Hello n’est pas connecté tooany réseau Azure après le basculement.
-* **Test de basculement avec un réseau Azure**: ce type de basculement vérifie que hello l’environnement de réplication se présente comme prévu et qui ont échoué sur les ordinateurs virtuels de hello connecte toohello réseau Azure cible de spécifié. Notez que pour le test de basculement sous-réseau hello d’ordinateur virtuel de test hello sera déterminé en basée sur le sous-réseau hello de machine virtuelle de réplication hello. Il s’agit de la réplication tooregular différents lorsque sous-réseau hello d’une machine virtuelle de réplication est basée sur le sous-réseau hello de machine virtuelle de hello source.
+* **Tester le basculement sans réseau Azure**: ce type de test de basculement vérifie que la machine virtuelle s’affiche correctement dans Azure. La machine virtuelle ne sera connectée à aucun réseau Azure après le basculement.
+* **Tester le basculement avec un réseau Azure**: ce type de basculement vérifie que l’ensemble de l’environnement de réplication s’affiche comme prévu et qu’après le basculement les machines virtuelles se connectent au réseau Azure cible spécifié. Notez que, pour le test de basculement, le sous-réseau de la machine virtuelle test sera déterminé en fonction du sous-réseau de la machine virtuelle de réplication. Ceci diffère de la réplication normale, selon laquelle le sous-réseau d’une machine virtuelle de réplication est basé sur le sous-réseau de la machine virtuelle source.
 
-Si vous souhaitez toorun un test de basculement sans spécifier un réseau Azure vous n’avez pas besoin tooprepare quoi que ce soit.
+Si vous souhaitez exécuter un test de basculement sans spécifier de réseau Azure, vous n’avez rien à préparer.
 
-toorun un test de basculement avec une réseau Azure, vous devez toocreate un réseau Azure isolé de votre réseau de production Azure (comportement par défaut lorsque vous créez un nouveau réseau dans Azure) de la cible. Lisez l’article [Basculement via Microsoft Azure Site Recovery](site-recovery-failover.md) pour plus de détails.
+Pour exécuter un test de basculement avec un réseau Azure cible, vous devez créer un réseau Azure isolé de votre réseau de production Azure (comportement par défaut quand vous créez un réseau dans Azure). Lisez l’article [Basculement via Microsoft Azure Site Recovery](site-recovery-failover.md) pour plus de détails.
 
-toofully tester votre déploiement de réplication et de réseau, vous devez tooset infrastructure de hello ainsi que hello répliquées toowork de machine virtuelle comme prévu. Une façon de faire ce tootooset une machine virtuelle comme contrôleur de domaine avec DNS et de les répliquer tooAzure à l’aide de toocreate de récupération de Site dans le test de hello réseau en exécutant un test de basculement.  [Lisez cet article](site-recovery-active-directory.md#test-failover-considerations) pour passer en revue les considérations relatives au test de basculement pour Active Directory.
+Pour pouvoir tester intégralement votre déploiement réseau et de réplication, vous devez configurer l’infrastructure afin que la machine virtuelle répliquée fonctionne comme prévu. Pour ce faire, vous pouvez par exemple configurer une machine virtuelle en tant que contrôleur de domaine avec DNS et la répliquer dans Azure à l’aide de Site Recovery pour la créer dans le réseau de test en exécutant un test de basculement.  [Lisez cet article](site-recovery-active-directory.md#test-failover-considerations) pour passer en revue les considérations relatives au test de basculement pour Active Directory.
 
-Exécutez le test de basculement hello comme suit :
+Exécutez un test de basculement, en procédant comme suit :
 
 > [!NOTE]
-> tooget hello meilleures performances lorsque vous effectuez un basculement tooAzure, assurez-vous que vous avez installé hello Agent Azure dans l’ordinateur de hello protégé. Cela permet de démarrer plus rapidement et de réaliser un diagnostic en cas de problème. L’agent Linux est disponible [ici](https://github.com/Azure/WALinuxAgent) et l’agent Windows est disponible [ici](http://go.microsoft.com/fwlink/?LinkID=394789)
+> Pour obtenir les meilleures performances possibles lorsque vous effectuez un basculement vers Azure, assurez-vous que vous avez installé l’Agent Azure sur l’ordinateur protégé. Cela permet de démarrer plus rapidement et de réaliser un diagnostic en cas de problème. L’agent Linux est disponible [ici](https://github.com/Azure/WALinuxAgent) et l’agent Windows est disponible [ici](http://go.microsoft.com/fwlink/?LinkID=394789)
 >
 >
 
-1. Sur hello **les Plans de récupération** , sélectionnez le plan de hello et cliquez sur **Test de basculement**.
-2. Sur hello **confirmer le Test de basculement** page Sélectionnez **aucun** ou un réseau Azure spécifique.  Notez que si vous sélectionnez **aucun** hello test de basculement vérifie que l’ordinateur virtuel hello répliquée correctement tooAzure mais ne vérifie pas votre configuration réseau de réplication.
+1. Dans l’onglet **Plans de récupération**, sélectionnez le plan et cliquez sur **Test de basculement**.
+2. Sur la page **Confirmer le test de basculement**, sélectionnez **Aucun** ou un réseau Azure spécifique.  Remarque : si vous sélectionnez **Aucun** , le test de basculement vérifie que la machine virtuelle a été répliquée correctement dans Microsoft Azure, mais il ne vérifie pas la configuration de votre réseau de réplication.
 
     ![Test de basculement](./media/site-recovery-hyper-v-site-to-azure-classic/test-nonetwork.png)
-3. Sur hello **travaux** onglet, vous pouvez suivre la progression du basculement. Vous devez également être toosee en mesure de test de réplica d’un ordinateur virtuel d’hello Bonjour portail Azure. Si vous êtes configuré tooaccess ordinateurs virtuels à partir de votre réseau local, vous pouvez lancer une machine virtuelle de bureau à distance connexion toohello.
-4. Lorsque le basculement de hello atteint hello **test complet** de phase, cliquez sur **terminer le Test** toofinish hello test de basculement. Vous pouvez descendre toohello **travail** onglet progression du basculement tootrack et état et tooperform toutes les actions qui sont nécessaires.
-5. Après le basculement, vous serez toosee en mesure de test de réplica d’un ordinateur virtuel d’hello Bonjour portail Azure. Si vous êtes configuré tooaccess ordinateurs virtuels à partir de votre réseau local, vous pouvez lancer une machine virtuelle de bureau à distance connexion toohello.
+3. Sur l’onglet **Tâches** , vous pouvez suivre la progression du basculement. Vous devriez aussi pouvoir voir le réplica de test de la machine virtuelle dans le portail Azure. Si vous êtes autorisé à accéder aux machines virtuelles à partir de votre réseau local, vous pouvez initier une connexion Bureau à distance à la machine virtuelle.
+4. Lorsque le basculement atteint la phase **Terminer le test**, cliquez sur **Terminer le test** pour mettre un terme à l’opération. Sous l’onglet **Tâches** , vous pouvez suivre la progression et l’état du basculement et effectuer toutes les actions nécessaires.
+5. Après le basculement, vous pouvez voir le réplica de test de la machine virtuelle dans le portail Azure. Si vous êtes autorisé à accéder aux machines virtuelles à partir de votre réseau local, vous pouvez initier une connexion Bureau à distance à la machine virtuelle.
 
-   1. Vérifiez que les ordinateurs virtuels hello démarrer correctement.
-   2. Si vous souhaitez tooconnect toohello machine virtuelle Azure à l’aide du Bureau à distance après le basculement de hello, activer la connexion Bureau à distance sur l’ordinateur virtuel de hello avant d’exécuter le test de basculement hello. Vous devez également tooadd un point de terminaison RDP sur l’ordinateur virtuel de hello. Vous pouvez exploiter une [runbook Azure automation](site-recovery-runbook-automation.md) toodo qui.
-   3. Une fois le basculement si vous utilisez un ordinateur virtuel toohello de publique IP adresse tooconnect dans Azure à l’aide du Bureau à distance, vérifiez que vous n’avez toutes les stratégies de domaine qui empêchent la connexion de la machine virtuelle de tooa à l’aide d’une adresse publique.
-6. Effectuez l’issue du test de hello hello suivant :
+   1. Vérifiez que les machines virtuelles démarrent correctement.
+   2. Si vous voulez vous connecter à la machine virtuelle dans Azure avec le Bureau à distance après le basculement, activez Connexion Bureau à distance sur la machine virtuelle avant d’exécuter le test de basculement. Vous devez également ajouter un point de terminaison RDP sur la machine virtuelle. Pour cela, vous pouvez utiliser les [Runbooks Azure Automation](site-recovery-runbook-automation.md) .
+   3. Une fois le basculement effectué, si vous utilisez une adresse IP publique pour vous connecter à la machine virtuelle dans Microsoft Azure via le Bureau à distance, vérifiez qu’aucune stratégie du domaine ne vous empêche de vous connecter à une machine virtuelle au moyen d’une adresse publique.
+6. Une fois le test effectué, procédez comme suit :
 
-   * Cliquez sur **hello test de basculement est terminé**. Nettoyage hello power de tooautomatically d’environnement de test désactiver et supprimer des machines virtuelles de test hello.
-   * Cliquez sur **Notes** toorecord enregistrer toutes les observations associées au basculement de test hello.
-7. Lorsque le basculement de hello atteint hello **test complet** terminer la phase de vérification de hello comme suit :
-   1. Permet d’afficher l’ordinateur virtuel de réplication d’hello Bonjour portail Azure. Vérifiez que l’ordinateur virtuel hello démarre correctement.
-   2. Si vous êtes configuré tooaccess ordinateurs virtuels à partir de votre réseau local, vous pouvez lancer une machine virtuelle de bureau à distance connexion toohello.
-   3. Cliquez sur **test de hello complète** toofinish il.
-   4. Cliquez sur **Notes** toorecord enregistrer toutes les observations associées au basculement de test hello.
-   5. Cliquez sur **hello test de basculement est terminé**. Nettoyage hello power de tooautomatically d’environnement de test désactiver et supprimer l’ordinateur virtuel de test hello.
+   * Cliquez sur **Le test de basculement est terminé**. Nettoyez l’environnement de test afin qu’il mette hors tension et supprime automatiquement les machines virtuelles de test.
+   * Cliquez sur **Notes** pour consigner et enregistrer les éventuelles observations associées au test de basculement.
+7. Lorsque le basculement se trouve en phase **Terminer le test** , terminez la vérification comme suit :
+   1. Examinez la machine virtuelle de réplication dans le portail Microsoft Azure. Vérifiez que la machine virtuelle démarre correctement.
+   2. Si vous êtes autorisé à accéder aux machines virtuelles à partir de votre réseau local, vous pouvez initier une connexion Bureau à distance à la machine virtuelle.
+   3. Cliquez sur **Terminer le test** pour finir l’opération.
+   4. Cliquez sur **Notes** pour consigner et enregistrer les éventuelles observations associées au test de basculement.
+   5. Cliquez sur **Le test de basculement est terminé**. Nettoyez l’environnement de test pour mettre automatiquement hors tension et supprimer la machine virtuelle de test.
 
 ## <a name="next-steps"></a>Étapes suivantes
 Une fois votre déploiement configuré et en cours d'exécution, découvrez [plus d'informations](site-recovery-failover.md) sur le basculement.

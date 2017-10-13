@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure mesures courantes de mise à l’échelle de moniteur | Documents Microsoft"
+title: "Mesures courantes pour la mise à l’échelle automatique dans Azure Monitor | Microsoft Docs"
 description: "Découvrez les métriques utilisées pour la mise à l’échelle automatique de vos instances Cloud Services, Virtual Machines et Web Apps."
 author: anirudhcavale
 manager: orenr
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/6/2016
 ms.author: ancav
-ms.openlocfilehash: 372a40d72d7a6c22c5ff854b1460ec8a3b7ed1d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 240a230d09680672ccd5316470a87d047fab9fd1
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-monitor-autoscaling-common-metrics"></a>Métriques courantes pour la mise à l’échelle automatique d’Azure Monitor
-Échelle d’analyse Azure permet vous tooscale hello nombre d’instances en cours d’exécution vers le haut ou vers le bas, en fonction des données de télémétrie (mesures). Ce document décrit les mesures courantes que vous pourriez toouse. Bonjour portail Azure pour les Services de cloud computing et des batteries de serveurs, vous pouvez choisir métrique tooscale de ressource hello en hello. Toutefois, vous pouvez également choisir les mesures à partir d’un tooscale de ressources différent par.
+La fonction de mise à l’échelle automatique d’Azure Monitor vous permet de diminuer ou d’augmenter la taille des instances en fonction des données de télémétrie (métriques). Ce document décrit les métriques courantes que vous pouvez utiliser. Dans le portail Azure pour les services cloud et les batteries de serveurs, vous pouvez choisir les métriques de la ressource à mettre à l’échelle. Toutefois, vous pouvez également choisir des métriques à partir d’une autre ressource à mettre à l’échelle.
 
-Mise à l’échelle du moniteur Azure s’applique uniquement trop[machines virtuelles identiques](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [Services de cloud computing](https://azure.microsoft.com/services/cloud-services/), et [du Service d’applications - applications Web](https://azure.microsoft.com/services/app-service/web/). Les autres services Azure utilisent des méthodes de mise à l’échelle différentes.
+La mise à l’échelle automatique Azure Monitor s’applique uniquement aux [jeux de mise à l’échelle de machine virtuelle](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [services cloud](https://azure.microsoft.com/services/cloud-services/) et à [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/). Les autres services Azure utilisent des méthodes de mise à l’échelle différentes.
 
 ## <a name="compute-metrics-for-resource-manager-based-vms"></a>Calcul des métriques pour les machines virtuelles basées sur Resource Manager
-Par défaut, les machines virtuelles et jeux de mise à l’échelle de machine virtuelle basés sur Resource Manager émettent des métriques de base (niveau hôte). En outre, lorsque vous configurez la collecte de données de diagnostic pour une machine virtuelle Azure et la mise, hello extension de diagnostic Azure émet également les compteurs de performances du système d’exploitation invité (communément appelées « Mesures de système d’exploitation invité »).  Vous utilisez toutes ces métriques dans les règles de mise à l’échelle automatique.
+Par défaut, les machines virtuelles et jeux de mise à l’échelle de machine virtuelle basés sur Resource Manager émettent des métriques de base (niveau hôte). En outre, lorsque vous configurez la collecte de données de diagnostic pour une machine virtuelle ou des jeux de mise à l’échelle de machine virtuelle Azure, l’extension de diagnostic Azure émet également les compteurs de performances du système d’exploitation invité (communément appelés « Métriques de système d’exploitation invité »).  Vous utilisez toutes ces métriques dans les règles de mise à l’échelle automatique.
 
-Vous pouvez utiliser hello `Get MetricDefinitions` métriques de hello PoSH/API/CLI tooview disponibles pour votre ressource mise.
+Vous pouvez utiliser l’API/PoSH/CLI `Get MetricDefinitions` pour afficher les métriques disponibles pour votre ressource VMSS.
 
 Si vous utilisez des jeux de mise à l’échelle de machine virtuelle et qu’une métrique que vous cherchez n’est pas répertoriée, il est probable qu’elle soit *désactivée* dans votre extension de diagnostics.
 
-Si une mesure particulière n’est pas en cours hello échantillonnées ou transféré à fréquence vous, vous pouvez mettre à jour de configuration des diagnostics hello.
+Si une métrique particulière n’est pas en cours d’échantillonnage ou de transfert vers la fréquence souhaitée, vous pouvez mettre à jour la configuration des diagnostics.
 
-Si les deux cas précédents est true, puis examinez [tooenable utiliser PowerShell Diagnostics Azure dans une machine virtuelle exécutant Windows](../virtual-machines/windows/ps-extensions-diagnostics.md) sur PowerShell tooconfigure et mettre à jour votre tooenable d’extension de Diagnostics de machine virtuelle Windows Azure hello métrique. Cet article inclut également un exemple de fichier de configuration de diagnostics.
+Si l’un des deux cas ci-dessus s’applique, consultez la page [Utiliser PowerShell pour activer Azure Diagnostics sur une machine virtuelle exécutant Windows](../virtual-machines/windows/ps-extensions-diagnostics.md) pour savoir comment utiliser PowerShell pour configurer et mettre à jour votre extension de diagnostics de machine virtuelle Windows Azure afin d’activer la métrique. Cet article inclut également un exemple de fichier de configuration de diagnostics.
 
 ### <a name="host-metrics-for-resource-manager-based-windows-and-linux-vms"></a>Métriques de l’hôte pour les machines virtuelles Windows et Linux basées sur Resource Manager
-Hello suivant métriques au niveau de l’hôte est émis par défaut pour la machine virtuelle Azure et mise dans les instances de Windows et Linux. Ces métriques de décrivent votre machine virtuelle Azure, mais sont collectés à partir de l’hôte de machine virtuelle Azure hello plutôt que via l’agent installé sur l’ordinateur virtuel invité de hello. Vous pouvez utiliser ces métriques dans les règles de mise à l’échelle automatique.
+Les métriques de niveau hôte suivantes sont émies par défaut pour les machines virtuelles et jeux de mise à l’échelle de machine virtuelle Azure dans les instances Windows et Linux. Ces métriques décrivent votre machine virtuelle Azure, mais sont collectées à partir de l’hôte de la machine Virtuelle Azure plutôt que via l’agent installé sur la machine virtuelle invitée. Vous pouvez utiliser ces métriques dans les règles de mise à l’échelle automatique.
 
 - [Métriques de l’hôte pour les machines virtuelles Windows et Linux basées sur Resource Manager](monitoring-supported-metrics.md#microsoftcomputevirtualmachines)
 - [Métriques de l’hôte pour les jeux de mise à l’échelle de machine virtuelle Windows et Linux basées sur Resource Manager](monitoring-supported-metrics.md#microsoftcomputevirtualmachinescalesets)
 
 ### <a name="guest-os-metrics-resource-manager-based-windows-vms"></a>Métriques de SE invité pour machines virtuelles Windows basées sur Resource Manager
-Lorsque vous créez une machine virtuelle dans Azure, des diagnostics est activée à l’aide d’extension de Diagnostics hello. extension de diagnostics Hello émet un ensemble de mesures extraite à l’intérieur de hello machine virtuelle. Cela signifie que vous pouvez automatiser la mise à l’échelle des métriques qui ne sont pas émises par défaut.
+Lorsque vous créez une machine virtuelle dans Azure, les diagnostics sont effectués grâce à l’extension Diagnostics. L’extension de diagnostics émet un ensemble de métriques extraites de la machine virtuelle. Cela signifie que vous pouvez automatiser la mise à l’échelle des métriques qui ne sont pas émises par défaut.
 
-Vous pouvez générer une liste des mesures de hello à l’aide de hello commande dans PowerShell suivante.
+Vous pouvez utiliser la commande suivante dans PowerShell pour générer une liste des métriques.
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
-Vous pouvez créer une alerte pour hello suivant des métriques :
+Vous pouvez créer une alerte pour les métriques suivantes :
 
 | Nom de métrique | Unité |
 | --- | --- |
@@ -86,13 +86,13 @@ Vous pouvez créer une alerte pour hello suivant des métriques :
 ### <a name="guest-os-metrics-linux-vms"></a>Métriques de SE invité pour les machines virtuelles Linux
 Lorsque vous créez une machine virtuelle dans Azure, les diagnostics sont activés par défaut grâce à l’extension Diagnostics.
 
-Vous pouvez générer une liste des mesures de hello à l’aide de hello commande dans PowerShell suivante.
+Vous pouvez utiliser la commande suivante dans PowerShell pour générer une liste des métriques.
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
- Vous pouvez créer une alerte pour hello suivant des métriques :
+ Vous pouvez créer une alerte pour les métriques suivantes :
 
 | Nom de métrique | Unité |
 | --- | --- |
@@ -136,10 +136,10 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 | \Interface réseau\Total des collisions |Nombre |
 
 ## <a name="commonly-used-web-server-farm-metrics"></a>Métriques web couramment utilisées (batterie de serveurs)
-Vous pouvez également effectuer la mise à l’échelle en fonction des métriques de serveur web courantes telles que hello longueur de file d’attente Http. Son nom de métrique est **Longueur de file d’attente HTTP**.  Hello suivant des métriques de batterie de serveurs (applications Web) section listes disponible sur le serveur.
+Vous pouvez également effectuer la mise à l’échelle en fonction des métriques de serveur web courantes, telles que la longueur de file d’attente HTTP. Son nom de métrique est **Longueur de file d’attente HTTP**.  La section suivante répertorie les métriques de batterie de serveurs (Web Apps) disponibles.
 
 ### <a name="web-apps-metrics"></a>Métriques Web Apps
-Vous pouvez générer une liste des mesures d’applications Web hello à l’aide de hello commande dans PowerShell suivante.
+Vous pouvez utiliser la commande suivante dans PowerShell pour générer une liste des métriques Web Apps.
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
@@ -157,11 +157,11 @@ Ces métriques permettent d’émettre une alerte ou de procéder à un mise à 
 | Octets envoyés |Octets |
 
 ## <a name="commonly-used-storage-metrics"></a>Métriques couramment utilisées dans Azure Storage
-Vous pouvez faire évoluer par la longueur de file d’attente de stockage, qui est le nombre de hello de messages dans la file d’attente de stockage hello. Longueur de file d’attente de stockage est une mesure particulière et seuil de hello est nombre hello de messages par instance. Par exemple, s’il existe deux instances, et si le seuil de hello a la valeur too100, mise à l’échelle se produit lorsque hello le nombre total de messages dans la file d’attente hello est 200. Qui peut être de 100 messages par instance, 120 et 80 ou toute autre combinaison additionne too200 ou plus.
+Vous pouvez procéder à une mise à l’échelle en fonction de la métrique Longueur de file d’attente, qui correspond au nombre de messages dans la file d’attente de stockage. La longueur de file d’attente de stockage est une métrique spéciale et le seuil appliqué sera le nombre de messages par instance. Par exemple, si vous avez deux instances et que le seuil est défini sur 100, la mise à l’échelle aura lieu lorsque la file d’attente contiendra 200 messages. Cela peut être 100 messages par instance, 120 et 80 ou toute autre combinaison qui correspond à 200 ou plus.
 
-Configurez ce paramètre Bonjour Azure portal Bonjour **paramètres** panneau. Pour les jeux de mise à l’échelle de machine virtuelle, vous pouvez mettre à jour des paramètres de mise à l’échelle hello hello Gestionnaire de ressources du modèle toouse *metricName* en tant que *ApproximateMessageCount* et passer l’ID de file d’attente de stockage hello comme hello  *metricResourceUri*.
+Configurez de paramètre dans le panneau **Paramètres** du Portail Azure. Pour les jeux de mise à l’échelle de machine virtuelle, vous pouvez mettre à jour le paramètre Mise à l’échelle automatique dans le modèle Resource Manager afin d’utiliser *metricName* avec la valeur *ApproximateMessageCount*, puis transmettre l’ID de la file d’attente de stockage avec la valeur *metricResourceUri*.
 
-Par exemple, avec un Bonjour du compte de stockage classique metricTrigger de paramètre de mise à l’échelle inclut :
+Par exemple, avec un compte de stockage classique, le paramètre de mise à l’échelle automatique metricTrigger peut inclure :
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -169,7 +169,7 @@ Par exemple, avec un Bonjour du compte de stockage classique metricTrigger de pa
  "metricResourceUri": "/subscriptions/SUBSCRIPTION_ID/resourceGroups/RES_GROUP_NAME/providers/Microsoft.ClassicStorage/storageAccounts/STORAGE_ACCOUNT_NAME/services/queue/queues/QUEUE_NAME"
  ```
 
-Pour un compte de stockage de (non classique), hello metricTrigger incluent :
+Pour un compte de stockage (non classique), le paramètre metricTrigger peut inclure :
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -178,9 +178,9 @@ Pour un compte de stockage de (non classique), hello metricTrigger incluent :
 ```
 
 ## <a name="commonly-used-service-bus-metrics"></a>Métriques Service Bus généralement utilisées
-Vous pouvez faire évoluer par la longueur de file d’attente Service Bus, numéro hello de messages dans la file d’attente du Service Bus hello. Longueur de file d’attente Service Bus est une mesure particulière et seuil de hello est nombre hello de messages par instance. Par exemple, s’il existe deux instances, et si le seuil de hello a la valeur too100, mise à l’échelle se produit lorsque hello le nombre total de messages dans la file d’attente hello est 200. Qui peut être de 100 messages par instance, 120 et 80 ou toute autre combinaison additionne too200 ou plus.
+Vous pouvez procéder à une mise à l’échelle en fonction de la longueur de la file d’attente Service Bus, autrement dit en fonction du nombre de messages présents dans cette file d’attente. La longueur de la file d’attente Service Bus est une métrique particulière. Le seuil correspond au nombre de messages par instance. Par exemple, si vous avez deux instances et que le seuil est défini sur 100, la mise à l’échelle aura lieu lorsque la file d’attente contiendra 200 messages. Cela peut être 100 messages par instance, 120 et 80 ou toute autre combinaison qui correspond à 200 ou plus.
 
-Pour les jeux de mise à l’échelle de machine virtuelle, vous pouvez mettre à jour des paramètres de mise à l’échelle hello hello Gestionnaire de ressources du modèle toouse *metricName* en tant que *ApproximateMessageCount* et passer l’ID de file d’attente de stockage hello comme hello  *metricResourceUri*.
+Pour les jeux de mise à l’échelle de machine virtuelle, vous pouvez mettre à jour le paramètre Mise à l’échelle automatique dans le modèle Resource Manager afin d’utiliser *metricName* avec la valeur *ApproximateMessageCount*, puis transmettre l’ID de la file d’attente de stockage avec la valeur *metricResourceUri*.
 
 ```
 "metricName": "MessageCount",
@@ -189,6 +189,6 @@ Pour les jeux de mise à l’échelle de machine virtuelle, vous pouvez mettre �
 ```
 
 > [!NOTE]
-> Bus des services, concept de groupe de ressources hello n’existe pas, mais Azure Resource Manager crée un groupe de ressources par défaut par région. groupe de ressources Hello est généralement au format de 'Default - ServiceBus-[Région]' hello. Par exemple, « Est des États-Unis Service Bus par défaut », « Ouest des États-Unis Service Bus par défaut », « Est de l’Australie Service Bus par défaut », etc.
+> Le concept de groupe de ressources n’existe pas pour Service Bus, mais Azure Resource Manager crée un groupe de ressources par défaut par région. Le groupe de ressources est généralement affiché au format « [Région] Service Bus par défaut ». Par exemple, « Est des États-Unis Service Bus par défaut », « Ouest des États-Unis Service Bus par défaut », « Est de l’Australie Service Bus par défaut », etc.
 >
 >

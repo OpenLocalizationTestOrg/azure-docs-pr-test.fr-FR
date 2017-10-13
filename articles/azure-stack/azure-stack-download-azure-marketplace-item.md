@@ -1,6 +1,6 @@
 ---
-title: "éléments du marketplace aaaDownload à partir de Azure | Documents Microsoft"
-description: "Je peux télécharger les éléments du marketplace à partir d’Azure toomy de déploiement de la pile de Azure."
+title: "Télécharger des éléments de la Place de marché à partir d’Azure | Microsoft Docs"
+description: "Je peux télécharger des éléments de la Place de marché à partir d’Azure dans mon déploiement Azure Stack."
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -14,21 +14,23 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/03/2017
 ms.author: erikje
-ms.openlocfilehash: 734470fbacc09617908a2f6db9107ffa9c39e51d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4d7c335a3c68cc9bb8cb0c823883716a3dd6620a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="download-marketplace-items-from-azure-tooazure-stack"></a>Télécharger des éléments du marketplace à partir de la pile de tooAzure Azure
+# <a name="download-marketplace-items-from-azure-to-azure-stack"></a>Télécharger des éléments de la Place de marché à partir d’Azure dans Azure Stack
 
-Lorsque vous décidez quelles tooinclude contenu dans le marketplace de pile d’Azure, vous devez envisager de contenu hello disponible à partir de hello Azure marketplace. Vous pouvez le télécharger dans la liste d’éléments d’Azure marketplace qui ont été préalablement testé toorun sur Azure pile organisée. Nouveaux éléments sont ajoutés fréquemment toothis liste, vous devez donc vous consultez renvoyé par le nouveau contenu.
+*S’applique à : systèmes intégrés Azure Stack et Kit de développement Azure Stack*
 
-éléments du marketplace toodownload, vous devez d’abord [inscrire la pile d’Azure avec Azure](azure-stack-register.md). 
+Quand vous décidez du contenu à inclure dans votre Place de marché Azure Stack, il est recommandé de prendre en compte le contenu disponible auprès de la Place de marché Azure. Vous pouvez télécharger à partir d’une liste organisée d’éléments de la Place de marché Azure, qui ont été préalablement testés pour s’exécuter sur Azure Stack. De nouveaux éléments sont fréquemment ajoutés à cette liste : consultez-la donc régulièrement pour voir ce qu’elle contient de nouveau.
+
+Pour télécharger des éléments de la Place de marché, vous devez d’abord [inscrire Azure Stack auprès d’Azure](azure-stack-register.md). 
 
 ## <a name="download"></a>Télécharger
-1. Se connecter toohello portail d’administration Azure pile (https://portal.local.azurestack.external).
-2. Certains éléments de la Place de marché peuvent être très volumineux.  Vérifiez toomake sûr d’avoir suffisamment d’espace sur votre système en cliquant sur **fournisseurs de ressources** > **stockage**.
+1. Connectez-vous au portail d’administration d’Azure Stack (https://portal.local.azurestack.external).
+2. Certains éléments de la Place de marché peuvent être très volumineux.  Vérifiez que vous avez suffisamment d’espace sur votre système en cliquant sur **Fournisseurs de ressources** > **Stockage**.
 
     ![](media/azure-stack-download-azure-marketplace-item/image01.png)
 
@@ -36,16 +38,16 @@ Lorsque vous décidez quelles tooinclude contenu dans le marketplace de pile d�
 
     ![](media/azure-stack-download-azure-marketplace-item/image02.png)
 
-4. Cliquez sur **ajouter à partir d’Azure** toosee une liste d’éléments disponibles en téléchargement. Vous pouvez cliquez sur chaque élément dans hello liste tooview sa description et la taille de téléchargement.
+4. Cliquez sur **Ajouter à partir d’Azure** pour afficher la liste des éléments disponibles au téléchargement. Vous pouvez cliquer sur chaque élément de la liste pour afficher sa description et la taille du téléchargement.
 
     ![](media/azure-stack-download-azure-marketplace-item/image03.png)
 
-5. Sélectionnez hello élément souhaité dans la liste de hello puis cliquez sur **télécharger**. Cela démarre le téléchargement de l’image de machine virtuelle hello pour hello que vous avez sélectionnée. Le temps de téléchargement varie.
+5. Sélectionnez l’élément que vous voulez dans la liste, puis cliquez sur **Télécharger**. Ceci démarre le téléchargement de l’image de machine virtuelle pour l’élément sélectionné. Le temps de téléchargement varie.
 
     ![](media/azure-stack-download-azure-marketplace-item/image04.png)
 
-6. Une fois le téléchargement de hello terminé, vous pouvez déployer votre nouvel élément de marketplace comme un opérateur cloud ou un utilisateur du client. Cliquez sur **+ nouveau**, rechercher parmi les catégories de hello pour le nouvel élément de marketplace hello, puis sélectionnez un élément hello.
-7. Cliquez sur **créer** tooopen expérience de création de hello pour hello nouvellement téléchargé élément. Suivez toodeploy des instructions pas à pas hello votre élément.
+6. Une fois le téléchargement terminé, vous pouvez déployer votre nouvel élément de Place de marché en tant qu’opérateur ou utilisateur Azure Stack. Cliquez sur **+ Nouveau**, recherchez le nouvel élément de Place de marché parmi les catégories, puis sélectionnez l’élément.
+7. Cliquez sur **Créer** pour ouvrir l’expérience de création de l’élément qui vient d’être téléchargé. Suivez les instructions pas à pas pour déployer votre élément.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

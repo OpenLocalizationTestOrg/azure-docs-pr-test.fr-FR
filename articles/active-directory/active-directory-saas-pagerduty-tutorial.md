@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec Pagerduty | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et de PagerDuty."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et PagerDuty."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,63 +14,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jeedes
-ms.openlocfilehash: c3cfbedac3bf075e2d8cd833d5de7ca0bc9468b6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bf5263ce4d8fbc231029c101f167f4b55a921e60
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-pagerduty"></a>Didacticiel : Intégration d’Azure Active Directory à Pagerduty
 
-Dans ce didacticiel, vous apprendrez comment toointegrate PagerDuty avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer PagerDuty avec Azure Active Directory (Azure AD).
 
-Intégration de PagerDuty à Azure AD offre hello avantages suivants :
+L’intégration de PagerDuty avec Azure AD offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooPagerDuty
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooPagerDuty (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à PagerDuty
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à PagerDuty (via l’authentification unique) avec leur compte Azure AD
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD à PagerDuty, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD avec PagerDuty, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement PagerDuty pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de PagerDuty à partir de la galerie de hello
+1. Ajout de PagerDuty à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-pagerduty-from-hello-gallery"></a>Ajout de PagerDuty à partir de la galerie de hello
-intégration de hello tooconfigure de PagerDuty dans Azure AD, vous devez tooadd PagerDuty à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-pagerduty-from-the-gallery"></a>Ajout de PagerDuty à partir de la galerie
+Pour configurer l’intégration de PagerDuty à Azure AD, vous devez ajouter PagerDuty, disponible dans la galerie, à votre liste d’applications SaaS gérées.
 
-**tooadd PagerDuty à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter PagerDuty à partir de la galerie, effectuez les étapes suivantes :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
-    ![bouton d’Azure Active Directory Hello][1]
+    ![Bouton Azure Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
-    ![panneau des applications Enterprise Hello][2]
+    ![Panneau Applications d’entreprise][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
-    ![Nouveau bouton d’application Hello][3]
+    ![Bouton Nouvelle application][3]
 
-4. Dans la zone de recherche de hello, tapez **PagerDuty**, sélectionnez **PagerDuty** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
+4. Dans la zone de recherche, tapez **PagerDuty**, sélectionnez **PagerDuty** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-pagerduty-tutorial/tutorial_pagerduty_addfromgallery.png)
 
@@ -78,58 +78,58 @@ intégration de hello tooconfigure de PagerDuty dans Azure AD, vous devez tooadd
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec PagerDuty, par le biais d’un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans PagerDuty est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans PagerDuty doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur PagerDuty équivalent dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur PagerDuty associé doit être établie.
 
-Dans PagerDuty, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans PagerDuty, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur de **Username** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique à PagerDuty, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec PagerDuty, vous devez suivre les indications des sections suivantes :
 
-1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Créer un utilisateur de test de PagerDuty](#create-a-pagerduty-test-user)**  -toohave un équivalent de Britta Simon dans PagerDuty est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Créer utilisateur de test PagerDuty](#create-a-pagerduty-test-user)** pour avoir un équivalent de Britta Simon dans PagerDuty lié à la représentation Azure AD associée.
+4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Tester l’authentification unique](#test-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application de PagerDuty.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application PagerDuty.
 
-**tooconfigure Azure AD single sign-on avec PagerDuty, procédez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec PagerDuty, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, sur hello **PagerDuty** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, dans la page d’intégration de l’application **PagerDuty**, cliquez sur **Authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-pagerduty-tutorial/tutorial_pagerduty_samlbase.png)
 
-3. Sur hello **PagerDuty domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL PagerDuty**, effectuez les étapes suivantes :
 
     ![Informations d’authentification unique dans Domaine et URL PagerDuty](./media/active-directory-saas-pagerduty-tutorial/tutorial_pagerduty_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenant-name>.pagerduty.com`
+    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<tenant-name>.pagerduty.com`
 
-    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenant-name>.pagerduty.com`
+    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<tenant-name>.pagerduty.com`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur. Contact [équipe de support Client de PagerDuty](https://www.pagerduty.com/support/) tooget ces valeurs. 
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Pour obtenir ces valeurs, contactez l’[équipe de support technique PagerDuty](https://www.pagerduty.com/support/). 
 
-4. Sur hello **le certificat de signature SAML** , cliquez sur **Certificate(Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
 
-    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-pagerduty-tutorial/tutorial_pagerduty_certificate.png) 
+    ![Lien de téléchargement du certificat](./media/active-directory-saas-pagerduty-tutorial/tutorial_pagerduty_certificate.png) 
 
 5. Cliquez sur le bouton **Enregistrer** .
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-pagerduty-tutorial/tutorial_general_400.png)
 
-6. Sur hello **PagerDuty Configuration** , cliquez sur **configurer de PagerDuty** tooopen **configurer l’authentification** fenêtre. Hello de copie **URL de déconnexion et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
+6. Dans la section **Configuration de PagerDuty**, cliquez sur **Configurer PagerDuty** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez **l’URL de déconnexion et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide**.
 
     ![Configuration de PagerDuty](./media/active-directory-saas-pagerduty-tutorial/tutorial_pagerduty_configure.png) 
 
 7. Dans une autre fenêtre de navigateur web, connectez-vous à votre site d’entreprise Pagerduty en tant qu’administrateur.
 
-8. Dans le menu hello haut de hello, cliquez sur **les paramètres de compte**.
+8. Dans le menu situé en haut, cliquez sur **Account Settings**.
    
     ![Paramètres de compte](./media/active-directory-saas-pagerduty-tutorial/ic778535.png "Paramètres de compte")
 
@@ -137,111 +137,111 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
    
     ![Authentification unique](./media/active-directory-saas-pagerduty-tutorial/ic778536.png "Authentification unique")
 
-10. Sur hello **activer Single Sign-on (SSO)** page, effectuer hello comme suit :
+10. Dans la page **Enable Single Sign-on (SSO)**, effectuez les étapes suivantes :
    
     ![Activer l’authentification unique](./media/active-directory-saas-pagerduty-tutorial/ic778537.png "activer l’authentification unique")
    
-    a. Ouvrez votre certificat codé en base 64 téléchargé à partir du portail Azure dans le bloc-notes, hello copie contenu de celui-ci dans le Presse-papiers et le coller ensuite toohello **certificat X.509** zone de texte
+    a. Ouvrez dans le Bloc-notes votre certificat codé en base 64 téléchargé à partir du portail Azure, copiez son contenu dans le Presse-papiers, puis collez-le dans la zone de texte **X.509 Certificate**.
   
-    b. Bonjour **URL de connexion** zone de texte, collez **SAML Sign-On URL du Service unique** dont vous avez copié à partir du portail Azure.
+    b. Dans la zone de texte **Login URL**, collez l’**URL du service d’authentification unique SAML** que vous avez copiée à partir du portail Azure.
   
-    c. Bonjour **URL de déconnexion** zone de texte, collez **URL de déconnexion** dont vous avez copié à partir du portail Azure.
+    c. Dans la zone de texte **Logout URL**, collez la valeur de l’**URL de déconnexion** que vous avez copiée à partir du portail Azure.
  
     d. Sélectionnez **Turn on Single Sign-on**.
  
     e. Cliquez sur **Enregistrer les modifications**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur de test Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
-    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-pagerduty-tutorial/create_aaduser_01.png) 
+    ![Bouton Azure Active Directory](./media/active-directory-saas-pagerduty-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
-    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-pagerduty-tutorial/create_aaduser_02.png) 
+    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-pagerduty-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
-    ![bouton Ajouter de Hello](./media/active-directory-saas-pagerduty-tutorial/create_aaduser_03.png) 
+    ![Bouton Ajouter](./media/active-directory-saas-pagerduty-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
-    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-pagerduty-tutorial/create_aaduser_04.png) 
+    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-pagerduty-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-a-pagerduty-test-user"></a>Créer un utilisateur de test PagerDuty
 
-tooenable Azure AD les utilisateurs toolog dans tooPagerDuty, vous devez les configurer dans PagerDuty.  
-Dans les cas de hello de PagerDuty, cette configuration est une tâche manuelle.
+Pour permettre aux utilisateurs Azure AD de se connecter à Pagerduty, vous devez les approvisionner dans Pagerduty.  
+Dans le cas de Pagerduty, l’approvisionnement est une tâche manuelle.
 
 >[!NOTE]
->Vous pouvez utiliser n’importe quel autre Pagerduty utilisateur compte outil de création ou API fournie par Pagerduty tooprovision Azure Active Directory des comptes d’utilisateur.
+>Vous pouvez utiliser n’importe quel outil ou API de création de compte utilisateur, fourni par Pagerduty, pour approvisionner des comptes d’utilisateur Azure Active Directory.
 
-**tooprovision un compte d’utilisateur, effectuez hello comme suit :**
+**Pour approvisionner un compte d’utilisateur, procédez comme suit :**
 
-1. Connectez-vous à tooyour **Pagerduty** client.
+1. Connectez-vous à votre locataire **Pagerduty** .
 
-2. Dans le menu hello haut de hello, cliquez sur **utilisateurs**.
+2. Dans le menu situé en haut, cliquez sur **Utilisateurs**.
 
 3. Cliquez sur **Add Users**.
    
     ![Ajouter des utilisateurs](./media/active-directory-saas-pagerduty-tutorial/ic778539.png "ajouter des utilisateurs")
 
-4.  Sur hello **inviter votre équipe** boîte de dialogue, effectuer hello comme suit :
+4.  Dans la boîte de dialogue **Invite your team**, effectuez les étapes suivantes :
    
     ![Inviter votre équipe](./media/active-directory-saas-pagerduty-tutorial/ic778540.png "inviter votre équipe")
 
-    a. Hello de type **prénom et nom** d’utilisateur comme **Britta Simon**. 
+    a. Tapez le **prénom et le nom** d’un utilisateur, par exemple **Britta Simon**. 
    
     b. Entrez l’**adresse e-mail** d’un utilisateur, par exemple **brittasimon@contoso.com**.
    
     c. Cliquez sur **Add**, puis sur **Send Invites**.
    
     >[!NOTE]
-    >Tous les utilisateurs ajoutés reçoivent une invitation de toocreate un compte PagerDuty.
+    >Tous les utilisateurs recevront une invitation pour créer un compte PagerDuty.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooPagerDuty.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à PagerDuty.
 
-![Attribuer le rôle d’utilisateur hello][200]
+![Attribuer le rôle d’utilisateur][200]
 
-**tooassign Britta Simon tooPagerDuty, effectuez hello comme suit :**
+**Pour affecter Britta Simon à PagerDuty, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **PagerDuty**.
+2. Dans la liste des applications, sélectionnez **PagerDuty**.
 
-    ![lien de PagerDuty Hello dans la liste des Applications hello](./media/active-directory-saas-pagerduty-tutorial/tutorial_pagerduty_app.png) 
+    ![Lien PagerDuty dans la liste des applications](./media/active-directory-saas-pagerduty-tutorial/tutorial_pagerduty_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
-    ![lien de « Utilisateurs et groupes » Hello][202]
+    ![Lien « Utilisateurs et groupes »][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![volet d’ajouter l’affectation de Hello][203]
+    ![Volet Ajouter une attribution][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -249,15 +249,15 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque PagerDuty hello hello accès Panelyou doit obtenir automatiquement signé sur tooyour PagerDuty application.
+Quand vous cliquez sur la vignette PagerDuty dans le volet d’accès, vous devez être connecté automatiquement à votre application PagerDuty.
 
-Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
+Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

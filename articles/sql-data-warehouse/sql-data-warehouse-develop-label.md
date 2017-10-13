@@ -1,6 +1,6 @@
 ---
-title: "aaaUse étiquettes tooinstrument des requêtes dans l’entrepôt de données SQL | Documents Microsoft"
-description: "Conseils pour l’utilisation de requêtes de tooinstrument étiquettes dans l’entrepôt de données SQL Azure pour développer des solutions."
+title: "Utiliser des libellés pour instrumenter des requêtes dans SQL Data Warehouse | Documents Microsoft"
+description: "Conseils relatifs à l’utilisation de libellés pour instrumenter des requêtes dans Microsoft Azure SQL Data Warehouse, dans le cadre du développement de solutions."
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
@@ -15,13 +15,13 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 82e7ea98e1417134227f1d7c529fdaf2f1df3853
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9e75bbe528a427724a623305fbd45e2277e9d0af
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-labels-tooinstrument-queries-in-sql-data-warehouse"></a>Utiliser les requêtes de tooinstrument d’étiquettes dans l’entrepôt de données SQL
+# <a name="use-labels-to-instrument-queries-in-sql-data-warehouse"></a>Utiliser des libellés pour instrumenter des requêtes dans SQL Data Warehouse
 SQL Data Warehouse prend en charge le concept de « libellé de requête ». Avant de l’étudier plus avant, voici un exemple parlant :
 
 ```sql
@@ -31,11 +31,11 @@ OPTION (LABEL = 'My Query Label')
 ;
 ```
 
-Cette dernière ligne des étiquettes requête toohello de hello chaîne « Mes requêtes étiquette ». Cela est particulièrement utile comme étiquette de hello est requête obtenue via hello DMV. Cela nous donne un tootrack mécanisme vers le bas de requêtes à problème et également toohelp identifier sa progression via une exécution du processus ETL.
+Cette dernière ligne balise la chaîne « My Query Label » dans la requête. Cette action est particulièrement utile, car ce libellé peut être interrogé via des DMV. Elle nous fournit un mécanisme de suivi des requêtes posant des problèmes et nous permet d’identifier la progression de l’exécution d’une action ETL.
 
-À ce niveau, une convention d’affectation de noms efficace s’avère très utile. Par exemple, quelque chose comme « projet : procédure : instruction : commentaire ' serait identifier toouniquely requête hello dans la liste de tout code hello dans le contrôle de code source.
+À ce niveau, une convention d’affectation de noms efficace s’avère très utile. Ainsi, un nom de type « PROJET : PROCÉDURE : INSTRUCTION : COMMENTAIRE » permet d’identifier une requête de manière unique dans l’ensemble du code lors du contrôle de code source.
 
-toosearch par l’étiquette que vous pouvez utiliser hello suivant la requête qui utilise hello des vues de gestion dynamique :
+Pour effectuer une recherche basée sur un libellé, vous pouvez utiliser la requête suivante, qui tire parti de DMV :
 
 ```sql
 SELECT  *
@@ -45,7 +45,7 @@ WHERE   r.[label] = 'My Query Label'
 ```
 
 > [!NOTE]
-> Il est essentiel d’encapsuler des crochets ou des guillemets doubles autour d’étiquette du mot hello lors de l’interrogation. En effet, le libellé est un mot réservé. Il entraîne une erreur s’il n’est pas délimité.
+> Vous devez impérativement encapsuler les crochets ou les guillemets doubles entourant le libellé du mot lors de l’interrogation. En effet, le libellé est un mot réservé. Il entraîne une erreur s’il n’est pas délimité.
 > 
 > 
 

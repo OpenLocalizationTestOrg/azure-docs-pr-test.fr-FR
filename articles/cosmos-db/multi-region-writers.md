@@ -1,6 +1,6 @@
 ---
-title: "architectures de base de données master d’aaaMulti avec la base de données Azure Cosmos | Documents Microsoft"
-description: "Découvrez comment les architectures d’application toodesign avec local lit et écrit dans plusieurs régions géographiques avec la base de données Azure Cosmos."
+title: "Architectures de base de données à multiples maîtres avec Azure Cosmos DB | Microsoft Docs"
+description: "En savoir plus sur la conception des architectures d’application avec les lectures et écritures locales dans plusieurs régions géographiques avec Azure Cosmos DB."
 services: cosmos-db
 documentationcenter: 
 author: arramac
@@ -15,43 +15,43 @@ ms.workload: na
 ms.date: 05/23/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3269c8405afe16f75db69b42e576fe76e00a8e16
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cf1482ae7b1070023703f5dbe861d151f5d64fd8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="multi-master-globally-replicated-database-architectures-with-azure-cosmos-db"></a>Architectures de base de données à multiples maîtres répliquées de façon globale avec Azure Cosmos DB
-Base de données Azure Cosmos prend en charge les clés en main [réplication globale](distribute-data-globally.md), qui vous permet de toodistribute données toomultiple régions à faible latence n’importe où dans la charge de travail hello. Ce modèle est généralement utilisé pour les charges de travail éditeur/consommateur, où un enregistreur existe dans une région géographique unique et des lecteurs sont distribués mondialement dans d’autres régions (lecture). 
+Azure Cosmos DB prend en charge la [réplication globale](distribute-data-globally.md) clé en main, qui vous permet de distribuer les données dans plusieurs régions avec accès à faible latence n’importe où dans la charge de travail. Ce modèle est généralement utilisé pour les charges de travail éditeur/consommateur, où un enregistreur existe dans une région géographique unique et des lecteurs sont distribués mondialement dans d’autres régions (lecture). 
 
-Vous pouvez également utiliser Azure Cosmos DB global de réplication prennent toobuild des applications dans lesquelles les enregistreurs et lecteurs sont globalement distribuées. Ce document décrit un modèle qui permet d’obtenir un accès en écriture locale et en lecture locale pour les enregistreurs utilisant Azure Cosmos DB.
+Vous pouvez également utiliser la prise en charge de la réplication globale d’Azure Cosmos DB pour créer des applications dans lesquelles des enregistreurs et des lecteurs sont distribués mondialement. Ce document décrit un modèle qui permet d’obtenir un accès en écriture locale et en lecture locale pour les enregistreurs utilisant Azure Cosmos DB.
 
 ## <a id="ExampleScenario"></a>Publication de contenu : un exemple de scénario
-Examinons un toodescribe de scénario réel comment vous pouvez utiliser les modèles distribués internationalement multiples region/multi-cluster master lecture/écriture avec la base de données Azure Cosmos. Prenons l’exemple d’une plateforme de contenu reposant sur Azure Cosmos DB. Voici certaines exigences que cette plateforme doit respecter pour une expérience utilisateur exceptionnelle pour les éditeurs et les consommateurs.
+Examinons un scénario réel pour décrire la manière dont vous pouvez utiliser des modèles de lecture/écriture mondialement distribués multirégions/multimaîtres avec Azure Cosmos DB. Prenons l’exemple d’une plateforme de contenu reposant sur Azure Cosmos DB. Voici certaines exigences que cette plateforme doit respecter pour une expérience utilisateur exceptionnelle pour les éditeurs et les consommateurs.
 
-* Les auteurs et les abonnés sont répartis sur Bonjour 
-* Les auteurs doivent publier région (le plus proche) locale articles tootheir (écriture)
-* Les auteurs des lecteurs/abonnés de leurs articles qui sont distribuées monde hello. 
+* Les auteurs et les abonnés sont répartis dans le monde entier 
+* Les auteurs doivent publier (écriture) les articles dans leur région (la plus proche)
+* Les auteurs ont des lecteurs/abonnés de leurs articles répartis dans le monde entier. 
 * Les abonnés doivent recevoir une notification lorsque de nouveaux articles sont publiés.
-* Les abonnés doivent être en mesure de tooread des articles à partir de leur région. Ils doivent aussi être en mesure de tooadd révisions toothese articles. 
-* Toute personne notamment auteur hello d’articles de hello doit être en mesure de visualiser que toutes les hello révisions de tooarticles attaché à partir d’une région. 
+* Les abonnés doivent être en mesure de lire les articles de leur région. Ils doivent également être en mesure d’ajouter des avis concernant ces articles. 
+* Tout le monde, y compris l’auteur des articles, doit être en mesure de visualiser tous les avis liés aux articles à partir d’une région. 
 
-En supposant que des millions d’utilisateurs et les éditeurs avec des milliards d’articles, dès que nous avons des problèmes de hello tooconfront de mise à l’échelle en même temps que ce qui garantit la localité d’accès. Comme avec la plupart des problèmes d’évolutivité, la solution de hello se trouve dans une stratégie de partitionnement efficace. Ensuite, nous allons examiner comment toomodel articles, révision et des notifications sous forme de documents, configurent des comptes de la base de données Azure Cosmos et implémenter une couche d’accès aux données. 
+En supposant qu’il y a des millions de consommateurs et d’éditeurs avec des milliards d’articles, nous devrons bientôt faire face à des problèmes de mise à l’échelle et de garantie de localité d’accès. Comme avec la plupart des problèmes d’évolutivité, la solution réside dans une bonne stratégie de partitionnement. Ensuite, nous verrons comment modéliser des articles, des avis et des notifications sous forme de documents, configurer des comptes Azure Cosmos DB et implémenter une couche d’accès aux données. 
 
-Si vous souhaitez que toolearn plus d’informations sur les clés de partition et de partitionnement, consultez [le partitionnement et la mise à l’échelle dans la base de données Azure Cosmos](partition-data.md).
+Si vous souhaitez en savoir plus sur le partitionnement et les clés de partition, consultez [Partitionnement et mise à l’échelle dans Azure Cosmos DB](partition-data.md).
 
 ## <a id="ModelingNotifications"></a>Modélisation des notifications
-Les notifications sont utilisateur tooa spécifique du flux de données. Par conséquent, les modèles d’accès hello pour les documents de notifications sont toujours dans le contexte de hello d’utilisateur unique. Par exemple, vous serez « post utilisateur tooa notification » ou « extraire toutes les notifications pour un utilisateur donné ». Par conséquent, hello meilleur choix de clé de partitionnement pour ce type n’est `UserId`.
+Les notifications sont des flux de données spécifiques à un utilisateur. Par conséquent, les modèles d’accès pour les documents de notifications sont toujours destinés à un utilisateur unique. Ainsi, vous pouvez « publier une notification à un utilisateur » ou « extraire toutes les notifications pour un utilisateur donné ». Ainsi, le choix optimal de clé de partitionnement pour ce type est `UserId`.
 
     class Notification 
     { 
         // Unique ID for Notification. 
         public string Id { get; set; }
 
-        // hello user Id for which notification is addressed to. 
+        // The user Id for which notification is addressed to. 
         public string UserId { get; set; }
 
-        // hello partition Key for hello resource. 
+        // The partition Key for the resource. 
         public string PartitionKey 
         { 
             get 
@@ -63,12 +63,12 @@ Les notifications sont utilisateur tooa spécifique du flux de données. Par con
         // Subscription for which this notification is raised. 
         public string SubscriptionFilter { get; set; }
 
-        // Subject of hello notification. 
+        // Subject of the notification. 
         public string ArticleId { get; set; } 
     }
 
 ## <a id="ModelingSubscriptions"></a>Modélisation des abonnements
-Les abonnements peuvent être créés selon différents critères comme une catégorie spécifique d’articles d’intérêt ou un éditeur spécifique. Par conséquent, hello `SubscriptionFilter` est un bon choix pour la clé de partition.
+Les abonnements peuvent être créés selon différents critères comme une catégorie spécifique d’articles d’intérêt ou un éditeur spécifique. Par conséquent, `SubscriptionFilter` constitue un bon choix pour la clé de partition.
 
     class Subscriptions 
     { 
@@ -91,7 +91,7 @@ Les abonnements peuvent être créés selon différents critères comme une cat�
     }
 
 ## <a id="ModelingArticles"></a>Modélisation des articles
-Une fois qu’un article est identifié par le biais des notifications, les requêtes suivantes sont généralement basés sur hello `Article.Id`. En choisissant `Article.Id` en tant que partition clé de hello fournit ainsi la distribution de meilleures hello pour le stockage des articles à l’intérieur d’une collection de base de données Azure Cosmos. 
+Une fois qu’un article est identifié par le biais des notifications, les requêtes suivantes sont généralement basés sur `Article.Id`. En choisissant `Article.Id` en tant que partition, la clé fournit la meilleure distribution pour le stockage des articles à l’intérieur d’une collection Azure Cosmos DB. 
 
     class Article 
     { 
@@ -106,30 +106,30 @@ Une fois qu’un article est identifié par le biais des notifications, les requ
             } 
         }
         
-        // Author of hello article
+        // Author of the article
         public string Author { get; set; }
 
-        // Category/genre of hello article
+        // Category/genre of the article
         public string Category { get; set; }
 
-        // Tags associated with hello article
+        // Tags associated with the article
         public string[] Tags { get; set; }
 
-        // Title of hello article
+        // Title of the article
         public string Title { get; set; }
         
         //... 
     }
 
 ## <a id="ModelingReviews"></a>Modélisation des avis
-Comme des articles, révisions sont principalement écrites et lues dans le contexte de hello d’article. Choisir `ArticleId` en tant que clé de partition fournit une meilleure distribution et un accès efficace aux avis associés à l’article. 
+Les avis sont principalement écrits et lus dans le contexte de l’article. Choisir `ArticleId` en tant que clé de partition fournit une meilleure distribution et un accès efficace aux avis associés à l’article. 
 
     class Review 
     { 
         // Unique ID for Review 
         public string Id { get; set; }
 
-        // Article Id of hello review 
+        // Article Id of the review 
         public string ArticleId { get; set; }
 
         public string PartitionKey 
@@ -148,7 +148,7 @@ Comme des articles, révisions sont principalement écrites et lues dans le cont
     }
 
 ## <a id="DataAccessMethods"></a>Méthodes de couche d’accès aux données
-Maintenant examinons les données principales hello nous devons tooimplement méthodes d’accès. Voici la liste hello des méthodes hello `ContentPublishDatabase` doit :
+Maintenant, examinons les méthodes d’accès aux données principales que nous devons mettre en œuvre. Voici une liste des méthodes dont `ContentPublishDatabase` a besoin :
 
     class ContentPublishDatabase 
     { 
@@ -164,18 +164,18 @@ Maintenant examinons les données principales hello nous devons tooimplement mé
     }
 
 ## <a id="Architecture"></a>Configuration du compte Azure Cosmos DB
-tooguarantee local lit et écrit, nous devez partitionner les données non seulement sur la clé de partition, mais également basé sur le modèle d’accès géographiques hello en régions. modèle de Hello s’appuie sur la présence d’un compte de base de données de base de données Azure Cosmos de géo-répliquées pour chaque région. Voici, par exemple, une configuration pour les écritures multirégions avec deux régions :
+Pour garantir les lectures et écritures locales, nous devons partitionner les données, non seulement sur la clé de partition de clé, mais également selon le modèle d’accès géographique dans les régions. Le modèle repose sur l’existence d’un compte de base de données Azure Cosmos DB géorépliqué pour chaque région. Voici, par exemple, une configuration pour les écritures multirégions avec deux régions :
 
 | Nom du compte | Région d’écriture | Région de lecture |
 | --- | --- | --- |
 | `contentpubdatabase-usa.documents.azure.com` | `West US` |`North Europe` |
 | `contentpubdatabase-europe.documents.azure.com` | `North Europe` |`West US` |
 
-Hello diagramme suivant montre comment les lectures et écritures sont effectuées dans une application classique avec ce programme d’installation :
+Le diagramme suivant montre comment les lectures et écritures sont effectuées dans une application standard avec cette configuration :
 
 ![Architecture à multiples maîtres Azure Cosmos DB](./media/multi-region-writers/multi-master.png)
 
-Voici un extrait de code montrant comment tooinitialize hello clients dans la couche DAL en cours d’exécution dans hello `West US` région.
+Voici un extrait de code montrant comment initialiser les clients dans une couche d’accès aux données en cours d’exécution dans la région `West US`.
     
     ConnectionPolicy writeClientPolicy = new ConnectionPolicy { ConnectionMode = ConnectionMode.Direct, ConnectionProtocol = Protocol.Tcp };
     writeClientPolicy.PreferredLocations.Add(LocationNames.WestUS);
@@ -195,7 +195,7 @@ Voici un extrait de code montrant comment tooinitialize hello clients dans la co
         readRegionAuthKey,
         readClientPolicy);
 
-Avec hello précédant le programme d’installation, couche d’accès aux données hello peut transférer toutes les écritures toohello compte local basé sur lesquels il est déployé. Les lectures sont effectuées par la lecture à partir de ces deux vue comptes tooget hello globale de données. Cette approche peut être étendu tooas plusieurs régions, en fonction des besoins. Voici, par exemple, une configuration avec trois régions :
+Avec la configuration précédente, la couche d’accès aux données peut transférer toutes les écritures vers le compte local basé selon l’emplacement où il est déployé. Les lectures sont effectuées depuis les deux comptes pour une vue globale des données. Cette approche peut être étendue à autant de régions que nécessaire. Voici, par exemple, une configuration avec trois régions :
 
 | Nom du compte | Région d’écriture | Région de lecture 1 | Région de lecture 2 |
 | --- | --- | --- | --- |
@@ -204,12 +204,12 @@ Avec hello précédant le programme d’installation, couche d’accès aux donn
 | `contentpubdatabase-asia.documents.azure.com` | `Southeast Asia` |`North Europe` |`West US` |
 
 ## <a id="DataAccessImplementation"></a>Mise en œuvre de la couche d’accès aux données
-Maintenant examinons implémentation hello de hello couche d’accès aux données (DAL) pour une application avec les deux régions accessible en écriture. Hello DAL doit implémenter hello comme suit :
+Maintenant, examinons la mise en œuvre de la couche d’accès aux données pour une application avec deux régions en écriture. La couche d’accès aux données doit mettre en œuvre les opérations suivantes :
 
 * Créer plusieurs instances de `DocumentClient` pour chaque compte. Avec deux régions, chaque instance de la couche d’accès aux données possède un `writeClient` et `readClient`. 
-* En fonction de la région de hello déployée de l’application hello, configurer des points de terminaison hello pour `writeclient` et `readClient`. Par exemple, hello DAL déployée dans `West US` utilise `contentpubdatabase-usa.documents.azure.com` pour effectuer des écritures. Hello DAL déployé dans `NorthEurope` utilise `contentpubdatabase-europ.documents.azure.com` pour les écritures.
+* En fonction de la région déployée de l’application, configurez des points de terminaison pour `writeclient` et `readClient`. Par exemple, la couche d’accès aux données déployée dans `West US` utilise `contentpubdatabase-usa.documents.azure.com` pour effectuer des écritures. La couche DAL déployée dans `NorthEurope` utilise `contentpubdatabase-europ.documents.azure.com` pour les écritures.
 
-Avec hello précédant le programme d’installation, les méthodes d’accès données hello peuvent être implémentés. Écrire des opérations transférer hello écriture toohello correspondant `writeClient`.
+Avec la configuration précédente, les méthodes d’accès aux données peuvent être mises en œuvre. Les opérations d’écriture transfèrent l’écriture au `writeClient` correspondant.
 
     public async Task CreateSubscriptionAsync(string userId, string category)
     {
@@ -231,7 +231,7 @@ Avec hello précédant le programme d’installation, les méthodes d’accès d
         });
     }
 
-Pour lire les notifications et les analyses, vous devez lire les régions et les résultats de l’union hello comme indiqué dans hello suivant extrait :
+Pour lire les notifications et les avis, vous devez lire à partir des régions et associer les résultats comme indiqué dans l’extrait suivant :
 
     public async Task<IEnumerable<Notification>> ReadNotificationFeedAsync(string userId)
     {
@@ -318,6 +318,6 @@ Dans cet article, nous avons décrit comment vous pouvez utiliser des modèles l
 * Découvrez-en plus sur la manière dont Azure Cosmos DB prend en charge la [distribution mondiale](distribute-data-globally.md)
 * En savoir plus sur les [basculements manuels et automatiques dans Azure Cosmos DB](regional-failover.md)
 * Découvrez-en plus sur [la cohérence globale avec Azure Cosmos DB](consistency-levels.md)
-* Développer avec plusieurs régions à l’aide de hello [Azure Cosmos DB - API DocumentDB](tutorial-global-distribution-documentdb.md)
-* Développer avec plusieurs régions à l’aide de hello [Azure Cosmos DB - MongoDB API](tutorial-global-distribution-MongoDB.md)
-* Développer avec plusieurs régions à l’aide de hello [Azure Cosmos DB - API de Table](tutorial-global-distribution-table.md)
+* Développer en mode multirégions à l’aide de l’[API DocumentDB - Azure Cosmos DB](tutorial-global-distribution-documentdb.md)
+* Développer en mode multirégions à l’aide de l’[API MongoDB - Azure Cosmos DB](tutorial-global-distribution-MongoDB.md)
+* Développer en mode multirégions à l’aide de l’[API Table - Azure Cosmos DB](tutorial-global-distribution-table.md)

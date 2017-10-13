@@ -1,6 +1,6 @@
 ---
-title: "itinéraires définis par l’aaaUser et le transfert IP dans Azure | Documents Microsoft"
-description: "Découvrez comment tooconfigure les itinéraires définis par l’utilisateur (UDR) et le transfert IP de tooforward trafic toonetwork des équipements virtuels dans Azure."
+title: "Itinéraires définis par l’utilisateur et transfert IP dans Azure | Microsoft Docs"
+description: "Apprenez à configurer les itinéraires définis des utilisateurs (UDR) et le transfert IP pour transférer le trafic vers des appliances virtuelles réseau dans Azure."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,50 +15,50 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f1f1d46166d5a7c776f472b7ade1354d943ece10
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6274e0101f6fb0864c8d1efaef7fcde78b8760c3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="user-defined-routes-and-ip-forwarding"></a>Itinéraires définis par l’utilisateur et transfert IP
 
-Lorsque vous ajoutez des machines virtuelles (VM) tooa réseau virtuel (VNet) dans Azure, vous remarquerez que les machines virtuelles de hello sont en mesure de toocommunicate entre eux sur le réseau de hello, automatiquement. Vous n’avez pas besoin de toospecify une passerelle, bien hello machines virtuelles sont dans des sous-réseaux différents. Hello vaut également pour la communication entre toohello de machines virtuelles hello Internet public et réseau de local tooyour même lorsqu’une connexion hybride à partir d’Azure tooyour propre centre de données est présente.
+Lorsque vous ajoutez des machines virtuelles à un réseau virtuel dans Microsoft Azure, notez que les machines sont en mesure d’interagir automatiquement entre elles sur le réseau. Il est inutile de spécifier une passerelle, bien que les machines virtuelles soient hébergées dans des sous-réseaux différents. Cela vaut également pour la communication des machines virtuelles vers l’Internet public, et même vers votre réseau local en cas de connexion hybride de Microsoft Azure vers votre propre centre de données.
 
-Ce flux de communication est possible, car Azure utilise une série de toodefine d’itinéraires système le flux de trafic IP. Les itinéraires système contrôlent le flux de hello de communication Bonjour les scénarios suivants :
+Ce flux de communications est rendu possible par l’utilisation, par Microsoft Azure, d’une série d’itinéraires système régulant le trafic IP. Les itinéraires de système contrôlent le flux de communication dans les scénarios suivants :
 
-* Depuis hello même sous-réseau.
-* À partir d’un sous-réseau tooanother au sein d’un réseau virtuel.
-* À partir de machines virtuelles toohello Internet.
-* À partir d’un réseau virtuel tooanother réseau virtuel via une passerelle VPN.
-* À partir d’un réseau virtuel tooanother réseau virtuel via le réseau virtuel d’homologation (chaînage de Service).
-* Un réseau virtuel tooyour sur un réseau local via une passerelle VPN.
+* au sein d’un sous-réseau ;
+* entre deux sous-réseaux d’un réseau virtuel ;
+* entre les machines virtuelles et Internet ;
+* entre deux réseaux virtuels via une passerelle VPN ;
+* entre deux réseaux virtuels par le biais de VNet Peering (chaînage de services) ;
+* entre un réseau virtuel et votre réseau local via une passerelle VPN.
 
-Hello figure ci-dessous un paramétrage simple avec un réseau virtuel, deux sous-réseaux et quelques machines virtuelles, ainsi que de hello itinéraires système qui permettent de tooflow du trafic IP.
+La figure ci-dessous représente une configuration simple avec un réseau virtuel, deux sous-réseaux et quelques machines virtuelles, avec les itinéraires système qui prennent en charge le trafic IP.
 
 ![Itinéraires système dans Azure](./media/virtual-networks-udr-overview/Figure1.png)
 
-Bien que l’utilisation de hello d’itinéraires du système facilite le trafic automatiquement pour votre déploiement, il existe des cas dans lequel vous souhaitez toocontrol hello routage des paquets via un équipement virtuel. Vous pouvez donc en créant des itinéraires définis par l’utilisateur qui spécifier saut suivant de hello pour les paquets entrants à la place de l’appliance virtuelle tooa sous-réseau spécifique toogo tooyour, et activation IP transfert pour hello machine virtuelle en cours d’exécution en tant que l’appliance virtuelle hello.
+Les itinéraires système permettent la circulation automatique du trafic lié au déploiement, mais il existe des cas où il peut s’avérer utile d’acheminer les paquets au moyen d’une appliance virtuelle. Pour ce faire, créez des itinéraires personnalisés qui redirigent le prochain tronçon de paquets circulant vers un sous-réseau spécifique vers votre appliance virtuelle, et activer le transfert d’adresses IP pour la machine virtuelle exécutée en tant qu’appliance virtuelle.
 
-Hello figure ci-dessous illustre les itinéraires définis par l’utilisateur et transfert tooforce paquets IP envoyés tooone sous-réseau à partir d’un autre toogo via un équipement virtuel sur un troisième sous-réseau.
+La figure ci-dessous montre un exemple d’itinéraires définis par l’utilisateur et le transfert IP pour forcer les paquets envoyés d’un sous-réseau à un autre à passer par un équipement virtuel sur un troisième sous-réseau.
 
 ![Itinéraires système dans Azure](./media/virtual-networks-udr-overview/Figure2.png)
 
 > [!IMPORTANT]
-> Itinéraires définis par l’utilisateur sont appliqué tootraffic quitter un sous-réseau à partir de n’importe quelle ressource (comme des interfaces réseau attachement tooVMs) dans le sous-réseau de hello. Vous ne pouvez pas créer des itinéraires toospecify comment le trafic entre un sous-réseau à partir d’Internet, de hello pour l’instance. équipement Hello vous transférez le trafic toocannot être Bonjour même sous-réseau que l’origine de trafic de hello. Créez toujours un sous-réseau distinct pour vos équipements. 
+> Les itinéraires définis par l’utilisateur sont appliqués au trafic qui quitte un sous-réseau à partir de n’importe quelle ressource (par exemple, des interfaces réseau associées aux machines virtuelles) dans le sous-réseau. Vous ne pouvez pas créer d’itinéraires pour spécifier la façon dont le trafic entre dans un sous-réseau à partir d’Internet, par exemple. L’équipement vers lequel vous transférez le trafic ne peut pas se trouver dans le même sous-réseau que celui d’où provient le trafic. Créez toujours un sous-réseau distinct pour vos équipements. 
 > 
 > 
 
 ## <a name="route-resource"></a>Ressources d’itinéraire
-Routage des paquets sur un réseau TCP/IP basé sur une table d’itinéraires définie sur chaque nœud sur le réseau physique de hello. Une table de routage est qu'une collection d’itinéraires individuelles utilisées toodecide où les paquets tooforward basée sur la destination de hello adresse IP. Un itinéraire se compose des éléments suivants de hello :
+Les paquets sont acheminés via un réseau TCP/IP basé sur une table d’itinéraires définie sur chaque nœud du réseau physique. Une table d’itinéraires est une collection d’itinéraires individuels permettant de déterminer où transférer les paquets en fonction de l’adresse IP de destination. Un itinéraire se compose des éléments suivants :
 
 | Propriété | Description | Contraintes | Considérations |
 | --- | --- | --- | --- |
-| Préfixe d’adresse |Hello destination CIDR toowhich hello itinéraire s’applique, comme 10.1.0.0/16. |Doit être une plage CIDR valide représentant les adresses sur hello Internet public, réseau virtuel Azure ou centre de données local. |Vérifiez que hello **préfixe d’adresse** ne contient pas d’adresse hello pour hello **adresse du saut suivant**, sinon votre paquets entrera dans une boucle allant de tronçon suivant de hello source toohello sans atteindre destination de Hello. |
-| Type de tronçon suivant |type de Hello du paquet de hello tronçon Azure doit être envoyé à. |Doit être une des valeurs suivantes de hello : <br/> **Réseau virtuel**. Représente un réseau virtuel local de hello. Par exemple, si vous avez deux sous-réseaux, 10.1.0.0/16 et 10.2.0.0/16 dans hello même réseau virtuel, itinéraire hello pour chaque sous-réseau dans la table d’itinéraires hello aura une valeur de saut suivante de *réseau virtuel*. <br/> **Passerelle de réseau virtuel**. Représente une passerelle VPN de site à site Azure. <br/> **Internet**. Représente la passerelle Internet de hello par défaut fournie par hello Infrastructure Azure. <br/> **Appliance virtuelle**. Représente une appliance virtuelle que vous avez ajouté tooyour réseau virtuel Azure. <br/> **None**. Représente un trou noir. Paquets transférés tooa noires ne seront pas transmis du tout. |Envisagez d’utiliser **Appliance virtuelle** toodirect tooa machine virtuelle ou équilibrage de charge Azure adresse IP interne du trafic.  Ce type permet de spécifier de hello d’une adresse IP, comme décrit ci-dessous. Envisagez d’utiliser un **aucun** toostop des paquets à partir de flux tooa donnée de destination de type. |
-| adresse de tronçon suivant |adresse du tronçon suivant Hello contient adresse hello paquets doivent être transférés. Valeurs de tronçon suivant sont autorisés uniquement dans les itinéraires où le type de tronçon suivant hello est *Appliance virtuelle*. |Doit être une adresse IP qui est accessible dans hello réseau virtuel où hello défini par l’utilisateur un itinéraire est appliquée, sans passer par un **passerelle de réseau virtuel**. adresse IP de Hello a toobe hello du réseau virtuel même lorsqu’elle est appliquée, ou sur un réseau virtuel de ressources. |Si l’adresse IP de hello représente un ordinateur virtuel, veillez à activer [transfert IP](#IP-forwarding) dans Azure pour hello machine virtuelle. Si hello représente hello interne adresse IP de l’équilibrage de charge Azure, assurez-vous que vous avez une règle pour chaque port d’équilibrage de charge correspondante solde de tooload vous le souhaitez.|
+| Préfixe d’adresse |CIDR de destination auquel s’applique l’itinéraire, par exemple 10.1.0.0/16. |Ceci doit être une plage CIDR valide représentant des adresses sur l’Internet public, le réseau virtuel Azure ou le centre de données local. |Assurez-vous que le **préfixe d’adresse** ne contient pas l’adresse de **l’adresse du tronçon suivant** ; dans le cas contraire, vos paquets entreront dans une boucle allant de la source au tronçon suivant sans jamais atteindre leur destination. |
+| Type de tronçon suivant |Type de tronçon Azure vers lequel le paquet doit être envoyé. |Il doit s’agir de l’une des valeurs suivantes :  <br/> **Réseau virtuel**. Représente le réseau virtuel local. Par exemple, si vous avez deux sous-réseaux, 10.1.0.0/16 et 10.2.0.0/16 qui sont situés dans le même réseau virtuel, l’itinéraire de chaque sous-réseau de la table d’itinéraires a la valeur de tronçon suivant *Réseau virtuel*. <br/> **Passerelle de réseau virtuel**. Représente une passerelle VPN de site à site Azure. <br/> **Internet**. Représente la passerelle Internet par défaut fournie par l’infrastructure Azure. <br/> **Appliance virtuelle**. Représente une appliance virtuelle que vous avez ajoutée à votre réseau virtuel Azure. <br/> **Aucun**. Représente un trou noir. Les paquets transmis à un trou noir ne sont pas du tout transférés. |Envisagez d’utiliser une **Appliance virtuelle** pour diriger le trafic vers une machine virtuelle ou une adresse IP Azure Load Balancer interne.  Ce type permet de spécifier une adresse IP, comme décrit ci-dessous. Envisagez d’utiliser un type **Aucun** afin de mettre fin au transit des paquets vers une destination donnée. |
+| adresse de tronçon suivant |L’adresse de tronçon suivant contient l’adresse IP vers laquelle les paquets doivent être transférés. Les valeurs de tronçon suivant sont autorisées uniquement dans les itinéraires où le type de tronçon suivant est *Appliance virtuelle*. |Doit être une adresse IP accessible dans le réseau virtuel où s’applique l’itinéraire défini par l’utilisateur sans passer par une **passerelle de réseau virtuel**. L’adresse IP doit se trouver sur le même réseau virtuel où il est appliqué, ou sur un réseau virtuel homologué. |Si l’adresse IP représente une machine virtuelle, veillez à activer le [transfert IP](#IP-forwarding) dans Azure pour la machine virtuelle. Si l’adresse IP représente l’adresse IP interne d’Azure Load Balancer, assurez-vous que vous disposez d’une règle d’équilibrage correspondante pour chaque port dont vous souhaitez équilibrer la charge.|
 
-Dans Azure PowerShell certaines des valeurs de « Type de tronçon suivant » hello ont des noms différents :
+Dans Azure PowerShell, certaines valeurs « NextHopType » ont des noms différents :
 
 * Le réseau virtuel est nommé VnetLocal
 * La passerelle de réseau virtuel est nommée VirtualNetworkGateway
@@ -67,47 +67,47 @@ Dans Azure PowerShell certaines des valeurs de « Type de tronçon suivant » 
 * Aucun est nommé None
 
 ### <a name="system-routes"></a>Itinéraires système
-Chaque sous-réseau créé dans un réseau virtuel est automatiquement associée à une table de routage qui contient hello suivant les règles de routage système :
+Chaque sous-réseau créé dans un réseau virtuel est automatiquement associé à une table de routage qui comporte les règles suivantes d’itinéraires du système :
 
-* **Règle locale Vnet**: cette règle est automatiquement créée pour chaque sous-réseau d’un réseau virtuel. Il indique qu’il existe un lien direct entre les machines virtuelles de hello Bonjour réseau virtuel et il n’existe aucun saut suivant intermédiaire.
-* **Règle local**: cette règle s’applique la plage d’adresses locales toohello tooall trafic à destination et utilise la passerelle VPN en tant que destination du saut suivante hello.
-* **Règle Internet**: cette règle gère tout le trafic destiné toohello Internet public (préfixe d’adresse 0.0.0.0/0) et utilise hello infrastructure internet que la passerelle hello de tronçon suivant pour tout le trafic destiné toohello Internet.
+* **Règle locale Vnet**: cette règle est automatiquement créée pour chaque sous-réseau d’un réseau virtuel. Elle indique qu’il existe un lien direct entre les machines virtuelles et le réseau virtuel, et qu’aucun tronçon intermédiaire suivant n’est à signaler.
+* **Règle locale**: cette règle s’applique à tout le trafic destiné à la plage d’adresses locale et utilise une passerelle VPN en tant que tronçon suivant de destination.
+* **Règle Internet** : cette règle traite l’ensemble du trafic destiné à l’Internet public (préfixe d’adresse 0.0.0.0/0) et utilise la passerelle Internet d’infrastructure en tant que tronçon suivant pour l’ensemble du trafic destiné au réseau Internet.
 
 ### <a name="user-defined-routes"></a>Itinéraires définis par l’utilisateur
-Pour la plupart des environnements, vous devez uniquement les itinéraires de système hello déjà définis par Azure. Toutefois, devez toocreate une table de routage, vous ajoutez un ou plusieurs itinéraires dans les cas spécifiques, telles que :
+Pour la plupart des environnements, vous vous contenterez des itinéraires système définis par Microsoft Azure. Toutefois, vous pouvez créer une table d’itinéraires et ajouter un ou plusieurs itinéraires dans des cas spécifiques, par exemple :
 
-* Le tunneling forcé toohello Internet via votre réseau local.
+* Forcer le tunneling vers Internet via votre réseau local.
 * Utiliser des appliances virtuelles dans votre environnement Azure.
 
-Dans les scénarios de hello ci-dessus, vous avez toocreate une table d’itinéraires et ajouter tooit d’itinéraires définis par l’utilisateur. Vous pouvez avoir plusieurs tables d’itinéraires et hello même table d’itinéraires peut être associé tooone ou autres sous-réseaux. Et chaque sous-réseau ne peut être une table d’itinéraires unique tooa associé. Tous les ordinateurs virtuels et services de cloud computing dans un sous-réseau, utilisent hello itinéraire table associée toothat sous-réseau.
+Dans les scénarios ci-dessus, vous devez créer une table d’itinéraires et lui ajouter des itinéraires définis par l’utilisateur. Vous pouvez avoir plusieurs tables d’itinéraires et celles-ci peuvent être associées à un ou plusieurs sous-réseaux. Chaque sous-réseau ne peut être associé qu’à une seule table d’itinéraires. L’ensemble des machines virtuelles et services cloud d’un sous-réseau utilisent la table d’itinéraires associée à ce sous-réseau.
 
-Sous-réseaux s’appuient sur les itinéraires du système jusqu'à ce qu’une table de routage est associé toohello sous-réseau. Une fois que l’association existe, le routage se base sur la correspondance de préfixe la plus longue parmi les itinéraires définis par l’utilisateur et les itinéraires du système. S’il existe plusieurs itinéraires avec hello locales même correspond alors un itinéraire est sélectionné selon son origine dans hello suivant l’ordre :
+Les sous-réseaux s’appuient sur des itinéraires système jusqu’à ce qu’une table de routage leur soit associée. Une fois que l’association existe, le routage se base sur la correspondance de préfixe la plus longue parmi les itinéraires définis par l’utilisateur et les itinéraires du système. S’il existe plusieurs itinéraires avec la même correspondance de préfixe la plus longue, un itinéraire est sélectionné en fonction de son origine dans l’ordre suivant :
 
 1. Itinéraire défini par l’utilisateur
 2. Itinéraire BGP (lorsque ExpressRoute est utilisé)
 3. Itinéraire du système
 
-toolearn itinéraires, défini par l’utilisateur de toocreate voir [comment tooCreate achemine et activer le transfert IP dans Azure](virtual-network-create-udr-arm-template.md).
+Pour savoir comment créer des itinéraires personnalisés, consultez la section [Création d’itinéraires et activation du transfert IP dans Azure](virtual-network-create-udr-arm-template.md).
 
 > [!IMPORTANT]
-> Les itinéraires définis par l’utilisateur sont uniquement appliqué tooAzure de machines virtuelles et services de cloud computing. Par exemple, si vous souhaitez tooadd appliance virtuelle pare-feu entre votre réseau local et le Azure, vous devez toocreate un itinéraire défini par l’utilisateur pour vos tables d’itinéraires Azure qui transmet tout le trafic entrant toohello local adresse espace toohello virtuel équipement. Vous pouvez également ajouter un défini par l’utilisateur (UDR) d’itinéraire toohello GatewaySubnet tooforward tout le trafic local tooAzure via l’appliance virtuelle hello. Il s’agit d’un ajout récent.
+> Les itinéraires définis par l’utilisateur sont appliqués uniquement aux machines virtuelles et services cloud Azure. Par exemple, si vous souhaitez ajouter une appliance virtuelle de pare-feu entre votre réseau local et Azure, vous devez créer un itinéraire défini par l’utilisateur pour vos tables d’itinéraires Azure qui transmettent tout le trafic allant vers l’espace d’adressage local à l’appliance virtuelle. Vous pouvez également ajouter un itinéraire défini par l’utilisateur au sous-réseau GatewaySubnet pour transférer tout le trafic provenant de la connexion locale vers Azure via l’appliance virtuelle. Il s’agit d’un ajout récent.
 > 
 > 
 
 ### <a name="bgp-routes"></a>Itinéraires BGP
-Si vous avez une connexion ExpressRoute entre votre réseau local et le Azure, vous pouvez activer des itinéraires BGP toopropagate à partir de votre tooAzure de réseau local. Ces itinéraires BGP sont utilisés dans hello même façon que les itinéraires système et utilisateur défini des itinéraires dans chaque sous-réseau Azure. Pour plus d’informations, consultez la page [Présentation d’ExpressRoute](../expressroute/expressroute-introduction.md)
+Si vous avez une connexion ExpressRoute entre votre réseau local et Azure, vous pouvez activer BGP pour propager les itinéraires de votre réseau local vers Azure. Ces itinéraires BGP sont utilisés de la même façon que les itinéraires du système et les itinéraires définis par l’utilisateur dans chaque sous-réseau Azure. Pour plus d’informations, consultez la page [Présentation d’ExpressRoute](../expressroute/expressroute-introduction.md)
 
 > [!IMPORTANT]
-> Vous pouvez configurer votre force de toouse environnement Azure le tunneling forcé via votre réseau local en créant un itinéraire défini par l’utilisateur pour 0.0.0.0/0 de sous-réseau qui utilise la passerelle VPN de hello en tant que tronçon suivant de hello. Toutefois, cela ne fonctionne que si vous utilisez une passerelle VPN, et non ExpressRoute. Pour ExpressRoute, le tunneling forcé est configuré via BGP.
+> Vous pouvez configurer votre environnement Azure de manière à ce qu’il utilise le tunneling forcé via votre réseau local en créant un itinéraire défini par l’utilisateur pour le sous-réseau 0.0.0.0/0 qui utilise la passerelle VPN comme tronçon suivant. Toutefois, cela ne fonctionne que si vous utilisez une passerelle VPN, et non ExpressRoute. Pour ExpressRoute, le tunneling forcé est configuré via BGP.
 > 
 > 
 
 ## <a name="ip-forwarding"></a>Transfert IP
-Comme décrit ci-dessus, un des hello principales raisons toocreate un itinéraire défini par l’utilisateur est l’appliance virtuelle tooforward trafic tooa. Une appliance virtuelle n’est rien de plus qu’une machine virtuelle qui exécute un application utilisée toohandle le trafic d’une certaine façon, tel qu’un pare-feu ou un périphérique NAT.
+Comme décrit ci-dessus, l’une des raisons principales pour créer un itinéraire défini par l’utilisateur est de transférer le trafic vers une appliance virtuelle. Une appliance virtuelle n’est rien de plus qu’une machine virtuelle qui exécute une application permettant de gérer le trafic réseau d’une certaine façon, comme un pare-feu ou un périphérique NAT.
 
-Cet appareil virtuel que machine virtuelle doit être en mesure de tooreceive trafic entrant qui est ne traité pas tooitself. tooallow de trafic de machine virtuelle tooreceive adressé tooother destinations, vous devez activer le transfert IP pour hello machine virtuelle. Il s’agit de configuration, n’est pas un paramètre dans le système d’exploitation de hello invité Azure.
+La machine virtuelle d’appliance virtuelle doit être capable de recevoir le trafic entrant qui ne lui est pas adressé. Pour permettre à une machine virtuelle de recevoir le trafic adressé à d’autres destinations, vous devez activer le transfert IP pour la machine virtuelle. Il s’agit d’un paramètre Azure, pas d’un paramètre du système d’exploitation invité.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment trop[créer des itinéraires dans le modèle de déploiement du Gestionnaire de ressources hello](virtual-network-create-udr-arm-template.md) et les associer toosubnets. 
-* Découvrez comment trop[créer des itinéraires dans le modèle de déploiement classique hello](virtual-network-create-udr-classic-ps.md) et les associer toosubnets.
+* Découvrez comment [créer des itinéraires dans le modèle de déploiement du Gestionnaire de ressources](virtual-network-create-udr-arm-template.md) et les associer à des sous-réseaux. 
+* Découvrez comment [créer des itinéraires dans le modèle de déploiement classique](virtual-network-create-udr-classic-ps.md) et les associer à des sous-réseaux.
 

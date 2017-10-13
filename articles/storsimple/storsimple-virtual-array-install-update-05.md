@@ -1,6 +1,6 @@
 ---
-title: "aaaInstall mise à jour 0,5 sur StorSimple Virtual Array | Documents Microsoft"
-description: "Décrit comment toouse hello StorSimple Virtual Array web UI tooapply mises à jour à l’aide de hello méthode Azure de portail et le correctif logiciel"
+title: "Installation d’Update 0.5 sur une instance StorSimple Virtual Array | Microsoft Docs"
+description: "Décrit comment utiliser l’interface utilisateur web de StorSimple Virtual Array pour appliquer des mises à jour à l’aide du portail Azure et de la méthode de correctifs logiciels"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,107 +14,107 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/10/2017
 ms.author: alkohli
-ms.openlocfilehash: c38daa85daa0086e67cf0206d76cb19d9c8b21b3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c47da5b90c16e2d5b5709e2a6affc026238b9468
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="install-update-05-on-your-storsimple-virtual-array"></a>Installation d’Update 0.5 sur StorSimple Virtual Array
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Cet article décrit hello étapes tooinstall obligatoire la mise à jour 0,5 sur votre tableau virtuel StorSimple via l’interface utilisateur de web locale hello et hello portail Azure. Vous devez tookeep des mises à jour ou correctifs logiciels tooapply votre tableau virtuel StorSimple mis à jour.
+Cet article décrit les étapes nécessaires pour installer Update 0.5 sur votre instance StorSimple Virtual Array à l’aide de l’interface utilisateur web locale et du portail Azure. Pour maintenir votre instance StorSimple Virtual Array à jour, vous devez appliquer des mises à jour ou des correctifs logiciels.
 
-Avant d’appliquer une mise à jour, nous recommandons de prendre de volumes de hello ou partages en mode hors connexion sur hello hébergent tout d’abord et puis hello appareil. Vous réduisez ainsi toute possibilité d’altération des données. Une fois hello volumes ou partages sont hors connexion, vous devez également prendre un manuel de sauvegarde de l’appareil de hello.
+Avant d’appliquer une mise à jour, nous vous recommandons de mettre les volumes ou les partages hors connexion sur l’ordinateur hôte puis sur l’appareil. Vous réduisez ainsi toute possibilité d’altération des données. Une fois que les volumes ou partages sont hors connexion, vous devez également effectuer une sauvegarde manuelle de l’appareil.
 
 > [!IMPORTANT]
-> - Mise à jour 0,5 correspond trop**10.0.10290.0** version du logiciel sur votre appareil. Pour plus d’informations sur les nouveautés de cette mise à jour, accédez trop[notes de publication pour la mise à jour 0,5](storsimple-virtual-array-update-05-release-notes.md).
+> - Update 0.5 correspond à la version logicielle **10.0.10290.0** sur votre appareil. Pour plus d’informations sur les nouveautés de cette mise à jour, accédez à [Notes de version pour Update 0.5](storsimple-virtual-array-update-05-release-notes.md).
 >
-> - Si vous exécutez la mise à jour 0,2 ou une version ultérieure, nous recommandons que vous installez des mises à jour de la hello via hello portail Azure. Si vous exécutez la mise à jour 0.1 ou les versions des logiciels GA, vous devez utiliser la méthode de correctif logiciel hello via tooinstall de l’interface utilisateur web locale hello mise à jour de 0,5.
+> - Si vous utilisez Update 0.2 ou une version supérieure, nous vous recommandons d’installer les mises à jour au moyen du Portail Azure. Si vous utilisez Update 0.1 ou les versions logicielles GA, vous devez appliquer la méthode de correctif logiciel par le biais de l’interface utilisateur web locale pour installer Update 0.5.
 >
-> - N’oubliez pas que l’installation d’une mise à jour ou d’un correctif logiciel nécessite le redémarrage de votre appareil. Étant donné que hello StorSimple Virtual Array est un périphérique de nœud unique, l’interruption des e/s en cours d’exécution et indisponibilité de votre appareil.
+> - N’oubliez pas que l’installation d’une mise à jour ou d’un correctif logiciel nécessite le redémarrage de votre appareil. Étant donné que StorSimple Virtual Array est un appareil à nœud unique, les E/S en cours seront interrompues et votre appareil subira des temps d’arrêt.
 
-## <a name="use-hello-azure-portal"></a>Utilisez hello portail Azure
+## <a name="use-the-azure-portal"></a>Utilisation du portail Azure
 
-Si l’exécution de Update 0,2 et versions ultérieures, nous vous recommandons d’installer via hello portail Azure, les mises à jour. procédure de portail Hello requiert hello utilisateur tooscan, télécharger, puis installer les mises à jour hello. Cette procédure prend environ 7 minutes toocomplete. Hello suivants étapes de mise à jour de tooinstall hello ou un correctif logiciel.
+Si vous utilisez Update 0.2 ou une version ultérieure, nous vous recommandons d’installer les mises à jour par le biais du portail Azure. La procédure du portail oblige l’utilisateur à rechercher et télécharger les mises à jour avant de les installer. Cette procédure prend environ sept minutes. Effectuez les opérations suivantes pour installer la mise à jour ou le correctif logiciel.
 
 [!INCLUDE [storsimple-virtual-array-install-update-via-portal](../../includes/storsimple-virtual-array-install-update-via-portal-04.md)]
 
-Après avoir hello l’installation est terminée, accédez tooyour service du Gestionnaire de périphériques StorSimple. Sélectionnez **périphériques** puis sélectionnez et cliquez sur périphérique hello vous venez de mettre à jour. Accédez trop**Paramètres > Gérer > mises à jour de l’appareil**. version du logiciel Hello affiché doit être **10.0.10290.0**.
+Une fois l’installation terminée, accédez au service StorSimple Device Manager. Sélectionnez **Appareils**, puis sélectionnez et cliquez sur l’appareil que vous venez de mettre à jour. Accédez à **Paramètres > Gérer > Mises à jour d’appareil**. La version du logiciel doit être **10.0.10290.0**.
 
-## <a name="use-hello-local-web-ui"></a>Utiliser l’interface utilisateur de web locale hello
+## <a name="use-the-local-web-ui"></a>Utilisation de l’interface utilisateur web locale
 
-Il existe deux étapes lors de l’utilisation de l’interface utilisateur de web local hello :
+La procédure de mise à jour à l’aide de l’interface utilisateur web locale se déroule en deux étapes :
 
-* Télécharger la mise à jour hello ou un correctif logiciel de hello
-* Installer la mise à jour hello ou un correctif logiciel de hello
+* Téléchargement de la mise à jour ou du correctif
+* Installation de la mise à jour ou du correctif
 
-### <a name="download-hello-update-or-hello-hotfix"></a>Télécharger la mise à jour hello ou un correctif logiciel de hello
+### <a name="download-the-update-or-the-hotfix"></a>Téléchargement de la mise à jour ou du correctif
 
-Effectuer hello suivant étapes toodownload hello mise à jour à partir de hello catalogue Microsoft Update.
+Procédez comme suit pour télécharger la mise à jour logicielle à partir du Catalogue Microsoft Update.
 
-#### <a name="toodownload-hello-update-or-hello-hotfix"></a>correctif de mise à jour ou hello de hello toodownload
+#### <a name="to-download-the-update-or-the-hotfix"></a>Pour téléchargement la mise à jour ou le correctif
 
-1. Démarrez Internet Explorer et accédez trop[http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
+1. Démarrez Internet Explorer et accédez à [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
 
-2. S’il s’agit de votre première utilisation hello catalogue Microsoft Update sur cet ordinateur, cliquez sur **installer** lorsque tooinstall demandée hello module complémentaire du catalogue Microsoft Update.
+2. Si vous utilisez le catalogue Microsoft Update pour la première fois sur cet ordinateur, cliquez sur **Installer** lorsque vous êtes invité à installer le module complémentaire Catalogue Microsoft Update.
 
-3. Dans la zone de recherche hello Hello catalogue Microsoft Update, entrez le nombre de Base de connaissances (KB) hello de hello correctif souhaité toodownload. Entrez **4021576** pour Update 0.5, puis cliquez sur **Rechercher**.
+3. Dans la zone de recherche du Catalogue Microsoft Update, entrez le numéro KB (Base de connaissances) du correctif que vous souhaitez télécharger. Entrez **4021576** pour Update 0.5, puis cliquez sur **Rechercher**.
    
-    Hello correctif liste s’affiche, par exemple, **mise à jour de tableau virtuel StorSimple 0,5**.
+    La liste des correctifs s’affiche, par exemple **StorSimple Virtual Array Update 0.5**.
    
     ![Rechercher dans le catalogue](./media/storsimple-virtual-array-install-update-05/download1.png)
 
 4. Cliquez sur **Télécharger**. 
 
-5. Vous devez voir deux toodownload de fichiers, un *.msu* et un *.cab* fichier. Téléchargez tous ces tooa dossier des fichiers. dossier de Hello peut également être tooa copié partage réseau accessible à partir de l’appareil de hello.
+5. Vous devez voir deux fichiers à télécharger, un fichier *.msu* et un fichier *.cab*. Téléchargez chacun de ces fichiers dans un dossier. Ce dossier peut également être copié sur un partage réseau accessible à partir de l’appareil.
 
-6. Ouvrez le dossier hello dans lequel se trouvent les fichiers hello.
-    ![Fichiers dans le package de hello](./media/storsimple-virtual-array-install-update-05/update05folder.png)
+6. Ouvrez le dossier dans lequel se trouvent les fichiers.
+    ![Fichiers dans le package](./media/storsimple-virtual-array-install-update-05/update05folder.png)
 
     Vous voyez :
-    -  Un fichier de package autonome Microsoft `WindowsTH-KB3011067-x64`. Ce fichier est un logiciel de périphérique de hello tooupdate utilisé.
-    - Un fichier de package d’agent de surveillance de Genève `GenevaMonitoringAgentPackageInstaller`. Ce fichier est utilisé tooupdate hello analyse et Diagnostics (MDS) agent du service. Double-cliquez sur le fichier cab de hello. Un .msi s’affiche. Fichier de sélection hello, avec le bouton droit, puis **extraire** fichier de hello. Vous allez utiliser hello _.msi_ l’agent de fichiers tooupdate hello.
+    -  Un fichier de package autonome Microsoft `WindowsTH-KB3011067-x64`. Ce fichier est utilisé pour mettre à jour le logiciel de l’appareil.
+    - Un fichier de package d’agent de surveillance de Genève `GenevaMonitoringAgentPackageInstaller`. Ce fichier est utilisé pour mettre à jour l’agent de surveillance et de diagnostics (MDS) du service. Double-cliquez sur le fichier cab. Un .msi s’affiche. Sélectionnez le fichier avec le bouton droit, puis choisissez **Extraire** le fichier. Vous utilisez le fichier _.msi_ pour mettre à jour l’agent.
 
         ![Extraire le fichier de mise à jour de l’agent de MDS](./media/storsimple-virtual-array-install-update-05/extract-geneva-monitoring-agent-installer.png)
         
     
 
-### <a name="install-hello-update-or-hello-hotfix"></a>Installer la mise à jour hello ou un correctif logiciel de hello
+### <a name="install-the-update-or-the-hotfix"></a>Installation de la mise à jour ou du correctif
 
-Installation de mise à jour ou le correctif logiciel toohello préalable, assurez-vous que vous avez mise à jour hello ou hello correctif téléchargé localement sur votre ordinateur hôte ou accessible via un partage réseau.
+Avant l'installation de la mise à jour ou du correctif, vérifiez que la mise à jour ou le correctif est téléchargé(e) localement sur votre ordinateur hôte ou accessible via un partage réseau.
 
-Utiliser les mises à jour tooinstall cette méthode sur un périphérique exécutant GA ou mettre à jour les versions des logiciels 0,1. Cette procédure est inférieure à 2 minutes toocomplete. Hello suivants étapes de mise à jour de tooinstall hello ou un correctif logiciel.
+Cette méthode permet d’installer les mises à jour sur un appareil exécutant les versions logicielles GA ou Update 0.1. Cette procédure prend moins de 2 minutes. Effectuez les opérations suivantes pour installer la mise à jour ou le correctif logiciel.
 
-#### <a name="tooinstall-hello-update-or-hello-hotfix"></a>correctif de mise à jour ou hello de hello tooinstall
+#### <a name="to-install-the-update-or-the-hotfix"></a>Pour installer la mise à jour ou le correctif
 
-1. Dans l’interface utilisateur de web locale hello, accédez trop**Maintenance** > **mise à jour logicielle**.
+1. Dans l’interface utilisateur web locale, accédez à **Maintenance** > **Mise à jour logicielle**.
    
     ![mettre à jour l'appareil](./media/storsimple-virtual-array-install-update-05/update1m.png)
 
-2. Dans **chemin d’accès du fichier de mise à jour**, entrez le nom du fichier de mise à jour hello hello ou hello correctif logiciel. Vous pouvez également parcourir le fichier d’installation de mise à jour ou le correctif logiciel toohello si placé sur un partage réseau. Cliquez sur **Apply**.
+2. Dans le **chemin d’accès au fichier de mise à jour**, entrez le nom du fichier de mise à jour ou de correctif. Vous pouvez également accéder au fichier d'installation de la mise à jour ou du correctif si celui-ci est placé sur un partage réseau. Cliquez sur **Appliquer**.
    
     ![mettre à jour l'appareil](./media/storsimple-virtual-array-install-update-05/update2m.png)
 
-3. Un avertissement s’affiche. Étant donné ce est un périphérique à nœud unique, après la mise à jour hello, redémarrage du périphérique hello et il est temps d’arrêt. Cliquez sur une icône de coche hello.
+3. Un avertissement s’affiche. Puisqu’il s’agit d’un appareil à nœud unique, l’application de la mise à jour entraîne le redémarrage de l’appareil et provoque un temps d’arrêt. Cliquez sur l’icône en forme de coche.
    
    ![mettre à jour l'appareil](./media/storsimple-virtual-array-install-update-05/update3m.png)
 
-4. mise à jour Hello démarre. Une fois que l’appareil de hello est correctement mise à jour, il redémarre. Hello d’interface utilisateur locale n’est pas accessible dans cette durée.
+4. La mise à jour démarre. Une fois l’appareil correctement mis à jour, il est redémarré. L’interface utilisateur locale n’est pas accessible pendant cet intervalle.
    
     ![mettre à jour l'appareil](./media/storsimple-virtual-array-install-update-05/update5m.png)
 
-5. Après le redémarrage de hello est terminée, vous accédez toohello **connectez-vous** page. tooverify logiciel du périphérique hello a mis à jour, dans le site web local hello l’interface utilisateur, consultez trop**Maintenance** > **mise à jour logicielle**. version du logiciel Hello affiché doit être **10.0.0.0.0.10290.0** pour la mise à jour 0,5.
+5. Une fois le redémarrage effectué, vous êtes redirigé vers la page **Se connecter** . Pour vérifier que le logiciel de l’appareil a été mis à jour, accédez à **Maintenance** > **Mise à jour logicielle** dans l’interface utilisateur web locale. La version du logiciel doit être **10.0.0.0.0.10290.0** pour Update 0.5.
    
    > [!NOTE]
-   > Nous signaler les versions des logiciels hello d’une manière légèrement différente dans l’interface utilisateur de web locale hello et hello portail Azure. Hello, par exemple, les rapports de l’interface utilisateur web locale **10.0.0.0.0.10290** et hello rapports portails Azure **10.0.10290.0** pour hello même version.
+   > L’affichage des versions logicielles diffère légèrement entre l’interface utilisateur web locale et le portail Azure. Par exemple, la même version est signalée par **10.0.0.0.0.10290** dans l’interface utilisateur web locale et par **10.0.10290.0** sur le portail Azure.
    
     ![mettre à jour l'appareil](./media/storsimple-virtual-array-install-update-05/update6m.png)
 
-6. étape suivante de Hello est l’agent de tooupdate hello MDS. Bonjour **mise à jour logicielle** page, aller toohello **chemin d’accès du fichier de mise à jour** et parcourir toohello `GenevaMonitoringAgentPackageInstaller.msi` fichier. Répétez les étapes 2 à 4. Après le redémarrage de l’unité de stockage virtuelle hello, connectez-vous à l’interface utilisateur de web locale hello.
+6. L’étape suivante consiste à mettre à jour l’agent MDS. Sur la page **Mise à jour logicielle**, accédez au **Chemin d’accès du fichier de mise à jour** et accédez au fichier `GenevaMonitoringAgentPackageInstaller.msi`. Répétez les étapes 2 à 4. Après le redémarrage de la baie virtuelle, connectez-vous à l’interface utilisateur web locale.
 
-mise à jour Hello est maintenant terminée.
+La mise à jour est maintenant terminée.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaAssess des applications de Service Fabric à l’aide de l’Analytique de journal hello portail Azure | Documents Microsoft"
-description: "Vous pouvez utiliser la solution de Service Fabric hello dans Analytique de journal à l’aide de risque de hello hello tooassess portail Azure et de l’intégrité de vos applications de Service Fabric, micro-services, les nœuds et les clusters."
+title: "Évaluer des applications Service Fabric avec Log Analytics à l’aide du portail Azure | Microsoft Docs"
+description: "Vous pouvez utiliser la solution Service Fabric dans Log Analytics, à l’aide du portail Azure, pour évaluer les risques et l’intégrité de vos applications, micro-services, nœuds et clusters Service Fabric."
 services: log-analytics
 documentationcenter: 
 author: niniikhena
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: nini
-ms.openlocfilehash: 891c7f6e5ed511ac18599bdc280ab3dc09700fbe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8c564c0dcbb2f9be286917b2f4d8a40da5406fae
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="assess-service-fabric-applications-and-micro-services-with-hello-azure-portal"></a>Évaluer des applications de Service Fabric et micro-services avec hello portail Azure
+# <a name="assess-service-fabric-applications-and-micro-services-with-the-azure-portal"></a>Évaluer les micro-services et applications Service Fabric avec le portail Azure | Microsoft Docs
 
 > [!div class="op_single_selector"]
 > * [Gestionnaire de ressources](log-analytics-service-fabric-azure-resource-manager.md)
@@ -30,63 +30,63 @@ ms.lasthandoff: 10/06/2017
 
 ![Symbole Service Fabric](./media/log-analytics-service-fabric/service-fabric-assessment-symbol.png)
 
-Cet article décrit comment toouse hello solution de l’infrastructure de Service dans le journal Analytique toohelp identifier et résoudre les problèmes sur votre cluster Service Fabric.
+Cet article décrit comment utiliser la solution Service Fabric dans Log Analytics pour identifier et résoudre les problèmes sur l’ensemble de votre cluster Service Fabric.
 
-Hello solution d’infrastructure de Service utilise des données de Diagnostics Windows Azure à partir de vos machines virtuelles de l’infrastructure Service, collecte des données de vos tables WAD d’Azure. Log Analytics lit ensuite les événements d’infrastructure Service Fabric, notamment les **événements de service fiable**, les **événements d’acteurs**, les **événements opérationnels** et les **événements ETW personnalisés**. Avec hello solution du tableau de bord, vous êtes tooview en mesure de détecter les problèmes importants et les événements pertinents dans votre environnement de Service Fabric.
+La solution Service Fabric utilise les données de diagnostic Azure provenant de vos machines virtuelles Fabric Service. Ces données sont collectées à partir de vos tables Azure WAD. Log Analytics lit ensuite les événements d’infrastructure Service Fabric, notamment les **événements de service fiable**, les **événements d’acteurs**, les **événements opérationnels** et les **événements ETW personnalisés**. Le tableau de bord de la solution vous montre les problèmes notables et les événements pertinents qui s’appliquent à votre environnement Service Fabric.
 
-tooget solution de hello en main, vous devez tooconnect votre espace de travail Analytique des journaux de tooa cluster Service Fabric. Voici trois scénarios tooconsider :
+Pour commencer à utiliser la solution, connectez votre cluster Service Fabric à un espace de travail Log Analytics. Trois scénarios sont à envisager :
 
-1. Si vous n’avez pas déployé votre cluster Service Fabric, utilisez les étapes de hello dans ***déployer un espace de travail Analytique des journaux de Cluster Service Fabric connecté tooa*** toodeploy un nouveau cluster et de le configurer tooreport tooLog Analytique.
-2. Si vous avez besoin des compteurs de performance toocollect à partir de votre toouse hôtes autres solutions OMS, telles que la sécurité sur votre Cluster Service Fabric, suivez les étapes de hello dans ***déployer un espace de travail Analytique des journaux de tooa Cluster Service Fabric connecté avec l’Extension de machine virtuelle installé.***
-3. Si vous avez déjà déployé votre cluster Service Fabric et que vous souhaitez tooconnect il tooLog Analytique, suivez les étapes de hello dans ***Ajout d’un tooLog de compte de stockage existant Analytique.***
+1. Si vous n’avez pas déployé votre cluster Service Fabric, effectuez les étapes de la section ***Déployer un cluster Service Fabric connecté à un espace de travail Log Analytics*** pour déployer un nouveau cluster et le configurer pour qu’il rende compte à Log Analytics.
+2. Si vous avez besoin de collecter les compteurs de performances de vos hôtes pour utiliser d’autres solutions OMS, telles que Sécurité, sur votre cluster Service Fabric, effectuez les étapes de la section ***Déployer un cluster Service Fabric connecté à un espace de travail Log Analytics avec l’extension de machine virtuelle installée***.
+3. Si vous avez déjà déployé votre cluster Service Fabric et que vous souhaitez le connecter à Log Analytics, effectuez les étapes de la section ***Ajout d’un compte de stockage existant à Log Analytics***.
 
-## <a name="deploy-a-service-fabric-cluster-connected-tooa-log-analytics-workspace"></a>Déployer un espace de travail de Cluster Service Fabric connecté tooa Analytique de journal.
-Ce modèle hello suivant :
+## <a name="deploy-a-service-fabric-cluster-connected-to-a-log-analytics-workspace"></a>Déployer un cluster Service Fabric connecté à un espace de travail Log Analytics
+Ce modèle effectue les actions suivantes :
 
-1. Déploie un espace de travail Azure Service Fabric cluster déjà connecté tooa Analytique de journal. Vous avez hello option toocreate d’un espace de travail lors du déploiement de modèle de hello, ou nom d’entrée hello d’espace de travail Analytique de journal déjà existant.
-2. Ajoute un espace de travail hello le stockage des diagnostics compte toohello Analytique de journal.
-3. Permet la solution de Service Fabric hello dans votre espace de travail Analytique de journal.
+1. Déploie un cluster Azure Service Fabric déjà connecté à un espace de travail Log Analytics. Vous pouvez soit créer un espace de travail durant le déploiement du modèle, soit entrer le nom d’un espace de travail Log Analytics existant.
+2. Ajoute le compte de stockage de diagnostic à l’espace de travail Log Analytics.
+3. Active la solution Service Fabric dans votre espace de travail Log Analytics.
 
-[![Déployer tooAzure](./media/log-analytics-service-fabric/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fservice-fabric-oms%2F%2Fazuredeploy.json)
+[![Déploiement sur Azure](./media/log-analytics-service-fabric/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fservice-fabric-oms%2F%2Fazuredeploy.json)
 
-Une fois que vous sélectionnez hello déployer bouton ci-dessus, hello Azure portail s’ouvre et affiche les paramètres pour vous tooedit. Si vous entrez un nouveau nom d’espace de travail Analytique des journaux, être toocreate assurer un groupe de ressources :
+Quand vous appuyez sur le bouton Déployer ci-dessus, le portail Azure s’affiche et vous pouvez y modifier des paramètres. Veillez à créer un groupe de ressources si vous entrez un nouveau nom d’espace de travail Log Analytics :
 
 ![Service Fabric](./media/log-analytics-service-fabric/2.png)
 
 ![Service Fabric](./media/log-analytics-service-fabric/3.png)
 
-Acceptez les conditions juridiques hello et cliquez sur **créer** déploiement de hello toostart. Une fois le déploiement de hello est terminé, vous devez voir le nouvel espace de travail hello et cluster créé et hello WADServiceFabric * WADETWEvent, WADWindowsEventLogs et événements tables ajoutées :
+Acceptez les conditions légales et cliquez sur **Créer** pour lancer le déploiement. Une fois le déploiement terminé, le nouvel espace de travail et le nouveau cluster doivent s’afficher, tandis que les tables WADServiceFabric*Event, WADWindowsEventLogs et WADETWEvent doivent être ajoutées :
 
 ![Service Fabric](./media/log-analytics-service-fabric/4.png)
 
-## <a name="deploy-a-service-fabric-cluster-connected-tooa-log-analytics-workspace-with-vm-extension-installed"></a>Déployer un espace de travail de Cluster Service Fabric connecté tooa Analytique de journal avec l’Extension de machine virtuelle installé.
+## <a name="deploy-a-service-fabric-cluster-connected-to-a-log-analytics-workspace-with-vm-extension-installed"></a>Déployez un cluster Service Fabric connecté à un espace de travail Log Analytics avec l’extension de machine virtuelle installée.
 
-Ce modèle hello suivant :
+Ce modèle effectue les actions suivantes :
 
-1. Déploie un espace de travail Azure Service Fabric cluster déjà connecté tooa Analytique de journal. Vous pouvez créer un espace de travail ou utiliser un espace de travail existant.
-2. Ajoute un espace de travail hello le stockage des diagnostics comptes toohello Analytique de journal.
-3. Permet la solution de Service Fabric hello dans l’espace de travail hello Analytique de journal.
-4. Installe l’extension de l’agent MMA hello dans l’échelle de chaque ordinateur virtuel défini dans votre cluster Service Fabric. Agent hello MMA est installé, vous êtes tooview en mesure de performances sur vos nœuds.
+1. Déploie un cluster Azure Service Fabric déjà connecté à un espace de travail Log Analytics. Vous pouvez créer un espace de travail ou utiliser un espace de travail existant.
+2. Ajoute les comptes de stockage de diagnostic à l’espace de travail Log Analytics.
+3. Active la solution Service Fabric dans l’espace de travail Log Analytics.
+4. Installe l’extension de l’agent MMA dans chaque groupe de machines virtuelles identiques de votre cluster Service Fabric. Une fois l’agent MMA installé, vous pouvez afficher les mesures de performances de vos nœuds.
 
-[![Déployer tooAzure](./media/log-analytics-service-fabric/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fservice-fabric-vmss-oms%2F%2Fazuredeploy.json)
+[![Déployer sur Azure](./media/log-analytics-service-fabric/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fservice-fabric-vmss-oms%2F%2Fazuredeploy.json)
 
-Suivant hello les mêmes étapes ci-dessus, les paramètres d’entrée hello nécessaires et déclencher un déploiement. Une fois encore, vous devez voir l’espace de travail hello, le cluster et tables WAD créés toutes les :
+En suivant la même procédure que celle mentionnée ci-dessus, indiquez les paramètres nécessaires et lancez le déploiement. Là encore, l’espace de travail, le cluster et les tables WAD que vous venez de créer doivent s’afficher :
 
 ![Service Fabric](./media/log-analytics-service-fabric/5.png)
 
 ### <a name="viewing-performance-data"></a>Affichage des données de performances
 
-tooview des données de performances à partir de vos nœuds :
+Pour afficher les données de performances de vos nœuds :
 
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
-- Lancer l’espace de travail hello Analytique de journal à partir de hello portail Azure.
+- Lancez l’espace de travail Log Analytics à partir du portail Azure.
   ![Service Fabric](./media/log-analytics-service-fabric/6.png)
-- Accédez tooSettings sur le volet gauche de hello, puis sélectionnez les données >> compteurs de Performance Windows >> « Ajouter hello sélectionné les compteurs de performance » : ![Service Fabric](./media/log-analytics-service-fabric/7.png)
-- Dans la recherche de journal, utilisez hello suivant toodelve de requêtes dans les métriques clés sur vos nœuds :
+- Accédez à Paramètres dans le volet gauche, puis sélectionnez Données >> Compteurs de performances Windows >> Ajouter les compteurs de performances sélectionnés : ![Service Fabric](./media/log-analytics-service-fabric/7.png)
+- Dans Recherche dans les journaux, utilisez les requêtes suivantes pour étudier les mesures clés sur vos nœuds :
 
-    a. Comparaison hello utilisation moyenne du processeur sur tous les nœuds de votre dernière toosee une heure hello, les nœuds qui rencontrent des problèmes et à quel intervalle de temps, un nœud avait un pic d’activité :
+    a. Comparez l’utilisation moyenne du processeur sur tous les nœuds au cours de l’heure écoulée pour identifier les nœuds qui ont des problèmes et l’intervalle de temps dans lequel un nœud a connu une pointe d’activité :
 
     ```
     Type=Perf ObjectName=Processor CounterName="% Processor Time"|measure avg(CounterValue) by Computer Interval 1HOUR.
@@ -100,7 +100,7 @@ tooview des données de performances à partir de vos nœuds :
     Type=Perf ObjectName=Memory CounterName="Available MBytes Memory" | measure avg(CounterValue) by Computer Interval 1HOUR.
     ```
 
-    tooview une liste de tous les nœuds, présentant les valeur moyenne de hello exact pour mégaoctets disponibles pour chaque nœud, utilisez cette requête :
+    Pour répertorier tous les nœuds avec la valeur moyenne exacte de mégaoctets disponibles pour chaque nœud, utilisez cette requête :
 
     ```
     Type=Perf (ObjectName=Memory) (CounterName="Available MBytes") | measure avg(CounterValue) by Computer
@@ -108,7 +108,7 @@ tooview des données de performances à partir de vos nœuds :
 
     ![Service Fabric](./media/log-analytics-service-fabric/11.png)
 
-    c. Dans les cas de hello que vous souhaitez toodrill vers le bas dans un nœud spécifique en examinant la moyenne de toutes les heures hello, minimale, maximale et 75-centile utilisation du processeur, vous êtes en mesure de toodo en à l’aide de cette requête (remplacez le champ de l’ordinateur) :
+    c. Pour explorer au niveau du détail un nœud spécifique, notamment l’utilisation moyenne, minimale, maximale et au 75e centile du processeur par heure, utilisez cette requête (en remplaçant le champ Computer) :
 
     ```
     Type=Perf CounterName="% Processor Time" InstanceName=_Total Computer="BaconDC01.BaconLand.com"| measure min(CounterValue), avg(CounterValue), percentile75(CounterValue), max(CounterValue) by Computer Interval 1HOUR
@@ -116,27 +116,27 @@ tooview des données de performances à partir de vos nœuds :
 
     ![Service Fabric](./media/log-analytics-service-fabric/12.png)
 
-En savoir plus sur les métriques de performances dans le journal Analytique à hello [Operations Management Suite blog](https://blogs.technet.microsoft.com/msoms/tag/metrics/).
+Obtenez plus d’informations sur les métriques de performance dans Log Analytics dans le [blog Operations Management Suite](https://blogs.technet.microsoft.com/msoms/tag/metrics/).
 
 
-## <a name="adding-an-existing-storage-account-toolog-analytics"></a>Ajout d’un tooLog de compte de stockage existant Analytique
+## <a name="adding-an-existing-storage-account-to-log-analytics"></a>Ajout d’un compte de stockage existant à Log Analytics
 
-Ce modèle ajoute simplement votre stockage comptes tooa nouveau ou existant Analytique de journal espace de travail existant.
+Ce modèle ajoute simplement vos comptes de stockage existant à un espace de travail Log Analytics, nouveau ou existant.
 
-[![Déployer tooAzure](./media/log-analytics-service-fabric/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Foms-existing-storage-account%2Fazuredeploy.json)
+[![Déploiement sur Azure](./media/log-analytics-service-fabric/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Foms-existing-storage-account%2Fazuredeploy.json)
 
 > [!NOTE]
-> Dans la sélection d’un groupe de ressources, si vous travaillez avec un espace de travail Analytique de journal déjà existant, sélectionnez « Utiliser l’existante » et recherchez le groupe de ressources hello contenant l’espace de travail hello Analytique de journal. Dans le cas contraire, créez-en un.
+> Si vous disposez déjà d’un espace de travail Log Analytics au moment de la sélection d’un groupe, sélectionnez Utiliser l’existant et recherchez le groupe de ressources contenant l’espace de travail Log Analytics. Dans le cas contraire, créez-en un.
 > ![Service Fabric](./media/log-analytics-service-fabric/8.png)
 >
 >
 
-Une fois que ce modèle a été déployé, vous serez en mesure de toosee hello stockage compte connecté tooyour Analytique de journal espace de travail. Dans ce cas, j’ai ajouté un plus stockage compte toohello Exchange espace de travail que j’ai créé ci-dessus.
+Une fois ce modèle déployé, vous pouvez voir le compte de stockage connecté à votre espace de travail Log Analytics. Ici, j’ai ajouté un compte de stockage à l’espace de travail Exchange créé précédemment.
 ![Service Fabric](./media/log-analytics-service-fabric/9.png)
 
 ## <a name="view-service-fabric-events"></a>Afficher les événements Service Fabric
 
-Une fois que les déploiements de hello sont terminées et hello solution d’infrastructure de Service a été activée dans votre espace de travail, sélectionnez hello **Service Fabric** vignette dans le tableau de bord de Service Fabric hello Analytique de journal toolaunch portail hello. tableau de bord Hello inclut des colonnes de hello Bonjour tableau suivant. Chaque colonne répertorie les événements de 10 supérieure de hello en mettant en correspondance de nombre que les critères de la colonne pour hello spécifié de plage de temps. Vous pouvez exécuter une recherche de journal qui fournit l’intégralité de la liste hello en cliquant sur **afficher tous les** à hello droite en bas de chaque colonne, ou en cliquant sur en-tête de colonne hello.
+Une fois les déploiements terminés et la solution Service Fabric activée dans votre espace de travail, sélectionnez la vignette **Service Fabric** dans le portail Log Analytics pour lancer le tableau de bord Service Fabric. Le tableau de bord comprend les colonnes figurant dans le tableau suivant. Chaque colonne répertorie les 10 premiers événements, classés selon leur nombre, correspondant aux critères de cette colonne pour l’intervalle de temps spécifié. Vous pouvez exécuter une recherche dans les journaux qui fournit la liste complète. Pour cela, cliquez sur **Afficher tout** en bas à droite de chaque colonne ou cliquez sur l’en-tête de colonne.
 
 | **Événement Service Fabric** | **description** |
 | --- | --- |
@@ -150,17 +150,17 @@ Une fois que les déploiements de hello sont terminées et hello solution d’in
 
 ![Tableau de bord Service Fabric](./media/log-analytics-service-fabric/sf4.png)
 
-Hello tableau suivant montre les méthodes de collecte de données et d’autres détails sur la façon dont les données sont collectées pour Service Fabric.
+Le tableau suivant présente les méthodes de collecte des données et d’autres informations sur le mode de collecte de la solution de données pour Service Fabric.
 
 | plateforme | Agent direct | Agent Operations Manager | Azure Storage | Operations Manager requis ? | Données de l’agent Operations Manager envoyées via un groupe d’administration | fréquence de collecte |
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows |  |  | &#8226; |  |  |10 minutes |
 
 > [!NOTE]
-> Vous pouvez modifier l’étendue de hello de ces événements Bonjour solution d’infrastructure de Service en cliquant sur **les données basées sur les 7 derniers jours** haut hello du tableau de bord hello. Vous pouvez également afficher les événements générés dans hello sept derniers jours, un jour ou six heures. Vous pouvez également sélectionner **personnalisé** toospecify une plage de dates personnalisée.
+> Vous pouvez modifier l’étendue de ces événements dans la solution Service Fabric en cliquant sur **Données basées sur les 7 derniers jours** dans la partie supérieure du tableau de bord. Vous pouvez également afficher les événements générés durant les sept derniers jours, la journée précédente ou les six dernières heures. Vous pouvez aussi sélectionner **Personnalisé** pour spécifier une plage de dates personnalisée.
 >
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Utilisez [recherches de journal dans le journal Analytique](log-analytics-log-searches.md) tooview détaillées des données d’événement Service Fabric.
+* Utilisez [Recherches dans les journaux dans Log Analytics](log-analytics-log-searches.md) pour afficher des données détaillées sur les événements Service Fabric.

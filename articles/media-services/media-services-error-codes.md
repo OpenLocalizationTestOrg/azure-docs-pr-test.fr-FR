@@ -1,6 +1,6 @@
 ---
-title: "codes d’erreur aaaAzure Media Services | Documents Microsoft"
-description: "rubrique de Hello donne une vue d’ensemble des codes d’erreur Azure Media Services."
+title: "Codes d’erreur d’Azure Media Services | Microsoft Docs"
+description: "Cette rubrique fournit une vue d’ensemble des codes d’erreur d’Azure Media Services."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,91 +14,91 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: de1ffd6dee8901a3051eb5032536c3669482d6b3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 39886a955124429302609dd9d5a7c20ae7f498d9
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-media-services-error-codes"></a>Codes d’erreur d’Azure Media Services
-Lorsque vous utilisez Microsoft Azure Media Services, vous pouvez recevoir des codes d’erreur HTTP à partir du service hello en fonction des problèmes tels que des jetons d’authentification expire tooactions qui ne sont pas pris en charge dans Media Services. Hello Voici une liste de **codes d’erreur HTTP** qui peuvent être renvoyés par les Services de support et hello possible provoque pour eux.  
+lors de l’utilisation de Microsoft Azure Media Services, il se peut que vous receviez du service des codes d’erreur HTTP liés à problèmes tels que des jetons d’authentification qui expirent pour des actions qui ne sont pas prises en charge dans Media Services. Vous trouverez ci-dessous la liste des **codes d’erreur HTTP** qui peuvent être retournés par Media Services, ainsi que leurs causes possibles.  
 
 ## <a name="400-bad-request"></a>400 Demande incorrecte
-demande de Hello contient des informations non valides et qu’il est rejeté échéance tooone Hello suivant raisons :
+La demande contient des informations non valides et est rejetée pour l’une des raisons suivantes :
 
-* La version spécifiée de l’API n’est pas prise en charge. Pour la version la plus récente hello, consultez [le programme d’installation pour le développement d’API REST Media Services](media-services-rest-how-to-use.md).
-* version de Hello API de Media Services n’est pas spécifiée. Pour plus d’informations sur la façon dont toospecify hello version de l’API, consultez [référence d’API REST Media Services Operations](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference).
+* La version spécifiée de l’API n’est pas prise en charge. Pour la version la plus récente, voir [Configuration pour le développement de l’API REST Media Services](media-services-rest-how-to-use.md).
+* La version de l’API de Media Services n’est pas spécifiée. Pour en savoir plus sur la façon de spécifier la version de l’API, voir [Référence de l’API REST de Media Services Operations](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference).
   
   > [!NOTE]
-  > Si vous utilisez hello .NET ou les kits de développement logiciel Java tooMedia de tooconnect Services, version de l’API de hello est automatiquement spécifiée chaque fois que vous essayez et effectuez certaines actions sur Media Services.
+  > Si vous utilisez les Kits de développement logiciel (SDK) .NET ou Java pour vous connecter à Media Services, la version de l’API est automatiquement spécifiée chaque fois que vous tentez d’effectuer une action sur Media Services.
   > 
   > 
-* Une propriété non définie a été spécifiée. nom de la propriété Hello est dans le message d’erreur hello. Vous ne pouvez spécifier que des propriétés membres d’une entité donnée. Pour obtenir la liste des entités et de leurs propriétés, voir [Référence de l’API REST d’Azure Media Services](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference).
-* Une valeur de propriété non valide a été spécifiée. nom de la propriété Hello est dans le message d’erreur hello. Consultez le lien précédent de hello pour les types de propriété valide et leurs valeurs.
+* Une propriété non définie a été spécifiée. Le nom de la propriété figure dans le message d’erreur. Vous ne pouvez spécifier que des propriétés membres d’une entité donnée. Pour obtenir la liste des entités et de leurs propriétés, voir [Référence de l’API REST d’Azure Media Services](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference).
+* Une valeur de propriété non valide a été spécifiée. Le nom de la propriété figure dans le message d’erreur. Pour connaître les types de propriété valides et leurs valeurs, voir le lien précédent.
 * Une valeur de propriété requise est manquante.
-* Partie de l’URL de hello spécifiée contient une valeur incorrecte.
-* Une tentative a été effectuée tooupdate une propriété WriteOnce.
-* Une tentative a été effectuée toocreate une tâche qui a un élément multimédia d’entrée avec un élément AssetFile principal qui n’a été spécifié ou n’a pas pu être déterminé..
-* Une tentative a été effectuée tooupdate un localisateur SAS. Des localisateurs de SAP peuvent uniquement être créés ou supprimés. Des localisateurs de streaming peuvent être mis à jour. Pour plus d’informations, voir [Localisateurs](https://docs.microsoft.com/rest/api/media/operations/locator).
+* Une partie de l’URL spécifiée contient une valeur incorrecte.
+* Une tentative de mise à jour d’une propriété WriteOnce a été effectuée.
+* Une tentative a été faite de créer un travail comportant une ressource d’entrée avec un fichier de ressources (AssetFile) non spécifié ou qui n’a pas pu être déterminé.
+* Une tentative de mise à jour d’un localisateur de SAP a été effectuée. Des localisateurs de SAP peuvent uniquement être créés ou supprimés. Des localisateurs de streaming peuvent être mis à jour. Pour plus d’informations, voir [Localisateurs](https://docs.microsoft.com/rest/api/media/operations/locator).
 * Une opération ou demande non prises en charge ont été envoyées.
 
 ## <a name="401-unauthorized"></a>401 Non autorisé
-demande de Hello n’a pas pu être authentifié (avant d’être autorisé) échéance tooone Hello suivant raisons :
+La demande n’a pas pu être authentifiée (avant d’être autorisée) pour l’une des raisons suivantes :
 
 * En-tête d’authentification absent.
 * Valeur d’en-tête d’authentification incorrecte.
-  * Hello jeton a expiré. 
-  * jeton de Hello contient une signature non valide.
+  * Le jeton a expiré. 
+  * Le jeton contient une signature non valide.
 
 ## <a name="403-forbidden"></a>403 Interdit
-demande de Hello n’est pas autorisée en raison tooone Hello suivant raisons :
+La demande n’est pas autorisée pour l’une des raisons suivantes :
 
-* Hello compte Media Services est introuvable ou a été supprimé.
-* Hello compte Media Services est désactivé et le type de demande hello n’est pas HTTP GET. Les opérations de service renvoient également une réponse 403.
-* Hello jeton d’authentification ne contient pas informations d’identification de l’utilisateur hello : AccountName et/ou ID d’abonnement. Vous pouvez trouver ces informations Bonjour extension de l’interface utilisateur des Services de support pour votre compte Media Services Bonjour portail de gestion Azure.
-* ressource de Hello ne peut pas être accessible.
+* Le compte Media Services est introuvable ou a été supprimé.
+* Le compte Media Services est désactivé et le type de la demande n’est pas HTTP GET. Les opérations de service renvoient également une réponse 403.
+* Le jeton d’authentification ne contient pas les informations d’identification de l’utilisateur : AccountName et/ou SubscriptionId. Vous pouvez trouver ces informations dans l’extension interface utilisateur de Media Services pour votre compte Media Services dans le portail de gestion.
+* La ressource est inaccessible.
   
-  * Une tentative a été effectuée toouse un MediaProcessor qui n’est pas disponible pour votre compte Media Services.
-  * Une tentative a été effectuée tooupdate un JobTemplate défini par Media Services.
-  * Une tentative a été effectuée toooverwrite recherche de certains autres compte Media Services.
-  * Une tentative a été effectuée toooverwrite ContentKey de certaines autres Media Services du compte.
-* ressource de Hello n’a pas pu être créé en raison de quota de service tooa qui a été atteint pour le compte de service de média hello. Pour plus d’informations sur les quotas de service hello, consultez [Quotas et Limitations](media-services-quotas-and-limitations.md).
+  * Une tentative a été effectuée d’utiliser un processeur multimédia (MediaProcessor) non disponible pour votre compte Media Services.
+  * Une tentative a été effectuée de mettre à jour un modèle de travail (JobTemplate) défini par Media Services.
+  * Une tentative a été effectuée de remplacer un autre localisateur du compte Media Services.
+  * Une tentative a été effectuée de remplacer un autre clé de contenu (ContentKey) du compte Media Services.
+* La ressource n’a pas pu être créée en raison d’un quota de service atteint pour le compte Media Services. Pour plus d’informations sur les quotas du service, voir [Quotas et limitations](media-services-quotas-and-limitations.md).
 
 ## <a name="404-not-found"></a>404 Introuvable
-demande de Hello n’est pas autorisée sur une ressource échéance tooone Hello suivant raisons :
+La demande n’est pas autorisée sur une ressource pour l’une des raisons suivantes :
 
-* Une tentative a été effectuée tooupdate une entité qui n’existe pas.
-* Une tentative a été effectuée toodelete une entité qui n’existe pas.
-* Une tentative a été effectuée toocreate une entité qui lie l’entité tooan qui n’existe pas.
-* Une tentative a été effectuée tooGET une entité qui n’existe pas.
-* Une tentative a été effectuée toospecify un compte de stockage qui n’est pas associé avec hello compte Media Services.  
+* Une tentative a été effectuée de mettre à jour une entité inexistante.
+* Une tentative a été effectuée de supprimer une entité inexistante.
+* Une tentative a été effectuée de créer une entité liant à une entité inexistante.
+* Une tentative a été effectuée d’obtenir (GET) une entité inexistante.
+* Une tentative a été effectuée de spécifier un compte de stockage non associé au compte Media Services.  
 
 ## <a name="409-conflict"></a>409 Conflit
-demande de Hello n’est pas autorisée en raison tooone Hello suivant raisons :
+La demande n’est pas autorisée pour l’une des raisons suivantes :
 
-* Plusieurs AssetFile a nom spécifié de hello dans hello Asset.
-* Une tentative a été effectuée toocreate un deuxième principal AssetFile dans hello actif.
-* Une tentative a été effectuée toocreate une ContentKey avec hello spécifié Id déjà utilisé.
-* Une tentative a été effectuée toocreate un localisateur avec hello spécifié Id déjà utilisé.
-* Plus d’un IngestManifestFile a nom spécifié de hello dans hello IngestManifest.
-* Une tentative a été effectuée toolink une deuxième ContentKey toohello de stockage chiffrement chiffré de stockage de ressources.
-* Une tentative a été effectuée toolink hello même ContentKey toohello actif.
-* Une tentative a été effectuée toocreate un tooan de recherche de la ressource dont conteneur de stockage est manquant ou n’est plus associé hello actif.
-* Une tentative a été effectuée toocreate un tooan de recherche actif qui possède déjà des 5 localisateurs en cours d’utilisation. (Le stockage azure applique la limite de hello de cinq stratégies d’accès partagé sur un conteneur de stockage.)
-* Liaison de compte de stockage d’un IngestManifestAsset de tooan actif n’est pas hello même que le compte de stockage hello utilisé par le parent de hello IngestManifest.  
+* Plusieurs fichiers de ressources (AssetFile) portent le nom spécifié dans la ressource (Asset).
+* Une tentative a été effectuée de créer un deuxième fichier de ressources (AssetFile) principal dans la ressource (Asset).
+* Une tentative a été effectuée de créer une clé de contenu (ContentKey) avec l’ID spécifié qui est déjà utilisé.
+* Une tentative a été effectuée de créer un localisateur avec l’ID spécifié qui est déjà utilisé.
+* Plusieurs fichiers IngestManifestFile portent le nom spécifié dans le manifeste IngestManifest.
+* Une tentative a été effectuée de lier un deuxième clé de contenu (ContentKey) de chiffrement de stockage à la ressource (Asset) chiffrée pour stockage.
+* Une tentative a été effectuée de lier la même clé de contenu (ContentKey) à la ressource (Asset).
+* Une tentative a été effectuée de créer un localisateur pour une ressource (Asset) dont conteneur de stockage est manquant ou n’est plus associé à la ressource.
+* Une tentative a été effectuée de créer un localisateur pour une ressource (Asset) qui a déjà 5 localisateurs en cours d’utilisation (le Stockage Azure applique une limite de cinq stratégies d’accès partagé par conteneur de stockage).
+* Le compte de stockage de liaison d’une ressource (Asset) à une ressource IngestManifestAsset n’est pas le même que le compte de stockage utilisé par le manifeste IngestManifest parent.  
 
 ## <a name="500-internal-server-error"></a>500 Erreur interne du serveur
-Pendant le traitement de hello de demande de hello, Media Services rencontre une erreur qui empêche le traitement de hello de se poursuivre. Cela peut être dû tooone Hello suivant raisons :
+Lors du traitement de la demande, Media Services rencontre une erreur qui empêche la poursuite du traitement. Cela peut être dû à l’une des raisons suivantes :
 
-* Création d’un élément multimédia ou un travail échoue, car les informations de quota de service du compte de service de média hello sont temporairement indisponibles.
-* Création d’un conteneur de stockage d’objets blob actif ou IngestManifest échoue, car les informations de compte de stockage du compte hello sont temporairement indisponibles.
+* La création d’une ressource ou d’une tâche échoue parce que les informations de quota de service du compte Media Services sont temporairement indisponibles.
+* La création d’un conteneur de stockage d’objets blob Asset ou IngestManifest échoue parce que les informations de compte de stockage du compte sont temporairement indisponibles.
 * Autre erreur inattendue.
 
 ## <a name="503-service-unavailable"></a>503 Service indisponible
-le serveur de Hello est actuellement incapable de tooreceive demandes. Cette erreur peut résulter de service de toohello des demandes excessives. Mécanisme de limitation de Media Services restreint l’utilisation des ressources pour les applications qui rendent excessive de demander un service toohello hello.
+Le serveur est actuellement incapable de recevoir des demandes. Cette erreur peut résulter d’un excès de demandes adressées au service. Le mécanisme de limitation de Media Services restreint l'utilisation des ressources pour les applications qui recourent de manière excessive au service.
 
 > [!NOTE]
-> Vérification hello erreur message et erreur code chaîne tooget plus d’informations sur la raison de hello que vous avez obtenu hello erreur 503. Cette erreur n’indique pas toujours une limitation.
+> Examinez le message d’erreur et la chaîne de code d’erreur pour obtenir des informations plus détaillées sur la raison pour laquelle vous avez reçu l’erreur 503. Cette erreur n’indique pas toujours une limitation.
 > 
 > 
 
@@ -108,10 +108,10 @@ Les descriptions d’état possibles sont les suivantes :
 * « Le serveur est occupé. Plus de {0} demandes par seconde peuvent être limitées. »
 * « Le serveur est occupé. Plus de {0} demandes en {1} secondes peuvent être limitées. »
 
-toohandle cette erreur, nous vous recommandons d’utiliser exponentielle temporisation logique de nouvelle tentative. Cela implique d’utiliser des attentes de plus en plus longues entre nouvelles tentatives suite à des réponses d’erreur consécutives.  Pour plus d’informations, voir [What Does the Transient Fault Handling Application Block Do?](https://msdn.microsoft.com/library/hh680905.aspx) (Que fait le bloc applicatif de gestion des erreurs temporaires ?).
+Pour gérer cette erreur, nous recommandons d’utiliser une logique de nouvelle tentative d’interruption exponentielle. Cela implique d’utiliser des attentes de plus en plus longues entre nouvelles tentatives suite à des réponses d’erreur consécutives.  Pour plus d’informations, voir [What Does the Transient Fault Handling Application Block Do?](https://msdn.microsoft.com/library/hh680905.aspx) (Que fait le bloc applicatif de gestion des erreurs temporaires ?).
 
 > [!NOTE]
-> Si vous utilisez [Azure Media Services SDK pour .net](https://github.com/Azure/azure-sdk-for-media-services/tree/master), logique de nouvelle tentative hello pour erreur de hello 503 a été implémentée par hello SDK.  
+> Si vous utilisez le [Kit de développement logiciel (SDK) Azure Media Services pour .Net](https://github.com/Azure/azure-sdk-for-media-services/tree/master), la logique de nouvelle tentative pour l’erreur 503 a été implémentée par le Kit de développement logiciel.  
 > 
 > 
 

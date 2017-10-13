@@ -1,6 +1,6 @@
 ---
-title: "mappage d’aaaNetwork entre deux régions Azure dans Azure Site Recovery | Documents Microsoft"
-description: "Azure Site Recovery coordonne la réplication hello, le basculement et récupération des ordinateurs virtuels et des serveurs physiques. En savoir plus sur tooAzure de basculement ou un centre de données secondaire."
+title: "Mappage réseau entre deux régions Azure dans Azure Site Recovery | Microsoft Docs"
+description: "Azure Site Recovery coordonne la réplication, le basculement et la récupération des machines virtuelles et des serveurs physiques. Informez-vous sur le basculement dans Microsoft Azure ou un centre de données secondaire."
 services: site-recovery
 documentationcenter: 
 author: prateek9us
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 08/11/2017
 ms.author: pratshar
-ms.openlocfilehash: 4f80c44e3f94eaf446bc01a7041d91fe34aa78d4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9d6a806ec533259797080fbfee2c38f918ebd8a2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="network-mapping-between-two-azure-regions"></a>Mappage réseau entre deux régions Azure
 
 
-Cet article décrit comment toomap Azure des réseaux virtuels de deux régions Azure entre eux. Le mappage réseau garantit que lorsque l’ordinateur virtuel répliqué est créé dans la cible de hello région Azure, il est créé sur hello réseau virtuel réseau mappé toovirtual de machine virtuelle de hello source.  
+Cet article explique comment mapper des réseaux virtuels Azure de deux régions Azure. Le mappage réseau garantit que quand une machine virtuelle répliquée est créée dans la région Azure cible, elle est créée sur le réseau virtuel qui est mappé au réseau virtuel de la machine virtuelle source.  
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Prérequis
 Avant de mapper des réseaux, vérifiez que vous avez créé des [réseaux virtuels Azure](../virtual-network/virtual-networks-overview.md) dans les régions Azure source et cible.
 
 ## <a name="map-networks"></a>Mapper des réseaux
 
-toomap un réseau virtuel Azure dans une région Azure tooanother réseau virtuel une autre région, accédez tooSite Infrastructure de récupération -> mappage de réseau (pour les Machines virtuelles Azure) et créer un mappage réseau.
+Pour mapper un réseau virtuel Azure dans une région Azure à un autre réseau virtuel dans une autre région, accédez à Infrastructure Site Recovery -> Mappage réseau (pour les machines virtuelles Azure) et créez un mappage réseau.
 
 ![Mappage réseau](./media/site-recovery-network-mapping-azure-to-azure/network-mapping1.png)
 
 
-Exemple ci-dessous ma machine virtuelle est en cours d’exécution dans la région Asie et est en cours hello répliquée tooSoutheast Asie.
+Dans l’exemple ci-dessous, ma machine virtuelle s’exécute dans la région Asie de l’Est et est répliquée vers Asie du Sud-Est.
 
-Sélectionnez le réseau source et cible de hello et puis cliquez sur OK toocreate un mappage réseau à partir de l’Asie orientale tooSoutheast en Asie.
+Sélectionnez les réseaux source et cible, puis cliquez sur OK pour créer un mappage réseau Asie de l’Est à Asie du Sud-Est.
 
 ![Mappage réseau](./media/site-recovery-network-mapping-azure-to-azure/network-mapping2.png)
 
 
-Hello même chose toocreate un mappage réseau à partir de l’Asie du Sud-est tooEast en Asie.  
+Faites la même chose pour créer un mappage réseau Asie du Sud-Est à Asie de l’Est.  
 ![Mappage réseau](./media/site-recovery-network-mapping-azure-to-azure/network-mapping3.png)
 
 
 ## <a name="mapping-network-when-enabling-replication"></a>Mappage réseau lors de l’activation de la réplication
 
-Si le mappage réseau n’est pas effectué lorsque vous répliquez une machine virtuelle pour hello première heure formulaire une région Azure tooanother, vous pouvez choisir réseau cible dans le cadre de hello même processus. Récupération de site crée des mappages de réseau à partir de la région de tootarget la région source et de région de toosource région cible en fonction de cette sélection.   
+Si le mappage réseau n’est pas effectué quand vous répliquez une machine virtuelle pour la première fois d’une région Azure vers une autre, vous pouvez choisir le réseau cible dans le cadre du même processus. Site Recovery crée des mappages réseau de la région source à la région cible et de la région cible à la région source, en fonction de cette sélection.   
 
 ![Mappage réseau](./media/site-recovery-network-mapping-azure-to-azure/network-mapping4.png)
 
-Par défaut, Site Recovery crée un réseau dans la région cible hello qui est identique toohello source réseau et en ajoutant «-asr » en tant que suffixe toohello nom de réseau de source de hello. Vous pouvez choisir un réseau déjà créé en cliquant sur Personnaliser.
+Par défaut, Site Recovery crée dans la région cible un réseau qui est identique au réseau source, en ajoutant « -asr » comme suffixe au nom du réseau source. Vous pouvez choisir un réseau déjà créé en cliquant sur Personnaliser.
 
 ![Mappage réseau](./media/site-recovery-network-mapping-azure-to-azure/network-mapping5.png)
 
 
-Si le mappage réseau hello est déjà fait, vous ne pouvez pas modifier le réseau virtuel de hello cible lors de l’activation de la réplication. toochange, modifiez le mappage réseau existant.  
+Si le mappage réseau est déjà fait, vous ne pouvez pas changer le réseau virtuel cible lors de l’activation de la réplication. Pour le changer, modifiez le mappage réseau existant.  
 
 ![Mappage réseau](./media/site-recovery-network-mapping-azure-to-azure/network-mapping6.png)
 
 ![Mappage réseau](./media/site-recovery-network-mapping-azure-to-azure/modify-network-mapping.png)
 
 > [!IMPORTANT]
-> Si vous modifiez un mappage de réseau à partir de la région-1 tooregion-2, assurez-vous que vous modifiez le mappage réseau hello de région-2 tooregion-1 ainsi.
+> Si vous modifiez un mappage réseau de la région 1 à la région 2, n’oubliez pas de modifier aussi le mappage réseau de la région 2 à la région 1.
 >
 >
 
 
 ## <a name="subnet-selection"></a>Sélection de sous-réseau
-Sous-réseau de la machine virtuelle cible hello est sélectionné en fonction de nom hello du sous-réseau de hello d’ordinateur virtuel de hello source. S’il existe un sous-réseau de hello même nom que celui de l’ordinateur virtuel à source de hello disponible dans le réseau cible de hello, qui est choisi pour la machine virtuelle cible hello. S’il n’existe aucun sous-réseau ne porte hello même nom dans le réseau cible de hello, puis par ordre alphabétique premier sous-réseau est choisi comme hello sous-réseau cible. Vous pouvez modifier ce sous-réseau en accédant tooCompute et les paramètres réseau de l’ordinateur virtuel de hello.
+Le sous-réseau de la machine virtuelle cible est sélectionné en fonction du nom du sous-réseau de la machine virtuelle source. Si un sous-réseau portant le même nom que celui de la machine virtuelle source est disponible sur le réseau cible, il est choisi pour la machine virtuelle cible. S’il n’y a aucun sous-réseau du même nom sur le réseau cible, le premier sous-réseau dans l’ordre alphabétique est choisi comme sous-réseau cible. Vous pouvez modifier ce sous-réseau en accédant aux paramètres Calcul et réseau de la machine virtuelle.
 
 ![Modifier le sous-réseau](./media/site-recovery-network-mapping-azure-to-azure/modify-subnet.png)
 
 
 ## <a name="ip-address"></a>Adresse IP
 
-Adresse IP pour chaque interface de réseau hello de la machine virtuelle cible hello est choisi comme suit :
+L’adresse IP pour chaque interface réseau de la machine virtuelle cible est choisie comme suit :
 
 ### <a name="dhcp"></a>DHCP
-Si l’interface de réseau hello de machine virtuelle de hello source utilise le protocole DHCP, interface de réseau de la machine virtuelle cible hello est également définie en tant que DHCP.
+Si l’interface réseau de la machine virtuelle source utilise le protocole DHCP, l’interface réseau de la machine virtuelle cible est également définie avec DHCP.
 
 ### <a name="static-ip"></a>Adresse IP statique
-Si l’interface de réseau hello de machine virtuelle de hello source utilise des adresses IP statiques, interface de réseau de la machine virtuelle cible hello est également défini toouse adresse IP statique. L’adresse IP statique est choisie comme suit :
+Si l’interface réseau de la machine virtuelle source utilise une adresse IP statique, l’interface réseau de la machine virtuelle cible est également configurée pour utiliser une adresse IP statique. L’adresse IP statique est choisie comme suit :
 
 #### <a name="same-address-space"></a>Même espace d’adressage
 
-Si sous-réseau de hello source et de sous-réseau cible de hello ont hello même espace d’adressage, puis IP cible est identique à l’IP hello d’interface de réseau hello de machine virtuelle de hello source. Si la même adresse IP n’est pas disponible, une adresse IP disponible est définie en tant qu’adresse IP cible de hello.
+Si les sous-réseaux source et cible ont le même espace d’adressage, l’adresse IP cible est configurée comme identique à l’adresse IP de l’interface réseau de la machine virtuelle source. Si la même adresse IP n’est pas disponible, une autre adresse IP disponible est définie comme adresse IP cible.
 
 #### <a name="different-address-space"></a>Espace d’adressage différent
 
-Si le sous-réseau de source de hello et sous-réseau cible de hello ont l’espace d’adressage différent, adresse IP cible est définie comme une adresse IP disponible dans le sous-réseau de cible hello.
+Si les sous-réseaux source et cible ont un espace d’adressage différent, l’adresse IP cible est configurée avec n’importe quelle adresse IP disponible sur le sous-réseau cible.
 
-Vous pouvez modifier l’adresse IP cible de hello sur chaque interface réseau en accédant tooCompute et les paramètres réseau de l’ordinateur virtuel de hello.
+Vous pouvez modifier l’adresse IP cible sur chaque interface réseau en accédant aux paramètres Calcul et réseau de la machine virtuelle.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

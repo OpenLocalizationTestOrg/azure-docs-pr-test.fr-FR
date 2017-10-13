@@ -1,6 +1,6 @@
 ---
-title: "aaaSet d’un coffre pour tooAzure de réplication de serveur physique à l’aide d’Azure Site Recovery | Documents Microsoft"
-description: "Résume les étapes hello tooset d’un tooAzure de serveurs physiques tooreplicate coffre à l’aide d’Azure Site Recovery"
+title: "Configurer un coffre pour la réplication de serveurs physiques vers Azure à l’aide d’Azure Site Recovery | Microsoft Docs"
+description: "Résume les étapes à suivre pour configurer un coffre dans le cadre de la réplication de serveurs physiques vers Azure à l’aide d’Azure Site Recovery"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 988928e3ece31116823f132cc39223fe44443468
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: deb5ad0495edc969b374795eeb2698326dd4ff4d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="step-6-set-up-a-vault-for-physical-server-replication-tooazure"></a>Étape 6 : Configurer un coffre pour tooAzure de réplication de serveur physique
+# <a name="step-6-set-up-a-vault-for-physical-server-replication-to-azure"></a>Étape 6 : Configurer un coffre pour la réplication de serveurs physiques vers Azure
 
 
-Cet article décrit comment tooset d’un coffre. Vous créez le coffre hello et spécifier ce que vous souhaitez tooreplicate à partir de votre tooAzure emplacement local, à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) service Bonjour portail Azure.
+Cet article décrit comment configurer un coffre. Vous créez le coffre et spécifiez ce que vous souhaitez répliquer à partir de l’emplacement local, vers Azure, à l’aide du service [Azure Site Recovery](site-recovery-overview.md) dans le portail Azure.
 
 
-Ajouter des commentaires et questions bas hello de cet article, ou sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Publiez des commentaires et des questions au bas de cet article, ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 
@@ -37,13 +37,13 @@ Ajouter des commentaires et questions bas hello de cet article, ou sur hello [Fo
 
 ## <a name="select-a-protection-goal"></a>Sélectionner un objectif de protection
 
-Sélectionnez les éléments tooreplicate, et où vous souhaitez que tooreplicate à.
+Sélectionnez les éléments à répliquer et l’emplacement de la réplication.
 
 1. Cliquez sur **Coffres Recovery Services** > coffre.
-2. Bonjour ressource Menu, cliquez sur **Site Recovery** > **préparer l’Infrastructure** > **objectif de Protection**.
-3. Dans **objectif de Protection**, sélectionnez **tooAzure** > **non virtualisé,**.
+2. Dans le menu Ressource, cliquez sur **Site Recovery** > **Préparer l’infrastructure** > **Objectif de protection**.
+3. Dans la boîte de dialogue **Objectif de protection**, sélectionnez **Vers Azure** > **Non virtualisé / Autre**.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Accédez trop[étape 7 : configurer la source et cible](physical-walkthrough-source-target.md)
+Aller à l’[Étape 7 : Configurer la source et la cible](physical-walkthrough-source-target.md)

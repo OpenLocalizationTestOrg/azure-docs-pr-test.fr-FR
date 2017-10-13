@@ -1,6 +1,6 @@
 ---
 title: 'Azure Active Directory B2C : configuration LinkedIn | Microsoft Docs'
-description: "Fournir tooconsumers d’abonnement et connectez-vous avec les comptes LinkedIn dans vos applications sont sécurisées par Azure Active Directory B2C"
+description: "Fourniture d’inscription et de connexion à des consommateurs disposant de comptes LinkedIn dans vos applications sécurisées par Azure Active Directory B2C"
 services: active-directory-b2c
 documentationcenter: 
 author: swkrish
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/06/2016
 ms.author: swkrish
-ms.openlocfilehash: 6c5233ef48b24968fd6383f470b5d8a969a78ecf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1a6c4b19261aa34e668554ccad2b6340cddf9bf5
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-tooconsumers-with-linkedin-accounts"></a>Azure B2C Active Directory : Fournir LinkedIn comptes tooconsumers d’inscription et de connexion
+# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-linkedin-accounts"></a>Azure Active Directory B2C : fourniture d’inscription et de connexion à des consommateurs disposant de comptes LinkedIn
 ## <a name="create-a-linkedin-application"></a>Création d’une application LinkedIn
-toouse LinkedIn comme fournisseur d’identité dans Azure Active Directory (Azure AD) B2C, vous devez toocreate une application LinkedIn et lui fournir les paramètres appropriés hello. Vous devez cela un toodo de compte LinkedIn. Si vous n’en avez pas, vous pouvez en obtenir un à l’adresse [https://www.linkedin.com/](https://www.linkedin.com/).
+Pour utiliser LinkedIn en tant que fournisseur d’identité dans Azure Active Directory (Azure AD) B2C, vous devez créer une application LinkedIn et lui fournir les paramètres appropriés. Pour ce faire, vous avez besoin d’un compte LinkedIn. Si vous n’en avez pas, vous pouvez en obtenir un à l’adresse [https://www.linkedin.com/](https://www.linkedin.com/).
 
-1. Accédez toohello [site Web des développeurs de LinkedIn](https://www.developer.linkedin.com/) et connectez-vous avec vos informations d’identification du compte LinkedIn.
-2. Cliquez sur **mes applications** dans hello barre de menus supérieure, puis cliquez sur **créer une Application**.
+1. Accédez au site web [Développeurs LinkedIn](https://www.developer.linkedin.com/) et connectez-vous à l’aide des informations d’identification de votre compte LinkedIn.
+2. Cliquez sur **Mes applications** dans la barre de menu, puis sur **Créer une application**.
    
     ![LinkedIn - nouvelle application](./media/active-directory-b2c-setup-li-app/linkedin-new-app.png)
-3. Bonjour **créer une nouvelle Application** forment, renseignez les informations pertinentes hello (**nom de la société**, **nom**, **Description**, **URL Logo de l’application**, **utilisation de l’Application**, **URL du site Web**, **E-mail professionnelles** et **téléphone(bureau)**).
-4. Acceptez toohello **LinkedIn API conditions d’utilisation** et cliquez sur **Submit**.
+3. Dans le formulaire **Créer une nouvelle application**, entrez les informations pertinentes (**Nom de l’entreprise**, **Nom**, **Description**, **Application Logo URL** (URL du logo de l’application), **Application Use** (Utilisation de l’application), **URL du site Web**, **Adresse de messagerie professionnelle** et **Numéro de téléphone professionnel**).
+4. Acceptez les **conditions d’utilisation de l’API LinkedIn**, puis cliquez sur **Envoyer**.
    
     ![LinkedIn - inscription d’application](./media/active-directory-b2c-setup-li-app/linkedin-register-app.png)
-5. Copier les valeurs hello de **ID Client** et **clé secrète Client**. (Vous les trouverez sous **Clés d’authentification**.) Vous devez les deux tooconfigure LinkedIn comme fournisseur d’identité dans votre client.
+5. Copiez les valeurs de **ID client** et **Clé secrète client**. (Vous les trouverez sous **Clés d’authentification**.) Vous aurez besoin de ces deux valeurs pour configurer LinkedIn en tant que fournisseur d’identité dans votre client.
    
    > [!NOTE]
    > **Client Secret** est une information d’identification de sécurité importante.
    > 
    > 
-6. Entrez `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp` Bonjour **URL de redirection autorisés** champ (sous **OAuth 2.0**). Remplacez **{tenant}** par votre nom de client (par exemple, contoso.onmicrosoft.com). Cliquez sur **Ajouter**, puis sur **Mettre à jour**. Hello **{tenant}** valeur respecte la casse.
+6. Entrez `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp` dans le champ **URL de redirection autorisées** (sous **OAuth 2.0**). Remplacez **{tenant}** par votre nom de client (par exemple, contoso.onmicrosoft.com). Cliquez sur **Ajouter**, puis sur **Mettre à jour**. La valeur **{tenant}** respecte la casse.
    
     ![LinkedIn - configuration d’application](./media/active-directory-b2c-setup-li-app/linkedin-setup.png)
 
 ## <a name="configure-linkedin-as-an-identity-provider-in-your-tenant"></a>Configuration de LinkedIn en tant que fournisseur d’identité dans votre client
-1. Suivez ces étapes trop[accédez Panneau de fonctionnalités toohello B2C](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) sur hello portail Azure.
-2. Dans le panneau de fonctionnalités hello B2C, cliquez sur **fournisseurs d’identité**.
-3. Cliquez sur **+ ajouter** haut hello du Panneau de hello.
-4. Fournissez un nom convivial de **nom** pour la configuration du fournisseur d’identité hello. Par exemple, entrez « LI ».
+1. Suivez ces étapes pour [accéder au panneau de fonctionnalités B2C](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) sur le portail Azure.
+2. Dans le panneau de fonctionnalités B2C, cliquez sur **Fournisseurs d’identité**.
+3. Cliquez sur **+Ajouter** dans la partie supérieure du panneau.
+4. Fournissez un **Nom** convivial pour la configuration de fournisseur d’identité. Par exemple, entrez « LI ».
 5. Cliquez sur **Type de fournisseur d’identité**, sélectionnez **LinkedIn**, puis cliquez sur **OK**.
-6. Cliquez sur **configurer ce fournisseur d’identité** et entrez hello client et ID de clé secrète client de hello LinkedIn application que vous avez créé précédemment.
-7. Cliquez sur **OK** puis cliquez sur **créer** toosave votre configuration LinkedIn.
+6. Cliquez sur **Configurer ce fournisseur d’identité** , puis entrez l’ID client et la clé secrète client de l’application LinkedIn que vous avez créée précédemment.
+7. Cliquez sur **OK**, puis sur **Créer** pour enregistrer votre configuration LinkedIn.
 

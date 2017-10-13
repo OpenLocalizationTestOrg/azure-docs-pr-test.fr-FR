@@ -1,5 +1,5 @@
 ---
-title: "exemple de script CLI aaaAzure - acheminer le trafic via un matériel de réseau virtuel | Documents Microsoft"
+title: "Exemple de script Azure CLI - Acheminer le trafic via une appliance virtuelle réseau | Microsoft Docs"
 description: "Exemple de script Azure CLI - Acheminer le trafic via une appliance virtuelle réseau de pare-feu."
 services: virtual-network
 documentationcenter: virtual-network
@@ -15,15 +15,15 @@ ms.tgt_pltfrm:
 ms.workload: infrastructure
 ms.date: 07/07/2017
 ms.author: jdial
-ms.openlocfilehash: 981d6073be04a7ebaf96b657fbab8a378e7a995e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 78091b515c00591a4af8d807945475b6be50188a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="route-traffic-through-a-network-virtual-appliance"></a>Acheminer le trafic via une appliance virtuelle réseau
 
-Cet exemple de script permet de créer un réseau virtuel avec des sous-réseaux frontaux et principaux. Il crée également un ordinateur virtuel IP le trafic tooroute activé entre deux sous-réseaux de hello. Après avoir exécuté le script de hello, vous pouvez déployer un logiciel réseau, telle qu’une application de pare-feu, toohello machine virtuelle.
+Cet exemple de script permet de créer un réseau virtuel avec des sous-réseaux frontaux et principaux. Il crée également une machine virtuelle sur laquelle le transfert IP est activé pour acheminer le trafic entre les deux sous-réseaux. Après avoir exécuté le script, vous pouvez déployer un logiciel réseau, telle qu’une application de pare-feu, sur la machine virtuelle.
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
@@ -33,11 +33,11 @@ Cet exemple de script permet de créer un réseau virtuel avec des sous-réseaux
 ## <a name="sample-script"></a>Exemple de script
 
 
-[!code-azurecli-interactive[main](../../../cli_scripts/virtual-network/route-traffic-through-nva/route-traffic-through-nva.sh "Route traffic through a network virtual appliance")]
+[!code-azurecli-interactive[principal](../../../cli_scripts/virtual-network/route-traffic-through-nva/route-traffic-through-nva.sh "Acheminer le trafic via une appliance virtuelle réseau")]
 
 ## <a name="clean-up-deployment"></a>Nettoyer le déploiement 
 
-Exécutez hello suivant du groupe de ressources de commande tooremove hello, machine virtuelle et toutes les ressources.
+Exécutez la commande suivante pour supprimer le groupe de ressources, la machine virtuelle et toutes les ressources associées.
 
 ```azurecli
 az group delete --name MyResourceGroup --yes
@@ -45,25 +45,25 @@ az group delete --name MyResourceGroup --yes
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script utilise hello suivant de commandes toocreate un groupe de ressources, de réseau virtuel et de groupes de sécurité réseau. Chaque commande dans la table de hello lie documentation toocommand spécifique.
+Ce script utilise les commandes suivantes pour créer un groupe de ressources, un réseau virtuel et les groupes de sécurité réseau. Chaque commande de la table renvoie à une documentation spécifique.
 
 | Commande | Remarques |
 |---|---|
 | [az group create](/cli/azure/group#create) | Crée un groupe de ressources dans lequel toutes les ressources sont stockées. |
 | [az network vnet create](/cli/azure/network/vnet#create) | Crée un réseau virtuel et un sous-réseau frontal Azure. |
 | [az network subnet create](/cli/azure/network/vnet/subnet#create) | Crée des sous-réseaux principaux et DMZ. |
-| [az network public-ip create](/cli/azure/network/public-ip#create) | Crée un Bonjour de tooaccess adresse IP publique machine virtuelle à partir de hello Internet. |
+| [az network public-ip create](/cli/azure/network/public-ip#create) | Crée une adresse IP publique pour accéder à la machine virtuelle à partir d’Internet. |
 | [az network nic create](/cli/azure/network/nic#create) | Crée une interface réseau virtuelle et active le transfert IP pour celle-ci. |
 | [az network nsg create](/cli/azure/network/nsg#create) | Crée un groupe de sécurité réseau (NSG). |
-| [az network nsg rule create](/cli/azure/network/nsg/rule#create) | Crée des règles de groupe de sécurité réseau qui autorise les ports HTTP et HTTPS entrant toohello machine virtuelle. |
-| [az network vnet subnet update](/cli/azure/network/vnet/subnet#update)| Associe hello des groupes de sécurité réseau et toosubnets des tables de routage. |
+| [az network nsg rule create](/cli/azure/network/nsg/rule#create) | Crée des règles NSG qui autorisent des ports HTTP et HTTPS entrants sur la machine virtuelle. |
+| [az network vnet subnet update](/cli/azure/network/vnet/subnet#update)| Associe les NSG et les tables de routage aux sous-réseaux. |
 | [az network route-table create](/cli/azure/network/route-table#create)| Crée une table de routage pour tous les itinéraires. |
-| [az network route-table route create](/cli/azure/network/route-table/route#create)| Crée des itinéraires tooroute un trafic entre les sous-réseaux et hello Internet via hello machine virtuelle. |
-| [az vm create](/cli/azure/vm#create) | Crée une machine virtuelle et attache hello NIC tooit. Cette commande spécifie également hello machine virtuelle image toouse et les informations d’identification administratives. |
+| [az network route-table route create](/cli/azure/network/route-table/route#create)| Créer des itinéraires pour acheminer le trafic entre les sous-réseaux et Internet via la machine virtuelle. |
+| [az vm create](/cli/azure/vm#create) | Crée une machine virtuelle et lui associe la carte d’interface réseau. Cette commande spécifie également l’image de machine virtuelle à utiliser ainsi que les informations d’identification d’administration. |
 | [az group delete](/cli/azure/group#delete) | Supprime un groupe de ressources, ainsi que toutes ses ressources. |
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](/cli/azure/overview).
+Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](/cli/azure/overview).
 
-Vous trouverez des exemples de script CLI mise en réseau supplémentaires dans hello [documentation de vue d’ensemble de la mise en réseau Azure](../cli-samples.md)
+Vous pouvez trouver des exemples supplémentaires de scripts CLI de mise en réseau dans la [documentation Vue d’ensemble de la mise en réseau Azure](../cli-samples.md).

@@ -1,6 +1,6 @@
 ---
-title: aaaContainer solution de surveillance dans Azure journal Analytique | Documents Microsoft
-description: "Hello solution d’analyse de conteneur dans le journal Analytique vous aide à afficher et gérer vos Docker et les fenêtres hôtes de conteneur dans un emplacement unique."
+title: "Solution Container Monitoring d’Azure Log Analytics | Microsoft Docs"
+description: "La solution Container Monitoring de Log Analytics vous aide à afficher et à gérer vos hôtes de conteneur Docker et Windows dans un emplacement unique."
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -12,21 +12,21 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/18/2017
+ms.date: 09/20/2017
 ms.author: magoedte;banders
-ms.openlocfilehash: 2eed1dd81c22faef78a375fca3ebece9e5300c09
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 562a7a73e2d440c0c3e3e8ab9e94ffd6c1fba7d9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="container-monitoring-solution-in-log-analytics"></a>Solution Container Monitoring dans Log Analytics
 
 ![Symbole Containers](./media/log-analytics-containers/containers-symbol.png)
 
-Cet article décrit comment tooset configuration et utilisation hello solution d’analyse de conteneur dans le journal Analytique, ce qui vous permet d’afficher et gérer vos Docker et les fenêtres hôtes de conteneur dans un emplacement unique. Docker est un système logiciel de virtualisation utilisée conteneurs toocreate qui automatisent tootheir de déploiement de logiciel informatique infrastructure.
+Cet article explique comment configurer et utiliser la solution Container Monitoring de Log Analytics, qui vous permet d’afficher et de gérer vos hôtes de conteneur Docker et Windows dans un emplacement unique. Docker est un système de virtualisation logicielle utilisé pour créer des conteneurs qui automatisent le déploiement de logiciels dans leur infrastructure informatique.
 
-Hello solution montre quels conteneurs sont en cours d’exécution, image de conteneur qu’ils s’exécutent, et où les conteneurs sont en cours d’exécution. Vous pouvez afficher des informations d’audit détaillées montrant les commandes utilisées avec les conteneurs. Et, vous pouvez résoudre les conteneurs en affichant et en recherche de journaux centralisées sans avoir tooremotely vue Docker ou des hôtes Windows. Vous pouvez rechercher des conteneurs bruyants et consommant des ressources excessives sur un ordinateur hôte. Et vous pouvez consulter des informations centralisées sur le processeur, la mémoire, le stockage ainsi que l’utilisation et les performances du réseau. Sur les ordinateurs exécutant Windows, vous pouvez centraliser et comparer les journaux des conteneurs Windows Server, Hyper-V et Docker. solution de Hello prend en charge hello suivant orchestrators de conteneur :
+La solution montre les conteneurs qui sont actuellement exécutés, l’image conteneur qu’ils exécutent et où ils s’exécutent. Vous pouvez afficher des informations d’audit détaillées montrant les commandes utilisées avec les conteneurs. Vous pouvez résoudre des problèmes de conteneurs en consultant des journaux centralisés et en y effectuant des recherches sans devoir afficher à distance les hôtes Docker ou Windows. Vous pouvez rechercher des conteneurs bruyants et consommant des ressources excessives sur un ordinateur hôte. Et vous pouvez consulter des informations centralisées sur le processeur, la mémoire, le stockage ainsi que l’utilisation et les performances du réseau. Sur les ordinateurs exécutant Windows, vous pouvez centraliser et comparer les journaux des conteneurs Windows Server, Hyper-V et Docker. La solution prend en charge les orchestrateurs de conteneur suivants :
 
 - Docker Swarm
 - DC/OS
@@ -35,16 +35,16 @@ Hello solution montre quels conteneurs sont en cours d’exécution, image de co
 - Red Hat OpenShift
 
 
-Hello diagramme suivant montre les relations entre différents hôtes de conteneurs et les agents OMS hello.
+Le schéma suivant illustre les relations entre les différents hôtes de conteneurs et agents dans OMS.
 
 ![Schéma des conteneurs](./media/log-analytics-containers/containers-diagram.png)
 
-## <a name="system-requirements"></a>Conditions requises pour le système
+## <a name="system-requirements-and-supported-platforms"></a>Configuration requise et plateformes prises en charge
 
-Avant de commencer, passez en revue hello suivant tooverify détails préalables hello.
+Avant de commencer, prenez connaissance des informations suivantes pour vérifier que les conditions préalables sont remplies.
 
 ### <a name="container-monitoring-solution-support-for-docker-orchestrator-and-os-platform"></a>Prise en charge de solution de surveillance de conteneur pour la plateforme Docker Orchestrator et celle du système d’exploitation
-Hello tableau suivant indique hello orchestration de Docker et le système d’exploitation prise en charge de l’inventaire de conteneur, les performances et les journaux avec Analytique de journal d’analyse.   
+Le tableau suivant présente l’orchestration de Docker et la prise en charge de la surveillance du système d’exploitation pour ce qui est des journaux, de la performance et de l’inventaire du conteneur avec Log Analytics.   
 
 | | ACS | Linux | Windows | Conteneur<br>Inventaire | Image<br>Inventaire | Nœud<br>Inventaire | Conteneur<br>Performances | Conteneur<br>Événement | Événement<br>Journal | Conteneur<br>Journal |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
@@ -59,7 +59,7 @@ Hello tableau suivant indique hello orchestration de Docker et le système d’e
 
 ### <a name="docker-versions-supported-on-linux"></a>Versions de Docker prises en charge sur Linux
 
-- Docker 1.11 too1.13
+- Docker 1.11 à 1.13
 - Docker CE et EE v17.06
 
 ### <a name="x64-linux-distributions-supported-as-container-hosts"></a>Distributions Linux x64 suivantes prises en charge en tant qu’hôtes de conteneur
@@ -73,8 +73,9 @@ Hello tableau suivant indique hello orchestration de Docker et le système d’e
 - SLES 12
 - RHEL 7.2 et 7.3
 - Red Hat OpenShift Container Platform (OCP) 3.4 et 3.5
-- ACS mésosphère DC/OS 1.7.3 too1.8.8
-- ACS Kubernetes 1.4.5 too1.6
+- ACS Mesosphere DC/OS 1.7.3 à 1.8.8
+- ACS Kubernetes 1.4.5 à 1.6
+    - Les événements Kubernetes, l’inventaire Kubernetes et les processus de conteneur sont uniquement pris en charge par l’Agent OMS pour Linux 1.4.1-45 et versions ultérieures.
 - ACS Docker Swarm
 
 ### <a name="supported-windows-operating-system"></a>Système d’exploitation Windows pris en charge
@@ -87,186 +88,72 @@ Hello tableau suivant indique hello orchestration de Docker et le système d’e
 - Docker 1.12 et 1.13
 - Docker 17.03.0 et versions ultérieures
 
-## <a name="installing-and-configuring-hello-solution"></a>L’installation et la configuration de solution de hello
-Utilisez hello suivant tooinstall des informations et configurer une solution de hello.
+## <a name="installing-and-configuring-the-solution"></a>Installation et configuration de la solution
+Utilisez les informations suivantes pour installer et configurer la solution.
 
-1. Ajouter hello conteneur analyse solution tooyour espace de travail OMS à partir de [Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.ContainersOMS?tab=Overview) ou à l’aide de hello est décrite dans [solutions Analytique de journal ajouter à partir de la galerie des Solutions de hello](log-analytics-add-solutions.md).
+1. Ajoutez la solution Container Monitoring à votre espace de travail OMS depuis la [Place de marché Azure](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.ContainersOMS?tab=Overview) ou en procédant de la manière décrite dans [Ajouter des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md).
 
-2. Installez et utilisez Docker avec un agent OMS.  Selon votre système d’exploitation, vous pouvez choisir parmi hello méthodes suivantes :
+2. Installez et utilisez Docker avec un agent OMS. Pour configurer votre agent, vous pouvez utiliser les méthodes suivantes, selon votre système d’exploitation et votre orchestrateur Docker.
+  - Pour les hôtes autonomes :
+    - Sur les systèmes d’exploitation Linux pris en charge, installez et exécutez Docker, puis installez et configurez [l’Agent OMS pour Linux](log-analytics-agent-linux.md).  
+    - Sur CoreOS, vous ne pouvez pas exécuter l’Agent OMS pour Linux. Au lieu de cela, vous exécutez une version en conteneur de l’Agent OMS pour Linux. Si vous utilisez des conteneurs dans Azure Government Cloud, consultez les sections relatives aux [hôtes de conteneurs Linux, y compris CoreOS](#for-all-linux-container-hosts-including-coreos) ou aux [hôtes de conteneurs Linux Azure Government, y compris CoreOS](#for-all-azure-government-linux-container-hosts-including-coreos).
+    - Sur Windows Server 2016 et Windows 10, installez le moteur et le client Docker, puis connectez un agent afin de collecter les données et les transmettre à Log Analytics. Consultez [Installer et configurer des hôtes de conteneur Windows](#install-and-configure-windows-container-hosts) si vous avez un environnement Windows.
+  - Pour l’orchestration Docker à plusieurs hôtes :
+    - Si vous disposez d’un environnement Red Hat OpenShift, consultez [Configurer un agent OMS pour Red Hat OpenShift](#configure-an-oms-agent-for-red-hat-openshift).
+    - Si vous avez un cluster Kubernetes qui utilise Azure Container Service, consultez [Configurer un agent OMS pour Kubernetes](#configure-an-oms-agent-for-kubernetes).
+    - Si vous possédez un cluster DC/OS Azure Container Service, consultez l’article [Surveiller un cluster DC/OS Azure Container Service avec Operations Management Suite](../container-service/dcos-swarm/container-service-monitoring-oms.md).
+    - Si vous avez un environnement en mode Docker Swarm, apprenez en plus en lisant [Configurer un agent OMS pour Docker Swarm](#configure-an-oms-agent-for-docker-swarm).
+    - Si vous utilisez des conteneurs avec Service Fabric, consultez [Vue d’ensemble d’Azure Service Fabric](../service-fabric/service-fabric-overview.md).
 
-  * Sur les systèmes d’exploitation Linux pris en charge, vous devez installer et exécuter Docker et puis installer et configurer hello [Agent OMS pour Linux](log-analytics-agent-linux.md).  
-  * CoreOS, Impossible d’exécuter hello Agent OMS pour Linux. Au lieu de cela, vous exécutez une version en conteneur Hello Agent OMS pour Linux. Si vous utilisez des conteneurs dans Azure Government Cloud, consultez les sections relatives aux [hôtes de conteneurs Linux, y compris CoreOS](#for-all-linux-container-hosts-including-coreos) ou aux [hôtes de conteneurs Linux Azure Government, y compris CoreOS](#for-all-azure-government-linux-container-hosts-including-coreos).
-  * Sur Windows Server 2016 et Windows 10, installez hello moteur Docker et le client, puis se connecter informations toogather agent et l’envoyer tooLog Analytique.  
-
-### <a name="container-services"></a>Services de conteneur
-
-- Si vous disposez d’un environnement Red Hat OpenShift, consultez [Configurer un agent OMS pour Red Hat OpenShift](#configure-an-oms-agent-for-red-hat-openshift).
-- Si vous avez un cluster Kubernetes à l’aide de hello Service de conteneur Azure, consultez [surveiller un cluster du Service de conteneur Azure avec Microsoft Operations Management Suite (OMS)](../container-service/kubernetes/container-service-kubernetes-oms.md).
-- Si vous possédez un cluster DC/OS Azure Container Service, consultez l’article [Surveiller un cluster DC/OS Azure Container Service avec Operations Management Suite](../container-service/dcos-swarm/container-service-monitoring-oms.md).
-- Si vous avez un environnement en mode Docker Swarm, apprenez en plus en lisant [Configurer un agent OMS pour Docker Swarm](#configure-an-oms-agent-for-docker-swarm).
-- Si vous utilisez des conteneurs avec Service Fabric, consultez [Vue d’ensemble d’Azure Service Fabric](../service-fabric/service-fabric-overview.md).
-- Hello de révision [moteur Docker sur Windows](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon) article pour plus d’informations sur la façon tooinstall et configurer vos moteurs Docker sur les ordinateurs exécutant Windows.
+Examinez l’article relatif au [moteur Docker sur Windows](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon) pour en savoir plus sur l’installation et la configuration de vos moteurs Docker sur les ordinateurs exécutant Windows.
 
 > [!IMPORTANT]
-> Docker doit être en cours d’exécution **avant** vous installez hello [Agent OMS pour Linux](log-analytics-agent-linux.md) sur vos ordinateurs hôtes de conteneur. Si vous avez déjà installé l’agent de hello avant d’installer Docker, vous devez tooreinstall hello Agent OMS pour Linux. Pour plus d’informations sur Docker, consultez hello [site Web de Docker](https://www.docker.com).
+> Docker doit être en cours d’exécution **avant** l’installation de l’[Agent OMS pour Linux](log-analytics-agent-linux.md) sur vos hôtes de conteneur. Si vous avez installé l’agent avant d’installer Docker, vous devez réinstaller l’agent OMS pour Linux. Pour plus d’informations sur Docker, voir le [site web Docker](https://www.docker.com).
 
 
-## <a name="linux-container-hosts"></a>Hôtes de conteneur Linux
+### <a name="install-and-configure-linux-container-hosts"></a>Installer et configurer des hôtes de conteneur Linux
 
-Une fois que vous avez installé Docker, utilisez hello suivant les paramètres de votre agent de hello conteneur hôte tooconfigure pour une utilisation avec Docker. Vous devez commencer votre ID d’espace de travail OMS et la clé que vous pouvez trouver dans hello portail Azure. Dans votre espace de travail, cliquez sur **Quick Start** > **ordinateurs** tooview votre **ID de l’espace de travail** et **clé primaire**.  Copiez-collez ces deux valeurs dans votre éditeur favori.
+Après avoir installé Docker, utilisez les paramètres suivants pour votre hôte de conteneur afin de configurer l’agent en vue d’une utilisation avec Docker. Tout d’abord, vous avez besoin de l’ID et de la clé de votre espace de travail OMS, qui se trouvent dans le portail Azure. Dans votre espace de travail, cliquez sur **Démarrage rapide** > **Ordinateurs** pour afficher votre **ID d’espace de travail** et votre **Clé primaire**.  Copiez-collez ces deux valeurs dans votre éditeur favori.
 
-### <a name="for-all-linux-container-hosts-except-coreos"></a>Pour tous les hôtes de conteneur Linux, à l’exception de CoreOS
+**Pour tous les hôtes de conteneur Linux, à l’exception de CoreOS :**
 
-- Pour plus d’informations sur la façon dont tooinstall hello Agent OMS pour Linux, consultez [connecter vos ordinateurs Linux de tooOperations Management Suite (OMS)](log-analytics-agent-linux.md).
+- Pour plus d’informations sur l’installation de l’agent OMS pour Linux, consultez [Connecter des ordinateurs Linux à Operations Management Suite (OMS)](log-analytics-agent-linux.md).
 
-### <a name="for-all-linux-container-hosts-including-coreos"></a>Pour tous les hôtes de conteneur Linux, avec CoreOS
+**Pour tous les hôtes de conteneur Linux, avec CoreOS :**
 
-Démarrer le conteneur d’OMS hello que vous souhaitez toomonitor. Modifier et utiliser hello l’exemple suivant :
+Démarrez le conteneur OMS que vous souhaitez analyser. Modifiez et utilisez l’exemple suivant :
 
 ```
 sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -e WSID="your workspace id" -e KEY="your key" -h=`hostname` -p 127.0.0.1:25225:25225 --name="omsagent" --restart=always microsoft/oms
 ```
 
-### <a name="for-all-azure-government-linux-container-hosts-including-coreos"></a>Pour tous les hôtes de conteneur Linux Azure Government, y compris CoreOS
+**Pour tous les hôtes de conteneur Linux Azure Government, y compris CoreOS :**
 
-Démarrer le conteneur d’OMS hello que vous souhaitez toomonitor. Modifier et utiliser hello l’exemple suivant :
+Démarrez le conteneur OMS que vous souhaitez analyser. Modifiez et utilisez l’exemple suivant :
 
 ```
 sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v /var/log:/var/log -e WSID="your workspace id" -e KEY="your key" -e DOMAIN="opinsights.azure.us" -p 127.0.0.1:25225:25225 -p 127.0.0.1:25224:25224/udp --name="omsagent" -h=`hostname` --restart=always microsoft/oms
 ```
 
-### <a name="switching-from-using-an-installed-linux-agent-tooone-in-a-container"></a>Basculement à partir de l’aide d’un tooone de l’agent Linux installé dans un conteneur
-Si vous utilisé agent de hello directement installé précédemment et que vous souhaitez utiliser tooinstead un agent en cours d’exécution dans un conteneur, vous devez d’abord supprimer hello Agent OMS pour Linux. Consultez [désinstallation hello Agent OMS pour Linux](log-analytics-agent-linux.md#uninstalling-the-oms-agent-for-linux) toounderstand comment toosuccessfully désinstaller hello agent.  
+**Passage de l’utilisation d’un agent Linux installé à un agent exécuté dans un conteneur**
 
-### <a name="configure-an-oms-agent-for-docker-swarm"></a>Configurer un agent OMS pour Docker Swarm
+Si vous utilisiez précédemment l’agent directement installé et souhaitez désormais utiliser un agent qui s’exécute dans un conteneur, vous devez commencer par supprimer l’agent OMS pour Linux. Pour comprendre comment désinstaller l’agent, consultez [Désinstallation de l’Agent OMS pour Linux](log-analytics-agent-linux.md#uninstalling-the-oms-agent-for-linux).  
 
-Vous pouvez exécuter hello Agent OMS en tant qu’un service global sur Docker Swarm. Utilisez hello suivant informations toocreate un service de l’Agent OMS. Vous devez tooinsert votre ID d’espace de travail OMS et la clé primaire.
+#### <a name="configure-an-oms-agent-for-docker-swarm"></a>Configurer un agent OMS pour Docker Swarm
 
-- Exécutez la procédure suivante hello sur le nœud principal de hello.
+Vous pouvez exécuter l’agent OMS en tant que service global sur Docker Swarm. Utilisez les informations suivantes pour créer un service d’agent OMS. Vous devez insérer l’ID de votre espace de travail OMS et votre clé primaire.
+
+- Exécutez la commande suivante sur le nœud principal.
 
     ```
     sudo docker service create  --name omsagent --mode global  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock  -e WSID="<WORKSPACE ID>" -e KEY="<PRIMARY KEY>" -p 25225:25225 -p 25224:25224/udp  --restart-condition=on-failure microsoft/oms
     ```
 
-### <a name="configure-an-oms-agent-for-red-hat-openshift"></a>Configurer un agent OMS pour Red Hat OpenShift
-Il existe trois façons tooadd hello Agent OMS tooRed Hat OpenShift toostart collecte conteneur analyse des données.
+##### <a name="secure-secrets-for-docker-swarm"></a>Sécuriser les secrets pour Docker Swarm
 
-* [Installer hello Agent OMS pour Linux](log-analytics-agent-linux.md) directement sur chaque nœud OpenShift  
-* [Activer l’extension de machine virtuelle Log Analytics](log-analytics-azure-vm-extension.md) sur chaque nœud OpenShift résidant dans Azure  
-* Installer hello Agent OMS en tant qu’un ensemble de démon OpenShift  
+Pour Docker Swarm, une fois que vous avez créé le secret de l’ID de l’espace de travail et de la clé primaire, utilisez les informations suivantes pour créer vos informations confidentielles.
 
-Dans cette section nous couvrent hello étapes tooinstall requis hello OMS Agent comme un ensemble de démon OpenShift.  
-
-1. Ouverture de session toohello OpenShift nœud et copie hello yaml fichier maître [ocp-omsagent.yaml](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-omsagent.yaml) à partir de GitHub tooyour maître de nœud et de modifier la valeur hello avec votre ID d’espace de travail OMS et votre clé primaire.
-2. Exécution d’un projet hello suivant de commandes toocreate pour OMS et définir le compte d’utilisateur hello.
-
-    ```
-    oadm new-project omslogging --node-selector='zone=default'
-    oc project omslogging  
-    oc create serviceaccount omsagent  
-    oadm policy add-cluster-role-to-user cluster-reader   system:serviceaccount:omslogging:omsagent  
-    oadm policy add-scc-to-user privileged system:serviceaccount:omslogging:omsagent  
-    ```
-
-4. toodeploy hello démon-set, exécutez la commande suivante hello :
-
-    `oc create -f ocp-omsagent.yaml`
-
-5. tooverify, il est configuré et fonctionne correctement, tapez hello qui suit :
-
-    `oc describe daemonset omsagent`  
-
-    et hello sortie doit ressembler à :
-
-    ```
-    [ocpadmin@khm-0 ~]$ oc describe ds oms  
-    Name:           oms  
-    Image(s):       microsoft/oms  
-    Selector:       name=omsagent  
-    Node-Selector:  zone=default  
-    Labels:         agentVersion=1.4.0-12  
-                    dockerProviderVersion=10.0.0-25  
-                    name=omsagent  
-    Desired Number of Nodes Scheduled: 3  
-    Current Number of Nodes Scheduled: 3  
-    Number of Nodes Misscheduled: 0  
-    Pods Status:    3 Running / 0 Waiting / 0 Succeeded / 0 Failed  
-    No events.  
-    ```
-
-Si vous souhaitez toouse secrets toosecure votre ID d’espace de travail OMS et la clé primaire lors de l’utilisation du fichier de jeu de démon yaml hello Agent OMS, effectuer hello comme suit.
-
-1. Ouverture de session toohello OpenShift nœud et copie hello yaml fichier maître [ocp-ds-omsagent.yaml](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-ds-omsagent.yaml) et la clé secrète de la génération du script [ocp-secretgen.sh](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-secretgen.sh) à partir de GitHub.  Ce script générera le fichier d’yaml hello secrets pour l’ID d’espace de travail OMS et la clé primaire toosecure votre SÉCRÉTER plus d’informations.  
-2. Exécution d’un projet hello suivant de commandes toocreate pour OMS et définir le compte d’utilisateur hello. secret Hello génération du script vous demande votre ID d’espace de travail OMS <WSID> et la clé primaire <KEY> à la fin, il crée des fichiers d’ocp-secret.yaml hello.  
-
-    ```
-    oadm new-project omslogging --node-selector='zone=default'  
-    oc project omslogging  
-    oc create serviceaccount omsagent  
-    oadm policy add-cluster-role-to-user cluster-reader   system:serviceaccount:omslogging:omsagent  
-    oadm policy add-scc-to-user privileged system:serviceaccount:omslogging:omsagent  
-    ```
-
-4. Déployer le fichier de secret principal hello en exécutant hello suivante :
-
-    `oc create -f ocp-secret.yaml`
-
-5. Vérifier le déploiement en exécutant hello suivante :
-
-    `oc describe secret omsagent-secret`  
-
-    et hello sortie doit ressembler à :  
-
-    ```
-    [ocpadmin@khocp-master-0 ~]$ oc describe ds oms  
-    Name:           oms  
-    Image(s):       microsoft/oms  
-    Selector:       name=omsagent  
-    Node-Selector:  zone=default  
-    Labels:         agentVersion=1.4.0-12  
-                    dockerProviderVersion=10.0.0-25  
-                    name=omsagent  
-    Desired Number of Nodes Scheduled: 3  
-    Current Number of Nodes Scheduled: 3  
-    Number of Nodes Misscheduled: 0  
-    Pods Status:    3 Running / 0 Waiting / 0 Succeeded / 0 Failed  
-    No events.  
-    ```
-
-6. Déployer le fichier de jeu de démon yaml de l’Agent OMS hello en exécutant hello suivante :
-
-    `oc create -f ocp-ds-omsagent.yaml`  
-
-7. Vérifier le déploiement en exécutant hello suivante :
-
-    `oc describe ds oms`
-
-    et hello sortie doit ressembler à :
-
-    ```
-    [ocpadmin@khocp-master-0 ~]$ oc describe secret omsagent-secret  
-    Name:           omsagent-secret  
-    Namespace:      omslogging  
-    Labels:         <none>  
-    Annotations:    <none>  
-
-    Type:   Opaque  
-
-     Data  
-     ====  
-     KEY:    89 bytes  
-     WSID:   37 bytes  
-    ```
-
-### <a name="secure-your-secret-information-for-docker-swarm-and-kubernetes"></a>Sécuriser vos informations secrètes pour Docker Swarm et Kubernetes
-
-Vous pouvez sécuriser l’ID d’espace de travail OMS et les clés primaires pour les services de conteneur Docker Swarm et Kubernetes.
-
-#### <a name="secure-secrets-for-docker-swarm"></a>Sécuriser les secrets pour Docker Swarm
-
-Pour Docker Swarm, une fois le secret hello pour l’ID de l’espace de travail et la clé primaire est créé, vous pouvez exécuter hello créer le service de Docker hello pour OMSagent. Utilisez hello suivant informations toocreate vos informations confidentielles.
-
-1. Exécutez la procédure suivante hello sur le nœud principal de hello.
+1. Exécutez la commande suivante sur le nœud principal.
 
     ```
     echo "WSID" | docker secret create WSID -
@@ -285,47 +172,157 @@ Pour Docker Swarm, une fois le secret hello pour l’ID de l’espace de travail
     l9rh3n987g9c45zffuxdxetd9   KEY                 38 minutes ago      38 minutes ago
     ```
 
-3. Exécution hello suivant commande toomount hello secrets toohello placées dans des conteneurs de l’Agent OMS.
+3. Exécutez la commande suivante pour monter les secrets sur l’agent OMS en conteneur.
 
     ```
     sudo docker service create  --name omsagent --mode global  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --secret source=WSID,target=WSID --secret source=KEY,target=KEY  -p 25225:25225 -p 25224:25224/udp --restart-condition=on-failure microsoft/oms
     ```
 
-#### <a name="secure-secrets-for-kubernetes-with-yaml-files"></a>Sécuriser des secrets pour Kubernetes avec des fichiers yaml
+#### <a name="configure-an-oms-agent-for-red-hat-openshift"></a>Configurer un agent OMS pour Red Hat OpenShift
+Il existe trois façons d’ajouter l’agent OMS pour Red Hat OpenShift dans le but de démarrer la collecte des données de surveillance des conteneurs.
 
-Pour Kubernetes, vous utilisez un fichier de script toogenerate hello secrets yaml pour votre ID d’espace de travail et la clé primaire. À hello [OMS Docker Kubernetes GitHub](https://github.com/Microsoft/OMS-docker/tree/master/Kubernetes) page, il existe des fichiers que vous pouvez utiliser avec ou sans vos informations confidentielles.
+* [Installer l’agent OMS pour Linux](log-analytics-agent-linux.md) directement sur chaque nœud OpenShift  
+* [Activer l’extension de machine virtuelle Log Analytics](log-analytics-azure-vm-extension.md) sur chaque nœud OpenShift résidant dans Azure  
+* Installer l’agent OMS comme un daemon-set OpenShift  
 
-- Hello DaemonSet de l’Agent OMS par défaut n’a pas d’informations confidentielles (omsagent.yaml)
-- fichier d’yaml Hello DaemonSet de l’Agent OMS utilise des informations confidentielles (omsagent-ds-secrets.yaml) avec secret fichier génération de scripts toogenerate hello secrets yaml (omsagentsecret.yaml).
+Dans cette section, nous allons aborder les étapes nécessaires à l’installation de l’agent OMS comme un daemon-set OpenShift.  
 
-Vous pouvez choisir toocreate omsagent DaemonSets avec ou sans les clés secrètes.
+1. Connectez-vous au nœud principal OpenShift, puis copiez le fichier yaml [ocp-omsagent.yaml](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-omsagent.yaml) de GitHub vers votre nœud principal. Ensuite, remplacez la valeur par l’ID de votre espace de travail OMS et votre clé primaire.
+2. Exécutez les commandes suivantes pour créer un projet OMS et configurer le compte d’utilisateur.
 
-##### <a name="default-omsagent-daemonset-yaml-file-without-secrets"></a>Le fichier yaml par défaut DaemonSet de l’agent OMS sans secrets
+    ```
+    oadm new-project omslogging --node-selector='zone=default'
+    oc project omslogging  
+    oc create serviceaccount omsagent  
+    oadm policy add-cluster-role-to-user cluster-reader   system:serviceaccount:omslogging:omsagent  
+    oadm policy add-scc-to-user privileged system:serviceaccount:omslogging:omsagent  
+    ```
 
-- Hello fichier par défaut OMS Agent DaemonSet yaml, remplacez hello `<WSID>` et `<KEY>` tooyour WSID et la clé. Copiez nœud maître du tooyour fichier hello et suivante d’exécution hello :
+4. Pour déployer le daemon-set, exécutez la commande suivante :
+
+    `oc create -f ocp-omsagent.yaml`
+
+5. Pour vérifier qu’il est configuré et fonctionne correctement, tapez la commande suivante :
+
+    `oc describe daemonset omsagent`  
+
+    La sortie doit ressembler à ceci :
+
+    ```
+    [ocpadmin@khm-0 ~]$ oc describe ds oms  
+    Name:           oms  
+    Image(s):       microsoft/oms  
+    Selector:       name=omsagent  
+    Node-Selector:  zone=default  
+    Labels:         agentVersion=1.4.0-12  
+                    dockerProviderVersion=10.0.0-25  
+                    name=omsagent  
+    Desired Number of Nodes Scheduled: 3  
+    Current Number of Nodes Scheduled: 3  
+    Number of Nodes Misscheduled: 0  
+    Pods Status:    3 Running / 0 Waiting / 0 Succeeded / 0 Failed  
+    No events.  
+    ```
+
+Si vous souhaitez utiliser des secrets pour sécuriser l’ID de votre espace de travail OMS et votre clé primaire lorsque vous utilisez le fichier yaml daemon-set de l’agent OMS, effectuez les étapes suivantes :
+
+1. Connectez-vous au nœud principal OpenShift, puis copiez le fichier yaml [ocp-ds-omsagent.yaml](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-ds-omsagent.yaml) et le script de génération de secrets [ocp-secretgen.sh](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-secretgen.sh) à partir de GitHub.  Ce script va générer le fichier yaml de secrets pour l’ID d’espace de travail OMS et la clé primaire afin de sécuriser vos informations secrètes.  
+2. Exécutez les commandes suivantes pour créer un projet OMS et configurer le compte d’utilisateur. Le script de génération de secrets vous demande de fournir l’ID d’espace de travail OMS <WSID> et la clé primaire <KEY> afin de créer le fichier ocp-secret.yaml.  
+
+    ```
+    oadm new-project omslogging --node-selector='zone=default'  
+    oc project omslogging  
+    oc create serviceaccount omsagent  
+    oadm policy add-cluster-role-to-user cluster-reader   system:serviceaccount:omslogging:omsagent  
+    oadm policy add-scc-to-user privileged system:serviceaccount:omslogging:omsagent  
+    ```
+
+4. Déployez le fichier de secret en exécutant la commande suivante :
+
+    `oc create -f ocp-secret.yaml`
+
+5. Vérifiez le déploiement en exécutant la commande suivante :
+
+    `oc describe secret omsagent-secret`  
+
+    La sortie doit ressembler à ceci :  
+
+    ```
+    [ocpadmin@khocp-master-0 ~]$ oc describe ds oms  
+    Name:           oms  
+    Image(s):       microsoft/oms  
+    Selector:       name=omsagent  
+    Node-Selector:  zone=default  
+    Labels:         agentVersion=1.4.0-12  
+                    dockerProviderVersion=10.0.0-25  
+                    name=omsagent  
+    Desired Number of Nodes Scheduled: 3  
+    Current Number of Nodes Scheduled: 3  
+    Number of Nodes Misscheduled: 0  
+    Pods Status:    3 Running / 0 Waiting / 0 Succeeded / 0 Failed  
+    No events.  
+    ```
+
+6. Déployer le fichier yaml daemon-set de l’agent OMS en exécutant la commande suivante :
+
+    `oc create -f ocp-ds-omsagent.yaml`  
+
+7. Vérifiez le déploiement en exécutant la commande suivante :
+
+    `oc describe ds oms`
+
+    La sortie doit ressembler à ceci :
+
+    ```
+    [ocpadmin@khocp-master-0 ~]$ oc describe secret omsagent-secret  
+    Name:           omsagent-secret  
+    Namespace:      omslogging  
+    Labels:         <none>  
+    Annotations:    <none>  
+
+    Type:   Opaque  
+
+     Data  
+     ====  
+     KEY:    89 bytes  
+     WSID:   37 bytes  
+    ```
+
+#### <a name="configure-an-oms-linux-agent-for-kubernetes"></a>Configurer un agent OMS Linux pour Kubernetes
+
+Pour Kubernetes, vous utilisez un script afin de générer le fichier yaml de secrets pour votre ID d’espace de travail et votre clé primaire pour installer l’agent OMS pour Linux. Sur la page [OMS Docker Kubernetes GitHub](https://github.com/Microsoft/OMS-docker/tree/master/Kubernetes) (GitHub Kubernetes Docker OMS), il existe des fichiers que vous pouvez utiliser avec ou sans vos informations secrètes.
+
+- Le DaemonSet par défaut de l’agent OMS pour Linux ne comprend pas d’informations secrètes (omsagent.yaml).
+- Le fichier yaml DaemonSet de l’agent OMS pour Linux utilise les informations secrètes (omsagent-ds-secrets.yaml) avec des scripts de génération de secrets pour générer le fichier yaml de secrets (omsagentsecret.yaml).
+
+Vous pouvez choisir de créer le DaemonSet de l’agent OMS avec ou sans secrets.
+
+**Fichier yaml DaemonSet par défaut de l’agent OMS sans secrets**
+
+- Pour le fichier yaml par défaut DaemonSet de l’agent OMS, remplacez `<WSID>` et `<KEY>` par votre ID d’espace de travail et clé. Copiez le fichier sur votre nœud principal et exécutez la commande suivante :
 
     ```
     sudo kubectl create -f omsagent.yaml
     ```
 
-##### <a name="default-omsagent-daemonset-yaml-file-with-secrets"></a>Le fichier yaml par défaut DaemonSet de l’agent OMS avec secrets
+**Fichier yaml DaemonSet par défaut de l’agent OMS avec secrets**
 
-1. toouse DaemonSet de l’Agent OMS à l’aide des informations confidentielles, les secrets hello d’abord créer.
-    1. Copiez le script de hello et fichier de modèle de secret principal et assurez-vous qu’ils sont sur hello même répertoire.
+1. Pour utiliser le DaemonSet de l’agent OMS à l’aide des informations secrètes, créez d’abord les secrets.
+    1. Copiez le fichier de modèle de secret et le script, et assurez-vous qu’ils se trouvent dans le même répertoire.
         - Script de génération de secrets - secret-gen.sh
         - Modèle de secret - secret-template.yaml
-    2. Exécutez le script de hello comme hello l’exemple suivant. script de Hello demande hello ID d’espace de travail OMS et la clé primaire et une fois que vous les entrez, script de hello crée un fichier de secret principal yaml, vous pouvez l’exécuter.   
+    2. Exécutez le script, comme l’exemple suivant. Le script demande l’ID d’espace de travail OMS et la clé primaire, et une fois que vous les entrez, le script crée un fichier .yaml de secrets que vous pouvez exécuter.   
 
         ```
         #> sudo bash ./secret-gen.sh
         ```
 
-    3. Créer des pod de secrets hello en exécutant hello suivante :
+    3. Créez le pod de secrets en exécutant la commande suivante :
         ```
         sudo kubectl create -f omsagentsecret.yaml
         ```
 
-    4. tooverify, exécutez hello suivante :
+    4. Pour vérifier, exécutez la commande suivante :
 
         ```
         keiko@ubuntu16-13db:~# sudo kubectl get secrets
@@ -361,7 +358,7 @@ Vous pouvez choisir toocreate omsagent DaemonSets avec ou sans les clés secrèt
 
     5. Créer votre DaemonsSet de l’agent OMS en exécutant ``` sudo kubectl create -f omsagent-ds-secrets.yaml ```
 
-2. Vérifiez que hello que daemonset de l’Agent OMS est en cours d’exécution, toohello comme suit :
+2. Vérifiez que le DaemonSet de l’agent OMS s’exécute, comme ce qui suit :
 
     ```
     keiko@ubuntu16-13db:~# sudo kubectl get ds omsagent
@@ -373,7 +370,7 @@ Vous pouvez choisir toocreate omsagent DaemonSets avec ou sans les clés secrèt
     ```
 
 
-Pour Kubernetes, utilisez un fichier de script toogenerate hello secrets yaml pour l’ID de l’espace de travail et la clé primaire. Hello utilisez informations exemple avec hello suivantes [omsagent yaml fichier](https://github.com/Microsoft/OMS-docker/blob/master/Kubernetes/omsagent.yaml) toosecure vos informations confidentielles.
+Pour Kubernetes, utilisez un script afin de générer le fichier yaml de secrets pour l’ID d’espace de travail et la clé primaire pour l’agent OMS pour Linux. Utilisez les informations de l’exemple suivant avec le [fichier yaml de l’agent OMS](https://github.com/Microsoft/OMS-docker/blob/master/Kubernetes/omsagent.yaml) pour sécuriser vos informations secrètes.
 
 ```
 keiko@ubuntu16-13db:~# sudo kubectl describe secrets omsagent-secret
@@ -390,15 +387,109 @@ WSID:   36 bytes
 KEY:    88 bytes
 ```
 
-## <a name="windows-container-hosts"></a>Hôtes de conteneur Windows
+#### <a name="configure-an-oms-agent-for-windows-kubernetes"></a>Configurer un agent OMS pour Windows Kubernetes
+Pour Windows Kubernetes, vous utilisez un script afin de générer le fichier yaml de secrets pour votre ID d’espace de travail et votre clé primaire pour installer l’agent OMS. Sur la page [OMS Docker Kubernetes GitHub](https://github.com/Microsoft/OMS-docker/tree/master/Kubernetes/windows) (GitHub Kubernetes Docker OMS), il existe des fichiers que vous pouvez utiliser avec vos informations secrètes.  Vous devez installer l’agent OMS séparément pour les nœuds principaux et d’agent.  
 
-### <a name="preparation-before-installing-windows-agents"></a>Préparation préalable à l’installation des agents Windows
+1. Pour utiliser le DaemonSet de l’agent OMS à l’aide des informations secrètes sur le nœud principal, commencez par vous connecter et par créer les secrets.
+    1. Copiez le fichier de modèle de secret et le script, et assurez-vous qu’ils se trouvent dans le même répertoire.
+        - Script de génération de secrets - secret-gen.sh
+        - Modèle de secret - secret-template.yaml
 
-Avant d’installer des agents sur les ordinateurs exécutant Windows, vous devez le service de Docker tooconfigure hello. configuration de Hello autorise hello Windows hello ou l’agent Analytique de journal machine virtuelle extension toouse hello de socket TCP de Docker afin que les agents hello peuvent accéder au démon Docker de hello à distance et les données toocapture l’analyse.
+    2. Exécutez le script, comme l’exemple suivant. Le script demande l’ID d’espace de travail OMS et la clé primaire, et une fois que vous les entrez, le script crée un fichier .yaml de secrets que vous pouvez exécuter.   
 
-#### <a name="toostart-docker-and-verify-its-configuration"></a>toostart Docker et vérifiez sa configuration.
+        ```
+        #> sudo bash ./secret-gen.sh
+        ```
+    3. Créer votre DaemonsSet de l’agent OMS en exécutant ``` kubectl create -f omsagentsecret.yaml ```
+    4. Pour vérifier, exécutez la commande suivante :
+    
+        ``` 
+        root@ubuntu16-13db:~# kubectl get secrets
+        ```
 
-Il existe tooset étapes nécessaires de TCP, canal nommé pour Windows Server :
+        La sortie doit ressembler à :
+
+        ```
+        NAME                  TYPE                                  DATA      AGE
+        default-token-gvl91   kubernetes.io/service-account-token   3         50d
+        omsagent-secret       Opaque                                2         1d
+        root@ubuntu16-13db:~# kubectl describe secrets omsagent-secret
+        Name:           omsagent-secret
+        Namespace:      default
+        Labels:         <none>
+        Annotations:    <none>
+    
+        Type:   Opaque
+    
+        Data
+        ====
+        WSID:   36 bytes
+        KEY:    88 bytes 
+        ```
+
+    5. Créer votre DaemonsSet de l’agent OMS en exécutant ```kubectl create -f ws-omsagent-de-secrets.yaml```
+
+2. Vérifiez que le DaemonSet de l’agent OMS s’exécute, comme ce qui suit :
+
+    ```
+    root@ubuntu16-13db:~# kubectl get deployment omsagent
+    NAME       DESIRED   CURRENT   NODE-SELECTOR   AGE
+    omsagent   1         1         <none>          1h
+    ```
+
+3. Pour installer l’agent sur le nœud Worker qui exécute Windows, suivez les étapes décrites dans la section [Installer et configurer des hôtes de conteneur Windows](#install-and-configure-windows-container-hosts). 
+
+#### <a name="use-helm-to-deploy-oms-agent-on-linux-kubernetes"></a>Utiliser Helm pour déployer l’agent OMS sur Linux Kubernetes 
+Pour utiliser Helm afin de déployer l’agent OMS sur votre environnement Linux Kubernetes, procédez comme suit.
+
+1. Créer votre DaemonsSet de l’agent OMS en exécutant ```helm install --name omsagent --set omsagent.secret.wsid=<WSID>,omsagent.secret.key=<KEY> stable/msoms```
+2. Les résultats ressemblent à ce qui suit :
+
+    ```
+    NAME:   omsagent
+    LAST DEPLOYED: Tue Sep 19 20:37:46 2017
+    NAMESPACE: default
+    STATUS: DEPLOYED
+
+    RESOURCES:
+    ==> v1/Secret
+    NAME            TYPE    DATA  AGE
+    omsagent-msoms  Opaque  3     3s
+
+    ==> v1beta1/DaemonSet
+    NAME            DESIRED  CURRENT  READY  UP-TO-DATE  AVAILABLE  NODE-SELECTOR  AGE
+    omsagent-msoms  3        3        3      3           3          <none>         3s
+    ```
+3. Vous pouvez vérifier l’état de l’agent OMS en exécutant : ```helm status "omsagent"```. Le résultat doit ressembler à ce qui suit :
+
+    ```
+    keiko@k8s-master-3814F33-0:~$ helm status omsagent
+    LAST DEPLOYED: Tue Sep 19 20:37:46 2017
+    NAMESPACE: default
+    STATUS: DEPLOYED
+ 
+    RESOURCES:
+    ==> v1/Secret
+    NAME            TYPE    DATA  AGE
+    omsagent-msoms  Opaque  3     17m
+ 
+    ==> v1beta1/DaemonSet
+    NAME            DESIRED  CURRENT  READY  UP-TO-DATE  AVAILABLE  NODE-SELECTOR  AGE
+    omsagent-msoms  3        3        3      3           3          <none>         17m
+    ```
+Pour plus d’informations, consultez [Azure Log Analytics Container Monitoring Solution](https://aka.ms/omscontainerhelm) (Solution de surveillance de conteneur Azure Log Analytics).
+
+### <a name="install-and-configure-windows-container-hosts"></a>Installer et configurer des hôtes de conteneur Windows
+
+Utilisez les informations de cette section pour installer et configurer des hôtes de conteneur Windows.
+
+#### <a name="preparation-before-installing-windows-agents"></a>Préparation préalable à l’installation des agents Windows
+
+Avant d’installer les agents sur les ordinateurs exécutant Windows, vous devez configurer le service Docker. La configuration permet à l’agent Windows ou à l’extension de machine virtuelle Log Analytics d’utiliser le socket Docker TCP afin d’autoriser les agents à accéder à distance au démon Docker et de collecter les données pour la surveillance.
+
+##### <a name="to-start-docker-and-verify-its-configuration"></a>Pour démarrer Docker et vérifier sa configuration
+
+Voici les étapes nécessaires à la configuration du canal nommé TCP pour Windows Server :
 
 1. Dans Windows PowerShell, activez les canaux TCP et nommé.
 
@@ -409,9 +500,9 @@ Il existe tooset étapes nécessaires de TCP, canal nommé pour Windows Server 
     Start-Service docker
     ```
 
-2. Configurer Docker avec le fichier de configuration hello pour le canal de communication TCP et le canal nommé. fichier de configuration Hello se trouve dans C:\ProgramData\docker\config\daemon.json.
+2. Configurez Docker à l’aide du fichier de configuration pour le canal TCP et le canal nommé. Le fichier de configuration se trouve à l’emplacement suivant : C:\ProgramData\docker\config\daemon.json.
 
-    Dans le fichier de daemon.json hello, vous devrez suivant de hello :
+    Dans le fichier daemon.json, vous aurez besoin des éléments suivants :
 
     ```
     {
@@ -419,28 +510,28 @@ Il existe tooset étapes nécessaires de TCP, canal nommé pour Windows Server 
     }
     ```
 
-Pour plus d’informations sur la configuration du démon Docker hello utilisée avec des conteneurs Windows, consultez [moteur Docker sur Windows](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon).
+Pour plus d’informations sur la configuration du démon Docker utilisée avec les conteneurs de Windows, reportez-vous à [Moteur Docker sur Windows](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon).
 
 
-### <a name="install-windows-agents"></a>Installer les agents Windows
+#### <a name="install-windows-agents"></a>Installer les agents Windows
 
-tooenable Windows et conteneur Hyper-V à l’analyse, installez hello Microsoft Monitoring Agent (MMA) sur les ordinateurs Windows qui sont des hôtes de conteneur. Pour les ordinateurs exécutant Windows dans votre environnement local, consultez [tooLog d’ordinateurs Windows de se connecter Analytique](log-analytics-windows-agents.md). Pour les ordinateurs virtuels en cours d’exécution dans Azure, les connecter tooLog Analytique à l’aide de hello [extension de machine virtuelle](log-analytics-azure-vm-extension.md).
+Pour activer la surveillance des conteneurs Windows et Hyper-V, installez Microsoft Monitoring Agent (MMA) sur les ordinateurs Windows qui sont des hôtes de conteneurs. Pour les ordinateurs exécutant Windows dans votre environnement local, consultez la page [Connecter des ordinateurs Windows à Log Analytics](log-analytics-windows-agents.md). Connectez les machines virtuelles exécutées dans Azure à Log Analytics à l’aide de l’[extension de machine virtuelle](log-analytics-azure-vm-extension.md).
 
 Vous pouvez surveiller les conteneurs Windows en cours d’exécution sur Service Fabric. Toutefois, seules les [machines virtuelles qui s’exécutent dans Azure](log-analytics-azure-vm-extension.md) et les [ordinateurs exécutant Windows dans votre environnement local](log-analytics-windows-agents.md) sont actuellement pris en charge pour Service Fabric.
 
-Vous pouvez vérifier que hello solution d’analyse de conteneur est correctement configuré pour Windows. toocheck si le pack d’administration hello était téléchargement correctement, recherchez *ContainerManagement.xxx*. fichiers de Hello doivent être dans le dossier C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs de hello.
+Vous pouvez vérifier que la solution Container Monitoring est correctement configurée pour Windows. Pour vérifier que le pack d’administration a été correctement téléchargé, recherchez *ContainerManagement.xxx*. Les fichiers doivent se trouver dans le dossier C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs.
 
 
 ## <a name="solution-components"></a>Composants de la solution
 
-Si vous utilisez des agents Windows, puis hello Pack d’administration suivant est installé sur chaque ordinateur sur lequel un agent lorsque vous ajoutez cette solution. Aucune configuration ou maintenance n’est requis pour le pack d’administration hello.
+Si vous utilisez des agents Windows, le pack d’administration suivant est installé sur chaque ordinateur où se trouve un agent lorsque vous ajoutez cette solution. Le pack d’administration ne nécessite aucune opération de configuration ou de maintenance.
 
 - *ContainerManagement.xxx* installé dans le dossier C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs
 
 ## <a name="container-data-collection-details"></a>Détails sur la collecte de données des conteneurs
-Hello solution d’analyse de conteneur collecte diverses données de journaux et des métriques de performances à partir des hôtes de conteneurs et les conteneurs à l’aide d’agents que vous activez.
+La solution Container Monitoring collecte diverses métriques de performances et données de journaux à partir des hôtes de conteneur et des conteneurs utilisant les agents que vous avez activés.
 
-Données sont collectées toutes les trois minutes par hello suivant les types d’agents.
+Les données sont collectées toutes les trois minutes par les types d’agents suivants.
 
 - [Agent OMS pour Linux](log-analytics-linux-agents.md)
 - [Agent Windows](log-analytics-windows-agents.md)
@@ -449,7 +540,7 @@ Données sont collectées toutes les trois minutes par hello suivant les types d
 
 ### <a name="container-records"></a>Enregistrements de conteneur
 
-Hello tableau suivant présente des exemples d’enregistrements collectées par la solution d’analyse de conteneur hello et types de données hello qui s’affichent dans les résultats de recherche de journal.
+Le tableau suivant présente des exemples d’enregistrements collectés par la solution Container Monitoring, ainsi que les types de données qui s’affichent dans les résultats de recherche des journaux.
 
 | Type de données | Type de données dans Recherche de journaux | Champs |
 | --- | --- | --- |
@@ -463,85 +554,85 @@ Hello tableau suivant présente des exemples d’enregistrements collectées par
 | Processus de conteneur | `Type=ContainerProcess_CL` | TimeGenerated, Computer, Pod_s, Namespace_s, ClassName_s, InstanceID_s, Uid_s, PID_s, PPID_s, C_s, STIME_s, Tty_s, TIME_s, Cmd_s, Id_s, Name_s, SourceSystem |
 | Événements Kubernetes | `Type=KubeEvents_CL` | TimeGenerated, Computer, Name_s, ObjectKind_s, Namespace_s, Reason_s, Type_s, SourceComponent_s, SourceSystem, Message |
 
-Étiquettes ajouté trop*PodLabel* des types de données sont vos propres étiquettes personnalisées. Hello ajouté PodLabel étiquettes indiqués dans la table de hello sont des exemples. Par conséquent, `PodLabel_deployment_s`, `PodLabel_deploymentconfig_s`, `PodLabel_docker_registry_s` seront différentes dans le jeu de données de votre environnement et ressembleront à `PodLabel_yourlabel_s`.
+Les étiquettes ajoutées aux types de données *PodLabel* sont vos propres étiquettes personnalisées. Les étiquettes PodLabel ajoutées contenues dans le tableau sont des exemples. Par conséquent, `PodLabel_deployment_s`, `PodLabel_deploymentconfig_s`, `PodLabel_docker_registry_s` seront différentes dans le jeu de données de votre environnement et ressembleront à `PodLabel_yourlabel_s`.
 
 
 ## <a name="monitor-containers"></a>Analyser les conteneurs
-Après avoir configuré solution hello activée dans le portail OMS de hello, hello **conteneurs** vignette affiche des informations résumées concernant vos hôtes de conteneurs et les conteneurs hello en cours d’exécution dans des hôtes.
+Une fois la solution activée dans le portail OMS, vous voyez la vignette **Containers** qui contient des informations récapitulatives sur vos hôtes de conteneur et les conteneurs s’exécutant dans les hôtes.
 
 ![Vignette Conteneurs](./media/log-analytics-containers/containers-title.png)
 
-vignette de Hello montre une vue d’ensemble des conteneurs combien vous avez dans l’environnement de hello et si elles sont ont échoué, en cours d’exécution ou arrêté.
+La vignette affiche une vue d’ensemble du nombre de conteneurs présents dans l’environnement, et indique s’ils sont en échec, en cours d’exécution ou arrêtés.
 
-### <a name="using-hello-containers-dashboard"></a>À l’aide du tableau de bord hello conteneurs
-Cliquez sur hello **conteneurs** vignette. À partir de là, vous voyez les vues organisées par :
+### <a name="using-the-containers-dashboard"></a>Utilisation du tableau de bord Conteneurs
+Cliquez sur la vignette **Conteneurs**. À partir de là, vous voyez les vues organisées par :
 
 - **Événements de conteneur** : affiche l’état du conteneur et les ordinateurs dont le conteneur a échoué.
-- **Journaux du conteneur** -affiche un graphique des fichiers journaux de conteneur générés au fil du temps et une liste d’ordinateurs avec hello plus grand nombre de fichiers journaux.
-- **Événements de Kubernetes** -affiche un graphique des événements Kubernetes générés au fil du temps et une liste des raisons hello pourquoi POD généré les événements hello. *Ce jeu de données est utilisé uniquement dans les environnements Linux.*
-- **Inventaire de Namespace Kubernetes** - affiche le nombre de hello d’espaces de noms et les blocs et affiche leur hiérarchie. *Ce jeu de données est utilisé uniquement dans les environnements Linux.*
-- **Inventaire de nœud conteneur** -affiche le nombre hello des types d’orchestration utilisé sur les nœuds/hôtes de conteneur. nœuds d’ordinateur Hello/hôtes sont également répertoriés par nombre hello de conteneurs. *Ce jeu de données est utilisé uniquement dans les environnements Linux.*
-- **Inventaire des Images de conteneur** -affiche le nombre total de hello d’images de conteneur utilisé et le nombre de types d’images. nombre de Hello d’images est également répertorié par balise d’image hello.
-- **État de conteneurs** -affiche nombre total de hello du conteneur ordinateurs nœuds/hôte conteneurs en cours d’exécution. Les ordinateurs sont également répertoriés par nombre hello des ordinateurs hôtes en cours d’exécution.
+- **Journaux de conteneur** : affiche un graphique montrant les fichiers journaux de conteneur générés jusqu’à maintenant, ainsi que la liste des ordinateurs contenant le plus grand nombre de fichiers journaux.
+- **Événements Kubernetes** : affiche un graphique montrant les événements Kubernetes générés jusqu’à maintenant, ainsi que la liste des raisons pour lesquelles les pods ont généré ces événements. *Ce jeu de données est utilisé uniquement dans les environnements Linux.*
+- **Inventaire des espaces de noms Kubernetes** : indique le nombre d’espaces de noms et de pods, et montre leur hiérarchie. *Ce jeu de données est utilisé uniquement dans les environnements Linux.*
+- **Inventaire des nœuds de conteneur** : affiche le nombre de types d’orchestration utilisés sur les nœuds/hôtes de conteneur. Les nœuds/hôtes d’ordinateur sont également répertoriés avec le nombre de conteneurs. *Ce jeu de données est utilisé uniquement dans les environnements Linux.*
+- **Inventaire des images de conteneur** : affiche le nombre total des images de conteneur utilisées, ainsi que le nombre de types d’images. Le nombre d’images est également répertorié avec la balise d’image.
+- **État des conteneurs** : affiche le nombre total de nœuds de conteneur/ordinateurs hôtes comprenant des conteneurs en cours d’exécution. Les ordinateurs sont également répertoriés avec le nombre d’ordinateurs hôtes en cours d’exécution.
 - **Processus de conteneur** : affiche un graphique en courbes représentant les processus de conteneur exécutés jusqu’à maintenant. Les conteneurs peuvent également être répertoriés en exécutant la commande /process dans les conteneurs. *Ce jeu de données est utilisé uniquement dans les environnements Linux.*
-- **Les performances de l’UC de conteneur** -affiche un graphique en courbes de hello utilisation moyenne du processeur au fil du temps pour les nœuds/hôtes d’ordinateur. Également listes hello ordinateur/hôtes de nœuds en fonction de moyenne de l’UC.
+- **Performances de l’UC du conteneur** : affiche un graphique en courbes représentant l’utilisation moyenne de l’UC jusqu’à maintenant pour les nœuds/hôtes d’ordinateur. Répertorie également les nœuds/hôtes d’ordinateur en fonction de l’utilisation moyenne de l’UC.
 - **Performances de la mémoire du conteneur** : affiche un graphique en courbes représentant l’utilisation de la mémoire jusqu’à maintenant. Répertorie également l’utilisation de la mémoire par l’ordinateur en fonction du nom de l’instance.
-- **Performances de l’ordinateur** -affiche les graphiques en courbes de % hello de performances de l’UC au fil du temps, pourcentage d’utilisation de mémoire dans le temps et mégaoctets d’espace disque libre au fil du temps. Vous pouvez pointer sur n’importe quelle ligne dans un graphique de tooview plus de détails.
+- **Performances de l’ordinateur** : affiche des graphiques en courbes représentant le pourcentage de performance de l’UC, le pourcentage d’utilisation de la mémoire et les mégaoctets d’espace disque libre dans le temps. Vous pouvez pointer sur une ligne du graphique pour afficher plus de détails.
 
 
-Chaque zone du tableau de bord hello est une représentation visuelle d’une recherche qui est exécutée sur les données collectées.
+Chaque zone du tableau de bord est une représentation visuelle d’une recherche exécutée sur des données collectées.
 
 ![Tableau de bord Conteneurs](./media/log-analytics-containers/containers-dash01.png)
 
 ![Tableau de bord Conteneurs](./media/log-analytics-containers/containers-dash02.png)
 
-Bonjour **état du conteneur** zone, cliquez sur zone supérieure de hello, comme indiqué ci-dessous.
+Dans la zone **État du conteneur**, cliquez sur la zone supérieure, comme illustré ci-dessous.
 
 ![État des conteneurs](./media/log-analytics-containers/containers-status.png)
 
-Recherche de journal s’ouvre et affiche des informations sur l’état de hello vos conteneurs.
+La fenêtre Recherche dans les journaux s’ouvre et affiche des informations sur l’état de vos conteneurs.
 
 ![Recherche de journal pour les conteneurs](./media/log-analytics-containers/containers-log-search.png)
 
-À ce stade, vous pouvez modifier toomodify de requête de recherche hello elle des informations spécifiques hello toofind vous intéresse. Pour plus d’informations sur les recherches dans les journaux, voir [Recherches de journal dans Log Analytics](log-analytics-log-searches.md).
+À partir d’ici, vous pouvez modifier la requête de recherche de façon à trouver les informations spécifiques qui vous intéressent. Pour plus d’informations sur les recherches dans les journaux, voir [Recherches de journal dans Log Analytics](log-analytics-log-searches.md).
 
 ## <a name="troubleshoot-by-finding-a-failed-container"></a>Résoudre des problèmes en recherchant un conteneur en échec
 
-Log Analytics marque un conteneur comme étant en **Échec** s’il a été fermé avec un code de sortie autre que zéro. Vous pouvez voir une vue d’ensemble des erreurs de hello et des défaillances dans un environnement hello Bonjour **Échec de conteneurs** zone.
+Log Analytics marque un conteneur comme étant en **Échec** s’il a été fermé avec un code de sortie autre que zéro. Vous pouvez consulter un aperçu des erreurs et des échecs de l’environnement dans la zone **Conteneurs défectueux**.
 
-### <a name="toofind-failed-containers"></a>conteneurs de toofind a échoué
-1. Cliquez sur hello **état du conteneur** zone.  
+### <a name="to-find-failed-containers"></a>Pour rechercher les conteneurs défectueux
+1. Cliquez sur la zone **État du conteneur**.  
    ![État des conteneurs](./media/log-analytics-containers/containers-status.png)
-2. Recherche de journal s’ouvre et affiche hello de l’état de vos conteneurs, toohello comme suit.  
+2. La fenêtre Recherche dans les journaux s’ouvre et affiche l’état de vos conteneurs, comme ci-dessous.  
    ![État des conteneurs](./media/log-analytics-containers/containers-log-search.png)
-3. Ensuite, cliquez sur la valeur hello agrégé des informations supplémentaires de tooview de conteneurs ayant échoué. Développez **afficher plus** tooview hello image ID.  
+3. Ensuite, cliquez sur la valeur agrégée des conteneurs en échec pour afficher des informations supplémentaires. Développez **Afficher plus** pour afficher l’ID de l’image.  
    ![Conteneurs défectueux](./media/log-analytics-containers/containers-state-failed.png)  
-4. Ensuite, tapez hello texte suivant dans la requête de recherche hello. `Type=ContainerInventory <ImageID>`toosee des détails sur l’image hello telles que la taille de l’image et le nombre d’images arrêtés et a échoué.  
+4. Ensuite, tapez ce qui suit dans la requête de recherche. `Type=ContainerInventory <ImageID>` pour afficher des détails sur l’image, tels que sa taille ou le nombre d’images arrêtées et en échec.  
    ![Conteneurs défectueux](./media/log-analytics-containers/containers-failed04.png)
 
 ## <a name="search-logs-for-container-data"></a>Rechercher des données de conteneur dans les journaux
-Lorsque vous êtes à résoudre une erreur spécifique, il peut aider à toosee où il se produit dans votre environnement. Hello, les types de journaux suivants vous aideront à créer des requêtes tooreturn hello informations.
+Lorsque vous résolvez une erreur spécifique, il peut être utile de voir l’emplacement où elle se produit dans votre environnement. Les types de journaux suivants vous aident à créer des requêtes qui retournent les informations souhaitées.
 
 
-- **ContainerImageInventory** : utilisez ce type lorsque vous essayez d’informations toofind organisées par image et tooview image les informations telles que les ID d’image ou des tailles.
+- **ContainerImageInventory** : utilisez ce type de journal lorsque vous recherchez des informations organisées par image, et de consulter des informations sur les images, telles que leurs ID ou tailles.
 - **ContainerInventory** : utilisez ce type de journal lorsque vous recherchez des informations sur l’emplacement des conteneurs, leurs noms et les images qu’ils exécutent.
-- **ContainerLog** : utilisez ce type lorsque vous souhaitez que les informations concernant les journaux d’erreurs toofind et les entrées.
-- **ContainerNodeInventory_CL** Utilisez ce type lorsque vous souhaitez que des informations sur le nœud d’hôte hello où résident des conteneurs. Il fournit la version Docker, le type d’orchestration, ainsi que des informations relatives au stockage et au réseau.
-- **ContainerProcess_CL** tooquickly de ce type d’utilisation Voir processus hello en cours d’exécution dans le conteneur de hello.
-- **ContainerServiceLog** : utilisez ce type lorsque vous essayez d’informations de piste d’audit toofind pour hello démon Docker, telles que Démarrer, arrêter, supprimer ou extraire les commandes.
-- **KubeEvents_CL** utiliser ce type toosee hello Kubernetes les événements.
-- **KubePodInventory_CL** Utilisez ce type lorsque vous souhaitez que les informations de hiérarchie toounderstand hello cluster.
+- **ContainerLog** : utilisez ce type de journal lorsque vous recherchez des informations et entrées spécifiques du journal des erreurs.
+- **ContainerNodeInventory_CL** Utilisez ce type lorsque vous souhaitez obtenir les informations sur le nœud ou l’hôte où résident les conteneurs. Il fournit la version Docker, le type d’orchestration, ainsi que des informations relatives au stockage et au réseau.
+- **ContainerProcess_CL** Ce type permet de visualiser rapidement le processus actuellement exécuté dans le conteneur.
+- **ContainerServiceLog** : utilisez ce type de journal lorsque vous recherchez des informations de piste d’audit pour le démon Docker, telles que les commandes de démarrage, d’arrêter, de suppression ou d’extraction.
+- **KubeEvents_CL** Ce type permet d’afficher les événements Kubernetes.
+- **KubePodInventory_CL** Utilisez ce type lorsque vous voulez comprendre les informations de hiérarchie du cluster.
 
 
-### <a name="toosearch-logs-for-container-data"></a>journaux toosearch pour les données de conteneur
-* Choisissez une image que vous connaissez récemment a échoué et rechercher les journaux d’erreurs hello. Commencez par rechercher un nom de conteneur exécutant cette image avec une recherche **ContainerInventory**. Par exemple, recherchez `Type=ContainerInventory ubuntu Failed`  
+### <a name="to-search-logs-for-container-data"></a>Pour rechercher des données de conteneur dans les journaux
+* Choisissez une image qui a échoué récemment et recherchez-la dans les journaux des erreurs. Commencez par rechercher un nom de conteneur exécutant cette image avec une recherche **ContainerInventory**. Par exemple, recherchez `Type=ContainerInventory ubuntu Failed`  
     ![Recherche de conteneurs Ubuntu](./media/log-analytics-containers/search-ubuntu.png)
 
-  Hello le nom du conteneur de hello ensuite trop**nom**et recherchez ces journaux. Dans cet exemple, il s’agit de `Type=ContainerLog cranky_stonebreaker`.
+  Notez le nom du conteneur en regard de **Nom**, puis recherchez ces journaux. Dans cet exemple, il s’agit de `Type=ContainerLog cranky_stonebreaker`.
 
 **Afficher les informations de performances**
 
-Lorsque vous êtes à partir de requêtes de tooconstruct, il peut aider à toosee ce qui est tout d’abord possible. Par exemple, toosee toutes les données de performances, essayez une requête large en tapant hello suivant recherche de requête.
+Lorsque vous commencez à créer des requêtes, il peut être utile de voir d’abord ce qui est possible. Par exemple, pour afficher toutes les données de performances, essayez d’utiliser une large requête en tapant la requête de recherche suivante.
 
 ```
 Type=Perf
@@ -549,18 +640,18 @@ Type=Perf
 
 ![Performances des conteneurs](./media/log-analytics-containers/containers-perf01.png)
 
-Vous pouvez limiter les données de performances hello que vous voyez tooa les conteneur spécifique en tapant le nom hello de celui-ci toohello à droite de votre requête.
+Vous pouvez limiter les données de performances que vous voyez à un conteneur spécifique en tapant le nom de celui-ci à droite de votre requête.
 
 ```
 Type=Perf <containerName>
 ```
 
-Qui affiche la liste hello des métriques de performances sont collectées pour un conteneur.
+Cela a pour effet d’afficher la liste des mesures de performances collectées pour un conteneur spécifique.
 
 ![Performances des conteneurs](./media/log-analytics-containers/containers-perf03.png)
 
 ## <a name="example-log-search-queries"></a>Exemples de requêtes de recherche de journal
-Toobuild souvent utile de ses requêtes en commençant par un exemple d’une ou deux, puis en modifiant les toofit votre environnement. Comme point de départ, vous pouvez expérimenter hello **exemples de requêtes** toohelp zone vous générez des requêtes plus avancées.
+Il est souvent utile de créer des requêtes en commençant par un exemple ou deux, puis en les modifiant afin de les adapter à votre environnement. Comme point de départ, vous pouvez utiliser la zone **Exemples de requêtes** pour vous aider à créer des requêtes plus avancées.
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
@@ -570,7 +661,7 @@ Toobuild souvent utile de ses requêtes en commençant par un exemple d’une ou
 ## <a name="saving-log-search-queries"></a>Enregistrement de requêtes de recherche de journal
 L’enregistrement des requêtes est une fonctionnalité standard dans Log Analytics. En les enregistrant, vous aurez aisément accès à celles que vous avez trouvées utiles pour une utilisation ultérieure.
 
-Après avoir créé une requête qui vous être utiles, l’enregistrer en cliquant sur **favoris** haut hello de page de recherche de journal hello. Ensuite, vous pouvez facilement y accéder ultérieurement à partir de hello **mon tableau de bord** page.
+Après avoir créé une requête qui vous semble utile, enregistrez-la en cliquant sur **Favorites** en haut de la page Recherche de journal. Vous pourrez ainsi y accéder facilement par la suite à partir de la page **Mon tableau de bord**.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Rechercher des journaux](log-analytics-log-searches.md) tooview détaillé des enregistrements de données de conteneur.
+* [Rechercher dans les journaux](log-analytics-log-searches.md) pour consulter des enregistrements de données de conteneur détaillées.

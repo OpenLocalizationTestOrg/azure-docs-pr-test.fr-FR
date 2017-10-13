@@ -1,25 +1,25 @@
-## <a name="provision-hello-solution"></a>Solution de hello de disposition
+## <a name="provision-the-solution"></a>Déployer la solution
 
-Si vous n’avez pas déjà déployées solution préconfigurée hello surveillance à distance dans votre compte :
+Si vous n’avez pas déjà approvisionné la solution préconfigurée de surveillance à distance dans votre compte :
 
-1. Ouvrez une session trop[azureiotsuite.com] [ lnk-azureiotsuite] à l’aide de votre Azure des informations d’identification de compte, puis cliquez sur  **+**  toocreate une solution.
-2. Cliquez sur **sélectionnez** sur hello **surveillance à distance** vignette.
+1. Connectez-vous à [azureiotsuite.com][lnk-azureiotsuite] à l’aide des informations d’identification de votre compte Azure, puis cliquez sur **+** pour créer une solution.
+2. Cliquez sur **Sélectionner** sur la vignette **Surveillance à distance**.
 3. Entrez un **Nom de solution** pour votre solution préconfigurée de surveillance à distance.
-4. Sélectionnez hello **région** et **abonnement** vous souhaitez toouse tooprovision hello solution.
-5. Cliquez sur **créer une Solution** hello toobegin processus de configuration. Ce processus dure généralement plusieurs minutes toorun.
+4. Sélectionnez la **région** et **l’abonnement** à utiliser pour configurer la solution.
+5. Cliquez sur **Créer une solution** pour commencer le processus de déploiement. L’exécution de ce processus prend généralement plusieurs minutes.
 
-### <a name="wait-for-hello-provisioning-process-toocomplete"></a>Attendez que hello toocomplete du processus de configuration
-1. Cliquez sur la vignette hello pour votre solution avec **Provisioning** état.
-2. Hello d’avis **les États de configuration** comme des services Azure sont déployés dans votre abonnement Azure.
-3. Une fois la configuration terminée, modifications d’état hello trop**prêt**.
-4. Cliquez sur Détails de hello toosee hello vignette de votre solution dans le volet de droite hello.
+### <a name="wait-for-the-provisioning-process-to-complete"></a>Attendre la fin du processus d’approvisionnement
+1. Cliquez sur la vignette de votre solution présentant l’état **Approvisionnement** .
+2. Notez les **états d’approvisionnement** à mesure que les services Azure sont déployés dans votre abonnement Azure.
+3. Une fois l’approvisionnement terminé, l’état prend la valeur **Prêt**.
+4. Cliquez sur la vignette pour visualiser les détails de votre solution dans le volet droit.
 
 > [!NOTE]
-> Si vous rencontrez des problèmes de déploiement de solution préconfigurée de hello, passez en revue [autorisations sur le site de azureiotsuite.com hello] [ lnk-permissions] et hello [FAQ] [ lnk-faq]. Si les problèmes de hello persistent, créer un ticket de service sur hello [portal][lnk-portal].
+> Si vous rencontrez des problèmes lors du déploiement de la solution préconfigurée, consultez les articles [Autorisations sur le site azureiotsuite.com][lnk-permissions] et [Forum Aux Questions][lnk-faq]. Si les problèmes persistent, créez un ticket de service sur le [Portail][lnk-portal].
 > 
 > 
 
-Existe-t-il des détails que toosee souhaitées et qui ne sont pas répertoriés pour votre solution ? Faites-nous part de vos suggestions concernant les fonctionnalités sur [UserVoice](https://feedback.azure.com/forums/321918-azure-iot).
+Certains détails de votre solution semblent-ils faire défaut ? Faites-nous part de vos suggestions concernant les fonctionnalités sur [UserVoice](https://feedback.azure.com/forums/321918-azure-iot).
 
 [lnk-azureiotsuite]: https://www.azureiotsuite.com
 [lnk-permissions]: ../articles/iot-suite/iot-suite-permissions.md

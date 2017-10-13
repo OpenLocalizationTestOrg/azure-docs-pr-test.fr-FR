@@ -1,6 +1,6 @@
 ---
-title: les messages EDIFACT aaaEncode - Azure Logic Apps | Documents Microsoft
-description: "Valider EDI et de générer du code XML avec l’encodeur de message EDIFACT Bonjour Enterprise Integration Pack pour Azure Logic Apps"
+title: Encoder des messages EDIFACT - Azure Logic Apps | Microsoft Docs
+description: "Validation EDI et génération du code XML avec l’encodeur EDIFACT Message dans Enterprise Integration Pack pour Azure Logic Apps"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: padmavc
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: b3799dbd2492adef597022d017cf28f5ceb1085c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b8d577326d23ec45cb4a9ec0e450ebf7afd945f3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="encode-edifact-messages-for-azure-logic-apps-with-hello-enterprise-integration-pack"></a>Encoder les messages EDIFACT pour Azure Logic Apps avec hello Pack d’intégration Enterprise
+# <a name="encode-edifact-messages-for-azure-logic-apps-with-the-enterprise-integration-pack"></a>Encoder des messages EDIFACT pour Azure Logic Apps avec Enterprise Integration Pack
 
-Avec le connecteur de message EDIFACT d’encoder hello, vous pouvez valider EDI et des propriétés spécifiques aux partenaires, générer un document XML pour chaque document informatisé et demander un accusé de réception technique, l’accusé de réception fonctionnel ou les deux.
-toouse ce connecteur, vous devez ajouter tooan de connecteur hello existant déclencheur dans votre application logique.
+Avec le connecteur Encode EDIFACT Message, vous pouvez valider l’EDI et les propriétés spécifiques au partenaire, générer un document XML pour chaque document informatisé et demander un accusé de réception technique ou fonctionnel, ou les deux.
+Pour utiliser ce connecteur, vous devez ajouter le connecteur à un déclencheur existant dans votre application logique.
 
 ## <a name="before-you-start"></a>Avant de commencer
 
-Voici les éléments hello que vous devez :
+Voici les éléments dont vous avez besoin :
 
 * Un compte Azure (que vous pouvez [créer gratuitement)](https://azure.microsoft.com/free)
-* Un [compte d’intégration](logic-apps-enterprise-integration-create-integration-account.md) déjà défini et associé à votre abonnement Azure. Vous devez disposer d’un connecteur de message EDIFACT d’encoder hello intégration compte toouse. 
+* Un [compte d’intégration](logic-apps-enterprise-integration-create-integration-account.md) déjà défini et associé à votre abonnement Azure. Vous devez disposer d’un compte d’intégration pour pouvoir utiliser le connecteur Encode EDIFACT Message. 
 * Au moins deux [partenaires](logic-apps-enterprise-integration-partners.md) déjà définis dans votre compte d’intégration
 * Un [contrat EDIFACT](logic-apps-enterprise-integration-edifact.md) déjà défini dans votre compte d’intégration
 
@@ -38,13 +38,13 @@ Voici les éléments hello que vous devez :
 
 1. [Créer une application logique](logic-apps-create-a-logic-app.md).
 
-2. connecteur de message EDIFACT d’encoder de Hello n’a pas les déclencheurs, vous devez donc ajouter un déclencheur pour démarrer votre application logique, comme un déclencheur de la demande. Dans le Concepteur d’application logique de hello, ajouter un déclencheur, puis ajoutez une application de la logique de tooyour action.
+2. Le connecteur Encode EDIFACT Message ne possède aucun déclencheur, ce qui signifie que vous devez ajouter un déclencheur pour le démarrage de votre application logique, par exemple un déclencheur de requête. Dans le concepteur d’applications logiques, ajoutez un déclencheur, puis ajoutez une action à votre application logique.
 
-3.  Dans la zone de recherche de hello, entrez « EDIFACT » comme filtre. Sélectionnez **encoder le Message EDIFACT par nom de l’accord** ou **Encode tooEDIFACT message identités**.
+3.  Dans la zone de recherche, entrez « EDIFACT » comme filtre. Sélectionnez **Encode EDIFACT Message par nom de contrat** ou **Encode to EDIFACT message par identités**.
    
     ![recherche EDIFACT](media/logic-apps-enterprise-integration-edifact-encode/edifactdecodeimage1.png)  
 
-3. Si vous n’avez pas précédemment créé toutes les connexions tooyour compte d’intégration, vous êtes invité à entrer toocreate maintenant cette connexion. Nommez votre connexion et sélectionnez le compte d’intégration hello que vous souhaitez tooconnect.
+3. Si vous n’avez pas encore créé de connexions à votre compte d’intégration, vous êtes invité à le faire à cette étape. Donnez un nom à votre connexion, puis sélectionnez le compte d’intégration auquel vous souhaitez vous connecter.
 
     ![créer une connexion de compte d’intégration](media/logic-apps-enterprise-integration-edifact-encode/edifactencodeimage1.png)  
 
@@ -53,9 +53,9 @@ Voici les éléments hello que vous devez :
     | Propriété | Détails |
     | --- | --- |
     | Nom de connexion * |Entrez un nom pour votre connexion. |
-    | Compte d’intégration * |Entrez un nom pour votre compte d’intégration. Assurez-vous que votre application de compte et la logique d’intégration sont Bonjour même emplacement. |
+    | Compte d’intégration * |Entrez un nom pour votre compte d’intégration. Vérifiez que votre compte d’intégration et votre application logique se trouvent dans le même emplacement Azure. |
 
-5.  Lorsque vous avez terminé, les détails de votre connexion doivent ressembler exemple toothis similaire. toofinish création de votre connexion, choisissez **créer**.
+5.  Lorsque vous avez terminé, les détails de votre connexion doivent apparaître tels qu’indiqués dans l’exemple suivant. Pour terminer la création de votre connexion, sélectionnez l’option **Créer**.
 
     ![détails de connexion de compte d’intégration](media/logic-apps-enterprise-integration-edifact-encode/edifactencodeimage2.png)
 
@@ -65,37 +65,37 @@ Voici les éléments hello que vous devez :
 
 #### <a name="encode-edifact-message-by-agreement-name"></a>Encode EDIFACT Message par nom de contrat
 
-Si vous choisissez des messages EDIFACT tooencode par le nom de l’accord, ouvrez hello **accord nom de EDIFACT** liste, entrez ou sélectionnez le nom de votre accord EDIFACT. Entrez tooencode de message XML hello.
+Si vous choisissez d’encoder des messages EDIFACT par nom du contrat, ouvrez la liste **Nom de l’accord EDIF**, et entrez ou sélectionnez votre nom de contrat EDIFACT existant. Saisissez le message XML à encoder.
 
-![Entrez le nom de l’accord EDIFACT et tooencode de message XML](media/logic-apps-enterprise-integration-edifact-encode/edifactencodeimage6.png)
+![Indiquez le nom du contrat EDIFACT et le nom du message XML à encoder](media/logic-apps-enterprise-integration-edifact-encode/edifactencodeimage6.png)
 
 #### <a name="encode-edifact-message-by-identities"></a>Encode EDIFACT Message par identités
 
-Si vous choisissez des messages EDIFACT tooencode par des identités, entrez l’identificateur de l’expéditeur hello, qualificateur de l’expéditeur, identificateur du récepteur et qualificateur du récepteur tel que configuré dans votre accord EDIFACT. Sélectionnez tooencode de message XML hello.
+Si vous choisissez d’encoder des messages EDIFAC par identités, indiquez l’identificateur et le qualificateur de l’expéditeur ainsi que l’identificateur et le qualificateur du récepteur tels que configurés dans votre contrat EDIFACT. Sélectionnez le message XML à encoder.
 
-![Fournir des identités d’expéditeur et récepteur, sélectionnez tooencode de message XML](media/logic-apps-enterprise-integration-edifact-encode/edifactencodeimage7.png)
+![Renseigner les identités de l’expéditeur et du destinataire, sélectionner le message XML à encoder](media/logic-apps-enterprise-integration-edifact-encode/edifactencodeimage7.png)
 
 ## <a name="edifact-encode-details"></a>Détails sur l’encodage EDIFACT
 
-connecteur d’encoder un EDIFACT Hello effectue ces tâches : 
+Le connecteur Encode EDIFACT effectue les tâches suivantes : 
 
-* Accord de hello en hello expéditeur qualificateur et identificateur et qualificateur du récepteur et l’identificateur de correspondance
-* Sérialise l’échange EDI de hello, convertir des messages encodés en XML dans les documents informatisés dans l’échange de hello.
+* Résout le contrat en mettant en correspondance les identificateurs et les qualificateurs de l’expéditeur et du récepteur
+* Sérialise l’échange EDI en convertissant les messages codés au format XML en documents informatisés EDI au sein de l’échange.
 * Applique les segments d’en-tête et de code de fin du document informatisé
 * Génère un numéro de contrôle d’échange, un numéro de contrôle de groupe et un numéro de contrôle de document informatisé pour chaque échange sortant
-* Remplace les séparateurs dans les données de charge utile de hello
+* Remplace les séparateurs dans les données de charge utile
 * Valide l’EDI et les propriétés spécifiques au partenaire
-  * Validation du schéma des éléments de données de document informatisé hello contre le schéma de message hello.
+  * Validation de schéma des éléments de données du document informatisé par rapport au schéma de message.
   * Validation EDI effectuée sur les éléments de données du document informatisé.
   * Validation étendue effectuée sur les éléments de données du document informatisé
 * Génère un document XML pour chaque document informatisé.
 * Demande un accusé de réception fonctionnel et/ou technique (si configuré).
-  * En tant qu’un accusé de réception technique, message de type hello CONTRL indique la réception d’un échange.
-  * Comme un accusé de réception fonctionnel, message de type hello CONTRL indique l’acceptation ou rejet de l’échange de salutation reçue, groupe ou les messages, avec une liste d’erreurs ou des fonctionnalités non prises en charge
+  * En tant qu’accusé de réception technique, le message CONTRL indique la réception d’un échange.
+  * En tant qu’accusé de réception fonctionnel, le message CONTRL indique l’acceptation ou le rejet du message, du groupe ou de l’échange reçu, en fournissant une liste des erreurs ou des fonctionnalités non prises en charge
 
 ## <a name="view-swagger-file"></a>Afficher le fichier Swagger
-Détails de Swagger tooview hello pour le connecteur d’EDIFACT hello, consultez [EDIFACT](/connectors/edifact/).
+Pour afficher les détails Swagger du connecteur EDIFACT, consultez [EDIFACT](/connectors/edifact/).
 
 ## <a name="next-steps"></a>Étapes suivantes
-[En savoir plus sur hello Pack d’intégration Enterprise](logic-apps-enterprise-integration-overview.md "en savoir plus sur le Pack d’intégration Enterprise") 
+[En savoir plus sur Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "Découvrez Enterprise Integration Pack") 
 

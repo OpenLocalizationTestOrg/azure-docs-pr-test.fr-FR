@@ -1,6 +1,6 @@
 ---
-title: aaaInstall PowerShell pour Azure pile | Documents Microsoft
-description: "Découvrez comment tooinstall PowerShell pour Azure pile."
+title: Installer PowerShell pour Azure Stack | Microsoft Docs
+description: "Découvrez comment installer PowerShell pour Azure Stack."
 services: azure-stack
 documentationcenter: 
 author: SnehaGunda
@@ -12,24 +12,26 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/03/2017
+ms.date: 09/25/2017
 ms.author: sngun
-ms.openlocfilehash: 60995af2168348638e2513ab941a4125ca5c624a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5555ee022e74b5d4791c5826ef80b166c4990a61
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="install-powershell-for-azure-stack"></a>Installer PowerShell pour Azure Stack  
 
-Les modules Azure PowerShell compatibles pile Azure sont requis toowork avec la pile de Azure. Dans ce guide, nous vous guident hello étapes tooinstall requis PowerShell pour Azure pile. Vous pouvez utiliser les étapes de hello décrits dans cet article hello Kit de développement Azure pile ou d’un client externe basé sur Windows, si vous êtes connecté via VPN.
+*S’applique à : systèmes intégrés Azure Stack et Kit de développement Azure Stack*
 
-Cet article détaille tooinstall d’instructions PowerShell pour Azure pile. Toutefois, si vous souhaitez tooquickly installer et configurez PowerShell, vous pouvez utiliser script hello fourni Bonjour [obtenir en cours d’exécution avec PowerShell](azure-stack-powershell-configure-quickstart.md) rubrique. 
+Des modules Azure PowerShell compatibles avec Azure Stack sont nécessaires pour utiliser Azure Stack. Dans ce guide, vous allez découvrir les étapes nécessaires à l’installation de PowerShell pour Azure Stack. Vous pouvez effectuer les étapes décrites dans cet article à partir du Kit de développement Azure Stack ou à partir d’un client externe Windows si vous êtes connecté par le biais d’un VPN.
+
+Cet article contient des instructions détaillées sur l’installation de PowerShell pour Azure Stack. Toutefois, si vous souhaitez installer et configurer rapidement PowerShell, vous pouvez utiliser le script fourni dans la rubrique [Devenir rapidement opérationnel avec PowerShell](azure-stack-powershell-configure-quickstart.md). 
 
 > [!NOTE]
-> Hello suit nécessite PowerShell 5.0. toocheck votre version, l’exécution $PSVersionTable.PSVersion et comparer hello » « version principale.
+> Les étapes suivantes nécessitent PowerShell 5.0. Pour vérifier votre version, exécutez $PSVersionTable.PSVersion et comparez la version « Major ».
 
-Commandes PowerShell pour Azure pile sont installés via la galerie de PowerShell hello. tooregiser hello PSGallery référentiel, ouvrez une session PowerShell avec élévation de privilèges à partir du kit de développement hello ou à partir d’un client externe Windows si vous êtes connecté via VPN et exécutez hello de commande suivante :
+Les commandes PowerShell pour Azure Stack sont installées par le biais de PowerShell Gallery. Pour inscrire le dépôt PSGallery, ouvrez une session PowerShell avec élévation de privilèges à partir du Kit de développement, ou d’un client externe Windows si vous êtes connecté par le biais d’un réseau privé virtuel, et exécutez la commande suivante :
 
 ```powershell
 Set-PSRepository `
@@ -39,28 +41,28 @@ Set-PSRepository `
 
 ## <a name="uninstall-existing-versions-of-powershell"></a>Désinstaller les versions existantes de PowerShell
 
-Avant d’installer la version requise de hello, assurez-vous que vous avez désinstallé tous les modules Azure PowerShell existants. Vous pouvez les désinstaller à l’aide d’une des deux méthodes suivantes de hello :
+Avant d’installer la version requise, vérifiez que vous avez désinstallé tous les modules Azure PowerShell existants. Vous pouvez les désinstaller en appliquant l’une des deux méthodes suivantes :
 
-* toouninstall hello des modules PowerShell existants, connectez-vous de kit de développement toohello ou toohello basé sur Windows des clients externes si vous prévoyez de tooestablish une connexion VPN. Fermez toutes les sessions de PowerShell actives hello et exécution hello commande suivante : 
+* Pour désinstaller les modules PowerShell existants, connectez-vous au Kit de développement, ou au client externe Windows si vous prévoyez d’établir une connexion VPN. Fermez toutes les sessions PowerShell actives et exécutez la commande suivante : 
 
    ```powershell
    Get-Module -ListAvailable | where-Object {$_.Name -like “Azure*”} | Uninstall-Module
    ```
 
-* Se connecter dans le kit de développement toohello ou toohello basé sur Windows des clients externes si vous prévoyez de tooestablish une connexion VPN. Supprimez tous les dossiers hello qui commencent par « Azure » à partir de hello `C:\Program Files (x86)\WindowsPowerShell\Modules` et `C:\Users\AzureStackAdmin\Documents\WindowsPowerShell\Modules` dossiers. Suppression de ces dossiers supprime tous les modules PowerShell existants à partir de hello « AzureStackAdmin » et les étendues de l’utilisateur « globaux ». 
+* Connectez-vous au Kit de développement, ou au client externe Windows si vous prévoyez d’établir une connexion VPN. Supprimez des dossiers `C:\Program Files (x86)\WindowsPowerShell\Modules` et `C:\Users\AzureStackAdmin\Documents\WindowsPowerShell\Modules` tous les dossiers qui commencent par « Azure ». La suppression de ces dossiers supprime tous les modules PowerShell existants des portées utilisateur « global » et « AzureStackAdmin ». 
 
-Hello sections suivantes décrivent hello étapes tooinstall requis PowerShell pour Azure pile. Vous pouvez installer PowerShell sur Azure Stack exploité dans un scénario connecté, partiellement connecté ou déconnecté. 
+Les sections suivantes décrivent les étapes nécessaires pour installer PowerShell pour Azure Stack. Vous pouvez installer PowerShell sur Azure Stack exploité dans un scénario connecté, partiellement connecté ou déconnecté. 
 
 ## <a name="install-powershell-in-a-connected-scenario"></a>Installer PowerShell dans un scénario connecté 
 
-Les modules AzureRM compatibles avec Azure Stack sont installés par le biais de profils de version d’API. Pile Azure nécessite hello **2017-03-09-profil** profil de version de l’API, qui est disponible en installant le module de AzureRM.Bootstrapper hello. toolearn sur les profils de version d’API et applets de commande hello fournies par celles-ci, consultez toohello [gérer les profils de version d’API](azure-stack-version-profiles.md). Dans les modules plus toohello Azure Resource Manager, vous devez également installer des modules de pile spécifique Azure PowerShell hello. Hello suivant tooinstall de script PowerShell, exécutez ces modules sur votre station de travail de développement :
+Les modules AzureRM compatibles avec Azure Stack sont installés par le biais de profils de version d’API. Azure Stack nécessite la version d’API **2017-03-09-profile**, qui est disponible en installant le module AzureRM.Bootstrapper. Pour en savoir plus sur les profils de version d’API et les applets de commande fournies par ces derniers, consultez la page [Gérer les profils de version d’API](azure-stack-version-profiles.md). Outre les modules AzureRM, vous devez également installer les modules Azure PowerShell propres à Azure Stack. Exécutez le script PowerShell suivant pour installer ces modules sur votre station de travail de développement :
 
   ```powershell
-  # Install hello AzureRM.Bootstrapper module. Select Yes when prompted tooinstall NuGet 
+  # Install the AzureRM.Bootstrapper module. Select Yes when prompted to install NuGet 
   Install-Module `
     -Name AzureRm.BootStrapper
 
-  # Install and import hello API Version Profile required by Azure Stack into hello current PowerShell session.
+  # Install and import the API Version Profile required by Azure Stack into the current PowerShell session.
   Use-AzureRmProfile `
     -Profile 2017-03-09-profile -Force
 
@@ -69,22 +71,22 @@ Les modules AzureRM compatibles avec Azure Stack sont installés par le biais de
     -RequiredVersion 1.2.10
   ```
 
-tooconfirm hello, réexécutez l’installation Bonjour de commande suivante :
+Pour confirmer l’installation, exécutez la commande suivante :
 
   ```powershell
   Get-Module `
     -ListAvailable | where-Object {$_.Name -like “Azure*”}
   ```
-  Si l’installation de hello est réussie, hello Azure Resource Manager et les modules AzureStack sont affichés dans la sortie de hello.
+  Si l’installation réussit, les modules AzureRM et AzureStack sont affichés dans la sortie.
 
 ## <a name="install-powershell-in-a-disconnected-or-in-a-partially-connected-scenario"></a>Installer PowerShell dans un scénario déconnecté ou partiellement connecté
 
-Dans un scénario déconnecté, vous devez d’abord télécharger hello PowerShell modules tooa ordinateur qui possède une connexion internet et les transférer toohello Kit de développement de pile Azure pour l’installation.
+Dans un scénario déconnecté, vous devez tout d’abord télécharger les modules PowerShell sur un ordinateur qui dispose d’une connexion Internet, puis les transférer vers le Kit de développement Azure Stack pour l’installation.
 
-1. La connexion tooa ordinateur sur lequel vous avez une connexion internet et que vous utilisez hello suivant hello toodownload de script Azure Resource Manager, et les packages AzureStack sur votre ordinateur local :
+1. Connectez-vous à un ordinateur où vous avez une connexion Internet et utilisez le script suivant pour télécharger les packages AzureRM et AzureStack sur votre ordinateur local :
 
    ```powershell
-   $Path = "<Path that is used toosave hello packages>"
+   $Path = "<Path that is used to save the packages>"
 
    Save-Package `
      -ProviderName NuGet `
@@ -103,14 +105,14 @@ Dans un scénario déconnecté, vous devez d’abord télécharger hello PowerSh
      -RequiredVersion 1.2.10 
    ```
 
-2. Hello de copie de packages téléchargés sur un périphérique USB tooa.
+2. Copiez les packages téléchargés vers un périphérique USB.
 
-3. Connectez-vous au kit de développement toohello et copier les packages de hello d’emplacement de tooa l’appareil USB hello sur le kit de développement hello. 
+3. Connectez-vous au Kit de développement et copiez les packages du périphérique USB vers un emplacement sur le Kit de développement. 
 
-4. Maintenant, vous devez inscrire cet emplacement en tant que référentiel par défaut de hello et installer hello Azure Resource Manager et les modules AzureStack à partir de ce référentiel :
+4. Vous devez maintenant inscrire cet emplacement comme dépôt par défaut et installer les modules AzureRM et AzureStack à partir de ce dépôt :
 
    ```powershell
-   $SourceLocation = "<Location on hello development kit that contains hello PowerShell packages>"
+   $SourceLocation = "<Location on the development kit that contains the PowerShell packages>"
    $RepoName = "MyNuGetSource"
 
    Register-PSRepository `
@@ -129,6 +131,6 @@ Dans un scénario déconnecté, vous devez d’abord télécharger hello PowerSh
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Télécharger les outils Azure Stack à partir de GitHub](azure-stack-powershell-download.md)
-* [Configurer l’environnement de l’utilisateur hello pile d’Azure PowerShell](azure-stack-powershell-configure-user.md)  
-* [Configurer l’environnement de l’opérateur hello pile d’Azure PowerShell](azure-stack-powershell-configure-admin.md) 
+* [Configurer l’environnement PowerShell de l’utilisateur Azure Stack](user/azure-stack-powershell-configure-user.md)  
+* [Configurer l’environnement PowerShell de l’opérateur Azure Stack](azure-stack-powershell-configure-admin.md) 
 * [Gérer les profils de version des API dans Azure Stack](azure-stack-version-profiles.md)  

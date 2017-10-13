@@ -1,5 +1,5 @@
 ---
-title: aaaTroubleshoot Azure RBAC. | Documents Microsoft
+title: "Résoudre les problèmes d’Azure RBAC | Microsoft Docs"
 description: "Obtenez de l’aide en cas de problèmes ou de questions concernant les ressources de contrôle d’accès en fonction du rôle."
 services: azure-portal
 documentationcenter: na
@@ -14,25 +14,25 @@ ms.topic: article
 ms.date: 07/12/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: 15feced32d8459d90c4c246d335932f90e1fc91f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 407c030ea159915d4d7ac21760a3d17ec2204372
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="role-based-access-control-troubleshooting"></a>Résolution des problèmes de contrôle d’accès en fonction du rôle
 
-Cet article de document répond aux questions courantes sur les droits d’accès spécifiques hello qui sont accordées aux rôles, afin que vous sachiez quels tooexpect lorsque vous utilisez hello rôles Bonjour portail Azure et peut résoudre les problèmes d’accès. Ces trois rôles couvrent tous les types de ressources :
+Cet article répond aux questions courantes sur les droits d’accès spécifiques qui sont accordés aux rôles, afin que vous sachiez à quoi vous attendre lorsque vous utilisez les rôles sur le Portail Azure et que vous puissiez résoudre les problèmes d’accès. Ces trois rôles couvrent tous les types de ressources :
 
 * Propriétaire  
 * Collaborateur  
 * Lecteur  
 
-Propriétaires et contributeurs ont toohello gestion de l’accès complet à rencontrer, mais un collaborateur ne peut pas donner accès tooother utilisateurs ou groupes. Choses un peu plus intéressantes avec le rôle de lecteur hello, qui est où nous allons passer du temps. Consultez hello [article de get-started Role-Based Access Control](role-based-access-control-configure.md) pour plus d’informations sur comment accéder à toogrant.
+Les propriétaires et collaborateurs disposent tous les deux d’un accès complet à toutes les opérations de gestion, mais un collaborateur ne peut pas accorder d’accès à d’autres utilisateurs ou groupes. La situation du rôle de lecteur est un peu plus intéressante, et nous allons nous y attarder. Consultez l’ [article Prise en main du contrôle d’accès en fonction du rôle](role-based-access-control-configure.md) pour plus d’informations sur la façon d’octroyer l’accès.
 
 ## <a name="app-service-workloads"></a>Charges de travail App Service
 ### <a name="write-access-capabilities"></a>Fonctionnalités d’accès en écriture
-Si vous accordez une accès en lecture seule utilisateur tooa. application web unique, certaines fonctionnalités sont désactivées, que vous ne pouvez pas attendre. Hello suivant les fonctionnalités de gestion requièrent **écrire** accéder à l’application web tooa (Contributeur ou propriétaire) et ne sont pas disponibles pour tous les scénarios en lecture seule.
+Si vous accordez un accès utilisateur en lecture seule à une seule application web, certaines fonctionnalités sont désactivées, ce que vous n’avez peut-être pas prévu. Les fonctionnalités de gestion suivantes exigent un accès en **écriture** à une application web (Collaborateur ou Propriétaire) et ne sont pas disponibles en lecture seule.
 
 * Commandes (comme start, stop, etc.)
 * Modification de paramètres tels que la configuration générale, les paramètres de mise à l’échelle, les paramètres de sauvegarde et les paramètres d’analyse
@@ -43,54 +43,54 @@ Si vous accordez une accès en lecture seule utilisateur tooa. application web u
 * Déploiements actifs et récents (pour le déploiement continu Git local)
 * Estimation de dépense
 * Tests web
-* Réseau virtuel (uniquement visible tooa lecteur si un réseau virtuel a déjà été configuré par un utilisateur avec accès en écriture).
+* Réseau virtuel (accessible à un lecteur uniquement si un réseau virtuel a été précédemment configuré par un utilisateur avec accès en écriture).
 
-Si vous ne peut pas accéder à un de ces vignettes, vous devez tooask votre administrateur pour l’application web de collaborateur accès toohello.
+Si vous ne pouvez accéder à aucune de ces vignettes, vous devez obtenir l’accès Collaborateur à l’application web auprès de votre administrateur.
 
 ### <a name="dealing-with-related-resources"></a>Gestion des ressources connexes
-Les applications Web sont compliquées par présence hello de quelques différentes ressources qui interaction. Voici un groupe de ressources classique avec deux sites web :
+Les applications web sont compliqués par la présence de quelques ressources différentes qui interagissent. Voici un groupe de ressources classique avec deux sites web :
 
 ![Groupe de ressources d'application web](./media/role-based-access-control-troubleshooting/website-resource-model.png)
 
-Par conséquent, si vous accordez l’accès toojust hello web app, une grande partie de la fonctionnalité hello sur Panneau du site Web de hello Bonjour portail Azure est désactivée.
+En conséquence, si vous accordez à un utilisateur le seul accès à l’application web, la plupart des fonctionnalités du volet Site web dans le portail Azure sont désactivées.
 
-Ces éléments nécessitent **écrire** accéder toohello **plan App Service** qui correspond le site Web de tooyour :  
+Les éléments suivants requièrent l’accès **en écriture** au **plan App Service** qui correspond à votre site web :  
 
-* L’application web affichage hello de tarification (gratuit ou Standard)  
+* Affichage du niveau de tarification de l'application web (Gratuit ou Standard)  
 * Configuration de mise à l'échelle (le nombre d'instances, la taille de la machine virtuelle, les paramètres de mise à l'échelle automatique)  
 * Quotas (stockage, bande passante, UC)  
 
-Ces éléments nécessitent **écrire** toohello accès entier **groupe de ressources** qui contient votre site Web :  
+Les éléments suivants requièrent l’accès **en écriture** à l’ensemble du **Groupe de ressources** qui contient le site web :  
 
-* Certificats SSL et liaisons (certificats SSL peuvent être partagées entre les sites de hello même groupe de ressources et l’emplacement géographique)  
+* Certificats et liaisons SSL (les certificats SSL peuvent être partagés entre différents sites dans le même groupe de ressources et emplacement)  
 * Règles d'alerte  
 * Paramètres de mise à l'échelle automatique  
 * Composants Application Insights  
 * Tests web  
 
 ## <a name="virtual-machine-workloads"></a>Charges de travail des machines virtuelles
-Beaucoup comme avec les applications web, certaines fonctionnalités dans le panneau de machine virtuelle hello requièrent un accès en écriture toohello virtual machine ou tooother ressources hello groupe de ressources.
+Comme pour les applications web, certaines fonctionnalités du volet de la machine virtuelle exigent un accès en écriture à la machine virtuelle ou à d'autres ressources du groupe de ressources.
 
-Machines virtuelles sont associées tooDomain noms, les réseaux virtuels, les comptes de stockage et les règles d’alerte.
+Les machines virtuelles sont associées aux noms de domaine, réseaux virtuels, comptes de stockage et règles d'alerte.
 
-Ces éléments nécessitent **écrire** accéder toohello **machine virtuelle**:
+Les éléments suivants requièrent l’accès **en écriture** à la **machine virtuelle** :
 
 * Points de terminaison  
 * Adresses IP  
 * Disques  
 * Extensions  
 
-Ces cubes nécessitent **écrire** hello de tooboth accès **machine virtuelle**et hello **groupe de ressources** (ainsi que le nom de domaine hello) qu’il est dans :  
+Les éléments suivants requièrent l’accès **en écriture** à la **machine virtuelle**, ainsi qu’au **Groupe de ressources** (avec le nom de domaine) auxquels ils appartiennent :  
 
 * Groupe à haute disponibilité  
 * Jeu d'équilibrage de la charge  
 * Règles d'alerte  
 
-Si vous ne peut pas accéder à un de ces vignettes, demandez à votre administrateur pour le groupe de ressources de collaborateur accès toohello.
+Si vous ne pouvez accéder à aucune de ces vignettes, demandez l’accès Collaborateur au groupe de ressources à votre administrateur.
 
 ## <a name="see-more"></a>En savoir plus
-* [Contrôle d’accès basé sur rôle](role-based-access-control-configure.md): prise en main RBAC Bonjour portail Azure.
-* [Rôles intégrés](role-based-access-built-in-roles.md): obtenir des informations sur les rôles hello livrés dans RBAC.
-* [Les rôles personnalisés dans Azure RBAC](role-based-access-control-custom-roles.md): Découvrez comment toocreate des rôles personnalisés toofit doit votre accès.
-* [Créer un rapport d’historique des modifications d’accès](role-based-access-control-access-change-history-report.md): effectuez le suivi des changements d’affection de rôle dans RBAC.
+* [Contrôle d’accès en fonction du rôle Azure](role-based-access-control-configure.md): découvrez le Contrôle d’accès en fonction du rôle Azure dans le portail Azure.
+* [Rôles intégrés](role-based-access-built-in-roles.md): obtenez des informations sur les rôles qui livrés en standard dans RBAC.
+* [Rôles personnalisés dans le contrôle d’accès en fonction du rôle (RBAC) Azure](role-based-access-control-custom-roles.md): découvrez comment créer des rôles personnalisés selon vos besoins d'accès.
+* [Créer un rapport d’historique des modifications d’accès](role-based-access-control-access-change-history-report.md): effectuez le suivi des changements d'affection de rôle dans RBAC.
 

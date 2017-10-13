@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure données de centre de sécurité | Documents Microsoft"
+title: "Sécurité des données Azure Security Center| Microsoft Docs"
 description: "Ce document explique comment les données sont gérées et protégées dans le Centre de sécurité Azure."
 services: security-center
 documentationcenter: na
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/12/2017
 ms.author: yurid
-ms.openlocfilehash: 30f8b11272dc5df6d485608abdaa62ba57e63f23
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6f95cf7631664f4630edbbcdadfd1d98105fdb98
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-security-center-data-security"></a>Sécurité des données du Centre de sécurité Azure
-les clients toohelp empêchent, détectent et répondent toothreats, Azure Security Center collecte et traite les données relatives à la sécurité, y compris les informations de configuration, métadonnées, journaux des événements, les fichiers de vidage sur incident et bien plus encore. Microsoft respecte les instructions de sécurité et de conformité toostrict : du codage toooperating un service.
+Pour aider les clients à prévenir, détecter et contrer les menaces, Azure Security Center collecte et traite des données de sécurité, notamment des informations de configuration, des métadonnées, des journaux d’événements et des fichiers de vidage sur incident. Microsoft adhère aux recommandations strictes de conformité et de sécurité, du codage jusqu'à l'exploitation d'un service.
 
 Cet article explique comment les données sont gérées et protégées dans le Centre de sécurité Azure.
 
 >[!NOTE] 
->À compter de début juin 2017, centre de sécurité utiliser hello Microsoft Monitoring Agent toocollect et stocker des données. Consultez [Migration de plateforme Azure Security Center](security-center-platform-migration.md) toolearn plus. informations Hello dans cet article représentent les fonctionnalités du centre de sécurité après la transition toohello Microsoft Monitoring Agent.
+>Depuis début juin 2017, Security Center utilise Microsoft Monitoring Agent pour collecter et stocker des données. Pour plus d’informations, consultez l’article [Migration de plateforme Azure Security Center](security-center-platform-migration.md). Les informations contenues dans cet article représentent les fonctionnalités de Security Center après la transition vers Microsoft Monitoring Agent.
 >
 
 
 ## <a name="data-sources"></a>Sources de données
-Azure Security Center analyse les données de hello suivant la visibilité de tooprovide sources dans votre état de sécurité, identifier les failles et recommander des solutions d’atténuation et détecter les menaces actives :
+Pour assurer une visibilité sur l’état de la sécurité, identifier les vulnérabilités, recommander des mesures d’atténuation et détecter les menaces actives, Azure Security Center analyse les données provenant des sources suivantes :
 
-- Les Services Azure : Utilise les informations sur la configuration de hello des services Azure que vous avez déployé en communiquant avec le fournisseur de ressources du service.
+- Services Azure : utilise les informations relatives à la configuration des services Azure que vous avez déployés en communiquant avec le fournisseur de ressources de ce service.
 - Trafic réseau : tire parti des métadonnées de trafic réseau échantillonnées provenant de l’infrastructure de Microsoft, telles que l’IP/le port source/de destination, la taille de paquet et le protocole réseau.
 - Solutions de partenaires : collecte les alertes de sécurité des solutions de partenaires intégrées, telles que les solutions de pare-feu et anti-programme malveillant. 
-- Vos machines virtuelles et vos serveurs : utilise les informations de configuration et les données relatives aux événements de sécurité, telles que les journaux des événements Windows et les journaux d’audit, les journaux IIS, les messages syslog et les fichiers de vidage sur incident, qui figurent sur vos machines virtuelles. En outre, lorsqu’une alerte est créée, centre de sécurité Azure peut générer un instantané du disque de machine virtuelle hello affecté et extraire l’alerte de machine artefacts toohello connexes à partir du disque de machine virtuelle hello, tel qu’un fichier de Registre, à des fins légales.
+- Vos machines virtuelles et vos serveurs : utilise les informations de configuration et les données relatives aux événements de sécurité, telles que les journaux des événements Windows et les journaux d’audit, les journaux IIS, les messages syslog et les fichiers de vidage sur incident, qui figurent sur vos machines virtuelles. En outre, lorsqu’une alerte est créée, Azure Security Center peut générer une capture instantanée du disque de machine virtuelle affecté et extraire des artefacts associés à l’alerte à partir du disque de machine virtuelle (fichier de registre, par exemple) à des fins d’investigation.
 
 
 ## <a name="data-protection"></a>Protection des données
-**La segmentation des données**: données sont maintenues séparées logiquement sur chaque composant dans le service de hello. Toutes les données sont balisées en fonction de l'organisation. Ce balisage est conservé tout au long du cycle de vie des données hello, et elle est appliquée à chaque couche de service de hello.
+**Ségrégation des données :**les données client sont maintenues séparées logiquement sur chaque composant, dans l’ensemble du service. Toutes les données sont balisées en fonction de l'organisation. Ce balisage est conservé tout au long du cycle de vie des données, et il est appliqué dans chaque couche du service.
 
-**Accès aux données**: pouvoir tooprovide recommandations de sécurité et examiner les menaces de sécurité potentielles, technique de Microsoft peut accéder aux informations collectées ou analysés par des services Azure, y compris les fichiers de vidage sur incident, traiter les événements de création, machine virtuelle instantanés de disque et les artefacts, qui peuvent inclure involontairement des données personnelles à vos machines virtuelles ou des données client. Nous respecter toohello [déclaration de confidentialité et les termes du contrat de Services en ligne Microsoft](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31), état que Microsoft ne sera pas utiliser les données clients ou dériver des informations à partir de celle-ci à des fins commerciales de publicité ou similaires. Nous utilisent uniquement les données client comme requis tooprovide vous avec Azure services, y compris à des fins compatible avec la fourniture de ces services. Vous conservez tous les droits tooCustomer données.
+**Accès aux données** : pour fournir des recommandations en matière de sécurité et enquêter sur les éventuelles menaces de sécurité, le personnel de Microsoft peut accéder aux informations collectées ou analysées par les services Azure, notamment les fichiers de vidage sur incident, les événements de création de processus, les captures instantanées et artefacts de disque de machine virtuelle, qui peuvent involontairement exposer des données client ou personnelles provenant de vos machines virtuelles. Nous respectons les [Conditions d’utilisation et la Déclaration de confidentialité de Microsoft Online Services](http://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=31), qui indiquent que Microsoft n’utilisera pas les données client ou ne tirera pas d’informations de ces dernières à des fins commerciales, publicitaires ou similaires. Nous utilisons uniquement les données client en fonction des besoins pour vous proposer des services Azure, notamment des utilisations compatibles avec la fourniture de ces services. Vous conservez tous les droits sur les données client.
 
-**Utilisation des données**: Microsoft utilise des modèles et menaces vu sur plusieurs locataires tooenhance nos fonctions de détection et la prévention ; nous faire conformément aux engagements de confidentialité hello décrites dans nos [confidentialité Instruction](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx).
+**Utilisation des données** : Microsoft utilise des modèles et des informations sur les menaces observées auprès de multiples locataires pour améliorer ses fonctionnalités de prévention et de détection. Cette utilisation s’effectue en accord avec les engagements de confidentialité décrits dans la [Déclaration de confidentialité](https://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx) de Microsoft.
 
 ## <a name="data-location"></a>Emplacement des données
 
-**Votre espace**: un espace de travail est spécifié pour hello suivant l’Union européenne, et les données collectées à partir de vos machines virtuelles Azure, y compris les vidages sur incident et certains types de données d’alerte, sont stockées dans hello plus proche de l’espace de travail. 
+**Vos espaces de travail** : un espace de travail est spécifié pour les zones géographiques ci-après, et les données collectées à partir de vos machines virtuelles Azure, notamment les vidages sur incident et certains types de données d’alerte, sont stockées dans l’espace de travail le plus proche. 
 
 | Zone géographique de machine virtuelle                        | Zone géographique d’espace de travail |
 |-------------------------------|---------------|
@@ -58,29 +58,29 @@ Azure Security Center analyse les données de hello suivant la visibilité de to
 | Australie                     | Australie     |
 
  
-Instantanés de disque de machine virtuelle sont stockés dans hello même compte de stockage comme disque de machine virtuelle hello.
+Les captures instantanées des disques de machine virtuelle sont stockées dans le même compte de stockage que celui de ces disques.
  
-Pour les ordinateurs virtuels et les serveurs exécutant d’autres environnements, par exemple, sur site, vous pouvez spécifier les espace de travail hello et région où les données collectées sont stockées. 
+Pour les machines virtuelles et les serveurs qui s’exécutent dans d’autres environnements, par exemple au niveau local, vous pouvez spécifier l’espace de travail et la région dans lesquels les données collectées sont stockées. 
 
-**Stockage du centre de sécurité Azure**: plus d’informations sur les alertes de sécurité, y compris les alertes de partenaire, sont stockés régional selon l’emplacement toohello Hello liées ressource Azure, tandis que plus d’informations sur l’état d’intégrité de la sécurité et recommandation stockée de façon centralisée dans hello États-Unis ou Europe selon l’emplacement de toocustomer.
-Le Centre de sécurité Azure collecte des copies éphémères de vos fichiers de vidage sur incident et les analyse pour obtenir des preuves de tentatives d’attaque par le biais de code malveillant exploitant une faille de sécurité et de compromis ayant abouti. Centre de sécurité Azure effectue cette analyse dans hello même emplacement que hello d’espace de travail, et suppressions hello copies éphémères lors de l’analyse est terminée.
+**Stockage Azure Security Center** : les informations relatives aux alertes de sécurité, notamment les alertes des partenaires, sont stockées au niveau régional en fonction de l’emplacement de la ressource Azure associée, alors que les informations concernant l’état d’intégrité de la sécurité et les recommandations sont stockées de manière centralisée aux États-Unis ou en Europe, selon l’emplacement du client.
+Le Centre de sécurité Azure collecte des copies éphémères de vos fichiers de vidage sur incident et les analyse pour obtenir des preuves de tentatives d’attaque par le biais de code malveillant exploitant une faille de sécurité et de compromis ayant abouti. Azure Security Center effectue cette analyse dans la même région géographique que l’espace de travail, puis supprime les copies éphémères une fois l’analyse terminée.
 
-Artefacts de l’ordinateur sont stockées de manière centralisée dans hello même région que hello de machine virtuelle. 
+Les artefacts des ordinateurs sont stockés de manière centralisée dans la même région que la machine virtuelle. 
 
 
 ## <a name="managing-data-collection-from-virtual-machines"></a>Gestion de la collecte de données à partir de machines virtuelles
 
-Lorsque vous activez Security Center dans Azure, la collecte de données est activée pour chacun de vos abonnements Azure. Vous pouvez également activer la collecte de données pour vos abonnements Bonjour section de stratégie de sécurité du centre de sécurité Azure. Lors de la collecte de données est activée, Azure Security Center dispositions hello Microsoft Monitoring Agent sur toutes les existantes prise en charge des machines virtuelles et nouveaux qui sont créés. Hello Microsoft Monitoring agent analyses de sécurité différentes configurations et des événements liées dans [Event Tracing for Windows](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx) traces (ETW). En outre, système d’exploitation de hello déclenche des événements du journal des événements pendant hello machine de hello en cours d’exécution. Il peut s’agir des données suivantes : type et version de système d’exploitation, journaux de système d’exploitation (journaux d’événements Windows), processus en cours d’exécution, nom de machine, adresses IP, utilisateur connecté et ID de locataire. Hello Microsoft Monitoring Agent lit les entrées de journal des événements et ETW effectue le suivi et les copie espace tooyour pour l’analyse. Hello Microsoft Monitoring Agent copie également l’espace de tooyour de fichiers de vidage sur incident.
+Lorsque vous activez Security Center dans Azure, la collecte de données est activée pour chacun de vos abonnements Azure. Vous pouvez également activer la collecte de données pour vos abonnements dans la section « Stratégie de sécurité » d’Azure Security Center. Lorsque la collecte de données est activée, Azure Security Center approvisionne Microsoft Monitoring Agent sur toutes les machines virtuelles Azure prises en charge existantes et sur toutes celles nouvellement créées. Microsoft Monitoring Agent analyse diverses configurations de sécurité et crée des événements sous la forme de traces de [Suivi d’événements pour Windows (ETW)](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx). En outre, le système d’exploitation déclenche des événements du Journal des événements au cours de l’exécution de la machine. Il peut s’agir des données suivantes : type et version de système d’exploitation, journaux de système d’exploitation (journaux d’événements Windows), processus en cours d’exécution, nom de machine, adresses IP, utilisateur connecté et ID de locataire. Microsoft Monitoring Agent lit les entrées du journal des événements et les traces ETW, puis les copie dans vos espaces de travail à des fins d’analyse. Microsoft Monitoring Agent copie également les fichiers de vidage sur incident dans vos espaces de travail.
 
-Si vous utilisez le centre de sécurité Azure gratuit, vous pouvez également désactiver la collecte de données à partir d’ordinateurs virtuels dans hello stratégie de sécurité. Collecte de données est requise pour les abonnements sur le niveau Standard de hello. La collecte des artefacts et des captures instantanées des disques de machine virtuelle reste activée, même si la collecte de données est désactivée.
+Si vous utilisez Azure Security Center gratuitement, vous pouvez également désactiver la collecte de données à partir des machines virtuelles dans la stratégie de sécurité. La collecte de données est obligatoire pour les abonnements du niveau Standard. La collecte des artefacts et des captures instantanées des disques de machine virtuelle reste activée, même si la collecte de données est désactivée.
 
 
 ## <a name="see-also"></a>Voir aussi
-Ce document explique comment les données sont gérées et protégées dans le Centre de sécurité Azure. toolearn en savoir plus sur Azure Security Center, consultez :
+Ce document explique comment les données sont gérées et protégées dans le Centre de sécurité Azure. Pour plus d’informations sur le Centre de sécurité Azure, consultez les rubriques suivantes :
 
-* [Azure Security Center Guide de planification et opérations](security-center-planning-and-operations-guide.md) — Découvrez comment tooplan et comprendre les considérations de conception hello tooadopt Azure Security Center.
-* [Contrôle d’intégrité de la sécurité dans le centre de sécurité Azure](security-center-monitoring.md) — Découvrez comment toomonitor hello d’intégrité de vos ressources Azure
-* [Toosecurity répond et de la gestion des alertes dans le centre de sécurité Azure](security-center-managing-and-responding-alerts.md) : en savoir comment les alertes toosecurity toomanage et y répondre
-* [Surveillance des solutions de partenaire avec Azure Security Center](security-center-partner-solutions.md) — Découvrez comment toomonitor hello état d’intégrité de vos solutions de partenaire.
-* [Forum aux questions sur Azure Security Center](security-center-faq.md) : Forum aux questions sur l’utilisation hello service de recherche
+* [Guide des opérations et de planification d’Azure Security Center](security-center-planning-and-operations-guide.md) : découvrez comment planifier l’adoption d’Azure Security Center et prenez connaissance des considérations relatives à la conception.
+* [Surveillance de l’intégrité de la sécurité dans Azure Security Center](security-center-monitoring.md) : découvrez comment surveiller l’intégrité de vos ressources Azure.
+* [Gestion et résolution des alertes de sécurité dans Azure Security Center](security-center-managing-and-responding-alerts.md) : découvrez comment gérer et résoudre les alertes de sécurité.
+* [Surveillance des solutions de partenaire avec Azure Security Center](security-center-partner-solutions.md) : découvrez comment surveiller l’état d’intégrité de vos solutions de partenaire.
+* [FAQ d’Azure Security Center](security-center-faq.md) : découvrez les réponses aux questions les plus souvent posées à propos de l’utilisation de ce service.
 * [Blog sur la sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : accédez à des billets de blog sur la sécurité et la conformité Azure.

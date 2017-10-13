@@ -1,6 +1,6 @@
 ---
-title: application aaaAdd push notifications tooyour Xamarin.iOS avec Azure App Service
-description: "Découvrez comment toouse Azure App Service toosend push notifications tooyour Xamarin.iOS application"
+title: "Ajouter des notifications Push à votre application Xamarin.iOS à l’aide d’Azure App Service"
+description: "Découvrez comment utiliser Azure App Service pour envoyer des notifications Push à votre application Xamarin.iOS."
 services: app-service\mobile
 documentationcenter: xamarin
 author: ggailey777
@@ -14,38 +14,38 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/12/2016
 ms.author: glenga
-ms.openlocfilehash: 3e6439aee4f3fe0f60b9786d0bbfd74c4f5e52d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bf922e49c4c92d0065817a5dd6c7d10a04737304
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="add-push-notifications-tooyour-xamarinios-app"></a>Ajouter des notifications de push tooyour application Xamarin.iOS
+# <a name="add-push-notifications-to-your-xamarinios-app"></a>Ajouter des notifications Push à votre application Xamarin.iOS
 [!INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Dans ce didacticiel, vous allez ajouter toohello de notifications push [Xamarin.iOS de démarrage rapide](app-service-mobile-xamarin-ios-get-started.md) projet afin qu’une notification push est envoyée toohello périphérique chaque fois qu’un enregistrement est inséré.
+Dans ce didacticiel, vous ajoutez des notifications Push au projet [Démarrage rapide Xamarin.iOS](app-service-mobile-xamarin-ios-get-started.md) afin qu'une notification Push soit envoyée chaque fois qu'un enregistrement est inséré.
 
-Si vous n’utilisez pas hello téléchargé le projet de démarrage rapide de serveur, vous devez serez hello package d’extension de notification push. Consultez [fonctionne avec serveur principal de .NET hello SDK pour les applications mobiles Azure](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) pour plus d’informations.
+Si vous n’utilisez pas le projet de serveur du démarrage rapide téléchargé, vous devrez ajouter le package d’extension de notification Push. Consultez [Fonctionnement avec le Kit de développement logiciel (SDK) du serveur principal .NET pour Azure Mobile Apps](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) pour plus d’informations.
 
-## <a name="prerequisites"></a>Composants requis
-* Hello complète [Xamarin.iOS quickstart](app-service-mobile-xamarin-ios-get-started.md) didacticiel.
-* Un appareil iOS physique. Notifications push ne sont pas pris en charge par le simulateur iOS de hello.
+## <a name="prerequisites"></a>Conditions préalables
+* Terminez le [didacticiel de démarrage rapide Xamarin.iOS](app-service-mobile-xamarin-ios-get-started.md) .
+* Un appareil iOS physique. Les notifications Push ne sont pas prises en charge par le simulateur iOS.
 
-## <a name="register-hello-app-for-push-notifications-on-apples-developer-portal"></a>Inscrire l’application hello pour les notifications push sur le portail des développeurs d’Apple
+## <a name="register-the-app-for-push-notifications-on-apples-developer-portal"></a>Inscrire l'application pour les notifications push dans le portail de développeurs d'Apple
 [!INCLUDE [Enable Apple Push Notifications](../../includes/enable-apple-push-notifications.md)]
 
-## <a name="configure-your-mobile-app-toosend-push-notifications"></a>Configurer les notifications de push de l’application Mobile toosend
+## <a name="configure-your-mobile-app-to-send-push-notifications"></a>Configuration de votre application mobile pour l'envoi de notifications push
 [!INCLUDE [app-service-mobile-apns-configure-push](../../includes/app-service-mobile-apns-configure-push.md)]
 
-## <a name="update-hello-server-project-toosend-push-notifications"></a>Mettre à jour des notifications push de hello serveur projet toosend
+## <a name="update-the-server-project-to-send-push-notifications"></a>Mettre à jour le projet de serveur pour l'envoi de notifications Push
 [!INCLUDE [app-service-mobile-update-server-project-for-push-template](../../includes/app-service-mobile-update-server-project-for-push-template.md)]
 
 ## <a name="configure-your-xamarinios-project"></a>Configurer votre projet Xamarin.iOS
 [!INCLUDE [app-service-mobile-xamarin-ios-configure-project](../../includes/app-service-mobile-xamarin-ios-configure-project.md)]
 
-## <a name="add-push-notifications-tooyour-app"></a>Ajouter une application de tooyour de notifications push
-1. Dans **QSTodoService**, ajouter hello suivant propriété afin que **AppDelegate** peut acquérir les clients mobiles hello :
+## <a name="add-push-notifications-to-your-app"></a>Ajout de notifications Push à votre application
+1. Dans **QSTodoService**, ajoutez la propriété suivante pour qu’**AppDelegate** puisse acquérir le client mobile :
    
             public MobileServiceClient GetClient {
             get
@@ -57,11 +57,11 @@ Si vous n’utilisez pas hello téléchargé le projet de démarrage rapide de s
                 client = value;
             }
         }
-2. Ajoutez hello suivant `using` haut de toohello d’instruction de hello **AppDelegate.cs** fichier.
+2. Ajoutez l’instruction `using` suivante au début du fichier **AppDelegate.cs** .
    
         using Microsoft.WindowsAzure.MobileServices;
         using Newtonsoft.Json.Linq;
-3. Dans **AppDelegate**, substituez hello **FinishedLaunching** événement :
+3. Dans **AppDelegate**, remplacez l'événement **FinishedLaunching** :
    
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
@@ -77,7 +77,7 @@ Si vous n’utilisez pas hello téléchargé le projet de démarrage rapide de s
    
             return true;
         }
-4. Dans hello du même fichier, remplacer hello **RegisteredForRemoteNotifications** événement. Dans ce code, vous vous inscrivez pour une notification de modèle simple qui est envoyée sur toutes les plateformes prises en charge par le serveur de hello.
+4. Dans le même fichier, remplacez l’événement **RegisteredForRemoteNotifications** . Dans ce code, vous inscrivez une notification de modèle simple qui sera envoyée sur toutes les plateformes prises en charge par le serveur.
    
     Pour plus d’informations sur les modèles avec Notification Hubs, consultez [Modèles](../notification-hubs/notification-hubs-templates-cross-platform-push-messages.md).
 
@@ -99,7 +99,7 @@ Si vous n’utilisez pas hello téléchargé le projet de démarrage rapide de s
         }
 
 
-1. Substituez ensuite hello **DidReceivedRemoteNotification** événement :
+1. Ensuite, remplacez l’événement **DidReceivedRemoteNotification** :
    
         public override void DidReceiveRemoteNotification (UIApplication application, NSDictionary userInfo, Action<UIBackgroundFetchResult> completionHandler)
         {
@@ -117,18 +117,18 @@ Si vous n’utilisez pas hello téléchargé le projet de démarrage rapide de s
             }
         }
 
-Votre application est maintenant des notifications push de toosupport mis à jour.
+L’application est mise à jour et prend en charge les notifications Push.
 
 ## <a name="test"></a>Tester les notifications push dans votre application
-1. Hello de presse **exécuter** projet de hello toobuild et démarrer l’application hello dans un appareil iOS, puis cliquez sur **OK** tooaccept les notifications push.
+1. Appuyez sur le bouton **Démarrer** pour générer le projet, puis démarrez l’application sur un appareil compatible iOS, et enfin cliquez sur **OK** pour accepter les notifications Push.
    
    > [!NOTE]
-   > Vous devez accepter explicitement les notifications Push de votre application. Cette demande produit uniquement hello première fois que hello application s’exécute.
+   > Vous devez accepter explicitement les notifications Push de votre application. Cette demande s’effectue uniquement lors du premier démarrage de l’application.
    > 
    > 
-2. Dans l’application hello, une tâche, puis tapez Bonjour signe plu (**+**) icône.
-3. Vérifiez qu’une notification est reçue, puis cliquez sur **OK** toodismiss hello notification.
-4. Répétez l’étape 2 et fermer immédiatement hello app, puis vérifiez qu’une notification s’affiche.
+2. Dans l’application, tapez une tâche, puis cliquez sur l’icône plus (**+**).
+3. Vérifiez que vous avez reçu une notification, puis cliquez sur **OK** pour fermer celle-ci.
+4. Répétez l’étape 2 et fermez immédiatement l’application, puis vérifiez qu’une notification est affichée.
 
 Vous avez terminé ce didacticiel.
 

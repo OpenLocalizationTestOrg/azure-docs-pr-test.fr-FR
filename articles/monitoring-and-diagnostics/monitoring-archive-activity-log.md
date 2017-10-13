@@ -1,6 +1,6 @@
 ---
-title: "aaaArchive hello journal des activités Azure | Documents Microsoft"
-description: "Découvrez comment tooarchive vos activités Windows Azure du journal pour la rétention à long terme dans un compte de stockage."
+title: "Archiver le journal d’activité Azure | Microsoft Docs"
+description: "Découvrez comment archiver votre journal d’activité Azure pour une conservation à long terme dans un compte de stockage."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/09/2016
 ms.author: johnkem
-ms.openlocfilehash: 58c6d3a3a31398287f66f76999d48f2942ab5109
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0e3a5b84f57eac96249430fa1c2c4cc076c2926a
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="archive-hello-azure-activity-log"></a>Archiver hello journal des activités Azure
-Dans cet article, nous montrons comment vous pouvez utiliser hello portail Azure, les PowerShell Cmdlets ou CLI de Cross-Platform tooarchive votre [ **journal des activités Azure** ](monitoring-overview-activity-logs.md) dans un compte de stockage. Cette option est utile si vous souhaitez que tooretain plus de 90 jours (avec un contrôle total sur la stratégie de rétention hello) pour votre journal des activités d’audit, analyse statique, ou de sauvegarde. Si vous devez uniquement tooretain vos événements pendant 90 jours ou moins vous est inutile tooset archivage tooa compte de stockage, puisque les événements de journal d’activité sont conservés dans hello plateforme Azure pendant 90 jours sans l’archivage.
+# <a name="archive-the-azure-activity-log"></a>Archiver le journal d’activité Azure
+Dans cet article, nous vous expliquons comment vous pouvez utiliser le portail Azure, les applets de commande PowerShell ou l’interface de ligne de commande multiplateforme pour archiver votre [**journal d’activité Azure dans un compte de stockage**](monitoring-overview-activity-logs.md). Cette option est utile si vous souhaitez conserver votre journal d’activité pendant une période supérieure à 90 jours (en disposant d’un contrôle total sur la stratégie de rétention) à des fins d’audit, d’analyse statique ou de sauvegarde. Si vous devez conserver vos événements pendant 90 jours ou moins, il est inutile de configurer l’archivage sur un compte de stockage, puisque les événements du journal d’activité sont conservés dans la plateforme Azure pendant 90 jours sans que l’archivage ne soit activé.
 
-## <a name="prerequisites"></a>Composants requis
-Avant de commencer, vous devez trop[créer un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account) toowhich, vous pouvez archiver le journal d’activité. Nous vous recommandons vivement de ne pas utiliser un compte de stockage existant qui comporte des données d’autres, non suivi stockées afin que vous pouvez mieux contrôler les accès toomonitoring données. Toutefois, si vous archivez également les journaux de Diagnostic et de compte de stockage tooa de métriques, il peut être judicieux toouse ce compte de stockage pour votre activité du journal ainsi tookeep toutes les données d’analyse dans un emplacement central. compte de stockage Hello que vous utilisez doit être un compte de stockage polyvalentes, pas un compte de stockage d’objets blob. compte de stockage Hello n’a pas de toobe dans hello même abonnement que l’abonnement hello générant des journaux tant qu’utilisateur hello configure hello paramètre a des abonnements de tooboth accès RBAC appropriés.
+## <a name="prerequisites"></a>Conditions préalables
+Avant de commencer, vous devez [créer un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account) sur lequel vous pouvez archiver votre journal d’activité. Nous vous recommandons vivement de ne pas utiliser un compte de stockage existant sur lequel sont stockées d’autres données de non-analyse, afin de pouvoir mieux contrôler l’accès aux données d’analyse. En revanche, si vous archivez également des journaux de diagnostic et des métriques sur un compte de stockage, il peut être judicieux d’utiliser ce compte pour votre journal d’activité afin de regrouper toutes vos données d’analyse au même emplacement. Le compte de stockage que vous utilisez doit être un compte de stockage à usage général, et non un compte de stockage Blob. Il n’est pas nécessaire que le compte de stockage se trouve dans le même abonnement que l’abonnement générant des journaux, à condition que l’utilisateur qui configure le paramètre ait un accès RBAC approprié aux deux abonnements.
 
 ## <a name="log-profile"></a>Profil de journal
-tooarchive hello journal d’activité à l’aide d’une des méthodes hello ci-dessous, vous définissez hello **profil journal** pour un abonnement. définit le type hello d’événements qui sont stockés ou transmis en continu Hello profil du journal et hello sorties : concentrateur compte et/ou les événements de stockage. Il définit également la stratégie de rétention hello (nombre de jours tooretain) pour les événements stockés dans un compte de stockage. Si la stratégie de rétention hello a la valeur toozero, les événements sont stockés indéfiniment. Dans le cas contraire, cela peut être valeur tooany compris entre 1 et 2147483647. Stratégies de rétention sont appliquées par jour, donc à hello fin d’une journée (UTC), consigne un jour hello qui est désormais au-delà de la stratégie de rétention hello seront supprimés. Par exemple, si vous aviez une stratégie de rétention d’un jour, au début de hello du jour hello aujourd'hui hello les journaux à partir de hello avant-hier seraient supprimés. [Vous trouverez plus d’informations sur les profils de journal ici](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile). 
+Pour archiver le journal d’activité à l’aide de l’une des méthodes ci-dessous, définissez le **profil journal** pour un abonnement. Le profil de journal définit le type d’événements qui sont stockés ou diffusés et les types de sortie : compte de stockage et/ou hub d’événements. Il définit également la stratégie de rétention (nombre de jours de conservation) pour les événements stockés dans un compte de stockage. Si la stratégie de rétention est définie sur zéro, les événements sont stockés indéfiniment. Elle peut également être définie sur n’importe quelle valeur comprise entre 1 et 2147483647. Les stratégies de rétention sont appliquées sur une base quotidienne. Donc, à la fin d’une journée (UTC), les journaux de la journée qui est désormais au-delà de la stratégie de rétention sont supprimés. Par exemple, si vous aviez une stratégie de rétention d’une journée, au début de la journée d’aujourd’hui les journaux d’avant-hier seront supprimés. [Vous trouverez plus d’informations sur les profils de journal ici](monitoring-overview-activity-logs.md#export-the-activity-log-with-a-log-profile). 
 
-## <a name="archive-hello-activity-log-using-hello-portal"></a>Archive hello journal d’activité à l’aide du portail de hello
-1. Dans le portail hello, cliquez sur hello **le journal d’activité** lien de navigation de gauche hello. Si vous ne voyez pas un lien pour hello journal d’activité, cliquez sur hello **plus Services** lier tout d’abord.
+## <a name="archive-the-activity-log-using-the-portal"></a>Archiver le journal d’activité à l’aide du portail
+1. Dans le portail, cliquez sur le lien **Journal d’activité** dans le volet de navigation de gauche. Si vous ne voyez pas de lien pour le journal d’activité, cliquez d’abord sur le lien **More Services** (Plus de services).
    
-    ![Accédez Panneau de journal tooActivity](media/monitoring-archive-activity-log/act-log-portal-navigate.png)
-2. Haut hello du Panneau de hello, cliquez sur **exporter**.
+    ![Accéder au panneau Journal d’activité](media/monitoring-archive-activity-log/act-log-portal-navigate.png)
+2. En haut du panneau, cliquez sur **Exporter**.
    
-    ![Cliquez sur le bouton Exporter de hello](media/monitoring-archive-activity-log/act-log-portal-export-button.png)
-3. Dans le panneau hello qui s’affiche, cochez la case hello **exporter le compte de stockage tooa** et sélectionnez un compte de stockage.
+    ![Cliquer sur le bouton Exporter](media/monitoring-archive-activity-log/act-log-portal-export-button.png)
+3. Dans le panneau qui s’affiche, cochez la case pour **exporter vers un compte de stockage** et sélectionnez un compte de stockage.
    
     ![Créer un compte de stockage](media/monitoring-archive-activity-log/act-log-portal-export-blade.png)
-4. À l’aide du curseur de hello ou zone de texte, de définir un nombre de jours pour lesquels les événements du journal d’activité doivent être conservées dans votre compte de stockage. Si vous préférez toohave vos données persistant dans le compte de stockage hello indéfiniment, ce nombre toozero.
-5. Cliquez sur **Enregistrer**.
+4. À l’aide du curseur ou dans la zone de texte, définissez le nombre de jours pendant lesquels les événements du journal d’activité doivent être conservés dans votre compte de stockage. Si vous préférez que vos données soient conservées indéfiniment dans le compte de stockage, indiquez zéro.
+5. Cliquez sur **Save**.
 
-## <a name="archive-hello-activity-log-via-powershell"></a>Archiver hello journal d’activité via PowerShell
+## <a name="archive-the-activity-log-via-powershell"></a>Archiver le journal d’activité avec PowerShell
 ```
 Add-AzureRmLogProfile -Name my_log_profile -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Locations global,westus,eastus -RetentionInDays 180 -Categories Write,Delete,Action
 ```
 
 | Propriété | Requis | Description |
 | --- | --- | --- |
-| StorageAccountId |Non |ID de ressource de hello toowhich de compte de stockage des journaux d’activité doit être enregistré. |
-| Emplacements |Oui |Liste de séparées par des virgules des régions pour lequel vous souhaitez que les événements du journal d’activité toocollect. Vous pouvez afficher une liste de toutes les régions [en visitant cette page](https://azure.microsoft.com/en-us/regions) ou à l’aide de [hello API REST de gestion Azure](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
-| RetentionInDays |OUI |Nombre de jours pendant lesquels les événements doivent être conservés, compris entre 1 et 2147483647. Une valeur égale à zéro stocke les journaux hello indéfiniment (indéfiniment). |
+| StorageAccountId |Non |ID de ressource du compte de stockage dans lequel les journaux d’activité doivent être enregistrés. |
+| Emplacements |yes |Liste séparée par des virgules des régions pour lesquelles vous souhaitez collecter les événements du journal d’activité. Vous pouvez afficher une liste de toutes les régions [en consultant cette page](https://azure.microsoft.com/en-us/regions) ou en utilisant [l’API REST de gestion Azure](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
+| RetentionInDays |OUI |Nombre de jours pendant lesquels les événements doivent être conservés, compris entre 1 et 2147483647. Une valeur de zéro signifie que les journaux seront stockés pour une durée indéfinie (pour toujours). |
 | Catégories |OUI |Liste séparée par des virgules des catégories d’événements qui doivent être collectées. Les valeurs possibles sont Write, Delete et Action. |
 
-## <a name="archive-hello-activity-log-via-cli"></a>Archiver le journal d’activité via l’interface CLI de hello
+## <a name="archive-the-activity-log-via-cli"></a>Archiver le journal d’activité avec l’interface de ligne de commande
 ```
 azure insights logprofile add --name my_log_profile --storageId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Storage/storageAccounts/my_storage --locations global,westus,eastus,northeurope --retentionInDays 180 –categories Write,Delete,Action
 ```
@@ -62,13 +62,13 @@ azure insights logprofile add --name my_log_profile --storageId /subscriptions/s
 | Propriété | Requis | Description |
 | --- | --- | --- |
 | name |OUI |Nom de votre profil de journal. |
-| storageId |Non |ID de ressource de hello toowhich de compte de stockage des journaux d’activité doit être enregistré. |
-| emplacements |Oui |Liste de séparées par des virgules des régions pour lequel vous souhaitez que les événements du journal d’activité toocollect. Vous pouvez afficher une liste de toutes les régions [en visitant cette page](https://azure.microsoft.com/en-us/regions) ou à l’aide de [hello API REST de gestion Azure](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
-| RetentionInDays |OUI |Nombre de jours pendant lesquels les événements doivent être conservés, compris entre 1 et 2147483647. Une valeur égale à zéro stockera les journaux hello indéfiniment (indéfiniment). |
+| storageId |Non |ID de ressource du compte de stockage dans lequel les journaux d’activité doivent être enregistrés. |
+| Emplacements |OUI |Liste séparée par des virgules des régions pour lesquelles vous souhaitez collecter les événements du journal d’activité. Vous pouvez afficher une liste de toutes les régions [en consultant cette page](https://azure.microsoft.com/en-us/regions) ou en utilisant [l’API REST de gestion Azure](https://msdn.microsoft.com/library/azure/gg441293.aspx). |
+| RetentionInDays |OUI |Nombre de jours pendant lesquels les événements doivent être conservés, compris entre 1 et 2147483647. Une valeur de zéro signifie que les journaux seront stockés pour une durée indéfinie (pour toujours). |
 | Catégories |OUI |Liste séparée par des virgules des catégories d’événements qui doivent être collectées. Les valeurs possibles sont Write, Delete et Action. |
 
-## <a name="storage-schema-of-hello-activity-log"></a>Schéma de stockage de hello journal d’activité
-Une fois que vous avez configuré d’archivage, un conteneur de stockage sera créé dans le compte de stockage hello dès qu’un événement du journal d’activité se produit. BLOB Hello conteneur hello suivez hello même format entre hello journal d’activité et des journaux de Diagnostic. structure Hello de ces objets BLOB est la suivante :
+## <a name="storage-schema-of-the-activity-log"></a>Schéma de stockage du journal d’activité
+Une fois que vous avez configuré l’archivage, un conteneur de stockage est créé dans le compte de stockage dès qu’un événement de journal d’activité se produit. Les objets blob au sein du conteneur suivent le même format dans le journal d’activité et les journaux de diagnostic. La structure de ces objets blob est la suivante :
 
 > insights-operational-logs/name=default/resourceId=/SUBSCRIPTIONS/{ID de l’abonnement}/y={année, quatre chiffes}/m={mois, deux chiffres}/d={jour, deux chiffres}/h={heure, deux chiffres, format 24 heures}/m=00/PT1H.json
 > 
@@ -80,9 +80,9 @@ Voici un exemple de nom d’objet blob :
 > 
 > 
 
-Chaque objet blob PT1H.json contient un objet blob de JSON d’événements qui se sont produites dans heure hello spécifié dans l’URL de blob hello (par exemple, h = 12). Pendant hello heure actuelle, les événements sont ajoutés toohello PT1H.json fichier qu’ils se produisent. valeur de minute de Hello (m = 00) est toujours 00, étant donné que les événements du journal d’activité sont divisées en objets BLOB individuels par heure.
+Chaque objet blob PT1H.json contient un objet blob d’événements JSON qui se sont produits pendant l’heure spécifiée dans l’URL de l’objet blob (par exemple, h = 12). Pendant l’heure en cours, les événements sont ajoutés au fichier PT1H.json à mesure qu’ils se produisent. La valeur de minute (m = 00) est toujours 00, étant donné que les événements du journal d’activité sont répartis en différents objets blob par heure.
 
-Dans le fichier de PT1H.json hello, chaque événement est stocké dans le tableau « enregistrements de hello », sous ce format :
+Dans le fichier PT1H.json, chaque événement est stocké dans le tableau « enregistrements », au format suivant :
 
 ```
 {
@@ -143,28 +143,28 @@ Dans le fichier de PT1H.json hello, chaque événement est stocké dans le table
 
 | Nom de l'élément | Description |
 | --- | --- |
-| time |Horodatage lors de l’événement de hello a été généré par hello du traitement du service Azure hello demande événement hello correspondant. |
-| resourceId |ID de ressource de hello affectées les ressources. |
-| operationName |Nom de l’opération de hello. |
-| category |Catégorie d’action de hello, par exemple. Écriture, Lecture, Action. |
-| resultType |Bonjour type du résultat de hello, par exemple. Réussite, échec, démarrage |
-| resultSignature |Varie selon le type de ressource hello. |
-| durationMS |Durée de l’opération de hello en millisecondes |
-| callerIpAddress |Adresse IP de l’utilisateur de hello qui a effectué les opération hello, revendication UPN ou revendication SPN basée sur la disponibilité. |
-| correlationId |Généralement, un GUID au format de chaîne hello. Les événements qui partagent un ID de corrélation appartiennent toohello même action uber. |
-| identité |L’objet blob JSON décrivant les revendications et l’autorisation de hello. |
-| autorisation |Objet BLOB de propriétés RBAC de l’événement de hello. Inclut généralement les propriétés « action », « rôle » et « portée » hello. |
-| level |Niveau d’événement de hello. Une des valeurs suivantes de hello : « Critiques », « Erreur », « Avertissement », « Information » et « Commentaires » |
-| location |Région dans un emplacement hello qui s’est produite (ou global). |
-| properties |Jeu de `<Key, Value>` paires (c'est-à-dire, Dictionary) hello décrivant les événements hello. |
+| time |Horodatage lorsque l’événement a été généré par le service Azure traitant la demande correspondant à l’événement. |
+| resourceId |ID de ressource de la ressource affectée. |
+| operationName |Nom de l’opération. |
+| category |Catégorie de l’action, par ex. Écriture, Lecture, Action. |
+| resultType |Le type du résultat, par ex. Réussite, échec, démarrage |
+| resultSignature |Dépend du type de ressource. |
+| durationMS |Durée de l’opération en millisecondes |
+| callerIpAddress |Adresse IP de l’utilisateur qui a effectué l’opération, la revendication UPN ou la revendication SPN basée sur la disponibilité. |
+| correlationId |Généralement un GUID au format chaîne. Les événements qui partagent un correlationId appartiennent à la même action uber. |
+| identité |Objet blob JSON décrivant l’autorisation et les revendications. |
+| autorisation |Objet blob des propriétés RBAC de l’événement. Inclut généralement les propriétés « action », « role » et « scope ». |
+| level |Niveau de l’événement. Une des valeurs suivantes : Critical, Error, Warning, Informational et Verbose |
+| location |Région dans laquelle se trouve l’emplacement (ou global). |
+| properties |Jeu de paires `<Key, Value>` (p. ex. Dictionary) décrivant les détails de l’événement. |
 
 > [!NOTE]
-> propriétés de Hello et l’utilisation de ces propriétés peuvent varier en fonction de la ressource de hello.
+> Les propriétés et l’utilisation de ces propriétés peuvent varier en fonction de la ressource.
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Télécharger des objets blob pour analyse](../storage/blobs/storage-dotnet-how-to-use-blobs.md#download-blobs)
-* [Flux tooEvent de journal d’activité hello concentrateurs](monitoring-stream-activity-logs-event-hubs.md)
-* [En savoir plus sur hello journal d’activité](monitoring-overview-activity-logs.md)
+* [Transférer le journal d’activité vers Event Hubs](monitoring-stream-activity-logs-event-hubs.md)
+* [En savoir plus sur le journal d’activité](monitoring-overview-activity-logs.md)
 

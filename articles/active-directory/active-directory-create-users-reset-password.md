@@ -1,5 +1,5 @@
 ---
-title: mot de passe aaaReset hello pour un utilisateur dans Azure Active Directory | Documents Microsoft
+title: "Réinitialiser le mot de passe d’un utilisateur dans Azure Active Directory | Microsoft Docs"
 description: "Explique comment un administrateur doit réinitialiser le mot de passe d’un utilisateur dans Azure Active Directory."
 services: active-directory
 documentationcenter: 
@@ -12,35 +12,36 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/08/2017
+ms.date: 08/28/2017
 ms.author: curtand
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8ed7643d9ad375b1e46bac8f5aa610b03fccf3fc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.custom: H1Hack27Feb2017;it-pro
+ms.reviewer: asteen
+ms.openlocfilehash: 4302436244de95d865ba5f68ae5d3116dcc93524
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="reset-a-password-for-a-user-in-hello-azure-classic-portal"></a>Réinitialiser un mot de passe pour un utilisateur dans le portail Azure classic de hello
+# <a name="reset-a-password-for-a-user-in-the-azure-classic-portal"></a>Réinitialiser le mot de passe d’un utilisateur dans le portail Azure Classic
 > [!div class="op_single_selector"]
-> * [Portail Azure](active-directory-users-reset-password-azure-portal.md)
+> * [portail Azure](active-directory-users-reset-password-azure-portal.md)
 > * [portail Azure Classic](active-directory-create-users-reset-password.md)
 >
 >
 
-Azure Active Directory (Azure AD) simplifie hello de réinitialisation de mot de passe d’un utilisateur s’ils oublient et sont verrouillés out ou lors de la maintenance de routine de sécurité. 
+Azure Active Directory (Azure AD) simplifie le processus de réinitialisation du mot de passe des utilisateurs en cas d’oubli et de verrouillage ou lors des opérations de maintenance de sécurité de routine. 
 
 > [!IMPORTANT]
-> Microsoft recommande de gérer Azure AD en utilisant hello [centre d’administration Azure AD](https://aad.portal.azure.com) Bonjour portail Azure au lieu d’utiliser hello portail Azure classic référencée dans cet article. Pour tooreset un mot de passe dans le centre d’administration hello Azure AD, voir [hello réinitialisation mot de passe pour un utilisateur dans Azure Active Directory](active-directory-users-reset-password-azure-portal.md).
+> Microsoft recommande de gérer Azure AD à l’aide du [Centre d’administration Azure AD](https://aad.portal.azure.com) dans le portail Azure au lieu d’utiliser le portail Azure classique référencé dans cet article. Pour savoir comment réinitialiser un mot de passe dans le centre d’administration Azure AD, consultez [Réinitialiser le mot de passe d’un utilisateur dans Azure Active Directory](active-directory-users-reset-password-azure-portal.md).
 
 1. Ouvrez votre annuaire.
-2. Sélectionnez hello **utilisateurs** onglet et puis sélectionnez hello de hello utilisateur toochange.
-3. Dans la barre de commandes hello, sélectionnez **réinitialiser le mot de passe**.
-4. Dans la boîte de dialogue hello réinitialisation du mot de passe, cliquez sur **réinitialiser**.
-5. Sélectionnez toofinish de case à cocher hello la réinitialisation de mot de passe hello.
+2. Sélectionnez l’onglet **Utilisateurs** , puis sélectionnez le nom d’affichage de l’utilisateur que vous souhaitez modifier.
+3. Dans la barre de commandes, sélectionnez **Réinitialiser le mot de passe**.
+4. Dans la boîte de dialogue de réinitialisation du mot de passe, cliquez sur **Réinitialiser**.
+5. Cochez la case pour finaliser la réinitialisation du mot de passe.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Ajouter de nouveaux utilisateurs tooAzure Active Directory](active-directory-create-users.md)
+* [Ajout de nouveaux utilisateurs à Azure Active Directory](active-directory-create-users.md)
 * [Administration d’Azure AD](active-directory-administer.md)
 * [Gestion des mots de passe dans Azure AD](active-directory-manage-passwords.md)
 * [Gestion des groupes dans Azure AD](active-directory-manage-groups.md)

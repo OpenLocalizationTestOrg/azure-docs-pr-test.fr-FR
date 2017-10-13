@@ -1,5 +1,5 @@
 ---
-title: "aaaSmart détection dans Azure Application Insights | Documents Microsoft"
+title: "Détection intelligente dans Azure Application Insights | Microsoft Docs"
 description: "Application Insights réalise une analyse télémétrique approfondie automatique de votre application et vous avertit des éventuels problèmes de performances."
 services: application-insights
 documentationcenter: windows
@@ -13,16 +13,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/31/2016
 ms.author: bwren
-ms.openlocfilehash: f794476088fc69154eda2077b7a5cdc769fab3a1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f203b2a532ea721d9797c67a4750896e3ab2b9f7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="smart-detection-in-application-insights"></a>Détection intelligente dans Application Insights
- La détection intelligente vous informe automatiquement des éventuels problèmes de performances dans votre application web. Il effectue une analyse proactive de télémétrie hello que votre application envoie trop[Application Insights](app-insights-overview.md). S’ils détectent une augmentation soudaine du taux d’échec, ou des modèles anormaux de performances client ou serveur, vous recevez une alerte. Cette fonctionnalité ne nécessite aucune configuration. Elle fonctionne si votre application envoie suffisamment de données de télémétrie.
+ La détection intelligente vous informe automatiquement des éventuels problèmes de performances dans votre application web. Elle effectue une analyse proactive des données de télémétrie que votre application envoie à [Application Insights](app-insights-overview.md). S’ils détectent une augmentation soudaine du taux d’échec, ou des modèles anormaux de performances client ou serveur, vous recevez une alerte. Cette fonctionnalité ne nécessite aucune configuration. Elle fonctionne si votre application envoie suffisamment de données de télémétrie.
 
-Vous pouvez accéder à des alertes de détection actives à la fois à partir de messages hello et à partir du Panneau de Smart détection hello.
+Vous pouvez accéder aux alertes de détection intelligente via les courriers électroniques que vous recevez et à partir du panneau Détection intelligente.
 
 ## <a name="review-your-smart-detections"></a>Passer en revue vos détections intelligentes
 Vous pouvez découvrir des détections de deux manières :
@@ -31,34 +31,34 @@ Vous pouvez découvrir des détections de deux manières :
   
     ![Alerte par courrier électronique](./media/app-insights-proactive-diagnostics/03.png)
   
-    Cliquez sur hello grand bouton tooopen plus en détail dans le portail de hello.
-* **vignette de détection actives Hello** sur une vue d’ensemble de votre application panneau affiche un nombre d’alertes récentes. Cliquez sur hello vignette toosee une liste des alertes récentes.
+    Cliquez sur le grand bouton pour afficher plus de détails dans le portail.
+* **La vignette Détection intelligente** figurant sur le panneau d’aperçu de votre application indique le nombre d’alertes récentes. Cliquez sur la mosaïque pour afficher la liste des alertes récentes.
 
 ![Afficher les détections récentes](./media/app-insights-proactive-diagnostics/04.png)
 
-Sélectionnez une alerte toosee ses détails.
+Sélectionnez une alerte pour afficher les détails la concernant.
 
 ## <a name="what-problems-are-detected"></a>Quels sont les problèmes détectés ?
 Il existe trois types de détection :
 
-* [Détection intelligente des anomalies de type échec](app-insights-proactive-failure-diagnostics.md). Nous utilisons apprentissage tooset les taux de hello attendu de demandes ayant échoué pour votre application, la mise en corrélation avec la charge et d’autres facteurs. Si le taux d’échec hello est en dehors de l’enveloppe attendu de hello, nous envoyer une alerte.
-* [Détection intelligente des anomalies de performances](app-insights-proactive-performance-diagnostics.md). Pour obtenir des notifications si le temps de réponse d’une durée de l’opération ou la dépendance est ralentissent toohistorical comparés de ligne de base ou si nous d’identifier un modèle anormal dans le temps de réponse ou de temps de chargement de page.   
+* [Détection intelligente des anomalies de type échec](app-insights-proactive-failure-diagnostics.md). Nous utilisons l’apprentissage automatique pour définir la fréquence attendue des demandes entraînant un échec pour votre application, en la mettant en corrélation avec la charge et d’autres facteurs. Si le taux d’échec est situé en dehors de la plage attendue, nous envoyons une alerte.
+* [Détection intelligente des anomalies de performances](app-insights-proactive-performance-diagnostics.md). Vous recevez des notifications si le temps de réponse d’une opération ou la durée d’une dépendance ralentit par rapport à l’historique de la ligne de base ou si nous identifions un modèle anormal dans le temps de réponse ou le temps de chargement de la page.   
 * [Détection intelligente - Dépannage de problèmes de service cloud Azure](https://azure.microsoft.com/blog/proactive-notifications-on-cloud-service-issues-with-azure-diagnostics-and-application-insights/). Vous recevez des alertes si votre application est hébergée dans Azure Cloud Services et qu’une instance de rôle présente des échecs de démarrage, un recyclage fréquent ou des erreurs d’exécution.
 
-(liens d’aide hello dans chaque notification vous prennent les articles pertinents toohello.)
+(Les liens d’aide dans chaque notification vous renvoient vers les articles pertinents.)
 
 ## <a name="video"></a>Vidéo
 
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Ces outils de diagnostic vous aident à inspecter les données de télémétrie hello à partir de votre application :
+Ces outils de diagnostic vous aident à inspecter les données de télémétrie à partir de votre application :
 
 * [Metrics Explorer](app-insights-metrics-explorer.md)
 * [Navigateur de recherche](app-insights-diagnostic-search.md)
 * [Analytics : un puissant langage de requête](app-insights-analytics-tour.md)
 
-La détection intelligente est entièrement automatique. Mais peut-être voudriez-vous tooset certaines alertes plus ?
+La détection intelligente est entièrement automatique. Mais vous souhaitez peut-être configurer des alertes supplémentaires ?
 
 * [Alertes de mesures configurées manuellement](app-insights-alerts.md)
 * [Tests web de disponibilité](app-insights-monitor-web-app-availability.md) 

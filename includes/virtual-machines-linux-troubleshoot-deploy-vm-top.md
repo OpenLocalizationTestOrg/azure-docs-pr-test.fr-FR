@@ -1,4 +1,4 @@
-Hello les questions suivantes peuvent aider à résoudre votre problème. toostart résolution du problème, passez en revue ces étapes :
+Les principaux problèmes suivants peuvent vous aider à résoudre votre problème. Pour commencer le dépannage, passez en revue ces étapes :
 
-- [cluster de Hello ne peut pas prendre en charge hello demandé la taille de machine virtuelle](../articles/virtual-machines/linux/troubleshoot-deploy-vm.md#the-cluster-cannot-support-the-requested-vm-size)
-- [cluster de Hello n’a pas de libérer des ressources](../articles/virtual-machines/linux/troubleshoot-deploy-vm.md#the-cluster-does-not-have-free-resources)
+- [Le cluster ne peut pas prendre en charge la taille de machine virtuelle demandée](../articles/virtual-machines/linux/troubleshoot-deploy-vm.md#the-cluster-cannot-support-the-requested-vm-size)
+- [Le cluster n’a pas de ressources libres](../articles/virtual-machines/linux/troubleshoot-deploy-vm.md#the-cluster-does-not-have-free-resources)

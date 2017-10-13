@@ -1,6 +1,6 @@
 ---
-title: "tooAzure de données de l’utilisation de Azure pile aaaReport | Documents Microsoft"
-description: "Découvrez comment tooset des données d’utilisation de création de rapports dans la pile de Azure."
+title: "Signaler les données d’utilisation Azure Stack à Azure | Microsoft Docs"
+description: "Découvrez comment configurer les la génération de rapports de données d’utilisation dans Azure Stack."
 services: azure-stack
 documentationcenter: 
 author: SnehaGunda
@@ -12,78 +12,81 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/10/2017
+ms.date: 08/28/2017
 ms.author: sngun;AlfredoPizzirani
-ms.openlocfilehash: deecd66d9022b2e0c274ff4e0276d3b2e3bcc99e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 695b93a818d3c0e615bb79e0a2861e134b2f5c89
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="report-azure-stack-usage-data-tooazure"></a>TooAzure de pile Azure l’utilisation des données de rapport 
+# <a name="report-azure-stack-usage-data-to-azure"></a>Signaler les données d’utilisation Azure Stack à Azure 
 
-Données d’utilisation, également appelées comme données de consommation représentent la quantité hello de ressources utilisées. Dans la pile d’Azure, l’utilisation de données doivent être signalée tooAzure pour but de facturation. Administrateurs de cloud Azure pile doivent configurer leur tooAzure de données Azure pile instance tooreport d’utilisation.
+Les données d’utilisation, également appelées « données de consommation », représentent la quantité de ressources utilisées. Les systèmes intégrés Azure Stack qui utilisent un modèle de facturation basé sur la consommation doivent signaler les données d’utilisation à Azure. Ces données d’utilisation sont utilisées à des fins de facturation. Il incombe à l’opérateur Azure Stack de configurer son environnement Azure Stack avec la génération de rapports de données d’utilisation.
+
 
 > [!NOTE]
-> Rapport d’utilisation des données n’est pas obligatoire pour hello Kit de développement de pile Azure, et les utilisateurs ne sont pas facturés pour la consommation des ressources. Toutefois, les administrateurs de cloud Azure Stack peuvent tester cette fonctionnalité et faire part de commentaires la concernant. Lorsque plusieurs nœuds de pile de Azure est généralement disponible, tous les environnements de plusieurs nœuds hello doivent signaler tooAzure des données d’utilisation.
+> Les rapports d’utilisation des données sont nécessaires pour les utilisateurs des systèmes intégrés Azure Stack qui attribuent des licences sous le modèle de paiement à l’utilisation. En revanche, ils sont facultatifs pour les clients qui attribuent des licences sous le modèle de capacité. Pour le Kit de développement Azure Stack, les opérateurs cloud peuvent signaler les données d’utilisation et tester la fonctionnalité, mais les utilisateurs ne sont pas facturés pour l’utilisation. Pour en savoir plus sur la tarification dans la Azure Stack, consultez la page [Comment acheter Azure Stack](https://azure.microsoft.com/overview/azure-stack/how-to-buy/).
+
+## <a name="usage-data-reporting-flow"></a>Flux de génération de rapport des données d’utilisation
+
+Les données d’utilisation sont envoyées d’Azure Stack à Azure via le pont Azure. Dans Azure, le système de commerce traite les données d’utilisation et génère la facture. Une fois la facture générée, le propriétaire de l’abonnement Azure peut l’afficher et la télécharger à partir du [Centre des comptes Azure](https://account.windowsazure.com/Subscriptions). Pour savoir comment Azure Stack est concédé sous licence, reportez-vous au [document d’empaquetage et de tarification d’Azure Stack](https://go.microsoft.com/fwlink/?LinkId=842847&clcid=0x409). 
+
+L’illustration suivante est une représentation graphique du flux de données d’utilisation dans Azure Stack :
 
 ![flux de facturation](media/azure-stack-usage-reporting/billing-flow.png)
 
-Les données d’utilisation sont envoyées à partir de tooAzure Azure pile via hello pont Azure. Dans Azure, le processus de système de commerce de hello hello des données d’utilisation et génère la facture de hello. Après la génération de la facture de hello, propriétaire de l’abonnement Azure hello peut afficher et télécharger à partir de hello [centre des comptes Azure](https://account.windowsazure.com/Subscriptions). toolearn sur la pile de Azure est concédé sous licence, consultez toohello [pile Azure packaging et la tarification de document](https://go.microsoft.com/fwlink/?LinkId=842847&clcid=0x409).
-
 ## <a name="set-up-usage-data-reporting"></a>Configurer la génération de rapports de données d’utilisation
 
-tooset des données d’utilisation de création de rapports dans la pile d’Azure, vous devez [enregistrer votre instance de la pile d’Azure avec Azure](azure-stack-register.md). Dans le cadre du processus d’inscription de hello, pile de Azure est configuré avec hello pont Azure, qui se connecte à Azure pile tooAzure et envoie les données d’utilisation hello. Hello les données d’utilisation suivantes est envoyée à partir de la pile de Azure tooAzure :
+Pour configurer la génération de rapports de données d’utilisation dans Azure Stack, vous devez [inscrire votre instance Azure Stack auprès d’Azure](azure-stack-register.md). Dans le cadre du processus d’inscription, le composant pont Azure d’Azure Stack est configuré pour connecter Azure Stack à Azure. Une fois le pont Azure configuré, il envoie les données d’utilisation suivantes à Azure : 
 
-* **Contrôler les ID** : ID Unique pour la ressource hello qui a été consommée.
-* **Quantité** : quantité de données d’utilisation de ressources qui s’est produite au cours d’une période déterminée.
-* **Emplacement** – emplacement où les ressources Azure pile actuelle hello sont déployé.
-* **URI de ressource** – complet des URI de ressource hello pour lequel l’utilisation est signalée. 
-* **ID d’abonnement** – ID d’abonnement de l’utilisateur d’Azure pile hello.
-* **Temps** – heure de début et de fin des données d’utilisation de hello. Il existe un certain délai entre temps hello lorsque ces ressources sont consommées dans la pile d’Azure et lorsque les données d’utilisation hello sont signalé toocommerce. Pile Azure regroupe les données d’utilisation pour toutes les 24 heures et toocommerce des données d’utilisation de reporting pipeline dans Azure prend une autre quelques heures. C’est le cas, l’utilisation de qui se produit juste avant minuit susceptibles d’apparaître dans Azure hello suivant jour.
+* **ID du compteur** : ID unique de la ressource consommée.
+* **Quantité** : quantité de données d’utilisation de ressources.
+* **Emplacement** : emplacement où la ressource Azure Stack actuelle est déployée.
+* **URI de ressource** : URI complet de la ressource pour laquelle l’utilisation est signalée. 
+* **ID d’abonnement** : ID d’abonnement de l’utilisateur Azure Stack.
+* **Heure** : heure de début et de fin des données d’utilisation. Il existe un décalage entre le moment où ces ressources sont consommées dans Azure Stack et celui où les données d’utilisation sont signalées au commerce. Azure Stack agrège les données d’utilisation toutes les 24 heures et le signalement de données d’utilisation au pipeline Commerce dans Azure prend plusieurs heures. Par conséquent, l’utilisation qui se produit peu de temps avant minuit peut apparaître dans Azure le jour suivant.
 
 ## <a name="test-usage-data-reporting"></a>Tester la génération de rapports de données d’utilisation 
 
-1. Création de rapports, les données d’utilisation tootest créer quelques ressources dans la pile d’Azure. Par exemple, vous pouvez créer un [compte de stockage](azure-stack-provision-storage-account.md), [machine virtuelle Windows Server](azure-stack-provision-vm.md) et un VM Linux avec toosee Basic et les références (SKU) Standard, comment l’utilisation des cœurs est signalée. données d’utilisation Hello pour différents types de ressources sont signalées sous différents compteurs.  
+1. Pour tester la génération de rapports de données d’utilisation, créez quelques ressources dans Azure Stack. Par exemple, vous pouvez créer un [compte de stockage](azure-stack-provision-storage-account.md), une [machine virtuelle Windows Server](azure-stack-provision-vm.md) et une machine virtuelle Linux avec des références (SKU) de base et standard pour voir comment l’utilisation des cœurs est signalée. Les données d’utilisation de différents types de ressources sont signalées sous différents compteurs.  
 
-2. Laissez vos ressources s’exécuter pendant quelques heures. Les informations d’utilisation sont collectées environ une fois par heure. Après avoir recueilli, ces données sont tooAzure transmise et traitées dans hello système commerce Azure. Ce processus peut prendre tooa quelques heures.  
+2. Laissez vos ressources s’exécuter pendant quelques heures. Les informations d’utilisation sont collectées environ une fois par heure. Après avoir été collectées, ces données sont transmises à Azure et traitées dans le système de commerce Azure. Ce processus peut prendre plusieurs heures.  
 
-3. Connectez-vous à toohello [centre des comptes Azure](https://account.windowsazure.com/Subscriptions) comme hello Azure compte administrateur et sélectionnez hello abonnement Azure que vous avez utilisé tooregister hello Azure pile. Vous pouvez afficher les données d’utilisation de pile de Azure hello, quantité hello facturée pour chaque hello utilisé des ressources comme indiqué dans hello suivant image :  
-   ![flux de facturation](media/azure-stack-usage-reporting/pricng-details.png)
+3. Connectez-vous au [Centre des comptes Azure](https://account.windowsazure.com/Subscriptions) en tant qu’administrateur de compte Azure, puis sélectionnez l’abonnement Azure que vous avez utilisé pour inscrire Azure Stack. Vous pouvez afficher les données d’utilisation Azure Stack et le montant facturé pour chacune des ressources utilisées, comme illustré dans l’image suivante :  
 
-Pour hello Kit de développement de pile Azure, les ressources de Azure pile ne sont pas facturées ainsi, le prix de hello est affiché comme 0,00 $. Lorsque plusieurs nœuds de pile de Azure est généralement disponible, vous pouvez voir hello réelle de coût pour chacun de ces ressources. 
+   ![flux de facturation](media/azure-stack-usage-reporting/pricing-details.png)
 
-## <a name="which-azure-stack-instances-are-charged"></a>Quelles sont les instances Azure Stack facturées ?
-L’utilisation de ressources est gratuite pour les instances du Kit de développement Azure Stack. 
+Pour le Kit de développement Azure Stack, les ressources ne sont pas facturées. Ainsi, le prix affiché est 0,00 $. Pour les systèmes intégrés Azure Stack, le coût réel de chacune de ces ressources est affiché.
 
-Disponibilité générale, les systèmes à plusieurs nœuds Azure pile sont facturés alors que l’environnement de kit de développement hello reste disponible sans frais supplémentaires. Pour les systèmes à plusieurs nœuds, les machines virtuelles de charge de travail, les services de stockage et App Services sont facturés. 
+## <a name="are-users-charged-for-the-infrastructure-virtual-machines"></a>Les utilisateurs sont-ils facturés pour les machines virtuelles d’infrastructure ?
+Non, les données d’utilisation pour certaines machines virtuelles de fournisseur de ressources Azure Stack et d’infrastructure créées pendant le déploiement sont signalées à Azure, mais elles ne sont pas facturées. 
 
-## <a name="are-users-charged-for-hello-infrastructure-vms"></a>Les utilisateurs sont facturés pour l’infrastructure hello machines virtuelles ?
-Non, les données d’utilisation hello pour l’infrastructure Azure pile machines virtuelles, qui sont créés au cours du déploiement sont signalé tooAzure, mais pas de frais pour ces machines virtuelles. infrastructure de Hello machines virtuelles comprennent des machines virtuelles hello qui sont créés par le script de déploiement Azure pile hello et hello machines virtuelles qui s’exécutent comme des fournisseurs de ressources de tiers de Microsoft de calcul, stockage, SQL.
+Les utilisateurs sont facturés uniquement pour les machines virtuelles qui sont créées sous les abonnements utilisateur. Ainsi, toutes les charges de travail doivent être déployées sous des abonnements utilisateur pour être conformes au contrat de licence Azure Stack.
 
-## <a name="what-azure-meters-are-used-when-reporting-usage-data"></a>Quels compteurs Azure sont utilisés lors du signalement de données d’utilisation ?
-Hello Voici hello deux ensembles de compteurs qui sont utilisés dans les rapports de données d’utilisation :  
+## <a name="how-do-i-use-my-existing-windows-server-licenses-in-azure-stack"></a>Comment utiliser mes licences Windows Server existantes dans Azure Stack ? 
+Vous pouvez utiliser des licences Windows Server existantes dans Azure Stack. Ce modèle est appelé BYOL (apportez votre propre licence). Le fait d’utiliser les licences que vous possédez déjà évite de générer des compteurs d’utilisation supplémentaires. Pour utiliser vos licences existantes, vous devez déployer les machines virtuelles Windows Server comme décrit dans la rubrique [Avantage hybride pour la licence Windows Server](../virtual-machines/windows/hybrid-use-benefit-licensing.md). 
 
+## <a name="what-azure-meters-are-used-when-reporting-usage-data-in-integrated-systems"></a>Quels sont les compteurs Azure utilisés lors du signalement de données d’utilisation dans les systèmes intégrés ?
 * **Compteurs du prix total** : utilisés pour les ressources associées à des charges de travail utilisateur.  
 * **Compteurs d’administration** : utilisés pour les ressources d’infrastructure. Ces compteurs ont un prix de zéro dollar.
 
-## <a name="which-subscription-is-charged-for-hello-resources-consumed"></a>Abonnement est facturé pour la consommation des ressources hello ?
-Hello d’abonnement est fourni lorsque [l’inscription de la pile d’Azure avec Azure](azure-stack-register.md) est facturé.
+## <a name="which-subscription-is-charged-for-the-resources-consumed"></a>Quel abonnement est facturé pour la consommation de ressources ?
+L’abonnement qui est fourni lors de [l’inscription d’Azure Stack auprès d’Azure](azure-stack-register.md) est facturé.
 
 ## <a name="what-types-of-subscriptions-are-supported-for-usage-data-reporting"></a>Quels types d’abonnements sont pris en charge pour la génération de rapports de données d’utilisation ?
-Pour les abonnements de Kit de développement Azure pile, accord entreprise (EA), paiement à l’utilisation et MSDN hello prend en charge les rapports de données d’utilisation. 
+Pour les systèmes intégrés Azure Stack, les abonnements Accord Entreprise et CSP sont pris en charge. 
 
-## <a name="does-usage-data-reporting-work-in-sovereign-clouds"></a>La génération de rapports de données d’utilisation fonctionne-t-elle avec les clouds souverains ?
-Dans le Kit de développement Azure pile de hello, rapport d’utilisation des données requiert des abonnements qui sont créés dans le système global Azure hello. Les abonnements créés dans un des clouds de souverains hello (clouds hello Azure Government Azure situés en Allemagne et Azure Chine) ne peut pas être inscrit dans Azure, afin qu’ils ne prennent pas en charge les rapports de données d’utilisation. 
+Pour le Kit de développement Azure Stack, les abonnements Accord Entreprise, Paiement à l’utilisation, CSP et MSDN prennent en charge les rapports de données d’utilisation.
 
-## <a name="can-an-administrator-test-usage-data-reporting-before-ga"></a>Un administrateur peut-il tester la génération de rapports de données d’utilisation avant la mise à disposition générale ?
-Oui, les administrateurs de pile de Azure peuvent tester hello d’utilisation des rapports de données par [inscription](azure-stack-register.md) instance de kit de développement hello avec Azure. Une fois inscrit, les données d’utilisation démarre circulant de votre tooyour d’instance Azure pile abonnement Azure. 
+## <a name="which-sovereign-clouds-support-usage-data-reporting"></a>Quels sont les clouds souverains qui prennent en charge les rapports de données d’utilisation ?
+Dans le Kit de développement Azure Stack, la génération de rapports d’utilisation des données exige que les abonnements soient créés dans le système Azure global. Les abonnements créés dans l’un des clouds souverains (clouds Azure Government, Azure Germany et Azure China) ne peuvent pas être inscrits auprès d’Azure. Ils ne prennent donc pas en charge les rapports de données d’utilisation. 
 
-## <a name="how-can-users-identify-azure-stack-usage-data-in-hello-azure-billing-portal"></a>Comment les utilisateurs peuvent identifier les données d’utilisation Azure pile Bonjour Azure portail de facturation ?
-Les utilisateurs peuvent voir les données d’utilisation Azure pile hello dans le fichier des informations sur l’utilisation hello. tooknow sur la façon dont l’utilisation de hello tooget détails fichier, consultez toohello [télécharger le fichier d’utilisation de hello centre des comptes Azure](../billing/billing-download-azure-invoice-daily-usage-date.md#download-usage-from-the-account-center-csv) l’article. fichier des informations sur l’utilisation Hello contient des compteurs de pile de Azure hello qui identifient le stockage de la pile d’Azure et les machines virtuelles. Toutes les ressources utilisées dans la pile de Azure sont signalées sous la région de hello nommée « Pile Azure ».
+## <a name="how-can-users-identify-azure-stack-usage-data-in-the-azure-billing-portal"></a>Comment les utilisateurs peuvent-ils identifier les données d’utilisation Azure Stack dans le portail de facturation Azure ?
+Les utilisateurs peuvent voir les données d’utilisation Azure Stack dans le fichier des détails d’utilisation. Pour savoir comment obtenir le fichier des détails d’utilisation, reportez-vous à l’article indiquant comment [télécharger le fichier d’utilisation à partir du Centre des comptes Azure](../billing/billing-download-azure-invoice-daily-usage-date.md#download-usage-from-the-account-center-csv). Le fichier des détails d’utilisation contient les compteurs Azure Stack qui identifient le stockage et les machines virtuelles Azure Stack. Toutes les ressources utilisées dans Azure Stack sont signalées dans la zone nommée « Azure Stack ».
 
-## <a name="why-doesnt-hello-usage-reported-in-azure-stack-match-hello-report-generated-from-azure-account-center"></a>Pourquoi l’utilisation de hello n’a signalé dans Azure pile correspondent aux rapports hello généré à partir du centre de compte Azure ?
-Il existe un décalage entre lorsque les données d’utilisation hello sont générées dans la pile d’Azure et lorsqu’il est soumis tooAzure commerce. délai de Hello est hello durée tooupload données d’utilisation de commerce tooAzure de pile de Azure. En raison du délai de toothis, d’utilisation qui se produit dans quelques instants avant minuit peut apparaissent dans Azure hello suivant jour. Si vous utilisez hello [API de l’utilisation de pile Azure](azure-stack-provider-resource-api.md)et les résultats de hello toohello utilisation indiquée dans la comparaison hello portail de facturation Azure, vous pouvez voir une différence.
+## <a name="why-doesnt-the-usage-reported-in-azure-stack-match-the-report-generated-from-azure-account-center"></a>Pourquoi l’utilisation signalée dans Azure Stack ne correspond-il pas au rapport généré à partir du Centre des comptes Azure ?
+Il existe un délai entre le moment où les données d’utilisation sont signalées par les API d’utilisation d’Azure Stack et celui où elles sont signalées par le Centre des comptes Azure. Ce décalage est le temps nécessaire pour charger les données d’utilisation d’Azure Stack vers le commerce Azure. En raison de ce décalage, l’utilisation qui se produit peu de temps avant minuit peut apparaître dans Azure le jour suivant. Vous pouvez voir une différence si vous utilisez les [API d’utilisation d’Azure Stack](azure-stack-provider-resource-api.md) et que vous comparez les résultats à l’utilisation indiquée dans le portail de facturation Azure.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

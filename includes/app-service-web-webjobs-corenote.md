@@ -1,2 +1,2 @@
 >[!NOTE]
->Hello WebJobs SDK ne prend pas en charge .NET Core.
+>Le Kit SDK WebJobs ne prend pas encore en charge .NET Core.

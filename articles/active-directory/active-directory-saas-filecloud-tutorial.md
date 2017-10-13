@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec FileCloud | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et FileCloud."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et FileCloud."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,122 +14,122 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jeedes
-ms.openlocfilehash: fe58d01f02d6ce99ee9e2f83e7dc72c4434e13b9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ad03516f684acc59912ffc57f6e0712828bd03f2
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-filecloud"></a>Didacticiel : Intégration d’Azure Active Directory avec FileCloud
 
-Dans ce didacticiel, vous apprendrez comment toointegrate FileCloud avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer FileCloud à Azure Active Directory (Azure AD).
 
-Intégration FileCloud à Azure AD offre hello avantages suivants :
+L’intégration de FileCloud avec Azure AD offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooFileCloud.
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooFileCloud (Single Sign-On) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.
+- Dans Azure AD, vous pouvez contrôler qui a accès à FileCloud.
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à FileCloud (authentification unique) avec leurs comptes Azure AD.
+- Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure.
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec FileCloud, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD avec FileCloud, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement FileCloud pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de FileCloud à partir de la galerie de hello
+1. Ajout de FileCloud à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-filecloud-from-hello-gallery"></a>Ajout de FileCloud à partir de la galerie de hello
-intégration de hello tooconfigure de FileCloud dans Azure AD, vous devez tooadd FileCloud à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-filecloud-from-the-gallery"></a>Ajout de FileCloud à partir de la galerie
+Pour configurer l’intégration de FileCloud à Azure AD, vous devez ajouter FileCloud à partir de la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd FileCloud à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter FileCloud à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
-    ![bouton d’Azure Active Directory Hello][1]
+    ![Bouton Azure Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
-    ![panneau des applications Enterprise Hello][2]
+    ![Panneau Applications d’entreprise][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
-    ![Nouveau bouton d’application Hello][3]
+    ![Bouton Nouvelle application][3]
 
-4. Dans la zone de recherche de hello, tapez **FileCloud**, sélectionnez **FileCloud** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
+4. Dans la zone de recherche, tapez **FileCloud**, sélectionnez **FileCloud** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
-    ![FileCloud dans la liste des résultats hello](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_addfromgallery.png)
+    ![FileCloud dans la liste des résultats](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec FileCloud, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans FileCloud est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans FileCloud doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir quel est l’utilisateur FileCloud équivalent à un utilisateur dans Azure AD. En d’autres termes, une relation doit être établie entre un utilisateur Azure AD et l’utilisateur associé dans FileCloud.
 
-Dans FileCloud, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans FileCloud, assignez la valeur de **nom d’utilisateur** dans Azure AD comme valeur **Nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec FileCloud, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec FileCloud, vous devez suivre les indications des sections suivantes :
 
-1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Créer un utilisateur de test FileCloud](#create-a-filecloud-test-user)**  -toohave un équivalent de Britta Simon dans FileCloud est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Créer un utilisateur de test FileCloud](#create-a-filecloud-test-user)** pour avoir un équivalent de Britta Simon dans FileCloud, lié à la représentation Azure AD de l’utilisateur.
+4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application FileCloud.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application FileCloud.
 
-**tooconfigure Azure AD single sign-on avec FileCloud, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec FileCloud, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **FileCloud** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Sur le portail Azure, à la page d’intégration de l’application **FileCloud**, cliquez sur **Authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_samlbase.png)
 
-3. Sur hello **FileCloud domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL FileCloud**, effectuez les étapes suivantes :
 
     ![Informations d’authentification unique dans Domaine et URL FileCloud](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.filecloudhosted.com`
+    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<subdomain>.filecloudhosted.com`
 
-    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.filecloudhosted.com/simplesaml/module.php/saml/sp/metadata.php/default-sp`
+    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<subdomain>.filecloudhosted.com/simplesaml/module.php/saml/sp/metadata.php/default-sp`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur. Contact [équipe de support Client de FileCloud](mailto:support@codelathe.com) tooget ces valeurs.
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Pour obtenir ces valeurs, contactez l’[équipe de prise en charge des clients FileCloud](mailto:support@codelathe.com).
 
-4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
-    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_certificate.png) 
+    ![Lien Téléchargement de certificat](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_certificate.png) 
 
 5. Cliquez sur le bouton **Enregistrer** .
 
-    ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-filecloud-tutorial/tutorial_general_400.png)
+    ![Bouton Enregistrer de Configurer l’authentification unique](./media/active-directory-saas-filecloud-tutorial/tutorial_general_400.png)
 
-6. Sur hello **FileCloud Configuration** , cliquez sur **FileCloud de configurer** tooopen **configurer l’authentification** fenêtre. Hello de copie **ID d’entité SAML** de hello **section de référence rapide.**
+6. Dans la section **Configuration de FileCloud**, cliquez sur **Configurer FileCloud** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez **l’ID d’entité SAML** à partir de la **section Référence rapide**.
 
     ![Configuration de FileCloud](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_configure.png) 
 
-7. Dans une fenêtre de navigateur web, client de FileCloud tooyour ouverture de session en tant qu’administrateur.
+7. Dans une autre fenêtre de navigateur web, connectez-vous à votre client FileCloud en tant qu’administrateur.
 
-8. Dans le volet de navigation gauche hello, cliquez sur **paramètres**. 
+8. Dans le volet de navigation gauche, cliquez sur **Paramètres**. 
    
     ![Section Paramètres côté application](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_000.png)
 
@@ -141,84 +141,84 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
    
     ![Volet Paramètres de l’authentification unique côté application](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_002.png)
 
-11. Coller **ID d’entité SAML**, lequel vous avez copié à partir du portail Azure en hello **URL de Point de terminaison IdP** zone de texte.
+11. Collez l’**ID d’entité SAML** que vous avez copié à partir du portail Azure dans la zone de texte **IdP End Point URL** (URL du point de terminaison IdP).
 
     ![Zone de texte IDP End Point URL (URL du point de terminaison IdP)](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_003.png)
 
-12. Ouvrez votre fichier de métadonnées téléchargé dans le bloc-notes, hello copie contenu de celui-ci dans le Presse-papiers et le coller ensuite toohello **métadonnées IdP** zone de texte sur **paramètres SAML** Panneau de configuration.
+12. Ouvrez votre fichier de métadonnées téléchargé dans le bloc-notes, copiez le contenu de celui-ci dans le Presse-papiers, puis collez-le dans la zone de texte **IdP Meta Data** (métadonnées IdP) du panneau **SAML Settings** (Paramètres SAML).
 
     ![Section IDP Meta Data (Métadonnées IDP) côté application](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_004.png)
 
 13. Cliquez sur le bouton **Enregistrer** .
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
    ![Créer un utilisateur de test Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.
+1. Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.
 
-    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-filecloud-tutorial/create_aaduser_01.png)
+    ![Bouton Azure Active Directory](./media/active-directory-saas-filecloud-tutorial/create_aaduser_01.png)
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
 
-    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-filecloud-tutorial/create_aaduser_02.png)
+    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-filecloud-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.
 
-    ![bouton Ajouter de Hello](./media/active-directory-saas-filecloud-tutorial/create_aaduser_03.png)
+    ![Bouton Ajouter](./media/active-directory-saas-filecloud-tutorial/create_aaduser_03.png)
 
-4. Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
 
-    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-filecloud-tutorial/create_aaduser_04.png)
+    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-filecloud-tutorial/create_aaduser_04.png)
 
-    a. Bonjour **nom** , tapez **BrittaSimon**.
+    a. Dans la zone **Nom**, tapez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.
+    b. Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.
 
-    c. Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.
+    c. Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-a-filecloud-test-user"></a>Créer un utilisateur de test de FileCloud
 
-objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans FileCloud. FileCloud prend en charge le déploiement juste-à-temps, qui est l’option activée par défaut. Vous n’avez aucune opération à effectuer dans cette section. Un nouvel utilisateur est créé au cours d’une tentative de tooaccess FileCloud s’il n’existe pas encore.
+L’objectif de cette section est de créer un utilisateur nommé Britta Simon dans FileCloud. FileCloud prend en charge le déploiement juste-à-temps, qui est l’option activée par défaut. Vous n’avez aucune opération à effectuer dans cette section. Un utilisateur est créé lors d’une tentative d’accès à FileCloud s’il n’existe pas encore.
 
 >[!NOTE]
->Si vous devez manuellement toocreate un utilisateur, vous devez toocontact hello [équipe de support Client de FileCloud](mailto:support@codelathe.com). 
+>Si vous devez créer un utilisateur manuellement, contactez l’[équipe de prise en charge des clients FileCloud](mailto:support@codelathe.com). 
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooFileCloud.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à FileCloud.
 
-![Attribuer le rôle d’utilisateur hello][200] 
+![Assigner le rôle d’utilisateur][200] 
 
-**tooassign Britta Simon tooFileCloud, effectuez hello comme suit :**
+**Pour affecter Britta Simon à FileCloud, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **FileCloud**.
+2. Dans la liste des applications, sélectionnez **FileCloud**.
 
-    ![lien de FileCloud Hello dans la liste des Applications hello](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_app.png)  
+    ![Lien FileCloud dans la liste Applications](./media/active-directory-saas-filecloud-tutorial/tutorial_filecloud_app.png)  
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
-    ![lien de « Utilisateurs et groupes » Hello][202]
+    ![Lien « Utilisateurs et groupes »][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![volet d’ajouter l’affectation de Hello][203]
+    ![Volet Ajouter une attribution][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -226,13 +226,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-objectif Hello de cette section est tootest votre configuration de l’authentification unique de Azure AD à l’aide de hello panneau d’accès.
+L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque FileCloud hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour FileCloud application.
+Lorsque vous cliquez sur la vignette FileCloud dans le volet d’accès, vous devez être automatiquement authentifié auprès de votre application FileCloud.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

@@ -1,6 +1,6 @@
 ---
-title: "domaine personnalisé du contenu tooa Azure CDN aaaMap | Documents Microsoft"
-description: "Découvrez comment toomap Azure CDN contenu tooa des domaines personnalisés."
+title: "Mapper le contenu Azure CDN à un domaine personnalisé | Microsoft Docs"
+description: "Découvrez comment mapper du contenu Azure CDN à un domaine personnalisé."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,70 +14,70 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: d3ee77297f1dd7dbf31a9391191cc2910fbd2cee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cd6db44f7776859d1e6a893543cf0666182ca41a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="map-azure-cdn-content-tooa-custom-domain"></a>Mapper un domaine personnalisé de tooa contenu CDN Azure
-Vous pouvez mapper un point de terminaison CDN de tooa domaine personnalisé dans l’ordre toouse votre propre nom de domaine dans l’URL toocached de contenu au lieu d’utiliser un sous-domaine de azureedge.net.
+# <a name="map-azure-cdn-content-to-a-custom-domain"></a>Mapper du contenu Azure CDN à un domaine personnalisé
+Vous pouvez mapper un domaine personnalisé à un point de terminaison CDN pour utiliser votre propre nom de domaine dans les URL de contenu mis en cache, plutôt que d’utiliser un sous-domaine d’azureedge.net.
 
-Il existe deux façons toomap votre point de terminaison CDN tooa domaine personnalisé :
+Il existe deux façons de mapper votre domaine personnalisé à un point de terminaison CDN :
 
-1. [Créer un enregistrement CNAME avec votre bureau d’enregistrement de domaine et mapper votre domaine et sous-domaine toohello CDN point de terminaison personnalisé](#register-a-custom-domain-for-an-azure-cdn-endpoint).
+1. [Créez un enregistrement CNAME auprès de votre bureau d’enregistrement de domaines et mappez votre domaine personnalisé et votre sous-domaine au point de terminaison CDN](#register-a-custom-domain-for-an-azure-cdn-endpoint).
    
-    Un enregistrement CNAME est une fonctionnalité DNS qui mappe un domaine source, tel que `www.contosocdn.com` ou `cdn.contoso.com`, domaine de destination tooa. Dans ce cas, le domaine de la source hello est votre domaine personnalisé et votre sous-domaine (un sous-domaine, comme **www** ou **cdn** est toujours requis). domaine de destination Hello est votre point de terminaison CDN.  
+    Un enregistrement CNAME est une fonctionnalité DNS qui mappe un domaine source, comme `www.contosocdn.com` ou `cdn.contoso.com`, à un domaine cible. Dans cet exemple, le domaine source est votre domaine personnalisé et son sous-domaine (un sous-domaine, tel que **www** ou **cdn**, est dans tous les cas indispensable). Le domaine cible est le point de terminaison de votre CDN.  
    
-    processus Hello de mappage de votre point de terminaison CDN tooyour domaine personnalisé peut, cependant, provoquer dans une courte période de temps d’arrêt pour le domaine de hello pendant l’inscription de domaine de hello Bonjour portail Azure.
+    Le processus consistant à mapper votre domaine personnalisé à votre point de terminaison CDN peut entraîner un problème d’indisponibilité de courte durée du service au moment où vous inscrivez le domaine dans le portail Azure.
 2. [Ajouter une étape d’inscription intermédiaire avec **cdnverify**](#register-a-custom-domain-for-an-azure-cdn-endpoint-using-the-intermediary-cdnverify-subdomain)
    
-    Si votre domaine personnalisé d’est actuellement prise en charge une application avec un contrat de niveau de service (SLA) qui nécessite la présence d’aucun temps d’interruption, vous pouvez ensuite utiliser hello Azure **cdnverify** sous-domaine tooprovide une inscription intermédiaire étape afin que les utilisateurs seront en mesure de tooaccess votre domaine pendant que hello DNS mappage a lieu.  
+    Si votre domaine personnalisé prend actuellement en charge une application visée par un contrat de niveau de service (SLA) interdisant toute interruption de service, vous pouvez utiliser le sous-domaine **cdnverify** Azure en tant qu'étape d'enregistrement intermédiaire pour permettre aux utilisateurs d'accéder à votre domaine pendant que vous procédez au mappage DNS.  
 
-Après avoir enregistré votre domaine personnalisé à l’aide de hello au-dessus de procédures, vous devez trop[vérifier ce sous-domaine personnalisé hello référence votre point de terminaison CDN](#verify-that-the-custom-subdomain-references-your-cdn-endpoint).
+Après avoir inscrit votre domaine personnalisé selon l’une des procédures mentionnées ci-dessus, vous pouvez [vérifier que le sous-domaine personnalisé fait référence à votre point de terminaison CDN](#verify-that-the-custom-subdomain-references-your-cdn-endpoint).
 
 > [!NOTE]
-> Vous devez créer un enregistrement CNAME avec votre toomap de bureau d’enregistrement de domaine de votre point de terminaison CDN toohello domaine. Les enregistrements CNAME mappent des sous-domaines spécifiques, tels que `www.contoso.com` ou `cdn.contoso.com`. Il n’est pas possible de toomap un domaine racine de tooa enregistrement CNAME, tel que `contoso.com`.
+> Vous devez créer un enregistrement CNAME auprès de votre bureau d'enregistrement de domaines pour mapper votre domaine au point de terminaison CDN. Les enregistrements CNAME mappent des sous-domaines spécifiques, tels que `www.contoso.com` ou `cdn.contoso.com`. Il n’est pas possible de mapper un enregistrement CNAME à un domaine racine, tel que `contoso.com`.
 > 
-> Un sous-domaine ne peut être associé qu'à un point de terminaison CDN. Hello enregistrement CNAME que vous créez achemine tout le trafic adressé toohello sous-domaine toohello spécifié de point de terminaison.  Par exemple, si vous associez `www.contoso.com` à votre point de terminaison CDN, vous ne pouvez pas l’associer à d’autres points de terminaison Azure, comme un point de terminaison de compte de stockage ou un point de terminaison de service cloud. Toutefois, vous pouvez utiliser différents sous-domaines de hello même domaine pour les points de terminaison de service différent. Vous pouvez également mapper différents sous-domaines toohello même point de terminaison CDN.
+> Un sous-domaine ne peut être associé qu'à un point de terminaison CDN. L'enregistrement CNAME que vous créez achemine tout le trafic adressé au sous-domaine vers le point de terminaison spécifié.  Par exemple, si vous associez `www.contoso.com` à votre point de terminaison CDN, vous ne pouvez pas l’associer à d’autres points de terminaison Azure, comme un point de terminaison de compte de stockage ou un point de terminaison de service cloud. Toutefois, vous pouvez utiliser différents sous-domaines du même domaine pour différents points de terminaison de service. Vous pouvez également mapper différents sous-domaines au même point de terminaison CDN.
 > 
-> Pour **Azure CDN de Verizon** les points de terminaison (Standard ou Premium), notez qu’elle occupe trop**90 minutes** des noeuds tooCDN toopropagate des modifications de domaine personnalisé.
+> Pour les points de terminaison du **CDN Azure fourni par Verizon** (Standard et Premium), notez qu’il faut compter jusqu’à **90 minutes** avant que les modifications du domaine personnalisé soient propagées sur les nœuds de périmètre CDN.
 > 
 > 
 
 ## <a name="register-a-custom-domain-for-an-azure-cdn-endpoint"></a>Inscrire un domaine personnalisé pour un point de terminaison CDN Azure
-1. Ouvrez une session sur hello [Azure Portal](https://portal.azure.com/).
-2. Cliquez sur **Parcourir**, puis **CDN profils**, puis hello profil CDN avec point de terminaison hello vous souhaitez que le domaine personnalisé de toomap tooa.  
-3. Bonjour **profil CDN** panneau, cliquez sur le point de terminaison CDN hello avec lequel vous souhaitez que le sous-domaine de hello tooassociate.
-4. Haut hello du Panneau de point de terminaison hello, cliquez sur hello **ajouter un domaine personnalisé** bouton.  Bonjour **ajouter un domaine personnalisé** panneau, vous verrez les nom d’hôte de point de terminaison hello, dérivée de point de terminaison CDN, toouse dans la création d’un enregistrement CNAME. format Hello d’adresse de nom d’hôte hello apparaît sous la forme  **&lt;EndpointName >. azureedge.net**.  Vous pouvez copier cette toouse de nom d’hôte pour la création d’enregistrement CNAME de hello.  
-5. Parcourir le site web de tooyour de domaines et recherchez la section hello pour la création d’enregistrements DNS. Vous pourrez trouver ces informations dans une section telle que **Domain Name**, **DNS** ou **Name Server Management**.
-6. Rechercher la section de hello pour la gestion des enregistrements CNAME. Vous pouvez posséder de page de paramètres avancés de tooan toogo et recherchez les mots hello CNAME, Alias ou sous-domaines.
-7. Créez un enregistrement CNAME qui mappe votre sous-domaine choisi (par exemple, **www** ou **cdn**) toohello nom d’hôte fourni dans hello **ajouter un domaine personnalisé** panneau. 
-8. Retourner toohello **ajouter un domaine personnalisé** panneau, puis entrez votre domaine personnalisé, y compris les sous-domaine hello, dans la boîte de dialogue hello. Par exemple, entrez le nom de domaine hello au format de hello `www.contoso.com` ou `cdn.contoso.com`.   
+1. Connectez-vous au [portail Azure](https://portal.azure.com/).
+2. Cliquez sur **Parcourir**, sur **Profils CDN**, puis sélectionnez le profil CDN avec le point de terminaison que vous souhaitez mapper à un domaine personnalisé.  
+3. Dans le panneau **Profil CDN** , cliquez sur le point de terminaison CDN auquel vous souhaitez associer le sous-domaine.
+4. En haut du panneau du point de terminaison, cliquez sur le bouton **Ajouter un domaine personnalisé** .  Dans le panneau **Ajouter un domaine personnalisé** s’affiche le nom du point de terminaison, dérivé de votre point de terminaison CDN, à utiliser pour créer un enregistrement CNAME. L’adresse de nom d’hôte se présente sous la forme **&lt;Nom_Point_Terminaison>.azureedge.net**.  Vous pouvez copier ce nom d'hôte en vue de l'utiliser pour créer l'enregistrement CNAME.  
+5. Accédez au site web de votre bureau d'enregistrement de domaines et recherchez la section de la création d'enregistrements DNS. Vous pourrez trouver ces informations dans une section telle que **Domain Name**, **DNS** ou **Name Server Management**.
+6. Recherchez la section relative à la gestion des enregistrements CNAME. Pour cela, accédez à une page de paramètres avancés et recherchez les mots CNAME, Alias ou Sous-domaines.
+7. Créez un enregistrement CNAME qui mappe votre sous-domaine choisi (par exemple, **www** ou **cdn**) au nom d’hôte fourni dans le panneau **Ajouter un domaine personnalisé**. 
+8. Revenez au panneau **Ajouter un domaine personnalisé** , puis entrez votre domaine personnalisé, dont le sous-domaine, dans la boîte de dialogue. Par exemple, entrez le nom de domaine au format `www.contoso.com` ou `cdn.contoso.com`.   
    
-   Azure vérifiera que l’enregistrement CNAME de hello existe pour le nom de domaine hello que vous avez entré. Si hello CNAME est correct, votre domaine personnalisé est validé.  Pour **Azure CDN de Verizon** les points de terminaison (Standard ou Premium), cela peut prendre jusqu'à minutes too90 pour le domaine personnalisé paramètres toopropagate tooall CDN noeuds, toutefois.  
+   Azure vérifiera que l'enregistrement CNAME existe pour le nom de domaine que vous avez entré. Si l'enregistrement CNAME est correct, votre domaine personnalisé est validé.  En revanche, pour les points de terminaison du **CDN Azure fourni par Verizon** (Standard et Premium), la propagation des modifications du domaine personnalisé sur tous les nœuds de périmètre CDN peuvent prendre jusqu’à 90 minutes.  
    
-   Notez que, dans certains cas, il peut prendre le temps pour les serveurs de tooname toopropagate enregistrement hello CNAME sur hello Internet. Si votre domaine n’est pas validé immédiatement, et si vous pensez hello enregistrement CNAME est correct, puis attendez quelques minutes, puis réessayez.
+   Notez que dans certains cas la propagation de l'enregistrement CNAME aux serveurs de noms sur Internet peut prendre du temps. Si votre domaine n'est pas validé immédiatement et que vous pensez que l'enregistrement CNAME est correct, patientez quelques minutes, puis réessayez.
 
-## <a name="register-a-custom-domain-for-an-azure-cdn-endpoint-using-hello-intermediary-cdnverify-subdomain"></a>Inscrire un domaine personnalisé pour un point de terminaison CDN Azure à l’aide du sous-domaine cdnverify intermédiaire de hello
-1. Ouvrez une session sur hello [Azure Portal](https://portal.azure.com/).
-2. Cliquez sur **Parcourir**, puis **CDN profils**, puis hello profil CDN avec point de terminaison hello vous souhaitez que le domaine personnalisé de toomap tooa.  
-3. Bonjour **profil CDN** panneau, cliquez sur le point de terminaison CDN hello avec lequel vous souhaitez que le sous-domaine de hello tooassociate.
-4. Haut hello du Panneau de point de terminaison hello, cliquez sur hello **ajouter un domaine personnalisé** bouton.  Bonjour **ajouter un domaine personnalisé** panneau, vous verrez les nom d’hôte de point de terminaison hello, dérivée de point de terminaison CDN, toouse dans la création d’un enregistrement CNAME. format Hello d’adresse de nom d’hôte hello apparaît sous la forme  **&lt;EndpointName >. azureedge.net**.  Vous pouvez copier cette toouse de nom d’hôte pour la création d’enregistrement CNAME de hello.
-5. Parcourir le site web de tooyour de domaines et recherchez la section hello pour la création d’enregistrements DNS. Vous pourrez trouver ces informations dans une section telle que **Domain Name**, **DNS** ou **Name Server Management**.
-6. Rechercher la section de hello pour la gestion des enregistrements CNAME. Vous pouvez posséder de page de paramètres avancés de tooan toogo et recherchez les mots hello **CNAME**, **Alias**, ou **sous-domaines**.
-7. Créez un enregistrement CNAME et fournir un alias de sous-domaine qui inclut hello **cdnverify** sous-domaine. Par exemple, sous-domaine hello que vous spécifiez sera au format de hello **cdnverify.www** ou **cdnverify.cdn**. Puis indiquez le nom d’hôte hello, qui est votre point de terminaison CDN, au format de hello **cdnverify.&lt; EndpointName >. azureedge.net**. Votre mappage DNS doit ressembler à ceci :`cdnverify.www.consoto.com   CNAME   cdnverify.consoto.azureedge.net`  
-8. Retourner toohello **ajouter un domaine personnalisé** panneau, puis entrez votre domaine personnalisé, y compris les sous-domaine hello, dans la boîte de dialogue hello. Par exemple, entrez le nom de domaine hello au format de hello `www.contoso.com` ou `cdn.contoso.com`. Notez que dans cette étape, vous ne devez pas sous-domaine de hello toopreface avec **cdnverify**.  
+## <a name="register-a-custom-domain-for-an-azure-cdn-endpoint-using-the-intermediary-cdnverify-subdomain"></a>Inscrire un domaine personnalisé pour un point de terminaison CDN Azure en utilisant le sous-domaine cdnverify intermédiaire
+1. Connectez-vous au [portail Azure](https://portal.azure.com/).
+2. Cliquez sur **Parcourir**, sur **Profils CDN**, puis sélectionnez le profil CDN avec le point de terminaison que vous souhaitez mapper à un domaine personnalisé.  
+3. Dans le panneau **Profil CDN** , cliquez sur le point de terminaison CDN auquel vous souhaitez associer le sous-domaine.
+4. En haut du panneau du point de terminaison, cliquez sur le bouton **Ajouter un domaine personnalisé** .  Dans le panneau **Ajouter un domaine personnalisé** s’affiche le nom du point de terminaison, dérivé de votre point de terminaison CDN, à utiliser pour créer un enregistrement CNAME. L’adresse de nom d’hôte se présente sous la forme **&lt;Nom_Point_Terminaison>.azureedge.net**.  Vous pouvez copier ce nom d'hôte en vue de l'utiliser pour créer l'enregistrement CNAME.
+5. Accédez au site web de votre bureau d'enregistrement de domaines et recherchez la section de la création d'enregistrements DNS. Vous pourrez trouver ces informations dans une section telle que **Domain Name**, **DNS** ou **Name Server Management**.
+6. Recherchez la section relative à la gestion des enregistrements CNAME. Pour cela, accédez à une page de paramètres avancés et recherchez les mots **CNAME**, **Alias** ou **Sous-domaines**.
+7. Créez un enregistrement CNAME et indiquez un alias de sous-domaine qui inclut le sous-domaine **cdnverify** . Par exemple, le sous-domaine que vous spécifiez sera au format **cdnverify.www** ou **cdnverify.cdn**. Renseignez le nom d’hôte (c’est-à-dire votre point de terminaison CDN) au format **cdnverify.&lt;Nom_Point_Terminaison>.azureedge.net**. Votre mappage DNS doit ressembler à ceci :`cdnverify.www.consoto.com   CNAME   cdnverify.consoto.azureedge.net`  
+8. Revenez au panneau **Ajouter un domaine personnalisé** , puis entrez votre domaine personnalisé, dont le sous-domaine, dans la boîte de dialogue. Par exemple, entrez le nom de domaine au format `www.contoso.com` ou `cdn.contoso.com`. Notez qu'à cette étape, vous ne devez pas faire précéder le sous-domaine de **cdnverify**.  
    
-    Azure vérifiera que l’enregistrement CNAME de hello existe pour le nom de domaine hello cdnverify que vous avez entré.
-9. À ce stade, votre domaine personnalisé a été vérifié par Azure, mais le domaine tooyour du trafic n’est pas encore en cours routé tooyour point de terminaison CDN. Après avoir attendu suffisamment longue toopropagate de paramètres de domaine personnalisé hello tooallow toohello CDN bord nœuds (90 minutes **Azure CDN de Verizon**, 1 à 2 minutes pour **CDN Azure à partir d’Akamai**), retourner tooyour DNS site web de bureau d’enregistrement et de créer un autre enregistrement CNAME qui mappe votre point de terminaison CDN tooyour sous-domaine. Par exemple, spécifiez le sous-domaine hello en tant que **www** ou **cdn**, et hello nom d’hôte en tant que  **&lt;EndpointName >. azureedge.net**. Cette étape, hello l’inscription de votre domaine personnalisé est terminée.
-10. Enfin, vous pouvez supprimer l’enregistrement CNAME de hello vous avez créé à l’aide de **cdnverify**, tel qu’il était nécessaire uniquement comme une étape intermédiaire.  
+    Azure vérifiera que l'enregistrement CNAME existe pour le nom de domaine cdnverify que vous avez entré.
+9. À ce stade, votre domaine personnalisé a été vérifié par Azure, mais le trafic en direction de votre domaine n'est pas encore dirigé vers votre point de terminaison CDN. Après avoir attendu le temps nécessaire à la propagation des paramètres de domaine personnalisé aux nœuds de périmètre CDN (90 minutes pour le **CDN Azure fourni par Verizon**, 1-2 minutes pour le **CDN Azure fourni par Akamai**), retournez sur le site web de votre bureau d’enregistrement de domaines DNS et créez un autre enregistrement CNAME qui mappe votre sous-domaine à votre point de terminaison CDN. Par exemple, spécifiez le sous-domaine au format **www** ou **cdn**, ainsi que le nom d’hôte au format **&lt;Nom_Point_Terminaison>.azureedge.net**. Cette étape marque la fin de l'enregistrement de votre domaine personnalisé.
+10. Pour finir, vous pouvez supprimer l'enregistrement CNAME que vous avez créé à l'aide du sous-domaine **cdnverify**, car il n'a plus d'utilité.  
 
-## <a name="verify-that-hello-custom-subdomain-references-your-cdn-endpoint"></a>Vérifiez ce sous-domaine personnalisé hello fait référence à votre point de terminaison CDN
-* Une fois que vous avez terminé l’inscription de hello de votre domaine personnalisé, vous pouvez accéder au contenu est mis en cache au point de terminaison CDN à l’aide du domaine personnalisé de hello.
-  Tout d’abord, assurez-vous que vous disposez d’un contenu public qui est mis en cache au point de terminaison hello. Par exemple, si votre point de terminaison CDN est associé à un compte de stockage, hello CDN met en cache le contenu dans des conteneurs blob publics. domaine personnalisé de hello tootest, assurez-vous que votre conteneur est tooallow un accès public et qu’il contient au moins un objet blob.
-* Dans votre navigateur, accédez à adresse toohello du blob hello hello de domaine personnalisé. Par exemple, si votre domaine personnalisé est `cdn.contoso.com`, objet blob mis en cache de hello URL tooa sera similaire toohello suivant l’URL : http://cdn.contoso.com/mypubliccontainer/acachedblob.jpg
+## <a name="verify-that-the-custom-subdomain-references-your-cdn-endpoint"></a>vérifier que le sous-domaine personnalisé fait référence à votre point de terminaison CDN
+* Après avoir terminé l'enregistrement de votre domaine personnalisé, vous pouvez accéder au contenu mis en cache au point de terminaison CDN à l'aide du domaine personnalisé.
+  Tout d'abord, assurez-vous d'avoir un contenu public qui est mis en cache au point de terminaison. Par exemple, si votre point de terminaison CDN est associé à un compte de stockage, le CDN met en cache le contenu dans des conteneurs d'objets blob publics. Pour tester le domaine personnalisé, assurez-vous que votre conteneur est configuré pour autoriser l'accès public et qu'il contient au moins un objet blob.
+* Dans votre navigateur, accédez à l'adresse de l'objet blob à l'aide du domaine personnalisé. Par exemple, si votre domaine personnalisé est `cdn.contoso.com`, l’URL d’un objet blob mis en cache sera similaire à l’URL suivante : http://cdn.contoso.com/mypubliccontainer/acachedblob.jpg
 
 ## <a name="see-also"></a>Voir aussi
-[Comment tooEnable hello réseau CDN (Content Delivery) pour Azure](cdn-create-new-endpoint.md)  
+[Comment activer le réseau de distribution de contenu (CDN) pour Azure](cdn-create-new-endpoint.md)  
 

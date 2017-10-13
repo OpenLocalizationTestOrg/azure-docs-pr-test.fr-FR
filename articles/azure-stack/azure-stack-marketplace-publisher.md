@@ -1,6 +1,6 @@
 ---
-title: "aaaUse hello Marketplace toolkit toocreate et publier des éléments du marketplace | Documents Microsoft"
-description: "Découvrez comment tooquickly créer des éléments du marketplace par hello publication du Kit de ressources"
+title: "Utiliser la boîte à outils Place de Marché pour créer et publier des éléments de Place de Marché | Microsoft Docs"
+description: "Découvrez comment créer rapidement des éléments de Place de Marché avec la boîte à outils de publication."
 services: azure-stack
 documentationcenter: 
 author: HeathL17
@@ -14,75 +14,75 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/14/2017
 ms.author: helaw
-ms.openlocfilehash: c1cf9ad1da44787901297eec12faf2a3dea82a6c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5b2c04d2cbc06e1572dc2e40712f6cf9d886aa1e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 #  <a name="add-marketplace-items-using-publishing-tool"></a>Ajouter des éléments de Place de Marché à l’aide de l’outil de publication
-Ajout de votre contenu toohello [Azure Marketplace de pile](azure-stack-marketplace.md) rend votre tooyou disponibles de solutions et de vos clients pour le déploiement.  Hello Marketplace Toolkit crée des fichiers Azure Marketplace Packages (.azpkg) en fonction de vos modèles IaaS Azure Resource Manager ou les Extensions de machine virtuelle.  Vous pouvez également utiliser des fichiers de .azpkg toopublish hello Marketplace Toolkit, soit créé avec l’outil de hello ou à l’aide de [manuelle](azure-stack-create-and-publish-marketplace-item.md) étapes.  Cette rubrique vous guide de téléchargement hello outil, création d’un élément de marketplace basé sur un modèle d’ordinateur virtuel, puis publier ce toohello élément Azure Marketplace de pile.     
+L’ajout de votre contenu à la [Place de Marché Azure Stack](azure-stack-marketplace.md) met vos solutions à disposition de vos locataires (et de vous-même) pour le déploiement.  La boîte à outils Place de Marché crée des fichiers de packages Place de Marché Azure (.azpkg) basés sur vos extensions de machine virtuelle ou vos modèles IaaS Azure Resource Manager.  Vous pouvez également utiliser la boîte à outils Place de Marché pour publier des fichiers .azpkg créés avec l’outil ou par le biais d’étapes [manuelles](azure-stack-create-and-publish-marketplace-item.md).  Cette rubrique vous montre comment télécharger l’outil, créer un élément de Place de Marché basé sur un modèle de machine virtuelle, puis publier cet élément sur la Place de Marché Azure Stack.     
 
 
 ## <a name="prerequisites"></a>Composants requis
- - Vous devez exécuter hello toolkit sur l’ordinateur hôte de pile de Azure hello ou avez [VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn) connectivité à partir de l’ordinateur hello sur lequel vous exécutez l’outil de hello.
+ - Vous devez exécuter la boîte à outils sur l’hôte Azure Stack ou disposer d’une connectivité [VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn) à partir de l’ordinateur sur lequel vous exécutez l’outil.
 
- - Télécharger hello [modèles de démarrage rapide de pile Azure](https://github.com/Azure/AzureStack-QuickStart-Templates/archive/master.zip) et extraire.
+ - Téléchargez les [modèles de démarrage rapide Azure Stack](https://github.com/Azure/AzureStack-QuickStart-Templates/archive/master.zip) et effectuez leur extraction.
 
- - Télécharger hello [outil d’empaquetage de la galerie Azure](http://aka.ms/azurestackmarketplaceitem) (AzureGalleryPackage.exe). 
+ - Téléchargez l’[outil d’empaquetage de la galerie Azure](http://aka.ms/azurestackmarketplaceitem) (AzureGalleryPackage.exe). 
 
- - Publication toohello marketplace nécessite des icônes et un fichier de miniature.  Vous pouvez utiliser votre propre, ou enregistrer hello [exemple](azure-stack-marketplace-publisher.md#support-files) fichiers localement pour cet exemple.
+ - La publication sur la Place de Marché nécessite des icônes et un fichier de miniature.  Vous pouvez utiliser vos propres fichiers ou enregistrer les [exemples](azure-stack-marketplace-publisher.md#support-files) de fichiers localement pour cet exemple.
 
-## <a name="download-hello-tool"></a>Télécharger l’outil de hello
-Hello Marketplace Toolkit peut être [téléchargé à partir du référentiel de pile de Azure Tools hello](azure-stack-powershell-download.md).
+## <a name="download-the-tool"></a>Télécharger l’outil
+Vous pouvez [télécharger la boîte à outils Place de Marché à partir du dépôt d’outils Azure Stack](azure-stack-powershell-download.md).
 
 
 ##  <a name="create-marketplace-items"></a>Créer des éléments de Place de Marché
-Dans cette section, vous utilisez hello Marketplace Toolkit toocreate un package de l’élément marketplace .azpkg format.  
+Dans cette section, vous allez utiliser la boîte à outils Place de Marché pour créer un package d’élément Place de Marché au format .azpkg.  
 
 ### <a name="provide-marketplace-information-with-wizard"></a>Fournir des informations de Place de Marché avec l’Assistant
-1. À partir d’une session PowerShell, exécutez hello Marketplace Toolkit :
+1. Exécutez la boîte à outils Place de Marché à partir d’une session PowerShell :
 ```PowerShell
     .\MarketplaceToolkit.ps1
 ```
 
-2. Cliquez sur hello **Solution** onglet.  Cet écran accepte des informations sur votre élément de Place de Marché. Entrer des informations sur l’objet que vous le souhaitez tooappear dans marketplace de hello.  Vous pouvez également spécifier un [fichier de paramètres](azure-stack-marketplace-publisher.md#use-a-parameters-file) formulaire de hello tooprepopulate.  
+2. Cliquez sur l’onglet **Solution**.  Cet écran accepte des informations sur votre élément de Place de Marché. Entrez des informations sur votre élément, telles que vous souhaitez qu’elles apparaissent sur la Place de Marché.  Vous pouvez également spécifier un [fichier de paramètres](azure-stack-marketplace-publisher.md#use-a-parameters-file) pour préremplir le formulaire.  
     
     ![capture d’écran du premier écran de la boîte à outils Place de Marché](./media/azure-stack-marketplace-publisher/image7.png)
-3. Cliquez sur **Parcourir** et sélectionnez un fichier image pour chaque champ d’icône et de capture d’écran.  Vous pouvez utiliser vos propres icônes ou hello icônes exemple hello [prennent en charge les fichiers](azure-stack-marketplace-publisher.md#support-files) section.
-4. Une fois que tous les champs sont remplis, sélectionnez « Aperçu de la Solution » pour afficher un aperçu de la solution hello dans hello Marketplace.  Vous pouvez réviser et modifier le texte hello, des images et capture d’écran avant de cliquer sur **suivant**.  
+3. Cliquez sur **Parcourir** et sélectionnez un fichier image pour chaque champ d’icône et de capture d’écran.  Vous pouvez utiliser vos propres icônes ou les exemples fournis dans la section [Fichiers de prise en charge](azure-stack-marketplace-publisher.md#support-files).
+4. Une fois tous les champs renseignés, sélectionnez « Aperçu de la solution » pour afficher un aperçu de la solution sur la Place de Marché.  Vous pouvez réviser et modifier le texte, les images et la capture d’écran avant de cliquer sur **Suivant**.  
 
 ### <a name="import-template-and-create-package"></a>Importer le modèle et créer le package
-Dans cette section, vous importez le modèle de hello et fonctionne avec une entrée pour votre solution.
+Dans cette section, vous allez importer le modèle et utiliser l’entrée pour votre solution.
 
-1.  Cliquez sur **Parcourir** et sélectionnez hello *azuredeploy.json* à partir du dossier 101-Simple-Windows-VM hello Bonjour téléchargé les modèles.
+1.  Cliquez sur **Parcourir** et sélectionnez le fichier *azuredeploy.json* dans le dossier 101-Simple-Windows-VM dans les modèles téléchargés.
 
     ![capture d’écran du deuxième écran de la boîte à outils Place de Marché](./media/azure-stack-marketplace-publisher/image8.png)
-2.  Assistant Déploiement Hello est rempli avec un *base* éléments d’entrée et l’étape pour chaque paramètre spécifié dans le modèle de hello.  Vous pouvez ajouter des étapes supplémentaires et déplacer des entrées d’une étape à une autre.  Par exemple, vous souhaiterez peut-être avoir des étapes « Configuration frontale » et « Configuration backend » pour votre solution.
-3.  Spécifiez hello chemin d’accès tooAzureGalleryPackager.exe.  
-4.  Cliquez sur **créer** et hello Marketplace Toolkit empaquette votre solution dans un fichier .azpkg.  Une fois terminé, Assistant de hello affiche permettent de vous hello toocontinue option votre tooAzure package pile de publication et du fichier de solution de tooyour de chemin d’accès hello.
+2.  L’Assistant Déploiement est renseigné avec une étape *De base* et des éléments d’entrée pour chaque paramètre spécifié dans le modèle.  Vous pouvez ajouter des étapes supplémentaires et déplacer des entrées d’une étape à une autre.  Par exemple, vous souhaiterez peut-être avoir des étapes « Configuration frontale » et « Configuration backend » pour votre solution.
+3.  Spécifiez le chemin vers AzureGalleryPackager.exe.  
+4.  Cliquez sur **Créer**. La boîte à outils Place de Marché empaquète votre solution dans un fichier .azpkg.  Une fois terminé, l’Assistant affiche le chemin de votre fichier de solution et vous donne la possibilité de continuer à publier votre package sur Azure Stack.
 
 
 ## <a name="publish-marketplace-items"></a>Publier des éléments de Place de Marché
-Dans cette section, vous publiez hello marketplace élément tooyour Azure Marketplace de pile.
+Dans cette section, vous allez publier l’élément de Place de Marché sur votre Place de Marché Azure Stack.
 
 ![capture d’écran du premier écran de la boîte à outils Place de Marché](./media/azure-stack-marketplace-publisher/image9.png)
 
-1.  Assistant de Hello nécessite des informations toopublish votre solution :
+1.  L’Assistant a besoin d’informations pour publier votre solution :
     
     |Champ|Description|
     |-----|-----|
     | Nom de l’administrateur de service | Compte de l’administrateur de service.  Exemple : ServiceAdmin@mydomain.onmicrosoft.com |
     | Mot de passe | Mot de passe du compte d’administrateur de service. |
     | Point de terminaison d’API | Point de terminaison Azure Resource Manager Azure Stack.  Exemple : management.local.azurestack.external |
-2.  Cliquez sur **publier** et journal de publication hello s’affiche.
-3.  Vous est désormais en mesure de toodeploy votre élément publié via le portail d’Azure pile hello.
+2.  Cliquez sur **Publier**. Le journal de publication apparaît.
+3.  Vous pouvez désormais déployer votre élément publié par le biais du portail Azure Stack.
 
 
 ## <a name="use-a-parameters-file"></a>Utiliser un fichier de paramètres
-Vous pouvez également utiliser un fichier toocomplete hello marketplace élément informations relatives aux paramètres.  
+Vous pouvez également utiliser un fichier de paramètres pour renseigner les informations de Place de Marché.  
 
-Hello Marketplace Toolkit inclut une *solution.parameters.ps1* vous pouvez utiliser toocreate votre propre fichier de paramètres.
+La boîte à outils Place de Marché comprend un fichier *solution.parameters.ps1* que vous pouvez utiliser pour créer votre propre fichier de paramètres.
 
 
 ## <a name="support-files"></a>Fichiers de prise en charge

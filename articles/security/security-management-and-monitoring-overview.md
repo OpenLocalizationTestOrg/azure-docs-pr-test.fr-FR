@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure analyse la vue d’ensemble et de gestion de la sécurité | Documents Microsoft"
-description: " Azure fournit tooaid de mécanismes de sécurité dans la gestion de hello et la surveillance des services cloud Azure et les ordinateurs virtuels.  Cet article fournit une vue d’ensemble de ces fonctionnalités et services clés de sécurité. "
+title: "Présentation de la gestion et surveillance de la sécurité Azure | Microsoft Docs"
+description: " Azure propose divers mécanismes de sécurité pour favoriser la gestion et surveillance des services cloud et des machines virtuelles Azure.  Cet article fournit une vue d’ensemble de ces fonctionnalités et services clés de sécurité. "
 services: security
 documentationcenter: na
 author: TerryLanfear
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: terrylan
-ms.openlocfilehash: 0026fa97bab7e15c9f8de6856b5075abe2288f61
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6787877deabafd0b7308e190cb45b4036049b05b
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-security-management-and-monitoring-overview"></a>Présentation de la gestion et surveillance de la sécurité Azure
-Azure fournit tooaid de mécanismes de sécurité dans la gestion de hello et la surveillance des services cloud Azure et les ordinateurs virtuels. Cet article fournit une vue d’ensemble de ces fonctionnalités et services clés de sécurité. Des liens sont fournis tooarticles qui fournissent des détails de chaque afin d’en savoir plus.
+Azure propose divers mécanismes de sécurité pour favoriser la gestion et surveillance des services cloud et des machines virtuelles Azure. Cet article fournit une vue d’ensemble de ces fonctionnalités et services clés de sécurité. Les liens renvoient à des articles qui fournissent des informations détaillées complémentaires sur chaque fonctionnalité ou service.
 
-Hello la sécurité de vos services de cloud de Microsoft est un partenariat et un partage des responsabilités entre vous et Microsoft. Responsabilité partagée signifie que Microsoft est chargé de hello Microsoft Azure et de la sécurité physique de ses centres de données (à l’aide des protections de sécurité telles que les portes d’entrée de badge verrouillé, clôtures et gardes). En outre, Azure fournit des niveaux élevés de sécurité de cloud en couche logicielle hello qui répond à la sécurité de hello, de confidentialité et de conformité de ses clients exigeants.
+La sécurité de vos services Microsoft Cloud est une collaboration et une responsabilité partagée entre vous et Microsoft. Une responsabilité partagée signifie que Microsoft est responsable de Microsoft Azure et de l’intégrité physique de ses centres de données (grâce à l’utilisation de mesures de protection telles que des portes sécurisées au moyen de badges, des clôtures et des gardes). En outre, Azure fournit des niveaux élevés de sécurité du cloud sur la couche logicielle, répondant aux attentes exigeantes de ses clients en matière de sécurité, de confidentialité et de conformité.
 
-Vous êtes propriétaire de vos données et les identités, les responsabilités hello pour la protection, sécurité hello de vos ressources locales et sécurité hello des composants de cloud que vous contrôlez. Microsoft fournit avec toohelp de contrôles et des fonctions de sécurité que vous protégez vos données et applications. Le degré de responsable de la sécurité est basée sur le type hello du service cloud.
+Vos données et identités vous appartiennent, ainsi que la responsabilité de les protéger, la sécurité de vos ressources locales et celle des composants cloud que vous contrôlez. Microsoft vous fournit des fonctionnalités et des contrôles de sécurité pour vous aider à protéger vos données et applications. Votre niveau de responsabilité en matière de sécurité dépend du type de service cloud.
 
-Hello suivant le graphique résume le solde hello de responsabilité pour le client Microsoft et hello.
+Le graphique suivant résume le partage de la responsabilité entre Microsoft et le client.
 
 ![Responsabilité partagée][1]
 
 Pour aller plus loin sur la gestion de la sécurité, consultez [Gestion de la sécurité dans Azure](azure-security-management.md).
 
-Voici hello principales fonctionnalités toobe abordée dans cet article :
+Voici les principales fonctionnalités abordées dans cet article :
 
 * Contrôle d’accès en fonction du rôle
 * Logiciel anti-programme malveillant
@@ -45,7 +45,7 @@ Voici hello principales fonctionnalités toobe abordée dans cet article :
 * Centre de sécurité
 
 ## <a name="role-based-access-control"></a>Contrôle d’accès en fonction du rôle
-Le contrôle d’accès en fonction du rôle (RBAC) Azure offre une gestion précise de l’accès pour les ressources Azure. À l’aide de RBAC, vous pouvez quantité d’allocation de personnes uniquement hello d’accès dont ils ont besoin tooperform leur travail.  RBAC peut également vous aider à vous assurer que lorsque les utilisateurs quittent l’organisation de hello ils perdent tooresources d’accès dans le cloud de hello.
+Le contrôle d’accès en fonction du rôle (RBAC) Azure offre une gestion précise de l’accès pour les ressources Azure. L’utilisation du RBAC vous permet de n’accorder aux utilisateurs que les droits d’accès dont ils ont besoin pour effectuer leur travail.  Le RBAC peut également vous permettre de vous assurer que les utilisateurs perdent l’accès aux ressources dans le cloud lorsqu’ils quittent l’entreprise.
 
 En savoir plus :
 
@@ -53,24 +53,24 @@ En savoir plus :
 * [Contrôle d’accès en fonction du rôle Azure](../active-directory/role-based-access-control-configure.md)
 
 ## <a name="antimalware"></a>Logiciel anti-programme malveillant
-Avec Azure, vous pouvez utiliser le logiciel anti-programme malveillant à partir des fournisseurs de sécurité majeures telles que Microsoft, Symantec, Trend Micro, McAfee et Kaspersky toohelp protéger vos machines virtuelles à partir de fichiers malveillants, de logiciels de publicité et d’autres menaces.
+Azure met à votre disposition des logiciels anti-programmes malveillants provenant de fournisseurs de sécurité reconnus tels que Microsoft, Symantec, Trend Micro, McAfee et Kaspersky. Ceux-ci permettent de protéger vos machines virtuelles contre les fichiers malveillants, les logiciels de publicité et d’autres menaces.
 
-Microsoft Antimalware offre que Hello de capacité tooinstall un agent de logiciel anti-programme malveillant pour des ordinateurs virtuels et les rôles PaaS. En fonction de System Center Endpoint Protection, cette fonctionnalité met local ayant fait leurs preuves cloud de toohello de technologie de sécurité.
+Microsoft Antimalware vous offre la possibilité d’installer un agent anti-programmes malveillants pour les rôles PaaS et les machines virtuelles. Basée sur System Center Endpoint Protection, cette fonctionnalité offre une technologie de sécurité locale éprouvée sur le cloud.
 
-Nous vous proposons d’intégration en profondeur pour de tendance [Deep Security](http://www.trendmicro.com/us/enterprise/cloud-solutions/deep-security/)™ et [SecureCloud](http://www.trendmicro.com/us/enterprise/cloud-solutions/secure-cloud/)™ produits Bonjour plateforme Azure. DeepSecurity est une solution Antivirus et SecureCloud une solution de chiffrement. DeepSecurity est déployé sur des machines virtuelles à l’aide d’un modèle d’extension. À l’aide d’interface utilisateur du portail hello et PowerShell, vous pouvez choisir toouse DeepSecurity à l’intérieur de nouveaux ordinateurs virtuels qui sont en cours lancés ou des machines virtuelles existantes qui sont déjà déployées.
+Nous offrons également une intégration approfondie de produits Trend ([Deep Security](http://www.trendmicro.com/us/enterprise/cloud-solutions/deep-security/)™ et [SecureCloud](http://www.trendmicro.com/us/enterprise/cloud-solutions/secure-cloud/)™) dans la plateforme Azure. DeepSecurity est une solution Antivirus et SecureCloud une solution de chiffrement. DeepSecurity est déployé sur des machines virtuelles à l’aide d’un modèle d’extension. À l’aide de l’interface utilisateur du portail et de PowerShell, vous pouvez choisir d’utiliser DeepSecurity à l’intérieur de nouvelles machines virtuelles en cours de lancement, ou de machines virtuelles existantes déjà déployées.
 
-Symantec Endpoint Protection (SEP) est également pris en charge sur Azure. Grâce à l’intégration de portail, les clients peuvent indiquer qu’ils ont l’intention toouse SEP dans une machine virtuelle. SEP peut être installé sur un tout nouveau VM via hello portail Azure, ou peut être installé sur un ordinateur virtuel existant, à l’aide de PowerShell.
+Symantec Endpoint Protection (SEP) est également pris en charge sur Azure. Grâce à l’intégration dans le portail, les clients ont la possibilité d’indiquer qu’ils souhaitent utiliser SEP au sein d’une machine virtuelle. SEP peut être installé sur une toute nouvelle machine virtuelle par le biais du portail Azure, ou sur une machine virtuelle existante à l’aide de PowerShell.
 
 En savoir plus :
 
 * [Déploiement de solutions anti-programmes malveillants sur des machines virtuelles Azure (en anglais)](https://azure.microsoft.com/blog/deploying-antimalware-solutions-on-azure-virtual-machines/)
 * [Microsoft Antimalware pour Azure Cloud Services et les machines virtuelles](azure-security-antimalware.md)
-* [Comment tooinstall et configurer Trend Micro Deep Security en tant que Service sur une machine virtuelle Windows](../virtual-machines/windows/classic/install-trend.md)
-* [Comment tooinstall et configurer Symantec Endpoint Protection sur une machine virtuelle Windows](../virtual-machines/windows/classic/install-symantec.md)
+* [Installation et configuration de Trend Micro Deep Security comme service sur une machine virtuelle Windows](../virtual-machines/windows/classic/install-trend.md)
+* [Installation et configuration de Symantec Endpoint Protection sur une machine virtuelle Windows](../virtual-machines/windows/classic/install-symantec.md)
 * [Nouvelles options anti-programmes malveillants pour protéger les machines virtuelles – McAfee Endpoint Protection](https://azure.microsoft.com/blog/new-antimalware-options-for-protecting-azure-virtual-machines/)
 
 ## <a name="multi-factor-authentication"></a>Azure Multi-Factor Authentication
-Azure multi-Factor authentication (MFA) est une méthode d’authentification qui nécessite l’utilisation de hello de plusieurs méthodes de vérification et ajoute une seconde couche critique de sécurité toouser connexions et transactions. L’authentification Multifacteur permet toodata d’accès de sauvegarde et des applications tout en répondant à la demande de l’utilisateur pour un processus de connexion simple. Elle fournit une authentification forte par le biais de diverses options de vérification : appel téléphonique, SMS, notification par application mobile ou code de vérification et jetons OATH tiers.
+Azure Multi-Factor Authentication (MFA) est une méthode d’authentification qui nécessite l’utilisation de plusieurs méthodes de vérification et ajoute une deuxième couche critique de sécurité aux connexions et transactions des utilisateurs. MFA contribue à sécuriser l’accès aux données et aux applications tout en répondant à la demande des utilisateurs souhaitant un processus d’authentification simple. Elle fournit une authentification forte par le biais de diverses options de vérification : appel téléphonique, SMS, notification par application mobile ou code de vérification et jetons OATH tiers.
 
 En savoir plus :
 
@@ -79,14 +79,14 @@ En savoir plus :
 * [Azure Multi-Factor Authentication : fonctionnement](../multi-factor-authentication/multi-factor-authentication-how-it-works.md)
 
 ## <a name="expressroute"></a>ExpressRoute
-Microsoft Azure ExpressRoute vous permet d’étendre vos réseaux locaux dans hello cloud de Microsoft sur une connexion privée dédiée facilitée par un fournisseur de connectivité. Grâce à ExpressRoute, vous pouvez établir des services de cloud computing tooMicrosoft de connexions, tels que Microsoft Azure, Office 365, CRM Online. La connectivité peut provenir d'un réseau universel (IP VPN), d’un réseau Ethernet point à point ou d’une interconnexion virtuelle via un fournisseur de connectivité dans un centre de colocalisation. Les connexions ExpressRoute ne sont pas établies via hello Internet public. Ainsi, toooffer de connexions ExpressRoute plus la fiabilité, débits plus importants, latences moindres et une sécurité accrue par rapport aux connexions classiques sur Internet de hello.
+Microsoft Azure ExpressRoute vous permet d'étendre vos réseaux locaux au cloud de Microsoft via une connexion privée dédiée assurée par un fournisseur de connectivité. Grâce à ExpressRoute, vous pouvez établir des connexions aux services de cloud computing Microsoft, comme Microsoft Azure, Office 365 et CRM Online. La connectivité peut provenir d'un réseau universel (IP VPN), d’un réseau Ethernet point à point ou d’une interconnexion virtuelle via un fournisseur de connectivité dans un centre de colocalisation. Les connexions ExpressRoute ne sont pas établies par le biais de l'Internet public. Elles offrent ainsi de meilleurs niveaux de fiabilité, de rapidité, de latence et de sécurité que les connexions classiques sur Internet.
 
 En savoir plus :
 
 * [Présentation technique d’ExpressRoute](../expressroute/expressroute-introduction.md)
 
 ## <a name="virtual-network-gateways"></a>Passerelles de réseau virtuel
-Les passerelles VPN, également appelés des passerelles de réseau virtuel Azure, sont utilisées toosend le trafic de réseau entre les réseaux virtuels et les emplacements sur site. Ils sont également le trafic de toosend utilisé entre plusieurs réseaux virtuels dans Azure (au réseau).  Les passerelles VPN garantissent la sécurisation de la connectivité entre les locaux entre Azure et votre infrastructure.
+Les passerelles VPN, aussi appelées passerelles de réseau virtuel Azure, sont conçues pour faire circuler le trafic réseau entre les réseaux virtuels et les emplacements sur site. Elles sont également utilisées pour acheminer le trafic entre plusieurs réseaux virtuels dans Azure (connexion de réseau virtuel à réseau virtuel).  Les passerelles VPN garantissent la sécurisation de la connectivité entre les locaux entre Azure et votre infrastructure.
 
 En savoir plus :
 
@@ -94,10 +94,10 @@ En savoir plus :
 * [Vue d’ensemble de la sécurité du réseau Azure](security-network-overview.md)
 
 ## <a name="privileged-identity-management"></a>Privileged Identity Management
-Parfois, les utilisateurs doivent toocarry opérations nécessitant des privilèges de ressources Azure ou d’autres applications SaaS. Cela signifie souvent que les organisations ont toogive les privilèges permanentes d’accès dans Azure Active Directory (Azure AD). C’est un risque de sécurité croissant pour les ressources hébergées dans le cloud, car les entreprises ne peuvent pas suffisamment surveiller ce que ces utilisateurs font avec leur accès privilégié.
-En outre, si un compte d’utilisateur disposant d’un accès privilégié est compromis, cette seule faille peut affecter votre sécurité globale sur le cloud. Azure AD Privileged Identity Management permet tooresolve ce risque en réduisant le temps d’exposition hello de privilèges et en augmentant la visibilité de l’utilisation.  
+Les utilisateurs doivent parfois effectuer des opérations privilégiées dans des ressources Azure ou dans d’autres applications SaaS. Cela signifie souvent que les entreprises doivent leur donner un accès privilégié permanent à Azure Active Directory (AD). C’est un risque de sécurité croissant pour les ressources hébergées dans le cloud, car les entreprises ne peuvent pas suffisamment surveiller ce que ces utilisateurs font avec leur accès privilégié.
+En outre, si un compte d’utilisateur disposant d’un accès privilégié est compromis, cette seule faille peut affecter votre sécurité globale sur le cloud. Azure AD Privileged Identity Management permet de résoudre ce risque en réduisant le temps d’exposition des privilèges et en augmentant la visibilité quant à leur utilisation.  
 
-Privileged Identity Management introduit le concept de hello d’un administrateur temporaire pour un rôle ou un « juste à temps » des accès d’administrateur, ce qui sont un utilisateur qui a besoin d’un processus d’activation pour ce rôle de toocomplete. modifications du processus d’activation Hello hello affectation hello tooa du rôle d’utilisateur dans Azure AD à partir de tooactive inactif, pour une période de temps, telles que les huit heures.
+Privileged Identity Management introduit le concept d’un administrateur temporaire pour un rôle ou d’un accès administrateur immédiat, qui est un utilisateur devant terminer un processus d’activation pour ce rôle. Le processus d'activation permet d’activer ou désactiver l'affectation de l'utilisateur à un rôle dans Azure AD pendant une période spécifiée, par exemple huit heures.
 
 En savoir plus :
 
@@ -105,9 +105,9 @@ En savoir plus :
 * [Prise en main d’Azure AD Privileged Identity Management](../active-directory/active-directory-privileged-identity-management-getting-started.md)
 
 ## <a name="identity-protection"></a>Identity Protection
-Protection d’identité Azure Active Directory (AD) fournit une vue consolidée des activités suspectes connectez-vous et toohelp de vulnérabilités potentielles protéger votre entreprise. Identity Protection détecte les activités de connexion suspectes pour les utilisateurs et les identités privilégiées (administrateurs) en fonction de signaux tels que les attaques par force brute, les fuites d’informations d’identification et les connexions provenant d’emplacements inconnus et d’appareils infectés.
+Azure Active Directory (AD) Identity Protection fournit une vue consolidée des activités de connexion suspectes et des vulnérabilités potentielles pour vous aider à protéger votre entreprise. Identity Protection détecte les activités de connexion suspectes pour les utilisateurs et les identités privilégiées (administrateurs) en fonction de signaux tels que les attaques par force brute, les fuites d’informations d’identification et les connexions provenant d’emplacements inconnus et d’appareils infectés.
 
-En fournissant des notifications et la mise à jour recommandée, Identity Protection aide les risques de toomitigate en temps réel. Il calcule la gravité de risque d’utilisateur, et vous pouvez configurer des stratégies basées sur les risques tooautomatically aide protéger l’accès application contre les menaces futures.
+En fournissant des notifications et des mises à jour recommandées, Identity Protection vous permet de limiter les risques en temps réel. Il calcule la gravité des risques utilisateur, et vous pouvez configurer des stratégies basées sur les risques pour automatiquement contribuer à protéger l’accès à l’application contre les menaces futures.
 
 En savoir plus :
 
@@ -115,17 +115,17 @@ En savoir plus :
 * [Channel 9 : Azure AD and Identity Show: Identity Protection Preview (Émission sur Azure AD et l’identité : présentation d’Identity Protection)](https://channel9.msdn.com/Series/Azure-AD-Identity/Azure-AD-and-Identity-Show-Identity-Protection-Preview)
 
 ## <a name="security-center"></a>Centre de sécurité
-Azure Security Center vous aide à empêcher, détecter et répondre toothreats et fournit le qu'augmentation de la visibilité et contrôler, sécurité hello de vos ressources Azure. Il fournit une surveillance de la sécurité et une gestion des stratégies intégrées pour l’ensemble de vos abonnements Azure, vous aidant ainsi à détecter les menaces qui pourraient passer inaperçues. De plus, il est compatible avec un vaste écosystème de solutions de sécurité.
+Azure Security Center vous aide à prévenir, détecter et résoudre les menaces, en vous apportant une visibilité et un contrôle accrus de la sécurité de vos ressources Azure. Il fournit une surveillance de la sécurité et une gestion des stratégies intégrées pour l’ensemble de vos abonnements Azure, vous aidant ainsi à détecter les menaces qui pourraient passer inaperçues. De plus, il est compatible avec un vaste écosystème de solutions de sécurité.
 
-Centre de sécurité vous permet d’optimiser et de surveiller la sécurité de hello de vos ressources Azure par :
+Security Center vous permet d’optimiser et de surveiller la sécurité de vos ressources Azure grâce aux opérations suivantes :
 
-* L’activation de stratégies toodefine pour vos ressources d’abonnement Azure selon tooyour sécurité de l’entreprise a besoin et hello type d’applications ou de la sensibilité des données hello dans chaque abonnement.
-* Analyse de l’état de hello de vos machines virtuelles Azure, le réseau et les applications.
-* En fournissant une liste de priorité des alertes de sécurité, notamment les alertes de partenaires intégrées étudier des solutions, ainsi que des informations hello tooquickly et des recommandations sur la façon de tooremediate une attaque.
+* Il vous permet de définir des stratégies pour vos abonnements aux ressources Azure en fonction des exigences de sécurité de votre société et du type d’applications ou du niveau de confidentialité des données de chaque abonnement.
+* Il analyse l’état de vos machines virtuelles, de votre réseau et de vos applications Azure.
+* Il fournit une liste hiérarchisée d’alertes de sécurité, notamment les alertes provenant de solutions de partenaires intégrées, ainsi que les informations nécessaires pour trouver rapidement la cause d’une attaque et des recommandations sur la façon d’y remédier.
 
 En savoir plus :
 
-* [Introduction tooAzure centre de sécurité](../security-center/security-center-intro.md)
+* [Présentation d’Azure Security Center](../security-center/security-center-intro.md)
 
 <!--Image references-->
 [1]: ./media/security-management-and-monitoring-overview/shared-responsibility.png

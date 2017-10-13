@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy une machine virtuelle à l’aide de c# et un modèle de gestionnaire de ressources | Documents Microsoft"
-description: "Découvrez toohow toouse c# et une toodeploy de modèle de gestionnaire de ressources une machine virtuelle Azure."
+title: "Déployer une machine virtuelle à l’aide de C# et d’un modèle Resource Manager | Microsoft Docs"
+description: "Apprenez à utiliser C# et un modèle Resource Manager pour déployer une machine virtuelle Azure."
 services: virtual-machines-windows
 documentationcenter: 
 author: davidmu1
@@ -15,47 +15,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: davidmu
-ms.openlocfilehash: 91d470228cfeed72336b488ffef4dfbb25bc3a40
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bd1c860db026f948202cd1f3aa763b4547c597b4
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="deploy-an-azure-virtual-machine-using-c-and-a-resource-manager-template"></a>Déployer une machine virtuelle Azure à l’aide de C# et d’un modèle Resource Manager
-Cet article vous explique comment toodeploy un modèle Azure Resource Manager à l’aide de c#. modèle Hello que vous créez déploie une seule machine virtuelle exécutant Windows Server dans un réseau virtuel avec un sous-réseau unique.
+Cet article explique la procédure de déploiement d’un modèle Azure Resource Manager à l’aide de C#. Le modèle que vous créez déploie une machine virtuelle unique exécutant Windows Server dans un nouveau réseau virtuel avec un seul sous-réseau.
 
-Pour obtenir une description détaillée de la ressource d’ordinateur virtuel hello, consultez [machines virtuelles dans un modèle Azure Resource Manager](template-description.md). Pour plus d’informations sur toutes les ressources hello dans un modèle, consultez [procédure pas à pas de gestionnaire de ressources Azure modèle](../../azure-resource-manager/resource-manager-template-walkthrough.md).
+Pour obtenir une description détaillée de la ressource de machine virtuelle, consultez [Virtual machines in an Azure Resource Manager template (Machines virtuelles dans un modèle Azure Resource Manager)](template-description.md). Pour plus d’informations sur toutes les ressources d’un modèle, consultez [Guide de création d’un modèle Resource Manager](../../azure-resource-manager/resource-manager-template-walkthrough.md).
 
-Il prend environ 10 minutes toodo ces étapes.
+Ces étapes prennent environ 10 minutes.
 
 ## <a name="create-a-visual-studio-project"></a>Créer un projet Visual Studio
 
-Dans cette étape, vous vous assurer que Visual Studio est installé et que vous créez un modèle de console application utilisée toodeploy hello.
+Lors de cette étape, assurez-vous que Visual Studio est installé et que vous créez une application console utilisée pour déployer le modèle.
 
-1. Si vous ne l’avez pas déjà fait, installez [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio). Sélectionnez **développement de bureau .NET** sur hello page de charges de travail, puis cliquez sur **installer**. Bonjour résumé, vous pouvez voir que **outils de développement .NET Framework 4-4.6** est automatiquement sélectionné pour vous. Si vous avez déjà installé Visual Studio, vous pouvez ajouter les charges de travail hello .NET à l’aide de hello du Lanceur de Visual Studio.
+1. Si vous ne l’avez pas déjà fait, installez [Visual Studio](https://docs.microsoft.com/visualstudio/install/install-visual-studio). Sélectionnez **Développement .NET Desktop** dans la page Charges de travail, puis cliquez sur **Installer**. Dans le résumé, vous pouvez voir que les **Outils de développement .NET Framework 4 - 4.6** sont automatiquement sélectionnés. Si vous avez déjà installé Visual Studio, vous pouvez ajouter la charge de travail .NET en utilisant le lanceur Visual Studio.
 2. Dans Visual Studio, cliquez sur **Fichier** > **Nouveau** > **Projet**.
-3. Dans **modèles** > **Visual C#**, sélectionnez **l’application Console (.NET Framework)**, entrez *myDotnetProject* nom hello de Hello du projet, emplacement hello sélectionnez hello du projet d’et puis cliquez sur **OK**.
+3. Dans **Modèles** > **Visual C#**, sélectionnez **Application console (.NET Framework)**, entrez le nom de projet *myDotnetProject*, sélectionnez l’emplacement du projet, puis cliquez sur **OK**.
 
-## <a name="install-hello-packages"></a>Installer des packages hello
+## <a name="install-the-packages"></a>Installer les packages
 
-Les packages NuGet sont hello plus simple façon tooinstall hello bibliothèques que vous devez toofinish ces étapes. bibliothèques hello tooget dont vous avez besoin dans Visual Studio, procédez comme suit :
+Les packages NuGet sont le moyen le plus simple pour installer les bibliothèques dont vous avez besoin pour terminer ces étapes. Pour obtenir les bibliothèques dont vous avez besoin dans Visual Studio, suivez ces étapes :
 
 1. Cliquez sur **Outils** > **Gestionnaire de package NuGet**, puis sur **Console du gestionnaire de package**.
-2. Dans la console hello, tapez les commandes :
+2. Dans la console, tapez ces commandes :
 
     ```
     Install-Package Microsoft.Azure.Management.Fluent
     Install-Package WindowsAzure.Storage
     ```
 
-## <a name="create-hello-files"></a>Créer des fichiers hello
+## <a name="create-the-files"></a>Créer les fichiers
 
-Dans cette étape, vous créez un fichier de modèle qui déploie les ressources hello et un fichier de paramètres qui fournit le modèle de toohello de valeurs de paramètre. Vous créez également un fichier d’autorisation qui est utilisé tooperform Azure Resource Manager operations.
+Lors de cette étape, vous créez un fichier de modèle qui déploie les ressources et un fichier de paramètres qui fournit les valeurs des paramètres au modèle. Vous créez également un fichier d’autorisation qui est utilisé pour effectuer des opérations Azure Resource Manager.
 
-### <a name="create-hello-template-file"></a>Crée un fichier de modèle hello
+### <a name="create-the-template-file"></a>Créer le fichier de modèle
 
-1. Dans l’Explorateur de solutions, cliquez sur *myDotnetProject* > **Ajouter** > **Nouvel élément**, puis sélectionnez **Fichier texte** dans *Éléments Visual C#*. Nom de fichier hello *CreateVMTemplate.json*, puis cliquez sur **ajouter**.
-2. Ajoutez ce fichier toohello de code JSON que vous avez créé :
+1. Dans l’Explorateur de solutions, cliquez sur *myDotnetProject* > **Ajouter** > **Nouvel élément**, puis sélectionnez **Fichier texte** dans *Éléments Visual C#*. Nommez le fichier *CreateVMTemplate.json*, puis cliquez sur **Ajouter**.
+2. Ajoutez ce code JSON au fichier que vous avez créé :
 
     ```json
     {
@@ -160,14 +160,14 @@ Dans cette étape, vous créez un fichier de modèle qui déploie les ressources
     }
     ```
 
-3. Enregistrez le fichier de CreateVMTemplate.json hello.
+3. Enregistrez le fichier CreateVMTemplate.json.
 
-### <a name="create-hello-parameters-file"></a>Créer le fichier de paramètres hello
+### <a name="create-the-parameters-file"></a>Créer le fichier de paramètres
 
-toospecify les valeurs des paramètres de ressource de hello qui sont définis dans le modèle de hello, vous créez un fichier de paramètres qui contient les valeurs hello.
+Pour spécifier des valeurs pour les paramètres de ressource qui ont été définis dans le modèle, créez un fichier de paramètres qui contient les valeurs.
 
-1. Dans l’Explorateur de solutions, cliquez sur *myDotnetProject* > **Ajouter** > **Nouvel élément**, puis sélectionnez **Fichier texte** dans *Éléments Visual C#*. Nom de fichier hello *Parameters.json*, puis cliquez sur **ajouter**.
-2. Ajoutez ce fichier toohello de code JSON que vous avez créé :
+1. Dans l’Explorateur de solutions, cliquez sur *myDotnetProject* > **Ajouter** > **Nouvel élément**, puis sélectionnez **Fichier texte** dans *Éléments Visual C#*. Nommez le fichier *Parameters.json*, puis cliquez sur **Ajouter**.
+2. Ajoutez ce code JSON au fichier que vous avez créé :
 
     ```json
     {
@@ -180,13 +180,13 @@ toospecify les valeurs des paramètres de ressource de hello qui sont définis d
     }
     ```
 
-4. Enregistrez le fichier de Parameters.json hello.
+4. Enregistrez le fichier Parameters.json.
 
-### <a name="create-hello-authorization-file"></a>Créer le fichier d’autorisations de hello
+### <a name="create-the-authorization-file"></a>Créer le fichier d’autorisation
 
-Avant de pouvoir déployer un modèle, assurez-vous d’avoir accès tooan [principal du service Active Directory](../../resource-group-authenticate-service-principal.md). À partir de principal du service hello, vous acquérir un jeton d’authentification des demandes tooAzure Gestionnaire de ressources. Vous devez également enregistrer les ID de l’application hello, clé d’authentification hello et ID de client hello dont vous avez besoin dans le fichier d’autorisations de hello.
+Avant de commencer cette étape, vérifiez que vous avez accès à un [principal de service Active Directory](../../resource-group-authenticate-service-principal.md). Dans le principal de service, vous obtenez le jeton d'authentification des demandes pour Azure Resource Manager. Vous devez également enregistrer l’ID d’application, la clé d’authentification et l’ID de locataire dont vous avez besoin dans le fichier d’autorisation.
 
-1. Dans l’Explorateur de solutions, cliquez sur *myDotnetProject* > **Ajouter** > **Nouvel élément**, puis sélectionnez **Fichier texte** dans *Éléments Visual C#*. Nom de fichier hello *azureauth.properties*, puis cliquez sur **ajouter**.
+1. Dans l’Explorateur de solutions, cliquez sur *myDotnetProject* > **Ajouter** > **Nouvel élément**, puis sélectionnez **Fichier texte** dans *Éléments Visual C#*. Nommez le fichier *azureauth.properties*, puis cliquez sur **Ajouter**.
 2. Ajoutez ces propriétés d’autorisation :
 
     ```
@@ -200,18 +200,18 @@ Avant de pouvoir déployer un modèle, assurez-vous d’avoir accès tooan [prin
     graphURL=https://graph.windows.net/
     ```
 
-    Remplacez  **&lt;id d’abonnement&gt;**  avec votre identificateur d’abonnement,  **&lt;id d’application&gt;**  avec hello application Active Directory identificateur,  **&lt;clé d’authentification&gt;**  avec la clé d’application hello, et  **&lt;id de client&gt;**  avec le client de hello identificateur.
+    Remplacez **&lt;subscription-id&gt;** par votre identificateur d’abonnement, **&lt;application-id&gt;** par l’identificateur d’application Active Directory, **&lt;authentication-key&gt;** par la clé d’application et **&lt;tenant-id&gt;** par l’identificateur du locataire.
 
-3. Enregistrez le fichier de azureauth.properties hello.
-4. La valeur d’une variable d’environnement dans Windows nommé AZURE_AUTH_LOCATION avec les fichiers tooauthorization hello chemin d’accès complet que vous avez créé, par exemple hello suivant PowerShell commande peut être utilisée :
+3. Enregistrez le fichier azureauth.properties.
+4. Définissez une variable d’environnement dans Windows nommée AZURE_AUTH_LOCATION avec le chemin complet au fichier d’autorisation que vous avez créé. Vous pouvez par exemple utiliser la commande PowerShell suivante :
 
     ```
     [Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\Visual Studio 2017\Projects\myDotnetProject\myDotnetProject\azureauth.properties", "User")
     ```
     
-## <a name="create-hello-management-client"></a>Créer le client de gestion hello
+## <a name="create-the-management-client"></a>Créer le client de gestion
 
-1. Ouvrir le fichier Program.cs de hello pour le projet hello que vous avez créé, puis ajoutez-les à l’aide de toohello instructions existantes en haut du fichier de hello :
+1. Ouvrez le fichier Program.cs du projet que vous avez créé, puis ajoutez les instructions suivantes à celles qui existent au début du fichier :
 
     ```
     using Microsoft.Azure.Management.Compute.Fluent;
@@ -223,7 +223,7 @@ Avant de pouvoir déployer un modèle, assurez-vous d’avoir accès tooan [prin
     using Microsoft.WindowsAzure.Storage.Blob;
     ```
 
-2. client de gestion toocreate hello, ajoutez ce code de toohello méthode Main :
+2. Pour créer le client de gestion, ajoutez ce code à la méthode Main :
 
     ```
     var credentials = SdkContext.AzureCredentialsFactory
@@ -238,7 +238,7 @@ Avant de pouvoir déployer un modèle, assurez-vous d’avoir accès tooan [prin
 
 ## <a name="create-a-resource-group"></a>Créer un groupe de ressources
 
-valeurs toospecify pour l’application hello, ajoutez la méthode Main toohello code :
+Pour spécifier des valeurs pour l’application, ajoutez du code à la méthode Main :
 
 ```
 var groupName = "myResourceGroup";
@@ -251,9 +251,9 @@ var resourceGroup = azure.ResourceGroups.Define(groupName)
 
 ## <a name="create-a-storage-account"></a>Créez un compte de stockage.
 
-paramètres et modèle de hello sont déployés à partir d’un compte de stockage dans Azure. Dans cette étape, vous créez le compte de hello et téléchargez des fichiers de hello. 
+Le modèle et les paramètres sont déployés à partir d’un compte de stockage dans Azure. Lors de cette étape, vous créez le compte et chargez les fichiers. 
 
-toocreate hello compte, ajoutez ce code de toohello méthode Main :
+Pour créer le compte, ajoutez ce code à la méthode Main :
 
 ```
 string storageAccountName = SdkContext.RandomResourceName("st", 10);
@@ -289,11 +289,11 @@ var paramblob = container.GetBlockBlobReference("Parameters.json");
 paramblob.UploadFromFile("..\\..\\Parameters.json");
 ```
 
-## <a name="deploy-hello-template"></a>Déployer le modèle de hello
+## <a name="deploy-the-template"></a>Déployer le modèle
 
-Déployer le modèle de hello et les paramètres de compte de stockage hello qui a été créé. 
+Déployez le modèle et les paramètres du compte de stockage que vous avez créé. 
 
-modèle de hello toodeploy, ajoutez ce code de toohello méthode Main :
+Pour déployer le modèle, ajoutez ce code à la méthode Main :
 
 ```
 var templatePath = "https://" + storageAccountName + ".blob.core.windows.net/templates/CreateVMTemplate.json";
@@ -304,28 +304,28 @@ var deployment = azure.Deployments.Define("myDeployment")
     .WithParametersLink(paramPath, "1.0.0.0")
     .WithMode(Microsoft.Azure.Management.ResourceManager.Fluent.Models.DeploymentMode.Incremental)
     .Create();
-Console.WriteLine("Press enter toodelete hello resource group...");
+Console.WriteLine("Press enter to delete the resource group...");
 Console.ReadLine();
 ```
 
-## <a name="delete-hello-resources"></a>Supprimer des ressources de hello
+## <a name="delete-the-resources"></a>Supprimer les ressources
 
-Vous êtes facturé pour les ressources utilisées dans Azure, il est toujours ressources toodelete bonnes pratiques qui ne sont plus nécessaires. Vous n’avez pas besoin toodelete chaque ressource séparément à partir d’un groupe de ressources. Supprimer le groupe de ressources hello et toutes ses ressources sont automatiquement supprimés. 
+Étant donné que les ressources utilisées dans Microsoft Azure vous sont facturées, il est toujours conseillé de supprimer les ressources qui ne sont plus nécessaires. Vous n’avez pas besoin de supprimer séparément les ressources d’un groupe de ressources. Supprimez le groupe de ressources pour supprimer automatiquement toutes ses ressources. 
 
-ressource de hello toodelete groupe, ajoutez ce code de toohello méthode Main :
+Pour supprimer le groupe de ressources, ajoutez ce code à la méthode Main :
 
 ```
 azure.ResourceGroups.DeleteByName(groupName);
 ```
 
-## <a name="run-hello-application"></a>Exécutez l’application hello
+## <a name="run-the-application"></a>Exécution de l'application
 
-Il doit prendre environ cinq minutes pour que cette toorun d’application console complètement à partir de toofinish de début. 
+L’exécution complète de cette application console devrait durer cinq minutes environ. 
 
-1. application de console toorun hello, cliquez sur **Démarrer**.
+1. Pour exécuter l’application console, cliquez sur **Démarrer**.
 
-2. Avant d’appuyer sur **entrée** toostart suppression des ressources, vous pouvez prendre quelques minutes la création de hello tooverify des ressources de hello Bonjour portail Azure. Cliquez sur hello déploiement état toosee plus d’informations sur le déploiement de hello.
+2. Avant d’appuyer sur **Entrée** pour démarrer la suppression des ressources, prenez quelques minutes pour vérifier que les ressources dans le portail Azure ont bien été créées. Cliquez sur l’état du déploiement pour afficher des informations sur le déploiement.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* S’il existe des problèmes de déploiement de hello, une étape suivante consisterait toolook à [résoudre les erreurs courantes de déploiement Azure avec Azure Resource Manager](../../resource-manager-common-deployment-errors.md).
-* Découvrez comment toodeploy un ordinateur virtuel et ses ressources de prise en charge en consultant [déployer un Azure Virtual Machine à l’aide de C#](csharp.md).
+* Si vous rencontrez des problèmes lors du déploiement, nous vous conseillons de consulter la section [Résolution des erreurs courantes dans un déploiement Azure avec Azure Resource Manager](../../resource-manager-common-deployment-errors.md).
+* Découvrez comment déployer une machine virtuelle et ses ressources de soutien en consultant [Déployer une machine virtuelle Azure à l’aide de C#](csharp.md).

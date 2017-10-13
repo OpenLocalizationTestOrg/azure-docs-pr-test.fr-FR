@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 5/06/2017
 ms.author: parakhj
-ms.openlocfilehash: 28a39f282488b81fc9e2ab7841b5f2cb4cd58715
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cb7a9f01e43d41eb7315cb37a41e69f044ce5566
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-active-directory-b2c-sign-up-and-sign-in-consumers-in-your-applications-using-custom-policies"></a>Azure Active Directory B2C : Inscription et connexion de consommateurs à vos applications avec des stratégies personnalisées
-Les stratégies personnalisées sont des fichiers de configuration qui définissent le comportement de hello de votre locataire Azure AD B2C. Ils peuvent être entièrement modifié par un toocomplete de développeur d’identité un nombre illimité de proche de tâches.
+Les stratégies personnalisées sont des fichiers de configuration qui définissent le comportement de votre client Azure AD B2C. Elles peuvent être entièrement modifiées par un développeur d’identité pour effectuer un nombre presque illimité de tâches.
 
-## <a name="how-tooarticles"></a>Tooarticles de procédure
-Découvrez comment les fonctionnalités Azure Active Directory B2C spécifiques toouse :
+## <a name="how-to-articles"></a>Articles sur les procédures
+Découvrez comment utiliser des fonctionnalités spécifiques d’Azure Active Directory B2C :
 
 * [Prise en main](active-directory-b2c-overview-custom.md)
 * Configurer les fournisseurs OIDC comme [Azure AD](active-directory-b2c-setup-aad-custom.md).
@@ -39,7 +39,7 @@ Découvrez comment les fonctionnalités Azure Active Directory B2C spécifiques 
 * Résoudre les problèmes en [collectant les journaux à l’aide d’Application Insights](active-directory-b2c-troubleshoot-custom.md).
 
 ## <a name="whats-new"></a>Nouveautés
-Revenez souvent toolearn sur les futures modifications toohello Azure Active Directory B2C. Nous communiquerons également les mises à jour sur Tweeter via @AzureAD.
+Consultez régulièrement cette page pour en savoir plus sur les futures modifications apportées à Azure Active Directory B2C. Nous communiquerons également les mises à jour sur Tweeter via @AzureAD.
 
 
 

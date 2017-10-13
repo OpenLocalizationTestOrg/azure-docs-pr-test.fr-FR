@@ -1,6 +1,6 @@
 ---
-title: "les files d’attente d’aaaHow toouse Service Bus dans Node.js | Documents Microsoft"
-description: "Découvrez comment toouse Service Bus des files d’attente dans Azure à partir d’une application Node.js."
+title: "Utilisation des files d’attente Service Bus dans Node.js | Microsoft Docs"
+description: "Découvrez comment utiliser les files d’attente Service Bus dans Azure à partir d’une application Node.js."
 services: service-bus-messaging
 documentationcenter: nodejs
 author: sethmanheim
@@ -14,31 +14,31 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: c55354b2061c41aba1093cc3f12ce2a1bc37a3cc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5b309534f7aef602610cfdb6aa784d180551e1ec
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-service-bus-queues-with-nodejs"></a>Comment toouse Service Bus de files d’attente avec Node.js
+# <a name="how-to-use-service-bus-queues-with-nodejs"></a>Utilisation des files d’attente Service Bus avec Node.js
 
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-Cet article décrit comment toouse Service Bus de files d’attente avec Node.js. exemples de Hello sont écrites en JavaScript et utilisent hello module Node.js Azure. Hello scénarios abordés incluent **création de files d’attente**, **envoyer et recevoir des messages**, et **la suppression de files d’attente**. Pour plus d’informations sur les files d’attente, consultez hello [étapes](#next-steps) section.
+Cet article décrit l’utilisation des files d’attente Service Bus avec Node.js. Les exemples sont écrits en JavaScript et utilisent le module Azure Node.js. Les scénarios couverts dans ce guide sont les suivants : **création de files d’attente**, **envoi et réception de messages** et **suppression de files d’attente**. Pour plus d’informations sur les files d’attente, consultez la section [Étapes suivantes](#next-steps).
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
 ## <a name="create-a-nodejs-application"></a>Création d’une application Node.js
-Créez une application Node.js vide. Pour obtenir des instructions sur la façon de toocreate une application Node.js, consultez [créer et déployer un tooan d’application Node.js site Web Azure][Create and deploy a Node.js application tooan Azure Website], ou [Service de cloud computing Node.js] [ Node.js Cloud Service] à l’aide de Windows PowerShell.
+Créez une application Node.js vide. Pour obtenir des instructions sur la création d’une application Node.js, voir les pages [Création et déploiement d’une application Node.js sur un site web Azure][Create and deploy a Node.js application to an Azure Website] ou [Service cloud Node.js avec Windows PowerShell][Node.js Cloud Service].
 
-## <a name="configure-your-application-toouse-service-bus"></a>Configurer votre toouse application Service Bus
-toouse Azure Service Bus, téléchargez et utilisez hello package Node.js Azure. Ce package comprend un ensemble de bibliothèques qui communiquent avec les services de Service Bus REST hello.
+## <a name="configure-your-application-to-use-service-bus"></a>Configuration de votre application pour l’utilisation de Service Bus
+Pour utiliser Azure Service Bus, téléchargez et utilisez le package Azure Node.js. Ce dernier inclut des bibliothèques permettant de communiquer avec les services REST de Service Bus.
 
-### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a>Utiliser le Gestionnaire de Package de nœud (NPM) tooobtain hello package
-1. Hello d’utilisation **Windows PowerShell pour Node.js** commande fenêtre toonavigate toohello **c:\\nœud\\sbqueues\\WebRole1** dossier dans lequel vous avez créé votre exemple d’application.
-2. Type **npm installer azure** dans la fenêtre de commande hello, qui doivent entraîner suivant toohello similaire de sortie :
+### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>Utilisation de Node Package Manager (NPM) pour obtenir le package
+1. Utilisez la fenêtre de commande **Windows PowerShell for Node.js** pour accéder au dossier **c:\\node\\sbqueues\\WebRole1** dans lequel vous avez créé votre exemple d’application.
+2. Tapez **npm install azure** dans la fenêtre de commande, ce qui génère un résultat similaire à ce qui suit :
 
     ```
     azure@0.7.5 node_modules\azure
@@ -53,30 +53,30 @@ toouse Azure Service Bus, téléchargez et utilisez hello package Node.js Azure.
         ├── xml2js@0.2.7 (sax@0.5.2)
         └── request@2.21.0 (json-stringify-safe@4.0.0, forever-agent@0.5.0, aws-sign@0.3.0, tunnel-agent@0.3.0, oauth-sign@0.3.0, qs@0.6.5, cookie-jar@0.3.0, node-uuid@1.4.0, http-signature@0.9.11, form-data@0.0.8, hawk@0.13.1)
     ```
-3. Vous pouvez exécuter manuellement hello **ls** tooverify de commande qui un **node_modules** dossier a été créé. À l’intérieur de ce hello de recherche du dossier **azure** package qui contient les bibliothèques hello vous devez tooaccess files d’attente Service Bus.
+3. Vous pouvez exécuter manuellement la commande **ls** pour vérifier que le dossier **node_modules** a été créé. Dans ce dossier, recherchez le package **azure**, qui contient les bibliothèques nécessaires pour accéder aux files d’attente Service Bus.
 
-### <a name="import-hello-module"></a>Module d’importation hello
-Utilisez le bloc-notes ou un autre éditeur de texte, ajoutez hello suivant en haut de toohello de hello **server.js** fichier de l’application hello :
+### <a name="import-the-module"></a>Importation du module
+À l’aide d’un éditeur de texte, comme le Bloc-notes, ajoutez la commande suivante au début du fichier **server.js** de l’application :
 
 ```javascript
 var azure = require('azure');
 ```
 
 ### <a name="set-up-an-azure-service-bus-connection"></a>Configuration d’une connexion Service Bus Azure
-module Windows Azure Hello lit variable d’environnement hello `AZURE_SERVICEBUS_CONNECTION_STRING` tooobtain informations requis tooconnect tooService Bus. Si cette variable d’environnement n’est pas définie, vous devez spécifier les informations de compte hello lors de l’appel `createServiceBusService`.
+Le module Azure lit la variable d’environnement `AZURE_SERVICEBUS_CONNECTION_STRING` pour obtenir les informations nécessaires pour se connecter à Service Bus. Si cette variable d’environnement n’est pas définie, vous devez spécifier les informations de compte lors de l’appel de `createServiceBusService`.
 
-Pour obtenir un exemple de la configuration des variables d’environnement hello dans un fichier de configuration pour un Service Cloud Azure, consultez [Service de Cloud Node.js avec stockage][Node.js Cloud Service with Storage].
+Pour consulter un exemple de paramétrage de variables d’environnement dans un fichier de configuration pour un service cloud Azure, consultez [Service cloud Node.js avec stockage][Node.js Cloud Service with Storage].
 
-Pour obtenir un exemple de la définition de variables d’environnement hello Bonjour [portail Azure] [ Azure portal] pour un site Web Azure, consultez [Node.js d’Application Web avec stockage] [ Node.js Web Application with Storage].
+Pour un exemple de configuration des variables d’environnement dans le [portail Azure][Azure portal] pour un site web Azure, consultez [Application web Node.js avec stockage][Node.js Web Application with Storage].
 
 ## <a name="create-a-queue"></a>Création d’une file d’attente
-Hello **ServiceBusService** objet vous permet de toowork avec les files d’attente Service Bus. Hello de code suivant crée un **ServiceBusService** objet. Ajoutez-le haut hello Hello **server.js** fichier, après hello de tooimport hello instruction module Windows Azure :
+L’objet **ServiceBusService** permet d’utiliser des files d’attente Service Bus. Le code suivant crée un objet **ServiceBusService**. Ajoutez-le vers le début du fichier **server.js**, après l’instruction relative à l’importation du module Azure :
 
 ```javascript
 var serviceBusService = azure.createServiceBusService();
 ```
 
-En appelant `createQueueIfNotExists` sur hello **ServiceBusService** objet, hello spécifié de file d’attente est retourné (si elle existe) ou une file d’attente avec le nom spécifié de hello est créé. code Hello suivant utilise `createQueueIfNotExists` toocreate ou connectez-vous de file d’attente toohello nommée `myqueue`:
+En appelant `createQueueIfNotExists` sur l’objet **ServiceBusService**, la file d’attente spécifiée est renvoyée (si elle existe) ou une file d’attente comportant le nom spécifié est créée. Le code suivant utilise `createQueueIfNotExists` pour créer la file d’attente nommée `myqueue` ou s’y connecter :
 
 ```javascript
 serviceBusService.createQueueIfNotExists('myqueue', function(error){
@@ -86,7 +86,7 @@ serviceBusService.createQueueIfNotExists('myqueue', function(error){
 });
 ```
 
-Hello `createServiceBusService` méthode prend également en charge des options supplémentaires, qui permettent de paramètres de file d’attente par défaut toooverride comme taille de file d’attente toolive ou une valeur maximale de temps de message. Hello exemple suivant définit hello file d’attente maximale taille too5 Go et heure toolive (TTL) de 1 minute :
+La méthode `createServiceBusService` prend également en charge des options supplémentaires, qui vous permettent de remplacer les paramètres de file d’attente par défaut comme la durée de vie du message ou la taille maximale de la file d’attente. L’exemple suivant définit la taille maximale de la file d’attente sur 5 Go et la durée de vie de message sur 1 minute :
 
 ```javascript
 var queueOptions = {
@@ -102,31 +102,31 @@ serviceBusService.createQueueIfNotExists('myqueue', queueOptions, function(error
 ```
 
 ### <a name="filters"></a>Filtres
-Les opérations de filtrage facultatif peuvent être appliquées toooperations effectuées à l’aide **ServiceBusService**. Il peut s’agir d’opérations de journalisation, de relance automatique, etc. Les filtres sont des objets qui implémentent une méthode avec la signature de hello :
+Des opérations facultatives de filtrage peuvent être appliquées aux opérations exécutées par le biais de **ServiceBusService**. Il peut s’agir d’opérations de journalisation, de relance automatique, etc. Les filtres sont des objets qui implémentent une méthode avec la signature :
 
 ```javascript
 function handle (requestOptions, next)
 ```
 
-Après son traitement préalable sur les options de demande hello, méthode hello doit appeler `next`, en passant un rappel avec hello après signature :
+Après le prétraitement des options de la requête, la méthode doit appeler `next` en passant un rappel avec la signature suivante :
 
 ```javascript
 function (returnObject, finalCallback, next)
 ```
 
-Dans ce rappel et après traitement hello `returnObject` (hello réponse hello demande toohello serveur), le rappel de hello doit appeler `next` si elle existe toocontinue le traitement des autres filtres, ou simplement appeler `finalCallback`, qui se termine à appel de service Hello.
+Dans ce rappel, et après le traitement de `returnObject` (la réponse à la requête du serveur), le rappel doit appeler `next`, s’il existe, pour continuer à traiter d’autres filtres, ou appeler `finalCallback` pour terminer l’appel du service.
 
-Deux filtres qui implémentent la logique de nouvelle tentative sont incluses avec hello Azure SDK pour Node.js, `ExponentialRetryPolicyFilter` et `LinearRetryPolicyFilter`. Hello de code suivant crée un `ServiceBusService` objet qui utilise hello `ExponentialRetryPolicyFilter`:
+Deux filtres, `ExponentialRetryPolicyFilter` et `LinearRetryPolicyFilter`, implémentant une logique de nouvelle tentative sont inclus avec le kit de développement logiciel (SDK) Azure pour Node.js. Le code suivant permet de créer un objet `ServiceBusService` utilisant `ExponentialRetryPolicyFilter` :
 
 ```javascript
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
 var serviceBusService = azure.createServiceBusService().withFilter(retryOperations);
 ```
 
-## <a name="send-messages-tooa-queue"></a>Envoyer la file d’attente de messages tooa
-toosend une file d’attente Service Bus de messages tooa, votre application appelle hello `sendQueueMessage` méthode sur hello **ServiceBusService** objet. Trop envoyée (et reçues à partir de) Service Bus sont des files d’attente de messages **BrokeredMessage** , et qu’un ensemble de propriétés standard (tels que **étiquette** et **TimeToLive**), un dictionnaire qui est utilisé toohold des propriétés personnalisées spécifiques à l’application et un corps de données d’application arbitraire. Une application peut définir le corps de hello du message de type hello en passant une chaîne en tant que message de type hello. Toutes les propriétés standard requises sont remplies avec les valeurs par défaut.
+## <a name="send-messages-to-a-queue"></a>Envoi de messages à une file d'attente
+Pour envoyer un message à une file d’attente Service Bus, votre application appelle la méthode `sendQueueMessage` sur l’objet **ServiceBusService**. Les messages envoyés aux files d’attente Service Bus (et reçus de celles-ci) sont les objets **BrokeredMessage**. Ils possèdent un ensemble de propriétés standard (telles que **Label** et **TimeToLive**), un dictionnaire servant à conserver les propriétés personnalisées propres à une application, ainsi qu’un corps de données d’application arbitraires. Une application peut définir le corps du message en passant une chaîne comme message. Toutes les propriétés standard requises sont remplies avec les valeurs par défaut.
 
-Hello exemple suivant montre comment toosend une file d’attente toohello test nommé `myqueue` à l’aide de `sendQueueMessage`:
+L’exemple suivant indique comment envoyer un message test à la file d’attente nommée `myqueue` au moyen de la méthode `sendQueueMessage` :
 
 ```javascript
 var message = {
@@ -141,16 +141,16 @@ serviceBusService.sendQueueMessage('myqueue', message, function(error){
 });
 ```
 
-Les files d’attente Service Bus prend en charge une taille maximale de 256 Ko Bonjour [niveau Standard](service-bus-premium-messaging.md) et 1 Mo Bonjour [niveau Premium](service-bus-premium-messaging.md). en-tête Hello, qui inclut les standard hello et les propriétés de l’application personnalisée, peut avoir une taille maximale de 64 Ko. Il n’existe aucune limite du nombre de hello de messages dans une file d’attente mais hello de taille totale des messages hello détenus par une file d’attente est une extrémité de fin. Cette taille de file d'attente est définie au moment de la création. La limite maximale est de 5 Go. Pour plus d’informations sur les quotas, consultez [Quotas Service Bus][Service Bus quotas].
+Les files d’attente Service Bus prennent en charge une taille de message maximale de 256 Ko dans le [niveau Standard](service-bus-premium-messaging.md) et d’1 Mo dans le [niveau Premium](service-bus-premium-messaging.md). L’en-tête, qui comprend les propriétés d’application standard et personnalisées, peut avoir une taille maximale de 64 Ko. Si une file d'attente n'est pas limitée par le nombre de messages qu'elle peut contenir, elle l'est en revanche par la taille totale des messages qu'elle contient. Cette taille de file d'attente est définie au moment de la création. La limite maximale est de 5 Go. Pour plus d’informations sur les quotas, consultez [Quotas Service Bus][Service Bus quotas].
 
 ## <a name="receive-messages-from-a-queue"></a>Réception des messages d'une file d'attente
-Les messages sont reçus à partir d’une file d’attente à l’aide de hello `receiveQueueMessage` méthode sur hello **ServiceBusService** objet. Par défaut, les messages sont supprimés de la file d’attente hello lorsqu’elles sont lues ; Toutefois, vous pouvez lire (aperçu) et verrouiller le message de type hello sans le supprimer de la file d’attente hello en définissant le paramètre facultatif hello `isPeekLock` trop**true**.
+La méthode `receiveQueueMessage` de l’objet **ServiceBusService** permet de recevoir les messages d’une file d’attente. Par défaut, les messages sont supprimés de la file d’attente au fur et à mesure de leur lecture. Cependant, vous pouvez lire et verrouiller le message sans le supprimer de la file d’attente en définissant le paramètre facultatif `isPeekLock` sur **true**.
 
-Hello le comportement par défaut de la lecture et de suppression de message de type hello comme partie de hello opération de réception est le modèle le plus simple hello et convient le mieux pour les scénarios dans lesquels une application peut tolérer ne pas traiter un message dans l’événement hello d’un échec. toounderstand, envisagez un scénario dans les problèmes liés aux consommateurs de hello hello reçoit la demande et puis se bloque avant de le traiter. Comme Service Bus sera ont marqué hello message comme consommé, puis lors de l’application hello redémarre et commence à consommer des messages, elle aura manqué message de type hello qui a été consommée toohello préalable incident.
+Le comportement par défaut de lecture et de suppression du message dans le cadre de l’opération de réception est le modèle le plus simple et le mieux adapté aux scénarios dans lesquels une application est capable de tolérer le non-traitement d’un message en cas d’échec. Pour mieux comprendre, imaginez un scénario dans lequel le consommateur émet la demande de réception et subit un incident avant de la traiter. Comme Service Bus a marqué le message comme étant consommé, lorsque l’application redémarre et recommence à consommer des messages, elle manque le message consommé avant l’incident.
 
-Si hello `isPeekLock` paramètre est défini trop**true**, hello réception devient une opération en deux étapes, ce qui rend possible toosupport les applications qui ne peut pas tolérer des messages manquants. Lorsque le Service Bus reçoit une demande, il recherche hello suivant message toobe consommé, il verrouille tooprevent autres consommateurs le reçoivent et le retourne toohello application. Une fois l’application hello termine le traitement de message de type hello (ou stocke de manière fiable pour un traitement ultérieur), il termine hello deuxième étape du hello processus de réception en appelant `deleteMessage` (méthode) et en fournissant des toobe de message hello supprimé en tant que paramètre. Hello `deleteMessage` méthode marque le message de type hello comme ayant été consommé et supprime celui-ci de la file d’attente hello.
+Si le paramètre `isPeekLock` est défini sur **true**, la réception devient une opération en deux étapes, qui autorise une prise en charge des applications qui ne peuvent pas tolérer les messages manquants. Lorsque Service Bus reçoit une demande, il recherche le prochain message à consommer, le verrouille pour empêcher d'autres consommateurs de le recevoir, puis le renvoie à l'application. Dès lors que l’application a terminé le traitement du message (ou qu’elle l’a stocké de manière fiable pour un traitement ultérieur), elle accomplit la deuxième étape du processus de réception en appelant la méthode `deleteMessage` et en fournissant le message à supprimer sous la forme d’un paramètre. La méthode `deleteMessage` marque le message comme étant utilisé et le supprime de la file d’attente.
 
-Hello exemple suivant montre comment tooreceive et processus de messages à l’aide de `receiveQueueMessage`. Hello exemple reçoit d’abord et supprime un message, puis reçoit un message à l’aide de `isPeekLock` défini trop**true**, puis supprime hello à l’aide du message `deleteMessage`:
+L’exemple suivant montre comment recevoir et traiter des messages à l’aide de la méthode `receiveQueueMessage`. L’exemple reçoit et supprime un message, reçoit un message en utilisant la méthode `isPeekLock` définie sur **true**, puis supprime le message à l’aide de la méthode `deleteMessage` :
 
 ```javascript
 serviceBusService.receiveQueueMessage('myqueue', function(error, receivedMessage){
@@ -170,15 +170,15 @@ serviceBusService.receiveQueueMessage('myqueue', { isPeekLock: true }, function(
 });
 ```
 
-## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Comment toohandle application tombe en panne et messages illisibles
-Service Bus fournit toohelp fonctionnalité que surmonter les erreurs dans votre application ou les difficultés du traitement d’un message. Si une application du récepteur ne peut pas tooprocess hello message pour une raison quelconque, elle peut appeler hello `unlockMessage` méthode sur hello **ServiceBusService** objet. Cette opération provoquent Service Bus toounlock le message dans la file d’attente hello et rendre disponible toobe de nouveau reçu, soit hello par même consommation d’application ou par une autre application consommatrice.
+## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Gestion des blocages d’application et des messages illisibles
+Service Bus intègre des fonctionnalités destinées à faciliter la récupération à la suite d’erreurs survenues dans votre application ou de difficultés à traiter un message. Si une application réceptrice ne parvient pas à traiter le message pour une raison quelconque, elle appelle la méthode `unlockMessage` pour l’objet **ServiceBusService**. Service Bus déverrouille alors le message dans la file d’attente et le rend à nouveau disponible en réception, pour la même application consommatrice ou pour une autre.
 
-Il existe également un délai d’attente d’un message verrouillé dans la file d’attente hello, et si l’échec de l’application hello tooprocess hello message avant hello délai d’attente de verrou expire (par exemple, si de l’application hello se bloque), puis Service Bus déverrouille message de type hello automatiquement et le rendre disponible toobe de nouveau reçu.
+De même, il faut savoir qu’un message verrouillé dans une file d’attente est assorti d’un délai d’expiration et que si l’application ne parvient pas à traiter le message dans le temps imparti (par exemple, si l’application subit un incident), Service Bus déverrouille le message automatiquement et le rend à nouveau disponible en réception.
 
-Bonjour événement hello application se bloque après le traitement de message de type hello mais avant hello `deleteMessage` méthode est appelée, puis le message de type hello sera redistribué toohello application lors de son redémarrage. Cela est souvent appelé *au moins une fois le traitement*, autrement dit, chaque message est traité au moins une fois, mais dans certain hello situations le même message peut être redistribué. Si le scénario de hello ne peut pas tolérer le traitement dupliqué, les développeurs d’applications doivent ajouter une logique supplémentaire tootheir application toohandle en double remise du message. Cela est souvent obtenue à l’aide de hello **MessageId** propriété de message de type hello, qui reste constante entre les tentatives de remise.
+Si l’application subit un incident après le traitement du message, mais avant l’appel de la méthode `deleteMessage`, le message est à nouveau remis à l’application lorsqu’elle redémarre. Dans ce type de traitement, souvent appelé *Au moins une fois*, chaque message est traité au moins une fois. Toutefois, dans certaines circonstances, un même message peut être remis une nouvelle fois. Toutefois, dans certaines circonstances, un même message peut être remis une nouvelle fois. Pour ce faire, il suffit souvent d’utiliser la propriété **MessageId** du message, qui reste constante pendant les tentatives de remise.
 
 ## <a name="next-steps"></a>Étapes suivantes
-toolearn en savoir plus sur les files d’attente, consultez hello suivant des ressources.
+Pour en savoir plus sur les files d’attente, consultez les ressources suivantes :
 
 * [Files d’attente, rubriques et abonnements][Queues, topics, and subscriptions]
 * Référentiel du [Kit de développement logiciel (SDK) Azure pour Node][Azure SDK for Node] sur GitHub
@@ -189,7 +189,7 @@ toolearn en savoir plus sur les files d’attente, consultez hello suivant des r
 
 [Node.js Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
-[Create and deploy a Node.js application tooan Azure Website]: ../app-service-web/app-service-web-get-started-nodejs.md
+[Create and deploy a Node.js application to an Azure Website]: ../app-service/app-service-web-get-started-nodejs.md
 [Node.js Cloud Service with Storage]:../cosmos-db/table-storage-cloud-service-nodejs.md
 [Node.js Web Application with Storage]:../cosmos-db/table-storage-how-to-use-nodejs.md
 [Service Bus quotas]: service-bus-quotas.md

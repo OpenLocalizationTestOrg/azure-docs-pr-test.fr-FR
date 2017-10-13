@@ -1,6 +1,6 @@
 ---
-title: "les instances multiples aaaUse tâches des applications MPI toorun - Azure Batch | Documents Microsoft"
-description: "Découvrez comment les applications tooexecute Interface MPI (Message Passing) à l’aide de la tâche d’instances multiples hello tapez dans Azure Batch."
+title: "Exécuter des applications MPI avec des tâches multi-instances - Azure Batch | Microsoft Docs"
+description: "Découvrez comment exécuter des applications MPI (Message Passing Interface) en utilisant des tâches de type multi-instances dans Azure Batch."
 services: batch
 documentationcenter: .net
 author: tamram
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: 5/22/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b0e3295a6aeb76267c26d5504bcff59de3dc5e22
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 77d12d6d48b22dfb3e7f09f273dffc11401bb15f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-multi-instance-tasks-toorun-message-passing-interface-mpi-applications-in-batch"></a>Utiliser les applications multi-instance tâches toorun Interface MPI (Message Passing) dans le lot
+# <a name="use-multi-instance-tasks-to-run-message-passing-interface-mpi-applications-in-batch"></a>Utiliser les tâches multi-instances pour exécuter des applications MPI (Message Passing Interface) dans Batch
 
-Instances multiples tâches permettent toorun une tâche de traitement par lots Azure sur plusieurs nœuds de calcul simultanément. Ces tâches permettent de mettre en œuvre des scénarios de calcul haute performance tels que les applications MPI (Message Passing Interface) dans Batch. Dans cet article, vous apprendrez comment les tâches de plusieurs instances de tooexecute à l’aide de hello [Batch .NET] [ api_net] bibliothèque.
+Les tâches multi-instances vous permettent d’exécuter une tâche Azure Batch sur plusieurs nœuds de calcul simultanément. Ces tâches permettent de mettre en œuvre des scénarios de calcul haute performance tels que les applications MPI (Message Passing Interface) dans Batch. Dans cet article, vous découvrez comment exécuter des tâches multi-instances à l’aide de la bibliothèque [Batch .NET][api_net].
 
 > [!NOTE]
-> Tandis que les exemples de hello dans cet article se concentrent sur .NET de traitement par lots, MS-MPI, et les nœuds de calcul de Windows, concepts de tâche hello multi-instance présentées ici sont applicables tooother plateformes et les technologies (Python et MPI Intel des nœuds Linux, par exemple).
+> Bien que les exemples de cet article portent sur Batch .NET, MS-MPI et les nœuds de calcul Windows, les concepts de tâches multi-instances présentés ici s’appliquent à d’autres plateformes et technologies (Python et Intel MPI sur des nœuds Linux, par exemple).
 >
 >
 
 ## <a name="multi-instance-task-overview"></a>Présentation des tâches multi-instances
-Dans le traitement par lots, chaque tâche est normalement exécutée sur un nœud de calcul unique--vous soumettez le travail de plusieurs tâches tooa et hello service Batch planifie chaque tâche d’exécution sur un nœud. Toutefois, en configurant d’une tâche **paramètres d’instances multiples**, vous indiquez le lot tooinstead créer une tâche principale et plusieurs tâches subordonnées qui sont ensuite exécutées sur plusieurs nœuds.
+Dans Azure Batch, chaque tâche est normalement exécutée sur un nœud de calcul unique : vous soumettez plusieurs tâches à un travail, et le service Azure Batch planifie l’exécution de chacune d’entre elles sur un nœud. Toutefois, en configurant les **paramètres multi-instances** d’une tâche, vous pouvez indiquer à la place à Batch de créer une tâche principale et quelques tâches subordonnées qui sont ensuite exécutées sur plusieurs nœuds.
 
 ![Présentation des tâches multi-instances][1]
 
-Lorsque vous soumettez une tâche avec la tâche d’instances multiples paramètres tooa, lot effectue plusieurs tâches de toomulti-instance unique de comme suit :
+Lorsque vous envoyez à un travail une tâche dotée de paramètres multi-instances, Azure Batch exécute plusieurs étapes uniques aux tâches multi-instances :
 
-1. Hello service Batch crée un **principal** et plusieurs **sous-tâches** en fonction des paramètres d’instances multiples hello. Nombre total de Hello de tâches (principales ainsi que toutes les tâches subordonnées) correspond au nombre de hello de **instances** (nœuds de calcul) vous spécifiez dans les paramètres de plusieurs instances de hello.
-2. Lot désigne l’un des hello nœuds de calcul en tant que hello **master**, et les planifications hello tooexecute tâche principale sur le contrôleur de hello. Il planifie tooexecute des sous-tâches hello sur reste hello de tâche hello calcul nœuds toohello allouée à plusieurs instances, une sous-tâche par nœud.
-3. téléchargement Hello primaire et toutes les tâches subordonnées **des fichiers de ressources communes** vous spécifiez dans les paramètres de plusieurs instances de hello.
-4. Une fois que les fichiers de ressources communs hello ont été téléchargées, hello principal et les tâches subordonnées exécutent hello **commande de coordination** vous spécifiez dans les paramètres de plusieurs instances de hello. commande de coordination Hello est nœuds tooprepare généralement utilisées pour exécuter la tâche hello. Cela peut inclure le démarrage des services d’arrière-plan (tel que [Microsoft MPI][msmpi_msdn]de `smpd.exe`) et en vérifiant que les nœuds de hello sont des messages entre les nœuds de tooprocess prêt.
-5. la tâche principale Hello exécute hello **commande application** sur le nœud principal de hello *après* commande de coordination hello a été correctement effectuée par hello primaire et toutes les tâches subordonnées. commande de l’application Hello hello ligne de commande de tâche d’instances multiples hello lui-même et est exécutée uniquement par la tâche principale de hello. Dans une solution basée sur [MS-MPI][msmpi_msdn], c’est là où vous exécutez votre application prenant en charge MPI au moyen du fichier `mpiexec.exe`.
+1. Le service Batch crée une **tâche principale** et plusieurs **tâches subordonnées** selon les paramètres multi-instances. Le nombre total de tâches (tâche principale, ainsi que toutes les tâches subordonnées) correspond au nombre **d’instances** (nœuds de calcul) que vous spécifiez dans les paramètres multi-instances.
+2. Batch désigne l’un des nœuds de calcul comme **principal** et planifie la tâche principale à exécuter sur le nœud principal. Il planifie les tâches subordonnées à exécuter sur le reste des nœuds de calcul alloués à la tâche multi-instance, une tâche subordonnée par nœud.
+3. La tâche principale et toutes les tâches subordonnées téléchargent les **fichiers de ressources communs** que vous indiquez dans les paramètres multi-instances.
+4. Une fois les fichiers de ressources communs téléchargés, la tâche principale et les tâches subordonnées exécutent la **commande de coordination** que vous indiquez dans les paramètres multi-instances. La commande de coordination sert généralement à préparer des nœuds en vue de l’exécution de la tâche. Cela peut impliquer de démarrer les services d’arrière-plan (par exemple `smpd.exe` de [Microsoft MPI][msmpi_msdn]) et de vérifier que les nœuds sont prêts à traiter les messages entre nœuds.
+5. La tâche principale exécute la **commande d’application** du nœud principal *une fois que* la tâche principale et toutes les tâches subordonnées ont fini d’exécuter la commande de coordination. La commande d’application est la ligne de commande de la tâche multi-instances. Elle est exécutée uniquement par la tâche principale. Dans une solution basée sur [MS-MPI][msmpi_msdn], c’est là où vous exécutez votre application prenant en charge MPI au moyen du fichier `mpiexec.exe`.
 
 > [!NOTE]
-> S’il est fonctionnellement distincte, hello « tâche multi-instance » n’est pas un type de tâche unique comme hello [StartTask] [ net_starttask] ou [JobPreparationTask] [ net_jobprep]. tâche d’instances multiples Hello est simplement une tâche de traitement par lots standard ([CloudTask] [ net_task] dans .NET de lot) dont les paramètres de plusieurs instances ont été configurés. Dans cet article, nous nous référons toothis comme hello **tâche d’instances multiples**.
+> Même si elle est différente d’un point de vue fonctionnel, la « tâche multi-instances » n’est pas un type de tâche unique comme [StartTask][net_starttask] ou [JobPreparationTask][net_jobprep]. La tâche multi-instances est simplement une tâche Batch standard ([CloudTask][net_task] dans Batch .NET) dont les paramètres multi-instances ont été configurés. Dans cet article, nous parlons de **tâche multi-instances**.
 >
 >
 
 ## <a name="requirements-for-multi-instance-tasks"></a>Configuration requise pour les tâches multi-instances
-Les tâches multi-instances nécessitent un pool avec **communication entre les nœuds activée** et **exécution de tâches simultanées désactivée**. l’exécution des tâches simultanées toodisable, jeu hello [CloudPool.MaxTasksPerComputeNode](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool#Microsoft_Azure_Batch_CloudPool_MaxTasksPerComputeNode) too1 de propriété.
+Les tâches multi-instances nécessitent un pool avec **communication entre les nœuds activée** et **exécution de tâches simultanées désactivée**. Pour désactiver l’exécution des tâches simultanées, définissez la propriété [CloudPool.MaxTasksPerComputeNode](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool#Microsoft_Azure_Batch_CloudPool_MaxTasksPerComputeNode) sur 1.
 
-Cet extrait de code montre comment toocreate un pool pour plusieurs instances de tâches à l’aide de la bibliothèque de lot .NET hello.
+Cet extrait de code montre comment créer un pool pour les tâches multi-instances à l’aide de la bibliothèque Batch .NET.
 
 ```csharp
 CloudPool myCloudPool =
@@ -67,18 +67,18 @@ myCloudPool.MaxTasksPerComputeNode = 1;
 ```
 
 > [!NOTE]
-> Si vous essayez de toorun une tâche à instances multiples dans un pool de communication entre les nœuds est désactivée, ou avec un *maxTasksPerNode* valeur supérieure à 1, la tâche hello n’est pas planifiée--il reste indéfiniment dans l’état « actif » de hello. 
+> Si vous essayez d’exécuter une tâche multi-instances dans un pool dont la communication entre les nœuds a été désactivée ou avec une valeur *maxTasksPerNode* supérieure à 1, la tâche ne sera jamais planifiée et restera indéfiniment à l’état « actif ». 
 >
 > Les tâches multi-instances peuvent s’exécuter uniquement sur des nœuds dans des pools créés après le 14 décembre 2015.
 >
 >
 
-### <a name="use-a-starttask-tooinstall-mpi"></a>Utiliser un tooinstall StartTask MPI
-toorun des applications MPI avec une tâche à plusieurs instances, vous devez tout d’abord tooinstall une implémentation MPI (MS-MPI ou MPI Intel, par exemple) sur les nœuds de calcul hello dans le pool de hello. Il s’agit d’un temps toouse un [StartTask][net_starttask], qui s’exécute chaque fois qu’un nœud rejoint un pool ou est redémarré. Cet extrait de code crée une tâche de début qui spécifie le package d’installation hello MS-MPI comme un [fichier de ressources][net_resourcefile]. ligne de commande Hello démarrer la tâche est exécutée une fois le fichier de ressources hello est téléchargés toohello nœud. Dans ce cas, la ligne de commande hello effectue une installation sans assistance de MS-MPI.
+### <a name="use-a-starttask-to-install-mpi"></a>Utiliser une tâche de début pour installer MPI
+Pour exécuter des applications MPI avec une tâche multi-instances, vous devez d’abord installer une implémentation MPI (MS-MPI ou Intel MPI par exemple) sur les nœuds de calcul du pool. C’est là une bonne occasion d’utiliser une tâche [StartTask][net_starttask] qui s’exécute à chaque fois qu’un nœud rejoint un pool ou est redémarré. Cet extrait de code crée une tâche StartTask qui spécifie le package d’installation de MS-MPI comme un [fichier de ressources][net_resourcefile]. La ligne de commande de la tâche de début est exécutée une fois le fichier de ressources téléchargé sur le nœud. Dans ce cas, la ligne de commande effectue une installation sans assistance de MS-MPI.
 
 ```csharp
-// Create a StartTask for hello pool which we use for installing MS-MPI on
-// hello nodes as they join hello pool (or when they are restarted).
+// Create a StartTask for the pool which we use for installing MS-MPI on
+// the nodes as they join the pool (or when they are restarted).
 StartTask startTask = new StartTask
 {
     CommandLine = "cmd /c MSMpiSetup.exe -unattend -force",
@@ -88,15 +88,15 @@ StartTask startTask = new StartTask
 };
 myCloudPool.StartTask = startTask;
 
-// Commit hello fully configured pool toohello Batch service tooactually create
-// hello pool and its compute nodes.
+// Commit the fully configured pool to the Batch service to actually create
+// the pool and its compute nodes.
 await myCloudPool.CommitAsync();
 ```
 
 ### <a name="remote-direct-memory-access-rdma"></a>Accès direct à la mémoire à distance (RDMA)
-Lorsque vous choisissez un [taille prenant en charge RDMA](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) comme A9 hello pour les nœuds de calcul dans votre pool de traitement par lots, votre application MPI peut prendre parti de hautes performances et à faible latence mémoire directe à distance (RDMA) d’accès réseau Azure.
+Lorsque vous utilisez une [Taille compatible RDMA](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) comme A9 pour les nœuds de calcul dans votre pool Batch, votre application MPI peut tirer parti du réseau d’accès direct à la mémoire à distance (RDMA) haute performance d’Azure.
 
-Recherchez les tailles de hello spécifiées en tant que « RDMA compatibles avec » Bonjour suivant des articles :
+Recherchez les tailles spécifiées comme « compatibles RDMA » dans les articles suivants :
 
 * Pools **CloudServiceConfiguration**
 
@@ -107,22 +107,22 @@ Recherchez les tailles de hello spécifiées en tant que « RDMA compatibles av
   * [Tailles des machines virtuelles dans Azure](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Windows)
 
 > [!NOTE]
-> avantage tootake de RDMA sur [nœuds de calcul Linux](batch-linux-nodes.md), vous devez utiliser **Intel MPI** sur les nœuds hello. Pour plus d’informations sur les pools de CloudServiceConfiguration et VirtualMachineConfiguration, consultez hello section Pool Hello [vue d’ensemble de lot](batch-api-basics.md).
+> Pour tirer parti de RDMA sur des [nœuds de calcul Linux](batch-linux-nodes.md), vous devez utiliser **Intel MPI** sur ces derniers. Pour plus d’informations sur les pools CloudServiceConfiguration et VirtualMachineConfiguration, consultez la section Pool de la [vue d’ensemble des fonctionnalités Batch](batch-api-basics.md).
 >
 >
 
 ## <a name="create-a-multi-instance-task-with-batch-net"></a>Créer une tâche multi-instances avec Batch.NET
-Maintenant que nous avons couvert les exigences du pool hello et installation du package MPI, nous allons créer de tâche d’instances multiples hello. Dans cet extrait de code, nous créons une [CloudTask][net_task] standard, puis nous configurons sa propriété [MultiInstanceSettings][net_multiinstance_prop]. Comme mentionné précédemment, tâche d’instances multiples hello n’est pas un type de tâche distinctes, mais une tâche de traitement par lots standard configurés avec les paramètres de plusieurs instances.
+Maintenant que nous avons abordé les exigences du pool et l’installation du package MPI, nous allons créer la tâche multi-instances. Dans cet extrait de code, nous créons une [CloudTask][net_task] standard, puis nous configurons sa propriété [MultiInstanceSettings][net_multiinstance_prop]. Comme mentionné ci-dessus, la tâche multi-instances n’est pas un type de tâche distinct, mais une tâche Batch standard configurée avec des paramètres multi-instances.
 
 ```csharp
-// Create hello multi-instance task. Its command line is hello "application command"
-// and will be executed *only* by hello primary, and only after hello primary and
-// subtasks execute hello CoordinationCommandLine.
+// Create the multi-instance task. Its command line is the "application command"
+// and will be executed *only* by the primary, and only after the primary and
+// subtasks execute the CoordinationCommandLine.
 CloudTask myMultiInstanceTask = new CloudTask(id: "mymultiinstancetask",
     commandline: "cmd /c mpiexec.exe -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIApplication.exe");
 
-// Configure hello task's MultiInstanceSettings. hello CoordinationCommandLine will be executed by
-// hello primary and all subtasks.
+// Configure the task's MultiInstanceSettings. The CoordinationCommandLine will be executed by
+// the primary and all subtasks.
 myMultiInstanceTask.MultiInstanceSettings =
     new MultiInstanceSettings(numberOfNodes) {
     CoordinationCommandLine = @"cmd /c start cmd /c ""%MSMPI_BIN%\smpd.exe"" -d",
@@ -132,15 +132,15 @@ myMultiInstanceTask.MultiInstanceSettings =
     }
 };
 
-// Submit hello task toohello job. Batch will take care of splitting it into subtasks and
-// scheduling them for execution on hello nodes.
+// Submit the task to the job. Batch will take care of splitting it into subtasks and
+// scheduling them for execution on the nodes.
 await myBatchClient.JobOperations.AddTaskAsync("mybatchjob", myMultiInstanceTask);
 ```
 
 ## <a name="primary-task-and-subtasks"></a>Tâche principale et tâches subordonnées
-Lorsque vous créez des paramètres à plusieurs instances d’une tâche hello, vous spécifiez le nombre hello de nœuds de calcul qui sont des tâches de hello tooexecute. Quand vous envoyez tooa de tâche hello, hello service Batch crée un **principal** tâche et suffisamment **sous-tâches** ensemble correspondant à nombre hello de nœuds que vous avez spécifié.
+Lorsque vous créez les paramètres multi-instances d’une tâche, vous indiquez le nombre de nœuds de calcul qui vont exécuter la tâche. Lorsque vous soumettez la tâche à un travail, le service Batch crée une tâche **principale** et suffisamment de **tâches subordonnées** pour le nombre de nœuds indiqué.
 
-Ces tâches sont affectées un id d’entier dans la plage 0 hello trop*numberOfInstances* - 1. Hello tâche avec l’id 0 est hello primaire et tous les autres ID sont des tâches subordonnées. Par exemple, si vous créez hello suivant les paramètres de plusieurs instances d’une tâche, la tâche principale hello aurait un id égal à 0 et hello sous-tâches aurait ID 1 à 9.
+Ces tâches se voient affecter un identifiant entier allant de 0 à *numberOfInstances* - 1. La tâche dont l’identifiant est 0 est la tâche principale, tandis que tous les autres identifiants correspondent aux tâches subordonnées. Par exemple, si vous créez les paramètres multi-instances suivants d’une tâche, la tâche principale a pour identifiant 0 et les tâches subordonnées, des identifiants allant de 1 à 9.
 
 ```csharp
 int numberOfNodes = 10;
@@ -148,37 +148,37 @@ myMultiInstanceTask.MultiInstanceSettings = new MultiInstanceSettings(numberOfNo
 ```
 
 ### <a name="master-node"></a>Nœud principal
-Lorsque vous soumettez une tâche à plusieurs instances, hello service Batch désigne l’un des hello nœuds de calcul en tant que nœud de « maître » hello et planifications hello tooexecute tâche principale sur le nœud principal de hello. Hello sous-tâches sont planifiée tooexecute sur reste hello de nœuds hello allouée de tâche d’instances multiples toohello.
+Quand vous soumettez une tâche multi-instance, le service Batch désigne l’un des nœuds de calcul comme nœud « principal » et planifie la tâche principale à exécuter sur le nœud principal. Les tâches subordonnées sont planifiées pour s’exécuter sur le reste des nœuds alloués à la tâche multi-instance.
 
 ## <a name="coordination-command"></a>commande de coordination
-Hello **commande de coordination** est exécutée en hello principal et les tâches subordonnées.
+La **commande de coordination** est exécutée à la fois par la tâche principale et les tâches subordonnées.
 
-appel de Hello de commande de coordination hello bloque--lot n’exécute pas de commande de l’application hello jusqu'à ce que la commande de coordination hello a retourné avec succès pour toutes les tâches subordonnées. commande de coordination Hello doit par conséquent démarrer tous les services requis, vérifiez qu’ils sont prêts pour une utilisation et puis quittez. Par exemple, cette commande de coordination pour une solution à l’aide de MS-MPI version 7 démarre le service SMPD hello sur le nœud de hello, puis se ferme :
+L’appel de la commande de coordination bloque : Azure Batch exécute uniquement la commande d’application lorsque la commande de coordination a été renvoyée avec succès pour toutes les tâches subordonnées. Par conséquent, la commande de coordination doit démarrer tous les services d’arrière-plan requis, vérifier qu’ils sont prêts à être utilisés, puis se fermer. Par exemple, cette commande coordination pour une solution qui utilise la version 7 de MS-MPI démarre le service SMPD sur le nœud, puis se ferme :
 
 ```
 cmd /c start cmd /c ""%MSMPI_BIN%\smpd.exe"" -d
 ```
 
-Notez que hello `start` dans cette commande de coordination. Cela est nécessaire car hello `smpd.exe` application ne renvoie pas immédiatement après l’exécution. Sans utiliser hello hello [Démarrer] [ cmd_start] de commande, cette commande de coordination ne retournerait pas et bloque par conséquent commande hello application de s’exécuter.
+Notez l’utilisation de `start` dans cette commande de coordination. Cela est nécessaire, car l’application `smpd.exe` n’est pas immédiatement renvoyée après l’exécution. Sans l’utilisation de la commande [start][cmd_start], cette commande de coordination ne serait pas renvoyée et bloquerait par conséquent l’exécution de la commande d’application.
 
 ## <a name="application-command"></a>Commande d’application
-Une fois la tâche principale hello et toutes les tâches subordonnées l’exécution de commande de coordination hello, ligne de commande de la tâche hello multi-instance est exécutée par la tâche principale hello *uniquement*. Nous appelons cette hello **commande application** toodistinguish à partir de la commande de coordination hello.
+Une fois que la tâche principale et toutes les tâches subordonnées ont terminé d’exécuter la commande de coordination, la ligne de commande de la tâche multi-instances est exécutée par la tâche principale *uniquement*. Nous appelons cette ligne de commande la **commande d’application** pour la différencier de la commande de coordination.
 
-Pour les applications de MS-MPI, utilisez hello application commande tooexecute votre application MPI avec `mpiexec.exe`. Par exemple, voici une commande d’application pour une solution qui utilise la version 7 de MS-MPI :
+Pour les applications MS-MPI, utilisez la commande d’application pour exécuter votre application MPI avec `mpiexec.exe`. Par exemple, voici une commande d’application pour une solution qui utilise la version 7 de MS-MPI :
 
 ```
 cmd /c ""%MSMPI_BIN%\mpiexec.exe"" -c 1 -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIApplication.exe
 ```
 
 > [!NOTE]
-> Étant donné que MS-MPI `mpiexec.exe` utilise hello `CCP_NODES` variable par défaut (voir [variables d’environnement](#environment-variables)) exemple hello l’exclut de ligne de commande d’application ci-dessus.
+> Étant donné que `mpiexec.exe` de MS-MPI utilise la variable `CCP_NODES` par défaut (voir [Variables d’environnement](#environment-variables)), l’exemple de ligne de commande d’application ci-dessus l’exclut.
 >
 >
 
 ## <a name="environment-variables"></a>Variables d’environnement
-Traitement par lots crée plusieurs [variables d’environnement] [ msdn_env_var] tâches toomulti-instance spécifique sur hello nœuds alloué la tâche d’instances multiples tooa de calcul. Votre application et coordination de lignes de commande peut faire référence à ces variables d’environnement, comme vous pouvez hello scripts et les programmes qu’ils s’exécutent.
+Batch crée plusieurs [variables d’environnement][msdn_env_var] propres aux tâches multi-instances sur les nœuds de calcul affectés à une tâche multi-instance. Vos lignes de commande d’application et de coordination peuvent référencer ces variables d’environnement, de même que les scripts et les programmes qu’elles exécutent.
 
-Hello variables d’environnement suivantes sont créées par le service de traitement par lots hello pour une utilisation par les tâches de plusieurs instances :
+Les variables d’environnement suivantes sont créées par le service Batch pour les tâches multi-instances :
 
 * `CCP_NODES`
 * `AZ_BATCH_NODE_LIST`
@@ -187,56 +187,56 @@ Hello variables d’environnement suivantes sont créées par le service de trai
 * `AZ_BATCH_TASK_SHARED_DIR`
 * `AZ_BATCH_IS_CURRENT_NODE_MASTER`
 
-Pour plus de détails sur ces et hello autres lot calcul nœud variables d’environnement, y compris leur contenu et la visibilité, consultez [variables d’environnement de nœud de calcul][msdn_env_var].
+Pour plus d’informations sur les variables d’environnement des nœuds de calcul Batch, notamment leur contenu et leur visibilité, consultez la page [Variables d’environnement des nœuds de calcul][msdn_env_var].
 
 > [!TIP]
-> exemple de code de lot Linux MPI Hello contient un exemple d’utilisation de plusieurs de ces variables d’environnement peuvent être. Hello [cmd de coordination] [ coord_cmd_example] script télécharge l’application courante et les fichiers d’entrée depuis le stockage Azure, permet à un partage système NFS (Network File) sur le nœud principal de hello et configure un interpréteur de commandes hello autres nœuds allouée tâche d’instances multiples toohello en tant que clients NFS.
+> L’exemple de code Batch Linux MPI contient un exemple d’utilisation de plusieurs d’entre elles. Le script Batch [coordination-cmd][coord_cmd_example] télécharge les fichiers d’application et d’entrée communs sur le Stockage Azure, autorise le partage Network File System (NFS) sur le nœud principal et configure les autres nœuds alloués à la tâche multi-instance en tant que clients NFS.
 >
 >
 
 ## <a name="resource-files"></a>Fichiers de ressources
-Il existe deux ensembles de tooconsider de fichiers de ressources pour les tâches d’instances multiples : **des fichiers de ressources communes** qui *tous les* tâches téléchargement (principaux et des tâches subordonnées) et hello **lesfichiersderessources** spécifiée pour hello à plusieurs instances de tâches elle-même, ce qui *uniquement les hello principal* téléchargements de tâches.
+Il existe deux ensembles de fichiers de ressources à prendre en compte pour les tâches multi-instances : les **fichiers de ressources communs** que *toutes* les tâches téléchargent (tâche principale et tâches subordonnées) et les **fichiers de ressources** indiqués pour la tâche multi-instances elle-même que *seule la tâche principale* télécharge.
 
-Vous pouvez spécifier un ou plusieurs **des fichiers de ressources communes** dans les paramètres de plusieurs instances de hello pour une tâche. Ces fichiers de ressources communs sont téléchargés à partir de [Azure Storage](../storage/common/storage-introduction.md) dans chaque nœud **répertoire partagé de tâche** par hello primaire et toutes les tâches subordonnées. Vous pouvez également accéder à répertoire partagé de tâche hello à partir de l’application et coordination de lignes de commande à l’aide de hello `AZ_BATCH_TASK_SHARED_DIR` variable d’environnement. Hello `AZ_BATCH_TASK_SHARED_DIR` chemin d’accès est identique sur chaque tâche de plusieurs instances de nœud toohello alloué, par conséquent, vous pouvez partager une commande unique coordination entre hello primaire et toutes les tâches subordonnées. Lot ne partage pas de » « hello répertoire dans un sens de l’accès à distance, mais vous pouvez l’utiliser comme un montage ou partager le dossier comme mentionné précédemment dans l’info-bulle hello sur les variables d’environnement.
+Vous pouvez indiquer un ou plusieurs **fichiers de ressources communs** dans les paramètres multi-instances d’une tâche. Ces fichiers de ressources communs sont téléchargés à partir du [Stockage Azure](../storage/common/storage-introduction.md) dans le **répertoire partagé de tâche** de chaque nœud, par la tâche principale et toutes les tâches subordonnées. Vous pouvez accéder au répertoire partagé de la tâche à partir de l’application et des lignes de commande de coordination à l’aide de la variable d’environnement `AZ_BATCH_TASK_SHARED_DIR` . Le chemin d’accès `AZ_BATCH_TASK_SHARED_DIR` est identique sur tous les nœuds alloués à la tâche multi-instance. Vous pouvez par conséquent partager une commande de coordination unique entre la tâche principale et toutes les tâches subordonnées. Batch ne « partage » pas le répertoire dans le sens de l’accès à distance, mais vous pouvez l’utiliser comme point de montage ou de partage comme cela a été mentionné dans le conseil sur les variables d’environnement.
 
-Fichiers de ressources que vous spécifiez pour le répertoire de travail de la tâche toohello téléchargé, sont hello tâche d’instances multiples `AZ_BATCH_TASK_WORKING_DIR`, par défaut. Comme indiqué, en revanche toocommon des fichiers de ressources, seule la tâche principale hello télécharge les fichiers de ressources spécifiés pour la tâche d’instances multiples hello lui-même.
+Les fichiers de ressources que vous spécifiez pour la tâche multi-instance sont téléchargés dans le répertoire de travail de la tâche, `AZ_BATCH_TASK_WORKING_DIR` par défaut. Comme nous l’avons mentionné, contrairement aux fichiers de ressources communs, seule la tâche principale télécharge les fichiers de ressources spécifiés pour la tâche multi-instances.
 
 > [!IMPORTANT]
-> Utilisez toujours des variables d’environnement hello `AZ_BATCH_TASK_SHARED_DIR` et `AZ_BATCH_TASK_WORKING_DIR` répertoires de toothese toorefer dans les lignes de commande. N’essayez pas chemins d’accès de hello tooconstruct manuellement.
+> Veillez à toujours utiliser les variables d’environnement `AZ_BATCH_TASK_SHARED_DIR` et `AZ_BATCH_TASK_WORKING_DIR` pour faire référence à ces répertoires dans vos lignes de commande. N’essayez pas de construire les chemins d’accès manuellement.
 >
 >
 
 ## <a name="task-lifetime"></a>Durée de vie de la tâche
-durée de vie Hello de hello tâche principale contrôles hello durée de vie de tâche d’instances multiples ensemble hello. Lorsque hello principal s’arrête, toutes les tâches subordonnées de hello sont terminées. code de sortie Hello hello principal est le code de sortie hello de tâche hello et est donc utilisé toodetermine hello réussite ou l’échec de la tâche hello à des fins de nouvelle tentative.
+La durée de vie de la tâche principale contrôle la durée de vie de la tâche multi-instances tout entière. Lorsque la tâche principale s’arrête, toutes les tâches subordonnées s’arrêtent aussi. Le code de sortie de la tâche principale est le code de sortie de la tâche. Il est donc utilisé pour déterminer la réussite ou l’échec de la tâche pour toutes nouvelles tentatives.
 
-Si une des tâches subordonnées de hello échouent, fermeture avec un code de retour différente de zéro, par exemple, hello multi-instance entière tâche échoue. Hello multi-instance tâche est ensuite arrêtée et retentée des tooits nombre maximal de tentatives.
+Si l’une des tâches subordonnées échoue, par exemple en se fermant avec un code de retour différent de zéro, la tâche multi-instances tout entière échoue. La tâche multi-instances s’arrête ensuite puis reprend, dans la limite du nombre de nouvelles tentatives défini.
 
-Lorsque vous supprimez une tâche à plusieurs instances, hello primaire et toutes les tâches subordonnées sont également supprimées par hello service Batch. Sous-tâche à tous les répertoires et leurs fichiers sont supprimés à partir des nœuds de calcul hello, comme pour une tâche standard.
+Quand vous supprimez une tâche multi-instances, la tâche principale et toutes les tâches subordonnées sont également supprimées par le service Azure Batch. Tous les répertoires des tâches subordonnées et leurs fichiers sont supprimés des nœuds de calcul, à l’image d’une tâche standard.
 
-[TaskConstraints] [ net_taskconstraints] pour une tâche à instances multiples, par exemple hello [MaxTaskRetryCount][net_taskconstraint_maxretry], [MaxWallClockTime] [ net_taskconstraint_maxwallclock], et [RetentionTime] [ net_taskconstraint_retention] propriétés, sont honorées tels qu’ils sont destinés à une tâche standard, appliquent toohello primaire et toutes les tâches subordonnées. Toutefois, si vous modifiez hello [RetentionTime] [ net_taskconstraint_retention] propriété après l’ajout de hello multi-instance toohello tâche, cette modification est appliquée toohello uniquement la tâche principale. Toutes les tâches subordonnées hello continuent toouse hello original [RetentionTime][net_taskconstraint_retention].
+Les [TaskConstraints][net_taskconstraints] d’une tâche multi-instances, par exemple les propriétés [MaxTaskRetryCount][net_taskconstraint_maxretry], [MaxWallClockTime][net_taskconstraint_maxwallclock] et [RetentionTime][net_taskconstraint_retention], sont honorées en l’état pour une tâche standard, puis s’appliquent à la tâche principale et à toutes les tâches subordonnées. Toutefois, si vous modifiez la propriété [RetentionTime][net_taskconstraint_retention] après l’ajout de la tâche multi-instances au travail, cette modification s’applique uniquement à la tâche principale. Toutes les tâches subordonnées continuent d’utiliser la propriété [RetentionTime][net_taskconstraint_retention] d’origine.
 
-Liste des tâches récentes d’un nœud de calcul reflète id hello d’une tâche subordonnée si la tâche récente hello faisait partie d’une tâche à instances multiples.
+Une liste des tâches récentes d’un nœud de calcul reflète l’identifiant d’une tâche subordonnée si la tâche récente faisait partie d’une tâche multi-instances.
 
 ## <a name="obtain-information-about-subtasks"></a>Obtenir des informations sur les tâches subordonnées
-tooobtain plus d’informations sur les tâches subordonnées à l’aide hello Batch .NET bibliothèque, appel hello [CloudTask.ListSubtasks] [ net_task_listsubtasks] (méthode). Cette méthode retourne des informations sur toutes les tâches subordonnées et informations hello calcul nœud hello tâches exécutées. À partir de ces informations, vous pouvez déterminer le répertoire racine de la tâche subordonnée, id du pool hello, son état actuel, le code de sortie et bien plus encore. Vous pouvez utiliser ces informations en combinaison avec hello [PoolOperations.GetNodeFile] [ poolops_getnodefile] les fichiers de méthode tooobtain hello la tâche subordonnée. Notez que cette méthode ne retourne pas d’informations pour la tâche principale hello (id 0).
+Pour obtenir plus d’informations sur les tâches subordonnées à l’aide de la bibliothèque Batch.NET, appelez la méthode [CloudTask.ListSubtasks][net_task_listsubtasks]. Cette méthode renvoie des informations sur toutes les tâches subordonnées, ainsi que sur le nœud de calcul qui a exécuté les tâches. À partir de ces informations, vous pouvez déterminer le répertoire racine de chaque tâche subordonnée, l’identifiant du pool, son état actuel, le code de sortie, etc. Utilisez ces informations en même temps que la méthode [PoolOperations.GetNodeFile][poolops_getnodefile] pour obtenir les fichiers de la tâche subordonnée. Notez que cette méthode ne renvoie pas d’informations pour la tâche principale (identifiant 0).
 
 > [!NOTE]
-> Sauf indication contraire, les méthodes .NET de traitement par lots qui fonctionnent sur hello multi-instance [CloudTask] [ net_task] lui-même s’appliquent *uniquement* toohello la tâche principale. Par exemple, lorsque vous appelez hello [CloudTask.ListNodeFiles] [ net_task_listnodefiles] méthode sur une tâche à plusieurs instances, seuls les fichiers de la tâche hello principal sont retournés.
+> Sauf indication contraire, les méthodes Batch.NET qui interviennent sur la tâche multi-instances [CloudTask][net_task] elle-même s’appliquent *uniquement* à la tâche principale. Par exemple, lorsque vous appelez la méthode [CloudTask.ListNodeFiles][net_task_listnodefiles] sur une tâche multi-instances, seuls les fichiers de la tâche principale sont renvoyés.
 >
 >
 
-Hello extrait de code suivant montre comment tooobtain sous-tâche plus d’informations, ainsi que demander le contenu du fichier à partir des nœuds hello sur lequel ils exécutée.
+L’extrait de code suivant montre comment obtenir des informations sur les tâches subordonnées et comment demander le contenu du fichier à partir des nœuds sur lesquels elles sont exécutées.
 
 ```csharp
-// Obtain hello job and hello multi-instance task from hello Batch service
+// Obtain the job and the multi-instance task from the Batch service
 CloudJob boundJob = batchClient.JobOperations.GetJob("mybatchjob");
 CloudTask myMultiInstanceTask = boundJob.GetTask("mymultiinstancetask");
 
-// Now obtain hello list of subtasks for hello task
+// Now obtain the list of subtasks for the task
 IPagedEnumerable<SubtaskInformation> subtasks = myMultiInstanceTask.ListSubtasks();
 
-// Asynchronously iterate over hello subtasks and print their stdout and stderr
-// output if hello subtask has completed
+// Asynchronously iterate over the subtasks and print their stdout and stderr
+// output if the subtask has completed
 await subtasks.ForEachAsync(async (subtask) =>
 {
     Console.WriteLine("subtask: {0}", subtask.Id);
@@ -265,39 +265,39 @@ await subtasks.ForEachAsync(async (subtask) =>
 ```
 
 ## <a name="code-sample"></a>Exemple de code
-Hello [MultiInstanceTasks] [ github_mpi] exemple de code sur GitHub montre comment toouse un à plusieurs instances de tâches toorun un [MS-MPI] [ msmpi_msdn] application sur les nœuds de calcul de lot. Suivez les étapes de hello dans [préparation](#preparation) et [exécution](#execution) toorun hello exemple.
+L’exemple de code [MultiInstanceTasks][github_mpi] sur GitHub montre comment une tâche multi-instances permet d’exécuter une application [MS-MPI][msmpi_msdn] sur des nœuds de calcul Batch. Pour exécuter l’exemple, suivez les étapes de [préparation](#preparation) et d’[exécution](#execution).
 
 ### <a name="preparation"></a>Préparation
-1. Suivez les deux premières étapes de hello dans [comment toocompile et exécuter un programme MS-MPI simple][msmpi_howto]. Cela satisfait prerequesites hello pour hello suivant l’étape.
-2. Générer un *version* version de hello [MPIHelloWorld] [ helloworld_proj] exemple de programme MPI. Il s’agit de programme hello qui est exécutée sur les nœuds de calcul par la tâche d’instances multiples hello.
-3. Créez un fichier .zip contenant `MPIHelloWorld.exe` (que vous avez créé à l’étape 2) et `MSMpiSetup.exe` (que vous avez téléchargé à l’étape 1). Vous allez télécharger ce fichier zip en tant qu’un package d’application à l’étape suivante de hello.
-4. Hello d’utilisation [portail Azure] [ portal] toocreate un lot [application](batch-application-packages.md) appelé « MPIHelloWorld » et spécifiez le fichier zip de hello créé à l’étape précédente de hello en tant que version « 1.0 » de package d’application Hello. Pour plus d’informations, consultez [Téléchargement et gestion des applications](batch-application-packages.md#upload-and-manage-applications).
+1. Suivez les deux premières étapes dans [How to compile and run a simple MS-MPI program][msmpi_howto] (Comment compiler et exécuter un simple programme MS-MPI). Ces étapes permettent de satisfaire les conditions requises pour l’étape suivante.
+2. Créez une version de *mise en production* de l’exemple de programme MPI [MPIHelloWorld][helloworld_proj]. Il s’agit du programme qui sera exécuté par la tâche multi-instances sur des nœuds de calcul.
+3. Créez un fichier .zip contenant `MPIHelloWorld.exe` (que vous avez créé à l’étape 2) et `MSMpiSetup.exe` (que vous avez téléchargé à l’étape 1). À l’étape suivante, vous allez télécharger ce fichier .zip en tant que package d’application.
+4. Utilisez le [Portail Azure][portal] pour créer une [application](batch-application-packages.md) Batch appelée « MPIHelloWorld » et spécifiez le fichier .zip que vous avez créé à l’étape précédente en tant que version « 1.0 » du package d’application. Pour plus d’informations, consultez [Téléchargement et gestion des applications](batch-application-packages.md#upload-and-manage-applications).
 
 > [!TIP]
-> Générer un *version* version de `MPIHelloWorld.exe` afin que vous n’avez pas tooinclude toutes les dépendances supplémentaires (par exemple, `msvcp140d.dll` ou `vcruntime140d.dll`) dans votre package d’application.
+> Créez une version de *mise en production* de `MPIHelloWorld.exe` afin que vous ne soyez pas obligé d’inclure toutes les dépendances supplémentaires (par exemple `msvcp140d.dll` ou `vcruntime140d.dll`) dans votre package d’application.
 >
 >
 
 ### <a name="execution"></a>Exécution
-1. Télécharger hello [exemples de traitement par lots azure] [ github_samples_zip] à partir de GitHub.
-2. Ouvrez hello MultiInstanceTasks **solution** dans Visual Studio 2015 ou version ultérieure. Hello `MultiInstanceTasks.sln` fichier solution se trouve dans :
+1. Téléchargez les [exemples Azure Batch][github_samples_zip] à partir de GitHub.
+2. Ouvrez la **solution** MultiInstanceTasks dans Visual Studio 2015 ou version ultérieure. Le fichier de solution `MultiInstanceTasks.sln` se trouve à cet emplacement :
 
     `azure-batch-samples\CSharp\ArticleProjects\MultiInstanceTasks\`
-3. Entrez vos informations d’identification compte Batch et de stockage dans `AccountSettings.settings` Bonjour **Microsoft.Azure.Batch.Samples.Common** projet.
-4. **Générez et exécutez** hello MultiInstanceTasks solution tooexecute hello MPI exemple d’application sur les nœuds de calcul dans un pool de traitement par lots.
-5. *Facultatif*: hello d’utilisation [portail Azure] [ portal] ou hello [lot Explorer] [ batch_explorer] tooexamine pool d’exemple hello, travail, et tâches (« MultiInstanceSamplePool », « MultiInstanceSampleJob », « MultiInstanceSampleTask ») avant de supprimer les ressources de hello.
+3. Entrez vos informations d’identification de compte Batch et Stockage dans `AccountSettings.settings` dans le projet **Microsoft.Azure.Batch.Samples.Common**.
+4. **Générez et exécutez** la solution MultiInstanceTasks pour exécuter l’exemple d’application MPI sur des nœuds de calcul dans un pool Batch.
+5. *Facultatif*: utilisez le [Portail Azure][portal] ou [Batch Explorer][batch_explorer] pour examiner les exemples de pool, de travail et de tâche (« MultiInstanceSamplePool », « MultiInstanceSampleJob », « MultiInstanceSampleTask ») avant de supprimer les ressources.
 
 > [!TIP]
 > Vous pouvez télécharger [Visual Studio Community][visual_studio] gratuitement si vous n’avez pas Visual Studio.
 >
 >
 
-Sortie de `MultiInstanceTasks.exe` est similaire toohello suivant :
+Le résultat de `MultiInstanceTasks.exe` ressemble à ce qui suit :
 
 ```
 Creating pool [MultiInstanceSamplePool]...
 Creating job [MultiInstanceSampleJob]...
-Adding task [MultiInstanceSampleTask] toojob [MultiInstanceSampleJob]...
+Adding task [MultiInstanceSampleTask] to job [MultiInstanceSampleJob]...
 Awaiting task completion, timeout in 00:30:00...
 
 Main task [MultiInstanceSampleTask] is in state [Completed] and ran on compute node [tvm-1219235766_1-20161017t162002z]:
@@ -307,7 +307,7 @@ Rank 1 received string "Hello world" from Rank 0
 
 ---- stderr.txt ----
 
-Main task completed, waiting 00:00:10 for subtasks toocomplete...
+Main task completed, waiting 00:00:10 for subtasks to complete...
 
 ---- Subtask information ----
 subtask: 1
@@ -324,12 +324,12 @@ subtask: 2
 Delete job? [yes] no: yes
 Delete pool? [yes] no: yes
 
-Sample complete, hit ENTER tooexit...
+Sample complete, hit ENTER to exit...
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* blog de l’équipe de lot de Azure et de Microsoft HPC Hello traite [MPI prise en charge de Linux sur Azure Batch][blog_mpi_linux]et inclut des informations sur l’utilisation de [OpenFOAM] [ openfoam] traitement par lots. Vous trouverez des exemples de code Python pour hello [exemple OpenFOAM sur GitHub][github_mpi].
-* Découvrez comment trop[créer des pools de nœuds de calcul Linux](batch-linux-nodes.md) à utiliser dans vos solutions Azure Batch MPI.
+* Le blog de l’équipe Microsoft HPC et Azure Batch présente [Prise en charge MPI pour Linux sur Azure Batch][blog_mpi_linux], et inclut des informations sur l’utilisation de [OpenFOAM][openfoam] avec Batch. Vous trouverez des exemples de code Python dans [l’exemple OpenFOAM sur GitHub][github_mpi].
+* Découvrez comment [créer des pools de nœuds de calcul Linux](batch-linux-nodes.md) à utiliser dans vos solutions MPI Azure Batch.
 
 [helloworld_proj]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/MultiInstanceTasks/MPIHelloWorld
 

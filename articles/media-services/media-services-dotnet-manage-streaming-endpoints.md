@@ -1,6 +1,6 @@
 ---
-title: "aaaManage de diffusion en continu des points de terminaison avec le Kit de développement .NET. | Microsoft Docs"
-description: Cette rubrique montre comment les points de terminaison de diffusion en continu toomanage avec hello portail Azure.
+title: "Gérer les points de terminaison de streaming avec le SDK .NET. | Microsoft Docs"
+description: "Cette rubrique montre comment gérer les points de terminaison de streaming avec le Portail Azure."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -15,45 +15,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 30c092a8ebf4e2b2902392f4cf98f46d812ccdbc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f4f464f8604b6f453d6b50b736c6a3a889a3408
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="manage-streaming-endpoints-with-net-sdk"></a>Gérer les points de terminaison de streaming avec le SDK .NET
 
 >[!NOTE]
->Assurez-vous que tooreview hello [vue d’ensemble](media-services-streaming-endpoints-overview.md) rubrique. Consultez aussi [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint).
+>Consultez la rubrique de [présentation](media-services-streaming-endpoints-overview.md). Consultez aussi [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint).
 
-code Hello dans cette rubrique montre comment hello toodo à l’aide des tâches suivantes hello Azure Media Services .NET SDK :
+Le code de cette rubrique montre comment effectuer les tâches suivantes à l’aide du Kit de développement logiciel (SDK) Azure Media Services .NET :
 
-- Examinez le point de terminaison de diffusion en continu de la valeur par défaut hello.
+- Examinez le point de terminaison de streaming par défaut.
 - Créez/ajoutez un nouveau point de terminaison.
 
-    Vous pourriez toohave plusieurs points de terminaison de diffusion en continu si vous envisagez de toohave CDN différents ou un CDN et un accès direct.
+    Vous pouvez également disposer de plusieurs points de terminaison de streaming si vous prévoyez d’avoir différents CDN ou bien un CDN et un accès direct.
 
     > [!NOTE]
     > Vous êtes facturé uniquement lorsque votre point de terminaison de streaming est en cours d’exécution.
     
-- Mettre à jour hello point de terminaison de diffusion en continu.
+- Mettez à jour le point de terminaison de streaming.
     
-    Vérifiez que hello toocall fonction Update().
+    Appelez la fonction Update().
 
-- Supprimer hello point de terminaison de diffusion en continu.
+- Supprimez le point de terminaison de streaming.
 
     >[!NOTE]
-    >point de terminaison de diffusion en continu de la valeur par défaut Hello ne peut pas être supprimé.
+    >Il n’est pas possible de supprimer le point de terminaison de streaming par défaut.
 
-Pour plus d’informations sur la façon dont tooscale hello point de terminaison de diffusion en continu, consultez [cela](media-services-portal-scale-streaming-endpoints.md) rubrique.
+Pour plus d’informations sur la mise à l’échelle du point de terminaison de streaming, consultez [cette](media-services-portal-scale-streaming-endpoints.md) rubrique.
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Créer et configurer un projet Visual Studio
 
-Configurer votre environnement de développement et de remplir le fichier app.config de hello avec les informations de connexion, comme décrit dans [développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
+Configurez votre environnement de développement et ajoutez des informations de connexion au fichier app.config selon la procédure décrite dans l’article [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
 
 ## <a name="add-code-that-manages-streaming-endpoints"></a>Ajouter le code qui gère les points de terminaison de streaming
     
-Remplacez le code hello hello Program.cs par hello suivant de code :
+Remplacez le contenu de Program.cs par le code suivant :
 
     using System;
     using System.Configuration;
@@ -65,7 +65,7 @@ Remplacez le code hello hello Program.cs par hello suivant de code :
     {
         class Program
         {
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =

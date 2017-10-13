@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Brightspace by Desire2Learn | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Brightspace by Desire2Learn."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Brightspace de Desire2Learn."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,117 +13,117 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: jeedes
-ms.openlocfilehash: 99d03dc50defcb291a651a5415e30baab39e1e77
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7076b476ba71c5d94ae4728e5f6032b0d7e047ad
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-brightspace-by-desire2learn"></a>Didacticiel : Intégration d’Azure Active Directory à Brightspace by Desire2Learn
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Brightspace by Desire2Learn avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Brightspace de Desire2Learn à Azure Active Directory (Azure AD).
 
-Intégration Brightspace by Desire2Learn à Azure AD offre hello avantages suivants :
+L’intégration de Brightspace de Desire2Learn à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a tooBrightspace d’accès par Desire2Learn
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooBrightspace par Desire2Learn (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à Brightspace de Desire2Learn
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Brightspace de Desire2Learn (par le biais de l’authentification unique) avec leur compte Azure AD
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Prérequis
 
-tooconfigure intégration d’Azure AD à Brightspace by Desire2Learn, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à Brightspace de Desire2Learn, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Brightspace by Desire2Learn pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de Brightspace by Desire2Learn à partir de la galerie de hello
+1. Ajout de Brightspace de Desire2Learn à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-brightspace-by-desire2learn-from-hello-gallery"></a>Ajout de Brightspace by Desire2Learn à partir de la galerie de hello
-intégration de hello tooconfigure de Brightspace by Desire2Learn dans Azure AD, vous devez tooadd Brightspace by Desire2Learn à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-brightspace-by-desire2learn-from-the-gallery"></a>Ajout de Brightspace de Desire2Learn à partir de la galerie
+Pour configurer l’intégration de Brightspace de Desire2Learn à Azure AD, vous devez ajouter Brightspace de Desire2Learn depuis la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd Brightspace by Desire2Learn à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Brightspace de Desire2Learn à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **Brightspace by Desire2Learn**.
+4. Dans la zone de recherche, tapez **Brightspace de Desire2Learn**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-brightspace-desire2learn-tutorial/tutorial_brightspacebydesire2learn_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **Brightspace by Desire2Learn**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le volet de résultats, sélectionnez **Brightspace de Desire2Learn**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-brightspace-desire2learn-tutorial/tutorial_brightspacebydesire2learn_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous configurez et testez l’authentification unique Azure AD avec Brightspace de Desire2Learn au moyen d’un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Brightspace by Desire2Learn est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Brightspace by Desire2Learn doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Brightspace de Desire2Learn équivalent dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et l’utilisateur de Brightspace de Desire2Learn associé doit être établie.
 
-Dans Brightspace by Desire2Learn, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Brightspace de Desire2Learn, affectez la valeur du **nom d’utilisateur** indiquée dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique à Brightspace by Desire2Learn, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Brightspace de Desire2Learn, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un Brightspace by Desire2Learn test utilisateur](#creating-a-brightspace-by-desire2learn-test-user)**  -toohave un équivalent de Britta Simon dans Brightspace by Desire2Learn est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Brightspace de Desire2Learn](#creating-a-brightspace-by-desire2learn-test-user)** pour avoir dans Brightspace de Desire2Learn un équivalent de Britta Simon lié à la représentation Azure AD de l’utilisateur.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre Brightspace par Desire2Learn application.
+Dans cette section, vous activez l’authentification unique Azure AD dans le portail Azure et configurez l’authentification unique dans votre application Brightspace de Desire2Learn.
 
-**tooconfigure Azure AD single sign-on avec Brightspace by Desire2Learn, procédez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Brightspace de Desire2Learn, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **Brightspace by Desire2Learn** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le Portail Azure, sur la page d’intégration de l’application **Brightspace de Desire2Learn**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-brightspace-desire2learn-tutorial/tutorial_brightspacebydesire2learn_samlbase.png)
 
-3. Sur hello **Brightspace by Desire2Learn domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL Brightspace de Desire2Learn**, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-brightspace-desire2learn-tutorial/tutorial_brightspacebydesire2learn_url.png)
 
-    a. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :
+    a. Dans la zone de texte **Identificateur**, tapez une URL au format suivant :
     | |
     |--|
     | `https://<companyname>.tenants.brightspace.com/samlLogin`|
     | `https://<companyname>.desire2learn.com/shibboleth-sp`|
 
-    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<companyname>.desire2learn.com/d2l/lp/auth/login/samlLogin.d2l`
+    b. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<companyname>.desire2learn.com/d2l/lp/auth/login/samlLogin.d2l`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs hello URL d’identificateur et de réponse réelle. Contact [Brightspace by Desire2Learn prise en charge team](https://www.d2l.com/contact/) tooget ces valeurs.
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur et l’URL de réponse réels. Contactez [l’équipe du support technique Brightspace de Desire2Learn](https://www.d2l.com/contact/) pour obtenir ces valeurs.
  
 
 
-4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-brightspace-desire2learn-tutorial/tutorial_brightspacebydesire2learn_certificate.png) 
 
@@ -131,69 +131,69 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-brightspace-desire2learn-tutorial/tutorial_general_400.png)
 
-6. tooconfigure l’authentification unique sur **Brightspace by Desire2Learn** côté, vous devez hello toosend téléchargé **Metadata XML** trop[Brightspace by Desire2Learn prise en charge team](https://www.d2l.com/contact/).
+6. Pour configurer l’authentification unique du côté de **Brightspace de Desire2Learn**, vous devez envoyer le fichier **XML de métadonnées** téléchargé à [ l’équipe du support technique Brightspace de Desire2Learn](https://www.d2l.com/contact/).
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-brightspace-desire2learn-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-brightspace-desire2learn-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-brightspace-desire2learn-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-brightspace-desire2learn-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Créer**.
  
 ### <a name="creating-a-brightspace-by-desire2learn-test-user"></a>Création d’un utilisateur de test Brightspace de Desire2Learn
 
-Dans l’ordre tooenable Azure AD les utilisateurs toolog à Brightspace by Desire2Learn, ils doivent être configurés dans Brightspace par Desire2Learn.  
+Pour permettre aux utilisateurs Azure AD de se connecter à Brightspace by Desire2Learn, vous devez les approvisionner dans Brightspace by Desire2Learn.  
 
-Dans les cas de hello de Brightspace by Desire2Learn, les comptes d’utilisateur de hello doivent toobe créé par votre [Brightspace by Desire2Learn prise en charge team](https://www.d2l.com/contact/).
+En l’occurrence, les comptes d’utilisateur doivent être créés par [l’équipe du support technique Brightspace de Desire2Learn](https://www.d2l.com/contact/).
 
 >[!NOTE]
->Vous pouvez utiliser n’importe quel autre Brightspace par les outils de création de compte utilisateur Desire2Learn ou API fournie par Brightspace par Desire2Learn tooprovision Azure Active Directory des comptes d’utilisateur. 
+>Vous pouvez utiliser tout autre outil ou n’importe quelle API de création de compte d’utilisateur fournis par Brightspace by Desire2Learn pour approvisionner des comptes d’utilisateur Azure Active Directory. 
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant tooBrightspace accès par Desire2Learn.
+Dans cette section, vous autorisez Britta Simon à utiliser l’authentification unique Azure en accordant l’accès à Brightspace de Desire2Learn.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign tooBrightspace Britta Simon par Desire2Learn, procédez hello comme suit :**
+**Pour affecter Britta Simon à Brightspace de Desire2Learn, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Brightspace by Desire2Learn**.
+2. Dans la liste des applications, sélectionnez **Brightspace de Desire2Learn**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-brightspace-desire2learn-tutorial/tutorial_brightspacebydesire2learn_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -201,7 +201,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -209,14 +209,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur hello Brightspace par vignette Desire2Learn Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour Brightspace par Desire2Learn application.
-Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
+Dans le volet d’accès, lorsque vous cliquez sur la vignette Brightspace de Desire2Learn, vous devez automatiquement être connecté à votre application Brightspace de Desire2Learn.
+Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

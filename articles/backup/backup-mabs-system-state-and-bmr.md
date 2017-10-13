@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure sauvegarde Server protège l’état du système et restaure toobare complète | Documents Microsoft"
-description: "Utiliser Azure Backup Server tooback votre état du système et fournir la protection de récupération complète (BMR)."
+title: "Le Serveur de sauvegarde Azure protège l’état du système et effectue une récupération complète de celui-ci | Microsoft Docs"
+description: "Utilisez le Serveur de sauvegarde Azure pour sauvegarder l’état de votre système et fournir une protection de récupération complète."
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: markgal,masaran
-ms.openlocfilehash: d34c8bbdc7cc24c905f81ceaf199698c1ee923db
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 30f70a702d7d9a3e1196c04096708c035e406607
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="back-up-system-state-and-restore-toobare-metal-with-azure-backup-server"></a>Sauvegarder l’état du système et de restauration complète toobare avec Azure Backup Server
+# <a name="back-up-system-state-and-restore-to-bare-metal-with-azure-backup-server"></a>Sauvegarder l’état du système et effectuer une récupération complète avec le Serveur de sauvegarde Azure
 
 Le Serveur de sauvegarde Azure sauvegarde l’état de votre système et effectue une récupération complète de celui-ci.
 
-*   **Sauvegarde de l’état système**: sauvegarde les fichiers de système d’exploitation, afin que vous pouvez récupérer lorsqu’un ordinateur démarre, mais les fichiers système et du Registre de hello sont perdues. Une sauvegarde de l’état du système inclut ces élément suivants :
+*   **Sauvegarde de l’état du système** : sauvegarde les fichiers du système d’exploitation afin que vous puissiez récupérer celui-ci au démarrage de l’ordinateur, mais les fichiers système et le Registre sont perdus. Une sauvegarde de l’état du système inclut ces élément suivants :
     * Membre de domaine : fichiers de démarrage, base de données d’inscription de classe COM+, Registre
     * Contrôleur de domaine : Windows Server Active Directory (NTDS), fichiers de démarrage, base de données d’inscription de classe COM+, Registre, volume système (SYSVOL)
     * Ordinateur exécutant les services de cluster : métadonnées du serveur de cluster
     * Ordinateur exécutant les services de certificats : données du certificat
-* **Sauvegarde de complète** : sauvegarde les fichiers du système d’exploitation et toutes les données sur les volumes critiques (sauf les données utilisateur). Par définition, une sauvegarde complète inclut une sauvegarde de l’état du système. Il offre une protection lorsqu’un ordinateur ne démarre pas et vous avez toorecover tous les éléments.
+* **Sauvegarde de complète** : sauvegarde les fichiers du système d’exploitation et toutes les données sur les volumes critiques (sauf les données utilisateur). Par définition, une sauvegarde complète inclut une sauvegarde de l’état du système. Elle offre une protection quand un ordinateur ne démarre pas et que vous devez récupérer tous les éléments nécessaires.
 
-Hello tableau suivant résume ce que vous pouvez sauvegarder et restaurer. Pour plus d’informations sur les versions d’application qui peuvent être protégées avec l’état du système et une récupération complète, voir [Qu’est-ce que le Serveur de sauvegarde Azure ?](backup-mabs-protection-matrix.md).
+Le tableau suivant résume ce que vous pouvez sauvegarder et récupérer. Pour plus d’informations sur les versions d’application qui peuvent être protégées avec l’état du système et une récupération complète, voir [Qu’est-ce que le Serveur de sauvegarde Azure ?](backup-mabs-protection-matrix.md).
 
 |Sauvegarde|Problème|Récupère à partir de la sauvegarde effectuée par le Serveur de sauvegarde Azure|Récupère à partir de la sauvegarde de l’état du système|Récupération complète|
 |----------|---------|---------------------------|------------------------------------|-------|
@@ -53,50 +53,50 @@ Hello tableau suivant résume ce que vous pouvez sauvegarder et restaurer. Pour 
 
 ## <a name="how-system-state-backup-works"></a>Fonctionnement de la sauvegarde de l’état du système
 
-Lorsqu’une sauvegarde de l’état système s’exécute, serveur de sauvegarde communique avec sauvegarde Windows Server toorequest une sauvegarde de l’état du système du serveur hello. Par défaut, le serveur de sauvegarde et de la sauvegarde de Windows Server utilisent lecteur hello ayant hello plus d’espace libre. Plus d’informations sur ce lecteur sont enregistrés dans le fichier PSDataSourceConfig.xml de hello. Il s’agit de hello lecteur avec sauvegarde Windows Server pour les sauvegardes.
+Lors d’une sauvegarde de l’état du système, le Serveur de sauvegarde communique avec l’application Sauvegarde Windows Server pour demander une sauvegarde de l’état du système du serveur. Par défaut, le Serveur de sauvegarde et l’application Sauvegarde Windows Server utilisent le lecteur offrant le plus d’espace libre. Les informations relatives à ce lecteur sont enregistrées dans le fichier PSDataSourceConfig.xml. Il s’agit du lecteur que l’application Sauvegarde Windows Server utilise pour les sauvegardes.
 
-Vous pouvez personnaliser le lecteur hello par serveur de sauvegarde pour la sauvegarde de l’état système hello. Sur le serveur de hello protégé, accédez à tooC:\Program Files\Microsoft Manager\MABS\Datasources de Protection de données. Ouvrez le fichier de PSDataSourceConfig.xml de hello pour modification. Hello de modification \<FilesToProtect\> valeur pour la lettre de lecteur hello. Enregistrez et fermez le fichier de hello. S’il existe qu'un groupe de protection définie l’état du système hello tooprotect de l’ordinateur de hello, exécutez une vérification de cohérence. Si une alerte est générée, sélectionnez **modifier le groupe de protection** dans hello alert et Assistant de hello puis terminée. Ensuite, exécutez une autre vérification de cohérence.
+Vous pouvez personnaliser le lecteur que le Serveur de sauvegarde utilise pour sauvegarder l’état du système. Sur le serveur protégé, accédez à C:\Program Files\Microsoft Data Protection Manager\MABS\Datasources. Ouvrez le fichier PSDataSourceConfig.xml pour le modifier. Modifiez la valeur \<FilesToProtect\> pour la lettre de lecteur. Enregistrez et fermez le fichier. S’il existe un groupe de protection défini pour protéger l’état du système de l’ordinateur, exécutez une vérification de cohérence. Si une alerte est générée, sélectionnez **Modifier le groupe de protection** dans l’alerte, puis suivez les instructions de l’Assistant. Ensuite, exécutez une autre vérification de cohérence.
 
-Notez que si le serveur de protection hello est dans un cluster, il est possible qu’un lecteur de cluster soit sélectionné en tant que lecteur hello avec hello plus d’espace libre. Si cette propriété du lecteur a été tooanother commuté nœud et une sauvegarde de l’état système s’exécute, lecteur de hello n’est pas disponible et hello sauvegarde échoue. Dans ce scénario, modifiez PSDataSourceConfig.xml toopoint tooa le disque local.
+Notez que, si le serveur de protection se trouve dans un cluster, il se peut qu’un lecteur du cluster soit sélectionné en tant que lecteur offrant le plus d’espace libre. Si cette propriété du lecteur a été basculée vers un autre nœud, en cas d’exécution d’une sauvegarde de l’état du système, le lecteur n’est pas disponible et la sauvegarde échoue. Dans ce scénario, modifiez PSDataSourceConfig.xml pour pointer vers un lecteur local.
 
-Ensuite, la sauvegarde de Windows Server crée un dossier appelé WindowsImageBackup dans racine hello du dossier de restauration hello. Lors de la sauvegarde de Windows Server crée la sauvegarde de hello, toutes les données de hello sont placées dans ce dossier. Après la sauvegarde de hello, fichier de hello est ordinateur du serveur de sauvegarde toohello transférés. Notez hello informations suivantes :
+Ensuite, l’application Sauvegarde Windows Server crée un dossier nommé WindowsImageBackup dans la racine du dossier de restauration. Lorsque l’application Sauvegarde Windows Server crée la sauvegarde, toutes les données sont placées dans ce dossier. Une fois la sauvegarde terminée, le fichier est transféré vers l’ordinateur Serveur de sauvegarde. Notez les informations suivantes :
 
-* Ce dossier et son contenu n'est pas nettoyés lors de la sauvegarde de hello ou le transfert est terminé. Hello meilleure manière toothink de ce est que hello espace est réservé pour hello prochaine qu'une sauvegarde est terminée.
-* dossier de Hello est créé chaque fois qu’une sauvegarde est effectuée. cachet de date et heure Hello reflètent les temps de hello de votre dernière sauvegarde de l’état système.
+* Ce dossier et son contenu ne sont pas nettoyés à la fin de la sauvegarde ou du transfert. La meilleure façon de comprendre cela est que l’espace est réservé en vue de la prochaine fois qu’une sauvegarde s’achèvera.
+* Le dossier est créé chaque fois qu’une sauvegarde est effectuée. L’horodatage reflète l’heure de la dernière sauvegarde de l’état du système.
 
 ## <a name="bmr-backup"></a>Sauvegarde complète
 
-Pour la récupération complète (y compris une sauvegarde de l’état système), du travail de sauvegarde hello est enregistré directement tooa partage sur l’ordinateur du serveur de sauvegarde hello. Il n’est pas enregistré tooa dossier sur le serveur de hello protégé.
+Pour une récupération complète (incluant la sauvegarde de l’état du système), le travail de sauvegarde est enregistré directement dans un partage sur l’ordinateur Serveur de sauvegarde. Il n’est pas enregistré dans un dossier sur le serveur protégé.
 
-Sauvegarde du serveur appelle la sauvegarde Windows Server et partages de volume du réplica hello pour que la sauvegarde complète. Dans ce cas, il ne faire lecteur de hello toouse de sauvegarde de Windows Server avec hello plus d’espace libre. Au lieu de cela, il utilise le partage hello qui a été créé pour le travail de hello.
+Le Serveur de sauvegarde appelle l’application Sauvegarde Windows Server, et partage le volume du réplica pour cette sauvegarde complète. Dans ce cas, il ne demande pas à l’application Sauvegarde Windows Server d’utiliser le lecteur offrant le plus d’espace libre. Au lieu de cela, il utilise le partage créé pour le travail.
 
-Après la sauvegarde de hello, fichier de hello est ordinateur du serveur de sauvegarde toohello transférés. Les journaux sont stockés dans C:\Windows\Logs\WindowsServerBackup.
+Une fois la sauvegarde terminée, le fichier est transféré vers l’ordinateur Serveur de sauvegarde. Les journaux sont stockés dans C:\Windows\Logs\WindowsServerBackup.
 
 ## <a name="prerequisites-and-limitations"></a>Conditions préalables et limitations
 
 -   La récupération complète n’est pas prise en charge pour les ordinateurs exécutant Windows Server 2003 ou un système d’exploitation de client.
 
--   Vous ne pouvez pas protéger une récupération complète et le système d’état pour hello même ordinateur dans différents groupes de protection.
+-   Vous ne pouvez pas protéger la récupération complète et l’état du système pour le même ordinateur dans des groupes de protection différents.
 
 -   Un ordinateur Serveur de sauvegarde ne peut pas se protéger lui-même pour une récupération complète.
 
--   Tootape de protection à court terme (disque à bande ou D2T) n’est pas pris en charge pour la récupération complète. Tootape de stockage à long terme (disque à disque à bande ou D2D2T) est pris en charge.
+-   Une protection à court terme sur bande (D2T ou de disque à bande) n’est pas prise en charge pour la récupération complète. Un stockage à long terme sur bande (D2D2T ou disque à disque à bande) est pris en charge.
 
--   Pour la protection de la récupération complète, la sauvegarde de Windows Server doit être installé sur l’ordinateur de hello protégé.
+-   Pour la protection de la récupération complète, l’application Sauvegarde Windows Server doit être installée sur l’ordinateur protégé.
 
--   Pour la protection complète, contrairement à pour la protection de l’état système, sauvegarde de serveur n’a d’espace disque requis sur l’ordinateur de hello protégé. Sauvegarde Windows Server transfère directement l’ordinateur de serveur de sauvegarde toohello de sauvegardes. tâche de transfert de sauvegarde de Hello n’apparaît pas dans hello sauvegarde du serveur **travaux** vue.
+-   Pour la protection complète, à la différence de la protection de l’état du système, le Serveur de sauvegarde n’impose pas de conditions d’espace disque requis sur l’ordinateur protégé. L’application Sauvegarde Windows Server transfère directement les sauvegardes vers l’ordinateur Serveur de sauvegarde. Le travail de transfert de la sauvegarde n’apparaît pas dans l’affichage des **travaux** du Serveur de sauvegarde.
 
--   Sauvegarde du serveur de réserve 30 Go d’espace sur le volume du réplica hello pour la récupération complète. Vous pouvez modifier ce paramètre sur hello **l’Allocation de disque** page dans l’Assistant Modifier un groupe de Protection de hello ou à l’aide des applets de commande Get-DatasourceDiskAllocation et Set-DatasourceDiskAllocation PowerShell hello. Sur le volume des points de récupération hello, la protection récupération complète nécessite environ 6 Go pour une durée de rétention de cinq jours.
-    * Notez que vous ne pouvez pas réduire accessible sans hello réplica volume taille à 15 Go.
-    * Serveur de sauvegarde ne calcule pas taille hello hello complète de source de données. Il suppose qu’elle est de 30 Go pour tous les serveurs. Modifier la valeur hello en fonction de taille hello des sauvegardes de la récupération complète attendues dans votre environnement. taille de Hello d’une sauvegarde de la récupération complète peut être calculée à peu près comme somme hello d’espace utilisé sur tous les volumes critiques. Volumes critiques = volume de démarrage + volume système + volume hébergeant les données d’état du système, tel qu’Active Directory.
+-   Le Serveur de sauvegarde réserve 30 Go d’espace sur le volume du réplica pour la récupération complète. Vous pouvez modifier cette valeur via la page **Allocation de disque** de l’Assistant Modification d’un groupe de protection, ou en utilisant les applets de commande Get-DatasourceDiskAllocation et Set-DatasourceDiskAllocation PowerShell. Sur le volume des points de récupération, la protection de la récupération complète nécessite environ 6 Go pour une durée de rétention de cinq jours.
+    * Notez que vous ne pouvez pas réduire la taille du volume du réplica à moins de 15 Go.
+    * Le Serveur de sauvegarde ne calcule pas la taille de la source de données de récupération complète. Il suppose qu’elle est de 30 Go pour tous les serveurs. Modifiez la valeur en fonction de la taille des sauvegardes complètes que vous anticipez dans votre environnement. La taille d’une sauvegarde complète peut être calculée approximativement comme la totalité de l’espace utilisé sur tous les volumes critiques. Volumes critiques = volume de démarrage + volume système + volume hébergeant les données d’état du système, tel qu’Active Directory.
 
--   Si vous modifiez à partir de la protection de tooBMR protection l’état système, la protection récupération complète nécessite moins d’espace sur hello *volume des points de récupération*. Toutefois, hello espace restant sur le volume de hello n'est pas récupéré. Vous pouvez réduire manuellement la taille du volume hello sur hello **modifier l’Allocation de disque** page de l’Assistant Modifier un groupe de Protection de hello ou à l’aide des applets de commande Get-DatasourceDiskAllocation et Set-DatasourceDiskAllocation PowerShell hello.
+-   Si vous passez d’une protection de l’état du système à une protection complète, celle-ci nécessite moins d’espace sur le *volume des points de récupération*. Toutefois, l’espace restant sur le volume n’est pas récupéré. Vous pouvez réduire manuellement la taille du volume via la page **Allocation de disque** de l’Assistant Modification d’un groupe de protection, ou en utilisant les applets de commande Get-DatasourceDiskAllocation et Set-DatasourceDiskAllocation PowerShell.
 
-    Si vous modifiez à partir de la protection de tooBMR protection l’état système, la protection récupération complète nécessite davantage d’espace sur hello *volume du réplica*. Hello volume est automatiquement étendu. Si vous souhaitez que les allocations d’espace par défaut toochange hello, utilisez l’applet de commande PowerShell de Modify-DiskAllocation hello.
+    Si vous passez d’une protection de l’état du système à une protection complète, celle-ci nécessite davantage d’espace sur le *volume du réplica*. Le volume est automatiquement étendu. Si vous souhaitez modifier les allocations d’espace par défaut, utilisez l’applet de commande PowerShell Modify-DiskAllocation.
 
--   Si vous modifiez à partir de la protection de l’état toosystem protection récupération complète, vous avez besoin de davantage d’espace sur le volume des points de récupération hello. Sauvegarde du serveur peut tenter tooautomatically augmenter le volume hello. Si l’espace est insuffisant dans le pool de stockage hello, une erreur se produit.
+-   Si vous passez d’une protection complète à un protection de l’état du système, vous avez besoin de davantage d’espace sur le volume des points de récupération. Le Serveur de sauvegarde peut tenter d’augmenter automatiquement le volume. Si l’espace est insuffisant dans le pool de stockage, une erreur se produit.
 
-    Si vous modifiez à partir de la protection de l’état toosystem protection récupération complète, vous avez besoin d’espace sur l’ordinateur de hello protégé. Il s’agit, car la protection de l’état système écrit d’abord ordinateur local de hello réplica toohello, puis il transfère l’ordinateur du serveur de sauvegarde toohello.
+    Si vous passez d’une protection complète à un protection de l’état du système, vous avez besoin d’espace sur l’ordinateur protégé. Cela résulte du fait que la protection de l’état du système commence par écrire le réplica sur l’ordinateur local, avant de le transférer vers l’ordinateur Serveur de sauvegarde.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
@@ -104,125 +104,125 @@ Après la sauvegarde de hello, fichier de hello est ordinateur du serveur de sau
     * [Configuration requise pour le Serveur de sauvegarde Azure](http://docs.microsoft.com/system-center/dpm/install-dpm#setup-prerequisites)
     * [Matrice de protection du Serveur de sauvegarde](backup-mabs-protection-matrix.md)
 
-2.  **Configurez le stockage**. Vous pouvez stocker des données de sauvegarde sur disque, sur bande et dans le cloud hello avec Azure. Pour plus d’informations, voir [Préparer l’espace de stockage](https://docs.microsoft.com/system-center/dpm/plan-long-and-short-term-data-storage).
+2.  **Configurez le stockage**. Vous pouvez stocker les données de sauvegarde sur disque, sur bande et dans le cloud avec Azure. Pour plus d’informations, voir [Préparer l’espace de stockage](https://docs.microsoft.com/system-center/dpm/plan-long-and-short-term-data-storage).
 
-3.  **Configurer l’agent de protection hello**. Installer l’agent de protection hello hello sur ordinateur sur lequel vous souhaitez tooback des. Pour plus d’informations, consultez [agent de protection DPM déployer hello](http://docs.microsoft.com/system-center/dpm/deploy-dpm-protection-agent).
+3.  **Configurez l’agent de protection**. Installez l’agent de protection sur l’ordinateur que vous souhaitez sauvegarder. Pour plus d’informations, voir [Déployer l’agent de protection DPM](http://docs.microsoft.com/system-center/dpm/deploy-dpm-protection-agent).
 
 ## <a name="back-up-system-state-and-bare-metal"></a>Sauvegarde de l’état du système et récupération complète
-Configurez un groupe de protection comme décrit dans [Déployer des groupes de protection](http://docs.microsoft.com/system-center/dpm/create-dpm-protection-groups). Notez que vous ne pouvez pas protéger une récupération complète et le système d’état pour hello même ordinateur dans différents groupes. Par ailleurs, lorsque vous sélectionnez la récupération complète, la protection de l’état du système est automatiquement activée.
+Configurez un groupe de protection comme décrit dans [Déployer des groupes de protection](http://docs.microsoft.com/system-center/dpm/create-dpm-protection-groups). Notez que vous ne pouvez pas protéger la récupération complète et l’état du système pour un même ordinateur dans des groupes différents. Par ailleurs, lorsque vous sélectionnez la récupération complète, la protection de l’état du système est automatiquement activée.
 
 
-1.  Assistant de créer un nouveau groupe de Protection tooopen hello Bonjour Console Administrateur du serveur de sauvegarde, sélectionnez **Protection** > **Actions** > **créer groupe de Protection Groupe**.
+1.  Pour ouvrir l’Assistant Création d’un groupe de protection dans la Console Administrateur du Serveur de sauvegarde, sélectionnez **Protection** > **Actions** > **Créer un groupe de Protection**.
 
-2.  Sur hello **sélectionner le Type de groupe de Protection** , sélectionnez **serveurs**, puis sélectionnez **suivant**.
+2.  Dans la page **Sélectionner le type de groupe de protection**, sélectionnez **Serveurs**, puis **Suivant**.
 
-3.  Sur hello **sélectionner les membres du groupe** page, développez hello ordinateur, puis sélectionnez **BMR** ou **état du système**.
+3.  Dans la page **Sélectionner les membres du groupe**, développez l’ordinateur, puis sélectionnez **Récupération complète** ou **État du système**.
 
-    Souvenez-vous que vous ne peut pas protéger l’état de la récupération complète et système pour hello même ordinateur dans différents groupes. Par ailleurs, lorsque vous sélectionnez la récupération complète, la protection de l’état du système est automatiquement activée. Pour plus d’informations, voir [Déployer des groupes de protection](http://docs.microsoft.com/system-center/dpm/create-dpm-protection-groups).
+    N’oubliez pas que vous ne pouvez pas protéger la récupération complète et l’état du système pour un même ordinateur dans des groupes différents. Par ailleurs, lorsque vous sélectionnez la récupération complète, la protection de l’état du système est automatiquement activée. Pour plus d’informations, voir [Déployer des groupes de protection](http://docs.microsoft.com/system-center/dpm/create-dpm-protection-groups).
 
-4.  Sur hello **sélectionner la méthode de Protection des données** page, choisissez comment vous voulez que toohandle une sauvegarde à court terme et à long terme. Sauvegarde à court terme est toujours toodisk tout d’abord, avec l’option hello de sauvegarde à partir de hello disque toohello Azure cloud à l’aide de Azure Backup (à court terme ou à long terme). Un nuage de sauvegarde toohello toolong-terme de remplacement est tooset configuration à long terme tooa sauvegarde autonome appareil ou une bande bibliothèque de bandes tooBackup Server connecté.
+4.  Dans la page **Sélectionner la méthode de protection des données**, sélectionnez la façon dont vous souhaitez gérer les sauvegardes à court terme et à long terme. La sauvegarde à court terme est toujours effectuée d’abord sur disque, avec l’option de sauvegarder du disque dans le cloud Azure à l’aide de Sauvegarde Microsoft Azure (à court ou long terme). Une alternative à la sauvegarde à long terme dans le cloud consiste à configurer la sauvegarde à long terme sur un lecteur de bandes ou dans une bibliothèque de bandes autonomes connectés au Serveur de sauvegarde.
 
-5.  Sur hello **sélectionner les objectifs à court terme** page, sélectionnez le mode tooback stockage tooshort à long terme sur disque :
-    1. Pour **de rétention**, sélectionnez la durée pendant laquelle les données de salutation tookeep sur le disque. 
-    2. Pour **la fréquence de synchronisation**, sélectionnez la fréquence à laquelle vous souhaitez toorun une toodisk de sauvegarde incrémentielle. Si vous ne souhaitez pas tooset un intervalle de sauvegarde, vous pouvez vérifier hello **juste avant un point de récupération** option. Le Serveur de sauvegarde exécute une sauvegarde complète rapide juste avant chaque point de récupération planifié.
+5.  Dans la page **Sélectionner les objectifs à court terme**, sélectionnez la manière dont vous voulez sauvegarder dans le stockage à court terme sur disque :
+    1. Pour **Durée de rétention**, sélectionnez la durée pendant laquelle vous souhaitez conserver les données sur disque. 
+    2. Pour **Fréquence de synchronisation**, sélectionnez la fréquence à laquelle vous souhaitez exécuter une sauvegarde incrémentielle sur disque. Si vous ne souhaitez pas définir un intervalle de sauvegarde, vous pouvez activer l’option **Juste avant un point de récupération**. Le Serveur de sauvegarde exécute une sauvegarde complète rapide juste avant chaque point de récupération planifié.
 
-6.  Si vous souhaitez que les données de toostore sur bande pour le stockage à long terme, sur hello **spécifier les objectifs à long terme** , sélectionnez la durée pendant laquelle vous souhaitez que les données de bande de tookeep (1 à 99 ans). 
-    1. Pour **fréquence de sauvegarde**, sélectionnez la fréquence à laquelle tootape sauvegarde doit s’exécuter. fréquence de Hello est basée sur la durée de rétention hello que vous avez sélectionné :
-        * Lors de la durée de rétention hello est de 1 à 99 ans, vous pouvez sélectionner des sauvegardes toooccur quotidienne, hebdomadaire, bimensuelle, mensuelle, trimestrielle, semestrielle ou annuel.
-        * Lors de la durée de rétention hello est 1-11 mois, vous pouvez sélectionner des sauvegardes toooccur quotidienne, hebdomadaire, bimensuelle ou mensuelle.
-        * Lors de la durée de rétention hello est 1-4 semaines, vous pouvez sélectionner toooccur des sauvegardes quotidienne ou hebdomadaire.
+6.  Si vous souhaitez stocker des données sur bande pour un stockage à long terme, dans la page **Spécifier les objectifs à long terme**, sélectionnez la durée pendant laquelle vous souhaitez conserver les données sur bande (1 à 99 ans). 
+    1. Pour **Fréquence de sauvegarde**, sélectionnez la fréquence à laquelle la sauvegarde sur bande doit être exécutée. La fréquence est basée sur la durée de rétention que vous avez sélectionnée :
+        * Lorsque la durée de rétention est de 1 à 99 ans, vous pouvez opter pour des sauvegardes quotidiennes, hebdomadaires, bihebdomadaires, mensuelles, trimestrielles, semestrielles ou annuelles.
+        * Lorsque la durée de rétention est de 1 à 11 mois, vous pouvez opter pour des sauvegardes quotidiennes, hebdomadaires, bihebdomadaires ou mensuelles.
+        * Lorsque la durée de rétention est de 1 à 4 semaines, vous pouvez opter pour des sauvegardes quotidiennes ou hebdomadaires.
 
-    2. Sur hello **détails de bibliothèque et sélectionnez la bande** page, sélectionnez hello toouse de bibliothèque et de bande, et si les données doivent être compressées et chiffrées.
+    2. Dans la page **Sélectionner la bande et les détails de la bibliothèque**, sélectionnez la bande et la bibliothèque à utiliser, et indiquez si les données doivent être compressées et chiffrées.
 
-7.  Sur hello **vérifier l’Allocation de disque** , vérifiez l’espace disque de pool de stockage de hello est alloué pour le groupe de protection hello.
+7.  Dans la page **Vérifier l’allocation de disque**, vérifiez l’espace disque de pool de stockage alloué pour ce groupe de protection.
 
-    1. **Nombre total de taille des données** taille hello de hello données tooback des.
-    2. **Toobe d’espace disque approvisionné sur Azure Backup Server** espace hello qui vous recommande de sauvegarde du serveur pour le groupe de protection hello. Sauvegarde du serveur choisit hello idéale volume de sauvegarde en fonction des paramètres de hello. Toutefois, vous pouvez modifier les choix de volume de sauvegarde hello dans **détails de l’allocation de disque**. 
-    3. Pour les charges de travail, dans le menu déroulant de hello, sélectionnez hello stockage préféré. Vos modifications modifier les valeurs hello **stockage Total** et **espace de stockage** Bonjour **stockage de disque disponible** volet. Espace underprovisioned est hello que serveur de sauvegarde suggère que vous ajoutez toohello volume, les sauvegardes smooth tooensure de stockage.
+    1. La **Taille totale des données** est la taille des données que vous souhaitez sauvegarder.
+    2. L’**Espace disque à approvisionner sur le Serveur de sauvegarde Azure** est l’espace que le Serveur de sauvegarde recommande pour le groupe de protection. Le Serveur de sauvegarde choisit le volume de sauvegarde idéal en fonction des paramètres. Toutefois, vous pouvez modifier les choix de volume de sauvegarde dans **Détails de l’allocation de disque**. 
+    3. Pour les charges de travail, dans le menu déroulant, sélectionnez le stockage par défaut. Vos modifications changent les valeurs de **Stockage Total** et **Stockage libre** dans le volet **Stockage sur disque disponible**. L’espace sous-approvisionné est la quantité de stockage que le Serveur de sauvegarde suggère que vous ajoutiez au volume pour garantir des sauvegardes sans heurt.
 
-8.  Sur hello **choisir la méthode de création de réplica** , sélectionnez comment vous souhaitez que la réplication initiale complète des données toohandle hello. Si vous choisissez tooreplicate réseau hello, nous vous recommandons de choisir une heure creuse. Pour de grandes quantités de données ou les conditions de réseau qui ne sont pas optimales, envisagez de répliquer des données hello hors connexion à l’aide d’un support amovible.
+8.  Dans la page **choisir la méthode de création de réplica**, sélectionnez la façon dont vous souhaitez gérer la réplication initiale complète des données. Si vous choisissez de répliquer sur le réseau, nous vous recommandons de choisir une heure creuse. Si les quantités de données sont importantes ou si les conditions réseau ne sont pas optimales, envisagez de répliquer les données hors connexion à l’aide d’un support amovible.
 
-9. Sur hello **choisissez les Options de vérification de cohérence** , sélectionnez comment vous souhaitez que les vérifications de cohérence tooautomate. Vous pouvez choisir toorun une vérification uniquement lorsque les données du réplica deviennent incohérentes ou selon une planification. Si vous ne souhaitez pas tooconfigure vérification de cohérence automatique, vous pouvez exécuter une vérification manuelle à tout moment. toorun une vérification manuelle, Bonjour **Protection** zone Hello la Console Administrateur de serveur de sauvegarde, avec le bouton droit de la protection hello groupe et sélectionnez **effectuer une vérification de cohérence**.
+9. Dans la page **Sélectionner les options de vérification de cohérence**, indiquez comment vous voulez automatiser les vérifications de cohérence. Vous pouvez choisir d’exécuter une vérification uniquement lorsque les données du réplica deviennent incohérentes, ou selon une planification. Si vous ne voulez pas configurer un vérification de cohérence automatique, vous pouvez effectuer une vérification manuelle à toute moment. Pour effectuer une vérification manuelle, dans la zone **Protection** de la Console Administrateur du Serveur de sauvegarde, cliquez avec le bouton droit sur le groupe de protection, puis sélectionnez **Effectuer une vérification de cohérence**.
 
-10. Si vous avez sélectionné tooback des toohello cloud à l’aide d’Azure Backup, sur hello **spécifier les données de Protection en ligne** , assurez-vous que vous sélectionnez les charges de travail hello souhaité tooback des tooAzure.
+10. Si vous avez choisi de sauvegarder dans le cloud à l’aide de Sauvegarde Azure, dans la page **Indiquer les données de protection en ligne**, veillez à sélectionner les charges de travail que vous souhaitez sauvegarder dans Azure.
 
-11. Sur hello **spécifier la planification de sauvegarde en ligne** , sélectionnez la fréquence à laquelle incrémentielles tooAzure se produit. Vous pouvez planifier des sauvegardes toorun chaque jour, semaine, mois et année et sélectionnez hello date et l’heure à laquelle il doit s’exécuter. Les sauvegardes peuvent se produire des tootwice quotidiennement. Chaque fois qu’une sauvegarde s’exécute, un point de récupération de données est créé dans Azure à partir de la copie de hello hello des données de sauvegarde stockées sur le disque de sauvegarde du serveur hello.
+11. Dans la page **Spécifier la planification de sauvegarde en ligne**, sélectionnez la fréquence des sauvegardes incrémentielles dans Azure. Vous pouvez planifier des sauvegardes quotidiennes, hebdomadaires, mensuelles et annuelles, ainsi que sélectionner la date et l’heure de leur exécution. Les sauvegardes peuvent avoir lieu jusqu’à deux fois par jour. Chaque fois qu’une sauvegarde s’exécute, un point de récupération de données est créé dans Azure à partir de la copie des données de sauvegarde stockées sur le disque du Serveur de sauvegarde.
 
-12. Sur hello **spécifier la stratégie de rétention en ligne** , sélectionnez la façon dont les points de récupération hello qui sont créés à partir des sauvegardes quotidiennes, hebdomadaires, mensuelles et annuelles hello sont conservés dans Azure.
+12. Dans la page **Spécifier la stratégie de rétention en ligne**, sélectionnez la façon dont les points de récupération créés à partir des sauvegardes quotidiennes, hebdomadaires, mensuelles et annuelles sont conservés dans Azure.
 
-13. Sur hello **choisir la réplication en ligne** , sélectionnez comment la réplication initiale complète hello de données se produit. Vous pouvez répliquer sur hello réseau faire ou hors connexion (l’amorçage en mode hors connexion) de sauvegarde. Sauvegarde en mode hors connexion utilise la fonctionnalité d’importation Azure hello. Pour plus d’informations, voir [Flux de travail de la sauvegarde hors connexion dans la sauvegarde Azure](backup-azure-backup-import-export.md).
+13. Dans la page **Choisir la réplication en ligne**, sélectionnez la façon dont la réplication initiale complète des données doit se produire. Vous pouvez répliquer sur le réseau ou effectuer une sauvegarde en mode hors connexion (essaimage hors connexion). La sauvegarde en mode hors connexion utilise la fonctionnalité Azure Import. Pour plus d’informations, voir [Flux de travail de la sauvegarde hors connexion dans la sauvegarde Azure](backup-azure-backup-import-export.md).
 
-14. Sur hello **Résumé** page, vérifiez vos paramètres. Après avoir sélectionné **créer un groupe**, la réplication initiale des données de salutation se produit. Lorsque la réplication des données se termine, hello **état** page, état du groupe de protection hello est **OK**. Sauvegarde, a lieu par la protection de hello les paramètres de groupe.
+14. Dans la page **Résumé**, vérifiez vos paramètres. Après que vous avez sélectionné **Créer un groupe**, la réplication initiale des données est effectuée. Une fois la réplication des données terminée, dans la page **État**, l’état du groupe de protection est **OK**. La sauvegarde a alors lieu conformément aux paramètres du groupe de protection.
 
 ## <a name="recover-system-state-or-bmr"></a>Récupérer l’état du système ou la récupération complète
-Vous pouvez récupérer l’emplacement de réseau de tooa état système ou la récupération complète. Si vous avez sauvegardé la récupération complète, utilisez toostart de l’environnement de récupération Windows (WinRE) de votre système et le connecter toohello réseau. Ensuite, utilisez toorecover de sauvegarde de Windows Server à partir de l’emplacement de réseau hello. Si vous avez sauvegardé l’état du système, utilisez simplement toorecover de sauvegarde de Windows Server à partir de l’emplacement de réseau hello.
+Vous pouvez récupérer la récupération complète ou l’état du système dans un emplacement réseau. Si vous avez sauvegardé une récupération complète, utilisez l’environnement de récupération Windows (WinRE) pour démarrer votre système et le connecter au réseau. Ensuite, utilisez l’application Sauvegarde Windows Server pour récupérer à partir de l’emplacement réseau. Si vous avez sauvegardé l’état du système, utilisez simplement l’application Sauvegarde Windows Server pour récupérer à partir de l’emplacement réseau.
 
 ### <a name="restore-bmr"></a>Restaurer une récupération complète
-Exécuter la récupération sur l’ordinateur du serveur de sauvegarde hello :
+Exécutez la récupération sur l’ordinateur Serveur de sauvegarde :
 
-1.  Bonjour **récupération** volet, rechercher un ordinateur hello vous souhaitez toorecover, puis sélectionnez **la récupération complète**.
+1.  Dans le volet **Récupération**, recherchez l’ordinateur à récupérer, puis sélectionnez **Récupération complète**.
 
-2.  Points de récupération disponibles sont indiqués en gras dans le calendrier de hello. Sélectionnez les date hello et heure hello point de récupération que vous souhaitez toouse.
+2.  Les points de récupération disponibles sont indiqués en gras dans le calendrier. Sélectionnez la date et l’heure du point de récupération à utiliser.
 
-3.  Sur hello **sélectionner le Type de récupération** , sélectionnez **tooa copier le dossier réseau.**
+3.  Dans la page **Sélectionner le type de récupération**, sélectionnez **Copier dans un dossier réseau**.
 
-4.  Sur hello **spécifier la Destination** page, sélectionnez où vous souhaitez que les données hello toocopy. N’oubliez pas que destination sélectionnée hello doit toohave suffisamment d’espace. Nous vous recommandons de créer un dossier.
+4.  Dans la page **Spécifier la destination**, sélectionnez l’emplacement où vous souhaitez copier les données. N’oubliez pas que la destination sélectionnée doit offrir suffisamment d’espace. Nous vous recommandons de créer un dossier.
 
-5.  Sur hello **spécifier les Options de récupération** page, sélectionnez hello sécurité paramètres tooapply. Ensuite, sélectionnez si vous souhaitez toouse stockage réseau (SAN)-en fonction des captures instantanées matérielles, pour accélérer la récupération. (Ceci est une option uniquement si vous disposez d’un réseau SAN avec cette fonctionnalité et hello toocreate de capacité et fractionner un toomake clone il est accessible en écriture. En outre, hello ordinateur protégé et l’ordinateur serveur de sauvegarde doivent être connecté toohello même réseau.)
+5.  Dans la page **Spécifier les options de récupération**, sélectionnez les paramètres de sécurité à appliquer. Ensuite, indiquez si vous souhaitez utiliser des instantanés matériels basés sur le réseau de zone de stockage (SAN) pour accélérer la récupération (cette option est disponible uniquement si vous avez un SAN avec cette fonctionnalité, et la possibilité de créer et de fractionner un clone pour le rendre accessible en écriture ; en outre, l’ordinateur protégé et l’ordinateur Serveur de sauvegarde doivent être connectés au même réseau).
 
-6.  Configurez les options de notification. Sur hello **Confirmation** page, sélectionnez **récupérer**.
+6.  Configurez les options de notification. Dans la page **Confirmation**, sélectionnez **Récupérer**.
 
-Vous pouvez configurer l’emplacement du partage hello :
+Configurez l’emplacement du partage :
 
-1.  Dans l’emplacement de restauration hello, accédez à dossier toohello qui dispose d’une sauvegarde hello.
+1.  Dans l’emplacement de restauration, accédez au dossier contenant la sauvegarde.
 
-2.  Partager le dossier hello qui est un niveau au-dessus de WindowsImageBackup afin que le dossier de WindowsImageBackup hello est hello racine du dossier partagé de hello. Si vous ne le faites pas, restauration ne trouve pas les sauvegarde hello. tooconnect en utilisant l’environnement de récupération Windows (WinRE), vous devez un partage auquel vous pouvez accéder dans WinRE avec les informations d’identification et l’adresse IP hello.
+2.  Partagez le dossier situé un niveau au-dessus de WindowsImageBackup, de façon à ce que la racine du dossier partagé soit le dossier WindowsImageBackup. Si vous ne le faites pas, la restauration ne trouve pas la sauvegarde. Pour vous connecter en utilisant l’environnement de récupération Windows (WinRE), vous avez besoin d’un partage auquel vous pouvez accéder dans WinRE avec l’adresse IP et les informations d’identification correctes.
 
-Restauration du système de hello :
+Restaurez le système :
 
-1.  Hello démarrer l’ordinateur sur lequel vous souhaitez que les toorestore hello image à l’aide de hello DVD Windows pour le système de hello que vous restaurez.
+1.  Démarrez l’ordinateur sur lequel vous souhaitez restaurer l’image à l’aide du DVD Windows du système que vous restaurez.
 
-2.  Sur la première page de hello, vérifiez les paramètres linguistiques et régionaux. Sur hello **installer** page, sélectionnez **réparer votre ordinateur**.
+2.  Dans la première page, vérifiez les paramètres linguistiques et régionaux. Dans la page **Installer**, sélectionnez **Réparer votre ordinateur**.
 
-3.  Sur hello **Options de récupération système** page, sélectionnez **restaurer votre ordinateur à l’aide d’une image du système que vous avez créé précédemment**.
+3.  Dans la page **Options de récupération système**, sélectionnez **Restaurer votre ordinateur avec une image système créée précédemment**.
 
-4.  Sur hello **sélectionner une sauvegarde d’image système** , sélectionnez **sélectionner une image système** > **avancé** > **recherche pour un système image sur hello réseau**. Si un avertissement s’affiche, sélectionnez **Oui**. Passez le chemin d’accès de partage toohello, entrez les informations d’identification hello, puis sélectionnez le point de récupération hello. Cette action déclenche une analyse des sauvegardes spécifiques disponibles dans ce point de récupération. Sélectionnez le point de récupération hello que vous souhaitez toouse.
+4.  Dans la page **Sélectionner une sauvegarde d’image système**, choisissez **Sélectionner une image système** > **Avancé** > **Chercher une image système sur le réseau**. Si un avertissement s’affiche, sélectionnez **Oui**. Accédez au chemin d’accès du partage, entrez les informations d’identification, puis sélectionnez le point de récupération. Cette action déclenche une analyse des sauvegardes spécifiques disponibles dans ce point de récupération. Sélectionnez le point de récupération que vous souhaitez utiliser.
 
-5.  Sur hello **Choisissez comment toorestore hello sauvegarde** page, sélectionnez **formater et repartitionner les disques**. Sur la page suivante de hello, vérifiez les paramètres. 
+5.  Dans la page **Choisissez comment restaurer la sauvegarde**, sélectionnez **Formater et repartitionner les disques**. Dans la page suivante, vérifiez les paramètres. 
 
-6.  restauration de hello toobegin, sélectionnez **Terminer**. Un redémarrage est requis.
+6.  Pour commencer la restauration, sélectionnez **Terminer**. Un redémarrage est requis.
 
 ### <a name="restore-system-state"></a>Restaurer l’état du système
 
 Exécutez la récupération dans le Serveur de sauvegarde :
 
-1.  Bonjour **récupération** volet, hello rechercher un ordinateur que vous souhaitez toorecover, puis sélectionnez **la récupération complète**.
+1.  Dans le volet **Récupération**, recherchez l’ordinateur à récupérer, puis sélectionnez **Récupération complète**.
 
-2.  Points de récupération disponibles sont indiqués en gras dans le calendrier de hello. Sélectionnez les date hello et heure hello point de récupération que vous souhaitez toouse.
+2.  Les points de récupération disponibles sont indiqués en gras dans le calendrier. Sélectionnez la date et l’heure du point de récupération à utiliser.
 
-3.  Sur hello **sélectionner le Type de récupération** , sélectionnez **tooa copier le dossier réseau**.
+3.  Dans la page **Sélectionner le type de récupération**, sélectionnez **Copier dans un dossier réseau**.
 
-4.  Sur hello **spécifier la Destination** page, sélectionnez où vous souhaitez toocopy hello données. N’oubliez pas de que suffisamment d’espace a besoin de cette destination sélectionnée hello. Nous vous recommandons de créer un dossier.
+4.  Dans la page **Spécifier la destination**, sélectionnez l’emplacement où vous souhaitez copier les données. N’oubliez pas que la destination sélectionnée doit offrir un espace suffisant. Nous vous recommandons de créer un dossier.
 
-5.  Sur hello **spécifier les Options de récupération** page, sélectionnez hello sécurité paramètres tooapply. Ensuite, indiquez si vous souhaitez des captures instantanées matérielles basées sur SAN de toouse pour accélérer la récupération. (Ceci est une option uniquement si vous disposez d’un réseau SAN avec cette fonctionnalité et hello toocreate de capacité et fractionner un toomake clone il est accessible en écriture. En outre, hello l’ordinateur protégé et serveur de sauvegarde du serveur doit être connecté toohello même réseau.)
+5.  Dans la page **Spécifier les options de récupération**, sélectionnez les paramètres de sécurité à appliquer. Ensuite, indiquez si vous souhaitez utiliser des instantanés matériels basés sur le SAN pour accélérer la récupération (cette option est disponible uniquement si vous disposez d’un SAN avec cette fonctionnalité, et de la possibilité de créer et de fractionner un clone pour le rendre accessible en écriture ; en outre, l’ordinateur protégé et le Serveur de sauvegarde doivent être connectés au même réseau).
 
-6.  Configurez les options de notification. Sur hello **Confirmation** page, sélectionnez **récupérer**.
+6.  Configurez les options de notification. Dans la page **Confirmation**, sélectionnez **Récupérer**.
 
 Exécutez l’application Sauvegarde Windows Server :
 
 1.  Sélectionnez **Actions** > **Récupérer** > **Ce serveur** > **Suivant**.
 
-2.  Sélectionnez **un autre serveur**, sélectionnez hello **spécifier un Type d’emplacement** page, puis sélectionnez **dossier partagé distant**. Entrez hello chemin d’accès toohello dossier qui contient le point de récupération hello.
+2.  Sélectionnez **Un autre serveur**, choisissez la page **Spécifier un type d’emplacement**, puis sélectionnez **Dossier partagé distant**. Entrez le chemin d’accès au dossier contenant le point de récupération.
 
-3.  Sur hello **sélectionner le Type de récupération** , sélectionnez **état du système**. 
+3.  Dans la page **Sélectionner le type de récupération**, choisissez **État du système**. 
 
-4. Sur hello **sélectionner l’emplacement pour la récupération de l’état système** , sélectionnez **emplacement d’origine**.
+4. Dans la page **Sélectionner l’emplacement pour la récupération de l’état du système**, choisissez **Emplacement d’origine**.
 
-5.  Sur hello **Confirmation** page, sélectionnez **récupérer**. Après la restauration de hello, hello chargera.
+5.  Dans la page **Confirmation**, sélectionnez **Récupérer**. Après la restauration, redémarrez le serveur.
 
-6.  Vous pouvez également exécuter hello restauration d’état du système à une invite de commandes. toodo, début de sauvegarde de Windows Server sur l’ordinateur de hello souhaité toorecover. identificateur de version hello tooget, à l’invite de commandes, entrez :```wbadmin get versions -backuptarget \<servername\sharename\>```
+6.  Vous pouvez également exécuter la restauration de l’état du système à une invite de commandes. Pour ce faire, démarrez l’application Sauvegarde Windows Server sur l’ordinateur que vous souhaitez récupérer. Pour obtenir l’identificateur de version, à une invite de commandes, entrez ce qui suit :```wbadmin get versions -backuptarget \<servername\sharename\>```.
 
-    Utilisez hello version identificateur toostart hello état la restauration du système. À l’invite de commandes hello, entrez :```wbadmin start systemstaterecovery -version:<versionidentified> -backuptarget:<servername\sharename>```
+    Utilisez l’identificateur de version pour démarrer la restauration de l’état du système. À l’invite de commandes, entrez ce qui suit : ```wbadmin start systemstaterecovery -version:<versionidentified> -backuptarget:<servername\sharename>```.
 
-    Confirmer la restauration de hello toostart. Vous pouvez voir les processus hello dans la fenêtre d’invite de commandes hello. Un journal de restauration est créé. Après la restauration de hello, hello chargera.
+    Confirmez que vous souhaitez démarrer la récupération. Vous pouvez voir le processus dans la fenêtre d’invite de commandes. Un journal de restauration est créé. Après la restauration, redémarrez le serveur.
 

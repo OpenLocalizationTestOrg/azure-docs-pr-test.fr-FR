@@ -1,6 +1,6 @@
 ---
-title: aaaOptimize votre environnement de System Center Operations Manager avec Analytique de journal Azure | Documents Microsoft
-description: "Vous pouvez utiliser hello System Center Operations Manager évaluation solution tooassess hello des risques et l’intégrité de vos environnements de serveurs selon un intervalle régulier."
+title: Optimisation de votre environnement System Center Operations Manager avec Azure Log Analytics | Microsoft Docs
+description: "La solution System Center Operations Manager Assessment permet d’évaluer les risques et l’intégrité de vos environnements de serveurs à intervalles réguliers."
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -15,53 +15,53 @@ ms.workload: infrastructure-services
 ms.date: 08/11/2017
 ms.author: banders
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c024e53826e91524c120bdb98ae7d96d6dc37d15
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4992d98397da409f7c1cfbdeb40fdb0cdd0d2f19
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="optimize-your-environment-with-hello-system-center-operations-manager-assessment-preview-solution"></a>Optimiser votre environnement avec hello solution de System Center Operations Manager évaluation (version préliminaire)
+# <a name="optimize-your-environment-with-the-system-center-operations-manager-assessment-preview-solution"></a>Optimisation de votre environnement avec la solution System Center Operations Manager Assessment (version préliminaire)
 
 ![Symbole de System Center Operations Manager Assessment](./media/log-analytics-scom-assessment/scom-assessment-symbol.png)
 
-Vous pouvez utiliser hello System Center Operations Manager évaluation solution tooassess hello des risques et l’intégrité de vos environnements de serveur System Center Operations Manager sur un intervalle régulier. Cet article vous aide à installer, configurer et utiliser la solution de hello afin que vous puissiez prendre les actions correctives relatives à des problèmes potentiels.
+La solution System Center Operations Manager Assessment permet d’évaluer les risques et l’intégrité de vos environnements de serveurs System Center Operations Manager à intervalles réguliers. Cet article vous aide à installer, à configurer et à utiliser la solution pour vous permettre de prendre les mesures correctives en vue de régler des problèmes potentiels.
 
-Cette solution fournit une liste hiérarchisée de l’infrastructure de serveurs déployée recommandations tooyour spécifique. les recommandations de Hello sont réparties en focus quatre zones, qui vous permettent de rapidement comprennent hello risque et l’action corrective.
+Cette solution fournit une liste hiérarchisée de recommandations propres à votre infrastructure de serveurs déployée. Les recommandations sont classées en quatre domaines pour vous aider à rapidement mesurer les risques et prendre les mesures correctives appropriées.
 
-Hello recommandations sont basées sur les connaissances de hello et l’expérience acquises par les ingénieurs de Microsoft de milliers de visiteurs. Chaque recommandation explique pourquoi le problème peut concerner tooyou et comment les modifications suggérées tooimplement hello.
+Les recommandations proposées sont basées sur les connaissances et l'expérience que les ingénieurs de Microsoft ont acquises au contact de milliers de visiteurs. Chaque recommandation explique pourquoi un problème peut vous concerner et comment implémenter les modifications suggérées.
 
-Vous pouvez choisir les domaines les plus importantes tooyour organisation et suivre votre progression vers un environnement sans risque et intègre.
+Vous pouvez choisir les domaines les plus importants pour votre organisation et suivre votre progression vers un environnement sans risque et intègre.
 
-Une fois que vous avez ajouté des solutions de hello et une évaluation est terminée, le résumé des informations pour les domaines d’intérêt s’affiche sur hello **System Center Operations Manager évaluation** tableau de bord pour votre infrastructure. Hello sections suivantes décrivent comment toouse hello plus d’informations sur hello **System Center Operations Manager évaluation** tableau de bord, où vous pouvez afficher et prenez les actions recommandées pour votre infrastructure SCOM.
+Une fois la solution ajoutée et l’évaluation terminée, le résumé des informations de domaines s’affiche sur le tableau de bord **System Center Operations Manager Assessment** de votre infrastructure. Les sections suivantes expliquent comment utiliser les informations du tableau de bord **System Center Operations Manager Assessment**, dans lequel vous pouvez afficher et exécuter les actions recommandées pour votre infrastructure SCOM.
 
 ![Mosaïque de la solution System Center Operations Manager](./media/log-analytics-scom-assessment/scom-tile.png)
 
 ![Tableau de bord System Center Operations Manager Assessment](./media/log-analytics-scom-assessment/scom-dashboard01.png)
 
-## <a name="installing-and-configuring-hello-solution"></a>L’installation et la configuration de solution de hello
+## <a name="installing-and-configuring-the-solution"></a>Installation et configuration de la solution
 
-solution de Hello fonctionne avec le système de Microsoft Operations Manager 2012 R2 et 2012 SP1.
+La solution fonctionne avec Microsoft System Operations Manager 2012 R2 et 2012 SP1.
 
-Utilisez hello suivant tooinstall des informations et configurer une solution de hello.
+Utilisez les informations suivantes pour installer et configurer la solution.
 
- - Avant de pouvoir utiliser une solution d’évaluation dans OMS, vous devez avoir installé de solution de hello. Installer la solution hello [Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.SCOMAssessmentOMS?tab=Overview) ou en suivant les instructions de hello dans [solutions Analytique de journal ajouter à partir de la galerie des Solutions de hello](log-analytics-add-solutions.md).
+ - Avant de pouvoir utiliser une solution d’évaluation dans OMS, vous devez avoir installé cette solution. Installez la solution depuis la [Place de marché Azure](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.SCOMAssessmentOMS?tab=Overview) ou en procédant de la manière décrite dans [Ajouter des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md).
 
- - Après l’ajout d’espace de travail toohello de solution hello, vignette de System Center Operations Manager évaluation hello sur le tableau de bord hello affiche le message de salutation une configuration supplémentaire requise. Cliquez sur la vignette de hello et suivez les étapes de configuration hello mentionnés dans la page de hello
+ - Après avoir ajouté la solution à l’espace de travail, la mosaïque System Center Operations Manager Assessment sur le tableau de bord affiche un message de configuration supplémentaire requis. Cliquez sur la mosaïque et suivez les étapes de configuration mentionnées dans la page
 
  ![Mosaïque du tableau de bord System Center Operations Manager](./media/log-analytics-scom-assessment/scom-configrequired-tile.png)
 
- Configuration de hello System Center Operations Manager peut être effectuée via un script de hello en suivant les étapes de hello mentionnés dans la page de configuration hello de solution hello dans OMS.
+ La configuration de System Center Operations Manager peut être effectuée via le script en suivant les étapes présentées dans la page de configuration de la solution dans OMS.
 
- Au lieu de cela, évaluation de hello tooconfigure via la Console SCOM, hello suivez ci-dessous les étapes Bonjour même ordre
-1. [Définir le compte d’identification hello pour System Center Operations Manager évaluation](#operations-manager-run-as-accounts-for-oms)  
-2. [Configurer la règle de System Center Operations Manager évaluation hello](#configure-the-assessment-rule)
+ À la place, pour configurer l’évaluation via la console SCOM, suivez les étapes dans l’ordre ci-dessous
+1. [Définir le compte d’identification pour l’évaluation de System Center Operations Manager](#operations-manager-run-as-accounts-for-oms)  
+2. [Configurer la règle d’évaluation de System Center Operations Manager Assessment](#configure-the-assessment-rule)
 
 ## <a name="system-center-operations-manager-assessment-data-collection-details"></a>Détails de l’évaluation de la collecte de données System Center Operations Manager
 
-Hello d’évaluation de System Center Operations Manager collecte des données WMI, données de Registre, les données de journal des événements, données d’Operations Manager via Windows PowerShell, les requêtes SQL, collecteur d’informations de fichier à l’aide de serveur hello que vous avez activés.
+System Center Operations Manager Assessment collecte des données WMI, des données de registre, des données EventLog, des données Operations Manager via Windows PowerShell, les Requêtes SQL, le Collecteur d’informations sur le fichier à l’aide du serveur que vous avez activé.
 
-Hello tableau suivant indique les méthodes de collecte de données de System Center Operations Manager évaluation et la fréquence des données sont collectées par un agent.
+Le tableau suivant présente les méthodes de collecte de données pour System Center Operations Manager Assessment, et précise la fréquence à laquelle les données sont collectées par un agent.
 
 | plateforme | Agent direct | Agent SCOM | Stockage Azure | SCOM requis ? | Données de l’agent SCOM envoyées via un groupe d’administration | fréquence de collecte |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -69,74 +69,74 @@ Hello tableau suivant indique les méthodes de collecte de données de System Ce
 
 ## <a name="operations-manager-run-as-accounts-for-oms"></a>Comptes d’identification Operations Manager pour OMS
 
-OMS s’appuie sur les packs d’administration pour les charges de travail tooprovide services à valeur ajoutée. Chaque charge de travail requiert des packs d’administration de toorun des privilèges spécifiques de la charge de travail dans un contexte de sécurité différent, tel qu’un compte de domaine. Configurer une identification Operations Manager compte tooprovide informations d’identification.
+OMS utilise les packs d’administration pour les charges de travail afin de fournir des services à valeur ajoutée. Chaque charge de travail nécessite des privilèges spécifiques à la charge de travail pour exécuter les packs d’administration dans un contexte de sécurité différent, comme un compte de domaine. Configurez un compte d’identification Operations Manager pour fournir les informations d’identification.
 
-Utilisez hello tooset hello compte d’identification Operations Manager pour System Center Operations Manager évaluation des informations suivantes.
+Utilisez les informations suivantes pour définir le compte d'identification Operations Manager pour System Center Operations Manager Assessment.
 
-### <a name="set-hello-run-as-account"></a>Ensemble hello compte d’identification
+### <a name="set-the-run-as-account"></a>Configuration du compte d’identification
 
-1. Bonjour Console Operations Manager, accédez à toohello **Administration** onglet.
-2. Sous hello **Configuration d’identification**, cliquez sur **comptes**.
-3. Créer hello compte d’identification, par hello Assistant Création d’un compte Windows. Hello compte toouse est hello celui identifié et avoir toutes les conditions préalables hello ci-dessous :
+1. Dans la console Operations Manager, accédez à l’onglet **Administration**.
+2. Sous **Configuration d’identification**, cliquez sur **Comptes**.
+3. Créez le compte d’identification, en suivant les étapes de l’Assistant et en créant un compte Windows. Le compte à utiliser est celui identifié et qui dispose de toutes les conditions requises ci-dessous :
 
     >[!NOTE]
-    Hello compte Exécuter en tant que doive respecter les conditions suivantes :
-    - Un membre du compte de domaine de hello groupe Administrateurs local sur tous les serveurs dans l’environnement hello (toutes les opérations de gestionnaire de rôles - serveur d’administration, de la base de données Operations Manager, entrepôt de données, Reporting, Console Web, passerelle)
-    - Rôle administrateur d’opération pour le groupe d’administration hello en cours d’évaluation
-    - Exécutez hello [script](#sql-script-to-grant-granular-permissions-to-the-run-as-account) compte de toohello toogrant autorisations granulaires sur l’instance SQL utilisé par Operations Manager.
-      Remarque : Si ce compte dispose déjà des droits d’administrateur système, puis passez l’exécution du script hello.
+    Le compte d’identification doit respecter les conditions suivantes :
+    - Un compte de domaine membre du groupe Administrateurs local sur tous les serveurs dans l’environnement (tous les rôles Operations Manager - Serveur de gestion, Base de données OpsMgr, Entrepôt de données, Création de rapports, Console Web, Passerelle)
+    - Rôle Administrateur Operations Manager pour le groupe de gestion en cours d’évaluation
+    - Exécutez le [script](#sql-script-to-grant-granular-permissions-to-the-run-as-account) pour accorder les autorisations granulaires au compte sur l’instance SQL utilisée par Operations Manager.
+      Remarque : si ce compte dispose déjà des droits d’administrateur système, vous pouvez ignorer l’exécution du script.
 
 4. Sous **Sécurité de la distribution**, sélectionnez **Plus sécurisé**.
-5. Spécifiez le serveur d’administration hello où le compte de hello est distribué.
-3. Revenir en arrière toohello Configuration d’identification et cliquez sur **profils**.
-4. Recherchez hello *profil d’évaluation de SCOM*.
-5. nom du profil Hello doit être : *Microsoft System Center Advisor SCOM évaluation profil d’identification*.
-6. Avec le bouton droit et mettre à jour ses propriétés et ajouter hello récemment créé le compte d’identification créé à l’étape 3.
+5. Spécifiez le serveur de gestion sur lequel le compte est distribué.
+3. Revenez à la Configuration d’identification et cliquez sur **Profils**.
+4. Recherchez *Profil d’évaluation SCOM*.
+5. Le nom du profil doit être : *Microsoft System Center Advisor SCOM Assessment Run As Profile*.
+6. Avec le bouton droit, mettez à jour ses propriétés et ajoutez le nouveau compte d’identification créé à l’étape 3.
 
-### <a name="sql-script-toogrant-granular-permissions-toohello-run-as-account"></a>SQL script toogrant autorisations granulaires toohello compte d’identification
+### <a name="sql-script-to-grant-granular-permissions-to-the-run-as-account"></a>Script SQL octroyant des autorisations granulaires au compte d’identification
 
-Exécutez hello suivant SQL script toogrant requis autorisations toohello compte d’identification sur l’instance SQL hello utilisé par Operations Manager.
+Exécutez le script SQL suivant pour accorder les autorisations requises au compte d’identification sur l’instance SQL utilisée par Operations Manager.
 
 ```
--- Replace <UserName> with hello actual user name being used as Run As Account.
+-- Replace <UserName> with the actual user name being used as Run As Account.
 USE master
 
--- Create login for hello user, comment this line if login is already created.
+-- Create login for the user, comment this line if login is already created.
 CREATE LOGIN [UserName] FROM WINDOWS
 
 
---GRANT permissions toouser.
-GRANT VIEW SERVER STATE too[UserName]
-GRANT VIEW ANY DEFINITION too[UserName]
-GRANT VIEW ANY DATABASE too[UserName]
+--GRANT permissions to user.
+GRANT VIEW SERVER STATE TO [UserName]
+GRANT VIEW ANY DEFINITION TO [UserName]
+GRANT VIEW ANY DATABASE TO [UserName]
 
--- Add database user for all hello databases on SQL Server Instance, this is required for connecting tooindividual databases.
--- NOTE: This command must be run anytime new databases are added tooSQL Server instances.
+-- Add database user for all the databases on SQL Server Instance, this is required for connecting to individual databases.
+-- NOTE: This command must be run anytime new databases are added to SQL Server instances.
 EXEC sp_msforeachdb N'USE [?]; CREATE USER [UserName] FOR LOGIN [UserName];'
 
 Use msdb
-GRANT SELECT too[UserName]
+GRANT SELECT To [UserName]
 Go
 
 --Give SELECT permission on all Operations Manager related Databases
 
---Replace hello Operations Manager database name with hello one in your environment
+--Replace the Operations Manager database name with the one in your environment
 Use [OperationsManager];
-GRANT SELECT too[UserName]
+GRANT SELECT To [UserName]
 GO
 
---Replace hello Operations Manager DatawareHouse database name with hello one in your environment
+--Replace the Operations Manager DatawareHouse database name with the one in your environment
 Use [OperationsManagerDW];
-GRANT SELECT too[UserName]
+GRANT SELECT To [UserName]
 GO
 
---Replace hello Operations Manager Audit Collection database name with hello one in your environment
+--Replace the Operations Manager Audit Collection database name with the one in your environment
 Use [OperationsManagerAC];
-GRANT SELECT too[UserName]
+GRANT SELECT To [UserName]
 GO
 
 --Give db_owner on [OperationsManager] DB
---Replace hello Operations Manager database name with hello one in your environment
+--Replace the Operations Manager database name with the one in your environment
 USE [OperationsManager]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [UserName]
@@ -144,149 +144,149 @@ ALTER ROLE [db_owner] ADD MEMBER [UserName]
 ```
 
 
-### <a name="configure-hello-assessment-rule"></a>Configurer la règle d’évaluation hello
+### <a name="configure-the-assessment-rule"></a>Configuration de la règle d’évaluation
 
-Hello System Center Operations Manager évaluation Pack d’administration de la solution comprend une règle nommée *Microsoft System Center Advisor SCOM évaluation exécuter évaluation règle*. Cette règle est responsable de l’évaluation de hello en cours d’exécution. tooenable hello règle et configurer la fréquence de hello, utiliser des procédures hello ci-dessous.
+Le pack de gestion de la solution System Center Operations Manager Assessment inclut une règle nommée *Microsoft System Center Advisor SCOM Assessment Run Assessment Rule*. Cette règle est responsable de l’exécution de l’évaluation. Pour activer la règle et configurer la fréquence, utilisez les procédures ci-dessous.
 
-Par défaut, hello Microsoft System Center Advisor SCOM évaluation exécuter évaluation la règle est désactivée. évaluation de hello toorun, vous devez activer règle hello sur un serveur d’administration. Utilisez hello comme suit.
+Par défaut, Microsoft System Center Advisor SCOM Assessment Run Assessment Rule est désactivée. Pour exécuter l’évaluation, vous devez activer la règle sur un serveur de gestion. Utilisez les étapes suivantes.
 
-#### <a name="enable-hello-rule-for-a-specific-management-server"></a>Active la règle de hello pour un serveur d’administration spécifique
+#### <a name="enable-the-rule-for-a-specific-management-server"></a>Activation de la règle pour un serveur de gestion spécifique
 
-1. Bonjour **création** espace de travail de la console Operations Manager hello, recherchez la règle de hello *Microsoft System Center Advisor SCOM évaluation exécuter évaluation règle* Bonjour **règles** volet.
-2. Dans les résultats de recherche hello, sélectionnez hello qui inclut le texte hello *Type : serveur d’administration*.
-3. Avec le bouton droit de la règle de hello, puis cliquez sur **substitue** > **pour un objet spécifique de la classe : serveur d’administration**.
-4.  Dans la liste des serveurs d’administration disponibles hello, sélectionnez serveur d’administration hello où la règle de hello doit s’exécuter.
-5.  Assurez-vous de modifier la valeur de remplacement trop**True** pour hello **activé** la valeur du paramètre.  
+1. Dans l’espace de travail **Création** de la console Operations Manager, recherchez la règle *Microsoft System Center Advisor SCOM Assessment Run Assessment Rule* dans le panneau **Règles**.
+2. Dans les résultats de la recherche, sélectionnez le résultat qui inclut le texte *Type : serveur de gestion*.
+3. Cliquez sur la règle avec le bouton droit, puis cliquez sur **Substitutions** > **Pour un objet spécifique de la classe : serveur de gestion**.
+4.  Dans la liste de serveurs de gestion disponibles, sélectionnez le serveur de gestion où la règle doit être exécutée.
+5.  Veillez à modifier la valeur de substitution sur **True** pour la valeur du paramètre **Activé**.  
     ![paramètre de substitution](./media/log-analytics-scom-assessment/rule.png)
 
-Dans cette fenêtre, configurez la fréquence hello Hello exécutés à l’aide de la procédure suivante de hello.
+Toujours dans cette fenêtre, configurez la fréquence de l’exécution à l’aide de la procédure suivante.
 
-#### <a name="configure-hello-run-frequency"></a>Configurer la fréquence de hello exécuter
+#### <a name="configure-the-run-frequency"></a>Configuration de la fréquence d’exécution
 
-l’évaluation de Hello est intervalle par défaut de hello toorun configuré chaque 10 080 minutes (ou sept jours). Vous pouvez remplacer la valeur minimale de tooa valeur hello de 1 440 minutes (ou un jour). la valeur de Hello représente l’intervalle de temps minimal hello requis entre les exécutions d’évaluation successives. intervalle de salutation toooverride, utilisez hello suit.
+L’évaluation est configurée pour s’exécuter toutes les 10 080 minutes (ou sept jours), l’intervalle par défaut. Vous pouvez substituer la valeur par la valeur minimale de 1 440 minutes (ou un jour). La valeur représente l’intervalle de temps minimal requis entre les exécutions d’évaluation successives. Pour substituer l’intervalle, utilisez les étapes ci-dessous.
 
-1. Bonjour **création** espace de travail de la console Operations Manager hello, recherchez la règle de hello *Microsoft System Center Advisor SCOM évaluation exécuter évaluation règle* Bonjour **règles** volet.
-2. Dans les résultats de recherche hello, sélectionnez hello qui inclut le texte hello *Type : serveur d’administration*.
-3. Avec le bouton droit de la règle de hello, puis cliquez sur **hello de remplacement de règle** > **pour tous les objets de classe : serveur d’administration**.
-4. Hello de modification **intervalle** tooyour de valeur de paramètre souhaité de la valeur d’intervalle. Dans l’exemple hello ci-dessous, hello a la valeur too1440 minutes (1 jour).  
+1. Dans l’espace de travail **Création** de la console Operations Manager, recherchez la règle *Microsoft System Center Advisor SCOM Assessment Run Assessment Rule* dans le panneau **Règles**.
+2. Dans les résultats de la recherche, sélectionnez le résultat qui inclut le texte *Type : serveur de gestion*.
+3. Cliquez sur la règle avec le bouton droit, puis cliquez sur **Remplacer la règle** > **Pour tous les objets de la classe : serveur de gestion**.
+4. Modifiez la valeur du paramètre **Intervalle** sur la valeur de l’intervalle souhaité. Dans l’exemple ci-dessous, la valeur est définie sur 1 440 minutes (1 jour).  
     ![paramètre d’intervalle](./media/log-analytics-scom-assessment/interval.png)  
-    Si hello a la valeur accessible sans 1 440 minutes, la règle de hello s’exécute selon un intervalle d’une journée. Dans cet exemple, règle de hello ignore la valeur d’intervalle hello et s’exécute à la fréquence d’un jour.
+    Si la valeur est inférieure à 1 440 minutes, la règle s’exécute selon un intervalle d’une journée. Dans cet exemple, la règle ignore la valeur de l’intervalle et s’exécute à la fréquence d’un jour.
 
 
 ## <a name="understanding-how-recommendations-are-prioritized"></a>Hiérarchisation des recommandations
 
-Chaque recommandation reçoit une valeur de pondération qui identifie l’importance relative de hello de hello. Recommandations les plus importantes uniquement hello 10 sont affichées.
+Une valeur de pondération déterminant l'importance relative de la recommandation est attribuée à chaque recommandation. Seules les 10 recommandations les plus importantes sont affichées.
 
 ### <a name="how-weights-are-calculated"></a>Calcul des pondérations
 
 Les pondérations sont des agrégations de valeurs basées sur trois facteurs clés :
 
-- Hello *probabilité* qu’une anomalie identifiée cause des problèmes. Une plus grande probabilité attribue des tooa un score global supérieur pour la recommandation de hello.
-- Hello *impact* du problème hello sur votre organisation si elle devait causer un problème. Un plus grand impact attribue tooa un score global supérieur pour la recommandation de hello.
-- Hello *effort* requis recommandation de hello tooimplement. Un plus grand effort attribue tooa un score global inférieur pour la recommandation de hello.
+- La *probabilité* qu'une anomalie identifiée cause des problèmes. Une plus grande probabilité attribue un score global supérieur à la recommandation.
+- L’*impact* de l’anomalie sur votre organisation si elle devait causer des problèmes. Un plus grand impact attribue un score global supérieur à la recommandation.
+- L’*effort* requis pour implémenter la recommandation. Un plus grand effort attribue un score global inférieur à la recommandation.
 
-Hello pondération de chaque recommandation est exprimée en pourcentage du score total de hello disponibles pour chaque domaine d’intérêt. Par exemple, si une recommandation dans hello domaine de la disponibilité et continuité des activités a un score de 5 %, l’implémentation de cette recommandation augmente votre global score 5 % de disponibilité et continuité d’activité.
+La pondération de chaque recommandation est exprimée en pourcentage du score total disponible pour chaque domaine. Par exemple, si une recommandation dans le domaine Disponibilité et continuité d’activité a un score de 5 %, l’implémentation de cette recommandation augmente votre score Disponibilité et continuité d’activité global de 5 %.
 
 ### <a name="focus-areas"></a>Domaines
 
 **Disponibilité et continuité d’activité** : ce domaine présente les recommandations relatives à la disponibilité du service, la résilience de votre infrastructure et la protection de votre activité.
 
-**Performances et évolutivité** -cette zone de focus indique toohelp de recommandations de votre organisation informatique croissance, assurez-vous que votre environnement informatique répond aux exigences de performances actuelles et qu’il est en mesure de toorespond toochanging infrastructure a besoin.
+**Performances et évolutivité** : ce domaine présente les recommandations pour aider votre organisation à développer son infrastructure informatique, s’assurer que votre environnement informatique répond aux besoins de performances actuels et est en mesure de répondre à l’évolution des besoins d’infrastructure.
 
-**Mise à niveau, Migration et déploiement** - cette zone de focus indique toohelp recommandations vous mettez à niveau, migrer et déployer l’infrastructure existante de SQL Server tooyour.
+**Mise à niveau, migration et déploiement** : ce domaine présente les recommandations pour vous aider à mettre à niveau, migrer et déployer SQL Server dans votre infrastructure existante.
 
-**Opérations et surveillance** - cette zone de focus indique recommandations toohelp rationaliser vos opérations informatiques, mettre en œuvre de maintenance préventive et optimiser les performances.
+**Opérations et surveillance** : ce domaine présente des recommandations relatives à la rationalisation de vos opérations informatiques, la mise en place une maintenance préventive et l’optimisation des performances.
 
-### <a name="should-you-aim-tooscore-100-in-every-focus-area"></a>Faut-il viser tooscore 100 % dans chaque domaine ?
+### <a name="should-you-aim-to-score-100-in-every-focus-area"></a>Faut-il viser un score de 100 % dans chaque domaine ?
 
-Pas nécessairement. recommandations de Hello sont basées sur la base de connaissances hello et l’expérience acquises par les ingénieurs de Microsoft sur des milliers de visiteurs. Toutefois, aucune chaque infrastructure de serveur n’est même hello et certaines recommandations peuvent être plus ou moins pertinente tooyou. Par exemple, certaines recommandations de sécurité peuvent être moins appropriées si vos ordinateurs virtuels ne sont pas exposé toohello Internet. Certaines recommandations de disponibilité peuvent être moins pertinentes pour les services qui fournissent des rapports et des données ad hoc de faible priorité. Les problèmes entreprise tooa important peuvent être moins important tooa démarrage. Vous pouvez souhaitez tooidentify les domaines d’intérêt figurant parmi vos priorités et puis d’observer comment vos résultats changent au fil du temps.
+Pas nécessairement. Les recommandations sont basées sur les connaissances et l'expérience que les ingénieurs de Microsoft ont acquises au contact de milliers de visiteurs. Toutefois, chaque infrastructure de serveur étant différente, certaines recommandations peuvent être plus ou moins adaptées à votre système. Par exemple, il se peut que certaines recommandations de sécurité soient moins appropriées si vos ordinateurs virtuels ne sont pas connectés à Internet. Certaines recommandations de disponibilité peuvent être moins pertinentes pour les services qui fournissent des rapports et des données ad hoc de faible priorité. Les problèmes importants pour une entreprise bien établie peuvent l'être moins pour une start-up. Nous vous conseillons donc d'identifier tout d'abord vos domaines prioritaires, puis d'observer l'évolution de vos résultats au fil du temps.
 
-Chaque recommandation inclut une justification de son importance. Utilisez cette tooevaluate conseils si la mise en œuvre hello recommandation vous convient, étant donné la nature hello de vos besoins informatiques hello et les services professionnels de votre organisation.
+Chaque recommandation inclut une justification de son importance. Utilisez cette explication pour évaluer si la mise en œuvre de la recommandation est importante pour vous, en fonction de la nature de vos services informatiques et des besoins de votre organisation.
 
 ## <a name="use-assessment-focus-area-recommendations"></a>Utilisation des recommandations des domaines d'évaluation
 
-Avant de pouvoir utiliser une solution d’évaluation dans OMS, vous devez avoir installé de solution de hello. tooread savoir plus sur l’installation de solutions, consultez [solutions Analytique de journal ajouter à partir de la galerie des Solutions de hello](log-analytics-add-solutions.md). Après son installation, vous pouvez afficher le résumé hello des recommandations à l’aide de la vignette de System Center Operations Manager évaluation hello sur la page de vue d’ensemble de hello dans OMS.
+Avant de pouvoir utiliser une solution d’évaluation dans OMS, vous devez avoir installé cette solution. Pour plus d’informations sur l’installation des solutions, consultez la rubrique [Ajouter des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md). Une fois le pack installé, vous pouvez afficher un résumé des recommandations à l’aide de la mosaïque System Center Operations Manager Assessment de la page Vue d’ensemble dans OMS.
 
-Hello d’affichage résumés des évaluations de conformité pour votre infrastructure, puis Explorez les recommandations.
+Consultez le résumé des évaluations de conformité pour votre infrastructure, puis explorez les recommandations.
 
-### <a name="tooview-recommendations-for-a-focus-area-and-take-corrective-action"></a>recommandations tooview pour un focus zone et prendre une action corrective
+### <a name="to-view-recommendations-for-a-focus-area-and-take-corrective-action"></a>Pour afficher les recommandations relatives à un domaine et prendre des mesures correctives
 
-1. Sur hello **vue d’ensemble** , cliquez sur hello **System Center Operations Manager évaluation** vignette.
-2. Sur hello **System Center Operations Manager évaluation** , examinez les informations de résumé hello dans un des panneaux de domaine hello, puis cliquez sur une recommandations de tooview d’intérêt.
-3. Sur les pages de zone de focus hello, vous pouvez afficher les recommandations hello hiérarchisé pour votre environnement. Cliquez sur une recommandation sous **objets affectés** tooview plus de détails sur pourquoi hello recommandation est faite.  
+1. Dans la page **Vue d’ensemble**, cliquez sur la mosaïque **System Center Operations Manager Assessment**.
+2. Dans la page **System Center Operations Manager Assessment**, passez en revue les informations de résumé dans l’un des panneaux relatifs à un domaine, puis cliquez sur l’un d’entre eux pour afficher les recommandations afférentes.
+3. Les pages relatives au domaine répertorient les recommandations prioritaires pour votre environnement. Cliquez sur une recommandation sous **Objets affectés** pour en afficher les détails et comprendre pourquoi elle apparaît.  
     ![domaine](./media/log-analytics-scom-assessment/focus-area.png)
-4. Vous pouvez effectuer les actions correctives suggérées dans **Actions suggérées**. Lorsque l’élément de hello a été traité, évaluations ultérieures indiqueront les actions ont été prises et votre score de conformité augmentera qu’enregistre. Les éléments corrigés apparaissent comme **objets passés**.
+4. Vous pouvez effectuer les actions correctives suggérées dans **Actions suggérées**. Une fois l'élément traité, les évaluations ultérieures indiqueront que des mesures ont été prises et votre score de conformité augmentera. Les éléments corrigés apparaissent comme **objets passés**.
 
 ## <a name="ignore-recommendations"></a>Ignorer les recommandations
 
-Si vous avez des recommandations que vous souhaitez tooignore, vous pouvez créer un fichier texte qui OMS utilise tooprevent des recommandations d’apparaître dans les résultats d’évaluation.
+Si vous souhaitez ignorer des recommandations, vous pouvez créer un fichier texte qu’OMS utilise pour empêcher les recommandations d’apparaître dans les résultats de votre évaluation.
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
-### <a name="tooidentify-recommendations-that-you-want-tooignore"></a>recommandations tooidentify que vous souhaitez tooignore
+### <a name="to-identify-recommendations-that-you-want-to-ignore"></a>Pour identifier les recommandations que vous voulez ignorer
 
-1. Connectez-vous à tooyour espace de travail et ouvrez recherche de journal. Utilisez hello requête toolist recommandations ayant échoué pour les ordinateurs de votre environnement.
+1. Connectez-vous à votre espace de travail et ouvrez Recherche de journal. Utilisez la requête suivante pour répertorier les recommandations qui ont échoué pour les ordinateurs de votre environnement.
 
     ```
     Type=SCOMAssessmentRecommendationRecommendationResult=Failed | select  Computer, RecommendationId, Recommendation | sort  Computer
     ```
 
-    Voici une requête de recherche de journal de capture d’écran montrant hello :  
-    ![recherche dans les journaux](./media/log-analytics-scom-assessment/scom-log-search.png)
+    Voici une capture d’écran montrant la requête Recherche de journal :   
+    ![recherche de journal](./media/log-analytics-scom-assessment/scom-log-search.png)
 
-2. Choisissez les recommandations que vous souhaitez tooignore. Vous utiliserez les valeurs hello pour RecommendationId dans la procédure suivante de hello.
+2. Choisissez les recommandations que vous souhaitez ignorer. Vous utiliserez les valeurs RecommendationId dans la procédure suivante.
 
-### <a name="toocreate-and-use-an-ignorerecommendationstxt-text-file"></a>toocreate et utilisez un fichier texte IgnoreRecommendations.txt
+### <a name="to-create-and-use-an-ignorerecommendationstxt-text-file"></a>Pour créer et utiliser un fichier texte IgnoreRecommendations.txt
 
 1. Créez un fichier nommé IgnoreRecommendations.txt.
-2. Collez ou tapez chaque RecommendationId de chaque recommandation que vous souhaitez tooignore OMS sur une ligne distincte, puis enregistrez et fermez le fichier de hello.
-3. Fichier PUT hello Bonjour suivant du dossier sur chaque ordinateur où vous souhaitez les recommandations de tooignore OMS.
-4. Sur le serveur d’administration Operations Manager de hello - *lecteur_système*: \Program Files\Microsoft System Center 2012 R2\Operations Manager\Server.
+2. Collez ou saisissez chaque valeur RecommendationId de chaque recommandation qu’OMS doit ignorer sur une ligne distincte, puis enregistrez et fermez le fichier.
+3. Placez le fichier dans le dossier suivant sur chaque ordinateur sur lequel OMS doit ignorer les recommandations.
+4. Sur le serveur de gestion Operations Manager : *lecteur_système*:\Program Files\Microsoft System Center 2012 R2\Operations Manager\Server.
 
-### <a name="tooverify-that-recommendations-are-ignored"></a>tooverify que les recommandations sont ignorées.
+### <a name="to-verify-that-recommendations-are-ignored"></a>Pour vérifier que les recommandations sont ignorées
 
-1. Après l’exécution de hello prochaine évaluation planifiée, par défaut, tous les sept jours, hello spécifié recommandations sont marquées comme étant des ignorées et n’apparaissent pas dans le tableau de bord évaluation hello.
-2. Vous pouvez utiliser hello suivant toolist de requêtes de recherche de journal de toutes les recommandations hello ignoré.
+1. Une fois la prochaine évaluation planifiée exécutée, par défaut tous les sept jours, les recommandations spécifiées sont marquées comme Ignorées et n’apparaissent pas dans le tableau de bord d’évaluation.
+2. Vous pouvez utiliser les requêtes Recherche de journal suivantes pour répertorier toutes les recommandations ignorées.
 
     ```
     Type=SCOMAssessmentRecommendationRecommendationResult=Ignored | select  Computer, RecommendationId, Recommendation | sort  Computer
     ```
 
-3. Si vous décidez ultérieurement que vous souhaitez les recommandations toosee ignorée, supprimez tous les fichiers IgnoreRecommendations.txt ou vous supprimez des RecommendationIDs dans les.
+3. Si vous décidez ultérieurement d’afficher les recommandations ignorées, supprimez tous les fichiers IgnoreRecommendations.txt, ou supprimez les valeurs RecommendationID de ces fichiers.
 
 ## <a name="system-center-operations-manager-assessment-solution-faq"></a>FAQ sur la solution System Center Operations Manager Assessment
 
-*J’ai ajouté d’espace de travail hello évaluation solution toomy OMS. Mais je ne vois pas les recommandations hello. Pourquoi ?* Après avoir ajouté la solution de hello, utilisez hello suivant les étapes vue hello recommandations de tableau de bord OMS hello.  
+*J’ai ajouté la solution d’évaluation à mon espace de travail OMS. Mais je ne vois pas les recommandations. Pourquoi ?* Après avoir ajouté la solution, utilisez la procédure suivante pour afficher les recommandations du tableau de bord OMS.  
 
-- [Définir le compte d’identification hello pour System Center Operations Manager évaluation](#operations-manager-run-as-accounts-for-oms)  
-- [Configurer la règle de System Center Operations Manager évaluation hello](#configure-the-assessment-rule)
+- [Définir le compte d’identification pour l’évaluation de System Center Operations Manager](#operations-manager-run-as-accounts-for-oms)  
+- [Configurer la règle d’évaluation de System Center Operations Manager Assessment](#configure-the-assessment-rule)
 
 
-*Existe-t-il un tooconfigure moyen la fréquence d’exécution des évaluations de hello ?* Oui. Consultez [hello configurer fréquence d’exécution](#configure-the-run-frequency).
+*Est-il possible de configurer la fréquence d'exécution de l'évaluation ?* Oui. Consultez [Configuration de la fréquence d’exécution](#configure-the-run-frequency).
 
-*Si un autre serveur est découvert après que j’ai ajouté des solutions de System Center Operations Manager évaluation hello, est-il évalué ?* Oui, après la découverte, il sera évalué ; par défaut, tous les sept jours.
+*Si un autre serveur est découvert après l’ajout de la solution System Center Operations Manager Assessment, ce serveur sera-t-il évalué ?* Oui, après la découverte, il sera évalué ; par défaut, tous les sept jours.
 
-*Qu’est le nom de hello du processus hello hello collecte des données ?* AdvisorAssessment.exe
+*Quel est le nom du processus qui effectue la collecte de données ?* AdvisorAssessment.exe
 
-*Où le processus de AdvisorAssessment.exe hello est exécuté ?* AdvisorAssessment.exe s’exécute sous hello HealthService hello du serveur d’administration où les règles d’évaluation hello est activé. À l’aide de ce processus, la découverte de l’ensemble de votre environnement s’effectue par le biais de la collecte de données distante.
+*Où est exécuté le processus AdvisorAssessment.exe ?* AdvisorAssessment.exe s’exécute sous le service de contrôle d’intégrité du serveur de gestion où la règle d’évaluation est activée. À l’aide de ce processus, la découverte de l’ensemble de votre environnement s’effectue par le biais de la collecte de données distante.
 
-*Combien de temps la collecte de données prend-elle ?* Collecte de données sur le serveur de hello prend environ une heure. Elle peut prendre plus de temps dans les environnements comportant plusieurs bases de données ou instances d’Operations Manager.
+*Combien de temps la collecte de données prend-elle ?* La collecte de données sur le serveur prend environ une heure. Elle peut prendre plus de temps dans les environnements comportant plusieurs bases de données ou instances d’Operations Manager.
 
-*Que se passe-t-il si j’ai défini intervalle hello accessible sans évaluation de hello à 1 440 minutes ?*  évaluation de hello est préconfigurée de manière toorun au maximum une fois par jour. Si vous substituez valeur tooa valeur hello intervalle inférieur à 1 440 minutes, évaluation de hello utilise 1 440 minutes comme valeur d’intervalle hello.
+*Que se passe-t-il si je définis l’intervalle d’évaluation sur une valeur inférieure à 1 440 minutes ?* L’évaluation est préconfigurée pour s’exécuter au maximum une fois par jour. Si vous remplacez la valeur de l’intervalle par une valeur inférieure à 1 440 minutes, l’évaluation utilise alors la valeur de 1 440 minutes en tant que valeur d’intervalle.
 
-*Comment tooknow s’il existe des défaillances préalables ?* Si l’exécution de l’évaluation de hello et vous ne voyez les résultats, il est probable que certaines des conditions préalables pour l’évaluation de hello hello a échoué. Vous pouvez exécuter des requêtes : `Type=Operation Solution=SCOMAssessment` et `Type=SCOMAssessmentRecommendation FocusArea=Prerequisites` hello toosee de recherche de journal a échoué conditions préalables.
+*Comment savoir s’il existe des échecs liés aux conditions préalables ?* Si l’évaluation s’est exécutée et qu’aucun résultat ne s’affiche, il est probable que certaines des conditions préalables pour l’évaluation ont échoué. Vous pouvez exécuter les requêtes : `Type=Operation Solution=SCOMAssessment` et `Type=SCOMAssessmentRecommendation FocusArea=Prerequisites` dans la Recherche de journal pour afficher les conditions préalables qui ont échoué.
 
-*Il y a un message `Failed tooconnect toohello SQL Instance (….).` dans les échecs liés aux conditions préalables. Quel est le problème de hello ?* AdvisorAssessment.exe, processus hello qui collecte les données, s’exécute sous hello HealthService hello du serveur d’administration. Dans le cadre de l’évaluation de hello, processus de hello tentatives tooconnect toohello SQL Server où la base de données Operations Manager hello est présent. Cette erreur peut se produire lorsque les règles de pare-feu bloquent l’instance de SQL Server toohello hello connexion.
+*Il y a un message `Failed to connect to the SQL Instance (….).` dans les échecs liés aux conditions préalables. Quel est le problème ?* AdvisorAssessment.exe, le processus qui collecte les données, s’exécute sous le service de contrôle d’intégrité du serveur de gestion. Dans le cadre de l’évaluation, le processus tente de se connecter au serveur SQL Server où se trouve la base de données Operations Manager. Cette erreur peut se produire lorsque les règles du pare-feu bloquent la connexion à l’instance SQL Server.
 
-*Le type de données est collecté ?*  hello les types de données suivants est collecté : données d’Operations Manager : des données WMI : registre données - EventLog - via Windows PowerShell, les requêtes SQL et les fichiers collecteur d’informations.
+*Quels types de données sont collectés ?* Les types de données suivants sont collectés : - Données WMI - Données de registre - Données EventLog - Données Operations Manager via Windows PowerShell, Requêtes SQL et Collecteur d’informations sur le fichier.
 
-*Pourquoi dois-je tooconfigure un compte d’identification ?* Plusieurs requêtes SQL sont exécutées pour un serveur Operations Manager. Pour qu’ils toorun, vous devez utiliser un compte d’identification avec les autorisations nécessaires. En outre, les informations d’identification d’administrateur local sont requis tooquery WMI.
+*Pourquoi faut-il configurer un compte d'identification ?* Plusieurs requêtes SQL sont exécutées pour un serveur Operations Manager. Pour permettre leur exécution, vous devez utiliser un compte d’identification avec les autorisations nécessaires. En outre, pour les requêtes WMI, des informations d'identification d'administrateur local sont requises.
 
-*Pourquoi afficher uniquement hello 10 premières recommandations ?* Au lieu d’exploiter une liste exhaustive et écrasante de tâches, nous vous recommandons de vous concentrer sur les recommandations hello classés par priorité. Une fois que vous les aurez suivies, de nouvelles recommandations apparaîtront. Si vous préférez liste détaillée de hello toosee, vous pouvez afficher toutes les recommandations à l’aide de la recherche de journal.
+*Pourquoi afficher uniquement les 10 premières recommandations ?* Au lieu de vous communiquer une liste de tâches trop importante, nous vous recommandons de vous concentrer sur les recommandations prioritaires. Une fois que vous les aurez suivies, de nouvelles recommandations apparaîtront. Si vous préférez afficher la liste détaillée de toutes les recommandations, utilisez Recherche de journal.
 
-*Existe-t-il un moyen tooignore une recommandation ?* Oui, voir hello [ignorer des recommandations](#Ignore-recommendations).
+*Est-il possible d'ignorer une recommandation ?* Oui, consultez [Ignorer les recommandations](#Ignore-recommendations).
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- [Rechercher des journaux](log-analytics-log-searches.md) tooview détaillées des données d’évaluation de System Center Operations Manager et les recommandations.
+- [Lancez une recherche dans les journaux](log-analytics-log-searches.md) pour afficher les données System Center Operations Manager Assessment détaillées et des recommandations.

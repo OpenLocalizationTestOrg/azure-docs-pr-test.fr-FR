@@ -1,5 +1,5 @@
 ---
-title: aaaAzure Analytique de traitement par lots | Documents Microsoft
+title: Azure Batch Analytics | Microsoft Docs
 description: "Référence pour Azure Batch Analytics."
 services: batch
 author: tamram
@@ -12,20 +12,20 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: 462fbad1ac522b485ae18c1e8891b9d2cabd45e0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7d634e1bb595a84b8af339e5bc5a483a7849e7f7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="batch-analytics"></a>Analyse en mode batch
-les rubriques de Hello de traitement Analytique contiennent des informations de référence pour les événements de hello et alertes disponibles pour les ressources de service de traitement par lots.
+Les rubriques relatives à l’analyse en mode batch contiennent des informations de référence concernant les événements et alertes disponibles pour les ressources de service Batch.
 
 Pour plus d’informations sur l’activation et l’utilisation des journaux de diagnostic de Batch, voir [Journalisation des diagnostics Azure Batch](https://azure.microsoft.com/documentation/articles/batch-diagnostics/).
 
 ## <a name="diagnostic-logs"></a>Journaux de diagnostic
 
-Hello service Azure Batch émet hello suivant des événements du journal de diagnostic pendant la durée de vie hello de certaines ressources de traitement par lots.
+Le service Microsoft Azure Batch émet les événements de journal de diagnostic suivants pendant la durée de vie de certaines ressources Batch.
 
 **Événements du journal de service**
 * [Création de pool](batch-pool-create-event.md)

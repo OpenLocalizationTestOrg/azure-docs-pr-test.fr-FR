@@ -1,6 +1,6 @@
 ---
-title: "Résolution des problèmes : Les données manquantes dans hello téléchargement les journaux d’activité Azure Active Directory | Documents Microsoft"
-description: "Vous fournit des données toomissing résolution dans le journal d’activité de Azure Active Directory téléchargé."
+title: "Résolution des problèmes : Données manquantes dans les journaux d’activité Azure Active Directory téléchargés | Microsoft Docs"
+description: "Fournit une résolution au problème de données manquantes dans les journaux d’activité Azure Active Directory téléchargés."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,30 +15,30 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 027b70e6efc570f81d3c836f50ee52aaa89be71a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3d56f89035da4d1a0074256b165663f81fc2b01e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="i-cant-find-any-data-in-hello-azure-active-directory-activity-logs-i-have-downloaded"></a>Impossible de trouver des données dans les journaux d’activité Azure Active Directory hello téléchargés
+# <a name="i-cant-find-any-data-in-the-azure-active-directory-activity-logs-i-have-downloaded"></a>Aucune donnée n’apparaît dans les journaux d’activité Azure Active Directory que j’ai téléchargés
 
 
 ## <a name="symptoms"></a>Symptômes
 
-Télécharger les journaux d’activité hello (audit ou connexions) et ne sont pas tous les enregistrements de hello pendant hello, que vous avez choisi. Pourquoi ? 
+J’ai téléchargé les journaux d’activité (d’audit ou de connexion) et tous les enregistrements correspondant à la période choisie n’apparaissent pas. Pourquoi ? 
 
  ![Reporting](./media/active-directory-reporting-troubleshoot-missing-data-download/01.png)
  
 
 ## <a name="cause"></a>Cause :
 
-Lorsque vous téléchargez les journaux d’activité Bonjour portail Azure, nous limitons enregistrements too120K hello échelle triés par la plupart des récentes. 
+Lorsque vous téléchargez des journaux d’activité dans le portail Azure, nous limitons l’échelle à des enregistrements de 120 Ko, triés du plus récent au moins récent. 
 
 ## <a name="resolution"></a>Résolution :
 
-Vous pouvez tirer parti de [API de création de rapports AD Azure](active-directory-reporting-api-getting-started.md) toofetch des enregistrements tooa millions à un moment donné. Notre approche recommandée est toorun un script selon une planification qui appelle hello reporting API toofetch enregistre de manière incrémentielle sur une période de temps (par exemple, quotidienne ou hebdomadaire).
+Vous pouvez tirer parti des [API de création de rapports Azure AD](active-directory-reporting-api-getting-started.md) pour extraire jusqu’à un million d’enregistrements pour un point donné. Nous vous recommandons d’exécuter un script de façon planifiée qui appelle les API de création de rapports pour extraire des enregistrements de manière incrémentielle sur une période donnée (par exemple, quotidienne ou hebdomadaire).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez hello [Azure Active Directory reporting FAQ](active-directory-reporting-faq.md).
+Consultez le [FAQ sur les rapports Azure Active Directory](active-directory-reporting-faq.md).
 

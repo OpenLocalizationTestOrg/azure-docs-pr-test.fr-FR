@@ -1,5 +1,5 @@
 ---
-title: "aaaDNS Zones et enregistrements présentation - DNS Azure | Documents Microsoft"
+title: "Présentation des enregistrements et zones DNS - Azure DNS | Microsoft Docs"
 description: "Vue d’ensemble de la prise en charge de l’hébergement d’enregistrements et zones DNS dans le DNS Microsoft Azure."
 services: dns
 documentationcenter: na
@@ -15,25 +15,25 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 12/05/2016
 ms.author: jonatul
-ms.openlocfilehash: f214c3e2e810a80a000281820acd35f0aaf5a7e1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5818986c939c464a364c52ab31225e15130ab30e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="overview-of-dns-zones-and-records"></a>Vue d’ensemble des enregistrements et des zones DNS
 
-Cette page décrit les concepts clés de hello de domaines, les zones DNS, les enregistrements DNS et jeux d’enregistrements et comment elles sont prises en charge dans le système DNS Azure.
+Cette page explique les concepts clés des domaines, zones DNS, enregistrements DNS et jeux d’enregistrements, et la manière dont ces éléments sont pris en charge dans le DNS Azure.
 
 ## <a name="domain-names"></a>Noms de domaine
 
-Hello Domain Name System est une hiérarchie de domaines. hiérarchie de Hello démarre à partir du domaine de « root » hello, dont le nom est simplement «**.**'.  Puis viennent les domaines de niveau supérieur, tels que « com », « net », « org », « uk » ou « jp ».  Vous trouvez ensuite les domaines de second niveau, comme « org.uk » ou « co.jp ». domaines Hello dans la hiérarchie de hello DNS sont distribuées globalement, hébergé par les serveurs de noms DNS monde hello.
+DNS est une hiérarchie de domaines. Celle-ci démarre à partir du domaine « racine », dont le nom est simplement « **.** ».  Puis viennent les domaines de niveau supérieur, tels que « com », « net », « org », « uk » ou « jp ».  Vous trouvez ensuite les domaines de second niveau, comme « org.uk » ou « co.jp ». Dans une hiérarchie DNS, les domaines sont distribués et hébergés par des serveurs de noms situés dans le monde entier.
 
-Un enregistrement de domaines est une organisation qui vous permet de toopurchase un nom de domaine, par exemple, « contoso.com ».  Achat d’un domaine donne nom hello de droite toocontrol hello hiérarchie DNS sous ce nom, par exemple vous autorisez le site web entreprise toodirect hello nom « www.contoso.com » tooyour. bureau d’enregistrement Hello peut héberger le domaine hello dans ses propres serveurs de noms à votre place, ou vous toospecify les serveurs d’autre nom.
+Un bureau d’enregistrement de noms de domaine est une organisation permettant d’acheter un nom de domaine tel que « contoso.com ».  L’achat d’un nom de domaine vous autorise à contrôler la hiérarchie DNS sous ce nom, par exemple à diriger le nom « www.contoso.com » vers le site web de votre organisation. Le bureau d’enregistrement peut héberger le domaine sur ses propres serveurs de noms en votre nom, ou vous autoriser À spécifier d’autres serveurs de noms.
 
-DNS Azure fournit une infrastructure de serveur nom distribuée globalement, haute disponibilité, que vous pouvez utiliser toohost votre domaine. En hébergeant vos domaines dans Azure DNS, vous pouvez gérer vos enregistrements DNS avec hello même informations d’identification, API, outils, la facturation et la prise en charge en tant que vos autres services Azure.
+Le DNS Azure fournit une infrastructure de serveurs de noms à haute disponibilité répartie dans le monde entier, que vous pouvez utiliser pour héberger votre domaine. En hébergeant vos domaines dans le DNS Azure, vous pouvez gérer vos enregistrements DNS avec les mêmes éléments que vos autres services Azure : informations d’identification, API, outils, facturation et support.
 
-Azure DNS ne prend actuellement pas en charge l'achat de noms de domaine. Si vous voulez toopurchase un nom de domaine, vous devez toouse un bureau d’enregistrement du nom de domaine de l’application tierce. bureau d’enregistrement Hello généralement des frais une petite annuel. les domaines Hello peuvent ensuite être hébergés dans Azure DNS pour la gestion des enregistrements DNS. Consultez [déléguer un tooAzure de domaine DNS](dns-domain-delegation.md) pour plus d’informations.
+Azure DNS ne prend actuellement pas en charge l'achat de noms de domaine. Si vous voulez acheter des domaines, vous devez faire appel à un bureau d’enregistrement de noms de domaine. Le bureau d’enregistrement facture généralement des frais annuels peu élevés. Les domaines peuvent être hébergés dans Azure DNS pour la gestion des enregistrements DNS. Pour plus d’informations, consultez [Déléguer un domaine à Azure DNS](dns-domain-delegation.md) .
 
 ## <a name="dns-zones"></a>Zones DNS
 
@@ -45,37 +45,37 @@ Azure DNS ne prend actuellement pas en charge l'achat de noms de domaine. Si vou
 
 ### <a name="time-to-live"></a>Durée de vie
 
-heure de Hello toolive ou durée de vie, spécifie la durée pendant laquelle chaque enregistrement est mis en cache par les clients avant interrogé de nouveau. Bonjour exemple ci-dessus, hello durée de vie est 3 600 secondes ou 1 heure.
+La durée de vie (TTL) spécifie la durée pendant laquelle chaque enregistrement est mis en cache par les clients avant d’être réinterrogé. Dans l’exemple ci-dessus, la durée de vie est de 3 600 secondes ou 1 heure.
 
-Dans le système DNS Azure, hello durée de vie est spécifiée pour le jeu d’enregistrements hello, pas pour chaque enregistrement, par conséquent, hello même valeur est utilisée pour tous les enregistrements au sein de cet enregistrement défini.  Vous pouvez spécifier une valeur de durée de vie quelconque comprise entre 1 et 2 147 483 647 secondes.
+Dans le DNS Azure, la durée de vie est spécifiée pour le jeu d’enregistrements, pas pour chaque enregistrement. La même valeur est donc utilisée pour tous les enregistrements au sein de ce jeu d’enregistrements.  Vous pouvez spécifier une valeur de durée de vie quelconque comprise entre 1 et 2 147 483 647 secondes.
 
 ### <a name="wildcard-records"></a>Enregistrements génériques
 
-Azure DNS prend en charge les [enregistrements génériques](https://en.wikipedia.org/wiki/Wildcard_DNS_record). Les enregistrements de caractères génériques sont retournés dans la requête tooany de réponse avec un nom correspondant (à moins qu’une correspondance plus proche à partir d’un jeu d’enregistrements non génériques). Azure DNS prend en charge des jeux d'enregistrements génériques pour tous les types d'enregistrements, hormis NS et SOA.
+Azure DNS prend en charge les [enregistrements génériques](https://en.wikipedia.org/wiki/Wildcard_DNS_record). Ces derniers sont retournés en réponse à toute requête contenant un nom correspondant (sauf s’il existe une correspondance plus proche d’un jeu d’enregistrements non génériques). Azure DNS prend en charge des jeux d'enregistrements génériques pour tous les types d'enregistrements, hormis NS et SOA.
 
-toocreate un enregistrement générique défini, utilisez le nom de jeu d’enregistrements hello '\*'. Vous pouvez également utiliser un nom avec « \* » comme étiquette à gauche, par exemple, « \*.foo ».
+Pour créer un jeu d’enregistrements génériques, utilisez le nom de jeu d’enregistrements « \* ». Vous pouvez également utiliser un nom avec « \* » comme étiquette à gauche, par exemple, « \*.foo ».
 
 ### <a name="cname-records"></a>Enregistrements CNAME
 
-Jeux d’enregistrements CNAME ne peut pas coexister avec d’autres jeux d’enregistrements avec hello même nom. Par exemple, vous ne peut pas créer un enregistrement CNAME avec le nom relatif de hello « www » et un un enregistrement avec le nom relatif hello « www » à hello même temps.
+Les jeux d’enregistrements CNAME ne peuvent pas coexister avec d’autres jeux d’enregistrements portant le même nom. Par exemple, vous ne pouvez pas créer un jeu d’enregistrements CNAME avec le nom relatif « www » et un enregistrement A avec le nom relatif « www » en même temps.
 
-Étant donné qu’apex de zone hello (nom = ' @') contient toujours les enregistrements NS et SOA hello jeux qui ont été créés lors de la création de la zone de hello, Impossible de créer un enregistrement CNAME définie au sommet de zone hello.
+Étant donné que le sommet (apex) de la zone (nom = « @ ») contient toujours les jeux d’enregistrements NS et SOA créés lors de la création de la zone, vous ne pouvez pas créer un jeu d’enregistrements CNAME au niveau du sommet (apex) de la zone.
 
-Ces contraintes sont dues aux normes DNS hello et ne sont pas des limitations d’Azure DNS.
+Ces contraintes résultent des normes DNS. Il ne s’agit pas de limites posées par le DNS Azure.
 
 ### <a name="ns-records"></a>Enregistrements NS
 
-jeu d’enregistrements de Hello NS au sommet de zone hello (nom « @ ») est créée automatiquement avec chaque zone DNS et est automatiquement supprimée lorsque la zone de hello est supprimé (il ne peut pas être supprimée séparément).
+Le jeu d’enregistrements NS au sommet (apex) de la zone (nom = « @ ») est créé automatiquement avec chaque zone DNS, et est automatiquement supprimé lorsque la zone est supprimée (il ne peut pas être supprimé séparément).
 
-Ce jeu d’enregistrements contient les noms de hello de zone de hello Azure DNS nom serveurs toohello attribué. Vous pouvez ajouter des noms supplémentaires serveurs toothis NS jeu d’enregistrements, toosupport domaines l’hébergement avec le fournisseur DNS. Vous pouvez également modifier la durée de vie de hello et les métadonnées pour ce jeu d’enregistrements. Toutefois, vous ne peut pas supprimer ou modifier les serveurs de noms DNS Azure hello préremplies. 
+Ce jeu d’enregistrements contient les noms des serveurs de noms Azure DNS attribués à la zone. Vous pouvez ajouter des serveurs de noms supplémentaires à ce jeu d’enregistrements NS, pour prendre en charge le co-hébergement de domaines avec plusieurs fournisseurs DNS. Vous pouvez également modifier la durée de vie et les métadonnées pour ce jeu d’enregistrements. Toutefois, vous ne pouvez pas supprimer ni modifier les serveurs de noms Azure DNS préremplis. 
 
-Notez que cela s’applique uniquement toohello NS jeu d’enregistrements au sommet de zone hello. Autres jeux d’enregistrements NS dans votre zone (comme les zones enfant utilisé toodelegate) peut être créés, modifiés et supprimés sans contrainte.
+Notez que cela s’applique uniquement au jeu d’enregistrements NS défini à l’apex de la zone. Les autres jeux d’enregistrements NS dans votre zone (tels que ceux utilisés pour déléguer des zones enfants) peuvent être créés, modifiés et supprimés sans contrainte.
 
 ### <a name="soa-records"></a>Enregistrements SOA
 
-Un jeu d’enregistrements SOA est créé automatiquement au sommet de hello de chaque zone (nom = ' @') et est automatiquement supprimée lorsque la zone de hello est supprimée.  Il n’est pas possible de créer ou supprimer séparément des enregistrements SOA.
+Un jeu d’enregistrements SOA est créé automatiquement au sommet (apex) de chaque zone (nom = « @ »), et est automatiquement supprimé lors de la suppression de la zone.  Il n’est pas possible de créer ou supprimer séparément des enregistrements SOA.
 
-Vous pouvez modifier toutes les propriétés de l’enregistrement SOA de hello, à l’exception de propriété 'host' hello, qui est préconfigurée de manière toorefer toohello principal nom du serveur fournie par le système DNS Azure.
+Vous pouvez modifier toutes les propriétés de l’enregistrement SOA, sauf la propriété « host » qui est préconfigurée pour faire référence au nom du serveur de noms principal fourni par le DNS Azure.
 
 ### <a name="spf-records"></a>Enregistrements SPF
 
@@ -83,42 +83,42 @@ Vous pouvez modifier toutes les propriétés de l’enregistrement SOA de hello,
 
 ### <a name="srv-records"></a>Enregistrements SRV
 
-[Les enregistrements SRV](https://en.wikipedia.org/wiki/SRV_record) sont utilisés par les différents emplacements de serveur services toospecify. Lorsque vous spécifiez un enregistrement SRV dans le DNS Azure :
+Les [enregistrements SRV](https://en.wikipedia.org/wiki/SRV_record) sont utilisés par différents services pour spécifier les emplacements de serveur. Lorsque vous spécifiez un enregistrement SRV dans le DNS Azure :
 
-* Hello *service* et *protocole* doit être spécifié en tant que partie du nom du jeu d’enregistrements hello, le préfixe avec des traits de soulignement.  Par exemple, « \_sip.\_TCP.Name ».  Pour un enregistrement au sommet de zone hello, il n’existe aucun besoin toospecify ' @' dans le nom de l’enregistrement hello, utilisez simplement hello service et le protocole, par exemple «\_sip.\_ TCP'.
-* Hello *priorité*, *poids*, *port*, et *cible* sont spécifiés comme paramètres de chaque enregistrement dans le jeu d’enregistrements hello.
+* Le *service* et le *protocole* doivent être spécifiés dans le nom du jeu d’enregistrements, préfixés avec des traits de soulignement.  Par exemple, « \_sip.\_TCP.Name ».  Pour un enregistrement au sommet (apex) de la zone, il est inutile de spécifier « @ » dans son nom. Utilisez simplement le service et le protocole, par exemple, « \_sip.\_tcp ».
+* La *priorité*, le *poids*, le *port* et la *cible* sont spécifiés en tant que paramètres de chaque enregistrement dans le jeu d’enregistrements.
 
 ### <a name="txt-records"></a>Enregistrements TXT
 
-Enregistrements TXT sont des chaînes de texte utilisées toomap domaine noms tooarbitrary. Ils sont utilisés dans plusieurs applications, configuration tooemail connexes en particulier, par exemple hello [Framework SPF (Sender Policy)](https://en.wikipedia.org/wiki/Sender_Policy_Framework) et [DomainKeys identifié DKIM (Mail)](https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail).
+Les enregistrements TXT sont utilisés pour mapper des noms de domaine sur des chaînes de texte arbitraires. Ils sont utilisés dans plusieurs applications, en particulier celles liées à la configuration des e-mails, telles [Sender Policy Framework (SPF)](https://en.wikipedia.org/wiki/Sender_Policy_Framework) et [DomainKeys Identified Mail (DKIM)](https://en.wikipedia.org/wiki/DomainKeys_Identified_Mail).
 
-les normes DNS Hello autorisent un toocontain enregistrement TXT unique plusieurs chaînes, chacune d’elles peut être des caractères too254. Lorsque plusieurs chaînes sont utilisées, elles sont concaténées par des clients et traitées comme une chaîne unique.
+Les normes DNS autorisent un seul enregistrement TXT à contenir plusieurs chaînes, chacune d’entre elles pouvant comprendre jusqu’à 254 caractères. Lorsque plusieurs chaînes sont utilisées, elles sont concaténées par des clients et traitées comme une chaîne unique.
 
-Quand vous appelez hello API REST de Azure DNS, vous devez toospecify chaque chaîne TXT séparément.  Lorsque vous utilisez hello portail Azure, PowerShell ou CLI interfaces vous devez spécifier une chaîne unique par enregistrement, qui est automatiquement divisée en segments de 254 caractères si nécessaire.
+Lorsque vous appelez l’API REST DNS Azure, vous devez spécifier chaque chaîne TXT séparément.  Lorsque vous utilisez le portail Azure, PowerShell ou des interfaces CLI, vous devez spécifier une chaîne unique par enregistrement, qui est automatiquement divisée en segments de 254 caractères si nécessaire.
 
-Hello plusieurs chaînes dans un enregistrement DNS ne doivent pas être confondus avec hello plusieurs enregistrements TXT dans un jeu d’enregistrements TXT.  Un jeu d’enregistrements TXT peut contenir plusieurs enregistrements, *chacun d'entre eux* pouvant contenir plusieurs chaînes.  DNS Azure prend en charge une longueur de chaîne total de caractères en too1024 dans chaque enregistrement TXT (sur tous les enregistrements combinés).
+Les chaînes multiples dans un enregistrement DNS ne doivent pas être confondues avec les enregistrements TXT multiples dans un jeu d’enregistrements TXT.  Un jeu d’enregistrements TXT peut contenir plusieurs enregistrements, *chacun d'entre eux* pouvant contenir plusieurs chaînes.  Azure DNS prend en charge une longueur totale pouvant atteindre 1 024 caractères dans chaque jeu d’enregistrements TXT (sur tous les enregistrements combinés).
 
 ## <a name="tags-and-metadata"></a>Balises et métadonnées
 
-### <a name="tags"></a>Tags
+### <a name="tags"></a>Balises
 
-Les balises sont une liste de paires nom-valeur et sont utilisés par les ressources toolabel Azure Resource Manager.  Azure Resource Manager utilise des vues tooenable filtré de balises de votre facture Azure et vous permet également de tooset une stratégie sur les balises sont requis. Pour plus d’informations sur les balises, consultez [à l’aide des balises tooorganize vos ressources Azure](../azure-resource-manager/resource-group-using-tags.md).
+Les balises sont une liste de paires nom-valeur. Azure Resource Manager les utilise pour étiqueter des ressources.  Azure Resource Manager utilise des balises pour vous permettre de générer des vues filtrées de votre facture Azure, et de définir une stratégie pour laquelle des balises sont requises. Pour plus d’informations sur les balises, voir [Organisation des ressources Azure à l’aide de balises](../azure-resource-manager/resource-group-using-tags.md).
 
 Le DNS Azure prend en charge l’utilisation de balises Azure Resource Manager sur des ressources de zone DNS.  Il ne prend pas en charge les balises sur les jeux d’enregistrements DNS, bien que l’alternative « métadonnées » soit prise en charge sur les jeux d’enregistrements DNS comme expliqué ci-dessous.
 
-### <a name="metadata"></a>Metadata
+### <a name="metadata"></a>Métadonnées
 
-Comme une alternative toorecord définie des balises, Azure DNS prend en charge annoter les jeux d’enregistrements à l’aide de 'metadata'.  Tootags similaire, métadonnées permet de vous tooassociate paires nom-valeur avec chaque jeu d’enregistrements.  Cela peut être utile, par exemple l’objet du hello toorecord de chaque enregistrement défini.  Contrairement aux balises, les métadonnées ne peut pas être utilisé tooprovide une vue filtrée de votre facture Azure et ne peut pas être spécifiée dans une stratégie Azure Resource Manager.
+À la place de balises de jeu d’enregistrements, le DNS Azure prend en charge l’annotation des jeux d’enregistrements à l’aide de « métadonnées ».  Comme des balises, les métadonnées permettent d’associer des paires nom-valeur à chaque jeu d’enregistrements.  Cela peut être utile, par exemple, pour indiquer l’objectif de chaque jeu d’enregistrements.  Contrairement aux balises, vous ne pouvez pas utiliser les métadonnées pour produire une vue filtrée de votre facture Azure. Et vous ne pouvez pas non plus en spécifier dans une stratégie Azure Resource Manager.
 
 ## <a name="etags"></a>Etags
 
-Supposons que deux personnes ou les deux processus essaient toomodify DNS de l’enregistrement par hello même temps. Lequel gagne ? Et le gagnant hello sait que leur avez remplacée modifications créées par quelqu'un d’autre ?
+Supposons que deux personnes ou deux processus tentent de modifier un enregistrement DNS en même temps. Lequel gagne ? Et le gagnant sait-il qu’il a remplacé les modifications créées par quelqu’un d’autre ?
 
-DNS Azure utilise Etags toohandle modifications simultanées toohello même ressource en toute sécurité. Les Etags sont différents des [« Balises » Azure Resource Manager](#tags). Chaque ressource DNS (zone ou jeu d’enregistrements) est associée à un Etag. Chaque fois qu’une ressource est récupérée, son Etag l’est également. Lors de la mise à jour d’une ressource, vous pouvez choisir toopass précédent hello Etag qui Azure DNS permet de vérifier que hello Etag correspond à serveur hello. Car chaque ressource tooa de mise à jour entraîne hello Etag à chaque fois, une non-correspondance d’Etag indique une modification simultanée s’est produite. ETag peut également être utilisé lors de la création d’un nouveau tooensure de ressources que les ressources hello n’existent pas déjà.
+Azure DNS utilise les Etags pour gérer les modifications simultanées de la même ressource en toute sécurité. Les Etags sont différents des [« Balises » Azure Resource Manager](#tags). Chaque ressource DNS (zone ou jeu d’enregistrements) est associée à un Etag. Chaque fois qu’une ressource est récupérée, son Etag l’est également. Lors de la mise à jour d’une ressource, vous pouvez transmettre l’Etag afin qu’Azure DNS vérifie que l’Etag du serveur correspond. Étant donné que chaque mise à jour d’une ressource entraîne la régénération de l’Etag, l’absence de concordance entre les Etags indique qu’une modification simultanée a eu lieu. Les Etags sont également utilisés lorsque vous créez une ressource pour vous assurer que la ressource n’existe pas déjà.
 
-Par défaut, Azure DNS PowerShell utilise les Etags tooblock modifications simultanées toozones et jeux d’enregistrements. Hello facultatif *-remplacer* commutateur peut être utilisé toosuppress vérification Etag, auquel cas tout simultanées les modifications qui se sont produites sont remplacées.
+Par défaut, Azure DNS PowerShell utilise les Etags pour bloquer les modifications simultanées apportées à des zones et des jeux d’enregistrements. Le commutateur facultatif *-Overwrite* peut être utilisé pour supprimer les vérifications d’Etags, auquel cas toutes les modifications simultanées qui se sont produites sont remplacées.
 
-Au niveau de hello Hello API REST de Azure DNS, les Etags sont spécifiés à l’aide d’en-têtes HTTP.  Leur comportement est donné dans hello tableau suivant :
+Au niveau de l’API REST Azure DNS, les Etags sont spécifiés à l’aide d’en-têtes HTTP.  Leur comportement est indiqué dans le tableau suivant :
 
 | En-tête | Comportement |
 | --- | --- |
@@ -130,11 +130,11 @@ Au niveau de hello Hello API REST de Azure DNS, les Etags sont spécifiés à l�
 
 ## <a name="limits"></a>limites
 
-Hello suivant les limites par défaut s’appliquent lors de l’utilisation d’Azure DNS :
+Les limites par défaut suivantes s’appliquent lors de l’utilisation du DNS Azure :
 
 [!INCLUDE [dns-limits](../../includes/dns-limits.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* toostart à l’aide de DNS Azure, découvrez comment trop[créer une zone DNS](dns-getstarted-create-dnszone-portal.md) et [créer des enregistrements DNS](dns-getstarted-create-recordset-portal.md).
-* toomigrate une zone DNS existante, découvrez comment trop[importer et exporter un fichier de zone DNS](dns-import-export.md).
+* Pour commencer à utiliser le DNS Azure, découvrez comment [créer une zone DNS](dns-getstarted-create-dnszone-portal.md) et [créer des enregistrements DNS](dns-getstarted-create-recordset-portal.md).
+* Pour migrer une zone DNS, découvrez comment [importer et exporter un fichier de zone DNS](dns-import-export.md).

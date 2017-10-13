@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure Documentation Insights de série heure - didacticiels, référence de l’API | Documents Microsoft"
-description: "En savoir plus analytique de IoT toorun Bonjour de cloud avec le traitement des événements d’entièrement géré. Analysez en temps réel des données d’applications, de détecteurs, d’appareils et autres."
+title: "Documentation Azure Time Series Insights - Didacticiels, informations de référence sur les API | Microsoft Docs"
+description: "Apprenez à exécuter des analyses IoT dans le cloud avec le traitement des événements entièrement géré. Analysez en temps réel des données d’applications, de détecteurs, d’appareils et autres."
 services: time-series-insights
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 04/13/2017
 ms.author: carolz
-ms.openlocfilehash: 2301d20aa2fb685279e2efc657ffcd41571af0c0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ca41dab4f1488c0d172513e61b1960f236c7ebf0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-time-series-insights-documentation"></a>Documentation Azure Time Series Insights 
  
-Découvrez comment tooset d’environnement d’un aperçu en temps série Explorer et analyser les données de série chronologique de vos solutions IoT ou connecté les choses. Documentation du partage des conditions préalables hello, comment API fait référence et autres toohelp documentation vous tooget démarrer en quelques minutes. 
+Découvrez comment configurer un environnement Time Series Insights, explorer et analyser les données chronologiques de vos solutions IoT ou de vos éléments connectés. La documentation contient les conditions préalables, les procédures, les informations de référence sur les API et d’autres documents pour faciliter vos premiers pas en quelques minutes. 
  
 <ul class="panelContent cardsFTitle"> 
     <li> 

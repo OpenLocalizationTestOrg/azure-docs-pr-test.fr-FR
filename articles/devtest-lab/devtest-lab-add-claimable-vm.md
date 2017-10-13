@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd un laboratoire de tooa de machine virtuelle qui peuvent être réclamé dans Azure DevTest Labs | Documents Microsoft"
-description: "Découvrez comment tooadd un laboratoire de tooa qui peuvent être réclamés machine virtuelle dans Azure DevTest Labs"
+title: "Ajouter une machine virtuelle exigible à un laboratoire dans Azure DevTest Labs | Microsoft Docs"
+description: "Découvrez comment ajouter une machine virtuelle exigible à un laboratoire dans Azure DevTest Labs"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: tarcher
-ms.openlocfilehash: fe6385ae2e59b9636b82aec250dc3a1f8a40ba5d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 98950d72e90b0e178bae2fffa7644fd824a25eea
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-a-claimable-vm-tooa-lab-in-azure-devtest-labs"></a>Ajouter un laboratoire tooa de machine virtuelle qui peuvent être réclamé dans Azure DevTest Labs
-Vous ajoutez un laboratoire tooa de machine virtuelle qui peuvent être réclamé dans un toohow de manière similaire vous [ajouter une machine virtuelle standard](devtest-lab-add-vm.md) – dans un *base* qui est soit un [image personnalisée](devtest-lab-create-template.md), [formule](devtest-lab-manage-formulas.md), ou [une image Marketplace](devtest-lab-configure-marketplace-images.md). Ce didacticiel vous guide à l’aide de hello tooadd portail Azure un laboratoire de tooa de machine virtuelle qui peuvent être réclamé dans DevTest Labs et présente le processus de hello qu'un utilisateur suit tooclaim hello machine virtuelle.
+# <a name="add-a-claimable-vm-to-a-lab-in-azure-devtest-labs"></a>Ajout d’une machine virtuelle à un laboratoire dans Azure DevTest Labs
+Vous ajoutez une machine virtuelle exigible à un laboratoire comme vous [ajouteriez une machine virtuelle standard](devtest-lab-add-vm.md), à partir d’une *base* qui est une [image personnalisée](devtest-lab-create-template.md), une [formule](devtest-lab-manage-formulas.md) ou une [image de la plateforme Place de marché](devtest-lab-configure-marketplace-images.md). Ce didacticiel vous guide tout au long de l’utilisation du Portail Azure pour ajouter une machine virtuelle exigible à un laboratoire dans DevTest Labs, et vous présente la procédure qu’un utilisateur suit pour revendiquer la machine virtuelle.
 
 > [!NOTE]
-> Si vous déployez des ordinateurs virtuels de lab via [modèles Azure Resource Manager](devtest-lab-create-environment-from-arm.md), vous pouvez créer des machines virtuelles qui peuvent être réclamés en définissant un hello **allowClaim** tootrue de propriété dans la section des propriétés hello.
+> Si vous déployez des machines virtuelles via des [Modèles Azure Resource Manager](devtest-lab-create-environment-from-arm.md), vous pouvez créer des machines virtuelles exigibles qui peuvent être revendiquées en définissant la propriété **allowClaim** sur true dans la section Propriétés.
 >
 >
 
-## <a name="steps-tooadd-a-claimable-vm-tooa-lab-in-azure-devtest-labs"></a>Étapes tooadd un laboratoire de tooa de machine virtuelle qui peuvent être réclamé dans Azure DevTest Labs
-1. Connectez-vous à toohello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-1. Sélectionnez **plus Services**, puis sélectionnez **DevTest Labs** à partir de la liste de hello.
-1. À partir de la liste hello de labs, sélectionnez le laboratoire de hello dans lequel vous voulez toocreate hello qui peuvent être réclamé machine virtuelle.  
-1. Sur du laboratoire hello **vue d’ensemble** panneau, sélectionnez **+ ajouter**.  
+## <a name="steps-to-add-a-claimable-vm-to-a-lab-in-azure-devtest-labs"></a>Procédure d’ajout d’une machine virtuelle exigible à un laboratoire dans Azure DevTest Labs
+1. Connectez-vous au [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Sélectionnez **Autres services**, puis **DevTest Labs** dans la liste.
+1. Dans la liste des laboratoires, sélectionnez le laboratoire dans lequel vous souhaitez créer la machine virtuelle revendicable.  
+1. Dans le panneau **Vue d’ensemble** du laboratoire, sélectionnez **+ Ajouter**.  
 
     ![Ajout du bouton de machine virtuelle](./media/devtest-lab-add-vm/devtestlab-home-blade-add-vm.png)
 
-1. Sur hello **choisir une base** panneau, sélectionnez une base de hello machine virtuelle.
-1. Sur hello **virtuels** panneau, entrez un nom pour la machine virtuelle hello Bonjour **nom de machine virtuelle** zone de texte.
+1. Dans le panneau **Choisir une base** , sélectionnez une base pour la machine virtuelle.
+1. Dans le panneau **Machine virtuelle**, entrez un nom pour la nouvelle machine virtuelle dans la zone de texte **Nom de la machine virtuelle**.
 
     ![Panneau Machine virtuelle de laboratoire](./media/devtest-lab-add-vm/devtestlab-lab-vm-blade.png)
 
-1. Entrez un **nom d’utilisateur** qui dispose des privilèges d’administrateur sur l’ordinateur virtuel de hello.  
-1. Si vous voulez toouse un mot de passe stockés dans votre [magasin des secrets](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store), sélectionnez **utiliser une clé secrète enregistrée**et spécifiez une valeur clée correspondant tooyour secret (mot de passe). Dans le cas contraire, entrez un mot de passe dans le champ de texte hello étiqueté **une valeur de Type**.
-1. Hello **type de disque de machine virtuelle** détermine le type de disque de stockage est autorisé pour les ordinateurs virtuels de hello dans le laboratoire de hello.
-1. Sélectionnez **taille de machine virtuelle** et sélectionnez une des hello prédéfinis des éléments qui spécifient les cœurs de processeur hello, la taille de mémoire RAM et taille du disque dur de hello VM toocreate hello.
-1. Sélectionnez **artefacts** liste hello des artefacts, sélectionner et configurer les artefacts hello que vous souhaitez l’image de base tooadd toohello. Si vous les nouveaux laboratoires tooDevTest ou configuration des artefacts, consultez toohello [ajouter un tooa d’artefact existant VM](devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) section, puis revenez ici une fois.
-1. Sélectionnez **paramètres avancés** options d’expiration et les options de réseau de tooconfigure hello machine virtuelle. Sous **revendication options**, choisissez **Oui** machine de hello toomake qui peuvent être réclamé.
+1. Entrez un **nom d’utilisateur** qui obtient les privilèges d’administrateur sur la machine virtuelle.  
+1. Si vous souhaitez utiliser un mot de passe stocké dans votre [magasin des secrets](https://azure.microsoft.com/updates/azure-devtest-labs-keep-your-secrets-safe-and-easy-to-use-with-the-new-personal-secret-store), sélectionnez **Use a saved secret** (Utiliser un secret enregistré), et spécifiez une valeur de clé correspondant à votre secret (mot de passe). Dans le cas contraire, entrez un mot de passe dans le champ de texte intitulé **Tapez une valeur**.
+1. Le **type de disque de machine virtuelle** détermine le type de disque de stockage autorisé pour les machines virtuelles dans le laboratoire.
+1. Sélectionnez **Taille de machine virtuelle** , puis l’un des éléments prédéfinis qui spécifient les cœurs du processeur, la taille de la RAM et la taille du disque dur de la machine virtuelle à créer.
+1. Sélectionnez **Artefacts** et, dans la liste des artefacts, sélectionnez et configurez les artefacts que vous souhaitez ajouter à l’image de base. Si vous n’êtes pas familier avec DevTest Labs ou avec la configuration d’artefacts, reportez-vous à la section [Ajout d’un artefact existant à une machine virtuelle](devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm), puis reprenez la procédure à ce stade.
+1. Sélectionnez **Paramètres avancés** pour configurer les options réseau et les options d’expiration de la machine virtuelle. Sous **Options de revendication**, choisissez **Oui** pour rendre la machine exigible.
 
-  ![Choisissez toomake hello qui peuvent être réclamé machine virtuelle.](./media/devtest-lab-add-vm/devtestlab-claim-VM-option.png)
+  ![Choisissez de rendre la machine virtuelle exigible.](./media/devtest-lab-add-vm/devtestlab-claim-VM-option.png)
 
-1. Si vous souhaitez tooview ou copiez le modèle de hello Azure Resource Manager, consultez toohello [modèle Enregistrer Azure Resource Manager](devtest-lab-add-vm.md#save-azure-resource-manager-template) section et revenez ici une fois.
-1. Sélectionnez **créer** tooadd hello spécifié lab toohello de machine virtuelle.
-1. Panneau de laboratoire Hello affiche hello statut de la création de la machine virtuelle hello - tout d’abord **création**, puis en tant que **en cours d’exécution** après hello machine virtuelle a été démarré.
+1. Si vous voulez visualiser ou copier le modèle Azure Resource Manager, reportez-vous à la section [Enregistrer un modèle Azure Resource Manager](devtest-lab-add-vm.md#save-azure-resource-manager-template), puis reprenez la procédure à ce stade.
+1. Sélectionnez **Créer** pour ajouter la machine virtuelle spécifiée au laboratoire.
+1. Le panneau du laboratoire affiche l’état de la création de la machine virtuelle, tout d’abord sous la forme **Création en cours**, puis sous la forme **En cours d’exécution** après le démarrage de la machine virtuelle.
 
 
 ## <a name="using-a-claimable-vm"></a>Utilisation d’une machine virtuelle exigible
 
-Un utilisateur peut demander toutes les machines virtuelles à partir de la liste hello de « Ordinateurs virtuels qui peuvent être réclamés » en effectuant l’une de ces étapes :
+Un utilisateur peut revendiquer toute machine virtuelle dans la liste des « Machines virtuelles exigibles » en procédant comme suit :
 
-* À partir de la liste de hello des « Ordinateurs virtuels qui peuvent être réclamés » en bas de hello du Panneau de vue d’ensemble du laboratoire hello, avec le bouton droit sur l’un des hello machines virtuelles dans la liste de hello et choisissez **machine de revendication**.
+* Dans la liste des « Machines virtuelles exigibles » en bas du panneau Vue d’ensemble du laboratoire, cliquez avec le bouton droit sur une des machines virtuelles dans la liste et choisissez **Revendiquer la machine**.
 
  ![Demandez une machine virtuelle exigible spécifique.](./media/devtest-lab-add-vm/devtestlab-claim-VM.png)
 
 
-* En haut de hello Hello **vue d’ensemble** panneau, choisissez **demander une**. Un ordinateur virtuel aléatoire est attribué à partir de la liste de hello de machines virtuelles qui peuvent être réclamés.
+* En haut du panneau **Vue d’ensemble**, choisissez **N’importe laquelle**. Une machine virtuelle aléatoire est attribuée dans la liste des machines virtuelles qui peuvent être revendiquées.
 
  ![Demandez n’importe quelle machine virtuelle exigible.](./media/devtest-lab-add-vm/devtestlab-claim-any.png)
 
@@ -72,5 +72,5 @@ Un utilisateur peut demander toutes les machines virtuelles à partir de la list
 Une fois que l’utilisateur revendique une machine virtuelle, cette dernière est placée dans la liste « Mes machines virtuelles » et n’est plus exigible par un autre utilisateur.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Une fois hello machine virtuelle a été créé, vous pouvez vous connecter toohello machine virtuelle en sélectionnant **Connect** sur le panneau de la machine virtuelle hello.
-* Explorer hello [galerie de modèles de DevTest Labs Azure Resource Manager QuickStart](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)
+* Une fois la machine virtuelle créée, vous pouvez vous y connecter en sélectionnant **Connexion** dans le panneau de la machine virtuelle.
+* Explorez la [Galerie de modèles de démarrage rapide d’Azure Resource Manager DevTest Labs](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates).

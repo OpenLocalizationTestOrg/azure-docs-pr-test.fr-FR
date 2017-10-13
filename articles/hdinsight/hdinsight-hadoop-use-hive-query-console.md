@@ -1,6 +1,6 @@
 ---
-title: "aaaUse Hadoop Hive sur hello Console de requête dans HDInsight - Azure | Documents Microsoft"
-description: "Découvrez comment toouse hello basée sur le web Console de requête toorun requêtes Hive sur un HDInsight Hadoop de cluster à partir de votre navigateur."
+title: "Utiliser Hadoop Hive sur la console de requêtes dans HDInsight - Azure | Documents Microsoft"
+description: "Découvrez comment utiliser la console de requêtes Web pour exécuter des requêtes Hive sur un cluster Hadoop HDInsight à partir de votre navigateur."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,35 +16,35 @@ ms.workload: big-data
 ms.date: 01/12/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 621882082c9a07655d34b8dc980b8e47dd04b745
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9ccac43ae365d79bfd6ac1edf4d9a799c11356a1
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="run-hive-queries-using-hello-query-console"></a>Exécuter des requêtes Hive à l’aide de la Console de requête de hello
+# <a name="run-hive-queries-using-the-query-console"></a>Exécution de requêtes Hive à l'aide de la console de requêtes
 [!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
-Dans cet article, vous allez apprendre comment les requêtes toouse hello Console de requête HDInsight toorun Hive sur un HDInsight Hadoop cluster depuis votre navigateur.
+Dans cet article, vous découvrirez comment utiliser la console de requêtes HDInsight pour exécuter des requêtes Hive sur un cluster Hadoop HDInsight à partir de votre navigateur.
 
 > [!IMPORTANT]
-> Hello Console de requête HDInsight est disponible uniquement sur les clusters HDInsight de basés sur Windows. Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> La console de requêtes HDInsight n’est disponible que sur les clusters HDInsight Windows. Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 >
 > Pour HDInsight 3.4 ou version supérieure, consultez [Run Hive queries in Ambari Hive View (Exécution de requêtes Hive dans la vue Hive d’Ambari)](hdinsight-hadoop-use-hive-ambari-view.md) pour plus d’informations sur l’exécution de requêtes Hive à partir d’un navigateur web.
 
 ## <a id="prereq"></a>Configuration requise
-toocomplete hello étapes décrites dans cet article, vous devez suivant de hello.
+Pour effectuer les étapes présentées dans cet article, vous avez besoin des éléments suivants :
 
 * Un cluster Hadoop HDInsight Windows
 * Un navigateur Web moderne
 
-## <a id="run"></a>Exécuter des requêtes Hive à l’aide de la Console de requête de hello
-1. Ouvrez un navigateur web et accédez trop**https://CLUSTERNAME.azurehdinsight.net**, où **CLUSTERNAME** hello désigne votre cluster HDInsight. Si vous y êtes invité, entrez le nom d’utilisateur hello et un mot de passe que vous avez utilisé lors de la création de cluster de hello.
-2. À partir des liens de hello en hello haut hello, sélectionnez **éditeur Hive**. Cela affiche un formulaire qui peut être utilisé tooenter hello HiveQL instructions que vous souhaitez toorun dans le cluster HDInsight de hello.
+## <a id="run"></a> Exécution de requêtes Hive à l'aide de la console de requêtes
+1. Dans un navigateur web, accédez à l’adresse **https://CLUSTERNAME.azurehdinsight.net**, où **CLUSTERNAME** est le nom de votre cluster HDInsight. Lorsque vous y êtes invité, entrez le nom d'utilisateur et le mot de passe que vous avez entrés lors de la création du cluster.
+2. À partir des liens situés en haut de la page, sélectionnez **Éditeur Hive**. Cela affiche un formulaire qui peut être utilisé pour saisir les instructions HiveQL que vous souhaitez exécuter sur le cluster HDInsight.
 
-    ![éditeur de ruche Hello](./media/hdinsight-hadoop-use-hive-query-console/queryconsole.png)
+    ![l’éditeur Hive](./media/hdinsight-hadoop-use-hive-query-console/queryconsole.png)
 
-    Remplacez le texte hello `Select * from hivesampletable` avec hello suivant les instructions HiveQL :
+    Remplacez le texte `Select * from hivesampletable` par les instructions HiveSQL suivantes :
 
         set hive.execution.engine=tez;
         DROP TABLE log4jLogs;
@@ -53,28 +53,28 @@ toocomplete hello étapes décrites dans cet article, vous devez suivant de hell
         STORED AS TEXTFILE LOCATION 'wasb:///example/data/';
         SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
 
-    Ces instructions effectuent hello suivant des actions :
+    Ces instructions effectuent les opérations suivantes :
 
-   * **DROP TABLE**: supprime la table de hello et le fichier de données hello si hello table existe déjà.
-   * **CREATE EXTERNAL TABLE**: crée une table « externe » dans Hive. Tables externes stockent uniquement la définition de table hello dans la ruche ; les données de salutation reste dans l’emplacement d’origine de hello.
+   * **DROP TABLE**: supprime la table et le fichier de données, si la table existe déjà.
+   * **CREATE EXTERNAL TABLE**: crée une table « externe » dans Hive. Les tables externes stockent uniquement la définition de table dans Hive ; les données restent à leur emplacement d’origine.
 
      > [!NOTE]
-     > Tables externes doivent être utilisés lorsque vous attendez hello sous-jacent toobe de données mis à jour par une source externe (par exemple, un processus de téléchargement automatique des données) ou par une autre opération MapReduce, mais souhaitez toujours que ruche interroge les données les plus récentes toouse hello.
+     > Les tables externes doivent être utilisées lorsque vous vous attendez à ce que les données sous-jacentes soient mises à jour par une source externe (comme un processus de téléchargement de données automatisé) ou par une autre opération MapReduce, mais souhaitez toujours que les requêtes Hive utilisent les données les plus récentes.
      >
-     > Suppression d’une table externe est **pas** supprimer les données de hello, uniquement la définition de table hello.
+     > La suppression d'une table externe ne supprime **pas** les données, mais seulement la définition de la table.
      >
      >
-   * **FORMAT de ligne**: indique la mise en forme les données de salutation ruche. Dans ce cas, les champs de hello dans chaque journal sont séparés par un espace.
-   * **EMPLACEMENT du fichier texte comme stockées**: indique la ruche où les données de salutation sont stocké (répertoire de données d’exemple hello) et qu’il est stockée sous forme de texte
-   * **Sélectionnez**: sélectionnez un nombre de toutes les lignes où colonne **t4** contiennent la valeur de hello **[erreur]**. Cette commande renvoie la valeur **3** , car trois lignes contiennent cette valeur.
-   * **INPUT__FILE__NAME LIKE '%.log'** : indique à Hive de retourner uniquement des données provenant de fichiers se terminant par .log. Cela limite hello recherche toohello exemple.log fichier qui contient les données de salutation et empêche de renvoi de données à partir de l’autre exemple de fichiers de données qui ne correspondent pas aux schéma hello que nous avons défini.
-3. Cliquez sur **Envoyer**. Hello **Session de travail** à hello en bas de page de hello doit afficher les détails de tâche de hello.
-4. Hello lorsque **état** champ change trop**terminé**, sélectionnez **afficher les détails** pour le travail de hello. Sur la page de détails de hello, hello **sortie des tâches** contient `[ERROR]    3`. Vous pouvez utiliser hello **télécharger** bouton sous cette toodownload de champ d’un fichier qui contient la sortie de hello du travail de hello.
+   * **ROW FORMAT**: indique à Hive le mode de formatage des données. Dans ce cas, les champs de chaque journal sont séparés par un espace.
+   * **STORED AS TEXTFILE LOCATION**: indique à Hive l'emplacement des données (le répertoire exemple/données) et précise qu'elles sont stockées sous la forme de texte.
+   * **SELECT** : sélectionne toutes les lignes dont la colonne **t4** contient la valeur **[ERROR]**. Cette commande renvoie la valeur **3** , car trois lignes contiennent cette valeur.
+   * **INPUT__FILE__NAME LIKE '%.log'** : indique à Hive de retourner uniquement des données provenant de fichiers se terminant par .log. Cela limite la recherche au fichier sample.log qui contient les données et l'empêche de renvoyer des données provenant d'autres fichiers d'exemple qui ne correspondent pas au schéma que nous avons défini.
+3. Cliquez sur **Envoyer**. La **session de la tâche** située au bas de la page devrait afficher les détails de la tâche.
+4. Une fois le champ **État** défini sur **Terminé**, sélectionnez **Afficher les détails** de la tâche. Dans la page relative aux détails, la **sortie de la tâche** contient `[ERROR]    3`. Vous pouvez utiliser le bouton **Télécharger** , situé en dessous de ce champ, pour télécharger un fichier contenant la sortie de la tâche.
 
 ## <a id="summary"></a>Résumé
-Comme vous pouvez le voir, hello Console de requête fournit un moyen simple de toorun ruche les requêtes dans un cluster HDInsight, surveiller l’état de la tâche hello et récupérer la sortie de hello.
+Comme vous pouvez le constater, la console de requêtes permet d'exécuter facilement des requêtes Hive sur un cluster HDInsight, de surveiller l'état de la tâche et de récupérer le résultat.
 
-toolearn savoir plus sur l’aide de tâches de Console de requête Hive toorun Hive, sélectionnez **mise en route** haut hello de hello Console de requête, puis utiliser les exemples hello fournis. Chaque exemple de guide de processus de hello d’à l’aide de la ruche tooanalyze données, y compris des explications sur les instructions HiveQL hello utilisées dans l’exemple hello.
+Pour en savoir plus sur l’utilisation de la console de requêtes Hive pour l’exécution de tâches Hive, sélectionnez **Prise en main** en haut de la console de requêtes, puis utilisez les exemples fournis. Chaque exemple aborde le processus d'analyse de données à l'aide de Hive, y compris les explications des instructions HiveQL utilisées dans l'exemple.
 
 ## <a id="nextsteps"></a>Étapes suivantes
 Pour obtenir des informations générales sur Hive dans HDInsight :
@@ -86,10 +86,10 @@ Pour plus d’informations sur d’autres méthodes de travail avec Hadoop sur H
 * [Utilisation de Pig avec Hadoop sur HDInsight](hdinsight-use-pig.md)
 * [Utilisation de MapReduce avec Hadoop sur HDInsight](hdinsight-use-mapreduce.md)
 
-Si vous utilisez Tez avec Hive, consultez hello suivant des documents pour les informations de débogage :
+Si vous utilisez Tez avec Hive, consultez les documents suivants pour les informations de débogage :
 
-* [Utilisez hello Tez UI sur HDInsight de basés sur Windows](hdinsight-debug-tez-ui.md)
-* [Utilisez hello vue Ambari Tez sur HDInsight de basés sur Linux](hdinsight-debug-ambari-tez-view.md)
+* [Utiliser l'interface utilisateur Tez sur HDInsight Windows](hdinsight-debug-tez-ui.md)
+* [Utilisez la vue Tez Ambari sur HDInsight Linux](hdinsight-debug-ambari-tez-view.md)
 
 [1]: ../HDInsight/hdinsight-hadoop-visual-studio-tools-get-started.md
 

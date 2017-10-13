@@ -1,6 +1,6 @@
 ---
-title: les types aaaData Guide - Azure SQL Data Warehouse | Documents Microsoft
-description: "Recommandations de types de données de toodefine qui sont compatibles avec l’entrepôt de données SQL."
+title: "Conseils sur les types de données - Azure SQL Data Warehouse | Microsoft Docs"
+description: "Recommandations concernant la définition des types de données compatibles avec SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
 author: shivaniguptamsft
@@ -15,29 +15,29 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 06/02/2017
 ms.author: shigu;barbkess
-ms.openlocfilehash: a2f7a394feb73d273b25101735b00eb12db2b292
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5c24c71af16bd9851d9caf15fecfa4bb76f5f77e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="guidance-for-defining-data-types-for-tables-in-sql-data-warehouse"></a>Conseils relatifs à la définition des types de données pour tables dans SQL Data Warehouse
-Utilisez ces types de données recommandations toodefine table qui sont compatibles avec l’entrepôt de données SQL. En outre toocompatibility, en réduisant la taille de hello des types de données améliore les performances des requêtes.
+Suivez ces recommandations pour définir des types de données de table compatibles avec SQL Data Warehouse. En plus de la compatibilité, en réduisant la taille des types de données, vous améliorerez les performances des requêtes.
 
-Entrepôt de données SQL prend en charge les types de données hello couramment utilisé. Pour obtenir la liste des types de données hello pris en charge, consultez [des types de données](/sql/docs/t-sql/statements/create-table-azure-sql-data-warehouse.md#datatypes) Bonjour l’instruction CREATE TABLE. 
+SQL Data Warehouse prend en charge les types de données les plus couramment utilisés. Pour obtenir la liste des types de données pris en charge, consultez les [types de données](/sql/docs/t-sql/statements/create-table-azure-sql-data-warehouse.md#datatypes) dans l’instruction CREATE TABLE. 
 
 
 ## <a name="minimize-row-length"></a>Réduction de la longueur de ligne
-En réduisant la taille de hello des types de données réduit la longueur de ligne hello, ce qui entraîne des performances des requêtes toobetter. Utilisez hello plus petit type de données qui fonctionne pour vos données. 
+En réduisant la taille des types de données, vous réduisez la longueur de ligne, ce qui entraîne une amélioration des performances de requête. Utilisez le plus petit type de données qui fonctionne pour vos données. 
 
-- Évitez de définir des colonnes de caractères ayant une grande longueur par défaut. Par exemple, si la valeur la plus longue hello est de 25 caractères, puis définissez votre colonne en tant que VARCHAR(25). 
+- Évitez de définir des colonnes de caractères ayant une grande longueur par défaut. Par exemple, si la valeur la plus longue est de 25 caractères, définissez la colonne en tant que VARCHAR(25). 
 - Évitez d’utiliser [NVARCHAR][NVARCHAR] lorsque vous avez uniquement besoin de VARCHAR.
 - Lorsque c’est possible, utilisez NVARCHAR(4000) ou VARCHAR(8000) au lieu de NVARCHAR(MAX) ou VARCHAR(MAX).
 
-Si vous utilisez Polybase tooload vos tables, la longueur de ligne de table hello hello défini ne peut pas dépasser 1 Mo. Lorsqu’une ligne avec les données de longueur variable dépasse 1 Mo, vous pouvez charger la ligne hello BCP, mais pas avec PolyBase.
+Si vous utilisez Polybase pour charger vos tables, la longueur définie pour la ligne de table ne doit pas dépasser 1 Mo. Lorsqu’une ligne avec des données de longueur variable dépasse 1 Mo, vous pouvez télécharger la ligne avec BCP, mais pas avec PolyBase.
 
 ## <a name="identify-unsupported-data-types"></a>Identification des types de données non pris en charge
-Si vous migrez votre base de données à partir d’une autre base de données SQL, vous pouvez rencontrer certains types de données qui ne sont pas pris en charge sur SQL Data Warehouse. Utiliser cette requête toodiscover non pris en charge dans votre schéma SQL existant.
+Si vous migrez votre base de données à partir d’une autre base de données SQL, vous pouvez rencontrer certains types de données qui ne sont pas pris en charge sur SQL Data Warehouse. Utilisez cette requête pour identifier les types de données non pris en charge dans votre schéma SQL existant.
 
 ```sql
 SELECT  t.[name], c.[name], c.[system_type_id], c.[user_type_id], y.[is_user_defined], y.[name]
@@ -51,7 +51,7 @@ WHERE y.[name] IN ('geography','geometry','hierarchyid','image','text','ntext','
 
 ## <a name="unsupported-data-types"></a>Utilisation de solutions de contournement pour les types de données non pris en charge
 
-Hello Voici hello des types de données SQL Data Warehouse ne prend pas en charge et donne les alternatives que vous pouvez utiliser à la place hello non pris en charge les types de données.
+La liste suivante répertorie les types de données non pris en charge par SQL Data Warehouse, et donne des alternatives que vous pouvez utiliser à la place de ces types de données.
 
 | Type de données non pris en charge | Solution de contournement |
 | --- | --- |
@@ -62,15 +62,15 @@ Hello Voici hello des types de données SQL Data Warehouse ne prend pas en charg
 | [text][ntext,text,image] |[varchar][varchar] |
 | [ntext][ntext,text,image] |[nvarchar][nvarchar] |
 | [sql_variant][sql_variant] |Fractionnez la colonne en plusieurs colonnes fortement typées. |
-| [table][table] |Convertir les tables tootemporary. |
-| [timestamp][timestamp] |Retravailler code toouse [datetime2] [ datetime2] et `CURRENT_TIMESTAMP` (fonction).  Seules les constantes sont prises en charge en tant que valeurs par défaut, par conséquent le paramètre current_timestamp ne peut pas être défini comme une contrainte par défaut. Si vous avez besoin de valeurs de version de ligne de toomigrate à partir d’une colonne d’horodatage typé, utilisez [binaire][BINARY](8) ou [VARBINARY][BINARY](8) pour NOT NULL ou Valeurs de version de ligne NULL. |
+| [table][table] |Appliquez une conversion vers des tables temporaires. |
+| [timestamp][timestamp] |Modifiez le code afin d’utiliser le paramètre [datetime2][datetime2] et la fonction `CURRENT_TIMESTAMP`.  Seules les constantes sont prises en charge en tant que valeurs par défaut, par conséquent le paramètre current_timestamp ne peut pas être défini comme une contrainte par défaut. Si vous devez migrer les valeurs de version de ligne à partir d’une colonne de type horodatage, utilisez le paramètre [BINARY(8)][BINARY] ou [VARBINARY(8)][BINARY] pour les valeurs de version de ligne NOT NULL ou NULL. |
 | [xml][xml] |[varchar][varchar] |
-| [user-defined type][user defined types] |Convertir le type de données natif toohello précédent lorsque cela est possible. |
+| [user-defined type][user defined types] |Revenez au type de données natif lorsque c’est possible. |
 | valeurs par défaut | Les valeurs par défaut prennent uniquement en charge des littéraux et des constantes.  Les expressions ou fonctions non déterministes comme `GETDATE()` ou `CURRENT_TIMESTAMP` ne sont pas prises en charge. |
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-toolearn, voir :
+Pour plus d'informations, consultez les rubriques suivantes :
 
 - [Meilleures pratiques relatives à SQL Data Warehouse][SQL Data Warehouse Best Practices]
 - [Vue d’ensemble des tables][Overview]

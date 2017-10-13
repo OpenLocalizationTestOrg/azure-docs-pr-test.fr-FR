@@ -1,5 +1,5 @@
 ---
-title: "aaaOverview du cycle de vie microservices de Azure basé sur acteur | Documents Microsoft"
+title: "Vue d’ensemble du cycle de vie des microservices Azure basés sur acteur | Microsoft Docs"
 description: "Explique le cycle de vie Service Fabric Reliable Actor, le Garbage Collection et la suppression manuelle des acteurs et de leur état"
 services: service-fabric
 documentationcenter: .net
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/13/2017
 ms.author: amanbha
-ms.openlocfilehash: a7926e372449048f0a579c2c58573754a4a82363
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 75b7b77a0bef2051599a4f61183109cfb2ffff3b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="actor-lifecycle-automatic-garbage-collection-and-manual-delete"></a>Cycle de vie des acteurs, Garbage Collection automatique et suppression manuelle
-Un acteur est activé hello la première fois, un appel est fait tooany de ses méthodes. Un acteur est désactivé (garbage collection par le runtime d’acteurs hello) s’il n’est pas utilisé pendant une période configurable. Un acteur et son état peuvent également être supprimés manuellement, à tout moment.
+Un acteur est activé la première fois qu’un appel est effectué à l’une de ses méthodes. Un acteur est désactivé (fait l’objet d’un Garbage Collection par le runtime Actors) s’il n’est pas utilisé pendant une durée configurable. Un acteur et son état peuvent également être supprimés manuellement, à tout moment.
 
 ## <a name="actor-activation"></a>Activation de l’acteur
-Lorsqu’un acteur est activé, hello événements suivants se produisent :
+Quand un acteur est activé, les événements suivants se produisent :
 
 * Quand un appel est émis vers un acteur qui n'est pas actif, un autre acteur est créé.
-* état de Hello acteur est chargé si elle maintient l’état.
-* Hello `OnActivateAsync` (c#) ou `onActivateAsync` (méthode) (Java) (qui peut être substituée dans une implémentation d’acteur hello) est appelée.
-* acteur de Hello est désormais considérée comme active.
+* L’état de l’acteur est chargé s’il maintient l’état.
+* La méthode `OnActivateAsync` (C#) ou `onActivateAsync` (Java), qui peut être remplacée dans l’implémentation de l’acteur, est appelée.
+* L’acteur est désormais considéré comme actif.
 
 ## <a name="actor-deactivation"></a>Désactivation de l’acteur
-Lorsqu’un acteur est désactivé, hello événements suivants se produisent :
+Quand un acteur est désactivé, les événements suivants se produisent :
 
-* Lorsqu’un intervenant n’est pas utilisé pendant un certain temps, il est supprimé à partir de la table des acteurs Active hello.
-* Hello `OnDeactivateAsync` (c#) ou `onDeactivateAsync` (méthode) (Java) (qui peut être substituée dans une implémentation d’acteur hello) est appelée. Cela efface toutes les minuteries hello pour l’acteur de hello. Les opérations de l’acteur, comme la modification de l’état, ne doivent pas être appelées avec cette méthode.
+* Quand un acteur n'est pas utilisé pendant un certain temps, il est supprimé de la table d'acteurs actifs.
+* La méthode `OnDeactivateAsync` (C#) ou `onDeactivateAsync` (Java), qui peut être remplacée dans l’implémentation de l’acteur, est appelée. Cette opération efface toutes les minuteries applicables à l'acteur. Les opérations de l’acteur, comme la modification de l’état, ne doivent pas être appelées avec cette méthode.
 
 > [!TIP]
-> Hello acteurs de l’ensemble fibre optique exécution émet certaines [tooactor activation et désactivation des événements associés](service-fabric-reliable-actors-diagnostics.md#list-of-events-and-performance-counters). Ces événements sont utiles dans les diagnostics et la surveillance des performances.
+> Le runtime Fabric Actors émet des [événements liés à l’activation et la désactivation des acteurs](service-fabric-reliable-actors-diagnostics.md#list-of-events-and-performance-counters). Ces derniers sont utiles dans les diagnostics et la surveillance des performances.
 >
 >
 
 ### <a name="actor-garbage-collection"></a>Garbage Collection des acteurs
-Lorsqu’un acteur est désactivé, objet de références toohello acteur sont libérées et il peut être le garbage collecté normalement par hello common language runtime (CLR) ou le garbage collector de java virtual machine (JVM). Le garbage collection uniquement nettoie les objets d’acteur hello ; Il effectue **pas** supprimer l’état stocké dans le Gestionnaire d’état d’acteur hello. Hello prochaine heure hello acteur est activé, un nouvel objet acteur est créé et son état est restauré.
+Quand un acteur est désactivé, les références à l’objet acteur sont libérées et celui-ci peut faire l’objet d’un garbage collection normal par le récupérateur de mémoire CLR (common language runtime) ou de la machine virtuelle Java (JVM). L’opération Garbage Collection nettoie uniquement l’objet acteur. Elle ne supprime **pas** l’état stocké dans le Gestionnaire d’état de l’acteur. La prochaine fois que l’acteur est activé, un nouvel objet acteur est créé et son état est restauré.
 
-Quel compte comme « utilisés » à des fins de hello de désactivation et de garbage collection ?
+Que signifie « être utilisé » dans le cadre de la désactivation et du Garbage Collection ?
 
 * Réception d'un appel
-* `IRemindable.ReceiveReminderAsync`méthode appelée (applicable uniquement si l’acteur de hello utilise des rappels)
+* `IRemindable.ReceiveReminderAsync` (applicable uniquement si l'acteur utilise des rappels)
 
 > [!NOTE]
-> Si les acteur hello utilise des minuteurs et son rappel du minuteur est appelé, il ne **pas** en tant que le « utilisé ».
+> Si l’acteur utilise des minuteries et que son rappel de minuterie est appelé, cela ne signifie **pas** qu’il est « utilisé ».
 >
 >
 
-Avant d’entrer les détails de hello de désactivation, il est hello important toodefine dispositions suivantes :
+Avant d’aborder les détails de la désactivation, il est important de définir les termes suivants :
 
-* *Intervalle d'analyse*. Il s’agit d’intervalle hello sur l’acteurs hello runtime analyse sa table acteurs Active pour les acteurs qui peuvent être désactivés et que le garbage collector. valeur par défaut de Hello est 1 minute.
-* *Délai d'inactivité*. Cela est hello temps qu’un acteur doit tooremain inutilisées (inactif) avant d’être désactivé et que le garbage collector. valeur par défaut de Hello est de 60 minutes.
+* *Intervalle d'analyse*. Il s’agit de l’intervalle pendant lequel le runtime Actors recherche dans sa table d’acteurs actifs les acteurs qui peuvent faire l’objet d’une désactivation ou d’un Garbage Collection. La valeur par défaut est 1 minute.
+* *Délai d'inactivité*. Il s’agit de la durée pendant laquelle un acteur reste inutilisé (inactif) avant de faire l’objet d’une désactivation ou d’un Garbage Collection. La valeur par défaut est 60 minutes.
 
-En règle générale, il est inutile toochange ces valeurs par défaut. Toutefois, si nécessaire, ces intervalles peuvent être modifiés via `ActorServiceSettings` lorsque vous enregistrez votre [Service d’acteur](service-fabric-reliable-actors-platform.md):
+En général, vous n'avez pas besoin de modifier les valeurs par défaut. Toutefois, si nécessaire, ces intervalles peuvent être modifiés via `ActorServiceSettings` lorsque vous enregistrez votre [Service d’acteur](service-fabric-reliable-actors-platform.md):
 
 ```csharp
 public class Program
@@ -93,29 +93,29 @@ public class Program
     }
 }
 ```
-Pour chaque acteur active, hello acteur runtime effectue le suivi de durée hello pendant laquelle il a été inactif pendant (c'est-à-dire, non utilisé). Hello acteur runtime vérifie chacune des acteurs de hello chaque `ScanIntervalInSeconds` toosee si elle peut être garbage collectées et il collecte, s’il a été inactif pendant `IdleTimeoutInSeconds`.
+Pour chaque acteur actif, le runtime Actors effectue le suivi de la durée pendant laquelle il a été inactif (c’est-à-dire non utilisé). Le runtime Actors vérifie chacun des acteurs toutes les `ScanIntervalInSeconds` pour voir s’il peut faire l’objet d’un Garbage Collection, et le collecte s’il est inactif depuis `IdleTimeoutInSeconds`.
 
-Chaque fois qu’un acteur est utilisé, sa durée d’inactivité est too0 de réinitialisation. Après cela, acteur de hello peut être le garbage collecté uniquement s’il reste encore inactif pour `IdleTimeoutInSeconds`. Rappelez-vous qu’un acteur est considéré comme toohave été utilisée si une méthode d’interface acteur ou d’un rappel de rappel d’acteur est exécuté. Un acteur est **pas** considéré comme toohave été si son rappel du minuteur est exécuté.
+Chaque fois qu'un acteur est utilisé, son délai d'inactivité est réinitialisé à 0. Ensuite, l'acteur peut uniquement faire l'objet d'un Garbage Collection s'il reste encore inactif pendant `IdleTimeoutInSeconds`. N’oubliez pas qu’un acteur est considéré utilisé si une méthode d’interface d’acteur ou un rappel de rappel d’acteur est exécuté. Un acteur n'est **pas** considéré utilisé si son rappel de minuterie est exécuté.
 
-Hello diagramme suivant montre hello de cycle de vie d’un tooillustrate unique acteur ces concepts.
+Le diagramme suivant illustre le cycle de vie d’un seul acteur pour illustrer ces concepts.
 
 ![Exemple de temps d'inactivité][1]
 
-Il montre Hello impact hello des appels de méthode intervenant, les rappels, les minuteurs de durée de vie hello de cet acteur. Hello points sur hello exemple suivants est intéressant de mentionner :
+L'exemple montre l'impact des appels de méthode d'acteur, les rappels et les minuteries sur la durée de vie de cet acteur. Voici les points importants de l'exemple :
 
-* ScanInterval et IdleTimeout sont définies respectivement too5 et 10. (Unités de n’importe pas ici, car notre objectif n'est que le concept de hello tooillustrate.)
-* analyse de Hello pour les acteurs toobe les garbage collecté se produit au T = 0, 5, 10, 15, 20, 25, tel que défini par l’intervalle d’analyse hello de 5.
-* Une minuterie périodique se déclenche à T=4,8,12,16,20,24 et son rappel s'exécute. Il n’affecte pas la durée d’inactivité hello d’acteur de hello.
-* Un appel de méthode intervenant au niveau de T = 7 réinitialise too0 du temps d’inactivité hello et retarde hello le garbage collection d’acteur de hello.
-* Un rappel de rappel acteur s’exécute à T = 14 et plus les retards hello le garbage collection d’acteur de hello.
-* Au cours de hello analyse de garbage collection à T = 25, durée d’inactivité d’acteur hello dépasse enfin délai d’inactivité de hello de 10 et acteur de hello est le garbage collecté.
+* ScanInterval et IdleTimeout sont définis sur 5 et 10, respectivement. (Les unités n'importent pas ici, dans la mesure où notre objectif se borne à illustrer le concept.)
+* La recherche d'acteurs ayant fait l'objet d'un Garbage Collection s'effectue à T=0,5,10,15,20,25, comme défini par la valeur 5 de l'intervalle d'analyse.
+* Une minuterie périodique se déclenche à T=4,8,12,16,20,24 et son rappel s'exécute. Il n'affecte pas la durée d'inactivité de l'acteur.
+* Un appel de méthode d'acteur à T=7 réinitialise la durée d'inactivité à 0 et retarde le Garbage Collection de l'acteur.
+* Un rappel de rappel d'acteur s'exécute à T=14 et retarde davantage le Garbage Collection de l'acteur.
+* Lors de l'analyse de Garbage Collection à T=25, la durée d'inactivité de l'acteur dépasse la valeur 10 du paramètre Délai d'inactivité et l'acteur fait l'objet d'un Garbage Collection.
 
-Un acteur ne peut jamais faire l’objet d’un Garbage Collection quand il exécute l’une de ses méthodes, quelle que soit la durée d’exécution de cette méthode. Comme mentionné précédemment, l’exécution de hello de méthodes d’interface acteur et les rappels de rappel empêche le garbage collection en réinitialisant too0 de durée d’inactivité d’acteur hello. l’exécution de Hello de rappels de la minuterie ne réinitialise pas too0 du temps d’inactivité hello. Toutefois, hello le garbage collection d’acteur de hello est différé jusqu'à ce que la fin de l’exécution du rappel timer hello.
+Un acteur ne peut jamais faire l’objet d’un Garbage Collection quand il exécute l’une de ses méthodes, quelle que soit la durée d’exécution de cette méthode. Comme mentionné précédemment, l'exécution des méthodes d'interface d'acteur et des rappels de rappel empêche le Garbage Collection en réinitialisant la durée d'inactivité de l'acteur à 0. L'exécution des rappels de minuterie ne réinitialise pas la durée d'inactivité à 0. Toutefois, le Garbage Collection de l'acteur est différé jusqu'à ce que le rappel de minuterie ait terminé son exécution.
 
 ## <a name="deleting-actors-and-their-state"></a>Suppression des acteurs et de leur état
-Le garbage collection d’acteurs désactivés nettoie uniquement objet d’acteur hello, mais elle ne supprime pas les données stockées dans le Gestionnaire d’état d’un acteur. Lorsqu’un acteur est réactivé, ses données sont effectuées tooit disponible via le Gestionnaire d’état de hello. Dans les cas où acteurs stocker des données dans le Gestionnaire d’état et sont désactivées, mais jamais nouveau activés, il peut être nécessaire tooclean leurs données.
+Le Garbage Collection des acteurs désactivés nettoie uniquement l’objet acteur, mais il ne supprime pas les données stockées dans le Gestionnaire d’état d’un acteur. Lorsqu’un acteur est réactivé, ses données sont de nouveau rendues disponibles par le biais du Gestionnaire d’état. Dans les cas où les acteurs stockent des données dans le Gestionnaire d’état et sont désactivés mais jamais réactivés, il peut être nécessaire de nettoyer leurs données.
 
-Hello [acteur Service](service-fabric-reliable-actors-platform.md) fournit une fonction de suppression des intervenants à partir d’un appelant distant :
+Le [Service d’acteur](service-fabric-reliable-actors-platform.md) fournit une fonction de suppression des acteurs à partir d’un appelant à distance :
 
 ```csharp
 ActorId actorToDelete = new ActorId(id);
@@ -134,7 +134,7 @@ ActorService myActorServiceProxy = ActorServiceProxy.create(
 myActorServiceProxy.deleteActorAsync(actorToDelete);
 ```
 
-La suppression d’un acteur a hello suivant effets selon l’acteur de hello soit actif ou non :
+La suppression d’un acteur a les effets suivants selon que l’acteur est actuellement actif ou pas :
 
 * **Acteur actif**
   * L’acteur est supprimé de la liste des acteurs actifs et est désactivé.
@@ -142,7 +142,7 @@ La suppression d’un acteur a hello suivant effets selon l’acteur de hello so
 * **Acteur inactif**
   * Son état est définitivement supprimé.
 
-Notez qu’un acteur ne peut pas appeler delete sur lui-même à partir d’une de ses méthodes intervenant comme acteur de hello ne peut pas être supprimé pendant l’exécution d’un contexte d’appel acteur, dans quel hello runtime a obtenu un verrou autour hello acteur tooenforce monothread accès par appel de.
+Notez qu’un acteur ne peut pas effectuer un appel de suppression sur lui-même à partir de l’une de ses méthodes d’acteur, car l’acteur ne peut pas être supprimé pendant qu’il est exécuté dans un contexte d’appel d’acteur, dans lequel le runtime a obtenu un verrou autour de l’appel d’acteur pour autoriser l’accès monothread.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Minuteries et rappels d’acteur](service-fabric-reliable-actors-timers-reminders.md)

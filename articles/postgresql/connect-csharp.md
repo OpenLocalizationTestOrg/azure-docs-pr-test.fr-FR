@@ -1,6 +1,6 @@
 ---
-title: "Se connecter tooAzure de base de données pour PostgreSQL à partir de c# | Documents Microsoft"
-description: "Ce démarrage rapide fournit un exemple de code c# (.NET) vous pouvez utiliser tooconnect et interroger des données à partir de la base de données Azure pour PostgreSQL."
+title: "Se connecter à la base de données Azure pour PostgreSQL à partir de C# | Microsoft Docs"
+description: "Ce guide de démarrage rapide fournit un exemple de code C# (.Net), que vous pouvez utiliser pour vous connecter et interroger des données de la base de données Azure pour PostgreSQL."
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -11,52 +11,52 @@ ms.custom: mvc
 ms.devlang: csharp
 ms.topic: quickstart
 ms.date: 06/23/2017
-ms.openlocfilehash: 5ba7426f8ad263193cdb208b3531da0ceff181dc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 91e0269e310688dc88d139430ccf386a1d26a61c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="azure-database-for-postgresql-use-net-c-tooconnect-and-query-data"></a>Base de données Azure pour PostgreSQL : l’utilisation de .NET (c#) tooconnect et interroger des données
-Ce démarrage rapide montre comment tooconnect tooan Azure de base de données PostgreSQL à l’aide d’une application c#. Il montre comment toouse SQL instructions tooquery, insérer, mettre à jour et supprimer des données dans la base de données hello. Hello étapes décrites dans cet article supposent que vous êtes familiarisé avec le développement à l’aide de c#, et que vous êtes tooworking nouvelle base de données Azure pour PostgreSQL.
+# <a name="azure-database-for-postgresql-use-net-c-to-connect-and-query-data"></a>Base de données Azure pour PostgreSQL : Utilisation de .NET (C#) pour se connecter et interroger des données
+Ce guide de démarrage rapide vous explique comment vous connecter à une base de données Azure pour PostgreSQL en utilisant une application C#. Il détaille l’utilisation d’instructions SQL pour interroger la base de données, la mettre à jour, y insérer des données ou en supprimer. Les étapes de cet article supposent que vous connaissez le développement avec C#, mais que vous ne savez pas utiliser la base de données Azure pour PostgreSQL.
 
 ## <a name="prerequisites"></a>Composants requis
-Ce démarrage rapide utilise des ressources hello créés dans un de ces guides comme point de départ :
+Ce guide de démarrage rapide s’appuie sur les ressources créées dans l’un de ces guides :
 - [Créer une base de données - Portail](quickstart-create-server-database-portal.md)
 - [Créer une base de données - CLI](quickstart-create-server-database-azure-cli.md)
 
 Il vous faudra également :
-- Installer [.NET Framework](https://www.microsoft.com/net/download). Suivez les étapes de hello de hello lié article tooinstall .NET spécifiquement pour votre plateforme (Windows, Ubuntu Linux ou macOS). 
-- Installer [Visual Studio](https://www.visualstudio.com/downloads/) ou code tootype et modification de Code Visual Studio.
+- Installer [.NET Framework](https://www.microsoft.com/net/download). Suivez les étapes de l’article associé pour installer .NET spécifiquement pour votre plateforme (Windows, Ubuntu Linux ou macOS). 
+- Installer [Visual Studio](https://www.visualstudio.com/downloads/) ou Visual Studio Code pour saisir et modifier du code.
 - Installer la bibliothèque [Npgsql](http://www.npgsql.org/doc/index.html) comme décrit ci-dessous.
 
 ## <a name="install-npgsql-references-into-your-visual-studio-solution"></a>Installer les références Npgsql dans votre solution Visual Studio
-tooconnect de hello c# tooPostgreSQL de l’application, utilisez bibliothèque ADO.NET de hello open source appelé fournisseur Npgsql. NuGet vous aide à télécharger et gérer facilement des références de hello.
+Pour vous connecter à PostgreSQL à partir de l’application C#, utilisez la bibliothèque ADO.Net open source appelée Npgsql. NuGet vous aide à télécharger et gérer facilement les références.
 
 1. Créez une solution C# ou ouvrez-en une existante : 
    - Dans Visual Studio, créez une solution en cliquant sur le menu Fichier **Nouveau** > **Projet**.
-   - Dans la boîte de dialogue Nouveau projet de hello, développez **modèles** > **Visual C#**. 
+   - Dans la boîte de dialogue Nouveau projet, développez **Modèles** > **Visual C#**. 
    - Choisissez un modèle approprié tel que **Application console (.NET Core)**.
 
-2. Utilisez hello fournisseur Npgsql du Gestionnaire de Package Nuget tooinstall :
-   - Cliquez sur hello **outils** menu > **Gestionnaire de Package NuGet** > **Package Manager Console**.
-   - Bonjour **Package Manager Console**, type`Install-Package Npgsql`
-   - Hello installer commande téléchargements hello Npgsql.dll et assemblys associés et les ajoute comme dépendances dans la solution de hello.
+2. Utilisez le gestionnaire de package NuGet pour installer Npgsql :
+   - Cliquez sur **Outils** > **Gestionnaire de package NuGet** > **Console du Gestionnaire de package**.
+   - Dans la **Console du Gestionnaire de package**, entrez `Install-Package Npgsql`
+   - La commande d’installation télécharge le fichier Npgsql.dll et les assemblys associés, et elle les ajoute comme dépendances dans la solution.
 
 ## <a name="get-connection-information"></a>Obtenir des informations de connexion
-Obtenir les informations nécessaires tooconnect toohello de hello connexion base de données Azure pour PostgreSQL. Vous devez hello des informations d’identification de nom et la connexion serveur complet.
+Obtenez les informations de connexion requises pour vous connecter à la base de données Azure pour PostgreSQL. Vous devez disposer du nom de serveur complet et des informations d’identification.
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/).
-2. Hello menu de gauche dans le portail Azure, cliquez sur **toutes les ressources** et recherchez le serveur hello vous avez créé, tel que **mypgserver-20170401**.
-3. Cliquez sur le nom du serveur hello **mypgserver-20170401**.
-4. Serveur hello sélectionnez **vue d’ensemble** page. Prenez note de hello **nom du serveur** et **nom de connexion de serveur admin**.
+1. Connectez-vous au [portail Azure](https://portal.azure.com/).
+2. Dans le menu de gauche du portail Azure, cliquez sur **Toutes les ressources**, puis recherchez le serveur que vous venez de créer, par exemple **mypgserver-20170401**.
+3. Cliquez sur le nom du serveur **mypgserver-20170401**.
+4. Sélectionnez la page **Présentation** du serveur. Prenez note du **nom du serveur** et du **nom de connexion d’administrateur du serveur**.
  ![Base de données Azure pour PostgreSQL - Connexion d’administrateur du serveur](./media/connect-csharp/1-connection-string.png)
-5. Si vous oubliez vos informations de connexion du serveur, accédez à toohello **vue d’ensemble** page Nom de connexion d’administrateur du serveur de hello tooview et, si nécessaire, réinitialiser un mot de passe hello.
+5. Si vous avez oublié vos informations de connexion au serveur, accédez à la page **Vue d’ensemble** pour afficher le nom de connexion de l’administrateur du serveur et, si nécessaire, réinitialiser le mot de passe.
 
 ## <a name="connect-create-table-and-insert-data"></a>Se connecter, créer des tables et insérer des données
-Suivante de hello utilisation tooconnect de code et chargez à l’aide de données hello **CREATE TABLE** et **INSERT INTO** instructions SQL. code de Hello utilise NpgsqlCommand classe avec la méthode [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) tooestablish un tooPostgreSQL de connexion. Puis hello de code utilise la méthode [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand), définit la propriété CommandText hello et appelle la méthode [ExecuteNonQuery()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) commandes de base de données toorun hello. 
+Utilisez le code suivant pour vous connecter et charger les données à l’aide d’instructions SQL **CREATE TABLE** et **INSERT INTO**. Le code utilise la classe NpgsqlCommand avec la méthode [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) pour établir une connexion à PostgreSQL. Le code utilise ensuite la méthode [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand), définit la propriété CommandText et appelle la méthode [ExecuteNonQuery()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) pour exécuter les commandes de la base de données. 
 
-Remplacer les paramètres d’hôte, DBName, utilisateur et mot de passe hello avec des valeurs hello que vous avez spécifié lorsque vous avez créé la base de données et serveur de hello. 
+Remplacez les paramètres Host, DBName, User et Password par les valeurs spécifiées lors de la création du serveur et de la base de données. 
 
 ```csharp
 using System;
@@ -70,7 +70,7 @@ namespace Driver
 {
     public class AzurePostgresCreate
     {
-        // Obtain connection string information from hello portal
+        // Obtain connection string information from the portal
         //
         private static string Host = "mypgserver-20170401.postgres.database.azure.com";
         private static string User = "mylogin@mypgserver-20170401";
@@ -123,7 +123,7 @@ namespace Driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN tooexit");
+            Console.WriteLine("Press RETURN to exit");
             Console.ReadLine();
         }
     }
@@ -131,9 +131,9 @@ namespace Driver
 ```
 
 ## <a name="read-data"></a>Lire les données
-Suivante de hello utilisation tooconnect de code et lire à l’aide de données hello un **sélectionnez** instruction SQL. code de Hello utilise NpgsqlCommand classe avec la méthode [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) tooestablish un tooPostgreSQL de connexion. Puis hello de code utilise la méthode [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand) et méthode [ExecuteReader()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteReader) commandes de base de données toorun hello. Ensuite hello de code utilise [Read()](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_Read) tooadvance toohello les enregistrements dans les résultats de hello. Ensuite code de hello utilise [GetInt32()](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_GetInt32_System_Int32_) et [GetString()](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_GetString_System_Int32_) tooparse les valeurs hello dans l’enregistrement de hello.
+Utilisez le code suivant pour vous connecter et lire des données à l’aide d’une instruction SQL **SELECT**. Le code utilise la classe NpgsqlCommand avec la méthode [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) pour établir une connexion à PostgreSQL. Le code utilise ensuite la méthode [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand) et la méthode [ExecuteReader()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteReader) pour exécuter les commandes de la base de données. Puis le code utilise [Read()](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_Read) pour accéder à des enregistrements dans les résultats. Ensuite, le code utilise [GetInt32()](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_GetInt32_System_Int32_) et [GetString()](http://www.npgsql.org/api/Npgsql.NpgsqlDataReader.html#Npgsql_NpgsqlDataReader_GetString_System_Int32_) pour analyser les valeurs de l’enregistrement.
 
-Remplacer les paramètres d’hôte, DBName, utilisateur et mot de passe hello avec des valeurs hello que vous avez spécifié lorsque vous avez créé la base de données et serveur de hello. 
+Remplacez les paramètres Host, DBName, User et Password par les valeurs spécifiées lors de la création du serveur et de la base de données. 
 
 ```csharp
 using System;
@@ -147,7 +147,7 @@ namespace Driver
 {
     public class AzurePostgresRead
     {
-        // Obtain connection string information from hello portal
+        // Obtain connection string information from the portal
         //
         private static string Host = "mypgserver-20170401.postgres.database.azure.com";
         private static string User = "mylogin@mypgserver-20170401";
@@ -192,7 +192,7 @@ namespace Driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN tooexit");
+            Console.WriteLine("Press RETURN to exit");
             Console.ReadLine();
         }
     }
@@ -201,9 +201,9 @@ namespace Driver
 
 
 ## <a name="update-data"></a>Mettre à jour des données
-Suivante de hello utilisation tooconnect de code et lire à l’aide de données hello un **mise à jour** instruction SQL. code de Hello utilise NpgsqlCommand classe avec la méthode [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) tooestablish un tooPostgreSQL de connexion. Puis hello de code utilise la méthode [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand), définit la propriété CommandText hello et appelle la méthode [ExecuteNonQuery()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) commandes de base de données toorun hello.
+Utilisez le code suivant pour vous connecter et lire des données à l’aide d’une instruction SQL **UPDATE**. Le code utilise la classe NpgsqlCommand avec la méthode [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) pour établir une connexion à PostgreSQL. Le code utilise ensuite la méthode [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand), définit la propriété CommandText et appelle la méthode [ExecuteNonQuery()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) pour exécuter les commandes de la base de données.
 
-Remplacer les paramètres d’hôte, DBName, utilisateur et mot de passe hello avec des valeurs hello que vous avez spécifié lorsque vous avez créé la base de données et serveur de hello. 
+Remplacez les paramètres Host, DBName, User et Password par les valeurs spécifiées lors de la création du serveur et de la base de données. 
 
 ```csharp
 using System;
@@ -217,7 +217,7 @@ namespace Driver
 {
     public class AzurePostgresUpdate
     {
-        // Obtain connection string information from hello portal
+        // Obtain connection string information from the portal
         //
         private static string Host = "mypgserver-20170401.postgres.database.azure.com";
         private static string User = "mylogin@mypgserver-20170401";
@@ -256,7 +256,7 @@ namespace Driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN tooexit");
+            Console.WriteLine("Press RETURN to exit");
             Console.ReadLine();
         }
     }
@@ -265,11 +265,11 @@ namespace Driver
 
 
 ## <a name="delete-data"></a>Suppression de données
-Suivante de hello utilisation tooconnect de code et lire à l’aide de données hello un **supprimer** instruction SQL. 
+Utilisez le code suivant pour vous connecter et lire des données à l’aide d’une instruction SQL **DELETE**. 
 
- code de Hello utilise NpgsqlCommand classe avec la méthode [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) tooestablish un tooPostgreSQL de connexion. Puis hello de code utilise la méthode [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand), définit la propriété CommandText hello et appelle la méthode [ExecuteNonQuery()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) commandes de base de données toorun hello.
+ Le code utilise la classe NpgsqlCommand avec la méthode [Open()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_Open) pour établir une connexion à PostgreSQL. Le code utilise ensuite la méthode [CreateCommand()](http://www.npgsql.org/api/Npgsql.NpgsqlConnection.html#Npgsql_NpgsqlConnection_CreateCommand), définit la propriété CommandText et appelle la méthode [ExecuteNonQuery()](http://www.npgsql.org/api/Npgsql.NpgsqlCommand.html#Npgsql_NpgsqlCommand_ExecuteNonQuery) pour exécuter les commandes de la base de données.
 
-Remplacer les paramètres d’hôte, DBName, utilisateur et mot de passe hello avec des valeurs hello que vous avez spécifié lorsque vous avez créé la base de données et serveur de hello. 
+Remplacez les paramètres Host, DBName, User et Password par les valeurs spécifiées lors de la création du serveur et de la base de données. 
 
 ```csharp
 using System;
@@ -283,7 +283,7 @@ namespace Driver
 {
     public class AzurePostgresDelete
     {
-        // Obtain connection string information from hello portal
+        // Obtain connection string information from the portal
         //
         private static string Host = "mypgserver-20170401.postgres.database.azure.com";
         private static string User = "mylogin@mypgserver-20170401";
@@ -319,7 +319,7 @@ namespace Driver
             Console.Out.WriteLine("Closing connection");
             conn.Close();
 
-            Console.WriteLine("Press RETURN tooexit");
+            Console.WriteLine("Press RETURN to exit");
             Console.ReadLine();
         }
     }

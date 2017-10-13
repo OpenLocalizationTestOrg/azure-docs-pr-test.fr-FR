@@ -1,6 +1,6 @@
 ---
-title: "aaaManaging actifs et les entités associées avec Media Services .NET SDK"
-description: "Découvrez comment toomanage actifs et les entités connexes avec hello Media Services SDK pour .NET."
+title: "Gestion des éléments multimédias et des entités connexes avec le Kit de développement logiciel (SDK) Media Services .NET"
+description: "Apprenez à gérer des éléments multimédias et leurs entités associées avec le Kit de développement logiciel (SDK) pour .NET."
 author: juliako
 manager: cfowler
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: 59a8543ffc6f7f30da2c67a6fcae09bc46da7a52
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5efe16a09808267d0797521f9e1df2b60aec9cbb
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="managing-assets-and-related-entities-with-media-services-net-sdk"></a>Gestion des éléments multimédias et des entités connexes avec le Kit de développement logiciel (SDK) Media Services .NET
 > [!div class="op_single_selector"]
@@ -27,50 +27,50 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Cette rubrique montre comment toomanage Azure Media Services pour les entités avec .NET. 
+Cette rubrique montre comment gérer les entités Azure Media Services avec .NET. 
 
 >[!NOTE]
-> À partir du 1er avril 2017, n’importe quel enregistrement de la tâche dans votre compte plu de 90 jours est automatiquement supprimé, ainsi que ses enregistrements de tâche associés, même si le nombre total de hello d’enregistrements est au-dessous du quota maximal de hello. Par exemple, le 1er avril 2017, tout enregistrement de travail dans votre compte antérieur au 31 décembre 2016 sera automatiquement supprimé. Si vous avez besoin des informations de tâche/hello tooarchive, vous pouvez utiliser le code hello décrite dans cette rubrique.
+> À compter du 1er avril 2017, les enregistrements de travaux dans votre compte de plus de 90 jours seront automatiquement supprimés, ainsi que leurs enregistrements de tâches associés, même si le nombre total d’enregistrements est inférieur au quota maximum. Par exemple, le 1er avril 2017, tout enregistrement de travail dans votre compte antérieur au 31 décembre 2016 sera automatiquement supprimé. Si vous devez archiver les informations sur le travail/la tâche, vous pouvez utiliser le code décrit dans cette rubrique.
 
 ## <a name="prerequisites"></a>Composants requis
 
-Configurer votre environnement de développement et de remplir le fichier app.config de hello avec les informations de connexion, comme décrit dans [développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
+Configurez votre environnement de développement et ajoutez des informations de connexion au fichier app.config selon la procédure décrite dans l’article [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
 
 ## <a name="get-an-asset-reference"></a>Obtenir une référence pointant vers un élément multimédia
-Une tâche fréquente est tooget une ressource existante tooan de référence dans Media Services. Hello, exemple de code suivant montre comment vous pouvez obtenir une référence d’élément multimédia à partir de la collection d’éléments multimédias hello sur le serveur de hello objet de contexte, selon un hello d’ID actif suivant l’exemple de code utilise une requête Linq tooget un objet de IAsset référence tooan existant.
+L’obtention d’une référence pointant vers un élément multimédia existant dans Media Services est une tâche fréquente. L’exemple de code suivant montre comment vous pouvez obtenir une référence pointant vers un élément multimédia à partir de la collection Assets sur l’objet de contexte du serveur, en fonction d’un ID d’élément multimédia. L’exemple de code suivant utilise une requête Linq pour obtenir une référence pointant vers un objet IAsset existant.
 
     static IAsset GetAsset(string assetId)
     {
-        // Use a LINQ Select query tooget an asset.
+        // Use a LINQ Select query to get an asset.
         var assetInstance =
             from a in _context.Assets
             where a.Id == assetId
             select a;
-        // Reference hello asset as an IAsset.
+        // Reference the asset as an IAsset.
         IAsset asset = assetInstance.FirstOrDefault();
 
         return asset;
     }
 
 ## <a name="list-all-assets"></a>Répertorier tous les éléments multimédias
-Au fur et à mesure du nombre de hello d’éléments multimédias dans le stockage, il est utile toolist vos éléments multimédias. Hello, exemple de code suivant montre comment tooiterate via hello collection actifs sur l’objet de contexte de serveur hello. À chaque élément multimédia, exemple de code hello écrit également certaines de sa console de toohello de valeurs de propriété. Par exemple, chaque élément multimédia peut contenir plusieurs fichiers multimédias. exemple de code Hello écrit tous les fichiers associés à chaque élément multimédia.
+Lorsque le nombre d’éléments multimédias de votre stockage augmente, il est utile de les répertorier. L’exemple de code suivant montre comment parcourir la collection Assets sur l’objet de contexte du serveur. Pour chaque élément multimédia, l’exemple de code écrit également certaines de ses valeurs de propriétés vers la console. Par exemple, chaque élément multimédia peut contenir plusieurs fichiers multimédias. L’exemple de code écrit tous les fichiers associés à chaque élément multimédia.
 
     static void ListAssets()
     {
-        string waitMessage = "Building hello list. This may take a few "
-            + "seconds tooa few minutes depending on how many assets "
+        string waitMessage = "Building the list. This may take a few "
+            + "seconds to a few minutes depending on how many assets "
             + "you have."
             + Environment.NewLine + Environment.NewLine
             + "Please wait..."
             + Environment.NewLine;
         Console.Write(waitMessage);
 
-        // Create a Stringbuilder toostore hello list that we build. 
+        // Create a Stringbuilder to store the list that we build. 
         StringBuilder builder = new StringBuilder();
 
         foreach (IAsset asset in _context.Assets)
         {
-            // Display hello collection of assets.
+            // Display the collection of assets.
             builder.AppendLine("");
             builder.AppendLine("******ASSET******");
             builder.AppendLine("Asset ID: " + asset.Id);
@@ -78,7 +78,7 @@ Au fur et à mesure du nombre de hello d’éléments multimédias dans le stock
             builder.AppendLine("==============");
             builder.AppendLine("******ASSET FILES******");
 
-            // Display hello files associated with each asset. 
+            // Display the files associated with each asset. 
             foreach (IAssetFile fileItem in asset.AssetFiles)
             {
                 builder.AppendLine("Name: " + fileItem.Name);
@@ -93,48 +93,48 @@ Au fur et à mesure du nombre de hello d’éléments multimédias dans le stock
 
 ## <a name="get-a-job-reference"></a>Obtenir une référence pointant vers un travail
 
-Lorsque vous travaillez avec des tâches de traitement dans le code de Media Services, vous devez souvent tooget un travail existant de référence tooan, selon un hello ID. exemple de code suivant montre comment l’objet à partir de la collection de tâches hello tooget un tooan référence IJob.
+Lorsque vous utilisez des tâches de traitement dans le code de Media Services, vous devez souvent obtenir une référence pointant vers un travail existant basé sur un ID. L’exemple de code suivant montre comment obtenir une référence pointant vers un objet IJob à partir de la collection Jobs.
 
-Vous ont besoin de tooget référence à un travail lors du démarrage d’un travail d’encodage longue et devez état du travail toocheck hello sur un thread. Dans ce cas, lors de la méthode hello renvoie à partir d’un thread, vous devez tooretrieve un travail de tooa référence actualisée.
+Il est possible que vous deviez obtenir une référence pointant vers un travail lors du démarrage d’un travail d’encodage à long terme et vérifier l’état du travail sur un thread. Dans ce cas, lorsque la méthode est retournée à partir d’un thread, vous devez récupérer une référence actualisée pointant vers le travail.
 
     static IJob GetJob(string jobId)
     {
-        // Use a Linq select query tooget an updated 
+        // Use a Linq select query to get an updated 
         // reference by Id. 
         var jobInstance =
             from j in _context.Jobs
             where j.Id == jobId
             select j;
-        // Return hello job reference as an Ijob. 
+        // Return the job reference as an Ijob. 
         IJob job = jobInstance.FirstOrDefault();
 
         return job;
     }
 
 ## <a name="list-jobs-and-assets"></a>Répertorier les travaux et les éléments multimédias
-Une tâche associée importante est actifs toolist avec leur travail associé dans Media Services. Hello exemple de code suivant vous montre comment toolist chaque objet IJob, puis pour chaque tâche, il affiche des propriétés sur les travaux de hello, toutes les tâches associées, entrées toutes les ressources et tous les éléments multimédias de sortie. code Hello dans cet exemple peut être utile pour nombreuses autres tâches. Par exemple, si vous souhaitez que les éléments multimédias de sortie hello toolist à partir d’un ou plusieurs travaux d’encodage que vous avez exécutés précédemment, ce code montre comment les éléments multimédias de sortie de tooaccess hello. Lorsque vous disposez d’une ressource en sortie tooan référence, vous pouvez diffuser hello tooother contenu utilisateurs ou applications en téléchargeant ou en fournissant des URL. 
+Une tâche associée importante consiste à répertorier les éléments multimédias avec leur travail associé dans Media Services. L’exemple de code suivant montre comment répertorier chaque objet IJob, puis afficher les propriétés de chaque travail, toutes les tâches associées, ainsi que tous les éléments multimédias d’entrée et de sortie. Cet exemple de code peut être utilise pour bien d’autres tâches. Par exemple, si vous souhaitez répertorier les éléments multimédias de sortie à partir d’un ou plusieurs travaux d’encodage que vous avez exécutés précédemment, ce code montre comment accéder aux éléments multimédias de sortie. Lorsque vous avez une référence pointant vers un élément multimédia de sortie, vous pouvez alors livrer le contenu à d’autres utilisateurs ou applications en le téléchargeant ou en fournissant des URL. 
 
-Pour plus d’informations sur les options de fourniture de ressources, consultez [fournir des ressources avec hello Media Services SDK pour .NET](media-services-deliver-streaming-content.md).
+Pour plus d’informations sur les options pour la livraison des éléments multimédias, consultez la page [Livraison d’éléments multimédias à l’aide du Kit de développement logiciel (SDK) Media Services pour .NET](media-services-deliver-streaming-content.md).
 
-    // List all jobs on hello server, and for each job, also list 
+    // List all jobs on the server, and for each job, also list 
     // all tasks, all input assets, all output assets.
 
     static void ListJobsAndAssets()
     {
-        string waitMessage = "Building hello list. This may take a few "
-            + "seconds tooa few minutes depending on how many assets "
+        string waitMessage = "Building the list. This may take a few "
+            + "seconds to a few minutes depending on how many assets "
             + "you have."
             + Environment.NewLine + Environment.NewLine
             + "Please wait..."
             + Environment.NewLine;
         Console.Write(waitMessage);
 
-        // Create a Stringbuilder toostore hello list that we build. 
+        // Create a Stringbuilder to store the list that we build. 
         StringBuilder builder = new StringBuilder();
 
         foreach (IJob job in _context.Jobs)
         {
-            // Display hello collection of jobs on hello server.
+            // Display the collection of jobs on the server.
             builder.AppendLine("");
             builder.AppendLine("******JOB*******");
             builder.AppendLine("Job ID: " + job.Id);
@@ -144,7 +144,7 @@ Pour plus d’informations sur les options de fourniture de ressources, consulte
             builder.AppendLine("==============");
 
 
-            // For each job, display hello associated tasks (a job  
+            // For each job, display the associated tasks (a job  
             // has one or more tasks). 
             builder.AppendLine("******TASKS*******");
             foreach (ITask task in job.Tasks)
@@ -160,7 +160,7 @@ Pour plus d’informations sur les options de fourniture de ressources, consulte
                 builder.AppendLine("==============");
             }
 
-            // For each job, display hello list of input media assets.
+            // For each job, display the list of input media assets.
             builder.AppendLine("******JOB INPUT MEDIA ASSETS*******");
             foreach (IAsset inputAsset in job.InputMediaAssets)
             {
@@ -173,7 +173,7 @@ Pour plus d’informations sur les options de fourniture de ressources, consulte
                 }
             }
 
-            // For each job, display hello list of output media assets.
+            // For each job, display the list of output media assets.
             builder.AppendLine("******JOB OUTPUT MEDIA ASSETS*******");
             foreach (IAsset theAsset in job.OutputMediaAssets)
             {
@@ -192,9 +192,9 @@ Pour plus d’informations sur les options de fourniture de ressources, consulte
     }
 
 ## <a name="list-all-access-policies"></a>Répertorier toutes les stratégies d’accès
-Dans Media Services, vous pouvez définir une stratégie d’accès sur un élément multimédia ou ses fichiers. Une stratégie d’accès définit les autorisations hello pour un fichier ou un élément multimédia (le type d’accès et la durée de hello). Dans votre code Media Services, vous définissez généralement une stratégie d’accès en créant un objet IAccessPolicy et en l’associant à un élément multimédia existant. Ensuite, vous créez un objet ILocator, ce qui vous permet de fournir des tooassets d’un accès direct dans Media Services. projet Visual Studio Hello qui accompagne cette documentation contient plusieurs exemples de code qui montrent comment toocreate et attribuez accéder aux stratégies et les localisateurs tooassets.
+Dans Media Services, vous pouvez définir une stratégie d’accès sur un élément multimédia ou ses fichiers. Une stratégie d’accès définit les autorisations pour un fichier ou un élément multimédia (le type d’accès et la durée). Dans votre code Media Services, vous définissez généralement une stratégie d’accès en créant un objet IAccessPolicy et en l’associant à un élément multimédia existant. Ensuite, vous créez un objet ILocator, qui vous permet de livrer un accès direct aux éléments multimédias dans les Media Services. Le projet Visual Studio qui accompagne cette documentation contient plusieurs exemples de code qui montrent comment créer et attribuer des localisateurs et les stratégies d’accès aux éléments multimédias.
 
-Hello suivant exemple de code montre comment toolist toutes les stratégies d’accès serveur de hello et type de hello affiche des autorisations associées à chaque. Les stratégies d’accès tooview une autre façon utile est toolist tous les objets ILocator sur le serveur de hello, et ensuite pour chaque localisateur, vous pouvez répertorier sa stratégie d’accès associé à l’aide de sa propriété de la stratégie d’accès.
+L’exemple de code suivant montre comment répertorier toutes les stratégies d’accès sur le serveur et quel type d’autorisations leur est associé. Une autre méthode d’affichage des stratégies d’accès consiste à répertorier tous les objets ILocator sur le serveur, puis répertorier les stratégies d’accès associées à chaque localisateur à l’aide de leur propriété AccessPolicy.
 
     static void ListAllPolicies()
     {
@@ -212,9 +212,9 @@ Hello suivant exemple de code montre comment toolist toutes les stratégies d’
 ## <a name="limit-access-policies"></a>Limiter les stratégies d’accès 
 
 >[!NOTE]
-> Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser hello ID de stratégie même si vous utilisez toujours hello même jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs sont tooremain prévue en place pendant une longue période (non-téléchargement stratégies). 
+> Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser le même ID de stratégie si vous utilisez toujours les mêmes jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs destinées à demeurer en place pendant une longue période (stratégies sans chargement). 
 
-Par exemple, vous pouvez créer un ensemble générique de stratégies avec hello suivant du code qui ne s’exécute une seule fois dans votre application. Vous pouvez enregistrer le fichier de journal ID tooa pour une utilisation ultérieure :
+Par exemple, vous pouvez créer un ensemble générique de stratégies avec le code suivant qui ne s’exécute qu’une seule fois dans votre application. Vous pouvez enregistrer les ID dans un fichier journal pour une utilisation ultérieure :
 
     double year = 365.25;
     double week = 7;
@@ -226,18 +226,18 @@ Par exemple, vous pouvez créer un ensemble générique de stratégies avec hell
     Console.WriteLine("100 year policy ID is: " + policy100Year.Id);
     Console.WriteLine("One week policy ID is: " + policyWeek.Id);
 
-Ensuite, vous pouvez utiliser hello existant ID dans votre code comme suit :
+Ensuite, vous pouvez utiliser les ID existants dans votre code comme suit :
 
     const string policy1YearId = "nb:pid:UUID:2a4f0104-51a9-4078-ae26-c730f88d35cf";
 
 
-    // Get hello standard policy for 1 year read only
+    // Get the standard policy for 1 year read only
     var tempPolicyId = from b in _context.AccessPolicies
                        where b.Id == policy1YearId
                        select b;
     IAccessPolicy policy1Year = tempPolicyId.FirstOrDefault();
 
-    // Get hello existing asset
+    // Get the existing asset
     var tempAsset = from a in _context.Assets
                 where a.Id == assetID
                 select a;
@@ -246,14 +246,14 @@ Ensuite, vous pouvez utiliser hello existant ID dans votre code comme suit :
     ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
         policy1Year,
         DateTime.UtcNow.AddMinutes(-5));
-    Console.WriteLine("hello locator base path is " + originLocator.BaseUri.ToString());
+    Console.WriteLine("The locator base path is " + originLocator.BaseUri.ToString());
 
 ## <a name="list-all-locators"></a>Répertorier tous les localisateurs
-Un localisateur est une URL qui fournit un chemin d’accès direct de tooaccess un élément multimédia, ainsi que les actifs de toohello autorisations tel que défini par la stratégie d’accès associée du localisateur hello. Chaque élément multimédia peut avoir une collection d’objets ILocator associée à sa propriété Locators. contexte de serveur Hello possède également un ensemble de localisateurs qui contient tous les localisateurs.
+Un localisateur est une URL qui fournit un chemin d’accès direct pour accéder à un élément multimédia, ainsi que les autorisations pour accéder à l’élément multimédia, comme défini par la stratégie d’accès associée au localisateur. Chaque élément multimédia peut avoir une collection d’objets ILocator associée à sa propriété Locators. Le contexte de serveur possède également une collection Locators contenant tous les localisateurs.
 
-Hello exemple de code suivant répertorie tous les localisateurs sur le serveur de hello. Pour chaque localisateur, il affiche hello Id pour les ressources connexes hello et stratégie d’accès. Elle affiche également le type hello des autorisations, date d’expiration de hello et actifs de toohello hello chemin d’accès complet.
+L’exemple de code suivant répertorie tous les localisateurs sur le serveur. Il affiche l’ID des éléments multimédias et les stratégies d’accès associés à chaque localisateur. Il affiche également le type d’autorisation, la date d’expiration et le chemin d’accès complet à l’élément multimédia.
 
-Notez qu’une ressource de tooan de chemin d’accès de recherche est uniquement un base URL toohello élément multimédia. toocreate qu'un tooindividual directe des fichiers qu’un utilisateur ou une application peut accéder, votre code doit ajouter chemin d’accès du localisateur de toohello chemin hello fichier spécifique. Pour plus d’informations sur la façon de toodo, consultez les rubrique hello [fournir des ressources avec hello Media Services SDK pour .NET](media-services-deliver-streaming-content.md).
+Notez qu’un chemin d’accès de localisateur vers un élément multimédia est simplement une URL de base pointant vers l’élément multimédia. Pour créer un chemin d’accès direct vers les fichiers individuels auxquels peut accéder un utilisateur ou une application, votre code doit ajouter le chemin d’accès de fichier spécifique au chemin d’accès du localisateur. Pour plus d’informations sur la procédure à suivre, consultez [Livraison d’éléments multimédias à l’aide du Kit de développement logiciel (SDK) Media Services pour .NET](media-services-deliver-streaming-content.md).
 
     static void ListAllLocators()
     {
@@ -265,18 +265,18 @@ Notez qu’une ressource de tooan de chemin d’accès de recherche est uniqueme
             Console.WriteLine("Locator access policy Id: " + locator.AccessPolicyId);
             Console.WriteLine("Access policy permissions: " + locator.AccessPolicy.Permissions);
             Console.WriteLine("Locator expiration: " + locator.ExpirationDateTime);
-            // hello locator path is hello base or parent path (with included permissions) tooaccess  
-            // hello media content of an asset. toocreate a full URL tooa specific media file, take 
-            // hello locator path and then append a file name and info as needed.  
+            // The locator path is the base or parent path (with included permissions) to access  
+            // the media content of an asset. To create a full URL to a specific media file, take 
+            // the locator path and then append a file name and info as needed.  
             Console.WriteLine("Locator base path: " + locator.Path);
             Console.WriteLine("");
         }
     }
 
 ## <a name="enumerating-through-large-collections-of-entities"></a>Énumérer les grandes collections d'entités
-Lors de l’interrogation des entités, il existe une limite de 1000 entités retournées à la fois, car il est public reste v2 limite les résultats de too1000 de résultats de requête. Vous devez toouse Skip et Take lors de l’énumération dans les grandes collections d’entités. 
+Lors de l'interrogation des entités, il existe une limite de 1 000 entités retournées simultanément car l'API REST v2 publique limite les résultats des requêtes à 1 000 résultats. Vous devez utiliser Skip et Take lors de l'énumération de grandes collections d'entités. 
 
-Hello fonction suivant parcourt tous les travaux hello Bonjour fourni compte Media Services. Media Services renvoie 1 000 tâches dans Collection de tâches. fonction Hello rend l’utilisation de Skip et prendre toomake Assurez-vous que tous les travaux sont énumérés (au cas où vous avez plus de 1 000 travaux dans votre compte).
+La fonction suivante effectue une itération sur toutes les tâches dans le compte Media Services fourni. Media Services renvoie 1 000 tâches dans Collection de tâches. La fonction utilise Skip et Take pour s'assurer que toutes les tâches sont énumérées (au cas où vous avez plus de 1 000 tâches dans votre compte).
 
     static void ProcessJobs()
     {
@@ -289,7 +289,7 @@ Hello fonction suivant parcourt tous les travaux hello Bonjour fourni compte Med
 
             while (true)
             {
-                // Loop through all Jobs (1000 at a time) in hello Media Services account
+                // Loop through all Jobs (1000 at a time) in the Media Services account
                 IQueryable _jobsCollectionQuery = _context.Jobs.Skip(skipSize).Take(batchSize);
                 foreach (IJob job in _jobsCollectionQuery)
                 {
@@ -315,23 +315,23 @@ Hello fonction suivant parcourt tous les travaux hello Bonjour fourni compte Med
     }
 
 ## <a name="delete-an-asset"></a>Supprimer un élément multimédia
-Bonjour à l’exemple suivant supprime une ressource.
+L’exemple suivant montre la suppression d’un élément multimédia.
 
     static void DeleteAsset( IAsset asset)
     {
-        // delete hello asset
+        // delete the asset
         asset.Delete();
 
         // Verify asset deletion
         if (GetAsset(asset.Id) == null)
-            Console.WriteLine("Deleted hello Asset");
+            Console.WriteLine("Deleted the Asset");
 
     }
 
 ## <a name="delete-a-job"></a>Supprimer un travail
-toodelete un travail, vous devez vérifier l’état hello du travail hello comme indiqué dans la propriété d’état hello. Les travaux terminés ou annulés peuvent être supprimés, tandis que pour les travaux dans d’autres états, par exemple en file d’attente, planifiés ou en cours de traitement, il faut d’abord procéder à une annulation, puis supprimer le travail.
+Pour supprimer un travail, vous devez vérifier l’état associé, comme indiqué dans la propriété State. Les travaux terminés ou annulés peuvent être supprimés, tandis que pour les travaux dans d’autres états, par exemple en file d’attente, planifiés ou en cours de traitement, il faut d’abord procéder à une annulation, puis supprimer le travail.
 
-Hello exemple de code suivant montre une méthode de suppression d’une tâche en la vérification des États de travail et en supprimant lorsque l’état de hello est terminé ou annulé. Ce code dépend de la section précédente de hello dans cette rubrique pour obtenir une tâche tooa de référence : obtenir une référence de projet.
+L’exemple de code suivant montre une méthode de suppression de travail qui vérifie l’état des travaux, puis supprime ceux terminés ou annulés. Ce code est basé sur la section précédente de cette rubrique pour obtenir une référence pointant vers un travail : Obtenir une référence pointant vers un travail.
 
     static void DeleteJob(string jobId)
     {
@@ -353,7 +353,7 @@ Hello exemple de code suivant montre une méthode de suppression d’une tâche 
                 case JobState.Error:
                     // Job errors should already be logged by polling or event 
                     // handling methods such as CheckJobProgress or StateChanged.
-                    // You can also call job.DeleteAsync toodo async deletes.
+                    // You can also call job.DeleteAsync to do async deletes.
                     job.Delete();
                     Console.WriteLine("Job has been deleted.");
                     jobDeleted = true;
@@ -380,12 +380,12 @@ Hello exemple de code suivant montre une méthode de suppression d’une tâche 
 
 
 ## <a name="delete-an-access-policy"></a>Supprimer une stratégie d’accès
-Hello exemple de code suivant montre comment tooget une stratégie d’accès de référence tooan basée sur un identificateur de stratégie et stratégie de hello toodelete.
+L’exemple de code suivant montre comment obtenir une référence pointant vers une stratégie d’accès en fonction d’un ID de stratégie, puis comment supprimer cette stratégie.
 
     static void DeleteAccessPolicy(string existingPolicyId)
     {
-        // toodelete a specific access policy, get a reference toohello policy.  
-        // based on hello policy Id passed toohello method.
+        // To delete a specific access policy, get a reference to the policy.  
+        // based on the policy Id passed to the method.
         var policyInstance =
                 from p in _context.AccessPolicies
                 where p.Id == existingPolicyId

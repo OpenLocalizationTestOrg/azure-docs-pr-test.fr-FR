@@ -1,5 +1,5 @@
 ---
-title: aaaAuditing dans Azure SQL Data Warehouse | Documents Microsoft
+title: "Audit dans Azure SQL Data Warehouse | Microsoft Docs"
 description: "Prise en main de l’audit dans Azure SQL Data Warehouse"
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.topic: article
 ms.custom: security
 ms.date: 08/21/2017
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 948de74fa052ef206cf1aa65c0d81f084b18cb00
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f851c82ebeaa647f663d499a4d327c3479e36121
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="auditing-in-azure-sql-data-warehouse"></a>Audit dans Azure SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -28,9 +28,9 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-L’audit de l’entrepôt de données SQL vous permet de toorecord événements dans votre journal d’audit de base de données tooan dans votre compte de stockage Azure. L’audit peut vous aider à respecter une conformité réglementaire, à comprendre l’activité de la base de données, et à découvrir des discordances et des anomalies susceptibles d’indiquer des problèmes pour l’entreprise ou des violations de la sécurité. Cette fonction s’intègre également dans Microsoft Power BI, afin de faciliter la création d’analyses et de rapports approfondis.
+La fonction d’audit de SQL Data Warehouse vous permet d’enregistrer les événements survenus dans votre base de données dans un journal d’audit au sein de votre compte Microsoft Azure Storage. L’audit peut vous aider à respecter une conformité réglementaire, à comprendre l’activité de la base de données, et à découvrir des discordances et des anomalies susceptibles d’indiquer des problèmes pour l’entreprise ou des violations de la sécurité. Cette fonction s’intègre également dans Microsoft Power BI, afin de faciliter la création d’analyses et de rapports approfondis.
 
-Les outils d’audit activent et facilitent les normes de conformité toocompliance mais ne garantissent pas la conformité. Pour plus d’informations sur Azure programmes que la conformité aux normes de prise en charge, consultez hello <a href="http://azure.microsoft.com/support/trust-center/compliance/" target="_blank">Azure Trust Center</a>.
+Les outils d'audit permettent et facilitent le respect des normes liées à la conformité, mais ne garantissent pas cette dernière. Pour plus d'informations sur les programmes Azure prenant en charge la conformité aux normes, consultez le <a href="http://azure.microsoft.com/support/trust-center/compliance/" target="_blank">Centre de gestion de la confidentialité Azure</a>.
 
 * [Principes fondamentaux de l’audit de base de données]
 * [Configuration de l'audit pour votre base de données]
@@ -39,15 +39,15 @@ Les outils d’audit activent et facilitent les normes de conformité toocomplia
 ## <a id="subheading-1"></a>Principes fondamentaux de l’audit de base de données Azure SQL Data Warehouse
 Éléments rendus possibles par l’audit de bases de données SQL Data Warehouse :
 
-* **La rétention** d’une piste d’audit d’événements sélectionnés. Vous pouvez définir des catégories de base de données actions toobe est auditée.
-* **La génération de rapports** sur les activités de la base de données. Vous pouvez utiliser les rapports préconfigurés et un tooget de tableau de bord rapidement opérationnel avec activité et les rapports d’événements.
+* **La rétention** d’une piste d’audit d’événements sélectionnés. Vous pouvez définir des catégories d’actions de base de données à auditer.
+* **La génération de rapports** sur les activités de la base de données. Vous pouvez utiliser des rapports préconfigurés et un tableau de bord pour une prise en main rapide de la génération de rapports d'activités et d'événements.
 * **L'analyse** des rapports. Vous pouvez repérer les événements suspects, les activités inhabituelles et les tendances.
 
-Vous pouvez configurer l’audit pour hello suivant des catégories d’événements :
+Vous pouvez configurer l’audit pour les catégories d’événements suivantes :
 
-**SQL brut** et **SQL paramétrées** pour le hello les journaux d’audit collectées sont classés comme  
+**SQL brut** et **SQL paramétré** pour lesquels les journaux d’audit collectés sont classés comme  
 
-* **Accès toodata**
+* **accès aux données ;**
 * **modifications de schéma (DDL) ;**
 * **modifications de données (DML) ;**
 * **comptes, rôles et autorisations (DCL) ;**
@@ -55,51 +55,51 @@ Vous pouvez configurer l’audit pour hello suivant des catégories d’événem
 
 Pour chaque catégorie d’événements, les audits des opérations **Succès** et **Échec** sont configurées séparément.
 
-Pour plus d’informations sur les activités hello et les événements audités, consultez hello <a href="http://go.microsoft.com/fwlink/?LinkId=506733" target="_blank">référence de Format de journal d’Audit (téléchargement de fichier doc)</a>.
+Pour plus d’informations sur les activités et les événements audités, consultez <a href="http://go.microsoft.com/fwlink/?LinkId=506733" target="_blank">Informations de référence sur le format des journaux d’audit (téléchargement d’un fichier doc)</a>.
 
 Les journaux d'audit sont stockés dans votre compte de stockage Azure. Vous pouvez définir une période de rétention des journaux d'audit.
 
-Une stratégie d’audit peut être définie pour une base de données spécifique ou en tant que stratégie de serveur par défaut. Une stratégie d’audit de serveur par défaut s’applique tooall de bases de données sur un serveur, ce qui n’ont pas d’une substitution de base de données stratégie d’audit spécifique définie.
+Une stratégie d’audit peut être définie pour une base de données spécifique ou en tant que stratégie de serveur par défaut. Une stratégie d’audit de serveur par défaut s’applique à toutes les bases de données d’un serveur sur lequel aucune stratégie d’audit de base de données de substitution spécifique n’est définie.
 
 Avant de configurer l’audit, vérifiez que vous utilisez bien un [« Client de niveau inférieur »](sql-data-warehouse-auditing-downlevel-clients.md).
 
 ## <a id="subheading-2"></a>Configuration de l’audit pour votre base de données
-1. Lancez hello <a href="https://portal.azure.com" target="_blank">portail Azure</a>.
-2. Accédez toohello **paramètres** Panneau de hello souhaité tooaudit SQL Data Warehouse. Bonjour **paramètres** panneau, sélectionnez **détection d’audit et de menaces**.
+1. Lancez le <a href="https://portal.azure.com" target="_blank">portail Azure</a>.
+2. Accédez au panneau **Paramètres** de l’instance SQL Data Warehouse que vous voulez auditer. Dans le panneau **Paramètres**, sélectionnez **Audit et détection des menaces**.
    
     ![][1]
-3. Ensuite, activez l’audit en cliquant sur hello **ON** bouton.
+3. Ensuite, activez la fonction d’audit en cliquant sur le bouton **ACTIVÉ** .
    
     ![][3]
-4. Bonjour l’audit du Panneau de configuration, sélectionnez **détails de stockage** Panneau de stockage des journaux d’Audit tooopen hello. Sélectionnez hello compte de stockage Azure dans lequel les journaux sont enregistrés et hello période de rétention. 
+4. Dans le panneau de configuration de l’audit, sélectionnez **DÉTAILS DU STOCKAGE** pour ouvrir le panneau Stockage des journaux d’audit. Sélectionnez le compte de stockage Azure dans lequel les journaux seront enregistrés, ainsi que la période de rétention. 
 >[!TIP]
->Hello utilisez même compte de stockage pour tous les hello tooget de bases de données audités parti hello préconfiguré signale des modèles.
+>Utilisez le même compte de stockage pour toutes les bases de données auditées afin de profiter au mieux des modèles de rapport préconfigurés.
    
     ![][4]
-5. Cliquez sur hello **OK** configuration des détails stockage bouton toosave hello.
-6. Sous **journalisation par événement**, cliquez sur **réussite** et **échec** toolog tous les événements, ou choisir des catégories d’événements.
-7. Si vous configurez l’audit pour une base de données, vous devrez peut-être la chaîne de connexion tooalter hello de votre tooensure client audit de données est capturée correctement. Vérifiez hello [modifier les FQDN de serveur dans la chaîne de connexion hello](sql-data-warehouse-auditing-downlevel-clients.md) rubrique pour les connexions de client de niveau inférieur.
+5. Cliquez sur le bouton **OK** pour enregistrer la configuration des détails du stockage.
+6. Sous **JOURNALISATION PAR ÉVÈNEMENT**, cliquez sur **SUCCÈS** et sur **ÉCHEC**pour enregistrer tous les événements, ou choisissez des catégories d’événements individuelles.
+7. Si vous configurez l’audit pour une base de données, vous pouvez être amené à modifier la chaîne de connexion de votre client pour garantir que l’audit des données est correctement capturé. Consultez la rubrique [Modifier le nom de domaine complet du serveur dans la chaîne de connexion](sql-data-warehouse-auditing-downlevel-clients.md) , qui traite des connexions de client de niveau inférieur.
 8. Cliquez sur **OK**.
 
 ## <a id="subheading-3"></a>Analyse des journaux et des rapports d’audit
-Journaux d’audit sont regroupées dans une collection de Tables de magasin avec un **SQLDBAuditLogs** préfixe Bonjour compte de stockage Azure que vous avez choisi lors de l’installation. Vous pouvez afficher les fichiers journaux à l'aide d'un outil tel que l'<a href="http://azurestorageexplorer.codeplex.com/" target="_blank">Explorateur de stockage Azure</a>.
+Les journaux d’audit sont agrégés dans une collection de tables de stockage avec un préfixe **SQLDBAuditLogs** au sein du compte de stockage Azure que vous avez choisi lors de la configuration. Vous pouvez afficher les fichiers journaux à l'aide d'un outil tel que l'<a href="http://azurestorageexplorer.codeplex.com/" target="_blank">Explorateur de stockage Azure</a>.
 
-Un modèle de rapport de tableau de bord préconfigurés est disponible en tant qu’un <a href="http://go.microsoft.com/fwlink/?LinkId=403540" target="_blank">feuille de calcul Excel téléchargeable</a> toohelp analyser rapidement les données du journal. modèle de hello toouse sur vos journaux d’audit, vous devez Excel 2013 ou version ultérieure et Power Query, que vous pouvez télécharger <a href="http://www.microsoft.com/download/details.aspx?id=39379">ici</a>.
+Un modèle de rapport de tableau de bord préconfiguré est disponible sous forme de <a href="http://go.microsoft.com/fwlink/?LinkId=403540" target="_blank">feuille de calcul Excel téléchargeable</a> afin de vous aider à analyser rapidement les données de journal. Pour utiliser le modèle sur vos journaux d'audit, il vous faut Excel 2013 ou une version ultérieure et Power Query, téléchargeable <a href="http://www.microsoft.com/download/details.aspx?id=39379">ici</a>.
 
-modèle de Hello comporte des données d’exemple fictif, et vous pouvez configurer Power Query tooimport votre journal d’audit directement à partir de votre compte de stockage Azure.
+Le modèle contient des données d'exemple fictives. Vous pouvez configurer Power Query de façon à ce qu'il importe votre journal d'audit directement à partir de votre compte de stockage Azure.
 
 ## <a id="subheading-4"></a>Régénération des clés de stockage
-En production, vous êtes probablement toorefresh votre stockage de clés périodiquement. Lors de l’actualisation de vos clés, vous devez la stratégie de hello toosave. processus de Hello est comme suit :
+Dans un environnement de production, vous allez probablement actualiser périodiquement vos clés de stockage. Au moment d’actualiser vos clés, vous devez réenregistrer la stratégie. Pour ce faire, procédez comme suit :
 
-1. Bonjour à l’audit du Panneau de configuration (comme décrit ci-dessus dans le programme d’installation hello section d’audit) Basculer hello **clé d’accès de stockage** de *principal* trop*secondaire* et  **Enregistrer**.
+1. Dans le panneau de configuration de l’audit (décrit plus haut dans la section de configuration de l’audit), faites passer la **clé d’accès du stockage** de *Principale* à *Secondaire*, puis choisissez **ENREGISTRER**.
 
    ![][4]
-2. Panneau de configuration de stockage accédez toohello et **régénérer** hello *clé d’accès primaire*.
-3. Revenir en arrière toohello l’audit du Panneau de configuration, commutateur hello **clé d’accès de stockage** de *secondaire* trop*principal* et appuyez sur **enregistrer**.
-4. Revenir en arrière toohello stockage UI et **régénérer** hello *clé d’accès secondaire* (dans la préparation de hello clés prochains cycle d’actualisation.
+2. Revenez au volet de configuration du stockage, puis **régénérez** la *clé d’accès primaire*.
+3. Revenez au panneau de configuration de l’audit, faites passer la **clé d’accès du stockage** de *Secondaire* à *Principale*, puis cliquez sur **ENREGISTRER**.
+4. Retournez dans l'interface utilisateur de stockage, puis **régénérez** la *clé d'accès secondaire* (en vue du prochain cycle d'actualisation des clés).
 
 ## <a id="subheading-5"></a>Automation (PowerShell / API REST)
-Vous pouvez également configurer l’audit dans l’entrepôt de données SQL Azure à l’aide de hello suivant des outils d’automatisation :
+Vous pouvez aussi configurer l’audit dans Azure SQL Data Warehouse en utilisant les outils d’automation suivants :
 
 * **Applets de commande PowerShell**:
 

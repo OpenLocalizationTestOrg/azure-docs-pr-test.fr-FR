@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooSchedule Maintenance planifiée pour les machines virtuelles Linux dans Azure | Documents Microsoft"
-description: "Découvrez comment tooschedule les maintenances planifiées sur des machines virtuelles Azure."
+title: "Guide pratique pour définir une maintenance planifiée sur des machines virtuelles Linux dans Azure | Microsoft Docs"
+description: "Découvrez comment prévoir une maintenance planifiée sur des machines virtuelles Azure."
 services: virtual-machines-linux
 documentationcenter: 
 author: igalf
@@ -15,15 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: igalf
-ms.openlocfilehash: f14fab73cb42b577e9f5893874fe68df84e43298
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7709927cbbb00597927b7c6d5eaa14a5c99475c6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooschedule-planned-maintenance-on-azure-vms"></a>Comment tooSchedule Maintenance planifiée sur les machines virtuelles Azure
+# <a name="how-to-schedule-planned-maintenance-on-azure-vms"></a>Planification d’une maintenance planifiée sur des machines virtuelles Azure
 > [!IMPORTANT]
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello. Pour plus d’informations sur la maintenance planifiée dans le modèle de gestionnaire de ressources hello, consultez [ici](../planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager. Pour plus d’informations sur la maintenance planifiée du modèle Resource Manager, suivez [ce lien](../planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
  
 [!INCLUDE [virtual-machines-common-planned-maintenance-schedule](../../../../includes/virtual-machines-common-planned-maintenance-schedule.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Documentation planificateur - didacticiels, référence de l’API | Documents Microsoft"
-description: "Découvrez comment toouse planificateur tooschedule et d’appeler des tâches telles que périodique maintenance de routine et les actions de l’application. Didacticiels, références d’API et autres."
+title: "Documentation Azure Scheduler - Didacticiels, informations de référence sur les API | Microsoft Docs"
+description: "Apprenez à utiliser Scheduler pour planifier et appeler des tâches, notamment des actions d’application récurrentes et des travaux de maintenance courants. Didacticiels, références d’API et autres."
 services: scheduler
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c9e67fc813939c31bb3cd38215293c98babe3838
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4883e5689a639259ec1c0bcd31e1016f85af5d66
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/19/2017
 ---
 # <a name="scheduler-documentation"></a>Documentation Scheduler
 
-Découvrez comment toouse planificateur tooschedule et appellent automatiquement les tâches périodiques dans le cloud de hello. Didacticiels, des références de l’API et toute autre documentation montrent comment tooschedule et analyse des tâches telles que périodique maintenance de routine et les actions de l’application.
+Découvrez comment utiliser Scheduler pour planifier et appeler automatiquement des tâches récurrentes dans le cloud. Des didacticiels, références d’API et autres documents vous montrent comment planifier et surveiller diverses tâches, telles que des actions d’application récurrentes et des travaux de maintenance courants.
 
 <ul class="panelContent cardsFTitle">
     <li>

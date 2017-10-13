@@ -1,6 +1,6 @@
 ---
-title: aaaPowerShell connecteur | Documents Microsoft
-description: "Cet article décrit comment le connecteur de tooconfigure Microsoft Windows PowerShell."
+title: Connecteur PowerShell | Microsoft Docs
+description: "Cet article décrit comment configurer le connecteur Windows PowerShell de Microsoft."
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,305 +14,305 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 44ff6b1f53283000b72e15f861e0f86c21afe12b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0e5ccf5a38072e31d85bbc63eb0c608b0c34cfc2
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="windows-powershell-connector-technical-reference"></a>Référence technique du connecteur PowerShell Windows
-Cet article décrit hello connecteur de Windows PowerShell. article de Hello s’applique toohello suite de produits :
+Cet article décrit le connecteur PowerShell Windows Cet article s’applique aux produits suivants :
 
 * Microsoft Identity Manager 2016 (MIM2016)
 * Forefront Identity Manager 2010 R2 (FIM2010R2)
   * Nécessité d’utiliser le correctif logiciel 4.1.3671.0 ou une version ultérieure [KB3092178](https://support.microsoft.com/kb/3092178).
 
-MIM2016 et FIM2010R2, hello Connector est disponible en téléchargement à partir de hello [Microsoft Download Center](http://go.microsoft.com/fwlink/?LinkId=717495).
+Pour MIM2016 et FIM2010R2, le connecteur est disponible en téléchargement dans le [Centre de téléchargement Microsoft](http://go.microsoft.com/fwlink/?LinkId=717495).
 
-## <a name="overview-of-hello-powershell-connector"></a>Vue d’ensemble de hello connecteur de PowerShell
-Hello PowerShell connecteur vous permet de service de synchronisation hello toointegrate avec des systèmes externes qui offrent des API basées sur le Windows PowerShell. connecteur de Hello fournit un pont entre les fonctions hello d’agent de gestion extensible connectivity basé sur un appel hello 2 (ECMA2) framework et Windows PowerShell. Pour plus d’informations sur l’infrastructure ECMA hello, consultez hello [Extensible référence de l’Agent de gestion connectivité 2.2](https://msdn.microsoft.com/library/windows/desktop/hh859557.aspx).
+## <a name="overview-of-the-powershell-connector"></a>Vue d’ensemble du connecteur PowerShell
+Le connecteur PowerShell vous permet d’intégrer le service de synchronisation dans des systèmes externes qui offrent des API Windows PowerShell. Le connecteur offre un pont entre les fonctions de l’agent de gestion de connectivité extensible basé sur une structure appel 2 (ECMA2) et Windows PowerShell. Pour plus d’informations sur l’infrastructure d’ECMA, consultez la section [Référence de l’agent gestion de connectivité extensible 2.2](https://msdn.microsoft.com/library/windows/desktop/hh859557.aspx).
 
 ### <a name="prerequisites"></a>Composants requis
-Avant d’utiliser hello connecteur, vérifiez que vous disposer de hello sur le serveur de synchronisation hello :
+Avant d’utiliser le connecteur, vérifiez que vous disposez des éléments suivants sur le serveur de synchronisation :
 
 * Microsoft .NET 4.5.2 Framework ou version ultérieure
 * Windows PowerShell 2.0, 3.0 ou 4.0
 
-stratégie d’exécution Hello sur le serveur du Service de synchronisation hello doit être configuré tooallow hello connecteur toorun les scripts Windows PowerShell. Sauf si les séries de connecteur hello hello scripts sont signées numériquement, configurer la stratégie d’exécution hello en exécutant cette commande :  
+La stratégie d’exécution sur le serveur du service de synchronisation doit être configurée pour autoriser le connecteur à exécuter des scripts Windows PowerShell. À moins que les scripts que le connecteur exécute portent une signature numérique, configurez la stratégie d’exécution en exécutant la commande   
 `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
 
 ## <a name="create-a-new-connector"></a>Créer un connecteur
-toocreate un connecteur de Windows PowerShell dans le service de synchronisation hello, vous devez fournir une série de scripts Windows PowerShell qui s’exécutent des étapes hello demandés par le service de synchronisation hello. En fonction de la source de données hello vous connectez les fonctionnalités de hello tooand vous avez besoin, vous devez implémenter des scripts hello varie. Cette section décrit chacune des scripts hello qui peut être implémentée et lorsqu’ils sont requis.
+Pour créer un connecteur Windows PowerShell dans le service de synchronisation, vous devez fournir une série de scripts Windows PowerShell qui exécutent les opérations demandées par le service de synchronisation. Selon la source de données à laquelle vous vous connectez et la fonction dont vous avez besoin, les scripts que vous devez implémenter varient. Cette section décrit chacun des scripts pouvant être mis en œuvre ainsi que les situations dans lesquelles ils sont requis.
 
-Hello Windows PowerShell, le connecteur est conçu toostore de scripts hello au sein de la base de données du Service de synchronisation hello. Bien qu’il soit possible toorun les scripts qui sont stockés sur le système de fichiers hello, il s’agit des corps de hello tooinsert plus facile de chaque script directement dans la configuration du connecteur de toohello.
+Le connecteur Windows PowerShell est conçu pour stocker chacun des scripts à l’intérieur de la base de données du service de synchronisation. Bien qu’il soit possible d’exécuter des scripts stockés dans le système de fichiers, il est beaucoup plus simple d’insérer le corps de chaque script directement dans la configuration du connecteur.
 
-tooCreate un connecteur de PowerShell, dans **Service de synchronisation** sélectionnez **Agent de gestion** et **créer**. Sélectionnez hello **PowerShell (Microsoft)** connecteur.
+Pour créer un connecteur PowerShell, dans **Synchronization Service**, sélectionnez **Management Agent** et **Create**. Sélectionnez le connecteur **PowerShell (Microsoft)** .
 
 ![Créer un connecteur](./media/active-directory-aadconnectsync-connector-powershell/createconnector.png)
 
 ### <a name="connectivity"></a>Connectivité
-Fournir des paramètres de configuration pour la connexion du système distant de tooa. Ces valeurs sont en toute sécurité stockées par hello Service de synchronisation et effectuées des scripts Windows PowerShell tooyour disponibles lors de l’exécution de connecteur de hello.
+Fournissez des paramètres de configuration pour la connexion à un système distant. Ces valeurs sont stockées en toute sécurité par le service de synchronisation et accessibles à vos scripts Windows PowerShell lorsque le connecteur est exécuté.
 
 ![Connectivité](./media/active-directory-aadconnectsync-connector-powershell/connectivity.png)
 
-Vous pouvez configurer hello les paramètres de connectivité suivants :
+Vous pouvez configurer les paramètres de connectivité suivants :
 
 **Connectivité**
 
 | Paramètre | Valeur par défaut | Objectif |
 | --- | --- | --- |
-| Serveur |<Blank> |Nom du serveur hello connecteur doit se connecter à. |
-| Domaine |<Blank> |Domaine de toostore des informations d’identification hello pour une utilisation lors de l’exécution de connecteur de hello. |
-| Utilisateur |<Blank> |Nom d’utilisateur de toostore des informations d’identification hello pour une utilisation lors de l’exécution de connecteur de hello. |
-| Mot de passe |<Blank> |Mot de passe de toostore des informations d’identification hello pour une utilisation lors de l’exécution de connecteur de hello. |
-| Emprunter l’identité du compte de connecteur |False |Lorsque la valeur est true, le service de synchronisation hello s’exécute des scripts Windows PowerShell hello dans le contexte hello d’informations d’identification hello fourni. Lorsque cela est possible, il est recommandé que hello **$Credentials** paramètre est passé de tooeach script est utilisé au lieu de l’emprunt d’identité. Pour plus d’informations sur les autorisations supplémentaires qui sont requis toouse cette option, consultez [une Configuration supplémentaire pour l’emprunt d’identité](#additional-configuration-for-impersonation). |
-| Charger le profil utilisateur lors de l’emprunt d’identité |False |Indique le profil d’utilisateur Windows tooload hello d’informations d’identification du connecteur hello lors de l’emprunt d’identité. Si l’utilisateur représenté hello possède un profil itinérant, connecteur de hello ne charge pas le profil itinérant de hello. Pour plus d’informations sur les autorisations supplémentaires qui sont requis toouse ce paramètre, consultez [une Configuration supplémentaire pour l’emprunt d’identité](#additional-configuration-for-impersonation). |
-| Type d’ouverture en cas d’emprunt d’identité |Aucun |Type de connexion pendant l’emprunt d’identité. Pour plus d’informations, consultez hello [dwLogonType] [ dw] documentation. |
-| Scripts signés uniquement |False |Si la valeur est true, connecteur de Windows PowerShell hello valide que chaque script possède une signature numérique valide. Si la valeur est false, assurez-vous que la stratégie d’exécution Windows PowerShell du serveur du Service de synchronisation de hello est RemoteSigned ou non restreint. |
+| Serveur |<Blank> |Nom du serveur auquel le connecteur doit se connecter. |
+| Domaine |<Blank> |Domaine des informations d’identification à stocker pour utilisation au moment d’exécuter le connecteur. |
+| Utilisateur |<Blank> |Nom d’utilisateur des informations d’identification à stocker pour utilisation au moment d’exécuter le connecteur. |
+| Mot de passe |<Blank> |Mot de passe des informations d’identification à stocker pour utilisation lors de l’exécution du connecteur. |
+| Emprunter l’identité du compte de connecteur |False |Si la valeur est true, le service de synchronisation exécute les scripts Windows PowerShell dans le contexte d’identification fourni. Lorsque c’est possible, il est conseillé d’utiliser le paramètre **$Credentials** transmis à chaque script plutôt que de recourir à l’emprunt d’identité. Pour plus d’informations sur les autorisations supplémentaires nécessaires à l’utilisation de cette option, consultez [Configuration supplémentaire pour l’emprunt d’identité](#additional-configuration-for-impersonation). |
+| Charger le profil utilisateur lors de l’emprunt d’identité |False |Indique à Windows de charger le profil utilisateur des informations d’identification du connecteur pendant l’emprunt d’identité. Si l’utilisateur dont il faut emprunter l’identité possède un profil itinérant, le connecteur ne charge pas le profil itinérant. Pour plus d’informations sur les autorisations supplémentaires nécessaires à l’utilisation de ce paramètre, consultez [Configuration supplémentaire pour l’emprunt d’identité](#additional-configuration-for-impersonation). |
+| Type d’ouverture en cas d’emprunt d’identité |Aucun |Type de connexion pendant l’emprunt d’identité. Pour plus d’informations, consultez la documentation [dwLogonType][dw]. |
+| Scripts signés uniquement |False |Si la valeur est true, le connecteur de Windows PowerShell valide le fait que chaque script possède une signature numérique valide. Si la valeur est false, assurez-vous que la stratégie d’exécution Windows PowerShell du serveur de service de synchronisation est de type RemoteSigned ou Unrestricted. |
 
 **Module commun**  
-connecteur de Hello vous permet de toostore un module Windows PowerShell partagé dans la configuration de hello. Lorsque le connecteur de hello exécute un script, hello Windows PowerShell module est extraite système de fichiers toohello afin qu’il puisse être importé par chaque script.
+Le connecteur vous permet de stocker un module Windows PowerShell partagé dans la configuration. Lorsque le connecteur exécute un script, le module Windows PowerShell est extrait dans le système de fichiers pour qu’il puisse être importé par chaque script.
 
-Pour les scripts d’importation, exportation et la synchronisation de mot de passe, module commun de hello est dossier de MAData du connecteur toohello extraits. Pour les scripts de détection de schéma, de Validation, de hiérarchie et de Partition, module commun de hello est dossier extraits toohello % temp%. Dans les deux cas, hello extraits Module commun script est nommé en fonction du paramètre de nom de Script commun Module toohello.
+Pour les scripts d’importation, d’exportation et de synchronisation de mot de passe, le module commun est extrait dans le dossier du connecteur MAData. Pour les scripts de découverte de schéma, de validation, de hiérarchie et de partition, le module commun est extrait dans le dossier %TEMP%. Dans les deux cas, le script de module commun extrait est nommé en fonction du paramètre de nom de script module commun.
 
-tooload un module appelé FIMPowerShellConnectorModule.psm1 à partir du dossier MAData hello, utilisez hello après l’instruction :`Import-Module (Join-Path -Path [Microsoft.MetadirectoryServices.MAUtils]::MAFolder -ChildPath "FIMPowerShellConnectorModule.psm1")`
+Pour charger un module appelé FIMPowerShellConnectorModule.psm1 à partir du dossier MAData, utilisez l’instruction suivante : `Import-Module (Join-Path -Path [Microsoft.MetadirectoryServices.MAUtils]::MAFolder -ChildPath "FIMPowerShellConnectorModule.psm1")`
 
-tooload un module appelé FIMPowerShellConnectorModule.psm1 à partir du dossier % Temp% hello, utilisez hello après l’instruction :`Import-Module (Join-Path -Path $env:TEMP -ChildPath "FIMPowerShellConnectorModule.psm1")`
+Pour charger un module appelé FIMPowerShellConnectorModule.psm1 à partir du dossier %TEMP%, utilisez l’instruction suivante : `Import-Module (Join-Path -Path $env:TEMP -ChildPath "FIMPowerShellConnectorModule.psm1")`
 
 **Validation des paramètres**  
-Hello Script de Validation est un script Windows PowerShell facultatif qui peut être utilisé tooensure que les paramètres de configuration de connecteur fournis par l’administrateur de hello sont valides. Serveur de validation, les informations d’identification de connexion et les paramètres de connectivité sont des utilisations courantes de script de validation hello. script de validation Hello est appelée après que hello des onglets et des boîtes de dialogue suivants sont modifiés :
+Le script de validation est un script Windows PowerShell facultatif qui peut être utilisé pour vérifier que les paramètres de configuration du connecteur fournis par l’administrateur sont valides. La validation du serveur, les informations d’identification de connexion et les paramètres de connectivité sont des utilisations communes d’un script de validation. Le script de validation est appelé après modification des onglets et des boîtes de dialogue :
 
 * Connectivité
 * Paramètres globaux
 * Configuration de partition
 
-script de validation Hello reçoit hello après les paramètres du connecteur de hello :
+Le script de validation reçoit les paramètres suivants de la part du connecteur :
 
-| Nom | Type de données | Description |
+| Name | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameterPage |[ConfigParameterPage][cpp] |onglet de configuration Hello ou boîte de dialogue qui a déclenché la demande de validation hello. |
-| ConfigParameters |[KeyedCollection][keyk] [string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
+| ConfigParameterPage |[ConfigParameterPage][cpp] |Boîte de dialogue ou l’onglet de configuration qui a déclenché la demande de validation. |
+| ConfigParameters |[KeyedCollection][keyk] [string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
 
-script de validation Hello doit retourner un pipeline de toohello ParameterValidationResult objet unique.
+Le script de validation doit renvoyer un seul objet ParameterValidationResult au pipeline.
 
 **Découverte de schéma**  
-Hello script de détection de schéma est obligatoire. Ce script retourne des types d’objets hello, des attributs et des contraintes de l’attribut que hello que service de synchronisation utilise lors de la configuration des règles de flux d’attribut. Hello script de détection de schéma est exécutée lors de la création du connecteur et remplit les schémas du connecteur hello. Il est également utilisé par hello action Actualiser le schéma Bonjour Synchronization Service Manager.
+Le script de découverte de schéma est obligatoire. Ce script renvoie les types d’objets, les attributs et les contraintes d’attribut que le service de synchronisation utilise lors de la configuration des règles de flux d’attribut. Le script de découverte de schéma s’exécute lors de la création du connecteur et remplit le schéma du connecteur. Il est également utilisé par l’action Actualiser le schéma dans Synchronization Service Manager.
 
-script de découverte de schéma Hello reçoit hello après les paramètres du connecteur de hello :
+Le script de découverte reçoit les paramètres suivants de la part du connecteur :
 
 | Nom | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameters |[KeyedCollection][keyk] [string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
+| ConfigParameters |[KeyedCollection][keyk] [string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
 
-script de Hello doit retourner une seule [schéma] [ schema] toohello pipeline d’objet. objet de schéma Hello est composé de [SchemaType] [ schemaT] objets qui représentent des types d’objet (par exemple : utilisateurs et groupes). objet de SchemaType Hello conserve une collection de [SchemaAttribute] [ schemaA] les objets qui représentent les attributs hello (par exemple : prénom, nom et adresse postale) du type de hello.
+Le script doit renvoyer un objet [Schéma][schema] unique au pipeline. L’objet Schéma est composé d’objets [SchemaType][schemaT] qui représentent des types d’objets (par exemple, les utilisateurs et les groupes). L’objet SchemaType renferme un ensemble d’objets [SchemaAttribute][schemaA] qui représentent les attributs (par exemple, prénom, nom et adresse postale) du type.
 
 **Paramètres supplémentaires**  
-En outre toohello des paramètres de configuration standard, vous pouvez définir des paramètres supplémentaires de configuration personnalisée instance toohello spécifique de hello connecteur. Ces paramètres peuvent être spécifiés au connecteur hello, partition, ou les niveaux d’étape d’exécution et accessible à partir de script Windows PowerShell appropriée de hello. Paramètres de configuration personnalisés peuvent être stockées dans la base de données du Service de synchronisation hello au format texte brut, ou ils peuvent être chiffrés. Service de synchronisation de Hello chiffre et déchiffre les paramètres de configuration sécurisés à la demande automatiquement.
+Outre les paramètres de configuration standard, vous pouvez définir des paramètres de configuration personnalisés supplémentaires qui sont spécifiques à l’instance du connecteur. Ces paramètres peuvent être spécifiés au niveau du connecteur, de la partition, ou exécuter des niveaux et accéder à partir du script Windows PowerShell approprié. Les paramètres de configuration personnalisés peuvent être stockés dans la base de données du Service de synchronisation au format de texte brut ou ils peuvent être chiffrés. Le service de synchronisation chiffre et déchiffre de façon automatique les paramètres de configuration de sécurité lorsque c’est nécessaire.
 
-paramètres de configuration personnalisés toospecify, nom hello distincts de chaque paramètre avec une virgule (,).
+Pour spécifier les paramètres de configuration personnalisés, séparez le nom de chaque paramètre par une virgule (,).
 
-tooaccess les paramètres de configuration personnalisé à partir d’un script, vous devez le suffixe nom hello avec un trait de soulignement ( \_ ) et la portée de hello du paramètre hello (Global, la Partition ou RunStep). Par exemple, tooaccess hello paramètre FileName Global, utilisez cet extrait de code :`$ConfigurationParameters["FileName_Global"].Value`
+Pour accéder aux paramètres de configuration personnalisés à partir d’un script, vous devez ajouter un trait de soulignement (\_) et la portée du paramètre (Global, Partition ou RunStep) comme suffixes du nom. Par exemple, pour accéder au paramètre FileName Global, utilisez cet extrait de code : `$ConfigurationParameters["FileName_Global"].Value`
 
 ### <a name="capabilities"></a>Fonctionnalités
-onglet de capacités Hello Hello Concepteur de l’Agent de gestion définit les fonctionnalités du connecteur de hello et comportement de hello. Impossible de modifier les sélections de Hello sous cet onglet lorsque hello connecteur a été créé. Ce tableau répertorie les paramètres de capacité hello.
+L’onglet fonctionnalités de Management Agent Designer définit le comportement et les fonctionnalités du connecteur. Les sélections effectuées dans cet onglet ne peuvent pas être modifiées une fois le connecteur créé. Cette table répertorie les paramètres de capacité.
 
 ![Fonctionnalités](./media/active-directory-aadconnectsync-connector-powershell/capabilities.png)
 
 | Fonctionnalité | Description |
 | --- | --- |
-| [Style de nom unique][dnstyle] |Indique si le connecteur de hello prend en charge les noms uniques et par conséquent, le style. |
-| [Type d’exportation][exportT] |Détermine le type hello d’objets qui sont présentés toohello script d’exportation. <li>AttributeReplace – inclut hello complète ensemble de valeurs pour un attribut à valeurs multiples lorsque hello attribut change.</li><li>AttributeUpdate – inclut uniquement hello deltas tooa attribut à valeurs multiples lorsque hello attribut change.</li><li>MultivaluedReferenceAttributeUpdate - contient un ensemble complet de valeurs d’attributs à valeurs multiples sans référence et uniquement pour les écarts des attributs de référence à valeurs multiples.</li><li>ObjectReplace – inclut tous les attributs d’un objet en cas de modification d’attribut</li> |
-| [Normalisation des données][DataNorm] |Indique les attributs de point d’ancrage toonormalize hello Service de synchronisation avant qu’ils sont fournis tooscripts. |
-| [Confirmation d’objet][oconf] |Configure hello en attente de comportement d’importation Bonjour Service de synchronisation. <li>Normal – par défaut qui attend que toutes les modifications exporté toobe a été confirmé par l’importation</li><li>NoDeleteConfirmation – lorsqu’un objet est supprimé, aucune importation en attente n’est générée.</li><li>NoAddAndDeleteConfirmation – lorsqu’un objet est créé ou supprimé, aucune importation en attente n’est générée.</li> |
-| Utiliser le nom unique en tant que point d’ancrage |Si hello Style de nom unique tooLDAP, attribut d’ancrage hello pour l’espace de connecteur hello est également nom_unique hello. |
+| [Style de nom unique][dnstyle] |Indique si le connecteur prend en charge les noms uniques et le cas échéant, le style. |
+| [Type d’exportation][exportT] |Détermine le type des objets qui sont présentés au script d’exportation. <li>AttributeReplace : inclut l’ensemble des valeurs d’un attribut à valeurs multiples lorsque l’attribut change.</li><li>AttributeUpdate : inclut uniquement les écarts d’un attribut à valeurs multiples lorsque l’attribut change.</li><li>MultivaluedReferenceAttributeUpdate - contient un ensemble complet de valeurs d’attributs à valeurs multiples sans référence et uniquement pour les écarts des attributs de référence à valeurs multiples.</li><li>ObjectReplace – inclut tous les attributs d’un objet en cas de modification d’attribut</li> |
+| [Normalisation des données][DataNorm] |Fait en sorte que le service de synchronisation normalise les attributs d’ancrage avant qu’ils soient fournis à des scripts. |
+| [Confirmation d’objet][oconf] |Configure le comportement d’importation en attente dans le service de synchronisation. <li>Normal – comportement par défaut qui attend la confirmation de toutes les modifications exportées par importation</li><li>NoDeleteConfirmation – lorsqu’un objet est supprimé, aucune importation en attente n’est générée.</li><li>NoAddAndDeleteConfirmation – lorsqu’un objet est créé ou supprimé, aucune importation en attente n’est générée.</li> |
+| Utiliser le nom unique en tant que point d’ancrage |Si le Style de nom unique est défini sur LDAP, l’attribut d’ancrage de l’espace de connecteur est également le nom unique. |
 | Opérations simultanées de plusieurs connecteurs |Lorsqu’elle est activée, plusieurs connecteurs de Windows PowerShell peuvent s’exécuter simultanément. |
-| Partitions |Lorsqu’elle est activée, le connecteur de hello prend en charge plusieurs partitions et découverte de partition. |
-| Hiérarchie |Lorsqu’elle est activée, le connecteur de hello prend en charge une structure hiérarchique de style LDAP. |
-| Activer l’importation |Lorsqu’elle est activée, le connecteur de hello importe des données via des scripts d’importation. |
-| Activer l’importation d’écart |Lorsqu’elle est activée, le connecteur de hello peut demander deltas de hello importer des scripts. |
-| Activer l’exportation |Lorsqu’elle est activée, le connecteur de hello exporte des données via des scripts d’exportation. |
-| Activer l’exportation complète |Lorsqu’elle est activée, hello exporter exportation espace de connecteur entière hello de la prise en charge des scripts. toouse que cette option, activez exporter doit également être activée. |
+| Partitions |Lorsqu’elle est sélectionnée, le connecteur prend en charge plusieurs partitions et découvertes de partition. |
+| Hiérarchie |Lorsqu’elle est activée, le connecteur prend en charge une structure hiérarchique de type LDAP. |
+| Activer l’importation |Lorsque cette option est cochée, le connecteur importe les données via des scripts d’importation. |
+| Activer l’importation d’écart |Lorsque cette option est cochée, le connecteur peut demander des écarts par rapport aux scripts d’importation. |
+| Activer l’exportation |Lorsque cette option est cochée, le connecteur exporte les données via des scripts d’exportation. |
+| Activer l’exportation complète |Lorsqu’elle est activée, les scripts d’exportation prennent en charge l’exportation de la totalité de l’espace de connecteur. Si vous utilisez cette option, l’activation de l’exportation doit elle aussi être activée. |
 | Aucune valeur de référence dans le premier transfert d’exportation |Lorsqu’elle est activée, les attributs de référence sont exportés lors d’un deuxième transfert d’exportation. |
 | Activer renommer l’objet |Lorsqu’elle est activée, les noms uniques peuvent être modifiés. |
 | Supprimer-Ajouter en remplacement |Lorsqu’elle est activée, les opérations supprimer, ajouter sont exportées en tant que remplacement. |
 | Activer les opérations de mot de passe |Lorsqu’elle est activée, les scripts de synchronisation de mot de passe sont pris en charge. |
-| Activer l’exportation de mot de passe lors d’un premier passage |Lorsqu’elle est activée, les mots de passe défini lors de la configuration sont exportés lors de la création d’objet de hello. |
+| Activer l’exportation de mot de passe lors d’un premier passage |Lorsqu’elle est activée, les mots de passe définis lors de la configuration sont exportés lorsque l’objet est créé. |
 
 ### <a name="global-parameters"></a>Paramètres globaux
-onglet Paramètres globaux de Hello Bonjour Concepteur de l’Agent de gestion vous permet de tooconfigure hello Windows PowerShell scripts qui sont exécutés par le connecteur de hello. Vous pouvez également configurer des valeurs globales pour les paramètres de configuration personnalisés définis sur l’onglet de connectivité hello.
+L’onglet Paramètres globaux du Concepteur de l’Agent de gestion vous permet de configurer les scripts Windows PowerShell qui sont exécutés par le connecteur. Vous pouvez également configurer des valeurs globales pour les paramètres de configuration personnalisés définis dans l’onglet Connectivité.
 
 **Détection de partition**  
-Une partition est un espace de noms distinct au sein d’un seul schéma partagé. Par exemple, dans Active Directory, chaque domaine est une partition d’une forêt. Une partition est le regroupement logique de hello pour importer et exporter des opérations. L’importation et l’exportation se trouvent dans un environnement de partition et toutes les opérations ont lieu dans ce contexte. Les partitions sont censées toorepresent une hiérarchie dans l’annuaire LDAP. nom unique de Hello d’une partition est utilisé dans tooverify d’importation que toutes les renvoyées objets se trouvent dans la portée de hello d’une partition. nom unique de la partition Hello est également utilisé lors de la configuration à partir de hello métaverse toohello connecteur espace toodetermine hello partition de qu'un objet doit être associé lors de l’exportation.
+Une partition est un espace de noms distinct au sein d’un seul schéma partagé. Par exemple, dans Active Directory, chaque domaine est une partition d’une forêt. Une partition est le regroupement logique d’opérations d’importation et d’exportation. L’importation et l’exportation se trouvent dans un environnement de partition et toutes les opérations ont lieu dans ce contexte. Les partitions sont supposées représenter une hiérarchie dans l’annuaire LDAP. Le nom unique d’une partition permet de vérifier que tous les objets retournés se trouvent bien dans l’étendue de la partition. Le nom unique de la partition est également utilisé lors de la préparation de la métaverse vers l’espace de connecteur pour déterminer la partition à laquelle un objet va être associé au cours de l’exportation.
 
-script de découverte de partition Hello reçoit hello après les paramètres du connecteur de hello :
+Le script de découverte de la partition reçoit les paramètres suivants de la part du connecteur :
 
 | Nom | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
+| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
 
-Hello script doit retourner un un seul [Partition] [ part] objet ou une liste [T] du pipeline de toohello objets Partition.
+Le script doit renvoyer un objet [Partition][part] unique ou une liste[T] d’objets de partition au pipeline.
 
 **Découverte de la hiérarchie**  
-script de découverte de hiérarchie Hello est utilisé uniquement lors de la fonctionnalité de Style de nom unique de hello est LDAP. script de Hello est utilisé tooallow vous toobrowse et sélectionnez un ensemble de conteneurs est considérée comme dans ou hors de portée pour importer et exporter des opérations. script de Hello doit fournir uniquement une liste de nœuds qui sont des enfants directs du script de toohello hello racine nœud fourni.
+Le script de découverte de hiérarchie est utilisé uniquement lorsque le style de nom unique employé est LDAP. Le script est utilisé pour vous permettre de rechercher et de sélectionner un ensemble de conteneurs qui sont considérés comme étant dans la portée ou hors de portée pour les opérations d’importation et d’exportation. Le script doit fournir uniquement une liste de nœuds enfants directs du nœud racine transmis au script.
 
-script de découverte de hiérarchie Hello reçoit hello après les paramètres du connecteur de hello :
+Le script de découverte de partition reçoit les paramètres suivants de la part du connecteur :
 
 | Nom | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
-| ParentNode |[HierarchyNode][hn] |nœud racine de Hello de hiérarchie hello sous le hello script doit retourner les enfants directs. |
+| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
+| ParentNode |[HierarchyNode][hn] |Nœud racine de la hiérarchie sous lequel le script doit renvoyer des enfants directs. |
 
-script de Hello doit retourner un un objet de HierarchyNode enfant unique ou une liste [T] du pipeline de toohello objets enfant HierarchyNode.
+Le script doit retourner soit un objet HierarchyNode enfant unique, soit une liste [T] d’objets enfant HierarchyNode au pipeline.
 
-#### <a name="import"></a>Importer
+#### <a name="import"></a>Importation
 Les connecteurs qui prennent en charge les opérations d’importation doivent implémenter trois scripts.
 
 **Début de l’importation**  
-commencer l’importation Hello script est exécuté au début de hello d’une étape d’importation à exécuter. Pendant cette étape, vous pouvez établir un système de connexion toohello source et effectuer les étapes préparatoires avant l’importation de données à partir de hello connectés système.
+Le script de début d’importation est exécuté au début de l’exécution d’une opération d’importation. Au cours de cette étape, vous pouvez établir une connexion au système source et exécuter les étapes préparatoires avant d’importer des données depuis le système connecté.
 
-commencer l’importation Hello script reçoit hello après les paramètres du connecteur de hello :
+Le script de démarrage reçoit les paramètres suivants de la part du connecteur :
 
 | Nom | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
-| OpenImportConnectionRunStep |[OpenImportConnectionRunStep][oicrs] |Script de hello informe de type hello d’exécuter l’importation (delta ou full), partition, hiérarchie, filigrane et taille de page attendu. |
-| Types |[Schema][schema] |Schéma pour l’espace de connecteur hello qui est importé. |
+| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
+| OpenImportConnectionRunStep |[OpenImportConnectionRunStep][oicrs] |Informe le script sur le type d’importation à exécuter (delta ou complète), la partition, la hiérarchie, le filigrane et le format de page attendu. |
+| Types |[Schema][schema] |Schéma de l’espace de connecteur qui est importé. |
 
-script de Hello doit retourner une seule [OpenImportConnectionResults] [ oicres] objet toohello pipeline, par exemple :`Write-Output (New-Object Microsoft.MetadirectoryServices.OpenImportConnectionResults)`
+Le script doit renvoyer un objet [OpenImportConnectionResults][oicres] au pipeline, par exemple : `Write-Output (New-Object Microsoft.MetadirectoryServices.OpenImportConnectionResults)`
 
 **Importer des données**  
-script d’importation de données Hello est appelé par le connecteur de hello jusqu'à ce que le script de hello indique qu’il n’y a aucune tooimport plus de données. connecteur de Windows PowerShell Hello a une taille de page d’objets 9 999. Si votre script renvoie plus de 9 999 objets pour importation, vous devez prendre en charge la pagination. expose de connecteur Hello une propriété de données personnalisé que vous pouvez utiliser le magasin de tooa un filigrane afin que chaque hello temps importer le script de données est appelée, votre script reprend l’importation d’objets dans lequel il s’est arrêté.
+Le script d’importation de données est appelé par le connecteur jusqu’à ce que le script indique qu’il n’existe plus aucune donnée à importer. Le connecteur de Windows PowerShell a une taille de page de 9 999 objets. Si votre script renvoie plus de 9 999 objets pour importation, vous devez prendre en charge la pagination. Le connecteur expose une propriété de données personnalisée que vous pouvez utiliser dans un magasin de filigrane, pour qu’à chaque fois que le script d’importation de données est appelé, votre script reprenne l’importation d’objets là où elle s’était arrêtée.
 
-script d’importation de données Hello reçoit hello après les paramètres du connecteur de hello :
+Le script d’importation reçoit les paramètres suivants de la part du connecteur :
 
 | Nom | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
-| GetImportEntriesRunStep |[ImportRunStep][irs] |Blocages hello filigrane (CustomData) qui peut être utilisé au cours des importations paginées et importe de delta. |
-| OpenImportConnectionRunStep |[OpenImportConnectionRunStep][oicrs] |Script de hello informe de type hello d’exécuter l’importation (delta ou full), partition, hiérarchie, filigrane et taille de page attendu. |
-| Types |[Schema][schema] |Schéma pour l’espace de connecteur hello qui est importé. |
+| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
+| GetImportEntriesRunStep |[ImportRunStep][irs] |Contient le filigrane (CustomData) qui peut être utilisé pendant les importations paginées et les écarts d’importation. |
+| OpenImportConnectionRunStep |[OpenImportConnectionRunStep][oicrs] |Informe le script sur le type d’importation à exécuter (delta ou complète), la partition, la hiérarchie, le filigrane et le format de page attendu. |
+| Types |[Schema][schema] |Schéma de l’espace de connecteur qui est importé. |
 
-Hello script d’importation de données doit écrire une liste [[CSEntryChange][csec]] pipeline toohello d’objet. Cette collection se compose d’attributs CSEntryChange qui représentent chaque objet importé. Au cours d’une importation intégrale, cette collection doit comporter un jeu complet d’objets CSEntryChange qui dispose de tous les attributs de chaque objet. Lors de l’importation Delta, objet de CSEntryChange hello doit contenir deltas de niveau attribut hello pour chaque tooimport d’objet ou une représentation complète d’objets hello qui ont été modifiés (mode de remplacement).
+Le script d’importation de données doit écrire un objet List[[CSEntryChange][csec]] dans le pipeline. Cette collection se compose d’attributs CSEntryChange qui représentent chaque objet importé. Au cours d’une importation intégrale, cette collection doit comporter un jeu complet d’objets CSEntryChange qui dispose de tous les attributs de chaque objet. Pendant une importation d’écart, l’objet CSEntryChange contient les deltas de niveau d’attribut pour chaque objet à importer, ou une représentation complète des objets qui ont été modifiés (mode de remplacement).
 
 **Fin de l’importation**  
-À fin hello d’importation hello exécuter hello fin importer le script est exécuté. Ce script doit effectuer les tâches de nettoyage sont nécessaires (par exemple, une toosystems et répondre toofailures fermer les connexions).
+À l’issue de l’importation, le script de fin d’importation s’exécute. Ce script doit effectuer les tâches de nettoyage nécessaires (par exemple, fermeture des connexions aux systèmes et réponse aux défaillances).
 
-script d’importation de fin Hello reçoit hello après les paramètres du connecteur de hello :
+Le script de fin reçoit les paramètres suivants de la part du connecteur :
 
 | Nom | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
-| OpenImportConnectionRunStep |[OpenImportConnectionRunStep][oicrs] |Script de hello informe de type hello d’exécuter l’importation (delta ou full), partition, hiérarchie, filigrane et taille de page attendu. |
-| CloseImportConnectionRunStep |[CloseImportConnectionRunStep][cecrs] |Script de hello informe de la raison hello importation de hello a été interrompue. |
+| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
+| OpenImportConnectionRunStep |[OpenImportConnectionRunStep][oicrs] |Informe le script sur le type d’importation à exécuter (delta ou complète), la partition, la hiérarchie, le filigrane et le format de page attendu. |
+| CloseImportConnectionRunStep |[CloseImportConnectionRunStep][cecrs] |Informe le script sur la raison de l’interruption de l’importation. |
 
-script de Hello doit retourner une seule [CloseImportConnectionResults] [ cicres] objet toohello pipeline, par exemple :`Write-Output (New-Object Microsoft.MetadirectoryServices.CloseImportConnectionResults)`
+Le script doit renvoyer un objet [CloseImportConnectionResults][cicres] au pipeline, par exemple : `Write-Output (New-Object Microsoft.MetadirectoryServices.CloseImportConnectionResults)`
 
 #### <a name="export"></a>Exportation
-Architecture d’importation toohello identiques du connecteur de hello, les connecteurs qui prennent en charge d’exportation doivent implémenter trois scripts.
+Identique à l’architecture d’importation du connecteur. Les connecteurs qui prennent en charge l’exportation doivent mettre en œuvre trois scripts.
 
 **Début de l’exportation**  
-Hello commencer l’exportation de script est exécuté au début de hello d’une étape d’exportation. Au cours de cette étape, vous pouvez établir un système de source de connexion toohello et effectuer toutes les étapes préparatoires avant l’exportation de données toohello connecté système.
+Le script de début d’exportation est lancé au début de l’exécution d’une opération d’exportation. Au cours de cette étape, vous pouvez établir une connexion au système source et exécuter toutes les étapes préparatoires avant d’exporter des données depuis le système connecté.
 
-commencer l’exportation Hello script reçoit hello après les paramètres du connecteur de hello :
+Le script de début d’exportation reçoit les paramètres suivants de la part du connecteur :
 
 | Nom | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
-| OpenExportConnectionRunStep |[OpenExportConnectionRunStep][oecrs] |Script de hello informe de type hello de d’exportation (delta ou full), partition, hiérarchie et la taille de page attendue. |
-| Types |[Schema][schema] |Schéma pour l’espace de connecteur hello exporté. |
+| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
+| OpenExportConnectionRunStep |[OpenExportConnectionRunStep][oecrs] |Informe le script sur le type d’exportation (delta ou complète) à exécuter, la partition, la hiérarchie et le format de page attendu. |
+| Types |[Schema][schema] |Schéma de l’espace de connecteur qui est exporté. |
 
-script de Hello ne doit pas retourner tout pipeline toohello de sortie.
+Le script ne doit renvoyer aucune sortie vers le pipeline.
 
 **Exporter les données**  
-Hello Service de synchronisation appelle script d’exporter des données hello aussi souvent que toutes les exportations en attente n’est nécessaire tooprocess. Si l’espace de connecteur hello possède plusieurs exportations en attente que hello la taille de la page du connecteur, exportation hello de script de données peut être appelée plusieurs fois et éventuellement plusieurs fois pour hello même objet.
+Le service de synchronisation appelle le script d’exportation de données aussi souvent que nécessaire afin de traiter toutes les exportations en attente. Si l’espace de connecteur contient davantage d’exportations en attente que la taille de page du connecteur, le script d’exportation de données peut être appelé plusieurs fois, voire à plusieurs reprises pour le même objet.
 
-script de données d’exportation Hello reçoit hello après les paramètres du connecteur de hello :
+Le script d’exportation reçoit les paramètres suivants de la part du connecteur :
 
 | Nom | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
-| CSEntries |IList[CSEntryChange][csec] |Liste de tous les objets d’espace connecteur hello avec attente toobe exportations traités au cours de cette étape. |
-| OpenExportConnectionRunStep |[OpenExportConnectionRunStep][oecrs] |Script de hello informe de type hello de d’exportation (delta ou full), partition, hiérarchie et la taille de page attendue. |
-| Types |[Schema][schema] |Schéma pour l’espace de connecteur hello exporté. |
+| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
+| CSEntries |IList[CSEntryChange][csec] |Liste de tous les objets d’espace de connecteur avec les exportations de traitement au cours de ce passage. |
+| OpenExportConnectionRunStep |[OpenExportConnectionRunStep][oecrs] |Informe le script sur le type d’exportation (delta ou complète) à exécuter, la partition, la hiérarchie et le format de page attendu. |
+| Types |[Schema][schema] |Schéma de l’espace de connecteur qui est exporté. |
 
-Hello script de données d’exportation doit retourner un [PutExportEntriesResults] [ peeres] toohello pipeline d’objet. Cet objet ne nécessite pas de tooinclude les informations de résultat pour chaque connecteur exporté, sauf si une erreur ou un attribut d’ancrage toohello modification se produit. Par exemple, tooreturn un pipeline de toohello PutExportEntriesResults objet :`Write-Output (New-Object Microsoft.MetadirectoryServices.PutExportEntriesResults)`
+Le script de données d’exportation doit renvoyer un objet [PutExportEntriesResults][peeres] au pipeline. Cet objet n’a pas besoin d’inclure des informations de résultat pour chaque connecteur exporté, sauf si une erreur ou une modification de l’attribut d’ancrage change. Par exemple, pour renvoyer un objet PutExportEntriesResults au pipeline : `Write-Output (New-Object Microsoft.MetadirectoryServices.PutExportEntriesResults)`
 
 **Fin d’exportation**  
-À la conclusion de l’exportation de hello hello exécuter, hello toorun de script exporter de fin. Ce script doit effectuer les tâches de nettoyage sont nécessaires (par exemple, une toosystems et répondre toofailures fermer les connexions).
+À l’issue de l’exportation, le script de fin d’exportation s’exécute. Ce script doit effectuer les tâches de nettoyage nécessaires (par exemple, fermeture des connexions aux systèmes et réponse aux défaillances).
 
-script d’exportation Hello fin reçoit hello après les paramètres du connecteur de hello :
+Le script d’exportation de fin reçoit les paramètres suivants du connecteur :
 
 | Nom | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
-| OpenExportConnectionRunStep |[OpenExportConnectionRunStep][oecrs] |Script de hello informe de type hello de d’exportation (delta ou full), partition, hiérarchie et la taille de page attendue. |
-| CloseExportConnectionRunStep |[CloseExportConnectionRunStep][cecrs] |Script de hello informe de la raison hello exportation de hello a été interrompue. |
+| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
+| OpenExportConnectionRunStep |[OpenExportConnectionRunStep][oecrs] |Informe le script sur le type d’exportation (delta ou complète) à exécuter, la partition, la hiérarchie et le format de page attendu. |
+| CloseExportConnectionRunStep |[CloseExportConnectionRunStep][cecrs] |Informe le script sur la raison de l’interruption de l’exportation. |
 
-script de Hello ne doit pas retourner tout pipeline toohello de sortie.
+Le script ne doit renvoyer aucune sortie vers le pipeline.
 
 #### <a name="password-synchronization"></a>Synchronisation du mot de passe
 Les connecteurs PowerShell Windows peuvent servir de cible pour les modifications/réinitialisations du mot de passe.
 
-script de mot de passe Hello reçoit hello après les paramètres du connecteur de hello :
+Le script de mot de passe reçoit les paramètres suivants de la part du connecteur :
 
 | Nom | Type de données | Description |
 | --- | --- | --- |
-| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour hello connecteur. |
-| Informations d'identification |[PSCredential][pscred] |Contient des informations d’identification entrées par l’administrateur de hello sur l’onglet de connectivité hello. |
-| Partition |[Partition][part] |Partition d’annuaire hello CSEntry est dans. |
-| CSEntry |[CSEntry][cse] |Entrée d’espace de connecteur d’objet hello a reçu une modification de mot de passe ou de la réinitialisation. |
-| OperationType |String |Indique si l’opération de hello est une réinitialisation (**SetPassword**) ou une modification (**ChangePassword**). |
-| PasswordOptions |[PasswordOptions][pwdopt] |Indicateurs qui spécifient les hello destiné le comportement de réinitialisation de mot de passe. Ce paramètre est disponible uniquement si le type d’opération est défini sur **SetPassword**. |
-| OldPassword |String |Rempli avec ancien mot de passe l’objet hello pour les modifications de mot de passe. Ce paramètre est disponible uniquement si le type d’opération est **ChangePassword**. |
-| NewPassword |String |Rempli avec nouveau mot de passe l’objet hello que les scripts de hello doivent définir. |
+| ConfigParameters |[KeyedCollection][keyk][string, [ConfigParameter][cp]] |Tableau des paramètres de configuration pour le connecteur. |
+| Informations d'identification |[PSCredential][pscred] |Contient les informations d’identification saisies par l’administrateur sur l’onglet Connectivité. |
+| Partition |[Partition][part] |Partition d’annuaire dans laquelle se trouve CSEntry. |
+| CSEntry |[CSEntry][cse] |Entrée d’espace de connecteur de l’objet reçu de à la suite d’un changement ou d’une réinitialisation de mot de passe. |
+| OperationType |String |Indique si l’opération est une réinitialisation (**SetPassword**) ou une modification (**ChangePassword**). |
+| PasswordOptions |[PasswordOptions][pwdopt] |Indicateurs qui spécifient le comportement de réinitialisation de mot de passe prévu. Ce paramètre est disponible uniquement si le type d’opération est défini sur **SetPassword**. |
+| OldPassword |String |Remplie avec le mot de passe de l’ancien objet pour les modifications de mot de passe. Ce paramètre est disponible uniquement si le type d’opération est **ChangePassword**. |
+| NewPassword |String |Rempli avec le nouveau mot de passe de l’objet que le script doit définir. |
 
-Hello script de mot de passe est non attendu tooreturn tout pipeline Windows PowerShell de toohello résultats. Si une erreur se produit dans le script de mot de passe hello, script de hello doit lever l’une des hello suivant exceptions tooinform hello Service de synchronisation sur le problème de hello :
+En principe, le script de mot de passe ne doit pas renvoyer des résultats dans le pipeline Windows PowerShell. Si une erreur se produit dans le script de mot de passe, le script doit lever l’une des exceptions qui suivent pour informer le service de synchronisation sur le problème suivant :
 
-* [PasswordPolicyViolationException] [ pwdex1] – levée si un mot de passe hello ne remplit pas la stratégie de mot de passe hello dans le système de hello connecté.
-* [PasswordIllFormedException] [ pwdex2] – levée si le mot de passe hello n’est pas acceptable pour le système de hello connecté.
-* [PasswordExtension] [ pwdex3] – levé pour toutes les autres erreurs dans le script de mot de passe hello.
+* [PasswordPolicyViolationException][pwdex1] : levée si le mot de passe ne respecte pas la stratégie de mot de passe dans le système connecté.
+* [PasswordIllFormedException][pwdex2] : levée si le mot de passe n’est pas acceptable pour le système connecté.
+* [PasswordExtension][pwdex3] : levée pour toutes les autres erreurs dans le script de mot de passe.
 
 ## <a name="sample-connectors"></a>Exemple de connecteurs
-Pour une vue d’ensemble complète des connecteurs d’exemples hello, consultez [exemple connecteur Windows PowerShell de Collection de connecteur][samp].
+Pour une présentation complète des exemples de connecteurs disponibles, consultez [Collection exemple de connecteurs Windows PowerShell][samp].
 
 ## <a name="other-notes"></a>Autres remarques
 ### <a name="additional-configuration-for-impersonation"></a>Configuration supplémentaire pour l’emprunt d’identité
-Grant hello utilisateur avec emprunt d’identité hello autorisations sur le serveur du Service de synchronisation hello suivantes :
+Accordez à l’utilisateur qui subit l’emprunt d’identité les autorisations suivantes sur le serveur de service de synchronisation :
 
-Toohello d’accès en lecture suivant des clés de Registre :
+Accès en lecture aux clés de Registre suivantes :
 
 * HKEY_USERS\\[SynchronizationServiceServiceAccountSID]\Software\Microsoft\PowerShell
 * HKEY_USERS\\[SynchronizationServiceServiceAccountSID]\Environment
 
-hello toodetermine identificateur de sécurité (SID) du compte de service de Service de synchronisation hello, exécutez hello suivant de commandes PowerShell :
+Pour déterminer l’identificateur de sécurité (SID) du compte de service synchronisation de service, exécutez les commandes PowerShell suivantes :
 
 ```
 $account = New-Object System.Security.Principal.NTAccount "<domain>\<username>"
 $account.Translate([System.Security.Principal.SecurityIdentifier]).Value
 ```
 
-Toohello d’accès en lecture suivant des dossiers système de fichiers :
+Accès en lecture aux dossiers de système de fichiers suivants :
 
 * %ProgramFiles%\Microsoft Forefront Identity Manager\2010\Synchronization Service\Extensions
 * %ProgramFiles%\Microsoft Forefront Identity Manager\2010\Synchronization Service\ExtensionsCache
 * %ProgramFiles%\Microsoft Forefront Identity Manager\2010\Synchronization Service\MaData\\{ConnectorName}
 
-Remplacez nom hello du connecteur de Windows PowerShell hello d’espace réservé de hello {ConnectorName}.
+Remplacez le nom du connecteur Windows PowerShell par l’espace réservé {ConnectorName}.
 
-## <a name="troubleshooting"></a>Résolution des problèmes
-* Pour plus d’informations sur la journalisation de tooenable tootroubleshoot hello connecteur, consultez hello [comment tooEnable le suivi ETW pour les connecteurs](http://go.microsoft.com/fwlink/?LinkId=335731).
+## <a name="troubleshooting"></a>Résolution de problèmes
+* Pour plus d’informations sur la façon d’activer la journalisation pour résoudre les problèmes du connecteur, consultez [Comment activer le suivi ETW pour les connecteurs](http://go.microsoft.com/fwlink/?LinkId=335731).
 
-<!--Reference style links - using these makes hello source content way more readable than using inline links-->
+<!--Reference style links - using these makes the source content way more readable than using inline links-->
 [cpp]: https://msdn.microsoft.com/library/windows/desktop/microsoft.metadirectoryservices.configparameterpage.aspx
 [keyk]: https://msdn.microsoft.com/library/ms132438.aspx
 [cp]: https://msdn.microsoft.com/library/windows/desktop/microsoft.metadirectoryservices.configparameter.aspx

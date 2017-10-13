@@ -1,6 +1,6 @@
 ---
-title: aaaQuickstart pour hello API Azure AD Graph | Documents Microsoft
-description: "Hello API Graph Azure Active Directory fournit un accès par programmation tooAzure AD via les points de terminaison API REST OData. Les applications peuvent utiliser hello API Graph tooperform créer, lire, mettre à jour et supprimer (CRUD) des opérations sur les objets et les données d’annuaire."
+title: "Démarrage rapide pour l'API Graph Azure AD | Microsoft Docs"
+description: "L’API Graph Azure Active Directory fournit un accès par programme à Azure AD via les points de terminaison de l’API REST OData. Les applications peuvent utiliser l'API Graph pour effectuer des opérations de création, de lecture, de mise à jour et de suppression (CRUD) sur les données et objets d'annuaire."
 services: active-directory
 documentationcenter: n/a
 author: viv-liu
@@ -16,78 +16,78 @@ ms.workload: identity
 ms.date: 04/28/2017
 ms.author: viviali
 ms.custom: aaddev
-ms.openlocfilehash: b4d3c57f06d212b1d095578f19bb86c932dbcc33
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fad5c315a247673b7a2ad52b4a78b49c567a997a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="quickstart-for-hello-azure-ad-graph-api"></a>Démarrage rapide pour hello API Azure AD Graph
-Hello l’API Graph Azure Active Directory (AD) fournit un accès par programmation tooAzure AD via les points de terminaison API REST OData. Les applications peuvent utiliser hello API Graph tooperform créer, lire, mettre à jour et supprimer (CRUD) des opérations sur les objets et les données d’annuaire. Par exemple, vous pouvez utiliser hello API Graph toocreate un nouvel utilisateur, afficher ou mettre à jour les propriétés de l’utilisateur, modification du mot de passe, vérifier l’appartenance au groupe pour l’accès en fonction du rôle, désactiver ou supprimer l’utilisateur hello. Pour plus d’informations sur les fonctionnalités de l’API Graph hello et les scénarios d’application, consultez [API Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog) et [conditions préalables de Azure AD Graph API](https://msdn.microsoft.com/library/hh974476.aspx). 
+# <a name="quickstart-for-the-azure-ad-graph-api"></a>Démarrage rapide pour l'API Graph Azure AD
+L’API Graph Azure Active Directory (AD) donne accès par programme à Azure AD via les points de terminaison de l’API REST OData. Les applications peuvent utiliser l'API Graph pour effectuer des opérations de création, de lecture, de mise à jour et de suppression (CRUD) sur les données et objets d'annuaire. Par exemple, vous pouvez utiliser l’API Graph pour créer un utilisateur, afficher ou mettre à jour ses propriétés, modifier son mot de passe, vérifier que l’appartenance à un groupe offre un accès en fonction du rôle, et désactiver ou supprimer l’utilisateur. Pour plus d’informations sur les fonctionnalités de l’API Graph et les scénarios d’application, consultez [Azure AD Graph API reference (Référence sur l’API Graph Azure AD)](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog) et [Prerequisites for Using the Graph API in an App (Conditions préalables à l’utilisation de l’API Graph dans une application)](https://msdn.microsoft.com/library/hh974476.aspx). 
 
 > [!IMPORTANT]
-> Nous vous recommandons fortement d’utiliser [Microsoft Graph](https://developer.microsoft.com/graph) au lieu de l’API Azure AD Graph tooaccess ressources Azure Active Directory. Nos efforts de développement sont maintenant axés sur Microsoft Graph et aucune autre amélioration n’est prévue pour l’API Azure AD Graph. Il existe un nombre très limité de scénarios pour lesquels API Azure AD Graph peut toujours être approprié ; Pour plus d’informations, consultez hello [Microsoft Graph ou hello Azure AD Graph](https://dev.office.com/blogs/microsoft-graph-or-azure-ad-graph) billet de blog Bonjour centre de développement Office.
+> Nous vous recommandons fortement d’utiliser [Microsoft Graph](https://developer.microsoft.com/graph) au lieu de l’API Azure AD Graph pour accéder aux ressources Azure Active Directory. Nos efforts de développement sont maintenant axés sur Microsoft Graph et aucune autre amélioration n’est prévue pour l’API Azure AD Graph. Il existe un nombre très limité de scénarios pour lesquels l’API Azure AD Graph peut être appropriée. Pour plus d’informations, consultez le billet de blog [Microsoft Graph ou Azure AD Graph](https://dev.office.com/blogs/microsoft-graph-or-azure-ad-graph) dans le centre de développement Office.
 > 
 > 
 
-## <a name="how-tooconstruct-a-graph-api-url"></a>Comment tooconstruct une URL d’API Graph
-Dans l’API Graph, les données d’annuaire tooaccess et les objets (en d’autres termes, les ressources ou les entités) dans laquelle vous souhaitez que tooperform les opérations CRUD, vous pouvez utiliser des URL basées sur hello protocole Open Data (OData). Hello URL utilisées dans l’API Graph se composent de quatre parties principales : racine, identificateur de locataire, chemin d’accès de ressource et options de chaîne de requête de service : `https://graph.windows.net/{tenant-identifier}/{resource-path}?[query-parameters]`. Prenons l’exemple hello Hello suivant URL : `https://graph.windows.net/contoso.com/groups?api-version=1.6`.
+## <a name="how-to-construct-a-graph-api-url"></a>Construction d'une URL d’API Graph
+Dans l'API Graph, pour accéder aux données et objets d'annuaire (en d'autres termes, les ressources ou les entités) sur lesquels vous souhaitez effectuer des opérations CRUD, vous pouvez utiliser des URL basées sur le protocole OData (Open Data). Les URL utilisées dans l'API Graph se composent de quatre parties principales : racine de service, identificateur de locataire, chemin d'accès de ressource et options de chaîne de requête : `https://graph.windows.net/{tenant-identifier}/{resource-path}?[query-parameters]`. Prenons l'exemple de l'URL suivante : `https://graph.windows.net/contoso.com/groups?api-version=1.6`.
 
-* **Racine du service**: dans l’API Graph Azure AD, hello racine de service est toujours https://graph.windows.net.
-* **Identificateur de client**: cette section peut être un nom de domaine (inscrit) vérifié, Bonjour précédent exemple, contoso.com. Il peut également être un client objet ID ou hello « myorganization » ou « me » alias. Pour plus d’informations, consultez [traitement des entités et opérations Bonjour API Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-operations-overview)).
-* **Chemin d’accès de la ressource**: cette section d’une URL identifie les ressources hello toobe possible d’interagir (utilisateurs, groupes, un utilisateur particulier, ou un groupe particulier, etc..) Dans l’exemple hello ci-dessus, il est tooaddress « groupes de niveau supérieur » hello ce jeu de ressources. Vous pouvez également adresser une entité spécifique, par exemple « users/{objectId} » ou « users/userPrincipalName ».
-* **Paramètres de requête**: un point d’interrogation ( ?) sépare la section de chemin d’accès de ressource hello à partir de la section de paramètres de requête hello. paramètre de requête « api-version » Hello est requis sur toutes les demandes dans hello API Graph. Hello API Graph prend également en charge hello options de requête OData suivantes : **$filter**, **$orderby**, **$expand**, **$top**et **$format**. Hello, les options de requête suivantes n’est pas actuellement pris en charge : **$count**, **$inlinecount**, et **$skip**. Pour plus d'informations, consultez [Options de requêtes, de filtres et de pagination prises en charge dans l'API Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options).
+* **Racine de service** : dans l’API Graph Azure AD, la racine du service est toujours https://graph.windows.net.
+* **Identificateur de locataire** : cette section peut être un nom de domaine (inscrit) vérifié, dans l’exemple précédent, contoso.com. Cela peut également être un ID d’objet locataire ou l’alias « myorganization » ou « me ». Pour plus d'informations, consultez [Traitement des entités et opérations dans l'API Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-operations-overview)(en anglais).
+* **Chemin d’accès de ressource** : cette section d’une URL identifie la ressource avec laquelle interagir (utilisateurs, groupes, utilisateur ou groupe spécifique, etc.) Dans l’exemple ci-dessus, il s’agit de la ressource de niveau supérieur « groups » à laquelle ce jeu de ressources est adressé. Vous pouvez également adresser une entité spécifique, par exemple « users/{objectId} » ou « users/userPrincipalName ».
+* **Paramètres de requête** : un point d’interrogation (?) sépare la section du chemin de ressource de la section des paramètres de requête. Le paramètre de requête « api-version » est requis sur toutes les demandes dans l'API Graph. L’API Graph prend également en charge les options de requête OData suivantes : **$filter**, **$orderby**, **$expand**, **$top** et **$format**. Les options de requête suivantes ne sont pas prises en charge actuellement : **$count**, **$inlinecount** et **$skip**. Pour plus d'informations, consultez [Options de requêtes, de filtres et de pagination prises en charge dans l'API Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options).
 
 ## <a name="graph-api-versions"></a>Versions d'API Graph
-Vous spécifiez la version hello pour une demande d’API Graph dans le paramètre de requête « api-version » hello. Pour les versions 1.5 et ultérieures, utilisez une valeur numérique de version ; api-version=1.6. Pour les versions antérieures, vous utilisez une chaîne de date qui respecte le format toohello AAAA-MM-JJ ; par exemple, api-version = 2013-11-08. Pour les fonctionnalités en version préliminaire, utiliser le chaîne hello « beta » ; par exemple, api-version = beta. Pour plus d'informations sur les différences entre les versions de l'API Graph, consultez [Contrôle de version de l'API graphique Azure AD](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-versioning).
+Vous spécifiez la version pour une demande d'API Graph dans le paramètre de requête « api-version ». Pour les versions 1.5 et ultérieures, utilisez une valeur numérique de version ; api-version=1.6. Pour les versions précédentes, utilisez une chaîne de date au format AAAA-MM-JJ ; par exemple, api-version=2013-11-08. Pour les fonctionnalités en version préliminaire, utilisez la chaîne « beta » ; par exemple, api-version=beta. Pour plus d'informations sur les différences entre les versions de l'API Graph, consultez [Contrôle de version de l'API graphique Azure AD](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-versioning).
 
 ## <a name="graph-api-metadata"></a>Métadonnées d'API Graph
-tooreturn hello fichier de métadonnées de l’API Graph, ajouter segment de hello « $metadata » après l’identificateur hello du locataire dans hello URL. par exemple, hello suivant retourne les métadonnées d’URL pour une société de démonstration : `https://graph.windows.net/GraphDir1.OnMicrosoft.com/$metadata?api-version=1.6`. Vous pouvez entrer cette URL dans barre d’adresses hello de métadonnées hello de toosee du navigateur web. Hello document de métadonnées CSDL renvoyé décrit les entités hello types complexes, propriétés et hello et leurs actions exposées par la version de hello de API Graph demandée. L’omission du paramètre api-version de hello retourne les métadonnées pour la version la plus récente hello.
+Pour retourner le fichier de métadonnées de l’API Graph, ajoutez le segment « $metadata » après l’identificateur de locataire dans l’URL. Par exemple, l’URL suivante retourne des métadonnées pour une société de démonstration : `https://graph.windows.net/GraphDir1.OnMicrosoft.com/$metadata?api-version=1.6`. Vous pouvez entrer cette URL dans la barre d'adresses d'un navigateur Web pour afficher les métadonnées. Le document de métadonnées CSDL renvoyé décrit les entités et les types complexes, leurs propriétés et les fonctions et actions exposées par la version de l'API Graph demandée. L'omission du paramètre api-version a pour effet de renvoyer des métadonnées pour la version la plus récente.
 
 ## <a name="common-queries"></a>Requêtes courantes
-[Requêtes Azure AD Graph API courantes](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options#CommonQueries) répertorie des requêtes courantes qui peuvent être utilisés avec hello Azure AD Graph, y compris les requêtes qui peuvent être des ressources de niveau supérieur tooaccess utilisés dans vos opérations tooperform active et des requêtes dans votre annuaire.
+[Requêtes courantes de l'API Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-supported-queries-filters-and-paging-options#CommonQueries) répertorie des requêtes courantes qui peuvent être utilisées avec Azure AD Graph, notamment des requêtes permettant d’accéder aux ressources de niveau supérieur dans votre annuaire, et d’y effectuer des opérations.
 
 Par exemple, `https://graph.windows.net/contoso.com/tenantDetails?api-version=1.6` renvoie des informations sur la société pour l'annuaire contoso.com.
 
-Ou `https://graph.windows.net/contoso.com/users?api-version=1.6` répertorie tous les objets utilisateur hello directory contoso.com.
+Ou `https://graph.windows.net/contoso.com/users?api-version=1.6` répertorie tous les objets utilisateur dans l'annuaire contoso.com.
 
-## <a name="using-hello-graph-explorer"></a>À l’aide de hello Explorateur graphique
-Vous pouvez utiliser hello Explorateur graphique pour les données d’annuaire Azure AD Graph API tooquery hello de hello lorsque vous générez votre application.
+## <a name="using-the-graph-explorer"></a>Utilisation de l'explorateur graphique
+Vous pouvez utiliser l'explorateur graphique pour l'API Graph Azure AD pour interroger les données d'annuaire lorsque vous générez votre application.
 
-Hello Voici hello sortie serait voir si vous étiez toonavigate toohello Graph Explorer, connectez-vous, puis entrez `https://graph.windows.net/GraphDir1.OnMicrosoft.com/users?api-version=1.6` toodisplay tous hello utilisateurs hello active de l’utilisateur connecté :
+Voici la sortie que vous pouvez obtenir si vous accédez à l’explorateur graphique, que vous vous connectez, puis que vous entrez `https://graph.windows.net/GraphDir1.OnMicrosoft.com/users?api-version=1.6` pour afficher tous les utilisateurs figurant dans l’annuaire de l’utilisateur connecté :
 
 ![explorateur api graph Azure AD](./media/active-directory-graph-api-quickstart/graph_explorer.png)
 
-**Hello de charge Explorateur graphique**: hello de tooload outil, accédez trop[https://graphexplorer.azurewebsites.net/](https://graphexplorer.azurewebsites.net/). Cliquez sur **connexion** et connectez-vous avec votre toorun d’informations d’identification de compte Azure AD hello Explorateur graphique sur votre client. Si vous exécutez l’Explorateur graphique sur votre propre client, vous ou votre administrateur doit tooconsent pendant la connexion. Si vous avez un abonnement à Office 365, vous disposez automatiquement d’un client Azure AD. Hello informations d’identification vous toosign dans tooOffice 365 sont, en fait, les comptes Azure AD et que vous pouvez utiliser ces informations d’identification avec l’Explorateur graphique.
+**Charger l’explorateur graphique** : pour charger l’outil, accédez à [https://graphexplorer.azurewebsites.net/](https://graphexplorer.azurewebsites.net/). Cliquez sur **Connexion** et connectez-vous avec vos informations d’identification de compte Azure AD pour exécuter l’explorateur graphique sur votre locataire. Si vous exécutez l'explorateur graphique sur votre propre client, vous ou votre administrateur devrez donner votre consentement lors de la connexion. Si vous avez un abonnement à Office 365, vous disposez automatiquement d’un client Azure AD. Les informations d'identification que vous utilisez pour vous connecter à Office 365 sont, en fait, des comptes Azure AD. Vous pouvez les utiliser avec l'explorateur graphique.
 
-**Exécuter une requête**: toorun une requête, tapez votre requête dans la zone de texte de requête hello et cliquez sur **obtenir** ou cliquez sur hello **entrez** clé. résultats de Hello sont affichés dans la zone de réponse hello. Par exemple, `https://graph.windows.net/myorganization/groups?api-version=1.6` répertorie tous les objets de groupe dans le répertoire de hello signé de l’utilisateur.
+**Exécuter une requête** : pour exécuter une requête, entrez votre requête dans la zone de texte de requête, puis cliquez sur **GET** ou sur la touche **Entrée**. Les résultats s’affichent dans la zone de réponse. Par exemple, `https://graph.windows.net/myorganization/groups?api-version=1.6` affiche la liste de tous les objets de groupe figurant dans l’annuaire de l’utilisateur connecté.
 
-Hello de note suivant les fonctionnalités et les limitations de hello Explorateur graphique :
+Notez les fonctionnalités et les limitations de l'Explorateur de graphique suivantes :
 
-* Fonctionnalité de saisie semi-automatique sur des jeux de ressources. toosee cette fonctionnalité, cliquez sur hello demander la zone de texte (où apparaît le hello URL de l’entreprise). Vous pouvez sélectionner une ressource définie à partir de la liste déroulante de hello.
-* Prend en charge hello « me » et « myorganization » alias d’adressage. Par exemple, vous pouvez utiliser `https://graph.windows.net/me?api-version=1.6` objet user tooreturn hello utilisateur connecté hello ou `https://graph.windows.net/myorganization/users?api-version=1.6` tooreturn tous les utilisateurs dans le répertoire en cours de hello.
-* Section d’en-tête de réponse. Cette section peut servir toohelp résoudre les problèmes qui se produisent lors de l’exécution des requêtes.
-* Une visionneuse JSON pour la réponse hello avec les fonctionnalités de développement et de réduction.
+* Fonctionnalité de saisie semi-automatique sur des jeux de ressources. Pour voir cette fonctionnalité en action, cliquez sur la zone de texte de requête (où figure l’URL de la société). Vous pouvez sélectionner un jeu de ressources dans la liste déroulante.
+* Prend en charge les alias d’adressage « me » et « myorganization ». Par exemple, vous pouvez utiliser `https://graph.windows.net/me?api-version=1.6` pour renvoyer l'objet utilisateur de l'utilisateur connecté, ou `https://graph.windows.net/myorganization/users?api-version=1.6` pour renvoyer tous les utilisateurs dans l'annuaire actif.
+* Section d’en-tête de réponse. Cette section peut vous aider à résoudre les problèmes qui se produisent pendant l’exécution des requêtes.
+* Visionneuse JSON pour la réponse, avec des capacités de développement et de réduction.
 * Aucune prise en charge de l'affichage d'une photo miniature.
 
-## <a name="using-fiddler-toowrite-toohello-directory"></a>À l’aide du répertoire de Fiddler toowrite toohello
-Pour des raisons de hello de ce guide de démarrage rapide, vous pouvez utiliser toopractice de débogueur Web Fiddler hello effectuant '' les opérations d’écriture par rapport à votre annuaire Azure AD. Pour plus d’informations et tooinstall Fiddler, consultez [http://www.telerik.com/fiddler](http://www.telerik.com/fiddler).
+## <a name="using-fiddler-to-write-to-the-directory"></a>Utilisation de Fiddler pour écrire dans l’annuaire
+Dans le cadre de ce guide de démarrage rapide, vous pouvez utiliser le débogueur web Fiddler pour les opérations « d’écriture » dans votre annuaire Azure AD. Pour plus d'informations et pour installer Fiddler, consultez [http://www.telerik.com/fiddler](http://www.telerik.com/fiddler).
 
-Dans l’exemple hello ci-dessous, vous utilisez le débogueur Web Fiddler toocreate un nouveau groupe de sécurité « MyTestGroup » dans votre annuaire Azure AD.
+Dans l'exemple ci-dessous, vous utilisez le débogueur web Fiddler pour créer un nouveau groupe de sécurité « MyTestGroup » dans votre annuaire Azure AD.
 
-**Obtenir un jeton d’accès**: tooaccess Azure AD Graph, les clients sont requis toosuccessfully authentifier tooAzure AD tout d’abord. Pour plus d’informations, consultez la page [Scénarios d’authentification pour Azure AD](active-directory-authentication-scenarios.md).
+**Obtenir un jeton d'accès**: pour accéder à Azure AD Graph, les clients doivent tout d'abord s'authentifier auprès d'Azure AD. Pour plus d’informations, consultez la page [Scénarios d’authentification pour Azure AD](active-directory-authentication-scenarios.md).
 
-**Composer et exécuter une requête**: hello complète comme suit :
+**Composer et exécuter une requête**: procédez comme suit :
 
-1. Ouvrez le débogueur Web Fiddler et basculez toohello **Composer** onglet.
-2. Étant donné que vous souhaitez toocreate un nouveau groupe de sécurité, sélectionnez **Post** comme hello méthode HTTP à partir du menu déroulant de hello. Pour plus d’informations sur les opérations et les autorisations sur un objet de groupe, consultez [groupe](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#GroupEntity) dans hello [référence d’API REST Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog).
-3. Bonjour champ ensuite trop**Post**, type suivant de hello hello URL de demande : `https://graph.windows.net/mytenantdomain/groups?api-version=1.6`.
+1. Ouvrez le débogueur Web Fiddler et basculez vers l’onglet **Composer** .
+2. Dans la mesure où vous souhaitez créer un groupe de sécurité, sélectionnez **Publier** comme méthode HTTP dans le menu déroulant. Pour plus d’informations sur les opérations et les autorisations relatives à un objet de groupe, consultez [Groupe](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/entity-and-complex-type-reference#GroupEntity) dans la [référence de l’API REST Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog).
+3. Dans le champ en regard de **Publier**, entrez ce qui suit comme URL de demande : `https://graph.windows.net/mytenantdomain/groups?api-version=1.6`.
    
    > [!NOTE]
-   > Vous devez remplacer mytenantdomain par le nom de domaine hello de votre propre annuaire Azure AD.
+   > Vous devez remplacer mytenantdomain par le nom de domaine de votre propre annuaire Azure AD.
    > 
    > 
-4. Dans le champ hello directement sous déroulant publier, tapez hello qui suit :
+4. Dans le champ situé sous le menu déroulant Publier, entrez ce qui suit :
    
     ```
    Host: graph.windows.net
@@ -96,10 +96,10 @@ Dans l’exemple hello ci-dessous, vous utilisez le débogueur Web Fiddler toocr
    ```
    
    > [!NOTE]
-   > Remplacez votre &lt;votre jeton d’accès&gt; avec un jeton d’accès hello pour votre annuaire Azure AD.
+   > Remplacez &lt;votre jeton d’accès&gt; par le jeton d’accès de votre répertoire Azure AD.
    > 
    > 
-5. Bonjour **corps de la demande** champ, tapez hello qui suit :
+5. Dans le champ **Corps de la demande** , entrez ce qui suit :
    
     ```
         {
@@ -112,9 +112,9 @@ Dans l’exemple hello ci-dessous, vous utilisez le débogueur Web Fiddler toocr
    
     Pour plus d'informations sur la création de groupes, consultez [Création d’un groupe](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/groups-operations#CreateGroup).
 
-Pour plus d’informations sur les entités Azure AD et les types qui sont exposés par Graph et des informations sur les opérations hello qui peuvent être effectuées sur ceux-ci avec Graph, consultez [référence d’API REST Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog).
+Pour plus d'informations sur les entités et les types Azure AD exposés par Graph, ainsi que des informations sur les opérations exécutables pouvant y être exécutées avec Graph, consultez [Référence de l'API REST Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* En savoir plus sur hello [API Azure AD Graph](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog)
+* En savoir plus sur l’ [API Graph Azure AD](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/api-catalog)
 * En savoir plus sur les [Étendues d’autorisation de l’API Graph Azure AD](https://msdn.microsoft.com/Library/Azure/Ad/Graph/howto/azure-ad-graph-api-permission-scopes)
 

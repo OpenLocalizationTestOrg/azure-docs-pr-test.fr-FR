@@ -1,6 +1,6 @@
 ---
-title: "aaaEnable connexion Bureau à distance pour un rôle dans Azure Cloud Services à l’aide de PowerShell"
-description: "Tooconfigure votre azure cloud application de service à l’aide de PowerShell tooallow les connexions Bureau à distance"
+title: "Activer une connexion Bureau à distance pour un rôle dans Azure Cloud Services avec PowerShell"
+description: "Configuration de l’application de service cloud Azure à l’aide de PowerShell pour autoriser les connexions Bureau à distance"
 services: cloud-services
 documentationcenter: 
 author: thraka
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 3f46b014f29f1c0be0e1b485d2f0152424162bb2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 171f27c92ee9de14301ebb664e9ba3bcd98c394d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="enable-remote-desktop-connection-for-a-role-in-azure-cloud-services-using-powershell"></a>Activer une connexion Bureau à distance pour un rôle dans Azure Cloud Services avec PowerShell
 > [!div class="op_single_selector"]
@@ -29,39 +29,39 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Bureau à distance vous permet de bureau de hello tooaccess d’un rôle en cours d’exécution dans Azure. Vous pouvez utiliser un tootroubleshoot de connexion Bureau à distance et diagnostiquer les problèmes avec votre application pendant son exécution.
+Le Bureau à distance vous permet d'accéder au bureau d'un rôle en cours d'exécution dans Azure. Vous pouvez utiliser une connexion Bureau à distance pour dépanner et diagnostiquer les problèmes rencontrés par votre application lorsqu'elle est en cours d'exécution.
 
-Cet article décrit comment tooenable le Bureau à distance sur les rôles de votre Service Cloud à l’aide de PowerShell. Consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) pour hello requis pour cet article. PowerShell utilise hello Extension Bureau à distance afin d’après que l’application hello est déployée, vous pouvez activer Bureau à distance.
+Cet article décrit comment activer Bureau à distance sur vos rôles Service Cloud à l’aide de PowerShell. Voir [Installer et configurer Azure PowerShell](/powershell/azure/overview) pour connaître les conditions requises pour cet article. PowerShell utilise l’extension Bureau à distance, ce qui vous permet d’activer le Bureau à distance après avoir déployé l’application.
 
 ## <a name="configure-remote-desktop-from-powershell"></a>Configurer le Bureau à distance à partir de PowerShell
-Hello [Set-AzureServiceRemoteDesktopExtension](/powershell/module/azure/set-azureserviceremotedesktopextension?view=azuresmps-3.7.0) applet de commande vous permet de tooenable Bureau à distance sur tous les rôles de votre déploiement de service cloud ou de rôles spécifiés. applet de commande Hello vous permet de spécifier hello nom d’utilisateur et mot de passe pour l’utilisateur du Bureau à distance hello via hello *informations d’identification* paramètre qui accepte un objet PSCredential.
+L’applet de commande [Set-AzureServiceRemoteDesktopExtension](/powershell/module/azure/set-azureserviceremotedesktopextension?view=azuresmps-3.7.0) permet d’activer le Bureau à distance sur des rôles spécifiés ou sur tous les rôles de déploiement de votre service cloud. L’applet de commande vous permet de spécifier le nom d’utilisateur et le mot de passe de l’utilisateur de bureau à distance par le biais du paramètre *informations d’identification* qui accepte un objet PSCredential.
 
-Si vous utilisez PowerShell de manière interactive, vous pouvez facilement définir objet PSCredential de hello en appelant hello [Get-informations d’identification](https://technet.microsoft.com/library/hh849815.aspx) applet de commande.
+Si vous utilisez PowerShell de manière interactive, vous pouvez facilement définir l’objet PSCredential en appelant l’applet de commande [Get-Credentials](https://technet.microsoft.com/library/hh849815.aspx) .
 
 ```
 $remoteusercredentials = Get-Credential
 ```
 
-Cette commande affiche une boîte de dialogue permettant d’username hello tooenter et le mot de passe pour l’utilisateur distant de hello de manière sécurisée.
+Cette commande affiche une boîte de dialogue vous permettant de saisir le nom d’utilisateur et un mot de passe utilisateur distant de manière sécurisée.
 
-Étant donné que l’aide de PowerShell dans les scénarios d’automatisation, vous pouvez également configurer hello **PSCredential** objet d’une manière qui ne nécessite l’intervention de l’utilisateur. Tout d’abord, vous devez tooset un mot de passe sécurisé. Commencer avec la spécification d’un mot de passe en texte brut le convertir en chaîne sécurisée de tooa à l’aide de [ConvertTo-SecureString](https://technet.microsoft.com/library/hh849818.aspx). Ensuite, vous devez tooconvert cette chaîne sécurisée dans une chaîne chiffrée standard à l’aide de [ConvertFrom-SecureString](https://technet.microsoft.com/library/hh849814.aspx). Vous pouvez maintenant enregistrer ce fichier tooa chaîne standard chiffrée à l’aide [Set-Content](https://technet.microsoft.com/library/ee176959.aspx).
+Dans la mesure où PowerShell sera utilisé dans les scénarios d’automatisation, vous pouvez également configurer l’objet **PSCredential** d’une façon qui ne nécessite pas l’interaction utilisateur. Vous devez d'abord configurer un mot de passe sécurisé. Commencez par spécifier un mot de passe en texte brut et convertissez-le en chaîne sécurisée à l’aide [ConvertTo-SecureString](https://technet.microsoft.com/library/hh849818.aspx). Vous devez ensuite convertir cette chaîne sécurisée en chaîne standard chiffrée avec [ConvertFrom-SecureString](https://technet.microsoft.com/library/hh849814.aspx). Vous pouvez maintenant enregistrer cette chaîne chiffrée standard dans un fichier [Set-Content](https://technet.microsoft.com/library/ee176959.aspx).
 
-Vous pouvez également créer un fichier de mot de passe sécurisé afin que vous n’avez pas tootype mot de passe hello chaque fois. En outre, un fichier de mot de passe sécurisé est préférable à un fichier texte brut. Utilisez hello suivant PowerShell toocreate un fichier de mot de passe sécurisé :
+Vous pouvez également créer un fichier de mot de passe sécurisé pour ne pas avoir à retaper le mot de passe à chaque fois. En outre, un fichier de mot de passe sécurisé est préférable à un fichier texte brut. Utilisez l’opération PowerShell suivante pour créer un fichier de mot de passe sécurisé :
 
 ```
 ConvertTo-SecureString -String "Password123" -AsPlainText -Force | ConvertFrom-SecureString | Set-Content "password.txt"
 ```
 
 > [!IMPORTANT]
-> Lorsque vous définissez un mot de passe hello, assurez-vous que vous remplissez hello [exigences de complexité](https://technet.microsoft.com/library/cc786468.aspx).
+> Lors de la définition du mot de passe, assurez-vous que vous remplissez les [exigences de complexité](https://technet.microsoft.com/library/cc786468.aspx).
 >
 >
 
-objet d’informations d’identification du hello toocreate à partir du fichier de mot de passe sécurisé hello, vous devez lire le contenu du fichier hello et convertissez-les tooa arrière sécuriser à l’aide de la chaîne [ConvertTo-SecureString](https://technet.microsoft.com/library/hh849818.aspx).
+Pour créer l’objet d’informations d’identification à partir du fichier de mot de passe sécurisé, vous devez lire le contenu du fichier et le reconvertir en chaîne sécurisée à l’aide [ConvertTo-SecureString](https://technet.microsoft.com/library/hh849818.aspx).
 
-Hello [Set-AzureServiceRemoteDesktopExtension](/powershell/module/azure/set-azureserviceremotedesktopextension?view=azuresmps-3.7.0) applet de commande accepte également une *Expiration* paramètre qui spécifie un **DateTime** utilisateur hello compte expire. Par exemple, vous pouvez définir hello compte tooexpire quelques jours à partir de hello date et heure actuelles.
+L’applet de commande [Set-AzureServiceRemoteDesktopExtension](/powershell/module/azure/set-azureserviceremotedesktopextension?view=azuresmps-3.7.0) accepte également un paramètre *Expiration* qui spécifie une valeur **DateTime** à laquelle le compte d’utilisateur expire. Par exemple, vous pouvez configurer le compte pour qu'il expire quelques jours après la date et l'heure actuelles.
 
-Cet exemple PowerShell vous montre comment tooset hello Extension Bureau à distance sur un service cloud :
+Cet exemple PowerShell vous montre comment définir l’extension Bureau à distance sur un service cloud :
 
 ```
 $servicename = "cloudservice"
@@ -71,12 +71,12 @@ $expiry = $(Get-Date).AddDays(1)
 $credential = New-Object System.Management.Automation.PSCredential $username,$securepassword
 Set-AzureServiceRemoteDesktopExtension -ServiceName $servicename -Credential $credential -Expiration $expiry
 ```
-Vous pouvez spécifier emplacement de déploiement hello et les rôles que vous voulez le Bureau à distance de tooenable sur. Si ces paramètres ne sont pas spécifiés, hello permet d’activer Bureau à distance sur tous les rôles de hello **Production** emplacement de déploiement.
+Vous pouvez également spécifier l’emplacement de déploiement et les rôles desquels vous souhaitez supprimer l’extension de bureau distant. Si ces paramètres ne sont pas spécifiés, l’applet de commande active le bureau distant sur tous les rôles dans l’emplacement de déploiement de l'environnement de **production** .
 
-Hello extension du Bureau à distance est associé à un déploiement. Si vous créez un nouveau déploiement de service de hello, vous disposez Bureau à distance de tooenable sur ce déploiement. Si vous souhaitez toujours toohave Bureau à distance est activé, vous devez envisager l’intégration de scripts PowerShell de hello dans votre flux de travail de déploiement.
+L’extension Bureau à distance est associée au déploiement. Si vous créez un nouveau déploiement du service, vous devrez activer le Bureau à distance sur ce déploiement. Si vous souhaitez toujours que le Bureau à distance soit activé, vous devez envisager d’intégrer les scripts PowerShell dans votre flux de travail de déploiement.
 
 ## <a name="remote-desktop-into-a-role-instance"></a>Bureau à distance dans une instance de rôle
-Hello [Get-AzureRemoteDesktopFile](/powershell/module/azure/get-azureremotedesktopfile?view=azuresmps-3.7.0) applet de commande est bureau tooremote utilisé dans une instance de rôle spécifique de votre service cloud. Vous pouvez utiliser hello *LocalPath* hello toodownload de paramètre RDP fichier localement. Vous pouvez également utiliser hello *lancer* tooaccess de la boîte de dialogue paramètre toodirectly lancement hello connexion Bureau à distance hello instance de rôle de service cloud.
+L’applet de commande [Get-AzureRemoteDesktopFile](/powershell/module/azure/get-azureremotedesktopfile?view=azuresmps-3.7.0) est utilisée pour les services bureau à distance dans une instance de rôle spécifique de votre service cloud. Vous pouvez utiliser le paramètre *LocalPath* pour télécharger le fichier RDP localement. Ou vous pouvez utiliser le paramètre *Lauch* pour lancer directement la boîte de dialogue Connexion Bureau à distance pour accéder à l’instance du rôle de service cloud.
 
 ```
 Get-AzureRemoteDesktopFile -ServiceName $servicename -Name "WorkerRole1_IN_0" -Launch
@@ -84,29 +84,29 @@ Get-AzureRemoteDesktopFile -ServiceName $servicename -Name "WorkerRole1_IN_0" -L
 
 
 ## <a name="check-if-remote-desktop-extension-is-enabled-on-a-service"></a>Vérifiez si l’extension des services de Bureau à distance est activée sur un service
-Hello [Get-AzureServiceRemoteDesktopExtension](/powershell/module/azure/get-azureremotedesktopfile?view=azuresmps-3.7.0) affiche des applets de commande Bureau à distance est activé ou désactivé sur un déploiement de service. applet de commande Hello retourne hello les nom d’utilisateur pour l’utilisateur hello de bureau à distance et les rôles de hello prenant en charge l’extension hello de bureau à distance pour. Par défaut, cela se produit sur l’emplacement de déploiement hello et vous pouvez choisir hello toouse staging emplacement à la place.
+L’applet de commande [Get-AzureServiceRemoteDesktopExtension](/powershell/module/azure/get-azureremotedesktopfile?view=azuresmps-3.7.0) montre si le Bureau à distance est activé ou désactivé sur un déploiement de service. L’applet de commande renvoie le nom d’utilisateur de l’utilisateur de bureau à distance et les rôles sur lesquels l’extension de bureau distant est activée. Par défaut, cela se produit sur l’emplacement de déploiement, et vous pouvez choisir d’utiliser l’emplacement intermédiaire à la place.
 
 ```
 Get-AzureServiceRemoteDesktopExtension -ServiceName $servicename
 ```
 
 ## <a name="remove-remote-desktop-extension-from-a-service"></a>Supprimer l’extension de bureau distant d’un service
-Si vous avez déjà activé extension de bureau à distance hello sur un déploiement, et devez tooupdate hello paramètres Bureau à distance, tout d’abord supprimer les extension hello. Et activez de nouveau avec les nouveaux paramètres de hello. Par exemple, si vous voulez tooset un nouveau mot de passe pour le compte d’utilisateur distant hello ou hello compte a expiré. Cette opération est requise sur les déploiements existants qui ont l’extension Bureau à distance hello activée. Pour les nouveaux déploiements, vous pouvez simplement appliquer hello extension directement.
+Si vous avez déjà activé l’extension du bureau à distance sur un déploiement et si vous devez mettre à jour les paramètres du bureau distant, vous devez d’abord supprimer l’extension, puis la réactiver avec les nouveaux paramètres. Par exemple, si vous souhaitez définir un nouveau mot de passe pour le compte d’utilisateur distant, ou si le compte a expiré. Cette opération est obligatoire uniquement sur les déploiements existants dont l’extension de bureau à distance est activée. Pour les nouveaux déploiements, vous pouvez simplement appliquer directement l’extension.
 
-tooremove hello bureau extension distant du déploiement de hello, vous pouvez utiliser hello [Remove-AzureServiceRemoteDesktopExtension](/powershell/module/azure/remove-azureserviceremotedesktopextension?view=azuresmps-3.7.0) applet de commande. Vous pouvez éventuellement spécifier d’emplacement de déploiement hello et le rôle à partir de laquelle vous souhaitez l’extension tooremove hello de bureau à distance.
+Pour supprimer l’extension de bureau à distance à partir du déploiement, vous pouvez utiliser l’applet de commande [Remove-AzureServiceRemoteDesktopExtension](/powershell/module/azure/remove-azureserviceremotedesktopextension?view=azuresmps-3.7.0) . Vous pouvez également spécifier l’emplacement de déploiement et le rôle duquel vous souhaitez supprimer l’extension de bureau distant.
 
 ```
 Remove-AzureServiceRemoteDesktopExtension -ServiceName $servicename -UninstallConfiguration
 ```
 
 > [!NOTE]
-> configuration d’extension hello toocompletely supprimer, vous devez appeler hello *supprimer* applet de commande avec hello **UninstallConfiguration** paramètre.
+> Pour supprimer complètement la configuration d’extension, vous devez appeler l’applet de commande *remove* avec le paramètre **UninstallConfiguration** .
 >
-> Hello **UninstallConfiguration** paramètre désinstalle toute configuration de l’extension qui est appliqué toohello service. Chaque configuration de l’extension est associée à la configuration du service hello. Appel hello *supprimer* applet de commande sans **UninstallConfiguration** dissocie hello <mark>déploiement</mark> à partir de la configuration de l’extension hello, donc supprimer efficacement extension de Hello. Toutefois, la configuration de l’extension hello reste associée au service de hello.
+> Le paramètre **UninstallConfiguration** désinstalle toute configuration d’extension appliquée au service. Chaque configuration de l’extension est associée à la configuration du service. L’appel de l’applet de commande *remove* sans **UninstallConfiguration** dissocie le <mark>déploiement</mark> de la configuration d’extension, supprimant ainsi de manière efficace l’extension. Cependant, la configuration d’extension reste associée au service.
 >
 >
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-[Comment tooConfigure Services de cloud computing](cloud-services-how-to-configure.md)
-[Cloud FAQ - des services Bureau à distance](cloud-services-faq.md)
+[Configuration des services cloud](cloud-services-how-to-configure.md)
+[FAQ relatif aux services cloud : Bureau à distance](cloud-services-faq.md)

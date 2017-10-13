@@ -1,6 +1,6 @@
 ---
-title: "aaaUse Azure AD v2.0 tooaccess sécuriser les ressources sans intervention de l’utilisateur | Documents Microsoft"
-description: "Générer des applications web à l’aide d’implémentation hello AD Azure hello OAuth 2.0 du protocole d’authentification."
+title: "Azure AD v2.0 permet d’accéder aux ressources sécurisées sans aucune intervention de l’utilisateur | Microsoft Docs"
+description: "Créez des applications web à l’aide de la mise en œuvre du protocole d’authentification OAuth 2.0 d’Azure AD."
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,61 +15,61 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 0003ec836d633a5466c48033adedac1108f27203
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 93b54c3fc4397573f77b2e157c6f1866786690da
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# Azure Active Directory v2.0 hello OAuth 2.0 client informations d’identification et de flux
-Vous pouvez utiliser hello [accorder des informations d’identification du client OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-4.4), parfois appelées *à deux branches de OAuth*, tooaccess hébergé sur le web de ressources à l’aide d’identité hello d’une application. Ce type d’octroi couramment est utilisé pour les interactions de serveur à serveur qui doivent s’exécuter en arrière-plan hello, sans intervention de l’exécution à un utilisateur. Ces types d’applications sont souvent désignée tooas *démons* ou *comptes de service*.
+# Azure Active Directory v2.0 et le flux d'informations d'identification du client OAuth 2.0
+Vous pouvez utiliser [l’octroi des informations d’identification du client OAuth 2.0](http://tools.ietf.org/html/rfc6749#section-4.4), parfois appelé *OAuth à deux branches* pour accéder à des ressources hébergées sur le web à l’aide de l’identité d’une application. Ce type d'octroi est couramment utilisé pour les interactions de serveur à serveur qui doivent s’exécuter en arrière-plan sans l'interaction immédiate d’un utilisateur. Ces types d’application sont souvent appelés *démons* (daemons) ou *comptes de service*.
 
 > [!NOTE]
-> point de terminaison Hello v2.0 ne prend pas en charge toutes les fonctionnalités et scénarios d’Azure Active Directory. toodetermine si vous devez utiliser le point de terminaison hello v2.0, en savoir plus sur [v2.0 limitations](active-directory-v2-limitations.md).
+> Le point de terminaison v2.0 ne prend pas en charge l’intégralité des scénarios et fonctionnalités d’Azure Active Directory. Pour déterminer si vous devez utiliser le point de terminaison v2.0, consultez les [limitations de v2.0](active-directory-v2-limitations.md).
 >
 >
 
-Bonjour plus classique *OAuth de trois phases*, une application cliente est tooaccess de l’autorisation accordée à une ressource pour le compte d’un utilisateur spécifique. autorisation de Hello est déléguée à partir de l’application toohello utilisateur hello, généralement dans le cadre hello [consentement](active-directory-v2-scopes.md) processus. Toutefois, dans le flux des informations d’identification des clients hello, autorisations sont accordées directement application toohello lui-même. Lors de l’application hello présente une ressource de jeton tooa, les ressources hello impose qu’application hello lui-même a une action d’autorisation tooperform et pas cet utilisateur hello a l’autorisation.
+Dans l’octroi *OAuth à trois branches* le plus courant, une application cliente est autorisée à accéder à une ressource pour le compte d’un utilisateur spécifique. L’autorisation est déléguée de l’utilisateur à l’application, en général, durant le processus de [consentement](active-directory-v2-scopes.md). Toutefois, dans le flux des informations d’identification du client, les autorisations sont accordées directement à l’application elle-même. Lorsque l’application présente un jeton à une ressource, la ressource impose que l’application elle-même, et non pas l'utilisateur, ait l’autorisation d’effectuer une action.
 
 ## Schéma de protocole
-flux d’informations d’identification Hello client entier recherche des diagramme suivant toohello similaire. Nous décrivent chacune des étapes hello plus loin dans cet article.
+Le flux d’informations d’identification client complet est similaire à l’illustration suivante. Nous décrirons en détail chacune des étapes plus loin dans cet article.
 
 ![Flux des informations d’identification du client](../../media/active-directory-v2-flows/convergence_scenarios_client_creds.png)
 
 ## Obtenir l’autorisation directe
-Une application reçoit généralement directe d’autorisation tooaccess une ressource de deux manières : via une liste de contrôle d’accès (ACL) au niveau de ressource de hello, ou via une attribution d’autorisation application dans Azure Active Directory (Azure AD). Ces deux méthodes sont hello plus courant dans Azure AD, et nous vous recommandons pour les clients et les ressources qui effectuent le flux d’informations d’identification du client hello. Une ressource peut choisir tooauthorize ses clients d’autres manières, toutefois. Chaque serveur de ressources peut choisir la méthode hello hello plus logique pour son application.
+Une application reçoit généralement l’autorisation directe d’accéder à une ressource de deux manières : via une liste de contrôle d’accès (ACL) sur la ressource, ou via l’attribution de l’autorisation d’application dans Azure Active Directory (Azure AD). Ces deux méthodes sont les plus courantes dans Azure AD et sont recommandées pour les clients et les ressources qui exécutent le flux des informations d’identification du client. Toutefois, une ressource peut choisir d’autoriser ses clients d’autres manières. Chaque serveur de ressources peut choisir la méthode la plus logique pour son application.
 
 ### Listes de contrôle d'accès
-Un fournisseur de ressources peut appliquer une vérification d’autorisation basée sur une liste d’ID d’application qu’il connaît et octroyer un niveau d’accès spécifique. Lors de la ressource de hello reçoit un jeton à partir du point de terminaison hello v2.0, il peut décoder le jeton de hello et extraire des ID d’Application du client hello hello `appid` et `iss` revendications. Elle compare ensuite application hello par rapport à une liste ACL qu’il gère. granularité de l’ACL de Hello et méthode peut-être varier considérablement entre les ressources.
+Un fournisseur de ressources peut appliquer une vérification d’autorisation basée sur une liste d’ID d’application qu’il connaît et octroyer un niveau d’accès spécifique. Lorsque la ressource reçoit un jeton à partir du point de terminaison v2.0, elle peut décoder le jeton et extraire l’ID d’application du client à partir des revendications `appid` et `iss`. Elle compare ensuite l’application par rapport à une liste ACL qu’elle gère. La granularité et la méthode ACL peuvent varier considérablement entre les ressources.
 
-Un cas d’usage courant est toouse un toorun ACL teste pour une application web ou d’une API Web. Hello API Web peut accorder uniquement un sous-ensemble de client spécifique de tooa toutes les autorisations. les tests de bout en bout toorun hello API, créez un client de test qui acquiert des jetons à partir du point de terminaison hello v2.0, puis les envoie toohello API. ID d’Application du client pour un accès complet des fonctionnalités entière toohello l’API de test Hello API puis vérifications hello ACL pour hello. Si vous utilisez ce type de liste ACL, veillez à toovalidate hello non seulement l’appelant `appid` valeur. Également valider ce hello `iss` valeur du jeton de hello est approuvé.
+Un cas d’utilisation typique consiste à utiliser une liste ACL afin d'exécuter des tests pour une application web ou une API Web. L’API Web peut accorder uniquement un sous-ensemble d'autorisations complètes à un client spécifique. Pour exécuter des tests de bout en bout sur l’API, créez un client de test qui acquiert des jetons à partir du point de terminaison v2.0 puis envoie ceux-ci à l’API. L’API vérifie ensuite l’ID d’application du client de test dans la liste ACL pour lui accorder un accès complet à toutes les fonctionnalités de l’API. Si vous utilisez ce type d’ACL, veillez à valider non seulement la valeur `appid` de l'appelant, mais également que la valeur `iss` du jeton approuvé.
 
-Ce type d’autorisation est courant pour les processus et les comptes de service nécessitant des données tooaccess appartienne aux utilisateurs de consommateur qui ont des comptes personnels de Microsoft. Les données appartenant à des organisations, nous recommandons que vous obtenez l’autorisation nécessaire de hello via les autorisations de l’application.
+Ce type d’autorisation est courant pour les démons et les comptes de service qui doivent accéder à des données qui appartiennent à des utilisateurs avec des comptes Microsoft personnels. Pour les données appartenant à des organisations, nous vous recommandons d’acquérir l’autorisation requise via les autorisations de l’application.
 
 ### Autorisations de l’application
-Au lieu d’utiliser des ACL, vous pouvez utiliser les API tooexpose un jeu d’autorisations de l’application. Autorisation de l’application est accordée tooan application par l’administrateur d’une organisation, et peuvent être utilisés tooaccess uniquement données détenues par cette organisation et ses employés. Par exemple, Microsoft Graph expose plusieurs applications autorisations toodo hello éléments suivants :
+Au lieu d’utiliser des listes ACL, vous pouvez utiliser l’API pour exposer un ensemble d’autorisations de l’application. Une autorisation de l’application est accordée à une application par un administrateur d’une organisation et peut uniquement être utilisée pour accéder aux données appartenant à cette organisation et ses employés. Par exemple, Microsoft Graph expose plusieurs autorisations d’application pour effectuer les opérations suivantes :
 
 * Lire les messages dans toutes les boîtes aux lettres
 * Lire et écrire des messages dans toutes les boîtes aux lettres
 * Envoyer des messages en tant que n’importe quel utilisateur
 * Lire les données du répertoire
 
-Pour plus d’informations sur les autorisations d’application, accédez trop[Microsoft Graph](https://graph.microsoft.io).
+Pour plus d’informations sur les autorisations d’application, consultez la page [Microsoft Graph](https://graph.microsoft.io).
 
-autorisations d’application toouse dans votre application, procédez comme hello suit les sujets abordés dans les sections suivantes hello.
+Pour utiliser les autorisations d’application dans votre application, effectuez les étapes abordées dans les sections suivantes.
 
-#### Demander des autorisations dans le portail de l’enregistrement d’application hello hello
-1. Accédez application tooyour Bonjour [portail de l’enregistrement d’Application](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), ou [créer une application](active-directory-v2-app-registration.md), si vous n’avez pas encore. Vous devez toouse au moins un Secret d’Application lorsque vous créez votre application.
-2. Recherchez hello **autorisations d’Application Direct** section, puis ajoutez les autorisations de hello que votre application requiert.
-3. **Enregistrer** hello d’inscription d’une application.
+#### Demander les autorisations dans le portail d’inscription de l’application
+1. Accédez à votre application dans le [portail d’inscription des applications](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) ou [créez une application](active-directory-v2-app-registration.md), si ce n’est déjà fait. Vous devez utiliser au moins une clé secrète d’application lorsque vous créez votre application.
+2. Recherchez la section **Autorisations directes pour les applications** puis ajoutez les autorisations dont votre application a besoin.
+3. **Enregistrez** l’inscription de l’application.
 
-#### Recommandé : Se connecter hello utilisateur dans l’application de tooyour
-En règle générale, lorsque vous générez une application qui utilise les autorisations d’application, application hello requiert une page ou un affichage sur le hello administrateur approuve les autorisations de l’application hello. Cette page peut faire partie de flux de connexion l’application hello, dans les paramètres de l’application hello, ou il peut être « se connecter » flux dédié. Dans de nombreux cas, il est logique pour hello application tooshow cela « se connecter » afficher uniquement une fois un utilisateur connecté avec un professionnel ou scolaire compte Microsoft.
+#### Recommandé : connectez l’utilisateur à votre application
+En général, lorsque vous créez une application qui utilise des autorisations d’application, l’application doit disposer d’une page/vue qui permet à l’administrateur d’approuver les autorisations de l’application. Cette page peut faire partie du flux d’inscription de l’application, des paramètres de l’application ou d’un flux de connexion dédié. Dans de nombreux cas, il est judicieux pour l’application d’afficher la vue de « connexion » uniquement après qu’un utilisateur se soit connecté avec un compte Microsoft professionnel ou scolaire.
 
-Si vous vous connectez utilisateur hello dans tooyour application, vous pouvez identifier les organisation hello utilisateur de hello toowhich appartient avant de vous demandez des autorisations d’application hello hello utilisateur tooapprove. Bien que cela ne soit pas strictement nécessaire, cela peut vous aider à créer une expérience plus intuitive pour vos utilisateurs. toosign hello utilisateur, suivez notre [didacticiels de protocole v2.0](active-directory-v2-protocols.md).
+Si vous connectez l’utilisateur à votre application vous pouvez identifier l’organisation à laquelle l’utilisateur appartient avant de lui demander d’approuver les autorisations d'application. Bien que cela ne soit pas strictement nécessaire, cela peut vous aider à créer une expérience plus intuitive pour vos utilisateurs. Pour connecter l’utilisateur, suivez nos [didacticiels sur le protocole v2.0](active-directory-v2-protocols.md).
 
-#### Demander des autorisations hello à partir d’un administrateur d’annuaire
-Lorsque vous êtes prêt toorequest les autorisations de l’administrateur de l’organisation hello, vous pouvez rediriger hello utilisateur toohello v2.0 *point de terminaison admin consentement*.
+#### Demander les autorisations à un administrateur d’annuaire
+Lorsque vous êtes prêt à demander les autorisations à l’administrateur de l'organisation, vous pouvez rediriger l’utilisateur vers le *point de terminaison de consentement de l’administrateur* v2.0.
 
 ```
 // Line breaks are for legibility only.
@@ -81,7 +81,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 ```
 
 ```
-// Pro tip: Try pasting hello following request in a browser!
+// Pro tip: Try pasting the following request in a browser!
 ```
 
 ```
@@ -90,15 +90,15 @@ https://login.microsoftonline.com/common/adminconsent?client_id=6731de76-14a6-49
 
 | Paramètre | Condition | Description |
 | --- | --- | --- |
-| locataire |Requis |locataire d’annuaire Hello toorequest autorisation souhaité. Peut être au format GUID ou sous forme de nom convivial. Si vous ne connaissez pas les utilisateurs qui hello client appartient tooand vous souhaitez toolet les connectez-vous avec n’importe quel client, utilisez `common`. |
-| client_id |Requis |Hello Application ID que hello [portail de l’enregistrement d’Application](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) affecté tooyour application. |
-| redirect_uri |Requis |Hello rediriger URI où vous souhaitez hello toobe de réponse envoyé pour toohandle de votre application. Il doit correspondre exactement à celle de redirection de hello URI que vous avez enregistré dans le portail hello, sauf qu’elle doit être codée URL et il peut avoir des segments de chemin d’accès supplémentaire. |
-| state |Recommandé |Une valeur qui est incluse dans la demande de hello également retournée dans la réponse du jeton hello. Il peut s’agir d’une chaîne du contenu de votre choix. l’état Hello est tooencode utilisé plus d’informations sur l’état de l’utilisateur hello dans application hello avant de la demande d’authentification hello s’est produite, page de hello ou un affichage qu’ils étaient sur. |
+| locataire |Requis |Le client d’annuaire auquel vous souhaitez demander l’autorisation. Peut être au format GUID ou sous forme de nom convivial. Si vous ne savez pas à quel client appartient l’utilisateur et si vous souhaitez lui permettre de se connecter avec n’importe quel client, utilisez `common`. |
+| client_id |Requis |ID d’application que le [portail d’inscription des applications](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) a affecté à votre application. |
+| redirect_uri |Requis |L'URI de redirection où vous souhaitez que la réponse soit envoyée pour être gérée par votre application. Il doit correspondre exactement à l’un des URI de redirection enregistrés dans le portail, auquel s’ajoute le codage dans une URL, et peut avoir des segments de chemin d’accès supplémentaires. |
+| state |Recommandé |Une valeur incluse dans la requête, qui est également renvoyée dans la réponse de jeton. Il peut s’agir d’une chaîne du contenu de votre choix. La valeur d’état est utilisée pour coder les informations sur l’état de l’utilisateur dans l’application avant la requête d’authentification, comme la page ou l’écran sur lequel ou laquelle il était positionné. |
 
-À ce stade, Azure AD impose que seul un administrateur client peut se connecter dans la demande toocomplete hello. administrateur de Hello demandera tooapprove que tous hello les autorisations d’application direct que vous avez demandé pour votre application dans le portail de l’enregistrement d’application hello.
+À ce stade, Azure AD impose que seul un administrateur de client peut se connecter pour terminer la demande. L’administrateur est invité à approuver toutes les autorisations directes d’application demandées pour votre application dans le portail d’inscription des applications.
 
 ##### Réponse correcte
-Si hello administrateur approuve les autorisations hello pour votre application, la réponse correcte de hello ressemble à ceci :
+Si l’administrateur approuve les autorisations pour votre application, la réponse correcte sera :
 
 ```
 GET http://localhost/myapp/permissions?tenant=a8990e1f-ff32-408a-9f8e-78d3b9139b95&state=state=12345&admin_consent=True
@@ -106,12 +106,12 @@ GET http://localhost/myapp/permissions?tenant=a8990e1f-ff32-408a-9f8e-78d3b9139b
 
 | Paramètre | Description |
 | --- | --- | --- |
-| locataire |locataire d’annuaire Hello votre application hello auquel des autorisations accordées qui il a demandées, au format GUID. |
-| state |Une valeur qui est incluse dans la demande de hello également retournée dans la réponse du jeton hello. Il peut s’agir d’une chaîne du contenu de votre choix. l’état Hello est tooencode utilisé plus d’informations sur l’état de l’utilisateur hello dans application hello avant de la demande d’authentification hello s’est produite, page de hello ou un affichage qu’ils étaient sur. |
-| admin_consent |Définir trop**true**. |
+| locataire |Le client d’annuaire ayant accordé à votre application les autorisations demandées, au format GUID. |
+| state |Une valeur incluse dans la requête, qui est également renvoyée dans la réponse de jeton. Il peut s’agir d’une chaîne du contenu de votre choix. La valeur d’état est utilisée pour coder les informations sur l’état de l’utilisateur dans l’application avant la requête d’authentification, comme la page ou l’écran sur lequel ou laquelle il était positionné. |
+| admin_consent |Défini sur **true**. |
 
 ##### Réponse d’erreur
-Si l’administrateur de hello n’approuve pas les autorisations hello pour votre application, hello a échoué présente de réponse comme suit :
+Si l’administrateur n’approuve pas les autorisations pour votre application, la réponse d’échec ressemble à ce qui suit :
 
 ```
 GET http://localhost/myapp/permissions?error=permission_denied&error_description=The+admin+canceled+the+request
@@ -119,13 +119,13 @@ GET http://localhost/myapp/permissions?error=permission_denied&error_description
 
 | Paramètre | Description |
 | --- | --- | --- |
-| error |Une chaîne de code d’erreur que vous pouvez utiliser les types de tooclassify des erreurs et les, vous pouvez utiliser tooreact tooerrors. |
-| error_description |Un message d’erreur spécifique qui peut vous aider à identifier la cause première hello d’une erreur. |
+| error |Une chaîne de code d’erreur que vous pouvez utiliser pour classer les types d’erreur et pour intervenir face aux erreurs. |
+| error_description |Un message d’erreur spécifique qui peut vous aider à identifier la cause principale d’une erreur. |
 
-Une fois que vous avez reçu une réponse correcte à partir du point de terminaison de mise en service d’application hello, votre application a obtenu les autorisations d’application direct hello qu’il a demandée. Maintenant, vous pouvez demander un jeton de ressource hello souhaité.
+Une fois que vous avez reçu une réponse correcte du point de terminaison de mise en service de l’application, votre application a acquis les autorisations directes d’application qu’elle avait demandées. Vous pouvez désormais demander un jeton pour la ressource que vous souhaitez.
 
 ## Obtention d’un jeton
-Une fois que vous avez acquis les autorisations nécessaires hello pour votre application, passez à l’acquisition des jetons d’accès pour les API. tooget un jeton à l’aide d’octroi des informations d’identification du client hello, envoyer un toohello de la demande POST `/token` v2.0 le point de terminaison :
+Une fois que vous avez acquis l’autorisation nécessaire pour votre application, passez à l’acquisition des jetons d’accès pour les API. Pour obtenir un jeton à l’aide de l’octroi des informations d’identification du client, envoyez une demande POST au point de terminaison v2.0 `/token` :
 
 ### Premier cas : demande de jeton d’accès avec un secret partagé
 
@@ -143,9 +143,9 @@ curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d 'client_id=
 
 | Paramètre | Condition | Description |
 | --- | --- | --- |
-| client_id |Requis |Hello Application ID que hello [portail de l’enregistrement d’Application](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) affecté tooyour application. |
-| scope |Requis |valeur de Hello passée pour hello `scope` paramètre dans cette demande doit être un identificateur de ressource hello (URI ID d’Application) de ressource hello souhaitée, apposée par hello `.default` suffixe. Par exemple Microsoft Graph de hello, valeur de hello est `https://graph.microsoft.com/.default`. Cette valeur informe le point de terminaison de hello v2.0 que toutes les autorisations d’application directe de hello que vous avez configuré pour votre application, il doit émettre un jeton pour hello associés ressource hello toouse. |
-| client_secret |Requis |Hello Secret d’Application que vous avez créé pour votre application dans le portail de l’enregistrement d’application hello. |
+| client_id |Requis |L’ID d’application que le [portail d'inscription des applications](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) a affecté à votre application. |
+| scope |Requis |La valeur transmise pour le paramètre `scope` dans cette demande doit être l’identificateur de ressource (URI ID d’application) de la ressource souhaitée, avec le suffixe `.default`. Dans l’exemple Microsoft Graph, la valeur est `https://graph.microsoft.com/.default`. Cette valeur indique au point de terminaison v2.0 que parmi toutes les autorisations directes d’application que vous avez configurées pour votre application, il doit émettre un jeton pour celles associées à la ressource que vous souhaitez utiliser. |
+| client_secret |Requis |La clé secrète que vous avez créée pour votre application dans le portail d’inscription des applications. |
 | grant_type |Requis |Doit être `client_credentials`. |
 
 ### Deuxième cas : demande de jeton d’accès avec un certificat
@@ -160,13 +160,13 @@ scope=https%3A%2F%2Fgraph.microsoft.com%2F.default&client_id=97e0a5b7-d745-40b6-
 
 | Paramètre | Condition | Description |
 | --- | --- | --- |
-| client_id |Requis |Hello Application ID que hello [portail de l’enregistrement d’Application](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) affecté tooyour application. |
-| scope |Requis |valeur de Hello passée pour hello `scope` paramètre dans cette demande doit être un identificateur de ressource hello (URI ID d’Application) de ressource hello souhaitée, apposée par hello `.default` suffixe. Par exemple Microsoft Graph de hello, valeur de hello est `https://graph.microsoft.com/.default`. Cette valeur informe le point de terminaison de hello v2.0 que toutes les autorisations d’application directe de hello que vous avez configuré pour votre application, il doit émettre un jeton pour hello associés ressource hello toouse. |
-| client_assertion_type |required |la valeur Hello doit être`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
-| client_assertion |required | Une assertion (un jeton Web JSON) que vous avez besoin de toocreate et signe avec hello certificat que vous avez enregistré en tant qu’informations d’identification pour votre application. En savoir plus sur [informations d’identification de certificat](active-directory-certificate-credentials.md) toolearn comment tooregister votre format de certificat et hello d’assertion de hello.|
+| client_id |Requis |L’ID d’application que le [portail d'inscription des applications](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) a affecté à votre application. |
+| scope |Requis |La valeur transmise pour le paramètre `scope` dans cette demande doit être l’identificateur de ressource (URI ID d’application) de la ressource souhaitée, avec le suffixe `.default`. Dans l’exemple Microsoft Graph, la valeur est `https://graph.microsoft.com/.default`. Cette valeur indique au point de terminaison v2.0 que parmi toutes les autorisations directes d’application que vous avez configurées pour votre application, il doit émettre un jeton pour celles associées à la ressource que vous souhaitez utiliser. |
+| client_assertion_type |required |La valeur doit être `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`. |
+| client_assertion |required | Assertion (JSON Web Token) dont vous avez besoin pour créer et signer avec le certificat inscrit comme informations d’identification pour votre application. Pour découvrir comment inscrire votre certificat et le format de l’assertion, consultez la rubrique traitant des [informations d’identification des certificats](active-directory-certificate-credentials.md).|
 | grant_type |Requis |Doit être `client_credentials`. |
 
-Notez que les paramètres de hello sont presque identiques, comme dans les cas de hello de demande de hello hello par secret partagé, sauf que le paramètre de client_secret hello est remplacé par deux paramètres : un client_assertion_type et un client_assertion.
+Notez que les paramètres sont presque les mêmes que dans le cas de la demande par secret partagé, sauf que le paramètre client_secret est remplacé par deux paramètres : client_assertion_type et client_assertion.
 
 ### Réponse correcte
 Une réponse correcte se présente ainsi :
@@ -181,9 +181,9 @@ Une réponse correcte se présente ainsi :
 
 | Paramètre | Description |
 | --- | --- |
-| access_token |jeton d’accès demandé Hello. application Hello peut utiliser cette toohello tooauthenticate jeton ressource, telles que tooa API Web sécurisée. |
-| token_type |Indique la valeur de jeton de type hello. Hello uniquement le type qui prend en charge d’Azure AD est `bearer`. |
-| expires_in |La durée pendant laquelle le jeton d’accès hello est valide (en secondes). |
+| access_token |Le jeton d’accès demandé. L’application peut utiliser ce jeton pour procéder à l’authentification sur la ressource sécurisée, par exemple une API Web. |
+| token_type |Indique la valeur du type de jeton. Le seul type de jeton pris en charge par Azure AD est `bearer`. |
+| expires_in |La durée de validité (en secondes) du jeton d’accès. |
 
 ### Réponse d’erreur
 Une réponse d’erreur ressemble à ceci :
@@ -191,7 +191,7 @@ Une réponse d’erreur ressemble à ceci :
 ```
 {
   "error": "invalid_scope",
-  "error_description": "AADSTS70011: hello provided value for hello input parameter 'scope' is not valid. hello scope https://foo.microsoft.com/.default is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
+  "error_description": "AADSTS70011: The provided value for the input parameter 'scope' is not valid. The scope https://foo.microsoft.com/.default is not valid.\r\nTrace ID: 255d1aef-8c98-452f-ac51-23d051240864\r\nCorrelation ID: fb3d2015-bc17-4bb9-bb85-30c5cf1aaaa7\r\nTimestamp: 2016-01-09 02:02:12Z",
   "error_codes": [
     70011
   ],
@@ -203,15 +203,15 @@ Une réponse d’erreur ressemble à ceci :
 
 | Paramètre | Description |
 | --- | --- |
-| error |Une chaîne de code d’erreur que vous pouvez utiliser tooclassify les types d’erreurs qui se produisent et tooreact tooerrors. |
-| error_description |Un message d’erreur spécifique qui peut vous aider à identifier hello origine d’une erreur d’authentification. |
+| error |Une chaîne de code d’erreur que vous pouvez utiliser pour classer les types d’erreur se produisant et pour intervenir face aux erreurs. |
+| error_description |Un message d’erreur spécifique qui peut vous aider à identifier la cause principale d’une erreur d’authentification. |
 | error_codes |Liste des codes d’erreur STS spécifiques pouvant être utiles dans les tests de diagnostic. |
-| timestamp |heure de Hello hello erronée. |
-| trace_id |Identificateur unique pour la demande hello qui peut vous aider avec les diagnostics. |
-| correlation_id |Identificateur unique pour la demande hello qui peut vous aider avec les diagnostics dans des composants. |
+| timestamp |Heure à laquelle l’erreur s’est produite. |
+| trace_id |Identifiant unique de la demande pouvant être utile dans les tests de diagnostic. |
+| correlation_id |Identifiant unique de la demande pouvant être utile dans les tests de diagnostic sur les divers composants. |
 
 ## Utilisation d’un jeton
-Maintenant que vous avez acquis un jeton, utilisez hello jeton toomake demandes toohello ressource. Lors de l’expiration du jeton de hello, répétez hello demande toohello `/token` tooacquire de point de terminaison un jeton d’accès de nouveau.
+Maintenant que vous avez acquis un jeton, utilisez-le pour effectuer des demandes auprès de la ressource. Lorsque le jeton expire, répétez la demande auprès du point de terminaison `/token` pour acquérir un nouveau jeton d’accès.
 
 ```
 GET /v1.0/me/messages
@@ -220,7 +220,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik5HVEZ2ZEstZn
 ```
 
 ```
-// Pro tip: Try hello following command! (Replace hello token with your own.)
+// Pro tip: Try the following command! (Replace the token with your own.)
 ```
 
 ```
@@ -228,4 +228,4 @@ curl -X GET -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dC
 ```
 
 ## Exemple de code
-toosee un exemple d’application qu’implémente hello octroi des informations d’identification du client à l’aide du point de terminaison hello admin consentement, consultez notre [exemple de code du démon v2.0](https://github.com/Azure-Samples/active-directory-dotnet-daemon-v2).
+Pour voir un exemple d’application qui implémente l’octroi client_credentials à l’aide du point de terminaison de consentement de l’administrateur, consultez notre [exemple de code de démon v2.0](https://github.com/Azure-Samples/active-directory-dotnet-daemon-v2).

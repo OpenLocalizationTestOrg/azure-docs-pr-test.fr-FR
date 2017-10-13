@@ -1,45 +1,45 @@
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
+1. Connectez-vous au [portail Azure](https://portal.azure.com).
 
-2. Désormais, dans le coin supérieur gauche de hello, cliquez sur **Nouveau > calcul > Windows Server 2016 Datacenter**.
+2. À partir de l’angle supérieur gauche, cliquez sur **Nouveau > Compute > Windows Server 2016 Datacenter**.
 
-    ![Accédez toohello des images de machine virtuelle Azure dans le portail de hello](./media/virtual-machines-common-portal-create-fqdn/marketplace-new.png)
+    ![Accéder aux images de machines virtuelles Azure sur le portail](./media/virtual-machines-common-portal-create-fqdn/marketplace-new.png)
 
-3. Sur hello Datacenter de Windows Server 2016, sélectionnez le modèle de déploiement classique hello. Cliquez sur Créer.
+3. Dans le centre de données Windows Server 2016 Datacenter, sélectionnez le modèle de déploiement Classic. Cliquez sur Créer.
 
-    ![Capture d’écran qui affiche les images de machine virtuelle Azure hello disponibles dans le portail de hello](./media/virtual-machines-common-portal-create-fqdn/deployment-classic-model.png)
+    ![Capture d’écran affichant les images de machines virtuelles Azure disponibles dans le portail](./media/virtual-machines-common-portal-create-fqdn/deployment-classic-model.png)
 
 ## <a name="1-basics-blade"></a>1. Panneau Informations de base
 
-Panneau de principes de base Hello demande des informations d’administration pour l’ordinateur virtuel de hello.
+Le panneau Informations de base demande les informations d’administration de la machine virtuelle.
 
-1. Entrez un **nom** pour la machine virtuelle de hello. Dans l’exemple de hello, _HeroVM_ est le nom hello de machine virtuelle de hello. nom de Hello doit être de 1 à 15 caractères et il ne peut pas contenir les caractères spéciaux.
+1. Entrez le **Nom** de la machine virtuelle. Dans l’exemple, le nom de la machine virtuelle est _HeroVM_. Le nom doit comporter 1 à 15 caractères et il ne peut pas contenir de caractères spéciaux.
 
-2. Entrez un **nom d’utilisateur** et un nom fort **mot de passe** qui sont toocreate utilisé un compte local sur hello machine virtuelle. Hello compte local est utilisé toosign dans tooand gérer hello machine virtuelle. Dans l’exemple de hello, _azureuser_ est le nom d’utilisateur hello.
+2. Entrez un **Nom d’utilisateur** et un **Mot de passe** fort qui servent à créer un compte local sur la machine virtuelle. Le compte local est utilisé pour se connecter à la machine virtuelle et la gérer. Dans l’exemple, le nom d’utilisateur est _azureuser_.
 
- Hello doit comporter 8-123 caractères et répondre aux trois des exigences de complexité suivant quatre hello : une lettre minuscule, une lettre majuscule, un chiffre et un caractère spécial. En savoir plus sur les [conditions requises pour les noms d’utilisateur et les mots de passe](../articles/virtual-machines/windows/faq.md).
+ Le mot de passe doit compter 8 à 123 caractères et répondre à trois des quatre conditions suivantes : un caractère minuscule, un caractère majuscule, un chiffre et un caractère spécial. En savoir plus sur les [conditions requises pour les noms d’utilisateur et les mots de passe](../articles/virtual-machines/windows/faq.md).
 
-3. Hello **abonnement** est facultatif. Le paramètre le plus courant est « Paiement à l’utilisation ».
+3. **L’Abonnement** est facultatif. Le paramètre le plus courant est « Paiement à l’utilisation ».
 
-4. Sélectionnez un existant **groupe de ressources** ou nom du type hello pour un nouveau. Dans l’exemple de hello, _HeroVMRG_ est le nom hello hello du groupe de ressources.
+4. Sélectionnez un **groupe de ressources** existant ou tapez le nom d’un nouveau groupe. Dans l’exemple, le nom du groupe de ressources est _HeroVMRG_.
 
-5. Sélectionnez un centre de données Azure **emplacement** où vous souhaitez hello VM toorun. Dans l’exemple de hello, **États-Unis** est l’emplacement de hello.
+5. Sélectionnez **l’Emplacement** du centre de données Azure où vous souhaitez exécuter la machine virtuelle. Dans l’exemple, l’emplacement est **États-Unis de l’Est**.
 
-6. Lorsque vous avez terminé, cliquez sur **suivant** Panneau de toocontinue toohello suivant.
+6. Lorsque vous avez terminé, cliquez sur **Suivant** pour passer au panneau suivant.
 
-    ![Capture d’écran qui affiche les paramètres de hello sur le panneau des principes de base hello pour la configuration d’une machine virtuelle Azure](./media/virtual-machines-common-portal-create-fqdn/basics-blade-classic.png)
+    ![Capture d’écran affichant les paramètres dans le panneau Informations de base pour la configuration d’une machine virtuelle Azure](./media/virtual-machines-common-portal-create-fqdn/basics-blade-classic.png)
 
 ## <a name="2-size-blade"></a>2. Panneau Taille
 
-Panneau de taille Hello identifie les détails de la configuration de machine virtuelle de hello hello et répertorie les différentes options qui incluent le système d’exploitation, le nombre de processeurs, type de stockage de disque et des coûts d’utilisation mensuelle estimée.  
+Le panneau Taille identifie les informations de configuration de la machine virtuelle et liste les différentes options, notamment le système d’exploitation, le nombre de processeurs, le type de stockage disque et les coûts d’utilisation mensuels estimés.  
 
-Choisissez une taille de machine virtuelle, puis cliquez sur **sélectionnez** toocontinue. Dans cet exemple, _DS1_\__V2 Standard_ est la taille de machine virtuelle hello.
+Choisissez une taille de machine virtuelle, puis cliquez sur **Sélectionner** pour continuer. Dans l’exemple, la taille de machine virtuelle est _DS1_\__V2 Standard_.
 
-  ![Capture d’écran du Panneau de taille hello qui montre les tailles de machine virtuelle Azure hello que vous pouvez sélectionner](./media/virtual-machines-common-portal-create-fqdn/vm-size-classic.png)
+  ![Capture d’écran du panneau Taille affichant les tailles de machine virtuelle Azure que vous pouvez sélectionner](./media/virtual-machines-common-portal-create-fqdn/vm-size-classic.png)
 
 
 ## <a name="3-settings-blade"></a>3. Panneau Paramètres
 
-Panneau de paramètres Hello demande des options de stockage et réseau. Vous pouvez accepter les paramètres par défaut de hello. Azure crée les entrées appropriées si nécessaire.
+Le panneau Paramètres demande des options de stockage et de réseau. Vous pouvez accepter les paramètres par défaut. Azure crée les entrées appropriées si nécessaire.
 
 Si vous avez sélectionné une taille de machine virtuelle qui le prend en charge, vous pouvez essayer le Stockage Premium Azure en sélectionnant Premium (SSD) sous Type de disque.
 
@@ -47,10 +47,10 @@ Une fois les modifications terminées, cliquez sur **OK**.
 
 ## <a name="4-summary-blade"></a>4. Panneau Résumé
 
-Panneau de résumé Hello répertorie les paramètres de hello spécifiés dans les panneaux précédente hello. Cliquez sur **OK** lorsque vous êtes l’image de hello toomake prêt.
+Le panneau Résumé liste les paramètres spécifiés dans les panneaux précédents. Cliquez sur **OK** lorsque vous êtes prêt à créer l’image.
 
- ![Rapport de synthèse panneau donnant des paramètres spécifiés de la machine virtuelle de hello](./media/virtual-machines-common-portal-create-fqdn/summary-blade-classic.png)
+ ![Rapport du panneau Résumé donnant les paramètres spécifiés de la machine virtuelle](./media/virtual-machines-common-portal-create-fqdn/summary-blade-classic.png)
 
-Après la création de la machine virtuelle de hello, portail de hello répertorie hello machine virtuelle sous **toutes les ressources**et affiche une vignette de l’ordinateur virtuel de hello sur le tableau de bord hello. Hello correspondant cloud service compte de stockage et sont également créées et répertoriées. Machine virtuelle de hello et le service cloud sont démarrées automatiquement et leur état est répertorié en tant que **en cours d’exécution**.
+Une fois la machine virtuelle créée, le portail la liste sous **Toutes les ressources**, et affiche une vignette de la machine virtuelle sur le tableau de bord. Le service cloud et le compte de stockage correspondants sont également créés et listés. La machine virtuelle et le service cloud sont démarrés automatiquement et leur statut est répertorié comme **En cours d'exécution**.
 
- ![Configurer l’Agent de machine virtuelle et hello des points de terminaison de machine virtuelle de hello](./media/virtual-machines-common-portal-create-fqdn/portal-with-new-vm.png)
+ ![Configurer l’agent de machine virtuelle et les points de terminaison de la machine virtuelle](./media/virtual-machines-common-portal-create-fqdn/portal-with-new-vm.png)

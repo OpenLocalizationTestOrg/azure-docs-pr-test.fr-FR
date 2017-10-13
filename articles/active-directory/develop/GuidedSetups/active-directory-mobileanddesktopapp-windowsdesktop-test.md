@@ -1,5 +1,5 @@
 ---
-title: aaaAzure AD v2 Windows Desktop mise en route - Test | Documents Microsoft
+title: "Prise en main d’Azure AD v2 avec les applications de bureau Windows - Test | Documents Microsoft"
 description: "Cet article explique comment les applications de bureau Windows .NET (XAML) peuvent appeler une API qui nécessite des jetons d’accès à partir d’un point de terminaison Azure Active Directory v2."
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,42 +15,42 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 0ae9612e1585c54a3fe35ba9d18f92554099b2c8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 972cc48057c13271d725b0c973c3ccf651ad27c4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 ## <a name="test-your-code"></a>Test de votre code
 
-Dans commande tootest votre application, appuyez sur `F5` toorun votre projet dans Visual Studio. Votre fenêtre principale doit alors s’afficher :
+Pour tester votre application, appuyez sur `F5` afin d’exécuter votre projet dans Visual Studio. Votre fenêtre principale doit alors s’afficher :
 
 ![Exemple d’écran](media/active-directory-mobileanddesktopapp-windowsdesktop-test/samplescreenshot.png)
 
-Lorsque vous êtes prêt tootest, cliquez sur *appeler l’API Microsoft Graph* et utiliser un annuaire Microsoft Azure Active Directory (compte professionnel) ou un toosign de compte Account Microsoft (live.com, outlook.com) dans. Il c’est hello la première fois, vous verrez une fenêtre demandant toosign utilisateur dans :
+Lorsque vous êtes prêt pour le test, cliquez sur *Call Microsoft Graph API* (Appeler l’API Microsoft Graph) et utilisez un compte Microsoft Azure Active Directory (compte de société) ou un compte Microsoft (live.com, outlook.com) pour vous connecter. S’il s’agit de la première fois, une fenêtre vous invitant à vous connecter s’affiche :
 
 ![Connexion](media/active-directory-mobileanddesktopapp-windowsdesktop-test/signinscreenshot.png)
 
 ### <a name="consent"></a>Consentement
-Hello première fois que vous vous connectez tooyour application, vous aurez un consentement écran similaire toohello ci-dessous, où vous devez accepter les tooexplicitly :
+La première fois que vous vous connectez à votre application, un écran de consentement semblable à ce qui suit, où vous devez accepter explicitement ce qui est indiqué, s’affiche :
 
 ![Écran de consentement](media/active-directory-mobileanddesktopapp-windowsdesktop-test/consentscreen.png)
 
 ### <a name="expected-results"></a>Résultats attendus
-Vous devez voir les informations de profil utilisateur retournées par l’appel de l’API Microsoft Graph hello sur l’écran des résultats d’appels API hello.
+Vous devez voir les informations de profil utilisateur renvoyées par l’appel de l’API Microsoft Graph dans l’écran API Call Results (Résultats de l’appel d’API).
 
-Vous devez également voir les informations de base sur le jeton hello acquis `AcquireTokenAsync` ou `AcquireTokenSilentAsync` dans la zone des informations de jeton hello :
+Des informations de base sur le jeton obtenu via `AcquireTokenAsync` ou `AcquireTokenSilentAsync` doivent également s’afficher dans la zone Token Info (Informations sur le jeton) :
 
 |Propriété  |Format  |Description |
 |---------|---------|---------|
-|Nom | {Nom complet de l’utilisateur} |utilisateur de Hello prénom et nom|
-|Nom d’utilisateur |<span>user@domain.com</span> |nom d’utilisateur Hello utilisé utilisateur de hello tooidentify|
-|Token Expires (Expiration du jeton) |{DateHeure}         |Hello expiration sur le hello jeton. MSAL étendra date d’expiration de hello pour vous par le renouvellement de jeton hello lorsque cela est nécessaire|
-|Access token (Jeton d’accès) |{Chaîne}         |chaîne de jeton Hello envoyé des demandes de tooHTTP qui nécessitent un en-tête d’autorisation qui sera envoyé|
+|Nom | {Nom complet de l’utilisateur} |Prénom et nom de l’utilisateur.|
+|Nom d’utilisateur |<span>user@domain.com</span> |Nom d’utilisateur employé pour identifier l’utilisateur.|
+|Token Expires (Expiration du jeton) |{DateHeure}         |Heure à laquelle le jeton expire. MSAL étend la date d’expiration pour vous en renouvelant le jeton dès que nécessaire.|
+|Access token (Jeton d’accès) |{Chaîne}         |Chaîne de jeton qui sera envoyée aux requêtes HTTP qui nécessitent un en-tête d’autorisation.|
 
 <!--start-collapse-->
 ### <a name="more-information-about-scopes-and-delegated-permissions"></a>Informations supplémentaires sur les étendues et les autorisations déléguées
-L’API Graph requiert hello `user.read` tooread profil_utilisateur d’étendue. Par défaut, cette étendue est automatiquement ajoutée à toutes les applications inscrites dans notre portail d’inscription. D’autres API Graph ainsi que des API personnalisées pour votre serveur principal nécessitent des étendues supplémentaires. Par exemple, pour un graphique, `Calendars.Read` est calendriers de l’utilisateur toolist requis. Dans l’ordre tooaccess hello calendrier de l’utilisateur dans un contexte d’une application, vous devez tooadd `Calendars.Read` délégation des informations d’inscription de l’application, puis ajoutez `Calendars.Read` toohello `AcquireTokenAsync` appeler. Utilisateur demandera peut-être d’autorisations supplémentaires lorsque vous augmentez le nombre de hello d’étendues.
+L’API Graph nécessite que l’étendue `user.read` lise le profil utilisateur. Par défaut, cette étendue est automatiquement ajoutée à toutes les applications inscrites dans notre portail d’inscription. D’autres API Graph ainsi que des API personnalisées pour votre serveur principal nécessitent des étendues supplémentaires. Par exemple, pour Graph, `Calendars.Read` est requis afin de répertorier les calendriers de l’utilisateur. Pour accéder au calendrier de l’utilisateur dans le contexte d’une application, vous devez ajouter les informations d’inscription de l’application déléguée `Calendars.Read`, puis ajouter `Calendars.Read` à l’appel `AcquireTokenAsync`. L’utilisateur peut être invité à donner des consentements supplémentaires lorsque vous augmentez le nombre d’étendues.
 
 <!--end-collapse-->
 

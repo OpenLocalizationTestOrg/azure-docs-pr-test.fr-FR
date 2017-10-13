@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate et télécharger Red Hat Enterprise Linux disque dur virtuel pour une utilisation dans Azure | Documents Microsoft"
-description: "En savoir plus toocreate et téléchargez un Azure disque dur virtuel (VHD) qui contient un système d’exploitation Red Hat Linux."
+title: "Création et téléchargement d’un disque dur virtuel Red Hat Enterprise Linux pour une utilisation dans Azure | Microsoft Docs"
+description: "Apprenez à créer et à télécharger un disque dur virtuel (VHD) Azure contenant un système d'exploitation Red Hat Linux."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,47 +15,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/28/2017
 ms.author: szark
-ms.openlocfilehash: bdd1bbfbee55b5cc61d69a09b06b6bd2c3de362b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b753c76b8c3d789c681d7fbff6aa07590b860be5
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="prepare-a-red-hat-based-virtual-machine-for-azure"></a>Préparation d'une machine virtuelle Red Hat pour Azure
-Dans cet article, vous allez apprendre comment tooprepare un ordinateur virtuel de Red Hat Enterprise Linux (RHEL) pour une utilisation dans Azure. les versions de Hello de RHEL qui sont abordées dans cet article sont 6.7 + et 7.1. les hyperviseurs Hello de préparation qui sont abordées dans cet article sont virtuels Hyper-V, basée sur le noyau (KVM) et VMware. Pour plus d’informations sur les conditions d’éligibilité pour participer au programme d’accès au Cloud de Red Hat, consultez le [site Web d’accès au cloud de Red Hat](http://www.redhat.com/en/technologies/cloud-computing/cloud-access) et [Exécution RHEL sous Azure](https://access.redhat.com/ecosystem/ccsp/microsoft-azure).
+Dans cet article, vous allez apprendre à préparer une machine virtuelle Red Hat Enterprise Linux (RHEL) à utiliser dans Azure. Cet article couvre les versions de RHEL 6.7 et 7.1+. Les hyperviseurs de préparation abordés dans cet article sont Hyper-V, KVM (Machine virtuelle basée sur le noyau) et VMware. Pour plus d’informations sur les conditions d’éligibilité pour participer au programme d’accès au Cloud de Red Hat, consultez le [site Web d’accès au cloud de Red Hat](http://www.redhat.com/en/technologies/cloud-computing/cloud-access) et [Exécution RHEL sous Azure](https://access.redhat.com/ecosystem/ccsp/microsoft-azure).
 
 ## <a name="prepare-a-red-hat-based-virtual-machine-from-hyper-v-manager"></a>Préparer une machine virtuelle Red Hat à partir du Gestionnaire Hyper-V
 
 ### <a name="prerequisites"></a>Composants requis
-Cette section part du principe que vous avez déjà obtenu un fichier ISO à partir du site Web de Red Hat hello et installé hello RHEL image tooa disque dur virtuel (VHD). Pour plus d’informations sur la façon toouse Gestionnaire Hyper-V tooinstall une image de système d’exploitation, consultez [installer hello rôle Hyper-V et configurer un ordinateur virtuel](http://technet.microsoft.com/library/hh846766.aspx).
+Cette section suppose que vous avez déjà obtenu un fichier ISO depuis le site web Red Hat et installé l’image RHEL sur un disque dur virtuel (VHD). Pour plus d’informations sur l’utilisation du Gestionnaire Hyper-V pour installer une image de système d’exploitation, voir [Installer le rôle Hyper-V et configurer une machine virtuelle](http://technet.microsoft.com/library/hh846766.aspx).
 
 **Notes d'installation de RHEL**
 
-* Azure ne prend pas en charge le format VHDX hello. Azure prend uniquement en charge les VHD fixes. Vous pouvez utiliser le Gestionnaire Hyper-V tooconvert hello disque tooVHD format, ou vous pouvez utiliser les applets de commande convert-vhd hello. Si vous utilisez VirtualBox, sélectionnez **une taille fixe** par opposition toohello par défaut alloué dynamiquement option lorsque vous créez le disque de hello.
-* Azure ne prend en charge que les machines virtuelles de la génération 1. Vous pouvez convertir un ordinateur virtuel de génération 1 à partir du format de fichier de disque dur virtuel VHDX toohello et à partir du disque de taille fixe tooa de taille dynamique. Vous ne pouvez pas modifier la génération d’une machine virtuelle. Pour plus d’informations, consultez [Dois-je créer une machine virtuelle de génération 1 ou 2 dans Hyper-V ?](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v).
-* taille maximale Hello est autorisée pour hello disque dur virtuel est de 1 023 go.
-* Lorsque vous installez le système d’exploitation de Linux hello, nous vous recommandons d’utiliser les partitions standards plutôt que le Gestionnaire de Volume logique (LVM), qui est souvent hello par défaut pour le nombre d’installations. Cette pratique permet d’éviter les conflits de nom Gestionnaire de volume logique avec les ordinateurs virtuels clonés, en particulier si vous avez besoin de tooattach un système d’exploitation disque tooanother ordinateur virtuel pour le dépannage. La technique [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ou [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) peut être utilisée sur les disques de données.
-* La prise en charge du noyau pour le montage de systèmes de fichiers UDF (Universal Disk Format) est requise. Au premier démarrage sur Azure, hello au format UDF support qui est attaché toohello invité passe hello configuration configuration toohello machine virtuelle Linux. Hello Linux Agent Azure doit être en mesure de toomount hello UDF fichier système tooread sa configuration et configurer l’ordinateur virtuel de hello.
-* Versions du noyau de Linux hello qui sont antérieures à 2.6.37 ne gèrent pas l’accès mémoire non uniforme (NUMA) sur Hyper-V avec des tailles de machine virtuelle plus importantes. Ce problème principalement les impacts anciennes distributions qui utilisent hello en amont noyau de Red Hat 2.6.32 et a été corrigé dans RHEL 6.6 (noyau-2.6.32-504). Les systèmes qui exécutent des noyaux personnalisés qui sont antérieurs à 2.6.37 ou les noyaux RHEL qui sont antérieurs à 2.6.32-504 doivent définir hello `numa=off` paramètre de démarrage sur la ligne de commande de noyau hello dans grub.conf. Pour plus d’informations, consultez l’article [KB 436883](https://access.redhat.com/solutions/436883) sur Red Hat.
-* Ne configurez pas une partition d’échange sur le disque du système d’exploitation hello. Hello Linux Agent peut être configuré toocreate un fichier d’échange sur le disque de ressources temporaires hello.  Vous trouverez plus d’informations à ce sujet Bonjour comme suit.
+* Azure ne prend pas en charge le format VHDX. Azure prend uniquement en charge les VHD fixes. Vous pouvez utiliser Hyper-V Manager pour convertir le disque au format VHD, ou l’applet de commande Convert-VHD. Si vous utilisez VirtualBox, sélectionnez **Taille fixe** par opposition à l’option de valeur par défaut allouée dynamiquement lorsque vous créez le disque.
+* Azure ne prend en charge que les machines virtuelles de la génération 1. Vous pouvez convertir une machine virtuelle de génération 1 du format VHDX au format VHD et d'une taille à expansion dynamique en taille fixe. Vous ne pouvez pas modifier la génération d’une machine virtuelle. Pour plus d’informations, consultez [Dois-je créer une machine virtuelle de génération 1 ou 2 dans Hyper-V ?](https://technet.microsoft.com/windows-server-docs/compute/hyper-v/plan/should-i-create-a-generation-1-or-2-virtual-machine-in-hyper-v).
+* La taille maximale autorisée pour le disque dur virtuel s’élève à 1 023 Go.
+* Lorsque vous installez le système d’exploitation Linux, nous vous recommandons d’utiliser les partitions standard plutôt que le Gestionnaire de volumes logiques (LVM), qui constitue souvent le choix par défaut pour de nombreuses installations. Cette pratique permettra d’éviter les conflits de noms avec des machines virtuelles clonées, notamment si un disque de système d’exploitation doit être relié à une autre machine virtuelle identique à des fins de dépannage. La technique [LVM](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ou [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) peut être utilisée sur les disques de données.
+* La prise en charge du noyau pour le montage de systèmes de fichiers UDF (Universal Disk Format) est requise. Au premier démarrage sur Azure, le support au format UDF relié à l’invité transmet la configuration d’approvisionnement à la machine virtuelle Linux. L’agent Linux Azure doit être en mesure de monter le système de fichiers UDF pour lire sa configuration et approvisionner la machine virtuelle.
+* Les versions du noyau Linux antérieures à 2.6.37 ne gèrent pas les accès mémoire non uniformes (NUMA) sur Hyper-V avec des machines virtuelles de grande taille. Ce problème concerne principalement les distributions antérieures utilisant le noyau Red Hat 2.6.32 en amont et a été corrigé dans la version RHEL 6.6 (kernel-2.6.32-504). Pour les systèmes exécutant des noyaux personnalisés dont la version est antérieure à la version 2.6.37 ou des noyaux basés sur RHEL antérieurs à la version 2.6.32-504, le paramètre de démarrage `numa=off` doit être défini sur la ligne de commande du noyau dans grub.conf. Pour plus d’informations, consultez l’article [KB 436883](https://access.redhat.com/solutions/436883) sur Red Hat.
+* Ne configurez pas de partition swap sur le système d’exploitation ou le disque. L'agent Linux est configurable pour créer un fichier d'échange sur le disque de ressources temporaire.  Les étapes suivantes fournissent plus d'informations à ce sujet.
 * La taille de tout disque dur virtuel doit être un multiple de 1 Mo.
 
 ### <a name="prepare-a-rhel-6-virtual-machine-from-hyper-v-manager"></a>Préparer une machine virtuelle RHEL 6 à partir du Gestionnaire Hyper-V
 
-1. Dans le Gestionnaire Hyper-V, sélectionnez la machine virtuelle de hello.
+1. Dans le Gestionnaire Hyper-V, sélectionnez la machine virtuelle.
 
-2. Cliquez sur **Connect** tooopen une fenêtre de console pour la machine virtuelle de hello.
+2. Cliquez sur **Connecter** pour ouvrir une fenêtre de console de la machine virtuelle.
 
-3. RHEL 6, NetworkManager peut interférer avec l’agent de hello Azure Linux. Désinstaller ce package en exécutant hello de commande suivante :
+3. Dans RHEL 6, NetworkManager peut interférer avec l’agent Linux Azure. Exécutez la commande suivante pour désinstaller le package :
    
         # sudo rpm -e --nodeps NetworkManager
 
-4. Créer ou modifier hello `/etc/sysconfig/network` et ajoutez hello suivant du texte :
+4. Créez ou modifiez le fichier `/etc/sysconfig/network`, puis ajoutez le texte suivant :
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
 
-5. Créer ou modifier hello `/etc/sysconfig/network-scripts/ifcfg-eth0` et ajoutez hello suivant du texte :
+5. Créez ou modifiez le fichier `/etc/sysconfig/network-scripts/ifcfg-eth0`, puis ajoutez le texte suivant :
    
         DEVICE=eth0
         ONBOOT=yes
@@ -65,66 +65,66 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
         PEERDNS=yes
         IPV6INIT=no
 
-6. Déplacer (ou supprimer) hello udev règles tooavoid génération de règles statiques pour l’interface de Ethernet hello. Ces règles entraînent des problèmes lorsque vous clonez une machine virtuelle dans Microsoft Azure ou Hyper-V :
+6. Déplacez (ou supprimez) les règles udev afin d’éviter la génération de règles statiques pour l’interface Ethernet. Ces règles entraînent des problèmes lorsque vous clonez une machine virtuelle dans Microsoft Azure ou Hyper-V :
 
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
         
         # sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
 
-7. Démarrera service de réseau hello au moment du démarrage en exécutant hello de commande suivante :
+7. Assurez-vous que le service réseau commencera aux heures de démarrage en exécutant la commande suivante :
 
         # sudo chkconfig network on
 
-8. Inscrire votre installation de hello Red Hat abonnement tooenable des packages à partir du référentiel RHEL hello en exécutant hello de commande suivante :
+8. Inscrivez votre abonnement Red Hat pour installer des packages à partir du référentiel RHEL en exécutant la commande suivante :
 
         # sudo subscription-manager register --auto-attach --username=XXX --password=XXX
 
-9. package de WALinuxAgent Hello, `WALinuxAgent-<version>`, ont été envoyées de référentiel d’extras toohello Red Hat. Activer le référentiel des fonctionnalités supplémentaires de hello en exécutant hello de commande suivante :
+9. Le package WALinuxAgent, `WALinuxAgent-<version>`, a fait l’objet d’une transmission de type push vers le référentiel Red Hat « extras ». Activez le référentiel extras en exécutant la commande suivante :
 
         # subscription-manager repos --enable=rhel-6-server-extras-rpms
 
-10. Modifier la ligne de démarrage du noyau hello dans les paramètres supplémentaires de noyau tooinclude grub pour Azure. toodo cette modification, ouvre `/boot/grub/menu.lst` dans un éditeur de texte et assurez-vous que ce noyau de la valeur par défaut hello inclut hello paramètres suivants :
+10. Modifiez la ligne de démarrage du noyau dans votre configuration grub pour y inclure les paramètres de noyau supplémentaires pour Azure. Pour effectuer cette modification, ouvrez `/boot/grub/menu.lst` dans un éditeur de texte et vérifiez que le noyau par défaut comprend les paramètres suivants :
     
         console=ttyS0 earlyprintk=ttyS0 rootdelay=300
     
-    Cela permet également de garantir que tous les messages de la console sont envoyées toohello premier port série, qui peut aider Azure prise en charge avec les problèmes de débogage.
+    Ce permet également d’assurer que tous les messages de la console sont envoyés vers le premier port série, ce qui peut simplifier les problèmes de débogage pour la prise en charge d’Azure.
     
-    En outre, nous recommandons de supprimer hello paramètres suivants :
+    Outre les précautions ci-dessus, nous recommandons de supprimer les paramètres suivants :
     
         rhgb quiet crashkernel=auto
     
-    Graphique et silencieuse de démarrage ne sont pas utiles dans un environnement de cloud que nous voulons tous les toobe de journaux hello envoyé toohello de port série.  Vous pouvez laisser hello `crashkernel` option configurée Si vous le souhaitez. Notez que ce paramètre réduit hello de mémoire disponible dans l’ordinateur virtuel hello 128 Mo ou plus. Cette configuration peut être problématique sur les machines virtuelles de petite taille.
+    Le démarrage graphique et transparent n'est pas utile dans un environnement cloud où nous voulons que tous les journaux soient envoyés au port série.  Vous pouvez laisser l’option `crashkernel` configurée le cas échéant. Notez que ce paramètre réduit la quantité de mémoire disponible dans la machine virtuelle de 128 Mo ou plus. Cette configuration peut être problématique sur les machines virtuelles de petite taille.
 
     >[!Important]
-    RHEL 6.5 et versions antérieur doive également définir hello `numa=off` paramètre de noyau. Consultez Red Hat [KB 436883](https://access.redhat.com/solutions/436883).
+    RHEL 6.5 et versions antérieures doivent également définir le paramètre de noyau `numa=off`. Consultez Red Hat [KB 436883](https://access.redhat.com/solutions/436883).
 
-11. Vérifiez le serveur hello SSH (secure shell) est installé et configuré toostart au moment du démarrage, qui est généralement hello par défaut. Modifiez hello de tooinclude /etc/ssh/sshd_config ligne suivante :
+11. Vérifiez que le serveur SSH est installé et configuré pour démarrer au moment prévu. Il s’agit généralement du réglage par défaut. Modifiez /etc/ssh/sshd_config pour inclure la ligne suivante :
 
         ClientAliveInterval 180
 
-12. Installez hello Linux Agent Azure en exécutant hello de commande suivante :
+12. Installez l'agent linux Azure en exécutant la commande suivante :
 
         # sudo yum install WALinuxAgent
 
         # sudo chkconfig waagent on
 
-    Package de WALinuxAgent hello lors de l’installation supprime hello NetworkManager et packages de NetworkManager-gnome si elles n’étaient pas déjà supprimées à l’étape 3.
+    l'installation du package WALinuxAgent entraîne la suppression des packages NetworkManager et NetworkManager-gnome, s'ils n'avaient pas déjà été supprimés à l'étape 3.
 
-13. Ne créez pas d’espace d’échange sur le disque du système d’exploitation hello.
+13. Ne créez pas d’espace d’échange sur le disque du système d’exploitation.
 
-    Hello Linux Agent Azure peut configurer automatiquement l’espace d’échange à l’aide du disque de ressources locales hello qui est attaché toohello virtual machine après la configuration de machine virtuelle de hello sur Azure. Notez que hello local disque de ressources est un disque temporaire et qu’il doit être vidé lors de la machine virtuelle de hello est annulé. Après avoir installé hello Linux Agent Azure à l’étape précédente de hello, modifiez hello suivant correctement les paramètres dans /etc/waagent.conf :
+    L’agent Linux Azure peut configurer automatiquement un espace d’échange à l’aide du disque de ressources local attaché à la machine virtuelle après l’approvisionnement de cette dernière sur Azure. Notez que le disque de ressources local est un disque temporaire et qu’il peut être vidé lors de l’annulation de l’approvisionnement de la machine virtuelle. Une fois que vous avez installé l’agent Linux Azure lors de l’étape précédente, modifiez les paramètres suivants dans le fichier /etc/waagent.conf :
 
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-14. Annuler l’inscription d’abonnement de hello (si nécessaire) en exécutant hello de commande suivante :
+14. Annulez l'inscription de l'abonnement (le cas échéant) en exécutant la commande suivante :
 
         # sudo subscription-manager unregister
 
-15. Exécutez hello suivant de commandes toodeprovision hello virtual machine et le préparer pour la configuration sur Azure :
+15. Exécutez les commandes suivantes pour annuler le déploiement de la machine virtuelle et préparer son déploiement sur Azure :
 
         # sudo waagent -force -deprovision
 
@@ -132,21 +132,21 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
 
         # logout
 
-16. Cliquez sur **Action** > **Arrêter** dans le Gestionnaire Hyper-V. Votre VHD Linux est maintenant prêt toobe téléchargé tooAzure.
+16. Cliquez sur **Action** > **Arrêter** dans le Gestionnaire Hyper-V. Votre disque dur virtuel Linux est alors prêt pour le téléchargement dans Azure.
 
 
 ### <a name="prepare-a-rhel-7-virtual-machine-from-hyper-v-manager"></a>Préparer une machine virtuelle RHEL 7 à partir du Gestionnaire Hyper-V
 
-1. Dans le Gestionnaire Hyper-V, sélectionnez la machine virtuelle de hello.
+1. Dans le Gestionnaire Hyper-V, sélectionnez la machine virtuelle.
 
-2. Cliquez sur **Connect** tooopen une fenêtre de console pour la machine virtuelle de hello.
+2. Cliquez sur **Connecter** pour ouvrir une fenêtre de console de la machine virtuelle.
 
-3. Créer ou modifier hello `/etc/sysconfig/network` et ajoutez hello suivant du texte :
+3. Créez ou modifiez le fichier `/etc/sysconfig/network`, puis ajoutez le texte suivant :
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
 
-4. Créer ou modifier hello `/etc/sysconfig/network-scripts/ifcfg-eth0` et ajoutez hello suivant du texte :
+4. Créez ou modifiez le fichier `/etc/sysconfig/network-scripts/ifcfg-eth0`, puis ajoutez le texte suivant :
    
         DEVICE=eth0
         ONBOOT=yes
@@ -157,57 +157,57 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
         IPV6INIT=no
         NM_CONTROLLED=no
 
-5. Démarrera service de réseau hello au moment du démarrage en exécutant hello de commande suivante :
+5. Assurez-vous que le service réseau commencera aux heures de démarrage en exécutant la commande suivante :
 
         # sudo chkconfig network on
 
-6. Inscrire votre installation de hello Red Hat abonnement tooenable des packages à partir du référentiel RHEL hello en exécutant hello de commande suivante :
+6. Inscrivez votre abonnement Red Hat pour installer des packages à partir du référentiel RHEL en exécutant la commande suivante :
 
         # sudo subscription-manager register --auto-attach --username=XXX --password=XXX
 
-7. Modifier la ligne de démarrage du noyau hello dans les paramètres supplémentaires de noyau tooinclude grub pour Azure. toodo cette modification, ouvre `/etc/default/grub` dans un éditeur de texte et l’édition hello `GRUB_CMDLINE_LINUX` paramètre. Par exemple :
+7. Modifiez la ligne de démarrage du noyau dans votre configuration grub pour y inclure les paramètres de noyau supplémentaires pour Azure. Pour effectuer cette modification, ouvrez le fichier `/etc/default/grub` dans un éditeur de texte et modifiez le paramètre `GRUB_CMDLINE_LINUX`. Par exemple :
    
         GRUB_CMDLINE_LINUX="rootdelay=300 console=ttyS0 earlyprintk=ttyS0 net.ifnames=0"
    
-   Cela permet également de garantir que tous les messages de la console sont envoyées toohello premier port série, qui peut aider Azure prise en charge avec les problèmes de débogage. Cette configuration désactive également des conventions d’affectation de noms hello nouvelle RHEL 7 pour les cartes réseau. En outre, nous vous recommandons de supprimer hello paramètres suivants :
+   Ce permet également d’assurer que tous les messages de la console sont envoyés vers le premier port série, ce qui peut simplifier les problèmes de débogage pour la prise en charge d’Azure. Cette configuration désactive également les nouvelles conventions d’affectation de noms RHEL 7 pour les cartes réseau. De plus, nous vous recommandons de supprimer les paramètres suivants :
    
         rhgb quiet crashkernel=auto
    
-    Graphique et silencieuse de démarrage ne sont pas utiles dans un environnement de cloud que nous voulons tous les toobe de journaux hello envoyé toohello de port série. Vous pouvez laisser hello `crashkernel` option configurée Si vous le souhaitez. Notez que ce paramètre réduit hello de mémoire disponible dans la machine virtuelle de hello de 128 Mo ou plus, qui peut être problématique sur les tailles de machine virtuelle plus petites.
+    Le démarrage graphique et transparent n'est pas utile dans un environnement cloud où nous voulons que tous les journaux soient envoyés au port série. Vous pouvez laisser l’option `crashkernel` configurée le cas échéant. Notez que ce paramètre réduit la quantité de mémoire disponible dans la machine virtuelle de 128 Mo ou plus, ce qui peut être problématique sur les machines virtuelles de petite taille.
 
-8. Après avoir effectué édition `/etc/default/grub`, exécutez hello après la commande toorebuild hello grub configuration :
+8. Une fois que vous avez fini de modifier `/etc/default/grub`, exécutez la commande suivante pour régénérer la configuration grub :
 
         # sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
-9. Vérifiez le serveur SSH hello est installé et configuré toostart au moment du démarrage, qui est généralement hello par défaut. Modifier `/etc/ssh/sshd_config` hello tooinclude ligne suivante :
+9. Vérifiez que le serveur SSH est installé et configuré pour démarrer au moment prévu, ce qui est généralement le réglage par défaut. Modifiez `/etc/ssh/sshd_config` pour y inclure la ligne suivante :
 
         ClientAliveInterval 180
 
-10. package de WALinuxAgent Hello, `WALinuxAgent-<version>`, ont été envoyées de référentiel d’extras toohello Red Hat. Activer le référentiel des fonctionnalités supplémentaires de hello en exécutant hello de commande suivante :
+10. Le package WALinuxAgent, `WALinuxAgent-<version>`, a fait l’objet d’une transmission de type push vers le référentiel Red Hat « extras ». Activez le référentiel extras en exécutant la commande suivante :
 
         # subscription-manager repos --enable=rhel-7-server-extras-rpms
 
-11. Installez hello Linux Agent Azure en exécutant hello de commande suivante :
+11. Installez l'agent linux Azure en exécutant la commande suivante :
 
         # sudo yum install WALinuxAgent
 
         # sudo systemctl enable waagent.service
 
-12. Ne créez pas d’espace d’échange sur le disque du système d’exploitation hello.
+12. Ne créez pas d’espace d’échange sur le disque du système d’exploitation.
 
-    Hello Linux Agent Azure peut configurer automatiquement l’espace d’échange à l’aide du disque de ressources locales hello qui est attaché toohello virtual machine après la configuration de machine virtuelle de hello sur Azure. Notez que hello disque de ressources locales est un disque temporaire, et il doit être vidé lorsque l’ordinateur virtuel hello est déprovisionnée. Après avoir installé hello Linux Agent Azure à l’étape précédente de hello, modifier hello paramètres dans suivants `/etc/waagent.conf` correctement :
+    L’agent Linux Azure peut configurer automatiquement un espace d’échange à l’aide du disque de ressources local attaché à la machine virtuelle après l’approvisionnement de cette dernière sur Azure. Notez que le disque de ressources local est un disque temporaire et qu’il peut être vidé lors de l’annulation de l’approvisionnement de la machine virtuelle. Après avoir installé l’agent Linux Azure lors de l’étape précédente, modifiez en conséquence les paramètres suivants dans le fichier `/etc/waagent.conf` :
 
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-13. Si vous souhaitez abonnement de hello toounregister, exécutez hello de commande suivante :
+13. Si vous souhaitez annuler l'inscription de l'abonnement, exécutez la commande suivante :
 
         # sudo subscription-manager unregister
 
-14. Exécutez hello suivant de commandes toodeprovision hello virtual machine et le préparer pour la configuration sur Azure :
+14. Exécutez les commandes suivantes pour annuler le déploiement de la machine virtuelle et préparer son déploiement sur Azure :
 
         # sudo waagent -force -deprovision
 
@@ -215,17 +215,17 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
 
         # logout
 
-15. Cliquez sur **Action** > **Arrêter** dans le Gestionnaire Hyper-V. Votre VHD Linux est maintenant prêt toobe téléchargé tooAzure.
+15. Cliquez sur **Action** > **Arrêter** dans le Gestionnaire Hyper-V. Votre disque dur virtuel Linux est alors prêt pour le téléchargement dans Azure.
 
 
 ## <a name="prepare-a-red-hat-based-virtual-machine-from-kvm"></a>Préparer une machine virtuelle Red Hat à partir de KVM
 ### <a name="prepare-a-rhel-6-virtual-machine-from-kvm"></a>Préparer une machine virtuelle RHEL 6 à partir de KMV
 
-1. Télécharger l’image KVM hello RHEL 6 à partir du site Web de Red Hat hello.
+1. Téléchargez l'image KVM de RHEL 6 depuis le site web Red Hat.
 
 2. Définissez un mot de passe racine.
 
-    Générer un mot de passe chiffré et copier le résultat de hello de commande hello :
+    Générez un mot de passe chiffré et copiez la sortie de la commande :
 
         # openssl passwd -1 changeme
 
@@ -238,16 +238,16 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
         > <fs> vi /etc/shadow
         > <fs> exit
 
-   Modification hello deuxième champ de l’utilisateur racine hello « ! » toohello le mot de passe chiffré.
+   Modifiez le second champ de l’utilisateur racine en remplaçant « !! » » par le mot de passe chiffré.
 
-3. Créer une machine virtuelle dans KVM à partir de l’image de qcow2 hello. Définir le type de disque hello trop**qcow2**et définir le modèle d’appareil hello réseau virtuel interface trop**virtio**. Ensuite, démarrer l’ordinateur virtuel de hello et connectez-vous en tant que racine.
+3. Créez une machine virtuelle dans KVM à partir de l’image qcow2. Définissez le type de disque sur **qcow2**, puis définissez le modèle d’appareil de l’interface réseau virtuelle sur **virtio**. Démarrez ensuite la machine virtuelle, puis connectez-vous en tant que racine.
 
-4. Créer ou modifier hello `/etc/sysconfig/network` et ajoutez hello suivant du texte :
+4. Créez ou modifiez le fichier `/etc/sysconfig/network`, puis ajoutez le texte suivant :
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
 
-5. Créer ou modifier hello `/etc/sysconfig/network-scripts/ifcfg-eth0` et ajoutez hello suivant du texte :
+5. Créez ou modifiez le fichier `/etc/sysconfig/network-scripts/ifcfg-eth0`, puis ajoutez le texte suivant :
    
         DEVICE=eth0
         ONBOOT=yes
@@ -257,38 +257,38 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
         PEERDNS=yes
         IPV6INIT=no
 
-6. Déplacer (ou supprimer) hello udev règles tooavoid génération de règles statiques pour l’interface de Ethernet hello. Ces règles entraînent des problèmes lorsque vous clonez une machine virtuelle dans Azure ou Hyper-V :
+6. Déplacez (ou supprimez) les règles udev afin d’éviter la génération de règles statiques pour l’interface Ethernet. Ces règles entraînent des problèmes lorsque vous clonez une machine virtuelle dans Azure ou Hyper-V :
 
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
 
         # sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
 
-7. Démarrera service de réseau hello au moment du démarrage en exécutant hello de commande suivante :
+7. Assurez-vous que le service réseau commencera aux heures de démarrage en exécutant la commande suivante :
 
         # chkconfig network on
 
-8. Inscrire votre installation de hello Red Hat abonnement tooenable des packages à partir du référentiel RHEL hello en exécutant hello de commande suivante :
+8. Inscrivez votre abonnement Red Hat pour installer des packages à partir du référentiel RHEL en exécutant la commande suivante :
 
         # subscription-manager register --auto-attach --username=XXX --password=XXX
 
-9. Modifier la ligne de démarrage du noyau hello dans les paramètres supplémentaires de noyau tooinclude grub pour Azure. toodo cette configuration, ouvre `/boot/grub/menu.lst` dans un éditeur de texte et assurez-vous que ce noyau de la valeur par défaut hello inclut hello paramètres suivants :
+9. Modifiez la ligne de démarrage du noyau dans votre configuration grub pour y inclure les paramètres de noyau supplémentaires pour Azure. Pour effectuer cette configuration, ouvrez `/boot/grub/menu.lst` dans un éditeur de texte et vérifiez que le noyau par défaut comprend les paramètres suivants :
     
         console=ttyS0 earlyprintk=ttyS0 rootdelay=300
     
-    Cela permet également de garantir que tous les messages de la console sont envoyées toohello premier port série, qui peut aider Azure prise en charge avec les problèmes de débogage.
+    Ce permet également d’assurer que tous les messages de la console sont envoyés vers le premier port série, ce qui peut simplifier les problèmes de débogage pour la prise en charge d’Azure.
     
-    En outre, nous vous recommandons de supprimer hello paramètres suivants :
+    De plus, nous vous recommandons de supprimer les paramètres suivants :
     
         rhgb quiet crashkernel=auto
     
-    Graphique et silencieuse de démarrage ne sont pas utiles dans un environnement de cloud que nous voulons tous les toobe de journaux hello envoyé toohello de port série. Vous pouvez laisser hello `crashkernel` option configurée Si vous le souhaitez. Notez que ce paramètre réduit hello de mémoire disponible dans la machine virtuelle de hello de 128 Mo ou plus, qui peut être problématique sur les tailles de machine virtuelle plus petites.
+    Le démarrage graphique et transparent n'est pas utile dans un environnement cloud où nous voulons que tous les journaux soient envoyés au port série. Vous pouvez laisser l’option `crashkernel` configurée le cas échéant. Notez que ce paramètre réduit la quantité de mémoire disponible dans la machine virtuelle de 128 Mo ou plus, ce qui peut être problématique sur les machines virtuelles de petite taille.
 
     >[!Important]
-    RHEL 6.5 et versions antérieur doive également définir hello `numa=off` paramètre de noyau. Consultez Red Hat [KB 436883](https://access.redhat.com/solutions/436883).
+    RHEL 6.5 et versions antérieures doivent également définir le paramètre de noyau `numa=off`. Consultez Red Hat [KB 436883](https://access.redhat.com/solutions/436883).
 
-10. Ajoutez tooinitramfs de modules Hyper-V :  
+10. Ajoutez des modules de Hyper-V dans initramfs :  
 
-    Modifier `/etc/dracut.conf`et ajoutez hello suivant le contenu :
+    Modifiez `/etc/dracut.conf` et ajoutez le contenu suivant :
 
         add_drivers+="hv_vmbus hv_netvsc hv_storvsc"
 
@@ -300,38 +300,38 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
 
         # yum remove cloud-init
 
-12. Vérifiez que ce serveur SSH hello est installé et configuré toostart au moment du démarrage :
+12. Vérifiez que le serveur SSH est installé et configuré pour démarrer au moment prévu :
 
         # chkconfig sshd on
 
-    Modifiez hello de tooinclude /etc/ssh/sshd_config lignes suivantes :
+    Modifiez /etc/ssh/sshd_config pour y inclure les lignes suivantes :
 
         PasswordAuthentication yes
         ClientAliveInterval 180
 
-13. package de WALinuxAgent Hello, `WALinuxAgent-<version>`, ont été envoyées de référentiel d’extras toohello Red Hat. Activer le référentiel des fonctionnalités supplémentaires de hello en exécutant hello de commande suivante :
+13. Le package WALinuxAgent, `WALinuxAgent-<version>`, a fait l’objet d’une transmission de type push vers le référentiel Red Hat « extras ». Activez le référentiel extras en exécutant la commande suivante :
 
         # subscription-manager repos --enable=rhel-6-server-extras-rpms
 
-14. Installez hello Linux Agent Azure en exécutant hello de commande suivante :
+14. Installez l'agent linux Azure en exécutant la commande suivante :
 
         # yum install WALinuxAgent
 
         # chkconfig waagent on
 
-15. Hello Linux Agent Azure peut configurer automatiquement l’espace d’échange à l’aide du disque de ressources locales hello qui est attaché toohello virtual machine après la configuration de machine virtuelle de hello sur Azure. Notez que hello disque de ressources locales est un disque temporaire, et il doit être vidé lorsque l’ordinateur virtuel hello est déprovisionnée. Après avoir installé hello Linux Agent Azure à l’étape précédente de hello, modifier hello suivant les paramètres dans **/etc/waagent.conf** correctement :
+15. L’agent Linux Azure peut configurer automatiquement un espace d’échange à l’aide du disque de ressources local attaché à la machine virtuelle après l’approvisionnement de cette dernière sur Azure. Notez que le disque de ressources local est un disque temporaire et qu’il peut être vidé lors de l’annulation de l’approvisionnement de la machine virtuelle. Une fois que vous avez installé l’agent Linux Azure lors de l’étape précédente, modifiez les paramètres suivants dans le fichier **/etc/waagent.conf** :
 
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-16. Annuler l’inscription d’abonnement de hello (si nécessaire) en exécutant hello de commande suivante :
+16. Annulez l'inscription de l'abonnement (le cas échéant) en exécutant la commande suivante :
 
         # subscription-manager unregister
 
-17. Exécutez hello suivant de commandes toodeprovision hello virtual machine et le préparer pour la configuration sur Azure :
+17. Exécutez les commandes suivantes pour annuler le déploiement de la machine virtuelle et préparer son déploiement sur Azure :
 
         # waagent -force -deprovision
 
@@ -339,15 +339,15 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
 
         # logout
 
-18. Arrêter la machine virtuelle hello KVM.
+18. Arrêtez la machine virtuelle dans KVM.
 
-19. Convertir le format VHD toohello hello qcow2 image.
+19. Convertissez l’image qcow2 au format VHD.
 
-    Tout d’abord convertir le format de tooraw d’image hello :
+    Convertissez tout d'abord l'image au format RAW :
 
         # qemu-img convert -f qcow2 -O raw rhel-6.8.qcow2 rhel-6.8.raw
 
-    Assurez-vous que la taille hello d’image brute de hello est aligné avec 1 Mo. Sinon, arrondir tooalign de taille hello avec 1 Mo :
+    Assurez-vous que la taille de l’image RAW est alignée sur 1 Mo. Dans le cas contraire, arrondissez la taille pour l’aligner sur 1 Mo :
 
         # MB=$((1024*1024))
         # size=$(qemu-img info -f raw --output json "rhel-6.8.raw" | \
@@ -356,18 +356,18 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
         # rounded_size=$((($size/$MB + 1)*$MB))
         # qemu-img resize rhel-6.8.raw $rounded_size
 
-    Convertir hello disque raw tooa disque dur virtuel de taille fixe :
+    Convertissez le disque brut en VHD à taille fixe :
 
         # qemu-img convert -f raw -o subformat=fixed -O vpc rhel-6.8.raw rhel-6.8.vhd
 
 
 ### <a name="prepare-a-rhel-7-virtual-machine-from-kvm"></a>Préparer une machine virtuelle RHEL 7 à partir de KMV
 
-1. Télécharger l’image KVM hello de RHEL 7 à partir du site Web de Red Hat hello. Cette procédure utilise RHEL 7 comme exemple de hello.
+1. Téléchargez l'image KVM de RHEL 7 depuis le site web Red Hat. Cette procédure utilise RHEL 7 comme exemple.
 
 2. Définissez un mot de passe racine.
 
-    Générer un mot de passe chiffré et copier le résultat de hello de commande hello :
+    Générez un mot de passe chiffré et copiez la sortie de la commande :
 
         # openssl passwd -1 changeme
 
@@ -380,16 +380,16 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
         > <fs> vi /etc/shadow
         > <fs> exit
 
-   Modification hello deuxième champ de l’utilisateur racine à partir de « ! » toohello le mot de passe chiffré.
+   Modifiez le second champ de l'utilisateur racine en remplaçant « !! » » par le mot de passe chiffré.
 
-3. Créer une machine virtuelle dans KVM à partir de l’image de qcow2 hello. Définir le type de disque hello trop**qcow2**et définir le modèle d’appareil hello réseau virtuel interface trop**virtio**. Ensuite, démarrer l’ordinateur virtuel de hello et connectez-vous en tant que racine.
+3. Créez une machine virtuelle dans KVM à partir de l’image qcow2. Définissez le type de disque sur **qcow2**, puis définissez le modèle d’appareil de l’interface réseau virtuelle sur **virtio**. Démarrez ensuite la machine virtuelle, puis connectez-vous en tant que racine.
 
-4. Créer ou modifier hello `/etc/sysconfig/network` et ajoutez hello suivant du texte :
+4. Créez ou modifiez le fichier `/etc/sysconfig/network`, puis ajoutez le texte suivant :
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
 
-5. Créer ou modifier hello `/etc/sysconfig/network-scripts/ifcfg-eth0` et ajoutez hello suivant du texte :
+5. Créez ou modifiez le fichier `/etc/sysconfig/network-scripts/ifcfg-eth0`, puis ajoutez le texte suivant :
    
         DEVICE=eth0
         ONBOOT=yes
@@ -400,25 +400,25 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
         IPV6INIT=no
         NM_CONTROLLED=no
 
-6. Démarrera service de réseau hello au moment du démarrage en exécutant hello de commande suivante :
+6. Assurez-vous que le service réseau commencera aux heures de démarrage en exécutant la commande suivante :
 
         # chkconfig network on
 
-7. Inscrire votre installation de tooenable abonnement Red Hat des packages à partir du référentiel RHEL hello en exécutant hello de commande suivante :
+7. Inscrivez votre abonnement Red Hat pour installer des packages à partir du référentiel RHEL en exécutant la commande suivante :
 
         # subscription-manager register --auto-attach --username=XXX --password=XXX
 
-8. Modifier la ligne de démarrage du noyau hello dans les paramètres supplémentaires de noyau tooinclude grub pour Azure. toodo cette configuration, ouvre `/etc/default/grub` dans un éditeur de texte et l’édition hello `GRUB_CMDLINE_LINUX` paramètre. Par exemple :
+8. Modifiez la ligne de démarrage du noyau dans votre configuration grub pour y inclure les paramètres de noyau supplémentaires pour Azure. Pour effectuer cette configuration, ouvrez le fichier `/etc/default/grub` dans un éditeur de texte et modifiez le paramètre `GRUB_CMDLINE_LINUX`. Par exemple :
    
         GRUB_CMDLINE_LINUX="rootdelay=300 console=ttyS0 earlyprintk=ttyS0 net.ifnames=0"
    
-   Cette commande garantit également que tous les messages de la console sont envoyées toohello premier port série, qui peut aider Azure prise en charge avec les problèmes de débogage. commande Hello désactive également des conventions d’affectation de noms hello nouvelle RHEL 7 pour les cartes réseau. En outre, nous vous recommandons de supprimer hello paramètres suivants :
+   Cette commande permet également d’assurer que tous les messages de la console sont envoyés vers le premier port série, ce qui peut simplifier les problèmes de débogage pour la prise en charge d’Azure. Cette commande désactive également les nouvelles conventions d’affectation de noms RHEL 7 pour les cartes réseau. De plus, nous vous recommandons de supprimer les paramètres suivants :
    
         rhgb quiet crashkernel=auto
    
-    Graphique et silencieuse de démarrage ne sont pas utiles dans un environnement de cloud que nous voulons tous les toobe de journaux hello envoyé toohello de port série. Vous pouvez laisser hello `crashkernel` option configurée Si vous le souhaitez. Notez que ce paramètre réduit hello de mémoire disponible dans la machine virtuelle de hello de 128 Mo ou plus, qui peut être problématique sur les tailles de machine virtuelle plus petites.
+    Le démarrage graphique et transparent n'est pas utile dans un environnement cloud où nous voulons que tous les journaux soient envoyés au port série. Vous pouvez laisser l’option `crashkernel` configurée le cas échéant. Notez que ce paramètre réduit la quantité de mémoire disponible dans la machine virtuelle de 128 Mo ou plus, ce qui peut être problématique sur les machines virtuelles de petite taille.
 
-9. Après avoir effectué édition `/etc/default/grub`, exécutez hello après la commande toorebuild hello grub configuration :
+9. Une fois que vous avez fini de modifier `/etc/default/grub`, exécutez la commande suivante pour régénérer la configuration grub :
 
         # grub2-mkconfig -o /boot/grub2/grub.cfg
 
@@ -436,42 +436,42 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
 
         # yum remove cloud-init
 
-12. Vérifiez que ce serveur SSH hello est installé et configuré toostart au moment du démarrage :
+12. Vérifiez que le serveur SSH est installé et configuré pour démarrer au moment prévu :
 
         # systemctl enable sshd
 
-    Modifiez hello de tooinclude /etc/ssh/sshd_config lignes suivantes :
+    Modifiez /etc/ssh/sshd_config pour y inclure les lignes suivantes :
 
         PasswordAuthentication yes
         ClientAliveInterval 180
 
-13. package de WALinuxAgent Hello, `WALinuxAgent-<version>`, ont été envoyées de référentiel d’extras toohello Red Hat. Activer le référentiel des fonctionnalités supplémentaires de hello en exécutant hello de commande suivante :
+13. Le package WALinuxAgent, `WALinuxAgent-<version>`, a fait l’objet d’une transmission de type push vers le référentiel Red Hat « extras ». Activez le référentiel extras en exécutant la commande suivante :
 
         # subscription-manager repos --enable=rhel-7-server-extras-rpms
 
-14. Installez hello Linux Agent Azure en exécutant hello de commande suivante :
+14. Installez l'agent linux Azure en exécutant la commande suivante :
 
         # yum install WALinuxAgent
 
-    Activer le service de waagent hello :
+    Activez le service waagent :
 
         # systemctl enable waagent.service
 
-15. Ne créez pas d’espace d’échange sur le disque du système d’exploitation hello.
+15. Ne créez pas d’espace d’échange sur le disque du système d’exploitation.
 
-    Hello Linux Agent Azure peut configurer automatiquement l’espace d’échange à l’aide du disque de ressources locales hello qui est attaché toohello virtual machine après la configuration de machine virtuelle de hello sur Azure. Notez que hello disque de ressources locales est un disque temporaire, et il doit être vidé lorsque l’ordinateur virtuel hello est déprovisionnée. Après avoir installé hello Linux Agent Azure à l’étape précédente de hello, modifier hello paramètres dans suivants `/etc/waagent.conf` correctement :
+    L’agent Linux Azure peut configurer automatiquement un espace d’échange à l’aide du disque de ressources local attaché à la machine virtuelle après l’approvisionnement de cette dernière sur Azure. Notez que le disque de ressources local est un disque temporaire et qu’il peut être vidé lors de l’annulation de l’approvisionnement de la machine virtuelle. Après avoir installé l’agent Linux Azure lors de l’étape précédente, modifiez en conséquence les paramètres suivants dans le fichier `/etc/waagent.conf` :
 
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-16. Annuler l’inscription d’abonnement de hello (si nécessaire) en exécutant hello de commande suivante :
+16. Annulez l'inscription de l'abonnement (le cas échéant) en exécutant la commande suivante :
 
         # subscription-manager unregister
 
-17. Exécutez hello suivant de commandes toodeprovision hello virtual machine et le préparer pour la configuration sur Azure :
+17. Exécutez les commandes suivantes pour annuler le déploiement de la machine virtuelle et préparer son déploiement sur Azure :
 
         # sudo waagent -force -deprovision
 
@@ -479,15 +479,15 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
 
         # logout
 
-18. Arrêter la machine virtuelle hello KVM.
+18. Arrêtez la machine virtuelle dans KVM.
 
-19. Convertir le format VHD toohello hello qcow2 image.
+19. Convertissez l’image qcow2 au format VHD.
 
-    Tout d’abord convertir le format de tooraw d’image hello :
+    Convertissez tout d'abord l'image au format RAW :
 
         # qemu-img convert -f qcow2 -O raw rhel-7.3.qcow2 rhel-7.3.raw
 
-    Assurez-vous que la taille hello d’image brute de hello est aligné avec 1 Mo. Sinon, arrondir tooalign de taille hello avec 1 Mo :
+    Assurez-vous que la taille de l’image RAW est alignée sur 1 Mo. Dans le cas contraire, arrondissez la taille pour l’aligner sur 1 Mo :
 
         # MB=$((1024*1024))
         # size=$(qemu-img info -f raw --output json "rhel-6.8.raw" | \
@@ -496,29 +496,29 @@ Cette section part du principe que vous avez déjà obtenu un fichier ISO à par
         # rounded_size=$((($size/$MB + 1)*$MB))
         # qemu-img resize rhel-6.8.raw $rounded_size
 
-    Convertir hello disque raw tooa disque dur virtuel de taille fixe :
+    Convertissez le disque brut en VHD à taille fixe :
 
         # qemu-img convert -f raw -o subformat=fixed -O vpc rhel-7.3.raw rhel-7.3.vhd
 
 ## <a name="prepare-a-red-hat-based-virtual-machine-from-vmware"></a>Préparer une machine virtuelle Red Hat à partir de VMware
 ### <a name="prerequisites"></a>Composants requis
-Cette section suppose que vous avez déjà installé une machine virtuelle RHEL dans VMWare. Pour plus d’informations sur la façon dont tooinstall un système d’exploitation dans les environnements VMware, consultez [Guide d’Installation système d’exploitation invité VMware](http://partnerweb.vmware.com/GOSIG/home.html).
+Cette section suppose que vous avez déjà installé une machine virtuelle RHEL dans VMWare. Pour plus d’informations sur l’installation d’un système d’exploitation dans VMWare, voir le document [VMware Guest Operating System Installation Guide](http://partnerweb.vmware.com/GOSIG/home.html)(Guide d’installation de système d’exploitation invité VMWare).
 
-* Lorsque vous installez le système d’exploitation de Linux hello, nous vous recommandons d’utiliser les partitions standards au lieu du Gestionnaire de volume logique, qui est souvent hello par défaut pour le nombre d’installations. Cela permet d’éviter Gestionnaire de volume logique nom est en conflit avec les ordinateurs virtuels clonés, en particulier si un disque de système d’exploitation a besoin de machine virtuelle de tooanother toobe attaché pour le dépannage. Vous pouvez utiliser les techniques LVM ou RAID sur les disques de données si vous le souhaitez.
-* Ne configurez pas une partition d’échange sur le disque du système d’exploitation hello. Vous pouvez configurer hello Linux agent toocreate un fichier d’échange sur le disque de ressources temporaires hello. Vous trouverez plus d’informations à ce sujet dans les étapes de hello qui suivent.
-* Lorsque vous créez un disque dur virtuel hello, sélectionnez **disque virtuel de magasin en tant qu’un seul fichier**.
+* Lorsque vous installez le système d’exploitation Linux, nous vous recommandons d’utiliser les partitions standard plutôt que LVM, ce qui constitue souvent le choix par défaut pour de nombreuses installations. Cela permettra d’éviter les conflits de noms avec des machines virtuelles clonées, notamment si un disque de système d’exploitation doit être relié à une autre machine virtuelle à des fins de dépannage. Vous pouvez utiliser les techniques LVM ou RAID sur les disques de données si vous le souhaitez.
+* Ne configurez pas de partition swap sur le système d’exploitation ou le disque. Vous pouvez configurer l’agent Linux pour la création d’un fichier d’échange sur le disque de ressources temporaire. Les étapes qui suivent fournissent plus d’informations à ce sujet.
+* Lorsque vous créez le disque dur virtuel, sélectionnez **Stocker le disque virtuel en un seul fichier**.
 
 ### <a name="prepare-a-rhel-6-virtual-machine-from-vmware"></a>Préparer une machine virtuelle RHEL 6 à partir de VMWare
-1. RHEL 6, NetworkManager peut interférer avec l’agent de hello Azure Linux. Désinstaller ce package en exécutant hello de commande suivante :
+1. Dans RHEL 6, NetworkManager peut interférer avec l’agent Linux Azure. Exécutez la commande suivante pour désinstaller le package :
    
         # sudo rpm -e --nodeps NetworkManager
 
-2. Créez un fichier nommé **réseau** hello etc/sysconfig/répertoire contenant hello suivant du texte :
+2. Créez un fichier nommé **network** dans le répertoire /etc/sysconfig/ contenant le texte suivant :
 
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
 
-3. Créer ou modifier hello `/etc/sysconfig/network-scripts/ifcfg-eth0` et ajoutez hello suivant du texte :
+3. Créez ou modifiez le fichier `/etc/sysconfig/network-scripts/ifcfg-eth0`, puis ajoutez le texte suivant :
    
         DEVICE=eth0
         ONBOOT=yes
@@ -528,37 +528,37 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
         PEERDNS=yes
         IPV6INIT=no
 
-4. Déplacer (ou supprimer) hello udev règles tooavoid génération de règles statiques pour l’interface de Ethernet hello. Ces règles entraînent des problèmes lorsque vous clonez une machine virtuelle dans Azure ou Hyper-V :
+4. Déplacez (ou supprimez) les règles udev afin d’éviter la génération de règles statiques pour l’interface Ethernet. Ces règles entraînent des problèmes lorsque vous clonez une machine virtuelle dans Azure ou Hyper-V :
 
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
 
         # sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
 
-5. Démarrera service de réseau hello au moment du démarrage en exécutant hello de commande suivante :
+5. Assurez-vous que le service réseau commencera aux heures de démarrage en exécutant la commande suivante :
 
         # sudo chkconfig network on
 
-6. Inscrire votre installation de hello Red Hat abonnement tooenable des packages à partir du référentiel RHEL hello en exécutant hello de commande suivante :
+6. Inscrivez votre abonnement Red Hat pour installer des packages à partir du référentiel RHEL en exécutant la commande suivante :
 
         # sudo subscription-manager register --auto-attach --username=XXX --password=XXX
 
-7. package de WALinuxAgent Hello, `WALinuxAgent-<version>`, ont été envoyées de référentiel d’extras toohello Red Hat. Activer le référentiel des fonctionnalités supplémentaires de hello en exécutant hello de commande suivante :
+7. Le package WALinuxAgent, `WALinuxAgent-<version>`, a fait l’objet d’une transmission de type push vers le référentiel Red Hat « extras ». Activez le référentiel extras en exécutant la commande suivante :
 
         # subscription-manager repos --enable=rhel-6-server-extras-rpms
 
-8. Modifier la ligne de démarrage du noyau hello dans les paramètres supplémentaires de noyau tooinclude grub pour Azure. toodo, ouvrez `/etc/default/grub` dans un éditeur de texte et l’édition hello `GRUB_CMDLINE_LINUX` paramètre. Par exemple :
+8. Modifiez la ligne de démarrage du noyau dans votre configuration grub pour y inclure les paramètres de noyau supplémentaires pour Azure. Pour cela, ouvrez le fichier `/etc/default/grub` dans un éditeur de texte et modifiez le paramètre `GRUB_CMDLINE_LINUX`. Par exemple :
    
         GRUB_CMDLINE_LINUX="rootdelay=300 console=ttyS0 earlyprintk=ttyS0"
    
-   Cela permet également de garantir que tous les messages de la console sont envoyées toohello premier port série, qui peut aider Azure prise en charge avec les problèmes de débogage. En outre, nous vous recommandons de supprimer hello paramètres suivants :
+   Ce permet également d’assurer que tous les messages de la console sont envoyés vers le premier port série, ce qui peut simplifier les problèmes de débogage pour la prise en charge d’Azure. De plus, nous vous recommandons de supprimer les paramètres suivants :
    
         rhgb quiet crashkernel=auto
    
-    Graphique et silencieuse de démarrage ne sont pas utiles dans un environnement de cloud que nous voulons tous les toobe de journaux hello envoyé toohello de port série. Vous pouvez laisser hello `crashkernel` option configurée Si vous le souhaitez. Notez que ce paramètre réduit hello de mémoire disponible dans la machine virtuelle de hello de 128 Mo ou plus, qui peut être problématique sur les tailles de machine virtuelle plus petites.
+    Le démarrage graphique et transparent n'est pas utile dans un environnement cloud où nous voulons que tous les journaux soient envoyés au port série. Vous pouvez laisser l’option `crashkernel` configurée le cas échéant. Notez que ce paramètre réduit la quantité de mémoire disponible dans la machine virtuelle de 128 Mo ou plus, ce qui peut être problématique sur les machines virtuelles de petite taille.
 
-9. Ajoutez tooinitramfs de modules Hyper-V :
+9. Ajoutez des modules de Hyper-V dans initramfs :
 
-    Modifier `/etc/dracut.conf`et ajoutez hello suivant le contenu :
+    Modifiez `/etc/dracut.conf` et ajoutez le contenu suivant :
 
         add_drivers+="hv_vmbus hv_netvsc hv_storvsc"
 
@@ -566,31 +566,31 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
 
         # dracut -f -v
 
-10. Vérifiez le serveur SSH hello est installé et configuré toostart au moment du démarrage, qui est généralement hello par défaut. Modifier `/etc/ssh/sshd_config` hello tooinclude ligne suivante :
+10. Vérifiez que le serveur SSH est installé et configuré pour démarrer au moment prévu, ce qui est généralement le réglage par défaut. Modifiez `/etc/ssh/sshd_config` pour y inclure la ligne suivante :
 
     ClientAliveInterval 180
 
-11. Installez hello Linux Agent Azure en exécutant hello de commande suivante :
+11. Installez l'agent linux Azure en exécutant la commande suivante :
 
         # sudo yum install WALinuxAgent
 
         # sudo chkconfig waagent on
 
-12. Ne créez pas d’espace d’échange sur le disque du système d’exploitation hello.
+12. Ne créez pas d’espace d’échange sur le disque du système d’exploitation.
 
-    Hello Linux Agent Azure peut configurer automatiquement l’espace d’échange à l’aide du disque de ressources locales hello qui est attaché toohello virtual machine après la configuration de machine virtuelle de hello sur Azure. Notez que hello disque de ressources locales est un disque temporaire, et il doit être vidé lorsque l’ordinateur virtuel hello est déprovisionnée. Après avoir installé hello Linux Agent Azure à l’étape précédente de hello, modifier hello paramètres dans suivants `/etc/waagent.conf` correctement :
+    L’agent Linux Azure peut configurer automatiquement un espace d’échange à l’aide du disque de ressources local attaché à la machine virtuelle après l’approvisionnement de cette dernière sur Azure. Notez que le disque de ressources local est un disque temporaire et qu’il peut être vidé lors de l’annulation de l’approvisionnement de la machine virtuelle. Après avoir installé l’agent Linux Azure lors de l’étape précédente, modifiez en conséquence les paramètres suivants dans le fichier `/etc/waagent.conf` :
 
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-13. Annuler l’inscription d’abonnement de hello (si nécessaire) en exécutant hello de commande suivante :
+13. Annulez l'inscription de l'abonnement (le cas échéant) en exécutant la commande suivante :
 
         # sudo subscription-manager unregister
 
-14. Exécutez hello suivant de commandes toodeprovision hello virtual machine et le préparer pour la configuration sur Azure :
+14. Exécutez les commandes suivantes pour annuler le déploiement de la machine virtuelle et préparer son déploiement sur Azure :
 
         # sudo waagent -force -deprovision
 
@@ -598,13 +598,13 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
 
         # logout
 
-15. Arrêt de la machine virtuelle de hello et convertir le fichier .vhd tooa hello VMDK fichier.
+15. Arrêtez la machine virtuelle, puis convertissez le fichier VMDK en fichier .vhd.
 
-    Tout d’abord convertir le format de tooraw d’image hello :
+    Convertissez tout d'abord l'image au format RAW :
 
         # qemu-img convert -f vmdk -O raw rhel-6.8.vmdk rhel-6.8.raw
 
-    Assurez-vous que la taille hello d’image brute de hello est aligné avec 1 Mo. Sinon, arrondir tooalign de taille hello avec 1 Mo :
+    Assurez-vous que la taille de l’image RAW est alignée sur 1 Mo. Dans le cas contraire, arrondissez la taille pour l’aligner sur 1 Mo :
 
         # MB=$((1024*1024))
         # size=$(qemu-img info -f raw --output json "rhel-6.8.raw" | \
@@ -613,17 +613,17 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
         # rounded_size=$((($size/$MB + 1)*$MB))
         # qemu-img resize rhel-6.8.raw $rounded_size
 
-    Convertir hello disque raw tooa disque dur virtuel de taille fixe :
+    Convertissez le disque brut en VHD à taille fixe :
 
         # qemu-img convert -f raw -o subformat=fixed -O vpc rhel-6.8.raw rhel-6.8.vhd
 
 ### <a name="prepare-a-rhel-7-virtual-machine-from-vmware"></a>Préparer une machine virtuelle RHEL 7 à partir de VMWare
-1. Créer ou modifier hello `/etc/sysconfig/network` et ajoutez hello suivant du texte :
+1. Créez ou modifiez le fichier `/etc/sysconfig/network`, puis ajoutez le texte suivant :
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
 
-2. Créer ou modifier hello `/etc/sysconfig/network-scripts/ifcfg-eth0` et ajoutez hello suivant du texte :
+2. Créez ou modifiez le fichier `/etc/sysconfig/network-scripts/ifcfg-eth0`, puis ajoutez le texte suivant :
    
         DEVICE=eth0
         ONBOOT=yes
@@ -634,29 +634,29 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
         IPV6INIT=no
         NM_CONTROLLED=no
 
-3. Démarrera service de réseau hello au moment du démarrage en exécutant hello de commande suivante :
+3. Assurez-vous que le service réseau commencera aux heures de démarrage en exécutant la commande suivante :
 
         # sudo chkconfig network on
 
-4. Inscrire votre installation de hello Red Hat abonnement tooenable des packages à partir du référentiel RHEL hello en exécutant hello de commande suivante :
+4. Inscrivez votre abonnement Red Hat pour installer des packages à partir du référentiel RHEL en exécutant la commande suivante :
 
         # sudo subscription-manager register --auto-attach --username=XXX --password=XXX
 
-5. Modifier la ligne de démarrage du noyau hello dans les paramètres supplémentaires de noyau tooinclude grub pour Azure. toodo cette modification, ouvre `/etc/default/grub` dans un éditeur de texte et l’édition hello `GRUB_CMDLINE_LINUX` paramètre. Par exemple :
+5. Modifiez la ligne de démarrage du noyau dans votre configuration grub pour y inclure les paramètres de noyau supplémentaires pour Azure. Pour effectuer cette modification, ouvrez le fichier `/etc/default/grub` dans un éditeur de texte et modifiez le paramètre `GRUB_CMDLINE_LINUX`. Par exemple :
    
         GRUB_CMDLINE_LINUX="rootdelay=300 console=ttyS0 earlyprintk=ttyS0 net.ifnames=0"
    
-   Cette configuration garantit également que tous les messages de la console sont envoyées toohello premier port série, qui peut aider Azure prise en charge avec les problèmes de débogage. Il désactive également de nouvelles conventions de nommage RHEL 7 hello pour les cartes réseau. En outre, nous vous recommandons de supprimer hello paramètres suivants :
+   Cette configuration permet également d’assurer que tous les messages de la console sont envoyés vers le premier port série, ce qui peut simplifier les problèmes de débogage pour la prise en charge d’Azure. Cela désactive également les nouvelles conventions d’affectation de noms RHEL 7 pour les cartes réseau. De plus, nous vous recommandons de supprimer les paramètres suivants :
    
         rhgb quiet crashkernel=auto
    
-    Graphique et silencieuse de démarrage ne sont pas utiles dans un environnement de cloud que nous voulons tous les toobe de journaux hello envoyé toohello de port série. Vous pouvez laisser hello `crashkernel` option configurée Si vous le souhaitez. Notez que ce paramètre réduit hello de mémoire disponible dans la machine virtuelle de hello de 128 Mo ou plus, qui peut être problématique sur les tailles de machine virtuelle plus petites.
+    Le démarrage graphique et transparent n'est pas utile dans un environnement cloud où nous voulons que tous les journaux soient envoyés au port série. Vous pouvez laisser l’option `crashkernel` configurée le cas échéant. Notez que ce paramètre réduit la quantité de mémoire disponible dans la machine virtuelle de 128 Mo ou plus, ce qui peut être problématique sur les machines virtuelles de petite taille.
 
-6. Après avoir effectué édition `/etc/default/grub`, exécutez hello après la commande toorebuild hello grub configuration :
+6. Une fois que vous avez fini de modifier `/etc/default/grub`, exécutez la commande suivante pour régénérer la configuration grub :
 
         # sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
-7. Ajoutez tooinitramfs de modules Hyper-V.
+7. Ajoutez des modules de Hyper-V dans initramfs.
 
     Modifiez `/etc/dracut.conf`, ajoutez le contenu :
 
@@ -666,35 +666,35 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
 
         # dracut -f -v
 
-8. Vérifiez le serveur SSH hello est installé et configuré toostart au moment du démarrage. Ce paramètre est généralement hello par défaut. Modifier `/etc/ssh/sshd_config` hello tooinclude ligne suivante :
+8. Vérifiez que le serveur SSH est installé et configuré pour démarrer au moment prévu. Ce paramètre est généralement la valeur par défaut. Modifiez `/etc/ssh/sshd_config` pour y inclure la ligne suivante :
 
         ClientAliveInterval 180
 
-9. package de WALinuxAgent Hello, `WALinuxAgent-<version>`, ont été envoyées de référentiel d’extras toohello Red Hat. Activer le référentiel des fonctionnalités supplémentaires de hello en exécutant hello de commande suivante :
+9. Le package WALinuxAgent, `WALinuxAgent-<version>`, a fait l’objet d’une transmission de type push vers le référentiel Red Hat « extras ». Activez le référentiel extras en exécutant la commande suivante :
 
         # subscription-manager repos --enable=rhel-7-server-extras-rpms
 
-10. Installez hello Linux Agent Azure en exécutant hello de commande suivante :
+10. Installez l'agent linux Azure en exécutant la commande suivante :
 
         # sudo yum install WALinuxAgent
 
         # sudo systemctl enable waagent.service
 
-11. Ne créez pas d’espace d’échange sur le disque du système d’exploitation hello.
+11. Ne créez pas d’espace d’échange sur le disque du système d’exploitation.
 
-    Hello Linux Agent Azure peut configurer automatiquement l’espace d’échange à l’aide du disque de ressources locales hello qui est attaché toohello virtual machine après la configuration de machine virtuelle de hello sur Azure. Notez que hello disque de ressources locales est un disque temporaire, et il doit être vidé lorsque l’ordinateur virtuel hello est déprovisionnée. Après avoir installé hello Linux Agent Azure à l’étape précédente de hello, modifier hello paramètres dans suivants `/etc/waagent.conf` correctement :
+    L’agent Linux Azure peut configurer automatiquement un espace d’échange à l’aide du disque de ressources local attaché à la machine virtuelle après l’approvisionnement de cette dernière sur Azure. Notez que le disque de ressources local est un disque temporaire et qu’il peut être vidé lors de l’annulation de l’approvisionnement de la machine virtuelle. Après avoir installé l’agent Linux Azure lors de l’étape précédente, modifiez en conséquence les paramètres suivants dans le fichier `/etc/waagent.conf` :
 
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-12. Si vous souhaitez abonnement de hello toounregister, exécutez hello de commande suivante :
+12. Si vous souhaitez annuler l'inscription de l'abonnement, exécutez la commande suivante :
 
         # sudo subscription-manager unregister
 
-13. Exécutez hello suivant de commandes toodeprovision hello virtual machine et le préparer pour la configuration sur Azure :
+13. Exécutez les commandes suivantes pour annuler le déploiement de la machine virtuelle et préparer son déploiement sur Azure :
 
         # sudo waagent -force -deprovision
 
@@ -702,13 +702,13 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
 
         # logout
 
-14. Arrêt de la machine virtuelle de hello et convertir le format de disque dur virtuel du fichier toohello hello VMDK.
+14. Arrêtez l’ordinateur virtuel et convertir le fichier VMDK au format VHD.
 
-    Tout d’abord convertir le format de tooraw d’image hello :
+    Convertissez tout d'abord l'image au format RAW :
 
         # qemu-img convert -f vmdk -O raw rhel-7.3.vmdk rhel-7.3.raw
 
-    Assurez-vous que la taille hello d’image brute de hello est aligné avec 1 Mo. Sinon, arrondir tooalign de taille hello avec 1 Mo :
+    Assurez-vous que la taille de l’image RAW est alignée sur 1 Mo. Dans le cas contraire, arrondissez la taille pour l’aligner sur 1 Mo :
 
         # MB=$((1024*1024))
         # size=$(qemu-img info -f raw --output json "rhel-6.8.raw" | \
@@ -717,14 +717,14 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
         # rounded_size=$((($size/$MB + 1)*$MB))
         # qemu-img resize rhel-6.8.raw $rounded_size
 
-    Convertir hello disque raw tooa disque dur virtuel de taille fixe :
+    Convertissez le disque brut en VHD à taille fixe :
 
         # qemu-img convert -f raw -o subformat=fixed -O vpc rhel-7.3.raw rhel-7.3.vhd
 
 ## <a name="prepare-a-red-hat-based-virtual-machine-from-an-iso-by-using-a-kickstart-file-automatically"></a>Préparer une machine virtuelle Red Hat à partir d’un fichier ISO grâce à l’utilisation automatique d’un fichier Kickstart
 ### <a name="prepare-a-rhel-7-virtual-machine-from-a-kickstart-file"></a>Préparer une machine virtuelle RHEL 7 à partir d'un fichier Kickstart
 
-1.  Créer un fichier qui inclut hello suivant le contenu et enregistrer le fichier de hello. Pour plus d’informations sur l’installation de démarrer, consultez hello [Guide d’Installation de démarrer](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/chap-kickstart-installations.html).
+1.  Créez un fichier qui inclut le contenu suivant et enregistrez-le. Pour plus d’informations sur l’installation de Kickstart, voir le document [Kickstart Installation Guide](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Installation_Guide/chap-kickstart-installations.html)(Guide d’installation Kickstart).
 
         # Kickstart for provisioning a RHEL 7 Azure VM
 
@@ -734,7 +734,7 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
         # Use graphical install
         text
 
-        # Do not run hello Setup Agent on first boot
+        # Do not run the Setup Agent on first boot
         firstboot --disable
 
         # Keyboard layouts
@@ -758,7 +758,7 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
         # Partition clearing information
         clearpart --all --initlabel
 
-        # Clear hello MBR
+        # Clear the MBR
         zerombr
 
         # Disk partitioning information
@@ -777,7 +777,7 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
         # Don't configure X
         skipx
 
-        # Power down hello machine after install
+        # Power down the machine after install
         poweroff
 
         %packages
@@ -812,20 +812,20 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
         # Enable waaagent at boot-up
         systemctl enable waagent
 
-        # Disable hello root account
+        # Disable the root account
         usermod root -p '!!'
 
         # Configure swap in WALinuxAgent
         sed -i 's/^\(ResourceDisk\.EnableSwap\)=[Nn]$/\1=y/g' /etc/waagent.conf
         sed -i 's/^\(ResourceDisk\.SwapSizeMB\)=[0-9]*$/\1=2048/g' /etc/waagent.conf
 
-        # Set hello cmdline
+        # Set the cmdline
         sed -i 's/^\(GRUB_CMDLINE_LINUX\)=".*"$/\1="console=tty1 console=ttyS0 earlyprintk=ttyS0 rootdelay=300"/g' /etc/default/grub
 
         # Enable SSH keepalive
         sed -i 's/^#\(ClientAliveInterval\).*$/\1 180/g' /etc/ssh/sshd_config
 
-        # Build hello grub cfg
+        # Build the grub cfg
         grub2-mkconfig -o /boot/grub2/grub.cfg
 
         # Configure network
@@ -845,34 +845,34 @@ Cette section suppose que vous avez déjà installé une machine virtuelle RHEL 
 
         %end
 
-2. Placez le fichier hello où système d’installation hello peut y accéder.
+2. Placez le fichier Kickstart à un emplacement auquel système d’installation peut accéder.
 
-3. Dans le Gestionnaire Hyper-V, créez une machine virtuelle. Sur hello **connecter un disque dur virtuel** page, sélectionnez **attacher un disque dur virtuel ultérieurement**et terminé hello Assistant Nouvel ordinateur virtuel.
+3. Dans le Gestionnaire Hyper-V, créez une machine virtuelle. Sur la page **Connecter un disque dur virtuel**, sélectionnez **Attacher un disque dur virtuel ultérieurement**, puis exécutez l’Assistant Nouvelle machine virtuelle.
 
-4. Ouvrez les paramètres d’ordinateur virtuel hello :
+4. Ouvrez les paramètres de la machine virtuelle :
 
-    a.  Joindre un ordinateur virtuel toohello disque dur virtuel. Assurez-vous que tooselect **Format VHD** et **taille fixe**.
+    a.  Attachez un nouveau disque dur virtuel à la machine virtuelle. Veillez à sélectionner **Format VHD** et **Taille fixe**.
 
-    b.  Attachez l’installation hello lecteur de DVD toohello ISO.
+    b.  Attachez l’ISO d’installation au lecteur de DVD.
 
-    c.  Définissez hello BIOS tooboot à partir du CD.
+    c.  Configurez le BIOS de manière à exécuter le démarrage à partir d’un CD.
 
-5. Démarrer l’ordinateur virtuel de hello. Guide d’installation Bonjour, appuyez sur **onglet** options de démarrage tooconfigure hello.
+5. Démarrez la machine virtuelle. Lorsque le guide d’installation s’affiche, appuyez sur la touche **Tab** pour configurer les options de démarrage.
 
-6. Entrée `inst.ks=<hello location of hello kickstart file>` à fin hello des options de démarrage hello, appuyez sur **entrée**.
+6. Entrez `inst.ks=<the location of the kickstart file>` à la fin des options de démarrage, puis appuyez sur **Entrée**.
 
-7. Attendez que hello installation toofinish. Lorsqu’il est terminé, hello virtual machine s’arrête automatiquement. Votre VHD Linux est maintenant prêt toobe téléchargé tooAzure.
+7. Attendez que l'installation se termine. À la fin de l’installation, la machine virtuelle s’arrête automatiquement. Votre disque dur virtuel Linux est alors prêt pour le téléchargement dans Azure.
 
 ## <a name="known-issues"></a>Problèmes connus
-### <a name="hello-hyper-v-driver-could-not-be-included-in-hello-initial-ram-disk-when-using-a-non-hyper-v-hypervisor"></a>pilote de Hyper-V de Hello n’a pas pu être inclus dans le disque initiale hello lors de l’utilisation d’un hyperviseur Hyper-V
+### <a name="the-hyper-v-driver-could-not-be-included-in-the-initial-ram-disk-when-using-a-non-hyper-v-hypervisor"></a>Impossible d’inclure le pilote Hyper-V dans le disque virtuel initial lors de l’utilisation d’un hyperviseur non-Hyper-V
 
-Dans certains cas, les programmes d’installation de Linux inclut ne peut-être pas les pilotes hello pour Hyper-V dans hello RAM disque initiale (initrd ou initramfs) à moins que Linux détecte qu’il s’exécute dans un environnement Hyper-V.
+Dans certains cas, les programmes d’installation de Linux n’incluent pas les pilotes pour Hyper-V dans le disque virtuel initial (initrd ou initramfs), sauf si Linux détecte que ce dernier s’exécute dans un environnement Hyper-V.
 
-Lorsque vous utilisez un tooprepare système (c'est-à-dire, Virtualbox, Xen, etc.) de virtualisation différent votre image Linux, vous devrez toorebuild initrd tooensure qui a au moins hello hv_vmbus et les modules de noyau hv_storvsc sont disponibles sur le disque virtuel hello initiale. Il s’agit au moins un problème connu sur les systèmes qui reposent sur la distribution de Red Hat hello en amont.
+Lorsque vous utilisez un système de virtualisation différent (c’est-à-dire Virtualbox, Xen, etc.) pour préparer votre image Linux, vous pouvez avoir besoin de recréer initrd pour vous assurer que les modules noyau hv_vmbus et hv_storvsc figurent au moins parmi les modules disponibles sur le disque virtuel initial. Ceci est un problème connu, touchant au moins les systèmes basés sur la distribution Red Hat en amont.
 
-tooresolve ce problème, ajoutez tooinitramfs de modules Hyper-V et le reconstruire :
+Pour résoudre ce problème, ajoutez des modules Hyper-V dans initramfs, puis régénérez ce dernier :
 
-Modifier `/etc/dracut.conf`et ajoutez hello suivant le contenu :
+Modifiez `/etc/dracut.conf` et ajoutez le contenu suivant :
 
         add_drivers+="hv_vmbus hv_netvsc hv_storvsc"
 
@@ -880,9 +880,9 @@ Régénérez initramfs :
 
         # dracut -f -v
 
-Pour plus d’informations, consultez les informations de hello sur [reconstruction initramfs](https://access.redhat.com/solutions/1958).
+Pour plus d’informations, voir l’article concernant la [régénération d’initramfs](https://access.redhat.com/solutions/1958).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous êtes maintenant prêt toouse votre Red Hat Enterprise Linux disque dur virtuel toocreate nouvelles machines virtuelles dans Azure. S’il s’agit hello première fois que vous téléchargez tooAzure de fichier .vhd hello, consultez les étapes 2 et 3 dans [création et chargement d’un disque dur virtuel qui contient le système d’exploitation de Linux hello](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
+Vous êtes maintenant prêt à utiliser votre disque dur virtuel Red Hat Enterprise Linux pour créer des machines virtuelles dans Azure. S’il s’agit de la première fois que vous chargez le fichier .vhd sur Azure, consultez les étapes 2 et 3 dans [Création et chargement d’un disque dur virtuel contenant le système d’exploitation Linux](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
 
-Pour plus d’informations sur les hyperviseurs hello qui sont certifiés toorun Red Hat Enterprise Linux, consultez [site Web de Red Hat hello](https://access.redhat.com/certified-hypervisors).
+Pour plus d’informations sur les hyperviseurs certifiés pour l’exécution de Red Hat Enterprise Linux, voir le [site web de Red Hat](https://access.redhat.com/certified-hypervisors).

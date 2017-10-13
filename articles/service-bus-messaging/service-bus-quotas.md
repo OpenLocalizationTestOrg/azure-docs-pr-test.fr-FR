@@ -1,5 +1,5 @@
 ---
-title: aaaMicrosoft Azure Service Bus quotas et limites | Documents Microsoft
+title: Quotas et limites Microsoft Azure Service Bus | Microsoft Docs
 description: "Découvrez les limites et quotas pour Azure Service Bus."
 services: service-bus-messaging
 documentationcenter: na
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: sethm
-ms.openlocfilehash: 707793da776d7cb1f7df1dfcae3c24452c93eb54
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9a364adad3342b211a647eb743776a47812b75f4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="service-bus-quotas"></a>Quotas Service Bus
 Cette section répertorie les quotas de base et les seuils de limitation qui s’appliquent à la messagerie de Microsoft Azure Service Bus.

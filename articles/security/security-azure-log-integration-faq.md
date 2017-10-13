@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure Forum aux questions sur l’intégration de journal | Documents Microsoft"
+title: "Forum aux questions sur l’intégration des journaux Azure | Microsoft Docs"
 description: "Cet article répond à des questions sur l’intégration des journaux Azure."
 services: security
 documentationcenter: na
@@ -15,39 +15,39 @@ ms.workload8: na
 ms.date: 08/07/2017
 ms.author: TomSh
 ms.custom: azlog
-ms.openlocfilehash: e886035c9a180d0cd5fcbe9cc02483782df6dbe4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bfdc7154160bb6bb7dc9c46eb2352ce74310c4de
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-log-integration-faq"></a>Forum aux questions sur l’intégration des journaux Azure
 Cet article contient les réponses à certaines questions fréquemment posées sur l’intégration des journaux Azure. 
 
-Intégration d’Azure journal est un service de système d’exploitation Windows que vous pouvez utiliser les journaux bruts toointegrate à partir de vos ressources Azure dans vos systèmes de gestion (SIEM) local sécurité événements et des informations. Cette intégration offre un tableau de bord unifiée pour tous vos actifs, localement ou dans le cloud de hello. pour vous permettre d’agréger, de mettre en corrélation, d’analyser et d’alerter en cas d’événements de sécurité associés à vos applications.
+Azure Log Integration est un service du système d’exploitation Windows que vous pouvez utiliser pour intégrer des journaux bruts de vos ressources Azure dans vos systèmes SIEM (Security Information and Event Management) locaux. Cette intégration offre un tableau de bord unifié pour toutes vos ressources, en local ou dans le cloud, pour vous permettre d’agréger, de mettre en corrélation, d’analyser et d’alerter en cas d’événements de sécurité associés à vos applications.
 
-## <a name="is-hello-azure-log-integration-software-free"></a>Est un logiciel d’intégration des journaux Azure de hello libre ?
-Oui. Il n’existe aucun frais pour hello logiciel d’intégration des journaux Azure.
+## <a name="is-the-azure-log-integration-software-free"></a>Le logiciel d’intégration des journaux Azure est-il disponible ?
+Oui. Il n’existe aucun frais pour le logiciel d’intégration des journaux Azure.
 
 ## <a name="where-is-azure-log-integration-available"></a>Où l’intégration des journaux Azure est-elle disponible ?
 
 Elle est actuellement disponible dans les versions commerciales d’Azure et dans Azure Government, mais n’est pas disponible en Chine ni en Allemagne.
 
-## <a name="how-can-i-see-hello-storage-accounts-from-which-azure-log-integration-is-pulling-azure-vm-logs"></a>Comment puis-je voir les comptes de stockage hello à partir de laquelle intégration des journaux Azure collecte des journaux de machine virtuelle Azure ?
-Exécutez la commande hello **liste des sources azlog**.
+## <a name="how-can-i-see-the-storage-accounts-from-which-azure-log-integration-is-pulling-azure-vm-logs"></a>Comment puis-je voir les comptes de stockage desquels l’intégration des journaux Azure extrait des journaux de machines virtuelles Azure ?
+Exécutez la commande **azlog source list**.
 
-## <a name="how-can-i-tell-which-subscription-hello-azure-log-integration-logs-are-from"></a>Comment puis-je savoir quel hello abonnement Azure intégration du journal proviennent de journaux ?
+## <a name="how-can-i-tell-which-subscription-the-azure-log-integration-logs-are-from"></a>Comment puis-je savoir de quel abonnement proviennent les journaux d’intégration Azure ?
 
-Dans les cas de hello des journaux d’audit qui sont placés dans hello **AzureResourcemanagerJson** répertoires, ID d’abonnement hello est dans le nom du fichier journal hello. Cela vaut également pour les journaux Bonjour **AzureSecurityCenterJson** dossier. Par exemple :
+Dans le cas des journaux d’audit qui sont placés dans les répertoires **AzureResourcemanagerJson**, l’ID d’abonnement figure dans le nom du fichier journal. Il en va de même pour les journaux dans le dossier **AzureSecurityCenterJson**. Par exemple :
 
 20170407T070805_2768037.0000000023.**1111e5ee-1111-111b-a11e-1e111e1111dc**.json
 
-Les journaux d’audit Azure Active Directory incluent les ID de client hello en tant que partie du nom de hello.
+Les noms des journaux d’audit Azure Active Directory incluent l’ID de locataire.
 
-Les journaux de diagnostic sont lus à partir d’un concentrateur d’événements n’incluent pas d’ID d’abonnement hello en tant que partie du nom de hello. Au lieu de cela, ils comprennent le nom convivial de hello spécifié dans le cadre de la création de source de concentrateur d’événements hello hello. 
+Le nom des journaux de diagnostic qui sont lus à partir d’un Event Hub ne comprend pas l’ID d’abonnement. Toutefois, il comprend le nom convivial spécifié lors de la création de la source Event Hub. 
 
-## <a name="how-can-i-update-hello-proxy-configuration"></a>Comment puis-je mettre à jour la configuration proxy hello ?
-Si le paramètre de proxy n’autorise pas directement accès au stockage Azure, ouvrez hello **AZLOG. EXE. CONFIGURATION** fichier **c:\Program Files\Microsoft Azure journal intégration**. Mise à jour Bonjour fichier tooinclude Bonjour **defaultProxy** section avec l’adresse du proxy hello de votre organisation. Une fois la mise à jour de hello est effectuée, arrêter et démarrer le service de hello à l’aide des commandes hello **net stop azlog** et **net démarrer azlog**.
+## <a name="how-can-i-update-the-proxy-configuration"></a>Comment puis-je mettre à jour la configuration du proxy ?
+Si vos paramètres de proxy ne permettent pas un accès direct au stockage Azure, ouvrez le fichier **AZLOG. EXE. CONFIGURATION** dans **c:\Program Files\Microsoft Azure Log Integration**. Mettez à jour le fichier de manière à y inclure la section **defaultProxy** avec l’adresse de proxy de votre organisation. Une fois la mise à jour effectuée, arrêtez et démarrez le service à l’aide des commandes **net stop azlog** et **net start azlog**.
 
     <?xml version="1.0" encoding="utf-8"?>
     <configuration>
@@ -65,42 +65,42 @@ Si le paramètre de proxy n’autorise pas directement accès au stockage Azure,
         <performanceCounters filemappingsize="20971520" />
       </system.diagnostics>   
 
-## <a name="how-can-i-see-hello-subscription-information-in-windows-events"></a>Comment puis-je voir les informations d’abonnement hello dans des événements Windows ?
-Ajoutez le nom convivial toohello ID d’abonnement hello lors de l’ajout de la source de hello :
+## <a name="how-can-i-see-the-subscription-information-in-windows-events"></a>Comment puis-je consulter les informations d’abonnement dans des événements Windows ?
+Ajoutez l’ID d’abonnement au nom convivial lors de l’ajout de la source :
 
     Azlog source add <sourcefriendlyname>.<subscription id> <StorageName> <StorageKey>  
-l’événement Hello XML a hello suivant les métadonnées, y compris l’ID d’abonnement hello :
+L’XML de l’événement a les métadonnées suivantes, notamment l’ID d’abonnement :
 
 ![XML de l’événement][1]
 
 ## <a name="error-messages"></a>messages d'erreur
-### <a name="when-i-run-hello-command-azlog-createazureid-why-do-i-get-hello-following-error"></a>Lors de l’exécution commande hello **azlog createazureid**, je reçois hello l’erreur suivante ?
+### <a name="when-i-run-the-command-azlog-createazureid-why-do-i-get-the-following-error"></a>Lors de l’exécution de la commande **azlog createazureid**, pourquoi le message d’erreur suivant est-il généré ?
 Error:
 
-  *Échec toocreate AAD Application - client 72f988bf-86f1-41af-91ab-2d7cd011db37 - raison = « Interdit » - Message = 'pas de privilèges suffisants de l’opération de toocomplete hello'.*
+  *Échec de l’application AAD - Locataire 72f988bf-86f1-41af-91ab-2d7cd011db37 - Raison = « Interdit » - Message = « Privilèges insuffisants pour terminer l’opération ». (Failed to create AAD Application - Tenant 72f988bf-86f1-41af-91ab-2d7cd011db37 - Reason = ’Forbidden’ - Message = ’Insufficient privileges to complete the operation.’)*
 
-Hello **azlog createazureid** toocreate un principal de service dans tous les locataires hello Azure AD pour les abonnements hello hello connexion Azure a accès à des tentatives de commande. Si votre connexion Azure est un utilisateur invité dans ce locataire Azure AD, commande hello échoue avec « opération privilèges insuffisants toocomplete hello. » Demandez les locataire hello admin tooadd votre compte en tant qu’utilisateur de client de hello.
+La commande **Azlog createazureid** tente de créer un principal du service dans tous les locataires Azure AD pour les abonnements auxquels la connexion Azure a accès. Si votre connexion Azure n'a que le rôle d’Invité dans ce locataire Azure AD, la commande échoue avec « Privilèges insuffisants pour terminer l’opération ». Demandez à l’administrateur du locataire d’ajouter votre compte en tant qu’utilisateur dans le locataire.
 
-### <a name="when-i-run-hello-command-azlog-authorize-why-do-i-get-hello-following-error"></a>Lors de l’exécution commande hello **azlog autoriser**, je reçois hello l’erreur suivante ?
+### <a name="when-i-run-the-command-azlog-authorize-why-do-i-get-the-following-error"></a>Lors de l’exécution de la commande **azlog authorize**, pourquoi le message d’erreur suivant est-il généré ?
 Error:
 
-  *Avertissement de création d’attribution de rôle - AuthorizationFailed : client de hello janedo@microsoft.com' avec l’objet id 'fe9e03e4-4dad-4328-910f-fd24a9660bd2' autorisation tooperform aucune action n’est « Microsoft.Authorization/roleAssignments/write » sur l’étendue ' / abonnements / 70d 95299-d689-4c 97-b971-0d8ff0000000 ».*
+  *Avertissement à la création d’attribution de rôle : AuthorizationFailed : le client janedo@microsoft.com’ avec l’ID d’objet « fe9e03e4-4dad-4328-910f-fd24a9660bd2 » n’est pas autorisé à effectuer l’action « Microsoft.Authorization/roleAssignments/write » sur « / subscriptions/70d95299-d689-4c97-b971-0d8ff0000000 ».*
 
-Hello **azlog autoriser** commande attribue hello rôle de principal du service du lecteur toohello Azure AD (créée avec **azlog createazureid**) les abonnements toohello fourni. Si hello connexion Azure n’est pas un coadministrateur ou un propriétaire d’abonnement de hello, elle échoue avec un message d’erreur « Échec de l’autorisation ». Azure basé sur le rôle de contrôle d’accès (RBAC) de coadministrateur ou un propriétaire est toocomplete nécessaire à cette action.
+La commande **Azlog authorize** attribue le rôle de lecteur au principal du service Azure AD (créé avec **Azlog createazureid**) dans les abonnements fournis. Si la connexion Azure n’a pas le rôle Coadministrateur ou un Propriétaire de l’abonnement, elle échoue avec le message d’erreur « Échec de l’autorisation ». Le contrôle d’accès en fonction du rôle (RBAC) d’Azure du Coadministrateur ou du Propriétaire est nécessaire pour effectuer cette action.
 
-## <a name="where-can-i-find-hello-definition-of-hello-properties-in-hello-audit-log"></a>Où puis-je trouver définition hello des propriétés de hello dans le journal d’audit de hello ?
+## <a name="where-can-i-find-the-definition-of-the-properties-in-the-audit-log"></a>Où puis-je trouver la définition des propriétés dans le journal d’audit ?
 Consultez l'article :
 
 * [Opérations d’audit avec Azure Resource Manager](../azure-resource-manager/resource-group-audit.md)
-* [Liste des événements de gestion hello dans un abonnement de hello API REST du moniteur de Azure](https://msdn.microsoft.com/library/azure/dn931934.aspx)
+* [Liste des événements de gestion dans un abonnement dans l’API REST Azure Monitor (en anglais)](https://msdn.microsoft.com/library/azure/dn931934.aspx)
 
 ## <a name="where-can-i-find-details-on-azure-security-center-alerts"></a>Où puis-je trouver plus d’informations sur les alertes de l’Azure Security Center ?
-Consultez [toosecurity répond et de la gestion des alertes dans le centre de sécurité Azure](../security-center/security-center-managing-and-responding-alerts.md).
+Consultez la rubrique [Gestion et résolution des alertes de sécurité dans le Centre de sécurité Azure](../security-center/security-center-managing-and-responding-alerts.md).
 
 ## <a name="how-can-i-modify-what-is-collected-with-vm-diagnostics"></a>Comment puis-je modifier les données collectées avec les diagnostics de la machine virtuelle ?
-Pour plus d’informations sur la façon dont tooget, modifier et définir la configuration de Diagnostics Windows Azure hello, consultez [tooenable utiliser PowerShell Diagnostics Azure dans une machine virtuelle exécutant Windows](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+Pour plus d’informations sur la manière d’obtenir, modifier et définir la configuration des diagnostics Azure, consultez la page [Utiliser PowerShell pour activer Azure Diagnostics sur une machine virtuelle exécutant Windows](../virtual-machines/windows/ps-extensions-diagnostics.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-Hello, l’exemple suivant obtient la configuration des Diagnostics Windows Azure hello :
+L’exemple suivant obtient la configuration des diagnostics Azure :
 
     -AzureRmVMDiagnosticsExtension -ResourceGroupName AzLog-Integration -VMName AzlogClient
     $publicsettings = (Get-AzureRmVMDiagnosticsExtension -ResourceGroupName AzLog-Integration -VMName AzlogClient).PublicSettings
@@ -110,25 +110,25 @@ Hello, l’exemple suivant obtient la configuration des Diagnostics Windows Azur
 
     $xmlconfig | Out-File -Encoding utf8 -FilePath "d:\WADConfig.xml"
 
-Hello, l’exemple suivant modifie la configuration des Diagnostics Windows Azure hello. Dans cette configuration, uniquement l’événement ID 4624 et 4625 d’ID d’événement sont collectés à partir du journal des événements de sécurité hello. Microsoft Antimalware pour Azure événements sont collectés à partir du journal des événements système hello. Pour plus d’informations sur l’utilisation de hello d’expressions XPath, consultez [consommation d’événements](https://msdn.microsoft.com/library/windows/desktop/dd996910(v=vs.85)).
+L’exemple suivant modifie la configuration des diagnostics Azure. Dans cette configuration, seuls les ID d’événement 4624 et 4625 sont collectés dans le journal des événements de sécurité. Des événements Microsoft Antimalware pour Azure sont collectés dans le journal des événements système. Pour plus d’informations sur l’utilisation d’expressions XPath, consultez [Consommation d’événements](https://msdn.microsoft.com/library/windows/desktop/dd996910(v=vs.85)).
 
     <WindowsEventLog scheduledTransferPeriod="PT1M">
         <DataSource name="Security!*[System[(EventID=4624 or EventID=4625)]]" />
         <DataSource name="System!*[System[Provider[@Name='Microsoft Antimalware']]]"/>
     </WindowsEventLog>
 
-Hello exemple suivant définit configuration des Diagnostics Windows Azure hello :
+L’exemple suivant définit la configuration des diagnostics Azure :
 
     $diagnosticsconfig_path = "d:\WADConfig.xml"
     Set-AzureRmVMDiagnosticsExtension -ResourceGroupName AzLog-Integration -VMName AzlogClient -DiagnosticsConfigurationPath $diagnosticsconfig_path -StorageAccountName log3121 -StorageAccountKey <storage key>
 
-Une fois que vous apportez des modifications, vérifiez tooensure de compte de stockage hello que hello correct d’événements sont collectés.
+Après avoir apporté les modifications, vérifiez le compte de stockage pour vous assurer que les événements corrects sont collectés.
 
-Si vous rencontrez des problèmes pendant l’installation de hello et de configuration, ouvrez un [demande de support](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request). Sélectionnez **journal intégration** en tant que service hello pour lequel vous demandez la prise en charge.
+Si vous rencontrez des problèmes pendant l’installation et la configuration, ouvrez une [demande de support](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request). Pour ce faire, sélectionnez **Intégration du journal** comme service pour lequel vous demandez de l’aide.
 
-## <a name="can-i-use-azure-log-integration-toointegrate-network-watcher-logs-into-my-siem"></a>Puis-je utiliser des journaux de l’Observateur réseau Azure journal intégration toointegrate dans mon SIEM ?
+## <a name="can-i-use-azure-log-integration-to-integrate-network-watcher-logs-into-my-siem"></a>Puis-je utiliser l’intégration des journaux Azure pour intégrer des journaux Network Watcher dans mon SIEM ?
 
-Azure Network Watcher génère de grandes quantités d’informations de journalisation. Ces journaux ne sont pas toobe revient envoyé tooa SIEM. destination Hello pris en charge uniquement pour les journaux de l’Observateur réseau est un compte de stockage. Intégration d’Azure journal ne prend pas en charge la lecture de ces journaux et ce qui les rend disponible tooa SIEM.
+Azure Network Watcher génère de grandes quantités d’informations de journalisation. Ces journaux ne sont pas destinés à être envoyés à un serveur SIEM. La seule destination prise en charge pour les journaux Network Watcher est un compte de stockage. L’intégration des journaux Azure ne prend pas en charge la lecture de ces journaux et leur mise à disposition d’un serveur SIEM.
 
 <!--Image references-->
 [1]: ./media/security-azure-log-integration-faq/event-xml.png

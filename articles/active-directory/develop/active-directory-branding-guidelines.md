@@ -1,6 +1,6 @@
 ---
-title: aaaBranding instructions pour les Applications | Documents Microsoft
-description: "Guide d’une gamme complète des ressources destinées aux toodeveloper pour Azure Active Directory"
+title: Directives de personnalisation des applications | Microsoft Docs
+description: "Guide complet sur les ressources destinées aux développeurs pour Azure Active Directory"
 services: active-directory
 documentationcenter: dev-center-name
 author: skwan
@@ -15,77 +15,77 @@ ms.workload: identity
 ms.date: 04/27/2017
 ms.author: skwan
 ms.custom: aaddev
-ms.openlocfilehash: e43f884c736a0dcb2e6e51293962ef1e2636ad70
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4f6806cde52ce965a8f78a5cce8a24c3d1248594
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="branding-guidelines-for-applications"></a>Directives de personnalisation des applications
-Cette rubrique explique hello marque les instructions à suivre lors du développement d’applications avec Azure Active Directory (Azure AD). Ces instructions aideront à orienter les clients lorsqu’ils souhaitent toouse leur travail ou de compte scolaire, géré dans Azure AD ou de son compte personnel pour l’application de tooyour d’inscription et de connexion.
+Cette rubrique décrit les directives de personnalisation que vous devez suivre lors du développement d’applications avec Azure Active Directory (Azure AD). Ces directives vous permettent de diriger vos clients quand ils souhaitent utiliser leur compte professionnel ou scolaire géré dans Azure AD ou leur compte personnel pour s’inscrire et se connecter à votre application.
 
 ## <a name="personal-accounts-vs-work-or-school-accounts-from-microsoft"></a>Comptes personnels et comptes professionnels/scolaires de Microsoft
 Microsoft gère deux types de compte d’utilisateur :
 
-* **Comptes personnels** (anciennement Windows Live ID). Ces comptes représentent la relation hello entre *individuels* utilisateurs et Microsoft et qui servent tooaccess appareils et services de Microsoft. Ces comptes sont prévus pour un usage personnel.
-* **Comptes professionnels ou scolaires.** Ces comptes sont gérés par Microsoft pour le compte d’organisations qui utilisent Azure Active Directory. Ces comptes sont utilisé toosign dans tooOffice 365 et d’autres services professionnels de Microsoft.
+* **Comptes personnels** (anciennement Windows Live ID). Ces comptes représentent la relation entre des utilisateurs *individuels* et Microsoft et sont utilisés pour accéder aux services et appareils de Microsoft destinés au grand public. Ces comptes sont prévus pour un usage personnel.
+* **Comptes professionnels ou scolaires.** Ces comptes sont gérés par Microsoft pour le compte d’organisations qui utilisent Azure Active Directory. Ces comptes sont utilisés pour se connecter à Office 365 et d’autres services métier de Microsoft.
 
-Microsoft sont généralement des comptes professionnels ou scolaires attribué aux utilisateurs de tooend (employés, étudiants, employés fédéraux) par leurs organisations (entreprise, établissement scolaire, organisme gouvernemental). Ces comptes sont que soit masterisé directement dans le cloud hello, dans la plateforme de hello Azure AD ou synchronisé tooAzure AD à partir d’un répertoire local, tel que Windows Server Active Directory. Microsoft est hello *opérateur* du travail de hello ou comptes d’établissement scolaire, mais hello comptes sont détenus et contrôlés par l’organisation de hello.
+Les comptes professionnels ou scolaires Microsoft sont généralement affectés à des utilisateurs finaux (employés, étudiants, fonctionnaires) par leurs organisations (entreprise, école, administration). Ces comptes sont régis directement dans le cloud, dans la plateforme Azure AD, ou synchronisés avec Azure AD à partir d’un annuaire local tel que Windows Server Active Directory. Microsoft est le *responsable* des comptes professionnels ou scolaires, mais ces comptes sont détenus et contrôlés par l’organisation.
 
-## <a name="referring-tooazure-ad-accounts-in-your-application"></a>Référence tooAzure AD des comptes dans votre application
-Microsoft n’expose pas les utilisateurs finaux toohello Azure ou noms de marque Active Directory hello et aucun vous convient.
+## <a name="referring-to-azure-ad-accounts-in-your-application"></a>Faire référence aux comptes Azure AD dans votre application
+Microsoft n’expose pas les utilisateurs finaux aux noms de marque Azure ou Active Directory et il doit en être de même pour vous.
 
-* Une fois que les utilisateurs sont connectés, vous devez utiliser le nom et le logo autant que possible l’organisation hello. Cela est préférable à l’utilisation de termes génériques tels que « votre organisation ».
-* Lorsque les utilisateurs n’êtes pas connectés, vous devez consulter les comptes tootheir en tant que « travail comptes professionnels ou scolaires » et utilisez hello Microsoft logo tooconvey que ces comptes sont gérés par Microsoft. N’utilisez pas de termes tels que « compte d’entreprise » et « compte commercial », car ils embrouillent les utilisateurs.
+* Une fois que les utilisateurs sont connectés, vous devez utiliser le nom et le logo de l’organisation autant que possible. Cela est préférable à l’utilisation de termes génériques tels que « votre organisation ».
+* Quand les utilisateurs ne sont pas connectés, vous devez faire référence à leurs comptes en parlant de « comptes professionnels ou scolaires » et utiliser le logo Microsoft pour indiquer que ces comptes sont gérés par Microsoft. N’utilisez pas de termes tels que « compte d’entreprise » et « compte commercial », car ils embrouillent les utilisateurs.
 
 ## <a name="user-account-pictogram"></a>Pictogramme de compte d’utilisateur
-Dans une version antérieure de ces directives, nous recommandions d’utiliser un pictogramme de « badge bleu ». Selon les commentaires utilisateur et le développeur, nous maintenant recommandons hello utilisation du logo de Microsoft hello à la place. Les utilisateurs comprennent qu’ils peuvent réutiliser le compte de hello qu’ils utilisent avec Office 365 ou autres toosign de services d’entreprise Microsoft dans tooyour application.
+Dans une version antérieure de ces directives, nous recommandions d’utiliser un pictogramme de « badge bleu ». Suite aux commentaires des utilisateurs et des développeurs, nous recommandons désormais d’utiliser le logo Microsoft. Cela permet aux utilisateurs de comprendre qu’ils peuvent réutiliser le compte dont ils se servent avec Office 365 ou d’autres services métier Microsoft pour se connecter à votre application.
 
 ## <a name="signing-up-and-signing-in-with-azure-ad"></a>Inscription et connexion avec Azure AD
-Votre application peut présenter des chemins d’accès distincts pour l’inscription et connexion et hello les sections suivantes proposent une aide visuelle pour les deux scénarios.
+Votre application peut présenter des chemins distincts pour l’inscription et la connexion, et les sections suivantes fournissent des conseils visuels pour les deux scénarios.
 
-**Si votre application prend en charge l’inscription utilisateur final (par exemple, modèle libre de tootrial ou freemium)**: vous pouvez afficher un **connexion** bouton qui permet aux utilisateurs tooaccess de votre application avec son compte professionnel ou son compte personnel. Azure AD affiche un Bonjour invite de consentement première fois qu’ils accèdent à votre application.
+**Si votre application prend en charge l’inscription des utilisateurs finaux (par exemple, pour les modèles d’évaluation gratuits ou Premium)** : vous pouvez afficher un bouton de **connexion** qui permet aux utilisateurs d’accéder à votre application avec leur compte professionnel ou personnel. Azure AD affiche une invite de consentement la première fois que les utilisateurs accèdent à votre application.
 
-**Si votre application nécessite des autorisations auxquelles seuls les administrateurs peuvent consentir ou si votre application requiert une licence d’entreprise**: vous devez séparer l’acquisition administrateur de la connexion utilisateur. Hello **bouton « obtenir cette application »** va rediriger toosign administrateurs dans puis demandez-lui de consentement toogrant part des utilisateurs dans leur organisation. Cela a hello avantage de supprimer les utilisateurs finaux consentement invites tooyour application.
+**Si votre application nécessite des autorisations auxquelles seuls les administrateurs peuvent consentir ou si votre application requiert une licence d’entreprise**: vous devez séparer l’acquisition administrateur de la connexion utilisateur. Le **bouton « obtenir cette application »** redirige les administrateurs vers la connexion, après quoi ils sont invités à donner leur consentement pour le compte des utilisateurs de leur organisation. Cela présente l’avantage supplémentaire de supprimer de votre application les invites de consentement pour les utilisateurs finaux.
 
 ## <a name="visual-guidance-for-app-acquisition"></a>Aide visuelle pour l’acquisition de l’application
-Le lien « obtenir une application hello » doit rediriger accorder l’accès hello utilisateur toohello Azure AD (autoriser) page, tooallow tooauthorize d’administrateur d’une organisation des données de l’organisation tootheir qui sont hébergées par Microsoft d’accéder aux toohave de votre application. Plus d’informations sur comment toorequest accès sont abordés dans hello [intégration d’Applications avec Azure Active Directory](active-directory-integrating-applications.md) l’article.
+Le lien « obtenir l’application » doit rediriger l’utilisateur vers la page d’octroi d’accès d’Azure AD, afin de permettre à l’administrateur d’une organisation d’autoriser votre application à accéder aux données de son organisation hébergées par Microsoft. Pour plus d'informations sur la demande d'accès, consultez l'article [Intégration d'applications dans Azure Active Directory](active-directory-integrating-applications.md) .
 
-Une fois que les administrateurs de consentement tooyour application, ils peuvent choisir tooadd il expérience de lanceur d’applications tootheir utilisateurs Office 365 (accessible à partir d’alvéolée de hello et de [https://portal.office.com/myapps](https://portal.office.com/myapps)). Si vous souhaitez tooadvertise cette fonctionnalité, vous pouvez utiliser des termes comme « Ajouter cette organisation de tooyour application » et d’afficher un bouton comme suit :
+Une fois que les administrateurs ont donné leur consentement à votre application, ils peuvent l’ajouter au lanceur d’applications Office 365 de leurs utilisateurs (accessible à partir de l’icône correspondante dans Office 365 et de [https://portal.office.com/myapps](https://portal.office.com/myapps)). Pour faire la promotion de cette fonctionnalité, vous pouvez utiliser des phrases telles que « Ajouter cette application à votre organisation » et afficher un bouton tel que celui-ci :
 
 ![Types d’application et scénarios](./media/active-directory-branding-guidelines/add-to-my-org.png)
 
 Toutefois, nous vous recommandons de fournir un texte explicatif plutôt que de vous contenter des boutons. Par exemple :
 
-> *Si vous utilisez déjà Office 365 ou autre service de l’entreprise à partir de Microsoft, vous pouvez accorder simplement les données de l’organisation tooyour < your_app_name > accès. Cela permettra à vos utilisateurs de tooaccess < your_app_name > avec leurs comptes de travail existant.*
+> *Si vous utilisez déjà Office 365 ou un autre service métier de Microsoft, vous pouvez tout simplement octroyer l’accès de &lt;nom_de_votre_application&gt; aux données de votre organisation. Cela permet à vos utilisateurs d’accéder à <nom_de_votre_application> à l’aide de leur compte professionnel existant.*
 > 
 > 
 
 ## <a name="visual-guidance-for-sign-in"></a>Aide visuelle pour la connexion
-Votre application doit afficher un signe de bouton qui redirige les utilisateurs toohello connexion point de terminaison qui correspond le protocole toohello vous utilisez toointegrate avec Azure AD. Hello suivant la section fournit des détails sur ce bouton qui doit ressembler à.
+Votre application doit afficher un bouton de connexion qui redirige les utilisateurs vers le point de terminaison de connexion correspondant au protocole que vous utilisez pour l’intégration à Azure AD. La section suivante fournit des détails sur l’aspect recommandé pour ce bouton.
 
 ### <a name="pictogram-and-sign-in-with-microsoft"></a>Pictogramme et « Se connecter avec Microsoft »
-C’est l’association hello de logo de Microsoft hello et hello « Sign in with « termes du contrat Microsoft qui représente de manière unique Azure AD parmi les autres fournisseurs d’identité que votre application peut prendre en charge. Si vous n’avez pas suffisamment d’espace pour « Microsoft in with de l’authentification », il est OK tooshorten il trop « connexion ».
+C’est l’association du logo Microsoft et des termes « Se connecter avec Microsoft » qui permet de distinguer Azure AD des autres fournisseurs d’identité que votre application peut prendre en charge. Si vous ne disposez pas d’espace suffisant pour « Se connecter avec Microsoft », vous pouvez utiliser l’abréviation « Se connecter ».
 
 ![Types d’application et scénarios](./media/active-directory-branding-guidelines/sign-in-with-microsoft-light.png)
 
 ![Types d’application et scénarios](./media/active-directory-branding-guidelines/sign-in-light.png)
 
-Vous pouvez également utiliser un jeu de couleurs foncé pour les boutons de hello.
+Vous pouvez également utiliser un modèle de couleurs sombres pour les boutons.
 
 ![Types d’application et scénarios](./media/active-directory-branding-guidelines/sign-in-with-microsoft-dark.png)
 
 ![Types d’application et scénarios](./media/active-directory-branding-guidelines/sign-in-dark.png)
 
 ## <a name="branding-dos-and-donts"></a>Choses à faire et à éviter en matière de personnalisation
-**FAIRE** utilisez « compte professionnel ou scolaire » en combinaison avec les utilisateurs finaux hello « Microsoft in with de l’authentification » bouton tooprovide explication supplémentaire toohelp reconnaît s’ils peuvent l’utiliser. **N’UTILISEZ PAS** de termes tels que « compte d’entreprise » ou « compte commercial ».
+**UTILISEZ** « compte professionnel ou scolaire » dans la combinaison avec le bouton « Se connecter avec Microsoft » pour fournir une explication supplémentaire afin d’aider les utilisateurs finaux à déterminer s’ils peuvent l’utiliser. **N’UTILISEZ PAS** de termes tels que « compte d’entreprise » ou « compte commercial ».
 
-**N’UTILISEZ PAS** « ID Office 365 » ni « ID Azure ». Office 365 est également hello nom d’un offre de Microsoft, qui n’utilise pas Azure AD pour l’authentification du client.
+**N’UTILISEZ PAS** « ID Office 365 » ni « ID Azure ». Office 365 est également le nom d’une offre grand public de Microsoft qui n’utilise pas Azure AD pour l’authentification.
 
-**Ne pas** modifier le logo de Microsoft hello.
+**N’UTILISEZ PAS** le logo Microsoft.
 
-**Ne pas** exposer les marques les utilisateurs finaux toohello Azure ou Active Directory. Il est toutefois OK toouse ce termes du contrat avec les développeurs, les professionnels de l’informatique et les administrateurs.
+**N’UTILISEZ PAS** les utilisateurs finaux à la marque Azure ou Active Directory. Il est toutefois tout à fait concevable d’utiliser ces termes avec les développeurs, les professionnels de l’informatique et les administrateurs.
 
 ## <a name="navigation-dos-and-donts"></a>Choses à faire et à éviter pour la navigation
-**FAIRE** fournissent un moyen de toosign utilisateurs out et basculer le compte d’utilisateur tooanother. Bien que la plupart des gens aient un seul compte personnel Microsoft/Facebook/Google/Twitter, ils sont souvent associés à plus d’une organisation. La prise en charge de plusieurs utilisateurs connectés sera bientôt offerte.
+**FOURNISSEZ** aux utilisateurs un moyen de se déconnecter et de passer à un autre compte d’utilisateur. Bien que la plupart des gens aient un seul compte personnel Microsoft/Facebook/Google/Twitter, ils sont souvent associés à plus d’une organisation. La prise en charge de plusieurs utilisateurs connectés sera bientôt offerte.
 

@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure modèle d’hébergement de Service Fabric | Documents Microsoft"
+title: "Modèle d’hébergement Azure Service Fabric | Microsoft Docs"
 description: "Décrit la relation entre les réplicas (ou instances) d’un service Service Fabric déployé et le processus hôte du service."
 services: service-fabric
 documentationcenter: .net
@@ -12,39 +12,39 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/15/2017
 ms.author: harahma
-ms.openlocfilehash: 30e0ba19cd672a722f76477a311ecef7c213b055
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ca7092a06a9ffce8383ca8bc9f70ce312cdf9de4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="service-fabric-hosting-model"></a>Modèle d’hébergement Service Fabric
-Cet article fournit une vue d’ensemble des modèles fournis par l’infrastructure de Service d’hébergement d’applications et décrit les différences de hello hello **partagé des processus** et **processus exclusif** modèles. Il décrit le fonctionnement d’une application déployée sur un nœud de l’infrastructure de Service et la relation entre les réplicas ou les instances de service de hello et processus hôte de service de hello.
+Cet article fournit une vue d’ensemble des modèles d’hébergement d’applications fournis par Service Fabric et décrit les différences entre les modèles à **processus partagé** et à **processus exclusif**. Il décrit le fonctionnement d’une application déployée sur un nœud Service Fabric et présente la relation entre les réplicas (ou instances) du service et le processus hôte du service.
 
 Avant de continuer, veillez à vous familiariser avec le [modèle d’application Service Fabric][a1] et à comprendre les différents concepts et leurs relations. 
 
 > [!NOTE]
 > Dans cet article, par souci de simplicité et sauf indication contraire :
 >
-> - Toutes les utilisations de word *réplica* fait référence tooboth un réplica d’une instance d’un service statless ou d’un service avec état.
-> - *CodePackage* est équivalent traité trop*ServiceHost* processus qui enregistre une *ServiceType* et les réplicas des hôtes de services qui *ServiceType*.
+> - Le terme *réplica* fait référence à la fois au réplica d’un service avec état et à une instance d’un service sans état.
+> - *CodePackage* est traité de la même manière que le processus *ServiceHost*, qui inscrit un *ServiceType* et héberge des réplicas de services du même *ServiceType*.
 >
 
-toounderstand hello du modèle d’hébergement, nous guider un exemple. Supposons que nous avons un *ApplicationType* appelé « MyAppType » qui possède un *ServiceType* « MyServiceType » fourni par le *ServicePackage* « MyServicePackage », lequel possède un *CodePackage* « MyCodePackage » qui inscrit le *ServiceType* « MyServiceType » lors de son exécution.
+Pour comprendre le modèle d’hébergement, commençons par un exemple. Supposons que nous avons un *ApplicationType* appelé « MyAppType » qui possède un *ServiceType* « MyServiceType » fourni par le *ServicePackage* « MyServicePackage », lequel possède un *CodePackage* « MyCodePackage » qui inscrit le *ServiceType* « MyServiceType » lors de son exécution.
 
-Imaginons que nous avons un cluster à 3 nœuds et que nous créons une *application* **fabric:/App1** de type « MyAppType ». À l’intérieur de cette *application* **fabric:/App1**, nous créons un service **fabric:/App1/ServiceA** de type « MyServiceType » qui comporte 2 partitions (par exemple, **P1** & **P2**) avec 3 réplicas par partition. Hello diagramme suivant montre vue hello de cette application tel qu’il finit déployé sur un nœud.
+Imaginons que nous avons un cluster à 3 nœuds et que nous créons une *application* **fabric:/App1** de type « MyAppType ». À l’intérieur de cette *application* **fabric:/App1**, nous créons un service **fabric:/App1/ServiceA** de type « MyServiceType » qui comporte 2 partitions (par exemple, **P1** & **P2**) avec 3 réplicas par partition. Le schéma suivant illustre la vue de cette application lorsqu’elle est déployée sur un nœud.
 
 <center>
 ![Vue de l’application déployée sur un nœud][node-view-one]
 </center>
 
-Service Fabric activé 'MyServicePackage' qui a démarré 'MyCodePackage', qui héberge les réplicas à partir de deux partitions hello c'est-à-dire **P1** & **P2**. Notez que tous les nœuds hello cluster de hello aura même vue puisque nous avons choisi le nombre de réplicas par toonumber égale de partition des nœuds de cluster de hello. Nous allons maintenant créer un autre service **fabric:/App1/ServiceB** dans l’application **fabric:/App1** qui comporte 1 partition (par exemple **P3**), avec 3 réplicas pour chaque partition. Diagramme suivant montre la nouvelle vue de hello sur le nœud de hello :
+Service Fabric a activé « MyServicePackage », qui a démarré « MyCodePackage », lequel héberge les réplicas des deux partitions, c’est-à-dire **P1** & **P2**. Notez que tous les nœuds du cluster auront la même vue puisque nous avons choisi un nombre de réplicas par partition égal au nombre de nœuds dans le cluster. Nous allons maintenant créer un autre service **fabric:/App1/ServiceB** dans l’application **fabric:/App1** qui comporte 1 partition (par exemple **P3**), avec 3 réplicas pour chaque partition. Le schéma suivant illustre la nouvelle vue sur le nœud :
 
 <center>
 ![Vue de l’application déployée sur un nœud][node-view-two]
 </center>
 
-Comme nous pouvons voir Service Fabric placé le nouveau réplica de partition de hello **P3** du service **fabric : / App1/ServiceB** dans hello existant l’activation du service 'MyServicePackage'. Créons maintenant une autre *application* **fabric:/App2** de type « MyAppType » ; à l’intérieur de cette application **fabric:/App2**, nous allons créer le service **fabric: App2/ServiceA** qui comporte 2 partitions (par exemple **P4** & **P5**) avec 3 réplicas pour chaque partition. Suivant les diagrammes affiche hello nouveau nœud :
+Comme nous pouvons le constater, Service Fabric a placé le nouveau réplica de la partition **P3** du service **fabric:/App1/ServiceB** dans l’activation existante de « MyServicePackage ». Créons maintenant une autre *application* **fabric:/App2** de type « MyAppType » ; à l’intérieur de cette application **fabric:/App2**, nous allons créer le service **fabric: App2/ServiceA** qui comporte 2 partitions (par exemple **P4** & **P5**) avec 3 réplicas pour chaque partition. Le schéma suivant illustre la nouvelle vue du nœud :
 
 <center>
 ![Vue de l’application déployée sur un nœud][node-view-three]
@@ -53,12 +53,12 @@ Comme nous pouvons voir Service Fabric placé le nouveau réplica de partition d
 Cette fois, Service Fabric a activé une nouvelle copie de « MyServicePackage », qui démarre une nouvelle copie de « MyCodePackage », et les réplicas des deux partitions du service **fabric:/App2/ServiceA** (c’est-à-dire **P4** & **P5**) sont placés dans cette nouvelle copie « MyCodePackage ».
 
 ## <a name="shared-process-model"></a>Modèle à processus partagé
-Ce que nous avons vu ci-dessus est le modèle fourni par l’infrastructure de Service d’hébergement de la valeur par défaut hello et est référencé tooas **partagé des processus** modèle. Dans ce modèle, pour un donné *application*, qu’une seule copie d’un donné *ServicePackage* est activé sur un *nœud* (qui démarre hello tous les *CodePackages* qu’il contient) et tous les hello réplicas de tous les services d’une donnée *ServiceType* sont placés dans hello *CodePackage* qui enregistre que *ServiceType*. En d’autres termes, toutes les hello réplicas de tous les services d’une donnée *ServiceType* partager hello même processus.
+Nous venons de voir le modèle d’hébergement par défaut fourni par Service Fabric, que l’on appelle le modèle à **processus partagé**. Dans ce modèle, pour une *application* donnée, seule une copie d’un *ServicePackage* donné est activée sur un *nœud* (qui démarre tous les *CodePackages* qu’il contient) et tous les réplicas de tous les services d’un *ServiceType* donné sont placés dans le *CodePackage* qui inscrit ce *ServiceType*. En d’autres termes, tous les réplicas de tous les services d’un *ServiceType* donné partagent le même processus.
 
 ## <a name="exclusive-process-model"></a>Modèle à processus exclusif
-Bonjour autre modèle d’hébergement fourni par le Service Fabric est **processus exclusif** modèle. Dans ce modèle, sur une donnée *nœud*, pour placer chaque réplica, l’infrastructure de Service Active une nouvelle copie de *ServicePackage* (qui démarre tous les hello *CodePackages* qu’il contient ) et le réplica est placé dans hello *CodePackage* que hello inscrit *ServiceType* de hello service toowhich réplica appartient. En d’autres termes, chaque réplica réside dans son propre processus dédié. 
+L’autre modèle d’hébergement fourni par Service Fabric est le modèle à **processus exclusif**. Dans ce modèle, sur un *nœud* donné, pour placer chaque réplica, Service Fabric active une nouvelle copie d’un *ServicePackage* (qui démarre tous les *CodePackages* qu’il contient) et le réplica est placé dans le *CodePackage* qui a inscrit le *ServiceType* du service auquel le réplica appartient. En d’autres termes, chaque réplica réside dans son propre processus dédié. 
 
-Ce modèle est pris en charge à partir de la version 5.6 de Service Fabric. **Processus exclusif** modèle peut être choisi au moment de hello de création de service de hello (à l’aide de [PowerShell][p1], [reste] [ r1]ou [fabricclient ne][c1]) en spécifiant **ServicePackageActivationMode** en tant que 'ExclusiveProcess'.
+Ce modèle est pris en charge à partir de la version 5.6 de Service Fabric. Le modèle à **processus exclusif** peut être choisi au moment de la création du service (à l’aide de [PowerShell][p1], de [REST][r1] ou de [FabricClient][c1]) en spécifiant **ServicePackageActivationMode** en tant que « ExclusiveProcess ».
 
 ```powershell
 PS C:\>New-ServiceFabricService -ApplicationName "fabric:/App1" -ServiceName "fabric:/App1/ServiceA" -ServiceTypeName "MyServiceType" -Stateless -PartitionSchemeSingleton -InstanceCount -1 -ServicePackageActivationMode "ExclusiveProcess"
@@ -90,66 +90,66 @@ Si votre manifeste d’application comporte un service par défaut, vous pouvez 
   </Service>
 </DefaultServices>
 ```
-Pour poursuivre avec notre exemple ci-dessus, vous permet de créer un autre service **fabric : / App1/ServiceC** dans l’application **fabric : / App1** ayant 2 partitions peuvent (dites **P6**  &  **P7**) et 3 réplicas par partition avec **ServicePackageActivationMode** définir too'ExclusiveProcess'. Diagramme suivant montre la nouvelle vue sur le nœud de hello :
+En poursuivant avec l’exemple ci-dessus, créons maintenant un autre service **fabric:/App1/ServiceC** dans l’application **fabric:/App1** qui comporte 2 partitions (par exemple **P6** & **P7**), avec 3 réplicas par partition et où **ServicePackageActivationMode** est défini sur « ExclusiveProcess ». Le schéma suivant illustre la nouvelle vue sur le nœud :
 
 <center>
 ![Vue de l’application déployée sur un nœud][node-view-four]
 </center>
 
-Comme vous pouvez le voir, Service Fabric a activé deux nouvelles copies de « MyServicePackage » (une pour chaque réplica des partitions **P6** & **P7**) et placé chaque réplica dans sa copie dédiée de *CodePackage*. Un autre toonote chose ici est, lorsque **processus exclusif** modèle est utilisé, pour une donnée *application*, de plusieurs copies d’une donnée *ServicePackage* peut être actif sur un  *Nœud*. Dans l’exemple ci-dessus, nous voyons que trois copies de « MyServicePackage » sont actives pour **fabric:/App1**. Chacune de ces copies actives de « MyServicePackage » est associé à un **ServicePackageActivationId** qui identifie cette copie dans *l’application* **fabric:/App1**.
+Comme vous pouvez le voir, Service Fabric a activé deux nouvelles copies de « MyServicePackage » (une pour chaque réplica des partitions **P6** & **P7**) et placé chaque réplica dans sa copie dédiée de *CodePackage*. Notez également que, lorsque le modèle à **processus exclusif** est utilisé, plusieurs copies d’un *ServicePackage* donné peuvent être actives sur un *nœud* pour une *application* donnée. Dans l’exemple ci-dessus, nous voyons que trois copies de « MyServicePackage » sont actives pour **fabric:/App1**. Chacune de ces copies actives de « MyServicePackage » est associé à un **ServicePackageActivationId** qui identifie cette copie dans *l’application* **fabric:/App1**.
 
 Lorsque seul le modèle à **processus partagé** est utilisé pour une *application*, comme **fabric:/App2** dans l’exemple ci-dessus, il n’existe qu’une seule copie active de *ServicePackage* sur un *nœud* et le **ServicePackageActivationId** de cette activation de *ServicePackage* est « chaîne vide ».
 
 > [!NOTE]
->- **Traitement partagé** modèle d’hébergement correspond trop**ServicePackageAtivationMode** égal **SharedProcess**. Modèle d’hébergement de la valeur par défaut hello et **ServicePackageAtivationMode** ne doivent pas être spécifié au moment de hello de création de service de hello.
+>- Le modèle d’hébergement à **processus partagé** correspond à un **ServicePackageActivationMode** égal à **SharedProcess**. Il s’agit du modèle d’hébergement par défaut et il n’est pas nécessaire de spécifier **ServicePackageActivationMode** au moment de la création du service.
 >
->- **Processus exclusif** modèle d’hébergement correspond trop**ServicePackageAtivationMode** égal **ExclusiveProcess** et devez toobe explicitement spécifiée au moment de hello de création de hello service. 
+>- Le modèle à **processus exclusif** correspond à un **ServicePackageActivationMode** égal à **ExclusiveProcess** et doit être explicitement spécifié au moment de la création du service. 
 >
->- Modèle d’hébergement d’un service peut être connu en interrogeant hello [description du service] [ p2] et en examinant la valeur de **ServicePackageAtivationMode**.
+>- Le modèle d’hébergement d’un service peut être déterminé en interrogeant la [description du service][p2] et en examinant la valeur de **ServicePackageActivationMode**.
 >
 >
 
 ## <a name="working-with-deployed-service-package"></a>Utilisation d’un package de services déployé
-Une copie active d’un *ServicePackage* sur un nœud est appelée [package de services déployé][p3]. Comme mentionné précédemment, lorsque **processus exclusif** modèle est utilisé pour la création de services, pour une donnée *application*, il peut y avoir plusieurs service déployé des packages pour hello même  *ServicePackage*. Lors de l’exécution des opérations comme package de service spécifique toodeployed [création de rapports d’intégrité d’un package de service déployé] [ p4] ou [le redémarrage du package de code d’un package de service déployé] [ p5] etc., **ServicePackageActivationId** besoins toobe fourni tooidentify un package de service déployé spécifique.
+Une copie active d’un *ServicePackage* sur un nœud est appelée [package de services déployé][p3]. Comme mentionné précédemment, lorsque le modèle à **processus exclusif** est utilisé pour la création de services, il peut y avoir, pour une *application* donnée, plusieurs packages de services déployés pour le même *ServicePackage*. Lorsque vous exécutez des opérations spécifiques à un package de services déployé, par exemple lorsque [vous générez des rapports d’intégrité pour un package de services déployé][p4] ou que [vous redémarrez le package de code d’un package de services déployé][p5] etc., vous devez spécifier le **ServicePackageActivationId** pour pouvoir identifier un package de services déployé spécifique.
 
- **ServicePackageActivationId** d’un service déployé le package peut être obtenu en interrogeant la liste hello de [déployé des packages de service] [ p3] sur un nœud. Lors de l’interrogation [déployé des types de service][p6], [déployé réplicas] [ p7] et [déployé des packages de code] [ p8] sur un nœud, résultat de la requête hello contient également hello **ServicePackageActivationId** du package de service parent déployée.
+ Le **ServicePackageActivationId** d’un package de services déployé peut être obtenu en interrogeant la liste des [packages de services déployés][p3] sur un nœud. Lorsque vous envoyez une requête sur les [types de services déployés][p6], les [réplicas déployés][p7] et les [packages de code déployés][p8] sur un nœud, le résultat de la requête contient également le **ServicePackageActivationId** du package de service parent déployé.
 
 > [!NOTE]
->- Sous le modèle d’hébergement à **processus partagé**, une seule copie d’un *ServicePackage* est activée sur un *nœud* donné et pour une *application* donnée. Il a **ServicePackageActivationId** égal trop*une chaîne vide* et ne doit pas être spécifié lors de l’exécution de package de service déployé operations. 
+>- Sous le modèle d’hébergement à **processus partagé**, une seule copie d’un *ServicePackage* est activée sur un *nœud* donné et pour une *application* donnée. Le **ServicePackageActivationId** est alors égal à une *chaîne vide* et il n’est pas nécessaire de le spécifier lors de l’exécution des opérations associées au package de services déployé. 
 >
-> - Sous le modèle d’hébergement à **processus exclusif**, une ou plusieurs copies d’un *ServicePackage* peuvent être actives sur un *nœud* donné et pour une *application* donnée. Chaque activation a un *non vide* **ServicePackageActivationId** et doit être toobe spécifié lors de l’exécution de package de service déployé operations. 
+> - Sous le modèle d’hébergement à **processus exclusif**, une ou plusieurs copies d’un *ServicePackage* peuvent être actives sur un *nœud* donné et pour une *application* donnée. Chaque activation est associée à un **ServicePackageActivationId** *non vide* qui doit être spécifié lors de l’exécution des opérations associées au package de services déployé. 
 >
-> - Si **ServicePackageActivationId** est ommited too'empty chaîne la valeur par défaut ». Si un service déployé package qui a été activée sous **partagé des processus** modèle est présent, l’opération sera exécutée, sinon hello opération échouera.
+> - Si le **ServicePackageActivationId** est omis, la valeur par défaut sera une « chaîne vide ». En présence d’un package de services déployé qui a été activé sous le modèle à **processus partagé**, l’opération sera exécutée sur ce serveur ; sinon l’opération échouera.
 >
-> - Il n’est pas recommandé tooquery qu’une seule fois et cache **ServicePackageActivationId** lorsqu’il est généré dynamiquement et peut changer pour différentes raisons. Avant d’effectuer une opération nécessitant une **ServicePackageActivationId**, vous devez tout d’abord interroger les liste hello de [déployé des packages de service] [ p3] sur un nœud et l’utiliser ensuite  *ServicePackageActivationId** à partir de l’opération d’origine de hello de tooperform de résultats de requête.
+> - Il n’est pas recommandé d’effectuer une seule requête et de mettre en cache le **ServicePackageActivationId** car il est généré dynamiquement et peut changer pour différentes raisons. Avant d’effectuer une opération qui requiert un **ServicePackageActivationId**, vous devez commencer par interroger la liste des [packages de services déployés][p3] sur un nœud, puis utiliser le *ServicePackageActivationId** généré à partir du résultat de la requête pour exécuter l’opération d’origine.
 >
 >
 
 ## <a name="guest-executable-and-container-applications"></a>Applications d’exécutables invités et de conteneurs
-Service Fabric traite les applications [d’exécutables invités][a2] et de [conteneurs][a3] en tant que services sans état autonomes ; autrement dit, il n’y a aucun runtime Service Fabric dans *ServiceHost* (un processus ou un conteneur). Étant donné que ces services sont autonomes, le nombre de réplicas par *ServiceHost* n’est pas applicable à ces services. Bonjour configuration la plus courante utilisée avec ces services est à partition unique avec [InstanceCount] [ c2] égal trop-1 (autrement dit, une seule copie hello du code de service en cours d’exécution sur chaque nœud du cluster). 
+Service Fabric traite les applications [d’exécutables invités][a2] et de [conteneurs][a3] en tant que services sans état autonomes ; autrement dit, il n’y a aucun runtime Service Fabric dans *ServiceHost* (un processus ou un conteneur). Étant donné que ces services sont autonomes, le nombre de réplicas par *ServiceHost* n’est pas applicable à ces services. La configuration la plus couramment utilisée avec ces services est la partition unique avec un [InstanceCount][c2] égal à -1 (autrement dit, une seule copie du code de service est en cours d’exécution sur chaque nœud du cluster). 
 
-par défaut de Hello **ServicePackageActivationMode** pour ces services est **SharedProcess** auquel cas l’infrastructure de Service Active uniquement une seule copie de *ServicePackage* sur un *Nœud* pour une donnée *application* ce qui ne signifie qu’une seule copie du code de service s’exécutera une *nœud*. Si vous souhaitez plusieurs copies de votre toorun de code de service sur un *nœud* lorsque vous créez plusieurs services (*Service1* trop*ServiceN*) de *ServiceType* (spécifié dans *ServiceManifest*) ou lorsque votre service est de plusieurs partitions, vous devez spécifier **ServicePackageActivationMode** en tant que **ExclusiveProcess**au moment de hello de création de service de hello.
+Le **ServicePackageActivationMode** par défaut pour ces services est **SharedProcess** ; dans ce cas, Service Fabric active uniquement une copie de *ServicePackage* sur un *nœud* pour une *application* donnée, ce qui signifie qu’une seule copie du code de service s’exécutera sur un *nœud*. Si vous souhaitez que plusieurs copies de votre code de service s’exécutent sur un *nœud* lorsque vous créez plusieurs services (*Service1* à *ServiceN*) d’un *ServiceType* (spécifié dans *ServiceManifest*) ou lorsque votre service comporte plusieurs partitions, vous devez spécifier **ServicePackageActivationMode** en tant que **ExclusiveProcess** au moment de la création du service.
 
 ## <a name="changing-hosting-model-of-an-existing-service"></a>Modification du modèle d’hébergement d’un service existant
-La modification de modèle d’hébergement d’un service existant à partir de **partagé des processus** trop**processus exclusif** et vice versa à mettre à niveau ou de mise à jour (ou par défaut de spécification dans l’application de service manifeste) n’est actuellement pas pris en charge. Cette fonctionnalité sera prise en charge dans les futures versions.
+Le mécanisme de mise à niveau ou de mise à jour (ou la spécification du service par défaut dans le manifeste d’application) ne permet pas actuellement de passer, pour un service existant, d’un modèle d’hébergement à **processus partagé** vers un modèle d’hébergement à **processus exclusif** et inversement. Cette fonctionnalité sera prise en charge dans les futures versions.
 
 ## <a name="choosing-between-shared-process-and-exclusive-process-model"></a>Choix entre un modèle à processus partagé et un modèle à processus exclusif
-À la fois ces modèles d’hébergement ont ses avantages et inconvénients utilisateur les besoins et tooevaluate celui qui convient le mieux à leurs besoins. **Traitement partagé** modèle permet d’optimiser l’utilisation des ressources du système d’exploitation, car le processus moins sont générés, plusieurs réplicas dans hello même processus peuvent partager des ports, etc.. Toutefois, si un des réplicas de hello rencontre une erreur où il doit toobring hôte de service hello vers le bas, il aura un impact sur tous les autres réplicas dans le même processus.
+Ces deux modèles d’hébergement présentent des avantages et des inconvénients. Il est donc important que l’utilisateur détermine le modèle qui répond le mieux à ses besoins. Le modèle à **processus partagé** garantit une meilleure utilisation des ressources du système d’exploitation, puisqu’il réduit le nombre de processus générés, permet à plusieurs réplicas du même processus de partager des ports, etc. Toutefois, si l’un des réplicas rencontre une erreur qui l’oblige à arrêter l’hôte de service, cela aura un impact sur tous les autres réplicas du même processus.
 
- Le modèle à **processus exclusif** isole mieux les réplicas en les associant à un processus dédié. Aussi, un dysfonctionnement d’un réplica n’aura aucune incidence sur les autres réplicas. Il est utile pour les cas où le partage de port n'est pas pris en charge par le protocole de communication hello. Il facilite hello capacité tooapply la gouvernance des ressources au niveau du réplica. Hello de d’autre part, **processus exclusif** consomme plus de ressources du système d’exploitation qu’il génère un processus pour chaque réplica sur le nœud de hello.
+ Le modèle à **processus exclusif** isole mieux les réplicas en les associant à un processus dédié. Aussi, un dysfonctionnement d’un réplica n’aura aucune incidence sur les autres réplicas. Ce modèle est utile lorsque le partage de port n’est pas pris en charge par le protocole de communication. Il permet également d’appliquer la gouvernance des ressources au niveau du réplica. En revanche, le modèle à **processus exclusif** consomme plus de ressources du système d’exploitation puisqu’il engendre un processus pour chaque réplica présent sur le nœud.
 
 ## <a name="exclusive-process-model-and-application-model-considerations"></a>Considérations relatives au modèle à processus exclusif et au modèle d’application
-Hello recommandé toomodel de la façon dont votre application dans le Service Fabric est tookeep une *ServiceType* par *ServicePackage* et ce modèle fonctionne bien pour la plupart des applications de hello. 
+Pour modéliser votre application dans Service Fabric, il est recommandé de conserver un seul *ServiceType* par *ServicePackage*. Ce modèle fonctionne très bien pour la plupart des applications. 
 
-Toutefois, les scénarios particuliers tooenable où un *ServiceType* par *ServicePackage* peut-être pas souhaitable, d’un point de vue fonctionnel, Service Fabric permet toohave plusieurs *ServiceType* par *ServicePackage* (un seul *CodePackage* peut inscrire plusieurs fois *ServiceType*). Voici quelques-uns des scénarios hello où ces configurations peuvent être utiles :
+Cependant, pour prendre en charge des scénarios particuliers où il n’est pas souhaitable, d’un point de vue fonctionnel, d’avoir un *ServiceType* par *ServicePackage*, Service Fabric autorise les configurations avec plusieurs *ServiceTypes* par *ServicePackage* (et où un seul *CodePackage* peut inscrire plusieurs *ServiceTypes*). Voici quelques scénarios dans lesquels ces configurations peuvent être utiles :
 
-- Vous voulez toooptimize l’utilisation des ressources du système d’exploitation par génération dynamique des processus moins et ayant une densité plus élevée de réplica par processus.
-- Réplicas à partir de différents ServiceTypes doivent tooshare certaines données communes ayant une initialisation haute ou la mémoire de coût.
-- Vous avez une offre de service gratuit et que vous souhaitez tooput une limite l’utilisation des ressources en plaçant tous les réplicas du service de hello dans le même processus.
+- Vous souhaitez optimiser l’utilisation des ressources du système d’exploitation en générant moins de processus et en augmentant la densité de réplica par processus.
+- Les réplicas de différents ServiceTypes doivent partager certaines données qui présentent un coût élevé d’initialisation ou de mémoire.
+- Vous disposez d’une offre de service gratuite et vous souhaitez limiter l’utilisation des ressources en plaçant tous les réplicas du service dans le même processus.
 
-Le modèle d’hébergement à **processus exclusif** n’est pas cohérent avec le modèle d’application qui utilise plusieurs *ServiceTypes* par *ServicePackage*. Il s’agit, car plusieurs *ServiceTypes* par *ServicePackage* est tooachieve conçue supérieur partage de ressources entre les réplicas et permet une densité plus élevée de réplica par processus. Cela est contraire toowhat **processus exclusif** modèle est conçu tooachieve.
+Le modèle d’hébergement à **processus exclusif** n’est pas cohérent avec le modèle d’application qui utilise plusieurs *ServiceTypes* par *ServicePackage*. En effet, une configuration à plusieurs *ServiceTypes* par *ServicePackage* est destinée à améliorer le partage des ressources entre les réplicas et à augmenter la densité de réplica par processus. Cette utilisation est contraire à l’intention du modèle à **processus exclusif**.
 
-Considérez les cas de hello de plusieurs *ServiceTypes* par *ServicePackage* avec différents *CodePackage* chaque enregistrement *ServiceType*. Supposons que nous avons un *ServicePackage* « MultiTypeServicePackage » qui comporte deux *CodePackages* :
+Prenons le cas de plusieurs *ServiceTypes* par *ServicePackage* avec un *CodePackage* différent qui inscrit chaque *ServiceType*. Supposons que nous avons un *ServicePackage* « MultiTypeServicePackage » qui comporte deux *CodePackages* :
 
 - « MyCodePackageA » inscrit le *ServiceType* « MyServiceTypeA ».
 - « MyCodePackageB » inscrit le *ServiceType* « MyServiceTypeB ».
@@ -159,26 +159,26 @@ Supposons, à présent, que nous créons une *application* **fabric:/SpecialApp*
 - Le service **fabric:/SpecialApp/ServiceA** de type « MyServiceTypeA » avec deux partitions (par exemple, **P1** et **P2**) et 3 réplicas par partition.
 - Le service **fabric:/SpecialApp/ServiceB** de type « MyServiceTypeB » avec deux partitions (par exemple, **P3** et **P4**) et 3 réplicas par partition.
 
-Sur un nœud donné, les deux services hello aura deux réplicas. Étant donné que nous avons utilisé **processus exclusif** services hello du modèle toocreate, Service Fabric seront activent une nouvelle copie de 'MyServicePackge' pour chaque réplica. Chaque activation de «MultiTypeServicePackage » démarre une copie de « MyCodePackageA » et « MyCodePackageB ». Toutefois, seul 'MyCodePackageA' ou 'MyCodePackageB' héberge le réplica de hello pour laquelle 'MultiTypeServicePackge' a été activé. Diagramme suivant montre le mode de nœud hello :
+Sur un nœud donné, les deux services auront chacun deux réplicas. Étant donné que nous avons utilisé le modèle à **processus exclusif** pour créer les services, Service Fabric activera une nouvelle copie de « MyServicePackage » pour chaque réplica. Chaque activation de «MultiTypeServicePackage » démarre une copie de « MyCodePackageA » et « MyCodePackageB ». Cependant, le réplica pour lequel « MultiTypeServicePackage » a été activé ne pourra être hébergé que par « MyCodePackageA » ou par « MyCodePackageB ». Le schéma qui suit présente la vue du nœud :
 
 <center>
 ![Vue de l’application déployée sur un nœud][node-view-five]
 </center>
 
- Comme nous pouvons le constater, l’activation de hello de 'MultiTypeServicePackge' pour le réplica de partition **P1** du service **fabric : / SpecialApp/services**, 'MyCodePackageA' héberge un réplica de hello et ' MyCodePackageB' est simplement en cours d’exécution. De même, dans l’activation de 'MultiTypeServicePackge' pour le réplica de partition **P3** du service **fabric : / SpecialApp/ServiceB**, 'MyCodePackageB' héberge un réplica de hello et 'MyCodePackageA' est juste en cours d’exécution et ainsi de suite. Par conséquent, plus de hello nombre de *CodePackages* (inscription différents *ServiceTypes*) par *ServicePackage*, plue sera l’utilisation des ressources redondant. 
+ Comme nous pouvons le constater, dans l’activation de « MultiTypeServicePackage » pour le réplica de la partition **P1** du service **fabric:/SpecialApp/ServiceA**, « MyCodePackageA » héberge le réplica et « MyCodePackageB » est simplement en cours d’exécution. De même, dans l’activation de « MultiTypeServicePackage » pour le réplica de la partition **P3** du service **fabric:/SpecialApp/ServiceB**, « MyCodePackageB » héberge le réplica et « MyCodePackageA » est simplement en cours d’exécution, et ainsi de suite. Par conséquent, plus il y a de *CodePackages* (inscrivant différents *ServiceTypes*) par *ServicePackage*, plus on utilisera de ressources redondantes. 
  
- Hello d’autre part, si nous créons des services **fabric : / SpecialApp/services** et **fabric : / SpecialApp/ServiceB** avec **partagé des processus** de modèle, est de l’infrastructure de Service activer qu’une seule copie de 'MultiTypeServicePackge' pour *application* **fabric : / SpecialApp** (comme nous l’avons vu précédemment). 'MyCodePackageA' destiné à héberger tous les réplicas de service **fabric : / SpecialApp/services** (ou de n’importe quel service de type toobe 'MyServiceTypeA' plus précise) et 'MyCodePackageB' destiné à héberger tous les réplicas de service **fabric : / SpecialApp/ServiceB** (ou de n’importe quel service de type toobe 'MyServiceTypeB' plus précis). Diagramme suivant montre le mode de nœud hello dans ce paramètre : 
+ En revanche, si nous créons les services **fabric:/SpecialApp/ServiceA** et **fabric:/SpecialApp/ServiceB** avec le modèle à **processus partagé**, Service Fabric activera une seule copie de « MultiTypeServicePackage » pour *l’application* **fabric:/SpecialApp** (comme nous l’avons vu précédemment). « MyCodePackageA » hébergera tous les réplicas du service **fabric:/SpecialApp/ServiceA** (ou, pour être plus précis, de tous les services de type « MyServiceTypeA ») et « MyCodePackageB » hébergera tous les réplicas du service **fabric:/SpecialApp/ServiceB** (ou, pour être plus précis, de tous les services de type « MyServiceTypeB »). Le schéma qui suit présente la vue du nœud dans cette configuration : 
 
 <center>
 ![Vue de l’application déployée sur un nœud][node-view-six]
 </center>
 
-Bonjour exemple ci-dessus, vous pouvez penser si 'MyCodePackageA' inscrit 'MyServiceTypeA' et 'MyServiceTypeB' et il n’existe aucune « MyCodePackageB », puis il y aura non redondant *CodePackage* en cours d’exécution. Cela est correct, cependant, comme mentionné précédemment, ce modèle d’application n’est pas aligné sur modèle d’hébergement à **processus exclusif**. Si l’objectif est tooput chaque réplica dans son propre dédiée de processus, puis inscrire les *ServiceTypes* de même *CodePackage* n’est pas nécessaire et en les mettant chacune *ServiceType* dans son propre *ServicePacakge* est un choix plus naturel.
+Dans l’exemple ci-dessus, vous pourriez penser que si « MyCodePackageA » inscrit « MyServiceTypeA » et « MyServiceTypeB » et s’il n’existe aucun « MyCodePackageB », aucun *CodePackage* redondant ne sera exécuté. Cela est correct, cependant, comme mentionné précédemment, ce modèle d’application n’est pas aligné sur modèle d’hébergement à **processus exclusif**. Si l’objectif est de placer chaque réplica dans son propre processus dédié, alors il n’est pas nécessaire d’inscrire les deux *ServiceTypes* du même *CodePackage*. Il est plus naturel de placer chaque *ServiceType* dans son propre *ServicePackage*.
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Empaqueter une application] [ a4] et toodeploy prêt.
+[Empaquetez une application][a4] et préparez-la pour le déploiement.
 
-[Déployer et supprimer des applications] [ a5] décrit comment instances d’application toomanage toouse PowerShell.
+[Déployer et supprimer des applications][a5] explique comment utiliser PowerShell pour gérer des instances d’application.
 
 <!--Image references-->
 [node-view-one]: ./media/service-fabric-hosting-model/node-view-one.png
@@ -188,7 +188,7 @@ Bonjour exemple ci-dessus, vous pouvez penser si 'MyCodePackageA' inscrit 'MySer
 [node-view-five]: ./media/service-fabric-hosting-model/node-view-five.png
 [node-view-six]: ./media/service-fabric-hosting-model/node-view-six.png
 
-<!--Link references--In actual articles, you only need a single period before hello slash-->
+<!--Link references--In actual articles, you only need a single period before the slash-->
 [a1]: service-fabric-application-model.md
 [a2]: service-fabric-deploy-existing-app.md
 [a3]: service-fabric-containers-overview.md

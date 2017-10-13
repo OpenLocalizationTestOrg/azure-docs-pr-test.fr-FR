@@ -1,6 +1,6 @@
 ---
-title: "déploiement de Machines virtuelles pour SAP NetWeaver d’aaaAzure | Documents Microsoft"
-description: "Découvrez comment toodeploy SAP logiciel sur les ordinateurs virtuels Linux dans Azure."
+title: "Déploiement de machines virtuelles Azure pour SAP NetWeaver | Microsoft Docs"
+description: "Apprenez à déployer des logiciels SAP sur des machines virtuelles Linux dans Azure."
 services: virtual-machines-linux,virtual-machines-windows
 documentationcenter: 
 author: MSSedusch
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
-ms.openlocfilehash: 42f1d8a3eff51e113729dbfe2848b67deaf06936
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7d0400c834767736f63bc30a7bc2495dc6ee6e36
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-virtual-machines-deployment-for-sap-netweaver"></a>Déploiement de machines virtuelles Azure pour SAP NetWeaver
 [767598]:https://launchpad.support.sap.com/#/notes/767598
@@ -86,9 +86,9 @@ ms.lasthandoff: 10/06/2017
 [dbms-guide-3]:dbms-guide.md#871dfc27-e509-4222-9370-ab1de77021c3 (High availability and disaster recovery with Azure VMs)
 [dbms-guide-5.5.1]:dbms-guide.md#0fef0e79-d3fe-4ae2-85af-73666a6f7268 (SQL Server 2012 SP1 CU4 and later)
 [dbms-guide-5.5.2]:dbms-guide.md#f9071eff-9d72-4f47-9da4-1852d782087b (SQL Server 2012 SP1 CU3 and earlier releases)
-[dbms-guide-5.6]:dbms-guide.md#1b353e38-21b3-4310-aeb6-a77e7c8e81c8 (Using a SQL Server image from hello Azure Marketplace)
+[dbms-guide-5.6]:dbms-guide.md#1b353e38-21b3-4310-aeb6-a77e7c8e81c8 (Using a SQL Server image from the Azure Marketplace)
 [dbms-guide-5.8]:dbms-guide.md#9053f720-6f3b-4483-904d-15dc54141e30 (General SQL Server for SAP on Azure summary)
-[dbms-guide-5]:dbms-guide.md#3264829e-075e-4d25-966e-a49dad878737 (Specifics tooSQL Server RDBMS)
+[dbms-guide-5]:dbms-guide.md#3264829e-075e-4d25-966e-a49dad878737 (Specifics to SQL Server RDBMS)
 [dbms-guide-8.4.1]:dbms-guide.md#b48cfe3b-48e9-4f5b-a783-1d29155bd573 (Storage configuration)
 [dbms-guide-8.4.2]:dbms-guide.md#23c78d3b-ca5a-4e72-8a24-645d141a3f5d (Backup and restore)
 [dbms-guide-8.4.3]:dbms-guide.md#77cd2fbb-307e-4cbf-a65f-745553f72d2c (Performance considerations for backup and restore)
@@ -108,24 +108,24 @@ ms.lasthandoff: 10/06/2017
 [deployment-guide]:deployment-guide.md (Azure Virtual Machines deployment for SAP)
 [deployment-guide-2.2]:deployment-guide.md#42ee2bdb-1efc-4ec7-ab31-fe4c22769b94 (SAP resources)
 [deployment-guide-3.1.2]:deployment-guide.md#3688666f-281f-425b-a312-a77e7db2dfab (Deploying a VM by using a custom image)
-[deployment-guide-3.2]:deployment-guide.md#db477013-9060-4602-9ad4-b0316f8bb281 (Scenario 1: Deploying a VM from hello Azure Marketplace for SAP)
+[deployment-guide-3.2]:deployment-guide.md#db477013-9060-4602-9ad4-b0316f8bb281 (Scenario 1: Deploying a VM from the Azure Marketplace for SAP)
 [deployment-guide-3.3]:deployment-guide.md#54a1fc6d-24fd-4feb-9c57-ac588a55dff2 (Scenario 2: Deploying a VM with a custom image for SAP)
 [deployment-guide-3.4]:deployment-guide.md#a9a60133-a763-4de8-8986-ac0fa33aa8c1 (Scenario 3: Moving a VM from on-premises using a non-generalized Azure VHD with SAP)
 [deployment-guide-3]:deployment-guide.md#b3253ee3-d63b-4d74-a49b-185e76c4088e (Deployment scenarios of VMs for SAP on Microsoft Azure)
 [deployment-guide-4.1]:deployment-guide.md#604bcec2-8b6e-48d2-a944-61b0f5dee2f7 (Deploying Azure PowerShell cmdlets)
 [deployment-guide-4.2]:deployment-guide.md#7ccf6c3e-97ae-4a7a-9c75-e82c37beb18e (Download and import SAP-relevant PowerShell cmdlets)
-[deployment-guide-4.3]:deployment-guide.md#31d9ecd6-b136-4c73-b61e-da4a29bbc9cc (Join a VM tooan on-premises domain - Windows only)
+[deployment-guide-4.3]:deployment-guide.md#31d9ecd6-b136-4c73-b61e-da4a29bbc9cc (Join a VM to an on-premises domain - Windows only)
 [deployment-guide-4.4.2]:deployment-guide.md#6889ff12-eaaf-4f3c-97e1-7c9edc7f7542 (Linux)
-[deployment-guide-4.4]:deployment-guide.md#c7cbb0dc-52a4-49db-8e03-83e7edc2927d (Download, install, and enable hello Azure VM Agent)
+[deployment-guide-4.4]:deployment-guide.md#c7cbb0dc-52a4-49db-8e03-83e7edc2927d (Download, install, and enable the Azure VM Agent)
 [deployment-guide-4.5.1]:deployment-guide.md#987cf279-d713-4b4c-8143-6b11589bb9d4 (Azure PowerShell)
 [deployment-guide-4.5.2]:deployment-guide.md#408f3779-f422-4413-82f8-c57a23b4fc2f (Azure CLI)
-[deployment-guide-4.5]:deployment-guide.md#d98edcd3-f2a1-49f7-b26a-07448ceb60ca (Configure hello Azure Enhanced Monitoring Extension for SAP)
+[deployment-guide-4.5]:deployment-guide.md#d98edcd3-f2a1-49f7-b26a-07448ceb60ca (Configure the Azure Enhanced Monitoring Extension for SAP)
 [deployment-guide-5.1]:deployment-guide.md#bb61ce92-8c5c-461f-8c53-39f5e5ed91f2 (Readiness check for Azure Enhanced Monitoring for SAP)
-[deployment-guide-5.2]:deployment-guide.md#e2d592ff-b4ea-4a53-a91a-e5521edb6cd1 (Health check for hello Azure monitoring infrastructure)
+[deployment-guide-5.2]:deployment-guide.md#e2d592ff-b4ea-4a53-a91a-e5521edb6cd1 (Health check for the Azure monitoring infrastructure)
 [deployment-guide-5.3]:deployment-guide.md#fe25a7da-4e4e-4388-8907-8abc2d33cfd8 (Troubleshooting Azure monitoring for SAP)
 
 [deployment-guide-configure-monitoring-scenario-1]:deployment-guide.md#ec323ac3-1de9-4c3a-b770-4ff701def65b (Configure monitoring)
-[deployment-guide-configure-proxy]:deployment-guide.md#baccae00-6f79-4307-ade4-40292ce4e02d (Configure hello proxy)
+[deployment-guide-configure-proxy]:deployment-guide.md#baccae00-6f79-4307-ade4-40292ce4e02d (Configure the proxy)
 [deployment-guide-figure-100]:media/virtual-machines-shared-sap-deployment-guide/100-deploy-vm-image.png
 [deployment-guide-figure-1000]:media/virtual-machines-shared-sap-deployment-guide/1000-service-properties.png
 [deployment-guide-figure-11]:deployment-guide.md#figure-11
@@ -182,21 +182,21 @@ ms.lasthandoff: 10/06/2017
 [planning-guide-11]:planning-guide.md#7cf991a1-badd-40a9-944e-7baae842a058 (High availability and disaster recovery for SAP NetWeaver running on Azure Virtual Machines)
 [planning-guide-11.4.1]:planning-guide.md#5d9d36f9-9058-435d-8367-5ad05f00de77 (High availability for SAP Application Servers)
 [planning-guide-11.5]:planning-guide.md#4e165b58-74ca-474f-a7f4-5e695a93204f (Using Autostart for SAP instances)
-[planning-guide-2.1]:planning-guide.md#1625df66-4cc6-4d60-9202-de8a0b77f803 (Cloud-only - Virtual Machine deployments in Azure without dependencies on hello on-premises customer network)
-[planning-guide-2.2]:planning-guide.md#f5b3b18c-302c-4bd8-9ab2-c388f1ab3d10 (Cross-premises - Deployment of single or multiple SAP VMs in Azure fully integrated with hello on-premises network)
+[planning-guide-2.1]:planning-guide.md#1625df66-4cc6-4d60-9202-de8a0b77f803 (Cloud-only - Virtual Machine deployments in Azure without dependencies on the on-premises customer network)
+[planning-guide-2.2]:planning-guide.md#f5b3b18c-302c-4bd8-9ab2-c388f1ab3d10 (Cross-premises - Deployment of single or multiple SAP VMs in Azure fully integrated with the on-premises network)
 [planning-guide-3.1]:planning-guide.md#be80d1b9-a463-4845-bd35-f4cebdb5424a (Azure regions)
 [planning-guide-3.2.1]:planning-guide.md#df49dc09-141b-4f34-a4a2-990913b30358 (Fault domains)
 [planning-guide-3.2.2]:planning-guide.md#fc1ac8b2-e54a-487c-8581-d3cc6625e560 (Upgrade domains)
 [planning-guide-3.2.3]:planning-guide.md#18810088-f9be-4c97-958a-27996255c665 (Azure availability sets)
 [planning-guide-3.2]:planning-guide.md#8d8ad4b8-6093-4b91-ac36-ea56d80dbf77 (Microsoft Azure virtual machines concept)
 [planning-guide-3.3.2]:planning-guide.md#ff5ad0f9-f7f4-4022-9102-af07aef3bc92 (Azure Premium Storage)
-[planning-guide-5.1.1]:planning-guide.md#4d175f1b-7353-4137-9d2f-817683c26e53 (Moving a VM from on-premises tooAzure with a non-generalized disk)
+[planning-guide-5.1.1]:planning-guide.md#4d175f1b-7353-4137-9d2f-817683c26e53 (Moving a VM from on-premises to Azure with a non-generalized disk)
 [planning-guide-5.1.2]:planning-guide.md#e18f7839-c0e2-4385-b1e6-4538453a285c (Deploying a VM with a customer specific image)
-[planning-guide-5.2.1]:planning-guide.md#1b287330-944b-495d-9ea7-94b83aff73ef (Preparation for moving a VM from on-premises tooAzure with a non-generalized disk)
+[planning-guide-5.2.1]:planning-guide.md#1b287330-944b-495d-9ea7-94b83aff73ef (Preparation for moving a VM from on-premises to Azure with a non-generalized disk)
 [planning-guide-5.2.2]:planning-guide.md#57f32b1c-0cba-4e57-ab6e-c39fe22b6ec3 (Preparation for deploying a VM with a customer specific image for SAP)
 [planning-guide-5.2]:planning-guide.md#6ffb9f41-a292-40bf-9e70-8204448559e7 (Preparing VMs with SAP for Azure)
 [planning-guide-5.3.1]:planning-guide.md#6e835de8-40b1-4b71-9f18-d45b20959b79 (Difference between an Azure disk and an Azure image)
-[planning-guide-5.3.2]:planning-guide.md#a43e40e6-1acc-4633-9816-8f095d5a7b6a (Uploading a VHD from on-premises tooAzure)
+[planning-guide-5.3.2]:planning-guide.md#a43e40e6-1acc-4633-9816-8f095d5a7b6a (Uploading a VHD from on-premises to Azure)
 [planning-guide-5.4.2]:planning-guide.md#9789b076-2011-4afa-b2fe-b07a8aba58a1 (Copying disks between Azure Storage accounts)
 [planning-guide-5.5.1]:planning-guide.md#4efec401-91e0-40c0-8e64-f2dceadff646 (VM/VHD structure for SAP deployments)
 [planning-guide-5.5.3]:planning-guide.md#17e0d543-7e8c-4160-a7da-dd7117a1ad9d (Setting automount for attached disks)
@@ -261,7 +261,7 @@ ms.lasthandoff: 10/06/2017
 [virtual-machines-azure-resource-manager-architecture]:../../../resource-manager-deployment-model.md
 [virtual-machines-azurerm-versus-azuresm]:virtual-machines-linux-compare-deployment-models.md
 [virtual-machines-windows-classic-configure-oracle-data-guard]:../../virtual-machines-windows-classic-configure-oracle-data-guard.md
-[virtual-machines-linux-cli-deploy-templates]:../../linux/cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and hello Azure CLI)
+[virtual-machines-linux-cli-deploy-templates]:../../linux/cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and the Azure CLI)
 [virtual-machines-deploy-rmtemplates-powershell]:../../virtual-machines-windows-ps-manage.md (Manage virtual machines by using Azure Resource Manager and PowerShell)
 [virtual-machines-windows-agent-user-guide]:../../windows/agent-user-guide.md
 [virtual-machines-linux-agent-user-guide]:../../linux/agent-user-guide.md
@@ -310,67 +310,67 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-rm-include.md)]
 
-Machines virtuelles Azure est la solution hello pour les organisations qui ont besoin de ressources de calcul et de stockage dans le temps minimal et sans par de longs cycles. Vous pouvez utiliser des applications Azure Virtual Machines toodeploy classique, comme les applications basées sur SAP NetWeaver dans Azure. Élargissez la fiabilité et la disponibilité d’une application sans ressources locales supplémentaires. Comme le service Machines virtuelles Azure prend en charge la connectivité intersite, vous pouvez intégrer les machines virtuelles Azure dans les domaines locaux, les clouds privés et le paysage SAP de votre organisation.
+Machines virtuelles Azure est la solution idéale pour les organisations qui ont besoin de ressources de calcul et de stockage rapidement, sans longs cycles d’acquisition. Vous pouvez utiliser le service Machines virtuelles Azure pour déployer des applications classiques, comme les applications basées sur SAP NetWeaver, dans Azure. Élargissez la fiabilité et la disponibilité d’une application sans ressources locales supplémentaires. Comme le service Machines virtuelles Azure prend en charge la connectivité intersite, vous pouvez intégrer les machines virtuelles Azure dans les domaines locaux, les clouds privés et le paysage SAP de votre organisation.
 
-Dans cet article, nous couvrent les applications de hello étapes toodeploy SAP sur des machines virtuelles (VM) dans Azure, y compris les options de déploiement de remplacement et la résolution des problèmes. Cet article s’appuie sur les informations de hello dans [planification des Machines virtuelles Azure et implémentation pour SAP NetWeaver][planning-guide]. Il complète également la documentation d’installation SAP et les Notes SAP, qui sont des ressources principales de hello pour l’installation et de déploiement de logiciels SAP.
+Dans cet article, nous abordons les étapes permettant de déployer des applications SAP sur des machines virtuelles dans Azure, en proposant notamment des options de déploiement alternatives et des solutions de dépannage. Cet article s’appuie sur les informations de [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide]. Il vient également compléter la documentation d’installation de SAP et les notes SAP, principales ressources pour l’installation et le déploiement des logiciels SAP.
 
 ## <a name="prerequisites"></a>Composants requis
-La configuration d’une machine virtuelle Azure pour le déploiement des logiciels SAP implique plusieurs étapes et diverses ressources. Avant de commencer, assurez-vous que conditions préalables hello pour l’installation des logiciels SAP sur des machines virtuelles dans Azure.
+La configuration d’une machine virtuelle Azure pour le déploiement des logiciels SAP implique plusieurs étapes et diverses ressources. Avant de commencer, vérifiez que vous disposez des prérequis pour l’installation de logiciels SAP sur des machines virtuelles dans Azure.
 
 ### <a name="local-computer"></a>Ordinateur local
-toomanage Windows ou les machines virtuelles Linux, vous pouvez utiliser un script PowerShell et les hello portail Azure. Dans les deux cas, vous devez disposer d’un ordinateur local exécutant Windows 7 ou une version ultérieure de Windows. Si vous souhaitez toomanage uniquement les machines virtuelles Linux et que vous voulez toouse un ordinateur Linux pour cette tâche, vous pouvez utiliser CLI d’Azure.
+Pour gérer les machines virtuelles Windows ou Linux, vous pouvez utiliser un script PowerShell et le portail Azure. Dans les deux cas, vous devez disposer d’un ordinateur local exécutant Windows 7 ou une version ultérieure de Windows. Si vous souhaitez gérer uniquement des machines virtuelles Linux et que vous souhaitez utiliser un ordinateur Linux pour cette tâche, vous pouvez utiliser l’interface de ligne de commande Azure.
 
 ### <a name="internet-connection"></a>Connexion Internet
-toodownload, exécution hello outils et scripts qui sont requis pour le déploiement de logiciel SAP, vous devez être connecté toohello Internet. Hello machine virtuelle Azure qui est en cours d’exécution hello améliorée Extension de surveillance Azure pour SAP doit également toohello d’accès Internet. Si hello machine virtuelle Azure fait partie d’un réseau virtuel Azure ou le domaine local, assurez-vous que les paramètres de proxy appropriés hello sont définis, comme décrit dans [configurer le proxy de hello][deployment-guide-configure-proxy].
+Pour télécharger et exécuter les outils et scripts requis pour le déploiement des logiciels SAP, vous devez être connecté à Internet. La machine virtuelle Azure exécutant l’extension d’analyse améliorée Azure pour SAP doit également être connectée à Internet. Si la machine virtuelle Azure fait partie d’un réseau virtuel Azure ou d’un domaine local, assurez-vous que les paramètres de proxy appropriés sont configurés comme décrit dans le chapitre [Configurer le proxy][deployment-guide-configure-proxy].
 
 ### <a name="microsoft-azure-subscription"></a>Abonnement Microsoft Azure
 Vous avez besoin d’un compte Azure actif.
 
 ### <a name="topology-and-networking"></a>Topologie et mise en réseau
-Vous devez la topologie de hello toodefine et l’architecture de hello déploiement SAP dans Azure :
+Vous devez définir la topologie et l’architecture du déploiement SAP dans Azure :
 
-* Toobe de comptes de stockage Azure utilisé
-* Réseau virtuel où vous souhaitez le système SAP de hello toodeploy
-* Toowhich de groupe de ressources que toodeploy hello SAP système
-* Région Azure où vous souhaitez le système SAP de hello toodeploy
+* Comptes de stockage Azure à utiliser
+* Réseau virtuel dans lequel déployer le système SAP
+* Groupe de ressources dans lequel déployer le système SAP
+* Région Azure dans laquelle déployer le système SAP
 * Configuration SAP (à deux ou trois niveaux)
-* Tailles de machine virtuelle et de nombre de hello de toobe de disques de données supplémentaires montés toohello VMs
+* Taille des machines virtuelles et nombre de disques de données supplémentaires à monter sur les machines virtuelles
 * Configuration du système de transport et correction SAP (CTS)
 
-Créer et configurer des comptes de stockage Azure (si nécessaire) ou des réseaux virtuels Azure avant de commencer le processus de déploiement de logiciel SAP hello. Pour plus d’informations sur la façon toocreate et configurer ces ressources, consultez [planification des Machines virtuelles Azure et implémentation pour SAP NetWeaver][planning-guide].
+Créez et configurez des comptes de stockage Azure (si nécessaire) ou des réseaux virtuels Azure avant de lancer le processus de déploiement de logiciels SAP. Pour plus d’informations sur la création et la configuration de ces ressources, consultez [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide].
 
 ### <a name="sap-sizing"></a>Dimensionnement SAP
-Savoir hello suivant d’informations, pour le dimensionnement de SAP :
+Pour le dimensionnement SAP, vous devez connaître les informations suivantes :
 
-* Prévue de charge de travail SAP, par exemple, en utilisant l’outil de dimensionnement rapide de SAP de hello et le numéro de performances Standard SAP Application (SAP) hello
-* Consommation de ressources et de la mémoire du processeur requise du système SAP de hello
+* Charge de travail SAP projetée, par exemple, en utilisant l’outil SAP Quick Sizer, et nombre de SAPS (SAP Application Performance Standard)
+* Consommation de mémoire et de ressources de processeur requise du système SAP
 * Opérations d’entrée/sortie (E/S) par seconde requises
 * Bande passante réseau requise pour la communication éventuelle entre les différentes machines virtuelles dans Azure
-* Besoins en bande passante entre les ressources locales et hello système déployé Azure SAP
+* Bande passante réseau requise entre les ressources locales et les systèmes SAP Azure déployés
 
 ### <a name="resource-groups"></a>Groupes de ressources
-Dans le Gestionnaire de ressources Azure, vous pouvez utiliser toomanage de groupes de ressources toutes les ressources de l’application hello dans votre abonnement Azure. Pour plus d’informations, consultez [Présentation d’Azure Resource Manager][resource-group-overview].
+Dans Azure Resource Manager, vous pouvez utiliser des groupes de ressources pour gérer l’ensemble des ressources d’application de votre abonnement Azure. Pour plus d’informations, consultez [Présentation d’Azure Resource Manager][resource-group-overview].
 
 ## <a name="resources"></a>Ressources
 
 ### <a name="42ee2bdb-1efc-4ec7-ab31-fe4c22769b94"></a>Ressources SAP
-Lorsque vous configurez votre déploiement de logiciel SAP, vous devez hello suivant les ressources SAP :
+Lorsque vous configurez votre déploiement de logiciels SAP, vous avez besoin des ressources SAP suivantes :
 
 * Note SAP [1928533], qui contient :
-  * Liste des tailles de machine virtuelle Azure qui sont pris en charge pour le déploiement de hello de logiciels SAP
+  * une liste des tailles de machines virtuelles Azure prises en charge pour le déploiement de logiciels SAP
   * des informations importantes sur la capacité en fonction de la taille des machines virtuelles Azure
   * les logiciels SAP pris en charge et les combinaisons entre système d’exploitation et base de données
   * la version du noyau SAP requise pour Windows et Linux sur Microsoft Azure
 
 * La note SAP [2015553] répertorie les conditions préalables au déploiement de logiciels SAP pris en charge par SAP sur Azure.
 * La note SAP [2178632] contient des informations détaillées sur toutes les métriques de surveillance rapportées pour SAP sur Azure.
-* La Note SAP [1409604] hello requise version de l’Agent hôte SAP pour Windows dans Azure.
-* La Note SAP [2191498] hello requise version de l’Agent hôte SAP pour Linux dans Azure.
+* La note SAP [1409604] contient la version requise de l’agent hôte SAP pour Windows sur Azure.
+* La note SAP [2191498] contient la version requise de l’agent hôte SAP pour Linux sur Azure.
 * La note SAP [2243692] contient des informations sur les licences SAP sur Linux dans Azure.
 * La note SAP [1984787] contient des informations sur SUSE Linux Enterprise Server 12.
 * La note SAP [2002167] contient des informations sur Red Hat Enterprise Linux 7.x.
 * La note SAP [2069760] contient des informations générales sur Oracle Linux 7.x.
-* La Note SAP [1999351] a des informations de dépannage supplémentaires pour hello améliorée Extension de surveillance Azure pour SAP.
+* La note SAP [1999351] contient des informations de dépannage supplémentaires pour l’extension d’analyse Azure améliorée pour SAP.
 * La note SAP [1597355] contient des informations générales sur l’espace d’échange pour Linux.
 * La [page SAP sur Microsoft Azure](https://wiki.scn.sap.com/wiki/x/Pia7Gg) comprend des actualités, ainsi qu’une collection de ressources utiles.
 * Le [WIKI de la communauté SAP](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) contient toutes les notes SAP requises pour Linux.
@@ -385,48 +385,48 @@ Ces articles Microsoft couvrent les déploiements SAP dans Azure :
 * [Déploiement SGBD de machines virtuelles Azure pour SAP NetWeaver][dbms-guide]
 
 ## <a name="b3253ee3-d63b-4d74-a49b-185e76c4088e"></a>Scénarios de déploiement de logiciels SAP sur des machines virtuelles Azure
-Vous avez plusieurs possibilités pour déployer des machines virtuelles et les disques associés dans Azure. Il est important toounderstand les différences de hello entre les options de déploiement, car vous pouvez effectuer différentes étapes tooprepare vos machines virtuelles pour le déploiement en fonction du type de déploiement hello que vous choisissez.
+Vous avez plusieurs possibilités pour déployer des machines virtuelles et les disques associés dans Azure. Il est important de comprendre les différences entre les options de déploiement, car les étapes de préparation de vos machines virtuelles pour le déploiement dépendront du type de déploiement que vous choisirez.
 
-### <a name="db477013-9060-4602-9ad4-b0316f8bb281"></a>Scénario 1 : Déploiement d’une machine virtuelle à partir de hello Azure Marketplace pour SAP
-Vous pouvez utiliser une image fournie par Microsoft ou par un tiers dans hello Azure Marketplace toodeploy votre machine virtuelle. Hello Marketplace offre certaines images de système d’exploitation standards de Windows Server et les différentes distributions de Linux. Vous pouvez également déployer une image qui inclut les SKU du système de gestion de la base de données (SGBD), par exemple Microsoft SQL Server. Pour plus d’informations sur l’utilisation des images avec les SKU SGBD, consultez [Déploiement SGBD de machines virtuelles Azure pour SAP NetWeaver][dbms-guide].
+### <a name="db477013-9060-4602-9ad4-b0316f8bb281"></a>Scénario 1 : Déploiement d’une machine virtuelle à partir d’Azure Marketplace pour SAP
+Vous pouvez utiliser une image fournie par Microsoft ou par un tiers dans Azure Marketplace pour déployer votre machine virtuelle. Marketplace propose certaines images standard de Windows Server et de différentes distributions de Linux. Vous pouvez également déployer une image qui inclut les SKU du système de gestion de la base de données (SGBD), par exemple Microsoft SQL Server. Pour plus d’informations sur l’utilisation des images avec les SKU SGBD, consultez [Déploiement SGBD de machines virtuelles Azure pour SAP NetWeaver][dbms-guide].
 
-Hello organigramme suivant présente séquence de SAP spécifique de hello d’étapes de déploiement d’une machine virtuelle à partir de hello Azure Marketplace :
+L’organigramme suivant illustre la séquence d’étapes spécifiques à SAP pour le déploiement d’une machine virtuelle à partir d’Azure Marketplace :
 
-![Organigramme de déploiement des ordinateurs virtuels pour les systèmes SAP à l’aide d’une image de machine virtuelle à partir de hello Azure Marketplace][deployment-guide-figure-100]
+![Organigramme de déploiement de machines virtuelles pour les systèmes SAP à l’aide d’une image de machine virtuelle provenant d’Azure Marketplace][deployment-guide-figure-100]
 
-#### <a name="create-a-virtual-machine-by-using-hello-azure-portal"></a>Créer un ordinateur virtuel à l’aide de hello portail Azure
-toocreate de façon plus simple Hello un nouvel ordinateur virtuel avec une image à partir de hello Azure Marketplace est à l’aide de hello portail Azure.
+#### <a name="create-a-virtual-machine-by-using-the-azure-portal"></a>Création d’une machine virtuelle à l’aide du portail Azure
+Le moyen le plus simple de créer une machine virtuelle à l’aide d’une image provenant d’Azure Marketplace est d’utiliser le portail Azure.
 
-1.  Accédez trop<https://portal.azure.com/#create/hub>.  Ou, dans hello menus du portail Azure, sélectionnez **+ nouveau**.
-2.  Sélectionnez **de calcul**, puis sélectionnez le type hello de souhaité toodeploy de système d’exploitation. Par exemple, Windows Server 2012 R2, SUSE Linux Enterprise Server 12 (SLES 12) ou Red Hat Enterprise Linux 7.2 (RHEL 7.2) ou Oracle Linux 7.2. affichage de liste par défaut Hello n’affiche pas que toutes prises en charge des systèmes d’exploitation. Pour obtenir une liste complète, sélectionnez **Afficher tout**. Pour plus d’informations sur les systèmes d’exploitation pris en charge pour le déploiement de logiciels SAP, consultez la note SAP [1928533].
-3.  Sur la page suivante de hello, examinez les termes et conditions.
-4.  Bonjour **sélectionner un modèle de déploiement** , sélectionnez **le Gestionnaire de ressources**.
+1.  Accédez à <https://portal.azure.com/#create/hub>.  Ou, dans le menu du portail Azure, sélectionnez **+ Nouveau**.
+2.  Sélectionnez **Calcul**, puis choisissez le type de système d’exploitation que vous souhaitez déployer. Par exemple, Windows Server 2012 R2, SUSE Linux Enterprise Server 12 (SLES 12) ou Red Hat Enterprise Linux 7.2 (RHEL 7.2) ou Oracle Linux 7.2. La liste affichée par défaut ne répertorie pas tous les systèmes d’exploitation pris en charge. Pour obtenir une liste complète, sélectionnez **Afficher tout**. Pour plus d’informations sur les systèmes d’exploitation pris en charge pour le déploiement de logiciels SAP, consultez la note SAP [1928533].
+3.  Sur la page suivante, passez en revue les conditions générales.
+4.  Dans la zone **Sélectionner un modèle de déploiement**, sélectionnez **Resource Manager**.
 5.  Sélectionnez **Créer**.
 
-vous guide tout au long de la configuration d’ordinateur virtuel de hello requis paramètres toocreate hello Assistant de Hello, en outre tooall requis des ressources, telles que les interfaces réseau et les comptes de stockage. Voici certains exemples de paramètres :
+L’assistant vous guide pour configurer les paramètres requis pour créer la machine virtuelle, ainsi que toutes les ressources requises, telles que les interfaces réseau et les comptes de stockage. Voici certains exemples de paramètres :
 
 1. **Paramètres de base**:
- * **Nom**: nom hello de ressource de hello (nom de machine virtuelle hello).
- * **Type de disque de machine virtuelle**: sélectionnez le type de disque hello du disque de hello du système d’exploitation. Si vous souhaitez toouse stockage Premium pour vos disques de données, nous recommandons d’utiliser le stockage Premium pour le disque de système d’exploitation hello également.
- * **Nom d’utilisateur et mot de passe** ou **la clé publique SSH**: entrez le nom d’utilisateur hello et le mot de passe utilisateur hello qui est créé lors de la configuration de hello. Pour une machine virtuelle Linux, vous pouvez entrer la clé SSH (Secure Shell) publique hello utiliser toosign dans toohello machine.
- * **Abonnement**: sélectionnez l’abonnement hello que vous souhaitez toouse tooprovision hello machine virtuelle.
- * **Groupe de ressources**: nom hello hello du groupe de ressources pour hello machine virtuelle. Vous pouvez entrer le nom hello un nouveau groupe ou hello du nom de ressource d’un groupe de ressources existe déjà.
- * **Emplacement**: où toodeploy hello nouvel ordinateur virtuel. Si vous souhaitez que le réseau local tooyour tooconnect hello machine virtuelle, veillez à que sélectionner emplacement hello du réseau virtuel hello qui connecte le réseau local de tooyour Azure. Pour plus d’informations, consultez [Mise en réseau Microsoft Azure][planning-guide-microsoft-azure-networking] dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide].
+ * **Nom** : nom de la ressource (nom de la machine virtuelle).
+ * **Type de disque de machine virtuelle** : sélectionnez le type du disque du système d’exploitation. Si vous souhaitez utiliser un stockage Premium pour vos disques de données, nous recommandons d’utiliser également le stockage Premium pour le disque du système d’exploitation.
+ * **Nom utilisateur et mot de passe** ou **clé publique SSH** : entrez le nom d’utilisateur et le mot de passe de l’utilisateur créé lors de la configuration. Pour une machine virtuelle Linux, vous pouvez entrer la clé publique Secure Shell (SSH) que vous utilisez pour vous connecter à la machine.
+ * **Abonnement** : sélectionnez l’abonnement à utiliser pour configurer la nouvelle machine virtuelle.
+ * **Groupe de ressources** : entrez le nom du groupe de ressources pour la machine virtuelle. Vous pouvez saisir soit le nom d’un nouveau groupe de ressources, soit celui d’un groupe de ressources existant.
+ * **Emplacement** : emplacement de déploiement de la nouvelle machine virtuelle. Si vous voulez connecter la machine virtuelle à votre réseau local, veillez à sélectionner l’emplacement du réseau virtuel qui connecte Azure à votre réseau local. Pour plus d’informations, consultez [Mise en réseau Microsoft Azure][planning-guide-microsoft-azure-networking] dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide].
 2. **Taille**:
 
-     Pour obtenir la liste des types de machine virtuelle pris en charge, consultez la note SAP [1928533]. Assurez-vous que vous sélectionnez le type de machine virtuelle hello correct si vous souhaitez toouse stockage Azure Premium. Tous les types de machine virtuelle ne prennent pas en charge le stockage Premium. Pour plus d’informations, consultez [Stockage : stockage Microsoft Azure et disques de données][planning-guide-storage-microsoft-azure-storage-and-data-disks] et [Stockage Microsoft Azure][planning-guide-azure-premium-storage] dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide].
+     Pour obtenir la liste des types de machine virtuelle pris en charge, consultez la note SAP [1928533]. Veillez à sélectionner le type de machine virtuelle approprié si vous voulez utiliser le stockage Premium Azure. Tous les types de machine virtuelle ne prennent pas en charge le stockage Premium. Pour plus d’informations, consultez [Stockage : stockage Microsoft Azure et disques de données][planning-guide-storage-microsoft-azure-storage-and-data-disks] et [Stockage Microsoft Azure][planning-guide-azure-premium-storage] dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide].
 
 3. **Paramètres**:
   * **Stockage**
-    * **Type de disque**: sélectionnez le type de disque hello du disque de hello du système d’exploitation. Si vous souhaitez toouse stockage Premium pour vos disques de données, nous recommandons d’utiliser le stockage Premium pour le disque de système d’exploitation hello également.
-    * **Utiliser des disques gérés**: Si vous souhaitez que les disques gérés toouse, sélectionnez Oui. Pour plus d’informations sur les disques gérés, consultez le chapitre [disques gérés] [ planning-guide-managed-disks] dans le guide de planification hello.
+    * **Type de disque** : sélectionnez le type du disque du système d’exploitation. Si vous souhaitez utiliser un stockage Premium pour vos disques de données, nous recommandons d’utiliser également le stockage Premium pour le disque du système d’exploitation.
+    * **Utiliser des disques managés** : si vous souhaitez utiliser des disques managés, sélectionnez Oui. Pour plus d’informations sur les disques managés, lisez le chapitre [Disques managés][planning-guide-managed-disks] du guide de planification.
     * **Compte de stockage**: sélectionnez un compte de stockage existant ou créez un nouveau compte de stockage. Notez que tous les types de stockage ne peuvent pas être utilisés pour l’exécution d’applications SAP. Pour plus d’informations sur les types de stockage, consultez [Stockage Microsoft Azure][dbms-guide-2.3] dans [Déploiement SGBD de machines virtuelles Azure pour SAP NetWeaver][dbms-guide].
   * **Réseau**
-    * **Réseau virtuel** et **sous-réseau**: machine virtuelle toointegrate hello votre intranet, le réseau virtuel hello select qui n’est connecté tooyour sur site réseau.
-    * **Adresse IP publique**: sélectionnez hello adresse IP publique que vous souhaitez toouse ou entrez les paramètres toocreate une nouvelle adresse IP publique. Vous pouvez utiliser un tooaccess d’adresse IP publique de votre machine virtuelle sur hello Internet. Assurez-vous que vous créez également un ordinateur virtuel de réseau sécurité groupe toohelp un accès sécurisé tooyour.
+    * **Réseau virtuel** et **Sous-réseau** : pour intégrer la machine virtuelle à votre intranet, sélectionnez le réseau virtuel connecté à votre réseau local.
+    * **Adresse IP publique** : sélectionnez l’adresse IP publique que vous voulez utiliser ou entrez les paramètres nécessaires pour en créer une. Vous pouvez utiliser une adresse IP publique pour accéder à votre machine virtuelle via Internet. Assurez-vous également de créer un groupe de sécurité réseau pour sécuriser l’accès à votre machine virtuelle.
     * **Groupe de sécurité réseau** : pour plus d’informations, consultez [Contrôler le flux de trafic réseau avec les groupes de sécurité réseau][virtual-networks-nsg].
-  * **Extensions**: vous pouvez installer des extensions de machine virtuelle en les ajoutant toohello déploiement. Vous n’avez pas besoin d’extensions tooadd dans cette étape. extensions Hello requises pour la prise en charge SAP sont installées ultérieurement. Consultez le chapitre [configurer hello améliorée Extension de surveillance Azure pour SAP] [ deployment-guide-4.5] dans ce guide.
-  * **Haute disponibilité**: sélectionnez un ensemble de disponibilité, ou entrez hello paramètres toocreate disponibilité d’une nouvelle valeur. Pour plus d’informations, consultez [Groupes à haute disponibilité Azure][planning-guide-3.2.3].
+  * **Extensions** : vous pouvez installer des extensions de machine virtuelle en les ajoutant au déploiement. Il n’est pas nécessaire d’ajouter des extensions dans cette étape. Les extensions nécessaires à la prise en charge SAP sont installées ultérieurement. Consultez le chapitre [Configurer l’extension d’analyse Azure améliorée pour SAP][deployment-guide-4.5] de ce guide.
+  * **Haute disponibilité** : sélectionnez un groupe à haute disponibilité ou entrez les paramètres permettant d’en créer un. Pour plus d’informations, consultez [Groupes à haute disponibilité Azure][planning-guide-3.2.3].
   * **Surveillance**
     * **Diagnostics de démarrage** : vous pouvez sélectionner **Désactiver** pour le diagnostic de démarrage.
     * **Diagnostics du système d’exploitation invité** : vous pouvez sélectionner **Désactiver** pour le diagnostic de surveillance.
@@ -435,129 +435,129 @@ vous guide tout au long de la configuration d’ordinateur virtuel de hello requ
 
   Passez en revue vos sélections, puis sélectionnez **OK**.
 
-Votre ordinateur virtuel est déployé dans le groupe de ressources hello que vous avez sélectionné.
+Votre machine virtuelle est déployée dans le groupe de ressources que vous avez sélectionné.
 
 #### <a name="create-a-virtual-machine-by-using-a-template"></a>Création d’une machine virtuelle à l’aide d’un modèle
-Vous pouvez créer un ordinateur virtuel à l’aide d’un des modèles SAP hello publiés Bonjour [référentiel GitHub d’azure-démarrage rapide-modèles][azure-quickstart-templates-github]. Vous pouvez également manuellement créer une machine virtuelle à l’aide de hello [portail Azure][virtual-machines-windows-tutorial], [PowerShell][virtual-machines-ps-create-preconfigure-windows-resource-manager-vms], ou [CLI d’Azure ][virtual-machines-linux-tutorial].
+Vous pouvez créer une machine virtuelle à l’aide de l’un des modèles SAP publiés dans le [référentiel GitHub azure-quickstart-templates][azure-quickstart-templates-github]. Vous pouvez également créer une machine virtuelle manuellement à l’aide du [portail Azure][virtual-machines-windows-tutorial], de [PowerShell][virtual-machines-ps-create-preconfigure-windows-resource-manager-vms] ou de [l’interface de ligne de commande Azure][virtual-machines-linux-tutorial].
 
 * [**Modèle de configuration à deux niveaux (une seule machine virtuelle)** (sap-2-tier-user-disk)][sap-templates-2-tier-marketplace-image]
 
-  toocreate un système à deux niveaux en utilisant uniquement une machine virtuelle, utilisez ce modèle.
+  Pour créer un système à deux niveaux avec une seule machine virtuelle, utilisez ce modèle.
 * [**Modèle de configuration à deux niveaux (une seule machine virtuelle) - Disques managés** (sap-2-tier-marketplace-image-md)][sap-templates-2-tier-marketplace-image-md]
 
-  toocreate un système à deux niveaux en utilisant qu’un seul ordinateur virtuel et disques gérés, utilisez ce modèle.
+  Pour créer un système à deux niveaux avec une seule machine virtuelle et des disques managés, utilisez ce modèle.
 * [**Modèle de configuration à trois niveaux (plusieurs machines virtuelles)** (sap-3-tier-marketplace-image)][sap-templates-3-tier-marketplace-image]
 
-  toocreate un système à trois niveaux à l’aide de plusieurs ordinateurs virtuels, utilisez ce modèle.
+  Pour créer un système à trois niveaux avec plusieurs machines virtuelles, utilisez ce modèle.
 * [**Modèle de configuration à trois niveaux (plusieurs machines virtuelles) - Disques managés** (sap-3-tier-marketplace-image-md)][sap-templates-3-tier-marketplace-image-md]
 
-  toocreate un système à trois niveaux à l’aide de plusieurs machines virtuelles et disques gérés, utilisez ce modèle.
+  Pour créer un système à trois niveaux avec plusieurs machines virtuelles et des disques managés, utilisez ce modèle.
 
-Bonjour portail Azure, entrez hello paramètres pour le modèle de hello suivants :
+Dans le portail Azure, entrez les paramètres suivants pour le modèle :
 
 1. **Paramètres de base**:
-  * **Abonnement**: modèle de hello abonnement toouse toodeploy hello.
-  * **Groupe de ressources**: modèle de hello ressource groupe toouse toodeploy hello. Vous pouvez créer un nouveau groupe de ressources, ou vous pouvez sélectionner un groupe de ressources existant dans l’abonnement de hello.
-  * **Emplacement**: où toodeploy hello modèle. Si vous avez sélectionné un groupe de ressources existant, emplacement hello ce groupe de ressources est utilisé.
+  * **Abonnement** : l’abonnement à utiliser pour déployer le modèle.
+  * **Groupe de ressources** : le groupe de ressources à utiliser pour déployer le modèle. Vous pouvez créer un groupe de ressources ou sélectionner un groupe de ressources existant dans l’abonnement.
+  * **Emplacement** : emplacement où déployer le modèle. Si vous avez sélectionné un groupe de ressources existant, l’emplacement du groupe de ressources est utilisé.
 
 2. **Paramètres**:
-  * **ID du système SAP**: hello SAP système ID (SID).
-  * **Type de système d’exploitation**: hello système d’exploitation toodeploy, par exemple, Windows Server 2012 R2, SUSE Linux Enterprise Server 12 (SLES 12), Red Hat Enterprise Linux 7.2 (RHEL 7.2) ou Oracle Linux 7.2.
+  * **ID du système SAP** : identifiant du système SAP (SID).
+  * **Type de système d’exploitation** : le système d’exploitation que vous souhaitez déployer, par exemple, Windows Server 2012 R2, SUSE Linux Enterprise Server 12 (SLES 12) ou Red Hat Enterprise Linux 7.2 (RHEL 7.2) ou Oracle Linux 7.2.
 
-    affichage de liste Hello n’affiche pas que toutes prises en charge des systèmes d’exploitation. Pour plus d’informations sur les systèmes d’exploitation pris en charge pour le déploiement de logiciels SAP, consultez la note SAP [1928533].
-  * **Taille du système SAP**: hello taille Hello système SAP.
+    La liste affichée ne répertorie pas tous les systèmes d’exploitation pris en charge. Pour plus d’informations sur les systèmes d’exploitation pris en charge pour le déploiement de logiciels SAP, consultez la note SAP [1928533].
+  * **Taille du système SAP** : taille du système SAP.
 
-    nombre de Hello du nouveau système SAP hello fournit. Si vous n’êtes pas sûr du système de hello combien SAP, demandez à votre partenaire technologique SAP ou un intégrateur de système.
-  * **Disponibilité du système** (modèle à trois niveaux uniquement) : hello la disponibilité du système.
+    Le nombre de SAP fournis par le nouveau système. Si vous ne savez pas combien de SAP sont requis par le système, demandez à votre partenaire technologique SAP ou un intégrateur système.
+  * **Disponibilité du système** (modèle à trois niveaux uniquement) : disponibilité du système.
 
     Sélectionnez la haute disponibilité (**HA**) si la configuration est adaptée à une installation haute disponibilité. Deux serveurs de base de données et deux serveurs pour ABAP SAP Central Services (ASC) sont créés.
-  * **Type de stockage** (modèle de couche 2 uniquement) : hello du type de stockage toouse.
+  * **Type de stockage** (modèle à deux niveaux uniquement) : type de stockage à utiliser.
 
     Pour les grands systèmes, nous vous recommandons l’utilisation du stockage Premium Azure. Pour plus d’informations sur les types de stockage, consultez ces ressources :
       * [Utilisation du stockage SSD Azure Premium pour l’instance de SGBD SAP][2367194]
       * [Stockage Microsoft Azure][dbms-guide-2.3] dans [Déploiement SGBD de machines virtuelles Azure pour SAP NetWeaver][dbms-guide]
       * [Stockage Premium : stockage hautes performances pour les charges de travail des machines virtuelles Azure][storage-premium-storage-preview-portal]
-      * [Introduction tooMicrosoft stockage Azure][storage-introduction]
+      * [Présentation du stockage Microsoft Azure][storage-introduction]
   * **Nom d’utilisateur administrateur** et **Mot de passe administrateur** : nom d’utilisateur et mot de passe.
-    Un nouvel utilisateur est créé pour la signature dans la machine virtuelle de toohello.
-  * **Sous-réseau nouveau ou existant** : détermine si un réseau virtuel et un sous-réseau doivent être créés ou si un sous-réseau existant doit être utilisé. Si vous disposez déjà d’un réseau virtuel qui est le réseau local de tooyour connecté, sélectionnez **existant**.
-  * **ID de sous-réseau**: hello les ID de sous-réseau hello hello ordinateurs virtuels se connectera. Sélectionnez sous-réseau hello de votre réseau privé virtuel (VPN) ou de Azure ExpressRoute réseau virtuel toouse tooconnect hello machine virtuelle tooyour sur réseau local. ID de Hello ressemble généralement à ceci : /subscriptions/&lt;id d’abonnement > /resourceGroups/&lt;nom de groupe de ressources > /providers/Microsoft.Network/virtualNetworks/&lt;nom de réseau virtuel > /subnets/&lt;nom de sous-réseau >
+    Un nouvel utilisateur est créé pour la connexion à la machine virtuelle.
+  * **Sous-réseau nouveau ou existant** : détermine si un réseau virtuel et un sous-réseau doivent être créés ou si un sous-réseau existant doit être utilisé. Si vous disposez déjà d’un réseau virtuel connecté à votre réseau local, sélectionnez **Existant**.
+  * **ID du sous-réseau** : identifiant du sous-réseau auquel les machines virtuelles seront connectées. Sélectionnez le sous-réseau de votre réseau privé virtuel (VPN) ou réseau virtuel Azure ExpressRoute à utiliser pour connecter la machine virtuelle à votre réseau local. L’ID se présente généralement comme suit : /subscriptions/&lt;id d’abonnement>/resourceGroups/&lt;nom du groupe de ressources>/providers/Microsoft.Network/virtualNetworks/&lt;nom du réseau virtuel>/subnets/&lt;nom du sous-réseau>
 
 3. **Conditions générales** :  
-    Lisez et acceptez les conditions juridiques hello.
+    Lisez et acceptez les conditions juridiques.
 
 4.  Sélectionnez **Achat**.
 
-Hello Agent de machine virtuelle Azure est déployé par défaut lorsque vous utilisez une image à partir de hello Azure Marketplace.
+L’agent de la machine virtuelle Azure est déployé par défaut lorsque vous utilisez une image provenant d’Azure Marketplace.
 
 #### <a name="configure-proxy-settings"></a>Configuration des paramètres de proxy
-Selon la configuration de votre réseau local, vous devrez peut-être tooset un proxy de hello sur votre machine virtuelle. Si votre machine virtuelle est connectée tooyour du réseau local via un VPN ou ExpressRoute, hello machine virtuelle ne peut pas être en mesure de tooaccess hello Internet et ne seront pas être en mesure de toodownload extensions de hello requis ou collecter des données d’analyse. Pour plus d’informations, consultez [configurer le proxy de hello][deployment-guide-configure-proxy].
+Selon la configuration de votre réseau local, vous devrez peut-être configurer le proxy sur votre machine virtuelle. Si votre machine virtuelle est connectée à votre réseau local via VPN ou ExpressRoute, la machine virtuelle ne sera pas peut-être pas en mesure d’accéder à Internet et de télécharger les extensions nécessaires ou de collecter des données d’analyse. Pour plus d’informations, voir [Configuration du proxy][deployment-guide-configure-proxy].
 
 #### <a name="join-a-domain-windows-only"></a>Joindre un domaine (Windows uniquement)
-Si votre déploiement Azure est instance d’Active Directory ou DNS de locale via un réseau VPN site à site Azure ou une ExpressRoute tooan connecté (on parle *intersite* dans [planification des Machines virtuelles Azure et l’implémentation de SAP NetWeaver][planning-guide]), il est probable que hello machine virtuelle rejoint un domaine local. Pour plus d’informations sur les considérations pour cette tâche, consultez [joindre un domaine local du tooan VM (Windows uniquement)][deployment-guide-4.3].
+Si votre déploiement Azure est connecté à une instance Active Directory ou DNS locale via une connexion VPN de site à site Azure ou via ExpressRoute (connexion *intersite* dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide]), la machine virtuelle doit être jointe à un domaine local. Pour plus d’informations sur les éléments à prendre en compte pour cette tâche, consultez [Joindre une machine virtuelle à un domaine local (Windows uniquement)][deployment-guide-4.3].
 
 #### <a name="ec323ac3-1de9-4c3a-b770-4ff701def65b"></a>Configuration de l’analyse
-toobe que SAP prend en charge votre environnement, configurez hello Extension de surveillance Azure pour SAP comme décrit dans [configurer hello améliorée Extension de surveillance Azure pour SAP][deployment-guide-4.5]. Vérifier la configuration requise de hello pour la surveillance SAP et la version minimale requise du noyau SAP et de l’Agent hôte SAP, dans les ressources hello dans [les ressources SAP][deployment-guide-2.2].
+Pour être sûr que SAP est compatible avec votre environnement, configurez l’extension de surveillance Azure pour SAP comme décrit dans [Configurer l’extension d’analyse Azure améliorée pour SAP][deployment-guide-4.5]. Vérifiez la configuration requise pour l’analyse SAP pour connaître les versions minimales requises pour le noyau SAP et l’agent hôte SAP dans les ressources répertoriées dans [Ressources SAP][deployment-guide-2.2].
 
 #### <a name="monitoring-check"></a>Vérification de l’analyse
 Vérifiez si l’analyse fonctionne comme décrit dans [Vérifications et résolution des problèmes pour la configuration de l’analyse de bout en bout][deployment-guide-troubleshooting-chapter].
 
 #### <a name="post-deployment-steps"></a>Étapes de post-déploiement
-Après avoir créé hello VM et hello machine virtuelle est déployée, vous devez disposer des composants de logiciel de hello requis tooinstall Bonjour machine virtuelle. En raison de la séquence d’installation hello/logiciels de déploiement dans ce type de déploiement des ordinateurs virtuels, hello toobe de logiciel installé doit être déjà disponible, soit dans Azure, sur une autre machine virtuelle, ou en tant que disque pouvant être attachés. Ou, à l’aide d’un scénario de coexistence, de connectivité qui toohello locales (partages d’installation) de ressources est donné.
+Après avoir créé et déployé la machine virtuelle, vous devez installer les composants logiciels requis dans la machine virtuelle. En raison de la séquence de déploiement/d’installation de logiciels dans ce type de déploiement de machine virtuelle, le logiciel à installer doit déjà être disponible, soit dans Azure, soit sur une autre machine virtuelle, ou en tant que disque qui peut être lié. Sinon, envisagez un scénario intersite dans lequel la connectivité aux ressources locales (partages d’installation) est acquise.
 
-Après avoir déployé votre machine virtuelle dans Azure, suivez hello même indications et des outils tooinstall hello logiciels SAP sur votre machine virtuelle que vous le feriez dans un environnement sur site. tooinstall les logiciels SAP sur une machine virtuelle Azure, à la fois SAP et Microsoft vous recommandent de Téléchargez et stockez le support d’installation SAP hello sur les disques durs virtuels de Azure ou de disques gérés, ou que vous créez une machine virtuelle Azure qui fonctionne comme un serveur de fichiers qui a toutes les hello requis support d’installation SAP.
+Une fois que vous avez déployé votre machine virtuelle dans Azure, utilisez les mêmes instructions et outils pour installer les logiciels SAP sur votre machine virtuelle comme vous le feriez dans un environnement local. Pour installer les logiciels SAP sur une machine virtuelle Azure, SAP et Microsoft recommandent de charger et stocker le support d’installation SAP sur des disques durs virtuels Azure ou sur des disques managés, ou de créer une machine virtuelle Azure faisant office de serveur de fichiers contenant tous les supports d’installation SAP nécessaires.
 
 ### <a name="54a1fc6d-24fd-4feb-9c57-ac588a55dff2"></a>Scénario 2 : Déploiement d’une machine virtuelle avec une image personnalisée pour SAP
-Étant donné que les différentes versions de système d’exploitation ou SGBD ont des exigences différentes, images hello que vous trouvez Bonjour Azure Marketplace répondra ne peut-être pas à vos besoins. Au lieu de cela, vous pourriez toocreate une machine virtuelle à l’aide de votre propre image de machine virtuelle du système d’exploitation/SGBD, que vous pouvez déployer ultérieurement.
-Vous utilisez des étapes différentes toocreate une image privée pour Linux à un toocreate pour Windows.
+Dans la mesure où les différentes versions d’un système d’exploitation ou d’un SGBD ont des exigences différentes en matière de correctif, les images disponibles dans Azure Marketplace ne répondront peut-être pas à vos besoins. Peut-être préférerez-vous créer une machine virtuelle à l’aide de votre propre image de machine virtuelle du système d’exploitation/SGBD, que vous pourrez de nouveau déployer ultérieurement.
+Différentes étapes permettent de créer une image privée pour Linux et pour Windows.
 
 - - -
 > ![Windows][Logo_Windows] Windows
 >
-> tooprepare une image de Windows que vous pouvez utiliser toodeploy plusieurs machines virtuelles, les paramètres de Windows hello (par exemple, le SID Windows et le nom d’hôte) doivent être abstraits ou généralisé sur hello local machine virtuelle. Vous pouvez utiliser [sysprep](https://msdn.microsoft.com/library/hh825084.aspx) toodo cela.
+> Pour préparer une image Windows pouvant être utilisée pour déployer plusieurs machines virtuelles, les paramètres Windows (comme le nom d’hôte et le SID Windows) doivent être abstraits ou généralisés sur la machine virtuelle locale. Pour ce faire, vous pouvez utiliser la commande [sysprep](https://msdn.microsoft.com/library/hh825084.aspx).
 >
 > ![Linux][Logo_Linux] Linux
 >
-> tooprepare une image Linux que vous pouvez utiliser toodeploy plusieurs machines virtuelles, certains paramètres Linux doivent être abstraite ou généralisé sur hello local machine virtuelle. Vous pouvez utiliser `waagent -deprovision` toodo cela. Pour plus d’informations, consultez [capturer une machine virtuelle de Linux en cours d’exécution sur Azure] [ virtual-machines-linux-capture-image] et hello [guide de l’utilisateur l’agent Azure Linux][virtual-machines-linux-agent-user-guide-command-line-options].
+> Pour préparer une image Linux pouvant être utilisée pour déployer plusieurs machines virtuelles, certains paramètres Linux doivent être abstraits ou généralisés sur la machine virtuelle locale. Pour ce faire, vous pouvez utiliser la commande `waagent -deprovision`. Pour plus d’informations, consultez [Capture d’une machine virtuelle Linux s’exécutant sur Azure][virtual-machines-linux-capture-image] et le [guide de l’utilisateur de l’agent Linux Azure][virtual-machines-linux-agent-user-guide-command-line-options].
 >
 >
 
 - - -
-Vous pouvez préparer et créer une image personnalisée et réutilisez-la toocreate plusieurs nouveaux ordinateurs virtuels. Cette opération est décrite dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide]. Configuration de votre base de données de contenu à l’aide du Gestionnaire de configuration de logiciels SAP tooinstall un nouveau système SAP (restaure une sauvegarde de base de données à partir d’un disque est attaché toohello virtual machine) ou par la restauration d’une sauvegarde de base de données directement à partir du stockage Azure, si votre SGBD prend en charge. Pour plus d’informations, consultez [Déploiement SGBD de machines virtuelles Azure pour SAP NetWeaver][dbms-guide]. Si vous avez déjà installé un système SAP sur votre machine locale virtuelle (en particulier pour les systèmes à deux niveaux), vous pouvez adapter les paramètres de système SAP hello après le déploiement de hello Hello machine virtuelle Azure à l’aide de procédure de système renommer hello pris en charge par la configuration du logiciel SAP Manager (Note SAP [1619720]). Sinon, vous pouvez installer les logiciels SAP hello après avoir déployé hello machine virtuelle Azure.
+Vous pouvez préparer et créer une image personnalisée, puis l’utiliser pour créer plusieurs nouvelles machines virtuelles. Cette opération est décrite dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide]. Configurez le contenu de votre base de données en utilisant le gestionnaire de déploiement de logiciels SAP pour installer un nouveau système SAP (restaure une sauvegarde de base de données à partir d’un disque attaché à la machine virtuelle) ou restaurer directement une sauvegarde de base de données à partir du stockage Azure si votre SGBD le permet. Pour plus d’informations, consultez [Déploiement SGBD de machines virtuelles Azure pour SAP NetWeaver][dbms-guide]. Si vous avez déjà installé un système SAP sur votre machine virtuelle locale (en particulier pour les systèmes à deux niveaux), vous pouvez adapter les paramètres du système SAP après le déploiement de la machine virtuelle Azure à l’aide de la procédure de renommage système prise en charge par le gestionnaire de déploiement de logiciels SAP (Note SAP [1619720]). Sinon, vous pouvez installer les logiciels SAP après avoir déployé la machine virtuelle Azure.
 
-Hello organigramme suivant présente séquence de SAP spécifique de hello d’étapes de déploiement d’une machine virtuelle à partir d’une image personnalisée :
+L’organigramme suivant illustre la séquence d’étapes spécifiques à SAP pour le déploiement d’une machine virtuelle à partir d’une image personnalisée :
 
 ![Organigramme de déploiement de machines virtuelles pour les systèmes SAP à l’aide d’une image de machine virtuelle provenant du Marketplace privé][deployment-guide-figure-300]
 
-#### <a name="create-a-virtual-machine-by-using-hello-azure-portal"></a>Créer un ordinateur virtuel à l’aide de hello portail Azure
-toocreate de façon plus simple Hello une machine virtuelle à partir d’une image de disque de géré est à l’aide de hello portail Azure. Pour plus d’informations sur comment toocreate lire une Image de disque gérer, [capturer une image managée d’une machine virtuelle généralisée dans Azure](https://docs.microsoft.com/azure/virtual-machines/windows/capture-image-resource)
+#### <a name="create-a-virtual-machine-by-using-the-azure-portal"></a>Création d’une machine virtuelle à l’aide du portail Azure
+Le moyen le plus simple de créer une machine virtuelle à partir d’une image de disque managé est d’utiliser le portail Azure. Pour plus d’informations sur la création d’une image de disque managé, consultez [Capturer une image managée d’une machine virtuelle généralisée dans Azure](https://docs.microsoft.com/azure/virtual-machines/windows/capture-image-resource).
 
-1.  Accédez trop<https://ms.portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Compute%2Fimages>. Ou, dans hello menus du portail Azure, sélectionnez **Images**.
-2.  Image de disques gérés hello sélectionnez voulu toodeploy et cliquez sur **créer un ordinateur virtuel**
+1.  Accédez à <https://ms.portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Compute%2Fimages>. Vous pouvez également accéder au menu du portail Azure et sélectionner **Images**.
+2.  Sélectionnez l’image de disque managé que vous souhaitez déployer, puis cliquez sur **Créer une machine virtuelle**.
 
-vous guide tout au long de la configuration d’ordinateur virtuel de hello requis paramètres toocreate hello Assistant de Hello, en outre tooall requis des ressources, telles que les interfaces réseau et les comptes de stockage. Voici certains exemples de paramètres :
+L’assistant vous guide pour configurer les paramètres requis pour créer la machine virtuelle, ainsi que toutes les ressources requises, telles que les interfaces réseau et les comptes de stockage. Voici certains exemples de paramètres :
 
 1. **Paramètres de base**:
- * **Nom**: nom hello de ressource de hello (nom de machine virtuelle hello).
- * **Type de disque de machine virtuelle**: sélectionnez le type de disque hello du disque de hello du système d’exploitation. Si vous souhaitez toouse stockage Premium pour vos disques de données, nous recommandons d’utiliser le stockage Premium pour le disque de système d’exploitation hello également.
- * **Nom d’utilisateur et mot de passe** ou **la clé publique SSH**: entrez le nom d’utilisateur hello et le mot de passe utilisateur hello qui est créé lors de la configuration de hello. Pour une machine virtuelle Linux, vous pouvez entrer la clé SSH (Secure Shell) publique hello utiliser toosign dans toohello machine.
- * **Abonnement**: sélectionnez l’abonnement hello que vous souhaitez toouse tooprovision hello machine virtuelle.
- * **Groupe de ressources**: nom hello hello du groupe de ressources pour hello machine virtuelle. Vous pouvez entrer le nom hello un nouveau groupe ou hello du nom de ressource d’un groupe de ressources existe déjà.
- * **Emplacement**: où toodeploy hello nouvel ordinateur virtuel. Si vous souhaitez que le réseau local tooyour tooconnect hello machine virtuelle, veillez à que sélectionner emplacement hello du réseau virtuel hello qui connecte le réseau local de tooyour Azure. Pour plus d’informations, consultez [Mise en réseau Microsoft Azure][planning-guide-microsoft-azure-networking] dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide].
+ * **Nom** : nom de la ressource (nom de la machine virtuelle).
+ * **Type de disque de machine virtuelle** : sélectionnez le type du disque du système d’exploitation. Si vous souhaitez utiliser un stockage Premium pour vos disques de données, nous recommandons d’utiliser également le stockage Premium pour le disque du système d’exploitation.
+ * **Nom utilisateur et mot de passe** ou **clé publique SSH** : entrez le nom d’utilisateur et le mot de passe de l’utilisateur créé lors de la configuration. Pour une machine virtuelle Linux, vous pouvez entrer la clé publique Secure Shell (SSH) que vous utilisez pour vous connecter à la machine.
+ * **Abonnement** : sélectionnez l’abonnement à utiliser pour configurer la nouvelle machine virtuelle.
+ * **Groupe de ressources** : entrez le nom du groupe de ressources pour la machine virtuelle. Vous pouvez saisir soit le nom d’un nouveau groupe de ressources, soit celui d’un groupe de ressources existant.
+ * **Emplacement** : emplacement de déploiement de la nouvelle machine virtuelle. Si vous voulez connecter la machine virtuelle à votre réseau local, veillez à sélectionner l’emplacement du réseau virtuel qui connecte Azure à votre réseau local. Pour plus d’informations, consultez [Mise en réseau Microsoft Azure][planning-guide-microsoft-azure-networking] dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide].
 2. **Taille**:
 
-     Pour obtenir la liste des types de machine virtuelle pris en charge, consultez la note SAP [1928533]. Assurez-vous que vous sélectionnez le type de machine virtuelle hello correct si vous souhaitez toouse stockage Azure Premium. Tous les types de machine virtuelle ne prennent pas en charge le stockage Premium. Pour plus d’informations, consultez [Stockage : stockage Microsoft Azure et disques de données][planning-guide-storage-microsoft-azure-storage-and-data-disks] et [Stockage Microsoft Azure][planning-guide-azure-premium-storage] dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide].
+     Pour obtenir la liste des types de machine virtuelle pris en charge, consultez la note SAP [1928533]. Veillez à sélectionner le type de machine virtuelle approprié si vous voulez utiliser le stockage Premium Azure. Tous les types de machine virtuelle ne prennent pas en charge le stockage Premium. Pour plus d’informations, consultez [Stockage : stockage Microsoft Azure et disques de données][planning-guide-storage-microsoft-azure-storage-and-data-disks] et [Stockage Microsoft Azure][planning-guide-azure-premium-storage] dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide].
 
 3. **Paramètres**:
   * **Stockage**
-    * **Type de disque**: sélectionnez le type de disque hello du disque de hello du système d’exploitation. Si vous souhaitez toouse stockage Premium pour vos disques de données, nous recommandons d’utiliser le stockage Premium pour le disque de système d’exploitation hello également.
-    * **Utiliser des disques gérés**: Si vous souhaitez que les disques gérés toouse, sélectionnez Oui. Pour plus d’informations sur les disques gérés, consultez le chapitre [disques gérés] [ planning-guide-managed-disks] dans le guide de planification hello.
+    * **Type de disque** : sélectionnez le type du disque du système d’exploitation. Si vous souhaitez utiliser un stockage Premium pour vos disques de données, nous recommandons d’utiliser également le stockage Premium pour le disque du système d’exploitation.
+    * **Utiliser des disques managés** : si vous souhaitez utiliser des disques managés, sélectionnez Oui. Pour plus d’informations sur les disques managés, lisez le chapitre [Disques managés][planning-guide-managed-disks] du guide de planification.
   * **Réseau**
-    * **Réseau virtuel** et **sous-réseau**: machine virtuelle toointegrate hello votre intranet, le réseau virtuel hello select qui n’est connecté tooyour sur site réseau.
-    * **Adresse IP publique**: sélectionnez hello adresse IP publique que vous souhaitez toouse ou entrez les paramètres toocreate une nouvelle adresse IP publique. Vous pouvez utiliser un tooaccess d’adresse IP publique de votre machine virtuelle sur hello Internet. Assurez-vous que vous créez également un ordinateur virtuel de réseau sécurité groupe toohelp un accès sécurisé tooyour.
+    * **Réseau virtuel** et **Sous-réseau** : pour intégrer la machine virtuelle à votre intranet, sélectionnez le réseau virtuel connecté à votre réseau local.
+    * **Adresse IP publique** : sélectionnez l’adresse IP publique que vous voulez utiliser ou entrez les paramètres nécessaires pour en créer une. Vous pouvez utiliser une adresse IP publique pour accéder à votre machine virtuelle via Internet. Assurez-vous également de créer un groupe de sécurité réseau pour sécuriser l’accès à votre machine virtuelle.
     * **Groupe de sécurité réseau** : pour plus d’informations, consultez [Contrôler le flux de trafic réseau avec les groupes de sécurité réseau][virtual-networks-nsg].
-  * **Extensions**: vous pouvez installer des extensions de machine virtuelle en les ajoutant toohello déploiement. Vous n’avez pas besoin d’extension tooadd dans cette étape. extensions Hello requises pour la prise en charge SAP sont installées ultérieurement. Consultez le chapitre [configurer hello améliorée Extension de surveillance Azure pour SAP] [ deployment-guide-4.5] dans ce guide.
-  * **Haute disponibilité**: sélectionnez un ensemble de disponibilité, ou entrez hello paramètres toocreate disponibilité d’une nouvelle valeur. Pour plus d’informations, consultez [Groupes à haute disponibilité Azure][planning-guide-3.2.3].
+  * **Extensions** : vous pouvez installer des extensions de machine virtuelle en les ajoutant au déploiement. Il n’est pas nécessaire d’ajouter l’extension dans cette étape. Les extensions nécessaires à la prise en charge SAP sont installées ultérieurement. Consultez le chapitre [Configurer l’extension d’analyse Azure améliorée pour SAP][deployment-guide-4.5] de ce guide.
+  * **Haute disponibilité** : sélectionnez un groupe à haute disponibilité ou entrez les paramètres permettant d’en créer un. Pour plus d’informations, consultez [Groupes à haute disponibilité Azure][planning-guide-3.2.3].
   * **Surveillance**
     * **Diagnostics de démarrage** : vous pouvez sélectionner **Désactiver** pour le diagnostic de démarrage.
     * **Diagnostics du système d’exploitation invité** : vous pouvez sélectionner **Désactiver** pour le diagnostic de surveillance.
@@ -566,83 +566,83 @@ vous guide tout au long de la configuration d’ordinateur virtuel de hello requ
 
   Passez en revue vos sélections, puis sélectionnez **OK**.
 
-Votre ordinateur virtuel est déployé dans le groupe de ressources hello que vous avez sélectionné.
+Votre machine virtuelle est déployée dans le groupe de ressources que vous avez sélectionné.
 #### <a name="create-a-virtual-machine-by-using-a-template"></a>Création d’une machine virtuelle à l’aide d’un modèle
-toocreate un déploiement à l’aide d’une image de système d’exploitation privée hello portail Azure, utilisez une des hello suivant modèles SAP. Ces modèles sont publiés dans hello [référentiel GitHub d’azure-démarrage rapide-modèles][azure-quickstart-templates-github]. Vous pouvez également créer une machine virtuelle manuellement à l’aide de [PowerShell][virtual-machines-upload-image-windows-resource-manager].
+Pour créer un déploiement à l’aide d’une image privée de système d’exploitation à partir du portail Azure, utilisez l’un des modèles SAP suivants. Ces modèles sont publiés dans le [référentiel GitHub azure-quickstart-templates][azure-quickstart-templates-github]. Vous pouvez également créer une machine virtuelle manuellement à l’aide de [PowerShell][virtual-machines-upload-image-windows-resource-manager].
 
 * [**Modèle de configuration à deux niveaux (une seule machine virtuelle)** (sap-2-tier-user-image)][sap-templates-2-tier-user-image]
 
-  toocreate un système à deux niveaux en utilisant uniquement une machine virtuelle, utilisez ce modèle.
+  Pour créer un système à deux niveaux avec une seule machine virtuelle, utilisez ce modèle.
 * [**Modèle de configuration à deux niveaux (une seule machine virtuelle) - Image de disque managé** (sap-2-tier-user-image-md)][sap-templates-2-tier-user-image-md]
 
-  toocreate un système à deux couches à l’aide d’un seul ordinateur virtuel et une image de disque gérée, utilisez ce modèle.
+  Pour créer un système à deux niveaux avec une seule machine virtuelle et une image de disque managé, utilisez ce modèle.
 * [**Modèle de configuration à trois niveaux (plusieurs machines virtuelles)** (sap-3-tier-user-image)][sap-templates-3-tier-user-image]
 
-  toocreate un système à trois niveaux à l’aide de plusieurs machines virtuelles ou votre propre image de système d’exploitation, utilisez ce modèle.
+  Pour créer un système à trois niveaux avec plusieurs machines virtuelles ou votre propre image de système d’exploitation, utilisez ce modèle.
 * [**Modèle de configuration à trois niveaux (plusieurs machines virtuelles) - Image de disque managé** (sap-3-tier-user-image-md)][sap-templates-3-tier-user-image-md]
 
-  toocreate un système à trois niveaux à l’aide de plusieurs machines virtuelles ou votre propre image de système d’exploitation et une image de disque gérée, utilisez ce modèle.
+  Pour créer un système à trois niveaux avec plusieurs machines virtuelles ou votre propre image de système d’exploitation ou image de disque managé, utilisez ce modèle.
 
-Bonjour portail Azure, entrez hello paramètres pour le modèle de hello suivants :
+Dans le portail Azure, entrez les paramètres suivants pour le modèle :
 
 1. **Paramètres de base**:
-  * **Abonnement**: modèle de hello abonnement toouse toodeploy hello.
-  * **Groupe de ressources**: modèle de hello ressource groupe toouse toodeploy hello. Vous pouvez créer un nouveau groupe de ressources ou sélectionnez un groupe de ressources existant dans l’abonnement de hello.
-  * **Emplacement**: où toodeploy hello modèle. Si vous avez sélectionné un groupe de ressources existant, emplacement hello ce groupe de ressources est utilisé.
+  * **Abonnement** : l’abonnement à utiliser pour déployer le modèle.
+  * **Groupe de ressources** : le groupe de ressources à utiliser pour déployer le modèle. Vous pouvez créer un groupe de ressources ou sélectionner un groupe de ressources existant dans l’abonnement.
+  * **Emplacement** : emplacement où déployer le modèle. Si vous avez sélectionné un groupe de ressources existant, l’emplacement du groupe de ressources est utilisé.
 2. **Paramètres**:
-  * **ID du système SAP**: hello ID système de SAP.
-  * **Type de système d’exploitation**: hello du type de système d’exploitation souhaité toodeploy (Windows ou Linux).
-  * **Taille du système SAP**: hello taille Hello système SAP.
+  * **SAP System ID** : identifiant du système SAP.
+  * **Type de système d’exploitation** : type de système d’exploitation à déployer (Windows ou Linux).
+  * **Taille du système SAP** : taille du système SAP.
 
-    nombre de Hello du nouveau système SAP hello fournit. Si vous n’êtes pas sûr du système de hello combien SAP, demandez à votre partenaire technologique SAP ou un intégrateur de système.
-  * **Disponibilité du système** (modèle à trois niveaux uniquement) : hello la disponibilité du système.
+    Le nombre de SAP fournis par le nouveau système. Si vous ne savez pas combien de SAP sont requis par le système, demandez à votre partenaire technologique SAP ou un intégrateur système.
+  * **Disponibilité du système** (modèle à trois niveaux uniquement) : disponibilité du système.
 
     Sélectionnez la haute disponibilité (**HA**) si la configuration est adaptée à une installation haute disponibilité. Deux serveurs de base de données et deux serveurs pour l’ASCS sont créés.
-  * **Type de stockage** (modèle de couche 2 uniquement) : hello du type de stockage toouse.
+  * **Type de stockage** (modèle à deux niveaux uniquement) : type de stockage à utiliser.
 
-    Pour les grands systèmes, nous vous recommandons l’utilisation du stockage Premium Azure. Pour plus d’informations sur les types de stockage, consultez hello suivant des ressources :
+    Pour les grands systèmes, nous vous recommandons l’utilisation du stockage Premium Azure. Pour plus d’informations sur les types de stockage, consultez les ressources suivantes :
       * [Utilisation du stockage SSD Azure Premium pour l’instance de SGBD SAP][2367194]
       * [Stockage Microsoft Azure][dbms-guide-2.3] dans [Déploiement SGBD de machines virtuelles Azure pour SAP NetWeaver][dbms-guide]
       * [Stockage Premium : stockage hautes performances pour les charges de travail des machines virtuelles Azure][storage-premium-storage-preview-portal]
-      * [Introduction tooMicrosoft stockage Azure][storage-introduction]
-  * **URI du VHD de l’image utilisateur** (modèle d’image de disque non managé uniquement) : hello URI d’image de système d’exploitation privée hello disque dur virtuel, par exemple, https://&lt;accountname >.blob.core.windows.net/vhds/userimage.vhd.
-  * **Le compte de stockage d’image utilisateur** (modèle d’image de disque non managé uniquement) : nom hello hello du compte de stockage où est stockée hello privé image de système d’exploitation, par exemple, &lt;accountname > https://&lt;accountname >. BLOB.Core.Windows.NET/vhds/userimage.vhd.
-  * **userImageId** (modèle d’image de disque géré uniquement) : Id de hello disques gérés image de toouse
-  * **Nom d’utilisateur administrateur** et **mot de passe administrateur**: hello nom d’utilisateur et mot de passe.
+      * [Présentation du stockage Microsoft Azure][storage-introduction]
+  * **URI du disque dur virtuel de l’image utilisateur** (modèle d’image de disque non managé uniquement) : URI du disque dur virtuel de l’image privée du système d’exploitation, par exemple https://&lt;nom du compte>.blob.core.windows.net/vhds/userimage.vhd.
+  * **Compte de stockage de l’image utilisateur** (modèle d’image de disque non managé uniquement) : nom du compte de stockage où est stockée l’image privée du système d’exploitation, par exemple &lt;nom du compte> dans https://&lt;nom du compte>.blob.core.windows.net/vhds/userimage.vhd.
+  * **ID d’image utilisateur** (modèle d’image de disque managé uniquement) : ID de l’image de disque managé que vous voulez utiliser.
+  * **Nom d’utilisateur administrateur** et **mot de passe administrateur** : nom d’utilisateur et mot de passe.
 
-    Un nouvel utilisateur est créé pour la signature dans la machine virtuelle de toohello.
-  * **Sous-réseau nouveau ou existant** : détermine si un réseau virtuel et un sous-réseau doivent être créés ou si un sous-réseau existant doit être utilisé. Si vous disposez déjà d’un réseau virtuel qui est le réseau local de tooyour connecté, sélectionnez **existant**.
-  * **ID de sous-réseau**: hello des ID d’ordinateurs virtuels hello sous-réseau toowhich hello se connecte à. Sélectionnez sous-réseau hello de votre VPN ou ExpressRoute réseau virtuel toouse tooconnect hello tooyour local réseau d’ordinateurs virtuels. ID de Hello ressemble généralement à ceci :
+    Un nouvel utilisateur est créé pour la connexion à la machine virtuelle.
+  * **Sous-réseau nouveau ou existant** : détermine si un réseau virtuel et un sous-réseau doivent être créés ou si un sous-réseau existant doit être utilisé. Si vous disposez déjà d’un réseau virtuel connecté à votre réseau local, sélectionnez **Existant**.
+  * **ID du sous-réseau** : identifiant du sous-réseau auquel les machines virtuelles seront connectées. Sélectionnez le sous-réseau de votre VPN ou réseau virtuel ExpressRoute à utiliser pour connecter la machine virtuelle à votre réseau local. L'ID ressemble généralement à ceci :
 
     /subscriptions/&lt;id d’abonnement>/resourceGroups/&lt;nom du groupe de ressources>/providers/Microsoft.Network/virtualNetworks/&lt;nom du réseau virtuel>/subnets/&lt;nom du sous-réseau>
 
 3. **Conditions générales** :  
-    Lisez et acceptez les conditions juridiques hello.
+    Lisez et acceptez les conditions juridiques.
 
 4.  Sélectionnez **Achat**.
 
-#### <a name="install-hello-vm-agent-linux-only"></a>Installer hello Agent de machine virtuelle (Linux uniquement)
-modèles de hello toouse décrits dans la précédente section de hello, hello Qu'agent Linux doit déjà être installé dans l’image utilisateur hello ou hello déploiement échoue. Téléchargez et installez hello Agent de machine virtuelle dans l’image utilisateur hello, comme décrit dans [télécharger, installer et activer hello Agent de machine virtuelle Azure][deployment-guide-4.4]. Si vous n’utilisez pas les modèles de hello, vous pouvez également installer hello Agent de machine virtuelle plus tard.
+#### <a name="install-the-vm-agent-linux-only"></a>Installer l’agent de machine virtuelle (Linux uniquement)
+Pour utiliser les modèles décrits dans la section précédente, l’agent Linux doit déjà être installé sur l’image de l’utilisateur. Dans le cas contraire, le déploiement échoue. Téléchargez et installez l’agent de machine virtuelle sur l’image utilisateur, comme décrit dans [Télécharger, installer et activer l’agent de machine virtuelle Azure][deployment-guide-4.4]. Si vous n’utilisez pas les modèles, vous pouvez également installer l’agent de machine virtuelle plus tard.
 
 #### <a name="join-a-domain-windows-only"></a>Joindre un domaine (Windows uniquement)
-Si votre déploiement Azure est instance d’Active Directory ou DNS de local via un réseau VPN site à site Azure ou une Azure ExpressRoute tooan connecté (on parle *intersite* dans [des Machines virtuelles Azure planification et implémentation de SAP NetWeaver][planning-guide]), il est probable que hello machine virtuelle rejoint un domaine local. Pour plus d’informations sur les considérations pour cette étape, consultez [joindre un domaine local du tooan VM (Windows uniquement)][deployment-guide-4.3].
+Si votre déploiement Azure est connecté à une instance Active Directory ou DNS locale via une connexion VPN de site à site Azure ou via Azure ExpressRoute (connexion *intersite* dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide]), la machine virtuelle doit être jointe à un domaine local. Pour plus d’informations sur les éléments à prendre en compte pour cette étape, consultez [Joindre une machine virtuelle à un domaine local (Windows uniquement)][deployment-guide-4.3].
 
 #### <a name="configure-proxy-settings"></a>Configuration des paramètres de proxy
-Selon la configuration de votre réseau local, vous devrez peut-être tooset un proxy de hello sur votre machine virtuelle. Si votre machine virtuelle est connectée tooyour du réseau local via un VPN ou ExpressRoute, hello machine virtuelle ne peut pas être en mesure de tooaccess hello Internet et ne seront pas être en mesure de toodownload extensions de hello requis ou collecter des données d’analyse. Pour plus d’informations, consultez [configurer le proxy de hello][deployment-guide-configure-proxy].
+Selon la configuration de votre réseau local, vous devrez peut-être configurer le proxy sur votre machine virtuelle. Si votre machine virtuelle est connectée à votre réseau local via VPN ou ExpressRoute, la machine virtuelle ne sera pas peut-être pas en mesure d’accéder à Internet et de télécharger les extensions nécessaires ou de collecter des données d’analyse. Pour plus d’informations, voir [Configuration du proxy][deployment-guide-configure-proxy].
 
 #### <a name="configure-monitoring"></a>Configuration de l’analyse
-toobe que SAP prend en charge votre environnement, configurez hello Extension de surveillance Azure pour SAP comme décrit dans [configurer hello améliorée Extension de surveillance Azure pour SAP][deployment-guide-4.5]. Vérifier la configuration requise de hello pour la surveillance SAP et la version minimale requise du noyau SAP et de l’Agent hôte SAP, dans les ressources hello dans [les ressources SAP][deployment-guide-2.2].
+Pour être sûr que SAP est compatible avec votre environnement, configurez l’extension de surveillance Azure pour SAP comme décrit dans [Configurer l’extension d’analyse Azure améliorée pour SAP][deployment-guide-4.5]. Vérifiez la configuration requise pour l’analyse SAP pour connaître les versions minimales requises pour le noyau SAP et l’agent hôte SAP dans les ressources répertoriées dans [Ressources SAP][deployment-guide-2.2].
 
 #### <a name="monitoring-check"></a>Vérification de l’analyse
 Vérifiez si l’analyse fonctionne comme décrit dans [Vérifications et résolution des problèmes pour la configuration de l’analyse de bout en bout][deployment-guide-troubleshooting-chapter].
 
 
 ### <a name="a9a60133-a763-4de8-8986-ac0fa33aa8c1"></a>Scénario 3 : Déplacement d’une machine virtuelle locale à l’aide d’un disque dur virtuel Azure non généralisé avec SAP
-Dans ce scénario, vous planifiez toomove un système SAP spécifique à partir d’un tooAzure d’environnement sur site. Vous pouvez cela en téléchargeant hello disque dur virtuel qui a hello du système d’exploitation, les fichiers binaires SAP hello, et finalement hello binaires SGBD, ainsi que les disques durs virtuels avec les données de salutation hello et fichiers journaux d’hello SGBD, tooAzure. Contrairement au scénario hello décrit dans [scénario 2 : déploiement d’une machine virtuelle avec une image personnalisée pour SAP][deployment-guide-3.3], dans ce cas, vous conservez le nom d’hôte hello, SID SAP, et des comptes d’utilisateurs SAP Bonjour Azure VM, car ils ont été configuré dans l’environnement local de hello. Vous n’avez pas besoin de toogeneralize hello du système d’exploitation. Ce scénario s’applique plus souvent les scénarios où la partie de hello paysage SAP s’exécute localement et partie de celui-ci s’exécute sur Azure de site toocross.
+Dans ce scénario, vous souhaitez déplacer un système SAP spécifique d’un environnement local vers Azure. Pour ce faire, vous pouvez charger le disque dur virtuel qui contient le système d’exploitation, les fichiers binaires SAP et les éventuels fichiers binaires du SGBD, ainsi que les disques durs virtuels contenant les fichiers de données et les fichiers journaux du SGBD vers Azure. Contrairement au scénario décrit dans [Scénario 2 : Déploiement d’une machine virtuelle avec une image personnalisée pour SAP][deployment-guide-3.3], dans le cas présent, vous conservez le nom d’hôte, le SID SAP et les comptes d’utilisateur SAP dans la machine virtuelle Azure, dans la mesure où ils ont été configurés dans l’environnement local. Il est inutile de généraliser le système d’exploitation. Ce scénario s’applique généralement aux scénarios intersites où une partie du paysage SAP s’exécute en local et une autre partie sur Azure.
 
-Dans ce scénario, hello Agent de machine virtuelle est **pas** installé automatiquement pendant le déploiement. Hello Agent de machine virtuelle et hello améliorée Extension de surveillance Azure pour SAP étant requis toorun SAP NetWeaver sur Azure, vous devez toodownload, installation et activer les deux composants manuellement une fois que vous créez la machine virtuelle de hello.
+Dans ce scénario, l’agent de machine virtuelle **n’est pas** installé automatiquement lors du déploiement. Dans la mesure où l’agent de machine virtuelle et l’extension de surveillance Azure améliorée pour SAP sont nécessaires pour l’exécution de SAP NetWeaver sur Azure, vous devez télécharger, installer et activer ces deux composants manuellement après avoir créé la machine virtuelle.
 
-Pour plus d’informations sur hello Agent de machine virtuelle Azure, consultez hello suivant des ressources.
+Pour plus d’informations sur l’agent de machine virtuelle Azure, consultez les ressources suivantes.
 
 - - -
 > ![Windows][Logo_Windows] Windows
@@ -657,160 +657,160 @@ Pour plus d’informations sur hello Agent de machine virtuelle Azure, consultez
 
 - - -
 
-Hello suivant Organigramme affiche hello séquence d’étapes pour le déplacement d’une machine virtuelle locale à l’aide d’un disque dur virtuel Azure non généralisé :
+L’organigramme suivant présente la séquence d’étapes permettant de déplacer une machine virtuelle locale à l’aide d’un disque dur virtuel Azure non généralisé :
 
 ![Organigramme d’un déploiement de machine virtuelle pour les systèmes SAP à l’aide d’un disque de machine virtuelle][deployment-guide-figure-400]
 
-Si le disque de hello est déjà téléchargé et défini dans Azure (consultez [planification des Machines virtuelles Azure et implémentation pour SAP NetWeaver][planning-guide]), effectuez les tâches hello décrites dans hello ensuite sections suivantes.
+Si le disque est déjà chargé et défini dans Azure (voir [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide]), effectuez les tâches décrites dans les sections suivantes.
 
 #### <a name="create-a-virtual-machine"></a>Création d'une machine virtuelle
-toocreate un déploiement à l’aide d’un disque de système d’exploitation privé via hello portail Azure, utilisez le modèle SAP de hello publié Bonjour [référentiel GitHub d’azure-démarrage rapide-modèles][azure-quickstart-templates-github]. Vous pouvez également créer une machine virtuelle manuellement à l’aide de PowerShell.
+Pour créer un déploiement à l’aide d’un disque privé de système d’exploitation par l’intermédiaire du portail Azure, utilisez le modèle SAP publié dans le [référentiel GitHub azure-quickstart-templates][azure-quickstart-templates-github]. Vous pouvez également créer une machine virtuelle manuellement à l’aide de PowerShell.
 
 * [**Modèle de configuration à deux niveaux (une seule machine virtuelle)** (sap-2-tier-user-disk)][sap-templates-2-tier-os-disk]
 
-  toocreate un système à deux niveaux en utilisant uniquement une machine virtuelle, utilisez ce modèle.
+  Pour créer un système à deux niveaux avec une seule machine virtuelle, utilisez ce modèle.
 * [**Modèle de configuration à deux niveaux (une seule machine virtuelle) - Disque managé** (sap-2-tier-user-disk-md)][sap-templates-2-tier-os-disk-md]
 
-  toocreate un système à deux niveaux en utilisant qu’un seul ordinateur virtuel et un disque géré, utilisez ce modèle.
+  Pour créer un système à deux niveaux avec une seule machine virtuelle et un disque managé, utilisez ce modèle.
 
-Bonjour portail Azure, entrez hello paramètres pour le modèle de hello suivants :
+Dans le portail Azure, entrez les paramètres suivants pour le modèle :
 
 1. **Paramètres de base**:
-  * **Abonnement**: modèle de hello abonnement toouse toodeploy hello.
-  * **Groupe de ressources**: modèle de hello ressource groupe toouse toodeploy hello. Vous pouvez créer un nouveau groupe de ressources ou sélectionnez un groupe de ressources existant dans l’abonnement de hello.
-  * **Emplacement**: où toodeploy hello modèle. Si vous avez sélectionné un groupe de ressources existant, emplacement hello ce groupe de ressources est utilisé.
+  * **Abonnement** : l’abonnement à utiliser pour déployer le modèle.
+  * **Groupe de ressources** : le groupe de ressources à utiliser pour déployer le modèle. Vous pouvez créer un groupe de ressources ou sélectionner un groupe de ressources existant dans l’abonnement.
+  * **Emplacement** : emplacement où déployer le modèle. Si vous avez sélectionné un groupe de ressources existant, l’emplacement du groupe de ressources est utilisé.
 2. **Paramètres**:
-  * **ID du système SAP**: hello ID système de SAP.
-  * **Type de système d’exploitation**: hello du type de système d’exploitation souhaité toodeploy (Windows ou Linux).
-  * **Taille du système SAP**: hello taille Hello système SAP.
+  * **SAP System ID** : identifiant du système SAP.
+  * **Type de système d’exploitation** : type de système d’exploitation à déployer (Windows ou Linux).
+  * **Taille du système SAP** : taille du système SAP.
 
-    nombre de Hello du nouveau système SAP hello fournit. Si vous n’êtes pas sûr du système de hello combien SAP, demandez à votre partenaire technologique SAP ou un intégrateur de système.
-  * **Type de stockage** (modèle de couche 2 uniquement) : hello du type de stockage toouse.
+    Le nombre de SAP fournis par le nouveau système. Si vous ne savez pas combien de SAP sont requis par le système, demandez à votre partenaire technologique SAP ou un intégrateur système.
+  * **Type de stockage** (modèle à deux niveaux uniquement) : type de stockage à utiliser.
 
-    Pour les grands systèmes, nous vous recommandons l’utilisation du stockage Premium Azure. Pour plus d’informations sur les types de stockage, consultez hello suivant des ressources :
+    Pour les grands systèmes, nous vous recommandons l’utilisation du stockage Premium Azure. Pour plus d’informations sur les types de stockage, consultez les ressources suivantes :
       * [Utilisation du stockage SSD Azure Premium pour l’instance de SGBD SAP][2367194]
       * [Stockage Microsoft Azure][dbms-guide-2.3] dans [Déploiement SGBD de machines virtuelles Azure pour SAP NetWeaver][dbms-guide]
       * [Stockage Premium : stockage hautes performances pour les charges de travail des machines virtuelles Azure][storage-premium-storage-preview-portal]
-      * [Introduction tooMicrosoft stockage Azure][storage-introduction]
-  * **URI VHD du disque de système d’exploitation** (modèle de disque non managé uniquement) : hello URI de disque du système d’exploitation hello privé, par exemple, https://&lt;accountname >.blob.core.windows.net/vhds/osdisk.vhd.
-  * **Id de disque géré de disque du système d’exploitation** (modèle de disque géré uniquement) : hello Id Hello disque de système d’exploitation de disque géré, /subscriptions/92d102f7-81a5-4df7-9877-54987ba97dd9/resourceGroups/group/providers/Microsoft.Compute/disks/WIN
-  * **Sous-réseau nouveau ou existant** : détermine si un réseau virtuel et un sous-réseau doivent être créés ou si un sous-réseau existant doit être utilisé. Si vous disposez déjà d’un réseau virtuel qui est le réseau local de tooyour connecté, sélectionnez **existant**.
-  * **ID de sous-réseau**: hello des ID d’ordinateurs virtuels hello sous-réseau toowhich hello se connecte à. Sélectionnez sous-réseau hello de votre Azure ExpressRoute ou VPN réseau virtuel toouse tooconnect hello machine virtuelle tooyour sur réseau local. ID de Hello ressemble généralement à ceci :
+      * [Présentation du stockage Microsoft Azure][storage-introduction]
+  * **URI du disque dur virtuel du disque du système d’exploitation** (modèle de disque non managé uniquement) : URI du disque privé du système d’exploitation, par exemple https://&lt;nom du compte>.blob.core.windows.net/vhds/osdisk.vhd.
+  * **ID du disque managé du disque du système d’exploitation** (modèle de disque managé uniquement) : ID du disque managé du disque du système d’exploitation, /subscriptions/92d102f7-81a5-4df7-9877-54987ba97dd9/resourceGroups/group/providers/Microsoft.Compute/disks/WIN
+  * **Sous-réseau nouveau ou existant** : détermine si un réseau virtuel et un sous-réseau doivent être créés ou si un sous-réseau existant doit être utilisé. Si vous disposez déjà d’un réseau virtuel connecté à votre réseau local, sélectionnez **Existant**.
+  * **ID du sous-réseau** : identifiant du sous-réseau auquel les machines virtuelles seront connectées. Sélectionnez le sous-réseau de votre VPN ou réseau virtuel Azure ExpressRoute à utiliser pour connecter la machine virtuelle à votre réseau local. L'ID ressemble généralement à ceci :
 
     /subscriptions/&lt;id d’abonnement>/resourceGroups/&lt;nom du groupe de ressources>/providers/Microsoft.Network/virtualNetworks/&lt;nom du réseau virtuel>/subnets/&lt;nom du sous-réseau>
 
 3. **Conditions générales** :  
-    Lisez et acceptez les conditions juridiques hello.
+    Lisez et acceptez les conditions juridiques.
 
 4.  Sélectionnez **Achat**.
 
-#### <a name="install-hello-vm-agent"></a>Installer l’Agent de machine virtuelle de hello
-hello toouse modèles décrits dans hello la section précédente, hello Agent de machine virtuelle doit être installé sur le disque de hello du système d’exploitation ou hello va échouer. Téléchargez et installez hello Agent de machine virtuelle Bonjour machine virtuelle, comme décrit dans [télécharger, installer et activer hello Agent de machine virtuelle Azure][deployment-guide-4.4].
+#### <a name="install-the-vm-agent"></a>Installer l'agent de machine virtuelle
+Pour utiliser les modèles décrits dans la section précédente, l’agent de machine virtuelle doit être installé sur le disque du système d’exploitation. Dans le cas contraire, le déploiement échoue. Téléchargez et installez l’agent de machine virtuelle sur la machine virtuelle, comme décrit dans [Télécharger, installer et activer l’agent de machine virtuelle Azure][deployment-guide-4.4].
 
-Si vous n’utilisez pas les modèles de hello décrits dans hello précédant la section, vous pouvez également installer par la suite hello Agent de machine virtuelle.
+Si vous n’utilisez pas les modèles décrits dans la section précédente, vous pouvez également installer l’agent de machine virtuelle plus tard.
 
 #### <a name="join-a-domain-windows-only"></a>Joindre un domaine (Windows uniquement)
-Si votre déploiement Azure est instance d’Active Directory ou DNS de locale via un réseau VPN site à site Azure ou une ExpressRoute tooan connecté (on parle *intersite* dans [planification des Machines virtuelles Azure et l’implémentation de SAP NetWeaver][planning-guide]), il est probable que hello machine virtuelle rejoint un domaine local. Pour plus d’informations sur les considérations pour cette tâche, consultez [joindre un domaine local du tooan VM (Windows uniquement)][deployment-guide-4.3].
+Si votre déploiement Azure est connecté à une instance Active Directory ou DNS locale via une connexion VPN de site à site Azure ou via ExpressRoute (connexion *intersite* dans [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide]), la machine virtuelle doit être jointe à un domaine local. Pour plus d’informations sur les éléments à prendre en compte pour cette tâche, consultez [Joindre une machine virtuelle à un domaine local (Windows uniquement)][deployment-guide-4.3].
 
 #### <a name="configure-proxy-settings"></a>Configuration des paramètres de proxy
-Selon la configuration de votre réseau local, vous devrez peut-être tooset un proxy de hello sur votre machine virtuelle. Si votre machine virtuelle est connectée tooyour du réseau local via un VPN ou ExpressRoute, hello machine virtuelle ne peut pas être en mesure de tooaccess hello Internet et ne seront pas être en mesure de toodownload extensions de hello requis ou collecter des données d’analyse. Pour plus d’informations, consultez [configurer le proxy de hello][deployment-guide-configure-proxy].
+Selon la configuration de votre réseau local, vous devrez peut-être configurer le proxy sur votre machine virtuelle. Si votre machine virtuelle est connectée à votre réseau local via VPN ou ExpressRoute, la machine virtuelle ne sera pas peut-être pas en mesure d’accéder à Internet et de télécharger les extensions nécessaires ou de collecter des données d’analyse. Pour plus d’informations, voir [Configuration du proxy][deployment-guide-configure-proxy].
 
 #### <a name="configure-monitoring"></a>Configuration de l’analyse
-toobe que SAP prend en charge votre environnement, configurez hello Extension de surveillance Azure pour SAP comme décrit dans [configurer hello améliorée Extension de surveillance Azure pour SAP][deployment-guide-4.5]. Vérifier la configuration requise de hello pour la surveillance SAP et la version minimale requise du noyau SAP et de l’Agent hôte SAP, dans les ressources hello dans [les ressources SAP][deployment-guide-2.2].
+Pour être sûr que SAP est compatible avec votre environnement, configurez l’extension de surveillance Azure pour SAP comme décrit dans [Configurer l’extension d’analyse Azure améliorée pour SAP][deployment-guide-4.5]. Vérifiez la configuration requise pour l’analyse SAP pour connaître les versions minimales requises pour le noyau SAP et l’agent hôte SAP dans les ressources répertoriées dans [Ressources SAP][deployment-guide-2.2].
 
 #### <a name="monitoring-check"></a>Vérification de l’analyse
 Vérifiez si l’analyse fonctionne comme décrit dans [Vérifications et résolution des problèmes pour la configuration de l’analyse de bout en bout][deployment-guide-troubleshooting-chapter].
 
-## <a name="update-hello-monitoring-configuration-for-sap"></a>Mettre à jour la configuration de la surveillance hello pour SAP
-Mise à jour de la configuration d’analyse hello SAP dans un des hello les scénarios suivants :
-* équipe Microsoft/SAP commune de Hello étend les capacités d’analyse de hello et demande des compteurs plus ou moins.
-* Microsoft introduit une nouvelle version de hello infrastructure Azure sous-jacente qui remet hello données d’analyse, et hello Extension de surveillance améliorée Azure pour SAP besoins toobe adaptée toothose modifications.
-* Montage de disques de données supplémentaires tooyour machine virtuelle Azure ou supprimer un disque de données. Dans ce scénario, mettez à jour collection hello de données liées au stockage. Modifier votre configuration en ajoutant ou supprimant des points de terminaison ou en assignant IP adresses tooa VM n’affecte pas les configuration d’analyse hello.
-* Vous modifiez hello taille de votre machine virtuelle Azure, par exemple, à partir de la taille A5 tooany autre taille de machine virtuelle.
-* Vous ajoutez de nouveau tooyour d’interfaces réseau Azure VM.
+## <a name="update-the-monitoring-configuration-for-sap"></a>Mise à jour de la configuration de l’analyse pour SAP
+Mettez à jour la configuration de l’analyse SAP selon l’un des scénarios suivants :
+* L’équipe Microsoft/SAP a étendu les capacités d’analyse et a décidé d’ajouter ou de supprimer des compteurs.
+* Microsoft introduit une nouvelle version de l’infrastructure Azure sous-jacente qui génère les données d’analyse, et l’extension d’analyse Azure améliorée pour SAP doit s’adapter à ces modifications.
+* Vous montez des disques de données supplémentaires sur votre machine virtuelle Azure ou vous supprimez un disque de données. Dans ce scénario, mettez à jour la collection de données liées au stockage. L’ajout ou la suppression de points de terminaison, ou l’affectation d’adresses IP à une machine virtuelle n’affecte pas la configuration de l’analyse.
+* Vous modifiez la taille de votre machine virtuelle Azure, par exemple en passant de la taille A5 à une autre taille de machine virtuelle.
+* Vous ajoutez de nouvelles interfaces de réseau à votre machine virtuelle Azure.
 
-tooupdate paramètres, hello de mise à jour en suivant les hello infrastructure d’analyse de surveillance des étapes dans [configurer hello améliorée Extension de surveillance Azure pour SAP][deployment-guide-4.5].
+Pour mettre à jour les paramètres d’analyse, mettez à jour l’infrastructure d’analyse en suivant les étapes décrites dans [Configurer l’extension d’analyse Azure améliorée pour SAP][deployment-guide-4.5].
 
 ## <a name="detailed-tasks-for-sap-software-deployment"></a>Détail des tâches pour le déploiement de logiciels SAP
-Cette section détaille les étapes permettant d’effectuer des tâches spécifiques dans le processus de configuration et de déploiement hello.
+Cette section détaille les étapes permettant d’effectuer des tâches spécifiques lors du processus de configuration et de déploiement.
 
 ### <a name="604bcec2-8b6e-48d2-a944-61b0f5dee2f7"></a>Déploiement d’applets de commande Azure PowerShell
-1.  Accédez trop[téléchargements Microsoft Azure](https://azure.microsoft.com/downloads/).
+1.  Accédez à [Téléchargements Microsoft Azure](https://azure.microsoft.com/downloads/).
 2.  Sous **Outils de ligne de commande**, sous **PowerShell**, sélectionnez **Installation Windows**.
-3.  Dans la boîte de dialogue Gestionnaire de téléchargement Microsoft hello, pour le fichier hello téléchargé (par exemple, WindowsAzurePowershellGet.3f.3f.3fnew.exe), sélectionnez **exécuter**.
-4.  toorun Microsoft Web Platform Installer (Web PI Microsoft), sélectionnez **Oui**.
+3.  Dans la boîte de dialogue Gestionnaire de téléchargement Microsoft, pour le fichier téléchargé (par exemple, WindowsAzurePowershellGet.3f.3f.3fnew.exe), sélectionnez **Exécuter**.
+4.  Pour exécuter Microsoft Web Platform Installer (Microsoft Web PI), sélectionnez **Oui**.
 5.  Une page ressemblant à ceci s’affiche :
 
   ![Page d’installation pour les applets de commande Azure PowerShell][deployment-guide-figure-500]<a name="figure-5"></a>
 
-6.  Sélectionnez **installer**, puis acceptez le contrat de licence logiciel Microsoft hello.
-7.  Powershell est installé. Sélectionnez **Terminer** Assistant d’installation tooclose hello.
+6.  Sélectionnez **Installer**, puis acceptez les termes du contrat de licence du logiciel Microsoft.
+7.  Powershell est installé. Sélectionnez **Terminer** pour fermer l’assistant d’installation.
 
-Vérifiez fréquemment les mises à jour toohello applets de commande PowerShell, généralement mises à jour de chaque mois. Hello toocheck de façon plus simple pour les mises à jour est hello toodo précédant les étapes d’installation, page d’installation toohello indiqué à l’étape 5. nombre de date et version de version des applets de commande hello Hello est inclus dans la page hello indiqué à l’étape 5. Sauf indication contraire dans la Note SAP [1928533] ou la Note SAP [2015553], nous vous conseillons de travailler avec la version la plus récente des applets de commande PowerShell Azure hello.
+Recherchez régulièrement les mises à jour des applets de commande PowerShell, qui sont généralement publiées une fois par mois. Pour rechercher les mises à jour, le plus simple consiste à effectuer les étapes d’installation précédentes jusqu’à la page d’installation représentée à l’étape 5. La date de publication et le numéro de version des applets de commande sont inclus sur la page représentée à l’étape 5. Sauf indication contraire dans les notes SAP [1928533] ou [2015553], nous vous recommandons d’utiliser la dernière version des applets de commande Azure PowerShell.
 
-version de hello toocheck Hello applets de commande Azure PowerShell qui sont installés sur votre ordinateur, exécutez cette commande PowerShell :
+Pour vérifier la version des applets de commande Azure PowerShell installées sur votre ordinateur, exécutez cette commande PowerShell :
 ```powershell
 (Get-Module AzureRm.Compute).Version
 ```
-résultat de Hello ressemble à ceci :
+Le résultat ressemble à :
 
 ![Résultat du contrôle de version de l’applet de commande Azure PowerShell][deployment-guide-figure-600]
 <a name="figure-6"></a>
 
-Si hello applet de commande Azure version installée sur votre ordinateur est hello actuel, hello première page de l’Assistant installation hello indique qu’elle en ajoutant **(installé)** toohello nom du produit (voir hello suivant capture d’écran). Vos applets de commande Azure PowerShell sont à jour. tooclose hello Assistant installation, sélectionnez **Exit**.
+Si la version de l’applet de commande Azure installée sur votre ordinateur est la version la plus récente, la première page de l’assistant d’installation l’indique en ajoutant **(Installé)** au titre du produit (voir la capture d’écran suivante). Vos applets de commande Azure PowerShell sont à jour. Pour fermer l’assistant d’installation, sélectionnez **Quitter**.
 
-![Page d’installation des applets de commande Azure PowerShell indiquant la version la plus récente que hello d’applets de commande Azure PowerShell sont installés.][deployment-guide-figure-700]
+![Page d’installation pour les applets de commande Azure PowerShell indiquant que la version la plus récente des applets de commande Azure PowerShell est installée][deployment-guide-figure-700]
 <a name="figure-7"></a>
 
 ### <a name="1ded9453-1330-442a-86ea-e0fd8ae8cab3"></a>Déploiement de l’interface de ligne de commande Azure
-1.  Accédez trop[téléchargements Microsoft Azure](https://azure.microsoft.com/downloads/).
-2.  Sous **des outils de ligne de commande**, sous **interface de ligne de commande Azure**, sélectionnez hello **installer** lien à votre système d’exploitation.
-3.  Dans la boîte de dialogue Gestionnaire de téléchargement Microsoft hello, pour le fichier hello téléchargé (par exemple, WindowsAzureXPlatCLI.3f.3f.3fnew.exe), sélectionnez **exécuter**.
-4.  toorun Microsoft Web Platform Installer (Web PI Microsoft), sélectionnez **Oui**.
+1.  Accédez à [Téléchargements Microsoft Azure](https://azure.microsoft.com/downloads/).
+2.  Sous **Outils de ligne de commande**, sous **Interface de ligne de commande Azure**, sélectionnez le lien **Installer** correspondant à votre système d’exploitation.
+3.  Dans la boîte de dialogue Gestionnaire de téléchargement Microsoft, pour le fichier téléchargé (par exemple, WindowsAzureXPlatCLI.3f.3f.3fnew.exe), sélectionnez **Exécuter**.
+4.  Pour exécuter Microsoft Web Platform Installer (Microsoft Web PI), sélectionnez **Oui**.
 5.  Une page ressemblant à ceci s’affiche :
 
   ![Page d’installation pour les applets de commande Azure PowerShell][deployment-guide-figure-500]<a name="figure-5"></a>
 
-6.  Sélectionnez **installer**, puis acceptez le contrat de licence logiciel Microsoft hello.
-7.  L’interface de ligne de commande Azure est installée. Sélectionnez **Terminer** Assistant d’installation tooclose hello.
+6.  Sélectionnez **Installer**, puis acceptez les termes du contrat de licence du logiciel Microsoft.
+7.  L’interface de ligne de commande Azure est installée. Sélectionnez **Terminer** pour fermer l’assistant d’installation.
 
-Vérifiez fréquemment les mises à jour tooAzure CLI, généralement mis à jour de chaque mois. Hello toocheck de façon plus simple pour les mises à jour est hello toodo précédant les étapes d’installation, page d’installation toohello indiqué à l’étape 5.
+Recherchez régulièrement les mises à jour de l’interface de ligne de commande Azure, qui sont généralement publiées une fois par mois. Pour rechercher les mises à jour, le plus simple consiste à effectuer les étapes d’installation précédentes jusqu’à la page d’installation représentée à l’étape 5.
 
-version de hello toocheck de CLI d’Azure qui est installé sur votre ordinateur, exécutez la commande suivante :
+Pour vérifier la version de l’interface de ligne de commande Azure installée sur votre ordinateur, exécutez cette commande :
 ```
 azure --version
 ```
 
-résultat de Hello ressemble à ceci :
+Le résultat ressemble à :
 
 ![Résultat du contrôle de la version de l’interface de ligne de commande Azure][deployment-guide-figure-760]
 <a name="0ad010e6-f9b5-4c21-9c09-bb2e5efb3fda"></a>
 
-### <a name="31d9ecd6-b136-4c73-b61e-da4a29bbc9cc"></a>Joindre un domaine local du tooan VM (Windows uniquement)
-Si vous déployez des machines virtuelles SAP dans un scénario de coexistence, où locale Active Directory et DNS ont été étendues dans Azure, il est probable que les machines virtuelles de hello joignez un domaine local. Hello détaillées étapes toojoin un domaine local de tooan VM et hello toobe des logiciels supplémentaires requis pour un membre d’un domaine local, varie en fonction du client. En règle générale, toojoin un tooan de machine virtuelle locale domaine, vous devez tooinstall des logiciels supplémentaires, telles que les logiciels anti-programme malveillant et les logiciels de sauvegarde ou de surveillance.
+### <a name="31d9ecd6-b136-4c73-b61e-da4a29bbc9cc"></a>Joindre une machine virtuelle à un domaine local (Windows uniquement)
+Si vous déployez des machines virtuelles SAP dans le cadre d’un scénario intersite où les instances Active Directory et DNS locales sont étendues dans Azure, les machines virtuelles doivent être jointes à un domaine local. Les étapes détaillées de connexion d’une machine virtuelle à un domaine local et les logiciels supplémentaires requis pour les membres d’un domaine local dépendent du client. Généralement, pour joindre une machine virtuelle à un domaine local, vous devez installer des logiciels supplémentaires, tels que des logiciels anti-programme malveillant et des logiciels de sauvegarde ou d’analyse.
 
-Dans ce scénario, vous devez également toomake que si les paramètres du proxy Internet sont forcés lorsqu’une machine virtuelle rejoint un domaine dans votre environnement, Windows hello le compte système Local (S-1-5-18) Bonjour machine virtuelle invitée a hello mêmes paramètres de proxy. option la plus simple Hello est un proxy de hello tooforce à l’aide d’une stratégie de groupe qui s’applique toosystems dans le domaine de hello de domaine.
+Dans ce scénario, vous devez également vous assurer que si les paramètres du proxy Internet sont forcés lorsqu’une machine virtuelle rejoint un domaine dans votre environnement, les paramètres de proxy du compte système local Windows (S-1-5-18) de la machine virtuelle invitée sont identiques. Le plus simple est d’imposer le proxy avec une stratégie de groupe de domaine qui s’applique aux systèmes du domaine.
 
-### <a name="c7cbb0dc-52a4-49db-8e03-83e7edc2927d"></a>Télécharger, installer et activer hello Agent de machine virtuelle Azure
-Pour les ordinateurs virtuels qui sont déployés à partir d’une image de système d’exploitation qui n’est pas généralisée (par exemple, une image qui ne provient pas de l’outil de préparation système Windows, ou de sysprep, hello), vous devez toomanually télécharger, installer et activer hello Agent de machine virtuelle Azure.
+### <a name="c7cbb0dc-52a4-49db-8e03-83e7edc2927d"></a>Télécharger, installer et activer l’agent de machine virtuelle Azure
+Pour les machines virtuelles qui sont déployées à partir d’une image du système d’exploitation non généralisée (par exemple, une image qui ne provient pas de l’outil de préparation du système Windows, ou sysprep), vous devez télécharger, installer et activer manuellement l’agent de machine virtuelle Azure.
 
-Si vous déployez une machine virtuelle à partir de hello Azure Marketplace, cette étape n’est pas requise. Images à partir de hello Azure Marketplace ont déjà hello Agent de machine virtuelle Azure.
+Si vous déployez une machine virtuelle à partir d’Azure Marketplace, cette étape n’est pas nécessaire. Les images provenant d’Azure Marketplace disposent déjà de l’agent de machine virtuelle Azure.
 
 #### <a name="b2db5c9a-a076-42c6-9835-16945868e866"></a>Windows
-1.  Vous pouvez télécharger hello Agent de machine virtuelle Azure :
-  1.  Télécharger hello [package de programme d’installation de l’Agent de machine virtuelle Azure](https://go.microsoft.com/fwlink/?LinkId=394789).
-  2.  Stocker le package MSI de l’Agent de machine virtuelle de hello localement sur un ordinateur personnel ou un serveur.
-2.  Installez hello Agent de machine virtuelle Azure :
-  1.  Se connecter toohello déployé la machine virtuelle Azure à l’aide du protocole RDP (Remote Desktop).
-  2.  Ouvrez une fenêtre de l’Explorateur Windows sur la machine virtuelle de hello et le répertoire cible hello Sélectionnez fichier MSI de hello Hello Agent de machine virtuelle.
-  3.  Faire glisser un fichier MSI de programme d’installation de l’Agent de machine virtuelle Azure hello du répertoire cible toohello ordinateur locales/serveur Hello Agent de machine virtuelle sur hello machine virtuelle.
-  4.  Double-cliquez sur fichier MSI hello hello machine virtuelle.
-3.  Pour les machines virtuelles sont les domaines joints tooon local, assurez-vous que les paramètres de proxy Internet finaux s’appliquent également compte de système Local Windows toohello (S-1-5-18) Bonjour machine virtuelle, comme décrit dans [configurer le proxy de hello] [ deployment-guide-configure-proxy]. Hello Agent de machine virtuelle s’exécute dans ce contexte et doit être toobe en mesure de tooconnect tooAzure.
+1.  Téléchargez l’agent de machine virtuelle Azure :
+  1.  Téléchargez le [package d’installation de l’agent de machine virtuelle Azure](https://go.microsoft.com/fwlink/?LinkId=394789).
+  2.  Stockez le package MSI de l’agent de machine virtuelle localement sur un serveur ou un ordinateur personnel.
+2.  Installez l’agent de machine virtuelle Azure :
+  1.  Connectez-vous à la machine virtuelle Azure déployée à l’aide du protocole Remote Desktop Protocol (RDP).
+  2.  Ouvrez une fenêtre de l’explorateur Windows sur la machine virtuelle et sélectionnez un répertoire cible pour le fichier MSI de l’agent de machine virtuelle.
+  3.  Faites glisser le fichier MSI du programme d’installation de l’agent de machine virtuelle Azure de votre ordinateur/serveur local dans le répertoire cible de l’agent de machine virtuelle dans la machine virtuelle.
+  4.  Double-cliquez sur le fichier MSI dans la machine virtuelle.
+3.  Pour les machines virtuelles associées à des domaines locaux, veillez à ce que les éventuels paramètres de proxy Internet s’appliquent également au compte système local Windows (S-1-5-18) de la machine virtuelle, comme décrit dans [Configurer le proxy][deployment-guide-configure-proxy]. L’agent de machine virtuelle s’exécute dans ce contexte et doit être en mesure de se connecter à Azure.
 
-Aucune interaction utilisateur n’est requise tooupdate hello Agent de machine virtuelle Azure. Hello Agent de machine virtuelle est automatiquement mis à jour et ne nécessite pas un redémarrage de l’ordinateur virtuel.
+Aucune interaction de l’utilisateur n’est requise pour mettre à jour l’agent de machine virtuelle Azure. L’agent de machine virtuelle est automatiquement mis à jour, sans nécessiter de redémarrage de la machine virtuelle.
 
 #### <a name="6889ff12-eaaf-4f3c-97e1-7c9edc7f7542"></a>Linux
-Utilisez hello suivant commandes tooinstall hello Agent de machine virtuelle Linux :
+Utilisez les commandes suivantes pour installer l’agent de machine virtuelle pour Linux :
 
 * **SUSE Linux Enterprise Server (SLES)**
 
@@ -824,111 +824,111 @@ Utilisez hello suivant commandes tooinstall hello Agent de machine virtuelle Lin
   sudo yum install WALinuxAgent
   ```
 
-Si l’agent de hello est déjà installé, tooupdate hello Azure Linux Agent, procédez comme hello étapes décrites dans [hello de mise à jour le Linux Agent Azure sur une machine virtuelle toohello dernière version à partir de GitHub][virtual-machines-linux-update-agent].
+Si l’agent est déjà installé, pour mettre à jour l’agent Linux Azure, suivez les étapes décrites dans [Mettre à jour l’agent Linux Azure sur une machine virtuelle vers la dernière version à partir de GitHub][virtual-machines-linux-update-agent].
 
-### <a name="baccae00-6f79-4307-ade4-40292ce4e02d"></a>Configurer le proxy de hello
-Hello étapes proxy de hello tooconfigure dans Windows sont différents à partir de la façon de hello que vous configurez le proxy de hello dans Linux.
+### <a name="baccae00-6f79-4307-ade4-40292ce4e02d"></a>Configurer le proxy
+Les étapes à suivre pour configurer le proxy sous Windows sont différentes de celles utilisées pour configurer le proxy sous Linux.
 
 #### <a name="windows"></a>Windows
-Paramètres de proxy doivent être configurées correctement pour hello compte système Local tooaccess hello Internet. Si vos paramètres de proxy ne sont pas définies par la stratégie de groupe, vous pouvez configurer les paramètres de hello pour hello compte système Local.
+Les paramètres de proxy doivent être correctement configurés pour que le compte système local puisse accéder à Internet. Si vos paramètres de proxy ne sont pas définis par la stratégie de groupe, vous pouvez les configurer pour le compte système local.
 
-1. Accédez trop**Démarrer**, entrez **gpedit.msc**, puis sélectionnez **entrée**.
-2. Sélectionnez **Configuration ordinateur** > **Modèles d’administration** > **Composants Windows** > **Internet Explorer**. Assurez-vous que ce paramètre hello **rendre le proxy de paramètres par ordinateur (plutôt que par l’utilisateur)** est désactivé ou non configuré.
-3. Dans **le panneau de configuration**, accédez trop**Centre réseau et partage** > **Options Internet**.
-4. Sur hello **connexions** onglet, sélectionnez hello **paramètres LAN** bouton.
-5. Désactivez hello **détecter automatiquement les paramètres** case à cocher.
-6. Sélectionnez hello **utiliser un serveur proxy pour votre réseau local** case à cocher, puis entrez l’adresse du proxy hello et le port.
-7. Sélectionnez hello **avancé** bouton.
-8. Bonjour **Exceptions** , entrez l’adresse IP de hello **168.63.129.16**. Sélectionnez **OK**.
+1. Accédez à **Démarrer**, entrez **gpedit.msc**, puis appuyez sur **Entrée**.
+2. Sélectionnez **Configuration ordinateur** > **Modèles d’administration** > **Composants Windows** > **Internet Explorer**. Assurez-vous que le paramètre **Paramètres machine du serveur proxy (plutôt que les paramètres individualisés)** est désactivé ou non configuré.
+3. Dans le **panneau de configuration**, accédez à **Centre réseau et partage** > **Options Internet**.
+4. Dans l’onglet **Connexions**, sélectionnez le bouton **Paramètres LAN**.
+5. Décochez la case **Détecter automatiquement les paramètres de connexion**.
+6. Cochez la case **Utiliser un serveur proxy pour votre réseau local** et entrez l’adresse et le port du proxy.
+7. Sélectionnez le bouton **Advanced (Avancé)**.
+8. Dans la zone **Exceptions**, entrez l’adresse IP **168.63.129.16**. Sélectionnez **OK**.
 
 #### <a name="linux"></a>Linux
-Configurer le proxy correcte de hello dans le fichier de configuration hello Hello Agent invité Microsoft Azure, qui se trouve dans \\etc.\\waagent.conf.
+Configurez le proxy approprié dans le fichier de configuration de l’agent invité Microsoft Azure, qui se trouve dans \\etc\\waagent.conf.
 
-Hello du jeu de paramètres suivants :
+Définissez les paramètres suivants :
 
-1.  **Hôte proxy HTTP**. Par exemple, le définir trop**proxy.corp.local**.
+1.  **Hôte proxy HTTP**. Par exemple, définissez-le sur **proxy.corp.local**.
   ```
   HttpProxy.Host=<proxy host>
 
   ```
-2.  **Port proxy HTTP**. Par exemple, le définir trop**80**.
+2.  **Port proxy HTTP**. Par exemple, définissez-le sur **80**.
   ```
-  HttpProxy.Port=<port of hello proxy host>
+  HttpProxy.Port=<port of the proxy host>
 
   ```
-3.  Redémarrez l’agent de hello.
+3.  Redémarrez l’agent.
 
   ```
   sudo service waagent restart
   ```
 
-Hello des paramètres de proxy dans \\etc.\\waagent.conf s’appliquent également des extensions de machine virtuelle toohello requis. Si vous souhaitez toouse hello référentiels Azure, assurez-vous que les référentiels toothese hello le trafic ne va pas via votre intranet local. Si vous avez créé défini par l’utilisateur itinéraires tooenable le tunneling forcé, assurez-vous que vous ajoutez un itinéraire qui achemine les référentiels toohello trafic directement toohello Internet et non par le biais de votre connexion VPN de site à site.
+Les paramètres de proxy dans \\etc\\waagent.conf s’appliquent également aux extensions de machine virtuelle requises. Si vous voulez utiliser les référentiels Azure, assurez-vous que le trafic vers ces référentiels ne passe pas par l’intranet local. Si vous avez créé des itinéraires définis par les utilisateurs pour activer le tunneling forcé, veillez à ajouter un itinéraire qui achemine le trafic vers les référentiels directement vers Internet, et non par le biais de votre connexion VPN de site à site.
 
 * **SLES**
 
-  Vous devez également les itinéraires tooadd sur les adresses IP de hello répertoriées dans \\etc.\\regionserverclnt.cfg. Hello figure ci-dessous illustre un exemple :
+  Vous devez également ajouter des itinéraires pour les adresses IP répertoriées dans \\etc\\regionserverclnt.cfg. La figure suivante montre un exemple :
 
   ![Tunneling forcé][deployment-guide-figure-50]
 
 
 * **RHEL**
 
-  Vous devez également les itinéraires tooadd sur les adresses IP de hello des hôtes de hello répertoriées dans \\etc.\\yum.repos.d\\rhui équilibreurs de charge. Pour obtenir un exemple, consultez hello précédant figure.
+  Vous devez également ajouter des itinéraires pour les adresses IP des hôtes répertoriés dans \\etc\\yum.repos.d\\rhui-load-balancers. Pour obtenir un exemple, consultez la figure précédente.
 
 * **Oracle Linux**
 
-  Il n’existe aucun référentiel pour Oracle Linux sur Azure. Vous devez tooconfigure votre propre référentiels pour Oracle Linux ou utilisez les référentiels publics hello.
+  Il n’existe aucun référentiel pour Oracle Linux sur Azure. Vous devez configurer vos propres référentiels pour Oracle Linux ou utiliser des référentiels publics.
 
 Pour plus d’informations sur les itinéraires définis par l’utilisateur, consultez [Itinéraires définis par l’utilisateur et transfert IP][virtual-networks-udr-overview].
 
-### <a name="d98edcd3-f2a1-49f7-b26a-07448ceb60ca"></a>Configurer hello améliorée Extension de surveillance Azure pour SAP
-Lorsque vous avez préparé hello machine virtuelle comme décrit dans [des scénarios de déploiement de machines virtuelles pour SAP sur Azure][deployment-guide-3], hello Agent de machine virtuelle Azure est installé sur l’ordinateur virtuel de hello. étape suivante de Hello est toodeploy hello améliorée Extension de surveillance Azure pour SAP, qui est disponible dans hello référentiel d’extensions Azure dans les centres de données Azure hello global. Pour plus d’informations, consultez [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide-9.1].
+### <a name="d98edcd3-f2a1-49f7-b26a-07448ceb60ca"></a>Configurer l’extension d’analyse Azure améliorée pour SAP
+Une fois que la machine virtuelle est préparée comme décrit dans [Scénarios de déploiement de machines virtuelles pour SAP sur Azure][deployment-guide-3], l’agent de machine virtuelle Azure est installé sur la machine virtuelle. L’étape suivante consiste à déployer l’extension d’analyse Azure améliorée pour SAP, qui est disponible dans le référentiel d’extensions Azure dans les centres de données mondiaux d’Azure. Pour plus d’informations, consultez [SAP NetWeaver sur machines virtuelles Azure – Guide de planification et d’implémentation][planning-guide-9.1].
 
-Vous pouvez utiliser tooinstall PowerShell ou CLI d’Azure et configurer hello améliorée Extension de surveillance Azure pour SAP. extension de hello tooinstall sur Linux VM de Windows à l’aide d’un ordinateur Windows, consultez [Azure PowerShell][deployment-guide-4.5.1]. extension de hello tooinstall sur un VM Linux à l’aide d’un ordinateur Linux, consultez [CLI d’Azure][deployment-guide-4.5.2].
+Vous pouvez utiliser PowerShell ou l’interface de ligne de commande Azure pour installer et configurer l’extension d’analyse Azure améliorée pour SAP. Pour installer l’extension sur une machine virtuelle Windows ou Linux à l’aide d’une machine Windows, consultez [Azure PowerShell][deployment-guide-4.5.1]. Pour installer l’extension sur une machine virtuelle Linux à l’aide d’un ordinateur de bureau Linux, consultez [Interface de ligne de commande Azure][deployment-guide-4.5.2].
 
 #### <a name="987cf279-d713-4b4c-8143-6b11589bb9d4"></a>Azure PowerShell pour les machines virtuelles Linux et Windows
-tooinstall hello améliorée Extension de surveillance Azure pour SAP à l’aide de PowerShell :
+Pour installer l’extension d’analyse Azure améliorée pour SAP à l’aide de PowerShell :
 
-1. Assurez-vous que vous avez installé la version la plus récente de l’applet de commande PowerShell Azure hello hello. Pour plus d’informations, consultez [Déploiement d’applets de commande Azure PowerShell][deployment-guide-4.1].  
-2. Exécutez hello suivant l’applet de commande PowerShell.
-    Pour afficher la liste des environnements disponibles, exécutez `commandlet Get-AzureRmEnvironment` . Si vous souhaitez toouse global Azure, votre environnement est **cloud Azure**. Pour Azure en Chine, sélectionnez **AzureChinaCloud**.
+1. Vérifiez que vous avez installé la dernière version de l’applet de commande Azure PowerShell. Pour plus d’informations, consultez [Déploiement d’applets de commande Azure PowerShell][deployment-guide-4.1].  
+2. Exécutez l’applet de commande PowerShell suivant.
+    Pour afficher la liste des environnements disponibles, exécutez `commandlet Get-AzureRmEnvironment` . Si vous voulez utiliser la version globale d’Azure, votre environnement est **AzureCloud**. Pour Azure en Chine, sélectionnez **AzureChinaCloud**.
 
     ```powershell
-    $env = Get-AzureRmEnvironment -Name <name of hello environment>
+    $env = Get-AzureRmEnvironment -Name <name of the environment>
     Login-AzureRmAccount -Environment $env
     Set-AzureRmContext -SubscriptionName <subscription name>
 
     Set-AzureRmVMAEMExtension -ResourceGroupName <resource group name> -VMName <virtual machine name>
     ```
 
-Une fois que vous entrez des données de votre compte et identifiez hello machine virtuelle Azure, script de hello déploie les extensions hello requis et Active les fonctionnalités de hello requis. Ceci peut prendre plusieurs minutes.
+Une fois que vous avez saisi les données de votre compte et identifié la machine virtuelle Azure, le script déploie les extensions requises et active les fonctionnalités nécessaires. Ceci peut prendre plusieurs minutes.
 Pour plus d’informations sur `Set-AzureRmVMAEMExtension`, consultez [Set-AzureRmVMAEMExtension][msdn-set-azurermvmaemextension].
 
 ![Exécution réussie de l’applet de commande Azure spécifique à SAP Set-AzureRmVMAEMExtension][deployment-guide-figure-900]
 
-Hello `Set-AzureRmVMAEMExtension` tous les hôtes tooconfigure étapes hello surveillance pour SAP fait de configuration.
+La configuration `Set-AzureRmVMAEMExtension` effectue toutes les étapes de configuration de l’analyse d’hôte pour SAP.
 
-sortie du script Hello inclut hello informations suivantes :
+La sortie du script comprend les informations suivantes :
 
-* Confirmation que pour les disques de hello du système d’exploitation et tous les autres disques de données d’analyse a été configuré.
-* deux messages de type Hello confirmer configuration hello des métriques de stockage pour un compte de stockage.
-* Une ligne de sortie permet hello l’état de mise à jour réelle de hello hello configuration des analyses.
-* Une autre ligne de sortie confirme que la configuration hello a été déployée ou mis à jour.
-* Hello dernière ligne de sortie est informative. Il montre les options de test configuration de la surveillance hello.
-* toocheck par toutes les étapes de surveillance améliorée Azure ont été correctement exécutées et que hello Infrastructure Azure fournit les données nécessaires hello, procédez avec vérification de la disponibilité hello pour hello améliorée Extension de surveillance Azure pour SAP, comme décrit dans [Vérification de la disponibilité de surveillance améliorée Azure pour SAP][deployment-guide-5.1].
-* Patientez 15 à 30 minutes pour que les données de Diagnostics Azure toocollect hello.
+* La confirmation que la surveillance a été configurée pour le disque du système d’exploitation et tous les autres disques de données.
+* Les deux messages suivants confirment la configuration des métriques de stockage pour un compte de stockage spécifique.
+* Une des lignes de sortie fournit l’état de la mise à jour réelle de la configuration de l’analyse.
+* Une autre ligne de sortie confirme que la configuration a été déployée ou mise à jour.
+* La dernière ligne de sortie est informative. Elle répertorie les options permettant de tester la configuration d’analyse.
+* Pour vérifier que toutes les étapes de l’analyse Azure améliorée ont été exécutées correctement et que l’infrastructure Azure fournit les données nécessaires, vérifiez la disponibilité de l’extension d’analyse Azure améliorée pour SAP, comme décrit dans [Vérification de la disponibilité de l’analyse Azure améliorée pour SAP][deployment-guide-5.1].
+* Attendez 15 à 30 minutes pour que les diagnostics Azure collectent les données pertinentes.
 
 #### <a name="408f3779-f422-4413-82f8-c57a23b4fc2f"></a>Interface de ligne de commande Azure pour machines virtuelles Linux
-tooinstall hello améliorée Extension de surveillance Azure pour SAP à l’aide d’Azure CLI :
+Pour installer l’extension d’analyse Azure améliorée pour SAP à l’aide de l’interface de ligne de commande Azure :
 
-1. Installez Azure CLI 1.0, comme décrit dans [installation Bonjour Azure CLI 1.0][azure-cli].
+1. Installez l’interface de ligne de commande Azure 1.0 comme décrit dans [Installer l’interface de ligne de commande Azure 1.0][azure-cli].
 2. Connectez-vous à votre compte Azure :
 
   ```
   azure login
   ```
 
-3. Basculez en mode de gestionnaire de ressources tooAzure :
+3. Basculez en mode Azure Resource Manager :
 
   ```
   azure config mode arm
@@ -940,12 +940,12 @@ tooinstall hello améliorée Extension de surveillance Azure pour SAP à l’aid
   azure vm enable-aem <resource-group-name> <vm-name>
   ```
 
-5. Vérifiez que cette Extension de surveillance améliorée Azure hello est active sur hello Azure Linux VM. Vérification hello indique si le fichier \\var\\lib\\AzureEnhancedMonitor\\PerfCounters existe. Si elle existe, à l’invite de commandes, exécutez cette commande toodisplay les informations collectées par hello moniteur renforcée de Windows Azure :
+5. Vérifiez que l’extension de surveillance Azure améliorée est active sur la machine virtuelle Azure Linux. Vérifiez si le fichier \\var\\lib\\AzureEnhancedMonitor\\PerfCounters existe. S’il existe, à l’invite de commandes, exécutez cette commande pour afficher les informations collectées par Azure Enhanced Monitor :
 ```
 cat /var/lib/AzureEnhancedMonitor/PerfCounters
 ```
 
-sortie de Hello ressemble à ceci :
+Le résultat se présente ainsi :
 ```
 2;cpu;Current Hw Frequency;;0;2194.659;MHz;60;1444036656;saplnxmon;
 2;cpu;Max Hw Frequency;;0;2194.659;MHz;0;1444036656;saplnxmon;
@@ -954,180 +954,180 @@ sortie de Hello ressemble à ceci :
 ```
 
 ## <a name="564adb4f-5c95-4041-9616-6635e83a810b"></a>Vérifications et résolution des problèmes pour la configuration de l’analyse de bout en bout
-Après avoir déployé votre machine virtuelle Azure et configurer d’infrastructure de surveillance Azure pertinentes hello, vérifiez si tous les composants hello Hello Extension de surveillance améliorée Azure fonctionnent comme prévu.
+Une fois que vous avez déployé votre machine virtuelle Azure et configuré l’infrastructure d’analyse Azure appropriée, vérifiez si tous les composants de l’analyse Azure améliorée fonctionnent correctement.
 
-Exécuter la vérification de la disponibilité hello pour hello améliorée Extension de surveillance Azure pour SAP comme décrit dans [vérification de disponibilité pour hello améliorée Extension de surveillance Azure pour SAP][deployment-guide-5.1]. Si tous les résultats de la vérification de disponibilité sont positifs et que tous les compteurs de performances ont le statut OK, la surveillance Azure a été correctement configurée. Vous pouvez poursuivre installation Bonjour de l’Agent hôte SAP comme décrit dans les Notes SAP hello [les ressources SAP][deployment-guide-2.2]. Si la vérification de la disponibilité hello indique que les compteurs sont manquants, exécutez le contrôle d’intégrité de hello pour hello infrastructure de surveillance Azure, comme décrit dans [contrôle d’intégrité pour la configuration d’infrastructure de surveillance Azure] [ deployment-guide-5.2]. Pour obtenir davantage d’options de résolution des problèmes, consultez [Résolution des problèmes d’analyse Azure pour SAP][deployment-guide-5.3].
+Vérifiez la disponibilité de l’extension d’analyse Azure améliorée pour SAP, comme décrit dans [Vérification de la disponibilité de l’extension d’analyse Azure améliorée pour SAP][deployment-guide-5.1]. Si tous les résultats de la vérification de disponibilité sont positifs et que tous les compteurs de performances ont le statut OK, la surveillance Azure a été correctement configurée. Vous pouvez poursuivre l’installation de l’agent hôte SAP, comme décrit dans les notes SAP répertoriées sous [Ressources SAP][deployment-guide-2.2]. Si la vérification de disponibilité signale des compteurs manquants, effectuez un contrôle d’intégrité de l’infrastructure d’analyse Azure, comme décrit dans [Contrôle d’intégrité de la configuration de l’infrastructure d’analyse Azure][deployment-guide-5.2]. Pour obtenir davantage d’options de résolution des problèmes, consultez [Résolution des problèmes d’analyse Azure pour SAP][deployment-guide-5.3].
 
-### <a name="bb61ce92-8c5c-461f-8c53-39f5e5ed91f2"></a>Vérification de disponibilité pour hello améliorée Extension de surveillance Azure pour SAP
-Cette vérification permet de s’assurer que toutes les métriques de performances qui s’affichent à l’intérieur de votre application SAP sont fournies par hello sous-jacent d’infrastructure de surveillance Azure.
+### <a name="bb61ce92-8c5c-461f-8c53-39f5e5ed91f2"></a>Vérification de disponibilité de l’extension d’analyse Azure améliorée pour SAP
+Cette vérification vous assure que tous les indicateurs de performance affichés au sein de votre application SAP sont fournis par l’infrastructure d’analyse Azure sous-jacente.
 
-#### <a name="run-hello-readiness-check-on-a-windows-vm"></a>Exécuter la vérification de la disponibilité hello sur une machine virtuelle Windows
+#### <a name="run-the-readiness-check-on-a-windows-vm"></a>Vérifier la disponibilité d’une machine virtuelle Windows
 
-1.  Connectez-vous à toohello machine virtuelle Azure (à l’aide d’un compte d’administrateur n’est pas nécessaire).
+1.  Connectez-vous à la machine virtuelle Azure (l’utilisation d’un compte Administrateur n’est pas nécessaire).
 2.  Ouvrez une fenêtre d’invite de commandes.
-3.  À l’invite de commandes hello modifier le dossier d’installation de toohello d’hello active de hello améliorée Extension de surveillance Azure pour SAP : c :\\Packages\\plug-ins\\ Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;version >\\supprimer
+3.  À l’invite de commandes, remplacez le référentiel par le dossier d’installation de l’extension d’analyse Azure améliorée pour SAP : C:\\Packages\\Plugins\\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;version>\\drop
 
-  Hello *version* toohello de chemin d’accès hello extension de surveillance peut varier. Si vous voyez les dossiers de plusieurs versions de hello analyse d’extension dans le dossier d’installation Bonjour, vérifiez la configuration de service Windows de AzureEnhancedMonitoring, de hello hello et puis commutateur toohello dossier indiqué sous la forme *tooexecutable de chemin d’accès* .
+  La *version* figurant dans le chemin d’accès à l’extension d’analyse peut varier. Si vous voyez des dossiers pour plusieurs versions de l’extension d’analyse dans le dossier d’installation, vérifiez la configuration du service Windows AzureEnhancedMonitoring, puis accédez au dossier indiqué en tant que *Chemin d’accès des fichiers exécutables*.
 
-  ![Propriétés de l’exécution du service hello améliorée Extension de surveillance Azure pour SAP][deployment-guide-figure-1000]
+  ![Propriétés du service exécutant l’extension d’analyse Azure améliorée pour SAP][deployment-guide-figure-1000]
 
-4.  À l’invite de commandes hello exécuter **azperflib.exe** sans aucun paramètre.
+4.  À l’invite de commandes, exécutez **azperflib.exe** sans aucun paramètre.
 
   > [!NOTE]
-  > Azperflib.exe s’exécute dans une boucle et met à jour les compteurs de hello collectée toutes les 60 secondes. boucle de hello tooend, fenêtre d’invite de commandes hello fermer.
+  > Le fichier exécutable azperflib.exe fonctionne en boucle et met à jour les compteurs collectés toutes les 60 secondes. Pour mettre fin à la boucle, fermez la fenêtre d’invite de commandes.
   >
   >
 
-Si hello Qu'extension de surveillance améliorée Azure n’est pas installée ou hello AzureEnhancedMonitoring service ne fonctionne pas, extension de hello n'a pas été configurée correctement. Pour obtenir des informations détaillées sur la façon dont toodeploy hello extension, consultez [dépannage hello infrastructure de surveillance Azure pour SAP][deployment-guide-5.3].
+Si l’extension d’analyse Azure améliorée n’est pas installée ou que le service AzureEnhancedMonitoring n’est pas en cours d’exécution, cela signifie que l’extension n’a pas été configurée correctement. Pour plus d’informations sur la façon de déployer l’extension, consultez [Résolution de problèmes sur l’infrastructure d’analyse Azure pour SAP][deployment-guide-5.3].
 
-##### <a name="check-hello-output-of-azperflibexe"></a>Vérifier la sortie hello de azperflib.exe
-La sortie de azperflib.exe indique tous les compteurs de performances Azure remplis pour SAP. Bas hello de hello liste de compteurs collectés, un indicateur de résumé et d’intégrité afficher l’état de hello de surveillance Azure.
+##### <a name="check-the-output-of-azperflibexe"></a>Vérifiez la sortie renvoyée par azperflib.exe
+La sortie de azperflib.exe indique tous les compteurs de performances Azure remplis pour SAP. En bas de la liste des compteurs collectés, vous trouverez un résumé et un indicateur d’intégrité, qui indiquent l’état de l’analyse Azure.
 
 ![Sortie du contrôle d’intégrité effectué avec azperflib.exe indiquant l’absence de problèmes][deployment-guide-figure-1100]
 <a name="figure-11"></a>
 
-Vérifiez le résultat de hello pour hello **total de compteurs** sortie, qui est signalée comme vide et pour **l’état d’intégrité**, comme illustré dans hello précédant figure.
+Vérifiez le résultat renvoyé pour la sortie **Nombre total de compteurs**, qui est indiqué comme étant vide, et pour **État d’intégrité**, comme indiqué à la figure précédente.
 
-Interpréter les valeurs résultantes hello comme suit :
+Interprétez les valeurs obtenues comme suit :
 
 | Résultats du fichier exécutable azperflib.exe | État d’intégrité de l’analyse Azure |
 | --- | --- |
-| **Appels de l’API - non disponibles** | Les compteurs ne sont pas disponibles peuvent être une configuration de machine virtuelle toohello non applicable ou d’erreurs. Voir **État d’intégrité**. |
-| **Nombre total de compteurs : vide** |Hello suivant deux compteurs de stockage Azure peut être vide : <ul><li>Stockage Lecture Op Latence Serveur msec</li><li>Stockage Lecture Op Latence E2E msec</li></ul>Tous les autres compteurs doivent contenir des valeurs. |
+| **Appels de l’API - non disponibles** | Les compteurs qui ne sont pas disponibles peuvent ne pas être concernés par la configuration de la machine virtuelle ou constituent des erreurs. Voir **État d’intégrité**. |
+| **Nombre total de compteurs : vide** |Les deux compteurs suivants de stockage Azure peuvent être vides : <ul><li>Stockage Lecture Op Latence Serveur msec</li><li>Stockage Lecture Op Latence E2E msec</li></ul>Tous les autres compteurs doivent contenir des valeurs. |
 | **État d’intégrité** |Uniquement OK si l’état renvoyé est **OK**. |
 | **Diagnostics** |Informations détaillées sur l’état d’intégrité. |
 
-Si hello **l’état d’intégrité** valeur n’est pas **OK**, suivez les instructions de hello dans [contrôle d’intégrité pour la configuration d’infrastructure de surveillance Azure] [ deployment-guide-5.2].
+Si la valeur **État d’intégrité** n’est pas **OK**, suivez les instructions de [Contrôle d’intégrité de la configuration de l’infrastructure d’analyse Azure][deployment-guide-5.2].
 
-#### <a name="run-hello-readiness-check-on-a-linux-vm"></a>Exécuter la vérification de la disponibilité hello sur un VM Linux
+#### <a name="run-the-readiness-check-on-a-linux-vm"></a>Vérifier la disponibilité d’une machine virtuelle Linux
 
-1.  Se connecter toohello Machine virtuelle Azure à l’aide de SSH.
+1.  Connectez-vous à la machine virtuelle Azure à l’aide de SSH.
 
-2.  Vérifiez la sortie hello Hello Extension de surveillance Azure améliorée.
+2.  Vérifiez le résultat de l’extension d’analyse Azure améliorée.
 
   a.  Exécutez `more /var/lib/AzureEnhancedMonitor/PerfCounters`.
 
-   **Résultat attendu** : renvoie la liste des compteurs de performances. fichier de Hello ne doit pas être vide.
+   **Résultat attendu** : renvoie la liste des compteurs de performances. Ce fichier ne doit pas être vide.
 
  b. Exécutez `cat /var/lib/AzureEnhancedMonitor/PerfCounters | grep Error`.
 
-   **Résultat attendu**: retourne une ligne où les erreurs hello sont **aucun**, par exemple, **3 ; Configuration ; Erreur ; 0 ; 0 ; Aucun ; 0 ; 1456416792 ; tst-servercs ;**
+   **Résultat attendu** : renvoie une ligne où l’erreur est **none**, par exemple **3;config;Error;;0;0;none;0;1456416792;tst-servercs;**
 
   c. Exécutez `more /var/lib/AzureEnhancedMonitor/LatestErrorRecord`.
 
     **Résultat attendu** : revient vide ou n’existe pas.
 
-Si hello cocher précédente n’a pas réussi, exécutez ces contrôles supplémentaires :
+Si la vérification précédente a échoué, exécutez ces vérifications supplémentaires :
 
-1.  Assurez-vous que waagent hello est installé et activé.
+1.  Assurez-vous que waagent est installé et démarré.
 
   a.  Exécutez `sudo ls -al /var/lib/waagent/`.
 
-      **Résultat attendu**: répertorie le contenu du répertoire de waagent hello hello.
+      **Résultat attendu** : répertorie le contenu du répertoire waagent.
 
   b.  Exécutez `ps -ax | grep waagent`.
 
    **Résultat attendu** : affiche une entrée similaire à : `python /usr/sbin/waagent -daemon`
 
-3.   Assurez-vous que cette Extension de surveillance améliorée Azure hello est installé et en cours d’exécution.
+3.   Assurez-vous que l’extension d’analyse Azure améliorée est installée et démarrée.
 
   a.  Exécutez `sudo sh -c 'ls -al /var/lib/waagent/Microsoft.OSTCExtensions.AzureEnhancedMonitorForLinux-*/'`.
 
-    **Résultat attendu**: répertorie le contenu du répertoire d’Extension de surveillance améliorée Azure hello hello.
+    **Résultat attendu** : répertorie le contenu du répertoire de l’extension d’analyse Azure améliorée.
 
   b. Exécutez `ps -ax | grep AzureEnhanced`.
 
      **Résultat attendu** : affiche une entrée similaire à : `python /var/lib/waagent/Microsoft.OSTCExtensions.AzureEnhancedMonitorForLinux-2.0.0.2/handler.py daemon`
 
-3. Installer l’Agent hôte SAP comme décrit dans la Note SAP [1031096]et vérifiez la sortie hello de `saposcol`.
+3. Installez l’agent hôte SAP comme décrit dans la note SAP [1031096] et vérifiez le résultat de `saposcol`.
 
   a.  Exécutez `/usr/sap/hostctrl/exe/saposcol -d`.
 
   b.  Exécutez `dump ccm`.
 
-  c.  Vérifiez si hello **accès d’analyse Virtualization_Configuration\Enhanced** métrique est **true**.
+  c.  Vérifiez si la métrique **Virtualization_Configuration\Enhanced Monitoring Access** a la valeur **true**.
 
 Si vous avez déjà installé un serveur d’applications ABAP NetWeaver SAP, ouvrez la transaction ST06 et regardez si l’analyse améliorée est activée.
 
-Si une de ces vérifications échoue et pour obtenir des informations détaillées sur la façon dont tooredeploy hello extension, consultez [dépannage hello infrastructure de surveillance Azure pour SAP][deployment-guide-5.3].
+Si l’une de ces vérifications échoue et pour plus d’informations sur la façon de redéployer l’extension, consultez [Résolution de problèmes sur l’infrastructure d’analyse Azure pour SAP][deployment-guide-5.3].
 
-### <a name="e2d592ff-b4ea-4a53-a91a-e5521edb6cd1"></a>Le contrôle d’intégrité pour hello configuration d’infrastructure de surveillance Azure
-Si certains des hello données d’analyse n’est pas remis correctement, comme indiqué par le test de hello décrit dans [vérification de la disponibilité de surveillance améliorée Azure pour SAP][deployment-guide-5.1], hello exécutez `Test-AzureRmVMAEMExtension` toocheck de l’applet de commande Si hello Azure analyse d’infrastructure et hello extension de surveillance pour SAP est configuré correctement.
+### <a name="e2d592ff-b4ea-4a53-a91a-e5521edb6cd1"></a>Contrôle d’intégrité de la configuration de l’infrastructure d’analyse Azure
+Si certaines des données d’analyse ne sont pas fournies correctement, comme indiqué par le test décrit dans [Vérification de la disponibilité de l’analyse Azure améliorée pour SAP][deployment-guide-5.1], exécutez l’applet de commande `Test-AzureRmVMAEMExtension` pour tester si l’infrastructure d’analyse Azure et l’extension d’analyse pour SAP sont correctement configurées.
 
-1.  Assurez-vous que vous avez installé la version la plus récente de l’applet de commande PowerShell de Azure hello hello comme décrit dans [applets de commande de déploiement d’Azure PowerShell][deployment-guide-4.1].
-2.  Exécutez hello suivant l’applet de commande PowerShell. Pour obtenir la liste des environnements disponibles, exécutez l’applet de commande hello `Get-AzureRmEnvironment`. Sélectionnez d’Azure, global toouse hello **cloud Azure** environnement. Pour Azure en Chine, sélectionnez **AzureChinaCloud**.
+1.  Assurez-vous d’avoir installé la dernière version de l’applet de commande Azure PowerShell, comme décrit dans le chapitre [Déploiement d’applets de commande Azure PowerShell][deployment-guide-4.1].
+2.  Exécutez l’applet de commande PowerShell suivant. Pour afficher la liste des environnements disponibles, exécutez l’applet de commande `Get-AzureRmEnvironment`. Pour utiliser la version globale d’Azure, sélectionnez l’environnement **AzureCloud**. Pour Azure en Chine, sélectionnez **AzureChinaCloud**.
   ```powershell
-  $env = Get-AzureRmEnvironment -Name <name of hello environment>
+  $env = Get-AzureRmEnvironment -Name <name of the environment>
   Login-AzureRmAccount -Environment $env
   Set-AzureRmContext -SubscriptionName <subscription name>
   Test-AzureRmVMAEMExtension -ResourceGroupName <resource group name> -VMName <virtual machine name>
   ```
 
-3.  Entrez les données de votre compte et identifier hello machine virtuelle Azure.
+3.  Entrez les données de votre compte et identifiez la machine virtuelle Azure.
 
   ![Page d’entrée de l’applet de commande Azure spécifique à SAP Test-VMConfigForSAP_GUI][deployment-guide-figure-1200]
 
-4. configuration de hello Hello script tests de la machine virtuelle de hello que vous sélectionnez.
+4. Le script teste la configuration de la machine virtuelle sélectionnée.
 
-  ![Sortie du test réussi de hello infrastructure de surveillance Azure pour SAP][deployment-guide-figure-1300]
+  ![Sortie du test réussi de l’infrastructure d’analyse Azure pour SAP][deployment-guide-figure-1300]
 
-Assurez-vous que le résultat de chaque vérification d’intégrité est **OK**. Si des vérifications n’affichent pas **OK**, exécutez l’applet de commande de mise à jour hello comme décrit dans [configurer hello améliorée Extension de surveillance Azure pour SAP][deployment-guide-4.5]. Attendez 15 minutes, et les vérifications de répétition hello décrites dans [vérification de la disponibilité de surveillance améliorée Azure pour SAP] [ deployment-guide-5.1] et [contrôle d’intégrité pour la Configuration de l’Infrastructure d’analyse Azure] [deployment-guide-5.2]. Si les vérifications hello indiquent toujours un problème avec certains ou tous les compteurs, consultez [dépannage hello infrastructure de surveillance Azure pour SAP][deployment-guide-5.3].
+Assurez-vous que le résultat de chaque vérification d’intégrité est **OK**. Si certaines vérifications indiquent un état autre que **OK**, exécutez l’applet de commande update, comme décrit dans [Configurer l’extension d’analyse Azure améliorée pour SAP][deployment-guide-4.5]. Attendez 15 minutes, puis effectuez de nouveau les vérifications décrites dans [Vérification de la disponibilité de l’analyse Azure améliorée pour SAP][deployment-guide-5.1] et [Contrôle d’intégrité de la configuration de l’infrastructure d’analyse Azure][deployment-guide-5.2]. Si les vérifications indiquent encore un problème avec certains ou tous les compteurs, consultez [Résolution de problèmes sur l’infrastructure d’analyse Azure pour SAP][deployment-guide-5.3].
 
-### <a name="fe25a7da-4e4e-4388-8907-8abc2d33cfd8"></a>Résolution des problèmes de hello infrastructure de surveillance Azure pour SAP
+### <a name="fe25a7da-4e4e-4388-8907-8abc2d33cfd8"></a>Résolution de problèmes sur l’infrastructure d’analyse Azure pour SAP
 
 #### <a name="windowslogowindows-azure-performance-counters-do-not-show-up-at-all"></a>![Windows][Logo_Windows] Les compteurs de performances Azure ne s’affichent pas
-Hello service AzureEnhancedMonitoring Windows collecte les mesures de performances dans Azure. Si le service de hello n’a pas été installé correctement ou si elle n’est pas en cours d’exécution dans votre machine virtuelle, aucune mesure de performance ne peut être collectés.
+Le service Windows AzureEnhancedMonitoring recueille les indicateurs de performance dans Azure. Si le service n’a pas été installé correctement ou s’il n’est pas exécuté sur votre machine virtuelle, aucun indicateur de performance ne peut être collecté.
 
-##### <a name="hello-installation-directory-of-hello-azure-enhanced-monitoring-extension-is-empty"></a>répertoire d’installation Hello Hello Extension de surveillance améliorée Azure est vide
+##### <a name="the-installation-directory-of-the-azure-enhanced-monitoring-extension-is-empty"></a>Le répertoire d’installation de l’extension d’analyse Azure améliorée est vide.
 
 ###### <a name="issue"></a>Problème
-répertoire d’installation Hello C:\\Packages\\plug-ins\\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;version >\\dépôt est vide.
+Le répertoire d’installation C:\\Packages\\Plugins\\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;version>\\drop est vide.
 
 ###### <a name="solution"></a>Solution
-extension de Hello n’est pas installée. Déterminez s’il s’agit d’un problème de proxy (comme décrit précédemment). Vous devrez peut-être machine de hello toorestart ou réexécuter hello `Set-AzureRmVMAEMExtension` script de configuration.
+L’extension n’est pas installée. Déterminez s’il s’agit d’un problème de proxy (comme décrit précédemment). Vous devrez peut-être redémarrer la machine ou réexécuter le script de configuration `Set-AzureRmVMAEMExtension`.
 
 ##### <a name="service-for-azure-enhanced-monitoring-does-not-exist"></a>Le service d’analyse Azure améliorée n’existe pas.
 
 ###### <a name="issue"></a>Problème
-Hello service AzureEnhancedMonitoring Windows n’existe pas.
+Le service Windows AzureEnhancedMonitoring n’existe pas.
 
 La sortie de azperflib.exe génère une erreur :
 
-![L’exécution de azperflib.exe indique que le service hello Hello Extension de surveillance améliorée Azure pour SAP n’exécute pas][deployment-guide-figure-1400]
+![L’exécution d’azperflib.exe indique que le service de l’extension d’analyse Azure améliorée pour SAP n’est pas en cours d’exécution][deployment-guide-figure-1400]
 <a name="figure-14"></a>
 
 ###### <a name="solution"></a>Solution
-Si le service de hello n’existe pas, hello améliorée Extension de surveillance Azure pour SAP n'a pas été installé correctement. Redéployez l’extension de hello à l’aide des étapes de hello décrites pour votre scénario de déploiement dans [des scénarios de déploiement de machines virtuelles pour SAP dans Azure][deployment-guide-3].
+Si le service n’existe pas, cela signifie que l’extension d’analyse Azure améliorée pour SAP n’a pas été installée correctement. Redéployez l’extension en suivant la procédure décrite pour votre scénario de déploiement dans [Scénarios de déploiement de machines virtuelles pour SAP sur Azure][deployment-guide-3].
 
-Après avoir déployé l’extension de hello, après une heure, vérifiez de nouveau si les compteurs de performance Azure hello sont fournies dans hello machine virtuelle Azure.
+Une fois l’extension déployée, vérifiez de nouveau après une heure si les compteurs de performances Azure sont fournis dans la machine virtuelle Azure.
 
-##### <a name="service-for-azure-enhanced-monitoring-exists-but-fails-toostart"></a>Service de surveillance améliorée Azure existe, mais échoue toostart
+##### <a name="service-for-azure-enhanced-monitoring-exists-but-fails-to-start"></a>Le service d’analyse Azure améliorée Azure existe, mais ne parvient pas à démarrer
 
 ###### <a name="issue"></a>Problème
-Hello service AzureEnhancedMonitoring Windows existe et est activé, mais échoue toostart. Pour plus d’informations, vérifiez le journal des événements application hello.
+Le service Windows AzureEnhancedMonitoring existe et est activé, mais ne parvient pas à démarrer. Pour plus d’informations, consultez le journal des événements de l’application.
 
 ###### <a name="solution"></a>Solution
-configuration de Hello est incorrecte. Redémarrez hello analyse d’extension pour hello machine virtuelle, comme décrit dans [configurer hello améliorée Extension de surveillance Azure pour SAP][deployment-guide-4.5].
+La configuration est incorrecte. Redémarrez l’extension d’analyse pour la machine virtuelle, comme décrit dans [Configurer l’extension d’analyse Azure améliorée pour SAP][deployment-guide-4.5].
 
 #### <a name="windowslogowindows-some-azure-performance-counters-are-missing"></a>![Windows][Logo_Windows] Certains compteurs de performances Azure sont manquants
-Hello service AzureEnhancedMonitoring Windows collecte les mesures de performances dans Azure. service de Hello Obtient des données provenant de plusieurs sources. Certaines données de configuration sont collectées localement, et certains indicateurs de performance sont lus à partir des diagnostics Azure. Compteurs de stockage sont utilisés à partir de la journalisation sur le niveau d’abonnement de stockage de hello.
+Le service Windows AzureEnhancedMonitoring recueille les indicateurs de performance dans Azure. Le service obtient des données provenant de plusieurs sources. Certaines données de configuration sont collectées localement, et certains indicateurs de performance sont lus à partir des diagnostics Azure. Les compteurs de stockage sont utilisés à partir de votre enregistrement au niveau de l’abonnement de stockage.
 
-Si le dépannage à l’aide de la Note SAP [1999351] n’hello de problème, réexécutez hello `Set-AzureRmVMAEMExtension` script de configuration. Vous pouvez avoir toowait une heure, car les compteurs analytique ou les diagnostics de stockage ne sont pas nécessairement créés immédiatement après avoir été activés. Si hello problème persiste, ouvrez un message de prise en charge du client SAP sur hello composant BC-OP-NT-AZR pour Windows ou BC-OP-LNX-AZR pour une machine virtuelle Linux.
+Si la résolution des problèmes à l’aide de la note SAP [1999351] ne résout pas le problème, réexécutez le script de configuration `Set-AzureRmVMAEMExtension`. Vous devrez peut-être attendre une heure, car il est possible que les compteurs d’analyse ou de diagnostics de stockage ne soient pas créés immédiatement après avoir été activés. Si le problème persiste, ouvrez un message de support client SAP sur le composant BC-OP-NT-AZR pour Windows ou BC-OP-LNX-AZR pour une machine virtuelle Linux.
 
 #### <a name="linuxlogolinux-azure-performance-counters-do-not-show-up-at-all"></a>![Linux][Logo_Linux] Les compteurs de performances Azure ne s’affichent pas
-Les indicateurs de performance dans Azure sont collectés par un démon. Si le démon de hello ne fonctionne pas, aucune mesure de performance ne peut être collectés.
+Les indicateurs de performance dans Azure sont collectés par un démon. Si le démon ne fonctionne pas, aucun indicateur de performance ne peut être collecté.
 
-##### <a name="hello-installation-directory-of-hello-azure-enhanced-monitoring-extension-is-empty"></a>répertoire d’installation Hello Hello extension de surveillance améliorée Azure est vide
+##### <a name="the-installation-directory-of-the-azure-enhanced-monitoring-extension-is-empty"></a>Le répertoire d’installation de l’extension d’analyse Azure améliorée est vide.
 
 ###### <a name="issue"></a>Problème
-répertoire de Hello \\var\\lib\\waagent\\ n’a pas un sous-répertoire pour hello extension de surveillance améliorée Azure.
+Le répertoire \\var\\lib\\waagent\\ ne contient pas de sous-répertoire pour l’extension d’analyse Azure améliorée.
 
 ###### <a name="solution"></a>Solution
-extension de Hello n’est pas installée. Déterminez s’il s’agit d’un problème de proxy (comme décrit précédemment). Vous devrez peut-être toorestart hello ordinateur ou pour exécuter à nouveau hello `Set-AzureRmVMAEMExtension` script de configuration.
+L’extension n’est pas installée. Déterminez s’il s’agit d’un problème de proxy (comme décrit précédemment). Vous devrez peut-être redémarrer la machine et/ou réexécuter le script de configuration `Set-AzureRmVMAEMExtension`.
 
 #### <a name="linuxlogolinux-some-azure-performance-counters-are-missing"></a>![Linux][Logo_Linux] Certains compteurs de performances Azure sont manquants
-Les indicateurs de performance sur Azure sont collectés par un démon, qui obtient des données de plusieurs sources. Certaines données de configuration sont collectées localement, et certains indicateurs de performance sont lus à partir des diagnostics Azure. Compteurs de stockage proviennent des journaux hello dans votre abonnement de stockage.
+Les indicateurs de performance sur Azure sont collectés par un démon, qui obtient des données de plusieurs sources. Certaines données de configuration sont collectées localement, et certains indicateurs de performance sont lus à partir des diagnostics Azure. Les compteurs de stockage proviennent des journaux de votre abonnement de stockage.
 
 Pour obtenir une liste complète et à jour des problèmes connus, consultez la note SAP [1999351], qui contient des informations de dépannage supplémentaires pour l’analyse Azure améliorée pour SAP.
 
-Si le dépannage à l’aide de la Note SAP [1999351] ne pas résoudre le problème de hello, réexécutez hello `Set-AzureRmVMAEMExtension` un script de configuration comme décrit dans [configurer hello améliorée Extension de surveillance Azure pour SAP][deployment-guide-4.5]. Vous pouvez avoir toowait pendant une heure, car les compteurs analytique ou les diagnostics de stockage ne sont pas nécessairement créés immédiatement après avoir été activés. Si hello problème persiste, ouvrez un message de prise en charge du client SAP sur hello composant BC-OP-NT-AZR pour Windows ou BC-OP-LNX-AZR pour une machine virtuelle Linux.
+Si le recours à la note SAP [1999351] ne résout pas le problème, réexécutez le script de configuration `Set-AzureRmVMAEMExtension` comme décrit dans [Configurer l’extension d’analyse Azure améliorée pour SAP][deployment-guide-4.5]. Vous devrez peut-être attendre une heure, car il est possible que les compteurs d’analyse ou de diagnostics de stockage ne soient pas créés immédiatement après avoir été activés. Si le problème persiste, ouvrez un message de support client SAP sur le composant BC-OP-NT-AZR pour Windows ou BC-OP-LNX-AZR pour une machine virtuelle Linux.

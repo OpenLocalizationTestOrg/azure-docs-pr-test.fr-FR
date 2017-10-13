@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec Infor Retail – Information Management | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et les informations de vente au détail – gestion des informations."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Infor Retail – Information Management."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,191 +14,191 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: jeedes
-ms.openlocfilehash: 9cd8ab65d41d01832e0611f7f8254aa257120508
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ab8b7e98324ba4f4ae95775f89df0461058fe4b
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-infor-retail--information-management"></a>Didacticiel : Intégration d’Azure Active Directory avec Infor Retail – Information Management
 
-Dans ce didacticiel, vous apprendrez comment toointegrate commerce de détail les informations de gestion des informations avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Infor Retail – Information Management dans Azure Active Directory (Azure AD).
 
-Intégrer les informations de vente au détail – gestion des informations auprès d’Azure AD offre hello avantages suivants :
+L’intégration d’Infor Retail – Information Management dans Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooInfor vente au détail – gestion des informations.
-- Vous pouvez activer vos utilisateurs tooautomatically get signé sur tooInfor Retail – gestion des informations (Single Sign-On) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.
+- Dans Azure AD, vous pouvez contrôler qui a accès à Infor Retail – Information Management.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Infor Retail – Information Management (par authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure.
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec les informations de vente au détail – gestion des informations, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD dans Infor Retail – Information Management, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement autorisant l’authentification unique à Infor Retail – Information Management
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de commerce de détail les informations de gestion des informations à partir de la galerie de hello
+1. Ajout d’Infor Retail – Information Management à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-infor-retail--information-management-from-hello-gallery"></a>Ajout de commerce de détail les informations de gestion des informations à partir de la galerie de hello
-intégration de hello tooconfigure des informations de vente au détail – gestion des informations dans Azure AD, vous devez tooadd les informations de vente au détail – gestion des informations à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-infor-retail--information-management-from-the-gallery"></a>Ajout d’Infor Retail – Information Management à partir de la galerie
+Pour configurer l’intégration d’Infor Retail – Information Management dans Azure AD, vous devez ajouter Infor Retail – Information Management à partir de la galerie dans votre liste d’applications SaaS gérées.
 
-**tooadd commerce de détail les informations de gestion des informations à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Infor Retail – Information Management à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
-    ![bouton d’Azure Active Directory Hello][1]
+    ![Bouton Azure Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
-    ![panneau des applications Enterprise Hello][2]
+    ![Panneau Applications d’entreprise][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
-    ![Nouveau bouton d’application Hello][3]
+    ![Bouton Nouvelle application][3]
 
-4. Dans la zone de recherche de hello, tapez **les informations de vente au détail – gestion des informations**, sélectionnez **les informations de vente au détail – gestion des informations** à partir du volet de résultats, puis sur **ajouter** hello tooadd de bouton application.
+4. Dans la zone de recherche, tapez **Infor Retail – Information Management**, sélectionnez **Infor Retail – Information Management** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
-    ![Les informations de vente au détail – gestion des informations dans la liste des résultats hello](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_addfromgallery.png)
+    ![Infor Retail – Information Management dans la liste des résultats](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Infor Retail – Information Management et un utilisateur de test appelé « Britta Simon ».
 
-Pour les toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans les informations de détail : gestion des informations est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et l’utilisateur dans les informations de vente au détail – gestion des informations hello doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Infor Retail – Information Management correspondant dans Azure AD. En d’autres termes, il faut établir un lien entre un utilisateur d’Azure AD et l’utilisateur correspondant dans Infor Retail – Information Management.
 
-Dans les informations de vente au détail – gestion des informations, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Infor Retail – Information Management, assignez la valeur du **nom d’utilisateur** d’Azure AD comme valeur de **Username** (Nom d’utilisateur) pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec les informations de vente au détail – gestion des informations, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Infor Retail – Information Management, vous devez suivre les étapes suivantes :
 
-1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Créer un informations de vente au détail – utilisateur de test de gestion des informations](#create-an-infor-retail--information-management-test-user)**  - toohave de Britta Simon dans les informations de détail contrepartie – gestion des informations qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Créer un utilisateur de test Infor Retail – Information Management](#create-an-infor-retail--information-management-test-user)** pour avoir dans Infor Retail – Information Management un équivalent de Britta Simon lié à la représentation Azure AD associée.
+4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre les informations de vente au détail – application de gestion des informations.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Infor Retail – Information Management.
 
-**tooconfigure Azure AD l’authentification unique avec les informations de vente au détail – gestion des informations, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Infor Retail – Information Management, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **les informations de vente au détail – gestion des informations** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **Infor Retail – Information Management**, cliquez sur **Authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_samlbase.png)
 
-3. Sur hello **les informations de vente au détail – informations de gestion de domaine et les URL** section, effectuer hello comme suit si vous le souhaitez en mode initié par l’application hello tooconfigure IDP :
+3. Dans la section **Infor Retail – Information Management Domain and URLs** (Domaines et URL Infor Retail – Information Management), si vous souhaitez configurer l’application en mode démarré par le fournisseur d’identité :
 
     ![Informations d’authentification unique dans Infor Retail – Information Management Domain and URLs (Domaine et URL Infor Retail – Information Management) - Fournisseur d’identité](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_url.png)
 
-    a. Bonjour **identificateur** modèles de zone de texte, tapez une URL à l’aide de hello suivant : 
+    a. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : 
     |   |
     | -- |
     | `https://<company name>.mingle.infor.com` |
     | `http://<company name>.mingledev.infor.com` |
 
-    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<company name>.mingle.infor.com/sp/ACS.saml2`
+    b. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<company name>.mingle.infor.com/sp/ACS.saml2`
 
-4. Vérifiez **afficher les paramètres d’URL avancés** et effectuer hello suivant l’étape si vous le souhaitez application hello tooconfigure **SP** en mode initié par :
+4. Si vous souhaitez configurer l’application en mode démarré par le **fournisseur de service**, cochez **Afficher les paramètres d’URL avancés**, puis effectuez les étapes suivantes :
 
     ![Informations d’authentification unique dans Infor Retail – Information Management Domain and URLs (Domaine et URL Infor Retail – Information Management) - Fournisseur de service](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_url1.png)
 
-    Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<company name>.mingle.infor.com/<company code>`
+    Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<company name>.mingle.infor.com/<company code>`
      
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs avec hello réel identificateur, URL de réponse et URL de connexion. Contact [les informations de vente au détail – équipe de support Client de gestion des informations](mailto:innovate@infor.com) tooget ces valeurs. 
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur, l’URL de réponse et l’URL de connexion réels. Pour obtenir ces valeurs, contactez l’[équipe de support client Infor Retail – Information Management](mailto:innovate@infor.com). 
 
-5. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+5. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
-    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_certificate.png) 
+    ![Lien Téléchargement de certificat](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_certificate.png) 
 
 6. Cliquez sur le bouton **Enregistrer** .
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_general_400.png)
     
-7. tooconfigure l’authentification unique sur **les informations de vente au détail – gestion des informations** côté, vous devez hello toosend téléchargé **Metadata XML** trop[les informations de vente au détail – équipe de support technique de gestion des informations ](mailto:innovate@infor.com). Ils définir ce hello toohave de paramètre connexion SSO SAML correctement des deux côtés.
+7. Pour configurer l’authentification unique côté **Infor Retail – Information Management**, vous devez envoyer le **XML des métadonnées** téléchargé à l’[équipe de support Infor Retail – Information Management](mailto:innovate@infor.com). Celles-ci configurent ensuite ce paramètre pour que la connexion SSO SAML soit définie correctement des deux côtés.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
    ![Créer un utilisateur de test Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.
+1. Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.
 
-    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_01.png)
+    ![Bouton Azure Active Directory](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_01.png)
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
 
-    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_02.png)
+    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.
 
-    ![bouton Ajouter de Hello](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_03.png)
+    ![Bouton Ajouter](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_03.png)
 
-4. Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
 
-    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_04.png)
+    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-inforretailinformationmanagement-tutorial/create_aaduser_04.png)
 
-    a. Bonjour **nom** , tapez **BrittaSimon**.
+    a. Dans la zone **Nom**, tapez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.
+    b. Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.
 
-    c. Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.
+    c. Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-an-infor-retail--information-management-test-user"></a>Créer un utilisateur de test Infor Retail – Information Management
 
-Dans cette section, vous allez créer un utilisateur de test appelé Britta Simon dans Infor Retail – Information Management. Collaborez avec [les informations de vente au détail – équipe de support technique de gestion des informations](mailto:innovate@infor.com) utilisateurs hello tooadd hello les informations de vente au détail : plateforme de gestion des informations.
+Dans cette section, vous allez créer un utilisateur de test appelé Britta Simon dans Infor Retail – Information Management. Travaillez avec [l’équipe de support d’Infor Retail – Information Management](mailto:innovate@infor.com) pour ajouter des utilisateurs dans la plateforme Infor Retail – Information Management.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooInfor vente au détail – gestion des informations.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Infor Retail – Information Management.
 
-![Attribuer le rôle d’utilisateur hello][200] 
+![Attribuer le rôle d’utilisateur][200] 
 
-**tooassign Britta Simon tooInfor vente au détail – gestion des informations, effectuez hello comme suit :**
+**Pour affecter Britta Simon à Infor Retail – Information Management, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **les informations de vente au détail – gestion des informations**.
+2. Dans la liste des applications, sélectionnez **Infor Retail – Information Management**.
 
-    ![Hello les informations de vente au détail – gestion des informations de liaison dans la liste des Applications hello](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_app.png)  
+    ![Lien Infor Retail – Information Management dans la liste des applications](./media/active-directory-saas-inforretailinformationmanagement-tutorial/tutorial_inforretailinformationmanagement_app.png)  
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
-    ![lien de « Utilisateurs et groupes » Hello][202]
+    ![Lien « Utilisateurs et groupes »][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![volet d’ajouter l’affectation de Hello][203]
+    ![Volet Ajouter une attribution][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -206,14 +206,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur hello les informations de vente au détail – vignette de gestion des informations dans hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour les informations de détail – application de gestion des informations.
-Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md). 
+Lorsque vous cliquez sur la mosaïque Infor Retail – Information Management dans le volet d’accès, vous devez vous connecter automatiquement à votre application Infor Retail – Information Management.
+Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

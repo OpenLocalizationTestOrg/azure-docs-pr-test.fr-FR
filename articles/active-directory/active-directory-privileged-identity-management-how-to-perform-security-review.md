@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooperform une vérification de l’accès | Documents Microsoft"
-description: "Découvrez comment tooperform un réexamen avec hello application d’Azure Privileged Identity Management."
+title: "Exécution d’une révision d’accès | Microsoft Docs"
+description: "Découvrez comment effectuer une révision avec l'application Azure Privileged Identity Management."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,38 +15,38 @@ ms.workload: identity
 ms.date: 06/06/2017
 ms.author: billmath
 ms.custom: pim
-ms.openlocfilehash: 301a5e9f97b68fedfbf4954e0bd7dadb7f0fc510
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a98ed60221eeba1d9c92df846aeae2deafb8ae60
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooperform-an-access-review-in-azure-ad-privileged-identity-management"></a>Comment tooperform un accès passez en revue dans Azure AD Privileged Identity Management
-Azure Active Directory (AD) Privileged Identity Management simplifie comment gérer les entreprises tooresources accès privilégié dans Azure AD et autres services en ligne Microsoft comme Office 365 ou Microsoft Intune.  
+# <a name="how-to-perform-an-access-review-in-azure-ad-privileged-identity-management"></a>Comment effectuer une révision de l’accès dans Azure AD Privileged Identity Management ?
+Le service Azure Active Directory (AD) Privileged Identity Management simplifie la gestion par les entreprises de l’accès privilégié aux ressources dans Azure AD et d’autres services en ligne Microsoft tels qu’Office 365 ou que Microsoft Intune.  
 
-Si vous êtes affecté le rôle d’administrateur de tooan, l’administrateur de votre organisation rôle privilégié peut vous demander de tooregularly confirmer que vous devez toujours ce rôle pour votre travail. Vous pouvez obtenir un message électronique contenant un lien, ou vous pouvez accéder droite toohello [portail Azure](https://portal.azure.com). Suivez les étapes de hello dans cette tooperform article automatique examiner vos rôles sont affectés.
+Si vous êtes affecté à un rôle d’administrateur, l’administrateur de rôle privilégié de votre organisation peut vous demander de confirmer régulièrement que vous avez toujours besoin de ce rôle pour votre travail. Vous pouvez recevoir un e-mail contenant un lien ou accéder directement au [portail Azure](https://portal.azure.com). Suivez les étapes décrites dans cet article pour effectuer un auto-examen de vos rôles attribués.
 
-Si vous êtes un administrateur de rôle privilégié intéressé par accès révisions, obtenir plus de détails à [façon toostart examiner un accès](active-directory-privileged-identity-management-how-to-start-security-review.md).
+Si vous êtes un administrateur de rôle privilégié intéressé par les révisions d’accès, consultez [Comment démarrer une révision de sécurité](active-directory-privileged-identity-management-how-to-start-security-review.md)pour plus de détails.
 
-## <a name="add-hello-privileged-identity-management-application"></a>Ajouter une application de Privileged Identity Management hello
-Vous pouvez utiliser l’application de gestion d’identité privilégié (PIM) hello Azure AD Bonjour [portail Azure](https://portal.azure.com/) tooperform les examiner.  Si vous n’avez application Azure AD Privileged Identity Management de hello sur votre portail, suivez ces tooget étapes a démarré.
+## <a name="add-the-privileged-identity-management-application"></a>Ajout de l’application Privileged Identity Management
+Vous pouvez utiliser l'application Azure AD Privileged Identity Management (PIM) dans le [portail Azure](https://portal.azure.com/) pour effectuer votre révision.  Si vous n'avez pas l'application Azure AD Privileged Identity Management sur votre portail, procédez comme suit pour commencer.
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/).
-2. Sélectionnez votre nom d’utilisateur dans hello coin supérieur droit de hello portail Azure et répertoire hello sélectionnez où vous allez être fonctionne.
-3. Sélectionnez **davantage de services** et utiliser toosearch de zone de texte de filtre hello pour **Azure AD Privileged Identity Management**.
-4. Vérifiez **code confidentiel toodashboard** puis cliquez sur **créer**. Hello application de Privileged Identity Management s’ouvre.
+1. Connectez-vous au [portail Azure](https://portal.azure.com/).
+2. Sélectionnez votre nom d’utilisateur dans le coin supérieur droit du portail Azure, puis choisissez le répertoire que vous allez utiliser.
+3. Sélectionnez **Plus de services** et utilisez la zone de texte Filtre pour rechercher **Azure AD Privileged Identity Management**.
+4. Cochez **Épingler au tableau de bord**, puis cliquez sur **Créer**. L’application Privileged Identity Management s’ouvre.
 
 ## <a name="approve-or-deny-access"></a>Approuver ou refuser l'accès
-Lorsque vous approuvez ou refusez l’accès, vous indiquez simplement réviseur de hello si vous utilisez toujours ce rôle ou non. Choisissez **approuver** si vous souhaitez que toostay dans le rôle de hello, ou **Deny** si vous ne devez hello accès plus. Votre état ne changera pas tout de suite, jusqu'à ce que le réviseur de hello applique les résultats hello.
-Suivez ces étapes toofind et terminer la vérification de l’accès hello :
+Lorsque vous acceptez ou refusez l’accès, vous indiquez simplement au réviseur si vous utilisez toujours ce rôle ou non. Choisissez **Approuver** si vous souhaitez conserver le rôle, ou **Refuser** si vous n’avez plus besoin de l’accès. Votre état ne change pas tout de suite car le réviseur doit d’abord appliquer les résultats.
+Procédez comme suit pour rechercher et terminer la révision de l’accès :
 
-1. Bonjour application PIM, sélectionnez **révision d’un accès privilégié**. Si vous disposez de toutes les révisions en attente d’accès, ils apparaissent Bonjour Qu'azure AD Access passe en revue le panneau.
-2. Sélectionnez la révision hello souhaité toocomplete.
-3. Sauf si vous avez créé la révision de hello, vous apparaissez comme hello uniquement l’utilisateur en cours de révision de hello. Sélectionnez le nom de tooyour suivant hello case à cocher.
-4. Choisissez **Approuver** ou **Refuser**. Vous devrez peut-être tooinclude raison de votre décision Bonjour **fournir une raison** zone de texte.  
-5. Fermer hello **rôles Azure AD** panneau.
+1. Dans l’application PIM, sélectionnez **Réviser un accès privilégié**. Si vous avez des révisions d’accès en attente, ces révisions apparaissent dans le panneau des révisions d’accès Azure AD.
+2. Sélectionnez la révision à terminer.
+3. Sauf si vous avez créé la révision, vous serez l’unique utilisateur de cette révision. Cochez la case en regard de votre nom.
+4. Choisissez **Approuver** ou **Refuser**. Vous devrez peut-être motiver votre choix dans la zone de texte **Indiquez une raison** .  
+5. Fermez le panneau **Réviser les rôles Azure AD** .
 
-<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
+<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>Étapes suivantes
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 

@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Veracode | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Veracode."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Veracode."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,111 +14,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jeedes
-ms.openlocfilehash: d17307b3864b7df8ee55f569d8f962e2e315b936
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d49349c5ae08e67d91e30967f3644623211823ce
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-veracode"></a>Didacticiel : Intégration d’Azure AD à Veracode
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Veracode avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Veracode à Azure Active Directory (Azure AD).
 
-Intégration Veracode à Azure AD offre hello avantages suivants :
+L’intégration de Veracode dans Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooVeracode.
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooVeracode (Single Sign-On) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.
+- Dans Azure AD, vous pouvez contrôler qui a accès à Veracode.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Veracode (via l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure.
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure veracode intégration d’Azure AD, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à Veracode, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Veracode pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajouter des Veracode à partir de la galerie de hello
+1. Ajouter Veracode à partir de la galerie
 2. Configurer et tester l’authentification unique Azure AD
 
-## <a name="add-veracode-from-hello-gallery"></a>Ajouter des Veracode à partir de la galerie de hello
-intégration de hello tooconfigure de Veracode dans Azure AD, vous devez tooadd Veracode à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="add-veracode-from-the-gallery"></a>Ajouter Veracode à partir de la galerie
+Pour configurer l’intégration de Veracode à Azure AD, vous devez ajouter Veracode à partir de la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd Veracode à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Veracode à partir de la galerie, effectuez les étapes suivantes :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
-    ![bouton d’Azure Active Directory Hello][1]
+    ![Bouton Azure Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
-    ![panneau des applications Enterprise Hello][2]
+    ![Panneau Applications d’entreprise][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
-    ![Nouveau bouton d’application Hello][3]
+    ![Bouton Nouvelle application][3]
 
-4. Dans la zone de recherche de hello, tapez **Veracode**, sélectionnez **Veracode** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
+4. Dans la zone de recherche, tapez **Veracode**, sélectionnez **Veracode** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
-    ![Veracode dans la liste des résultats hello](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_addfromgallery.png)
+    ![Veracode dans la liste des résultats](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Veracode avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Veracode est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Veracode doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Veracode équivalent dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Veracode associé doit être établie.
 
-Dans Veracode, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Veracode, assignez la valeur du **nom d’utilisateur** dans Azure AD comme valeur de **Username** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique sur veracode, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Veracode, vous devez suivre les indications des sections suivantes :
 
-1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Créer un utilisateur de test Veracode](#create-a-veracode-test-user)**  -toohave un équivalent de Britta Simon dans Veracode est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Créer un utilisateur de test Veracode](#create-a-veracode-test-user)** pour avoir un équivalent de Britta Simon dans Veracode lié à la représentation Azure AD associée.
+4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Veracode.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Veracode.
 
-**tooconfigure Azure AD l’authentification unique sur veracode, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Veracode, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, sur hello **Veracode** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, dans la page d’intégration de l’application **Veracode**, cliquez sur **Authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_samlbase.png)
 
-3. Sur hello **Veracode domaine et les URL** section, l’utilisateur n’a pas tooperform toutes les étapes que l’application hello est déjà pré-intégration à Azure. 
+3. Dans la section **Domaine et URL Veracode**, l’utilisateur n’aura à effectuer aucune étape, car l’application est déjà intégrée à Azure. 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_url.png)
 
-4. Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
 
-    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_certificate.png) 
+    ![Lien de téléchargement du certificat](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_certificate.png) 
 
-5. objectif Hello de cette section est toooutline comment tooenable utilisateurs tooauthenticate tooVeracode avec leur compte dans Azure AD en utilisant la fédération basée sur le protocole SAML de hello.
+5. Cette section explique comment permettre aux utilisateurs de s’authentifier sur Veracode avec leur compte Azure AD en utilisant la fédération basée sur le protocole SAML.
 
-    Votre application Veracode attend les assertions SAML hello dans un format spécifique, ce qui vous oblige à tooyour de mappages d’attributs personnalisés tooadd **attributs du jeton saml** configuration. Hello suivant capture d’écran montre un exemple de cela.
+    Votre application Veracode s’attend à recevoir les assertions SAML dans un format spécifique, ce qui vous oblige à ajouter des mappages d’attributs personnalisés à votre configuration **Attributs du jeton SAML** . La capture d’écran suivante montre un exemple :
     
     ![Attributs](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_attr.png "Attributs")
 
-6. mappages d’attributs tooadd hello requis, effectuez hello comme suit :
+6. Pour ajouter les mappages d’attribut requis, procédez comme suit :
 
     | Nom de l'attribut | Valeur de l’attribut |
     |--- |--- |
@@ -126,15 +126,15 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
     | lastname |User.Surname |
     | email |User.mail |
     
-    a. Pour chaque ligne de données dans la table hello ci-dessus, cliquez sur **ajouter un attribut utilisateur**.
+    a. Pour chaque ligne de données dans le tableau ci-dessus, cliquez sur **ajouter un attribut utilisateur**.
     
     ![Attributs](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_addattr.png "Attributs")
     
     ![Attributs](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_addattr1.png "Attributs")
     
-    b. Bonjour **nom de l’attribut** zone de texte, nom d’attribut type hello indiqué pour cette ligne.
+    b. Dans la zone de texte **Nom de l’attribut** , indiquez le nom d’attribut pour cette ligne.
     
-    c. Bonjour **valeur d’attribut** zone de texte, valeur de l’attribut select hello indiqué pour cette ligne.
+    c. Dans la zone de texte **Valeur de l’attribut** , sélectionnez la valeur d’attribut indiquée pour cette ligne.
     
     d. Cliquez sur **OK**.
 
@@ -142,29 +142,29 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-veracode-tutorial/tutorial_general_400.png)
 
-8. Sur hello **Veracode Configuration** , cliquez sur **Veracode de configurer** tooopen **configurer l’authentification** fenêtre. Hello de copie **ID d’entité SAML** de hello **section de référence rapide.**
+8. Pour ouvrir la fenêtre **Configurer l’authentification**, dans la section **Configuration de Veracode**, cliquez sur **Configurer Veracode**. Copiez **l’ID d’entité SAML** à partir de la **section Référence rapide**.
 
     ![Configuration de Veracode](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_configure.png) 
 
 9. Dans une autre fenêtre de navigateur web, connectez-vous au site de votre entreprise Veracode en tant qu’administrateur.
 
-10. Dans le menu hello haut de hello, cliquez sur **paramètres**, puis cliquez sur **Admin**.
+10. Dans le menu situé en haut, cliquez sur **Settings** puis sur **Admin**.
    
     ![Administration](./media/active-directory-saas-veracode-tutorial/ic802911.png "Administration")
 
-11. Cliquez sur hello **SAML** onglet.
+11. Cliquez sur l’onglet **SAML** .
 
-12. Bonjour **organisation SAML paramètres** section, effectuer hello comme suit :
+12. Dans la section **Organization SAML Settings** , procédez comme suit :
    
     ![Administration](./media/active-directory-saas-veracode-tutorial/ic802912.png "Administration")
    
-    a.  Dans **émetteur** zone de texte, valeur hello coller **ID d’entité SAML** dont vous avez copié à partir du portail Azure.
+    a.  Dans la zone de texte **Issuer (Émetteur)**, collez la valeur de **l’ID d’entité SAML** que vous avez copiée à partir du portail Azure.
     
-    b. Cliquez sur votre certificat téléchargé à partir du portail Azure, de tooupload **choisir un fichier**.
+    b. Pour charger le certificat téléchargé à partir du portail Azure, cliquez sur **Choose File**.
    
     c. Sélectionnez **Enable Self Registration**.
 
-13. Bonjour **les paramètres d’inscription libre-service** section, effectuer hello comme suit, puis cliquez sur **enregistrer**:
+13. Dans la section **Self Registration Settings**, procédez comme suit, puis cliquez sur **Save** :
    
     ![Administration](./media/active-directory-saas-veracode-tutorial/ic802913.png "Administration")
    
@@ -172,7 +172,7 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
    
     b. Dans **User Data Updates**, sélectionnez **Preference Veracode User Data**.
    
-    c. Pour **des détails d’attribut SAML**, sélectionnez hello qui suit :
+    c. Dans **SAML Attribute Details**, sélectionnez les éléments suivants :
       * **Rôles d’utilisateur**
       * **Administrateur de la stratégie**
       * **Réviseur**
@@ -185,73 +185,73 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
       * **Équipe par défaut**
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
    ![Créer un utilisateur de test Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.
+1. Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.
 
-    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-veracode-tutorial/create_aaduser_01.png)
+    ![Bouton Azure Active Directory](./media/active-directory-saas-veracode-tutorial/create_aaduser_01.png)
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
 
-    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-veracode-tutorial/create_aaduser_02.png)
+    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-veracode-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.
 
-    ![bouton Ajouter de Hello](./media/active-directory-saas-veracode-tutorial/create_aaduser_03.png)
+    ![Bouton Ajouter](./media/active-directory-saas-veracode-tutorial/create_aaduser_03.png)
 
-4. Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
 
-    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-veracode-tutorial/create_aaduser_04.png)
+    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-veracode-tutorial/create_aaduser_04.png)
 
-    a. Bonjour **nom** , tapez **BrittaSimon**.
+    a. Dans la zone **Nom**, tapez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.
+    b. Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.
 
-    c. Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.
+    c. Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-a-veracode-test-user"></a>Créer un utilisateur de test Veracode
-Dans l’ordre tooenable Azure AD les utilisateurs toolog dans Veracode, vous devez les configurer dans Veracode. Dans les cas de hello de Veracode, cette configuration est une tâche automatique. Vous n’avez rien à faire. Les utilisateurs sont automatiquement créés si nécessaire pendant hello première seule tentative de connexion.
+Pour se connecter à Veracode, les utilisateurs d’Azure AD doivent être approvisionnés dans Veracode. Dans le cas de Veracode, l’approvisionnement est une tâche automatique. Vous n’avez aucune opération à effectuer. Au besoin, les utilisateurs sont automatiquement créés lors de la première tentative d’authentification unique.
 
 > [!NOTE]
-> Vous pouvez utiliser n’importe quel autre Veracode utilisateur compte outil de création ou API fournie par Veracode tooprovision comptes d’utilisateur Azure AD.
+> Vous pouvez utiliser n’importe quel outil ou API de création de compte d’utilisateur, fourni par Veracode, pour approvisionner des comptes d’utilisateur Azure AD.
 > 
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooVeracode.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Veracode.
 
-![Attribuer le rôle d’utilisateur hello][200] 
+![Attribuer le rôle d’utilisateur][200] 
 
-**tooassign Britta Simon tooVeracode, effectuez hello comme suit :**
+**Pour affecter Britta Simon à Veracode, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Veracode**.
+2. Dans la liste des applications, sélectionnez **Veracode**.
 
-    ![lien de Veracode Hello dans la liste des Applications hello](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_app.png)  
+    ![Lien Veracode dans la liste des applications](./media/active-directory-saas-veracode-tutorial/tutorial_veracode_app.png)  
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
-    ![lien de « Utilisateurs et groupes » Hello][202]
+    ![Lien « Utilisateurs et groupes »][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![volet d’ajouter l’affectation de Hello][203]
+    ![Volet Ajouter une attribution][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -259,14 +259,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque Veracode hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour Veracode application.
-Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md). 
+Si vous cliquez sur la mosaïque Veracode dans le volet d’accès, vous devez vous connecter automatiquement à votre application Veracode.
+Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

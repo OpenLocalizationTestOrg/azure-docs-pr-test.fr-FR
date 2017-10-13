@@ -1,5 +1,5 @@
 ---
-title: "aaaGet en main de l’audit de base de données SQL Azure | Documents Microsoft"
+title: "Bien démarrer avec l’audit de bases de données SQL Azure | Microsoft Docs"
 description: "Bien démarrer avec l’audit de bases de données SQL Azure"
 services: sql-database
 documentationcenter: 
@@ -15,73 +15,73 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/07/2017
 ms.author: giladm
-ms.openlocfilehash: 5494c602d702ac41992520f900c393a98cc7c989
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 04c402709560775592e5500362b0d9a4ccbf5a6f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-sql-database-auditing"></a>Bien démarrer avec l’audit de bases de données SQL
-Audit de base de données SQL Azure effectue le suivi des événements de base de données et les écrit le journal d’audit de tooan dans votre compte de stockage Azure. Par ailleurs, l’audit :
+L’audit de bases de données SQL Azure suit les événements de base de données et les écrit dans un journal d’audit dans votre compte de stockage Azure. Par ailleurs, l’audit :
 
 * peut vous aider à respecter une conformité réglementaire, à comprendre l’activité de la base de données ainsi qu’à découvrir des discordances et anomalies susceptibles d’indiquer des problèmes pour l’entreprise ou des violations de la sécurité ;
 
-* Permet et facilite les normes de toocompliance d’adhésion, bien qu’il ne garantit pas la conformité. Pour plus d’informations sur Azure programmes que la conformité aux normes de prise en charge, consultez hello [Azure Trust Center](https://azure.microsoft.com/support/trust-center/compliance/).
+* permet et facilite le respect de normes de conformité, même s’il ne garantit pas cette conformité. Pour plus d’informations sur les programmes Azure prenant en charge la conformité aux normes, voir le [Centre de confidentialité Azure](https://azure.microsoft.com/support/trust-center/compliance/).
 
 
 ## <a id="subheading-1"></a>Vue d’ensemble de l’audit be bases de données SQL Azure
 Vous pouvez utiliser l’audit de bases de données SQL pour :
 
 
-* **La rétention** d’une piste d’audit d’événements sélectionnés. Vous pouvez définir des catégories de base de données actions toobe est auditée.
-* **La génération de rapports** sur les activités de la base de données. Vous pouvez utiliser les rapports préconfigurés et un tooget de tableau de bord rapidement opérationnel avec activité et les rapports d’événements.
+* **La rétention** d’une piste d’audit d’événements sélectionnés. Définissez les catégories d'actions et d'événements de base de données à auditer.
+* **La génération de rapports** sur les activités de la base de données. Vous pouvez utiliser des rapports préconfigurés et un tableau de bord pour une prise en main rapide de la génération de rapports d'activités et d'événements.
 * **L'analyse** des rapports. Vous pouvez repérer les événements suspects, les activités inhabituelles et les tendances.
 
-Vous pouvez configurer l’audit pour les différents types de catégories d’événements, comme expliqué dans hello [configurer l’audit pour votre base de données](#subheading-2) section.
+Vous pouvez configurer l’audit pour différents types de catégories d’événements, comme expliqué dans la section [Configuration de l’audit de votre base de données](#subheading-2).
 
-Journaux d’audit sont écrites de stockage d’objets Blob tooAzure sur votre abonnement Azure.
+Les journaux d’audit sont écrits dans le stockage Blob Azure avec votre abonnement Azure.
 
 
 ## <a id="subheading-8"></a>Définir une stratégie d’audit au niveau du serveur ou au niveau de la base de données
 
 Une stratégie d’audit peut être définie pour une base de données spécifique ou en tant que stratégie de serveur par défaut :
 
-* Une stratégie de serveur s’applique tooall existantes et nouvelles bases de données sur le serveur de hello.
+* Une stratégie de serveur s’applique aux bases de données existantes et à celles qui sont nouvellement créées sur le serveur.
 
-* Si *l’audit de blob serveur est activé*, il *applique toujours la base de données toohello* (autrement dit, base de données hello est audité), quelle que soit la base de données hello paramètres d’audit.
+* Si *l’audit d’objets blob serveur est activé*, il *s’applique toujours à la base de données*. La base de données est auditée, quels que soient les paramètres d’audit de la base de données.
 
-* L’activation d’objet blob de l’audit sur base de données hello dans Ajout tooenabling sur le serveur de hello, sera *pas* remplacer ou modifier les paramètres d’audit d’objets blob hello serveur hello. Les deux audits coexistent. En d’autres termes, la base de données hello est audité deux fois en parallèle (une fois par la stratégie de serveur hello et qu’une seule fois par la stratégie de base de données hello).
+* L’activation de l’audit d’objets blob dans la base de données, en plus de son activation sur le serveur, ne remplace *pas* et ne modifie pas non plus les paramètres de l’audit d’objets blob serveur. Les deux audits coexistent. En d’autres termes, la base de données est auditée deux fois en parallèle (une fois par la stratégie du serveur et une autre fois par la stratégie de la base de données).
 
    > [!NOTE]
    > Vous devez éviter d’activer à la fois l’audit d’objets blob du serveur et l’audit d’objets blob de la base de données, sauf si :
-    > * Vous voulez toouse un autre *compte de stockage* ou *période de rétention* pour une base de données spécifique.
-    > * Vous souhaitez les catégories ou les types d’événements tooaudit pour une base de données spécifique qui diffèrent des types d’événements ou des catégories qui sont en cours d’audit pour les autres hello hello bases de données hello serveur. Par exemple, peut avoir des insertions de table qui doivent toobe auditer uniquement pour une base de données spécifique.
-   > 
-   > Dans le cas contraire, nous vous recommandons d’activer l’audit des objets blob d’uniquement au niveau du serveur et laissez hello au niveau de la base de données d’audit désactivé pour toutes les bases de données.
+    > * Vous voulez utiliser un autre *compte de stockage* ou une autre *période de rétention* pour une base de données spécifique.
+    > * Vous souhaitez auditer des types ou des catégories d’événements pour une base de données qui sont différents de ceux qui sont audités pour les autres bases de données du serveur. Par exemple, il est possible que des insertions de table doivent être auditées uniquement pour une base de données spécifique.
+   >
+   > Sinon, nous vous recommandons d’activer uniquement l’audit d’objets blob au niveau du serveur et de laisser l’audit au niveau de la base de données désactivé pour toutes les bases de données.
 
 
 ## <a id="subheading-2"></a>Configuration de l’audit pour votre base de données
-Hello section suivante décrit la configuration hello d’audit à l’aide de hello portail Azure.
+La section suivante décrit la configuration de l’audit à l’aide du portail Azure.
 
-1. Accédez toohello [portail Azure](https://portal.azure.com).
-2. Accédez toohello **paramètres** Panneau de hello SQL de base de données/serveur SQL server tooaudit. Bonjour **paramètres** panneau, sélectionnez **détection d’audit et de menaces**.
+1. Accédez au [portail Azure](https://portal.azure.com).
+2. Accédez au panneau **Paramètres** de la base de données/du serveur SQL que vous voulez auditer. Dans le panneau **Paramètres**, sélectionnez **Audit et détection des menaces**.
 
     <a id="auditing-screenshot"></a>![Volet de navigation][1]
-3. Si vous préférez tooset d’une stratégie d’audit de serveur (qui doit s’appliquer tooall existant et bases de données nouvellement créées sur ce serveur), vous pouvez sélectionner hello **afficher les paramètres du serveur** lien dans le panneau de l’audit de base de données hello. Vous pouvez afficher ou modifier les paramètres d’audit de serveur hello.
+3. Si vous préférez définir une stratégie d’audit de serveur, vous pouvez sélectionner le lien **Afficher les paramètres du serveur** dans le panneau d’audit de la base de données. Vous pouvez alors afficher ou modifier les paramètres d’audit du serveur. Les stratégies d’audit de serveur s’appliquent aux bases de données existantes et à celles qui sont nouvellement créées sur le serveur.
 
     ![Volet de navigation][2]
-4. Si vous préférez tooenable blob l’audit de niveau de base de données de hello (dans tooor ajout au lieu de l’audit au niveau du serveur), **audit**, sélectionnez **ON**et pour **l’audit de type** , sélectionnez **Blob**.
+4. Si vous préférez activer l’audit d’objets blob au niveau de la base de données : pour **Audit**, sélectionnez **ACTIVÉ** et pour **Type d’audit**, sélectionnez **Objet blob**.
 
-    Si l’audit des objets blob de serveur est activé, audit de base de données configurée hello existe côte à côte avec l’audit du blob serveur hello.  
+    Si l’audit d’objets blob du serveur est activé, l’audit configuré pour la base de données coexiste avec celui-ci.
 
     ![Volet de navigation][3]
-5. tooopen hello **stockage des journaux d’Audit** panneau, sélectionnez **détails de stockage**. Sélectionnez le compte de stockage Azure hello où seront enregistrés les journaux et puis sélectionnez la période de rétention hello, après le hello anciens journaux seront supprimés. Cliquez ensuite sur **OK**. 
-   >[!TIP] 
-   >hello tooget parti hello audit des modèles de rapports, utilisez hello même compte de stockage pour toutes les bases de données audités. 
+5. Pour ouvrir le panneau **Stockage des journaux d’audit**, sélectionnez **Détails du stockage**. Sélectionnez le compte de stockage Azure dans lequel les journaux seront enregistrés, puis sélectionnez la période de rétention. Les anciens journaux seront supprimés. Cliquez ensuite sur **OK**.
+   >[!TIP]
+   >Pour tirer le meilleur parti des modèles des rapports d’audit, utilisez le même compte de stockage pour toutes les bases de données auditées.
 
     <a id="storage-screenshot"></a>![Volet de navigation][4]
-6. Si vous souhaitez que les événements audité de hello toocustomize, vous pouvez le faire via PowerShell ou hello API REST. Pour plus d’informations, consultez hello [Automation (API PowerShell/REST)](#subheading-7) section.
-7. Une fois que vous avez configuré vos paramètres d’audit, vous pouvez activer la nouvelle fonctionnalité de détection de menaces hello et configurer des alertes de sécurité des messages électroniques tooreceive. La détection des menaces vous permet de recevoir des alertes proactives sur des activités anormales de la base de données qui peuvent indiquer des menaces de sécurité potentielles. Pour plus d’informations, consultez [Bien démarrer avec la détection des menaces](sql-database-threat-detection-get-started.md).
+6. Si vous souhaitez personnaliser les événements audités, vous pouvez le faire avec PowerShell ou l’API REST. 
+7. Une fois que vous avez configuré vos paramètres d’audit, vous pouvez activer la nouvelle fonctionnalité de détection des menaces et configurer les adresses e-mail de réception des alertes de sécurité. La détection des menaces vous permet de recevoir des alertes proactives sur des activités anormales de la base de données qui peuvent indiquer des menaces de sécurité potentielles. Pour plus d’informations, consultez [Bien démarrer avec la détection des menaces](sql-database-threat-detection-get-started.md).
 8. Cliquez sur **Enregistrer**.
 
 
@@ -89,100 +89,100 @@ Hello section suivante décrit la configuration hello d’audit à l’aide de h
 
 
 ## <a id="subheading-3"></a>Analyse des journaux et des rapports d’audit
-Journaux d’audit sont regroupées dans hello compte de stockage Azure que vous avez choisi lors de l’installation. Vous pouvez explorer les journaux d’audit avec un outil comme [l’Explorateur de stockage Azure](http://storageexplorer.com/).
+Les journaux d’audit sont agrégés dans le compte de stockage Azure choisi lors de la configuration. Vous pouvez explorer les journaux d’audit avec un outil comme [l’Explorateur de stockage Azure](http://storageexplorer.com/).
 
 Les journaux d’audit d’objets blob sont enregistrés sous la forme d’une collection de fichiers d’objets blob dans un conteneur nommé **sqldbauditlogs**.
 
-Pour plus d’informations sur la hiérarchie hello du dossier de stockage des journaux hello blob d’audit, conventions d’affectation de noms d’objet blob et le format de journal, consultez hello [référence de la Format de journal d’Audit Blob (téléchargement de fichier .docx)](https://go.microsoft.com/fwlink/?linkid=829599).
+Pour plus d’informations sur la hiérarchie du dossier de stockage, sur les conventions de nommage et sur le format des journaux, consultez le [document de référence sur le format des journaux d’audit d’objets blob](https://go.microsoft.com/fwlink/?linkid=829599).
 
-Il existe plusieurs méthodes que vous pouvez utiliser blob tooview les journaux d’audit :
+Plusieurs méthodes vous permettent d’afficher des journaux d’audit d’objets blob :
 
-* Hello d’utilisation [portail Azure](https://portal.azure.com).  Base de données appropriée hello ouvert. Haut de hello AT de la base de données hello **détection d’audit et de menaces** panneau, cliquez sur **afficher les journaux d’audit**.
+* Utilisez le [portail Azure](https://portal.azure.com).  Ouvrez la base de données appropriée. En haut du panneau **Audit et détection des menaces** de la base de données, cliquez sur **Afficher les journaux d’audit**.
 
     ![Volet de navigation][7]
 
-    Un **enregistrements d’Audit** s’ouvre le panneau, à partir de laquelle vous serez en mesure de tooview hello journaux.
+    Un panneau **Enregistrements d’audit** s’ouvre, dans lequel s’affichent les journaux.
 
-    - Vous pouvez afficher des dates spécifiques en cliquant sur **filtre** haut hello hello **enregistrements d’Audit** panneau.
+    - Vous pouvez afficher des dates spécifiques en cliquant sur **Filtrer** en haut du panneau **Enregistrements d’audit**.
     - Vous pouvez basculer entre les enregistrements d’audit qui ont été créés par un audit de stratégie de base de données ou de stratégie de serveur.
 
        ![Volet de navigation][8]
 
-* Utilisez la fonction du système hello **sys.fn_get_audit_file** données du journal d’audit (T-SQL) tooreturn hello sous forme de tableau. Pour plus d’informations sur l’utilisation de cette fonction, consultez hello [sys.fn_get_audit_file documentation](https://docs.microsoft.com/sql/relational-databases/system-functions/sys-fn-get-audit-file-transact-sql).
+* Utilisez la fonction système **sys.fn_get_audit_file** (T-SQL) pour retourner les données du journal d’audit sous un format tabulaire. Pour plus d’informations sur l’utilisation de cette fonction, consultez la [documentation sys.fn_get_audit_file](https://docs.microsoft.com/sql/relational-databases/system-functions/sys-fn-get-audit-file-transact-sql).
 
 
-* Utilisez **Fusionner les fichiers d’audit** dans SQL Server Management Studio (à partir de SSMS 17) :  
-    1. Dans le menu SSMS hello, sélectionnez **fichier** > **ouvrir** > **fusionner les fichiers d’Audit**.
+* Utilisez **Fusionner les fichiers d’audit** dans SQL Server Management Studio (à partir de SSMS 17) :
+    1. Dans le menu SSMS, sélectionnez **Fichier** > **Ouvrir** > **Fusionner les fichiers d’audit**.
 
         ![Volet de navigation][9]
-    2. Hello **ajouter des fichiers d’Audit** boîte de dialogue s’ouvre. Sélectionnez une des hello **ajouter** options pour choisir si des fichiers d’audit de toomerge à partir d’une variable locale du disque ou les importer depuis le stockage Azure (vous sera nécessaire tooprovide vos informations de stockage Azure et de la clé de compte).
+    2. La boîte de dialogue **Ajouter des fichiers d’audit** s’ouvre. Sélectionnez l’une des options **Ajouter** pour choisir de fusionner les fichiers d’audit à partir d’un disque local ou de les importer à partir du stockage Azure. Vous devrez fournir vos informations de stockage Azure et la clé de compte.
 
-    3. Une fois tous les fichiers toomerge ont été ajoutés, cliquez sur **OK** opération de fusion toocomplete hello.
+    3. Une fois que tous les fichiers à fusionner ont été ajoutés, cliquez sur **OK** pour terminer l’opération de fusion.
 
-    4. Hello fusionné s’ouvre dans SSMS, où vous pouvez afficher et analyser, ainsi que des exportation il tooan XEL ou CSV tooa ou fichier de la table.
+    4. Le fichier fusionné s’ouvre dans SSMS, où vous pouvez l’afficher et l’analyser, ainsi que l’exporter vers un fichier XEL ou CSV, ou une table.
 
-* Hello d’utilisation [synchronisation application](https://github.com/Microsoft/Azure-SQL-DB-auditing-OMS-integration) que nous avons créés. Il s’exécute dans Azure et utilise l’Analytique des journaux Operations Management Suite (OMS) publique API toopush SQL des journaux d’audit dans OMS. synchroniser l’application Hello transmet les journaux d’audit SQL dans l’Analytique des journaux OMS pour la consommation via le tableau de bord hello Analytique des journaux OMS. 
+* Utilisez l’[application de synchronisation](https://github.com/Microsoft/Azure-SQL-DB-auditing-OMS-integration) que nous avons créée. Elle s’exécute dans Azure et utilise les API publiques OMS (Operations Management Suite) Log Analytics pour effectuer un push des journaux d’audit SQL vers OMS. L’application de synchronisation effectue un push des journaux d’audit SQL vers OMS Log Analytics pour les utiliser dans le tableau de bord OMS Log Analytics.
 
 * Utilisez Power BI. Vous pouvez afficher et analyser les données du journal d’audit dans Power BI. Explorez [Power BI et accédez à un modèle téléchargeable](https://blogs.msdn.microsoft.com/azuresqldbsupport/2017/05/26/sql-azure-blob-auditing-basic-power-bi-dashboard/).
 
-* Téléchargez les fichiers journaux à partir de votre conteneur d’objets blob de stockage Azure via le portail de hello ou à l’aide d’un outil tel que [Azure Storage Explorer](http://storageexplorer.com/).
-    * Après avoir téléchargé un fichier journal localement, vous pouvez double-cliquer sur hello tooopen de fichier, afficher et analyser les journaux hello dans SSMS.
-    * Vous pouvez également télécharger plusieurs fichiers simultanément avec l’Explorateur de stockage Azure. Cliquez sur un sous-dossier spécifique (par exemple, un sous-dossier qui inclut tous les fichiers journaux pour une date spécifique) et sélectionnez **enregistrer en tant que** toosave dans un dossier local.
+* Téléchargez les fichiers journaux à partir de votre conteneur Azure Storage Blob via le portail ou avec un outil comme [l’Explorateur de stockage Azure](http://storageexplorer.com/).
+    * Une fois que vous avez téléchargé localement un fichier journal, vous pouvez double-cliquer sur le fichier pour ouvrir, afficher et analyser les journaux dans SSMS.
+    * Vous pouvez également télécharger plusieurs fichiers simultanément avec l’Explorateur de stockage Azure. Cliquez avec le bouton droit sur un sous-dossier, puis sélectionnez **Enregistrer en tant que** pour enregistrer dans un dossier local.
 
 * Autres méthodes :
-   * Après le téléchargement de plusieurs fichiers (ou un sous-dossier qui comprend des fichiers journaux pour une journée entière, comme indiqué dans l’élément précédent de hello dans cette liste), vous pouvez les fusionner localement comme décrit dans les instructions de fichiers d’Audit de fusion SSMS hello décrites précédemment.
+   * Après avoir téléchargé plusieurs fichiers (ou un sous-dossier contenant des fichiers journaux), vous pouvez les fusionner localement en suivant les instructions relatives à l’option Fusionner les fichiers d’audit dans SSMS décrites précédemment.
 
    * Affichez des journaux d’audit d’objets blob par programmation :
 
-     * Hello d’utilisation [lecteur d’événements étendus](https://blogs.msdn.microsoft.com/extended_events/2011/07/20/introducing-the-extended-events-reader/) bibliothèque c#.
+     * Utilisez la bibliothèque C# [Lecteur des événements étendus](https://blogs.msdn.microsoft.com/extended_events/2011/07/20/introducing-the-extended-events-reader/).
      * [Interrogez des fichiers d’événements étendus](https://sqlscope.wordpress.com/2014/11/15/reading-extended-event-files-using-client-side-tools-only/) avec PowerShell.
 
 
 
 
 ## <a id="subheading-5"></a>Pratiques de production
-<!--hello description in this section refers toopreceding screen captures.-->
+<!--The description in this section refers to preceding screen captures.-->
 
 ### <a id="subheading-6">Audit des bases de données géorépliquées</a>
-Lorsque vous utilisez des bases de données répliquées, il est possible tooset l’audit sur la base de données primaire hello, base de données secondaire hello ou les deux, selon le type de l’audit hello.
+Avec les bases de données géorépliquées, lorsque vous activez l’audit dans la base de données primaire, la même stratégie d’audit est appliquée à la base de données secondaire. Il est également possible de configurer l’audit dans la base de données secondaire en activant l’audit dans le **serveur secondaire**, indépendamment de la base de données primaire.
 
-Suivez ces instructions (n’oubliez pas que l’audit des objets blob peut être activée ou désactivée uniquement à partir des paramètres d’audit de la base de données hello principale) :
+* Au niveau du serveur (**recommandé**) : Activez l’audit dans le **serveur principal** et le **serveur secondaire**. Les bases de données primaire et secondaire sont auditées, indépendamment l’une de l’autre, en fonction de leur stratégie de niveau serveur respective.
 
-* **Base de données primaire**. Activer le blob l’audit sur le serveur de hello ou sur une base de données hello lui-même, comme décrit dans hello [configurer l’audit pour votre base de données](#subheading-2) section.
-* **Base de données secondaire**. Activer l’audit de l’objet blob sur la base de données primaire hello, comme décrit dans hello [configurer l’audit pour votre base de données](#subheading-2) section. 
-   * Audit de l’objet BLOB doit être activée sur hello *base de données primaire elle-même*, non par serveur hello.
-   * Une fois que l’objet blob l’audit est activé sur la base de données primaire hello, il est également activé sur la base de données secondaire hello.
+* Au niveau de la base de données : L’audit pour les bases de données secondaires peut uniquement être configuré à partir des paramètres d’audit de la base de données primaire.
+   * L’audit Objet blob doit être activé sur la *base de données primaire elle-même*, et non pas sur le serveur.
+   * Une fois que l’audit d’objets blob est activé sur la base de données primaire, il est également activé sur la base de données secondaire.
 
      >[!IMPORTANT]
-     >Par défaut, les paramètres de stockage hello pour la base de données secondaire hello sera identique toothose de base de données primaire hello, à l’origine du trafic entre-régionale. Vous pouvez éviter cela en activant l’audit des objets blob sur le serveur secondaire de hello et la configuration du stockage local dans les paramètres de stockage de serveur secondaire hello. Cela remplacera l’emplacement de stockage hello pour la base de données secondaire hello et résultats dans chaque base de données de l’enregistrement de son stockage toolocal de journaux d’audit.  
+     >Avec l’audit au niveau de la base de données, les paramètres de stockage de la base de données secondaire sont identiques à ceux de la base de données primaire, ce qui entraîne un trafic entre régions. Il est conseillé d’activer uniquement l’audit d’objets blob au niveau du serveur et de laisser l’audit au niveau de la base de données désactivé pour toutes les bases de données.
 <br>
 
 ### <a id="subheading-6">Régénération des clés de stockage</a>
-En production, vous êtes probablement toorefresh votre stockage de clés périodiquement. Lors de l’actualisation de vos clés, vous devez la stratégie d’audit tooresave hello. processus de Hello est comme suit :
+Dans un environnement de production, vous allez probablement actualiser périodiquement vos clés de stockage. Lors de l’actualisation de vos clés, vous devez réenregistrer la stratégie d’audit. Pour ce faire, procédez comme suit :
 
-1. Ouvrez hello **détails de stockage** panneau. Bonjour **clé d’accès de stockage** boîte, sélectionnez **secondaire**, puis cliquez sur **OK**. Puis cliquez sur **enregistrer** haut hello hello l’audit du Panneau de configuration.
+1. Ouvrez le panneau **Détails du stockage**. Dans la zone **Clé d’accès de stockage**, sélectionnez **Secondaire**, puis cliquez sur **OK**. Cliquez ensuite sur **Enregistrer** en haut du panneau de configuration de l’audit.
 
     ![Volet de navigation][5]
-2. Atteindre le panneau de configuration de stockage toohello et régénérer la clé d’accès primaire hello.
+2. Accédez au panneau de configuration du stockage, puis régénérez la clé d’accès primaire.
 
     ![Volet de navigation][6]
-3. Revenir en arrière toohello l’audit du Panneau de configuration, basculez de clé d’accès de stockage hello de tooprimary secondaire, puis cliquez sur **OK**. Puis cliquez sur **enregistrer** haut hello hello l’audit du Panneau de configuration.
-4. Retournez dans Panneau de configuration de stockage toohello et la clé d’accès secondaire hello régénérer (en vue de cycle d’actualisation de la clé suivante hello).
+3. Revenez au panneau de configuration de l’audit, remplacez la clé d’accès de stockage secondaire par la clé primaire, puis cliquez sur **OK**. Cliquez ensuite sur **Enregistrer** en haut du panneau de configuration de l’audit.
+4. Revenez au panneau de configuration du stockage, puis régénérez la clé d’accès secondaire (en préparation du cycle suivant d’actualisation des clés).
 
-## <a id="subheading-7"></a>Automation (PowerShell / API REST)
-Vous pouvez également configurer l’audit dans la base de données SQL Azure à l’aide de hello suivant des outils d’automatisation :
+## <a name="manage-sql-database-auditing-using-azure-powershell"></a>Gérer l’audit de base de données SQL avec Azure PowerShell
+
 
 * **Applets de commande PowerShell**:
 
-   * [Get-AzureRMSqlDatabaseAuditingPolicy][101]
-   * [Get-AzureRMSqlServerAuditingPolicy][102]
+   * [Get-AzureRMSqlDatabaseAuditing][101]
+   * [Get-AzureRMSqlServerAuditing][102]
    * [Remove-AzureRMSqlDatabaseAuditing][103]
    * [Remove-AzureRMSqlServerAuditing][104]
-   * [Set-AzureRMSqlDatabaseAuditingPolicy][105]
-   * [Set-AzureRMSqlServerAuditingPolicy][106]
-   * [Use-AzureRMSqlServerAuditingPolicy][107]
+   * [Set-AzureRMSqlDatabaseAuditing][105]
+   * [Set-AzureRMSqlServerAuditing][106]
 
    Pour obtenir un exemple de script, consultez [Configurer l’audit et la détection des menaces avec PowerShell](scripts/sql-database-auditing-and-threat-detection-powershell.md).
+
+## <a name="manage-sql-database-auditing-using-rest-api"></a>Gérer l’audit de base de données SQL à l’aide de l’API REST
 
 * **API REST - Audit d’objets blob** :
 
@@ -200,7 +200,7 @@ Vous pouvez également configurer l’audit dans la base de données SQL Azure �
 [Practices for usage in production]: #subheading-5
 [Storage Key Regeneration]: #subheading-6
 [Automation (PowerShell / REST API)]: #subheading-7
-[Blob/Table differences in Server auditing policy inheritance]: (#subheading-8)  
+[Blob/Table differences in Server auditing policy inheritance]: (#subheading-8)
 
 <!--Image references-->
 [1]: ./media/sql-database-auditing-get-started/1_auditing_get_started_settings.png
@@ -214,10 +214,9 @@ Vous pouvez également configurer l’audit dans la base de données SQL Azure �
 [9]: ./media/sql-database-auditing-get-started/9_auditing_get_started_ssms_1.png
 [10]: ./media/sql-database-auditing-get-started/10_auditing_get_started_ssms_2.png
 
-[101]: /powershell/module/azurerm.sql/get-azurermsqldatabaseauditingpolicy
-[102]: /powershell/module/azurerm.sql/Get-AzureRMSqlServerAuditingPolicy
+[101]: /powershell/module/azurerm.sql/get-azurermsqldatabaseauditing
+[102]: /powershell/module/azurerm.sql/Get-AzureRMSqlServerAuditing
 [103]: /powershell/module/azurerm.sql/Remove-AzureRMSqlDatabaseAuditing
 [104]: /powershell/module/azurerm.sql/Remove-AzureRMSqlServerAuditing
-[105]: /powershell/module/azurerm.sql/Set-AzureRMSqlDatabaseAuditingPolicy
-[106]: /powershell/module/azurerm.sql/Set-AzureRMSqlServerAuditingPolicy
-[107]: /powershell/module/azurerm.sql/Use-AzureRMSqlServerAuditingPolicy
+[105]: /powershell/module/azurerm.sql/Set-AzureRMSqlDatabaseAuditing
+[106]: /powershell/module/azurerm.sql/Set-AzureRMSqlServerAuditing

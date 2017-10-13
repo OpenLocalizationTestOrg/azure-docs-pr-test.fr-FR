@@ -1,6 +1,6 @@
 ---
-title: aaaUsing Extension de machine virtuelle Docker pour Linux | Documents Microsoft
-description: "Décrit Docker et extensions des Machines virtuelles Azure hello et comment toocreate Machines virtuelles Azure qui sont des hôtes docker à l’aide de hello CLI d’Azure dans le modèle de déploiement classique."
+title: "Utilisation de l’extension Docker VM pour Linux | Microsoft Docs"
+description: "Décrit Docker et les extensions Azure Virtual Machines, et explique comment créer des machines virtuelles Azure en tant qu’hôtes Docker à l’aide de l’interface de ligne de commande Azure dans le modèle de déploiement classique."
 services: virtual-machines-linux
 documentationcenter: 
 author: squillace
@@ -15,44 +15,44 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/27/2016
 ms.author: rasquill
-ms.openlocfilehash: 9d455b63c48b0c1b6f14862e072f899a73b46153
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 932744208d9d53c87e31dcdf9e34539750be4bdb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-hello-docker-vm-extension-with-hello-azure-classic-portal"></a>À l’aide de hello Extension de machine virtuelle Docker avec hello portail Azure classic
+# <a name="using-the-docker-vm-extension-with-the-azure-classic-portal"></a>Utilisation de l’extension Docker VM avec le portail Azure Classic
 > [!IMPORTANT] 
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello.
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager.
 
-[Docker](https://www.docker.com/) d'entre hello est la virtualisation qui utilise les plus populaires [les conteneurs Linux](http://en.wikipedia.org/wiki/LXC) plutôt que des machines virtuelles comme un moyen d’isoler les données et le calcul sur des ressources partagées. Vous pouvez utiliser extension de machine virtuelle de Docker hello gérée par [Linux Agent Azure] toocreate une machine virtuelle Docker qui héberge un nombre quelconque de conteneurs pour vos applications sur Azure.
+[Docker](https://www.docker.com/) fait partie des méthodes de virtualisation les plus prisées. Cet outil utilise des [conteneurs Linux](http://en.wikipedia.org/wiki/LXC) plutôt que des machines virtuelles pour isoler les données et le traitement sur des ressources partagées. Vous pouvez utiliser l’extension Docker VM sur l’[agent Linux Azure] afin de créer une machine virtuelle Docker hébergeant un nombre indéfini de conteneurs pour vos applications sur Azure.
 
 > [!NOTE]
-> Cette rubrique décrit comment toocreate une machine virtuelle de Docker à partir de hello portail Azure classic. toosee toocreate une machine virtuelle de Docker à la ligne de commande hello, voir [comment toouse hello Extension de machine virtuelle Docker à partir de hello Azure Interface de ligne (Azure)]. toosee une description détaillée des conteneurs et leurs avantages, consultez hello [tableau blanc de niveau élevé Docker](http://channel9.msdn.com/Blogs/Regular-IT-Guy/Docker-High-Level-Whiteboard).
+> Cette rubrique décrit comment créer une machine virtuelle Docker à partir du portail Azure Classic. Pour savoir comment créer une machine virtuelle Docker dans la ligne de commande, consultez la page [Utilisation de l’extension Docker VM à partir de l’interface interplateforme Azure (xplat-cli)]. Pour une discussion sur les conteneurs et leurs avantages, consultez le [Tableau blanc Docker de haut niveau](http://channel9.msdn.com/Blogs/Regular-IT-Guy/Docker-High-Level-Whiteboard).
 > 
 > 
 
-## <a name="create-a-new-vm-from-hello-image-gallery"></a>Créer une machine virtuelle à partir de la galerie d’images de hello
-première étape de Hello nécessite une machine virtuelle de Azure à partir d’une image Linux qui prend en charge hello Extension de machine virtuelle Docker, à l’aide d’une image Ubuntu 14.04 LTS hello Galerie d’images en tant qu’une image de serveur exemple et Ubuntu 14.04 Desktop en tant que client. Dans le portail de hello, cliquez sur **+ nouveau** Bonjour bas à gauche angle toocreate une nouvelle instance de la machine virtuelle et sélectionnez une image d’Ubuntu 14.04 LTS à partir de sélections hello disponibles ou de hello terminer la galerie d’images, comme indiqué ci-dessous.
+## <a name="create-a-new-vm-from-the-image-gallery"></a>Création d'une machine virtuelle à partir de la galerie d'images
+La première étape nécessite une machine virtuelle Azure à partir d'une image Linux qui prend en charge l'extension Docker VM, en utilisant une image Ubuntu 14.04 LTS de la galerie d'images comme exemple d'image de serveur et Ubuntu 14.04 Desktop comme client. Dans le portail, cliquez sur **+ Nouveau** dans le coin inférieur gauche pour créer une instance de machine virtuelle, puis sélectionnez une image Ubuntu 14.04 LTS parmi les choix proposés ou la galerie d'images complète (voir ci-dessous).
 
 > [!NOTE]
-> Actuellement, seules les images Ubuntu 14.04 LTS plus récentes que celle de juillet 2014 prend en charge hello Extension de machine virtuelle Docker.
+> Actuellement, seules les images Ubuntu 14.04 LTS postérieures à juillet 2014 prennent en charge l’extension Docker VM.
 > 
 > 
 
 ![Create a new Ubuntu Image](./media/portal-use-docker/ChooseUbuntu.png)
 
 ## <a name="create-docker-certificates"></a>Création de certificats Docker
-Après avoir hello machine virtuelle a été créé, vérifiez que Docker est installé sur votre ordinateur client. (pour plus d'informations, voir [Instructions d'installation de Docker](https://docs.docker.com/installation/#installation).)
+Après la création de la machine virtuelle, vérifiez que Docker est installé sur votre ordinateur client (pour plus d'informations, voir [Instructions d'installation de Docker](https://docs.docker.com/installation/#installation).)
 
-Créer des fichiers de certificat et la clé pour la communication Docker selon trop hello[en cours d’exécution de Docker avec https] et placez-les dans hello  **`~/.docker`**  répertoire sur votre ordinateur client.
+Créez le certificat et les fichiers de clés pour les communications Docker en respectant les instructions fournies à la page [Exécution de Docker avec https] ; placez-les ensuite dans le répertoire **`~/.docker`** de votre ordinateur client.
 
 > [!NOTE]
-> actuellement, Hello Extension de machine virtuelle Docker dans le portail de hello requiert les informations d’identification qui sont codées en base64.
+> L’extension Docker VM dans le portail nécessite actuellement des informations d’identification codées en base64.
 > 
 > 
 
-À la ligne de commande hello, utilisez  **`base64`**  ou favori un autre encodage rubriques codé en base 64 des toocreate d’outil. Cette opération avec un ensemble simple de fichiers de certificat et la clé peut se présenter toothis similaire :
+Dans la ligne de commande, utilisez **`base64`** ou un autre outil d’encodage de votre choix pour créer des rubriques codées en base64. Avec un jeu simple de certificats et de fichiers de clés, le code peut être similaire au code suivant :
 
 ```
  ~/.docker$ ls
@@ -65,51 +65,51 @@ Créer des fichiers de certificat et la clé pour la communication Docker selon 
  ca-key.pem  cert.pem  server-cert64.pem  server-key64.pem
 ```
 
-## <a name="add-hello-docker-vm-extension"></a>Ajouter hello Extension de machine virtuelle Docker
-tooadd hello Extension de machine virtuelle Docker, recherchez l’instance de machine virtuelle hello vous avez créé et faites défiler trop**Extensions** et cliquez sur toobring des Extensions de machine virtuelle, comme illustré ci-dessous.
+## <a name="add-the-docker-vm-extension"></a>Ajout de l'extension Docker VM
+Pour ajouter l'extension Docker VM, localisez l'instance de machine virtuelle que vous avez créée, accédez à **Extensions** , puis cliquez pour afficher Extensions de machine virtuelle (voir ci-dessous).
 
 > [!NOTE]
-> Cette fonctionnalité est prise en charge dans le portail en version préliminaire hello uniquement : https://portal.azure.com/
+> Cette fonctionnalité est prise en charge dans la version préliminaire du portail uniquement : https://portal.azure.com/
 > 
 > 
 
 ![](media/portal-use-docker/ClickExtensions.png)
 
 ### <a name="add-an-extension"></a>Ajout d’une extension
-Cliquez sur hello **+ ajouter** toodisplay hello possibles Extensions de machine virtuelle vous pouvez ajouter toothis machine virtuelle.
+Cliquez sur **+ Ajouter** pour afficher les extensions de machine virtuelle que vous pouvez ajouter à cette machine virtuelle.
 
 ![](media/portal-use-docker/ClickAdd.png)
 
-### <a name="select-hello-docker-vm-extension"></a>Sélectionnez hello Extension de machine virtuelle Docker
-Hello, Extension de machine virtuelle Docker, qui met à jour les description de Docker hello et les liens importants, et cliquez sur **créer** au niveau de la procédure d’installation hello bas toobegin hello.
+### <a name="select-the-docker-vm-extension"></a>Sélection de l’extension Docker VM
+Choisissez l'extension Docker VM : elle affiche la description de Docker et des liens importants. Cliquez ensuite sur **Créer** au bas de l'écran pour commencer l'installation.
 
 ![](media/portal-use-docker/ChooseDockerExtension.png)
 
 ![](media/portal-use-docker/CreateButtonFocus.png)
 
 ### <a name="add-your-certificate-and-key-files"></a>Ajout de vos certificats et de vos fichiers de clés :
-Dans les champs de formulaire hello, entrez hello codée en base64 les versions de votre certificat d’autorité de certification, votre certificat de serveur et votre clé de serveur, comme indiqué dans le graphique suivant de hello.
+Dans les champs du formulaire, entrez les versions codées en base64 de votre certificat CA, le certificat et la clé de votre serveur (voir l’illustration ci-dessous).
 
 ![](media/portal-use-docker/AddExtensionFormFilled.png)
 
 > [!NOTE]
-> Notez que (par exemple hello précédant l’image) hello 2376 est renseigné par défaut. Vous pouvez entrer n’importe quel point de terminaison ici, mais maintenant hello seront tooopen des hello point de terminaison de mise en correspondance. Si vous modifiez la valeur par défaut de hello, assurez-vous que tooopen des hello correspondant à un point de terminaison à l’étape suivante de hello.
+> Notez que (comme dans l’illustration précédente), 2376 est indiqué par défaut. Vous pouvez entrer ici n’importe quel point de terminaison, mais l’étape suivante consiste à ouvrir le point de terminaison correspondant. Si vous modifiez le point de terminaison par défaut, n'oubliez pas d'ouvrir le point de terminaison correct à l'étape suivante.
 > 
 > 
 
-## <a name="add-hello-docker-communication-endpoint"></a>Ajouter hello point de terminaison de Communication Docker
-Lorsque vous affichez un groupe de ressources hello que vous avez créé, sélectionnez hello groupe de sécurité réseau associé à votre machine virtuelle, puis cliquez sur **règles de sécurité de trafic entrant** tooview hello règles comme illustré ici.
+## <a name="add-the-docker-communication-endpoint"></a>Ajout du point de terminaison des communications Docker VM
+Lorsque vous affichez le groupe de ressources que vous avez créé, sélectionnez le groupe de sécurité réseau associé à votre machine virtuelle, puis cliquez sur **Règles de sécurité entrantes** pour afficher les règles comme indiqué ici.
 
 ![](media/portal-use-docker/AddingEndpoint.png)
 
-Cliquez sur **+ ajouter** tooadd une autre règle et dans le cas par défaut de hello, entrez un nom pour le point de terminaison hello (dans cet exemple, **Docker**) et 2376 « plage de Port de Destination ». Définir l’affichage de valeur de protocole hello **TCP**, puis cliquez sur **OK** règle de hello toocreate.
+Cliquez sur **+ Ajouter** pour ajouter une règle ; dans le cas par défaut, entrez un nom pour le point de terminaison (dans cet exemple **Docker**) et 2376 « Étendue du port de destination ». Définissez la valeur du protocole sur **TCP** et cliquez sur **OK** pour créer la règle.
 
 ![](media/portal-use-docker/AddEndpointFormFilledOut.png)
 
 ## <a name="test-your-docker-client-and-azure-docker-host"></a>Tester le client Docker et l’hôte Azure Docker
-Recherchez et copiez hello nom de domaine de votre machine virtuelle et à la ligne de commande hello de votre ordinateur client, tapez `docker --tls -H tcp://` *dockerextension* `.cloudapp.net:2376 info` (où *dockerextension* est remplacé par hello sous-domaine de votre machine virtuelle).
+Localisez et copiez le nom de domaine de votre machine virtuelle. Dans la ligne de commande de votre ordinateur client, tapez `docker --tls -H tcp://`*dockerextension*`.cloudapp.net:2376 info` (où *dockerextension* est remplacé par le sous-domaine de votre machine virtuelle).
 
-résultat de Hello doit apparaître toothis similaire :
+Le résultat affiché doit avoir l’aspect suivant :
 
 ```
 $ docker --tls -H tcp://dockerextension.cloudapp.net:2376 info
@@ -130,16 +130,16 @@ Kernel Version: 3.13.0-36-generic
 WARNING: No swap limit support
 ```
 
-Après avoir terminé hello étapes ci-dessus, vous avez maintenant un hôte Docker entièrement fonctionnel en cours d’exécution sur une machine virtuelle Azure, configuré toobe connecté tooremotely à partir d’autres clients.
+Lorsque vous avez terminé les étapes ci-dessus, vous disposez maintenant d'un hôte Docker parfaitement fonctionnel exécuté sur une machine virtuelle Azure, configuré pour une connexion à distance à partir d'autres clients.
 
-<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
+<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>Étapes suivantes
-Vous êtes prêt toogo toohello [Guide de l’utilisateur Docker] et utiliser votre machine virtuelle Docker. Si vous souhaitez tooautomate création d’hôtes Docker sur les machines virtuelles Azure via l’interface de ligne de commande, consultez [comment toouse hello Extension de machine virtuelle Docker à partir de hello Azure Interface de ligne (Azure)]
+Vous êtes prêt à consulter le [Guide d'utilisation Docker] et à utiliser votre machine virtuelle Docker. Si vous souhaitez automatiser la création d’hôtes Docker sur des machines virtuelles Azure via l’interface de ligne de commande, consultez la page [Utilisation de l’extension Docker VM à partir de l’interface interplateforme Azure (xplat-cli)]
 
 <!--Anchors-->
-[Create a new VM from hello Image Gallery]:#createvm
+[Create a new VM from the Image Gallery]:#createvm
 [Create Docker Certificates]:#dockercerts
-[Add hello Docker VM Extension]:#adddockerextension
+[Add the Docker VM Extension]:#adddockerextension
 [Test Docker Client and Azure Docker Host]:#testclientandserver
 [Next steps]:#next-steps
 
@@ -157,9 +157,9 @@ Vous êtes prêt toogo toohello [Guide de l’utilisateur Docker] et utiliser vo
 
 
 <!--Link references-->
-[comment toouse hello Extension de machine virtuelle Docker à partir de hello Azure Interface de ligne (Azure)]:http://azure.microsoft.com/documentation/articles/virtual-machines-docker-with-xplat-cli/
-[Linux Agent Azure]:../agent-user-guide.md
-[Link 3 tooanother azure.microsoft.com documentation topic]:../storage-whatis-account.md
+[Utilisation de l’extension Docker VM à partir de l’interface interplateforme Azure (xplat-cli)]:http://azure.microsoft.com/documentation/articles/virtual-machines-docker-with-xplat-cli/
+[agent Linux Azure]:../agent-user-guide.md
+[Link 3 to another azure.microsoft.com documentation topic]:../storage-whatis-account.md
 
-[en cours d’exécution de Docker avec https]:http://docs.docker.com/articles/https/
-[Guide de l’utilisateur Docker]:https://docs.docker.com/userguide/
+[Exécution de Docker avec https]:http://docs.docker.com/articles/https/
+[Guide d'utilisation Docker]:https://docs.docker.com/userguide/

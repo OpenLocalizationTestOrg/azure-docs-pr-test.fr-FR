@@ -1,6 +1,6 @@
 ---
-title: "résilience d’attribut de synchronisation et doublon aaaIdentity | Documents Microsoft"
-description: "Nouveau comportement de comment les objets présentant des conflits de nom UPN ou ProxyAddress toohandle pendant la synchronisation d’annuaires à l’aide d’Azure AD Connect."
+title: "Synchronisation des identités et résilience d’attribut en double | Microsoft Docs"
+description: "Nouveau comportement de gestion des objets présentant des conflits UPN ou ProxyAddress pendant la synchronisation d’annuaires à l’aide d’Azure AD Connect."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -14,66 +14,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
-ms.openlocfilehash: e27dcbf9d71f83fa9566cae2fd99350297d1cd9a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7a8700e70f64851a0c5e5e8c6b31ec7a6884a96c
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="identity-synchronization-and-duplicate-attribute-resiliency"></a>Synchronisation des identités et résilience d’attribut en double
 La résilience d’attribut en double est une fonctionnalité d’Azure Active Directory qui élimine les problèmes liés aux conflits entre **UserPrincipalName** et **ProxyAddress** lors de l’exécution de l’un des outils de synchronisation de Microsoft.
 
-Ces deux attributs sont généralement requis toobe unique dans toutes les **utilisateur**, **groupe**, ou **Contact** objets dans un locataire Azure Active Directory donné.
+Ces deux attributs doivent généralement être uniques pour tous les objets **Utilisateur**, **Groupe**, ou **Contact** dans un client Azure Active Directory donné.
 
 > [!NOTE]
 > Seuls les Utilisateurs peuvent avoir des noms UPN.
 > 
 > 
 
-Hello nouveau comportement permettant à cette fonctionnalité est en partie du cloud hello du pipeline de synchronisation hello, par conséquent, il est client agnostique et pertinente pour les produits de synchronisation de Microsoft, y compris le connecteur Azure AD Connect, DirSync et MIM. terme générique de Hello « client de synchronisation » est utilisé dans cette toorepresent document l’un de ces produits.
+Cette fonctionnalité active un nouveau comportement qui se trouve dans la partie cloud du pipeline de synchronisation. Par conséquent, cette fonctionnalité convient à tout type de client et pour tout produit de synchronisation Microsoft, y compris Azure AD Connect, DirSync et MIM + Connector. Le terme générique « client de synchronisation » désigne ces produits dans le présent document.
 
 ## <a name="current-behavior"></a>Comportement actuel
-S’il existe une tooprovision tentative d’un nouvel objet avec une valeur UPN ou ProxyAddress qui viole cette contrainte d’unicité, Azure Active Directory se bloque en cours de création de cet objet. De même, si un objet est mis à jour avec un non uniques UPN ou ProxyAddress, mise à jour hello échoue. Hello mise à jour ou la tentative de configuration est une nouvelle tentative par le client de synchronisation hello lors de chaque cycle d’exportation et continue toofail jusqu'à ce que hello conflit est résolu. Un e-mail de rapport d’erreur est généré lors de chaque tentative et une erreur est enregistrée par le client de synchronisation hello.
+En cas de tentative d’approvisionnement d’un nouvel objet avec une valeur UPN ou ProxyAddress qui enfreint cette contrainte d’unicité, Azure Active Directory bloque la création de l’objet. De même, si un objet est mis à jour avec une valeur UPN ou ProxyAddress qui n’est pas unique, la mise à jour échoue. Le client de synchronisation refait la tentative d’approvisionnement ou la mise à jour à chaque cycle d’exportation ; il échoue à chaque fois jusqu’à la résolution du conflit. Chaque tentative infructueuse génère un e-mail contenant un rapport d’erreur, et une erreur est consignée par le client de synchronisation.
 
 ## <a name="behavior-with-duplicate-attribute-resiliency"></a>Comportement avec une résilience d’attribut en double
-Au lieu de complètement échouent tooprovision ou mettre à jour un objet avec un attribut en double, Azure Active Directory « quarantaine » des attributs en double hello qui violent une contrainte d’unicité hello. Si cet attribut est requis pour la configuration, comme UserPrincipalName, service de hello assigne une valeur de l’espace réservé. le format de ces valeurs temporaires Hello est  
+Au lieu de rejeter l’approvisionnement ou la mise à jour d’un objet comportant un attribut en double, Azure Active Directory met en « quarantaine » l’attribut en double qui enfreint la contrainte d’unicité. Si cet attribut est requis pour l’approvisionnement, comme pour UserPrincipalName, le service affecte une valeur d’espace réservé. Le format de ces valeurs temporaires est  
 « ***<OriginalPrefix>+<4chiffres>@<InitialTenantDomain>.onmicrosoft.com*** ».  
-Si l’attribut de hello n’est pas requis, comme un **ProxyAddress**, Azure Active Directory met en quarantaine d’attribut de conflit hello simplement et se poursuit avec la création d’objet hello ou mise à jour.
+Si l’attribut n’est pas obligatoire, comme **ProxyAddress**, Azure Active Directory met simplement en quarantaine l’attribut à l’origine du conflit et poursuit la création ou la mise à jour de l’objet.
 
-Lors de la mise en quarantaine d’attribut de hello, plus d’informations sur les conflits hello sont envoyés dans hello même e-mail de rapport d’erreur utilisé dans l’ancien comportement de hello. Toutefois, cette information apparaît uniquement dans les rapports d’erreurs hello une seule fois, en cas de mise en quarantaine hello, il ne continue pas toobe enregistrés dans les futures des messages électroniques. En outre, étant donné que l’exportation de hello pour cet objet a réussi, client de synchronisation hello n’enregistre pas d’une erreur et ne pas de nouvelle tentative hello créer / mettre à jour l’opération lors de cycles de synchronisation ultérieure.
+Lorsque l’attribut est mis en quarantaine, des informations sur le conflit sont envoyées dans le même e-mail de rapport d’erreur utilisé avec l’ancien comportement. Toutefois, ces informations n’apparaissent qu’une fois dans le rapport d’erreurs (lors de la mise en quarantaine) ; elles ne sont pas consignées dans les e-mails suivants. En outre, étant donné que l’exportation de cet objet a réussi, le client de synchronisation ne consigne pas d’erreur et ne retente pas la création/la mise à jour lors des cycles de synchronisation suivants.
 
-toosupport que ce comportement, un nouvel attribut a été ajouté les classes d’objets utilisateur, groupe et Contact toohello :  
+Pour prendre en charge ce comportement, un nouvel attribut a été ajouté aux classes d’objets Utilisateur, Groupe et Contact :   
 **DirSyncProvisioningErrors**
 
-Il s’agit d’un attribut à valeurs multiples qui est utilisé toostore hello des attributs en conflit qui violent une contrainte d’unicité hello doivent leur être ajoutés normalement. Une tâche d’arrière-plan du minuteur a été activée dans Azure Active Directory qui s’exécute chaque toolook heure pour les conflits d’attributs en double qui ont été résolus et supprime automatiquement les attributs de hello en question à partir de la mise en quarantaine.
+Il s’agit d’un attribut à valeurs multiples utilisé pour stocker les attributs en conflit qui enfreindraient la contrainte d’unicité s’ils étaient ajoutés normalement. Une tâche du minuteur d’arrière-plan a été activée dans Azure Active Directory. Celle-ci s’exécute toutes les heures pour rechercher des conflits d’attributs en double ayant été résolus, puis supprime automatiquement les attributs en question de la quarantaine.
 
 ### <a name="enabling-duplicate-attribute-resiliency"></a>Activer la résilience d’attribut en double
-Résilience d’attribut en double sera le nouveau comportement par défaut de hello sur tous les locataires Azure Active Directory. Il s’agit sur par défaut pour tous les clients qui a activé la synchronisation pour hello première 22 août 2016 ou version ultérieure. Clients qui a activé la synchronisation précédente toothis date seront hello la fonctionnalité est activée par lots. Ce déploiement commence en septembre 2016, et une notification par courrier électronique recevront un contact notification technique du locataire tooeach avec une date spécifique hello lorsque hello fonctionnalité sera activée.
+La résilience d’attribut en double sera le nouveau comportement par défaut sur tous les locataires Azure Active Directory. Elle sera activée par défaut pour tous les clients qui ont activé la synchronisation pour la première fois le 22 août 2016 ou plus tard. Les clients qui ont activé la synchronisation avant cette date verront cette fonctionnalité activée par lots. Ce déploiement a commencé en septembre 2016, et une notification par courrier électronique sera envoyée au contact de notification technique de chaque client la date d’activation de la fonctionnalité.
 
 > [!NOTE]
 > Une fois que la résilience des attributs en double a été activée, elle ne peut pas être désactivée.
 
-toocheck si hello est activée pour votre client, vous pouvez le faire en téléchargeant la version la plus récente du module d’Azure Active Directory PowerShell hello hello et exécutant :
+Vous pouvez vérifier si cette fonctionnalité est activée sur votre client en téléchargeant la dernière version du module Azure Active Directory PowerShell, puis en exécutant ce qui suit :
 
 `Get-MsolDirSyncFeatures -Feature DuplicateUPNResiliency`
 
 `Get-MsolDirSyncFeatures -Feature DuplicateProxyAddressResiliency`
 
 > [!NOTE]
-> Vous pouvez utiliser n’est plus de fonctionnalité de résilience d’attribut en double de Set-MsolDirSyncFeature applet de commande tooproactively activer hello avant qu’il est activé pour votre client. fonctionnalité de hello toobe tootest en mesure, vous devez toocreate un nouveau locataire Azure Active Directory.
+> Vous pouvez n’est plus utiliser l’applet de commande Set-MsolDirSyncFeature pour activer de manière proactive la fonctionnalité de résilience des attributs en double avant qu’elle ne soit activée pour votre locataire. Pour pouvoir tester la fonctionnalité, vous devez créer un nouveau locataire Azure Active Directory.
 
 ## <a name="identifying-objects-with-dirsyncprovisioningerrors"></a>Identification des objets avec DirSyncProvisioningErrors
-Il existe actuellement deux méthodes tooidentify les objets qui ont ces erreurs en raison de conflits de propriété tooduplicate, Azure Active Directory PowerShell et hello portail d’administration d’Office 365. Il existe des plans tooextend tooadditional basé sur un portail reporting Bonjour futures.
+Il existe actuellement deux méthodes pour identifier les objets qui comportent ces erreurs en raison de conflits de propriété dupliquée : Azure Active Directory PowerShell et le portail d’administration Office 365. Il est prévu d’augmenter la capacité de génération de rapports dans le portail.
 
 ### <a name="azure-active-directory-powershell"></a>Azure Active Directory PowerShell
-Pourquoi les applets de commande PowerShell dans cette rubrique, hello Voici true :
+Pour les applets de commande PowerShell dans cette rubrique, les conditions suivantes sont vérifiées :
 
-* Tous les hello suivant d’applets de commande respectent la casse.
-* Hello **– ErrorCategory PropertyConflict** doit toujours être inclus. Il n’existe actuellement aucun autre type de **ErrorCategory**, mais cela peut être étendue Bonjour futures.
+* Toutes les applets de commande suivantes sont sensibles à la casse.
+* L’indicateur **–ErrorCategory PropertyConflict** doit toujours être inclus. Il n’existe actuellement pas d’autres types de **ErrorCategory**, mais cela pourrait changer.
 
 Commencez par exécuter **Connect-MsolService** et entrer les informations d’identification d’un administrateur client.
 
-Ensuite, utilisez hello après des erreurs tooview applets de commande et les opérateurs de différentes façons :
+Utilisez ensuite les applets de commande et les opérateurs suivants pour afficher les erreurs de différentes manières :
 
 1. [Afficher tout](#see-all)
 2. [Par type de propriété](#by-property-type)
@@ -83,15 +83,15 @@ Ensuite, utilisez hello après des erreurs tooview applets de commande et les op
 6. [Par quantité limitée ou l’ensemble des erreurs](#in-a-limited-quantity-or-all)
 
 #### <a name="see-all"></a>Afficher tout
-Une fois connecté, toosee une liste générale d’attribut de mise en service des erreurs dans le client de hello exécuter :
+Une fois connecté, exécutez ce qui suit pour voir une liste générale d’erreurs d’approvisionnement d’attribut du client :
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict`
 
-Ce code produit un résultat semblable à hello suivante :  
+Le résultat ressemble à ce qui suit :   
  ![Get-MsolDirSyncProvisioningError](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/1.png "Get-MsolDirSyncProvisioningError")  
 
 #### <a name="by-property-type"></a>Par type de propriété
-erreurs toosee par type de propriété, ajoutez hello **- PropertyName** indicateur avec hello **UserPrincipalName** ou **ProxyAddresses** argument :
+Pour voir les erreurs par type de propriété, ajoutez l’indicateur **-PropertyName** à l’argument **UserPrincipalName** ou **ProxyAddresses** :
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -PropertyName UserPrincipalName`
 
@@ -100,73 +100,73 @@ Ou
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -PropertyName ProxyAddresses`
 
 #### <a name="by-conflicting-value"></a>Par valeur en conflit
-erreurs toosee concernant la propriété spécifique de tooa ajouter hello **- PropertyValue** indicateur (**- PropertyName** doit également être utilisé lors de l’ajout de cet indicateur) :
+Pour afficher les erreurs concernant une propriété spécifique, ajoutez l’indicateur **-PropertyValue** (**-PropertyName** doit également être utilisé avec cet indicateur) :
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -PropertyValue User@domain.com -PropertyName UserPrincipalName`
 
 #### <a name="using-a-string-search"></a>À l’aide d’une recherche de chaîne
-toodo une recherche de chaîne large utiliser hello **- SearchString** indicateur. Cela peut être utilisée indépendamment de toutes les hello au-dessus des indicateurs, à l’exception de hello de **- ErrorCategory PropertyConflict**, qui est toujours requis :
+Pour effectuer une recherche de chaîne élargie, utilisez l’indicateur **-SearchString** . Il peut s’utiliser indépendamment des autres indicateurs ci-dessus, à l’exception de **-ErrorCategory PropertyConflict**, qui est toujours requis :
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -SearchString User`
 
 #### <a name="in-a-limited-quantity-or-all"></a>Par quantité limitée ou l’ensemble des erreurs
-1. **MaxResults <Int>**  peut être utilisé toolimit hello requête tooa nombre spécifique de valeurs.
-2. **Tous les** peut être utilisé tooensure tous les résultats sont récupérés dans les cas de hello où il existe un grand nombre d’erreurs.
+1. **MaxResults <Int>** peut être utilisé pour limiter la requête à un nombre spécifique de valeurs.
+2. **All** permet de vérifier que tous les résultats sont récupérés, notamment si le nombre d’erreurs est élevé.
 
 `Get-MsolDirSyncProvisioningError -ErrorCategory PropertyConflict -MaxResults 5`
 
 ## <a name="office-365-admin-portal"></a>Portail d’administration Office 365
-Vous pouvez afficher les erreurs de synchronisation d’annuaire dans le centre d’administration Office 365 hello. Hello rapport dans affiche portail Office 365 de hello **utilisateur** objets qui ont ces erreurs. Il n’indique pas d’informations sur les conflits entre **Groupes** et **Contacts**.
+Vous pouvez afficher les erreurs de synchronisation d’annuaires dans le Centre d’administration Office 365. Le rapport sur le portail Office 365 n’affiche que les objets **Utilisateur** qui présentent ces erreurs. Il n’indique pas d’informations sur les conflits entre **Groupes** et **Contacts**.
 
 ![Utilisateurs actifs](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/1234.png "Utilisateurs actifs")
 
-Pour savoir comment les erreurs de synchronisation d’annuaire tooview hello Office 365 administration center, consultez [identifier les erreurs de synchronisation d’annuaires dans Office 365](https://support.office.com/en-us/article/Identify-directory-synchronization-errors-in-Office-365-b4fc07a5-97ea-4ca6-9692-108acab74067).
+Pour obtenir des instructions sur l’affichage des erreurs de synchronisation d’annuaires dans le Centre d’administration Office 365, consultez [Identifier les erreurs de synchronisation d’annuaires dans Office 365](https://support.office.com/en-us/article/Identify-directory-synchronization-errors-in-Office-365-b4fc07a5-97ea-4ca6-9692-108acab74067).
 
 ### <a name="identity-synchronization-error-report"></a>Rapport d’erreur de synchronisation d’identité
-Lors du traitement d’un objet avec un conflit d’attribut en double avec ce nouveau comportement, dans qu'une notification est incluse standard hello rapport d’erreurs de synchronisation d’identité de la messagerie électronique est envoyé de contact de Notification technique toohello pour le client de hello. Toutefois, ce comportement présente un changement majeur. Bonjour passées, informations de conflit d’attribut en double sont incluses dans chaque rapport d’erreurs suivantes jusqu'à ce que hello conflit a été résolu. Avec ce nouveau comportement, notification d’erreur hello pour qu’un conflit donné uniquement semble-t-il - une fois au moment de hello attribut en conflit de hello est mis en quarantaine.
+Lorsqu’un objet présentant un conflit d’attribut en double est traité avec ce nouveau comportement, une notification afférente est incluse dans l’e-mail standard contenant le rapport d’erreur de synchronisation d’identité. Ce dernier est envoyé au contact du client en charge des notifications techniques. Toutefois, ce comportement présente un changement majeur. Auparavant, les informations de conflit d’attribut en double apparaissaient dans chaque rapport d’erreurs généré jusqu’à la résolution du conflit. Avec ce nouveau comportement, la notification d’erreur pour un conflit donné n’apparaît qu’une fois : au moment où l’attribut en conflit est mis en quarantaine.
 
-Voici un exemple de quel type hello par courrier électronique de notification à quoi ressemble un conflit d’adresse proxy :  
+Voici un exemple de notification par e-mail d’un conflit ProxyAddress :   
     ![Utilisateurs actifs](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/6.png "Utilisateurs actifs")  
 
 ## <a name="resolving-conflicts"></a>Résolution des conflits
-Résolution des problèmes de stratégies de stratégie et la résolution de ces erreurs ne doivent pas différer de manière hello erreurs d’attribut en double ont été traitées dans hello passée. Hello seule différence est que les balayages de tâche du minuteur hello via locataire hello sur hello côté service tooautomatically Ajouter attribut de hello dans l’objet approprié de question toohello une fois hello conflit est résolu.
+Les stratégies et tactiques de résolution des problèmes pour ces erreurs ne doivent pas différer de la façon dont les erreurs d’attribut en double ont été traitées par le passé. La seule différence est que la tâche du minuteur effectue un balayage du client côté serveur afin d’ajouter automatiquement l’attribut en question à l’objet concerné lorsque le conflit est résolu.
 
-Hello ci-dessous décrit les différentes stratégies de dépannage et la résolution : [en double ou des attributs non valides empêchent la synchronisation d’annuaire dans Office 365](https://support.microsoft.com/kb/2647098).
+L’article suivant présente différentes stratégies de dépannage et de résolution : [Les attributs en double ou non valides empêchent la synchronisation d’annuaires dans Office 365](https://support.microsoft.com/kb/2647098).
 
 ## <a name="known-issues"></a>Problèmes connus
-Aucun de ces problèmes connus n’entraîne une dégradation du service ou une perte des données. Plusieurs d'entre eux sont esthétiques, d’autres provoquent standard «*résilience préliminaire*« certaines erreurs toorequire manuel supplémentaire correctives provoque l’attribut en double erreurs toobe est levée au lieu de l’attribut de conflit hello et l’autre les mettre en quarantaine.
+Aucun de ces problèmes connus n’entraîne une dégradation du service ou une perte des données. Plusieurs d’entre eux relèvent de l’esthétisme ; d’autres génèrent des erreurs d’attribut en double («*pré-résilience*»), au lieu de mettre en quarantaine l’attribut à l’origine du conflit ; un dernier requiert un travail de correction manuelle supplémentaire pour certaines erreurs.
 
 **Comportement de base :**
 
-1. Les objets avec des configurations d’attribut spécifique continuent erreurs d’exportation tooreceive comme toohello exécutée en double ou les attributs mis en quarantaine.  
+1. Les objets ayant une configuration d’attribut spécifique continuent à recevoir des erreurs d’exportation ; les attributs dupliqués ne sont pas mis en quarantaine.  
    Par exemple :
    
     a. Le nouvel utilisateur est créé dans AD avec les attributs UPN **Joe@contoso.com** et ProxyAddress **smtp:Joe@contoso.com**
    
-    b. Hello propriétés de cet objet sont en conflit avec un groupe existant, où ProxyAddress est  **SMTP:Joe@contoso.com** .
+    b. Les propriétés de cet objet sont en conflit avec un Groupe existant, où ProxyAddress est **SMTP:Joe@contoso.com**.
    
-    c. Lors de l’exportation, un **ProxyAddress conflit** erreur est levée au lieu d’avoir les attributs de conflit hello mis en quarantaine. Hello opération est tentée à nouveau lors de chaque cycle de synchronisation ultérieures, comme elle l’aurait été avant l’activation de la fonctionnalité de résilience hello.
-2. Si les deux groupes sont créés localement avec hello même adresse SMTP, tooprovision échoue une première tentative de hello standard en double **ProxyAddress** erreur. Toutefois, les valeur dupliquée hello sont correctement mis en quarantaine sur hello prochain cycle de synchronisation.
+    c. Lors de l’exportation, une erreur de **conflit ProxyAddress** est générée au lieu de la mise en quarantaine des attributs à l’origine du conflit. L’opération est retentée à chaque cycle de synchronisation, comme cela était le cas avant l’activation de la fonction de résilience.
+2. Si deux Groupes sont créés en local avec la même adresse SMTP, l’approvisionnement de l’un d’entre eux échoue à la première tentative, ce qui génère une erreur standard d’attribut **ProxyAddress** en double. Toutefois, la valeur en double est bien mise en quarantaine lors du prochain cycle de synchronisation.
 
 **Rapport du portail Office**:
 
-1. message d’erreur détaillé Hello pour deux objets dans un jeu de conflit de nom UPN est le même hello. Cela indique que l’UPN des deux objets a changé/été mis en quarantaine, alors que seules les données de l’un d’entre eux ont changé.
-2. message d’erreur détaillé Hello pour qu’un conflit de nom UPN montre hello mauvais nom d’affichage d’un utilisateur qui a été leur UPN modifié/mis en quarantaine. Par exemple :
+1. Le message d’erreur détaillé pour deux objets dans un ensemble de conflit UPN est le même. Cela indique que l’UPN des deux objets a changé/été mis en quarantaine, alors que seules les données de l’un d’entre eux ont changé.
+2. Le message d’erreur détaillé d’un conflit UPN affiche une propriété displayName incorrecte pour un utilisateur dont l’UPN a changé/été mis en quarantaine. Par exemple :
    
     a. **L’utilisateur A** est synchronisé en premier avec **UPN = User@contoso.com**.
    
-    b. **L’utilisateur B** toobe tentative la synchronisation suivante avec **UPN = User@contoso.com** .
+    b. **L’utilisateur B** fait ensuite l’objet d’une tentative de synchronisation avec **UPN = User@contoso.com**.
    
-    c. **L’utilisateur B** UPN est modifié trop **User1234@contoso.onmicrosoft.com**  et  **User@contoso.com**  est ajouté trop**DirSyncProvisioningErrors**.
+    c. L’UPN de **lutilisateur B** est remplacé par **User1234@contoso.onmicrosoft.com** et **User@contoso.com** est ajouté dans **DirSyncProvisioningErrors**.
    
-    d. message d’erreur Hello pour **utilisateur B** doit indiquer que **l’utilisateur A** a déjà  **User@contoso.com**  comme un UPN, mais il montre **l’utilisateur B** propre displayName.
+    d. Le message d’erreur de **l’utilisateur B** doit indiquer que **l’utilisateur A** a déjà **User@contoso.com** comme UPN, mais il affiche le paramètre displayName de **l’utilisateur B**.
 
 **Rapport d’erreur de synchronisation d’identité** :
 
-lien Hello pour *la procédure tooresolve ce problème* est incorrect :  
+Le lien pour la *procédure à suivre pour résoudre ce problème* est incorrect :  
     ![Utilisateurs actifs](./media/active-directory-aadconnectsyncservice-duplicate-attribute-resiliency/6.png "Utilisateurs actifs")  
 
-Il doit pointer trop[https://aka.ms/duplicateattributeresiliency](https://aka.ms/duplicateattributeresiliency).
+Il doit pointer vers [https://aka.ms/duplicateattributeresiliency](https://aka.ms/duplicateattributeresiliency).
 
 ## <a name="see-also"></a>Voir aussi
 * [Synchronisation d’Azure AD Connect](active-directory-aadconnectsync-whatis.md)

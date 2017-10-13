@@ -1,6 +1,6 @@
 ---
-title: "schéma de webhook aaaUnderstand hello utilisée dans les alertes de journal d’activité | Documents Microsoft"
-description: "En savoir plus sur le schéma hello Hello JSON est validé l’URL du webhook tooa lorsqu’une alerte de journal d’activité active."
+title: "Comprendre le schéma Webhook utilisé dans les alertes du journal d’activité | Microsoft Docs"
+description: "Découvrez le schéma du JSON publié sur une URL de Webhook en cas d’activation d’une alerte du journal d’activité."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: johnkem
-ms.openlocfilehash: 75562e0589222d3e392ea73eacfd7414a422d115
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 75c71bcd16573d4f4dd3377c623aa9b414aa3906
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="webhooks-for-azure-activity-log-alerts"></a>Webhook des alertes du journal d’activité Azure
-Dans le cadre de définition de hello d’un groupe d’actions, vous pouvez configurer webhook points de terminaison tooreceive activité journal des notifications d’alerte. Avec le webhooks, vous pouvez acheminer ces systèmes de tooother des notifications pour les actions de post-traitement ou personnalisées. Cet article explique le charge hello hello HTTP POST tooa webhook ressemble à.
+Dans le cadre de la définition d’un groupe d’actions, vous pouvez configurer des points de terminaison Webhook pour qu’ils reçoivent des notifications d’alerte du journal d’activité. Grâce aux Webhooks, vous pouvez acheminer ces notifications vers d’autres systèmes à des fins de post-traitement ou d’exécution d’actions personnalisées. Cet article montre également à quoi ressemble la charge utile d’une requête HTTP POST pour un webhook.
 
-Pour plus d’informations sur les alertes de journal d’activité, consultez Comment trop[créer des alertes de journal des activités Windows Azure](monitoring-activity-log-alerts.md).
+Pour plus d’informations sur les alertes du journal d’activité, découvrez comment [créer des alertes du journal d’activité Azure](monitoring-activity-log-alerts.md).
 
-Pour plus d’informations sur les groupes d’actions, consultez Comment trop[créer des groupes d’actions](monitoring-action-groups.md).
+Pour plus d’informations sur les groupes d’actions, découvrez comment [créer des groupes d’actions](monitoring-action-groups.md).
 
-## <a name="authenticate-hello-webhook"></a>Authentifier hello webhook
-Hello webhook peut éventuellement utiliser d’autorisation basée sur un jeton pour l’authentification. Hello webhook URI est enregistré avec un ID de jeton, par exemple, `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`.
+## <a name="authenticate-the-webhook"></a>Authentifier le Webhook
+Le Webhook peut éventuellement utiliser l’autorisation par jeton à des fins d’authentification. L’URI du Webhook est enregistrée avec un ID de jeton, par exemple, `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`.
 
 ## <a name="payload-schema"></a>Schéma de la charge utile
-charge utile JSON de Hello contenue dans hello opération POST diffère en fonction de champ de data.context.activityLog.eventSource de charge utile de hello.
+La charge utile JSON contenue dans l’opération POST varie en fonction de champ data.context.activityLog.eventSource de la charge utile.
 
 ###<a name="common"></a>Courant
 ```json
@@ -122,41 +122,41 @@ charge utile JSON de Hello contenue dans hello opération POST diffère en fonct
 
 Pour obtenir des informations spécifiques au sujet des schémas des alertes du journal d’activité sur les notifications d’intégrité du service, consultez la page [Notifications d’intégrité du service](monitoring-service-notifications.md).
 
-Pour plus d’informations de schéma spécifique sur toutes les autres alertes de journal d’activité, consultez [vue d’ensemble du journal des activités Windows Azure hello](monitoring-overview-activity-logs.md).
+Pour obtenir des informations spécifiques au sujet des schémas de toutes les autres alertes du journal d’activité, consultez la page [Vue d’ensemble du journal d’activité Azure](monitoring-overview-activity-logs.md).
 
 | Nom de l'élément | Description |
 | --- | --- |
-| status |Utilisé pour les alertes de métrique. Toujours défini trop « activé » pour les alertes de journal d’activité. |
-| context |Contexte d’événement de hello. |
-| resourceProviderName |le fournisseur de ressources Hello Hello incidence sur la ressource. |
+| status |Utilisé pour les alertes de métrique. Toujours défini sur « activé » pour les alertes du journal d’activité. |
+| context |Contexte de l’événement. |
+| resourceProviderName |Fournisseur de la ressource affectée. |
 | conditionType |Toujours défini sur « Event ». |
-| name |Nom de règle d’alerte hello. |
-| id |ID de ressource d’alerte de hello. |
-| description |Description de l’alerte définie lors de l’alerte de hello est créée. |
+| name |Nom de la règle d’alerte. |
+| id |ID de ressource de l’alerte. |
+| description |Description de l’alerte définie à la création de l’alerte. |
 | subscriptionId |ID d’abonnement Azure. |
-| timestamp |Heure à quels hello événement a été généré par hello service Azure qui a traité la demande de hello. |
-| resourceId |ID de ressource de hello affectées les ressources. |
-| resourceGroupName |Nom du groupe de ressources hello pour hello incidence sur la ressource. |
-| properties |Jeu de `<Key, Value>` paires (autrement dit, `Dictionary<String, String>`) qui inclut des détails sur l’événement hello. |
-| event |Élément qui contient des métadonnées sur l’événement hello. |
-| autorisation |propriétés de contrôle d’accès en fonction du rôle Hello d’événement de hello. Ces propriétés incluent généralement l’action de hello, le rôle de hello et étendue de hello. |
-| category |Catégorie d’événement de hello. Les valeurs prises en charge sont : Administrative, Alert, Security, ServiceHealth et Recommendation. |
-| caller |Adresse de messagerie de l’utilisateur hello qui a effectué l’opération de hello, revendication UPN ou revendication SPN basée sur la disponibilité. Peut être null pour certains appels système. |
-| correlationId |Généralement un GUID au format chaîne. Les événements avec l’ID de corrélation appartiennent toohello même action plus importante et partagent généralement un ID de corrélation. |
-| eventDescription |Description de texte statique de l’événement de hello. |
-| eventDataId |Identificateur unique de l’événement de hello. |
-| eventSource |Nom de hello service Azure ou infrastructure que l’événement hello généré. |
-| httpRequest |Hello demande inclut généralement hello clientRequestId clientIpAddress et la méthode HTTP (par exemple, PUT). |
-| level |Une des valeurs suivantes de hello : critique, erreur, avertissement, information et Verbose. |
-| operationId |Généralement GUID partagé entre les événements hello correspondant toosingle opération. |
-| operationName |Nom de l’opération de hello. |
-| properties |Propriétés d’événement de hello. |
-| status |Chaîne. État de l’opération de hello. Les valeurs courantes sont : Started, In Progress, Succeeded, Failed, Active et Resolved. |
-| subStatus |Inclut généralement le code d’état HTTP hello d’appel REST hello correspondant. Peut également inclure d’autres chaînes décrivant un sous-état. Les valeurs courantes sont : OK (Code d’état HTTP : 200), Created (Code d’état HTTP : 201), Accepted (Code d’état HTTP : 202), No Content (Code d’état HTTP : 204), Bad Request (Code d’état HTTP : 400), Not Found (Code d’état HTTP : 404), Conflict (Code d’état HTTP : 409), Internal Server Error (Code d’état HTTP : 500), Service Unavailable (Code d’état HTTP : 503) et Gateway Timeout (Code d’état HTTP : 504). |
+| timestamp |Heure à laquelle l’événement a été généré par le service Azure qui a traité la demande. |
+| resourceId |ID de ressource de la ressource affectée. |
+| resourceGroupName |Nom du groupe de ressources de la ressource affectée. |
+| properties |Ensemble de paires `<Key, Value>` (c’est-à-dire, `Dictionary<String, String>`) incluant des détails sur l’événement. |
+| event |Élément contenant des métadonnées relatives à l’événement. |
+| autorisation |Propriétés de contrôle d’accès en fonction du rôle de l’événement. Il s’agit généralement de l’action, du rôle et de l’étendue. |
+| category |Catégorie de l’événement. Les valeurs prises en charge sont : Administrative, Alert, Security, ServiceHealth et Recommendation. |
+| caller |Adresse e-mail de l’utilisateur ayant effectué l’opération, la revendication de nom d’utilisateur principal (UPN) ou la revendication de nom de principal du service (SPN) basée sur la disponibilité. Peut être null pour certains appels système. |
+| correlationId |Généralement un GUID au format chaîne. Les événements avec correlationId appartiennent à la même action et partagent généralement un correlationId. |
+| eventDescription |Description textuelle statique de l’événement. |
+| eventDataId |Identificateur unique de l’événement. |
+| eventSource |Nom de l’infrastructure ou du service Azure ayant généré l’événement. |
+| httpRequest |Il s’agit généralement des requêtes clientRequestId, clientIpAddress et de la méthode HTTP (PUT, par exemple). |
+| level |L’une des valeurs suivantes : Critical, Error, Warning, Informational et Verbose. |
+| operationId |Généralement, GUID partagé par les événements correspondant à une opération unique. |
+| operationName |Nom de l’opération. |
+| properties |Les propriétés de l’événement. |
+| status |Chaîne. État de l’opération. Les valeurs courantes sont : Started, In Progress, Succeeded, Failed, Active et Resolved. |
+| subStatus |Inclut généralement le code d’état HTTP de l’appel REST correspondant. Peut également inclure d’autres chaînes décrivant un sous-état. Les valeurs courantes sont : OK (Code d’état HTTP : 200), Created (Code d’état HTTP : 201), Accepted (Code d’état HTTP : 202), No Content (Code d’état HTTP : 204), Bad Request (Code d’état HTTP : 400), Not Found (Code d’état HTTP : 404), Conflict (Code d’état HTTP : 409), Internal Server Error (Code d’état HTTP : 500), Service Unavailable (Code d’état HTTP : 503) et Gateway Timeout (Code d’état HTTP : 504). |
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [En savoir plus sur le journal d’activité hello](monitoring-overview-activity-logs.md).
+* [En savoir plus sur le journal d’activité](monitoring-overview-activity-logs.md).
 * [Exécuter des scripts Azure Automation (Runbooks) sur des alertes Azure](http://go.microsoft.com/fwlink/?LinkId=627081).
-* [Utiliser un toosend d’application logique SMS via Twilio à partir d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app). Cet exemple est pour les alertes de métriques, mais il peut être modifié toowork avec une alerte de journal d’activité.
-* [Utiliser un toosend d’application logique un message de marge d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app). Cet exemple est pour les alertes de métriques, mais il peut être modifié toowork avec une alerte de journal d’activité.
-* [Utiliser un toosend d’application logique de file d’attente un message de tooan Azure à partir d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app). Cet exemple est pour les alertes de métriques, mais il peut être modifié toowork avec une alerte de journal d’activité.
+* [Utiliser une application logique pour envoyer un SMS par le biais de Twilio à partir d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app). Cet exemple s’applique aux alertes de métrique, mais il peut être modifié pour fonctionner avec une alerte du journal d’activité.
+* [Utiliser une application logique pour envoyer un message Slack à partir d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app). Cet exemple s’applique aux alertes de métrique, mais il peut être modifié pour fonctionner avec une alerte du journal d’activité.
+* [Utiliser une application logique pour envoyer un message à une file d’attente Azure à partir d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app). Cet exemple s’applique aux alertes de métrique, mais il peut être modifié pour fonctionner avec une alerte du journal d’activité.

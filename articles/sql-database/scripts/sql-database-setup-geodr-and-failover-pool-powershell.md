@@ -1,6 +1,6 @@
 ---
-title: "base de données SQL Azure regroupées géo-réplication active de l’exemple aaaPowerShell | Documents Microsoft"
-description: "Azure tooset de script d’exemple PowerShell de géo-réplication active pour une base de données SQL Azure"
+title: "Exemple PowerShell - géoréplication active - Base de données Azure SQL regroupée | Microsoft Docs"
+description: "Exemple de script Azure PowerShell permettant de configurer la géoréplication active d’une base de données Azure SQL regroupée"
 services: sql-database
 documentationcenter: sql-database
 author: CarlRabeler
@@ -16,15 +16,15 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 07/25/2017
 ms.author: carlrab
-ms.openlocfilehash: 9d183f08dcc07ba864e42fe70a562fef8bd572f1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bdd03372b01f734cb7b560855351f222936e45a0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-powershell-tooconfigure-active-geo-replication-for-a-pooled-azure-sql-database"></a>Utilisez PowerShell tooconfigure géo-réplication active pour une base de données SQL Azure
+# <a name="use-powershell-to-configure-active-geo-replication-for-a-pooled-azure-sql-database"></a>Utiliser PowerShell pour configurer la géoréplication active d’une base de données Azure SQL regroupée
 
-Cet exemple de script PowerShell configure géo-réplication active pour une base de données SQL Azure dans un pool élastique et elle bascule toohello le réplica de base de données SQL Azure hello.
+Cet exemple de script PowerShell configure la géoréplication active d’une base de données Azure SQL dans un pool élastique et la fait basculer vers le réplica secondaire de la base de données Azure SQL.
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
@@ -34,16 +34,16 @@ Cet exemple de script PowerShell configure géo-réplication active pour une bas
 
 ## <a name="clean-up-deployment"></a>Nettoyer le déploiement
 
-Après exécution de l’exemple de script hello, hello commande suivante peut être de groupe de ressources utilisé tooremove hello et toutes les ressources associées.
+Une fois l’exemple de script exécuté, la commande suivante permet de supprimer le groupe de ressources et toutes les ressources associées.
 
 ```powershell
-Remove-AzureRmResourceGroup -ResourceGroupName "myPrimaryResourceGroup"
-Remove-AzureRmResourceGroup -ResourceGroupName "mySecondaryResourceGroup"
+Remove-AzureRmResourceGroup -ResourceGroupName $primaryresourcegroupname
+Remove-AzureRmResourceGroup -ResourceGroupName $secondaryresourcegroupname
 ```
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script utilise hello suivant les commandes. Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.
+Ce script utilise les commandes suivantes. Chaque commande du tableau renvoie à une documentation spécifique.
 
 | Commande | Remarques |
 |---|---|
@@ -54,13 +54,13 @@ Ce script utilise hello suivant les commandes. Chaque commande figurant dans la 
 | [Set-AzureRmSqlDatabase](/powershell/module/azurerm.sql/set-azurermsqldatabase) | Met à jour les propriétés de la base de données ou déplace une base de données vers, hors ou entre des pools élastiques. |
 | [New-AzureRmSqlDatabaseSecondary](/powershell/module/azurerm.sql/new-azurermsqldatabasesecondary)| Crée une base de données secondaire pour une base de données existante puis lance la réplication des données. |
 | [Get-AzureRmSqlDatabase](/powershell/module/azurerm.sql/get-azurermsqldatabase)| Obtient une ou plusieurs bases de données. |
-| [Set-AzureRmSqlDatabaseSecondary](/powershell/module/azurerm.sql/set-azurermsqldatabasesecondary)| Commutateurs toobe principal de base de données secondaire dans l’ordre de basculement tooinitiate.|
-| [Get-AzureRmSqlDatabaseReplicationLink](/powershell/module/azurerm.sql/get-azurermsqldatabasereplicationlink) | Obtient les liens de géo-réplication hello entre une base de données SQL Azure et un groupe de ressources ou SQL Server. |
+| [Set-AzureRmSqlDatabaseSecondary](/powershell/module/azurerm.sql/set-azurermsqldatabasesecondary)| Bascule d’une base de données secondaire à une base de données principale afin de lancer le basculement.|
+| [Get-AzureRmSqlDatabaseReplicationLink](/powershell/module/azurerm.sql/get-azurermsqldatabasereplicationlink) | Obtient les liens de géo-réplication entre une base de données SQL Azure et un groupe de ressources ou SQL Server. |
 | [Remove-AzureRmResourceGroup](/powershell/module/azurerm.resources/remove-azurermresourcegroup) | Supprime un groupe de ressources, y compris toutes les ressources imbriquées. |
 |||
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur hello Azure PowerShell, consultez [documentation Azure PowerShell](/powershell/azure/overview).
+Pour plus d’informations sur Azure PowerShell, consultez la [documentation Azure PowerShell](/powershell/azure/overview).
 
-Vous trouverez des exemples supplémentaires de script PowerShell de base de données SQL dans hello [des scripts PowerShell de base de données SQL Azure](../sql-database-powershell-samples.md).
+Vous trouverez des exemples supplémentaires de scripts SQL Database PowerShell sur la page [Scripts PowerShell Azure SQL Database](../sql-database-powershell-samples.md).

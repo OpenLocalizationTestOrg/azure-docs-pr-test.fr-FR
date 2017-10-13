@@ -1,6 +1,6 @@
 ---
-title: "aaaInstall vos propres applications personnalisées de Hadoop sur Azure HDInsight | Documents Microsoft"
-description: "Découvrez comment tooinstall HDInsight les applications sur les applications de HDInsight."
+title: "Installer vos applications Hadoop personnalisées sur Azure HDInsight | Microsoft Docs"
+description: "Découvrez comment installer des applications Hadoop sur des applications HDInsight."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,120 +16,120 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: ed3148f2c4d4d2b568d84e44fa6d76bb5a001902
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ebec29dea9f5dc1767f47a53d9da03347a51de28
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="install-custom-hadoop-applications-on-azure-hdinsight"></a>Installer des applications personnalisées Hadoop sur Azure HDInsight
 
-Dans cet article, vous allez apprendre comment tooinstall une application Hadoop sur Azure HDInsight, qui n’a pas été publié toohello portail Azure. application Hello vous installerez dans cet article est [teinte](http://gethue.com/).
+Dans cet article, vous découvrirez comment installer une application Hadoop sur Azure HDInsight n’ayant pas été publiée sur le portail Azure. Dans cet article, vous allez installer l’application [Hue](http://gethue.com/).
 
 Une application HDInsight est une application que les utilisateurs peuvent installer sur un cluster HDInsight sous Linux.  Ces applications peuvent être développées par Microsoft, par des éditeurs de logiciels indépendants (ISV) ou par vous-même.  
 
 Autres articles associés :
 
-* [Installer des applications de HDInsight](hdinsight-apps-install-applications.md): Découvrez comment tooinstall un tooyour d’application HDInsight clusters.
-* [Publier des applications de HDInsight](hdinsight-apps-publish-applications.md): Découvrez comment toopublish votre tooAzure d’applications personnalisée HDInsight Marketplace.
-* [MSDN : Installer une application de HDInsight](https://msdn.microsoft.com/library/mt706515.aspx): Découvrez comment toodefine HDInsight applications.
+* [Install custom HDInsight applications](hdinsight-apps-install-applications.md)(Installer des applications HDInsight personnalisées) : découvrez comment installer une application HDInsight sur vos clusters.
+* [Publish HDInsight applications](hdinsight-apps-publish-applications.md)(Publier des applications HDInsight) : découvrez comment publier vos applications HDInsight personnalisées sur Azure Marketplace.
+* [MSDN: Install an HDInsight application](https://msdn.microsoft.com/library/mt706515.aspx)(MSDN : installer une application HDInsight) : découvrez comment définir des applications HDInsight.
 
 ## <a name="prerequisites"></a>Composants requis
-Si vous souhaitez que les applications de HDInsight tooinstall sur un cluster HDInsight existant, vous devez disposer d’un cluster HDInsight. toocreate, consultez [créer des clusters](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster). Vous pouvez également installer des applications HDInsight lorsque vous créez un cluster HDInsight.
+Pour installer des applications HDInsight sur un cluster HDInsight existant, vous devez disposer d’un cluster HDInsight. Pour en créer un, consultez [Créer des clusters](hdinsight-hadoop-linux-tutorial-get-started.md#create-cluster). Vous pouvez également installer des applications HDInsight lorsque vous créez un cluster HDInsight.
 
 ## <a name="install-hdinsight-applications"></a>Install custom HDInsight applications
-Applications de HDInsight peuvent être installées lorsque vous créez un cluster ou tooan existant HDInsight. Pour définir des modèles Azure Resource Manager, consultez [MSDN: Install an HDInsight application](https://msdn.microsoft.com/library/mt706515.aspx)(MSDN : installer une application HDInsight).
+Les applications HDInsight peuvent être installées sur un cluster HDInsight existant ou lorsque vous créez un cluster. Pour définir des modèles Azure Resource Manager, consultez [MSDN: Install an HDInsight application](https://msdn.microsoft.com/library/mt706515.aspx)(MSDN : installer une application HDInsight).
 
-fichiers Hello nécessaires pour déployer cette application (teinte) :
+Fichiers nécessaires pour le déploiement de cette application (Hue) :
 
-* [azuredeploy.JSON](https://github.com/hdinsight/Iaas-Applications/blob/master/Hue/azuredeploy.json): modèle de gestionnaire de ressources hello pour l’installation d’application de HDInsight. Consultez la page [MSDN: Install an HDInsight application](https://msdn.microsoft.com/library/mt706515.aspx) (MSDN : installer une application HDInsight) pour développer votre propre modèle Resource Manager.
-* [teinte-install_v0.sh](https://github.com/hdinsight/Iaas-Applications/blob/master/Hue/scripts/Hue-install_v0.sh): hello action de Script qui est appelée par le modèle de gestionnaire de ressources hello pour la configuration de nœud de périmètre hello.
-* [teinte-binaries.tgz](https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv01/hue-binaries-14-04.tgz): fichier binaire de hello teinte appelée à partir d’aujourd'hui-install_v0.sh.
-* [teinte-binaires-14-04.tgz](https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv01/hue-binaries-14-04.tgz): fichier binaire de hello teinte appelée à partir d’aujourd'hui-install_v0.sh.
+* [azuredeploy.json](https://github.com/hdinsight/Iaas-Applications/blob/master/Hue/azuredeploy.json): modèle Azure Resource Manager pour installer l’application HDInsight. Consultez la page [MSDN: Install an HDInsight application](https://msdn.microsoft.com/library/mt706515.aspx) (MSDN : installer une application HDInsight) pour développer votre propre modèle Resource Manager.
+* [hue-install_v0.sh](https://github.com/hdinsight/Iaas-Applications/blob/master/Hue/scripts/Hue-install_v0.sh) : action de script appelée par le modèle Resource Manager pour la configuration du nœud de périmètre.
+* [hue-binaries.tgz](https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv01/hue-binaries-14-04.tgz) : fichier binaire hue appelé à partir de hui-install_v0.sh.
+* [hue-binaries-14-04.tgz](https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv01/hue-binaries-14-04.tgz) : fichier binaire hue appelé à partir de hui-install_v0.sh.
 * [webwasb-tomcat.tar.gz](https://hdiconfigactions.blob.core.windows.net/linuxhueconfigactionv01/webwasb-tomcat.tar.gz) : exemple d’application web (Tomcat) appelée à partir de hui-install_v0.sh.
 
-**cluster HDInsight existant de tooinstall teinte tooan**
+**Pour installer Hue sur un cluster HDInsight existant**
 
-1. Cliquez sur hello suivant toosign image dans tooAzure et modèle du Gestionnaire de ressources ouvrir hello Bonjour portail Azure.
+1. Cliquez sur l’image suivante pour vous connecter à Azure et ouvrir le modèle Resource Manager dans le portail Azure.
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhdinsight%2FIaas-Applications%2Fmaster%2FHue%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apps-install-custom-applications/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fhdinsight%2FIaas-Applications%2Fmaster%2FHue%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-apps-install-custom-applications/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
-    Ce bouton ouvre un modèle de gestionnaire de ressources sur hello portail Azure.  Hello modèle Resource Manager se trouve dans [https://github.com/hdinsight/Iaas-Applications/tree/master/Hue](https://github.com/hdinsight/Iaas-Applications/tree/master/Hue).  toolearn comment toowrite ce modèle de gestionnaire de ressources, consultez [MSDN : installer une application de HDInsight](https://msdn.microsoft.com/library/mt706515.aspx).
-2. À partir de hello **paramètres** panneau, entrez hello suivante :
+    Ce bouton ouvre un modèle Resource Manager sur le portail Azure.  Le modèle Resource Manager est situé dans [https://github.com/hdinsight/Iaas-Applications/tree/master/Hue](https://github.com/hdinsight/Iaas-Applications/tree/master/Hue).  Pour savoir comment écrire ce modèle Resource Manager, consultez [MSDN: Install an HDInsight application](https://msdn.microsoft.com/library/mt706515.aspx)(MSDN : installer une application HDInsight).
+2. À partir du panneau **Paramètres** , saisissez les informations suivantes :
 
-   * **ClusterName**: entrez le nom hello du cluster de hello application hello de tooinstall. Ce cluster doit être un cluster existant.
-3. Cliquez sur **OK** toosave les paramètres hello.
-4. À partir de hello **les déploiement personnalisé** panneau, entrez **groupe de ressources**.  groupe de ressources Hello est un conteneur qui regroupe le cluster de hello, compte de stockage dépendant de hello et autres ressources. Il est requis toouse hello même groupe de ressources en tant que cluster de hello.
+   * **ClusterName**: entrez le nom du cluster où vous souhaitez installer l’application. Ce cluster doit être un cluster existant.
+3. Cliquez sur **OK** pour enregistrer les paramètres.
+4. Dans le panneau **Déploiement personnalisé**, entrez **Groupe de ressources**.  Le groupe de ressources est un conteneur qui regroupe le cluster, le compte de stockage dépendant et d’autres ressources. Vous devez utiliser le même groupe de ressources que le cluster.
 5. Cliquez sur **Conditions juridiques**, puis cliquez sur **Créer**.
-6. Vérifiez que hello **code confidentiel toodashboard** case à cocher est sélectionnée, puis cliquez sur **créer**. Vous pouvez voir l’état de l’installation hello hello vignette épinglée toohello portail du tableau de bord et de notification du portail hello (cliquez sur l’icône de cloche hello haut hello du portail de hello).  Il faut application hello de tooinstall environ 10 minutes.
+6. Vérifiez que la case **Épingler au tableau de bord** est cochée, puis cliquez sur **Créer**. Vous pouvez voir l’état de l’installation dans la vignette épinglée sur le tableau de bord du portail ainsi que la notification du portail (cliquez sur l’icône en forme de cloche en haut du portail).  L’installation de l’application prend environ 10 minutes.
 
-**tooinstall teinte lors de la création d’un cluster**
+**Pour installer Hue lors de la création d’un cluster**
 
-1. Cliquez sur hello suivant toosign image dans tooAzure et modèle du Gestionnaire de ressources ouvrir hello Bonjour portail Azure.
+1. Cliquez sur l’image suivante pour vous connecter à Azure et ouvrir le modèle Resource Manager dans le portail Azure.
 
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fhdinsightapps%2Fcreate-linux-based-hadoop-cluster-in-hdinsight.json" target="_blank"><img src="./media/hdinsight-apps-install-custom-applications/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Fhdinsightapps%2Fcreate-linux-based-hadoop-cluster-in-hdinsight.json" target="_blank"><img src="./media/hdinsight-apps-install-custom-applications/deploy-to-azure.png" alt="Deploy to Azure"></a>
 
-    Ce bouton ouvre un modèle de gestionnaire de ressources sur hello portail Azure.  Hello modèle Resource Manager se trouve dans [https://hditutorialdata.blob.core.windows.net/hdinsightapps/create-linux-based-hadoop-cluster-in-hdinsight.json](https://hditutorialdata.blob.core.windows.net/hdinsightapps/create-linux-based-hadoop-cluster-in-hdinsight.json).  toolearn comment toowrite ce modèle de gestionnaire de ressources, consultez [MSDN : installer une application de HDInsight](https://msdn.microsoft.com/library/mt706515.aspx).
-2. Suivez hello instruction toocreate cluster et installer la teinte. Pour plus d’informations sur la création de clusters HDInsight, consultez [Création de clusters Hadoop basés sur Linux dans HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
+    Ce bouton ouvre un modèle Resource Manager sur le portail Azure.  Le modèle Resource Manager se trouve à l’adresse [https://hditutorialdata.blob.core.windows.net/hdinsightapps/create-linux-based-hadoop-cluster-in-hdinsight.json](https://hditutorialdata.blob.core.windows.net/hdinsightapps/create-linux-based-hadoop-cluster-in-hdinsight.json).  Pour savoir comment écrire ce modèle Resource Manager, consultez [MSDN: Install an HDInsight application](https://msdn.microsoft.com/library/mt706515.aspx)(MSDN : installer une application HDInsight).
+2. Suivez les instructions pour créer le cluster et installer Hue. Pour plus d’informations sur la création de clusters HDInsight, consultez [Création de clusters Hadoop basés sur Linux dans HDInsight](hdinsight-hadoop-provision-linux-clusters.md).
 
-En outre toohello portail Azure, vous pouvez également utiliser [Azure PowerShell](hdinsight-hadoop-create-linux-clusters-arm-templates.md#deploy-with-powershell) et [CLI d’Azure](hdinsight-hadoop-create-linux-clusters-arm-templates.md#deploy-with-cli) toocall les modèles de gestionnaire de ressources.
+Outre le portail Azure, vous pouvez également utiliser [Azure PowerShell](hdinsight-hadoop-create-linux-clusters-arm-templates.md#deploy-with-powershell) et [l’interface de ligne de commande Azure](hdinsight-hadoop-create-linux-clusters-arm-templates.md#deploy-with-cli) pour appeler des modèles Resource Manager.
 
-## <a name="validate-hello-installation"></a>Valider l’installation de hello
-Vous pouvez vérifier l’état de l’application hello sur hello installation de l’application hello toovalidate portail Azure. En outre, vous pouvez également valider tous les provient de points de terminaison HTTP des comme prévu et une page Web de hello si elle existe :
+## <a name="validate-the-installation"></a>validation de l'installation
+Vous pouvez vérifier l’état de l’application sur le portail Azure pour valider l’installation de l’application. Vous pouvez également valider la création appropriée de tous les points de terminaison HTTP et du site web, le cas échéant :
 
-**portail de teinte hello tooopen**
+**Pour accéder au portail Hue**
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
-2. Cliquez sur **Clusters HDInsight** dans le menu de gauche hello.  Si vous ne le voyez pas, cliquez sur **Parcourir**, puis sur **Clusters HDInsight**.
-3. Cliquez sur le cluster hello où vous avez installé l’application hello.
-4. À partir de hello **paramètres** panneau, cliquez sur **Applications** sous hello **général** catégorie. Vous allez voir **teinte** répertoriés dans hello **installé des applications** panneau.
-5. Cliquez sur **teinte** à partir des propriétés de hello liste toolist hello.  
-6. Cliquez sur le site Web hello page Web lien toovalidate hello ; Ouvrez le point de terminaison hello HTTP dans un navigateur toovalidate hello teinte interface utilisateur web, point de terminaison SSH hello ouverte à l’aide de SSH. Pour en savoir plus, voir [Utilisation de SSH avec HDInsight (Hadoop) depuis Bash (l’interpréteur de commande) sur Windows 10, Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).
+1. Connectez-vous au [portail Azure](https://portal.azure.com).
+2. Cliquez sur **Clusters HDInsight** dans le menu de gauche.  Si vous ne le voyez pas, cliquez sur **Parcourir**, puis sur **Clusters HDInsight**.
+3. Cliquez sur le cluster dans lequel vous avez installé l’application.
+4. Dans le panneau **Paramètres**, cliquez sur **Applications** sous la catégorie **Général**. Vous devriez voir **hue** dans le panneau **Applications installées**.
+5. Cliquez sur **hue** dans la liste pour en afficher les propriétés.  
+6. Cliquez sur le lien de la page web pour valider le site web ; ouvrez le point de terminaison HTTP dans un navigateur pour valider l’interface utilisateur web Hue, puis ouvrez le point de terminaison SSH à l’aide de SSH. Pour en savoir plus, voir [Utilisation de SSH avec HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-## <a name="troubleshoot-hello-installation"></a>Résoudre les problèmes d’installation de hello
-Vous pouvez vérifier hello application installation état à partir de la notification du portail hello (cliquez sur l’icône de cloche hello haut hello du portail de hello).
+## <a name="troubleshoot-the-installation"></a>Dépanner l’installation
+Vous pouvez vérifier l’état de l’installation de l’application dans la notification du portail (cliquez sur l’icône en forme de cloche en haut du portail).
 
-En cas d’échec de l’installation d’une application, vous pouvez voir les messages d’erreur hello et déboguer des informations à partir de 3 emplacements :
+En cas d’échec de l’installation d’une application, des messages d’erreur et des informations de débogage s’affichent à 3 emplacements différents :
 
 * Applications HDInsight : informations générales relatives à l’erreur.
 
-    Ouvrir le cluster de hello à partir du portail de hello, puis cliquez sur Applications à partir du Panneau de paramètres hello :
+    Ouvrez le cluster à partir du portail, puis cliquez sur Applications dans le panneau Paramètres :
 
     ![Erreur d’installation des applications hdinsight](./media/hdinsight-apps-install-applications/hdinsight-apps-error.png)
-* Action de script HDInsight : si le message d’erreur hello HDInsight Applications indique un échec d’action de script, plus de détails sur l’échec du script hello seront affiche dans le volet actions de script hello.
+* Action de script HDInsight : si le message d’erreur des applications HDInsight indique un échec d’action de script, le volet Actions de script affichera davantage de détails sur l’échec de script.
 
-    Cliquez sur Action de Script à partir du Panneau de paramètres hello. Historique des actions de script affiche les messages d’erreur hello
+    Dans le panneau Paramètres, cliquez sur Actions de script. L’historique des actions de script affiche les messages d’erreur
 
     ![Erreur de l’action de script des applications hdinsight](./media/hdinsight-apps-install-applications/hdinsight-apps-script-action-error.png)
-* Ambari Web, l’interface utilisateur : Si le script d’installation hello était cause hello de défaillance de hello, utilisez journaux complets de l’interface utilisateur de Ambari Web toocheck sur les scripts d’installation hello.
+* Interface utilisateur web d’Ambari : si le script d’installation était à l’origine de l’échec, utilisez l’interface utilisateur web d’Ambari pour consulter les journaux complets des scripts d’installation.
 
     Pour plus d’informations, consultez la page [Dépannage](hdinsight-hadoop-customize-cluster-linux.md#troubleshooting).
 
 ## <a name="remove-hdinsight-applications"></a>Supprimer des applications HDInsight
-Il existe plusieurs façons toodelete HDInsight applications.
+Il existe plusieurs façons de supprimer des applications HDInsight.
 
 ### <a name="use-portal"></a>Utilisation du portail
-**tooremove une application à l’aide du portail de hello**
+**Pour supprimer une application à l’aide du portail**
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
-2. Cliquez sur **Clusters HDInsight** dans le menu de gauche hello.  Si vous ne le voyez pas, cliquez sur **Parcourir**, puis sur **Clusters HDInsight**.
-3. Cliquez sur le cluster hello où vous avez installé l’application hello.
-4. À partir de hello **paramètres** panneau, cliquez sur **Applications** sous hello **général** catégorie. Vous devriez voir une liste des applications installées. Pour ce didacticiel, **teinte** répertoriés dans hello **installé des applications** panneau.
-5. Cliquez sur application hello vous souhaitez tooremove, puis cliquez sur **supprimer**.
-6. Cliquez sur **Oui** tooconfirm.
+1. Connectez-vous au [portail Azure](https://portal.azure.com).
+2. Cliquez sur **Clusters HDInsight** dans le menu de gauche.  Si vous ne le voyez pas, cliquez sur **Parcourir**, puis sur **Clusters HDInsight**.
+3. Cliquez sur le cluster dans lequel vous avez installé l’application.
+4. Dans le panneau **Paramètres**, cliquez sur **Applications** sous la catégorie **Général**. Vous devriez voir une liste des applications installées. Dans ce didacticiel, **hue** apparaît dans le panneau **Applications installées**.
+5. Cliquez avec le bouton droit sur l’application à supprimer, puis sur **Supprimer**.
+6. Cliquez sur **Oui** pour confirmer.
 
-À partir du portail de hello, vous pouvez également supprimer le cluster de hello ou supprimer le groupe de ressources hello qui contient l’application hello.
+À partir du portail, vous pouvez également supprimer le cluster ou supprimer le groupe de ressources contenant l’application.
 
 ### <a name="use-azure-powershell"></a>Utilisation d'Azure PowerShell
-À l’aide d’Azure PowerShell, vous pouvez supprimer le cluster de hello ou supprimer le groupe de ressources hello. Consultez la section [Supprimer des clusters à l’aide d’Azure PowerShell](hdinsight-administer-use-powershell.md#delete-clusters).
+Vous pouvez utiliser Azure PowerShell pour supprimer le cluster ou le groupe de ressources. Consultez la section [Supprimer des clusters à l’aide d’Azure PowerShell](hdinsight-administer-use-powershell.md#delete-clusters).
 
 ### <a name="use-azure-cli"></a>Utiliser l’interface de ligne de commande Microsoft Azure
-À l’aide de CLI d’Azure, vous pouvez supprimer le cluster de hello ou supprimer le groupe de ressources hello. Consultez la section [Supprimer des clusters à l’aide de l’interface de ligne de commande Azure](hdinsight-administer-use-command-line.md#delete-clusters).
+Vous pouvez utiliser l’interface de ligne de commande Azure pour supprimer le cluster ou le groupe de ressources. Consultez la section [Supprimer des clusters à l’aide de l’interface de ligne de commande Azure](hdinsight-administer-use-command-line.md#delete-clusters).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [MSDN : Installer une application de HDInsight](https://msdn.microsoft.com/library/mt706515.aspx): Découvrez comment toodevelop les modèles de gestionnaire de ressources pour le déploiement d’applications de HDInsight.
-* [Installer des applications de HDInsight](hdinsight-apps-install-applications.md): Découvrez comment tooinstall un tooyour d’application HDInsight clusters.
-* [Publier des applications de HDInsight](hdinsight-apps-publish-applications.md): Découvrez comment toopublish votre tooAzure d’applications personnalisée HDInsight Marketplace.
-* [Personnaliser des clusters HDInsight de basés sur Linux à l’aide de Script Action](hdinsight-hadoop-customize-cluster-linux.md): Découvrez comment des applications supplémentaires toouse Action de Script tooinstall.
-* [Créer des clusters basés sur Linux de Hadoop dans HDInsight à l’aide du Gestionnaire de ressources modèles](hdinsight-hadoop-create-linux-clusters-arm-templates.md): Découvrez comment toocall le Gestionnaire de ressources modèles toocreate HDInsight clusters.
-* [Utiliser noeuds vide dans HDInsight](hdinsight-apps-use-edge-node.md): Découvrez comment toouse vide bord du nœud pour l’accès à cluster HDInsight, test des applications de HDInsight et l’hébergement des applications de HDInsight.
+* [MSDN: Install an HDInsight application](https://msdn.microsoft.com/library/mt706515.aspx)(MSDN : installer une application HDInsight) : découvrez comment développer des applications Resource Manager pour le déploiement d’applications HDInsight.
+* [Install custom HDInsight applications](hdinsight-apps-install-applications.md)(Installer des applications HDInsight personnalisées) : découvrez comment installer une application HDInsight sur vos clusters.
+* [Publish HDInsight applications](hdinsight-apps-publish-applications.md)(Publier des applications HDInsight) : découvrez comment publier vos applications HDInsight personnalisées sur Azure Marketplace.
+* [Personnalisation de clusters HDInsight basés sur Linux à l’aide d’une action de script](hdinsight-hadoop-customize-cluster-linux.md): apprenez à utiliser l’action de script pour installer des applications supplémentaires.
+* [Créer des clusters Hadoop sous Linux dans HDInsight à l’aide de modèles Resource Manager](hdinsight-hadoop-create-linux-clusters-arm-templates.md): apprenez à appeler des modèles Resource Manager pour la création de clusters HDInsight.
+* [Utiliser des nœuds de périmètre vides dans HDInsight](hdinsight-apps-use-edge-node.md): apprenez à utiliser un nœud de périmètre vide pour accéder au cluster HDInsight, tester des applications HDInsight et héberger des applications HDInsight.

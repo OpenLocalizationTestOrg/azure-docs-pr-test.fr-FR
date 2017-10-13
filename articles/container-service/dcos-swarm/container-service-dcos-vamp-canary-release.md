@@ -1,6 +1,6 @@
 ---
-title: "version aaaCanary avec une EMPEIGNE sur le cluster de contrôleur de domaine/système d’exploitation Azure | Documents Microsoft"
-description: Comment toouse Vamp des services de mise en production toocanary et appliquer le filtrage sur un cluster du Service de conteneur Azure DC/OS du trafic actif
+title: "Contrôler la validité d’une mise en production avec Vamp sur un cluster de contrôleur de domaine/système d’exploitation Azure | Documents Microsoft"
+description: "Comment utiliser Vamp pour contrôler la validité de services de mise en production et appliquer un filtrage de trafic intelligent sur un cluster de contrôleur de domaine/système d’exploitation Azure Container Service"
 services: container-service
 author: gggina
 manager: rasquill
@@ -12,26 +12,26 @@ ms.tgt_pltfrm: na
 ms.date: 04/17/2017
 ms.author: rasquill
 ms.custom: mvc
-ms.openlocfilehash: e7b8658a161a7cddcf718e3e1c12a889a330d3d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4a20091b59f2643ea71cce99c159a5075706e35d
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="canary-release-microservices-with-vamp-on-an-azure-container-service-dcos-cluster"></a>Contrôler la validité de microservices de mise en production avec Vamp sur un cluster de contrôleur de domaine/système d’exploitation Azure Container Service
 
-Dans cette procédure pas à pas, nous configurons Vamp sur Azure Container Service avec un cluster de contrôleur de domaine/système d’exploitation. Nous canary version du service de démo hello une EMPEIGNE « sava », puis résolvez un problème d’incompatibilité du service hello avec Firefox en appliquant un filtrage du trafic actif. 
+Dans cette procédure pas à pas, nous configurons Vamp sur Azure Container Service avec un cluster de contrôleur de domaine/système d’exploitation. Nous contrôlons la validité de la mise en production du service de démonstration Vamp « sava », puis résolvons une incompatibilité du service avec Firefox en appliquant un filtrage de trafic intelligent. 
 
 > [!TIP] 
-> Dans cette procédure pas à pas une EMPEIGNE s’exécute sur un cluster de contrôleur de domaine/système d’exploitation, mais vous pouvez également utiliser une EMPEIGNE avec Kubernetes en tant qu’orchestrateur de hello.
+> Dans cette procédure pas à pas, Vamp s’exécute sur un cluster de contrôleur de domaine/système d’exploitation, mais vous pouvez également utiliser Vamp avec Kubernetes en tant qu’orchestrateur.
 >
 
 ## <a name="about-canary-releases-and-vamp"></a>À propos du contrôle de la validité des mises en production et de Vamp
 
 
-Le [contrôle de la validité des mises en production](https://martinfowler.com/bliki/CanaryRelease.html) est une stratégie de déploiement intelligent adoptée par des entreprises innovantes telles que Netflix, Facebook et Spotify. Cette approche est intéressante, car elle réduit les problèmes, introduit des filets de sécurité et stimule l’innovation. Alors pourquoi toutes les entreprises ne l’adoptent-elles pas ? Étendre un tooinclude de pipeline de l’élément de configuration/CD stratégies canary ajoute une complexité et requiert l’expérience et devops complète de base de connaissances. C’est assez tooblock plus petites entreprises et les entreprises avant qu’ils même prise en main. 
+Le [contrôle de la validité des mises en production](https://martinfowler.com/bliki/CanaryRelease.html) est une stratégie de déploiement intelligent adoptée par des entreprises innovantes telles que Netflix, Facebook et Spotify. Cette approche est intéressante, car elle réduit les problèmes, introduit des filets de sécurité et stimule l’innovation. Alors pourquoi toutes les entreprises ne l’adoptent-elles pas ? L’extension d’un pipeline d’intégration continue/de livraison continue en vue d’inclure des stratégies de contrôle de validité ajoute de la complexité et nécessite une connaissance et une expérience approfondies du DevOps. Cela suffit à bloquer les organisations de taille modeste avant même la prise en main. 
 
-[Vamp](http://vamp.io/) est un tooease système open source conçu cette transition et mettre canary libération fonctionnalités tooyour préféré conteneur du planificateur. La fonctionnalité de contrôle de validité de Vamp va au-delà des déploiements basés sur un pourcentage. Le trafic peut filtré et divisent sur un large éventail de conditions, par exemple des tootarget des utilisateurs spécifiques, des plages d’IP ou appareils. Vamp suit et analyse les métriques de performances, permettant ainsi une automatisation basée sur des données réelles. Vous pouvez configurer une restauration automatique en cas d’erreurs ou mettre à l’échelle des variantes de service en fonction de la charge ou de la latence.
+[Vamp](http://vamp.io/) est un système open source conçu pour faciliter cette transition et apporter les fonctionnalités de contrôle de validité des mises en production à votre planificateur de conteneur favori. La fonctionnalité de contrôle de validité de Vamp va au-delà des déploiements basés sur un pourcentage. Le trafic peut être filtré et fractionné en fonction d’un vaste éventail de conditions, par exemple, pour cibler des utilisateurs, des plages d’adresses IP ou des appareils spécifiques. Vamp suit et analyse les métriques de performances, permettant ainsi une automatisation basée sur des données réelles. Vous pouvez configurer une restauration automatique en cas d’erreurs ou mettre à l’échelle des variantes de service en fonction de la charge ou de la latence.
 
 ## <a name="set-up-azure-container-service-with-dcos"></a>Configurer Azure Container Service avec un contrôleur de domaine/système d’exploitation
 
@@ -39,12 +39,12 @@ Le [contrôle de la validité des mises en production](https://martinfowler.com/
 
 1. [Déployez un cluster de contrôleur de domaine/système d’exploitation](container-service-deployment.md) avec un maître et deux agents de la taille par défaut. 
 
-2. [Créer un tunnel SSH](../container-service-connect.md) cluster de contrôleur de domaine/système d’exploitation tooconnect toohello. Cet article suppose que vous tunnel cluster toohello sur le port local 80.
+2. [Créez un tunnel SSH](../container-service-connect.md) pour vous connecter au cluster de contrôleur de domaine/système d’exploitation. Cet article suppose que vous effectuez un tunneling vers le cluster sur le port local 80.
 
 
 ## <a name="set-up-vamp"></a>Configurer Vamp
 
-Maintenant que vous disposez d’un cluster de contrôleur de domaine/système d’exploitation en cours d’exécution, vous pouvez installer une EMPEIGNE depuis hello l’interface utilisateur du contrôleur de domaine/système d’exploitation (http://localhost : 80). 
+À présent que vous avez un cluster de contrôleur de domaine/système d’exploitation opérationnel, vous pouvez installer Vamp à partir de l’interface utilisateur du contrôleur de domaine/système d’exploitation (http://localhost:80). 
 
 ![IU DC/OS](./media/container-service-dcos-vamp-canary-release/01_set_up_vamp.png)
 
@@ -52,19 +52,19 @@ L’installation s’effectue en deux étapes :
 
 1. **Déploiement d’Elasticsearch**,
 
-2. Puis **déployer une EMPEIGNE** en installant le package d’univers hello Vamp contrôleur de domaine/système d’exploitation.
+2. puis **déploiement de Vamp** en installant le package de l’univers du contrôleur de domaine/système d’exploitation Vamp.
 
 ### <a name="deploy-elasticsearch"></a>Déployer Elasticsearch
 
-Vamp a besoin d’Elasticsearch pour la collecte et l’agrégation des métriques. Vous pouvez utiliser hello [magneticio Docker images](https://hub.docker.com/r/magneticio/elastic/) toodeploy une pile de Elasticsearch de Vamp compatible.
+Vamp a besoin d’Elasticsearch pour la collecte et l’agrégation des métriques. Vous pouvez utiliser les [images de Docker magneticio](https://hub.docker.com/r/magneticio/elastic/) pour déployer une pile Elasticsearch Vamp compatible.
 
-1. Dans l’interface utilisateur du contrôleur de domaine/système d’exploitation de hello, accédez trop**Services** et cliquez sur **déployer le Service**.
+1. Dans l’interface utilisateur du contrôleur de domaine/système d’exploitation, accédez à **Services**, puis cliquez sur **Déployer le service**.
 
-2. Sélectionnez **mode JSON** de hello **déployer un nouveau Service** contextuelle.
+2. Dans la fenêtre contextuelle **Deploy New Service** (Déployer un nouveau service), sélectionnez **JSON mode** (mode JSON).
 
   ![Sélectionnez le mode JSON](./media/container-service-dcos-vamp-canary-release/02_deploy_service_json_mode.png)
 
-3. Collez hello suivant JSON. Cette configuration s’exécute conteneur de hello avec 1 Go de RAM et une vérification d’intégrité de base sur le port Elasticsearch hello.
+3. Collez dans le code JSON suivant. Cette configuration exécute le conteneur avec 1 Go de RAM et un contrôle d’intégrité de base sur le port Elasticsearch.
   
   ```JSON
   {
@@ -95,30 +95,30 @@ Vamp a besoin d’Elasticsearch pour la collecte et l’agrégation des métriqu
 
 3. Cliquez sur **Déployer**.
 
-  Contrôleur de domaine/système d’exploitation déploie le conteneur de Elasticsearch hello. Vous pouvez suivre la progression sur hello **Services** page.  
+  Le contrôleur de domaine/système d’exploitation déploie le conteneur Elasticsearch. Vous pouvez suivre la progression dans la page **Services**.  
 
   ![déployer Elasticsearch](./media/container-service-dcos-vamp-canary-release/03_deply_elasticsearch.png)
 
 ### <a name="deploy-vamp"></a>Déployer Vamp
 
-Une fois que Elasticsearch signale comme **en cours d’exécution**, vous pouvez ajouter le package d’univers de contrôleur de domaine/système d’exploitation Vamp hello. 
+Une fois qu’Elasticsearch est **en cours d’exécution**, vous pouvez ajouter le package de l’univers du contrôleur de domaine/système d’exploitation Vamp. 
 
-1. Accédez trop**univers** et recherchez **vamp**. 
+1. Accédez à **Univers**, puis recherchez **vamp**. 
   ![Vamp sur un univers de contrôleur de domaine/système d’exploitation](./media/container-service-dcos-vamp-canary-release/04_universe_deploy_vamp.png)
 
-2. Cliquez sur **installer** toohello suivant vamp package, puis choisissez **Installation avancé**.
+2. Cliquez sur **Installer** en regard du package Vamp, puis choisissez **Installation avancée**.
 
-3. Faites défiler la liste et entrez hello suivant elasticsearch-url : `http://elasticsearch.marathon.mesos:9200`. 
+3. Faites défiler vers le bas, puis entrez l’url elasticsearch suivante : `http://elasticsearch.marathon.mesos:9200`. 
 
   ![Entrer l’URL d’Elasticsearch](./media/container-service-dcos-vamp-canary-release/05_universe_elasticsearch_url.png)
 
-4. Cliquez sur **Examinez et installez**, puis cliquez sur **installer** déploiement de hello toostart.  
+4. Cliquez sur **Vérifier et installer**, puis sur **Installer** pour lancer le déploiement.  
 
-  Le contrôleur de domaine/système d’exploitation déploie tous les composants Vamp requis. Vous pouvez suivre la progression sur hello **Services** page.
+  Le contrôleur de domaine/système d’exploitation déploie tous les composants Vamp requis. Vous pouvez suivre la progression dans la page **Services**.
   
   ![Déployer Vamp en tant que package d’univers](./media/container-service-dcos-vamp-canary-release/06_deploy_vamp.png)
   
-5. Une fois le déploiement terminé, vous pouvez accéder hello Vamp de l’interface utilisateur :
+5. Une fois le déploiement terminé, vous pouvez accéder à l’interface utilisateur de Vamp :
 
   ![Service Vamp sur contrôleur de domaine/système d’exploitation](./media/container-service-dcos-vamp-canary-release/07_deploy_vamp_complete.png)
   
@@ -129,22 +129,22 @@ Une fois que Elasticsearch signale comme **en cours d’exécution**, vous pouve
 
 À présent que Vamp est opérationnel, déployez un service à partir d’un schéma. 
 
-Dans sa forme la plus simple, un [une EMPEIGNE plan](http://vamp.io/documentation/using-vamp/blueprints/) décrit les points de terminaison hello (passerelles), des clusters et des services toodeploy. Vamp utilise clusters toogroup différentes variantes de hello même service en groupes logiques pour libérer canary ou A / B de test.  
+Dans sa forme la plus simple, un [schéma Vamp](http://vamp.io/documentation/using-vamp/blueprints/) décrit les points de terminaison (passerelles), clusters et services à déployer. Vamp utilise des clusters pour regrouper des variantes du même service en groupes logiques à des fins de contrôle de validité de mise en production ou de tests A/B.  
 
-Ce scénario utilise un exemple d’application monolithique appelé [ **sava**](https://github.com/magneticio/sava), qui en est à la version 1.0. monolithique de Hello est empaqueté dans un conteneur Docker, qui est dans le Hub d’ancrage sous magneticio/sava:1.0.0. application Hello s’exécute normalement sur le port 8080, mais vous souhaitez tooexpose sous port 9050 dans ce cas. Déploiement d’une application hello via une EMPEIGNE à l’aide d’un modèle simple.
+Ce scénario utilise un exemple d’application monolithique appelé [ **sava**](https://github.com/magneticio/sava), qui en est à la version 1.0. Le monolithe est empaqueté dans un conteneur Docker qui se trouve dans un hub Docker sous magneticio/sava:1.0.0. L’application s’exécute normalement sur le port 8080, mais vous souhaitez l’exposer sous le port 9050 dans ce cas. Déployez l’application via Vamp à l’aide d’un schéma simple.
 
-1. Accédez trop**déploiements**.
+1. Accédez à **Deployments**.
 
 2. Cliquez sur **Add**.
 
-3. Coller dans hello suivant Géomètre YAML. Ce schéma contient un seul cluster avec une seule variante de service, que nous allons changer ultérieurement :
+3. Collez dans le fichier YAML de schéma suivant. Ce schéma contient un seul cluster avec une seule variante de service, que nous allons changer ultérieurement :
 
   ```YAML
   name: sava                        # deployment name
   gateways:
     9050: sava_cluster/webport      # stable endpoint
   clusters:
-    sava_cluster:               # cluster toocreate
+    sava_cluster:               # cluster to create
      services:
         -
           breed:
@@ -154,36 +154,36 @@ Ce scénario utilise un exemple d’application monolithique appelé [ **sava**]
               webport: 8080/http # cluster endpoint, used for canary releasing
   ```
 
-4. Cliquez sur **Enregistrer**. Une EMPEIGNE lance le déploiement de hello.
+4. Cliquez sur **Save**. Vamp entame le déploiement.
 
-déploiement de Hello est répertorié sur hello **déploiements** page. Cliquez sur hello déploiement toomonitor son état.
+Le déploiement est décrit dans la page **Déploiements**. Pour contrôler son état, cliquez dessus.
 
 ![Interface utilisateur de Vamp - Déploiement de sava](./media/container-service-dcos-vamp-canary-release/09_sava100.png)
 
 ![service Sava dans l’interface utilisateur de Vamp](./media/container-service-dcos-vamp-canary-release/09a_sava100.png)
 
-Deux passerelles sont créés, qui sont répertoriées sur hello **passerelles** page :
+Deux passerelles sont créées, qui sont répertoriées dans la page **Passerelles** :
 
-* un Bonjour de tooaccess stable de point de terminaison (port 9050) de service en cours d’exécution 
+* un point de terminaison stable pour accéder au service en cours d’exécution (port 9050) ; 
 * une passerelle interne gérée par Vamp (que nous décrirons plus en détail ultérieurement). 
 
 ![Interface utilisateur de Vamp - Passerelles sava](./media/container-service-dcos-vamp-canary-release/10_vamp_sava_gateways.png)
 
-Hello sava service a maintenant déployé, mais vous ne peut pas y accéder en externe car hello équilibrage de charge Azure ne connaît pas encore tooforward trafic tooit. service hello tooaccess, hello de mise à jour de configuration de mise en réseau Azure.
+Le service sava est à présent déployé, mais vous ne pouvez pas y accéder de l’extérieur, car Azure Load Balancer ignore encore comment transférer le trafic vers celui-ci. Pour accéder au service, mettez à jour la configuration réseau Azure.
 
 
-## <a name="update-hello-azure-network-configuration"></a>Mettre à jour la configuration du réseau Azure hello
+## <a name="update-the-azure-network-configuration"></a>Mettre à jour la configuration réseau Azure
 
-Une EMPEIGNE déployé le service sava hello sur des nœuds de l’agent de contrôleur de domaine/système d’exploitation hello, exposer un point de terminaison stable au port 9050. service de hello tooaccess cluster du contrôleur de domaine/système d’exploitation hello extérieur, apporter hello suivant la configuration de réseau Azure toohello de modifications dans votre déploiement de cluster : 
+Vamp a déployé le service sava sur les nœud agents du contrôleur de domaine/système d’exploitation, en exposant un point de terminaison stable au port 9050. Pour accéder au service à partir de l’extérieur du cluster de contrôleur de domaine/système d’exploitation, apportez les modifications suivantes à la configuration réseau Azure dans le déploiement de votre cluster : 
 
-1. **Configurer hello équilibrage de charge Azure** pour les agents de hello (hello ressource nommée **dcos-agent-lb-xxxx**) avec une sonde d’intégrité et de trafic tooforward de règle sur les instances de port 9050 toohello sava. 
+1. **Configurez l’équilibrage de charge Azure** pour les agents (la ressource nommée **dcos-agent-lb-xxxx**) avec une sonde d’intégrité et une règle pour transférer le trafic sur le port 9050 vers les instances sava. 
 
-2. **Groupe de sécurité réseau de mise à jour hello** pour les agents publics hello (hello ressource nommée **XXXX-agent-public-groupe de sécurité réseau-XXXX**) le trafic de tooallow sur le port 9050.
+2. **Mettez à jour le groupe de sécurité réseau** pour les agents publics (la ressource nommée **XXXX-agent-public-nsg-XXXX**) pour autoriser le trafic sur le port 9050.
 
-Pour obtenir des instructions détaillées toocomplete ces tâches à l’aide de hello Azure portail, consultez [activer l’application de Service de conteneur Azure accès public tooan](container-service-enable-public-access.md). Spécifiez le port 9050 pour tous les paramètres de port.
+Pour obtenir des instructions détaillées sur l’exécution de ces tâches à l’aide du portail Azure, voir [Autoriser l’accès public à une application Azure Container Service](container-service-enable-public-access.md). Spécifiez le port 9050 pour tous les paramètres de port.
 
 
-Une fois que tout a été créé, accédez à toohello **vue d’ensemble** panneau d’équilibrage de charge de l’agent de contrôleur de domaine/système d’exploitation hello (hello ressource nommée **dcos-agent-lb-xxxx**). Recherche hello **adresse IP publique**et utilisez hello adresse tooaccess sava port 9050.
+Une fois que tout a été créé, accédez au panneau **Vue d’ensemble** de l’équilibrage de charge de l’agent du contrôleur de domaine/système d’exploitation (la ressource nommée **dcos-agent-lb-xxxx**). Recherchez l’**adresse IP publique** et utilisez-la pour accéder à sava sur le port 9050.
 
 ![Portail Azure - Obtenir un adresse IP publique](./media/container-service-dcos-vamp-canary-release/18_public_ip_address.png)
 
@@ -192,106 +192,106 @@ Une fois que tout a été créé, accédez à toohello **vue d’ensemble** pann
 
 ## <a name="run-a-canary-release"></a>Exécuter un contrôle de validité de mise en production
 
-Vous disposez d’une nouvelle version de cette application que vous souhaitez version toocanary en production. Vous avez placées dans des conteneurs en tant que magneticio/sava:1.1.0 et toogo prêt. Une EMPEIGNE vous permet d’ajouter facilement de nouveaux services toohello déploiement en cours d’exécution. Ces services « fusionnées » sont déployés en même temps que les services existants de hello dans un cluster de hello et une pondération de 0 %. Aucun trafic n’est routé tooa qui vient d’être fusionnée service jusqu'à ce que vous ajustez la distribution du trafic hello. curseur de poids Hello Bonjour Vamp de l’interface utilisateur procure un contrôle total sur distribution hello, en tenant compte d’ajustements incrémentielle (version canary) ou une restauration instantanée.
+Supposons que vous disposez d’une nouvelle version de cette application donc vous voulez contrôler la validité de la mise en production. Vous l’avez mise en conteneur en tant que magneticio/sava:1.1.0 et êtes prêt à l’employer. Vamp vous permet d’ajouter facilement des services au déploiement en cours d’exécution. Ces services « fusionnés » sont déployés en même temps que les services existants dans le cluster, et une pondération de 0 % leur est affectée. Aucun trafic n’est routé vers un service nouvellement fusionné tant que vous n’avez pas ajusté la distribution du trafic. Le curseur de poids dans l’interface utilisateur de Vamp vous permet de contrôler totalement la distribution, en effectuant des ajustements incrémentiels (contrôle de validité de mise en production) ou une restauration instantanée.
 
 ### <a name="merge-a-new-service-variant"></a>Fusionner une nouvelle variante de service
 
-toomerge hello nouveau sava 1.1 service avec hello déploiement en cours d’exécution :
+Pour fusionner le nouveau service sava 1.1 avec le déploiement en cours d’exécution :
 
-1. Bonjour Vamp de l’interface utilisateur, cliquez sur **projets**.
+1. Dans l’interface utilisateur de Vamp, cliquez sur **Schémas**.
 
-2. Cliquez sur **ajouter** et coller dans hello suivant Géomètre YAML : ce modèle décrit un nouveau toodeploy de variante (sava : 1.1.0) de service dans un cluster existant de hello (sava_cluster).
+2. Cliquez sur **Ajouter**, puis collez dans le fichier YAML de schéma suivant : ce schéma décrit une nouvelle variante de service (sava:1.1.0) à déployer dans le cluster existant (sava_cluster).
 
   ```YAML
   name: sava:1.1.0      # blueprint name
   clusters:
-    sava_cluster:       # cluster tooupdate
+    sava_cluster:       # cluster to update
       services:
         -
           breed:
             name: sava:1.1.0    # service variant name
             deployable: magneticio/sava:1.1.0    
             ports:
-              webport: 8080/http # cluster endpoint tooupdate
+              webport: 8080/http # cluster endpoint to update
   ```
   
-3. Cliquez sur **Enregistrer**. plan de Hello est stocké et répertorié sur hello **projets** page.
+3. Cliquez sur **Save**. Le schéma est stocké et répertorié dans la page **Schémas**.
 
-4. Menu action de hello ouvert sur le plan de sava : 1.1 hello et cliquez sur **de fusion pour**.
+4. Ouvrez le menu action sur le schéma sava:1.1 et cliquez sur **Fusionner vers**.
 
   ![Interface utilisateur de Vamp - Schémas](./media/container-service-dcos-vamp-canary-release/20_sava110_mergeto.png)
 
-5. Sélectionnez hello **sava** déploiement et cliquez sur **fusion**.
+5. Sélectionnez le déploiement **sava**, puis cliquez sur **Fusionner**.
 
-  ![Vamp UI - plan toodeployment de fusion](./media/container-service-dcos-vamp-canary-release/21_sava110_merge.png)
+  ![Interface utilisateur de Vamp - Fusionner le schéma dans le déploiement](./media/container-service-dcos-vamp-canary-release/21_sava110_merge.png)
 
-Une EMPEIGNE déploie hello nouvelle sava : 1.1.0 variante de service décrite dans le plan de hello en même temps que sava : 1.0.0 Bonjour **sava_cluster** Hello déploiement en cours d’exécution. 
+Vamp déploie la nouvelle variante de service sava:1.1.0 décrite dans le schéma en même temps que sava:1.0.0 dans le **sava_cluster** du déploiement en cours d’exécution. 
 
 ![Interface utilisateur de Vamp - Déploiement de sava mis à jour](./media/container-service-dcos-vamp-canary-release/22_sava_cluster.png)
 
-Hello **sava/sava_cluster/webport** passerelle (point de terminaison de cluster hello) est également mise à jour de, l’ajout d’un itinéraire toohello qui vient d’être déployé sava : 1.1.0. À ce stade, aucun trafic n’est routé ici (hello **poids** a la valeur too0 %).
+La passerelle **sava/sava_cluster/webport** (point de terminaison du cluster) est également mise à jour par l’ajout d’un itinéraire au sava:1.1.0 nouvellement déployé. À ce stade, aucun trafic n’est routé ici (le **POIDS** est défini sur 0 %).
 
 ![Interface utilisateur de Vamp - Passerelle de cluster](./media/container-service-dcos-vamp-canary-release/23_sava_cluster_webport.png)
 
 ### <a name="canary-release"></a>Contrôle la validité de la mise en production
 
-Les deux versions de sava déployé Bonjour même cluster, ajuster la distribution de hello du trafic entre eux en déplaçant hello **poids** curseur.
+Les deux versions de sava étant déployées dans le même cluster, ajustez la distribution du trafic entre elles en déplaçant le curseur **POIDS**.
 
-1. Cliquez sur ![Vamp UI - modifier](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) suivant trop**poids**.
+1. Cliquez sur ![Interface utilisateur de Vamp - Modifier](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) en regard de **POIDS**.
 
-2. Définissez hello poids distribution too50%/50% et cliquez sur **enregistrer**.
+2. Définissez la répartition du poids sur 50 %/50 %, puis cliquez sur **Enregistrer**.
 
   ![Interface utilisateur de Vamp - Curseur de poids de passerelle](./media/container-service-dcos-vamp-canary-release/24_sava_cluster_webport_weight.png)
 
-3. Revenir en arrière tooyour navigateur et actualiser la page de sava hello plusieurs fois. application de sava Hello maintenant bascule entre une page sava : 1.0 et une page sava : 1.1.
+3. Revenez à votre navigateur et actualisez la page de sava quelques fois supplémentaires. L’application sava bascule entre une page sava:1.0 et une page sava:1.1.
 
   ![alternance des services sava1.0 et sava1.1](./media/container-service-dcos-vamp-canary-release/25_sava_100_101.png)
 
 
   > [!NOTE]
-  > Cette alternative de page de hello fonctionne mieux avec hello « Furtif » ou « Anonymous » en mode de votre navigateur en raison de hello mise en cache des éléments statiques.
+  > Cette alternance de la page fonctionne de façon optimale avec les modes « Incognito » ou « Anonyme » de votre navigateur en raison de la mise en cache des ressources statiques.
   >
 
 ### <a name="filter-traffic"></a>Filtrer le trafic
 
-Supposons qu’après déploiement vous ayez découvert une incompatibilité dans sava:1.1.0 qui entraîne des problèmes d’affichage dans les navigateurs Firefox. Vous pouvez définir une EMPEIGNE toofilter du trafic entrant et diriger que tous les utilisateurs de Firefox sauvegarder toohello connu sava : 1.0.0 stable. Ce filtre instantanément résout hello interruption pour les utilisateurs de Firefox, tandis que celles des autres locataires continue tooenjoy les avantages de hello Hello améliorées sava : 1.1.0.
+Supposons qu’après déploiement vous ayez découvert une incompatibilité dans sava:1.1.0 qui entraîne des problèmes d’affichage dans les navigateurs Firefox. Vous pouvez configurer Vamp pour filtrer le trafic entrant et rediriger tous les utilisateurs de Firefox vers le sava:1.0.0 stable connu. Ce filtre résout instantanément l’interruption pour les utilisateurs de Firefox, tandis toutes les autres personnes continuent de profiter des avantages du sava:1.1.0 amélioré.
 
-Vamp utilise **conditions** trafic toofilter entre les itinéraires dans une passerelle. Le trafic est tout d’abord filtré et dirigées conséquente toohello conditions appliquées tooeach itinéraire. Tout le trafic restant est distribué en fonction du paramètre d’épaisseur toohello passerelle.
+Vamp utilise des **conditions** pour filtrer le trafic entre itinéraires au sein d’une passerelle. Le trafic est filtré, puis dirigé selon les conditions appliquées à chaque itinéraire. Tout le trafic restant est distribué en fonction du paramètre de poids de passerelle.
 
-Vous pouvez créer une condition toofilter tous les utilisateurs de Firefox et diriger les toohello ancien sava : 1.0.0 :
+Vous pouvez créer une condition pour filtrer tous les utilisateurs de Firefox et les diriger vers l’ancien sava:1.0.0 :
 
-1. Sur hello sava/sava_cluster/webport **passerelles** , cliquez sur ![Vamp UI - modifier](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) tooadd un **CONDITION** toohello itinéraire sava/sava_cluster/sava:1.0.0/webport. 
+1. Dans la page sava/sava_cluster/webport **Passerelles**, cliquez sur ![Interface utilisateur de Vamp - Modifier](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) pour ajouter une **CONDITION** à l’itinéraire sava/sava_cluster/sava:1.0.0/webport. 
 
-2. Entrez la condition de hello **agent utilisateur == Firefox** et cliquez sur ![Vamp UI - enregistrer](./media/container-service-dcos-vamp-canary-release/vamp_ui_save.png).
+2. Entrez la condition **agent utilisateur == Firefox**, puis cliquez sur ![Interface utilisateur de Vamp - Enregistrer](./media/container-service-dcos-vamp-canary-release/vamp_ui_save.png).
 
-  Une EMPEIGNE ajoute la condition hello avec un niveau par défaut de 0 %. toostart filtrant le trafic, vous avez besoin de puissance de condition tooadjust hello.
+  Vamp ajoute la condition avec une force par défaut de 0 %. Pour commencer à filtrer le trafic, vous devez ajuster la force de la condition.
 
-3. Cliquez sur ![Vamp UI - modifier](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) toochange hello **force** appliqué toohello condition.
+3. Cliquez sur ![Interface utilisateur de Vamp - Modifier](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) pour modifier la **FORCE** appliquée à la condition.
  
-4. Ensemble hello **force** too100 % et cliquez sur ![Vamp UI - enregistrer](./media/container-service-dcos-vamp-canary-release/vamp_ui_save.png) toosave.
+4. Définissez la **FORCE** sur 100 % et cliquez sur ![Interface utilisateur de Vamp - Enregistrer](./media/container-service-dcos-vamp-canary-release/vamp_ui_save.png) pour enregistrer.
 
-  Désormais, une EMPEIGNE envoie tout le trafic correspondant hello condition (tous les utilisateurs de Firefox) toosava:1.0.0.
+  Vamp envoie désormais tout le trafic correspondant à la condition (tous les utilisateurs de Firefox) vers sava:1.0.0.
 
-  ![Vamp UI - appliquer la condition toogateway](./media/container-service-dcos-vamp-canary-release/26_apply_condition.png)
+  ![Interface utilisateur de Vamp - Appliquer une condition à la passerelle](./media/container-service-dcos-vamp-canary-release/26_apply_condition.png)
 
-5. Enfin, ajuster hello passerelle poids toosend tous les autres le trafic (tous les utilisateurs non-Firefox) toohello nouveau sava : 1.1.0. Cliquez sur ![Vamp UI - modifier](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) suivant trop**poids** et définissez la distribution du poids hello 100 % est dirigée toohello itinéraire sava/sava_cluster/sava:1.1.0/webport.
+5. Enfin, définissez le poids de passerelle pour l’envoi de tout le trafic restant (tous les utilisateurs autres que Firefox) pour le nouveau sava:1.1.0. Cliquez sur ![Interface utilisateur de Vamp - Modifier](./media/container-service-dcos-vamp-canary-release/vamp_ui_edit.png) en regard de **POIDS** et définir la distribution de poids de façon à ce que 100 % soient dirigés vers l’itinéraire sava/sava_cluster/sava:1.1.0/webport.
 
-  Tout le trafic non filtré par la condition de hello est maintenant dirigée toohello nouveau sava : 1.1.0.
+  Tout le trafic non filtré par la condition est maintenant dirigé vers le nouveau sava:1.1.0.
 
-6. filtre de hello de toosee en action, ouvrez deux différents navigateurs (un Firefox et un autre navigateur) et accéder au service de sava hello à partir des deux. Toutes les demandes de Firefox sont envoyés toosava:1.0.0, alors que tous les autres navigateurs sont toosava:1.1.0 dirigée.
+6. Pour afficher le filtre d’action, ouvrez deux navigateurs différents (un Firefox et un autre ), puis accédez au service sava à partir des deux. Toutes les demandes de Firefox sont envoyées à sava:1.0.0, tandis que tous les autres navigateurs sont dirigés vers sava:1.1.0.
 
   ![Interface utilisateur de Vamp - Filtrer le trafic](./media/container-service-dcos-vamp-canary-release/27_filter_traffic.png)
 
 ## <a name="summing-up"></a>Résumé
 
-Cet article a été un tooVamp brève introduction sur un cluster de contrôleur de domaine/système d’exploitation. Pour commencer, que vous avez obtenu une EMPEIGNE et en cours d’exécution sur votre conteneur de Service de contrôleur de domaine/système d’exploitation Azure cluster, déployé un service avec un plan d’une EMPEIGNE et consulté au point de terminaison hello exposé (passerelle).
+Cet article est une présentation rapide de Vamp sur un cluster de contrôleur de domaine/système d’exploitation. Les débutants ont obtenu Vamp opérationnel sur leur cluster de contrôleur de domaine/système d’exploitation Azure Container Service, déployé un service avec un schéma Vamp, et accédé à celui-ci via le point de terminaison exposé (passerelle).
 
-Nous avons abordé également certaines fonctionnalités puissantes d’une EMPEIGNE : la fusion d’un nouveau toohello variant service déploiement en cours d’exécution et présentation de façon incrémentielle, puis le filtrage du trafic tooresolve une incompatibilité connue.
+Nous avons également évoqué certaines puissantes fonctionnalités de Vamp telles que la fusion d’une nouvelle variante de service dans le déploiement en cours d’exécution et son introduction incrémentielle, puis le filtrage du trafic pour résoudre une incompatibilité connue.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* En savoir plus sur la gestion des actions d’une EMPEIGNE via hello [Vamp des API REST](http://vamp.io/documentation/api/api-reference/).
+* Découvrez la gestion des actions de Vamp via l’[API REST Vamp](http://vamp.io/documentation/api/api-reference/).
 
 * Générez des scripts d’automatisation de Vamp dans Node.js et exécutez-les en tant que [flux de travail Vamp](http://vamp.io/documentation/tutorials/create-a-workflow/).
 

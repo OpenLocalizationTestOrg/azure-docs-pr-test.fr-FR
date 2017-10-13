@@ -1,6 +1,6 @@
 ---
-title: "Synchronisation Azure AD Connect : modification de compte de service de synchronisation de se connecter hello Azure AD | Documents Microsoft"
-description: "Document de cette rubrique décrit la clé de chiffrement hello et comment tooabandon après le mot de passe hello est modifié."
+title: 'Azure AD Connect Sync : Modification du compte de service Azure AD Connect Sync | Microsoft Docs'
+description: "Cette rubrique décrit la clé de chiffrement et comment l’annuler une fois le mot de passe modifié."
 services: active-directory
 keywords: Compte de service de synchronisation Azure AD, mot de passe
 documentationcenter: 
@@ -15,96 +15,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 11948ac4662f722e4f684ef6c9b9ccdc6387e60f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bf6234d0810f870909957ee1c1e33c225a4922b9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="changing-hello-azure-ad-connect-sync-service-account-password"></a>Modification mot de passe du compte de service synchronisation hello Azure AD Connect
-Si vous modifiez le mot de passe du compte service de synchronisation des Azure AD Connect de hello, hello Service de synchronisation sera pas en mesure de démarrer correctement jusqu'à ce que vous avez abandonné la clé de chiffrement hello et réinitialisation du mot de passe de compte hello Azure AD Connect sync service. 
+# <a name="changing-the-azure-ad-connect-sync-service-account-password"></a>Modification du mot de passe du compte de service de synchronisation Azure AD
+Si vous modifiez le mot de passe du service Azure AD Connect Sync, le service de synchronisation ne sera pas en mesure de démarrer correctement jusqu'à ce que vous abandonniez la clé de chiffrement et réinitialisiez le mot de passe du service Azure AD Connect Sync. 
 
-Azure AD Connect, dans le cadre de Services de synchronisation de hello utilise un chiffrement toostore clé hello des mots de passe de hello AD DS et les comptes de service Azure AD.  Ces comptes sont chiffrées avant d’être stockées dans la base de données hello. 
+Azure AD Connect, dans le cadre des services de synchronisation, utilise une clé de chiffrement pour stocker les mots de passe des comptes de service AD DS et Azure AD.  Ces comptes sont chiffrés avant d’être stockés dans la base de données. 
 
-Hello clé de chiffrement utilisée est sécurisée à l’aide de [Protection des données (DPAPI) Windows](https://msdn.microsoft.com/library/ms995355.aspx). DPAPI protège la clé de chiffrement de hello hello **mot de passe du compte de service de synchronisation hello Azure AD Connect**. 
+La clé de chiffrement utilisée est sécurisée à l’aide de [l’API de protection des données Windows (DPAPI)](https://msdn.microsoft.com/library/ms995355.aspx). DPAPI protège la clé de chiffrement à l’aide du **mot de passe du compte de service Azure AD Connect Sync**. 
 
-Si vous avez besoin de mot de passe du compte toochange hello service, vous pouvez utiliser les procédures hello dans [clé de chiffrement Abandoning hello Azure AD Sync de se connecter](#abandoning-the-azure-ad-connect-sync-encryption-key) tooaccomplish cela.  Ces procédures doivent également être utilisées si vous avez besoin d’une clé de chiffrement tooabandon hello pour une raison quelconque.
+Si vous devez modifier le mot de passe du compte de service, vous pouvez utiliser les procédures présentées dans [Abandon de la clé de chiffrement d’Azure AD Connect Sync](#abandoning-the-azure-ad-connect-sync-encryption-key) pour y parvenir.  Ces procédures doivent également être utilisées si vous souhaitez abandonner la clé de chiffrement pour une raison quelconque.
 
-##<a name="issues-that-arise-from-changing-hello-password"></a>Problèmes résultant de la modification de mot de passe hello
-Il existe deux choses toobe effectuée lorsque vous modifiez le mot de passe du compte de service hello.
+##<a name="issues-that-arise-from-changing-the-password"></a>Problèmes survenant lors de la modification du mot de passe
+Vous devez faire deux choses lorsque vous modifiez le mot de passe du compte de service.
 
-Tout d’abord, vous devez le mot de passe toochange hello sous hello Gestionnaire de contrôle des services Windows.  Vous verrez les erreurs suivantes jusqu’à résolution du problème :
+Tout d’abord, vous devez modifier le mot de passe sous le Gestionnaire de contrôle des services Windows.  Vous verrez les erreurs suivantes jusqu’à résolution du problème :
 
 
-- Si vous essayez toostart hello Service de synchronisation dans le Gestionnaire de contrôle de Service Windows, l’erreur hello »**Windows n’a pas pu démarrer de service de Microsoft Azure AD Sync hello sur l’ordinateur Local**». **L’erreur 1069 : hello n’a pas démarré en raison de l’échec d’ouverture de session tooa.** "
-- Dans l’Observateur d’événements Windows, journal des événements système hello contient une erreur avec **7038 d’ID d’événement** et le message «**hello service ADSync a été toolog impossible sur comme avec le mot de passe hello actuellement configuré en raison de toohello suivant erreur : nom d’utilisateur Hello ou un mot de passe est incorrect.** "
+- Si vous essayez de démarrer le service de synchronisation dans le Gestionnaire de contrôle des services Windows, vous recevez l’erreur « **Windows n’a pas pu démarrer le service Microsoft Azure AD Sync sur l’ordinateur local** ». **Erreur 1069 : Le service n’a pas démarré en raison d’un échec d’ouverture de session.**  »
+- Dans l’observateur d’événements Windows, le journal des événements système contient une erreur avec **l’ID d’événement 7038** et le message « **Le service ADSync n’a pas pu se connecter avec le mot de passe actuellement configuré en raison de l’erreur suivante : le nom d’utilisateur ou mot de passe est incorrect.** »
 
-Ensuite, sous certaines conditions, la mise à jour de mot de passe hello, hello Service de synchronisation ne pouvez plus extraire clé de chiffrement hello via DPAPI. Sans la clé de chiffrement de hello hello de que service de synchronisation ne peut pas déchiffrer hello des mots de passe toosynchronize requis à partir locaux AD et Azure AD.
+Ensuite, sous certaines conditions, si le mot de passe est mis à jour, le service de synchronisation ne peut plus extraire la clé de chiffrement avec DPAPI. Sans la clé de chiffrement, le service de synchronisation ne peut pas déchiffrer les mots de passe requis pour la synchronisation locale vers/depuis AD et Azure AD.
 Vous voyez des erreurs telles que :
 
-- Sous le Gestionnaire de contrôle de Service de Windows, si vous essayez de toostart hello Service de synchronisation et il ne peut pas récupérer la clé de chiffrement hello, elle échoue avec l’erreur « ** Windows n’a pas pu démarrer hello Microsoft Azure AD Sync sur ordinateur Local. Pour plus d’informations, consultez le journal des événements système hello. S’il s’agit d’un service non-Microsoft, contactez le fournisseur de service hello et consultez le code d’erreur spécifique tooservice **-21451857952 ***. »
-- Dans l’Observateur d’événements Windows, journal des événements application hello contient une erreur avec **6028 d’ID d’événement** et le message d’erreur *»**clé de chiffrement du serveur hello n’est pas accessible.* *»*
+- Sous le Gestionnaire de contrôle des services Windows, si vous essayez de démarrer le service de synchronisation et qu’il ne peut pas récupérer la clé de chiffrement, il échoue avec l’erreur « **Windows n’a pas pu démarrer Microsoft Azure AD Sync sur l’ordinateur local. Pour plus d’informations, consultez le journal des événements système. S’il s’agit d’un service hors Microsoft, contactez le fournisseur de services et faites référence au code d’erreur propre au service **-21451857952****.”
+- Dans l’observateur d’événements Windows, le journal des événements contient une erreur avec **l’ID d’événement 6028** et le message d’erreur *”**La clé de chiffrement du serveur n’est pas accessible.* *”*
 
-tooensure que vous ne recevez pas ces erreurs, suivez les procédures de hello dans [clé de chiffrement Abandoning hello Azure AD Sync de se connecter](#abandoning-the-azure-ad-connect-sync-encryption-key) lors de la modification de mot de passe hello.
+Pour vous assurer que vous ne recevez pas ces erreurs, suivez les procédures de [Abandon de la clé de chiffrement Azure AD Connect Sync](#abandoning-the-azure-ad-connect-sync-encryption-key) lorsque vous modifiez le mot de passe.
  
-## <a name="abandoning-hello-azure-ad-connect-sync-encryption-key"></a>Abandon de la clé de chiffrement d’Azure AD Sync connecter hello
+## <a name="abandoning-the-azure-ad-connect-sync-encryption-key"></a>Abandon de la clé de chiffrement Azure AD Connect Sync
 >[!IMPORTANT]
->Hello procédures suivantes s’appliquent uniquement tooAzure AD Connect version 1.1.443.0 ou antérieure.
+>Les procédures suivantes s’appliquent uniquement à Azure AD Connect version 1.1.443.0 ou antérieure.
 
-Utilisez hello clé de chiffrement de procédures tooabandon hello suivante.
+Utilisez les procédures suivantes pour abandonner la clé de chiffrement.
 
-### <a name="what-toodo-if-you-need-tooabandon-hello-encryption-key"></a>Quelles toodo si vous avez besoin de clé de chiffrement hello tooabandon
+### <a name="what-to-do-if-you-need-to-abandon-the-encryption-key"></a>Que faire si vous souhaitez abandonner la clé de chiffrement
 
-Si vous avez besoin de clé de chiffrement tooabandon hello, utilisez-le hello suivant tooaccomplish de procédures.
+Si vous souhaitez abandonner la clé de chiffrement, procédez comme suit.
 
-1. [Abandonner la clé de chiffrement existante hello](#abandon-the-existing-encryption-key)
+1. [Abandonner la clé de chiffrement existante](#abandon-the-existing-encryption-key)
 
-2. [Fournir un mot de passe hello Hello compte AD DS](#provide-the-password-of-the-ad-ds-account)
+2. [Fournir le mot de passe du compte AD DS](#provide-the-password-of-the-ad-ds-account)
 
-3. [Réinitialiser le mot de passe hello Hello compte de synchronisation Azure AD](#reinitialize-the-password-of-the-azure-ad-sync-account)
+3. [Réinitialiser le mot de passe du compte Azure AD Sync](#reinitialize-the-password-of-the-azure-ad-sync-account)
 
-4. [Hello de démarrer le Service de synchronisation](#start-the-synchronization-service)
+4. [Lancer le service de synchronisation](#start-the-synchronization-service)
 
-#### <a name="abandon-hello-existing-encryption-key"></a>Abandonner la clé de chiffrement existante hello
-Abandonner la clé de chiffrement existante hello pour cette nouvelle clé de chiffrement peut être créée :
+#### <a name="abandon-the-existing-encryption-key"></a>Abandon de la clé de chiffrement existante
+Abandonnez la clé de chiffrement existante pour que la nouvelle clé de chiffrement puisse être créée :
 
-1. Ouvrez une session dans tooyour Azure AD Connect Server en tant qu’administrateur.
+1. Connectez-vous à votre serveur Azure AD Connect en tant qu’administrateur.
 
 2. Démarrez une nouvelle session PowerShell.
 
-3. Accédez à toofolder :`$env:Program Files\Microsoft Azure AD Sync\bin\`
+3. Accédez au dossier `$env:Program Files\Microsoft Azure AD Sync\bin\`
 
-4. Exécutez la commande hello :`./miiskmu.exe /a`
+4. Exécutez la commande `./miiskmu.exe /a`
 
 ![Utilitaire de clé de chiffrement d’Azure AD Connect Sync](media/active-directory-aadconnectsync-encryption-key/key5.png)
 
-#### <a name="provide-hello-password-of-hello-ad-ds-account"></a>Fournir un mot de passe hello Hello compte AD DS
-Comme les mots de passe existants hello stockés à l’intérieur de la base de données hello n’est plus peuvent être déchiffrées, vous devez tooprovide hello Service de synchronisation avec un mot de passe hello du compte de hello AD DS. chiffre les Hello Service de synchronisation des mots de passe hello à l’aide de la nouvelle clé de chiffrement hello :
+#### <a name="provide-the-password-of-the-ad-ds-account"></a>Fournissez le mot de passe du compte AD DS
+Comme les mots de passe existants stockés dans la base de données ne peuvent plus être déchiffrés, vous devez fournir le mot de passe du compte AD DS au service de synchronisation. Le service de synchronisation chiffre les mots de passe à l’aide de la nouvelle clé de chiffrement :
 
-1. Démarrez hello Synchronization Service Manager (Service de synchronisation de début →).
+1. Démarrez Synchronization Service Manager (DÉMARRER → Service de synchronisation).
 </br>![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/startmenu.png)  
-2. Accédez toohello **connecteurs** onglet.
-3. Sélectionnez hello **Connecteur AD** qui correspond à tooyour AD local. Si vous avez plus d’un connecteur Active Directory, répétez hello comme suit pour chacun d’eux.
+2. Allez dans l’onglet **Connecteurs** .
+3. Sélectionnez le **connecteur AD** qui correspond à votre Active Directory local. Si vous avez plusieurs connecteurs AD, répétez les étapes suivantes pour chacun d’entre eux.
 4. Sous **Actions**, sélectionnez **Propriétés**.
-5. Dans la boîte de dialogue contextuelle hello, sélectionnez **connecter tooActive Directory forêt**:
-6. Mot de passe hello du compte de hello AD DS dans hello **mot de passe** zone de texte. Si vous ne connaissez pas son mot de passe, vous devez le définir tooa connue avant d’effectuer cette étape.
-7. Cliquez sur **OK** toosave hello nouveau mot de passe et de la boîte de dialogue contextuelle hello fermer.
+5. Dans la boîte de dialogue contextuelle, sélectionnez **Se connecter à la forêt Active Directory** :
+6. Dans la zone de texte **Mot de passe**, tapez le mot de passe du compte AD DS. Si vous ne connaissez pas son mot de passe, vous devez le définir sur une valeur connue avant d’effectuer cette étape.
+7. Cliquez sur **OK** pour enregistrer le nouveau mot de passe et fermer la boîte de dialogue contextuelle.
 ![Utilitaire de clé de chiffrement d’Azure AD Connect Sync](media/active-directory-aadconnectsync-encryption-key/key6.png)
 
-#### <a name="reinitialize-hello-password-of-hello-azure-ad-sync-account"></a>Réinitialiser le mot de passe hello Hello compte de synchronisation Azure AD
-Vous ne pouvez pas fournir directement de mot de passe de hello de service d’Azure AD hello toohello compte Service de synchronisation. Au lieu de cela, vous devez l’applet de commande hello toouse **Add-ADSyncAADServiceAccount** tooreinitialize hello compte de service Azure AD. applet de commande Hello réinitialise le mot de passe de compte hello et le rend disponible toohello Service de synchronisation :
+#### <a name="reinitialize-the-password-of-the-azure-ad-sync-account"></a>Réinitialisation du mot de passe du compte Azure AD Sync
+Vous ne pouvez pas directement fournir le mot de passe du compte de service Azure AD au service de synchronisation. Au lieu de cela, vous devez utiliser l’applet de commande **Add-ADSyncAADServiceAccount** pour réinitialiser le compte de service Azure AD. L’applet de commande réinitialise le mot de passe du compte et le rend disponible pour le service de synchronisation :
 
-1. Démarrez une nouvelle session PowerShell sur le serveur d’Azure AD Connect hello.
+1. Lancez une nouvelle session PowerShell sur le serveur Azure AD Connect.
 2. Exécutez l’applet de commande `Add-ADSyncAADServiceAccount`.
-3. Dans la boîte de dialogue contextuelle hello, fournissent des informations d’identification d’administrateur Global de hello Azure AD pour votre locataire Azure AD.
+3. Dans la boîte de dialogue contextuelle, fournissez les informations d’identification d’administrateur général d’Azure AD pour votre client Azure AD.
 ![Utilitaire de clé de chiffrement d’Azure AD Connect Sync](media/active-directory-aadconnectsync-encryption-key/key7.png)
-4. Si elle réussit, vous verrez l’invite de commandes PowerShell hello.
+4. Si cela réussit, vous verrez l’invite de commandes PowerShell.
 
-#### <a name="start-hello-synchronization-service"></a>Hello de démarrer le Service de synchronisation
-Maintenant que hello Service de synchronisation a la clé de chiffrement toohello accès et tous les hello des mots de passe, il doit, vous pouvez redémarrer le service de hello de hello Gestionnaire de contrôle des services Windows :
+#### <a name="start-the-synchronization-service"></a>Lancer le service de synchronisation
+Maintenant que le service de synchronisation a accès à la clé de chiffrement et à tous les mots de passe dont il a besoin, vous pouvez redémarrer le service dans le Gestionnaire de contrôle des services Windows :
 
 
-1. Accédez tooWindows Gestionnaire de contrôle de Service (Services → démarrage).
+1. Accédez au Gestionnaire de contrôle des services Windows (DÉMARRER → Services).
 2. Sélectionnez **Microsoft Azure AD Sync** et cliquez sur Redémarrer.
 
 ## <a name="next-steps"></a>Étapes suivantes

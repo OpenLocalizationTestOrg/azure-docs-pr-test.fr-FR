@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure modèle de données d’Application Insights télémétrie - télémétrie des dépendances | Documents Microsoft"
+title: "Modèle de données de télémétrie d’Azure Application Insights : télémétrie des dépendances | Microsoft Docs"
 description: "Modèle de données Application Insights pour la télémétrie des dépendances"
 services: application-insights
 documentationcenter: .net
@@ -12,23 +12,23 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/17/2017
 ms.author: bwren
-ms.openlocfilehash: cd5ab7c61d3498e4aa2a0aa0c8b0d106a92912e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2e97c3f951f46c32802aea543b93d5ab1bb76228
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="dependency-telemetry-application-insights-data-model"></a>Télémétrie des dépendances : modèle de données Application Insights
 
-Télémétrie des dépendances (dans [Application Insights](app-insights-overview.md)) représente une interaction de composant hello analysé avec un composant distant tel que SQL ou un point de terminaison HTTP.
+La télémétrie des dépendances (dans [Application Insights](app-insights-overview.md)) représente une interaction du composant surveillé avec un composant distant tel que SQL ou un point de terminaison HTTP.
 
 ## <a name="name"></a>Nom
 
-Nom de la commande hello démarrée avec cet appel de dépendance. Valeur de faible cardinalité. Exemples : nom de procédure stockée et modèle de chemin d’accès d’URL.
+Nom de la commande lancée par cet appel de dépendance. Valeur de faible cardinalité. Exemples : nom de procédure stockée et modèle de chemin d’accès d’URL.
 
 ## <a name="id"></a>ID
 
-Identificateur d’une instance d’appel de dépendance. Utilisé pour la corrélation par élément de données de télémétrie hello demande correspondant toothis dépendance appel. Pour plus d’informations, consultez la page relative à la [corrélation](application-insights-correlation.md).
+Identificateur d’une instance d’appel de dépendance. Utilisé pour la corrélation avec l’élément de télémétrie de demande correspondant à cet appel de dépendance. Pour plus d’informations, consultez la page relative à la [corrélation](application-insights-correlation.md).
 
 ## <a name="data"></a>Données
 

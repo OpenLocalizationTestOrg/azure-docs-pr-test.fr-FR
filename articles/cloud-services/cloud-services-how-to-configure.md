@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooconfigure un service cloud (portail classique) | Documents Microsoft
-description: "Découvrez comment tooconfigure cloud services dans Azure. En savoir plus de la configuration du service cloud tooupdate hello et configurer les instances de toorole d’accès à distance."
+title: "Configuration d’un service cloud (portail Classic) | Microsoft Docs"
+description: "Découvrez comment configurer des services cloud dans Azure. Apprenez à mettre à jour la configuration d'un service cloud et à configurer l'accès distant aux instances de rôle."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,64 +14,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 1ea2320f97f667153f7984e4d61d373a6344cf6d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 39bb294c96ce0c12d91cf8b3488ac3e1a7b2f7b2
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-tooconfigure-cloud-services"></a>Comment les Services de cloud computing tooConfigure
+# <a name="how-to-configure-cloud-services"></a>Configuration des services cloud
 > [!div class="op_single_selector"]
 > * [Portail Azure](cloud-services-how-to-configure-portal.md)
-> * [portail Azure Classic](cloud-services-how-to-configure.md)
+> * [Portail Azure Classic](cloud-services-how-to-configure.md)
 > 
 > 
 
-Vous pouvez configurer les paramètres de hello couramment utilisé pour un service cloud dans hello portail Azure classic. Ou, si vous aimez tooupdate vos fichiers de configuration directement, téléchargez un tooupdate de fichier de configuration de service, puis téléchargez hello mise à jour de service de cloud de hello de fichier et de mise à jour avec les modifications de configuration hello. Dans les deux cas, les mises à jour configuration hello sont émis tooall les instances de rôle.
+Vous pouvez configurer les paramètres les plus couramment utilisés pour un service cloud dans le portail Azure Classic. Ou, si vous voulez mettre à jour directement vos fichiers de configuration, téléchargez un fichier de configuration de service pour le mettre à jour, puis chargez-le et mettez à jour le service cloud avec les modifications de la configuration. Dans les deux cas, les mises à jour de la configuration sont transmises à toutes les instances de rôle.
 
-Hello portail classique Azure vous permet également de trop[activer la connexion Bureau à distance pour un rôle dans Azure Cloud Services](cloud-services-role-enable-remote-desktop.md)
+Le portail Azure Classic vous permet également d' [activer la connexion Bureau à distance pour un rôle dans Azure Cloud Services](cloud-services-role-enable-remote-desktop.md)
 
-Azure assurer disponibilité de service 99,95 % au cours de hello mises à jour de la configuration si vous disposez d’au moins deux instances de rôle pour chaque rôle. Qui permet de demandes de client d’ordinateur virtuel tooprocess pendant hello autres est en cours de mise à jour. Pour plus d'informations, consultez la page [Contrats de niveau de service](https://azure.microsoft.com/support/legal/sla/).
+Azure ne peut garantir que 99,95 % de disponibilité du service pendant les mises à jour de la configuration si vous avez au moins deux instances de rôle pour chaque rôle. Cela permet à une machine virtuelle de traiter les demandes du client pendant que l'autre est mise à jour. Pour plus d'informations, consultez la page [Contrats de niveau de service](https://azure.microsoft.com/support/legal/sla/).
 
 ## <a name="change-a-cloud-service"></a>Modification d'un service cloud
-1. Bonjour [portail Azure classic](http://manage.windowsazure.com/), cliquez sur **Services de cloud computing**, cliquez sur nom hello du service de cloud hello, puis cliquez sur **configurer**.
+1. Dans le [portail Azure Classic](http://manage.windowsazure.com/), cliquez sur **Services cloud**, cliquez sur le nom du service cloud, puis sur **Configurer**.
    
     ![Page de configuration](./media/cloud-services-how-to-configure/CloudServices_ConfigurePage1.png)
    
-    Sur hello **configurer** page, vous pouvez configurer la surveillance, mise à jour des paramètres de rôle et choisir hello de systèmes d’exploitation et de la famille pour les instances de rôle. 
-2. Dans **analyse**, hello ensemble tooVerbose au niveau de surveillance ou minimale et configurer les chaînes de connexion de diagnostic hello qui sont requises pour la surveillance détaillée.
-3. Pour les rôles de service (regroupés par rôle), vous pouvez mettre à jour hello suivant les paramètres :
+    Sur la page **Configurer** , vous pouvez configurer la surveillance, mettre à jour les paramètres de rôle et choisir le système d'exploitation invité et la famille pour les instances de rôle. 
+2. Dans les paramètres de **surveillance**, définissez le niveau de surveillance sur Détaillé ou Minimal et configurez les chaînes de connexion des diagnostics requises pour la surveillance détaillée.
+3. Pour les rôles de service (regroupés par rôle), vous pouvez mettre à jour les paramètres suivants :
    
-    * **Paramètres** modifier les valeurs hello divers paramètres de configuration sont spécifiés dans hello *ConfigurationSettings* éléments hello service (.cscfg) du fichier de configuration.
+    * **Paramètres** Modifiez les valeurs de divers paramètres de configuration spécifiés dans les éléments *ConfigurationSettings* du fichier de configuration de service (.cscfg).
 
     * **Certificats**  
-        Modifier l’empreinte numérique du certificat hello est utilisé dans le chiffrement SSL pour un rôle. toochange un certificat, vous devez tout d’abord télécharger le nouveau certificat de hello (sur hello **certificats** page). Puis mettez à jour l’empreinte numérique hello dans la chaîne de certificat hello affiché dans les paramètres de rôle hello.
-4. Dans **système d’exploitation**, vous pouvez modifier la version pour les instances de rôle ou la famille de système d’exploitation hello ou choisir **automatique** tooenable les mises à jour automatiques de la version de système d’exploitation actuel hello. paramètres de système d’exploitation Hello appliquent tooweb rôles et des rôles de travail, mais n’affectent pas les ordinateurs virtuels.
+        Changez l'empreinte numérique de certificat qui est utilisée dans le chiffrement SSL pour un rôle. Pour changer un certificat, vous devez d'abord télécharger le nouveau certificat (sur la page **Certificats** ). Mettez ensuite à jour l'empreinte numérique dans la chaîne de certificat affichée dans les paramètres de rôle.
+4. Dans les paramètres du **système d’exploitation**, vous pouvez changer la famille ou la version du système d’exploitation pour les instances de rôle (machines virtuelles) ou choisir **Automatique** pour reprendre les mises à jour automatiques de la version actuelle du système d’exploitation. Les paramètres du système d'exploitation s'appliquent aux rôles web et de travail, mais n'affectent pas les machines virtuelles.
    
-    Au cours du déploiement, version de système d’exploitation plus récent hello est installée sur toutes les instances de rôle et les systèmes d’exploitation hello sont mis à jour automatiquement par défaut. 
+    Pendant le déploiement, la version la plus récente du système d'exploitation est installée sur toutes les instances de rôle et les systèmes d'exploitation sont mis à jour automatiquement par défaut. 
    
-    Si vous avez besoin pour votre toorun de service cloud sur une version différente du système d’exploitation en raison des exigences de compatibilité dans votre code, vous pouvez choisir une famille de système d’exploitation et la version. Lorsque vous choisissez une version spécifique du système d’exploitation, les mises à jour automatique du système d’exploitation pour le service cloud hello sont suspendus. Vous devez tooensure les systèmes d’exploitation hello reçoivent les mises à jour.
+    Si vous avez besoin que votre service cloud s'exécute sur un système d'exploitation différent à cause de problèmes de compatibilité dans votre code, vous pouvez choisir une famille et une version de systèmes d'exploitation. Lorsque vous choisissez une version particulière du système d'exploitation, les mises à jour automatiques des systèmes d'exploitation sont suspendues pour le service cloud. Vous devez alors veiller à ce que les systèmes d'exploitation reçoivent les mises à jour.
    
-    Si vous résolvez tous les problèmes de compatibilité dont vos applications avec la version de système d’exploitation plus récent hello, vous pouvez activer les mises à jour automatique du système d’exploitation en définissant une version de système d’exploitation hello trop**automatique**. 
+    Si vous résolvez tous les problèmes de compatibilité rencontrés par vos applications avec la version la plus récente du système d'exploitation, vous pouvez reprendre les mises à jour automatiques des systèmes d'exploitation en définissant la version du système d'exploitation sur **Automatique**. 
    
     ![Paramètres du système d'exploitation](./media/cloud-services-how-to-configure/CloudServices_ConfigurePage_OSSettings.png)
-5. toosave vos paramètres de configuration et les placer des instances de rôle toohello, cliquez sur **enregistrer**. (Cliquez sur **ignorer** modifications de hello toocancel.) **Enregistrer** et **ignorer** sont ajoutés barre de commandes toohello après avoir modifié un paramètre.
+5. Pour enregistrer vos paramètres de configuration et les transmettre aux instances de rôle, cliquez sur **Enregistrer**. (Cliquez sur **Ignorer** pour annuler les modifications.) Les commandes **Enregistrer** et **Ignorer** sont ajoutées à la barre de commandes lorsque vous avez modifié un paramètre.
 
 ## <a name="update-a-cloud-service-configuration-file"></a>Mise à jour d'un fichier de configuration de service cloud
-1. Télécharger un fichier de configuration de service cloud (.cscfg) avec la configuration actuelle de hello. Sur hello **configurer** pour le service cloud hello, cliquez sur **télécharger**. Puis cliquez sur **enregistrer**, ou cliquez sur **Enregistrer sous** fichier hello de toosave.
-2. Une fois que vous mettez à jour le fichier de configuration de service hello, télécharger et appliquer les mises à jour de la configuration hello :
+1. Téléchargez un fichier de configuration de service cloud (.cscfg) avec la configuration actuelle. Sur la page **Configurer** du service cloud, cliquez sur **Télécharger**. Cliquez ensuite sur **Enregistrer** ou **Enregistrer sous** pour enregistrer le fichier.
+2. Après la mise à jour du fichier de configuration de service, téléchargez et appliquez les mises à jour de la configuration :
    
-   1. Sur hello **configurer** , cliquez sur **télécharger**.
+   1. Sur la page **Configurer**, cliquez sur **Télécharger**.
       
        ![Télécharger une configuration](./media/cloud-services-how-to-configure/CloudServices_UploadConfigFile.png)
-   2. Dans **fichier de Configuration**, utilisez **Parcourir** tooselect hello mis à jour le fichier .cscfg.
-   3. Si votre service cloud contient tous les rôles qui ont une seule instance, sélectionnez hello **appliquer configuration même si un ou plusieurs rôles contiennent une seule instance** mises à jour de configuration de case à cocher tooenable hello pour hello rôles tooproceed.
+   2. Dans **Fichier de configuration**, cliquez sur **Parcourir** pour sélectionner le fichier .cscfg mis à jour.
+   3. Si votre service cloud contient des rôles qui ont une seule instance, cochez la case **Appliquer la configuration même si un ou plusieurs rôles contiennent une seule instance** afin de permettre l’exécution des mises à jour de la configuration pour les rôles.
       
        Si vous n'avez pas défini au moins deux instances de chaque rôle, Azure n'est pas en mesure de garantir au moins 99,95 % de disponibilité pour votre service cloud pendant les mises à jour de la configuration du service. Pour plus d'informations, consultez la page [Contrats de niveau de service](https://azure.microsoft.com/support/legal/sla/).
    4. Cliquez sur **OK** (coche). 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment trop[déployer un service cloud](cloud-services-how-to-create-deploy.md).
+* Découvrez comment [déployer un service cloud](cloud-services-how-to-create-deploy.md).
 * Configurez un [nom de domaine personnalisé](cloud-services-custom-domain-name.md).
 * [Gérez votre service cloud](cloud-services-how-to-manage.md).
 * [Activer une connexion Bureau à distance pour un rôle dans Azure Cloud Services](cloud-services-role-enable-remote-desktop.md)

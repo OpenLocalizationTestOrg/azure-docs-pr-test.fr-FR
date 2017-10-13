@@ -1,6 +1,6 @@
 ---
-title: aaaBack des machines virtuelles Azure | Documents Microsoft
-description: "Permet de découvrir, d’enregistrer et de sauvegarder des machines virtuelles tooa coffre recovery services."
+title: Sauvegarde de machines virtuelles Azure | Microsoft Docs
+description: "Détectez, inscrivez et sauvegardez des machines virtuelles Azure dans un coffre Recovery Services."
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -16,92 +16,92 @@ ms.topic: article
 ms.date: 8/15/2017
 ms.author: trinadhk;jimpark;markgal;
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a204a42726450a7fd89b5563a786b5070578b113
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 40983a3de104238d09b976b5fcf2419da42c1bba
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="back-up-azure-virtual-machines-tooa-recovery-services-vault"></a>Sauvegarder les machines virtuelles de coffre de Services de récupération tooa
+# <a name="back-up-azure-virtual-machines-to-a-recovery-services-vault"></a>Sauvegarder des machines virtuelles Azure dans un coffre Recovery Services
 > [!div class="op_single_selector"]
-> * [Sauvegarder le coffre de Services tooRecovery de machines virtuelles](backup-azure-arm-vms.md)
-> * [Sauvegarder des machines virtuelles tooBackup coffre](backup-azure-vms.md)
+> * [Back up VMs to Recovery Services vault](backup-azure-arm-vms.md)
+> * [Back up VMs to Backup vault](backup-azure-vms.md)
 >
 >
 
-Cet article décrit en détail comment tooback des machines virtuelles de Azure (déployées par le Gestionnaire de ressources et déployés classique) tooa Services de récupération de coffre. La plupart du travail hello pour la sauvegarde d’ordinateurs virtuels est préparation de hello. Avant de pouvoir sauvegarder ou protéger un ordinateur virtuel, vous devez effectuer hello [conditions préalables](backup-azure-arm-vms-prepare.md) tooprepare votre environnement de protection de vos machines virtuelles. Une fois que vous avez terminé la configuration requise de hello, vous pouvez lancer hello opération de sauvegarde tootake des instantanés de votre machine virtuelle.
+Cet article décrit la procédure de sauvegarde des machines virtuelles Azure (déployées à l’aide du modèle Resource Manager ou du modèle Classic) dans un coffre Recovery Services. La plupart du travail requis pour la sauvegarde des machines virtuelles repose sur la préparation. Avant de sauvegarder ou de protéger une machine virtuelle, vous devez remplir les [conditions préalables](backup-azure-arm-vms-prepare.md) pour préparer votre environnement à la protection de vos machines virtuelles. Une fois que vous avez rempli les conditions préalables, vous pouvez lancer l’opération de sauvegarde pour prendre des instantanés de votre machine virtuelle.
 
 
 [!INCLUDE [learn about backup deployment models](../../includes/backup-deployment-models.md)]
 
-Pour plus d’informations, consultez les articles hello sur [planification de votre infrastructure de sauvegarde de machine virtuelle dans Azure](backup-azure-vms-introduction.md) et [machines virtuelles](https://azure.microsoft.com/documentation/services/virtual-machines/).
+Pour plus d’informations, consultez les articles sur la [planification de votre infrastructure de sauvegarde des machines virtuelles dans Azure](backup-azure-vms-introduction.md) et les [machines virtuelles Azure](https://azure.microsoft.com/documentation/services/virtual-machines/).
 
-## <a name="triggering-hello-backup-job"></a>Déclenchement hello tâche de sauvegarde
-stratégie de sauvegarde Hello associé hello que coffre des Services de récupération définit la fréquence et à quel moment la sauvegarde hello s’exécute. Par défaut, hello première planifiée est hello initiale sauvegarde. Jusqu'à ce que la sauvegarde initiale de hello se produit, hello état de la dernière sauvegarde sur hello **les travaux de sauvegarde** panneau affiche sous la forme **avertissement (sauvegarde initiale en attente)**.
+## <a name="triggering-the-backup-job"></a>Déclenchement du travail de sauvegarde
+La stratégie de sauvegarde associée au coffre Recovery Services définit la fréquence et à quel moment l’opération de sauvegarde s’exécute. Par défaut, la première sauvegarde planifiée est la sauvegarde initiale. Jusqu’à celle-ci, l’état de la dernière sauvegarde dans le panneau **Travaux de sauvegarde** est défini sur **Avertissement (sauvegarde initiale en attente)**.
 
 ![Sauvegarde en attente](./media/backup-azure-vms-first-look-arm/initial-backup-not-run.png)
 
-Sauf si votre sauvegarde initiale est due toobegin bientôt, il est recommandé d’exécuter **sauvegarder maintenant**. Hello procédure suivante commence à partir du tableau de bord coffre hello. Cette procédure remplit pour l’exécution du travail de sauvegarde initiale hello après avoir terminé toutes les conditions préalables. Si la tâche de sauvegarde initiale hello a déjà été exécutée, cette procédure n’est pas disponible. Hello stratégie de sauvegarde associée détermine prochaine tâche de sauvegarde hello.  
+À moins que votre sauvegarde initiale ne soit prévue prochainement, il est recommandé de sélectionner l’option **Sauvegarder maintenant**. La procédure suivante commence à partir du tableau de bord du coffre. Cette procédure est utilisée pour l’exécution du travail de sauvegarde initial une fois les conditions préalables remplies. Si le travail de sauvegarde initial a déjà été exécuté, cette procédure n’est pas disponible. La stratégie de sauvegarde associée détermine le prochain travail de sauvegarde.  
 
-toorun hello initiale travail de sauvegarde :
+Pour exécuter le travail de sauvegarde initial :
 
-1. Tableau de bord du coffre hello, cliquez sur nombre hello sous **des éléments de sauvegarde**, ou cliquez sur hello **des éléments de sauvegarde** vignette. <br/>
+1. Dans le tableau de bord du coffre, cliquez sur le numéro sous **Éléments de sauvegarde** ou cliquez sur la vignette **Éléments de sauvegarde**. <br/>
   ![Icône Paramètres](./media/backup-azure-vms-first-look-arm/rs-vault-config-vm-back-up-now-1.png)
 
-  Hello **des éléments de sauvegarde** panneau s’ouvre.
+  Le panneau **Éléments de sauvegarde** s’ouvre.
 
   ![Éléments de sauvegarde](./media/backup-azure-vms-first-look-arm/back-up-items-list.png)
 
-2. Sur hello **des éléments de sauvegarde** les lames, les éléments select hello.
+2. Dans le panneau **Éléments de sauvegarde**, sélectionnez l’élément.
 
   ![Icône Paramètres](./media/backup-azure-vms-first-look-arm/back-up-items-list-selected.png)
 
-  Hello **des éléments de sauvegarde** liste s’ouvre. <br/>
+  La liste **Éléments de sauvegarde** s’affiche. <br/>
 
   ![Travail de sauvegarde déclenché](./media/backup-azure-vms-first-look-arm/backup-items-not-run.png)
 
-3. Sur hello **des éléments de sauvegarde** , cliquez sur le bouton de sélection hello **...**  menu de contexte tooopen hello.
+3. Dans la liste **Éléments de sauvegarde**, cliquez sur le bouton de sélection **...** pour ouvrir le menu contextuel.
 
   ![Menu contextuel](./media/backup-azure-vms-first-look-arm/context-menu.png)
 
-  menu contextuel de Hello s’affiche.
+  Le menu contextuel s’affiche.
 
   ![Menu contextuel](./media/backup-azure-vms-first-look-arm/context-menu-small.png)
 
-4. Dans le menu contextuel de hello, cliquez sur **sauvegarder maintenant**.
+4. Dans le menu contextuel, cliquez sur **Sauvegarder maintenant**.
 
   ![Menu contextuel](./media/backup-azure-vms-first-look-arm/context-menu-small-backup-now.png)
 
-  panneau Hello sauvegarder maintenant s’ouvre.
+  Le panneau Sauvegarder maintenant s’affiche.
 
-  ![Affiche le panneau hello sauvegarder maintenant](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
+  ![Affichage du panneau Sauvegarder maintenant](./media/backup-azure-vms-first-look-arm/backup-now-blade-short.png)
 
-5. Dans Panneau de sauvegarder maintenant du hello, cliquez l’icône de calendrier hello, utilisez Bonjour calendrier contrôle tooselect Bonjour dernier jour de ce point de récupération est conservé, puis cliquez sur **sauvegarde**.
+5. Dans le panneau Sauvegarder maintenant, cliquez sur l’icône de calendrier. Utilisez le contrôle de calendrier pour sélectionner le dernier jour de conservation de ce point de récupération, puis cliquez sur **Sauvegarder**.
 
-  ![définir hello dernier jour hello sauvegarder maintenant point de récupération est conservé.](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
+  ![Définition du dernier jour de conservation du point de récupération dans le panneau Sauvegarder maintenant](./media/backup-azure-vms-first-look-arm/backup-now-blade-calendar.png)
 
-  Notifications de déploiement vous permettent de connaître la tâche de sauvegarde hello a été déclenchée, et que vous pouvez surveiller la progression hello de hello de page de travaux de sauvegarde hello. Selon la taille de hello de votre machine virtuelle, la création de sauvegarde initiale de hello peut prendre un certain temps.
+  Les notifications de déploiement vous informent que la sauvegarde a été déclenchée et que vous pouvez surveiller la progression du travail sur la page Travaux de sauvegarde. Selon la taille de votre machine virtuelle, la création de la sauvegarde initiale peut prendre un certain temps.
 
-6. état de hello tooview ou le suivi de la sauvegarde initiale hello, tableau de bord du coffre hello, sur hello **les travaux de sauvegarde** cliquez sur la vignette **en cours d’exécution**.
+6. Pour afficher ou suivre l’état de la sauvegarde initiale, dans le tableau de bord du coffre, au niveau de la vignette **Travaux de sauvegarde**, cliquez sur **En cours**.
 
   ![Vignette Travaux de sauvegarde](./media/backup-azure-vms-first-look-arm/open-backup-jobs-1.png)
 
-  Panneau de travaux de sauvegarde Hello s’ouvre.
+  Le panneau Travaux de sauvegarde s’ouvre.
 
   ![Vignette Travaux de sauvegarde](./media/backup-azure-vms-first-look-arm/backup-jobs-in-jobs-view-1.png)
 
-  Bonjour **travaux de sauvegarde** panneau, vous pouvez voir État hello de tous les travaux. Vérifiez si le travail de sauvegarde hello pour votre machine virtuelle est toujours en cours ou s’il s’est terminé. Une opération de sauvegarde est terminée, le statut de hello est *terminé*.
+  Le panneau **Travaux de sauvegarde** indique l’état de tous les travaux. Vérifiez si le travail de sauvegarde de votre machine virtuelle est en cours d’exécution ou s’il est terminé. Lorsqu’un travail de sauvegarde est achevé, il présente l’état *Terminé*.
 
   > [!NOTE]
-  > Dans le cadre de l’opération de sauvegarde hello, hello Azure Backup service émet une extension de sauvegarde commande toohello dans chaque tooflush de machine virtuelle, toutes les écritures et prendre un instantané cohérent.
+  > Dans le cadre de l’opération de sauvegarde, le service Azure Backup émet une commande vers l’extension de sauvegarde de chaque machine virtuelle pour vider toutes les écritures et prendre un instantané cohérent.
   >
   >
 
 ## <a name="troubleshooting-errors"></a>Résolution des erreurs
-Si vous rencontrez des problèmes pendant la sauvegarde de votre machine virtuelle, consultez hello [article de résolution des problèmes de machine virtuelle](backup-azure-vms-troubleshoot.md) de l’aide.
+Si vous rencontrez des problèmes pendant la sauvegarde de votre machine virtuelle, consultez [l’article sur le dépannage des machines virtuelles](backup-azure-vms-troubleshoot.md) pour obtenir de l’aide.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez protégé votre machine virtuelle, consultez hello suivant toolearn des articles sur les tâches de gestion de machine virtuelle et comment toorestore machines virtuelles.
+Vous avez protégé votre machine virtuelle. Vous pouvez maintenant consulter les articles suivants pour en savoir plus sur les tâches de gestion de machine virtuelle et la restauration des machines virtuelles.
 
 * [Gestion et surveillance de vos machines virtuelles](backup-azure-manage-vms.md)
 * [Restauration des machines virtuelles](backup-azure-arm-restore-vms.md)

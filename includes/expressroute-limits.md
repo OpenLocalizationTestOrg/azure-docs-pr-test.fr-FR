@@ -1,5 +1,5 @@
 #### <a name="expressroute-limits"></a>Limites d’ExpressRoute
-Hello suivant limites s’appliquent tooExpressRoute de ressources par abonnement.
+Les limites suivantes s’appliquent aux ressources ExpressRoute par abonnement.
 
 | Ressource | Limite par défaut |
 | --- | --- |

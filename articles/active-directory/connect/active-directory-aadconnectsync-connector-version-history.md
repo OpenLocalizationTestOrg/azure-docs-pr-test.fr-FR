@@ -1,6 +1,6 @@
 ---
-title: "historique des versions d’aaaConnector | Documents Microsoft"
-description: "Cette rubrique répertorie toutes les versions de connecteurs de hello pour Forefront Identity Manager (FIM) et Microsoft Identity Manager (MIM)"
+title: "Historique de publication des versions du connecteur | Microsoft Docs"
+description: "Cette rubrique répertorie toutes les versions des connecteurs de Forefront Identity Manager (FIM) et Microsoft Identity Manager (MIM)."
 services: active-directory
 documentationcenter: 
 author: fimguy
@@ -12,21 +12,21 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 08/24/2017
+ms.date: 09/06/2017
 ms.author: fimguy
-ms.openlocfilehash: 3522f17c30e46542eaa367ecdefdfd2fc47f71a4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 98eb9b3a58737da2436eed591d69a900166c6af9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="connector-version-release-history"></a>Historique de publication des versions du connecteur
-Connecteurs Hello pour Forefront Identity Manager (FIM) et Microsoft Identity Manager (MIM) sont fréquemment mis à jour.
+Les connecteurs de Forefront Identity Manager (FIM) et Microsoft Identity Manager (MIM) sont fréquemment mis à jour.
 
 > [!NOTE]
-> Cette rubrique ne concerne que FIM et MIM. Ces connecteurs ne sont pas pris en charge pour l’installation sur Azure AD Connect. Connecteurs finales sont préinstallés sur AADConnect toospecified Build de la mise à niveau.
+> Cette rubrique ne concerne que FIM et MIM. Ces connecteurs ne sont pas pris en charge pour l’installation sur Azure AD Connect. Les connecteurs finaux sont préinstallés sur AADConnect lors de la mise à niveau vers la version spécifiée.
 
-Cette rubrique répertorie toutes les versions de hello connecteurs qui ont été publiées.
+Cette rubrique répertorie toutes les versions des connecteurs qui ont été publiées.
 
 Liens connexes :
 
@@ -38,7 +38,7 @@ Liens connexes :
 * [connecteur Lotus Domino](active-directory-aadconnectsync-connector-domino.md)
 
 
-## <a name="116040-aadconnect-pending-release"></a>1.1.604.0 (AADConnect en attente de publication)
+## <a name="116040-aadconnect-116140"></a>1.1.604.0 (AADConnect 1.1.614.0)
 
 
 ### <a name="fixed-issues"></a>Problèmes résolus :
@@ -46,20 +46,20 @@ Liens connexes :
 * Services web génériques :
   * Correction d’un problème empêchant la création d’un projet SOAP lorsqu’il existait deux points de terminaison ou plus.
 * SQL générique :
-  * Dans l’opération d’importation de hello hello GSQL a été pas conversion de l’heure correctement, quand enregistré tooconnector espace. format de date et d’heure par défaut pour l’espace de connecteur de hello GSQL Hello a été remplacé par 'AAAA-MM-JJ : ssZ' too'yyyy-MM-JJ : ssZ '.
+  * Dans l’opération d’importation, GSQL ne convertissait pas l’heure correctement lors de l’enregistrement dans l’espace du connecteur. Le format de date et d’heure par défaut de l’espace de connecteur de GSQL « aaaa-MM-jj hh:mm:ssZ » a été remplacé par « aaaa-MM-jj HH:mm:ssZ ».
 
 ## <a name="115510-aadconnect-115530"></a>1.1.551.0 (AADConnect 1.1.553.0)
 
 ### <a name="fixed-issues"></a>Problèmes résolus :
 
 * Services web génériques :
-  * outil de Wsconfig Hello ne n’a pas converti correctement tableau Json de hello à partir de « exemple de demande » pour la méthode de service REST hello. Cela a provoqué des problèmes avec la sérialisation ce tableau Json pour la demande REST hello.
+  * L’outil Wsconfig n’a pas converti correctement le tableau Json à partir de « exemple de demande » pour la méthode de service REST. Ceci entraînait des problèmes lors de la sérialisation de ce tableau Json pour la demande REST.
   * L’outil de configuration du connecteur de service web ne prend pas en charge l’utilisation de symboles d’espace dans les noms d’attribut JSON 
-    * Un modèle de Substitution peut être ajouté manuellement toohello WSConfigTool.exe.config fichier, par exemple```<appSettings> <add key=”JSONSpaceNamePattern” value="__" /> </appSettings>```
+    * Un modèle de substitution peut être ajouté manuellement dans le fichier WSConfigTool.exe.config, par exemple ```<appSettings> <add key=”JSONSpaceNamePattern” value="__" /> </appSettings>```
 
 * Lotus Notes :
-  * Lorsque hello option **autoriser certificateurs personnalisés pour les unités d’organisation/organisation** est désactivée puis échoue de connecteur hello lors de l’exportation (mise à jour) après l’exportation de hello transmet tous les attributs est exportée tooDomino mais au moment de hello de exportation KeyNotFoundException est retournée tooSync. 
-    * Cela se produit car hello renommer échoue lorsqu’il tente toochange DN (attribut de nom d’utilisateur) en modifiant un des attributs hello ci-dessous :  
+  * Quand l’option **Allow custom certifiers for Organization/Organizational Units** (Autoriser les certificateurs personnalisés pour les organisations/unités d’organisation) est désactivée, le connecteur échoue pendant l’exportation (mise à jour). Après le flux d’exportation, tous les attributs sont exportés vers Domino, mais au moment de l’exportation KeyNotFoundException est retournée à la synchronisation. 
+    * Cela se produit car l’opération de renommage échoue quand elle tente de changer le nom unique (attribut UserName) en modifiant l’un des attributs ci-dessous :  
       - LastName
       - FirstName
       - MiddleInitial
@@ -89,7 +89,7 @@ Liens connexes :
   * OverflowException dans le connecteur GSQL avec DB2 sur AS/400
 
 Lotus :
-  * Tooenable\disable d’ajout de l’option recherche des unités d’organisation avant d’ouvrir la page de GlobalParameters
+  * Ajout de l’option pour activer/désactiver la recherche d’unités d’organisation avant d’ouvrir la page GlobalParameters
 
 ## <a name="114430"></a>1.1.443.0
 
@@ -98,18 +98,18 @@ Publié : mars 2017
 ### <a name="enhancements"></a>Améliorations
 
 * SQL générique :</br>
-  **Scénario symptômes :** il s’agit d’une limitation connue de hello connecteur SQL où nous uniquement un type référence d’objet tooone et obligent référence croisée avec des membres. </br>
-  **Description de la solution :** à l’étape de traitement hello pour les références ont été « * » option est sélectionnée, toutes les combinaisons de types d’objet seront affichera comme moteur de synchronisation toohello précédent.
+  **Symptômes du scénario :** Avec cette limitation connue du connecteur SQL, seule une référence à un type d’objet est autorisée et une référence croisée avec des membres est requise. </br>
+  **Description de la solution :** À l’étape de traitement des références pour lesquelles l’option « * » est sélectionnée, toutes les combinaisons de types d’objets sont renvoyées au moteur de synchronisation.
 
 >[!Important]
 - Cela crée de nombreux espaces réservés.
-- Il est requis toomake que hello d’affectation de noms est unique entre les types d’objets.
+- L’utilisation d’une dénomination unique pour l’ensemble des types d’objets est requise.
 
 
 * LDAP générique :</br>
- **Scénario :** lorsque que certains conteneurs sont sélectionnées dans une partition spécifique, puis recherche de hello toujours s’effectue dans une partition entière. La partition spécifique est filtrée par le service de synchronisation et non par MA, ce qui peut entraîner une dégradation des performances. </br>
+ **Scénario :** Lorsque seuls certains conteneurs sont sélectionnés dans une partition spécifique, la recherche est tout de même effectuée dans la partition entière. La partition spécifique est filtrée par le service de synchronisation et non par MA, ce qui peut entraîner une dégradation des performances. </br>
 
- **Description de la solution :** toomake de code du connecteur GLDAP de modifié il est possible de passer par tous les conteneurs et rechercher des objets dans chacune d’elles, au lieu de rechercher dans la partition de toute hello.
+ **Description de la solution :** Le code du connecteur GLDAP a été modifié pour pouvoir accéder à tous les conteneurs et rechercher des objets dans chacun d’eux, au lieu de rechercher dans la partition entière.
 
 
 * Lotus Domino :
@@ -119,15 +119,15 @@ Publié : mars 2017
 
 ### <a name="fixed-issues"></a>Problèmes résolus :
 * Services web génériques :
- * Lors de la modification par défaut des URL du service hello SAP wsconfig projets via l’outil de Configuration de service Web puis hello l’erreur suivante se produit : Impossible de trouver une partie du chemin d’accès de hello
+ * Lors de la modification de l’URL du service dans les projets wsconfig SAP par défaut via l’outil de configuration de service web, l’erreur suivante se produit : Impossible de trouver une partie du chemin d’accès
 
       ``'C:\Users\cstpopovaz\AppData\Local\Temp\2\e2c9d9b0-0d8a-4409-b059-dceeb900a2b3\b9bedcc0-88ac-454c-8c69-7d6ea1c41d17\cfg.config\cloneconfig.xml'. ``
 
 * LDAP générique :
  * Le connecteur GLDAP ne voit pas tous les attributs dans AD LDS
- * Assistant sauts lorsqu’aucun attribut UPN n’est détectées dans le schéma d’annuaire LDAP hello
+ * L’assistant se bloque lorsqu’aucun attribut UPN n’est détecté dans le schéma d’annuaire LDAP
  * Les échecs d’importation delta avec erreurs de détection n’apparaissent pas pendant l’importation complète, lorsque l’attribut « objectclass » n’est pas sélectionné.
- * Une page de configuration « Configurer des Partitions et des hiérarchies », n’affiche pas tous les objets que le type est partition toohello égal pour les nouveaux serveurs Bonjour générique  
+ * Une page de configuration « Configurer des partitions et des hiérarchies », n’affiche aucun objet de type égal à la partition des nouveaux serveurs dans le LDAP MA  
 générique. Seuls les objets de la partition RootDSE sont affichés.
 
 
@@ -137,13 +137,13 @@ générique. Seuls les objets de la partition RootDSE sont affichés.
 
 
 * Lotus Notes :
- * Un champ « Nom complet » est indiqué dans le métaverse de hello correctement toutefois lors de l’exportation tooNotes hello valeur pour les attributs hello est Null ou vide.
+ * Un champ spécifique « Nom complet » est affiché correctement dans le métaverse, mais lors de l’exportation vers Notes, la valeur de l’attribut est Null ou vide.
  * Correction d’erreur de certification en double
- * Lors de hello objet sans aucune donnée est sélectionnée sur hello connecteur pour Lotus Domino avec d’autres objets puis nous erreur hello découverte lors de l’importation complète.
- * Lors de l’importation de Delta est en cours d’exécution sur hello connecteur Lotus Domino à fin hello de cette exécution, hello Microsoft.IdentityManagement.MA.LotusDomino.Service.exe service parfois renvoie une erreur d’Application.
- * L’appartenance au groupe global fonctionne correctement et est conservée, sauf lors de l’exécution hello exportation tootry tooremove un utilisateur d’appartenance, il montre aussi efficace avec une mise à jour, utilisateur de hello réellement ne sont supprimé de l’appartenance à Lotus Notes.
- * Un mode de toochoose opportunité d’exportation en tant que « Ajouter l’élément bas » a été ajouté dans la configuration de l’interface graphique utilisateur de Lotus MA tooappend de nouveaux éléments en bas lors de l’exportation de hello pour les attributs à valeurs multiples.
- * Connecteur ajoutera hello nécessaire fichier hello logique toodelete hello dossier courrier et ID de coffre.
+ * Lorsque l’objet ne comportant aucune donnée est sélectionné sur le connecteur Lotus Domino avec d’autres objets, nous recevons une erreur de détection lors de l’importation complète.
+ * Lorsque l’importation delta est exécutée sur le connecteur Lotus Domino, à la fin de l’exécution, le service Microsoft.IdentityManagement.MA.LotusDomino.Service.exe renvoie parfois une erreur d’application.
+ * L’appartenance au groupe global fonctionne correctement et est conservée, sauf lors de l’exécution de l’exportation visant à supprimer un utilisateur de l’appartenance qui apparaît comme ayant réussi avec une mise à jour, alors que l’utilisateur n’a pas réellement été supprimé de l’appartenance dans Lotus Notes.
+ * Une option permettant de choisir le mode d’exportation « Append Item at bottom » (Ajouter un élément en bas) a été ajoutée dans l’interface utilisateur de configuration de Lotus MA pour ajouter de nouveaux éléments en bas pendant l’exportation des attributs à valeurs multiples.
+ * Le connecteur ajoute la logique requise pour supprimer le fichier du dossier des courriers et du coffre d’ID.
  * La suppression d’appartenance ne fonctionne pas pour un membre NAB croisé.
  * Les valeurs devraient être supprimées correctement de l’attribut à valeurs multiples.
 
@@ -151,33 +151,33 @@ générique. Seuls les objets de la partition RootDSE sont affichés.
 Publié : mars 2016
 
 **Nouveau connecteur**  
-Version de hello initiale [générique connecteur SQL](active-directory-aadconnectsync-connector-genericsql.md).
+Version initiale du [connecteur SQL générique](active-directory-aadconnectsync-connector-genericsql.md).
 
 **Nouvelles fonctionnalités :**
 
 * Connecteur LDAP générique :
   * Prise en charge supplémentaire pour l’importation delta avec Isode.
 * Connecteur des services web :
-  * Hello mis à jour csEntryChangeResult activité et setImportErrorCode activité tooallow objet erreurs de niveau toobe toohello arrière retourné moteur de synchronisation.
-  * Hello mis à jour SAP6 et SAP6User modèles toouse hello nouvel objet erreur au niveau des fonctionnalités.
+  * Mise à jour de l’activité csEntryChangeResult et de l’activité setImportErrorCode pour autoriser le renvoi des erreurs au niveau de l’objet vers le moteur de synchronisation.
+  * Mise à jour des modèles SAP6 et SAP6User pour utiliser les nouvelles fonctionnalités d’erreur au niveau de l’objet.
 * Connecteur Lotus Domino :
-  * Lors de l’exportation, vous avez besoin d’une autorité de certification par carnet d’adresses. Vous pouvez maintenant utiliser hello même mot de passe pour toute certificateurs toomake hello la gestion plus facile.
+  * Lors de l’exportation, vous avez besoin d’une autorité de certification par carnet d’adresses. Vous pouvez désormais utiliser le même mot de passe pour toutes les autorités de certification pour simplifier la gestion.
 
 **Problèmes résolus :**
 
 * Connecteur LDAP générique :
   * Pour IBM Tivoli DS, certains attributs de référence n’étaient pas été détectés correctement.
-  * Pour LDAP ouvert pendant une importation delta, les espaces blancs au début de hello et la fin de chaînes a été tronqués.
-  * Pour Novell et NetIQ, une exportation qui déplacer un objet entre les unités d’organisation/conteneurs et à hello même moment l’objet renommé hello a échoué.
+  * Pour Open LDAP lors d’une importation delta, les espaces blancs au début et à la fin des chaînes étaient tronqués.
+  * Pour Novell et NetIQ, une exportation qui déplaçait un objet entre des unités d’organisation/conteneurs avec renommage simultané de celui-ci, échouait.
 * Connecteur des services web :
-  * Si le service web de hello a plusieurs points de terminaison pour la même liaison, puis hello connecteur n’a pas correctement détecté ces points de terminaison.
+  * Si le service web avait plusieurs points de terminaison pour la même liaison, alors le connecteur ne détectait pas correctement ces points de terminaison.
 * Connecteur Lotus Domino :
-  * Une exportation de hello fullName attribut tooa messagerie de base de données n’a pas fonctionné.
-  * Une exportation quel membre ajouté et supprimé à partir d’un groupe uniquement exportée hello membres ont été ajoutés.
-  * Si un Document de notes de publication n’est pas valide (hello attribut isValid défini toofalse), puis hello échoue de connecteur.
+  * Une exportation de l’attribut fullName vers une Base courrier en arrivée ne fonctionnait pas.
+  * Une exportation qui ajoutait et supprimait un membre d’un groupe exportait uniquement les membres ajoutés.
+  * Si un document Notes n’est pas valide (attribut isValid défini sur false), le connecteur échoue.
 
 ## <a name="older-releases"></a>Versions plus anciennes
-Avant mars 2016, hello connecteurs ont été publiés dans les rubriques de prise en charge.
+Avant mars 2016, les connecteurs étaient publiés sous forme de rubriques de prise en charge.
 
 **LDAP générique**
 
@@ -205,6 +205,6 @@ Avant mars 2016, hello connecteurs ont été publiés dans les rubriques de pris
 * [KB2875551](https://support.microsoft.com/kb/2875551) - 5.3.0534, août 2013
 
 ## <a name="next-steps"></a>Étapes suivantes
-En savoir plus sur hello [synchronisation Azure AD Connect](active-directory-aadconnectsync-whatis.md) configuration.
+En savoir plus sur la configuration de la [synchronisation Azure AD Connect](active-directory-aadconnectsync-whatis.md) .
 
 En savoir plus sur l’ [intégration de vos identités locales avec Azure Active Directory](active-directory-aadconnect.md).

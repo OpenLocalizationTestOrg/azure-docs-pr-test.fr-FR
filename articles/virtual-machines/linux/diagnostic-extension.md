@@ -1,6 +1,6 @@
 ---
-title: "Calcul d’aaaAzure - Extension Diagnostics Linux | Documents Microsoft"
-description: "Mode tooconfigure hello métriques de toocollect Azure Linux Diagnostic Extension (SCÉNARISTE) et de consigner les événements dans les machines virtuelles Linux s’exécutant dans Azure."
+title: Calcul Azure - Extension de diagnostic Linux | Microsoft Docs
+description: "Comment configurer l’extension de diagnostic Linux Azure pour collecter des métriques et consigner les événements provenant de machines virtuelles Linux qui s’exécutent dans Azure."
 services: virtual-machines-linux
 author: jasonzio
 manager: anandram
@@ -9,57 +9,57 @@ ms.tgt_pltfrm: vm-linux
 ms.topic: article
 ms.date: 05/09/2017
 ms.author: jasonzio
-ms.openlocfilehash: 2b27ec00a876ded359a75170b407e28c40d8445d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 525d706bd709ae72f2dca1c21e06db533ccf32b4
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="use-linux-diagnostic-extension-toomonitor-metrics-and-logs"></a>Utilisez l’Extension Diagnostics Linux toomonitor métriques et journaux
+# <a name="use-linux-diagnostic-extension-to-monitor-metrics-and-logs"></a>Utilisez l’extension de diagnostic Linux pour surveiller les métriques et les journaux
 
-Ce document décrit la version 3.0 de hello Extension Diagnostics Linux.
+Ce document décrit la version 3.0 et les versions ultérieures de l’extension de diagnostic Linux.
 
 > [!IMPORTANT]
 > Pour plus d’informations sur la version 2.3 et les versions antérieures, consultez [ce document](./classic/diagnostic-extension-v2.md).
 
 ## <a name="introduction"></a>Introduction
 
-Hello Extension Diagnostics Linux permet à une utilisateur Moniteur hello l’intégrité d’un VM Linux en cours d’exécution sur Microsoft Azure. Il a hello suivant de fonctionnalités :
+L’extension de diagnostic Linux aide l’utilisateur à surveiller l’intégrité d’une machine virtuelle Linux s’exécutant sur Microsoft Azure. Elle présente les fonctionnalités suivantes :
 
-* Collecte les métriques de performances système hello machine virtuelle et les stocke dans une table spécifique dans un compte de stockage désignées.
-* Récupère les journaux d’événements syslog et les stocke dans une table spécifique dans hello désigné du compte de stockage.
-* Permet aux utilisateurs toocustomize hello les métriques des données qui sont collectées et téléchargées.
-* Permet aux utilisateurs toocustomize hello syslog et des niveaux de gravité des événements qui sont collectées et téléchargées.
-* Permet aux utilisateurs tooupload journal spécifié fichiers tooa désigné stockage table.
-* Prend en charge l’envoi des métriques de journal des événements tooarbitrary EventHub points de terminaison et et les objets BLOB d’au format JSON Bonjour désigné compte de stockage.
+* Elle collecte des métriques de performances du système auprès de la machine virtuelle et les stocke dans une table spécifique d’un compte de stockage désigné.
+* Elle récupère les journaux d’événements Syslog et les stocke dans une table spécifique du compte de stockage désigné.
+* Elle permet aux utilisateurs de personnaliser les métriques des données qui sont collectées et chargées.
+* Elle permet aux utilisateurs de personnaliser les fonctions Syslog et les niveaux de gravité des événements qui sont collectés et chargés.
+* Elle permet aux utilisateurs de télécharger les fichiers journaux spécifiés dans la table de stockage désignée.
+* Elle prend en charge l’envoi des métriques et des événements des journaux à des points de terminaison EventHub arbitraires et à des objets blob au format JSON dans le compte de stockage désigné.
 
 Cette extension fonctionne avec les deux modèles de déploiement d’Azure.
 
-## <a name="installing-hello-extension-in-your-vm"></a>Extension de hello lors de l’installation dans votre machine virtuelle
+## <a name="installing-the-extension-in-your-vm"></a>Installation de l’extension dans votre machine virtuelle
 
-Vous pouvez activer cette extension à l’aide des applets de commande PowerShell Azure hello, scripts CLI d’Azure ou les modèles de déploiement d’Azure. Pour plus d’informations, consultez [Fonctionnalités des extensions](./extensions-features.md).
+Vous pouvez activer cette extension via des applets de commande Azure PowerShell, des scripts Azure CLI ou des modèles de déploiement Azure. Pour plus d’informations, consultez [Fonctionnalités des extensions](./extensions-features.md).
 
-Hello portail Azure ne peut pas être utilisé tooenable ou configurer SCÉNARISTE 3.0. Au lieu de cela, il installe et configure la version 2.3. Alertes et des graphiques de portail azure fonctionnent avec des données à partir de deux versions d’extension de hello.
+Le portail Azure ne peut pas être utilisé pour activer ou configurer l’extension de diagnostic Linux 3.0. Au lieu de cela, il installe et configure la version 2.3. Les graphes et les alertes du portail Azure fonctionnent avec les données provenant des deux versions de l’extension.
 
 Ces instructions d’installation et un [exemple de configuration téléchargeable](https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/Diagnostic/tests/lad_2_3_compatible_portal_pub_settings.json) configurent l’extension de diagnostic Linux 3.0 pour :
 
-* capture et magasin hello mêmes métriques comme ont été fournies par SCÉNARISTE 2.3 ;
-* capturer un ensemble utile de métriques de système de fichier, nouveau tooLAD 3.0 ;
-* capturer la collection de syslog par défaut hello activée par SCÉNARISTE 2.3 ;
-* Activer hello expérience du portail Azure pour les graphiques et la génération d’alertes sur des métriques de machine virtuelle.
+* Capturer et stocker les mêmes mesures que celles fournies par l’extension de diagnostic Linux 2.3
+* Capturer un ensemble utile de métriques du système de fichiers, nouveau dans l’extension de diagnostic Linux 3.0
+* Capturer la collection Syslog par défaut activée par l’extension de diagnostic Linux 2.3
+* Permettre l’utilisation du portail Azure pour les graphes et les alertes sur des métriques de machine virtuelle.
 
-configuration de téléchargeable Hello est juste un exemple ; Modifiez-le toosuit vos propres besoins.
+La configuration téléchargeable est seulement un exemple. Modifiez-la selon vos besoins.
 
-### <a name="prerequisites"></a>Composants requis
+### <a name="prerequisites"></a>Prérequis
 
-* **Agent Azure Linux version 2.2.0 ou ultérieure**. La plupart des images de la galerie Linux de machines virtuelles Azure incluent la version 2.2.7 ou ultérieure. Exécutez `/usr/sbin/waagent -version` tooconfirm hello version est installée sur la machine virtuelle de hello. Si hello machine virtuelle exécute une ancienne version de l’agent invité de hello, procédez comme [ces instructions](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/update-agent) tooupdate il.
-* **Interface de ligne de commande Azure**. [Configurer hello Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli) environnement sur votre ordinateur.
-* Hello wget commande, si vous ne l’avez déjà : exécuter `sudo apt-get install wget`.
-* Un abonnement Azure et un stockage existant compte qu’il contient les données de salutation toostore.
+* **Agent Azure Linux version 2.2.0 ou ultérieure**. La plupart des images de la galerie Linux de machines virtuelles Azure incluent la version 2.2.7 ou ultérieure. Exécutez `/usr/sbin/waagent -version` pour vérifier la version installée sur la machine virtuelle. Si la machine virtuelle exécute une version antérieure de l’agent invité, suivez [ces instructions](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/update-agent) pour le mettre à jour.
+* **Azure CLI**. [Configurez l’environnement Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli) sur votre machine.
+* Si vous n’avez pas déjà la commande wget : exécutez `sudo apt-get install wget`.
+* Un abonnement Azure et un compte de stockage existants sont utilisés pour stocker les données.
 
 ### <a name="sample-installation"></a>Exemple d’installation
 
-Renseignez les paramètres corrects de hello sur hello trois premières lignes, puis exécuter ce script en tant que racine :
+Renseignez les paramètres corrects sur les trois premières lignes puis exécutez ce script en tant que root :
 
 ```bash
 # Set your Azure VM diagnostic parameters correctly below
@@ -67,60 +67,60 @@ my_resource_group=<your_azure_resource_group_name_containing_your_azure_linux_vm
 my_linux_vm=<your_azure_linux_vm_name>
 my_diagnostic_storage_account=<your_azure_storage_account_for_storing_vm_diagnostic_data>
 
-# Should login tooAzure first before anything else
+# Should login to Azure first before anything else
 az login
 
-# Select hello subscription containing hello storage account
+# Select the subscription containing the storage account
 az account set --subscription <your_azure_subscription_id>
 
-# Download hello sample Public settings. (You could also use curl or any web browser)
+# Download the sample Public settings. (You could also use curl or any web browser)
 wget https://raw.githubusercontent.com/Azure/azure-linux-extensions/master/Diagnostic/tests/lad_2_3_compatible_portal_pub_settings.json -O portal_public_settings.json
 
-# Build hello VM resource ID. Replace storage account name and resource ID in hello public settings.
+# Build the VM resource ID. Replace storage account name and resource ID in the public settings.
 my_vm_resource_id=$(az vm show -g $my_resource_group -n $my_linux_vm --query "id" -o tsv)
 sed -i "s#__DIAGNOSTIC_STORAGE_ACCOUNT__#$my_diagnostic_storage_account#g" portal_public_settings.json
 sed -i "s#__VM_RESOURCE_ID__#$my_vm_resource_id#g" portal_public_settings.json
 
-# Build hello protected settings (storage account SAS token)
+# Build the protected settings (storage account SAS token)
 my_diagnostic_storage_account_sastoken=$(az storage account generate-sas --account-name $my_diagnostic_storage_account --expiry 9999-12-31T23:59Z --permissions wlacu --resource-types co --services bt -o tsv)
 my_lad_protected_settings="{'storageAccountName': '$my_diagnostic_storage_account', 'storageAccountSasToken': '$my_diagnostic_storage_account_sastoken'}"
 
-# Finallly tell Azure tooinstall and enable hello extension
+# Finallly tell Azure to install and enable the extension
 az vm extension set --publisher Microsoft.Azure.Diagnostics --name LinuxDiagnostic --version 3.0 --resource-group $my_resource_group --vm-name $my_linux_vm --protected-settings "${my_lad_protected_settings}" --settings portal_public_settings.json
 ```
 
-URL de Hello pour la configuration d’exemple hello et son contenu, est toochange de l’objet. Téléchargez une copie du fichier JSON de paramètres de portail hello et personnaliser en fonction de vos besoins. Les modèles ou l’automation que vous construisez doit utiliser votre propre copie au lieu de télécharger cette URL à chaque fois.
+L’URL de l’exemple de configuration et son contenu sont susceptibles d’être modifiés. Téléchargez une copie du fichier JSON des paramètres du portail et personnalisez-la en fonction de vos besoins. Les modèles ou l’automation que vous construisez doit utiliser votre propre copie au lieu de télécharger cette URL à chaque fois.
 
-### <a name="updating-hello-extension-settings"></a>Mise à jour des paramètres d’extension hello
+### <a name="updating-the-extension-settings"></a>Mise à jour les paramètres de l’extension
 
-Une fois que vous avez modifié les paramètres de votre protégé ou Public, déployez-les toohello machine virtuelle en exécutant hello même commande. Si rien modifié dans les paramètres de hello, paramètres de hello mis à jour sont envoyées toohello extension. SCÉNARISTE recharge la configuration de hello et redémarre automatiquement.
+Une fois que vous avez modifié vos paramètres protégés ou publics, déployez-les sur la machine virtuelle en exécutant la même commande. Si quelque chose a changé dans les paramètres, les paramètres mis à jour sont envoyés à l’extension. L’extension de diagnostic Linux recharge la configuration et redémarre automatiquement.
 
-### <a name="migration-from-previous-versions-of-hello-extension"></a>Migration à partir de versions précédentes de l’extension de hello
+### <a name="migration-from-previous-versions-of-the-extension"></a>Migration depuis des versions antérieures de l’extension
 
-version la plus récente de l’extension de hello Hello est **3.0**. **Les anciennes versions (2.x) sont dépréciées, et leur publication peut cesser le 31 juillet 2018 ou après**.
+La dernière version de l’extension est **3.0**. **Les anciennes versions (2.x) sont dépréciées, et leur publication peut cesser le 31 juillet 2018 ou après**.
 
 > [!IMPORTANT]
-> Cette extension présente la configuration de toohello de modifications avec rupture d’extension de hello. Une telle modification sécurité de hello tooimprove d’extension de hello ; Par conséquent, descendante compatibilité avec 2.x Échec de la maintenance. En outre, hello Extension de serveur de publication pour cette extension est différent à publisher hello pour les versions 2.x hello.
+> Cette extension introduit des changements majeurs à la configuration de l’extension. Une telle modification a été apportée pour améliorer la sécurité de l’extension. Par conséquent, la compatibilité descendante avec les versions 2.x n’a pas pu être conservée. En outre, l’éditeur d’extension pour cette extension est différent de l’éditeur pour les versions 2.x.
 >
-> toomigrate de 2.x toothis nouvelle version de l’extension de hello, vous devez désinstaller ancienne extension de hello (sous l’ancien nom du serveur de publication hello), puis installez la version 3 d’extension de hello.
+> Pour migrer de 2.x vers cette nouvelle version de l’extension, vous devez désinstaller l’ancienne extension (sous l’ancien nom de l’éditeur) puis installer la version 3 de l’extension.
 
 Recommandations :
 
-* Installez l’extension de hello avec mise à niveau de version mineure automatique activée.
-  * Sur le modèle de déploiement classique de machines virtuelles, spécifiez « 3.* » en tant que version de hello si vous installez extension hello via Azure-XPLAT-CLI ou Powershell.
-  * Modèle de machines virtuelles sur le déploiement d’Azure Resource Manager, incluez ' « autoUpgradeMinorVersion » : true' dans le modèle de déploiement d’ordinateur virtuel hello.
+* Installez l’extension avec la mise à niveau automatique de version mineure activée.
+  * Sur les machines virtuelles du modèle de déploiement classique, spécifiez « 3.* » comme version si vous installez l’extension via Azure XPLAT CLI ou Powershell.
+  * Sur les machines virtuelles du modèle de déploiement Azure Resource Manager, incluez '"autoUpgradeMinorVersion": true' dans le modèle de déploiement des machines virtuelles.
 * Utilisez un compte de stockage nouveau ou différent pour l’extension de diagnostic Linux 3.0. Il existe plusieurs petites incompatibilités entre l’extension de diagnostic Linux 2.3 et l’extension de diagnostic Linux 3.0, qui rendent problématique le partage d’un compte :
   * L’extension de diagnostic Linux 3.0 stocke les événements Syslog dans une table avec un nom différent.
-  * chaînes de counterSpecifier de Hello pour `builtin` métriques diffèrent dans SCÉNARISTE 3.0.
+  * Les chaînes counterSpecifier pour les métriques `builtin` diffèrent dans l’extension de diagnostic Linux 3.0.
 
 ## <a name="protected-settings"></a>Paramètres protégés
 
-Cet ensemble d’informations de configuration contient des informations sensibles qui doivent être protégées d’une exposition publique, par exemple les informations d’identification de stockage. Ces paramètres sont transmis tooand stockée par extension hello sous forme chiffrée.
+Cet ensemble d’informations de configuration contient des informations sensibles qui doivent être protégées d’une exposition publique, par exemple les informations d’identification de stockage. Ces paramètres sont transmis et stockés par l’extension sous une forme chiffrée.
 
 ```json
 {
-    "storageAccountName" : "hello storage account tooreceive data",
-    "storageAccountEndPoint": "hello hostname suffix for hello cloud for this account",
+    "storageAccountName" : "the storage account to receive data",
+    "storageAccountEndPoint": "the hostname suffix for the cloud for this account",
     "storageAccountSasToken": "SAS access token",
     "mdsdHttpProxy": "HTTP proxy settings",
     "sinksConfig": { ... }
@@ -129,22 +129,22 @@ Cet ensemble d’informations de configuration contient des informations sensibl
 
 Nom | Valeur
 ---- | -----
-storageAccountName | nom Hello hello du compte de stockage dans lequel les données sont écrites par l’extension de hello.
-storageAccountEndPoint | point de terminaison (facultatif) hello identification cloud hello dans le hello compte de stockage existe. Si ce paramètre est absent, SCÉNARISTE par défaut toohello cloud public Azure, `https://core.windows.net`. toouse un compte de stockage dans Azure situés en Allemagne, Azure Government ou Azure Chine, définissez cette valeur en conséquence.
-storageAccountSasToken | Un [jeton compte SAP](https://azure.microsoft.com/blog/sas-update-account-sas-now-supports-all-storage-services/) pour les services Blob et de Table (`ss='bt'`), toocontainers applicable et les objets (`srt='co'`), qui accorde ajouter, créer, répertorier, mettre à jour et d’autorisations en écriture (`sp='acluw'`). Faire *pas* inclure hello début-point d’interrogation ( ?).
-mdsdHttpProxy | (facultatif) HTTP proxy informations nécessaires tooenable hello extension tooconnect toohello spécifié le compte de stockage et de point de terminaison.
-sinksConfig | (facultatif) Détails des autres destinations toowhich mesures et les événements peuvent être remis. Hello des détails spécifiques chaque récepteur de données pris en charge par l’extension de hello sont décrites dans les sections hello qui suivent.
+storageAccountName | Nom du compte de stockage dans lequel les données sont écrites par l’extension.
+storageAccountEndPoint | (facultatif) Le point de terminaison identifiant le cloud dans lequel se trouve le compte de stockage. Si ce paramètre est absent, l’extension de diagnostic Linux utilise par défaut le cloud public Azure, `https://core.windows.net`. Pour utiliser un compte de stockage Azure Allemagne, Azure Government ou Azure Chine, définissez cette valeur en conséquence.
+storageAccountSasToken | [Jeton SAS de compte](https://azure.microsoft.com/blog/sas-update-account-sas-now-supports-all-storage-services/) pour les services Blob et Table (`ss='bt'`), applicables aux conteneurs et aux objets (`srt='co'`), qui accorde les autorisations de créer, répertorier, mettre à jour et écrire (`sp='acluw'`). *N’incluez pas* le point d’interrogation ( ?) du début.
+mdsdHttpProxy | (facultatif) Informations du proxy HTTP nécessaires pour permettre à l’extension de se connecter au compte de stockage et au point de terminaison spécifiés.
+sinksConfig | (facultatif) Détails des destinations alternatives auxquelles les métriques et les événements peuvent délivrés. Les détails spécifiques de chaque récepteur de données pris en charge par l’extension sont traités dans les sections qui suivent.
 
-Vous pouvez aisément construire le jeton SAS de hello requis via hello portail Azure.
+Vous pouvez facilement construire le jeton SAS nécessaire via le portail Azure.
 
-1. Sélectionnez toowhich de compte de stockage à usage général hello souhaité hello extension toowrite
-1. Sélectionnez « Signature d’accès partagé » à partir de la partie des paramètres hello du menu de gauche hello
-1. Vérifiez les sections appropriées hello comme décrites précédemment
-1. Cliquez sur le bouton de « Générer SAS » hello.
+1. Sélectionnez le compte de stockage à usage général dans lequel vous voulez que l’extension écrive
+1. Sélectionnez « Signature d’accès partagé » dans la partie Paramètres du menu de gauche
+1. Rendez les sections appropriées comme décrit précédemment
+1. Cliquez sur le bouton « Générer une signature d’accès partagé ».
 
 ![image](./media/diagnostic-extension/make_sas.png)
 
-Hello de copie généré SAS dans le champ de storageAccountSasToken hello ; supprimer hello-interrogation de début (« ? »).
+Copiez la signature SAS générée dans le champ storageAccountSasToken et supprimez le premier d’interrogation (« ? ») du début.
 
 ### <a name="sinksconfig"></a>sinksConfig
 
@@ -161,16 +161,16 @@ Hello de copie généré SAS dans le champ de storageAccountSasToken hello ; su
 },
 ```
 
-Cette section facultative définit autres destinations extension de hello toowhich envoie des informations de hello qu'il collecte. tableau de « sink » Hello contient un objet pour chaque récepteur de données supplémentaires. Hello attribut « type » détermine hello autres attributs dans l’objet de hello.
+Cette section facultative définit les autres destinations auxquelles l’extension envoie les informations collectées. Le tableau « récepteur » contient un objet pour chaque récepteur de données supplémentaire. L’attribut « type » détermine les autres attributs de l’objet.
 
 Élément | Valeur
 ------- | -----
-name | Chaîne utilisée récepteur de toothis toorefer ailleurs dans la configuration de l’extension hello.
-type | type Hello du récepteur en cours de définition. Détermine les hello autres valeurs (le cas échéant) dans les instances de ce type.
+name | Chaîne utilisée pour référencer ce récepteur ailleurs dans la configuration de l’extension.
+type | Type du récepteur défini. Détermine les autres valeurs (le cas échéant) dans les instances de ce type.
 
-La version 3.0 de hello Extension Diagnostics Linux prend en charge deux types de récepteur : EventHub et JsonBlob.
+La version 3.0 de l’extension de diagnostic Linux prend en charge deux types de récepteur : EventHub et JsonBlob.
 
-#### <a name="hello-eventhub-sink"></a>récepteur d’EventHub Hello
+#### <a name="the-eventhub-sink"></a>Récepteur EventHub
 
 ```json
 "sink": [
@@ -183,13 +183,13 @@ La version 3.0 de hello Extension Diagnostics Linux prend en charge deux types d
 ]
 ```
 
-« sasURL » Hello contient hello URL complète, y compris le jeton SAS, pourquoi données toowhich de concentrateur d’événements doit être publiée. SCÉNARISTE requiert une SAP une stratégie qui active la revendication d’envoi hello d’affectation de noms. Exemple :
+L’entrée « sasURL » contient l’URL complète, incluant un jeton SAS, pour l’Event Hub sur lequel les données doivent être publiées. L’extension de diagnostic Linux nécessite une signature SAS nommant une stratégie qui permet l’envoi de revendication. Exemple :
 
 * Créer un espace de noms Event Hub appelé `contosohub`
-* Créer un concentrateur d’événements dans l’espace de noms hello appelé`syslogmsgs`
-* Créer une stratégie d’accès partagé sur hello concentrateur d’événements nommé `writer` qu’Active hello revendication d’envoi
+* Créer un Event Hub dans l’espace de noms appelé `syslogmsgs`
+* Créer une stratégie d’accès partagé sur l’Event Hub nommé `writer` qui permet l’envoi de revendication
 
-Si vous avez créé une SAP de bonne jusqu'à minuit UTC sur 1 janvier 2018, la valeur de sasURL hello peut être :
+Si vous avez créé une signature SAS valable jusqu’au 1er janvier 2018 à minuit (UTC), la valeur de sasURL doit être :
 
 ```url
 https://contosohub.servicebus.windows.net/syslogmsgs?sr=contosohub.servicebus.windows.net%2fsyslogmsgs&sig=xxxxxxxxxxxxxxxxxxxxxxxxx&se=1514764800&skn=writer
@@ -197,7 +197,7 @@ https://contosohub.servicebus.windows.net/syslogmsgs?sr=contosohub.servicebus.wi
 
 Pour plus d’informations sur la génération de jetons SAS pour les Event Hubs, consultez [cette page web](../../event-hubs/event-hubs-authentication-and-security-model-overview.md).
 
-#### <a name="hello-jsonblob-sink"></a>récepteur de JsonBlob Hello
+#### <a name="the-jsonblob-sink"></a>Récepteur JsonBlob
 
 ```json
 "sink": [
@@ -209,28 +209,28 @@ Pour plus d’informations sur la génération de jetons SAS pour les Event Hubs
 ]
 ```
 
-Données dirigées tooa JsonBlob récepteur est stocké dans des objets BLOB dans le stockage Azure. Chaque instance de l’extension de diagnostic Linux crée un objet blob toutes les heures pour chaque nom de récepteur. Chaque objet blob contient toujours un tableau JSON syntaxiquement valide de l’objet. Nouvelles entrées sont ajoutées atomiquement toohello tableau. Objets BLOB sont stockés dans un conteneur avec hello même nom comme récepteur de hello. Hello des règles de stockage Azure pour les noms de conteneur d’objets blob s’appliquent à des noms de toohello des récepteurs de JsonBlob : entre 3 et 63 caractères ASCII alphanumériques de minuscules ou des tirets.
+Les données dirigées vers un récepteur JsonBlob sont stockées dans des objets blob dans Stockage Azure. Chaque instance de l’extension de diagnostic Linux crée un objet blob toutes les heures pour chaque nom de récepteur. Chaque objet blob contient toujours un tableau JSON syntaxiquement valide de l’objet. Les nouvelles entrées sont ajoutées au tableau de manière atomique. Les objets blob sont stockés dans un conteneur du même nom que le récepteur. Les règles du Stockage Azure pour les noms de conteneur d’objets blob s’appliquent aux noms des récepteurs JsonBlob : entre 3 et 63 caractères ASCII alphanumériques minuscules ou des tirets.
 
 ## <a name="public-settings"></a>Paramètres publics
 
-Cette structure contient différents blocs de paramètres qui contrôlent les informations hello collectées par l’extension de hello. Chaque paramètre est facultatif. Si vous spécifiez `ladCfg`, vous devez aussi spécifier `StorageAccount`.
+Cette structure contient différents blocs de paramètres qui contrôlent les informations collectées par l’extension. Chaque paramètre est facultatif. Si vous spécifiez `ladCfg`, vous devez aussi spécifier `StorageAccount`.
 
 ```json
 {
     "ladCfg":  { ... },
     "perfCfg": { ... },
     "fileLogs": { ... },
-    "StorageAccount": "hello storage account tooreceive data",
+    "StorageAccount": "the storage account to receive data",
     "mdsdHttpProxy" : ""
 }
 ```
 
 Élément | Valeur
 ------- | -----
-StorageAccount | nom Hello hello du compte de stockage dans lequel les données sont écrites par l’extension de hello. Doit être hello même nom que celui qu’est spécifiée dans hello [paramètres protégés par](#protected-settings).
-mdsdHttpProxy | (facultatif) Identique à celui inclus hello [paramètres protégés par](#protected-settings). valeur de publique Hello est remplacée par valeur privé de hello, si définie. Placer les paramètres de proxy qui contiennent une clé secrète, par exemple un mot de passe, Bonjour [paramètres protégés par](#protected-settings).
+StorageAccount | Nom du compte de stockage dans lequel les données sont écrites par l’extension. Doit être le même nom que celui spécifié dans les [paramètres protégés](#protected-settings).
+mdsdHttpProxy | (facultatif) Comme dans les [paramètres protégés](#protected-settings). La valeur publique est remplacée par la valeur privée si celle-ci est définie. Placez les paramètres de proxy qui contiennent un secret, comme un mot de passe, dans le [paramètres protégés](#protected-settings).
 
-les éléments restants Hello sont décrites en détail dans les sections suivantes de hello.
+Les éléments restants sont décrits en détail dans les sections suivantes.
 
 ### <a name="ladcfg"></a>ladCfg
 
@@ -246,12 +246,12 @@ les éléments restants Hello sont décrites en détail dans les sections suivan
 }
 ```
 
-Cette collecte de données facultatif structure contrôles hello de mesures et les journaux toohello de remise des données de service et tooother Azure métriques récepteurs. Vous devez spécifier `performanceCounters` ou `syslogEvents`, ou les deux. Vous devez spécifier hello `metrics` structure.
+Cette structure facultative contrôle la collecte des métriques et des journaux pour les délivrer au service des métriques Azure et à d’autres récepteurs. Vous devez spécifier `performanceCounters` ou `syslogEvents`, ou les deux. Vous devez spécifier la structure `metrics`.
 
 Élément | Valeur
 ------- | -----
-eventVolume | (facultatif) Contrôles hello nombre de partitions créées au sein de la table de stockage hello. Doit être `"Large"`, `"Medium"` ou `"Small"`. Si non spécifié, la valeur par défaut de hello est `"Medium"`.
-sampleRateInSeconds | intervalle par défaut de hello (facultatif) entre la collection de brute (non agrégée). taux d’échantillonnage Hello plus petit pris en charge est de 15 secondes. Si non spécifié, la valeur par défaut de hello est `15`.
+eventVolume | (facultatif) Contrôle le nombre de partitions créées dans la table de stockage. Doit être `"Large"`, `"Medium"` ou `"Small"`. Si elle n’est pas spécifiée, la valeur par défaut est `"Medium"`.
+sampleRateInSeconds | (facultatif) Intervalle par défaut entre les collectes des métriques brutes (non agrégées). L’échantillonnage le plus petit pris en charge de 15 secondes. Si elle n’est pas spécifiée, la valeur par défaut est `15`.
 
 #### <a name="metrics"></a>Mesures
 
@@ -267,10 +267,10 @@ sampleRateInSeconds | intervalle par défaut de hello (facultatif) entre la coll
 
 Élément | Valeur
 ------- | -----
-resourceId | ID de ressource Azure Resource Manager Hello de hello machine virtuelle ou d’échelle de machines virtuelles hello définie hello toowhich que machine virtuelle appartient. Ce paramètre doit être également spécifiée si n’importe quel récepteur JsonBlob est utilisé dans la configuration de hello.
-scheduledTransferPeriod | Hello fréquence à laquelle les métriques d’agrégation toobe calculées et transférées tooAzure métriques, exprimée sous la forme d’un intervalle de temps est un 8601. période de transfert plus petit Hello est de 60 secondes, autrement dit, PT1M. Vous devez spécifier au moins une scheduledTransferPeriod.
+resourceId | L’ID de ressource Azure Resource Manager de la machine virtuelle ou du groupe de machines virtuelles identiques auquel la machine virtuelle appartient. Ce paramètre doit également être spécifié si un récepteur JsonBlob est utilisé dans la configuration.
+scheduledTransferPeriod | La fréquence à laquelle les métriques agrégées doivent être calculées et transférées vers les métriques Azure, exprimée sous la forme d’un intervalle de temps IS 8601. La périodicité de transfert la plus petite est de 60 secondes, c’est-à-dire PT1M. Vous devez spécifier au moins une scheduledTransferPeriod.
 
-Exemples de hello métriques spécifiés dans la section des compteurs de performance hello sont collectées toutes les 15 secondes ou à des taux d’échantillonnage hello explicitement définie pour le compteur de hello. Si plusieurs fréquences scheduledTransferPeriod apparaissent (comme dans l’exemple de hello), chaque agrégation est calculée indépendamment.
+Des échantillons des métriques spécifiées dans la section performanceCounters sont collectés toutes les 15 secondes ou selon le taux d’échantillonnage défini explicitement pour le compteur. Si plusieurs fréquences scheduledTransferPeriod apparaissent (comme dans l’exemple), chaque agrégation est calculée indépendamment.
 
 #### <a name="performancecounters"></a>performanceCounters
 
@@ -297,40 +297,40 @@ Exemples de hello métriques spécifiés dans la section des compteurs de perfor
 }
 ```
 
-Collection de hello des métriques de contrôles de cette section facultative. Exemples brutes sont agrégées pour chaque [scheduledTransferPeriod](#metrics) tooproduce ces valeurs :
+Cette section facultative contrôle la collecte des métriques. Les échantillons bruts sont agrégés pour chaque [scheduledTransferPeriod](#metrics) pour produire ces valeurs :
 
 * mean
 * minimum
 * maximum
 * dernière valeur collectée
-* nombre d’échantillons bruts utilisé agrégat de hello toocompute
+* nombre d’échantillons bruts utilisés pour calculer l’agrégation
 
 Élément | Valeur
 ------- | -----
-sinks | (facultatif) Une liste séparée par des virgules des noms des récepteurs toowhich que SCÉNARISTE envoie les résultats de mesure agrégées. Toutes les mesures agrégées sont publiées tooeach répertorié récepteur. Consultez [sinksConfig](#sinksconfig). Exemple : `"EHsink1, myjsonsink"`.
-type | Identifie hello réelle du fournisseur de métrique de hello.
-class | Avec « counter », identifie le métrique spécifique de hello au sein de l’espace de noms du fournisseur hello.
-counter | Avec « classe », identifie le métrique spécifique de hello au sein de l’espace de noms du fournisseur hello.
-counterSpecifier | Identifie les mesures spécifiques de hello au sein de l’espace de noms de métriques de Azure hello.
-condition | (facultatif) Applique de sélectionne une instance spécifique de la métrique de hello hello objet toowhich ou sélectionne hello d’agrégation sur toutes les instances de cet objet. Pour plus d’informations, consultez hello [ `builtin` définitions de métrique](#metrics-supported-by-builtin).
-sampleRate | EST l’intervalle 8601 qui définit les taux de hello collecte des échantillons brutes pour cette métrique. Si non définie, intervalle de collecte hello a la valeur par valeur hello de [sampleRateInSeconds](#ladcfg). taux d’échantillonnage pris en charge le plus court de Hello est de 15 secondes (PT15S).
-unité | Doit être une des chaînes suivantes : « Count », « Bytes », « Seconds », « Percent », « CountPerSecond », « BytesPerSecond », « Millisecond ». Définit l’unité hello pour métrique de hello. Consommateurs de données de hello collectée s’attendre hello collectées toomatch de valeurs de données de cette unité. L’extension de diagnostic Linux ignore ce champ.
-displayName | Hello étiquette (dans le langage de hello spécifié par les paramètres régionaux associé de hello) toobe attaché toothis des données dans Azure métriques. L’extension de diagnostic Linux ignore ce champ.
+sinks | (facultatif) Liste séparée par des virgules des noms des récepteurs auquel l’extension de diagnostic Linux envoie les résultats des métriques agrégées. Toutes les métriques agrégées sont publiées sur chaque récepteur répertorié. Consultez [sinksConfig](#sinksconfig). Exemple : `"EHsink1, myjsonsink"`.
+type | Identifie le fournisseur réel de la mesure.
+class | Avec « counter », identifie la métrique spécifique au sein de l’espace de noms du fournisseur.
+counter | Avec « class », identifie la métrique spécifique au sein de l’espace de noms du fournisseur.
+counterSpecifier | Identifie la métrique spécifique au sein de l’espace de noms des métriques Azure.
+condition | (facultatif) Sélectionne une instance spécifique de l’objet auquel s’applique la métrique ou sélectionne l’agrégation sur toutes les instances de cet objet. Pour plus d’informations, consultez les [ `builtin` définitions des métriques](#metrics-supported-by-builtin).
+sampleRate | Intervalle IS 8601 qui définit la fréquence à laquelle des échantillons bruts sont collectés pour cette métrique. S’il n’est pas défini, l’intervalle de collecte est défini par la valeur de [sampleRateInSeconds](#ladcfg). L’échantillonnage le plus court pris en charge est de 15 secondes (PT15S).
+unité | Doit être une des chaînes suivantes : « Count », « Bytes », « Seconds », « Percent », « CountPerSecond », « BytesPerSecond », « Millisecond ». Définit l’unité pour la métrique. Les consommateurs des données collectées attendent des valeurs de données collectées correspondant à cette unité. L’extension de diagnostic Linux ignore ce champ.
+displayName | Étiquette (dans la langue spécifiée par les paramètres régionaux associés) à attacher à ces données dans les métriques Azure. L’extension de diagnostic Linux ignore ce champ.
 
-counterSpecifier de Hello est un identificateur arbitraire. Les consommateurs de métriques, telles que hello graphiques portail Azure et alerte de fonctionnalité, utilisent counterSpecifier comme hello « clé » qui identifie une mesure ou une instance d’une métrique. Pour les métriques `builtin`, nous vous recommandons d’utiliser des valeurs pour counterSpecifier qui commencent par `/builtin/`. Si vous collectez une instance spécifique d’une mesure, nous vous recommandons de que vous joignez identificateur hello de valeur de counterSpecifier toohello hello instance. Voici quelques exemples :
+counterSpecifier est un identificateur arbitraire. Les consommateurs de métriques, comme les fonctionnalités de graphe et d’alerte du portail Azure, utilisent counterSpecifier comme « clé » qui identifie une métrique ou une instance de métrique. Pour les métriques `builtin`, nous vous recommandons d’utiliser des valeurs pour counterSpecifier qui commencent par `/builtin/`. Si vous collectez une instance spécifique d’une métrique, nous vous recommandons d’attacher l’identificateur de l’instance à la valeur de counterSpecifier. Voici quelques exemples :
 
 * `/builtin/Processor/PercentIdleTime` : Temps d’inactivité moyen pour tous les cœurs
-* `/builtin/Disk/FreeSpace(/mnt)`-Espace pour le système de fichiers/mnt hello
+* `/builtin/Disk/FreeSpace(/mnt)` : Espace libre pour le système de fichiers /mnt
 * `/builtin/Disk/FreeSpace` : Espace libre moyen pour tous les systèmes de fichiers montés
 
-SCÉNARISTE, ni hello portail Azure attend hello counterSpecifier valeur toomatch n’importe quel modèle. Soyez cohérent dans la façon dont vous construisez les valeurs de counterSpecifier.
+Ni l’extension de diagnostic Linux ni le portail Azure n’attendent un modèle particulier pour la valeur de counterSpecifier. Soyez cohérent dans la façon dont vous construisez les valeurs de counterSpecifier.
 
-Lorsque vous spécifiez `performanceCounters`, SCÉNARISTE écrit toujours table tooa de données dans le stockage Azure. Vous pouvez avoir hello même les données écrites tooJSON BLOB et/ou les concentrateurs d’événements, mais vous ne pouvez pas désactiver le stockage table tooa de données. Toutes les instances de hello extension diagnostic configurée toouse hello compte de stockage de même nom et le point de terminaison ajoutent leur toohello métriques et les journaux même table. Si vous écrivent trop grand nombre de machines virtuelles toohello même partition de table, Azure peut accélérer écrit toothat partition. eventVolume Hello définissant les causes entrées toobe réparties sur 1 (petit), 10 (moyen) ou 100 (grand) différentes partitions. En règle générale, « Moyenne » est suffisante tooensure trafic n’est pas limité. fonctionnalité de métriques de Azure Hello Hello portail Azure utilise des données de hello dans cette graphiques tooproduce de table ou les alertes de tootrigger. nom de la table Hello est la concaténation de hello de ces chaînes :
+Quand vous spécifiez `performanceCounters`, l’extension de diagnostic Linux écrit toujours les données dans une table de Stockage Azure. Les mêmes données peuvent être écrites dans des objets blob JSON et/ou des Event Hubs, mais vous ne pouvez pas désactiver le stockage des données dans une table. Toutes les instances de l’extension de diagnostic configuré pour utiliser le même nom et le même point de terminaison de compte de stockage ajoutent leurs mesures et leurs journaux à la même table. Si un trop grand nombre de machines virtuelles écrivent dans la même partition de table, Azure peut limiter les écritures sur cette partition. Le paramètre eventVolume permet de répartir les entrées entre 1 (Small), 10 (Medium) ou 100 (Large) partitions différentes. En règle générale, « Medium » est suffisant pour que le trafic ne soit pas limité. La fonctionnalité des métriques Azure du portail Azure utilise les données de cette table pour produire des graphes ou déclencher des alertes. Le nom de la table est la concaténation des chaînes suivantes :
 
 * `WADMetrics`
-* Hello « scheduledTransferPeriod » pour hello agrégées des valeurs stockées dans la table de hello
+* « ScheduledTransferPeriod » pour les valeurs agrégées stockées dans la table
 * `P10DV2S`
-* Une date, dans l’écran hello « AAAAMMJJ », ce qui modifie tous les 10 jours
+* Une date, sous la forme « AAAAMMJJ », qui change tous les 10 jours
 
 Exemples : `WADMetricsPT1HP10DV2S20170410` et `WADMetricsPT1MP10DV2S20170609`.
 
@@ -347,20 +347,20 @@ Exemples : `WADMetricsPT1HP10DV2S20170410` et `WADMetricsPT1MP10DV2S20170609`.
 }
 ```
 
-Cette section facultative contrôle collection hello de journaux d’événements à partir de syslog. Si la section de hello est omise, les événements syslog ne sont pas capturés du tout.
+Cette section facultative contrôle la collecte des événements des journaux de Syslog. Si la section est omise, les événements Syslog ne sont pas capturés du tout.
 
-Hello syslogEventConfiguration comporte une entrée pour chaque fonction syslog dignes d’intérêt. Si minSeverity est « NONE » pour une installation donnée, ou si cette fonctionnalité n’apparaît pas du tout dans l’élément de hello, aucun événement à partir de cette fonctionnalité n’est capturées.
+La collection syslogEventConfiguration a une entrée pour chaque fonction Syslog intéressante. Si minSeverity est défini sur « NONE » pour une fonction donnée ou si cette fonction n’apparaît pas du tout dans l’élément, aucun événement de cette fonction n’est capturé.
 
 Élément | Valeur
 ------- | -----
-sinks | Une liste séparée par des virgules des noms des récepteurs toowhich de journal des événements sont publiés. Tous les événements de journal correspondant à des restrictions de hello dans syslogEventConfiguration sont publiées tooeach répertorié récepteur. Exemple : « EHforsyslog »
-facilityName | Nom de fonction Syslog (comme « LOG\_USER » ou « LOG\_LOCAL0 »). Voir « installation » hello section hello [page de manuel syslog](http://man7.org/linux/man-pages/man3/syslog.3.html) pour la liste complète hello.
-minSeverity | Niveau de gravité Syslog (comme « LOG\_ERR » ou « LOG\_INFO »). Consultez la section « niveau » de hello Hello [page de manuel syslog](http://man7.org/linux/man-pages/man3/syslog.3.html) pour la liste complète hello. extension de Hello capture la fonctionnalité de toohello événements envoyés à ou ci-dessus hello spécifié au niveau.
+sinks | Une liste séparée par des virgules de noms de récepteurs sur lesquels des événements de journaux sont publiés. Tous les événements de journaux correspondant aux restrictions de syslogEventConfiguration sont publiés sur chaque récepteur répertorié. Exemple : « EHforsyslog »
+facilityName | Nom de fonction Syslog (comme « LOG\_USER » ou « LOG\_LOCAL0 »). Consultez la section « facility » de la [page du manuel Syslog](http://man7.org/linux/man-pages/man3/syslog.3.html) pour obtenir la liste complète.
+minSeverity | Niveau de gravité Syslog (comme « LOG\_ERR » ou « LOG\_INFO »). Consultez la section « level » de la [page du manuel Syslog](http://man7.org/linux/man-pages/man3/syslog.3.html) pour obtenir la liste complète. L’extension capture les événements envoyés à la fonction à un niveau supérieur ou égal au niveau spécifié.
 
-Lorsque vous spécifiez `syslogEvents`, SCÉNARISTE écrit toujours table tooa de données dans le stockage Azure. Vous pouvez avoir hello même les données écrites tooJSON BLOB et/ou les concentrateurs d’événements, mais vous ne pouvez pas désactiver le stockage table tooa de données. Hello partitionnement le comportement de cette table est hello identique à celle décrite pour `performanceCounters`. nom de la table Hello est la concaténation de hello de ces chaînes :
+Quand vous spécifiez `syslogEvents`, l’extension de diagnostic Linux écrit toujours les données dans une table de Stockage Azure. Les mêmes données peuvent être écrites dans des objets blob JSON et/ou des Event Hubs, mais vous ne pouvez pas désactiver le stockage des données dans une table. Le comportement de partitionnement pour cette table est identique à celui décrit pour `performanceCounters`. Le nom de la table est la concaténation des chaînes suivantes :
 
 * `LinuxSyslog`
-* Une date, dans l’écran hello « AAAAMMJJ », ce qui modifie tous les 10 jours
+* Une date, sous la forme « AAAAMMJJ », qui change tous les 10 jours
 
 Exemples : `LinuxSyslog20170410` et `LinuxSyslog20170609`.
 
@@ -382,17 +382,17 @@ Cette section facultative contrôle l’exécution des requêtes [OMI](https://g
 
 Élément | Valeur
 ------- | -----
-namespace | espace de noms OMI de hello (facultatif) dans le hello requête doit être exécutée. Si non spécifié, valeur par défaut de hello est « racine/scx », implémentée par hello [System Center inter-plateformes fournisseurs](http://scx.codeplex.com/wikipage?title=xplatproviders&referringTitle=Documentation).
-query | Hello OMI requête toobe doit être exécutée.
-table | table de stockage Azure hello (facultatif), Bonjour désigné du compte de stockage (voir [paramètres protégés par](#protected-settings)).
-frequency | nombre de hello (facultatif) de secondes entre chaque exécution de requête de hello. La valeur par défaut est 300 (5 minutes). La valeur minimale est de 15 secondes.
-sinks | (facultatif) Une liste séparée par des virgules des noms des résultats des mesures supplémentaires récepteurs toowhich exemple brut doit être publiée. Aucune agrégation de ces exemples brutes n’est calculée par extension de hello ou par les métriques de Azure.
+namespace | (facultatif) L’espace de noms OMI dans lequel la requête doit être exécutée. Si elle n’est pas spécifiée, la valeur par défaut est « root/scx », implémentée par les [fournisseurs multiplateformes System Center](http://scx.codeplex.com/wikipage?title=xplatproviders&referringTitle=Documentation).
+query | Requête OMI à exécuter.
+table | (facultatif) La table de stockage Azure, dans le compte de stockage désigné (consultez [Paramètres protégés](#protected-settings)).
+frequency | (facultatif) Le nombre de secondes entre chaque exécution de la requête. La valeur par défaut est 300 (5 minutes). La valeur minimale est de 15 secondes.
+sinks | (facultatif) Une liste séparée par des virgules de noms de récepteurs supplémentaires sur lesquels les résultats des échantillons bruts des métriques doivent être publiés. Aucune agrégation de ces échantillons bruts n’est calculée par l’extension ou par les métriques Azure.
 
 Vous devez spécifier « table » ou « sinks », ou les deux.
 
 ### <a name="filelogs"></a>fileLogs
 
-Hello de contrôles capturer des fichiers journaux. SCÉNARISTE capture les nouvelles lignes de texte qu’ils sont écrits toohello fichier et écrit les lignes tootable et/ou les récepteurs spécifiés (JsonBlob ou EventHub).
+Contrôle la capture des fichiers journaux. L’extension de diagnostic Linux capture les nouvelles lignes de texte au fil de leur écriture dans le fichier et les écrit dans des lignes de la table et/ou dans les récepteurs spécifiés (JsonBlob ou EventHub).
 
 ```json
 "fileLogs": [
@@ -406,15 +406,15 @@ Hello de contrôles capturer des fichiers journaux. SCÉNARISTE capture les nouv
 
 Élément | Valeur
 ------- | -----
-file | chemin d’accès complet Hello de toobe de fichier journal hello observé et capturées. chemin d’accès Hello doit désigner un fichier unique ; Il ne peut pas nommer un répertoire ou contenir des caractères génériques.
-table | table de stockage Azure hello (facultatif), dans le stockage hello désigné (comme spécifié dans la configuration de hello protégé), dans les nouvelles lignes du compte hello « fin » du fichier de hello est écrits.
-sinks | (facultatif) Une liste séparée par des virgules de noms de lignes de journal supplémentaires récepteurs toowhich envoyé.
+file | Nom du chemin complet du fichier journal à surveiller et à capturer. Le nom du chemin doit désigner un seul fichier. Il ne peut pas nommer un répertoire ni contenir des caractères génériques.
+table | (facultatif) La table Stockage Azure, dans le compte de stockage désigné (tel que spécifié dans la configuration protégée), dans laquelle les nouvelles lignes de la « fin » du fichier sont écrites.
+sinks | (facultatif) Une liste séparée par des virgules des noms des récepteurs supplémentaires auxquels les lignes des journaux sont envoyées.
 
 Vous devez spécifier « table » ou « sinks », ou les deux.
 
-## <a name="metrics-supported-by-hello-builtin-provider"></a>Mesures prises en charge par le fournisseur de builtin hello
+## <a name="metrics-supported-by-the-builtin-provider"></a>Métriques prises en charge par le fournisseur intégré
 
-fournisseur de métrique builtin Hello est une source de métriques plus intéressantes tooa large ensemble d’utilisateurs. Ces métriques se répartissent en cinq classes principales :
+Le fournisseur de métriques intégré est une source de métriques parmi les plus intéressantes pour un large éventail d’utilisateurs. Ces métriques se répartissent en cinq classes principales :
 
 * Processeur
 * Mémoire
@@ -422,27 +422,27 @@ fournisseur de métrique builtin Hello est une source de métriques plus intére
 * Filesystem
 * Disque
 
-### <a name="builtin-metrics-for-hello-processor-class"></a>métriques de Builtin pour hello classe du processeur
+### <a name="builtin-metrics-for-the-processor-class"></a>métriques intégrées pour la classe Processeur
 
-Hello classe du processeur de métriques fournit des informations sur l’utilisation du processeur Bonjour machine virtuelle. Lors de l’agrégation des pourcentages, hello résulte moyenne de hello toutes les unités centrales. Dans une machine virtuelle avec deux cœurs, si un seul cœur était occupé à 100 % et hello autres 100 % inactif, hello signalé que percentidletime serait 50. Si chaque noyau a 50 % de disponibilité pour hello même période, hello signalé le résultat est également 50. Quatre principaux de machine virtuelle, avec un seul cœur 100 % occupé et hello autres inactif, hello signalé que percentidletime serait 75.
+La classe de métriques Processeur fournit des informations sur l’utilisation du processeur dans la machine virtuelle. Lors de l’agrégation de pourcentages, le résultat est la moyenne pour toutes les UC. Dans une machine virtuelle à deux cœurs, si un cœur a été occupé à 100 % et que l’autre a été inactif à 100 %, la valeur de PercentIdleTime serait ainsi 50. Si chaque cœur a été occupé à 50 % pour la même période, le résultat serait également 50. Dans une machine virtuelle à quatre cœurs, si un cœur a été occupé à 100 % et que les autres ont été inactifs, la valeur de PercentIdleTime serait 75.
 
 counter | Signification
 ------- | -------
-PercentIdleTime | Pourcentage de temps au cours de la fenêtre d’agrégation hello que processeurs sont exécutaient boucle inactive du noyau hello
+PercentIdleTime | Pourcentage de temps de la fenêtre d’agrégation pendant lequel les processeurs ont exécuté la boucle d’inactivité du noyau
 percentProcessorTime | Pourcentage de temps passé à exécuter un thread actif
-PercentIOWaitTime | Pourcentage de temps d’attente des toocomplete des opérations d’e/s
+PercentIOWaitTime | Pourcentage de temps passé à attendre la fin d’opérations d’E/S
 PercentInterruptTime | Pourcentage de temps passé à exécuter des interruptions matérielles/logicielles et des appels DPC (appels de procédure différés)
-PercentUserTime | De temps au cours de la fenêtre d’agrégation hello, pourcentage de hello de temps passé dans utilisateur plus au niveau de priorité normale
-PercentNiceTime | De temps, hello le pourcentage de temps passé à basse priorité (nice)
-PercentPrivilegedTime | De temps, hello le pourcentage de temps passé en mode privilégié (noyau)
+PercentUserTime | Pourcentage de temps passé pour l’utilisateur à une priorité supérieure à la normale, relativement au temps d’activité de la fenêtre d’agrégation
+PercentNiceTime | Pourcentage de temps passé à une priorité abaissée (commande nice), relativement au temps d’activité
+PercentPrivilegedTime | Pourcentage de temps passé en mode privilégié (noyau), relativement au temps d’activité
 
-Hello tout d’abord quatre compteurs doivent additionner too100 %. Hello dernière trois compteurs également somme too100 % ; ils subdivisent somme hello PercentProcessorTime PercentIOWaitTime et PercentInterruptTime.
+La somme des quatre premiers compteurs doit être de 100 %. La somme des trois derniers compteurs est également de 100 %. Ils subdivisent la somme de PercentProcessorTime, PercentIOWaitTime et PercentInterruptTime.
 
-tooobtain une seule mesure agrégée sur tous les processeurs, définissez `"condition": "IsAggregate=TRUE"`. tooobtain une métrique pour un processeur spécifique, telles que le deuxième processeur logique hello de quatre principaux de machine virtuelle, définissez `"condition": "Name=\\"1\\""`. Numéros des processeurs logiques sont dans la plage de hello `[0..n-1]`.
+Pour obtenir une seule métrique agrégée pour tous les processeurs, définissez `"condition": "IsAggregate=TRUE"`. Pour obtenir une métrique pour un processeur spécifique, par exemple le deuxième processeur logique d’une machine virtuelle à quatre cœurs, définissez `"condition": "Name=\\"1\\""`. Les numéros des processeurs logiques sont dans la plage `[0..n-1]`.
 
-### <a name="builtin-metrics-for-hello-memory-class"></a>métriques de Builtin pour hello classe de mémoire
+### <a name="builtin-metrics-for-the-memory-class"></a>métriques intégrées pour la classe Mémoire
 
-Hello classe de mémoire de métriques fournit des informations sur l’utilisation de mémoire, la pagination et le remplacement.
+La classe de métriques Mémoire fournit des informations sur l’utilisation, la pagination et les échanges de la mémoire.
 
 counter | Signification
 ------- | -------
@@ -452,17 +452,17 @@ UsedMemory | Mémoire physique utilisée (Mio)
 PercentUsedMemory | Mémoire physique utilisée sous forme de pourcentage de la mémoire totale
 PagesPerSec | Pagination totale (lecture/écriture)
 PagesReadPerSec | Pages lues dans le magasin de stockage (fichier d’échange, fichier programme, fichier mappé, etc.)
-PagesWrittenPerSec | Stocker les pages écrites toobacking (fichier d’échange, fichier mappé, etc.).
+PagesWrittenPerSec | Pages écrites dans le magasin de stockage (fichier d’échange, fichier mappé, etc.)
 AvailableSwap | Espace d’échange non utilisé (Mio)
 PercentAvailableSwap | Espace d’échange non utilisé sous forme de pourcentage de l’espace d’échange total
 UsedSwap | Espace d’échange utilisé (Mio)
 PercentUsedSwap | Espace d’échange utilisé sous forme de pourcentage de l’espace d’échange total
 
-Cette classe de métriques n’a qu’une seule instance. attribut de « condition » Hello possède pas de paramètres utiles et doit être omis.
+Cette classe de métriques n’a qu’une seule instance. L’attribut « condition » n’a pas de paramètre utile et doit être omis.
 
-### <a name="builtin-metrics-for-hello-network-class"></a>métriques de Builtin pour hello classe du réseau
+### <a name="builtin-metrics-for-the-network-class"></a>métriques intégrées pour la classe Réseau
 
-Hello classe réseau de métriques fournit des informations sur l’activité du réseau sur une interface réseau depuis le démarrage. L’extension de diagnostic Linux n’expose pas de métriques de la bande passante, qui peuvent être récupérées à partir des métriques de l’hôte.
+La classe de métriques Réseau fournit des informations sur l’activité réseau sur une interface réseau individuelle depuis le démarrage. L’extension de diagnostic Linux n’expose pas de métriques de la bande passante, qui peuvent être récupérées à partir des métriques de l’hôte.
 
 compteur | Signification
 ------- | -------
@@ -473,15 +473,15 @@ PacketsTransmitted | Nombre total de paquets envoyés depuis le démarrage
 PacketsReceived | Nombre total de paquets reçus depuis le démarrage
 TotalRxErrors | Nombre d’erreurs de réception depuis le démarrage
 TotalTxErrors | Nombre d’erreurs de transmission depuis le démarrage
-TotalCollisions | Nombre de collisions signalées par des ports réseau hello depuis le démarrage
+TotalCollisions | Nombre de collisions signalées par les ports réseau depuis le démarrage
 
- Bien que cette classe soit instanciée, l’extension de diagnostic Linux ne prend pas en charge la capture de métriques réseau agrégées pour tous les périphériques réseau. définir des métriques de hello tooobtain pour une interface spécifique, tel qu’eth0, `"condition": "InstanceID=\\"eth0\\""`.
+ Bien que cette classe soit instanciée, l’extension de diagnostic Linux ne prend pas en charge la capture de métriques réseau agrégées pour tous les périphériques réseau. Pour obtenir les métriques pour une interface spécifique, comme eth0, définissez `"condition": "InstanceID=\\"eth0\\""`.
 
-### <a name="builtin-metrics-for-hello-filesystem-class"></a>métriques de Builtin pour hello classe du système de fichiers
+### <a name="builtin-metrics-for-the-filesystem-class"></a>métriques intégrées pour la classe Filesystem
 
-Hello classe de système de fichiers de métriques fournit des informations sur l’utilisation du système de fichiers. Valeurs absolues et le pourcentage sont signalés comme utilisateur ordinaire de tooan affichées (pas de racine).
+La classe de métriques Filesystem fournit des informations sur l’utilisation du système de fichiers. Les valeurs absolues et en pourcentage sont indiquées comme elles sont affichées pour un utilisateur ordinaire (non root).
 
-counter | Signification
+compteur | Signification
 ------- | -------
 FreeSpace | Espace disque disponible en octets
 UsedSpace | Espace disque utilisé en octets
@@ -498,11 +498,11 @@ TransfersPerSecond | Opérations de lecture ou d’écriture par seconde
 
 Les valeurs agrégées pour tous les systèmes de fichiers peuvent être obtenues en définissant `"condition": "IsAggregate=True"`. Les valeurs pour un système de fichiers monté spécifique, comme « / mnt », peuvent être obtenues en définissant `"condition": 'Name="/mnt"'`.
 
-### <a name="builtin-metrics-for-hello-disk-class"></a>métriques de Builtin pour hello classe disque
+### <a name="builtin-metrics-for-the-disk-class"></a>métriques intégrées pour la classe Disque
 
-Hello classe disque de métriques fournit des informations sur l’utilisation du disque. Ces statistiques s’appliquent toohello intégralité du lecteur. S’il existe plusieurs systèmes de fichiers sur un appareil, compteurs hello pour cet appareil sont en réalité, agrégés sur tous les.
+La classe de métriques Disque fournit des informations sur l’utilisation du disque. Ces statistiques s’appliquent à la totalité du lecteur. S’il existe plusieurs systèmes de fichiers sur un périphérique, les compteurs pour ce périphérique sont agrégés pour tous les systèmes.
 
-counter | Signification
+compteur | Signification
 ------- | -------
 ReadsPerSecond | Opérations de lecture par seconde
 WritesPerSecond | Opérations d’écriture par seconde
@@ -515,21 +515,21 @@ ReadBytesPerSecond | Nombre d’octets lus par seconde
 WriteBytesPerSecond | Nombre d’octets écrits par seconde
 Octets par seconde | Nombre d’octets lus ou écrits par seconde
 
-Les valeurs agrégées pour tous les disques peuvent être obtenues en définissant `"condition": "IsAggregate=True"`. jeu d’informations tooget pour un périphérique spécifique (par exemple, / dev/sdf1), `"condition": "Name=\\"/dev/sdf1\\""`.
+Les valeurs agrégées pour tous les disques peuvent être obtenues en définissant `"condition": "IsAggregate=True"`. Pour obtenir des informations pour un périphérique spécifique (par exemple /dev/sdf1), définissez `"condition": "Name=\\"/dev/sdf1\\""`.
 
 ## <a name="installing-and-configuring-lad-30-via-cli"></a>Installation et configuration de l’extension de diagnostic Linux 3.0 via CLI
 
-En supposant que vos paramètres protégés sont dans le fichier de hello PrivateConfig.json et vos informations de configuration publique est PublicConfig.json, exécutez la commande suivante :
+En supposant que vos paramètres protégés sont dans le fichier PrivateConfig.json et que vos informations de configuration publique sont PublicConfig.json, exécutez la commande suivante :
 
 ```azurecli
 az vm extension set *resource_group_name* *vm_name* LinuxDiagnostic Microsoft.Azure.Diagnostics '3.*' --private-config-path PrivateConfig.json --public-config-path PublicConfig.json
 ```
 
-commande Hello suppose que vous utilisez le mode de gestion des ressources Azure hello (arm) de hello CLI d’Azure. tooconfigure SCÉNARISTE pour le déploiement classique (ASM) VMs du modèle, trop de basculer le mode « asm » (`azure config mode asm`) et omettre le nom de groupe de ressources hello dans la commande hello. Pour plus d’informations, consultez hello [documentation relative à CLI inter-plateformes](https://docs.microsoft.com/azure/xplat-cli-connect).
+La commande suppose que vous utilisez le mode Azure Resource Manager (arm) d’Azure CLI. Pour configurer l’extension de diagnostic Linux pour des machines virtuelles du modèle de déploiement classique (ASM), passez au mode « asm » (`azure config mode asm`) et omettez le nom du groupe de ressources dans la commande. Pour plus d’informations, consultez la [documentation relative à l’interface de ligne de commande multiplateforme](https://docs.microsoft.com/azure/xplat-cli-connect).
 
 ## <a name="an-example-lad-30-configuration"></a>Exemple de configuration de l’extension de diagnostic Linux 3.0
 
-En fonction de hello précédant définitions, ici un exemple de configuration d’extension SCÉNARISTE 3.0 avec une explication. tooapply cet exemple tooyour de cas, vous devez utiliser votre propre nom de compte de stockage, le compte jeton SAS et des jetons EventHubs SAS.
+Voici un exemple de configuration de l’extension de diagnostic Linux 3.0 basé sur les définitions précédentes, avec quelques explications. Pour appliquer cet exemple à votre cas, vous devez utiliser le nom de votre compte de stockage, votre jeton SAS de compte SAP et vos jetons SAS EventHubs.
 
 ### <a name="privateconfigjson"></a>PrivateConfig.json
 
@@ -585,15 +585,15 @@ Ces paramètres privés configurent :
 
 Ces paramètres publics font que l’extension de diagnostic Linux :
 
-* Télécharger les métriques pourcentage de temps de processeur et l’espace disque utilisé toohello `WADMetrics*` table
-* Télécharger les messages syslog fonctionnalité « utilisateur » et la gravité « info » toohello `LinuxSyslog*` table
-* Télécharger brutes OMI requête résultats (PercentProcessorTime et PercentIdleTime) toohello nommé `LinuxCPU` table
-* Télécharger les lignes ajoutées dans le fichier `/var/log/myladtestlog` toohello `MyLadTestLog` table
+* Charge les métriques de pourcentage de temps processeur et d’espace disque utilisé dans la table `WADMetrics*`
+* Charge les messages depuis la fonction Syslog « user » et le niveau de gravité « info » dans la table `LinuxSyslog*`
+* Charge les résultats bruts des requêtes OMI (PercentProcessorTime et PercentIdleTime) dans la table nommée `LinuxCPU`
+* Charge les lignes ajoutées au fichier `/var/log/myladtestlog` dans la table `MyLadTestLog`
 
 Dans chaque cas, les données sont également chargées dans :
 
-* Stockage d’objets Blob Azure (nom du conteneur est tel que défini dans le récepteur de JsonBlob hello)
-* Point de terminaison EventHubs (comme spécifié dans le récepteur de EventHubs hello)
+* Stockage Blob Azure (le nom du conteneur est celui qui est défini dans le récepteur JsonBlob)
+* Point de terminaison EventHubs (comme spécifié dans le récepteur EventHubs)
 
 ```json
 {
@@ -672,35 +672,35 @@ Dans chaque cas, les données sont également chargées dans :
 }
 ```
 
-Hello `resourceId` hello configuration doit correspondre aux que de l’échelle de machines virtuelles de machine virtuelle ou hello hello définie.
+Le `resourceId` dans la configuration doit correspondre à celui de la machine virtuelle ou du groupe de machines virtuelles identiques.
 
-* Métriques de plateforme Azure graphiques et d’alerte sait resourceId hello Hello ordinateur virtuel sur lequel vous travaillez. Il attend des données de hello toofind pour votre machine virtuelle à l’aide de la clé de recherche hello resourceId hello.
-* Si vous utilisez Azure mise à l’échelle, resourceId hello dans la configuration de mise à l’échelle hello doit correspondre à resourceId hello utilisé par SCÉNARISTE.
-* Hello resourceId est intégrée à des noms de hello de JsonBlobs écrits par SCÉNARISTE.
+* Les graphes et les alertes des métriques de la plateforme Azure connaissent le resourceId de la machine virtuelle sur laquelle vous travaillez. Ils s’attendent à trouver les données pour votre machine virtuelle en utilisant le resourceId comme clé de recherche.
+* Si vous utilisez la mise à l’échelle automatique d’Azure, le resourceId dans la configuration de la mise à l’échelle automatique doit correspondre au resourceId utilisé par l’extension de diagnostic Linux.
+* Le resourceId est intégré dans les noms des récepteurs JsonBlob écrit par l’extension de diagnostic Linux.
 
 ## <a name="view-your-data"></a>Affichage de vos données
 
-Utiliser des données de performances hello tooview portail Azure, ou définir des alertes :
+Utilisez le portail Azure pour afficher les données de performances ou pour définir des alertes :
 
 ![image](./media/diagnostic-extension/graph_metrics.png)
 
-Hello `performanceCounters` données sont toujours stockées dans une table de stockage Azure. Les API Stockage Azure sont disponibles pour de nombreux langages et de nombreuses plateformes.
+Les données `performanceCounters` sont toujours stockées dans une table de Stockage Azure. Les API Stockage Azure sont disponibles pour de nombreux langages et de nombreuses plateformes.
 
-Données envoyées tooJsonBlob récepteurs sont stockées dans des objets BLOB dans le compte de stockage hello nommé Bonjour [paramètres protégés par](#protected-settings). Vous pouvez utiliser les données d’objet blob hello à l’aide des API de stockage Blob Azure.
+Les données envoyées aux récepteurs JsonBlob sont stockées dans des objets blob dans le compte de stockage nommé dans les [paramètres protégés](#protected-settings). Vous pouvez consommer les données d’objet blob à l’aide des API de Stockage Blob Azure.
 
-En outre, vous pouvez utiliser ces données de l’interface utilisateur outils tooaccess hello dans le stockage Azure :
+Vous pouvez aussi utiliser ces outils d’interface utilisateur pour accéder aux données de Stockage Azure :
 
 * Explorateur de serveurs Visual Studio.
 * [Explorateur de stockage Microsoft Azure](https://azurestorageexplorer.codeplex.com/ "Explorateur de stockage Azure").
 
-Cet instantané d’une session de Microsoft Azure Storage Explorer affiche hello généré des tables de stockage Azure et les conteneurs à partir d’une extension SCÉNARISTE 3.0 correctement configurée sur une machine virtuelle de test. image de Hello ne correspond pas exactement à hello [exemple de configuration SCÉNARISTE 3.0](#an-example-lad-30-configuration).
+Cette capture instantanée d’une session de l’Explorateur de stockage Microsoft Azure montre les tables et les conteneurs Stockage Azure générés à partir d’une extension de diagnostic Linux 3.0 correctement configurée sur une machine virtuelle de test. L’image ne correspond pas exactement à [l’exemple de configuration de l’extension de diagnostic Linux 3.0](#an-example-lad-30-configuration).
 
 ![image](./media/diagnostic-extension/stg_explorer.png)
 
-Consultez hello pertinentes [EventHubs documentation](../../event-hubs/event-hubs-what-is-event-hubs.md) toolearn comment tooconsume messages publiés tooan EventHubs point de terminaison.
+Consultez la [documentation EventHubs](../../event-hubs/event-hubs-what-is-event-hubs.md) appropriée pour savoir comment consommer des messages publiés sur un point de terminaison EventHubs.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Créer des alertes de métriques dans [moniteur Azure](../../monitoring-and-diagnostics/insights-alerts-portal.md) pour vous collectez les mesures de hello.
+* Créez des alertes de métrique dans [Azure Monitor](../../monitoring-and-diagnostics/insights-alerts-portal.md) pour les métriques que vous collectez.
 * Créez [des graphiques de surveillance](../../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md) pour vos métriques.
-* Découvrez comment trop[créer un ensemble d’échelle de machine virtuelle](/azure/virtual-machines/linux/tutorial-create-vmss) à l’aide de votre échelle toocontrol de métriques.
+* Découvrez comment [créer un groupe de machines virtuelles identiques](/azure/virtual-machines/linux/tutorial-create-vmss) en utilisant vos métriques pour contrôler la mise à l’échelle automatique.

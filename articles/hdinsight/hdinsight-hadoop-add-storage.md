@@ -1,6 +1,6 @@
 ---
-title: "les comptes de stockage Azure supplémentaires d’aaaAdd tooHDInsight | Documents Microsoft"
-description: "Découvrez comment le stockage Azure supplémentaires tooadd comptes tooan les cluster HDInsight existant."
+title: "Ajouter des comptes de stockage Azure supplémentaires à HDInsight | Microsoft Docs"
+description: "Découvrez comment ajouter des comptes de stockage Azure supplémentaires à un cluster HDInsight existant."
 services: hdinsight
 documentationCenter: 
 author: Blackmist
@@ -15,75 +15,75 @@ ms.workload: big-data
 ms.date: 08/04/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: ce5acfa4b61bf7e83b1fb374d64a1eaa3182fbec
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0853e8605e07c28867676e9c13b89263ade67c88
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="add-additional-storage-accounts-toohdinsight"></a>Ajouter tooHDInsight des comptes de stockage supplémentaire
+# <a name="add-additional-storage-accounts-to-hdinsight"></a>Ajouter des comptes de stockage supplémentaires à HDInsight
 
-Découvrez comment toouse script actions tooadd supplémentaires le stockage Azure comptes tooHDInsight. Hello étapes de ce document ajoutent un cluster HDInsight de basés sur Linux stockage compte tooan existant.
+Découvrez comment utiliser des actions de script pour ajouter des comptes de stockage Azure à HDInsight. Les étapes décrites dans ce document permettent d’ajouter un compte de stockage à un cluster HDInsight existant basé sur Linux.
 
 > [!IMPORTANT]
-> informations Hello dans ce document sont sur l’ajout de cluster de stockage supplémentaire tooa après que qu’elle a été créée. Pour plus d’informations sur l’ajout de comptes de stockage lors de la création du cluster, voir [Configurer des clusters dans HDInsight avec Hadoop, Spark, Kafka, etc](hdinsight-hadoop-provision-linux-clusters.md).
+> Ce document porte sur l’ajout de stockage supplémentaire à un cluster après que celui-ci a été créé. Pour plus d’informations sur l’ajout de comptes de stockage lors de la création du cluster, voir [Configurer des clusters dans HDInsight avec Hadoop, Spark, Kafka, etc](hdinsight-hadoop-provision-linux-clusters.md).
 
 ## <a name="how-it-works"></a>Fonctionnement
 
-Ce script accepte hello paramètres suivants :
+Le script utilise les paramètres suivants :
 
-* __Nom de compte de stockage Azure__: nom hello du cluster HDInsight de hello stockage compte tooadd toohello. Après avoir exécuté le script de hello, HDInsight peut lire et écrire les données stockées dans ce compte de stockage.
+* __Nom du compte de stockage Azure__ : nom du compte de stockage à ajouter au cluster HDInsight. Une fois le script exécuté, HDInsight est en mesure de lire et d’écrire des données stockées dans ce compte de stockage.
 
-* __Clé de compte de stockage Azure__: une clé qui accorde l’accès toohello de stockage Azure.
+* __Clé du compte de stockage Azure__ : clé qui donne accès au compte de stockage.
 
-* __p -__ (facultatif) : si spécifié, la clé de hello n’est pas chiffré et est stocké dans le fichier core-site.XML de hello en tant que texte brut.
+* __p -__ (facultatif) : si ce paramètre est spécifié, la clé n’est pas chiffrée et est stockée en texte brut dans le fichier core-site.xml.
 
-Au cours du traitement, hello de script effectue hello suivant des actions :
+Pendant le traitement, le script effectue les opérations suivantes :
 
-* Si hello compte de stockage existe déjà dans la configuration de base-site.XML hello pour le cluster de hello, hello script s’arrête et aucune action supplémentaire n’est effectuée.
+* Si le compte de stockage existe déjà dans la configuration core-site.xml du cluster, le script s’arrête et aucune action supplémentaire n’est effectuée.
 
-* Vérifie que le compte de stockage hello existe et est accessible à l’aide de la clé de hello.
+* Il vérifie que le compte de stockage existe et est accessible à l’aide de la clé.
 
-* Chiffre clé hello à l’aide des informations d’identification du cluster hello.
+* Il chiffre la clé à l’aide des informations d’identification du cluster.
 
-* Ajoute le fichier core-site.XML toohello hello stockage compte.
+* Il ajoute le compte de stockage dans le fichier core-site.xml.
 
-* Arrête et redémarre les services Oozie, fils, MapReduce2 et HDFS hello. Arrêter et démarrer ces services leur permet de toouse hello nouveau compte de stockage.
+* Il arrête et redémarre les services Oozie, YARN, MapReduce2 et HDFS. L’arrêt et le redémarrage de ces services leur permettent d’utiliser le nouveau compte de stockage.
 
 > [!WARNING]
-> À l’aide d’un compte de stockage dans un emplacement autre que le cluster HDInsight de hello n’est pas pris en charge.
+> L’utilisation d’un compte de stockage dans un autre emplacement que le cluster HDInsight n’est pas prise en charge.
 
-## <a name="hello-script"></a>script de Hello
+## <a name="the-script"></a>Le script
 
 __Emplacement du script__ : [https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh](https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh)
 
 __Conditions requises__ :
 
-* script de Hello doit être appliquée sur hello __Head nœuds__.
+* Le script doit être appliqué sur les __nœuds principaux__.
 
-## <a name="toouse-hello-script"></a>script de hello toouse
+## <a name="to-use-the-script"></a>Pour utiliser le script
 
-Ce script peut être utilisé à partir de hello portail Azure, Azure PowerShell, ou hello Azure CLI 1.0. Pour plus d’informations, consultez hello [HDInsight de basés sur Linux de personnaliser des clusters à l’aide d’action de script](hdinsight-hadoop-customize-cluster-linux.md#apply-a-script-action-to-a-running-cluster) document.
+Le script peut être utilisé avec le portail Azure, Azure PowerShell ou Azure CLI 1.0. Pour plus d’informations, consultez le document [Personnalisation de clusters HDInsight basés sur Linux à l’aide d’une action de script](hdinsight-hadoop-customize-cluster-linux.md#apply-a-script-action-to-a-running-cluster).
 
 > [!IMPORTANT]
-> Lorsque vous utilisez les étapes de hello fournies dans le document de personnalisation hello, utilisez hello suivant informations tooapply ce script :
+> Lorsque vous suivez les étapes décrites dans le document de personnalisation, utilisez les informations suivantes pour appliquer ce script :
 >
-> * Remplacez les URI d’action de script exemple hello URI pour ce script (https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh).
-> * Remplacez les exemples de paramètres avec le nom de compte de stockage Windows Azure hello et la clé de cluster de hello stockage compte toobe toohello ajouté. Si à l’aide de hello le portail Azure, ces paramètres doivent être séparés par un espace.
-> * Vous n’avez pas besoin toomark ce script en tant que __Persisted__, tel qu’il met à jour hello Ambari de configuration pour hello cluster directement.
+> * Remplacez l’URI des exemples d’actions de script par l’URI de ce script (https://hdiconfigactions.blob.core.windows.net/linuxaddstorageaccountv01/add-storage-account-v01.sh).
+> * Remplacez les paramètres des exemples par le nom du compte de stockage Azure et la clé du compte de stockage à ajouter au cluster. Si vous utilisez le portail Azure, ces paramètres doivent être séparés par une espace.
+> * Vous n’avez pas besoin de marquer ce script comme __Persistant__, car il met directement à jour la configuration Ambari.
 
 ## <a name="known-issues"></a>Problèmes connus
 
 ### <a name="storage-accounts-not-displayed-in-azure-portal-or-tools"></a>Comptes de stockage non affichés dans le portail ou les outils Azure
 
-Lors de l’affichage hello HDInsight cluster Bonjour portail Azure, en sélectionnant hello __comptes de stockage__ entrée sous __propriétés__ n’affiche pas les comptes de stockage ajoutés à cette action de script. Azure PowerShell et CLI d’Azure n’affichent pas compte de stockage supplémentaire hello soit.
+Lorsque vous affichez le cluster HDInsight dans le portail Azure, les comptes de stockage ajoutés à l’aide de cette action de script ne s’affichent pas lorsque vous sélectionnez l’entrée __Comptes de stockage__ sous __Propriétés__. Azure PowerShell et l’interface de ligne de commande Azure n’affichent pas non plus les comptes de stockage supplémentaires.
 
-informations de stockage Hello n’est pas affichées, car le script de hello modifie uniquement hello core-site.XML de configuration pour hello cluster. Ces informations ne sont pas utilisées lors de la récupération des informations de cluster hello à l’aide des API de gestion Azure.
+Les informations de stockage n’apparaissent pas car le script modifie uniquement la configuration core-site.xml du cluster. Ces informations ne sont pas utilisées lors de la récupération des informations du cluster à l’aide des API de gestion Azure.
 
-les informations de compte de stockage tooview ajouté cluster toohello à l’aide de ce script, utilisez hello Ambari REST API. Utilisez hello suivant de commandes tooretrieve ces informations pour votre cluster :
+Pour afficher les informations des comptes de stockage ajoutés au cluster à l’aide de ce script, utilisez l’API REST Ambari. Pour récupérer ces informations pour votre cluster, utilisez les commandes suivantes :
 
 ```PowerShell
-$creds = Get-Credential -UserName "admin" -Message "Enter hello cluster login credentials"
+$creds = Get-Credential -UserName "admin" -Message "Enter the cluster login credentials"
 $resp = Invoke-WebRequest -Uri "https://$clusterName.azurehdinsight.net/api/v1/clusters/$clusterName/configurations/service_config_versions?service_name=HDFS&service_config_version=1" `
     -Credential $creds
 $respObj = ConvertFrom-Json $resp.Content
@@ -91,62 +91,62 @@ $respObj.items.configurations.properties."fs.azure.account.key.$storageAccountNa
 ```
 
 > [!NOTE]
-> Définissez `$clusterName` nom toohello du cluster HDInsight de hello. Définissez `$storageAccountName` nom toohello hello du compte de stockage. Lorsque vous y êtes invité, entrez la connexion de cluster hello (admin) et le mot de passe.
+> Définissez `$clusterName` sur le nom du cluster HDInsight. Définissez `$storageAccountName` sur le nom du compte de stockage. Lorsque vous y êtes invité, entrez l’ID de connexion (admin) et le mot de passe du cluster.
 
 ```Bash
 curl -u admin:PASSWORD -G "https://CLUSTERNAME.azurehdinsight.net/api/v1/clusters/CLUSTERNAME/configurations/service_config_versions?service_name=HDFS&service_config_version=1" | jq '.items[].configurations[].properties["fs.azure.account.key.$STORAGEACCOUNTNAME.blob.core.windows.net"] | select(. != null)'
 ```
 
 > [!NOTE]
-> Définissez `$PASSWORD` mot de passe de compte à la connexion (admin) toohello cluster. Définissez `$CLUSTERNAME` nom toohello du cluster HDInsight de hello. Définissez `$STORAGEACCOUNTNAME` nom toohello hello du compte de stockage.
+> Définissez `$PASSWORD` sur l’ID de connexion (admin) et le mot de passe du cluster. Définissez `$CLUSTERNAME` sur le nom du cluster HDInsight. Définissez `$STORAGEACCOUNTNAME` sur le nom du compte de stockage.
 >
-> Cet exemple utilise [curl (http://curl.haxx.se/)](http://curl.haxx.se/) et [jq (https://stedolan.github.io/jq/)](https://stedolan.github.io/jq/) tooretrieve et l’analyse des données JSON.
+> Cet exemple utilise [curl (http://curl.haxx.se/)](http://curl.haxx.se/) et [jq (https://stedolan.github.io/jq/)](https://stedolan.github.io/jq/) pour récupérer et analyser les données JSON.
 
-Lorsque vous utilisez cette commande, remplacez __CLUSTERNAME__ avec nom hello du cluster HDInsight de hello. Remplacez __mot de passe__ avec un mot de passe de connexion pour le cluster de hello hello HTTP. Remplacez __STORAGEACCOUNT__ avec nom hello hello du compte de stockage ajouté à l’aide d’action de script. Informations retournées par cette commande apparaissent toohello similaire après le texte :
+Lorsque vous utilisez cette commande, remplacez __CLUSTERNAME__ par le nom du cluster HDInsight. Remplacez __PASSWORD__ par le mot de passe de connexion HTTP du cluster. Remplacez __STORAGEACCOUNT__ par le nom du compte de stockage ajouté à l’aide de l’action de script. Les informations renvoyées par cette commande sont semblables au texte suivant :
 
     "MIIB+gYJKoZIhvcNAQcDoIIB6zCCAecCAQAxggFaMIIBVgIBADA+MCoxKDAmBgNVBAMTH2RiZW5jcnlwdGlvbi5henVyZWhkaW5zaWdodC5uZXQCEA6GDZMW1oiESKFHFOOEgjcwDQYJKoZIhvcNAQEBBQAEggEATIuO8MJ45KEQAYBQld7WaRkJOWqaCLwFub9zNpscrquA2f3o0emy9Vr6vu5cD3GTt7PmaAF0pvssbKVMf/Z8yRpHmeezSco2y7e9Qd7xJKRLYtRHm80fsjiBHSW9CYkQwxHaOqdR7DBhZyhnj+DHhODsIO2FGM8MxWk4fgBRVO6CZ5eTmZ6KVR8wYbFLi8YZXb7GkUEeSn2PsjrKGiQjtpXw1RAyanCagr5vlg8CicZg1HuhCHWf/RYFWM3EBbVz+uFZPR3BqTgbvBhWYXRJaISwssvxotppe0ikevnEgaBYrflB2P+PVrwPTZ7f36HQcn4ifY1WRJQ4qRaUxdYEfzCBgwYJKoZIhvcNAQcBMBQGCCqGSIb3DQMHBAhRdscgRV3wmYBg3j/T1aEnO3wLWCRpgZa16MWqmfQPuansKHjLwbZjTpeirqUAQpZVyXdK/w4gKlK+t1heNsNo1Wwqu+Y47bSAX1k9Ud7+Ed2oETDI7724IJ213YeGxvu4Ngcf2eHW+FRK"
 
-Ce texte est un exemple d’une clé chiffrée, ce qui est utilisé tooaccess hello compte de stockage.
+Ce texte est un exemple de clé chiffrée, utilisée pour accéder au compte de stockage.
 
-### <a name="unable-tooaccess-storage-after-changing-key"></a>Stockage tooaccess impossible après avoir modifié la clé
+### <a name="unable-to-access-storage-after-changing-key"></a>Impossible d’accéder au stockage après avoir modifié la clé
 
-Si vous modifiez la clé de hello pour un compte de stockage, HDInsight peut ne plus accéder aux comptes de stockage hello. HDInsight utilise une copie mise en cache de clé dans hello core-site.XML pour le cluster de hello. Cette copie mise en cache doit être la nouvelle clé de hello toomatch mis à jour.
+Si vous modifiez la clé d’un compte de stockage, HDInsight ne peut plus accéder au compte de stockage. HDInsight utilise une copie de la clé mise en cache dans le fichier core-site.xml pour le cluster. Cette copie mise en cache doit être mise à jour pour correspondre à la nouvelle clé.
 
-Action de script hello à nouveau en cours d’exécution est __pas__ mettre à jour de la clé de hello, que le contrôle de script de hello toosee si une entrée pour le compte de stockage hello existe déjà. Si une entrée existe déjà, aucune modification n’est apportée.
+Si vous exécutez de nouveau l’action de script, la clé n’est __pas__ mise à jour, car le script vérifie s’il existe déjà une entrée pour le compte de stockage. Si une entrée existe déjà, aucune modification n’est apportée.
 
-toowork résoudre ce problème, vous devez supprimer l’entrée existante de hello hello compte de stockage. Utilisez hello étapes tooremove hello existant entrée suivante :
+Pour contourner ce problème, vous devez supprimer l’entrée existante pour le compte de stockage. Procédez comme suit pour supprimer l’entrée existante :
 
-1. Dans un navigateur web, ouvrez hello l’interface utilisateur de Ambari Web pour votre cluster HDInsight. Hello URI est https://CLUSTERNAME.azurehdinsight.net. Remplacez __CLUSTERNAME__ avec nom hello de votre cluster.
+1. Dans un navigateur web, ouvrez l’interface utilisateur web Ambari pour votre cluster HDInsight. L’URI est https://CLUSTERNAME.azurehdinsight.net. Remplacez __CLUSTERNAME__ par le nom de votre cluster.
 
-    Lorsque vous y êtes invité, entrez hello HTTP nom d’utilisateur et mot de passe pour votre cluster.
+    Lorsque vous y êtes invité, saisissez le nom d’utilisateur et le mot de passe de connexion HTTP de votre cluster.
 
-2. À partir de la liste de hello des services sur la gauche hello de page de hello, sélectionnez __HDFS__. Puis sélectionnez hello __configurations__ onglet dans le centre de hello de page de hello.
+2. Dans la liste des services située à gauche de la page, sélectionnez __HDFS__. Ensuite, sélectionnez l’onglet __Configurations__ au centre de la page.
 
-3. Bonjour __filtre...__  , entrez une valeur de __fs.azure.account__. Cela retourne les entrées pour tous les comptes de stockage supplémentaires ont été ajoutées toohello cluster. Il existe deux types d’entrées : __keyprovider__ et __key__. Tous les deux contenir le nom hello hello du compte de stockage en tant que partie du nom de la clé hello.
+3. Dans la __Filtrer...__, entrez une valeur de __fs.azure.account__. Des entrées sont renvoyées pour tous les comptes de stockage supplémentaires qui ont été ajoutés au cluster. Il existe deux types d’entrées : __keyprovider__ et __key__. Les deux contiennent le nom du compte de stockage dans le nom de la clé.
 
-    Hello Voici des exemples d’entrées pour un compte de stockage nommé __mystorage__:
+    Voici des exemples d’entrées pour un compte de stockage nommé __mystorage__ :
 
         fs.azure.account.keyprovider.mystorage.blob.core.windows.net
         fs.azure.account.key.mystorage.blob.core.windows.net
 
-4. Après avoir identifié les clés hello pour le compte de stockage hello vous devez tooremove, utilisez hello rouge '-' toohello icône à droite de hello entrée toodelete il. Utilisez ensuite hello __enregistrer__ bouton toosave vos modifications.
+4. Après avoir identifié les clés du compte de stockage à supprimer, utilisez l’icône « - » rouge à droite de l’entrée pour procéder à la suppression. Ensuite, cliquez sur le bouton __Enregistrer__ pour enregistrer vos modifications.
 
-5. Une fois que les modifications ont été enregistrées, utilisez le compte de stockage hello script action tooadd hello et le nouveau cluster toohello de valeur de clé.
+5. Une fois les modifications enregistrées, utilisez l’action de script pour ajouter le compte de stockage et la nouvelle valeur de clé du cluster.
 
 ### <a name="poor-performance"></a>Problèmes de performances
 
-Si le compte de stockage hello est dans une autre région que le cluster HDInsight de hello, vous pouvez rencontrer des performances médiocres. L’accès aux données dans un autre région envoie réseau du trafic à l’extérieur du centre de données Azure régional hello et à travers hello internet public, qui peut introduire une latence.
+Si le compte de stockage se trouve dans une région différente de celle du cluster HDInsight, il se peut que vous rencontriez des problèmes de performances. Lorsque vous accédez à des données stockées dans une autre région, le trafic réseau sort du centre de données Azure régional, puis est acheminé via l’Internet public, ce qui peut entraîner de la latence.
 
 > [!WARNING]
-> À l’aide d’un compte de stockage dans une autre région que le cluster HDInsight de hello n’est pas pris en charge.
+> L’utilisation d’un compte de stockage dans une région différente de celle du cluster HDInsight n’est pas prise en charge.
 
 ### <a name="additional-charges"></a>Frais supplémentaires
 
-Si le compte de stockage hello est dans une autre région de hello cluster HDInsight, vous remarquerez peut-être des frais de sortie supplémentaires sur votre facturation Azure. Des frais de sortie sont appliqués lorsque des données quittent un centre de données régional. Ces frais sont appliqués même si le trafic de hello est destiné à un autre centre de données Azure dans une autre région.
+Si le compte de stockage se trouve dans une région différente de celle du cluster HDInsight, vous remarquerez peut-être des frais de sortie supplémentaires sur votre facture Azure. Des frais de sortie sont appliqués lorsque des données quittent un centre de données régional. Ces frais sont appliqués même si le trafic est destiné à un autre centre de données Azure situé dans une autre région.
 
 > [!WARNING]
-> À l’aide d’un compte de stockage dans une autre région que le cluster HDInsight de hello n’est pas pris en charge.
+> L’utilisation d’un compte de stockage dans une région différente de celle du cluster HDInsight n’est pas prise en charge.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vous avez appris comment les comptes de stockage de plus de tooadd tooan les cluster HDInsight existant. Pour plus d’informations sur les actions de script, consultez [Personnalisation de clusters HDInsight basés sur Linux à l’aide d’une d’action de script](hdinsight-hadoop-customize-cluster-linux.md).
+Vous avez découvert comment ajouter des comptes de stockage Azure supplémentaires à un cluster HDInsight existant. Pour plus d’informations sur les actions de script, consultez [Personnalisation de clusters HDInsight basés sur Linux à l’aide d’une d’action de script](hdinsight-hadoop-customize-cluster-linux.md).

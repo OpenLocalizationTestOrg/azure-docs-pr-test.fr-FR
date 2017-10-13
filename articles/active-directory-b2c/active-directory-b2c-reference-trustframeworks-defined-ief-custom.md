@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C : informations de référence sur les infrastructures de confiance | Microsoft Docs"
-description: "Une rubrique sur les stratégies personnalisées Azure Active Directory B2C et hello infrastructure expérience d’identité"
+description: "Rubrique sur les stratégies personnalisées Azure Active Directory B2C et l’infrastructure d’expérience d’identité"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,117 +14,117 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: joroja
-ms.openlocfilehash: d9634da72cb136ac165dd32e735622b5d0e22ec3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4e2de9c4d1c0f92970911e132fffaacbd01d9ad0
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="define-trust-frameworks-with-azure-ad-b2c-identity-experience-framework"></a>Définir des infrastructures de confiance avec l’infrastructure d’expérience d’identité Azure AD B2C
 
-Azure B2C Active Directory (B2C Active Directory de Azure) des stratégies personnalisées qui utilisent hello identité expérience Framework fournissent à votre organisation avec un service centralisé. Ce service simplifie de hello de fédération d’identité dans une grande Communauté d’intérêt. la complexité de Hello est réduite tooa seule relation d’approbation et un échange de métadonnées unique.
+Les stratégies personnalisées Azure Active Directory B2C (Azure AD B2C) qui utilisent l’infrastructure d’expérience d’identité fournissent un service centralisé à votre organisation. Ce service permet de réduire la complexité de la fédération des identités au sein d’une large communauté d’intérêts. La complexité est réduite à une seule relation d’approbation et à un seul échange de métadonnées.
 
-Azure AD B2C des stratégies personnalisées qui utilisent hello identité expérience Framework tooenable hello tooanswer vous suivant questions :
+Les stratégies personnalisées Azure AD B2C qui utilisent l’infrastructure d’expérience d’identité permettent de répondre aux questions suivantes :
 
-- Quelles sont les hello juridique, la sécurité, confidentialité et les stratégies de protection de données qui doivent être respectées ?
-- Quels sont les contacts hello et quels sont les processus hello pour devenir un participant agréé ?
-- Qui sont hello accredited fournisseurs d’informations d’identité (également appelés « fournisseurs de revendications ») et les produits qu’ils proposent ?
-- Qui sont hello accredited des parties de confiance (et éventuellement, qu’ils nécessitent-elles) ?
-- Quelles sont les hello technique « sur le câble de hello » exigences d’interopérabilité pour les participants ?
-- Quelles sont les règles de « exécution » opérationnel hello qui doivent être appliquées pour échanger des informations d’identité numérique ?
+- Quelles stratégies de conformité, de sécurité, de confidentialité et de protection des données doivent être appliquées ?
+- Quels sont les contacts et les processus pour devenir un participant agréé ?
+- Quels sont les fournisseurs d’informations d’identité agréés (également appelés « fournisseurs de revendications ») et que proposent-ils ?
+- Quelles sont les parties de confiance agréées (et éventuellement, que nécessitent-elles) ?
+- Quelles sont les exigences techniques d’interopérabilité réseau pour les participants ?
+- Quelles sont les règles de « runtime » opérationnelles à appliquer pour échanger des informations d’identité numérique ?
 
-construction de ces questions, Azure AD B2C des stratégies personnalisées qui utilisent l’utilisation hello Framework approuver (TF) de hello identité expérience Framework tooanswer. Décrivons cette construction et ce qu’elle offre.
+Pour répondre à toutes ces questions, les stratégies personnalisées Azure AD B2C reposant sur l’infrastructure d’expérience d’identité utilisent la construction d’infrastructure de confiance. Décrivons cette construction et ce qu’elle offre.
 
-## <a name="understand-hello-trust-framework-and-federation-management-foundation"></a>Comprendre la Fondation de hello Framework de confiance et de fédération de la gestion
+## <a name="understand-the-trust-framework-and-federation-management-foundation"></a>Présentation des concepts de base de l’infrastructure de confiance et de la gestion de fédération
 
-Hello Framework de confiance est une spécification écrite de hello identité, la sécurité, confidentialité et données de stratégies de protection toowhich des participants dans une Communauté d’intérêt doivent être conforme.
+L’infrastructure de confiance est une spécification écrite des stratégies d’identité, de sécurité, de confidentialité et de protection des données auxquelles doivent se conformer les membres d’une communauté d’intérêt.
 
-L’identité fédérée fournit une base pour la protection de l’identité des utilisateurs sur Internet. En déléguant les parties de toothird de gestion des identités, une identité numérique unique pour un utilisateur final peut être réutilisée avec plusieurs parties de confiance.  
+L’identité fédérée fournit une base pour la protection de l’identité des utilisateurs sur Internet. En déléguant la gestion des identités à des tiers, l’identité numérique unique d’un utilisateur peut être réutilisée avec plusieurs parties de confiance.  
 
-Vérification de votre identité exige que les fournisseurs d’identité (IdPs) et les fournisseurs de l’attribut (agréés) adhèrent toospecific sécurité, confidentialité et stratégies opérationnelles et pratiques.  Il ne peut effectuer des vérifications directes, parties de confiance (RPs) devez développer avec hello IdPs et agréés qu’ils choisissent toowork avec des relations d’approbation.  
+La protection de l’identité en effet que les fournisseurs d’identité et d’attributs respectent certaines pratiques et stratégies opérationnelles, de sécurité et de confidentialité.  Si elles ne peuvent pas effectuer d’inspections directes, les parties de confiance doivent développer des relations d’approbation avec les fournisseurs d’identité et d’attributs avec lesquels elles choisissent de travailler.  
 
-Au fur et à mesure du nombre de hello des consommateurs et des fournisseurs d’informations d’identité numérique, il est difficile de toocontinue de gestion par paire de ces relations d’approbation, ou même hello exchange par paire de métadonnées technique hello qui sont requis pour la connectivité réseau .  Les hubs de fédération n’ont pas réussi à résoudre totalement ces problèmes.
+Alors que le nombre de consommateurs et de fournisseurs d’informations d’identité numérique augmente, il est difficile de continuer à gérer ces relations d’approbation par paire, ou même de procéder à un échange par paire des métadonnées techniques nécessaires pour la connectivité réseau.  Les hubs de fédération n’ont pas réussi à résoudre totalement ces problèmes.
 
 ### <a name="what-a-trust-framework-specification-defines"></a>Ce qui est défini par une infrastructure de confiance
-TFs sont pivots du développement hello hello ouvrir identité Exchange (OIX) approbation du modèle de Framework, où chaque communauté d’intérêt est régie par une spécification de TF particulier. Ce type de spécification TF définit :
+Les infrastructures de confiance constituent l’élément central du modèle d’infrastructure de confiance Open Identity Exchange (OIX), où chaque communauté d’intérêt est régie par une spécification d’infrastructure de confiance particulière. Ce type de spécification TF définit :
 
-- **Hello les mesures de sécurité et confidentialité pour Communauté hello d’intérêt avec définition hello de :**
-    - niveaux de Hello d’assurance (cha) qui sont proposés/requis par les participants ; par exemple, un jeu ordonné d’évaluations de confiance d’authenticité hello des informations d’identité numérique.
-    - niveaux de Hello de protection (LOP) qui sont proposés/requis par les participants ; par exemple, un jeu ordonné d’évaluations de confiance pour la protection de hello numérique des informations d’identité qui sont gérées par les participants de la Communauté hello dignes d’intérêt.
+- **Les métriques de sécurité et de confidentialité pour la communauté d’intérêts avec la définition de plusieurs éléments :**
+    - Les niveaux de garantie offerts/exigés par les participants, par exemple un ensemble ordonné d’évaluations de confiance relatives à l’authenticité des informations d’identité numérique.
+    - Les niveaux de protection offerts/exigés par les participants, par exemple un ensemble ordonné d’évaluations de confiance relatives à la protection des informations d’identité numérique gérées par les participants de la communauté d’intérêts.
 
-- **Hello description hello numérique des informations d’identité qui a proposé/requis par les participants**.
+- **La description des informations d’identité numérique offertes/exigées par les participants**.
 
-- **stratégies techniques Hello pour la production et la consommation des informations d’identité numérique et donc de mesure cha et LOP. Ces règles sont écrites en général hello suivant des catégories de stratégies sont les suivantes :**
+- **Les stratégies techniques pour la production et la consommation des informations d’identité numérique, qui serviront à calculer les niveaux de garantie et de protection. Ces stratégies écrites incluent généralement les catégories de stratégies suivantes :**
     - Stratégies de vérification de l’identité, par exemple : *Quel est le niveau de vérification des informations d’identité d’une personne ?*
     - Stratégies de sécurité, par exemple : *Quel est le niveau de protection de la confidentialité et de l’intégrité des informations ?*
     - Stratégies de confidentialité, par exemple : *Quel contrôle un utilisateur a-t-il sur ses informations d’identification personnelle ?*
     - Stratégies de survie, par exemple : *Si un fournisseur cesse son activité, comment fonctionne la continuité et la protection des informations d’identification personnelle ?*
 
-- **profils de techniques Hello pour la production et la consommation des informations d’identité numérique. Ces profils incluent :**
+- **Les profils techniques pour la production et la consommation des informations d’identité numérique. Ces profils incluent :**
     - Des interfaces d’étendue pour lesquelles des informations d’identité numérique sont accessibles à un niveau de garantie spécifié.
     - Des exigences techniques d’interopérabilité réseau.
 
-- **Bonjour descriptions de hello différents rôles participants de la Communauté de hello peuvent effectuer et hello qualifications toofulfill requis à ces rôles.**
+- **Les descriptions des différents rôles pouvant être attribués aux participants de la communauté, et les qualifications nécessaires pour remplir ces rôles.**
 
-Par conséquent, une spécification de TF détermine comment les informations d’identité sont échangées entre les participants hello de communauté hello d’intérêt : parties de confiance, d’identité et fournisseurs d’attribut et vérificateurs d’attribut.
+Par conséquent, une spécification TF détermine comment les informations d’identité sont échangées entre les participants de la communauté d’intérêt : les parties de confiance, les fournisseurs d’identité et d’attributs, et les vérificateurs d’attributs.
 
-Une spécification de TF est un ou plusieurs documents servent de référence pour la gouvernance hello de communauté hello d’intérêt qui régit l’assertion de hello et de consommation des informations d’identité numérique au sein de la Communauté de hello. Il s’agit d’un ensemble documenté de stratégies et procédures conçues tooestablish de confiance dans les identités numériques hello qui sont utilisés pour les transactions entre les membres de la Communauté d’intérêt.  
+Une spécification d’infrastructure de confiance est constituée d’un ou plusieurs documents qui servent de référence pour la gouvernance de la communauté d’intérêts qui régule l’assertion et la consommation des informations d’identité numérique au sein de la communauté. Il s’agit d’un ensemble documenté de stratégies et de procédures, conçues pour établir la confiance dans les identités numériques utilisées pour les transactions en ligne entre les différents membres d’une communauté d’intérêts.  
 
-En d’autres termes, une spécification de TF définit des règles de hello pour la création d’un écosystème d’identité fédérée viable pour une Communauté.
+En d’autres termes, une spécification d’infrastructure de confiance définit les règles pour la création d’un écosystème d’identités fédéré viable pour une communauté.
 
-Actuellement est généralisée accord sur les avantages de hello d’une telle approche. Il est sans doute que confiance aux spécifications de framework facilitent le développement hello des écosystèmes d’identité numérique avec les caractéristiques d’assurance, de sécurité et de confidentialité vérifiables, c'est-à-dire qu’ils peuvent être réutilisés dans plusieurs communautés d’intérêt.
+Il existe actuellement un large consensus sur les avantages d’une telle approche. Il ne fait aucun doute que les spécifications d’infrastructure de confiance facilitent le développement d’écosystèmes d’identité numérique avec des caractéristiques de sécurité, de garantie et de confidentialité vérifiables, ce qui signifie qu’ils peuvent être réutilisés à travers plusieurs communautés d’intérêts.
 
-Pour cette raison, Azure AD B2C des stratégies personnalisées qui utilisent hello identité expérience Framework utilise la spécification de hello comme base hello de sa représentation sous forme de données pour une interopérabilité de toofacilitate TF.  
+C’est pourquoi les stratégies personnalisées Azure AD B2C reposant sur l’infrastructure d’expérience d’identité utilisent la spécification comme base de leur représentation des données, afin qu’une infrastructure de confiance puisse faciliter l’interopérabilité.  
 
-Stratégies Azure AD B2C personnalisé qui tirent parti de hello identité expérience Framework représentent une spécification de TF comme un mélange de données HWS et destinées à l’ordinateur. Certaines sections de ce modèle (en général, les sections qui sont plus adaptés pour la gouvernance) sont représentées comme référence toopublished documentation de stratégie de sécurité et de confidentialité, ainsi que de hello procédures liées (le cas échéant). Autres sections décrivent en détail hello configuration métadonnées et exécution des règles qui facilitent l’automatisation des opérations.
+Les stratégies personnalisées Azure AD B2C qui tirent parti de l’infrastructure d’expérience d’identité représentent une spécification d’infrastructure de confiance comme un mélange de données lisibles par les humains et d’autres lisibles par un ordinateur. Certaines sections de ce modèle (en général, les sections qui sont les plus orientées vers la gouvernance) sont représentées en tant que références à une documentation publiée sur les politiques de sécurité et de confidentialité, ainsi que sur les procédures associées (le cas échéant). D’autres sections décrivent en détail les règles de métadonnées et d’exécution de configuration qui facilitent l’automatisation des opérations.
 
 ## <a name="understand-trust-framework-policies"></a>Présentation des stratégies d’infrastructure de confiance
 
-En termes d’implémentation, hello spécification de TF se compose d’un ensemble de stratégies qui permettent de contrôler totalement les comportements de l’identité et les expériences.  Azure AD B2C des stratégies personnalisées qui tirent parti de hello identité expérience Framework activer vous tooauthor et créer vos propres TF via ces stratégies déclaratives qui peuvent définir et configurer :
+En termes d’implémentation, la spécification d’infrastructure de confiance se compose d’un ensemble de stratégies qui permettent de contrôler totalement les comportements et les expériences d’identité.  Les stratégies personnalisées Azure AD B2C reposant sur l’infrastructure d’expérience d’identité vous permettent de créer votre propre spécification d’infrastructure de confiance via ces stratégies déclaratives qui peuvent définir et configurer :
 
-- Hello document ou les références qui définissent l’écosystème d’identité fédérée hello de communauté hello qui lie toohello TF. Il s’agit de documentation de TF toohello des liens. Bonjour opérationnel (prédéfini) « exécution » règles ou des trajets utilisateur hello qui automatisent et/ou contrôlent exchange de hello et l’utilisation de revendications de hello. Ces parcours utilisateur sont associés à un niveau de garantie (et de protection). Une stratégie peut donc avoir des parcours utilisateur avec différents niveaux de garantie (et de protection).
+- La ou les références de document définissant l’écosystème d’identités fédéré de la communauté associée à la spécification d’infrastructure de confiance. Il s’agit de liens vers la documentation TF. Les règles de « runtime » opérationnel (prédéfinies), ou les parcours utilisateur qui automatisent et/ou contrôlent l’échange et l’utilisation de revendications. Ces parcours utilisateur sont associés à un niveau de garantie (et de protection). Une stratégie peut donc avoir des parcours utilisateur avec différents niveaux de garantie (et de protection).
 
-- fournisseurs de revendications de fournisseurs d’identité et d’attribut Hello ou hello, dans la Communauté hello des profils de techniques qui vous intéresse et hello ils prennent en charge, ainsi que les homologation cha/LOP hello (out-of-band) qui lie toothem.
+- Les fournisseurs d’identité et d’attributs, ou fournisseurs de revendications, de la communauté d’intérêt et les profils techniques qu’ils prennent en charge, ainsi que leur agrément de niveau de garantie/protection (hors bande) respectif.
 
-- intégration de Hello avec vérificateurs des attributs ou des fournisseurs de revendications.
+- L’intégration à des vérificateurs d’attributs ou des fournisseurs de revendications.
 
-- parties de confiance Hello dans la Communauté hello (par inférence).
+- Les parties de confiance de la communauté (par inférence).
 
-- métadonnées Hello pour établir une communication réseau entre les participants. Ces métadonnées, ainsi que les profils techniques hello, sont utilisés pendant une transaction tooplumb « sur le format de câble hello » de l’interopérabilité entre la partie de confiance hello et les autres participants de la Communauté.
+- Les métadonnées pour établir des communications réseau entre les participants. Ces métadonnées, ainsi que les profils techniques, sont utilisées pendant une transaction pour analyser l’interopérabilité réseau entre la partie de confiance et les autres participants de la communauté.
 
-- Hello conversion de protocole, le cas échéant (par exemple, SAML, OAuth2, WS-Federation et OpenID Connect).
+- Conversion de protocole, le cas échéant (par exemple SAML, OAuth2, WS-Federation et OpenID Connect).
 
-- conditions d’authentification Hello.
+- Les exigences d’authentification.
 
-- orchestration multifacteur Hello le cas échéant.
+- L’orchestration multifacteur, le cas échéant.
 
-- Un schéma partagé pour toutes les revendications hello qui sont disponibles et tooparticipants de mappages de la Communauté d’intérêt.
+- Un schéma partagé pour toutes les revendications disponibles et des mappages aux participants d’une communauté d’intérêts.
 
-- Hello toutes les revendications des transformations, ainsi que de la minimisation des données hello dans ce contexte, d’exchange de hello toosustain et de l’utilisation des revendications de hello.
+- Toutes les transformations de revendications, ainsi que la réduction possible des données dans ce contexte, pour soutenir l’échange et l’utilisation des revendications.
 
-- liaison de Hello et le chiffrement.
+- La liaison et le chiffrement.
 
-- stockage de revendications Hello.
+- Le stockage des revendications.
 
 ### <a name="understand-claims"></a>Présentation des revendications
 
 > [!NOTE]
-> Nous nous référons collectivement des types possibles de hello tooall des informations d’identité qui peut être échangées en tant que « revendications » : les revendications sur les informations d’identification de l’authentification d’un utilisateur final, instruction d’identité, appareil de communication, l’emplacement physique, personnelle attributs et ainsi de suite.  
+> Nous faisons collectivement référence à tous les types possibles d’informations d’identité qui peuvent être échangées en tant que « revendications » : les revendications concernant les informations d’authentification d’un utilisateur, la vérification d’identité, le périphérique de communication, l’emplacement physique, les attributs d’identification personnelle, etc.  
 >
-> Nous utilisons hello terme « revendications »--plutôt que « attributs », car dans les transactions en ligne, ces artefacts de données ne sont pas faits qui peuvent être vérifiés directement par hello partie de confiance. Au lieu de cela, ils sont des assertions ou des revendications, sur des faits pour le hello de confiance doit développer les transaction demandé suffisamment confiance toogrant hello l’utilisateur final.  
+> Nous utilisons le terme « revendications » au lieu d’« d’attributs », car, dans les transactions en ligne, ces artefacts de données ne sont pas des faits directement vérifiables par la partie de confiance. Il s’agit plutôt d’assertions, ou de revendications, à propos de faits pour lesquels la partie de confiance doit développer une confiance suffisante pour accorder la transaction demandée de l’utilisateur final.  
 >
-> Nous utilisons également le terme hello « revendications » car Azure AD B2C est sont des stratégies personnalisées qui utilisent hello identité expérience Framework conçu exchange de hello toosimplify de tous les types d’informations d’identité numérique de façon cohérente, indépendamment de si hello sous-jacent protocole est défini pour la récupération de l’authentification ou un attribut utilisateur.  De même, nous utilisons le terme hello toocollectively de « fournisseurs de revendications » font référence tooidentity, fournisseurs d’attribut et les vérificateurs attribut lorsque vous ne souhaitez pas toodistinguish entre leurs fonctions spécifiques.   
+> Nous utilisons aussi le terme « revendications » parce que les stratégies personnalisées Azure AD B2C qui utilisent l’infrastructure d’expérience d’identité sont conçues pour simplifier l’échange de tous types d’informations d’identité numériques de manière cohérente, que le protocole sous-jacent soit ou non défini pour l’authentification des utilisateurs ou la récupération des attributs.  De même, nous utilisons le terme « fournisseurs de revendications » pour désigner collectivement les fournisseurs d’identité, les fournisseurs d’attributs et les vérificateurs d’attributs quand nous ne voulons pas faire la distinction entre leurs fonctions respectives.   
 
 Par conséquent, elles déterminent comment les informations d’identité sont échangées entre une partie de confiance, les fournisseurs d’identité et d’attributs, et les vérificateurs d’attributs. Elles spécifient les fournisseurs d’identité et d’attributs requis pour l’authentification d’une partie de confiance. Elles doivent être considérées comme un langage spécifique à un domaine, autrement dit un langage informatique spécialisé dans un domaine d’application spécifique avec de l’héritage, des instructions *if* et du polymorphisme.
 
-Ces stratégies constituent hello lisible partie hello TF construire dans les stratégies d’Azure AD B2C personnalisé exploitant hello infrastructure expérience d’identité. Ils incluent tous les hello des détails opérationnels, y compris les métadonnées des fournisseurs de revendications et profils techniques, les définitions de schéma de revendications, les fonctions de transformation de revendications et trajets utilisateur qui sont remplis dans l’orchestration opérationnelle de toofacilitate et Automation.  
+Ces stratégies constituent la partie lisible par un ordinateur de la construction d’infrastructure de confiance dans les stratégies personnalisées d’Azure AD B2C tirant parti de l’infrastructure d’expérience d’identité. Elles comprennent tous les détails opérationnels, notamment les métadonnées et les profils techniques des fournisseurs de revendications, les définitions de schéma des revendications, les fonctions de transformation des revendications et les parcours utilisateur qui sont renseignés pour faciliter l’orchestration et l’automatisation opérationnelles.  
 
-Ils sont considérés comme toobe *des documents* , car il est probable que leur contenu va évoluer concernant les participants actifs hello déclarés dans les stratégies de hello. Il existe également un risque de hello hello conditions générales pour pouvoir être un participant peut changer.  
+Elles sont supposées être des *documents dynamiques*, car il est probable que leur contenu changera au fil du temps quant aux participants actifs déclarés dans les stratégies. Il est également possible que les termes et conditions pour être participant changent.  
 
-Configuration de la fédération et de maintenance sont considérablement simplifiées par les parties de confiance reconfigurations d’approbation et de connectivité en cours de protection comme des revendications différentes fournisseurs/vérificateurs rejoindre ou quitter des (Communauté hello représentée par) hello du jeu de stratégies.
+La configuration et la gestion de la fédération sont grandement simplifiées en épargnant aux parties de confiance la reconfiguration permanente de la connectivité et de l’approbation lors de l’arrivée ou du départ des différents fournisseurs/vérificateurs de revendications de la communauté représentée par l’ensemble de stratégies.
 
-L’interopérabilité est un autre défi important. Vérificateurs/fournisseurs de revendications supplémentaires doivent être intégrés, les parties de confiance étant peu probable toosupport tous hello protocoles nécessaires. Les stratégies personnalisées Azure AD B2C résolvent ce problème en prenant en charge des protocoles standard et en appliquant des trajets d’utilisateur spécifique lors de la partie de confiance et les fournisseurs de l’attribut ne prennent pas en charge les demandes de tootranspose hello même protocole.  
+L’interopérabilité est un autre défi important. D’autres fournisseurs/vérificateurs de revendications doivent être intégrés, car il est peu probable que les parties de confiance prennent en charge tous les protocoles nécessaires. Les stratégies personnalisées Azure AD B2C résolvent ce problème en prenant en charge les protocoles standard et en appliquant des parcours utilisateur spécifiques pour transposer les demandes quand les parties de confiance et les fournisseurs d’attributs ne prennent pas en charge le même protocole.  
 
-Parcours de l’utilisateur incluent les profils de protocole et les métadonnées qui sont utilisé tooplumb « sur le format de câble hello » de l’interopérabilité entre la partie de confiance hello et les autres participants. Il existe également des règles de runtime opérationnelle qui sont des messages de demande/réponse tooidentity appliqué plus d’informations exchange pour appliquer la conformité avec les stratégies publiées dans le cadre de la spécification de TF hello. idée Hello de parcours de l’utilisateur est personnalisation toohello clé de l’expérience utilisateur hello. Il traite également sur le fonctionne du système de hello au niveau du protocole hello.
+Les parcours utilisateur incluent les profils et les métadonnées des protocoles qui sont utilisés pour analyser l’interopérabilité réseau entre la partie de confiance et les autres participants. Il existe également des règles de runtime opérationnelles qui seront appliquées aux messages de demande/réponse des échanges d’informations d’identité afin de garantir la conformité avec les stratégies publiées dans le cadre de la spécification d’infrastructure de confiance. L’idée de parcours utilisateur est fondamentale pour la personnalisation de l’expérience utilisateur. Elle apporte également un éclairage sur la façon dont le système fonctionne au niveau du protocole.
 
-Sur cette base, des portails et des applications de partie de confiance peuvent, en fonction de leur contexte, appeler stratégies personnalisées que Azure AD B2C que tirer parti de hello infrastructure d’identité expérience en passant le nom hello d’une stratégie spécifique et obtenir précisément le comportement de hello et informations ils veulent sans any muss, complications ou risque de l’échange.
+Sur cette base, les portails et applications par partie de confiance peuvent, selon leur contexte, appeler des stratégies personnalisées Azure AD B2C reposant sur l’infrastructure d’expérience d’identité en passant le nom d’une stratégie spécifique afin d’obtenir le comportement et l’échange d’informations attendus sans risque ni complication.

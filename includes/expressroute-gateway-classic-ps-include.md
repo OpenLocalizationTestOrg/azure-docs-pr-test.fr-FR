@@ -1,26 +1,26 @@
-Vous devez créer un réseau virtuel et un sous-réseau de passerelle tout d’abord, avant d’utiliser hello tâches suivantes. Consultez l’article hello [configurer un réseau virtuel à l’aide du portail classique de hello](../articles/expressroute/expressroute-howto-vnet-portal-classic.md) pour plus d’informations.   
+Vous devez créer un réseau virtuel et un sous-réseau de passerelle avant d’effectuer les tâches suivantes. Pour plus d’informations, consultez [Configurer un réseau virtuel à l’aide du portail Azure Classic](../articles/expressroute/expressroute-howto-vnet-portal-classic.md) .   
 
 ## <a name="add-a-gateway"></a>Ajout d’une passerelle
-Utilisez la commande hello ci-dessous toocreate une passerelle. Être toosubstitute que toutes les valeurs de votre propre.
+Utilisez la commande suivante pour créer une passerelle. Veillez à remplacer les valeurs pas les vôtres.
 
     New-AzureVirtualNetworkGateway -VNetName "MyAzureVNET" -GatewayName "ERGateway" -GatewayType Dedicated -GatewaySKU  Standard
 
-## <a name="verify-hello-gateway-was-created"></a>Vérifiez les passerelle hello a été créé.
-Utilisez les commandes de hello ci-dessous tooverify qui hello passerelle a été créé. Cette commande récupère également l’ID de passerelle hello, dont vous avez besoin pour d’autres opérations.
+## <a name="verify-the-gateway-was-created"></a>Vérification de la création de la passerelle
+Utilisez la commande suivante pour vérifier que la passerelle a été créée. Cette commande récupère également l’ID de passerelle dont vous avez besoin pour d’autres opérations.
 
     Get-AzureVirtualNetworkGateway
 
 ## <a name="resize-a-gateway"></a>Redimensionner une passerelle
-Il existe un certain nombre de [Références (SKU) de passerelle](../articles/expressroute/expressroute-about-virtual-network-gateways.md). Vous pouvez utiliser hello suivant commande toochange hello SKU de passerelle à tout moment.
+Il existe un certain nombre de [Références (SKU) de passerelle](../articles/expressroute/expressroute-about-virtual-network-gateways.md). Vous pouvez utiliser la commande suivante pour modifier la référence de passerelle à tout moment.
 
 > [!IMPORTANT]
-> Cette commande ne fonctionne pas pour la passerelle UltraPerformance. toochange votre passerelle tooan UltraPerformance passerelle, supprimez d’abord hello existant passerelle ExpressRoute et puis créer une passerelle UltraPerformance. toodowngrade votre passerelle à partir d’une passerelle UltraPerformance, supprimez d’abord hello UltraPerformance passerelle, puis créer une passerelle. 
+> Cette commande ne fonctionne pas pour la passerelle UltraPerformance. Pour modifier votre passerelle en passerelle UltraPerformance, commencez par supprimer la passerelle ExpressRoute, puis créez une passerelle UltraPerformance. Pour mettre à niveau votre passerelle à partir d’une passerelle UltraPerformance, commencez par supprimer la passerelle UltraPerformance, puis créez-en une. 
 > 
 > 
 
     Resize-AzureVirtualNetworkGateway -GatewayId <Gateway ID> -GatewaySKU HighPerformance
 
 ## <a name="remove-a-gateway"></a>Supprimer une passerelle
-Utilisez la commande hello ci-dessous tooremove une passerelle
+Utilisez la commande suivante pour supprimer une passerelle.
 
     Remove-AzureVirtualNetworkGateway -GatewayId <Gateway ID>

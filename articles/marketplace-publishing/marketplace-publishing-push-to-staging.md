@@ -1,6 +1,6 @@
 ---
-title: "aaaPrepare et tester votre offre de déploiement toohello Azure Marketplace | Documents Microsoft"
-description: "Obtenir des instructions détaillées sur fournissant contenu commercial, configuration plans de tarification et le test de votre offre avant de déployer toohello Azure Marketplace."
+title: "Préparer et tester votre offre pour le déploiement sur Azure Marketplace | Microsoft Docs"
+description: "Instructions détaillées sur l’indication de contenu marketing, la configuration de plans de tarification et le test de votre offre avant le déploiement sur Azure Marketplace."
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: Azure
 ms.workload: na
 ms.date: 08/17/2016
 ms.author: hascipio
-ms.openlocfilehash: 04f142c2dc894716c187751736549586c24a9d01
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7db86716cdf8f9eb921c3c1813970acae7a3016b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="complete-hello-offer-creation-with-marketing-content"></a>Hello complète offrent la création de contenu marketing
-Dans cette étape du processus de publication hello, vous devez tooprovide certains contenu marketing et les détails sur votre offre et/ou les références (SKU) Bonjour Azure Marketplace. Par exemple, vous fournit une description de votre produit, des logos de société, prix des plans, les détails des plans et autres toopush nécessaire plus d’informations votre offre et/ou de la référence (SKU) toostaging. Ces informations sont utilisées en tant que contenu marketing Bonjour portail Azure. Commencer ce processus Bonjour [portail de publication][link-pubportal].
+# <a name="complete-the-offer-creation-with-marketing-content"></a>Compléter la création d’offre avec du contenu marketing
+Dans cette étape du processus de publication, vous devez fournir du contenu marketing et des informations sur votre offre et/ou vos références SKU dans Azure Marketplace. Par exemple, vous devez fournir une description de votre produit, le logo de votre entreprise, les offres tarifaires, le détail des offres et d’autres informations nécessaires pour envoyer votre offre et/ou référence SKU dans l’environnement intermédiaire. Ces informations sont utilisées comme contenu marketing dans le portail Azure. Vous allez commencer ce processus dans le [portail de publication][link-pubportal].
 
 ## <a name="step-1-provide-marketplace-marketing-content"></a>Étape 1 : Fournir du contenu marketing au Marketplace
-**L’anglais est la valeur par défaut hello et uniquement la langue de la prise en charge.** Vérifiez que toutes les informations fournies dans les champs hello sont en anglais. Toutes les informations peuvent être modifiées à tout moment jusqu'à ce que vous effectuez un push toostaging.
+**L’anglais est la langue par défaut et la seule prise en charge.** Assurez-vous que toutes les informations fournies dans les champs sont en anglais. Toutes les informations peuvent être modifiées à tout moment jusqu’à ce que vous procédiez au déploiement dans un environnement intermédiaire.
 
-1. Accédez toohello portail, de publication [https://publish.windowsazure.com](https://publish.windowsazure.com).
-2. Dans menu gauche hello sur hello **Marketing** onglet.
-3. Dans le panneau de configuration principal hello, cliquez sur hello **anglais (États-Unis)** bouton.
+1. Accédez au portail de publication à l’adresse [https://publish.windowsazure.com](https://publish.windowsazure.com)
+2. Dans le menu de gauche, cliquez sur l’onglet **Marketing** .
+3. Dans le volet principal, cliquez sur le bouton **English (US)** .
    
    > [!IMPORTANT]
-   > Tous les champs doivent disposer d’entrées, y compris les images hello, pour vous toobe en mesure de toopush toostaging.
+   > Tous les champs doivent avoir des entrées, y compris les images, pour que vous puissiez procéder au déploiement dans un environnement intermédiaire.
    > 
    > 
 
 ### <a name="details-and-plans"></a>Détails et plans
-1. Entrez le titre de l’offre hello (50 caractères maximum), offrent résumé (100 caractères au maximum), offre un résumé long (plus de 256 caractères), description (nombre maximal de caractères 1300), les logos sous hello de l’offre **détails** onglet
-2. Entrez le titre de plan (50 caractères maximum), le résumé du plan (100 caractères au maximum), prévoyez de description (maximum 2 000 caractères) sous hello **Plans** onglet.
+1. Entrez le titre de l'offre (50 caractères maximum), le résumé de l’offre (100 caractères maximum), le résumé long de l’offre (256 caractères maximum), la description de l’offre (1 300 caractères maximum) et les logos sous l’onglet **Détails**
+2. Entrez le titre du plan (50 caractères maximum), le résumé du plan (100 caractères maximum), la description du plan (2000 caractères maximum) sous l’onglet **Plans** .
    
    > [!NOTE]
-   > Vous pouvez utiliser hello suivant HTML balises tooformat hello résumé, résumée et la description de l’offre de hello et les plans. Hello autorisées de balises HTML sont h1, h2, h3, h4, h5, p, ol, ul, li, un [cible | href], il est fort, em, b, i.
+   > Vous pouvez utiliser les balises HTML suivantes pour mettre en forme le résumé, le résumé long et la description de l’offre et des plans. Les balises HTML autorisées sont « h1 »,« h2 », « h3 », « h4 », « h5 », « p », « ol », « ul », « li », « a[target|href] », « br », « strong », « em », « b », « i ».
    > 
    > 
 3. N’entrez pas deux fois le même texte dans la description de l’offre et du plan.
 4. N’entrez pas deux fois le même texte sous le titre du plan et le résumé long de l’offre.
 5. N’entrez pas deux fois le même texte sous le titre du plan et le résumé de l’offre.
 6. N’entrez pas de titres de plan identiques pour une offre avec plusieurs plans.
-7. Téléchargement d’images de spécifications hello requis (mentionnées dans le portail de publication de hello) au format PNG, un pour chaque taille.
-8. Vérifiez que les logos hello suivent les instructions du logo Azure Marketplace hello mentionnées ci-dessous.
+7. Téléchargez des images des spécifications requises (mentionnées sur le portail de publication) au format PNG, une pour chaque taille.
+8. Vérifiez que les logos suivent les instructions relatives aux logos Azure Marketplace indiquées ci-dessous.
    
    ![dessin](media/marketplace-publishing-push-to-staging/pubportal-marketingcontent-details-02.png)
 
 **Instructions relatives aux logos Azure Marketplace**
 
-Tous les logos hello téléchargés Bonjour portail de publication doivent suivre hello ci-dessous les instructions :
+Tous les logos téléchargés dans le portail de publication doivent respecter les instructions ci-dessous :
 
-* Hello conception Azure a une palette de couleurs simple. Limiter nombre hello principale et les couleurs de base de données secondaire sur votre logo.
-* couleurs du thème Hello Hello portail Azure sont blancs et noir. Par conséquent, évitez d’utiliser ces couleurs comme couleur d’arrière-plan hello de vos logos. Utiliser des couleurs qui rendent vos logos dans hello portail Azure. Nous vous recommandons d’utiliser des couleurs primaires simples. **Si vous utilisez l’arrière-plan transparent, puis assurez-vous que hello logos/texte ne sont pas blanche ou noire ou bleue.**
-* N’utilisez pas un arrière-plan dégradé sur le logo de hello.
-* Éviter de placer le texte, même votre entreprise ou le nom de marque, sur le logo de hello. Hello apparence de votre logo doit être « plat » et évitez de dégradés.
-* logo de Hello ne doit pas être étirée.
+* Le design Azure a une palette de couleurs simple. Limitez le nombre de couleurs primaires et secondaires sur votre logo.
+* Les couleurs de thème du portail Azure sont le blanc et le noir. Par conséquent, évitez d’utiliser ces couleurs comme couleur d’arrière-plan pour vos logos. Utilisez des couleurs qui mettent vos logos en évidence dans le portail Azure. Nous vous recommandons d’utiliser des couleurs primaires simples. **Si vous utilisez un arrière-plan transparent, assurez-vous que le logo/texte n’est pas blanc, noir ou bleu.**
+* N'utilisez pas d’arrière-plan dégradé sur le logo.
+* Évitez de placer du texte, même s’il s’agit du nom votre société ou de votre marque, sur le logo. L'apparence de votre logo doit être « plate » et éviter les dégradés.
+* Le logo ne doit pas être étiré.
 * Les petits logos doivent être de la taille 40 x 40 px
 * Les logos moyens doivent être de la taille 90 x 90 px
 * Les grands logos doivent être de la taille 115 x 115 px
@@ -68,72 +68,72 @@ Tous les logos hello téléchargés Bonjour portail de publication doivent suivr
 * Les bannières doivent être de la taille 815 x 290 px
 
 > [!NOTE]
-> logo de héros Hello est facultative. serveur de publication Hello peut choisir tooupload pas un logo héros. Icône de héros hello toutefois une fois chargées, ne peut pas être supprimé hello portail de publication. À ce stade, les partenaires hello doivent respecter les règles de Azure Marketplace de hello pour les icônes de héros.
+> La bannière est facultative. L’éditeur peut choisir de ne pas télécharger de bannière. Toutefois l’icône ne peut pas être supprimée du portail de publication une fois téléchargée. À ce moment, le partenaire doit suivre les instructions d’Azure Marketplace pour les icônes.
 > 
 > 
 
   ![dessin](media/marketplace-publishing-push-to-staging/pubportal-marketingcontent-details-03.png)
 
-**Conseils supplémentaires pour l’icône du logo hello héros (facultatif)**
+**Recommandations supplémentaires pour les icônes de bannière (facultatif) :**
 
-* logo de héros Hello est facultative. serveur de publication Hello peut choisir tooupload pas un logo héros. **Icône de héros hello toutefois une fois chargées, ne peut pas être supprimé hello portail de publication. À ce stade, les partenaires hello doivent respecter les règles de Azure Marketplace de hello pour les icônes de héros autre offre de hello ne sera pas tooproduction approuvée.**
-* Hello nom complet du serveur de publication, plan de titre et hello offrent résumé long s’affichent dans la couleur de police blanc. Par conséquent, vous devez éviter de conservation de n’importe quelle couleur clair en arrière-plan hello Hello héros d’icône. Les arrière-plans noirs, blancs et transparents ne sont pas autorisés pour les icônes.
-* nom d’affichage de serveur de publication Hello, titre, offre hello résumée et hello de bouton créent de plan sont incorporés par programme hello logo de héros une fois que l’offre de hello est répertorié. Par conséquent, vous devez entrer un texte lors de la création d’un logo de héros hello. Laissez espace vide sur hello droite car hello texte (par exemple, serveur de publication nom d’affichage, titre de plan, offre hello résumée) est incluse par programme en nous sur cet emplacement. espace vide Hello texte hello doit être 415 x 100 sur hello droit (et elle est décalée par 370px de hello gauche).
+* La bannière est facultative. L’éditeur peut choisir de ne pas télécharger de bannière. **Toutefois l’icône ne peut pas être supprimée du portail de publication une fois téléchargée. À ce moment, le partenaire doit suivre les instructions d’Azure Marketplace pour les icônes, sans quoi l’offre ne sera pas approuvée en production.**
+* Le nom d’affichage de l’éditeur, le titre du plan et le résumé long de l’offre s’affichent en couleur de police blanche. Par conséquent, vous devez éviter de conserver toute couleur claire dans l’arrière-plan l’icône. Les arrière-plans noirs, blancs et transparents ne sont pas autorisés pour les icônes.
+* Le nom d’affichage de l’éditeur, le titre du plan, le résumé long de l’offre et le bouton Créer sont incorporés automatiquement à la bannière une fois l’offre publiée. Vous ne devez par conséquent pas saisir de texte lorsque vous concevez la bannière. Laissez simplement un espace vide sur la droite, car le texte (à savoir le nom d’affichage de l’éditeur, le titre du plan et le résumé long de l’offre) sera inclus automatiquement de notre côté. L’espace vide pour le texte doit être de 415 x 100 sur la droite (décalé de 370px à partir de la gauche).
   
   ![dessin](media/marketplace-publishing-push-to-staging/pubportal-herobanner.png)
 
 ### <a name="links"></a>Liens
-Sur hello **liens** barre gauche hello, entrez tous les liens avec les informations qui peuvent aider les clients. Entrez un nom et une URL pour chaque lien.
+Sous l’onglet **Links** (Liens) de la barre de gauche, entrez des liens utiles ainsi que toute information susceptible d’aider les clients. Entrez un nom et une URL pour chaque lien.
 
 ![dessin](media/marketplace-publishing-push-to-staging/pubportal-marketingcontent-link-01.png)
 
 ### <a name="sample-images-optional"></a>Images d’exemple (facultatif)
 > [!NOTE]
 > L’ajout d’une image d’exemple est une étape facultative.
-> Bien que vous pouvez télécharger plusieurs exemples d’images Bonjour portail de publication, seule une image (sélectionnée au hasard par le système de hello) s’affiche dans hello portail Azure. Pour cette raison, nous vous recommandons de télécharger au plus un exemple d’image.
+> Même si vous pouvez télécharger plusieurs exemples d’images dans le portail de publication, une seule image (sélectionnée au hasard par le système) s’affiche dans le portail Azure. Pour cette raison, nous vous recommandons de télécharger au plus un exemple d’image.
 > 
 > 
 
-Sur hello **exemples d’Images** onglet sur le menu de gauche hello, télécharger une nouvelle image en cliquant sur **charger une nouvelle image**. Si vous disposez d’une image et que vous souhaitez tooreplace, cliquez sur **remplacer image**.
+Sous l’onglet **Sample Images** (Images d’exemple) dans le menu de gauche, cliquez sur **Télécharger une nouvelle image** pour télécharger une image. Si vous avez déjà chargé une image que vous voulez remplacer, cliquez sur **Remplacer l’image**.
 
 ![dessin](media/marketplace-publishing-push-to-staging/pubportal-marketingcontent-sampleimg-01.png)
 
 ### <a name="legal"></a>Informations juridiques
-Sur hello **juridique** onglet, fournissez un lien tooyour stratégies/conditions d’utilisation. Entrez ou collez les termes du contrat de hello Bonjour grand **les conditions d’utilisation** boîte. limite de caractères Hello pour les conditions légales d’utilisation de hello est 1 000 000 caractères.
+Sous l’onglet **Legal** (Informations légales), indiquez un lien vers votre politique ou vos conditions d’utilisation. Entrez ou collez les conditions d’utilisation dans la grande zone **Conditions d’utilisation** . La limite de caractères pour les conditions d'utilisation est de 1 000 000 caractères.
 
 ![dessin](media/marketplace-publishing-push-to-staging/pubportal-marketingcontent-legal-01.png)
 
-**Remarque :** pour les offres d’ordinateur virtuel, une fois qu’une offre/référence (SKU) soit préparé Bonjour portail Azure, vous ne pouvez pas modifier champs hello répertoriés ci-dessous :
+**Remarque :** pour les offres de machines virtuelles, une fois qu’une offre/référence est présentée dans le portail Azure, vous ne pouvez pas modifier les champs ci-dessous :
 
-* **Identificateur de l’offre :** [Portail de publication -&gt; Machines virtuelles -&gt; Votre offre -&gt; Onglet Images de machines virtuelles -&gt; Identificateur de l’offre]
-* **Identificateur de référence :** [Portail de publication -&gt; Machines virtuelles -&gt; Sélectionnez votre offre -&gt; Onglet Références -&gt; Ajouter une référence]
-* **Espace de noms d’éditeur :** [Portail de publication -&gt; Machines virtuelles -&gt; Onglet Procédure pas à pas (en « Étape 2 : inscrire votre entreprise ») -&gt; Espace de noms d’éditeur -&gt; Espace de noms]
+* **Identificateur de l’offre :** [Portail de publication -> Machines virtuelles -> Votre offre -> Onglet Images de machines virtuelles -> Identificateur de l’offre]
+* **Identificateur de référence :** [Portail de publication -> Machines virtuelles -> Sélectionnez votre offre -> Onglet Références -> Ajouter une référence]
+* **Espace de noms d’éditeur :** [Portail de publication -> Machines virtuelles -> Onglet Procédure pas à pas (en « Étape 2 : inscrire votre entreprise ») -> Espace de noms d’éditeur -> Espace de noms]
 
-Pour les offres d’ordinateur virtuel, une fois hello offre/référence (SKU) est répertorié dans hello Azure Marketplace, vous ne pouvez modifier les champs hello répertoriés ci-dessous :
+Pour les offres de machines virtuelles, une fois qu’une offre/référence est présentée dans Azure Marketplace, vous ne pouvez pas modifier les champs ci-dessous :
 
-* **Identificateur de l’offre :** [Portail de publication -&gt; Machines virtuelles -&gt; Sélectionnez votre offre -&gt; Images de machines virtuelles -&gt; Identificateur de l’offre]
-* **Identificateur de référence :** [Portail de publication -&gt; Machines virtuelles -&gt; Sélectionnez votre offre -&gt; Onglet Références -&gt; Ajouter une référence]
-* **Espace de noms d’éditeur :** [Portail de publication -&gt; Machines virtuelles -&gt; Onglet Procédure pas à pas (en Étape 2 : inscription) -&gt; Espace de noms d’éditeur -&gt; Espace de noms]
-* **Ports :** [Portail de publication -&gt; Machines virtuelles -&gt; Votre offre -&gt; Onglet Images de machines virtuelles -&gt; Ports ouverts]
+* **Identificateur de l’offre :** [Portail de publication -> Machines virtuelles -> Sélectionnez votre offre -> Images de machines virtuelles -> Identificateur de l’offre]
+* **Identificateur de référence :** [Portail de publication -> Machines virtuelles -> Sélectionnez votre offre -> Onglet Références -> Ajouter une référence]
+* **Espace de noms d’éditeur :** [Portail de publication -> Machines virtuelles -> Onglet Procédure pas à pas (en Étape 2 : inscription) -> Espace de noms d’éditeur -> Espace de noms]
+* **Ports :** [Portail de publication -> Machines virtuelles -> Votre offre -> Onglet Images de machines virtuelles -> Ports ouverts]
 * **Modification de la tarification des références répertoriées**
 * **Modification du modèle de facturation des références répertoriées**
 * **Suppression des régions de facturation des références répertoriées**
-* **Nombre de SKU(s) répertoriés de disque de données hello modification**
+* **Modification du nombre de disques de données des références répertoriées**
 
 ## <a name="step-2-set-your-prices"></a>Étape 2 : Définir vos tarifs
 ### <a name="pricing-models"></a>Modèles de tarification
 | Modèle de tarification | Description |
 | --- | --- |
 | De base |Forfait mensuel payé au moment de l’achat, par exemple 10 $ par mois |
-| Consommation (également appelé Utilisation, Compteur) |Payer par utilisation, qui est définie par le serveur de publication hello de l’offre de hello. Dépassement ne peut pas être définie par siège, par utilisateur, etc., car il n’existe pas de concept d’une fraction d’un utilisateur ou un proration toodo de capacité. L’utilisation est signalée par le partenaire de hello toutes les heures. Le client paie à hello du cycle de facturation mensuelle, en tant que début tooup exécutée comme plans mensuels. |
+| Consommation (également appelé Utilisation, Compteur) |Paiement à l’utilisation, définie par l’éditeur de l’offre. Le dépassement ne peut pas être exprimé en nombre d’utilisateurs ou de licences, puisqu’il est impossible d’utiliser une fraction d’utilisateur ou de calculer un prorata. L’utilisation est signalée par le partenaire sur une base horaire. Le client paye au terme du cycle de facturation mensuel, et non en avance comme pour les offres mensuelles. |
 | Essai gratuit |Le client jouit d’une utilisation gratuite pendant une durée limitée, puis paye un tarif normal. |
 | Niveau Gratuit |L’offre est toujours gratuite. |
-| Migration (également appelé conversion ou mise à niveau/rétrogradation) de l’offre |Concept d’un utilisateur de déplacement à partir de leur plan tooanother acceptable plan actuel ; défini par le partenaire. |
+| Migration (également appelé conversion ou mise à niveau/rétrogradation) de l’offre |L’utilisateur change son offre actuelle pour une autre offre autorisée, définie par le partenaire. |
 
 **Modèles de tarification disponibles par type d’offre**
 
 > [!IMPORTANT]
-> La disponibilité de certains modèles de tarification varie en fonction du type d’offre. Consultez le tableau de hello ci-dessous.
+> La disponibilité de certains modèles de tarification varie en fonction du type d’offre. Consultez le tableau ci-dessous.
 > 
 > 
 
@@ -143,141 +143,141 @@ Pour les offres d’ordinateur virtuel, une fois hello offre/référence (SKU) e
 | Service de développement |Oui |Oui |Oui |
 
 ### <a name="21-set-your-vm-prices"></a>2.1. Définir les prix de votre machine virtuelle
-Actuellement pour les ordinateurs virtuels, nous disposer hello **3 types de modèles de facturation :**
+Actuellement, nous proposons les **3 types de modèles de facturation**
 
-* **Toutes les heures :** clients d’être facturés sur une base par heure en fonction des taux de hello définies par les éditeurs de hello sur les tailles de machine virtuelle hello. Dans le cas de **toutes les heures de facturation** modèle Hello références (SKU), le prix total de hello sera synthèse hello du coût du logiciel hello facturé par hello publisher et hello infrastructure coût facturé par Microsoft. Ce coût total sera affichée toohello client comme un prix horaire et mensuel lorsqu’ils envisagent d’achat de hello (voir la capture d’écran hello ci-dessous). **Serveur de publication reçoit 80 % du coût de logiciel hello facturé en fonction de celles-ci.** Par conséquent, vérifiez les calcul hello en conséquence avant de définir un prix pour vos références (SKU).
+* **Horaire :** les clients sont facturés à l’heure en fonction des tarifs définis par les éditeurs sur les tailles de machine virtuelle. Dans le cas du modèle de **facturation horaire** des références, le prix total est la somme du coût logiciel facturé par l’éditeur et du coût d’infrastructure facturé par Microsoft. Ce coût total s’affichera pour le client sous forme de tarif horaire et mensuel lorsqu’ils considéreront l’achat (voir la capture d’écran ci-dessous). **L’éditeur reçoit 80 % du coût logiciel qu’il facture.** Par conséquent, calculez vos tarifs en conséquence avant de définir les prix pour vos références.
   
     ![dessin](media/marketplace-publishing-push-to-staging/img2.1-01.png)
-* **Version d’évaluation gratuite :** il s’agit d’une autre version du modèle de toutes les heures hello. Ici hello client n’obtenir facturé pour les coûts de logiciel pour hello days(Free) 30 premiers après le déploiement de hello machine virtuelle. Après 30 jours, elles facturés sur une base par heure en fonction des taux de hello définies par les serveurs de publication hello dans le modèle de toutes les heures hello.
-* **Mettez votre-propriétaire-licence (BYOL) :** gérer les serveurs de publication hello hello Gestionnaire de licences des logiciels hello en cours d’exécution sur la machine virtuelle de hello.
+* **Version d’évaluation gratuite :** il s’agit d’une autre version du modèle horaire. Ici, le client n’est pas facturé pour le coût logiciel (gratuit) pendant les 30 premiers jours après le déploiement de la machine virtuelle. Après ces 30 jours, les clients sont facturés à l’heure en fonction des tarifs définis par les éditeurs dans le modèle horaire.
+* **Apportez votre propre licence (BYOL) :** les éditeurs gèrent les licences des logiciels exécutés sur la machine virtuelle.
 
-**Important :** une fois hello offre/référence (SKU) est répertorié dans hello Azure Marketplace, vous ne pouvez modifier les champs hello répertoriés ci-dessous.
+**Important :** une fois qu’une offre/référence est présentée dans Azure Marketplace, vous ne pouvez pas modifier les champs ci-dessous.
 
 * **Modification de la tarification des références répertoriées**
 * **Modification du modèle de facturation des références répertoriées**
 * **Suppression des régions de facturation des références répertoriées**
-* **Nombre de SKU(s) répertoriés de disque de données hello modification**
-* **Identificateur de l’offre :** [Portail de publication -&gt; Machines virtuelles -&gt; Sélectionnez votre offre -&gt; Images de machines virtuelles -&gt; Identificateur de l’offre]
-* **Identificateur de référence :** [Portail de publication -&gt; Machines virtuelles -&gt; Sélectionnez votre offre -&gt; Onglet Références -&gt; Ajouter une référence]
-* **Espace de noms d’éditeur :** [Portail de publication -&gt; Machines virtuelles -&gt; Onglet Procédure pas à pas (en Étape 2 : inscription) -&gt; Espace de noms d’éditeur -&gt; Espace de noms]
-* **Ports :** [Portail de publication -&gt; Machines virtuelles -&gt; Votre offre -&gt; Onglet Images de machines virtuelles -&gt; Ports ouverts]
+* **Modification du nombre de disques de données des références répertoriées**
+* **Identificateur de l’offre :** [Portail de publication -> Machines virtuelles -> Sélectionnez votre offre -> Images de machines virtuelles -> Identificateur de l’offre]
+* **Identificateur de référence :** [Portail de publication -> Machines virtuelles -> Sélectionnez votre offre -> Onglet Références -> Ajouter une référence]
+* **Espace de noms d’éditeur :** [Portail de publication -> Machines virtuelles -> Onglet Procédure pas à pas (en Étape 2 : inscription) -> Espace de noms d’éditeur -> Espace de noms]
+* **Ports :** [Portail de publication -> Machines virtuelles -> Votre offre -> Onglet Images de machines virtuelles -> Ports ouverts]
 
-### <a name="sell-to-countries-of-hello-sku"></a>Pays « Donneur d’ordre pour » Hello référence (SKU)
-Vous devez toocarefully envisagez où vous rendre vos références (SKU) disponible. Certains pays sont classés comme « Versement par Microsoft » et d’autres comme « Versement par l’éditeur indépendant ».
+### <a name="sell-to-countries-of-the-sku"></a>Pays cibles de la référence
+Vous devez considérer soigneusement dans lesquels vous rendrez vos références disponibles. Certains pays sont classés comme « Versement par Microsoft » et d’autres comme « Versement par l’éditeur indépendant ».
 
-* Dans les pays « Paiement Microsoft », Microsoft collecte des taxes à partir de clients et paie (mandats) taxes toohello gouvernement.
-* Pays « Remise ISV », les partenaires sont responsables permettant de collecter des clients de taxes et payer les taxes toohello gouvernement. Si vous choisissez toosell dans les pays « Remise ISV », vous devez disposer des toocalculate de capacité hello et payer les taxes dans les pays hello que vous sélectionnez.
+* Dans les pays « Versement par Microsoft », Microsoft collecte les taxes auprès des clients et paie (verse) les taxes au gouvernement.
+* Dans les pays « Versement par l’éditeur indépendant », les partenaires sont responsables de la collecte des taxes et de leur versement aux gouvernements respectifs. Si vous choisissez de vendre dans des pays « Versement par l’éditeur indépendant », vous devez avoir les capacités de calculer et payer des taxes dans les pays que vous sélectionnez.
 
 > [!NOTE]
-> Votre référence (SKU) ne sera pas disponible dans les pays hello sauf si vous définissez leurs tarification Bonjour [portail de publication](https://publish.windowsazure.com). Conseils tooget ensemble hello tarification de toutes les heures et les références (SKU) BYOL est donnée ci-dessous.
+> Votre référence ne sera pas disponible dans un pays tant que vous ne définissez pas les tarifs dans le [Portail de publication](https://publish.windowsazure.com). Vous trouverez ci-dessous des instructions pour définir la tarification des références horaires et BYOL.
 > 
 > 
 
-### <a name="211-how-toosetup-hourly-pricing-model-for-a-sku"></a>2.1.1 comment toosetup modèle de tarification horaire pour une référence (SKU)
-Suivez les étapes de hello ci-dessous toosetup modèle de tarification horaire pour une référence (SKU) :
+### <a name="211-how-to-setup-hourly-pricing-model-for-a-sku"></a>2.1.1 Comment configurer le modèle de tarification horaire pour une référence
+Suivez les étapes ci-dessous pour configurer un modèle de tarification horaire pour une référence :
 
-1. Connexion toohello [portail de publication](https://publish.windowsazure.com).
-2. Accédez toohello **virtuels** onglet et sélectionnez votre offre.
-3. À partir du menu de côté hello gauche, cliquez sur hello **SKU** onglet.
-4. Vérifiez que hello que référence (SKU) est marqué comme « Modèle de facturation horaire ». Dans le cas contraire, cliquez sur hello **modifier** modèle de facturation bouton toorevert hello. Une fenêtre s’affiche. Désactivez hello 'facturation et le Gestionnaire de licences est effectuée en externe à partir de Azure (également appelé mettre votre propre licence)' et enregistrer les modifications de hello.
-5. Si vous souhaitez tooenable version d’évaluation gratuite de 30 jours de première hello du déploiement de référence (SKU), puis option hello « Mois » pour hello question » est une version d’évaluation gratuite disponible ? » Sinon, sélectionnez l’option hello « Aucune évaluation ». Maintenant, suivez étapes hello indiquées ci-dessous.
-6. À partir du menu de côté hello gauche, cliquez sur hello **tarification** onglet.
+1. Connectez-vous au [portail de publication](https://publish.windowsazure.com).
+2. Accédez à l’onglet **MACHINES VIRTUELLES** et sélectionnez votre offre.
+3. Dans le menu de gauche, cliquez sur l’onglet **RÉFÉRENCES (SKU)** .
+4. Assurez-vous que la référence est marquée comme « Modèle de facturation horaire ». Dans le cas contraire, cliquez sur le bouton **MODIFIER** pour rétablir le modèle de facturation. Une fenêtre s’affiche. Décochez la case « La facturation et la gestion des licences sont traitées à l’extérieur d’Azure (apportez votre propre licence) » et enregistrez les modifications.
+5. Si vous souhaitez activer l’évaluation gratuite pour les 30 premiers jours du déploiement de la référence, sélectionnez l’option « Un mois » à la question « Une version d’évaluation gratuite est-elle disponible ? » Sinon, sélectionnez l’option « Aucune version d’évaluation ». Suivez maintenant les étapes indiquées ci-dessous.
+6. Dans le menu de gauche, cliquez sur l’onglet **TARIFICATION** .
 7. Sélectionnez votre région de base.
    
    ![dessin](media/marketplace-publishing-push-to-staging/img2.1.1_07.png)
-8. Définir des prix de hello pour tous les cœurs. **Vous devez fournir des prix pour tous les cœurs hello d’une référence (SKU) même si votre référence (SKU) ne le prend pas en charge.**
+8. Définissez les prix de tous les cœurs. **Vous devez fournir des prix pour tous les cœurs d’une référence (SKU), même si votre référence ne le prend pas en charge.**
    
     ![dessin](media/marketplace-publishing-push-to-staging/img2.1.1_08.png)
-9. Définir manuellement les autres régions de prix hello pour hello ou vous pouvez utiliser hello AUTOPRICE Assistant tooset hello prix des autres régions en fonction de la région de base hello. toouse hello AUTOPRICE Assistant, cliquez sur le bouton de hello **AUTOPRICE autres marchés basés sur les prix IN États-Unis.** **Remarque :** hello étiquette peut être différent en fonction de la région de hello que vous avez sélectionnés. Étant donné que nous avons sélectionné États-Unis lors de la création de ce document, par conséquent, hello bouton porte « Autres marchés basées sur les prix aux États-Unis de prix automatique » dans la capture d’écran hello ci-dessous.
+9. Définissez les prix pour les autres régions manuellement, ou utilisez l’assistant TARIFICATION AUTOMATIQUE pour définir les prix des autres régions en fonction de la région de base. Pour utiliser l’assistant TARIFICATION AUTOMATIQUE, cliquez sur le bouton **TARIFICATION AUTOMATIQUE POUR LES AUTRES MARCHÉS EN FONCTION DES PRIX POUR LES ÉTATS-UNIS.** **Remarque :** le libellé du bouton peut être différent selon la région que vous avez sélectionnée. Comme nous avons sélectionné les États-Unis lors de la création de ce document, le bouton est intitulé « Tarification automatique pour les autres marchés en fonction des pris pour les États-Unis » dans la capture d’écran ci-dessous.
    
    ![dessin](media/marketplace-publishing-push-to-staging/img2.1.1_09.png)
-10. Assistant de prix Hello automatique s’ouvre. première page de Hello affiche hello pour le marché de base. La section et de déplacer la page suivante de toohello en cliquant sur le bouton de « -> » hello.
+10. L’Assistant de tarification automatique s’ouvre. La première page affiche la sélection pour le marché de base. Effectuez votre sélection et passez à la page suivante en cliquant sur le bouton « -> ».
     
     ![dessin](media/marketplace-publishing-push-to-staging/img2.1.1_10.png)
-11. Option de sélection des plans et les cœurs hello s’affichera sur la page de hello 2. Sélectionnez les modes hello souhaité et cliquez sur « -> » bouton. Cliquez sur hello **bascule toutes les** tooselect bouton tous hello **plans de Service** et **mètres** ou vous pouvez rechercher manuellement les cases à cocher hello. **Vous devez fournir des prix pour tous les cœurs hello d’une référence (SKU) même si votre référence (SKU) ne le prend pas en charge.** Par conséquent, assurez-vous que toutes les tailles de noyaux hello sont sélectionnées.
+11. L’option permettant de sélectionner les cœurs et les plans s’affichera sur la page 2. Sélectionnez les plans voulus, puis cliquez sur « -> ». Cliquez sur le bouton **Activer/désactiver tout** pour sélectionner tous les **plans de service** et **compteurs**, ou vous pouvez cocher manuellement les cases. **Vous devez fournir des prix pour tous les cœurs d’une référence (SKU), même si votre référence ne le prend pas en charge.** Par conséquent, assurez-vous que toutes les tailles de cœur sont sélectionnées.
     
     ![dessin](media/marketplace-publishing-push-to-staging/img2.1.1_11.png)
-12. Page 3 affiche hello marchés et régions. Cliquez sur hello **bascule toutes les** bouton tooselect toutes les régions ou vérifier manuellement les zones hello pour la région. Cliquez sur hello » -> « page suivante de bouton toomove toohello. **Remarque :** les pays pour lesquels Microsoft verse les taxes sont indiqués par un symbole de maison. Pour plus d’informations, consultez le toohello section « Donneur d’ordre pour » pays de hello référence (SKU) de cette page.
+12. La page 3 affiche les marchés et régions. Cliquez sur le bouton **Activer/désactiver tout** pour sélectionner toutes les régions, ou cochez-les manuellement. Cliquez sur le bouton « -> » pour passer à la page suivante. **Remarque :** les pays pour lesquels Microsoft verse les taxes sont indiqués par un symbole de maison. Pour plus d’informations, consultez la section Pays cibles de la référence sur cette page.
     
     ![dessin](media/marketplace-publishing-push-to-staging/img2.1.1_12.png)
-13. Page 4 affiche le taux de change hello. Cliquez sur hello terminer les étapes de bouton toocomplete hello.
+13. La page 4 affiche le taux de change. Cliquez sur le bouton Terminer pour terminer la procédure.
 
-### <a name="212-how-toosetup-byol-pricing-model-for-a-sku"></a>2.1.2 comment toosetup BYOL tarification pour une référence (SKU)
-Suivez les étapes de hello données sous le modèle de tarification toosetup BYOL pour une référence (SKU) :
+### <a name="212-how-to-setup-byol-pricing-model-for-a-sku"></a>2.1.2 Comment configurer le modèle de tarification BYOL pour une référence
+Suivez les étapes ci-dessous pour configurer un modèle de tarification BYOL pour une référence :
 
-1. Connexion toohello [portail de publication](https://publish.windowsazure.com).
-2. Accédez toohello **virtuels** onglet et sélectionnez votre offre.
-3. À partir du menu de côté hello gauche, cliquez sur hello **SKU** onglet.
-4. Vérifiez que hello que référence (SKU) est marqué comme étant « Apportez votre propre licence référence (SKU) ». Si ce n’est pas le cas, puis cliquez sur hello de toorevert hello modifier bouton modèle de facturation. Une fenêtre s’affiche. Case à cocher hello 'facturation et le Gestionnaire de licences est effectuée en externe à partir de Azure (également appelé mettre votre propre licence)' et enregistrer les modifications de hello.
+1. Connectez-vous au [portail de publication](https://publish.windowsazure.com).
+2. Accédez à l’onglet **MACHINES VIRTUELLES** et sélectionnez votre offre.
+3. Dans le menu de gauche, cliquez sur l’onglet **RÉFÉRENCES (SKU)** .
+4. Assurez-vous que la référence est marquée comme « Apportez votre propre licence ». Dans le cas contraire, cliquez sur le bouton MODIFIER pour rétablir le modèle de facturation. Une fenêtre s’affiche. Cochez la case « La facturation et la gestion des licences sont traitées à l’extérieur d’Azure (apportez votre propre licence) » et enregistrez les modifications.
    
    ![dessin](media/marketplace-publishing-push-to-staging/img2.1.2_04.png)
-5. À partir du menu de côté hello gauche, cliquez sur hello **tarification** onglet.
-6. Sélectionnez votre région de base et rendre hello référence (SKU) disponible dans la région de hello en activant la case à cocher hello contre hello référence (SKU) sous la section de hello disponibilité de référence (SKU) EXTERNALLY-LICENSED (BYOL) (voir la capture d’écran hello ci-dessous).
+5. Dans le menu de gauche, cliquez sur l’onglet **TARIFICATION** .
+6. Sélectionnez la région de base et rendez la référence disponible dans la région en cochant la case à côté de la référence sous la section DISPONIBILITÉ DE LA RÉFÉRENCE AVEC LICENCE EXTERNE (BYOL) (voir la capture d’écran ci-dessous).
    
    ![dessin](media/marketplace-publishing-push-to-staging/img2.1.2_06.png)
-7. Disposition hello SKU Bonjour autres régions manuellement ou vous pouvez utiliser l’Assistant AUTOPRICE hello à cet effet. Consultez toohello points #9 trop n° 13 (ce qui explique l’utilisation hello d’Assistant AUTOPRICE hello) dans la section de hello **« 2.1.1 comment toosetup modèle de tarification horaire pour une référence (SKU) «** de cette page.
+7. Rendez la région disponible dans les autres régions manuellement ou utilisez l’assistant TARIFICATION AUTOMATIQUE à cette fin. Consultez les points #9 à &#13; (qui détaillent l’utilisation de l’assistant de tarification automatique) dans la section **2.1.1 Comment configurer le modèle de tarification horaire pour une référence** de cette page.
 
 ### <a name="22-set-your-developer-service-prices"></a>2.2. Définir le prix de vos services de développement
-Plans peuvent être n’importe quelle combinaison de base + consommation, où la base est le prix mensuel de hello et dépassement est prix de paiement à l’utilisation de hello. (Voir détails ci-dessous)
+Les offres peuvent constituer une combinaison quelconque de tarifs De base + Consommation, où De base est le tarif mensuel et Dépassement est le tarif à l’utilisation. (Voir détails ci-dessous)
 
 **Exemple :** offre de services de développement Contoso
 
 | Planification | Prix | Inclus | Chemin de migration |
 | --- | --- | --- | --- |
-| Gratuit |0 $/mois |Fonctionnalités de base. |Peut migrer tooany autre plan |
-| Bronze |10 $/mois |Fonctionnalités de base et un quota de 1 000 pour la fonctionnalité X. |Peut migrer tooBronze Plus, argent et or plans |
-| Bronze Plus |Période d’essai gratuite : 0 $/mois + 0 $/meter01 |Fonctionnalités de base et un quota de 10 000 X de fonctionnalité.  Une fois que le quota de la fonctionnalité X est utilisé, client de hello peut payer par utilisation via meter01. |Peut migrer les plans tooSilver Plus et Gold |
-| Bronze Plus |Période payée (également appelé essai gratuit expiré) : 10 $/mois + 0,05 $/meter01 |Fonctionnalités de base et un quota de 10 000 X de fonctionnalité.  Une fois que le quota de la fonctionnalité X est utilisé, client de hello peut payer par utilisation via meter01. |Peut migrer les plans tooSilver Plus et Gold |
-| Silver |0,15 $/meter01 |client de Hello peut payer par utilisation via meter01, ce qui concerne la fonctionnalité X. |Peut migrer tooBronze et les plans d’or |
-| Silver Plus |20 $/mois + 0,15 $/meter01 + 0,01 $/meter02 |Fonctionnalités de base et un quota de 10 000 de fonctionnalité X et 100 de fonctionnalité Y.  Une fois que le quota de fonctionnalité X hello est utilisé, client de hello peut payer par utilisation via meter01.  Une fois que le quota de fonctionnalité Y hello est utilisé, client de hello peut payer par utilisation via meter02. |Peut migrer les plans tooBronze Plus et Gold |
-| Gold |1 000 $ par mois |Quota de 10 000 pour la fonctionnalité X, 1 000 pour la fonctionnalité Y et illimité pour la fonctionnalité Z. |Peut migrer les plans de tooall sauf libre |
+| Gratuit |0 $/mois |Fonctionnalités de base. |Peut migrer vers une autre offre |
+| Bronze |10 $/mois |Fonctionnalités de base et un quota de 1 000 pour la fonctionnalité X. |Possibilité de migration vers les offres Bronze Plus, Silver et Gold |
+| Bronze Plus |Période d’essai gratuite : 0 $/mois + 0 $/meter01 |Fonctionnalités de base et quota de 10 000 pour la fonctionnalité X. Une fois le quota alloué pour la fonctionnalité X épuisé, le client peut payer à l’utilisation via meter01. |Possibilité de migration vers les offres Silver Plus et Gold |
+| Bronze Plus |Période payée (également appelé essai gratuit expiré) : 10 $/mois + 0,05 $/meter01 |Fonctionnalités de base et quota de 10 000 pour la fonctionnalité X. Une fois le quota alloué pour la fonctionnalité X épuisé, le client peut payer à l’utilisation via meter01. |Possibilité de migration vers les offres Silver Plus et Gold |
+| Silver |0,15 $/meter01 |Le client peut payer à l’utilisation en fonction de meter01, qui s’applique à la fonctionnalité X. |Possibilité de migration vers les offres Bronze et Gold |
+| Silver Plus |20 $/mois + 0,15 $/meter01 + 0,01 $/meter02 |Fonctionnalités de base et un quota de 10 000 pour la fonctionnalité X et de 100 pour la fonctionnalité Y. Une fois le quota pour la fonctionnalité X utilisé, le client peut payer en fonction de l’utilisation via meter01.  Une fois le quota pour la fonctionnalité Y utilisé, le client peut payer en fonction de l’utilisation via meter02. |Possibilité de migration vers les offres Bronze Plus et Gold |
+| Gold |1 000 $ par mois |Quota de 10 000 pour la fonctionnalité X, 1 000 pour la fonctionnalité Y et illimité pour la fonctionnalité Z. |Permet de migrer vers toutes les offres sauf Gratuit |
 
 ## <a name="step-3-provide-support-information"></a>Étape 3 : Fournir les informations de support
-Détails du contact Hello sont utilisées pour les communications internes entre les partenaires hello et Microsoft. URL du support technique Hello sera disponible toohello clients.
+Les coordonnées sont utilisées uniquement pour les communications internes entre le partenaire et Microsoft. L’URL de support sera disponible pour les clients finaux.
 
-1. Accédez toohello **prise en charge** en-tête hello gauche du portail de publication hello.
+1. Accédez à l’en-tête **Support** à gauche du portail de publication.
 2. Entrez les informations sous **Engineering Contact**(Contact Ingénieur).
 3. Entrez les informations sous **Customer Support**(Service client). Si vous indiquez uniquement un support électronique, entrez un numéro de téléphone factice, et l’adresse de messagerie fournie sera utilisée.
-4. Entrez l’URL de support hello.
+4. Entrez l’URL de support.
 
 ## <a name="step-4-choose-azure-marketplace-categories"></a>Étape 4 : Choisir les catégories Azure Marketplace
-Hello **catégories** onglet propose un ensemble de sélections. Votre offre peut tombe sous ces, et vous pouvez sélectionner les catégories de toofive.
+L’onglet **Categories** (Catégories) offre diverses options. Votre offre peut appartenir à l’une d’elles et vous pouvez sélectionner jusqu’à cinq catégories.
 
 ## <a name="how-your-marketing-will-appear"></a>Présentation de votre contenu marketing
-Voici une vue détaillée de l’utilisation d’offre hello marketing plus d’informations sur hello [site Web d’Azure Marketplace](https://azure.microsoft.com/marketplace/) et Bonjour [portail Azure](https://portal.azure.com).
+Voici une vue détaillée de l’utilisation des informations marketing de l’offre sur le [site web Azure Marketplace](https://azure.microsoft.com/marketplace/) et dans le [portail Azure](https://portal.azure.com).
 
 ### <a name="azure-marketplace-website"></a>Site web Azure Marketplace
 ![dessin](media/marketplace-publishing-push-to-staging/acom-catalog-01.png)
 
 ![dessin](media/marketplace-publishing-push-to-staging/acom-catalog-02.png)
 
-*Affichage de la liste des offres sur le site Web de hello Azure Marketplace*
+*Liste des offres sur le site web Azure Marketplace*
 
 ![dessin](media/marketplace-publishing-push-to-staging/acom-listing-details-01.png)
 
-*Description des détails sur le site Web de hello Azure Marketplace de l’offre*
+*Détails de la description de l’offre sur le site web Azure Marketplace*
 
 ![dessin](media/marketplace-publishing-push-to-staging/acom-listing-details-02.png)
 
-*Détails de la tarification sur le site Web de hello Azure Marketplace de description de l’offre*
+*Détails de tarification de la description de l’offre sur le site web Azure Marketplace*
 
-### <a name="azure-portal"></a>Portail Azure
+### <a name="azure-portal"></a>portail Azure
 ![dessin](media/marketplace-publishing-push-to-staging/azureportal-galleryblade-01.png)
 
-*Liste des offres Bonjour portail Azure*
+*Liste des offres dans le portail Azure*
 
 ![dessin](media/marketplace-publishing-push-to-staging/azureportal-galleryblade-02.png)
 
-*Offre des informations de description Bonjour portail Azure*
+*Détails de la description de l’offre sur le portail Azure*
 
 ## <a name="next-steps"></a>Étapes suivantes
-Votre contenu Marketplace étant chargé, nous allons maintenant tester votre offre dans l’environnement intermédiaire. Toutefois, vous devez sélectionner hello offre appropriée type à partir de la liste de hello ci-dessous, comme les étapes varient selon le type d’offre.
+Votre contenu Marketplace étant chargé, nous allons maintenant tester votre offre dans l’environnement intermédiaire. Vous devez toutefois sélectionner le type d’offre approprié dans la liste ci-dessous, car les étapes diffèrent selon le type d’offre.
 
 * [Tester votre offre de machine virtuelle dans un environnement intermédiaire](marketplace-publishing-vm-image-test-in-staging.md)
 * [Tester votre offre de modèle de solution en mode intermédiaire](marketplace-publishing-solution-template-test-in-staging.md)
 
 ## <a name="see-also"></a>Voir aussi
-* [Mise en route : comment toopublish une toohello offre Azure Marketplace](marketplace-publishing-getting-started.md)
+* [Mise en route : publication d’une offre dans Azure Marketplace](marketplace-publishing-getting-started.md)
 
 [img-map-acom]:media/marketplace-publishing-push-to-staging/pubportal-mapping-acom.jpg
 [img-map-portal]:media/marketplace-publishing-push-to-staging/pubportal-mapping-azure-portal.jpg

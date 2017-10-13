@@ -1,6 +1,6 @@
 ---
-title: "Forum aux questions (FAQ) sur Azure Search d’aaaFrequently | Documents Microsoft"
-description: "Obtenir des réponses toocommon des questions sur le Service de recherche de Microsoft Azure"
+title: "Questions fréquentes (FAQ) sur la Recherche Azure | Microsoft Docs"
+description: "Obtenez la réponse aux questions les plus fréquentes concernant le service Recherche Microsoft Azure."
 services: search
 author: HeidiSteen
 manager: jhubbard
@@ -9,15 +9,15 @@ ms.technology: search
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: heidist
-ms.openlocfilehash: 2c573750600d80585b746bfce20d6c0f8df5a262
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 02d5fac8cf9067ec544668f306fe49b805b3d164
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-search---frequently-asked-questions-faq"></a>Recherche Azure - Questions fréquentes (FAQ)
  
- Trouver toocommonly des réponses aux questions sur les concepts, scénarios et code liées tooAzure recherche.
+ Trouvez la réponse aux questions les plus fréquemment posées sur les concepts, le code et les scénarios liés à la Recherche Azure.
 
 ## <a name="platform"></a>Plateforme
 
@@ -25,63 +25,63 @@ ms.lasthandoff: 10/06/2017
 
 La Recherche Azure comprend les fonctionnalités suivantes : prise en charge de plusieurs sources de données, [analyse linguistique de nombreuses langues](https://docs.microsoft.com/rest/api/searchservice/language-support), [analyse personnalisée des entrées de données intéressantes et inhabituelles](https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search), contrôles de classement des recherches par le biais de [profils de score](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index), tampon clavier, mise en surbrillance des résultats et navigation par facettes. Elle comprend également d’autres fonctionnalités, telles que les synonymes et une syntaxe de requête riche, toutefois ces fonctionnalités ne lui sont pas propres.
 
-### <a name="what-is-hello-difference-between-azure-search-and-elasticsearch"></a>Qu’est la différence hello Azure Search et Elasticsearch ?
+### <a name="what-is-the-difference-between-azure-search-and-elasticsearch"></a>Quelle est la différence entre la Recherche Azure et Elasticsearch ?
 
-Lorsqu’ils comparent les technologies de recherche, les clients demandent souvent des précisions sur les différences entre la Recherche Azure et Elasticsearch. Les clients qui choisissent Azure Search sur Elasticsearch pour leur recherche les projets d’application généralement le faire car nous avons fait plus facilement les tâches importantes ou dont ils ont besoin d’intégration de hello avec d’autres technologies Microsoft :
+Lorsqu’ils comparent les technologies de recherche, les clients demandent souvent des précisions sur les différences entre la Recherche Azure et Elasticsearch. Lorsque les clients choisissent la Recherche Azure plutôt qu’Elasticsearch pour leurs projets d’applications de recherche, c’est généralement parce qu’elle facilite l’une de leurs tâches principales ou parce qu’ils ont besoin de l’intégrer à d’autres technologies Microsoft :
 
 + La Recherche Azure est un service cloud entièrement géré, avec 99,9 % de contrats de niveau de service (SLA) lorsqu’elle reçoit suffisamment de redondance (2 réplicas pour l’accès en lecture, 3 réplicas pour l’accès en lecture-écriture).
 + Les [processeurs de langage naturel](https://docs.microsoft.com/rest/api/searchservice/language-support) Microsoft offrent une analyse linguistique à la pointe de la technologie.  
 + Les [indexeurs de la Recherche Azure](search-indexer-overview.md) peuvent analyser diverses sources de données Azure en vue d’une indexation initiale et incrémentielle.
-+ Si vous devez toofluctuations une réponse rapide dans la requête ou de l’indexation des volumes, vous pouvez utiliser [contrôles slider](search-manage.md#scale-up-or-down) Bonjour portail Azure, ou exécuter un [script PowerShell](search-manage-powershell.md), en ignorant gestion de partition directement.  
-+ [Calcul de score et les fonctionnalités de paramétrage](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index) fournir hello pour influencer les scores de classement recherche au-delà du moteur de recherche hello seul peut fournir. 
++ Si vous avez besoin d’une réponse rapide aux fluctuations de volume des requêtes ou de l’indexation, vous pouvez utiliser les [curseurs](search-manage.md#scale-up-or-down) du portail Azure, ou exécuter un [script PowerShell](search-manage-powershell.md), en ignorant la gestion des partitions.  
++ Les [fonctionnalités de calcul de score et de paramétrage](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index) permettent d’améliorer le classement des recherches, bien au-delà de ce que le moteur de recherche seul peut fournir. 
 
 ### <a name="can-i-pause-azure-search-service-and-stop-billing"></a>Puis-je suspendre le service Recherche Azure et arrêter la facturation ?
 
-Vous ne pouvez pas suspendre le service de hello. Ressources de calcul et de stockage sont allouées pour une utilisation exclusive lorsque hello service est créé. Il n’est pas possible de toorelease et libérer ces ressources à la demande. 
+Vous ne pouvez pas suspendre le service. Lorsque le service est créé, les ressources de calcul et de stockage sont allouées pour votre utilisation exclusive. Il n’est pas possible de libérer des ressources à la demande. 
 
 ## <a name="indexing-operations"></a>Opérations d’indexation
 
 ### <a name="backup-and-restore-or-download-and-move-indexes-or-index-snapshots"></a>Est-il préférable d’utiliser des index de sauvegarde et de restauration (ou téléchargement et déplacement) ou des instantanés d’index ?
 
-Bien que vous puissiez [obtenir une définition d’index](https://docs.microsoft.com/rest/api/searchservice/get-index) à tout moment, il n’existe aucune extraction de l’index, une capture instantanée ou une fonctionnalité de restauration de sauvegarde pour le téléchargement une *rempli* index en cours d’exécution dans le système local hello cloud tooa, ou déplacer service Azure Search de tooanother. 
+Même si vous pouvez [obtenir une définition d’index](https://docs.microsoft.com/rest/api/searchservice/get-index) à tout moment, il n’existe pas de fonctionnalité d’extraction d’index, de création de capture instantanée ou de sauvegarde-restauration qui permettent de télécharger un index cloud *rempli* sur un système local, ou de le déplacer vers un autre service Recherche Azure. 
 
-Les index sont générés et remplis à partir de code que vous écrivez et s’exécutent uniquement sur Azure Search dans le cloud de hello. En règle générale, les clients qui souhaitent toomove un service de tooanother index faire en modifiant leur toouse code un nouveau point de terminaison et réexécutez l’indexation. Si vous souhaitez hello capacité tootake un instantané ou que vous sauvegardez un index, voter [User Voice](https://feedback.azure.com/forums/263029-azure-search/suggestions/8021610-backup-snapshot-of-index).
+Les index sont générés et remplis à partir du code que vous écrivez, et s’exécutent uniquement dans le cloud, dans la Recherche Azure. En règle générale, les clients qui souhaitent déplacer un index vers un autre service modifient leur code de manière à utiliser un nouveau point de terminaison, puis réexécutent l’indexation. Si vous voulez qu’une fonctionnalité vous permette de créer une capture instantanée ou une sauvegarde d’index, votez sur [UserVoice](https://feedback.azure.com/forums/263029-azure-search/suggestions/8021610-backup-snapshot-of-index).
 
-### <a name="can-i-index-from-sql-database-replicas-applies-tooazure-sql-database-indexershttpsdocsmicrosoftcomazuresearchsearch-howto-connecting-azure-sql-database-to-azure-search-using-indexers"></a>Puis-je indexer à partir des réplicas de base de données SQL (s’applique également[indexeurs de la base de données SQL Azure](https://docs.microsoft.com/azure/search/search-howto-connecting-azure-sql-database-to-azure-search-using-indexers))
+### <a name="can-i-index-from-sql-database-replicas-applies-to-azure-sql-database-indexershttpsdocsmicrosoftcomazuresearchsearch-howto-connecting-azure-sql-database-to-azure-search-using-indexers"></a>Puis-je effectuer une indexation à partir de réplicas de base de données SQL ? (s’applique aux [indexeurs Azure SQL Database](https://docs.microsoft.com/azure/search/search-howto-connecting-azure-sql-database-to-azure-search-using-indexers))
 
- Il n’existe aucune restriction sur l’utilisation de hello de réplicas principaux ou secondaires comme source de données lors de la création d’un index à partir de zéro. Toutefois, l’actualisation d’un index avec des mises à jour incrémentielles (basés sur les enregistrements modifiés) requiert réplica principal de hello. Cela vient du fait que SQL Database assure uniquement le suivi des modifications sur les réplicas principaux. Si vous essayez d’utiliser les réplicas secondaires pour une charge de travail de l’actualisation index, il n’est pas garanti que vous obtenez toutes les données hello.
+ Il n’existe aucune restriction quant à l’utilisation d’un réplica principal ou secondaire comme source de données lorsque vous créez un index à partir de zéro. Toutefois, pour que l’index soit actualisé avec des mises à jour incrémentielles (basées sur les enregistrements modifiés), le réplica principal est nécessaire. Cela vient du fait que SQL Database assure uniquement le suivi des modifications sur les réplicas principaux. Si vous essayez d’utiliser des réplicas secondaires pour une charge de travail d’actualisation d’index, il n’est pas garanti que vous obteniez toutes les données.
 
 ## <a name="search-operations"></a>Opérations de recherche
 
 ### <a name="can-i-search-across-multiple-indexes"></a>Puis-je effectuer une recherche sur plusieurs index ?
 
-Non, cette opération n’est pas prise en charge. Recherche est toujours tooa incluses dans l’étendue d’index.
+Non, cette opération n’est pas prise en charge. La recherche est toujours limitée à un seul index.
 
 ### <a name="can-i-restrict-search-corpus-access-by-user-identity"></a>Puis-je restreindre l’accès au corpus de recherche en fonction de l’identité de l’utilisateur ?
 
-La Recherche Azure n’applique pas de modèle de sécurité basée sur les rôles pour l’accès aux données par utilisateur. L’authentification est soit droits d’accès complets ou en lecture seule au niveau de service hello. Certains clients ont implémenté des solutions basées sur le [paramètre de recherche `$filter`](https://docs.microsoft.com/rest/api/searchservice/search-documents), mais il s’agit seulement d’une solution de contournement. Si vous souhaitez que cette fonctionnalité soit ajoutée, votez sur [UserVoice](https://feedback.azure.com/forums/263029-azure-search/category/86074-security).
+La Recherche Azure n’applique pas de modèle de sécurité basée sur les rôles pour l’accès aux données par utilisateur. Vous devez disposer des droits d’accès complets pour accéder au service, sinon vous ne disposerez que d’un accès en lecture seule. Certains clients ont implémenté des solutions basées sur le [paramètre de recherche `$filter`](https://docs.microsoft.com/rest/api/searchservice/search-documents), mais il s’agit seulement d’une solution de contournement. Si vous souhaitez que cette fonctionnalité soit ajoutée, votez sur [UserVoice](https://feedback.azure.com/forums/263029-azure-search/category/86074-security).
 
-### <a name="why-are-there-zero-matches-on-terms-i-know-toobe-valid"></a>Pourquoi y a-t-il zéro correspond aux conditions que savoir toobe valide ?
+### <a name="why-are-there-zero-matches-on-terms-i-know-to-be-valid"></a>Pourquoi n’ai-je aucun résultat pour des termes dont je sais qu’ils sont valides ?
 
-cas le plus courant Hello n'est pas de savoir que chaque type de requête prend en charge les comportements de recherche différente et les niveaux d’analyses linguistiques. Recherche en texte intégral, qui est la charge de travail prédominant hello, comprend une phase d’analyse de langage qui interrompt les termes du contrat tooroot forms vers le bas. Cet aspect de l’analyse de requête convertit un réseau plus large sur les correspondances possibles, car hello terme sous forme de jeton correspond à un plus grand nombre de variantes.
+Dans la plupart des cas, l’utilisateur ne sait pas que chaque type de requête prend en charge des comportements de recherche et des niveaux d’analyse linguistique différents. La recherche en texte intégral, qui représente la principale charge de travail, comprend une phase d’analyse linguistique qui ne conserve que la racine des termes entrés. Cet aspect de l’analyse de requête permet d’élargir le nombre de correspondances possibles, car le terme peut ainsi correspondre à un plus grand nombre de variantes.
 
-Si vous appelez [d’autres types de requêtes](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search) (recherche par caractères génériques, recherche approximative, recherche de proximité, suggestions, etc.), aucune analyse linguistique n’est effectuée. Termes du contrat est ajouté toohello arborescence de requête en tant que-est. 
+Si vous appelez [d’autres types de requêtes](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search) (recherche par caractères génériques, recherche approximative, recherche de proximité, suggestions, etc.), aucune analyse linguistique n’est effectuée. Les termes sont ajoutés tels quels à l’arborescence de requête. 
 
-### <a name="why-is-hello-search-rank-a-constant-or-equal-score-of-10-for-every-hit"></a>Pourquoi hello recherche rang est-il un score de constant ou égal de 1.0 pour chaque test ?
+### <a name="why-is-the-search-rank-a-constant-or-equal-score-of-10-for-every-hit"></a>Pourquoi le score du classement de recherche est-il systématiquement égal à 1.0 pour tous les résultats ?
 
-Par défaut, les résultats de la recherche sont notées en fonction de hello [propriétés statistiques des conditions de correspondance](search-lucene-query-architecture.md#stage-4-scoring)et classées toolow élevé dans le jeu de résultats hello. Toutefois, certains types (caractère générique, préfixe, regex) de requête contribue toujours à un score de constant toohello globale score de document. Ce comportement est normal. Azure Search impose une constante score des correspondances tooallow identifiés par la requête d’extension toobe est inclus dans les résultats de hello, sans affecter le classement de hello. 
+Par défaut, les résultats de la recherche sont notés en fonction des [propriétés statistiques des termes correspondants](search-lucene-query-architecture.md#stage-4-scoring), et sont classés du score le plus haut vers le score le plus bas. Cependant, certains types de requête (caractère générique, préfixe, expression régulière) contribuent toujours à un score constant dans le score général du document. Ce comportement est normal. La Recherche Azure impose un score constant pour permettre aux correspondances trouvées par le biais de l’extension de requête d’être incluses dans les résultats, sans affecter le classement. 
 
-Par exemple, supposons l’entrée « tour* » dans une recherche par caractères génériques, qui retourne les résultats « tours », « tourettes » et « tourmaline ». Compte tenu de nature hello de ces résultats, il est impossible tooreasonably déduire le termes du contrat est plus utile que d’autres. Pour cette raison, nous ignorons les fréquences de terme lors de la notation des résultats dans les requêtes avec caractère générique, préfixe et expression régulière. Résultats de la recherche basées sur une entrée partielle reçoivent une constante score décalage tooavoid vers correspondances potentiellement inattendus.
+Par exemple, supposons l’entrée « tour* » dans une recherche par caractères génériques, qui retourne les résultats « tours », « tourettes » et « tourmaline ». Étant donné la nature de ces résultats, il est impossible de déduire raisonnablement quels termes sont plus utiles que d’autres. Pour cette raison, nous ignorons les fréquences de terme lors de la notation des résultats dans les requêtes avec caractère générique, préfixe et expression régulière. Les résultats de recherche basés sur une entrée partielle reçoivent un score constant afin d’éviter que des résultats inattendus ne soient retournés.
 
 ## <a name="design-patterns"></a>Modèles de conception
 
-### <a name="what-is-hello-best-approach-for-implementing-localized-search"></a>Nouveautés hello meilleure approche pour l’implémentation d’une recherche localisée
+### <a name="what-is-the-best-approach-for-implementing-localized-search"></a>Quelle est la meilleure méthode pour implémenter une recherche localisée ?
 
-La plupart des clients choisissez les champs dédiés sur une collection lorsqu’il s’agit de toosupporting différents paramètres régionaux (langues) Bonjour même index. Champs spécifiques aux paramètres régionaux rendent possible tooassign un analyseur approprié. Par exemple, affectation de champ de tooa Microsoft Français Analyzer hello contenant des chaînes Français. Cela simplifie également le filtrage. Si vous connaissez qu'une requête est lancée sur une page fr-fr, vous pouvez limiter le champ de toothis de résultats de recherche. Créer un [profil de calcul de score](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index) toogive hello champ plus de poids relatif.
+La plupart des clients choisissent des champs dédiés plutôt qu’une collection lorsque plusieurs paramètres régionaux (langues) doivent être pris en charge dans un même index. Les champs spécifiques aux paramètres régionaux permettent d’attribuer un analyseur adapté. Par exemple, vous pouvez affecter l’analyseur de français Microsoft à un champ contenant des chaînes en langue française. Cela simplifie également le filtrage. Si vous savez qu’une requête est exécutée sur une page fr-fr, vous pouvez limiter les résultats de la recherche à ce champ. Sinon, vous pouvez aussi créer un [profil de score](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index) afin de donner au champ un poids plus relatif.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Votre question concerne-t-elle une fonctionnalité manquante ? Demande de fonctionnalité hello sur hello [User Voice web site](https://feedback.azure.com/forums/263029-azure-search).
+Votre question concerne-t-elle une fonctionnalité manquante ? Demandez cette fonctionnalité sur le [site web UserVoice](https://feedback.azure.com/forums/263029-azure-search).
 
 ## <a name="see-also"></a>Voir aussi
 

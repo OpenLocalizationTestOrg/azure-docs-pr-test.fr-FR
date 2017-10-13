@@ -1,6 +1,6 @@
 ---
-title: "aaaStream les journaux de Diagnostic Azure tooan Namespace de concentrateurs d’événements | Documents Microsoft"
-description: "Découvrez comment toostream Azure diagnostic consigne espace de noms tooan concentrateurs d’événements."
+title: Diffuser en continu les journaux de diagnostic Azure vers un espace de noms Event Hubs | Microsoft Docs
+description: "Découvrez comment diffuser en continu les journaux de diagnostic Azure vers un espace de noms Event Hubs."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,90 +14,90 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: johnkem
-ms.openlocfilehash: 00092ea8f3fe4fa1476e3a697bf1e8645dd21e6e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 01ba8ddfcf90e1368ac147296fd180f99420d96f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="stream-azure-diagnostic-logs-tooan-event-hubs-namespace"></a>Flux de données des journaux de Diagnostic Azure tooan Namespace de concentrateurs d’événements
-**[Les journaux de diagnostic Azure](monitoring-overview-of-diagnostic-logs.md)**  peut être transmis en continu près de l’option de « L’exportation tooEvent concentrateurs » intégrée hello dans hello portail application tooany en temps réel, ou en activant hello ID de règle de Bus de Service dans un paramètre de diagnostic via hello Azure PowerShell CLI applets de commande ou Azure.
+# <a name="stream-azure-diagnostic-logs-to-an-event-hubs-namespace"></a>Diffuser en continu les journaux de diagnostic Azure vers un espace de noms Event Hubs
+Les **[journaux de diagnostic Azure](monitoring-overview-of-diagnostic-logs.md)** peuvent être diffusés quasiment en temps réel sur n’importe quelle application à l’aide de l’option « Exporter vers Event Hubs » intégrée au portail, ou en activant l’identifiant de règle Service Bus dans un paramètre de diagnostic via les applets de commande Azure PowerShell ou l’interface de ligne de commande Azure.
 
 ## <a name="what-you-can-do-with-diagnostics-logs-and-event-hubs"></a>Ce que vous pouvez faire avec les journaux de diagnostic et Event Hubs
-Voici quelques méthodes que vous pouvez utiliser hello capacité de diffusion en continu pour les journaux de Diagnostic :
+Voici quelques façons d’utiliser la fonctionnalité de diffusion en continu pour les journaux de diagnostic :
 
-* **Flux de données consigne les systèmes de journalisation et les données de télémétrie too3rd tiers** – au fil du temps, le concentrateurs d’événements de diffusion en continu deviennent hello mécanisme toopipe vos journaux de diagnostic dans les serveurs de SIEM toothird tiers et les solutions analytique de journal.
-* **Afficher l’intégrité du service par diffusion en continu de « chemin réactif » données tooPowerBI** – concentrateurs d’événements à l’aide de flux Analytique et Power BI, vous pouvez facilement transformer vos données de diagnostic dans les informations en temps réel toonear sur vos services Azure. [Cet article de la documentation permet de découvrir comment traiter les données avec le flux de données Analytique tooset des concentrateurs d’événements et utiliser Power BI comme sortie](../stream-analytics/stream-analytics-power-bi-dashboard.md). Voici quelques conseils pour la configuration des journaux de diagnostic :
+* **Diffuser en continu des journaux sur des systèmes de journalisation et de télémétrie tiers** : au fil du temps, la diffusion en continu sur Event Hubs deviendra le mécanisme de diffusion de vos journaux de diagnostic vers les SIEM et les solutions d’analyse de journaux tiers.
+* **Afficher l’état d’intégrité du service en diffusant des données de chemin réactif vers PowerBI** : en utilisant Event Hubs, Stream Analytics et PowerBI, vous pouvez facilement transformer vos données de diagnostic en informations en temps réel sur vos services Azure. [Cette documentation vous explique comment configurer un client Event Hubs, traiter les données avec Stream Analytics et utiliser PowerBI comme sortie](../stream-analytics/stream-analytics-power-bi-dashboard.md). Voici quelques conseils pour la configuration des journaux de diagnostic :
   
-  * Un concentrateur d’événements pour une catégorie de journaux de diagnostic est créé automatiquement lorsque vous activez option hello dans le portail de hello ou l’activer via PowerShell, donc le concentrateur d’événements tooselect hello dans hello espace de noms avec le nom de hello commence par **insights-**.
-  * Hello suivant le code SQL est un exemple de flux de données Analytique requête que vous pouvez utiliser tooparse toutes les données de journal hello dans la table de Power BI tooa :
+  * Un hub d’événements est automatiquement créé pour une catégorie de journaux de diagnostic lorsque vous activez l’option dans le portail ou par le biais de PowerShell. Sélectionnez le hub d’événements dans l’espace de noms dont le nom commence par **insights-**.
+  * Le code SQL suivant est un exemple de requête Stream Analytics que vous pouvez utiliser pour analyser toutes les données de journal dans une table PowerBI :
 
     ```sql
     SELECT
-    records.ArrayValue.[Properties you want tootrack]
+    records.ArrayValue.[Properties you want to track]
     INTO
-    [OutputSourceName – hello PowerBI source]
+    [OutputSourceName – the PowerBI source]
     FROM
     [InputSourceName] AS e
     CROSS APPLY GetArrayElements(e.records) AS records
     ```
 
-* **Générer une télémétrie personnalisée et la plateforme de journalisation** : Si vous disposez déjà d’une plateforme de télémétrie personnalisées ou sont simplement penser à la génération 1, hello hautement évolutive de publication / abonnement nature des concentrateurs d’événements vous permet de tooflexibly réception du diagnostic journaux. [Consultez le toousing de Dan Rosanova guide concentrateurs d’événements dans une plateforme de télémétrie à l’échelle mondiale ici](https://azure.microsoft.com/documentation/videos/build-2015-designing-and-sizing-a-global-scale-telemetry-platform-on-azure-event-Hubs/).
+* **Créer une plateforme de journalisation et de télémétrie personnalisée** : si vous disposez déjà d’une plateforme de télémétrie personnalisée, ou si vous envisagez d’en créer une, la nature hautement évolutive de publication et d’abonnement d’Event Hubs vous permet d’intégrer avec souplesse les journaux de diagnostic. [Consultez ici le guide de Dan Rosanova sur l’utilisation d’Event Hubs dans une plateforme de télémétrie à échelle mondiale.](https://azure.microsoft.com/documentation/videos/build-2015-designing-and-sizing-a-global-scale-telemetry-platform-on-azure-event-Hubs/)
 
 ## <a name="enable-streaming-of-diagnostic-logs"></a>Activer la diffusion en continu des journaux de diagnostic
-Vous pouvez activer la diffusion en continu des journaux de diagnostic par programme, via le portail de hello, ou à l’aide de hello [API REST de Azure analyse](https://docs.microsoft.com/rest/api/monitor/servicediagnosticsettings). Dans les deux cas, vous créez un paramètre de diagnostic dans lequel vous spécifiez un espace de noms de concentrateurs d’événements et catégories du journal hello et métriques toosend dans l’espace de noms toohello. Un concentrateur d’événements est créé dans l’espace de noms hello pour chaque catégorie de journal que vous activez. Une **catégorie de journal** de diagnostic est un type de journal qu’une ressource peut collecter.
+Vous pouvez activer la diffusion en continu des journaux de diagnostic par programme, via le portail ou à l’aide des [API REST Azure Monitor](https://docs.microsoft.com/rest/api/monitor/servicediagnosticsettings). Dans tous les cas, vous créez un paramètre de diagnostic dans lequel vous spécifiez un espace de noms Event Hubs et les catégories de journal et les indicateurs de performance que vous voulez envoyer dans l’espace de noms. Un hub d’événements est créé dans l’espace de noms pour chaque catégorie de journal que vous activez. Une **catégorie de journal** de diagnostic est un type de journal qu’une ressource peut collecter.
 
 > [!WARNING]
 > L’activation et la diffusion en continu de journaux de diagnostic à partir de ressources de calcul (par exemple, les machines virtuelles ou Service Fabric) [nécessitent des étapes de configuration différentes](../event-hubs/event-hubs-streaming-azure-diags-data.md).
 > 
 > 
 
-Hello Service Bus ou concentrateurs d’événements espace de noms n’a pas toobe dans hello même abonnement en tant que ressource hello générant des journaux tant qu’utilisateur hello configure hello paramètre a des abonnements de tooboth accès RBAC appropriés.
+Il n’est pas nécessaire que l’espace de noms Service Bus ou Event Hubs se trouve dans le même abonnement que la ressource générant des journaux, à condition que l’utilisateur configurant le paramètre ait un accès RBAC approprié aux deux abonnements.
 
-## <a name="stream-diagnostic-logs-using-hello-portal"></a>Flux de données des journaux de diagnostic à l’aide du portail de hello
-1. Dans le portail de hello, accédez tooAzure moniteur, puis cliquez sur **les paramètres de Diagnostic**
+## <a name="stream-diagnostic-logs-using-the-portal"></a>Diffuser en continu les journaux de diagnostic à l’aide du portail
+1. Dans le portail, accédez à Azure Monitor, puis cliquez sur **Paramètres de diagnostic**
 
     ![Section Surveillance d’Azure Monitor](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-blade.png)
 
-2. Vous pouvez également filtrer la liste de hello par type de ressource ou le groupe de ressources, puis cliquez sur ressources hello pour laquelle vous aimeriez tooset un paramètre de diagnostic.
+2. Vous pouvez également filtrer la liste par type ou groupe de ressources, puis cliquez sur la ressource pour laquelle vous souhaitez définir un paramètre de diagnostic.
 
-3. Si aucun paramètre n’existe sur la ressource hello que vous avez sélectionné, vous êtes invité à toocreate un paramètre. Cliquez sur « Activer les diagnostics ».
+3. S’il n’existe aucun paramètre sur la ressource que vous avez sélectionnée, vous êtes invité à créer un paramètre. Cliquez sur « Activer les diagnostics ».
 
    ![Ajouter le paramètre de diagnostic - aucun paramètre existant](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-none.png)
 
-   S’il existe des paramètres existants sur les ressources hello, vous verrez une liste de paramètres déjà configuré sur cette ressource. Cliquez sur « Ajouter le paramètre de diagnostic ».
+   S’il existe des paramètres existants sur la ressource, vous verrez une liste de paramètres déjà configurés sur cette ressource. Cliquez sur « Ajouter le paramètre de diagnostic ».
 
    ![Ajouter le paramètre de diagnostic - paramètres existants](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-multiple.png)
 
-3. Donnez à votre définition d’un nom et la case hello pour **concentrateur d’événements de flux tooan**, puis sélectionnez un espace de noms de concentrateurs d’événements.
+3. Donnez un nom à votre définition et cochez la case **Diffuser en continu vers un hub d’événements**, puis sélectionnez un espace de noms Event Hubs.
    
    ![Ajouter le paramètre de diagnostic - paramètres existants](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-configure.png)
     
-   Hello espace de noms sélectionné sera où le concentrateur d’événements hello est créé (s’il s’agit de votre première diffusion en continu des journaux de diagnostic) ou transmis en continu trop (s’il existe déjà les ressources qui sont de diffusion en continu cet espace de noms de journal catégorie toothis), et définit la stratégie de hello hello autorisations dont dispose de mécanisme de diffusion en continu hello. Aujourd'hui, concentrateur d’événements tooan de diffusion en continu requiert écouter, envoyer et gérer les autorisations. Vous pouvez créer ou modifier des stratégies d’accès partagé un espace de noms concentrateurs d’événements dans le portail hello sous l’onglet configurer de hello pour votre espace de noms. tooupdate un de ces paramètres de diagnostic, les clients hello doivent autorisé hello ListKey sur une règle d’autorisation hello concentrateurs d’événements.
+   L’espace de noms sélectionné sera l’espace où le hub d’événements sera créé (si c’est la première fois que vous diffusez en continu des journaux de diagnostic) ou vers lequel le hub d’événements diffusera les journaux (si des ressources diffusent déjà cette catégorie de journal vers cet espace de noms). La stratégie définit les autorisations dont dispose le mécanisme de diffusion en continu. À l’heure actuelle, la diffusion vers un hub d’événements requiert des autorisations de gestion, d’envoi et d’écoute. Vous pouvez créer ou modifier les stratégies d’accès partagé de l’espace de noms Event Hubs dans le portail sous l’onglet Configurer pour votre espace de noms. Pour mettre à jour l’un de ces paramètres de diagnostic, le client doit avoir l’autorisation ListKey sur la règle d’autorisation Event Hubs.
 
 4. Cliquez sur **Enregistrer**.
 
-Après quelques instants, hello nouveau paramètre s’affiche dans la liste des paramètres pour cette ressource, et les journaux de diagnostic sont transmis en continu compte de stockage toothat dès que les nouvelles données d’événement sont générées.
+Après quelques instants, le nouveau paramètre apparaît dans la liste des paramètres de cette ressource, et les journaux de diagnostic sont diffusés en continu dans ce compte de stockage dès que de nouvelles données d’événement sont générées.
 
 ### <a name="via-powershell-cmdlets"></a>Via les applets de commande PowerShell
-tooenable de diffusion en continu via hello [applets de commande PowerShell Azure](insights-powershell-samples.md), vous pouvez utiliser hello `Set-AzureRmDiagnosticSetting` applet de commande avec ces paramètres :
+Pour activer la diffusion en continu via les [applets de commande Azure PowerShell](insights-powershell-samples.md), vous pouvez utiliser l’applet de commande `Set-AzureRmDiagnosticSetting` avec ces paramètres :
 
 ```powershell
 Set-AzureRmDiagnosticSetting -ResourceId [your resource ID] -ServiceBusRuleId [your Service Bus rule ID] -Enabled $true
 ```
 
-Hello ID de règle de Bus de Service est une chaîne au format suivant : `{Service Bus resource ID}/authorizationrules/{key name}`, par exemple, `/subscriptions/{subscription ID}/resourceGroups/Default-ServiceBus-WestUS/providers/Microsoft.ServiceBus/namespaces/{Service Bus namespace}/authorizationrules/RootManageSharedAccessKey`.
+L’ID de règle Service Bus est une chaîne au format `{Service Bus resource ID}/authorizationrules/{key name}`, par exemple, `/subscriptions/{subscription ID}/resourceGroups/Default-ServiceBus-WestUS/providers/Microsoft.ServiceBus/namespaces/{Service Bus namespace}/authorizationrules/RootManageSharedAccessKey`.
 
 ### <a name="via-azure-cli"></a>Via l’interface de ligne de commande Azure
-tooenable de diffusion en continu via hello [CLI d’Azure](insights-cli-samples.md), vous pouvez utiliser hello `insights diagnostic set` commande comme suit :
+Pour activer la diffusion en continu via [l’interface de ligne de commande Azure](insights-cli-samples.md), vous pouvez utiliser la commande `insights diagnostic set` comme suit :
 
 ```azurecli
 azure insights diagnostic set --resourceId <resourceID> --serviceBusRuleId <serviceBusRuleID> --enabled true
 ```
 
-Utilisez hello même format pour l’ID de règle de Bus de Service, comme expliqué pour hello PowerShell Cmdlet.
+Utilisez le même format pour l’ID de règle Service Bus, comme expliqué pour l’applet de commande PowerShell.
 
-## <a name="how-do-i-consume-hello-log-data-from-event-hubs"></a>Comment consommer des données de journal hello de concentrateurs d’événements ?
+## <a name="how-do-i-consume-the-log-data-from-event-hubs"></a>Comment utiliser les données de journal d’Event Hubs ?
 Voici des exemples de données de sortie provenant d’Event Hubs :
 
 ```json
@@ -164,17 +164,17 @@ Voici des exemples de données de sortie provenant d’Event Hubs :
 | Nom de l’élément | Description |
 | --- | --- |
 | records |Un tableau regroupant tous les événements de journal de cette charge utile. |
-| time |Heure à laquelle hello événement s’est produit. |
+| time |L’heure à laquelle l’événement s’est produit. |
 | category |La catégorie de journal associée à cet événement. |
-| resourceId |ID de ressource de la ressource hello qui a généré cet événement. |
-| operationName |Nom de l’opération de hello. |
-| level |facultatif. Indique le niveau de l’événement journal hello. |
-| properties |Propriétés d’événement de hello. |
+| resourceId |L’ID de la ressource qui a généré cet événement. |
+| operationName |Le nom de l’opération. |
+| level |facultatif. Indique le niveau de l’événement de journal. |
+| properties |Les propriétés de l’événement. |
 
-Vous pouvez afficher une liste de tous les fournisseurs de ressources qui prennent en charge la diffusion en continu de concentrateurs de tooEvent [ici](monitoring-overview-of-diagnostic-logs.md).
+Une liste de tous les fournisseurs de ressources qui prennent en charge la diffusion en continu vers Event Hubs est disponible [ici](monitoring-overview-of-diagnostic-logs.md).
 
 ## <a name="stream-data-from-compute-resources"></a>Diffusion de données à partir des ressources de calcul
-Vous pouvez également transmettre en continu des journaux de diagnostic à partir des ressources de calcul à l’aide de l’agent de Diagnostics Windows Azure hello. [Consultez l’article](../event-hubs/event-hubs-streaming-azure-diags-data.md) sur la manière de tooset cet accès.
+Vous pouvez également diffuser en continu des journaux de diagnostic à partir des ressources de calcul à l’aide de l’agent Windows Azure Diagnostics. [Consultez cet article](../event-hubs/event-hubs-streaming-azure-diags-data.md) pour découvrir comment configurer cela.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [En savoir plus sur les journaux de diagnostic Azure](monitoring-overview-of-diagnostic-logs.md)

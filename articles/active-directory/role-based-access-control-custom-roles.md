@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate des rôles personnalisés pour Azure RBAC. | Documents Microsoft"
-description: "Découvrez comment toodefine des rôles personnalisés avec du contrôle d’accès pour la gestion d’identité plus précise dans votre abonnement Azure."
+title: "Créer des rôles personnalisés dans RBAC Azure | Microsoft Docs"
+description: "Découvrez comment définir des rôles personnalisés à l’aide du contrôle d’accès en fonction du rôle Azure pour une gestion plus précise des identités dans votre abonnement Azure."
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -15,18 +15,18 @@ ms.date: 07/11/2017
 ms.author: andredm
 ms.reviewer: rqureshi
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 60df12632ef6c086d5feeb1809196d7c4ee5e021
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8e72f2c8095d13c4b6df3c6576bd58806a3c0f2f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-custom-roles-for-azure-role-based-access-control"></a>Créer des rôles personnalisés pour le contrôle d’accès en fonction du rôle Azure
-Créer un rôle personnalisé dans le contrôle d’accès du (RBAC) si aucun des rôles intégrés de hello répond à vos besoins spécifiques. Des rôles personnalisés peuvent être créés à l’aide de [Azure PowerShell](role-based-access-control-manage-access-powershell.md), [Interface de ligne de commande Azure](role-based-access-control-manage-access-azure-cli.md) (CLI) et hello [API REST](role-based-access-control-manage-access-rest.md). Tout comme les rôles intégrés, vous pouvez affecter toousers de rôles personnalisés, des groupes et des applications au niveau d’abonnement, de groupe de ressources et de portées de ressource. Les rôles personnalisés sont stockés dans un client Azure AD et peuvent être partagés entre les abonnements.
+Créez un rôle personnalisé dans le contrôle d’accès en fonction du rôle (RBAC) Azure si aucun des rôles intégrés ne répond à vos besoins d’accès spécifiques. Il est possible de créer des rôles personnalisés à l’aide [d’Azure PowerShell](role-based-access-control-manage-access-powershell.md), de [l’interface de ligne de commande Azure](role-based-access-control-manage-access-azure-cli.md) et de [l’API REST](role-based-access-control-manage-access-rest.md). Comme avec les rôles intégrés, vous pouvez affecter des rôles personnalisés à des utilisateurs, des groupes et des applications dans l’étendue des abonnements, des groupes de ressources et des ressources. Les rôles personnalisés sont stockés dans un client Azure AD et peuvent être partagés entre les abonnements.
 
-Chaque client peut créer des rôles personnalisés de too2000. 
+Chaque locataire peut créer jusqu’à 2 000 rôles personnalisés. 
 
-Hello suivant montre un rôle personnalisé pour la surveillance et le redémarrage des ordinateurs virtuels :
+Voici un exemple de rôle personnalisé pour surveiller et redémarrer des machines virtuelles :
 
 ```
 {
@@ -57,15 +57,15 @@ Hello suivant montre un rôle personnalisé pour la surveillance et le redémarr
 }
 ```
 ## <a name="actions"></a>Actions
-Hello **Actions** propriété d’un rôle personnalisé spécifie hello opérations Azure toowhich hello rôle accorde un accès. Il s’agit d’un ensemble de chaînes d’opération qui identifient les opérations sécurisables des fournisseurs de ressources Azure. Chaînes d’opération suivent le format hello `Microsoft.<ProviderName>/<ChildResourceType>/<action>`. Chaînes d’opération qui contiennent des caractères génériques (\*) tooall les opérations qui correspondent à la chaîne d’opération hello accorder l’accès. Exemple :
+La propriété **Actions** d’un rôle personnalisé spécifie les opérations Azure auxquelles le rôle accorde l’accès. Il s’agit d’un ensemble de chaînes d’opération qui identifient les opérations sécurisables des fournisseurs de ressources Azure. Les chaînes d’opération sont au format `Microsoft.<ProviderName>/<ChildResourceType>/<action>`. Les chaînes d’opération contenant des caractères génériques (\*) accordent l’accès à toutes les opérations qui correspondent à la chaîne d’opération. Exemple :
 
-* `*/read`octroie accéder à des opérations de tooread pour tous les types de ressources de tous les fournisseurs de ressources Azure.
-* `Microsoft.Compute/*`octroie accéder à des opérations de tooall pour tous les types de ressource dans le fournisseur de ressources Microsoft.Compute hello.
-* `Microsoft.Network/*/read`octroie accéder à des opérations de tooread pour tous les types de ressource dans le fournisseur de ressources Microsoft.Network hello de Azure.
-* `Microsoft.Compute/virtualMachines/*`octroie accéder à des opérations de tooall des ordinateurs virtuels et de ses types de ressources enfants.
-* `Microsoft.Web/sites/restart/Action`octroie accéder aux sites Web de toorestart.
+* `*/read` accorde l’accès aux opérations de lecture pour tous les types de ressources de l’ensemble des fournisseurs de ressources Azure.
+* `Microsoft.Compute/*` accorde l’accès à l’ensemble des opérations pour tous les types de ressources dans le fournisseur de ressources Microsoft.Compute.
+* `Microsoft.Network/*/read` accorde l’accès aux opérations de lecture pour tous les types de ressources dans le fournisseur de ressources Microsoft.Network d’Azure.
+* `Microsoft.Compute/virtualMachines/*` accorde l’accès à toutes les opérations des machines virtuelles et ses types de ressources enfants.
+* `Microsoft.Web/sites/restart/Action` autorise le redémarrage des sites web.
 
-Utilisez `Get-AzureRmProviderOperation` (dans PowerShell) ou `azure provider operations show` (dans Azure CLI) opérations toolist des fournisseurs de ressources Azure. Vous pouvez également utiliser ces tooverify commandes qu’une chaîne de l’opération est valide et les chaînes d’opération tooexpand génériques.
+Utilisez `Get-AzureRmProviderOperation` (dans PowerShell) ou `azure provider operations show` (dans l’interface de ligne de commande Azure) pour répertorier les opérations des fournisseurs de ressources Azure. Vous pouvez également utiliser ces commandes pour vérifier qu’une chaîne d’opération est valide et pour développer les chaînes d’opération génériques.
 
 ```
 Get-AzureRMProviderOperation Microsoft.Compute/virtualMachines/*/action | FT Operation, OperationName
@@ -84,21 +84,21 @@ azure provider operations show "Microsoft.Network/*"
 ![Capture d’écran de l’interface de ligne de commande Azure ; les opérations du fournisseur azure affichent « Microsoft.Compute/virtualMachines/\*/action » ](./media/role-based-access-control-configure/1-azure-provider-operations-show.png)
 
 ## <a name="notactions"></a>NotActions
-Hello d’utilisation **NotActions** propriété si hello d’opérations que vous souhaitez tooallow plus facilement définie en excluant les opérations restreintes. accès accordé par un rôle personnalisé Hello est calculé en soustrayant hello **NotActions** opérations hello **Actions** operations.
+Utilisez la propriété **NotActions** si l’ensemble des opérations que vous souhaitez autoriser est plus facile à définir en excluant les opérations restreintes. L’accès accordé par un rôle personnalisé est déterminé par l’élimination des opérations **NotActions** des opérations **Actions**.
 
 > [!NOTE]
-> Si un utilisateur est assigné à un rôle qui exclut une opération dans **NotActions**et est affectée à un second rôle qui accorde l’accès toohello même opération, utilisateur de hello est autorisée tooperform cette opération. **NotActions** n’est pas une instruction deny de règle : il est simplement un toocreate facilement un ensemble d’opérations autorisées lorsque des opérations spécifiques doivent toobe exclu.
+> Si un utilisateur se voit attribuer un rôle qui exclut une opération dans **NotActions**et un second rôle qui accorde l’accès à cette même opération, il est autorisé à effectuer cette opération. **NotActions** n’est pas une règle de refus : il s’agit simplement d’un moyen pratique pour créer un ensemble d’opérations autorisées lorsque des opérations spécifiques doivent être exclues.
 >
 >
 
 ## <a name="assignablescopes"></a>AssignableScopes
-Hello **AssignableScopes** la propriété du rôle personnalisé de hello spécifie étendues hello (des abonnements, des groupes de ressources ou des ressources) au sein de quel hello rôle personnalisé est disponible pour l’attribution. Vous pouvez faire de rôle personnalisé hello disponibles pour l’assignation dans uniquement les abonnements hello ou groupes de ressources qui nécessitent et pas l’utilisateur l’encombrement de l’expérience pour rest hello d’abonnements de hello ou des groupes de ressources.
+La propriété **AssignableScopes** du rôle personnalisé spécifie les étendues (abonnements, groupes de ressources ou ressources) au sein desquelles le rôle personnalisé peut être affecté. Vous pouvez rendre le rôle personnalisé disponible uniquement dans les abonnements ou les groupes de ressources qui le nécessitent afin de ne pas surcharger l’expérience utilisateur pour le reste des abonnements ou des groupes de ressources.
 
 Voici des exemples d’étendues assignables valides :
 
-* « / subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e », « / subscriptions/e91d47c4-76f3-4271-a796-21b4ecfe3624 » - permet de disponible pour l’attribution de rôle de hello dans deux abonnements.
-* « / subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e » - permet de disponible pour l’attribution de rôle de hello dans un seul abonnement.
-* « / abonnements/c276fc76-9cd4-44c9-99a7-4fd71546436e/resourceGroups/réseau » - rend hello rôle disponible pour l’assignation uniquement dans le groupe de ressources réseau hello.
+* “/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e”, “/subscriptions/e91d47c4-76f3-4271-a796-21b4ecfe3624” : le rôle peut être affecté dans deux abonnements.
+* “/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e” : le rôle peut être affecté dans un seul abonnement.
+* “/subscriptions/c276fc76-9cd4-44c9-99a7-4fd71546436e/resourceGroups/Network” : le rôle peut uniquement être affecté dans le groupe de ressources Network.
 
 > [!NOTE]
 > Vous devez utiliser au moins un abonnement, groupe de ressources ou ID de ressource.
@@ -106,20 +106,20 @@ Voici des exemples d’étendues assignables valides :
 >
 
 ## <a name="custom-roles-access-control"></a>Contrôle d’accès des rôles personnalisés
-Hello **AssignableScopes** la propriété du rôle personnalisé de hello contrôle également qui peut afficher, modifier et supprimer le rôle de hello.
+La propriété **AssignableScopes** du rôle personnalisé contrôle également les personnes autorisées à afficher, modifier et supprimer le rôle.
 
 * Qui peut créer un rôle personnalisé ?
     Les propriétaires (et les administrateurs de l’accès utilisateur) d’abonnements, de groupes de ressources et de ressources peuvent créer des rôles personnalisés utilisables au sein de ces étendues.
-    utilisateur qui crée le rôle de hello Hello doit tooperform en mesure de toobe `Microsoft.Authorization/roleDefinition/write` opération sur tous les hello **AssignableScopes** du rôle de hello.
+    L’utilisateur qui crée le rôle doit être en mesure d’effectuer l’opération `Microsoft.Authorization/roleDefinition/write` dans l’ensemble des étendues **AssignableScopes** du rôle.
 * Qui peut modifier un rôle personnalisé ?
-    Les propriétaires (et les administrateurs de l’accès utilisateur) d’abonnements, de groupes de ressources et de ressources peuvent modifier des rôles personnalisés au sein de ces étendues. Les utilisateurs doivent toobe tooperform en mesure de hello `Microsoft.Authorization/roleDefinition/write` opération sur tous les hello **AssignableScopes** d’un rôle personnalisé.
+    Les propriétaires (et les administrateurs de l’accès utilisateur) d’abonnements, de groupes de ressources et de ressources peuvent modifier des rôles personnalisés au sein de ces étendues. Les utilisateurs doivent pouvoir effectuer l’opération `Microsoft.Authorization/roleDefinition/write` dans l’ensemble des étendues **AssignableScopes** d’un rôle personnalisé.
 * Qui peut afficher des rôles personnalisés ?
-    Tous les rôles intégrés dans le contrôle d’accès en fonction du rôle Azure permettent d’afficher les rôles pouvant être affectés. Les utilisateurs qui peuvent effectuer hello `Microsoft.Authorization/roleDefinition/read` opération sur une étendue peut afficher rôles RBAC hello qui sont disponibles pour l’assignation dans cette portée.
+    Tous les rôles intégrés dans le contrôle d’accès en fonction du rôle Azure permettent d’afficher les rôles pouvant être affectés. Les utilisateurs qui peuvent effectuer l’opération `Microsoft.Authorization/roleDefinition/read` dans une étendue sont autorisés à afficher les rôles RBAC pouvant être affectés dans cette étendue.
 
 ## <a name="see-also"></a>Voir aussi
-* [Contrôle d’accès basé sur rôle](role-based-access-control-configure.md): prise en main RBAC Bonjour portail Azure.
-* Découvrez comment accéder à toomanage avec :
+* [Utiliser les attributions de rôle pour gérer l’accès à vos ressources Azure Active Directory](role-based-access-control-configure.md): découvrez le contrôle d’accès en fonction du rôle Azure dans le portail Azure.
+* Découvrez comment gérer l’accès avec :
   * [PowerShell](role-based-access-control-manage-access-powershell.md)
   * [Interface de ligne de commande Azure](role-based-access-control-manage-access-azure-cli.md)
   * [API REST](role-based-access-control-manage-access-rest.md)
-* [Rôles intégrés](role-based-access-built-in-roles.md): obtenir des informations sur les rôles hello livrés dans RBAC.
+* [RBAC : rôles intégrés](role-based-access-built-in-roles.md): obtenez des informations sur les rôles fournis en standard dans RBAC.

@@ -1,5 +1,5 @@
 ---
-title: "aaaGetting main de la synchronisation des données SQL Azure (version préliminaire) | Documents Microsoft"
+title: "Prise en main d’Azure SQL Data Sync (version préliminaire) | Microsoft Docs"
 description: "Ce didacticiel décrit la prise en main d’Azure SQL Data Sync (version préliminaire)."
 services: sql-database
 documentationcenter: 
@@ -15,183 +15,183 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/08/2017
 ms.author: douglasl
-ms.openlocfilehash: 666d09237e42acc23ae3c8c81e60734a413f5949
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1943e87ffd991d099ab655af5a7d16d7f1608d22
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="getting-started-with-azure-sql-data-sync-preview"></a>Prise en main d’Azure SQL Data Sync (version préliminaire)
-Dans ce didacticiel, vous découvrez comment tooset de synchronisation des données SQL Azure en créant un groupe de synchronisation hybride qui contient des instances de base de données SQL Azure et SQL Server. nouveau groupe de synchronisation Hello est entièrement configuré et synchronise sur Planification hello définie.
+Dans ce didacticiel, vous allez apprendre à configurer Azure SQL Data Sync en créant un groupe de synchronisation hybride contenant des instances SQL Database et SQL Server. Ce nouveau groupe de synchronisation est entièrement configuré et synchronise sur la planification définie.
 
 Ce didacticiel suppose que vous ayez déjà utilisé SQL Database et SQL Server. 
 
 Pour une vue d’ensemble de SQL Data Sync, consultez la section [Synchronisation des données](sql-database-sync-data.md).
 
-Pour obtenir des exemples PowerShell complets qui montrent comment tooconfigure synchronisation des données SQL, consultez hello suivant des articles :
--   [Utilisez toosync PowerShell entre plusieurs bases de données SQL Azure](scripts/sql-database-sync-data-between-sql-databases.md)
--   [Utilisez toosync PowerShell entre une base de données SQL Azure et une base de données locale SQL Server](scripts/sql-database-sync-data-between-azure-onprem.md)
+Pour obtenir des exemples PowerShell complets qui montrent comment configurer SQL Data Sync, consultez les articles suivants :
+-   [Utilisez PowerShell pour la synchronisation entre plusieurs bases de données SQL Azure](scripts/sql-database-sync-data-between-sql-databases.md)
+-   [Utiliser PowerShell pour la synchronisation entre une base de données SQL Azure et une base de données locale SQL Server](scripts/sql-database-sync-data-between-azure-onprem.md)
 
 > [!NOTE]
-> Hello technique documentation complète pour la synchronisation des données SQL Azure, anciennement situé sur le site MSDN, est disponible en tant qu’un. Document PDF. Téléchargez-le [ici](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_full_documentation.pdf?raw=true).
+> La documentation technique complète pour Azure SQL Data Sync, qui se trouvait auparavant sur MSDN, est à présent disponible dans un document .PDF. Téléchargez-le [ici](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_full_documentation.pdf?raw=true).
 
 ## <a name="step-1---create-sync-group"></a>Étape 1 : créer un groupe de synchronisation
 
-### <a name="locate-hello-data-sync-settings"></a>Localiser les paramètres de synchronisation des données hello
+### <a name="locate-the-data-sync-settings"></a>Localiser les paramètres de synchronisation des données
 
-1.  Dans votre navigateur, accédez à toohello portail Azure.
+1.  Dans votre navigateur, accédez au portail Azure.
 
-2.  Dans le portail hello, localisez vos bases de données SQL à partir de votre tableau de bord ou à partir de l’icône de bases de données SQL hello sur la barre d’outils hello.
+2.  Dans le portail, localisez vos bases de données SQL à partir de votre tableau de bord ou de l’icône des bases de données SQL dans la barre d’outils.
 
     ![Liste des bases de données SQL Azure](media/sql-database-get-started-sql-data-sync/datasync-preview-sqldbs.png)
 
-3.  Sur hello **bases de données SQL** panneau, sélectionnez hello base de données SQL que vous souhaitez toouse comme base de données concentrateur hello pour synchronisation de données. Panneau de base de données SQL hello s’ouvre.
+3.  Dans le panneau **Bases de données SQL**, sélectionnez la base de données SQL que vous souhaitez utiliser comme base de données Hub pour la synchronisation des données. Le panneau de la base de données SQL s’ouvre.
 
-4.  Dans le panneau de base de données hello SQL pour la base de données sélectionnée hello, sélectionnez **synchroniser les bases de données tooother**. Panneau de synchronisation des données Hello s’ouvre.
+4.  Dans le panneau de la base de données SQL choisie, sélectionnez **Synchroniser avec les autres bases de données**. Le panneau de la synchronisation des données s’ouvre.
 
-    ![Option de bases de données de synchronisation tooother](media/sql-database-get-started-sql-data-sync/datasync-preview-newsyncgroup.png)
+    ![Option Synchroniser avec les autres bases de données](media/sql-database-get-started-sql-data-sync/datasync-preview-newsyncgroup.png)
 
 ### <a name="create-a-new-sync-group"></a>Créer un groupe de synchronisation
 
-1.  Dans le panneau de la synchronisation des données hello, sélectionnez **nouveau groupe de synchronisation**. Hello **nouveau groupe de synchronisation** panneau s’ouvre à l’étape 1, **créer un groupe de synchronisation**, mise en surbrillance. Hello **créer un groupe de synchronisation de données** panneau s’ouvre également.
+1.  Dans le panneau de synchronisation des données, sélectionnez **Nouveau groupe de synchronisation**. Le panneau **Nouveau groupe de synchronisation** s’ouvre à l’étape 1 **Créer un groupe de synchronisation**. Le panneau **Créer un groupe de synchronisation de données** s’ouvre également.
 
-2.  Sur hello **créer un groupe de synchronisation de données** panneau, hello suivants choses :
+2.  Dans le panneau **Créer un groupe de synchronisation de données**, procédez comme suit :
 
-    1.  Bonjour **nom du groupe de synchronisation** , entrez un nom pour le nouveau groupe de synchronisation hello.
+    1.  Dans le champ **Nom du groupe de synchronisation**, entrez le nom du nouveau groupe de synchronisation.
 
-    2.  Bonjour **base de données de métadonnées de synchronisation** , choisissez si toocreate une base de données (recommandé) ou toouse une base de données existant.
+    2.  Dans la section **Synchroniser la base de données de métadonnées**, choisissez entre créer une base de données (recommandé) ou utiliser une base de données existante.
 
         > [!NOTE]
-        > Microsoft recommande de créer un toouse de base de données vide comme hello de base de données de métadonnées de synchronisation. SQL Data Sync crée les tables dans cette base de données et exécute une charge de travail fréquente. Cette base de données est automatiquement partagé en tant que hello de base de données de synchronisation des métadonnées pour tous vos groupes de synchronisation dans une région de hello sélectionnée. Vous ne pouvez pas modifier hello de base de données de synchronisation des métadonnées, son nom ou son niveau de service sans le déposer.
+        > Microsoft recommande de créer une base de données vide à utiliser comme base de métadonnées de synchronisation. SQL Data Sync crée les tables dans cette base de données et exécute une charge de travail fréquente. Cette base de données est automatiquement partagée comme base des métadonnées de synchronisation pour l’ensemble de vos groupes de synchronisation dans la région sélectionnée. Vous ne pouvez pas modifier la base des métadonnées de synchronisation ou son nom sans la supprimer.
 
-        Si vous avez choisi **Nouvelle base de données**, sélectionnez **Créer une nouvelle base de données.** Hello **base de données SQL** panneau s’ouvre. Sur hello **base de données SQL** panneau, nommez et configurer la nouvelle base de données hello. Sélectionnez ensuite **OK**.
+        Si vous avez choisi **Nouvelle base de données**, sélectionnez **Créer une nouvelle base de données.** Le panneau **SQL Database** s’ouvre. Dans le panneau **SQL Database**, nommez et configurez la nouvelle base de données. Sélectionnez ensuite **OK**.
 
-        Si vous avez choisi **utiliser la base de données existante**, sélectionnez base de données hello à partir de la liste de hello.
+        Si vous avez choisi **Utiliser une base de données existante**, sélectionnez la base de données dans la liste.
 
-    3.  Bonjour **Sync automatique** , sélectionnez tout d’abord **sur** ou **hors**.
+    3.  Dans la section **Synchronisation automatique**, sélectionnez d’abord **On (Activé)** ou **Off (Désactivé)**.
 
-        Si vous avez choisi **sur**, Bonjour **fréquence de synchronisation** section, entrez un nombre et sélectionnez secondes, Minutes, heures ou jours.
+        Si vous avez choisi **On (Activé)**, dans la section **Fréquence de synchronisation**, entrez un nombre et sélectionnez les secondes, les minutes, les heures ou les jours.
 
         ![Spécifier la fréquence de synchronisation](media/sql-database-get-started-sql-data-sync/datasync-preview-syncfreq.png)
 
-    4.  Bonjour **la résolution des conflits** , sélectionnez le « wins Hub » ou « Wins de membre ».
+    4.  Dans la section **Résolution des conflits**, sélectionnez « Priorité au hub » ou « Member wins (Priorité au membre ».
 
         ![Spécifier le mode de résolution des conflits](media/sql-database-get-started-sql-data-sync/datasync-preview-conflictres.png)
 
-    5.  Sélectionnez **OK** et attendez hello nouvelle synchronisation groupe toobe créés et déployés.
+    5.  Sélectionnez **OK** et attendez que le nouveau groupe de synchronisation soit créé et déployé.
 
 ## <a name="step-2---add-sync-members"></a>Étape 2 : ajouter des membres de synchronisation
 
-Une fois le nouveau groupe de synchronisation hello est créé et déployé, l’étape 2, **ajouter des membres de la synchronisation**, est mis en surbrillance dans hello **nouveau groupe de synchronisation** panneau.
+Une fois le nouveau groupe de synchronisation créé et déployé, l’étape 2 **Ajouter des membres de synchronisation** apparaît en surbrillance dans le panneau **Nouveau groupe de synchronisation**.
 
-Bonjour **base de données concentrateur** section, entrez les informations d’identification existantes hello hello de base de données SQL server sur le hello hub base de données. N’entrez pas de *nouvelles* informations d’identification dans cette section.
+Dans la section **Base de données Hub**, entrez les informations d’identification pour le serveur SQL Database qui héberge la base de données Hub. N’entrez pas de *nouvelles* informations d’identification dans cette section.
 
-![Base de données concentrateur a été ajouté toosync groupe](media/sql-database-get-started-sql-data-sync/datasync-preview-hubadded.png)
+![Base de données Hub ajoutée au groupe de synchronisation](media/sql-database-get-started-sql-data-sync/datasync-preview-hubadded.png)
 
 ## <a name="add-an-azure-sql-database"></a>Ajouter une base de données SQL Azure Database
 
-Bonjour **base de données membre** section, vous pouvez également ajouter un groupe de synchronisation de base de données SQL Azure toohello en sélectionnant **ajouter une base de données Azure**. Hello **configurer la base de données Azure** panneau s’ouvre.
+Dans la section **Base de données membre**, ajoutez éventuellement une base de données Azure SQL Database au groupe de synchronisation en sélectionnant **Ajouter une base de données Azure**. Le panneau **Configurer une base de données Azure** s’ouvre.
 
-Sur hello **configurer la base de données Azure** panneau, hello suivants choses :
+Dans le panneau **Configurer une base de données Azure**, procédez comme suit :
 
-1.  Bonjour **nom du membre de synchronisation** champ, fournissez un nom pour le nouveau membre de synchronisation hello. Ce nom est différent de nom hello de base de données hello lui-même.
+1.  Dans le champ **Nom du membre de synchronisation**, indiquez le nom du nouveau membre de synchronisation. Ce nom est différent du nom de la base de données.
 
-2.  Bonjour **abonnement** hello, sélectionnez associés à un abonnement Azure à des fins de facturation.
+2.  Dans le champ **Abonnement**, sélectionnez l’abonnement Azure associé en vue de la facturation.
 
-3.  Bonjour **Azure SQL Server** serveur de base de données SQL existante, sélectionnez hello.
+3.  Dans le champ **Azure SQL Server**, sélectionnez le serveur de base de données SQL.
 
-4.  Bonjour **base de données SQL Azure** hello, sélectionnez base de données SQL.
+4.  Dans le champ **Azure SQL Database**, sélectionnez la base de données SQL.
 
-5.  Bonjour **Directions de synchronisation** , sélectionnez la synchronisation bidirectionnelle, toohello concentrateur, ou à partir de hello Hub.
+5.  Dans le champ **Sens de la synchronisation**, sélectionnez Synchronisation bidirectionnelle, To the hub (Vers le hub) ou From the hub (À partir du hub).
 
     ![Ajout d’un nouveau membre de synchronisation SQL Database](media/sql-database-get-started-sql-data-sync/datasync-preview-memberadding.png)
 
-6.  Bonjour **nom d’utilisateur** et **mot de passe** , saisissez les informations d’identification existantes hello pour hello de base de données SQL server sur le hello membre base de données. N’entrez pas de *nouvelles* informations d’identification dans cette section.
+6.  Dans les champs **Nom d’utilisateur** et **Mot de passe**, entrez les informations d’identification du serveur SQL Database qui héberge la base de données membre. N’entrez pas de *nouvelles* informations d’identification dans cette section.
 
-7.  Sélectionnez **OK** et attendez hello nouvelle synchronisation membre toobe créés et déployés.
+7.  Sélectionnez **OK** et attendez que le nouveau membre de synchronisation soit créé et déployé.
 
     ![Nouveau membre de synchronisation SQL Database ajouté](media/sql-database-get-started-sql-data-sync/datasync-preview-memberadded.png)
 
 ## <a name="add-an-on-premises-sql-server-database"></a>Ajouter une base de données SQL Server locale
 
-Bonjour **base de données membre** section éventuellement ajouter un groupe de synchronisation toohello SQL Server local en sélectionnant **ajouter une base de données local**. Hello **configurer On-Premises** panneau s’ouvre.
+Dans la section **Base de données membre**, ajoutez éventuellement un serveur SQL local au groupe de synchronisation en sélectionnant **Ajouter une base de données locale**. Le panneau **Configurer localement** s’ouvre.
 
-Sur hello **configurer On-Premises** panneau, hello suivants choses :
+Dans le panneau **Configurer localement**, procédez comme suit :
 
-1.  Sélectionnez **choisir hello passerelle de l’Agent de synchronisation**. Hello **sélectionnez l’Agent de synchronisation** panneau s’ouvre.
+1.  Sélectionnez **Choisir la passerelle de l’agent de synchronisation**. Le panneau **Sélectionner l’agent de synchronisation** s’ouvre.
 
-    ![Choisissez la passerelle de l’agent de synchronisation hello](media/sql-database-get-started-sql-data-sync/datasync-preview-choosegateway.png)
+    ![Choisir la passerelle de l’agent de synchronisation](media/sql-database-get-started-sql-data-sync/datasync-preview-choosegateway.png)
 
-2.  Sur hello **choisir hello passerelle de l’Agent de synchronisation** panneau, choisissez si toouse un agent existant ou créer un nouvel agent.
+2.  Dans le panneau **Choisir la passerelle de l’agent de synchronisation**, faites votre choix entre utiliser un agent existant ou en créer un.
 
-    Si vous avez choisi **les agents existants**, sélectionnez hello agent existant à partir de la liste de hello.
+    Si vous avez choisi **Agents existants**, sélectionnez un agent dans la liste.
 
-    Si vous avez choisi **créer un nouvel agent**, hello suivants choses :
+    Si vous avez choisi **Créer un agent**, procédez comme suit :
 
-    1.  Télécharger le logiciel de l’agent de synchronisation hello client à partir du lien hello fourni et l’installer sur l’ordinateur hello où se trouve hello SQL Server.
+    1.  Téléchargez le logiciel de l’agent de synchronisation de client à l’aide du lien fourni et installez-le sur l’ordinateur qui héberge le serveur SQL Server.
  
         > [!IMPORTANT]
-        > Vous avez tooopen sortant le port TCP 1433 dans l’agent client hello hello pare-feu toolet de communiquer avec le serveur de hello.
+        > Vous devez ouvrir le port TCP sortant 1433 dans le pare-feu pour permettre à l’agent du client de communiquer avec le serveur.
 
 
-    2.  Entrez un nom pour l’agent de hello.
+    2.  Entrez le nom de l’agent.
 
     3.  Sélectionnez **Créer et générer une clé**.
 
-    4.  Copiez le Presse-papiers toohello clé de l’agent hello.
+    4.  Copiez la clé de l’agent dans le Presse-papiers.
         
         ![Création d’un agent de synchronisation](media/sql-database-get-started-sql-data-sync/datasync-preview-selectsyncagent.png)
 
-    5.  Sélectionnez **OK** tooclose hello **sélectionnez l’Agent de synchronisation** panneau.
+    5.  Sélectionnez **OK** pour fermer le panneau **Sélectionner l’agent de synchronisation**.
 
-    6.  Sur l’ordinateur SQL Server de hello, recherchez et exécuter l’application de l’Agent de synchronisation Client hello.
+    6.  Sur l’ordinateur du serveur SQL Server, recherchez et exécutez l’application de l’agent de synchronisation du client.
 
-        ![application de l’agent client de synchronisation des données de Hello](media/sql-database-get-started-sql-data-sync/datasync-preview-clientagent.png)
+        ![Application de l’agent de synchronisation du client](media/sql-database-get-started-sql-data-sync/datasync-preview-clientagent.png)
 
-    7.  Dans l’application de l’agent de synchronisation hello, sélectionnez **envoyer la clé de l’Agent**. Hello **Configuration de base de données de métadonnées de synchronisation** boîte de dialogue s’ouvre.
+    7.  Dans l’application de l’agent de synchronisation, sélectionnez **Submit Agent Key (Envoyer la clé de l’agent)**. La boîte de dialogue **Sync Metadata Database Configuration (Configuration de la base des métadonnées de synchronisation)** s’ouvre.
 
-    8.  Bonjour **Configuration de base de données de métadonnées de synchronisation** boîte de dialogue, coller dans la clé d’agent hello copié à partir de hello portail Azure. Fournissent également des informations d’identification existantes de hello pour le serveur de base de données SQL Azure hello sur quel hello les métadonnées de base de données se trouve. (Si vous avez créé une nouvelle base de données de métadonnées, cette base de données est sur hello même serveur que la base de données concentrateur hello.) Sélectionnez **OK** et attendez hello configuration toofinish.
+    8.  Dans la boîte de dialogue **Sync Metadata Database Configuration (Configuration de la base des métadonnées de synchronisation)**, collez la clé de l’agent copiée à partir du portail Azure. Indiquez également les informations d’identification du serveur Azure SQL Database qui héberge la base de données des métadonnées. (Si vous avez créé une base de métadonnées, celle-ci réside sur le même serveur que la base de données Hub.) Sélectionnez **OK** et attendez la fin de la configuration.
 
-        ![Entrez hello des informations d’identification clé et le serveur de l’agent](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-enterkey.png)
+        ![Entrer la clé de l’agent et les informations d’identification du serveur](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-enterkey.png)
 
         >   [!NOTE] 
-        >   Si vous obtenez une erreur de pare-feu à ce stade, vous devez toocreate une règle de pare-feu sur le trafic entrant à partir de l’ordinateur SQL Server de hello tooallow Azure. Vous pouvez créer des règles de hello manuellement dans le portail de hello, mais il peut s’avérer plus facile toocreate il dans SQL Server Management Studio (SSMS). Dans SSMS, essayez de base de données du concentrateur tooconnect toohello sur Azure. Entrez son nom sous la forme \<nom_base_données_hub\>.database.windows.net. Suivez les étapes de hello de règle de pare-feu Azure hello boîte de dialogue zone tooconfigure hello. Application de l’Agent de synchronisation Client toohello est renvoyé.
+        >   Si vous recevez une erreur de pare-feu à ce stade, vous devez créer une règle de pare-feu sur Windows Azure pour autoriser le trafic entrant en provenance de l’ordinateur qui héberge le serveur SQL Server. Vous pouvez créer cette règle manuellement dans le portail, mais il peut être plus facile de la créer dans SQL Server Management Studio (SSMS). Dans SSMS, essayez de vous connecter à la base de données Hub sur Azure. Entrez son nom sous la forme \<nom_base_données_hub\>.database.windows.net. Suivez les étapes décrites dans la boîte de dialogue pour configurer la règle de pare-feu Azure. Revenez ensuite dans l’application de l’agent de synchronisation du client.
 
-    9.  Dans l’application de l’Agent de synchronisation Client hello, cliquez sur **inscrire** tooregister une base de données SQL Server avec l’agent de hello. Hello **de Configuration SQL Server** boîte de dialogue s’ouvre.
+    9.  Dans l’application de l’agent de synchronisation du client, cliquez sur **Inscrire** pour inscrire une base de données SQL Server dans l’agent. La boîte de dialogue **Configuration de SQL Server** s’ouvre.
 
         ![Ajouter et configurer une base de données SQL Server](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-adddb.png)
 
-    10. Bonjour **de Configuration SQL Server** boîte de dialogue, choisissez si tooconnect à l’aide de SQL Server ou l’authentification Windows. Si vous choisissez l’authentification SQL Server, entrez les informations d’identification existantes hello. Indiquez des noms de SQL Server de hello et hello de base de données hello que vous souhaitez toosync. Sélectionnez **tester la connexion** tootest vos paramètres. Ensuite, sélectionnez **Enregistrer**. base de données inscrite Hello s’affiche dans la liste de hello.
+    10. Dans la boîte de dialogue **Configuration de SQL Server**, choisissez entre l’authentification SQL Server et l’authentification Windows. Si vous avez choisi l’authentification SQL Server, entrez les informations d’identification. Indiquez le nom du serveur SQL Server et le nom de la base de données que vous voulez synchroniser. Sélectionnez **Tester la connexion** pour tester vos paramètres. Ensuite, sélectionnez **Enregistrer**. La base de données inscrite apparaît dans la liste.
 
         ![La base de données SQL Server est maintenant inscrite.](media/sql-database-get-started-sql-data-sync/datasync-preview-agent-dbadded.png)
 
-    11. Vous pouvez fermer une application de l’Agent de synchronisation Client hello.
+    11. Vous pouvez fermer l’application de l’agent de synchronisation du client.
 
-    12. Dans le portail hello, sur hello **configurer On-Premises** panneau, sélectionnez **sélectionnez hello de base de données.** Hello **sélectionner une base de données** panneau s’ouvre.
+    12. Dans le portail, sur le panneau **Configurer localement**, choisissez **Sélectionner la base de données**. Le panneau **Sélectionner la base de données** s’ouvre.
 
-    13. Sur hello **sélectionner une base de données** panneau, Bonjour **nom du membre de synchronisation** champ, fournissez un nom pour le nouveau membre de synchronisation hello. Ce nom est différent de nom hello de base de données hello lui-même. Sélectionnez la base de données de hello à partir de la liste de hello. Bonjour **Directions de synchronisation** , sélectionnez la synchronisation bidirectionnelle, toohello concentrateur, ou à partir de hello Hub.
+    13. Dans le panneau **Sélectionner la base de données**, indiquez le nom du nouveau membre de synchronisation dans le champ **Nom du membre de synchronisation**. Ce nom est différent du nom de la base de données. Sélectionnez la base de données dans la liste. Dans le champ **Sens de la synchronisation**, sélectionnez Synchronisation bidirectionnelle, To the hub (Vers le hub) ou From the hub (À partir du hub).
 
-        ![Sélectionnez hello sur la base de données de site](media/sql-database-get-started-sql-data-sync/datasync-preview-selectdb.png)
+        ![Sélectionner la base de données locale](media/sql-database-get-started-sql-data-sync/datasync-preview-selectdb.png)
 
-    14. Sélectionnez **OK** tooclose hello **sélectionner une base de données** panneau. Puis sélectionnez **OK** tooclose hello **configurer On-Premises** lame et attendez hello nouveau synchroniser toobe membre créé et déployé. Enfin, cliquez sur **OK** tooclose hello **sélectionner les membres de la synchronisation** panneau.
+    14. Sélectionnez **OK** pour fermer le panneau **Sélectionner la base de données**. Puis sélectionnez **OK** pour fermer le panneau **Configurer localement** et attendez que le nouveau membre de synchronisation soit créé et déployé. Enfin, cliquez sur **OK** pour fermer le panneau **Sélectionner les membres de synchronisation**.
 
-        ![Sur la base de données local ajouté toosync](media/sql-database-get-started-sql-data-sync/datasync-preview-onpremadded.png)
+        ![Base de données locale ajoutée au groupe de synchronisation](media/sql-database-get-started-sql-data-sync/datasync-preview-onpremadded.png)
 
-3.  tooconnect tooSQL synchronisation des données et l’agent local de hello, ajoutez votre rôle d’utilisateur nom toohello `DataSync_Executor`. Synchronisation des données crée ce rôle sur l’instance de SQL Server hello.
+3.  Pour vous connecter à SQL Data Sync et à l’agent local, ajoutez votre nom d’utilisateur au rôle `DataSync_Executor`. Data Sync crée ce rôle sur l’instance SQL Server.
 
 ## <a name="step-3---configure-sync-group"></a>Étape 3 : configurer le groupe de synchronisation
 
-Une fois les nouveaux membres de groupe de synchronisation hello sont créés et déployés, étape 3, **groupe de synchronisation configurer**, est mis en surbrillance dans hello **nouveau groupe de synchronisation** panneau.
+Une fois les nouveaux membres du groupe de synchronisation créés et déployés, l’étape 3 **Configurer le groupe de synchronisation** apparaît en surbrillance dans le panneau **Nouveau groupe de synchronisation**.
 
-1.  Sur hello **Tables** panneau, sélectionnez une base de données à partir de la liste de hello de synchronisation des membres du groupe, puis sélectionnez **actualisation du schéma**.
+1.  Dans le panneau **Tables**, sélectionnez une base de données dans la liste des membres du groupe de synchronisation, puis sélectionnez **Actualiser le schéma**.
 
-2.  Dans la liste hello des tables disponibles, sélectionnez les tables de hello que vous souhaitez toosync.
+2.  Dans la liste des tables disponibles, sélectionnez celles que vous voulez synchroniser.
 
-    ![Sélectionner les tables toosync](media/sql-database-get-started-sql-data-sync/datasync-preview-tables.png)
+    ![Sélectionner les tables à synchroniser](media/sql-database-get-started-sql-data-sync/datasync-preview-tables.png)
 
-3.  Par défaut, toutes les colonnes de table de hello sont sélectionnés. Si vous ne souhaitez pas toutes les colonnes hello toosync, désactivez la case à cocher hello pour les colonnes hello que vous ne souhaitez pas toosync. N’oubliez pas sélectionné de la colonne de clé primaire tooleave hello.
+3.  Par défaut, toutes les colonnes de la table sont sélectionnées. Si vous ne souhaitez pas synchroniser toutes les colonnes, désactivez la case à cocher de celles à exclure de la synchronisation. Vérifiez que la colonne de la clé primaire est sélectionnée.
 
-    ![Sélectionner les champs toosync](media/sql-database-get-started-sql-data-sync/datasync-preview-tables2.png)
+    ![Sélectionner les champs à synchroniser](media/sql-database-get-started-sql-data-sync/datasync-preview-tables2.png)
 
 4.  Enfin, sélectionnez **Enregistrer**.
 
@@ -200,7 +200,7 @@ Félicitations ! Vous avez créé un groupe de synchronisation incluant une ins
 
 Pour plus d’informations sur SQL Database et SQL Data Sync, consultez :
 
--   [Téléchargez la documentation technique hello complète synchronisation des données SQL](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_full_documentation.pdf?raw=true)
--   [Télécharger la documentation des API REST de SQL Data Sync hello](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_REST_API.pdf?raw=true)
+-   [Télécharger la documentation technique complète sur la synchronisation des données SQL](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_full_documentation.pdf?raw=true)
+-   [Télécharger la documentation de l’API REST de SQL Data Sync](https://github.com/Microsoft/sql-server-samples/raw/master/samples/features/sql-data-sync/Data_Sync_Preview_REST_API.pdf?raw=true)
 -   [Vue d’ensemble des bases de données SQL](sql-database-technical-overview.md)
 -   [Gestion du cycle de vie des bases de données](https://msdn.microsoft.com/library/jj907294.aspx)

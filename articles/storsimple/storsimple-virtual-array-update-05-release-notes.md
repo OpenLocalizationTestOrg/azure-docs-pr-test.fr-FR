@@ -1,6 +1,6 @@
 ---
-title: "notes de 0,5 virtuel mise à jour du tableau aaaStorSimple | Documents Microsoft"
-description: "Décrit les ouvrir critiques mettre à jour les problèmes et solutions pour l’exécution de StorSimple Virtual Array hello 0,5."
+title: "Notes de publication de StorSimple Virtual Array Update 0.5 | Microsoft Docs"
+description: "Décrit les problèmes critiques non résolus et les solutions possibles pour StorSimple Virtual Array exécutant Update 0.5."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 05/08/2017
 ms.author: alkohli
-ms.openlocfilehash: a249e2e8f0105dcf6cc02d3136dfa3e37ea615d9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4d020ff2b998da4cb52fe91e4d7d4b93544965a8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="storsimple-virtual-array-update-05-release-notes"></a>Notes de publication de StorSimple Virtual Array Update 0.5
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Bonjour notes de publication suivantes identifient les problèmes critiques en suspens hello et hello problèmes résolus pour les mises à jour de Microsoft Azure StorSimple Virtual Array.
+Les notes suivantes identifient les problèmes majeurs existants et les problèmes résolus dans les mises à jour Microsoft Azure StorSimple Virtual Array.
 
-notes de publication Hello sont mis à jour, et que les problèmes critiques nécessitant une solution de contournement sont découverts, ils sont ajoutés. Avant de déployer votre StorSimple Virtual Array, lisez attentivement les informations hello contenues dans les notes hello.
+Les notes de publication sont régulièrement mises à jour ; les problèmes critiques nécessitant une solution de contournement sont ajoutés au fur et à mesure de leur découverte. Lisez les informations contenues dans les notes de publication avant de déployer votre instance StorSimple Virtual Array.
 
-Mise à jour 0,5 correspond la version du logiciel toohello **10.0.10290.0**.
+Update 0.5 correspond à la version logicielle **10.0.10290.0**.
 
 > [!NOTE]
-> Les mises à jour entraînent des perturbations et redémarrent votre appareil. Si les e/s sont en cours, appareil de hello implique un temps d’arrêt. Pour obtenir des instructions détaillées sur la façon dont tooapply hello mise à jour, accédez trop[installation mise à jour 0,5](storsimple-virtual-array-install-update-05.md).
+> Les mises à jour entraînent des perturbations et redémarrent votre appareil. Si des E/S sont en cours, l’appareil subit des interruptions de service. Pour obtenir des instructions détaillées sur la façon d’appliquer la mise à jour, consultez la page relative à [l’installation d’Update 0.5](storsimple-virtual-array-install-update-05.md).
 
 
-## <a name="whats-new-in-hello-update-05"></a>Nouveautés de hello mise à jour 0,5
-Update 0.5 est essentiellement une version de correctif de bogue. améliorations Hello et des correctifs de bogues sont comme suit :
+## <a name="whats-new-in-the-update-05"></a>Nouveautés d’Update 0.5
+Update 0.5 est essentiellement une version de correctif de bogue. Les principales améliorations et les principaux correctifs de bogues sont les suivantes :
 
-- **Améliorations de la résilience de sauvegarde** -cette version comporte des correctifs qui améliorent la sauvegarde de hello. Bonjour les versions antérieures, les sauvegardes ont été retentées uniquement de certaines exceptions. Cette version nouvelle tentative toutes les exceptions de sauvegarde hello et rend hello sauvegardes plus fiable.
+- **Améliorations de la résilience de sauvegarde** : cette version comporte des correctifs qui améliorent la résilience de sauvegarde. Dans les versions antérieures, les nouvelles tentatives de sauvegarde étaient limitées à certaines exceptions. Dans cette version, toutes les exceptions de sauvegarde font l’objet d’une nouvelle tentative, ce qui améliore la résilience des sauvegardes.
 
-- **Mises à jour pour la surveillance de l’utilisation de stockage** -depuis le 30 juin 2017, hello de surveillance de l’utilisation de stockage pour la série d’appareils virtuels StorSimple vont être supprimées. Cela s’applique toohello graphiques sur tous les tableaux virtuels hello mise à jour en cours d’exécution inférieur ou égal à 0,4 de surveillance. Cette mise à jour contient des modifications de hello requises pour vous toocontinue hello utilisation de l’utilisation du stockage analyse Bonjour portail Azure. Installez cette mise à jour critique avant le 30 juin 2017 toocontinue à l’aide de la fonctionnalité d’analyse de hello.
+- **Mises à jour pour la surveillance de l’utilisation du stockage** : la surveillance de l’utilisation du stockage sera interrompue à compter du 30 juin 2017 pour la série d’appareils virtuels StorSimple. Ce changement s’applique aux graphiques d’analyse de tous les appareils virtuels qui exécutent des versions Update 0.4 ou antérieures. Cette mise à jour contient les modifications dont vous avez besoin pour pouvoir continuer à utiliser la surveillance de l’utilisation du stockage dans le portail Azure. Installez cette mise à jour critique avant le 30 juin 2017 pour continuer d’utiliser cette fonctionnalité.
 
 
-## <a name="issues-fixed-in-hello-update-05"></a>Problèmes résolus dans hello mise à jour 0,5
+## <a name="issues-fixed-in-the-update-05"></a>Problèmes résolus dans Update 0.5
 
-Hello tableau suivant fournit un résumé des problèmes résolus dans cette version.
+Le tableau suivant récapitule les problèmes corrigés dans cette version.
 
 | Non. | Fonctionnalité | Problème |
 | --- | --- | --- |
-| 1 |Résilience de sauvegarde| Bonjour les versions antérieures, les sauvegardes ont été retentées uniquement de certaines exceptions. Cette version contient un correctif toomake des sauvegardes plus résilient en tentant d’exécuter toutes les exceptions de sauvegarde hello.|
-| 2 |Surveillance| surveillance de l’utilisation Hello stockage pour la série d’appareils virtuels StorSimple sera déconseillée en commençant le 30 juin 2017. Cette action a un impact sur hello graphiques sur le service de gestionnaire de périphériques StorSimple hello en cours d’exécution sur les réseaux virtuels StorSimple de surveillance (modèle 1200). Cette version comporte des mises à jour qui permettent l’utilisation de hello hello utilisateur toocontinue de surveillance de l’utilisation de stockage sur les tableaux de virtuel hello au-delà du 30 juin 2017.|
-| 3 |Serveur de fichiers| Bonjour les versions antérieures, un utilisateur peut copier par erreur tableau virtuel toohello de fichiers chiffrés. Cette version contient un correctif qui ne permet pas d’une copie du tableau de toovirtual les fichiers chiffrés. Si votre appareil a toohello préalable des fichiers chiffrés existant à mettre à jour, sauvegardes de continue toofail jusqu'à ce que tous les fichiers hello chiffré sont supprimés hello système. |
+| 1 |Résilience de sauvegarde| Dans les versions antérieures, les nouvelles tentatives de sauvegarde étaient limitées à certaines exceptions. Cette version contient un correctif destiné à améliorer la résilience des sauvegardes en étendant les nouvelles tentatives à toutes les exceptions de sauvegarde.|
+| 2 |Surveillance| La surveillance de l’utilisation du stockage sera interrompue le 30 juin 2017 pour la série d’appareils virtuels StorSimple. Cette action a un impact sur les graphiques de surveillance du service StorSimple Device Manager exécuté sur les appareils virtuels StorSimple (modèle 1200). Cette version comporte des mises à jour qui permettent aux utilisateurs de continuer d’utiliser la fonction de surveillance de l’utilisation du stockage sur les appareils virtuels après le 30 juin 2017.|
+| 3 |Serveur de fichiers| Dans les versions antérieures, un utilisateur pouvait copier par erreur des fichiers chiffrés sur l’appareil virtuel. Cette version contient un correctif qui n’autorise pas la copie de fichiers chiffrés sur l’appareil virtuel. Si votre appareil comporte déjà des fichiers chiffrés avant la mise à jour, les sauvegardes continueront d’échouer tant que l’ensemble des fichiers chiffrés n’auront pas été supprimés du système. |
 
 
-## <a name="known-issues-in-hello-update-05"></a>Problèmes connus dans hello mise à jour 0,5
+## <a name="known-issues-in-the-update-05"></a>Problèmes connus dans Update 0.5
 
-Bonjour tableau suivant fournit un résumé des problèmes connus de hello StorSimple Virtual Array et inclut des problèmes hello indication mise en production à partir de versions précédentes de hello.
+Le tableau suivant récapitule les problèmes connus pour StorSimple Virtual Array et décrit les problèmes signalés dans les notes de version des versions précédentes.
 
 | Non. | Fonctionnalité | Problème | Solution de contournement/commentaires |
 | --- | --- | --- | --- |
-| **1.** |Mises à jour |les périphériques virtuels Hello créés dans la version préliminaire de hello ne peut pas être la version disponibilité générale de mise à jour tooa pris en charge. |Ces périphériques virtuels doivent être basculés pour hello version disponibilité générale à l’aide d’un flux de travail de récupération d’urgence. |
-| **2.** |Disque de données configuré |Une fois, vous avez configuré un disque de données d’une certaine taille spécifiée et créé hello correspondant un appareil virtuel StorSimple, vous ne devez pas développer ou réduire disque de données hello. Tentative de toodo entraîne une perte de toutes les données hello dans les niveaux de hello local de l’appareil de hello. | |
-| **3.** |Stratégie de groupe |Quand un appareil est joint au domaine, appliquer une stratégie de groupe peut nuire opération de périphérique hello. |Assurez-vous que votre tableau virtuel est dans sa propre unité d’organisation (UO) pour Active Directory et aucun objet de stratégie de groupe (GPO) n’est appliqué tooit. |
+| **1.** |Mises à jour |Les appareils virtuels créés dans la version préliminaire ne peuvent pas être mis à jour vers une version à disponibilité générale prise en charge. |Ces appareils virtuels doivent être basculés vers la version à disponibilité générale à l'aide d'un flux de travail de récupération d'urgence (DR). |
+| **2.** |Disque de données configuré |Une fois que vous avez configuré un disque de données d'une certaine spécifiée et créé l'appareil virtuel StorSimple correspondant, vous ne devez pas développer, ni réduire le disque de données. Toute tentative de ce type entraîne la perte de toutes les données aux niveaux locaux de l’appareil. | |
+| **3.** |Stratégie de groupe |Lorsqu’un appareil est joint à un domaine, le fait d’appliquer une stratégie de groupe peut avoir un impact négatif sur son fonctionnement. |Assurez-vous que votre tableau virtuel est dans sa propre unité organisationnelle (UO) pour Active Directory et qu'aucun objet de stratégie de groupe (GPO) ne lui est appliqué. |
 | **4.** |Interface utilisateur web locale |Si les fonctionnalités de sécurité améliorées sont activées dans Internet Explorer (IE ESC), certaines pages de l’interface utilisateur web locale, comme Dépannage ou Maintenance, peuvent ne pas fonctionner correctement. Les boutons sur ces pages peuvent également ne pas fonctionner. |Désactivez les fonctionnalités de sécurité améliorées d'Internet Explorer. |
-| **5.** |Interface utilisateur web locale |Sur un ordinateur virtuel Hyper-V, hello interfaces réseau dans web hello l’interface utilisateur sont affichés sous la forme d’interfaces de 10 Gbits/s. |Ce comportement est le reflet de Hyper-V. Hyper-V affiche toujours 10 Gbits/s pour les cartes de réseau virtuel. |
-| **6.** |Partages ou volumes à plusieurs niveaux |Plage d’octets pour les applications qui fonctionnent avec hello StorSimple volumes hiérarchisés de verrouillage n’est pas pris en charge. Si le verrouillage de la plage d’octets est activé, la hiérarchisation StorSimple ne fonctionne pas. |Mesures recommandées :  <br></br>Désactivez le verrouillage de plage d'octets dans la logique de votre application.<br></br>Choisissez tooput les données pour cette application dans les volumes attachés localement par opposition tootiered volumes.<br></br>*Avertissement*: lorsqu’à l’aide locale épinglée de volumes et verrouillage de plage d’octets est activé, le volume de hello attaché localement peut être en ligne avant même que la restauration hello est terminée. Dans ce cas, si une restauration est en cours, puis vous devez attendre hello restauration toocomplete. |
-| **7.** |Partages à plusieurs niveaux |L'utilisation de fichiers volumineux peut entraîner montée en charge de niveau lente. |Lorsque vous travaillez avec des fichiers volumineux, nous vous recommandons de que ce fichier le plus volumineux hello est inférieur à 3 % de la taille du partage hello. |
-| **8.** |Capacité utilisée pour les partages |Vous pouvez voir partager la consommation lorsque aucune donnée sur le partage de hello. Cette consommation est, car la capacité hello utilisé pour les partages inclut des métadonnées. | |
-| **9.** |Récupération d'urgence |Vous ne pouvez effectuer la récupération d’urgence hello d’un toohello de serveur de fichier même domaine que celui de l’appareil source de hello. Appareil de cible de tooa de récupération d’urgence dans un autre domaine n’est pas pris en charge dans cette version. |Ceci est implémenté dans une version ultérieure. Pour plus d’informations, consultez trop[basculement et récupération d’urgence de votre tableau virtuel StorSimple](storsimple-virtual-array-failover-dr.md) |
-| **10.** |Azure PowerShell |périphériques virtuels StorSimple de Hello ne peut pas être gérés via hello Azure PowerShell dans cette version. |Toute la gestion de périphériques virtuels de hello hello doit être effectuée via hello Azure portal et hello interface utilisateur web locale. |
-| **11.** |Modification de mot de passe |Hello console de l’appareil virtuel tableau accepte uniquement les entrées dans la norme en-us clavier format. | |
-| **12.** |CHAP |Il est impossible de supprimer les informations d’identification CHAP une fois qu’elles ont été créées. En outre, si vous modifiez les informations d’identification de hello CHAP, vous devez volumes hors connexion de tootake hello et puis les mettez en ligne pour modifier un effet de tootake hello. |Ce problème est résolu dans une version ultérieure. |
-| **13.** |Serveur iSCSI |Hello utilisé le stockage affiché pour un volume iSCSI peut être différent dans le service du Gestionnaire de périphériques StorSimple hello et hôte iSCSI de hello. |ordinateur hôte iSCSI de Hello possède la vue de système de fichiers de hello.<br></br>Appareil de Hello voit blocs hello allouées lorsque le volume de hello était à la taille maximale de hello. |
-| **14.** |Serveur de fichiers |Si un fichier dans un dossier a un autre flux de données (ADS) associé, hello annonces n’est pas sauvegardé ou restauré via la récupération d’urgence, de clonage et de récupération au niveau de l’élément. | |
+| **5.** |Interface utilisateur web locale |Sur une machine virtuelle Hyper-V, les interfaces réseau de l'interface utilisateur web sont affichées sous forme d'interfaces 10 Gbits/s. |Ce comportement est le reflet de Hyper-V. Hyper-V affiche toujours 10 Gbits/s pour les cartes de réseau virtuel. |
+| **6.** |Partages ou volumes à plusieurs niveaux |Le verrouillage de la plage d'octets pour les applications qui fonctionnent avec les volumes à plusieurs niveaux StorSimple n'est pas pris en charge. Si le verrouillage de la plage d’octets est activé, la hiérarchisation StorSimple ne fonctionne pas. |Mesures recommandées :  <br></br>Désactivez le verrouillage de plage d'octets dans la logique de votre application.<br></br>Choisissez de placer les données de cette application dans des volumes épinglés localement par opposition à des volumes à plusieurs niveaux.<br></br>*Inconvénient*: quand le verrouillage de la plage d’octets est activé avec l’utilisation de volumes localement épinglés, le volume localement épinglé peut être en ligne avant même que la restauration ne soit terminée. Dans ce cas, si une restauration est en cours, vous devez attendre que l'opération se termine. |
+| **7.** |Partages à plusieurs niveaux |L'utilisation de fichiers volumineux peut entraîner montée en charge de niveau lente. |Lorsque vous utilisez des fichiers volumineux, vérifiez que la taille du plus grand fichier est inférieure à 3 % de la taille du partage. |
+| **8.** |Capacité utilisée pour les partages |Vous pouvez constater la consommation du partage en l’absence de données sur le partage. Cette consommation est due au fait que la capacité utilisée pour les partages inclut des métadonnées. | |
+| **9.** |Récupération d'urgence |La récupération d'urgence d'un serveur de fichiers ne peut s'effectuer que dans le même domaine que celui de l'appareil source. La récupération d'urgence vers un appareil cible dans un autre domaine n'est pas prise en charge dans cette version. |Ceci est implémenté dans une version ultérieure. Pour plus d’informations, accédez à la page [Basculement d’appareil et récupération d’urgence pour votre StorSimple Virtual Array via le portail Azure](storsimple-virtual-array-failover-dr.md). |
+| **10.** |Azure PowerShell |Les appareils virtuels StorSimple ne peuvent pas être gérés via Azure PowerShell dans cette version. |La gestion des appareils virtuels doit être effectuée par le biais du portail Azure et de l’interface utilisateur web locale. |
+| **11.** |Modification de mot de passe |La console de l’appareil exécutant l’appareil virtuel accepte uniquement les entrées au format de clavier en-US. | |
+| **12.** |CHAP |Il est impossible de supprimer les informations d’identification CHAP une fois qu’elles ont été créées. En outre, si vous modifiez les informations d’identification CHAP, vous devez mettre les volumes hors connexion, puis les remettre en ligne pour que la modification prenne effet. |Ce problème est résolu dans une version ultérieure. |
+| **13.** |Serveur iSCSI |Le « stockage utilisé » affiché pour un volume iSCSI peut différer entre le service StorSimple Device Manager et l’hôte iSCSI. |L’hôte iSCSI dispose de la vue du système de fichiers.<br></br>L’appareil voit les blocs alloués lorsque le volume était à sa taille maximale. |
+| **14.** |Serveur de fichiers |Si un fichier d’un dossier est associé à un flux de données alternatif (ADS), l’ADS n’est pas sauvegardé ou restauré lors des opérations de récupération d’urgence, de clonage ou de récupération au niveau de l’élément. | |
 | **15.** |Serveur de fichiers |Les liens symboliques ne sont pas pris en charge. | |
-| **16.** |Serveur de fichiers |Fichiers protégés par Windows EFS (ENCRYPTING file) lorsque copiée ou stockées sur hello résultats StorSimple Virtual Array du serveur de fichiers dans une configuration non prise en charge.  | |
+| **16.** |Serveur de fichiers |Quand des fichiers protégés par le système de fichiers EFS Windows sont copiés ou stockés sur le serveur de fichiers StorSimple Virtual Array, la configuration qui en résulte n’est pas prise en charge.  | |
 
 ## <a name="next-step"></a>Étape suivante
 [Installation d’Update 0.5](storsimple-virtual-array-install-update-05.md) sur StorSimple Virtual Array.

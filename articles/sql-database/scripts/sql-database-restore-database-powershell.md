@@ -1,6 +1,6 @@
 ---
-title: "base de données SQL aaaPowerShell exemple restauration sauvegarde Azure | Documents Microsoft"
-description: "Azure PowerShell exemple script toorestore une base de données SQL Azure à partir de sauvegardes géo-redondant"
+title: "Exemple PowerShell -sauvegarder et restaurer une base de données SQL Azure | Microsoft Docs"
+description: "Exemple de script Azure PowerShell pour restaurer une base de données SQL Azure à partir de sauvegardes géo-redondantes"
 services: sql-database
 documentationcenter: sql-database
 author: janeng
@@ -16,15 +16,15 @@ ms.tgt_pltfrm: sql-database
 ms.workload: database
 ms.date: 06/23/2017
 ms.author: janeng
-ms.openlocfilehash: 68becb89e8a8680aa2efc3de8ad947e674c5fc35
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1c8ce646f28d5f13ec1c5760d4c110b994b3a4cd
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-powershell-toorestore-an-azure-sql-database-from-backups"></a>Utilisez PowerShell toorestore une base de données SQL Azure à partir de sauvegardes
+# <a name="use-powershell-to-restore-an-azure-sql-database-from-backups"></a>Utiliser PowerShell pour restaurer une base de données SQL Azure à partir de sauvegardes
 
-Cet exemple de script PowerShell restaure une base de données SQL Azure à partir d’une sauvegarde géo-redondant, restaure un supprimé SQL Azure de base de données tooits dernière sauvegarde et restaure un point spécifique de tooa de base de données de SQL Azure dans le temps.  
+Cet exemple de script PowerShell restaure une base de données SQL Azure à partir d’une sauvegarde géoredondante, restaure une base de données SQL Azure supprimée à l’aide de sa dernière sauvegarde et restaure une base de données Azure SQL à un point précis dans le temps.  
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
@@ -34,15 +34,15 @@ Cet exemple de script PowerShell restaure une base de données SQL Azure à part
 
 ## <a name="clean-up-deployment"></a>Nettoyer le déploiement
 
-Après exécution de l’exemple de script hello, hello commande suivante peut être de groupe de ressources utilisé tooremove hello et toutes les ressources associées.
+Une fois l’exemple de script exécuté, la commande suivante permet de supprimer le groupe de ressources et toutes les ressources associées.
 
 ```powershell
-Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
+Remove-AzureRmResourceGroup -ResourceGroupName $resourcegroupname
 ```
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script utilise hello suivant les commandes. Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.
+Ce script utilise les commandes suivantes. Chaque commande du tableau renvoie à une documentation spécifique.
 
 | Commande | Remarques |
 |---|---|
@@ -56,6 +56,6 @@ Ce script utilise hello suivant les commandes. Chaque commande figurant dans la 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur hello Azure PowerShell, consultez [documentation Azure PowerShell](/powershell/azure/overview).
+Pour plus d’informations sur Azure PowerShell, consultez la [documentation Azure PowerShell](/powershell/azure/overview).
 
-Vous trouverez des exemples supplémentaires de script PowerShell de base de données SQL dans hello [des scripts PowerShell de base de données SQL Azure](../sql-database-powershell-samples.md).
+Vous trouverez des exemples supplémentaires de scripts SQL Database PowerShell sur la page [Scripts PowerShell Azure SQL Database](../sql-database-powershell-samples.md).

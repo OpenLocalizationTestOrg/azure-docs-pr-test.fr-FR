@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à SD Elements | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et les éléments de SD."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et SD Elements."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,115 +13,115 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2017
 ms.author: jeedes
-ms.openlocfilehash: 77949e41beb541c9fe8147b1eb2e7995e05bd753
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 624eff0a0da8f548877e4a4346b21df89cd37b67
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-sd-elements"></a>Didacticiel : Intégration d’Azure Active Directory à SD Elements
 
-Dans ce didacticiel, vous apprendrez comment toointegrate éléments SD avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer SD Elements avec Azure Active Directory (Azure AD).
 
-Intégrer des éléments de SD avec Azure AD offre hello avantages suivants :
+L’intégration de SD Elements à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooSD éléments
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooSD éléments (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à SD Elements.
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à SD Elements (via l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Conditions préalables
 
-tooconfigure intégration d’Azure AD avec des éléments de SD, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD avec SD Elements, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement SD Elements pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout d’éléments à partir de la galerie de hello SD
+1. Ajout de SD Elements à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-sd-elements-from-hello-gallery"></a>Ajout d’éléments à partir de la galerie de hello SD
-tooconfigure hello intégration d’éléments de SD dans Azure AD, vous devez tooadd SD éléments à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-sd-elements-from-the-gallery"></a>Ajout de SD Elements à partir de la galerie
+Pour configurer l’intégration de SD Elements avec Azure AD, vous devez ajouter SD Elements disponible dans la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd éléments SD à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter SD Elements à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **SD éléments**.
+4. Dans la zone de recherche, tapez **SD Elements**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sd-elements-tutorial/tutorial_sdelements_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **SD éléments**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le panneau de résultats, sélectionnez **SD Elements**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sd-elements-tutorial/tutorial_sdelements_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec SD Elements sur un utilisateur de test nommé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans les éléments SD est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et l’utilisateur dans les éléments SD hello doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur SD Elements équivalent à l’utilisateur dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur SD Elements associé doit être établie.
 
-Dans les éléments SD, affecter la valeur de hello de hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans SD Elements, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation de lien.
 
-tooconfigure et test Azure AD l’authentification unique avec des éléments de SD, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec SD Elements, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test SD éléments](#creating-a-sd-elements-test-user)**  -toohave un équivalent de Britta Simon dans les éléments de SD qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d'un utilisateur de test SD Elements](#creating-a-sd-elements-test-user)** pour avoir un équivalent de Britta Simon dans SD Elements lié à la représentation Azure AD associée.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application SD éléments.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application SD Elements.
 
-**tooconfigure Azure AD authentification unique avec les éléments SD, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec SD Elements, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **SD éléments** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **SD Elements**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_sdelements_samlbase.png)
 
-3. Sur hello **URL et le domaine d’éléments SD** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL SD Elements**, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_sdelements_url.png)
 
-    a. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenantname>.sdelements.com/sso/saml2/metadata`
+    a. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<tenantname>.sdelements.com/sso/saml2/metadata`
 
-    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenantname>.sdelements.com/sso/saml2/acs/`
+    b. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<tenantname>.sdelements.com/sso/saml2/acs/`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs hello URL d’identificateur et de réponse réelle. Contact [équipe de support technique SD éléments](mailto:support@sdelements.com) tooget ces valeurs.
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur et l’URL de réponse réels. Pour obtenir ces valeurs, contactez l’[équipe de support technique SD Elements](mailto:support@sdelements.com).
 
-4. Application des éléments de SD attend les assertions SAML hello dans un format spécifique. Configurer hello suivant des revendications pour cette application. Vous pouvez gérer les valeurs de ces attributs hello depuis hello **« Attribut utilisateur »** onglet de l’application hello. Hello suivant capture d’écran montre un exemple de cela.
+4. L’application SD Elements attend les assertions SAML dans un format spécifique. Configurez les revendications suivantes pour cette application. Vous pouvez gérer les valeurs de ces attributs à partir de l’onglet **Attributs utilisateur** de l’application. La capture d’écran suivante montre un exemple :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_sdelements_attribute.png)
 
-5. Bonjour **attributs utilisateur** section hello **l’authentification unique** boîte de dialogue, configurer des attributs de jeton SAML comme indiqué dans l’image de hello et effectuer hello comme suit : 
+5. Dans la section **Attributs utilisateur** de la boîte de dialogue **Authentification unique**, configurez l’attribut de jeton SAML comme sur l’image et procédez comme suit : 
 
     | Nom de l'attribut | Valeur de l’attribut |
     | --- | --- |
@@ -129,19 +129,19 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
     | firstname |user.givenname |
     | lastname |user.surname |
 
-    a. Cliquez sur **ajouter un attribut** tooopen hello **ajouter un attribut** boîte de dialogue.
+    a. Cliquez sur **Ajouter un attribut** pour ouvrir la boîte de dialogue **Ajouter un attribut**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_officespace_04.png)
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_officespace_05.png)
 
-    b. Bonjour **nom** zone de texte, nom d’attribut type hello indiqué pour cette ligne.
+    b. Dans la zone de texte **Attribut**, indiquez le nom d’attribut pour cette ligne.
 
-    c. À partir de hello **valeur** liste, la valeur d’attribut type hello indiqué pour cette ligne.
+    c. Dans la liste **Valeur** , saisissez la valeur d’attribut affichée pour cette ligne.
 
     d. Cliquez sur **OK**.
  
-6. Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
+6. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_sdelements_certificate.png) 
 
@@ -149,74 +149,74 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_general_400.png)
 
-8. Sur hello **Configuration des éléments SD** , cliquez sur **configurer les éléments SD** tooopen **configurer l’authentification** fenêtre. Hello de copie **ID d’entité SAML et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
+8. Dans la section **Configuration de SD Elements** , cliquez sur **Configurer SD Elements** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l’**ID d’entité SAML et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_sdelements_configure.png)
 
-9. tooget l’authentification unique activée, contactez votre [équipe de support technique SD éléments](mailto:support@sdelements.com) et leur fournir un fichier de certificat téléchargé hello. 
+9. Pour activer l'authentification unique, contactez votre [équipe de support technique SD Elements](mailto:support@sdelements.com) et fournissez-leur le fichier de certificat téléchargé. 
 
-10. Dans une autre fenêtre de navigateur, client de SD éléments tooyour ouverture de session en tant qu’administrateur.
+10. Dans une autre fenêtre de navigateur, authentifiez-vous auprès de votre client SD Elements en tant qu’administrateur.
 
-11. Dans le menu hello haut de hello, cliquez sur **système**, puis **Single Sign-on**. 
+11. Dans le menu du haut, cliquez sur **Système**, puis sur **Authentification unique**. 
    
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_sd-elements_09.png) 
 
-12. Sur hello **paramètres d’authentification unique** boîte de dialogue, effectuer hello comme suit :
+12. Dans la boîte de dialogue **Paramètres d’authentification unique** , procédez comme suit :
    
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_sd-elements_10.png) 
    
     a. Pour **SSO Type**, sélectionnez **SAML**.
    
-    b. Bonjour **Entity ID fournisseur d’identité** zone de texte, valeur hello coller **ID d’entité SAML**, lequel vous avez copié à partir du portail Azure. 
+    b. Dans la zone de texte **Identity Provider Entity ID** (ID d’entité du fournisseur d'identité), collez la valeur de l’**ID d’entité SAML** copiée à partir du portail Azure. 
    
-    c. Bonjour **Service fournisseur d’identité unique Sign-On** zone de texte, valeur hello coller **SAML Sign-On URL du Service unique**, lequel vous avez copié à partir du portail Azure. 
+    c. Dans la zone de texte **Identity Provider Single Sign-On Service** (Service d’authentification unique du fournisseur d’identité), collez la valeur **URL du service d’authentification unique SAML** que vous avez copiée à partir du portail Azure. 
    
-    d. Cliquez sur **Enregistrer**.
+    d. Cliquez sur **Save**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sd-elements-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sd-elements-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sd-elements-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-sd-elements-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-sd-elements-test-user"></a>Création d'un utilisateur de test SD Elements
 
-objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans les éléments SD. Dans les cas de hello d’éléments de SD, la création d’éléments de SD utilisateurs est une tâche manuelle.
+L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans SD Elements. Dans le cas de SD Elements, la création d'utilisateurs SD Elements est une tâche manuelle.
 
-**toocreate Britta Simon SD éléments effectuer hello comme suit :**
+**Pour créer un utilisateur appelé Britta Simon dans SD Elements, procédez comme suit :**
 
-1. Dans une fenêtre de navigateur web, site d’entreprise SD éléments tooyour ouverture de session en tant qu’administrateur.
+1. Dans une autre fenêtre de navigateur, connectez-vous à votre site d’entreprise SD Elements en tant qu’administrateur.
 
-2. Dans le menu hello haut de hello, cliquez sur **gestion des utilisateurs**, puis **utilisateurs**.
+2. Dans le menu situé en haut, cliquez sur **Gestion des utilisateurs**, puis sur **Utilisateurs**.
    
     ![Création d'un utilisateur de test SD Elements](./media/active-directory-saas-sd-elements-tutorial/tutorial_sd-elements_11.png) 
 
@@ -224,37 +224,37 @@ objectif Hello de cette section est toocreate un utilisateur appelé Britta Simo
    
     ![Création d'un utilisateur de test SD Elements](./media/active-directory-saas-sd-elements-tutorial/tutorial_sd-elements_12.png)
  
-4. Sur hello **ajouter un nouvel utilisateur** boîte de dialogue, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Ajouter un nouvel utilisateur**, procédez comme suit :
    
     ![Création d'un utilisateur de test SD Elements](./media/active-directory-saas-sd-elements-tutorial/tutorial_sd-elements_13.png) 
    
-    a. Bonjour **messagerie** zone de texte, entrez hello adresse de messagerie de l’utilisateur comme  **brittasimon@contoso.com** .
+    a. Dans la zone de texte **E-mail**, entrez l’adresse e-mail de l’utilisateur, par exemple **brittasimon@contoso.com**.
    
-    b. Bonjour **prénom** zone de texte, entrez hello premier nom d’utilisateur comme **Brian**.
+    b. Dans la zone de texte **Prénom**, entrez le prénom de l’utilisateur, par exemple **Britta**.
    
-    c. Bonjour **nom** zone de texte, entrez le nom d’utilisateur comme hello **Simon**.
+    c. Dans la zone de texte **Nom**, entrez le nom de l’utilisateur, par exemple **Simon**.
    
     d. Pour **Role**, sélectionnez **User**. 
    
-    e. Cliquez sur **Create User**.
+    e. Cliquez sur **Créer l’utilisateur**.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès à des éléments de tooSD.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à SD Elements.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooSD éléments, effectuez hello comme suit :**
+**Pour affecter Britta Simon à SD Elements, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **SD éléments**.
+2. Dans la liste des applications, sélectionnez **SD Elements**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-sd-elements-tutorial/tutorial_sdelements_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -262,7 +262,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -270,13 +270,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.
+L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
   
-Lorsque vous cliquez sur hello SD éléments vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour application des éléments de SD.
+Lorsque vous cliquez sur la mosaïque SD Elements dans le volet d’accès, vous devez être connecté automatiquement à votre application SD Elements.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

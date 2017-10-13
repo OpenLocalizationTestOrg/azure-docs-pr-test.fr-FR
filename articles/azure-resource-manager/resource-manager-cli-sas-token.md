@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy modèle Azure avec un jeton SAS et CLI d’Azure | Documents Microsoft"
-description: "Utilisez tooAzure de ressources toodeploy Azure Resource Manager et CLI d’Azure à partir d’un modèle qui est protégé avec le jeton SAP."
+title: "Déployer un modèle Azure avec le jeton SAP et l’interface Azure CLI | Microsoft Docs"
+description: "Utilisez Azure Resource Manager et Azure CLI pour déployer des ressources dans Azure à partir d’un modèle protégé par un jeton SAP."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/31/2017
 ms.author: tomfitz
-ms.openlocfilehash: 59c64616d6e1f5e456d88a72854d0ed99e1bdc0d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 22387aadd8f53a65efb76a29a9403c46a2c25954
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="deploy-private-resource-manager-template-with-sas-token-and-azure-cli"></a>Déployer un modèle Resource Manager privé avec un jeton SAP et Azure CLI
 
-Lorsque votre modèle se trouve dans un compte de stockage, vous pouvez restreindre le modèle de toohello access et fournir un jeton de signature (SAS) d’accès partagé au cours du déploiement. Cette rubrique explique comment toouse Azure PowerShell avec le Gestionnaire de ressources modèles tooprovide un jeton SAP durant le déploiement. 
+Lorsque votre modèle se trouve dans un compte de stockage, vous pouvez restreindre l’accès au modèle et fournir un jeton de signature d’accès partagé (SAP) au cours du déploiement. Cette rubrique explique comment utiliser Azure PowerShell avec les modèles Resource Manager pour fournir un jeton SAP lors du déploiement. 
 
-## <a name="add-private-template-toostorage-account"></a>Ajouter le compte toostorage de modèle privé
+## <a name="add-private-template-to-storage-account"></a>Ajouter un modèle privé au compte de stockage
 
-Vous pouvez ajouter votre compte de stockage de modèles tooa et la liaison de toothem pendant le déploiement avec un jeton SAP.
+Vous pouvez ajouter vos modèles à un compte de stockage et les lier au cours du déploiement avec un jeton SAP.
 
 > [!IMPORTANT]
-> En suivant les étapes de hello ci-dessous, blob hello contenant le modèle de hello est propriétaire du compte hello tooonly accessible. Toutefois, lorsque vous créez un jeton SAS pour l’objet blob de hello, objet blob de hello est tooanyone accessible avec cet URI. Si un autre utilisateur intercepte hello URI, cet utilisateur est modèle de hello en mesure de tooaccess. À l’aide d’un jeton SAP est un bon moyen de limiter l’accès tooyour modèles, mais n’incluez pas les données sensibles telles que les mots de passe directement dans le modèle de hello.
+> Une fois les étapes ci-dessous suivies, l’objet blob contenant le modèle n’est accessible qu’au propriétaire du compte. Toutefois, lorsque vous créez un jeton SAP pour l’objet blob, celui-ci est accessible à toute personne ayant cet URI. Si un autre utilisateur intercepte l’URI, il pourra accéder au modèle. L’utilisation d’un jeton SAP est un bon moyen de limiter l’accès à vos modèles, mais vous ne devez pas inclure de données sensibles comme des mots de passe directement dans le modèle.
 > 
 > 
 
-Hello exemple suivant définit un conteneur du compte de stockage privé et télécharge un modèle :
+L’exemple suivant configure un conteneur de compte de stockage privé et charge un modèle :
    
 ```azurecli
 az group create --name "ManageGroup" --location "South Central US"
@@ -59,7 +59,7 @@ az storage blob upload \
 ```
 
 ### <a name="provide-sas-token-during-deployment"></a>Fournir un jeton SAP au cours du déploiement
-toodeploy un modèle privé dans un compte de stockage, générer un jeton SAP et incluez-le dans hello URI pour le modèle de hello. Définissez tooallow de temps d’expiration hello suffisamment déploiement toocomplete hello.
+Pour déployer un modèle dans un compte de stockage privé, générez un jeton SAP et incluez-le dans l’URI du modèle. Définissez le délai d’expiration de façon à laisser suffisamment de temps pour terminer le déploiement.
    
 ```azurecli
 expiretime=$(date -u -d '30 minutes' +%Y-%m-%dT%H:%MZ)
@@ -85,7 +85,7 @@ az group deployment create --resource-group ExampleGroup --template-uri $url?$to
 Pour accéder à un exemple d’utilisation d’un jeton SAP avec des modèles liés, consultez [Utilisation de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour une toodeploying des modèles de présentation, consultez [déployer des ressources avec des modèles de gestionnaire de ressources et d’Azure PowerShell](resource-group-template-deploy-cli.md).
+* Pour une introduction au déploiement de modèles, voir [Déployer des ressources à l’aide de modèles Resource Manager et d’Azure PowerShell](resource-group-template-deploy-cli.md).
 * Pour accéder à un exemple de script complet qui déploie un modèle, consultez la page [Azure Resource Manager template deployment - PowerShell script](resource-manager-samples-cli-deploy.md) (Déploiement d’un modèle Azure Resource Manager - Script PowerShell)
-* paramètres de toodefine dans le modèle, consultez [création de modèles](resource-group-authoring-templates.md#parameters).
-* Pour obtenir des conseils comment les entreprises peuvent utiliser le Gestionnaire de ressources tooeffectively gérer les abonnements, consultez [une vue de structure Azure enterprise - gouvernance de l’abonnement normative](resource-manager-subscription-governance.md).
+* Pour définir des paramètres dans le modèle, consultez [Création de modèles](resource-group-authoring-templates.md#parameters).
+* Pour obtenir des conseils sur l’utilisation de Resource Manager par les entreprises pour gérer efficacement les abonnements, voir [Structure d’Azure Enterprise - Gouvernance normative de l’abonnement](resource-manager-subscription-governance.md).

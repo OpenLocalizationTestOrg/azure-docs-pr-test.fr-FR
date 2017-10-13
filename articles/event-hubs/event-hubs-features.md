@@ -1,5 +1,5 @@
 ---
-title: "vue d’ensemble des fonctionnalités aaaAzure concentrateurs d’événements | Documents Microsoft"
+title: "Vue d’ensemble des fonctionnalités Azure Event Hubs | Microsoft Docs"
 description: "Vue d’ensemble et détails sur les fonctionnalités des concentrateurs d’événements"
 services: event-hubs
 documentationcenter: .net
@@ -14,120 +14,120 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/17/2017
 ms.author: sethm
-ms.openlocfilehash: 8094e48abc8455ed725d4d5d3f9895f431441e2b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a74d767d57eb5ce2b3a716f9ba908a451f25f538
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="event-hubs-features-overview"></a>Vue d’ensemble des fonctionnalités des concentrateurs d’événements
 
-Azure Event Hubs est un service évolutif de traitement d’événements qui ingère et traite de gros volumes de données et d’événements avec une faible latence et une haute fiabilité. Consultez [quel est le service Event Hubs ?](event-hubs-what-is-event-hubs.md) pour une vue d’ensemble du service de hello.
+Azure Event Hubs est un service évolutif de traitement d’événements qui ingère et traite de gros volumes de données et d’événements avec une faible latence et une haute fiabilité. Consultez la page [Qu’est-ce qu’Event Hubs ?](event-hubs-what-is-event-hubs.md) pour une vue d’ensemble de haut niveau du service.
 
-Cet article s’appuie sur les informations de hello Bonjour [vue d’ensemble](event-hubs-what-is-event-hubs.md)et fournit des détails techniques et de mise en œuvre sur les fonctionnalités et composants de concentrateurs d’événements.
+Cet article s’appuie sur les informations de la [présentation](event-hubs-what-is-event-hubs.md) et fournit des détails techniques et de mise en œuvre sur les fonctionnalités et composants d’Event Hubs.
 
 ## <a name="event-publishers"></a>Éditeurs d'événements
 
-Une entité qui envoie le concentrateur d’événements de données tooan est producteur d’événement, ou *Éditeur d’événements*. Les éditeurs d’événements peuvent publier des événements à l’aide du protocole HTTPS ou AMQP 1.0. Les éditeurs d’événements utilisez un tooidentify de jeton de Signature d’accès partagé (SAS) eux-mêmes tooan concentrateur d’événements et peuvent avoir une identité unique ou un jeton SAP commun.
+Toute entité qui envoie des données à un concentrateur d’événements est un producteur ou *éditeur d’événements*. Les éditeurs d’événements peuvent publier des événements à l’aide du protocole HTTPS ou AMQP 1.0. Ils utilisent un jeton SAS (Shared Access Signature) pour s’identifier auprès d’un concentrateur d’événements et peuvent avoir une identité unique ou utiliser un jeton SAS commun.
 
 ### <a name="publishing-an-event"></a>Publication d'un événement
 
-Vous pouvez publier un événement avec AMQP 1.0 ou HTTPS. Fournit des concentrateurs d’événements [les classes et les bibliothèques clientes](event-hubs-dotnet-framework-api-overview.md) pour la publication de concentrateur d’événements événements tooan à partir de clients .NET. Pour les autres runtimes et plateformes, vous pouvez utiliser n'importe quel client AMQP 1.0, comme [Apache Qpid](http://qpid.apache.org/). Vous pouvez publier les événements individuellement ou par lots. Une publication unique (instance de données d’événement) a une limite de 256 Ko, qu’il s’agisse d’un événement unique ou d’un lot. La publication d'événements plus volumineux que ce seuil entraîne une erreur. Il est recommandé pour toobe de serveurs de publication sans se préoccuper de partitions dans le concentrateur d’événements hello et tooonly spécifier un *clé de partition* (introduit dans la section suivante de hello), ou leur identité via leur jeton SAP.
+Vous pouvez publier un événement avec AMQP 1.0 ou HTTPS. Event Hubs fournit des [bibliothèques et des classes client](event-hubs-dotnet-framework-api-overview.md) pour la publication d’événements sur un concentrateur d’événements à partir de clients .NET. Pour les autres runtimes et plateformes, vous pouvez utiliser n'importe quel client AMQP 1.0, comme [Apache Qpid](http://qpid.apache.org/). Vous pouvez publier les événements individuellement ou par lots. Une publication unique (instance de données d’événement) a une limite de 256 Ko, qu’il s’agisse d’un événement unique ou d’un lot. La publication d'événements plus volumineux que ce seuil entraîne une erreur. Il est préférable pour les éditeurs de ne pas être au courant des partitions dans le concentrateur d’événements et de spécifier uniquement une *clé de partition* (présentée dans la section suivante) ou leur identité par le biais de leur jeton SAS.
 
-Hello choix toouse AMQP ou HTTPS est le scénario d’utilisation de toohello spécifique. Le protocole AMQP requiert l’établissement d’un socket bidirectionnel persistant hello dans la sécurité au niveau des tootransport addition (TLS) ou SSL/TLS. AMQP a des coûts de réseau plus élevés lors de l’initialisation de session de hello, toutefois, HTTPS requiert traitement SSL supplémentaire pour chaque demande. Par ailleurs, AMQP propose des performances plus élevées pour les éditeurs courants.
+Le choix d'utiliser AMQP ou HTTPS est spécifique au scénario d'utilisation. AMQP requiert l'établissement d'un socket bidirectionnel persistant en plus de la sécurité au niveau du transport (TLS) ou SSL/TLS. Le protocole AMQP présente des coûts de gestion réseau plus élevés lors de l’initialisation de la session, mais le protocole HTTPS nécessite un temps de traitement SSL supplémentaire pour chaque demande. Par ailleurs, AMQP propose des performances plus élevées pour les éditeurs courants.
 
 ![Event Hubs](./media/event-hubs-features/partition_keys.png)
 
-Concentrateurs d’événements permet de s’assurer que tous les événements qui partage une valeur de clé de partition sont remis dans l’ordre et toohello que même partition. Si les clés de partition sont utilisées avec les stratégies de serveur de publication, puis hello identité du serveur de publication hello et valeur hello de clé de partition hello doit correspondre. Sinon, une erreur se produit.
+Azure Event Hubs garantit que tous les événements qui partagent une clé de partition sont fournis dans l’ordre, et à la même partition. Si des clés de partition sont utilisées avec des stratégies d’éditeur, l’identité de l’éditeur et la valeur de la clé de partition doivent correspondre. Sinon, une erreur se produit.
 
 ### <a name="publisher-policy"></a>Stratégie de l'éditeur
 
-Event Hubs permet un contrôle granulaire sur les éditeurs d'événements par le biais des *stratégies d'éditeur*. Stratégies d’éditeur sont des fonctionnalités d’exécution conçues toofacilitate grand nombre d’éditeurs d’événements indépendant. Avec les stratégies du serveur de publication, chaque serveur de publication utilise son propre identificateur lors de la publication du concentrateur d’événements événements tooan, à l’aide de hello suivant mécanisme :
+Event Hubs permet un contrôle granulaire sur les éditeurs d'événements par le biais des *stratégies d'éditeur*. Les stratégies d’éditeur regroupent des fonctionnalités runtime conçues pour fournir un grand nombre d’éditeurs d’événements indépendants. Avec les stratégies d’éditeur, chaque éditeur utilise son propre identificateur unique lors de la publication d’événements sur un concentrateur d’événements, à l’aide du mécanisme suivant :
 
 ```
 //[my namespace].servicebus.windows.net/[event hub name]/publishers/[my publisher name]
 ```
 
-Vous n’avez pas les noms d’éditeurs toocreate avance, mais il doit correspondre au jeton SAS de hello utilisé lors de la publication d’un événement, dans les identités des éditeurs indépendants tooensure ordre. Lorsque vous utilisez des stratégies d’éditeur, hello **PartitionKey** a la valeur toohello nom de l’éditeur. toowork correctement, ces valeurs doivent correspondre.
+Vous n'êtes pas obligé de créer des noms d'éditeurs à l'avance, mais ils doivent correspondre au jeton SAS utilisé lors de la publication d'un événement, afin de garantir les identités de l'éditeur indépendant. Lors de l'utilisation de stratégies d'éditeur, la valeur **PartitionKey** est définie sur le nom de l'éditeur. Pour fonctionner correctement, ces valeurs doivent correspondre.
 
 ## <a name="capture"></a>Capture
 
-[Capturer des concentrateurs d’événements](event-hubs-capture-overview.md) vous tooautomatically hello de capture de diffusion en continu des données dans des concentrateurs d’événements et enregistrez-le tooyour les choix d’un compte de stockage d’objets Blob ou d’un compte de Service de LAC de données Azure. Vous pouvez activer la Capture de hello portail Azure et spécifiez une taille minimale et la capture de temps fenêtre tooperform hello. À l’aide de capturer des concentrateurs d’événements, vous spécifiez votre propre compte de stockage d’objets Blob Azure et d’un conteneur, ou compte de Service de LAC de données Azure, qui est utilisé toostore hello les données capturées. Les données capturées sont écrit au format de Apache Avro hello.
+[Event Hubs Capture](event-hubs-capture-overview.md) vous permet de capturer automatiquement les données de streaming dans Event Hubs et de les enregistrer dans le compte Stockage Blob ou le compte Azure Data Lake Service de votre choix. Vous pouvez activer la fonctionnalité Capture à partir du portail Azure et spécifier une taille minimale, ainsi que la période pour l’exécution de la capture. Avec Event Hubs Capture, vous pouvez spécifier vos propres compte Stockage Blob Azure et conteneur, ou votre propre compte Azure Data Lake Store, qui est utilisé pour stocker les données capturées. Les données capturées sont écrites dans le format Apache Avro.
 
 ## <a name="partitions"></a>Partitions
 
-Concentrateurs d’événements fournit le message de diffusion en continu via un modèle de consommateur partitionné où chaque consommateur lit uniquement un sous-ensemble spécifique, ou une partition, du flux de messages hello. Ce modèle permet la mise à l’échelle horizontale pour le traitement des événements et fournit d’autres fonctionnalités de flux qui ne sont pas disponibles dans les rubriques et les files d’attente.
+Azure Event Hubs diffuse des messages via un modèle de consommateur partitionné, dans lequel chaque consommateur lit uniquement un sous-ensemble spécifique, ou partition, du flux de messages. Ce modèle permet la mise à l’échelle horizontale pour le traitement des événements et fournit d’autres fonctionnalités de flux qui ne sont pas disponibles dans les rubriques et les files d’attente.
 
-Une partition est une séquence ordonnée d’événements qui est conservée dans un concentrateur d’événements. Comme les événements plus récents arrivent, ils sont ajoutés fin toohello de cette séquence. Une partition peut être considérée comme un « journal de validation ».
+Une partition est une séquence ordonnée d’événements qui est conservée dans un concentrateur d’événements. Les événements les plus récents sont ajoutés à la fin de cette séquence. Une partition peut être considérée comme un « journal de validation ».
 
 ![Event Hubs](./media/event-hubs-features/partition.png)
 
-Concentrateurs d’événements conserve les données pendant une période de rétention configurée qui s’appliquent à toutes les partitions dans le concentrateur d’événements hello. Les événements expirent selon une base temporelle. Vous ne pouvez pas les supprimer explicitement. Comme les partitions sont indépendantes et contiennent leur propre séquence de données, elles évoluent souvent à des vitesses différentes.
+Event Hubs conserve les données pendant une durée de rétention configurée, qui s’applique à toutes les partitions du concentrateur d’événements. Les événements expirent selon une base temporelle. Vous ne pouvez pas les supprimer explicitement. Comme les partitions sont indépendantes et contiennent leur propre séquence de données, elles évoluent souvent à des vitesses différentes.
 
 ![Event Hubs](./media/event-hubs-features/multiple_partitions.png)
 
-nombre de Hello de partitions est spécifié lors de la création et doit être comprise entre 2 et 32. nombre de partitions Hello n’est pas modifiable, vous devez envisager la mise à l’échelle à long terme lors de la définition du nombre de partitions. Les partitions sont un mécanisme d’organisation de données qui se rapporte toohello de parallélisme en aval requis dans les applications consommatrices. Hello nombre de partitions dans un concentrateur d’événements sont directement liées toohello nombre de lecteurs simultanés souhaitées toohave. Vous pouvez augmenter le nombre de hello de partitions au-delà de 32 à contacter l’équipe de concentrateurs d’événements hello.
+Le nombre de partitions est spécifié lors de la création du concentrateur d’événements. Il doit être compris entre 2 et 32. Le nombre de partitions n’est pas modifiable. Lorsque vous le définissez, tenez compte de la mise à l’échelle sur le long terme. Les partitions constituent un mécanisme d’organisation des données. Elles sont liées au degré de parallélisme en aval requis lors de la consommation des applications. Le choix du nombre de partitions dans un concentrateur d’événements est directement lié au nombre de lecteurs simultanés que vous prévoyez d’avoir. Si vous souhaitez augmenter le nombre de partitions au-delà de 32, contactez l’équipe Azure Event Hubs.
 
-Alors que les partitions sont identifiables et peuvent être envoyées toodirectly, envoyant directement tooa partition n’est pas recommandée. Au lieu de cela, vous pouvez utiliser des constructions de niveau supérieur, introduites dans hello [Éditeur d’événements](#event-publishers) et [capacité](#capacity) sections. 
+Les partitions sont identifiables et peuvent recevoir des données directement, mais envoyer directement à une partition n’est pas recommandé. Au lieu de cela, vous pouvez utiliser des constructions de niveau supérieur présentées dans les sections [Éditeurs d’événements](#event-publishers) et [Capacité](#capacity). 
 
-Les partitions sont remplies avec une séquence de données d’événement qui contient le corps hello d’événement de hello, un sac défini par l’utilisateur et les métadonnées telles que son décalage dans la partition de hello et son numéro de séquence de flux hello.
+Une séquence de données d’événement est incluse dans les partitions. Elle comprend le corps de chaque événement, un conteneur de propriétés défini par l’utilisateur et diverses métadonnées, telles que son décalage dans la partition et son numéro dans la séquence de flux.
 
-Pour plus d’informations sur les partitions et les compromis de hello entre la disponibilité et la fiabilité, consultez hello [guide de programmation de concentrateurs d’événements](event-hubs-programming-guide.md#partition-key) et hello [disponibilité et la cohérence dans les concentrateurs d’événements](event-hubs-availability-and-consistency.md) article .
+Pour plus d’informations sur les partitions et le compromis entre la disponibilité et la fiabilité, consultez le [Guide de programmation de concentrateurs d’événements](event-hubs-programming-guide.md#partition-key) et l’article [Disponibilité et cohérence dans Event Hubs](event-hubs-availability-and-consistency.md).
 
 ### <a name="partition-key"></a>Clé de partition
 
-Vous pouvez utiliser un [clé de partition](event-hubs-programming-guide.md#partition-key) toomap des données d’événement entrant vers des partitions spécifiques à des fins de hello d’organisation des données. clé de partition Hello est une valeur fournie par l’expéditeur est passée dans un concentrateur d’événements. Elle est traitée via une fonction de hachage statique, ce qui crée l’attribution de partition hello. Si vous ne spécifiez aucune clé de partition lors de la publication d’un événement, une affectation de type tourniquet (round robin) est utilisée.
+Vous pouvez utiliser une [clé de partition](event-hubs-programming-guide.md#partition-key) pour mapper des données d’événement entrant dans des partitions spécifiques dans le cadre de l’organisation des données. La clé de partition est une valeur fournie par l’expéditeur transmise dans un concentrateur d’événements. Elle est traitée par le biais d’une fonction de hachage statique, qui crée l’affectation de la partition. Si vous ne spécifiez aucune clé de partition lors de la publication d’un événement, une affectation de type tourniquet (round robin) est utilisée.
 
-Éditeur d’événements Hello est uniquement informé de sa clé de partition, pas les événements de hello du toowhich hello partition sont publiés. Cette séparation de la clé et la partition isole expéditeur hello d’avoir tooknow trop sur le traitement en aval de hello. Un périphérique ou un utilisateur unique identité rend une bonne clé de partition, mais les autres attributs tels que geography peuvent également être utilisé toogroup événements associés dans une seule partition.
+L’éditeur d’événements est uniquement informé de sa clé de partition, et non de la partition sur laquelle les événements sont publiés. Grâce à cette dissociation de la clé et de la partition, l’expéditeur n’a pas besoin de connaître trop d’informations sur le traitement en aval. Une identité par appareil ou unique à l'utilisateur constitue une bonne clé de partition, mais d'autres attributs tels que la géographie, peuvent également être utilisés pour regrouper des événements liés dans une seule partition.
 
 ## <a name="sas-tokens"></a>Jetons SAS
 
-Utilise des concentrateurs d’événements *Signatures d’accès partagé*, qui sont disponible au niveau du concentrateur hello espace de noms et des événements. Un jeton SAS est généré à partir d'une clé SAS. C'est un hachage SHA d'une URL, codé dans un format spécifique. À l’aide du nom hello de clé de hello (stratégie) et du jeton de hello, les concentrateurs d’événements peut régénérer le hachage de hello et ainsi s’authentifier l’expéditeur de hello. Normalement, les jetons SAS pour les éditeurs d’événements sont créés uniquement avec des privilèges **d’envoi** sur un concentrateur d’événements spécifique. Identification de l’éditeur introduite dans la stratégie d’éditeur hello, ce mécanisme d’URL de jeton SAS sert hello. Pour plus d’informations sur l’utilisation de SAS, consultez [Authentification par signature d’accès partagé avec Service Bus](../service-bus-messaging/service-bus-sas.md).
+Azure Event Hubs utilise des *signatures d’accès partagé* disponibles au niveau du concentrateur d’événements et de l’espace de noms. Un jeton SAS est généré à partir d'une clé SAS. C'est un hachage SHA d'une URL, codé dans un format spécifique. À l’aide du nom de la clé (stratégie) et du jeton, Azure Event Hubs peut régénérer le hachage et, ainsi, authentifier l’expéditeur. Normalement, les jetons SAS pour les éditeurs d’événements sont créés uniquement avec des privilèges **d’envoi** sur un concentrateur d’événements spécifique. Le mécanisme URL de ce jeton SAS constitue la base de l'identification de l'éditeur introduite dans la stratégie de l'éditeur. Pour plus d’informations sur l’utilisation de SAS, consultez [Authentification par signature d’accès partagé avec Service Bus](../service-bus-messaging/service-bus-sas.md).
 
 ## <a name="event-consumers"></a>Consommateurs d'événements
 
-Toute entité qui lit des données d’événement à partir d’un concentrateur d’événements est un *consommateur d’événements*. Tous les consommateurs de concentrateurs d’événements se connectent via une session de hello AMQP 1.0 et les événements sont remis via une session de hello dès qu’elles sont disponibles. client de Hello ne nécessite pas de toopoll pour la disponibilité des données.
+Toute entité qui lit des données d’événement à partir d’un concentrateur d’événements est un *consommateur d’événements*. Tous les consommateurs Azure Event Hubs se connectent par le biais de la session AMQP 1.0 ; les événements sont remis par le biais de cette session dès qu’ils sont disponibles. Le client n'a pas besoin d'interroger la disponibilité des données.
 
 ### <a name="consumer-groups"></a>Groupes de consommateurs
 
-le mécanisme de publication/abonnement Hello des concentrateurs d’événements est activé via *groupes de consommateurs*. Un groupe de consommateurs est une vue (état, position ou décalage) d’un concentrateur d’événements dans sa totalité. Groupes de consommateurs activer plusieurs applications consommatrices tooeach ont une vue distincte du flux d’événements hello et flux de hello tooread indépendamment à leur propre rythme et avec leurs propres décalages.
+Le mécanisme de publication/d’abonnement des concentrateurs d’événements est activé à l’aide de *groupes de consommateurs*. Un groupe de consommateurs est une vue (état, position ou décalage) d’un concentrateur d’événements dans sa totalité. Les groupes de consommateurs permettent à plusieurs applications consommatrices d'avoir chacune une vue distincte du flux d'événements et de lire le flux indépendamment à leur propre rythme et avec leurs propres décalages.
 
-Dans un architecture de traitement de flux, chaque application en aval équivaut tooa du groupe de consommateurs. Si vous souhaitez que le stockage à long terme toolong de toowrite événements données, cette application d’enregistrement est un groupe de consommateurs. Le traitement des événements complexes est ensuite effectué par un autre groupe de consommateurs distinct. Vous ne pouvez accéder aux partitions que par le biais d'un groupe de consommateurs. Il peut y avoir au maximum 5 lecteurs simultanés sur une partition par groupe de consommateurs. Toutefois **il est recommandé de n’avoir qu’un seul récepteur actif sur une partition par groupe de consommateurs**. Un groupe de consommateurs par défaut est toujours dans un concentrateur d’événements, et vous pouvez créer des groupes de consommateurs too20 pour un concentrateur d’événements de niveau Standard.
+Dans une architecture de traitement de flux, chaque application en aval équivaut à un groupe de consommateurs. Si vous souhaitez écrire des données d'événement dans le stockage à long terme, alors cette application d'enregistreur de stockage est un groupe de consommateurs. Le traitement des événements complexes est ensuite effectué par un autre groupe de consommateurs distinct. Vous ne pouvez accéder aux partitions que par le biais d'un groupe de consommateurs. Il peut y avoir au maximum 5 lecteurs simultanés sur une partition par groupe de consommateurs. Toutefois **il est recommandé de n’avoir qu’un seul récepteur actif sur une partition par groupe de consommateurs**. Il existe toujours un groupe de consommateurs par défaut dans un concentrateur d’événements, et vous pouvez créer jusqu’à 20 groupes de consommateurs pour un concentrateur d’événements de niveau standard.
 
-Hello Voici des exemples de convention d’URI du groupe de consommateurs hello :
+Voici quelques exemples de la convention URI de groupe consommateurs :
 
 ```http
 //[my namespace].servicebus.windows.net/[event hub name]/[Consumer Group #1]
 //[my namespace].servicebus.windows.net/[event hub name]/[Consumer Group #2]
 ```
 
-Hello figure ci-dessous illustre l’architecture de traitement flux hello concentrateurs d’événements :
+La figure suivante montre l’architecture de traitement de flux Event Hubs :
 
 ![Event Hubs](./media/event-hubs-features/event_hubs_architecture.png)
 
 ### <a name="stream-offsets"></a>Décalages du flux
 
-Un *offset* position hello d’un événement dans une partition. Vous pouvez considérer un décalage comme un curseur côté client. décalage Hello est un octet de numérotation de l’événement de hello. Ce décalage permet un toospecify de consommateur (lecteur) d’événement un point dans le flux d’événements hello à partir duquel ils veulent toobegin la lecture des événements. Vous pouvez spécifier le décalage de hello comme un horodatage ou comme une valeur de décalage. Les clients sont responsables du stockage de leurs propres valeurs de décalage en dehors de hello service Event Hubs. Dans une partition, chaque événement inclut un décalage.
+Un *décalage* correspond à la position d’un événement dans une partition. Vous pouvez considérer un décalage comme un curseur côté client. Le décalage est une numérotation en octets de l'événement. Ce décalage permet à un consommateur d’événements (lecteur) de spécifier un point dans le flux d’événements à partir duquel il veut commencer la lecture des événements. Vous pouvez spécifier le décalage comme un horodatage ou une valeur de décalage. Les consommateurs ont la responsabilité de stocker leurs propres valeurs de décalage en dehors du service des hubs d'événements. Dans une partition, chaque événement inclut un décalage.
 
 ![Event Hubs](./media/event-hubs-features/partition_offset.png)
 
 ### <a name="checkpointing"></a>Points de contrôle
 
-Les *points de contrôle* constituent un processus par lequel les lecteurs marquent ou valident leur position dans une séquence d’événements de partition. Points de contrôle incombe de hello du consommateur de hello et se produit sur une base par partition dans un groupe de consommateurs. Cette responsabilité signifie que pour chaque groupe de consommateurs, chaque lecteur de partition doit conserver une trace de sa position actuelle dans le flux d’événements hello et permet d’informer le service de hello quand il considère que les flux de données hello terminée.
+Les *points de contrôle* constituent un processus par lequel les lecteurs marquent ou valident leur position dans une séquence d’événements de partition. La réalisation des points de contrôle est la responsabilité du consommateur et se produit sur une base par partition dans un groupe de consommateurs. Cette responsabilité signifie que pour chaque groupe de consommateurs, chaque lecteur de partition doit conserver une trace de sa position actuelle dans le flux d’événements. Il peut informer le service lorsqu’il considère que le flux de données est complet.
 
-Si un lecteur se déconnecte d’une partition, lorsqu’il reconnecte, il commence à lire au point de contrôle hello précédemment soumis par hello dernier lecteur de cette partition dans ce groupe de consommateurs. Lorsque le lecteur de hello se connecte, il transmet ce décalage toohello événement hub toospecify hello emplacement lequel toostart la lecture. De cette façon, vous pouvez utiliser des points de contrôle tooboth marquer des événements comme « terminé » par les applications en aval, et résilience tooprovide si un basculement entre des lecteurs en cours d’exécution sur des ordinateurs différents se produit. Il est possible de tooreturn tooolder données en spécifiant un décalage inférieur à partir de ce processus de vérification. Grâce à ce mécanisme, les points de contrôle permettent une résilience au basculement renforcée, mais également la relecture du flux d’événements.
+Si un lecteur se déconnecte d'une partition, lorsqu'il se reconnecte il commence la lecture au point de contrôle qui a été précédemment soumis par le dernier lecteur de cette partition dans ce groupe de consommateurs. Lorsque le lecteur se connecte, il transmet ce décalage au concentrateur d’événements pour spécifier l’emplacement où commencer la lecture. De cette façon, vous pouvez utiliser les points de contrôle pour marquer les événements comme « terminés » par les applications en aval et pour assurer la résilience si un basculement se produit entre des lecteurs en cours d’exécution sur des ordinateurs différents. Il est possible de revenir à des données plus anciennes en spécifiant un décalage inférieur à partir de ce processus de vérification. Grâce à ce mécanisme, les points de contrôle permettent une résilience au basculement renforcée, mais également la relecture du flux d’événements.
 
 ### <a name="common-consumer-tasks"></a>Tâches courantes du consommateur
 
-Tous les consommateurs Azure Event Hubs se connectent via une session AMQP 1.0, un canal de communication bidirectionnelle prenant en charge l’état. Chaque partition a une session AMQP 1.0 qui facilite le transport hello d’événements séparés par partition.
+Tous les consommateurs Azure Event Hubs se connectent via une session AMQP 1.0, un canal de communication bidirectionnelle prenant en charge l’état. Chaque partition inclut une session AMQP 1.0, qui facilite le transport des événements séparés par partition.
 
-#### <a name="connect-tooa-partition"></a>Se connecter tooa partition
+#### <a name="connect-to-a-partition"></a>Se connecter à une partition
 
-Lors de la connexion toopartitions, il est commun toouse pratique un bail de partitions de mécanisme toocoordinate reader connexions toospecific. De cette manière, il est possible pour chaque partition dans un consommateur groupe toohave qu’un seul lecteur actif. Points de contrôle, la location et la gestion des lecteurs sont simplifiées à l’aide de hello [EventProcessorHost](/dotnet/api/microsoft.servicebus.messaging.eventprocessorhost) classe pour les clients .NET. Hello processeur d’événements hôte est un agent de consommateur intelligent.
+Lors de la connexion aux partitions, il est courant d’utiliser un mécanisme de bail pour coordonner les connexions du lecteur à des partitions spécifiques. De cette façon, chaque partition dans un groupe de consommateurs peut n'avoir qu'un seul lecteur actif. Le contrôle, la location et la gestion des lecteurs ont été simplifiés grâce à l’utilisation de la classe [EventProcessorHost](/dotnet/api/microsoft.servicebus.messaging.eventprocessorhost) pour les clients .NET. L’hôte du processeur d’événements est un agent consommateur intelligent.
 
 #### <a name="read-events"></a>Lire les événements
 
-Une fois la session AMQP 1.0 et établir un lien est ouverte pour une partition spécifique, les événements sont remis toohello AMQP 1.0 client par hello service Event Hubs. Ce mécanisme de livraison permet un débit plus élevé et une latence plus faible par rapport aux mécanismes basés sur l'extraction, tels que HTTP GET. Comme les événements sont envoyés toohello client, chaque instance de données d’événement contient des métadonnées importantes telles que nombre hello offset et de la séquence qui sont utilisés toofacilitate des points de contrôle sur la séquence d’événements hello.
+Après l'ouverture d'une session AMQP 1.0 et d'une liaison pour une partition spécifique, les événements sont livrés par le service de hubs d'événements au client AMQP 1.0. Ce mécanisme de livraison permet un débit plus élevé et une latence plus faible par rapport aux mécanismes basés sur l'extraction, tels que HTTP GET. Alors que les événements sont envoyés au client, chaque instance de données d'événement contient des métadonnées importantes, comme le décalage et le numéro de séquence, qui sont utilisées pour faciliter les points de contrôle sur la séquence d'événements.
 
 Données d’événement :
 * Offset
@@ -136,32 +136,32 @@ Données d’événement :
 * Propriétés de l’utilisateur
 * Propriétés système
 
-Il est le décalage de hello toomanage responsabilité.
+Il vous incombe de gérer le décalage.
 
-## <a name="capacity"></a>Capacity
+## <a name="capacity"></a>Capacité
 
-Concentrateurs d’événements possède une architecture parallèle hautement extensible et il existe plusieurs facteurs clés tooconsider, lors du dimensionnement et de mise à l’échelle.
+Azure Event Hubs possède une architecture parallèle hautement évolutive. Vous devez tenir compte de plusieurs facteurs importants lors du dimensionnement et de la mise à l’échelle de votre infrastructure.
 
 ### <a name="throughput-units"></a>Unités de débit
 
-capacité de débit Hello des concentrateurs d’événements est contrôlée par *unités de débit*. Les unités de débit sont des unités de capacité achetées préalablement. Une unité de débit inclut hello suivant de capacité :
+La capacité de débit des concentrateurs d’événements est contrôlée par les *unités de débit*. Les unités de débit sont des unités de capacité achetées préalablement. Une unité de débit unique inclut la capacité suivante :
 
-* Entrée : des Mo too1 par seconde ou 1 000 événements par seconde (selon celle qui apparaît en premier)
-* Sortie : des Mo too2 par seconde
+* Entrée : jusqu’à 1 Mo par seconde ou 1 000 événements par seconde, selon ce qui se produit en premier.
+* Sortie : jusqu’à 2 Mo par seconde.
 
-Au-delà de la capacité de hello de hello acheté des unités de débit, l’entrée est limitée et un [ServerBusyException](/dotnet/api/microsoft.servicebus.messaging.serverbusyexception) est retourné. Sortie ne produit pas d’exceptions de limitation, mais toujours limitée toohello une capacité de hello acheté des unités de débit. Si vous recevez des exceptions de vitesse de publication ou que vous attendez une sortie supérieure toosee, être toocheck que le nombre d’unités de débit que vous avez achetées pour l’espace de noms hello. Vous pouvez gérer des unités de débit sur hello **échelle** panneau d’espaces de noms hello Bonjour [portail Azure](https://portal.azure.com). Vous pouvez également gérer des unités de débit par programmation à l’aide de hello [API de concentrateurs d’événements](event-hubs-api-overview.md).
+En cas de dépassement de la capacité des unités de débit achetées, l’entrée est limitée et une exception [ServerBusyException](/dotnet/api/microsoft.servicebus.messaging.serverbusyexception) est renvoyée. La sortie ne produit aucune exception de limitation, mais reste limitée à la capacité des unités de débit achetées. Si vous recevez des exceptions de vitesse de publication ou si vous attendez une sortie plus élevée, vérifiez le nombre d’unités de débit achetées pour l’espace de noms. Vous pouvez gérer des unités de débit sur le panneau **Mettre à l’échelle** des espaces de noms, dans le [portail Azure](https://portal.azure.com). Vous pouvez également gérer les unités de débit par programmation à l’aide des [API Event Hubs](event-hubs-api-overview.md).
 
-Les unités de débit sont facturées par heure et sont préalablement acquises. Une fois achetées, les unités de débit sont facturées au moins une heure. Too20 unités de débit peuvent être achetées pour un espace de noms de concentrateurs d’événements et sont partagées entre tous les concentrateurs d’événements dans l’espace de noms hello.
+Les unités de débit sont facturées par heure et sont préalablement acquises. Une fois achetées, les unités de débit sont facturées au moins une heure. Vous pouvez acheter jusqu’à 20 unités de débit pour un espace de noms Azure Event Hubs. Ces unités sont partagées entre tous les concentrateurs d’événements de l’espace de noms en question.
 
-Plusieurs unités de débit peuvent être achetées dans les blocs de 20 unités de débit too100, en contactant le support Azure. Ensuite, vous pouvez également acheter des blocs de 100 unités de débit.
+Il est possible d’acheter des unités de débit supplémentaires, par lots de 20 (pour un maximum de 100). Pour cela, contacter le support Azure. Ensuite, vous pouvez également acheter des blocs de 100 unités de débit.
 
-Nous vous recommandons d’équilibrer échelle optimale tooachieve partitions et les unités de débit. Une partition unique a une échelle maximale d'une unité de débit. Hello nombre d’unités de débit doit être inférieure ou égale nombre toohello de partitions dans un concentrateur d’événements.
+Nous vous recommandons d’équilibrer soigneusement les partitions et les unités de débit pour obtenir un dimensionnement optimal. Une partition unique a une échelle maximale d'une unité de débit. Le nombre d’unités de débit doit être inférieur ou égal au nombre de partitions dans un concentrateur d’événements.
 
 Pour obtenir des informations de tarification détaillées des concentrateurs d’événements, consultez [Tarification des concentrateurs d’événements](https://azure.microsoft.com/pricing/details/event-hubs/).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur les concentrateurs d’événements, consultez hello suivant liens :
+Pour plus d’informations sur les concentrateurs d’événements, accédez aux liens suivants :
 
 * Prise en main avec un [didacticiel des hubs d'événements][Event Hubs tutorial]
 * [Guide de programmation de concentrateurs d’événements](event-hubs-programming-guide.md)

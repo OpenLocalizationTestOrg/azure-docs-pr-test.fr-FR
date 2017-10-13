@@ -1,10 +1,10 @@
 ---
-title: aaaUse Ansible toocreate une VM Linux base dans Azure | Documents Microsoft
-description: "Découvrez comment toouse Ansible toocreate et de gérer un ordinateur de virtuel Linux base dans Azure"
+title: "Utiliser Ansible pour créer une machine virtuelle Linux de base dans Azure | Microsoft Docs"
+description: "Découvrez comment utiliser Ansible pour créer et gérer une machine virtuelle Linux de base dans Azure"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
-manager: timlt
+manager: jeconnoc
 editor: na
 tags: azure-resource-manager
 ms.assetid: 
@@ -13,37 +13,37 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 05/25/2017
+ms.date: 09/25/2017
 ms.author: iainfou
-ms.openlocfilehash: ffe278b3f846924ff9c4d026120565146f951152
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 07cb786e3053cb933fb87b2991cebb979a91ace0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-basic-virtual-machine-in-azure-with-ansible"></a>Créer une machine virtuelle Linux de base dans Azure avec Ansible
-Ansible vous permet de déploiement de hello tooautomate et configuration des ressources dans votre environnement. Vous pouvez utiliser Ansible toomanage vos machines virtuelles (VM) dans Azure, même hello comme vous le feriez pour toute autre ressource. Cet article vous montre comment toocreate une base pour machine virtuelle avec Ansible. Vous pouvez également apprendre comment trop[créer un environnement de machine virtuelle complète avec Ansible](ansible-create-complete-vm.md).
+Ansible vous permet d’automatiser le déploiement et la configuration de ressources dans votre environnement. Vous pouvez utiliser Ansible pour gérer vos machines virtuelles dans Azure comme vous le feriez pour toute autre ressource. Cet article vous explique comment créer une machine virtuelle de base avec Ansible. Vous pouvez également découvrir comment [créer un environnement de machine virtuelle complète avec Ansible](ansible-create-complete-vm.md).
 
 
 ## <a name="prerequisites"></a>Composants requis
-toomanage Azure ressources avec Ansible, vous devez hello suivant :
+Pour gérer des ressources Azure avec Ansible, vous avez besoin des éléments suivants :
 
-- Ansible et hello modules Azure Python SDK installés sur votre système hôte.
+- Ansible et les modules du SDK Azure Python installés sur votre système hôte.
     - Installez Ansible sur [Ubuntu 16.04 LTS](ansible-install-configure.md#ubuntu-1604-lts), [CentOS 7.3](ansible-install-configure.md#centos-73) et [SLES 12.2 SP2](ansible-install-configure.md#sles-122-sp2)
-- Informations d’identification Azure et Ansible configuré toouse les.
+- Les informations d’identification Azure, et Ansible configuré pour les utiliser.
     - [Créer des informations d’identification Azure et configurer Ansible](ansible-install-configure.md#create-azure-credentials)
-- Azure CLI version 2.0.4 ou ultérieure. Exécutez `az --version` version de hello toofind. 
-    - Si vous avez besoin de tooupgrade, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). Vous pouvez également utiliser [Cloud Shell](/azure/cloud-shell/quickstart) à partir de votre navigateur.
+- Azure CLI version 2.0.4 ou ultérieure. Exécutez `az --version` pour trouver la version. 
+    - Si vous devez mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). Vous pouvez également utiliser [Cloud Shell](/azure/cloud-shell/quickstart) à partir de votre navigateur.
 
 
 ## <a name="create-supporting-azure-resources"></a>Créer des ressources Azure de support
-Dans cet exemple, nous créons un runbook qui déploie une machine virtuelle dans une infrastructure existante. Créez d’abord un groupe de ressources avec [az group create](/cli/azure/vm#create). Hello exemple suivant crée un groupe de ressources nommé *myResourceGroup* Bonjour *eastus* emplacement :
+Dans cet exemple, nous créons un runbook qui déploie une machine virtuelle dans une infrastructure existante. Créez d’abord un groupe de ressources avec [az group create](/cli/azure/vm#create). L’exemple suivant crée un groupe de ressources nommé *myResourceGroup* à l’emplacement *eastus* :
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-Créez un réseau virtuel pour votre machine virtuelle avec [az network vnet create](/cli/azure/network/vnet#create). Hello exemple suivant crée un réseau virtuel nommé *myVnet* et un sous-réseau nommé *mySubnet*:
+Créez un réseau virtuel pour votre machine virtuelle avec [az network vnet create](/cli/azure/network/vnet#create). L’exemple suivant permet de créer un réseau virtuel nommé *myVnet* et un sous-réseau nommé *mySubnet* :
 
 ```azurecli
 az network vnet create \
@@ -56,7 +56,7 @@ az network vnet create \
 
 
 ## <a name="create-and-run-ansible-playbook"></a>Créer et exécuter un playbook Ansible
-Créer un scénario Ansible nommé **azure_create_vm.yml** et coller hello suivant le contenu. Cet exemple crée une seule machine virtuelle et configure les informations d’identification SSH. Entrez vos propres données de clé publique Bonjour *key_data* paire comme suit :
+Créez un playbook Ansible nommé **azure_create_vm.yml** et collez le contenu suivant. Cet exemple crée une seule machine virtuelle et configure les informations d’identification SSH. Entrez vos données de clé publique dans la paire *clé_données* comme suit :
 
 ```yaml
 - name: Create Azure VM
@@ -80,13 +80,13 @@ Créer un scénario Ansible nommé **azure_create_vm.yml** et coller hello suiva
         version: latest
 ```
 
-hello toocreate machine virtuelle avec Ansible, exécutez manuel de hello comme suit :
+Pour créer la machine virtuelle avec Ansible, exécutez le playbook comme suit :
 
 ```bash
 ansible-playbook azure_create_vm.yml
 ```
 
-sortie de Hello ressemble toohello similaire qui affiche hello que machine virtuelle a été créé avec succès l’exemple suivant :
+La sortie est similaire à l’exemple suivant, qui montre que la machine virtuelle a été créée :
 
 ```bash
 PLAY [Create Azure VM] ****************************************************
@@ -103,4 +103,4 @@ localhost                  : ok=2    changed=1    unreachable=0    failed=0
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Cet exemple crée une machine virtuelle dans un groupe de ressources existant avec un réseau virtuel déjà déployé. Pour obtenir un exemple plus détaillé sur la façon de toouse Ansible toocreate prise en charge des ressources telles que d’un réseau virtuel et les règles du groupe de sécurité réseau, consultez [créer un environnement de machine virtuelle complète avec Ansible](ansible-create-complete-vm.md).
+Cet exemple crée une machine virtuelle dans un groupe de ressources existant avec un réseau virtuel déjà déployé. Pour obtenir un exemple plus détaillé de la façon d’utiliser Ansible pour créer des ressources de support, comme un réseau virtuel et des règles de groupe de sécurité réseau, consultez [Créer un environnement de machine virtuelle complète avec Ansible](ansible-create-complete-vm.md).

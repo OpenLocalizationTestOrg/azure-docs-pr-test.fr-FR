@@ -1,28 +1,28 @@
 ## <a name="prepare-your-intel-nuc"></a>Préparer votre Intel NUC
 
-le programme d’installation matérielle hello toocomplete, vous devez :
+Pour terminer la configuration matérielle, vous devez :
 
-- Connectez l’alimentation Intel NUC toohello incluse dans le kit de hello.
-- Connecter votre réseau de tooyour Intel NUC à l’aide d’un câble Ethernet.
+- connecter votre Intel NUC à l’alimentation incluse dans le kit ;
+- connecter votre Intel NUC à votre réseau avec un câble Ethernet.
 
-Vous avez maintenant terminé la configuration du matériel de votre périphérique de passerelle Intel NUC hello.
+Vous avez maintenant terminé la configuration matérielle de votre appareil de passerelle Intel NUC.
 
-### <a name="sign-in-and-access-hello-terminal"></a>Se connecter et accéder à Terminal Server de hello
+### <a name="sign-in-and-access-the-terminal"></a>Se connecter et accéder au terminal
 
-Vous avez deux options tooaccess d’un environnement de Terminal Server sur votre NUC Intel :
+Deux méthodes vous permettent d’accéder à un environnement de type terminal sur votre Intel NUC :
 
-- Si vous possédez un clavier et surveillez connecté tooyour Intel NUC, vous pouvez accéder directement à interpréteur de commandes hello. informations d’identification par défaut de Hello sont le nom d’utilisateur **racine** et le mot de passe **racine**.
+- Si vous avez un clavier et un moniteur connectés à votre Intel NUC, vous pouvez accéder directement à l’interpréteur de commandes. Les informations d’identification par défaut sont le nom d’utilisateur **root** et le mot de passe **root**.
 
-- Interpréteur de commandes accès hello sur votre NUC Intel à l’aide de SSH à partir de votre ordinateur de bureau.
+- Accédez à l’interpréteur de commandes sur votre Intel NUC à l’aide de SSH à partir de votre ordinateur de bureau.
 
 #### <a name="sign-in-with-ssh"></a>Se connecter avec SSH
 
-toosign avec SSH, vous devez hello adresseIP de votre NUC Intel. Si vous possédez un clavier et surveillez connecté tooyour Intel NUC, utilisez hello `ifconfig` adresse IP de hello toofind de commandes. Vous pouvez également connecter tooyour routeur toolist hello des adresses de périphériques sur votre réseau.
+Pour vous connecter avec SSH, vous avez besoin de l’adresse IP de votre Intel NUC. Si vous avez un clavier et un moniteur connectés à votre Intel NUC, utilisez la commande `ifconfig` pour rechercher l’adresse IP. Autrement, vous pouvez vous connecter à votre routeur pour répertorier les adresses de périphériques sur votre réseau.
 
 Connectez-vous avec le nom d’utilisateur **root** et le mot de passe **root**.
 
 #### <a name="optional-share-a-folder-on-your-intel-nuc"></a>Facultatif : partager un dossier sur votre Intel NUC
 
-Si vous le souhaitez, vous souhaiterez tooshare un dossier sur votre NUC Intel avec votre environnement de bureau. Partage d’un dossier permet de vous toouse votre éditeur de texte de bureau par défaut (tel que [Visual Studio Code](https://code.visualstudio.com/) ou [texte Sublime](http://www.sublimetext.com/)) tooedit des fichiers sur votre NUC Intel au lieu d’utiliser `nano` ou `vi`.
+Si vous le souhaitez, vous pouvez partager un dossier sur votre Intel NUC avec votre environnement de bureau. Partager un dossier vous permet d’utiliser votre éditeur de texte de bureau favori (tel que [Visual Studio Code](https://code.visualstudio.com/) ou [Sublime Text](http://www.sublimetext.com/)) pour modifier des fichiers sur votre Intel NUC au lieu d’utiliser `nano` ou `vi`.
 
-tooshare un dossier avec Windows, configurer un serveur de Samba hello NUC d’Intel. Vous pouvez également utiliser hello SFTP sur hello Intel NUC avec un client SFTP sur votre ordinateur de bureau.
+Pour partager un dossier avec Windows, configurez un serveur Samba sur Intel NUC. Vous pouvez également utiliser le serveur SFTP sur Intel NUC avec un client SFTP sur votre ordinateur de bureau.

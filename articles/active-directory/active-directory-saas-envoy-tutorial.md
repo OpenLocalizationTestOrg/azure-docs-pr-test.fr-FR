@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec Envoy | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et d’envoi."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Envoy."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,120 +14,120 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/08/2017
 ms.author: jeedes
-ms.openlocfilehash: 93add7c1f3cf1fc163acc505f11e34bd696c571c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 49211b35ab3e28e0df914061e7fa623907935638
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-envoy"></a>Didacticiel : Intégration d’Azure Active Directory avec Envoy
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Envoy avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Envoy à Azure Active Directory (Azure AD).
 
-Intégration Envoy à Azure AD offre hello avantages suivants :
+L’intégration d’Envoy à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooEnvoy.
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooEnvoy (Single Sign-On) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.
+- Dans Azure AD, vous pouvez contrôler qui a accès à Envoy.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Envoy (via l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure.
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD à Envoy, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à Envoy, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Envoy pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout d’envoi à partir de la galerie de hello
+1. Ajout d’Envoy à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-envoy-from-hello-gallery"></a>Ajout d’envoi à partir de la galerie de hello
-tooconfigure hello intégration de Envoy dans Azure AD, vous devez tooadd Envoy à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-envoy-from-the-gallery"></a>Ajout d’Envoy à partir de la galerie
+Pour configurer l’intégration d’Envoy à Azure AD, vous devez ajouter Envoy, disponible dans la galerie, à votre liste d’applications SaaS managées.
 
-**tooadd Envoy à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Envoy à partir de la galerie, effectuez les étapes suivantes :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
-    ![bouton d’Azure Active Directory Hello][1]
+    ![Bouton Azure Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
-    ![panneau des applications Enterprise Hello][2]
+    ![Panneau Applications d’entreprise][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
-    ![Nouveau bouton d’application Hello][3]
+    ![Bouton Nouvelle application][3]
 
-4. Dans la zone de recherche de hello, tapez **Envoy**, sélectionnez **Envoy** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
+4. Dans la zone de recherche, tapez **Envoy**, sélectionnez **Envoy** dans le panneau de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
-    ![Liste des résultats de envoy Bonjour](./media/active-directory-saas-envoy-tutorial/tutorial_envoy_addfromgallery.png)
+    ![Envoy dans la liste des résultats](./media/active-directory-saas-envoy-tutorial/tutorial_envoy_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Envoy, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur équivalent hello Envoy est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Envoy doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Envoy équivalent dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Envoy associé doit être établie.
 
-Dans Envoy, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Envoy, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique à Envoy, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Envoy, vous devez suivre les indications des sections suivantes :
 
-1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Créer un utilisateur de test Envoy](#create-an-envoy-test-user)**  -toohave un équivalent de Britta Simon dans Envoy est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Créer un utilisateur de test Envoy](#create-an-envoy-test-user)** pour avoir un équivalent de Britta Simon dans Envoy, associé à sa représentation dans Azure AD.
+4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application d’envoi.
+Dans cette section, vous activez l’authentification unique Azure AD dans le portail Azure et configurez l’authentification unique dans votre application Envoy.
 
-**tooconfigure Azure AD single sign-on avec Envoy, procédez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Envoy, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, sur hello **Envoy** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, dans la page d’intégration de l’application **Envoy**, cliquez sur **Authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-envoy-tutorial/tutorial_envoy_samlbase.png)
 
-3. Sur hello **Envoy domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL Envoy**, effectuez les étapes suivantes :
 
     ![Informations d’authentification unique dans Domaine et URL Envoy](./media/active-directory-saas-envoy-tutorial/tutorial_envoy_url.png)
 
-    Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenant-name>.Envoy.com`
+    Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<tenant-name>.Envoy.com`
     
     > [!NOTE] 
-    > Cette valeur n’est pas la valeur réelle. Mettre à jour de cette valeur avec hello URL de connexion réel. Contact [équipe de support Client de Envoy](https://envoy.com/contact/) tooget cette valeur.
+    > Cette valeur n’est pas la valeur réelle. Mettez à jour cette valeur avec l’URL de connexion réelle. Pour obtenir cette valeur, contactez [l’équipe du support Envoy](https://envoy.com/contact/).
 
-4. Sur hello **le certificat de signature SAML** section, hello de copie **l’empreinte numérique** valeur du certificat...
+4. Dans la section **Certificat de signature SAML**, copiez la valeur **THUMBPRINT** du certificat.
 
-    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-envoy-tutorial/tutorial_envoy_certificate.png) 
+    ![Lien Téléchargement de certificat](./media/active-directory-saas-envoy-tutorial/tutorial_envoy_certificate.png) 
 
 5. Cliquez sur le bouton **Enregistrer** .
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-envoy-tutorial/tutorial_general_400.png)
 
-6. Sur hello **Envoy Configuration** , cliquez sur **Envoy de configurer** tooopen **configurer l’authentification** fenêtre. Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
+6. Dans la section **Configuration de Envoy**, cliquez sur **Configurer Envoy** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
 
     ![Configuration d’Envoy](./media/active-directory-saas-envoy-tutorial/tutorial_envoy_configure.png)
 
 7. Dans une autre fenêtre de navigateur web, connectez-vous au site de votre entreprise Envoy en tant qu’administrateur.
 
-8. Dans la barre d’outils de hello en haut de hello, cliquez sur **paramètres**.
+8. Dans la barre d’outils située en haut, cliquez sur **Settings**.
 
     ![Envoy](./media/active-directory-saas-envoy-tutorial/ic776782.png "Envoy")
 
@@ -139,84 +139,84 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![SAML](./media/active-directory-saas-envoy-tutorial/ic776784.png "SAML")
 
-11. Bonjour **l’authentification SAML** configuration section, effectuer hello comme suit :
+11. Dans la section de configuration **SAML Authentication** , procédez comme suit :
 
     ![SAML authentication](./media/active-directory-saas-envoy-tutorial/ic776785.png "SAML authentication")
     
     >[!NOTE]
-    >valeur de Hello pour l’ID d’emplacement du siège hello est générée automatiquement par l’application hello.
+    >La valeur de l’ID d’emplacement du siège est générée automatiquement par l’application.
     
-    a. Dans **par empreinte digitale** zone de texte, collez hello **l’empreinte numérique** valeur de certificat, ce qui vous avez copié à partir du portail Azure.
+    a. Dans la zone de texte **Fingerprint** (Empreinte digitale), collez la valeur du certificat **Empreinte** que vous avez copiée à partir du portail Azure.
     
-    b. Coller **SAML Sign-On URL du Service unique** valeur, qui vous avez copié écran hello Azure portail dans hello **URL SAML HTTP du fournisseur d’identité** zone de texte.
+    b. Collez la valeur **URL du service d’authentification unique SAML** copiée dans le portail Azure dans la zone de texte **IDENTITY PROVIDER HTTP SAML URL** (URL HTTP SAML du fournisseur d’identité).
     
     c. Cliquez sur **Save changes**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
    ![Créer un utilisateur de test Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.
+1. Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.
 
-    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-envoy-tutorial/create_aaduser_01.png)
+    ![Bouton Azure Active Directory](./media/active-directory-saas-envoy-tutorial/create_aaduser_01.png)
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
 
-    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-envoy-tutorial/create_aaduser_02.png)
+    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-envoy-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.
 
-    ![bouton Ajouter de Hello](./media/active-directory-saas-envoy-tutorial/create_aaduser_03.png)
+    ![Bouton Ajouter](./media/active-directory-saas-envoy-tutorial/create_aaduser_03.png)
 
-4. Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
 
-    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-envoy-tutorial/create_aaduser_04.png)
+    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-envoy-tutorial/create_aaduser_04.png)
 
-    a. Bonjour **nom** , tapez **BrittaSimon**.
+    a. Dans la zone **Nom**, tapez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.
+    b. Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.
 
-    c. Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.
+    c. Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.
 
     d. Cliquez sur **Créer**.
  
 ### <a name="create-an-envoy-test-user"></a>Créer un utilisateur de test Envoy
 
-Il n’existe aucun élément d’action pour vous tooconfigure configuration de l’utilisateur tooEnvoy. Quand un utilisateur affecté tente de toolog à Envoy à l’aide du volet d’accès hello, Envoy vérifie l’existence d’un utilisateur de hello. Si aucun compte d'utilisateur n’est disponible, Envoy le crée automatiquement.
+Aucun élément d'action ne vous permet de configurer l’approvisionnement des utilisateurs dans Envoy. Lorsqu’un utilisateur tente de se connecter à Envoy à l’aide du panneau d’accès, Envoy vérifie si cet utilisateur existe. Si aucun compte d'utilisateur n’est disponible, Envoy le crée automatiquement.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooEnvoy.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Envoy.
 
-![Attribuer le rôle d’utilisateur hello][200] 
+![Attribuer le rôle utilisateur][200] 
 
-**tooassign Britta Simon tooEnvoy, effectuez hello comme suit :**
+**Pour attribuer Britta Simon à Envoy, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Envoy**.
+2. Dans la liste des applications, sélectionnez **Envoy**.
 
-    ![lien d’Envoy Hello dans la liste des Applications hello](./media/active-directory-saas-envoy-tutorial/tutorial_envoy_app.png)  
+    ![Lien Envoy dans la liste des applications](./media/active-directory-saas-envoy-tutorial/tutorial_envoy_app.png)  
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
-    ![lien de « Utilisateurs et groupes » Hello][202]
+    ![Lien « Utilisateurs et groupes »][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![volet d’ajouter l’affectation de Hello][203]
+    ![Volet Ajouter une attribution][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -224,14 +224,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque Envoy hello hello volet d’accès, vous devez obtenir l’application d’Envoy automatiquement signé sur tooyour.
-Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md). 
+Lorsque vous cliquez sur la vignette Envoy dans le volet d’accès, vous devez être connecté automatiquement à votre application Envoy.
+Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

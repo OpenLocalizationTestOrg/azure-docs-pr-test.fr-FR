@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate une image personnalisée de Azure DevTest Labs à partir d’un fichier de disque dur virtuel | Documents Microsoft"
-description: "Découvrez comment une image personnalisée dans Azure DevTest Labs à partir d’un fichier de disque dur virtuel à l’aide de toocreate hello portail Azure"
+title: "Créer une image personnalisée Azure DevTest Labs à partir d’un fichier de disque dur virtuel | Microsoft Docs"
+description: "Apprenez à créer une image personnalisée dans Azure DevTest Labs à partir d’un fichier de disque dur virtuel à l’aide du portail Azure"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 80af8ea1cb72380f868df0a76c4a0dcd92e63cf5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9983ea9b847f44ed18a6169a4bdb224b63626a64
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-custom-image-from-a-vhd-file"></a>Créer une image personnalisée à partir d’un fichier de disque dur virtuel
 
@@ -30,41 +30,41 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="step-by-step-instructions"></a>Instructions pas à pas
 
-Hello étapes suivantes vous aider à créer une image personnalisée à partir d’un fichier de disque dur virtuel à l’aide de hello portail Azure :
+La procédure suivante décrit comment créer une image personnalisée à partir d’un fichier de disque dur virtuel avec le portail Azure :
 
-1. Connectez-vous à toohello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+1. Connectez-vous au [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
 
-1. Sélectionnez **davantage de services**, puis sélectionnez **DevTest Labs** à partir de la liste de hello.
+1. Sélectionnez **Plus de services**, puis **DevTest Labs** dans la liste.
 
-1. Dans liste hello labs, sélectionnez lab souhaité de hello.  
+1. Sélectionnez le laboratoire souhaité dans la liste des laboratoires.  
 
-1. Dans le panneau de hello lab, sélectionnez **Configuration**. 
+1. Dans le panneau du laboratoire, sélectionnez **Configuration**. 
 
-1. Atelier de hello **Configuration** panneau, sélectionnez **les images personnalisées (VHD)**.
+1. Dans le panneau **Configuration** du laboratoire, sélectionnez **Custom images (VHDs)** (Images personnalisées (disques durs virtuels)).
 
-1. Sur hello **les images personnalisées** panneau, sélectionnez **+ ajouter**.
+1. Dans le panneau **Images personnalisées**, sélectionnez **+Ajouter**.
 
     ![Ajouter une image personnalisée](./media/devtest-lab-create-template/add-custom-image.png)
 
-1. Entrez le nom hello d’image personnalisée de hello. Ce nom s’affiche dans la liste hello des images de base lors de la création d’une machine virtuelle.
+1. Entrez le nom de l’image personnalisée. Ce nom s’affiche dans la liste des images de base quand vous créez une machine virtuelle.
 
-1. Entrez la description hello d’image personnalisée de hello. Cette description s’affiche dans la liste hello des images de base lors de la création d’une machine virtuelle.
+1. Entrez la description de l’image personnalisée. Cette description s’affiche dans la liste des images de base quand vous créez une machine virtuelle.
 
 1. Sélectionnez **VHD**.
 
-1. À partir de hello **VHD** panneau, un fichier de disque dur virtuel sélectionnez hello souhaité.
+1. Dans le panneau **VHD**, sélectionnez le fichier de disque dur virtuel souhaité.
 
-1. Sélectionnez **OK** tooclose hello **VHD** panneau.
+1. Cliquez sur **OK** pour fermer le panneau **VHD**.
 
 1. Sélectionnez **Configuration du système d’exploitation**.
 
-1. Sur hello **configuration du système d’exploitation** , sélectionnez soit **Windows** ou **Linux**.
+1. Sous l’onglet **Configuration du système d’exploitation**, sélectionnez **Windows** ou **Linux**.
 
-1. Si **Windows** est sélectionnée, spécifiez via la case à cocher hello si *Sysprep* a été exécuté sur l’ordinateur de hello. 
+1. Si vous sélectionnez **Windows** , cochez la case pour indiquer si *Sysprep* a été exécuté sur la machine. 
 
-1. Sélectionnez **OK** tooclose hello **configuration du système d’exploitation** panneau.
+1. Cliquez sur **OK** pour fermer le panneau **Configuration du système d’exploitation**.
 
-1. Sélectionnez **OK** image personnalisée de toocreate hello.
+1. Cliquez sur **OK** pour créer l’image personnalisée.
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
@@ -75,4 +75,4 @@ Hello étapes suivantes vous aider à créer une image personnalisée à partir 
 
 ##<a name="next-steps"></a>Étapes suivantes
 
-- [Ajouter un laboratoire tooyour de machine virtuelle](./devtest-lab-add-vm-with-artifacts.md)
+- [Ajout d’une machine virtuelle à votre laboratoire](./devtest-lab-add-vm-with-artifacts.md)

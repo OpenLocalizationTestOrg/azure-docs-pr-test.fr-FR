@@ -1,6 +1,6 @@
 ---
-title: aaaCompare B2B collaboration et B2C dans Azure Active Directory | Documents Microsoft
-description: "Qu’est la différence de hello entre Azure Active Directory B2B collaboration et Azure AD B2C ?"
+title: Comparer B2B Collaboration et B2C dans Azure Active Directory | Microsoft Docs
+description: "Quelle est la différence entre Azure Active Directory B2B Collaboration et Azure AD B2C ?"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
-ms.openlocfilehash: 34d88b9a7d023e077568e8df3d5e1610ae05b361
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 44cbbc149787a2d6cf2e0e8750b98d33b52f6136
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="compare-b2b-collaboration-and-b2c-in-azure-active-directory"></a>Comparer B2B Collaboration et B2C dans Azure Active Directory
 
-Azure Active Directory (Azure AD) B2B collaboration et Azure AD B2C permettent toowork avec des utilisateurs externes dans Azure AD. En quoi se différencient-ils ?
+Azure Active Directory (Azure AD) B2B Collection et Azure AD B2C vous permettent de travailler avec des utilisateurs externes dans Azure AD. En quoi se différencient-ils ?
 
 
 Fonctionnalités de B2B Collaboration |     Offre autonome d’Azure AD B2C
 -------- | --------
-Destinés : organisations que les utilisateurs en mesure de tooauthenticate de toobe à partir d’une organisation partenaire, quel que soit le fournisseur d’identité. | Public visé : inviter les clients de vos appareils mobiles et applications web, qu’il s’agisse d’individus, d’institutions ou d’organisations dans votre Azure AD.
-Identités prises en charge : employés ou partenaires disposant d’un compte professionnel ou scolaire ou n’importe quelle adresse de messagerie. Bientôt toosupport fédération.  | Identités prises en charge : utilisateurs consommateurs disposant de comptes d’application locaux (n’importe quel nom d’utilisateur ou adresse de messagerie) ou toute identité sociale prenant en charge la fédération directe.
-Les utilisateurs de partenaire directory hello dans : partenaire à partir de l’organisation externe de hello, les utilisateurs sont gérés dans hello même répertoire que les employés, mais annoté spécialement. Ils peuvent être gérés hello même comme employés, peut être ajouté toohello mêmes groupes et ainsi de suite  | Qui sont dans des entités d’annuaire hello client utilisateur : dans le répertoire de l’application hello. Géré séparément de l’annuaire d’employés et partenaires hello organisation (le cas échéant.
-Single sign-on (SSO) tooall Azure applications connectées d’Active Directory est prise en charge. Par exemple, vous pouvez fournir accès tooOffice 365 ou applications sur site et tooother les applications SaaS telles que Salesforce ou de la journée de travail.  |  La propriété SSO toocustomer applications dans les locataires Azure AD B2C de hello est pris en charge. L’authentification unique tooOffice 365 ou tooother les applications SaaS non-Microsoft et Microsoft n’est pas pris en charge.
-Cycle de vie du partenaire : gérés par hello hôte/invitation de l’organisation.  | Cycle de vie client : libre-service ou gérées par l’application hello.
-Stratégie de sécurité et conformité : gérés par hello hôte/invitation de l’organisation.  | Stratégie de sécurité et conformité : géré par l’application hello.
-Marque : la marque de l’organisation hôte/qui invite est utilisée.  |    Marque : gérée par l’application. En règle générale, a tendance produit toobe marquée atténuant d’organisation hello en arrière-plan de hello.
+Public visé : les entreprises qui souhaitent être en mesure d’authentifier les utilisateurs à partir d’une organisation partenaire, quel que soit le fournisseur d’identité. | Public visé : inviter les clients de vos appareils mobiles et applications web, qu’il s’agisse d’individus, d’institutions ou d’organisations dans votre Azure AD.
+Identités prises en charge : employés ou partenaires disposant d’un compte professionnel ou scolaire ou n’importe quelle adresse de messagerie. La fédération directe sera bientôt prise en charge.  | Identités prises en charge : utilisateurs consommateurs disposant de comptes d’application locaux (n’importe quel nom d’utilisateur ou adresse de messagerie) ou toute identité sociale prenant en charge la fédération directe.
+Répertoire dans lequel les utilisateurs partenaire se trouvent : les utilisateurs partenaire de l’organisation externe sont gérés dans le même répertoire que les employés, mais font l’objet d’une annotation spéciale. Ils peuvent être gérés de la même façon que les employés, ils peuvent être ajoutés aux mêmes groupes, etc.  | Répertoire dans lequel les entités d’utilisateur client se trouvent : dans le répertoire de l’application. Gestion indépendamment du répertoire de partenaires et d’employés de l’entreprise (le cas échéant).
+L’authentification unique (SSO) sur toutes les applications connectées à Azure AD est prise en charge. Par exemple, vous pouvez donner accès à des applications Office 365 ou des applications locales, et à d’autres applications SaaS telles que Salesforce ou Workday.  |  L’authentification unique auprès d’applications détenues par le client dans les clients Azure AD B2C est prise en charge. L’authentification unique auprès d’Office 365 ou d’autres applications Microsoft ou SaaS non Microsoft n’est pas prise en charge.
+Cycle de vie partenaire : géré par l’organisation hôte/qui invite.  | Cycle de vie client : libre-service ou géré par l’application.
+Stratégie de sécurité et conformité : gérée par l’organisation hôte/qui invite.  | Stratégie de sécurité et conformité : gérée par l’application.
+Marque : la marque de l’organisation hôte/qui invite est utilisée.  |    Marque : gérée par l’application. En général, la marque du produit apparaît, avec l’organisation en arrière-plan.
 Plus d’informations : [Billet de blog](https://blogs.technet.microsoft.com/enterprisemobility/2017/02/01/azure-ad-b2b-new-updates-make-cross-business-collab-easy/), [Documentation](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-b2b-what-is-azure-ad-b2b)  | Plus d’informations : [Page produit](https://azure.microsoft.com/en-us/services/active-directory-b2c/), [Documentation](https://docs.microsoft.com/en-us/azure/active-directory-b2c/)
 
 
@@ -44,7 +44,7 @@ Consultez les autres articles sur la collaboration B2B d'Azure AD :
 
 * [Qu’est-ce qu’Azure AD B2B Collaboration ?](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Propriétés de l’utilisateur B2B Collaboration](active-directory-b2b-user-properties.md)
-* [Ajout d’un rôle tooa B2B collaboration](active-directory-b2b-add-guest-to-role.md)
+* [Ajout d’un utilisateur B2B Collaboration à un rôle](active-directory-b2b-add-guest-to-role.md)
 * [Déléguer des invitations B2B Collaboration](active-directory-b2b-delegate-invitations.md)
 * [Groupes dynamiques et B2B Collaboration](active-directory-b2b-dynamic-groups.md)
 * [Configurer des applications SaaS pour B2B Collaboration](active-directory-b2b-configure-saas-apps.md)

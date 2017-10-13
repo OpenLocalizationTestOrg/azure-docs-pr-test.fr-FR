@@ -1,6 +1,6 @@
 ---
-title: aaaBack des tooAzure serveur ou station de travail Windows (classique) | Documents Microsoft
-description: "Sauvegarde Windows serveurs ou clients tooa coffre de sauvegarde dans Azure. Parcourez les principes de base pour la protection des fichiers et dossiers tooa coffre de sauvegarde à l’aide de l’agent de sauvegarde Azure hello."
+title: "Sauvegarder un serveur ou une station de travail Windows dans Azure (modèle classique) | Microsoft Docs"
+description: "Sauvegardez des serveurs ou des clients Windows dans un coffre de sauvegarde Azure. Parcourez les principes fondamentaux de la protection des fichiers et des dossiers dans un coffre de sauvegarde à l’aide de l’agent Azure Backup."
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -15,150 +15,150 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/11/2017
 ms.author: markgal;trinadhk;
-ms.openlocfilehash: c8f2a9bed1e5885f5c272c65b9282ededc05850a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a8daa6a4655b72936b6299c0fa5b80459ffa5da3
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="back-up-a-windows-server-or-workstation-tooazure-using-hello-classic-portal"></a>Sauvegarder un tooAzure serveur ou station de travail Windows à l’aide du portail classique de hello
+# <a name="back-up-a-windows-server-or-workstation-to-azure-using-the-classic-portal"></a>Sauvegarder un serveur ou une station de travail Windows dans Azure à l’aide du portail Classic
 > [!div class="op_single_selector"]
 > * [Portail classique](backup-configure-vault-classic.md)
-> * [Portail Azure](backup-configure-vault.md)
+> * [portail Azure](backup-configure-vault.md)
 >
 >
 
-Cet article traite des procédures hello que vous avez besoin de toofollow tooprepare votre environnement et que vous sauvegardez un tooAzure de Windows server (ou une station de travail). Il aborde également les considérations de déploiement de votre solution de sauvegarde. Si vous êtes intéressé par la première tentative Azure Backup pour hello, cet article vous guide rapidement dans les processus hello.
+Cet article vous présente les procédures à exécuter pour préparer votre environnement et sauvegarder un serveur (ou une station de travail) Windows sur Azure. Il aborde également les considérations de déploiement de votre solution de sauvegarde. Si vous souhaitez essayer Azure Backup pour la première fois, cet article vous présente le processus.
 
-Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : Resource Manager et classique. Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello.
+Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : Resource Manager et classique. Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager.
 
 ## <a name="before-you-start"></a>Avant de commencer
-tooback un serveur ou un client tooAzure, vous devez un compte Azure. Si vous n’en possédez pas, vous pouvez créer un [compte gratuit](https://azure.microsoft.com/free/) en quelques minutes.
+Pour sauvegarder un serveur ou un client sur Azure, vous devez disposer d’un compte Azure. Si vous n’en possédez pas, vous pouvez créer un [compte gratuit](https://azure.microsoft.com/free/) en quelques minutes.
 
 ## <a name="create-a-backup-vault"></a>Créer un coffre de sauvegarde
-tooback des fichiers et dossiers à partir d’un serveur ou client, vous devez toocreate un coffre de sauvegarde dans la région de hello où vous souhaitez toostore hello données.
+Pour sauvegarder des fichiers et des dossiers d’un serveur ou d’un client, vous devez créer un coffre de sauvegarde dans la région géographique où vous souhaitez stocker les données.
 
 > [!IMPORTANT]
-> À partir de mars 2017, vous pouvez utiliser n’est plus les coffres de sauvegarde hello toocreate portail classique.
+> Depuis mars 2017, vous ne pouvez plus utiliser le portail Classic pour créer des coffres de sauvegarde.
 >
-> Vous pouvez maintenant mettre à niveau vos archivages de sauvegarde coffres tooRecovery Services. Pour plus d’informations, voir l’article hello [mise à niveau d’un tooa de coffre de sauvegarde de coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous encourage tooupgrade coffres des Services tooRecovery les coffres de votre sauvegarde.<br/> **Le 15 octobre 2017**, vous ne pourra plus être coffres de sauvegarde toocreate toouse en mesure de PowerShell. <br/> **À compter du 1er novembre 2017** :
->- Les coffres de sauvegarde restants seront les coffres des Services de tooRecovery automatiquement mis à niveau.
->- Vous ne pourra plus être en mesure de tooaccess vos données de sauvegarde dans le portail classique de hello. Au lieu de cela, utilisez hello tooaccess portail Azure vos données de sauvegarde dans les coffres des Services de récupération.
+> Vous pouvez désormais mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services. Pour en savoir plus, consultez l’article [Mettre à niveau un coffre de sauvegarde vers un coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous recommande de mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services.<br/> À compter du **15 octobre 2017**, vous ne pourrez plus vous servir de PowerShell pour créer des coffres de sauvegarde. <br/> **À compter du 1er novembre 2017** :
+>- Les coffres de sauvegarde restants seront automatiquement mis à niveau vers des coffres Recovery Services.
+>- Vous ne pourrez plus accéder à vos données de sauvegarde depuis le portail Classic. Au lieu de cela, vous devrez utiliser le portail Azure pour accéder à ces données au sein de coffres Recovery Services.
 >
 
 
-## <a name="download-hello-vault-credential-file"></a>Télécharger le fichier d’informations d’identification de coffre hello
-ordinateur local, Hello doit toobe authentifiée avec un coffre de sauvegarde avant qu’il peut sauvegarder des données tooAzure. Grâce à l’authentification de Hello *informations d’identification de coffre*. fichier d’informations d’identification de coffre Hello est téléchargé via un canal sécurisé à partir du portail classique de hello. clé privée du certificat Hello n’est pas conservé dans le portail de hello ou un service de hello.
+## <a name="download-the-vault-credential-file"></a>Téléchargement du fichier d’informations d’identification de coffre
+L’ordinateur local doit être authentifié avec un coffre de sauvegarde avant de pouvoir sauvegarder des données sur Azure. L’authentification s’effectue à l’aide des *informations d’identification du coffre*. Le fichier d’informations d’identification de coffre est téléchargé via un canal sécurisé depuis le portail Classic. La clé privée du certificat n’est pas conservée dans le portail ou le service.
 
-### <a name="toodownload-hello-vault-credential-file-tooa-local-machine"></a>toodownload hello coffre informations d’identification du fichier tooa ordinateur local
-1. Dans le volet de navigation gauche hello, cliquez sur **Services de récupération**, puis sélectionnez le coffre de sauvegarde hello que vous avez créé.
+### <a name="to-download-the-vault-credential-file-to-a-local-machine"></a>Pour télécharger les informations d’identification de coffre sur un ordinateur local
+1. Dans le volet de navigation gauche, cliquez sur **Recovery Services**et sélectionnez le coffre de sauvegarde que vous avez créé.
 
     ![RI terminé](./media/backup-configure-vault-classic/rs-left-nav.png)
-2. Dans la page de démarrage rapide de hello, cliquez sur **informations d’identification du coffre de téléchargement**.
+2. Dans la page de démarrage rapide, cliquez sur **Télécharger les informations d’identification du coffre**.
 
-   portail classique de Hello génère une information d’identification de coffre à l’aide d’une combinaison de nom de l’archivage hello et hello date actuelle. fichier d’informations d’identification de coffre Hello est utilisé uniquement pendant le flux de travail de l’inscription hello et expire au bout de 48 heures.
+   Le portail Classic génère une information d’identification de coffre en associant le nom du coffre à la date du jour. Le fichier d’informations d’identification du coffre est utilisé uniquement pendant le processus d’inscription et expire au bout de 48 heures.
 
-   fichier d’informations d’identification de coffre Hello peut être téléchargé à partir du portail de hello.
-3. Cliquez sur **enregistrer** toodownload hello coffre informations d’identification du fichier toohello dossier Téléchargements du compte local de hello. Vous pouvez également sélectionner **enregistrer en tant que** de hello **enregistrer** menu toospecify un emplacement pour le fichier d’informations d’identification de coffre hello.
+   Le fichier d’informations d’identification de coffre peut être téléchargé à partir du portail.
+3. Cliquez sur **Enregistrer** pour télécharger le fichier d’informations d’identification de coffre dans le dossier Téléchargements du compte local. Vous pouvez également sélectionner l’option **Enregistrer sous** à partir du menu **Enregistrer** pour spécifier un emplacement pour le fichier d’informations d’identification de coffre.
 
    > [!NOTE]
-   > Assurez-vous que le fichier d’informations d’identification de coffre hello est enregistré dans un emplacement qui est accessible à partir de votre ordinateur. S’il est stocké dans un bloc de message de partage ou un serveur de fichiers, vérifiez que vous avez hello autorisations tooaccess il.
+   > Vérifiez que le fichier des informations d’identification de coffre est enregistré dans un emplacement accessible à partir de votre ordinateur. S’il est stocké dans un partage de fichiers ou un bloc de message serveur, vérifiez que vous disposez des autorisations pour y accéder.
    >
    >
 
-## <a name="download-install-and-register-hello-backup-agent"></a>Télécharger, installer et inscrire l’agent de sauvegarde hello
-Après avoir créé le coffre de sauvegarde hello et téléchargez le fichier d’informations d’identification coffre hello, un agent doit être installé sur chacun de vos ordinateurs Windows.
+## <a name="download-install-and-register-the-backup-agent"></a>Télécharger, installer et inscrire l’agent Backup
+Après avoir créé le coffre de sauvegarde et téléchargé le fichier d’informations d’identification de coffre, vous devez installer un agent sur chacun de vos ordinateurs Windows.
 
-### <a name="toodownload-install-and-register-hello-agent"></a>toodownload, installer et inscrire l’agent de hello
-1. Cliquez sur **Services de récupération**, puis sélectionnez le coffre de sauvegarde hello que vous souhaitez tooregister avec un serveur.
-2. Sur la page de démarrage rapide de hello, cliquez sur l’agent de hello **Agent pour Windows Server ou System Center Data Protection Manager ou Windows client**. Cliquez ensuite sur **Enregistrer**.
+### <a name="to-download-install-and-register-the-agent"></a>Pour télécharger, installer et inscrire l’agent
+1. Cliquez sur **Recovery Services**, puis sélectionnez le coffre de sauvegarde à inscrire auprès d’un serveur.
+2. Sur la page de démarrage rapide, cliquez sur **Agent pour Windows Server ou System Center Data Protection Manager ou Windows Client**. Cliquez ensuite sur **Enregistrer**.
 
     ![Enregistrer l’agent](./media/backup-configure-vault-classic/agent.png)
-3. Une fois hello MARSagentinstaller.exe fichier téléchargé, cliquez sur **exécuter** (ou double-cliquez sur **MARSAgentInstaller.exe** à partir de l’emplacement de hello enregistré).
-4. Choisissez le dossier d’installation hello et le dossier de cache qui sont requis pour l’agent de hello, puis cliquez sur **suivant**. emplacement du cache Hello que vous spécifiez doit avoir tooat égal d’espace libre au moins 5 pour cent des données de sauvegarde hello.
-5. Vous pouvez continuer tooconnect toohello Internet via les paramètres de proxy par défaut hello.             Si vous utilisez un toohello tooconnect du serveur proxy Internet, sur la page de Configuration du Proxy hello, sélectionnez hello **utiliser les paramètres de proxy personnalisés** case à cocher, puis entrez les détails du serveur proxy hello. Si vous utilisez un proxy authentifié, entrez les détails des nom et mot de passe utilisateur hello, puis cliquez sur **suivant**.
-6. Cliquez sur **installer** installation de l’agent toobegin hello. l’agent de sauvegarde Hello installe .NET Framework 4.5 et Windows PowerShell (si elle n’est pas déjà installé) installation de hello toocomplete.
-7. Une fois l’agent de hello est installé, cliquez sur **continuer tooRegistration** toocontinue un flux de travail hello.
-8. Sur la page d’Identification de coffre hello, accédez à fichier tooand hello sélectionnez coffre d’informations d’identification que vous avez téléchargé précédemment.
+3. Une fois le téléchargement de MARSagentinstaller.exe terminé, cliquez sur **Exécuter** (ou double-cliquez sur **MARSAgentInstaller.exe** dans l’emplacement d’enregistrement).
+4. Choisissez le dossier d’installation et le dossier de cache requis pour l’agent, puis cliquez sur **Suivant**. L’emplacement de cache spécifié doit présenter un espace libre au moins égal à 5 % du volume des données de sauvegarde.
+5. Vous pouvez continuer à vous connecter à Internet avec les paramètres du proxy par défaut.             Si vous utilisez un serveur proxy pour vous connecter à Internet, sur la page Configuration du proxy, sélectionnez **Utiliser les paramètres du proxy personnalisés** et entrez les détails du serveur proxy. Si vous utilisez un proxy authentifié, entrez les informations de nom d’utilisateur et mot de passe, puis cliquez sur **Suivant**.
+6. Cliquez sur **Installer** pour lancer le processus d’installation de l’agent. L’agent Backup installe .NET Framework 4.5 et Windows PowerShell (s’il n’est pas déjà installé) pour terminer l’installation.
+7. Une fois l’agent installé, cliquez sur **Procéder à l’enregistrement** pour poursuivre le flux de travail.
+8. Sur la page Identification du coffre, recherchez et sélectionnez le fichier d’informations d’identification de coffre téléchargé précédemment.
 
-    fichier d’informations d’identification de coffre Hello est valable uniquement des dernières 48 heures après que l’avoir téléchargée à partir du portail de hello. Si vous rencontrez une erreur sur cette page (par exemple, « informations d’identification coffre fichier fourni a expiré »), connectez-vous au portail de toohello et téléchargez à nouveau le fichier d’informations d’identification de coffre hello.
+    Le fichier d’informations d’identification de coffre est uniquement valide pendant 48 heures à partir de son téléchargement depuis le portail. Si vous rencontrez une erreur sur cette page (par exemple, « Le fichier d’informations d’identification de coffre fourni a expiré »), connectez-vous au portail et retéléchargez le fichier d’informations d’identification de coffre.
 
-    Assurez-vous que le fichier d’informations d’identification de coffre hello est disponible dans un emplacement qui est accessible par l’application d’installation de hello. Si vous rencontrez des erreurs liées à l’accès, copiez hello coffre informations d’identification du fichier tooa emplacement temporaire sur hello même machine et recommencez l’opération de hello.
+    Assurez-vous que le fichier d’informations d’identification de coffre se trouve à un emplacement accessible par le programme d’installation. Si vous rencontrez des erreurs liées à l’accès, copiez le fichier d’informations d’identification de coffre dans un emplacement temporaire sur le même ordinateur et recommencez l’opération.
 
-    Si vous rencontrez une erreur d’informations d’identification de coffre telles que « coffre non valide les informations d’identification fournies », fichier de hello est endommagé ou ne pas avoir hello dernières informations d’identification associées au service de récupération hello. Recommencez l’opération hello après avoir téléchargé un nouveau fichier d’informations d’identification de coffre à partir du portail de hello. Cette erreur peut également se produire si un utilisateur clique sur hello **informations d’identification du coffre de téléchargement** option plusieurs fois de suite. Dans ce cas, uniquement hello dernière coffre informations d’identification du fichier est valide.
-9. Sur la page de paramètres de chiffrement de hello, vous pouvez générer un mot de passe ou fournissez une phrase secrète (avec un minimum de 16 caractères). N’oubliez pas de mot de passe toosave hello dans un emplacement sécurisé.
-10. Cliquez sur **Terminer**. Hello Assistant Inscription de serveur inscrit les serveur hello avec sauvegarde.
+    Si vous rencontrez une erreur d’informations d’identification de coffre (par exemple, « Les informations d’identification de coffre fournies ne sont pas valides »), cela signifie que le fichier est endommagé ou qu’il ne possède pas les dernières informations d’identification associées au service de récupération. Recommencez l’opération après avoir téléchargé un nouveau fichier d’informations d’identification de coffre à partir du portail. Cette erreur peut également se produire si l’utilisateur clique sur l’option **Télécharger les informations d’identification du coffre** coup sur coup. Dans ce cas, seul le dernier fichier d’informations d’identification du coffre est valide.
+9. Sur la page Paramètre de chiffrement, vous pouvez générer ou fournir une phrase secrète (16 caractères minimum). Pensez à enregistrer le mot de passe dans un emplacement sécurisé.
+10. Cliquez sur **Terminer**. L’Assistant Inscrire un serveur inscrit le serveur auprès d’Azure Backup.
 
     > [!WARNING]
-    > Si vous perdez ou oubliez le mot de passe hello, Microsoft ne peut vous aider à récupérer les données de sauvegarde hello. Vous possédez hello phrase secrète de chiffrement, et Microsoft n’a pas de visibilité de la phrase secrète hello que vous utilisez. Enregistrez-le hello dans un emplacement sécurisé, car il sera nécessaire pendant une opération de récupération.
+    > En cas de perte ou d’oubli de la phrase secrète, Microsoft ne pourra pas vous aider à récupérer les données de sauvegarde. Vous êtes seul détenteur de la phrase secrète de chiffrement et Microsoft n’a aucune visibilité sur cette dernière. Enregistrez le fichier dans un emplacement sécurisé, car il vous sera demandé pour les opérations de récupération.
     >
     >
 
-11. Une fois la clé de chiffrement hello est définie, laissez hello **lancer Microsoft Azure Recovery Services Agent** case à cocher, puis cliquez sur **fermer**.
+11. Une fois la clé de chiffrement définie, laissez la case **Démarrer Microsoft Azure Recovery Services Agent** cochée, puis cliquez sur **Fermer**.
 
-## <a name="complete-hello-initial-backup"></a>Sauvegarde initiale de hello terminée
-la sauvegarde initiale Hello inclut deux tâches principales :
+## <a name="complete-the-initial-backup"></a>Exécuter la sauvegarde initiale
+La sauvegarde initiale comprend deux tâches principales :
 
-* Création de planification de sauvegarde hello
-* Sauvegarde de fichiers et dossiers pour hello première fois
+* Création de la planification de sauvegarde
+* Première sauvegarde des fichiers et dossiers
 
-Stratégie de sauvegarde hello après la sauvegarde initiale de hello, il crée des points de sauvegarde que vous pouvez utiliser si vous avez besoin des données de salutation toorecover. stratégie de sauvegarde Hello cela selon une planification hello que vous définissez.
+Après avoir réalisé la sauvegarde initiale, la stratégie de sauvegarde crée des points de sauvegarde que vous pouvez utiliser si vous avez besoin de récupérer les données. Pour cela, la stratégie de sauvegarde suit la planification que vous définissez.
 
-### <a name="tooschedule-hello-backup"></a>sauvegarde de hello tooschedule
-1. Ouvrez hello Microsoft Azure Backup agent. (Il s’ouvre automatiquement si vous avez laissé hello **lancer Microsoft Azure Recovery Services Agent** case à cocher activée lorsque vous avez fermé l’Assistant Inscription de serveur de hello.) Vous pouvez le trouver en recherchant **Microsoft Azure Backup**sur votre ordinateur.
+### <a name="to-schedule-the-backup"></a>Pour planifier la sauvegarde
+1. Ouvrez l’agent Microsoft Azure Backup. (Il s’ouvre automatiquement si vous avez laissé la case **Démarrer Microsoft Azure Recovery Services Agent** cochée à la fermeture de l’Assistant Inscrire un serveur.) Vous pouvez le trouver en recherchant **Microsoft Azure Backup**sur votre ordinateur.
 
-    ![Lancez l’agent de sauvegarde Azure hello](./media/backup-configure-vault-classic/snap-in-search.png)
-2. Dans l’agent de sauvegarde hello, cliquez sur **planifier la sauvegarde**.
+    ![Démarrer l’agent Azure Backup](./media/backup-configure-vault-classic/snap-in-search.png)
+2. Dans l’agent Backup, cliquez sur **Planifier la sauvegarde**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-configure-vault-classic/schedule-backup-close.png)
-3. Sur hello mise en route de la page de hello Assistant Planification de sauvegarde, cliquez sur **suivant**.
-4. Page de tooBackup hello sélectionner les éléments, cliquez sur **ajouter les éléments**.
-5. Sélectionnez les fichiers de hello et dossiers que vous souhaitez tooback haut, puis cliquez sur **OK**.
+3. Sur la page Mise en route de l’Assistant Planifier la sauvegarde, cliquez sur **Suivant**.
+4. Sur la page Sélectionner les éléments à sauvegarder, cliquez sur **Ajouter des éléments**.
+5. Sélectionnez les fichiers et les dossiers que vous souhaitez sauvegarder, puis cliquez sur **OK**.
 6. Cliquez sur **Suivant**.
-7. Sur hello **spécifier la planification de sauvegarde** , spécifiez hello **planification de sauvegarde** et cliquez sur **suivant**.
+7. Sur la page **Spécifier une planification de la sauvegarde**, spécifiez la **planification de la sauvegarde**, puis cliquez sur **Suivant**.
 
     Vous pouvez planifier des sauvegardes quotidiennes (au maximum 3 fois par jour) ou hebdomadaires.
 
     ![Éléments de sauvegarde de Windows Server](./media/backup-configure-vault-classic/specify-backup-schedule-close.png)
 
    > [!NOTE]
-   > Pour plus d’informations sur comment toospecify hello planification de sauvegarde, voir l’article hello [tooreplace utilisez Azure Backup votre infrastructure de bande](backup-azure-backup-cloud-as-tape.md).
+   > Pour plus d’informations sur la spécification de la planification de la sauvegarde, consultez l’article [Utilisation d’Azure Backup pour remplacer votre infrastructure sur bande](backup-azure-backup-cloud-as-tape.md).
    >
    >
 
-8. Sur hello **sélectionner la stratégie de rétention** page, sélectionnez hello **stratégie de rétention** de copie de sauvegarde hello.
+8. Sur la page **Sélectionner une stratégie de rétention**, définissez la **stratégie de rétention** pour la copie de sauvegarde.
 
-    stratégie de rétention Hello spécifie la durée hello pour lequel hello sauvegarde sera stockée. Plutôt que de simplement spécifier « stratégie plate » pour tous les points de sauvegarde, vous pouvez spécifier des stratégies de rétention différentes basées sur lors de la sauvegarde de hello se produit. Vous pouvez modifier toomeet de stratégies de rétention quotidienne, hebdomadaire, mensuel et annuel hello à vos besoins.
-9. Sur la page Choisir un Type de sauvegarde initiale de hello, choisissez le type de sauvegarde initiale hello. Conservez l’option hello **automatiquement sur le réseau de hello** sélectionné, puis cliquez sur **suivant**.
+    La stratégie de rétention spécifie la durée de stockage de la sauvegarde. Au lieu de simplement spécifier une même stratégie pour tous les points de sauvegarde, vous pouvez spécifier différentes stratégies de rétention en fonction du moment où est effectuée la sauvegarde. Vous pouvez modifier les stratégies de rétention quotidiennes, hebdomadaires, mensuelles et annuelles pour répondre à vos besoins.
+9. Sur la page Choisir un type de sauvegarde initiale, sélectionnez le type de sauvegarde initiale. Laissez l’option **Automatiquement sur le réseau** sélectionnée, puis cliquez sur **Suivant**.
 
-    Vous pouvez sauvegarder automatiquement sur le réseau de hello, ou vous pouvez sauvegarder en mode hors connexion. reste Hello de cet article décrit le processus hello pour sauvegarder automatiquement. Si vous préférez toodo une sauvegarde hors connexion, consultez l’article de hello [workflow de sauvegarde en mode hors connexion dans Azure Backup](backup-azure-backup-import-export.md) pour plus d’informations.
-10. Sur la page de Confirmation hello, passez en revue les informations de hello, puis cliquez sur **Terminer**.
-11. Une fois l’Assistant de hello ait fini de créer la planification de sauvegarde hello, cliquez sur **fermer**.
+    Vous pouvez effectuer des sauvegardes automatiques sur le réseau ou vous pouvez sauvegarder en mode hors connexion. Le reste de cet article décrit le processus de sauvegarde automatique. Si vous préférez effectuer une sauvegarde en mode hors connexion, consultez l’article [Flux de travail de la sauvegarde hors connexion dans Azure Backup](backup-azure-backup-import-export.md) pour plus d’informations.
+10. Sur la page Confirmation, passez en revue les informations, puis cliquez sur **Terminer**.
+11. Lorsque l’Assistant a terminé la création de la planification de la sauvegarde, cliquez sur **Fermer**.
 
 ### <a name="enable-network-throttling-optional"></a>Activer la limitation du réseau (facultatif)
-l’agent de sauvegarde Hello fournit la limitation du réseau. La limitation contrôle l’utilisation de la bande passante réseau durant le transfert de données. Ce contrôle peut être utile si vous devez tooback des données pendant les heures de travail mais que vous ne souhaitez pas que toointerfere du processus de sauvegarde hello avec tout autre trafic Internet. La limitation s’applique tooback des activités et de restauration.
+L’agent Backup prend en charge la limitation du réseau. La limitation contrôle l’utilisation de la bande passante réseau durant le transfert de données. Cela peut s’avérer utile si vous avez besoin de sauvegarder des données pendant les heures de travail, mais ne souhaitez pas que le processus de sauvegarde interfère avec le reste du trafic internet. La limitation s’applique aux activités de sauvegarde et de restauration.
 
-**la limitation réseau tooenable**
+**Pour activer la limitation du réseau**
 
-1. Dans l’agent de sauvegarde hello, cliquez sur **modifier les propriétés**.
+1. Dans l’agent Backup, cliquez sur **Modifier les propriétés**.
 
     ![Modifier les propriétés](./media/backup-configure-vault-classic/change-properties.png)
-2. Sur hello **limitation** onglet, sélectionnez hello **activer l’utilisation de la bande passante internet pour les opérations de sauvegarde de limitation** case à cocher.
+2. Dans l’onglet **Limitation**, activez la case à cocher **Activer la limitation de la bande passante sur Internet pour les opérations de sauvegarde**.
 
     ![Limitation du réseau](./media/backup-configure-vault-classic/throttling-dialog.png)
-3. Une fois que vous avez activé la limitation, spécifiez hello autorisée de la bande passante pour transférer des données de sauvegarde pendant **des heures de travail** et **heures chômées**.
+3. Une fois que vous avez activé la limitation, spécifiez la bande passante autorisée pour le transfert des données de sauvegarde durant les **Heures de travail** et les **Heures chômées**.
 
-    valeurs de la bande passante Hello commencent à 512 kilobits par seconde (Kbits/s) et peuvent atteindre la too1, 023 mégaoctets par seconde (Mbits/s). Vous pouvez également désigner le début de hello et de fin de **des heures de travail**, et les jours de semaine de hello sont des jours de travail pris en compte. Les heures non comprises dans les heures de travail définies sont considérées comme des heures chômées.
+    Les valeurs de bande passante, qui démarrent à 512 kilo-octets par seconde, peuvent aller jusqu’à 1 023 mégaoctets par seconde. Vous pouvez également définir le début et la fin des **Heures de travail**et identifier les jours de la semaine considérés comme des jours de travail. Les heures non comprises dans les heures de travail définies sont considérées comme des heures chômées.
 4. Cliquez sur **OK**.
 
-### <a name="tooback-up-now"></a>tooback maintenant
-1. Dans l’agent de sauvegarde hello, cliquez sur **sauvegarder maintenant** hello toocomplete initiale d’amorçage réseau hello.
+### <a name="to-back-up-now"></a>Pour procéder à la sauvegarde
+1. Dans l’agent Backup, cliquez sur **Sauvegarder maintenant** pour effectuer l’amorçage initial sur le réseau.
 
     ![Sauvegarder Windows Server maintenant](./media/backup-configure-vault-classic/backup-now.png)
-2. Sur la page de Confirmation hello, vérifier les paramètres hello qui hello Assistant sauvegarder maintenant utilisera tooback machine de hello. puis cliquez sur **Sauvegarder**.
-3. Cliquez sur **fermer** Assistant de hello tooclose. Si vous procédez ainsi avant la fin du processus de sauvegarde hello, Assistant de hello continue toorun en arrière-plan de hello.
+2. Sur la page Confirmation, vérifiez les paramètres utilisés par l’Assistant Sauvegarder maintenant pour sauvegarder les données de l’ordinateur, puis cliquez sur **Sauvegarder**.
+3. Cliquez sur **Fermer** pour fermer l’assistant. Si vous fermez l’Assistant avant la fin du processus de sauvegarde, celui-ci continuera de s’exécuter en arrière-plan.
 
-Une fois la sauvegarde initiale de hello est terminée, hello **fin du travail** état s’affiche dans la console de sauvegarde hello.
+Une fois la sauvegarde initiale terminée, le statut **Tâche terminée** apparaît dans la console Backup.
 
 ![RI terminé](./media/backup-configure-vault-classic/ircomplete.png)
 
@@ -168,5 +168,5 @@ Une fois la sauvegarde initiale de hello est terminée, hello **fin du travail**
 Pour plus d’informations sur la sauvegarde des machines virtuelles ou d’autres charges de travail, consultez les références suivantes :
 
 * [Sauvegarder des machines virtuelles IaaS](backup-azure-vms-prepare.md)
-* [Sauvegarder tooAzure les charges de travail avec Microsoft Azure Backup Server](backup-azure-microsoft-azure-backup.md)
-* [Sauvegarder tooAzure les charges de travail avec DPM](backup-azure-dpm-introduction.md)
+* [Préparation de la sauvegarde des charges de travail à l’aide d’Azure Backup Server](backup-azure-microsoft-azure-backup.md)
+* [Préparation de la sauvegarde des charges de travail dans Azure avec DPM](backup-azure-dpm-introduction.md)

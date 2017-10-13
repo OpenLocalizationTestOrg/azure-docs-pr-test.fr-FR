@@ -1,9 +1,9 @@
 ---
-title: "aaaCreate Azure interne l’équilibrage de charge - PowerShell classique | Documents Microsoft"
-description: "Découvrez comment toocreate un interne l’équilibrage de charge à l’aide de PowerShell dans le modèle de déploiement classique de hello"
+title: "Créer un équilibrage de charge interne à l’aide de PowerShell classique | Microsoft Docs"
+description: "Découvrez comment créer un équilibreur de charge interne à l’aide de PowerShell dans le modèle de déploiement classique"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 editor: 
 tags: azure-service-management
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: 382db80c42ffab09905513019b72e85a4f9dfeff
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 85fd757bdd6dd9906a23977b760f01bb1f85bf77
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-creating-an-internal-load-balancer-classic-using-powershell"></a>Prise en main de la création d’un équilibreur de charge interne (classique) à l’aide de PowerShell
 
@@ -31,7 +31,7 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!IMPORTANT]
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md).  Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello. Découvrez comment trop[effectuer ces étapes à l’aide du modèle de gestionnaire de ressources hello](load-balancer-get-started-ilb-arm-ps.md).
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md).  Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager. Découvrez comment [effectuer ces étapes à l’aide du modèle Resource Manager](load-balancer-get-started-ilb-arm-ps.md).
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
@@ -39,28 +39,28 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="create-an-internal-load-balancer-set-for-virtual-machines"></a>Créer un jeu d’équilibrage de charge interne pour les machines virtuelles
 
-toocreate un équilibreur de charge interne défini et hello serveurs qui y enverront leur tooit le trafic, vous disposer de toodo hello :
+Pour créer un jeu d’équilibrage de charge interne et les serveurs qui y enverront leur trafic, vous devez procéder comme suit :
 
-1. Créer une instance d’interne l’équilibrage de charge qui sera le point de terminaison hello d’entrant trafic toobe équilibrée entre les serveurs hello d’un jeu d’équilibrage de la charge.
-2. Ajoutez les machines virtuelles toohello qui recevront le trafic entrant de hello correspondantes des points de terminaison.
-3. Configurez les serveurs hello qui enverront hello trafic toobe à charge équilibrée toosend leur trafic toohello adresse IP virtuelle (VIP) de l’instance d’équilibrage de charge interne hello.
+1. Créez une instance d’équilibrage de charge qui sera le point de terminaison du trafic entrant qui devra être équilibré entre les serveurs d’un jeu d’équilibrage de charge.
+2. Ajoutez des points de terminaison correspondants aux machines virtuelles qui recevront le trafic entrant.
+3. Configurez les serveurs qui enverront le trafic avec une charge équilibrée pour envoyer leur trafic à l’adresse IP virtuelle (VIP) de l’instance d’équilibrage de charge interne.
 
 ### <a name="step-1-create-an-internal-load-balancing-instance"></a>Étape 1 : Créer une instance d’équilibrage de charge interne
 
-Pour un service cloud existant ou un service cloud déployé dans un réseau virtuel régional, vous pouvez créer une instance de l’équilibrage de charge interne avec hello suivant de commandes Windows PowerShell :
+Pour un service cloud existant ou un service cloud déployé dans un réseau virtuel régional, vous pouvez créer une instance d’équilibrage de charge interne avec les commandes Windows PowerShell suivantes :
 
 ```powershell
 $svc="<Cloud Service Name>"
 $ilb="<Name of your ILB instance>"
-$subnet="<Name of hello subnet within your virtual network>"
-$IP="<hello IPv4 address toouse on hello subnet-optional>"
+$subnet="<Name of the subnet within your virtual network>"
+$IP="<The IPv4 address to use on the subnet-optional>"
 
 Add-AzureInternalLoadBalancer -ServiceName $svc -InternalLoadBalancerName $ilb –SubnetName $subnet –StaticVNetIPAddress $IP
 ```
 
-Notez que cette utilisation de hello [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx) applet de commande Windows PowerShell utilise hello de paramètres defaultprobe. Pour plus d'informations sur les jeux de paramètres supplémentaires, consultez [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx).
+Notez que l’utilisation de cette cmdlet [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx) Windows PowerShell utilise le jeu de paramètres DefaultProbe. Pour plus d'informations sur les jeux de paramètres supplémentaires, consultez [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx).
 
-### <a name="step-2-add-endpoints-toohello-internal-load-balancing-instance"></a>Étape 2 : Ajouter l’instance d’équilibrage de charge interne toohello points de terminaison
+### <a name="step-2-add-endpoints-to-the-internal-load-balancing-instance"></a>Étape 2 : Ajouter des points de terminaison à l’instance d’équilibrage de charge interne
 
 Voici un exemple :
 
@@ -76,47 +76,47 @@ $ilb="ilbset"
 Get-AzureVM –ServiceName $svc –Name $vmname | Add-AzureEndpoint -Name $epname -Lbset $lbsetname -Protocol $prot -LocalPort $locport -PublicPort $pubport –DefaultProbe -InternalLoadBalancerName $ilb | Update-AzureVM
 ```
 
-### <a name="step-3-configure-your-servers-toosend-their-traffic-toohello-new-internal-load-balancing-endpoint"></a>Étape 3 : Configurer votre toosend serveurs leur trafic toohello nouveau équilibrage de charge interne point de terminaison
+### <a name="step-3-configure-your-servers-to-send-their-traffic-to-the-new-internal-load-balancing-endpoint"></a>Étape 3 : Configurer vos serveurs pour envoyer leur trafic vers le nouveau point de terminaison d’équilibrage de charge interne
 
-Vous avez trop configurer serveurs hello dont le trafic est continu toobe à charge équilibrée toouse hello nouvelle adresse IP (hello VIP) de hello instance d’équilibrage de charge interne. Il s’agit d’adresse hello sur quel hello équilibrage de charge interne de l’instance écoute. Dans la plupart des cas, vous devez toojust ajouter ou modifier un enregistrement DNS pour hello VIP de l’instance de l’équilibrage de charge interne hello.
+Vous devez configurer les serveurs dont la charge du trafic sera équilibrée pour utiliser la nouvelle adresse IP virtuelle de l’instance d’équilibrage de charge interne. Il s’agit de l’adresse sur laquelle l’instance d’équilibrage de charge interne est en train d’écouter. Dans la plupart des cas, il vous suffit d’ajouter ou de modifier un enregistrement DNS pour l’adresse IP virtuelle de l’instance d’équilibrage de charge interne.
 
-Si vous avez spécifié l’adresse IP de hello lors de la création de hello d’instance d’équilibrage de charge interne hello, vous disposez déjà d’adresses IP virtuelles hello. Sinon, vous pouvez voir VIP hello de hello suivant de commandes :
+Si vous avez spécifié l’adresse IP lors de la création de l’instance d’équilibrage de charge interne, vous avez déjà l’adresse IP virtuelle. Autrement, vous pouvez afficher l'adresse IP virtuelle à partir des commandes suivantes :
 
 ```powershell
 $svc="<Cloud Service Name>"
 Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
 ```
 
-toouse ces commandes, renseignez les valeurs hello et remove hello < et >. Voici un exemple :
+Pour utiliser ces commandes, renseignez les valeurs et supprimez < et >. Voici un exemple :
 
 ```powershell
 $svc="mytestcloud"
 Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
 ```
 
-À partir de l’affichage hello Hello de commande Get-AzureInternalLoadBalancer, notez l’adresse IP de hello et rendre les serveurs tooyour hello les modifications nécessaires ou tooensure d’enregistrements DNS que le trafic est envoyé toohello VIP.
+À partir de l'affichage de la commande Get-AzureInternalLoadBalancer, notez l'adresse IP et apportez les modifications nécessaires à vos serveurs ou à vos enregistrements DNS pour vous assurer que le trafic est envoyé à l'adresse IP virtuelle.
 
 > [!NOTE]
-> plateforme de Microsoft Azure Hello utilise une adresse IPv4 statique routable publiquement pour un éventail de scénarios d’administration. adresse IP de Hello est 168.63.129.16. Cette adresse IP ne doit pas être bloquée par les pare-feu, car cela peut entraîner un comportement inattendu.
-> Avec tooAzure égard équilibrage de charge interne, cette adresse IP est utilisée par l’analyse des sondes de l’état d’intégrité de hello charge équilibrage toodetermine hello pour les ordinateurs virtuels dans un jeu d’équilibrage de charge. Si un groupe de sécurité réseau est utilisé toorestrict virtuels trafic tooAzure dans un jeu d’équilibrage de charge en interne ou tooa appliqué sous-réseau de réseau virtuel, assurez-vous qu’une règle de sécurité réseau est ajoutée tooallow trafic à partir de 168.63.129.16.
+> La plateforme Microsoft Azure utilise une adresse IPv4 statique routable publiquement pour divers scénarios d’administration. L’adresse IP est 168.63.129.16. Cette adresse IP ne doit pas être bloquée par les pare-feu, car cela peut entraîner un comportement inattendu.
+> En ce qui concerne l’équilibrage de charge Azure, cette adresse IP est utilisée par les sondes de l’équilibreur de charge, pour déterminer l’état de santé pour les machines virtuelles dans un jeu d’équilibrage de charge interne. Si un groupe de sécurité réseau est utilisé pour limiter le trafic vers les machines virtuelles Azure dans un jeu d’équilibrage de charge interne, ou est appliqué à un sous-réseau de réseau virtuel, vérifiez qu’une règle de sécurité de réseau est ajoutée pour autoriser le trafic à partir de 168.63.129.16.
 
 ## <a name="example-of-internal-load-balancing"></a>Exemple d’équilibrage de charge interne
 
-toostep vous guide dans hello des processus de tooend à la fin de la création d’un jeu d’équilibrage de la charge pour les deux exemples de configuration, consultez hello suivants sections.
+Pour vous guider dans le processus de bout en bout de la création d'un jeu d'équilibrage de charge pour deux exemples de configuration, consultez les sections suivantes.
 
 ### <a name="an-internet-facing-multi-tier-application"></a>Une application multi-niveau sur Internet
 
-Vous souhaitez tooprovide un service de base de données d’équilibrage de charge pour un ensemble de serveurs de web exposés à Internet. Les deux ensembles de serveurs sont hébergés dans un seul service cloud Azure. TooTCP port 1433 du trafic serveur Web doit être réparti entre deux ordinateurs virtuels dans la couche de base de données hello. Figure 1 illustre la configuration de hello.
+Vous souhaitez fournir un service de base de données à charge équilibrée pour un ensemble de serveurs web sur Internet. Les deux ensembles de serveurs sont hébergés dans un seul service cloud Azure. Le trafic du serveur web vers le port TCP 1433 doit être réparti entre deux machines virtuelles au niveau de la base de données. La Figure 1 montre la configuration.
 
-![Jeu d’équilibrage de charge interne pour le niveau de base de données hello](./media/load-balancer-internal-getstarted/IC736321.png)
+![Jeu d'équilibrage de charge interne pour le niveau base de données](./media/load-balancer-internal-getstarted/IC736321.png)
 
-configuration de Hello se compose d’éléments suivants de hello :
+La configuration se compose des éléments suivants :
 
-* service cloud existant Hello hébergeant des ordinateurs virtuels de hello est nommé mytestcloud.
-* deux serveurs de base de données existante Hello sont nommés DB1 et DB2.
-* Serveurs Web dans la couche web de hello connectent toohello des serveurs de base de données dans la couche de base de données hello en utilisant l’adresse IP privée de hello. Une autre option est toouse votre propre DNS pour le réseau virtuel de hello et inscrire manuellement un enregistrement A pour le jeu d’équilibrage de charge interne de hello.
+* Le service cloud existant qui héberge les machines virtuelles s’appelle mytestcloud.
+* Les deux serveurs de base de données existants sont nommés DB1 et DB2.
+* Les serveurs web au niveau du web se connectent aux serveurs de base de données au niveau de la base de données à l’aide d’une adresse IP privée. Une autre option consiste à utiliser votre propre serveur DNS pour le réseau virtuel et à inscrire manuellement un enregistrement A pour le jeu d’équilibrage de charge interne.
 
-Hello commandes suivantes configurent une nouvelle instance de l’équilibrage de charge interne nommée **ILBset** et ajoutez des machines virtuelles de points de terminaison toohello correspondant des serveurs de base de données toohello deux :
+Les commandes suivantes configurent une nouvelle instance d’équilibrage de charge interne appelée **ILBset** et ajoutent des points de terminaison aux machines virtuelles correspondant aux deux serveurs de base de données :
 
 ```powershell
 $svc="mytestcloud"
@@ -137,16 +137,16 @@ Get-AzureVM –ServiceName $svc –Name $vmname | Add-AzureEndpoint -Name $epnam
 
 ## <a name="remove-an-internal-load-balancing-configuration"></a>Supprimer une configuration d’équilibrage de charge interne
 
-tooremove une machine virtuelle comme un point de terminaison à partir d’une instance d’équilibrage de charge interne, hello utilisation suivant de commandes :
+Pour supprimer une machine virtuelle en tant que point de terminaison d’une instance d’équilibreur de charge interne, utilisez les commandes suivantes :
 
 ```powershell
 $svc="<Cloud service name>"
-$vmname="<Name of hello VM>"
-$epname="<Name of hello endpoint>"
+$vmname="<Name of the VM>"
+$epname="<Name of the endpoint>"
 Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 ```
 
-toouse ces commandes, renseignez les valeurs hello, suppression hello < et >.
+Pour utiliser ces commandes, renseignez les valeurs et supprimez < et >.
 
 Voici un exemple :
 
@@ -157,14 +157,14 @@ $epname="TCP-1433-1433"
 Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 ```
 
-tooremove une instance d’équilibrage de charge interne à partir d’un service cloud, hello utilisation suivant de commandes :
+Pour supprimer une instance d’équilibreur de charge interne depuis un service cloud, utilisez les commandes suivantes :
 
 ```powershell
 $svc="<Cloud service name>"
 Remove-AzureInternalLoadBalancer -ServiceName $svc
 ```
 
-toouse ces commandes, renseignez les valeur hello et supprimer hello < et >.
+Pour utiliser ces commandes, renseignez les valeurs et supprimez < et >.
 
 Voici un exemple :
 
@@ -175,7 +175,7 @@ Remove-AzureInternalLoadBalancer -ServiceName $svc
 
 ## <a name="additional-information-about-internal-load-balancer-cmdlets"></a>Informations supplémentaires sur les applets de commande de l’équilibreur de charge interne
 
-tooobtain plus d’informations sur l’équilibrage de charge interne applets de commande, exécutez hello suivant de commandes à partir d’une invite Windows PowerShell :
+Pour obtenir plus d’informations sur les applets de commande d’équilibrage de charge interne, exécutez les commandes suivantes à l’invite Azure Windows PowerShell :
 
 ```powershell
 Get-Help New-AzureInternalLoadBalancerConfig -full

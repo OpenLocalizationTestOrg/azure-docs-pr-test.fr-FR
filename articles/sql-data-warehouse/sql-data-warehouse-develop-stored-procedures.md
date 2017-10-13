@@ -1,5 +1,5 @@
 ---
-title: "procédures d’aaaStored dans l’entrepôt de données SQL | Documents Microsoft"
+title: "Procédures stockées dans SQL Data Warehouse | Microsoft Docs"
 description: "Conseils relatifs à l’implémentation de procédures stockées dans Microsoft Azure SQL Data Warehouse, dans le cadre du développement de solutions."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,37 +15,37 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 416252dd3dea95c66aa5e886860b933b22578002
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e42d80f0ca35f3fbb67389c66d072bc40d8a8d2c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="stored-procedures-in-sql-data-warehouse"></a>Procédures stockées dans SQL Data Warehouse
-Entrepôt de données SQL prend en charge plusieurs fonctionnalités hello Transact-SQL dans SQL Server. Il n’y a plus important encore montée en charge des fonctionnalités spécifiques que nous voudrons performances de hello tooleverage toomaximize de votre solution.
+SQL Data Warehouse prend en charge plusieurs fonctionnalités Transact-SQL proposées par SQL Server. Plus important encore, il existe différentes fonctions, spécifiques à la montée en charge, que nous voulons exploiter pour optimiser les performances de notre solution.
 
-Toutefois, l’échelle de toomaintain hello et il les performances de l’entrepôt de données SQL sont également certaines fonctions et fonctionnalités qui ont des différences de comportement et d’autres qui ne sont pas pris en charge.
+Toutefois, pour assurer la mise à l’échelle et les performances de SQL Data Warehouse, il existe divers mécanismes et fonctions dont le comportement présente des différences, ainsi que d’autres qui ne sont pas pris en charge.
 
-Cet article explique comment tooimplement procédures au sein de l’entrepôt de données SQL.
+Cet article explique comment implémenter des procédures stockées dans SQL Data Warehouse.
 
 ## <a name="introducing-stored-procedures"></a>Présentation des procédures stockées
-Les procédures stockées sont un excellent moyen d’encapsuler votre code SQL. stocker les données tooyour Fermer dans l’entrepôt de données hello. En encapsulant les code hello en unités gérables, procédures stockées aident les développeurs modulariser leurs solutions. faciliter une plus grande réutilisation du code. Chaque procédure stockée peut également accepter des paramètres toomake les encore plus flexible.
+Une procédure stockée est un excellent moyen d’encapsuler votre code SQL, en le stockant à un emplacement proche de vos données au sein de l’entrepôt de données. En encapsulant le code sous la forme d’unités pouvant être facilement gérées, les procédures stockées aident les développeurs à modulariser leurs solutions, afin d’optimiser la réutilisation du code. Chaque procédure stockée peut également accepter des paramètres, ce qui les rend encore plus flexibles.
 
-SQL Data Warehouse fournit une implémentation simplifiée et rationalisée pour les procédures stockées. Hello plus grande différence par rapport tooSQL Server est que hello la procédure stockée n’est pas code précompilé. Dans les entrepôts de données nous intéresse généralement moins avec le temps de compilation hello. Il est plus important que code de la procédure stockée hello est optimisé pour correctement lorsqu’il fonctionne sur gros volumes de données. Hello vise toosave heures, minutes et secondes pas les millisecondes. Il est donc plus utile toothink des procédures stockées en tant que conteneurs pour la logique SQL.     
+SQL Data Warehouse fournit une implémentation simplifiée et rationalisée pour les procédures stockées. La plus grande différence par rapport à SQL Server est le fait que la procédure stockée ne correspond pas à du code précompilé. Dans les entrepôts de données, nous nous préoccupons généralement moins souvent de la durée de la compilation. Ce qui importe, c’est que le code de la procédure stockée soit optimisé comme il convient lorsqu’il est exécuté sur de grands volumes de données. Le gain de temps recherché se compte en heures, en minutes et en secondes, et non en millisecondes. De ce fait, il est plus utile de considérer les procédures stockées comme des conteneurs de logique SQL.     
 
-Lors de l’exécution de SQL Data Warehouse votre procédure stockée hello instructions SQL sont analysées, traduites et optimisées au moment de l’exécution. Lors de ce processus, chaque instruction est convertie en différentes requêtes distribuées. Hello code SQL réellement exécuté sur les données de salutation est requête toohello différents soumise.
+Lorsque SQL Data Warehouse exécute votre procédure stockée, les instructions SQL sont analysées, traduites et optimisées au moment de l’exécution. Lors de ce processus, chaque instruction est convertie en différentes requêtes distribuées. Le code SQL réellement appliqué aux données est différent de la requête envoyée.
 
 ## <a name="nesting-stored-procedures"></a>Imbrication des procédures stockées
-Lorsque des procédures stockées appellent d’autres procédures stockées ou exécuter des sql dynamique interne de hello de procédure stockée ou d’appel de code est dite toobe imbriqués.
+Lorsque les procédures stockées appellent d’autres procédures stockées ou exécutent un code SQL dynamique, la procédure stockée ou procédure d’appel de code centrale est considérée comme « imbriquée ».
 
-SQL Data Warehouse prend en charge un maximum de 8 niveaux d’imbrication. Il s’agit de légèrement tooSQL Server. niveau d’imbrication Hello dans SQL Server est 32.
+SQL Data Warehouse prend en charge un maximum de 8 niveaux d’imbrication. En cela, il diffère légèrement de SQL Server, qui prend en charge 32 niveaux d’imbrication.
 
-appel de procédure stockée de niveau supérieur Hello équivaut toonest niveau 1
+L’appel de procédure stockée de premier niveau correspond au niveau d’imbrication 1.
 
 ```sql
 EXEC prc_nesting
 ```
-Si hello stockée procédure effectue également un autre EXEC appel puis Cela augmentera too2 au niveau de hello imbrication
+Si la procédure stockée effectue également un autre appel EXEC, le niveau d’imbrication passe à 2.
 
 ```sql
 CREATE PROCEDURE prc_nesting
@@ -54,7 +54,7 @@ EXEC prc_nesting_2  -- This call is nest level 2
 GO
 EXEC prc_nesting
 ```
-Si la deuxième procédure de hello puis exécute des instructions sql dynamiques puis Cela augmentera too3 au niveau de hello imbrication
+Si la deuxième procédure exécute du code SQL dynamique, ce niveau monte à 3.
 
 ```sql
 CREATE PROCEDURE prc_nesting_2
@@ -64,14 +64,14 @@ GO
 EXEC prc_nesting
 ```
 
-Notez que SQL Data Warehouse ne prend pas en charge @@NESTLEVEL. Vous devez vous-même tookeep un suivi de votre niveau d’imbrication. Il est improbable que vous atteignez limite de niveau d’imbrication hello 8. Toutefois, si vous vous aura besoin professionnel toore votre code et de « aplatir » afin qu’il tienne dans cette limite.
+Notez que SQL Data Warehouse ne prend pas en charge @@NESTLEVEL. Vous devez conserver vous-même une trace de votre niveau d’imbrication. Il est peu probable que vous atteigniez le niveau d’imbrication 8. Cependant, si tel est le cas, vous devez modifier votre code et l’« aplatir », afin qu’il respecte cette limite.
 
 ## <a name="insertexecute"></a>INSERT... EXECUTE
-SQL Data Warehouse n’autorise pas jeu de résultats tooconsume hello d’une procédure stockée avec une instruction INSERT. Toutefois, vous pouvez utiliser une autre méthode.
+SQL Data Warehouse ne vous permet pas d’utiliser le jeu de résultats d’une procédure stockée avec une instruction INSERT. Toutefois, vous pouvez utiliser une autre méthode.
 
-Reportez-vous toohello l’article suivant [tables temporaires] pour obtenir un exemple sur la façon de toodo cela.
+Voir [Tables temporaires dans SQL Data Warehouse] pour consulter des exemples, afin de savoir comment procéder.
 
-## <a name="limitations"></a>Limites
+## <a name="limitations"></a>Limitations
 Certains aspects des procédures stockées Transact-SQL ne sont pas implémentés dans SQL Data Warehouse.
 
 Les voici :
@@ -94,7 +94,7 @@ Pour obtenir des conseils supplémentaires en matière de développement, consul
 <!--Image references-->
 
 <!--Article references-->
-[tables temporaires]: ./sql-data-warehouse-tables-temporary.md#modularizing-code
+[Tables temporaires dans SQL Data Warehouse]: ./sql-data-warehouse-tables-temporary.md#modularizing-code
 [development overview]: ./sql-data-warehouse-overview-develop.md
 
 <!--MSDN references-->

@@ -1,6 +1,6 @@
 ---
-title: aaaCreate chaos et basculement de tests pour Azure microservices | Documents Microsoft
-description: "À l’aide de basculement et test de chaos hello Service Fabric erreurs tooinduce de scénarios de test et vérifier la fiabilité hello de vos services."
+title: "Créer des tests chaos et de basculement pour les microservices Azure | Microsoft Docs"
+description: "Utilisation des scénarios de test chaos et de test de basculement Service Fabric pour induire des erreurs et vérifier la fiabilité de vos services."
 services: service-fabric
 documentationcenter: .net
 author: motanv
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/07/2017
 ms.author: motanv
-ms.openlocfilehash: 1cac4f9e0e4a6c8416d5220d1537b5110decd1f7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d06026c750e01ad5825338a78d9af331265f434a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="testability-scenarios"></a>Scénarios de testabilité
-Les grands systèmes distribués, comme les infrastructures cloud, sont par définition peu fiables. Azure Service Fabric permet aux développeurs hello capacité toowrite services toorun au-dessus des infrastructures non fiables. Dans l’ordre toowrite des services de qualité, les développeurs doivent tooinduce en mesure de toobe stabilité de hello tootest telle infrastructure non fiable de leurs services.
+Les grands systèmes distribués, comme les infrastructures cloud, sont par définition peu fiables. Grâce à Azure Service Fabric, les développeurs sont en mesure d’écrire des services s’exécutant sur ces infrastructures. Pour écrire des services de haute qualité, les développeurs doivent pouvoir introduire de tels défauts de fiabilité, et ainsi tester la fiabilité des solutions qu’ils conçoivent.
 
-Hello erreur Analysis Service offre aux développeurs services tootest des actions de pannes hello capacité tooinduce en présence de hello d’échecs. Toutefois, les erreurs simulées ciblées présentent une efficacité limitée. hello tootake test en outre, vous pouvez utiliser des scénarios de test hello dans Service Fabric : un test chaos et un test de basculement. Ces scénarios de simulent continues erreurs entrelacées, normale et anormal, dans l’ensemble de cluster hello sur de longues périodes. Une fois qu’un test est configuré avec un taux de hello et du type d’erreurs, il peut être démarré par le biais des API c# ou PowerShell, toogenerate des erreurs dans le cluster de hello et votre service.
+Le service d’analyse des erreurs permet aux développeurs de provoquer des actions erronées afin de tester les services en présence de défaillances. Toutefois, les erreurs simulées ciblées présentent une efficacité limitée. Grâce aux scénarios de test prédéfinis de Service Fabric, vous pouvez réaliser un test de chaos et un test de basculement. Au sein du cluster, ces scénarios simulent des erreurs entrelacées en continu, avec et sans perte de données, sur des périodes prolongées. Une fois qu’un test est configuré avec la fréquence et le type des erreurs, il peut être démarré à l’aide des API C# ou de PowerShell pour générer des erreurs au sein du cluster et de votre service.
 
 > [!WARNING]
-> ChaosTestScenario est remplacé par un chaos plus robuste, basé sur le service. Reportez-vous toohello nouvel article [contrôlé le Chaos](service-fabric-controlled-chaos.md) pour plus d’informations.
+> ChaosTestScenario est remplacé par un chaos plus robuste, basé sur le service. Pour plus d’informations, consultez le nouvel article [Chaos contrôlé](service-fabric-controlled-chaos.md) .
 > 
 > 
 
 ## <a name="chaos-test"></a>Test chaos
-scénario de chaos Hello génère des erreurs sur l’intégralité du cluster Service Fabric hello. scénario de Hello compresse les erreurs généralement visibles dans les mois ou années tooa quelques heures. combinaison Hello d’erreurs entrelacées avec un taux d’erreur élevé hello recherche les cas qui sont omis dans le cas contraire. Cela entraîne une amélioration importante tooa dans la qualité du code hello du service de hello.
+Le scénario chaos génère des erreurs dans l’ensemble du cluster Service Fabric. Le scénario compresse les erreurs habituellement étalées sur plusieurs mois voire années en quelques heures. L’utilisation d’erreurs entrelacées avec un taux élevé d’erreurs permet d’identifier des dysfonctionnements qui n’auraient pu être isolés autrement. Il en résulte une amélioration significative de la qualité du code du service.
 
-### <a name="faults-simulated-in-hello-chaos-test"></a>Erreurs simulées dans le test de chaos hello
+### <a name="faults-simulated-in-the-chaos-test"></a>Erreurs simulées dans le test chaos
 * Redémarrer un nœud
 * Redémarrer un package de code déployé
 * Supprimer un réplica
@@ -41,20 +41,20 @@ scénario de chaos Hello génère des erreurs sur l’intégralité du cluster S
 * Déplacer un réplica principal (principal)
 * Déplacer un réplica secondaire (facultatif)
 
-test de chaos Hello exécute plusieurs itérations d’erreurs et les validations de cluster pour hello spécifié laps de temps. Hello temps passé pour hello cluster toostabilize et toosucceed de validation est également configurable. scénario de Hello échoue lorsque vous atteignez une défaillance de la validation du cluster.
+Le test chaos exécute de multiples itérations des validations de cluster et des erreurs pendant la période considérée. Les délais de stabilisation du cluster et de validation sont également configurables. Le scénario échoue à la première défaillance d’une validation de cluster.
 
-Par exemple, considérez qu'un test définie toorun pendant une heure avec un maximum de trois défaillances simultanées. test de Hello sera induire des erreurs de trois et puis de valider l’intégrité du cluster hello. test de Hello effectue une itération à l’étape précédente de hello jusqu'à ce que le cluster de hello devient non intègre ou passe d’une heure. Si le cluster de hello devient non intègre dans une itération, autrement dit, ne pas stabiliser pendant la durée configurée, test de hello échoue avec une exception. Cette exception indique qu’une erreur est survenue et qu’un examen approfondi est nécessaire.
+Par exemple, supposons qu’un test soit défini pour s’exécuter une heure, avec un maximum de trois erreurs simultanées. Le test introduira trois erreurs, puis validera l’intégrité du cluster. Le test itérera l’étape précédente jusqu’à ce que le cluster présente un défaut d’intégrité ou après une heure. Si le cluster présente un défaut d’intégrité dans une des itérations, auquel cas il n’est pas stabilisé dans le délai configuré, le test échoue avec une exception. Cette exception indique qu’une erreur est survenue et qu’un examen approfondi est nécessaire.
 
-Dans sa forme actuelle du moteur de génération de pannes hello dans le test de chaos hello induit erreurs uniquement sans échec. Cela signifie qu’en absence de hello d’erreurs externes, une quorum ou perte de données ne se produira.
+Dans sa forme actuelle, le moteur de génération d’erreurs du test chaos introduit uniquement des erreurs non critiques. Cela signifie qu’en l’absence d’erreurs externes, aucune perte de données ni de quorum ne survient.
 
 ### <a name="important-configuration-options"></a>Options de configuration importantes
-* **TimeToRun**: durée totale de ce test hello exécutera avant de terminer avec succès. test de Hello peut terminer plus tôt à la place d’un échec de validation.
-* **MaxClusterStabilizationTimeout**: quantité maximale de toowait de temps pour toobecome de cluster hello sain avant l’échec du test de hello. Hello vérifications effectuées sont si l’intégrité du cluster est OK, l’intégrité du service est OK, taille du jeu de réplica cible hello est obtenue de la partition de service hello et aucun réplicas InBuild n’existent.
-* **MaxConcurrentFaults** : nombre maximal d’erreurs simultanées introduites dans chaque itération. Hello plus grand nombre de hello, hello plus agressive test hello, par conséquent, ce qui entraîne des basculements plus complexes et les combinaisons de transition. test de Hello garantit qu’en l’absence d’erreurs externes aucun ne sera une quorum ou perte de données, quel que soit la manière dont cette configuration est.
-* **EnableMoveReplicaFaults**: Active ou désactive les erreurs hello qui sont à l’origine de déplacement hello Hello réplicas principaux ou secondaires. Ces erreurs sont désactivées par défaut.
-* **WaitTimeBetweenIterations**: quantité de toowait de temps entre les itérations, par exemple, après un arrondi des défaillances et de validation correspondante.
+* **TimeToRun**: durée totale du test jusqu’à sa réussite. Si la validation échoue, le test se termine plus tôt.
+* **MaxClusterStabilizationTimeout**: délai maximal nécessaire à la restauration de l’intégrité du cluster, préalablement à l’échec du test. Les contrôles consistent à vérifier que l’intégrité du cluster est acceptable, que la taille cible du jeu de réplicas est atteinte pour l’ensemble des partitions et qu’aucun réplica InBuild n’existe.
+* **MaxConcurrentFaults** : nombre maximal d’erreurs simultanées introduites dans chaque itération. Plus le nombre est élevé, plus le test est efficace. Vous obtiendrez des combinaisons plus complexes de basculement et de transition. Le test garantit qu’aucune perte de quorum ou de données ne sera à déplorer en l’absence d’erreurs externes, quel que soit le niveau de la configuration.
+* **EnableMoveReplicaFaults**: active ou désactive les erreurs provoquant le déplacement des réplicas primaires ou secondaires. Ces erreurs sont désactivées par défaut.
+* **WaitTimeBetweenIterations**: délai d’attente entre les itérations, c’est-à-dire après une séquence d’erreurs et la validation correspondante.
 
-### <a name="how-toorun-hello-chaos-test"></a>Comment tester les chaos de hello toorun
+### <a name="how-to-run-the-chaos-test"></a>Procédure d’exécution du test chaos
 Exemple de code C#
 
 ```csharp
@@ -101,7 +101,7 @@ class Test
         // Create FabricClient with connection and security information here.
         FabricClient fabricClient = new FabricClient(clusterConnection);
 
-        // hello chaos test scenario should run at least 60 minutes or until it fails.
+        // The chaos test scenario should run at least 60 minutes or until it fails.
         TimeSpan timeToRun = TimeSpan.FromMinutes(60);
         ChaosTestScenarioParameters scenarioParameters = new ChaosTestScenarioParameters(
           maxClusterStabilizationTimeout,
@@ -115,7 +115,7 @@ class Test
         // Pause between concurrent actions for a random duration bound by this value.
         // scenarioParameters.WaitTimeBetweenFaults = TimeSpan.FromSeconds(10);
 
-        // Create hello scenario class and execute it asynchronously.
+        // Create the scenario class and execute it asynchronously.
         ChaosTestScenario chaosScenario = new ChaosTestScenario(fabricClient, scenarioParameters);
 
         try
@@ -146,25 +146,25 @@ Invoke-ServiceFabricChaosTestScenario -TimeToRunMinute $timeToRun -MaxClusterSta
 
 
 ## <a name="failover-test"></a>Test de basculement
-scénario de test de basculement Hello est une version de scénario de test de chaos hello qui cible une partition de service spécifique. Il teste effet hello de basculement sur une partition de service spécifique en laissant d’autres services hello pas affectées. Une fois qu’il est configuré avec les informations de partition cible hello et d’autres paramètres, elle s’exécute comme un outil côté client qui utilise l’API c# ou PowerShell défauts de toogenerate pour une partition de service. scénario de Hello effectue une itération dans une séquence d’erreurs simulés et validation de service pendant l’exécution de votre logique métier sur hello côté tooprovide une charge de travail. Un échec de validation de service indique une erreur nécessitant un examen approfondi.
+Le scénario de test de basculement est une version du test chaos qui cible une partition de service spécifique. Il évalue l’effet du basculement sur une partition spécifique de service, sans affecter les autres services. Une fois configuré avec les informations de partition cible et d’autres paramètres, il s’exécute en tant qu’outil côté client à l’aide des API C# ou de PowerShell pour générer des erreurs associées à une partition de service. Le scénario effectue une itération dans une séquence d’erreurs simulées et de validation de service, tandis que votre logique métier s’exécute sur le côté pour fournir une charge de travail. Un échec de validation de service indique une erreur nécessitant un examen approfondi.
 
-### <a name="faults-simulated-in-hello-failover-test"></a>Erreurs simulées dans le test de basculement hello
-* Redémarrer un package de code déployé où la partition de hello est hébergée
+### <a name="faults-simulated-in-the-failover-test"></a>Erreurs simulées dans le test de basculement
+* Redémarrez un package de code déployé à l’emplacement d’hébergement de la partition
 * Supprimez une instance sans état ou un réplica principal/secondaire
 * Redémarrez un réplica principal/secondaire (en cas de service persistant)
 * Déplacez un réplica principal
 * Déplacez un réplica secondaire
-* Redémarrez la partition de hello
+* Redémarrez la partition
 
-test de basculement Hello induit une erreur choisie, puis exécute la validation sur hello service tooensure sa stabilité. test de basculement Hello induit uniquement une erreur au niveau d’un toopossible de temps, par opposition plusieurs erreurs dans le test de chaos hello. Si la partition de service hello ne stabiliser pas dans le délai d’attente hello configuré après chaque erreur, hello échoue. test de Hello induit uniquement les erreurs sans échec. Cela signifie qu’en l’absence de défaillances externes, aucune perte de données ni de quorum ne survient.
+Le test de basculement introduit une erreur déterminée, avant d’exécuter une validation du service afin d’évaluer sa stabilité. Le test de basculement incorpore une erreur à la fois, contrairement au test chaos, qui en introduit plusieurs simultanément. Si la partition ne se stabilise pas dans le délai configuré après chacune des erreurs, le test est considéré comme échoué. Le test introduit uniquement des erreurs non critiques. Cela signifie qu’en l’absence de défaillances externes, aucune perte de données ni de quorum ne survient.
 
 ### <a name="important-configuration-options"></a>Options de configuration importantes
-* **PartitionSelector**: objet de sélecteur qui spécifie la partition d’hello toobe ciblé.
-* **TimeToRun**: durée totale de ce test hello exécutera avant la fin.
-* **MaxServiceStabilizationTimeout**: quantité maximale de toowait de temps pour toobecome de cluster hello sain avant l’échec du test de hello. Hello vérifications effectuées sont si l’intégrité du service est OK, taille du jeu de réplica cible hello est réalisée pour toutes les partitions et aucun réplicas InBuild n’existent.
-* **WaitTimeBetweenFaults**: quantité de toowait de temps entre chaque cycle d’erreur et de validation.
+* **PartitionSelector**: objet de sélecteur qui spécifie la partition à cibler.
+* **TimeToRun**: durée totale d’exécution du test.
+* **MaxServiceStabilizationTimeout**: délai maximal nécessaire à la restauration de l’intégrité du cluster, préalablement à l’échec du test. Les contrôles consistent à vérifier que l’intégrité du service est acceptable, que la taille cible du jeu de réplicas est atteinte pour l’ensemble des partitions et qu’aucun réplica InBuild n’existe.
+* **WaitTimeBetweenFaults**: délai d’attente avant chaque erreur et cycle de validation.
 
-### <a name="how-toorun-hello-failover-test"></a>Comment tester les toorun hello basculement
+### <a name="how-to-run-the-failover-test"></a>Procédure d’exécution du test de basculement
 **C#**
 
 ```csharp
@@ -211,7 +211,7 @@ class Test
         // Create FabricClient with connection and security information here.
         FabricClient fabricClient = new FabricClient(clusterConnection);
 
-        // hello chaos test scenario should run at least 60 minutes or until it fails.
+        // The chaos test scenario should run at least 60 minutes or until it fails.
         TimeSpan timeToRun = TimeSpan.FromMinutes(60);
         FailoverTestScenarioParameters scenarioParameters = new FailoverTestScenarioParameters(
           randomPartitionSelector,
@@ -224,7 +224,7 @@ class Test
         // Pause between concurrent actions for a random duration bound by this value.
         // scenarioParameters.WaitTimeBetweenFaults = TimeSpan.FromSeconds(10);
 
-        // Create hello scenario class and execute it asynchronously.
+        // Create the scenario class and execute it asynchronously.
         FailoverTestScenario failoverScenario = new FailoverTestScenario(fabricClient, scenarioParameters);
 
         try

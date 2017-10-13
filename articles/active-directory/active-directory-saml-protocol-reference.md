@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure référence du protocole SAML AD | Documents Microsoft"
-description: "Cet article fournit une vue d’ensemble de profils de l’authentification unique et SAML de déconnexion unique hello dans Azure Active Directory."
+title: "Informations de référence sur le protocole SAML d’Azure AD | Microsoft Docs"
+description: "Cet article fournit une vue d’ensemble des profils SAML d’authentification unique et de déconnexion unique dans Azure Active Directory."
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: priyamo
-ms.openlocfilehash: d540b8cd9352e3196a0f4a40f0070d0e61127bee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7361d05850cf3ae997c0c186bf9a674c139f1f9e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# Comment Azure Active Directory utilise le protocole SAML de hello
-Azure Active Directory (Azure AD) utilise hello SAML 2.0 protocole tooenable applications tooprovide une authentification unique sur expérience tootheir les utilisateurs. Hello [Single Sign-On](active-directory-single-sign-on-protocol-reference.md) et [déconnexion unique](active-directory-single-sign-out-protocol-reference.md) profils SAML d’Azure AD expliquent comment les assertions SAML, les protocoles et les liaisons sont utilisées dans le service de fournisseur d’identité hello.
+# Prise en charge du protocole SAML dans Azure Active Directory
+Azure Active Directory (Azure AD) utilise le protocole SAML 2.0 pour permettre aux applications de fournir une expérience d’authentification unique à leurs utilisateurs. Les profils SAML [Authentification unique](active-directory-single-sign-on-protocol-reference.md) et [Déconnexion unique](active-directory-single-sign-out-protocol-reference.md) d’Azure AD expliquent comment les assertions, les protocoles et les liaisons SAML sont utilisées dans le service de fournisseur d’identité.
 
-Protocole SAML requiert le fournisseur d’identité hello (Azure AD) et hello service fournisseur (application hello) tooexchange informations les concernant.
+Le protocole SAML a besoin du fournisseur d’identité (Azure AD) et du fournisseur de services (l’application) pour échanger des informations à leur sujet.
 
-Lorsqu’une application est inscrite auprès d’Azure AD, développeur d’application hello enregistre les informations liées à la fédération avec Azure AD. Cela inclut les hello **URI de redirection** de l’application hello.
+Lorsqu’une application est enregistrée auprès d’Azure AD, le développeur d’applications enregistre les informations liées à la fédération auprès d’Azure AD. Ces informations englobent notamment **l’URI de redirection** de l’application.
 
-Azure Active Directory expose les points de terminaison d’authentification unique et de déconnexion unique communs (indépendants du client) et spécifiques au client. Ces URL représente les emplacements adressables : ils ne sont pas simplement d’identificateurs--vous pouvez accéder des métadonnées de hello tooread toohello point de terminaison.
+Azure Active Directory expose les points de terminaison d’authentification unique et de déconnexion unique communs (indépendants du client) et spécifiques au client. Ces URL représentent les emplacements adressables et ne jouent pas simplement le rôle d’identificateurs. Vous pouvez donc accéder au point de terminaison pour lire les métadonnées.
 
-* point de terminaison Hello spécifiques du client se trouve dans `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.  Hello <TenantDomainName> espace réservé représente un nom de domaine inscrit ou le GUID de TenantID d’un locataire Azure AD. Par exemple, les métadonnées de fédération hello du client de contoso.com hello sont à : https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
+* Le point de terminaison propre au client se trouve à l’adresse `https://login.microsoftonline.com/<TenantDomainName>/FederationMetadata/2007-06/FederationMetadata.xml`.  L’espace réservé <TenantDomainName> représente un nom de domaine inscrit ou le GUID TenantID d’un locataire Azure AD. Par exemple, les métadonnées de fédération du locataire contoso.com se trouvent à l’adresse : https://login.microsoftonline.com/contoso.com/FederationMetadata/2007-06/FederationMetadata.xml
 
-* point de terminaison Hello indépendant du client se trouve dans `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`. Dans cette adresse de point de terminaison, **commune** s’affiche, au lieu d’un nom de domaine client ou le code.
+* Le point de terminaison indépendant du client se trouve à l’adresse `https://login.microsoftonline.com/common/FederationMetadata/2007-06/FederationMetadata.xml`. Dans cette adresse de point de terminaison, l’élément **common** remplace le nom de domaine ou l’ID du locataire.
 
-Pour plus d’informations sur les documents de métadonnées de fédération hello Azure AD publie, consultez [les métadonnées de fédération](active-directory-federation-metadata.md).
+Pour plus d’informations sur les documents de métadonnées de fédération publiés par Azure AD, consultez la page [Métadonnées de fédération](active-directory-federation-metadata.md).

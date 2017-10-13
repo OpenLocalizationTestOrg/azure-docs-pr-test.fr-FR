@@ -1,6 +1,6 @@
 ---
-title: aaaConnect tooAzure pile | Documents Microsoft
-description: "Découvrez comment tooconnect Azure de la pile"
+title: "Se connecter à Azure Stack | Microsoft Docs"
+description: "Découvrez comment vous connecter à Azure Stack"
 services: azure-stack
 documentationcenter: 
 author: SnehaGunda
@@ -12,45 +12,47 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 08/22/2017
+ms.date: 09/25/2017
 ms.author: sngun
-ms.openlocfilehash: 8a940245fbcc8795d26b694df66824f0eb1dc3ea
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 09c626e97832821009ce2da360ceea2b54273ffa
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="connect-tooazure-stack"></a>Se connecter tooAzure pile
+# <a name="connect-to-azure-stack"></a>Se connecter à Azure Stack
 
-toomanage des ressources, vous devez vous connecter toohello Kit de développement de pile Azure. Cette rubrique détaille hello les mesures requises kit de développement tooconnect toohello. Vous pouvez utiliser une des hello suivant les options de connexion :
+*S’applique à : Kit de développement Azure Stack*
 
-* [Bureau à distance](#connect-with-remote-desktop): permet à un seul utilisateur simultané rapidement vous connecter à partir du kit de développement hello.
-* [Réseau privé virtuel (VPN, Virtual Private Network)](#connect-with-vpn): vous permet de connectent de plusieurs utilisateurs simultanément à partir de clients en dehors de l’infrastructure de pile de Azure hello (requiert une configuration).
+Pour pouvoir gérer des ressources, vous devez vous connecter au Kit de développement Azure Stack. Cette rubrique explique en détail les étapes à suivre pour vous connecter à ce kit de développement. Vous avez le choix entre ces deux options de connexion :
 
-## <a name="connect-tooazure-stack-with-remote-desktop"></a>Se connecter tooAzure pile avec le Bureau à distance
-Avec une connexion Bureau à distance, un seul utilisateur simultané peut travailler avec des ressources toomanage portail hello.
+* [Bureau à distance](#connect-with-remote-desktop) : permet à un seul utilisateur à la fois de se connecter rapidement à partir du kit de développement.
+* [Réseau privé virtuel (VPN)](#connect-with-vpn) : permet à plusieurs utilisateurs de se connecter simultanément à partir de clients extérieurs à l’infrastructure Azure Stack (nécessite une configuration particulière).
 
-1. Ouvrez une connexion Bureau à distance et se connecter du kit de développement toohello. Entrez **AzureStack\AzureStackAdmin** en tant que nom d’utilisateur hello et hello administratif un mot de passe que vous avez fourni pendant l’installation de la pile de Azure.  
+## <a name="connect-to-azure-stack-with-remote-desktop"></a>Se connecter à Azure Stack avec l’option Bureau à distance
+Avec une connexion Bureau à distance, un seul utilisateur à la fois peut se connecter au portail pour gérer des ressources.
 
-2. À partir de l’ordinateur de kit de développement hello, ouvrez le Gestionnaire de serveur, cliquez sur **serveur Local**, désactivez la sécurité renforcée d’Internet Explorer, puis fermez le Gestionnaire de serveur.
+1. Ouvrez une connexion Bureau à distance et connectez-vous au kit de développement. Entrez le nom d’utilisateur **AzureStack\AzureStackAdmin**, ainsi que le mot de passe de l’opérateur que vous avez fourni au moment de l’installation d’Azure Stack.  
 
-3. utilisateur de hello tooopen [portal](azure-stack-key-features.md#portal), accédez trop (https://portal.local.azurestack.external/) et connectez-vous en utilisant les informations d’identification de l’utilisateur. administrateur de hello tooopen [portal](azure-stack-key-features.md#portal), accédez trop (https://adminportal.local.azurestack.external/) et connectez-vous à l’aide de hello des informations d’identification Azure Active Directory spécifiées pendant l’installation.
+2. À partir de l’ordinateur du kit de développement, ouvrez le Gestionnaire de serveur, cliquez sur **Serveur local**, désactivez la sécurité renforcée d’Internet Explorer, puis fermez le Gestionnaire de serveur.
 
-## <a name="connect-tooazure-stack-with-vpn"></a>Rejoignez tooAzure pile VPN
+3. Pour ouvrir le [portail](azure-stack-key-features.md#portal) de l’utilisateur, accédez à https://portal.local.azurestack.external/ et connectez-vous à l’aide des informations d’identification de l’utilisateur. Pour ouvrir le [portail](azure-stack-key-features.md#portal) de l’opérateur Azure Stack, accédez à https://adminportal.local.azurestack.external/ et connectez-vous à l’aide des informations d’identification Azure Active Directory spécifiées pendant l’installation.
 
-Vous pouvez établir un réseau privé virtuel (VPN) de fractionnement tunnel connexion tooan Kit de développement de pile Azure. Via hello connexion VPN, vous pourrez accéder au portail d’administration hello, portail de l’utilisateur et installé localement des outils tels que Visual Studio et les ressources de pile d’Azure PowerShell toomanage. La connectivité VPN est prise en charge dans les déploiements Azure Active Directory (AAD) et Active Directory Federation Services (AD FS). Connexions VPN permettent à plusieurs clients tooconnect tooAzure pile à hello même temps. 
+## <a name="connect-to-azure-stack-with-vpn"></a>Se connecter à Azure Stack avec l’option VPN
+
+Vous pouvez établir une connexion VPN avec tunneling fractionné à un Kit de développement Azure Stack. Par le biais de la connexion VPN, vous pouvez ensuite accéder au portail de l’opérateur Azure Stack, au portail de l’utilisateur et à des outils installés localement, tels que Visual Studio et PowerShell, pour gérer des ressources Azure Stack. La connectivité VPN est prise en charge dans les déploiements Azure Active Directory (AAD) et Active Directory Federation Services (AD FS). Les connexions VPN permettent à plusieurs clients de se connecter à Azure Stack en même temps. 
 
 > [!NOTE] 
-> Cette connexion VPN ne fournit pas d’infrastructure de pile tooAzure connexion machines virtuelles. 
+> Cette connexion VPN ne fournit pas de connectivité aux machines virtuelles de l’infrastructure Azure Stack. 
 
 ### <a name="prerequisites"></a>Composants requis
 
 * Installez [Azure PowerShell pour Azure Stack](azure-stack-powershell-install.md) sur votre ordinateur local.  
-* Télécharger hello [toowork requis d’outils avec Azure pile](azure-stack-powershell-download.md). 
+* Téléchargez les [outils nécessaires pour utiliser Azure Stack](azure-stack-powershell-download.md). 
 
 ### <a name="configure-vpn-connectivity"></a>Configurer la connectivité VPN
 
-toocreate un kit de développement toohello de connexion VPN, ouvrez une session PowerShell avec élévation de privilèges à partir de votre ordinateur Windows local et l’exécution hello script (Assurez-vous que tooupdate hello hello IP adresse et le mot de passe valeurs pour votre environnement) suivant :
+Pour créer une connexion VPN au kit de développement, ouvrez une session PowerShell avec des privilèges élevés à partir de votre ordinateur Windows local, puis exécutez le script suivant (après avoir changé l’adresse IP et le mot de passe de manière appropriée pour votre environnement) :
 
 ```PowerShell 
 # Configure winrm if it's not already configured
@@ -58,15 +60,15 @@ winrm quickconfig
 
 Set-ExecutionPolicy RemoteSigned
 
-# Import hello Connect module
+# Import the Connect module
 Import-Module .\Connect\AzureStack.Connect.psm1 
 
-# Add hello development kit computer’s host IP address & certificate authority (CA) toohello list of trusted hosts. Make sure tooupdate hello hello IP address and password values for your environment. 
+# Add the development kit computer’s host IP address & certificate authority (CA) to the list of trusted hosts. Make sure to update the the IP address and password values for your environment. 
 
 $hostIP = "<Azure Stack host IP address>"
 
 $Password = ConvertTo-SecureString `
-  "<Administrator password provided when deploying Azure Stack>" `
+  "<operator's password provided when deploying Azure Stack>" `
   -AsPlainText `
   -Force
 
@@ -74,37 +76,37 @@ Set-Item wsman:\localhost\Client\TrustedHosts `
   -Value $hostIP `
   -Concatenate
 
-# Create a VPN connection entry for hello local user
+# Create a VPN connection entry for the local user
 Add-AzsVpnConnection `
   -ServerAddress $hostIP `
   -Password $Password
 
 ```
 
-Si hello configurer réussit, vous devez voir **azurestack** dans la liste des connexions VPN.
+Si vous avez correctement configuré la connexion, vous devez voir **azurestack** dans votre liste de connexions VPN.
 
 ![Connexions réseau](media/azure-stack-connect-azure-stack/image3.png)  
 
-### <a name="connect-tooazure-stack"></a>Se connecter tooAzure pile
+### <a name="connect-to-azure-stack"></a>Se connecter à Azure Stack
 
-Connecter l’instance d’Azure pile toohello à l’aide d’une des deux méthodes suivantes de hello :  
+Connectez-vous à l’instance Azure Stack à l’aide d’une des deux méthodes suivantes :  
 
-* À l’aide de hello `Connect-AzsVpn ` commande : 
+* Utilisez la commande `Connect-AzsVpn ` : 
     
   ```PowerShell
   Connect-AzsVpn `
     -Password $Password
   ```
 
-  Lorsque vous y êtes invité, approuver l’hôte de pile de Azure hello et installer le certificat hello à partir de **AzureStackCertificateAuthority** sur le magasin de certificats de votre ordinateur local. (invite de hello peut s’afficher derrière la fenêtre de session PowerShell hello). 
+  Quand vous y êtes invité, approuvez l’hôte Azure Stack et installez le certificat fourni par **AzureStackCertificateAuthority** dans le magasin de certificats de votre ordinateur local (l’invite s’affiche parfois derrière la fenêtre de session PowerShell). 
 
-* Sur votre ordinateur local, ouvrez **Paramètres réseau** > **VPN** > cliquez sur **azurestack** > **Se connecter**. À hello connectez-vous invite, entrez le nom d’utilisateur de hello (AzureStack\AzureStackAdmin) et un mot de passe hello.
+* Sur votre ordinateur local, ouvrez **Paramètres réseau** > **VPN** > cliquez sur **azurestack** > **Se connecter**. À l’invite de connexion, entrez le nom d’utilisateur (AzureStack\AzureStackAdmin) et le mot de passe.
 
-### <a name="test-hello-vpn-connectivity"></a>Hello de test connectivité VPN
+### <a name="test-the-vpn-connectivity"></a>Tester la connectivité VPN
 
-tootest hello connexion avec le portail, ouvrez un navigateur Internet et accédez de portail de l’utilisateur hello tooeither (https://portal.local.azurestack.external/) ou le portail d’administration hello (https://adminportal.local.azurestack.external/), connectez-vous, puis créer ressources.  
+Pour tester la connexion au portail, ouvrez un navigateur Internet et accédez au portail de l’utilisateur (https://portal.local.azurestack.external/) ou au portail de l’opérateur (https://adminportal.local.azurestack.external/), connectez-vous et créez des ressources.  
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-[Rendre tooyour disponible des ordinateurs virtuels aux utilisateurs de pile de Azure](azure-stack-tutorial-tenant-vm.md)
+[Mettre des machines virtuelles à la disposition de vos utilisateurs Azure Stack](azure-stack-tutorial-tenant-vm.md)
 

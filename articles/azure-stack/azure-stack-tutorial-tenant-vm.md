@@ -1,6 +1,6 @@
 ---
-title: "utilisateurs d’Azure pile aaaMake machines virtuelles disponibles tooyour | Documents Microsoft"
-description: Didacticiel toomake virtuels disponibles sur la pile de Azure
+title: "Mettre des machines virtuelles à la disposition de vos utilisateurs Azure Stack | Microsoft Docs"
+description: "Didacticiel pour rendre des machines virtuelles disponibles sur Azure Stack"
 services: azure-stack
 documentationcenter: 
 author: vhorne
@@ -11,55 +11,58 @@ ms.service: azure-stack
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 8/22/2017
+ms.topic: tutorial
+ms.date: 9/25/2017
 ms.author: victorh
 ms.custom: mvc
-ms.openlocfilehash: 345206912f17662e51341c71175c5fe87b692ef7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: afeec92c40262903e6cfd3c6d75a595fead616e3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="make-virtual-machines-available-tooyour-azure-stack-users"></a>Rendre tooyour disponible des ordinateurs virtuels aux utilisateurs de pile de Azure
-En tant qu’un administrateur de cloud Azure pile, vous pouvez créer vos utilisateurs (clients tooas parfois visés) peuvent s’abonner à des offres. Avec leur abonnement, les utilisateurs peuvent utiliser les services Azure Stack.
+# <a name="make-virtual-machines-available-to-your-azure-stack-users"></a>Mettre des machines virtuelles à la disposition de vos utilisateurs Azure Stack
 
-Cet article vous montre comment toocreate une offre, puis du tester. Pour le test de hello, vous connectez-vous au portail toohello en tant qu’utilisateur, s’abonner toohello offre et ensuite créer un ordinateur virtuel à l’aide d’abonnement de hello.
+*S’applique à : systèmes intégrés Azure Stack et Kit de développement Azure Stack*
+
+En tant qu’un administrateur de cloud Azure Stack, vous pouvez créer des offres auxquelles vos utilisateurs (parfois appelée « locataires ») peuvent s’abonner. Avec leur abonnement, les utilisateurs peuvent utiliser les services Azure Stack.
+
+Cet article vous explique comment créer une offre, puis la tester. Pour le test, vous allez vous connecter au portail en tant qu’utilisateur, vous abonner à l’offre, puis créer une machine virtuelle à l’aide de l’abonnement.
 
 Contenu :
 
 > [!div class="checklist"]
 > * Créer une offre
 > * Ajouter une image
-> * Offre de hello de test
+> * Tester l’offre
 
 
-Dans la pile d’Azure, les services sont remis toousers à l’aide d’abonnements, les offres et les plans. Les utilisateurs peuvent s’abonner à des offres toomultiple. Les offres peuvent contenir un ou plusieurs plans, et les plans peuvent contenir un ou plusieurs services.
+Dans Azure Stack, les services sont fournis aux utilisateurs par le biais d’abonnements, d’offres et de plans. Les utilisateurs peuvent s’abonner à plusieurs offres. Les offres peuvent contenir un ou plusieurs plans, et les plans peuvent contenir un ou plusieurs services.
 
 ![Abonnements, offres et plans](media/azure-stack-key-features/image4.png)
 
-toolearn, voir [principales fonctionnalités et les concepts dans Azure pile](azure-stack-key-features.md).
+Pour plus d’informations, consultez [Fonctionnalités et concepts clés d’Azure Stack](azure-stack-key-features.md).
 
 ## <a name="create-an-offer"></a>Créer une offre
 
-Il est maintenant possible d’effectuer toutes les étapes de préparation pour vos utilisateurs. Lorsque vous démarrez le processus de hello, vous êtes première offre de hello toocreate demandées, un plan et les quotas.
+Il est maintenant possible d’effectuer toutes les étapes de préparation pour vos utilisateurs. Quand vous démarrez le processus, vous êtes d’abord invité à créer l’offre, puis un plan, et enfin des quotas.
 
 3. **Créer une offre**
 
-   Offres sont des groupes d’un ou plusieurs plans que toopurchase de toousers fournisseurs présents ou s’y abonner.
+   Les offres sont des groupes d’un ou plusieurs plans que les fournisseurs proposent à l’achat ou à l’abonnement aux utilisateurs.
 
-   a. [Connectez-vous](azure-stack-connect-azure-stack.md) portal toohello comme un administrateur du cloud puis cliquez sur **nouveau** > **client offre + Plans** > **offrent**.
+   a. [Connectez-vous](azure-stack-connect-azure-stack.md) au portail en tant qu’administrateur de cloud, puis cliquez sur **Nouveau** > **Offres + plans de locataire** > **Offre**.
    ![Nouvelle offre](media/azure-stack-tutorial-tenant-vm/image01.png)
 
-   b. Bonjour **offrent de nouveaux** section, renseignez **nom d’affichage** et **nom de la ressource**, puis sélectionnez un nouveau ou existant **groupe de ressources**. Hello nom complet est le nom convivial de l’offre de hello. Seul l’opérateur hello cloud peut voir hello nom de la ressource. Son nom hello qu’administrateurs utiliser toowork hello offre une ressource Azure Resource Manager.
+   b. Dans la section **Nouvelle offre**, renseignez le **Nom d’affichage** et le **Nom de la ressource**, puis sélectionnez un **Groupe de ressources** nouveau ou existant. Le nom d’affichage correspond au nom convivial de l’offre. Seul l’opérateur cloud peut voir le nom de la ressource. Il s’agit du nom que les administrateurs utilisent pour gérer l’offre en tant que ressource Azure Resource Manager.
 
    ![Nom complet](media/azure-stack-tutorial-tenant-vm/image02.png)
 
-   c. Cliquez sur **plans de Base**et Bonjour **Plan** , cliquez sur **ajouter** tooadd une nouvelle offre de toohello de plan.
+   c. Cliquez sur **Plans de base**, puis dans la section **Plan**, cliquez sur **Ajouter** pour ajouter un nouveau plan à l’offre.
 
    ![Ajouter un plan](media/azure-stack-tutorial-tenant-vm/image03.png)
 
-   d. Bonjour **nouveau Plan** section, renseignez **nom d’affichage** et **nom de la ressource**. Hello nom complet est le nom convivial du plan hello que les utilisateurs voient. Seul l’opérateur hello cloud peut voir hello nom de la ressource. Son nom hello que les opérateurs cloud utilisent toowork avec hello plan comme une ressource Azure Resource Manager.
+   d. Dans la section **Nouveau plan**, renseignez le **Nom d’affichage** et le **Nom de la ressource**. Le nom d’affichage correspond au nom convivial du plan, que les locataires voient. Seul l’opérateur cloud peut voir le nom de la ressource. Il s’agit du nom que les opérateurs cloud utilisent pour gérer le plan comme une ressource Azure Resource Manager.
 
    ![Nom d’affichage du plan](media/azure-stack-tutorial-tenant-vm/image04.png)
 
@@ -67,29 +70,29 @@ Il est maintenant possible d’effectuer toutes les étapes de préparation pour
 
    ![Services du plan](media/azure-stack-tutorial-tenant-vm/image05.png)
 
-   f. Cliquez sur **Quotas**, puis sélectionnez hello premier service pour lequel vous souhaitez toocreate un quota. Pour un quota IaaS, suivez ces étapes pour les services de calcul, réseau et stockage hello.
+   f. Cliquez sur **Quotas**, puis sélectionnez le premier service pour lequel vous voulez créer un quota. Pour un quota IaaS, effectuez les étapes suivantes pour les services Calcul, Réseau et Stockage.
 
-   Dans cet exemple, nous créons d’abord un quota pour le service de calcul hello. Dans la liste d’espace de noms hello, sélectionnez hello **Microsoft.Compute** espace de noms, puis **créer nouveau quota**.
+   Dans cet exemple, nous créons d’abord un quota pour le service Calcul. Dans la liste d’espaces de noms, sélectionnez l’espace de noms **Microsoft.Compute**, puis cliquez sur **Créer un quota**.
    
    ![Créer un quota](media/azure-stack-tutorial-tenant-vm/image06.png)
 
-   g. Sur hello **créer quota** , tapez un nom pour le quota de hello et le jeu de paramètres souhaités pour le quota de hello et cliquez sur hello **OK**.
+   g. Dans la section **Créer un quota**, tapez un nom pour le quota, définissez les paramètres souhaités pour le quota, puis cliquez sur **OK**.
 
    ![Nom du quota](media/azure-stack-tutorial-tenant-vm/image07.png)
 
-   h. À présent, pour **Microsoft.Compute**, sélectionnez quota hello que vous avez créé.
+   h. À présent, pour **Microsoft.Compute**, sélectionnez le quota que vous avez créé.
 
    ![Sélectionner un quota](media/azure-stack-tutorial-tenant-vm/image08.png)
 
-   Répétez ces étapes pour les services réseau et de stockage hello, puis cliquez sur **OK** sur hello **Quotas** section.
+   Répétez ces étapes pour les services Réseau et Stockage, puis cliquez sur **OK** dans la section **Quotas**.
 
-   i. Cliquez sur **OK** sur hello **nouveau plan** section.
+   i. Cliquez sur **OK** dans la section **Nouveau plan**.
 
-   j. Sur hello **Plan** , sélectionnez le nouveau plan de hello et cliquez sur **sélectionnez**.
+   j. Dans la section **Plan**, sélectionnez le nouveau plan, puis cliquez sur **Sélectionner**.
 
-   k. Sur hello **nouvelle offre** , cliquez sur **créer**. Vous voyez une notification lors de l’offre de hello a été créé.
+   k. Dans la section **Nouvelle offre**, cliquez sur **Créer**. Une fois l’offre créée, une notification s’affiche.
 
-   l. Cliquez sur tableau de bord hello, **offre** puis cliquez sur offre hello vous avez créé.
+   l. Dans le menu du tableau de bord, cliquez sur **Offres**, puis cliquez sur l’offre que vous avez créée.
 
    m. Cliquez sur **Changer l’état**, puis sur **Public**.
 
@@ -97,49 +100,53 @@ Il est maintenant possible d’effectuer toutes les étapes de préparation pour
 
 ## <a name="add-an-image"></a>Ajouter une image
 
-Vous pouvez configurer des machines virtuelles, vous devez ajouter un marketplace d’Azure pile toohello image. Vous pouvez ajouter l’image hello de votre choix, y compris les images Linux, à partir de hello Azure Marketplace.
+Avant de pouvoir approvisionner des machines virtuelles, vous devez ajouter une image à la Place de marché Azure Stack. Vous pouvez ajouter l’image de votre choix, notamment des images Linux, à partir de la Place de marché Azure.
 
-Si vous opérez dans un scénario connecté et si vous avez enregistré votre instance de la pile d’Azure avec Azure, vous pouvez télécharger image de machine virtuelle de Windows Server 2016 hello de hello Azure Marketplace à l’aide des étapes hello Bonjour [télécharger éléments du Marketplace à partir d’Azure tooAzure pile](azure-stack-download-azure-marketplace-item.md) rubrique.
+Si vous êtes dans un scénario connecté et que vous avez inscrit votre instance Azure Stack auprès d’Azure, vous pouvez télécharger l’image de machine virtuelle Windows Server 2016 à partir de la Place de marché Azure en suivant la procédure décrite dans la rubrique [Télécharger des éléments de la Place de marché à partir d’Azure dans Azure Stack](azure-stack-download-azure-marketplace-item.md).
 
-Pour plus d’informations sur l’ajout d’éléments différents toohello marketplace, consultez [hello Azure Marketplace de pile](azure-stack-marketplace.md).
+Pour plus d’informations sur l’ajout de différents éléments à la Place de marché, consultez [Place de marché Azure Stack](azure-stack-marketplace.md).
 
-## <a name="test-hello-offer"></a>Offre de hello de test
+## <a name="test-the-offer"></a>Tester l’offre
 
-Maintenant que vous avez créé une offre, vous pouvez le tester. Connectez-vous en tant qu’utilisateur et vous abonner toohello offre et puis ajoutez un ordinateur virtuel.
+Maintenant que vous avez créé une offre, vous pouvez le tester. Connectez-vous en tant qu’utilisateur et abonnez-vous à l’offre, puis ajoutez une machine virtuelle.
 
-1. **S’abonner tooan offre**
+1. **S’abonner à une offre**
 
-   Maintenant, vous pouvez consigner dans le portail de toohello en tant qu’une offre de tooan toosubscribe utilisateur.
+   Vous pouvez maintenant vous connecter au portail en tant qu’utilisateur pour vous abonner à une offre.
 
-   a. Sur l’ordinateur du Kit de déploiement de pile Azure hello, connectez-vous trop`https://portal.local.azurestack.external` comme utilisateur et cliquez sur **obtenir un abonnement**.
+   a. Connectez-vous au portail utilisateur en tant qu’utilisateur et cliquez sur **Obtenir un abonnement**.
+   - Pour un système intégré, l’URL varie en fonction de la région et du nom de domaine externe de votre opérateur, et son format est le suivant : https://portal.&lt;*région*&gt;.&lt;*FQDN*&gt;.
+   - Si vous utilisez le Kit de développement Azure Stack, l’adresse du portail est https://portal.local.azurestack.external.
 
    ![Prendre un abonnement](media/azure-stack-subscribe-plan-provision-vm/image01.png)
 
-   b. Bonjour **nom d’affichage** , tapez un nom pour votre abonnement, cliquez sur **offrent**, cliquez sur une des offres hello Bonjour **choisissez une offre** section, puis cliquez sur **Créer**.
+   b. Dans le champ **Nom d’affichage**, tapez un nom pour votre abonnement, cliquez sur **Offre**, cliquez sur l’une des offres de la section **Choisir une offre**, puis cliquez sur **Créer**.
 
    ![Créer une offre](media/azure-stack-subscribe-plan-provision-vm/image02.png)
 
-   c. abonnement de hello tooview que vous avez créé, cliquez sur **davantage de services**, cliquez sur **abonnements**, puis cliquez sur votre nouvel abonnement.  
+   c. Pour afficher l’abonnement que vous avez créé, cliquez sur **Autres services**, sur **Abonnements**, puis sur votre nouvel abonnement.  
 
-   Après que vous être abonné tooan offre, actualiser les toosee portail hello les services qui font partie d’un nouvel abonnement hello.
+   Une fois que vous êtes abonné à une offre, actualisez le portail pour voir les services qui font partie du nouvel abonnement.
 
 2. **Approvisionner une machine virtuelle**
 
-   Maintenant vous pouvez vous connecter toohello portal comme une tooprovision utilisateur un ordinateur virtuel à l’aide d’abonnement de hello. 
+   Vous pouvez maintenant vous connecter au portail en tant qu’utilisateur pour approvisionner une machine virtuelle à l’aide de l’abonnement. 
 
-   a. Sur l’ordinateur du Kit de déploiement de pile Azure hello, connectez-vous trop`https://portal.local.azurestack.external` en tant qu’utilisateur, puis cliquez sur **nouveau** > **de calcul** > **Datacenter de Windows Server 2016 Eval**.  
+   a. Connectez-vous au portail utilisateur en tant qu’utilisateur, puis cliquez sur **Nouveau** > **Calcul** > **Version d’évaluation du centre de données Windows Server 2016**.
+      - Pour un système intégré, l’URL varie en fonction de la région et du nom de domaine externe de votre opérateur, et son format est le suivant : https://portal.&lt;*région*&gt;.&lt;*FQDN*&gt;.
+   - Si vous utilisez le Kit de développement Azure Stack, l’adresse du portail est https://portal.local.azurestack.external.
 
-   b. Bonjour **notions de base** , tapez un **nom**, **nom d’utilisateur**, et **mot de passe**. Pour **Type de disque de machine virtuelle**, choisissez **HDD**. Choisissez un **Abonnement**. Créez un **Groupe de ressources** ou sélectionnez un groupe existant, puis cliquez sur **OK**.  
+   b. Dans la section **Informations de base**, entrez un **Nom**, un **Nom d’utilisateur** et un **Mot de passe**. Pour **Type de disque de machine virtuelle**, choisissez **HDD**. Choisissez un **Abonnement**. Créez un **Groupe de ressources** ou sélectionnez un groupe existant, puis cliquez sur **OK**.  
 
-   c. Bonjour **choisir une taille** , cliquez sur **base A1**, puis cliquez sur **sélectionnez**.  
+   c. Dans la section **Choisir une taille**, cliquez sur **A1 De base**, puis cliquez sur **Sélectionner**.  
 
-   d. Bonjour **paramètres** , cliquez sur **réseau virtuel**. Bonjour **réseau virtuel de choisir** , cliquez sur **nouvel**. Bonjour **créer un réseau virtuel** , acceptez toutes les valeurs par défaut de hello et cliquez sur **OK**. Bonjour **paramètres** , cliquez sur **OK**.
+   d. Dans la section **Paramètres**, cliquez sur **Réseau virtuel**. Dans la section**Choisir un réseau virtuel**, cliquez sur **Créer nouveau**. Dans la section **Créer un réseau virtuel**, acceptez toutes les valeurs par défaut, puis cliquez sur **OK**. Dans la section **Paramètres**, cliquez sur **OK**.
 
    ![Création d’un réseau virtuel](media/azure-stack-provision-vm/image04.png)
 
-   e. Bonjour **Résumé** , cliquez sur **OK** toocreate hello virtual machine.  
+   e. Dans la section **Résumé**, cliquez sur **OK** pour créer la machine virtuelle.  
 
-   f. toosee votre nouvel ordinateur virtuel, cliquez sur **toutes les ressources**, puis recherchez l’ordinateur virtuel de hello et cliquez sur son nom.
+   f. Pour voir votre nouvelle machine virtuelle, cliquez sur **Toutes les ressources**, puis recherchez la machine virtuelle et cliquez sur son nom.
 
     ![Toutes les ressources](media/azure-stack-provision-vm/image06.png)
 
@@ -148,7 +155,7 @@ Ce que vous avez appris dans ce didacticiel :
 > [!div class="checklist"]
 > * Créer une offre
 > * Ajouter une image
-> * Offre de hello de test
+> * Tester l’offre
 
 > [!div class="nextstepaction"]
-> [Rendre web, mobiles et utilisateurs d’Azure pile API apps tooyour disponibles](azure-stack-tutorial-app-service.md)
+> [Mettre des applications web, mobiles et API à la disposition de vos utilisateurs Azure Stack](azure-stack-tutorial-app-service.md)

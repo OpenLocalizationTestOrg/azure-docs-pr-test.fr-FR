@@ -1,6 +1,6 @@
 ---
 title: "CENC avec Multi-DRM et contrôle d’accès : une conception de référence et l’application sur Windows Azure et Azure Media Services | Microsoft Docs"
-description: "Découvrez comment toolicensing hello Microsoft® Kit Smooth Streaming Client Porting Kit."
+description: "En savoir plus sur la licence du kit de portage Smooth Streaming client Microsoft®."
 services: media-services
 documentationcenter: 
 author: willzhan
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: willzhan;kilroyh;yanmf;juliako
-ms.openlocfilehash: 033fb618650c4fbe9069d467159a8734da759bba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 730917b6859f8dbd800ef2cb141062f45d7779ac
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="cenc-with-multi-drm-and-access-control-a-reference-design-and-implementation-on-azure-and-azure-media-services"></a>CENC avec Multi-DRM et contrôle d’accès : une conception de référence et l’application sur Windows Azure et Azure Media Services
  
 ## <a name="introduction"></a>Introduction
-Il est connu qu’il est une tâche complexe de toodesign et générer un sous-système de gestion des droits numériques pour une OTT ou en ligne de diffusion en continu de la solution. Et c’est une pratique courante pour les opérateurs/en ligne des fournisseurs vidéo toooutsource cette fournisseurs de services de gestion des droits numériques toospecialized partie. Hello ce document vise toopresent une conception de référence et l’implémentation du sous-système DRM de bout en bout dans OTT ou une solution de diffusion en continu en ligne.
+Il est bien connu que la conception et la mise en place d’un sous-système DRM pour une OTT ou une solution de diffusion en continu en ligne est une tâche complexe. Et il est très courant que les fournisseurs/opérateurs de vidéo en ligne externalisent cette partie aux fournisseurs de services spécialisés DRM. L’objectif de ce document est de présenter la conception et l’implémentation d’un sous-système DRM de bout en bout dans OTT ou une solution de diffusion en ligne en continu de référence.
 
-lecteurs Hello ciblé de ce document sont ingénieurs travaillant dans le sous-système de gestion des droits numériques de OTT solutions en ligne de diffusion en continu/multi-cluster-screen ou tous les lecteurs intéressés par le sous-système de gestion des droits numériques. hypothèse de Hello est que les lecteurs sont familiarisés avec au moins une des technologies de gestion des droits numériques hello sur le marché hello, telles que PlayReady, Widevine, FairPlay ou Adobe accès.
+Les lecteurs ciblés de ce document sont des ingénieurs travaillant dans un sous-système DRM d’OTT ou des solutions de diffusion en ligne/à plusieurs écrans, ou tous les lecteurs intéressés par les sous-systèmes de gestion des droits numériques. L’hypothèse est que les lecteurs sont familiers avec au moins une des technologies DRM sur le marché, notamment PlayReady, Widevine, FairPlay ou Adobe Access.
 
-Par DRM, nous entendons également CENC (chiffrement commun) avec multi-DRM. Une tendance majeure dans la diffusion en continu en ligne et de l’industrie OTT est toouse CENC avec multi-native-DRM sur différentes plateformes de client, qui est un décalage à partir de la tendance précédente de hello d’à l’aide d’un seul DRM et son client SDK pour différentes plateformes clientes. Lorsque vous utilisez CENC avec plusieurs native-DRM, PlayReady et Widevine sont chiffrées par hello [chiffrement commun (ISO/IEC 23001-7 CENC)](http://www.iso.org/iso/home/store/catalogue_ics/catalogue_detail_ics.htm?csnumber=65271/) spécification.
+Par DRM, nous entendons également CENC (chiffrement commun) avec multi-DRM. Une tendance majeure de l’industrie de la diffusion en continu en ligne et OTT consiste à utiliser CENC avec multi-DRM natif sur plusieurs plateformes clientes, ce qui représente une évolution par rapport à la tendance précédente, qui consistait à utiliser un seul DRM et son kit de développement logiciel client pour différentes plateformes clientes. Lors de l’utilisation de CENC avec DRM multi natif, PlayReady et Windevine sont chiffrés conformément à la spécification [Common Encryption (ISO/IEC 23001-7 CENC)](http://www.iso.org/iso/home/store/catalogue_ics/catalogue_detail_ics.htm?csnumber=65271/) .
 
-avantages de Hello de CENC avec multi-DRM sont les suivantes :
+Les avantages de CENC avec multi-DRM sont les suivants :
 
 1. réduction des frais de chiffrement dans la mesure où un seul traitement de chiffrement est utilisé, ciblant différentes plateformes avec ses DRM natifs ;
-2. Réduit le coût de hello de la gestion des éléments multimédias chiffrés, car une seule copie d’éléments multimédias chiffrés est nécessaire ;
-3. Élimine le coût de licence depuis hello native DRM client est généralement disponible sur la plateforme native du client DRM.
+2. réduction du coût de la gestion des ressources chiffrées, car une seule copie de ces dernières est nécessaire ;
+3. élimination les coûts de licence de client DRM natif, car ce dernier est généralement proposé gratuitement sur sa plate-forme d’origine.
 
 Microsoft a joué le rôle de promoteur actif de DASH et de CENC, tout comme d’autres acteurs majeurs du secteur. Microsoft Azure Media Services offre la prise en charge de DASH et CENC. Pour les dernières annonces, consultez les blogs de Mingfei : [Annonce d’une distribution de licence Google Widevine dans Azure Media Services](https://azure.microsoft.com/blog/announcing-general-availability-of-google-widevine-license-services/) et [Azure Media Services ajoute un package Gooble Windevine pour la distribution de flux multi-DRM](https://azure.microsoft.com/blog/azure-media-services-adds-google-widevine-packaging-for-delivering-multi-drm-stream/).  
 
 ### <a name="overview-of-this-article"></a>Présentation de cet article
-objectif Hello de cet article inclut hello qui suit :
+L’objectif de cet article inclut les éléments suivants :
 
 1. fourniture d’une conception de référence du sous-système de gestion des droits numériques avec CENC multi-DRM ;
 2. fourniture d’une implémentation de référence sur la plateforme Microsoft Azure/Azure Media Services ;
 3. Commentaires de certaines rubriques relatives à la conception et l’implémentation.
 
-Dans l’article hello, « multi-DRM » couvre suivant de hello :
+Dans cet article, « multi DRM » aborde les thèmes suivants :
 
 1. Microsoft PlayReady
 2. Google Widevine
 3. Apple FairPlay 
 
-Hello tableau suivant récapitule application de plateforme native/native hello et les navigateurs pris en charge par chaque DRM.
+Le tableau suivant résume l’application de la plateforme/application native et les navigateurs pris en charge pour chaque DRM.
 
 | **Plateforme cliente** | **Prise en charge native de DRM** | **Navigateur/App** | **Formats de diffusion en continu** |
 | --- | --- | --- | --- |
@@ -60,11 +60,11 @@ Hello tableau suivant récapitule application de plateforme native/native hello 
 | **iOS (iPhone, iPad), clients OS X et Apple TV** |FairPlay |Safari 8+/EME |HLS |
 
 
-Compte tenu de l’état actuel de hello de déploiement pour chaque DRM, un service souhaiterez généralement que vous devez tous les types hello de points de terminaison Bonjour meilleures tooimplement 2 ou 3-DRMs-toomake moyen.
+Compte tenu de l'état actuel du déploiement de chaque DRM, un service mettra généralement en œuvre 2 ou 3 DRM pour s’assurer que vous gérez tous les types de points de terminaison de façon optimale.
 
-Il existe un compromis entre la complexité hello de logique de service hello et complexité hello sur hello client côté tooreach un certain niveau de l’utilisateur d’expérience sur hello différents clients.
+Il existe un compromis entre la complexité de la logique du service et la complexité côté client pour atteindre un certain niveau d'expérience utilisateur sur les différents clients.
 
-toomake votre sélection, gardez à l’esprit ces faits :
+Pour effectuer votre sélection, prenez en compte les faits suivants :
 
 * PlayReady est implémenté en mode natif dans tous les appareils Windows, sur certains appareils Android, et est disponible via les kits de développement logiciel (SDK) sur pratiquement n'importe quelle plate-forme
 * Widevine est implémenté en mode natif dans chaque appareil Android, dans Chrome, et dans certains autres appareils
@@ -76,9 +76,9 @@ Par conséquent, une configuration multi-DRM standard serait :
 * Option 2 : PlayReady, Widevine et FairPlay
 
 ## <a name="a-reference-design"></a>Une conception de référence
-Dans cette section, nous allons examiner une conception de référence est agnostique tootechnologies utilisé tooimplement il.
+Dans cette section, nous présenterons une conception de référence indépendante des technologies utilisées pour leur mise en œuvre.
 
-Un sous-système DRM peut contenir hello suivant des composants :
+Un sous-système DRM peut contenir les éléments suivants :
 
 1. Gestion des clés
 2. Packaging DRM
@@ -88,57 +88,57 @@ Un sous-système DRM peut contenir hello suivant des composants :
 6. Lecteur
 7. Origine/CDN
 
-Hello diagramme suivant illustre hello élevée au niveau d’interaction entre composants hello dans un sous-système de gestion des droits numériques.
+Le diagramme suivant illustre l’interaction entre les composants d’un sous-système DRM.
 
 ![Sous-système de gestion des droits numériques avec CENC](./media/media-services-cenc-with-multidrm-access-control/media-services-generic-drm-subsystem-with-cenc.png)
 
-Il existe trois base « couches » dans la conception de hello :
+La conception compte trois couches de base :
 
 1. Couche back-office (en noir) qui n’est pas présentée à l’extérieur ;
-2. Couche de « Réseau de périmètre » (bleu) contenant tous les points de terminaison hello exposés au public ;
+2. Couche « DMZ » (en bleu) contenant tous les points de terminaison exposés au public ;
 3. Couche Internet Public (en bleu clair) contenant les réseaux de diffusion en continu et des lecteurs avec le trafic transitant par l’Internet public.
 
-Il doit exister un outil de gestion de contenu pour le contrôle de la protection DRM, que le chiffrement soit statique ou dynamique. entrées Hello pour le chiffrement de la gestion des droits numériques doivent inclure :
+Il doit exister un outil de gestion de contenu pour le contrôle de la protection DRM, que le chiffrement soit statique ou dynamique. Les entrées de chiffrement de la gestion des droits numériques doivent inclure :
 
 1. le contenu vidéo MBR ;
 2. la clé de contenu ;
 3. URL d’acquisition de licence.
 
-Durant la lecture, les flux de niveau élevé de hello est :
+Pendant la lecture, le flux de haut niveau suit le déroulement suivant :
 
 1. l’utilisateur est authentifié ;
-2. Jeton d’autorisation est créé pour l’utilisateur de hello ;
-3. Le contenu protégé par DRM (manifeste) est téléchargé tooplayer ;
-4. Lecteur soumet des serveurs de licences d’acquisition demande toolicense avec l’ID de clé et l’autorisation jeton.
+2. un jeton d’autorisation est créé pour l’utilisateur ;
+3. le contenu protégé par DRM (manifeste) est téléchargé sur le lecteur ;
+4. le joueur soumet la demande d’acquisition de licence pour les serveurs de licence avec l’ID de clé et le jeton d’autorisation.
 
-Avant de déplacer rubrique suivante toohello, quelques mots sur hello concevoir de gestion de clés.
+Avant de passer à la rubrique suivante, quelques mots sur la conception de la gestion de clés.
 
 | **ContentKey vers ressources** | **Scénario** |
 | --- | --- |
-| 1 à 1 |cas le plus simple Hello. Il fournit le plus grand contrôle de hello. Mais cette approche résulte en un coût plus élevé de remise la licence hello. Chaque ressource protégée nécessite au moins une licence. |
-| 1 à plusieurs |Vous pouvez utiliser hello même contenu de clé pour plusieurs éléments multimédias. Par exemple, pour tous les actifs hello dans un groupe logique telle qu’un genre ou un sous-ensemble de genre (ou séquence génétique), vous pouvez utiliser une seule clé de contenu. |
-| Plusieurs à 1 |Plusieurs clés de contenu sont nécessaires pour chaque élément multimédia. <br/><br/>Par exemple, si vous avez besoin de protection de CENC dynamique tooapply avec multi-DRM pour MPEG-DASH et le chiffrement AES-128 dynamique pour TLS, vous devez les deux clés de contenu distinctes, chacune avec son propre ContentKeyType. (Pour la clé de contenu de hello utilisée pour la protection de CENC dynamique, ContentKeyType.CommonEncryption doit être utilisé, alors que pour hello contenu clé utilisée pour le chiffrement dynamique AES-128, ContentKeyType.EnvelopeEncryption doit être utilisé.)<br/><br/>Un autre exemple, dans la protection de CENC de tiret de contenu, en théorie, une clé de contenu peut être utilisé tooprotect des flux vidéo et un autre flux audio contenu tooprotect clé. |
-| Plusieurs – trop-plusieurs |Combinaison de hello au-dessus des deux scénarios : un seul jeu de contenu clés sont utilisées pour chacune des hello plusieurs éléments multimédias dans hello même actif « groupe ». |
+| 1 à 1 |Le cas le plus simple. Il offre le meilleur contrôle. Il génère en général le coût de licence le plus élevé. Chaque ressource protégée nécessite au moins une licence. |
+| 1 à plusieurs |Vous pouvez utiliser la même clé de contenu pour plusieurs éléments multimédias. Par exemple, pour tous les éléments multimédias d’un groupe logique comme un genre ou un sous-ensemble de genre (ou séquence génétique), vous pouvez utiliser une clé de contenu unique. |
+| Plusieurs à 1 |Plusieurs clés de contenu sont nécessaires pour chaque élément multimédia. <br/><br/>Par exemple, si vous devez appliquer la protection dynamique CENC avec multi-DRM à MPEG-DASH et le chiffrement AES-128 pour TLS, vous avez besoin de deux clés de contenu distinctes, chacune avec son propre ContentKeyType. (Concernant la clé de contenu utilisée pour la protection CENC dynamique, ContentKeyType.CommonEncryption doit être utilisée. Pour la clé de contenu servant au chiffrement dynamique AES-128, c’est la clé ContentKeyType.EnvelopeEncryption qui doit être utilisée.)<br/><br/>Autre exemple, pour la protection CENC du contenu DASH, en théorie, une clé de contenu peut être utilisée pour protéger les flux vidéo et une autre clé de contenu pour protéger des flux audio. |
+| Plusieurs à plusieurs |Combinaison des deux scénarios ci-dessus : un jeu de clés de contenu est utilisé pour chacun des éléments multimédia du même « groupe ». |
 
-Un autre facteur important tooconsider est hello de licences persistantes et non persistantes.
+Autre facteur important à prendre en compte : l’utilisation des licences persistantes et non persistantes.
 
 Pourquoi ces considérations sont-elles importantes ?
 
-Ils ont la remise de toolicense impact direct si vous utilisez un cloud public pour la remise de la licence de coût. Prenons l’exemple hello suivant deux tooillustrate de cas de conception :
+Elles ont un impact direct sur le coût de distribution de la licence si vous utilisez le cloud public pour la distribution de licence. Prenons deux cas différents pour illustrer le cas :
 
-1. Abonnement mensuel : utilisation d’une licence persistante et d’un mappage clé à ressource 1 à plusieurs. Par exemple, pour toutes les vidéos d’enfants hello, nous utilisons une clé unique de contenu pour le chiffrement. Dans ce cas :
+1. Abonnement mensuel : utilisation d’une licence persistante et d’un mappage clé à ressource 1 à plusieurs. Par exemple, pour tous les films pour enfant, nous utilisons une clé de contenu unique pour le chiffrement. Dans ce cas :
 
     Nombre total de licences requis pour tous les films/appareils = 1
 2. Abonnement mensuel : utilisation d’une licence non persistante et du mappage 1 à 1 entre la clé de contenu et la ressource de contenu. Dans ce cas :
 
     Nombre total de licences requis pour tous les films/appareils = [nombre de films # regardés] x [# de séances]
 
-Comme vous pouvez le voir, hello deux conceptions différentes entraîner licence très différente demander à modèles par conséquent, la remise de licence coût si le service de remise de licence est fourni par un cloud public comme Azure Media Services.
+Comme vous pouvez le voir, ces deux conceptions différentes débouchent sur des modèles de demande de licence et, donc des frais de distribution de licence très différents si cette dernière est fournie par le cloud public (par exemple, Azure Media Services).
 
-## <a name="mapping-design-tootechnology-for-implementation"></a>Tootechnology de conception de mappage pour l’implémentation
-Ensuite, nous mapper notre tootechnologies conception générique sur la plateforme de Microsoft Azure/Azure Media Services, en spécifiant le toouse technologie pour chaque bloc de construction.
+## <a name="mapping-design-to-technology-for-implementation"></a>Correspondance entre conception et technologie pour la mise en œuvre
+Nous allons ensuite associer notre conception générique aux technologies de plate-forme Microsoft Azure/Azure Media Services, en spécifiant la technologie à utiliser pour chaque bloc de construction.
 
-Hello tableau suivant montre le hello mappage :
+La table qui suit affiche le mappage :
 
 | **Bloc de construction** | **Technology** |
 | --- | --- |
@@ -153,50 +153,50 @@ Hello tableau suivant montre le hello mappage :
 
 En d’autres termes, le fournisseur d’identité (IDP) et du STS (Service d’émission de jeton de sécurité - Secure Token Services) sera AD Azure. Nous utiliserons l’ [API de lecteur Azure Media](http://amp.azure.net/libs/amp/latest/docs/)comme lecteur. Azure Media Services et le lecteur Azure Media prend en charge DASH et CENC avec multi-DRM.
 
-Hello ci-dessous diagramme illustre hello structure globale et du flux avec hello au-dessus de mappage de la technologie.
+Le diagramme suivant affiche la structure et le flux d’ensemble avec le mappage technologique.
 
 ![CENC sur AMS](./media/media-services-cenc-with-multidrm-access-control/media-services-cenc-subsystem-on-AMS-platform.png)
 
-Dans tooset d’ordre de chiffrement CENC dynamique, outil de gestion de contenu hello utilisera hello suivant entrées :
+Pour configurer le chiffrement dynamique de CENC, l’outil de gestion de contenu utilise les entrées suivantes :
 
 1. contenu ouvert ;
 2. clé de contenu issue de la génération/la gestion de clé ;
 3. URL d’acquisition de licence ;
 4. liste d’informations fournie par Azure AD.
 
-sortie Hello de l’outil de gestion de contenu hello sera :
+Le résultat de l’outil de gestion de contenu sera :
 
-1. ContentKeyAuthorizationPolicy contenant la spécification hello sur la remise de licences vérifie un jeton Web JSON et les spécifications de licences DRM ;
+1. ContentKeyAuthorizationPolicy, contenant la spécification de la distribution de licence vérifie un jeton JWT et les spécifications de licence DRM ;
 2. AssetDeliveryPolicy contient des spécifications au format streaming, la protection DRM et les URL d’acquisition de licence.
 
-Pendant l’exécution, les flux hello sont comme ci-dessous :
+Lors de l’exécution, le flux se présente comme suit :
 
 1. au moment de l’authentification de l’utilisateur, un jeton JWT est généré ;
-2. Une des revendications hello contenues dans un jeton JWT hello est revendication « groupes » contenant les ID d’objet groupe hello de « EntitledUserGroup ». Cette revendication sera utilisée pour le réussir la « vérification des droits ».
-3. Manifeste du client télécharge le lecteur d’un CENC le contenu protégé et « voit » suivante de hello :
+2. L’une des revendications contenues dans le jeton JWT est une revendication de type « groupes » qui contient l’ID d’objet de groupe de « EntitledUserGroup ». Cette revendication sera utilisée pour le réussir la « vérification des droits ».
+3. Le lecteur charge le manifeste client d’un contenu protégé CENC et « voit » le texte suivant :
 
    1. ID de clé,
-   2. contenu de Hello est CENC protégé,
+   2. le contenu est protégé par CENC
    3. URL d’acquisition de licence.
-4. Le lecteur effectue une demande d’acquisition de licence basée sur hello navigateur/DRM pris en charge. Dans la demande d’acquisition de licence hello, ID de clé et hello JWT jeton sera également envoyé. Service de remise de licences vérifie un jeton JWT hello et revendications hello contenues avant l’émission hello nécessaire de licence.
+4. Le lecteur effectue une demande d’acquisition de licence basée sur le navigateur/DRM pris en charge. Dans la demande d’acquisition de clé, l’ID de clé et le jeton JWT sont eux aussi envoyés. Le service de distribution de licence vérifie le jeton JWT et les revendications contenues avant la délivrance de la licence requise.
 
 ## <a name="implementation"></a>Implémentation
 ### <a name="implementation-procedures"></a>Procédures de mise en œuvre
-implémentation de Hello inclura hello comme suit :
+La mise en œuvre comprend les étapes suivantes :
 
-1. Préparer les éléments multimédias de test : encoder/package un test toomulti-vitesse de transmission vidéo fragmenté MP4 dans Azure Media Services. Cet actif n’est pas protégé par DRM. La protection DRM sera assurée par le biais d’une protection dynamique ultérieurement.
+1. Préparer des ressources de test : coder/regrouper une vidéo de test dans un MP4 fragmenté à plusieurs vitesses dans Azure Media Services. Cet actif n’est pas protégé par DRM. La protection DRM sera assurée par le biais d’une protection dynamique ultérieurement.
 2. Créez l’ID de clé et une clé de contenu (éventuellement à partir d’une amorce de clé). Dans le cas présent, le système de gestion de clés n’est pas nécessaire dans la mesure où nous avons affaire à un seul ensemble d’ID de clés et de clé contenu pour plusieurs ressources de test ;
-3. Utiliser les services de livraison AMS API tooconfigure multi-DRM licence pour un composant de test hello. Si vous utilisez des serveurs de licences personnalisés par votre entreprise ou des fournisseurs de votre société au lieu des services de licence dans Azure Media Services, vous pouvez ignorer cette étape et spécifier l’URL d’acquisition de licence à l’étape hello pour la configuration de la remise de la licence. Les API AMS est nécessaire toospecify détaillée de certaines configurations, notamment la restriction de la stratégie d’autorisation, les modèles de réponse pour les différents services de licences DRM, etc. de licence. À ce stade, hello portail Azure n’a pas encore fournir hello nécessaires de l’interface utilisateur pour cette configuration. Vous pouvez trouver des informations de niveau API et un exemple de code dans le document de Julia Kornich intitulé : [Utilisation du chiffrement commun dynamique PlayReady et/ou Widevine](media-services-protect-with-drm.md).
-4. Utilisez stratégie de livraison AMS API tooconfigure actif pour un composant de test hello. Vous pouvez trouver des informations de niveau API et un exemple de code dans le document de Julia Kornich intitulé : [Utilisation du chiffrement commun dynamique PlayReady et/ou Widevine](media-services-protect-with-drm.md).
+3. utilisez l’API AMS pour configurer les services de distribution de licence multi-DRM pour l’élément de test. Si vous utilisez des serveurs de licence personnalisés par le biais de votre société ou les fournisseurs de votre société et non les services de licence d’Azure Media Services, vous pouvez ignorer cette étape et spécifier les URL d’acquisition de licence lors de l’étape de configuration de la remise de la licence. L’API AMS sert à spécifier certaines configurations détaillées, comme la restriction de la stratégie d’autorisation, les modèles de réponse de licence des différents services de licence DRM, etc. À ce stade, le portail Azure ne fournit pas encore l’interface utilisateur nécessaire pour cette configuration. Vous pouvez trouver des informations de niveau API et un exemple de code dans le document de Julia Kornich intitulé : [Utilisation du chiffrement commun dynamique PlayReady et/ou Widevine](media-services-protect-with-drm.md).
+4. Utilisez l’API AMS pour configurer une stratégie de distribution des éléments multimédia pour le test des éléments multimédia. Vous pouvez trouver des informations de niveau API et un exemple de code dans le document de Julia Kornich intitulé : [Utilisation du chiffrement commun dynamique PlayReady et/ou Widevine](media-services-protect-with-drm.md).
 5. créer et modifier un client Azure Active Directory dans Azure ;
-6. Créer plusieurs comptes d’utilisateurs et groupes dans votre locataire Azure Active Directory : vous devez créer au moins « EntitledUser » et d’ajouter un groupe d’utilisateurs toothis. Les utilisateurs de ce groupe passera la vérification des droits d’acquisition de licence, les utilisateurs pas dans ce groupe de contrôle d’authentification toopass échoue et qu’il ne sera pas en mesure de tooacquire une licence. Un membre de ce groupe « EntitledUser » est une revendication « groupes » requis dans un jeton JWT hello émis par Azure AD. Cette exigence de revendication doit être spécifiée pendant l’opération de configuration de services de distribution de licence multi-DRM.
-7. Créez une application ASP.NET MVC qui hébergera votre lecteur vidéo. Cette application ASP.NET est protégée avec l’authentification des utilisateurs sur des locataires Azure Active Directory hello. Revendications appropriées seront incluses dans les jetons d’accès hello obtenus après l’authentification des utilisateurs. L’API OpenID Connect est recommandée pour cette étape. Vous devez hello tooinstall suivant les packages NuGet :
+6. créer plusieurs comptes d’utilisateurs et groupes dans votre client Azure Active Directory : vous devez créer au moins un groupe « EntitledUser » et ajouter un utilisateur à ce groupe. Les utilisateurs de ce groupe qui réussiront la vérification des droits lors de l’acquisition de licence et les utilisateurs n’appartenant pas à ce groupe échoueront au contrôle d’authentification et ne pourront pas acquérir de licence. L’appartenance à un groupe « EntitledUser » est une revendication de « groupes » du jeton JWT délivré par AD Azure. Cette exigence de revendication doit être spécifiée pendant l’opération de configuration de services de distribution de licence multi-DRM.
+7. Créez une application ASP.NET MVC qui hébergera votre lecteur vidéo. Cette application ASP.NET sera protégée par le biais de l’authentification des utilisateurs par rapport au client Azure Active Directory. Des revendications adéquates seront incluses dans les jetons d’accès obtenus après authentification de l’utilisateur. L’API OpenID Connect est recommandée pour cette étape. Vous devez installer les packages NuGet suivants :
    * Install-Package Microsoft.Azure.ActiveDirectory.GraphClient
    * Install-Package Microsoft.Owin.Security.OpenIdConnect
    * Install-Package Microsoft.Owin.Security.Cookies
    * Install-Package Microsoft.Owin.Host.SystemWeb
    * Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
-8. Créer un lecteur à l’aide d’ [API Azure Media Player](http://amp.azure.net/libs/amp/latest/docs/). [ProtectionInfo API de Azure Media Player](http://amp.azure.net/libs/amp/latest/docs/) vous permet de toospecify le toouse de technologie DRM sur une autre plateforme de gestion des droits numériques.
+8. Créer un lecteur à l’aide d’ [API Azure Media Player](http://amp.azure.net/libs/amp/latest/docs/). [API ProtectionInfo d’Azure Media Player](http://amp.azure.net/libs/amp/latest/docs/) vous permet de spécifier la technologie DRM à utiliser sur une autre plate-forme DRM.
 9. Matrice de test :
 
 | **DRM** | **Browser** | **Résultat pour les utilisateurs autorisés** | **Résultat pour les utilisateurs non autorisés** |
@@ -215,104 +215,104 @@ Pour plus d’informations, sur Azure Active Directory :
 * Vous pouvez trouver des informations sur l’administrateur dans [Administrer votre annuaire Azure AD](../active-directory/active-directory-administer.md).
 
 ### <a name="some-gotchas-in-implementation"></a>Des problèmes de mise en œuvre
-Il existe des problèmes » » dans l’implémentation de hello. Nous espérons que hello suivant de la liste des « pièges » peut vous aider à résolution des problèmes si vous rencontrez des problèmes.
+La mise en œuvre peut présenter certains « pièges ». Nous espérons que la liste des « pièges » qui suit vous aidera à résoudre d’éventuels problèmes.
 
 1. **Issuer** : l’URL doit se terminer par **« / »**.  
 
-    **Audience** doit être hello lecteur identifiant client d’application et vous devez également ajouter **« / »** à fin hello d’URL de l’émetteur hello.
+    **Audience** : doit correspondre à l’ID client de l’application de lecteur. Vous devez également ajouter **« / »** à la fin de l’URL de l’émetteur.
 
         <add key="ida:audience" value="[Application Client ID GUID]" />
         <add key="ida:issuer" value="https://sts.windows.net/[AAD Tenant ID]/" />
 
-    Dans [JWT décodeur](http://jwt.calebb.net/), vous devez voir **aud** et **iss** comme ci-dessous dans un jeton JWT hello :
+    Dans le [décodeur JWT](http://jwt.calebb.net/), **aud** et **iss** doivent apparaître comme suit dans le jeton JWT :
 
     ![1er piège](./media/media-services-cenc-with-multidrm-access-control/media-services-1st-gotcha.png)
-2. Ajouter des autorisations toohello application AAD (sur l’onglet configurer de l’application hello). Cette opération est obligatoire pour chaque application (versions locales et déployées).
+2. Ajouter des autorisations à l’application dans AAD (sur l’onglet de configuration de l’application). Cette opération est obligatoire pour chaque application (versions locales et déployées).
 
     ![2e piège](./media/media-services-cenc-with-multidrm-access-control/media-services-perms-to-other-apps.png)
-3. Utiliser l’émetteur de droite hello dans la configuration de la protection de CENC dynamique :
+3. Utilisez le bon émetteur pour établir une protection CENC dynamique :
 
         <add key="ida:issuer" value="https://sts.windows.net/[AAD Tenant ID]/"/>
 
-    qui suit Hello ne fonctionne pas :
+    Ce qui suit ne fonctionnera pas :
 
         <add key="ida:issuer" value="https://willzhanad.onmicrosoft.com/" />
 
-    Hello GUID est l’ID de client hello AAD Hello GUID sont accessibles dans le menu contextuel de points de terminaison dans le portail Azure.
-4. Octroi des autorisations de revendications de membre de groupe. Vérifiez que dans le fichier manifeste d’application AAD, nous avons suivant de hello
+    Le GUID est l’ID du client AAD. Il se trouve dans le menu contextuel des points de terminaison dans le portail Azure.
+4. Octroi des autorisations de revendications de membre de groupe. Assurez-vous que vous avez bien ce qui suit dans le fichier de manifeste de l’application AAD
 
-    « groupMembershipClaims » : « Tous », (valeur par défaut de hello est null)
+    « groupMembershipClaims » : « All » (la valeur par défaut est Null.)
 5. Définition d’un TokenType approprié lors de la création de conditions de restriction.
 
         objTokenRestrictionTemplate.TokenType = TokenType.JWT;
 
-    Ajout de prenant en charge de JSON (AAD) en outre tooSWT (ACS), la valeur par défaut de hello TokenType est TokenType.JWT. Si vous utilisez SWT/ACS, vous devez définir tooTokenType.SWT.
+    Depuis l’ajout de la prise en charge de JWT (AAD) en plus des SWT (ACS), la valeur par défaut de TokenType est TokenType.JWT. Si vous utilisez SWT/ACS, vous devez la définir à TokenType.SWT.
 
 ## <a name="additional-topics-for-implementation"></a>Rubriques supplémentaires pour l’implémentation
 Ensuite, nous aborderons certaines rubriques supplémentaires de notre conception et de l’implémentation.
 
 ### <a name="http-or-https"></a>HTTP ou HTTPS ?
-Hello application de lecteur d’ASP.NET MVC nous générées doit prendre en charge suivantes d’hello :
+L’application de lecteur MVC ASP.NET que nous avons créée doit prendre en charge les éléments suivants :
 
-1. Authentification des utilisateurs via Azure AD qui a besoin de toobe sous HTTPS ;
-2. Échange de jeton JWT entre le client et Azure AD qui a besoin de toobe sous HTTPS ;
-3. Acquisition de licence DRM par client hello qui est requis toobe sous HTTPS si la remise de la licence est fourni par Azure Media Services. Bien entendu, la suite de produits PlayReady n'impose pas le format HTTPS pour la distribution de licences. Si votre serveur de licences PlayReady se trouve en dehors d'Azure Media Services, vous pouvez utiliser HTTP ou HTTPS.
+1. authentification des utilisateurs via Azure AD qui doit être sous HTTPS ;
+2. échange de jeton JWT entre le client et Azure AD qui doit être sous HTTPS ;
+3. Acquisition de licence DRM par le client qui doit être sous HTTPS si la distribution de licences est fournie par Azure Media Services. Bien entendu, la suite de produits PlayReady n'impose pas le format HTTPS pour la distribution de licences. Si votre serveur de licences PlayReady se trouve en dehors d'Azure Media Services, vous pouvez utiliser HTTP ou HTTPS.
 
-Par conséquent, hello application de lecteur ASP.NET utilisent le protocole HTTPS est recommandé. Cela signifie que hello Qu'azure Media Player sera sur une page sous HTTPS. Toutefois, pour la diffusion en continu nous préférons HTTP, par conséquent, nous devons tooconsider mixte les problèmes liés au contenu.
+C’est pour cette raison que l’application de lecteur d’ASP.NET utilise HTTPS comme une meilleure pratique. Cela signifie que le lecteur Azure Media se trouvera sur une page HTTPS. Toutefois, pour la diffusion nous préférons HTTP, par conséquent, nous devons tenir compte des problèmes liés au contenu mixte.
 
-1. Le navigateur ne permet pas un contenu mixte. Cependant, les plug-ins tels que Silverlight et OSMF pour Smooth et DASH le permettent. Contenu mixte est un problème de sécurité : ce en raison de la menace de toohello de tooinject de capacité hello JS malveillants qui peut provoquer des hello toobe des données client exposés.  Navigateurs bloquent ce paramètre par défaut et jusqu'à présent hello seule façon toowork autour de hello (origine) côté serveur tooallow tous les domaines (quel que soit le protocole https ou http). Il ne s’agit probablement pas d’une idée judicieuse.
+1. Le navigateur ne permet pas un contenu mixte. Cependant, les plug-ins tels que Silverlight et OSMF pour Smooth et DASH le permettent. Le contenu mixte est un problème de sécurité, en raison de la menace que constitue la possibilité d’injecter un logiciel JS malveillant, et risque de mettre en danger les données clientes.  Les navigateurs bloquent ces dernières par défaut et jusqu’à présent, le seul moyen de contourner ce problème est côté serveur (origine), et autoriser tous les domaines (quel que soit le protocole https ou http). Il ne s’agit probablement pas d’une idée judicieuse.
 2. Il est préférable d’éviter les contenus mixtes : les deux doivent utiliser soit HTTP, soit utiliser HTTPS  Si du contenu mixte est lu, silverlightSS tech nécessite la suppression d’un avertissement de contenu mixte. flashSS tech traite le contenu mixte sans aucun avertissement.
 3. Si votre point de terminaison de diffusion a été créé avant août 2014, il ne prend pas en charge HTTPS. Dans ce cas, créez et utilisez un nouveau point de terminaison pour le protocole HTTPS.
 
-Dans l’implémentation de référence hello, pour le contenu protégé par DRM, application et la diffusion en continu sera sous HTTTPS. Pour ouvrir contenu, le lecteur hello ne doit pas l’authentification ou licence, afin que vous ayez hello liberty toouse HTTP ou HTTPS.
+Dans l’implémentation de référence, dans le cas de contenu protégé DRM application et la diffusion en continu sont toutes les deux sous HTTPS. Pour les contenus ouverts, le lecteur n’a pas besoin d’authentification ou de licence. Vous pouvez au choix utiliser soit HTTP, soit HTTPS.
 
 ### <a name="azure-active-directory-signing-key-rollover"></a>Substitution de la clé de signature Azure Active Directory
-Il s’agit d’un tootake point important en considération de votre implémentation. Si vous ne considérez pas cela dans votre implémentation, système de hello terminée sera finalement cessent de fonctionner complètement dans les 6 semaines au maximum.
+Il s’agit d’un point important de votre implémentation à prendre en compte. Si vous ne prenez pas cet élément pour l’implémentation, le système terminé risque de cesser de fonctionner complètement au bout de 6 semaines au maximum.
 
-Azure AD utilise une confiance industrie tooestablish standard entre lui-même et les applications à l’aide d’Azure AD. Azure AD utilise plus particulièrement une clé de signature se composant d’une paire clé publique-clé privée. Lorsque Azure AD crée un jeton de sécurité qui contient des informations sur l’utilisateur de hello, ce jeton est signé par Azure AD à l’aide de sa clé privée avant son envoi différé toohello application. tooverify hello jeton est valide et provient bien d’Azure AD, l’application hello doit valider la signature du jeton hello à l’aide de la clé publique de hello exposé par Azure AD, qui est contenue dans le document de métadonnées de fédération du locataire hello. Cette clé publique – et les hello à partir duquel il dérive de clé de signature – sont hello celui utilisé pour tous les locataires dans Azure AD.
+Azure AD utilise une norme standard pour établir une relation de confiance entre lui-même et les applications à l’aide d’Azure AD. Azure AD utilise plus particulièrement une clé de signature se composant d’une paire clé publique-clé privée. Lorsqu’Azure AD crée un jeton de sécurité contenant des informations sur l’utilisateur, ce jeton est signé par Azure AD à l’aide de sa clé privée avant d’être renvoyé à l’application. Pour vérifier que le jeton est valide et provient bien d’Azure AD, l’application doit valider la signature du jeton à l’aide de la clé publique exposée par Azure AD contenue dans le document de métadonnées de fédération du client. Cette clé publique (et la clé de signature d’où elle dérive) est la même que celle qui est utilisée pour tous les clients dans Azure AD.
 
-Vous trouverez des informations détaillées sur la substitution de clé d’Azure AD dans le document de hello : [des informations importantes sur la substitution des clés de signature dans Azure AD](../active-directory/active-directory-signing-key-rollover.md).
+Vous trouverez des informations détaillées sur la substitution de la clé Azure AD dans le document intitulé [Informations importantes sur la substitution des clés de signature dans Azure AD](../active-directory/active-directory-signing-key-rollover.md).
 
-Entre hello [paire de clés publique-privée](https://login.microsoftonline.com/common/discovery/keys/),
+Dans la [paire de clés publique-privée](https://login.microsoftonline.com/common/discovery/keys/),
 
-* la clé privée Hello est utilisée par Azure Active Directory toogenerate un jeton Web JSON ;
-* clé publique de Hello est utilisée par une application, telles que les Services de remise de licences DRM dans AMS tooverify hello un jeton JWT ;
+* la clé privée est utilisée par Azure Active Directory pour créer un jeton JWT ;
+* la clé publique est utilisée par une application telle que le service de distribution de licences DRM dans AMS pour vérifier le jeton JWT ;
 
-à des fins de sécurité, Azure Active Directory renouvelle ce certificat périodiquement (toutes les 6 semaines). En cas de violations de la sécurité, substitution de clé hello peut se produire chaque fois. Services de remise de licences hello dans AMS doivent clé publique de tooupdate hello utilisé comme Azure AD fait pivoter la paire de clés hello, sinon l’authentification des jetons dans AMS échoue et aucune licence n’est émis.
+à des fins de sécurité, Azure Active Directory renouvelle ce certificat périodiquement (toutes les 6 semaines). La substitution de clé peut survenir à tout moment en cas de violation de la sécurité. Par conséquent, les services de distribution de licence dans AMS doivent mettre à jour la clé publique utilisée lorsqu’Azure AD renouvelle la paire de clés. S’il ne le fait pas, l’authentification des jetons dans AMS échouera et aucune licence ne sera émise.
 
 Pour ce faire, il faut définir TokenRestrictionTemplate.OpenIdConnectDiscoveryDocument au moment de configurer les services de distribution de licence DRM.
 
-Hello flux de jeton JWT est comme ci-dessous :
+Le flux de jeton JWT se présente comme suit :
 
-1. Azure AD émet un jeton JWT hello avec la clé privée de hello en cours pour un utilisateur authentifié ;
-2. Lorsqu’un lecteur voit une CENC avec un contenu protégé par multi-DRM, il sera d’abord localiser un jeton JWT hello émis par Azure AD.
-3. le lecteur de Hello envoie la demande d’acquisition de licence avec les services de livraison toolicense jeton hello JWT dans AMS ;
-4. services de remise de licences Hello dans AMS utilisera hello en cours/valides clé publique du jeton de Azure AD tooverify hello Web JSON, avant d’émettre des licences.
+1. Azure AD émet le jeton JWT avec la clé privée en cours pour un utilisateur authentifié ;
+2. Lorsqu’un joueur voit un CENC avec un contenu protégé par multi-DRM, il commence par localiser le jeton JWT émis par Azure AD.
+3. Le lecteur envoie la demande d’acquisition de licence avec le jeton JWT pour émettre des licences de services de distribution dans AMS ;
+4. les services de distribution de licence dans AMS utiliseront la clé publique de licence actuelle/valide depuis Azure AD pour vérifier le jeton JWT, avant d’émettre des licences.
 
-Services de remise de licences DRM seront toujours vérifier pour la clé publique de hello en cours/valides à partir d’Azure AD. clé publique de Hello présentée par Azure AD seront clé hello permettant de vérifier un jeton JWT émis par Azure AD.
+Les services de distribution de licence DRM vérifieront systématiquement la clé publique actuelle/valide dans Azure AD. La clé publique présentée par Azure AD sera la clé utilisée pour vérifier un jeton JWT émis par Azure AD.
 
-Que se passe-t-il si la substitution de clé hello se produit après AAD génère un jeton Web JSON, mais avant hello JWT jeton est envoyé par les lecteurs tooDRM licence remise services dans AMS pour la vérification ?
+Que se passe-t-il si la substitution de la clé a lieu après qu’AAD ait généré un jeton JWT, mais avant que le jeton JSON soit envoyé par les lecteurs aux services de distribution de licence DRM dans AMS pour vérification ?
 
-Car une clé peut être changée à tout moment, il est toujours plus d’une clé publique valide disponible dans le document de métadonnées de fédération hello. Distribution de licences Azure Media Services peut utiliser hello clés spécifiées dans le document de hello, dans la mesure où une clé peut être changée rapidement, un autre peut être son remplacement et ainsi de suite.
+Une clé pouvant être substituée à tout moment, il y a toujours plusieurs clés publiques valides disponibles dans le document de métadonnées de la fédération. La distribution de licence Azure Media Services peut utiliser une des clés spécifiées dans le document, car une clé peut être substituée rapidement et une autre prise en remplacement, et ainsi de suite.
 
-### <a name="where-is-hello-access-token"></a>Dans lequel l’est hello jeton d’accès ?
-Si vous examinez comment une application web appelle une application API sous [identité de l’Application avec l’octroi des informations d’identification du Client OAuth 2.0](../active-directory/develop/active-directory-authentication-scenarios.md#web-application-to-web-api), flux d’authentification hello est comme ci-dessous :
+### <a name="where-is-the-access-token"></a>Où se trouve le jeton d’accès ?
+Si vous regardez comment une application web appelle une application API sous [Identité d’application avec octroi d’informations d’identification client OAuth 2.0](../active-directory/develop/active-directory-authentication-scenarios.md#web-application-to-web-api), le flux d’authentification est comme ci-dessous :
 
-1. Un utilisateur est connecté dans tooAzure AD dans l’application web de hello (voir hello [tooWeb de navigateur Web Application](../active-directory/develop/active-directory-authentication-scenarios.md#web-browser-to-web-application).
-2. point de terminaison d’autorisation Hello Azure AD redirige l’application hello utilisateur agent toohello précédent client avec un code d’autorisation. l’agent utilisateur de Hello retourne l’URI de redirection de l’application cliente d’autorisation code toohello.
-3. application web de Hello doit tooacquire un jeton d’accès pour qu’il peut s’authentifier toohello web API et récupération de la ressource de hello souhaité. Il rend le point de terminaison token un tooAzure de demande d’AD, en fournissant des informations d’identification hello, ID de client et URI d’ID d’application de l’API web. Elle présente tooprove de code d’autorisation hello que hello utilisateur a donné son consentement.
-4. Azure AD authentifie l’application hello et retourne un jeton d’accès JWT est utilisé toocall hello web API.
-5. Sur HTTPS, application web de hello utilise hello retourné hello de tooadd jeton d’accès JWT chaîne JWT avec une désignation « Support » dans l’en-tête d’autorisation de hello d’API web toohello demande de hello. API web de Hello valide ensuite un jeton JWT hello, et si la validation est réussie, retourne hello souhaitée des ressources.
+1. Un utilisateur est connecté à Azure AD dans l’application web (voir la section [Navigateur web vers application web](../active-directory/develop/active-directory-authentication-scenarios.md#web-browser-to-web-application)ci-dessus).
+2. Le point de terminaison d’autorisation Azure AD redirige l’agent utilisateur vers l’application cliente avec un code d’autorisation. L’agent utilisateur renvoie le code d’autorisation à l’URI de l’application cliente.
+3. L’application web doit obtenir un jeton d’accès pour pouvoir s’authentifier auprès de l’API web et extraire la ressource souhaitée. Elle envoie une demande au point de terminaison de jeton d’Azure AD, avec les informations d’identification, l’ID client et  l’URI ID d’application de l’API web. Il présente le code d’autorisation permettra de prouver que l’utilisateur a donné son consentement.
+4. Azure AD authentifie l’application et renvoie un jeton d’accès JWT, qui est utilisé pour appeler l’API web.
+5. Sur HTTPS, l’application web utilise le jeton d’accès JWT renvoyé pour ajouter la chaîne JWT avec la mention « porteur » dans l’en-tête d’autorisation de la demande adressée à l’API web. L’API web valide ensuite le jeton JWT et, si la validation réussit, renvoie la ressource souhaitée.
 
-Dans ce flux « application identity », API web de hello fait confiance à cet utilisateur de hello web application hello authentifié. C’est pour cette raison que ce modèle est appelé « sous-système approuvé ». Hello [diagramme sur cette page](https://docs.microsoft.com/azure/active-directory/active-directory-protocols-oauth-code) décrit comment le code d’autorisation accorder flux fonctionne.
+Dans ce flux « Identité de l’application », l’API web suppose que l’application web a authentifié l’utilisateur. C’est pour cette raison que ce modèle est appelé « sous-système approuvé ». Le [diagramme sur cette page](https://docs.microsoft.com/azure/active-directory/active-directory-protocols-oauth-code) explique comment le flux relatif au code d’autorisation fonctionne.
 
-Dans l’acquisition de licence avec restriction token, nous continuons à hello même modèle de sous-système approuvé. Et service de remise de licences hello dans Azure Media Services est la ressource d’API web hello, hello « ressource principal » tooaccess a besoin d’une application web. Où est donc de jeton d’accès hello ?
+Dans l’acquisition de licence avec restriction de jeton, nous suivons le même modèle de sous-système approuvé. Et le service de distribution de licences dans Azure Media Services est une ressource API web, la « Ressource backend » a besoin d’un accès. Où se trouve le jeton d’accès ?
 
-Nous devons obtenir un jeton d’accès de la part d’Azure AD. Une fois l’authentification utilisateur réussie, le code d’autorisation est renvoyé. code d’autorisation de Hello est ensuite utilisé, ainsi que d’application et les ID de clé de client, tooexchange pour le jeton d’accès. Et jeton d’accès hello pour accéder à une application « pointeur » qui pointe ou représentant le service de remise de licences Azure Media Services.
+Nous devons obtenir un jeton d’accès de la part d’Azure AD. Une fois l’authentification utilisateur réussie, le code d’autorisation est renvoyé. Il est ensuite utilisé avec l’ID client et la clé d’application pour l’échange d’un jeton d’accès. Le jeton d’accès sert à accéder à une application de « pointeur » qui pointe sur les services de distribution de licence Azure Media Services ou les représente.
 
-Nous avons besoin tooregister et que vous configurez hello « pointeur » application dans Azure AD en suivant les étapes de hello ci-dessous :
+Nous devons inscrire et configurer l’application de « pointeur » dans Azure AD en suivant les étapes ci-dessous :
 
-1. Dans le client de hello Azure AD
+1. Dans le client Azure AD
 
    * ajouter une application (ressource) avec l’URL de connexion :
 
@@ -321,63 +321,63 @@ Nous avons besoin tooregister et que vous configurez hello « pointeur » appl
    * URL d’ID d’application :
 
    https://[nom_client_aad].onmicrosoft.com/[nom_ressource]
-2. Ajoutez une nouvelle clé pour l’application de ressource hello ;
-3. Mettre à jour du fichier manifeste d’application hello afin que la propriété de groupMembershipClaims hello a hello valeur suivante : « groupMembershipClaims » : « Tous »,  
-4. Dans l’application Azure AD de hello pointant toohello lecteur web app, dans la section de hello « autorisations tooother applications », ajouter une application de ressource hello qui a été ajoutée à l’étape 1 ci-dessus. Sous « autorisations déléguées », cliquez sur la coche « Accès [nom_ressource] ». Cela autorise hello web application toocreate des jetons d’accès pour accéder à application de ressource hello. Vous devez le faire pour la version locale et déployée de hello web application si vous développez avec l’application web Visual Studio et Azure.
+2. Ajoutez une clé à l’application de ressource ;
+3. Mettez à jour le fichier manifeste d’application afin que la propriété groupMembershipClaims se voie attribuer la valeur suivante : groupMembershipClaims » : « All »  
+4. Dans l’application Azure AD qui pointe vers l’application web de lecteur, dans la section « autorisations pour d’autres applications », ajoutez l’application de ressource ajoutée à l’étape 1 ci-dessus. Sous « autorisations déléguées », cliquez sur la coche « Accès [nom_ressource] ». Cette opération donne à l’application web l’autorisation de créer des jetons d’accès pour accéder l’application de ressource. Vous devez procéder ainsi à la fois pour la version locale et la version déployée de l’application web si vous procédez à un développement avec une application web Visual Studio et Azure.
 
-Par conséquent, un jeton JWT hello émis par Azure AD est effectivement jeton d’accès hello pour accéder à cette ressource de « pointeur ».
+Le jeton JWT émis par Azure AD est donc le jeton d’accès servant à accéder à cette ressource de type « pointeur ».
 
 ### <a name="what-about-live-streaming"></a>Qu’en est-il de la diffusion en continu ?
-Bonjour ci-dessus, notre discussion a été en mettant l’accent sur les ressources à la demande. Qu’en est-il de la diffusion en continu ?
+Dans l’exemple ci-dessus, notre propos était axé sur les éléments multimédias à la demande. Qu’en est-il de la diffusion en continu ?
 
-Hello excellente est que vous pouvez utiliser exactement hello même conception et implémentation de la protection de diffusion en continu dans Azure Media Services, en traitant asset hello associé à un programme comme une « ressource VOD ».
+La bonne nouvelle est que vous pouvez utiliser exactement les mêmes présentation et implémentation de la protection de la diffusion en continu dans Azure Media Services, en traitant la ressource associée à un programme de type « élément multimédia VOD ».
 
-Plus précisément, il est bien connu que toodo diffusion en continu dans Azure Media Services, vous devez toocreate un canal, puis un programme sous un canal de hello. programme de hello toocreate, vous devez toocreate un élément multimédia qui contient une archive de programme de hello en hello. Dans l’ordre tooprovide CENC avec la protection de multi-DRM du contenu dynamique hello, il vous suffit de toodo, est tooapply hello même le programme d’installation/de traitement toohello actif comme si elle était un « asset VOD » avant de démarrer le programme de hello.
+Il est bien connu que pour diffuser en continu dans les Azure Media Services, vous devez créer un canal, puis un programme sous ce canal. Pour créer le programme, vous devez créer un élément multimédia contenant le fichier en direct pour le programme. Pour pouvoir assurer la protection multi-DRM CENC, tout ce que vous avez à faire est d’appliquer le même programme d’installation/de traitement à l’élément multimédia, comme s’il s’agissait d’une « ressource VOD » avant de démarrer le programme.
 
 ### <a name="what-about-license-servers-outside-of-azure-media-services"></a>Qu’en est-il des serveurs de licences hors Azure Media Services ?
-Souvent, les clients investissent dans une batterie de serveurs qu’ils hébergent dans leur propre centre de données ou chez des fournisseurs de service DRM. Heureusement, Protection du contenu Azure Media Services vous permet de toooperate en mode hybride : contenu hébergé et dynamiquement protégées dans Azure Media Services, alors que les licences DRM sont fournies par les serveurs en dehors d’Azure Media Services. Dans ce cas, il existe des hello suivant des considérations relatives à des modifications :
+Souvent, les clients investissent dans une batterie de serveurs qu’ils hébergent dans leur propre centre de données ou chez des fournisseurs de service DRM. Heureusement, la protection de contenu Azure Media Services vous permet de fonctionner en mode hybride : le contenu est hébergé et dynamiquement protégé dans Azure Media Services, tandis que des licences DRM sont fournies par des serveurs en dehors d’Azure Media Services. Dans ce cas, il faut envisager les modifications suivantes :
 
-1. Hello Service d’émission de jeton sécurisé besoins tooissue jetons qui sont acceptables et peuvent être vérifiés par batterie de serveurs de licences hello. Par exemple, les serveurs de licences Widevine hello fournies par Axinom requiert un jeton JWT spécifique qui contient « message droit ». Par conséquent, vous devez toohave une tooissue STS ce jeton Web JSON. les auteurs de Hello est terminé une telle implémentation et vous trouverez des détails de hello Bonjour suivant du document dans [centre de Documentation Azure](https://azure.microsoft.com/documentation/): [tooAzure Media Servicesleslicencesàl’aidedeAxinomtoodeliverWidevine](media-services-axinom-integration.md).
-2. Vous n’avez plus besoin service de remise de licences tooconfigure (ContentKeyAuthorizationPolicy) dans Azure Media Services. Vous devez toodo est l’URL d’acquisition de licence de tooprovide hello (pour PlayReady, Widevine et FairPlay) lorsque vous configurez AssetDeliveryPolicy dans Configuration CENC avec multi-DRM.
+1. Le service STS (Service d’émission de jeton de sécurité - Secure Token Service) doit émettre des jetons acceptables et pouvant être vérifiés par la batterie de serveurs de licence. Par exemple, les serveurs de licences Widevine fournis par Axinom exigent un jeton JWT spécifique contenant le message « message d’octroi de droit ». Par conséquent, vous devez disposer d’un STS pour émettre ce jeton JWT. Les auteurs ont effectué cette implémentation. Vous pouvez trouver les détails dans le document suivant dans le [Centre de documentation Azure](https://azure.microsoft.com/documentation/) : [Utilisation d’Axinom pour fournir des licences Widevine à Azure Media Services](media-services-axinom-integration.md).
+2. Vous n’avez plus besoin de configurer le service de distribution de licence (ContentKeyAuthorizationPolicy) dans Azure Media Services. Vous devez alors fournir les URL d’acquisition de la licence (pour PlayReady, Widevine et FairPlay) au moment où vous configurez AssetDeliveryPolicy dans Configuration CENC avec multi-DRM.
 
-### <a name="what-if-i-want-toouse-a-custom-sts"></a>Que se passe-t-il si je veux toouse un STS personnalisé ?
-Il peut exister plusieurs raisons un client peut choisir toouse un STS personnalisé (Secure Token Service) pour fournir des jetons JWT. parmi lesquelles :
+### <a name="what-if-i-want-to-use-a-custom-sts"></a>Que se passe-t-il si je souhaite utiliser un STS personnalisé ?
+Il existe plusieurs raisons pour qu’un client choisisse d’utiliser un STS personnalisé (Service d’émission de jeton de sécurité - Secure Token Service) pour fournir des jetons JWT, parmi lesquelles :
 
-1. Hello fournisseur d’identité (IDP) utilisé par le client de hello ne prend pas en charge le STS. Dans ce cas, un service STS pourrait être une option.
-2. client de Hello peut-être un contrôle plus souple ou plus strict dans intégrant STS abonné du client système de facturation. Par exemple, un opérateur MVPD peut offrir plusieurs packages d’abonné OTT comme premium, basic, sports, opérateur de hello etc. pouvez toomatch les revendications de hello dans un jeton avec le package de l’abonné afin que seul le contenu dans le package approprié de hello est rendue disponible. Dans ce cas, un STS personnalisé fournit hello nécessaire flexibilité et contrôle.
+1. Le fournisseur d’identité (IDP) utilisé par le client ne prend pas en charge STS. Dans ce cas, un service STS pourrait être une option.
+2. Le client peut avoir besoin d’un contrôle plus souple ou plus étroit pour l’intégration de STS avec le système de facturation client. Par exemple, un opérateur MVPD peut proposer plusieurs packages d’abonné OTT, par exemple Premium, de base, sports, etc. L’opérateur peut appliquer les revendications d’un jeton avec le package d’un abonné afin que seul le contenu du package adéquat soit mis à disposition. Dans ce cas, un STS personnalisé offre la souplesse et la maîtrise nécessaires.
 
-Deux modifications doivent toobe effectuée lors de l’utilisation d’un STS personnalisé :
+Deux modifications doivent être apportées lors de l’utilisation d’un STS personnalisé :
 
-1. Lorsque vous configurez le service de remise de licences d’un composant, vous devez la clé de sécurité hello toospecify utilisé pour la vérification par le STS personnalisé hello (plus de détails ci-dessous) au lieu de la clé actuelle de hello d’Azure Active Directory.
-2. Lorsqu’un jeton JTW est généré, une clé de sécurité est spécifiée au lieu de la clé privée de hello du certificat hello X509 actuelle dans Azure Active Directory.
+1. Lorsque vous configurez le service de distribution de licence pour un élément multimédia, vous devez spécifier la clé de sécurité utilisée par le STS personnalisé pour la vérification (plus de détails ci-dessous) et non la clé actuelle d’Azure Active Directory.
+2. Une fois le jeton JTW généré, une clé de sécurité est spécifiée à la place de la clé privée du certificat X509 courant dans Azure Active Directory.
 
 Il existe deux types de clés de sécurité :
 
-1. Clé symétrique : hello même clé est utilisée pour générer et vérifier un jeton Web JSON ;
-2. Clé asymétrique : une paire de clés publique-privée dans un X509 certificat est utilisé avec une clé privée pour chiffrer/génération d’un JWT hello et jeton de clé publique pour la vérification de jeton de hello.
+1. Clé symétrique : la même clé est utilisée pour générer et vérifier un jeton JWT ;
+2. Clé asymétrique : une paire de clés publique-privée dans un certificat X 509 est utilisée avec une clé privée pour chiffrer/générer un jeton JWT et la clé publique pour vérifier le jeton.
 
 #### <a name="tech-note"></a>Note technique
-Si vous utilisez .NET Framework / C# comme plateforme de développement, hello X509 certificat utilisé pour la clé de sécurité asymétrique doit avoir au moins 2048 longueur de clé. Il s’agit d’une spécification de classe de hello System.IdentityModel.Tokens.X509AsymmetricSecurityKey dans .NET Framework. Dans le cas contraire, hello l’exception suivante est levée :
+Si vous utilisez .NET Framework / C# en tant que plate-forme de développement, le certificat X509 utilisé pour la clé de sécurité asymétrique doit avoir une clé d’une longueur d’au moins 2048 bits. Il s’agit d’une exigence de la classe System.IdentityModel.Tokens.X509AsymmetricSecurityKey dans .NET Framework. Dans le cas contraire, l’exception suivante est générée :
 
-IDX10630 : hello 'System.IdentityModel.Tokens.X509AsymmetricSecurityKey' pour la signature ne peut pas être inférieure à '2048' bits.
+IDX10630 : la longueur de la signature « System.IdentityModel.Tokens.X509AsymmetricSecurityKey » ne peut pas être inférieure à « 2048 » bits.
 
-## <a name="hello-completed-system-and-test"></a>test et du système de hello terminée
-Nous vous guide dans quelques scénarios dans le système de bout en bout hello terminée afin que les lecteurs peuvent avoir une « image » du comportement de hello basic avant d’obtenir un compte de connexion.
+## <a name="the-completed-system-and-test"></a>Le système et le test terminé
+Nous allons examiner quelques scénarios dans le système achevé de bout en bout afin que les lecteurs puissent avoir une « image » générale du comportement avant d’obtenir un compte de connexion.
 
-Hello application web de lecteur et sa connexion se trouvent [ici](https://openidconnectweb.azurewebsites.net/).
+Vous trouverez l’application web de lecteur et ses informations de connexion [ici](https://openidconnectweb.azurewebsites.net/).
 
-Si vous avez besoin est « non intégré » le scénario : ressources vidéo hébergé dans Azure Media Services sont soit non protégé, les DRM protégé mais sans l’authentification des jetons (émettre un toowhoever licence demandant), vous pouvez le tester sans connexion (en basculant tooHTTP si votre vidéo en continu est effectuée via HTTP).
+Si vous avez besoin d’un scénario « non intégré », de ressources vidéo hébergées dans Azure Media Services non protégées ou protégées par DRM, mais sans authentification des jetons (avec émission d’une licence pour toute personne qui la demande), vous pouvez mener les tests hors connexion (en activant le HTTP si votre vidéo en temps réel fonctionne sous HTTP).
 
-Si vous avez besoin est scénario intégrée de bout en bout : ressources vidéo est sous protection DRM dynamique dans Azure Media Services, avec le jeton d’authentification et jeton Web JSON généré par Azure AD, vous devez toologin.
+Si vous avez besoin d’un scénario intégré de bout en bout : les ressources vidéo sont sous protection DRM dynamique dans Azure Media Services, avec authentification du jeton généré par Azure AD, vous devez vous connecter.
 
 ### <a name="user-login"></a>Connexion utilisateur
-Commande tootest hello bout en bout DRM système intégré, vous devez toohave un « compte » créé ou ajouté.
+Pour tester le système DRM intégré de bout en bout, vous devez disposer d’un « compte » créé ou ajouté.
 
 Quel compte ?
 
-Même si Azure avait initialement autorisé l’accès aux utilisateurs de compte Microsoft uniquement, il autorise désormais l’accès aux utilisateurs des deux systèmes. Cela a été effectuée en faisant confiance de propriétés Azure toutes les hello Azure AD pour l’authentification, ayant Azure AD d’authentification des utilisateurs professionnels et en créant une relation de fédération où Azure AD approuve le système d’identité hello Microsoft compte consommateur tooauthenticate particuliers. Par conséquent, Azure AD est tooauthenticate en mesure des comptes de Microsoft « invités », ainsi que les comptes Azure AD « natifs ».
+Même si Azure avait initialement autorisé l’accès aux utilisateurs de compte Microsoft uniquement, il autorise désormais l’accès aux utilisateurs des deux systèmes. Ceci a été possible via l’approbation des propriétés Azure pour l’authentification Azure AD, l’authentification Azure AD des utilisateurs professionnels et la création d’une relation de fédération dans laquelle Azure AD approuve le système d’identité Microsoft de compte consommateur pour authentifier les utilisateurs consommateurs. Par conséquent, Azure AD est en mesure d'authentifier les comptes « invités » de Microsoft, ainsi que les comptes Azure AD « natifs ».
 
-Étant donné que Azure AD approuve le domaine de compte Microsoft (MSA), vous pouvez ajouter des comptes à partir des hello suivant toohello de domaines personnalisé Azure AD de client et utilisent hello compte toologin :
+Dans la mesure où Azure AD approuve le domaine de compte Microsoft (MSA), vous pouvez ajouter tous les comptes dans les domaines clients suivants d’Azure AD et utilisent le compte de connexion :
 
 | **Nom de domaine** | **Domaine** |
 | --- | --- |
@@ -385,39 +385,39 @@ Même si Azure avait initialement autorisé l’accès aux utilisateurs de compt
 | **Domaine d’entreprise** |microsoft.com |
 | **Domaine de compte Microsoft (MSA)** |outlook.com, live.com, hotmail.com |
 
-Vous pouvez contacter un des auteurs de hello toohave un compte créé ou ajoutés pour vous.
+Vous pouvez contacter l’un des auteurs pour qu’un compte soit créé ou ajouté pour vous.
 
-Vous trouverez ci-dessous des captures d’écran de hello de pages de connexion différents utilisés par les différents comptes de domaine.
+Vous trouverez ci-dessous les captures d’écran de pages de connexion différentes utilisées par les différents comptes de domaine.
 
-**Compte de domaine de client personnalisé Azure AD**: dans ce cas, vous voyez la page de connexion personnalisée hello du domaine du client hello personnalisé Azure AD.
+Le **compte de domaine client Azure personnalisé** : dans ce cas, vous pouvez voir la page de connexion personnalisée du domaine client Azure AD.
 
 ![compte de domaine client Azure personnalisé](./media/media-services-cenc-with-multidrm-access-control/media-services-ad-tenant-domain1.png)
 
-**Compte de domaine Microsoft avec carte à puce**: dans ce cas vous consultez la page de connexion hello personnalisé par Microsoft d’entreprise informatique à l’aide de l’authentification à deux facteurs.
+**Compte de domaine Microsoft avec carte à puce**: dans ce cas, vous voyez la page de connexion personnalisée par Microsoft corporate IT avec authentification à deux facteurs.
 
 ![compte de domaine client Azure personnalisé](./media/media-services-cenc-with-multidrm-access-control/media-services-ad-tenant-domain2.png)
 
-**Compte Microsoft (MSA)**: dans ce cas, vous voyez la page de connexion de hello de Account Microsoft pour les consommateurs.
+**Compte Microsoft (MSA)**: dans ce cas, vous allez voir la page de connexion de Microsoft Account pour les consommateurs.
 
 ![compte de domaine client Azure personnalisé](./media/media-services-cenc-with-multidrm-access-control/media-services-ad-tenant-domain3.png)
 
 ### <a name="using-encrypted-media-extensions-for-playready"></a>Utilisation de Encrypted Media Extensions pour PlayReady
-Sur un navigateur modern avec chiffrés Media Extensions (EME) pour la prise en charge, tels que navigateur Internet Explorer 11 sur Windows 8.1 et suivantes et Microsoft Edge sur Windows 10, PlayReady sera de PlayReady hello DRM sous-jacent pour EME.
+Sur un navigateur moderne prenant en charge Encrypted Media Extensions (EME) for PlayReady tel qu’Internet Explorer 11 sous Windows 8.1 et ultérieur, et le navigateur Microsoft Edge sous Windows 10, PlayReady sera la DRM sous-jacente d’EME.
 
 ![Utilisation d’EME pour PlayReady](./media/media-services-cenc-with-multidrm-access-control/media-services-eme-for-playready1.png)
 
-la zone de lecteur sombre Hello est dû fait toohello que la protection PlayReady empêche un d’effectuer la capture d’écran de la vidéo protégé.
+La zone de lecteur foncée est due au fait que la protection PlayReady empêche d’effectuer une capture d’écran de la vidéo protégée.
 
-Hello d’écran suivante montre plug-ins du lecteur hello et prise en charge MSE/EME.
+L’écran suivant illustre les plug-ins du lecteur et la prise en charge MSE/EME.
 
 ![Utilisation d’EME pour PlayReady](./media/media-services-cenc-with-multidrm-access-control/media-services-eme-for-playready2.png)
 
-EME dans Microsoft Edge et IE 11 sur Windows 10 permet d’appeler [PlayReady SL3000](https://www.microsoft.com/playready/features/EnhancedContentProtection.aspx/) sur les appareils Windows 10 compatibles. PlayReady SL3000 déverrouille flux hello de contenu premium améliorées (4 Ko, en-tête, etc.) et les nouveaux modèles de diffusion de contenu (fenêtre anticipée de contenu amélioré).
+EME dans Microsoft Edge et IE 11 sur Windows 10 permet d’appeler [PlayReady SL3000](https://www.microsoft.com/playready/features/EnhancedContentProtection.aspx/) sur les appareils Windows 10 compatibles. PlayReady SL3000 déverrouille le flux de contenu premium améliorées (4K, HDR, etc.) et les nouveaux modèles de distribution de contenu (première fenêtre de contenu amélioré).
 
-Se concentrer sur des appareils Windows hello : PlayReady est hello uniquement DRM dans HW hello disponible sur les appareils Windows (PlayReady SL3000). Un service de diffusion en continu peut utiliser PlayReady via EME ou via une application UWP, et offrir ainsi une meilleure qualité vidéo à l'aide de PlayReady SL3000 par rapport à un autre DRM. En règle générale, 2K contenu flux au sein de Chrome ou Firefox, et 4 K contenu via Microsoft Edge/IE11 ou une application UWP sur hello même appareil (en fonction des paramètres de service et l’implémentation).
+Concentrez-vous sur les appareils Windows : PlayReady est le seul DRM dans le matériel disponible sur les appareils Windows (PlayReady SL3000). Un service de diffusion en continu peut utiliser PlayReady via EME ou via une application UWP, et offrir ainsi une meilleure qualité vidéo à l'aide de PlayReady SL3000 par rapport à un autre DRM. En règle générale, le contenu 2K transite via Chrome ou Firefox et le contenu 4K via Microsoft Edge/IE11 ou une application UWP sur le même appareil (selon les paramètres de service et l'implémentation).
 
 #### <a name="using-eme-for-widevine"></a>Utilisation d’EME pour Widevine
-Sur un navigateur modern avec EME/Widevine prise en charge, telles que Chrome 41 + sur Windows 10, Windows 8.1, Mac OSX Yosemite et Chrome sur Android 4.4.4, Google Widevine est hello DRM derrière EME.
+Sur un navigateur moderne doté de la prise en charge d’EME/Widevine, telle que Chrome 41 + sous Windows 10, Windows 8.1, Mac OSX Yosemite et Chrome sur Android 4.4.4, la gestion des droits numériques derrière EME est assurée par Google Widevine.
 
 ![Utilisation d’EME pour Widevine](./media/media-services-cenc-with-multidrm-access-control/media-services-eme-for-widevine1.png)
 
@@ -426,29 +426,29 @@ Notez que Widevine n’empêche pas d’effectuer une capture d’écran de la v
 ![Utilisation d’EME pour Widevine](./media/media-services-cenc-with-multidrm-access-control/media-services-eme-for-widevine2.png)
 
 ### <a name="not-entitled-users"></a>Utilisateurs sans intitulé
-Si un utilisateur n’est pas membre du groupe « Utilisateurs intitulée », utilisateur de hello ne sera pas toopass en mesure de « droit vérification » et service de licence de multi-DRM hello refusera licence demandée de hello tooissue comme indiqué ci-dessous. Bonjour description détaillée est « acquisition de licence a échoué », qui est conçu.
+Si un utilisateur n’est pas membre du groupe « Utilisateurs autorisés », il n’est pas en mesure de réussir le « contrôle des droits » et le service de licence multi-DRM refusera d’émettre la licence requise comme indiqué ci-dessous. La description détaillée est « L’acquisition de licence a échoué », ce qui correspond à la conception.
 
 ![Utilisateurs non autorisés](./media/media-services-cenc-with-multidrm-access-control/media-services-unentitledusers.png)
 
 ### <a name="running-custom-secure-token-service"></a>Exécution d’un Service d’émission de jeton sécurisé personnalisé
-Pour le scénario hello personnalisé sécuriser Service d’émission de jeton en cours d’exécution, un jeton JWT hello est émis par un STS personnalisé de hello à l’aide de la clé symétrique ou asymétrique.
+Pour le scénario Secure Token Service (STS) personnalisé en cours, le jeton JWT est émis par le STS personnalisé à l’aide d’une clé symétrique ou asymétrique.
 
-cas de Hello d’à l’aide de la clé symétrique (à l’aide de Chrome) :
+Cas d’utilisation de clé symétrique (avec Chrome) :
 
 ![Exécution de STS personnalisé](./media/media-services-cenc-with-multidrm-access-control/media-services-running-sts1.png)
 
-Hello cas d’utilisation d’une clé asymétrique via un X509 de certificat (à l’aide du navigateur moderne de Microsoft).
+Cas d’utilisation d’une clé asymétrique via un certificat X509 (à l’aide d’un navigateur moderne Microsoft).
 
 ![Exécution de STS personnalisé](./media/media-services-cenc-with-multidrm-access-control/media-services-running-sts2.png)
 
-Dans les deux hello au-dessus de cas, reste de l’authentification utilisateur même : hello via Azure AD. Hello seule différence est que les jetons JWT sont émis par STS personnalisé de hello au lieu d’Azure AD. Bien entendu, lorsque vous configurez la protection CENC dynamique, restriction hello du service de remise de licences spécifie type hello de jeton JWT, clé symétrique ou asymétrique.
+Dans les deux cas cités, l’authentification utilisateur reste la même via Azure AD. La seule différence est que les jetons JWT sont émis par le STS personnalisé et non par Azure AD. Évidemment, lorsque vous configurez la protection CENC dynamique, la restriction du service de distribution de licence spécifie le type de jeton Web JSON, avec clé symétrique ou asymétrique.
 
 ## <a name="summary"></a>Résumé
 Dans ce document, nous avons abordé les sujets des DRM natives multiples, et un contrôle d’authentification des jetons : sa conception et son implémentation à l’aide d’Azure, d’Azure Media Services et d’Azure Media Player.
 
-* Un modèle de référence est présenté qui contient tous les composants nécessaires hello dans un sous-système DRM/CENC ;
+* Une conception de référence est présentée. Elle contient tous les composants nécessaires dans un sous-système DRM/CENC ;
 * Une implémentation de référence sur Azure, Azure Media Services et Azure Media Player.
-* Certaines rubriques directement impliqués dans hello conception et implémentation sont également décrites.
+* Certaines rubriques directement impliquées dans la conception et l’implémentation sont également abordées.
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

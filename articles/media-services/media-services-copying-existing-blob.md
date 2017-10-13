@@ -1,6 +1,6 @@
 ---
-title: "BLOB aaaCopying à partir d’un compte de stockage dans un élément multimédia Azure Media Services | Documents Microsoft"
-description: "Cette rubrique montre comment toocopy existant d’objets blob dans un élément multimédia Media Services. exemple de Hello utilise des Extensions de kit de développement .NET Azure Media Services."
+title: "Copie d’objets blob d’un compte de stockage dans un élément multimédia Azure Media Services | Microsoft Docs"
+description: "Cette rubrique montre comment copier un objet blob existant dans un élément multimédia Media Services. Cet exemple utilise les extensions de kit de développement logiciel (SDK) Azure Media Services pour .NET."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,26 +14,26 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: juliako
-ms.openlocfilehash: 40660e5cbb3698fb2b0bdf414751e47d367794da
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2bc1f0114a096920d4a7c9cb57e44c9b3612bf86
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="copying-existing-blobs-into-a-media-services-asset"></a>Copie d’objets blob dans un élément multimédia Media Services
-Cette rubrique montre comment toocopy les objets BLOB à partir d’un compte de stockage dans un élément multimédia Azure Media Services (AMS) nouvelle en utilisant [Extensions de Azure Media Services .NET SDK](https://github.com/Azure/azure-sdk-for-media-services-extensions/).
+Cette rubrique montre comment copier des objets blob à partir d’un compte de stockage dans un nouvel élément multimédia Azure Media Services (AMS) à l’aide des [extensions du Kit de développement logiciel (SDK) Azure Media Services pour .NET](https://github.com/Azure/azure-sdk-for-media-services-extensions/).
 
-méthodes d’extension Hello fonctionne avec :
+Les méthodes d’extension utilisées fonctionne avec les éléments suivants :
 
 - des éléments multimédias standard,
 - des éléments multimédias archivés en temps réel (format FragBlob),
-- Source et destination des ressources appartenant des comptes de Media Services toodifferent (même sur les différents centres de données). Toutefois, cette opération peut être facturée. Pour plus d'informations sur la tarification, consultez [Transferts de données](https://azure.microsoft.com/pricing/#header-11).
+- des éléments multimédias source et cible appartenant à différents comptes Media Services (même de différents centres de données). Toutefois, cette opération peut être facturée. Pour plus d'informations sur la tarification, consultez [Transferts de données](https://azure.microsoft.com/pricing/#header-11).
 
 > [!NOTE]
-> Vous ne devez pas essayer contenu hello de toochange de conteneurs d’objets blob qui ont été générés par Media Services sans utiliser les API de Media Services.
+> Vous ne devez pas essayer de modifier le contenu des conteneurs d’objets blob qui ont été générés par Media Services sans utiliser les API Media Services.
 > 
 
-rubrique de Hello montre deux exemples de code :
+La rubrique présente deux exemples de code :
 
 1. Copiez des blobs d’une ressource d’un compte AMS vers une nouvelle ressource d’un compte AMS.
 2. Copiez des objets blob d’un compte de stockage dans un compte AMS.
@@ -42,16 +42,16 @@ rubrique de Hello montre deux exemples de code :
 
 ### <a name="prerequisites"></a>Composants requis
 
-Deux comptes Media Services. Consultez la rubrique de hello [comment tooCreate un compte Media Services](media-services-portal-create-account.md).
+Deux comptes Media Services. Consultez la rubrique [Comment créer un compte Media Services](media-services-portal-create-account.md).
 
 ### <a name="download-sample"></a>Charger l’exemple
-Vous pouvez suivre les étapes de hello dans cet article, ou vous pouvez télécharger un exemple qui contient le code hello décrit dans cet article à partir de [ici](https://azure.microsoft.com/documentation/samples/media-services-dotnet-copy-blob-into-asset/).
+Vous pouvez suivre les étapes décrites dans cet article ou télécharger un exemple contenant le code décrit dans cet article sur [cette page](https://azure.microsoft.com/documentation/samples/media-services-dotnet-copy-blob-into-asset/).
 
 ### <a name="set-up-your-project"></a>Configuration de votre projet
 
 1. Configurez votre environnement de développement comme décrit dans [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
 2. Ajoutez les autres références requises pour ce projet : System.Configuration.
-3. Ajouter hello appSettings section toohello .config mise à jour et fichier hello valeurs en fonction de vos comptes Media Services, hello compte de stockage de destination et hello de code source actif.  
+3. Ajoutez la section appSettings au fichier .config et mettez à jour les valeurs en fonction de vos comptes Media Services, du compte de stockage cible et de l’ID de l’élément multimédia source.  
 
 ```   
 <appSettings>
@@ -67,7 +67,7 @@ Vous pouvez suivre les étapes de hello dans cet article, ou vous pouvez téléc
 
 ### <a name="copy-blobs-from-an-asset-in-one-ams-account-into-an-asset-in-another-ams-account"></a>Copier des blobs d’une ressource d’un compte AMS vers une ressource d’un autre compte AMS
 
-Hello de code suivant utilise extension **IAsset.Copy** toocopy méthode tous les fichiers dans la ressource source hello en ressource de destination hello à l’aide d’une extension unique.
+Le code suivant utilise la méthode d’extension **IAsset.Copy** pour copier tous les fichiers de l’élément multimédia source dans l’élément multimédia cible à l’aide d’une seule extension.
 
 ```
 using System;
@@ -98,23 +98,23 @@ namespace CopyExistingBlobsIntoAsset
             var tokenCredentials2 = new AzureAdTokenCredentials(_destAADTenantDomain, AzureEnvironments.AzureCloudEnvironment);
             var tokenProvider2 = new AzureAdTokenProvider(tokenCredentials2);
 
-            // Create hello context for your source Media Services account.
+            // Create the context for your source Media Services account.
             _sourceContext = new CloudMediaContext(new Uri(_sourceRESTAPIEndpoint), tokenProvider1);
 
-            // Create hello context for your destination Media Services account.
+            // Create the context for your destination Media Services account.
             _destContext = new CloudMediaContext(new Uri(_destRESTAPIEndpoint), tokenProvider2);
 
-            // Get hello credentials of hello default Storage account bound tooyour destination Media Services account.
+            // Get the credentials of the default Storage account bound to your destination Media Services account.
             StorageCredentials destinationStorageCredentials =
                 new StorageCredentials(_destStorageAccountName, _destStorageAccountKey);
 
-            // Get a reference toohello source asset in hello source context.
+            // Get a reference to the source asset in the source context.
             IAsset sourceAsset = _sourceContext.Assets.Where(a => a.Id == _sourceAssetID).First();
 
-            // Create an empty destination asset in hello destination context.
+            // Create an empty destination asset in the destination context.
             IAsset destinationAsset = _destContext.Assets.Create(sourceAsset.Name, AssetCreationOptions.None);
 
-            // Copy hello files in hello source asset instance into hello destination asset instance.
+            // Copy the files in the source asset instance into the destination asset instance.
             sourceAsset.Copy(destinationAsset, destinationStorageCredentials);
 
             Console.WriteLine("Done");
@@ -127,14 +127,14 @@ namespace CopyExistingBlobsIntoAsset
 
 ### <a name="prerequisites"></a>Composants requis
 
-- Un compte de stockage à partir desquels vous souhaitez toocopy BLOB.
-- Un compte AMS dans lequel vous souhaitez toocopy BLOB.
+- Un compte de stockage à partir duquel vous souhaitez copier des blobs.
+- Un compte AMS dans lequel vous souhaitez copier des blobs.
 
 ### <a name="set-up-your-project"></a>Configuration de votre projet
 
 1. Configurez votre environnement de développement comme décrit dans [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
 2. Ajoutez les autres références requises pour ce projet : System.Configuration.
-3. Ajoutez hello appSettings section fichier .config de toohello et valeurs de mise à jour hello selon des comptes de AMS votre stockage source et de destination.
+3. Ajoutez la section appSettings au fichier .config et mettez à jour les valeurs en fonction de votre stockage source et des comptes AMS de destination.
 
 ```
 <appSettings>
@@ -149,10 +149,10 @@ namespace CopyExistingBlobsIntoAsset
 
 ### <a name="copy-blobs-from-some-storage-account-into-a-new-asset-in-a-ams-account"></a>Copier des objets blob d’un compte de stockage dans un compte AMS
 
-Hello suivant des objets BLOB de copies de code à partir d’un compte de stockage dans un élément multimédia Media Services. 
+Le code suivant copie des blobs d’un compte de stockage dans un élément multimédia Media Services. 
 
 >[!NOTE]
->Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser hello ID de stratégie même si vous utilisez toujours hello même jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs sont tooremain prévue en place pendant une longue période (non-téléchargement stratégies). Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .
+>Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser le même ID de stratégie si vous utilisez toujours les mêmes jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs destinées à demeurer en place pendant une longue période (stratégies sans chargement). Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .
 
 ```
 using System;
@@ -167,7 +167,7 @@ namespace CopyExistingBlobsIntoAsset
 {
     class Program
     {
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AMSAADTenantDomain =
             ConfigurationManager.AppSettings["AMSAADTenantDomain"];
         private static readonly string _AMSRESTAPIEndpoint =
@@ -192,7 +192,7 @@ namespace CopyExistingBlobsIntoAsset
                 AzureEnvironments.AzureCloudEnvironment);
             var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
 
-            // Create hello context for your source Media Services account.
+            // Create the context for your source Media Services account.
             _context = new CloudMediaContext(new Uri(_AMSRESTAPIEndpoint), tokenProvider);
             
             _sourceStorageAccount =
@@ -226,7 +226,7 @@ namespace CopyExistingBlobsIntoAsset
             ILocator destinationLocator =
                 _context.Locators.CreateLocator(LocatorType.Sas, asset, writePolicy);
 
-            // Get hello asset container URI and Blob copy from mediaContainer tooassetContainer. 
+            // Get the asset container URI and Blob copy from mediaContainer to assetContainer. 
             CloudBlobContainer destAssetContainer =
                 destBlobStorage.GetContainerReference((new Uri(destinationLocator.Path)).Segments[1]);
 
@@ -258,14 +258,14 @@ namespace CopyExistingBlobsIntoAsset
             destinationLocator.Delete();
             writePolicy.Delete();
 
-            // Set hello primary asset file.
+            // Set the primary asset file.
             // If, for example, we copied a set of Smooth Streaming files, 
-            // set hello .ism file toobe hello primary file. 
-            // If we, for example, copied an .mp4, then hello mp4 would be hello primary file. 
+            // set the .ism file to be the primary file. 
+            // If we, for example, copied an .mp4, then the mp4 would be the primary file. 
             var ismAssetFile = asset.AssetFiles.ToList().
                 Where(f => f.Name.EndsWith(".ism", StringComparison.OrdinalIgnoreCase)).ToArray().FirstOrDefault();
 
-            // hello following code assigns hello first .ism file as hello primary file in hello asset.
+            // The following code assigns the first .ism file as the primary file in the asset.
             // An asset should have one .ism file.  
             if (ismAssetFile != null)
             {
@@ -277,10 +277,10 @@ namespace CopyExistingBlobsIntoAsset
         }
 
         /// <summary>
-        /// Copies hello specified blob into hello specified container.
+        /// Copies the specified blob into the specified container.
         /// </summary>
-        /// <param name="sourceBlob">hello source container.</param>
-        /// <param name="destinationContainer">hello destination container.</param>
+        /// <param name="sourceBlob">The source container.</param>
+        /// <param name="destinationContainer">The destination container.</param>
         static private void CopyBlob(ICloudBlob sourceBlob, CloudBlobContainer destinationContainer)
         {
             var signature = sourceBlob.GetSharedAccessSignature(new SharedAccessBlobPolicy
@@ -298,17 +298,17 @@ namespace CopyExistingBlobsIntoAsset
             else
             {
 
-                // Display hello size of hello source blob.
+                // Display the size of the source blob.
                 Console.WriteLine(sourceBlob.Properties.Length);
 
-                Console.WriteLine(string.Format("Copy blob '{0}' too'{1}'", sourceBlob.Uri, destinationBlob.Uri));
+                Console.WriteLine(string.Format("Copy blob '{0}' to '{1}'", sourceBlob.Uri, destinationBlob.Uri));
                 destinationBlob.StartCopyFromBlob(new Uri(sourceBlob.Uri.AbsoluteUri + signature));
 
                 while (true)
                 {
-                    // hello StartCopyFromBlob is an async operation, 
-                    // so we want toocheck if hello copy operation is completed before proceeding. 
-                    // toodo that, we call FetchAttributes on hello blob and check hello CopyStatus. 
+                    // The StartCopyFromBlob is an async operation, 
+                    // so we want to check if the copy operation is completed before proceeding. 
+                    // To do that, we call FetchAttributes on the blob and check the CopyStatus. 
                     destinationBlob.FetchAttributes();
                     if (destinationBlob.CopyState.Status != CopyStatus.Pending)
                     {
@@ -318,7 +318,7 @@ namespace CopyExistingBlobsIntoAsset
                     System.Threading.Thread.Sleep(1000);
                 }
 
-                // Display hello size of hello destination blob.
+                // Display the size of the destination blob.
                 Console.WriteLine(destinationBlob.Properties.Length);
 
             }
@@ -330,7 +330,7 @@ namespace CopyExistingBlobsIntoAsset
 
 Vous pouvez désormais encoder vos éléments multimédias téléchargés. Pour plus d'informations, consultez [Encode an asset using Media Encoder Standard with the Azure portal (Encoder un élément multimédia à l’aide de Media Encoder Standard avec le portail Azure)](media-services-portal-encode.md).
 
-Vous pouvez également utiliser les fonctions Azure tootrigger un travail d’encodage basé sur un fichier qui arrivent dans le conteneur de hello configuré. Pour plus d’informations, consultez [cet exemple](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
+Vous pouvez également utiliser les fonctions Azure pour déclencher une tâche de codage à partir d’un fichier entrant dans le conteneur configuré. Pour plus d’informations, consultez [cet exemple](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

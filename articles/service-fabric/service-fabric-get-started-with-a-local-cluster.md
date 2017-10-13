@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy et mettre à niveau microservices Azure localement | Documents Microsoft"
-description: "Découvrez comment tooset configuration d’un cluster Service Fabric local, déployez un tooit d’application existant et puis mise à niveau de cette application."
+title: "Déployer et mettre à niveau les microservices Azure localement | Microsoft Docs"
+description: "Apprenez à configurer un cluster de Service Fabric local et déployer une application existante vers ce dernier, puis mettre à niveau cette application."
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/13/2017
 ms.author: ryanwi;mikhegn
-ms.openlocfilehash: e5f5adc9edb71433b2a7635e9d661ff92a4b18ec
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 359677972c7e1fa3f7435052021ddfae5b1ed85e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="get-started-with-deploying-and-upgrading-applications-on-your-local-cluster"></a>Prise en main avec le déploiement et la mise à niveau d’applications sur votre cluster local
-Bonjour Azure Service Fabric SDK inclut un environnement de développement local complet que vous pouvez utiliser tooquickly prise en main déploiement et gestion des applications sur un cluster local. Dans cet article, vous créez un cluster local, déployez une tooit d’application existant et puis mettre à niveau cette version de nouvelle application tooa, à partir de Windows PowerShell.
+Le kit de développement logiciel Fabric Service comprend un environnement de développement local complet que vous pouvez utiliser pour rapidement maîtriser le déploiement et la gestion des applications sur un cluster local. Dans cet article, vous créez un cluster local, déployez une application existante, puis mettez à niveau cette application vers une nouvelle version, le tout à partir de Windows PowerShell.
 
 > [!NOTE]
 > Cet article suppose que vous avez déjà [configuré votre environnement de développement](service-fabric-get-started.md).
@@ -29,11 +29,11 @@ Bonjour Azure Service Fabric SDK inclut un environnement de développement local
 > 
 
 ## <a name="create-a-local-cluster"></a>Créer un cluster local
-Un cluster Service Fabric représente un ensemble de ressources matérielles sur lequel vous pouvez déployer des applications. En règle générale, un cluster est constitué de n’importe où à partir de cinq réduire des milliers d’ordinateurs. Toutefois, hello Service Fabric SDK inclut une configuration de cluster pouvant s’exécuter sur un seul ordinateur.
+Un cluster Service Fabric représente un ensemble de ressources matérielles sur lequel vous pouvez déployer des applications. En règle générale, un cluster est constitué d’un nombre de machines compris entre cinq et plusieurs milliers. Toutefois, le kit de développement logiciel Service Fabric propose une configuration de cluster qui peut s’exécuter sur un seul ordinateur.
 
-Il est important de toounderstand qui hello cluster local Service Fabric n’est pas un émulateur ou un simulateur. Il s’exécute hello même code de plate-forme qui se trouve sur des clusters comportant plusieurs ordinateurs. Hello seule différence est qu’elle s’exécute le processus de plateforme hello qui sont normalement réparties sur cinq ordinateurs sur un ordinateur.
+Il est important de savoir que le cluster local Service Fabric n’est ni un émulateur, ni un simulateur. Il exécute le même code de plateforme que celui qu’on trouve sur les clusters comportant plusieurs ordinateurs. La seule différence est qu’elle exécute les processus de plateforme normalement répartis entre cinq ordinateurs virtuels sur une seule machine.
 
-Hello SDK fournit deux façons tooset, configuration d’un cluster local : une Windows PowerShell script et hello Gestionnaire du Cluster Local système barre d’état d’application. Dans ce didacticiel, nous utilisons de script PowerShell hello.
+Le kit de développement logiciel offre deux façons de configurer un cluster local : un script Windows PowerShell et l’application de barre d’état système Gestionnaire du cluster local. Pour ce didacticiel, nous utilisons le script Powershell.
 
 > [!NOTE]
 > Si vous avez déjà créé un cluster local en déployant une application depuis Visual Studio, vous pouvez ignorer cette section.
@@ -41,7 +41,7 @@ Hello SDK fournit deux façons tooset, configuration d’un cluster local : une
 > 
 
 1. Lancez une nouvelle fenêtre PowerShell en tant qu’administrateur.
-2. Exécutez le script d’installation de cluster hello à partir du dossier du Kit de développement logiciel hello :
+2. Exécutez le script de configuration de cluster à partir du dossier du kit de développement logiciel :
    
     ```powershell
     & "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1"
@@ -51,109 +51,109 @@ Hello SDK fournit deux façons tooset, configuration d’un cluster local : une
    
     ![Résultat de configuration du cluster][cluster-setup-success]
    
-    Vous êtes maintenant prêt tootry déploiement d’un cluster de tooyour d’application.
+    Vous êtes maintenant prêt à tester le déploiement d’une application sur votre cluster.
 
 ## <a name="deploy-an-application"></a>Déployer une application
-Hello Service Fabric SDK comprend un ensemble complet des infrastructures et outils pour créer des applications de développeur. Si vous souhaitez en savoir comment les applications toocreate dans Visual Studio, consultez [créer votre première application de Service Fabric dans Visual Studio](service-fabric-create-your-first-application-in-visual-studio.md).
+Le kit de développement de Fabric Service inclut un ensemble complet d’infrastructures et outils pour créer des applications. Si vous souhaitez apprendre à créer des applications dans Visual Studio, consultez [Créer votre première application Service Fabric dans Visual Studio](service-fabric-create-your-first-application-in-visual-studio.md).
 
-Dans ce didacticiel, vous utilisez un exemple d’application existant (appelé WordCount) afin de pouvoir vous concentrer sur les aspects de gestion hello de plateforme de hello : déploiement, la surveillance et la mise à niveau.
+Dans ce didacticiel, vous utilisez un exemple d’application existant (appelé WordCount) afin de pouvoir vous concentrer sur les aspects de la gestion de la plateforme, autrement dit le déploiement, la surveillance et la mise à niveau.
 
 1. Lancez une nouvelle fenêtre PowerShell en tant qu’administrateur.
-2. Importez le module de Service Fabric SDK PowerShell hello.
+2. Importez le module de kit de développement logiciel Service Fabric PowerShell.
    
     ```powershell
     Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
     ```
-3. Créez une application hello de toostore de répertoire que vous téléchargez et déployez, tels que C:\ServiceFabric.
+3. Créez un répertoire pour stocker l’application que vous téléchargez et déployez, par exemple C:\ServiceFabric.
    
     ```powershell
     mkdir c:\ServiceFabric\
     cd c:\ServiceFabric\
     ```
-4. [Télécharger l’application WordCount de hello](http://aka.ms/servicefabric-wordcountapp) emplacement toohello vous avez créé.  Remarque : le navigateur Microsoft Edge de hello enregistre fichier hello avec un *.zip* extension.  Changent d’extension de fichier hello*.sfpkg*.
-5. Connecter le cluster local de toohello :
+4. [Téléchargez l’application WordCount](http://aka.ms/servicefabric-wordcountapp) à l’emplacement que vous avez créé.  Remarque : le navigateur Microsoft Edge enregistre le fichier avec une extension *.zip* .  Remplacez l’extension du fichier par *.sfpkg*.
+5. Pour se connecter au cluster :
    
     ```powershell
     Connect-ServiceFabricCluster localhost:19000
     ```
-6. Créez une application à l’aide de la commande de déploiement du Kit de développement hello avec un nom et un package d’application toohello chemin d’accès.
+6. Créez une nouvelle application en utilisant la commande de déploiement du SDK, en fournissant un nom et un chemin d’accès au package d’application.
    
     ```powershell  
    Publish-NewServiceFabricApplication -ApplicationPackagePath c:\ServiceFabric\WordCountV1.sfpkg -ApplicationName "fabric:/WordCount"
     ```
    
-    Si tout se passe bien, vous devez voir hello suivant de sortie :
+    Si tout se passe correctement, vous devez voir apparaître la sortie suivante :
    
-    ![Déployer un cluster local toohello d’application][deploy-app-to-local-cluster]
-7. application de hello toosee en action, lancer hello navigateur et accédez trop[http://localhost:8081/wordcount/index.html](http://localhost:8081/wordcount/index.html). Ce qui suit doit s’afficher :
+    ![Déploiement d’une application sur le cluster local][deploy-app-to-local-cluster]
+7. Pour voir l’application en action, lancez le navigateur et accédez à [http://localhost:8081/wordcount/index.html](http://localhost:8081/wordcount/index.html). Ce qui suit doit s’afficher :
    
     ![Interface utilisateur des applications déployées.][deployed-app-ui]
    
-    Hello WordCount application est simple. Il inclut côté client JavaScript toogenerate aléatoire cinq caractères « mots », qui sont ensuite relayés application toohello via l’API Web ASP.NET. Un service avec état effectue le suivi de nombre hello de mots comptabilisées. Ils sont partitionnées selon hello premier caractère de mot de hello. Vous pouvez trouver le code source de hello pour application WordCount hello hello [classique route exemples](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/WordCount).
+    L’application WordCount est d’une grande simplicité. Il inclut le code JavaScript côté client pour générer des « mots » à cinq caractères aléatoires, qui sont ensuite relayés vers l’application via une API web ASP.NET. Un service avec état conserve un suivi du nombre de mots comptés. Ils sont partitionnés en fonction du premier caractère du mot. Vous trouverez le code source de l’application WordCount dans les [exemples de prise en main classiques](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/WordCount).
    
-    application Hello que nous avons déployé contient quatre partitions. Pour les mots qui commencent par A à G sont stockés dans la première partition de hello, mots qui commencent par H et N sont stockés dans hello deuxième partition et ainsi de suite.
+    L’application que nous avons déployée contient quatre partitions. Les mots commençant par les lettres A à G sont stockés dans la première partition, ceux qui commencent par les lettres H à N sont stockés dans la deuxième et ainsi de suite.
 
 ## <a name="view-application-details-and-status"></a>Afficher les détails et l’état de l’application
-Maintenant que nous avons déployé l’application hello, examinons certains détails de l’application hello dans PowerShell.
+Maintenant que l’application est déployée, examinons certains des détails de l’application dans PowerShell.
 
-1. Interroger toutes les applications déployées sur le cluster de hello :
+1. Interroger toutes les applications déployées sur le cluster :
    
     ```powershell
     Get-ServiceFabricApplication
     ```
    
-    En supposant que vous avez uniquement hello WordCount application déployée, vous voyez quelque chose de similaire à :
+    Si vous avez déployé uniquement l’application de comptage de mots, vous voyez quelque chose de similaire à ceci :
    
     ![Interroger toutes les applications déployées sur PowerShell :][ps-getsfapp]
-2. Atteindre le niveau suivant de toohello en interrogeant l’ensemble de hello de services qui sont inclus dans l’application WordCount de hello.
+2. Accédez au niveau suivant en interrogeant l’ensemble de services inclus dans l’application WordCount.
    
     ```powershell
     Get-ServiceFabricService -ApplicationName 'fabric:/WordCount'
     ```
    
-    ![Liste des services d’application hello dans PowerShell][ps-getsfsvc]
+    ![Répertorier les services de l’application dans PowerShell][ps-getsfsvc]
    
-    application Hello est constituée de deux services, hello serveur web frontal et le service avec état hello qui gère les mots hello.
-3. Enfin, recherchez liste hello de partitions WordCountService :
+    L’application se compose de deux services : le serveur web frontal et le service avec état qui gère les mots.
+3. Enfin, examinez la liste des partitions de WordCountService :
    
     ```powershell
     Get-ServiceFabricPartition 'fabric:/WordCount/WordCountService'
     ```
    
-    ![Afficher les partitions de service hello dans PowerShell][ps-getsfpartitions]
+    ![Afficher les partitions de service dans PowerShell][ps-getsfpartitions]
    
-    Hello ensemble de commandes que vous avez utilisé, comme toutes les commandes PowerShell de l’infrastructure de Service, sont disponibles pour n’importe quel cluster que vous pouvez vous connecter, local ou distant.
+    Le jeu de commandes que vous avez utilisé, ainsi que toutes les commandes PowerShell de Service Fabric, sont disponibles pour n’importe quel cluster auquel vous pouvez connecter, qu’il soit local ou distant.
    
-    Pour un toointeract de manière plus visuelle avec cluster de hello, vous pouvez utiliser les outils Service Fabric Explorer hello web en naviguant trop[http://localhost:19080/Explorer](http://localhost:19080/Explorer) dans le navigateur de hello.
+    Pour un moyen plus visuel d’interagir avec le cluster, vous pouvez utiliser l’outil explorateur de Fabric Service web en accédant à [http://localhost:19080/Explorer](http://localhost:19080/Explorer) dans le navigateur.
    
     ![Afficher les détails de l’application dans Fabric Service Explorer][sfx-service-overview]
    
    > [!NOTE]
-   > toolearn en savoir plus sur le Service Fabric Explorer, consultez [visualiser votre cluster avec Service Fabric Explorer](service-fabric-visualizing-your-cluster.md).
+   > Pour plus d’informations sur Service Fabric Explorer, voir [Visualiser votre cluster à l’aide de l’outil Service Fabric Explorer](service-fabric-visualizing-your-cluster.md).
    > 
    > 
 
 ## <a name="upgrade-an-application"></a>Mettre à niveau une application
-L’infrastructure de service fournit des mises à niveau sans temps mort en surveillant la santé de l’application hello hello comme il déploie sur le cluster de hello. Effectuer une mise à niveau de hello WordCount application.
+Service Fabric fournit des mises à niveau sans temps mort en analysant l’état de l’application au fur et à mesure qu’il se déploie sur le cluster. Effectuez une mise à niveau de l’application WordCount.
 
-Hello nouvelle version d’application hello maintenant compte uniquement les mots qui commencent par une voyelle. Comme la mise à niveau hello déploie des, nous voyons deux modifications de comportement de l’application hello. Taux hello auquel augmente le nombre de hello doit tout d’abord, lent, étant donné que moins de mots sont comptabilisées. En second lieu, étant donné que la première partition de hello possède deux voyelles (A et E), et toutes les autres partitions contient un seul chaque, son nombre doit finalement démarrer toooutpace hello d’autres.
+La nouvelle version de l’application compte désormais uniquement les mots commençant par une voyelle. Au fur et à mesure que la mise à niveau se déploie, nous voyons deux changements de comportement dans l’application. Tout d’abord, la vitesse de développement du nombre baisse, car un nombre de mots inférieur est compté. Ensuite, comme la première partition comporte deux voyelles (A et E) et tous les autres une seule, le décompte doit commencer pour devancer les autres.
 
-1. [Télécharger le package de version 2 WordCount hello](http://aka.ms/servicefabric-wordcountappv2) toohello même emplacement où vous avez téléchargé le package de version 1 hello.
-2. Retourne la fenêtre de PowerShell tooyour et utilisez la commande de mise à niveau du Kit de développement hello tooregister hello la nouvelle version dans le cluster de hello. Commencez la mise à niveau de l’ensemble fibre optique hello : / WordCount application.
+1. [Téléchargez le package WordCount version 2](http://aka.ms/servicefabric-wordcountappv2) au même emplacement que celui où vous avez téléchargé le package version 1.
+2. Revenez à votre fenêtre PowerShell et utilisez les commandes de mise à niveau du kit de développement logiciel pour enregistrer la nouvelle version dans le cluster. Commencez ensuite la mise à niveau de l’application : /WordCount application.
    
     ```powershell
     Publish-UpgradedServiceFabricApplication -ApplicationPackagePath C:\ServiceFabric\WordCountV2.sfpkg -ApplicationName "fabric:/WordCount" -UpgradeParameters @{"FailureAction"="Rollback"; "UpgradeReplicaSetCheckTimeout"=1; "Monitored"=$true; "Force"=$true}
     ```
    
-    Vous devez voir hello sortie suivante dans PowerShell comme hello mise à niveau commence.
+    Vous devriez voir apparaître la sortie ci-après dans PowerShell au début de la mise à niveau.
    
     ![Progression de la mise à niveau dans PowerShell][ps-appupgradeprogress]
-3. Lors de la mise à niveau hello est continuer, il peut s’avérer plus facile toomonitor son état de Service Fabric Explorer. Lancez une fenêtre de navigateur et accédez trop[http://localhost:19080/Explorer](http://localhost:19080/Explorer). Développez **Applications** dans l’arborescence hello hello gauche, puis choisissez **WordCount**et enfin **fabric : / WordCount**. Dans l’onglet d’essentials hello, vous voyez état hello de mise à niveau hello elle parcoure les domaines de mise à niveau du cluster hello.
+3. Bien que la mise à niveau s’exécute, il peut s’avérer plus facile de surveiller son état à partir de Fabric Service Explorer. Lancez une fenêtre de navigateur et accédez à [http://localhost:19080/Explorer](http://localhost:19080/Explorer). Développez **Applications** dans l’arborescence figurant sur la gauche, puis choisissez **WordCount** et enfin **fabric:/WordCount**. Dans l’onglet Bases, vous voyez l’état de la mise à niveau à mesure qu’elle se poursuit dans les domaines de mise à niveau du cluster.
    
     ![Progression de la mise à niveau dans Service Fabric Explorer][sfx-upgradeprogress]
    
-    Comme la mise à niveau hello se poursuit dans chaque domaine, contrôles d’intégrité sont effectuée tooensure qui application hello se comporte correctement.
-4. Si vous réexécutez hello précédemment de requête d’ensemble de hello de services dans l’ensemble fibre optique hello : / WordCount application, notez que hello version WordCountService modifiée mais hello WordCountWebService version n’a pas :
+    Comme la mise à niveau se poursuit dans chaque domaine, les vérifications d’état sont effectuées pour vous assurer que l’application se comporte correctement.
+4. Si vous réexécutez la requête qui précède pour l’ensemble des services inclus dans l’application fabric:/Wordcount, notez que la version de WordCountService a changé, mais non la version de WordCountWebService :
    
     ```powershell
     Get-ServiceFabricService -ApplicationName 'fabric:/WordCount'
@@ -161,52 +161,52 @@ Hello nouvelle version d’application hello maintenant compte uniquement les mo
    
     ![Services d’application de requête après mise à niveau][ps-getsfsvc-postupgrade]
    
-    Cet exemple met en évidence la façon dont Service Fabric gère les mises à niveau d’application. Il touche uniquement hello ensemble de services (ou des packages de code/de configuration au sein de ces services) qui ont été modifiés, ce qui rend le processus de mise à niveau plus rapide et plus fiable de hello.
-5. Enfin, retourner le comportement de hello toohello navigateur tooobserve version nouvelle de l’application hello. Comme prévu, hello nombre progresse plus lentement et partition de première hello se termine par légèrement plus du volume de hello.
+    Cet exemple met en évidence la façon dont Service Fabric gère les mises à niveau d’application. Cela ne touche que l’ensemble des services (ou des packages de configuration/code au sein de ces services) qui ont été modifiés, rendant le processus de mise à niveau plus rapide et plus fiable.
+5. Enfin, retournez au navigateur pour observer le comportement de la nouvelle version de l’application. Comme prévu, le nombre progresse plus lentement et la première partition se termine avec légèrement plus du volume.
    
-    ![Vue hello nouvelle version de l’application hello dans le navigateur de hello][deployed-app-ui-v2]
+    ![Afficher la nouvelle version de l’application dans le navigateur][deployed-app-ui-v2]
 
 ## <a name="cleaning-up"></a>Nettoyage
-Avant de conclure, il est important de tooremember qui hello cluster local est de type real. Applications continuent toorun en arrière-plan de hello jusqu'à ce que vous les supprimez.  Selon la nature hello de vos applications, une application en cours d’exécution peut prendre des ressources importantes sur votre ordinateur. Vous avez plusieurs applications de toomanage options et cluster de hello :
+Avant de conclure, il est important de se rappeler que le cluster local est réel. Les applications continuent de s’exécuter en arrière-plan jusqu’à ce que vous les supprimiez.  Selon la nature de vos applications, une application en cours d’exécution peut accaparer une quantité significative de ressources de votre ordinateur. Vous disposez de plusieurs options pour gérer les applications et le cluster :
 
-1. tooremove une application individuelle et toutes ses données, exécutez hello de commande suivante :
+1. Pour supprimer une application spécifique et toutes ses données, exécutez la commande suivante :
    
     ```powershell
     Unpublish-ServiceFabricApplication -ApplicationName "fabric:/WordCount"
     ```
    
-    Ou bien, supprimez l’application hello de hello Service Fabric Explorer **ACTIONS** un menu ou hello dans la vue de liste de gauche application hello.
+    Une autre possibilité consiste à supprimer l’application à partir du menu **ACTIONS** de Service Fabric Explorer ou du menu contextuel dans la vue Liste des applications sur la gauche.
    
     ![Supprimer une application dans Service Fabric Explorer][sfe-delete-application]
-2. Après avoir supprimé l’application hello du cluster de hello, annulez l’enregistrement de versions 1.0.0 et 2.0.0 Hello WordCount type d’application. Suppression supprime les packages d’application hello, y compris le code de hello et la configuration, à partir du magasin d’images du cluster hello.
+2. Après avoir supprimé l’application du cluster, annulez l’inscription des versions 1.0.0 et 2.0.0 du type d’application WordCount. Cette opération supprime les packages d’application, y compris le code et la configuration, à partir du magasin d’images du cluster.
    
     ```powershell
     Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 2.0.0
     Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 1.0.0
     ```
    
-    Ou, dans l’Explorateur de l’infrastructure de Service, choisissez **la mise hors service Type** pour une application hello.
-3. tooshut cluster de hello mais conserver les données application hello et traces, cliquez sur **arrêter le Cluster Local** dans l’application de barre d’état système hello.
-4. est entièrement, cliquez sur cluster de hello toodelete **supprimer le Cluster Local** dans l’application de barre d’état système hello. Cette option entraîne une autre hello de déploiement lente prochaine fois que vous appuyez sur F5 dans Visual Studio. Supprimer cluster local de hello uniquement si vous n’envisagez pas toouse pendant un certain temps, ou si vous avez besoin des ressources de tooreclaim.
+    Une autre possibilité consiste à accéder à Service Fabric Explorer et à choisir **Type de mise hors service** pour l’application.
+3. Pour arrêter le cluster tout en conservant les données et les traces de l’application, cliquez sur **Arrêter le cluster local** dans l’application de zone de notification.
+4. Pour supprimer complètement le cluster, cliquez sur **Supprimer le cluster local** dans l’application de zone de notification. Cette option se traduira par un autre déploiement lent la prochaine fois que vous appuierez sur F5 dans Visual Studio. Supprimez le cluster local uniquement si vous n’envisagez pas de l’utiliser pendant un certain temps, ou si vous avez besoin de libérer des ressources.
 
 ## <a name="one-node-and-five-node-cluster-mode"></a>Modes de cluster un nœud et cinq nœuds
-Lorsque vous développez des applications, vous êtes souvent amené à effectuer des itérations rapides d’écriture de code, de débogage, de modification de code et de débogage. toohelp optimiser ce processus, le cluster local de hello peut exécuter dans deux modes : un nœud ou cinq nœuds. Ces deux modes de cluster présentent chacun des avantages. Cinq nœuds permet de toowork avec un cluster réel. Vous pouvez tester des scénarios de basculement, et travailler avec un plus grand nombre d’instances et de réplicas de vos services. Un nœud est un déploiement rapide toodo optimisé et l’inscription des services, toohelp vous validez rapidement le code à l’aide du runtime de Service Fabric hello.
+Lorsque vous développez des applications, vous êtes souvent amené à effectuer des itérations rapides d’écriture de code, de débogage, de modification de code et de débogage. Afin d’optimiser ce processus, le cluster local peut s’exécuter dans deux modes : un nœud ou cinq nœuds. Ces deux modes de cluster présentent chacun des avantages. Le mode de cluster cinq nœuds vous permet d’utiliser un cluster réel. Vous pouvez tester des scénarios de basculement, et travailler avec un plus grand nombre d’instances et de réplicas de vos services. Le mode de cluster un nœud est optimisé pour accélérer le déploiement et l’inscription des services, afin de vous aider à valider rapidement le code à l’aide du runtime Service Fabric.
 
-Ni le mode de cluster un nœud, ni le mode de cluster cinq nœuds ne constituent un émulateur ou un simulateur. cluster de développement local Hello exécute hello même code de plate-forme qui se trouve sur des clusters comportant plusieurs ordinateurs.
+Ni le mode de cluster un nœud, ni le mode de cluster cinq nœuds ne constituent un émulateur ou un simulateur. Le cluster de développement local exécute le même code de plateforme que celui qu’on trouve sur les clusters comportant plusieurs machines.
 
 > [!WARNING]
-> Lorsque vous modifiez le mode de cluster hello, le cluster actuel hello est supprimé de votre système et un nouveau cluster est créé. données Hello stockées dans un cluster de hello sont supprimées lorsque vous modifiez le mode de cluster.
+> Lorsque vous changez le mode de cluster, le cluster actuel est supprimé de votre système, et un autre cluster est créé. La modification du mode de cluster entraîne la suppression des données stockées dans le cluster.
 > 
 > 
 
-toochange hello mode tooone cluster à nœud, sélectionnez **le Mode Cluster** Bonjour Gestionnaire du Cluster Service Fabric Local.
+Pour sélectionner le mode de cluster un nœud, sélectionnez **Switch Cluster Mode (Changer de mode de cluster)** dans le gestionnaire de cluster local Service Fabric.
 
 ![Changer de mode de cluster][switch-cluster-mode]
 
-Ou bien, modifier le mode de cluster hello à l’aide de PowerShell :
+Une autre possibilité consiste à modifier le mode de cluster en utilisant PowerShell :
 
 1. Lancez une nouvelle fenêtre PowerShell en tant qu’administrateur.
-2. Exécutez le script d’installation de cluster hello à partir du dossier du Kit de développement logiciel hello :
+2. Exécutez le script de configuration de cluster à partir du dossier du kit de développement logiciel :
    
     ```powershell
     & "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1" -CreateOneNodeCluster
@@ -218,8 +218,8 @@ Ou bien, modifier le mode de cluster hello à l’aide de PowerShell :
 
 ## <a name="next-steps"></a>Étapes suivantes
 * Maintenant que vous avez déployé et mis à niveau certaines des applications pré intégrées, vous pouvez [Réessayer de générer les vôtres dans Visual Studio](service-fabric-create-your-first-application-in-visual-studio.md).
-* Toutes les actions de hello effectuées sur le cluster local de hello dans cet article peuvent être effectuées sur un [cluster Azure](service-fabric-cluster-creation-via-portal.md) également.
-* mise à niveau de Hello que nous avons effectué dans cet article a été base. Consultez hello [mise à niveau de la documentation](service-fabric-application-upgrade.md) toolearn plus d’informations sur la puissance de hello et la flexibilité de mises à niveau de Service Fabric.
+* Dans cet article, toutes les opérations effectuées sur le cluster local sont également applicables à un [cluster Azure](service-fabric-cluster-creation-via-portal.md) .
+* La mise à niveau exécutée dans cet article a été simple. Consultez la [documentation relative à la mise à niveau](service-fabric-application-upgrade.md) pour en savoir plus sur la puissance et la flexibilité des mises à niveau de Service Fabric.
 
 <!-- Images -->
 

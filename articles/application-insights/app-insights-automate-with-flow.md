@@ -1,6 +1,6 @@
 ---
-title: aaaAutomate Azure Application Insights traite avec Microsoft Flow
-description: "Découvrez comment vous pouvez utiliser Microsoft Flow tooquickly automatiser des processus reproductibles à l’aide du connecteur d’Application Insights hello."
+title: Automatiser les processus Azure Application Insights avec Microsoft Flow
+description: "Découvrez comment utiliser Microsoft Flow pour automatiser rapidement des processus reproductibles en utilisant le connecteur Application Insights."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -12,33 +12,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/25/2017
 ms.author: bwren
-ms.openlocfilehash: b34488a6b8b8b0a6add960a67f1426cbbbc13552
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 510f4f284bbd0dbe4171896899f7ade7dee19e39
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="automate-azure-application-insights-processes-with-hello-connector-for-microsoft-flow"></a>Automatiser les processus d’Application Azure Insights avec le connecteur de hello pour Microsoft Flow
+# <a name="automate-azure-application-insights-processes-with-the-connector-for-microsoft-flow"></a>Automatiser les processus Azure Application Insights avec le connecteur pour Microsoft Flow
 
-Trouver vous-même exécution répétée des mêmes requêtes hello sur votre toocheck de données de télémétrie votre service fonctionne correctement ? Est vous tooautomate recherchent ces requêtes pour rechercher des tendances et des anomalies et de générer vos propres workflows autour d’elles ? le connecteur Hello Azure Application Insights (preview) pour Microsoft Flow est un outil hello à ces fins.
+Vous devez exécuter à plusieurs reprises les mêmes requêtes sur vos données de télémétrie pour vérifier le bon fonctionnement de votre service ? Cherchez-vous à automatiser ces requêtes pour rechercher les tendances et les anomalies, puis générer vos propres flux de travail autour d’elles ? Le connecteur Azure Application Insights (préversion) pour Microsoft Flow est l’outil adapté à ces objectifs.
 
-Avec cette intégration, vous pouvez désormais automatiser de nombreux processus sans écrire la moindre ligne de code. Après avoir créé un flux à l’aide d’une action d’Application Insights, flux de hello s’exécute automatiquement votre requête d’Application Insights Analytique. 
+Avec cette intégration, vous pouvez désormais automatiser de nombreux processus sans écrire la moindre ligne de code. Après avoir créé un flux à l’aide d’une action Application Insights, le flux exécute automatiquement votre requête Application Insights Analytics. 
 
-Vous pouvez également ajouter des actions. Microsoft Flow met à votre disposition des centaines d’actions. Par exemple, vous pouvez utiliser Microsoft Flow tooautomatically envoyer une notification par courrier électronique ou créer un bogue dans Visual Studio Team Services. Vous pouvez également utiliser une des hello nombreux [modèles](https://ms.flow.microsoft.com/en-us/connectors/shared_applicationinsights/?slug=azure-application-insights) qui sont disponibles pour le connecteur hello pour Microsoft Flow. Ces modèles accélèrent hello de création d’un flux. 
+Vous pouvez également ajouter des actions. Microsoft Flow met à votre disposition des centaines d’actions. Par exemple, vous pouvez utiliser Microsoft Flow pour envoyer automatiquement une notification par courrier électronique ou créer un bogue dans Visual Studio Team Services. Vous pouvez également utiliser l’un des nombreux [modèles](https://ms.flow.microsoft.com/en-us/connectors/shared_applicationinsights/?slug=azure-application-insights) disponibles pour le connecteur pour Microsoft Flow. Ces modèles accélèrent le processus de création d’un flux. 
 
-<!--hello Application Insights connector also works with [Azure Power Apps](https://powerapps.microsoft.com/en-us/) and [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/?v=17.23h). --> 
+<!--The Application Insights connector also works with [Azure Power Apps](https://powerapps.microsoft.com/en-us/) and [Azure Logic Apps](https://azure.microsoft.com/services/logic-apps/?v=17.23h). --> 
 
 ## <a name="create-a-flow-for-application-insights"></a>Créer un flux pour Application Insights
 
-Dans ce didacticiel, vous allez apprendre comment toocreate un flux qui utilise hello Analytique auto-cluster algorithme toogroup les attributs dans les données de salutation pour une application web. flux de Hello envoie automatiquement les résultats de hello par courrier électronique, qu’un exemple de la façon dont vous pouvez utiliser Microsoft Flow et Application Insights Analytique ensemble. 
+Dans ce didacticiel, vous allez apprendre à créer un flux qui utilise l’algorithme de clusters automatiques Analytics aux attributs de groupe dans les données pour une application web. Ce flux envoie automatiquement les résultats par courrier électronique. Il s’agit d’un exemple de la façon dont vous pouvez utiliser Microsoft Flow et Application Insights Analytics ensemble. 
 
 ### <a name="step-1-create-a-flow"></a>Étape 1 : Créer un flux
-1. Connectez-vous trop[Microsoft Flow](http://flow.microsoft.com), puis sélectionnez **flux Mes**.
+1. Connectez-vous à [Microsoft Flow](http://flow.microsoft.com), puis sélectionnez **Mes flux**.
 2. Cliquez sur **Créer un flux à partir de rien**.
 
 ### <a name="step-2-create-a-trigger-for-your-flow"></a>Étape 2 : Créer un déclencheur pour votre flux
 1. Sélectionnez **Planifier**, puis **Planification - Récurrence**.
-2. Bonjour **fréquence** boîte, sélectionnez **jour**et Bonjour **intervalle** , entrez **1**.
+2. Dans la zone **Fréquence**, sélectionnez **Jour** et, dans la zone **Intervalle**, entrez **1**.
 
     ![Boîte de dialogue du déclencheur de flux Microsoft Flow](./media/app-insights-automate-with-flow/flow1.png)
 
@@ -50,22 +50,22 @@ Dans ce didacticiel, vous allez apprendre comment toocreate un flux qui utilise 
 
     ![Fenêtre d’exécution de la requête Analytics](./media/app-insights-automate-with-flow/flow2.png)
 
-### <a name="step-4-connect-tooan-application-insights-resource"></a>Étape 4 : Connecter des ressources d’Application Insights tooan
+### <a name="step-4-connect-to-an-application-insights-resource"></a>Étape 4 : Se connecter à une ressource Application Insights
 
-toocomplete cette étape, vous avez besoin d’un ID d’application et une clé d’API pour votre ressource. Vous pouvez les récupérer à partir de hello portail Azure, comme indiqué dans hello suivant schéma :
+Pour cette étape, vous avez besoin d’un ID d’application et d’une clé d’API pour votre ressource. Vous pouvez les récupérer sur le portail Azure, comme illustré dans le schéma suivant :
 
-![ID d’application Bonjour portail Azure](./media/app-insights-automate-with-flow/appid.png) 
+![ID d’application dans le portail Azure](./media/app-insights-automate-with-flow/appid.png) 
 
-- Fournissez un nom pour votre connexion, ainsi que de la clé API et ID d’application hello.
+- Renseignez le nom de votre connexion, l’ID d’application et la clé d’API.
 
     ![Fenêtre de connexion Microsoft Flow](./media/app-insights-automate-with-flow/flow3.png)
 
-### <a name="step-5-specify-hello-analytics-query-and-chart-type"></a>Étape 5 : Spécifier hello les requête Analytique et type de graphique
-Cet exemple de requête sélectionne des demandes de hello a échoué dans le dernier jour de hello et les met en corrélation avec les exceptions qui se sont produites dans le cadre de l’opération de hello. Analytique les met en corrélation basée sur l’identificateur hello identifiant_opération. requête de Hello puis segmente les résultats de hello en utilisant l’algorithme d’autocluster hello. 
+### <a name="step-5-specify-the-analytics-query-and-chart-type"></a>Étape 5 : Spécifier le type de requête et de graphique Analytics
+Cet exemple de requête sélectionne les requêtes ayant échoué au cours du dernier jour et les met en corrélation avec les exceptions qui se sont produites dans le cadre de l’opération. Analytics les met en corrélation en fonction de l’identificateur operation_Id. La requête segmente ensuite les résultats à l’aide de l’algorithme de cluster automatique. 
 
-Lorsque vous créez vos propres requêtes, vérifier qu’ils fonctionnent correctement dans Analytique avant d’ajouter celui-ci tooyour flux.
+Lorsque vous créez vos propres requêtes, vérifiez qu’elles fonctionnent correctement dans Analytics avant de les ajouter à votre flux.
 
-- Ajouter hello suivant la requête de l’Analytique, puis sélectionnez le type de graphique de table HTML hello. 
+- Ajoutez la requête Analytics suivante, puis sélectionnez le type de graphique de tableau HTML. 
 
     ```
     requests
@@ -80,7 +80,7 @@ Lorsque vous créez vos propres requêtes, vérifier qu’ils fonctionnent corre
     
     ![Fenêtre de configuration de requête Analytics](./media/app-insights-automate-with-flow/flow4.png)
 
-### <a name="step-6-configure-hello-flow-toosend-email"></a>Étape 6 : Configurer la messagerie de hello flux toosend
+### <a name="step-6-configure-the-flow-to-send-email"></a>Étape 6 : Configurer le flux pour envoyer un courrier électronique
 
 1. Cliquez sur **Nouvelle étape**, puis sur **Ajouter une action**.
 2. Recherchez **Office 365 Outlook**.
@@ -88,36 +88,36 @@ Lorsque vous créez vos propres requêtes, vérifier qu’ils fonctionnent corre
 
     ![Fenêtre de sélection d’Office 365 Outlook](./media/app-insights-automate-with-flow/flow2b.png)
 
-4. Bonjour **envoyer un courrier électronique** fenêtre, hello suivant :
+4. Dans la fenêtre **Envoyer un message électronique**, effectuez les étapes suivantes :
 
-   a. Tapez l’adresse de messagerie hello du destinataire de hello.
+   a. Tapez l’adresse e-mail du destinataire.
 
-   b. Entrez un objet pour le courrier électronique de hello.
+   b. Tapez l’objet de l’e-mail.
 
-   c. Cliquez n’importe où dans hello **corps** zone, hello dynamique contenu menu qui s’ouvre à droite de hello, puis **corps**.
+   c. Cliquez n’importe où dans la zone **Corps**, puis, dans le menu de contenu dynamique qui s’ouvre sur la droite, sélectionnez **Corps**.
 
    d. Cliquez sur **Afficher les options avancées**.
 
     ![Configuration d’Office 365 Outlook](./media/app-insights-automate-with-flow/flow5.png)
 
-5. Dans le menu de contenu dynamique hello, procédez comme hello suivant :
+5. Dans le menu de contenu dynamique, effectuez les étapes suivantes :
 
     a. Sélectionnez **Nom de la pièce jointe**.
 
     b. Sélectionnez **Attachment Content** (Contenu de la pièce jointe).
     
-    c. Bonjour **HTML** boîte, sélectionnez **Oui**.
+    c. Dans la zone **Is HTML** (Est HTML), sélectionnez **Oui**.
 
     ![Fenêtre de configuration d’e-mail Office 365](./media/app-insights-automate-with-flow/flow7.png)
 
 ### <a name="step-7-save-and-test-your-flow"></a>Étape 7 : Enregistrer et tester votre flux
-- Bonjour **nom de flux** zone, ajouter un nom pour votre flux, puis cliquez sur **créer un flux**.
+- Dans la zone **Nom du flux**, ajoutez un nom pour votre flux, puis cliquez sur **Créer un flux**.
 
     ![Fenêtre de création de flux](./media/app-insights-automate-with-flow/flow8.png)
 
-Vous pouvez attendre hello déclencheur toorun cette action, ou vous pouvez exécuter des flux de hello immédiatement par [le déclencheur hello en cours d’exécution de la demande](https://flow.microsoft.com/blog/run-now-and-six-more-services/).
+Vous pouvez attendre que le déclencheur exécute cette action ou vous pouvez exécuter immédiatement le flux en [exécutant le déclencheur à la demande](https://flow.microsoft.com/blog/run-now-and-six-more-services/).
 
-Exécution de flux de hello hello que vous avez spécifié dans la liste de messagerie hello destinataires un message électronique qui ressemble à hello suivantes :
+Lorsque le flux s’exécute, les destinataires que vous avez spécifiés dans la liste des e-mails reçoivent un e-mail similaire à :
 
 ![Exemple de message électronique](./media/app-insights-automate-with-flow/flow9.png)
 

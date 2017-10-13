@@ -1,6 +1,6 @@
 ---
-title: "Synchronisation Azure AD Connect : présentation de l’architecture de hello | Documents Microsoft"
-description: "Cette rubrique décrit l’architecture de synchronisation Azure AD Connect hello et explique hello termes utilisés."
+title: "Azure AD Connect Sync : présentation de l’architecture | Microsoft Docs"
+description: "Cette rubrique décrit l’architecture de Microsoft Azure AD Connect Sync et explique les termes utilisés."
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,209 +14,209 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 9fb979fcf8feb7b4d406789102239480b0b4bc94
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 51082ad453d53f56f30f814b78578801c00f4827
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="azure-ad-connect-sync-understanding-hello-architecture"></a>Synchronisation Azure AD Connect : présentation de l’architecture de hello
-Cette rubrique décrit l’architecture de base hello pour la synchronisation Azure AD Connect. Dans nombreux aspects, il est similaire tooits prédécesseurs, MIIS 2003, 2007 de ILM et FIM 2010. Synchronisation Azure AD Connect est évolution hello de ces technologies. Si vous êtes familiarisé avec ces technologies antérieures, le contenu de cette rubrique hello sera familier tooyou ainsi. Si vous êtes toosynchronization nouvelle, cette rubrique est pour vous. Il n’est toutefois pas exigence tooknow hello des détails sur cette toobe rubrique réussi à effectuer des personnalisations tooAzure AD Connect synchronisation (moteur de synchronisation appelée dans cette rubrique).
+# <a name="azure-ad-connect-sync-understanding-the-architecture"></a>Azure AD Connect Sync : présentation de l’architecture
+Cette rubrique décrit l’architecture de base pour Azure AD Connect Sync. Celle-ci est similaire à ses prédécesseurs MIIS 2003, ILM 2007 et FIM 2010 et ce, sur plusieurs plans. Azure AD Connect Sync représente l’évolution de ces technologies. Si vous connaissez ces technologies plus anciennes, le contenu de cette rubrique vous sera également familier. Si vous ne connaissez pas la synchronisation, cette rubrique est pour vous. Il n’est toutefois pas nécessaire de connaître les détails de cette rubrique pour effectuer des personnalisations de Microsoft Azure AD Connect Sync (appelé « moteur de synchronisation » dans cette rubrique).
 
 ## <a name="architecture"></a>Architecture
-moteur de synchronisation Hello crée une vue intégrée des objets qui sont stockées dans plusieurs sources de données connectées et gère les informations d’identité dans ces sources de données. Cet affichage intégré est déterminé par les informations d’identité hello récupérées à partir de sources de données connectées et un ensemble de règles qui déterminent comment tooprocess ces informations.
+Le moteur de synchronisation crée une vue intégrée des objets qui sont stockés dans plusieurs sources de données connectées et gère les informations d’identité dans ces dernières. Cette vue intégrée est déterminée par les informations d’identité, issues de sources de données connectées, et un ensemble de règles qui déterminent la manière de traiter ces informations.
 
 ### <a name="connected-data-sources-and-connectors"></a>Sources de données connectées et connecteurs
-moteur de synchronisation Hello traite les informations d’identité à partir de référentiels de données différentes, telles que Active Directory ou d’une base de données SQL Server. Chaque référentiel de données qui organise ses données dans un format de base de données et qui fournit des méthodes d’accès aux données standard est un candidat de source de données potentielles pour le moteur de synchronisation hello. sources de données Hello sont synchronisés par le moteur de synchronisation sont appelés **sources de données connectées** ou **annuaires connectés** (CD).
+Le moteur de synchronisation traite les informations d’identité à partir de différents référentiels de données tels qu’Active Directory ou une base de données SQL Server. Chaque référentiel de données qui organise ses données dans un format de type base de données et qui fournit des méthodes d’accès aux données standard est une source de données potentielle pour le moteur de synchronisation. Les référentiels de données qui sont synchronisés par le moteur de synchronisation sont appelés **sources de données connectées** ou **annuaires connectés**.
 
-moteur de synchronisation Hello encapsule l’interaction avec une source de données connectée dans un module appelé un **connecteur**. À chaque type de source de données connectée correspond un connecteur spécifique. Hello connecteur se traduit par une opération requise en format hello hello données connectée source comprend.
+Le moteur de synchronisation encapsule l’interaction avec une source de données connectée au sein d’un module appelé **connecteur**. À chaque type de source de données connectée correspond un connecteur spécifique. Le connecteur traduit une opération requise dans un format que la source de données connectée peut comprendre.
 
-Connecteurs effectuer des appels d’API tooexchange informations d’identité (lecture et d’écriture) avec une source de données connectée. Il est également possible de tooadd un connecteur personnalisé à l’aide du framework de connectivité extensible hello. Hello l’illustration suivante montre comment un connecteur connecte à un moteur de synchronisation de données connectée source toohello.
+Les connecteurs effectuent des appels d’API pour échanger des informations d’identité (en lecture et en écriture) avec une source de données connectée. Il est également possible d’ajouter un connecteur personnalisé à l’aide de l’infrastructure de connectivité extensible. L’illustration suivante indique comment un connecteur relie une source de données connectée au moteur de synchronisation.
 
 ![Arch1](./media/active-directory-aadconnectsync-understanding-architecture/arch1.png)
 
-Les données peuvent circuler dans les deux sens, mais pas simultanément. En d’autres termes, un connecteur peut être configuré tooallow données tooflow à partir du moteur de toosync de source de données connectée hello ou à partir de la source de données connectée du moteur toohello de synchronisation, mais uniquement une de ces opérations peut se produire à tout moment pour un objet et d’attribut. direction de Hello peut être différente pour différents objets et des attributs différents.
+Les données peuvent circuler dans les deux sens, mais pas simultanément. En d’autres termes, un connecteur peut être configuré pour autoriser les données à circuler de la source de données connectée au moteur de synchronisation ou du moteur de synchronisation à la source de données connectée, mais il est uniquement possible d’effectuer l’une de ces opérations à la fois pour un objet et un attribut. La direction peut être différente pour divers objets et attributs.
 
-tooconfigure un connecteur, vous spécifiez les types d’objets de hello que vous souhaitez toosynchronize. Spécification des types d’objet hello définit étendue hello d’objets qui sont inclus dans le processus de synchronisation hello. étape suivante de Hello est tooselect hello attributs toosynchronize, qui est connue comme une liste d’inclusion d’attributs. Ces paramètres peuvent être modifiés à tout moment dans les règles d’entreprise tooyour toochanges réponse. Lorsque vous utilisez Assistant d’installation Bonjour Azure AD Connect, ces paramètres sont configurés pour vous.
+Pour configurer un connecteur, vous spécifiez les types d’objets que vous souhaitez synchroniser. Le fait de spécifier les types d’objet permet d’avoir une vue globale sur les objets qui sont inclus dans le processus de synchronisation. L’étape suivante consiste à sélectionner les attributs à synchroniser dans une liste, connue sous le nom de liste d’inclusion d’attributs. Ces paramètres peuvent être modifiés à tout moment suite aux modifications apportées aux règles d’entreprise. Ces paramètres sont configurés pour vous lorsque vous utilisez l’assistant d’installation de Microsoft Azure AD Connect.
 
-source de données connectée tooexport objets tooa, liste d’inclusion attribut hello doit inclure au moins hello minimale des attributs requis toocreate un objet spécifique de type dans une source de données connectée. Par exemple, hello **sAMAccountName** attribut doit être inclus dans tooexport de liste d’inclusion hello attribut un utilisateur de l’objet tooActive active, car tous les objets utilisateur dans Active Directory doivent avoir un **sAMAccountName**  attribut défini. Là encore, l’Assistant installation hello effectue cette configuration pour vous.
+Pour exporter des objets vers une source de données connectée, la liste d’inclusion d’attributs doit inclure au moins le nombre minimal d’attributs requis pour créer un type d’objet spécifique dans une source de données connectée. Par exemple, l’attribut **sAMAccountName** doit être inclus dans la liste d’inclusion d’attributs pour exporter un objet utilisateur dans Active Directory. En effet, un attribut **sAMAccountName** doit être défini pour tous les objets utilisateur dans Active Directory. Là encore, l’assistant d’installation effectue cette configuration pour vous.
 
-Si la source de données connectée hello utilise des composants structurels, tels que les objets tooorganize partitions ou des conteneurs, vous pouvez limiter les zones hello dans la source de données connectée hello qui sont utilisées pour une solution donnée.
+Si la source de données connectée utilise des composants structurels, tels que des partitions ou des conteneurs, pour organiser les objets, vous pouvez limiter les zones de la source de données connectée qui sont utilisées pour une solution donnée.
 
-### <a name="internal-structure-of-hello-sync-engine-namespace"></a>Structure interne de l’espace de noms du moteur de synchronisation hello
-espace de noms du moteur de synchronisation entier Hello se compose de deux espaces de noms qui stockent des informations d’identité hello. Hello deux espaces de noms sont :
+### <a name="internal-structure-of-the-sync-engine-namespace"></a>Structure interne de l’espace de noms du moteur de synchronisation
+La totalité de l’espace de noms du moteur de synchronisation se compose de deux espaces de noms, qui stockent les informations d’identité. Ces deux espaces sont les suivants :
 
-* espace de connecteur Hello (CS)
-* Hello métaverse (MV)
+* L’espace connecteur
+* Le métaverse (MV)
 
-Hello **espace connecteur** est une zone de transit qui contient les représentations sous forme de hello désigné des objets à partir d’un attributs hello et de la source de données connectée spécifié dans la liste d’inclusion attribut hello. moteur de synchronisation Hello utilise toodetermine d’espace connecteur hello Nouveautés hello connecté données source et toostage les modifications entrantes. moteur de synchronisation Hello utilise également toostage d’espace connecteur hello sortant des modifications pour la source de données connectée toohello exportation. moteur de synchronisation Hello gère un espace de connecteur distinct comme une zone de transit pour chaque connecteur.
+L’ **espace connecteur** est une zone de transit contenant les représentations des objets désignés à partir d’une source de données connectée, ainsi que des attributs spécifiés dans la liste d’inclusion d’attributs. Le moteur de synchronisation utilise l’espace connecteur pour identifier les éléments modifiés dans la source de données connectée et pour préparer les modifications entrantes. Le moteur de synchronisation utilise également l’espace connecteur pour préparer les modifications sortantes à des fins d’exportation vers la source de données connectée. Le moteur de synchronisation gère un espace connecteur distinct en tant que zone de transit pour chaque connecteur.
 
-En utilisant une zone de transit, moteur de synchronisation hello reste indépendante des sources de données hello connecté et n’est pas affectée par leur disponibilité et leur accessibilité. Par conséquent, vous pouvez traiter les informations d’identité à tout moment à l’aide des données de salutation dans la zone de transit hello. moteur de synchronisation Hello peut demander uniquement les modifications hello apportées à l’intérieur de source de données connectée hello depuis hello dernière session de communication arrêtée ou par émission de données uniquement hello modifications tooidentity d’informations qui hello de source de données connectée n’a pas encore reçu, ce qui réduit trafic réseau Hello entre le moteur de synchronisation hello et la source de données connectée hello.
+Grâce à la zone de transit, le moteur de synchronisation reste indépendant des sources de données connectées et n’est pas affecté par leur disponibilité et leur accessibilité. Par conséquent, vous pouvez traiter les informations d’identité à tout moment en utilisant les données de la zone de transit. Le moteur de synchronisation peut uniquement demander les modifications apportées à l’intérieur de la source de données connectée depuis l’arrêt de la dernière session de communication, ou émettre uniquement les modifications apportées aux informations d’identité que la source de données connectée n’a pas encore reçues, ce qui réduit le trafic réseau entre le moteur de synchronisation et la source de données connectée.
 
-En outre, le moteur de synchronisation stocke les informations d’état sur tous les objets qu’il effectue une copie intermédiaire dans l’espace de connecteur hello. Lors de la réception de nouvelles données, le moteur de synchronisation évalue toujours si les données de salutation a déjà été synchronisées.
+En outre, le moteur de synchronisation stocke les informations d’état sur tous les objets qu’il prépare dans l’espace connecteur. Lors de la réception de nouvelles données, le moteur de synchronisation évalue toujours si celles-ci ont déjà été synchronisées.
 
-Hello **métaverse** est une zone de stockage qui contient des informations d’identité hello agrégée à partir de plusieurs sources de données connectées, fournissant une vue globale et intégrée unique de tous les objets combinés. Objets du métaverse sont créés en fonction des informations d’identité hello hello connecté des sources de données et un ensemble de règles qui permettent de processus de synchronisation toocustomize hello sont récupérée.
+Le **métaverse** est une zone de stockage qui contient les informations d’identité agrégées à partir de plusieurs sources de données connectées, fournissant ainsi une vue globale et intégrée unique de tous les objets combinés. Les objets métaverse sont créés sur la base des informations d’identité récupérées à partir de sources de données connectées et d’un ensemble de règles qui vous permettent de personnaliser le processus de synchronisation.
 
-Hello l’illustration suivante espaces de noms d’espace de connecteur hello et hello métaverse dans le moteur de synchronisation hello.
+L’illustration suivante représente l’espace de noms de l’espace connecteur ainsi que l’espace de noms du métaverse dans le moteur de synchronisation.
 
 ![Arch2](./media/active-directory-aadconnectsync-understanding-architecture/arch2.png)
 
 ## <a name="sync-engine-identity-objects"></a>Objets d’identité du moteur de synchronisation
-objets Hello dans le moteur de synchronisation hello sont des représentations sous forme de deux objets de source de données connectée hello ou hello affichage intégré qui le moteur de synchronisation a de ces objets. Chaque objet du moteur de synchronisation doit avoir un GUID. Les GUID garantissent l’intégrité des données et expriment les relations entre les objets.
+Les objets du moteur de synchronisation sont des représentations des objets dans la source de données connectée, ou de la vue intégrée de ces objets dont dispose le moteur de synchronisation. Chaque objet du moteur de synchronisation doit avoir un GUID. Les GUID garantissent l’intégrité des données et expriment les relations entre les objets.
 
 ### <a name="connector-space-objects"></a>Objets de l’espace connecteur
-Lorsque le moteur de synchronisation communique avec une source de données connectée, il lit les informations d’identité hello dans la source de données connectée hello et utilise ce toocreate informations une représentation d’objet d’identité hello dans l’espace de connecteur hello. Il est impossible de créer ou de supprimer ces objets individuellement. Cependant, vous pouvez supprimer manuellement tous les objets dans un espace connecteur.
+Lorsque le moteur de synchronisation communique avec une source de données connectée, il lit les informations d’identité dans cette dernière et utilise ces informations pour créer une représentation de l’objet d’identité dans l’espace connecteur. Il est impossible de créer ou de supprimer ces objets individuellement. Cependant, vous pouvez supprimer manuellement tous les objets dans un espace connecteur.
 
-Tous les objets dans l’espace de connecteur hello ont deux attributs :
+Tous les objets de l’espace connecteur présentent deux attributs :
 
 * Un GUID
 * Un nom unique
 
-Si hello connecté source de données assigne un objet de toohello d’attribut unique, puis les objets dans l’espace de connecteur hello peuvent avoir également un attribut d’ancrage. attribut d’ancrage Hello identifie de façon unique un objet dans la source de données connectée hello. moteur de synchronisation Hello utilise hello ancre toolocate hello représentation correspondante de cet objet dans la source de données connectée hello. Moteur de synchronisation suppose que ce point d’ancrage hello d’un objet jamais modifications sur la durée de vie hello d’objet de hello.
+Si la source de données connectée affecte un attribut unique à l’objet, les objets de l’espace connecteur peuvent également présenter un attribut d’ancre. L’attribut d’ancre identifie un objet de manière unique dans la source de données connectée. Le moteur de synchronisation utilise l’ancre pour localiser la représentation correspondante de cet objet dans la source de données connectée. Le moteur de synchronisation suppose que l’ancre d’un objet ne change jamais pendant toute la durée de vie de l’objet.
 
-La plupart des connecteurs de hello utilisent un toogenerate un identificateur unique connu une ancre automatiquement pour chaque objet lors de son importation. Par exemple, hello connecteur Active Directory utilise hello **objectGUID** attribut pour un point d’ancrage. Pour les sources de données connectée qui ne fournissent pas un identificateur unique clairement défini, vous pouvez spécifier la génération d’ancrage dans le cadre de la configuration du connecteur hello.
+Plusieurs connecteurs utilisent un identificateur unique connu pour générer automatiquement une ancre pour chaque objet lors de son importation. Par exemple, le connecteur Active Directory utilise l’attribut **objectGUID** à titre d’ancre. Pour les sources de données connectées qui ne fournissent pas un identificateur unique clairement défini, vous pouvez spécifier la génération d’une ancre dans le cadre de la configuration du connecteur.
 
-Dans ce cas, l’ancre de hello est construit à partir d’un ou plusieurs attributs uniques d’un objet de type, ni de les modifications que vous et qui identifie de façon unique identifie l’objet hello dans l’espace de connecteur hello (par exemple, un numéro d’employé ou un ID d’utilisateur).
+Dans ce cas, l’ancre est construite à partir d’un ou de plusieurs attributs uniques d’un type d’objet. Aucun de ces derniers n’est modifié, ce qui permet d’identifier l’objet de manière unique dans l’espace connecteur (par exemple, un numéro d’employé ou un ID d’utilisateur).
 
-Un objet d’espace connecteur peut être hello suivantes :
+Un objet d’espace connecteur peut être :
 
 * Un objet intermédiaire
 * Un espace réservé
 
 ### <a name="staging-objects"></a>Objets intermédiaires
-Un objet intermédiaire représente une instance de hello désigné des types d’objets à partir de la source de données connectée hello. En outre toohello GUID et le nom unique de hello, un objet de zone de transit a toujours une valeur qui indique le type d’objet hello.
+Un objet intermédiaire représente une instance des types d’objet désignés de la source de données connectée. Outre le GUID et le nom unique, un objet intermédiaire présente toujours une valeur qui indique le type d’objet.
 
-Les objets de mise en lots qui ont été importés de toujours ont une valeur pour l’attribut d’ancrage hello. Les objets de mise en lots qui ont été récemment configurés par le moteur de synchronisation et de processus en cours de création dans la source de données connectée hello hello n’ont pas de valeur pour l’attribut d’ancrage hello.
+Les objets intermédiaires importés présentent toujours une valeur pour l’attribut d’ancre. Les objets intermédiaires récemment configurés par le moteur de synchronisation et en cours de création dans la source de données connectée ne présentent aucune valeur pour l’attribut d’ancre.
 
-Les objets de mise en lots comportent également des valeurs actuelles des attributs de l’entreprise et des informations opérationnelles requises par le processus de synchronisation de synchronisation du moteur tooperform hello. Informations opérationnelles incluent des indicateurs qui indiquent le type hello des mises à jour sont répliquées sur hello objet intermédiaire. Si un objet intermédiaire a reçu de nouvelles informations d’identité à partir de la source de données connectée hello qui n’a pas encore été traitée, l’objet de hello soit marquée comme en **en attente importation**. Si un objet de mise en lots contient les nouvelles informations d’identité n’a pas encore été la source de données connectée toohello exporté, elle est signalée comme **en attente d’exportation**.
+Les objets intermédiaires comportent aussi des valeurs actuelles pour les attributs d’entreprise ainsi que des informations opérationnelles nécessaires au moteur pour exécuter le processus de synchronisation. Les informations opérationnelles comprennent des indicateurs qui désignent le type des mises à jour préparées sur l’objet intermédiaire. Si un objet intermédiaire a reçu de nouvelles informations d’identité, qui proviennent de la source de données connectée et qui n’ont pas encore été traitées, l’objet est marqué d’un indicateur « **Importation en attente**». Si un objet intermédiaire contient de nouvelles informations d’identité qui n’ont pas encore été exportées vers la source de données connectée, l’objet est marqué d’un indicateur « **En attente d’exportation »**.
 
-Un objet intermédiaire peut être un objet d’importation ou d’exportation. moteur de synchronisation Hello crée un objet d’importation à l’aide des informations sur l’objet reçues à partir de la source de données connectée hello. Lorsque le moteur de synchronisation reçoit des informations sur l’existence de hello d’un nouvel objet qui correspond à l’un des types d’objet hello sélectionnés Bonjour connecteur, il crée un objet d’importation dans l’espace de connecteur hello en tant que représentation d’objet hello dans la source de données connectée hello.
+Un objet intermédiaire peut être un objet d’importation ou d’exportation. Le moteur de synchronisation crée un objet d’importation à l’aide des informations relatives aux objets envoyées par la source de données connectée. Lorsque le moteur de synchronisation reçoit des informations sur l’existence d’un nouvel objet qui correspond à l’un des types d’objet sélectionnés dans le connecteur, il crée un objet d’importation dans l’espace connecteur en tant que représentation de l’objet dans la source de données connectée.
 
-Hello après l’illustration montre un objet d’importation qui représente un objet dans la source de données connectée hello.
+L’illustration suivante montre un objet d’importation représentant un objet dans la source de données connectée.
 
 ![Arch3](./media/active-directory-aadconnectsync-understanding-architecture/arch3.png)
 
-moteur de synchronisation Hello crée un objet de l’exportation à l’aide des informations relatives aux objets dans le métaverse de hello. Exporter des objets sont source de données connectée toohello exporté au cours de la prochaine session de communication de hello. Point de vue de hello du moteur de synchronisation hello, exporter des objets n’existent pas dans la source de données connectée hello encore. Par conséquent, l’attribut d’ancrage hello pour un objet de l’exportation n’est pas disponible. Après avoir reçu les objet hello à partir du moteur de synchronisation, la source de données connectée hello crée une valeur unique pour l’attribut d’ancrage hello d’objet de hello.
+Le moteur de synchronisation crée un objet d’exportation à l’aide des informations relatives aux objets dans le métaverse. Les objets d’exportation sont exportés vers la source de données connectée lors de la session de communication suivante. Du point de vue du moteur de synchronisation, les objets d’exportation n’existent pas encore dans la source de données connectée. Par conséquent, l’attribut d’ancre d’un objet d’exportation n’est pas disponible. Après avoir reçu l’objet du moteur de synchronisation, la source de données connectée crée une valeur unique pour l’attribut d’ancre de l’objet.
 
-Hello l’illustration suivante montre comment un objet de l’exportation est créé à l’aide des informations d’identité dans le métaverse de hello.
+L’illustration suivante illustre la création d’un objet d’exportation à l’aide des informations d’identité dans le métaverse.
 
 ![Arch4](./media/active-directory-aadconnectsync-understanding-architecture/arch4.png)
 
-moteur de synchronisation Hello confirme exportation hello d’objet de hello par réimporter objet hello à partir de la source de données connectée hello. Exporter des objets deviennent importer des objets lorsque le moteur de synchronisation les reçoit lors de l’importation suivante de hello à partir de cette source de données connectée.
+Le moteur de synchronisation confirme l’exportation de l’objet en le réimportant depuis la source de données connectée. Les objets d’exportation deviennent des objets d’importation lorsque le moteur de synchronisation les reçoit à la prochaine importation depuis cette source de données connectée.
 
 ### <a name="placeholders"></a>Espaces réservés
-moteur de synchronisation Hello utilise un espace de noms plat toostore des objets. Toutefois, certaines sources de données connectées, telles qu’Active Directory, utilisent un espace de noms hiérarchique. tootransform des informations à partir d’un espace de noms hiérarchique dans un espace de noms plat, moteur de synchronisation utilise des espaces réservés toopreserve hello de la hiérarchie.
+Le moteur de synchronisation utilise un espace de noms plat pour stocker des objets. Toutefois, certaines sources de données connectées, telles qu’Active Directory, utilisent un espace de noms hiérarchique. Pour transformer les informations d’un espace de noms hiérarchique dans un espace de noms plat, le moteur de synchronisation utilise des espaces réservés, afin de conserver la hiérarchie.
 
-Chaque espace réservé représente un composant (par exemple, une unité d’organisation) d’un nom d’objet hiérarchique qui n’a pas été importé dans le moteur de synchronisation, mais est nom hiérarchique de hello tooconstruct requis. Leur remplissage vides créés par des références dans tooobjects de source de données hello connecté qui ne sont pas intermédiaire objets dans l’espace de connecteur hello.
+Chaque espace réservé représente un composant (par exemple, une unité d’organisation) d’un nom hiérarchique d’objet qui n’a pas été importé dans le moteur de synchronisation, mais qui est requis pour construire le nom hiérarchique. Ces éléments comblent les vides créés par des références, dans la source de données connectée, à des objets qui ne sont pas des objets intermédiaires dans l’espace connecteur.
 
-moteur de synchronisation Hello utilise également des objets toostore référencé des espaces réservés qui n’ont pas encore été importés. Par exemple, si la synchronisation est l’attribut de gestionnaire configuré tooinclude hello pour hello *Abbie Spencer* de l’objet et la valeur reçue hello est un objet qui n’a pas été importé, telles que *CN = Lee Sperry, CN = Users, DC = fabrikam, DC = com*, informations de gestionnaire hello sont stockées en tant qu’espaces réservés dans l’espace de connecteur hello. Si l’objet de gestionnaire hello est ensuite importée, objet d’espace réservé hello est remplacée par hello objet qui représente le Gestionnaire de hello intermédiaire.
+Le moteur de synchronisation utilise également des espaces réservés pour stocker les objets référencés qui n’ont pas encore été importés. Par exemple, si la synchronisation est configurée pour inclure l’attribut manager pour l’objet *Abbie Spencer* et si la valeur reçue est un objet qui n’a pas été importé, tel que *CN=Lee Sperry,CN=Users,DC=fabrikam,DC=com*, les informations de l’élément manager sont stockées en tant qu’espaces réservés dans l’espace connecteur. Si l’objet manager est ensuite importé, l’objet de l’espace réservé est remplacé par l’objet intermédiaire qui représente le gestionnaire.
 
 ### <a name="metaverse-objects"></a>Objets métaverse
-Un objet de métaverse contient hello agrégée vue ce moteur de synchronisation a Hello mise en lots d’objets dans l’espace de connecteur hello. Moteur de synchronisation crée les objets du métaverse à l’aide des informations de hello dans Importer des objets. Plusieurs objets d’espace connecteur peuvent être l’objet de métaverse unique tooa lié, mais un objet d’espace de connecteur ne peut pas être toomore lié à un objet de métaverse.
+Un objet métaverse contient la vue agrégée dont dispose le moteur de synchronisation sur les objets intermédiaires dans l’espace connecteur. Le moteur de synchronisation crée des objets métaverse à l’aide des informations contenues dans les objets importés. Plusieurs objets CS (Connector Space) peuvent être liés à un objet métaverse unique, mais un objet CS (Connector Space) ne peut pas être lié à plusieurs objets métaverse.
 
-Les objets métaverse ne peuvent pas être créés ou supprimés manuellement. moteur de synchronisation Hello supprime automatiquement les objets du métaverse qui n’ont pas un objet d’espace connecteur lien tooany dans l’espace de connecteur hello.
+Les objets métaverse ne peuvent pas être créés ou supprimés manuellement. Le moteur de synchronisation supprime automatiquement les objets métaverse qui n’ont pas de lien vers un objet d’espace connecteur quelconque dans l’espace connecteur.
 
-objets toomap un données connectée source tooa objet type correspondant dans le métaverse de hello, moteur de synchronisation fournit un schéma extensible avec un ensemble prédéfini de types d’objets et attributs associés. Vous pouvez créer des attributs et des types d’objets pour les objets métaverse. Attributs peuvent être à valeur unique ou à valeurs multiples et les types d’attributs hello peuvent être des chaînes, des références, des chiffres et des valeurs booléennes.
+Pour mapper des objets dans une source de données connectée vers un type d’objet correspondant dans le métaverse, le moteur de synchronisation fournit un schéma extensible avec un ensemble prédéfini de types d’objets et attributs associés. Vous pouvez créer des attributs et des types d’objets pour les objets métaverse. Les attributs peuvent être à valeur unique ou à plusieurs valeurs et les types d’attribut peuvent correspondre à des chaînes, des références, des chiffres et des valeurs booléennes.
 
 ### <a name="relationships-between-staging-objects-and-metaverse-objects"></a>Relations entre les objets intermédiaires et les objets métaverse
-Dans l’espace de noms du moteur de synchronisation hello, hello les flux de données sont activé par une relation de lien de hello entre les objets intermédiaires et les objets du métaverse. Objet qui est un intermédiaire objet de métaverse tooa liée est appelée un **joint à un objet** (ou **objet connecteur**). Un objet intermédiaire qui n’est pas lié tooa métaverse objet est appelé un **disjoint objet** (ou **les objets déconnecteurs**). joint des termes du contrat de Hello et disjoint sont préféré toonot confondre avec hello connecteurs responsables de l’importation et exportation de données à partir d’un annuaire connecté.
+Dans l’espace de noms du moteur de synchronisation, le flux de données est activé par la relation entre les objets intermédiaires et les objets métaverse. Un objet intermédiaire lié à un objet métaverse est appelé **objet joint** (ou **objet connecteur**). Un objet intermédiaire non lié à un objet métaverse est appelé **objet disjoint** (ou **objet déconnecteur**). L’utilisation des termes « joint » et « disjoint » est préférable, afin de ne pas les confondre avec les connecteurs responsables de l’importation et de l’exportation de données à partir d’un annuaire connecté.
 
-Espaces réservés ne sont jamais objet de métaverse tooa lié
+Les espaces réservés ne sont jamais liés à un objet métaverse
 
-Un objet joint compose d’un objet de mise en lots et de son objet de métaverse unique tooa relation lié. Objets joints sont des valeurs d’attribut toosynchronize utilisé entre un objet d’espace de connecteur et un objet de métaverse.
+Un objet joint comprend un objet intermédiaire et sa relation liée à un objet métaverse unique. Les objets joints sont utilisés pour synchroniser les valeurs d’attribut entre un objet CS (Connector Space) et un objet métaverse.
 
-Lorsqu’un objet intermédiaire devient un objet joint pendant la synchronisation, les attributs peuvent circuler entre hello hello métaverse objets et mise en lots. Le flux d’attributs est bidirectionnel ; il est configuré à l’aide de règles d’attribut d’importation et d’exportation.
+Lorsqu’un objet intermédiaire devient un objet joint au cours de la synchronisation, les attributs peuvent circuler entre l’objet intermédiaire et l’objet métaverse. Le flux d’attributs est bidirectionnel ; il est configuré à l’aide de règles d’attribut d’importation et d’exportation.
 
-Un objet d’espace connecteur unique peut être lié tooonly métaverse un objet. Toutefois, chaque objet de métaverse peut être ainsi que des objets d’espace de connecteur toomultiple lié Bonjour même ou dans des espaces de connecteur différent, comme indiqué dans hello après l’illustration.
+Un objet CS (Connector Space) unique peut être lié à un seul objet métaverse. Toutefois, chaque objet métaverse peut être lié à plusieurs objets CS (Connector Space) dans le même espace connecteur ou dans des espaces connecteur différents, comme indiqué dans l’illustration suivante.
 
 ![Arch5](./media/active-directory-aadconnectsync-understanding-architecture/arch5.png)
 
-Hello lié à la relation entre hello objet intermédiaire et un objet de métaverse est persistant et peut être supprimé uniquement par les règles que vous spécifiez.
+La relation entre l’objet intermédiaire et un objet métaverse est persistante et ne peut être supprimée que par les règles que vous spécifiez.
 
-Un objet disjoint est un objet de mise en lots n’est pas lié tooany métaverse objet. attribut Hello valeurs d’un objet disjoint ne sont pas traités les pages dans le métaverse de hello. Bonjour attribut valeurs d’objet correspondant de hello dans la source de données connectée hello ne sont pas mises à jour par le moteur de synchronisation.
+Un objet disjoint est un objet intermédiaire non lié à un objet métaverse. Les valeurs d’attribut d’un objet disjoint ne sont pas traitées davantage dans le métaverse. Les valeurs d’attribut de l’objet correspondant dans la source de données connectée ne sont pas mises à jour par le moteur de synchronisation.
 
-À l’aide des objets disjoints, vous pouvez stocker des informations d’identité dans le moteur de synchronisation et les traiter ultérieurement. Conservation d’un objet de mise en lots en tant qu’objet dans l’espace de connecteur hello disjoint présente de nombreux avantages. Étant donné que le système de hello a déjà généré, hello requis plus d’informations sur cet objet, il n’est pas nécessaire toocreate une représentation sous forme de cet objet lors de hello ensuite importer à partir de la source de données connectée hello. De cette manière, le moteur de synchronisation a toujours un instantané complet de la source de données connectée hello, même s’il n’existe aucune source de données connectée toohello connexion actuelle. Les objets disjoint peuvent être convertis en objets joints et vice versa, selon les règles hello que vous spécifiez.
+À l’aide des objets disjoints, vous pouvez stocker des informations d’identité dans le moteur de synchronisation et les traiter ultérieurement. Le fait de conserver un objet intermédiaire sous forme d’objet disjoint dans l’espace connecteur présente de nombreux avantages. Étant donné que le système a déjà préparé les informations requises concernant cet objet, il n’est pas nécessaire de créer une représentation de ce dernier lors de l’importation suivante à partir de la source de données connectée. De cette façon, le moteur de synchronisation a toujours un aperçu complet de la source de données connectée, même s’il n’existe aucune connexion active à la source de données connectée. Les objets disjoints peuvent être convertis en objets joints (et vice versa) en fonction des règles que vous spécifiez.
 
-Un objet d’importation est créé en tant qu’objet disjoint. Un objet d’exportation doit être un objet joint. la logique du système Hello applique cette règle et supprime chaque objet de l’exportation qui n’est pas un objet joint.
+Un objet d’importation est créé en tant qu’objet disjoint. Un objet d’exportation doit être un objet joint. La logique du système applique cette règle et supprime chaque objet d’exportation qui n’est pas un objet joint.
 
 ## <a name="sync-engine-identity-management-process"></a>Processus de gestion des identités du moteur de synchronisation
-processus de gestion des identités Hello contrôle comment les informations d’identité sont mise à jour entre les sources de données connectées différents. La gestion des identités s’effectue en trois phases :
+Le processus de gestion des identités détermine de quelle manière les informations d’identité sont mises à jour entre les différentes sources de données connectées. La gestion des identités s’effectue en trois phases :
 
 * Importation
 * Synchronisation
 * Exportation
 
-Au cours du processus d’importation hello, moteur de synchronisation évalue les informations d’identité entrante hello à partir d’une source de données connectée. Lorsque des modifications sont détectées, il crée des objets de mise en lots ou des objets de mise en lots existants dans l’espace de connecteur hello pour la synchronisation des mises à jour.
+Pendant le processus d’importation, le moteur de synchronisation évalue les informations d’identité entrantes à partir d’une source de données connectée. Lorsque des modifications sont détectées, il crée des objets intermédiaires ou met à jour les objets intermédiaires existants dans l’espace connecteur, à des fins de synchronisation.
 
-Au cours du processus de synchronisation hello, moteur de synchronisation met à jour hello métaverse tooreflect modifications qui se sont produites dans l’espace de connecteur hello puis met à jour hello connecteur espace tooreflect qui se sont produites dans le métaverse de hello.
+Pendant le processus de synchronisation, le moteur de synchronisation met à jour le métaverse afin de refléter les modifications qui se sont produites dans l’espace connecteur, actualisant l’espace connecteur pour refléter les modifications apportées dans le métaverse.
 
-Au cours du processus d’exportation hello, moteur de synchronisation exécute un push des modifications qui sont répliquées sur les objets de mise en lots et qui sont signalés en attente d’exportation.
+Pendant le processus d’exportation, le moteur de synchronisation envoie les modifications préparées sur les objets intermédiaires et marquées d’un indicateur signalant l’attente d’une exportation.
 
-Hello suivant illustration montre où chaque hello processus se produit en tant que flux d’informations d’identité à partir de tooanother de source de données connectée.
+L’illustration suivante montre où chaque processus se produit lorsque les informations d’identité circulent d’une source de données à une autre.
 
 ![Arch6](./media/active-directory-aadconnectsync-understanding-architecture/arch6.png)
 
 ### <a name="import-process"></a>Processus d’importation
-Au cours du processus d’importation hello, moteur de synchronisation évalue les mises à jour des informations tooidentity. Moteur de synchronisation compare les informations d’identité hello reçues à partir de la source de données connectée hello avec les informations d’identité hello sur un objet de mise en lots et détermine si hello objet intermédiaire nécessite des mises à jour. S’il s’agit de hello nécessaires tooupdate objet avec les nouvelles données de mise en lots, hello objet intermédiaire est marquée comme en attente importation.
+Lors du processus d’importation, le moteur de synchronisation évalue les mises à jour des informations d’identité. Le moteur de synchronisation compare les informations d’identité provenant de la source de données connectée avec celles d’un objet intermédiaire et détermine si l’objet intermédiaire nécessite des mises à jour. S’il est nécessaire de mettre à jour l’objet intermédiaire avec les nouvelles données, ce dernier est marqué d’un indicateur signalant une attente d’importation.
 
-Par l’intermédiaire des objets dans l’espace de connecteur hello avant la synchronisation, le moteur de synchronisation peut traiter uniquement les informations d’identité hello qui a changé. Ce processus fournit hello avantages suivants :
+En configurant avec étape intermédiaire les objets dans l’espace connecteur avant la synchronisation, le moteur de synchronisation peut traiter uniquement les informations d’identité qui ont changé. Ce processus permet de bénéficier des avantages suivants :
 
-* **Une synchronisation efficace**. Hello traitées pendant la synchronisation des données est réduit au minimum.
-* **Une resynchronisation efficace**. Vous pouvez modifier comment moteur de synchronisation traite les informations d’identité sans source de données toohello reconnexion hello synchronisation moteur.
-* **Synchronisation de toopreview opportunité**. Vous pouvez afficher un aperçu des tooverify de synchronisation que vos hypothèses sur les processus de gestion des identités hello sont corrects.
+* **Une synchronisation efficace**. La quantité de données traitées pendant la synchronisation est réduite au minimum.
+* **Une resynchronisation efficace**. Vous pouvez modifier le mode de traitement des informations d’identité par le moteur de synchronisation sans reconnecter la source de données à ce dernier.
+* **La possibilité d’afficher un aperçu de la synchronisation**. Vous pouvez afficher un aperçu de la synchronisation pour vérifier que vos hypothèses sur le processus de gestion d’identité sont correctes.
 
-Pour chaque objet spécifié dans le connecteur de hello, moteur de synchronisation hello tente d’abord toolocate une représentation d’objet hello dans l’espace de connecteur hello Hello connecteur. Moteur de synchronisation examine tous les objets de mise en lots dans l’espace de connecteur hello et tente de toofind un objet de mise en lots correspondant qui a un attribut d’ancrage correspondant. Si aucun objet intermédiaire existant n’a une correspondance d’ancrage d’attribut, synchroniser le moteur essaie toofind un objet intermédiaire correspondant avec hello même nom est unique.
+Pour chaque objet spécifié dans le connecteur, le moteur de synchronisation essaie tout d’abord de localiser une représentation de l’objet dans l’espace connecteur du connecteur. Le moteur de synchronisation examine tous les objets intermédiaires dans l’espace connecteur et tente de trouver un objet intermédiaire qui possède un attribut d’ancre correspondant. Si aucun objet intermédiaire existant ne présente d’attribut d’ancre correspondant, le moteur de synchronisation essaie de trouver un objet intermédiaire correspondant portant le même nom unique.
 
-Lorsque le moteur de synchronisation détecte un objet de mise en lots qui correspond à par un nom unique, mais pas par un point d’ancrage, hello spéciaux comportement suivant se produit :
+Lorsque le moteur de synchronisation détecte un objet intermédiaire dont le nom unique correspond, mais non l’ancre, il adopte le comportement spécifique suivant :
 
-* Si l’objet hello situé dans l’espace de connecteur hello n’a aucun point d’ancrage, puis de moteur de synchronisation supprime cet objet à partir de l’espace de connecteur hello et marques hello objet de métaverse il est lié tooas **nouveau la configuration sur l’exécution de la synchronisation suivante**. Il crée ensuite hello nouvelle importation d’objet.
-* Si l’objet de hello situé dans l’espace de connecteur hello dispose d’une ancre, moteur de synchronisation suppose que cet objet a été renommé ou supprimé dans l’annuaire connecté de hello. Affecter un nom d’unique temporaire, nouveau pour l’objet d’espace connecteur hello afin qu’il peut préparer objet entrant de hello. Hello ancien objet devient alors **temporaire**, en attente de hello connecteur tooimport hello renommer ou suppression tooresolve hello situation.
+* Si l’objet situé dans l’espace connecteur n’a aucune ancre, le moteur de synchronisation supprime cet objet de l’espace connecteur et indique sur l’objet métaverse avec lequel il est lié le message suivant : « **refaire une tentative d’approvisionnement lors de l’exécution de la synchronisation suivante**». Il crée ensuite un objet d’importation.
+* Si l’objet situé dans l’espace connecteur a une ancre, le moteur de synchronisation suppose que cet objet a été renommé ou supprimé dans l’annuaire connecté. Il assigne un nouveau nom unique temporaire à l’objet CS (Connector Space) afin de pouvoir préparer l’objet entrant. L’ancien objet devient alors **temporaire**; il attend que le connecteur importe l’objet renommé ou supprimé pour résoudre le problème.
 
-Si le moteur de synchronisation localise un objet intermédiaire correspondant toohello l’objet spécifié dans hello connecteur, elle détermine quelles modifications tooapply. Par exemple, moteur de synchronisation peut renommer ou supprimer des objets hello dans la source de données connectée hello, ou il peut uniquement mettre à jour les valeurs d’attribut de l’objet hello.
+Si le moteur de synchronisation localise un objet intermédiaire qui correspond aux objets spécifiés dans le connecteur, il détermine le type de modifications à appliquer. Le moteur de synchronisation peut, par exemple, renommer ou supprimer l’objet dans la source de données connectée, ou seulement mettre à jour les valeurs d’attribut de l’objet.
 
-Les objets intermédiaires avec des données mises à jour sont marqués comme étant en attente d’importation. Plusieurs types d’importation en attente sont disponibles. Selon le résultat de hello hello processus d’importation, un objet de mise en lots dans l’espace de connecteur hello a l’une de hello les types d’importation en attente suivants :
+Les objets intermédiaires avec des données mises à jour sont marqués comme étant en attente d’importation. Plusieurs types d’importation en attente sont disponibles. Selon le résultat du processus d’importation, un objet intermédiaire dans l’espace connecteur présente l’un des types d’importations en attente suivants :
 
-* **None**. Aucune tooany de modifications d’attributs hello Hello objet intermédiaire ne sont disponibles. Le moteur de synchronisation ne marque pas ce type d’un indicateur d’attente d’importation.
-* **Ajouter**. Hello objet intermédiaire est un nouvel objet d’importation dans l’espace de connecteur hello. Moteur de synchronisation marque ce type en attente d’importation pour un traitement supplémentaire dans le métaverse de hello.
-* **Mettre à jour**. Moteur de synchronisation recherche un objet de mise en lots correspondant dans l’espace de connecteur hello et marque ce type comme en attente importation afin que les mises à jour toohello attributs peuvent être traités dans le métaverse de hello. Les mises à jour comprennent la modification des noms d’objets.
-* **Supprimer**. Moteur de synchronisation recherche un objet de mise en lots correspondant dans l’espace de connecteur hello et indicateurs de ce type comme en attente importation afin que hello joint à un objet peut être supprimé.
-* **Supprimer/Ajouter**. Moteur de synchronisation recherche un objet de mise en lots correspondant dans l’espace de connecteur hello, mais les types d’objets hello ne correspondent pas. Dans ce cas, une modification de type suppression-ajout est préparée. Une suppression-ajouter modification indique le moteur de synchronisation de toohello une resynchronisation complète de cet objet doit se produire, car différents jeux de règles s’appliquent toothis objet lorsque le type d’objet hello change.
+* **None**. Aucune modification des attributs de l’objet intermédiaire n’est disponible. Le moteur de synchronisation ne marque pas ce type d’un indicateur d’attente d’importation.
+* **Ajouter**. L’objet intermédiaire est un nouvel objet d’importation dans l’espace connecteur. Le moteur de synchronisation marque ce type d’un indicateur d’attente d’importation à des fins de traitement supplémentaire dans le métaverse.
+* **Mettre à jour**. Le moteur de synchronisation recherche un objet intermédiaire correspondant dans l’espace connecteur et marque ce type d’un indicateur d’attente d’importation, afin que les mises à jour des attributs puissent être traitées dans le métaverse. Les mises à jour comprennent la modification des noms d’objets.
+* **Supprimer**. Le moteur de synchronisation recherche un objet intermédiaire correspondant dans l’espace connecteur et marque ce type d’un indicateur d’attente d’importation afin de pouvoir supprimer l’objet joint.
+* **Supprimer/Ajouter**. Le moteur de synchronisation recherche un objet intermédiaire correspondant dans l’espace connecteur, mais les types d’objet ne correspondent pas. Dans ce cas, une modification de type suppression-ajout est préparée. Une modification de type suppression-ajout indique au moteur de synchronisation qu’une resynchronisation complète de cet objet doit être effectuée, car un ensemble de règles différentes est appliqué à cet objet lorsque le type de ce dernier change.
 
-En définissant les hello en attente de l’état de l’importation d’un objet de mise en lots, il est possible tooreduce hello considérablement la quantité de données traitées pendant la synchronisation, car vous pouvez ainsi hello système tooprocess uniquement les objets qui ont mis à jour des données.
+En définissant un objet intermédiaire comme étant en attente d’importation, vous pouvez réduire considérablement la quantité de données traitées pendant la synchronisation. Cela permet au système de traiter uniquement les objets dont les données sont mises à jour.
 
 ### <a name="synchronization-process"></a>Processus de synchronisation
 La synchronisation consiste en deux processus connexes :
 
-* Synchronisation entrante, lorsque le contenu de hello métaverse hello est mise à jour à l’aide des données de salutation dans l’espace de connecteur hello.
-* Synchronisation sortante, lorsque le contenu de l’espace de connecteur hello hello est mise à jour à l’aide des données dans le métaverse de hello.
+* la synchronisation entrante, lorsque le contenu du métaverse est mis à jour via les données de l’espace connecteur ;
+* la synchronisation sortante, lorsque le contenu de l’espace connecteur est mis à jour à l’aide des données du métaverse.
 
-En utilisant les informations de hello intermédiaires dans l’espace de connecteur hello, hello le processus de synchronisation entrants crée dans hello métaverse hello intégré vue de données hello qui sont stockées dans des sources de données hello connecté. Tous les objets de mise en lots ou uniquement ceux avec une importation en attente des informations sont agrégées en fonction de la configuration des règles de hello.
+En utilisant les informations préparées dans l’espace connecteur, le processus de synchronisation entrante crée dans le métaverse la vue intégrée des données stockées dans les sources de données connectées. Tous les objets intermédiaires, ou ceux qui sont en attente d’importation seulement, sont regroupés, selon le mode de configuration des règles.
 
-mises à jour des processus de synchronisation sortante Hello exporter des objets lorsque les objets du métaverse changent.
+Le processus de synchronisation sortante met à jour les objets d’exportation lorsque les objets métaverse sont modifiés.
 
-Synchronisation entrante crée hello intégré vue dans le métaverse hello hello des informations d’identité qui sont reçus à partir de sources de données hello connecté. Moteur de synchronisation peut traiter les informations d’identité à tout moment à l’aide des dernières informations d’identité hello qu’il a à partir de hello connecté source de données.
+La synchronisation entrante crée, dans le métaverse, la vue intégrée des informations d’identité provenant des sources de données connectées. Le moteur de synchronisation peut traiter les informations d’identité à tout moment, en utilisant les dernières informations d’identité qu’il a reçues de la source de données connectée.
 
 **Synchronisation entrante**
 
-Synchronisation entrante inclut hello processus :
+La synchronisation entrante comprend les processus suivants :
 
-* **Disposition** (également appelé **Projection** s’il est important toodistinguish ce processus à partir de la mise en service de synchronisation sortante). moteur de synchronisation Hello crée un nouvel objet de métaverse basé sur un objet de mise en lots et les lie. La configuration est une opération de niveau objet.
-* **Jointure**. moteur de synchronisation Hello lie un objet métaverse existants d’objet tooan mise en lots. L’opération de jointure s’effectue au niveau de l’objet.
-* **Flux d’attributs d’importation**. Moteur de synchronisation met à jour les valeurs d’attribut hello, appelées le flux d’attribut d’objet hello hello métaverse. Le flux de valeur d’attribut d’importation est une opération au niveau de l’attribut, qui nécessite un lien entre un objet intermédiaire et un objet de métaverse.
+* **Configuration** (également appelée **Projection** s’il s’avère nécessaire de distinguer ce processus de l’approvisionnement de synchronisation sortante). Le moteur de synchronisation crée un objet métaverse basé sur un objet intermédiaire et les lie l’un à l’autre. La configuration est une opération de niveau objet.
+* **Jointure**. Le moteur de synchronisation lie un objet intermédiaire à un objet de métaverse existant. L’opération de jointure s’effectue au niveau de l’objet.
+* **Flux d’attributs d’importation**. Le moteur de synchronisation met à jour les valeurs d’attribut de l’objet, appelées flux de valeur d’attribut, dans le métaverse. Le flux de valeur d’attribut d’importation est une opération au niveau de l’attribut, qui nécessite un lien entre un objet intermédiaire et un objet de métaverse.
 
-Disposition est hello seul processus qui crée des objets dans le métaverse de hello. La configuration affecte uniquement les objets d’importation qui correspondent à des objets disjoints. Au cours de la disposition, moteur de synchronisation crée un objet de métaverse qui correspond le type d’objet toohello de l’objet d’importation hello et établit un lien entre les deux objets, créant ainsi un objet joint.
+La configuration est le seul processus qui crée des objets dans le métaverse. La configuration affecte uniquement les objets d’importation qui correspondent à des objets disjoints. Pendant la configuration, le moteur de synchronisation crée un objet métaverse qui correspond au type de l’objet d’importation et établit un lien entre les deux objets, créant ainsi un objet joint.
 
-processus de jointure Hello établit également un lien entre les objets d’importation et d’un objet de métaverse. différence Hello de jointure et de disposition est que le processus de jointure hello requiert cet objet d’importation hello sont liés tooan d’objet métaverse existant où le processus d’approvisionnement hello crée un nouvel objet de métaverse.
+Le processus de jointure établit également un lien entre des objets d’importation et un objet métaverse. Il existe une différence entre la jointure et l’approvisionnement : le processus de jointure nécessite que l’objet d’importation soit lié à un objet métaverse existant, tandis que le processus d’approvisionnement crée un objet métaverse.
 
-Moteur de synchronisation essaie toojoin un objet de métaverse importation objet tooa à l’aide des critères spécifiés dans la configuration de règle de synchronisation hello.
+Le moteur de synchronisation tente de joindre un objet d’importation à un objet métaverse à l’aide des critères spécifiés dans la configuration de la règle de synchronisation.
 
-Au cours de la fourniture de hello et les processus de jointure, moteur de synchronisation lie un objet de métaverse tooa un objet, ce qui les rend joint. Une fois ces opérations au niveau objet sont terminées, moteur de synchronisation peut mettre à jour les valeurs d’attribut hello d’objet de métaverse associé hello. Ce processus est appelé flux de valeur d’attribut d’importation.
+Durant les processus d’approvisionnement et de jointure, le moteur de synchronisation lie un objet disjoint à un objet métaverse, les joignant. Une fois ces opérations de niveau objet terminées, le moteur de synchronisation peut mettre à jour les valeurs d’attribut de l’objet métaverse associé. Ce processus est appelé flux de valeur d’attribut d’importation.
 
-Importation de flux d’attribut se produit sur tous les objets d’importation qui comportent des nouvelles données et objet de métaverse tooa lié.
+Le flux de valeur d’attribut d’importation se produit sur tous les objets d’importation qui comportent de nouvelles données et sont liés à un objet métaverse.
 
 **Synchronisation sortante**
 
-La synchronisation sortante met à jour les objets d’exportation lorsqu’un objet métaverse est modifié sans être supprimé. objectif de Hello de synchronisation sortante est tooevaluate si les objets de toometaverse de modifications nécessitent des mises à jour les objets de toostaging dans l’espace de connecteur hello. Dans certains cas, hello modifications peuvent nécessiter la mise en lots des objets dans tous les espaces du connecteur être mis à jour. Les objets intermédiaires modifiés sont marqués d’un indicateur d’attente d’exportation, ce qui fait d’eux des objets d’exportation. Ces objets sont envoyées ultérieurement à la source de données connectée toohello pendant le processus d’exportation hello d’exportation.
+La synchronisation sortante met à jour les objets d’exportation lorsqu’un objet métaverse est modifié sans être supprimé. L’objectif de la synchronisation sortante consiste à évaluer si les modifications apportées aux objets métaverse nécessitent des mises à jour des objets intermédiaires dans les espaces connecteur. Dans certains cas, les modifications peuvent exiger que les objets intermédiaires dans tous les espaces connecteur soient mis à jour. Les objets intermédiaires modifiés sont marqués d’un indicateur d’attente d’exportation, ce qui fait d’eux des objets d’exportation. Ces objets d’exportation sont ensuite transmis à la source de données connectée pendant le processus d’exportation.
 
 La synchronisation sortante s’effectue en trois phases :
 
@@ -224,37 +224,37 @@ La synchronisation sortante s’effectue en trois phases :
 * **Annulation de l’approvisionnement**
 * **Flux de valeur d’attribut d’exportation.**
 
-L’approvisionnement et l’annulation de l’approvisionnement sont des opérations de niveau objet. L’annulation de l’approvisionnement est fonction de l’approvisionnement, car ce dernier est le seul à pouvoir l’initier. Annulation de l’approvisionnement est déclenchée lors de la configuration de lien de hello supprime entre un objet de métaverse et un objet de l’exportation.
+L’approvisionnement et l’annulation de l’approvisionnement sont des opérations de niveau objet. L’annulation de l’approvisionnement est fonction de l’approvisionnement, car ce dernier est le seul à pouvoir l’initier. L’annulation est déclenchée lorsque l’approvisionnement supprime le lien entre un objet métaverse et un objet d’exportation.
 
-Mise en service est toujours déclenchée lorsque les modifications sont appliquées tooobjects hello métaverse. Lorsque des modifications sont apportées les objets toometaverse, moteur de synchronisation peut effectuer les tâches suivantes dans le cadre du processus d’approvisionnement de hello de hello :
+L’approvisionnement se déclenche toujours lorsque des modifications sont appliquées aux objets dans le métaverse. Lorsque des modifications sont apportées aux objets métaverse, le moteur de synchronisation peut effectuer les tâches suivantes dans le cadre du processus d’approvisionnement :
 
-* Créer des objets joints, où un objet de métaverse est objet d’exportation tooa lié qui vient d’être créé.
+* La création d’objets joints, lors de laquelle un objet métaverse est lié à un objet d’exportation nouvellement créé.
 * Le changement de nom d’un objet joint.
 * La séparation des liens entre un objet métaverse et des objets intermédiaires, créant un objet disjoint.
 
-Si l’approvisionnement requiert toocreate de moteur de synchronisation un nouvel objet de connecteur, hello mise en lots d’objet de métaverse toowhich hello est lié est toujours un objet de l’exportation, car l’objet de hello n’existe pas encore dans la source de données connectée hello.
+Si l’approvisionnement nécessite que le moteur de synchronisation crée un objet connecteur, l’objet intermédiaire auquel est lié l’objet métaverse est toujours un objet d’exportation, car l’objet n’existe pas encore dans la source de données connectée.
 
-Si le provisionnement nécessite l’utilisation du moteur de synchronisation toodisjoin un objet joint, création d’un objet disjoint, la mise hors service est déclenchée. Hello mise hors service des processus supprime l’objet de hello.
+Si l’approvisionnement nécessite que le moteur de synchronisation sépare un objet joint, créant un objet disjoint, l’annulation de l’approvisionnement est déclenchée. Ce processus d’annulation supprime l’objet.
 
-Au cours de la mise hors service, suppression d’un objet de l’exportation ne supprime pas physiquement les objet hello. objet Hello est marqué comme en **supprimé**, ce qui signifie que cette opération de suppression hello soit préparé sur l’objet de hello.
+Lors de cette annulation, la suppression d’un objet d’exportation ne supprime pas physiquement l’objet. L’objet est marqué d’un indicateur **supprimé**, ce qui signifie que l’opération de suppression est préparée sur l’objet.
 
-Exportation de flux d’attribut se produit également pendant le processus de synchronisation sortante hello, comme toohello qui importent des flux d’attribut se produit pendant la synchronisation entrante. Le flux de valeur d’attribut d’exportation se produit uniquement entre les objets métaverse et les objets d’exportation qui sont joints.
+Le flux de valeur d’attribut d’exportation se produit également lors du processus de synchronisation sortante, de la même manière que le flux de valeur d’attribut d’importation se produit pendant la synchronisation entrante. Le flux de valeur d’attribut d’exportation se produit uniquement entre les objets métaverse et les objets d’exportation qui sont joints.
 
 ### <a name="export-process"></a>Processus d’exportation
-Au cours du processus d’exportation hello, moteur de synchronisation examine tous les objets d’exportation qui sont signalés en attente d’exportation dans l’espace de connecteur hello, puis envoie les mises à jour toohello connecté à la source de données.
+Pendant le processus d’exportation, le moteur de synchronisation examine tous les objets d’exportation qui sont marqués d’un indicateur d’attente d’exportation dans l’espace connecteur, puis envoie des mises à jour à la source de données connectée.
 
-moteur de synchronisation Hello peut déterminer la réussite de hello d’une exportation, mais il ne peut pas suffisamment de déterminer que le processus de gestion des identités hello est terminée. Objets de la source de données connectée hello peuvent toujours être modifiées par d’autres processus. Étant donné que le moteur de synchronisation n’a pas de source de données connectée toohello connexion permanente, il n’est pas suffisant hypothèses toomake sur les propriétés d’un objet dans la source de données connectée hello basée uniquement sur une notification de réussite de l’exportation hello.
+Le moteur de synchronisation peut indiquer la réussite d’une exportation, mais ne peut pas déterminer avec précision si le processus de gestion des identités est terminé. Les objets de la source de données connectée peuvent toujours être modifiés par d’autres processus. Étant donné que le moteur de synchronisation ne dispose pas d’une connexion permanente à la source de données connectée, il ne suffit pas d’émettre des hypothèses sur les propriétés d’un objet dans la source de données connectée sur la seule base d’une notification d’exportation réussie.
 
-Par exemple, un processus Bonjour source de données connectée a les attributs de l’objet de modifications hello sauvegarder tootheir des valeurs d’origine (autrement dit, source de données connectée hello peut remplacer les valeurs hello immédiatement après les données hello sont envoyées en arrière par le moteur de synchronisation et correctement appliqué dans la source de données connectée hello).
+Par exemple, un processus dans la source de données connectée peut basculer les attributs de l’objet vers leurs valeurs d’origine (autrement dit, la source de données connectée peut remplacer les valeurs immédiatement après l’envoi des données par le moteur de synchronisation et leur application réussie dans la source de données connectée).
 
-magasins de moteur de synchronisation Hello exporter et importer des informations d’état sur chaque objet de mise en lots. Si les valeurs des attributs de hello sont spécifiés dans la liste d’inclusion hello attribut ont changé depuis la dernière exportation de hello, hello de stockage de l’importation et d’exportation état Active sync moteur tooreact en conséquence. Moteur de synchronisation utilise hello importation processus tooconfirm valeurs d’attribut qui ont été source de données connectée toohello exporté. Une comparaison entre hello importé et exportés plus d’informations, comme indiqué dans hello suivant illustration, permettent de toodetermine de moteur de synchronisation si l’exportation hello a réussi ou si elle doit toobe répétée.
+Le moteur de synchronisation stocke les informations d’état de l’exportation et de l’importation de chaque objet intermédiaire. Si les valeurs des attributs indiqués dans la liste d’inclusion d’attributs ont changé depuis la dernière exportation, le stockage des informations d’état de l’exportation et de l’importation permet au moteur de synchronisation de réagir en conséquence. Le moteur de synchronisation utilise le processus d’importation pour vérifier les valeurs d’attribut qui ont été exportées vers la source de données connectée. Une comparaison entre les informations importées et exportées, comme indiqué dans l’illustration suivante, permet au moteur de synchronisation de déterminer si l’exportation a réussi ou si elle doit être répétée.
 
 ![Arch7](./media/active-directory-aadconnectsync-understanding-architecture/arch7.png)
 
-Par exemple, si le moteur de synchronisation exporte attribut C, qui a la valeur 5, tooa de source de données connectée, elle stocke C = 5 dans sa mémoire de statut d’exportation. Chaque exportation supplémentaires sur cet objet entraîne à nouveau une source de données connectée toohello tentative tooexport C = 5, car le moteur de synchronisation suppose que cette valeur n’a pas été appliqué de façon persistante toohello objet (autrement dit, sauf si une valeur différente a été récemment importée à partir de hello source de données connectée). mémoire d’exportation Hello est désactivée lors de la réception au cours d’une opération d’importation sur l’objet de hello C = 5.
+Par exemple, si le moteur de synchronisation exporte l’attribut C, qui a la valeur 5, vers une source de données connectée, il stocke la valeur C=5 dans sa mémoire de statut d’exportation. Chaque exportation supplémentaire de cet objet entraîne une nouvelle tentative d’exportation de la valeur C=5 vers la source de données connectée, car le moteur de synchronisation suppose que cette valeur n’a pas été appliquée à l’objet de manière continue (sauf si une valeur différente a été importée récemment à partir de la source de données connectée). La mémoire d’exportation est désactivée en cas de réception de la valeur C=5 au cours d’une opération d’importation sur l’objet.
 
 ## <a name="next-steps"></a>Étapes suivantes
-En savoir plus sur hello [synchronisation Azure AD Connect](active-directory-aadconnectsync-whatis.md) configuration.
+En savoir plus sur la configuration de la [synchronisation Azure AD Connect](active-directory-aadconnectsync-whatis.md) .
 
 En savoir plus sur l’ [intégration de vos identités locales avec Azure Active Directory](active-directory-aadconnect.md).
 

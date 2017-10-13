@@ -1,6 +1,6 @@
 ---
 title: "Configuration de connexions ExpressRoute et VPN de site à site pouvant coexister : classique : Azure | Microsoft Docs"
-description: "Cet article vous guide dans la configuration d’une connexion VPN de Site à Site qui peut coexister pour le modèle de déploiement classique hello et ExpressRoute."
+description: "Cet article vous guide tout au long de la configuration d’une connexion ExpressRoute et d’une connexion VPN de site à site pouvant coexister pour le modèle de déploiement classique."
 documentationcenter: na
 services: expressroute
 author: charwen
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/21/2017
 ms.author: charwen
-ms.openlocfilehash: abb30fff55e8ec243f2920c5b2f70c43717755fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 09d1649f0ca0cf4ca464d95b29461cad3fe51788
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="configure-expressroute-and-site-to-site-coexisting-connections-classic"></a>Configurer la coexistence de connexions de site à site et ExpressRoute (classique)
 > [!div class="op_single_selector"]
@@ -28,7 +28,7 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ayant la possibilité de hello tooconfigure VPN de Site à Site et ExpressRoute présente plusieurs avantages. Vous pouvez configurer un VPN de Site à Site comme un chemin d’accès sécurisé de basculement pour ExressRoute, ou utiliser des VPN de Site à Site tooconnect toosites qui ne sont pas connectés via ExpressRoute. Les deux scénarios dans cet article, nous allons aborder hello étapes tooconfigure. Cet article concerne le modèle de déploiement classique toohello. Cette configuration n’est pas disponible dans le portail de hello.
+La possibilité de configurer des connexions VPN de site à site et ExpressRoute présente plusieurs avantages. Vous pouvez configurer un VPN de site à site comme un chemin d’accès de basculement sécurisé pour ExpressRoute, ou utiliser des VPN de site à site pour vous connecter à des sites qui ne sont pas connectés via ExpressRoute. Dans cet article, nous décrirons les étapes de configuration des deux scénarios. Cet article s’applique au modèle de déploiement classique. Cette configuration n'est pas disponible dans le portail.
 
 [!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
@@ -37,32 +37,32 @@ Ayant la possibilité de hello tooconfigure VPN de Site à Site et ExpressRoute 
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 > [!IMPORTANT]
-> Circuits ExpressRoute doivent être préconfigurés avant de suivre les instructions hello ci-dessous. Assurez-vous que vous avez suivi les guides hello trop[créer un circuit ExpressRoute](expressroute-howto-circuit-classic.md) et [configurer le routage](expressroute-howto-routing-classic.md) avant de suivre les étapes de hello ci-dessous.
+> Les circuits ExpressRoute doivent être préconfigurés avant que vous suiviez les instructions ci-dessous. Assurez-vous que vous avez suivi les guides [Créer un circuit ExpressRoute](expressroute-howto-circuit-classic.md) et [Configurer le routage](expressroute-howto-routing-classic.md) avant de suivre les étapes ci-dessous.
 > 
 > 
 
 ## <a name="limits-and-limitations"></a>Limites et limitations
 * **Le routage de transit n’est pas pris en charge.** Vous ne pouvez effectuer de routage (via Azure) entre votre réseau local connecté via le réseau VPN de site à site et votre réseau local connecté via ExpressRoute.
-* **Le routage point à site n’est pas pris en charge.** Vous ne pouvez pas activer le point-to-site VPN connexions toohello même réseau virtuel qui est connecté tooExpressRoute. Point-to-site VPN et ExpressRoute ne peuvent pas coexister pour hello même réseau virtuel.
-* **Le tunneling forcé ne peut pas être activé sur la passerelle VPN de Site à Site hello.** Vous pouvez uniquement « forcer » tous les Internet liées au trafic tooyour arrière sur réseau local via ExpressRoute.
-* **La passerelle de référence de base n’est pas prise en charge.** Vous devez utiliser une passerelle de base SKU pour les deux hello [passerelle ExpressRoute](expressroute-about-virtual-network-gateways.md) et hello [passerelle VPN](../vpn-gateway/vpn-gateway-about-vpngateways.md).
+* **Le routage point à site n’est pas pris en charge.** Vous ne pouvez pas activer de connexions VPN point à site avec le même réseau virtuel connecté à ExpressRoute. Des connexions VPN point à site et ExpressRoute ne peuvent pas coexister pour le même réseau virtuel.
+* **Le tunneling forcé ne peut pas être activé sur la passerelle VPN de site à site.** Vous pouvez uniquement « forcer » tout le trafic Internet vers votre réseau local via ExpressRoute.
+* **La passerelle de référence SKU De base n’est pas prise en charge.** Vous devez utiliser une passerelle de référence SKU autre que De base pour la [passerelle ExpressRoute](expressroute-about-virtual-network-gateways.md) et la [passerelle VPN](../vpn-gateway/vpn-gateway-about-vpngateways.md).
 * **Seule la passerelle VPN basée sur un itinéraire est prise en charge.** Vous devez utiliser une [passerelle VPN](../vpn-gateway/vpn-gateway-about-vpngateways.md) basée sur un itinéraire.
-* L’**itinéraire statique doit être configuré pour votre passerelle VPN.** Si votre réseau local est connecté tooboth ExpressRoute et un Site à Site VPN, vous devez disposer un itinéraire statique configuré dans votre toohello de connexion de réseau local tooroute hello Site-à-Site VPN Internet public.
-* La **passerelle ExpressRoute doit être configurée en premier.** Vous devez d’abord créer passerelle ExpressRoute de hello avant d’ajouter de la passerelle VPN de Site à Site hello.
+* L’**itinéraire statique doit être configuré pour votre passerelle VPN.** Si votre réseau local est connecté à la fois à ExpressRoute et à un VPN de site à site, vous devez avoir configuré un itinéraire statique sur votre réseau local pour acheminer la connexion VPN de site à site vers l’Internet public.
+* La **passerelle ExpressRoute doit être configurée en premier.** Vous devez commencer par créer la passerelle ExpressRoute avant d’ajouter la passerelle VPN de site à site.
 
 ## <a name="configuration-designs"></a>Modèles de configuration
 ### <a name="configure-a-site-to-site-vpn-as-a-failover-path-for-expressroute"></a>Configurer un réseau VPN de site à site comme un chemin d’accès de basculement pour ExpressRoute
-Vous pouvez configurer une connexion VPN de site à site en tant que sauvegarde pour ExpressRoute. Cela s’applique uniquement toovirtual réseaux lié toohello chemin d’accès d’homologation privée Azure. Il n’existe aucune solution de basculement basée sur des réseaux VPN pour les services accessibles via les homologations Azure public et Microsoft. lien principal de hello est toujours Hello circuit ExpressRoute. Flux de données via un chemin d’accès de Site à Site VPN hello uniquement si hello circuit ExpressRoute échoue. 
+Vous pouvez configurer une connexion VPN de site à site en tant que sauvegarde pour ExpressRoute. Cela s’applique uniquement aux réseaux virtuels liés au chemin d’homologation privé Azure. Il n’existe aucune solution de basculement basée sur des réseaux VPN pour les services accessibles via les homologations Azure public et Microsoft. Le circuit ExpressRoute est toujours le lien principal. Les données circulent via le chemin d’accès du réseau VPN de site à site uniquement si le circuit ExpressRoute échoue. 
 
 > [!NOTE]
-> Alors que le circuit ExpressRoute est préférable à VPN de Site à Site lorsque les deux itinéraires sont hello même, Azure utilisera itinéraire de hello plus long préfixe correspondance toochoose hello vers la destination du paquet hello.
+> Bien que le circuit ExpressRoute soit préférable au réseau VPN de site à site lorsque les deux itinéraires sont identiques, Azure utilise la correspondance de préfixe la plus longue pour choisir l’itinéraire vers la destination du paquet.
 > 
 > 
 
 ![Coexister](media/expressroute-howto-coexist-classic/scenario1.jpg)
 
-### <a name="configure-a-site-to-site-vpn-tooconnect-toosites-not-connected-through-expressroute"></a>Configurer un toosites tooconnect VPN de Site à Site ne pas connecté via ExpressRoute
-Vous pouvez configurer votre réseau où certains sites connectent directement tooAzure via le VPN de Site à Site, et certains sites via ExpressRoute. 
+### <a name="configure-a-site-to-site-vpn-to-connect-to-sites-not-connected-through-expressroute"></a>Configurer un réseau VPN de site à site pour se connecter à des sites non connectés via ExpressRoute
+Vous pouvez configurer votre réseau là où certains sites se connectent directement à Azure via des réseaux VPN de site à site ou via ExpressRoute. 
 
 ![Coexister](media/expressroute-howto-coexist-classic/scenario2.jpg)
 
@@ -71,28 +71,28 @@ Vous pouvez configurer votre réseau où certains sites connectent directement t
 > 
 > 
 
-## <a name="selecting-hello-steps-toouse"></a>En sélectionnant hello étapes toouse
-Il existe deux ensembles différents de toochoose procédures à partir de connexions de tooconfigure de commande peuvent coexister. procédure de configuration Hello que vous sélectionnez dépend si vous disposez d’un réseau virtuel existant que vous souhaitez tooconnect à, ou que vous voulez toocreate un réseau virtuel.
+## <a name="selecting-the-steps-to-use"></a>Sélection des étapes à suivre
+Vous pouvez choisir entre deux procédures différentes pour configurer vos connexions afin qu’elles coexistent. La procédure de configuration que vous sélectionnez varie selon que vous disposez déjà d’un réseau virtuel auquel vous connecter ou que vous voulez créer un réseau virtuel.
 
-* Je ne disposer d’un réseau virtuel et devez toocreate une.
+* Je n’ai pas de réseau virtuel et dois en créer un
   
-    Si vous n’avez pas déjà un réseau virtuel, cette procédure vous guidera création d’un réseau virtuel à l’aide du modèle de déploiement classique hello et la création de nouvelles connexions VPN de Site à Site et ExpressRoute. tooconfigure, suivez les étapes dans la section de l’article hello hello [toocreate un nouveau réseau virtuel et les connexions de coexistence](#new).
+    Si vous ne disposez pas déjà d’un réseau virtuel, cette procédure vous guide dans la création d’un réseau virtuel en utilisant le modèle de déploiement classique et dans l’établissement de nouvelles connexions ExpressRoute et VPN de site à site. Pour procéder à la configuration, suivez les étapes décrites dans la section [Créer un réseau virtuel et des connexions qui coexistent](#new).
 * J’ai déjà un réseau virtuel répondant au modèle de déploiement classique
   
-    Vous disposez peut-être déjà d’un réseau virtuel avec une connexion VPN de site à site existante ou une connexion ExpressRoute. Hello section article [tooconfigure coexsiting les connexions pour un réseau virtuel existant déjà](#add) vous guide dans la suppression de la passerelle de hello et la création de nouvelles connexions VPN de Site à Site et ExpressRoute. Notez que lors de la création de nouvelles connexions hello, les étapes de hello doivent être effectuées dans un ordre spécifique. N’utilisez pas les instructions hello dans d’autres articles de toocreate vos passerelles et les connexions.
+    Vous disposez peut-être déjà d’un réseau virtuel avec une connexion VPN de site à site existante ou une connexion ExpressRoute. La section [Configurer des connexions qui coexistent pour un réseau virtuel existant](#add) de l’article vous guide tout au long des étapes de suppression de la passerelle et de création de connexions ExpressRoute et VPN de site à site. Notez que vous devez effectuer les étapes dans un ordre très spécifique lorsque vous créez les connexions. N’utilisez pas les instructions contenues dans d’autres articles pour créer des connexions et des passerelles.
   
-    Dans cette procédure, la création de connexions peuvent coexister sera requièrent que vous toodelete votre passerelle, puis configurez nouvelles passerelles. Cela signifie que vous devrez temps mort pour les connexions entre différents locaux pendant que vous supprimez et recréez la passerelle et les connexions, mais vous n’aurez pas toomigrate un de vos machines virtuelles ou services tooa nouveau réseau virtuel. Vos machines virtuelles et les services seront toujours en mesure de toocommunicate sortantes via l’équilibrage de charge hello lorsque vous configurez votre passerelle s’ils ne sont donc toodo configuré.
+    Lors de cette procédure, si vous créez des connexions pouvant coexister, vous devez supprimer votre passerelle, puis configurer de nouvelles passerelles. En d’autres termes, vous subissez un temps d’arrêt pour les connexions entre différents locaux lorsque vous supprimez et recréez la passerelle et les connexions, mais vous ne devez pas migrer les ordinateurs virtuels ou les services vers un nouveau réseau virtuel. Les machines virtuelles et les services sont toujours en mesure de communiquer via l’équilibreur de charge lorsque vous configurez votre passerelle s’ils sont configurés pour ce faire.
 
-## <a name="new"></a>toocreate un nouveau réseau virtuel et la coexistence de connexions
+## <a name="new"></a>Créer un réseau virtuel et des connexions qui coexistent
 Cette procédure vous guide dans la création d’un réseau virtuel et dans l’établissement de nouvelles connexions de site à site et ExpressRoute appelées à coexister.
 
-1. Vous devez tooinstall hello dernière version de hello applets de commande PowerShell de Azure. Consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) pour plus d’informations sur l’installation des applets de commande PowerShell hello. Notez que les applets de commande hello que vous allez utiliser pour cette configuration peut être légèrement différente de celle que vous connaissez peut-être. Applets de commande hello toouse vraiment être spécifié dans ces instructions. 
-2. Créez un schéma pour votre réseau virtuel. Pour plus d’informations sur le schéma de configuration hello, consultez [schéma de configuration de réseau virtuel Azure](https://msdn.microsoft.com/library/azure/jj157100.aspx).
+1. Vous aurez besoin d’installer la dernière version des applets de commande PowerShell Azure. Pour plus d’informations sur l’installation des applets de commande PowerShell, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) . Les applets de commande que vous utiliserez pour cette configuration peuvent être légèrement différentes de celles que vous connaissez. Utilisez les applets de commande spécifiées dans ces instructions. 
+2. Créez un schéma pour votre réseau virtuel. Pour plus d’informations sur le schéma de configuration, consultez la page [Schéma de configuration du réseau virtuel Azure](https://msdn.microsoft.com/library/azure/jj157100.aspx).
    
-    Lorsque vous créez votre schéma, assurez-vous que vous utilisez hello valeurs suivantes :
+    Lorsque vous créez votre schéma, veillez à utiliser les valeurs suivantes :
    
-   * sous-réseau de passerelle de Hello pour hello du réseau virtuel doit être /27 ou un préfixe plus court (par exemple, /26 ou /25).
-   * type de connexion de passerelle Hello est « dédié ».
+   * Le sous-réseau de la passerelle du réseau virtuel doit être défini sur /27 ou un préfixe plus court (comme /26 ou /25).
+   * La connexion à la passerelle est du type « dédié ».
      
              <VirtualNetworkSite name="MyAzureVNET" Location="Central US">
                <AddressSpace>
@@ -114,24 +114,24 @@ Cette procédure vous guide dans la création d’un réseau virtuel et dans l�
                  </ConnectionsToLocalNetwork>
                </Gateway>
              </VirtualNetworkSite>
-3. Après la création et la configuration de votre fichier de schéma xml, téléchargez les fichiers hello. Cette opération crée votre réseau virtuel.
+3. Après avoir créé et configuré votre fichier de schéma xml, chargez-le vers le serveur. Cette opération crée votre réseau virtuel.
    
-    Utilisez hello suivant tooupload de l’applet de commande de votre fichier, en remplaçant la valeur de hello avec vos propres.
+    Utilisez l’applet de commande suivante pour charger votre fichier vers le serveur en remplaçant la valeur par la vôtre.
    
         Set-AzureVNetConfig -ConfigurationPath 'C:\NetworkConfig.xml'
-4. <a name="gw"></a>Créez une passerelle ExpressRoute. Être toospecify vraiment hello GatewaySKU comme *Standard*, *hautes performances*, ou *UltraPerformance* et hello le type de passerelle en tant que *DynamicRouting*.
+4. <a name="gw"></a>Créez une passerelle ExpressRoute. Veillez à spécifier la valeur *Standard*, *HighPerformance* ou *UltraPerformance* pour le paramètre GatewaySKU, et la valeur *DynamicRouting* pour le paramètre GatewayType.
    
-    Utilisez hello suivant l’exemple, en remplaçant les valeurs hello pour votre propre.
+    Utilisez l’exemple ci-dessous en utilisant vos propres valeurs.
    
         New-AzureVNetGateway -VNetName MyAzureVNET -GatewayType DynamicRouting -GatewaySKU HighPerformance
-5. Lier le circuit ExpressRoute toohello hello ExpressRoute passerelle. Une fois cette étape terminée, hello entre votre réseau local et le Azure via ExpressRoute, est établie.
+5. Liez la passerelle ExpressRoute au circuit ExpressRoute. Une fois cette étape terminée, la connexion entre votre réseau local et Azure est établie via ExpressRoute.
    
         New-AzureDedicatedCircuitLink -ServiceKey <service-key> -VNetName MyAzureVNET
-6. <a name="vpngw"></a>Créez ensuite la passerelle VPN de site à site. Hello GatewaySKU doit être *Standard*, *hautes performances*, ou *UltraPerformance* et hello le type de passerelle doit être *DynamicRouting*.
+6. <a name="vpngw"></a>Créez ensuite la passerelle VPN de site à site. Vous devez spécifier la valeur *Standard*, *HighPerformance* ou *UltraPerformance* pour le paramètre GatewaySKU, et la valeur *DynamicRouting* pour le paramètre GatewayType.
    
         New-AzureVirtualNetworkGateway -VNetName MyAzureVNET -GatewayName S2SVPN -GatewayType DynamicRouting -GatewaySKU  HighPerformance
    
-    paramètres de passerelle de réseau virtuel hello tooretrieve, y compris l’ID de passerelle hello et adresse IP publique hello, utilisent hello `Get-AzureVirtualNetworkGateway` applet de commande.
+    Pour récupérer les paramètres de la passerelle de réseau virtuel, y compris l’ID de passerelle et l’adresse IP publique, utilisez l’applet de commande `Get-AzureVirtualNetworkGateway`.
    
         Get-AzureVirtualNetworkGateway
    
@@ -140,7 +140,7 @@ Cette procédure vous guide dans la création d’un réseau virtuel et dans l�
         LastEventData        :
         GatewayType          : DynamicRouting
         LastEventTimeStamp   : 5/29/2015 4:41:41 PM
-        LastEventMessage     : Successfully created a gateway for hello following virtual network: GNSDesMoines
+        LastEventMessage     : Successfully created a gateway for the following virtual network: GNSDesMoines
         LastEventID          : 23002
         State                : Provisioned
         VIPAddress           : 104.43.x.y
@@ -153,14 +153,14 @@ Cette procédure vous guide dans la création d’un réseau virtuel et dans l�
         OperationDescription : Get-AzureVirtualNetworkGateway
         OperationId          : 42773656-85e1-a6b6-8705-35473f1e6f6a
         OperationStatus      : Succeeded
-7. Créez une entité de passerelle VPN de site local. Cette commande ne configure pas votre passerelle VPN locale. Au lieu de cela, il vous permet de paramètres de la passerelle locale hello tooprovide, telles que des adresses IP publiques de hello et hello localement l’espace d’adressage, afin que hello passerelle VPN Azure peut se connecter tooit.
+7. Créez une entité de passerelle VPN de site local. Cette commande ne configure pas votre passerelle VPN locale. Elle vous permet d’indiquer les paramètres de la passerelle locale, par exemple l’adresse IP publique et l’espace d’adressage local afin que la passerelle VPN Azure puisse s’y connecter.
    
    > [!IMPORTANT]
-   > site local de Hello pour hello VPN de Site à Site n’est pas défini dans le fichier netcfg de hello. Au lieu de cela, vous devez utiliser ce paramètres de site local cmdlet toospecify hello. Vous ne pouvez pas définir à l’aide du portail ou fichier netcfg de hello.
+   > Le site local du réseau privé virtuel de site à site n’est pas défini dans le fichier netcfg. Vous devez utiliser cette applet de commande pour spécifier les paramètres du site local. Vous ne pouvez pas le définir à l’aide du portail ou du fichier netcfg.
    > 
    > 
    
-    Utilisez hello suivant l’exemple, en remplaçant les valeurs hello par les vôtres.
+    Utilisez l’exemple suivant en remplaçant les valeurs par les vôtres.
    
         New-AzureLocalNetworkGateway -GatewayName MyLocalNetwork -IpAddress <MyLocalGatewayIp> -AddressSpace <MyLocalNetworkAddress>
    
@@ -169,7 +169,7 @@ Cette procédure vous guide dans la création d’un réseau virtuel et dans l�
    > 
    > 
 
-    paramètres de passerelle de réseau virtuel hello tooretrieve, y compris l’ID de passerelle hello et adresse IP publique hello, utilisent hello `Get-AzureVirtualNetworkGateway` applet de commande. Consultez hello l’exemple suivant.
+    Pour récupérer les paramètres de la passerelle de réseau virtuel, y compris l’ID de passerelle et l’adresse IP publique, utilisez l’applet de commande `Get-AzureVirtualNetworkGateway`. Consultez l’exemple qui suit.
 
         Get-AzureLocalNetworkGateway
 
@@ -182,41 +182,41 @@ Cette procédure vous guide dans la création d’un réseau virtuel et dans l�
         OperationStatus      : Succeeded
 
 
-1. Configurez votre passerelle VPN locale appareil tooconnect toohello nouveau. Utilisez les informations de hello que vous avez récupéré à l’étape 6 lors de la configuration de votre périphérique VPN. Pour plus d’informations sur la configuration du périphérique VPN, consultez la rubrique [Configuration de périphérique VPN](../vpn-gateway/vpn-gateway-about-vpn-devices.md).
-2. Passerelle VPN de Site à Site du hello lien sur la passerelle locale toohello Azure.
+1. Configurez votre périphérique VPN local à connecter à la nouvelle passerelle. Utilisez les informations que vous avez récupérées à l’étape 6 lors de la configuration de votre périphérique VPN. Pour plus d’informations sur la configuration du périphérique VPN, consultez la rubrique [Configuration de périphérique VPN](../vpn-gateway/vpn-gateway-about-vpn-devices.md).
+2. Liez la passerelle VPN de site à site dans Azure à la passerelle locale.
    
-    Dans cet exemple, connectedEntityId est ID de passerelle locale hello, qui se trouve en exécutant `Get-AzureLocalNetworkGateway`. Vous pouvez trouver virtualNetworkGatewayId à l’aide de hello `Get-AzureVirtualNetworkGateway` applet de commande. Après cette étape, hello entre votre réseau local et Azure via hello connexion VPN de Site à Site est établie.
+    Dans cet exemple, connectedEntityId est l’ID de la passerelle locale que vous pouvez trouver en exécutant `Get-AzureLocalNetworkGateway`. Vous pouvez trouver virtualNetworkGatewayId à l’aide de l’applet de commande `Get-AzureVirtualNetworkGateway` . Après cette étape, la connexion entre votre réseau local et Azure est établie via la connexion VPN de site à site.
 
         New-AzureVirtualNetworkGatewayConnection -connectedEntityId <local-network-gateway-id> -gatewayConnectionName Azure2Local -gatewayConnectionType IPsec -sharedKey abc123 -virtualNetworkGatewayId <azure-s2s-vpn-gateway-id>
 
-## <a name="add"></a>connexions de coexsiting tooconfigure pour un réseau virtuel existant
-Si vous avez un réseau virtuel existant, vérifiez la taille de sous-réseau de passerelle hello. Si le sous-réseau de passerelle hello est /28 ou /29, vous devez tout d’abord supprimer la passerelle de réseau virtuel hello et augmenter la taille de sous-réseau de passerelle hello. Hello étapes décrites dans cette section vous indiquent comment toodo qui.
+## <a name="add"></a>Configurer des connexions qui coexistent pour un réseau virtuel existant
+Si vous disposez déjà d’un réseau virtuel, vérifiez la taille du sous-réseau de passerelle. Si le sous-réseau de passerelle est /28 ou /29, vous devez tout d’abord supprimer la passerelle de réseau virtuel et augmenter la taille du sous-réseau de passerelle. Les étapes décrites dans cette section vous indiquent la procédure à suivre.
 
-Si le sous-réseau de passerelle hello est /27 ou supérieure et réseau virtuel de hello est connecté via ExpressRoute, vous pouvez ignorer les étapes hello ci-dessous et continuer trop[« Étape 6 : créer une passerelle VPN de Site à Site »](#vpngw) dans la section précédente de hello.
+Si le sous-réseau de passerelle est défini sur/27 ou plus et si le réseau virtuel est connecté via ExpressRoute, vous pouvez ignorer les étapes ci-dessous et passer à [« Étape 6 : créer une passerelle VPN de site à site »](#vpngw) dans la section précédente.
 
 > [!NOTE]
-> Lorsque vous supprimez la passerelle existante de hello, votre site local perdrez réseau virtuel de hello connexion tooyour lorsque vous travaillez sur cette configuration.
+> Lorsque vous supprimez la passerelle existante, votre site local perdra la connexion à votre réseau virtuel lorsque vous effectuerez cette configuration.
 > 
 > 
 
-1. Vous devez la version la plus récente hello tooinstall Hello applets de commande PowerShell de gestionnaire de ressources Azure. Consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) pour plus d’informations sur l’installation des applets de commande PowerShell hello. Notez que les applets de commande hello que vous allez utiliser pour cette configuration peut être légèrement différente de celle que vous connaissez peut-être. Applets de commande hello toouse vraiment être spécifié dans ces instructions. 
-2. Supprimer la passerelle hello ExpressRoute ou VPN de Site à Site existante. Utilisez hello suivant l’applet de commande, en remplaçant les valeurs hello par les vôtres.
+1. Vous aurez besoin d’installer la dernière version des applets de commande PowerShell Azure Resource Manager. Pour plus d’informations sur l’installation des applets de commande PowerShell, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) . Les applets de commande que vous utiliserez pour cette configuration peuvent être légèrement différentes de celles que vous connaissez. Utilisez les applets de commande spécifiées dans ces instructions. 
+2. Supprimez la passerelle VPN ExpressRoute ou de site à site existante. Utilisez l’applet de commande suivante en remplaçant les valeurs par les vôtres.
    
         Remove-AzureVNetGateway –VnetName MyAzureVNET
-3. Exporter le schéma de réseau virtuel hello. Utilisez hello suivant l’applet de commande PowerShell, en remplaçant les valeurs hello par les vôtres.
+3. Exportez le schéma du réseau virtuel. Utilisez l’applet de commande PowerShell suivante en remplaçant les valeurs par les vôtres.
    
         Get-AzureVNetConfig –ExportToFile “C:\NetworkConfig.xml”
-4. Modifier le schéma de fichier de configuration de réseau hello afin que le sous-réseau de passerelle hello est /27 ou un préfixe plus court (par exemple, /26 ou /25). Consultez hello l’exemple suivant. 
+4. Modifiez le schéma du fichier de configuration réseau pour que le sous-réseau de passerelle soit défini sur /27 ou un préfixe plus court (comme /26 ou /25). Consultez l’exemple qui suit. 
    
    > [!NOTE]
-   > Si vous n’avez pas suffisamment d’adresses IP dans votre taille de sous-réseau de passerelle de réseau virtuel tooincrease hello, vous devez tooadd plus d’espace d’adressage IP. Pour plus d’informations sur le schéma de configuration hello, consultez [schéma de configuration de réseau virtuel Azure](https://msdn.microsoft.com/library/azure/jj157100.aspx).
+   > S’il ne vous reste pas suffisamment d’adresses IP dans votre réseau virtuel pour augmenter la taille du sous-réseau de passerelle, vous devez augmenter l’espace d’adresses IP. Pour plus d’informations sur le schéma de configuration, consultez la page [Schéma de configuration du réseau virtuel Azure](https://msdn.microsoft.com/library/azure/jj157100.aspx).
    > 
    > 
    
           <Subnet name="GatewaySubnet">
             <AddressPrefix>10.17.159.224/27</AddressPrefix>
           </Subnet>
-5. Si votre passerelle précédente était un VPN de Site à Site, vous devez également modifier type de connexion hello trop**dédié**.
+5. Si votre passerelle précédente était une passerelle VPN de site à site, vous devez également modifier le type de connexion et le définir sur **Dédié**.
    
                  <Gateway>
                   <ConnectionsToLocalNetwork>
@@ -225,8 +225,8 @@ Si le sous-réseau de passerelle hello est /27 ou supérieure et réseau virtuel
                     </LocalNetworkSiteRef>
                   </ConnectionsToLocalNetwork>
                 </Gateway>
-6. À ce stade, vous disposez d’un réseau virtuel sans passerelles. toocreate nouvelles passerelles et vos connexions, vous pouvez poursuivre [étape 4 : créer une passerelle ExpressRoute](#gw), située dans hello précédant l’ensemble d’étapes.
+6. À ce stade, vous disposez d’un réseau virtuel sans passerelles. Pour créer de nouvelles passerelles et finaliser vos connexions, vous pouvez passer à l’ [Étape 4 : Créer une passerelle ExpressRoute](#gw), dans les étapes qui précèdent.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur ExpressRoute, consultez hello [FAQ sur ExpressRoute](expressroute-faqs.md)
+Pour plus d’informations sur ExpressRoute, consultez la [FAQ sur ExpressRoute](expressroute-faqs.md)
 

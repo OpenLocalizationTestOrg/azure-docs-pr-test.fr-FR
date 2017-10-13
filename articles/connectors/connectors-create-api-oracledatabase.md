@@ -1,6 +1,6 @@
 ---
-title: "connecteur de base de données Oracle aaaAdd hello dans vos applications de la logique de Azure | Documents Microsoft"
-description: "Utiliser le connecteur de base de données Oracle hello dans une application de logique"
+title: "Ajouter le connecteur de base de données Oracle à Azure Logic Apps | Microsoft Docs"
+description: "Utiliser le connecteur de base de données Oracle dans une application logique"
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,106 +15,106 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/29/2017
 ms.author: mandia; ladocs
-ms.openlocfilehash: 8a802a6c4782e210ff71848614152cb46ba5d651
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cc64441617eb5e7d5e70c1cf5c491a672428bc51
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-oracle-database-connector"></a>Prise en main connecteur de base de données Oracle hello
+# <a name="get-started-with-the-oracle-database-connector"></a>Prise en main du connecteur de base de données Oracle
 
-À l’aide du connecteur de base de données Oracle hello, créer des workflows d’organisation qui utilisent des données dans votre base de données existante. Ce connecteur peut se connecter tooan de base de données Oracle locale ou une machine virtuelle Azure avec la base de données Oracle installée. Avec ce connecteur, vous pouvez :
+À l’aide du connecteur de base de données Oracle, vous créez des workflows d’organisation qui utilisent des données de votre base de données existante. Ce connecteur peut se connecter à une base de données Oracle locale ou à une machine virtuelle sur laquelle la base de données Oracle est installée. Avec ce connecteur, vous pouvez :
 
-* Créer votre flux de travail en ajoutant une nouvelle base de données client tooa clients ou une commande dans une base de données des commandes de mise à jour.
-* Utilisez les actions tooget une ligne de données, insérer une nouvelle ligne, ou les supprimer. Par exemple, quand un enregistrement est créé dans Dynamics CRM Online (déclencheur), insérez une ligne dans une base de données Oracle (action). 
+* Créez votre flux de travail en ajoutant un nouveau client à une base de données clients ou en mettant à jour une commande dans une base de données de commandes.
+* Utilisez des actions pour obtenir une ligne de données, insérer une nouvelle ligne ou en supprimer. Par exemple, quand un enregistrement est créé dans Dynamics CRM Online (déclencheur), insérez une ligne dans une base de données Oracle (action). 
 
-Cette rubrique vous montre comment toouse hello dans une application de la logique d’un connecteur de base de données Oracle.
+Cette rubrique décrit comment utiliser le connecteur de base de données Oracle dans une application logique.
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Conditions préalables
 
 * Versions d’Oracle prises en charge : 
     * Oracle 9 et versions ultérieures
     * Logiciel client Oracle 8.1.7 et versions ultérieures
 
-* Installez la passerelle de données locale hello. [Se connecter tooon locale, les données à partir d’applications de logique](../logic-apps/logic-apps-gateway-connection.md) listes hello étapes. passerelle de Hello est requis tooconnect tooan base de données Oracle locale ou une machine virtuelle de Azure avec la base de données Oracle installée. 
+* Installez la passerelle de données locale. [Connexion à des données locales à partir d’applications logiques](../logic-apps/logic-apps-gateway-connection.md) répertorie les étapes à suivre. La passerelle vous permet de vous connecter à une base de données Oracle locale ou à une machine virtuelle Azure sur laquelle la base de données Oracle est installée. 
 
     > [!NOTE]
-    > passerelle de données locale Hello fait Office de pont et fournit un transfert sécurisé des données entre des données locales (les données qui ne sont pas dans le cloud de hello) et vos applications logiques. Hello même passerelle peut être utilisé avec plusieurs services et plusieurs sources de données. Par conséquent, vous devrez peut-être uniquement passerelle de hello tooinstall qu’une seule fois.
+    > La passerelle de données locale agit comme un pont et fournit un transfert de données sécurisé entre les données locales (qui ne sont pas sur le cloud) et vos applications logiques. La même passerelle peut être utilisée avec plusieurs services et plusieurs sources de données. Par conséquent, il vous suffira peut-être d’installer la passerelle une seule fois.
 
-* Installez hello Client Oracle sur l’ordinateur hello où vous avez installé la passerelle de données locale hello. Veillez à tooinstall hello 64 bits du fournisseur de données Oracle pour .NET à partir d’Oracle :  
+* Installez le client Oracle sur l’ordinateur où vous avez installé la passerelle de données locale. Veillez à installer le fournisseur de données Oracle 64 bits pour .NET à partir d’Oracle :  
 
   [ODAC 12C version 4 (12.1.0.2.4) 64 bits pour Windows x64](http://www.oracle.com/technetwork/database/windows/downloads/index-090165.html)
 
     > [!TIP]
-    > Si le client d’Oracle hello n’est pas installé, une erreur se produit lorsque vous essayez de toocreate ou utilisez hello connexion. Consultez les erreurs courantes hello dans cette rubrique.
+    > Si le client Oracle n’est pas installé, une erreur se produit lorsque vous tentez de créer ou d’utiliser la connexion. Consultez les erreurs courantes dans cette rubrique.
 
 
-## <a name="add-hello-connector"></a>Ajouter hello connecteur
+## <a name="add-the-connector"></a>Ajouter le connecteur
 
 > [!IMPORTANT]
-> Ce connecteur ne possède aucun déclencheur. Il possède uniquement des actions. Par conséquent, lorsque vous créez votre application logique, ajoutez un autre déclencheur toostart votre application logique, tel que **planification - périodicité**, ou **demande / réponse - réponse**. 
+> Ce connecteur ne possède aucun déclencheur. Il possède uniquement des actions. Par conséquent, lorsque vous créez votre application logique, ajoutez un autre déclencheur pour démarrer votre application logique, comme **Planification - Périodicité** ou **Requête/réponse - Réponse**. 
 
-1. Bonjour [portail Azure](https://portal.azure.com), créer une application vide logique.
+1. Dans le [portail Azure](https://portal.azure.com), créez une application logique vide.
 
-2. Au début de hello de votre application logique, sélectionnez hello **demande / réponse - demande** déclencheur : 
+2. Au lancement de votre application logique, sélectionnez le déclencheur **Requête/réponse - Requête** : 
 
     ![](./media/connectors-create-api-oracledatabase/request-trigger.png)
 
 3. Sélectionnez **Enregistrer**. Au moment de l’enregistrement, une URL de requête est générée automatiquement. 
 
-4. Sélectionnez **Nouvelle étape**, puis sélectionnez **Ajouter une action**. Tapez dans `oracle` toosee hello actions disponibles : 
+4. Sélectionnez **Nouvelle étape**, puis sélectionnez **Ajouter une action**. Entrez `oracle` pour afficher les actions disponibles : 
 
     ![](./media/connectors-create-api-oracledatabase/oracledb-actions.png)
 
     > [!TIP]
-    > Il s’agit également toosee moyen le plus rapide de hello hello des déclencheurs et les actions disponibles pour tous les connecteurs. Tapez dans la partie du nom du connecteur hello, tel que `oracle`. le Concepteur de Hello répertorie tous les déclencheurs et les actions. 
+    > C’est également le moyen le plus rapide de voir les déclencheurs et les actions disponibles pour n’importe quel connecteur. Entrez une partie du nom du connecteur, comme `oracle`. Le concepteur répertorie tous les déclencheurs et toutes les actions. 
 
-5. Sélectionnez une des actions de hello, tel que **base de données Oracle - Get ligne**. Sélectionnez l’option **Se connecter via la passerelle de données locale**. Entrez le nom du serveur Oracle hello, méthode d’authentification, nom d’utilisateur, mot de passe et sélectionnez hello passerelle :
+5. Sélectionnez l’une des actions, comme **Base de données Oracle - Obtenir une ligne**. Sélectionnez l’option **Se connecter via la passerelle de données locale**. Entrez le nom du serveur Oracle, la méthode d’authentification, le nom d’utilisateur et le mot de passe, puis sélectionnez la passerelle :
 
     ![](./media/connectors-create-api-oracledatabase/create-oracle-connection.png)
 
-6. Une fois connecté, sélectionnez une table dans la liste de hello et entrez table tooyour des ID de ligne hello. Vous avez besoin de table de toohello tooknow hello identificateur. Si vous ne connaissez pas, contactez votre administrateur de base de données Oracle et obtenir la sortie hello `select * from yourTableName`. Ceci permet de vous hello vous devez tooproceed informations d’identification personnelle.
+6. Une fois connecté, sélectionnez une table dans la liste et entrez l’ID de ligne pour votre table. Vous devez connaître l’identificateur de la table. Si vous ne le connaissez pas, contactez votre administrateur de base de données Oracle et récupérez la sortie à partir de `select * from yourTableName`. Vous disposerez ainsi des informations d’identification nécessaires pour continuer.
 
-    Dans l’exemple suivant de hello, données de la tâche sont retournées depuis une base de données des ressources humaines : 
+    Dans l’exemple suivant, les données de travail sont renvoyées à partir d’une base de données Ressources humaines : 
 
     ![](./media/connectors-create-api-oracledatabase/table-rowid.png)
 
-7. Dans cette étape, vous pouvez utiliser une des hello autres toobuild connecteurs votre flux de travail. Si vous souhaitez tootest obtention de données à partir d’Oracle, puis vous envoyez un message électronique avec des données d’Oracle hello à l’aide de hello envoyer par courrier électronique connecteurs, Office 365 ou Gmail de ce type. Utiliser des jetons de hello dynamique à partir de Bonjour Oracle table toobuild Bonjour `Subject` et `Body` de votre adresse de messagerie :
+7. Dans l’étape suivante, vous pouvez utiliser l’un des autres connecteurs pour créer votre workflow. Si vous souhaitez tester l’obtention de données à partir d’Oracle, envoyez-vous un courrier électronique contenant les données Oracle à l’aide de l’un des connecteurs d’envoi de courriers électroniques, comme Office 365 ou Gmail. Utilisez les jetons dynamiques de la table Oracle pour créer les éléments `Subject` et `Body` de votre message électronique :
 
     ![](./media/connectors-create-api-oracledatabase/oracle-send-email.png)
 
-8. **Enregistrez** votre application logique, puis sélectionnez **Exécuter**. Fermez le Générateur de hello et observez l’historique des exécutions hello pour l’état de hello. En cas d’échec, sélectionnez la ligne du message ayant échoué hello. Hello concepteur s’ouvre et affiche les étape a échoué et indique hello des informations d’erreur. Si elle réussit, vous devez recevoir un message électronique contenant les informations de hello que vous avez ajouté.
+8. **Enregistrez** votre application logique, puis sélectionnez **Exécuter**. Fermez le concepteur et consultez l’état de l’historique des exécutions. En cas d’échec, sélectionnez la ligne du message ayant échoué. Le concepteur s’ouvre et affiche l’étape qui a échoué ainsi que les informations d’erreur. En cas de réussite, vous devez recevoir un courrier électronique contenant les informations que vous avez ajoutées.
 
 
 ### <a name="workflow-ideas"></a>Idées de workflow
 
-* Vous souhaitez toomonitor hello #oracle #sqlhelp et que vous placez hello tweet dans une base de données afin qu’ils peuvent être consultés et utilisés dans d’autres applications. Dans une application logique, ajoutez hello `Twitter - When a new tweet is posted` déclencher et entrez hello **#oracle** #sqlhelp. Ensuite, ajoutez hello `Oracle Database - Insert row` action, puis sélectionnez votre table :
+* Vous souhaitez surveiller le hashtag #oracle et inclure les tweets dans une base de données afin de pouvoir les consulter et les utiliser dans d’autres applications. Dans une application logique, ajoutez le déclencheur `Twitter - When a new tweet is posted`, puis entrez le hashtag **#oracle**. Ajoutez ensuite l’action `Oracle Database - Insert row`, puis sélectionnez votre table :
 
     ![](./media/connectors-create-api-oracledatabase/twitter-oracledb.png)
 
-* File d’attente du Service Bus tooa sont envoyés. Vous voulez tooget ces messages et les placer dans une base de données. Dans une application logique, ajoutez hello `Service Bus - when a message is received in a queue` déclencheur file d’attente et sélectionnez hello. Ensuite, ajoutez hello `Oracle Database - Insert row` action, puis sélectionnez votre table :
+* Les messages sont envoyés à une file d’attente Service Bus. Vous souhaitez récupérer ces messages et les inclure dans une base de données. Dans une application logique, ajoutez le déclencheur `Service Bus - when a message is received in a queue`, puis sélectionnez la file d’attente. Ajoutez ensuite l’action `Oracle Database - Insert row`, puis sélectionnez votre table :
 
     ![](./media/connectors-create-api-oracledatabase/sbqueue-oracledb.png)
 
 ## <a name="common-errors"></a>Erreurs courantes
 
-#### <a name="error-cannot-reach-hello-gateway"></a>**Erreur**: ne peut pas atteindre hello passerelle
+#### <a name="error-cannot-reach-the-gateway"></a>**Erreur** : La passerelle est injoignable
 
-**Cause**: passerelle de données locale hello n’est pas en mesure de tooconnect toohello cloud. 
+**Cause** : la passerelle de données locale n’est pas en mesure de se connecter au cloud. 
 
-**Atténuation**: Assurez-vous que votre passerelle s’exécute sur l’ordinateur local, hello où vous l’avez installé et qu’il peut se connecter toohello internet.  Nous vous recommandons ne pas l’installation de passerelle de hello sur un ordinateur qui peut être mis hors tension ou le mode veille. Vous pouvez également redémarrer le service de passerelle de données hello local (PBIEgwService).
+**Atténuation** : assurez-vous que votre passerelle s’exécute sur l’ordinateur local où vous l’avez installée, et qu’elle peut se connecter à Internet.  Nous vous recommandons ne pas installer la passerelle sur un ordinateur susceptible d’être mis hors tension ou en veille. Vous pouvez également redémarrer le service de passerelle de données locale (PBIEgwService).
 
-#### <a name="error-hello-provider-being-used-is-deprecated-systemdataoracleclient-requires-oracle-client-software-version-817-or-greater-please-visit-httpsgomicrosoftcomfwlinkplinkid272376httpsgomicrosoftcomfwlinkplinkid272376-tooinstall-hello-official-provider"></a>**Erreur**: fournisseur hello utilisé est déconseillé : ' System.Data.OracleClient requiert le logiciel client Oracle version 8.1.7 ou ultérieure.'. Visitez [https://go.microsoft.com/fwlink/p/?LinkID=272376](https://go.microsoft.com/fwlink/p/?LinkID=272376) fournisseur officiel de tooinstall hello.
+#### <a name="error-the-provider-being-used-is-deprecated-systemdataoracleclient-requires-oracle-client-software-version-817-or-greater-please-visit-httpsgomicrosoftcomfwlinkplinkid272376httpsgomicrosoftcomfwlinkplinkid272376-to-install-the-official-provider"></a>**Erreur**: Le fournisseur utilisé est déconseillé : System.Data.OracleClient requiert le logiciel client Oracle version 8.1.7 ou supérieure. Visitez [https://go.microsoft.com/fwlink/p/?LinkID=272376](https://go.microsoft.com/fwlink/p/?LinkID=272376) pour installer le fournisseur officiel.
 
-**Cause**: hello Oracle clients SDK n’est pas installé sur l’ordinateur de hello où hello locaux passerelle de données est en cours d’exécution.  
+**Cause** : le kit de développement du client Oracle n’est pas installé sur l’ordinateur qui exécute la passerelle de données locale.  
 
-**Résolution**: télécharger et installer le Kit de développement logiciel du client Oracle hello sur hello même ordinateur en tant que passerelle de données locale hello.
+**Résolution** : téléchargez et installez le kit de développement logiciel du client Oracle sur le même ordinateur que la passerelle de données locale.
 
 #### <a name="error-table-tablename-does-not-define-any-key-columns"></a>**Erreur** : La table « [Tablename] » ne définit aucune colonne clé
 
-**Cause**: table de hello n’a pas de clé primaire.  
+**Cause** : la table n’a pas de clé primaire.  
 
-**Résolution**: connecteur de base de données Oracle hello requiert qu’une table avec une colonne clé primaire.
+**Résolution** : le connecteur de la base de données Oracle requiert une table avec une colonne clé primaire.
 
 #### <a name="currently-not-supported"></a>Actuellement non pris en charge
 
@@ -124,14 +124,14 @@ Cette rubrique vous montre comment toouse hello dans une application de la logiq
  
 ## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
 
-Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/oracle/). 
+Consultez l’ensemble des déclencheurs et actions définis dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/oracle/). 
 
 ## <a name="get-some-help"></a>Obtenir de l’aide
 
-Hello [forum de Azure Logic Apps](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps) est une bonne placez tooask questions, répondez aux questions et voir ce que font les autres utilisateurs Logic Apps. 
+Le [Forum Azure Logic Apps](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps) est l’endroit idéal pour poser des questions, répondre aux questions posées et découvrir ce que font les autres utilisateurs de Logic Apps. 
 
 Vous pouvez améliorer Logic Apps et les connecteurs en votant et en soumettant vos idées sur [http://aka.ms/logicapps-wish](http://aka.ms/logicapps-wish). 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md)et Explorer les connecteurs disponibles hello dans Logic Apps à notre [liste des API](apis-list.md).
+[Créez une application logique](apis-list.md) et explorez les connecteurs disponibles dans Logic Apps en consultant notre [liste d’API](../logic-apps/logic-apps-create-a-logic-app.md).

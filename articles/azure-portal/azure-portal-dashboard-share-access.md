@@ -1,6 +1,6 @@
 ---
-title: "aaaShare Azure portail tableaux de bord à l’aide de RBAC | Documents Microsoft"
-description: "Cet article explique comment tooshare un tableau de bord dans hello portail Azure à l’aide du contrôle d’accès en fonction du rôle."
+title: "Partage de tableaux de bord de portail Azure à l’aide de RBAC | Microsoft Docs"
+description: "Cet article vous explique comment partager un tableau de bord dans le portail Azure en utilisant le contrôle d'accès en fonction du rôle."
 services: azure-portal
 documentationcenter: 
 author: tfitzmac
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/01/2016
 ms.author: tomfitz
-ms.openlocfilehash: b12f9f8582596ee14aa8bfdfb4772cc139e3bf45
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ea0cf7ad074f95c2b49a92f9a8e32270a1d39b3a
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="share-azure-dashboards-by-using-role-based-access-control"></a>Partager des tableaux de bord Azure à l’aide du contrôle d’accès en fonction du rôle
-Après avoir configuré un tableau de bord, vous pouvez le publier et le partager avec d’autres utilisateurs de votre organisation. Vous permettre d’autres tooview votre tableau de bord à l’aide d’Azure [Role-Based Access Control](../active-directory/role-based-access-control-configure.md). Vous affectez un utilisateur ou un groupe de rôle tooa d’utilisateurs, et ce rôle définit si les utilisateurs peuvent afficher ou modifier le tableau de bord publié hello. 
+Après avoir configuré un tableau de bord, vous pouvez le publier et le partager avec d’autres utilisateurs de votre organisation. Vous permettez à d’autres utilisateurs de voir votre tableau de bord au moyen du [contrôle d’accès en fonction du rôle (RBAC)](../active-directory/role-based-access-control-configure.md) Azure. Vous affectez un utilisateur ou un groupe d’utilisateurs à un rôle, qui définit si ces utilisateurs peuvent visualiser ou modifier le tableau de bord publié. 
 
 Tous les tableaux de bord publiés sont implémentés en tant que ressources Azure, ce qui signifie qu’ils constituent des éléments gérables dans votre abonnement et qu’ils sont contenus dans un groupe de ressources.  En termes de contrôle d’accès, les tableaux de bord sont traités de la même manière que les autres ressources, telles qu’une machine virtuelle ou un compte de stockage.
 
 > [!TIP]
-> Mosaïque individuelle sur le tableau de bord hello applique ses propres exigences de contrôle d’accès en fonction des ressources hello qu'elles s’affichent.  Par conséquent, vous pouvez concevoir un tableau de bord est partagé largement tout en protégeant les données hello sur les vignettes individuels.
+> Les vignettes individuelles du tableau de bord appliquent leurs propres exigences en matière de contrôle d’accès, compte tenu des ressources qu’elles affichent.  Par conséquent, vous pouvez concevoir un tableau de bord partagé à grande échelle tout en protégeant les données contenues dans chaque vignette.
 > 
 > 
 
 ## <a name="understanding-access-control-for-dashboards"></a>Présentation du contrôle d’accès relatif aux tableaux de bord
-Avec les contrôle de l’accès en fonction du rôle (RBAC), vous pouvez attribuer tooroles les utilisateurs à trois différents niveaux de portée :
+Le contrôle d’accès en fonction du rôle (RBAC) vous permet d’attribuer des utilisateurs à des rôles avec trois niveaux d’étendue distincts :
 
 * abonnement
 * resource group
 * resource
 
-vous attribuez des autorisations Hello sont héritées d’abonnement vers le bas toohello ressource. tableau de bord publié Hello est une ressource. Par conséquent, vous avez peut-être déjà tooroles utilisateurs affectés pour l’abonnement de hello qui fonctionnent également pour un tableau de bord publié hello. 
+Les ressources héritent des autorisations que vous affectez à l’abonnement. Le tableau de bord publié est une ressource. Par conséquent, certains de vos utilisateurs disposent peut-être déjà de rôles pour l’abonnement qui fonctionnent également pour le tableau de bord publié. 
 
-Voici un exemple.  Supposons que vous avez un abonnement Azure et de différents membres de votre équipe ont été affectés des rôles de hello de **propriétaire**, **collaborateur**, ou **lecteur** pour l’abonnement de hello. Les utilisateurs qui sont propriétaires ou collaborateurs sont en mesure de toolist, afficher, créer, modifier ou supprimer des tableaux de bord dans l’abonnement de hello.  Les utilisateurs qui sont des lecteurs sont en mesure de toolist et afficher des tableaux de bord, mais ne peut pas modifier ou les supprimer.  Les utilisateurs avec accès en lecture sont en mesure de toomake modifications locales tooa tableau de bord publié (telles que, lors du dépannage d’un problème), mais est toopublish n’a pas pu ces server toohello arrière de modifications.  Ils auront hello option toomake une copie privée d’un tableau de bord hello pour eux-mêmes
+Voici un exemple.  Supposons que vous disposiez d’un abonnement Azure et que les différents membres de votre équipe aient reçu les rôles de **propriétaire**, de **contributeur** ou de **lecteur** pour l’abonnement. Les utilisateurs associés au rôle de propriétaire ou de contributeur peuvent répertorier, afficher, créer, modifier ou supprimer des tableaux de bord dans l’abonnement.  Les utilisateurs ayant le rôle de lecteur peuvent répertorier et afficher des tableaux de bord, sans les modifier ou les supprimer.  Les utilisateurs dotés d’un accès de lecteur peuvent apporter des modifications locales à un tableau de bord publié (par exemple, lors de la résolution d’un problème), mais ne peuvent pas republier ces modifications sur le serveur.  Ils pourront effectuer une copie privée du tableau de bord pour leur propre usage.
 
-Toutefois, vous pouvez également affecter autorisations toohello ressource groupe qui contient plusieurs tableaux de bord ou tableau de bord tooan individuels. Par exemple, vous pouvez décider qu’un groupe d’utilisateurs doit-elle disposer d’autorisations limitées sur l’abonnement de hello mais supérieur accès tooa particulier du tableau de bord. Vous affectez ces rôle tooa d’utilisateurs pour ce tableau de bord. 
+Toutefois, vous pouvez également affecter des autorisations au groupe de ressources qui contient plusieurs tableaux de bord ou à un tableau de bord spécifique. Par exemple, vous pouvez décider qu’un groupe d’utilisateurs doit disposer d’autorisations limitées dans l’ensemble de l’abonnement, mais un accès plus étendu à un tableau de bord donné. Vous affectez alors ces utilisateurs à un rôle pour ce tableau de bord. 
 
 ## <a name="publish-dashboard"></a>Publier un tableau de bord
-Supposons que vous avez terminé de configurer un tableau de bord que vous souhaitez tooshare avec un groupe d’utilisateurs dans votre abonnement. étapes Hello ci-dessous représentent un groupe personnalisé appelé responsables du stockage, mais vous pouvez nommer votre groupe de ce que vous voulez. Pour plus d’informations sur la création d’un groupe Active Directory et l’ajout de groupe d’utilisateurs toothat, consultez [la gestion des groupes dans Azure Active Directory](../active-directory/active-directory-accessmanagement-manage-groups.md).
+Supposons que vous ayez terminé de configurer un tableau de bord que vous souhaitez partager avec un groupe d’utilisateurs dans votre abonnement. La procédure ci-après décrit un groupe personnalisé appelé Responsables du stockage, mais vous pouvez nommer votre groupe à votre convenance. Pour plus d’informations sur la création d’un groupe Active Directory et sur l’ajout d’utilisateurs à ce groupe, voir [Gestion des groupes dans Azure Active Directory](../active-directory/active-directory-accessmanagement-manage-groups.md).
 
-1. Dans le tableau de bord hello, sélectionnez **partage**.
+1. Dans le tableau de bord, sélectionnez **Partager**.
    
      ![sélectionner Partager](./media/azure-portal-dashboard-share-access/select-share.png)
-2. Avant d’attribuer l’accès, vous devez publier le tableau de bord hello. Par défaut, tableau de bord hello sera publiée tooa groupe de ressources nommé **tableaux de bord**. Sélectionnez **Publier**.
+2. Avant d’affecter l’accès, vous devez publier le tableau de bord. Par défaut, le tableau de bord est publié dans un groupe de ressources nommé **tableaux de bord**. Sélectionnez **Publier**.
    
      ![Publier](./media/azure-portal-dashboard-share-access/publish.png)
 
-Votre tableau de bord est à présent publié. Si les autorisations de hello héritées de l’abonnement de hello sont appropriées, il est inutile toodo rien de plus. Autres utilisateurs de votre organisation seront être en mesure de tooaccess et modifier le tableau de bord hello en fonction de leur rôle au niveau d’abonnement. Toutefois, pour ce didacticiel, nous allons assigner un groupe de rôle tooa d’utilisateurs pour ce tableau de bord.
+Votre tableau de bord est à présent publié. Si les autorisations héritées de l’abonnement vous conviennent, vous n’avez rien d’autre à faire. Les autres utilisateurs de votre organisation seront en mesure d’accéder au tableau de bord et de le modifier en fonction de leur rôle au niveau de l’abonnement. Toutefois, pour ce didacticiel, affectons un groupe d’utilisateurs à un rôle pour ce tableau de bord.
 
-## <a name="assign-access-tooa-dashboard"></a>Attribuer l’accès tooa tableau de bord
-1. Après la publication de tableau de bord hello, sélectionnez **gérer les utilisateurs**.
+## <a name="assign-access-to-a-dashboard"></a>Affecter l’accès à un tableau de bord
+1. Après avoir publié le tableau de bord, sélectionnez **Gérer les utilisateurs**.
    
-     ![gérer des utilisateurs](./media/azure-portal-dashboard-share-access/manage-users.png)
-2. Vous obtenez une liste d’utilisateurs existants déjà dotés d’un rôle pour ce tableau de bord. Votre liste d’utilisateurs existants sera différente de celle image hello ci-dessous. Très probablement, les attributions de hello sont héritées d’abonnement de hello. tooadd un nouvel utilisateur ou groupe, sélectionnez **ajouter**.
+     ![Gérer les utilisateurs](./media/azure-portal-dashboard-share-access/manage-users.png)
+2. Vous obtenez une liste d’utilisateurs existants déjà dotés d’un rôle pour ce tableau de bord. Votre liste d’utilisateurs existants sera différente de celle illustrée ci-dessous. Les affectations sont très probablement héritées de l’abonnement. Pour ajouter un nouvel utilisateur ou un nouveau groupe, sélectionnez **Ajouter**.
    
      ![ajouter un utilisateur](./media/azure-portal-dashboard-share-access/existing-users.png)
-3. Sélectionnez rôle hello qui représente les autorisations hello toogrant voulue. Dans cet exemple, sélectionnez **Contributeur**.
+3. Sélectionnez le rôle qui représente les autorisations que vous souhaitez accorder. Dans cet exemple, sélectionnez **Contributeur**.
    
      ![sélectionner un rôle](./media/azure-portal-dashboard-share-access/select-role.png)
-4. Sélectionnez l’utilisateur de hello ou un groupe que vous souhaitez tooassign toohello rôle. Si vous ne voyez pas l’utilisateur de hello ou un groupe que vous recherchez dans la liste de hello, utilisez la zone de recherche hello. La liste des groupes disponibles dépendent des groupes hello que vous avez créé dans Active Directory.
+4. Sélectionnez l’utilisateur ou le groupe à affecter au rôle. Si l’utilisateur ou le groupe que vous recherchez n’apparaissent pas dans la liste, utilisez la zone de recherche. Votre liste de groupes disponibles dépendra des groupes que vous avez créés dans votre service Active Directory.
    
      ![sélectionner un utilisateur](./media/azure-portal-dashboard-share-access/select-user.png) 
 5. Lorsque vous avez terminé d’ajouter des utilisateurs ou des groupes, sélectionnez **OK**. 
-6. nouvelle attribution de Hello est ajoutée toohello la liste des utilisateurs. Notez que son **Accès** présente la valeur **Affecté** plutôt que la valeur **Hérité**.
+6. La nouvelle affectation est ajoutée à la liste d’utilisateurs. Notez que son **Accès** présente la valeur **Affecté** plutôt que la valeur **Hérité**.
    
      ![rôles affectés](./media/azure-portal-dashboard-share-access/assigned-roles.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 * Pour obtenir la liste des rôles, voir [RBAC : rôles intégrés](../active-directory/role-based-access-built-in-roles.md).
-* toolearn sur la gestion des ressources, consultez [des ressources de gestion de Azure via le portail](resource-group-portal.md).
+* Pour plus d’informations sur la gestion des ressources, voir [Gérer les ressources Azure sur le portail](resource-group-portal.md).
 

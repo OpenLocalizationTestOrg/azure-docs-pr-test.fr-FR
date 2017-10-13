@@ -1,6 +1,6 @@
 ---
-title: aaaManage Azure Swarm cluster avec les API Docker | Documents Microsoft
-description: "Déployer les conteneurs tooa Docker Swarm cluster dans le conteneur de Service Azure"
+title: "Gérer un cluster Swarm Azure avec l’API Docker | Microsoft Docs"
+description: "Déployez des conteneurs sur un cluster Docker Swarm dans Azure Container Service"
 services: container-service
 documentationcenter: 
 author: rgardler
@@ -16,25 +16,25 @@ ms.workload: na
 ms.date: 09/13/2016
 ms.author: rogardle
 ms.custom: mvc
-ms.openlocfilehash: bb9b07c82a7b48caeb2e351455797cbf2a6e7480
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6ca2d2e49c4b7f5eb0580e7091b09209f8b73a7c
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="container-management-with-docker-swarm"></a>Gestion des conteneurs avec Docker Swarm
-Docker Swarm fournit un environnement pour le déploiement de charges de travail en conteneur sur un ensemble groupé d’hôtes Docker. Docker essaim utilise les API Docker native hello. workflow de Hello pour la gestion des conteneurs sur un Docker Swarm est presque identique toowhat qu'il serait sur un hôte de conteneur unique. Ce document fournit des exemples simples de déploiement de charges de travail en conteneur dans une instance Azure Container Service de Docker Swarm. Pour des informations détaillées sur Docker Swarm, consultez [Docker Swarm sur Docker.com](https://docs.docker.com/swarm/).
+Docker Swarm fournit un environnement pour le déploiement de charges de travail en conteneur sur un ensemble groupé d’hôtes Docker. Docker Swarm utilise l’API Docker native. Le flux de travail pour la gestion des conteneurs sur un Docker Swarm est presque identique à ce qu’elle serait sur un hôte de conteneur individuel. Ce document fournit des exemples simples de déploiement de charges de travail en conteneur dans une instance Azure Container Service de Docker Swarm. Pour des informations détaillées sur Docker Swarm, consultez [Docker Swarm sur Docker.com](https://docs.docker.com/swarm/).
 
 [!INCLUDE [container-service-swarm-mode-note](../../../includes/container-service-swarm-mode-note.md)]
 
-Exercices de toohello de conditions préalables dans ce document :
+Conditions préalables pour les exercices de ce document :
 
 [Création d’un cluster Swarm dans Azure Container Service](container-service-deployment.md)
 
-[Se connecter à un cluster d’essaim hello dans le conteneur de Service Azure](../container-service-connect.md)
+[Connexion avec le cluster Swarm dans Azure Container Service](../container-service-connect.md)
 
 ## <a name="deploy-a-new-container"></a>Déploiement d’un nouveau conteneur
-toocreate un nouveau conteneur Bonjour Docker Swarm, utilisez hello `docker run` commandes (vous être assuré que vous avez ouvert un maîtres de toohello tunnel SSH conformément aux conditions hello ci-dessus). Cet exemple crée un conteneur de hello `yeasy/simple-web` image :
+Pour créer un conteneur dans l’outil Docker Swarm, utilisez la commande `docker run` (en vous assurant d’avoir ouvert un tunnel SSH vers les maîtres, conformément aux conditions préalables décrites ci-dessus). Cet exemple crée un conteneur à partir de l’image `yeasy/simple-web` :
 
 ```bash
 user@ubuntu:~$ docker run -d -p 80:80 yeasy/simple-web
@@ -42,7 +42,7 @@ user@ubuntu:~$ docker run -d -p 80:80 yeasy/simple-web
 4298d397b9ab6f37e2d1978ef3c8c1537c938e98a8bf096ff00def2eab04bf72
 ```
 
-Une fois le conteneur de hello a été créé, utilisez `docker ps` tooreturn plus d’informations sur le conteneur de hello. Notez ici que l’agent essaim hello qui héberge le conteneur de hello est répertorié :
+Une fois le conteneur créé, utilisez `docker ps` pour renvoyer des informations sur le conteneur. Ici, l’agent Swarm qui héberge le conteneur est répertorié :
 
 ```bash
 user@ubuntu:~$ docker ps
@@ -51,14 +51,14 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 4298d397b9ab        yeasy/simple-web    "/bin/sh -c 'python i"   31 seconds ago      Up 9 seconds        10.0.0.5:80->80/tcp   swarm-agent-34A73819-1/happy_allen
 ```  
 
-Vous pouvez désormais accéder aux applications hello qui s’exécute dans ce conteneur via le nom DNS public de hello d’équilibrage de charge de l’agent essaim hello. Vous pouvez trouver ces informations dans hello portail Azure :  
+Vous pouvez maintenant accéder à l’application en cours d’exécution dans ce conteneur via le nom DNS public de l’équilibreur de charge de l’agent Swarm. Ces informations sont disponibles dans le portail Azure.  
 
 ![Résultats réels des visites](./media/container-service-docker-swarm/real-visit.jpg)  
 
-Par défaut hello équilibrage de charge a les ports 80, 8080 et 443 ouvert. Si vous souhaitez tooconnect sur un autre port vous devez tooopen ce port sur hello équilibrage de charge Azure pour hello Pool d’agents.
+Par défaut, l’équilibreur de charge dispose des ports 80, 8080 et 443 ouverts. Si vous souhaitez vous connecter sur un autre port, vous devez ouvrir ce port dans Azure Load Balancer pour le pool d’agents.
 
 ## <a name="deploy-multiple-containers"></a>Déploiement de plusieurs conteneurs
-Plusieurs conteneurs sont lancées, en exécutant « docker run » plusieurs fois, vous pouvez utiliser hello `docker ps` toosee de commande qui héberge les conteneurs hello sont en cours d’exécution. Dans l’exemple hello ci-dessous, les trois conteneurs sont répartis uniformément sur trois agents d’essaim hello :  
+Plusieurs conteneurs étant démarrés, en exécutant « docker run » plusieurs fois, vous pouvez utiliser la commande `docker ps` pour afficher les hôtes sur lesquels les conteneurs sont exécutés. Dans l’exemple ci-dessous, trois conteneurs sont répartis uniformément entre les trois agents Swarm :  
 
 ```bash
 user@ubuntu:~$ docker ps
@@ -70,9 +70,9 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```  
 
 ## <a name="deploy-containers-by-using-docker-compose"></a>Déploiement de conteneurs avec Docker Compose
-Vous pouvez utiliser le déploiement de hello tooautomate de Docker Compose et la configuration de plusieurs conteneurs. toodo, assurez-vous qu’un tunnel SSH (Secure Shell) a été créé et que cette variable DOCKER_HOST hello a été définie (voir hello préalables ci-dessus).
+Vous pouvez utiliser Docker Compose pour automatiser le déploiement et la configuration de plusieurs conteneurs. Pour ce faire, assurez-vous qu’un tunnel Secure Shell (SSH) a été créé et que la variable DOCKER_HOST a été définie (voir les conditions préalables ci-dessus).
 
-Créez un fichier docker-compose.yml sur votre système local. toodo, utilisez cette [exemple](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/docker-compose.yml).
+Créez un fichier docker-compose.yml sur votre système local. Pour ce faire, utilisez cet [exemple](https://raw.githubusercontent.com/rgardler/AzureDevTestDeploy/master/docker-compose.yml).
 
 ```bash
 web:
@@ -88,7 +88,7 @@ rest:
 
 ```
 
-Exécutez `docker-compose up -d` déploiements de conteneur toostart hello :
+Exécutez `docker-compose up -d` pour démarrer les déploiements de conteneur :
 
 ```bash
 user@ubuntu:~/compose$ docker-compose up -d
@@ -104,7 +104,7 @@ swarm-agent-3B7093B8-2: Pulling adtd/web:0.1... : downloaded
 Creating compose_web_1
 ```
 
-Enfin, liste hello de conteneurs en cours d’exécution s’affichera. Cette liste répertorie les conteneurs hello qui ont été déployées à l’aide de Docker Compose :
+Enfin, la liste des conteneurs en cours d’exécution est retournée. Cette liste répertorie les conteneurs qui ont été déployés à l’aide de Docker Compose :
 
 ```bash
 user@ubuntu:~/compose$ docker ps
@@ -113,7 +113,7 @@ caf185d221b7        adtd/web:0.1        "apache2-foreground"   2 minutes ago    
 040efc0ea937        adtd/rest:0.1       "catalina.sh run"      3 minutes ago       Up 2 minutes        10.0.0.4:8080->8080/tcp   swarm-agent-3B7093B8-0/compose_rest_1
 ```
 
-Naturellement, vous pouvez utiliser `docker-compose ps` tooexamine hello uniquement les conteneurs définis dans votre `compose.yml` fichier.
+Naturellement, vous pouvez utiliser `docker-compose ps` pour examiner uniquement les conteneurs définis dans votre fichier `compose.yml`.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Approfondissez vos connaissances sur Docker Swarm](https://docs.docker.com/swarm/)

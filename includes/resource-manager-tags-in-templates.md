@@ -1,7 +1,7 @@
-tootag une ressource pendant le déploiement, ajoutez hello `tags` ressource d’élément toohello vous déployez. Fournir une valeur et le nom de la balise hello.
+Pour marquer une ressource au cours du déploiement, ajoutez l’élément `tags` à la ressource que vous déployez. Indiquez le nom et la valeur de la balise.
 
-### <a name="apply-a-literal-value-toohello-tag-name"></a>Appliquer un nom de balise toohello valeur littérale
-Hello suivant montre un compte de stockage avec deux balises (`Dept` et `Environment`) qui sont définies les valeurs tooliteral :
+### <a name="apply-a-literal-value-to-the-tag-name"></a>Appliquer une valeur littérale au nom de balise
+L’exemple suivant illustre un compte de stockage avec deux balises (`Dept` et `Environment`) définies sur des valeurs littérales :
 
 ```json
 {
@@ -27,8 +27,8 @@ Hello suivant montre un compte de stockage avec deux balises (`Dept` et `Environ
 }
 ```
 
-### <a name="apply-an-object-toohello-tag-element"></a>Appliquer un élément de balise d’objet toohello
-Vous pouvez définir un paramètre d’objet qui stocke plusieurs balises et s’appliquent à cet élément de balise toohello objet. Chaque propriété de l’objet de hello devient une balise distincte pour la ressource de hello. exemple Hello possède un paramètre nommé `tagValues` qui est un élément balise toohello appliqué.
+### <a name="apply-an-object-to-the-tag-element"></a>Appliquer un objet à l’élément de balise
+Vous pouvez définir un paramètre d’objet qui stocke plusieurs balises et appliquer cet objet à l’élément de balise. Chaque propriété de l’objet devient une balise distincte pour la ressource. L’exemple suivant illustre un paramètre nommé `tagValues` appliqué à l’élément de balise.
 
 ```json
 {
@@ -60,9 +60,9 @@ Vous pouvez définir un paramètre d’objet qui stocke plusieurs balises et s�
 }
 ```
 
-### <a name="apply-a-json-string-toohello-tag-name"></a>Appliquer un nom de balise toohello chaîne JSON
+### <a name="apply-a-json-string-to-the-tag-name"></a>Appliquer une chaîne JSON au nom de balise
 
-toostore nombre de valeurs dans une balise unique, appliquer une chaîne JSON qui représente les valeurs hello. chaîne JSON entière de Hello est stockée en tant qu’une seule balise ne peut pas dépasser 256 caractères. exemple Hello possède une balise unique nommée `CostCenter` qui contient plusieurs valeurs à partir d’une chaîne JSON :  
+Pour stocker plusieurs valeurs dans une seule balise, appliquez une chaîne JSON qui représente les valeurs. La chaîne JSON complète est stockée sous la forme d’une balise ne pouvant pas dépasser 256 caractères. L’exemple illustre une balise unique nommée `CostCenter` qui contient plusieurs valeurs d’une chaîne JSON :  
 
 ```json
 {

@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec LinkedIn Learning | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et l’apprentissage de LinkedIn."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et LinkedIn Learning."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,124 +13,124 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: jeedes
-ms.openlocfilehash: 14610a25132ed0ccf5892cad6ccc4e1ef03ff280
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6ad28cb3adaa63ddc3d3769a650d26ca6a7e2695
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-linkedin-learning"></a>Didacticiel : Intégration d’Azure Active Directory à LinkedIn Learning
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Learning LinkedIn avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer LinkedIn Learning à Azure Active Directory (Azure AD).
 
-Intégration LinkedIn Learning à Azure AD offre hello avantages suivants :
+L’intégration de LinkedIn Learning dans Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooLinkedIn d’apprentissage
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooLinkedIn Learning (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à LinkedIn Learning
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à LinkedIn Learning (via l’authentification unique) avec leur compte Azure AD
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Prérequis
 
-tooconfigure intégration d’Azure AD avec LinkedIn Learning, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à LinkedIn Learning, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement LinkedIn Learning pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de LinkedIn Learning à partir de la galerie de hello
+1. Ajout de LinkedIn Learning à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-linkedin-learning-from-hello-gallery"></a>Ajout de LinkedIn Learning à partir de la galerie de hello
-tooconfigure hello intégration de LinkedIn Learning dans Azure AD, vous devez tooadd LinkedIn Learning à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-linkedin-learning-from-the-gallery"></a>Ajout de LinkedIn Learning à partir de la galerie
+Pour configurer l’intégration de LinkedIn Learning à Azure AD, vous devez ajouter LinkedIn Learning à votre liste d’applications SaaS gérées à partir de la galerie.
 
-**tooadd Learning LinkedIn à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter LinkedIn Learning à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. Cliquez sur **ajouter** bouton en haut de hello de boîte de dialogue hello.
+3. Cliquez sur le bouton **Ajouter** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **LinkedIn Learning**. Dans le volet de résultats, cliquez sur **LinkedIn Learning** application hello de tooadd.
+4. Dans la zone de recherche, entrez **LinkedIn Learning**. Dans le volet de résultats, cliquez sur **LinkedIn Learning** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-linkedinlearning-tutorial/tutorial-linkedinlearning_000.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec LinkedIn Learning avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans LinkedIn Learning est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans LinkedIn Learning doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur LinkedIn Learning équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur LinkedIn Learning associé doit être établie.
 
-Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** LinkedIn pour la formation.
+Pour cela, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** dans LinkedIn Learning.
 
-tooconfigure et test Azure AD l’authentification unique avec LinkedIn Learning, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec LinkedIn Learning, vous devez suivre les blocs élémentaires suivants :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test LinkedIn Learning](#creating-a-linkedin-learning-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test LinkedIn Learning](#creating-a-linkedin-learning-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application LinkedIn Learning.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application LinkedIn Learning.
 
-**tooconfigure Azure AD single sign-on avec LinkedIn apprentissage, procédez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec LinkedIn Learning, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **LinkedIn Learning** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, dans la page d’intégration de l’application **LinkedIn Learning**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/tutorial-linkedin_01.png)
 
-3. Dans une fenêtre de navigateur web, client LinkedIn Learning de tooyour de session en tant qu’administrateur.
+3. Dans une autre fenêtre de navigateur web, connectez-vous à votre client LinkedIn Learning en tant qu’administrateur.
 
-4. Dans le **Centre des comptes**, cliquez sur **Paramètres globaux** sous **Paramètres**. En outre, sélectionnez **Learning - par défaut** à partir de la liste déroulante de hello.
+4. Dans le **Centre des comptes**, cliquez sur **Paramètres globaux** sous **Paramètres**. Sélectionnez aussi **Apprentissage - Par défaut** dans la liste déroulante.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_admin_01.png)
 
-5. Cliquez sur **ou cliquez ici tooload et copie des champs individuels à partir de l’écran de hello** et copie **Id d’entité** et **Url d’accès ACS (Assertion Consumer)**
+5. Cliquez sur  **OU cliquez ici pour charger et copier les champs individuels du formulaire**, puis copiez l’**ID d’entité** et l’**URL ACS (Assertion Consumer Access)**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_admin_03.png)
 
-6. Sur le portail Azure, sous **LinkedIn Learning domaine et les URL**, effectuer hello comme suit si vous souhaitez que l’authentification unique de tooconfigure dans **initialisée par IdP** mode
+6. Dans la section **Domaines et URL LinkedIn Learning**, suivez les étapes ci-dessous si vous souhaitez configurer l’application en **Mode initié par IDP**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_signon_01.png)
 
-    a. Bonjour **identificateur** zone de texte, entrez hello **ID d’entité** copiés à partir du portail de LinkedIn 
+    a. Dans la zone de texte **Identificateur**, entrez **l’ID d’entité** copié à partir de LinkedIn Portal 
 
-    b. Bonjour **URL de réponse** zone de texte, entrez hello **Url d’accès ACS (Assertion Consumer)** copiés à partir du portail de LinkedIn
+    b. Dans la zone de texte **URL de réponse**, entrez **l’URL ACS** copiée à partir du portail LinkedIn
 
-7. Si vous souhaitez que l’authentification unique de tooconfigure dans **initiée par SP**, puis cliquez sur option Afficher les URL avancées du paramètre dans la section de configuration hello et configurer des URL de connexion hello avec hello modèle :
+7. Si vous souhaitez configurer l’authentification unique en mode **Initié par SP**, cliquez sur l’option Afficher les paramètres d’URL avancés dans la section de configuration et configurez l’URL d’authentification avec le format suivant :
 
     `https://www.linkedin.com/checkpoint/enterprise/login/<AccountId>?application=learning&applicationInstanceId=<InstanceId>`
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_signon_02.png)   
     
-8. Votre application LinkedIn Learning attend les assertions SAML hello dans un format spécifique, ce qui nécessite vous tooadd attribut personnalisé tooyour SAML attributs du jeton configuration des mappages. Hello suivant capture d’écran montre un exemple de cela. Hello la valeur par défaut de **identificateur de l’utilisateur** est **user.userprincipalname** mais LinkedIn Learning attend ce toobe mappée avec une adresse de messagerie de l’utilisateur hello. Pour cela, vous pouvez utiliser **user.mail** d’attribut à partir de la liste de hello ou utiliser la valeur d’attribut approprié hello en fonction de la configuration de votre organisation. 
+8. Votre application LinkedIn Learning attend les assertions SAML dans un format spécifique, ce qui vous oblige à ajouter des mappages d’attributs personnalisés à votre configuration Attributs du jeton SAML . La capture d’écran suivante montre un exemple : La valeur par défaut pour **Identificateur d’utilisateur** est **user.userprincipalname**, mais LinkedIn Learning s’attend à ce qu’elle soit mappée sur l’adresse de messagerie de l’utilisateur. Pour cela, vous pouvez utiliser l’attribut **user.mail** dans la liste ou utiliser la valeur d’attribut appropriée en fonction de la configuration de votre organisation. 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/updateusermail.png)
     
-9. Dans **attributs utilisateur** , cliquez sur **afficher et modifier tous les autres attributs utilisateur** et définir les attributs de hello. utilisateur de Hello a besoin de revendications de quatre tooadd nommées **messagerie**, **service**, **firstname**, et **lastname** et valeur de hello est toobe mappée avec **user.mail**, **user.department**, **user.givenname**, et **user.surname** respectivement
+9. Dans **Attributs utilisateur**, cliquez sur **Afficher et modifier tous les autres attributs utilisateur** et définissez les attributs. L’utilisateur doit ajouter quatre revendications nommées **email**, **department**, **firstname** et **lastname** et la valeur doit être mappée respectivement à **user.mail**, **user.department**, **user.givenname** et **user.surname**.
 
     | Nom de l'attribut | Valeur de l’attribut |
     | --- | --- |
@@ -141,29 +141,29 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-linkedinlearning-tutorial/userattribute.png)
     
-    a. Cliquez sur **ajouter un attribut** boîte de dialogue attribut tooopen hello.
+    a. Cliquez sur **Ajouter un attribut** pour ouvrir la boîte de dialogue associée.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-linkedinLearning-tutorial/tutorial_attribute_04.png)
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-linkedinLearning-tutorial/tutorial_attribute_05.png)
     
-    b. Bonjour **nom** zone de texte, nom d’attribut type hello indiqué pour cette ligne.
+    b. Dans la zone de texte **Attribut**, indiquez le nom d’attribut pour cette ligne.
     
-    c. À partir de hello **valeur** liste, la valeur d’attribut type hello indiqué pour cette ligne.
+    c. Dans la liste **Valeur** , saisissez la valeur d’attribut affichée pour cette ligne.
     
     d. Cliquez sur **OK**.
 
-10. Effectuer hello comme suit sur hello **nom** attribut -
+10. Effectuez les étapes suivantes au niveau de l’attribut **name**.
 
-    a. Cliquez sur hello de hello attribut tooopen **modifier l’attribut** fenêtre.
+    a. Cliquez sur l’attribut pour ouvrir la fenêtre **Modifier l’attribut**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinLearning-tutorial/url_update.png)
 
-    b. Supprimer la valeur d’URL de hello de hello **espace de noms**.
+    b. Supprimez la valeur d’URL dans **namespace**.
     
-    c. Cliquez sur **Ok** paramètre hello de toosave.
+    c. Cliquez sur **OK** pour enregistrer le paramètre.
 
-11. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier XML de hello sur votre ordinateur.
+11. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier XML sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/tutorial-linkedinlearning_certificate.png) 
 
@@ -171,68 +171,68 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_general_400.png)
 
-13. Accédez trop**paramètres d’administration LinkedIn** section. Téléchargement des fichiers XML hello téléchargé à partir de hello portail Azure en cliquant sur option de fichier XML de télécharger hello.
+13. Accédez à la section **Paramètres de l’administrateur LinkedIn**. Chargez le fichier XML que vous avez téléchargé à partir du portail Azure en cliquant sur l’option Charger le fichier XML.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_metadata_03.png)
 
-14. Cliquez sur **sur** tooenable SSO. État de l’authentification unique à partir de **non connecté** trop**connecté**
+14. Cliquez sur **Activer** pour activer l’authentification unique. L’état de l’authentification unique passe de **Non connecté** à **Connecté**
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/tutorial_linkedin_admin_05.png)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-linkedinlearning-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-linkedinlearning-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-linkedinlearning-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-linkedinlearning-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**. 
 
 ### <a name="creating-a-linkedin-learning-test-user"></a>Création d’un utilisateur de test LinkedIn Learning
 
-L’application LinkedIn Learning prend en charge Juste-à-temps l’approvisionnement des utilisateurs et après l’authentification utilisateurs sont automatiquement créés dans l’application hello. Dans page de paramètres d’administration hello sur le commutateur de portail hello retournement LinkedIn Learning hello **automatiquement attribuer des licences** tooactive tooenable juste en temps de préparation et cela affectera également un utilisateur toohello de licence.
+L’application LinkedIn Learning prend en charge la configuration d’utilisateur juste-à-temps, et après authentification, les utilisateurs sont créés automatiquement dans l’application. Sur la page de paramètres administrateur sur le portail LinkedIn Learning, activez le commutateur **Affecter automatiquement les licences** pour la configuration juste à temps. Cela affectera également une licence à l’utilisateur.
    
    ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-linkedinLearning-tutorial/LinkedinUserprovswitch.png)
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooLinkedIn d’apprentissage.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à LinkedIn Learning.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooLinkedIn de formation, effectuer hello comme suit :**
+**Pour affecter Britta Simon à LinkedIn Learning, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **LinkedIn Learning**.
+2. Dans la liste des applications, sélectionnez **LinkedIn Learning**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-linkedinlearning-tutorial/tutorial-linkedinlearning_0001.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -240,7 +240,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -248,13 +248,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque LinkedIn Learning hello hello volet d’accès, vous devez obtenir la page d’authentification Azure hello et sur après authentification réussie, vous devez obtenir dans votre application LinkedIn Learning.
+Lorsque vous cliquez sur la vignette LinkedIn Learning dans le volet d’accès, vous devriez obtenir la page d’authentification Azure et, après une authentification réussie, vous devriez accéder à votre application LinkedIn Learning.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

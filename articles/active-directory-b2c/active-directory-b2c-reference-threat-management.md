@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/27/2016
 ms.author: 
-ms.openlocfilehash: 60bc0cc392b332cc4e9741ddb97dfa58e68ed420
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9472cb01eb713e297053727b1a314293574bb657
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-active-directory-b2c-threat-management"></a>Azure Active Directory B2C : Gestion des menaces
 
-La gestion des menaces inclut la planification de la protection contre les attaques des systèmes et des réseaux. Attaques par déni de service peuvent mettre des ressources aux utilisateurs de toointended indisponible. Mot de passe attaques prospect toounauthorized accès tooresources. Azure Active Directory B2C (Azure AD B2C) dispose de fonctionnalités intégrées qui peuvent vous aider à protéger vos données contre ces menaces de plusieurs façons.
+La gestion des menaces inclut la planification de la protection contre les attaques des systèmes et des réseaux. Les attaques par déni de service peuvent rendre les ressources inaccessibles aux utilisateurs prévus. Une attaque de mot de passe peut mener à un accès non autorisé aux ressources. Azure Active Directory B2C (Azure AD B2C) dispose de fonctionnalités intégrées qui peuvent vous aider à protéger vos données contre ces menaces de plusieurs façons.
 
 ## <a name="denial-of-service-attacks"></a>Attaques par déni de service
 
-Azure AD B2C utilise la détection et l’atténuation des techniques telles que les cookies SYN et les taux et connexion tooprotect limites sous-jacent ressources contre les attaques par déni de service.
+Azure AD B2C utilise des techniques de détection et d’atténuation telles que les cookies SYN ainsi que les limites de débit et de connexion pour protéger les ressources sous-jacentes contre les attaques par déni de service.
 
 ## <a name="password-attacks"></a>Attaques de mot de passe
 
-Azure AD B2C dispose également de techniques d’atténuation pour contrer les attaques de mot de passe. L’atténuation couvre à la fois les attaques de mot de passe par force brute et celles basées sur un dictionnaire. Les mots de passe qui sont définies par les utilisateurs sont requis toobe relativement complexe. À l’aide de signaux différents, Azure AD B2C analyse l’intégrité de hello de demandes. Azure AD B2C est conçu toointelligently différencier les utilisateurs prévus contre les pirates et botnets. Azure AD B2C fournit un toolock stratégie sophistiquées comptes basée sur les mots de passe hello entrés, probabilité hello d’une attaque.
+Azure AD B2C dispose également de techniques d’atténuation pour contrer les attaques de mot de passe. L’atténuation couvre à la fois les attaques de mot de passe par force brute et celles basées sur un dictionnaire. Les mots de passe définis par les utilisateurs doivent être d’une complexité raisonnable. À l’aide de différents signaux, Azure AD B2C analyse l’intégrité des demandes. Azure AD B2C est conçu pour différencier intelligemment les utilisateurs prévus des pirates et botnets. Azure AD B2C fournit une stratégie sophistiquée pour verrouiller les comptes en fonction des mots de passe entrés, dans l’éventualité d’une attaque.
 
-Pour plus d’informations, visitez hello [Microsoft Trust Center](https://www.microsoft.com/trustcenter/security/threatmanagement).
+Pour plus d’informations, consultez le [Centre de gestion de la confidentialité de Microsoft](https://www.microsoft.com/trustcenter/security/threatmanagement).

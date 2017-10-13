@@ -1,6 +1,6 @@
 ---
-title: "aaaSetting d’Azure Active Directory pour la gestion des accès libre-service application | Documents Microsoft"
-description: "Gestion de groupes en libre-service permet aux utilisateurs toocreate et gérer des groupes de sécurité ou les groupes Office 365 dans Azure Active Directory et groupe de sécurité du hello possibilité toorequest offre aux utilisateurs ou les appartenances de groupe Office 365"
+title: "Configuration de la gestion de l’accès aux applications en libre-service dans Azure Active Directory | Microsoft Docs"
+description: "Créer et gérer des groupes de sécurité ou Office 365 dans Azure Active Directory et demander des appartenances aux groupes de sécurité ou Office 365"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,43 +12,41 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/27/2017
+ms.date: 09/07/2017
 ms.author: curtand
 ms.reviewer: kairaz.contractor
 ms.custom: oldportal;it-pro;
-ms.openlocfilehash: 2a73f4ed2532d41143fe5abe2fef1322d971a5c0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7a7370eb076ba8602a58a260a14bb863c55bc803
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="setting-up-azure-active-directory-for-self-service-group-management"></a>Configuration d’Azure Active Directory pour la gestion de groupe en libre-service
-Gestion de groupes en libre-service permet aux utilisateurs toocreate et gérer des groupes de sécurité ou les groupes Office 365 dans Azure Active Directory (Azure AD). Les utilisateurs peuvent demander également les appartenances aux groupes Office 365 ou du groupe de sécurité, et puis hello propriétaire du groupe de hello peut approuver ou refuser l’appartenance. De cette façon, contrôle quotidien de l’appartenance au groupe peut être déléguée toopeople qui comprennent le contexte professionnel hello de ce membre. Les fonctionnalités de gestion de groupes en libre-service ne sont disponibles que pour les groupes de sécurité et les groupes Office 365. Elles ne sont pas disponibles pour les groupes de sécurité activés pour la messagerie électronique ou les listes de distribution.
+# <a name="set-up-azure-active-directory-for-self-service-group-management"></a>Configurer Azure Active Directory pour la gestion de groupes en libre-service
+Vos utilisateurs peuvent créer et gérer leurs propres groupes de sécurité ou Office 365 dans Azure Active Directory (Azure AD). Les utilisateurs peuvent également faire une demande d’appartenance à un groupe de sécurité ou Office 365. Le propriétaire du groupe peut alors approuver ou refuser l’appartenance. Le contrôle quotidien de l’appartenance à un groupe peut être délégué à des personnes qui ont une bonne connaissance du contexte professionnel de cette appartenance. Les fonctionnalités de gestion de groupes en libre-service ne sont disponibles que pour les groupes de sécurité et les groupes Office 365. Elles ne sont pas disponibles pour les groupes de sécurité activés pour la messagerie électronique ou les listes de distribution.
 
-> [!IMPORTANT]
-> Microsoft recommande de gérer Azure AD en utilisant hello [centre d’administration Azure AD](https://aad.portal.azure.com) Bonjour portail Azure au lieu d’utiliser hello portail Azure classic référencée dans cet article.
+La gestion de groupes en libre-service comprend actuellement deux scénarios essentiels : la gestion de groupes déléguée et la gestion de groupes en libre-service.
 
-La gestion de groupes en libre-service se compose actuellement de deux scénarios essentiels : la gestion de groupes déléguée et la gestion de groupes en libre-service.
+* **Gestion de groupes déléguée** : prenons l’exemple d’un administrateur qui gère l’accès à une application SaaS utilisée dans son entreprise. La gestion de ces droits d’accès devenant fastidieuse, cet administrateur demande au propriétaire de l’entreprise d’ajouter un nouveau groupe. L’administrateur accorde l’accès à l’application au nouveau groupe et ajoute au groupe toutes les personnes accédant déjà à l’application. Le propriétaire de l’entreprise peut ainsi ajouter d’autres utilisateurs, qui sont automatiquement approvisionnés dans l’application. Il n’a pas besoin d’attendre que l’administrateur gère l’accès des utilisateurs. Si l’administrateur accorde la même autorisation à un responsable d’un autre groupe de l’entreprise, cette personne peut également gérer l’accès de ses propres utilisateurs. Le propriétaire de l’entreprise ne peut pas visualiser ni gérer les utilisateurs du responsable, et inversement. L’administrateur a toujours la possibilité de voir l’ensemble des utilisateurs ayant accès à l’application et, si nécessaire, de bloquer les droits d’accès.
+* **Gestion de groupes en libre-service** Prenons l’exemple de deux utilisateurs disposant tous deux d’un site SharePoint Online. Ils les gèrent indépendamment. Cependant, ils veulent les rendre accessibles à chacune des deux équipes. Pour cela, ils peuvent créer un groupe dans Azure AD, puis, dans SharePoint Online, chacun d’eux choisit ce même groupe pour lui donner accès aux deux sites. Ainsi, quand une personne souhaite obtenir un accès, elle en effectue la demande dans le volet d’accès, et dès que sa demande a été approuvée, elle obtient automatiquement un accès aux deux sites SharePoint Online. Par la suite, l’un des deux utilisateurs décide que toutes les personnes ayant accès au site doivent également pouvoir accéder à une application SaaS. L’administrateur de l’application SaaS peut ajouter des droits d’accès à l’application pour le site SharePoint Online. Les demandes qu’il approuvera par la suite donneront ainsi accès non seulement aux deux sites SharePoint Online, mais également à cette application SaaS.
 
-* **Gestion déléguée des groupes** un exemple est un administrateur qui gère l’application SaaS tooa accès à l’aide de la société de hello. La gestion de ces droits d’accès devenant fastidieuse, cet administrateur demande hello entreprise propriétaire toocreate un nouveau groupe. Hello administrateur octroie l’accès à un nouveau groupe de hello application toohello et ajoute toohello groupe tous les utilisateurs déjà accèdent actuellement toohello application. propriétaire de l’entreprise Hello peut ensuite ajouter des utilisateurs et les utilisateurs sont automatiquement approvisionnés toohello à l’application. propriétaire de l’entreprise Hello n’a pas besoin toowait hello toomanage d’accès d’administrateur pour les utilisateurs. Si l’administrateur de hello accorde hello même gestionnaire de tooa d’autorisation dans un groupe différent d’entreprise, puis cette personne peut également gérer les accès à leurs utilisateurs. Le propriétaire de l’entreprise hello ni le Gestionnaire de hello pour afficher ou gérer les utilisateurs de l’autre. administrateur de Hello pouvez toujours voir tous les utilisateurs qui ont accès toohello application et les droits d’accès de bloc si nécessaire.
-* **Gestion de groupes en libre-service** Prenons l’exemple de deux utilisateurs disposant tous deux d’un site SharePoint Online. Ils les gèrent indépendamment. Ils veulent toogive chaque des autres équipes d’accéder à des sites tootheir. tooaccomplish, ils peuvent créer un groupe dans Azure AD et dans SharePoint Online, chacun d’eux sélectionne ce tootheir accès aux sites tooprovide de groupe.. Lorsqu’un utilisateur souhaite accéder, font la demande à partir de hello volet d’accès, et après l’approbation ils accèdent les sites SharePoint Online tooboth automatiquement. Une version ultérieure, un d’eux décide que toutes les personnes accédant à hello site doivent obtenir également application SaaS spécifique d’accès tooa. administrateur de Hello Hello application SaaS peut ajouter des droits d’accès pour le site SharePoint Online de hello application toohello. Dès lors, toutes les demandes approuvées donne accès toohello deux sites SharePoint Online et également toothis application SaaS.
+## <a name="make-a-group-available-for-user-self-service"></a>Mettre un groupe à disposition en libre-service pour un utilisateur
+1. Connectez-vous au [centre d’administration Azure AD](https://aad.portal.azure.com) en utilisant un compte d’administrateur général pour le répertoire.
+2. Sélectionnez **Utilisateurs et groupes**, puis **Paramètres de groupe**.
+3. Définissez **Gestion de groupes en libre-service activée** sur **Oui**.
+4. Définissez **Les utilisateurs peuvent créer des groupes de sécurité** ou **Les utilisateurs peuvent créer des groupes Office 365** sur **Oui**.
+  * Une fois ces paramètres activés, tous les utilisateurs présents dans votre répertoire sont autorisés à créer des groupes de sécurité et à ajouter des membres à ces groupes. Ces nouveaux groupes apparaissent également dans le volet d’accès de tous les autres utilisateurs. Si le paramètre de stratégie du groupe l’autorise, d’autres utilisateurs peuvent créer des demandes d’adhésion à ces groupes. 
+  * Quand ces paramètres sont désactivés, les utilisateurs ne peuvent pas créer de groupes, ni modifier les groupes existants dont ils sont propriétaires. Cependant, ils peuvent toujours gérer les appartenances de ces groupes et approuver les demandes d’adhésion d’autres utilisateurs à leurs groupes.
 
-## <a name="making-a-group-available-for-end-user-self-service"></a>Mise à disposition d’un groupe en libre-service pour l’utilisateur final
-1. Bonjour [portail Azure classic](https://manage.windowsazure.com), ouvrez votre annuaire Azure AD.
-2. Sur hello **configurer** onglet, définissez **gestion déléguée des groupes** tooEnabled.
-3. Définissez **les utilisateurs peuvent créer des groupes de sécurité** ou **les utilisateurs peuvent créer des groupes Office** tooEnabled.
+Vous pouvez également utiliser **Utilisateurs pouvant gérer les groupes de sécurité** et **Utilisateurs pouvant gérer les groupes Office 365** pour obtenir un contrôle d’accès plus fin de la gestion de groupes en libre-service pour vos utilisateurs. Quand l’option **Les utilisateurs peuvent créer des groupes** est activée, tous les utilisateurs présents dans votre locataire sont autorisés à créer des groupes et à ajouter des membres à ces groupes. En définissant l’option sur **Certains**, vous restreignez la gestion de groupes à un groupe d’utilisateurs limité uniquement. Dans ce cas, vous devez ajouter des utilisateurs au groupe SSGMSecurityGroupsUsers avant que ceux-ci ne puissent créer des groupes et y ajouter des membres. En définissant **Utilisateurs pouvant utiliser le libre-service pour les groupes de sécurité** et **Utilisateurs pouvant gérer les groupes Office 365** sur **Tous**, vous autorisez tous les utilisateurs de votre locataire à créer des groupes.
 
-Lorsque **les utilisateurs peuvent créer des groupes de sécurité** est activé, tous les utilisateurs dans votre annuaire sont autorisés à toocreate des groupes de sécurité et ajouter des membres des groupes toothese. Ces nouveaux groupes apparaîtront également dans hello volet d’accès pour tous les autres utilisateurs. Si le paramètre de stratégie hello sur le groupe de hello le permet, les autres utilisateurs peuvent créer ces groupes toojoin des demandes. Si **Les utilisateurs peuvent créer des groupes de sécurité** est désactivé, les utilisateurs ne peuvent pas créer de groupes et ne peuvent pas modifier les groupes existants dont ils sont propriétaires. Cependant, ils peuvent toujours gérer les appartenances à ces groupes hello et approuver les demandes à partir d’autres utilisateurs de toojoin leurs groupes.
-
-Vous pouvez également utiliser **les utilisateurs qui peuvent utiliser le libre-service pour les groupes de sécurité** tooachieve un contrôle d’accès plus fin sur la gestion des groupes en libre-service pour vos utilisateurs. Lorsque **les utilisateurs peuvent créer des groupes** est activé, tous les utilisateurs dans votre annuaire sont autorisés à toocreate nouveaux groupes et ajouter des membres des groupes toothese. En définissant **les utilisateurs qui peuvent utiliser le libre-service pour les groupes de sécurité** tooSome, vous pouvez réserver tooonly de gestion de groupe un groupe limité d’utilisateurs. Lorsque ce commutateur est tooSome, vous devez ajouter les utilisateurs toohello groupe SSGMSecurityGroupsUsers avant de pouvoir créer des groupes et ajouter des membres toothem. En définissant **les utilisateurs qui peuvent utiliser le libre-service pour les groupes de sécurité** tooAll, vous autorisez tous les utilisateurs de vos groupes de nouveau répertoire toocreate.
-
-Vous pouvez également utiliser hello **groupe pouvant utiliser le libre-service pour les groupes de sécurité** zone toospecify un nom personnalisé pour un groupe dont les membres peuvent utiliser le libre-service.
+Vous pouvez également utiliser **Groupe pouvant gérer les groupes de sécurité** ou **Groupe pouvant gérer les groupes Office 365** pour spécifier un groupe unique dont les membres peuvent utiliser le libre-service.
 
 ## <a name="next-steps"></a>Étapes suivantes
 Ces articles fournissent des informations supplémentaires sur Azure Active Directory.
 
-* [La gestion des accès tooresources avec les groupes Azure Active Directory](active-directory-manage-groups.md)
+* [Gérer l’accès aux ressources avec les groupes Azure Active Directory](active-directory-manage-groups.md)
 * [Configuration des paramètres de groupe avec les applets de commande Azure Active Directory](active-directory-accessmanagement-groups-settings-cmdlets.md)
 * [Index d’articles pour la gestion des applications dans Azure Active Directory](active-directory-apps-index.md)
 * [Qu’est-ce qu’Azure Active Directory ?](active-directory-whatis.md)
-* [Intégration des identités locales dans Azure Active Directory](active-directory-aadconnect.md)
+* [Intégrer des répertoires locaux à Azure Active Directory](active-directory-aadconnect.md)

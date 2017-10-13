@@ -1,6 +1,6 @@
 ---
-title: aaaCreate une offre dans la pile de Azure | Documents Microsoft
-description: "En tant qu’un administrateur de cloud, découvrez comment toocreate une offre pour vos clients dans la pile de Azure."
+title: "Créer une offre dans Azure Stack | Microsoft Docs"
+description: "En tant qu’administrateur cloud, apprenez à créer une offre pour vos utilisateurs dans Azure Stack."
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -14,40 +14,43 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/10/2017
 ms.author: erikje
-ms.openlocfilehash: 924526a0ff1c634b7c127c03a4572057c35b497b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 269a6106f657536ba74be366f842b2f9cd86c5dc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-offer-in-azure-stack"></a>Créer une offre dans Azure Stack
-[Offre](azure-stack-key-features.md) sont des groupes d’un ou plusieurs plans que toopurchase de tootenants fournisseurs présents ou s’y abonner. Ce document vous montre comment toocreate une offre qui inclut hello [plan que vous avez créé](azure-stack-create-plan.md) dans la dernière étape de hello. Cette offre permet les abonnés hello capacité tooprovision virtual machines.
 
-1. Connectez-vous au portail d’administration Azure pile toohello (https://adminportal.local.azurestack.external) > cliquez sur **nouveau** > **client offre + Plans**  >   **Offre**.
+*S’applique à : systèmes intégrés Azure Stack et Kit de développement Azure Stack*
+
+Les [offres](azure-stack-key-features.md) sont des groupes d’un ou plusieurs plans que les fournisseurs proposent à l’achat ou à l’abonnement aux utilisateurs. Ce document montre comment créer une offre comprenant le [plan créé](azure-stack-create-plan.md) à la dernière étape. Cette offre donne aux abonnés la possibilité d’approvisionner des machines virtuelles.
+
+1. Connectez-vous au portail d’administration Azure Stack (https://adminportal.local.azurestack.external) > cliquez sur **Nouveau** > **Plans + offres clients** > **Offre**.
 
    ![](media/azure-stack-create-offer/image01.png)
-2. Bonjour **offrent de nouveaux** panneau, renseignez **nom d’affichage** et **nom de la ressource**, puis sélectionnez un nouveau ou existant **groupe de ressources**. Hello nom complet est le nom convivial de l’offre de hello et est hello seule information sur les offres de hello hello doit s’afficher lors de l’abonnement. Par conséquent, être toouse que pour un nom évocateur qui permet de comprendre ce qui est fourni avec l’offre de hello utilisateur de hello. Seul l’administrateur hello peut voir hello nom de la ressource. Son nom hello qu’administrateurs utiliser toowork hello offre une ressource Azure Resource Manager.
+2. Sur le panneau **Nouvelle offre**, renseignez le **Nom d’affichage** et le **Nom de la ressource**, puis sélectionnez un **Groupe de ressources** nouveau ou existant. Le nom d’affichage est le nom convivial de l’offre ; c’est la seule information sur l’offre que les utilisateurs verront au moment de l’abonnement. Par conséquent, veillez à utiliser un nom intuitif qui aide l’utilisateur à comprendre en quoi elle consiste. Seul l’administrateur peut voir le nom de la ressource. Il s’agit du nom que les administrateurs utilisent pour gérer l’offre en tant que ressource Azure Resource Manager.
 
    ![](media/azure-stack-create-offer/image01a.png)
-3. Cliquez sur **plans de Base** et hello **planifier** panneau, les plans hello Sélectionnez votre choix tooinclude dans l’offre de hello, puis cliquez sur **sélectionnez**. Cliquez sur **créer** offre de hello toocreate.
+3. Cliquez sur **Plans de base** et, sur le panneau **Plan**, sélectionnez les plans que vous souhaitez inclure à l’offre, puis cliquez sur **Sélectionnez**. Cliquez sur **Créer** pour créer l’offre.
 
    ![](media/azure-stack-create-offer/image02.png)
-4. Cliquez sur **toutes les ressources**, recherchez votre offre, cliquez sur Nouvelle offre de hello, cliquez sur **changement d’état**, puis cliquez sur **Public**.
+4. Cliquez sur **Toutes les ressources**, recherchez votre nouvelle offre, cliquez dessus, puis sur **Changer d’état** et enfin sur **Public**.
 
    ![](media/azure-stack-create-offer/image03.png)
 
-Offres doivent rendre publics pour une vue complète de locataires tooget hello lors de l’abonnement. Les offres peuvent être :
+Les offres doivent être rendues publiques pour permettre aux utilisateurs d’avoir une vue d’ensemble lors de l’abonnement. Les offres peuvent être :
 
-* **Public**: tootenants Visible.
-* **Privé**: seuls les administrateurs de cloud toohello visible. Utile lors de plan de hello rédactionnelle ou de l’offre, ou si l’administrateur du cloud hello veut tooapprove chaque abonnement.
-* **Mise hors service**: fermé toonew abonnés. administrateur du cloud Hello, vous pouvez utiliser les abonnements de futures tooprevent mis hors service, mais laisser les abonnés actuels inchangés.
+* **Public** : ils sont visibles pour les utilisateurs.
+* **Privé** : visibles uniquement par les administrateurs cloud. Utile lors de l’élaboration du plan ou de l’offre, ou si l’administrateur cloud souhaite approuver tous les abonnements.
+* **Retiré**: ils sont fermés aux nouveaux abonnés. L’administrateur cloud peut utiliser cet état pour empêcher tout abonnement futur, sans que cela affecte les abonnés actuels.
 
-Offre de toohello de modifications ne sont pas immédiatement visible toohello client. modifications de hello toosee, vous pouvez avoir nouvel abonnement toologout/connexion toosee hello dans hello « Sélecteur d’abonnement » lorsque la création de groupes de ressources.
+Les modifications apportées à l’offre ne sont pas immédiatement visibles par l’utilisateur. Vous risquez d’avoir à vous déconnecter puis à vous reconnecter pour voir le nouvel abonnement dans le « sélecteur d’abonnement » lors de la création de ressources ou de groupes de ressources.
 
 > [!NOTE]
->Vous pouvez également créer des offres de valeur par défaut, les plans et les quotas à l’aide de PowerShell comme expliqué dans hello [Lisezmoi de l’administrateur du Service Azure pile](https://github.com/Azure/AzureStack-Tools/tree/master/ServiceAdmin).
+>Vous pouvez également créer des offres, des plans et des quotas par défaut avec PowerShell, comme l’explique le [Lisez-moi de l’administrateur de services fédérés Azure Stack](https://github.com/Azure/AzureStack-Tools/tree/master/ServiceAdmin).
 >
 
 
-## <a name="next-steps"></a>Étapes suivantes
-[S’abonner tooan offre et ensuite configurer une machine virtuelle](azure-stack-subscribe-plan-provision-vm.md)
+### <a name="next-steps"></a>Étapes suivantes
+[S’abonner à une offre et mettre en service une machine virtuelle](azure-stack-subscribe-plan-provision-vm.md)

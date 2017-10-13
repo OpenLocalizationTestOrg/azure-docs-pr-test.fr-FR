@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : intégration d’Azure Active Directory à Deputy | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et adjoint."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Deputy."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,104 +13,104 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/22/2017
 ms.author: jeedes
-ms.openlocfilehash: 42f65b758682ce2513b6bb38ef40a19f955c88c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 51aed908208b7a40ea2ab710dffe84370b573991
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-deputy"></a>Didacticiel : Intégration d’Azure Active Directory avec Deputy
 
-Dans ce didacticiel, vous apprendrez comment toointegrate adjoint avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Deputy à Azure Active Directory (Azure AD).
 
-Intégration adjoint à Azure AD offre hello avantages suivants :
+L’intégration de Deputy dans Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooDeputy
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooDeputy (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à Deputy
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Deputy (via l’authentification unique) avec leur compte Azure AD
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec adjoint, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD avec Deputy, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Deputy pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout d’adjoint à partir de la galerie de hello
+1. Ajout de Deputy depuis la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-deputy-from-hello-gallery"></a>Ajout d’adjoint à partir de la galerie de hello
-tooconfigure hello intégration d’adjoint dans Azure AD, vous devez tooadd adjoint à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-deputy-from-the-gallery"></a>Ajout de Deputy depuis la galerie
+Pour configurer l’intégration de Deputy avec Azure AD, vous devez ajouter Deputy, à partir de la galerie, à votre liste d’applications SaaS gérées.
 
-**tooadd adjoint à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Deputy à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **adjoint**.
+4. Dans la zone de recherche, tapez **Deputy**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **adjoint**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le volet de résultats, sélectionnez **Deputy**, puis cliquez sur **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Deputy, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur équivalent hello adjoint est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans adjoint doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Deputy correspondant dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Deputy associé doit être établie.
 
-Dans adjoint, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Deputy, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec adjoint, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Deputy, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test adjoint](#creating-a-deputy-test-user)**  -toohave un équivalent de Britta Simon dans adjoint est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Deputy](#creating-a-deputy-test-user)** pour avoir un équivalent de Britta Simon dans Deputy lié à la représentation Azure AD associée.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application adjoint.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Deputy.
 
-**tooconfigure Azure AD single sign-on avec adjoint, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Deputy, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **adjoint** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **Deputy**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_samlbase.png)
 
-3. Sur hello **adjoint domaine et les URL** section, si vous le souhaitez application hello tooconfigure **IDP** en mode initié par :
+3. Dans la section **Domaine et URL Deputy**, si vous souhaitez configurer l’application en mode initié par **IDP**, suivez les étapes ci-dessous :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_url1.png)
 
-    a. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :
+    a. Dans la zone de texte **Identificateur**, tapez une URL au format suivant :
     |  |
     | ----|
     | `https://<subdomain>.<region>.au.deputy.com` |
@@ -129,7 +129,7 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
     | `https://<subdomain>.<region>.ent-an.deputy.com` |
     | `https://<subdomain>.<region>.deputy.com` |
 
-    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :
+    b. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant :
     | |
     |----|
     | `https://<subdomain>.<region>.au.deputy.com/exec/devapp/samlacs.` |
@@ -148,19 +148,19 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
     | `https://<subdomain>.<region>.ent-an.deputy.com/exec/devapp/samlacs.` |
     | `https://<subdomain>.<region>.deputy.com/exec/devapp/samlacs.` |
 
-4. Cliquez sur **Afficher les paramètres d’URL avancés**. Si vous le souhaitez application hello tooconfigure **SP** en mode initié par :
+4. Cliquez sur **Afficher les paramètres d’URL avancés**. Si vous souhaitez configurer l’application en mode initié par le **fournisseur de service** :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_url2.png)
 
-    Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<your-subdomain>.<region>.deputy.com`
+    Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<your-subdomain>.<region>.deputy.com`
     
     >[!NOTE]
     > Le suffixe de région Deputy est facultatif ou il doit utiliser l’une des valeurs suivantes : au | na | eu |as |la |af |an |ent-au |ent-na |ent-eu |ent-as | ent-la | ent-af | ent-an
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs avec hello réel identificateur, URL de réponse et URL de connexion. Contact [équipe de support technique adjoint](https://www.deputy.com/call-centers-customer-support-scheduling-software) tooget ces valeurs. 
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur, l’URL de réponse et l’URL de connexion réels. Pour obtenir ces valeurs, contactez [l’équipe de support technique de Deputy](https://www.deputy.com/call-centers-customer-support-scheduling-software). 
 
-5. Sur hello **le certificat de signature SAML** , cliquez sur **Certificate(Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
+5. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_certificate.png) 
 
@@ -168,11 +168,11 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-deputy-tutorial/tutorial_general_400.png)
     
-7. Sur hello **adjoint Configuration** , cliquez sur **adjoint de configurer** tooopen **configurer l’authentification** fenêtre. Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
+7. Dans la section **Configuration de Deputy** , cliquez sur **Configurer Deputy** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
 
     ![Configurer l’authentification unique](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_configure.png) 
 
-8. Accédez toohello suivant l’URL :[https://(your-subdomain).deputy.com/exec/config/system_config]( https://(your-subdomain).deputy.com/exec/config/system_config). Accédez trop**paramètres de sécurité** et cliquez sur **modifier**.
+8. Accédez à l’URL suivante :[https://(votre-sous-domaine).deputy.com/exec/config/system_config]( https://(your-subdomain).deputy.com/exec/config/system_config). Accédez aux **Paramètres de sécurité** et cliquez sur **Modifier**.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_004.png)
 
@@ -182,97 +182,97 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
     
     a. Activez la **connexion à partir de réseaux sociaux**.
    
-    b. Ouvrez votre certificat codé en Base64 téléchargé à partir du portail Azure dans le bloc-notes, hello copie contenu de celui-ci dans le Presse-papiers et le coller ensuite toohello **certificat OpenSSL** zone de texte.
+    b. Ouvrez dans le Bloc-notes votre certificat codé en base 64 téléchargé à partir du portail Azure, copiez son contenu dans le Presse-papiers, puis collez-le dans la zone de texte **Certificat OpenSSL** .
    
-    c. Dans la zone de texte URL SSO SAML hello, tapez`https://<your subdomain>.deputy.com/exec/devapp/samlacs?dpLoginTo=<saml sso url>`
+    c. Dans la zone de texte URL SAML SSO, tapez `https://<your subdomain>.deputy.com/exec/devapp/samlacs?dpLoginTo=<saml sso url>`
     
-    d. Dans la zone de texte URL SSO SAML hello, remplacez `<your subdomain>` avec votre sous-domaine.
+    d. Dans la zone de texte URL SAML SSO, remplacez `<your subdomain>` par votre sous-domaine.
    
-    e. Dans la zone de texte URL SSO SAML hello, remplacez `<saml sso url>` avec hello **SAML Sign-On URL du Service unique** que vous avez copié à partir de hello portail Azure.
+    e. Dans la zone de texte URL SAML SSO, remplacez `<saml sso url>` par **l’URL du service d’authentification unique SAML** que vous avez copiée à partir du portail Azure.
    
     f. Cliquez sur **Save Settings**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-deputy-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-deputy-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-deputy-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-deputy-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-deputy-test-user"></a>Création d’un utilisateur de test Deputy
 
-tooenable Azure AD les utilisateurs toolog dans tooDeputy, vous devez les configurer dans adjoint. Dans le cas de Deputy, l’approvisionnement est une tâche manuelle.
+Pour se connecter à Deputy, les utilisateurs d’Azure AD doivent être approvisionnés dans Deputy. Dans le cas de Deputy, l’approvisionnement est une tâche manuelle.
 
-#### <a name="tooprovision-a-user-account-perform-hello-following-steps"></a>tooprovision un compte d’utilisateur, effectuez hello comme suit :
-1. Ouvrez une session en tant qu’administrateur dans le site d’entreprise tooyour adjoint.
+#### <a name="to-provision-a-user-account-perform-the-following-steps"></a>Pour approvisionner un compte d’utilisateur, procédez comme suit :
+1. Connectez-vous à votre site d’entreprise Deputy en tant qu’administrateur.
 
-2. Dans le volet de navigation supérieur de hello, cliquez sur **personnes**.
+2. Dans le volet de navigation situé en haut, cliquez sur **People**(Personnes).
    
    ![Personnes](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_001.png "Personnes")
 
-3. Cliquez sur hello **ajouter des personnes** , puis cliquez sur **ajouter une seule personne**.
+3. Cliquez sur le bouton **Add People** (Ajouter des personnes), puis cliquez sur **Add a single person** (Ajouter une seule personne).
    
    ![Ajouter des personnes](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_002.png "ajouter des personnes")
 
-4. Effectuer hello comme suit, puis cliquez sur **Enregistrer & Inviter**.
+4. Effectuez les opérations suivantes, puis cliquez sur **Save & Invite** (Enregistrer et inviter).
    
    ![Nouvel utilisateur](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_003.png "Nouvel utilisateur")
 
-   a. Bonjour **nom** zone de texte, nom du type d’utilisateur hello comme **BrittaSimon**.
+   a. Dans la zone de texte **Nom**, entrez le nom de l’utilisateur, par exemple **Britta Simon**.
    
-   b. Bonjour **messagerie** zone de texte, tapez Bonjour adresse de messagerie d’un compte Azure AD que vous souhaitez tooprovision.
+   b. Dans la zone de texte **Email** , tapez l’adresse de messagerie du compte Azure AD que vous souhaitez approvisionner.
    
-   c. Bonjour **travailler à** zone de texte, nom de type hello entreprise.
+   c. Dans la zone de texte **Travaille chez**, tapez le nom de l’entreprise.
    
    d. Cliquez sur le bouton **Save & Invite**.
 
-5. titulaire du compte AAD Hello reçoit un message électronique et suit un tooconfirm de lier leur compte avant son activation. Vous pouvez utiliser n’importe quel autre adjoint utilisateur compte outil de création ou API fournie par adjoint tooprovision AAD comptes d’utilisateur.
+5. Le détenteur du compte AAD reçoit un message électronique et suit un lien pour confirmer le compte avant qu’il ne soit activé. Vous pouvez utiliser n’importe quel autre outil ou API de création de compte d’utilisateur fourni par Deputy pour approvisionner des comptes d’utilisateurs AAD.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooDeputy.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Deputy.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooDeputy, effectuez hello comme suit :**
+**Pour affecter Britta Simon à Deputy, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **adjoint**.
+2. Dans la liste des applications, sélectionnez **Deputy**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-deputy-tutorial/tutorial_deputy_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -280,7 +280,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -288,13 +288,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-objectif Hello de cette section est tootest votre configuration de l’authentification unique de Azure AD à l’aide de hello panneau d’accès.
+L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur hello adjoint vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour adjoint application.
+Lorsque vous cliquez sur la vignette Deputy dans le volet d’accès, vous devez être connecté automatiquement à votre application Deputy.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

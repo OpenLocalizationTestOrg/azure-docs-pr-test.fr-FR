@@ -1,6 +1,6 @@
 ---
-title: aaaCreate un service Azure Search dans le portail de hello | Documents Microsoft
-description: Configurer un service Azure Search dans le portail de hello.
+title: "Créer un service Recherche Azure dans le portail | Microsoft Docs"
+description: Configurez un service Recherche Azure dans le portail.
 services: search
 manager: jhubbard
 author: HeidiSteen
@@ -13,101 +13,101 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 05/01/2017
 ms.author: heidist
-ms.openlocfilehash: f1c7197a1467e32bd4b360b165c9059e6bb0e496
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 58f4eab190e40e16ed261c165ffdfc8155eeb434
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-an-azure-search-service-in-hello-portal"></a>Créer un service Azure Search dans le portail de hello
+# <a name="create-an-azure-search-service-in-the-portal"></a>Création d'un service Azure Search dans le portail
 
-Cet article explique comment toocreate ou configurer un indexeur Azure Search service dans le portail de hello. Pour obtenir des instructions relatives à PowerShell, consultez [Gérer Recherche Azure avec PowerShell](search-manage-powershell.md).
+Cet article vous explique comment créer ou configurer un service Recherche Azure dans le portail. Pour obtenir des instructions relatives à PowerShell, consultez [Gérer Recherche Azure avec PowerShell](search-manage-powershell.md).
 
 ## <a name="subscribe-free-or-paid"></a>S’abonner (payant ou gratuit)
 
-[Ouvrir un compte Azure gratuit](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) et utiliser tootry crédits gratuits à payer des services Azure. Une fois que les crédits sont épuisés, conserver hello compte et continuer toouse Azure les services gratuits, comme les sites Web. Votre carte de crédit n’est jamais facturé, sauf si vous modifiez vos paramètres et demandez toobe facturé explicitement.
+[Ouvrez un compte Azure gratuit](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) et utilisez les crédits gratuits pour essayer les services payants d’Azure. Une fois les crédits épuisés, conservez le compte et continuez à utiliser les services Azure gratuits, tels que les sites Web. Votre carte de crédit n’est pas débitée tant que vous n’avez pas explicitement modifié vos paramètres pour demander à l’être.
 
 Vous pouvez également [activer les avantages d’abonnement MSDN](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F). Un abonnement MSDN vous donne droit chaque mois à des crédits dont vous pouvez vous servir pour les services Azure payants. 
 
 ## <a name="find-azure-search"></a>Localiser Recherche Azure
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/).
-2. Cliquez sur hello plus signe (« + ») dans hello angle supérieur gauche.
+1. Connectez-vous au [portail Azure](https://portal.azure.com/).
+2. Cliquez sur le signe plus (« + ») dans le coin supérieur gauche.
 3. Sélectionnez **Web + Mobile** > **Recherche Azure**.
 
 ![](./media/search-create-service-portal/find-search2.png)
 
-## <a name="name-hello-service-and-url-endpoint"></a>Service de nom hello et le point de terminaison URL
+## <a name="name-the-service-and-url-endpoint"></a>Nommer le service et le point de terminaison URL
 
-Un nom de service fait partie du point de terminaison d’URL hello par rapport à laquelle les appels d’API sont émis. Tapez le nom de votre service Bonjour **URL** champ. 
+Un nom de service fait partie du point de terminaison URL par le biais duquel tous les appels d’API sont émis. Tapez le nom de votre service dans le champ **URL** . 
 
 Configuration requise du nom du service :
    * entre 2 et 60 caractères ;
    * lettres minuscules, chiffres ou tirets (« - ») ;
-   * aucun tiret («- ») comme hello les 2 premiers caractères ou le dernier caractère unique
+   * pas de tiret (« - ») pour les 2 premiers caractères ni pour le dernier ;
    * pas de tirets consécutifs (« -- »).
 
 ## <a name="select-a-subscription"></a>Sélectionner un abonnement
-Si vous avez plusieurs abonnements, choisissez celui qui a également des services de stockage de données ou de fichiers. Azure Search peut détecter automatiquement le stockage Table Azure et Blob, de la base de données SQL et Azure Cosmos DB pour l’indexation *indexeurs*, mais uniquement pour les services Bonjour même abonnement.
+Si vous avez plusieurs abonnements, choisissez celui qui a également des services de stockage de données ou de fichiers. Recherche Azure peut détecter automatiquement Table Azure, Stockage Blob, SQL Database et Azure Cosmos DB pour l’indexation à l’aide *d’indexeurs*, mais uniquement pour les services dans le même abonnement.
 
 ## <a name="select-a-resource-group"></a>Sélectionner un groupe de ressources
-Un groupe de ressources correspond à une collection de services et de ressources Azure utilisés ensemble. Par exemple, si vous utilisez Azure Search tooindex une base de données SQL, les deux services doivent faire partie de hello même groupe de ressources.
+Un groupe de ressources correspond à une collection de services et de ressources Azure utilisés ensemble. Par exemple, si vous utilisez Recherche Azure pour indexer une base de données SQL, ces deux services doivent faire partie du même groupe de ressources.
 
 > [!TIP]
-> La suppression d’un groupe de ressources supprime également les services hello qu’il contient. Pour les projets de prototype utilisant plusieurs services, tous les placer dans hello même groupe de ressources facilite le nettoyage après la projet de hello. 
+> La suppression d’un groupe de ressources supprime également les services qu’il contient. Pour les projets de prototype utilisant plusieurs services, le fait de les placer tous dans le même groupe de ressources facilite le nettoyage une fois le projet terminé. 
 
 ## <a name="select-a-hosting-location"></a>Sélectionner un emplacement d’hébergement 
-Comme un service Azure, Azure Search peut être hébergé dans le monde hello des centres de données. Veuillez noter que les [prix peuvent varier](https://azure.microsoft.com/pricing/details/search/) selon la zone géographique.
+En sa qualité de service Azure, Recherche Azure peut être hébergé dans les centres de données du monde entier. Veuillez noter que les [prix peuvent varier](https://azure.microsoft.com/pricing/details/search/) selon la zone géographique.
 
 ## <a name="select-a-pricing-tier-sku"></a>Sélectionner un niveau de tarification (SKU)
 [Azure Search est actuellement disponible à différents niveaux tarifaires](https://azure.microsoft.com/pricing/details/search/): Gratuit, De base ou Standard. Chaque niveau a ses propres [capacité et limites](search-limits-quotas-capacity.md). Pour obtenir de l’aide, voir [Choisir un niveau tarifaire ou une référence (SKU)](search-sku-tier.md) .
 
-Dans cette procédure pas à pas, nous avons choisi le niveau Standard de hello pour notre service.
+Dans cette démonstration, nous avons choisi le niveau Standard pour notre service.
 
 ## <a name="create-your-service"></a>Créer votre service
 
-N’oubliez pas toopin votre tableau de bord toohello service pour faciliter l’accès à chaque fois que vous vous connectez.
+N’oubliez pas d’épingler votre service au tableau de bord pour y accéder facilement à chaque fois que vous vous connectez.
 
 ![](./media/search-create-service-portal/new-service2.png)
 
 ## <a name="scale-your-service"></a>Mettre à l’échelle le service
-Il peut prendre quelques minutes toocreate un service (15 minutes ou plus selon le niveau de hello). Après la configuration de votre service, vous pouvez mettre à l’échelle toomeet vos besoins. Étant donné que vous avez choisi de niveau Standard de hello pour votre service Azure Search, vous pouvez faire évoluer votre service en deux dimensions : les réplicas et les partitions. Vous aviez choisi le niveau de base hello, vous pouvez uniquement ajouter des réplicas. Si vous avez configuré le service gratuit de hello, l’échelle n’est pas disponible.
+La création d’un service peut prendre plusieurs minutes (15 minutes ou plus selon le niveau). Une fois votre service approvisionné, vous pouvez le mettre à l’échelle en fonction de vos besoins. Comme vous avez choisi le niveau Standard pour votre service Azure Search, vous pouvez le mettre à l’échelle dans deux dimensions : réplicas et partitions. Si vous choisissez le niveau De base, vous pouvez uniquement ajouter des réplicas. Si vous configurez le service gratuit, la mise à l’échelle n’est pas disponible.
 
-***Partitions*** autoriser votre service toostore et la recherche dans plusieurs documents.
+Les ***partitions*** permettent à votre service de stocker plus de documents et d’effectuer des recherches dans un plus grand nombre de documents.
 
-***Réplicas*** autoriser votre toohandle service une charge supérieure des requêtes de recherche.
+Les ***réplicas*** permettent à votre service de gérer une charge supérieure de requêtes de recherche.
 
 > [!Important]
 > Un service doit avoir [2 réplicas pour SLA en lecture seule et 3 réplicas pour SLA en lecture/écriture](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
 
-1. Accédez à panneau de service de recherche tooyour Bonjour portail Azure.
-2. Dans le volet de navigation de gauche hello, sélectionnez **paramètres** > **échelle**.
-3. Utilisez hello votre tooadd réplicas ou les Partitions.
+1. Accédez au panneau de service de recherche dans le portail Azure.
+2. Dans le volet de navigation de gauche, sélectionnez **Paramètres** > **Mise à l’échelle**.
+3. Utilisez le curseur pour ajouter des réplicas ou des partitions.
 
 ![](./media/search-create-service-portal/settings-scale.png)
 
 > [!Note] 
-> Chaque couche dispose de différents [limites](search-limits-quotas-capacity.md) sur le nombre total de hello d’unités de recherche autorisée dans un seul service (réplicas * Partitions = nombre Total d’unités recherche).
+> Chaque niveau a des [limites](search-limits-quotas-capacity.md) différentes quant au nombre total d’unités de recherche autorisées dans un même service (replicas * partitions = nombre total d’unités de recherche).
 
-## <a name="when-tooadd-a-second-service"></a>Lorsque tooadd un deuxième service
+## <a name="when-to-add-a-second-service"></a>Quand ajouter un deuxième service
 
-Une grande majorité des clients utiliser qu’un seul service mis en service à un niveau qui fournit hello [avec le bouton droit équilibre des ressources](search-sku-tier.md). Un service peut héberger plusieurs index, objet toohello [limites maximales du niveau hello vous sélectionnez](search-capacity-planning.md), avec chaque index isolé d’une autre. Dans Azure Search, les demandes peuvent uniquement être dirigé tooone index, en réduisant le risque de hello accidentelle ou intentionnelle de récupération des données à partir d’autres index hello même service.
+La grande majorité des clients n’utilise qu’un seul service, approvisionné à un niveau qui fournit le [bon équilibre de ressources](search-sku-tier.md). Un service peut héberger plusieurs index, soumis aux [limites maximales du niveau sélectionné](search-capacity-planning.md), chaque index étant isolé des autres. Dans la Recherche Azure, les requêtes ne peuvent être dirigées que vers un seul index, ce qui réduit les risques de récupération des données accidentelle ou intentionnelle à partir d’autres index du même service.
 
-Bien que la plupart des clients utilisent qu’un seul service, une redondance de service peut être nécessaire si les spécifications opérationnelles de hello suivants :
+Bien que la plupart des clients utilisent un seul service, une redondance des services peut être nécessaire en cas d’exigences opérationnelles particulières, notamment :
 
-+ Récupération d’urgence (panne du centre de données). Azure Search ne fournit pas un basculement instantané en cas de hello d’une panne. Pour obtenir de l’aide et des recommandations, consultez la page [Administration des services](search-manage.md).
-+ Votre examen de la modélisation d’une architecture mutualisée a déterminé que des services supplémentaires est une conception optimale hello. Pour plus d’informations, consultez la page [Conception pour une architecture mutualisée](search-modeling-multitenant-saas-applications.md).
-+ Pour les applications globalement déployées, vous pouvez avoir besoin d’une instance d’Azure Search de latence de toominimize plusieurs régions de trafic international de votre application.
++ Récupération d’urgence (panne du centre de données). La Recherche Azure ne fournit pas de basculement instantané en cas de panne. Pour obtenir de l’aide et des recommandations, consultez la page [Administration des services](search-manage.md).
++ Vos recherches sur la modélisation d’une architecture mutualisée ont déterminé que des services supplémentaires représentent la conception optimale. Pour plus d’informations, consultez la page [Conception pour une architecture mutualisée](search-modeling-multitenant-saas-applications.md).
++ Dans le cas d’applications déployées dans le monde entier, vous pouvez avoir besoin de disposer d’une instance de la Recherche Azure dans plusieurs régions afin de réduire la latence du trafic international de votre application.
 
 > [!NOTE]
-> Dans la Recherche Azure, vous ne pouvez pas séparer les charges de travail d’indexation et de requête ; par conséquent, il n’est jamais question de créer plusieurs services pour des charges de travail séparées. Un index est toujours interrogé sur service de hello dans lequel il a été créé (vous ne peut pas créer un index dans un seul service et copiez-le tooanother).
+> Dans la Recherche Azure, vous ne pouvez pas séparer les charges de travail d’indexation et de requête ; par conséquent, il n’est jamais question de créer plusieurs services pour des charges de travail séparées. Un index est toujours interrogé sur le service dans lequel il a été créé (vous ne pouvez pas créer un index dans un service et le copier dans un autre).
 >
 
-Il n’est pas nécessaire de disposer d’un second service pour la haute disponibilité. Haute disponibilité pour les requêtes est obtenue lorsque vous utilisez 2 ou plusieurs réplicas dans hello même service. Les mises à jour des réplicas sont séquentielles, ce qui signifie qu’au moins l’un d’eux est opérationnel lors du déploiement d’une mise à jour de service. Pour plus d’informations sur la disponibilité, consultez la page [Contrats de niveau de service](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
+Il n’est pas nécessaire de disposer d’un second service pour la haute disponibilité. La haute disponibilité des requêtes est atteinte si vous utilisez au moins deux réplicas dans le même service. Les mises à jour des réplicas sont séquentielles, ce qui signifie qu’au moins l’un d’eux est opérationnel lors du déploiement d’une mise à jour de service. Pour plus d’informations sur la disponibilité, consultez la page [Contrats de niveau de service](https://azure.microsoft.com/support/legal/sla/search/v1_0/).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Après le déploiement d’un service Azure Search, vous êtes prêt trop[définir un index](search-what-is-an-index.md) afin de pouvoir télécharger et rechercher vos données.
+Après avoir approvisionné un service Recherche Azure, vous pouvez [définir un index](search-what-is-an-index.md) afin de pouvoir télécharger vos données et effectuer des recherches dans vos données.
 
-service de hello tooaccess à partir de code ou un script, indiquez les URL de hello (*-nom du service*. search.windows.net) et une clé. Les clés d’administration accordent un accès total ; les clés de requête accordent un accès en lecture seule. Consultez [comment effectuer une recherche toouse Azure dans .NET](search-howto-dotnet-sdk.md) tooget a démarré.
+Pour accéder au service à partir du code ou d’un script, fournissez l’URL (*nom-service*.search.windows.net) et une clé. Les clés d’administration accordent un accès total ; les clés de requête accordent un accès en lecture seule. Consultez [Utilisation de Recherche Azure dans .NET](search-howto-dotnet-sdk.md) pour bien démarrer.
 
 Consultez [Créer et interroger votre premier index](search-get-started-portal.md) pour obtenir un didacticiel rapide sur le portail.
 

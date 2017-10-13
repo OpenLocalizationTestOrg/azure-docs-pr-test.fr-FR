@@ -1,4 +1,4 @@
-Azure offre hello suivant SKU de passerelle VPN :
+Azure propose les références SKU de passerelle VPN suivantes :
 
 |**Référence (SKU)**   | **S2S/VNet-to-VNet<br>Tunnels** | **P2S<br>Connexions** | **Agrégat<br>Référence de débit** |
 |---       | ---                             | ---                    | ---                         |
@@ -8,8 +8,8 @@ Azure offre hello suivant SKU de passerelle VPN :
 |**De base** | Bande passante 10                         | Bande passante 128               | 100 Mbits/s                    | 
 |          |                                 |                        |                             | 
 
-- La référence de débit agrégée est basée sur les mesures de plusieurs tunnels agrégés via une passerelle unique. Il n’est pas un débit garanti en raison des conditions de trafic tooInternet et comportements de votre application.
+- La référence de débit agrégée est basée sur les mesures de plusieurs tunnels agrégés via une passerelle unique. Le débit n’est pas garanti en raison de conditions de trafic Internet et des comportements de votre application.
 
-- Informations de tarification se trouvent sur hello [tarification](https://azure.microsoft.com/pricing/details/vpn-gateway) page.
+- Pour des informations sur les prix, consultez la page [Tarification](https://azure.microsoft.com/pricing/details/vpn-gateway) .
 
-- Vous trouverez des informations de contrat SLA (Service Level Agreement) sur hello [SLA](https://azure.microsoft.com/support/legal/sla/vpn-gateway/) page.
+- Vous trouverez des informations relatives au contrat de niveau de service (SLA) sur la page [SLA](https://azure.microsoft.com/support/legal/sla/vpn-gateway/).

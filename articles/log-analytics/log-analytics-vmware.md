@@ -1,6 +1,6 @@
 ---
-title: aaaVMware solution de surveillance dans le journal Analytique | Documents Microsoft
-description: "Découvrez comment hello solution d’analyse de VMware peut aider à gérer les journaux et de surveiller des ordinateurs hôtes ESXi."
+title: Solution Analyse VMware dans Log Analytics | Microsoft Docs
+description: "Découvrez comment la solution Analyse VMware peut vous aider à gérer les journaux et à surveiller les hôtes ESXi."
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,74 +14,74 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/11/2017
 ms.author: banders
-ms.openlocfilehash: 959d5c2201fc5c7947f8b8870d055cdf9eea8e01
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 17072c4b6e4fdf6e4dc2b7a6a4ded7fa9f9f6fde
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="vmware-monitoring-preview-solution-in-log-analytics"></a>Solution Analyse VMware (version préliminaire) dans Log Analytics
 
 ![Symbole VMware](./media/log-analytics-vmware/vmware-symbol.png)
 
-Hello solution d’analyse de VMware dans Analytique de journal est une solution qui vous permet de créer une approche de l’analyse pour des journaux de VMware et de journalisation centralisée. Cet article décrit comment vous pouvez résoudre les problèmes, capturer et gérer les ordinateurs hôtes ESXi hello dans un emplacement unique à l’aide de la solution de hello. Avec la solution de hello, vous pouvez voir les données détaillées pour tous les hôtes ESXi dans un emplacement unique. Vous pouvez voir le nombre d’événements supérieur, l’état et les tendances des hôtes de machine virtuelle et ESXi fournis via les journaux de l’hôte ESXi hello. Vous pouvez résoudre des problèmes en consultant des journaux d’hôte ESXi centralisés et en y effectuant des recherches. Et vous pouvez créer des alertes basées sur des requêtes de recherche de journal.
+La solution Analyse VMware dans Log Analytics vous aide à créer une approche centralisée de la journalisation et de l’analyse des journaux VMware volumineux. Cet article décrit comment dépanner, capturer et gérer les hôtes ESXi dans un emplacement unique à l’aide de la solution. La solution vous permet de consulter des données détaillées pour tous vos hôtes ESXi dans un emplacement unique. Vous pouvez voir le nombre, l’état et les tendances des principaux événements des hôtes de machine virtuelle et ESXi, fournis via les journaux d’hôte ESXi. Vous pouvez résoudre des problèmes en consultant des journaux d’hôte ESXi centralisés et en y effectuant des recherches. Et vous pouvez créer des alertes basées sur des requêtes de recherche de journal.
 
-solution de Hello utilise des fonctionnalités syslog native de hello ESXi hôte toopush tooa cible des données machine virtuelle, qui a l’Agent OMS. Toutefois, les solutions hello n’écrivent les fichiers dans syslog au sein de la cible de hello machine virtuelle. agent d’OMS Hello ouvre le port 1514 et écoute toothis. Une fois qu’il reçoit des données de hello, l’agent OMS de hello pousse les données hello dans OMS.
+La solution utilise la fonctionnalité syslog native de l’hôte ESXi pour transmettre des données à une machine virtuelle cible, qui dispose de l’agent OMS. Toutefois, la solution n’écrit pas de fichiers dans syslog sur la machine virtuelle cible. L’agent OMS ouvre le port 1514 et l’écoute. Une fois les données reçues, l’agent OMS envoie les données dans OMS.
 
-## <a name="installing-and-configuring-hello-solution"></a>L’installation et la configuration de solution de hello
-Utilisez hello suivant tooinstall des informations et configurer une solution de hello.
+## <a name="installing-and-configuring-the-solution"></a>Installation et configuration de la solution
+Utilisez les informations suivantes pour installer et configurer la solution.
 
-* Ajouter hello VMware analyse solution tooyour espace de travail OMS à l’aide du processus de hello décrit dans [solutions Analytique de journal ajouter à partir de la galerie des Solutions de hello](log-analytics-add-solutions.md).
+* Ajoutez la solution Analyse VMware à votre espace de travail OMS en procédant de la manière décrite dans [Ajouter des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md).
 
 #### <a name="supported-vmware-esxi-hosts"></a>Hôtes VMware ESXi pris en charge
 vSphere ESXi Host 5.5 et 6.0
 
 #### <a name="prepare-a-linux-server"></a>Préparer un serveur Linux
-Créer un tooreceive de machine virtuelle du système d’exploitation Linux toutes les données syslog à partir d’ordinateurs hôtes ESXi hello. Hello [OMS Linux Agent](log-analytics-linux-agents.md) est le point de collecte hello pour toutes les données syslog de hôte ESXi. Vous pouvez utiliser plusieurs ESXi hôtes tooforward journaux tooa Linux serveur unique, comme dans l’exemple suivant de hello.  
+Créez une machine virtuelle de système d’exploitation Linux pour recevoir toutes les données Syslog des hôtes ESXi. L’[Agent OMS Linux](log-analytics-linux-agents.md) est le point de regroupement de toutes les données syslog de l’hôte ESXi. Vous pouvez utiliser plusieurs hôtes ESXi pour transférer des journaux à un seul serveur Linux, comme dans l’exemple suivant.  
 
    ![Flux Syslog](./media/log-analytics-vmware/diagram.png)
 
 ### <a name="configure-syslog-collection"></a>Configurer la collecte Syslog
-1. Configurez le transfert de Syslog à VSphere. Pour plus d’informations toohelp de configurer le transfert de syslog, consultez [configuration syslog sur ESXi 5.x et 6.0 (2003322)](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2003322). Accédez trop**Configuration de l’hôte ESXi** > **logiciel** > **paramètres avancés** > **Syslog**.
+1. Configurez le transfert de Syslog à VSphere. Pour plus d’informations sur la configuration du transfert de Syslog, voir [Configuration de Syslog sur ESXi 5.x et 6.0 (2003322)](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2003322). Accédez à **Configuration de l’hôte ESXi** > **Logiciel** > **Paramètres avancés** > **Syslog**.
    ![vsphereconfig](./media/log-analytics-vmware/vsphere1.png)  
-2. Bonjour *Syslog.global.logHost* champ, ajoutez votre numéro de port de serveur et hello Linux *1514*. Par exemple, `tcp://hostname:1514` ou `tcp://123.456.789.101:1514`.
-3. Ouvrez le pare-feu d’hôte ESXi hello pour syslog. **Configuration de l’hôte ESXi** > **Logiciels** > **Profil de sécurité** > **Pare-feu**, puis ouvrez **Propriétés**.  
+2. Dans le champ *Syslog.global.logHost*, ajoutez votre serveur Linux et le numéro de port *1514*. Par exemple, `tcp://hostname:1514` ou `tcp://123.456.789.101:1514`.
+3. Ouvrez le pare-feu d’hôte ESXi pour Syslog. **Configuration de l’hôte ESXi** > **Logiciels** > **Profil de sécurité** > **Pare-feu**, puis ouvrez **Propriétés**.  
 
     ![vspherefw](./media/log-analytics-vmware/vsphere2.png)  
 
     ![vspherefwproperties](./media/log-analytics-vmware/vsphere3.png)  
-4. Vérifiez hello vSphere Console tooverify que ce syslog est correctement configuré. Confirmation sur hello ESXI héberger ce port **1514** est configuré.
-5. Téléchargez et installez hello Agent OMS pour Linux sur un serveur Linux de hello. Pour plus d’informations, consultez hello [Documentation de l’Agent OMS pour Linux](https://github.com/Microsoft/OMS-Agent-for-Linux).
-6. Une fois hello Agent OMS pour Linux est installé, accédez toohello /etc/opt/microsoft/omsagent/sysconf/omsagent.d active et hello vmware_esxi.conf fichier toohello /etc/opt/microsoft/omsagent/conf/omsagent.d répertoire et hello hello propriétaire/groupe de modifications et les autorisations du fichier de hello. Par exemple :
+4. Vérifiez sur la Console vSphere que ce Syslog est correctement configuré. Vérifiez sur l’hôte ESXI que le port **1514** est configuré.
+5. Téléchargez et installez l’Agent OMS pour Linux sur le serveur Linux. Pour plus d’informations, consultez la [documentation de l’Agent OMS pour Linux](https://github.com/Microsoft/OMS-Agent-for-Linux).
+6. Une fois l’Agent OMS pour Linux installé, accédez au répertoire /etc/opt/microsoft/omsagent/sysconf/omsagent.d, copiez le fichier vmware_esxi.conf vers le répertoire /etc/opt/microsoft/omsagent/conf/omsagent.d, puis modifiez le propriétaire/groupe et les autorisations du fichier. Par exemple :
 
     ```
     sudo cp /etc/opt/microsoft/omsagent/sysconf/omsagent.d/vmware_esxi.conf /etc/opt/microsoft/omsagent/conf/omsagent.d
    sudo chown omsagent:omiusers /etc/opt/microsoft/omsagent/conf/omsagent.d/vmware_esxi.conf
     ```
-7. Redémarrez hello Agent OMS pour Linux en exécutant `sudo /opt/microsoft/omsagent/bin/service_control restart`.
-8. Tester la connectivité des hello entre le serveur de Linux hello et hôte ESXi de hello à l’aide de hello `nc` commande hello hôte ESXi. Par exemple :
+7. Redémarrez l’Agent OMS pour Linux en exécutant `sudo /opt/microsoft/omsagent/bin/service_control restart`.
+8. Testez la connectivité entre le serveur Linux et de l’hôte ESXi en utilisant la commande `nc`sur l’hôte ESXi. Par exemple :
 
     ```
     [root@ESXiHost:~] nc -z 123.456.789.101 1514
-    Connection too123.456.789.101 1514 port [tcp/*] succeeded!
+    Connection to 123.456.789.101 1514 port [tcp/*] succeeded!
     ```
 
-9. Bonjour portail OMS, effectuer une recherche de journal de `Type=VMware_CL`. Lorsque OMS collecte les données syslog hello, il conserve le format de syslog hello. Dans le portail hello, certains des champs spécifiques sont capturées, tel que *nom d’hôte* et *ProcessName*.  
+9. Dans le portail OMS, effectuer une recherche de journal pour `Type=VMware_CL`. Quand OMS collecte les données Syslog, il conserve le format Syslog. Dans le portail, certains des champs sont capturés, tel que *Hostname* et *ProcessName*.  
 
     ![type](./media/log-analytics-vmware/type.png)  
 
-    Si vos résultats de recherche de journal de vue sont similaires image toohello ci-dessus, vous êtes prêt toouse hello VMware d’OMS analyse solution du tableau de bord.  
+    Si vos résultats de recherche de vue de journal sont similaires à l’image ci-dessus, vous êtes prêt à utiliser le tableau de bord de la solution OMS Analyse VMware.  
 
 ## <a name="vmware-data-collection-details"></a>Détails sur la collecte de données Linux
-Hello solution d’analyse de VMware collecte diverses données de journaux et des métriques de performances à partir d’ordinateurs hôtes ESXi à l’aide de hello les Agents OMS pour Linux que vous avez activé.
+La solution Analyse VMware collecte diverses mesures de performances et données de journaux à partir des hôtes ESXi à l’aide des Agents OMS pour Linux que vous avez activés.
 
-Hello tableau suivant présente les méthodes de collecte de données et d’autres détails sur la façon dont les données sont collectées.
+Le tableau suivant présente les méthodes de collecte des données et d’autres informations sur le mode de collecte.
 
 | plateforme | Agent OMS pour Linux | Agent SCOM | Stockage Azure | SCOM requis ? | Données de l’agent SCOM envoyées via un groupe d’administration | fréquence de collecte |
 | --- | --- | --- | --- | --- | --- | --- |
 | Linux |&#8226; |  |  |  |  |Toutes les 3 minutes. |
 
-Hello tableau présentent des exemples de champs de données collectées par hello solution d’analyse de VMware :
+Le tableau suivant affiche des exemples de champs de données collectés par la solution Analyse VMware :
 
 | Nom du champ | Description |
 | --- | --- |
@@ -91,7 +91,7 @@ Hello tableau présentent des exemples de champs de données collectées par hel
 | HostName_s |nom d’hôte ESXi |
 | Operation_s |créer ou supprimer une machine virtuelle |
 | ProcessName_s |nom de l’événement |
-| ResourceId_s |nom de l’ordinateur hôte VMware hello |
+| ResourceId_s |nom de l’hôte VMware |
 | ResourceLocation_s |VMware |
 | ResourceName_s |VMware |
 | ResourceType_s |Hyper-V |
@@ -100,17 +100,17 @@ Hello tableau présentent des exemples de champs de données collectées par hel
 | UserName_s |utilisateur qui a créé ou supprimé la machine virtuelle |
 | VMName_s |nom de la machine virtuelle |
 | Ordinateur |ordinateur hôte |
-| TimeGenerated |données hello du temps a été générées. |
+| TimeGenerated |heure à laquelle les données ont été générées |
 | DataCenter_s |centre de données VMware |
 | StorageLatency_s |latence de stockage (ms) |
 
 ## <a name="vmware-monitoring-solution-overview"></a>Présentation de la solution Analyse VMware
-vignette de VMware Hello s’affiche dans hello portail OMS. Elle fournit une vue d’ensemble des erreurs. Lorsque vous cliquez sur la vignette de hello, vous passez dans un affichage tableau de bord.
+La vignette VMware apparaît dans le portail OMS. Elle fournit une vue d’ensemble des erreurs. Lorsque vous cliquez sur la vignette, vous accédez à l’affichage du tableau de bord.
 
 ![vignette](./media/log-analytics-vmware/tile.png)
 
-#### <a name="navigate-hello-dashboard-view"></a>Naviguer dans Affichage de tableau de bord hello
-Bonjour **VMware** affichage tableau de bord, les panneaux est organisés par :
+#### <a name="navigate-the-dashboard-view"></a>Accédez à l’affichage du tableau de bord
+Dans l’affichage du tableau de bord **VMware**, les panneaux sont organisés par :
 
 * Nombre d’états d’échec
 * Hôte principal par nombre d’événements
@@ -122,84 +122,84 @@ Bonjour **VMware** affichage tableau de bord, les panneaux est organisés par :
 
 ![solution2](./media/log-analytics-vmware/solutionview1-2.png)
 
-Cliquez sur n’importe quel tooopen panneau volet de recherche Analytique de journal qui affiche des informations détaillées spécifiques pour les lames hello.
+Cliquez sur n’importe quel panneau pour ouvrir le volet de recherche de Log Analytics qui affiche des informations détaillées spécifiques pour le panneau.
 
-À ce stade, vous pouvez modifier toomodify de requête de recherche hello pour un élément spécifique. Pour un didacticiel sur les principes fondamentaux de hello de recherche d’OMS, consultez hello [didacticiel de recherche de journal OMS.](log-analytics-log-searches.md)
+À partir d’ici, vous pouvez modifier la requête de recherche pour l’adapter à un aspect spécifique. Pour un didacticiel relatifs aux principes de base de recherche OMS, voir le [didacticiel de recherche de journal OMS](log-analytics-log-searches.md).
 
 #### <a name="find-esxi-host-events"></a>Rechercher des événements de l’hôte ESXi
-Un seul hôte ESXi génère plusieurs journaux basés sur leurs processus. Hello solution d’analyse de VMware centralise les et résume le nombre d’événements hello. Cette vue centralisée vous permet de comprendre quel hôte ESXi a un volume élevé d’événements ainsi que les événements qui se produisent le plus fréquemment dans votre environnement.
+Un seul hôte ESXi génère plusieurs journaux basés sur leurs processus. La solution Analyse VMware les centralise et résume les nombres d’événements. Cette vue centralisée vous permet de comprendre quel hôte ESXi a un volume élevé d’événements ainsi que les événements qui se produisent le plus fréquemment dans votre environnement.
 
 ![événement](./media/log-analytics-vmware/events.png)
 
 Vous pouvez approfondir davantage en cliquant sur un hôte ESXi ou un type d’événement.
 
-Lorsque vous cliquez sur un nom d’hôte ESXi, vous voyez les informations de cet hôte ESXi. Si vous souhaitez que les résultats de toonarrow avec le type d’événement hello, ajoutez `“ProcessName_s=EVENT TYPE”` dans votre requête de recherche. Vous pouvez sélectionner **ProcessName** dans le filtre de recherche hello. Qui restreint les informations hello pour vous.
+Lorsque vous cliquez sur un nom d’hôte ESXi, vous voyez les informations de cet hôte ESXi. Si vous souhaitez affiner des résultats avec le type d’événement, ajoutez `“ProcessName_s=EVENT TYPE”` à votre requête de recherche. Vous pouvez sélectionner **ProcessName** dans le filtre de recherche. Cela restreint les informations pour vous.
 
 ![explorer](./media/log-analytics-vmware/eventhostdrilldown.png)
 
 #### <a name="find-high-vm-activities"></a>Rechercher les activités de machine virtuelle élevées
-Une machine virtuelle peut être créée et supprimée sur tout hôte ESXi. Il est utile pour un administrateur tooidentify le nombre de machines virtuelles un hôte ESXi crée. Qui à leur tour, vous aide à toounderstand performances et planification de capacité. Il est essentiel de suivre les événements d’activité de machine virtuelle lors de la gestion de votre environnement.
+Une machine virtuelle peut être créée et supprimée sur tout hôte ESXi. Il est utile pour un administrateur d’identifier le nombre de machines virtuelles que crée un hôte ESXi. Cela aide ensuite à comprendre la planification des performances et de la capacité. Il est essentiel de suivre les événements d’activité de machine virtuelle lors de la gestion de votre environnement.
 
 ![explorer](./media/log-analytics-vmware/vmactivities1.png)
 
-Si vous souhaitez que toosee supplémentaires ESXi hôte de données de création de machine virtuelle, cliquez sur un nom d’hôte ESXi.
+Si vous souhaitez voir d’autres données de création de machine virtuelle hôte ESXi, cliquez sur un nom d’hôte ESXi.
 
 ![explorer](./media/log-analytics-vmware/createvm.png)
 
 #### <a name="common-search-queries"></a>Requêtes de recherche courantes
-solution de Hello inclut des autres requêtes utiles qui peuvent vous aider à gérer vos ordinateurs hôtes ESXi, telles que l’espace de stockage élevé, latence de stockage et d’échec de chemin d’accès.
+La solution inclut d’autres requêtes utiles qui peuvent vous aider à gérer vos hôtes ESXi, telles que l’espace de stockage élevé, la latence du stockage et la défaillance de chemin.
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
-![queries](./media/log-analytics-vmware/queries.png)
+![requêtes](./media/log-analytics-vmware/queries.png)
 
 
 #### <a name="save-queries"></a>Enregistrer des requêtes
-L’enregistrement des requêtes de recherche est une fonctionnalité standard dans OMS, qui peut vous aider à conserver toutes les requêtes que vous avez trouvées utiles. Après avoir créé une requête qui vous être utiles, enregistrez-le en cliquant sur hello **favoris**. Une requête enregistrée vous permet de facilement le réutiliser plus tard à partir de hello [mon tableau de bord](log-analytics-dashboards.md) page où vous pouvez créer vos propres tableaux de bord personnalisés.
+L’enregistrement des requêtes de recherche est une fonctionnalité standard dans OMS, qui peut vous aider à conserver toutes les requêtes que vous avez trouvées utiles. Après avoir créé une requête que vous trouvez utile, enregistrez-la en cliquant sur **Favorites**. Vous pouvez réutiliser facilement une requête enregistrée à partir de la page [Mon tableau de bord](log-analytics-dashboards.md) dans laquelle vous pouvez créer vos propres tableaux de bord personnalisés.
 
 ![DockerDashboardView](./media/log-analytics-vmware/dockerdashboardview.png)
 
 #### <a name="create-alerts-from-queries"></a>Créer des alertes à partir de requêtes
-Une fois que vous avez créé vos requêtes, vous souhaiterez peut-être toouse hello requêtes tooalert lorsque des événements spécifiques se produisent. Consultez [alertes dans le journal Analytique](log-analytics-alerts.md) pour plus d’informations sur la façon toocreate alertes. Pour obtenir des exemples de requêtes et autres exemples de requête des alertes, consultez hello [VMware d’analyse à l’aide d’Analytique des journaux OMS](https://blogs.technet.microsoft.com/msoms/2016/06/15/monitor-vmware-using-oms-log-analytics) billet de blog.
+Après avoir créé vos requêtes, vous pouvez les utiliser pour vous avertir quand des événements spécifiques se produisent. Pour plus d’informations sur la création d’alertes, voir [Alertes dans Log Analytics](log-analytics-alerts.md). Pour obtenir des exemples de requêtes d’alerte et d’autres requêtes, voir le billet de blog [Monitor VMware using OMS Log Analytics](https://blogs.technet.microsoft.com/msoms/2016/06/15/monitor-vmware-using-oms-log-analytics) (Analyser VMware à l’aide d’OMS Log Analytics).
 
 ## <a name="frequently-asked-questions"></a>Forum Aux Questions
-### <a name="what-do-i-need-toodo-on-hello-esxi-host-setting-what-impact-will-it-have-on-my-current-environment"></a>De quoi ai-je besoin toodo sur le paramètre de l’hôte ESXi hello ? Quel sera l’impact sur mon environnement actuel ?
-solution de Hello utilise mécanisme de transfert hello natif ESXi hôte Syslog. Vous n’avez pas besoin des logiciels Microsoft supplémentaires sur les journaux de hello hôte ESXi toocapture hello. Il doit avoir un environnement existant de faible impact tooyour. Toutefois, vous avez besoin de transfert tooset syslog, ce qui est une fonctionnalité ESXI.
+### <a name="what-do-i-need-to-do-on-the-esxi-host-setting-what-impact-will-it-have-on-my-current-environment"></a>Que dois-je faire avec les paramètres d’hôte ESXi ? Quel sera l’impact sur mon environnement actuel ?
+La solution utilise le mécanisme de transfert syslog natif de l’hôte ESXi. Vous n’avez pas besoin d’autres logiciels Microsoft sur l’hôte ESXi pour capturer les journaux. L’impact sur votre environnement existant devrait être faible. Toutefois, vous devez absolument définir le transfert syslog, une fonctionnalité d’ESXI.
 
-### <a name="do-i-need-toorestart-my-esxi-host"></a>Dois-je toorestart mon hôte ESXi ?
-Non. Ce processus ne nécessite pas de redémarrage. Parfois, vSphere n’est pas correctement actualisée hello syslog. Dans ce cas, ouvrez une session sur l’ordinateur hôte de toohello ESXi et recharger hello syslog. Là encore, vous n’avez toorestart hôte de hello, donc ce processus n’est pas tooyour perturbateur environnement.
+### <a name="do-i-need-to-restart-my-esxi-host"></a>Dois-je redémarrer mon hôte ESXi ?
+Non. Ce processus ne nécessite pas de redémarrage. Parfois, vSphere n’actualise pas correctement syslog. Dans ce cas, ouvrez une session sur l’hôte ESXi et rechargez le journal système. Encore une fois, il n’est pas obligatoire de redémarrer l’hôte. Ainsi, ce processus ne perturbe pas votre environnement.
 
-### <a name="can-i-increase-or-decrease-hello-volume-of-log-data-sent-toooms"></a>Puis-je augmenter ou baisser le volume de données de journaux envoyés tooOMS hello ?
-Oui, vous pouvez. Vous pouvez utiliser les paramètres de niveau de journal hôte ESXi hello dans vSphere. Collecte des journaux est basée sur hello *info* niveau. Par conséquent, si vous souhaitez tooaudit création d’ordinateurs virtuels ou de suppression, vous devez tookeep hello *info* niveau sur Hôted. Pour plus d’informations, consultez hello [Base de connaissances VMware](https://kb.vmware.com/selfservice/microsites/search.do?&cmd=displayKC&externalId=1017658).
+### <a name="can-i-increase-or-decrease-the-volume-of-log-data-sent-to-oms"></a>Puis-je augmenter ou diminuer le volume de données de journal envoyé à OMS ?
+Oui, vous pouvez. Vous pouvez utiliser les paramètres de niveau de journal hôte ESXi dans vSphere. La collecte des journaux est basée sur le niveau *info*. Ainsi, si vous souhaitez vérifier la création ou la suppression de machines virtuelles, vous devez conserver le niveau *info* sur Hostd. Pour plus d’informations, consultez la [Base de connaissances VMware](https://kb.vmware.com/selfservice/microsites/search.do?&cmd=displayKC&externalId=1017658).
 
-### <a name="why-is-hostd-not-providing-data-toooms-my-log-setting-is-set-tooinfo"></a>Pourquoi Hôted fournit pas les données tooOMS ? Paramètre du journal a la valeur tooinfo.
-Un bogue d’hôte ESXi pour hello syslog timestamp s’est produite. Pour plus d’informations, consultez hello [Base de connaissances VMware](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2111202). Après avoir appliqué la solution de contournement hello, Hôted doit fonctionner normalement.
+### <a name="why-is-hostd-not-providing-data-to-oms-my-log-setting-is-set-to-info"></a>Pourquoi Hostd ne fournit-il pas de données à OMS ? Mon journal est défini sur info.
+Il y a un problème avec l’hôte ESXi pour l’horodatage de syslog. Pour plus d’informations, consultez la [Base de connaissances VMware](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2111202). Après avoir appliqué la solution de contournement, Hostd devrait fonctionner normalement.
 
-### <a name="can-i-have-multiple-esxi-hosts-forwarding-syslog-data-tooa-single-vm-with-omsagent"></a>Puis-je avoir plusieurs ESXi hôtes transfert syslog données tooa unique machine virtuelle avec omsagent ?
-Oui. Vous pouvez avoir plusieurs ESXi hôtes transfert tooa unique machine virtuelle avec omsagent.
+### <a name="can-i-have-multiple-esxi-hosts-forwarding-syslog-data-to-a-single-vm-with-omsagent"></a>Est-il possible que plusieurs hôtes ESXi transfèrent les données de syslog vers une seule machine virtuelle avec omsagent ?
+Oui. Plusieurs hôtes ESXi peuvent transférer des données vers une seule machine virtuelle avec omsagent.
 
 ### <a name="why-dont-i-see-data-flowing-into-oms"></a>Pourquoi ne puis-je pas voir les données échangées avec OMS ?
 Il peut y avoir plusieurs raisons :
 
-* hôte ESXi de Hello n’est pas correctement envoyant données toohello machine virtuelle en cours d’exécution omsagent. tootest, effectuer hello comme suit :
+* L’hôte ESXi ne transmet pas correctement les données vers la machine virtuelle qui exécute omsagent. Pour tester cela, procédez comme suit :
 
-  1. tooconfirm, ouvrez une session sur l’ordinateur hôte ESXi de toohello à l’aide de ssh et exécutez hello de commande suivante :`nc -z ipaddressofVM 1514`
+  1. Pour vérifier cela, ouvrez une session sur l’hôte ESXi à l’aide de ssh et exécutez la commande suivante : `nc -z ipaddressofVM 1514`
 
-      Si cela n’a pas réussi, les paramètres vSphere Bonjour Configuration avancée sont probablement pas corrigé. Consultez [configurer la collecte de syslog](#configure-syslog-collection) pour plus d’informations sur comment tooset des hello ESXi hôte pour le transfert de syslog.
-  2. Si la connectivité des ports syslog a réussi, mais vous ne voyez toujours pas toutes les données, puis rechargez syslog hello sur l’ordinateur hôte de hello ESXi à l’aide de ssh hello toorun commande suivante :` esxcli system syslog reload`
-* Hello machine virtuelle avec l’Agent OMS n’est pas défini correctement. tootest, effectuer hello comme suit :
+      Si cela n’a pas réussi, les paramètres de vSphere dans la Configuration avancée ne sont probablement pas corrects. Consultez [Configurer la collecte Syslog](#configure-syslog-collection) pour plus d’informations sur la configuration de l’hôte ESXi pour le transfert de syslog.
+  2. Si la connectivité du port syslog est correcte, mais que vous ne voyez toujours pas de données, rechargez syslog sur l’hôte ESXi à l’aide de ssh pour exécuter la commande suivante : ` esxcli system syslog reload`
+* La machine virtuelle avec OMS Agent n’est pas configurée correctement. Pour tester cela, procédez comme suit :
 
-  1. OMS écoute le port toohello 1514 et transmet des données à OMS. tooverify qu’il est ouvert, exécutez hello de commande suivante :`netstat -a | grep 1514`
-  2. Vous devez voir le port `1514/tcp` ouvert. Si vous ne le faites pas, vérifiez qu’omsagent hello est correctement installé. Si vous ne voyez pas les informations de port hello, port syslog de hello n’est pas ouvert sur hello machine virtuelle.
+  1. OMS écoute sur le port 1514 et transmet les données à OMS. Pour vérifier qu’il est ouvert, utilisez la commande suivante : `netstat -a | grep 1514`
+  2. Vous devez voir le port `1514/tcp` ouvert. Si ce n’est pas le cas, vérifiez qu’omsagent est correctement installé. Si vous ne voyez pas les informations de port, le port syslog n’est pas ouvert sur la machine virtuelle.
 
-     1. Vérifiez que hello OMS Agent est en cours d’exécution à l’aide de `ps -ef | grep oms`. Si elle n’est pas en cours d’exécution, lancer hello en exécutant la commande hello` sudo /opt/microsoft/omsagent/bin/service_control start`
-     2. Ouvrez hello `/etc/opt/microsoft/omsagent/conf/omsagent.d/vmware_esxi.conf` fichier.
+     1. Vérifiez que l’agent OMS s’exécute à l’aide de `ps -ef | grep oms`. S’il n’est pas en cours d’exécution, démarrez le processus en exécutant la commande ` sudo /opt/microsoft/omsagent/bin/service_control start`
+     2. Ouvrez le fichier `/etc/opt/microsoft/omsagent/conf/omsagent.d/vmware_esxi.conf` .
 
-         Vérifiez que l’utilisateur hello et paramètre de groupe est valide, comme dans :`-rw-r--r-- 1 omsagent omiusers 677 Sep 20 16:46 vmware_esxi.conf`
+         Vérifiez que les paramètres de groupe et d’utilisateur sont valides, comme dans : `-rw-r--r-- 1 omsagent omiusers 677 Sep 20 16:46 vmware_esxi.conf`
 
-         Si le fichier de hello ou n’existe pas hello utilisateur et le paramètre de groupe est incorrect, prendre une action corrective par [préparation d’un serveur Linux](#prepare-a-linux-server).
+         Si le fichier n’existe pas ou que les paramètres de groupe et d’utilisateur sont incorrects, prenez une mesure corrective en [Préparant un serveur Linux](#prepare-a-linux-server).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Utilisez [recherches de journal](log-analytics-log-searches.md) dans le journal Analytique tooview détaillées des données de l’hôte VMware.
+* Utiliser des [recherches de journal](log-analytics-log-searches.md) dans Log Analytics pour afficher des données détaillées de l’hôte VMware.
 * [Créer vos propres tableaux de bord](log-analytics-dashboards.md) affichant des données de l’hôte VMware.
 * [Créer des alertes](log-analytics-alerts.md) lorsque des événements d’hôte VMware spécifiques se produisent.

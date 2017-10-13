@@ -1,6 +1,6 @@
 ---
-title: "format de fichier des métadonnées et les propriétés d’aaaAzure Import/Export | Documents Microsoft"
-description: "Découvrez comment toospecify métadonnées et propriétés d’un ou plusieurs objets BLOB qui font partie d’une importation ou de travail d’exportation."
+title: "Format de fichier de propriétés et de métadonnées d’Azure Import/Export | Microsoft Docs"
+description: "Découvrez comment spécifier les métadonnées et les propriétés d’un ou plusieurs objets blob qui font partie d’un travail d’importation ou d’exportation."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: bb13c1f1a27baea77298cb224970cd521d02d8c0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3f728ad94cdcbd32092b677f11a737ae91376720
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-importexport-service-metadata-and-properties-file-format"></a>Format de fichier de propriétés et de métadonnées du service Azure Import/Export
-Vous pouvez spécifier les métadonnées et les propriétés d’un ou plusieurs objets blob dans le cadre d’un travail d’importation ou d’exportation. tooset métadonnées ou des propriétés pour les objets BLOB en cours de création dans le cadre d’un travail d’importation, vous fournissez un fichier de métadonnées ou des propriétés sur un disque de hello contenant hello toobe de données importée. Pour un travail d’exportation, les métadonnées et les propriétés sont écrites fichier de métadonnées ou des propriétés tooa qui est inclus sur le disque dur hello retourné tooyou.  
+Vous pouvez spécifier les métadonnées et les propriétés d’un ou plusieurs objets blob dans le cadre d’un travail d’importation ou d’exportation. Pour définir les métadonnées ou les propriétés d’objets blob créés dans le cadre d’un travail d’importation, vous devez fournir un fichier de métadonnées ou de propriétés sur le disque dur contenant les données à importer. Pour un travail d’exportation, les métadonnées et les propriétés sont écrites dans un fichier de métadonnées ou de propriétés inclus sur le disque dur retourné.  
   
 ## <a name="metadata-file-format"></a>Format du fichier de métadonnées  
-format de Hello d’un fichier de métadonnées est la suivante :  
+Le format d’un fichier de métadonnées est le suivant :  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -37,11 +37,11 @@ format de Hello d’un fichier de métadonnées est la suivante :
   
 |Élément XML|Type|Description|  
 |-----------------|----------|-----------------|  
-|`Metadata`|Élément racine|élément racine de Hello hello du fichier de métadonnées.|  
-|`metadata-name`|String|facultatif. élément XML de Hello Spécifie le nom hello de hello métadonnées pour l’objet blob de hello et sa valeur spécifie la valeur hello du paramètre de métadonnées hello.|  
+|`Metadata`|Élément racine|Élément racine du fichier de métadonnées.|  
+|`metadata-name`|String|facultatif. L’élément XML spécifie le nom des métadonnées de l’objet blob, et sa valeur spécifie la valeur du paramètre des métadonnées.|  
   
 ## <a name="properties-file-format"></a>Format du fichier de propriétés  
-format de Hello d’un fichier de propriétés est le suivant :  
+Le format d’un fichier de propriétés est le suivant :  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -59,15 +59,15 @@ format de Hello d’un fichier de propriétés est le suivant :
   
 |Élément XML|Type|Description|  
 |-----------------|----------|-----------------|  
-|`Properties`|Élément racine|élément racine de Hello du fichier de propriétés hello.|  
-|`Last-Modified`|String|facultatif. Hello heure de dernière modification de l’objet blob de hello. Travaux d’exportation uniquement.|  
-|`Etag`|String|facultatif. Bonjour valeur ETag de l’objet blob. Travaux d’exportation uniquement.|  
-|`Content-Length`|String|facultatif. taille de Hello du blob hello en octets. Travaux d’exportation uniquement.|  
-|`Content-Type`|String|facultatif. type de contenu Hello d’objet blob de hello.|  
-|`Content-MD5`|String|facultatif. Bonjour hachage MD5 de l’objet blob.|  
-|`Content-Encoding`|String|facultatif. le contenu de l’objet blob de Hello encodage.|  
-|`Content-Language`|String|facultatif. Bonjour langue du contenu de l’objet blob.|  
-|`Cache-Control`|String|facultatif. chaîne de contrôle Hello du cache pour l’objet blob de hello.|  
+|`Properties`|Élément racine|Élément racine du fichier de propriétés.|  
+|`Last-Modified`|String|facultatif. Heure de dernière modification de l’objet blob. Travaux d’exportation uniquement.|  
+|`Etag`|String|facultatif. Valeur ETag de l’objet blob. Travaux d’exportation uniquement.|  
+|`Content-Length`|String|facultatif. Taille de l’objet blob en octets. Travaux d’exportation uniquement.|  
+|`Content-Type`|String|facultatif. Type de contenu de l’objet blob.|  
+|`Content-MD5`|String|facultatif. Hash MD5 de l’objet blob.|  
+|`Content-Encoding`|String|facultatif. Codage du contenu de l’objet blob.|  
+|`Content-Language`|String|facultatif. Langage du contenu de l’objet blob.|  
+|`Cache-Control`|String|facultatif. Chaîne de contrôle du cache de l’objet blob.|  
 
 ## <a name="next-steps"></a>Étapes suivantes
 

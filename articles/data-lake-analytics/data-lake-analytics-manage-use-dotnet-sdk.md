@@ -1,6 +1,6 @@
 ---
-title: "aaaManage Analytique de LAC de données Azure à l’aide du Kit de développement .NET Azure | Documents Microsoft"
-description: "Découvrez comment toomanage Analytique lac de données des travaux de sources de données, les utilisateurs. "
+title: "Gestion d’Azure Data Lake Analytics à l’aide du SDK Azure .NET | Microsoft Docs"
+description: "Apprenez à gérer des travaux Data Lake Analytics, des sources de données, des utilisateurs. "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 98630ba411823644a8bce1f1b0c1331f689cbb0c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0f8a95f96ce4c816dfb9132923faa9a9bf20c205
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-net-sdk"></a>Gestion d’Azure Data Lake Analytics à l’aide du SDK Azure .NET
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-Découvrez comment des comptes toomanage Analytique de LAC de données Azure, des sources de données, des utilisateurs et des travaux à l’aide de hello Azure .NET SDK. 
+Apprenez à gérer des comptes Azure Data Lake Analytics, des sources de données, des utilisateurs et des travaux à l’aide du kit SDK Azure .NET. 
 
 ## <a name="prerequisites"></a>Composants requis
 
 * **Visual Studio 2015, Visual Studio 2013 mise à jour 4 ou Visual Studio 2012 avec Visual C++ installé**.
-* **Kit SDK Microsoft Azure pour .NET version 2.5 ou ultérieure**.  Installer à l’aide de hello [le programme d’installation de Web platform](http://www.microsoft.com/web/downloads/platform.aspx).
+* **Kit SDK Microsoft Azure pour .NET version 2.5 ou ultérieure**.  Installez-le avec [Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx).
 * **Packages NuGet exigés**
 
 ### <a name="install-nuget-packages"></a>Installer les packages NuGet
@@ -41,7 +41,7 @@ Découvrez comment des comptes toomanage Analytique de LAC de données Azure, de
 |[Microsoft.Azure.Management.ResourceManager](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)|1.6.0-preview|
 |[Microsoft.Azure.Graph.RBAC](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)|3.4.0-preview|
 
-Vous pouvez installer ces packages via la ligne de commande hello NuGet avec hello suivant de commandes :
+Vous pouvez installer ces packages via la ligne de commande NuGet avec les commandes suivantes :
 
 ```
 Install-Package -Id Microsoft.Rest.ClientRuntime.Azure.Authentication  -Version 2.3.1
@@ -62,7 +62,7 @@ string clientid = "1950a258-227b-4e31-a9cf-717495945fc2"; // Sample client ID (t
 
 ## <a name="authentication"></a>Authentification
 
-Vous avez plusieurs options d’ouverture de session tooAzure Analytique lac de données. Hello extrait de code suivant montre un exemple d’authentification avec l’authentification d’utilisateur interactif avec un menu contextuel.
+Pour vous connecter à Azure Data Lake Analytics, plusieurs options s’offrent à vous. L’extrait de code suivant montre un exemple d’authentification avec l’authentification utilisateur interactif à l’aide d’un menu contextuel.
 
 ``` csharp
 using System;
@@ -100,10 +100,10 @@ public static Program
 }
 ```
 
-Hello de code source pour **GetCreds_User_Popup** et hello code pour les autres options pour l’authentification sont traitées dans [options d’authentification Data Lake Analytique .NET](https://github.com/Azure-Samples/data-lake-analytics-dotnet-auth-options)
+Le code source pour **GetCreds_User_Popup** et le code pour les autres options d’authentification sont traités dans la rubrique [Options d’authentification Data Lake Analytics .NET](https://github.com/Azure-Samples/data-lake-analytics-dotnet-auth-options)
 
 
-## <a name="create-hello-client-management-objects"></a>Créer des objets de la gestion des clients de hello
+## <a name="create-the-client-management-objects"></a>Créer les objets de gestion de client
 
 ``` csharp
 var resourceManagementClient = new ResourceManagementClient(armCreds) { SubscriptionId = subid };
@@ -128,7 +128,7 @@ graphClient.TenantID = domain;
 
 ### <a name="create-an-azure-resource-group"></a>Créer un groupe de ressources Azure
 
-Si vous n’avez pas déjà créé un, vous devez disposer d’un groupe de ressources Azure de toocreate vos composants Analytique lac de données. Vous avez besoin de vos informations d’identification d’authentification, d’un ID d’abonnement et d’un emplacement. Hello suivant de code montre comment toocreate un groupe de ressources :
+Si ce n’est déjà fait, vous devez créer un groupe de ressources Azure pour pouvoir créer vos composants Data Lake Analytics. Vous avez besoin de vos informations d’identification d’authentification, d’un ID d’abonnement et d’un emplacement. Le code suivant montre comment créer un groupe de ressources :
 
 ``` csharp
 var resourceGroup = new ResourceGroup { Location = location };
@@ -138,7 +138,7 @@ Pour plus d’informations, consultez [Groupes de ressources Azure et Data Lake 
 
 ### <a name="create-a-data-lake-store-account"></a>Créer un compte Data Lake Store
 
-Le compte ADLA nécessite un compte ADLS. Si vous n’avez pas encore un toouse, vous pouvez créer une avec hello suivant de code :
+Le compte ADLA nécessite un compte ADLS. Si vous n’en avez pas, vous pouvez en créer un avec le code suivant :
 
 ``` csharp
 var new_adls_params = new DataLakeStoreAccount(location: _location);
@@ -147,7 +147,7 @@ adlsAccountClient.Account.Create(rg, adls, new_adls_params);
 
 ### <a name="create-a-data-lake-analytics-account"></a>Créer un compte Data Lake Analytics
 
-Hello suivante de code crée un compte ADLS
+Le code suivant crée un compte ADLS
 
 ``` csharp
 var new_adla_params = new DataLakeAnalyticsAccount()
@@ -205,9 +205,9 @@ if (adlaClient.Account.Exists(rg, adla))
 }
 ```
 
-### <a name="get-hello-default-data-lake-store-account"></a>Obtenir le compte de Data Lake Store hello par défaut
+### <a name="get-the-default-data-lake-store-account"></a>Afficher le compte Data Lake Store par défaut
 
-Chaque compte Data Lake Analytics nécessite un compte Data Lake Store par défaut. Utilisez ce compte de magasin de code toodetermine hello par défaut pour un compte Analytique.
+Chaque compte Data Lake Analytics nécessite un compte Data Lake Store par défaut. Utilisez ce code pour identifier le compte par défaut d’un compte Analytics.
 
 ``` csharp
 if (adlaClient.Account.Exists(rg, adla))
@@ -219,14 +219,14 @@ if (adlaClient.Account.Exists(rg, adla))
 
 ## <a name="manage-data-sources"></a>Gérer les sources de données
 
-Analytique lac de données prend en charge actuellement les hello les sources de données suivantes :
+Data Lake Analytics prend actuellement en charge les sources de données suivantes :
 
 * [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md)
 * [Compte Stockage Azure](../storage/common/storage-introduction.md)
 
-### <a name="link-tooan-azure-storage-account"></a>Lien tooan compte de stockage Azure
+### <a name="link-to-an-azure-storage-account"></a>Lier à un compte de stockage Azure
 
-Vous pouvez créer des liens tooAzure les comptes de stockage.
+Vous pouvez créer des liens vers des comptes Stockage Azure.
 
 ``` csharp
 string storage_key = "xxxxxxxxxxxxxxxxxxxx";
@@ -264,16 +264,16 @@ if (adls_accounts != null)
 ```
 
 ### <a name="upload-and-download-folders-and-files"></a>Charger et télécharger des dossiers et des fichiers
-Vous pouvez utiliser tooupload objet de hello Data Lake Store fichier système client Gestion et télécharger des fichiers individuels ou des dossiers à partir de l’ordinateur local de Azure tooyour, à l’aide des méthodes suivantes de hello :
+Vous pouvez utiliser l’objet de gestion de client du système de fichiers Data Lake Store pour charger et télécharger des fichiers ou des dossiers à partir d’Azure sur votre ordinateur local. Pour cela, utilisez les méthodes suivantes :
 
 - UploadFolder
 - UploadFile
 - DownloadFolder
 - DownloadFile
 
-premier paramètre de Hello pour ces méthodes désigne hello hello compte du magasin Data Lake, suivi par des paramètres pour la source hello et chemin d’accès de destination de hello.
+Le premier paramètre de ces méthodes est le nom du compte Data Lake Store, suivi des paramètres du chemin source et du chemin de destination.
 
-Bonjour à l’exemple suivant montre comment toodownload un dossier dans hello Data Lake Store.
+L’exemple suivant montre comment télécharger un dossier dans le Data Lake Store.
 
 ``` csharp
 adlsFileSystemClient.FileSystem.DownloadFolder(adls, sourcePath, destinationPath);
@@ -295,7 +295,7 @@ using (var memstream = new MemoryStream())
 ```
 
 ### <a name="verify-azure-storage-account-paths"></a>Vérifier les chemins des comptes de stockage Azure
-Hello de code suivant vérifie si un compte de stockage Azure (storageAccntName) existe dans un compte Analytique lac de données (analyticsAccountName), et si un conteneur (containerName) existe dans le compte de stockage Azure hello.
+Le code suivant vérifie si un compte de stockage Azure (storageAccntName) existe dans un compte Data Lake Analytics (analyticsAccountName) et si un conteneur (containerName) existe dans le compte de stockage Azure.
 
 ``` csharp
 string storage_account = "mystorageaccount";
@@ -305,10 +305,10 @@ bool containerExists = adlaClient.Account.StorageContainerExists(rg, adla, stora
 ```
 
 ## <a name="manage-catalog-and-jobs"></a>Gérer le catalogue et les travaux
-objet de DataLakeAnalyticsCatalogManagementClient Hello fournit des méthodes pour la gestion de base de données SQL hello fourni pour chaque compte Analytique de LAC de données Azure. Hello DataLakeAnalyticsJobManagementClient fournit les méthodes toosubmit et gérer des tâches exécutées sur la base de données de hello avec scripts U-SQL.
+L’objet DataLakeAnalyticsCatalogManagementClient fournit des méthodes pour gérer la base de données SQL fournie pour chaque compte Azure Data Lake Analytics. L’objet DataLakeAnalyticsJobManagementClient fournit des méthodes pour envoyer et gérer les tâches exécutées sur la base de données avec des scripts U-SQL.
 
 ### <a name="list-databases-and-schemas"></a>Afficher la liste des bases de données et des schémas
-Entre hello plusieurs choses que vous pouvez répertorier, hello plus courantes sont les bases de données et leur schéma. Bonjour de code suivant obtient une collection de bases de données et énumère ensuite le schéma de hello pour chaque base de données.
+Parmi les éléments dont vous pouvez afficher la liste, les plus courants sont les bases de données et leur schéma. Le code suivant obtient une collection de bases de données, puis indique le schéma pour chaque base de données.
 
 ``` csharp
 var databases = adlaCatalogClient.Catalog.ListDatabases(adla);
@@ -325,7 +325,7 @@ foreach (var db in databases)
 ```
 
 ### <a name="list-table-columns"></a>Afficher la liste des colonnes d’une table
-Hello de code suivant montre comment tooaccess hello de base de données avec un catalogue de données Lake Analytique gestion client toolist hello des colonnes dans une table spécifiée.
+Le code suivant montre comment accéder à la base de données avec un objet DataLakeAnalyticsCatalogManagementClient pour répertorier les colonnes de la table spécifiée.
 
 ``` csharp
 var tbl = adlaCatalogClient.Catalog.GetTable(adla, "master", "dbo", "MyTableName");
@@ -352,7 +352,7 @@ foreach (USqlTableColumn utc in columns)
 ```
 
 ### <a name="list-failed-jobs"></a>Afficher la liste des travaux ayant échoué
-Hello de code suivant affiche des informations sur les tâches qui ont échoué.
+Le code suivant répertorie les informations sur les travaux qui ont échoué.
 
 ``` csharp
 var odq = new ODataQuery<JobInformation> { Filter = "result eq 'Failed'" };
@@ -364,7 +364,7 @@ foreach (var j in jobs)
 ```
 
 ### <a name="list-pipelines"></a>Lister les pipelines
-Hello de code suivant répertorie des informations sur chaque pipeline de travaux soumis toohello compte.
+Le code suivant liste des informations sur chaque pipeline de travaux envoyés au compte.
 
 ``` csharp
 var pipelines = adlaJobClient.Pipeline.List(adla);
@@ -375,7 +375,7 @@ foreach (var p in pipelines)
 ```
 
 ### <a name="list-recurrences"></a>Lister les récurrences
-Hello de code suivant répertorie des informations sur chaque occurrence de travaux soumis toohello compte.
+Le code suivant liste des informations sur chaque récurrence de travaux envoyés au compte.
 
 ``` csharp
 var recurrences = adlaJobClient.Recurrence.List(adla);
@@ -387,13 +387,13 @@ foreach (var r in recurrences)
 
 ## <a name="common-graph-scenarios"></a>Scénarios courants de graphe
 
-### <a name="look-up-user-in-hello-aad-directory"></a>Rechercher l’utilisateur dans l’annuaire de hello AAD
+### <a name="look-up-user-in-the-aad-directory"></a>Rechercher l’utilisateur dans le répertoire AAD
 
 ``` csharp
 var userinfo = graphClient.Users.Get( "bill@contoso.com" );
 ```
 
-### <a name="get-hello-objectid-of-a-user-in-hello-aad-directory"></a>Obtenir hello ObjectId d’un utilisateur dans l’annuaire de hello AAD
+### <a name="get-the-objectid-of-a-user-in-the-aad-directory"></a>Obtenir l’ObjectId d’un utilisateur dans le répertoire AAD
 
 ``` csharp
 var userinfo = graphClient.Users.Get( "bill@contoso.com" );
@@ -401,10 +401,10 @@ Console.WriteLine( userinfo.ObjectId )
 ```
 
 ## <a name="manage-compute-policies"></a>Gérer les stratégies de calcul
-objet de DataLakeAnalyticsAccountManagementClient Hello fournit des méthodes pour la gestion hello de calcul des stratégies pour un compte Analytique lac de données.
+L’objet DataLakeAnalyticsAccountManagementClient fournit des méthodes de gestion des stratégies de calcul pour un compte Data Lake Analytics.
 
 ### <a name="list-compute-policies"></a>Lister les stratégies de calcul
-Hello suivant code récupère une liste de stratégies de calcul pour un compte Analytique lac de données.
+Le code suivant récupère une liste de stratégies de calcul pour un compte Data Lake Analytics.
 
 ``` csharp
 var policies = adlaAccountClient.ComputePolicies.ListByAccount(rg, adla);
@@ -415,7 +415,7 @@ foreach (var p in policies)
 ```
 
 ### <a name="create-a-new-compute-policy"></a>Créer une nouvelle stratégie de calcul
-Hello suivante de code crée une nouvelle stratégie de calcul pour un compte Analytique lac de données, paramètre hello maximale AUs disponible toohello spécifié utilisateur too50 et too250 de priorité hello minimal de tâche.
+Le code suivant crée une nouvelle stratégie de calcul pour un compte Data Lake Analytics, en définissant les unités Analytics maximales disponibles pour l’utilisateur spécifié sur 50 et la priorité minimale du travail sur 250.
 
 ``` csharp
 var userAadObjectId = "3b097601-4912-4d41-b9d2-78672fc2acde";

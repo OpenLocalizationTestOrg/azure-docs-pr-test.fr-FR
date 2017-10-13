@@ -1,6 +1,6 @@
 ---
-title: "aaaSet hello source et un cible pour tooAzure de réplication Hyper-V (sans System Center VMM) avec Azure Site Recovery | Documents Microsoft"
-description: "Résume les tooset d’étapes hello les paramètres source et cible pour la réplication de stockage de tooAzure d’ordinateurs virtuels Hyper-V avec Azure Site Recovery"
+title: "Configurer la source et la cible pour la réplication de Hyper-V vers Azure (sans System Center VMM) avec Azure Site Recovery | Microsoft Docs"
+description: "Résume les étapes à suivre pour configurer les paramètres de source et de cible pour la réplication de machines virtuelles Hyper-V vers le stockage Azure avec Azure Site Recovery."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,75 +14,75 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/22/2017
 ms.author: raynew
-ms.openlocfilehash: 105b90e6ac053d5b842c54a36c460a26d0f5c2ef
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b38eb3a011d46f2239891ea1d1bcac2a4059a866
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="step-8-set-up-hello-source-and-target-for-hyper-v-replication-tooazure"></a>Étape 8 : Configurer la source de hello et cible pour tooAzure de réplication Hyper-V
+# <a name="step-8-set-up-the-source-and-target-for-hyper-v-replication-to-azure"></a>Étape 8 : configurer la source et la cible pour la réplication de Hyper-V vers Azure
 
-Cet article décrit comment tooconfigure les paramètres de source et cible lors de la réplication locale tooAzure d’ordinateurs virtuels (sans System Center VMM) Hyper-V, à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) service Bonjour portail Azure.
+Cet article explique comment configurer les paramètres de source et de cible pour la réplication de machines virtuelles Hyper-V (sans System Center VMM) vers Azure à l’aide du service [Azure Site Recovery](site-recovery-overview.md) dans le portail Azure.
 
-Ajouter des commentaires et questions bas hello de cet article, ou sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Publiez des commentaires et des questions au bas de cet article, ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
-## <a name="set-up-hello-source-environment"></a>Configurer l’environnement source hello
+## <a name="set-up-the-source-environment"></a>Configurer l’environnement source
 
-Configurer le site de hello Hyper-V, installer hello fournisseur Azure Site Recovery et hello Azure Recovery Services agent sur les ordinateurs hôtes Hyper-V et inscrire le site de hello dans le coffre hello.
+Configurez le site Hyper-V, installez le fournisseur Azure Site Recovery et l’agent Azure Recovery Services sur les hôtes Hyper-V et inscrivez le site dans le coffre.
 
-1. Dans **Préparer l’infrastructure**, cliquez sur **Source**. tooadd un nouveau site Hyper-V en tant que conteneur pour vos ordinateurs hôtes Hyper-V ou des clusters, cliquez sur **+ Site Hyper-V**.
+1. Dans **Préparer l’infrastructure**, cliquez sur **Source**. Pour ajouter un nouveau site Hyper-V en tant que conteneur pour vos hôtes ou clusters Hyper-V, cliquez sur **+Site Hyper-V**.
 
     ![Configurer la source](./media/hyper-v-site-walkthrough-source-target/set-source1.png)
-2. Dans **site Hyper-V créer**, spécifiez un nom pour le site de hello. Cliquez ensuite sur **OK**. À présent, sélectionnez site hello vous créé, puis cliquez sur **+ Hyper-V Server** tooadd un site toohello du serveur.
+2. Dans **Créer un site Hyper-V**, spécifiez un nom pour le site. Cliquez ensuite sur **OK**. Sélectionnez le site que vous avez créé, puis cliquez sur **+Serveur Hyper-V** pour ajouter un serveur au site.
 
     ![Configurer la source](./media/hyper-v-site-walkthrough-source-target/set-source2.png)
 
 3. Dans **Ajouter un serveur** > **Type de serveur**, vérifiez que **Serveur Hyper-V** est affiché.
 
-    - Assurez-vous que server hello Hyper-V que vous souhaitez tooadd est conforme à hello [conditions préalables](#on-premises-prerequisites), et est en mesure de tooaccess hello URL spécifiées.
-    - Téléchargez le fichier d’installation hello fournisseur Azure Site Recovery. Vous exécutez cette hello tooinstall de fichier fournisseur et hello agent Recovery Services sur chaque ordinateur hôte Hyper-V.
+    - Assurez-vous que le serveur Hyper-V à ajouter est conforme à la [configuration requise](#on-premises-prerequisites) et est en mesure d’accéder aux URL spécifiées.
+    - Téléchargez le fichier d’installation du fournisseur Azure Site Recovery. Vous allez exécuter ce fichier pour installer le fournisseur et l’agent Recovery Services sur chaque hôte Hyper-V.
 
     ![Configurer la source](./media/hyper-v-site-walkthrough-source-target/set-source3.png)
 
 
-## <a name="install-hello-provider-and-agent"></a>Installer hello fournisseur et l’agent
+## <a name="install-the-provider-and-agent"></a>Installer le fournisseur et l’agent
 
-1. Exécutez le fichier de configuration de fournisseur hello sur chaque ordinateur hôte ajouté toohello Hyper-V site. Si vous effectuez l’installation sur un cluster Hyper-V, exécutez le programme d’installation sur chaque nœud du cluster. L’installation et l’inscription de chaque nœud de cluster Hyper-V permettent de s’assurer que les machines virtuelles sont protégées, même si elles migrent entre les nœuds.
+1. Exécutez le fichier d’installation du fournisseur sur chaque hôte que vous avez ajouté au site Hyper-V. Si vous effectuez l’installation sur un cluster Hyper-V, exécutez le programme d’installation sur chaque nœud du cluster. L’installation et l’inscription de chaque nœud de cluster Hyper-V permettent de s’assurer que les machines virtuelles sont protégées, même si elles migrent entre les nœuds.
 2. Dans **Microsoft Update**, vous pouvez choisir des mises à jour, pour que celles du fournisseur soient installées conformément à votre stratégie Microsoft Update.
-3. Dans **Installation**, acceptez ou modifiez l’emplacement d’installation fournisseur hello par défaut et cliquez sur **installer**.
-4. Dans **paramètres du coffre**, cliquez sur **Parcourir** tooselect hello coffre fichier de clé que vous avez téléchargé. Spécifier l’abonnement Azure Site Recovery de hello, nom du coffre hello, et hello Hyper-V site toowhich hello Hyper-V serveur appartient.
+3. Dans le champ **Installation**, acceptez ou modifiez l’emplacement d’installation du fournisseur par défaut et cliquez sur **Installer**.
+4. Dans **Paramètres du coffre**, cliquez sur **Parcourir** pour sélectionner le fichier de clé du coffre que vous avez téléchargé. Spécifiez l’abonnement Azure Site Recovery, le nom du coffre et le site Hyper-V auquel appartient le serveur Hyper-V.
 
     ![Enregistrement du serveur](./media/hyper-v-site-walkthrough-source-target/provider3.png)
 
-5. Dans **paramètres Proxy**, spécifiez comment hello fournisseur en cours d’exécution sur les ordinateurs hôtes Hyper-V connecte tooAzure Site Recovery via hello internet.
+5. Dans **Paramètres du proxy**, indiquez de quelle manière le fournisseur qui s’exécute sur les hôtes Hyper-V doit se connecter à Azure Site Recovery par le biais d’Internet.
 
-    * Si vous souhaitez sélectionner directement que hello fournisseur tooconnect **vous connecter directement tooAzure Site Recovery sans proxy**.
-    * Si votre proxy existant nécessite une authentification, ou que vous souhaitez toouse un proxy personnalisé pour la connexion du fournisseur hello, sélectionnez **tooAzure Site Recovery à l’aide d’un serveur proxy de connexion**.
+    * Si vous voulez que le fournisseur se connecte directement, sélectionnez **Se connecter directement à Azure Site Recovery sans serveur proxy**.
+    * Si votre proxy nécessite une authentification ou si vous voulez utiliser un proxy personnalisé pour la connexion du fournisseur, sélectionnez **Se connecter directement à Azure Site Recovery avec un serveur proxy**.
     * Si vous utilisez un proxy :
-        - Spécifiez les informations d’identification, le port et adresse de hello
-        - Vérifiez que hello URL décrites dans hello [conditions préalables](#prerequisites) sont autorisées via le proxy hello.
+        - Spécifiez l’adresse, le port et les informations d’identification.
+        - Vérifiez que les URL décrites dans la [configuration requise](#prerequisites) sont autorisées via le proxy.
 
     ![Internet](./media/hyper-v-site-walkthrough-source-target/provider7.png)
 
-6. Une fois l’installation terminée, cliquez sur **inscrire** serveur hello de tooregister dans le coffre hello.
+6. Une fois l’installation terminée, cliquez sur **Inscrire** pour inscrire le serveur dans le coffre.
 
     ![Emplacement d’installation](./media/hyper-v-site-walkthrough-source-target/provider2.png)
 
-7. Une fois l’inscription terminée, les métadonnées à partir du serveur de hello Hyper-V sont récupérées par Azure Site Recovery et hello serveur s’affiche dans **Infrastructure Site Recovery** > **hôtes Hyper-V**.
+7. Une fois l’inscription terminée, les métadonnées du serveur Hyper-V sont récupérées par Azure Site Recovery et le serveur s’affiche dans **Infrastructure Site Recovery** > **Hôtes Hyper-V**.
 
 
-## <a name="set-up-hello-target-environment"></a>Configuration d’environnement cible de hello
+## <a name="set-up-the-target-environment"></a>Configurer l’environnement cible
 
-Spécifiez le compte de stockage Azure hello pour la réplication et hello réseau Azure toowhich machines virtuelles Azure se connectera après le basculement.
+Spécifiez le compte Azure Storage à utiliser pour la réplication, ainsi que le réseau Azure auquel les machines virtuelles Azure se connecteront après le basculement.
 
 1. Cliquez sur **Préparer l’infrastructure** > **Cible**.
-2. Sélectionnez l’abonnement de hello et groupe de ressources hello dans lequel vous souhaitez toocreate hello machines virtuelles Azure après le basculement. Choisissez le déploiement hello modèle que vous souhaitez toouse dans Azure (classique ou une ressource de gestion) pour les machines virtuelles de hello.
+2. Sélectionnez l’abonnement et le groupe de ressources dans lesquels vous voulez créer les machines virtuelles Azure après le basculement. Choisissez le modèle de déploiement que vous souhaitez utiliser dans Azure (classique ou gestion des ressources) pour les machines virtuelles.
 
 3. Site Recovery vérifie que vous disposez d’un ou de plusieurs réseaux et comptes Azure Storage compatibles.
 
-    - Si vous n’avez pas un compte de stockage, cliquez sur **+ stockage** toocreate un inline compte basé sur le Gestionnaire de ressources. 
-    - Si vous n’avez pas un réseau Azure, cliquez sur **+ réseau** toocreate un inline réseau basé sur le Gestionnaire de ressources.
+    - Si vous n’avez pas de compte de stockage, cliquez sur **+Stockage** pour créer un compte basé sur Resource Manager en ligne. 
+    - Si vous n’avez pas de réseau Azure, cliquez sur **+Réseau** pour créer un compte basé sur Resource Manager en ligne.
 
 
 
@@ -91,4 +91,4 @@ Spécifiez le compte de stockage Azure hello pour la réplication et hello rése
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Accédez trop[étape 9 : configurer une stratégie de réplication](hyper-v-site-walkthrough-replication.md)
+Aller à [Étape 9 : configurer une stratégie de réplication](hyper-v-site-walkthrough-replication.md)

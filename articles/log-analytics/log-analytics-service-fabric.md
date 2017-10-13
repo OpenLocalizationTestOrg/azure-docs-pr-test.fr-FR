@@ -1,6 +1,6 @@
 ---
-title: "aaaAssess des applications de Service Fabric avec Azure Analytique de journal à l’aide de PowerShell | Documents Microsoft"
-description: "Vous pouvez utiliser la solution de Service Fabric hello dans Analytique de journal à l’aide de risque de hello tooassess PowerShell et l’intégrité de vos applications de Service Fabric, micro-services, nœuds de clusters."
+title: "Évaluer des applications Service Fabric avec Azure Log Analytics à l’aide de PowerShell | Microsoft Docs"
+description: "Vous pouvez utiliser la solution Service Fabric dans Log Analytics, à l’aide de PowerShell, pour évaluer les risques et l’intégrité de vos applications, micro-services, nœuds et clusters Service Fabric."
 services: log-analytics
 documentationcenter: 
 author: niniikhena
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/06/2017
 ms.author: nini
-ms.openlocfilehash: 3f6d6c0df02d6d453b77e50b75b64bf7eb73bbbf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ca86787e344aa5e9e68934dee6e9e83aeb4cc340
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="assess-azure-service-fabric-applications-and-micro-services-with-powershell"></a>Évaluer les micro-services et applications Azure Service Fabric avec PowerShell
 > [!div class="op_single_selector"]
@@ -30,51 +30,51 @@ ms.lasthandoff: 10/06/2017
 
 ![Symbole Service Fabric](./media/log-analytics-service-fabric/service-fabric-assessment-symbol.png)
 
-Cet article décrit comment toouse hello solution de l’infrastructure de Service dans le journal Analytique toohelp identifier et résoudre les problèmes sur votre cluster Service Fabric. Il vous permet de voir les performances de vos nœuds Service Fabric et l’exécution de vos applications et micro-services.
+Cet article décrit comment utiliser la solution Service Fabric dans Log Analytics pour identifier et résoudre les problèmes sur l’ensemble de votre cluster Service Fabric. Il vous permet de voir les performances de vos nœuds Service Fabric et l’exécution de vos applications et micro-services.
 
-Hello solution d’infrastructure de Service utilise des données de Diagnostics Windows Azure à partir de vos machines virtuelles de l’infrastructure Service, collecte des données de vos tables WAD d’Azure. Analytique de journal lit ensuite hello suivant des événements de framework Service Fabric :
+La solution Service Fabric utilise les données de diagnostic Azure provenant de vos machines virtuelles Fabric Service. Ces données sont collectées à partir de vos tables Azure WAD. Log Analytics lit ensuite les événements de framework Service Fabric suivants :
 
 - **Événements Reliable Service**
 - **Événements d’acteurs**
 - **Événements opérationnels**
 - **Événements ETW personnalisés**
 
-tableau de bord Hello Service Fabric solution montre les problèmes importants et les événements pertinents dans votre environnement de Service Fabric.
+Le tableau de bord de la solution de Service Fabric présente les problèmes notables et les événements pertinents qui concernent votre environnement Service Fabric.
 
-## <a name="installing-and-configuring-hello-solution"></a>L’installation et la configuration de solution de hello
-Suivez ces trois étapes tooinstall et configurer une solution de hello :
+## <a name="installing-and-configuring-the-solution"></a>Installation et configuration de la solution
+Pour installer et configurer la solution, effectuez ces trois étapes simples :
 
-1. Associer hello abonnement Azure que vous avez utilisé toocreate toutes les ressources de cluster, y compris les comptes de stockage, avec votre espace de travail. Pour plus d’informations sur la création d’un espace de travail Log Analytics, consultez [Prise en main de Log Analytics](log-analytics-get-started.md).
-2. Configurer le journal Analytique toocollect et afficher les journaux de l’infrastructure de Service.
-3. Activer la solution de Service Fabric hello dans votre espace de travail.
+1. Associez l’abonnement Azure que vous avez utilisé pour créer toutes les ressources du cluster, notamment les comptes de stockage, à votre espace de travail. Pour plus d’informations sur la création d’un espace de travail Log Analytics, consultez [Prise en main de Log Analytics](log-analytics-get-started.md).
+2. Configurez Log Analytics pour collecter et afficher les journaux Service Fabric.
+3. Activez la solution Service Fabric dans votre espace de travail.
 
-## <a name="configure-log-analytics-toocollect-and-view-service-fabric-logs"></a>Configurer le journal Analytique toocollect et afficher les journaux de l’infrastructure de Service
-Dans cette section, vous découvrez comment tooconfigure Analytique de journal tooretrieve Service Fabric se connecte. Hello journaux vous permettent de tooview, analyser et résoudre les problèmes de votre cluster ou les applications hello et les services exécutés dans ce cluster, à l’aide du portail OMS hello.
+## <a name="configure-log-analytics-to-collect-and-view-service-fabric-logs"></a>Configurer Log Analytics pour collecter et afficher les journaux Service Fabric
+Dans cette section, vous allez apprendre à configurer Log Analytics pour récupérer les journaux Service Fabric. Les journaux vous permettent d’afficher, d’analyser et de résoudre les problèmes affectant votre cluster, ou les applications et services qui s’exécutent dans ce cluster, à l’aide du portail OMS.
 
 > [!NOTE]
-> Configurer hello Azure Diagnostics tooupload hello des journaux d’extension pour les tables de stockage. les tables Hello doivent correspondre à ce que recherche Analytique de journal. Pour plus d’informations, consultez [comment toocollect se connecte avec Azure Diagnostics](../service-fabric/service-fabric-diagnostics-how-to-setup-wad.md). exemples de paramètres de configuration Hello dans cet article montrent les noms hello du stockage hello les tables doivent être. Une fois les Diagnostics est configuré sur le cluster de hello et télécharge le compte de stockage de journaux tooa, étape suivante de hello est tooconfigure Analytique de journal toocollect ces journaux.
+> Configurez l’extension Azure Diagnostics pour charger les journaux pour les tables de stockage. Les tables doivent correspondre à ce que recherche Log Analytics. Pour plus d’informations, consultez [Collecte des journaux avec Azure Diagnostics](../service-fabric/service-fabric-diagnostics-how-to-setup-wad.md). Les exemples de paramètres de configuration inclus dans cet article indiquent les noms souhaités pour les tables de stockage. Une fois que Diagnostics est configuré sur le cluster et qu’il charge les journaux sur un compte de stockage, l’étape suivante consiste à configurer Log Analytics pour collecter ces journaux.
 >
 >
 
-Assurez-vous que vous mettez à jour hello **EtwEventSourceProviderConfiguration** section Bonjour **template.json** tooadd des entrées pour hello EventSources nouveau avant d’appliquer la configuration de hello mettre à jour par des fichiers en cours d’exécution **deploy.ps1**. table de Hello pour le téléchargement est hello même en tant que (ETWEventTable). Au moment de hello, Analytique de journal peut uniquement lire événements ETW d’application hello *WADETWEventTable* table.
+Dans la section **EtwEventSourceProviderConfiguration** du fichier **template.json**, veillez à ajouter les entrées des nouveaux EventSources avant d’appliquer la mise à jour de la configuration en exécutant **deploy.ps1**. La table de chargement est identique à (ETWEventTable). Pour le moment, Log Analytics peut lire uniquement les événements ETW d’application à partir de la table *WADETWEventTable*.
 
-Hello outils suivants sont utilisé tooperform certaines opérations hello dans cette section :
+Les outils suivants sont utilisés pour exécuter certaines opérations décrites dans cette section :
 
 * Azure PowerShell
 * [Operations Management Suite](http://www.microsoft.com/oms)
 
-### <a name="configure-a-log-analytics-workspace-tooshow-hello-cluster-logs"></a>Configurer un tooshow d’espace de travail Analytique de journal hello les journaux du cluster
+### <a name="configure-a-log-analytics-workspace-to-show-the-cluster-logs"></a>Configurer un espace de travail Log Analytics pour afficher les journaux de cluster
 
-Après avoir créé un espace de travail Analytique de journal, configurer des journaux de toopull d’espace de travail hello à partir des tables de stockage Azure hello. Ensuite, exécutez hello PowerShell script suivant :
+Après avoir créé un espace de travail Log Analytics, configurez l’espace de travail pour extraire (Pull) les journaux à partir des tables de stockage Azure. Puis, exécutez le script PowerShell suivant :
 
 ```
 <#
-    This script will configure an Operations Management Suite workspace (previously called an Operational Insights workspace) tooread Diagnostics from an Azure Storage account.
+    This script will configure an Operations Management Suite workspace (previously called an Operational Insights workspace) to read Diagnostics from an Azure Storage account.
     It will enable all supported data types (currently Service Fabric Events, ETW Events and IIS Logs).
     It supports Resource Manager storage accounts.
-    If you have more than one Azure Subscription, you will be prompted for hello subscription tooconfigure.
-    If you have more than one Log Analytics workspace you will be prompted for hello workspace tooconfigure.
-    It will then look through your Service Fabric clusters, and configure your Log Analytics workspace tooread Diagnostics from storage accounts that are connected toothat cluster and have diagnostics enabled.
+    If you have more than one Azure Subscription, you will be prompted for the subscription to configure.
+    If you have more than one Log Analytics workspace you will be prompted for the workspace to configure.
+    It will then look through your Service Fabric clusters, and configure your Log Analytics workspace to read Diagnostics from storage accounts that are connected to that cluster and have diagnostics enabled.
 #>
 
 try
@@ -94,7 +94,7 @@ function Select-Subscription {
              0 {Write-Error "No Operations Management Suite workspaces found"}
              1 {return $allSubscriptions}
         default {
-            $uiPrompt = "Enter hello number corresponding toohello Azure subscription you would like toowork with.`n"
+            $uiPrompt = "Enter the number corresponding to the Azure subscription you would like to work with.`n"
 
             $count = 1
             foreach ($subscription in $allSubscriptions) {
@@ -117,7 +117,7 @@ function Select-Workspace {
         0 {Write-Error "No Operations Management Suite workspaces found. `n"}
         1 {return $allWorkspaces}
         default {
-            $uiPrompt = "Enter hello number corresponding toohello workspace you want tooconfigure.`n"
+            $uiPrompt = "Enter the number corresponding to the workspace you want to configure.`n"
             $count = 1
             foreach ($workspace in $allWorkspaces) {
                 $uiPrompt += "$count. " + $workspace.Name + " (" + $workspace.CustomerId + ")`n"
@@ -141,15 +141,15 @@ function Check-ETWProviderLogging {
          Write-Debug ("ID: $id Provider: $provider ExpectedTable $expectedTable ActualTable $table")
          if ( ($table -eq $null) -or ($table -eq ""))  
          {
-             Write-Warning ("$id No configuration found for $provider. Configure Azure diagnostics toowrite too$expectedTable.")
+             Write-Warning ("$id No configuration found for $provider. Configure Azure diagnostics to write to $expectedTable.")
          }  
          elseif ( $table -ne $expectedTable )
          {
-             Write-Warning ("$id $provider events are being written too$table instead of WAD$expectedTable. Events will not be collected by Log Analytics")
+             Write-Warning ("$id $provider events are being written to $table instead of WAD$expectedTable. Events will not be collected by Log Analytics")
          }  
          else
          {
-             Write-Verbose "$id $provider events are being written tooWAD$expectedTable (Correct configuration.)"
+             Write-Verbose "$id $provider events are being written to WAD$expectedTable (Correct configuration.)"
          }
  }
 
@@ -183,7 +183,7 @@ function Check-ServiceFabricScaleSetDiagnostics {
          $etwManifestProviderList = $scaleSetDiagnostics.WadCfg.DiagnosticMonitorConfiguration.EtwProviders.EtwManifestProviderConfiguration
      } else
      {
-         Write-Error "Unable tooparse Azure Diagnostics setting for $id"
+         Write-Error "Unable to parse Azure Diagnostics setting for $id"
              Write-Warning ("$id does not have diagnostics enabled")
      }
      foreach ($provider in $serviceFabricProviderList)  
@@ -223,7 +223,7 @@ function Check-ServiceFabricScaleSetDiagnostics {
 
 function Select-StorageAccount {
     $allResources = Get-AzureRmResource #pulls in all resources
-    $serviceFabricClusters = $allResources.Where({$_.ResourceType -eq "Microsoft.ServiceFabric/clusters"}) #pulls in all service fabric clusters in hello resource
+    $serviceFabricClusters = $allResources.Where({$_.ResourceType -eq "Microsoft.ServiceFabric/clusters"}) #pulls in all service fabric clusters in the resource
     $storageAccountList = @()
     foreach($cluster in $serviceFabricClusters) {
         Write-Host("Checking cluster: " + $cluster.Name)
@@ -256,7 +256,7 @@ function Select-StorageAccount {
                             }
                         catch
                             {
-                                # HTTP Not Found is returned if hello storage insight doesn't exist
+                                # HTTP Not Found is returned if the storage insight doesn't exist
                             }
                         if ($existingConfig) {                         
                                   [array]$Tables = $existingConfig.Tables
@@ -270,7 +270,7 @@ function Select-StorageAccount {
                                                Write-Host "$table is already configured.`n";
                                              }
                                       }
-                                      # If any of hello tables from hello table list are not already monitored, then we add them
+                                      # If any of the tables from the table list are not already monitored, then we add them
                                    if($dirty -eq $true) {
                                            Set-AzureRmOperationalInsightsStorageInsight -Workspace $workspace -Name $insightsName -Tables $Tables
                                            Write-Host "Updating Storage Insight. `n"
@@ -297,12 +297,12 @@ $workspace = Select-Workspace
 $storageAccount = Select-StorageAccount
 ```
 
-Après que vous avez configuré hello Analytique de journal espace de travail tooread hello Azure à partir de tables dans votre compte de stockage, connectez-vous toohello portail Azure. Sélectionnez l’espace de travail hello Analytique de journal à partir de **toutes les ressources**. nombre de Hello d’espace de travail toohello stockage compte journaux connectés est affiché. Sélectionnez hello **journaux de compte de stockage** vignette. Passez en revue la liste hello de tooverify de journaux de compte de stockage que votre compte de stockage est connecté toohello espace de travail correct.
+Après avoir configuré l’espace de travail Log Analytics de sorte qu’il lise les tables Azure dans votre compte de stockage, connectez-vous au portail Azure. Sélectionnez l’espace de travail Log Analytics sous **Toutes les ressources**. Le nombre de journaux de compte de stockage connectés à l’espace de travail s’affiche. Sélectionnez la vignette **Journaux de compte de stockage**. Passez en revue la liste des journaux de compte de stockage pour vérifier que votre compte de stockage est connecté à l’espace de travail correct.
 
 ![Journaux de compte de stockage](./media/log-analytics-service-fabric/sf1.png)
 
-## <a name="enable-hello-service-fabric-solution"></a>Activer la solution de Service Fabric hello
-Utilisez hello suivant script tooadd hello solution tooyour Analytique de journal espace de travail. Exécuter le script de hello dans PowerShell, à l’aide de hello abonnement Azure qui est associé avec un espace de travail hello Analytique de journal que vous souhaitez des solutions de Service Fabric tooenable hello dans.
+## <a name="enable-the-service-fabric-solution"></a>Activer la solution Service Fabric
+Utilisez le script suivant pour ajouter la solution à votre espace de travail Log Analytics. Exécutez le script dans PowerShell à l’aide de l’abonnement Azure associé à l’espace de travail Log Analytics dans lequel vous souhaitez activer la solution Service Fabric.
 
 ```
 function Select-Subscription {
@@ -312,7 +312,7 @@ function Select-Subscription {
              0 {Write-Error "No Operations Management Suite workspaces found"}
              1 {return $allSubscriptions}
         default {
-            $uiPrompt = "Enter hello number corresponding toohello Azure subscription you would like toowork with.`n"
+            $uiPrompt = "Enter the number corresponding to the Azure subscription you would like to work with.`n"
             $count = 1
             foreach ($subscription in $allSubscriptions) {
                 $uiPrompt += "$count. " + $subscription.SubscriptionName + " (" + $subscription.SubscriptionId + ")`n"
@@ -333,7 +333,7 @@ function Select-Workspace {
         0 {Write-Error "No Operations Management Suite workspaces found"}
         1 {return $allWorkspaces}
         default {
-            $uiPrompt = "Enter hello number corresponding toohello workspace you want tooconfigure.`n"
+            $uiPrompt = "Enter the number corresponding to the workspace you want to configure.`n"
             $count = 1
             foreach ($workspace in $allWorkspaces) {
                 $uiPrompt += "$count. " + $workspace.Name + " (" + $workspace.CustomerId + ")`n"
@@ -353,12 +353,12 @@ $workspace = Select-Workspace
 Set-AzureRmOperationalInsightsIntelligencePack -ResourceGroupName $workspace.ResourceGroupName -WorkspaceName $workspace.Name -IntelligencePackName "ServiceFabric" -Enabled $true
 ```
 
-Après avoir activé la solution de hello, vignette de Service Fabric hello est ajouté tooyour Analytique de journal *vue d’ensemble* page. page de Hello affiche une vue des problèmes importants, tels que les échecs de runAsync et les annulations hello lors des dernières 24 heures.
+Après avoir activé la solution, la vignette Service Fabric est ajoutée à la page *Vue d’ensemble* de votre Log Analytics. La page affiche une vue des problèmes importants, comme les échecs et les annulations runAsync, survenus au cours des dernières 24 heures.
 
 ![Vignette Service Fabric](./media/log-analytics-service-fabric/sf2.png)
 
 ### <a name="view-service-fabric-events"></a>Afficher les événements Service Fabric
-Cliquez sur hello **Service Fabric** vignette tooopen hello Service Fabric tableau de bord. tableau de bord Hello inclut des colonnes de hello dans la table hello qui suit. Chaque colonne répertorie les événements de 10 supérieure de hello en mettant en correspondance de nombre que les critères de la colonne pour hello spécifié de plage de temps. Vous pouvez exécuter une recherche de journal qui fournit l’intégralité de la liste hello en cliquant sur **afficher tous les** à hello droite en bas de chaque colonne, ou en cliquant sur en-tête de colonne hello.
+Cliquez sur la vignette **Service Fabric** pour ouvrir le tableau de bord Service Fabric. Le tableau de bord comprend les colonnes figurant dans le tableau suivant. Chaque colonne répertorie les 10 premiers événements, classés selon leur nombre, correspondant aux critères de cette colonne pour l’intervalle de temps spécifié. Vous pouvez exécuter une recherche dans les journaux qui fournit la liste complète. Pour cela, cliquez sur **Afficher tout** en bas à droite de chaque colonne ou cliquez sur l’en-tête de colonne.
 
 | **Événement Service Fabric** | **description** |
 | --- | --- |
@@ -372,30 +372,30 @@ Cliquez sur hello **Service Fabric** vignette tooopen hello Service Fabric table
 
 ![Tableau de bord Service Fabric](./media/log-analytics-service-fabric/sf4.png)
 
-Hello tableau suivant montre les méthodes de collecte de données et d’autres détails sur la façon dont les données sont collectées pour Service Fabric :
+Le tableau suivant présente les méthodes de collecte des données et d’autres informations sur le mode de collecte de la solution de données pour Service Fabric :
 
 | plateforme | Agent direct | Agent Operations Manager | Azure Storage | Operations Manager requis ? | Données de l’agent Operations Manager envoyées via un groupe d’administration | fréquence de collecte |
 | --- | --- | --- | --- | --- | --- | --- |
 | Windows |  |  | &#8226; |  |  |10 minutes |
 
 > [!NOTE]
-> Modifier l’étendue de hello d’événements avec **données en fonction des sept derniers jours** haut hello du tableau de bord hello. Vous pouvez également afficher les événements générés dans hello sept derniers jours, un jour ou six heures. Vous pouvez également sélectionner **personnalisé** toospecify une plage de dates personnalisée.
+> Modifiez l’étendue des événements avec **Données basées sur les sept derniers jours** en haut du tableau de bord. Vous pouvez également afficher les événements générés durant les sept derniers jours, la journée précédente ou les six dernières heures. Vous pouvez aussi sélectionner **Personnalisé** pour spécifier une plage de dates personnalisée.
 >
 >
 
 ## <a name="troubleshoot-your-service-fabric-and-log-analytics-configuration"></a>Résoudre les problèmes de configuration de Service Fabric et de Log Analytics
-Si vous devez tooverify votre configuration Analytique de journal car vous n’êtes tooview ne peut pas les données d’événement dans le journal Analytique, utilisez hello script suivant. Il exécute hello suivant des actions :
+Si vous ne parvenez pas à afficher les données d’événement dans Log Analytics, vous pouvez vérifier votre configuration Log Analytics à l’aide du script ci-dessous. Il effectue les actions suivantes :
 
 1. Lit la configuration de diagnostics de votre Service Fabric
-2. Vérifie les données écrites dans des tables de hello
-3. Vérifie que le journal Analytique est tooread configuré à partir des tables de hello
+2. Vérifie les données écrites dans les tables
+3. Vérifie que Log Analytics est configuré pour lire à partir des tables
 
 ```
 <#
     Verify Service Fabric and Log Analytics configuration
     1. Read Service Fabric diagnostics configuration
-    2. Check for data being written into hello tables
-    3. Verify Log Analytics is configured tooread from hello tables
+    2. Check for data being written into the tables
+    3. Verify Log Analytics is configured to read from the tables
 
     Supported tables:
     WADServiceFabricReliableActorEventTable
@@ -404,7 +404,7 @@ Si vous devez tooverify votre configuration Analytique de journal car vous n’�
     WADETWEventTable
 
     Script will write a warning for every misconfiguration detected
-    toosee items that are correctly configured set $VerbosePreference="Continue"
+    To see items that are correctly configured set $VerbosePreference="Continue"
 #>
 Param
 (
@@ -421,7 +421,7 @@ $WADtables = @("WADServiceFabricReliableActorEventTable",
                )
 
 <#
-    Check if OMS Log Analytics is configured tooindex service fabric events from hello specified table
+    Check if OMS Log Analytics is configured to index service fabric events from the specified table
 #>
 
 function Check-OMSLogAnalyticsConfiguration {
@@ -439,26 +439,26 @@ function Check-OMSLogAnalyticsConfiguration {
 
         if ("WADServiceFabric*EventTable" -in $currentStorageAccountInsight.Tables)
         {
-            Write-Verbose ("OMS Log Analytics workspace " + $workspace.Name + " is configured tooindex service fabric actor, service and operational events from " + $storageAccount.Name)
+            Write-Verbose ("OMS Log Analytics workspace " + $workspace.Name + " is configured to index service fabric actor, service and operational events from " + $storageAccount.Name)
         } else
         {
-            Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + " is not configured tooindex service fabric actor, service and operational events from " + $storageAccount.Name)
+            Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + " is not configured to index service fabric actor, service and operational events from " + $storageAccount.Name)
         }
         if ("WADETWEventTable" -in $currentStorageAccountInsight.Tables)
         {
-            Write-Verbose ("OMS Log Analytics workspace " + $workspace.Name + " is configured tooindex service fabric application events from " + $storageAccount.Name)
+            Write-Verbose ("OMS Log Analytics workspace " + $workspace.Name + " is configured to index service fabric application events from " + $storageAccount.Name)
         } else
         {
-            Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + " is not configured tooindex service fabric application events from " + $storageAccount.Name)
+            Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + " is not configured to index service fabric application events from " + $storageAccount.Name)
         }
     } else
     {
-        Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + "is not configured tooread service fabric events from " + $storageAccount.Name)
+        Write-Warning ("OMS Log Analytics workspace " + $workspace.Name + "is not configured to read service fabric events from " + $storageAccount.Name)
     }    
 }
 
 <#
-    Check Azure table storage tooconfirm there is recent data written by Service Fabric
+    Check Azure table storage to confirm there is recent data written by Service Fabric
 #>
 
 function Check-TablesForData {
@@ -490,7 +490,7 @@ function Check-TablesForData {
             Write-Debug $entities
             if ($entities.Count -gt 0)
             {
-                Write-Verbose ("Data was written too$table in " + $storageAccount.ResourceName + "after $recently")
+                Write-Verbose ("Data was written to $table in " + $storageAccount.ResourceName + "after $recently")
             } else
             {
                 Write-Warning ("No data after $recently is in  $table in " + $storageAccount.ResourceName)
@@ -503,7 +503,7 @@ function Check-TablesForData {
 }
 
 <#
-    Check if ETW provider is configured toolog events toohello expected table storage
+    Check if ETW provider is configured to log events to the expected table storage
 #>
 function Check-ETWProviderLogging {
     param(
@@ -515,15 +515,15 @@ function Check-ETWProviderLogging {
         Write-Debug ("ID: $id Provider: $provider ExpectedTable $expectedTable ActualTable $table")
         if ( ($table -eq $null) -or ($table -eq ""))
         {
-            Write-Warning ("$id No configuration found for $provider. Configure Azure diagnostics toowrite too$expectedTable.")
+            Write-Warning ("$id No configuration found for $provider. Configure Azure diagnostics to write to $expectedTable.")
         }
         elseif ( $table -ne $expectedTable )
         {
-            Write-Warning ("$id $provider events are being written too$table instead of WAD$expectedTable. Events will not be collected by Log Analytics")
+            Write-Warning ("$id $provider events are being written to $table instead of WAD$expectedTable. Events will not be collected by Log Analytics")
         }
         else
         {
-            Write-Verbose "$id $provider events are being written tooWAD$expectedTable (Correct configuration.)"
+            Write-Verbose "$id $provider events are being written to WAD$expectedTable (Correct configuration.)"
         }
 }
 
@@ -560,7 +560,7 @@ function Check-ServiceFabricScaleSetDiagnostics {
         $etwManifestProviderList = $scaleSetDiagnostics.WadCfg.DiagnosticMonitorConfiguration.EtwProviders.EtwManifestProviderConfiguration
     } else
     {
-        Write-Error "Unable tooparse Azure Diagnostics setting for $id"
+        Write-Error "Unable to parse Azure Diagnostics setting for $id"
         Write-Warning ("$id does not have diagnostics enabled")
     }
 
@@ -618,7 +618,7 @@ $OMSworkspace = $allResources.Where({($_.ResourceType -eq "Microsoft.Operational
 
 if ($OMSworkspace.Name -ne $workspaceName)
 {
-    Write-Error ("Unable toofind Log Analytics Workspace " + $workspaceName)
+    Write-Error ("Unable to find Log Analytics Workspace " + $workspaceName)
 }
 
 $serviceFabricClusters = $allResources.Where({$_.ResourceType -eq "Microsoft.ServiceFabric/clusters"})
@@ -650,4 +650,4 @@ foreach($storageAccount in $storageAccountsToCheck)
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Utilisez [recherches de journal dans le journal Analytique](log-analytics-log-searches.md) tooview détaillées des données d’événement Service Fabric.
+* Utilisez [Recherches dans les journaux dans Log Analytics](log-analytics-log-searches.md) pour afficher des données détaillées sur les événements Service Fabric.

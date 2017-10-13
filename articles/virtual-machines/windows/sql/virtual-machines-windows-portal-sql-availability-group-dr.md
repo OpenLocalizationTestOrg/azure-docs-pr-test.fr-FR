@@ -1,6 +1,6 @@
 ---
-title: "aaaSQL groupes de disponibilité de serveur - des Machines virtuelles Azure - la récupération d’urgence | Documents Microsoft"
-description: "Cet article explique comment regrouper des tooconfigure une disponibilité de SQL Server sur des machines virtuelles Azure avec un réplica dans une autre région."
+title: "Groupes de disponibilité SQL Server - Machines virtuelles Azure - Récupération d’urgence | Microsoft Docs"
+description: "Cet article explique comment configurer un groupe de disponibilité SQL Server sur des machines virtuelles avec un réplica dans une autre région."
 services: virtual-machines
 documentationCenter: na
 authors: MikeRayMSFT
@@ -16,41 +16,41 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/02/2017
 ms.author: mikeray
-ms.openlocfilehash: df6238dc61c5a56879c75c9bf7314c618f43c0ce
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ce90cf4bae66bfd6387a2698fd9b1ba7fc64595
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="configure-an-always-on-availability-group-on-azure-virtual-machines-in-different-regions"></a>Configurer un groupe de disponibilité AlwaysOn sur des machines virtuelles Azure dans des emplacements différents
 
-Cet article explique comment tooconfigure une disponibilité de SQL Server Always On groupe réplica sur des machines virtuelles dans un emplacement Azure distant. Utilisez la récupération d’urgence toosupport de cette configuration.
+Cet article explique comment configurer un réplica de groupe de disponibilité SQL Server AlwaysOn sur des machines virtuelles Azure dans un emplacement Azure distant. Utilisez cette configuration pour prendre en charge la récupération d’urgence.
 
-Cet article s’applique tooAzure Machines virtuelles en mode de gestionnaire de ressources.
+Cet article s’applique aux machines virtuelles Azure s’exécutant en mode Resource Manager.
 
-Hello image suivante montre un déploiement classique d’un groupe de disponibilité sur des machines virtuelles :
+L’illustration suivante montre un déploiement classique d’un groupe de disponibilité sur des machines virtuelles Azure :
 
    ![Groupe de disponibilité](./media/virtual-machines-windows-portal-sql-availability-group-dr/00-availability-group-basic.png)
 
-Dans ce déploiement, toutes les machines virtuelles sont dans une région Azure. réplicas de groupe de disponibilité Hello peuvent avoir une validation synchrone avec basculement automatique sur SQL-1 et 2 de SQL. toobuild cette architecture, consultez [modèle de groupe de disponibilité ou didacticiel](virtual-machines-windows-portal-sql-availability-group-overview.md).
+Dans ce déploiement, toutes les machines virtuelles sont dans une région Azure. Les réplicas de groupe de disponibilité peuvent avoir une validation synchrone avec basculement automatique sur SQL-1 et SQL-2. Pour générer cette architecture, consultez [Modèle de groupe de disponibilité ou didacticiel](virtual-machines-windows-portal-sql-availability-group-overview.md).
 
-Cette architecture est vulnérable toodowntime si hello région Azure devient inaccessible. tooovercome cette vulnérabilité, ajouter un réplica dans une région différente. Hello diagramme suivant montre comment la nouvelle architecture de hello ressemble :
+Cette architecture est vulnérable aux interruptions de service si la région Azure devient inaccessible. Pour résoudre cette vulnérabilité, ajoutez un réplica dans une autre région Azure. Le schéma suivant illustre l’aspect de la nouvelle architecture :
 
    ![Récupération d’urgence du groupe de disponibilité](./media/virtual-machines-windows-portal-sql-availability-group-dr/00-availability-group-basic-dr.png)
 
-Hello diagramme précédent illustre un nouvel ordinateur virtuel appelé SQL-3. SQL-3 se trouve dans une autre région Azure. SQL-3 est ajouté toohello Cluster de basculement Windows Server. SQL-3 peut héberger un réplica de groupe de disponibilité. Enfin, notez que hello région Azure pour SQL-3 a un nouvel équilibrage de charge Azure.
+Le diagramme précédent illustre une nouvelle machine virtuelle appelée SQL-3. SQL-3 se trouve dans une autre région Azure. SQL-3 est ajoutée au cluster de basculement Windows Server. SQL-3 peut héberger un réplica de groupe de disponibilité. Notez enfin que la région Azure de SQL-3 a un nouvel équilibrage de charge Azure.
 
 >[!NOTE]
-> Haute disponibilité Azure est requise lorsque plus d’une machine virtuelle est en hello même région. Si seul un ordinateur virtuel est dans une région de hello, hello à haute disponibilité n’est pas requis. Vous ne pouvez placer une machine virtuelle dans un groupe à haute disponibilité que lors de la création. Si hello machine virtuelle est déjà dans un ensemble de disponibilité, vous pouvez ajouter un ordinateur virtuel pour un réplica supplémentaire ultérieurement.
+> Un groupe à haute disponibilité Azure est requis lorsque plusieurs machines virtuelles se trouvent dans la même région. Si une seule machine virtuelle se trouve dans la région, le groupe à haute disponibilité n’est pas nécessaire. Vous ne pouvez placer une machine virtuelle dans un groupe à haute disponibilité que lors de la création. Si la machine virtuelle se trouve déjà dans un groupe à haute disponibilité, vous pouvez ajouter une machine virtuelle à un réplica supplémentaire ultérieurement.
 
-Dans cette architecture, hello réplica dans la région de hello distant est normalement configuré avec le mode de disponibilité avec validation asynchrone et le mode de basculement manuel.
+Dans cette architecture, le réplica dans la région distante est normalement configuré avec le mode de disponibilité à validation asynchrone et le mode de basculement manuel.
 
 Lorsque les réplicas du groupe de disponibilité se trouvent sur des machines virtuelles Azure dans différentes régions Azure, chaque région requiert :
 
 * Une passerelle de réseau virtuel
 * Une connexion à la passerelle de réseau virtuel
 
-Hello diagramme suivant montre comment les réseaux hello communiquent entre les centres de données.
+Le schéma suivant montre comment les réseaux communiquent entre les centres de données.
 
    ![Groupe de disponibilité](./media/virtual-machines-windows-portal-sql-availability-group-dr/01-vpngateway-example.png)
 
@@ -59,78 +59,78 @@ Hello diagramme suivant montre comment les réseaux hello communiquent entre les
 
 ## <a name="create-remote-replica"></a>Créer un réplica distant
 
-toocreate un réplica dans un centre de données à distance, procédez comme hello comme suit :
+Pour créer un réplica dans un centre de données distant, procédez comme suit :
 
-1. [Créer un réseau virtuel dans la nouvelle région de hello](../../../virtual-network/virtual-networks-create-vnet-arm-pportal.md).
+1. [Créez un réseau virtuel dans la nouvelle région](../../../virtual-network/virtual-networks-create-vnet-arm-pportal.md).
 
-1. [Configurer une connexion au réseau à l’aide de hello Azure portal](../../../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md).
+1. [Configurez une connexion de réseau virtuel à réseau virtuel à l’aide du portail Azure](../../../vpn-gateway/vpn-gateway-howto-vnet-vnet-resource-manager-portal.md).
 
    >[!NOTE]
-   >Dans certains cas, vous avez peut-être connexion au réseau de toouse PowerShell toocreate hello. Par exemple, si vous utilisez des comptes Azure différents vous ne pouvez pas configurer la connexion de hello dans le portail de hello. Dans ce cas le voir, [configurer un réseau pour une connexion à l’aide de hello Azure portal](../../../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md).
+   >Parfois, vous serez amené à utiliser PowerShell pour créer la connexion de réseau virtuel à réseau virtuel. Par exemple, si vous utilisez différents comptes Azure, vous ne pouvez pas configurer la connexion dans le portail. Dans ce cas, [configurez une connexion de réseau virtuel à réseau virtuel à l’aide du portail Azure](../../../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md).
 
-1. [Créer un contrôleur de domaine dans la nouvelle région de hello](../../../active-directory/active-directory-new-forest-virtual-machine.md).
+1. [Créez un contrôleur de domaine dans la nouvelle région](../../../active-directory/active-directory-new-forest-virtual-machine.md).
 
-   Ce contrôleur de domaine fournit l’authentification si le contrôleur de domaine hello dans le site principal de hello n’est pas disponible.
+   Ce contrôleur de domaine assure l’authentification si le contrôleur de domaine dans le site principal n’est pas disponible.
 
-1. [Créer une machine virtuelle SQL Server dans la nouvelle région de hello](virtual-machines-windows-portal-sql-server-provision.md).
+1. [Créez une machine virtuelle SQL Server dans la nouvelle région](virtual-machines-windows-portal-sql-server-provision.md).
 
-1. [Créer un équilibrage de charge Azure réseau hello sur la nouvelle région de hello](virtual-machines-windows-portal-sql-availability-group-tutorial.md#configure-internal-load-balancer).
+1. [Créez un équilibrage de charge Azure dans le réseau sur la nouvelle région](virtual-machines-windows-portal-sql-availability-group-tutorial.md#configure-internal-load-balancer).
 
    Cet équilibrage de charge doit :
 
-   - Dans hello même réseau et le sous-réseau comme hello du nouvel ordinateur virtuel.
-   - Avoir une adresse IP statique pour l’écouteur du groupe de disponibilité hello.
-   - Inclure un pool principal constitué uniquement d’ordinateurs virtuels hello hello même région que hello d’équilibrage de charge.
-   - Utilisez une adresse IP spécifique toohello de sonde de port TCP.
-   - Une charge de l’équilibrage de la règle spécifique toohello SQL Server Bonjour même région.  
+   - Être dans les mêmes réseau et sous-réseau que la nouvelle machine virtuelle.
+   - Avoir une adresse IP statique pour l’écouteur du groupe de disponibilité.
+   - Inclure un pool principal comprenant uniquement des machines virtuelles situées dans la même région que l’équilibrage de charge.
+   - Utiliser une sonde de port TCP propre à l’adresse IP.
+   - Avoir une règle d’équilibrage de charge propre à SQL Server dans la même région.  
 
-1. [Ajouter le Clustering de basculement des toohello fonctionnalité nouvelle de SQL Server](virtual-machines-windows-portal-sql-availability-group-prereq.md#add-failover-clustering-features-to-both-sql-server-vms).
+1. [Ajoutez la fonction de Clustering avec basculement au nouveau serveur SQL Server](virtual-machines-windows-portal-sql-availability-group-prereq.md#add-failover-clustering-features-to-both-sql-server-vms).
 
-1. [Joindre hello nouveau SQL Server toohello domaine](virtual-machines-windows-portal-sql-availability-group-prereq.md#joinDomain).
+1. [Joignez le nouveau SQL Server au domaine](virtual-machines-windows-portal-sql-availability-group-prereq.md#joinDomain).
 
-1. [Définissez toouse de compte de service hello nouveau SQL Server à un compte de domaine](virtual-machines-windows-portal-sql-availability-group-prereq.md#setServiceAccount).
+1. [Configurez le nouveau compte de service SQL Server pour qu’il utilise un compte de domaine](virtual-machines-windows-portal-sql-availability-group-prereq.md#setServiceAccount).
 
-1. [Ajouter hello nouveau SQL Server toohello Cluster de basculement Windows Server](virtual-machines-windows-portal-sql-availability-group-tutorial.md#addNode).
+1. [Ajoutez le nouveau SQL Server au cluster de basculement Windows Server](virtual-machines-windows-portal-sql-availability-group-tutorial.md#addNode).
 
-1. Créer une ressource d’adresse IP sur le cluster de hello.
+1. Créez une ressource à adresse IP sur le cluster.
 
-   Vous pouvez créer la ressource adresse IP hello Gestionnaire du Cluster de basculement. Sur le rôle du groupe de disponibilité hello, cliquez **ajouter une ressource**, **plus de ressources**, puis cliquez sur **adresse IP**.
+   Vous pouvez créer la ressource à adresse IP dans le Gestionnaire du cluster de basculement. Cliquez avec le bouton droit sur le rôle du groupe de disponibilité, cliquez sur **Ajouter une ressource**, **More Resources (Plus de ressources)** puis **Adresse IP**.
 
    ![Création d’une adresse IP](./media/virtual-machines-windows-portal-sql-availability-group-dr/20-add-ip-resource.png)
 
    Configurez cette adresse IP comme suit :
 
-   - Utiliser le réseau hello à partir du centre de données distant hello.
-   - Attribuer l’adresse IP de hello à partir d’un équilibrage de charge Azure hello. 
+   - Utilisez le réseau à partir du centre de données distant.
+   - Attribuez l’adresse IP à partir du nouvel équilibrage de charge Azure. 
 
-1. Sur hello nouveau SQL Server dans le Gestionnaire de Configuration SQL Server, [activer les groupes de disponibilité AlwaysOn](http://msdn.microsoft.com/library/ff878259.aspx).
+1. Sur le nouveau SQL Server dans le Gestionnaire de configuration SQL Server, [activez les groupes de disponibilité AlwaysOn](http://msdn.microsoft.com/library/ff878259.aspx).
 
-1. [Ports de pare-feu ouvert hello nouveau SQL Server](virtual-machines-windows-portal-sql-availability-group-prereq.md#endpoint-firewall).
+1. [Ouvrez les ports de pare-feu sur le nouveau SQL Server](virtual-machines-windows-portal-sql-availability-group-prereq.md#endpoint-firewall).
 
-   Vous devez tooopen les numéros de port Hello dépendent de votre environnement. Ouvrir les ports pour hello Azure et point de terminaison de mise en miroir de charger sonde d’équilibrage de contrôle d’intégrité.
+   Les numéros de port que vous devez ouvrir varient selon votre environnement. Ouvrez les ports du point de terminaison de la mise en miroir et de la sonde d’intégrité d’Azure Load Balancer.
 
-1. [Ajouter un groupe de disponibilité de réplica toohello sur hello nouveau SQL Server](http://msdn.microsoft.com/library/hh213239.aspx).
+1. [Ajoutez un réplica au groupe de disponibilité sur le nouveau SQL Server](http://msdn.microsoft.com/library/hh213239.aspx).
 
    Pour un réplica dans une région Azure distante, configurez-le pour une réplication asynchrone avec basculement manuel.  
 
-1. Ajoutez la ressource d’adresse IP hello en tant que dépendance pour hello écouteur client access point (nom réseau) le cluster.
+1. Ajoutez la ressource à adresse IP comme une dépendance du cluster (nom de réseau) du point d’accès au client écouteur.
 
-   Hello capture d’écran suivante montre une ressource de cluster d’adresse IP configurée correctement :
+   La capture d’écran suivante illustre une ressource de cluster à adresse IP configurée correctement :
 
    ![Groupe de disponibilité](./media/virtual-machines-windows-portal-sql-availability-group-dr/50-configure-dependency-multiple-ip.png)
 
    >[!IMPORTANT]
-   >groupe de ressources de cluster Hello inclut les deux adresses IP. Les deux adresses IP sont des dépendances pour le point d’accès client hello écouteur. Hello d’utilisation **ou** opérateur dans la configuration de dépendance hello cluster.
+   >Le groupe de ressources de cluster inclut les deux adresses IP. Ces deux adresses IP sont des dépendances du point d’accès au client écouteur. Utilisez l’opérateur **OR** dans la configuration de dépendance de cluster.
 
-1. [Définir les paramètres de cluster hello dans PowerShell](virtual-machines-windows-portal-sql-availability-group-tutorial.md#setparam).
+1. [Définissez les paramètres de cluster dans PowerShell](virtual-machines-windows-portal-sql-availability-group-tutorial.md#setparam).
 
-Exécuter le script PowerShell de hello avec le nom réseau du cluster hello, adresse IP et port de la sonde que vous avez configurés sur l’équilibrage de charge hello dans la nouvelle région de hello.
+Exécutez le script PowerShell avec le nom réseau du cluster, une adresse IP et un port de sonde que vous avez configurés sur l’équilibrage de charge dans la nouvelle région.
 
    ```PowerShell
-   $ClusterNetworkName = "<MyClusterNetworkName>" # hello cluster name for hello network in hello new region (Use Get-ClusterNetwork on Windows Server 2012 of higher toofind hello name).
-   $IPResourceName = "<IPResourceName>" # hello cluster name for hello new IP Address resource.
-   $ILBIP = “<n.n.n.n>” # hello IP Address of hello Internal Load Balancer (ILB) in hello new region. This is hello static IP address for hello load balancer you configured in hello Azure portal.
-   [int]$ProbePort = <nnnnn> # hello probe port you set on hello ILB.
+   $ClusterNetworkName = "<MyClusterNetworkName>" # The cluster name for the network in the new region (Use Get-ClusterNetwork on Windows Server 2012 of higher to find the name).
+   $IPResourceName = "<IPResourceName>" # The cluster name for the new IP Address resource.
+   $ILBIP = “<n.n.n.n>” # The IP Address of the Internal Load Balancer (ILB) in the new region. This is the static IP address for the load balancer you configured in the Azure portal.
+   [int]$ProbePort = <nnnnn> # The probe port you set on the ILB.
 
    Import-Module FailoverClusters
 
@@ -139,31 +139,31 @@ Exécuter le script PowerShell de hello avec le nom réseau du cluster hello, ad
 
 ## <a name="set-connection-for-multiple-subnets"></a>Configurer la connexion à plusieurs sous-réseaux
 
-la réplication Hello dans le centre de données distant hello fait partie du groupe de disponibilité hello, mais il est dans un sous-réseau différent. Si ce réplica devienne le réplica principal de hello, les délais de connexion d’application peuvent se produire. Ce comportement est hello identique à un groupe de disponibilité local dans un déploiement de sous-réseaux multiples. tooallow des connexions à partir d’applications clientes, mettre à jour de la connexion du client hello ou configurer la résolution de nom sur la ressource de nom de réseau de clusters hello la mise en cache.
+Le réplica dans le centre de données distant fait partie du groupe de disponibilité, mais il se trouve dans un autre sous-réseau. Si ce réplica devient le réplica principal, la connexion d’application peut être perturbée. Ce comportement est identique à un groupe de disponibilité local dans un déploiement de plusieurs sous-réseaux. Pour autoriser les connexions des applications clientes, mettez à jour la connexion cliente ou configurez la mise en cache de la résolution du nom sur la ressource de nom de réseau de cluster.
 
-De préférence, mettre à jour tooset de chaînes de connexion de client hello `MultiSubnetFailover=Yes`. Consultez [Connexion à MultiSubnetFailover](http://msdn.microsoft.com/library/gg471494#Anchor_0).
+Idéalement, mettez à jour les chaînes de connexion au client pour qu’elles indiquent `MultiSubnetFailover=Yes`. Consultez [Connexion à MultiSubnetFailover](http://msdn.microsoft.com/library/gg471494#Anchor_0).
 
-Si vous ne pouvez pas modifier les chaînes de connexion hello, vous pouvez configurer la mise en cache de résolution de nom. Consultez [Connection Timeouts in Multi-subnet Availability Group (Délais d’expiration de la connexion dans le groupe de disponibilité de plusieurs sous-réseaux)](http://blogs.msdn.microsoft.com/alwaysonpro/2014/06/03/connection-timeouts-in-multi-subnet-availability-group/).
+Si vous ne pouvez pas modifier les chaînes de connexion, vous pouvez configurer la mise en cache de la résolution des noms. Consultez [Connection Timeouts in Multi-subnet Availability Group (Délais d’expiration de la connexion dans le groupe de disponibilité de plusieurs sous-réseaux)](http://blogs.msdn.microsoft.com/alwaysonpro/2014/06/03/connection-timeouts-in-multi-subnet-availability-group/).
 
-## <a name="fail-over-tooremote-region"></a>Basculer la région tooremote
+## <a name="fail-over-to-remote-region"></a>Basculer vers la région distante
 
-tootest écouteur connectivité toohello distant région, vous pouvez basculer région de hello réplica toohello à distance. Alors que le réplica de hello est asynchrone, le basculement est vulnérable toopotential une perte de données. toofail sur sans perte de données, modifiez toosynchronous de mode de disponibilité hello puis tooautomatic de mode de basculement hello. Utilisez hello comme suit :
+Pour tester la connectivité de l’écouteur à la région distante, vous pouvez basculer le réplica vers la région distante. Si le réplica est asynchrone, le basculement est vulnérable à la perte potentielle de données. Pour effectuer un basculement sans perte de données, modifiez le mode de disponibilité en synchrone et définissez le mode de basculement automatique. Procédez comme suit :
 
-1. Dans **l’Explorateur d’objets**, connectez-vous instance toohello de SQL Server qui héberge le réplica principal de hello.
+1. Dans l’**Explorateur d’objets**, connectez-vous à l’instance de SQL Server qui héberge le réplica principal.
 1. Sous **Groupes de disponibilité AlwaysOn**, **Groupes de disponibilité**, cliquez avec le bouton droit sur votre groupe de disponibilité, puis cliquez sur **Propriétés**.
-1. Sur hello **général** sous **réplicas de disponibilité**, jeu de réplica de secondaire hello dans toouse de site de récupération d’urgence de hello **validation synchrone** mode de disponibilité et **Automatique** le mode de basculement.
-1. Si vous avez un réplica secondaire dans le même site que votre réplica principal pour la haute disponibilité, définissez ce réplica trop**validation asynchrone** et **manuel**.
+1. Dans la page **Général**, sous **Réplicas de disponibilité**, configurez le réplica secondaire dans le site de récupération d’urgence pour qu’il utilise le mode de disponibilité **Validation synchrone** et le mode de basculement **Automatique**.
+1. Si vous avez un réplica secondaire dans le même site que le réplica principal pour la haute disponibilité, configurez ce réplica en **Validation asynchrone** et **Manuel**.
 1. Cliquez sur OK.
-1. Dans **l’Explorateur d’objets**, cliquez sur le groupe de disponibilité hello, puis cliquez sur **afficher le tableau de bord**.
-1. Tableau de bord de hello, vérifiez que hello réplica sur le site de récupération d’urgence de hello est synchronisé.
-1. Dans **l’Explorateur d’objets**, cliquez sur le groupe de disponibilité hello, puis cliquez sur **basculement...** . SQL Server Management Studio s’ouvre un Assistant toofail sur SQL Server.  
-1. Cliquez sur **suivant**et l’instance de SQL Server hello select dans le site de récupération d’urgence de hello. Cliquez à nouveau sur **Suivant** .
-1. Connecter l’instance de SQL Server toohello dans le site de récupération d’urgence de hello et cliquez sur **suivant**.
-1. Sur hello **Résumé** page, vérifiez les paramètres de hello et cliquez sur **Terminer**.
+1. Dans l’**Explorateur d’objets**, cliquez sur le groupe de disponibilité puis sur **Afficher le tableau de bord**.
+1. Dans le tableau de bord, vérifiez que le réplica sur le site de récupération d’urgence est synchronisé.
+1. Dans l’**Explorateur d’objets**, cliquez sur le groupe de disponibilité puis sur **Basculer...**. SQL Server Management Studio ouvre un assistant pour effectuer le basculement vers SQL Server.  
+1. Cliquez sur **Suivant** et sélectionnez l’instance de SQL Server sur le site de récupération d’urgence. Cliquez à nouveau sur **Suivant** .
+1. Connectez-vous à l’instance de SQL Server sur le site de récupération d’urgence et cliquez sur **Suivant**.
+1. Dans la page **Synthèse**, vérifiez les paramètres et cliquez sur **Terminer**.
 
-Après le test de connectivité, déplacez hello réplica principal précédent tooyour principal Datacenter et définir hello disponibilité mode retour tootheir des paramètres de fonctionnement normales. Hello tableau suivant montre les paramètres opérationnels normal hello pour architecture hello décrites dans ce document :
+Après avoir testé la connectivité, replacez le réplica principal dans votre centre de données principal et rétablissez les paramètres de fonctionnement normaux du mode de disponibilité. Le tableau suivant présente les paramètres de fonctionnement normaux de l’architecture décrite dans ce document :
 
-| Lieu | Instance de serveur | Rôle | Mode de disponibilité | Mode de basculement
+| Emplacement | Instance de serveur | Rôle | Mode de disponibilité | Mode de basculement
 | ----- | ----- | ----- | ----- | -----
 | Centre de données principal | SQL-1 | Primaire | Synchrone | Automatique
 | Centre de données principal | SQL-2 | Secondaire | Synchrone | Automatique
@@ -172,7 +172,7 @@ Après le test de connectivité, déplacez hello réplica principal précédent 
 
 ### <a name="more-information-about-planned-and-forced-manual-failover"></a>Plus d’informations sur le basculement manuel forcé et planifié
 
-Pour plus d’informations, consultez hello rubriques suivantes :
+Pour plus d’informations, consultez les rubriques suivantes :
 
 - [Effectuer un basculement manuel planifié d'un groupe de disponibilité (SQL Server)](http://msdn.microsoft.com/library/hh231018.aspx)
 - [Effectuer un basculement manuel forcé d'un groupe de disponibilité (SQL Server)](http://msdn.microsoft.com/library/ff877957.aspx)

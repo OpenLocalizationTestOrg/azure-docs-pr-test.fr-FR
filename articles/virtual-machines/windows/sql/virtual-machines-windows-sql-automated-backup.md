@@ -1,6 +1,6 @@
 ---
-title: aaaAutomated sauvegarde pour les Machines virtuelles Azure 2014 SQL Server | Documents Microsoft
-description: "Explique la fonctionnalité de sauvegarde automatisée hello pour SQL Server 2014 machines virtuelles s’exécutant dans Azure. Cet article est tooVMs spécifique à l’aide de hello Gestionnaire de ressources."
+title: "Sauvegarde automatisée pour les machines virtuelles Azure SQL Server 2014 | Microsoft Docs"
+description: "Décrit la fonctionnalité de sauvegarde automatisée pour les machines virtuelles exécutant SQL Server 2014 dans Azure. Cet article est spécifique aux machines virtuelles utilisant Resource Manager."
 services: virtual-machines-windows
 documentationcenter: na
 author: rothja
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 07/05/2017
 ms.author: jroth
-ms.openlocfilehash: c6803d8ef9f80e44a2f87918d87e099f1b562483
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91aab896dd5f06c950ee0ed8f36cc6a953d91611
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="automated-backup-for-sql-server-2014-virtual-machines-resource-manager"></a>Sauvegarde automatisée pour les machines virtuelles SQL Server 2014 (Resource Manager)
 
@@ -27,12 +27,12 @@ ms.lasthandoff: 10/06/2017
 > * [SQL Server 2014](virtual-machines-windows-sql-automated-backup.md)
 > * [SQL Server 2016](virtual-machines-windows-sql-automated-backup-v2.md)
 
-Sauvegarde automatisée configure automatiquement [tooMicrosoft de gestion de sauvegarde Azure](https://msdn.microsoft.com/library/dn449496.aspx) pour toutes les bases de données nouvelles et existantes sur une machine virtuelle de Azure exécutant SQL Server 2014 Standard ou Enterprise. Cela vous permet de tooconfigure des sauvegardes régulières de la base de données qui utilisent le stockage d’objets blob Azure durable. Sauvegarde automatisée dépend hello [Extension de l’Agent SQL Server IaaS](virtual-machines-windows-sql-server-agent-extension.md).
+La sauvegarde automatisée configure automatiquement une [sauvegarde managée sur Microsoft Azure](https://msdn.microsoft.com/library/dn449496.aspx) pour toutes les bases de données nouvelles et existantes sur une machine virtuelle Azure exécutant SQL Server 2014 Standard ou Enterprise. Cela vous permet de configurer des sauvegardes régulières de base de données utilisant le stockage d’objets blob Azure durable. La sauvegarde automatisée dépend l’ [extension de l’agent IaaS de SQL Server](virtual-machines-windows-sql-server-agent-extension.md).
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-rm-include.md)]
 
 ## <a name="prerequisites"></a>Composants requis
-toouse la sauvegarde, tenez compte des hello suivant des conditions préalables :
+Pour utiliser la sauvegarde automatisée, prenez en compte les conditions préalables suivantes :
 
 **Système d’exploitation**:
 
@@ -46,12 +46,12 @@ toouse la sauvegarde, tenez compte des hello suivant des conditions préalables�
 - SQL Server 2014 Enterprise
 
 > [!IMPORTANT]
-> La sauvegarde automatisée fonctionne avec SQL Server 2014. Si vous utilisez SQL Server 2016, vous pouvez utiliser la sauvegarde automatisée v2 tooback vos bases de données. Pour plus d’informations, consultez [Sauvegarde automatisée en version 2 pour les machines virtuelles Azure SQL Server 2016](virtual-machines-windows-sql-automated-backup-v2.md).
+> La sauvegarde automatisée fonctionne avec SQL Server 2014. Si vous utilisez SQL Server 2016, vous pouvez utiliser la sauvegarde automatisée en version 2 pour sauvegarder vos bases de données. Pour plus d’informations, consultez [Sauvegarde automatisée en version 2 pour les machines virtuelles Azure SQL Server 2016](virtual-machines-windows-sql-automated-backup-v2.md).
 
 **Configuration de la base de données**:
 
-- Bases de données cible doivent utiliser le mode de récupération complète hello. Pour plus d’informations sur l’impact de hello hello complète du mode de récupération sur les sauvegardes, consultez [hello sauvegarde sous le mode de récupération complète](https://technet.microsoft.com/library/ms190217.aspx).
-- Bases de données cible doivent être sur une instance de SQL Server par défaut hello. Hello IaaS Extension de SQL Server ne prend pas en charge les instances nommées.
+- Les bases de données cibles doivent utiliser le modèle de récupération complète. Pour plus d’informations sur l’impact du modèle de récupération complète sur les sauvegardes, consultez [Sauvegarde en mode de récupération complète](https://technet.microsoft.com/library/ms190217.aspx).
+- Les bases de données cibles doivent se trouver sur l’instance SQL Server par défaut. L’extension IaaS SQL Server ne prend pas en charge les instances nommées.
 
 **Modèle de déploiement Azure** :
 
@@ -59,63 +59,63 @@ toouse la sauvegarde, tenez compte des hello suivant des conditions préalables�
 
 **Azure PowerShell**:
 
-- [Installez les commandes Azure PowerShell dernière hello](/powershell/azure/overview) si vous envisagez de tooconfigure sauvegarde automatisée avec PowerShell.
+- [Installez les dernières commandes Azure PowerShell](/powershell/azure/overview) si vous projetez de configurer la sauvegarde automatisée avec PowerShell.
 
 > [!NOTE]
-> Sauvegarde automatisée s’appuie sur hello Extension de l’Agent SQL Server IaaS. Les images actuelles de la galerie de machines virtuelles SQL ajoutent cette extension par défaut. Pour plus d’informations, consultez [SQL Server IaaS Agent Extension](virtual-machines-windows-sql-server-agent-extension.md)(Extension de l’agent IaaS SQL Server).
+> La sauvegarde automatisée utilise l’extension de l’agent IaaS de SQL Server. Les images actuelles de la galerie de machines virtuelles SQL ajoutent cette extension par défaut. Pour plus d’informations, consultez [SQL Server IaaS Agent Extension](virtual-machines-windows-sql-server-agent-extension.md)(Extension de l’agent IaaS SQL Server).
 
 ## <a name="settings"></a>Paramètres
 
-Hello tableau suivant décrit les options de hello qui peuvent être configurées pour la sauvegarde automatisée. étapes de configuration réelles Hello varient selon que vous utilisez hello portail Azure ou des commandes PowerShell de Windows Azure.
+Le tableau suivant décrit les options qui peuvent être configurées pour une sauvegarde automatisée. Les étapes de la configuration varient selon que vous utilisez les commandes du portail Azure ou Azure Windows PowerShell.
 
 | Paramètre | Plage (par défaut) | Description |
 | --- | --- | --- |
 | **Sauvegarde automatisée** | Activer/Désactiver (désactivé) | Active ou désactive la sauvegarde automatisée d’une machine virtuelle Azure exécutant SQL Server 2014 Standard ou Enterprise. |
-| **Période de rétention** | 1 à 30 jours (30 jours) | nombre de Hello de jours tooretain une sauvegarde. |
-| **Compte de stockage** | Compte Azure Storage | Un toouse de compte de stockage Azure pour stocker les fichiers de sauvegarde automatisée dans le stockage blob. Un conteneur est créé à cet emplacement toostore tous les fichiers de sauvegarde. fichier de sauvegarde Hello convention d’affectation de noms inclut hello date, heure et nom de l’ordinateur. |
-| **Chiffrement** | Activer/Désactiver (désactivé) | Active ou désactive le chiffrement. Lorsque le chiffrement est activé, hello certificats utilisés toorestore hello sauvegarde se trouvent dans hello spécifié du compte de stockage Bonjour même `automaticbackup` conteneur à l’aide de hello même convention d’affectation de noms. Si le mot de passe hello change, un nouveau certificat est généré avec ce mot de passe, mais hello ancien certificat est conservé toorestore les sauvegardes antérieures. |
-| **Mot de passe** | Texte du mot de passe | Mot de passe pour les clés de chiffrement. Il est uniquement requis si le chiffrement est activé. Dans l’ordre toorestore une sauvegarde chiffrée, vous devez avoir mot de passe correct hello et du certificat associé qui a été utilisé au moment de hello hello sauvegarde a été effectuée. |
+| **Période de rétention** | 1 à 30 jours (30 jours) | Nombre de jours durant lesquels une sauvegarde est conservée. |
+| **Compte de stockage** | Compte Azure Storage | Compte de stockage Azure à utiliser pour stocker les fichiers de sauvegarde automatisée dans le stockage d’objets blob. Un conteneur est créé à cet emplacement pour stocker tous les fichiers de sauvegarde. La convention de dénomination des fichiers de sauvegarde inclut la date, l’heure et le nom de la machine. |
+| **Chiffrement** | Activer/Désactiver (désactivé) | Active ou désactive le chiffrement. Quand le chiffrement est activé, les certificats utilisés pour restaurer la sauvegarde se trouvent dans le compte de stockage spécifié dans le même conteneur `automaticbackup` avec la même convention de dénomination. Si le mot de passe change, un nouveau certificat est généré avec ce mot de passe, mais l’ancien certificat est conservé pour restaurer les sauvegardes antérieures. |
+| **Mot de passe** | Texte du mot de passe | Mot de passe pour les clés de chiffrement. Il est uniquement requis si le chiffrement est activé. Pour restaurer une sauvegarde chiffrée, vous devez disposer du mot de passe correct et du certificat associé qui a été utilisé lorsque la sauvegarde a été effectuée. |
 
-## <a name="configuration-in-hello-portal"></a>Configuration Bonjour portail
+## <a name="configuration-in-the-portal"></a>Configuration dans le portail
 
-Vous pouvez utiliser hello tooconfigure portail Azure la sauvegarde lors de la configuration ou de machines virtuelles SQL Server 2014 existantes.
+Vous pouvez utiliser le portail Azure pour configurer la sauvegarde automatisée lors de l’approvisionnement ou pour des machines virtuelles SQL Server 2014 existantes.
 
 ### <a name="new-vms"></a>Nouvelles machines virtuelles
 
-Utilisez hello tooconfigure portail Azure la sauvegarde lorsque vous créez une nouvelle Machine virtuelle SQL Server 2014 dans le modèle de déploiement du Gestionnaire de ressources hello.
+Utilisez le portail Azure pour configurer la sauvegarde automatisée quand vous créez une machine virtuelle SQL Server 2014 dans le modèle de déploiement Resource Manager.
 
-Bonjour **paramètres SQL Server** panneau, sélectionnez **sauvegarde**. Bonjour Azure portail montre hello **sauvegarde automatisée SQL** panneau.
+Dans le panneau **Paramètres SQL Server**, sélectionnez **Sauvegarde automatisée**. La capture d’écran suivante du portail Azure illustre le panneau **Sauvegarde automatisée SQL** .
 
 ![Configuration d’une sauvegarde automatisée SQL dans le portail Azure](./media/virtual-machines-windows-sql-automated-backup/azure-sql-arm-autobackup.png)
 
-Pour le contexte, consultez la rubrique complète de hello relative [approvisionner un ordinateur virtuel de SQL Server dans Azure](virtual-machines-windows-portal-sql-server-provision.md).
+Pour plus de contexte, voir la rubrique complète intitulée [Configuration d’une machine virtuelle SQL Server dans Azure](virtual-machines-windows-portal-sql-server-provision.md).
 
 ### <a name="existing-vms"></a>Machines virtuelles existantes
 
-Pour les machines virtuelles SQL Server existantes, sélectionnez votre machine virtuelle SQL Server. Puis sélectionnez hello **configuration de SQL Server** section Hello **paramètres** panneau.
+Pour les machines virtuelles SQL Server existantes, sélectionnez votre machine virtuelle SQL Server. Puis sélectionnez la section **Configuration de SQL Server** du panneau **Paramètres**.
 
 ![Sauvegarde automatisée SQL pour les machines virtuelles existantes](./media/virtual-machines-windows-sql-automated-backup/azure-sql-rm-autobackup-existing-vms.png)
 
-Bonjour **configuration de SQL Server** panneau, cliquez sur hello **modifier** bouton Bonjour automatisée de section de sauvegarde.
+Dans le panneau **Configuration de SQL Server**, cliquez sur le bouton **Modifier** dans la section de sauvegarde automatisée.
 
 ![Configurer la sauvegarde automatisée SQL pour les machines virtuelles existantes](./media/virtual-machines-windows-sql-automated-backup/azure-sql-rm-autobackup-configuration.png)
 
-Lorsque vous avez terminé, cliquez sur hello **OK** bouton bas hello Hello **configuration de SQL Server** panneau toosave vos modifications.
+Lorsque vous avez terminé, cliquez sur le bouton **OK** au bas du panneau **Configuration de SQL Server** pour enregistrer vos modifications.
 
-Si vous activez le sauvegarde automatisée pour hello première fois, Azure configure hello Agent SQL Server IaaS en arrière-plan de hello. Pendant ce temps, hello portail Azure peut ne pas affiche que la sauvegarde automatisée est configurée. Attendez quelques minutes pour hello toobe de l’agent installé, configuré. Après ce hello Azure portal reflètent les nouveaux paramètres de hello.
+Si vous activez la sauvegarde automatisée pour la première fois, Azure configure l’agent IaaS de SQL Server en arrière-plan. Pendant ce temps, le portail Azure n’indiquera peut-être pas que la sauvegarde automatisée est configurée. Patientez quelques minutes jusqu’à ce que l’agent soit installé et configuré. Le portail Azure reflète alors les nouveaux paramètres.
 
 > [!NOTE]
 > Vous pouvez également configurer la sauvegarde automatisée à l’aide d’un modèle. Pour plus d’informations, consultez l’article [Azure quickstart template for Automated Backup](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-sql-existing-autobackup-update)(Modèle de démarrage rapide d’Azure pour la sauvegarde automatisée).
 
 ## <a name="configuration-with-powershell"></a>Configuration avec PowerShell
 
-Vous pouvez utiliser PowerShell tooconfigure la sauvegarde. Avant de commencer, vous devez :
+Vous pouvez utiliser PowerShell pour configurer une sauvegarde automatisée. Avant de commencer, vous devez :
 
-- [Téléchargez et installez hello la dernière version d’Azure PowerShell](http://aka.ms/webpi-azps).
-- Ouvrir Windows PowerShell et l’associer à votre compte. Vous pouvez faire cela hello comme suit dans hello [configurer votre abonnement](https://docs.microsoft.com/azure/virtual-machines/windows/sql/virtual-machines-windows-ps-sql-create#configure-your-subscription) section Hello rubrique de configuration.
+- [Télécharger et installer la version la plus récente d’Azure PowerShell](http://aka.ms/webpi-azps).
+- Ouvrir Windows PowerShell et l’associer à votre compte. Pour cela, procédez selon les étapes de la section [Configurer votre abonnement](https://docs.microsoft.com/azure/virtual-machines/windows/sql/virtual-machines-windows-ps-sql-create#configure-your-subscription) de la rubrique consacrée à l’approvisionnement.
 
-### <a name="install-hello-sql-iaas-extension"></a>Installer hello IaaS Extension de SQL
-Si vous avez configuré un ordinateur virtuel SQL Server hello portail Azure, hello IaaS Extension de SQL Server doit déjà être installé. Vous pouvez déterminer si elle est installée pour votre machine virtuelle en appelant **Get-AzureRmVM** commande et en examinant hello **Extensions** propriété.
+### <a name="install-the-sql-iaas-extension"></a>Installer l’extension IaaS SQL
+Si vous avez configuré une machine virtuelle SQL Server à partir du portail Azure, l’extension IaaS SQL Server devrait déjà être installée. Vous pouvez déterminer si cette extension est installée pour votre machine virtuelle en appelant la commande **Get-AzureRmVM** puis en examinant la propriété **Extensions**.
 
 ```powershell
 $vmname = "vmname"
@@ -124,9 +124,9 @@ $resourcegroupname = "resourcegroupname"
 (Get-AzureRmVM -Name $vmname -ResourceGroupName $resourcegroupname).Extensions
 ```
 
-Si hello extension SQL Server IaaS Agent est installé, vous devez voir qu'il répertorié comme « Sqliaasagent n’est » ou « SQLIaaSExtension ». **ProvisioningState** pour l’extension de hello doit également indiquer « Réussi ».
+Si l’extension de l’agent IaaS SQL Server est installée, elle devrait s’afficher sous la forme « SqlIaaSAgent » ou « SQLIaaSExtension ». La propriété **ProvisioningState** de l’extension devrait également indiquer « Succeeded » (Réussie).
 
-S’il n’est pas installé ou a échoué toobe configuré, vous pouvez l’installer avec hello commande suivante. Dans Ajout toohello nom et ressource groupe virtuelle, vous devez également spécifier la région de hello (**$region**) où se trouve votre machine virtuelle.
+Si elle n’est pas installée ou n’a pas pu être configurée, vous pouvez l’installer avec la commande suivante. Outre le nom de la machine virtuelle et le groupe de ressources, vous devez également spécifier la région (**$region**) où se trouve votre machine virtuelle.
 
 ```powershell
 $region = “EASTUS2”
@@ -137,13 +137,13 @@ Set-AzureRmVMSqlServerExtension -VMName $vmname `
 
 ### <a id="verifysettings"></a> Vérifier les paramètres actuels
 
-Si vous avez activé la sauvegarde automatisée lors de la configuration, vous pouvez utiliser PowerShell toocheck votre configuration actuelle. Exécutez hello **Get-AzureRmVMSqlServerExtension** de commandes et examiner hello **AutoBackupSettings** propriété :
+Si vous avez activé la sauvegarde automatisée lors de la configuration, vous pouvez utiliser PowerShell pour vérifier votre configuration actuelle. Exécutez la commande **Get-AzureRmVMSqlServerExtension** et examinez la propriété **AutoBackupSettings** :
 
 ```powershell
 (Get-AzureRmVMSqlServerExtension -VMName $vmname -ResourceGroupName $resourcegroupname).AutoBackupSettings
 ```
 
-Vous devez obtenir suivant toohello similaire de sortie :
+La sortie doit ressembler à ce qui suit :
 
 ```
 Enable                      : False
@@ -160,15 +160,15 @@ FullBackupWindowHours       :
 LogBackupFrequency          : 
 ```
 
-Si votre sortie montre que **activer** est défini trop**False**, vous devez effectuer des sauvegardes automatiques tooenable. Bonjour excellente est activer et configurer la sauvegarde automatisée Bonjour identique. Consultez hello la section suivante pour obtenir des informations.
+Si votre sortie montre que l’option **Enable** (Activer) est définie sur **False**, vous devez activer la sauvegarde automatisée. La bonne nouvelle est que vous activez et configurez la sauvegarde automatisée de la même façon. Pour en savoir plus, consultez la section suivante.
 
 > [!NOTE] 
-> Si vous vérifiez les paramètres de hello immédiatement après une modification, il est possible que vous obtenez les valeurs de configuration anciennes hello. Attendez quelques minutes et vérifier les paramètres de hello à nouveau les toomake sûr que vos modifications ont été appliquées.
+> Si vous vérifiez les paramètres immédiatement après une modification, les anciennes valeurs de configuration peuvent s’afficher. Patientez quelques minutes et revérifiez les paramètres pour vous assurer que vos modifications ont bien été appliquées.
 
 ### <a name="configure-automated-backup"></a>Configurer une sauvegarde automatisée
-Vous pouvez utiliser les PowerShell tooenable la sauvegarde, ainsi que toomodify sa configuration et son comportement à tout moment.
+Vous pouvez utiliser PowerShell pour activer la sauvegarde automatisée ainsi que pour modifier sa configuration et son comportement à tout moment.
 
-Tout d’abord, sélectionnez ou créez un compte de stockage hello pour les fichiers de sauvegarde. Hello script suivant sélectionne un compte de stockage ou la crée si elle n’existe pas.
+Tout d’abord, sélectionnez ou créez un compte de stockage pour les fichiers de sauvegarde. Le script suivant sélectionne un compte de stockage ou le crée s’il n’existe pas.
 
 ```powershell
 $storage_accountname = “yourstorageaccount”
@@ -184,7 +184,7 @@ If (-Not $storage)
 > [!NOTE]
 > La sauvegarde automatisée ne prend pas en charge le stockage des sauvegardes dans un stockage Premium, mais elle peut effectuer des sauvegardes à partir de disques de machines virtuelles qui utilisent le stockage Premium.
 
-Utilisez ensuite hello **New-AzureRmVMSqlServerAutoBackupConfig** tooenable de commande et de configurer des sauvegardes de toostore de paramètres de sauvegarde automatisée hello Bonjour compte de stockage Azure. Dans cet exemple, les sauvegardes de hello sont définies toobe conservée pendant 10 jours. Hello la deuxième commande, **Set-AzureRmVMSqlServerExtension**, hello de mises à jour spécifié de machine virtuelle Azure avec ces paramètres.
+Utilisez ensuite la commande **New-AzureRmVMSqlServerAutoBackupConfig** pour activer et configurer les paramètres de sauvegarde automatisée afin de stocker les sauvegardes dans le compte de stockage Azure. Dans cet exemple, les sauvegardes sont définies pour être conservées pendant 10 jours. La seconde commande **Set-AzureRmVMSqlServerExtension** met à jour la machine virtuelle Azure spécifiée avec ces paramètres.
 
 ```powershell
 $autobackupconfig = New-AzureRmVMSqlServerAutoBackupConfig -Enable `
@@ -195,12 +195,12 @@ Set-AzureRmVMSqlServerExtension -AutoBackupSettings $autobackupconfig `
     -VMName $vmname -ResourceGroupName $resourcegroupname
 ```
 
-Il peut prendre plusieurs minutes tooinstall et configurer hello IaaS Agent SQL Server.
+L’installation et la configuration de l’agent IaaS de SQL Server peuvent prendre plusieurs minutes.
 
 > [!NOTE]
-> Autres paramètres pour **New-AzureRmVMSqlServerAutoBackupConfig** qui s’appliquent uniquement tooSQL Server 2016 et v2 de sauvegarde automatisée. SQL Server 2014 ne prend pas en charge hello suivant paramètres : **BackupSystemDbs**, **BackupScheduleType**, **FullBackupFrequency**,  **FullBackupStartHour**, **FullBackupWindowInHours**, et **LogBackupFrequencyInMinutes**. Si vous essayez de tooconfigure ces paramètres sur un ordinateur virtuel de SQL Server 2014, il n’existe aucune erreur, mais les paramètres hello ne sont pas appliquées. Si vous souhaitez que ces paramètres sur un ordinateur virtuel de SQL Server 2016 toouse, consultez [v2 de sauvegarde automatisée pour les Machines virtuelles Azure 2016 SQL Server](virtual-machines-windows-sql-automated-backup-v2.md).
+> Il existe d’autres paramètres pour **New-AzureRmVMSqlServerAutoBackupConfig** qui s’appliquent uniquement à SQL Server 2016 et à la sauvegarde automatisée version 2. SQL Server 2014 ne prend pas en charge les paramètres suivants : **BackupSystemDbs**, **BackupScheduleType**, **FullBackupFrequency**, **FullBackupStartHour**, **FullBackupWindowInHours** et **LogBackupFrequencyInMinutes**. Si vous essayez de configurer ces paramètres sur une machine virtuelle SQL Server 2014, aucune erreur n’apparaît, mais les paramètres ne sont pas appliqués. Si vous souhaitez utiliser ces paramètres sur une machine virtuelle SQL Server 2016, consultez [Sauvegarde automatisée version 2 pour SQL Server 2016 dans des machines virtuelles Azure](virtual-machines-windows-sql-automated-backup-v2.md).
 
-le chiffrement tooenable, modifier hello toopass script précédent de hello **EnableEncryption** paramètre avec un mot de passe (chaîne sécurisée) hello **CertificatePassword** paramètre. Hello script suivant active les paramètres de sauvegarde automatisée hello dans l’exemple précédent de hello et ajoute le chiffrement.
+Pour activer le chiffrement, modifiez le script précédent pour transmettre le paramètre **EnableEncryption** avec un mot de passe (chaîne sécurisée) pour le paramètre **CertificatePassword**. Le script suivant active les paramètres de sauvegarde automatisée dans l’exemple précédent et ajoute le chiffrement.
 
 ```powershell
 $password = "P@ssw0rd"
@@ -215,11 +215,11 @@ Set-AzureRmVMSqlServerExtension -AutoBackupSettings $autobackupconfig `
     -VMName $vmname -ResourceGroupName $resourcegroupname
 ```
 
-tooconfirm vos paramètres sont appliqués, [vérifier la configuration de sauvegarde automatisée hello](#verifysettings).
+Pour confirmer que vos paramètres ont été appliqués, [vérifiez la configuration de la sauvegarde automatisée](#verifysettings).
 
 ### <a name="disable-automated-backup"></a>Désactiver la sauvegarde automatisée
 
-toodisable sauvegarde automatisée, exécution hello même script sans hello **-activer** paramètre toohello **New-AzureRmVMSqlServerAutoBackupConfig** commande. Hello absence de hello **-activer** fonctionnalité de paramètre signaux hello commande toodisable hello. Comme avec l’installation, il peut prendre plusieurs minutes toodisable la sauvegarde.
+Pour désactiver la sauvegarde automatisée, exécutez le même script sans le paramètre **-Enable** pour la commande **New-AzureRmVMSqlServerAutoBackupConfig**. L’absence du paramètre **-Enable** indique à la commande de désactiver la fonctionnalité. À l’instar de l’installation, la désactivation de la sauvegarde automatisée peut prendre plusieurs minutes.
 
 ```powershell
 $autobackupconfig = New-AzureRmVMSqlServerAutoBackupConfig -ResourceGroupName $storage_resourcegroupname
@@ -230,7 +230,7 @@ Set-AzureRmVMSqlServerExtension -AutoBackupSettings $autobackupconfig `
 
 ### <a name="example-script"></a>Exemple de script
 
-Hello script suivant fournit un ensemble de variables que vous pouvez personnaliser tooenable et configurer la sauvegarde automatisée pour votre machine virtuelle. Dans ce cas, vous devrez peut-être le script de hello toocustomize selon vos besoins. Par exemple, vous auraient toomake modifications si vous souhaitez que la sauvegarde de hello toodisable de bases de données système ou activer le chiffrement.
+Le script suivant fournit un ensemble de variables que vous pouvez personnaliser afin d’activer et de configurer la sauvegarde automatisée pour votre machine virtuelle. Dans votre cas, vous devrez peut-être personnaliser le script selon vos besoins. Par exemple, vous devrez apporter des modifications si vous souhaitez désactiver la sauvegarde des bases de données système ou activer le chiffrement.
 
 ```powershell
 $vmname = "yourvmname"
@@ -240,13 +240,13 @@ $storage_accountname = “storageaccountname”
 $storage_resourcegroupname = $resourcegroupname
 $retentionperiod = 10
 
-# ResourceGroupName is hello resource group which is hosting hello VM where you are deploying hello SQL IaaS Extension
+# ResourceGroupName is the resource group which is hosting the VM where you are deploying the SQL IaaS Extension
 
 Set-AzureRmVMSqlServerExtension -VMName $vmname `
     -ResourceGroupName $resourcegroupname -Name "SQLIaasExtension" `
     -Version "1.2" -Location $region
 
-# Creates/use a storage account toostore hello backups
+# Creates/use a storage account to store the backups
 
 $storage = Get-AzureRmStorageAccount -ResourceGroupName $resourcegroupname `
     -Name $storage_accountname -ErrorAction SilentlyContinue
@@ -260,7 +260,7 @@ $autobackupconfig = New-AzureRmVMSqlServerAutoBackupConfig -Enable `
     -RetentionPeriodInDays $retentionperiod -StorageContext $storage.Context `
     -ResourceGroupName $storage_resourcegroupname
 
-# Apply hello Automated Backup settings toohello VM
+# Apply the Automated Backup settings to the VM
 
 Set-AzureRmVMSqlServerExtension -AutoBackupSettings $autobackupconfig `
     -VMName $vmname -ResourceGroupName $resourcegroupname
@@ -268,9 +268,9 @@ Set-AzureRmVMSqlServerExtension -AutoBackupSettings $autobackupconfig `
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-La sauvegarde automatisée configure une sauvegarde managée sur les machines virtuelles Azure. Il est donc important trop[passez en revue la documentation hello pour la gestion de sauvegarde](https://msdn.microsoft.com/library/dn449496.aspx) toounderstand hello comportement et les implications.
+La sauvegarde automatisée configure une sauvegarde managée sur les machines virtuelles Azure. Il est donc important de [lire la documentation relative à la sauvegarde gérée](https://msdn.microsoft.com/library/dn449496.aspx) pour comprendre son comportement et ses implications.
 
-Vous pouvez trouver de sauvegarde supplémentaire et restaurer des conseils pour SQL Server sur des machines virtuelles Azure dans la rubrique suivante de hello : [sauvegarde et de restauration pour SQL Server dans Azure Virtual Machines](virtual-machines-windows-sql-backup-recovery.md).
+Vous trouverez des conseils supplémentaires pour la sauvegarde et la restauration de SQL Server sur les machines virtuelles Azure dans la rubrique suivante : [Sauvegarde et restauration de SQL Server dans les machines virtuelles Azure](virtual-machines-windows-sql-backup-recovery.md).
 
 Pour plus d’informations sur les autres tâches d’automatisation disponibles, voir [Extension de l’agent IaaS SQL Server](virtual-machines-windows-sql-server-agent-extension.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaManage de calcul power dans l’entrepôt de données SQL Azure (portail Azure) | Documents Microsoft"
-description: "Tâches du portail Azure toomanage une puissance de calcul. Mettez à l’échelle les ressources de calcul en ajustant les unités DWU. Ou bien, suspendre et reprendre des coûts toosave des ressources de calcul."
+title: "Gestion de la puissance de calcul dans Azure SQL Data Warehouse (portail Azure) | Microsoft Docs"
+description: "Tâches du portail Azure permettant de gérer la puissance de calcul. Mettez à l’échelle les ressources de calcul en ajustant les unités DWU. Ou suspendez et reprenez des ressources de calcul pour réduire les coûts."
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: b2e84b3763e97ce88c190eecfb64b2d06f727229
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 63888d5dd103b585cf18e4787d3e779810163e3d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-azure-portal"></a>Gestion de la puissance de calcul dans Azure SQL Data Warehouse (portail Azure)
 > [!div class="op_single_selector"]
@@ -35,15 +35,15 @@ ms.lasthandoff: 10/06/2017
 ## <a name="scale-compute-power"></a>Mise à l’échelle de la puissance de calcul
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-toochange des ressources de calcul :
+Pour modifier les ressources de calcul :
 
-1. Ouvrez hello [portail Azure][Azure portal], ouvrez votre base de données, puis cliquez sur **échelle**.
+1. Ouvrez le [portail Azure][Azure portal], ouvrez votre base de données, puis cliquez sur **Mettre à l’échelle**.
 
     ![Cliquez sur Mettre à l’échelle.][1]
-2. Dans le panneau de mise à l’échelle de hello, déplacez le curseur de hello gauche ou vers la droite toochange valeur dwu hello.
+2. Dans le panneau de mise à l’échelle, déplacez le curseur vers la gauche ou vers la droite pour modifier le paramètre DWU.
 
     ![Déplacez le curseur][2]
-3. Cliquez sur **Save**. Un message de confirmation s’affiche. Cliquez sur **Oui** tooconfirm ou **aucun** toocancel.
+3. Cliquez sur **Save**. Un message de confirmation s’affiche. Cliquez sur **Oui** pour confirmer ou sur **Non** pour annuler.
 
     ![Cliquez sur Enregistrer.][3]
 
@@ -52,16 +52,16 @@ toochange des ressources de calcul :
 ## <a name="pause-compute"></a>Suspension du calcul
 [!INCLUDE [SQL Data Warehouse pause description](../../includes/sql-data-warehouse-pause-description.md)]
 
-toopause une base de données :
+Pour suspendre une base de données :
 
-1. Ouvrez hello [portail Azure] [ Azure portal] et ouvrez votre base de données. Notez que hello état est **Online**.
+1. Ouvrez le [portail Azure][Azure portal], puis votre base de données. Notez que l’état est **En ligne**.
 
     ![État En ligne][6]
-2. Cliquez sur les ressources de calcul et de mémoire toosuspend, **Pause**, puis un message de confirmation s’affiche. Cliquez sur **Oui** tooconfirm ou **aucun** toocancel.
+2. Pour interrompre les ressources de calcul et de mémoire, cliquez sur **Pause**. Un message de confirmation s’affiche. Cliquez sur **Oui** pour confirmer ou sur **Non** pour annuler.
 
     ![Confirmer la pause][7]
-3. Pendant le démarrage de l’entrepôt de données SQL de la base de données hello, état de hello est **interruption**.
-4. Lorsque le statut de hello est **suspendu**, opération de suspension hello est effectuée et que vous êtes en cours n’est plus facturé pour Dwu.
+3. Lorsque SQL Data Warehouse démarre la base de données, l’état est **Interruption**.
+4. Lorsque l’état est **Interrompu**, l’opération d’interruption est effectuée et aucune DWU ne vous est plus facturée.
 
     ![État Pause][4]
 
@@ -70,16 +70,16 @@ toopause une base de données :
 ## <a name="resume-compute"></a>Reprise du calcul
 [!INCLUDE [SQL Data Warehouse resume description](../../includes/sql-data-warehouse-resume-description.md)]
 
-tooresume une base de données :
+Pour reprendre une base de données :
 
-1. Ouvrez hello [portail Azure] [ Azure portal] et ouvrez votre base de données. Notez que hello état est **suspendu**.
+1. Ouvrez le [portail Azure][Azure portal], puis votre base de données. Notez que l’état est **Suspendu**.
 
     ![Suspendre la base de données][4]
-2. Cliquez sur base de données de hello tooresume **Démarrer**, puis un message de confirmation s’affiche. Cliquez sur **Oui** tooconfirm ou **aucun** toocancel.
+2. Pour relancer la base de données, cliquez sur **Démarrer**. Un message de confirmation s’affiche. Cliquez sur **Oui** pour confirmer ou sur **Non** pour annuler.
 
     ![Confirmer la reprise][5]
-3. Pendant le démarrage de l’entrepôt de données SQL de la base de données hello, statut de hello est « Reprise ».
-4. Lorsque le statut de hello est **online**, base de données hello est prêt.
+3. Lorsque SQL Data Warehouse démarre la base de données, l’état est « Reprise ».
+4. Lorsque l’état est **En ligne**, la base de données est prête.
 
     ![État En ligne][6]
 

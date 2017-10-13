@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure solution de coffre de clés dans le journal Analytique | Documents Microsoft"
-description: "Vous pouvez utiliser la solution de coffre de clés Azure hello dans tooreview Analytique de journal que coffre de clés Azure se connecte."
+title: Solution Azure Key Vault dans Log Analytics | Microsoft Docs
+description: "La solution Azure Key Vault dans Log Analytics permet de consulter les journaux d’Azure Key Vault."
 services: log-analytics
 documentationcenter: 
 author: richrundmsft
@@ -14,48 +14,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2017
 ms.author: richrund
-ms.openlocfilehash: 1c6eae26ded7ad55b0159a3be09cdc9901596298
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 651586e0846ffb22a23e64b73c2cc614980d9b92
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-key-vault-analytics-solution-in-log-analytics"></a>Solution Azure Key Vault Analytics dans Log Analytics
 
 ![Symbole de Key Vault](./media/log-analytics-azure-keyvault/key-vault-analytics-symbol.png)
 
-Vous pouvez utiliser la solution de coffre de clés Azure hello dans tooreview Analytique de journal Qu'azure Key Vault AuditEvent se connecte.
+Vous pouvez utiliser la solution Azure Key Vault dans Log Analytics pour consulter les journaux AuditEvent d’Azure Key Vault.
 
-solution de hello toouse, vous devez tooenable la journalisation des diagnostics d’Azure Key Vault et l’espace de travail Analytique de journal direct hello diagnostics tooa. Il n’est pas le stockage Blob tooAzure toowrite nécessaire hello journaux.
+Pour l’utiliser, vous devez activer la journalisation des diagnostics d’Azure Key Vault et diriger les diagnostics vers un espace de travail Log Analytics. Il n’est pas nécessaire d’écrire les journaux dans le stockage Blob Azure.
 
 > [!NOTE]
-> En janvier 2017, hello pris en charge la façon d’envoi de journaux tooLog de coffre de clés que Analytique modifié. Si la solution de coffre de clés hello que vous utilisez affiche *(déconseillée)* au titre de hello, consultez trop[migration à partir de l’ancienne solution de coffre de clés hello](#migrating-from-the-old-key-vault-solution) pour connaître les étapes, vous devez toofollow.
+> En janvier 2017, le mode d’envoi des journaux de Key Vault vers Log Analytics a changé. Si le titre de la solution Key Vault que vous utilisez comprend la mention *(déprécié)*, consultez la section [Migration à partir d’une ancienne version de Key Vault](#migrating-from-the-old-key-vault-solution) pour connaître la marche à suivre.
 >
 >
 
-## <a name="install-and-configure-hello-solution"></a>Installer et configurer une solution de hello
-Utilisez hello suivant les instructions tooinstall et configurer une solution de coffre de clés Azure hello :
+## <a name="install-and-configure-the-solution"></a>Installer et configurer la solution
+Suivez les instructions suivantes pour installer et configurer la solution Azure Key Vault :
 
-1. Activer la solution Azure Key Vault hello [Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.KeyVaultAnalyticsOMS?tab=Overview) ou à l’aide de hello est décrite dans [solutions Analytique de journal ajouter à partir de la galerie des Solutions de hello](log-analytics-add-solutions.md).
-2. Activer les diagnostics de journalisation pour toomonitor de ressources de coffre de clés hello, à l’aide soit hello [portal](#enable-key-vault-diagnostics-in-the-portal) ou [PowerShell](#enable-key-vault-diagnostics-using-powershell)
+1. Activez la solution Azure Key Vault depuis la [Place de marché Azure](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.KeyVaultAnalyticsOMS?tab=Overview) ou en procédant de la manière décrite dans [Ajouter des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md).
+2. Activer la journalisation des diagnostics pour les ressources Key Vault à surveiller à l’aide du [portai](#enable-key-vault-diagnostics-in-the-portal) ou de [PowerShell](#enable-key-vault-diagnostics-using-powershell)
 
-### <a name="enable-key-vault-diagnostics-in-hello-portal"></a>Activer les diagnostics de coffre de clés dans le portail de hello
+### <a name="enable-key-vault-diagnostics-in-the-portal"></a>Activer les diagnostics Key Vault dans le portail
 
-1. Bonjour portail Azure, accédez à toomonitor de ressource de coffre de clés toohello
-2. Sélectionnez *les journaux de diagnostic* hello tooopen suivant page
+1. Dans le portail Azure, accédez à la ressource Key Vault que vous voulez surveiller.
+2. Sélectionnez *Journaux de diagnostic* pour ouvrir la page suivante.
 
    ![Image de la vignette Azure Key Vault](./media/log-analytics-azure-keyvault/log-analytics-keyvault-enable-diagnostics01.png)
-3. Cliquez sur *activer les diagnostics* hello tooopen suivant page
+3. Cliquez sur *Activer les diagnostics* pour ouvrir la page suivante.
 
    ![Image de la vignette Azure Key Vault](./media/log-analytics-azure-keyvault/log-analytics-keyvault-enable-diagnostics02.png)
-4. tooturn des diagnostics, cliquez sur *sur* sous *état*
-5. Cliquez sur la case à cocher hello *envoyer tooLog Analytique*
+4. Pour activer les diagnostics, cliquez sur *Activé* sous *État*.
+5. Cochez la case à côté de l’option *Envoyer à Log Analytics*.
 6. Sélectionnez un espace de travail Log Analytics existant ou créez-en un.
-7. tooenable *AuditEvent* journaux, cochez hello sous journal
-8. Cliquez sur *enregistrer* tooenable la journalisation hello de diagnostics tooLog Analytique
+7. Pour activer les journaux *AuditEvent*, cochez la case située sous Journal.
+8. Cliquez sur *Enregistrer* pour activer la journalisation des diagnostics dans Log Analytics.
 
 ### <a name="enable-key-vault-diagnostics-using-powershell"></a>Activer les diagnostics Key Vault avec PowerShell
-Hello PowerShell script suivant fournit un exemple de procédure toouse `Set-AzureRmDiagnosticSetting` tooenable journalisation des diagnostics pour le coffre de clés :
+Le script PowerShell suivant fournit un exemple illustrant comment utiliser `Set-AzureRmDiagnosticSetting` pour activer la journalisation des diagnostics pour Key Vault :
 ```
 $workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
 
@@ -67,88 +67,88 @@ Set-AzureRmDiagnosticSetting -ResourceId $kv.ResourceId  -WorkspaceId $workspace
 
 
 ## <a name="review-azure-key-vault-data-collection-details"></a>Examiner les détails de la collecte de données par Azure Key Vault
-Solution de coffre de clés Azure collecte des journaux de diagnostics directement à partir de hello coffre de clés.
-Il n’est pas nécessaire de toowrite hello journaux tooAzure stockage d’objets Blob et aucun agent n’est requise pour la collection de données.
+La solution Azure Key Vault collecte des journaux de diagnostics directement à partir de Key Vault.
+Il n’est pas nécessaire d’écrire les journaux dans le stockage Blob Azure, et aucun agent n’est requis pour la collecte de données.
 
-Hello tableau suivant présente les méthodes de collecte de données et d’autres détails sur la façon dont les données sont collectées pour Azure Key Vault.
+Le tableau suivant présente les méthodes de collecte des données et d’autres détails sur le mode de collecte de données pour Azure Key Vault.
 
 | Plateforme | Agent direct | Agent Systems Center Operations Manager | Microsoft Azure | Operations Manager requis ? | Données de l’agent Operations Manager envoyées via un groupe d’administration | Fréquence de collecte |
 | --- | --- | --- | --- | --- | --- | --- |
 | Microsoft Azure |  |  |&#8226; |  |  | à l'arrivée |
 
 ## <a name="use-azure-key-vault"></a>Utiliser Azure Key Vault
-Après avoir [installer hello solution](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.KeyVaultAnalyticsOMS?tab=Overview), afficher des données du coffre de clés hello en cliquant sur hello **Azure Key Vault** vignette à partir de hello **vue d’ensemble** page d’Analytique de journal.
+Une fois la [solution installée](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.KeyVaultAnalyticsOMS?tab=Overview), affichez les données Key Vault en cliquant sur la vignette **Azure Key Vault** située dans la page **Vue d’ensemble** de Log Analytics.
 
 ![Image de la vignette Azure Key Vault](./media/log-analytics-azure-keyvault/log-analytics-keyvault-tile.png)
 
-Après avoir cliqué sur hello **vue d’ensemble** vignette, vous pouvez afficher des résumés de vos journaux ensuite dans toodetails pour hello suivant des catégories :
+Après avoir cliqué sur la vignette **Vue d’ensemble**, vous pouvez consulter des récapitulatifs de vos journaux et en approfondir des détails pour les catégories suivantes :
 
 * Volume de toutes les opérations de Key Vault dans le temps
 * Volumes des opérations en échec dans le temps
 * Latence opérationnelle moyenne par opération
-* Qualité de service pour les opérations avec le nombre de hello d’opérations qui prennent plus de 1 000 ms et une liste des opérations qui prennent plus de 1 000 ms
+* Qualité de service des opérations, avec le nombre d’opérations qui prennent plus de 1 000 ms et la liste de ces opérations
 
 ![Image du tableau de bord d’Azure Key Vault](./media/log-analytics-azure-keyvault/log-analytics-keyvault01.png)
 
 ![Image du tableau de bord d’Azure Key Vault](./media/log-analytics-azure-keyvault/log-analytics-keyvault02.png)
 
-### <a name="tooview-details-for-any-operation"></a>Détails tooview pour toute opération
-1. Sur hello **vue d’ensemble** , cliquez sur hello **Azure Key Vault** vignette.
-2. Sur hello **Azure Key Vault** tableau de bord, passez en revue les informations de résumé hello dans un des panneaux de hello, puis cliquez sur une tooview des informations détaillées sur elle dans la page de recherche de journal hello.
+### <a name="to-view-details-for-any-operation"></a>Pour afficher les détails d’une opération
+1. Dans la page **Vue d’ensemble**, cliquez sur la vignette **Azure Key Vault**.
+2. Sur le tableau de bord **Azure Key Vault**, examinez les informations résumées dans l’un des panneaux, puis cliquez sur l’une d’elles pour afficher des informations détaillées dans la page Recherche de journal.
 
-    Sur les pages de recherche de journal hello, vous pouvez afficher les résultats par heure, les résultats détaillés et votre historique de recherche de journal. Vous pouvez également filtrer selon les résultats de facettes toonarrow hello.
+    Sur l’une des pages de recherche de journal, vous pouvez afficher les résultats par date, les résultats détaillés et votre historique de recherches de journaux. Vous pouvez également filtrer par facettes pour affiner les résultats.
 
 ## <a name="log-analytics-records"></a>Enregistrements Log Analytics
-Hello solution d’Azure Key Vault analyse les enregistrements qui ont un type de **KeyVaults** qui sont collectées à partir de [AuditEvent journaux](../key-vault/key-vault-logging.md) dans les Diagnostics Azure.  Propriétés de ces enregistrements sont Bonjour tableau suivant :  
+La solution Azure Key Vault analyse les enregistrements de type **KeyVaults** qui sont collectés à partir des [journaux AuditEvent](../key-vault/key-vault-logging.md) dans les Diagnostics Azure.  Les propriétés de ces enregistrements figurent dans le tableau suivant :  
 
 | Propriété | Description |
 |:--- |:--- |
 | Type |*AzureDiagnostics* |
 | SourceSystem |*Microsoft Azure* |
-| callerIpAddress |Adresse IP du client hello qui a effectué la demande de hello |
+| callerIpAddress |Adresse IP du client qui a effectué la demande. |
 | Catégorie | *AuditEvent* |
-| CorrelationId |Un GUID facultatif qui hello client peut passer toocorrelate des côté service (le coffre de clés), les journaux côté client. |
-| DurationMs |Durée tooservice demande l’API REST hello, en millisecondes. Cette durée n’inclut pas de latence du réseau, hello décrivant côté client de hello peut correspond pas à ce stade. |
-| httpStatusCode_d |Code d’état HTTP retourné par la demande de hello (par exemple, *200*) |
-| id_s |ID unique de la demande de hello |
-| identity_claim_appid_g | GUID de l’id de l’application hello |
-| Nom d'opération |Nom de l’opération de hello, comme décrit dans [journalisation d’Azure Key Vault](../key-vault/key-vault-logging.md) |
-| operationVersion |Version de l’API REST demandée par hello client (par exemple *2015-06-01*) |
-| requestUri_s |URI de demande de hello |
-| Ressource |Nom de coffre de clés hello |
-| ResourceGroup |Groupe de ressources de coffre de clés hello |
-| ResourceId |ID de ressource Azure Resource Manager Pour les journaux de coffre de clés, il s’agit d’un ID de ressource de coffre de clés hello. |
+| CorrelationId |GUID facultatif que le client peut transférer pour mettre en corrélation les journaux côté client avec les journaux côté service (Key Vault). |
+| DurationMs |Délai nécessaire pour répondre à la demande API REST, en millisecondes. La latence du réseau n’étant pas incluse dans ce chiffre, le temps mesuré côté client peut ne pas correspondre à cette durée. |
+| httpStatusCode_d |Code d’état HTTP retourné par la demande (par exemple, *200*) |
+| id_s |ID unique de la demande. |
+| identity_claim_appid_g | GUID de l’ID d’application |
+| Nom d'opération |Nom de l’opération, comme décrit dans [journalisation d’Azure Key Vault](../key-vault/key-vault-logging.md) |
+| operationVersion |Version d’API REST demandée par le client (par exemple *2015-06-01*) |
+| requestUri_s |URI de la demande. |
+| Ressource |Nom du Key Vault. |
+| ResourceGroup |Groupe de ressources du Key Vault. |
+| ResourceId |ID de ressource Azure Resource Manager Pour les journaux de coffre de clés, il s’agit de l’ID de ressource du coffre de clés. |
 | ResourceProvider |*MICROSOFT.KEYVAULT* |
 | ResourceType | *VAULTS* |
 | ResultSignature |État HTTP (par exemple *OK*) |
 | ResultType |Résultat de la demande de l’API REST (par exemple, *Réussite*) |
-| SubscriptionId |ID d’abonnement hello contenant hello coffre de clés d’abonnement Azure |
+| SubscriptionId |ID de l’abonnement Azure contenant le Key Vault. |
 
-## <a name="migrating-from-hello-old-key-vault-solution"></a>Migration à partir de l’ancienne solution de coffre de clés hello
-En janvier 2017, hello pris en charge la façon d’envoi de journaux tooLog de coffre de clés que Analytique modifié. Ces modifications permettent de hello suivant avantages :
-+ Les journaux sont écrits directement tooLog Analytique sans hello devez toouse un compte de stockage
-+ Latence est faible à partir de l’heure hello lorsque les journaux sont générés toothem soient disponibles dans le journal Analytique
+## <a name="migrating-from-the-old-key-vault-solution"></a>Migration à partir d’une ancienne version de Key Vault
+En janvier 2017, le mode d’envoi des journaux de Key Vault vers Log Analytics a changé. Ces modifications présentent les avantages suivants :
++ Les journaux sont écrits directement dans Log Analytics sans avoir besoin d’utiliser un compte de stockage.
++ La durée de latence est plus courte entre le moment où les journaux sont générés et celui où ils deviennent disponibles dans Log Analytics.
 + Le nombre d’étapes de configuration est réduit.
 + Tous les types de diagnostics Azure sont au même format.
 
-solution de mise à jour de hello toouse :
+Pour utiliser la solution mise à jour :
 
-1. [Configurer toobe diagnostics provenant directement tooLog Analytique le coffre de clés](#enable-key-vault-diagnostics-in-the-portal)  
-2. Activer la solution de coffre de clés Azure hello à l’aide de hello est décrite dans [solutions Analytique de journal ajouter à partir de la galerie des Solutions de hello](log-analytics-add-solutions.md)
-3. Mettre à jour toutes les requêtes enregistrées, les tableaux de bord ou les alertes toouse hello nouveau type de données
-  + Le type est déconnecté : KeyVaults tooAzureDiagnostics. Vous pouvez utiliser hello ResourceType toofilter tooKey journaux du coffre.
+1. [Configurez les diagnostics pour qu’ils soient directement envoyés à Log Analytics à partir de Key Vault](#enable-key-vault-diagnostics-in-the-portal).  
+2. Activez la solution Azure Key Vault en procédant de la manière décrite dans [Ajouter des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md).
+3. Mettez à jour les requêtes, les tableaux de bord et les alertes enregistrés pour qu’ils utilisent le nouveau type de données.
+  + Le type passe de KeyVaults à AzureDiagnostics. Vous pouvez utiliser ResourceType pour filtrer les journaux Key Vault.
   - Au lieu de `Type=KeyVaults`, utilisez `Type=AzureDiagnostics ResourceType=VAULTS`.
   + Champs : (les noms de champs respectent la casse)
-  - Pour un champ qui comporte un suffixe de \_s, \_d, ou \_g dans nom hello, modification hello premier caractère toolower cas
-  - Pour un champ qui comporte un suffixe de \_o dans nom, les données de salutation est divisé en champs individuels en fonction du nom de champ hello imbriqué. Par exemple, hello UPN de l’appelant de hello est stocké dans un champ`identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_upn_s`
-   - CallerIpAddress champ modifié tooCallerIPAddress
+  - Pour tous les champs dont le suffixe est \_s, \_d ou \_g, remplacez le premier caractère du nom par une lettre minuscule.
+  - Pour tous les champs dont le suffixe est \_o, les données sont réparties sur plusieurs champs, selon les noms de champs imbriqués. Par exemple, l’UPN de l’appelant est stocké dans un champ `identity_claim_http_schemas_xmlsoap_org_ws_2005_05_identity_claims_upn_s`.
+   - Le champ CallerIpAddress est remplacé par CallerIPAddress
    - Le champ RemoteIPCountry n’est plus présent
-4. Supprimer hello *Analytique de coffre de clé (obsolète)* solution. Avec PowerShell, utilisez `Set-AzureOperationalInsightsIntelligencePack -ResourceGroupName <resource group that hello workspace is in> -WorkspaceName <name of hello log analytics workspace> -IntelligencePackName "KeyVault" -Enabled $false`.
+4. Supprimez la solution *Key Vault Analytics (déprécié)*. Avec PowerShell, utilisez `Set-AzureOperationalInsightsIntelligencePack -ResourceGroupName <resource group that the workspace is in> -WorkspaceName <name of the log analytics workspace> -IntelligencePackName "KeyVault" -Enabled $false`.
 
-Les données collectées avant la modification de hello n’est pas visible dans une nouvelle solution hello. Vous pouvez continuer tooquery pour cette à l’aide de données hello ancien Type et les noms de champs.
+Les données collectées avant la modification ne seront pas visibles dans la nouvelle solution. Vous pouvez continuer à interroger ces données à l’aide de l’ancien type et des anciens noms de champs.
 
-## <a name="troubleshooting"></a>Résolution des problèmes
+## <a name="troubleshooting"></a>résolution des problèmes
 [!INCLUDE [log-analytics-troubleshoot-azure-diagnostics](../../includes/log-analytics-troubleshoot-azure-diagnostics.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Utilisez [connecter recherche Analytique de journal](log-analytics-log-searches.md) tooview détaillé les données de coffre de clés Azure.
+* Utilisez les [recherches dans les journaux dans Log Analytics](log-analytics-log-searches.md) pour afficher les données détaillées de Azure Key Vault.

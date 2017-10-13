@@ -1,6 +1,6 @@
 ---
 title: "Azure Cosmos DB : API Java DocumentDB, Kit de développement logiciel (SDK) et ressources | Microsoft Docs"
-description: "Découvrez les hello API Java et le Kit de développement logiciel, y compris les dates de publication, les dates de retrait et les modifications apportées entre chaque version du Kit de développement logiciel Azure Cosmos DB DocumentDB Java de hello."
+description: "Découvrez l'API et le Kit de développement logiciel (SDK) Java, y compris les dates de lancement, les dates de suppression et les modifications apportées entre chaque version du Kit de développement logiciel (SDK) Java DocumentDB d’Azure Cosmos DB."
 services: cosmos-db
 documentationcenter: java
 author: rnagpal
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: khdang
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8ef43ebeb7ae1bfc55512c4a7489c1b7930122d6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 15e3f7ef3bfd6b1f61fe6081a378bdb29e0a1aa2
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-cosmos-db-documentdb-java-sdk-release-notes-and-resources"></a>Azure Cosmos DB - Kit de développement logiciel (SDK) Java DocumentDB : notes de publication et ressources
 > [!div class="op_single_selector"]
@@ -41,9 +41,9 @@ ms.lasthandoff: 10/06/2017
 
 <tr><td>**Documentation de l’API**</td><td>[Documentation de référence sur l’API Java](/java/api/com.microsoft.azure.documentdb)</td></tr>
 
-<tr><td>**Contribuent tooSDK**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
+<tr><td>**Contribution au Kit de développement logiciel (SDK)**</td><td>[GitHub](https://github.com/Azure/azure-documentdb-java/)</td></tr>
 
-<tr><td>**Prise en main**</td><td>[Prise en main hello Kit de développement logiciel Java](documentdb-java-get-started.md)</td></tr>
+<tr><td>**Prise en main**</td><td>[Bien démarrer avec le Kit de développement logiciel (SDK) Java](documentdb-java-get-started.md)</td></tr>
 
 <tr><td>**Didacticiel d’application web**</td><td>[Développement d’applications web avec Azure Cosmos DB](documentdb-java-application.md)</td></tr>
 
@@ -53,8 +53,8 @@ ms.lasthandoff: 10/06/2017
 ## <a name="release-notes"></a>Notes de publication
 
 ### <a name="a-name11201120"></a><a name="1.12.0"/>1.12.0
-* Fractionnements de pages toorequest de correctifs critiques du traitement au cours de la partition.
-* Résolution du problème de hello fort et niveaux de cohérence BoundedStaleness.
+* Correctifs de bogues critiques pour demander le traitement lors de fractionnements de partition.
+* Correction d’un problème avec les niveaux de cohérence Strong et BoundedStaleness.
 
 ### <a name="a-name11101110"></a><a name="1.11.0"/>1.11.0
 * Prise en charge ajoutée pour un nouveau niveau de cohérence nommé ConsistentPrefix.
@@ -62,11 +62,11 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="a-name11001100"></a><a name="1.10.0"/>1.10.0
 * Activation de la prise en charge de la collection partitionnée avec au minimum 2 500 RU/seconde et des incréments d’évolution de 100 RU/seconde.
-* Correction d’un bogue dans l’assembly natif de hello qui peut provoquer des NullRef exception de certaines requêtes.
+* Correction d’un bogue dans l’assembly natif, qui pouvait entraîner des exceptions NullRef pour certaines requêtes.
 
 ### <a name="a-name196196"></a><a name="1.9.6"/>1.9.6
-* Correction d’un bogue dans la configuration du moteur de requête hello qui peut provoquer des exceptions pour les requêtes en mode de passerelle.
-* Résolu quelques bogues dans le conteneur de session hello qui peut provoquer une exception « Ressource propriétaire introuvable » pour les demandes immédiatement après la création de la collection.
+* Correction d’un bogue dans la configuration du moteur de requête qui peut provoquer des exceptions pour les requêtes en mode de passerelle.
+* Correction de quelques bogues dans le conteneur de session qui peut provoquer une exception « Ressource propriétaire introuvable » pour les demandes dès la création de la collection.
 
 ### <a name="a-name195195"></a><a name="1.9.5"/>1.9.5
 * Ajout de la prise en charge des requêtes d’agrégation (COUNT, MIN, MAX, SUM et AVG). Consultez l’article [Aggregation support (Prise en charge de l’agrégation)](documentdb-sql-query.md#Aggregates).
@@ -80,72 +80,72 @@ ms.lasthandoff: 10/06/2017
 
 ### <a name="a-name194194"></a><a name="1.9.4"/>1.9.4
 * Ajout de la prise en charge simple d’un proxy basé sur les instances d’un client avec l’API ConnectionPolicy.setProxy().
-* Ajouté DocumentClient.close() API tooproperly arrêter DocumentClient l’instance.
-* Meilleures performances des requêtes en mode de connectivité directe en dérivant de plan de requête hello assembly natif hello au lieu de hello passerelle.
-* Définissez FAIL_ON_UNKNOWN_PROPERTIES = false, les utilisateurs n’avez pas besoin toodefine JsonIgnoreProperties dans leur POJO.
-* Journalisation refactorisé toouse SLF4J.
+* Ajout de l’API DocumentClient.close() permettant de fermer correctement l’instance DocumentClient.
+* Amélioration des performances de requête en mode de connectivité directe en dérivant le plan de requête à partir de l’assembly natif au lieu de la passerelle.
+* Définissez FAIL_ON_UNKNOWN_PROPERTIES = false, de sorte que les utilisateurs n’aient pas besoin de définir JsonIgnoreProperties dans leur POJO.
+* Journalisation refactorisée pour utiliser SLF4J.
 * Correction de quelques autres bogues dans un lecteur de cohérence.
 
 ### <a name="a-name193193"></a><a name="1.9.3"/>1.9.3
-* Correction d’un bogue dans les pertes de connexion tooprevent hello connexion gestion en mode de connexion directe.
-* Correction d’un bogue dans la requête TOP de hello où il peut lever NullReferenece exception.
-* Amélioration des performances en réduisant le nombre de hello d’appel de réseau pour les caches internes hello.
+* Correction d’un bogue dans la gestion des connexions pour éviter les fuites de connexion en mode de connectivité directe.
+* Correction d’un bogue dans la requête TOP des exceptions NullReference peuvent être levées.
+* Amélioration des performances avec la réduction du nombre d’appels réseau pour les caches internes.
 * Ajout d’un code d’état, d’un ID d’activité et d’un URI de requête dans DocumentClientException pour une meilleure résolution des problèmes.
 
 ### <a name="a-name192192"></a><a name="1.9.2"/>1.9.2
-* Correction d’un problème dans la gestion des connexions hello de stabilité.
+* Résolution d’un problème de gestion des connexions pour plus de stabilité.
 
 ### <a name="a-name191191"></a><a name="1.9.1"/>1.9.1
 * Ajout de la prise en charge du niveau de cohérence BoundedStaleness.
 * Ajout de la prise en charge de la connectivité directe pour les opérations CRUD pour les collections partitionnées.
 * Correction d’un bogue dans l’interrogation d’une base de données avec SQL.
-* Correction d’un bogue dans le cache de session hello où le jeton de session peut-être être défini de façon incorrecte.
+* Correction d’un bogue dans le cache de session où le jeton de session peut être défini de manière incorrecte.
 
 ### <a name="a-name190190"></a><a name="1.9.0"/>1.9.0
 * Ajout de la prise en charge des requêtes parallèles sur plusieurs partitions.
 * Ajout de la prise en charge des requêtes TOP/ORDER BY pour les collections partitionnées.
 * Ajout de la prise en charge de la cohérence forte.
 * Ajout de la prise en charge des requêtes en fonction du nom lors de l’utilisation de la connectivité directe.
-* Toomake fixe ActivityId maintenir une cohérence entre toutes les nouvelles tentatives de requête.
-* Correction d’un bogue lié cache de session toohello lors de la recréation d’une collection de hello même nom.
+* Correction visant à rendre ActivityId cohérent entre toutes les nouvelles tentatives de requête.
+* Correction d’un bogue lié au cache de session lors de la nouvelle création d’une collection avec le même nom.
 * Ajout des types de données Polygone et LineString lors de la spécification de la stratégie d’indexation de collection pour les requêtes spatiales à délimitation géographique.
 * Résolution des problèmes liés à Java Doc pour Java 1.8.
 
 ### <a name="a-name181181"></a><a name="1.8.1"/>1.8.1
-* Correction d’un bogue dans PartitionKeyDefinitionMap toocache les collections de partitions uniques afin de pas supplémentaire fetch partition principales demandes.
-* Correction d’une nouvelle tentative de bogue toonot lorsqu’une valeur de clé de partition incorrecte est fournie.
+* Correction d’un bogue dans PartitionKeyDefinitionMap pour la mise en cache de collections de partitions uniques, sans aucune extraction supplémentaire des demandes de clés de partition.
+* Correction d’un bogue pour l’absence de nouvelle tentative en cas de valeur de clé de partition incorrecte.
 
 ### <a name="a-name180180"></a><a name="1.8.0"/>1.8.0
-* Prise en charge de hello ajouté pour les comptes de la base de données de plusieurs régions.
-* Prise en charge pour la nouvelle tentative automatique sur les demandes limitées par hello de toocustomize options max nouvelles tentatives et recommencez max de délai d’attente.  Voir RetryOptions et ConnectionPolicy.getRetryOptions().
+* Ajout de la prise en charge des comptes de base de données de plusieurs régions.
+* Ajout de la prise en charge d’une nouvelle tentative automatique sur les requêtes limitées avec options de personnalisation du nombre maximum de tentatives et du délai d’attente maximum entre deux tentatives.  Voir RetryOptions et ConnectionPolicy.getRetryOptions().
 * Propriété IPartitionResolver déconseillée basée sur un code de partitionnement personnalisé. Utilisez des collections partitionnées pour bénéficier d’un niveau de stockage et de débit supérieur.
 
 ### <a name="a-name171171"></a><a name="1.7.1"/>1.7.1
 * Ajout de la prise en charge d’une stratégie de nouvelle tentative pour la limitation.  
 
 ### <a name="a-name170170"></a><a name="1.7.0"/>1.7.0
-* Durée toolive (TTL) prise en charge pour les documents.
+* Ajout de la prise en charge de la durée de vie (TTL) pour les documents.
 
 ### <a name="a-name160160"></a><a name="1.6.0"/>1.6.0
 * Implémentation des [collections partitionnées](partition-data.md) et des [niveaux de performances définis par l’utilisateur](performance-levels.md).
 
 ### <a name="a-name151151"></a><a name="1.5.1"/>1.5.1
-* Correction d’un bogue dans les valeurs de hachage HashPartitionResolver toogenerate dans toobe little-endian cohérent avec les autres kits de développement logiciel.
+* Correction d’un bogue dans HashPartitionResolver pour générer des valeurs de hachage en little-endian dans un souci de cohérence avec les autres kits de développement logiciel.
 
 ### <a name="a-name150150"></a><a name="1.5.0"/>1.5.0
-* Ajouter & age de hachage tooassist de programmes de résolution de partition avec des applications de partitionnement sur plusieurs partitions.
+* Ajoutez des programmes de résolution de partitions par hachage et par spécification de plages de valeurs pour vous aider lors du partitionnement des applications sur plusieurs partitions.
 
 ### <a name="a-name140140"></a><a name="1.4.0"/>1.4.0
-* Implémentation de l’opération Upsert. Nouvelles méthodes upsertXXX a ajouté une fonctionnalité de Upsert toosupport.
+* Implémentation de l’opération Upsert. Nouvelles méthodes upsertXXX ajoutées pour prendre en charge la fonctionnalité Upsert.
 * Implémenter l'ID en fonction du routage. Aucune modification d'API publique, toutes les modifications en interne.
 
 ### <a name="a-name130130"></a><a name="1.3.0"/>1.3.0
-* Version a ignoré le numéro de version toobring d’alignement avec les autres kits de développement logiciel
+* Version ignorée pour aligner le numéro de version avec les autres Kits de développement logiciel (SDK)
 
 ### <a name="a-name120120"></a><a name="1.2.0"/>1.2.0
 * Prise en charge de l'index géospatial
 * Validation de la propriété ID pour toutes les ressources. Les ID des ressources ne peuvent pas contenir les caractères ?, /, #, \, ou se terminer par un espace.
-* Ajoute un nouveau tooResourceResponse de « cours de transformation d’index » en-tête.
+* Ajoute le nouvel en-tête « progression de la transformation de l'index » à ResourceResponse.
 
 ### <a name="a-name110110"></a><a name="1.1.0"/>1.1.0
 * Implémente la stratégie d'indexation V2
@@ -154,14 +154,14 @@ ms.lasthandoff: 10/06/2017
 * Kit SDK GA
 
 ## <a name="release--retirement-dates"></a>Dates de lancement et de suppression
-Microsoft enverra une notification au moins **12 mois** avant la mise hors service d’un kit de développement dans la version plus récente/prise en charge ordre toosmooth hello transition tooa.
+Microsoft fournira une notification au moins **12 mois** avant le retrait d’un Kit de développement logiciel (SDK) pour faciliter la transition vers une version plus récente/prise en charge.
 
-Nouvelles fonctionnalités et les fonctionnalités et les optimisations sont ajoutées uniquement toohello actuel kit de développement logiciel, par conséquent il est recommandé que vous toohello mise à niveau toujours la dernière SDK version dès que possible.
+Les nouvelles fonctionnalités et fonctions, et les optimisations sont uniquement ajoutées au Kit de développement logiciel (SDK) actuel. Par conséquent, il est recommandé de toujours passer à la dernière version du Kit de développement logiciel (SDK) dès que possible.
 
-N’importe quel tooCosmos demande à l’aide d’un kit de développement logiciel mis hors service de base de données seront rejetées par le service de hello.
+Le service rejette toute requête envoyée à Cosmos DB à l’aide d’un Kit de développement logiciel (SDK) supprimé.
 
 > [!WARNING]
-> Toutes les versions de hello DocumentDB SDK pour tooversion préalable de Java **1.0.0** sera retiré le **29 février 2016**.
+> Toutes les versions du Kit de développement logiciel (SDK) DocumentDB pour Java antérieures à la version **1.0.0** seront supprimées le **29 février 2016**.
 > 
 > 
 
@@ -203,5 +203,5 @@ N’importe quel tooCosmos demande à l’aide d’un kit de développement logi
 [!INCLUDE [cosmos-db-sdk-faq](../../includes/cosmos-db-sdk-faq.md)]
 
 ## <a name="see-also"></a>Voir aussi
-toolearn savoir plus sur Cosmos DB, consultez [base de données Microsoft Azure Cosmos](https://azure.microsoft.com/services/cosmos-db/) page du service.
+Pour en savoir plus sur Cosmos DB, consultez la page du service [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/).
 

@@ -1,6 +1,6 @@
 ---
-title: "les spécifications techniques aaaStorSimple | Documents Microsoft"
-description: "Décrit les spécifications techniques hello et les informations de conformité des réglementations en vigueur pour les composants matériels hello StorSimple."
+title: "Caractéristiques techniques StorSimple | Microsoft Docs"
+description: "Décrit les caractéristiques techniques et les informations de conformité aux normes réglementaires des composants matériels StorSimple."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/02/2017
 ms.author: alkohli
-ms.openlocfilehash: 98fa3307e2a929551c74e8b3179bb0fb61c0ab53
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d7cd31dcb2278284ada6e7ac1d8beab9e1b5b1df
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="technical-specifications-and-compliance-for-hello-storsimple-device"></a>Spécifications techniques et conformité de l’appareil StorSimple hello
+# <a name="technical-specifications-and-compliance-for-the-storsimple-device"></a>Caractéristiques techniques et conformité de l’appareil StorSimple
 
 ## <a name="overview"></a>Vue d'ensemble
 
-composants de matériels Hello de votre appareil Microsoft Azure StorSimple respectent toohello les spécifications techniques et les normes décrites dans cet article. les spécifications techniques Hello décrivent la capacité de stockage des modules de refroidissement (PCM), les lecteurs de disque, hello et boîtiers. les informations de compatibilité Hello couvrent des éléments tels que les normes internationales, sécurité et émissions et le câblage.
+Les composants matériels de l’appareil Microsoft Azure StorSimple sont conformes aux caractéristiques techniques et normes réglementaires présentées dans cet article. Les caractéristiques techniques décrivent les modules d’alimentation et de refroidissement (PCM), les lecteurs de disque, la capacité de stockage et les boîtiers. Les informations de conformité couvrent les éléments tels que les normes internationales, la sécurité et les émissions et le câblage.
 
 ## <a name="power-and-cooling-module-specifications"></a>Caractéristiques du module d’alimentation et de refroidissement
 
-l’appareil StorSimple Hello a deux 100-240 V double ventilateur, compatibles Modules de refroidissement (PCM). Cette configuration fournit une alimentation redondante. Si un module PCM tombe en panne, appareil de hello continue normalement toooperate sur hello autre module jusqu'à ce que hello échoué module est remplacé.
+L’appareil StorSimple intègre deux modules d’alimentation et de refroidissement (PCM) conformes SBB à double ventilateur de 100-240 V. Cette configuration fournit une alimentation redondante. Si un PCM échoue, l’appareil continue à fonctionner normalement sur l’autre PCM jusqu’au remplacement du module défaillant.
 
-Hello boîtiers utilise un PCM de 580 W et le boîtier principal utilise un PCM de 764 W. Hello tableaux ci-après les spécifications techniques hello liste associées hello PCM.
+Le boîtier EBOD utilise un PCM de 580 W et le boîtier principal un PCM de 764 W. Les tableaux suivants répertorient les caractéristiques techniques des PCM.
 
 | Caractéristique | PCM 580 W (EBOD) | PCM 764 W (principal) |
 | --- | --- | --- |
@@ -49,7 +49,7 @@ Hello boîtiers utilise un PCM de 580 W et le boîtier principal utilise un PCM 
 
 ## <a name="power-consumption-statistics"></a>Statistiques sur la consommation énergétique
 
-Hello tableau suivant répertorie des données de consommation de puissance classique de hello (les valeurs réelles peuvent varier de hello publiée) pour hello divers modèles d’appareil StorSimple.
+Le tableau suivant répertorie les données de consommation énergétique standard (les valeurs réelles peuvent différer des valeurs publiées) des différents modèles d’appareil StorSimple.
 
 | Conditions | 240 V CA | 240 V CA | 240 V CA | 110 V CA | 110 V CA | 110 V CA |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -62,11 +62,11 @@ Hello tableau suivant répertorie des données de consommation de puissance clas
 
 ## <a name="disk-drive-specifications"></a>Caractéristiques des lecteurs de disque
 
-Votre appareil StorSimple prend en charge des lecteurs de disque SCSI SAS (Serial Attached) too12 format 3,5 pouces facteur. les disques réels Hello peuvent être un mélange de disques SSD (SSD) ou les lecteurs de disque dur (HDD), en fonction de la configuration du produit hello. emplacements de Hello 12 disques se trouvent dans une configuration de 3 par 4 devant boîtier de hello. permet de Hello boîtiers de stockage supplémentaire pour un autre 12 lecteurs de disque. Il s’agit toujours de disques durs.
+L’appareil StorSimple prend en charge jusqu’à 12 disques SAS (Serial Attached SCIS) de 3,5 pouces. Les lecteurs réels peuvent être une combinaison de disques SSD ou de lecteurs de disque dur (HDD), selon la configuration du produit. Les 12 emplacements de disque se trouvent dans une configuration de 3 par 4 à l’avant du boîtier. Le boîtier EBOD permet le stockage de 12 autres lecteurs de disque. Il s’agit toujours de disques durs.
 
 ## <a name="storage-specifications"></a>Spécifications de stockage
 
-les appareils StorSimple Hello ont une combinaison de disques durs et des disques SSD pour les deux hello 8100 et 8600. la capacité totale utilisable Hello pour hello 8100 et 8600 sont à peu près 15 et 38 To respectivement. Hello tableau suivant décrit les détails hello SSD, disque dur et la capacité du cloud dans le contexte hello Hello capacité de la solution StorSimple.
+Les appareils StorSimple disposent d’une combinaison de disques durs et de disques SSD pour les modèles 8100 et 8600. La capacité de stockage totale utilisable pour les modèles 8100 et 8600 est d’environ 15 et 38 To respectivement. Le tableau suivant décrit les capacités de stockage du disque SSD, du disque dur ainsi que du cloud dans le cadre de la solution StorSimple.
 
 | Modèle d’appareil/capacité | 8100 | 8600 |
 | --- | --- | --- |
@@ -80,37 +80,37 @@ les appareils StorSimple Hello ont une combinaison de disques durs et des disque
 | Capacité utilisable totale* |~ 15 To |~ 38 To |
 | Capacité totale de la solution (y compris le cloud) |200 To |500 To |
 
-<sup>* </sup>- *capacité totale Hello inclut hello la capacité disponible pour les données, les métadonnées et les mémoires tampons.*
+<sup>* </sup>- *La capacité totale utile inclut la capacité disponible pour les données, les métadonnées et les mémoires tampons.*
 
 ## <a name="enclosure-dimensions-and-weight-specifications"></a>Dimensions et poids des boîtiers
 
-suivant la liste des tables de Hello hello différentes spécifications de boîtier pour les dimensions et poids.
+Les tableaux suivants répertorient les dimensions et les caractéristiques de poids des différents boîtiers.
 
 ### <a name="enclosure-dimensions"></a>Dimensions de boîtier
 
-Hello tableau suivant répertorie les dimensions hello du boîtier hello en millimètres et en pouces.
+Le tableau suivant répertorie les dimensions du boîtier en millimètres et en pouces.
 
 | Boîtier | Millimètres | Pouces |
 | --- | --- | --- |
 | Hauteur |87,9 |3,46 |
 | Largeur entre brides de montage |483 |19,02 |
 | Largeur du boîtier |443 |17,44 |
-| Profondeur de tooextremity bride de montage du corps du boîtier |577 |22,72 |
-| Profondeur des opérations du panneau toofurthest et l’extrémité du boîtier |630,5 |24,82 |
-| Profondeur de monter la bride toofurthest et l’extrémité du boîtier |603 |23,74 |
+| Profondeur de la bride de montage avant à l’extrémité du corps du boîtier |577 |22,72 |
+| Profondeur, du panneau de commande à l’extrémité la plus lointaine du boîtier |630,5 |24,82 |
+| Profondeur, de la bride de montage à l’extrémité la plus lointaine du boîtier |603 |23,74 |
 
 ### <a name="enclosure-weight"></a>Poids du boîtier
 
-Selon la configuration de hello, un boîtier principal entièrement chargé peut peser entre 21 too33 kg et nécessite deux personnes toohandle il.
+Selon la configuration, un boîtier principal entièrement chargé peut peser de 21 à 33 kg et doit donc être manipulé par deux personnes.
 
 | Boîtier | Poids |
 | --- | --- |
-| Poids maximal (dépend de la configuration de hello) |30 à 33 kg |
+| Poids maximal (dépend de la configuration) |30 à 33 kg |
 | Vide (aucun disque monté) |21 à 23 kg |
 
 ## <a name="enclosure-environment-specifications"></a>Caractéristiques ambiantes pour le boîtier
 
-Cette section répertorie l’environnement du boîtier hello spécifications toohello connexes. température de Hello, humidité, altitude, résistance aux chocs, vibration, orientation, sécurité et compatibilité électromagnétique (EMC) sont inclus dans cette catégorie.
+Cette section répertorie les caractéristiques liées à l’environnement du boîtier. La température, l’humidité, l’altitude, les chocs, les vibrations, l’orientation, la sécurité et la compatibilité électromagnétique (CEM) sont inclus dans cette catégorie.
 
 ### <a name="temperature-and-humidity"></a>Température et humidité
 
@@ -123,56 +123,56 @@ Cette section répertorie l’environnement du boîtier hello spécifications to
 
 | Boîtier | Caractéristiques en fonctionnement |
 | --- | --- |
-| Ventilation |Ventilation du système se toorear avant. Le système doit être utilisé avec une installation basse pression à échappement vers l’arrière. La contre-pression créée par les portes de rack et les obstacles ne doit pas dépasser 5 pascals (0,5 mm de colonne d’eau). |
-| Altitude, en fonctionnement |-30 mètres too3045 mètres (too10-100 pieds, 000 pieds) avec une température maximale détarée de 5 ° C au-dessus de pieds 7000. |
-| Altitude, hors fonctionnement |-305 mètres too12, 192 mètres (too40-1,000 pieds, 000 pieds) |
+| Ventilation |La ventilation du système s’effectue de l’avant vers l’arrière. Le système doit être utilisé avec une installation basse pression à échappement vers l’arrière. La contre-pression créée par les portes de rack et les obstacles ne doit pas dépasser 5 pascals (0,5 mm de colonne d’eau). |
+| Altitude, en fonctionnement |-30 mètres à 3 045 mètres (-100 pieds à 10 000 pieds) avec la température de service maximale réduite de 5 °C à plus de 7 000 mètres. |
+| Altitude, hors fonctionnement |-305 mètres à 12 192 mètres (-1 000 pieds à 40 000 pieds) |
 | Chocs, en fonctionnement |5 g 10 ms ½ sinus |
 | Chocs, hors fonctionnement |30 g 10 ms ½ sinus |
 | Vibrations, en fonctionnement |Moyenne quadratique 0,21 g, 5-500 Hz aléatoire |
 | Vibrations, hors fonctionnement |Moyenne quadratique 1,04 g, 2-200 Hz aléatoire |
 | Vibrations, déplacement |3 g 2-200 Hz sinus |
 | Orientation et montage |Montage en rack de 19" (2 unités EIA) |
-| Rails de rack |rayon de profondeur minimale de 700 mm (31.50 pouces) toofit conforme à la norme IEC 297 |
+| Rails de rack |Convient pour une profondeur minimale de rack de 700 mm (31,50 pouces), conforme à la norme CEI 297 |
 | Sécurité et homologations |CE et UL EN 61000-3, CEI 61000-3, UL 61000-3 |
 | CEM |EN55022 (CISPR - A), FCC A |
 
 ## <a name="international-standards-compliance"></a>Conformité aux normes internationales
 
-Votre appareil Microsoft Azure StorSimple est conforme à la suite de normes internationales de hello :  
+L’appareil Microsoft Azure StorSimple est conforme aux normes internationales suivantes :  
 
 * CE - EN 60950-1
-* TooIEC de rapport CB 60950-1
-* UL et cUL tooUL 60950-1
+* Rapport CB sur CEI 60950-1
+* UL et cUL sur UL 60950-1
 
 ## <a name="safety-compliance"></a>Conformité aux normes de sécurité
 
-Votre appareil Microsoft Azure StorSimple répond aux hello suit les normes de sécurité :
+L’appareil Microsoft Azure StorSimple est conforme aux normes de sécurité suivantes :
 
 * Homologation du type de produit du système : UL, cUL, CE
 * Conformité aux normes de sécurité : UL 60950, CEI 60950, EN 60950
 
 ## <a name="emc-compliance"></a>Conformité électromagnétique
 
-Votre appareil Microsoft Azure StorSimple répond aux hello suivant les évaluations EMC.
+L’appareil Microsoft Azure StorSimple est conforme aux niveaux de sécurité suivants :
 
 ### <a name="emissions"></a>Émissions
 
-Appareil de Hello est EMC conforme pour les niveaux des émissions conduction et par rayonnement.
+L’appareil est conforme aux normes CEM pour les niveaux d’émissions par conduction et par rayonnement.
 
 * Niveaux maximums d’émissions par conduction : CFR 47 partie 15 classe A, EN55022 classe A, CISPR classe A
 * Niveaux maximums d’émissions par rayonnement : CFR 47 partie 15B classe A, EN55022 classe A, CISPR classe A
 
 ### <a name="harmonics-and-flicker"></a>Harmonique et papillotement
 
-Appareil de Hello est conforme à la norme EN61000-3-2/3.
+L’appareil est conforme à la norme EN61000-3-2/3.
 
 ### <a name="immunity-limit-levels"></a>Niveaux maximums d’immunité
 
-Appareil de Hello est conforme à la norme EN55024.
+L’appareil est conforme à la norme EN55024.
 
 ## <a name="ac-power-cord-compliance"></a>Conformité du cordon d’alimentation secteur
 
-Hello plug- and hello complète cordon d’alimentation doit respecter les normes hello pour pays hello dans le hello périphérique est utilisé, et elles doivent avoir des autorisations de sécurité qui sont acceptables dans ce pays. les tables suivantes de Hello normes de liste pour l’Europe et des États-Unis de hello.
+L’ensemble fiche-cordon d’alimentation doit être conforme aux normes applicables dans le pays où l’appareil est utilisé et bénéficier de certifications de sécurité acceptables dans ce pays. Les tableaux suivants répertorient les normes applicables aux États-Unis et en Europe.
 
 ### <a name="ac-power-cords---usa-must-be-nrtl-listed"></a>Cordons d’alimentation secteur - États-Unis (doivent être répertoriés par un laboratoire d’essai reconnu nationalement)
 
@@ -191,9 +191,9 @@ Hello plug- and hello complète cordon d’alimentation doit respecter les norme
 
 ## <a name="supported-network-cables"></a>Câbles réseau pris en charge
 
-Pour les interfaces réseau hello 10 GbE, DATA 2 et 3 de données, consultez toohello [liste des câbles réseau pris en charge et des modules](storsimple-supported-hardware-for-10-gbe-network-interfaces.md).
+Pour les interfaces réseau 10 GbE, DATA 2 et DATA 3, consultez la [liste des modules et des câbles réseau pris en charge](storsimple-supported-hardware-for-10-gbe-network-interfaces.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vous êtes maintenant prêt toodeploy un appareil StorSimple dans votre centre de données. Pour plus d’informations, consultez [Déploiement de votre appareil local](storsimple-8000-deployment-walkthrough-u2.md).
+Vous êtes désormais prêt à déployer un appareil StorSimple dans votre centre de données. Pour plus d’informations, consultez [Déploiement de votre appareil local](storsimple-8000-deployment-walkthrough-u2.md).
 

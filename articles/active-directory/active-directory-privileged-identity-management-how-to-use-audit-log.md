@@ -1,6 +1,6 @@
 ---
-title: "journal d’audit aaaHow toouse hello dans Azure AD Privileged Identity Management | Documents Microsoft"
-description: "Découvrez comment du journal d’audit de toouse hello dans l’extension d’Azure Privileged Identity Management hello."
+title: "Comment utiliser le journal d’audit dans Azure AD Privileged Identity Management | Microsoft Docs"
+description: "Découvrez comment utiliser le journal d’audit dans l’extension Azure Privileged Identity Management."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,48 +15,48 @@ ms.workload: identity
 ms.date: 02/14/2017
 ms.author: billmath
 ms.custom: pim
-ms.openlocfilehash: 36987eaab9fe02c5dd7b4f4705e487299430745d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7d9a5255a64d46c1388d328a606b3f297d61262b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-hello-audit-log-in-pim"></a>À l’aide du journal d’audit de hello dans PIM
-Vous pouvez utiliser toosee de journal d’audit hello Privileged Identity Management (PIM) toutes les affectations d’utilisateur de hello et des activations sur une période donnée. Si vous souhaitez que l’historique d’audit de hello toosee d’activité de votre client, y compris l’administrateur, utilisateur final et l’activité de synchronisation, vous pouvez utiliser hello [rapports d’accès et d’utilisation de Azure Active Directory.](active-directory-view-access-usage-reports.md)
+# <a name="using-the-audit-log-in-pim"></a>Utilisation du journal d’audit dans PIM
+Vous pouvez utiliser le journal d’audit Privileged Identity Management (PIM) pour voir toutes les activations et affectations d’utilisateur dans un laps de temps donné. Si vous souhaitez consulter l’historique d’audit complet de l’activité dans votre client, notamment l’activité de l’administrateur, de l’utilisateur final et de la synchronisation, vous pouvez utiliser les [rapports d’accès et d’utilisation d’Azure Active Directory.](active-directory-view-access-usage-reports.md)
 
-## <a name="navigate-toohello-audit-log"></a>Parcourir le journal d’audit de toohello
-À partir de hello [portail Azure](https://portal.azure.com) tableau de bord, sélectionnez hello **Azure AD Privileged Identity Management** application. À partir de là, vous pouvez accéder au journal d’audit de hello en cliquant sur **gérer les rôles privilégiés** > **historique d’Audit** dans le tableau de bord hello PIM.
+## <a name="navigate-to-the-audit-log"></a>Accéder au journal d’audit
+À partir du [portail Azure](https://portal.azure.com) et du tableau de bord, sélectionnez l’application **Azure AD Privileged Identity Management** . À partir de là, accédez au journal d’audit en cliquant sur **Gérer les rôles privilégiés** > **Historique d’audit** dans le tableau de bord PIM.
 
-## <a name="hello-audit-log-graph"></a>graphique de journal d’audit Hello
-Vous pouvez utiliser des activations totales hello du tooview journal hello audit activations maximales par jour et des activations moyenne par jour dans un graphique linéaire.  Vous pouvez également filtrer les données de salutation par rôle, s’il existe plusieurs rôles dans l’historique d’audit de hello.
+## <a name="the-audit-log-graph"></a>Graphique du journal d’audit
+Le journal d’audit indique le nombre total d’activations, le nombre maximal d’activations par jour et la moyenne d’activations par jour dans un graphique linéaire.  Vous pouvez également filtrer les données par rôle s’il existe plusieurs rôles dans l’historique d’audit.
 
-Hello d’utilisation **temps**, **action**, et **rôle** boutons toosort hello journal.
+Utilisez les boutons **temps**, **action** et **rôle** pour trier le journal.
 
-## <a name="hello-audit-log-list"></a>liste des journaux d’audit Hello
-les colonnes dans la liste des journaux d’audit hello Hello sont :
+## <a name="the-audit-log-list"></a>Liste du journal d’audit
+Les colonnes dans la liste du journal d’audit sont les suivantes :
 
-* **Demandeur** -utilisateur hello qui a demandé l’activation de rôles hello ou de modification.  Si la valeur de hello est « Système Azure », consultez le journal d’audit Azure hello pour plus d’informations.
-* **Utilisateur** -utilisateur hello est activation ou tooa de rôle.
-* **Rôle** -rôle de hello attribuée ou activée par l’utilisateur de hello.
-* **Action** - actions hello pris par le demandeur de hello. Ceci peut inclure l'attribution, la non-attribution, l’activation ou la désactivation.
-* **Heure** : lors de l’action de hello s’est produite.
-* **Raisonnement** -si n’importe quel texte a été entré dans le champ reason du hello lors de l’activation, il s’affiche ici.
+* **Demandeur** : personne qui a demandé l’activation de rôle ou la modification.  Si la valeur est « Système Azure », consultez le journal d'audit Azure pour plus d'informations.
+* **Utilisateur** : l’utilisateur qui active un rôle ou y est affecté.
+* **Rôle** : le rôle affecté ou activé par l’utilisateur.
+* **Action** : les mesures prises par le demandeur. Ceci peut inclure l'attribution, la non-attribution, l’activation ou la désactivation.
+* **Heure** : heure à laquelle l’action s’est produite.
+* **Motif** : tout texte éventuellement entré dans le champ de motif pendant l’activation.
 * **Expiration** : concerne uniquement l’activation de rôles.
 
-## <a name="filter-hello-audit-log"></a>Filtrer le journal d’audit hello
-Vous pouvez filtrer les informations de hello qui s’affiche dans le journal d’audit de hello en cliquant sur hello **filtre** bouton.  Hello **Panneau de paramètres de mise à jour graphique** s’affiche.
+## <a name="filter-the-audit-log"></a>Filtrer le journal d’audit
+Vous pouvez filtrer les informations qui s’affichent dans le journal d’audit en cliquant sur le bouton **Filtre** .  Le panneau **Mettre à jour les paramètres du graphique** s’affiche.
 
-Une fois que vous définissez des filtres de hello, cliquez sur **mise à jour** toofilter les données de salutation dans le journal de hello.  Si les données de salutation n’apparaissent pas immédiatement, actualisez la page de hello.
+Après avoir défini les filtres, cliquez sur **Mettre à jour** pour filtrer les données dans le journal.  Si les données ne s’affichent pas immédiatement, actualisez la page.
 
-### <a name="change-hello-date-range"></a>Modifier la plage de dates hello
-Hello d’utilisation **aujourd'hui**, **semaine**, **mois**, ou **personnalisé** boutons période toochange hello du journal d’audit de hello.
+### <a name="change-the-date-range"></a>Modifier la plage de dates
+Utilisez les boutons **Aujourd’hui**, **Semaine passée**, **Mois Dernier** ou **Personnalisé**.
 
-Lorsque vous choisissez hello **personnalisé** bouton, vous aurez un **de** champ date et un **à** date champ toospecify une plage de dates pour le journal de hello.  Vous pouvez entrer des dates de hello dans le format MM/JJ/AAAA ou cliquez sur hello **calendrier** icône et choisir la date de hello dans un calendrier.
+Si vous choisissez le bouton **Personnalisé**, les champs de date **De** et **À** s’affichent pour que vous puissiez spécifier une plage de dates pour le journal.  Vous pouvez entrer les dates au format JJ/MM/AAAA ou cliquer sur l’icône de **calendrier** et sélectionner une date dans un calendrier.
 
-### <a name="change-hello-roles-included-in-hello-log"></a>Modifier les rôles hello inclus dans le journal de hello
-Activez ou désactivez hello **rôle** tooinclude rôle tooeach suivant de case à cocher ou les exclure de hello ouvrir une session.
+### <a name="change-the-roles-included-in-the-log"></a>Modifier les rôles inclus dans le journal
+Cochez (ou décochez) la case **Rôle** en regard de chaque rôle à inclure dans le journal (ou à exclure de ce dernier).
 
-<!--Every topic should have next steps and links toohello next logical set of content tookeep hello customer engaged-->
+<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 ## <a name="next-steps"></a>Étapes suivantes
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]
 

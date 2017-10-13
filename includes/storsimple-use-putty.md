@@ -1,14 +1,14 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="tooconnect-through-hello-serial-console"></a>tooconnect via la console série de hello
-1. Brancher votre câble série toohello (directement ou via un adaptateur USB série).
-2. Ouvrez hello **le panneau de configuration**, puis ouvrez hello **le Gestionnaire de périphériques**.
-3. Identifiez les ports hello COM comme indiqué dans hello après l’illustration.
+#### <a name="to-connect-through-the-serial-console"></a>Pour établir une connexion via la console série
+1. Connectez votre câble série à l’appareil (directement ou via un adaptateur USB série).
+2. Ouvrez le **Panneau de configuration**, puis ouvrez le **Gestionnaire de périphériques**.
+3. Identifiez le port COM comme indiqué dans l’illustration suivante.
    
      ![Connexion via la console série ](./media/storsimple-use-putty/HCS_ConnectingDeviceS-include.png)
 4. Démarrez PuTTY. 
-5. Dans le volet droit de hello, modifiez hello **type de connexion** trop**série**.
-6. Dans le volet droit de hello, tapez le port COM approprié de hello. Assurez-vous que les paramètres de configuration série hello sont définis comme suit :
+5. Dans le volet droit, sous **Type de connexion**, cliquez sur **Série**.
+6. Dans le volet droit, tapez le port COM approprié. Assurez-vous que les paramètres de configuration série sont définis comme suit :
    
    * Vitesse : 115 200
    * Bits de données : 8
@@ -16,13 +16,13 @@
    * Parité : aucune
    * Contrôle de flux : aucun
      
-     Ces paramètres sont affichés dans hello après l’illustration.
+     Ces paramètres sont affichés dans l’illustration suivante.
      
      ![Paramètres puTTY](./media/storsimple-use-putty/HCS_PuttyConfig-include.png) 
      
      > [!NOTE]
-     > Si le paramètre de contrôle de flux par défaut hello ne fonctionne pas, essayez de définir de contrôle de flux hello tooXON/XOFF.
+     > Si le contrôle de flux par défaut ne fonctionne pas, essayez de définir le contrôle de flux sur XON/XOFF.
      > 
      > 
-7. Cliquez sur **ouvrir** toostart une session série.
+7. Cliquez sur **Ouvrir** pour démarrer une session série.
 

@@ -1,6 +1,6 @@
 ---
-title: configurations et des profils de service aaaHow toomanage | Documents Microsoft
-description: "Découvrez comment toowork avec les fichiers de configuration de profils et les configurations de service | lequel stocker les paramètres pour les environnements de déploiement hello et paramètres de publication des services de cloud computing."
+title: Gestion des configurations de service et des profils | Microsoft Docs
+description: "Découvrez comment utiliser les configurations de service et les fichiers de configuration de profils | qui stockent les paramètres pour les environnements de déploiement et comment publier les paramètres pour les services cloud."
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,91 +14,91 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 8/11/2017
 ms.author: kraigb
-ms.openlocfilehash: 1dba9df2fa57fe94dacc90ae74b05ccdc28270c1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: af1205f8c3e477d123d4835c80a68b3afd6ee5ad
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toomanage-service-configurations-and-profiles"></a>Comment toomanage configurations du service et profils
+# <a name="how-to-manage-service-configurations-and-profiles"></a>Gestion des configurations de service et des profils
 ## <a name="overview"></a>Vue d'ensemble
-Lorsque vous publiez un service cloud, Visual Studio stocke les informations de configuration dans deux types de fichiers de configuration : les configurations de service et les profils. Configurations de service (fichiers .cscfg) stockent les paramètres pour les environnements de déploiement hello pour un service cloud Azure. Azure utilise ces fichiers de configuration pour gérer vos services cloud. Sur hello autre part, le magasin de profils (fichiers .azurePubxml) paramètres de publication des services de cloud computing. Ces paramètres sont un enregistrement de ce que vous sélectionnez lorsque vous utilisez hello Assistant Publication et sont utilisés localement par Visual Studio. Cette rubrique explique comment toowork avec les deux types de fichiers de configuration.
+Lorsque vous publiez un service cloud, Visual Studio stocke les informations de configuration dans deux types de fichiers de configuration : les configurations de service et les profils. Les configurations de service (fichiers .cscfg) stockent les paramètres des environnements de déploiement pour un service cloud Azure. Azure utilise ces fichiers de configuration pour gérer vos services cloud. D'autre part, les profils (fichiers .azurePubxml) stockent les paramètres de publication des services cloud. Ces paramètres correspondent à l'enregistrement de ce que vous sélectionnez lorsque vous utilisez l'Assistant Publication. Ils sont utilisés localement par Visual Studio. Cette rubrique explique comment utiliser les deux types de fichiers de configuration.
 
 ## <a name="service-configurations"></a>Configurations de service
-Vous pouvez créer plusieurs toouse de configurations de service pour chacun de vos environnements de déploiement. Par exemple, vous pouvez créer une configuration de service pour l’environnement local de hello que vous utilisez toorun et testez une application Windows Azure et une autre configuration de service pour votre environnement de production.
+Vous pouvez créer plusieurs configurations de service à utiliser pour chacun de vos environnements de déploiement. Par exemple, vous pouvez créer une configuration de service pour l'environnement local que vous utilisez pour exécuter et tester une application Azure et une autre configuration de service pour votre environnement de production.
 
-Vous pouvez ajouter, supprimer, renommer et modifier ces configurations de service selon vos besoins. Vous pouvez gérer ces configurations de service à partir de Visual Studio, comme indiqué dans hello après l’illustration.
+Vous pouvez ajouter, supprimer, renommer et modifier ces configurations de service selon vos besoins. Vous pouvez gérer ces configurations de service à partir de Visual Studio, comme indiqué dans l'illustration suivante.
 
 ![Gérer les configurations de service](./media/vs-azure-tools-service-configurations-and-profiles-how-to-manage/manage-service-config.png)
 
-Vous pouvez également ouvrir hello **gérer les Configurations** boîte de dialogue pages de propriétés du rôle hello. propriétés de hello tooopen pour un rôle dans votre projet Windows Azure, ouvrez le menu contextuel de hello pour ce rôle, puis choisissez **propriétés**. Sur hello **paramètres** onglet, développez hello **Configuration du Service** liste, puis sélectionnez **gérer** tooopen hello **gérer les Configurations de**boîte de dialogue.
+Vous pouvez également ouvrir la boîte de dialogue **Gérer les configurations** de la page de propriétés du rôle. Pour ouvrir les propriétés d'un rôle dans votre projet Azure, ouvrez le menu contextuel de ce rôle, puis sélectionnez **Propriétés**. Dans l’onglet **Paramètres**, développez la liste **Configuration de service**, puis sélectionnez **Gérer** pour ouvrir la boîte de dialogue **Gérer les configurations**.
 
-### <a name="tooadd-a-service-configuration"></a>tooadd une configuration de service
-1. Dans l’Explorateur de solutions, ouvrez le menu contextuel hello hello projet Windows Azure, puis sélectionnez **gérer les Configurations**.
+### <a name="to-add-a-service-configuration"></a>Pour ajouter une configuration de service
+1. Dans l’Explorateur de solutions, ouvrez le menu contextuel du projet Azure, puis sélectionnez **Gérer les configurations**.
    
-    Hello **gérer les Configurations de Service** boîte de dialogue s’affiche.
-2. tooadd une configuration de service, vous devez créer une copie d’une configuration existante. toodo, choisissez hello configuration que vous souhaitez toocopy à partir de la liste des noms hello, puis sélectionnez **créer une copie**.
-3. Configuration du service hello toogive (facultatif) un autre nom, choisissez configuration hello de service à partir de la liste des noms hello, puis sélectionnez **renommer**. Bonjour **nom** zone de texte, entrez un nom hello que vous souhaitez toouse pour cette configuration de service, puis sélectionnez **OK**.
+    La boîte de dialogue **Gérer les configurations de service** s'affiche.
+2. Pour ajouter une configuration de service, vous devez créer une copie d'une configuration existante. Pour ce faire, sélectionnez la configuration que vous souhaitez copier dans la liste Nom, puis sélectionnez **Créer une copie**.
+3. (Facultatif) Pour donner un nom différent à la configuration de service, sélectionnez la nouvelle configuration de service dans la liste Nom, puis sélectionnez **Renommer**. Dans la zone de texte **Nom**, tapez le nom que vous voulez utiliser pour cette configuration de service, puis sélectionnez **OK**.
    
-    Un nouveau fichier de configuration de service nommé ServiceConfiguration. [Nouveau nom] .cscfg est ajouté toohello projet Azure dans l’Explorateur de solutions.
+    Un nouveau fichier de configuration de service nommé ServiceConfiguration.[Nouveau nom].cscfg est ajouté au projet Azure dans l’Explorateur de solutions.
 
-### <a name="toodelete-a-service-configuration"></a>toodelete une configuration de service
-1. Dans l’Explorateur de solutions, ouvrez le menu contextuel hello hello projet Windows Azure, puis sélectionnez **gérer les Configurations**.
+### <a name="to-delete-a-service-configuration"></a>Pour supprimer une configuration de service
+1. Dans l’Explorateur de solutions, ouvrez le menu contextuel du projet Azure, puis sélectionnez **Gérer les configurations**.
    
-    Hello **gérer les Configurations de Service** boîte de dialogue s’affiche.
-2. toodelete une configuration de service, choisissez configuration de hello que vous souhaitez toodelete de hello **nom** liste, puis sélectionnez **supprimer**. Une boîte de dialogue s’affiche tooverify que vous souhaitez toodelete cette configuration.
+    La boîte de dialogue **Gérer les configurations de service** s'affiche.
+2. Pour supprimer une configuration de service, sélectionnez la configuration que vous voulez supprimer dans la liste **Nom**, puis sélectionnez **Supprimer**. Une boîte de dialogue vous invite à confirmer que vous souhaitez supprimer cette configuration.
 3. Sélectionnez **Supprimer**.
    
-     fichier de configuration de service Hello est supprimé de hello projet Azure dans l’Explorateur de solutions.
+     Le fichier de configuration de service est supprimé du projet Azure dans l'Explorateur de solutions.
 
-### <a name="toorename-a-service-configuration"></a>toorename une configuration de service
-1. Dans l’Explorateur de solutions, ouvrez le menu contextuel hello hello projet Windows Azure, puis **gérer les Configurations**.
+### <a name="to-rename-a-service-configuration"></a>Pour renommer une configuration de service
+1. Dans l’Explorateur de solutions, ouvrez le menu contextuel du projet Azure, puis sélectionnez **Gérer les configurations**.
    
-    Hello **gérer les Configurations de Service** boîte de dialogue s’affiche.
-2. toorename une configuration de service, choisissez nouvelle configuration de service hello hello **nom** liste, puis sélectionnez **renommer**. Bonjour **nom** zone de texte, entrez un nom hello que vous souhaitez toouse pour cette configuration de service, puis sélectionnez **OK**.
+    La boîte de dialogue **Gérer les configurations de service** s'affiche.
+2. Pour renommer une configuration de service, sélectionnez la nouvelle configuration de service dans la liste **Nom**, puis sélectionnez **Renommer**. Dans la zone de texte **Nom**, tapez le nom que vous voulez utiliser pour cette configuration de service, puis sélectionnez **OK**.
    
-    nom Hello hello service du fichier de configuration est modifié dans hello projet Azure dans l’Explorateur de solutions.
+    Le nom du fichier de configuration de service est modifié dans le projet Azure dans l'Explorateur de solutions.
 
-### <a name="toochange-a-service-configuration"></a>toochange une configuration de service
-* Si vous souhaitez toochange une configuration de service, ouvrez le menu contextuel hello rôle spécifique de hello vous souhaitez toochange Bonjour projet Windows Azure, puis sélectionnez **propriétés**. Consultez [Comment : configurer des rôles de hello pour un Service de Cloud Azure avec Visual Studio](https://docs.microsoft.com/azure/vs-azure-tools-configure-roles-for-cloud-service) pour plus d’informations.
+### <a name="to-change-a-service-configuration"></a>Pour modifier une configuration de service
+* Pour modifier une configuration de service, ouvrez le menu contextuel du rôle que vous souhaitez modifier dans le projet Azure, puis sélectionnez **Propriétés**. Pour plus d’informations, consultez [Procédure : configuration des rôles pour un service cloud Azure avec Visual Studio](https://docs.microsoft.com/azure/vs-azure-tools-configure-roles-for-cloud-service) .
 
 ## <a name="make-different-setting-combinations-by-using-profiles"></a>Réaliser différentes combinaisons de paramètres à l'aide des profils
-En utilisant un profil, vous pouvez renseigner automatiquement hello **Assistant Publication** avec différentes combinaisons de paramètres à des fins différentes. Par exemple, vous pouvez créer un profil pour le débogage et un autre pour les versions finales. Dans ce cas, votre **déboguer** profil aurait **IntelliTrace** activé et hello **déboguer** configuration sélectionnée et votre **version** profil aurait **IntelliTrace** désactivée et hello **version** configuration sélectionnée. Vous pouvez également utiliser les différents profils toodeploy un service à l’aide d’un autre compte de stockage.
+En utilisant un profil, vous pouvez renseigner automatiquement l’ **Assistant Publication** avec une combinaison de paramètres différente pour chaque objectif. Par exemple, vous pouvez créer un profil pour le débogage et un autre pour les versions finales. Dans ce cas, votre profil **Débogage** aurait **IntelliTrace** activé et la configuration **Débogage** sélectionnée, tandis que votre profil **Version** aurait **IntelliTrace** désactivé et la configuration **Version** sélectionnée. Vous pourriez également utiliser des profils différents pour déployer un service à l'aide de comptes de stockage différents.
 
-Lorsque vous exécutez l’Assistant hello pour hello première fois, un profil par défaut est créé. Visual Studio stocke le profil de hello dans un fichier comportant l’extension .azurePubXml, qui est ajoutée tooyour projet Windows Azure sous hello **profils** dossier. Si vous spécifiez manuellement les différentes options lorsque vous exécutez les Assistant hello plus tard, fichier de hello met automatiquement à jour. Avant d’exécuter hello suivant la procédure, vous devez avez déjà publié votre service cloud au moins une fois.
+Lorsque vous exécutez l'Assistant pour la première fois, un profil par défaut est créé. Visual Studio stocke le profil dans un fichier portant l’extension .azurePubXml, qui est ajouté à votre projet Azure dans le dossier **Profils** . Si vous spécifiez manuellement d’autres options lors d’une exécution ultérieure de l'Assistant, le fichier se met à jour automatiquement. Avant de suivre la procédure suivante, vous devez avoir déjà publié votre service cloud au moins une fois.
 
-### <a name="tooadd-a-profile"></a>tooadd un profil
-1. Ouvrez le menu contextuel de hello pour votre projet Windows Azure, puis **publier**.
-2. Toohello suivant **cibler profile** liste, sélectionnez hello **enregistrer le profil** bouton, comme hello suivant montre l’illustration. Cette action vous crée un profil.
+### <a name="to-add-a-profile"></a>Pour ajouter un profil
+1. Ouvrez le menu contextuel de votre projet Azure, puis sélectionnez **Publier**.
+2. En regard de la liste **Profil cible**, sélectionnez le bouton **Enregistrer le profil**, comme le montre l’illustration suivante. Cette action vous crée un profil.
    
     ![Créer un profil](./media/vs-azure-tools-service-configurations-and-profiles-how-to-manage/create-new-profile.png)
-3. Une fois le profil de hello est créé, sélectionnez **< gérer... >** Bonjour **cibler profile** liste.
+3. Une fois le profil créé, sélectionnez **<Gérer...>** dans la liste **Profil cible**.
    
-    Hello **gérer les profils** boîte de dialogue s’affiche en tant que hello suivant montre l’illustration.
+    La boîte de dialogue **Gérer les profils** s’affiche, comme le montre l’illustration suivante.
    
     ![Boîte de dialogue Gérer les profils](./media/vs-azure-tools-service-configurations-and-profiles-how-to-manage/manage-profiles.png)
-4. Bonjour **nom** liste, choisissez un profil, puis sélectionnez **créer une copie de**.
-5. Choisissez hello **fermer** bouton.
+4. Dans la liste **Nom**, sélectionnez un profil, puis sélectionnez **Créer une copie**.
+5. Sélectionnez le bouton **Fermer** .
    
-    Hello nouveau profil apparaît dans la liste du profil cible hello.
-6. Bonjour **cibler profile** répertorier, profil hello select que vous venez de créer. paramètres de l’Assistant de publication Hello sont renseignés avec les options de hello du profil de hello que vous avez sélectionné.
-7. Sélectionnez hello **précédent** et **suivant** boutons toodisplay chaque page de l’Assistant Publication de hello et ensuite personnaliser les paramètres de hello pour ce profil. Pour plus d’informations, consultez [Assistant Publication d’application Azure](http://go.microsoft.com/fwlink/p/?LinkID=623085) .
-8. Après avoir terminé la personnalisation des paramètres de hello, sélectionnez **suivant** page des paramètres toogo toohello précédent. profil de Hello est enregistré lorsque vous publiez un service de hello à l’aide de ces paramètres ou si vous sélectionnez **enregistrer** suivant liste toohello des profils.
+    Le nouveau profil apparaît dans la liste des profils cibles.
+6. Dans la liste **Profil cible** , sélectionnez le profil que vous venez de créer. Les paramètres de l'Assistant Publication sont renseignés avec les options de profil que vous avez sélectionnées.
+7. Sélectionnez les boutons **Précédent** et **Suivant** pour afficher chaque page de l’Assistant Publication, puis personnalisez les paramètres de ce profil. Pour plus d’informations, consultez [Assistant Publication d’application Azure](http://go.microsoft.com/fwlink/p/?LinkID=623085) .
+8. Une fois la personnalisation des paramètres terminée, sélectionnez **Suivant** pour revenir à la page Paramètres. Le profil est enregistré quand vous publiez le service avec ces paramètres ou si vous sélectionnez **Enregistrer** en regard de la liste de profils.
 
-### <a name="toorename-or-delete-a-profile"></a>toorename ou supprimer un profil
-1. Ouvrez le menu contextuel de hello pour votre projet Windows Azure, puis **publier**.
-2. Bonjour **cibler profile** liste, sélectionnez **gérer**.
-3. Bonjour **gérer les profils** boîte de dialogue, profil hello select que vous souhaitez toodelete, puis sélectionnez **supprimer**.
-4. Dans hello boîte de dialogue de confirmation qui s’affiche, sélectionnez **OK**.
+### <a name="to-rename-or-delete-a-profile"></a>Pour renommer ou supprimer un profil
+1. Ouvrez le menu contextuel de votre projet Azure, puis sélectionnez **Publier**.
+2. Dans la liste **Profil cible**, sélectionnez **Gérer**.
+3. Dans la boîte de dialogue **Gérer les profils**, sélectionnez le profil que vous voulez supprimer, puis sélectionnez **Supprimer**.
+4. Dans la boîte de dialogue de confirmation qui s’affiche, sélectionnez **OK**.
 5. Sélectionnez **Fermer**.
 
-### <a name="toochange-a-profile"></a>toochange un profil
-1. Ouvrez le menu contextuel de hello pour votre projet Windows Azure, puis **publier**.
-2. Bonjour **cibler profile** liste, sélectionnez hello profil que toochange.
-3. Sélectionnez hello **précédent** et **suivant** boutons toodisplay hello de chaque page d’Assistant Publication, puis modifier les paramètres hello souhaité. Pour plus d’informations, consultez [Assistant Publication d’application Azure](http://go.microsoft.com/fwlink/p/?LinkID=623085) .
-4. Après avoir terminé la modification des paramètres de hello, sélectionnez **suivant** toohello arrière de toogo **paramètres** page.
-5. (Facultatif) sélectionnez **publier** service de cloud de hello toopublish à l’aide de nouveaux paramètres de hello. Si vous ne souhaitez pas toopublish votre service cloud à ce stade et que vous fermez hello Assistant Publication, Visual Studio vous demande si vous souhaitez toosave hello modifications toohello profil.
+### <a name="to-change-a-profile"></a>Pour modifier un profil
+1. Ouvrez le menu contextuel de votre projet Azure, puis sélectionnez **Publier**.
+2. Dans la liste **Profil cible** , sélectionnez le profil que vous voulez modifier.
+3. Sélectionnez les boutons **Précédent** et **Suivant** pour afficher chaque page de l’Assistant Publication, puis modifiez les paramètres de votre choix. Pour plus d’informations, consultez [Assistant Publication d’application Azure](http://go.microsoft.com/fwlink/p/?LinkID=623085) .
+4. Une fois la modification des paramètres terminée, sélectionnez **Suivant** pour revenir à la page **Paramètres**.
+5. (Facultatif) Sélectionnez **Publier** pour publier le service cloud avec les nouveaux paramètres. Si vous ne souhaitez pas publier votre service cloud à ce stade et que vous fermez l'Assistant Publication, Visual Studio vous demandera si vous souhaitez enregistrer les modifications apportées au profil.
 
 ## <a name="next-steps"></a>Étapes suivantes
-toolearn sur la configuration des autres parties de votre projet Windows Azure depuis Visual Studio, consultez [configuration d’un projet Azure](http://go.microsoft.com/fwlink/p/?LinkID=623075)
+Pour en savoir plus sur la configuration des autres parties de votre projet Azure à partir de Visual Studio, consultez [Configuration d’un projet Azure](http://go.microsoft.com/fwlink/p/?LinkID=623075)
 

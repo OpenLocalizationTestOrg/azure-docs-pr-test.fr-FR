@@ -1,6 +1,6 @@
 ---
-title: "aaaPlan le mappage réseau pour la réplication de machine virtuelle Hyper-V avec Site Recovery | Documents Microsoft"
-description: "Configurez le mappage réseau pour la réplication d’ordinateur virtuel Hyper-V à partir d’un tooAzure de centre de données local, ou tooa un site secondaire."
+title: "Planifier un mappage réseau pour la réplication de machine virtuelle Hyper-V avec Site Recovery | Microsoft Docs"
+description: "Configurez le mappage réseau pour la réplication de machines virtuelles Hyper-V à partir d’un centre de données local sur Azure ou sur un site secondaire."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,71 +14,71 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/23/2017
 ms.author: raynew
-ms.openlocfilehash: 86199b5840ea10fd33630bcc75d14340a49e01bd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b1b8b1ebc013a5dfb69528f9353369e18f84e61f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="plan-network-mapping-for-hyper-v-vm-replication-with-site-recovery"></a>Planifier un mappage réseau pour la réplication de machine virtuelle Hyper-V avec Site Recovery
 
 
 
-Cet article vous aidera à toounderstand et plan pour le réseau pendant la réplication d’ordinateurs virtuels Hyper-V tooAzure ou site secondaire de tooa de mappage, à l’aide de hello [service Azure Site Recovery](site-recovery-overview.md).
+Cet article vous aidera à comprendre et à planifier un mappage réseau lors de la réplication de machines virtuelles Hyper-V sur Azure ou sur un site secondaire à l’aide du [service Azure Site Recovery](site-recovery-overview.md).
 
-Après l’avoir lu cet article valider les commentaires en bas de hello de cet article, ou poser des questions techniques sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Après avoir lu cet article, vous pouvez publier des commentaires en bas ou poser des questions techniques via le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
-## <a name="network-mapping-for-replication-tooazure"></a>Mappage réseau pour la réplication tooAzure
+## <a name="network-mapping-for-replication-to-azure"></a>Mappage réseau pour réplication sur Azure
 
-Le mappage réseau est utilisé pour répliquer des machines virtuelles de Hyper-V (géré dans VMM) tooAzure. Le mappage réseau opère entre des réseaux de machines virtuelles sur un serveur VMM source et des réseaux Azure cibles. Mappage hello suivant :
+Un mappage réseau est utilisé lors de la réplication de machines virtuelles Hyper-V (gérées dans VMM) sur Azure. Le mappage réseau opère entre des réseaux de machines virtuelles sur un serveur VMM source et des réseaux Azure cibles. Il effectue les opérations suivantes :
 
-- **Connexion réseau**: garantit que les machines virtuelles répliquées de Azure sont réseau toohello connecté. Toutes les machines qui basculent sur hello même réseau peut se connecter tooeach autre, même si elles ont échoué sur les plans de récupération différent.
-- **Passerelle de réseau**: si une passerelle de réseau est configurée sur le réseau Azure cible de hello, les machines virtuelles peuvent se connecter tooother locaux virtuels.
-
-Notez les points suivants :
-
-- Vous mappez une source de VMM VM réseau tooan réseau virtuel Azure.
-- Après le basculement de machines virtuelles Azure Bonjour réseau source sera réseau virtuel de cible mappé toohello connecté.
-- Nouvelles machines virtuelles ajoutées réseau d’ordinateurs virtuels toohello source sont connectés toohello mappé réseau Azure lors de la réplication a lieu.
-- Si le réseau cible de hello possède plusieurs sous-réseaux, et un de ces sous-réseaux a hello le même nom que le sous-réseau sur lequel virtual machine de hello source se trouve, puis hello ordinateur virtuel se connecte le sous-réseau de toothat cible après le basculement.
-- S’il n’existe aucun sous-réseau cible avec un nom correspondant, ordinateur virtuel de hello se connecte toohello premier sous-réseau de réseau de hello.
-
-
-## <a name="network-mapping-for-replication-tooa-secondary-datacenter"></a>Mappage réseau pour la réplication tooa centre de données secondaire
-
-Le mappage réseau est utilisé pour répliquer des machines virtuelles de Hyper-V (gérée dans System Center Virtual Machine Manager (VMM)) tooa centre de données secondaire. Le mappage réseau opère entre des réseaux de machines virtuelles sur un serveur VMM source et des réseaux de machines virtuelles sur un serveur VMM cible. Mappage hello suivant :
-
-- **Connexion réseau**, réseaux de tooappropriate se connecte les machines virtuelles après le basculement. ordinateur virtuel de réplication Hello sera réseau connecté toohello cible qui est mappé toohello source réseau.
-- **Placement optimal**: pas de façon optimale les endroits hello machines virtuelles de réplication sur les serveurs hôtes Hyper-V. Machines virtuelles de réplication sont placées sur des hôtes auxquels peuvent hello d’accès mappées réseaux d’ordinateurs virtuels.
-- **Aucun mappage de réseau**: Si vous ne configurez pas le mappage réseau, machines virtuelles de réplica sera connecté tooany réseaux d’ordinateurs virtuels après le basculement.
+- **Connexion réseau** : s’assure que les machines virtuelles Azure répliquées sont connectées au réseau mappé. Toutes les machines qui basculent sur le même réseau peuvent se connecter entre elles, même si elles ont basculé dans des plans de récupération différents.
+- **Passerelle réseau** : si une passerelle réseau est configurée sur le réseau Azure cible, les machines virtuelles peuvent se connecter à d’autres machines virtuelles locales.
 
 Notez les points suivants :
 
-- Le mappage réseau peut être configuré entre les réseaux VM sur deux serveurs VMM ou sur un seul serveur VMM si deux sites sont gérés par hello même serveur.
-- Lorsque le mappage est correctement configuré la réplication est activée, une machine virtuelle à l’emplacement principal de hello sera connecté tooa réseau et son réplica dans l’emplacement cible de hello sera connecté tooits mappé réseau.
+- Vous mappez un réseau source de machines virtuelles VMM à un réseau virtuel Azure.
+- Après basculement, les machines virtuelles Azure du réseau source sont connectées au réseau virtuel cible mappé.
+- Les nouvelles machines virtuelles connectées au réseau de machines virtuelles source sont connectées au réseau Azure mappé lors de la réplication.
+- Si le réseau cible est associé à plusieurs sous-réseaux et que l’un d’eux présente le même nom que le sous-réseau dans lequel se trouve la machine virtuelle source, la machine virtuelle de réplication se connecte à ce sous-réseau cible après le basculement.
+- S’il n’existe aucun sous-réseau cible avec un nom correspondant, la machine virtuelle se connecte au premier sous-réseau du réseau.
+
+
+## <a name="network-mapping-for-replication-to-a-secondary-datacenter"></a>Mappage réseau pour réplication sur un centre de données secondaire
+
+Un mappage réseau est utilisé lors de la réplication de machines virtuelles Hyper-V (gérées dans System Center Virtual Machine Manager (VMM)) sur un centre de données secondaire. Le mappage réseau opère entre des réseaux de machines virtuelles sur un serveur VMM source et des réseaux de machines virtuelles sur un serveur VMM cible. Il effectue les opérations suivantes :
+
+- **Connexion réseau** : connecte les machines virtuelles aux réseaux appropriés après basculement. La machine virtuelle de réplication sera connectée au réseau cible mappé au réseau source.
+- **Placement optimal** : place de manière optimale les machines virtuelles de réplication sur des serveurs hôtes Hyper-V. Les machines virtuelles de réplication sont placés sur des hôtes qui peuvent accéder aux réseaux de machines virtuelles mappés.
+- **Aucun mappage réseau** : si vous ne configurez pas de mappage réseau, des machines virtuelles de réplication ne sont pas connectées à des réseaux de machines virtuelles après basculement.
+
+Notez les points suivants :
+
+- Le mappage réseau peut être configuré entre des réseaux de machines virtuelles sur deux serveurs VMM, ou sur un seul serveur VMM, lorsque deux sites sont gérés par le même serveur.
+- Lorsque le mappage réseau est correctement configuré et que la réplication est activée, une machine virtuelle située à l’emplacement principal est connectée à un réseau, et son réplica (à l’emplacement cible) est connecté à son réseau mappé.
 -
-- Si les réseaux ont été configurées correctement dans VMM, lorsque vous sélectionnez un réseau de machines virtuelles cible lors du mappage réseau, les clouds sources hello VMM qui utilisent le réseau d’ordinateurs virtuels hello source seront affichera, ainsi que les réseaux d’ordinateurs virtuels hello cibles disponibles sur les clouds cibles hello qui sont utilisés pour protection.
-- Si le réseau cible de hello a plusieurs sous-réseaux et de ces sous-réseaux a hello même nom comme hello sous-réseau sur quel hello ordinateur virtuel source se trouve, puis hello machine virtuelle de réplication sera connectée toothat cible sous-réseau après le basculement. S’il n’existe aucun sous-réseau cible avec un nom correspondant, ordinateur virtuel de hello sera connecté toohello premier sous-réseau de réseau de hello.
+- Si les réseaux ont été correctement configurés dans VMM, lorsque vous sélectionnez un réseau de machines virtuelles cible dans le cadre du mappage réseau, les clouds sources VMM qui utilisent ce réseau de machines virtuelles source seront affichés, ainsi que les réseaux de machines virtuelles cibles disponibles sur les clouds cibles à utiliser pour la protection.
+- Si le réseau cible est associé à plusieurs sous-réseaux et que l’un d’eux présente le même nom que le sous-réseau dans lequel se trouve la machine virtuelle source, l’ordinateur virtuel de réplication est connecté à ce sous-réseau cible après le basculement. S’il n’existe aucun sous-réseau cible avec un nom correspondant, la machine virtuelle sera connectée au premier sous-réseau du réseau.
 
 
 
 ### <a name="example"></a>Exemple
 
-Voici un exemple tooillustrate ce mécanisme. Prenons l’exemple d’une entreprise ayant ouvert deux bureaux, l’un à New York et l’autre à Chicago.
+Voici un exemple permettant d’illustrer ce processus. Prenons l’exemple d’une entreprise ayant ouvert deux bureaux, l’un à New York et l’autre à Chicago.
 
 **Emplacement** | **Serveur VMM** | **Réseaux de machines virtuelles** | **Mappés à**
 ---|---|---|---
-New York | VMM-NewYork| VMNetwork1-NewYork | Mappé tooVMNetwork1-Chicago
+New York | VMM-NewYork| VMNetwork1-NewYork | Mappé au réseau VMNetwork1-Chicago
  |  | VMNetwork2-NewYork | Non mappé
-Chicago | VMM-Chicago| VMNetwork1-Chicago | TooVMNetwork1-NewYork mappé
+Chicago | VMM-Chicago| VMNetwork1-Chicago | Mappé au réseau VMNetwork1-NewYork
  | | VMNetwork1-Chicago | Non mappé
 
 Dans cet exemple :
 
-- Lorsqu’un ordinateur virtuel est créé pour un ordinateur virtuel qui est connecté tooVMNetwork1-NewYork, il sera connecté tooVMNetwork1-Chicago.
-- Lorsqu’un ordinateur virtuel est créé pour VMNetwork2-NewYork ou VMNetwork2-Chicago, il ne sera pas connectée tooany réseau.
+- Lorsqu’un ordinateur virtuel de réplication est créé pour une machine virtuelle connectée au réseau VMNetwork1-NewYork, il est connecté au réseau VMNetwork1-Chicago.
+- Lorsqu’un ordinateur virtuel de réplication est créé pour le réseau VMNetwork2-NewYork ou VMNetwork2-Chicago, il n’est pas connecté à un réseau.
 
-Voici la façon dont les clouds VMM sont configurés dans notre exemple d’organisation et les réseaux logiques hello associées aux clouds de hello.
+Voici comment les clouds VMM sont configurés dans notre exemple d’organisation, ainsi que les réseaux logiques associés aux clouds.
 
 #### <a name="cloud-protection-settings"></a>Paramètres de protection des clouds
 
@@ -99,7 +99,7 @@ Chicago | LogicalNetwork1-Chicago | VMNetwork1-Chicago
 
 #### <a name="target-network-settings"></a>Paramètres de réseau cible
 
-Selon ces paramètres, lorsque vous sélectionnez le réseau d’ordinateurs virtuels hello cible, hello tableau suivant affiche les options de hello qui seront disponibles.
+Selon ces paramètres, lorsque vous sélectionnez le réseau de machines virtuelles cible, le tableau suivant répertorie les choix disponibles.
 
 **Sélection** | **Cloud protégé** | **Cloud de protection** | **Réseau cible disponible**
 ---|---|---|---
@@ -109,15 +109,15 @@ VMNetwork2-Chicago | SilverCloud1 | SilverCloud2 | Non disponible
  | GoldCloud1 | GoldCloud2 | Disponible
 
 
-Si le réseau cible de hello a plusieurs sous-réseaux et de ces sous-réseaux a hello même nom comme hello sous-réseau sur quel hello ordinateur virtuel source se trouve, puis hello machine virtuelle de réplication sera connectée toothat cible sous-réseau après le basculement. S’il n’existe aucun sous-réseau cible avec un nom correspondant, ordinateur virtuel de hello sera connecté toohello premier sous-réseau de réseau de hello.
+Si le réseau cible est associé à plusieurs sous-réseaux et que l’un d’eux présente le même nom que le sous-réseau dans lequel se trouve la machine virtuelle source, l’ordinateur virtuel de réplication est connecté à ce sous-réseau cible après le basculement. S’il n’existe aucun sous-réseau cible avec un nom correspondant, la machine virtuelle sera connectée au premier sous-réseau du réseau.
 
 
 #### <a name="failback-behavior"></a>Comportement de restauration automatique
 
-toosee que se passe-t-il en cas de hello de la restauration automatique (réplication inverse), supposons que VMNetwork1-NewYork est mappé tooVMNetwork1-Chicago, avec hello suivant les paramètres.
+Pour voir ce qui se produit en cas de restauration automatique (réplication inverse), supposons que le réseau VMNetwork1-NewYork est mappé au réseau VMNetwork1-Chicago, avec les paramètres suivants.
 
 
-**Machine virtuelle** | **Réseau de tooVM connecté**
+**Machine virtuelle** | **Connectée au réseau de machines virtuelles**
 ---|---
 MV1 | VMNetwork1-Network
 VM2 (réplica de VM1) | VMNetwork1-Chicago
@@ -126,13 +126,13 @@ Examinons ce qui se passe dans différents scénarios possibles avec ces paramè
 
 **Scénario** | **Résultat**
 ---|---
-Aucune modification dans les propriétés du réseau hello de VM-2 après le basculement. | VM-1 reste connecté toohello source réseau.
+Aucune modification n’est apportée aux propriétés du réseau de la machine VM2 après le basculement. | La machine VM1 reste connectée au réseau source.
 Les propriétés du réseau de la machine VM2 sont modifiées après le basculement ; la machine est déconnectée. | La machine VM1 est déconnectée.
-Propriétés réseau de VM-2 sont modifiées après basculement et sont connecté tooVMNetwork2-Chicago. | Si le réseau VMNetwork2-Chicago n’est pas mappé, la machine VM1 est déconnectée.
-Le mappage réseau de VMNetwork1-Chicago est modifié. | VM-1 sera connecté toohello réseau mappé tooVMNetwork1-Chicago.
+Les propriétés du réseau de la machine VM2 sont modifiées après le basculement ; la machine est connectée au réseau VMNetwork2-Chicago. | Si le réseau VMNetwork2-Chicago n’est pas mappé, la machine VM1 est déconnectée.
+Le mappage réseau de VMNetwork1-Chicago est modifié. | La machine VM1 est connectée au réseau désormais mappé à VMNetwork1-Chicago.
 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-En savoir plus sur [planification d’infrastructure de réseau hello](site-recovery-network-design.md).
+Découvrir la [planification de l’infrastructure réseau](site-recovery-network-design.md).

@@ -1,9 +1,9 @@
 ---
-title: "équilibrage de charge aaaCreate une côté Internet avec IPv6 - CLI d’Azure | Documents Microsoft"
-description: "Découvrez comment toocreate un Internet exposés à équilibrage de charge avec IPv6 à l’aide du Gestionnaire de ressources Azure hello CLI d’Azure"
+title: "Créer un équilibrage de charge accessible sur Internet avec IPv6 - interface de ligne de commande Azure | Microsoft Docs"
+description: "Découvrir comment créer un équilibrage de charge accessible sur Internet avec IPv6 dans Azure Resource Manager, à l’aide de l’interface de ligne de commande Azure"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 tags: azure-resource-manager
 keywords: "IPv6, équilibreur de charge azure, double pile, adresse ip publique, ipv6 natif, mobile, iot"
@@ -13,57 +13,59 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 09/25/2017
 ms.author: kumud
-ms.openlocfilehash: 7ff75ac90d74a74e3d0c27672b36fbd955a086a3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3ae62ddd350204d801012b9810aec669abe55817
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-an-internet-facing-load-balancer-with-ipv6-in-azure-resource-manager-using-hello-azure-cli"></a>Créer un Internet exposés à équilibrage de charge avec IPv6 dans Azure Resource Manager à l’aide de hello CLI d’Azure
+# <a name="create-an-internet-facing-load-balancer-with-ipv6-in-azure-resource-manager-using-the-azure-cli"></a>Créer un équilibrage de charge accessible sur Internet avec IPv6 dans Azure Resource Manager, à l’aide de l’interface de ligne de commande Azure
 
 > [!div class="op_single_selector"]
 > * [PowerShell](load-balancer-ipv6-internet-ps.md)
 > * [Interface de ligne de commande Azure](load-balancer-ipv6-internet-cli.md)
 > * [Modèle](load-balancer-ipv6-internet-template.md)
 
-Un équilibrage de charge Azure est de type Couche 4 (TCP, UDP). équilibrage de charge Hello offre une haute disponibilité en répartissant le trafic entrant entre les instances de service intègre dans les services de cloud computing ou les machines virtuelles dans un jeu d’équilibrage de charge. Azure Load Balancer peut également présenter ces services sur plusieurs ports, plusieurs adresses IP ou les deux.
+[!INCLUDE [load-balancer-basic-sku-include.md](../../includes/load-balancer-basic-sku-include.md)]
+
+Un équilibrage de charge Azure est de type Couche 4 (TCP, UDP). L’équilibrage de charge offre une disponibilité élevée en distribuant le trafic entrant parmi les instances de service saines dans les services cloud ou les machines virtuelles dans un jeu d’équilibrage de la charge. Azure Load Balancer peut également présenter ces services sur plusieurs ports, plusieurs adresses IP ou les deux.
 
 ## <a name="example-deployment-scenario"></a>Exemple de scénario de déploiement
 
-Hello diagramme suivant illustre la solution d’équilibrage de charge de hello en cours de déploiement à l’aide du modèle d’exemple hello décrit dans cet article.
+Le diagramme suivant illustre la solution d’équilibrage de charge déployée à l’aide de l’exemple de modèle décrit dans cet article.
 
 ![Scénario d’équilibreur de charge](./media/load-balancer-ipv6-internet-cli/lb-ipv6-scenario-cli.png)
 
-Dans ce scénario, vous allez créer hello suivant des ressources Azure :
+Dans ce scénario, vous allez créer les ressources Azure suivantes :
 
 * deux machines virtuelles ;
 * une interface de réseau virtuel pour chaque machine virtuelle avec des adresses IPv4 et IPv6 affectées ;
 * un équilibrage de charge accessible sur Internet avec une adresse IP publique IPv4 et IPv6 ;
-* un toothat à haute disponibilité contient des machines virtuelles de hello deux
-* deux charge équilibrage règles toomap hello VIP toohello privés points de terminaison publics
+* un groupe à haute disponibilité contenant les deux machines virtuelles ;
+* deux règles d’équilibrage de charge pour mapper les adresses IP virtuelles publiques sur les points de terminaison privés.
 
-## <a name="deploying-hello-solution-using-hello-azure-cli"></a>Déploiement de solution hello à l’aide de hello CLI d’Azure
+## <a name="deploying-the-solution-using-the-azure-cli"></a>Déploiement de la solution à l’aide de l’interface de ligne de commande (CLI) Azure
 
-Hello suit montrent comment toocreate une connecté à Internet l’équilibrage de charge à l’aide du Gestionnaire de ressources Azure avec l’interface CLI. Avec Azure Resource Manager, chaque ressource est créé et configuré individuellement et puis rassembler toocreate une ressource.
+Les étapes suivantes expliquent comment créer un équilibrage de charge accessible sur Internet à l'aide d'Azure Resource Manager avec CLI. Avec Azure Resource Manager, toutes les ressources sont créées et configurées individuellement, puis rassemblées pour en créer une unique.
 
-toodeploy un équilibreur de charge, que vous créez et configurez les hello objets suivants :
+Pour déployer un équilibrage de charge, vous devez créer et configurer les objets suivants :
 
 * Configuration d’adresses IP frontales : contient les adresses IP publiques pour le trafic réseau entrant.
-* Pool d’adresses principal - contient des interfaces réseau (NIC) pour le trafic réseau tooreceive de hello machines virtuelles à partir de l’équilibrage de charge hello.
-* Règles d’équilibrage de charge - contient des règles de mappage d’un port public sur tooport d’équilibrage de charge hello dans un pool d’adresses de serveur principal hello.
-* Les règles NAT de trafic entrant - contient des règles de mappage d’un port public sur le port de tooa d’équilibrage de charge hello pour un ordinateur virtuel spécifique dans le pool d’adresses principal hello.
-* Sondes - contient la disponibilité de toocheck les sondes utilisées de contrôle d’intégrité des instances de machines virtuelles dans un pool d’adresses de serveur principal hello.
+* Pool d’adresses principales : contient des interfaces réseau (NIC) pour que les machines virtuelles puissent recevoir le trafic réseau de l’équilibrage de charge.
+* Règles d’équilibrage de charge : contient des règles de mappage d’un port public situé sur l’équilibrage de charge pour le pool d’adresses principales.
+* Règles NAT entrantes : contient des règles de mappage d’un port public situé sur l’équilibrage de charge vers le port d’une machine virtuelle spécifique située dans le pool d’adresses principales.
+* Sondes : contient les sondes d’intégrité utilisées pour vérifier la disponibilité des instances de machines virtuelles du pool d’adresses principales.
 
 Pour plus d’informations, consultez [Prise en charge d’un équilibreur de charge par Azure Resource Manager](load-balancer-arm.md).
 
-## <a name="set-up-your-cli-environment-toouse-azure-resource-manager"></a>Configurer votre toouse d’environnement CLI Azure Resource Manager
+## <a name="set-up-your-cli-environment-to-use-azure-resource-manager"></a>Configurer votre environnement d’interface de ligne de commande pour utiliser Azure Resource Manager
 
-Pour cet exemple, nous utilisons des outils d’interface CLI hello dans une fenêtre de commande PowerShell. Nous n’utilisons pas d’applets de commande PowerShell Azure hello, mais nous utilisons la lisibilité tooimprove de fonctionnalités et la réutilisation script PowerShell.
+Pour cet exemple, nous utilisons les outils d’interface de ligne de commande dans une fenêtre de commande PowerShell. Nous n’utilisons pas les applets de commande Microsoft Azure PowerShell mais utilisons les fonctionnalités de script PowerShell afin d’améliorer la lisibilité et la réutilisation.
 
-1. Si vous n’avez jamais utilisé CLI d’Azure, consultez [installer et configurer hello CLI d’Azure](../cli-install-nodejs.md) et suivez les instructions de hello point toohello où vous sélectionnez votre compte Azure et votre abonnement.
-2. Exécutez hello **mode config azure** le mode commande tooswitch tooResource Manager.
+1. Si vous n’avez jamais utilisé l’interface de ligne de commande Azure, consultez [Installation et configuration de l’interface de ligne de commande Azure](../cli-install-nodejs.md) et suivez les instructions jusqu’à l’étape vous invitant à sélectionner votre compte et votre abonnement Azure.
+2. Exécutez la commande **azure config mode** afin d’activer le mode Resource Manager.
 
     ```azurecli
     azure config mode arm
@@ -73,7 +75,7 @@ Pour cet exemple, nous utilisons des outils d’interface CLI hello dans une fen
 
         info:    New mode is arm
 
-3. Connectez-vous à tooAzure et obtenir la liste des abonnements.
+3. Connectez-vous à Azure afin de consulter une liste de vos abonnements.
 
     ```azurecli
     azure login
@@ -85,9 +87,9 @@ Pour cet exemple, nous utilisons des outils d’interface CLI hello dans une fen
     azure account list
     ```
 
-    Choisissez abonnement hello toouse. Prenez note de l’Id d’abonnement hello pour l’étape suivante de hello.
+    Sélectionnez l’abonnement que vous souhaitez utiliser. Prenez note de l’ID d’abonnement pour la prochaine étape.
 
-4. Configurer les variables PowerShell pour une utilisation avec les commandes CLI hello.
+4. Configurez des variables PowerShell à utiliser avec les commandes d’interface de ligne de commande.
 
     ```powershell
     $subscriptionid = "########-####-####-####-############"  # enter subscription id
@@ -130,16 +132,16 @@ Pour cet exemple, nous utilisons des outils d’interface CLI hello dans une fen
     $subnet2 = azure network vnet subnet create --resource-group $rgname --name $subnet2Name --address-prefix $subnet2Prefix --vnet-name $vnetName
     ```
 
-## <a name="create-public-ip-addresses-for-hello-front-end-pool"></a>Créer des adresses IP publiques pour le pool frontal de hello
+## <a name="create-public-ip-addresses-for-the-front-end-pool"></a>Créer des adresses IP publiques pour le pool frontal
 
-1. Configurer les variables PowerShell hello
+1. Configurer les variables PowerShell
 
     ```powershell
     $publicIpv4Name = "myIPv4Vip"
     $publicIpv6Name = "myIPv6Vip"
     ```
 
-2. Créer un public hello frontal IP pool d’adresses IP.
+2. Créez une adresse IP publique pour le pool frontal.
 
     ```azurecli
     $publicipV4 = azure network public-ip create --resource-group $rgname --name $publicIpv4Name --location $location --ip-version IPv4 --allocation-method Dynamic --domain-name-label $dnsLabel
@@ -147,14 +149,14 @@ Pour cet exemple, nous utilisons des outils d’interface CLI hello dans une fen
     ```
 
     > [!IMPORTANT]
-    > équilibrage de charge Hello utilise le nom de domaine hello de l’adresse IP publique hello comme son nom de domaine complet. Cette une modification à partir d’un déploiement classique, ce qui utilise le nom du service cloud hello comme hello d’équilibrage de charge nom de domaine complet.
-    > Dans cet exemple, hello nom de domaine complet est *contoso09152016.southcentralus.cloudapp.azure.com*.
+    > L’équilibreur de charge utilise l’étiquette du domaine de l’adresse IP publique en tant que nom de domaine complet (FQDN). Cet usage diffère d’un déploiement classique qui utilise le service cloud en tant que nom de domaine complet de l’équilibrage de charge.
+    > Dans cet exemple, le nom de domaine complet est *contoso09152016.southcentralus.cloudapp.azure.com*.
 
 ## <a name="create-front-end-and-back-end-pools"></a>Créer ds pools frontaux et principaux
 
-Cet exemple crée le pool IP frontal hello qui reçoit le trafic réseau entrant du hello sur l’équilibrage de charge hello et pool d’adresses IP hello principal où pool frontal de hello envoie le trafic à charge équilibrée hello.
+Cet exemple crée le pool d’IP frontal qui reçoit le trafic réseau entrant pour l’équilibrage de charge et le pool d’IP principal où le pool frontal envoie le trafic de réseau équilibré.
 
-1. Configurer les variables PowerShell hello
+1. Configurer les variables PowerShell
 
     ```powershell
     $frontendV4Name = "FrontendVipIPv4"
@@ -163,7 +165,7 @@ Cet exemple crée le pool IP frontal hello qui reçoit le trafic réseau entrant
     $backendAddressPoolV6Name = "BackendPoolIPv6"
     ```
 
-2. Créez un pool IP frontal association d’adresse IP publique hello créé dans l’étape précédente de hello et équilibrage de charge hello.
+2. Créez un pool d’IP frontal associant l’IP publique créée lors de l’étape précédente et l’équilibrage de charge.
 
     ```azurecli
     $frontendV4 = azure network lb frontend-ip create --resource-group $rgname --name $frontendV4Name --public-ip-name $publicIpv4Name --lb-name $lbName
@@ -172,18 +174,18 @@ Cet exemple crée le pool IP frontal hello qui reçoit le trafic réseau entrant
     $backendAddressPoolV6 = azure network lb address-pool create --resource-group $rgname --name $backendAddressPoolV6Name --lb-name $lbName
     ```
 
-## <a name="create-hello-probe-nat-rules-and-lb-rules"></a>Créer une sonde de hello, des règles NAT et des règles d’équilibrage de charge
+## <a name="create-the-probe-nat-rules-and-lb-rules"></a>Créer la sonde, les règles NAT et les règles LB
 
-Cet exemple crée hello éléments suivants :
+Cet exemple crée les éléments suivants :
 
-* un toocheck de règle de sonde de connectivité tooTCP port 80
-* un NAT règle tootranslate tout le trafic entrant sur le port 3389 tooport 3389 pour RDP<sup>1</sup>
-* un NAT règle tootranslate tout le trafic entrant sur le port 3391 tooport 3389 pour RDP<sup>1</sup>
-* un toobalance de règle d’équilibrage de charge tout le trafic entrant sur le port 80 tooport 80 sur hello adresses dans le pool principal d’hello.
+* une règle de sonde dédiée à la détection de connectivité sur le port TCP 80 ;
+* une règle NAT pour transférer l’ensemble du trafic entrant sur le port 3389 vers le port 3389 pour RDP<sup>1</sup> ;
+* une règle NAT pour transférer l’ensemble du trafic entrant sur le port 3391 vers le port 3389 pour RDP<sup>1</sup> ;
+* une règle d’équilibrage de charge pour équilibrer tout le trafic entrant sur le port 80 vers le port 80 des adresses du pool principal ;
 
-<sup>1</sup> les règles NAT sont instance de machine virtuelle spécifique associé tooa derrière un équilibreur de charge hello. le trafic réseau de Hello arrivant sur le port 3389 est envoyé ordinateur virtuel spécifique de toohello et de port associé à une règle NAT hello. Vous devez spécifier un protocole (TCP ou UDP) pour une règle NAT. Les deux protocoles ne peut pas être assigné toohello même port.
+<sup>1</sup> Les règles NAT sont associées à une instance de machine virtuelle spécifique derrière l’équilibreur de charge. Le trafic réseau arrivant sur le port 3389 est envoyé à la machine virtuelle spécifique sur le port 22 associé à la règle NAT. Vous devez spécifier un protocole (TCP ou UDP) pour une règle NAT. Il est impossible d'attribuer les deux protocoles au même port.
 
-1. Configurer les variables PowerShell hello
+1. Configurer les variables PowerShell
 
     ```powershell
     $probeV4V6Name = "ProbeForIPv4AndIPv6"
@@ -193,22 +195,22 @@ Cet exemple crée hello éléments suivants :
     $lbRule1V6Name = "LBRuleForIPv6-Port80"
     ```
 
-2. Création de la sonde de hello
+2. Créer la sonde
 
-    Hello exemple suivant crée une sonde TCP vérifie pour le port connectivité tooback-end TCP 80 toutes les 15 secondes. Il marque ressources principales de hello indisponible après deux échecs consécutifs.
+    L’exemple suivant illustre la création d’une sonde TCP qui détecte la connectivité au port TCP principal 80 toutes les 15 secondes. Elle marque la ressource principale comme indisponible après deux échecs consécutifs.
 
     ```azurecli
     $probeV4V6 = azure network lb probe create --resource-group $rgname --name $probeV4V6Name --protocol tcp --port 80 --interval 15 --count 2 --lb-name $lbName
     ```
 
-3. Créer des règles NAT entrantes qui autorisent les connexions RDP ressources de back-end toohello
+3. Créer des règles NAT entrantes qui prennent en charge les connexions RDP aux ressources principales
 
     ```azurecli
     $inboundNatRuleRdp1 = azure network lb inbound-nat-rule create --resource-group $rgname --name $natRule1V4Name --frontend-ip-name $frontendV4Name --protocol Tcp --frontend-port 3389 --backend-port 3389 --lb-name $lbName
     $inboundNatRuleRdp2 = azure network lb inbound-nat-rule create --resource-group $rgname --name $natRule2V4Name --frontend-ip-name $frontendV4Name --protocol Tcp --frontend-port 3391 --backend-port 3389 --lb-name $lbName
     ```
 
-4. Créer des règles qui envoient le trafic toodifferent les ports de back-end en fonction de la requête hello frontal a reçu un équilibreur de charge
+4. Créer des règles d’équilibrage de charge qui transmettent le trafic sur différents ports principaux en fonction du port frontal de réception de la requête
 
     ```azurecli
     $lbruleIPv4 = azure network lb rule create --resource-group $rgname --name $lbRule1V4Name --frontend-ip-name $frontendV4Name --backend-address-pool-name $backendAddressPoolV4Name --probe-name $probeV4V6Name --protocol Tcp --frontend-port 80 --backend-port 80 --lb-name $lbName
@@ -224,7 +226,7 @@ Cet exemple crée hello éléments suivants :
     Sortie attendue :
 
         info:    Executing command network lb show
-        info:    Looking up hello load balancer "myIPv4IPv6Lb"
+        info:    Looking up the load balancer "myIPv4IPv6Lb"
         data:    Id                              : /subscriptions/########-####-####-####-############/resourceGroups/pscontosorg1southctrlus09152016/providers/Microsoft.Network/loadBalancers/myIPv4IPv6Lb
         data:    Name                            : myIPv4IPv6Lb
         data:    Type                            : Microsoft.Network/loadBalancers
@@ -263,9 +265,9 @@ Cet exemple crée hello éléments suivants :
 
 ## <a name="create-nics"></a>Créer des cartes réseau
 
-Créer des cartes réseau et les associer à tooNAT règles, des règles d’équilibrage de charge et des sondes.
+Créer des cartes réseau et associez-les à des règles NAT, des règles d’équilibrage de charge et des sondes.
 
-1. Configurer les variables PowerShell hello
+1. Configurer les variables PowerShell
 
     ```powershell
     $nic1Name = "myIPv4IPv6Nic1"
@@ -288,11 +290,11 @@ Créer des cartes réseau et les associer à tooNAT règles, des règles d’éq
     $nic2IPv6 = azure network nic ip-config create --resource-group $rgname --name "IPv6IPConfig" --private-ip-version "IPv6" --lb-address-pool-ids $backendAddressPoolV6Id --nic-name $nic2Name
     ```
 
-## <a name="create-hello-back-end-vm-resources-and-attach-each-nic"></a>Créer des ressources d’ordinateur virtuel principal hello et joindre chaque carte réseau
+## <a name="create-the-back-end-vm-resources-and-attach-each-nic"></a>Créer les ressources de machines virtuelles principales et associer chaque carte réseau
 
-toocreate machines virtuelles, vous devez disposer d’un compte de stockage. Pour l’équilibrage de charge, machines virtuelles de hello doivent toobe les membres d’un ensemble de disponibilité. Pour plus d’informations sur la création des machines virtuelles, consultez la section [Création d’une machine virtuelle Windows à l’aide de Resource Manager et de PowerShell](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json)
+Pour créer des machines virtuelles, vous devez disposer d’un compte de stockage. Pour l’équilibrage de charge, les machines virtuelles doivent être membres d’un groupe à haute disponibilité. Pour plus d’informations sur la création des machines virtuelles, consultez la section [Création d’une machine virtuelle Windows à l’aide de Resource Manager et de PowerShell](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fazure%2fload-balancer%2ftoc.json)
 
-1. Configurer les variables PowerShell hello
+1. Configurer les variables PowerShell
 
     ```powershell
     $storageAccountName = "ps08092016v6sa0"
@@ -311,23 +313,23 @@ toocreate machines virtuelles, vous devez disposer d’un compte de stockage. Po
     ```
 
     > [!WARNING]
-    > Cet exemple utilise hello username et password pour les machines virtuelles de hello en texte clair. Approprié doit être vigilant lorsqu’à l’aide des informations d’identification Bonjour effacer. Pour obtenir une méthode plus sécurisée de la gestion des informations d’identification dans PowerShell, consultez hello [Get-Credential](https://technet.microsoft.com/library/hh849815.aspx) applet de commande.
+    > Cet exemple utilise le nom d’utilisateur et le mot de passe pour les machines virtuelles, en texte clair. Prenez des précautions particulières lors de l’utilisation des informations d’identification en texte clair. Pour découvrir une méthode sécurisée de traitement des informations d’identification dans PowerShell, consultez l’applet de commande [Get-Credential](https://technet.microsoft.com/library/hh849815.aspx) .
 
-2. Créer l’ensemble de compte et la disponibilité du stockage hello
+2. Créer le compte de stockage et le groupe à haute disponibilité
 
-    Vous pouvez utiliser un compte de stockage existant lorsque vous créez des machines virtuelles de hello. Hello commande suivante crée un nouveau compte de stockage.
+    Vous pouvez utilise un compte de stockage existant lors de la création des machines virtuelles. La commande suivante génère un nouveau compte de stockage.
 
     ```azurecli
     $storageAcc = azure storage account create $storageAccountName --resource-group $rgName --location $location --sku-name "LRS" --kind "Storage"
     ```
 
-    Ensuite, créez le groupe à haute disponibilité hello.
+    Ensuite, créez le groupe à haute disponibilité.
 
     ```azurecli
     $availabilitySet = azure availset create --name $availabilitySetName --resource-group $rgName --location $location
     ```
 
-3. Créer des machines virtuelles de hello avec des cartes réseau de hello associé
+3. Créer les machines virtuelles avec les cartes réseau associées
 
     ```azurecli
     $vm1 = azure vm create --resource-group $rgname --location $location --availset-name $availabilitySetName --name $vm1Name --nic-id $nic1Id --os-disk-vhd $osDisk1Uri --os-type "Windows" --admin-username $vmUserName --admin-password $mySecurePassword --vm-size "Standard_A1" --image-urn $imageurn --storage-account-name $storageAccountName --disable-bginfo-extension

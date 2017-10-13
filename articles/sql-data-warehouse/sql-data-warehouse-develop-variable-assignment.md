@@ -1,5 +1,5 @@
 ---
-title: "variables aaaAssign dans l’entrepôt de données SQL | Documents Microsoft"
+title: "Affecter des variables dans SQL Data Warehouse | Microsoft Docs"
 description: "Conseils relatifs à l’affectation de variables Transact-SQL dans Microsoft Azure SQL Data Warehouse, dans le cadre du développement de solutions."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,26 +15,26 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 9de48739bb0af80ff2a117704b31512c680f78d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 045d5148cd3f12dac63c961ccf7c953d355ed725
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="assign-variables-in-sql-data-warehouse"></a>Affecter des variables dans SQL Data Warehouse
-Variables dans l’entrepôt de données SQL sont définies à l’aide de hello `DECLARE` instruction ou hello `SET` instruction.
+Dans SQL Data Warehouse, les variables sont définies au moyen de l’instruction `DECLARE` ou `SET`.
 
-Hello qui suit sont parfaitement valides tooset une valeur de variable :
+Pour définir une valeur de variable, il existe différentes méthodes, parfaitement valables :
 
 ## <a name="setting-variables-with-declare"></a>Définition de variables via l’instruction DECLARE
-Initialiser des variables avec DECLARE est hello plus souple façons tooset une valeur de variable dans l’entrepôt de données SQL.
+Dans SQL Data Warehouse, l’initialisation de variables avec l’instruction DECLARE constitue l’une des méthodes les plus flexibles pour définir une valeur de variable.
 
 ```sql
 DECLARE @v  int = 0
 ;
 ```
 
-Vous pouvez également utiliser DECLARE tooset plus d’une variable à la fois. Vous ne pouvez pas utiliser `SELECT` ou `UPDATE` toodo cela :
+De plus, vous pouvez utiliser cette instruction pour définir plusieurs variables à la fois. En effet, vous ne pouvez pas utiliser les éléments `SELECT` et `UPDATE` pour exécuter ceci :
 
 ```sql
 DECLARE @v  INT = (SELECT TOP 1 c_customer_sk FROM Customer where c_last_name = 'Smith')
@@ -42,7 +42,7 @@ DECLARE @v  INT = (SELECT TOP 1 c_customer_sk FROM Customer where c_last_name = 
 ;
 ```
 
-Vous ne peut pas initialiser et utiliser une variable dans hello même instruction DECLARE. tooillustrate hello point hello exemple ci-dessous est **pas** autorisé en tant que @p1 est initialisé et utilisé dans hello même instruction DECLARE. Cela entraîne une erreur.
+De plus, il n’est pas possible d’initialiser et d’utiliser une variable au sein de la même instruction DECLARE. Illustrons notre propos : la commande de l’exemple ci-dessous n’est **pas** autorisée, car l’élément @p1 est initialisé, mais également utilisé dans la même instruction DECLARE. Cela entraîne une erreur.
 
 ```sql
 DECLARE @p1 int = 0
@@ -53,7 +53,7 @@ DECLARE @p1 int = 0
 ## <a name="setting-values-with-set"></a>Définition de valeurs avec l’instruction SET
 L’instruction SET est très couramment utilisée pour définir une variable unique.
 
-Tous les exemples hello ci-dessous sont définissant une variable avec un jeu de méthodes valides :
+Tous les exemples ci-dessous illustrent des modes de définition d’une variable avec l’instruction SET, qui sont parfaitement valables :
 
 ```sql
 SET     @v = (Select max(database_id) from sys.databases);

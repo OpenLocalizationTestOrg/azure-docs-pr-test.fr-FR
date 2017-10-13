@@ -1,9 +1,9 @@
 Cet article suppose que vous possédez :
 
-1. A **tooSite VPN de Site** ou **Express Route** connexion entre votre réseau local et le réseau virtuel Azure de hello a déjà été établie.
-2. Votre compte d’utilisateur a des autorisations toocreate un nouvel ordinateur virtuel Bonjour abonnement Azure hello virtuels ont été basculés en.
-3. Votre abonnement a un minimum de 4 cœurs disponibles toospin. une machine virtuelle de nouveau serveur de processus.
-4. Vous avez hello **phrase secrète du serveur de Configuration** disponibles.
+1. Un **VPN site à site** ou une connexion **Express Route** déjà établie entre votre réseau local et le réseau virtuel Microsoft Azure.
+2. Un compte d’utilisateur avec les autorisations nécessaires pour créer une machine virtuelle dans l’abonnement Azure dans lequel les machines virtuelles ont été basculées.
+3. Un abonnement avec un minimum de 4 cœurs disponibles pour faire tourner une nouvelle machine virtuelle serveur de processus.
+4. La **phrase secrète du serveur de configuration**.
 
 > [!TIP]
-> Assurez-vous que vous êtes en mesure de tooconnect port 443 Hello Configuration serveur (local) de hello réseau virtuel Azure qui hello virtuels ont été basculés en.
+> Vérifiez que vous êtes en mesure de connecter le port 443 du serveur de configuration (qui s’exécute en local) à partir du réseau virtuel Azure dans lequel les machines virtuelles ont été basculées.

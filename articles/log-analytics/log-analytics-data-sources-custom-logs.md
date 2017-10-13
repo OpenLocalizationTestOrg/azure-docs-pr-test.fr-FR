@@ -1,6 +1,6 @@
 ---
-title: "aaaCollect personnalisée se connecte Analytique des journaux OMS | Documents Microsoft"
-description: "Log Analytics peut collecter des événements dans des fichiers texte sur des ordinateurs Windows et Linux.  Cet article décrit comment toodefine un nouveau journal personnalisé et les détails des enregistrements de hello créent dans le référentiel d’OMS hello."
+title: "Collecter les journaux personnalisés dans OMS Log Analytics | Microsoft Docs"
+description: "Log Analytics peut collecter des événements dans des fichiers texte sur des ordinateurs Windows et Linux.  Cet article décrit comment définir un nouveau journal personnalisé et les détails des enregistrements qu’il crée dans le référentiel OMS."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/15/2017
 ms.author: bwren
-ms.openlocfilehash: a75d058c371fecf7c43690a797d4e650c1570317
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b7f28868e3ffdf95dbe39872f382e7c97eae692c
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="custom-logs-in-log-analytics"></a>Journaux personnalisés dans Log Analytics
-source de données de journaux personnalisés Hello dans Analytique de journal vous permet de toocollect les événements à partir des fichiers texte sur les ordinateurs Windows et Linux. De nombreuses applications journaux informations tootext au lieu de services de journalisation standard tels que le journal des événements Windows ou Syslog.  Une fois collectées, vous pouvez analyser chaque enregistrement de journal hello dans les champs de tooindividual à l’aide de hello [les champs personnalisés](log-analytics-custom-fields.md) fonctionnalité de journal Analytique.
+La source de données Journaux personnalisés de Log Analytics vous permet de collecter des événements stockés dans des fichiers texte sur les ordinateurs Windows et Linux. De nombreuses applications consignent des informations dans des fichiers texte au lieu des services de journalisation standard tels que le Journal des événements Windows ou Syslog.  Une fois collectés, vous pouvez analyser chaque enregistrement du journal dans des champs individuels à l’aide de la fonctionnalité [Champs Personnalisés](log-analytics-custom-fields.md) de Log Analytics.
 
 ![Collecte de journaux personnalisés](media/log-analytics-data-sources-custom-logs/overview.png)
 
-toobe de fichiers de journal Hello collectée doit correspondre à hello suivant des critères.
+Les fichiers journaux à collecter doivent correspondre aux critères suivants.
 
-- journal de Hello doit avoir une seule entrée par ligne ou utiliser un horodatage correspondant hello suivantes met en forme au début de hello de chaque entrée.
+- Le journal doit comporter une seule entrée par ligne ou utiliser un horodatage correspondant à l’un des formats suivants au début de chaque entrée.
 
     AAAA-MM-JJ HH:MM:SS <br>M/J/AAAA HH:MM:SS AM/PM <br>Mois JJ,AAAA HH:MM:SS
 
-- fichier de journal Hello ne doit pas autoriser d’où les fichiers hello sont remplacé par de nouvelles entrées mises à jour circulaires.
-- fichier de journal de Hello doit utiliser l’encodage ASCII ou UTF-8.  Les autres formats, par exemple UTF-16, ne sont pas pris en charge.
+- Le fichier journal ne doit pas autoriser les mises à jour circulaires, où de nouvelles entrées sont consignées.
+- Le fichier journal doit utiliser l’encodage ASCII ou UTF-8.  Les autres formats, par exemple UTF-16, ne sont pas pris en charge.
 
 >[!NOTE]
->S’il existe des entrées en double dans le fichier journal de hello, Analytique de journal collectera les.  Toutefois, les résultats de recherche hello seront incohérents où affichent les résultats du filtrage hello plus d’événements que le nombre de résultats hello.  Il sera important de valider hello journal toodetermine si l’application hello qui le crée à l’origine de ce comportement et de corriger si possible avant de créer la définition de la collection hello journal personnalisé.  
+>Si le fichier journal contient des entrées dupliquées, Log Analytics les collecte.  Toutefois, les résultats de la recherche seront incohérents dans les cas où les résultats du filtre affichent un nombre d’événements supérieur au nombre de résultats.  Il est important de valider le journal pour déterminer si l’application qui le crée cause ce comportement et résoudre, si possible, le problème avant la création de la définition de collection de journal personnalisée.  
 >
   
 ## <a name="defining-a-custom-log"></a>Définition d’un journal personnalisé
-Utilisez hello suivant la procédure toodefine un fichier journal personnalisé.  Faites défiler vers la fin de toohello de cet article pour une procédure pas à pas d’un exemple d’ajout d’un journal personnalisé.
+Utilisez la procédure suivante pour définir un fichier journal personnalisé.  Rendez-vous à la fin de cet article pour une procédure détaillée d’ajout d’un journal personnalisé.
 
-### <a name="step-1-open-hello-custom-log-wizard"></a>Étape 1. Ouvrez hello Assistant de journal personnalisé
-Hello Assistant journal personnalisé s’exécute dans le portail OMS est hello et vous permet de toodefine un nouveau toocollect de journal personnalisé.
+### <a name="step-1-open-the-custom-log-wizard"></a>Étape 1. Ouvrir l’Assistant Journal personnalisé
+L’Assistant Journal personnalisé s’exécute dans le portail OMS et vous permet de définir un nouveau journal personnalisé de collecte.
 
-1. Dans le portail OMS : hello, accédez trop**paramètres**.
+1. Dans le portail OMS, accédez à **Paramètres**.
 2. Cliquez sur **Données** puis sur **Journaux personnalisés**.
-3. Par défaut, toutes les modifications de configuration sont automatiquement récupérées tooall agents.  Pour les agents de Linux, un fichier de configuration est envoyé toohello Fluentd de collecteurs de données.  Si vous le souhaitez toomodify ce fichier manuellement sur chaque agent Linux, puis hello désactivez case à cocher *appliquer ci-dessous les machines Linux configuration toomy*.
-4. Cliquez sur **ajouter +** tooopen hello Assistant de journal personnalisé.
+3. Par défaut, toutes les modifications de configuration sont automatiquement transmises à l’ensemble des agents.  Pour les agents Linux, un fichier de configuration est envoyé au collecteur de données Fluentd.  Si vous souhaitez modifier ce fichier manuellement sur chaque agent Linux, décochez la case *Appliquer la configuration ci-dessous à mes machines Linux*.
+4. Cliquez sur **Ajouter+** pour ouvrir l’Assistant Journal personnalisé.
 
 ### <a name="step-2-upload-and-parse-a-sample-log"></a>Étape 2. Télécharger et analyser un exemple de journal
-Vous commencez par télécharger un exemple de journal personnalisées de hello.  Assistant de Hello analyser et afficher les entrées de hello dans ce fichier pour vous toovalidate.  Analytique de journal utilisera un délimiteur hello que vous spécifiez tooidentify chaque enregistrement.
+Commencez par télécharger un exemple du journal personnalisé.  L’assistant analyse et affiche les entrées de ce fichier afin que vous les validiez.  Log Analytics utilise le délimiteur que vous spécifiez pour identifier chaque enregistrement.
 
-**Nouvelle ligne** est le délimiteur par défaut de hello et est utilisé pour les fichiers journaux qui ont une seule entrée par ligne.  Si la ligne de hello commence par une date et heure dans un des formats disponibles de hello, vous pouvez ensuite spécifier un **Timestamp** délimiteur qui prend en charge les entrées qui s’étendent sur plusieurs lignes.
+**Nouvelle ligne** .  Si la ligne commence par un horodatage dans un des formats disponibles, vous pouvez spécifier un délimiteur **Horodatage** prenant en charge les entrées qui s’étendent sur plusieurs lignes.
 
-Si un délimiteur de timestamp est utilisé, puis de la propriété TimeGenerated de hello de chaque enregistrement stocké dans OMS contiendra hello date/heure spécifié pour cette entrée dans le fichier journal de hello.  Si un nouveau délimiteur de ligne est utilisé, TimeGenerated est remplie avec la date et l’heure que le journal Analytique collectées entrée de hello.
+Si un délimiteur Horodatage est utilisé, la propriété TimeGenerated de chaque enregistrement stocké dans OMS contiendra la date et l’heure spécifiées pour cette entrée dans le fichier journal.  Si un délimiteur Nouvelle ligne est utilisé, la propriété TimeGenerated est renseignée avec la date et l’heure auxquelles Log Analytics a collecté l’entrée.
 
 > [!NOTE]
-> Analytique de journal traite actuellement hello date/heure collecté à partir d’un journal à l’aide d’un délimiteur de timestamp comme UTC.  Ce sera bientôt horaire toouse modifiées hello sur l’agent de hello.
+> Pour l’instant, Log Analytics traite la date et l’heure collectées dans un journal à l’aide d’un délimiteur Horodatage UTC.  Très bientôt, c’est le fuseau horaire qui sera utilisé sur l’agent.
 >
 >
 
-1. Cliquez sur **Parcourir** et recherchez le fichier d’exemple tooa.  Notez que ce bouton peut s’appeler **Choisir un fichier** dans certains navigateurs.
+1. Cliquez sur **Parcourir** et accédez à un exemple de fichier.  Notez que ce bouton peut s’appeler **Choisir un fichier** dans certains navigateurs.
 2. Cliquez sur **Suivant**.
-3. Pour télécharger hello fichier liste hello enregistrements et qu’il identifie Hello Assistant de journal personnalisé.
-4. Modifier séparateur hello tooidentify utilisé un nouvel enregistrement et délimiteur hello select qui identifie mieux enregistrements hello dans votre fichier journal.
+3. L’Assistant Journal personnalisé télécharge le fichier et répertorie les enregistrements qu’il identifie.
+4. Remplacez le délimiteur utilisé pour identifier un nouvel enregistrement par celui qui identifie au mieux les enregistrements de votre fichier journal.
 5. Cliquez sur **Suivant**.
 
 ### <a name="step-3-add-log-collection-paths"></a>Étape 3. Ajouter des chemins de collecte de journaux
-Vous devez définir un ou plusieurs chemins sur agent hello qui permet de localiser les journaux personnalisés hello.  Vous pouvez fournir un chemin d’accès spécifique et le nom de fichier journal de hello, ou vous pouvez spécifier un chemin d’accès avec un caractère générique pour le nom de hello.  Ce mécanisme prend en charge les applications qui créent un fichier par jour ou lorsqu’un fichier atteint une certaine taille.  Vous pouvez également fournir plusieurs chemins d’accès pour un fichier journal.
+Vous devez définir un ou plusieurs chemins indiquant à l’agent où trouver le journal personnalisé.  Vous pouvez soit fournir le chemin d’accès et le nom du fichier journal, soit indiquer un chemin d’accès avec un caractère générique pour le nom.  Ce mécanisme prend en charge les applications qui créent un fichier par jour ou lorsqu’un fichier atteint une certaine taille.  Vous pouvez également fournir plusieurs chemins d’accès pour un fichier journal.
 
-Par exemple, une application peut créer un fichier journal par jour avec la date hello inclus dans le nom hello comme dans log20100316.txt. Un modèle d’un journal de ce type peut être *journal\*.txt* qui serait d’utiliser tooany journal après l’application hello de noms de schéma.
+Par exemple, une application peut créer un fichier journal chaque jour avec la date dans le nom, comme dans log20100316.txt. Par exemple, ce modèle peut être *log\*.txt* et s’appliquer à un fichier journal conforme à la convention de dénomination de l’application.
 
-Hello tableau suivant fournit des exemples de modèles valides toospecify différents fichiers journaux.
+Le tableau suivant fournit des exemples de modèles valides pour différents fichiers journaux.
 
 | Description | Chemin |
 |:--- |:--- |
@@ -81,59 +81,59 @@ Hello tableau suivant fournit des exemples de modèles valides toospecify diffé
 | Tous les fichiers sous */var/log/audit* avec l’extension .txt sur l’agent Linux |/var/log/audit/*.txt |
 | Tous les fichiers sous */var/log/audit* avec un nom commençant par log et portant l’extension .txt sur l’agent Linux |/var/log/audit/log\*.txt |
 
-1. Sélectionnez toospecify Windows ou Linux, le format de chemin d’accès que vous ajoutez.
-2. Tapez le chemin d’accès de hello et cliquez sur hello  **+**  bouton.
-3. Répétez les processus hello pour les chemins d’accès supplémentaires.
+1. Sélectionnez Windows ou Linux pour spécifier le format du chemin d’accès que vous ajoutez.
+2. Tapez le chemin d’accès et cliquez sur le bouton **+** .
+3. Répétez la procédure pour les chemins d’accès supplémentaires.
 
-### <a name="step-4-provide-a-name-and-description-for-hello-log"></a>Étape 4. Fournissez un nom et une description pour le journal de hello
-Hello nom que vous spécifiez sera être utilisé pour le type de journal hello comme décrit ci-dessus.  Il se termine toujours par _CL toodistinguish elle en tant qu’un journal personnalisé.
+### <a name="step-4-provide-a-name-and-description-for-the-log"></a>Étape 4. Indiquer le nom et la description du journal
+Le nom que vous spécifiez sera utilisé pour le type de journal, comme indiqué ci-dessus.  Il se termine toujours par _CL pour le distinguer d’un journal personnalisé.
 
-1. Tapez un nom pour le journal de hello.  Hello  **\_CL** suffixe est fourni automatiquement.
+1. Indiquez le nom du journal.  Le suffixe **\_CL** est ajouté automatiquement.
 2. Si vous le souhaitez, renseignez le champ **Description**.
-3. Cliquez sur **suivant** définition de journal personnalisé toosave hello.
+3. Cliquez sur **Suivant** pour enregistrer la définition du journal personnalisé.
 
-### <a name="step-5-validate-that-hello-custom-logs-are-being-collected"></a>Étape 5. Valider des journaux personnalisés hello sont collectés
-Cela peut prendre jusqu'à tooan heure initiale des données hello à partir d’un nouveau tooappear de journal personnalisé dans le journal Analytique.  Il va commencer à collecter les entrées de hello journaux trouvent dans le chemin d’accès hello spécifié à partir du point de hello que vous hello défini journal personnalisé.  Il conserve pas les entrées de hello que vous avez téléchargé lors de la création du journal personnalisé hello, mais il collecte des entrées déjà existantes dans les fichiers journaux hello qui localise.
+### <a name="step-5-validate-that-the-custom-logs-are-being-collected"></a>Étape 5. Vérifier que les journaux personnalisés sont collectés
+Il faut parfois une heure pour que les données initiales d’un nouveau journal personnalisé apparaissent dans Log Analytics.  La collecte des entrées commence par les journaux situés à l’emplacement spécifié, à partir du moment où vous avez défini le journal personnalisé.  Log Analytics ne conserve pas les entrées que vous avez téléchargées lors de la création du journal personnalisé, mais celles figurant dans les fichiers journaux qu’il trouve.
 
-Une fois que le journal Analytique commence la collecte de journal personnalisé de hello, ses enregistrements sera disponibles avec une recherche de journal.  Utiliser le nom hello que vous avez donné de journal personnalisée hello hello **Type** dans votre requête.
+Lorsque Log Analytics commence la collecte du journal personnalisé, ses enregistrements sont accessibles en effectuant une recherche de journal.  Utilisez le nom que vous avez donné au journal personnalisé, comme le **Type** dans votre requête.
 
 > [!NOTE]
-> Si hello RawData propriété est absent de la recherche de hello, vous pouvez peut-être tooclose et rouvrez votre navigateur.
+> Si la propriété RawData est manquante dans la recherche, vous devrez peut-être fermer et rouvrir votre navigateur.
 >
 >
 
-### <a name="step-6-parse-hello-custom-log-entries"></a>Étape 6. Analyser les entrées de journal personnalisées hello
-entrée de journal complet Hello est stockée dans une propriété unique appelée **RawData**.  Vous souhaiterez certainement que tooseparate hello différents éléments d’informations dans chaque entrée dans les propriétés individuelles stockées dans l’enregistrement de hello.  Cela à l’aide de hello [les champs personnalisés](log-analytics-custom-fields.md) fonctionnalité de journal Analytique.
+### <a name="step-6-parse-the-custom-log-entries"></a>Étape 6. Analyser les entrées du journal personnalisé
+L’entrée de journal est stockée dans une propriété unique appelée **RawData**.  Vous souhaiterez certainement séparer les différents éléments d’information de chaque entrée dans des propriétés séparées dans l’enregistrement.  Pour ce faire, utilisez la fonction [Champs personnalisés](log-analytics-custom-fields.md) de Log Analytics.
 
-La procédure détaillée pour l’analyse d’entrée de journal personnalisée hello n’est pas indiquée ici.  Reportez-vous toohello [les champs personnalisés](log-analytics-custom-fields.md) documentation pour obtenir des informations.
+La procédure détaillée pour analyser l’entrée de journal personnalisé n’est pas décrite ici.  Pour plus d’informations sur cette procédure, consultez la documentation sur [Champs personnalisés](log-analytics-custom-fields.md) .
 
 ## <a name="disabling-a-custom-log"></a>Désactivation d’un journal personnalisé
 Vous ne pouvez pas supprimer une définition de journal personnalisé une fois qu’elle a été créée, mais vous pouvez la désactiver en supprimant tous ses chemins de regroupement.
 
-1. Dans le portail OMS : hello, accédez trop**paramètres**.
+1. Dans le portail OMS, accédez à **Paramètres**.
 2. Cliquez sur **Données** puis sur **Journaux personnalisés**.
-3. Cliquez sur **détails** toodisable de définition de journal personnalisé toohello suivant.
-4. Supprimez chacun des chemins d’accès de la collection hello pour la définition de journal personnalisées hello.
+3. Cliquez sur **Détails** en regard de la définition de journal personnalisé à désactiver.
+4. Supprimez tous les chemins de regroupement pour la définition de journal personnalisé.
 
 ## <a name="data-collection"></a>Collecte des données
-Log Analytics collecte les nouvelles entrées de chaque journal personnalisé toutes les 5 minutes environ.  l’agent de Hello enregistre sa place dans chaque fichier journal qu’il collecte à partir de.  Si l’agent de hello est mis hors connexion pendant une période de temps, puis Analytique de journal collectent des entrées d’où il s’était arrêté, même si ces entrées ont été créées lors de l’agent de hello est hors connexion.
+Log Analytics collecte les nouvelles entrées de chaque journal personnalisé toutes les 5 minutes environ.  L’agent enregistre sa place dans chaque fichier journal dont il la collecte.  Si l’agent est hors connexion pendant un moment, Log Analytics collecte les entrées à partir de là où il s’était arrêté, même si ces entrées ont été créées lorsque l’agent était hors connexion.
 
-contenu entier de Hello hello d’entrée de journal est écrites tooa de propriété unique appelée **RawData**.  Vous pouvez l’analyser dans plusieurs propriétés qui peuvent être analysées et traitées séparément en définissant [des champs personnalisés](log-analytics-custom-fields.md) après avoir créé les journal personnalisé hello.
+L’entrée de journal est intégralement inscrite dans une propriété unique appelée **RawData**.  Vous pouvez l’analyser dans plusieurs propriétés que vous pouvez analyser et interroger, en définissant [Champs personnalisés](log-analytics-custom-fields.md) après avoir créé le journal personnalisé.
 
 ## <a name="custom-log-record-properties"></a>Propriétés d’enregistrement de journal personnalisé
-Les enregistrements de journal personnalisées ont un type avec le nom du journal hello que vous fournissez et hello propriétés Bonjour tableau suivant.
+Les enregistrements de journal personnalisé sont caractérisés par le nom du journal que vous fournissez et les propriétés dans le tableau suivant.
 
 | Propriété | Description |
 |:--- |:--- |
-| TimeGenerated |Date et heure auxquelles l’enregistrement de hello ont été collectées par Analytique de journal.  Si le journal de hello utilise un délimiteur de temps il s’agit de heure hello collecté à partir de l’entrée de hello. |
-| SourceSystem |Type d’enregistrement de hello de l’agent a été collecté à partir de. <br> Ops Manager : Agent Windows. Connexion directe ou System Center Operations Manager <br> Linux – Tous les agents Linux |
-| RawData |Recherche en texte intégral de hello collectées entrée. |
-| ManagementGroupName |Nom du groupe d’administration hello pour les agents de gestion de System Center Operations.  Pour les autres agents, il s’agit d’AOI-\<workspace ID\> |
+| TimeGenerated |Date et heure auxquelles l’enregistrement a été collecté par Log Analytics.  Si le journal utilise un délimiteur basé sur l’heure, il s’agit de l’heure collectée à partir de l’entrée. |
+| SourceSystem |Type d’agent auprès duquel l’enregistrement a été collecté. <br> Ops Manager : Agent Windows. Connexion directe ou System Center Operations Manager <br> Linux – Tous les agents Linux |
+| RawData |Texte complet de l’entrée collectée. |
+| ManagementGroupName |Nom du groupe d’administration pour les agents System Center Operations Manage  Pour les autres agents, il s’agit d’AOI-\<workspace ID\> |
 
 ## <a name="log-searches-with-custom-log-records"></a>Recherches de journal avec des enregistrements de journal personnalisé
-Les enregistrements de journaux personnalisés sont stockés dans le référentiel d’OMS hello comme enregistrements à partir de toute autre source de données.  Ils ont un type correspondant au nom hello que vous fournissez lorsque vous définissez le journal de hello, vous pouvez utiliser la propriété de Type hello dans vos enregistrements de tooretrieve recherche collectés à partir d’un journal spécifique.
+Les enregistrements de journaux personnalisés sont stockés dans le référentiel OMS, comme les enregistrements d’autres sources de données.  Leur type correspond au nom que vous fournissez lorsque vous définissez le journal. Vous pouvez donc utiliser la propriété Type dans votre recherche pour récupérer les enregistrements collectés dans un journal spécifique.
 
-Hello tableau suivant fournit des exemples de recherches de journal qui extrait des enregistrements de journaux personnalisés.
+Le tableau suivant fournit plusieurs exemples de recherches qui extraient des enregistrements de journaux personnalisés.
 
 | Interroger | Description |
 |:--- |:--- |
@@ -141,7 +141,7 @@ Hello tableau suivant fournit des exemples de recherches de journal qui extrait 
 | Type=MyApp_CL Severity_CF=error |Tous les événements d’un journal personnalisé nommé MyApp_CL avec la valeur *error* dans le champ personnalisé nommé *Severity_CF*. |
 
 >[!NOTE]
-> Si votre espace de travail a été mis à niveau toohello [Analytique de journal nouveau langage de requête](log-analytics-log-search-upgrade.md), puis hello ci-dessus requêtes modifierait toohello suivant.
+> Si votre espace de travail a été mis à niveau vers le [nouveau langage de requête Log Analytics](log-analytics-log-search-upgrade.md), les requêtes ci-dessus seront remplacées par les suivantes.
 
 > | Interroger | Description |
 |:--- |:--- |
@@ -150,39 +150,39 @@ Hello tableau suivant fournit des exemples de recherches de journal qui extrait 
 
 
 ## <a name="sample-walkthrough-of-adding-a-custom-log"></a>Exemple de procédure d’ajout d’un journal personnalisé
-Hello suivante section décrit un exemple de création d’un journal personnalisé.  exemple de journal Hello collecté a une seule entrée sur chaque ligne commençant par une date et heure et puis délimitée par des virgules pour le message, l’état et code.  Plusieurs exemples d’entrée sont présentés ci-dessous.
+La section suivante décrit la procédure complète de création d’un champ personnalisé.  L’exemple de journal collecté comporte une seule entrée sur chaque ligne commençant par une date et une heure, suivie de plusieurs champs (code, état et message) séparés par des virgules.  Plusieurs exemples d’entrée sont présentés ci-dessous.
 
     2016-03-10 01:34:36 207,Success,Client 05a26a97-272a-4bc9-8f64-269d154b0e39 connected
     2016-03-10 01:33:33 208,Warning,Client ec53d95c-1c88-41ae-8174-92104212de5d disconnected
     2016-03-10 01:35:44 209,Success,Transaction 10d65890-b003-48f8-9cfc-9c74b51189c8 succeeded
-    2016-03-10 01:38:22 302,Error,Application could not connect toodatabase
-    2016-03-10 01:31:34 303,Error,Application lost connection toodatabase
+    2016-03-10 01:38:22 302,Error,Application could not connect to database
+    2016-03-10 01:31:34 303,Error,Application lost connection to database
 
 ### <a name="upload-and-parse-a-sample-log"></a>Télécharger et analyser un exemple de journal
-Nous fournir un des fichiers de journaux hello et que vous pouvez voir les événements hello qui sera être en cours.  Dans ce cas, le délimiteur Nouvelle ligne suffit.  Si une seule entrée dans le journal de hello peut couvrir plusieurs lignes Cependant, un séparateur d’horodatage doit toobe utilisé.
+Nous fournissons un des fichiers journaux et nous voyons les événements qu’il va collecter.  Dans ce cas, le délimiteur Nouvelle ligne suffit.  Cependant, si une entrée du journal s’étend sur plusieurs lignes, il faut utiliser un délimiteur Horodatage.
 
 ![Télécharger et analyser un exemple de journal](media/log-analytics-data-sources-custom-logs/delimiter.png)
 
 ### <a name="add-log-collection-paths"></a>Ajouter des chemins de collecte de journaux
-les fichiers journaux Hello se situeront dans *C:\MyApp\Logs*.  Un nouveau fichier sera créé chaque jour avec un nom qui inclut la date de hello dans le modèle de hello *appYYYYMMDD.log*.  Le format adapté à ce fichier journal est *C:\MyApp\Logs\\\\*.log*.
+Les fichiers journaux se situeront dans *C:\MyApp\Logs*.  Un fichier sera créé chaque jour avec un nom comprenant la date au format *appAAAAMMJJ.log*.  Le format adapté à ce fichier journal est *C:\MyApp\Logs\\\\*.log*.
 
 ![Chemin de collecte de journaux](media/log-analytics-data-sources-custom-logs/collection-path.png)
 
-### <a name="provide-a-name-and-description-for-hello-log"></a>Fournissez un nom et une description pour le journal de hello
+### <a name="provide-a-name-and-description-for-the-log"></a>Indiquer le nom et la description du journal
 Nous utilisons le nom *MyApp_CL* et complétons le champ **Description**.
 
 ![Nom du journal](media/log-analytics-data-sources-custom-logs/log-name.png)
 
-### <a name="validate-that-hello-custom-logs-are-being-collected"></a>Valider des journaux personnalisés hello sont collectés
-Nous utilisons une requête de *Type = MyApp_CL* tooreturn tous les enregistrements de journaux seront collectés de hello.
+### <a name="validate-that-the-custom-logs-are-being-collected"></a>Vérifier que les journaux personnalisés sont collectés
+Nous utilisons une requête *Type=MyApp_CL* pour retourner tous les enregistrements du journal collecté.
 
 ![Requête de journal sans aucun champ personnalisé](media/log-analytics-data-sources-custom-logs/query-01.png)
 
-### <a name="parse-hello-custom-log-entries"></a>Analyser les entrées de journal personnalisées hello
-Nous utilisons hello toodefine de champs personnalisés *EventTime*, *Code*, *état*, et *Message* champs et nous pouvons voir différence hello Bonjour enregistrements qui sont retournés par la requête de hello.
+### <a name="parse-the-custom-log-entries"></a>Analyser les entrées du journal personnalisé
+Nous utilisons Champs personnalisés pour définir les champs *EventTime*, *Code*, *Status* et *Message*, et pouvons voir la différence dans les enregistrements retournés par la requête.
 
 ![Requête de journal avec des champs personnalisés](media/log-analytics-data-sources-custom-logs/query-02.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Utilisez [des champs personnalisés](log-analytics-custom-fields.md) tooparse les entrées de hello de journal personnalisées de hello dans les champs tooindividual.
-* En savoir plus sur [recherche de journal](log-analytics-log-searches.md) tooanalyze les données de salutation collectées à partir de sources de données et les solutions possibles.
+* Utilisez [Champs personnalisés](log-analytics-custom-fields.md) pour analyser les entrées du journal personnalisé dans des champs individuels.
+* En savoir plus sur les [recherches de journal](log-analytics-log-searches.md) pour analyser les données collectées dans des sources de données et des solutions.

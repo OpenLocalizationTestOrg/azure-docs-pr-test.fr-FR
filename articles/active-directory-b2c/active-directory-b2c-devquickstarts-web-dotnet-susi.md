@@ -1,6 +1,6 @@
 ---
-title: aaaAzure Active Directory B2C | Documents Microsoft
-description: "Comment toobuild une application web avec connexion-haut/connectez-vous, Profiler, de modification et mot de passe réinitialisé à l’aide d’Azure Active Directory B2C."
+title: Azure Active Directory B2C | Microsoft Docs
+description: "Comment créer une application web avec inscription/connexion, modification du profil et réinitialisation du mot de passe à l’aide d’Azure Active Directory B2C."
 services: active-directory-b2c
 documentationcenter: .net
 author: parakhj
@@ -14,25 +14,25 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: parakhj
-ms.openlocfilehash: 187f99a8dd50d212de4f0517f552cdbbe5a8edf4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3144ced01b524abb035dc1c6f0cdf764bec46804
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-an-aspnet-web-app-with-azure-active-directory-b2c-sign-up-sign-in-profile-edit-and-password-reset"></a>Créer une application web ASP.NET avec inscription, connexion, modification du profil et réinitialisation du mot de passe Azure Active Directory B2C
 
 Ce didacticiel vous explique les procédures suivantes :
 
 > [!div class="checklist"]
-> * Ajouter une application web de Azure AD B2C identité fonctionnalités tooyour
+> * Ajouter des fonctionnalités d’identité Azure AD B2C à votre application web
 > * Inscrire votre application web auprès de votre répertoire Azure AD B2C
 > * Créer une stratégie d’inscription/de connexion d’utilisateur, de modification du profil et de réinitialisation du mot de passe pour votre application web
 
 ## <a name="prerequisites"></a>Composants requis
 
-- Vous devez connecter votre tooan B2C locataire compte Azure. Vous pouvez créer un compte Azure gratuit [ici](https://azure.microsoft.com/en-us/).
-- Vous devez [Microsoft Visual Studio](https://www.visualstudio.com/) ou un programme tooview et modifier l’exemple de code hello similaires.
+- Vous devez connecter votre locataire B2C à un compte Azure. Vous pouvez créer un compte Azure gratuit [ici](https://azure.microsoft.com/en-us/).
+- Vous avez besoin de [Microsoft Visual Studio](https://www.visualstudio.com/) ou d’un programme similaire pour afficher et modifier l’exemple de code.
 
 ## <a name="create-an-azure-ad-b2c-directory"></a>Créer un répertoire Azure AD B2C
 
@@ -42,11 +42,11 @@ Avant de pouvoir utiliser Azure AD B2C, vous devez créer un répertoire ou un c
 
 > [!NOTE]
 > 
-> Vous devez tooconnect hello B2C locataire tooyour abonnement Azure. Après avoir sélectionné **créer**, sélectionnez hello **lien un B2C d’AD Azure existant locataire toomy abonnement Azure** option, puis dans hello **locataire d’Azure AD B2C** liste déroulante, sélectionnez client Hello souhaité tooassociate.
+> Vous devez connecter le locataire B2C à votre abonnement Azure. Après avoir sélectionné **Créer**, sélectionnez l’option **Lier un locataire Azure AD B2C existant à mon abonnement Azure**, puis, dans le menu déroulant **Locataire Azure AD B2C**, sélectionnez le locataire que vous souhaitez associer.
 
 ## <a name="create-and-register-an-application"></a>Créer et inscrire une application
 
-Ensuite, vous devez toocreate et inscrivez l’application hello dans votre répertoire B2C. Fournit des informations qu’Azure AD B2C doit toosecurely communiquer avec votre application. 
+Vous devez maintenant créer et inscrire l’application dans votre répertoire B2C. Cela fournit certaines informations nécessaires à Azure AD B2C pour communiquer de manière sécurisée avec votre application. 
 
 [!INCLUDE [active-directory-b2c-register-web-api](../../includes/active-directory-b2c-register-web-api.md)]
 
@@ -56,7 +56,7 @@ Lorsque vous avez terminé, vous aurez une API et une application native dans vo
 
 ## <a name="create-policies-on-your-b2c-tenant"></a>Créer des stratégies dans votre locataire B2C
 
-Dans Azure AD B2C, chaque expérience utilisateur est définie par une [stratégie](active-directory-b2c-reference-policies.md). Cet exemple de code contient trois expériences liées à l’identité : **l’inscription et la connexion**, la **modification du profil** et la **réinitialisation du mot de passe**.  Vous devez toocreate une stratégie de chaque type, comme décrit dans hello [article de référence de stratégie](active-directory-b2c-reference-policies.md). Pour chaque stratégie, être toocopy nom hello de votre stratégie pour une utilisation ultérieure ou revendication et attribut de nom d’affichage tooselect hello.
+Dans Azure AD B2C, chaque expérience utilisateur est définie par une [stratégie](active-directory-b2c-reference-policies.md). Cet exemple de code contient trois expériences liées à l’identité : **l’inscription et la connexion**, la **modification du profil** et la **réinitialisation du mot de passe**.  Vous devez créer une stratégie de chaque type, comme décrit dans [l’article de référence sur les stratégies](active-directory-b2c-reference-policies.md). Pour chaque stratégie, veillez à sélectionner l’attribut de nom d’affichage ou la revendication et à copier le nom de votre stratégie pour une utilisation ultérieure.
 
 ### <a name="add-your-identity-providers"></a>Ajouter vos fournisseurs d’identité
 
@@ -74,21 +74,21 @@ Dans Azure AD B2C, chaque expérience utilisateur est définie par une [stratég
 
 [!INCLUDE [active-directory-b2c-create-password-reset-policy](../../includes/active-directory-b2c-create-password-reset-policy.md)]
 
-Après avoir créé vos stratégies, vous êtes prêt toobuild votre application.
+Une fois vos stratégies créées, vous pouvez générer votre application.
 
-## <a name="download-hello-sample-code"></a>Télécharger l’exemple de code hello
+## <a name="download-the-sample-code"></a>Télécharger l’exemple de code
 
-code Hello pour ce didacticiel est conservée sur [GitHub](https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi). Vous pouvez cloner l’exemple hello en exécutant :
+Le code associé à ce didacticiel est stocké sur [GitHub](https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi). Vous pouvez cloner l’exemple en exécutant :
 
 ```console
 git clone https://github.com/Azure-Samples/active-directory-b2c-dotnet-webapp-and-webapi.git
 ```
 
-Après avoir téléchargé l’exemple de code hello, ouvrez hello tooget du fichier .sln de Visual Studio a démarré. fichier de solution Hello contient deux projets : `TaskWebApp` et `TaskService`. `TaskWebApp`est hello application web MVC hello utilisateur interagit avec. `TaskService`est web principal API de l’application hello qui stocke la liste des actions de chaque utilisateur. Cet article traite uniquement hello `TaskWebApp` application. toolearn comment toobuild `TaskService` à l’aide d’Azure AD B2C, consultez [notre didacticiel de l’api web .NET](active-directory-b2c-devquickstarts-api-dotnet.md).
+Une fois l’exemple de code téléchargé, ouvrez le fichier .sln Visual Studio pour commencer. Le fichier solution contient deux projets : `TaskWebApp` et `TaskService`. `TaskWebApp` est l’application web MVC avec laquelle l’utilisateur interagit. `TaskService` est l’API web du serveur principal de l’application qui stocke la liste de tâches de chaque utilisateur. Cet article traite uniquement de l’application `TaskWebApp`. Pour savoir comment générer `TaskService` à l’aide d’Azure AD B2C, consultez [notre didacticiel sur les API web .NET](active-directory-b2c-devquickstarts-api-dotnet.md).
 
-## <a name="update-code-toouse-your-tenant-and-policies"></a>Mettre à jour du code toouse votre locataire et les stratégies
+## <a name="update-code-to-use-your-tenant-and-policies"></a>Mettre à jour le code pour utiliser votre locataire et vos stratégies
 
-Notre exemple est configuré toouse hello stratégies et ID de client de notre client de démonstration. tooconnect il tooyour de locataire propre, vous devez tooopen `web.config` Bonjour `TaskWebApp` de projet et remplacez hello valeurs suivantes :
+Notre exemple est configuré pour utiliser les stratégies et l’ID client du locataire de notre démonstration. Pour le connecter à votre propre locataire, vous devez ouvrir `web.config` dans le projet `TaskWebApp` et remplacer les valeurs suivantes :
 
 * `ida:Tenant` par le nom de votre locataire
 * `ida:ClientId` par votre ID d’application web
@@ -97,36 +97,36 @@ Notre exemple est configuré toouse hello stratégies et ID de client de notre c
 * `ida:EditProfilePolicyId` par votre nom de stratégie « Modifier le profil »
 * `ida:ResetPasswordPolicyId` par votre nom de stratégie « Réinitialiser le mot de passe »
 
-## <a name="launch-hello-app"></a>Lancer l’application hello
-À partir de Visual Studio, lancez application hello. Accédez onglet de liste de tâches toohello et hello Remarque URl est : https://login.microsoftonline.com/*YourTenantName*/oauth2/v2.0/authorize?p=*YourSignUpPolicyName*& client_id = *YourclientID*...
+## <a name="launch-the-app"></a>Lancer l’application
+À partir de Visual Studio, lancez l’application. Accédez à l’onglet Liste de tâches et notez que l’URl est : https://login.microsoftonline.com/*YourTenantName*/oauth2/v2.0/authorize?p=*YourSignUpPolicyName*&client_id=*YourclientID*.....
 
-Inscrivez-vous pour une application hello à l’aide de votre nom d’utilisateur ou une adresse de messagerie. Déconnectez-vous, puis reconnectez-vous et modifier le profil de hello ou réinitialiser le mot de passe hello. Déconnectez-vous et connectez-vous en tant qu’autre utilisateur. 
+Inscrivez-vous à l’application à l’aide de votre adresse e-mail ou nom d’utilisateur. Déconnectez-vous, puis reconnectez-vous et modifiez le profil ou réinitialisez le mot de passe. Déconnectez-vous et connectez-vous en tant qu’autre utilisateur. 
 
 ## <a name="add-social-idps"></a>Ajout d’IDP sociaux
 
-Actuellement, application hello prend en charge uniquement les utilisateurs d’abonnement et de connexion à l’aide de **comptes locaux**; les comptes stockés dans votre répertoire B2C qui utilisent un nom d’utilisateur et un mot de passe. Avec Azure AD B2C, vous pouvez ajouter la prise en charge d’autres **fournisseurs d’identité** sans modifier votre code.
+Actuellement, l’application prend uniquement en charge l’inscription et la connexion d’utilisateur à l’aide de **comptes locaux** (les comptes stockés dans votre répertoire B2C qui utilisent un nom d’utilisateur et un mot de passe). Avec Azure AD B2C, vous pouvez ajouter la prise en charge d’autres **fournisseurs d’identité** sans modifier votre code.
 
-tooadd sociaux IDPs tooyour application, commencez par suivre hello des instructions dans ces articles. Pour chaque IDP vous toosupport, vous devez tooregister une application de ce système et obtenez un ID client.
+Pour ajouter des fournisseurs d’identité sociaux à votre application, commencez par suivre les instructions détaillées figurant dans ces articles. Pour chaque fournisseur d’identité que vous souhaitez prendre en charge, vous devez inscrire une application dans ce système et obtenir un ID client.
 
 * [Définir Facebook en tant qu’IDP](active-directory-b2c-setup-fb-app.md)
 * [Définir Google en tant qu’IDP](active-directory-b2c-setup-goog-app.md)
 * [Définir Amazon en tant qu’IDP](active-directory-b2c-setup-amzn-app.md)
 * [Définir LinkedIn en tant qu’IDP](active-directory-b2c-setup-li-app.md)
 
-Après avoir ajouté tooyour de fournisseurs d’identité hello directory B2C, modification de votre tooinclude trois stratégies hello IDPs nouveau, comme décrit dans hello [article de référence de stratégie](active-directory-b2c-reference-policies.md). Après avoir enregistré vos stratégies, exécutez à nouveau application hello.  Vous devez voir hello Qu'idps nouveau ajoutés en tant qu’options de connexion et d’inscription dans chacun de vos expériences d’identité.
+Après avoir ajouté les fournisseurs d’identité à votre répertoire B2C, modifiez chacune de vos trois stratégies pour inclure ces nouveaux fournisseurs, comme décrit dans [l’article de référence sur les stratégies](active-directory-b2c-reference-policies.md). Après avoir enregistré vos stratégies, exécutez à nouveau l’application.  Les nouveaux fournisseurs d’identité doivent être ajoutés comme options d’inscription et de connexion dans chacune de vos expériences relatives à l’identité.
 
-Vous pouvez faire des essais avec vos stratégies et observez l’effet hello sur votre exemple d’application. Ajoutez ou supprimez des fournisseurs d’identité, manipulez des revendications d’application ou modifiez des attributs d’inscription. Faites des essais jusqu’à ce que vous compreniez la façon dont les stratégies, les requêtes d’authentification et la bibliothèque OWIN sont liées.
+Vous pouvez tester vos stratégies et observer le résultat sur votre exemple d’application. Ajoutez ou supprimez des fournisseurs d’identité, manipulez des revendications d’application ou modifiez des attributs d’inscription. Faites des essais jusqu’à ce que vous compreniez la façon dont les stratégies, les requêtes d’authentification et la bibliothèque OWIN sont liées.
 
 ## <a name="sample-code-walkthrough"></a>Exemple de code de procédure pas à pas
-Hello les sections suivantes vous montre comment le code de l’application exemple hello est configuré. Vous pouvez les utiliser comme guide pour le développement de vos futures applications.
+Les sections suivantes vous montrent comment l’exemple de code d’application est configuré. Vous pouvez les utiliser comme guide pour le développement de vos futures applications.
 
 ### <a name="add-authentication-support"></a>Ajouter le support de l’authentification
 
-Vous pouvez maintenant configurer votre toouse application Azure AD B2C. Votre application communique avec Azure AD B2C en envoyant des demandes d’authentification OpenID Connect. l’expérience utilisateur hello dictent Hello demandes votre application veut tooexecute en spécifiant une stratégie hello. Vous pouvez utiliser toosend de bibliothèque de Microsoft OWIN ces demandes, exécution des stratégies, gérer les sessions utilisateur et bien plus encore.
+Vous pouvez à présent configurer votre application pour utiliser Azure AD B2C. Votre application communique avec Azure AD B2C en envoyant des demandes d’authentification OpenID Connect. Les demandes déterminent l’expérience utilisateur que votre application souhaite exécuter en spécifiant la stratégie. Vous pouvez utiliser la bibliothèque OWIN de Microsoft pour envoyer des requêtes, exécuter les stratégies, gérer les sessions utilisateur, etc.
 
 #### <a name="install-owin"></a>Installer OWIN
 
-toobegin, ajouter le projet toohello des packages de NuGet hello OWIN intergiciel (middleware) à l’aide de hello Console du Gestionnaire de Package Visual Studio.
+Pour commencer, ajoutez au projet les packages NuGet du middleware OWIN à l’aide de la console du gestionnaire de package Visual Studio.
 
 ```Console
 PM> Install-Package Microsoft.Owin.Security.OpenIdConnect
@@ -136,29 +136,29 @@ PM> Install-Package Microsoft.Owin.Host.SystemWeb
 
 #### <a name="add-an-owin-startup-class"></a>Ajouter une classe de démarrage OWIN
 
-Ajouter un toohello de classe de démarrage OWIN API appelée `Startup.cs`.  Avec le bouton droit sur le projet hello, sélectionnez **ajouter** et **un nouvel élément**, puis recherchez OWIN. intergiciel (middleware) OWIN de Hello appellera hello `Configuration(…)` méthode au démarrage de votre application.
+Ajoutez une classe de démarrage OWIN à l’API appelée `Startup.cs`.  Cliquez avec le bouton droit sur le projet, sélectionnez **Ajouter** et **Nouvel élément**, puis recherchez OWIN. L’intergiciel OWIN appelle la méthode `Configuration(…)` lorsque votre application démarre.
 
-Dans notre exemple, nous avons modifié trop déclaration de classe hello`public partial class Startup` et implémenté hello autre partie de la classe hello dans `App_Start\Startup.Auth.cs`. À l’intérieur hello `Configuration` (méthode), nous avons ajouté un appel trop`ConfigureAuth`, qui est défini dans `Startup.Auth.cs`. Après modification de hello, `Startup.cs` ressemble à hello qui suit :
+Dans notre exemple, nous avons modifié la déclaration de classe sur `public partial class Startup` et implémenté l’autre partie de la classe dans `App_Start\Startup.Auth.cs`. À l’intérieur de la méthode `Configuration`, nous avons ajouté un appel vers `ConfigureAuth`, qui est défini dans `Startup.Auth.cs`. Après modification, `Startup.cs` ressemble à ceci :
 
 ```CSharp
 // Startup.cs
 
 public partial class Startup
 {
-    // hello OWIN middleware will invoke this method when hello app starts
+    // The OWIN middleware will invoke this method when the app starts
     public void Configuration(IAppBuilder app)
     {
-        // ConfigureAuth defined in other part of hello class
+        // ConfigureAuth defined in other part of the class
         ConfigureAuth(app);
     }
 }
 ```
 
-#### <a name="configure-hello-authentication-middleware"></a>Configurer hello intergiciel d’authentification
+#### <a name="configure-the-authentication-middleware"></a>Configurer le middleware d’authentification
 
-Les fichiers ouverts hello `App_Start\Startup.Auth.cs` et implémenter hello `ConfigureAuth(...)` (méthode). Hello les paramètres que vous fournissez dans `OpenIdConnectAuthenticationOptions` servent de coordonnées pour toocommunicate de votre application avec Azure Active Directory B2C. Si vous ne spécifiez pas de certains paramètres, il utilisera la valeur par défaut de hello. Par exemple, nous ne spécifiez pas hello `ResponseType` dans l’exemple hello, donc hello valeur par défaut `code id_token` seront utilisées dans chaque tooAzure demande sortante AD B2C.
+Ouvrez le fichier `App_Start\Startup.Auth.cs` et implémentez la méthode `ConfigureAuth(...)`. Les paramètres que vous fournissez dans `OpenIdConnectAuthenticationOptions` servent de coordonnées pour que votre application puisse communiquer avec Azure AD B2C. Si vous ne spécifiez pas certains paramètres, la valeur par défaut est utilisée. Par exemple, nous ne spécifions pas `ResponseType` dans l’exemple. Par conséquent, la valeur par défaut `code id_token` est utilisée dans chaque requête sortante pour Azure Active Directory B2C.
 
-Vous devez également tooset l’authentification de cookie. intergiciel (middleware) Hello OpenID Connect utilise les sessions utilisateur toomaintain les cookies, entre autres choses.
+Vous devez également configurer l’authentification des cookies. Le middleware OpenID Connect utilise des cookies pour gérer les sessions utilisateur, entre autres.
 
 ```CSharp
 // App_Start\Startup.Auth.cs
@@ -167,7 +167,7 @@ public partial class Startup
 {
     // Initialize variables ...
 
-    // Configure hello OWIN middleware
+    // Configure the OWIN middleware
     public void ConfigureAuth(IAppBuilder app)
     {
         app.UseCookieAuthentication(new CookieAuthenticationOptions());
@@ -176,7 +176,7 @@ public partial class Startup
         app.UseOpenIdConnectAuthentication(
             new OpenIdConnectAuthenticationOptions
             {
-                // Generate hello metadata address using hello tenant and policy information
+                // Generate the metadata address using the tenant and policy information
                 MetadataAddress = String.Format(AadInstance, Tenant, DefaultPolicy),
 
                 // These are standard OpenID Connect parameters, with values pulled from web.config
@@ -184,7 +184,7 @@ public partial class Startup
                 RedirectUri = RedirectUri,
                 PostLogoutRedirectUri = RedirectUri,
 
-                // Specify hello callbacks for each type of notifications
+                // Specify the callbacks for each type of notifications
                 Notifications = new OpenIdConnectAuthenticationNotifications
                 {
                     RedirectToIdentityProvider = OnRedirectToIdentityProvider,
@@ -192,41 +192,41 @@ public partial class Startup
                     AuthenticationFailed = OnAuthenticationFailed,
                 },
 
-                // Specify hello claims toovalidate
+                // Specify the claims to validate
                 TokenValidationParameters = new TokenValidationParameters
                 {
                     NameClaimType = "name"
                 },
 
-                // Specify hello scope by appending all of hello scopes requested into one string (seperated by a blank space)
+                // Specify the scope by appending all of the scopes requested into one string (seperated by a blank space)
                 Scope = $"{OpenIdConnectScopes.OpenId} {ReadTasksScope} {WriteTasksScope}"
             }
         );
     }
 
-    // Implement hello "Notification" methods...
+    // Implement the "Notification" methods...
 }
 ```
 
-Dans `OpenIdConnectAuthenticationOptions` ci-dessus, nous définissons un ensemble de fonctions de rappel pour les notifications spécifiques qui sont reçues par un intergiciel (middleware) hello OpenID Connect. Ces comportements sont définis en utilisant un `OpenIdConnectAuthenticationNotifications` de l’objet et stocké dans hello `Notifications` variable. Dans notre exemple, nous définissons trois rappels différents en fonction de l’événement de hello.
+Dans `OpenIdConnectAuthenticationOptions` ci-dessus, nous définissons un ensemble de fonctions de rappel pour les notifications spécifiques qui sont reçues par le middleware OpenID Connect. Ces comportements sont définis en utilisant un objet `OpenIdConnectAuthenticationNotifications` et sont stockés dans la variable `Notifications`. Dans notre exemple, nous définissons trois rappels différents en fonction de l’événement.
 
 ### <a name="using-different-policies"></a>Utilisation de différentes stratégies
 
-Hello `RedirectToIdentityProvider` notification est déclenchée chaque fois qu’une demande est faite tooAzure AD B2C. Dans la fonction de rappel hello `OnRedirectToIdentityProvider`, nous vérifions Bonjour sortant appel si nous voulons que toouse une autre stratégie. Dans l’ordre toodo réinitialisation de mot de passe ou modifier un profil, vous avez besoin de stratégie correspondante de hello toouse telles que la stratégie au lieu de la stratégie de « S’inscrire ou signe » hello par défaut de réinitialisation de mot de passe hello.
+La notification `RedirectToIdentityProvider` est déclenchée chaque fois qu’une demande est envoyée à Azure AD B2C. Dans la fonction de rappel `OnRedirectToIdentityProvider`, nous vérifions dans l’appel sortant si nous souhaitons utiliser une stratégie différente. Pour effectuer une réinitialisation de mot de passe ou modifier un profil, vous devez utiliser la stratégie correspondante, par exemple la stratégie de réinitialisation du mot de passe, au lieu de la stratégie d’inscription ou de connexion par défaut.
 
-Dans notre exemple, lorsqu’un utilisateur souhaite que le mot de passe tooreset hello ou modifier le profil de hello, nous ajoutons stratégie hello nous préférons toouse dans le contexte OWIN de hello. Cela peut se faire de manière hello suivante :
+Dans notre exemple, lorsqu’un utilisateur souhaite réinitialiser le mot de passe ou modifier le profil, nous ajoutons la stratégie que nous préférons utiliser dans le contexte d’OWIN. Pour cela, procédez comme suit :
 
 ```CSharp
-    // Let hello middleware know you are trying toouse hello edit profile policy
+    // Let the middleware know you are trying to use the edit profile policy
     HttpContext.GetOwinContext().Set("Policy", EditProfilePolicyId);
 ```
 
-Et vous pouvez implémenter la fonction de rappel hello `OnRedirectToIdentityProvider` de manière hello suivante :
+Et vous pouvez implémenter la fonction de rappel `OnRedirectToIdentityProvider` de la manière suivante :
 
 ```CSharp
 /*
-*  On each call tooAzure AD B2C, check if a policy (e.g. hello profile edit or password reset policy) has been specified in hello OWIN context.
-*  If so, use that policy when making hello call. Also, don't request a code (since it won't be needed).
+*  On each call to Azure AD B2C, check if a policy (e.g. the profile edit or password reset policy) has been specified in the OWIN context.
+*  If so, use that policy when making the call. Also, don't request a code (since it won't be needed).
 */
 private Task OnRedirectToIdentityProvider(RedirectToIdentityProviderNotification<OpenIdConnectMessage, OpenIdConnectAuthenticationOptions> notification)
 {
@@ -245,25 +245,25 @@ private Task OnRedirectToIdentityProvider(RedirectToIdentityProviderNotification
 
 ### <a name="handling-authorization-codes"></a>Gestion des codes d’autorisation
 
-Hello `AuthorizationCodeReceived` notification est déclenchée lors de la réception d’un code d’autorisation. intergiciel (middleware) Hello OpenID Connect ne prend pas en charge les codes d’échange pour les jetons d’accès. Vous pouvez échanger manuellement les code hello pour le jeton hello dans une fonction de rappel. Pour plus d’informations, consultez hello [documentation](active-directory-b2c-devquickstarts-web-api-dotnet.md) qui explique comment.
+La notification `AuthorizationCodeReceived` est déclenchée lors de la réception d’un code d’autorisation. Le middleware OpenID Connect ne prend pas en charge l’échange de codes pour les jetons d’accès. Vous pouvez échanger manuellement le code pour le jeton dans une fonction de rappel. Pour plus d’informations, consultez cette [documentation](active-directory-b2c-devquickstarts-web-api-dotnet.md).
 
 ### <a name="handling-errors"></a>Gestion des erreurs
 
-Hello `AuthenticationFailed` notification est déclenchée lorsque l’authentification échoue. Dans sa méthode de rappel, vous pouvez gérer les erreurs de hello comme vous le souhaitez. Toutefois, vous devez ajouter une vérification pour le code d’erreur hello `AADB2C90118`. Pendant l’exécution de hello Hello stratégie « S’inscrire ou se connecter », utilisateur de hello a hello opportunité tooselect un **votre mot de passe oublié ?** lien. Dans ce cas, Azure AD B2C envoie votre application de ce code d’erreur indiquant que votre application doit effectuer une demande à l’aide de stratégie de réinitialisation du mot de passe hello à la place.
+La notification `AuthenticationFailed` est déclenchée lors de l’échec de l’authentification. Dans la méthode de rappel associée, vous pouvez gérer les erreurs comme vous le souhaitez. Vous devez toutefois ajouter une vérification du code d’erreur `AADB2C90118`. Lors de l’exécution de la stratégie d’inscription ou de connexion, l’utilisateur a la possibilité de sélectionner un lien **Vous avez oublié votre mot de passe ?**. Dans ce cas, Azure AD B2C envoie à votre application un code d’erreur indiquant qu’elle doit effectuer une demande à l’aide de la stratégie de réinitialisation de mot de passe à la place.
 
 ```CSharp
 /*
-* Catch any failures received by hello authentication middleware and handle appropriately
+* Catch any failures received by the authentication middleware and handle appropriately
 */
 private Task OnAuthenticationFailed(AuthenticationFailedNotification<OpenIdConnectMessage, OpenIdConnectAuthenticationOptions> notification)
 {
     notification.HandleResponse();
 
-    // Handle hello error code that Azure AD B2C throws when trying tooreset a password from hello login page
+    // Handle the error code that Azure AD B2C throws when trying to reset a password from the login page
     // because password reset is not supported by a "sign-up or sign-in policy"
     if (notification.ProtocolMessage.ErrorDescription != null && notification.ProtocolMessage.ErrorDescription.Contains("AADB2C90118"))
     {
-        // If hello user clicked hello reset password link, redirect toohello reset password route
+        // If the user clicked the reset password link, redirect to the reset password route
         notification.Response.Redirect("/Account/ResetPassword");
     }
     else if (notification.Exception.Message == "access_denied")
@@ -279,21 +279,21 @@ private Task OnAuthenticationFailed(AuthenticationFailedNotification<OpenIdConne
 }
 ```
 
-### <a name="send-authentication-requests-tooazure-ad"></a>Envoyer tooAzure de demandes d’authentification Active Directory
+### <a name="send-authentication-requests-to-azure-ad"></a>Envoyer des demandes d’authentification à Azure AD
 
-Votre application est maintenant toocommunicate correctement configuré avec Azure AD B2C à l’aide du protocole d’authentification OpenID Connect hello. OWIN gère les détails de hello d’élaborer des messages d’authentification, la validation des jetons d’Azure AD B2C et la gestion de session utilisateur. Tout ce qui reste est tooinitiate les flux de chaque utilisateur.
+Votre application est maintenant correctement configurée pour communiquer avec Azure AD B2C en utilisant le protocole d’authentification OpenID Connect. OWIN gère tous les détails de la création de messages d’authentification, de la validation des jetons d’Azure AD B2C et de la gestion des sessions utilisateur. Il ne reste plus qu’à initier le flux de chaque utilisateur.
 
-Lorsqu’un utilisateur sélectionne **connexion à distance et à la connexion**, **modifier le profil**, ou **réinitialisation de mot de passe** dans hello web app, action de hello associé est appelée dans `Controllers\AccountController.cs`:
+Lorsqu’un utilisateur sélectionne **S’inscrire/se connecter**, **Modifier le profil** ou **Réinitialiser le mot de passe** dans l’application web, l’action associée est appelée dans `Controllers\AccountController.cs` :
 
 ```CSharp
 // Controllers\AccountController.cs
 
 /*
-*  Called when requesting toosign up or sign in
+*  Called when requesting to sign up or sign in
 */
 public void SignUpSignIn()
 {
-    // Use hello default policy tooprocess hello sign up / sign in flow
+    // Use the default policy to process the sign up / sign in flow
     if (!Request.IsAuthenticated)
     {
         HttpContext.GetOwinContext().Authentication.Challenge();
@@ -304,16 +304,16 @@ public void SignUpSignIn()
 }
 
 /*
-*  Called when requesting tooedit a profile
+*  Called when requesting to edit a profile
 */
 public void EditProfile()
 {
     if (Request.IsAuthenticated)
     {
-        // Let hello middleware know you are trying toouse hello edit profile policy (see OnRedirectToIdentityProvider in Startup.Auth.cs)
+        // Let the middleware know you are trying to use the edit profile policy (see OnRedirectToIdentityProvider in Startup.Auth.cs)
         HttpContext.GetOwinContext().Set("Policy", Startup.EditProfilePolicyId);
 
-        // Set hello page tooredirect tooafter editing hello profile
+        // Set the page to redirect to after editing the profile
         var authenticationProperties = new AuthenticationProperties { RedirectUri = "/" };
         HttpContext.GetOwinContext().Authentication.Challenge(authenticationProperties);
 
@@ -325,14 +325,14 @@ public void EditProfile()
 }
 
 /*
-*  Called when requesting tooreset a password
+*  Called when requesting to reset a password
 */
 public void ResetPassword()
 {
-    // Let hello middleware know you are trying toouse hello reset password policy (see OnRedirectToIdentityProvider in Startup.Auth.cs)
+    // Let the middleware know you are trying to use the reset password policy (see OnRedirectToIdentityProvider in Startup.Auth.cs)
     HttpContext.GetOwinContext().Set("Policy", Startup.ResetPasswordPolicyId);
 
-    // Set hello page tooredirect tooafter changing passwords
+    // Set the page to redirect to after changing passwords
     var authenticationProperties = new AuthenticationProperties { RedirectUri = "/" };
     HttpContext.GetOwinContext().Authentication.Challenge(authenticationProperties);
 
@@ -340,17 +340,17 @@ public void ResetPassword()
 }
 ```
 
-Vous pouvez également utiliser toosign OWIN utilisateur hello à partir de l’application hello. Dans `Controllers\AccountController.cs`, voici ce que nous obtenons :
+Vous pouvez également utiliser OWIN pour déconnecter l’utilisateur de l’application. Dans `Controllers\AccountController.cs`, voici ce que nous obtenons :
 
 ```CSharp
 // Controllers\AccountController.cs
 
 /*
-*  Called when requesting toosign out
+*  Called when requesting to sign out
 */
 public void SignOut()
 {
-    // toosign out hello user, you should issue an OpenIDConnect sign out request.
+    // To sign out the user, you should issue an OpenIDConnect sign out request.
     if (Request.IsAuthenticated)
     {
         IEnumerable<AuthenticationDescription> authTypes = HttpContext.GetOwinContext().Authentication.GetAuthenticationTypes();
@@ -360,12 +360,12 @@ public void SignOut()
 }
 ```
 
-Dans tooexplicitly plus appel d’une stratégie, vous pouvez utiliser un `[Authorize]` sur vos contrôleurs de balise qui s’exécute une stratégie si l’utilisateur de hello n’est pas connecté. Ouvrez `Controllers\HomeController.cs` et ajoutez hello `[Authorize]` balise toohello revendications contrôleur.  OWIN sélectionne hello dernière stratégie configurée lorsque hello `[Authorize]` balise est atteint.
+En plus d’appeler explicitement une stratégie, vous pouvez utiliser une balise `[Authorize]` dans vos contrôleurs qui exécute une stratégie si l’utilisateur n’est pas connecté. Ouvrez `Controllers\HomeController.cs` et ajoutez la balise `[Authorize]` au contrôleur des revendications.  OWIN sélectionne la dernière stratégie configurée lorsque la balise `[Authorize]` est atteinte.
 
 ```CSharp
 // Controllers\HomeController.cs
 
-// You can use hello Authorize decorator tooexecute a certain policy if hello user is not already signed into hello app.
+// You can use the Authorize decorator to execute a certain policy if the user is not already signed into the app.
 [Authorize]
 public ActionResult Claims()
 {
@@ -374,9 +374,9 @@ public ActionResult Claims()
 
 ### <a name="display-user-information"></a>Afficher les informations utilisateur
 
-Lorsque vous authentifiez des utilisateurs à l’aide de OpenID Connect, Azure AD B2C retourne une application de jeton toohello ID contenant **revendications**. Il s’agit des assertions sur l’utilisateur de hello. Vous pouvez utiliser les revendications toopersonalize votre application.
+Lors de l’authentification des utilisateurs avec OpenID Connect, Azure AD B2C retourne un jeton d’ID à l’application qui contient des **revendications**. Il s’agit d’assertions concernant l’utilisateur. Vous pouvez utiliser des revendications pour personnaliser votre application.
 
-Ouvrez hello `Controllers\HomeController.cs` fichier. Vous pouvez accéder aux revendications d’utilisateur dans vos contrôleurs via hello `ClaimsPrincipal.Current` objet principal de sécurité.
+Ouvrez le fichier `Controllers\HomeController.cs` . Vous pouvez accéder aux revendications de l’utilisateur dans vos contrôleurs par le biais de l’objet principal de sécurité `ClaimsPrincipal.Current` .
 
 ```CSharp
 // Controllers\HomeController.cs
@@ -390,4 +390,4 @@ public ActionResult Claims()
 }
 ```
 
-Vous pouvez accéder à toute revendication que votre application reçoit Bonjour même façon.  Une liste de toutes les revendications hello application hello reçoit est disponible pour vous sur hello **revendications** page.
+Vous pouvez accéder à toutes les revendications que votre application reçoit de la même façon.  Une liste de toutes les revendications reçues par l’application est disponible sur la page **Revendications** .

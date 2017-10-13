@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate un modèle tabulaire à l’aide du Concepteur Web Azure Analysis Services de hello | Documents Microsoft"
-description: "Découvrez comment toocreate un modèle tabulaire Azure Analysis Services à l’aide de hello Concepteur Web dans le portail Azure."
+title: "Créer un modèle tabulaire à l’aide du concepteur web Azure Analysis Services | Microsoft Docs"
+description: "Découvrez comment créer un modèle tabulaire Azure Analysis Services à l’aide du concepteur web dans le portail Azure."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/21/2017
 ms.author: owend
-ms.openlocfilehash: a37b326b76c84fc3a4300827bc1c8706b0584701
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bd58f1845dabf6afb47ce27236d14479677a8808
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-a-model-in-azure-portal"></a>Créer un modèle dans le portail Azure
 
-fonctionnalité de concepteur (version préliminaire) Hello Azure Analysis Services web dans le portail Azure fournit un moyen simple et rapide de toocreate et modifier les modèles tabulaires et droite de données de modèle de requête dans votre navigateur. 
+La fonctionnalité de concepteur Web Azure Analysis Services (aperçu) dans le portail Azure fournit un moyen simple et rapide de créer et de modifier des modèles tabulaires et d’interroger les données des modèles directement dans votre navigateur. 
 
-N’oubliez pas, le concepteur web hello est **aperçu**. Lors de la nouvelle fonctionnalité est ajoutée toutes les périodes de hello, dans l’aperçu, la fonctionnalité est limitée. Pour plus avancées développement de modèles et de test, il est meilleure toouse Visual Studio (SSDT) et SQL Server Management Studio (SSMS).
+N’oubliez pas que le concepteur Web est en **aperçu**. Malgré l’ajout permanent de nouvelles fonctionnalités, les fonctionnalités disponibles en préversion sont limitées. Pour un développement et un test de modèles plus avancés, utilisez plutôt Visual Studio (SSDT) et SQL Server Management Studio (SSMS).
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Prérequis
 
-- Un serveur Azure Analysis Services au niveau Standard ou Developer de hello. Nouveaux modèles créés à l’aide du Concepteur de sites Web hello sont DirectQuery, pris en charge uniquement par ces couches.
+- Un serveur Azure Analysis Services au niveau Standard ou Développeur. Les modèles créés à l’aide du concepteur web sont en mode DirectQuery, uniquement pris en charge par ces niveaux.
 - Un fichier Azure SQL Database, Azure SQL Data Warehouse ou Power BI Desktop (.pbix) comme source de données. Les modèles créés à partir de fichiers Power BI Desktop prennent en charge les sources de données Azure SQL Database, Azure SQL Data Warehouse, Oracle et Teradata.
-- Un compte SQL Server et le mot de passe pour la connexion des sources de données de base de données SQL ou Azure SQL Data Warehouse tooAzure.
+- Un compte et un mot de passe SQL Server pour se connecter aux sources de données Azure SQL Database ou Azure SQL Data Warehouse.
 
-## <a name="toocreate-a-new-tabular-model"></a>toocreate un nouveau modèle tabulaire
+## <a name="to-create-a-new-tabular-model"></a>Pour créer un modèle tabulaire
 
 1. Dans le panneau **Vue d’ensemble** > **Concepteur web** de votre serveur, cliquez sur **Ouvrir**.
 
@@ -47,25 +47,25 @@ N’oubliez pas, le concepteur web hello est **aperçu**. Lors de la nouvelle fo
 
     ![Boîte de dialogue Nouveau modèle dans le portail Azure](./media/analysis-services-create-model-portal/aas-create-portal-new-model.png)
 
-4. Dans **connexion**, entrez les propriétés de connexion hello. Le nom d’utilisateur et le mot de passe doivent correspondre à un compte SQL Server.
+4. Dans **Connexion**, entrez les propriétés de connexion. Le nom d’utilisateur et le mot de passe doivent correspondre à un compte SQL Server.
 
      ![Boîte de dialogue Connexion dans le portail Azure](./media/analysis-services-create-model-portal/aas-create-portal-connect.png)
 
-5. Dans **Tables et vues**, sélectionnez hello tables tooinclude dans votre modèle, puis cliquez sur **créer**. Les relations sont créées automatiquement entre les tables avec une paire de clés.
+5. Dans **Tables et vues**, sélectionnez les tables à inclure dans votre modèle, puis cliquez sur **Créer**. Les relations sont créées automatiquement entre les tables avec une paire de clés.
 
      ![Sélectionner les tables et les vues](./media/analysis-services-create-model-portal/aas-create-portal-tables.png)
 
 Votre nouveau modèle s’affiche dans votre navigateur. À ce stade, vous pouvez :   
 
-- Données de modèle de requête en faisant glisser le Concepteur de requêtes toohello de champs et en ajoutant des filtres.
+- Interroger les données du modèle en faisant glisser des champs vers le concepteur de requêtes et en ajoutant des filtres.
 - Créer des mesures dans les tables.
-- Modifier les métadonnées du modèle à l’aide de l’éditeur json hello.
-- Ouvrez le modèle de hello dans Visual Studio (SSDT), Power BI Desktop ou Excel.
+- Modifier les métadonnées du modèle à l’aide de l’éditeur json.
+- Ouvrir le modèle dans Visual Studio (SSDT), Power BI Desktop ou Excel.
 
 ![Sélectionner les tables et les vues](./media/analysis-services-create-model-portal/aas-create-portal-query.png)
 
 > [!NOTE]
-> Lorsque vous modifiez les métadonnées du modèle ou créez de nouvelles mesures dans votre navigateur, vous enregistrez ces modèle tooyour de modifications dans Azure. Si vous travaillez également sur votre modèle dans SSDT, Power BI Desktop ou Excel, il peut être désynchronisé.
+> Quand vous modifiez les métadonnées du modèle ou créez des mesures dans votre navigateur, vous enregistrez les modifications apportées à votre modèle dans Azure. Si vous travaillez également sur votre modèle dans SSDT, Power BI Desktop ou Excel, il peut être désynchronisé.
 
 
 ## <a name="next-steps"></a>Étapes suivantes 

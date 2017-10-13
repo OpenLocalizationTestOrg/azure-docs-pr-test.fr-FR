@@ -1,6 +1,6 @@
 ---
-title: aaaSet des points de terminaison sur une machine virtuelle Windows classique | Documents Microsoft
-description: En savoir plus tooset des points de terminaison pour une machine virtuelle Windows dans hello tooallow de portail classique Azure communication avec un ordinateur virtuel de Windows dans Azure.
+title: Configurer des points de terminaison sur une machine virtuelle Windows classique | Microsoft Docs
+description: "Apprenez à configurer des points de terminaison pour une machine virtuelle Windows dans le portail Azure Classic pour permettre la communication avec une machine virtuelle Windows dans Azure."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/09/2017
 ms.author: cynthn
-ms.openlocfilehash: e817076f16d3a245a8d19add7b2f2cf5e3baa17e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 60861819a7e437bb715b14c0e8eaf74f13b33ebf
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooset-up-endpoints-on-a-classic-windows-virtual-machine-in-azure"></a>Comment tooset des points de terminaison sur un ordinateur de virtuel Windows classique dans Azure
-Toutes les fenêtres de machines virtuelles que vous créez dans Azure à l’aide du modèle de déploiement classique hello peuvent communiquer automatiquement via un canal réseau privé avec d’autres ordinateurs virtuels de hello même service cloud ou réseau virtuel. Toutefois, les ordinateurs sur hello Internet ou d’autres réseaux virtuels nécessitent des points de terminaison toodirect hello réseau entrant trafic tooa machine virtuelle. Cet article est également disponible pour les [machines virtuelles Linux](../../linux/classic/setup-endpoints.md).
+# <a name="how-to-set-up-endpoints-on-a-classic-windows-virtual-machine-in-azure"></a>Comment configurer des points de terminaison sur une machine virtuelle Windows classique dans Azure
+Toutes les machines virtuelles Windows créées dans Azure à l’aide du modèle de déploiement classique peuvent automatiquement communiquer à travers un canal réseau privé avec d’autres machines virtuelles dans le même service cloud ou réseau virtuel. Toutefois, les ordinateurs sur Internet ou d'autres réseaux virtuels requièrent des points de terminaison pour diriger le trafic réseau entrant vers une machine virtuelle. Cet article est également disponible pour les [machines virtuelles Linux](../../linux/classic/setup-endpoints.md).
 
 > [!IMPORTANT]
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello.
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager.
 
-Bonjour **le Gestionnaire de ressources** modèle de déploiement, points de terminaison sont configurés à l’aide de **groupes de sécurité réseau (NSG)**. Pour plus d’informations, consultez [autoriser un accès externe tooyour machine virtuelle en utilisant hello Azure portal](../nsg-quickstart-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Dans le modèle de déploiement **Resource Manager**, les points de terminaison sont configurés à l’aide de **groupes de sécurité réseau (NSG)**. Pour plus d’informations, voir [Autoriser l’accès externe à votre machine virtuelle à l’aide du portail Azure](../nsg-quickstart-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Lorsque vous créez une machine virtuelle Windows dans hello portail Azure, des points de terminaison courantes telles que celles pour le Bureau à distance et accès distant Windows PowerShell sont généralement créées pour vous automatiquement. Vous pouvez configurer des points de terminaison supplémentaires lors de la création d’ordinateur virtuel de hello ou par la suite si nécessaire.
+Quand vous créez une machine virtuelle Windows dans le portail Azure, les points de terminaison courants, notamment ceux du Bureau à distance et de l’Accès distant Windows PowerShell, sont généralement créés pour vous automatiquement. Vous pouvez configurer des points de terminaison supplémentaires lors de la création de la machine virtuelle, ou ultérieurement si nécessaire.
 
 [!INCLUDE [virtual-machines-common-classic-setup-endpoints](../../../../includes/virtual-machines-common-classic-setup-endpoints.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-* toouse un tooset d’applet de commande Azure PowerShell du point de terminaison de la machine virtuelle, consultez [Add-AzureEndpoint](https://msdn.microsoft.com/library/azure/dn495300.aspx).
-* toouse un toomanage d’applet de commande Azure PowerShell une ACL sur un point de terminaison, consultez [contrôle d’accès de gestion des listes (ACL) pour les points de terminaison à l’aide de PowerShell](../../../virtual-network/virtual-networks-acl-powershell.md).
-* Si vous avez créé une machine virtuelle dans le modèle de déploiement du Gestionnaire de ressources hello, vous pouvez utiliser Azure PowerShell trop[créer des groupes de sécurité réseau](../../../virtual-network/virtual-networks-create-nsg-arm-ps.md) toocontrol trafic toohello machine virtuelle.
+* Pour configurer un point de terminaison de machine virtuelle à l’aide d’une applet de commande Azure PowerShell, consultez [Add-AzureEndpoint](https://msdn.microsoft.com/library/azure/dn495300.aspx).
+* Pour gérer une liste de contrôle d’accès sur un point de terminaison à l’aide d’une applet de commande Azure PowerShell, consultez [Gestion des listes de contrôle d’accès (ACL) pour les points de terminaison à l’aide de PowerShell](../../../virtual-network/virtual-networks-acl-powershell.md).
+* Si vous avez créé une machine virtuelle dans le modèle de déploiement Resource Manager, vous pouvez utiliser Azure PowerShell pour [créer des groupes de sécurité réseau](../../../virtual-network/virtual-networks-create-nsg-arm-ps.md) afin de contrôler le trafic vers la machine virtuelle.

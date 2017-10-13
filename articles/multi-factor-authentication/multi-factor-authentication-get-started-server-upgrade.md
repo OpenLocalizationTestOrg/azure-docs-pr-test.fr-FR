@@ -1,6 +1,6 @@
 ---
-title: aaaUpgrade PhoneFactor tooAzure serveur MFA | Documents Microsoft
-description: "Prise en main le serveur Azure MFA lorsque vous mettez à niveau à partir de l’agent phonefactor plus ancienne de hello."
+title: "Mise à niveau de l’agent PhoneFactor vers le serveur Azure Multi-Factor Authentication | Microsoft Docs"
+description: "Ce document décrit comment prendre en main le serveur Azure Multi-Factor Authentication lors d’une mise à niveau à partir de l’ancien agent PhoneFactor."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/06/2017
 ms.author: kgremban
-ms.openlocfilehash: 15b7b8517929c30f66e6a39cd44c69d12d25c6d7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7ab7e693909f807781744ae53eed75d425096590
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="upgrade-hello-phonefactor-agent-tooazure-multi-factor-authentication-server"></a>Hello mise à niveau le PhoneFactor Agent tooAzure serveur multi-Factor Authentication
-tooupgrade hello PhoneFactor Agent v5.x ou antérieure tooAzure serveur multi-Factor Authentication, désinstaller hello PhoneFactor Agent et affilié tout d’abord les composants. Puis hello serveur multi-Factor Authentication et ses composants connexes peuvent être installés.
+# <a name="upgrade-the-phonefactor-agent-to-azure-multi-factor-authentication-server"></a>Mise à niveau de l’agent PhoneFactor vers le serveur Azure Multi-Factor Authentication
+Pour mettre à niveau la version 5.x ou une version antérieure de l’agent PhoneFactor vers le serveur Microsoft Azure Multi-Factor Authentication, commencez par désinstaller l’agent PhoneFactor et les composants correspondants. Vous pouvez ensuite installer le serveur Azure Multi-Factor Authentication et les composants associés.
 
-## <a name="uninstall-hello-phonefactor-agent"></a>Désinstaller le PhoneFactor Agent de hello
+## <a name="uninstall-the-phonefactor-agent"></a>Désinstallation de l’agent PhoneFactor
 
-1. Sauvegarder tout d’abord, le fichier de données PhoneFactor hello. emplacement d’installation par défaut Hello est C:\Program Files\PhoneFactor\Data\Phonefactor.pfdata.
+1. Tout d'abord, sauvegardez le fichier de données PhoneFactor. L'emplacement d'installation par défaut est C:\Program Files\PhoneFactor\Data\Phonefactor.pfdata.
 
-2. Si hello portail de l’utilisateur est installé :
-  1. Accédez toohello du dossier d’installation et sauvegardez le fichier web.config de hello. emplacement d’installation Hello par défaut est C:\inetpub\wwwroot\PhoneFactor.
+2. Si le portail de l'utilisateur est installé :
+  1. Accédez au dossier d'installation et sauvegardez le fichier web.config. L'emplacement d'installation par défaut est C:\inetpub\wwwroot\PhoneFactor.
 
-  2. Si vous avez ajouté le portail de toohello des thèmes personnalisés, sauvegardez votre dossier personnalisé sous le répertoire C:\inetpub\wwwroot\PhoneFactor\App_Themes de hello.
+  2. Si vous avez ajouté des thèmes personnalisés au portail, sauvegardez votre dossier personnalisé sous le répertoire C:\inetpub\wwwroot\PhoneFactor\App_Themes.
 
-  3. Désinstaller hello portail de l’utilisateur via hello PhoneFactor Agent (disponible uniquement si installé sur hello PhoneFactor Agent hello par le même serveur que) ou via des programmes et fonctionnalités Windows.
+  3. Désinstallez le portail de l'utilisateur via l’agent PhoneFactor (disponible uniquement s’il est installé sur le même serveur que l’agent PhoneFactor) ou les programmes et fonctionnalités Windows.
 
-3. Si hello Service Web d’application Mobile est installé :
+3. Si le service web de l’application mobile est installé :
 
-  1. Accédez toohello du dossier d’installation et sauvegardez le fichier web.config de hello. emplacement d’installation Hello par défaut est C:\inetpub\wwwroot\PhoneFactorPhoneAppWebService.
+  1. Accédez au dossier d’installation et sauvegardez le fichier web.config. L’emplacement d’installation par défaut est C:\inetpub\wwwroot\PhoneFactorPhoneAppWebService.
 
-  2. Désinstallez hello Service Web d’application Mobile via programmes et fonctionnalités Windows.
+  2. Désinstaller le service web de l’application mobile via les programmes et fonctionnalités Windows.
 
-4. Si hello SDK du Service Web est installé, désinstallez-le via hello PhoneFactor Agent ou programmes et fonctionnalités Windows.
+4. Si le Kit de développement logiciel (SDK) Web Service est installé, désinstallez-le via l’agent PhoneFactor ou les programmes et fonctionnalités Windows.
 
-5. Désinstallez hello PhoneFactor Agent via programmes et fonctionnalités Windows.
+5. Désinstallez l’agent PhoneFactor via les programmes et fonctionnalités Windows.
 
-## <a name="install-hello-multi-factor-authentication-server"></a>Installer hello serveur multi-Factor Authentication
+## <a name="install-the-multi-factor-authentication-server"></a>Installation du serveur Azure Multi-Factor Authentication
 
-Hello chemin d’installation est récupéré à partir du Registre hello à partir de l’installation de le PhoneFactor Agent précédente hello, par conséquent, il doit installer Bonjour même emplacement (par exemple, C:\Program Files\PhoneFactor). Les nouvelles installations présentent un chemin d’installation par défaut différent (par exemple, C:\Program Files\Multi-Factor Authentication Server). Hello en hello précédente de que phonefactor Agent doit être mis à niveau pendant l’installation, afin de vos utilisateurs et les paramètres doivent être encore qu'il hello nouveau serveur d’authentification multifacteur après l’installation fichier de données.
+Le chemin d’installation est récupéré à partir du Registre de l’installation de l’agent PhoneFactor précédente. Le serveur Multi-Factor Authentication devrait donc s’installer au même emplacement (par exemple, C:\Program Files\PhoneFactor). Les nouvelles installations présentent un chemin d’installation par défaut différent (par exemple, C:\Program Files\Multi-Factor Authentication Server). Le fichier de données de l’agent PhoneFactor doit être mis à niveau lors de l'installation pour que vos utilisateurs et les paramètres puissent toujours être présents après l’installation du nouveau serveur Multi-Factor Authentication.
 
-1. Si vous y êtes invité, activer hello serveur multi-Factor Authentication et assurez-vous qu’il est attribué le groupe de réplication approprié toohello.
+1. Si vous y êtes invité, activez le serveur Multi-Factor Authentication et assurez-vous qu'il est affecté au groupe de réplication approprié.
 
-2. Si hello SDK du Service Web a été précédemment installé, installez hello nouveau du SDK du Service Web via hello Interface utilisateur de multi-Factor Authentication Server.
+2. Si le Kit de développement logiciel (SDK) Web Service a été précédemment installé, installez le nouveau Kit de développement logiciel (SDK) Web Service via l'Interface utilisateur du serveur Multi-Factor Authentication.
 
-  par défaut de nom de répertoire virtuel est maintenant de Hello **MultiFactorAuthWebServiceSdk** au lieu de **PhoneFactorWebServiceSdk**. Si vous souhaitez que le nom de toouse hello précédent, vous devez modifier le nom hello du répertoire virtuel de hello lors de l’installation. Dans le cas contraire, si vous autorisez hello installation toouse hello nouveau nom par défaut, vous avez toochange hello URL dans toutes les applications que hello référence SDK du Service Web (par exemple hello portail de l’utilisateur et le Service Web d’application Mobile) toopoint à l’emplacement correct de hello.
+  Le nom de répertoire virtuel par défaut est désormais **MultiFactorAuthWebServiceSdk** au lieu de **PhoneFactorWebServiceSdk**. Si vous souhaitez utiliser le nom précédent, vous devez modifier le nom du répertoire virtuel pendant l'installation. Dans le cas contraire, si vous autorisez le programme d’installation à utiliser le nouveau nom par défaut, vous devez modifier l’URL dans toutes les applications qui référencent le Kit de développement logiciel (SDK) du service web (telles que le portail de l’utilisateur et le service web de l’application mobile) pour pointer vers l’emplacement correct.
 
-3. Si hello portail de l’utilisateur a été précédemment installé sur hello PhoneFactor Agent serveur, installez hello nouveau portail d’utilisateur d’authentification multifacteur via hello Interface utilisateur de multi-Factor Authentication Server.
+3. Si le portail de l'utilisateur a été précédemment installé sur le serveur de l'agent PhoneFactor, installez le nouveau portail utilisateur Multi-Factor Authentication via l'Interface Multi-Factor Authentication.
 
-  par défaut de nom de répertoire virtuel est maintenant de Hello **MultiFactorAuth** au lieu de **PhoneFactor**. Si vous souhaitez que le nom de toouse hello précédent, vous devez modifier le nom hello du répertoire virtuel de hello lors de l’installation. Dans le cas contraire, si vous autorisez hello installation toouse hello nouveau nom par défaut, vous cliquez sur l’icône portail utilisateur hello Bonjour serveur multi-Factor et mettre à jour hello URL du portail utilisateur sur l’onglet Paramètres de hello.
+  Le nom de répertoire virtuel par défaut est désormais **MultiFactorAuth** au lieu de **PhoneFactor**. Si vous souhaitez utiliser le nom précédent, vous devez modifier le nom du répertoire virtuel pendant l'installation. Sinon, si vous autorisez le programme d'installation à utiliser le nouveau nom par défaut, vous cliquez sur l'icône Portail de l'utilisateur sur le serveur Multi-Factor Authentication et mettez à jour l'URL du portail utilisateur sous l'onglet Paramètres.
 
-4. Si hello portail utilisateur et/ou le Service Web d’application Mobile a été précédemment installé sur un serveur différent de hello PhoneFactor Agent :
+4. Si le Portail de l’utilisateur et/ou le service web de l’application mobile ont été installés précédemment sur un serveur différent de l’agent PhoneFactor :
 
-  1. Atteindre l’emplacement d’installation toohello (par exemple, C:\Program Files\PhoneFactor) et copiez toohello de programmes d’installation au moins un autre serveur. Il existe des programmes d’installation 32 bits et 64 bits pour hello portail de l’utilisateur et le Service application Web Mobile. Ils sont appelés MultiFactorAuthenticationUserPortalSetupXX.msi et MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi.
+  1. Accédez à l’emplacement d’installation (par exemple, C:\Program Files\PhoneFactor), puis copiez un ou plusieurs programmes d’installation sur l’autre serveur. Il existe des programmes d'installation 32 bits et 64 bits pour le portail de l'utilisateur et le service web de l'application mobile. Ils sont appelés MultiFactorAuthenticationUserPortalSetupXX.msi et MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi.
 
-  2. tooinstall hello portail de l’utilisateur sur le serveur web de hello, ouvrez une invite de commandes en tant qu’administrateur et exécutez MultiFactorAuthenticationUserPortalSetupXX.msi.
+  2. Pour installer le portail de l’utilisateur sur le serveur web, ouvrez une invite de commandes en tant qu’administrateur et exécutez MultiFactorAuthenticationUserPortalSetupXX.msi.
 
-    par défaut de nom de répertoire virtuel est maintenant de Hello **MultiFactorAuth** au lieu de **PhoneFactor**. Si vous souhaitez que le nom de toouse hello précédent, vous devez modifier le nom hello du répertoire virtuel de hello lors de l’installation. Dans le cas contraire, si vous autorisez hello installation toouse hello nouveau nom par défaut, vous cliquez sur l’icône portail utilisateur hello Bonjour serveur multi-Factor et mettre à jour hello URL du portail utilisateur sur l’onglet Paramètres de hello. Les utilisateurs existants doivent toobe informé de la nouvelle URL de hello.
+    Le nom de répertoire virtuel par défaut est désormais **MultiFactorAuth** au lieu de **PhoneFactor**. Si vous souhaitez utiliser le nom précédent, vous devez modifier le nom du répertoire virtuel pendant l'installation. Sinon, si vous autorisez le programme d'installation à utiliser le nouveau nom par défaut, vous cliquez sur l'icône Portail de l'utilisateur sur le serveur Multi-Factor Authentication et mettez à jour l'URL du portail utilisateur sous l'onglet Paramètres. Les utilisateurs existants doivent être informés de la nouvelle URL.
 
-  3. Atteindre l’emplacement d’installation toohello portail de l’utilisateur (par exemple, C:\inetpub\wwwroot\MultiFactorAuth) et modifier le fichier web.config de hello. Copiez les valeurs hello dans les sections appSettings et applicationSettings de hello à partir de votre fichier web.config d’origine qui a été sauvegardé avant la mise à niveau hello dans le fichier web.config hello. Si le nouveau nom de répertoire virtuel par défaut hello a été conservé lors de l’installation du SDK du Service Web de hello, modifiez les URL de hello hello applicationSettings section toopoint toohello bon emplacement. Si toutes les autres valeurs par défaut ont été modifiés dans le précédent fichier web.config de hello, appliquer ces mêmes modifications toohello nouveau fichier web.config.
+  3. Accédez à l’emplacement d’installation du portail de l’utilisateur (par exemple, C:\inetpub\wwwroot\MultiFactorAuth) et modifiez le fichier web.config. Copiez dans le nouveau fichier web.config les valeurs des sections appSettings et applicationSettings de votre fichier web.config d’origine qui a été sauvegardé avant la mise à niveau. Si le nouveau nom de répertoire virtuel par défaut a été conservé lors de l'installation du Kit de développement logiciel (SDK) Web Service, modifiez l'URL dans la section applicationSettings pour pointer vers le bon emplacement. Si les valeurs par défaut ont été modifiées dans le précédent fichier web.config, appliquez les mêmes modifications au nouveau fichier web.config.
 
-  4. tooinstall hello Service Web d’application Mobile sur le serveur web de hello, ouvrez une invite de commandes en tant qu’administrateur et exécutez hello MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi.
+  4. Pour installer le service web de l’application mobile sur le serveur web, ouvrez une invite de commandes en tant qu’administrateur et exécutez MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi.
 
-    par défaut de nom de répertoire virtuel est maintenant de Hello **MultiFactorAuthMobileAppWebService** au lieu de **PhoneFactorPhoneAppWebService**. Si vous souhaitez que le nom de toouse hello précédent, vous devez modifier le nom hello du répertoire virtuel de hello lors de l’installation. Vous souhaiterez peut-être toochoose un toomake nom plus court plus facile pour les utilisateurs finaux des tootype dans sur leurs appareils mobiles. Dans le cas contraire, si vous autorisez hello installation toouse hello nouveau nom par défaut, vous cliquez sur icône d’application Mobile hello Bonjour serveur multi-Factor et mettre à jour hello URL du Service Web application Mobile.
+    Le nom de répertoire virtuel par défaut est désormais **MultiFactorAuthMobileAppWebService** au lieu de **PhoneFactorPhoneAppWebService**. Si vous souhaitez utiliser le nom précédent, vous devez modifier le nom du répertoire virtuel pendant l'installation. Vous devriez probablement choisir un nom plus court pour faciliter la saisie des utilisateurs finaux sur leurs périphériques mobiles. Sinon, si vous autorisez le programme d’installation à utiliser le nouveau nom par défaut, vous cliquez sur l’icône Application mobile sur le serveur Multi-Factor Authentication et mettez à jour l’URL du service web de l’application mobile.
 
-  5. Atteindre l’emplacement d’installation de Service Web d’application Mobile toohello (par exemple, C:\inetpub\wwwroot\MultiFactorAuthMobileAppWebService) et modifier le fichier web.config de hello. Copiez les valeurs hello dans les sections appSettings et applicationSettings de hello à partir de votre fichier web.config d’origine qui a été sauvegardé avant la mise à niveau hello dans le fichier web.config hello. Si le nouveau nom de répertoire virtuel par défaut hello a été conservé lors de l’installation du SDK du Service Web de hello, modifiez les URL de hello hello applicationSettings section toopoint toohello bon emplacement. Si toutes les autres valeurs par défaut ont été modifiés dans le précédent fichier web.config de hello, appliquer ces mêmes modifications toohello nouveau fichier web.config.
+  5. Accédez à l’emplacement d’installation du service web de l’application mobile (par exemple, C:\inetpub\wwwroot\MultiFactorAuthMobileAppWebService) et modifiez le fichier web.config. Copiez dans le nouveau fichier web.config les valeurs des sections appSettings et applicationSettings de votre fichier web.config d’origine qui a été sauvegardé avant la mise à niveau. Si le nouveau nom de répertoire virtuel par défaut a été conservé lors de l'installation du Kit de développement logiciel (SDK) Web Service, modifiez l'URL dans la section applicationSettings pour pointer vers le bon emplacement. Si les valeurs par défaut ont été modifiées dans le précédent fichier web.config, appliquez les mêmes modifications au nouveau fichier web.config.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- [Installer le portail des utilisateurs hello](multi-factor-authentication-get-started-portal.md) pourquoi le serveur Azure multi-Factor Authentication.
+- [Installez le portail des utilisateurs](multi-factor-authentication-get-started-portal.md) du serveur Azure Multi-Factor Authentication.
 
 - [Configurez l’authentification Windows](multi-factor-authentication-get-started-server-windows.md) pour vos applications. 

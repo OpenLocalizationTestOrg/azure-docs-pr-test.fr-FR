@@ -1,6 +1,6 @@
 ---
-title: les secrets aaaManaging dans les applications de Service Fabric | Documents Microsoft
-description: "Cet article décrit comment les valeurs dans une application de Service Fabric toosecure secret."
+title: Gestion des secrets dans des applications Service Fabric | Microsoft Docs
+description: "Cet article décrit comment sécuriser des valeurs secrètes dans une application Service Fabric."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: b8cafcb681d95aaa1b8e9a1afaac78ba5b7f58b0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d71924cda8bb3bffbe221946d80dba150359e38e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="managing-secrets-in-service-fabric-applications"></a>Gestion des secrets dans des applications Service Fabric
-Ce guide vous guide tout au long des étapes de hello de la gestion des clés secrètes dans une application de Service Fabric. Les secrets peuvent être des informations sensibles quelconques, notamment des chaînes de connexion de stockage, des mots de passe ou d’autres valeurs qui ne doivent pas être traitées en texte brut.
+Ce guide vous guide à travers les étapes de la gestion des secrets dans une application Service Fabric. Les secrets peuvent être des informations sensibles quelconques, notamment des chaînes de connexion de stockage, des mots de passe ou d’autres valeurs qui ne doivent pas être traitées en texte brut.
 
-Ce guide utilise les clés secrètes et des clés de toomanage de coffre de clés Azure. Toutefois, *à l’aide de* les clés secrètes dans une application est le cluster déployé tooa toobe cloud indépendant de la plateforme tooallow applications hébergées en tout lieu. 
+Ce guide utilise Azure Key Vault pour gérer les clés et les secrets. Toutefois, *l’utilisation de* secrets dans une application cloud est indépendante de la plateforme et permet ainsi un déploiement d’applications dans un cluster hébergé à n’importe quel endroit. 
 
-## <a name="overview"></a>Vue d'ensemble
-Hello paramètres de configuration de service toomanage recommandée s’effectue via [packages de configuration de service][config-package]. Les versions des packages de configuration sont gérées et peuvent être mises à jour par le biais de mises à niveau propagées gérées avec validation de l’intégrité et la restauration automatique. Il s’agit de configuration de tooglobal préférée car cela réduit les risques de hello d’une panne de service global. Les secrets chiffrés ne font pas exception. Service Fabric dispose de fonctionnalités intégrées pour chiffrer et déchiffrer des valeurs dans un fichier de package de configuration Settings.xml à l’aide du cryptage de certificat.
+## <a name="overview"></a>Vue d’ensemble
+La méthode recommandée pour gérer les paramètres de configuration de service s’effectue par le biais de [packages de configuration de service][config-package]. Les versions des packages de configuration sont gérées et peuvent être mises à jour par le biais de mises à niveau propagées gérées avec validation de l’intégrité et la restauration automatique. Cette option est préférable à une configuration globale, car elle réduit le risque d’interruption de service globale. Les secrets chiffrés ne font pas exception. Service Fabric dispose de fonctionnalités intégrées pour chiffrer et déchiffrer des valeurs dans un fichier de package de configuration Settings.xml à l’aide du cryptage de certificat.
 
-Hello diagramme suivant illustre les flux de base hello pour la gestion de secret principal dans une application de Service Fabric :
+Le diagramme suivant illustre le flux de base pour la gestion des secrets dans une application Service Fabric :
 
 ![vue d’ensemble de la gestion des secrets][overview]
 
 Ce flux comprend quatre étapes principales :
 
 1. Obtenez un certificat de chiffrement de données.
-2. Installer le certificat de hello dans votre cluster.
-3. Chiffrer les valeurs des secrets lors du déploiement d’une application avec un certificat de hello et les injecter dans le fichier de configuration d’un service Settings.xml.
-4. Valeurs en lecture chiffré hors Settings.xml en déchiffrant avec hello même certificat de chiffrement. 
+2. Installez le certificat dans votre cluster.
+3. Chiffrez les valeurs secrètes lors du déploiement d’une application avec le certificat et injectez-les dans le fichier de configuration Settings.xml d’un service.
+4. Lisez les valeurs chiffrées dans Settings.xml en les déchiffrant avec le même certificat de chiffrement. 
 
-[Azure Key Vault] [ key-vault-get-started] est utilisé ici comme un emplacement de stockage sécurisé pour les certificats et comme un moyen tooget certificats installés sur des clusters Service Fabric dans Azure. Si vous ne déployez pas tooAzure, il est inutile secrets de toomanage toouse le coffre de clés dans les applications de Service Fabric.
+[Azure Key Vault][key-vault-get-started] est utilisé ici comme un emplacement de stockage sécurisé pour des certificats et comme un moyen d’installer des certificats sur des clusters Service Fabric dans Azure. Si vous ne déployez pas dans Azure, il est inutile d’utiliser le coffre de clés pour gérer les secrets dans des applications Service Fabric.
 
 ## <a name="data-encipherment-certificate"></a>Certificat de chiffrement de données
-Un certificat de chiffrement de données est utilisé exclusivement pour le chiffrement et déchiffrement des valeurs de configuration dans le fichier Settings.xml d’un service et n’est pas utilisé à des fins d’authentification ou de signature du texte chiffré. certificat de Hello doit respecter hello suivant les exigences :
+Un certificat de chiffrement de données est utilisé exclusivement pour le chiffrement et déchiffrement des valeurs de configuration dans le fichier Settings.xml d’un service et n’est pas utilisé à des fins d’authentification ou de signature du texte chiffré. Le certificat doit répondre aux exigences suivantes :
 
-* certificat de Hello doit contenir une clé privée.
-* certificat de Hello doit être créé pour l’échange de clés, exportable tooa fichier d’échange d’informations personnelles (.pfx).
-* utilisation de clé de certificat Hello doit inclure le chiffrement de données (10) et ne doit pas inclure l’authentification du serveur ou l’authentification du Client. 
+* Le certificat doit contenir une clé privée.
+* Le certificat doit être créé pour l'échange de clés et pouvoir faire l'objet d'un export au format Personal Information Exchange (.pfx).
+* L’utilisation d’une clé de certificat doit inclure le chiffrement de données (10) et ne doit pas inclure l’authentification du serveur ou l’authentification du client. 
   
-  Par exemple, lorsque vous créez un certificat auto-signé à l’aide de PowerShell, hello `KeyUsage` indicateur doit être défini trop`DataEncipherment`:
+  Par exemple, lorsque vous créez un certificat auto-signé à l’aide de PowerShell, l’indicateur `KeyUsage` doit être défini sur `DataEncipherment` :
   
   ```powershell
   New-SelfSignedCertificate -Type DocumentEncryptionCert -KeyUsage DataEncipherment -Subject mydataenciphermentcert -Provider 'Microsoft Enhanced Cryptographic Provider v1.0'
   ```
 
-## <a name="install-hello-certificate-in-your-cluster"></a>Installer le certificat de hello dans votre cluster
-Ce certificat doit être installé sur chaque nœud de cluster de hello. Il sera utilisé au runtime toodecrypt les valeurs stockées dans un service Settings.xml. Consultez [comment toocreate un cluster à l’aide du Gestionnaire de ressources Azure] [ service-fabric-cluster-creation-via-arm] pour obtenir des instructions d’installation. 
+## <a name="install-the-certificate-in-your-cluster"></a>Installation du certificat dans votre cluster
+Ce certificat doit être installé sur chaque nœud du cluster. Il est utilisé lors de l’exécution pour déchiffrer les valeurs stockées dans le fichier Settings.xml d’un service. Consultez la page concernant la [création d’un cluster à l’aide d’Azure Resource Manager][service-fabric-cluster-creation-via-arm] pour obtenir des instructions d’installation. 
 
 ## <a name="encrypt-application-secrets"></a>Chiffrement de secrets d’application
-Hello SDK de l’infrastructure de Service dispose de fonctions intégrées de chiffrement et déchiffrement de secret principal. Les valeurs de clé secrète peuvent être chiffrées au moment de leur génération, puis déchiffrés et lues par programme dans un code de service. 
+Le Kit de développement logiciel (SDK) Service Fabric dispose de fonctions intégrées de chiffrement et déchiffrement de secrets. Les valeurs de clé secrète peuvent être chiffrées au moment de leur génération, puis déchiffrés et lues par programme dans un code de service. 
 
-Hello suivant de commande PowerShell est tooencrypt utilisé une clé secrète. Cette commande chiffre uniquement la valeur de hello ; Il effectue **pas** signer du texte de chiffrement hello. Vous devez utiliser hello même certificat de chiffrement qui est installé dans votre texte chiffré tooproduce de cluster pour les valeurs de clé secrètes :
+La commande PowerShell suivante est utilisée pour chiffrer un secret. Cette commande chiffre uniquement la valeur ; elle ne signe **pas** le texte chiffré. Vous devez utiliser le certificat de chiffrement qui est installé dans votre cluster afin de produire le texte chiffré pour les valeurs secrètes :
 
 ```powershell
 Invoke-ServiceFabricEncryptText -CertStore -CertThumbprint "<thumbprint>" -Text "mysecret" -StoreLocation CurrentUser -StoreName My
 ```
 
-Hello chaîne en base 64 qui en résulte contient à la fois texte chiffré de secret principal hello ainsi que des informations sur le certificat hello qui a été utilisé tooencrypt il.  Hello chaîne codée en base 64 peut être insérée dans un paramètre dans le fichier de configuration de votre service Settings.xml avec hello `IsEncrypted` attribut défini trop`true`:
+La chaîne en base 64 qui en résulte contient à la fois le texte chiffré secret et plus d’informations sur le certificat qui a été utilisé pour le chiffrement.  La chaîne codée en base 64 peut être insérée dans un paramètre dans le fichier de configuration Settings.xml de votre service avec l’attribut `IsEncrypted` défini sur la valeur `true` :
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -78,10 +78,10 @@ Hello chaîne en base 64 qui en résulte contient à la fois texte chiffré de s
 ```
 
 ### <a name="inject-application-secrets-into-application-instances"></a>Injection de secrets d’application dans des instances d’application
-Dans l’idéal, les environnements de déploiement toodifferent doivent être possible d’automatiser. Cela peut être accompli en effectuer un chiffrement de clé secrète dans un environnement de génération et en fournissant des secrets de hello chiffré en tant que paramètres lors de la création d’instances de l’application.
+Idéalement, un déploiement dans différents environnements doit être aussi automatisé que possible. Cela est possible en effectuant un chiffrement de secret dans un environnement de construction et en fournissant les secrets chiffrés en tant que paramètres lors de la création d’instances d’application.
 
 #### <a name="use-overridable-parameters-in-settingsxml"></a>Utilisation de paramètres substituables dans Settings.xml
-fichier de configuration Hello Settings.xml permet les paramètres substituables qui peuvent être fournies au moment de la création d’application. Hello d’utilisation `MustOverride` attribut au lieu de fournir une valeur pour un paramètre :
+Le fichier de configuration Settings.xml autorise des paramètres substituables qui peuvent être fournis au moment de la création d’une application. Utilisez l’attribut `MustOverride` au lieu de fournir une valeur pour un paramètre :
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -92,7 +92,7 @@ fichier de configuration Hello Settings.xml permet les paramètres substituables
 </Settings>
 ```
 
-valeurs toooverride dans Settings.xml, déclarez un paramètre de remplacement pour le service hello dans ApplicationManifest.xml :
+Pour remplacer des valeurs dans le fichier Settings.xml, déclarez un paramètre de remplacement pour le service dans le fichier ApplicationManifest.xml :
 
 ```xml
 <ApplicationManifest ... >
@@ -113,9 +113,9 @@ valeurs toooverride dans Settings.xml, déclarez un paramètre de remplacement p
   </ServiceManifestImport>
  ```
 
-Maintenant la valeur de hello peut être spécifiée comme un *paramètre application* lors de la création d’une instance de l’application hello. La création d’une instance d’application peut être scriptée à l’aide de PowerShell ou écrite en C# pour faciliter l’intégration dans un processus de génération.
+À présent, la valeur peut être spécifiée en tant que *paramètre d’application* lors de la création d’une instance de l’application. La création d’une instance d’application peut être scriptée à l’aide de PowerShell ou écrite en C# pour faciliter l’intégration dans un processus de génération.
 
-À l’aide de PowerShell, le paramètre hello est fourni toohello `New-ServiceFabricApplication` commande comme un [table de hachage](https://technet.microsoft.com/library/ee692803.aspx):
+Avec PowerShell, le paramètre est fourni à la commande `New-ServiceFabricApplication` en tant que [table de hachage](https://technet.microsoft.com/library/ee692803.aspx):
 
 ```powershell
 PS C:\Users\vturecek> New-ServiceFabricApplication -ApplicationName fabric:/MyApp -ApplicationTypeName MyAppType -ApplicationTypeVersion 1.0.0 -ApplicationParameter @{"MySecret" = "I6jCCAeYCAxgFhBXABFxzAt ... gNBRyeWFXl2VydmjZNwJIM="}
@@ -140,9 +140,9 @@ await fabricClient.ApplicationManager.CreateApplicationAsync(applicationDescript
 ```
 
 ## <a name="decrypt-secrets-from-service-code"></a>Déchiffrement de secrets à partir du code de service
-Services dans l’infrastructure de Service s’exécutent sous le SERVICE réseau par défaut sur Windows et n’avez pas accès toocertificates installées sur le nœud hello sans une configuration complémentaire.
+Les services dans Service Fabric s’exécutent sous NETWORK SERVICE (service réseau) par défaut sur Windows et n’ont pas accès aux certificats installés sur le nœud sans configuration complémentaire.
 
-Lorsque vous utilisez un certificat de chiffrement de données, vous devez toomake que SERVICE réseau ou n’importe quel service hello du compte utilisateur est en cours d’exécution sous possède la clé privée du certificat d’accès toohello. Service Fabric gérera octroyer l’accès à votre service automatiquement si vous configurez toodo donc. Cette configuration est possible dans ApplicationManifest.xml en définissant des utilisateurs et des stratégies de sécurité pour les certificats. Dans l’exemple suivant de hello, certificat de tooa d’accès en lecture défini par son empreinte numérique est fourni à hello compte SERVICE réseau :
+Lorsque vous utilisez un certificat de chiffrement de données, vous devez vous assurer que NETWORK SERVICE ou tout compte utilisateur utilisé pour l’exécution du service a accès à la clé privée du certificat. Service Fabric gère l’octroi d’accès pour votre service automatiquement si vous le configurez en conséquence. Cette configuration est possible dans ApplicationManifest.xml en définissant des utilisateurs et des stratégies de sécurité pour les certificats. Dans l’exemple suivant, le compte NETWORK SERVICE reçoit un accès en lecture au certificat défini par son empreinte numérique :
 
 ```xml
 <ApplicationManifest … >
@@ -163,12 +163,12 @@ Lorsque vous utilisez un certificat de chiffrement de données, vous devez tooma
 ```
 
 > [!NOTE]
-> Lors de la copie d’une empreinte numérique du certificat de hello stocker les composants logiciels enfichables sur Windows, un caractère invisible est placé au début de hello de chaîne d’empreinte numérique hello. Ce caractère invisible peut provoquer une erreur lors de la tentative de toolocate un certificat par l’empreinte numérique, par conséquent, être toodelete que ce caractère supplémentaire.
+> lorsque vous copiez une empreinte numérique depuis le composant logiciel enfichable d’un magasin de certificats sous Windows, un caractère invisible est placé au début de la chaîne d’empreinte numérique. Ce caractère invisible peut provoquer une erreur lorsque vous tentez de trouver un certificat par empreinte numérique. Veillez à supprimer ce caractère supplémentaire.
 > 
 > 
 
 ### <a name="use-application-secrets-in-service-code"></a>Utilisation de secrets d’application dans le code de service
-permet de Hello API pour accéder aux valeurs de configuration à partir de Settings.xml dans un package de configuration pour le déchiffrement facile de valeurs qui ont hello `IsEncrypted` attribut défini trop`true`. Étant donné que le texte hello chiffrée contienne des informations sur le certificat hello utilisé pour le chiffrement, il est inutile certificat de hello toomanually rechercher. certificat de Hello doit simplement toobe installé sur le nœud de hello hello service s’exécute sur. Appelez simplement hello `DecryptValue()` tooretrieve hello d’origine secrète valeur de la méthode :
+L’API pour l’accès aux valeurs de configuration depuis Settings.xml dans un package de configuration permet de déchiffrer facilement des valeurs dont l’attribut `IsEncrypted` a la valeur `true`. Le texte chiffré contenant des informations sur le certificat utilisé pour le chiffrement, il est inutile de le rechercher manuellement le certificat. Le certificat doit uniquement être installé sur le nœud sur lequel le service est exécuté. Il vous suffit d’appeler la méthode `DecryptValue()` pour récupérer la valeur de secret d’origine :
 
 ```csharp
 ConfigurationPackage configPackage = this.Context.CodePackageActivationContext.GetConfigurationPackageObject("Config");

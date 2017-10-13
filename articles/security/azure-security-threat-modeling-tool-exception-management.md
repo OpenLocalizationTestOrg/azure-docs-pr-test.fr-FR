@@ -1,6 +1,6 @@
 ---
-title: "aaaException de gestion - outil de modélisation des menaces Microsoft - Azure | Documents Microsoft"
-description: "mesures d’atténuation des menaces exposé Bonjour outil de modélisation des menaces"
+title: "Gestion des exceptions - Outil Microsoft de modélisation des menaces - Azure | Microsoft Docs"
+description: "mesures de correction des menaces exposées dans l’outil de modélisation des menaces"
 services: security
 documentationcenter: na
 author: RodSan
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: rodsan
-ms.openlocfilehash: 247096c10deeca94ebb9b19df7ba60e442ca1e4d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bbf357b902474a1812eb7a5a2c914d0c8b91934b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="security-frame-exception-management--mitigations"></a>Infrastructure de sécurité : Gestion des exceptions | Corrections 
 | Produit/service | Article |
 | --------------- | ------- |
 | **WCF** | <ul><li>[WCF - Ne pas inclure le nœud serviceDebug dans le fichier de configuration](#servicedebug)</li><li>[WCF - Ne pas inclure le nœud serviceMetadata dans le fichier de configuration](#servicemetadata)</li></ul> |
 | **API Web** | <ul><li>[Vérifier que la gestion des exceptions correcte est effectuée dans l’API web ASP.NET](#exception)</li></ul> |
-| **Application web** | <ul><li>[Ne pas exposer les détails de sécurité dans les messages d’erreur ](#messages)</li><li>[Implémenter la page de gestion des erreurs par défaut ](#default)</li><li>[Définir la méthode de déploiement tooRetail dans IIS](#deployment)</li><li>[Les exceptions doivent échouer en toute sécurité](#fail)</li></ul> |
+| **Application web** | <ul><li>[Ne pas exposer les détails de sécurité dans les messages d’erreur ](#messages)</li><li>[Implémenter la page de gestion des erreurs par défaut ](#default)</li><li>[Définir la méthode de déploiement sur Vente au détail dans IIS](#deployment)</li><li>[Les exceptions doivent échouer en toute sécurité](#fail)</li></ul> |
 
 ## <a id="servicedebug"></a>WCF - Ne pas inclure le nœud serviceDebug dans le fichier de configuration
 
@@ -36,10 +36,10 @@ ms.lasthandoff: 10/06/2017
 | **Technologies applicables** | Générique, NET Framework 3 |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx), [Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **Étapes** | Services Windows Communication Framework (WCF) peuvent être configuré tooexpose les informations de débogage. Les informations de débogage ne doivent pas être utilisées dans les environnements de production. Hello `<serviceDebug>` balise définit si la fonctionnalité d’informations de débogage de hello est activée pour un service WCF. Si a la valeur tootrue hello attribut includeExceptionDetailInFaults, informations sur les exceptions à partir de l’application hello seront affichera tooclients. Les pirates peuvent tirer parti de hello supplémentaires qu’ils des gains d’informations de débogage de sortie toomount les attaques ciblées sur l’infrastructure de hello, base de données ou d’autres ressources utilisées par l’application hello. |
+| **Étapes** | Des services Windows Communication Framework (WCF) peuvent être configurés pour exposer des informations de débogage. Les informations de débogage ne doivent pas être utilisées dans les environnements de production. La balise `<serviceDebug>` définit si la fonctionnalité d’informations de débogage est activée pour un service WCF. Si l’attribut includeExceptionDetailInFaults est défini sur true, les informations sur les exceptions de l’application sont renvoyées aux clients. Les personnes malveillantes peuvent exploiter les informations supplémentaires qu’elles obtiennent de la sortie de débogage pour lancer des attaques ciblées sur l’infrastructure, la base de données ou d’autres ressources utilisées par l’application. |
 
 ### <a name="example"></a>Exemple
-fichier de configuration suivant Hello inclut hello `<serviceDebug>` balise : 
+Le fichier de configuration suivant inclut la balise `<serviceDebug>` : 
 ```
 <configuration> 
 <system.serviceModel> 
@@ -49,7 +49,7 @@ fichier de configuration suivant Hello inclut hello `<serviceDebug>` balise :
 <serviceDebug includeExceptionDetailInFaults=""True"" httpHelpPageEnabled=""True""/> 
 ... 
 ```
-Désactiver les informations de débogage dans le service hello. Cela peut être accompli en supprimant hello `<serviceDebug>` étiquette à partir du fichier de configuration de votre application. 
+Désactivez les informations de débogage dans le service. Ceci peut être effectué en supprimant la balise `<serviceDebug>` du fichier de configuration de votre application. 
 
 ## <a id="servicemetadata"></a>WCF - Ne pas inclure le nœud serviceMetadata dans le fichier de configuration
 
@@ -60,7 +60,7 @@ Désactiver les informations de débogage dans le service hello. Cela peut être
 | **Technologies applicables** | Générique |
 | **Attributs**              | Générique, NET Framework 3 |
 | **Informations de référence**              | [MSDN](https://msdn.microsoft.com/library/ff648500.aspx), [Fortify Kingdom](https://vulncat.fortify.com/en/vulncat/index.html) |
-| **Étapes** | Exposer publiquement des informations sur un service peut fournir aux attaquants précieuses dans comment ils peuvent exploiter les service hello. Hello `<serviceMetadata>` balise active la fonctionnalité de publication de métadonnées hello. Les métadonnées de service peuvent contenir des informations sensibles qui ne doivent pas être accessibles publiquement. Au minimum, autoriser uniquement les utilisateurs approuvés tooaccess hello des métadonnées et vous assurer que les informations inutiles ne sont pas exposées. Mieux encore, de désactiver entièrement hello capacité toopublish métadonnées. Une configuration sécurisée de WCF ne contiendra pas hello `<serviceMetadata>` balise. |
+| **Étapes** | L’exposition publique des informations sur un service peut fournir aux personnes malveillantes une piste précieuse sur la manière dont elles peuvent exploiter le service. La balise `<serviceMetadata>` active la fonctionnalité de publication de métadonnées. Les métadonnées de service peuvent contenir des informations sensibles qui ne doivent pas être accessibles publiquement. Au minimum, autorisez uniquement les utilisateurs approuvés à accéder aux métadonnées et vérifiez que les informations inutiles ne sont pas exposées. Mieux encore, désactivez complètement la possibilité de publier des métadonnées. Une configuration WCF sûre ne contiendra pas la balise `<serviceMetadata>`. |
 
 ## <a id="exception"></a>Vérifier que la gestion des exceptions correcte est effectuée dans l’API web ASP.NET
 
@@ -74,7 +74,7 @@ Désactiver les informations de débogage dans le service hello. Cela peut être
 | **Étapes** | Par défaut, la plupart des exceptions non interceptées dans l’API web ASP.NET sont converties en réponse HTTP avec le code d’état`500, Internal Server Error`|
 
 ### <a name="example"></a>Exemple
-code d’état toocontrol hello retourné par hello API, `HttpResponseException` peut être utilisé comme indiqué ci-dessous : 
+Pour contrôler le code d’état renvoyé par l’API, `HttpResponseException` peut être utilisé comme indiqué ci-dessous : 
 ```C#
 public Product GetProduct(int id)
 {
@@ -88,7 +88,7 @@ public Product GetProduct(int id)
 ```
 
 ### <a name="example"></a>Exemple
-Pour contrôler davantage sur la réponse d’exception hello, hello `HttpResponseMessage` classe peut être utilisée comme indiqué ci-dessous : 
+Pour contrôler davantage la réponse d’exception, la classe `HttpResponseMessage` peut être utilisée comme indiqué ci-dessous : 
 ```C#
 public Product GetProduct(int id)
 {
@@ -105,7 +105,7 @@ public Product GetProduct(int id)
     return item;
 }
 ```
-toocatch exceptions non gérées qui ne sont pas du type de hello `HttpResponseException`, les filtres d’Exception peut être utilisés. Filtres d’exception implémentent hello `System.Web.Http.Filters.IExceptionFilter` interface. toowrite de façon la plus simple Hello un filtre d’exception est tooderive de hello `System.Web.Http.Filters.ExceptionFilterAttribute` classe et substituer la méthode OnException de hello. 
+Pour intercepter les exceptions non prises en charge qui ne sont pas du type `HttpResponseException`, des filtres d’exception peuvent être utilisés. Les filtres d’exception implémentent l’interface `System.Web.Http.Filters.IExceptionFilter`. La méthode la plus simple pour écrire un filtre d’exception consiste à le dériver de la classe `System.Web.Http.Filters.ExceptionFilterAttribute` et à remplacer la méthode OnException. 
 
 ### <a name="example"></a>Exemple
 Voici un filtre qui convertit des `NotImplementedException` exceptions en code d’état HTTP `501, Not Implemented` : 
@@ -130,13 +130,13 @@ namespace ProductStore.Filters
 }
 ```
 
-Il existe plusieurs façons tooregister un filtre d’exception API Web :
+Plusieurs méthodes pour enregistrer un filtre d’exception d’API web sont possibles :
 - Par action
 - Par contrôleur
 - Globalement
 
 ### <a name="example"></a>Exemple
-tooapply hello filtre d’action spécifique de tooa, ajouter un filtre de hello en tant qu’attribut toohello action : 
+Pour appliquer le filtre à une action spécifique, ajoutez le filtre en tant qu’attribut à l’action : 
 ```C#
 public class ProductsController : ApiController
 {
@@ -148,7 +148,7 @@ public class ProductsController : ApiController
 }
 ```
 ### <a name="example"></a>Exemple
-tooapply hello filtre tooall d’actions hello sur un `controller`, ajouter un filtre de hello comme un attribut toohello `controller` classe : 
+Pour appliquer le filtre à toutes les actions sur un `controller`, ajoutez le filtre en tant qu’attribut à la classe `controller` : 
 
 ```C#
 [NotImplExceptionFilter]
@@ -159,14 +159,14 @@ public class ProductsController : ApiController
 ```
 
 ### <a name="example"></a>Exemple
-tooapply hello filtrer les contrôleurs d’API Web tooall globalement, ajoutez une instance du hello filtre toohello `GlobalConfiguration.Configuration.Filters` collection. Filtres d’exception dans cette collection s’appliquent d’action du contrôleur Web API tooany. 
+Pour appliquer le filtre globalement à tous les contrôleurs d’API web, ajoutez une instance du filtre à la collection `GlobalConfiguration.Configuration.Filters`. Les filtres d’exception de cette collection s’appliquent à n’importe quelle action de contrôleur d’API web. 
 ```C#
 GlobalConfiguration.Configuration.Filters.Add(
     new ProductStore.NotImplExceptionFilterAttribute());
 ```
 
 ### <a name="example"></a>Exemple
-Pour la validation de modèle, état du modèle hello peut être passé méthode tooCreateErrorResponse comme indiqué ci-dessous : 
+Pour valider un modèle, l’état du modèle peut être transmis à la méthode CreateErrorResponse comme indiqué ci-dessous : 
 ```C#
 public HttpResponseMessage PostProduct(Product item)
 {
@@ -178,7 +178,7 @@ public HttpResponseMessage PostProduct(Product item)
 }
 ```
 
-Vérifiez les liens hello dans la section des références pour plus d’informations sur la gestion des exceptionnelles hello et validation de modèle dans l’API Web ASP.Net 
+Vérifiez les liens dans la section Références pour plus d’informations sur la gestion exceptionnelle et la validation de modèle dans l’API web ASP.Net 
 
 ## <a id="messages"></a>Ne pas exposer les détails de sécurité dans les messages d’erreur
 
@@ -189,7 +189,7 @@ Vérifiez les liens hello dans la section des références pour plus d’informa
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | N/A  |
-| **Étapes** | <p>Messages d’erreur génériques sont fournies directement toohello utilisateur sans inclure les données d’application sensibles. Voici quelques exemples de données sensibles :</p><ul><li>Noms de serveur</li><li>Chaînes de connexion</li><li>Noms d’utilisateur</li><li>Mot de passe</li><li>Procédures SQL</li><li>Détail des échecs SQL dynamiques</li><li>Arborescence des appels de procédure et lignes de code</li><li>Variables stockées dans la mémoire</li><li>Emplacements de lecteur et de dossier</li><li>Points d’installation d’application</li><li>Paramètres de configuration d’hôte</li><li>Autres détails de l’application internes</li></ul><p>L’interception de toutes les erreurs dans une application, la fourniture de messages d’erreur génériques, ainsi que l’activation des messages d’erreur personnalisés dans IIS permettent d’éviter la divulgation d’informations. Base de données SQL Server et de gestion, entre autre erreur de gestion des architectures, des exceptions .NET sont utilisateur malveillant de tooa particulièrement longue et extrêmement utiles profiler votre application. Faire pas directement hello d’afficher le contenu d’une classe dérivée de la classe d’Exception .NET hello et vérifiez que vous disposez de la gestion des exceptions appropriées afin qu’une exception inattendue n’est pas par inadvertance déclenché directement toohello utilisateur.</p><ul><li>Fournir des messages d’erreur générique directement utilisateur toohello qui résument les détails spécifiques rangements trouvés directement dans le message d’erreur d’exception hello</li><li>Non affichage hello contenu d’une exception .NET classe directement toohello utilisateur</li><li>Intercepter tous les messages d’erreur et le cas échéant informe l’utilisateur hello via un client d’application erreur générique message envoyé toohello</li><li>Ne pas exposer de contenu hello de classe d’Exception hello directement toohello utilisateur, en particulier hello retourner la valeur de `.ToString()`, ou les valeurs des propriétés de Message ou StackTrace hello hello. Se connecter à ces informations et afficher un utilisateur de toohello plus anodin par message en toute sécurité</li></ul>|
+| **Étapes** | <p>Des messages d’erreur génériques sont fournis directement à l’utilisateur sans inclure de données d’application sensibles. Voici quelques exemples de données sensibles :</p><ul><li>Noms de serveur</li><li>Chaînes de connexion</li><li>Noms d’utilisateur</li><li>Mot de passe</li><li>Procédures SQL</li><li>Détail des échecs SQL dynamiques</li><li>Arborescence des appels de procédure et lignes de code</li><li>Variables stockées dans la mémoire</li><li>Emplacements de lecteur et de dossier</li><li>Points d’installation d’application</li><li>Paramètres de configuration d’hôte</li><li>Autres détails de l’application internes</li></ul><p>L’interception de toutes les erreurs dans une application, la fourniture de messages d’erreur génériques, ainsi que l’activation des messages d’erreur personnalisés dans IIS permettent d’éviter la divulgation d’informations. La base de données SQL Server et la gestion des exceptions .NET, entre autres architectures de gestion des erreurs, sont particulièrement détaillées et extrêmement utiles à un utilisateur malveillant profilant votre application. N’affichez pas directement le contenu d’une classe dérivée de la classe d’exceptions .NET et vérifiez que vous disposez de la gestion des exceptions appropriée afin qu’une exception inattendue ne soit pas présentée directement par inadvertance à l’utilisateur.</p><ul><li>Fournissez des messages d’erreur génériques directement à l’utilisateur qui résument les détails spécifiques trouvés directement dans le message d’exception/d’erreur</li><li>Ne présentez pas le contenu d’une classe d’exceptions .NET directement à l’utilisateur</li><li>Interceptez tous les messages d’erreur et, le cas échéant, informez l’utilisateur à l’aide d’un message d’erreur générique envoyé au client de l’application</li><li>N’exposez pas le contenu de la classe d’exceptions directement à l’utilisateur, et plus particulièrement la valeur renvoyée par `.ToString()`, ou les valeurs des propriétés Message ou StackTrace. Journalisez ces informations de manière sécurisée et présentez un message plus inoffensif à l’utilisateur</li></ul>|
 
 ## <a id="default"></a>Implémenter la page de gestion des erreurs par défaut
 
@@ -200,9 +200,9 @@ Vérifiez les liens hello dans la section des références pour plus d’informa
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [Modifier la boîte de dialogue des paramètres des pages d’erreur ASP.NET](https://technet.microsoft.com/library/dd569096(WS.10).aspx) |
-| **Étapes** | <p>Lorsqu’une application ASP.NET échoue et provoque une erreur serveur interne HTTP/1.x 500, ou que la configuration d’une fonctionnalité (comme le filtrage des demandes) empêche l’affichage d’une page, un message d’erreur est généré. Les administrateurs peuvent choisir ou non l’application hello doit afficher un message convivial toohello client, client de toohello message erreur détaillé ou erreur détaillée message toolocalhost uniquement. Hello <customErrors> balise dans le fichier web.config de hello comporte trois modes :</p><ul><li>**On :** spécifie que les erreurs personnalisées sont activées. Si aucun attribut defaultRedirect n’est spécifié, les utilisateurs voient une erreur générique. les erreurs personnalisées Hello figurent toohello des clients distants et l’hôte local de toohello</li><li>**Off :** spécifie que les erreurs personnalisées sont désactivées. Hello erreurs ASP.NET détaillées sont affichées toohello des clients distants et l’hôte local de toohello</li><li>**RemoteOnly :** Spécifie que les erreurs personnalisées sont affichées uniquement des clients distants toohello, et que les erreurs ASP.NET sont affichées les hôte local toohello. Il s’agit par défaut hello</li></ul><p>Ouvrez hello `web.config` de fichiers pour le site/application hello et vérifiez qu’une balise de hello `<customErrors mode="RemoteOnly" />` ou `<customErrors mode="On" />` défini.</p>|
+| **Étapes** | <p>Lorsqu’une application ASP.NET échoue et provoque une erreur serveur interne HTTP/1.x 500, ou que la configuration d’une fonctionnalité (comme le filtrage des demandes) empêche l’affichage d’une page, un message d’erreur est généré. Les administrateurs peuvent choisir si l’application doit afficher ou non un message convivial pour le client, un message d’erreur détaillé au client ou un message d’erreur détaillé à l’hôte local uniquement. La balise <customErrors> dans le fichier web.config comporte trois modes :</p><ul><li>**On :** spécifie que les erreurs personnalisées sont activées. Si aucun attribut defaultRedirect n’est spécifié, les utilisateurs voient une erreur générique. Les erreurs personnalisées sont présentées aux clients distants et à l’hôte local</li><li>**Off :** spécifie que les erreurs personnalisées sont désactivées. Les erreurs ASP.NET détaillées sont présentées aux clients distants et à l’hôte local</li><li>**RemoteOnly :** spécifie que les erreurs personnalisées sont visibles uniquement pour les clients distants, et que les erreurs ASP.NET sont visibles pour l’hôte local. Il s’agit de la valeur par défaut</li></ul><p>Ouvrez le fichier `web.config` pour l’application/le site et vérifiez que la balise est définie sur `<customErrors mode="RemoteOnly" />` ou `<customErrors mode="On" />`.</p>|
 
-## <a id="deployment"></a>Définir la méthode de déploiement tooRetail dans IIS
+## <a id="deployment"></a>Définir la méthode de déploiement sur Vente au détail dans IIS
 
 | Intitulé                   | Détails      |
 | ----------------------- | ------------ |
@@ -211,7 +211,7 @@ Vérifiez les liens hello dans la section des références pour plus d’informa
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [Élément de déploiement (schéma des paramètres ASP.NET)](https://msdn.microsoft.com/library/ms228298(VS.80).aspx) |
-| **Étapes** | <p>Hello `<deployment retail>` commutateur est destiné aux serveurs IIS de production. Ce commutateur est utilisé toohelp aux applications d’exécuter avec des performances optimales hello et des informations de sécurité minimales fuites en désactivant hello la sortie de trace de l’application capacité toogenerate sur une page, la désactivation de la toodisplay de capacité hello d’erreur détaillés messages tooend utilisateurs et hello pour désactiver le commutateur de débogage.</p><p>Les commutateurs et les options destinés aux développeurs, comme le suivi et le débogage des échecs de demande, sont généralement activés pendant le développement actif. Il est recommandé de définir que la méthode de déploiement hello sur n’importe quel serveur de production tooretail. Ouvrez le fichier machine.config de hello et vérifiez que `<deployment retail="true" />` conserve la valeur tootrue.</p>|
+| **Étapes** | <p>Le commutateur `<deployment retail>` est conçu pour être utilisé par les serveurs IIS de production. Ce commutateur est utilisé pour permettre aux applications de s’exécuter avec les meilleurs niveaux de performances et le moins de fuites d’informations de sécurité possibles en désactivant la capacité de l’application à générer la sortie de trace sur une page, en désactivant la capacité à afficher des messages d’erreur détaillés pour les utilisateurs finaux et en désactivant le commutateur de débogage.</p><p>Les commutateurs et les options destinés aux développeurs, comme le suivi et le débogage des échecs de demande, sont généralement activés pendant le développement actif. Il est recommandé de définir la méthode de déploiement de n’importe quel serveur de production sur Vente au détail. Ouvrez le fichier machine.config et vérifiez que `<deployment retail="true" />` est toujours défini sur true.</p>|
 
 ## <a id="fail"></a>Les exceptions doivent échouer en toute sécurité
 
@@ -222,7 +222,7 @@ Vérifiez les liens hello dans la section des références pour plus d’informa
 | **Technologies applicables** | Générique |
 | **Attributs**              | N/A  |
 | **Informations de référence**              | [Échec en toute sécurité](https://www.owasp.org/index.php/Fail_securely) |
-| **Étapes** | L’application doit échouer en toute sécurité. Toute méthode renvoyant une valeur booléenne, en fonction de la décision prise, doit comporter un bloc d’exception créé avec soin. Il existe de nombreuses erreurs logiques en raison de l’escalade de problèmes de sécurité toowhich dans, lorsque le bloc d’exception hello est écrit sans.|
+| **Étapes** | L’application doit échouer en toute sécurité. Toute méthode renvoyant une valeur booléenne, en fonction de la décision prise, doit comporter un bloc d’exception créé avec soin. Il existe un grand nombre d’erreurs logiques dues à des problèmes de sécurité lorsque le bloc d’exception n’est pas écrit correctement.|
 
 ### <a name="example"></a>Exemple
 ```C#
@@ -238,7 +238,7 @@ Vérifiez les liens hello dans la section des références pour plus d’informa
 
                     if (string.Compare(domain, replyDomain, StringComparison.OrdinalIgnoreCase) != 0)
                     {
-                        //// Adding additional check tooenable CMS urls if they are not hosted on same domain.
+                        //// Adding additional check to enable CMS urls if they are not hosted on same domain.
                         if (!string.IsNullOrWhiteSpace(Utilities.CmsBase))
                         {
                             var cmsDomain = RetrieveDomain(new Uri(Utilities.Base.Trim()));
@@ -265,4 +265,4 @@ Vérifiez les liens hello dans la section des références pour plus d’informa
             }
         }
 ```
-Hello au-dessus de la méthode retourne toujours la valeur True, si une exception se produit. Si l’utilisateur final de hello fournit une URL incorrecte, qui hello navigateur égards, mais hello `Uri()` constructeur n’et une exception est levée victime de hello à entreprendre les URL valides mais incorrect toohello. 
+La méthode ci-dessus renvoie toujours la valeur True si une exception se produit. Si l’utilisateur final fournit une URL incorrecte acceptée par le navigateur mais pas par le constructeur `Uri()`, une exception est levée et la victime est dirigée vers l’URL valide mais mal formée. 

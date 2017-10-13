@@ -1,6 +1,6 @@
 ---
-title: actions de menu de Snapshot Manager MMC aaaStorSimple | Documents Microsoft
-description: "Décrit comment toouse hello actions de menu standard Microsoft Management Console (MMC) de gestionnaire d’instantanés StorSimple."
+title: "Actions de menu MMC du Gestionnaire d’instantanés StorSimple | Microsoft Docs"
+description: "Explique comment utiliser les actions de menu standard de la console Microsoft Management Console (MMC) du gestionnaire d’instantanés StorSimple."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: v-sharos
-ms.openlocfilehash: e7ba42cf2086c552bcc06b528abdead8fe4534d7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 48f439a566a8067e153aab4fb789937d2f91268d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-mmc-menu-actions-in-storsimple-snapshot-manager"></a>Utilisez les actions du menu MMC hello dans Gestionnaire d’instantanés StorSimple
+# <a name="use-the-mmc-menu-actions-in-storsimple-snapshot-manager"></a>Utilisez les actions du menu MMC dans Gestionnaire d’instantanés StorSimple
 
 ## <a name="overview"></a>Vue d'ensemble
-Dans Gestionnaire d’instantanés StorSimple, vous verrez hello suivant des actions sur tous les menus d’action et de toutes les variations de hello **Actions** volet.
+Dans le Gestionnaire d’instantanés StorSimple, les actions suivantes figureront sur tous les menus d’action et toutes les variations du volet **Actions** .
 
 * Affichage
 * Nouvelle fenêtre à partir d’ici 
@@ -31,73 +31,73 @@ Dans Gestionnaire d’instantanés StorSimple, vous verrez hello suivant des act
 * Exporter la liste 
 * Aide 
 
-Ces actions font partie de hello Microsoft Management Console (MMC) et ne sont pas spécifique tooStorSimple Gestionnaire d’instantanés. Ce didacticiel décrit ces actions et explique comment toouse d'entre eux dans Gestionnaire d’instantanés StorSimple.
+Ces actions font partie de la Microsoft Management Console (MMC) et ne sont pas spécifiques au gestionnaire d’instantanés StorSimple. Ce didacticiel décrit ces actions et explique comment utiliser chacune d’elles dans le Gestionnaire d’instantanés StorSimple.
 
 ## <a name="view"></a>Affichage
-Vous pouvez utiliser hello **vue** hello de toochange option **résultats** volets et affichage de la fenêtre toochange hello console. 
+Vous pouvez utiliser l’option **Affichage** pour modifier la vue du volet **Résultats** et l’affichage de la fenêtre de console. 
 
-#### <a name="toochange-hello-results-pane-view"></a>affichage du volet Résultats toochange hello
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, avec le bouton droit n’importe quel nœud ou développez le nœud de hello et avec le bouton droit à un élément Bonjour **résultats** volet, puis cliquez sur hello **vue** option. 
-3. tooadd ou supprimer les colonnes hello qui s’affichent dans hello **résultats** volet, cliquez sur **Ajout/Suppression de colonnes**. Hello **Ajout/Suppression de colonnes** boîte de dialogue s’affiche.
+#### <a name="to-change-the-results-pane-view"></a>Pour modifier l’affichage du volet Résultats
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez avec le bouton droit de la souris sur n’importe quel nœud ou développez le nœud et cliquez avec le bouton droit de la souris sur un élément du volet **Résultats**, puis cliquez sur l’option **Affichage**. 
+3. Pour ajouter ou supprimer les colonnes qui apparaissent dans le volet **Résultats**, cliquez sur **Ajout/Suppression de colonnes**. La boîte de dialogue **Ajout/Suppression de colonnes** .
    
     ![Ajouter ou supprimer des colonnes dans le volet Résultats](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_Add_remove_columns.png) 
-4. Remplissez le formulaire de hello comme suit :
+4. Remplissez le formulaire comme suit :
    
-   * Sélectionner les éléments de hello **disponible** liste de colonnes et cliquez sur **ajouter** tooadd les toohello **colonnes affichées** liste. 
-   * Cliquez sur les éléments Bonjour **colonnes affichées** liste, puis cliquez sur **supprimer** tooremove de liste de hello. 
-   * Sélectionnez un élément dans hello **affichées** liste de colonnes et cliquez sur **monter** ou **Descendre** élément toomove hello vers le haut ou vers le bas dans la liste de hello. 
-   * Cliquez sur **paramètres par défaut** tooreturn toohello défaut **résultats** configuration du volet. 
+   * Sélectionnez des éléments dans la liste de colonnes **Disponible** et cliquez sur **Ajouter** pour les ajouter à la liste **Colonnes affichées**. 
+   * Cliquez sur les éléments dans la liste **Colonnes affichées**, puis cliquez sur **Supprimer** pour les supprimer de la liste. 
+   * Sélectionnez un élément dans la liste de colonnes **Affichées** et cliquez sur **Monter** ou **Descendre** pour déplacer l’élément vers le haut ou vers le bas dans la liste. 
+   * Cliquez sur **Paramètres par défaut** pour revenir à la configuration par défaut du volet **Résultats**. 
 5. Une fois que vous avez terminé vos sélections, cliquez sur **OK**. 
 
-#### <a name="toochange-hello-console-window-view"></a>vue de la fenêtre de console du hello toochange
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, avec le bouton droit n’importe quel nœud, cliquez sur **vue**, puis cliquez sur **personnaliser**. Hello **personnaliser** boîte de dialogue s’affiche.
+#### <a name="to-change-the-console-window-view"></a>Pour modifier l’affichage de la fenêtre de console
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez sur n’importe quel nœud, sur **Affichage**, puis cliquez sur **Personnaliser**. La boîte de dialogue **Personnaliser** s’affiche.
    
-    ![Personnaliser la fenêtre de console hello](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_Customize.png) 
-3. Sélectionnez ou désactivez hello cases à cocher tooshow ou masquer des éléments dans la fenêtre de console hello. Une fois que vous avez terminé vos sélections, cliquez sur **OK**.
+    ![Personnaliser la fenêtre de console](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_Customize.png) 
+3. Activez ou désactivez les cases à cocher pour afficher ou masquer des éléments dans la fenêtre de console. Une fois que vous avez terminé vos sélections, cliquez sur **OK**.
 
 ## <a name="new-window-from-here"></a>Nouvelle fenêtre à partir d’ici
-Vous pouvez utiliser hello **nouvelle fenêtre** option tooopen une nouvelle fenêtre de console.
+Vous pouvez utiliser l’option **Nouvelle fenêtre à partir d’ici** pour ouvrir une nouvelle fenêtre de console.
 
-#### <a name="tooopen-a-new-console-window"></a>tooopen une nouvelle fenêtre de console
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, avec le bouton droit n’importe quel nœud, puis cliquez sur **nouvelle fenêtre**. 
+#### <a name="to-open-a-new-console-window"></a>Ouvrir une nouvelle fenêtre de console
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez sur n’importe quel nœud avec le bouton droit de la souris, puis cliquez sur **Nouvelle fenêtre**. 
    
-    Une nouvelle fenêtre apparaît, affichant uniquement les étendue hello que vous avez sélectionné. Par exemple, si vous cliquez sur hello **stratégies de sauvegarde** nœud, hello nouvelle fenêtre affiche uniquement les hello **stratégies de sauvegarde** nœud Bonjour **étendue** volet et une liste de définis Bonjour, les stratégies de sauvegarde **résultats** volet. Consultez hello l’exemple suivant.
+    Une nouvelle fenêtre indiquant uniquement l’étendue que vous avez sélectionnée s’affiche. Par exemple, si vous cliquez avec le bouton droit de la souris sur le nœud **Stratégies de sauvegarde**, la nouvelle fenêtre affiche uniquement le nœud **Stratégies de sauvegarde** dans le volet **Étendue** et une liste de stratégies de sauvegarde dans le volet **Résultats**. Consultez l’exemple qui suit.
    
     ![Nouvelle fenêtre à partir d’ici](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_NewWindow.png) 
 
 ## <a name="refresh"></a>Actualiser
-Vous pouvez utiliser hello **Actualiser** fenêtre de console action tooupdate hello.
+Vous pouvez utiliser l’action **Actualiser** pour mettre à jour la fenêtre de console.
 
-#### <a name="tooupdate-hello-console-window"></a>fenêtre de console hello tooupdate
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, avec le bouton droit n’importe quel nœud ou développez le nœud de hello et avec le bouton droit à un élément Bonjour **résultats** volet, puis cliquez sur **Actualiser**. 
+#### <a name="to-update-the-console-window"></a>Pour mettre à jour la fenêtre de console
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez avec le bouton droit de la souris sur n’importe quel nœud ou développez le nœud et cliquez avec le bouton droit de la souris sur un élément du volet **Résultats**, puis cliquez sur l’option **Actualiser**. 
 
 ## <a name="export-list"></a>Exporter la liste
-Vous pouvez utiliser hello **exporter la liste** action toosave une liste dans un fichier de valeurs séparées par des virgules (CSV). Par exemple, vous pouvez exporter la liste hello de stratégies de sauvegarde ou de catalogue de sauvegarde hello. Vous pouvez ensuite importer le fichier CSV de hello dans un tableur pour l’analyse.
+Vous pouvez utiliser l’action **Exporter la liste** pour enregistrer une liste dans un fichier de valeurs séparées par des virgules (CSV). Vous pouvez par exemple exporter la liste des stratégies de sauvegarde ou le catalogue de sauvegarde. Vous pouvez ensuite importer le fichier CSV dans une application de tableur pour analyse.
 
-#### <a name="toosave-a-list-in-a-comma-separated-value-csv-file"></a>toosave une liste dans un fichier de valeurs séparées par des virgules (CSV)
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple. 
-2. Bonjour **étendue** volet, avec le bouton droit n’importe quel nœud ou développez le nœud de hello et avec le bouton droit à un élément Bonjour **résultats** volet, puis cliquez sur **exporter la liste**. 
-3. Hello **exporter la liste** boîte de dialogue s’affiche. Remplissez le formulaire de hello comme suit : 
+#### <a name="to-save-a-list-in-a-comma-separated-value-csv-file"></a>Pour enregistrer une liste dans un fichier CSV (fichier de valeurs séparées par des virgules)
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple. 
+2. Dans le volet **Étendue**, cliquez avec le bouton droit de la souris sur n’importe quel nœud ou développez le nœud et cliquez avec le bouton droit de la souris sur un élément du volet **Résultats**, puis cliquez sur l’option **Exporter la liste**. 
+3. La boîte de dialogue **Exporter la liste** s’affiche. Remplissez le formulaire comme suit : 
    
-   1. Bonjour **nom de fichier** , tapez un nom pour le fichier CSV de hello ou cliquez sur tooselect de flèche hello à partir de la liste déroulante de hello.
-   2. Bonjour **enregistrer en tant que type** zone, cliquez sur la flèche de hello et sélectionnez un type de fichier à partir de la liste déroulante de hello.
-   3. toosave uniquement sélectionné des éléments, sélectionnez les lignes hello puis hello **enregistrer uniquement les lignes sélectionnées** case à cocher. listes toosave tous les exporté, désactivez hello **enregistrer uniquement les lignes sélectionnées** case à cocher.
-   4. Cliquez sur **Enregistrer**.
+   1. Dans la zone **Nom de fichier** , tapez un nom pour le fichier CSV ou cliquez sur la flèche pour effectuer une sélection dans la liste déroulante.
+   2. Dans la zone **Type de fichier** , cliquez sur la flèche et sélectionnez un type de fichier dans la liste déroulante.
+   3. Pour enregistrer uniquement les éléments sélectionnés, sélectionnez les lignes puis cliquez sur la case à cocher **Enregistrer uniquement les lignes sélectionnées** . Pour enregistrer toutes les listes exportées, désactivez la case à cocher **Enregistrer uniquement les lignes sélectionnées** .
+   4. Cliquez sur **Save**.
       
       ![Exporter la liste dans un fichier de valeurs séparées par des virgules](./media/storsimple-snapshot-manager-mmc-menu/HCS_SSM_Export_List.png) 
 
 ## <a name="help"></a>Aide
-Vous pouvez utiliser hello **aide** menu tooview aide en ligne disponible pour le Gestionnaire d’instantanés StorSimple et hello MMC.
+Utilisez le menu **Aide** pour consulter l’aide en ligne disponible du Gestionnaire d’instantanés StorSimple et de MMC .
 
-#### <a name="tooview-available-online-help"></a>aide en ligne disponible de tooview
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, avec le bouton droit n’importe quel nœud ou développez le nœud de hello et avec le bouton droit à un élément Bonjour **résultats** volet, puis cliquez sur **aide**. 
+#### <a name="to-view-available-online-help"></a>Pour afficher l’aide en ligne disponible
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez avec le bouton droit de la souris sur n’importe quel nœud ou développez le nœud et cliquez avec le bouton droit de la souris sur un élément du volet **Résultats**, puis cliquez sur l’option **Aide**. 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* En savoir plus sur hello [interface utilisateur de gestionnaire d’instantanés StorSimple](storsimple-use-snapshot-manager.md).
-* En savoir plus sur [à l’aide du Gestionnaire d’instantanés StorSimple tooadminister votre solution StorSimple](storsimple-snapshot-manager-admin.md).
+* En savoir plus sur [l’interface utilisateur du Gestionnaire d’instantanés StorSimple](storsimple-use-snapshot-manager.md).
+* En savoir plus sur [l’utilisation du Gestionnaire d’instantanés StorSimple pour gérer votre solution StorSimple](storsimple-snapshot-manager-admin.md).
 

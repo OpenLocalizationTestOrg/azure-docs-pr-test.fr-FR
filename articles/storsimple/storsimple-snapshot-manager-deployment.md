@@ -1,6 +1,6 @@
 ---
-title: "Gestionnaire d’instantanés StorSimple d’aaaDeploy | Documents Microsoft"
-description: "Découvrez comment toodownload et installez hello Gestionnaire d’instantanés StorSimple, un composant logiciel enfichable MMC pour la gestion des fonctionnalités de protection et la sauvegarde de données de StorSimple."
+title: "Déploiement du Gestionnaire d’instantanés StorSimple | Microsoft Docs"
+description: "Découvrez comment télécharger et installer le Gestionnaire d'instantanés StorSimple, un composant logiciel enfichable MMC pour la gestion des fonctionnalités de sauvegarde et de protection de données StorSimple."
 services: storsimple
 documentationcenter: NA
 author: SharS
@@ -14,50 +14,50 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/05/2017
 ms.author: v-sharos
-ms.openlocfilehash: dd90cca2bbb3410bb8cd459fb1a3ff3fb5f2997b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cde355381b0d726a1ab340bc4230b2dc8f6e2c56
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="deploy-hello-storsimple-snapshot-manager-mmc-snap-in"></a>Déployer hello enfichable MMC du Gestionnaire d’instantanés StorSimple
+# <a name="deploy-the-storsimple-snapshot-manager-mmc-snap-in"></a>Déployer le composant logiciel enfichable MMC Gestionnaire d’instantanés StorSimple
 
-## <a name="overview"></a>Vue d'ensemble
-Hello StorSimple Snapshot Manager est un composant logiciel enfichable Microsoft Management Console (MMC) qui simplifie la protection des données et gestion de sauvegarde dans un environnement Microsoft Azure StorSimple. Avec le Gestionnaire d’instantanés StorSimple, vous pouvez gérer le stockage Microsoft Azure StorSimple local et dans le cloud comme s’il s’agissait d’un système de stockage entièrement intégré, ce qui simplifie les processus de sauvegarde et de restauration et contribue à réduire les coûts. 
+## <a name="overview"></a>Vue d’ensemble
+Le Gestionnaire d’instantanés StorSimple est un composant logiciel enfichable MMC (Microsoft Management Console) qui simplifie la protection des données et la gestion des sauvegardes dans un environnement Microsoft Azure StorSimple. Avec le Gestionnaire d’instantanés StorSimple, vous pouvez gérer le stockage Microsoft Azure StorSimple local et dans le cloud comme s’il s’agissait d’un système de stockage entièrement intégré, ce qui simplifie les processus de sauvegarde et de restauration et contribue à réduire les coûts. 
 
 Ce didacticiel décrit la configuration requise, ainsi que les procédures d’installation, de suppression et de mise à niveau du Gestionnaire d’instantanés StorSimple.
 
 > [!NOTE]
-> * Vous ne pouvez pas utiliser le Gestionnaire d’instantanés StorSimple toomanage Microsoft Azure StorSimple tableaux virtuels (également appelé StorSimple local périphériques virtuels).
-> * Si vous envisagez tooinstall 2 de mise à jour StorSimple sur votre appareil StorSimple, que toodownload hello version la plus récente du Gestionnaire d’instantanés StorSimple et l’installer **avant d’installer StorSimple mise à jour 2**. version la plus récente de StorSimple Snapshot Manager Hello est à compatibilité descendante et fonctionne avec les versions de Microsoft Azure StorSimple. Si vous utilisez une version précédente de hello du Gestionnaire d’instantanés StorSimple, vous devez tooupdate informatique (il est inutile version précédente de hello toouninstall avant d’installer de la nouvelle version de hello).
+> * Vous ne pouvez pas utiliser le Gestionnaire d'instantanés StorSimple pour gérer les baies virtuelles Microsoft Azure StorSimple (également appelées appareils virtuels locaux StorSimple).
+> * Si vous prévoyez d’installer StorSimple Update 2 sur votre appareil StorSimple, veillez à télécharger la dernière version de StorSimple Snapshot Manager et à l’installer **avant d’installer StorSimple Update 2**. La dernière version de StorSimple Snapshot Manager est à compatibilité descendante et fonctionne avec toutes les versions publiées de Microsoft Azure StorSimple. Si vous utilisez la version précédente de StorSimple Snapshot Manager, vous devez effectuer une mise à jour (il est inutile de désinstaller la version précédente avant d’installer la nouvelle).
 
 
 ## <a name="storsimple-snapshot-manager-installation"></a>Installation du Gestionnaire d’instantanés StorSimple
-Gestionnaire d’instantanés StorSimple peut être installé sur les ordinateurs qui exécutent le système de d’exploitation Windows Server 2008 R2 SP1, Windows Server 2012 ou Windows Server 2012 R2 hello. Sur les serveurs exécutant Windows 2008 R2, vous devez aussi installer Windows Server 2008 SP1 et Windows Management Framework 3.0.
+StorSimple Snapshot Manager peut être installé sur les ordinateurs exécutant le système d’exploitation Windows Server 2008 R2 SP1, Windows Server 2012 ou Windows Server 2012 R2. Sur les serveurs exécutant Windows 2008 R2, vous devez aussi installer Windows Server 2008 SP1 et Windows Management Framework 3.0.
 
-Avant d’installer ou mettre à niveau hello StorSimple Snapshot Manager-composant logiciel enfichable pour hello Microsoft Management Console (MMC), vérifiez que cet appareil de Microsoft Azure StorSimple hello et serveur hôte sont configurés correctement.
+Avant d’installer ou de mettre à niveau le composant logiciel enfichable Gestionnaire d’instantanés StorSimple pour la console MMC (Microsoft Management Console), assurez-vous que le serveur hôte et l’appareil Microsoft Azure StorSimple sont configurés correctement.
 
 ## <a name="configure-prerequisites"></a>Configuration préalable requise
-Hello étapes suivantes fournissent une vue d’ensemble des tâches de configuration que vous devez effectuer avant d’installer hello Gestionnaire d’instantanés StorSimple. Pour obtenir des informations complètes sur la configuration et l’installation de Microsoft Azure StorSimple, y compris la configuration système requise et des instructions pas à pas, consultez la page [Déploiement de votre appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md).
+Les étapes suivantes fournissent une vue d’ensemble des tâches de configuration requises avant d’installer le Gestionnaire d’instantanés StorSimple. Pour obtenir des informations complètes sur la configuration et l’installation de Microsoft Azure StorSimple, y compris la configuration système requise et des instructions pas à pas, consultez la page [Déploiement de votre appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md).
 
 > [!IMPORTANT]
-> Avant de commencer, passez en revue hello [liste de vérification de configuration déploiement](storsimple-8000-deployment-walkthrough-u2.md#deployment-configuration-checklist) et et [conditions préalables au déploiement](storsimple-8000-deployment-walkthrough-u2.md#deployment-prerequisites) dans [déployer l’appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md).
+> Avant de commencer, lisez la [liste de contrôle de déploiement](storsimple-8000-deployment-walkthrough-u2.md#deployment-configuration-checklist) et les [conditions préalables au déploiement](storsimple-8000-deployment-walkthrough-u2.md#deployment-prerequisites) dans l’article [Déploiement de votre appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md).
 > <br>
 > 
 > 
 
 ### <a name="before-you-install-storsimple-snapshot-manager"></a>Avant d’installer le Gestionnaire d’instantanés StorSimple
-1. Décompressez, montez et connectez le dispositif de Microsoft Azure StorSimple hello comme décrit dans [installer votre appareil StorSimple 8100](storsimple-8100-hardware-installation.md) ou [installer votre appareil StorSimple 8600](storsimple-8600-hardware-installation.md).
-2. Assurez-vous que votre ordinateur hôte exécute l’un des hello suivant des systèmes d’exploitation :
+1. Déballez, montez et connectez l’appareil Microsoft Azure StorSimple en suivant les instructions de l’article [Installation de votre appareil StorSimple 8100](storsimple-8100-hardware-installation.md) ou [Installation de votre appareil StorSimple 8600](storsimple-8600-hardware-installation.md).
+2. Assurez-vous que votre ordinateur hôte exécute l’un des systèmes d’exploitation suivants :
    
    * Windows Server 2008 R2 (sur les serveurs exécutant Windows 2008 R2, vous devez aussi installer Windows Server 2008 SP1 et Windows Management Framework 3.0)
    * Windows Server 2012
    * Windows Server 2012 R2
      
-     Pour un périphérique virtuel StorSimple, hôte de hello doit être un ordinateur virtuel de Microsoft Azure.
-3. Assurez-vous que vous remplissez toutes les exigences de configuration de Microsoft Azure StorSimple hello. Pour plus d’informations, consultez trop[conditions préalables au déploiement](storsimple-8000-deployment-walkthrough-u2.md#deployment-prerequisites).
-4. Connecter l’hôte de toohello périphérique hello et effectuer la configuration initiale de hello. Pour plus d’informations, consultez trop[les étapes de déploiement](storsimple-8000-deployment-walkthrough-u2.md#deployment-steps).
-5. Créer des volumes sur l’appareil de hello, affectez-les toohello hôte et vérifiez que cet hôte hello peut monter et les utiliser. Gestionnaire d’instantanés StorSimple hello de prend en charge les types de volumes suivants :
+     Pour un appareil virtuel StorSimple, l’hôte doit être une machine virtuelle Microsoft Azure.
+3. Assurez-vous que la configuration requise de Microsoft Azure StorSimple est entièrement respectée. Pour plus d’informations, consultez la page [Conditions préalables au déploiement](storsimple-8000-deployment-walkthrough-u2.md#deployment-prerequisites).
+4. Connectez l’appareil à l’hôte et procédez à la configuration initiale. Pour plus d’informations, consultez la page [Étapes du déploiement](storsimple-8000-deployment-walkthrough-u2.md#deployment-steps).
+5. Créez des volumes sur l’appareil, affectez-les à l’hôte et vérifiez que l’hôte peut les monter et les utiliser. Le Gestionnaire d’instantanés StorSimple prend en charge les types de volumes suivants :
    
    * Volumes de base
    * Volumes simples
@@ -65,153 +65,153 @@ Hello étapes suivantes fournissent une vue d’ensemble des tâches de configur
    * Volumes dynamiques en miroir (RAID 1)
    * Volumes partagés de cluster
      
-     Pour plus d’informations sur la création de volumes sur l’appareil StorSimple hello ou un appareil virtuel StorSimple, accédez trop[étape 6 : création d’un volume](storsimple-8000-deployment-walkthrough-u2.md#step-6-create-a-volume), dans [déployer l’appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md).
+     Pour plus d’informations sur la création de volumes sur l’appareil StorSimple ou l’appareil virtuel StorSimple, consultez la section [« Étape 6 : création d’un volume »](storsimple-8000-deployment-walkthrough-u2.md#step-6-create-a-volume) de l’article [Déploiement de votre appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md).
 
 ## <a name="install-a-new-storsimple-snapshot-manager"></a>Installation d’un nouveau Gestionnaire d’instantanés StorSimple
-Avant d’installer le Gestionnaire d’instantanés StorSimple, assurez-vous que volumes hello vous avez créé sur l’appareil StorSimple hello ou un appareil virtuel StorSimple sont montés, initialisés et formatés comme indiqué dans [configurer les composants requis](#configure-prerequisites).
+Avant d’installer le Gestionnaire d’instantanés StorSimple, assurez-vous que les volumes que vous avez créés sur l’appareil StorSimple ou l’appareil virtuel StorSimple sont montés, initialisés et formatés comme indiqué dans la section [Configuration préalable requise](#configure-prerequisites).
 
 > [!IMPORTANT]
-> * Pour un périphérique virtuel StorSimple, hôte de hello doit être un ordinateur virtuel de Microsoft Azure. 
-> * hôte de Hello doit être en cours d’exécution pour Windows 2008 R2, Windows Server 2012 ou Windows Server 2012 R2. Si votre serveur exécute Windows Server 2008 R2, vous devez aussi installer Windows Server 2008 SP1 et Windows Management Framework 3.0.
-> * Vous devez configurer une connexion iSCSI à partir de l’appareil StorSimple hello hôte toohello avant de pouvoir connecter hello appareil tooStorSimple Gestionnaire d’instantanés.
+> * Pour un appareil virtuel StorSimple, l’hôte doit être une machine virtuelle Microsoft Azure. 
+> * L’hôte doit exécuter Windows 2008 R2, Windows Server 2012 ou Windows Server 2012 R2. Si votre serveur exécute Windows Server 2008 R2, vous devez aussi installer Windows Server 2008 SP1 et Windows Management Framework 3.0.
+> * Vous devez configurer une connexion iSCSI de l’hôte vers l’appareil StorSimple avant de pouvoir connecter l’appareil au Gestionnaire d’instantanés StorSimple.
 
-Suivez ces étapes de toocomplete une nouvelle installation du Gestionnaire d’instantanés StorSimple. Si vous installez une mise à niveau, passez trop[mise à niveau ou réinstaller le Gestionnaire d’instantanés StorSimple](#upgrade-or-reinstall-storsimple-snapshot-manager).
+Pour effectuer une nouvelle installation du Gestionnaire d’instantanés StorSimple, suivez les étapes ci-dessous. Si vous installez une mise à niveau, accédez à la section [Mise à niveau ou réinstallation du Gestionnaire d’instantanés StorSimple](#upgrade-or-reinstall-storsimple-snapshot-manager).
 
 * Étape 1 : installation du Gestionnaire d’instantanés StorSimple 
-* Étape 2 : Se connecter à StorSimple Snapshot Manager tooa périphérique 
-* Étape 3 : Vérifier le périphérique de hello connexion toohello 
+* Étape 2 : connexion du Gestionnaire d’instantanés StorSimple à un appareil 
+* Étape 3 : vérification de la connexion à l’appareil 
 
 ### <a name="step-1-install-storsimple-snapshot-manager"></a>Étape 1 : installation du Gestionnaire d’instantanés StorSimple
-Utilisez hello suivant les étapes tooinstall Gestionnaire d’instantanés StorSimple.
+Pour installer le Gestionnaire d’instantanés StorSimple, procédez comme suit.
 
-#### <a name="tooinstall-storsimple-snapshot-manager"></a>tooinstall Gestionnaire d’instantanés StorSimple
-1. Télécharger le logiciel de gestionnaire d’instantanés StorSimple hello (passez trop[StorSimple Snapshot Manager](https://www.microsoft.com/download/details.aspx?id=44220) Bonjour Microsoft Download Center) et enregistrez-le en local sur l’ordinateur hôte de hello.
-2. Dans l’Explorateur de fichiers, cliquez sur le dossier compressé de hello, puis cliquez sur **extraire tout**.
-3. Bonjour **dossiers compressés (zippés)** fenêtre hello **sélectionner une destination et extraire les fichiers** , tapez ou recherchez chemin toohello où vous souhaitez toobe toofile extraite.
+#### <a name="to-install-storsimple-snapshot-manager"></a>Pour installer le Gestionnaire d’instantanés StorSimple
+1. Téléchargez le logiciel Gestionnaire d’instantanés StorSimple (accédez à [Gestionnaire d’instantanés StorSimple](https://www.microsoft.com/download/details.aspx?id=44220) dans le Centre de téléchargement Microsoft) et enregistrez-le localement sur l’hôte.
+2. Dans l’Explorateur de fichiers, cliquez avec le bouton droit sur le dossier compressé, puis cliquez sur **Extraire tout**.
+3. Dans la fenêtre **Extraire les dossiers compressés**, dans la zone **Sélectionner une destination et extraire les fichiers**, tapez ou recherchez le chemin d’accès où extraire le fichier.
    
     > [!IMPORTANT]
-    > Vous devez installer le Gestionnaire d’instantanés StorSimple sur hello lecteur C:.
+    > Vous devez installer le Gestionnaire d’instantanés StorSimple sur le lecteur C:.
     
-4. Sélectionnez hello **afficher les fichiers lorsque vous avez terminé extraits** case à cocher, puis cliquez sur **extraire**.
+4. Cochez la case **Afficher les dossiers extraits une fois l’opération terminée**, puis cliquez sur **Extraire**.
    
     ![Boîte de dialogue Extraire les fichiers](./media/storsimple-snapshot-manager-deployment/HCS_SSM_extract_files.png) 
-5. Lors de l’extraction de hello est finie, le dossier de destination hello s’ouvre. Double-cliquez sur icône le programme d’installation de l’application hello qui apparaît dans le dossier de destination hello.
-6. Hello lorsque **installation réussie** message s’affiche, cliquez sur **fermer**. Vous devez voir l’icône du Gestionnaire d’instantanés StorSimple hello sur votre bureau.
+5. Une fois l’extraction terminée, le dossier de destination s’ouvre. Double-cliquez sur l’icône d’installation de l’application présente dans le dossier de destination.
+6. Quand le message **Installation/désinstallation réussie** s’affiche, cliquez sur **Fermer**. L’icône du Gestionnaire d’instantanés StorSimple doit être affichée sur votre bureau.
    
     ![Icône du Bureau](./media/storsimple-snapshot-manager-deployment/HCS_SSM_desktop_icon.png) 
 
-### <a name="step-2-connect-storsimple-snapshot-manager-tooa-device"></a>Étape 2 : Se connecter à StorSimple Snapshot Manager tooa périphérique
-Utilisez hello suivant les étapes tooconnect appareil StorSimple Snapshot Manager tooa StorSimple.
+### <a name="step-2-connect-storsimple-snapshot-manager-to-a-device"></a>Étape 2 : connexion du Gestionnaire d’instantanés StorSimple à un appareil
+Pour connecter le Gestionnaire d’instantanés StorSimple à un appareil StorSimple, procédez comme suit.
 
-#### <a name="tooconnect-storsimple-snapshot-manager-tooa-device"></a>tooconnect tooa de gestionnaire d’instantanés StorSimple périphérique
-1. Cliquez sur icône du Gestionnaire d’instantanés StorSimple hello sur votre bureau. fenêtre du Gestionnaire d’instantanés StorSimple Hello s’affiche. fenêtre Hello contient un **étendue** volet, un **résultats** volet et un **Actions** volet. 
+#### <a name="to-connect-storsimple-snapshot-manager-to-a-device"></a>Pour connecter le Gestionnaire d’instantanés StorSimple à un appareil
+1. Cliquez sur l’icône du Gestionnaire d’instantanés StorSimple sur votre bureau. La fenêtre du Gestionnaire d’instantanés StorSimple apparaît. Cette fenêtre contient un volet **Étendue**, un volet **Résultats** et un volet **Actions**. 
    
     ![Interface utilisateur du gestionnaire d’instantanés StorSimple](./media/storsimple-snapshot-manager-deployment/HCS_SSM_gui_panes.png)
    
-   * Hello **étendue** (volet hello gauche) contient une liste de nœuds organisés dans une structure arborescente. Vous pouvez développer certains nœuds tooselect une vue ou un nœud toothat connexes de données spécifique. Cliquez sur hello flèche icône tooexpand ou réduire un nœud. Cliquez sur un élément Bonjour **étendue** volet toosee une liste des actions disponibles pour cet élément.
-   * Hello **résultats** volet (hello center) contient des informations d’état détaillées sur le nœud de hello, vue ou les données que vous avez sélectionné dans hello **étendue** volet.
-   * Hello **Actions** volet répertorie les opérations hello que vous pouvez effectuer sur le nœud de hello, vue ou les données que vous avez sélectionné dans hello **étendue** volet.
+   * Le volet **Étendue** (volet gauche) contient une liste de nœuds organisée en arborescence. Vous pouvez développer certains nœuds pour sélectionner une vue ou des données spécifiques relatives à ce nœud. Cliquez sur l’icône en forme de flèche en regard d’un nœud pour le développer ou le réduire. Cliquez avec le bouton droit sur un élément du volet **Étendue** pour afficher la liste des actions disponibles pour cet élément.
+   * Le volet **Résultats** (volet central) contient des informations d’état détaillées sur le nœud, la vue ou les données que vous avez sélectionnés dans le volet **Étendue**.
+   * Le volet **Actions** répertorie les opérations que vous pouvez effectuer sur le nœud, la vue ou les données que vous avez sélectionnés dans le volet **Étendue**.
      
-     Pour obtenir une description complète de l’interface utilisateur de gestionnaire d’instantanés StorSimple hello, consultez [interface utilisateur de gestionnaire d’instantanés StorSimple](storsimple-use-snapshot-manager.md).
-2. Bonjour **étendue** volet, avec le bouton hello **périphériques** nœud, puis cliquez sur **configurer un appareil**. Hello **configurer un appareil** boîte de dialogue s’affiche.
+     Pour une description complète de l’interface utilisateur du Gestionnaire d’instantanés StorSimple, consultez l’article [Interface utilisateur du Gestionnaire d’instantanés StorSimple](storsimple-use-snapshot-manager.md).
+2. Dans le volet **Étendue**, cliquez avec le bouton droit sur le nœud **Appareils**, puis cliquez sur **Configurer un appareil**. La boîte de dialogue **Configurer un appareil** apparaît.
    
     ![Configurer un appareil](./media/storsimple-snapshot-manager-deployment/HCS_SSM_config_device.png) 
-3. Bonjour **périphérique** liste boîte, adresse IP de hello select de l’appareil de Microsoft Azure StorSimple hello ou un périphérique virtuel. Bonjour **mot de passe** zone de texte, de type hello Gestionnaire d’instantanés StorSimple un mot de passe que vous avez créé pour appareil de hello en hello portail Azure. Cliquez sur **OK**.
-4. Gestionnaire d’instantanés StorSimple recherche le périphérique hello que vous avez identifié. Si l’appareil de hello est disponible, le Gestionnaire d’instantanés StorSimple ajoute une connexion. Vous pouvez [Vérifiez hello connexion toohello périphérique](#to-verify-the-connection) tooconfirm qui hello connexion a été ajouté avec succès.
+3. Dans la zone de liste **Appareil** , sélectionnez l’adresse IP de l’appareil ou de l’appareil virtuel Microsoft Azure StorSimple. Dans la zone de texte **Mot de passe** , entrez le mot de passe du Gestionnaire d’instantanés StorSimple que vous avez créé pour l’appareil dans le portail Azure. Cliquez sur **OK**.
+4. Le Gestionnaire d’instantanés StorSimple recherche l’appareil que vous avez identifié. Si l’appareil est disponible, le Gestionnaire d’instantanés StorSimple ajoute une connexion. Vous pouvez [vérifier la connexion à l’appareil](#to-verify-the-connection) pour confirmer que la connexion a bien été ajoutée.
    
-    Si l’appareil de hello est indisponible pour une raison quelconque, le Gestionnaire d’instantanés StorSimple retourne un message d’erreur. Cliquez sur **OK** tooclose hello du message d’erreur, puis cliquez sur **Annuler** tooclose hello **configurer un appareil** boîte de dialogue.
-5. Lorsqu’il connecte les appareils tooa, gestionnaire d’instantanés StorSimple importe chaque groupe de volumes configuré pour ce périphérique, condition que hello groupe de volumes dispose des sauvegardes associées. Les groupes de volumes qui ne sont associés à aucune sauvegarde ne sont pas importés. De plus, les stratégies de sauvegarde créées pour un groupe de volumes ne sont pas importées. toosee hello groupes importés, avec le bouton droit supérieur hello **groupes de volumes** nœud Bonjour **étendue** volet, puis cliquez sur **activer/désactiver les groupes importés**.
+    Si, pour une raison quelconque, l’appareil est indisponible, le Gestionnaire d’instantanés StorSimple renvoie un message d’erreur. Cliquez sur **OK** pour fermer le message d’erreur, puis cliquez sur **Annuler** pour fermer la boîte de dialogue **Configurer un appareil**.
+5. Au moment de se connecter à un appareil, le Gestionnaire d’instantanés StorSimple importe chaque groupe de volumes configuré pour cet appareil, à condition que le groupe de volumes soit associé à des sauvegardes. Les groupes de volumes qui ne sont associés à aucune sauvegarde ne sont pas importés. De plus, les stratégies de sauvegarde créées pour un groupe de volumes ne sont pas importées. Pour afficher les groupes importés, cliquez avec le bouton droit sur le nœud **Groupes de volumes** situé le plus haut dans le volet **Étendue**, puis cliquez sur **Activer/Désactiver les groupes importés**.
 
-### <a name="step-3-verify-hello-connection-toohello-device"></a>Étape 3 : Vérifier le périphérique de hello connexion toohello
-Utilisez hello suivant tooverify étapes que le Gestionnaire d’instantanés StorSimple est toohello connecté l’appareil StorSimple.
+### <a name="step-3-verify-the-connection-to-the-device"></a>Étape 3 : vérification de la connexion à l’appareil
+Pour vérifier que le Gestionnaire d’instantanés StorSimple est connecté à l’appareil StorSimple, procédez comme suit.
 
-#### <a name="tooverify-hello-connection"></a>connexion de hello tooverify
-1. Bonjour **étendue** volet, cliquez sur hello **périphériques** nœud.
+#### <a name="to-verify-the-connection"></a>Pour vérifier la connexion
+1. Dans le volet **Étendue**, cliquez sur le nœud **Appareils**.
    
     ![État de l’appareil dans le Gestionnaire d’instantanés StorSimple](./media/storsimple-snapshot-manager-deployment/HCS_SSM_Device_status.png) 
-2. Vérifiez hello **résultats** volet : 
+2. Vérifiez le volet **Résultats** : 
    
-   * Si un indicateur vert apparaît sur l’icône de périphérique hello et **disponible** s’affiche dans hello **état** colonne, puis appareil de hello est connecté. 
-   * Si un indicateur rouge apparaît sur l’icône de périphérique hello et non disponible apparaît dans hello **état** colonne, puis appareil de hello n’est pas connecté. 
-   * Si **actualisation** s’affiche dans hello **état** colonne, puis sur Gestionnaire d’instantanés StorSimple est la récupération des groupes de volumes et les sauvegardes associées pour un appareil connecté.
+   * Si un indicateur vert est affiché sur l’icône de l’appareil et **Disponible** est indiqué dans la colonne **État**, cela signifie que l’appareil est connecté. 
+   * Si un indicateur rouge est affiché sur l’icône de l’appareil et Non disponible est indiqué dans la colonne **État** , cela signifie que l’appareil n’est pas connecté. 
+   * Si **Actualisation** s’affiche dans la colonne **État**, cela signifie que le Gestionnaire d’instantanés StorSimple récupère les groupes de volumes et les sauvegardes associées pour un appareil connecté.
 
 ## <a name="upgrade-or-reinstall-storsimple-snapshot-manager"></a>Mise à niveau ou réinstallation du Gestionnaire d’instantanés StorSimple
-Vous devez désinstaller le Gestionnaire d’instantanés StorSimple complètement avant de mettre à niveau ou réinstaller le logiciel de hello. 
+Vous devez désinstaller complètement le Gestionnaire d’instantanés StorSimple avant de mettre à niveau ou de réinstaller le logiciel. 
 
-Avant de réinstaller le Gestionnaire d’instantanés StorSimple, sauvegardez hello Gestionnaire d’instantanés StorSimple base de données existante sur l’ordinateur hôte hello. Il enregistre les informations de configuration et les stratégies de sauvegarde hello afin que vous pouvez facilement restaurer ces données à partir de la sauvegarde.
+Avant de réinstaller le Gestionnaire d’instantanés StorSimple, sauvegardez la base de données existante du Gestionnaire d’instantanés StorSimple sur l’ordinateur hôte. Les informations de configuration et les stratégies de sauvegarde sont ainsi enregistrées pour faciliter la restauration de ces données à partir de la sauvegarde.
 
 Pour mettre à niveau ou réinstaller le Gestionnaire d’instantanés StorSimple, suivez ces étapes :
 
 * Étape 1 : désinstallation du Gestionnaire d’instantanés StorSimple 
-* Étape 2 : Sauvegarder la base de données du Gestionnaire d’instantanés StorSimple hello 
-* Étape 3 : Réinstallez le Gestionnaire d’instantanés StorSimple et restaurez la base de données hello 
+* Étape 2 : sauvegarde de la base de données du Gestionnaire d’instantanés StorSimple 
+* Étape 3 : réinstallation du Gestionnaire d’instantanés StorSimple et restauration de la base de données 
 
 ### <a name="step-1-uninstall-storsimple-snapshot-manager"></a>Étape 1 : désinstallation du Gestionnaire d’instantanés StorSimple
-Utilisez hello suivant les étapes toouninstall Gestionnaire d’instantanés StorSimple.
+Pour désinstaller le Gestionnaire d’instantanés StorSimple, procédez comme suit.
 
-#### <a name="toouninstall-storsimple-snapshot-manager"></a>toouninstall Gestionnaire d’instantanés StorSimple
-1. Sur l’ordinateur hôte hello, ouvrez hello **le panneau de configuration**, cliquez sur **programmes**, puis cliquez sur **programmes et fonctionnalités**.
-2. Dans le volet gauche de hello, cliquez sur **désinstaller ou modifier un programme**.
+#### <a name="to-uninstall-storsimple-snapshot-manager"></a>Pour désinstaller le Gestionnaire d’instantanés StorSimple
+1. Sur l’ordinateur hôte, ouvrez le **Panneau de configuration**, cliquez sur **Programmes**, puis sur **Programmes et fonctionnalités**.
+2. Dans le volet gauche, cliquez sur **Désinstaller ou modifier un programme**.
 3. Cliquez avec le bouton droit sur **Gestionnaire d’instantanés StorSimple**, puis cliquez sur **Désinstaller**.
-4. Cette commande démarre hello programme d’installation du Gestionnaire d’instantanés StorSimple. Cliquez sur **Modifier l’installation**, puis sur **Désinstaller**.
+4. Le programme d’installation du Gestionnaire d’instantanés StorSimple démarre. Cliquez sur **Modifier l’installation**, puis sur **Désinstaller**.
    
    > [!NOTE]
-   > S’il existe des processus MMC en cours d’exécution en arrière-plan de hello, telles que le Gestionnaire d’instantanés StorSimple ou la gestion des disques, hello désinstallation échoue et vous recevez un message tooclose toutes les instances de MMC avant de tentent de programme de hello toouninstall. Sélectionnez **automatiquement fermer les applications et essayez de toorestart une fois le programme d’installation terminer**, puis cliquez sur **OK**.
+   > Si des processus de la console MMC sont exécutés en arrière-plan, tels que le Gestionnaire d’instantanés StorSimple ou l’outil Gestion des disques, la désinstallation échoue et vous recevez un message vous invitant à fermer toutes les instances de la console MMC avant de désinstaller le programme. Sélectionnez **Fermer automatiquement les applications et tenter de les redémarrer une fois l’installation terminée**, puis cliquez sur **OK**.
    > 
    > 
-5. Lors de la désinstallation de hello est terminée, un **installation réussie** message s’affiche. Cliquez sur **Fermer**.
+5. Une fois le processus de désinstallation terminé, le message **Installation/désinstallation réussie** s’affiche. Cliquez sur **Fermer**.
 
-### <a name="step-2-back-up-hello-storsimple-snapshot-manager-database"></a>Étape 2 : Sauvegarder la base de données du Gestionnaire d’instantanés StorSimple hello
-Utilisez hello suivant les étapes toocreate et enregistrer une copie de base de données du Gestionnaire d’instantanés StorSimple hello.
+### <a name="step-2-back-up-the-storsimple-snapshot-manager-database"></a>Étape 2 : sauvegarde de la base de données du Gestionnaire d’instantanés StorSimple
+Pour créer et enregistrer une copie de la base de données du Gestionnaire d’instantanés StorSimple, procédez comme suit.
 
-#### <a name="tooback-up-hello-database"></a>tooback base de données hello
-1. Arrêter hello Service de gestion StorSimple de Microsoft :
+#### <a name="to-back-up-the-database"></a>Pour sauvegarder la base de données
+1. Arrêtez le service de gestion Microsoft StorSimple :
    
    1. Démarrez le Gestionnaire de serveur.
-   2. Sur hello du tableau de bord Gestionnaire de serveur, sur hello **outils** menu, sélectionnez **Services**.
-   3. Sur hello **Services** page, sélectionnez **Microsoft StorSimple Management Service**.
-   4. Bonjour avec le bouton droit volet, sous **Microsoft StorSimple Management Service**, cliquez sur **arrêter le service de hello**.
+   2. Sur le tableau de bord du Gestionnaire de serveur, dans le menu **Outils**, sélectionnez **Services**.
+   3. Dans la page **Services**, sélectionnez **Service de gestion Microsoft StorSimple**.
+   4. Dans le volet droit, sous **Service de gestion Microsoft StorSimple**, cliquez sur **Arrêter le service**.
       
-        ![Arrêter le service du Gestionnaire de périphériques StorSimple hello](./media/storsimple-snapshot-manager-deployment/HCS_SSM_stop_service.png)
-2. Parcourir tooC:\ProgramData\Microsoft\StorSimple\BACatalog. 
+        ![Arrêter le service StorSimple Device Manager](./media/storsimple-snapshot-manager-deployment/HCS_SSM_stop_service.png)
+2. Accédez à C:\ProgramData\Microsoft\StorSimple\BACatalog. 
    
    > [!NOTE]
    > ProgramData est un dossier masqué.
   
-3. Rechercher le fichier XML de catalogue hello, copier le fichier hello et stocker hello copier dans un emplacement sûr ou dans le cloud de hello.
+3. Recherchez le fichier XML de catalogue, copiez-le et stockez sa copie dans un emplacement sûr ou dans le cloud.
    
     ![Fichier de catalogue de sauvegarde StorSimple](./media/storsimple-snapshot-manager-deployment/HCS_SSM_bacatalog.png)
-4. Redémarrez hello Service de gestion StorSimple de Microsoft : 
+4. Redémarrez le service de gestion Microsoft StorSimple : 
    
-   1. Sur hello du tableau de bord Gestionnaire de serveur, sur hello **outils** menu, sélectionnez **Services**.
-   2. Sur hello **Services** page, sélectionnez hello **Microsoft StorSimple Management service**e.
-   3. Bonjour avec le bouton droit volet, sous **Microsoft StorSimple Management Service**, cliquez sur **redémarrer hello service**. 
+   1. Sur le tableau de bord du Gestionnaire de serveur, dans le menu **Outils**, sélectionnez **Services**.
+   2. Dans la page **Services**, sélectionnez **Service de gestion Microsoft StorSimple**.
+   3. Dans le volet droit, sous **Service de gestion Microsoft StorSimple**, cliquez sur **Redémarrer le service**. 
 
-### <a name="step-3-reinstall-storsimple-snapshot-manager-and-restore-hello-database"></a>Étape 3 : Réinstallez le Gestionnaire d’instantanés StorSimple et restaurez la base de données hello
-tooreinstall Gestionnaire d’instantanés StorSimple, suivez les étapes de hello dans [installer un nouveau gestionnaire d’instantanés StorSimple](#install-a-new-storsimple-snapshot-manager). Ensuite, utilisez hello suivant de base de données du Gestionnaire d’instantanés StorSimple procédure toorestore hello.
+### <a name="step-3-reinstall-storsimple-snapshot-manager-and-restore-the-database"></a>Étape 3 : réinstallation du Gestionnaire d’instantanés StorSimple et restauration de la base de données
+Pour réinstaller le Gestionnaire d’instantanés StorSimple, suivez les étapes de la section [Installer un nouveau Gestionnaire d’instantanés StorSimple](#install-a-new-storsimple-snapshot-manager). Appliquez ensuite la procédure suivante pour restaurer la base de données du Gestionnaire d’instantanés StorSimple.
 
-#### <a name="toorestore-hello-database"></a>base de données toorestore hello
-1. Arrêter hello Service de gestion StorSimple de Microsoft :
+#### <a name="to-restore-the-database"></a>Pour restaurer la base de données
+1. Arrêtez le service de gestion Microsoft StorSimple :
    
    1. Démarrez le Gestionnaire de serveur.
-   2. Sur hello du tableau de bord Gestionnaire de serveur, sur hello **outils** menu, sélectionnez **Services**.
-   3. Sur hello **Services** page, sélectionnez **Microsoft StorSimple Management Service**.
-   4. Bonjour avec le bouton droit volet, sous **Microsoft StorSimple Management Service**, cliquez sur **arrêter le service de hello**.
-2. Parcourir tooC:\ProgramData\Microsoft\StorSimple\BACatalog.
+   2. Sur le tableau de bord du Gestionnaire de serveur, dans le menu **Outils**, sélectionnez **Services**.
+   3. Dans la page **Services**, sélectionnez **Service de gestion Microsoft StorSimple**.
+   4. Dans le volet droit, sous **Service de gestion Microsoft StorSimple**, cliquez sur **Arrêter le service**.
+2. Accédez à C:\ProgramData\Microsoft\StorSimple\BACatalog.
    
    > [!NOTE]
    > ProgramData est un dossier masqué.
    > 
    > 
-3. Supprimer le fichier XML de catalogue hello et remplacez-le par version hello que vous avez enregistré précédemment.
-4. Redémarrez hello Service de gestion StorSimple de Microsoft : 
+3. Supprimez le fichier XML de catalogue et remplacez-le par la version que vous avez enregistrée précédemment.
+4. Redémarrez le service de gestion Microsoft StorSimple : 
    
-   1. Sur hello du tableau de bord Gestionnaire de serveur, sur hello **outils** menu, sélectionnez **Services**.
-   2. Sur hello **Services** page, sélectionnez **Microsoft StorSimple Management Service**.
-   3. Bonjour avec le bouton droit volet, sous **Microsoft StorSimple Management Service**, cliquez sur **redémarrer hello service**.
+   1. Sur le tableau de bord du Gestionnaire de serveur, dans le menu **Outils**, sélectionnez **Services**.
+   2. Dans la page **Services**, sélectionnez **Service de gestion Microsoft StorSimple**.
+   3. Dans le volet droit, sous **Service de gestion Microsoft StorSimple**, cliquez sur **Redémarrer le service**.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* toolearn plus sur StorSimple Snapshot Manager, accédez trop[Nouveautés du Gestionnaire d’instantanés StorSimple ?](storsimple-what-is-snapshot-manager.md).
-* toolearn savoir plus sur l’interface utilisateur de gestionnaire d’instantanés StorSimple hello, accédez trop[interface utilisateur de gestionnaire d’instantanés StorSimple](storsimple-use-snapshot-manager.md).
-* toolearn plus sur l’utilisation de gestionnaire d’instantanés StorSimple, accédez trop[tooadminister de gestionnaire d’instantanés StorSimple utiliser votre solution StorSimple](storsimple-snapshot-manager-admin.md).
+* Pour en savoir plus sur le Gestionnaire d’instantanés StorSimple, consultez [Qu’est-ce que le Gestionnaire d’instantanés StorSimple ?](storsimple-what-is-snapshot-manager.md)
+* Pour en savoir plus sur l’interface utilisateur du Gestionnaire d’instantanés StorSimple, consultez [Interface utilisateur du Gestionnaire d’instantanés StorSimple](storsimple-use-snapshot-manager.md).
+* Pour en savoir plus sur l’utilisation du Gestionnaire d’instantanés StorSimple, consultez [Utiliser le Gestionnaire d’instantanés StorSimple pour gérer votre solution StorSimple](storsimple-snapshot-manager-admin.md).
 

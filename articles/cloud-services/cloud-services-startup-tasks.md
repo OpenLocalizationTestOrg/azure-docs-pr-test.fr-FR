@@ -1,6 +1,6 @@
 ---
-title: "aaaRun des tâches de démarrage dans les Services de cloud computing Azure | Documents Microsoft"
-description: "Les tâches de démarrage facilitent la préparation de votre environnement de service cloud pour votre application. Il vous apprend comment démarrage des tâches et toomake les"
+title: "Exécuter des tâches de démarrage dans Azure Cloud Services | Microsoft Docs"
+description: "Les tâches de démarrage facilitent la préparation de votre environnement de service cloud pour votre application. Cette documentation vous apprend comment fonctionnent les tâches de démarrage et comment les créer."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: adegeo
-ms.openlocfilehash: 3391a5d7434164f59972b8e497e5c34e33409543
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1c1b3aa86dc8211de0c07c9fb68da5685c86f551
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooconfigure-and-run-startup-tasks-for-a-cloud-service"></a>Des tâches de démarrage tooconfigure et exécution d’un service cloud
-Vous pouvez utiliser les opérations de tooperform de tâches de démarrage avant le démarrage d’un rôle. Les opérations que vous pourriez tooperform incluent l’installation d’un composant, l’inscription des composants COM, définition de clés de Registre ou à partir d’un processus à long terme.
+# <a name="how-to-configure-and-run-startup-tasks-for-a-cloud-service"></a>Comment configurer et exécuter des tâches de démarrage pour un service cloud
+Vous pouvez utiliser des tâches de démarrage pour exécuter des opérations avant le démarrage d’un rôle. Parmi les opérations que vous pouvez effectuer figurent l’installation d’un composant, l’enregistrement de composants COM, la définition des clés du Registre ou le démarrage d’un processus de longue durée.
 
 > [!NOTE]
-> Tâches de démarrage ne sont pas applicables tooVirtual Machines, tooCloud Service Web et les rôles de travail.
+> Les tâches de démarrage ne s’appliquent pas aux rôles de machine virtuelle ; elles ne concernent que les rôles web de service cloud et de travail.
 > 
 > 
 
 ## <a name="how-startup-tasks-work"></a>Fonctionnement des tâches de démarrage
-Tâches de démarrage sont des actions qui sont effectuées avant que vos rôles commencent et sont définis dans hello [ServiceDefinition.csdef] fichier à l’aide de hello [tâche] élément hello [démarrage]élément. Souvent les tâches de démarrage sont des fichiers de commandes, mais elles peuvent également être des applications console ou des fichiers de commandes qui démarrent des scripts PowerShell.
+Les tâches de démarrage sont des actions qui sont effectuées avant le début de vos rôles, et sont définies dans le fichier [ServiceDefinition.csdef] à l’aide de l’élément [Task] dans l’élément [Startup]. Souvent les tâches de démarrage sont des fichiers de commandes, mais elles peuvent également être des applications console ou des fichiers de commandes qui démarrent des scripts PowerShell.
 
-Variables d’environnement passent des informations dans une tâche de démarrage et le stockage local peut être informations toopass utilisé en dehors d’une tâche de démarrage. Par exemple, une variable d’environnement peut spécifier programme de tooa hello chemin d’accès souhaité tooinstall et les fichiers peuvent être écrites de stockage toolocal qui peut être lu ultérieurement par vos rôles.
+Les variables d’environnement passent des informations dans une tâche de démarrage et le stockage local peut être utilisé pour transmettre des informations hors d’une tâche de démarrage. Par exemple, une variable d’environnement peut spécifier le chemin d’accès à un programme que vous voulez installer, et des fichiers peuvent être écrits dans le stockage local qui peuvent être lus ultérieurement par vos rôles.
 
-Votre tâche de démarrage peut enregistrer des informations et répertoire de toohello d’erreurs spécifié par hello **TEMP** variable d’environnement. Au cours de la tâche de démarrage hello, hello **TEMP** variable d’environnement résout toohello *C:\\ressources\\temp\\[guid]. [ rolename]\\RoleTemp* active lors de l’exécution sur le cloud de hello.
+Votre tâche de démarrage peut enregistrer des informations et des erreurs dans un répertoire spécifié par la variable d’environnement **TEMP** . Pendant la tâche de démarrage, la variable d’environnement **TEMP** est résolue dans le répertoire *C:\\Resources\\temp\\[guid].[nom_rôle]\\RoleTemp* au moment de l’exécution sur le cloud.
 
-Les tâches de démarrage peuvent également être exécutées plusieurs fois entre des redémarrages. Par exemple, tâche de démarrage hello s’exécutera chaque fois hello rôle est recyclé, et les recyclages de rôle n’incluent pas toujours un redémarrage. Tâches de démarrage doivent être écrites d’une manière qui leur permet de toorun plusieurs fois sans problème.
+Les tâches de démarrage peuvent également être exécutées plusieurs fois entre des redémarrages. Par exemple, la tâche de démarrage est exécutée chaque fois que le rôle est recyclé, et les recyclages de rôle n’incluent pas toujours un redémarrage. Les tâches de démarrage doivent être écrites de façon à pouvoir s’exécuter de façon répétée sans problèmes.
 
-Tâches de démarrage doivent se terminer par un **errorlevel** (ou code de sortie) de zéro pour toocomplete de processus de démarrage hello. Si une tâche de démarrage se termine par un zéro **errorlevel**, rôle de hello ne démarrera pas.
+Les tâches de démarrage doivent s’arrêter avec un **errorlevel** (ou code de sortie) égal à zéro pour que le processus de démarrage soit terminé. Si une tâche de démarrage se termine par un **errorlevel**différent de zéro, le rôle ne démarre pas.
 
 ## <a name="role-startup-order"></a>Ordre de démarrage des rôles
-Hello suivant la procédure de démarrage de rôle listes hello dans Azure :
+Les informations suivantes indiquent la procédure de démarrage de rôle dans Azure :
 
-1. Hello instance est marquée comme **départ** et ne reçoit pas de trafic.
-2. Toutes les tâches de démarrage sont exécutées selon tootheir **taskType** attribut.
+1. L’instance est marquée comme **Starting** et ne reçoit pas de trafic.
+2. Toutes les tâches de démarrage sont exécutées en fonction de leur attribut **taskType** .
    
-   * Hello **simple** les tâches sont exécutées de façon synchrone, une à la fois.
-   * Hello **arrière-plan** et **premier plan** tâches sont des tâches de démarrage toohello démarré de façon asynchrone et parallèle.  
+   * Les tâches **simple** sont exécutées de façon synchrone, une par une.
+   * Les tâches **background** et **foreground** sont démarrées de façon asynchrone, en parallèle de la tâche de démarrage.  
      
      > [!WARNING]
-     > IIS peut être pas complètement configuré pendant l’étape de tâche de démarrage hello dans le processus de démarrage hello, les données spécifiques à un rôle peut ne pas être disponibles. Les tâches de démarrage qui ont besoin de données spécifiques au rôle doivent utiliser [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx).
+     > Il est possible qu’IIS ne soit pas configuré complètement pendant l’étape de la tâche de démarrage ; de ce fait, les données spécifiques au rôle ne sont pas forcément disponibles. Les tâches de démarrage qui ont besoin de données spécifiques au rôle doivent utiliser [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx).
      > 
      > 
-3. processus hôte de rôle Hello est démarré et le site de hello est créé dans IIS.
-4. Hello [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) méthode est appelée.
-5. Hello instance est marquée comme **prêt** et le trafic est routé toohello instance.
-6. Hello [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) méthode est appelée.
+3. Le processus hôte de rôle est démarré, et le site est créé dans IIS.
+4. La méthode [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) est appelée.
+5. L’instance est marquée comme **Ready** , et le trafic est acheminé vers l’instance.
+6. La méthode [Microsoft.WindowsAzure.ServiceRuntime.RoleEntryPoint.Run](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleentrypoint.run.aspx) est appelée.
 
 ## <a name="example-of-a-startup-task"></a>Exemple d’une tâche de démarrage
-Tâches de démarrage sont définies dans hello [ServiceDefinition.csdef] fichier, Bonjour **tâche** élément. Hello **commandLine** attribut spécifie le nom de hello et paramètres des commandes de démarrage hello de fichiers ou de la console de commande, hello **executionContext** attribut spécifie le niveau de privilège hello du démarrage de hello tâche et hello **taskType** attribut spécifie comment hello tâche sera exécutée.
+Les tâches de démarrage sont définies dans le fichier [ServiceDefinition.csdef] , dans l’élément **Task** . L’attribut **commandLine** spécifie le nom et les paramètres du fichier de commandes de démarrage ou de la commande de la console, l’attribut **executionContext** indique le niveau de privilège de la tâche de démarrage et l’attribut **taskType** définit l’exécution de la tâche.
 
-Dans cet exemple, une variable d’environnement **MyVersionNumber**, est créé pour la tâche de démarrage hello et toohello la valeur «**1.0.0.0**».
+Dans cet exemple, une variable d’environnement **MyVersionNumber**, est créée pour la tâche de démarrage et définie sur « **1.0.0.0** ».
 
 **ServiceDefinition.csdef**:
 
@@ -74,76 +74,76 @@ Dans cet exemple, une variable d’environnement **MyVersionNumber**, est créé
 </Startup>
 ```
 
-Dans l’exemple suivant de hello, hello **Startup.cmd** fichier de commandes écrit, « la version actuelle de hello est 1.0.0.0 » de fichier de StartupLog.txt toohello, ligne de hello dans le répertoire hello spécifié par la variable d’environnement TEMP hello. Hello `EXIT /B 0` ligne garantit que cette tâche de démarrage hello se termine par un **errorlevel** égale à zéro.
+Dans l’exemple suivant, le fichier de commande **Startup.cmd** écrit la ligne « The current version is 1.0.0.0 » dans le fichier StartupLog.txt dans le répertoire spécifié par la variable d’environnement TEMP. La ligne `EXIT /B 0` garantit que la tâche de démarrage s’arrête avec un **errorlevel** égal à zéro.
 
 ```cmd
-ECHO hello current version is %MyVersionNumber% >> "%TEMP%\StartupLog.txt" 2>&1
+ECHO The current version is %MyVersionNumber% >> "%TEMP%\StartupLog.txt" 2>&1
 EXIT /B 0
 ```
 
 > [!NOTE]
-> Dans Visual Studio, hello **copier tooOutput active** propriété pour votre fichier de commandes de démarrage doit être définie trop**toujours copier** toobe assurer que votre fichier de commandes de démarrage est correctement déployé le projet tooyour sur Azure (**approot\\bin** pour les rôles Web, et **approot** pour les rôles de travail).
+> Dans Visual Studio, la propriété **Copier dans le répertoire de sortie** pour votre fichier de commandes de démarrage doit être définie sur **Toujours copier** afin de vous assurer que votre fichier de commandes de démarrage est correctement déployé dans votre projet sur Azure (**approot\\bin** pour les rôles web et **approot** pour les rôles de travail).
 > 
 > 
 
 ## <a name="description-of-task-attributes"></a>Description des attributs de tâche
-Hello suivante décrit les attributs hello Hello **tâche** élément Bonjour [ServiceDefinition.csdef] fichier :
+Vous trouverez ci-dessous une description des attributs de l’élément **Task** du fichier [ServiceDefinition.csdef] :
 
-**ligne de commande** -spécifie la ligne de commande hello pour la tâche de démarrage hello :
+**commandLine** - spécifie la ligne de commande pour la tâche de démarrage :
 
-* Hello commande avec des paramètres de ligne de commande facultatifs, qui commence la tâche de démarrage hello.
-* Il s’agit souvent hello de nom de fichier d’un fichier de commandes .cmd ou .bat.
-* tâche Hello est relatif toohello AppRoot\\dossier Bin pour le déploiement de hello. Variables d’environnement ne sont pas développées dans la détermination hello chemin d’accès et de la tâche hello. Si ce développement est nécessaire, vous pouvez créer un petit script .cmd qui appelle votre tâche de démarrage.
+* La commande avec des paramètres de ligne de commande en option, qui débute la tâche de démarrage.
+* Souvent, il s’agit du nom d’un fichier de commandes .cmd ou .bat.
+* La tâche est relative au dossier AppRoot\\Bin pour le déploiement. Les variables d’environnement ne sont pas développées pour déterminer le chemin d’accès et le fichier de la tâche. Si ce développement est nécessaire, vous pouvez créer un petit script .cmd qui appelle votre tâche de démarrage.
 * Il peut s’agir d’une application console ou d’un fichier de commande qui démarre un [script PowerShell](cloud-services-startup-tasks-common.md#create-a-powershell-startup-task).
 
-**executionContext** -Spécifie le niveau de privilège hello pour la tâche de démarrage hello. niveau de privilège Hello peut être limité ou élevé :
+**executionContext** - spécifie le niveau de privilège pour la tâche de démarrage. Le niveau de privilège peut être limité ou élevé :
 
 * **limited**  
-  tâche de démarrage Hello s’exécute avec hello mêmes privilèges en tant que rôle de hello. Hello lorsque **executionContext** attribut pour hello [Runtime] élément est également **limité**, puis les privilèges utilisateur sont utilisés.
+   : la tâche de démarrage s’exécute avec les mêmes privilèges que le rôle. Quand l’attribut **executionContext** de l’élément [Runtime] est également **limited**, les privilèges utilisateur sont utilisés.
 * **elevated**  
-  tâche de démarrage Hello s’exécute avec des privilèges d’administrateur. Ainsi, les tâches de démarrage tooinstall programmes, apporter des modifications de configuration IIS, effectuer des modifications du Registre et autres tâches d’administration, sans augmenter le niveau de privilège hello du rôle hello lui-même.  
+   : la tâche de démarrage s’exécute avec des privilèges d’administrateur. Les tâches de démarrage peuvent ainsi installer des programmes, apporter des modifications à la configuration IIS, modifier le Registre et effectuer d’autres tâches d’administration, sans augmenter le niveau de privilège du rôle.  
 
 > [!NOTE]
-> Hello niveau de privilège d’une tâche de démarrage n’a pas besoin toobe même hello en tant que rôle hello lui-même.
+> Le niveau de privilège d’une tâche de démarrage n’a pas besoin d’être le même que celui du rôle.
 > 
 > 
 
-**taskType** -spécifie hello façon une tâche de démarrage est exécutée.
+**taskType** - spécifie la façon dont une tâche de démarrage est exécutée.
 
 * **simple**  
-  Les tâches sont exécutées de façon synchrone, une à la fois, dans l’ordre de hello spécifié dans hello [ServiceDefinition.csdef] fichier. Lorsqu’un **simple** tâche de démarrage se termine par un **errorlevel** de zéro, hello ensuite **simple** tâche de démarrage est exécutée. S’il n’y a plus aucun **simple** tooexecute, les tâches de démarrage puis démarrera rôle hello lui-même.   
+  sont exécutées de façon synchrone, une à la fois, dans l’ordre spécifié dans le fichier [ServiceDefinition.csdef] . Quand une tâche **simple** se termine par un **errorlevel** égal à zéro, la tâche de démarrage **simple** suivante est exécutée. Quand toutes les tâches **simple** ont été exécutées, le rôle est démarré.   
   
   > [!NOTE]
-  > Si hello **simple** tâche se termine par un zéro **errorlevel**, hello instance sera bloquée. Ultérieures **simple** tâches de démarrage et rôle hello lui-même, ne démarrent pas.
+  > Si la tâche **simple** se termine par un **errorlevel** différent de zéro, l’instance est bloquée. Les tâches de démarrage **simple** suivantes et le rôle ne démarrent pas.
   > 
   > 
   
-    tooensure votre fichier de commandes se termine par un **errorlevel** égal à zéro, exécutez la commande hello `EXIT /B 0` à fin hello de votre processus de fichier de traitement par lots.
+    Pour vous assurer que votre fichier de commandes se termine par un **errorlevel** égal à zéro, exécutez la commande `EXIT /B 0` à la fin du processus de votre fichier de commandes.
 * **background**  
-  Tâches sont exécutées de façon asynchrone, en parallèle avec démarrage hello du rôle de hello.
+  sont exécutées de façon asynchrone, en parallèle du démarrage du rôle.
 * **foreground**  
-  Tâches sont exécutées de façon asynchrone, en parallèle avec démarrage hello du rôle de hello. Hello la principale différence entre un **premier plan** et un **arrière-plan** est que la tâche un **premier plan** tâche empêche le rôle hello de recyclage ou l’arrêt jusqu'à ce que la tâche hello a s’est terminée. Hello **arrière-plan** tâches ne disposent pas de cette restriction.
+  sont exécutées de façon asynchrone, en parallèle du démarrage du rôle. La principale différence entre une tâche **foreground** et une tâche **background** est que la tâche **foreground** empêche le recyclage ou l’arrêt du rôle tant qu’elle n’est pas terminée. Les tâches **background** n’ont pas cette restriction.
 
 ## <a name="environment-variables"></a>Variables d’environnement
-Variables d’environnement sont une tâche de démarrage de façon toopass informations tooa. Par exemple, vous pouvez placer hello chemin d’accès tooa blob qui contient un programme tooinstall, ou les numéros de port qui utilise votre rôle ou toocontrol les fonctionnalités des paramètres de votre tâche de démarrage.
+Les variables d’environnement permettent de passer les informations à une tâche de démarrage. Par exemple, vous pouvez indiquer le chemin vers un objet blob qui contient un programme à installer ou les numéros de port que votre rôle va utiliser ou des paramètres pour contrôler les fonctionnalités de votre tâche de démarrage.
 
-Il existe deux types de variables d’environnement pour les tâches de démarrage ; variables d’environnement statiques et les variables d’environnement basée sur les membres de hello [ RoleEnvironment] classe. Les deux sont Bonjour [environnement] section Hello [ServiceDefinition.csdef] de fichiers et les deux hello utilisation [ Variable] élément et **nom** attribut.
+Il existe deux types de variables d’environnement pour des tâches de démarrage ; des variables d’environnement statiques et des variables d’environnement basées sur les membres de la classe [RoleEnvironment] . Elles se trouvent dans la section [Environment] du fichier [ServiceDefinition.csdef] et utilisent l’élément [Variable] et l’attribut **name**.
 
-Hello d’utilise les variables statiques environnement **valeur** attribut Hello [ Variable] élément. exemple Hello ci-dessus crée la variable d’environnement hello **MyVersionNumber** avec une valeur statique de «**1.0.0.0**». Un autre exemple consisterait à toocreate un **StagingOrProduction** variable d’environnement que vous pouvez définir manuellement toovalues de «**intermédiaire**« ou »**production**» tooperform les actions de démarrage différentes en fonction de la valeur hello hello **StagingOrProduction** variable d’environnement.
+Les variables d’environnement statiques utilisent l’attribut **value** de l’élement [Variable] . L’exemple ci-dessus crée la variable d’environnement **MyVersionNumber** avec une valeur statique de « **1.0.0.0** ». Un autre exemple consiste à créer une variable d’environnement **StagingOrProduction** à laquelle vous pouvez manuellement attribuer les valeurs « **staging** » ou « **production** » pour exécuter des actions de démarrage différentes en fonction de la valeur de la variable d’environnement **StagingOrProduction**.
 
-Variables d’environnement basées sur les membres de hello classe RoleEnvironment n’utilisent pas hello **valeur** attribut Hello [ Variable] élément. Au lieu de cela, hello [RoleInstanceValue] élément enfant, avec hello approprié **XPath** valeur d’attribut, est toocreate utilisé une variable d’environnement basée sur un membre spécifique de hello [ RoleEnvironment] classe. Valeurs pour hello **XPath** tooaccess d’attributs différentes [ RoleEnvironment] les valeurs se trouvent [ici](cloud-services-role-config-xpath.md).
+Les variables d’environnement basées sur les membres de la classe RoleEnvironment n’utilisent pas l’attribut **value** de l’élément [Variable] . À la place, l’élément [RoleInstanceValue] enfant, avec la valeur d’attribut **XPath** appropriée, est utilisé pour créer une variable d’environnement basée sur un membre spécifique de la classe [RoleEnvironment]. Les valeurs de l’attribut **XPath** pour accéder aux différentes valeurs [RoleEnvironment] se trouvent [ici](cloud-services-role-config-xpath.md).
 
-Par exemple, toocreate une variable d’environnement qui est «**true**» lors de l’instance de hello est en cours d’exécution dans l’émulateur de calcul hello, et «**false**» lors de l’exécution dans le cloud de hello, utilisez des éléments suivants de hello [ Variable] et [RoleInstanceValue] éléments :
+Par exemple, pour créer une variable d’environnement qui a la valeur « **true** » quand l’instance s’exécute dans l’émulateur de calcul et la valeur « **false** » pendant une exécution dans le cloud, utilisez les éléments [Variable] et [RoleInstanceValue] :
 
 ```xml
 <Startup>
     <Task commandLine="Startup.cmd" executionContext="limited" taskType="simple">
         <Environment>
 
-            <!-- Create hello environment variable that informs hello startup task whether it is running
-                in hello Compute Emulator or in hello cloud. "%ComputeEmulatorRunning%"=="true" when
-                running in hello Compute Emulator, "%ComputeEmulatorRunning%"=="false" when running
-                in hello cloud. -->
+            <!-- Create the environment variable that informs the startup task whether it is running
+                in the Compute Emulator or in the cloud. "%ComputeEmulatorRunning%"=="true" when
+                running in the Compute Emulator, "%ComputeEmulatorRunning%"=="false" when running
+                in the cloud. -->
 
             <Variable name="ComputeEmulatorRunning">
                 <RoleInstanceValue xpath="/RoleEnvironment/Deployment/@emulated" />
@@ -155,15 +155,15 @@ Par exemple, toocreate une variable d’environnement qui est «**true**» lors 
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Découvrez comment tooperform certains [tâches courantes de démarrage](cloud-services-startup-tasks-common.md) avec votre Service Cloud.
+Découvrez comment effectuer certaines [tâches de démarrage courantes](cloud-services-startup-tasks-common.md) avec votre service cloud.
 
 [Créez un package](cloud-services-model-and-package.md) de votre service cloud.  
 
 [ServiceDefinition.csdef]: cloud-services-model-and-package.md#csdef
-[tâche]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Task
-[démarrage]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Startup
+[Task]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Task
+[Startup]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Startup
 [Runtime]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Runtime
-[environnement]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Environment
-[ Variable]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Variable
+[Environment]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Environment
+[Variable]: https://msdn.microsoft.com/library/azure/gg557552.aspx#Variable
 [RoleInstanceValue]: https://msdn.microsoft.com/library/azure/gg557552.aspx#RoleInstanceValue
-[ RoleEnvironment]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx
+[RoleEnvironment]: https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.aspx

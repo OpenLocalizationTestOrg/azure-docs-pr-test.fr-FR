@@ -1,6 +1,6 @@
 ---
-title: aaaAzure Interface utilisateur de Mobile Engagement - atteindre
-description: "Découvrez comment tooreach les toohello les utilisateurs de votre application avec les notifications push à l’aide d’Azure Mobile Engagement"
+title: Interface utilisateur d'Azure Mobile Engagement - Reach
+description: "Découvrez comment atteindre les utilisateurs de votre application avec des notifications Push grâce à Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 40d5162ddeccec82c2c9f5b0d72b4cb10c9ddc38
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ce30456e41ff1a2f4824bcb64246ee115fdd1ef7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooreach-out-toohello-users-of-your-application-with-push-notifications"></a>Comment tooreach les toohello les utilisateurs de votre application avec des notifications push
-Cet article décrit hello **atteindre** onglet Hello **Mobile Engagement** portal. Vous utilisez hello **Mobile Engagement** toomonitor portail et gérer vos applications mobiles. Notez que toostart à l’aide du portail hello vous devez tout d’abord toocreate un **Azure Mobile Engagement** compte. Pour plus d'informations, consultez [Create an Azure Mobile Engagement account](mobile-engagement-create.md).
+# <a name="how-to-reach-out-to-the-users-of-your-application-with-push-notifications"></a>Comment atteindre les utilisateurs de votre application avec des notifications Push
+Cet article décrit l’onglet **REACH** du portail **Mobile Engagement**. Le portail **Mobile Engagement** sert à surveiller et à gérer vos applications mobiles. Notez que pour utiliser le portail, vous devez tout d’abord créer un compte **Azure Mobile Engagement** . Pour plus d'informations, consultez [Create an Azure Mobile Engagement account](mobile-engagement-create.md).
 
-Hello atteindre section Hello interface utilisateur de l’outil de gestion de campagne Push hello dans laquelle vous pouvez créer/modifier/activer/fin/analyse et obtenir les statistiques sur les campagnes Push notification et les fonctionnalités qui sont également accessibles via hello API couverture (et certains éléments de hello basse niveau d’API de Push). Rappelez-vous que si vous utilisez hello API ou hello l’interface utilisateur, vous devez toointegrate Azure Mobile Engagement et portée dans votre application pour chaque plateforme avec hello SDK avant de pouvoir utiliser atteint des campagnes.
+La section Reach de l'interface utilisateur est l'outil de gestion des campagnes Push qui vous permet de créer, modifier, activer, terminer ou surveiller et obtenir des statistiques relatives aux campagnes de notifications Push et des fonctionnalités. Vous pouvez accéder à celles-ci via l'API Reach (ainsi que certains éléments de l'API Push de bas niveau). Que vous utilisiez ces API ou l'interface utilisateur, il vous faudra intégrer Azure Mobile Engagement et Reach à votre application pour chaque plateforme à l'aide du Kit de développement logiciel (SDK) avant de pouvoir utiliser les campagnes Reach.
 
 > [!NOTE]
-> De nombreuses sections de hello **Mobile Engagement** interface utilisateur du portail contient hello **afficher l’aide** bouton. Appuyez sur ce bouton tooget informations contextuelles supplémentaires sur une section.
+> De nombreuses sections de l’interface utilisateur du portail **Mobile Engagement** contiennent un bouton **AFFICHER L’AIDE**. Appuyez sur ce bouton pour obtenir des informations contextuelles supplémentaires sur une section.
 > 
 > 
 
 ## <a name="four-types-of-push-notifications"></a>Quatre types de notifications Push
-1. Annonces - autoriser un toosend publicité messages toousers qui redirigent les emplacement tooanother à l’intérieur de votre application ou le toosend leur page Web de tooa ou à stocker en dehors de votre application. 
-2. Interroge - vous permettent d’informations de toogather aux utilisateurs finaux en posant des questions.
-3. Push de données - autoriser toosend un fichier de données binaire ou en base 64. Hello les informations contenues dans un push de données sont envoyées tooyour application toomodify expérience actuelle de vos utilisateurs dans votre application. Votre application a besoin de données hello toobe tooprocess en mesure de push de données.
+1. Annonces : elles vous permettent d'envoyer aux utilisateurs des messages publicitaires qui les redirigent vers un autre emplacement dans votre application ou les envoient vers une page Web ou un Store en dehors de votre application. 
+2. Sondages : ces notifications vous permettent de regrouper des informations sur les utilisateurs finaux en leur posant des questions.
+3. Push de données : ces notifications vous permettent d'envoyer un fichier de données binaire ou base 64. Les informations contenues dans un Push de données sont envoyées à votre application pour modifier l'expérience actuelle des utilisateurs de votre application. Votre application doit être en mesure de traiter les données dans un Push de données.
 
 ## <a name="campaign-details"></a>Informations relatives à la campagne
-Vous pouvez modifier, cloner, supprimer ou activer les campagnes qui n’ont pas encore été activés en pointant sur leurs noms ou vous pouvez cliquer sur tooopen les. Vous pouvez cloner des campagnes qui ont déjà été activées en pointant sur leurs noms, ou vous pouvez cliquer sur tooopen les. Toutefois, vous ne pouvez pas modifier une campagne une fois celle-ci activée.
+Vous pouvez modifier, cloner, supprimer ou activer les campagnes qui n'ont pas encore été activées en plaçant le curseur sur leurs noms ou en cliquant pour les ouvrir. Vous pouvez cloner les campagnes qui ont déjà été activées en plaçant le curseur sur leurs noms ou en cliquant pour les ouvrir. Toutefois, vous ne pouvez pas modifier une campagne une fois celle-ci activée.
 
 ![Reach1][18]
 
 ## <a name="reach-feedback"></a>Commentaire Reach
-Cliquez sur **statistiques** détails de hello toosee d’une couverture campagne. Hello **Simple** vue fournit une représentation visuelle sous forme de hello d’un graphique à barres que s’est-il passé après une campagne a été activée sur la colonne. Hello **avancé** vue fournit des détails plus précis sur la campagne de push hello. Ces informations ne sera pas disponibles si vous envoyez une campagne de test par exemple, un appareil de test tooa envoyés par émission de données. Voici comment interpréter ces détails :
+Cliquez sur **Statistiques** pour afficher les détails d'une campagne Reach. L'affichage **Simple** fournit une représentation visuelle sous la forme d'un graphique à barres en colonnes sur ce qui s'est passé après l'activation d'une campagne. L'affichage **Avancé** fournit des détails plus précis sur la campagne Push. Ces détails ne sont pas disponibles si vous envoyez une campagne de test, c'est-à-dire une notification Push envoyée à un appareil de test. Voici comment interpréter ces détails :
 
-1. **Objet d’un push** -spécifie nombre hello des messages transmis toohello périphériques. Ce nombre dépend visé hello que vous avez spécifié lors de la création de campagne de push hello. Si vous ne spécifiez pas de n’importe quel public cible, puis cette opération push sera envoyée tooall hello inscrit périphériques. Comme tous les autres services par émission de données, nous ne pas distribuer les notifications de hello directement les périphériques toohello mais de les transmettre à la place plateforme respectifs de toohello des Services de Notification Push (PNS - APNS/GCM/WNS) qui leur peuvent de remettre les notifications hello toohello périphériques. 
-2. **Remis** -spécifie nombre hello de messages qui sont correctement remis par l’appareil de toohello PNS hello et d’accusé de réception comme reçu par le Kit de développement logiciel de Mobile Engagement. 
+1. **Push** : indique le nombre de messages envoyés aux appareils. Ce nombre dépend du public cible spécifié lors de la création de la campagne Push. Si vous ne spécifiez aucun public cible, cette notification Push sera envoyée à tous les appareils inscrits. Comme tous les autres services Push, nous n'envoyons pas les notifications directement aux appareils. Nous les envoyons aux services de notification Push (PNS - APNS/GCM/WNS) spécifiques à la plateforme respective afin qu'ils transfèrent les notifications aux appareils. 
+2. **Remis** : indique le nombre de messages remis avec succès par le PNS à l'appareil et reconnus comme reçus par le Kit de développement logiciel (SDK) Mobile Engagement. 
    
    *Raisons pour lesquelles le nombre de messages remis est inférieur au nombre de notifications Push :*
    
-   1. Si l’utilisateur de hello a désinstallé l’application hello à partir de l’appareil de hello mais hello PNS ne connaît au moment de hello que nous envoyer hello push toohello PNS message de type hello est supprimé.
-   2. Si les appareils hello a application hello sans périphériques hello eux-mêmes étaient hors connexion pendant de longues périodes de temps, puis hello PNS échouera appareil de toohello toodeliver hello message. 
-   3. Si message de type hello remis toohello appareil mais hello Kit de développement logiciel de Mobile Engagement dans l’application hello ne reconnaît pas le contenu du message de type hello hello, il dépose ensuite ce message. Cela peut se produire si la personnalisation hello de notification hello dans l’application hello génère une exception qui nous catch dans le message de salutation SDK et drop hello. Cela peut également se produire si l’application hello sur l’appareil de hello est à l’aide d’une version de hello Mobile Engagement Kit de développement logiciel qui n’est pas de version plus récente de hello toounderstand en mesure de message de type hello par émission de données envoyées à partir de la plateforme de hello, mais uniquement lorsque l’application hello a été mis à niveau après la notification de hello a été distribuée à partir de la plateforme de service hello. Hello **avancé** onglet indique combien de messages ont été supprimés. 
-   4. Sur les appareils iOS, messages parfois ne pas remis si l’appareil hello est sur batterie faible ou si l’application hello consomme une quantité importante de puissance lors du traitement des notifications à distance. Il s’agit d’une limitation des appareils iOS de hello.   
-3. **Affiche** -spécifie nombre hello de messages qui sont correctement affichés toohello utilisateur d’applications sur l’appareil hello sous forme de hello d’une notification push/out-de-l’application de système dans le centre de notifications hello ou une notification dans l’application au sein de hello mobile application.  Hello **avancé** onglet vous indique combien ont été les notifications système et combien ont été les notifications dans l’application. 
+   1. Si l'utilisateur a désinstallé l'application de l'appareil mais que le service PNS ne le sait pas au moment où nous envoyons la notification Push au service PNS, alors le message est supprimé.
+   2. Si l'appareil dispose de l'application mais que les appareils eux-mêmes étaient hors ligne pendant de longues périodes, alors la remise du message à l'appareil par le service PNS échoue. 
+   3. Si le message est remis à l'appareil mais que le Kit de développement logiciel (SDK) Mobile Engagement dans l'application ne reconnaît pas le contenu du message, alors le message est supprimé. Cela peut se produire si la personnalisation de la notification dans l'application génère une exception que nous relevons dans le Kit de développement logiciel (SDK) et que nous supprimons le message. Cela peut également se produire si l'application sur l'appareil utilise une version du Kit de développement logiciel (SDK) Engagement Mobile qui n'est pas en mesure de comprendre la version la plus récente du message Push envoyé à partir de la plateforme. Cela ne s'applique que lorsque l'application a été mise à niveau après la distribution de la notification par la plateforme de services. L’onglet **Avancé** indique le nombre de messages supprimés. 
+   4. Sur les appareils iOS, la remise des messages peut parfois échouer si la batterie de l’appareil est faible ou que l’application consomme trop d’énergie pendant le traitement des notifications distantes. Il s’agit d’une limitation des appareils iOS.   
+3. **Affichés** : indique le nombre de messages qui sont affichés correctement à l’utilisateur de l’application sur l’appareil sous la forme d’une notification système Push/hors application dans le centre de notification ou une notification dans l’application au sein de l’application mobile.  L’onglet **Avancé** indique le nombre de notifications système et le nombre de notifications dans l’application. 
    
-   *Nombre de raisons affichées est inférieur au nombre de remis (toobe attente affiché)*
+   *Raisons pour lesquelles le nombre d’éléments affichés est inférieur au nombre d’éléments remis (en attente d’être affichés)*
    
-   1. Si la campagne de notification hello avait une date de fin sur celui-ci, il est possible que la remise de notification de hello, mais lorsque le temps de hello fournie tooopen et l’afficher toohello utilisateur d’applications, elle a déjà expiré afin qu’il n’a jamais été affiche.   
-   2. Si une notification de hello est une notification dans l’application notifications de hello s’affiche uniquement lorsque l’utilisateur d’application hello ouvre l’application hello. Dans les cas où les utilisateurs d’application hello n’a pas ouvert application hello, hello SDK signalera que notification de hello a été remise mais pas encore affichée jusqu'à ce que l’application hello est ouvert. 
-   3. Si la notification de hello est une notification dans l’application et configuré toobe indiqué sur un activité spécifique/écran puis également notification de hello est signalée comme remis mais n’ont ne pas encore été remis en tant qu’utilisateur de hello ouvre application hello sur un écran spécifique. 
-4. **Interactions de l’utilisateur** -Spécifie le nombre de hello de messages utilisateur application hello interagisse avec et inclut des messages hello sont actionnés ou quittés. 
+   1. Si la campagne de notification avait une date de fin, alors il est possible que la notification ait été remise, mais au moment de l’ouvrir et de l’afficher sur l’application de l’utilisateur, elle avait déjà expiré et donc ne s’est jamais affichée.   
+   2. Si la notification est une notification dans l’application, elle est alors uniquement affichée lorsque l’utilisateur de l’application ouvre celle-ci. Dans le cas où l’utilisateur n’aurait pas ouvert l’application, le kit de développement logiciel (SDK) signale que la notification a été remise mais pas encore affichée puisque l’application n’a pas été ouverte. 
+   3. S’il s’agit d’une notification dans l’application et qu’elle est configurée pour s’afficher sur un écran spécifique ou lors d’une activité spécifique, alors elle sera également signalée comme remise mais ne sera véritablement remise qu’après l’ouverture par l’utilisateur de l’application sur un écran spécifique. 
+4. **Interactions utilisateur** : indique le nombre de messages avec lesquels l’utilisateur de l’application a eu une interaction et inclut les messages qui font l’objet d’une action ou qui sont abandonnés. 
    
-   * *utilisateur d’application Hello peut actionner une notification, que ce soit de hello suivant façons :*
+   * *L'utilisateur de l'application peut agir sur une notification de l'une des manières suivantes :*
      
-     1. Si hello notification est une notification système/out-de-l’application ou une notification dans l’application est envoyé en tant que notification uniquement utilisateur d’application hello clique ensuite sur la notification de hello.
-     2. Si les notifications hello sont une notification dans l’application avec un texte ou un affichage de web ou sondages hello puis utilisateur de l’application clique sur hello bouton d’Action de notification de hello.
-     3. Si une notification de hello est une notification dans l’application avec un affichage web puis hello application utilisateur clique sur une URL dans hello web [Android uniquement]
-   * *utilisateur d’application Hello peut quitter une notification, que ce soit de hello suivant façons :*
+     1. Si la notification est une notification système/hors application ou une notification dans l'application envoyée comme notification uniquement, alors l'utilisateur de l'application clique sur la notification.
+     2. Si la notification est une notification dans l'application avec un texte ou un affichage web ou des sondages, alors l'utilisateur de l'application clique sur le bouton Action dans la notification.
+     3. Si la notification est une notification dans l'application avec un affichage web, alors l'utilisateur de l'application clique sur une URL dans l'affichage web [Android uniquement]
+   * *L'utilisateur de l'application peut quitter une notification de l'une des manières suivantes :*
      
-     1. Bouton hello fermer de notification de hello directement. 
-     2. Le glissement absent ou suppression de notification de hello. 
-     3. Notifications dans l’application avec le contenu de texte/web et les sondages sont généralement affichées toohello utilisateur d’applications dans un processus en deux étapes. Ils reçoivent une notification tout d’abord, et lorsqu’ils cliquent dessus, ils voient du contenu texte/web/interrogation hello. utilisateur d’application Hello peut quitter une notification dans une de ces étapes et les détails de hello dans la vue avancée de hello capture cela. 
-5. **Déclenchée** -cela spécifie le nombre de hello de messages qui ont été explicitement déclenchée par l’utilisateur d’application hello. Il s’agit de nombre plus intéressant de hello cela indique à combien d’utilisateurs application intéressés par le message de type hello poussé dans la notification de hello. 
+     1. En cliquant sur le bouton Fermer directement dans la notification. 
+     2. En balayant ou en supprimant la notification. 
+     3. Les notifications dans l'application avec du texte/contenu web et les sondages sont généralement affichées à l'utilisateur de l'application dans un processus en deux étapes. L'utilisateur reçoit tout d'abord une notification et lorsqu'il clique dessus, le contenu du texte/web/sondage s'affiche. L'utilisateur de l'application peut quitter une notification dans n'importe laquelle de ces étapes et les détails dans la vue Avancée indiquent cela. 
+5. **Actionnés** : indique le nombre de messages qui ont explicitement fait l’objet d’une action par l’utilisateur de l’application. Il s'agit du nombre le plus intéressant car il indique le nombre d'utilisateurs de l'application intéressés par le message transmis dans la notification. 
 
 > [!NOTE]
-> Sur iOS et les plateformes Windows, si utilisateur de hello a application hello ouvrir et la campagne de hello était une campagne « À tout moment », il est possible que les notifications d’application et dans l’application sont affichées sur hello même temps. Cela peut entraîner un nombre affiché supérieur hello remis. Si hello utilisateur interagit ou une notification actions hello, hello puis même nombre d’Interactions d’utilisateur/Actioned peut être supérieur à remis. 
+> Sur les plateformes iOS et Windows, si l'utilisateur dispose de l'application ouverte et que la campagne était du type « À tout moment », il est possible que les notifications hors application et dans l'application s'affichent en même temps. Cela peut entraîner un nombre plus élevé pour le paramètre Affichés que pour le paramètre Remis. Si l'utilisateur interagit avec la notification ou qu'il exécute une action dessus, alors même le nombre Interactions utilisateur/Actionnés peut être supérieur au nombre Remis. 
 > 
 > 
 

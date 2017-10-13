@@ -1,6 +1,6 @@
 ---
-title: aaaAzure AD v2.0 OAuth2.0 sur la part de flux | Documents Microsoft
-description: "Cet article décrit comment la toouse HTTP messages tooimplement service tooservice d’authentification à l’aide de hello OAuth2.0 sur la part de flux."
+title: "Flux Pour le compte de OAuth 2.0 d’Azure AD v2.0 | Microsoft Docs"
+description: "Cet article explique comment utiliser des messages HTTP pour implémenter l’authentification de service à service en utilisant le flux Pour le compte de OAuth 2.0."
 services: active-directory
 documentationcenter: 
 author: navyasric
@@ -15,61 +15,61 @@ ms.topic: article
 ms.date: 05/04/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 6063869d07c2544000094db8deea7dce19f14f67
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 356083fbaabfcd2ec7581adf319fa22b810df0d3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # Azure Active Directory v2.0 et flux Pour le compte de OAuth 2.0
-Hello les flux OAuth 2.0 On-Behalf-Of fait Office de cas d’usage hello où une application appelle un service/API web, qui à son tour doit toocall une autre service web API. Hello est toopropagate hello déléguée l’identité des utilisateurs et des autorisations via la chaîne de demande hello. Pour hello service de couche intermédiaire toomake authentifié demandes toohello service en aval, elle doit toosecure un jeton d’accès d’Azure Active Directory (Azure AD), pour le compte d’utilisateur de hello.
+Le flux Pour le compte de OAuth 2.0 sert quand une application appelle un service/API web, qui à son tour doit appeler un autre service/API web. L’idée est de propager l’identité et les autorisations de l’utilisateur délégué via la chaîne de la demande. Pour que le service de niveau intermédiaire puisse faire des demandes authentifiées au service en aval, il doit sécuriser un jeton d’accès d’Azure Active Directory (Azure AD) pour le compte de l’utilisateur.
 
 > [!NOTE]
-> point de terminaison Hello v2.0 ne prend pas en charge toutes les fonctionnalités et scénarios d’Azure Active Directory. toodetermine si vous devez utiliser le point de terminaison hello v2.0, en savoir plus sur [v2.0 limitations](active-directory-v2-limitations.md).
+> Le point de terminaison v2.0 ne prend pas en charge l’intégralité des scénarios et fonctionnalités d’Azure Active Directory. Pour déterminer si vous devez utiliser le point de terminaison v2.0, consultez les [limitations de v2.0](active-directory-v2-limitations.md).
 >
 >
 
 ## Schéma de protocole
-Supposons que l’utilisateur hello a été authentifié sur une application à l’aide de hello [flux d’octroi de code d’autorisation OAuth 2.0](active-directory-v2-protocols-oauth-code.md). À ce stade, application hello possède un jeton d’accès (jeton A) avec les revendications de l’utilisateur hello et web de niveau intermédiaire hello consentement tooaccess API (API A). Désormais, les API A doit toomake une API web en aval du toohello demande authentifiée (API B).
+Supposons que l’utilisateur a été authentifié sur une application à l’aide du [flux d’octroi de code d’autorisation OAuth 2.0](active-directory-v2-protocols-oauth-code.md). À ce stade, l’application a un jeton d’accès (jeton A) avec les revendications et le consentement de l’utilisateur pour accéder à l’API web de niveau intermédiaire (API A). L’API A doit maintenant faire une demande authentifiée à l’API web en aval (API B).
 
-les étapes de Hello qui suivent constituent hello sur à la place de flux et sont décrites à l’aide de hello de hello suivant schéma.
+Les étapes qui suivent constituent le flux Pour le compte de et sont décrites à l’aide du diagramme suivant.
 
 ![Flux Pour le compte de OAuth 2.0](media/active-directory-protocols-oauth-on-behalf-of/active-directory-protocols-oauth-on-behalf-of-flow.png)
 
 
-1. application du client Hello effectue une demande de tooAPI avec A. jeton de hello
-2. API A authentifie le point de terminaison d’émission de jeton de Azure AD toohello et demande un jeton tooaccess API B.
-3. point de terminaison d’émission de jeton de Azure AD Hello valide les informations d’identification de l’API A avec un jeton et problèmes hello le jeton d’accès pour l’API B (jeton B).
-4. le jeton Hello B est défini dans l’en-tête d’autorisation de hello de hello demande tooAPI B.
-5. Données à partir de la ressource sécurisée de hello sont retournées par les API B.
+1. L’application cliente fait une demande à l’API A avec le jeton A.
+2. L’API A s’authentifie auprès du point de terminaison d’émission de jeton Azure AD et demande un jeton pour accéder à l’API B.
+3. Le point de terminaison d’émission de jeton Azure AD valide les informations d’identification de l’API A avec le jeton A et émet le jeton d’accès pour l’API B (jeton B).
+4. Le jeton B est défini dans l’en-tête d’autorisation de la demande adressée à l’API B.
+5. Les données de la ressource sécurisée sont retournées par l’API B.
 
 > [!NOTE]
-> Dans ce scénario, service de niveau intermédiaire hello n’a aucune interaction tooobtain hello utilisateur API en aval de hello tooaccess de consentement. Par conséquent, hello option toogrant accès toohello API en aval est présenté initial dans le cadre de l’étape de consentement hello lors de l’authentification.
+> Dans ce scénario, le service de niveau intermédiaire n’a aucune interaction utilisateur pour obtenir le consentement de l’utilisateur pour accéder à l’API en aval. Par conséquent, l’option d’accorder l’accès à l’API en aval est présentée au préalable lors de l’étape de consentement pendant l’authentification.
 >
 
-## Demande de jeton d’accès service tooservice
-toorequest un jeton d’accès, effectuez un point de terminaison HTTP POST toohello spécifique au locataire Azure AD v2.0 avec hello paramètres suivants.
+## Demande de jeton d’accès de service à service
+Pour demander un jeton d’accès, faites une demande HTTP POST au point de terminaison Azure AD v2.0 spécifique au locataire avec les paramètres suivants.
 
 ```
 https://login.microsoftonline.com/<tenant>/oauth2/v2.0/token
 ```
 
-Il existe deux cas selon si application cliente de hello choisit toobe sécurisé par un secret partagé ou un certificat.
+Deux cas de figure se présentent, selon que l’application cliente choisit d’être sécurisée par un secret partagé ou un certificat.
 
 ### Premier cas : demande de jeton d’accès avec un secret partagé
-Lorsque vous utilisez un secret partagé, une demande de jeton d’accès de service à service contient hello paramètres suivants :
+Lorsque l’application utilise un secret partagé, la demande de jeton d’accès de service à service contient les paramètres suivants :
 
 | Paramètre |  | Description |
 | --- | --- | --- |
-| grant_type |required | type de Hello de demande de jeton hello. Pour une demande à l’aide d’un jeton Web JSON, la valeur de hello doit être **urn : ietf:params:oauth:grant-type : jwt-support**. |
-| client_id |required | Hello Application ID que hello [portail de l’enregistrement d’Application](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) affecté tooyour application. |
-| client_secret |required | secret d’Application Hello que vous avez créé pour votre application Bonjour portail de l’enregistrement d’Application. |
-| assertion |required | valeur Hello du jeton hello utilisé dans la demande de hello. |
-| scope |required | Un espace de liste séparée par des étendues de demande de jeton hello. Pour plus d’informations, consultez [Étendues](active-directory-v2-scopes.md).|
-| requested_token_use |required | Spécifie le mode de traitement de demande de hello. Bonjour de la part de flux, la valeur de hello doit être **on_behalf_of**. |
+| grant_type |required | Type de la demande de jeton. Pour une demande à l’aide d’un JWT, la valeur doit être **urn:ietf:params:oauth:grant-type:jwt-bearer**. |
+| client_id |required | L’ID d’application que le [portail d'inscription des applications](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) a affecté à votre application. |
+| client_secret |required | Secret de l’application que vous avez généré pour votre application dans le portail d’inscription des applications. |
+| assertion |required | Valeur du jeton utilisé dans la demande. |
+| scope |required | Liste des étendues (séparées par des espaces) pour la demande de jeton. Pour plus d’informations, consultez [Étendues](active-directory-v2-scopes.md).|
+| requested_token_use |required | Spécifie comment la demande doit être traitée. Dans le flux Pour le compte de, la valeur doit être **on_behalf_of**. |
 
 #### Exemple
-Hello suivant HTTP POST demande un jeton d’accès avec `user.read` étendue pour l’API web de https://graph.microsoft.com hello.
+La requête HTTP POST suivante demande un jeton d’accès avec l’étendue `user.read` pour l’API web https://graph.microsoft.com.
 
 ```
 //line breaks for legibility only
@@ -87,22 +87,22 @@ grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer
 ```
 
 ### Deuxième cas : demande de jeton d’accès avec un certificat
-Une demande de jeton d’accès de service à service avec un certificat contient hello paramètres suivants :
+Une demande de jeton d’accès de service à service avec un certificat contient les paramètres suivants :
 
 | Paramètre |  | Description |
 | --- | --- | --- |
-| grant_type |required | type de Hello de demande de jeton hello. Pour une demande à l’aide d’un jeton Web JSON, la valeur de hello doit être **urn : ietf:params:oauth:grant-type : jwt-support**. |
-| client_id |required | Hello Application ID que hello [portail de l’enregistrement d’Application](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) affecté tooyour application. |
-| client_assertion_type |required |la valeur Hello doit être`urn:ietf:params:oauth:client-assertion-type:jwt-bearer` |
-| client_assertion |required | Une assertion (un jeton Web JSON) que vous avez besoin de toocreate et signe avec hello certificat que vous avez enregistré en tant qu’informations d’identification pour votre application.  En savoir plus sur [informations d’identification de certificat](active-directory-certificate-credentials.md) toolearn comment tooregister votre format de certificat et hello d’assertion de hello.|
-| assertion |required | valeur Hello du jeton hello utilisé dans la demande de hello. |
-| requested_token_use |required | Spécifie le mode de traitement de demande de hello. Bonjour de la part de flux, la valeur de hello doit être **on_behalf_of**. |
-| scope |required | Un espace de liste séparée par des étendues de demande de jeton hello. Pour plus d’informations, consultez [Étendues](active-directory-v2-scopes.md).|
+| grant_type |required | Type de la demande de jeton. Pour une demande à l’aide d’un JWT, la valeur doit être **urn:ietf:params:oauth:grant-type:jwt-bearer**. |
+| client_id |required | L’ID d’application que le [portail d'inscription des applications](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) a affecté à votre application. |
+| client_assertion_type |required |La valeur doit être `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`. |
+| client_assertion |required | Assertion (JSON Web Token) dont vous avez besoin pour créer et signer avec le certificat inscrit comme informations d’identification pour votre application.  Pour découvrir comment inscrire votre certificat et le format de l’assertion, consultez la rubrique traitant des [informations d’identification des certificats](active-directory-certificate-credentials.md).|
+| assertion |required | Valeur du jeton utilisé dans la demande. |
+| requested_token_use |required | Spécifie comment la demande doit être traitée. Dans le flux Pour le compte de, la valeur doit être **on_behalf_of**. |
+| scope |required | Liste des étendues (séparées par des espaces) pour la demande de jeton. Pour plus d’informations, consultez [Étendues](active-directory-v2-scopes.md).|
 
-Notez que les paramètres de hello sont presque identiques, comme dans les cas de hello de demande de hello hello par secret partagé, sauf que le paramètre de client_secret hello est remplacé par deux paramètres : un client_assertion_type et un client_assertion.
+Notez que les paramètres sont presque les mêmes que dans le cas de la demande par secret partagé, sauf que le paramètre client_secret est remplacé par deux paramètres : client_assertion_type et client_assertion.
 
 #### Exemple
-Hello suivant HTTP POST demande un jeton d’accès avec `user.read` étendue pour le web hello https://graph.microsoft.com API avec un certificat.
+La requête HTTP POST suivante demande un jeton d’accès avec l’étendue `user.read` pour l’API web https://graph.microsoft.com avec un certificat.
 
 ```
 // line breaks for legibility only
@@ -120,19 +120,19 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
 &scope=https://graph.microsoft.com/user.read
 ```
 
-## Réponse de jeton service tooservice d’accès
-Une réponse de réussite est une réponse JSON OAuth 2.0 avec les paramètres suivants de hello.
+## Réponse de jeton d’accès de service à service
+Une réponse correspondant à une réussite est une réponse JSON OAuth 2.0 avec les paramètres suivants.
 
 | Paramètre | Description |
 | --- | --- |
-| token_type |Indique la valeur de jeton de type hello. Hello uniquement le type qui prend en charge d’Azure AD est **support**. Pour plus d’informations sur les jetons de support, consultez hello [OAuth 2.0 Authorization Framework : Bearer Token Usage (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt). |
-| scope |étendue Hello d’accès accordé dans un jeton de hello. |
-| expires_in |la longueur de jeton d’accès temps hello Hello est valide (en secondes). |
-| access_token |jeton d’accès demandé Hello. Hello appel du service peut utiliser ce service de réception toohello tooauthenticate jeton. |
-| refresh_token |jeton d’actualisation Hello pour hello demandé un jeton d’accès. Hello appel du service peut utiliser ce jeton toorequest un autre jeton d’accès après l’expiration du jeton d’accès actuel hello. |
+| token_type |Indique la valeur du type de jeton. Le seul type de jeton pris en charge par Azure AD est le **jeton porteur**. Pour plus d’informations sur les jetons du porteur, consultez [OAuth 2.0 Authorization Framework: Bearer Token Usage (RFC 6750)](http://www.rfc-editor.org/rfc/rfc6750.txt). |
+| scope |Étendue de l’accès accordé dans le jeton. |
+| expires_in |Durée de validité du jeton d’accès (en secondes). |
+| access_token |Le jeton d’accès demandé. Le service web appelant peut utiliser ce jeton pour s’authentifier auprès du service destinataire. |
+| refresh_token |Jeton d’actualisation pour le jeton d’accès demandé. Le service appelant peut utiliser ce jeton pour demander un autre jeton d’accès après l’expiration du jeton d’accès actuel. |
 
 ### Exemple de réponse correspondant à une réussite
-Hello exemple suivant illustre une demande de tooa de réponse de réussite pour un jeton d’accès pour l’API web de https://graph.microsoft.com hello.
+L’exemple suivant montre une réponse correspondant à une réussite à une demande de jeton d’accès pour l’API web https://graph.microsoft.com.
 
 ```
 {
@@ -146,12 +146,12 @@ Hello exemple suivant illustre une demande de tooa de réponse de réussite pour
 ```
 
 ### Exemple de réponse d’erreur
-Une réponse d’erreur est retournée par le point de terminaison de jeton Azure AD lors de la tentative de tooacquire un jeton d’accès pour les API en aval hello, si les API en aval hello possède une stratégie d’accès conditionnel telles que l’authentification multifacteur activée. service de niveau intermédiaire Hello devrait apparaître cette application cliente de toohello erreur afin que l’application cliente de hello peut fournir la stratégie d’accès conditionnel hello utilisateur interaction toosatisfy hello.
+Une réponse d’erreur est retournée par le point de terminaison du jeton Azure AD lors de la tentative d’acquérir un jeton d’accès pour l’API en aval si une stratégie d’accès conditionnel comme l’authentification multifacteur est définie sur cette API. Le service de niveau intermédiaire doit faire apparaître cette erreur à l’application cliente afin que celle-ci puisse fournir une interaction utilisateur pour satisfaire la stratégie d’accès conditionnel.
 
 ```
 {
     "error":"interaction_required",
-    "error_description":"AADSTS50079: Due tooa configuration change made by your administrator, or because you moved tooa new location, you must enroll in multi-factor authentication tooaccess 'bf8d80f9-9098-4972-b203-500f535113b1'.\r\nTrace ID: b72a68c3-0926-4b8e-bc35-3150069c2800\r\nCorrelation ID: 73d656cf-54b1-4eb2-b429-26d8165a52d7\r\nTimestamp: 2017-05-01 22:43:20Z",
+    "error_description":"AADSTS50079: Due to a configuration change made by your administrator, or because you moved to a new location, you must enroll in multi-factor authentication to access 'bf8d80f9-9098-4972-b203-500f535113b1'.\r\nTrace ID: b72a68c3-0926-4b8e-bc35-3150069c2800\r\nCorrelation ID: 73d656cf-54b1-4eb2-b429-26d8165a52d7\r\nTimestamp: 2017-05-01 22:43:20Z",
     "error_codes":[50079],
     "timestamp":"2017-05-01 22:43:20Z",
     "trace_id":"b72a68c3-0926-4b8e-bc35-3150069c2800",
@@ -160,8 +160,8 @@ Une réponse d’erreur est retournée par le point de terminaison de jeton Azur
 }
 ```
 
-## Utilisez hello de tooaccess de jeton d’accès hello ressource sécurisée
-Service de niveau intermédiaire hello pouvez désormais utiliser toohello de demandes de jeton toomake acquis ci-dessus authentifié hello en aval web API, en définissant le jeton hello Bonjour `Authorization` en-tête.
+## Utiliser le jeton d’accès pour accéder à la ressource sécurisée
+Le service de niveau intermédiaire peut maintenant utiliser le jeton obtenu ci-dessus pour faire des demandes authentifiées à l’API web en aval, en définissant le jeton dans l’en-tête `Authorization`.
 
 ### Exemple
 ```
@@ -171,6 +171,6 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJub25jZSI6IkFRQUJBQUFBQUFCbmZpRy1tQTZOVG
 ```
 
 ## Étapes suivantes
-En savoir plus sur le protocole de hello OAuth 2.0 et une autre façon tooperform service tooservice d’authentification à l’aide des informations d’identification du client.
+Découvrez plus d’informations sur le protocole OAuth 2.0 et une autre méthode pour effectuer l’authentification de service à service à l’aide des informations d’identification du client.
 * [Octroi d’informations d’identification du client OAuth 2.0 dans Azure AD v2.0](active-directory-v2-protocols-oauth-client-creds.md)
 * [OAuth 2.0 dans Azure AD v2.0](active-directory-v2-protocols-oauth-code.md)

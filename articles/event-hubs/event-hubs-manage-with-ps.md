@@ -1,6 +1,6 @@
 ---
-title: "ressources d’Azure Event Hubs aaaUse PowerShell toomanage | Documents Microsoft"
-description: "Utilisez PowerShell module toocreate et gérer les Hubs d’événements"
+title: "Utiliser PowerShell pour gérer les ressources Azure Event Hubs | Microsoft Docs"
+description: "Utiliser le module PowerShell pour créer et gérer Event Hubs"
 services: event-hubs
 documentationcenter: .NET
 author: sethmanheim
@@ -14,72 +14,72 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: d79cb307c2b4a031d059ce6ca67117ffc0b4600b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2b49c01153b1104612e6ebf9c88566fc40d1f635
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="use-powershell-toomanage-event-hubs-resources"></a>Utiliser les ressources de concentrateurs d’événements toomanage PowerShell
+# <a name="use-powershell-to-manage-event-hubs-resources"></a>Utiliser PowerShell pour gérer des ressources Event Hubs
 
-Microsoft Azure PowerShell est un environnement de script que vous pouvez utiliser toocontrol et automatiser le déploiement de hello et la gestion des services Azure. Cet article décrit comment toouse hello [module PowerShell de gestionnaire de ressources de concentrateurs événement](/powershell/module/azurerm.eventhub) tooprovision et de gérer les entités de concentrateurs d’événements (espaces de noms, les concentrateurs d’événements individuels et les groupes de consommateurs) à l’aide d’une console Azure PowerShell locale ou script.
+Microsoft Azure PowerShell est un environnement de création de scripts vous permettant de contrôler et d'automatiser le déploiement et la gestion des services Azure. Cet article explique comment utiliser le [module PowerShell du Gestionnaire de ressources Event Hubs](/powershell/module/azurerm.eventhub) pour approvisionner et gérer les entités Event Hubs (espaces de noms, concentrateurs d’événements individuels et groupes de consommateurs) à l’aide d’une console Azure PowerShell locale ou d’un script.
 
-Vous pouvez également gérer les ressources Event Hubs avec des modèles Azure Resource Manager. Pour plus d’informations, voir l’article hello [créer un espace de noms de concentrateurs d’événements avec le groupe d’événements concentrateur et le consommateur à l’aide d’un modèle Azure Resource Manager](event-hubs-resource-manager-namespace-event-hub.md).
+Vous pouvez également gérer les ressources Event Hubs avec des modèles Azure Resource Manager. Pour plus d’informations, consultez l’article [Créer un espace de noms Event Hubs avec un concentrateur d’événements et un groupe de consommateurs à l’aide d’un modèle Azure Resource Manager](event-hubs-resource-manager-namespace-event-hub.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Avant de commencer, vous devez suivant de hello :
+Avant de débuter, vous avez besoin des éléments suivants :
 
 * Un abonnement Azure. Pour plus d’informations sur la façon de se procurer un abonnement, consultez les [options d’achat][purchase options], les [offres spéciales membres][member offers] ou découvrez comment créer un [compte gratuit][free account].
 * Un ordinateur sur lequel est installé Azure PowerShell. Pour obtenir des instructions, consultez la page [Bien démarrer avec les applets de commande Azure PowerShell](/powershell/azure/get-started-azureps).
-* Une compréhension générale de scripts PowerShell, les packages NuGet et hello .NET Framework.
+* Des connaissances générales sur les scripts PowerShell, les packages NuGet et .NET Framework.
 
 ## <a name="get-started"></a>Prise en main
 
-première étape de Hello est toolog de PowerShell toouse dans tooyour compte Azure et d’abonnement Windows Azure. Suivez les instructions de hello dans [prise en main des applets de commande Azure PowerShell](/powershell/azure/get-started-azureps) toolog dans tooyour compte Azure, puis récupérer et accéder aux ressources hello dans votre abonnement Azure.
+La première étape consiste à utiliser PowerShell pour vous connecter à votre compte Azure et à votre abonnement Azure. Suivez les instructions décrites dans [Prise en main des applets de commande Azure PowerShell](/powershell/azure/get-started-azureps) pour vous connecter à votre compte Azure, puis récupérez les ressources de votre abonnement Azure et accédez à celles-ci.
 
 ## <a name="provision-an-event-hubs-namespace"></a>Approvisionner un espace de noms Event Hubs
 
-Lorsque vous travaillez avec des espaces de noms de concentrateurs d’événements, vous pouvez utiliser hello [Get-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/get-azurermeventhubnamespace), [New-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/new-azurermeventhubnamespace), [Remove-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/remove-azurermeventhubnamespace) , et [Set-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/set-azurermeventhubnamespace) applets de commande.
+Lorsque vous travaillez avec des espaces de noms Event Hubs, vous pouvez utiliser les applets de commande [Get-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/get-azurermeventhubnamespace), [New-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/new-azurermeventhubnamespace), [Remove-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/remove-azurermeventhubnamespace) et [Set-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/set-azurermeventhubnamespace).
 
-Cet exemple crée quelques variables locales dans le script de hello ; `$Namespace` et `$Location`.
+Cet exemple crée quelques variables locales dans le script ; `$Namespace` et `$Location`.
 
-* `$Namespace`est le nom hello d’espace de noms de concentrateurs d’événements hello avec lequel nous souhaitons toowork.
-* `$Location`identifie le centre de données hello dans lequel nous configurera hello espace de noms.
-* `$CurrentNamespace`stocke l’espace de noms hello référence nous récupérer (ou créer).
+* `$Namespace` est le nom de l’espace de noms Event Hubs que nous allons utiliser.
+* `$Location` identifie le centre de données dans lequel nous allons approvisionner l'espace de noms.
+* `$CurrentNamespace` stocke l'espace de noms de référence récupéré (ou créé).
 
 Dans un script réel, les variables `$Namespace` et `$Location` peuvent être transmises en tant que paramètres.
 
-Cette partie du script de hello hello suivant :
+Cette partie du script effectue les opérations suivantes :
 
-1. Tentatives tooretrieve concentrateurs d’événements d’un espace de noms avec hello spécifié de nom.
-2. Si l’espace de noms hello est trouvé, il signale ce qui a été trouvé.
-3. Si l’espace de noms hello n’est trouvé, il crée l’espace de noms hello, puis récupère hello nouvellement créé espace de noms.
+1. Il tente de récupérer un espace de noms Event Hubs portant le nom spécifié.
+2. S'il trouve l'espace de noms recherché, il signale qu'il l'a trouvé.
+3. S'il ne trouve pas l'espace de noms recherché, il le crée, puis il récupère le nouvel espace de noms.
 
     ```powershell
-    # Query toosee if hello namespace currently exists
+    # Query to see if the namespace currently exists
     $CurrentNamespace = Get-AzureRMEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $Namespace
    
-    # Check if hello namespace already exists or needs toobe created
+    # Check if the namespace already exists or needs to be created
     if ($CurrentNamespace)
     {
-        Write-Host "hello namespace $Namespace already exists in hello $Location region:"
+        Write-Host "The namespace $Namespace already exists in the $Location region:"
         # Report what was found
         Get-AzureRMEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $Namespace
     }
     else
     {
-        Write-Host "hello $Namespace namespace does not exist."
-        Write-Host "Creating hello $Namespace namespace in hello $Location region..."
+        Write-Host "The $Namespace namespace does not exist."
+        Write-Host "Creating the $Namespace namespace in the $Location region..."
         New-AzureRmEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $Namespace -Location $Location
         $CurrentNamespace = Get-AzureRMEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $Namespace
-        Write-Host "hello $Namespace namespace in Resource Group $ResGrpName in hello $Location region has been successfully created."
+        Write-Host "The $Namespace namespace in Resource Group $ResGrpName in the $Location region has been successfully created."
     }
     ```
 
 ## <a name="create-an-event-hub"></a>Création d'un concentrateur d'événements
 
-toocreate un concentrateur d’événements, effectuer une vérification de l’espace de noms à l’aide du script de hello dans la section précédente de hello. Ensuite, utilisez hello [New-AzureRmEventHub](/powershell/module/azurerm.eventhub/new-azurermeventhub) concentrateur d’événements d’applet de commande toocreate hello :
+Pour créer un concentrateur d’événements, vérifiez l’espace de noms à l’aide du script décrit dans la section précédente. Ensuite, utilisez l’applet de commande [New-AzureRmEventHub](/powershell/module/azurerm.eventhub/new-azurermeventhub) pour créer le concentrateur d’événements :
 
 ```powershell
 # Check if event hub already exists
@@ -87,23 +87,23 @@ $CurrentEH = Get-AzureRMEventHub -ResourceGroupName $ResGrpName -NamespaceName $
 
 if($CurrentEH)
 {
-    Write-Host "hello event hub $EventHubName already exists in hello $Location region:"
+    Write-Host "The event hub $EventHubName already exists in the $Location region:"
     # Report what was found
     Get-AzureRmEventHub -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName
 }
 else
 {
-    Write-Host "hello $EventHubName event hub does not exist."
-    Write-Host "Creating hello $EventHubName event hub in hello $Location region..."
+    Write-Host "The $EventHubName event hub does not exist."
+    Write-Host "Creating the $EventHubName event hub in the $Location region..."
     New-AzureRmEventHub -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName -Location $Location -MessageRetentionInDays 3
     $CurrentEH = Get-AzureRmEventHub -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName
-    Write-Host "hello $EventHubName event hub in Resource Group $ResGrpName in hello $Location region has been successfully created."
+    Write-Host "The $EventHubName event hub in Resource Group $ResGrpName in the $Location region has been successfully created."
 }
 ```
 
 ### <a name="create-a-consumer-group"></a>Créer un groupe de consommateurs
 
-toocreate un groupe de consommateurs dans un concentrateur d’événements, vérification hello espace de noms et les événements concentrateur à l’aide de scripts de hello dans la section précédente de hello. Ensuite, utilisez hello [New-AzureRmEventHubConsumerGroup](/powershell/module/azurerm.eventhub/new-azurermeventhubconsumergroup) groupe de consommateurs toocreate hello applet de commande dans le concentrateur d’événements hello. Par exemple :
+Pour créer un groupe de consommateurs au sein d’un concentrateur d’événements, vérifiez l’espace de noms et l’instance Event Hub à l’aide des scripts de la section précédente. Ensuite, utilisez l’applet de commande [New-AzureRmEventHubConsumerGroup](/powershell/module/azurerm.eventhub/new-azurermeventhubconsumergroup) pour créer le groupe de consommateurs dans le concentrateur d’événements. Par exemple :
 
 ```powershell
 # Check if consumer group already exists
@@ -111,27 +111,27 @@ $CurrentCG = Get-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -Na
 
 if($CurrentCG)
 {
-    Write-Host "hello consumer group $ConsumerGroupName in event hub $EventHubName already exists in hello $Location region:"
+    Write-Host "The consumer group $ConsumerGroupName in event hub $EventHubName already exists in the $Location region:"
     # Report what was found
     Get-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName
 }
 else
 {
-    Write-Host "hello $ConsumerGroupName consumer group does not exist."
-    Write-Host "Creating hello $ConsumerGroupName consumer group in hello $Location region..."
+    Write-Host "The $ConsumerGroupName consumer group does not exist."
+    Write-Host "Creating the $ConsumerGroupName consumer group in the $Location region..."
     New-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName -ConsumerGroupName $ConsumerGroupName
     $CurrentCG = Get-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName
-    Write-Host "hello $ConsumerGroupName consumer group in event hub $EventHubName in Resource Group $ResGrpName in hello $Location region has been successfully created."
+    Write-Host "The $ConsumerGroupName consumer group in event hub $EventHubName in Resource Group $ResGrpName in the $Location region has been successfully created."
 }
 ```
 
 #### <a name="set-user-metadata"></a>Définir les métadonnées utilisateur
 
-Après l’exécution de scripts de hello Bonjour sections précédentes, vous pouvez utiliser hello [Set-AzureRmEventHubConsumerGroup](/powershell/module/azurerm.eventhub/set-azurermeventhubconsumergroup) propriétés de hello tooupdate applet de commande d’un groupe de consommateurs, comme dans hello l’exemple suivant :
+Après avoir exécuté les scripts des sections précédentes, vous pourrez utiliser l’applet de commande [Set-AzureRmEventHubConsumerGroup](/powershell/module/azurerm.eventhub/set-azurermeventhubconsumergroup) pour mettre à jour les propriétés d’un groupe de consommateurs, comme dans l’exemple suivant :
 
 ```powershell
-# Set some user metadata on hello CG
-Write-Host "Setting hello UserMetadata field too'Testing'"
+# Set some user metadata on the CG
+Write-Host "Setting the UserMetadata field to 'Testing'"
 Set-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName -ConsumerGroupName $ConsumerGroupName -UserMetadata "Testing"
 # Show result
 Get-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName -ConsumerGroupName $ConsumerGroupName
@@ -139,7 +139,7 @@ Get-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $
 
 ## <a name="remove-event-hub"></a>Supprimer un concentrateur d’événements
 
-concentrateurs d’événements hello tooremove vous avez créé, vous pouvez utiliser hello `Remove-*` applets de commande, comme dans hello l’exemple suivant :
+Pour supprimer les concentrateur d’événements que vous avez créés, vous pouvez utiliser les applets de commande `Remove-*`, comme dans l’exemple suivant :
 
 ```powershell
 # Clean up
@@ -150,8 +150,8 @@ Remove-AzureRmEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $N
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Consultez la documentation du module hello complète événement concentrateurs Resource Manager PowerShell [ici](/powershell/module/azurerm.eventhub). Cette page liste toutes les applets de commande disponibles.
-- Pour plus d’informations sur l’utilisation de modèles Azure Resource Manager, voir l’article hello [créer un espace de noms de concentrateurs d’événements avec le groupe d’événements concentrateur et le consommateur à l’aide d’un modèle Azure Resource Manager](event-hubs-resource-manager-namespace-event-hub.md).
+- Consultez la documentation complète du module PowerShell du Gestionnaire de ressources Event Hubs [ici](/powershell/module/azurerm.eventhub). Cette page liste toutes les applets de commande disponibles.
+- Pour plus d’informations sur les modèles Azure Resource Manager, consultez l’article [Créer un espace de noms Event Hubs avec Event Hub et un groupe de consommateurs à l’aide d’un modèle Azure Resource Manager](event-hubs-resource-manager-namespace-event-hub.md).
 - Informations sur les [bibliothèques de gestion .NET Event Hubs](event-hubs-management-libraries.md).
 
 [purchase options]: http://azure.microsoft.com/pricing/purchase-options/

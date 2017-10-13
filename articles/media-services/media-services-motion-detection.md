@@ -1,6 +1,6 @@
 ---
-title: les mouvements aaaDetect avec Azure Media Analytique | Documents Microsoft
-description: "Bonjour permet de processeur (MP) détecteur de mouvement de média Azure media tooefficiently de vous identifient des sections d’intérêt dans une vidéo sinon long et se déroule normalement."
+title: "Détecter les mouvements avec Azure Media Analytics | Microsoft Docs"
+description: "Le processeur multimédia Azure Media Motion Detector vous permet d’identifier efficacement les passages intéressants dans une vidéo qui, autrement, serait longue et monotone."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,38 +14,38 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: milanga;juliako;
-ms.openlocfilehash: cb431375c92222053ed2239dd4e45767524dab68
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 115ad9dfd88062f23d5d17eed8897ce5d2ca8484
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="detect-motions-with-azure-media-analytics"></a>Détecter les mouvements avec Azure Media Analytics
 ## <a name="overview"></a>Vue d'ensemble
-Hello **détecteur de mouvement Azure Media** permet de processeur (MP) support tooefficiently de vous identifient des sections d’intérêt dans une vidéo sinon long et se déroule normalement. Détection de mouvement peut être utilisée sur caméra statique enregistrements tooidentify sections de la vidéo de hello où se produit le mouvement. Il génère un fichier JSON contenant des métadonnées avec les horodateurs et hello englobant la région où l’événement de hello s’est produite.
+Le processeur multimédia **Azure Media Motion Detector** vous permet d’identifier efficacement les passages intéressants dans une vidéo qui, autrement, serait longue et monotone. La détection de mouvement peut être utilisée sur des séquences d’une caméra fixe pour identifier les passages de la vidéo où un mouvement se produit. Elle génère un fichier JSON contenant des métadonnées avec des horodateurs et le cadre de limitation de la vidéo où s’est produit l’événement.
 
-Cible des flux vidéo de sécurité, cette technologie est mouvement en mesure de toocategorize dans les événements pertinents et des faux positifs, tels que des changements d’éclairage et les ombres. Ainsi, vous toogenerate les alertes de sécurité à partir de flux de l’appareil photo sans recevoir des messages indésirables avec les événements non pertinentes sans fin, tout en étant instants tooextract en mesure d’intérêt de vidéos de surveillance très longs.
+Ciblant les vidéos de surveillance, cette technologie est en mesure de classer les mouvements en événements pertinents et en faux positifs, tels que les ombres et les variations d’éclairage. Cela vous permet de générer des alertes de sécurité à partir de séquences vidéo sans perdre de temps avec d’innombrables faux positifs, et tout en accédant rapidement aux moments clés dans des vidéos de surveillance extrêmement longues.
 
-Hello **détecteur de mouvement Azure Media** Pack d’administration est actuellement en version préliminaire.
+Le processeur multimédia **Azure Media Motion Detector** est uniquement disponible en version préliminaire.
 
-Cette rubrique fournit des détails sur **détecteur de mouvement Azure Media** et montre comment toouse avec Media Services SDK pour .NET
+Cette rubrique fournit des informations détaillées sur **Azure Media Motion Detector** et illustre son utilisation avec le SDK Media Services pour .NET.
 
 ## <a name="motion-detector-input-files"></a>Fichiers d’entrée du détecteur de mouvement
-Fichiers vidéo. Actuellement, hello suivant les formats est pris en charge : MP4 et WMV MOV.
+Fichiers vidéo. Les formats suivants sont actuellement pris en charge : MP4, MOV et WMV.
 
 ## <a name="task-configuration-preset"></a>Configuration de la tâche (préconfiguration)
 Lors de la création d’une tâche de vidéo **Azure Media Motion Detector**, vous devez spécifier une présélection de configuration. 
 
 ### <a name="parameters"></a>Paramètres
-Vous pouvez utiliser hello paramètres suivants :
+Vous pouvez utiliser les paramètres suivants :
 
 | Nom | Options | Description | Default |
 | --- | --- | --- | --- |
-| sensitivityLevel |Chaîne : « low », « medium », « high » |Définit la sensibilité de hello niveau sur les mouvements est signalée. Ajustez ce montant tooadjust de faux positifs. |« medium » |
-| frameSamplingValue |Entier positif |Définit la fréquence de hello sur lequel s’exécute algorithme. 1 = chaque trame, 2 = toutes les 2 trames, etc. |1 |
-| detectLightChange |Booléen : « True », « False » |Définit si des changements d’éclairage sont signalés dans les résultats de hello |« False » |
-| mergeTimeThreshold |Xs-time: Hh:mm:ss<br/>Exemple : 00:00:03 |Spécifie la fenêtre de temps hello entre les événements de mouvement où 2 événements seront combinées et signalés comme 1. |00:00:00 |
-| detectionZones |Tableau de zones de détection :<br/>- Zone de détection est un tableau de 3 points ou plus<br/>-Point est x et y coordonnées de too1 0. |Décrit la liste hello de détection polygonale zones toobe est utilisé.<br/>Résultats seront signalés en tant qu’ID, avec hello tout d’abord un est 'id' avec des zones de hello : 0 |Zone unique qui traite de cadre hello dans son intégralité. |
+| sensitivityLevel |Chaîne : « low », « medium », « high » |Définit le niveau de sensibilité auquel les mouvements sont signalés. Réglez cette option pour ajuster la quantité de faux positifs. |« medium » |
+| frameSamplingValue |Entier positif |Définit la fréquence d’exécution de l’algorithme. 1 = chaque trame, 2 = toutes les 2 trames, etc. |1 |
+| detectLightChange |Booléen : « True », « False » |Définit si des changements d’éclairage sont signalés dans les résultats. |« False » |
+| mergeTimeThreshold |Xs-time: Hh:mm:ss<br/>Exemple : 00:00:03 |Spécifie la fenêtre de temps entre les événements de mouvement lorsque 2 événements sont combinés et signalés comme 1. |00:00:00 |
+| detectionZones |Tableau de zones de détection :<br/>- Zone de détection est un tableau de 3 points ou plus<br/>- Point est une coordonnée x et y de 0 à 1. |Décrit la liste des zones de détection polygonale à utiliser.<br/>Les résultats seront signalés avec les zones en tant qu’ID, la première étant « id » :0. |Zone unique couvrant la trame entière. |
 
 ### <a name="json-example"></a>Exemple JSON
     {
@@ -78,37 +78,37 @@ Vous pouvez utiliser hello paramètres suivants :
 
 
 ## <a name="motion-detector-output-files"></a>Fichiers de sortie du détecteur de mouvement
-Une tâche de détection de mouvement renvoie un fichier JSON de la ressource en sortie hello qui décrit les alertes de mouvement hello, ainsi que leurs catégories, au sein de hello vidéo. fichier de Hello contient plus d’informations sur hello et la durée de mouvement détecté dans hello vidéo.
+Une tâche de détection de mouvement renvoie un fichier JSON dans l’élément multimédia de sortie qui décrit les alertes de mouvement et leurs catégories dans la vidéo. Le fichier contient des informations sur l’heure et la durée du mouvement détecté dans la vidéo.
 
-une fois qu’il existe des objets en mouvement dans une vidéo d’arrière-plan fixe (par exemple, une surveillance vidéo) Hello API de détecteur de mouvement fournit des indicateurs. Hello détecteur de mouvement est formé tooreduce fausses alertes, telles que l’éclairage et les modifications de clichés instantanés. Limitations actuelles des algorithmes de hello incluent les vidéos de vision de nuit, les objets semi-transparents et les petits objets.
+L’API de détecteur de mouvement indique lorsqu’un mouvement a été détecté dans une vidéo d’arrière-plan fixe (par exemple, une vidéo de surveillance). Le détecteur de mouvement est optimisé pour réduire au minimum les fausses alertes, telles que les ombres et les variations d’éclairage. Les limitations actuelles des algorithmes incluent les vidéos en vision nocturne, les objets semi-transparents et les petits objets.
 
-### <a id="output_elements"></a>Éléments hello JSON du fichier de sortie
+### <a id="output_elements"></a>Éléments du fichier de sortie JSON
 > [!NOTE]
-> Dans la version la plus récente hello, format de sortie JSON hello a changé et peut représenter une modification avec rupture pour certains clients.
+> Dans la dernière version, le format de sortie JSON a été modifié et peut représenter une rupture pour certains clients.
 > 
 > 
 
-Hello tableau suivant décrit les éléments hello JSON du fichier de sortie.
+Le tableau suivant décrit les éléments du fichier de sortie JSON.
 
 | Élément | Description |
 | --- | --- |
-| Version |Cela fait référence version toohello Hello vidéo API. version actuelle de Hello est 2. |
-| Échelle de temps |« Cycles » par seconde de la vidéo de hello. |
-| Offset |décalage de temps Hello des horodatages dans « cycles ». Cette valeur sera toujours 0 dans la version 1.0 des API vidéo. Cette valeur est susceptible d’être modifiée dans les scénarios pris en charge ultérieurement. |
-| Framerate |Images par seconde de hello vidéo. |
-| Width, Height |Fait référence toohello largeur et hauteur de hello vidéo en pixels. |
-| Démarrer |Hello démarrer timestamp dans « cycles ». |
-| Duration |longueur de Hello d’événement hello, dans « cycles ». |
-| Intervalle |intervalle de salutation de chaque entrée de l’événement hello, dans « cycles ». |
-| Événements |Chaque fragment de l’événement contient un mouvement de hello détecté au sein de cette durée. |
-| Type |Dans la version actuelle de hello, il est toujours « 2 » pour le mouvement générique. Cette étiquette donne un mouvement de toocategorize vidéo API hello flexibilité dans les futures versions. |
-| RegionID |Comme expliqué ci-dessus, cette valeur sera toujours « 0 » dans la présente version. Cette étiquette donne un mouvement de toofind vidéo API hello flexibilité dans différentes régions dans les futures versions. |
-| Régions |Désigne la zone toohello dans la vidéo où vous vous souciez de mouvement. <br/><br/>-« id » représente la zone de la région hello : dans cette version il existe un seul ID 0. <br/>-« type » représente la forme hello de région de hello vous souciez de mouvement. Pour l’instant, seules « rectangle » et « polygone » sont prises en charge.<br/> Si vous avez spécifié « rectangle », région de hello possède dimensions X, Y, largeur et hauteur. Hello X et Y coordonnées représentent les coordonnées XY hello angle supérieur gauche de région de hello dans une échelle normalisée de too1.0 0.0. hauteur et largeur de hello représentent la taille hello de région de hello dans une échelle normalisée de too1.0 0.0. Dans la version actuelle de hello, X, Y, largeur et hauteur sont toujours fixes au niveau 0, 0 et 1, 1. <br/>Si vous avez spécifié « polygone », région de hello possède les dimensions en points. <br/> |
-| Fragments |les métadonnées Hello sont mémorisé en bloc dans différents segments appelés fragments. Chaque fragment contient des valeurs de début (start), de durée (duration), un numéro d’intervalle et des événements (event). Un fragment sans aucun événement signifie qu’aucun mouvement n’a été détecté pendant cette heure de début et la durée. |
-| Crochets [] |Chaque support représente un intervalle de l’événement de hello. Les crochets vides pour cet intervalle signifient qu’aucun mouvement n’a été détecté. |
-| emplacements |Cette nouvelle entrée sous événements répertorie l’emplacement hello où le mouvement de hello s’est produite. Il s’agit plus précis que les zones de détection hello. |
+| Version |Cela vaut pour la version de l’API vidéo. La version actuelle est 2. |
+| Échelle de temps |« Cycles » par seconde de la vidéo. |
+| Offset |Le décalage des horodatages en « cycles ». Cette valeur sera toujours 0 dans la version 1.0 des API vidéo. Cette valeur est susceptible d’être modifiée dans les scénarios pris en charge ultérieurement. |
+| Framerate |Images par seconde de la vidéo. |
+| Width, Height |Fait référence à la largeur et à la hauteur de la vidéo en pixels. |
+| Démarrer |L’horodatage de début en « cycles ». |
+| Durée |La durée de l’événement en « cycles ». |
+| Intervalle |L’intervalle de chaque entrée dans l’événement en « cycles ». |
+| Événements |Chaque fragment d’événement contient le mouvement détecté pendant cette durée. |
+| Type |Dans la version actuelle, cette valeur est toujours de « 2 » pour le mouvement générique. Ce libellé permet aux API vidéo de classer le mouvement dans les versions ultérieures. |
+| RegionID |Comme expliqué ci-dessus, cette valeur sera toujours « 0 » dans la présente version. Ce libellé permet aux API vidéo de détecter du mouvement dans différentes régions dans les versions ultérieures. |
+| Régions |Fait référence à la zone dans la vidéo où un mouvement est susceptible de vous intéresser. <br/><br/>-« id » représente la zone de la région ; dans cette version, la seule valeur existante est ID 0. <br/>-« type » représente la forme de la région où un mouvement est susceptible de vous intéresser. Pour l’instant, seules « rectangle » et « polygone » sont prises en charge.<br/> Si vous avez indiqué « rectangle », les dimensions de la région sont X, Y, Width et Height. Les coordonnées X et Y représentent les coordonnées XY de l’angle supérieur gauche de la région sur une échelle normalisée de 0,0 à 1,0. La largeur et la hauteur représentent la taille de la région sur une échelle normalisée de 0,0 à 1,0. Dans la version actuelle, X, Y, Width et Height sont toujours fixés à 0, 0 et 1, 1. <br/>Si vous avez indiqué « polygone », les dimensions de la région sont en points. <br/> |
+| Fragments |Les métadonnées sont mémorisées dans différents segments appelés fragments. Chaque fragment contient des valeurs de début (start), de durée (duration), un numéro d’intervalle et des événements (event). Un fragment sans aucun événement signifie qu’aucun mouvement n’a été détecté pendant cette heure de début et la durée. |
+| Crochets [] |Chaque crochet représente un intervalle dans l’événement. Les crochets vides pour cet intervalle signifient qu’aucun mouvement n’a été détecté. |
+| emplacements |Cette nouvelle entrée sous les événements répertorie l’emplacement dans lequel le mouvement s’est produit. Cette entrée est plus précise que les zones de détection. |
 
-Hello Voici un exemple de sortie JSON
+Voici un exemple de sortie JSON :
 
     {
       "version": 2,
@@ -154,16 +154,16 @@ Hello Voici un exemple de sortie JSON
 
     …
 ## <a name="limitations"></a>Limites
-* Hello pris en charge les formats vidéo d’entrée incluent MP4 et WMV MOV.
-* La détection de mouvement est optimisée pour les vidéos dont l’arrière-plan est fixe. algorithme de Hello se concentre sur la réduction de fausses alertes, telles que des changements d’éclairage et les ombres.
-* Certains mouvement peut ne pas être détecté en raison de problèmes de tootechnical ; par exemple, vidéos de vision de nuit, les objets semi-transparents et petits objets.
+* Les formats de fichier vidéo d’entrée pris en charge incluent WMV, MOV et MP4.
+* La détection de mouvement est optimisée pour les vidéos dont l’arrière-plan est fixe. L’algorithme est axé sur la réduction des fausses alertes, telles que les variations d’éclairage et les ombres.
+* Certains mouvements peuvent ne pas être détectés en raison de défis techniques ; par exemple, des vidéos en vision nocturne, les objets semi-transparents et les petits objets.
 
 ## <a name="net-sample-code"></a>Exemple de code .NET
 
-suivant de Hello programme montre comment :
+Le programme suivant montre comment effectuer les tâches suivantes :
 
-1. Créer un élément multimédia et téléchargez un fichier multimédia en ressource de hello.
-2. Créer une tâche avec une tâche de détection de mouvement vidéo basée sur un fichier de configuration qui contient hello suivant présélection de json. 
+1. Créer un élément multimédia et charger un fichier multimédia dans l’élément multimédia.
+2. Créer un travail avec une tâche de détection du mouvement vidéo basée sur un fichier de configuration qui contient la présélection json suivante. 
    
         {
           "Version": "1.0",
@@ -192,11 +192,11 @@ suivant de Hello programme montre comment :
             ]
           }
         }
-3. Télécharger les fichiers JSON de sortie hello. 
+3. Télécharger les fichiers JSON de sortie. 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Créer et configurer un projet Visual Studio
 
-Configurer votre environnement de développement et de remplir le fichier app.config de hello avec les informations de connexion, comme décrit dans [développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
+Configurez votre environnement de développement et ajoutez des informations de connexion au fichier app.config selon la procédure décrite dans l’article [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Exemple
 
@@ -213,7 +213,7 @@ Configurer votre environnement de développement et de remplir le fichier app.co
     {
         class Program
         {
-            // Read values from hello App.config file.
+            // Read values from the App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -229,17 +229,17 @@ Configurer votre environnement de développement et de remplir le fichier app.co
 
                 _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-                // Run hello VideoMotionDetection job.
+                // Run the VideoMotionDetection job.
                 var asset = RunVideoMotionDetectionJob(@"C:\supportFiles\VideoMotionDetection\BigBuckBunny.mp4",
                                             @"C:\supportFiles\VideoMotionDetection\config.json");
 
-                // Download hello job output asset.
+                // Download the job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\VideoMotionDetection\Output");
             }
 
             static IAsset RunVideoMotionDetectionJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload hello input media file toostorage.
+                // Create an asset and upload the input media file to storage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Video Motion Detection Input Asset",
                     AssetCreationOptions.None);
@@ -247,38 +247,38 @@ Configurer votre environnement de développement et de remplir le fichier app.co
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Video Motion Detection Job");
 
-                // Get a reference tooAzure Media Motion Detector.
+                // Get a reference to Azure Media Motion Detector.
                 string MediaProcessorName = "Azure Media Motion Detector";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from hello specified file.
+                // Read configuration from the specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with hello encoding details, using a string preset.
+                // Create a task with the encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Video Motion Detection Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify hello input asset.
+                // Specify the input asset.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job.
+                // Add an output asset to contain the results of the job.
                 task.OutputAssets.AddNew("My Video Motion Detectoion Output Asset", AssetCreationOptions.None);
 
-                // Use hello following event handler toocheck job progress.  
+                // Use the following event handler to check job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch hello job.
+                // Launch the job.
                 job.Submit();
 
-                // Check job execution and wait for job toofinish.
+                // Check job execution and wait for job to finish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, hello event handling
+                // If job state is Error, the event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

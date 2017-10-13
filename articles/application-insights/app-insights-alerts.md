@@ -1,5 +1,5 @@
 ---
-title: Alertes aaaSet dans Azure Application Insights | Documents Microsoft
+title: "Configuration d’alertes dans Azure Application Insights | Microsoft Docs"
 description: "Tenez-vous informé des temps de réponse lents, des exceptions et des autres changements de performances ou d’utilisation de votre application web."
 services: application-insights
 documentationcenter: 
@@ -13,86 +13,86 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: e160cb173e68fda2e6d97f29da342c46b7ac4f19
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c8386ffc5d68260eeb75edf7efb77db1163dcef8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="set-alerts-in-application-insights"></a>Configuration d’alertes dans Application Insights
-[Azure Application Insights] [ start] peut vous alerter toochanges dans les mesures de performances ou d’utilisation dans votre application web. 
+[Azure Application Insights][start] peut vous signaler les modifications des métriques de performances ou d’utilisation de votre application web. 
 
-Application Insights surveille votre application en temps réel sur une [large éventail de plateformes] [ platforms] toohelp diagnostiquer les problèmes de performances et de comprendre les modèles d’utilisation.
+Application Insights analyse votre application en direct sur un [large éventail de plateformes][platforms] pour vous aider à diagnostiquer les problèmes de performances et comprendre les schémas d’utilisation.
 
 Il existe trois types d’alertes :
 
 * Les **alertes de métrique** indiquent quand une métrique dépasse une valeur seuil pendant une certaine période, comme les temps de réponse, le nombre d’exceptions, l’utilisation du processeur ou les affichages de page. 
-* [**Tests Web** ] [ availability] vous indiquent lorsque votre site n’est pas disponible sur hello internet ou répond lentement. [En savoir plus][availability].
-* [**Diagnostics proactifs** ](app-insights-proactive-diagnostics.md) sont configurées automatiquement toonotify vous sur les modèles de performances inhabituelles.
+* Les [**tests web**][availability] indiquent quand votre site est indisponible sur Internet ou répond lentement. [En savoir plus][availability].
+* Les [**diagnostics proactifs**](app-insights-proactive-diagnostics.md) sont configurés automatiquement pour vous informer des modèles de performances exceptionnelles.
 
 Dans cet article, nous allons nous concentrer sur les alertes métriques.
 
 ## <a name="set-a-metric-alert"></a>Définir une alerte métrique
-Panneau de règles d’alerte hello ouvert, puis utilisez hello ajoutent le bouton. 
+Ouvrez le panneau des règles d’alerte, puis utilisez le bouton Ajouter. 
 
-![Dans le panneau de règles d’alerte hello, choisissez Ajouter une alerte. Configurer votre application comme hello ressource toomeasure, fournissez un nom pour l’alerte de hello et choisissez une mesure.](./media/app-insights-alerts/01-set-metric.png)
+![Dans le panneau Règles d’alerte, cliquez sur Ajouter une alerte. Définissez votre application comme ressource à mesurer, fournissez un nom pour l’alerte et sélectionnez une métrique.](./media/app-insights-alerts/01-set-metric.png)
 
-* Ressource hello hello avant de définir d’autres propriétés. **Sélectionnez une ressource hello « (composants) »** si vous souhaitez que les alertes tooset des métriques de performances ou d’utilisation.
-* nom de Hello que vous donnez à toohello alerte doit être unique au sein du groupe de ressources hello (et pas seulement de votre application).
-* Être prudent toonote unités de hello dans lequel vous êtes invité à valeur de seuil tooenter hello.
-* Si vous case hello « Propriétaires messagerie... », les alertes sont envoyées par tooeveryone par courrier électronique qui possède le groupe de ressources toothis accès. tooexpand cet ensemble de personnes, ajoutez-les toohello [groupe de ressources ou d’un abonnement](app-insights-resources-roles-access-control.md) (pas hello ressource).
-* Si vous spécifiez « E-mails supplémentaires », les alertes sont envoyées toothose personnes ou groupes (ou non vous activé case à cocher « Envoyer par courrier électronique propriétaires... » hello). 
-* Définir un [webhook adresse](../monitoring-and-diagnostics/insights-webhooks-alerts.md) si vous avez configuré une application web qui répond tooalerts. Elle est appelée lorsque hello alerte est activée et il est résolu. (Mais notez qu’à l’heure actuelle, les paramètres de requête ne sont pas transmis en tant que propriétés webhook.)
-* Vous pouvez désactiver ou activer hello alerte : hello des boutons haut hello du Panneau de hello.
+* Définissez la ressource avant les autres propriétés. **Choisissez la ressource « (composants) »** si vous souhaitez définir des alertes sur les mesures de performances ou d'utilisation.
+* Le nom que vous donnez à l’alerte doit être unique dans le groupe de ressources (pas uniquement dans votre application).
+* Veillez à noter les unités dans lesquelles vous êtes invité à entrer la valeur seuil.
+* Si vous cochez la case « Envoyer des e-mails aux propriétaires… », les alertes sont envoyées par e-mail à toutes les personnes ayant accès à ce groupe de ressources. Pour étendre cet ensemble de personnes, ajoutez-le au [groupe de ressources ou à l’abonnement](app-insights-resources-roles-access-control.md) (pas à la ressource).
+* Si vous spécifiez « E-mails supplémentaires », les alertes sont envoyées à ces personnes ou groupes (que vous ayez ou non coché la case « Envoyer des e-mails aux propriétaires… »). 
+* Définissez une [adresse de webhook](../monitoring-and-diagnostics/insights-webhooks-alerts.md) si vous avez configuré une application web qui répondra aux alertes. Elle est appelée lorsque l’alerte est Activée ou Résolue. (Mais notez qu’à l’heure actuelle, les paramètres de requête ne sont pas transmis en tant que propriétés webhook.)
+* Vous pouvez désactiver ou activer l'alerte avec les boutons en haut du panneau.
 
-*Je ne vois pas bouton alerte de hello ajouter.* 
+*Je ne vois pas apparaître le bouton Ajouter une alerte.* 
 
-* Utilisez-vous un compte professionnel ? Vous pouvez définir des alertes si vous avez propriétaire ou contributeur de ressource d’application accès toothis. Examinez un panneau de contrôle d’accès hello. [En savoir plus sur le contrôle d’accès][roles].
+* Utilisez-vous un compte professionnel ? Vous pouvez définir des alertes si vous avez un accès propriétaire ou collaborateur à cette ressource d’application. Consultez le panneau Access Control. [En savoir plus sur le contrôle d’accès][roles].
 
 > [!NOTE]
-> Dans le panneau des alertes hello, vous voyez qu’il existe déjà un jeu de l’alerte : [Diagnostics proactifs](app-insights-proactive-failure-diagnostics.md). alerte automatique de Hello surveille un particulier métrique, taux d’échec. Sauf si vous décidez d’alerte proactive de toodisable hello, vous n’avez pas besoin tooset votre propre alerte sur le taux d’échec. 
+> Dans le panneau Alertes, vous pouvez constater qu’une alerte est déjà configurée : [Diagnostics proactifs](app-insights-proactive-failure-diagnostics.md). Cette alerte automatique surveille une métrique spécifique : le taux d’échec des demandes. Sauf si vous décidez de désactiver l’alerte proactive, vous n’avez pas besoin de définir votre propre alerte pour les taux d’échec des demandes. 
 > 
 > 
 
 ## <a name="see-your-alerts"></a>Consultez vos alertes
 Vous recevez un e-mail lorsqu’une alerte bascule entre les états inactive et active. 
 
-état actuel de Hello de chaque alerte est indiqué dans le panneau de règles d’alerte hello.
+L’état actuel de chaque alerte est indiqué dans le panneau Règles d’alerte.
 
-Il existe un résumé de l’activité récente dans les alertes de hello de liste déroulante :
+Il existe un résumé de l’activité récente dans la liste déroulante des alertes :
 
 ![Liste déroulante Alertes](./media/app-insights-alerts/010-alert-drop.png)
 
-historique de Hello des changements d’état est Bonjour journal d’activité :
+L’historique des modifications d’état figure dans le journal d’activité :
 
-![Dans Panneau de vue d’ensemble de hello, cliquez sur paramètres, les journaux d’Audit](./media/app-insights-alerts/09-alerts.png)
+![Dans le panneau Vue d’ensemble, cliquez sur Paramètres, puis sur Journaux d'audit.](./media/app-insights-alerts/09-alerts.png)
 
 ## <a name="how-alerts-work"></a>Fonctionnement des alertes
-* Une alerte a trois états : « Jamais activée », « Activée » et « Résolue ». Activé signifie hello la condition spécifiée a la valeur est true, lors de la dernière évaluation.
-* Une notification est générée lorsqu'une alerte change d'état. (Si la condition d’alerte hello était déjà le cas lorsque vous avez créé l’alerte de hello, vous ne pouvez pas obtenir une notification jusqu'à ce que la condition de hello soit false.)
-* Chaque notification génère un message électronique si vous coché hello e-mails case ou fourni des adresses de messagerie. Vous pouvez également examiner de liste déroulante de Notifications hello.
+* Une alerte a trois états : « Jamais activée », « Activée » et « Résolue ». L’état Activé signifie que la condition spécifiée était vraie lors de la dernière évaluation.
+* Une notification est générée lorsqu'une alerte change d'état. (Si la condition d'alerte était déjà vraie lorsque vous avez créé l'alerte, il est possible que vous ne receviez pas de notification tant que la condition n’est pas fausse.)
+* Chaque notification génère un message électronique si vous avez coché la case E-mails ou fourni des adresses de messagerie électronique. Vous pouvez également consulter la liste déroulante Notifications.
 * Une alerte est évaluée chaque fois qu’une mesure arrive, mais pas autrement.
-* évaluation de Hello agrège les mesures de hello sur hello précédant la période et compare ensuite nouvel état toohello seuil toodetermine hello.
-* période Hello que vous choisissez Spécifie l’intervalle de salutation pendant laquelle les mesures sont agrégées. Il n’affecte pas la fréquence à laquelle hello alerte est évaluée : qui dépend de fréquence de hello d’arrivée des métriques.
-* Si aucune donnée n’est reçu pour une mesure particulière pendant un certain temps, intervalle de hello a différents effets sur l’évaluation d’alerte et sur les graphiques hello dans l’Explorateur de métrique. Dans l’Explorateur de métriques, si aucune donnée n’apparaît plus longue que l’intervalle d’échantillonnage de l’organigramme hello, graphique de hello affiche la valeur 0. Mais une alerte en fonction de hello même mesure n’est pas réévaluées et hello reste d’état de l’alerte inchangé. 
+* L’évaluation agrège la mesure de la période précédente, puis la compare à la valeur de seuil pour déterminer le nouvel état.
+* La période que vous choisissez spécifie la durée pendant laquelle les mesures sont agrégées. Cela n’affecte pas la fréquence à laquelle l’alerte est évaluée, mais cela dépend de la fréquence d’arrivée des mesures.
+* Si aucune donnée n’arrive pour une mesure particulière pendant un certain temps, l’écart a des effets différents sur l’évaluation de l’alerte et sur les graphiques dans Metrics Explorer. Dans Metrics Explorer, si aucune donnée n’apparaît plus longtemps que l’intervalle d’échantillonnage du graphique, le graphique affiche la valeur 0. Cependant, une alerte basée sur la même métrique n’est pas réévaluée et l’état de l’alerte reste inchangé. 
   
-    Lorsque les données arrivent par la suite, le graphique de hello accède valeur de retour tooa différente de zéro. alerte de Hello prend la valeur en fonction des données hello disponibles pour la période de hello que vous avez spécifié. Si le nouveau point de données hello est hello seule disponible dans la période de hello, hello d’agrégation est basé uniquement sur du point de données.
-* Une alerte peut osciller fréquemment entre les états alerte et intègre même si vous définissez une longue période. Cela peut se produire si la valeur de métrique hello tourne autour de seuil de hello. Il n’existe aucun hystérésis dans le seuil de hello : hello transition tooalert se produit au hello même valeur que toohealthy de transition hello.
+    Lorsque les données arrivent par la suite, le graphique revient à une valeur différente de zéro. L’alerte est évaluée en fonction des données disponibles pour la période spécifiée. Si le nouveau point de données est le seul disponible dans la période, l’agrégat repose uniquement sur ce point.
+* Une alerte peut osciller fréquemment entre les états alerte et intègre même si vous définissez une longue période. Cela peut se produire si la valeur de la mesure est placée autour du seuil. Le seuil est cohérent : la transition vers l’état alerte se produit à la même valeur que la transition vers l’état intègre.
 
-## <a name="what-are-good-alerts-tooset"></a>Quelles sont les alertes bon tooset ?
-Cela dépend de votre application. toostart avec, il est conseillé de la tooset pas trop de mesures. Examinez vos graphiques métriques pendant l’exécution de votre application, le temps de tooget un aspect de comment elle se comporte normalement. Cette pratique permet de trouver des moyens tooimprove ses performances. Puis définissez des alertes tootell vous lorsque les métriques hello sortir hello normale à une zone. 
+## <a name="what-are-good-alerts-to-set"></a>Quelles sont les alertes à définir ?
+Cela dépend de votre application. Pour commencer, il est préférable de ne pas définir un trop grand nombre de métriques. Prenez le temps d’examiner vos graphiques de métriques pendant l’exécution de votre application, pour mieux comprendre comment elle se comporte normalement. Cet exercice vous aide à trouver des moyens d’améliorer ses performances. Définissez ensuite des alertes qui vous indiquent lorsque les métriques quittent la zone normale. 
 
 Les alertes les plus appréciées sont les suivantes :
 
-* Les [mesures de navigateur][client], surtout les **temps de chargement des pages** de navigateur, sont efficaces pour les applications web. Si votre page contient de nombreux scripts, vous devez rechercher d’éventuelles **exceptions du navigateur**. Dans l’ordre tooget ces mesures et les alertes, vous avez tooset [analyse de la page web][client].
-* **Temps de réponse de serveur** pour SSI hello d’applications web. Ainsi que la configuration d’alertes, garder un œil sur cette métrique toosee si elle disproportionnellement varie en fonction de taux de demandes élevé : variante peut indiquer que votre application s’exécute avec des ressources insuffisantes. 
-* **Exceptions de serveur** -toosee les, vous disposez de certains toodo [le programme d’installation supplémentaire](app-insights-asp-net-exceptions.md).
+* Les [mesures de navigateur][client], surtout les **temps de chargement des pages** de navigateur, sont efficaces pour les applications web. Si votre page contient de nombreux scripts, vous devez rechercher d’éventuelles **exceptions du navigateur**. Pour obtenir ces métriques et alertes, vous devez configurer la [surveillance de page web][client].
+* Le **temps de réponse de serveur** pour le côté serveur des applications web. Outre la définition des alertes, gardez un œil sur cette métrique pour voir si elle varie de façon importante avec un taux de demandes élevé. Une telle variation peut indiquer que votre application manque de ressources. 
+* **Exceptions du serveur** - pour les afficher, vous devrez peut-être effectuer une [installation supplémentaire](app-insights-asp-net-exceptions.md).
 
-N’oubliez pas que [diagnostics de taux d’échec proactive](app-insights-proactive-failure-diagnostics.md) automatiquement les taux de hello moniteur à laquelle votre application répond toorequests avec des codes d’échec. 
+N’oubliez pas que les [diagnostics de taux d’échec proactifs](app-insights-proactive-failure-diagnostics.md) analysent automatiquement le taux selon lequel votre application répond aux demandes avec des codes d’échec. 
 
 ## <a name="automation"></a>Automatisation
-* [Utilisez PowerShell tooautomate configurer les alertes](app-insights-powershell-alerts.md)
-* [Utilisez tooalerts répond de webhooks tooautomate](../monitoring-and-diagnostics/insights-webhooks-alerts.md)
+* [Utiliser PowerShell pour automatiser la configuration d’alertes](app-insights-powershell-alerts.md)
+* [Utiliser les webhooks pour automatiser la réponse aux alertes](../monitoring-and-diagnostics/insights-webhooks-alerts.md)
 
 ## <a name="video"></a>Vidéo
 

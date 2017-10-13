@@ -1,6 +1,6 @@
 ---
-title: "cluster nœuds tooa autonome Service Fabric aaaAdd ou supprimez | Documents Microsoft"
-description: "Découvrez comment tooadd ou supprimez tooan de nœuds Azure Service Fabric de cluster sur un ordinateur physique ou virtuel exécutant Windows Server, qui peut être local ou dans n’importe quel cloud."
+title: "Ajouter ou supprimer des nœuds d’un cluster Service Fabric autonome | Microsoft Docs"
+description: "Apprenez à ajouter ou supprimer des nœuds d’un cluster Azure Service Fabric sur une machine physique ou virtuelle sous Windows Server, qu’elle soit locale ou dans un cloud."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 2/02/2017
 ms.author: dekapur
-ms.openlocfilehash: 1da908ad9840faa052e0b4021bc2d4ce732b02bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9c6035e97de38ff63ef074109afd9f3c7484f828
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="add-or-remove-nodes-tooa-standalone-service-fabric-cluster-running-on-windows-server"></a>Ajouter ou supprimer le cluster Service Fabric nœuds tooa autonome sont en cours d’exécution sur Windows Server
-Une fois que vous avez [créé votre cluster de Service Fabric autonomes sur les ordinateurs Windows Server](service-fabric-cluster-creation-for-windows-server.md), les besoins de votre entreprise peuvent changer et que vous deviez tooadd ou supprimer le cluster tooyour de nœuds. Cet article fournit des instructions détaillées tooachieve cela. Veuillez noter que la fonctionnalité d’ajout/suppression de nœud n’est pas prise en charge dans les clusters de développement locaux.
+# <a name="add-or-remove-nodes-to-a-standalone-service-fabric-cluster-running-on-windows-server"></a>Ajouter ou supprimer des nœuds d’un cluster Service Fabric autonome sous Windows Server
+Une fois que vous avez [créé votre cluster Service Fabric autonome sur des ordinateurs Windows Server](service-fabric-cluster-creation-for-windows-server.md), les besoins de votre entreprise peuvent évoluer et vous devrez peut-être ajouter ou supprimer des nœuds de votre cluster. Cet article fournit des étapes détaillées pour effectuer ces tâches. Veuillez noter que la fonctionnalité d’ajout/suppression de nœud n’est pas prise en charge dans les clusters de développement locaux.
 
-## <a name="add-nodes-tooyour-cluster"></a>Ajouter tooyour nœuds du cluster
-1. Préparation hello VM/machine à tooadd tooyour cluster en suivant les étapes de hello mentionnés dans hello [hello de préparer les ordinateurs toomeet conditions préalables de hello pour le déploiement de cluster](service-fabric-cluster-creation-for-windows-server.md) section
-2. Identifier les domaine d’erreur et la mise à niveau domaine vous tooadd du cours de cet ordinateur virtuel/ordinateur
-3. Bureau à distance (RDP) dans hello VM/machine que vous souhaitez tooadd toohello cluster
-4. Copie ou [télécharger le package autonome de hello pour Service Fabric pour Windows Server](http://go.microsoft.com/fwlink/?LinkId=730690) toohello VM/machine et décompressez le package de hello
-5. Exécuter Powershell avec des privilèges élevés et naviguer toohello l’emplacement du package décompressé de hello
-6. Exécutez hello *AddNode.ps1* script avec les paramètres de hello décrivant hello nouveau nœud tooadd. exemple Hello ci-dessous ajoute un nouveau nœud appelé VM5, avec le type NodeType0 et une adresse IP 182.17.34.52, UD1 et fd : / dc1/r0. Hello *ExistingClusterConnectionEndPoint* est déjà un point de terminaison de connexion pour un nœud de cluster existant de hello, qui peut être adresse IP hello *tout* nœud hello cluster.
+## <a name="add-nodes-to-your-cluster"></a>Ajouter des nœuds à votre cluster
+1. Préparez la machine virtuelle/l’ordinateur que vous souhaitez ajouter à votre cluster en suivant les étapes présentées dans la section [Préparer les machines à la configuration requise pour le déploiement de cluster](service-fabric-cluster-creation-for-windows-server.md).
+2. Identifiez le domaine d’erreur et le domaine de mise à niveau auxquels vous allez ajouter cette machine virtuelle ou cet ordinateur.
+3. Avec Bureau à distance (RDP), accédez à la machine virtuelle ou à l’ordinateur que vous souhaitez ajouter au cluster.
+4. Copiez ou [téléchargez le package autonome Service Fabric pour Windows Server](http://go.microsoft.com/fwlink/?LinkId=730690) sur cette machine virtuelle ou cet ordinateur et décompressez le package.
+5. Exécutez PowerShell avec des privilèges élevés, puis naviguez jusqu’à l’emplacement du package décompressé.
+6. Exécutez le script *AddNode.ps1* avec les paramètres qui décrivent le nouveau nœud à ajouter. L’exemple ci-dessous ajoute un nouveau nœud nommé VM5, de type NodeType0, avec l’adresse IP 182.17.34.52, à UD1 et fd:/dc1/r0. *ExistingClusterConnectionEndPoint* est un point de terminaison de connexion pour un nœud déjà présent dans le cluster existant. Il peut s’agir de l’adresse IP de *n’importe quel nœud* du cluster.
 
     ```
     .\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain fd:/dc1/r0 -AcceptEULA
     ```
-    Une fois le script de hello terminée, vous pouvez vérifier si le nouveau nœud de hello a été ajoutée en exécutant hello [Get-ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps) applet de commande.
+    Une fois le script exécuté, vous pouvez vérifier si le nouveau nœud a été ajouté en exécutant la cmdlet [Get-ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps).
 
-7. cohérence tooensure sur différents nœuds dans un cluster de hello, vous devez lancer une mise à niveau de la configuration. Exécutez [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) tooget hello du dernier fichier de configuration et ajoutez hello nouvellement ajoutés nœud trop section « Nœuds ». Il est également recommandé tooalways hello cluster configuration la plus récente disponible dans les cas de hello que vous avez besoin de tooredploy un cluster avec hello même configuration.
+7. Pour garantir la cohérence entre les différents nœuds du cluster, vous devez lancer une mise à niveau de la configuration. Exécutez [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) pour obtenir le dernier fichier de configuration, et ajoutez le nœud nouvellement ajouté à la section « Nodes ». Il est également recommandé de disposer en permanence de la dernière configuration de cluster disponible au cas où vous devriez redéployer un cluster avec la même configuration.
 
     ```
         {
@@ -47,17 +47,17 @@ Une fois que vous avez [créé votre cluster de Service Fabric autonomes sur les
             "upgradeDomain": "UD1"
         }
     ```
-8. Exécutez [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) mise à niveau de toobegin hello.
+8. Exécutez [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) pour commencer la mise à niveau.
 
     ```
-    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path tooConfiguration File>
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
 
     ```
-    Vous pouvez surveiller la progression de hello de mise à niveau de hello sur Service Fabric Explorer. Vous pouvez également exécuter [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) pour cela.
+    Vous pouvez surveiller la progression de la mise à niveau avec Service Fabric Explorer. Vous pouvez également exécuter [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) pour cela.
 
-### <a name="add-nodes-tooclusters-configured-with-windows-security-using-gmsa"></a>Ajouter des nœuds tooclusters configuré avec la sécurité de Windows à l’aide de service administré de groupe
+### <a name="add-nodes-to-clusters-configured-with-windows-security-using-gmsa"></a>Ajouter des nœuds aux clusters configurés avec la sécurité Windows à l’aide de gMSA
 Pour les clusters configurés avec un compte de service géré de groupe (gMSA, Group Managed Service Account) (https://technet.microsoft.com/library/hh831782.aspx), un nouveau nœud peut être ajouté à l’aide d’une mise à niveau de la configuration :
-1. Exécutez [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) sur tous les nœuds existants hello tooget hello du dernier fichier de configuration et ajouter des détails sur le nouveau nœud de hello souhaité tooadd dans la section de hello « nœuds ». Assurez-vous que le nouveau nœud de hello fait partie de hello compte géré de groupe. Ce compte doit être un compte Administrateur sur tous les ordinateurs.
+1. Exécutez [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) sur l’un des nœuds existants pour obtenir le dernier fichier de configuration, et ajoutez des détails sur le nouveau nœud à ajouter dans la section « Nodes ». Assurez-vous que le nouveau nœud fait partie du même compte géré de groupe. Ce compte doit être un compte Administrateur sur tous les ordinateurs.
 
     ```
         {
@@ -68,21 +68,21 @@ Pour les clusters configurés avec un compte de service géré de groupe (gMSA, 
             "upgradeDomain": "UD1"
         }
     ```
-2. Exécutez [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) mise à niveau de toobegin hello.
+2. Exécutez [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) pour commencer la mise à niveau.
 
     ```
-    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path tooConfiguration File>
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
     ```
-    Vous pouvez surveiller la progression de hello de mise à niveau de hello sur Service Fabric Explorer. Vous pouvez également exécuter [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) pour cela.
+    Vous pouvez surveiller la progression de la mise à niveau avec Service Fabric Explorer. Vous pouvez également exécuter [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) pour cela.
 
-### <a name="add-node-types-tooyour-cluster"></a>Ajouter un cluster de tooyour de types de nœud
-Commande tooadd un nouveau type de nœud, modifiez votre configuration tooinclude hello nouveau type de nœud dans la section « NodeTypes » sous « Propriétés » et commencer une configuration de mise à niveau de l’aide [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps). Une fois la mise à niveau hello terminée, vous pouvez ajouter le nouveau cluster tooyour de nœuds avec ce type de nœud.
+### <a name="add-node-types-to-your-cluster"></a>Ajouter des types de nœuds à votre cluster
+Pour ajouter un nouveau type de nœud, modifiez votre configuration afin de l’inclure dans la section « NodeTypes », sous « Properties », puis commencez une mise à niveau de la configuration à l’aide de [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps). Une fois la mise à niveau effectuée, vous pouvez ajouter de nouveaux nœuds à votre cluster avec ce type de nœud.
 
 ## <a name="remove-nodes-from-your-cluster"></a>Supprimer des nœuds de votre cluster
-Un nœud peut être supprimé à partir d’un cluster à l’aide d’une mise à niveau de la configuration, Bonjour suivant de manière :
+Pour supprimer un nœud d’un cluster à l’aide d’une mise à niveau de la configuration, procédez comme suit :
 
-1. Exécutez [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) le fichier de configuration plus récent tooget hello et *supprimer* nœud hello à partir de la section « Nœuds ».
-Ajouter hello « NodesToBeRemoved » paramètre trop » le programme d’installation « section au sein de la section de « FabricSettings ». Hello « valeur » doit être une liste séparée par des virgules des noms de nœud des nœuds qui doivent toobe supprimé.
+1. Exécutez [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) pour obtenir le dernier fichier de configuration et *supprimez* le nœud de la section « Nodes ».
+Ajoutez le paramètre « NodesToBeRemoved » à la section « Setup », dans la section « FabricSettings ». La valeur indiquée sous « value » doit être une liste des noms des nœuds à supprimer, séparés par des virgules.
 
     ```
          "fabricSettings": [
@@ -105,25 +105,25 @@ Ajouter hello « NodesToBeRemoved » paramètre trop » le programme d’inst
             }
         ]
     ```
-2. Exécutez [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) mise à niveau de toobegin hello.
+2. Exécutez [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) pour commencer la mise à niveau.
 
     ```
-    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path tooConfiguration File>
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
 
     ```
-    Vous pouvez surveiller la progression de hello de mise à niveau de hello sur Service Fabric Explorer. Vous pouvez également exécuter [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) pour cela.
+    Vous pouvez surveiller la progression de la mise à niveau avec Service Fabric Explorer. Vous pouvez également exécuter [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps) pour cela.
 
 > [!NOTE]
-> La suppression de nœuds peut entraîner plusieurs mises à niveau. Certains nœuds sont marqués avec `IsSeedNode=”true”` de balise et peut être identifiée en interrogeant le cluster de hello manifeste à l’aide de `Get-ServiceFabricClusterManifest`. Étant donné que les nœuds de départ hello portera toobe déplacé dans de tels scénarios, la suppression de ces nœuds peut prendre plus de temps que d’autres. cluster de Hello doit maintenir un minimum de 3 nœuds de type de nœud principal.
+> La suppression de nœuds peut entraîner plusieurs mises à niveau. Certains nœuds sont marqués avec la balise `IsSeedNode=”true”` et peuvent être identifiés en interrogeant le manifeste de cluster à l’aide de `Get-ServiceFabricClusterManifest`. La suppression de ces nœuds peut prendre plus de temps car, dans ce cas, les nœuds initiaux devront être déplacés. Le cluster doit conserver au moins 3 nœuds de type nœud principal.
 > 
 > 
 
 ### <a name="remove-node-types-from-your-cluster"></a>Supprimer des types de nœuds de votre cluster
-Avant de supprimer un type de nœud, vérifiez s’il existe des nœuds référençant le type de nœud hello. Supprimez ces nœuds avant de supprimer le type de nœud hello correspondant. Une fois que tous les nœuds correspondants sont supprimés, vous pouvez supprimer hello NodeType de configuration du cluster hello et commencer une configuration de mise à niveau de l’aide [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps).
+Avant de supprimer un type de nœud, vérifiez s’il existe des nœuds qui référencent le type de nœud concerné. Supprimez ces nœuds avant de supprimer le type de nœud correspondant. Une fois que tous les nœuds correspondants sont supprimés, vous pouvez supprimer le NodeType de la configuration du cluster et commencer une mise à niveau de la configuration à l’aide de [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps).
 
 
 ### <a name="replace-primary-nodes-of-your-cluster"></a>Remplacer les nœuds principaux de votre cluster
-remplacement de Hello de nœuds principaux doit être effectuée un seul nœud après l’autre, au lieu de supprimer, puis ajouter dans des lots.
+Le remplacement des nœuds principaux doit être effectué un nœud à la fois, au lieu de supprimer, puis d’ajouter des nœuds par lots.
 
 
 ## <a name="next-steps"></a>Étapes suivantes

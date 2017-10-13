@@ -1,6 +1,6 @@
 ---
-title: "aaaManaging les informations d’identification de la bibliothèque cliente de base de données élastique hello | Documents Microsoft"
-description: "Comment tooset hello niveau approprié d’informations d’identification, admin tooread uniquement, pour les applications de base de données élastique"
+title: "Gestion des informations d’identification dans la bibliothèque cliente de la base de données élastique | Microsoft Docs"
+description: "Définition du niveau d’informations d’identification, de celui d’administrateur à celui de la lecture seule, pour les applications de base de données élastique."
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: 218783ca2a07e3c0a4b089aa92634f32c41386e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 46908be2846062a0520d21e06db3091a4d711b0b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="credentials-used-tooaccess-hello-elastic-database-client-library"></a>Informations d’identification utilisées la bibliothèque cliente de tooaccess hello élastique de base de données
-Hello [bibliothèque cliente de base de données élastique](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/) utilise trois types différents de hello de tooaccess d’informations d’identification [Gestionnaire de carte de partitions](sql-database-elastic-scale-shard-map-management.md). En fonction de la nécessité de hello, utiliser les informations d’identification de hello avec hello plus bas niveau d’accès possible.
+# <a name="credentials-used-to-access-the-elastic-database-client-library"></a>Informations d’identification utilisées pour accéder à la bibliothèque cliente de la base de données élastique
+La [bibliothèque cliente de la base de données élastique](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/) utilise trois types d’informations d’identification différents pour accéder au [gestionnaire des cartes de partitions](sql-database-elastic-scale-shard-map-management.md). En fonction du besoin, utilisez les informations d’identification avec le niveau d’accès le plus faible possible.
 
-* **Informations d'identification d'administration**: pour créer ou manipuler un gestionnaire des cartes de partitions. (Consultez hello [glossaire](sql-database-elastic-scale-glossary.md).) 
-* **Accéder aux informations d’identification**: tooaccess une partition existante mapper manager tooobtain plus d’informations sur les partitions.
-* **Informations d’identification de connexion**: tooconnect tooshards. 
+* **Informations d'identification d'administration**: pour créer ou manipuler un gestionnaire des cartes de partitions. (Voir le [glossaire](sql-database-elastic-scale-glossary.md).) 
+* **Informations d’identification d’accès**: pour accéder à un gestionnaire des cartes de partitions existant afin d’obtenir des informations sur les partitions.
+* **Informations d'identification de connexion**: pour se connecter à des partitions. 
 
 Consultez également la section [Gestion des bases de données et des connexions dans la base de données Azure SQL](sql-database-manage-logins.md) 
 
 ## <a name="about-management-credentials"></a>À propos des informations d'identification d'administration
-Informations d’identification d’administration sont utilisé toocreate un [ **ShardMapManager** ](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) objet pour les applications qui manipulent des cartes de partitions. (Par exemple, consultez [Ajout d’une partition à l’aide des outils de base de données élastique](sql-database-elastic-scale-add-a-shard.md) et [routage dépendant des données](sql-database-elastic-scale-data-dependent-routing.md)) utilisateur hello de bibliothèque cliente d’élastique hello crée des utilisateurs SQL hello et des connexions SQL et permet de s’assurer que chacun est accordé des autorisations de lecture/écriture hello sur les partitions global hello mappent de base de données et toutes les partitions bases de données. Ces informations d’identification sont la carte de partitions globales hello toomaintain utilisés et les cartes de partitions local de hello lors de la carte de partitions toohello modifications sont effectuées. Par exemple, utiliser objet de gestionnaire map toocreate hello partition hello gestion des informations d’identification (à l’aide de [ **GetSqlShardMapManager**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx): 
+Les informations d’identification de gestion sont utilisées lors de la création d’un objet [**ShardMapManager**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) pour les applications qui manipulent des cartes de partitions. (Par exemple, consultez [Ajout d’une partition à l’aide des outils de base de données élastique](sql-database-elastic-scale-add-a-shard.md) et [Routage dépendant des données](sql-database-elastic-scale-data-dependent-routing.md).) L’utilisateur de la bibliothèque cliente de l’infrastructure élastique crée les utilisateurs et les connexions SQL nécessaires et s’assure qu’ils sont dotés des autorisations en lecture/écriture pour la base de données de cartes de partitions globale et pour toutes les bases de données de partitions. Ces informations d'identification sont utilisées pour mettre à jour la carte de partitions globale et les cartes de partitions locales lorsque des modifications sont apportées à la carte de partitions. Par exemple, utilisez les informations d'identification de gestion pour créer l'objet de gestionnaire des cartes de partitions (en utilisant [**GetSqlShardMapManager**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx)) : 
 
     // Obtain a shard map manager. 
     ShardMapManager shardMapManager = ShardMapManagerFactory.GetSqlShardMapManager( 
@@ -39,14 +39,14 @@ Informations d’identification d’administration sont utilisé toocreate un [ 
             ShardMapManagerLoadPolicy.Lazy 
     ); 
 
-variable de Hello **smmAdminConnectionString** est une chaîne de connexion qui contient les informations d’identification de gestion hello. Hello ID d’utilisateur et mot de passe fournit la base de données de mappage en lecture/écriture access tooboth partitions et des partitions individuelles. chaîne de connexion de gestion Hello inclut également hello serveur nom et la base de données nom tooidentify hello global partition carte de base de données. Voici une chaîne de connexion classique à cet effet :
+La variable **smmAdminConnectionString** est une chaîne de connexion qui comporte les informations d’identification de gestion. L'identifiant utilisateur et le mot de passe fournissent l'accès en lecture/écriture à la base de données de cartes de partitions et aux partitions individuelles. La chaîne de connexion de gestion inclut également le nom du serveur et le nom de la base de données afin d'identifier la base de données de cartes de partitions globale. Voici une chaîne de connexion classique à cet effet :
 
      "Server=<yourserver>.database.windows.net;Database=<yourdatabase>;User ID=<yourmgmtusername>;Password=<yourmgmtpassword>;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;” 
 
-N’utilisez pas les valeurs sous forme de hello de «username@server», utilisez simplement de valeur de « nom d’utilisateur » hello.  Il s’agit, car les informations d’identification doivent fonctionner par rapport à la base de données du gestionnaire carte hello partitions et des partitions individuelles, qui peuvent être sur des serveurs différents.
+N’utilisez pas les valeurs sous la forme de «username@server», à la place utiliser simplement la valeur « username ».  Cela vient du fait que les informations d’identification doivent fonctionner avec la base de données du gestionnaire de cartes de partitions et les partitions, qui peuvent se trouver sur différents serveurs.
 
 ## <a name="access-credentials"></a>Informations d’identification d’accès
-Lorsque vous créez une partition de gestionnaire de cartes dans une application qui ne pas administrer les cartes de partitions, utilisez les informations d’identification disposant des autorisations en lecture seule sur la carte de partitions globales de hello. Hello informations récupérées à partir de la carte de partitions globales de hello sous ces informations d’identification sont utilisées pour [routage dépendant des données](sql-database-elastic-scale-data-dependent-routing.md) et partitions de hello toopopulate mapper le cache sur hello client. Hello informations d’identification sont fournies via hello même call modèle trop**GetSqlShardMapManager** comme indiqué ci-dessus : 
+Lorsque vous créez un gestionnaire des cartes de partitions dans une application qui ne gère pas les cartes de partitions, utilisez les informations d'identification dotées des autorisations en lecture seule pour la carte de partitions globale. Les informations extraites de la carte de partitions globale avec ces informations d’identification sont utilisées pour le [routage dépendant des données](sql-database-elastic-scale-data-dependent-routing.md) et pour remplir le cache de la carte de partitions sur le client. Les informations d’identification sont fournies via le même modèle d’appel à **GetSqlShardMapManager** que celui indiqué ci-dessus : 
 
     // Obtain shard map manager. 
     ShardMapManager shardMapManager = ShardMapManagerFactory.GetSqlShardMapManager( 
@@ -54,21 +54,21 @@ Lorsque vous créez une partition de gestionnaire de cartes dans une application
             ShardMapManagerLoadPolicy.Lazy
     );  
 
-Notez que hello hello **smmReadOnlyConnectionString** tooreflect utilisation de hello de différentes informations d’identification d’accès de la part de **non-administrateur** utilisateurs : ces informations d’identification ne doivent pas fournir écriture autorisations sur la carte de partitions globales de hello. 
+Notez l’utilisation de **smmReadOnlyConnectionString** afin de refléter l’utilisation d’informations d’identification différentes pour l’accès des utilisateurs **non-administrateurs** : ces informations d’identification ne doivent pas fournir d’autorisations d’écriture sur la carte de partitions globale. 
 
 ## <a name="connection-credentials"></a>Informations d'identification de connexion
-Informations d’identification supplémentaires sont nécessaires lorsque vous utilisez hello [ **OpenConnectionForKey** ](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx) méthode tooaccess une partition associée à une clé de partitionnement. Ces informations d’identification besoin tooprovide autorisations pour les tables de correspondance des accès en lecture seule toohello partition locale résidant sur les partitions hello. Il s’agit de validation de la connexion tooperform nécessaires pour le routage dépendant des données sur les partitions hello. Cet extrait de code permet l’accès aux données dans le contexte de hello de routage dépendant des données : 
+Des informations d'identification supplémentaires sont requises lorsque vous utilisez la méthode [**OpenConnectionForKey**](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx) pour accéder à une partition associée à une clé. Ces informations d'identification doivent fournir des autorisations d'accès en lecture seule aux tables de la carte de partitions locale résidant sur la partition. Cela est nécessaire pour effectuer une validation de connexion pour le routage dépendant des données sur la partition. Cet extrait de code permet l'accès à des données dans le contexte d’un routage dépendant des données : 
 
     using (SqlConnection conn = rangeMap.OpenConnectionForKey<int>( 
     targetWarehouse, smmUserConnectionString, ConnectionOptions.Validate)) 
 
-Dans cet exemple, **smmUserConnectionString** contient des informations d’identification de l’utilisateur de chaîne de connexion hello pour hello. Pour la base de données SQL Azure, voici une chaîne de connexion classique pour les informations d'identification de l'utilisateur : 
+Dans cet exemple, **smmUserConnectionString** comporte la chaîne de connexion correspondant aux informations d’identification de l’utilisateur. Pour la base de données SQL Azure, voici une chaîne de connexion classique pour les informations d'identification de l'utilisateur : 
 
     "User ID=<yourusername>; Password=<youruserpassword>; Trusted_Connection=False; Encrypt=True; Connection Timeout=30;”  
 
-Comme avec les informations d’identification d’administrateur hello, ne pas les valeurs sous forme de hello de «username@server». Utilisez simplement « username ».  Notez également que chaîne de connexion hello ne contient pas de nom de serveur et le nom de la base de données. C’est parce que hello **OpenConnectionForKey** appel dirigera hello toohello de connexion correct de partitions en fonction de la clé de hello. Par conséquent, nom de base de données hello et le nom du serveur ne sont pas fournies. 
+Comme avec les informations d’identification admin, ne pas valeurs sous la forme de «username@server». Utilisez simplement « username ».  Notez également que la chaîne de connexion ne comporte pas de nom de serveur et de nom de base de données. En effet, l’appel de **OpenConnectionForKey** dirige automatiquement la connexion vers la partition appropriée en fonction de la clé. Par conséquent, il n'est pas nécessaire de fournir les noms de la base de données et du serveur. 
 
-## <a name="see-also"></a>Voir aussi
+## <a name="see-also"></a>Consultez également la section 
 [Gestion des bases de données et des connexions dans Azure SQL Database](sql-database-manage-logins.md)
 
 [Sécurisation de votre base de données SQL](sql-database-security-overview.md)

@@ -1,6 +1,6 @@
 ---
-title: "Prise en main de la connexion des périphériques physiques tooAzure IoT Hub | Documents Microsoft"
-description: "Découvrez comment tooconnect physique des appareils et les tableaux tooAzure IoT Hub. Vos appareils peuvent envoyer la télémétrie tooIoT Hub IoT Hub peut surveiller et gérer vos appareils."
+title: "Mise en route de la connexion des appareils physiques à Azure IoT Hub | Microsoft Docs"
+description: "Découvrez comment connecter des cartes et des appareils physiques à Azure IoT Hub. Vos appareils peuvent envoyer des données de télémétrie à IoT Hub, et IoT Hub peut surveiller et gérer vos appareils."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/22/2017
 ms.author: dobett
-ms.openlocfilehash: 47ce289c438b2f495d499d724c38ddc4b3307425
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f4128b6b049aa876e170c56dcf2e40720644dc3d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-iot-hub-get-started-with-physical-devices-tutorials"></a>Didacticiels de prise en main pour les appareils physiques connectés à Azure IoT Hub
 
-Ces didacticiels présentent tooAzure IoT Hub et l’appareil hello kits de développement logiciel. didacticiels de Hello couvrent les fonctionnalités courantes que IoT scénarios toodemonstrate hello de IoT Hub. Hello didacticiels illustrent également la façon dont toocombine IoT Hub avec autres Azure services et les outils toobuild plus puissantes solutions IoT. Hello didacticiels répertoriés dans hello tableau montrent la suite vous comment les appareils IoT physiques toocreate.
+Ces tutoriels présentent Azure IoT Hub et les Kits de développement logiciel (SDK) d’appareil. Les tutoriels abordent des scénarios IoT courants pour faire la démonstration des fonctionnalités de IoT Hub. Ils illustrent également la manière dont IoT Hub peut être combiné avec d’autres services et outils Azure pour créer des solutions IoT plus puissantes. Les didacticiels répertoriés dans le tableau ci-dessous vous montrent comment créer des appareils IoT physiques.
 
 | Appareil IoT                       | Langage de programmation |
 |---------------------------------|----------------------|
@@ -33,7 +33,7 @@ Ces didacticiels présentent tooAzure IoT Hub et l’appareil hello kits de dév
 | Sparkfun ESP8266 Thing Dev      | [Arduino][Th_Ard]              |
 | Adafruit Feather M0             | [Arduino][M0_Ard]              |
 
-En outre, vous pouvez utiliser un IoT hub IoT bord passerelle tooenable périphériques tooconnect tooyour.
+En outre, vous pouvez utiliser une passerelle IoT Edge pour permettre aux appareils de se connecter à votre IoT Hub.
 
 | Appareil de passerelle               | Langage de programmation | Plateforme         |
 |------------------------------|----------------------|------------------|

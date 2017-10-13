@@ -1,5 +1,5 @@
 ---
-title: aaaAzure Mobile Engagement Windows universel applications SDK Notes de publication | Documents Microsoft
+title: "Azure Mobile Engagement - Notes de publication du Kit de développement logiciel (SDK) des applications universelles Windows | Microsoft Docs"
 description: "Azure Mobile Engagement - Notes de publication du Kit de développement logiciel (SDK) des applications Windows Universal"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/03/2016
 ms.author: piyushjo
-ms.openlocfilehash: 280bd064888f69a77d6fe0c31eafd98a0bbf724e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: dc5529a9e8f4eba867732f719ca8fff718c00d5a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="windows-universal-apps-sdk-release-notes"></a>Notes de publication du Kit de développement logiciel (SDK) des applications Windows Universal
 ## <a name="341-11032016"></a>3.4.1 (11/03/2016)
@@ -27,8 +27,8 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="340-04192016"></a>3.4.0 (04/19/2016)
 * Améliorations de la superposition Reach
-* Ajouté « TestLogLevel « API tooenable/désactivation/filtre journaux émis par hello SDK.
-* Démarrer les notifications dans l’activité fixes ciblage hello première activité s’affichée ne pas sur l’application.
+* Ajout de l'API « TestLogLevel » aux journaux de console enable/disable/filter émis par le Kit de développement logiciel (SDK).
+* Correction de l’erreur où des notifications dans l’activité ciblant la première activité n’apparaissaient pas au démarrage de l'application.
 
 ## <a name="331-02182016"></a>3.3.1 (02/18/2016)
 * Résolution des conflits entre le contenu HTML de l’annonce web et la page HTML du Kit de développement logiciel (SDK).
@@ -42,19 +42,19 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="320-11202015"></a>3.2.0 (20/11/2015)
 * Prise en charge supplémentaire pour les applications de la plateforme Windows universelle Windows 10.
-* Canal d’émetteurs partage fonctionnalité toofix canal est en conflit (désormais compatible avec Azure Notification Hubs).
-* Fixe d’incident lors de la demande d’id de périphérique hello juste après l’initialisation de hello.
+* Ajout de la fonctionnalité de partage de canal Push pour résoudre les conflits de canal (désormais compatibles avec Azure Notification Hubs).
+* Incident fixe lors de la demande de l'ID de l'appareil juste après l'initialisation.
 * Améliorations des journaux de la console.
 * Incident fixe lors de l'analyse de certaines exceptions non gérées.
 
 ## <a name="310-05212015"></a>3.1.0 (21/05/2015)
-* id d’appareil Mobile Engagement Hello est désormais basée sur un GUID généré au moment de l’installation.
+* L'ID d'appareil Mobile Engagement est désormais basé sur un GUID généré au moment de l'installation.
 
 ## <a name="301-04292015"></a>3.0.1 (29/04/2015)
-* Correction d’un bogue affectant l’initialisation du Kit de développement logiciel hello sur des applications Windows Phone WinRT.
+* Correction d'un bogue affectant l'initialisation du Kit de développement logiciel (SDK) sur certaines applications Windows Phone WinRT.
 
 ## <a name="300-04032015"></a>3.0.0 -> (03/04/2015)
-* Présentation de hello Kit de développement logiciel de Mobile Engagement pour une application universelle (Windows et Windows Phone WinRT).
+* Présentation du Kit de développement logiciel (SDK) de Mobile Engagement pour application Universal (Windows et Windows Phone WinRT).
 * Icône de notification par défaut mise à jour.
 * Envoyer des commentaires sur l’action de notification du système lorsque vous cliquez sur une notification.
 * Correction d’une notification système qui est parfois relue dans l'application après avoir été cliquée.

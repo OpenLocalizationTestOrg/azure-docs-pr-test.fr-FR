@@ -1,6 +1,6 @@
 ---
-title: "aaaPublish un cluster à distance de tooa d’application avec Visual Studio | Documents Microsoft"
-description: "Découvrez comment toopublish une infrastructure de service distant tooa application cluster à l’aide de Visual Studio."
+title: Publier une application sur un cluster distant avec Visual Studio | Microsoft Docs
+description: "Découvrez comment publier une application sur un cluster Service Fabric distant à l’aide de Visual Studio."
 services: service-fabric
 documentationcenter: na
 author: cawams
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 07/29/2016
 ms.author: cawa
-ms.openlocfilehash: d0f06f120cc7e22f3f8e73ce0970e1da5823e647
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: c440c520d84fc503ff9e705555449e92555d4721
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="deploy-and-remove-applications-using-visual-studio"></a>Déployer et supprimer des applications avec Visual Studio
 > [!div class="op_single_selector"]
@@ -30,82 +30,82 @@ ms.lasthandoff: 10/06/2017
 
 <br/>
 
-Hello extension Azure Service Fabric pour Visual Studio fournit un moyen facile, reproductibles et scriptable de toopublish un cluster de Service Fabric application tooa.
+L’extension Azure Service Fabric pour Visual Studio offre un moyen facile et réutilisable de publier une application sur un cluster Service Fabric. Il est aussi possible de créer des scripts pour cette publication.
 
-## <a name="hello-artifacts-required-for-publishing"></a>artefacts Hello requis pour la publication
+## <a name="the-artifacts-required-for-publishing"></a>Artefacts exigés pour la publication
 ### <a name="deploy-fabricapplicationps1"></a>Deploy-FabricApplication.ps1
-Il s’agit d’un script PowerShell qui utilise un chemin d’accès au profil de publication comme paramètre pour publier des applications Service Fabric. Étant donné que ce script fait partie de votre application, vous êtes toomodify Bienvenue en tant que nécessaire pour votre application.
+Il s’agit d’un script PowerShell qui utilise un chemin d’accès au profil de publication comme paramètre pour publier des applications Service Fabric. Étant donné que ce script fait partie de votre application, vous avez la possibilité de le modifier en fonction des besoins de votre application.
 
 ### <a name="publish-profiles"></a>Profils de publication
-Un dossier de projet d’application Service Fabric hello appelé **PublishProfiles** contient des fichiers XML qui stockent des informations essentielles pour la publication d’une application, telles que :
+Un dossier dans le projet d’application Service Fabric appelé **PublishProfiles** contient les fichiers XML qui stockent les informations essentielles à la publication d’une application, par exemple :
 
 * les paramètres de connexion au cluster Service Fabric ;
-* Fichier de paramètres de chemin d’accès tooan application
+* le chemin au fichier de paramètres de l’application ;
 * les paramètres de mise à niveau.
 
-Par défaut, votre application inclut trois profils de publication : Local.1Node.xml, Local.5Node.xml, et Cloud.xml. Vous pouvez ajouter d’autres profils en copiant et collant un des fichiers par défaut de hello.
+Par défaut, votre application inclut trois profils de publication : Local.1Node.xml, Local.5Node.xml, et Cloud.xml. Vous pouvez ajouter d’autres profils en copiant et en collant l’un des fichiers par défaut.
 
 ### <a name="application-parameter-files"></a>Fichiers de paramètre d’application
-Un dossier de projet d’application Service Fabric hello appelé **ApplicationParameters** contient des fichiers XML pour les valeurs de paramètre de manifeste spécifié par l’utilisateur une application. Les fichiers manifeste de l’application peuvent être paramétrés de sorte que vous pouvez utiliser des valeurs différentes pour les paramètres de déploiement. toolearn en savoir plus sur le paramétrage de votre application, consultez [gérer plusieurs environnements dans le Service Fabric](service-fabric-manage-multiple-environment-app-configuration.md).
+Un dossier du projet d’application Service Fabric appelé **ApplicationParameters** contient les fichiers XML pour les valeurs de paramètre du manifeste d’application spécifié par l’utilisateur. Les fichiers manifeste de l’application peuvent être paramétrés de sorte que vous pouvez utiliser des valeurs différentes pour les paramètres de déploiement. Pour plus d’informations sur le paramétrage de votre application, consultez [Gérer plusieurs environnements dans Service Fabric](service-fabric-manage-multiple-environment-app-configuration.md).
 
 > [!NOTE]
-> Pour les services d’acteur, vous devez créer le projet de hello tout d’abord avant de tenter de fichier de hello tooedit dans un éditeur ou via hello boîte de dialogue Publier. Il s’agit, car la partie des fichiers de manifeste hello sera générée lors de la génération de hello.
+> Pour les services d’acteur, vous devez créer le projet avant d’essayer de modifier le fichier dans un éditeur ou par le biais de la boîte de dialogue Publier. Cela est dû au fait que les fichiers de manifeste sont en partie générés pendant la génération.
 
-## <a name="toopublish-an-application-using-hello-publish-service-fabric-application-dialog-box"></a>toopublish une application à l’aide de la boîte de dialogue Publier une Application de Service Fabric hello
-Hello étapes suivantes montrent comment une application à l’aide de toopublish hello **publier une Application de Service Fabric** boîte de dialogue fournie par hello outils de Visual Studio Service Fabric.
+## <a name="to-publish-an-application-using-the-publish-service-fabric-application-dialog-box"></a>Publier une application à l’aide de la boîte de dialogue Publier une application Service Fabric
+Les étapes suivantes montrent comment publier une application à l’aide de la boîte de dialogue **Publier une application Service Fabric** fournie par les outils Service Fabric de Visual Studio.
 
-1. Dans le menu contextuel de hello du projet d’Application Service Fabric hello, choisissez **publier...** tooview hello **publier une Application de Service Fabric** boîte de dialogue.
+1. Dans le menu contextuel du projet d’application Service Fabric, sélectionnez **Publier...** pour afficher la boîte de dialogue **Publier une application Service Fabric**.
    
-    ![Hello ** boîte de dialogue Publier Service Fabric Application **][0]
+    ![Boîte de dialogue **Publier une application Service Fabric**][0]
    
-    fichier Hello sélectionné Bonjour **cibler profile** zone de liste déroulante est où tous les paramètres de hello, à l’exception **manifeste versions**, sont enregistrés. Vous pouvez réutiliser un profil existant ou créez-en un en choisissant **< gérer les profils... >** Bonjour **cibler profile** zone de liste déroulante. Lorsque vous choisissez un profil de publication, son contenu s’affichent dans les champs de correspondance hello de boîte de dialogue hello. toosave vos modifications à tout moment, choisissez hello **enregistrer le profil** lien.    
-2. Bonjour **point de terminaison de connexion** section, spécifiez le point de terminaison de publication local ou distant Service Fabric d’un cluster. modification ou tooadd hello du point de terminaison de connexion, cliquez sur hello **connexion de point de terminaison** liste déroulante. liste de Hello affiche hello disponible l’infrastructure du Service cluster connexion points de terminaison toowhich que vous pouvez publier en fonction de vos abonnements Azure. Notez que si vous n’êtes pas déjà connecté dans tooVisual Studio, vous serez invité à toodo ainsi.
+    Le fichier sélectionné dans la liste déroulante **Profil cible** est l’emplacement où tous les paramètres sont enregistrés, à l’exception des **versions du manifeste**. Vous pouvez soit réutiliser un profil existant, soit en créer un en choisissant **<Gérer les profils...>** dans la zone de liste déroulante **Profil cible**. Quand vous choisissez un profil de publication, son contenu s’affiche dans les champs correspondants de la boîte de dialogue. Pour enregistrer vos modifications à tout moment, cliquez sur le lien **Enregistrer le profil** .    
+2. Dans la section **Point de terminaison de la connexion** , spécifiez un point de terminaison de publication local ou distant sur le cluster Service Fabric. Pour ajouter ou modifier le point de terminaison de connexion, cliquez sur la liste déroulante **Point de terminaison de connexion** . Cette liste affiche les points de terminaison de connexion disponibles sur le cluster Service Fabric et sur lesquels vous pouvez publier selon vos abonnements Azure. Notez que si vous n’êtes pas déjà connecté à Visual Studio, vous serez invité à le faire.
    
-    Utilisez hello cluster sélection boîte de dialogue zone toochoose jeu hello des clusters et des abonnements disponibles.
+    Utilisez la boîte de dialogue de sélection de cluster pour faire votre choix parmi l’ensemble des abonnements et clusters disponibles.
    
-    ![Hello ** boîte de dialogue Sélectionnez Service Fabric Cluster **][1]
+    ![Boîte de dialogue **Sélectionner un cluster Service Fabric**][1]
    
    > [!NOTE]
-   > Si vous souhaitez que le point de terminaison toopublish tooan arbitraire (par exemple, un cluster tiers), consultez hello **publication point de terminaison de cluster arbitraire tooan** section ci-dessous.
+   > Si vous souhaitez publier sur un point de terminaison arbitraire (par exemple, un cluster Party), consultez la section **Publication sur un point de terminaison de cluster arbitraire** ci-dessous.
    > 
    > 
    
-    Une fois que vous choisissez un point de terminaison, Visual Studio valide cluster Service Fabric de hello connexion toohello sélectionné. Si le cluster de hello n’est pas sécurisé, Visual Studio peut se connecter tooit immédiatement. Toutefois, si le cluster de hello est sécurisé, vous devez tooinstall un certificat sur votre ordinateur local avant de continuer. Consultez [tooconfigure comment sécuriser les connexions](service-fabric-visualstudio-configure-secure-connections.md) pour plus d’informations. Lorsque vous avez terminé, choisissez hello **OK** bouton. cluster sélectionné de Hello s’affiche dans hello **publier une Application de Service Fabric** boîte de dialogue.
-3. Bonjour **fichier de paramètres d’Application** liste déroulante, accédez le fichier de paramètres d’application tooan. Un fichier de paramètres d’application conserve les valeurs des paramètres spécifiés par l’utilisateur dans le fichier manifeste d’application hello. tooadd ou modifier un paramètre, choisissez hello **modifier** bouton. Entrez ou modifiez la valeur du paramètre hello Bonjour **paramètres** grille. Lorsque vous avez terminé, choisissez hello **enregistrer** bouton.
+    Une fois que vous avez choisi un point de terminaison, Visual Studio valide la connexion au cluster Service Fabric sélectionné. Si le cluster n’est pas sécurisé, Visual Studio peut vous y connecter immédiatement. Toutefois, si le cluster est sécurisé, vous devez installer un certificat sur votre ordinateur local avant de continuer. Consultez [Configuration de connexions sécurisées](service-fabric-visualstudio-configure-secure-connections.md) pour plus d’informations. Lorsque vous avez terminé, choisissez le bouton **OK** . Le cluster sélectionné s’affiche dans la boîte de dialogue **Publier une application Service Fabric** .
+3. Dans la zone de liste déroulante **Fichier de paramètres d’application** , accédez à un fichier de paramètres d’application. Ce dernier contient les valeurs spécifiées par l’utilisateur pour les paramètres du fichier manifeste de l’application. Pour ajouter ou modifier un paramètre, cliquez sur le bouton **Modifier** . Entrez ou modifiez la valeur du paramètre dans la grille **Paramètres** . Lorsque vous avez terminé, cliquez sur le bouton **Enregistrer** .
    
-    ![Hello ** boîte de dialogue Modifier les paramètres **][2]
-4. Hello d’utilisation **mise à niveau hello Application** toospecify de case à cocher si cette action de publication est une mise à niveau. Les actions de mise à niveau sont différentes des actions de publication normales. Consultez la page [Mise à niveau des applications Service Fabric](service-fabric-application-upgrade.md) pour obtenir la liste des différences. paramètres de mise à niveau tooconfigure, choisissez hello **configurer les paramètres de mise à niveau** lien. éditeur de mise à niveau paramètre Hello s’affiche. Consultez [configurer la mise à niveau hello d’une application de Service Fabric](service-fabric-visualstudio-configure-upgrade.md) toolearn plus d’informations sur les paramètres de mise à niveau.
-5. Choisissez hello **Versions de manifeste...** hello tooview de bouton **modifier les Versions** boîte de dialogue. Vous devez tooupdate application et les versions de service pour un emplacement tootake mise à niveau. Consultez [didacticiel de mise à niveau l’application Service Fabric](service-fabric-application-upgrade-tutorial.md) toolearn comment les application et les versions de manifeste de service avoir un impact sur une mise à niveau.
+    ![Boîte de dialogue **Modifier les paramètres**][2]
+4. Utilisez la case à cocher **Mettre à niveau l’application** pour spécifier si cette action de publication est une mise à niveau. Les actions de mise à niveau sont différentes des actions de publication normales. Consultez la page [Mise à niveau des applications Service Fabric](service-fabric-application-upgrade.md) pour obtenir la liste des différences. Pour configurer les paramètres de mise à niveau, cliquez sur le lien **Configurer les paramètres de mise à niveau** . L’éditeur de paramètres de mise à niveau s’affiche. Consultez [Configuration de la mise à niveau d’une application Service Fabric](service-fabric-visualstudio-configure-upgrade.md) pour en savoir plus sur les paramètres de mise à niveau.
+5. Cliquez sur le bouton **Versions du manifeste...** pour afficher la boîte de dialogue **Modifier les versions**. Vous devez mettre à jour les applications et les versions de service pour que la mise à niveau puisse se dérouler. Pour savoir comment les versions de manifeste de l’application et du service affectent la mise à niveau, consultez [Didacticiel sur la mise à niveau d’une application Service Fabric](service-fabric-application-upgrade-tutorial.md) .
    
-    ![Hello ** boîte de dialogue Modifier les Versions **][3]
+    ![Boîte de dialogue **Modifier les versions**][3]
    
-    Si l’application hello et les versions de service utilisent le contrôle de version sémantique comme 1.0.0 ou des valeurs numériques au format hello 1.0.0.0, sélectionnez hello **mettre à jour automatiquement les applications et les versions de service** option. Lorsque vous choisissez cette option, le service de hello et numéros de version d’application sont automatiquement mis à jour chaque fois qu’un code, la configuration, ou version du package est mis à jour. Si vous préférez les versions hello tooedit manuellement, désactivez hello case à cocher toodisable cette fonctionnalité.
+    Si la version de l’application et la version du service utilisent le contrôle de version sémantique comme 1.0.0 ou des valeurs numériques au format 1.0.0.0, sélectionnez l’option **Mettre à jour automatiquement la version de l’application et les versions de service** . Lorsque vous choisissez cette option, les numéros de version du service et de l’application sont automatiquement mis à jour chaque fois que la version du code, de la configuration ou du package de données est mise à jour. Si vous préférez modifier les versions manuellement, désactivez la case à cocher pour désactiver cette fonctionnalité.
    
    > [!NOTE]
-   > Pour toutes les tooappear entrées de package pour un projet d’acteur, tout d’abord créer la hello projet toogenerate entrées hello dans les fichiers de manifeste de Service hello.
+   > Pour que toutes les entrées de package s’affichent pour un projet d’acteur, créez d’abord le projet pour générer les entrées dans les fichiers de manifeste de service.
    > 
    > 
-6. Lorsque vous avez terminé en spécifiant les paramètres nécessaires hello, choisissez hello **publier** bouton toopublish votre toohello d’application sélectionné cluster Service Fabric. Hello les paramètres que vous avez spécifiés sont appliqués toohello les processus de publication.
+6. Lorsque vous avez fini de spécifier tous les paramètres nécessaires, cliquez sur le bouton **Publier** pour publier votre application sur le cluster Service Fabric sélectionné. Les paramètres que vous avez spécifiés sont appliqués au processus de publication.
 
-## <a name="publish-tooan-arbitrary-cluster-endpoint-including-party-clusters"></a>Publier le point de terminaison de cluster arbitraire tooan (y compris les clusters de tiers)
-Hello expérience de publication de Visual Studio est optimisée pour la publication des clusters tooremote associés à un de vos abonnements Azure. Toutefois, il est possible toopublish tooarbitrary points de terminaison (tels que les clusters de partie de l’infrastructure de Service) par directement modification hello XML du profil de publication. Comme décrit ci-dessus, trois profils de publication sont fournies par défaut--**Local.1Node.xml**, **Local.5Node.xml**, et **Cloud.xml**--mais vous êtes toocreate Bienvenue profils supplémentaires pour différents environnements. Par exemple, vous pourriez toocreate un profil de publication des clusters tooparty, peut-être nommés **Party.xml**.
+## <a name="publish-to-an-arbitrary-cluster-endpoint-including-party-clusters"></a>Publier sur un point de terminaison de cluster arbitraire (clusters Party inclus)
+L’expérience de la publication de Visual Studio est optimisée pour la publication sur les clusters distants associés à l’un de vos abonnements Azure. Toutefois, il est possible de publier sur des points de terminaison arbitraires (notamment des clusters Party Service Fabric) en modifiant directement le profil de publication XML. Comme décrit ci-dessus, trois profils de publication sont fournis par défaut (**Local.1Node.xml**, **Local.5Node.xml** et **Cloud.xml**), mais vous pouvez créer des profils supplémentaires pour différents environnements. Par exemple, vous souhaiterez peut-être créer un profil pour la publication sur les clusters Party, éventuellement nommés **Party.xml**.
 
-Si vous vous connectez tooan sécurisée de cluster, tout ce qui a requis est hello cluster connexion point de terminaison comme `partycluster1.eastus.cloudapp.azure.com:19000`. Dans ce cas, publier de point de terminaison de connexion hello Bonjour profil ressemble quelque chose comme ceci :
+Si vous vous connectez à un cluster non sécurisé, vous avez simplement besoin du point de terminaison de connexion du cluster, par exemple `partycluster1.eastus.cloudapp.azure.com:19000`. Dans ce cas, le point de terminaison de connexion dans le profil de publication doit ressembler à ceci :
 
 ```XML
 <ClusterConnectionParameters ConnectionEndpoint="partycluster1.eastus.cloudapp.azure.com:19000" />
 ```
 
-  Si vous vous connectez le cluster sécurisée de tooa, vous devez également tooprovide les détails de hello du certificat de client hello de hello toobe de magasin local utilisé pour l’authentification. Pour plus d’informations, consultez [cluster Service Fabric de configuration des connexions sécurisées tooa](service-fabric-visualstudio-configure-secure-connections.md).
+  Si vous vous connectez à un cluster sécurisé, vous devrez également fournir les informations du certificat client à partir du magasin local à utiliser pour l’authentification. Pour plus d’informations, consultez [Configuration de connexions sécurisées à un cluster Service Fabric](service-fabric-visualstudio-configure-secure-connections.md).
 
-  Une fois votre profil de publication est configurée, vous pouvez le référencer dans hello boîte de dialogue Publier, comme illustré ci-dessous.
+  Une fois votre profil de publication configuré, vous pouvez le référencer dans la boîte de dialogue de publication comme indiqué ci-dessous.
 
   ![Nouveau profil de publication dans la boîte de dialogue Publier][4]
 
-  Notez que dans ce cas, hello nouveau profil de publication pointe tooone hello par défaut paramètre de fichiers d’application. Cela est approprié si vous souhaitez toopublish hello même application configuration tooa plusieurs environnements. En revanche, dans le cas où vous souhaitez toohave différentes configurations pour chaque environnement que vous souhaitez toopublish à, il serait logique toocreate un fichier de paramètres d’application correspondant.
+  Notez que dans ce cas, le nouveau profil de publication pointe vers l’un des fichiers de paramètre d’application par défaut. Cette opération est appropriée si vous souhaitez publier la même configuration d’application sur plusieurs environnements. En revanche, dans les cas où vous préférez avoir différentes configurations pour chaque environnement sur lequel vous souhaitez publier, il serait judicieux de créer un fichier de paramètre d’application correspondant.
 
 ## <a name="next-steps"></a>Étapes suivantes
-toolearn comment le processus de publication hello tooautomate dans un environnement d’intégration continue, consultez [configurer l’intégration continue de l’infrastructure de Service](service-fabric-set-up-continuous-integration.md).
+Pour savoir comment automatiser le processus de publication dans un environnement d’intégration continue, consultez [Configurer l’intégration continue Service Fabric](service-fabric-set-up-continuous-integration.md).
 
 [0]: ./media/service-fabric-publish-app-remote-cluster/PublishDialog.png
 [1]: ./media/service-fabric-publish-app-remote-cluster/SelectCluster.png

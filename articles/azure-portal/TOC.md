@@ -1,22 +1,24 @@
 # Vue d'ensemble
-## [À propos de hello portail Azure](../azure-portal-overview.md)
+## [À propos du portail Azure](../azure-portal-overview.md)
 # Didacticiels
-## [DevOps avec hello portail Azure](tutorial-azureportal-devops.md)
+## [DevOps avec le portail Azure](tutorial-azureportal-devops.md)
 # Concepts
 ## [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)
 ## [Raccourcis clavier](azure-portal-keyboard-shortcuts.md)
 ## [Navigateurs et appareils pris en charge](../azure-preview-portal-supported-browsers-devices.md)
-# Tooguides de procédure
+## [Structure des tableaux de bord Azure](azure-portal-dashboards-structure.md)
+# Procédures
 ## Déployer
 ### [Créer des modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md)
 ### [Déployer à l’aide d’un modèle Resource Manager](../azure-resource-manager/resource-group-template-deploy.md)
 ### [Créer et partager des tableaux de bord Azure](azure-portal-dashboards.md)
+### [Création par programmation des tableaux de bord Azure](azure-portal-dashboards-create-programmatically.md)
 ## Gérer
 ### [Activer le contraste élevé ou modifier le thème](azure-portal-change-theme-high-contrast.md)
-### [Utiliser les ressources de portail toomanage](../azure-resource-manager/resource-group-portal.md)
+### [Utiliser le portail pour gérer les ressources](../azure-resource-manager/resource-group-portal.md)
 ### [Gérer l’accès à l’aide du contrôle d’accès en fonction du rôle](../active-directory/role-based-access-control-configure.md)
 ### [Partager des tableaux de bord à l’aide du contrôle d’accès en fonction du rôle](azure-portal-dashboard-share-access.md)
-### [Utiliser des balises tooorganize ressources](../azure-resource-manager/resource-group-using-tags.md)
+### [Utiliser des balises pour organiser les ressources](../azure-resource-manager/resource-group-using-tags.md)
 ### [Mettre à l’échelle vos ressources](../monitoring-and-diagnostics/insights-how-to-scale.md)
 ### [Créer un principal du service Azure](../azure-resource-manager/resource-group-create-service-principal-portal.md)
 ## Surveiller

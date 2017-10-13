@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Configuration de ZenDesk pour l’approvisionnement automatique d’utilisateurs avec Azure Active Directory | Microsoft Docs"
-description: "Découvrez comment tooconfigure Azure Active Directory tooautomatically disposition et la disposition de l’utilisateur des comptes tooZenDesk."
+description: "Découvrez comment configurer Azure Active Directory pour approvisionner et retirer automatiquement des comptes d’utilisateur sur ZenDesk."
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,87 +14,87 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: asmalser-msft
-ms.openlocfilehash: 200e8790ec1755f5cf927274ceb38527dd993f3c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1a1414eefd20e6d7c025da08cfd5ae7c45daad33
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-configuring-zendesk-for-automatic-user-provisioning"></a>Didacticiel : Configuration de ZenDesk pour l’approvisionnement automatique d’utilisateurs
 
 
-objectif Hello de ce didacticiel est tooshow vous hello étapes que vous devez tooperform dans ZenDesk et Azure AD tooautomatically approvisionner et configurer des comptes d’utilisateur à partir d’Azure AD tooZenDesk. 
+L’objectif de ce didacticiel est de vous montrer les étapes à effectuer dans ZenDesk et Azure AD pour approvisionner et retirer automatiquement des comptes d’utilisateur d’Azure AD vers ZenDesk. 
 
 ## <a name="prerequisites"></a>Composants requis
 
-scénario de Hello décrite dans ce didacticiel part du principe que vous avez déjà hello éléments suivants :
+Le scénario décrit dans ce didacticiel part du principe que vous disposez des éléments suivants :
 
 *   Un locataire Azure Active Directory
-*   Un locataire ZenDesk avec hello [plan d’entreprise](https://www.zendesk.com/product/pricing/) ou mieux activé 
+*   Un locataire ZenDesk avec le [plan Entreprise](https://www.zendesk.com/product/pricing/) ou mieux activé 
 *   Un compte d’utilisateur dans ZenDesk avec des autorisations d’administrateur 
 
 > [!NOTE]
-> Hello mise en service d’intégration de Azure AD s’appuie sur hello [API REST de ZenDesk](https://developer.zendesk.com/rest_api/docs/core/introduction#the-api), qui est équipes tooZenDesk disponible sur le plan essentielles de hello ou supérieures.
+> L’intégration de l’approvisionnement Azure AD s’appuie sur l’[API REST ZenDesk](https://developer.zendesk.com/rest_api/docs/core/introduction#the-api), qui est disponible pour les équipes ZenDesk disposant du forfait Essentiel ou mieux.
 
-## <a name="assigning-users-toozendesk"></a>Affectation d’utilisateurs tooZenDesk
+## <a name="assigning-users-to-zendesk"></a>Affectation d’utilisateurs à ZenDesk
 
-Azure Active Directory utilise un concept appelé toodetermine « affectations » les utilisateurs qui doivent recevoir l’accès tooselected applications. Dans le contexte de hello de configuration de compte automatique d’utilisateurs, seuls les utilisateurs de hello et les groupes qui ont été « affectés » application tooan dans Azure AD sont synchronisés. 
+Azure Active Directory utilise un concept appelé « affectations » pour déterminer les utilisateurs devant recevoir l’accès aux applications sélectionnées. Dans le cadre de l’approvisionnement automatique de comptes d’utilisateur, seuls les utilisateurs et les groupes qui ont été « affectés » à une application dans Azure AD sont synchronisés. 
 
-Avant de configurer et de l’activation de hello service de configuration, vous devez toodecide quels utilisateurs ou des groupes dans Azure AD représentent hello utilisateurs qui doivent accéder à application de ZenDesk tooyour. Après choisi, vous pouvez attribuer à ces applications de ZenDesk tooyour les utilisateurs en suivant les instructions hello ici :
+Avant de configurer et d’activer le service d’approvisionnement, vous devez déterminer quels utilisateurs et/ou groupes dans Azure AD représentent les utilisateurs qui ont besoin d’accéder à votre application ZenDesk. Une fois que vous avez choisi, vous pouvez affecter ces utilisateurs à votre application ZenDesk en suivant les instructions fournies ici :
 
-[Affecter une application d’entreprise tooan utilisateur ou un groupe](active-directory-coreapps-assign-user-azure-portal.md)
+[Affecter un utilisateur ou un groupe à une application d’entreprise](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-toozendesk"></a>Conseils importants pour l’affectation d’utilisateurs tooZenDesk
+### <a name="important-tips-for-assigning-users-to-zendesk"></a>Conseils importants pour l’affectation d’utilisateurs à ZenDesk
 
-*   Il est recommandé qu’un seul utilisateur Azure AD est attribué tooZenDesk tootest hello est mise en service de configuration. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
+*   Nous vous recommandons de n’assigner qu’un seul utilisateur Azure AD à ZenDesk afin de tester la configuration de l’approvisionnement. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
 
-*   Lorsque vous affectez un tooZenDesk d’utilisateur, vous devez sélectionner soit hello **utilisateur** rôle, ou un autre valide spécifique à l’application (si disponible) dans la boîte de dialogue attribution hello. Hello **accès par défaut** rôle ne fonctionne pas pour la configuration, et ces utilisateurs sont ignorés.
+*   Quand vous affectez un utilisateur à ZenDesk, vous devez sélectionner le rôle **utilisateur** ou un autre rôle valide propre à l’application (si disponible) dans la boîte de dialogue d’affectation. Le rôle **Accès par défaut** ne fonctionne pas pour l’approvisionnement, et ces utilisateurs sont ignorés.
 
 > [!NOTE]
-> Comme une fonctionnalité ajoutée, hello configuration service lit tous les rôles personnalisés définis dans Zendesk et les importe dans Azure AD où ils peuvent être sélectionnées dans la boîte de dialogue Sélectionner un rôle hello. Ces rôles seront visibles dans hello portail Azure après hello mise en service du service est activé et un cycle de synchronisation est terminée.
+> En guise de fonctionnalité ajoutée, le service d’approvisionnement lit les rôles personnalisés définis dans Zendesk et les importe dans Azure AD où vous pouvez les sélectionner dans la boîte de dialogue Select Role. Ces rôles sont visibles dans le portail Azure une fois que le service d’approvisionnement a été activé et qu’un cycle de synchronisation s’est achevé.
 
-## <a name="configuring-user-provisioning-toozendesk"></a>Configuration tooZenDesk de configuration de l’utilisateur 
+## <a name="configuring-user-provisioning-to-zendesk"></a>Configuration de l’approvisionnement des utilisateurs vers ZenDesk 
 
-Cette section vous guide à travers de la connexion du compte d’utilisateur de votre tooZenDesk AD Azure API de configuration et configurez hello toocreate du service de configuration, de mettre à jour et de désactiver les comptes d’utilisateur affecté dans ZenDesk en fonction de l’affectation d’utilisateurs et de groupes dans Azure AD.
+Cette section explique comment connecter votre annuaire Azure AD à l’API d’approvisionnement de comptes d’utilisateur de ZenDesk pour créer, mettre à jour et désactiver les comptes d’utilisateur affectés dans ZenDesk en fonction des attributions d’utilisateurs et de groupes dans Azure AD.
 
 > [!TIP] 
-> Vous pouvez également choisir tooenabled basé sur SAML Single Sign-On pour ZenDesk, en suivant les instructions hello fournies dans [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
+> Vous pouvez également choisir d’activer l’authentification unique basée sur SAML pour ZenDesk en suivant les instructions fournies dans le [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
 
 
-### <a name="configure-automatic-user-account-provisioning-toozendesk-in-azure-ad"></a>Configurer le compte d’automatique de l’utilisateur de configuration tooZenDesk dans Azure AD
+### <a name="configure-automatic-user-account-provisioning-to-zendesk-in-azure-ad"></a>Configurer l’approvisionnement automatique de comptes d’utilisateur vers ZenDesk dans Azure AD
 
 
-1. Bonjour [portail Azure](https://portal.azure.com), parcourir toohello **Azure Active Directory > applications d’entreprise > toutes les applications** section.
+1. Dans le [portail Azure](https://portal.azure.com), accédez à la section **Azure Active Directory > Applications d’entreprise > Toutes les applications**.
 
-2. Si vous avez déjà configuré ZenDesk pour l’authentification unique, recherchez votre instance de ZenDesk à l’aide du champ de recherche hello. Sinon, sélectionnez **ajouter** et recherchez **ZenDesk** dans la galerie d’applications hello. Sélectionnez ZenDesk à partir des résultats de recherche hello et ajoutez-le tooyour la liste des applications.
+2. Si vous avez déjà configuré ZenDesk pour l’authentification unique, recherchez votre instance de ZenDesk à l’aide du champ de recherche. Sinon, sélectionnez **Ajouter** et recherchez **ZenDesk** dans la galerie d’applications. Sélectionnez ZenDesk dans les résultats de recherche et ajoutez-le à votre liste d’applications.
 
-3. Sélectionnez votre instance de ZenDesk, puis hello **Provisioning** onglet.
+3. Sélectionnez votre instance de ZenDesk, puis sélectionnez l’onglet **Approvisionnement**.
 
-4. Ensemble hello **Mode d’approvisionnement** trop**automatique**.
+4. Définissez le **Mode d’approvisionnement** sur **Automatique**.
 
     ![Approvisionnement de ZenDesk](./media/active-directory-saas-zendesk-provisioning-tutorial/ZenDesk1.png)
 
-5. Sous hello **informations d’identification administrateur** section, entrée hello **Admin Username & tokenkey & domaine** généré par le compte de votre ZenDesk (vous pouvez rechercher le jeton de hello sous votre compte : **Admin**   >  **API** > **paramètres**). 
+5. Dans la section **Informations d’identification administrateur**, entrez le **Admin Username&clé_jeton&Domain** généré par votre compte ZenDesk (vous pouvez trouver le jeton sous votre compte : **Admin** > **API** > **Settings**). 
 
     ![Approvisionnement de ZenDesk](./media/active-directory-saas-zendesk-provisioning-tutorial/ZenDesk2.png)
 
-6. Bonjour portail Azure, cliquez sur **tester la connexion** tooensure AD Azure peut se connecter tooyour ZenDesk application. Si hello connexion échoue, vérifiez que votre compte ZenDesk dispose d’autorisations d’administrateur et recommencez l’étape 5.
+6. Dans le portail Azure, cliquez sur **Tester la connexion** pour vérifier qu’Azure AD peut se connecter à votre application ZenDesk. Si la connexion échoue, vérifiez que votre compte ZenDesk dispose des autorisations d’administrateur et réessayez l’étape 5.
 
-7. Entrez hello adresse de messagerie d’une personne ou un groupe qui doit recevoir des notifications d’erreur approvisionnement hello **courrier électronique de Notification** champ et la case à cocher de vérification hello « envoient une notification par courrier électronique lorsqu’une défaillance se produit ».
+7. Entrez l’adresse e-mail d’une personne ou d’un groupe qui doit recevoir les notifications d’erreur d’approvisionnement dans le champ **E-mail de notification**, puis cochez la case « Envoyer une notification par e-mail en cas de défaillance ».
 
 8. Cliquez sur **Enregistrer**. 
 
-9. Sous la section des mappages de hello, sélectionnez **tooZenDesk de synchronisation Azure Active Directory Users**.
+9. Dans la section Mappages, sélectionnez **Synchroniser les utilisateurs Azure Active Directory avec ZenDesk**.
 
-10. Bonjour **des mappages d’attributs** section, passez en revue les attributs utilisateur hello qui sont synchronisés à partir d’Azure AD tooZenDesk. Hello attributs sélectionnés en tant que **correspondance** propriétés sont des comptes d’utilisateur hello toomatch utilisés dans ZenDesk pour les opérations de mise à jour. Sélectionnez toocommit de bouton hello enregistrer toutes les modifications.
+10. Dans la section **Mappages des attributs**, passez en revue les attributs utilisateur qui sont synchronisés d’Azure AD vers ZenDesk. Les attributs sélectionnés en tant que propriétés de **Correspondance** sont utilisés pour faire correspondre les comptes d’utilisateur dans ZenDesk pour les opérations de mise à jour. Cliquez sur le bouton Enregistrer pour valider les modifications.
 
-11. tooenable hello service de configuration d’Azure AD pour ZenDesk, modification hello **état d’approvisionnement** trop**sur** Bonjour **paramètres** section
+11. Pour activer le service d’approvisionnement Azure AD pour ZenDesk, modifiez le paramètre **État d’approvisionnement** sur **Activé** dans la section **Paramètres**.
 
 12. Cliquez sur **Enregistrer**. 
 
-Cette opération démarre la synchronisation initiale d’utilisateurs et/ou groupes affectés tooZenDesk Bonjour les utilisateurs et la section groupes de hello. la synchronisation initiale Hello prend tooperform plus de temps que les synchronisations suivantes, qui se produisent toutes les 20 minutes environ tant que service de hello est en cours d’exécution. Vous pouvez utiliser hello **détails de synchronisation** section toomonitor cours et suivre des rapports d’activité tooprovisioning des liens, qui décrivent toutes les actions effectuées par hello service de configuration.
+Cette opération démarre la synchronisation initiale des utilisateurs et/ou des groupes affectés à ZenDesk dans la section Utilisateurs et Groupes. La synchronisation initiale prend plus de temps que les synchronisations suivantes, qui se produisent environ toutes les 20 minutes tant que le service est en cours d’exécution. Vous pouvez utiliser la section **Détails de la synchronisation** pour surveiller la progression et suivre les liens vers les rapports d’activité d’approvisionnement, qui décrivent toutes les actions effectuées par le service d’approvisionnement.
 
-Pour plus d’informations sur l’approvisionnement hello Azure AD tooread du mode de connexion, consultez [création de rapports sur la configuration de compte automatique d’utilisateurs](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
+Pour plus d’informations sur la lecture des journaux d’approvisionnement Azure AD, consultez [Création de rapports sur l’approvisionnement automatique de comptes d’utilisateur](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
@@ -104,4 +104,4 @@ Pour plus d’informations sur l’approvisionnement hello Azure AD tooread du m
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Découvrez comment tooreview se connecte et obtenir des rapports sur l’activité de configuration](active-directory-saas-provisioning-reporting.md)
+* [Découvrez comment consulter les journaux et obtenir des rapports sur l’activité d’approvisionnement](active-directory-saas-provisioning-reporting.md)

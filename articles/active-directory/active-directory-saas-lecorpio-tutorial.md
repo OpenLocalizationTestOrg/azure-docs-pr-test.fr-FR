@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Lecorpio | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Lecorpio."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Lecorpio."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,111 +13,111 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/02/2017
 ms.author: jeedes
-ms.openlocfilehash: 963eb36678c589f942f63c7ab555161255324717
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 35c94e2d9d8a938971f85ea732a74a7e1655545e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-lecorpio"></a>Didacticiel : Intégration d’Azure Active Directory à Lecorpio
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Lecorpio avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Lecorpio à Azure Active Directory (Azure AD).
 
-Intégration Lecorpio à Azure AD offre hello avantages suivants :
+L’intégration de Lecorpio à Azure AD offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooLecorpio
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooLecorpio (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à Lecorpio
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Lecorpio (via l’authentification unique) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Prérequis
 
-tooconfigure intégration d’Azure AD avec Lecorpio, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à Lecorpio, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Lecorpio pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de Lecorpio à partir de la galerie de hello
+1. Ajout de Lecorpio à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-lecorpio-from-hello-gallery"></a>Ajout de Lecorpio à partir de la galerie de hello
-intégration de hello tooconfigure de Lecorpio dans Azure AD, vous devez tooadd Lecorpio à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-lecorpio-from-the-gallery"></a>Ajout de Lecorpio à partir de la galerie
+Pour configurer l’intégration de Lecorpio à Azure AD, vous devez ajouter Lecorpio à partir de la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd Lecorpio à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Lecorpio à partir de la galerie, effectuez les étapes suivantes :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. Cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue hello.
+3. Cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **Lecorpio**.
+4. Dans la zone de recherche, tapez **Lecorpio**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-lecorpio-tutorial/tutorial_lecorpio_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **Lecorpio**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le volet de résultats, sélectionnez **Lecorpio**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-lecorpio-tutorial/tutorial_lecorpio_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Lecorpio pour un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Lecorpio est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Lecorpio doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Lecorpio équivalent à un utilisateur dans Azure AD. En d’autres termes, une relation doit être établie entre un utilisateur Azure AD et l’utilisateur associé dans Lecorpio.
 
-Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans Lecorpio.
+Pour cela, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** dans Lecorpio.
 
-tooconfigure et test Azure AD l’authentification unique avec Lecorpio, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Lecorpio, vous devez effectuer les actions essentielles suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test Lecorpio](#creating-a-lecorpio-test-user)**  -toohave un équivalent de Britta Simon dans Lecorpio est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Lecorpio](#creating-a-lecorpio-test-user)** pour avoir un équivalent de Britta Simon dans Lecorpio lié à la représentation Azure AD de l’utilisateur.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Lecorpio.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Lecorpio.
 
-**tooconfigure Azure AD single sign-on avec Lecorpio, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Lecorpio, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, sur hello **Lecorpio** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **Lecorpio**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-lecorpio-tutorial/tutorial_lecorpio_samlbase.png)
 
-3. Sur hello **Lecorpio domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL Lecorpio**, effectuez les étapes suivantes :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-lecorpio-tutorial/tutorial_lecorpio_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, valeur hello de type hello suivant le modèle à l’aide de :`https://<instance name>.lecorpio.com/<customer name>`
+    a. Dans la zone de texte **URL de connexion**, tapez la valeur au format suivant : `https://<instance name>.lecorpio.com/<customer name>`
 
-    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<instance name>.lecorpio.com/<customer name>`
+    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<instance name>.lecorpio.com/<customer name>`
 
     > [!NOTE] 
-    > Ces valeurs ne sont pas hello réel. Mettre à jour ces valeurs avec l’URL de connexion réel hello et l’identificateur. Ici, nous vous suggérons vous toouse hello unique valeur de chaîne Bonjour identificateur. Contact [équipe de support Client de Lecorpio](mailto:info@lecorpio.com) tooget ces valeurs. 
+    > Il ne s’agit pas des valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Nous vous suggérons d’utiliser ici la valeur de chaîne unique dans l’identificateur. Pour obtenir ces valeurs, contactez l’[équipe de support technique Lecorpio](mailto:info@lecorpio.com). 
  
-4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-lecorpio-tutorial/tutorial_lecorpio_certificate.png) 
 
@@ -125,39 +125,39 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-lecorpio-tutorial/tutorial_general_400.png)
 
-6. tooconfigure l’authentification unique sur **Lecorpio** côté, vous devez hello toosend téléchargé **Metadata XML** trop[équipe de support Lecorpio](mailto:info@lecorpio.com).
+6. Pour configurer l’authentification unique côté **Lecorpio**, vous devez envoyer le fichier **XML des métadonnées** téléchargé à l’[équipe de support technique Lecorpio](mailto:info@lecorpio.com).
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-lecorpio-tutorial/create_aaduser_01.png) 
 
-2. Accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs** liste de hello toodisplay des utilisateurs.
+2. Accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs** pour afficher la liste des utilisateurs.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-lecorpio-tutorial/create_aaduser_02.png) 
 
-3. En haut de hello de boîte de dialogue hello, cliquez sur **ajouter** tooopen hello **utilisateur** boîte de dialogue.
+3. En haut de la boîte de dialogue, cliquez sur **Ajouter** pour ouvrir la boîte de dialogue **Utilisateur**.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-lecorpio-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-lecorpio-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
@@ -165,25 +165,25 @@ objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britt
 
 Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Lecorpio. 
 
-Contact [équipe de support Client de Lecorpio](mailto:info@lecorpio.com) utilisateurs hello tooadd hello Lecorpio application.
+Contactez l’[équipe de support technique Lecorpio](mailto:info@lecorpio.com) pour ajouter des utilisateurs dans l’application Lecorpio.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooLecorpio.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en accordant l’accès à Lecorpio.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooLecorpio, effectuez hello comme suit :**
+**Pour affecter Britta Simon à Lecorpio, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Lecorpio**.
+2. Dans la liste des applications, sélectionnez **Lecorpio**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-lecorpio-tutorial/tutorial_lecorpio_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -191,7 +191,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -199,13 +199,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque Lecorpio hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour Lecorpio application.
+Quand vous cliquez sur la mosaïque Lecorpio dans le volet d’accès, vous devez être automatiquement connecté à votre application Lecorpio.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

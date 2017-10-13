@@ -1,5 +1,5 @@
 ---
-title: "à l’aide des journaux des opérations d’aaaTroubleshoot BizTalk Services | Documents Microsoft"
+title: "Résolution des problèmes BizTalk Services à l’aide des journaux des opérations | Microsoft Docs"
 description: "Résolution des problèmes BizTalk Services à l'aide des journaux des opérations. MABS, WABS"
 services: biztalk-services
 documentationcenter: 
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: 102779ed6e29784f190c28e4102a7d9670614914
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c0c83361f94ffd9c30d7fcc551ff4b85ad7d6fa5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="biztalk-services-troubleshoot-using-operation-logs"></a>BizTalk Services : résolution des problèmes à l’aide des journaux des opérations
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-## <a name="what-are-hello-operation-logs"></a>Que sont les journaux des opérations de hello
-Journaux des opérations est une fonctionnalité de gestion des Services disponible dans hello portail classique Azure qui vous permet de tooview les journaux historiques des opérations effectuées sur vos services Azure, y compris les Services BizTalk. Cela vous permet de tooview les données d’historique des opérations de toomanagement sur votre abonnement au Service de BizTalk en remontant jusqu'à 180 jours.
+## <a name="what-are-the-operation-logs"></a>Présentation des journaux des opérations
+Les journaux des opérations sont une fonction des services de gestion disponibles dans le portail Azure Classic et qui vous permettent d'afficher l’historique des journaux des opérations effectuées sur vos services Azure, y compris BizTalk Services. Vous pouvez ainsi afficher les données d’historique des opérations de gestion liées à votre abonnement BizTalk Services jusqu’à 180 jours.
 
 > [!NOTE]
-> Cette fonctionnalité capture uniquement les journaux pour les opérations de gestion sur les Services BizTalk, telles que le démarrage des services de hello, sauvegardé, et ainsi de suite. Ces opérations sont suivies indépendamment de si elles sont exécutées à partir de hello portail Azure classic ou à l’aide de hello [API REST des services BizTalk](http://msdn.microsoft.com/library/azure/dn232347.aspx). Pour obtenir la liste complète des opérations suivies à l'aide des services de gestion, consultez la rubrique [Opérations suivies à l'aide des services de gestion Azure](#bizops).<br/><br/>
-> Cela ne capture pas les journaux hello pour les activités de tooBizTalk connexes runtime du Service (par exemple, les messages traités par les ponts, etc.).. tooview ces journaux, utilisez hello vue du suivi à partir du portail de Services BizTalk hello. Pour plus d'informations, consultez la rubrique [Messages de suivi](http://msdn.microsoft.com/library/azure/hh949805.aspx).
+> Cette fonctionnalité capture uniquement les journaux des opérations de gestion de BizTalk Services, telles que le moment du début du service, de la sauvegarde, etc. Ces opérations sont suivies, qu'elles soient effectuées à partir du portail Azure Classic ou à l'aide des [API REST du service BizTalk](http://msdn.microsoft.com/library/azure/dn232347.aspx). Pour obtenir la liste complète des opérations suivies à l'aide des services de gestion, consultez la rubrique [Opérations suivies à l'aide des services de gestion Azure](#bizops).<br/><br/>
+> Cette fonctionnalité ne capture pas les journaux des activités liées à l'exécution de BizTalk Services (telles que les messages traités par des ponts, etc.). Pour afficher ces journaux, vous devez utiliser l’affichage de suivi du portail BizTalk Services. Pour plus d'informations, consultez la rubrique [Messages de suivi](http://msdn.microsoft.com/library/azure/hh949805.aspx).
 > 
 > 
 
 ## <a name="view-biztalk-services-operation-logs"></a>Affichage des journaux des opérations BizTalk Services
-1. Bonjour portail Azure classic, sélectionnez **des Services de gestion**, puis sélectionnez hello **journaux des opérations** onglet.
-2. Vous pouvez filtrer les journaux de hello en fonction des paramètres différents, comme l’abonnement, plage de dates, le type de service (par exemple, les Services BizTalk), nom du service ou état d’opération hello (réussite, échec).
-3. Sélectionnez hello coche tooview hello liste filtrée. Hello image suivante montre tootestbiztalkservice connexes des activités : ![afficher les journaux des opérations][ViewLogs] 
-4. tooview en savoir plus sur une opération spécifique, sélectionnez la ligne de hello, puis cliquez sur **détails** dans la barre des tâches en bas de hello hello.
+1. Dans le portail Azure Classic, sélectionnez **Services de gestion**, puis l’onglet **Journaux des opérations**.
+2. Vous pouvez filtrer les journaux selon différents paramètres tels que l’abonnement, la plage de dates, le type de service (ex. : BizTalk Services), le nom du service ou le statut de l’opération (ex. : réussite, échec).
+3. Sélectionnez la coche pour afficher la liste filtrée. L’image suivante montre les activités liées à testbiztalkservice : ![Affichage des journaux des opérations][ViewLogs] 
+4. Pour afficher plus d'informations sur une opération spécifique, sélectionnez la ligne et cliquez sur **Détails** en bas de la page.
 
 ## <a name="bizops"></a>Opérations suivies à l'aide des services de gestion Azure
-Hello tableau suivant répertorie les opérations hello qui sont suivies à l’aide des Services de gestion Azure hello :
+Le tableau ci-dessous répertorie les opérations suivies à l'aide des services de gestion Azure :
 
 | Nom d’opération | Task |
 | --- | --- |
-| CreateBizTalkService |Opération toocreate un BizTalk Service |
-| DeleteBizTalkService |Opération toodelete un BizTalk Service |
-| RestartBizTalkService |Opération toorestart un BizTalk Service |
-| StartBizTalkService |Opération toostart un BizTalk Service |
-| StopBizTalkService |Opération toostop un BizTalk Service |
-| DisableBizTalkService |Opération toodisable un BizTalk Service |
-| EnableBizTalkService |Opération tooenable un BizTalk Service |
-| BackupBizTalkService |Tooback d’opération d’un BizTalk Service |
-| RestoreBizTalkService |Opération toorestore un BizTalk Service à partir de la sauvegarde spécifiée |
-| SuspendBizTalkService |Opération toosuspend un BizTalk Service |
-| ResumeBizTalkService |Opération tooresume un BizTalk Service |
-| ScaleBizTalkService |Opération tooscale un BizTalk Service vers le haut ou vers le bas |
-| ConfigUpdateBizTalkService |Configuration de hello tooupdate l’opération d’un BizTalk Service |
-| ServiceUpdateBizTalkService |Opération tooupgrade ou une rétrogradation d’une version différente de tooa BizTalk Service |
-| PurgeBackupBizTalkService |Sauvegardes de toopurge opération Hello BizTalk Service en dehors de la période de rétention hello |
+| CreateBizTalkService |Opération de création d'un nouveau service BizTalk |
+| DeleteBizTalkService |Opération de suppression d'un service BizTalk |
+| RestartBizTalkService |Opération de redémarrage d'un service BizTalk |
+| StartBizTalkService |Opération de démarrage d'un service BizTalk |
+| StopBizTalkService |Opération d'arrêt d'un service BizTalk |
+| DisableBizTalkService |Opération de désactivation d'un service BizTalk |
+| EnableBizTalkService |Opération d'activation d'un service BizTalk |
+| BackupBizTalkService |Opération de sauvegarde d'un service BizTalk |
+| RestoreBizTalkService |Opération de restauration d'un service BizTalk depuis une sauvegarde spécifiée |
+| SuspendBizTalkService |Opération de suspension d'un service BizTalk |
+| ResumeBizTalkService |Opération de reprise d'un service BizTalk |
+| ScaleBizTalkService |Opération de mise à l'échelle d'un service BizTalk |
+| ConfigUpdateBizTalkService |Opération de mise à jour de la configuration d'un service BizTalk |
+| ServiceUpdateBizTalkService |Opération de mise à niveau d'un service BizTalk vers une version différente |
+| PurgeBackupBizTalkService |Opération de vidage des sauvegardes du service BizTalk en dehors de la période de rétention |
 
 ## <a name="see-also"></a>Voir aussi
 * [Sauvegarde d'un service BizTalk](http://go.microsoft.com/fwlink/p/?LinkID=325584)
@@ -69,7 +69,7 @@ Hello tableau suivant répertorie les opérations hello qui sont suivies à l’
 * [Onglets Tableau de bord, Surveiller et Mettre à l'échelle dans BizTalk Services](http://go.microsoft.com/fwlink/p/?LinkID=302281)
 * [Limitation dans BizTalk Services](http://go.microsoft.com/fwlink/p/?LinkID=302282)
 * [Nom et clé de l'émetteur dans BizTalk Services](http://go.microsoft.com/fwlink/p/?LinkID=303941)
-* [Comment puis-je démarrer à l’aide de hello SDK des Services BizTalk Azure](http://go.microsoft.com/fwlink/p/?LinkID=302335)
+* [Utilisation du Kit de développement logiciel (SDK) Azure BizTalk Services](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 
 [ViewLogs]: ./media/biztalk-troubleshoot-using-ops-logs/Operation-Logs.png
 

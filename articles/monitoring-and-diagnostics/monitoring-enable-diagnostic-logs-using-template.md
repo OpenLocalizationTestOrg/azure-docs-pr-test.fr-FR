@@ -1,6 +1,6 @@
 ---
-title: "aaaAutomatically activer les paramètres de Diagnostic à l’aide d’un modèle de gestionnaire de ressources | Documents Microsoft"
-description: "Découvrez comment toouse un gestionnaire de ressources modèle toocreate les paramètres de diagnostic qui vous permettront de toostream votre diagnostic tooEvent concentrateurs de journaux ou de les stocker dans un compte de stockage."
+title: "Activer automatiquement les paramètres de diagnostic à l’aide d’un modèle Resource Manager | Microsoft Docs"
+description: "Découvrez comment utiliser un modèle Resource Manager pour créer des paramètres de diagnostic qui activeront la diffusion en continu de vos journaux de diagnostic vers Event Hubs ou leur stockage dans un compte de stockage."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -12,57 +12,57 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 2/14/2017
+ms.date: 8/30/2017
 ms.author: johnkem
-ms.openlocfilehash: 8f38731107029928029c6d940da7bd076fea5d49
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2f764bc14e882f71957299b833d5bc1a6765622a
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="automatically-enable-diagnostic-settings-at-resource-creation-using-a-resource-manager-template"></a>Activer automatiquement les paramètres de diagnostic lors de la création de ressources à l’aide d’un modèle Resource Manager
-Dans cet article, nous montrons comment vous pouvez utiliser un [modèle Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) tooconfigure les paramètres de Diagnostic sur une ressource lors de sa création. Cela vous permet de démarrer tooautomatically votre tooEvent journaux de Diagnostic et les mesures de concentrateurs, en les archivant dans un compte de stockage, ou en les envoyant tooLog Analytique lors de la création d’une ressource de diffusion en continu.
+Dans cet article, nous vous expliquons comment utiliser un [modèle Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) pour configurer les paramètres de diagnostic d’une ressource lors de sa création. Cela vous permet de démarrer automatiquement la diffusion en continu de vos journaux de diagnostic et des mesures vers Event Hubs, leur archivage dans un compte de stockage ou leur envoi à Log Analytics lorsqu’une ressource est créée.
 
-méthode Hello pour activer les journaux de Diagnostic à l’aide d’un modèle de gestionnaire de ressources dépend du type de ressource hello.
+La méthode d’activation des journaux de diagnostic à l’aide d’un modèle Resource Manager varie selon le type de ressource.
 
 * Les ressources **Non-Compute** (comme Network Security Groups, Logic Apps, Automation) utilisent les [paramètres de diagnostic décrits dans cet article](monitoring-overview-of-diagnostic-logs.md#resource-diagnostic-settings).
-* **Calcul** (WAD/SCÉNARISTE basé) les ressources utilisent hello [fichier de configuration de Diagnostics Windows AZURE/SCÉNARISTE décrit dans cet article](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md).
+* **de calcul** (basées sur WAD/LAD) utilisent le [fichier de configuration de WAD/LAD décrit dans cet article](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md).
 
-Dans cet article, nous décrivons comment tooconfigure les diagnostics à l’aide de ces deux méthodes.
+Dans cet article, nous expliquons comment configurer les diagnostics à l’aide de deux méthodes.
 
-les étapes de base Hello sont les suivantes :
+Procédure de base :
 
-1. Créer un modèle en tant qu’un fichier JSON qui décrit comment toocreate hello ressource et activer les diagnostics.
-2. [Déployer à l’aide de n’importe quelle méthode de déploiement de modèle de hello](../azure-resource-manager/resource-group-template-deploy.md).
+1. Créez un modèle sous la forme d’un fichier JSON qui décrit comment créer la ressource et activer les diagnostics.
+2. [Déployez le modèle à l’aide de n’importe quelle méthode de déploiement](../azure-resource-manager/resource-group-template-deploy.md).
 
-Ci-dessous, nous donner un exemple de modèle de hello fichier JSON, vous devez toogenerate pour non calculés et les ressources de calcul.
+Ci-dessous, nous vous donnons un exemple de modèle de fichier JSON que vous devez générer pour les ressources de calcul et non liées au calcul.
 
 ## <a name="non-compute-resource-template"></a>Modèle de ressource non liée au calcul
-Pour les ressources non calculés, vous devez toodo deux choses :
+Pour les ressources non liées au calcul, vous devrez effectuer les deux opérations suivantes :
 
-1. Ajouter des paramètres toohello paramètres objet blob pour nom de compte de stockage hello, ID de règle de bus de service et/ou ID d’espace de travail Analytique des journaux OMS (permettant d’archivage de journaux de Diagnostic dans un compte de stockage, la diffusion en continu de journaux tooEvent concentrateurs et/ou l’envoi de journaux tooLog Analytique).
+1. Ajouter des paramètres à l’objet Blob de paramètres pour le nom de compte de stockage, l’ID de règle de Service Bus et/ou l’ID d’espace de travail OMS Log Analytics (activation de l’archivage des journaux de diagnostic dans un compte de stockage, de la diffusion en continu des journaux vers Event Hubs et/ou de l’envoi de journaux à Log Analytics).
    
     ```json
     "storageAccountName": {
       "type": "string",
       "metadata": {
-        "description": "Name of hello Storage Account in which Diagnostic Logs should be saved."
+        "description": "Name of the Storage Account in which Diagnostic Logs should be saved."
       }
     },
     "serviceBusRuleId": {
       "type": "string",
       "metadata": {
-        "description": "Service Bus Rule Id for hello Service Bus Namespace in which hello Event Hub should be created or streamed to."
+        "description": "Resource ID of the Service Bus Rule for the Service Bus Namespace in which the Event Hub should be created or streamed to."
       }
     },
     "workspaceId":{
       "type": "string",
       "metadata": {
-        "description": "Log Analytics workspace ID for hello Log Analytics workspace toowhich logs will be sent."
+        "description": "Azure Resource ID of the Log Analytics workspace for the Log Analytics workspace to which logs will be sent."
       }
     }
     ```
-2. Dans le tableau de ressources hello de ressource hello pour lequel vous souhaitez tooenable les journaux de Diagnostic, ajoutez une ressource de type `[resource namespace]/providers/diagnosticSettings`.
+2. Ajouter une ressource de type `[resource namespace]/providers/diagnosticSettings`dans le tableau de ressources de la ressource pour laquelle vous souhaitez activer les journaux de diagnostic.
    
     ```json
     "resources": [
@@ -102,9 +102,9 @@ Pour les ressources non calculés, vous devez toodo deux choses :
     ]
     ```
 
-suit Hello blob de propriétés pour le paramètre de Diagnostic de hello [format hello décrit dans cet article](https://msdn.microsoft.com/library/azure/dn931931.aspx). Ajout de hello `metrics` propriété activera toothese de métriques tooalso envoi ressources même génère, à condition que [les ressources hello prend en charge les métriques de moniteur de Windows Azure](monitoring-supported-metrics.md).
+L’objet blob de propriétés pour le paramètre de diagnostic suit [le format décrit dans cet article](https://msdn.microsoft.com/library/azure/dn931931.aspx). Ajouter la propriété `metrics` vous permettra d’envoyer également des mesures sur la ressource à ces mêmes sorties, à condition que [la ressource prenne en charge les mesures Azure Monitor](monitoring-supported-metrics.md).
 
-Voici un exemple complet qui crée une application de la logique et Active la diffusion en continu tooEvent concentrateurs et stockage dans un compte de stockage.
+Voici un exemple complet qui crée une application logique et active la diffusion en continu vers Event Hubs et le stockage dans un compte de stockage.
 
 ```json
 
@@ -115,7 +115,7 @@ Voici un exemple complet qui crée une application de la logique et Active la di
     "logicAppName": {
       "type": "string",
       "metadata": {
-        "description": "Name of hello Logic App that will be created."
+        "description": "Name of the Logic App that will be created."
       }
     },
     "testUri": {
@@ -125,19 +125,19 @@ Voici un exemple complet qui crée une application de la logique et Active la di
     "storageAccountName": {
       "type": "string",
       "metadata": {
-        "description": "Name of hello Storage Account in which Diagnostic Logs should be saved."
+        "description": "Name of the Storage Account in which Diagnostic Logs should be saved."
       }
     },
     "serviceBusRuleId": {
       "type": "string",
       "metadata": {
-        "description": "Service Bus Rule Id for hello Service Bus Namespace in which hello Event Hub should be created or streamed to."
+        "description": "Service Bus Rule Id for the Service Bus Namespace in which the Event Hub should be created or streamed to."
       }
     },
     "workspaceId": {
       "type": "string",
       "metadata": {
-        "description": "Log Analytics workspace ID for hello Log Analytics workspace toowhich logs will be sent."
+        "description": "Log Analytics workspace ID for the Log Analytics workspace to which logs will be sent."
       }
     }
   },
@@ -224,20 +224,20 @@ Voici un exemple complet qui crée une application de la logique et Active la di
 ```
 
 ## <a name="compute-resource-template"></a>Modèle de ressource de calcul
-tooenable des diagnostics sur une ressource de calcul, par exemple un ordinateur virtuel ou un cluster Service Fabric, vous devez :
+Pour activer les diagnostics pour une ressource de calcul, par exemple un cluster Service Fabric ou une machine virtuelle, vous devez :
 
-1. Ajouter la définition de ressource d’ordinateur virtuel toohello hello Azure Diagnostics extension.
+1. Ajouter l’extension Azure Diagnostics à la définition de ressource de machine virtuelle.
 2. Spécifier un compte de stockage et/ou un Event Hub comme paramètre.
-3. Ajouter le contenu hello de votre fichier WADCfg XML dans la propriété XMLCfg de hello, séquence d’échappement tous les caractères XML correctement.
+3. Ajouter le contenu de votre fichier WADCfg XML dans la propriété XMLCfg, en échappant correctement tous les caractères XML.
 
 > [!WARNING]
-> Cette dernière étape peut être délicate tooget droite. [Consultez l’article](../virtual-machines/windows/extensions-diagnostics-template.md#diagnostics-configuration-variables) pour obtenir un exemple que fractionnements hello schéma de Configuration de Diagnostics dans des variables de séquence d’échappement et mise en forme correctement.
+> Cette dernière étape peut être difficile à réaliser. [Consultez cet article](../virtual-machines/windows/extensions-diagnostics-template.md#diagnostics-configuration-variables) pour obtenir un exemple qui montre comment fractionner le schéma de configuration de diagnostics en variables échappées et mises en forme correctement.
 > 
 > 
 
-Hello tout processus, y compris les exemples, est décrite [dans ce document](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+L’intégralité du processus, y compris des exemples, est décrite [dans ce document](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [En savoir plus sur les journaux de diagnostic Azure](monitoring-overview-of-diagnostic-logs.md)
-* [Flux de données des journaux de Diagnostic Azure tooEvent concentrateurs](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Stream Azure Diagnostic Logs to Event Hubs (Diffuser en continu les journaux de diagnostic Azure vers Event Hubs)](monitoring-stream-diagnostic-logs-to-event-hubs.md)
 

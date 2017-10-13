@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy et gérer la sauvegarde pour les machines virtuelles Azure à l’aide de PowerShell | Documents Microsoft"
-description: "Découvrez comment toodeploy et gérer la sauvegarde Azure à l’aide de PowerShell."
+title: "Déploiement et gestion d’une sauvegarde pour les machines virtuelles Azure à l’aide de PowerShell | Microsoft Docs"
+description: "Découvrez comment déployer et gérer Sauvegarde Azure à l’aide de PowerShell."
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -15,46 +15,46 @@ ms.topic: article
 ms.date: 8/2/2017
 ms.author: markgal;trinadhk;jimpark
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f3ecd3f94c5e3e8fc8018e8786302edd4847744b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5f0f06adb8177ce2d17aa0b40666470279c04e22
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-azurermbackup-cmdlets-tooback-up-virtual-machines"></a>Utilisez tooback d’applets de commande AzureRM.Backup des machines virtuelles
+# <a name="use-azurermbackup-cmdlets-to-back-up-virtual-machines"></a>Utilisation des applets de commande AzureRM.Backup pour sauvegarder des machines virtuelles
 > [!div class="op_single_selector"]
 > * [Gestionnaire de ressources](backup-azure-vms-automation.md)
 > * [Classique](backup-azure-vms-classic-automation.md)
 >
 >
 
-Cet article vous montre comment toouse Azure PowerShell pour la sauvegarde et récupération des machines virtuelles Azure. Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : Resource Manager et classique. Cet article couvre l’utilisation de tooback de modèle de déploiement de classique hello de coffre de sauvegarde de données tooa. Si vous n’avez pas créé un coffre de sauvegarde dans votre abonnement, consultez la version du Gestionnaire de ressources hello de cet article, [tooback d’applets de commande AzureRM.RecoveryServices.Backup d’utilisation des machines virtuelles](backup-azure-vms-automation.md). Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello.
+Cet article vous montre comment utiliser Azure PowerShell pour la sauvegarde et la restauration des machines virtuelles Azure. Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : Resource Manager et classique. Cet article traite de l’utilisation du modèle de déploiement classique pour sauvegarder des données dans un coffre de sauvegarde. Si vous n’avez pas créé de coffre de sauvegarde dans votre abonnement, consultez la version du Gestionnaire des ressources de cet article, [Utilisez les applets de commande AzureRM.RecoveryServices.Backup pour sauvegarder des machines virtuelles](backup-azure-vms-automation.md). Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager.
 
 > [!IMPORTANT]
-> Vous pouvez maintenant mettre à niveau vos archivages de sauvegarde coffres tooRecovery Services. Pour plus d’informations, voir l’article hello [mise à niveau d’un tooa de coffre de sauvegarde de coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous encourage tooupgrade coffres des Services tooRecovery les coffres de votre sauvegarde.<br/> Après le 15 octobre 2017, vous ne pouvez pas utiliser les coffres de sauvegarde toocreate PowerShell. **D’ici au 1er novembre 2017** :
->- Tous les coffres de sauvegarde restants seront les coffres des Services de tooRecovery automatiquement mis à niveau.
->- Vous ne pourra plus être en mesure de tooaccess vos données de sauvegarde dans le portail classique de hello. Au lieu de cela, utilisez hello tooaccess portail Azure vos données de sauvegarde dans les coffres des Services de récupération.
+> Vous pouvez désormais mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services. Pour en savoir plus, consultez l’article [Mettre à niveau un coffre de sauvegarde vers un coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous recommande de mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services.<br/> À compter du 15 octobre 2017, vous ne pourrez plus vous servir de PowerShell pour créer des coffres de sauvegarde. **D’ici au 1er novembre 2017** :
+>- tous les coffres de sauvegarde restants seront automatiquement mis à niveau vers des coffres Recovery Services.
+>- Vous ne pourrez plus accéder à vos données de sauvegarde depuis le portail Classic. Au lieu de cela, vous devrez utiliser le portail Azure pour accéder à ces données au sein de coffres Recovery Services.
 >
 
 ## <a name="concepts"></a>Concepts
-Cet article fournit des informations spécifique toohello applets de commande PowerShell utilisées tooback des machines virtuelles. Pour obtenir des informations sur la protection des machines virtuelles Azure, consultez [Planification de votre infrastructure de sauvegarde de machines virtuelles dans Azure](backup-azure-vms-introduction.md).
+Cet article fournit des informations spécifiques aux applets de commande PowerShell utilisées pour sauvegarder des machines virtuelles. Pour obtenir des informations sur la protection des machines virtuelles Azure, consultez [Planification de votre infrastructure de sauvegarde de machines virtuelles dans Azure](backup-azure-vms-introduction.md).
 
 > [!NOTE]
-> Avant de commencer, lisez hello [conditions préalables](backup-azure-vms-prepare.md) toowork requise avec Azure Backup et hello [limitations](backup-azure-vms-prepare.md#limitations-when-backing-up-and-restoring-a-vm) de solution de sauvegarde de machine virtuelle en cours hello.
+> Avant de commencer, lisez les [conditions préalables](backup-azure-vms-prepare.md) nécessaires pour utiliser Sauvegarde Azure et les [limitations](backup-azure-vms-prepare.md#limitations-when-backing-up-and-restoring-a-vm) de la solution actuelle de sauvegarde de machines virtuelles.
 >
 >
 
-toouse PowerShell prendre efficacement, une hiérarchie de hello toounderstand moment des objets et à quel endroit toostart.
+Pour pouvoir utiliser efficacement PowerShell, il est nécessaire de comprendre la hiérarchie d’objets et par où commencer.
 
 ![Hiérarchie des objets](./media/backup-azure-vms-classic-automation/object-hierarchy.png)
 
-Bonjour deux flux les plus importants sont activer la protection sur une machine virtuelle et restaurer les données à partir d’un point de récupération. focus Hello de cet article est toohelp vous deviendriez performants pour travailler avec tooenable d’applets de commande PowerShell hello ces deux scénarios.
+Les deux processus les plus importants permettent la protection des machines virtuelles et la restauration des données à partir d’un point de restauration. L’objectif de cet article est de vous apprendre à utiliser les applets de commande PowerShell pour permettre ces deux scénarios.
 
 ## <a name="setup-and-registration"></a>Installation et inscription
-toobegin :
+Pour commencer :
 
 1. [Téléchargez la dernière version de PowerShell](https://github.com/Azure/azure-powershell/releases) (version minimale requise : 1.0.0)
-2. Trouver hello Azure sauvegarde applets de commande PowerShell disponibles en tapant hello de commande suivante :
+2. Rechercher les applets de commande PowerShell Azure Backup disponibles en tapant la commande suivante :
 
 ```
 PS C:\> Get-Command *azurermbackup*
@@ -87,35 +87,35 @@ Cmdlet          Unregister-AzureRmBackupContainer                  1.0.1      Az
 Cmdlet          Wait-AzureRmBackupJob                              1.0.1      AzureRM.Backup
 ```
 
-Hello suivant le programme d’installation et tâches d’enregistrement peuvent être automatisées avec PowerShell :
+Les tâches de configuration et d’inscription ci-après peuvent être automatisées avec PowerShell :
 
 * Créer un coffre de sauvegarde
-* L’inscription d’ordinateurs virtuels de hello avec hello service Azure Backup
+* Inscription des machines virtuelles auprès du service Sauvegarde Azure
 
 ### <a name="create-a-backup-vault"></a>Créer un coffre de sauvegarde
 > [!WARNING]
-> Pour les clients à l’aide de la sauvegarde Azure pour hello première fois, vous devez tooregister hello Azure Backup fournisseur toobe utilisé avec votre abonnement. Cela est possible en exécutant hello de commande suivante : Register-AzureRmResourceProvider - ProviderNamespace « Microsoft.Backup »
+> Pour les clients utilisant Sauvegarde Azure pour la première fois, vous devez enregistrer le fournisseur Sauvegarde Azure à utiliser avec votre abonnement. Pour ce faire, exécutez la commande suivante : Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.Backup"
 >
 >
 
-Vous pouvez créer un coffre de sauvegarde à l’aide de hello **New-AzureRmBackupVault** applet de commande. coffre de sauvegarde Hello est une ressource ARM, par conséquent, vous devez tooplace dans un groupe de ressources. Dans une console Azure PowerShell avec élévation de privilèges, exécutez hello suivant de commandes :
+Vous pouvez créer un coffre de sauvegarde en utilisant l’applet de commande **New-AzureRmBackupVault** . Le coffre de sauvegarde constituant une ressource ARM, vous devez le placer dans un groupe de ressources. Dans une console Azure PowerShell avec élévation de privilèges, exécutez les commandes suivantes :
 
 ```
 PS C:\> New-AzureRmResourceGroup –Name “test-rg” –Location “West US”
 PS C:\> $backupvault = New-AzureRmBackupVault –ResourceGroupName “test-rg” –Name “test-vault” –Region “West US” –Storage GeoRedundant
 ```
 
-Vous pouvez obtenir une liste de tous les coffres de sauvegarde hello dans un abonnement donné à l’aide de hello **Get-AzureRmBackupVault** applet de commande.
+Vous pouvez obtenir la liste de tous les coffres de sauvegarde d’un abonnement donné à l’aide de l’applet de commande **Get-AzureRmBackupVault** .
 
 > [!NOTE]
-> Il est pratique de toostore objet de coffre de sauvegarde hello dans une variable. objet de coffre Hello est nécessaire en tant qu’entrée de nombreuses applets de commande Azure Backup.
+> Il est pratique de stocker l’objet du coffre de sauvegarde dans une variable. L’objet coffre est nécessaire comme entrée de nombreuses applets de commande Azure Backup.
 >
 >
 
-### <a name="registering-hello-vms"></a>L’inscription d’ordinateurs virtuels de hello
-Hello première étape de configuration de sauvegarde avec Azure Backup est tooregister votre ordinateur ou une machine virtuelle avec un coffre Azure Backup. Hello **Register-AzureRmBackupContainer** applet de commande prend les informations d’entrée de hello d’une machine virtuelle Azure IaaS et inscrit avec le coffre hello spécifié. opération de Registre Hello associe hello machine virtuelle Azure avec le coffre de sauvegarde hello et assure le suivi hello machine virtuelle via le cycle de vie de sauvegarde hello.
+### <a name="registering-the-vms"></a>Enregistrement des machines virtuelles
+La première étape de la configuration de la sauvegarde avec Sauvegarde Azure consiste à enregistrer votre ordinateur ou machine virtuelle avec un coffre de sauvegarde Azure. L’applet de commande **Register-AzureRmBackupContainer** collecte les informations d’entrée d’une machine virtuelle IaaS Azure et les enregistre dans le coffre spécifié. L’opération d’enregistrement associe la machine virtuelle Azure avec le coffre de sauvegarde et effectue le suivi de la machine virtuelle tout au long du cycle de vie de la sauvegarde.
 
-L’inscription de votre machine virtuelle avec hello service Azure Backup crée un objet conteneur de niveau supérieur. Un conteneur contient généralement plusieurs éléments qui peuvent être sauvegardées, mais dans les cas de hello de machines virtuelles il y aura qu’un seul élément de sauvegarde pour le conteneur de hello.
+L’enregistrement de votre machine virtuelle auprès du service Sauvegarde Azure crée un objet conteneur de niveau supérieur. Un conteneur contient généralement plusieurs éléments qui peuvent être sauvegardés, mais dans le cas de machines virtuelles, il n’y a qu’un élément de sauvegarde pour le conteneur.
 
 ```
 PS C:\> $registerjob = Register-AzureRmBackupContainer -Vault $backupvault -Name "testvm" -ServiceName "testvm"
@@ -123,7 +123,7 @@ PS C:\> $registerjob = Register-AzureRmBackupContainer -Vault $backupvault -Name
 
 ## <a name="backup-azure-vms"></a>Sauvegarde des machines virtuelles Azure
 ### <a name="create-a-protection-policy"></a>Création d’une stratégie de protection
-Il n’est pas obligatoire toocreate une nouvelle stratégie toostart la sauvegarde de protection de vos machines virtuelles. coffre de Hello est fourni avec un « stratégie par défaut' peut être utilisé tooquickly activer la protection, puis le modifier ultérieurement avec les informations de droite hello. Vous pouvez obtenir la liste des stratégies de hello disponibles dans le coffre hello à l’aide de hello **Get-AzureRmBackupProtectionPolicy** applet de commande :
+Il n’est pas obligatoire de créer une nouvelle stratégie de protection pour démarrer la sauvegarde de vos machines virtuelles. Le coffre est fourni avec une stratégie par défaut qui peut être utilisée pour activer la protection, puis modifiée ultérieurement avec les bonnes informations. Vous pouvez obtenir la liste des stratégies disponibles dans le coffre à l’aide de l’applet de commande **Get-AzureRmBackupProtectionPolicy** :
 
 ```
 PS C:\> Get-AzureRmBackupProtectionPolicy -Vault $backupvault
@@ -134,13 +134,13 @@ DefaultPolicy             AzureVM            Daily              26-Aug-15 12:30:
 ```
 
 > [!NOTE]
-> fuseau horaire de Hello du champ de BackupTime hello dans PowerShell est UTC. Toutefois, lorsque les temps de sauvegarde hello sont affiché dans hello portail Azure, fuseau horaire de hello est alignée tooyour le système local, ainsi que le décalage de hello UTC.
+> Le fuseau horaire du champ BackupTime dans PowerShell est UTC. Toutefois, lorsque l'heure de sauvegarde s’affiche dans le portail Azure, le fuseau horaire est aligné sur votre système local, tout comme le décalage UTC.
 >
 >
 
-Une stratégie de sauvegarde est associée à au moins une stratégie de rétention. stratégie de rétention Hello définit la durée pendant laquelle un point de récupération est conservé avec Azure Backup. Hello **New-AzureRmBackupRetentionPolicy** applet de commande crée les objets PowerShell qui contiennent les informations de stratégie de rétention. Ces objets de stratégie de rétention sont utilisés comme entrées toohello *New-AzureRmBackupProtectionPolicy* applet de commande, ou directement avec hello *Enable-AzureRmBackupProtection* applet de commande.
+Une stratégie de sauvegarde est associée à au moins une stratégie de rétention. La stratégie de rétention définit la durée de conservation d’un point de restauration avec Sauvegarde Azure. L’applet de commande **New-AzureRmBackupRetentionPolicy** crée des objets PowerShell qui contiennent des informations sur la stratégie de rétention. Ces objets de stratégie de rétention sont utilisés comme entrées dans l’applet de commande *New-AzureRmBackupProtectionPolicy* ou directement dans le cas de l’applet de commande *Enable-AzureRmBackupProtection*.
 
-Une stratégie de sauvegarde définit quand et à quelle fréquence hello sauvegarde d’un élément est effectuée. Hello **New-AzureRmBackupProtectionPolicy** applet de commande crée un objet PowerShell qui contient des informations de stratégie de sauvegarde. stratégie de sauvegarde Hello est utilisée comme une entrée toohello *Enable-AzureRmBackupProtection* applet de commande.
+Une stratégie de sauvegarde définit quand et à quelle fréquence la sauvegarde d’un élément doit être effectuée. L’applet de commande **New-AzureRmBackupProtectionPolicy** crée un objet PowerShell contenant des informations sur la stratégie de sauvegarde. La stratégie de sauvegarde est utilisée comme entrée dans l’applet de commande *Enable-AzureRmBackupProtection* .
 
 ```
 PS C:\> $Daily = New-AzureRmBackupRetentionPolicyObject -DailyRetention -Retention 30
@@ -152,14 +152,14 @@ DailyBackup01             AzureVM            Daily              01-Sep-15 3:30:0
 ```
 
 ### <a name="enable-protection"></a>Activer la protection
-L’activation de protection implique deux objets : hello élément et hello stratégie et les deux toohello de toobelong besoin même coffre. Une fois que la stratégie de hello a été associé avec un élément de hello, flux de travail sauvegarde hello lancera conformément au calendrier défini de hello.
+L’activation de la protection implique deux objets : l’élément et la stratégie, et les deux doivent appartenir au même coffre. Une fois que la stratégie a été associée à l’élément, le flux de travail de la sauvegarde se lancera à l’heure planifiée.
 
 ```
 PS C:\> Get-AzureRmBackupContainer -Type AzureVM -Status Registered -Vault $backupvault | Get-AzureRmBackupItem | Enable-AzureRmBackupProtection -Policy $newpolicy
 ```
 
 ### <a name="initial-backup"></a>Sauvegarde initiale
-planification de sauvegarde Hello s’occupe une copie initiale complète de hello pour l’élément de hello et hello incrémentielles pour les sauvegardes ultérieures hello. Toutefois, si vous souhaitez tooforce hello initiale sauvegarde toohappen à un moment donné ou même immédiatement utiliser hello **AzureRmBackupItem de sauvegarde** applet de commande :
+La planification de sauvegarde se charge d’effectuer la copie initiale complète de l’élément et la copie incrémentielle pour les sauvegardes suivantes. Cependant, si vous voulez forcer l’exécution de la sauvegarde initiale à un moment déterminé, voire immédiatement, utilisez l’applet de commande **Backup-AzureRmBackupItem** :
 
 ```
 PS C:\> $container = Get-AzureRmBackupContainer -Vault $backupvault -Type AzureVM -Name "testvm"
@@ -172,14 +172,14 @@ testvm          Backup          InProgress      01-Sep-15 12:24:01 PM  01-Jan-01
 ```
 
 > [!NOTE]
-> Hello fuseau horaire de hello StartTime et EndTime les champs affichés dans PowerShell en UTC. Toutefois, lorsque des informations similaires hello sont affichées dans hello portail Azure, fuseau horaire de hello est alignée tooyour horloge du système local.
+> Le fuseau horaire des champs StartTime et EndTime affichés dans PowerShell est UTC. Toutefois, lorsque des informations similaires s'affichent dans le portail Azure, le fuseau horaire est aligné sur l'horloge de votre système local.
 >
 >
 
 ### <a name="monitoring-a-backup-job"></a>Surveillance d’une tâche de sauvegarde
-La plupart des opérations longues dans Sauvegarde Azure sont reproduites en tant que tâche. Il est ainsi facile tootrack progression sans avoir tookeep hello ouvrir portail Azure en permanence.
+La plupart des opérations longues dans Sauvegarde Azure sont reproduites en tant que tâche. Cela permet de suivre facilement la progression sans avoir à garder le portail Azure ouvert en permanence.
 
-état le plus récent hello tooget d’une tâche en cours d’exécution, utilisez hello **Get-AzureRmBackupJob** applet de commande.
+Pour connaître l’état récent d’une tâche en cours de traitement, utilisez l’applet de commande **Get-AzureRmBackupJob** .
 
 ```
 PS C:\> $joblist = Get-AzureRmBackupJob -Vault $backupvault -Status InProgress
@@ -190,7 +190,7 @@ WorkloadName    Operation       Status          StartTime              EndTime
 testvm          Backup          InProgress      01-Sep-15 12:24:01 PM  01-Jan-01 12:00:00 AM
 ```
 
-Au lieu de l’interrogation de ces travaux pour la saisie semi-automatique, qui est un code inutile, supplémentaire - il est plus simple toouse hello **AzureRmBackupJob-attente** applet de commande. Lorsqu’il est utilisé dans un script, applet de commande hello suspend l’exécution de hello qu’hello tâche se termine ou hello spécifié la valeur de délai d’attente est atteinte.
+Au lieu d’interroger ces tâches pour connaître leur état d’avancement, ce qui implique du code supplémentaire inutile, il est plus simple d’utiliser l’applet de commande **Wait-AzureRmBackupJob** . Lorsqu’elle est utilisée dans un script, l’applet de commande suspend l’exécution jusqu’à la fin de la tâche ou jusqu’à ce que la valeur spécifiée pour l’expiration du délai soit atteinte.
 
 ```
 PS C:\> Wait-AzureRmBackupJob -Job $joblist[0] -Timeout 43200
@@ -198,17 +198,17 @@ PS C:\> Wait-AzureRmBackupJob -Job $joblist[0] -Timeout 43200
 
 
 ## <a name="restore-an-azure-vm"></a>Restauration d’une machine virtuelle Azure
-Dans les données de sauvegarde toorestore ordre, vous devez tooidentify hello sauvegardé élément, et Point de récupération hello qui contient les données de point-à-temps hello. Ces informations sont fournies toohello AzureRmBackupItem de restauration applet de commande tooinitiate une restauration de données à partir de hello coffre toohello du client.
+Pour restaurer les données de sauvegarde, vous devez identifier l’élément sauvegardé et le point de restauration contenant les données ponctuelles. Ces informations sont fournies à l’applet de commande Restore-AzureRmBackupItem pour lancer une restauration des données du coffre vers le compte du client.
 
-### <a name="select-hello-vm"></a>Sélectionnez hello machine virtuelle
-objet PowerShell hello tooget identifiant hello droit de sauvegarder l’élément, vous devez toostart de hello conteneur dans le coffre de hello et dont la hiérarchie d’objets. conteneur hello tooselect représentant hello machine virtuelle, utilisez hello **Get-AzureRmBackupContainer** applet de commande et redirigez cette toohello **Get-AzureRmBackupItem** applet de commande.
+### <a name="select-the-vm"></a>Sélection de la machine virtuelle
+Pour obtenir l’objet PowerShell permettant d’identifier l’élément à restaurer, vous devez commencer au niveau du conteneur dans le coffre et descendre dans la hiérarchie d’objets. Pour sélectionner le conteneur qui représente la machine virtuelle, utilisez l’applet de commande **Get-AzureRmBackupContainer** et dirigez-la vers l’applet de commande **Get-AzureRmBackupItem**.
 
 ```
 PS C:\> $backupitem = Get-AzureRmBackupContainer -Vault $backupvault -Type AzureVM -name "testvm" | Get-AzureRmBackupItem
 ```
 
 ### <a name="choose-a-recovery-point"></a>Choisir un point de récupération
-Vous pouvez maintenant mettre tous les points de récupération hello pour sauvegarder l’élément hello à l’aide de hello **Get-AzureRmBackupRecoveryPoint** applet de commande, puis choisissez toorestore de point de récupération hello. En général, les utilisateurs choisir hello plus récente *AppConsistent* point dans la liste de hello.
+Vous pouvez maintenant répertorier tous les points de restauration pour l’élément de sauvegarde via l’applet de commande **Get-AzureRmBackupRecoveryPoint** et choisir le point de récupération à restaurer. En général, les utilisateurs choisissent le point *AppConsistent* le plus récent dans la liste.
 
 ```
 PS C:\> $rp =  Get-AzureRmBackupRecoveryPoint -Item $backupitem
@@ -219,13 +219,13 @@ RecoveryPointId    RecoveryPointType  RecoveryPointTime      ContainerName
 15273496567119     AppConsistent      01-Sep-15 12:27:38 PM  iaasvmcontainer;testvm;testv...
 ```
 
-variable de Hello ```$rp``` est un tableau de points de récupération pour hello l’élément de sauvegarde, trié dans l’ordre inverse de temps sélectionné - dernier point de récupération hello est à l’index 0. Utiliser le tableau PowerShell standard, l’indexation de point de récupération toopick hello. Par exemple : ```$rp[0]``` sélectionnera le dernier point de récupération hello.
+La variable ```$rp``` est un tableau de points de récupération pour l’élément de sauvegarde sélectionné et triés par ordre chronologique inverse, le dernier point de récupération étant fixé sur l’index 0. Utilisez l'indexation de tableau PowerShell standard pour sélectionner le point de récupération. Par exemple : ```$rp[0]``` sélectionnera le point de récupération le plus récent.
 
 ### <a name="restoring-disks"></a>Restauration de disques
-Il existe une différence fondamentale entre les opérations de restauration hello effectuée par le biais hello portail Azure et Azure PowerShell. Avec PowerShell, hello restauration s’arrête à la restauration des disques de hello et les informations de configuration de point de récupération hello. Il n’y a pas de création de machine virtuelle.
+Il existe une différence essentielle entre les opérations de restauration effectuées par le biais du portail Azure et celles effectuées via Azure PowerShell. Avec PowerShell, l’opération de restauration se limite à la restauration des disques et informations de configuration à partir d’un point de restauration. Il n’y a pas de création de machine virtuelle.
 
 > [!WARNING]
-> Hello AzureRmBackupItem de restauration ne crée pas une machine virtuelle. Il restaure uniquement les disques hello toohello spécifié de compte de stockage. Cela n’est pas hello même comportement que vous rencontrerez dans hello portail Azure.
+> L’applet de commande Restore-AzureRmBackupItem ne crée pas une machine virtuelle. Elle restaure uniquement les disques dans le compte de stockage spécifié. Vous ne constaterez pas le même comportement avec le portail Azure.
 >
 >
 
@@ -238,15 +238,15 @@ WorkloadName    Operation       Status          StartTime              EndTime
 testvm          Restore         InProgress      01-Sep-15 1:14:01 PM   01-Jan-01 12:00:00 AM
 ```
 
-Vous pouvez obtenir les détails de hello hello d’opération de restauration à l’aide de hello **Get-AzureRmBackupJobDetails** applet de commande une fois que le travail de restauration hello est terminée. Hello *ErrorDetails* propriété hello des informations sont nécessaires toorebuild hello machine virtuelle.
+Vous pouvez obtenir les détails de l’opération de restauration à l’aide de l’applet de commande **Get-AzureRmBackupJobDetails** une fois la tâche de restauration terminée. La propriété *ErrorDetails* contient les informations nécessaires pour régénérer la machine virtuelle.
 
 ```
 PS C:\> $restorejob = Get-AzureRmBackupJob -Job $restorejob
 PS C:\> $details = Get-AzureRmBackupJobDetails -Job $restorejob
 ```
 
-### <a name="build-hello-vm"></a>Build hello machine virtuelle
-Hello construction machine virtuelle hors des disques hello restauré peut être effectuée à l’aide des applets de commande PowerShell Azure Service Management plus anciennes de hello, hello nouveaux modèles Azure Resource Manager, ou même à l’aide de hello portail Azure. Dans l’exemple ci-dessous, nous allons montrer comment tooget là à l’aide des applets de commande de gestion des services Azure hello.
+### <a name="build-the-vm"></a>Création de la machine virtuelle
+La création de la machine virtuelle à partir de disques restaurés peut être effectuée à l’aide d’applets de commande Azure Service Management PowerShell plus anciennes, des nouveaux modèles Azure Resource Manager ou même à l’aide du portail Azure. Dans un exemple rapide, nous allons montrer comment y parvenir via les applets de commande Azure Service Management.
 
 ```
 $properties  = $details.Properties
@@ -289,15 +289,15 @@ if (!($dds -eq $null))
 New-AzureVM -ServiceName "panbhasample" -Location "SouthEast Asia" -VM $vm
 ```
 
-Pour plus d’informations sur la façon dont les disques restaurés toobuild une machine virtuelle à partir de hello, consultez hello suivant d’applets de commande :
+Pour plus d’informations sur la création d’une machine virtuelle à partir des disques restaurés, découvrez les applets de commande suivantes :
 
 * [Add-AzureDisk](https://msdn.microsoft.com/library/azure/dn495252.aspx)
 * [New-AzureVMConfig](https://msdn.microsoft.com/library/azure/dn495159.aspx)
 * [New-AzureVM](https://msdn.microsoft.com/library/azure/dn495254.aspx)
 
 ## <a name="code-samples"></a>Exemples de code
-### <a name="1-get-hello-completion-status-of-job-sub-tasks"></a>1. Obtenir l’état d’achèvement hello de travail des tâches subordonnées
-état d’achèvement hello tootrack, de sous-tâches individuels, vous pouvez utiliser hello **Get-AzureRmBackupJobDetails** applet de commande :
+### <a name="1-get-the-completion-status-of-job-sub-tasks"></a>1. Obtenir l'état d'achèvement des sous-tâches de travail
+Pour suivre l’état d’achèvement de sous-tâches individuelles, vous pouvez utiliser l’applet de commande **Get-AzureRmBackupJobDetails** :
 
 ```
 PS C:\> $details = Get-AzureRmBackupJobDetails -JobId $backupjob.InstanceId -Vault $backupvault
@@ -306,11 +306,11 @@ PS C:\> $details.SubTasks
 Name                                                        Status
 ----                                                        ------
 Take Snapshot                                               Completed
-Transfer data tooBackup vault                               InProgress
+Transfer data to Backup vault                               InProgress
 ```
 
 ### <a name="2-create-a-dailyweekly-report-of-backup-jobs"></a>2. Création d’un rapport quotidien/hebdomadaire des travaux de sauvegarde
-En règle générale, les administrateurs souhaitent tooknow les travaux de sauvegarde exécutés hello des dernières 24 heures, état hello de ces tâches de sauvegarde. En outre, quantité hello de données transférées donne aux administrateurs un moyen tooestimate leur utilisation des données mensuelles. script Hello ci-dessous extrait des données brutes hello hello service Azure Backup et affiche des informations de hello dans la console PowerShell hello.
+En général, les administrateurs souhaitent connaître les travaux de sauvegarde exécutés au cours des dernières 24 heures ainsi que l'état de ces travaux de sauvegarde. En outre, la quantité de données transférées offre aux administrateurs une manière d'évaluer leur utilisation mensuelle de données. Le script ci-dessous extrait les données brutes à partir du service de sauvegarde Azure et affiche les informations sur la console PowerShell.
 
 ```
 param(  [Parameter(Mandatory=$True,Position=1)]
@@ -329,12 +329,12 @@ $startdate = ([datetime]::Today)
 for( $i = 1; $i -le $numberofdays; $i++ )
 {
     # We query one day at a time because pulling 7 days of data might be too much
-    $dailyjoblist = Get-AzureRmBackupJob -Vault $backupvault -From $startdate -too$enddate -Type AzureVM -Operation Backup
-    Write-Progress -Activity "Getting job information for hello last $numberofdays days" -Status "Day -$i" -PercentComplete ([int]([decimal]$i*100/$numberofdays))
+    $dailyjoblist = Get-AzureRmBackupJob -Vault $backupvault -From $startdate -To $enddate -Type AzureVM -Operation Backup
+    Write-Progress -Activity "Getting job information for the last $numberofdays days" -Status "Day -$i" -PercentComplete ([int]([decimal]$i*100/$numberofdays))
 
     foreach( $job in $dailyjoblist )
     {
-        #Extract hello information for hello reports
+        #Extract the information for the reports
         $newstatsobj = New-Object System.Object
         $newstatsobj | Add-Member -Type NoteProperty -Name Date -Value $startdate
         $newstatsobj | Add-Member -Type NoteProperty -Name VMName -Value $job.WorkloadName
@@ -353,7 +353,7 @@ for( $i = 1; $i -le $numberofdays; $i++ )
 $DAILYBACKUPSTATS | Out-GridView
 ```
 
-Si vous souhaitez tooadd le résultat du rapport toothis fonctionnalités de création de graphiques, obtenir des informations à partir du billet de blog TechNet hello [graphiques avec PowerShell](http://blogs.technet.com/b/richard_macdonald/archive/2009/04/28/3231887.aspx)
+Si vous souhaitez ajouter des fonctionnalités graphiques à ce rapport, consultez le billet de blog TechNet sur [Fonctionnalités graphiques avec PowerShell](http://blogs.technet.com/b/richard_macdonald/archive/2009/04/28/3231887.aspx)
 
 ## <a name="next-steps"></a>Étapes suivantes
-Si vous préférez utiliser PowerShell tooengage avec vos ressources Azure, consultez l’article de PowerShell hello pour protéger Windows Server, [déployer et gérer Backup pour Windows Server](backup-client-automation-classic.md). Il existe également un article PowerShell sur la gestion des sauvegardes DPM : [Déployer et gérer une sauvegarde pour DPM](backup-dpm-automation-classic.md). Ces deux articles ont une version concernant les déploiements avec le modèle Resource Manager et le modèle Classic.
+Si vous préférez utiliser PowerShell pour gérer vos ressources Azure, consultez l’article de PowerShell pour la protection de Windows Server : [Déployer et gérer une sauvegarde pour Windows Server](backup-client-automation-classic.md). Il existe également un article PowerShell sur la gestion des sauvegardes DPM : [Déployer et gérer une sauvegarde pour DPM](backup-dpm-automation-classic.md). Ces deux articles ont une version concernant les déploiements avec le modèle Resource Manager et le modèle Classic.

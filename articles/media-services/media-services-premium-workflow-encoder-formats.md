@@ -1,5 +1,5 @@
 ---
-title: "aaaMedia Workflow d’encodeur Premium codecs et formats | Documents Microsoft"
+title: Codecs et formats de Media Encoder Premium Workflow | Microsoft Docs
 description: "Cette rubrique offre une vue d’ensemble des codecs et formats de Media Encoder Premium Workflow"
 services: media-services
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: e781384ca8f08926f00c83b6710fd413ce2a3e1c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e18de2adc9aac585d6890dd7b43a54f1a0ca177e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="media-encoder-premium-workflow-formats-and-codecs"></a>Codecs et formats de Media Encoder Premium Workflow
 > [!NOTE]
@@ -28,7 +28,7 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ce document contient une liste de formats de fichier d’entrée et de sortie et les codecs sont pris en charge par la version préliminaire publique de hello Hello **Workflow d’encodeur multimédia Premium** encodeur.
+Ce document contient la liste des codecs et formats de fichiers d’entrée et de sortie pris en charge par la version préliminaire publique de l’encodeur **Media Encoder Premium Workflow** .
 
 [Codecs et formats d’entrée de Media Encoder Premium Workflow](#input_formats)
 
@@ -37,7 +37,7 @@ Ce document contient une liste de formats de fichier d’entrée et de sortie et
 **Media Encoder Premium Workflow** prend en charge le sous-titrage décrit dans [cette](#closed_captioning) section 
 
 ## <a id="input_formats"></a>Codecs et formats d’entrée de Media Encoder Premium Workflow
-Hello après section répertorie hello codecs et formats de fichier qui prend en charge par ce processeur multimédia en tant qu’entrée.
+La section suivante répertorie les codecs et les formats de fichiers que ce processeur multimédia prend en charge en entrée.
 
 ### <a name="input-containerfile-formats"></a>Formats de conteneurs/fichiers d’entrée
 * Adobe® Flash® F4V
@@ -50,11 +50,11 @@ Hello après section répertorie hello codecs et formats de fichier qui prend en
 * AVI (8 bits/10 bits non compressé)
 
 ### <a name="input-video-codecs"></a>Codecs vidéo d’entrée
-* AVC 8/10 bits bits, des too4:2:2, y compris AVCIntra
+* AVC 8 bits/10 bits, jusqu'à 4:2:2, y compris AVCIntra
 * Avid DNxHD (dans MXF)
 * DVCPro/DVCProHD (dans MXF)
 * JPEG2000
-* MPEG-2 (profil de too422 et de niveau élevé, notamment les variantes telles que XDCAM, XDCAM HD, XDCAM IMX, CableLabs® et D10)
+* MPEG-2 (jusqu’au profil 422 et haut niveau ; y compris les variantes telles que XDCAM, XDCAM HD, XDCAM IMX, CableLabs® et D10)
 * MPEG-1
 * Windows Media Video/VC-1
 
@@ -62,14 +62,14 @@ Hello après section répertorie hello codecs et formats de fichier qui prend en
 * AES (SMPTE 331M et 302M, AES3-2003)
 * Dolby® E
 * Dolby® Digital (AC3)
-* AAC (AAC-LC, HE-AAC et AAC-HEv2 ; des too5.1)
+* AAC (AAC-LC, AAC-HE et AAC-HEv2 ; jusqu’à 5.1)
 * MPEG Layer 2
 * MP3 (MPEG-1 Audio Layer 3)
 * Windows Media Audio
 * WAV/PCM
 
 ## <a id="output_format"></a>Codecs et formats de sortie de Media Encoder Premium Workflow
-Hello section suivante répertorie hello codecs et formats de fichier pris en charge en tant que sortie à partir de ce processeur multimédia.
+La section suivante répertorie les codecs et les formats de fichiers pris en charge en sortie avec ce processeur multimédia.
 
 ### <a name="output-containerfile-formats"></a>Formats de conteneurs/fichiers de sortie
 * Adobe® Flash® F4V
@@ -83,10 +83,10 @@ Hello section suivante répertorie hello codecs et formats de fichier pris en ch
 * MPEG-TS 
 
 ### <a name="output-video-codecs"></a>Codecs vidéo de sortie
-* AVC (H.264 ; 8 bits ; jusqu'à tooHigh profil, niveau 5.2 ; HD Ultra de 4 Ko ; AVC Intra)
+* AVC (H.264 ; 8 bits ; jusqu'au profil High, niveau 5.2 ; Ultra HD 4K ; AVC Intra)
 * Avid DNxHD (dans MXF)
 * DVCPro/DVCProHD (dans MXF)
-* MPEG-2 (profil de too422 et de niveau élevé, notamment les variantes telles que XDCAM, XDCAM HD, XDCAM IMX, CableLabs® et D10)
+* MPEG-2 (jusqu’au profil 422 et haut niveau ; y compris les variantes telles que XDCAM, XDCAM HD, XDCAM IMX, CableLabs® et D10)
 * MPEG-1
 * Windows Media Video/VC-1
 * Création de miniatures JPEG
@@ -94,14 +94,14 @@ Hello section suivante répertorie hello codecs et formats de fichier pris en ch
 ### <a name="output-audio-codecs"></a>Codecs audio de sortie
 * AES (SMPTE 331M et 302M, AES3-2003)
 * Dolby® Digital (AC3)
-* Dolby® Digital Plus (E-AC3) des too7.1
-* AAC (AAC-LC, HE-AAC et AAC-HEv2 ; des too5.1)
+* Dolby® Digital Plus (E-AC3) jusqu'à 7.1
+* AAC (AAC-LC, AAC-HE et AAC-HEv2 ; jusqu’à 5.1)
 * MPEG Layer 2
 * MP3 (MPEG-1 Audio Layer 3)
 * Windows Media Audio
 
 >[!NOTE]
->Si vous codez tooDolby® Digital (AC3), hello sortie peuvent uniquement être écrites dans un fichier MP4 ISO.
+>Si vous encodez en Dolby® Digital (AC3), la sortie peut uniquement être écrite dans un fichier MP4 ISO.
 
 ## <a id="closed_captioning"></a>Prise en charge du sous-titrage
 En entrée, **Media Encoder Premium Workflow** prend en charge :
@@ -111,19 +111,19 @@ En entrée, **Media Encoder Premium Workflow** prend en charge :
 3. CEA-608/CEA-708 : transporté comme données utilisateur (messages SEI de flux élémentaires H.264, ATSC/53, SCTE20) ou comme données connexes dans des fichiers MXF/GXF
 4. Fichiers de sous-titres STL
 
-En sortie, hello options suivantes est disponible :
+En sortie, les options suivantes sont disponibles :
 
-1. CEA-608 tooCEA-708 traduction
+1. conversion de CEA-608 vers CEA-708
 2. Transition CEA-608/CEA-708 (incorporé dans des messages SEI de flux élémentaires H.264 ou transporté comme données connexes dans des fichiers MXF)
 3. SCC
 4. SMPTE Timed Text (de la source CEA-608 par SMPTE RP2052 ; création de fichiers DFXP incluse)
 5. Fichier de sous-titre SRT
 6. Flux de sous-titres DVB
 
-Remarque : toutes les hello au-dessus de formats de sortie sont pris en charge pour la remise par diffusion en continu dans Azure Media Services.
+Remarque : tous les formats de sortie mentionnés ci-dessus ne sont pas pris en charge dans le cadre d'une remise diffusée en continu dans Azure Media Services.
 
 ## <a name="known-issues"></a>Problèmes connus
-Si votre vidéo d’entrée ne contient pas de sous-titrage, hello de sortie Qu'actif contient toujours un fichier TTML vide. 
+Si votre vidéo d’entrée ne contient pas de sous-titres, l’élément multimédia de sortie actif comportera toujours un fichier TTML vide. 
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

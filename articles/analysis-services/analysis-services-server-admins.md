@@ -1,6 +1,6 @@
 ---
-title: les administrateurs de serveurs aaaManage dans Azure Analysis Services | Documents Microsoft
-description: "Découvrez comment toomanage les administrateurs de serveur pour un serveur Analysis Services dans Azure."
+title: "Gérer les administrateurs de serveur dans Azure Analysis Services | Microsoft Docs"
+description: "Apprenez à gérer des administrateurs de serveur pour un serveur Analysis Services dans Azure."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: e04387e48e9b9483c382ee5cc9fd65f8331fb2a1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a1b58125dafdf73f245b6a8cd0f4917513b22ea9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manage-server-administrators"></a>Gérer des administrateurs de serveur
-Les administrateurs de serveur doivent être un utilisateur valide ou un groupe Bonjour Azure Active Directory (Azure AD) pour le client hello dans le hello serveur réside. Vous pouvez utiliser **les administrateurs de Services Analysis** dans le panneau de contrôle hello pour votre serveur dans le portail Azure, ou des propriétés du serveur dans les administrateurs de serveur SSMS toomanage. 
+Un administrateur de serveur doit être un utilisateur ou un groupe valide présent dans Azure Active Directory (Azure AD) pour le client disposant du serveur. Vous pouvez utiliser les **Administrateurs Analysis Services** dans le panneau de commande de votre serveur dans le portail ou Propriétés du serveur dans SSMS pour gérer les administrateurs de serveur. 
 
-## <a name="tooadd-server-administrators-by-using-azure-portal"></a>administrateurs de serveur tooadd à l’aide du portail Azure
-1. Dans le panneau de contrôle hello pour votre serveur, cliquez sur **administrateurs de Services d’analyse**.
-2. Bonjour  **\<nom_serveur >-les administrateurs de Services Analysis** panneau, cliquez sur **ajouter**.
-3. Bonjour **ajouter des administrateurs de serveur** panneau, sélectionnez les comptes d’utilisateur à partir de votre annuaire Azure AD ou inviter les utilisateurs externes par adresse de messagerie.
+## <a name="to-add-server-administrators-by-using-azure-portal"></a>Pour ajouter des administrateurs de serveur à l’aide du portail Azure
+1. Dans le panneau de contrôle de votre serveur, cliquez sur **Administrateurs Analysis Services**.
+2. Dans le panneau **\<nom_serveur > Administrateurs Analysis Services**, cliquez sur **Ajouter**.
+3. Dans le panneau **Ajouter des administrateurs de serveur**, sélectionnez les comptes d’utilisateur depuis Azure AD ou invitez des utilisateurs externes via leur adresse e-mail.
 
     ![Administrateurs de serveur dans le portail Azure](./media/analysis-services-server-admins/aas-manage-users-admins.png)
 
-## <a name="tooadd-server-administrators-by-using-ssms"></a>administrateurs de serveur tooadd à l’aide de SSMS
-1. Serveur de hello avec le bouton droit > **propriétés**.
+## <a name="to-add-server-administrators-by-using-ssms"></a>Pour ajouter des administrateurs de serveur à l’aide de SSMS
+1. Faites un clic droit sur le serveur > **Propriétés**.
 2. Dans **Propriétés de Analysis Server**, cliquez sur **Sécurité**.
-3. Cliquez sur **ajouter**, puis entrez l’adresse de messagerie hello pour un utilisateur ou un groupe dans Azure AD.
+3. Cliquez sur **Ajouter**, puis entrez l’adresse e-mail d’un utilisateur ou d’un groupe dans Azure AD.
    
     ![Ajouter des administrateurs de serveur dans SSMS](./media/analysis-services-server-admins/aas-manage-users-ssms.png)
 

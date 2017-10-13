@@ -1,6 +1,6 @@
 ---
-title: "Résolution des problèmes : Des données dans le journal des activités Azure Active Directory hello manquantes | Documents Microsoft"
-description: "Listes hello différents rapports disponibles pour Azure Active Directory"
+title: "Résolution des problèmes : Données manquantes dans le journal d’activité Azure Active Directory | Microsoft Docs"
+description: "Répertorie les différents rapports disponibles pour Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,31 +15,31 @@ ms.workload: identity
 ms.date: 07/15/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 7bbec94ab42eb5b54a7e65e124060d057b4a1a34
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 47617f8f727027de113a0f503308c8accc58859e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="i-cant-find-some-actions-that-i-performed-in-hello-azure-active-directory-activity-log"></a>Impossible de trouver des actions que vous effectuée dans le journal d’activité hello Azure Active Directory
+# <a name="i-cant-find-some-actions-that-i-performed-in-the-azure-active-directory-activity-log"></a>Je ne trouve pas certaines actions que j’ai réalisées dans le journal d’activité d’Azure Active Directory
 
 
 ## <a name="symptoms"></a>Symptômes
 
-J’à effectuer certaines actions Bonjour portail Azure et les journaux d’audit toosee hello pour les actions dans hello `Activity logs > Audit Logs` panneau, mais je ne pouvons pas les trouver.
+J’ai réalisé certaines actions dans le portail Azure et je pensais pouvoir consulter les journaux d’audit associés dans le panneau `Activity logs > Audit Logs`, mais je ne les trouve pas.
 
  ![Reporting](./media/active-directory-reporting-troubleshoot-missing-audit-data/01.png)
  
 
 ## <a name="cause"></a>Cause :
 
-Actions n’apparaissent pas immédiatement dans le journal d’Audit de l’activité hello. Il peut prendre de 15 minutes audit de hello toosee tooan heure consigne dans le portail hello de temps hello hello opération est effectuée.
+Les actions n’apparaissent pas immédiatement dans le journal d’audit des activités. Entre 15 minutes et 1 heure peuvent être nécessaires pour que les journaux d’audit s’affichent dans le portail après l’exécution de l’opération.
 
 ## <a name="resolution"></a>Résolution :
 
-Attendez que les heures tooan 15 minutes et si les actions hello s’affiche dans le journal de hello. Si elles n’apparaissent toujours pas, veuillez créer un ticket de support pour que nous résolvions le problème.
+Attendez entre 15 minutes et 1 heure pour voir si les actions apparaissent dans le journal. Si elles n’apparaissent toujours pas, veuillez créer un ticket de support pour que nous résolvions le problème.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez hello [Azure Active Directory reporting FAQ](active-directory-reporting-faq.md).
+Consultez le [FAQ sur les rapports Azure Active Directory](active-directory-reporting-faq.md).
 

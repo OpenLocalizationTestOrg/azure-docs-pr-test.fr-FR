@@ -1,6 +1,6 @@
 ## <a name="scenario"></a>Scénario
 
-Vous créez un équilibreur de charge interne selon toohello scénario
+Vous créez un équilibreur de charge interne selon le scénario suivant
 
 ![DESCRIPTION DE L'IMAGE](./media/load-balancer-get-started-ilb-scenario-include/figure1.png)
 

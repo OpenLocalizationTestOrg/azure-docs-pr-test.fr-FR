@@ -1,6 +1,6 @@
 ---
-title: "Guide du développeur aaaAzure Key Vault"
-description: "Les développeurs peuvent utiliser des clés de chiffrement toomanage coffre de clés Azure au sein de l’environnement de Microsoft Azure hello."
+title: "Guide du développeur de coffre de clés Azure"
+description: "Les développeurs peuvent utiliser le coffre de clés Azure pour gérer les clés de chiffrement dans l'environnement Microsoft Azure."
 services: key-vault
 author: BrucePerlerMS
 manager: mbaldwin
@@ -9,20 +9,20 @@ ms.topic: article
 ms.workload: identity
 ms.date: 08/04/2017
 ms.author: bruceper
-ms.openlocfilehash: 631cea1315964cd0b97e8b2cf3311754230fb801
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fec4769c0bd571edea84dd2f766bb907d8819be5
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-key-vault-developers-guide"></a>Guide du développeur de coffre de clés Azure
 
-Le coffre de clés vous permet de toosecurely accès des informations sensibles dans vos applications :
+Key Vault vous permet d’accéder en toute sécurité aux informations sensibles à l’intérieur de vos applications :
 
-- Clés et les secrets sont protégées sans avoir à code de hello toowrite vous-même et que vous êtes en mesure de facilement toouse à partir de vos applications.
-- Vous toohave en mesure de vos clients propres et gérez leurs propres clés afin de vous concentrer sur les fonctionnalités du logiciel hello core. De cette façon, vos applications ne possédera pas responsabilité de hello ou responsabilité pour les clés de locataires de vos clients et les secrets.
-- Votre application peut utiliser des clés pour la signature et chiffrement encore conserve la gestion de clés hello externe à partir de votre application, qui toobe de votre solution convient en tant qu’une application distribuée géographiquement.
-- À compter de la version de septembre 2016 hello de coffre de clés, vos applications peuvent désormais utiliser le coffre de clés [certificats](https://docs.microsoft.com/rest/api/keyvault/certificate-operations). Pour plus d’informations, consultez [À propos des clés, des secrets et des certificats](https://docs.microsoft.com/rest/api/keyvault/about-keys--secrets-and-certificates).
+- Les clés et secrets sont protégés sans que vous deviez écrire de code et vous pouvez facilement les utiliser dans vos applications.
+- Vous pouvez faire en sorte que vos clients possèdent et gèrent leurs propres clés, afin que vous puissiez vous concentrer sur la fourniture des principales fonctionnalités du logiciel. Ainsi, vos applications ne vous exposent à aucune responsabilité en relation avec les clés et secrets de vos clients.
+- Votre application peut utiliser des clés pour la signature et le chiffrement, tandis que la gestion des clés s’effectue à l’extérieur de l’application, de sorte que votre solution convient parfaitement pour une application distribuée géographiquement.
+- Depuis la version de septembre 2016 de Key Vault, vos applications peuvent désormais utiliser des [certificats](https://docs.microsoft.com/rest/api/keyvault/certificate-operations) Key Vault. Pour plus d’informations, consultez [À propos des clés, des secrets et des certificats](https://docs.microsoft.com/rest/api/keyvault/about-keys--secrets-and-certificates).
 
 Pour des informations plus générales sur le coffre de clés Azure Key Vault, voir [Qu’est-ce qu’Azure Key Vault ?](key-vault-whatis.md).
 
@@ -33,15 +33,15 @@ Nous publions régulièrement la préversion publique d’une nouvelle fonctionn
 ### <a name="storage-account-keys---july-10-2017"></a>Clés de compte de stockage - 10 juillet 2017
 
 >[!NOTE]
->Pour cette mise à jour de hello uniquement d’Azure Key Vault **clés de compte de stockage** fonctionnalité est en version préliminaire.
+>Pour cette mise à jour d’Azure Key Vault, seule la fonctionnalité **Clés de compte de stockage** est en préversion.
 
 Cette préversion inclut notre nouvelle fonctionnalité Clés de compte de stockage, disponible par le biais de ces interfaces : [.NET/C#](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault/), [REST](https://docs.microsoft.com/rest/api/keyvault/) et [PowerShell](https://docs.microsoft.com/powershell/module/azurerm.keyvault/). 
 
-Pour plus d’informations sur la nouvelle fonctionnalité de clés de compte de stockage hello, consultez [présentation de clés de compte de stockage Azure Key Vault](key-vault-ovw-storage-keys.md).
+Pour plus d’informations sur la nouvelle fonctionnalité Clés de compte de stockage, consultez la page [Vue d’ensemble des clés de compte de stockage Azure Key Vault](key-vault-ovw-storage-keys.md).
 
-## <a name="videos"></a>Vidéos
+## <a name="videos"></a>vidéos
 
-Cette vidéo vous montre comment votre propre clé de coffre toocreate et toouse à partir de hello, exemple d’application « Hello Key Vault ».
+Cette vidéo vous montre comment créer votre propre coffre de clés et comment l'utiliser à partir de l'exemple d'application « Hello Key Vault ».
 
 - [Développeur Key Vault - guide de démarrage rapide](https://channel9.msdn.com/Blogs/Azure/Azure-Key-Vault-Developer-Quick-Start/player)
 
@@ -52,7 +52,7 @@ Ressources mentionnées dans la vidéo ci-dessus :
 
 ## <a name="creating-and-managing-key-vaults"></a>Création et gestion des coffres de clés
 
-Avant d’utiliser le coffre de clés Azure dans votre code, vous pouvez créer et gérer les coffres via REST, les modèles de gestionnaire de ressources, PowerShell ou CLI, comme décrit dans hello suivant des articles :
+Avant d’utiliser Azure Key Vault dans votre code, vous pouvez créer et gérer des coffres via REST, des modèles Resource Manager, PowerShell ou CLI, comme décrit dans les articles suivants :
 
 - [Créer et gérer les coffres de clés avec REST](https://docs.microsoft.com/rest/api/keyvault/)
 - [Créer et gérer les coffres de clés avec PowerShell](key-vault-get-started.md)
@@ -64,7 +64,7 @@ Avant d’utiliser le coffre de clés Azure dans votre code, vous pouvez créer 
 
 ## <a name="coding-with-key-vault"></a>Codage avec coffre de clés
 
-Hello système de gestion de coffre de clés pour les programmeurs qui se compose de plusieurs interfaces, avec les autres en tant que base de hello. Via l’interface REST de hello, toutes vos ressources de coffres de clé sont accessibles. clés, des secrets et des certificats. [Informations de référence sur l’API REST Key Vault](https://docs.microsoft.com/rest/api/keyvault/) 
+Le système de gestion Key Vault à destination des programmeurs se compose de plusieurs interfaces, dont REST qui constitue sa fondation. Par le biais de l’interface REST, toutes vos ressources Key Vault sont accessibles : clés, secrets et certificats. [Informations de référence sur l’API REST Key Vault](https://docs.microsoft.com/rest/api/keyvault/) 
 
 ### <a name="supported-programming-languages"></a>Langages de programmation pris en charge
 
@@ -72,7 +72,7 @@ Hello système de gestion de coffre de clés pour les programmeurs qui se compos
 
 - [Informations de référence sur l’API .NET pour Key Vault](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault) 
 
-Pour plus d’informations sur la version 2.x de hello Hello .NET SDK, consultez hello [notes de publication](key-vault-dotnet2api-release-notes.md).
+Pour plus d’informations sur la version 2.x du kit SDK .NET, consultez les [Notes de publication](key-vault-dotnet2api-release-notes.md).
 
 #### <a name="java"></a>Java
 
@@ -80,7 +80,7 @@ Pour plus d’informations sur la version 2.x de hello Hello .NET SDK, consultez
 
 #### <a name="nodejs"></a>Node.js
 
-Dans Node.js, les API de gestion de coffre hello et les API d’objet coffre hello sont distincts. Key Vault Management permet de créer et de mettre à jour les coffres de clés. L’API Key Vault Operations sert à travailler avec des objets de coffres, comme les clés, les secrets et les certificats. 
+Dans Node.js, l’API de gestion des coffres et l’API des objets de coffres sont distinctes. Key Vault Management permet de créer et de mettre à jour les coffres de clés. L’API Key Vault Operations sert à travailler avec des objets de coffres, comme les clés, les secrets et les certificats. 
 
 - [Informations de référence sur l’API Node.js pour Key Vault Management](http://azure.github.io/azure-sdk-for-node/azure-arm-keyvault/latest/)
 - [Informations de référence sur l’API Node.js pour les opérations Key Vault](http://azure.github.io/azure-sdk-for-node/azure-keyvault/latest/) 
@@ -95,39 +95,39 @@ Dans Node.js, les API de gestion de coffre hello et les API d’objet coffre hel
 Pour obtenir des exemples complets d’utilisation de Key Vault avec vos applications, voir :
 
 - [Exemples de code Azure Key Vault](http://www.microsoft.com/download/details.aspx?id=45343) - exemple d’application .NET *HelloKeyVault* et exemple de service web Azure. 
-- [Utilisez le coffre de clés Azure à partir d’une Application Web](key-vault-use-from-web-application.md) -didacticiel toohelp vous apprendre comment toouse Azure Key Vault à partir d’une application web dans Azure. 
+- [Utiliser Azure Key Vault à partir d’une application web](key-vault-use-from-web-application.md) : tutoriel destiné à vous apprendre à utiliser Azure Key Vault à partir d’une application web dans Azure. 
 
 ## <a name="how-tos"></a>Procédures
 
-Hello scénarios et les articles suivants fournissent des conseils spécifiques à une tâche pour l’utilisation avec Azure Key Vault :
+Les articles et scénarios suivants fournissent des conseils spécifiques sur l’utilisation d’Azure Key Vault :
 
-- [ID de client de coffre de clés modifiées après l’abonnement déplacer](key-vault-subscription-move-fix.md) - lorsque vous déplacez votre abonnement Azure à partir d’un tootenant B de client, vos archivages clés existants ne sont pas accessibles par des principaux hello (utilisateurs et applications) dans le locataire correctif B. cette à l’aide de ce guide.
-- [L’accès à la clé de coffre derrière des pare-feu](key-vault-access-behind-firewall.md) -tooaccess une clé de coffre de votre coffre de clés client application besoins toobe en mesure de tooaccess plusieurs points de terminaison pour différentes fonctionnalités.
-- [Comment tooGenerate et les clés de Transfer HSM-Protected pour Azure Key Vault](key-vault-hsm-protected-keys.md) -cela vous permet de planifier, générer et transférer votre propre toouse clés protégées par HSM avec Azure Key Vault.
-- [Comment toopass sécuriser les valeurs (telles que les mots de passe) au cours du déploiement](../azure-resource-manager/resource-manager-keyvault-parameter.md) - lorsque vous devez toopass une valeur sûre (par exemple, un mot de passe) en tant que paramètre pendant le déploiement, vous pouvez stocker cette valeur en tant que secret dans une valeur hello Azure Key Vault et une référence dans d’autres Modèles du Gestionnaire de ressources.
-- [Comment toouse le coffre de clés pour la gestion de clés extensible avec SQL Server](https://msdn.microsoft.com/library/dn198405.aspx) -hello connecteur SQL Server pour Azure Key Vault permet à SQL Server et SQL dans VM tooleverage hello service Azure Key Vault comme fournisseur de gestion de clés Extensible (EKM) clés de son chiffrement tooprotect pour lier des applications ; Chiffrement transparent des données, le chiffrement de sauvegarde et le chiffrement au niveau colonne.
-- [Comment toodeploy les tooVMs de certificats de coffre de clés](https://blogs.technet.microsoft.com/kv/2015/07/14/deploy-certificates-to-vms-from-customer-managed-key-vault/) - une application cloud en cours d’exécution dans une machine virtuelle sur Azure besoins un certificat. Comment obtenir ce certificat sur cette machine virtuelle dès aujourd’hui ?
-- [Comment tooset configuration coffre de clés avec tooend de fin de clé de rotation et de l’audit](key-vault-key-rotation-log-monitoring.md) -cet exemple présente le tooset de rotation des clés et d’audit avec Azure Key Vault.
+- [Modifier l’ID de client de Key Vault après un déplacement d’abonnement](key-vault-subscription-move-fix.md) - Lorsque vous déplacez votre abonnement Azure du client A vers le client B, vos coffres de clés existants ne sont pas accessibles par les principaux (utilisateurs et applications) dans le client B. Ce guide vous aide à résoudre ce problème.
+- [Accès à Key Vault derrière un pare-feu](key-vault-access-behind-firewall.md) - Pour accéder à un coffre de clés, votre application cliente Key Vault doit être en mesure d’accéder à plusieurs points de terminaison pour différentes fonctionnalités.
+- [Génération et transfert de clés protégées par HSM pour Azure Key Vault](key-vault-hsm-protected-keys.md) : ces informations vous aideront à planifier, générer, puis transférer vos propres clés protégées par le module de sécurité matériel (HSM) utilisées avec Azure Key Vault.
+- [Transmission de valeurs sécurisées (par exemple des mots de passe) lors du déploiement](../azure-resource-manager/resource-manager-keyvault-parameter.md) - Lorsque vous devez passer une valeur sécurisée (par exemple un mot de passe) en tant que paramètre au cours du déploiement, vous pouvez stocker cette valeur en tant que clé secrète dans un coffre de clés Azure et faire référence à la valeur dans d'autres modèles Resource Manager.
+- [Utilisation de Key Vault pour la gestion extensible de clés avec SQL Server](https://msdn.microsoft.com/library/dn198405.aspx) : le connecteur SQL Server pour Azure Key Vault permet à SQL Server et à SQL-in-a-VM d'exploiter le service Azure Key Vault comme un fournisseur de gestion extensible de clés (EKM) afin de protéger ses clés de chiffrement pour le lien des applications ; chiffrement transparent des données, chiffrement de sauvegarde et chiffrement au niveau des colonnes.
+- [Comment déployer des certificats sur des machines virtuelles à partir du coffre de clés](https://blogs.technet.microsoft.com/kv/2015/07/14/deploy-certificates-to-vms-from-customer-managed-key-vault/) - Une application cloud s’exécutant sur une machine virtuelle sur Azure a besoin d’un certificat. Comment obtenir ce certificat sur cette machine virtuelle dès aujourd’hui ?
+- [Configuration de Key Vault avec une rotation des clés et un audit de bout en bout](key-vault-key-rotation-log-monitoring.md) : cet article décrit la procédure de configuration de la rotation des clés et de l’audit avec Azure Key Vault.
 - [Déploiement d’Azure App Service Certificate via Key Vault]( https://blogs.msdn.microsoft.com/appserviceteam/2016/05/24/deploying-azure-web-app-certificate-through-key-vault/) fournit des instructions détaillées pour déployer les certificats stockés dans Key Vault dans le cadre l’offre [App Service Certificate](https://azure.microsoft.com/blog/internals-of-app-service-certificate/).
-- [Accorder l’autorisation réduire applications tooaccess un coffre de clés](key-vault-group-permissions-for-apps.md) stratégie de contrôle d’accès le coffre de clés prend uniquement en charge les entrées de 16. Mais vous pouvez créer un groupe de sécurité Azure Active Directory. Ajouter hello tous les groupe de sécurité de service principaux toothis associé et accorder l’accès toothis sécurité groupe tooKey coffre.
+- [Autoriser de nombreuses applications à accéder à un coffre de clés](key-vault-group-permissions-for-apps.md) La stratégie de contrôle de Key Vault ne prend en charge que 16 entrées. Mais vous pouvez créer un groupe de sécurité Azure Active Directory. Ajoutez tous les principaux du service associés à ce groupe de sécurité et accordez à ce groupe de sécurité l’accès à Key Vault.
 - Pour obtenir des conseils plus spécifiques sur certaines tâches, en relation avec l’intégration et l’utilisation de coffres de clés avec Azure, voir les [exemples de modèles Azure Resource Manager de Ryan Jones pour Key Vault](https://github.com/rjmax/ArmExamples/tree/master/keyvaultexamples).
-- [Comment toouse le coffre de clés soft-suppression avec l’interface CLI](key-vault-soft-delete-cli.md) vous guide à travers les hello utilisation et de cycle de vie d’un coffre de clés et les différents objets de coffre de clés avec soft-suppression est activée.
-- [Comment toouse le coffre de clés soft-suppression avec PowerShell](key-vault-soft-delete-powershell.md) vous guide à travers les hello utilisation et de cycle de vie d’un coffre de clés et les différents objets de coffre de clés avec soft-suppression est activée.
+- [Guide pratique pour utiliser la suppression réversible Key Vault avec l’interface CLI](key-vault-soft-delete-cli.md) décrit l’utilisation et le cycle de vie d’un coffre de clés et des différents objets du coffre de clés quand la suppression réversible est activée.
+- [Guide pratique pour utiliser la suppression réversible Key Vault avec PowerShell](key-vault-soft-delete-powershell.md) décrit l’utilisation et le cycle de vie d’un coffre de clés et des différents objets du coffre de clés quand la suppression réversible est activée.
 
 ## <a name="integrated-with-key-vault"></a>Intégration avec Key Vault
 
 Ces articles concernent d’autres scénarios et services qui utilisent ou intègrent Key Vault.
 
-- [Le chiffrement des disques Azure](../security/azure-security-disk-encryption.md) tire parti hello norme industrielle [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) la fonctionnalité de Windows et hello [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) fonctionnalité de chiffrement de volume tooprovide Linux pour hello du système d’exploitation et les données de salutation disques. solution de Hello est intégrée à Azure Key Vault toohelp contrôler et de gérer les clés de chiffrement de disque hello et des clés secrètes dans votre abonnement de coffre de clés, tout en garantissant que toutes les données de disques de machine virtuelle hello sont chiffrées au repos dans votre stockage Azure.
-- [Azure Data Lake Store](../data-lake-store/data-lake-store-get-started-portal.md) fournit l’option pour le chiffrement des données stockées dans le compte de hello. Gestion de clés, Data Lake Store propose deux modes de gestion de vos clés de chiffrement principale (MEKs), qui sont requis pour le déchiffrement des données qui sont stockées dans hello Data Lake Store. Vous pouvez laisser Data Lake Store gérer hello MEKs pour vous, ou choisissez tooretain approprier MEKs hello à l’aide de votre compte Azure Key Vault. Vous spécifiez le mode de gestion de clés hello lors de la création d’un compte Data Lake Store. 
-- [Azure Information Protection](/information-protection/plan-design/plan-implement-tenant-key) vous permet de toomanager votre propre clé de locataire. Par exemple, au lieu de gérer votre clé de locataire (valeur par défaut de hello) de Microsoft, vous pouvez gérer vos propres toocomply clé de locataire à des réglementations spécifiques qui s’appliquent tooyour organisation. Gérer votre propre clé de locataire est également référencés tooas bring your own key, BYOK.
+- [Azure Disk Encryption](../security/azure-security-disk-encryption.md) s’appuie sur la fonctionnalité standard [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) de Windows et la fonctionnalité [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) de Linux pour fournir le chiffrement de volume du système d’exploitation et des disques de données. La solution est intégrée à Azure Key Vault pour vous aider à contrôler et à gérer les clés de chiffrement de disque et les secrets de votre abonnement au coffre de clés, tout en vous assurant que toutes les données des disques virtuels sont chiffrées au repos dans le stockage Azure.
+- [Azure Data Lake Store](../data-lake-store/data-lake-store-get-started-portal.md) propose une option de chiffrement des données stockées dans le compte. Concernant la gestion des clés, Data Lake Store met à votre disposition deux modes pour gérer les clés de chiffrement principales, qui sont nécessaires pour déchiffrer les données stockées dans le Data Lake Store. Vous pouvez soit laisser Data Lake Store gérer les clés de chiffrement principales, soit choisir de conserver la propriété des clés de chiffrement principales en utilisant votre compte Azure Key Vault. Vous spécifiez le mode de gestion de clés lors de la création du compte Data Lake Store. 
+- [Azure Information Protection](/information-protection/plan-design/plan-implement-tenant-key) vous permet de gérer votre propre clé de locataire. Par exemple, plutôt que Microsoft gère votre clé de client (par défaut), vous pouvez gérer votre propre clé pour vous conformer aux réglementations spécifiques à votre organisation. La gestion de votre propre clé est également appelée BYOK, ou Bring your own key.
 
 ## <a name="key-vault-overviews-and-concepts"></a>Concepts et présentations des coffres de clés
 
-- [Comportement de soft-suppression de coffre de clés](key-vault-ovw-soft-delete.md) décrit une fonctionnalité qui permet la récupération des objets supprimés, si la suppression de hello était accidentelle ou intentionnelle.
-- [Client de coffre de clés de limitation](key-vault-ovw-throttling.md) vous oriente toohello les concepts de base de la limitation et propose une approche pour votre application.
-- [Vue d’ensemble des clés de compte de stockage coffre de clés](key-vault-ovw-storage-keys.md) décrit les clés de comptes de stockage Azure integration hello coffre de clés.
-- [Des mondes de sécurité le coffre de clés](key-vault-ovw-security-worlds.md) décrit hello des relations entre les régions et les zones de sécurité.
+- [Comportement de suppression réversible de Key Vault](key-vault-ovw-soft-delete.md) : décrit une fonctionnalité qui permet la récupération des objets supprimés, que la suppression soit accidentelle ou intentionnelle.
+- [Limitation du client Key Vault](key-vault-ovw-throttling.md) : vous oriente vers les concepts de base de la limitation et propose une approche pour votre application.
+- [Vue d’ensemble des clés de compte de stockage Key Vault](key-vault-ovw-storage-keys.md) : décrit les clés de comptes de stockage Azure d’intégration Key Vault.
+- [Mondes de sécurité Key Vault](key-vault-ovw-security-worlds.md) : décrit les relations entre les régions et les zones de sécurité.
 
 ## <a name="social"></a>Réseaux sociaux
 

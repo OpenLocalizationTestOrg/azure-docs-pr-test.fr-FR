@@ -1,6 +1,6 @@
 ---
-title: aaaIntegrate un compte de stockage Azure avec Azure CDN | Documents Microsoft
-description: "Découvrez comment le contenu toouse hello réseau de distribution de contenu (CDN) Azure toodeliver à large bande passante en mettant en cache les objets BLOB depuis le stockage Azure."
+title: "Intégrer un compte de stockage Azure à Azure CDN | Microsoft Docs"
+description: "Découvrez comment utiliser le réseau de distribution de contenu (CDN) Azure pour diffuser du contenu haut débit en mettant en cache les objets blob à partir d’Azure Storage."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,75 +14,75 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: e44716969d6a784265cc4b1da34f0d021a17b38d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 511076935d06ed0908341044e37069e74530be49
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="integrate-an-azure-storage-account-with-azure-cdn"></a>Intégrer un compte de stockage Azure à Azure CDN
-CDN peut être activé toocache de contenu à partir de votre stockage Azure. Elle offre aux développeurs une solution globale pour la diffusion de contenu haut débit en mettant en cache des objets BLOB et le contenu statique des instances de calcul sur des nœuds physiques dans hello États-Unis, Europe, Asie, en Australie et en Amérique du Sud.
+CDN peut être activé pour mettre du contenu en cache depuis le stockage Azure. Il offre aux développeurs une solution globale pour la diffusion de contenu haut débit en mettant en cache les objets blob et le contenu statique des instances de calcul sur des nœuds physiques aux États-Unis, en Europe, en Asie, en Australie et en Amérique du Sud.
 
 ## <a name="step-1-create-a-storage-account"></a>Étape 1 : création d’un compte de stockage
-Utilisez hello suivant la procédure toocreate un nouveau compte de stockage pour un abonnement Azure. Un compte de stockage donne accès aux services de stockage Azure. compte de stockage Hello représente le niveau le plus élevé de l’espace de noms hello pour accéder à chacun des composants de service de stockage Azure hello hello : services, les services de file d’attente et les services de la Table d’objets Blob. Pour plus d’informations, consultez toohello [Introduction tooMicrosoft Azure Storage](../storage/common/storage-introduction.md).
+Utilisez la procédure suivante pour créer un compte de stockage pour un abonnement Azure. Un compte de stockage donne accès aux services de stockage Azure. Le compte de stockage représente le niveau le plus élevé de l’espace de noms pour l’accès à chacun des composants du service de stockage Azure : services BLOB, services de file d’attente et services de Table. Pour plus d'informations, consultez [Introduction à Microsoft Azure Storage](../storage/common/storage-introduction.md).
 
-toocreate un compte de stockage, vous devez être administrateur de service hello ou un coadministrateur pour hello associé abonnement.
+Pour créer un compte de stockage, vous devez être l’administrateur de service ou un co-administrateur de l’abonnement associé.
 
 > [!NOTE]
-> Il existe plusieurs méthodes que vous pouvez utiliser toocreate un compte de stockage, y compris hello portail Azure et Powershell.  Pour ce didacticiel, nous utiliserons hello portail Azure.  
+> Il existe plusieurs méthodes que vous pouvez utiliser pour créer un compte de stockage, y compris le portail Azure et Powershell.  Pour ce didacticiel, nous allons utiliser le portail Azure.  
 > 
 > 
 
-**toocreate un compte de stockage pour un abonnement Azure**
+**Pour créer un compte de stockage pour un abonnement Azure**
 
-1. Connectez-vous à toohello [Azure Portal](https://portal.azure.com).
-2. Dans le coin supérieur gauche hello, sélectionnez **nouveau**. Bonjour **nouveau** boîte de dialogue, sélectionnez **données + stockage**, puis cliquez sur **compte de stockage**.
+1. Connectez-vous au [portail Azure](https://portal.azure.com).
+2. Dans le coin supérieur gauche, sélectionnez **Nouveau**. Dans la boîte de dialogue **Nouveau**, sélectionnez **Données + stockage**, puis cliquez sur **Compte de stockage**.
     
-    Hello **créer le compte de stockage** panneau s’affiche.   
+    Le panneau **Créer un compte de stockage** s’affiche.   
 
     ![Créer un compte de stockage][create-new-storage-account]  
 
-3. Bonjour **nom** , tapez un nom de sous-domaine. Cette entrée peut être composée de 3 à 24 lettres minuscules et chiffres.
+3. Dans le champ **Nom** , tapez un nom de sous-domaine. Cette entrée peut être composée de 3 à 24 lettres minuscules et chiffres.
    
-    Cette valeur devient le nom d’hôte hello dans hello URI qui est utilisé pour adresser des objets Blob, file d’attente ou Table de ressources pour l’abonnement de hello. Pour répondre à une ressource de conteneur Bonjour service Blob, vous utiliseriez un URI Bonjour suivant le format, où  *&lt;StorageAccountLabel&gt;*  fait référence vous avez tapé une valeur toohello **entrer une URL**:
+    Cette valeur devient le nom d’hôte contenu dans l’URI utilisé pour adresser les ressources d’objets blob, de files d’attente et de tables pour l’abonnement. Pour adresser une ressource de conteneur dans le service BLOB, vous utilisez un URI au format suivant, où *&lt;LibelléCompteStockage&gt;* fait référence à la valeur entrée dans **Enter a URL** :
    
     http://*&lt;LibelléCompteStockage&gt;*.blob.core.windows.net/*&lt;mycontainer&gt;*
    
-    **Important :** hello sous-domaine de hello URL étiquette forms hello du compte de stockage URI et doit être unique parmi tous les services hébergés dans Azure.
+    **Important :** l’étiquette de l’URL forme le sous-domaine de l’URI du compte de stockage et doit être unique parmi tous les services hébergés dans Azure.
    
-    Cette valeur est également utilisée comme nom hello de ce compte de stockage dans le portail de hello, ou lors de l’accès par programme de ce compte.
-4. Laisser les valeurs par défaut hello pour **modèle de déploiement**, **compte kind**, **performances**, et **réplication**. 
-5. Sélectionnez hello **abonnement** que compte de stockage hello est utilisée avec.
+    Cette valeur est également utilisée comme nom pour ce compte de stockage dans le portail ou lors de l’accès à ce compte par programme.
+4. Conservez les valeurs par défaut des champs **Modèle de déploiement**, **Type de compte**, **Performances** et **Réplication**. 
+5. Sélectionnez l' **abonnement** à utiliser avec le compte de stockage.
 6. Sélectionnez ou créez un **groupe de ressources**.  Pour plus d’informations sur les groupes de ressources, consultez [Vue d’ensemble d’Azure Resource Manager](../azure-resource-manager/resource-group-overview.md#resource-groups).
 7. Sélectionnez l’emplacement de votre compte de stockage.
-8. Cliquez sur **Créer**. Hello de création de compte de stockage hello peut durer plusieurs minutes toocomplete.
+8. Cliquez sur **Create**. Le processus de création du compte de stockage peut durer quelques minutes.
 
-## <a name="step-2-enable-cdn-for-hello-storage-account"></a>Étape 2 : Activer le CDN pour le compte de stockage hello
+## <a name="step-2-enable-cdn-for-the-storage-account"></a>Étape 2 : Activation du CDN pour le compte de stockage
 
-Avec l’intégration les plus récents de hello, vous pouvez maintenant activer CDN pour votre compte de stockage sans quitter votre extension de portail de stockage. 
+Avec l’intégration la plus récente, vous pouvez maintenant activer CDN pour votre compte de stockage sans quitter votre extension de portail de stockage. 
 
-1. Sélectionnez le compte de stockage hello, rechercher « CDN » ou faites défiler vers le bas à partir du menu de navigation gauche hello, puis cliquez sur « Azure CDN ».
+1. Sélectionnez le compte de stockage, recherchez « CDN » ou faites défiler vers le bas dans le menu de navigation de gauche, puis cliquez sur « Azure CDN ».
     
-    Hello **Azure CDN** panneau s’affiche.
+    Le panneau **Azure CDN** s’affiche.
 
     ![cdn enable navigation][cdn-enable-navigation]
     
-2. Créer un nouveau point de terminaison en entrant les informations hello requis
+2. Créer un nouveau point de terminaison en entrant les informations requises
     - **Profil CDN** : vous pouvez en créer un nouveau ou utiliser un profil existant.
-    - **Niveau de tarification**: vous ne devez tooselect une tarification niveau si vous créez un nouveau profil CDN.
+    - **Niveau de tarification** : vous devez sélectionner un niveau de tarification uniquement si vous créez un nouveau profil CDN.
     - **Nom du point de terminaison CDN** : entrez le nom de point de terminaison de votre choix.
 
     > [!TIP]
-    > point de terminaison CDN Hello créé utilise le nom d’hôte hello de votre compte de stockage comme origine par défaut.
+    > Le point de terminaison CDN créé utilise le nom d’hôte de votre compte de stockage en tant qu’origine par défaut.
 
     ![cdn new endpoint creation][cdn-new-endpoint-creation]
 
-3. Après la création, le nouveau point de terminaison hello s’afficheront dans la liste de point de terminaison hello ci-dessus.
+3. Après création, le nouveau point de terminaison s’affiche dans la liste de points de terminaison ci-dessus.
 
     ![cdn storage new endpoint][cdn-storage-new-endpoint]
 
 > [!NOTE]
-> Vous pouvez également passer tooAzure CDN extension tooenable CDN. [Didacticiel](#Tutorial-cdn-create-profile).
+> Vous pouvez également accéder à l’extension Azure CDN pour activer le CDN. [Didacticiel](#Tutorial-cdn-create-profile).
 > 
 > 
 
@@ -90,31 +90,31 @@ Avec l’intégration les plus récents de hello, vous pouvez maintenant activer
 
 ## <a name="step-3-enable-additional-cdn-features"></a>Étape 3 : Activer d’autres fonctionnalités du CDN
 
-À partir du Panneau de « Azure CDN » de compte de stockage, cliquez sur le point de terminaison CDN hello à partir du Panneau de configuration hello liste tooopen CDN. Vous pouvez activer des fonctionnalités supplémentaires du CDN pour la livraison, comme la compression, la chaîne de requête et le filtrage géographique. Vous pouvez également ajouter le point de terminaison CDN domaine personnalisé mappage tooyour et activer HTTPS de domaine personnalisé.
+Dans le panneau « Azure CDN » du compte de stockage, cliquez sur le point de terminaison CDN dans la liste pour ouvrir le panneau de configuration du CDN. Vous pouvez activer des fonctionnalités supplémentaires du CDN pour la livraison, comme la compression, la chaîne de requête et le filtrage géographique. Vous pouvez également ajouter le mappage de domaine personnalisé pour votre point de terminaison CDN et activer HTTPS sur les domaines personnalisés.
     
 ![Configuration CDN stockage CDN][cdn-storage-cdn-configuration]
 
 ## <a name="step-4-access-cdn-content"></a>Étape 4 : accès au contenu du CDN
-Utilisez hello URL du CDN tooaccess mis en cache le contenu sur hello CDN, fourni dans le portail de hello. adresse Hello pour un objet blob mis en cache sera similaire toohello suivantes :
+Pour accéder au contenu mis en cache sur le CDN, utilisez l’URL CDN fournie dans le portail. L’adresse d’un objet blob mis en cache est au format suivant :
 
 http://<*nom_point_de_terminaison*\>.azureedge.net/<*MonConteneurPublic*\>/<*Nom_blob*\>
 
 > [!NOTE]
-> Une fois que vous activez le compte de stockage de tooa accès CDN, tous les objets disponibles publiquement sont éligibles pour la mise en cache de périmètre CDN. Si vous modifiez un objet qui est actuellement mis en cache hello CDN, hello nouveau contenu n’est plus disponible via hello CDN jusqu'à ce que hello CDN actualise son contenu lors de la période de durée de vie contenu hello mis en cache expire.
+> Dès que vous activez un accès au CDN pour un compte de stockage, tous les objets disponibles publiquement peuvent bénéficier de la mise en cache de périmètre du CDN. Si vous modifiez un objet actuellement mis en cache dans le CDN, le nouveau contenu n’est pas disponible via le CDN avant son actualisation, c’est-à-dire une fois sa durée de vie écoulée.
 > 
 > 
 
-## <a name="step-5-remove-content-from-hello-cdn"></a>Étape 5 : Supprimer le contenu à partir de hello CDN
-Si vous ne souhaitez plus toocache un objet Bonjour Azure réseau CDN (Content Delivery), vous pouvez effectuer l’une des hello comme suit :
+## <a name="step-5-remove-content-from-the-cdn"></a>Étape 5 : Suppression de contenu du CDN
+Si vous ne souhaitez plus mettre en cache un objet dans le réseau de distribution de contenu (CDN) Azure, vous pouvez procéder comme suit :
 
-* Vous pouvez rendre hello privé de conteneur au lieu de public. Consultez [gérer l’accès en lecture anonyme toocontainers et les objets BLOB](../storage/blobs/storage-manage-access-to-resources.md) pour plus d’informations.
-* Vous pouvez désactiver ou supprimer le point de terminaison CDN hello à l’aide du portail de gestion de hello.
-* Vous pouvez modifier votre toorequests plus de temps de réponse service hébergé toono pour l’objet de hello.
+* Vous pouvez changer le statut du conteneur de public à privé. Pour plus d'informations, consultez [Gestion de l'accès en lecture anonyme aux conteneurs et aux objets blob](../storage/blobs/storage-manage-access-to-resources.md) .
+* Vous pouvez désactiver ou supprimer le point de terminaison CDN à l’aide du portail de gestion.
+* Vous pouvez modifier votre service hébergé pour qu’il ne réponde plus aux demandes de l’objet.
 
-Un objet déjà mis en cache dans hello CDN reste dans le cache jusqu'à ce que hello time-to-live pour l’objet de hello expire ou jusqu'à ce que le point de terminaison hello est purgée. Lors de l’expiration de la période de durée de vie de hello, hello CDN vérifiera toosee indique si le point de terminaison CDN hello est toujours valide et objet hello toujours accessible de manière anonyme. Si elle n’est pas le cas, puis les objet hello sont ne sont plus mises en cache.
+Un objet déjà mis en cache dans le CDN y reste jusqu'à ce que sa durée de vie expire ou que le point de terminaison soit purgé. Après cela, le CDN vérifie si le point de terminaison CDN est encore valide et si l’objet est encore accessible de manière anonyme. S’il ne l’est pas, l’objet n’est plus mis en cache.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
-* [Comment tooa de contenu CDN tooMap un domaine personnalisé](cdn-map-content-to-custom-domain.md)
+* [Mappage du contenu CDN à un domaine personnalisé](cdn-map-content-to-custom-domain.md)
 * [Activer HTTPS pour votre domaine personnalisé](cdn-custom-ssl.md)
 
 [create-new-storage-account]: ./media/cdn-create-a-storage-account-with-cdn/CDN_CreateNewStorageAcct.png

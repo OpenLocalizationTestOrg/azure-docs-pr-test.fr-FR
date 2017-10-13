@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Predictix Assortment Planning | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et la planification d’assortiment Predictix."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Predictix Assortment Planning."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,198 +14,198 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: jeedes
-ms.openlocfilehash: 1294b712caf12fdafaf65d70a02ee9fbdc3e84a8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cc7ad4aa5260276e26406b6b79c039372e5ee69f
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-predictix-assortment-planning"></a>Didacticiel : Intégration d’Azure Active Directory à Predictix Assortment Planning
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Predictix assortiment planification avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Predictix Assortment Planning à Azure Active Directory (Azure AD).
 
-Intégration de la planification d’assortiment Predictix à Azure AD offre hello avantages suivants :
+L’intégration de Predictix Assortment Planning à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a tooPredictix accès assortiment planification.
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooPredictix assortiment planification (Single Sign-On) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.
+- Dans Azure AD, vous pouvez contrôler qui a accès à Predictix Assortment Planning.
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Predictix Assortment Planning (via l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure.
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec la planification d’assortiment Predictix, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à Predictix Assortment Planning, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Predictix Assortment Planning pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de la planification d’assortiment Predictix à partir de la galerie de hello
+1. Ajout de Predictix Assortment Planning à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-predictix-assortment-planning-from-hello-gallery"></a>Ajout de la planification d’assortiment Predictix à partir de la galerie de hello
-tooconfigure hello intégration de la planification d’assortiment Predictix dans Azure AD, vous devez tooadd planification d’assortiment Predictix à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-predictix-assortment-planning-from-the-gallery"></a>Ajout de Predictix Assortment Planning à partir de la galerie
+Pour configurer l’intégration de Predictix Assortment Planning à Azure AD, vous devez ajouter Predictix Assortment Planning à partir de la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd Predictix assortiment planification à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Predictix Assortment Planning à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
-    ![bouton d’Azure Active Directory Hello][1]
+    ![Bouton Azure Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
-    ![panneau des applications Enterprise Hello][2]
+    ![Panneau Applications d’entreprise][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
-    ![Nouveau bouton d’application Hello][3]
+    ![Bouton Nouvelle application][3]
 
-4. Dans la zone de recherche de hello, tapez **planification d’assortiment Predictix**, sélectionnez **planification d’assortiment Predictix** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
+4. Dans la zone de recherche, tapez **Predictix Assortment Planning**, sélectionnez **Predictix Assortment Planning** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
-    ![Planification d’assortiment Predictix dans la liste des résultats hello](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_addfromgallery.png)
+    ![Predictix Assortment Planning dans la liste des résultats](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Predictix Assortment Planning avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans la planification d’assortiment Predictix est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur dans la planification d’assortiment Predictix hello doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Predictix Assortment Planning équivalent dans Azure AD. En d’autres termes, il faut établir une relation entre l’utilisateur Azure AD et l’utilisateur Predictix Assortment Planning associé.
 
-Dans la planification d’assortiment Predictix, affecter la valeur de hello de hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Predictix Assortment Planning, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique à la planification d’assortiment Predictix, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Predictix Assortment Planning, vous devez suivre les indications des sections suivantes :
 
-1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Créer un utilisateur de test de planification d’assortiment Predictix](#create-a-predictix-assortment-planning-test-user)**  -toohave un équivalent de Britta Simon Predictix assortiment planification qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Predictix Assortment Planning](#create-a-predictix-assortment-planning-test-user)** pour avoir un équivalent de Britta Simon dans Predictix Assortment Planning associé à sa représentation dans Azure AD.
+4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application de planification d’assortiment Predictix.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Predictix Assortment Planning.
 
-**tooconfigure Azure AD l’authentification unique avec une planification assortiment Predictix, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Predictix Assortment Planning, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, sur hello **planification d’assortiment Predictix** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, dans la page d’intégration de l’application **Predictix Assortment Planning**, cliquez sur **Authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_samlbase.png)
 
-3. Sur hello **Predictix assortiment planification de domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL Predictix Assortment Planning**, effectuez les étapes suivantes :
 
     ![Informations d’authentification unique dans Domaine et URL Predictix Assortment Planning](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :
+    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant :
     | |
     |--|--|
     | `https://<sub-domain>.ap.predictix.com/sso/request`|
     | `https://<sub-domain>.dev.ap.predictix.com/`|
 
-    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :
+    b. Dans la zone de texte **Identificateur**, entrez une URL au format suivant :
     | |
     |--|--|
     | `https://<sub-domain>.ap.predictix.com`|
     | `https://<sub-domain>.dev.ap.predictix.com`|
     
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur. Contact [équipe de support Client de planification assortiment Predictix](http://www.infor.com/support) tooget ces valeurs. 
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Pour obtenir ces valeurs, contactez [l’équipe du support Predictix Assortment Planning](http://www.infor.com/support). 
  
 
 
-4. Sur hello **le certificat de signature SAML** , cliquez sur **Certificate(Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
 
-    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_certificate.png) 
+    ![Lien de téléchargement du certificat](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_certificate.png) 
 
 5. Cliquez sur le bouton **Enregistrer** .
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_general_400.png)
 
-6. Sur hello **Predictix assortiment planification Configuration** , cliquez sur **configurer une planification d’assortiment Predictix** tooopen **configurer l’authentification** fenêtre. Hello de copie **URL de déconnexion, ID d’entité SAML et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
+6. Dans la section **Configuration de Predictix Assortment Planning**, cliquez sur **Configurer Predictix Assortment Planning** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez **l’URL de déconnexion, l’ID d’entité SAML et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
 
     ![Configuration de Predictix Assortment Planning](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_configure.png) 
 
-7. tooconfigure l’authentification unique sur **planification d’assortiment Predictix** côté, vous devez hello toosend téléchargé **Certificate(Base64)**, **ID d’entité SAML**,  **SAML Sign-On URL du Service unique**, et **URL de déconnexion** trop[équipe de support technique de planification d’assortiment Predictix](http://www.infor.com/support). Ils définir ce hello toohave de paramètre connexion SSO SAML correctement des deux côtés.
+7. Pour configurer l’authentification unique côté **Predictix Assortment Planning**, vous devez envoyer le **Certificat (Base64)** téléchargé, **l’ID d’entité SAML**, **l’URL du service d’authentification unique SAML** et **l’URL de déconnexion** à [l’équipe du support Predictix Assortment Planning](http://www.infor.com/support). Celles-ci configurent ensuite ce paramètre pour que la connexion SSO SAML soit définie correctement des deux côtés.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
    ![Créer un utilisateur de test Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.
+1. Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.
 
-    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_01.png)
+    ![Bouton Azure Active Directory](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_01.png)
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
 
-    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_02.png)
+    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.
 
-    ![bouton Ajouter de Hello](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_03.png)
+    ![Bouton Ajouter](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_03.png)
 
-4. Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
 
-    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_04.png)
+    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-predictix-assortment-planning-tutorial/create_aaduser_04.png)
 
-    a. Bonjour **nom** , tapez **BrittaSimon**.
+    a. Dans la zone **Nom**, tapez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.
+    b. Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.
 
-    c. Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.
+    c. Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.
 
     d. Cliquez sur **Créer**.
  
 ### <a name="create-a-predictix-assortment-planning-test-user"></a>Créer un utilisateur de test Predictix Assortment Planning
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Predictix Assortment Planning. Collaborez avec [équipe de support technique de planification d’assortiment Predictix](http://www.infor.com/contact/) tooadd les utilisateurs de hello dans la plateforme de planification d’assortiment Predictix hello.
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Predictix Assortment Planning. Pour ajouter des utilisateurs dans la plateforme Predictix Assortment Planning, contactez [l’équipe du support Predictix Assortment Planning](http://www.infor.com/contact/).
  > [!NOTE]
- > titulaire du compte Azure Active Directory Hello reçoit un message électronique et suit un tooconfirm de lier leur compte avant son activation.
+ > Le titulaire du compte Azure Active Directory reçoit un e-mail contenant un lien à suivre pour confirmer son compte et l’activer.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant tooPredictix accès assortiment planification.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Predictix Assortment Planning.
 
-![Attribuer le rôle d’utilisateur hello][200] 
+![Attribuer le rôle utilisateur][200] 
 
-**tooassign tooPredictix Britta Simon assortiment planification, effectuez hello comme suit :**
+**Pour affecter Britta Simon à Predictix Assortment Planning, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **planification d’assortiment Predictix**.
+2. Dans la liste des applications, sélectionnez **Predictix Assortment Planning**.
 
-    ![lien de planification d’assortiment Predictix Hello dans la liste des Applications hello](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_app.png)  
+    ![Lien Predictix Assortment Planning dans la liste des applications](./media/active-directory-saas-predictix-assortment-planning-tutorial/tutorial_predictixassortmentplanning_app.png)  
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
-    ![lien de « Utilisateurs et groupes » Hello][202]
+    ![Lien « Utilisateurs et groupes »][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![volet d’ajouter l’affectation de Hello][203]
+    ![Volet Ajouter une attribution][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -213,14 +213,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur la vignette planification d’assortiment de Predictix hello Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour planification d’assortiment Predictix l’application.
-Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md). 
+Lorsque vous cliquez sur la vignette Predictix Assortment Planning dans le volet d’accès, vous devez être connecté automatiquement à votre application Predictix Assortment Planning.
+Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

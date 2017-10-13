@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec EthicsPoint Incident Management (EPIM) | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et gestion d’Incident EthicsPoint (EPIM)."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et EthicsPoint Incident Management (EPIM)."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,117 +13,117 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: jeedes
-ms.openlocfilehash: 73ef5fab815cddb3728f4b23173f99e62aec5bd0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b5ac3afd973b5765ba151e766754934b49ac0e0c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-ethicspoint-incident-management-epim"></a>Didacticiel : Intégration d’Azure Active Directory avec EthicsPoint Incident Management (EPIM)
 
-Dans ce didacticiel, vous apprendrez comment toointegrate EthicsPoint Incident Management (EPIM) avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer EthicsPoint Incident Management (EPIM) à Azure Active Directory (Azure AD).
 
-Intégration de gestion d’Incident EthicsPoint (EPIM) avec Azure AD offre hello avantages suivants :
+L’intégration dEthicsPoint Incident Management (EPIM) avec Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooEthicsPoint gestion de l’Incident (EPIM)
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooEthicsPoint gestion d’Incident (EPIM) (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès à EthicsPoint Incident Management (EPIM)
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à EthicsPoint Incident Management (EPIM) (par le biais de l’authentification unique) avec leur compte Azure AD
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec EthicsPoint Incident Management (EPIM), vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à EthicsPoint Incident Management (EPIM), vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement EthicsPoint Incident Management (EPIM) pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de gestion d’Incident EthicsPoint (EPIM) à partir de la galerie de hello
+1. Ajout d’EthicsPoint Incident Management (EPIM) à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-ethicspoint-incident-management-epim-from-hello-gallery"></a>Ajout de gestion d’Incident EthicsPoint (EPIM) à partir de la galerie de hello
-intégration de hello tooconfigure de EthicsPoint Incident Management (EPIM) dans Azure AD, vous devez tooadd EthicsPoint Incident Management (EPIM) à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-ethicspoint-incident-management-epim-from-the-gallery"></a>Ajout d’EthicsPoint Incident Management (EPIM) à partir de la galerie
+Pour configurer l’intégration d’EthicsPoint Incident Management (EPIM) avec Azure AD, vous devez ajouter EthicsPoint Incident Management (EPIM), à partir de la galerie, à votre liste d’applications SaaS gérées.
 
-**tooadd EthicsPoint Incident Management (EPIM) à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter EthicsPoint Incident Management (EPIM) à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **EthicsPoint Incident Management (EPIM)**.
+4. Dans la zone de recherche, tapez **EthicsPoint Incident Management (EPIM)**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ethicspoint-incident-management-tutorial/tutorial_ethicspoint_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **EthicsPoint Incident Management (EPIM)**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le volet des résultats, sélectionnez **EthicsPoint Incident Management (EPIM)**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ethicspoint-incident-management-tutorial/tutorial_ethicspoint_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec EthicsPoint Incident Management (EPIM) avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans EthicsPoint Incident Management (EPIM) est tooa dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans EthicsPoint Incident Management (EPIM) doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur EthicsPoint Incident Management (EPIM) équivalent dans Azure AD. En d’autres termes, un lien entre un utilisateur Azure AD et l’utilisateur EthicsPoint Incident Management (EPIM) associé doit être établi.
 
-Dans Gestion de Incident EthicsPoint (EPIM), affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans EthicsPoint Incident Management (EPIM), assignez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec EthicsPoint Incident Management (EPIM), vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec EthicsPoint Incident Management (EPIM), vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test EthicsPoint Incident Management (EPIM)](#creating-a-ethicspoint-incident-management-epim-test-user)**  -toohave un équivalent de Britta Simon dans EthicsPoint Incident Management (EPIM) qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test EthicsPoint Incident Management (EPIM)](#creating-a-ethicspoint-incident-management-epim-test-user)** pour avoir un équivalent de Britta Simon dans EthicsPoint Incident Management (EPIM) lié à la représentation Azure AD de l’utilisateur.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application de gestion d’Incident EthicsPoint (EPIM).
+Dans cette section, vous allez activer l’authentification unique Azure AD sur le portail Azure et configurer l’authentification unique dans votre application EthicsPoint Incident Management (EPIM).
 
-**tooconfigure Azure AD l’authentification unique avec EthicsPoint Incident Management (EPIM), exécutez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec EthicsPoint Incident Management (EPIM), procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **EthicsPoint Incident Management (EPIM)** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Sur le portail Azure, à la page d’intégration de l’application **EthicsPoint Incident Management (EPIM)**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-ethicspoint-incident-management-tutorial/tutorial_ethicspoint_samlbase.png)
 
-3. Sur hello **URL et le domaine de la gestion d’Incident EthicsPoint (EPIM)** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL EthicsPoint Incident Management (EPIM)**, effectuez les étapes suivantes :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-ethicspoint-incident-management-tutorial/tutorial_ethicspoint_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :
+    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant :
     | |
     |--|
     | `https://<companyname>.navexglobal.com`|
     | `https://<companyname>.ethicspointvp.com`|
 
-    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<companyname>.navexglobal.com/adfs/services/trust`
+    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<companyname>.navexglobal.com/adfs/services/trust`
 
-    c. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<servername>.navexglobal.com/adfs/ls/`
+    c. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<servername>.navexglobal.com/adfs/ls/`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs avec des URL de réponse réelle hello, identificateur et URL de connexion. Contact [équipe de support Client de gestion d’Incident EthicsPoint (EPIM)](http://www.navexglobal.com/company/contact-us) tooget ces valeurs. 
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de réponse, l’identificateur et l’URL de connexion réels. Pour obtenir ces valeurs, contactez [l’équipe de prise en charge des clients EthicsPoint Incident Management (EPIM)](http://www.navexglobal.com/company/contact-us). 
 
-4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-ethicspoint-incident-management-tutorial/tutorial_ethicspoint_certificate.png) 
 
@@ -131,64 +131,64 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-ethicspoint-incident-management-tutorial/tutorial_general_400.png)
     
-6. tooconfigure l’authentification unique sur **EthicsPoint Incident Management (EPIM)** côté, vous devez hello toosend téléchargé **Metadata XML** trop[prise en charge de la gestion d’Incident EthicsPoint (EPIM) équipe](http://www.navexglobal.com/company/contact-us).
+6. Pour configurer l’authentification unique du côté d’**EthicsPoint Incident Management (EPIM)**, vous devez envoyer le fichier **XML de métadonnées** téléchargé à l’[équipe de support technique d’EthicsPoint Incident Management (EPIM)](http://www.navexglobal.com/company/contact-us).
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ethicspoint-incident-management-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ethicspoint-incident-management-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ethicspoint-incident-management-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ethicspoint-incident-management-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-ethicspoint-incident-management-epim-test-user"></a>Création d’un utilisateur de test d’EthicsPoint Incident Management (EPIM)
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans EthicsPoint Incident Management (EPIM). Collaborez avec [équipe de support technique de gestion d’Incident EthicsPoint (EPIM)](http://www.navexglobal.com/company/contact-us) tooadd les utilisateurs de hello dans la plateforme de gestion d’Incident EthicsPoint (EPIM) hello.
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans EthicsPoint Incident Management (EPIM). Travaillez avec l’[équipe de support technique d’EthicsPoint Incident Management (EPIM)](http://www.navexglobal.com/company/contact-us) pour ajouter les utilisateurs dans la plateforme EthicsPoint Incident Management (EPIM).
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooEthicsPoint gestion de l’Incident (EPIM).
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à EthicsPoint Incident Management (EPIM).
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooEthicsPoint gestion de l’Incident (EPIM), exécutez hello comme suit :**
+**Pour affecter Britta Simon à EthicsPoint Incident Management (EPIM), procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **EthicsPoint Incident Management (EPIM)**.
+2. Dans la liste des applications, sélectionnez **EthicsPoint Incident Management (EPIM)**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-ethicspoint-incident-management-tutorial/tutorial_ethicspoint_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -196,7 +196,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -204,12 +204,12 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
-Lorsque vous cliquez sur vignette de gestion d’Incident EthicsPoint (EPIM) hello Bonjour volet d’accès, vous devez obtenir l’application de gestion d’Incident EthicsPoint (EPIM) automatiquement signé sur tooyour.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Lorsque vous cliquez sur la mosaïque EthicsPoint Incident Management (EPIM) dans le volet d’accès, vous devez être connecté automatiquement à votre application EthicsPoint Incident Management (EPIM).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

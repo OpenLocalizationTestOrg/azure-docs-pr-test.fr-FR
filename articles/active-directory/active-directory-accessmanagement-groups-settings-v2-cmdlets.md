@@ -1,6 +1,6 @@
 ---
-title: "exemples d’aaaPowerShell pour la gestion des groupes dans Azure Active Directory | Documents Microsoft"
-description: "Cette page fournit PowerShell exemples toohelp vous gérez vos groupes dans Azure Active Directory"
+title: "Exemples PowerShell pour gérer des groupes dans Azure Active Directory | Documents Microsoft"
+description: "Cette page fournit des exemples PowerShell pour vous aider à gérer vos groupes dans Azure Active Directory"
 keywords: Azure AD, Azure Active Directory, PowerShell, Groupes, Gestion des groupes
 services: active-directory
 documentationcenter: 
@@ -13,31 +13,30 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/09/2017
+ms.date: 09/29/2017
 ms.author: curtand
 ms.reviewer: rodejo
-ms.openlocfilehash: ba049babc436e99a290f20899b3a87bcfa811d9e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5cad44dc7bf415002b3c9872fffdcf0d54bb6ad6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-version-2-cmdlets-for-group-management"></a>Cmdlets d’Azure Active Directory version 2 pour la gestion de groupe
 > [!div class="op_single_selector"]
 > * [Portail Azure](active-directory-groups-create-azure-portal.md)
-> * [Portail Azure Classic](active-directory-accessmanagement-manage-groups.md)
 > * [PowerShell](active-directory-accessmanagement-groups-settings-v2-cmdlets.md)
 >
 >
 
-Cet article contient des exemples de toouse PowerShell toomanage vos groupes dans Azure Active Directory (Azure AD).  Il vous indique également comment configurer tooget avec le module PowerShell Azure AD de hello. Vous devez tout d’abord, [télécharger le module PowerShell Azure AD hello](https://www.powershellgallery.com/packages/AzureAD/).
+Cet article contient des exemples expliquant comment utiliser PowerShell pour gérer vos groupes dans Azure Active Directory (Azure AD).  Il fournit également des informations sur la configuration à l’aide du module Azure AD PowerShell. Vous devez tout d’abord [télécharger le module Azure AD PowerShell](https://www.powershellgallery.com/packages/AzureAD/).
 
-## <a name="installing-hello-azure-ad-powershell-module"></a>Installation du module PowerShell Azure AD de hello
-tooinstall hello module PowerShell Azure AD, utilisez hello suivant de commandes :
+## <a name="installing-the-azure-ad-powershell-module"></a>Installation du module Azure AD PowerShell
+Pour installer le module PowerShell Azure AD, utilisez les commandes suivantes :
 
     PS C:\Windows\system32> install-module azuread
 
-tooverify qui hello module a été installé, utilisez hello de commande suivante :
+Pour vérifier que le module a été installé, utilisez la commande suivante :
 
     PS C:\Windows\system32> get-module azuread
 
@@ -45,33 +44,33 @@ tooverify qui hello module a été installé, utilisez hello de commande suivant
     ---------- ---------    ----                                ----------------
     Binary     2.0.0.115    azuread                      {Add-AzureADAdministrati...}
 
-Vous pouvez maintenant commencer à l’aide des applets de commande hello dans le module de hello. Pour obtenir une description complète des applets de commande hello dans le module de hello Azure AD, reportez-vous à la documentation de référence en ligne toohello pour [Azure Active Directory PowerShell Version 2](/powershell/azure/install-adv2?view=azureadps-2.0).
+Vous pouvez désormais utiliser les applets de commande dans le module. Pour obtenir une description complète des applets de commande du module Azure AD, consultez la documentation de référence en ligne pour [Azure Active Directory PowerShell Version 2](/powershell/azure/install-adv2?view=azureadps-2.0).
 
-## <a name="connecting-toohello-directory"></a>Connexion toohello Active
-Avant de commencer la gestion des groupes à l’aide des applets de commande PowerShell Azure AD, vous devez vous connecter à votre répertoire de toohello de session de PowerShell vous souhaitez toomanage. Utilisez hello de commande suivante :
+## <a name="connecting-to-the-directory"></a>Connexion au répertoire
+Avant de pouvoir gérer des groupes à l’aide des applets de commande Azure AD PowerShell, vous devez connecter votre session PowerShell au répertoire que vous voulez gérer. Utilisez la commande suivante :
 
     PS C:\Windows\system32> Connect-AzureAD
 
-Hello applet de commande vous invite pour les informations d’identification de hello vous souhaitez toouse tooaccess votre répertoire. Dans cet exemple, nous utilisons karen@drumkit.onmicrosoft.com tooaccess hello active de démonstration. Hello applet de commande renvoie une session de hello tooshow confirmation a été correctement connectée tooyour active :
+L’applet de commande vous demande de fournir les informations d’identification à utiliser pour accéder à votre répertoire. Dans cet exemple, nous utilisons karen@drumkit.onmicrosoft.com pour accéder au répertoire de démonstration. L’applet de commande renvoie une confirmation pour indiquer que la session a été correctement connectée à votre répertoire :
 
     Account                       Environment Tenant
     -------                       ----------- ------
     Karen@drumkit.onmicrosoft.com AzureCloud  85b5ff1e-0402-400c-9e3c-0f…
 
-Vous pouvez maintenant démarrer à l’aide de groupes de toomanage hello organisation applets de commande dans votre annuaire.
+À présent, vous pouvez commencer à utiliser les applets de commande Azure AD pour gérer des groupes dans votre répertoire.
 
 ## <a name="retrieving-groups"></a>Récupération des groupes
-à partir de votre annuaire, que vous pouvez utiliser des groupes existants tooretrieve hello applet de commande Get-AzureADGroups. tooretrieve tous les groupes dans le répertoire hello, utilisez hello applet de commande sans paramètres :
+Pour récupérer des groupes existants à partir de votre répertoire, vous pouvez utiliser l’applet de commande Get-AzureADGroups. Pour récupérer tous les groupes dans le répertoire, utilisez l’applet de commande sans paramètres :
 
     PS C:\Windows\system32> get-azureadgroup
 
-applet de commande Hello retourne tous les groupes dans l’annuaire connecté de hello.
+L’applet de commande renvoie tous les groupes dans le répertoire connecté.
 
-Vous pouvez utiliser hello - objectID paramètre tooretrieve un groupe spécifique pour lequel vous spécifiez les objectID du groupe hello :
+Vous pouvez utiliser le paramètre -objectID pour récupérer un groupe spécifique pour lequel vous spécifiez le paramètre objectID du groupe :
 
     PS C:\Windows\system32> get-azureadgroup -ObjectId e29bae11-4ac0-450c-bc37-6dae8f3da61b
 
-applet de commande Hello retourne maintenant groupe hello dont objectID correspond à la valeur hello du paramètre hello que vous avez entré :
+L’applet de commande renvoie à présent l’objectID correspond à la valeur du paramètre que vous avez saisi :
 
     DeletionTimeStamp            :
     ObjectId                     : e29bae11-4ac0-450c-bc37-6dae8f3da61b
@@ -88,7 +87,7 @@ applet de commande Hello retourne maintenant groupe hello dont objectID correspo
     ProxyAddresses               : {}
     SecurityEnabled              : True
 
-Vous pouvez rechercher un groupe spécifique à l’aide de hello - paramètre de filtre. Ce paramètre accepte une clause de filtre ODATA et retourne tous les groupes qui correspondent au filtre hello, comme dans hello l’exemple suivant :
+Vous pouvez rechercher un groupe spécifique en utilisant le paramètre -filter. Ce paramètre utilise une clause de filtre ODATA et renvoie tous les groupes qui correspondent au filtre, comme dans l’exemple suivant :
 
     PS C:\Windows\system32> Get-AzureADGroup -Filter "DisplayName eq 'Intune Administrators'"
 
@@ -109,15 +108,15 @@ Vous pouvez rechercher un groupe spécifique à l’aide de hello - paramètre d
     SecurityEnabled              : True
 
 > [!NOTE] 
-> Hello applets de commande PowerShell de AzureAD implémenter hello requête OData standard. Pour plus d’informations, consultez **$filter** dans [options de requête système OData à l’aide du point de terminaison OData hello](https://msdn.microsoft.com/library/gg309461.aspx#BKMK_filter).
+> Les applets de commande AzureAD PowerShell mettent en œuvre la norme de requête OData. Pour plus d’informations, consultez **$filter** dans [options de requête système OData à l’aide du point de terminaison OData](https://msdn.microsoft.com/library/gg309461.aspx#BKMK_filter).
 
 ## <a name="creating-groups"></a>Création de groupes
-toocreate un nouveau groupe dans votre annuaire, l’applet de commande utilisez hello AzureADGroup de nouveau. Cette applet de commande crée un nouveau groupe de sécurité appelé « Marketing » :
+Pour créer un nouveau groupe dans votre répertoire, utilisez l’applet de commande New-AzureADGroup. Cette applet de commande crée un nouveau groupe de sécurité appelé « Marketing » :
 
     PS C:\Windows\system32> New-AzureADGroup -Description "Marketing" -DisplayName "Marketing" -MailEnabled $false -SecurityEnabled $true -MailNickName "Marketing"
 
 ## <a name="updating-groups"></a>Mise à jour des groupes
-tooupdate un groupe existant, utilisez l’applet de commande de hello AzureADGroup de jeu. Dans cet exemple, nous passons hello DisplayName, propriété du groupe de hello « Administrateurs de Intune ». Tout d’abord, nous avons observé groupe hello à l’aide d’applet de commande Get-AzureADGroup hello et filtre en utilisant l’attribut DisplayName de hello :
+Pour mettre à jour un groupe existant, utilisez l’applet de commande Set-AzureADGroup. Dans cet exemple, nous modifions la propriété DisplayName du groupe « Administrateurs Intune ». Tout d’abord, nous recherchons le groupe à l’aide de l’applet de commande Get-AzureADGroup et filtrons à l’aide de l’attribut DisplayName :
 
     PS C:\Windows\system32> Get-AzureADGroup -Filter "DisplayName eq 'Intune Administrators'"
 
@@ -137,11 +136,11 @@ tooupdate un groupe existant, utilisez l’applet de commande de hello AzureADGr
     ProxyAddresses               : {}
     SecurityEnabled              : True
 
-Ensuite, nous passons hello Description toohello nouvelle valeur de la propriété « Administrateurs de l’appareil Intune » :
+Ensuite, nous attribuons à la propriété Description la nouvelle valeur « Administrateurs d’appareil Intune » :
 
     PS C:\Windows\system32> Set-AzureADGroup -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -Description "Intune Device Administrators"
 
-Maintenant si nous trouvons à nouveau groupe de hello, nous voyons de propriété de Description hello est mise à jour tooreflect hello nouvelle valeur :
+À présent, si nous recherchons à nouveau le groupe, nous constatons que la propriété Description est mise à jour pour refléter la nouvelle valeur :
 
     PS C:\Windows\system32> Get-AzureADGroup -Filter "DisplayName eq 'Intune Administrators'"
 
@@ -162,18 +161,18 @@ Maintenant si nous trouvons à nouveau groupe de hello, nous voyons de propriét
     SecurityEnabled              : True
 
 ## <a name="deleting-groups"></a>Suppression de groupes
-groupes de toodelete à partir de votre annuaire, utilisez applet de commande Remove-AzureADGroup hello comme suit :
+Pour supprimer des groupes de votre répertoire, utilisez l’applet de commande Remove-AzureADGroup comme suit :
 
     PS C:\Windows\system32> Remove-AzureADGroup -ObjectId b11ca53e-07cc-455d-9a89-1fe3ab24566b
 
 ## <a name="managing-members-of-groups"></a>Gestion des membres des groupes
-Si vous devez de nouveau groupe de tooa membres tooadd, utiliser l’applet de commande Add-AzureADGroupMember de hello. Cette commande ajoute un groupe d’administrateurs Intune toohello membre que nous avons utilisé dans l’exemple précédent de hello :
+Si vous devez ajouter de nouveaux membres à un groupe, utilisez l’applet de commande Add-AzureADGroupMember. Cette commande ajoute un membre au groupe Administrateurs Intune que nous avons utilisé dans l’exemple précédent :
 
     PS C:\Windows\system32> Add-AzureADGroupMember -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -RefObjectId 72cd4bbd-2594-40a2-935c-016f3cfeeeea
 
-paramètre - ObjectId Hello est hello ObjectID de hello groupe toowhich nous souhaitons tooadd membre et hello ObjectID est hello - RefObjectId d’utilisateur de hello que vous souhaitez tooadd en tant que membre toohello groupe.
+Le paramètre -ObjectId est l’ObjectID du groupe auquel nous souhaitons ajouter un membre et le paramètre -RefObjectId est l’ObjectID de l’utilisateur que nous souhaitons ajouter au groupe en tant que membre.
 
-membres existants de hello tooget d’un groupe, utilisez la cmdlet Get-AzureADGroupMember de hello, comme dans cet exemple :
+Pour obtenir les membres existants d’un groupe, utilisez l’applet de commande Get-AzureADGroupMember, comme dans cet exemple :
 
     PS C:\Windows\system32> Get-AzureADGroupMember -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df
 
@@ -182,19 +181,19 @@ membres existants de hello tooget d’un groupe, utilisez la cmdlet Get-AzureADG
                           72cd4bbd-2594-40a2-935c-016f3cfeeeea User
                           8120cc36-64b4-4080-a9e8-23aa98e8b34f User
 
-membre de hello tooremove nous avons ajouté précédemment toohello groupe, utilisez hello Remove-AzureADGroupMember applet de commande, comme est indiqué ici :
+Pour supprimer le membre, que nous avons ajouté précédemment au groupe, utilisez l’applet de commande Remove-AzureADGroupMember, comme illustré ici :
 
     PS C:\Windows\system32> Remove-AzureADGroupMember -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -MemberId 72cd4bbd-2594-40a2-935c-016f3cfeeeea
 
-appartenances tooverify hello d’un utilisateur, utilisez l’applet de commande Select-AzureADGroupIdsUserIsMemberOf hello. Cette applet de commande prend comme ses paramètres hello ObjectId de l’utilisateur de hello pour les membres du groupe toocheck hello et une liste de groupes pour les appartenances de hello toocheck. liste Hello des groupes doit être fournie sous forme de hello d’une variable complexe de type « Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck », par conséquent, nous devons créons d’abord une variable avec ce type :
+Pour vérifier l’appartenance d’un utilisateur à un groupe, utilisez l’applet de commande Select-AzureADGroupIdsUserIsMemberOf. Cette applet de commande utilise comme paramètres l’ObjectId de l’utilisateur pour lequel vérifier l’appartenance au groupe et une liste de groupes pour lesquels vérifier les appartenances. La liste des groupes doit être spécifiée sous la forme d’une variable complexe de type « Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck », donc nous devons tout d’abord créer une variable de ce type :
 
     PS C:\Windows\system32> $g = new-object Microsoft.Open.AzureAD.Model.GroupIdsForMembershipCheck
 
-Ensuite, nous fournissons des valeurs de toocheck les GroupID de hello dans l’attribut hello « Les GroupID » de cette variable complexe :
+Ensuite, nous fournissons des valeurs pour les groupIds à vérifier dans l’attribut « GroupIds » de cette variable complexe :
 
     PS C:\Windows\system32> $g.GroupIds = "b11ca53e-07cc-455d-9a89-1fe3ab24566b", "31f1ff6c-d48c-4f8a-b2e1-abca7fd399df"
 
-Maintenant, si nous voulons appartenances toocheck hello d’un utilisateur avec 72cd4bbd-2594-40a2-935c-016f3cfeeeea ObjectID sur des groupes de hello dans $g, nous devons utiliser :
+À présent, pour vérifier les appartenances aux groupes d’un utilisateur avec l’ObjectID 72cd4bbd-2594-40a2-935c-016f3cfeeeea sur les groupes dans $g, nous devons utiliser :
 
     PS C:\Windows\system32> Select-AzureADGroupIdsUserIsMemberOf -ObjectId 72cd4bbd-2594-40a2-935c-016f3cfeeeea -GroupIdsForMembershipCheck $g
 
@@ -203,31 +202,31 @@ Maintenant, si nous voulons appartenances toocheck hello d’un utilisateur avec
     https://graph.windows.net/85b5ff1e-0402-400c-9e3c-0f9e965325d1/$metadata#Collection(Edm.String)             {31f1ff6c-d48c-4f8a-b2e1-abca7fd399df}
 
 
-valeur Hello retournée est une liste de groupes dont cet utilisateur est membre. Vous pouvez également appliquer cette toocheck méthode appartenance Contacts, groupes ou principaux du Service pour obtenir la liste des groupes, à l’aide de Select-AzureADGroupIdsContactIsMemberOf, sélectionnez-AzureADGroupIdsGroupIsMemberOf donnée ou Sélectionnez-AzureADGroupIdsServicePrincipalIsMemberOf
+La valeur retournée est une liste de groupes dont cet utilisateur est membre. Vous pouvez également appliquer cette méthode pour vérifier l’appartenance aux Contacts, Groupes ou Principaux du service pour une liste donnée de groupes, à l’aide de Select-AzureADGroupIdsContactIsMemberOf, Select-AzureADGroupIdsGroupIsMemberOf ou Select-AzureADGroupIdsServicePrincipalIsMemberOf
 
 ## <a name="managing-owners-of-groups"></a>Gestion des propriétaires de groupes
-groupe du tooa tooadd propriétaires, utilisez hello Add-AzureADGroupOwner applet de commande :
+Pour ajouter des propriétaires à un groupe, utilisez l’applet de commande Add-AzureADGroupOwner :
 
     PS C:\Windows\system32> Add-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -RefObjectId 72cd4bbd-2594-40a2-935c-016f3cfeeeea
 
-paramètre - ObjectId Hello est hello ObjectID de hello groupe toowhich nous souhaitons tooadd un propriétaire et hello ObjectID est hello - RefObjectId d’utilisateur de hello que vous souhaitez tooadd en tant que propriétaire du groupe de hello.
+Le paramètre -ObjectId est l’ObjectID du groupe auquel nous souhaitons ajouter un propriétaire et le paramètre -RefObjectId est l’ObjectID de l’utilisateur que nous souhaitons ajouter au groupe en tant que propriétaire.
 
-propriétaires de hello tooretrieve d’un groupe, utilisez l’applet de commande Get-AzureADGroupOwner hello :
+Pour récupérer les propriétaires d’un groupe, utilisez l’applet de commande Get-AzureADGroupOwner :
 
     PS C:\Windows\system32> Get-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df
 
-applet de commande Hello retourne la liste hello des propriétaires de groupe spécifié de hello :
+L’applet de commande renvoie la liste des propriétaires du groupe spécifié :
 
     DeletionTimeStamp ObjectId                             ObjectType
     ----------------- --------                             ----------
                           e831b3fd-77c9-49c7-9fca-de43e109ef67 User
 
-Si vous voulez tooremove un propriétaire d’un groupe, utilisez l’applet de commande Remove-AzureADGroupOwner hello :
+Si vous souhaitez supprimer un propriétaire d’un groupe, utilisez l’applet de commande Remove-AzureADGroupOwner :
 
     PS C:\Windows\system32> remove-AzureADGroupOwner -ObjectId 31f1ff6c-d48c-4f8a-b2e1-abca7fd399df -OwnerId e831b3fd-77c9-49c7-9fca-de43e109ef67
 
 ## <a name="reserved-aliases"></a>Alias réservés 
-Lors de la création d’un groupe, certains points de terminaison autorisent hello utilisateur final toospecify un toobe mailNickname ou l’alias utilisé dans le cadre de l’adresse de messagerie hello du groupe de hello. Groupes avec hello suivant des alias de messagerie hautement privilégiés peuvent uniquement être créés par un administrateur global Azure AD. 
+Quand un groupe est créé, certain points de terminaison autorisent l’utilisateur final à spécifier un mailNickname ou alias à utiliser dans l’adresse e-mail du groupe. Les groupes avec les alias de messagerie hautement privilégiés suivants peuvent uniquement être créés par un administrateur général Azure AD. 
   
 * abuse 
 * admin 
@@ -244,5 +243,5 @@ Lors de la création d’un groupe, certains points de terminaison autorisent he
 ## <a name="next-steps"></a>Étapes suivantes
 Vous trouverez plus d’informations sur Azure Active Directory PowerShell dans la page dédiée aux [applets de commande Azure Active Directory](/powershell/azure/install-adv2?view=azureadps-2.0).
 
-* [La gestion des accès tooresources avec les groupes Azure Active Directory](active-directory-manage-groups.md)
+* [Gestion de l’accès aux ressources avec les groupes Azure Active Directory](active-directory-manage-groups.md)
 * [Intégration de vos identités locales avec Azure Active Directory](active-directory-aadconnect.md)

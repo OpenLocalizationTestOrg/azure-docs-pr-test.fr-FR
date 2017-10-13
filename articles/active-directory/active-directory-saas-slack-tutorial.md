@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Slack | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et la marge."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Slack."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,115 +13,115 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2017
 ms.author: jeedes
-ms.openlocfilehash: 7f0151401af4dc63d2f714d4b4f66380c4b51e0d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5aca630b2077d3f7d4ce9273ee668ed6a5f9843d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-slack"></a>Didacticiel : Intégration d’Azure AD avec Slack
 
-Dans ce didacticiel, vous apprendrez comment toointegrate marge avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Slack à Azure Active Directory (Azure AD).
 
-Intégration de marge à Azure AD offre hello avantages suivants :
+L’intégration de Slack dans Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooSlack
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooSlack (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à Slack
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Slack (via l’authentification unique) avec leur compte Azure AD
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-intégration d’Azure AD avec une marge de tooconfigure, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à Slack, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Slack pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de la marge à partir de la galerie de hello
+1. Ajout de Slack à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-slack-from-hello-gallery"></a>Ajout de la marge à partir de la galerie de hello
-intégration de hello tooconfigure marge dans Azure AD, vous devez tooadd Slack à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-slack-from-the-gallery"></a>Ajout de Slack à partir de la galerie
+Pour configurer l’intégration de Slack avec Azure AD, vous devez ajouter Slack à partir de la galerie, à votre liste d’applications SaaS gérées.
 
-**tooadd Slack à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Slack à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **Slack**.
+4. Dans la zone de recherche, tapez **Slack**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-slack-tutorial/tutorial_slack_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **Slack**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le volet de résultats, sélectionnez **Slack**, puis cliquez sur **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-slack-tutorial/tutorial_slack_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Slack avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Slack est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur dans la marge hello doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Slack équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur Slack associé doit être établie.
 
-Dans la marge, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Slack, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur de **Nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec une marge, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Slack, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur test marge](#creating-a-slack-test-user)**  -toohave un équivalent de Britta Simon dans Slack est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Slack](#creating-a-slack-test-user)** pour avoir un équivalent de Britta Simon dans Slack, lié à la représentation Azure AD associée.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application de marge.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Slack.
 
-**tooconfigure Azure AD authentification unique avec une marge, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Slack, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **Slack** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **Slack**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-slack-tutorial/tutorial_slack_samlbase.png)
 
-3. Sur hello **URL et le domaine de la marge** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL Slack**, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-slack-tutorial/tutorial_slack_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<companyname>.slack.com`
+    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<companyname>.slack.com`
 
-    b. Bonjour **identificateur** zone de texte, tapez l’URL hello :`https://slack.com`
+    b. Dans la zone de texte **Identificateur**, saisissez l’URL : `https://slack.com`
 
     > [!NOTE] 
-    > valeur de Hello n’est pas réelle. Vous avez tooupdate valeur hello hello réel URL de connexion. Contact [équipe de support marge](https://slack.com/help/contact) valeur de hello tooget
+    > Cette valeur n’est pas la valeur réelle. Vous devez mettre à jour la valeur avec l’URL de connexion réelle. Pour obtenir la valeur, contactez [l’équipe de support technique Slack](https://slack.com/help/contact).
      
-4. Marge application attend les assertions SAML hello dans un format spécifique. Configurer hello suivant des revendications pour cette application. Vous pouvez gérer les valeurs de ces attributs hello depuis hello »**attributs utilisateur**« section sur la page d’intégration d’application. Hello suivant capture d’écran montre un exemple de cela.
+4. L’application Slack attend les assertions SAML dans un format spécifique. Configurez les revendications suivantes pour cette application. Vous pouvez gérer les valeurs de ces attributs à partir de la section « **Attributs utilisateur** » sur la page d’intégration des applications. La capture d’écran suivante montre un exemple :
     
     ![Configurer l’authentification unique](./media/active-directory-saas-slack-tutorial/tutorial_slack_attribute.png)
 
-5. Bonjour **attributs utilisateur** section hello **l’authentification unique** boîte de dialogue, sélectionnez **user.mail** en tant que **identificateur d’utilisateur** et pour chaque ligne indiqué dans le tableau hello ci-dessous, effectuez hello comme suit :
+5. Dans la section **Attributs utilisateur** de la boîte de dialogue **Authentification unique**, sélectionnez **user.mail** en tant **qu’identificateur d’utilisateur**, et pour chaque ligne indiquée dans le tableau ci-dessous, procédez comme suit :
     
     | Nom de l'attribut | Valeur de l’attribut |
     | --- | --- |
@@ -130,17 +130,17 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
     | User.Email | user.mail |  
     | User.Username | user.userprincipalname |
 
-    a. Cliquez sur **attribut** tooopen **modifier l’attribut** boîte de dialogue zone et effectuer hello comme suit :
+    a. Cliquez sur **Attribut** pour ouvrir la boîte de dialogue **Modifier l’attribut** et effectuez les opérations suivantes :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-slack-tutorial/tutorial_slack_attribute1.png)
 
-    a. Bonjour **nom** zone de texte, nom d’attribut type hello indiqué pour cette ligne.
+    a. Dans la zone de texte **Attribut**, indiquez le nom d’attribut pour cette ligne.
     
-    b. À partir de hello **valeur** liste, la valeur de l’attribut select hello indiqué pour cette ligne.
+    b. Dans la liste **Valeur** , sélectionnez la valeur de l’attribut pour cette ligne.
     
     c. Cliquez sur **OK**
 
-6. Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
+6. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-slack-tutorial/tutorial_slack_certificate.png)
 
@@ -148,101 +148,101 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-slack-tutorial/tutorial_general_400.png)
 
-8. Sur hello **Slack Configuration** , cliquez sur **configurer une marge** tooopen **configurer l’authentification** fenêtre. Hello de copie **ID d’entité SAML et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
+8. Dans la section **Configuration de Slack** , cliquez sur **Configurer Slack** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l’**ID d’entité SAML et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-slack-tutorial/tutorial_slack_configure.png) 
 
-9.  Dans une fenêtre de navigateur web, ouvrez une session dans le site de société Slack tooyour en tant qu’administrateur.
+9.  Dans une autre fenêtre de navigateur web, connectez-vous au site de votre entreprise Slack en tant qu’administrateur.
 
-10.  Accédez trop**Microsoft Azure AD** puis passez trop**paramètres d’équipe**.
+10.  Accédez à **Microsoft Azure AD**, puis à **Team Settings**.
 
      ![Configurer l’authentification unique côté application](./media/active-directory-saas-slack-tutorial/tutorial_slack_001.png)
 
-11.  Bonjour **paramètres d’équipe** , cliquez sur hello **authentification** onglet, puis cliquez sur **modifier les paramètres**.
+11.  Dans la section **Team Settings**, cliquez sur l’onglet **Authentication** puis sur **Change Settings**.
 
      ![Configurer l’authentification unique côté application](./media/active-directory-saas-slack-tutorial/tutorial_slack_002.png)
 
-12. Sur hello **paramètres d’authentification SAML** boîte de dialogue, effectuer hello comme suit :
+12. Dans la boîte de dialogue **SAML Authentication Settings** , procédez comme suit :
 
     ![Configurer l’authentification unique côté application](./media/active-directory-saas-slack-tutorial/tutorial_slack_003.png)
 
-    a.  Bonjour **SAML 2.0 point de terminaison (HTTP)** zone de texte, valeur hello coller **SAML Sign-On URL du Service unique**, lequel vous avez copié à partir du portail Azure.
+    a.  Dans la zone de texte **Point de terminaison SAML 2.0 (HTTP)**, collez la valeur de l’**URL du service d’authentification unique SAML** que vous avez copiée à partir du portail Azure.
 
-    b.  Bonjour **émetteur de fournisseur d’identité** zone de texte, valeur hello coller **ID d’entité SAML**, lequel vous avez copié à partir du portail Azure.
+    b.  Dans la zone de texte **Émetteur du fournisseur d’identité**, collez la valeur de l’**ID d’entité SAML** copié à partir du portail Azure.
 
-    c.  Ouvrez votre fichier de certificat téléchargé dans le bloc-notes, hello copie contenu de celui-ci dans le Presse-papiers et le coller ensuite toohello **certificat Public** zone de texte.
+    c.  Ouvrez votre fichier de certificat téléchargé dans le Bloc-notes, copiez son contenu dans le Presse-papiers, puis collez-le dans la zone de texte **Certificat public**.
 
-    d. Configurez hello trois paramètres ci-dessus comme il convient pour votre équipe de marge. Pour plus d’informations sur les paramètres de hello, Veuillez trouver hello **guide de configuration de l’authentification unique de marge** ici. `https://get.slack.help/hc/articles/220403548-Guide-to-single-sign-on-with-Slack%60`
+    d. Configurez les trois paramètres ci-dessus comme nécessaire pour votre équipe Slack. Pour plus d’informations sur les paramètres, vous trouverez le **guide de configuration de l’authentification unique sur Slack**. `https://get.slack.help/hc/articles/220403548-Guide-to-single-sign-on-with-Slack%60`
 
     e.  Cliquez sur **Enregistrer la configuration**.
      
-    <!-- Deselect **Allow users toochange their email address**.
+    <!-- Deselect **Allow users to change their email address**.
 
-    e.  Select **Allow users toochoose their own username**.
+    e.  Select **Allow users to choose their own username**.
 
     f.  As **Authentication for your team must be used by**, select **It’s optional**. -->
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-slack-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-slack-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-slack-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-slack-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-slack-test-user"></a>Création d’un utilisateur de test Slack
 
-objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans la marge. Slack prend en charge l’approvisionnement juste-à-temps, option activée par défaut.
+L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans Slack. Slack prend en charge l’approvisionnement juste-à-temps, option activée par défaut.
 
-Vous n’avez aucune opération à effectuer dans cette section. Un nouvel utilisateur est créé au cours d’une tentative de tooaccess Slack s’il n’existe pas encore.
+Vous n’avez aucune opération à effectuer dans cette section. Un utilisateur est créé lors d’une tentative d’accès à Slack s’il n’existe pas déjà.
 
 > [!NOTE]
-> Si vous devez manuellement toocreate un utilisateur, vous devez tooContact [équipe de support marge](https://slack.com/help/contact).
+> Si vous devez créer un utilisateur manuellement, contactez l’[équipe de support technique Slack](https://slack.com/help/contact).
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooSlack.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Slack.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooSlack, effectuez hello comme suit :**
+**Pour affecter Britta Simon à Slack, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Slack**.
+2. Dans la liste des applications, sélectionnez **Slack**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-slack-tutorial/tutorial_slack_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -250,7 +250,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -258,13 +258,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur la vignette de marge hello dans hello volet d’accès, vous devez obtenir application de marge automatiquement signé sur tooyour.
+Lorsque vous cliquez sur la mosaïque Slack dans le volet d’accès, vous devez être connecté automatiquement à votre application Slack.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

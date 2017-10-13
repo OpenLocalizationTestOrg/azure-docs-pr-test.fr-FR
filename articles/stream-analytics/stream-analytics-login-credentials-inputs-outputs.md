@@ -1,10 +1,10 @@
 ---
 title: "Stream Analytics : inverser les informations d'identification de connexion pour les entrées et sorties | Microsoft Docs"
-description: "Découvrez comment tooupdate hello les informations d’identification pour les sorties et les entrées de flux de données Analytique."
+description: "Découvrez comment mettre à jour les informations d’identification pour les entrées et les sorties Stream Analytics."
 keywords: "informations d’identification"
 services: stream-analytics
 documentationcenter: 
-author: jeffstokes72
+author: samacha
 manager: jhubbard
 editor: cgronlun
 ms.assetid: 42ae83e1-cd33-49bb-a455-a39a7c151ea4
@@ -14,21 +14,21 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
-ms.author: jeffstok
-ms.openlocfilehash: ac2374c539012b66ab390656c5750024e02f6bdc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: samacha
+ms.openlocfilehash: a1a927fa9c34b38e54fdb22782e80fd13bf430c7
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="rotate-login-credentials-for-inputs-and-outputs-in-stream-analytics-jobs"></a>Rotation des informations d'identification pour les entrées et les sorties dans des travaux Stream Analytics
 ## <a name="abstract"></a>Résumé
-Analytique de flux de données Azure aujourd'hui n’autorise pas remplacer les informations d’identification hello sur une entrée/sortie pendant l’exécution du travail de hello.
+Actuellement, Azure Stream Analytics n’autorise pas le remplacement des informations d’identification d’une entrée/sortie pendant l’exécution du travail.
 
-Analytique de flux de données Azure ne prend pas en charge la reprise d’une tâche à partir de la dernière sortie, nous voulions processus tooshare hello pour minimiser le retard hello entre hello l’arrêt et démarrage du travail de hello et faire pivoter les informations d’identification de connexion hello.
+Bien qu’Azure Stream Analytics ne prenne pas en charge la reprise d’une tâche à partir de la dernière sortie, nous souhaitons partager l’ensemble du processus pour réduire le délai entre l’arrêt et le démarrage de la tâche et pour procéder à la rotation des informations d’identification.
 
-## <a name="part-1---prepare-hello-new-set-of-credentials"></a>Partie 1 : préparer les hello nouvel ensemble d’informations d’identification :
-Cette partie est applicable toohello suivant des entrées/sorties :
+## <a name="part-1---prepare-the-new-set-of-credentials"></a>Partie 1 – Préparation du nouveau jeu d’informations d’identification :
+Cette partie concerne les entrées/sorties suivantes :
 
 * Stockage d’objets blob
 * Hubs d'événements
@@ -38,51 +38,51 @@ Cette partie est applicable toohello suivant des entrées/sorties :
 Pour les autres entrées/sorties, passez à la partie 2.
 
 ### <a name="blob-storagetable-storage"></a>Stockage d’objets blob/de tables
-1. Consulter l’extension du stockage toohello le portail de gestion Azure hello :  
+1. Dans le portail de gestion Azure, accédez à l’extension Stockage :   
    ![graphic1][graphic1]
-2. Recherchez stockage hello utilisé par votre travail et allez dans celui-ci :  
+2. Recherchez le stockage utilisé par votre travail et accédez-y :   
    ![graphic2][graphic2]
-3. Cliquez sur commande de gérer les clés d’accès hello :  
+3. Cliquez sur la commande Gérer les clés d’accès :   
    ![graphic3][graphic3]
-4. Entre hello clé d’accès primaire et hello clé d’accès secondaire, **pick hello ne pas utilisé par votre travail**.
+4. Entre la clé d’accès primaire et la clé d’accès secondaire, **choisissez celle qui n’est pas utilisée par votre travail**.
 5. Appuyez sur Régénérer :   
    ![graphic4][graphic4]
-6. Copiez la clé de hello qui vient d’être généré :  
+6. Copiez la clé qui vient d’être générée :   
    ![graphic5][graphic5]
-7. Continuer tooPart 2.
+7. Passez à la partie 2.
 
 ### <a name="event-hubs"></a>Hubs d'événements
-1. Atteindre l’extension de Service Bus toohello sur le portail de gestion Azure hello :  
+1. Dans le portail de gestion Azure, accédez à l’extension Service Bus :   
    ![graphic6][graphic6]
-2. Recherchez hello Namespace de Bus de Service utilisé par votre tâche et allez dans celui-ci :  
+2. Recherchez l’espace de noms Service Bus utilisé par votre travail et accédez-y :   
    ![graphic7][graphic7]
-3. Si votre projet utilise une stratégie d’accès partagé sur hello Namespace de Bus de Service, passer toostep 6  
-4. Consultez l’onglet de concentrateurs d’événements toohello :  
+3. Si votre travail utilise une stratégie d’accès partagé sur l’espace de noms Service Bus, passez à l’étape 6  
+4. Accédez à l’onglet Hubs d’événements :   
    ![graphic8][graphic8]
-5. Recherchez hello concentrateur d’événements utilisée par votre travail et allez dans celui-ci :  
+5. Recherchez le hub d’événements utilisé par votre travail et accédez-y :   
    ![graphic9][graphic9]
-6. Accédez toohello onglet Configurer :  
+6. Cliquez sur l’onglet Configurer :   
    ![graphic10][graphic10]
-7. Hello déroulante Nom de la stratégie, recherchez la stratégie d’accès hello partagé utilisée par votre projet :  
+7. Dans la liste déroulante Nom de la stratégie, recherchez la stratégie d’accès partagé utilisée par votre travail :   
    ![graphic11][graphic11]
-8. Entre hello Primary Key et hello clé secondaire, **pick hello ne pas utilisé par votre travail**.  
+8. Entre la clé primaire et la clé secondaire, **choisissez celle qui n’est pas utilisée par votre travail**.  
 9. Appuyez sur Régénérer :   
    ![graphic12][graphic12]
-10. Copiez la clé de hello qui vient d’être généré :  
+10. Copiez la clé qui vient d’être générée :   
    ![graphic13][graphic13]
-11. Continuer tooPart 2.  
+11. Passez à la partie 2.  
 
 ### <a name="sql-database"></a>Base de données SQL
 > [!NOTE]
-> Remarque : vous devrez tooconnect toohello Service de base de données SQL. Nous allons tooshow comment toodo à l’aide de cette hello expérience de gestion sur hello portail de gestion Azure, mais vous pouvez choisir toouse un outil côté client telles que SQL Server Management Studio.
+> Remarque : vous devez vous connecter au service Base de données SQL. Nous allons montrer comment procéder à l’aide de l’expérience de gestion sur le portail de gestion Azure, mais vous pouvez également choisir d’utiliser un outil côté client tel que SQL Server Management Studio.
 >
 > 
 
-1. Consulter le portail de gestion Azure hello extension des bases de données SQL toohello :  
+1. Dans le portail de gestion Azure, accédez à l’extension SQL Database :   
    ![graphic14][graphic14]
-2. Recherchez hello utilisée par votre travail de la base de données SQL et **cliquez sur le serveur de hello** lier sur hello même ligne :  
+2. Recherchez la SQL Database utilisée par votre travail et **cliquez sur le lien du serveur** sur la même ligne :  
    ![graphic15][graphic15]
-3. Cliquez sur hello gérer commande :  
+3. Cliquez sur la commande Gérer :   
    ![graphic16][graphic16]
 4. Tapez Base de données principale :   
    ![graphic17][graphic17]
@@ -90,86 +90,86 @@ Pour les autres entrées/sorties, passez à la partie 2.
    ![graphic18][graphic18]
 6. Cliquez sur Nouvelle requête :   
    ![graphic19][graphic19]
-7. Type Bonjour suivant la requête en remplaçant < login_name > avec votre nom d’utilisateur et le remplacement <enterStrongPasswordHere> avec votre nouveau mot de passe :  
+7. Entrez la requête suivante en remplaçant <login_name> par votre nom d’utilisateur et <enterStrongPasswordHere> par votre nouveau mot de passe :  
    `CREATE LOGIN <login_name> WITH PASSWORD = '<enterStrongPasswordHere>'`
 8. Cliquez sur Exécuter :   
    ![graphic20][graphic20]
-9. Revenir en arrière toostep 2 et cette fois, cliquez sur base de données hello :  
+9. Revenez à l’étape 2 et, cette fois, cliquez sur la base de données :   
    ![graphic21][graphic21]
-10. Cliquez sur hello gérer commande :  
+10. Cliquez sur la commande Gérer :   
    ![graphic22][graphic22]
 11. Tapez votre nom d’utilisateur, votre mot de passe, puis cliquez sur Ouvrir une session :   
    ![graphic23][graphic23]
 12. Cliquez sur Nouvelle requête :   
    ![graphic24][graphic24]
-13. Tapez Bonjour suivant la requête en remplaçant < nom_utilisateur > avec un nom en fonction duquel vous voulez tooidentify cette connexion dans le contexte de hello de cette base de données (vous pouvez fournir hello la même valeur que vous avez attribué < login_name >, par exemple) et en remplaçant < login_name > par votre nouveau nom d’utilisateur :  
+13. Entrez la requête suivante en remplaçant <user_name> par le nom avec lequel vous souhaitez identifier cette connexion dans le contexte de cette base de données (vous pouvez fournir la même valeur que celle attribuée à <login_name>, par exemple) et en remplaçant <login_name> par votre nouveau nom d’utilisateur :  
    `CREATE USER <user_name> FROM LOGIN <login_name>`
 14. Cliquez sur Exécuter :   
    ![graphic25][graphic25]
-15. Vous devez maintenant fournir votre nouvel utilisateur hello mêmes rôles et les privilèges votre utilisateur d’origine.
-16. Continuer tooPart 2.
+15. Vous devez maintenant fournir à votre nouvel utilisateur les mêmes rôles et privilèges que ceux de l’utilisateur d’origine.
+16. Passez à la partie 2.
 
-## <a name="part-2-stopping-hello-stream-analytics-job"></a>Partie 2 : Arrêt hello tâche Analytique de flux de données
-1. Consulter le portail de gestion Azure hello extension du flux de données Analytique toohello :  
+## <a name="part-2-stopping-the-stream-analytics-job"></a>Partie 2 – Arrêt du travail Stream Analytics
+1. Dans le portail de gestion Azure, accédez à l’extension Stream Analytics :   
    ![graphic26][graphic26]
 2. Recherchez votre travail et accédez-y :   
    ![graphic27][graphic27]
-3. Accédez toohello entrées onglet ou hello sorties selon si vous faites pivoter les informations d’identification hello sur une entrée ou une sortie.  
+3. Accédez à l’onglet Entrées ou à l’onglet Sorties selon que vous remplacez les informations d’identification d’une entrée ou d’une sortie.  
    ![graphic28][graphic28]
-4. Cliquez sur la commande d’arrêt hello et vérifiez le travail de hello s’est arrêté :  
-   ![graphic29][graphic29] attendre hello travail toostop.
-5. Recherchez hello d’entrée/sortie souhaité informations d’identification toorotate active et accédez dans celui-ci :  
+4. Cliquez sur la commande d’arrêt et vérifiez que le travail s’est arrêté :   
+   ![graphic29][graphic29] Attendez que le travail s’arrête.
+5. Recherchez l’entrée/la sortie pour laquelle vous souhaitez remplacer les informations d’identification et accédez-y :   
    ![graphic30][graphic30]
-6. Continuer tooPart 3.
+6. Passez à la partie 3.
 
-## <a name="part-3-editing-hello-credentials-on-hello-stream-analytics-job"></a>Partie 3 : Modification hello informations d’identification sur hello tâche Analytique de flux de données
+## <a name="part-3-editing-the-credentials-on-the-stream-analytics-job"></a>Partie 3 – Modification des informations d’identification pour le travail Stream Analytics
 ### <a name="blob-storagetable-storage"></a>Stockage d’objets blob/de tables
-1. Rechercher le champ de clé de compte de stockage hello et collez votre clé qui vient d’être générée :  
+1. Recherchez le champ Clé du compte de stockage et collez la clé qui vient d’être générée dans ce dernier :   
    ![graphic31][graphic31]
-2. Cliquez sur la commande hello et confirmer l’enregistrement de vos modifications :  
+2. Cliquez sur la commande Enregistrer et confirmez l’enregistrement de vos modifications :   
    ![graphic32][graphic32]
 3. Un test de connexion démarre automatiquement lorsque vous enregistrez vos modifications ; assurez-vous qu’il a réussi.
-4. Continuer tooPart 4.
+4. Passez à la partie 4.
 
 ### <a name="event-hubs"></a>Hubs d'événements
-1. Rechercher le champ de clé stratégie Hub d’événements hello et collez votre clé qui vient d’être générée :  
+1. Recherchez le champ Clé de la stratégie du hub d’événements et collez votre nouvelle clé dans ce dernier :   
    ![graphic33][graphic33]
-2. Cliquez sur la commande hello et confirmer l’enregistrement de vos modifications :  
+2. Cliquez sur la commande Enregistrer et confirmez l’enregistrement de vos modifications :   
    ![graphic34][graphic34]
 3. Un test de connexion démarre automatiquement lorsque vous enregistrez vos modifications ; assurez-vous qu’il a réussi.
-4. Continuer tooPart 4.
+4. Passez à la partie 4.
 
 ### <a name="power-bi"></a>Power BI
-1. Cliquez sur l’autorisation de renouveler hello :  
+1. Cliquez sur Renouveler l’autorisation :  
 
    ![graphic35][graphic35]
-2. Vous obtiendrez hello après confirmation :  
+2. Le message de confirmation suivant s’affiche.  
 
    ![graphic36][graphic36]
-3. Cliquez sur la commande hello et confirmer l’enregistrement de vos modifications :  
+3. Cliquez sur la commande Enregistrer et confirmez l’enregistrement de vos modifications :   
    ![graphic37][graphic37]
 4. Un test de connexion démarre automatiquement lorsque vous enregistrez vos modifications ; assurez-vous qu’il a réussi.
-5. Continuer tooPart 4.
+5. Passez à la partie 4.
 
 ### <a name="sql-database"></a>Base de données SQL
-1. Recherche des champs de nom d’utilisateur et mot de passe hello et collez votre nouveau jeu créé des informations d’identification :  
+1. Recherchez les champs Nom d’utilisateur et Mot de passe, et collez votre jeu d’informations d’identification nouvellement créé dans ces derniers :   
    ![graphic38][graphic38]
-2. Cliquez sur la commande hello et confirmer l’enregistrement de vos modifications :  
+2. Cliquez sur la commande Enregistrer et confirmez l’enregistrement de vos modifications :   
    ![graphic39][graphic39]
 3. Un test de connexion démarre automatiquement lorsque vous enregistrez vos modifications ; assurez-vous qu’il a réussi.  
-4. Continuer tooPart 4.
+4. Passez à la partie 4.
 
 ## <a name="part-4-starting-your-job-from-last-stopped-time"></a>Partie 4 – Démarrage de votre travail à partir de l’heure du dernier arrêt
-1. Quittez hello d’entrée/sortie :  
+1. Naviguez en dehors de l’entrée/sortie :   
    ![graphic40][graphic40]
-2. Cliquez sur commande de démarrage hello :  
+2. Cliquez sur la commande Démarrer :   
    ![graphic41][graphic41]
-3. Choisir l’heure du dernier arrêt de hello et cliquez sur OK :  
+3. Sélectionnez l’heure du dernier arrêt et cliquez sur OK :   
    ![graphic42][graphic42]
-4. Continuer tooPart 5.  
+4. Passez à la partie 5.  
 
-## <a name="part-5-removing-hello-old-set-of-credentials"></a>Partie 5 : Suppression hello ancien jeu d’informations d’identification
-Cette partie est applicable toohello suivant des entrées/sorties :
+## <a name="part-5-removing-the-old-set-of-credentials"></a>Partie 5 – Suppression de l’ancien jeu d’informations d’identification
+Cette partie concerne les entrées/sorties suivantes :
 
 * Stockage d’objets blob
 * Hubs d'événements
@@ -177,18 +177,18 @@ Cette partie est applicable toohello suivant des entrées/sorties :
 * Stockage de tables
 
 ### <a name="blob-storagetable-storage"></a>Stockage d’objets blob/de tables
-Répétez partie 1 pour hello clé d’accès qui était utilisé précédemment par votre tâche toorenew hello désormais inutilisée clé d’accès.
+Répétez la partie 1 pour la clé d’accès qui était précédemment utilisée par votre travail afin de renouveler la clé d’accès maintenant inutilisée.
 
 ### <a name="event-hubs"></a>Hubs d'événements
-Répétez partie 1 pour hello clé qui était utilisé précédemment par votre tâche toorenew hello clé maintenant inutilisé.
+Répétez la partie 1 pour la clé qui était précédemment utilisée par votre travail afin de renouveler la clé maintenant inutilisée.
 
 ### <a name="sql-database"></a>Base de données SQL
-1. Revenir en arrière fenêtre de requête toohello à partir de la partie 1 étape 7 et tapez Bonjour suivant la requête, en remplaçant < previous_login_name > par nom d’utilisateur qui a été utilisé précédemment par votre tâche de hello :  
+1. Revenez à la fenêtre de requête de la partie 1, étape 7, puis entrez la requête suivante, en remplaçant <previous_login_name> par le nom d’utilisateur qui était précédemment utilisé par votre travail :  
    `DROP LOGIN <previous_login_name>`  
 2. Cliquez sur Exécuter :   
    ![graphic43][graphic43]  
 
-Vous devez obtenir hello après confirmation : 
+Le message de confirmation suivant s’affiche. 
 
     Command(s) completed successfully.
 
@@ -196,7 +196,7 @@ Vous devez obtenir hello après confirmation :
 Pour obtenir une assistance, essayez notre [forum Azure Stream Analytics](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Introduction tooAzure Analytique de flux de données](stream-analytics-introduction.md)
+* [Présentation d’Azure Stream Analytics](stream-analytics-introduction.md)
 * [Prise en main d’Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [Mise à l'échelle des travaux Azure Stream Analytics](stream-analytics-scale-jobs.md)
 * [Références sur le langage des requêtes d'Azure Stream Analytics](https://msdn.microsoft.com/library/azure/dn834998.aspx)

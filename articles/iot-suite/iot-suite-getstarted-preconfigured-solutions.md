@@ -1,6 +1,6 @@
 ---
-title: "aaaGet main préconfiguré solutions | Documents Microsoft"
-description: "Suivez ce didacticiel toolearn comment toodeploy un Azure IoT Suite solution préconfigurée."
+title: "Prise en main des solutions préconfigurées | Microsoft Docs"
+description: "Suivez ce didacticiel pour apprendre à déployer une solution préconfigurée Azure IoT Suite."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,21 +15,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: a7f46023d26b08de2e8ed48c34c5066a43e3fa38
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 466825ab78a5ac9773d8beff69cca90ff9db6c01
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="get-started-with-hello-preconfigured-solutions"></a>Prise en main des solutions hello préconfiguré
+# <a name="get-started-with-the-preconfigured-solutions"></a>Prise en main des solutions préconfigurées
 
-Azure IoT Suite [préconfiguré solutions] [ lnk-preconfigured-solutions] combiner plusieurs Azure IoT services toodeliver bout en bout pour les solutions qui implémentent des scénarios d’entreprise IoT. Hello *surveillance à distance* solution préconfigurée connecte tooand surveille vos appareils. Vous pouvez utiliser des flux de hello hello solution tooanalyze de données à partir de vos appareils et les résultats de l’entreprise tooimprove en rendant les processus à répondre automatiquement toothat des flux de données.
+Les [solutions préconfigurées][lnk-preconfigured-solutions] d’Azure IoT Suite regroupent plusieurs services Azure IoT pour offrir des solutions de bout en bout permettant d’implémenter des scénarios IoT d’entreprise. La solution préconfigurée de *surveillance à distance* se connecte et surveille vos appareils. Cela vous permet d’analyser le flux de données de vos appareils et d’améliorer les résultats de l’entreprise grâce à des processus qui répondent automatiquement à ce flux de données.
 
-Ce didacticiel vous montre comment la surveillance à distance de tooprovision hello préconfiguré solution. Il vous guide également dans les fonctionnalités de base hello de solution de hello préconfiguré. Vous pouvez accéder à la plupart de ces fonctionnalités à partir de la solution de hello *tableau de bord* qui déploie dans le cadre de la solution de hello préconfiguré :
+Ce didacticiel montre comment configurer la solution préconfigurée de surveillance à distance. Il présente également les fonctionnalités de base de la solution préconfigurée. Vous pouvez accéder à la plupart de ces fonctionnalités à partir du *tableau de bord* de solution déployé avec la solution préconfigurée :
 
 ![Tableau de bord de solution préconfigurée de surveillance à distance][img-dashboard]
 
-toocomplete ce didacticiel, vous avez besoin d’un abonnement Azure actif.
+Pour suivre ce didacticiel, vous avez besoin d’un compte Azure actif.
 
 > [!NOTE]
 > Si vous ne possédez pas de compte, vous pouvez créer un compte d’évaluation gratuit en quelques minutes. Pour plus d’informations, consultez la rubrique [Version d’évaluation gratuite d’Azure][lnk_free_trial].
@@ -38,144 +38,144 @@ toocomplete ce didacticiel, vous avez besoin d’un abonnement Azure actif.
 
 ## <a name="scenario-overview"></a>Présentation du scénario
 
-Lorsque vous déployez hello solution préconfigurée de surveillance à distance, il est préremplie avec les ressources qui permettent de vous toostep via un scénario courant de surveillance à distance. Dans ce scénario, solution de toohello connecté plusieurs périphériques sont reporting des valeurs de température inattendue. Hello sections suivantes vous indiquent comment procéder pour :
+Lorsque vous déployez la solution préconfigurée de surveillance à distance, elle est préremplie avec les ressources qui vous permettent de parcourir un scénario courant de surveillance à distance. Dans ce scénario, plusieurs appareils connectés à la solution présentent des valeurs de température inattendues. Les sections suivantes vous montrent comment :
 
-* Identifier les périphériques hello envoyez des valeurs de température inattendu.
-* Configurez ces périphériques toosend plus détaillées que les données de télémétrie.
-* Résoudre les problème de hello en mettant à jour de microprogramme hello sur ces appareils.
-* Vérifiez que votre action a résolu le problème de hello.
+* identifier les appareils qui envoient des valeurs de température inattendues ;
+* configurer ces appareils pour envoyer des données de télémétrie plus détaillées ;
+* résoudre le problème en mettant à jour le microprogramme sur ces appareils ;
+* vérifier que votre action a résolu le problème.
 
-Une fonctionnalité clé de ce scénario est que vous pouvez effectuer toutes ces actions à distance à partir du tableau de bord de solution hello. Vous n’avez pas besoin d’appareils de toohello d’accès physique.
+Une fonctionnalité clé de ce scénario est que vous pouvez effectuer toutes ces actions à distance à partir du tableau de bord de solution. Vous n’avez pas besoin d’un accès physique aux appareils.
 
-## <a name="view-hello-solution-dashboard"></a>Tableau de bord View hello solution
+## <a name="view-the-solution-dashboard"></a>Afficher le tableau de bord de solution
 
-tableau de bord Hello solution vous permet de solution de hello déployé toomanage. Par exemple, vous pouvez afficher les données de télémétrie, ajouter des appareils et configurer des règles.
+Grâce au tableau de bord de solution, vous pouvez gérer la solution déployée. Par exemple, vous pouvez afficher les données de télémétrie, ajouter des appareils et configurer des règles.
 
-1. Lorsque l’approvisionnement hello est terminé et vignette hello pour votre solution préconfigurée indique **prêt**, choisissez **lancer** tooopen votre portail de solution de surveillance à distance dans un nouvel onglet.
+1. Une fois que l’approvisionnement est terminé et que la vignette de votre solution préconfigurée indique **Prêt**, choisissez **Lancer** pour ouvrir le portail de votre solution de surveillance à distance dans un nouvel onglet.
 
-    ![Lancer la solution de hello préconfiguré][img-launch-solution]
+    ![Lancer la solution préconfigurée][img-launch-solution]
 
-1. Par défaut, portail de solution hello affiche hello *tableau de bord*. Vous pouvez naviguer tooother des zones du portail de solution hello à l’aide du menu de hello sur la partie gauche de la page de hello hello.
+1. Par défaut, le portail de solution affiche le *tableau de bord*. Vous pouvez accéder à d’autres zones du portail de solution à l’aide du menu sur le côté gauche de la page.
 
     ![Tableau de bord de solution préconfigurée de surveillance à distance][img-menu]
 
-tableau de bord Hello affiche hello informations suivantes :
+Le tableau de bord affiche les informations suivantes :
 
-* Une carte qui affiche l’emplacement hello de chaque périphérique connecté toohello solution. Lorsque vous exécutez la solution de hello pour la première fois, il existe des 25 périphériques simulés. périphériques simulés Hello sont implémentés en tant que tâches Web Azure et les solutions hello utilise hello API Bing Maps tooplot d’informations sur la carte de hello. Consultez hello [FAQ] [ lnk-faq] toolearn comment toomake hello dynamique de la carte.
+* Une carte qui affiche l’emplacement de chaque appareil connecté à la solution. Lors de la première exécution de la solution, 25 appareils sont simulés. Les appareils simulés sont implémentés en tant qu’Azure WebJobs, et la solution utilise l'API Bing Maps pour tracer les informations sur la carte. Consultez le [FAQ][lnk-faq] pour savoir comment rendre le mappage dynamique.
 * Un panneau **Historique de télémétrie** qui trace la télémétrie de l’humidité et de la température d’un appareil sélectionné en temps quasi-réel et affiche les données d’agrégation telles que l’humidité maximale, minimale et moyenne.
-* Un panneau **Historique des alertes** qui affiche les alarmes récentes lorsqu’une valeur de télémétrie a dépassé un seuil défini. Vous pouvez définir vos propres alarmes dans les exemples de toohello plus créés par la solution de hello préconfiguré.
+* Un panneau **Historique des alertes** qui affiche les alarmes récentes lorsqu’une valeur de télémétrie a dépassé un seuil défini. Vous pouvez définir vos propres alarmes en plus des exemples créés par la solution préconfigurée.
 * Un panneau **Tâches** qui affiche des informations sur les travaux planifiés. Vous pouvez planifier vos propres tâches sur la page **Gestion des tâches**.
 
 ## <a name="view-alarms"></a>Afficher les alarmes
 
-panneau d’historique Hello alarme montre que cinq appareils sont reporting supérieure à celle des valeurs de télémétrie attendu.
+Le panneau Historique des alarmes montre que cinq appareils signalent des valeurs de télémétrie plus élevées que celles attendues.
 
-![Historique TODO alarme sur le tableau de bord de solution hello][img-alarms]
+![TODO Historique des alarmes dans le tableau de bord de solution][img-alarms]
 
 > [!NOTE]
-> Ces alertes sont générées par une règle qui est incluse dans la solution de hello préconfiguré. Cette règle génère une alerte lorsque la valeur de la température hello envoyé par un périphérique dépasse 60. Vous pouvez définir vos propres règles et les actions en choisissant [règles](#add-a-rule) et [Actions](#add-an-action) dans le menu de gauche hello.
+> Ces alarmes sont générées par une règle qui est incluse dans la solution préconfigurée. Cette règle génère une alerte lorsque la valeur de température envoyée par un appareil dépasse 60. Vous pouvez définir vos propres règles et actions en choisissant [Règles](#add-a-rule) et [Actions](#add-an-action) dans le menu de gauche.
 
 ## <a name="view-devices"></a>Afficher les appareils
 
-Hello *périphériques* liste affiche tous les périphériques de hello inscrit dans les solutions hello. À partir de la liste des appareils hello vous pouvez afficher et modifier les métadonnées de l’appareil, ajouter ou supprimer des appareils et appeler des méthodes sur les appareils. Vous pouvez filtrer et trier la liste hello des périphériques dans la liste des appareils hello. Vous pouvez également personnaliser les colonnes hello indiquées dans la liste des appareils hello.
+La liste des *appareils* montre tous les appareils inscrits dans la solution. Dans la liste des appareils, vous pouvez consulter et modifier les métadonnées des appareils, ajouter ou supprimer des appareils et appeler des méthodes sur les appareils. Vous pouvez filtrer et trier la liste des appareils dans la liste. Vous pouvez également personnaliser les colonnes affichées dans la liste des appareils.
 
-1. Choisissez **périphériques** liste des appareils tooshow hello pour cette solution.
+1. Choisissez **Appareils** pour afficher la liste des appareils pour cette solution.
 
-   ![Liste des appareils hello vue dans le portail de solution hello][img-devicelist]
+   ![Affichage de la liste des appareils dans le portail de solution][img-devicelist]
 
-1. liste des appareils Hello affiche initialement 25 périphériques simulés créés par le processus d’approvisionnement de hello. Vous pouvez ajouter la solution de toohello d’autres appareils simulé et physique.
+1. La liste des appareils montre au départ 25 appareils simulés créés par le processus de déploiement. Vous pouvez ajouter des appareils physiques et simulés supplémentaires à la solution.
 
-1. Détails de hello tooview d’un appareil, choisissez un périphérique dans la liste des appareils hello.
+1. Pour afficher les détails d’un appareil, choisissez un appareil dans la liste.
 
-   ![Afficher les détails de l’appareil hello dans le portail de solution hello][img-devicedetails]
+   ![Affichage des détails de l’appareil dans le portail de solution][img-devicedetails]
 
-Hello **détails de l’appareil** panneau contient six sections :
+Le volet **Détails de l’appareil** comprend six sections :
 
-* Une collection de liens qui activent vous toocustomize hello icône périphérique, désactivez hello périphérique, ajouter une règle, appellent une méthode ou envoyant une commande. Pour voir une comparaison des commandes (messages appareil-à-cloud) et des méthodes (méthodes directes), consultez [Conseils pour les communications cloud-à-appareil][lnk-c2d-guidance].
-* Hello **appareil double - balises** section vous permet de valeurs de balise tooedit pour appareil de hello. Vous pouvez afficher des valeurs de balise dans la liste des appareils hello et utilisez liste des appareils balise valeurs toofilter hello.
-* Hello **appareil double - propriétés de souhaité** section vous permet de tooset propriété valeurs toobe envoyé toohello appareil.
-* Hello **appareil double - a signalé des propriétés** section affiche les valeurs de propriété envoyés à partir de l’appareil de hello.
-* Hello **propriétés de l’appareil** section affiche les informations de Registre des identités hello tels que le périphérique de hello clés id et l’authentification.
-* Hello **travaux récents** section affiche des informations sur tous les travaux qui ont ciblés récemment cet appareil.
+* Un ensemble de liens qui vous permettent de personnaliser l’icône de l’appareil, de désactiver l’appareil, d’ajouter une règle, d’appeler une méthode ou d’envoyer une commande. Pour voir une comparaison des commandes (messages appareil-à-cloud) et des méthodes (méthodes directes), consultez [Conseils pour les communications cloud-à-appareil][lnk-c2d-guidance].
+* La section **Jumeau d’appareil - Balises** vous permet de modifier les valeurs des balises pour l’appareil. Vous pouvez afficher les valeurs des balises dans la liste des appareils et utiliser les valeurs des balises pour filtrer cette liste.
+* La section **Jumeau d’appareil - Propriétés souhaitées** vous permet de définir des valeurs de propriétés qui doivent être envoyées à l’appareil.
+* La section **Jumeau d’appareil - Propriétés signalées** affiche les valeurs de propriétés envoyées par l’appareil.
+* La section **Propriétés de l’appareil** contient des informations du registre des identités, telles que l’ID de l’appareil et ses clés d’authentification.
+* La section **Tâches récentes** inclut des informations sur toutes les tâches qui ont récemment ciblé cet appareil.
 
-## <a name="filter-hello-device-list"></a>Filtrer la liste des appareils hello
+## <a name="filter-the-device-list"></a>Filtrer la liste des appareils
 
-Vous pouvez utiliser un filtre toodisplay que les périphériques qui envoient des valeurs de température inattendue. Hello solution préconfigurée de surveillance à distance inclut hello **appareils défectueux** filtrer les appareils tooshow avec une valeur de température moyenne supérieure à 60. Vous pouvez également [créer vos propres filtres](#add-a-filter).
+Vous pouvez utiliser un filtre pour afficher uniquement les appareils qui envoient des valeurs de température inattendues. La solution préconfigurée de surveillance à distance inclut le filtre **Appareils défectueux** pour afficher les appareils ayant une valeur de température moyenne supérieure à 60. Vous pouvez également [créer vos propres filtres](#add-a-filter).
 
-1. Choisissez **ouvrir l’enregistrement de filtre** toodisplay une liste de filtres disponibles. Puis choisissez **appareils défectueux** filtre de hello tooapply :
+1. Choisissez **Ouvrir un filtre enregistré** pour afficher la liste des filtres disponibles. Puis choisissez **Appareils défectueux** pour appliquer le filtre :
 
-    ![Afficher la liste hello des filtres][img-unhealthy-filter]
+    ![Affichage de la liste des filtres][img-unhealthy-filter]
 
-1. liste des appareils Hello affiche maintenant uniquement les périphériques avec une valeur de température moyenne supérieure à 60.
+1. La liste des appareils indique à présent uniquement les appareils ayant une valeur de température moyenne supérieure à 60.
 
-    ![Vue hello périphérique filtrés liste appareils défectueux][img-filtered-unhealthy-list]
+    ![Affichage de la liste des appareils filtrée montrant les appareils défectueux][img-filtered-unhealthy-list]
 
 ## <a name="update-desired-properties"></a>Mettre à jour les propriétés souhaitées
 
-Vous avez désormais identifié un ensemble d’appareils nécessitant une correction. Toutefois, vous décidez que la fréquence de données hello de 15 secondes n’est pas suffisant pour un diagnostic clair du problème de hello. La modification hello télémétrie fréquence toofive secondes tooprovide vous avec toobetter de points de données plus diagnostiquer les problème de hello. Vous pouvez transmettre cette configuration modification tooyour à distance les appareils à partir du portail de solution hello. Vous pouvez modifier hello qu’une seule fois, évaluer l’impact de hello et ensuite agir sur les résultats hello.
+Vous avez désormais identifié un ensemble d’appareils nécessitant une correction. Toutefois, vous décidez que la fréquence de données de 15 secondes n’est pas suffisante pour un diagnostic clair du problème. La modification de la fréquence de télémétrie à cinq secondes pour vous fournir plus de données permet de mieux diagnostiquer le problème. Vous pouvez transmettre cette modification de configuration aux appareils distants à partir du portail de la solution. Vous pouvez effectuer cette modification une fois, évaluer l’impact et ensuite agir en fonction des résultats.
 
-Suivez ces étapes de toorun une opération de changement de hello **TelemetryInterval** souhaité de propriété pour les appareils hello affectée. Lorsque les appareils hello réception hello nouvelle **TelemetryInterval** valeur de propriété, ils changent leurs données de télémétrie toosend configuration toutes les cinq secondes au lieu de toutes les 15 secondes :
+Procédez comme suit pour exécuter un travail qui modifie la propriété souhaitée **TelemetryInterval** pour les appareils affectés. Lorsque les appareils reçoivent la nouvelle valeur de propriété **TelemetryInterval**, ils modifient leur configuration pour envoyer la télémétrie toutes les 5 secondes au lieu de 15 :
 
-1. Lors de l’affichage liste hello de périphériques défectueux dans la liste des appareils hello, choisissez **planificateur**, puis **double de périphérique modifier**.
+1. Pendant que vous visualisez la liste des appareils défectueux dans la liste des appareils, choisissez **Planificateur de travaux**, puis **Modifier le jumeau d’appareil**.
 
-1. Appelez la tâche de hello **intervalle de modification de données de télémétrie**.
+1. Appelez le travail **Modification de l’intervalle de télémétrie**.
 
-1. Modifier la valeur hello hello **propriété souhaitée** nom **souhaitée. Config.TelemetryInterval** toofive secondes.
+1. Modifiez la valeur du nom de la **propriété souhaitée** **desired.Config.TelemetryInterval** à cinq secondes.
 
 1. Choisissez **Planification**.
 
-    ![Modifier hello TelemetryInterval propriété toofive secondes][img-change-interval]
+    ![Modification de la propriété TelemetryInterval à cinq secondes][img-change-interval]
 
-1. Vous pouvez surveiller la progression hello du travail hello hello **des tâches de gestion** page hello portail.
+1. Vous pouvez surveiller la progression du travail sur la page **Gestion des tâches** du portail.
 
 > [!NOTE]
-> Si vous souhaitez toochange une valeur de propriété souhaitée pour un périphérique, utilisez hello **propriétés souhaitées** section Bonjour **détails de l’appareil** Panneau de configuration au lieu d’exécuter un travail.
+> Si vous souhaitez modifier une valeur de propriété souhaitée pour un appareil en particulier, utilisez la section **Propriétés souhaitées** dans le panneau **Détails de l’appareil** au lieu d’exécuter un travail.
 
-Cette tâche définit la valeur hello hello **TelemetryInterval** souhaité de propriété en double d’appareil hello pour tous les hello périphériques sélectionnés par le filtre de hello. les appareils de Hello récupèrent cette valeur à partir du double du périphérique hello et mettre à jour leur comportement. Quand un appareil récupère et traite une propriété spécifique à partir d’un double de l’appareil, il définit la propriété de valeur signalée hello correspondante.
+Ce travail définit la valeur de la propriété souhaitée **TelemetryInterval** dans le jumeau d’appareil pour tous les appareils sélectionnés par le filtre. Les appareils extraient cette valeur du jumeau d’appareil et mettent à jour leur comportement. Lorsqu’un appareil récupère et traite une propriété souhaitée à partir d’un jumeau d’appareil, il définit la propriété de la valeur signalée correspondante.
 
 ## <a name="invoke-methods"></a>Appeler des méthodes
 
-Pendant l’exécution de tâche de hello, vous remarquez dans liste hello de périphériques défectueux que tous ces périphériques disposant d’un microprogramme ancien (inférieur à la version 1.6) versions.
+Pendant l’exécution du travail, vous remarquez dans la liste des appareils défectueux que tous ces appareils possèdent une version ancienne de microprogramme (antérieur à la version 1.6).
 
-![Version du microprogramme pour les appareils défectueux hello a signalé l’hello de vue][img-old-firmware]
+![Affichage de la version du microprogramme signalée pour les appareils défectueux][img-old-firmware]
 
-Cette version du microprogramme peut être la cause première hello de hello inattendue, car vous savez que les autres périphériques intègres ont été récemment mis à jour tooversion 2.0 des valeurs de température. Vous pouvez utiliser hello intégrée **anciens périphériques microprogramme** filtrer tooidentify tous les périphériques avec d’anciennes versions du microprogramme. À partir du portail de hello, vous pouvez ensuite à distance mettre à jour tous les appareils hello exécute toujours les anciennes versions de microprogramme :
+Cette version du microprogramme peut être la cause de valeurs de température inattendues, car vous savez que d’autres appareils sains ont récemment été mis à jour vers la version 2.0. Vous pouvez utiliser le filtre **Appareils avec ancien microprogramme** pour identifier tous les appareils dotés d’anciennes versions du microprogramme. À partir du portail, vous pouvez ensuite mettre à jour à distance tous les appareils exécutant toujours d’anciennes versions du microprogramme :
 
-1. Choisissez **ouvrir l’enregistrement de filtre** toodisplay une liste de filtres disponibles. Puis choisissez **anciens périphériques microprogramme** filtre de hello tooapply :
+1. Choisissez **Ouvrir un filtre enregistré** pour afficher la liste des filtres disponibles. Puis choisissez **Appareils avec ancien microprogramme** pour appliquer le filtre :
 
-    ![Afficher la liste hello des filtres][img-old-filter]
+    ![Affichage de la liste des filtres][img-old-filter]
 
-1. liste des appareils Hello affiche maintenant uniquement les appareils avec d’anciennes versions du microprogramme. Cette liste inclut hello cinq appareils identifiés par hello **appareils défectueux** filtre et trois unités supplémentaires :
+1. La liste des appareils indique à présent uniquement les appareils avec d’anciennes versions du microprogramme. Cette liste inclut les cinq appareils identifiés par le filtre **Appareils défectueux** et trois appareils supplémentaires :
 
-    ![Liste de périphérique filtrés hello vue affichant les anciens périphériques][img-filtered-old-list]
+    ![Affichage de la liste des appareils filtrée montrant les anciens appareils][img-filtered-old-list]
 
 1. Choisissez **Planificateur de travaux**, puis **Appeler une méthode**.
 
-1. Définissez **nom de la tâche** trop**tooversion de mise à jour de microprogramme 2.0**.
+1. Définissez le **Nom du travail** sur **Mise à jour du microprogramme vers la version 2.0**.
 
-1. Choisissez **InitiateFirmwareUpdate** comme hello **méthode**.
+1. Choisissez **InitiateFirmwareUpdate** comme **méthode**.
 
-1. Ensemble hello **FwPackageUri** paramètre trop**https://iotrmassets.blob.core.windows.net/firmwares/FW20.bin**.
+1. Définissez le paramètre **FwPackageUri** sur **https://iotrmassets.blob.core.windows.net/firmwares/FW20.bin**.
 
-1. Choisissez **Planification**. valeur par défaut Hello est désormais pour toorun de travail hello.
+1. Choisissez **Planification**. La valeur par défaut pour le travail est une exécution immédiate.
 
-    ![Créer le microprogramme de hello tooupdate de travail des appareils de hello sélectionné][img-method-update]
-
-> [!NOTE]
-> Si vous souhaitez tooinvoke une méthode sur un périphérique, choisissez **méthodes** Bonjour **détails de l’appareil** Panneau de configuration au lieu d’exécuter un travail.
-
-Ce travail appelle hello **InitiateFirmwareUpdate** méthode directe sur tous les appareils hello sélectionnés par le filtre de hello. Appareils répondent immédiatement tooIoT Hub et puis initier de façon asynchrone les processus de mise à jour de microprogramme hello. les appareils Hello fournissent les informations d’état sur le processus de mise à jour de microprogramme hello via des valeurs de propriété signalé, comme indiqué dans hello suivant des captures d’écran. Choisissez hello **Actualiser** icône tooupdate hello plus d’informations dans les listes de périphérique et la tâche hello :
-
-![Liste de tâches montrant l’exécution de liste de mise à jour de microprogramme hello][img-update-1]
-![liste des appareils montrant l’état de mise à jour de microprogramme][img-update-2]
-![travail liste affichant hello microprogramme mise à jour la liste complète][img-update-3]
+    ![Création de travail pour mettre à jour le microprogramme des appareils sélectionnés][img-method-update]
 
 > [!NOTE]
-> Dans un environnement de production, vous pouvez planifier des travaux toorun pendant une fenêtre de maintenance désigné.
+> Si vous souhaitez appeler une méthode sur un appareil en particulier, choisissez **Méthodes** dans le panneau **Détails de l’appareil** au lieu d’exécuter un travail.
+
+Ce travail appelle la méthode directe **InitiateFirmwareUpdate** sur tous les appareils sélectionnés par le filtre. Les appareils répondent immédiatement à IoT Hub puis lancent le processus de mise à jour du microprogramme de façon asynchrone. Les appareils fournissent des informations d’état sur le processus de mise à jour du microprogramme via les valeurs de propriété signalées, comme indiqué dans les captures d’écran suivantes. Choisissez l’icône **Actualiser** pour mettre à jour les informations dans les listes d’appareils et de travaux :
+
+![Liste de travaux affichant la liste de mises à jour de microprogramme en cours d’exécution][img-update-1]
+![Liste des appareils affichant l’état de mise à jour du microprogramme][img-update-2]
+![Liste de travaux montrant la liste de mise à jour de microprogramme terminée][img-update-3]
+
+> [!NOTE]
+> Dans un environnement de production, vous pouvez planifier des travaux à exécuter pendant une fenêtre de maintenance désignée.
 
 ## <a name="scenario-review"></a>Analyse du scénario
 
-Dans ce scénario, vous identifié un problème potentiel avec certains de vos périphériques à distance à l’aide de l’historique de hello alarme sur le tableau de bord hello et un filtre. Vous les filtres utilisés hello et un tooremotely de travail configurent hello appareils tooprovide plus d’informations toohelp diagnostiquer le problème de hello. Enfin, vous avez utilisé un filtre et une maintenance tooschedule du travail sur les appareils hello affectée. Si vous retournez toohello le tableau de bord, vous pouvez vérifier qu’il n’y a n’est plus n’importe quel alarmes provenant d’appareils dans votre solution. Vous pouvez utiliser un filtre tooverify qui hello microprogramme est à jour sur tous les appareils hello dans votre solution et qu’il existe des appareils défectueux n’y a plus :
+Dans ce scénario, vous avez identifié un problème potentiel avec certains de vos appareils à distance à l’aide de l’historique des alarmes sur le tableau de bord et d’un filtre. Vous avez ensuite utilisé le filtre et un travail pour configurer à distance les appareils pour fournir plus d’informations pour vous aider à diagnostiquer le problème. Enfin, vous avez utilisé un filtre et un travail pour planifier la maintenance sur les appareils affectés. Si vous retournez au tableau de bord, vous pouvez vérifier qu’il ne reste aucune alarme provenant des appareils de votre solution. Vous pouvez utiliser un filtre pour vérifier que le microprogramme est à jour sur tous les appareils de votre solution et qu’il ne reste aucun appareil défectueux :
 
 ![Filtre indiquant que tous les appareils disposent d’un microprogramme à jour][img-updated]
 
@@ -183,48 +183,48 @@ Dans ce scénario, vous identifié un problème potentiel avec certains de vos p
 
 ## <a name="other-features"></a>Autres fonctionnalités
 
-Hello sections suivantes décrivent certaines fonctionnalités de hello solution préconfigurée de surveillance à distance qui ne sont pas décrits dans le cadre du scénario précédent de hello.
+Les sections suivantes décrivent quelques fonctionnalités supplémentaires de la solution préconfigurée de surveillance à distance qui ne sont pas décrites dans le cadre du scénario précédent.
 
 ### <a name="customize-columns"></a>Personnaliser les colonnes
 
-Vous pouvez personnaliser les informations de hello affichées dans la liste des appareils hello en choisissant **éditeur colonne**. Vous pouvez ajouter et supprimer des colonnes dans lesquelles figurent des valeurs de balises et de propriétés signalées. Vous pouvez également réorganiser et renommer les colonnes :
+Vous pouvez personnaliser les informations affichées dans la liste des appareils en choisissant **Éditeur de colonne**. Vous pouvez ajouter et supprimer des colonnes dans lesquelles figurent des valeurs de balises et de propriétés signalées. Vous pouvez également réorganiser et renommer les colonnes :
 
-   ![Liste des appareils colonne éditeur ion hello][img-columneditor]
+   ![Icône de l’éditeur de colonne dans la liste des appareils][img-columneditor]
 
-### <a name="customize-hello-device-icon"></a>Personnaliser l’icône du périphérique hello
+### <a name="customize-the-device-icon"></a>Personnaliser l’icône de l’appareil
 
-Vous pouvez personnaliser hello appareil icône est affichée dans la liste des périphériques à partir de hello hello **détails de l’appareil** panneau comme suit :
+Vous pouvez personnaliser l’icône de l’appareil qui apparaît dans la liste des appareils à partir du volet **Détails de l’appareil**, en procédant comme suit :
 
-1. Choisissez Bonjour crayon icône tooopen Bonjour **modifier l’image** Panneau de configuration pour un périphérique :
+1. Choisissez l’icône représentant un crayon pour ouvrir le volet **Modifier une image** pour un appareil :
 
    ![Ouvrir l’éditeur d’image d’appareil][img-startimageedit]
 
-1. Soit charger une nouvelle image ou utilisez une des images existantes de hello, puis choisissez **enregistrer**:
+1. Téléchargez une nouvelle image ou utilisez une image existante, puis choisissez **Enregistrer** :
 
    ![Modifier l’éditeur d’image d’appareil][img-imageedit]
 
-1. Hello image que vous venez de sélectionner affiche Bonjour **icône** colonne pour appareil de hello.
+1. L’image que vous avez sélectionnée s’affiche dans la colonne **Icône** de l’appareil.
 
 > [!NOTE]
-> image de Hello est stockée dans le stockage blob. Une balise en double d’appareil hello contient une image de toohello de lien dans le stockage d’objets blob.
+> L’image est enregistrée dans le stockage Blob. Une balise du jumeau d’appareil contient un lien vers l’image dans le stockage Blob.
 
 ### <a name="add-a-device"></a>Ajout d’un appareil
 
-Lorsque vous déployez la solution de hello préconfiguré, vous déployez automatiquement des 25 périphériques d’exemple que vous pouvez voir dans la liste des appareils hello. Ces appareils sont des *simulations d’appareils* en cours d’exécution dans un Azure WebJob. Appareils simulés facilitent vous tooexperiment avec solution hello préconfiguré sans hello besoin toodeploy réel physique les appareils. Si vous ne souhaitez pas tooconnect une solution de toohello périphérique réel, consultez hello [connecter votre solution préconfigurée de surveillance à distance de toohello périphérique] [ lnk-connect-rm] didacticiel.
+Lorsque vous déployez la solution préconfigurée, vous approvisionnez automatiquement 25 exemples d’appareils que vous pouvez voir dans la liste des appareils. Ces appareils sont des *simulations d’appareils* en cours d’exécution dans un Azure WebJob. Les appareils simulés vous permettent d’expérimenter plus facilement la solution préconfigurée sans avoir à déployer des appareils physiques réels. Si vous ne souhaitez pas connecter un appareil physique à la solution, consultez le didacticiel [Connexion de votre appareil à la solution préconfigurée de surveillance à distance][lnk-connect-rm].
 
-Hello étapes suivantes vous montrent comment tooadd une solution de toohello appareil simulé :
+Les étapes suivantes vous montrent comment ajouter un appareil simulé à la solution :
 
-1. Parcourir la liste de périphériques de toohello précédent.
+1. Retournez à la liste des appareils.
 
-1. tooadd un appareil, choisissez **+ ajouter un périphérique** dans hello bas à gauche.
+1. Pour ajouter un appareil, choisissez **+ Ajouter un appareil** dans le coin inférieur gauche.
 
-   ![Ajouter une solution toohello préconfiguré de périphérique][img-adddevice]
+   ![Ajouter un appareil à la solution préconfigurée][img-adddevice]
 
-1. Choisissez **nouveau** sur hello **simulée de périphérique** vignette.
+1. Choisissez **Ajouter un nouveau** sur la vignette **Appareil simulé**.
 
    ![Définir les détails du nouvel appareil dans le tableau de bord][img-addnew]
 
-   Dans Ajout toocreating un nouvel appareil simulé, vous pouvez également ajouter un périphérique physique si vous choisissez toocreate un **personnalisé périphérique**. toolearn en savoir plus sur la connexion de périphériques physiques toohello solution, consultez [connecter votre toohello appareil IoT Suite solution préconfigurée de surveillance à distance][lnk-connect-rm].
+   Outre la création d’un appareil simulé, vous pouvez également ajouter un appareil physique si vous choisissez de créer un **appareil personnalisé**. Pour plus d’informations sur la connexion d’appareils physiques à la solution, consultez [Connexion de votre appareil à la solution préconfigurée de surveillance à distance][lnk-connect-rm].
 
 1. Sélectionnez **Me laisser définir mon propre ID d’appareil** et ajoutez un nom unique d’ID d’appareil, par exemple **monappareil_01**.
 
@@ -232,13 +232,13 @@ Hello étapes suivantes vous montrent comment tooadd une solution de toohello ap
 
    ![Enregistrer un nouvel appareil][img-definedevice]
 
-1. Dans l’étape 3 de **ajouter un appareil simulé**, choisissez **fait** liste des appareils tooreturn toohello.
+1. À l’étape 3 de la procédure **Ajouter un appareil simulé**, choisissez **Terminé** pour revenir à la liste des appareils.
 
-1. Vous pouvez afficher votre appareil **en cours d’exécution** dans la liste des appareils hello.
+1. Vous pouvez vérifier que votre appareil est **En cours d’exécution** dans la liste des appareils.
 
     ![Afficher le nouvel appareil dans la liste des appareils][img-runningnew]
 
-1. Vous pouvez également afficher hello simulée de télémétrie à partir de votre nouveau périphérique sur le tableau de bord hello :
+1. Vous pouvez également afficher les données de télémétrie provenant de votre nouvel appareil sur le tableau de bord :
 
     ![Afficher la télémétrie du nouvel appareil][img-runningnew-2]
 
@@ -250,114 +250,114 @@ Vous pouvez désactiver un appareil puis le supprimer :
 
 ### <a name="add-a-rule"></a>Ajouter une règle
 
-Il n’existe aucune règle pour le nouveau périphérique de hello que vous venez d’ajouter. Dans cette section, vous ajoutez une règle qui déclenche une alerte lors de la température de hello signalés par hello nouveau périphérique dépasse 47 degrés. Avant de commencer, notez que l’historique des données de télémétrie hello pour le nouveau périphérique de hello sur le tableau de bord hello montre la température du périphérique hello ne dépasse jamais 45 degrés.
+Il n'existe aucune règle pour le nouvel appareil que vous venez d'ajouter. Dans cette section, vous allez ajouter une règle qui déclenche une alarme lorsque la température signalée par le nouvel appareil dépasse 47 degrés. Avant de commencer, notez que l'historique de télémétrie pour le nouvel appareil sur le tableau de bord affiche que la température de l’appareil ne dépasse jamais 45 degrés.
 
-1. Parcourir la liste de périphériques de toohello précédent.
+1. Retournez à la liste des appareils.
 
-1. tooadd une règle pour appareil de hello, sélectionnez votre nouveau périphérique Bonjour **liste de périphériques**, puis choisissez **ajouter une règle**.
+1. Pour ajouter une règle concernant un nouvel appareil, sélectionnez ce dernier dans la **liste des appareils**, puis choisissez **Ajouter une règle**.
 
-1. Créer une règle qui utilise **température** en tant que champ de données hello et utilise **AlarmTemp** comme hello lorsque la température de hello dépasse 47 degrés de sortie :
+1. Créez une règle qui utilise **Température** comme champ de données et **AlarmTemp** en tant que sortie lorsque la température dépasse 47 degrés :
 
     ![Ajouter une règle d’appareil][img-adddevicerule]
 
-1. Choisissez de vos modifications, toosave **enregistrer et afficher les règles**.
+1. Pour enregistrer vos modifications, choisissez **Enregistrer et afficher les règles**.
 
-1. Choisissez **commandes** dans le volet d’informations de périphérique hello pour le nouveau périphérique de hello.
+1. Choisissez **Commandes** dans le volet Détails du nouvel appareil.
 
     ![Ajouter une règle d’appareil][img-adddevicerule2]
 
-1. Sélectionnez **ChangeSetPointTemp** à partir de la liste de commandes hello et ensemble **SetPointTemp** too45. Puis choisissez **Envoyer la commande** :
+1. Sélectionnez **ChangeSetPointTemp** dans la liste de commandes et définissez **SetPointTemp** sur 45. Puis choisissez **Envoyer la commande** :
 
     ![Ajouter une règle d’appareil][img-adddevicerule3]
 
-1. Accédez toohello différé du tableau de bord. Après un bref laps de temps, vous verrez une nouvelle entrée Bonjour **alarme historique** volet lors de la température de hello signalé par votre nouveau périphérique dépasse le seuil de degrés 47 hello :
+1. Revenez au tableau de bord. Rapidement s’affiche une nouvelle entrée dans le volet **Historique des alarmes** , lorsque la température signalée par votre nouvel appareil dépasse le seuil de 47 degrés :
 
     ![Ajouter une règle d’appareil][img-adddevicerule4]
 
-1. Vous pouvez consulter et modifier toutes les règles sur hello **règles** page du tableau de bord hello :
+1. Vous pouvez consulter et modifier toutes les règles dans le tableau de bord **Règles** :
 
     ![Répertorier les règles d’appareil][img-rules]
 
-1. Vous pouvez consulter et modifier toutes les actions hello qui peuvent être effectuées dans la règle de tooa de réponse sur hello **Actions** page du tableau de bord hello :
+1. Vous pouvez consulter et modifier toutes les mesures qui peuvent être prises en réponse à une règle sur le tableau de bord **Actions** :
 
     ![Répertorier les actions d’appareil][img-actions]
 
 > [!NOTE]
-> Il est possible toodefine les actions qui peuvent envoyer un message électronique ou SMS dans la réponse tooa règle ou l’intégrer avec un système métier-via un [application logique][lnk-logic-apps]. Pour plus d’informations, consultez hello [tooyour connecter une application de logique Azure IoT Suite de l’analyse à distance de solution préconfigurée][lnk-logicapptutorial].
+> Il est possible de définir des actions pouvant envoyer un message électronique ou un SMS en réponse à une règle ou s’intégrer à un système métier par le biais d’une [application logique][lnk-logic-apps]. Pour plus d’informations consultez [Connecter Logic App à la solution préconfigurée de surveillance à distance IoT Suite][lnk-logicapptutorial].
 
 ### <a name="manage-filters"></a>Gérer les filtres
 
-Dans la liste des appareils hello, vous pouvez créer, enregistrer et recharger les filtres toodisplay une liste personnalisée de concentrateur tooyour connecté de périphériques. toocreate un filtre :
+Dans la liste des appareils, vous pouvez créer, enregistrer et recharger des filtres pour afficher une liste personnalisée des appareils connectés à votre hub. Pour créer un filtre :
 
-1. Choisissez l’icône de filtre hello modifier au-dessus de la liste des appareils hello :
+1. Choisissez l’icône de modification de filtre au-dessus de la liste des appareils :
 
-    ![Éditeur de filtre hello ouvert][img-editfiltericon]
+    ![Ouvrir l’éditeur de filtre][img-editfiltericon]
 
-1. Bonjour **l’éditeur de filtre**, ajouter des champs de hello, d’opérateurs et de liste de valeurs toofilter hello appareil. Vous pouvez ajouter plusieurs clauses toorefine votre filtre. Choisissez **filtre** filtre de hello tooapply :
+1. Dans l’**éditeur de filtre**, ajoutez les champs, les opérateurs et les valeurs permettant de filtrer la liste des appareils. Vous pouvez ajouter plusieurs clauses pour affiner votre filtre. Choisissez **Filtrer** pour appliquer le filtre :
 
     ![Créer un filtre][img-filtereditor]
 
-1. Dans cet exemple, la liste de hello est filtré par le fabricant et le numéro de modèle :
+1. Dans cet exemple, la liste est filtrée par fabricant et numéro de modèle :
 
     ![Liste de filtrage][img-filterelist]
 
-1. toosave votre filtre avec un nom personnalisé, choisissez hello **enregistrer en tant que** icône :
+1. Pour enregistrer votre filtre avec un nom personnalisé, choisissez l’icône **Enregistrer sous** :
 
     ![Enregistrer un filtre][img-savefilter]
 
-1. tooreapply un filtre que vous avez enregistré précédemment, choisissez hello **ouvrir l’enregistrement de filtre** icône :
+1. Pour réappliquer un filtre que vous avez enregistré précédemment, choisissez l’icône **Ouvrir un filtre enregistré** :
 
     ![Ouvrir un filtre][img-openfilter]
 
-Vous pouvez créer des filtres en fonction de l’id de l’appareil, de son état, des propriétés souhaitées, des propriétés signalées et des balises. Vous ajoutez votre propre appareil tooa de balises personnalisées Bonjour **balises** section Hello **détails de l’appareil** panneau ou exécuter un travail tooupdate des balises sur plusieurs appareils.
+Vous pouvez créer des filtres en fonction de l’id de l’appareil, de son état, des propriétés souhaitées, des propriétés signalées et des balises. Vous ajoutez vos propres balises personnalisées à un appareil dans la section **Balises** du panneau **Détails de l’appareil** ou exécutez un travail pour mettre à jour les balises sur plusieurs appareils.
 
 > [!NOTE]
-> Bonjour **l’éditeur de filtre**, vous pouvez utiliser hello **vue avancée** tooedit hello texte de la requête directement.
+> Dans l’**éditeur de filtre**, vous pouvez utiliser la **vue avancée** pour modifier directement le texte de la requête.
 
 ### <a name="commands"></a>Commandes
 
-À partir de hello **détails de l’appareil** Panneau de configuration, vous pouvez envoyer un périphérique toohello de commandes. Premier démarrage d’un périphérique, il envoie plus d’informations sur hello commandes que toohello solution prend en charge. Pour en savoir plus sur les différences de hello entre les commandes et les méthodes, consultez [options de cloud-à-appareil Azure IoT Hub][lnk-c2d-guidance].
+Dans le volet **Détails de l’appareil**, vous pouvez envoyer des commandes à l’appareil. Lors du premier démarrage d'un appareil, ce dernier envoie des informations sur les commandes qu'il prend en charge à la solution. Pour une explication des différences entre les commandes et les méthodes, consultez [Options cloud vers appareil Azure IoT Hub][lnk-c2d-guidance].
 
-1. Choisissez **commandes** Bonjour **détails de l’appareil** Panneau de configuration pour le périphérique sélectionné de hello :
+1. Choisissez **Commandes** dans le panneau **Détails de l’appareil** correspondant à l’appareil sélectionné :
 
    ![Commandes de l’appareil dans le tableau de bord][img-devicecommands]
 
-1. Sélectionnez **PingDevice** à partir de la liste de commandes hello.
+1. Sélectionnez **PingDevice** dans la liste de commandes.
 
 1. Choisissez **Envoyer la commande**.
 
-1. Vous pouvez voir l’état hello de commande hello dans l’historique de commande hello.
+1. Vous pouvez visualiser l’état de la commande dans l’historique des commandes.
 
    ![État de la commande dans le tableau de bord][img-pingcommand]
 
-solution de Hello effectue le suivi d’état hello de chaque commande, qu'il envoie. Initialement le résultat de hello est **en attente**. Lors de l’appareil de hello signale qu’il a exécuté la commande hello, le résultat de hello est défini trop**réussite**.
+La solution effectue le suivi de l'état de chaque commande qu'elle envoie. Initialement, le résultat est **En attente**. Lorsque l’appareil signale qu’il a correctement exécuté la commande, le résultat prend la valeur **Réussite**.
 
-## <a name="behind-hello-scenes"></a>Coulisses de hello
+## <a name="behind-the-scenes"></a>Dans les coulisses
 
-Lorsque vous déployez une solution préconfigurée, processus de déploiement hello crée plusieurs ressources Bonjour abonnement Azure que vous avez sélectionné. Vous pouvez afficher ces ressources Bonjour Azure [portal][lnk-portal]. processus de déploiement Hello crée un **groupe de ressources** avec un nom basé sur le nom de hello que vous choisissez pour votre solution préconfigurée :
+Lorsque vous déployez une solution préconfigurée, le processus de déploiement crée plusieurs ressources dans l’abonnement Azure sélectionné. Vous pouvez afficher ces ressources dans le [portail][lnk-portal] Azure. Le processus de déploiement crée un **groupe de ressources** avec un nom basé sur celui que vous avez choisi pour votre solution préconfigurée :
 
-![Solution préconfigurée Bonjour portail Azure][img-portal]
+![Solution préconfigurée dans le portail Azure][img-portal]
 
-Vous pouvez afficher les paramètres de hello de chaque ressource en la sélectionnant dans la liste de hello des ressources dans le groupe de ressources hello.
+Vous pouvez afficher les paramètres de chaque ressource en la sélectionnant dans la liste des ressources dans le groupe de ressources.
 
-Vous pouvez également afficher le code source de hello pour les solutions hello préconfiguré. Bonjour à distance le contrôle de code source de solution préconfigurée est Bonjour [azure-iot-de surveillance à distance] [ lnk-rmgithub] référentiel GitHub :
+Vous pouvez également afficher le code source pour la solution préconfigurée. Le code source de la solution préconfigurée de surveillance à distance se trouve dans le référentiel GitHub [azure-iot-remote-monitoring][lnk-rmgithub] :
 
-* Hello **DeviceAdministration** dossier contient le code source hello pour le tableau de bord hello.
-* Hello **simulateur** dossier contient le code source hello pour les appareil simulé hello.
-* Hello **EventProcessor** dossier contient le code source hello pour hello au processus principal qui gère les données de télémétrie entrants hello.
+* Le dossier **DeviceAdministration** contient le code source pour le tableau de bord.
+* Le dossier **Simulator** contient le code source pour l’appareil simulé.
+* Le dossier **EventProcessor** contient le code source pour le processus principal qui gère les données de télémétrie entrantes.
 
-Lorsque vous avez terminé, vous pouvez supprimer la solution de hello préconfiguré à partir de votre abonnement Azure sur hello [azureiotsuite.com] [ lnk-azureiotsuite] site. Ce site vous permet de supprimer tooeasily que tous hello des ressources qui ont été configurés lors de la création de solutions de hello préconfiguré.
+Lorsque vous avez terminé, vous pouvez supprimer la solution préconfigurée à partir de votre abonnement Azure sur le site [azureiotsuite.com][lnk-azureiotsuite]. Ce site vous permet de supprimer facilement toutes les ressources qui ont été configurées lors de la création de la solution préconfigurée.
 
 > [!NOTE]
-> tooensure que vous supprimez tous les éléments liés toohello préconfiguré solution, supprimez-le sur hello [azureiotsuite.com] [ lnk-azureiotsuite] de site et ne supprimez pas le groupe de ressources hello dans le portail de hello.
+> Pour vous assurer que vous supprimez tout ce qui concerne la solution préconfigurée, supprimez cette dernière sur le site [azureiotsuite.com][lnk-azureiotsuite] ; ne supprimez pas le groupe de ressources dans le portail.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Maintenant que vous avez déployé une solution de travail préconfiguré, vous pouvez continuer de prise en main de IoT Suite en lisant hello suivant des articles :
+À présent que vous avez déployé une solution préconfigurée opérationnelle, vous pouvez poursuivre la prise en main d’IoT Suite en lisant les articles suivants :
 
 * [Présentation de la solution préconfigurée de surveillance à distance][lnk-rm-walkthrough]
-* [Se connecter à votre solution préconfigurée de surveillance à distance de toohello périphérique][lnk-connect-rm]
-* [Autorisations sur le site de azureiotsuite.com hello][lnk-permissions]
+* [Connexion de votre appareil à la solution préconfigurée de surveillance à distance][lnk-connect-rm]
+* [Autorisations sur le site azureiotsuite.com][lnk-permissions]
 
 [img-launch-solution]: media/iot-suite-getstarted-preconfigured-solutions/launch.png
 [img-dashboard]: media/iot-suite-getstarted-preconfigured-solutions/dashboard.png

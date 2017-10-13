@@ -1,5 +1,5 @@
 ---
-title: "aaaManage machines virtuelles dans un ensemble d’échelle de machines virtuelles | Documents Microsoft"
+title: "Gérer des machines virtuelles dans un groupe de machines virtuelles identiques | Microsoft Docs"
 description: "Gérez des machines virtuelles dans un jeu de mise à l’échelle de machine virtuelle à l'aide d'Azure PowerShell."
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: adegeo
-ms.openlocfilehash: 7d848729c0fc708bd596b61feb528cf4bf4bafd4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d09a020b903e5f43afe03b86c675bcc1eb536cbc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="manage-virtual-machines-in-a-virtual-machine-scale-set"></a>Gérer des machines virtuelles dans un groupe de machines virtuelles identiques
-Utilisez les tâches hello dans cet article toomanage les ordinateurs virtuels dans votre ensemble d’échelle de machine virtuelle.
+Utilisez les tâches décrites dans cet article pour gérer les machines virtuelles de votre groupe de machines virtuelles identiques.
 
-La plupart des tâches hello qui impliquent la gestion d’une machine virtuelle dans un ensemble d’échelle requièrent que vous connaissez l’ID de l’instance de machine hello que vous souhaitez toomanage hello. Vous pouvez utiliser [Explorateur de ressources Azure](https://resources.azure.com) toofind hello des ID d’instance d’un ordinateur virtuel dans un ensemble d’échelle. Vous utilisez également l’Explorateur de ressources tooverify hello d’état hello tâches que vous avez terminé.
+La plupart des tâches qui impliquent la gestion d’une machine virtuelle dans un groupe identique nécessitent de connaître l’ID d’instance de la machine que vous souhaitez gérer. Vous pouvez utiliser [Azure Resource Explorer](https://resources.azure.com) pour rechercher l'ID d'instance d'une machine virtuelle dans un jeu de mise à l'échelle. Vous utilisez également Resource Explorer pour vérifier l'état des tâches que vous avez terminées.
 
-Consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) pour plus d’informations sur l’installation hello dernière version de Azure PowerShell, en sélectionnant votre abonnement et l’ouverture de session tooyour compte.
+Pour plus d’informations sur l’installation de la version la plus récente d’Azure PowerShell, la sélection de votre abonnement et la connexion à votre compte, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview).
 
 ## <a name="display-information-about-a-scale-set"></a>Affichage des informations relatives à un groupe identique
-Vous pouvez obtenir des informations générales sur un ensemble d’échelle, qui est également référencé tooas hello-vue d’instance. Ou bien, vous pouvez obtenir des informations plus spécifiques, telles que des informations sur les ressources dans l’ensemble d’échelle hello hello.
+Vous pouvez obtenir des informations générales sur un jeu de mise à l'échelle, également appelé la vue d'instance. Ou vous pouvez obtenir des informations plus spécifiques, par exemple des informations sur les ressources du groupe identique.
 
-Remplacez hello entre guillemets les valeurs avec le nom de hello ou votre groupe de ressources et l’échelle définie et puis exécutez la commande hello :
+Remplacez les valeurs entre guillemets par le nom de votre groupe de ressources et de votre groupe identique, puis exécutez la commande :
 
     Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
 
@@ -91,7 +91,7 @@ Le résultat suivant doit s’afficher :
         Settings                                : {"xmlCfg":"...","storageAccount":"astore"}
     ProvisioningState                           : Succeeded
 
-Remplacez hello entre guillemets les valeurs de nom hello de votre jeu de groupe et l’échelle des ressources. Remplacez  *#*  avec l’identificateur hello instance hello virtuels que vous souhaitez obtenir des informations tooget et exécutez :
+Remplacez les valeurs entre guillemets par le nom de votre groupe de ressources et de votre groupe identique. Remplacez *#* par l’identificateur d’instance de la machine virtuelle pour laquelle vous souhaitez obtenir des informations, puis exécutez la commande :
 
     Get-AzureRmVmssVM -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
@@ -145,11 +145,11 @@ Un résultat de ce type est renvoyé :
       ProvisioningState           : Succeeded
 
 ## <a name="start-a-virtual-machine-in-a-scale-set"></a>Démarrer une machine virtuelle dans un jeu de mise à l’échelle
-Remplacez hello entre guillemets les valeurs de nom hello de votre jeu de groupe et l’échelle des ressources. Remplacez  *#*  avec l’identificateur hello hello virtuels que vous souhaitez toostart et exécutez :
+Remplacez les valeurs entre guillemets par le nom de votre groupe de ressources et de votre groupe identique. Remplacez *#* par l’identificateur de la machine virtuelle que vous souhaitez lancer, puis exécutez la commande :
 
     Start-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-Dans l’Explorateur de ressources, nous constatons qu’état hello d’instance de hello est **en cours d’exécution**:
+Dans Resource Explorer, nous pouvons voir que l'état de l'instance indique **running**(en cours d’exécution) :
 
     "statuses": [
       {
@@ -165,14 +165,14 @@ Dans l’Explorateur de ressources, nous constatons qu’état hello d’instanc
       }
     ]
 
-Vous pouvez démarrer tous les ordinateurs virtuels hello dans hello en puissance en n’utilisant ne pas de paramètre de hello - InstanceId.
+Vous pouvez démarrer toutes les machines virtuelles du groupe identique en enlevant le paramètre - InstanceId.
 
 ## <a name="stop-a-virtual-machine-in-a-scale-set"></a>Arrêter une machine virtuelle dans un jeu de mise à l’échelle
-Remplacez hello entre guillemets les valeurs de nom hello de votre jeu de groupe et l’échelle des ressources. Remplacez  *#*  avec l’identificateur hello hello virtuels que vous souhaitez toostop et exécutez :
+Remplacez les valeurs entre guillemets par le nom de votre groupe de ressources et de votre groupe identique. Remplacez *#* par l’identificateur de la machine virtuelle que vous souhaitez arrêter, puis exécutez la commande :
 
     Stop-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-Dans l’Explorateur de ressources, nous constatons qu’état hello d’instance de hello est **désalloué**:
+Dans Resource Explorer, nous pouvons voir que l'état de l'instance indique **deallocated**(libéré) :
 
     "statuses": [
       {
@@ -188,28 +188,28 @@ Dans l’Explorateur de ressources, nous constatons qu’état hello d’instanc
       }
     ]
 
-toostop une machine virtuelle et pas désallouer, utilisez hello - StayProvisioned paramètre. Vous pouvez arrêter toutes les machines virtuelles hello hello définie en n’utilisant ne pas de paramètre de hello - InstanceId.
+Pour arrêter une machine virtuelle sans la libérer, utilisez le paramètre - StayProvisioned. Vous pouvez arrêter toutes les machines virtuelles du groupe en enlevant le paramètre - InstanceId.
 
 ## <a name="restart-a-virtual-machine-in-a-scale-set"></a>Redémarrer une machine virtuelle dans un jeu de mise à l’échelle
-Remplacez hello entre guillemets les valeurs de nom hello de votre ensemble d’échelle hello et de groupe de ressources. Remplacez  *#*  avec l’identificateur hello hello virtuels que vous souhaitez toorestart et exécutez :
+Remplacez les valeurs entre guillemets par le nom de votre groupe de ressources et du groupe identique. Remplacez *#* par l’identificateur de la machine virtuelle que vous souhaitez relancer, puis exécutez la commande :
 
     Restart-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-Vous pouvez redémarrer tous les ordinateurs virtuels hello Bonjour définie en n’utilisant ne pas de paramètre de hello - InstanceId.
+Vous pouvez redémarrer toutes les machines virtuelles du groupe en enlevant le paramètre - InstanceId.
 
 ## <a name="remove-a-virtual-machine-from-a-scale-set"></a>Supprimer une machine virtuelle d’un jeu de mise à l’échelle
-Remplacez hello entre guillemets les valeurs de nom hello de votre ensemble d’échelle hello et de groupe de ressources. Remplacez  *#*  avec l’identificateur hello hello virtuels que vous souhaitez tooremove et exécutez :  
+Remplacez les valeurs entre guillemets par le nom de votre groupe de ressources et du groupe identique. Remplacez *#* par l’identificateur de la machine virtuelle que vous souhaitez supprimer, puis exécutez la commande :  
 
     Remove-AzureRmVmss -ResourceGroupName "resource group name" –VMScaleSetName "scale set name" -InstanceId #
 
-Vous pouvez supprimer hello machines virtuelles identiques à la fois en n’utilisant ne pas de paramètre de hello - InstanceId.
+Vous pouvez supprimer simultanément tous les jeux de mise à l’échelle de machine virtuelle en n’utilisant ne pas le paramètre - InstanceId.
 
-## <a name="change-hello-capacity-of-a-scale-set"></a>Capacité de hello de modification d’un ensemble d’échelle
-Vous pouvez ajouter ou supprimer des machines virtuelles par modification de la capacité de hello du jeu de hello. Obtenir le jeu de mise à l’échelle hello toochange, jeu hello capacité toowhat vous le souhaitez toobe et ensuite mettre à jour un ensemble d’échelle hello nouvelle capacité de hello souhaitées. Dans ces commandes, remplacez hello entre guillemets les valeurs de nom hello de votre ensemble d’échelle hello et de groupe de ressources.
+## <a name="change-the-capacity-of-a-scale-set"></a>Modifier la capacité d’un groupe identique
+Vous pouvez ajouter ou supprimer des machines virtuelles en modifiant la capacité du groupe. Récupérez le groupe identique que vous souhaitez modifier, définissez la capacité voulue, puis mettez-le à jour avec la nouvelle capacité. Dans ces commandes, remplacez les valeurs entre guillemets par le nom de votre groupe de ressources et du groupe identique.
 
     $vmss = Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
     $vmss.sku.capacity = 5
     Update-AzureRmVmss -ResourceGroupName "resource group name" -Name "scale set name" -VirtualMachineScaleSet $vmss 
 
-Si vous supprimez des ordinateurs virtuels à partir d’un ensemble d’échelle hello, machines virtuelles de hello avec ID le plus élevés de hello sont supprimées en premier.
+Si vous supprimez des machines virtuelles du groupe identique, les machines virtuelles possédant les ID le plus élevés sont supprimées en premier.
 

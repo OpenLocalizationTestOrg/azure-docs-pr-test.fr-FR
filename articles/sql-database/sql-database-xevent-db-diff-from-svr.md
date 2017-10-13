@@ -1,5 +1,5 @@
 ---
-title: "événements aaaExtended dans la base de données SQL | Documents Microsoft"
+title: "Événement étendus dans SQL Database | Microsoft Docs"
 description: "Décrit les événements étendus (XEvents) dans la base de données SQL Azure et les différences entre les sessions d’événements dans la base de données SQL Azure et dans Microsoft SQL Server."
 services: sql-database
 documentationcenter: 
@@ -16,20 +16,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: genemi
-ms.openlocfilehash: 8c966a84412aa561c92b16e5c6902102483eb1bf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7e5da1c32484b0b94d2ad32ead6bb7c28f9744aa
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="extended-events-in-sql-database"></a>Événement étendus dans la base de données SQL
 [!INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-Cette rubrique explique comment implémentation hello des événements étendus dans la base de données SQL Azure est légèrement différent tooextended comparés dans Microsoft SQL Server.
+Cette rubrique explique les quelques différences entre l’implémentation d’événements étendus dans la base de données SQL Azure et dans Microsoft SQL Server.
 
-- Base de données SQL V12 acquise fonctionnalité événements étendus hello hello deuxième semestre calendrier 2015.
+- La base de données SQL V12 a intégré la fonctionnalité d’événements étendus au cours de la seconde moitié du calendrier 2015.
 - Cette fonctionnalité est présente dans SQL Server depuis 2008.
-- ensemble de fonctionnalités Hello des événements étendus sur la base de données SQL est un sous-ensemble robust de fonctionnalités hello sur SQL Server.
+- L’ensemble de fonctionnalités des événements étendus sur la base de données SQL est un sous-ensemble robuste des fonctionnalités de SQL Server.
 
 *XEvents* est un surnom informel parfois utilisé pour désigne les « événements étendus » dans les blogs et autres emplacements informels.
 
@@ -45,15 +45,15 @@ Cette rubrique part du principe que vous connaissez déjà les éléments suivan
 - [Service Base de données SQL Azure](https://azure.microsoft.com/services/sql-database/)
 - [Événements étendus](http://msdn.microsoft.com/library/bb630282.aspx) dans Microsoft SQL Server.
 
-- bloc Hello de notre documentation sur les événements étendus s’applique tooboth SQL Server et la base de données SQL.
+- La majeure partie de notre documentation sur les événements étendus s’applique à SQL Server et au service Base de données SQL.
 
-Toohello préalable exposition éléments suivants est utile lorsque vous choisissez hello fichier d’événements en tant que hello [cible](#AzureXEventsTargets):
+Il est utile d’avoir une connaissance préalable des éléments suivants lorsque vous choisissez le fichier d’événements comme [cible](#AzureXEventsTargets):
 
 - [Service Azure Storage](https://azure.microsoft.com/services/storage/)
 
 
 - PowerShell
-    - [À l’aide d’Azure PowerShell avec le stockage Azure](../storage/common/storage-powershell-guide-full.md) -fournit des informations complètes sur PowerShell et hello service de stockage Azure.
+    - [Utilisation d’Azure PowerShell avec Azure Storage](../storage/common/storage-powershell-guide-full.md) - Cette rubrique fournit des informations complètes sur PowerShell et le service Azure Storage.
 
 ## <a name="code-samples"></a>Exemples de code
 
@@ -62,28 +62,28 @@ Des rubriques connexes fournissent deux exemples de code :
 
 - [Code cible de la mémoire tampon en anneau pour les événements étendus dans la base de données SQL](sql-database-xevent-code-ring-buffer.md)
     - Script Transact-SQL simple court.
-    - Nous mettre en évidence dans la rubrique d’exemple de code hello que, lorsque vous avez terminé avec une cible de mémoire tampon en anneau, vous devez libérer ses ressources en exécutant alter déroulante `ALTER EVENT SESSION ... ON DATABASE DROP TARGET ...;` instruction. Vous pouvez ensuite ajouter une autre instance de mémoire tampon en anneau avec l’instruction `ALTER EVENT SESSION ... ON DATABASE ADD TARGET ...`.
+    - Dans la rubrique concernant l’exemple de code, nous insistons sur le fait que, lorsque vous avez fini de traiter une cible de la mémoire tampon en anneau, vous devez en libérer les ressources en exécutant une instruction `ALTER EVENT SESSION ... ON DATABASE DROP TARGET ...;` alter-drop. Vous pouvez ensuite ajouter une autre instance de mémoire tampon en anneau avec l’instruction `ALTER EVENT SESSION ... ON DATABASE ADD TARGET ...`.
 
 
 - [Code cible du fichier d’événements pour les événements étendus dans la base de données SQL](sql-database-xevent-code-event-file.md)
-    - Phase 1 : PowerShell toocreate un conteneur de stockage Azure.
-    - Phase 2 est Transact-SQL qui utilise le conteneur de stockage Azure hello.
+    - La Phase 1 est PowerShell pour créer un conteneur Azure Storage.
+    - La Phase 2 est Transact-SQL qui utilise le conteneur Azure Storage.
 
 ## <a name="transact-sql-differences"></a>Différences Transact-SQL
 
 
-- Lorsque vous exécutez hello [CREATE EVENT SESSION](http://msdn.microsoft.com/library/bb677289.aspx) commande sur le serveur SQL Server, vous utilisez hello **ON SERVER** clause. Toutefois, sur la base de données SQL vous utiliser hello **ON DATABASE** clause à la place.
+- Lorsque vous exécutez la commande [CREATE EVENT SESSION](http://msdn.microsoft.com/library/bb677289.aspx) sur SQL Server, vous pouvez utiliser la clause **ON SERVER** . Mais sur la base de données SQL vous utilisez la clause **ON DATABASE** à la place.
 
 
-- Hello **ON DATABASE** clause s’applique également toohello [ALTER EVENT SESSION](http://msdn.microsoft.com/library/bb630368.aspx) et [DROP EVENT SESSION](http://msdn.microsoft.com/library/bb630257.aspx) commandes Transact-SQL.
+- La clause **ON DATABASE** s’applique également aux commandes Transact-SQL [ALTER EVENT SESSION](http://msdn.microsoft.com/library/bb630368.aspx) et [DROP EVENT SESSION](http://msdn.microsoft.com/library/bb630257.aspx).
 
 
-- Une meilleure pratique est l’option de session d’événement tooinclude hello de **STARTUP_STATE = ON** dans votre **CREATE EVENT SESSION** ou **ALTER EVENT SESSION** instructions.
-    - Hello **= ON** valeur prend en charge un redémarrage automatique après une reconfiguration de base de données logique hello en raison du basculement de tooa.
+- Il est recommandé d’inclure l’option de session d’événement de **STARTUP_STATE = ON** dans vos instructions **CREATE EVENT SESSION** ou **ALTER EVENT SESSION**.
+    - La valeur **= ON** prend en charge le redémarrage automatique après la reconfiguration de la base de données logique en raison d’un basculement.
 
 ## <a name="new-catalog-views"></a>Nouvelles vues catalogue
 
-Hello événements étendus est prise en charge par plusieurs [affichages catalogue](http://msdn.microsoft.com/library/ms174365.aspx). Affichages catalogue vous dire *métadonnées ou des définitions* des sessions d’événements de créés par l’utilisateur dans la base de données actuelle hello. vues de Hello ne retournent pas d’informations sur les instances de sessions d’événements active.
+La fonctionnalité des événements étendus est prise en charge par plusieurs [vues catalogue](http://msdn.microsoft.com/library/ms174365.aspx). Les vues catalogue vous indiquent les *métadonnées ou définitions* des sessions d’événements créées par l’utilisateur dans la base de données actuelle. Les affichages ne renvoient pas d’informations sur les instances des sessions d’événements actives.
 
 | Nom de<br/>la vue catalogue | Description |
 |:--- |:--- |
@@ -91,9 +91,9 @@ Hello événements étendus est prise en charge par plusieurs [affichages catalo
 | **sys.database_event_session_events** |Renvoie une ligne pour chaque événement d’une session d’événements. |
 | **sys.database_event_session_fields** |Renvoie une ligne pour chaque colonne pouvant être personnalisée définie explicitement sur les événements et les cibles. |
 | **sys.database_event_session_targets** |Renvoie une ligne pour chaque cible d’événement pour une session d’événements. |
-| **sys.database_event_sessions** |Retourne une ligne pour chaque session d’événements dans la base de données de la base de données SQL hello. |
+| **sys.database_event_sessions** |Renvoie une ligne pour chaque session d’événements dans la base de données SQL. |
 
-Dans Microsoft SQL Server, les noms des vues catalogue similaires contiennent *.server\_* au lieu de *.database\_*. modèle de nom Hello est similaire à **sys.server_event_%**.
+Dans Microsoft SQL Server, les noms des vues catalogue similaires contiennent *.server\_* au lieu de *.database\_*. Les noms suivent le modèle **sys.server_event_%**.
 
 ## <a name="new-dynamic-management-views-dmvshttpmsdnmicrosoftcomlibraryms188754aspx"></a>Nouvelles vues de gestion dynamique [(DMV)](http://msdn.microsoft.com/library/ms188754.aspx)
 
@@ -103,16 +103,16 @@ La base de données SQL Azure comporte des [vues de gestion dynamique (DMV)](ht
 |:--- |:--- |
 | **sys.dm_xe_database_session_event_actions** |Renvoie des informations sur les actions d’une session d’événements. |
 | **sys.dm_xe_database_session_events** |Renvoie des informations sur les sessions d’événements. |
-| **sys.dm_xe_database_session_object_columns** |Indique les valeurs de configuration de hello pour les objets qui sont liées tooa session. |
+| **sys.dm_xe_database_session_object_columns** |Montre les valeurs de configuration pour les objets liés à une session. |
 | **sys.dm_xe_database_session_targets** |Renvoie des informations sur les cibles d’une session d’événements. |
-| **sys.dm_xe_database_sessions** |Retourne une ligne pour chaque session d’événements est étendue toohello de base de données actuelle. |
+| **sys.dm_xe_database_sessions** |Renvoie une ligne pour chaque session d’événements incluse dans la base de données actuelle. |
 
-Dans Microsoft SQL Server, les vues de catalogue similaires sont nommés sans hello  *\_base de données* nom de la partie de hello, tel que :
+Dans Microsoft SQL Server, les noms des vues catalogue similaires ne contiennent pas la partie *\_database*, par exemple :
 
 - **sys.dm_xe_sessions**, au lieu de name<br/>**sys.dm_xe_database_sessions**.
 
-### <a name="dmvs-common-tooboth"></a>Tooboth commune de vues de gestion dynamique
-Il existe des vues DMV supplémentaires qui sont commune tooboth de base de données SQL Azure et Microsoft SQL Server pour les événements étendus :
+### <a name="dmvs-common-to-both"></a>Vues de gestion dynamique communes aux deux produits
+Pour les événements étendus, il existe des vues de gestion dynamique supplémentaires qui sont communes à la base de données SQL Azure et Microsoft SQL Server :
 
 - **sys.dm_xe_map_values**
 - **sys.dm_xe_object_columns**
@@ -121,9 +121,9 @@ Il existe des vues DMV supplémentaires qui sont commune tooboth de base de donn
 
  <a name="sqlfindseventsactionstargets" id="sqlfindseventsactionstargets"></a>
 
-## <a name="find-hello-available-extended-events-actions-and-targets"></a>Rechercher les cibles, les actions et les événements étendus disponible hello
+## <a name="find-the-available-extended-events-actions-and-targets"></a>Rechercher les actions, cibles et événements étendus disponibles
 
-Vous pouvez exécuter une simple SQL **sélectionnez** tooobtain une liste des événements disponibles de hello, actions et cibles.
+Vous pouvez exécuter une simple instruction SQL **SELECT** pour obtenir une liste des événements, actions et cibles disponibles.
 
 ```sql
 SELECT
@@ -146,7 +146,7 @@ SELECT
 ```
 
 
-<a name="AzureXEventsTargets" id="AzureXEventsTargets"></a>&nbsp;
+<a name="AzureXEventsTargets" id="AzureXEventsTargets"></a> &nbsp;
 
 ## <a name="targets-for-your-sql-database-event-sessions"></a>Cibles de vos sessions d’événements de Base de données SQL
 
@@ -154,24 +154,24 @@ Voici les cibles capables de capturer des résultats à partir de vos sessions d
 
 - [Cible de mémoire tampon en anneau](http://msdn.microsoft.com/library/ff878182.aspx) -Maintient brièvement les données d’événements en mémoire.
 - [Cible de compteur d’événements](http://msdn.microsoft.com/library/ff878025.aspx) - Compte tous les événements qui se produisent pendant une session d’événements étendus.
-- [Cible de fichier](http://msdn.microsoft.com/library/ff878115.aspx) -conteneur de stockage Azure tooan écritures tampons complets.
+- [Cible du fichier d’événements](http://msdn.microsoft.com/library/ff878115.aspx) - Écrit les mémoires tampons complètes dans un conteneur Azure Storage.
 
-Hello [suivi d’événements pour Windows (ETW)](http://msdn.microsoft.com/library/ms751538.aspx) API n’est pas disponible pour les événements étendus sur la base de données SQL.
+L’API [Suivi d’événements pour Windows](http://msdn.microsoft.com/library/ms751538.aspx) n’est pas disponible pour les événements étendus sur la base de données SQL.
 
 ## <a name="restrictions"></a>Restrictions
 
-Il existe quelques différences en matière de sécurité befitting environnement en nuage hello de base de données SQL :
+Il existe certaines différences liées à la sécurité qui conviennent à l’environnement cloud de Base de données SQL :
 
-- Événements étendus sont fondées sur le modèle d’isolation du locataire unique hello. Une session d’événements dans une base de données ne peut pas accéder aux données ou événements d’une autre base de données.
-- Impossible d’émettre un **CREATE EVENT SESSION** instruction dans le contexte de hello Hello **master** base de données.
+- Les événements étendus sont fondés sur le modèle d’isolement à locataire unique. Une session d’événements dans une base de données ne peut pas accéder aux données ou événements d’une autre base de données.
+- Vous ne pouvez pas émettre une instruction **CREATE EVENT SESSION** dans le contexte de la base de données **master**.
 
 ## <a name="permission-model"></a>Modèle d’autorisation
 
-Vous devez avoir **contrôle** autorisation sur hello de base de données tooissue un **CREATE EVENT SESSION** instruction. Hello propriétaire de base de données (dbo) a **contrôle** autorisation.
+Vous devez disposer de l’autorisation **Contrôle** sur la base de données pour émettre une instruction **CREATE EVENT SESSION**. Le propriétaire de la base de données (dbo) possède l’autorisation **Contrôle** .
 
 ### <a name="storage-container-authorizations"></a>Autorisations de conteneur de stockage
 
-vous générez pour votre conteneur de stockage Azure doit spécifier un jeton SAS Hello **rwl** pour les autorisations de hello. Hello **rwl** valeur fournit hello les autorisations suivantes :
+Le jeton SAP que vous générez pour votre conteneur Azure Storage doit spécifier **rwl** pour les autorisations. La valeur **rwl** fournit les autorisations suivantes :
 
 - Lire
 - Écrire
@@ -179,39 +179,39 @@ vous générez pour votre conteneur de stockage Azure doit spécifier un jeton S
 
 ## <a name="performance-considerations"></a>Considérations relatives aux performances
 
-Il existe des scénarios où une utilisation intensive des événements étendus peut s’accumuler au active plus de mémoire qu’est sain pour hello globales du système. Par conséquent hello système de base de données SQL Azure définit dynamiquement et ajuste les limites de quantité hello de la mémoire active qui peut être regroupée par une session d’événements. Plusieurs facteurs entrent dans le calcul de dynamique hello.
+Il existe des scénarios où l’utilisation intensive des événements étendus peut accumuler plus de mémoire active qu’il n’en faut pour l’intégrité de l’ensemble du système. Par conséquent, le système de la base de données SQL Azure définit et ajuste dynamiquement les limites de quantité de mémoire active pouvant être accumulée par une session d’événements. De nombreux facteurs entrent dans le calcul dynamique.
 
 Si vous recevez un message d’erreur indiquant qu’une quantité maximale de mémoire a été appliquée, vous pouvez envisager certaines actions correctives, notamment :
 
 - Exécuter moins de sessions d’événement simultanées.
-- Via votre **créer** et **ALTER** instructions pour les sessions d’événements, réduire hello de mémoire que vous spécifiez sur hello **MAX\_mémoire** clause.
+- À l’aide des instructions **CREATE** et **ALTER** pour les sessions d’événements, réduisez la quantité de mémoire spécifiée dans la clause **MAX\_MEMORY**.
 
 ### <a name="network-latency"></a>Latence du réseau
 
-Hello **fichier d’événements** cible peut rencontrer latence du réseau ou des échecs lors de la persistance tooAzure de données des objets BLOB de stockage. Autres événements dans la base de données SQL peuvent être retardées et en attente pour toocomplete de communication réseau hello. Ce délai peut ralentir votre charge de travail.
+La cible **Fichier d’événement** peut rencontrer une latence ou des problèmes de réseau lors de la persistance de données sur des objets blob Azure Storage. D’autres événements de la base de données SQL peuvent être retardés en attendant la fin de la communication réseau. Ce délai peut ralentir votre charge de travail.
 
-- toomitigate ces performances risques, évitez d’utiliser hello **EVENT_RETENTION_MODE** option trop**NO_EVENT_LOSS** dans vos définitions de session d’événements.
+- Pour atténuer ce risque de baisse des performances, évitez de définir l’option **EVENT_RETENTION_MODE** sur **NO_EVENT_LOSS** dans vos définitions de session d’événements.
 
 ## <a name="related-links"></a>Liens connexes
 
 - [Utilisation d’Azure PowerShell avec Azure Storage](../storage/common/storage-powershell-guide-full.md)
 - [Applets de commande Azure Storage](http://msdn.microsoft.com/library/dn806401.aspx)
-- [À l’aide d’Azure PowerShell avec le stockage Azure](../storage/common/storage-powershell-guide-full.md) -fournit des informations complètes sur PowerShell et hello service de stockage Azure.
-- [Comment toouse stockage d’objets Blob à partir de .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md)
+- [Utilisation d’Azure PowerShell avec Azure Storage](../storage/common/storage-powershell-guide-full.md) - Cette rubrique fournit des informations complètes sur PowerShell et le service Azure Storage.
+- [Utilisation du stockage d’objets blob à partir de .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md)
 - [CREATE CREDENTIAL (Transact-SQL)](http://msdn.microsoft.com/library/ms189522.aspx)
 - [CREATE EVENT SESSION (Transact-SQL)](http://msdn.microsoft.com/library/bb677289.aspx)
 - [Billets de blog de Jonathan Kehayias sur les événements étendus dans Microsoft SQL Server](http://www.sqlskills.com/blogs/jonathan/category/extended-events/)
 
 
-- Bonjour Azure *mises à jour de Service* page Web, limitée par le paramètre tooAzure de la base de données SQL :
+- La page web *Mises à jour de service* Azure, restreinte par paramètre à Azure SQL Database :
     - [https://azure.microsoft.com/updates/?service=sql-database](https://azure.microsoft.com/updates/?service=sql-database)
 
 
-Autres rubriques d’exemples de code pour les événements étendus sont disponibles au hello suivant liens. Toutefois, vous devez vérifier régulièrement les tout toosee exemple qu’exemple hello cible Microsoft SQL Server par rapport à la base de données SQL Azure. Vous pouvez décider si des modifications mineures sont nécessaires toorun hello exemple.
+Vous trouverez d’autres rubriques d’exemples de code pour les événements étendus en suivant le lien ci-dessous. Toutefois, vous devez vérifier régulièrement les exemples pour voir s’ils ciblent Microsoft SQL Server ou la base de données SQL Azure. Vous pouvez ensuite déterminer si vous devez apporter quelques modifications mineures avant d’exécuter un exemple.
 
 <!--
 ('lock_acquired' event.)
 
 - Code sample for SQL Server: [Determine Which Queries Are Holding Locks](http://msdn.microsoft.com/library/bb677357.aspx)
-- Code sample for SQL Server: [Find hello Objects That Have hello Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
+- Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->

@@ -1,6 +1,6 @@
 ---
-title: "problèmes de déploiement aaaTroubleshoot StorSimple 8000 series | Documents Microsoft"
-description: "Décrit comment toodiagnose et résoudre les erreurs qui se produisent lorsque vous déployez tout d’abord StorSimple."
+title: "Résolution des problèmes de déploiement de StorSimple série 8000| Microsoft Docs"
+description: "Décrit comment diagnostiquer et corriger les erreurs qui se produisent lorsque vous déployez StorSimple pour la première fois."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,198 +14,198 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 07/03/2017
 ms.author: alkohli
-ms.openlocfilehash: a55a4b277c8afe25f1d5a43ab8d7a90436123410
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d6642231bf9d012b0015902c82d2bfde3b86285c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshoot-storsimple-device-deployment-issues"></a>Résolution des problèmes de déploiement d’un appareil StorSimple
 ## <a name="overview"></a>Vue d'ensemble
-Cet article fournit des conseils de dépannage utiles pour votre déploiement de Microsoft Azure StorSimple. Il décrit les problèmes courants, les causes possibles et toohelp les étapes recommandées que résoudre les problèmes que vous pouvez rencontrer lorsque vous configurez StorSimple. 
+Cet article fournit des conseils de dépannage utiles pour votre déploiement de Microsoft Azure StorSimple. Il décrit les problèmes courants, les causes possibles et les étapes recommandées pour vous aider à résoudre les problèmes que vous pouvez rencontrer lorsque vous configurez StorSimple. 
 
-Ces informations s’appliquent appareil physique de série StorSimple 8000 hello tooboth et hello StorSimple Appliance de Cloud.
+Ces informations s’appliquent à l’appareil physique StorSimple série 8000 et à l’appliance cloud StorSimple.
 
 > [!NOTE]
-> Problèmes liés à la configuration de périphérique que vous pouvez rencontrer peuvent se produire lorsque vous déployez des appareils hello pour hello première fois, ou ils peuvent se produire plus tard, lorsque l’appareil de hello est opérationnel. Cet article se concentre sur la résolution des problèmes qui surviennent lors du premier déploiement. tootroubleshoot d’appareil opérationnel, passez trop[utilisez hello Diagnostics outil tootroubleshoot d’appareil opérationnel](storsimple-8000-diagnostics.md).
+> Les problèmes liés à la configuration de l’appareil que vous êtes susceptible de rencontrer peuvent se produire lorsque vous déployez l’appareil pour la première fois ou ultérieurement, lorsque l’appareil est opérationnel. Cet article se concentre sur la résolution des problèmes qui surviennent lors du premier déploiement. Pour résoudre les problèmes d’un appareil opérationnel, consultez la page [Utiliser l’outil de diagnostic StorSimple pour résoudre les problèmes des appareils de la gamme 8000](storsimple-8000-diagnostics.md).
 
-Cet article décrit les outils hello pour le dépannage des déploiements de StorSimple également et fournit un exemple de dépannage détaillée.
+Cet article décrit également les outils de résolution des problèmes de déploiements StorSimple et fournit un exemple pas à pas de dépannage.
 
 ## <a name="first-time-deployment-issues"></a>Problèmes lors du premier déploiement
-Si vous rencontrez un problème lors du déploiement de votre appareil pour hello première fois, tenez compte des éléments suivants de hello :
+Si vous rencontrez un problème lors du premier déploiement de votre appareil, procédez comme suit :
 
-* Si vous dépannez un périphérique physique, assurez-vous que le matériel de hello a été installé et configuré comme décrit dans [installer votre appareil StorSimple 8100](storsimple-8100-hardware-installation.md) ou [installer votre appareil StorSimple 8600](storsimple-8600-hardware-installation.md).
-* Vérifiez les conditions préalables pour le déploiement. Assurez-vous que toutes les informations de hello décrites dans hello [liste de vérification de configuration déploiement](storsimple-8000-deployment-walkthrough-u2.md#deployment-configuration-checklist).
-* Passez en revue hello Notes de publication de StorSimple toosee si le problème de hello est décrit. notes de publication Hello incluent des solutions de contournement concernant les problèmes d’installation connus. 
+* Si vous dépannez un appareil physique, assurez-vous que le matériel a été installé et configuré comme décrit à la page [Installation de votre appareil StorSimple 8100](storsimple-8100-hardware-installation.md) ou [Installation de votre appareil StorSimple 8600](storsimple-8600-hardware-installation.md).
+* Vérifiez les conditions préalables pour le déploiement. Assurez-vous de disposer de toutes les informations décrites dans la [liste de vérification de la configuration de déploiement](storsimple-8000-deployment-walkthrough-u2.md#deployment-configuration-checklist).
+* Passez en revue les notes de publication de StorSimple pour voir si le problème est décrit. Les notes de publication incluent des solutions de contournement concernant les problèmes d’installation connus. 
 
-Pendant le déploiement de l’appareil, hello courants émet que les utilisateurs sont confrontés se produisent lorsqu’ils exécutent l’Assistant Installation de hello et quand ils Inscrivez appareil hello via Windows PowerShell pour StorSimple. (Vous utilisez Windows PowerShell pour StorSimple tooregister et configurez votre appareil StorSimple. Pour plus d'informations sur l’inscription des appareils, consultez l’ [Étape 3 : configuration et inscription de votre appareil via Windows PowerShell pour StorSimple](storsimple-8000-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).)
+Lors du déploiement d’un appareil, les problèmes les plus courants auxquels les utilisateurs sont confrontés se produisent lorsqu’ils exécutent l’Assistant Installation et lorsqu’ils inscrivent l’appareil via Windows PowerShell pour StorSimple. (Vous utilisez Windows PowerShell pour StorSimple pour inscrire et configurer votre appareil StorSimple. Pour plus d'informations sur l’inscription des appareils, consultez l’ [Étape 3 : configuration et inscription de votre appareil via Windows PowerShell pour StorSimple](storsimple-8000-deployment-walkthrough-u2.md#step-3-configure-and-register-the-device-through-windows-powershell-for-storsimple).)
 
-Hello les sections suivantes peut vous aider à résoudre les problèmes que vous rencontrez lorsque vous configurez l’appareil StorSimple hello pour hello la première fois.
+Les sections suivantes peuvent vous aider à résoudre les problèmes que vous rencontrez lorsque vous configurez l’appareil StorSimple pour la première fois.
 
 ## <a name="first-time-setup-wizard-process"></a>Processus de l’Assistant Première installation
-processus de l’Assistant Installation hello résument les Hello comme suit. Pour obtenir des informations de configuration détaillées, consultez [Déploiement de votre appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md).
+Les étapes suivantes résument le processus de l’Assistant Installation. Pour obtenir des informations de configuration détaillées, consultez [Déploiement de votre appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md).
 
-1. Exécutez hello [Invoke-HcsSetupWizard](https://technet.microsoft.com/library/dn688135.aspx) applet de commande toostart hello Assistant qui vous guidera tout au long hello restant comme suit. 
-2. Configurer le réseau de hello : Assistant hello vous permet de configurer les paramètres réseau pour hello interface réseau DATA 0 sur votre appareil StorSimple. Ces paramètres hello suivants :
-   * Virtual IP (VIP), masque de sous-réseau et passerelle : hello [Set-HcsNetInterface](https://technet.microsoft.com/library/dn688161.aspx) applet de commande est exécutée en arrière-plan de hello. Il configure hello adresse IP, masque de sous-réseau et passerelle pour hello interface réseau DATA 0 sur votre appareil StorSimple.
-   * Serveur DNS principal : hello [Set-HcsDnsClientServerAddress](https://technet.microsoft.com/library/dn688172.aspx) applet de commande est exécutée en arrière-plan de hello. Il configure les paramètres de DNS hello pour votre solution StorSimple.
-   * Serveur NTP : hello [Set-HcsNtpClientServerAddress](https://technet.microsoft.com/library/dn688138.aspx) applet de commande est exécutée en arrière-plan de hello. Il configure les paramètres du serveur NTP hello pour votre solution StorSimple.
-   * Facultatif web proxy : hello [Set-HcsWebProxy](https://technet.microsoft.com/library/dn688154.aspx) applet de commande est exécutée en arrière-plan de hello. Il définit et permet la configuration du proxy web hello pour votre solution StorSimple.
-3. Configurer le mot de passe hello : hello prochaine étape consiste tooset mot de passe administrateur de périphérique hello.
-   mot de passe administrateur de périphérique Hello est toolog utilisé sur l’appareil de tooyour. mot de passe par défaut Hello est **Password1**.
+1. Exécutez l’applet de commande [Invoke-HcsSetupWizard](https://technet.microsoft.com/library/dn688135.aspx) pour démarrer l’Assistant Installation qui vous guidera tout au long des étapes restantes. 
+2. Configurez le réseau : l’Assistant Installation vous permet de configurer les paramètres réseau de l’interface réseau DATA 0 sur votre appareil StorSimple. Les paramètres suivants sont inclus :
+   * Adresse IP virtuelle, masque de sous-réseau et passerelle : l’applet de commande [Set-HcsNetInterface](https://technet.microsoft.com/library/dn688161.aspx) est exécutée en arrière-plan. Elle configure l’adresse IP, le masque de sous-réseau et la passerelle pour l’interface réseau DATA 0 sur votre appareil StorSimple.
+   * Serveur DNS principal : l’applet de commande [Set-HcsDnsClientServerAddress](https://technet.microsoft.com/library/dn688172.aspx) est exécutée en arrière-plan. Elle configure les paramètres DNS pour votre solution StorSimple.
+   * Serveur NTP : l’applet de commande [Set-HcsNtpClientServerAddress](https://technet.microsoft.com/library/dn688138.aspx) est exécutée en arrière-plan. Elle configure les paramètres NTP pour votre solution StorSimple.
+   * Proxy web facultatif : l’applet de commande [Set-HcsWebProxy](https://technet.microsoft.com/library/dn688154.aspx) est exécutée en arrière-plan. Elle définit et permet la configuration du proxy web pour votre solution StorSimple.
+3. Définir le mot de passe : l’étape suivante consiste à définir le mot de passe Administrateur de l’appareil.
+   Le mot de passe Administrateur est utilisé pour ouvrir une session sur votre appareil. Le mot de passe par défaut de l’appareil est **Password1**.
         
      > [!IMPORTANT]
-     > Les mots de passe sont collectés avant l’enregistrement, mais appliqués uniquement après l’inscription des appareils de hello. S’il existe un tooapply échec un mot de passe, vous sera demandée toosupply hello mot de passe à nouveau jusqu'à ce que hello requis des mots de passe (qui répondent aux exigences de complexité hello) sont collectés.
+     > Les mots de passe sont collectés avant l’inscription, mais appliqués seulement après que vous avez inscrit correctement l’appareil. En cas de non-application d’un mot de passe, vous devez fournir le mot de passe à nouveau jusqu’à ce que les mots de passe requis (qui répondent aux exigences de complexité) soient collectés.
      
-4. Inscrire l’appareil de hello : hello dernière étape consiste appareil hello tooregister service de gestionnaire de périphériques StorSimple de hello en cours d’exécution dans Microsoft Azure. Hello inscription exige que vous trop[obtenir la clé d’inscription hello](storsimple-8000-manage-service.md#get-the-service-registration-key) de hello portail Azure et lui fournit dans l’Assistant Installation de hello. **Une fois hello appareil est correctement inscrit, une clé de chiffrement est fournie tooyou. Veillez à tookeep ce chiffrement de clé dans un emplacement sûr, car il sera requis tooregister tous les appareils suivants avec le service de hello.**
+4. Inscrivez l’appareil : la dernière étape consiste à inscrire l’appareil auprès du service StorSimple Device Manager en cours d’exécution dans Microsoft Azure. L’inscription vous oblige à [obtenir la clé d’inscription](storsimple-8000-manage-service.md#get-the-service-registration-key) à partir du portail Azure et à le fournir dans l’Assistant Installation. **Une fois que l’appareil est inscrit correctement, une clé de chiffrement des données du service vous est fournie. Veillez à conserver cette clé de chiffrement dans un emplacement sûr, car elle sera nécessaire pour inscrire tous les autres appareils auprès du service.**
 
 ## <a name="common-errors-during-device-deployment"></a>Erreurs courantes lors du déploiement de l’appareil
-Hello suivants tables liste hello les erreurs courantes que vous pouvez rencontrer lorsque vous :
+Les tableaux suivants répertorient les erreurs courantes que vous pouvez rencontrer lorsque vous :
 
-* Configurer les paramètres de réseau hello requis.
-* Configurer les paramètres de proxy web hello.
-* Configurer le mot de passe administrateur de périphérique hello.
-* Inscription de l’appareil hello.
+* configurez les paramètres réseau requis ;
+* configurez les paramètres de proxy web facultatifs ;
+* Définissez le mot de passe Administrateur de l’appareil.
+* inscrivez l’appareil.
 
-## <a name="errors-during-hello-required-network-settings"></a>Erreurs pendant les paramètres réseau hello requis
+## <a name="errors-during-the-required-network-settings"></a>Erreurs pendant la configuration des paramètres réseau requis
 | Non. | Message d’erreur | Causes possibles | Action recommandée |
 | --- | --- | --- | --- |
-| 1 |Invoke-HcsSetupWizard : Cette commande peut uniquement être exécutée sur le contrôleur actif de hello. |Configuration a été effectuée sur le contrôleur passif de hello. |Exécutez cette commande à partir du contrôleur actif de hello. Pour plus d’informations, consultez la page [Identification d’un contrôleur actif sur votre appareil](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device). |
-| 2 |Invoke-HcsSetupWizard : l’appareil n’est pas prêt. |Il existe des problèmes de connectivité de réseau hello sur DATA 0. |Vérifiez la connectivité de réseau physique hello sur DATA 0. |
-| 3 |Invoke-HcsSetupWizard : Il existe un conflit d’adresse IP avec un autre système sur le réseau de hello (Exception de HRESULT : 0x80070263). |adresse IP de Hello fournie pour DATA 0 était déjà en cours d’utilisation par un autre système. |Fournissez une nouvelle adresse IP qui n’est pas en cours d’utilisation. |
-| 4 |Invoke-HcsSetupWizard : échec de la ressource de cluster (Exception de HRESULT : 0x800713AE). |Adresse IP virtuelle en double. Hello fourni IP est déjà en cours d’utilisation. |Fournissez une nouvelle adresse IP qui n’est pas en cours d’utilisation. |
-| 5. |Invoke-HcsSetupWizard : adresse IPv4 non valide. |adresse IP de Hello est fourni dans un format incorrect. |Format de hello et fournissez à nouveau votre adresse IP. Pour plus d’informations, consultez la page [Adressage IPv4][1]. |
-| 6 |Invoke-HcsSetupWizard : adresse IPv6 non valide. |adresse IP de Hello est fourni dans un format incorrect. |Format de hello et fournissez à nouveau votre adresse IP. Pour plus d’informations, consultez la page [Adressage IPv6][2]. |
-| 7 |Invoke-HcsSetupWizard : Aucun point de terminaison plus ne sont disponibles à partir de mappeur de point de terminaison hello. (Exception de HRESULT : 0x800706D9) |la fonctionnalité de cluster Hello ne fonctionne pas. |[contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) . |
+| 1 |Invoke-HcsSetupWizard : cette commande ne peut être exécutée que sur le contrôleur actif. |La configuration a été effectuée sur le contrôleur passif. |Exécutez cette commande depuis le contrôleur actif. Pour plus d’informations, consultez la page [Identification d’un contrôleur actif sur votre appareil](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device). |
+| 2 |Invoke-HcsSetupWizard : l’appareil n’est pas prêt. |Il existe des problèmes liés à la connectivité réseau sur DATA 0. |Vérifiez la connectivité réseau physique sur DATA 0. |
+| 3 |Invoke-HcsSetupWizard : il existe un conflit d’adresses IP avec un autre système sur le réseau (exception de HRESULT : 0x80070263). |L’adresse IP fournie pour DATA 0 était déjà utilisée par un autre système. |Fournissez une nouvelle adresse IP qui n’est pas en cours d’utilisation. |
+| 4 |Invoke-HcsSetupWizard : échec de la ressource de cluster (Exception de HRESULT : 0x800713AE). |Adresse IP virtuelle en double. L’adresse IP fournie est déjà en cours d’utilisation. |Fournissez une nouvelle adresse IP qui n’est pas en cours d’utilisation. |
+| 5. |Invoke-HcsSetupWizard : adresse IPv4 non valide. |L’adresse IP est fournie dans un format incorrect. |Vérifiez le format et fournissez à nouveau votre adresse IP. Pour plus d’informations, consultez la page [Adressage IPv4][1]. |
+| 6 |Invoke-HcsSetupWizard : adresse IPv6 non valide. |L’adresse IP est fournie dans un format incorrect. |Vérifiez le format et fournissez à nouveau votre adresse IP. Pour plus d’informations, consultez la page [Adressage IPv6][2]. |
+| 7 |Invoke-HcsSetupWizard : il n’y a plus de points de terminaison disponibles auprès du mappeur de point de terminaison. (Exception de HRESULT : 0x800706D9) |La fonctionnalité de cluster ne fonctionne pas. |[contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) . |
 
-## <a name="errors-during-hello-optional-web-proxy-settings"></a>Erreurs au cours des paramètres de proxy web hello
+## <a name="errors-during-the-optional-web-proxy-settings"></a>Erreurs pendant la configuration des paramètres de proxy web facultatifs
 | Non. | Message d’erreur | Causes possibles | Action recommandée |
 | --- | --- | --- | --- |
-| 1 |Invoke-HcsSetupWizard : paramètre non valide (exception de HRESULT: 0 x 80070057). |Un des paramètres de hello fournis pour les paramètres de proxy hello n’est pas valide. |Hello URI n’est pas fourni dans le format correct de hello. Hello utilisation suivant le format : http://*<IP address or FQDN of hello web proxy server>*:*<TCP port number>* |
-| 2 |Invoke-HcsSetupWizard : serveur RPC non disponible (exception de HRESULT : 0x800706ba). |cause première Hello est hello suivantes :<ol><li>cluster de Hello n’est pas disponible.</li><li>contrôleur passif de Hello ne peut pas communiquer avec le contrôleur actif de hello et commande hello est exécuté à partir de contrôleur passif.</li></ol> |Selon la cause première hello :<ol><li>[Contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md) toomake que ce cluster hello est activé.</li><li>Exécutez la commande hello à partir du contrôleur actif de hello. Si vous souhaitez que les commandes de hello toorun à partir du contrôleur passif de hello, vous devez tooensure ce contrôleur passif hello peut communiquer avec le contrôleur actif de hello. Vous devez trop[contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md) si cette connectivité est défaillante.</li></ol> |
-| 3 |Invoke-HcsSetupWizard : l’appel RPC a échoué (exception de HRESULT : 0x800706be). |Le cluster est arrêté. |[Contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md) toomake que ce cluster hello est activé. |
-| 4 |Invoke-HcsSetupWizard : ressource de cluster introuvable (exception de HRESULT : 0x8007138f). |ressource de cluster Hello est introuvable. Cela peut se produire lors de l’installation de hello n’était pas correcte. |Vous devrez peut-être tooreset hello appareil toohello paramètres par défaut. [Contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md) toocreate une ressource de cluster. |
-| 5 |Invoke-HcsSetupWizard : ressource de cluster pas en ligne (exception de HRESULT : 0x8007138c). |Les ressources de cluster ne sont pas en ligne. |[contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) . |
+| 1 |Invoke-HcsSetupWizard : paramètre non valide (exception de HRESULT: 0 x 80070057). |L’un des paramètres fournis pour les paramètres de proxy n’est pas valide. |L’URI n’est pas fourni dans le format correct. Utilisez le format suivant: http://*<IP address or FQDN of the web proxy server>*:*<TCP port number>* |
+| 2 |Invoke-HcsSetupWizard : serveur RPC non disponible (exception de HRESULT : 0x800706ba). |La cause première est l’une des suivantes :<ol><li>Le cluster n’est pas disponible.</li><li>Le contrôleur passif ne peut pas communiquer avec le contrôleur actif et la commande est exécutée à partir du contrôleur passif.</li></ol> |Suivant la cause première :<ol><li>[Contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) pour vous assurer que le cluster est disponible.</li><li>Exécutez la commande à partir du contrôleur actif. Si vous souhaitez exécuter la commande à partir du contrôleur passif, vous devez vous assurer que le contrôleur passif peut communiquer avec le contrôleur actif. Vous devez [contacter le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) si cette connectivité est interrompue.</li></ol> |
+| 3 |Invoke-HcsSetupWizard : l’appel RPC a échoué (exception de HRESULT : 0x800706be). |Le cluster est arrêté. |[Contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) pour vous assurer que le cluster est disponible. |
+| 4 |Invoke-HcsSetupWizard : ressource de cluster introuvable (exception de HRESULT : 0x8007138f). |Impossible de trouver la ressource de cluster. Cela peut se produire lorsque l’installation ne s’est pas déroulée correctement. |Vous devrez peut-être rétablir les paramètres par défaut d’origine de l’appareil. [Contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) pour créer une ressource de cluster. |
+| 5. |Invoke-HcsSetupWizard : ressource de cluster pas en ligne (exception de HRESULT : 0x8007138c). |Les ressources de cluster ne sont pas en ligne. |[contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) . |
 
-## <a name="errors-related-toodevice-administrator-password"></a>Mot de passe administrateur erreurs toodevice connexes
-mot de passe de l’administrateur d’appareil Hello par défaut est **Password1**. Ce mot de passe expire après hello première ouverture de session ; Par conséquent, vous devez toouse hello le programme d’installation Assistant toochange il. Vous devez fournir un nouveau mot de passe administrateur périphérique lorsque vous inscrivez des appareils hello pour hello première fois. 
+## <a name="errors-related-to-device-administrator-password"></a>Erreurs liées au mot de passe Administrateur de l’appareil
+Le mot de passe par défaut de l’appareil est **Password1**. Ce mot de passe expire après la première session. Vous devez donc utiliser l’Assistant Installation pour le modifier. Vous devez fournir un nouveau mot de passe Administrateur de l’appareil lorsque vous inscrivez l’appareil pour la première fois. 
 
-Assurez-vous que vos mots de passe respectent hello suivant les exigences :
+Assurez-vous que vos mots de passe répondent aux exigences suivantes :
 
 * Le mot de passe Administrateur de votre appareil doit comprendre entre 8 et 15 caractères.
-* Les mots de passe doivent contenir 3 des hello les 4 types de caractères suivants : minuscules, majuscules, numériques et spéciaux. 
-* Votre mot de passe ne peut pas être hello identique hello derniers 24 mots de passe.
+* Les mots de passe doivent contenir 3 des 4 types de caractères suivants : minuscules, majuscules, numériques et spéciaux. 
+* Votre mot de passe ne peut pas être identique aux 24 derniers mots de passe.
 
-En outre, n’oubliez pas que les mots de passe expirent chaque année et peut être modifié uniquement après l’inscription des appareils de hello. Si l’inscription de hello échoue pour une raison quelconque, il se peut que les mots de passe hello ne seront pas modifiés.
+En outre, n’oubliez pas que les mots de passe expirent chaque année et qu’ils peuvent être modifiés uniquement après l’inscription correcte de l’appareil. Si l’inscription échoue pour une raison quelconque, les mots de passe ne sont pas modifiés.
 
-Pour plus d’informations sur le mot de passe administrateur, accédez trop[utilisez hello toochange du service Gestionnaire de périphériques StorSimple votre mot de passe StorSimple](storsimple-8000-change-passwords.md).
+Pour plus d’informations relatives au mot de passe Administrateur de l’appareil, consultez [Utilisation du service StorSimple Device Manager pour modifier votre mot de passe StorSimple](storsimple-8000-change-passwords.md).
 
-Vous pouvez rencontrer un ou plusieurs des erreurs suivantes lorsque vous configurez l’administrateur de l’appareil hello et mots de passe de gestionnaire d’instantanés StorSimple de hello.
+Vous pouvez rencontrer une ou plusieurs des erreurs suivantes lorsque vous configurez les mots de passe de l’administrateur de l’appareil et du Gestionnaire d’instantanés StorSimple.
 
 | Non. | Message d’erreur | Action recommandée |
 | --- | --- | --- |
-| 1 |mot de passe Hello dépasse la longueur maximale de hello. |Votre mot de passe administrateur d’appareil doit comprendre entre 8 et 15 caractères. |
-| 2 |mot de passe Hello ne respecte pas la longueur de hello requis. |Votre mot de passe administrateur d’appareil doit comprendre entre 8 et 15 caractères.|
-| 3 |mot de passe Hello doit contenir des caractères en minuscules. |Les mots de passe doivent contenir 3 des hello les 4 types de caractères suivants : minuscules, majuscules, numériques et spéciaux. Assurez-vous que votre mot de passe répond à ces exigences. |
-| 4 |mot de passe Hello doit contenir des caractères numériques. |Les mots de passe doivent contenir 3 des hello les 4 types de caractères suivants : minuscules, majuscules, numériques et spéciaux. Assurez-vous que votre mot de passe répond à ces exigences. |
-| 5 |Hello le mot de passe doit contenir des caractères spéciaux. |Les mots de passe doivent contenir 3 des hello les 4 types de caractères suivants : minuscules, majuscules, numériques et spéciaux. Assurez-vous que votre mot de passe répond à ces exigences. |
-| 6 |Hello mot de passe doit contenir 3 des hello les 4 types de caractères suivants : majuscules, minuscules, numériques et spéciaux. |Votre mot de passe ne contient pas de types hello requis de caractères. Assurez-vous que votre mot de passe répond à ces exigences. |
+| 1 |Le mot de passe dépasse la longueur maximale. |Votre mot de passe administrateur d’appareil doit comprendre entre 8 et 15 caractères. |
+| 2 |Le mot de passe ne respecte pas la longueur requise. |Votre mot de passe administrateur d’appareil doit comprendre entre 8 et 15 caractères.|
+| 3 |Le mot de passe doit contenir des caractères en minuscules. |Les mots de passe doivent contenir 3 des 4 types de caractères suivants : minuscules, majuscules, numériques et spéciaux. Assurez-vous que votre mot de passe répond à ces exigences. |
+| 4 |Le mot de passe doit contenir des caractères numériques. |Les mots de passe doivent contenir 3 des 4 types de caractères suivants : minuscules, majuscules, numériques et spéciaux. Assurez-vous que votre mot de passe répond à ces exigences. |
+| 5. |Le mot de passe doit contenir des caractères spéciaux. |Les mots de passe doivent contenir 3 des 4 types de caractères suivants : minuscules, majuscules, numériques et spéciaux. Assurez-vous que votre mot de passe répond à ces exigences. |
+| 6. |Les mots de passe doivent contenir 3 des 4 types de caractères suivants : minuscules, majuscules, numériques et spéciaux. |Votre mot de passe ne contient pas les types de caractères requis. Assurez-vous que votre mot de passe répond à ces exigences. |
 | 7 |Le paramètre ne correspond pas à la confirmation. |Assurez-vous que votre mot de passe répond à toutes les exigences et que vous l’avez entré correctement. |
-| 8 |Votre mot de passe ne peut pas correspondre à par défaut de hello. |mot de passe Hello *Password1*. Vous devez toochange ce mot de passe après que vous être connecté pour hello première fois. |
-| 9 |vous avez entré un mot de passe Hello ne correspond pas de mot de passe de périphérique hello. Retapez le mot de passe hello. |Mot de passe hello et tapez-le à nouveau. |
+| 8 |Votre mot de passe ne peut pas correspondre au mot de passe par défaut. |Le mot de passe par défaut est *Password1*. Vous devez modifier ce mot de passe après votre première connexion. |
+| 9. |Le mot de passe que vous avez entré ne correspond pas au mot de passe de l’appareil. Retapez le mot de passe. |Vérifiez le mot de passe et retapez-le. |
 
-Les mots de passe sont collectés avant de l’appareil de hello est enregistrée, mais sont appliqués uniquement après l’inscription. workflow de récupération de mot de passe Hello requiert hello toobe de périphérique enregistré.
+Les mots de passe sont collectés avant l’inscription de l’appareil, mais appliqués seulement une fois que l’inscription a réussi. Le flux de travail de récupération de mot de passe nécessite que l’appareil soit inscrit.
 
 > [!IMPORTANT]
-> En règle générale, si une tentative tooapply un mot de passe échoue, les logiciels hello tente à plusieurs reprises un mot de passe toocollect hello jusqu'à ce qu’il réussisse. Dans de rares cas, un mot de passe hello ne peut pas être appliqué. Dans ce cas, vous pouvez inscrire l’appareil de hello et continuer, cependant les mots de passe hello ne seront pas modifiés. Vous pouvez modifier le mot de passe administrateur hello périphérique après inscription hello hello portail Azure.
+> En général, si une tentative d’application d’un mot de passe échoue, le logiciel essaie à plusieurs reprises de collecter le mot de passe jusqu’à ce que son application réussisse. Dans de rares circonstances, le mot de passe ne peut pas être appliqué. Dans ce cas, vous pouvez inscrire l’appareil et continuer ; cependant, les mots de passe ne sont pas modifiés. Vous pouvez modifier le mot de passe Administrateur de l’appareil après l’inscription sur le portail Azure.
 
 
-Vous pouvez réinitialiser le mot de passe hello Bonjour portail Azure via le service de gestionnaire de périphériques StorSimple hello. Pour plus d’informations, consultez trop[mot de passe de l’administrateur d’appareil modification hello](storsimple-8000-change-passwords.md#change-the-device-administrator-password).
+Vous pouvez réinitialiser le mot de passe à partir du portail Azure via le service StorSimple Device Manager. Pour plus d’informations, consultez la section expliquant comment [Modifier le mot de passe Administrateur de l’appareil](storsimple-8000-change-passwords.md#change-the-device-administrator-password).
 
 ## <a name="errors-during-device-registration"></a>Erreurs pendant l'inscription d’un appareil
-Vous utilisez service du Gestionnaire de périphériques StorSimple hello en cours d’exécution dans l’appareil de hello tooregister Microsoft Azure. Vous pouvez rencontrer un ou plusieurs des hello suivants lors de l’inscription de périphérique.
+Vous utilisez le service StorSimple Device Manager en cours d’exécution dans Microsoft Azure pour inscrire l’appareil. Vous pouvez rencontrer un ou plusieurs des problèmes suivants lors de l’inscription de l’appareil.
 
 | Non. | Message d’erreur | Causes possibles | Action recommandée |
 | --- | --- | --- | --- |
-| 1 |Erreur 350027 : Impossible de dispositif hello tooregister hello StorSimple le Gestionnaire de périphériques. | |Attendez quelques minutes et recommencez l’opération hello. Si le problème de hello persiste, [contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md). |
-| 2 |Erreur 350013 : Une erreur s’est produite lors de l’inscription de périphérique de hello. Cela peut être dû tooincorrect clé d’inscription. | |Inscrivez de hello appareil à nouveau avec la clé d’inscription de service correcte hello. Pour plus d’informations, consultez [clé d’inscription Get hello.](storsimple-8000-manage-service.md#get-the-service-registration-key) |
-| 3 |Erreur 350063 : Transmis de l’authentification tooStorSimple service du Gestionnaire de périphériques, mais l’inscription a échoué. Recommencez l’opération hello plus tard. |Cette erreur indique que l’authentification avec ACS a passé, mais hello register appel effectué toohello service a échoué. Cela peut résulter d’un problème réseau sporadique. |Si le problème de hello persiste, [contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md). |
-| 4 |Erreur 350049 : Impossible d’accéder au service de hello lors de l’inscription. |Lorsque les hello est appelé toohello service, une exception web est reçue. Dans certains cas, ceci peut être résolu en renouvelant l’opération hello plus tard. |Veuillez vérifier votre adresse IP et le nom DNS, puis recommencez les opération hello. Si le problème de hello persiste, [contactez le Support Microsoft.](storsimple-8000-contact-microsoft-support.md) |
-| 5 |Erreur 350031 : hello appareil a déjà été inscrit. | |Aucune action requise. |
-| 6. |Erreur 350016 : Échec de l’inscription de l’appareil. | |Vérifiez que la clé d’inscription de hello est correcte. |
-| 7 |Invoke-HcsSetupWizard : Une erreur s’est produite lors de l’inscription de votre appareil ; Cela peut être dû tooincorrect adresse ou le nom DNS. Vérifiez vos paramètres réseau et réessayez. Si le problème de hello persiste, [contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md). (Erreur 350050) |Assurez-vous que votre appareil peut ping hello en dehors du réseau. Si vous n’avez pas de réseau toooutside de connectivité, l’inscription de hello peut échouer avec l’erreur. Cette erreur peut être une combinaison d’une ou plusieurs des éléments suivants de hello :<ul><li>IP incorrecte</li><li>Sous-réseau incorrect</li><li>Passerelle incorrecte</li><li>Paramètres DNS incorrects</li></ul> |Consultez les étapes hello Bonjour [exemple de dépannage pas à pas](#step-by-step-storsimple-troubleshooting-example). |
-| 8 |Invoke-HcsSetupWizard : hello opération en cours a échoué en raison de l’erreur de service interne tooan [0x1FBE2]. Recommencez l’opération hello plus tard. Si hello problème persiste, contactez le Support technique de Microsoft. |Il s’agit d’une erreur générique levée pour toutes les erreurs du service ou de l’agent invisibles pour l’utilisateur. raison la plus courante Hello peut être que l’authentification hello ACS a échoué. Des causes possibles de l’échec de hello sont qu’il existe des problèmes avec la configuration du serveur NTP hello et sur hello périphérique n’est pas défini correctement. |Corrigez les temps de hello (s’il existe des problèmes), puis recommencez opération d’inscription de hello. Si vous utilisez le fuseau horaire de hello fuseau horaire - Set-HcsSystem commande tooadjust hello, majuscule chaque fuseau horaire de hello (par exemple « Pacific Standard Time »).  Si le problème persiste, contactez le [support technique Microsoft](storsimple-8000-contact-microsoft-support.md) pour les étapes suivantes. |
-| 9 |Avertissement : Impossible d’activer les périphériques hello. Les mots de passe de l’administrateur de l’appareil et du Gestionnaire d’instantanés StorSimple n’ont pas été modifiés. |Si l’inscription de hello échoue, administrateur de l’appareil hello et mots de passe de gestionnaire d’instantanés StorSimple ne sont pas modifiés. | |
+| 1 |Erreur 350027 : Impossible d’inscrire l’appareil auprès de StorSimple Device Manager. | |Patientez quelques minutes et recommencez l’opération. Si le problème persiste, [contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md). |
+| 2 |Erreur 350013 : Une erreur s’est produite lors de l’inscription de l’appareil. Cela peut résulter d’une clé d’inscription du service incorrecte. | |Inscrivez à nouveau l’appareil avec la clé d’inscription de service appropriée. Pour plus d’informations, consultez la section [Obtenir la clé d’inscription de service.](storsimple-8000-manage-service.md#get-the-service-registration-key) |
+| 3 |Erreur 350063 : l’authentification auprès du service StorSimple Device Manager a réussi, mais l’inscription a échoué. Veuillez réessayer l’opération après un certain temps. |Cette erreur indique que l’authentification avec ACS a réussi, mais que l’appel pour l’inscription au service a échoué. Cela peut résulter d’un problème réseau sporadique. |Si le problème persiste, contactez le [support technique Microsoft](storsimple-8000-contact-microsoft-support.md). |
+| 4 |Erreur 350049 : Le service n’a pas pu être atteint lors de l’inscription. |Lorsque l’appel au service est effectué, une exception web est reçue. Dans certains cas, ce problème peut être résolu en effectuant une nouvelle tentative ultérieurement. |Vérifiez votre adresse IP et le nom DNS, puis réessayez l’opération. Si le problème persiste, [contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) |
+| 5. |Erreur 350031 : L’appareil a déjà été inscrit. | |Aucune action requise. |
+| 6. |Erreur 350016 : Échec de l’inscription de l’appareil. | |Vérifiez que la clé d’inscription est correcte. |
+| 7 |Invoke-HcsSetupWizard : Une erreur s’est produite lors de l’inscription de votre appareil ; cela peut être dû à une adresse IP ou un nom DNS incorrect. Vérifiez vos paramètres réseau et réessayez. Si le problème persiste, [contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md). (Erreur 350050) |Assurez-vous que votre appareil peut tester le réseau externe (avec une commande ping). Si vous n’avez pas de connectivité vers le réseau externe, l’inscription peut échouer avec cette erreur. Cette erreur peut être une combinaison d’un ou plusieurs des éléments suivants :<ul><li>IP incorrecte</li><li>Sous-réseau incorrect</li><li>Passerelle incorrecte</li><li>Paramètres DNS incorrects</li></ul> |Pour les étapes, consultez la page [Exemple de résolution de problème pas à pas](#step-by-step-storsimple-troubleshooting-example). |
+| 8 |Invoke-HcsSetupWizard : échec de l’opération en cours en raison d’une erreur de service interne [0x1FBE2]. Veuillez réessayer l’opération après un certain temps. Si le problème persiste, contactez le support technique Microsoft. |Il s’agit d’une erreur générique levée pour toutes les erreurs du service ou de l’agent invisibles pour l’utilisateur. La raison la plus courante est un échec de l’authentification ACS. Une cause possible de l’échec est l’existence de problèmes avec la configuration du serveur NTP et un paramétrage incorrect de l’heure sur l’appareil. |Corrigez l’heure (s’il existe des problèmes), puis réessayez l’opération d’inscription. Si vous utilisez la commande Set-HcsSystem - Fuseau horaire pour ajuster le fuseau horaire, mettez chaque mot du fuseau horaire en majuscule (par exemple « Pacifique »).  Si le problème persiste, contactez le [support technique Microsoft](storsimple-8000-contact-microsoft-support.md) pour les étapes suivantes. |
+| 9. |Avertissement : impossible d’activer l’appareil. Les mots de passe de l’administrateur de l’appareil et du Gestionnaire d’instantanés StorSimple n’ont pas été modifiés. |Si l’inscription échoue, les mots de passe de l’administrateur de l’appareil et du Gestionnaire d’instantanés StorSimple ne sont pas modifiés. | |
 
 ## <a name="tools-for-troubleshooting-storsimple-deployments"></a>Outils de résolution des problèmes de déploiement de StorSimple
-StorSimple comprend plusieurs outils que vous pouvez utiliser tootroubleshoot votre solution StorSimple. Vous avez notamment vu les points suivants :
+StorSimple comprend plusieurs outils que vous pouvez utiliser pour résoudre les problèmes de votre solution StorSimple. Vous avez notamment vu les points suivants :
 
 * Packages de prise en charge et journaux d’appareil.
 * Applets de commande conçues spécialement pour la résolution des problèmes.
 
 ## <a name="support-packages-and-device-logs-available-for-troubleshooting"></a>Packages de prise en charge et journaux d’appareil disponibles pour la résolution des problèmes
-Un package de support contient tous les journaux appropriés hello qui peuvent aider l’équipe de Support technique de Microsoft hello avec la résolution des problèmes de l’appareil. Vous pouvez utiliser Windows PowerShell pour StorSimple toogenerate un package de support chiffré que vous pouvez ensuite partager avec le service de support technique.
+Un package de prise en charge contient tous les journaux pertinents qui peuvent aider l’équipe de support technique de Microsoft à résoudre les problèmes des appareils. Vous pouvez utiliser Windows PowerShell pour StorSimple pour générer un package de prise en charge chiffré que vous pouvez ensuite partager avec le personnel du support technique.
 
-### <a name="tooview-hello-logs-or-hello-contents-of-hello-support-package"></a>journaux de hello tooview ou contenu hello hello du package de support
-1. Utiliser Windows PowerShell pour StorSimple toogenerate un package de prise en charge, comme décrit dans [créer et gérer un package de prise en charge](storsimple-8000-create-manage-support-package.md).
-2. Télécharger hello [script de déchiffrement](https://gallery.technet.microsoft.com/scriptcenter/Script-to-decrypt-a-a8d1ed65) localement sur votre ordinateur client.
-3. Utilisez cette [procédure pas à pas](storsimple-8000-create-manage-support-package.md#edit-a-support-package) tooopen et decrypt package de prise en charge de hello.
-4. Hello déchiffrer un package de prise en charge les journaux sont dans un format etw/etvx. Vous pouvez effectuer hello suivant les étapes tooview ces fichiers dans l’Observateur d’événements Windows :
+### <a name="to-view-the-logs-or-the-contents-of-the-support-package"></a>Pour afficher les journaux ou le contenu du package de prise en charge
+1. Utilisez Windows PowerShell pour StorSimple pour générer un package de support, comme décrit à la page [Création et gestion d'un package de support](storsimple-8000-create-manage-support-package.md).
+2. Téléchargez le [script de déchiffrement](https://gallery.technet.microsoft.com/scriptcenter/Script-to-decrypt-a-a8d1ed65) localement sur votre ordinateur client.
+3. Utilisez cette [procédure pas à pas](storsimple-8000-create-manage-support-package.md#edit-a-support-package) pour ouvrir et déchiffrer le package de prise en charge.
+4. Les journaux du package de prise en charge déchiffré sont au format etw/etvx. Vous pouvez afficher ces fichiers dans l’Observateur d’événements Windows en procédant comme suit :
    
-   1. Exécutez hello **eventvwr** commande sur votre client Windows. Ceci démarrera hello Observateur d’événements.
-   2. Bonjour **Actions** volet, cliquez sur **ouvrir le journal enregistré** et point toohello les fichiers journaux dans le format etvx/etw (package de prise en charge hello). Vous pouvez désormais afficher les fichiers hello. Après avoir ouvert le fichier de hello, vous pouvez avec le bouton droit et enregistrer le fichier de hello sous forme de texte.
+   1. Exécutez la commande **eventvwr** sur votre client Windows. L’Observateur d’événements démarre.
+   2. Dans le volet **Actions**, cliquez sur **Ouvrir le journal enregistré** et pointez sur les fichiers journaux au format etvx/etw (le package de prise en charge). Vous pouvez maintenant consulter le fichier. Après avoir ouvert le fichier, vous pouvez cliquer dessus avec le bouton droit et l’enregistrer au format texte.
       
       > [!IMPORTANT]
-      > Vous pouvez également utiliser hello **Get-WinEvent** tooopen de l’applet de commande ces fichiers dans Windows PowerShell. Pour plus d’informations, consultez [Get-WinEvent](https://technet.microsoft.com/library/hh849682.aspx) Bonjour documentation de référence d’applet de commande Windows PowerShell.
+      > Vous pouvez également utiliser l’applet de commande **Get-WinEvent** pour ouvrir ces fichiers dans Windows PowerShell. Pour plus d’informations, consultez la page [Get-WinEvent](https://technet.microsoft.com/library/hh849682.aspx) dans la documentation de référence des applets de commande Windows PowerShell.
      
-5. Lorsque les journaux de hello ouverts dans l’Observateur d’événements, recherchez hello suivant des fichiers journaux qui contiennent la configuration de l’appareil problèmes connexes toohello :
+5. Une fois les journaux ouverts dans l’Observateur d’événements, recherchez les journaux ci-dessous ; ceux-ci contiennent les problèmes liés à la configuration de l’appareil :
    
    * hcs_pfconfig/Operational Log
    * hcs_pfconfig/Config
-6. Dans les fichiers journaux de hello, rechercher des chaînes associées toohello les applets de commande appelée par l’Assistant Installation de hello. Pour obtenir la liste de ces applets de commande, consultez la section [Processus de l’Assistant Première installation](#first-time-setup-wizard-process) .
-7. Si vous n’êtes pas en mesure de toofigure cause hello de problème de hello, vous pouvez [contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md) pour les étapes suivantes. Hello d’utiliser les étapes [créer une demande de support](storsimple-8000-contact-microsoft-support.md#create-a-support-request) lorsque vous contactez le Support Microsoft pour obtenir une assistance.
+6. Dans les fichiers journaux, recherchez les chaînes relatives aux applets de commande appelées par l’Assistant Installation. Pour obtenir la liste de ces applets de commande, consultez la section [Processus de l’Assistant Première installation](#first-time-setup-wizard-process) .
+7. Si vous n’êtes pas en mesure de déterminer la cause du problème, vous pouvez [contacter le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) pour connaître les étapes suivantes. Suivez la procédure décrite à la page [Création d’une demande de support](storsimple-8000-contact-microsoft-support.md#create-a-support-request) pour demander de l’aide au support technique Microsoft.
 
 ## <a name="cmdlets-available-for-troubleshooting"></a>Applets de commande disponibles pour la résolution des problèmes
-Utilisez hello les erreurs de connectivité de toodetect applets de commande Windows PowerShell suivantes.
+Utilisez les applets de commande Windows PowerShell suivantes pour détecter les erreurs de connectivité.
 
-* `Get-NetAdapter`: Utilisez cette applet de commande toodetect la santé hello des interfaces réseau.
-* `Test-Connection`: Utilisez cette applet de commande toocheck hello connectivité à l’intérieur et en dehors du réseau de hello.
-* `Test-HcsmConnection`: Utilisez cette applet de commande toocheck hello la connectivité d’un appareil inscrit correctement.
-* `Sync-HcsTime`: Utilisez cette heure de l’appareil toodisplay applet de commande et forcer une synchronisation avec le serveur NTP hello.
-* `Enable-HcsPing`et `Disable-HcsPing`: utilisez ces interfaces réseau d’applets de commande tooallow hello hôtes tooping hello sur votre appareil StorSimple. Par défaut, les interfaces réseau de StorSimple hello ne répondent pas tooping demandes.
-* `Trace-HcsRoute`: utilisez cette applet de commande comme un outil de suivi d’itinéraire. Il envoie le routeur tooeach de paquets sur la destination finale du tooa hello moyen sur une période de temps et calcule ensuite les résultats basés sur les paquets hello renvoyés par chaque tronçon. Étant donné que `Trace-HcsRoute` affiche degré hello de perte de paquets sur un routeur ou un lien, vous pouvez identifier les routeurs ou les liens peuvent être à l’origine des problèmes de réseau.
-* `Get-HcsRoutingTable`: Utilisez cette applet de commande toodisplay hello locale table de routage IP.
+* `Get-NetAdapter`: utilisez cette applet de commande pour détecter l’intégrité des interfaces réseau.
+* `Test-Connection`: utilisez cette applet de commande pour vérifier la connectivité réseau à l’intérieur et à l’extérieur du réseau.
+* `Test-HcsmConnection`: utilisez cette applet de commande pour vérifier la connectivité d’un appareil correctement inscrit.
+* `Sync-HcsTime` : utilisez cette applet de commande pour afficher l’heure de l’appareil et forcer une synchronisation avec le serveur NTP.
+* `Enable-HcsPing` et `Disable-HcsPing` : utilisez ces applets de commande pour autoriser les hôtes à effectuer un test ping sur les interfaces réseau de votre appareil StorSimple. Par défaut, les interfaces réseau de StorSimple ne répondent pas aux requêtes ping.
+* `Trace-HcsRoute`: utilisez cette applet de commande comme un outil de suivi d’itinéraire. Elle envoie des paquets à chaque routeur jusqu’à une destination finale pendant une période donnée, puis calcule les résultats en fonction des paquets renvoyés par chaque tronçon. Comme l’applet de commande `Trace-HcsRoute` indique le degré de perte de paquets au niveau d’un routeur ou d’un lien donné, vous pouvez identifier les routeurs ou liens susceptibles de provoquer des problèmes de réseau.
+* `Get-HcsRoutingTable`: utilisez cette applet de commande pour afficher la table de routage IP locale.
 
-## <a name="troubleshoot-with-hello-get-netadapter-cmdlet"></a>Résoudre les problèmes avec l’applet de commande Get-NetAdapter hello
-Lorsque vous configurez des interfaces réseau pour un déploiement de la première fois, état du matériel hello n’est pas disponible dans hello interface utilisateur du service Gestionnaire de périphériques StorSimple, car l’appareil de hello n’est pas encore inscrit avec le service de hello. En outre, hello **l’intégrité du matériel** panneau toujours correctement ne reflètent pas état hello du périphérique de hello, en particulier si des problèmes qui affectent la synchronisation du service. Dans ces situations, vous pouvez utiliser hello `Get-NetAdapter` toodetermine de l’applet de commande hello intégrité et l’état des interfaces réseau.
+## <a name="troubleshoot-with-the-get-netadapter-cmdlet"></a>Résolution des problèmes avec l’applet de commande Get-NetAdapter
+Au moment de configurer des interfaces réseau pour un premier déploiement d’appareil, l’état du matériel n’est pas disponible dans l’interface utilisateur du service StorSimple Device Manager, car l’appareil n’est pas encore inscrit auprès du service. De plus, le panneau **Intégrité matérielle** ne reflète pas toujours correctement l’état de l’appareil, surtout si des problèmes empêchent la synchronisation du service. En pareil cas, vous pouvez utiliser l’applet de commande `Get-NetAdapter` pour déterminer l’intégrité et l’état des interfaces réseau.
 
-### <a name="toosee-a-list-of-all-hello-network-adapters-on-your-device"></a>toosee une liste de toutes les cartes réseau de hello sur votre appareil
+### <a name="to-see-a-list-of-all-the-network-adapters-on-your-device"></a>Pour afficher la liste de toutes les cartes réseau de votre appareil
 1. Démarrez Windows PowerShell pour StorSimple, puis tapez `Get-NetAdapter`. 
-2. Utiliser la sortie hello Hello `Get-NetAdapter` applet de commande et hello suivant les instructions toounderstand hello l’état de votre interface réseau.
+2. Utilisez la sortie de l’applet de commande `Get-NetAdapter` et les instructions suivantes pour comprendre l’état de votre interface réseau.
    
-   * Si l’interface de hello est intègre et activée, hello **ifIndex** l’état est affiché en tant que **des**.
-   * Si l’interface de hello est intègre, mais n’est pas physiquement connectée (par un câble réseau), hello **ifIndex** est affiché comme **désactivé**.
-   * Si l’interface de hello est intègre mais pas activée, hello **ifIndex** l’état est affiché en tant que **absent**.
-   * Si l’interface de hello n’existe pas, il n’apparaît pas dans cette liste. Hello d’interface utilisateur du Gestionnaire de périphériques StorSimple service continue d’afficher cette interface dans un état d’échec.
+   * Si l’interface est intègre et activée, l’état d’**ifIndex** indique **Activé**.
+   * Si l’interface est intègre, mais qu’elle n’est pas physiquement connectée (par un câble réseau), l’état d’**ifIndex** indique **Désactivé**.
+   * Si l’interface est intègre mais pas activée, l’état d’**ifIndex** indique **Absent**.
+   * Si l’interface n’existe pas, il n’apparaît pas dans cette liste. L’interface utilisateur du service StorSimple Device Manager continue d’afficher cette interface avec l’état Échec.
 
-Pour plus d’informations sur la façon de toouse cette applet de commande, accédez trop[GetNetAdapter](https://technet.microsoft.com/library/jj130867.aspx) Bonjour référence d’applet de commande Windows PowerShell.
+Pour plus d’informations sur l’utilisation de cette applet de commande, accédez à la page [GetNetAdapter](https://technet.microsoft.com/library/jj130867.aspx) dans le document de référence des applets de commande Windows PowerShell.
 
-Hello sections suivantes présentent des exemples de sortie de hello `Get-NetAdapter` applet de commande.
+Les sections suivantes présentent des exemples de sortie de l’applet de commande `Get-NetAdapter` .
 
- Dans ces exemples, le contrôleur 0 était le contrôleur passif de hello et a été configuré comme suit :
+ Dans ces exemples, le contrôleur 0 était le contrôleur passif et a été configuré comme suit :
 
-* DATA 0, DATA 1, DATA 2 et données 3 réseau interfaces existaient sur le périphérique de hello.
-* DATA 4 et les cartes d’interface réseau DATA 5 n’étaient pas présentes ; Par conséquent, ils ne sont pas répertoriées dans la sortie de hello.
+* Les interfaces réseau DATA 0, DATA 1, DATA 2 et DATA 3 existaient sur l’appareil.
+* Les cartes d’interface réseau DATA 4 et DATA 5 étaient absentes ; elles ne figurent donc pas dans la sortie.
 * DATA 0 était activée.
 
-Contrôleur 1 était le contrôleur actif de hello et a été configuré comme suit :
+Le contrôleur 1 était le contrôleur actif et a été configuré comme suit :
 
-* DATA 0, DATA 1, données 2, données 3, DATA 4 et réseau DATA 5 interfaces existaient sur le périphérique de hello.
+* Les interfaces réseau DATA 0, DATA 1, DATA 2, DATA 3, DATA 4 et DATA 5 existaient sur l’appareil.
 * DATA 0 était activée.
 
 **Exemple de sortie – contrôleur 0**
 
-Hello Voici la sortie de hello du contrôleur 0 (contrôleur passif de hello). DATA 1, DATA 2 et DATA 3 ne sont pas connectées. DATA 4 et DATA 5 ne sont pas répertoriées, car ils ne sont pas présents sur l’appareil de hello.
+Voici la sortie du contrôleur 0 (le contrôleur passif). DATA 1, DATA 2 et DATA 3 ne sont pas connectées. DATA 4 et DATA 5 ne sont pas répertoriées, car elles sont absentes de l’appareil.
 
      Controller0>Get-NetAdapter
      Name                 InterfaceDescription                        ifIndex  Status
@@ -219,7 +219,7 @@ Hello Voici la sortie de hello du contrôleur 0 (contrôleur passif de hello). D
 
 **Exemple de sortie – contrôleur 1**
 
-Hello Voici la sortie de hello du contrôleur 1 (contrôleur actif de hello). Uniquement hello DATA 0 interface réseau sur l’appareil de hello est configuré et fonctionne.
+Voici la sortie du contrôleur 1 (le contrôleur actif). Seule l’interface réseau DATA 0 est configurée et fonctionne sur l’appareil.
 
      Controller1>Get-NetAdapter
      Name                 InterfaceDescription                        ifIndex  Status
@@ -233,19 +233,20 @@ Hello Voici la sortie de hello du contrôleur 1 (contrôleur actif de hello). Un
      DATA4                Intel(R) Gigabit ET Dual Port Serv...#2     17       NotPresent
 
 
-## <a name="troubleshoot-with-hello-test-connection-cmdlet"></a>Résoudre les problèmes avec l’applet de commande Test-Connection hello
-Vous pouvez utiliser hello `Test-Connection` toodetermine de l’applet de commande si votre appareil StorSimple peut se connecter à toohello en dehors du réseau. Si tous les paramètres de mise en réseau hello, y compris hello DNS, sont correctement configurés dans l’Assistant Installation de hello, vous pouvez utiliser hello `Test-Connection` tooping de l’applet de commande une adresse connue en dehors du réseau de hello, comme outlook.com.
+## <a name="troubleshoot-with-the-test-connection-cmdlet"></a>Résolution des problèmes avec l’applet de commande Test-Connection
 
-Vous devez activer les problèmes de connectivité tootroubleshoot ping cette applet de commande si ping est désactivée.
+Vous pouvez utiliser l’applet de commande `Test-Connection` pour déterminer si votre appareil StorSimple peut se connecter au réseau externe. Si tous les paramètres réseau, y compris le DNS, sont correctement configurés dans l’Assistant Installation, vous pouvez utiliser l’applet de commande `Test-Connection` pour effectuer un test ping sur une adresse connue à l’extérieur du réseau, comme outlook.com.
 
-Consultez hello suivant des exemples de sortie à partir de hello `Test-Connection` applet de commande.
+Vous devez activer la commande ping pour résoudre les problèmes de connectivité avec cette applet de commande si la commande ping est désactivée.
+
+Consultez ci-dessous les exemples de sortie de l’applet de commande `Test-Connection` .
 
 > [!NOTE]
-> Dans le premier exemple de hello, appareil de hello est configuré avec un DNS incorrect. Dans le deuxième exemple de hello, hello DNS est correct.
+> Dans le premier exemple, l’appareil est configuré avec un paramètre DNS incorrect. Dans le deuxième exemple, le paramètre DNS est correct.
 
 **Exemple de sortie – DNS incorrect**
 
-Bonjour suivant l’exemple, aucune sortie n’est pour les adresses IPV4 et IPV6 de hello, ce qui indique que hello que DNS n’est pas résolu. Cela signifie qu’il n’existe aucun toohello de connectivité en dehors du réseau et un DNS correct doit toobe fourni.
+Dans l’exemple suivant, il n’y a pas de sortie pour les adresses IPV4 et IPV6, ce qui indique que le DNS n’est pas résolu. Cela signifie qu’il n’y a pas de connectivité vers le réseau externe et qu’un DNS correct doit être fourni.
 
      Source        Destination     IPV4Address      IPV6Address
      ------        -----------     -----------      -----------
@@ -256,7 +257,7 @@ Bonjour suivant l’exemple, aucune sortie n’est pour les adresses IPV4 et IPV
 
 **Exemple de sortie : DNS correct**
 
-Bonjour suivant l’exemple, hello DNS renvoie hello l’adresse IPV4, indiquant que hello que DNS est correctement configuré. Cela confirme qu’il y a toohello de connectivité en dehors du réseau.
+Dans l’exemple suivant, le DNS renvoie l’adresse IPV4, ce qui indique que le DNS est correctement configuré. Cela confirme qu’il existe une connectivité vers le réseau externe.
 
      Source        Destination     IPV4Address      IPV6Address
      ------        -----------     -----------      -----------
@@ -265,46 +266,46 @@ Bonjour suivant l’exemple, hello DNS renvoie hello l’adresse IPV4, indiquant
      HCSNODE0      outlook.com     132.245.92.194
      HCSNODE0      outlook.com     132.245.92.194
 
-## <a name="troubleshoot-with-hello-test-hcsmconnection-cmdlet"></a>Résoudre les problèmes avec l’applet de commande Test-HcsmConnection hello
-Hello d’utilisation `Test-HcsmConnection` applet de commande pour un périphérique qui est déjà connecté tooand inscrit auprès du service Gestionnaire de périphériques StorSimple. Cette applet de commande vous permet de vérifier la connectivité hello entre un appareil enregistré et le service de gestionnaire de périphériques StorSimple hello correspondant. Vous pouvez exécuter cette commande sur Windows PowerShell pour StorSimple.
+## <a name="troubleshoot-with-the-test-hcsmconnection-cmdlet"></a>Résolution des problèmes avec l’applet de commande Test-HcsmConnection
+Utilisez l’applet de commande `Test-HcsmConnection` pour un appareil qui est déjà connecté et inscrit auprès du service StorSimple Device Manager. Cette applet de commande permet de vérifier la connectivité entre un appareil inscrit et le service StorSimple Device Manager correspondant. Vous pouvez exécuter cette commande sur Windows PowerShell pour StorSimple.
 
-### <a name="toorun-hello-test-hcsmconnection-cmdlet"></a>applet de commande Test-HcsmConnection de hello toorun
-1. Assurez-vous que cet appareil hello est inscrit.
-2. Vérifiez l’état du périphérique hello. Si l’appareil de hello est désactivé, en mode maintenance ou hors connexion, un des hello les erreurs suivantes peut apparaître :
+### <a name="to-run-the-test-hcsmconnection-cmdlet"></a>Pour exécuter l’applet de commande Test-HcsmConnection
+1. Assurez-vous que l’appareil est inscrit.
+2. Vérifiez l’état de l’appareil. Si l’appareil est désactivé, en mode de maintenance ou hors connexion, l’une des erreurs suivantes peut s’afficher :
    
-   * ErrorCode.CiSDeviceDecommissioned – indique cet appareil hello est désactivé.
-   * ErrorCode.DeviceNotReady – indique cet appareil hello est en mode maintenance.
-   * ErrorCode.DeviceNotReady – indique cet appareil hello n’est pas en ligne.
-3. Vérifiez que le Gestionnaire de périphériques StorSimple service hello est en cours d’exécution (utilisez hello [Get-ClusterResource](https://technet.microsoft.com/library/ee461004.aspx) applet de commande). Si le service de hello ne fonctionne pas, vous pouvez voir hello les erreurs suivantes :
+   * ErrorCode.CiSDeviceDecommissioned : indique que l’appareil est désactivé.
+   * ErrorCode.DeviceNotReady : indique que l’appareil est en mode maintenance.
+   * ErrorCode.DeviceNotReady : indique que l’appareil n’est pas en ligne.
+3. Vérifiez que le service StorSimple Device Manager est en cours d’exécution (utilisez l’applet de commande [Get-ClusterResource](https://technet.microsoft.com/library/ee461004.aspx) ). Si le service n’est pas en cours d’exécution, les erreurs suivantes peuvent s’afficher :
    
    * ErrorCode.CiSApplianceAgentNotOnline
    * ErrorCode.CisPowershellScriptHcsError : indique qu’une exception est survenue lors de l’exécution de Get-ClusterResource.
-4. Vérifiez le jeton du Service de contrôle d’accès (ACS) hello. Si ce dernier lève une exception web, il peut être hello résultat d’un problème de passerelle, une authentification de proxy manquant, un DNS incorrect ou un échec d’authentification. Vous pouvez voir hello les erreurs suivantes :
+4. Vérifiez le jeton du service de contrôle d’accès (ACS) S’il lève une exception web, cela peut résulter d’un problème de passerelle, d’une authentification proxy manquante, d’un DNS incorrect ou d’un échec d’authentification. Les erreurs suivantes peuvent s’afficher :
    
-   * ErrorCode.CiSApplianceGateway – indique une exception HttpStatusCode.BadGateway : service de résolution de nom hello n’a pas pu résoudre le nom d’hôte de hello.
-   * ErrorCode.CiSApplianceProxy – indique une exception HttpStatusCode.ProxyAuthenticationRequired (code d’état HTTP 407) : client de hello Impossible d’authentifier avec le serveur de proxy hello.
-   * ErrorCode.CiSApplianceDNSError – indique une exception WebExceptionStatus.NameResolutionFailure : service de résolution de nom hello n’a pas pu résoudre le nom d’hôte de hello.
-   * ErrorCode.CiSApplianceACSError – indique que le service de hello a renvoyé une erreur d’authentification, mais il existe une connectivité.
+   * ErrorCode.CiSApplianceGateway : indique une exception HttpStatusCode.BadGateway : le service de résolution de noms n’a pas pu résoudre le nom de l’hôte.
+   * ErrorCode.CiSApplianceProxy : indique une exception HttpStatusCode.ProxyAuthenticationRequired (code d’état HTTP 407) : le client n’a pas pu s’authentifier auprès du serveur proxy.
+   * ErrorCode.CiSApplianceDNSError : indique une exception WebExceptionStatus.NameResolutionFailure : le service de résolution de noms n’a pas pu résoudre le nom d’hôte.
+   * ErrorCode.CiSApplianceACSError : indique que le service a renvoyé une erreur d’authentification, mais qu’il existe une connectivité.
      
-     Si l’erreur ne lève pas d’exception web, recherchez ErrorCode.CiSApplianceFailure. Cela indique que hello a échoué.
-5. Vérifiez la connectivité de service cloud hello. Si le service de hello lève une exception web, vous pouvez voir hello les erreurs suivantes :
+     Si l’erreur ne lève pas d’exception web, recherchez ErrorCode.CiSApplianceFailure. Cette erreur indique un échec de l’appliance.
+5. Vérifiez la connectivité du service cloud. Si le service lève une exception web, vous pouvez voir les erreurs suivantes :
    
-   * ErrorCode.CiSApplianceGateway – indique une exception HttpStatusCode.BadGateway : un serveur proxy intermédiaire a reçu une demande incorrecte d’un autre proxy ou du serveur d’origine de hello.
-   * ErrorCode.CiSApplianceProxy – indique une exception HttpStatusCode.ProxyAuthenticationRequired (code d’état HTTP 407) : client de hello Impossible d’authentifier avec le serveur de proxy hello.
-   * ErrorCode.CiSApplianceDNSError – indique une exception WebExceptionStatus.NameResolutionFailure : service de résolution de nom hello n’a pas pu résoudre le nom d’hôte de hello.
-   * ErrorCode.CiSApplianceACSError – indique que le service de hello a renvoyé une erreur d’authentification, mais il existe une connectivité.
+   * ErrorCode.CiSApplianceGateway – indique une exception HttpStatusCode.BadGateway : un serveur proxy intermédiaire a reçu une demande incorrecte à partir d’un autre proxy ou du serveur d’origine.
+   * ErrorCode.CiSApplianceProxy : indique une exception HttpStatusCode.ProxyAuthenticationRequired (code d’état HTTP 407) : le client n’a pas pu s’authentifier auprès du serveur proxy.
+   * ErrorCode.CiSApplianceDNSError : indique une exception WebExceptionStatus.NameResolutionFailure : le service de résolution de noms n’a pas pu résoudre le nom d’hôte.
+   * ErrorCode.CiSApplianceACSError : indique que le service a renvoyé une erreur d’authentification, mais qu’il existe une connectivité.
      
-     Si l’erreur ne lève pas d’exception web, recherchez ErrorCode.CiSApplianceSaasServiceError. Cela indique un problème avec hello service du Gestionnaire de périphériques StorSimple.
-6. Vérifiez la connectivité d’Azure Service Bus. ErrorCode.CiSApplianceServiceBusError indique que cet appareil hello ne peut pas se connecter toohello Service Bus.
+     Si l’erreur ne lève pas d’exception web, recherchez ErrorCode.CiSApplianceSaasServiceError. Cette erreur indique un problème lié au service StorSimple Device Manager.
+6. Vérifiez la connectivité d’Azure Service Bus. ErrorCode.CiSApplianceServiceBusError indique que l’appareil ne peut pas se connecter à Service Bus.
 
-Hello des fichiers journaux CiSCommandletLog0Curr.errlog et cisagentsvc0curr.errlog plus d’informations, telles que les détails de l’exception.
+Les fichiers journaux CiSCommandletLog0Curr.errlog et CiSAgentsvc0Curr.errlog comporteront plus d’informations, notamment les détails de l’exception.
 
-Pour plus d’informations sur la façon dont toouse hello applet de commande, accédez trop[Test-HcsmConnection](https://technet.microsoft.com/library/dn715782.aspx) dans Windows PowerShell de hello documentation de référence.
+Pour plus d’informations sur l’utilisation de l’applet de commande, accédez à la page [Test-HcsmConnection](https://technet.microsoft.com/library/dn715782.aspx) dans la documentation de référence de Windows PowerShell.
 
 > [!IMPORTANT]
-> Vous pouvez exécuter cette applet de commande pour hello active et contrôleur passif de hello.
+> Vous pouvez exécuter cette applet de commande pour le contrôleur passif et actif.
 
-Consultez hello suivant des exemples de sortie à partir de hello `Test-HcsmConnection` applet de commande.
+Consultez ci-dessous les exemples de sortie de l’applet de commande `Test-HcsmConnection` .
 
 **Exemple de sortie : appareil inscrit exécutant StorSimple Update 3**
 
@@ -327,42 +328,42 @@ Consultez hello suivant des exemples de sortie à partir de hello `Test-HcsmConn
       Checking device authentication  ... This will take a few minutes.
       Checking device authentication  ... Success
 
-      Checking connectivity from device tooservice  ... This will take a few minutes.
+      Checking connectivity from device to service  ... This will take a few minutes.
 
-      Checking connectivity from device tooservice  ... Success
+      Checking connectivity from device to service  ... Success
 
-      Checking connectivity from service toodevice  ... Success
+      Checking connectivity from service to device  ... Success
 
-      Checking connectivity tooMicrosoft Update servers  ... Success
+      Checking connectivity to Microsoft Update servers  ... Success
       Controller1>
 
 **Exemple de sortie – appareil hors connexion** 
 
-Cet exemple est d’un appareil qui a le statut **hors connexion** Bonjour portail Azure.
+Cet exemple concerne un appareil qui a le statut **hors connexion** dans le portail Azure.
 
      Checking device registrationstate: Success
      Device is registered successfully
-     Checking connectivity from device tooSaaS.. Failure
+     Checking connectivity from device to SaaS.. Failure
 
-Appareil de Hello pas pu se connecter à l’aide de la configuration du proxy web actuelle hello. Cela peut être un problème avec la configuration du proxy web hello ou un problème de connectivité réseau. Dans ce cas, vous devez vous assurer que vos paramètres de proxy web sont corrects et que vos serveurs de proxy web sont en ligne et accessibles.
+L’appareil n’a pas pu se connecter à l’aide de la configuration actuelle du proxy web. Il peut s’agir d’un problème avec la configuration du proxy web ou d’un problème de connectivité réseau. Dans ce cas, vous devez vous assurer que vos paramètres de proxy web sont corrects et que vos serveurs de proxy web sont en ligne et accessibles.
 
-## <a name="troubleshoot-with-hello-sync-hcstime-cmdlet"></a>Résoudre les problèmes avec l’applet de commande hello HcsTime de synchronisation
-Utilisez cette applet de commande toodisplay hello heure de l’appareil. Si l’heure de l’appareil hello comporte un décalage avec le serveur NTP hello, vous pouvez ensuite utiliser cette applet de commande tooforce-hello être synchronisée avec votre serveur NTP.
-- Si le décalage hello entre l’appareil de hello et le serveur NTP est supérieure à 5 minutes, vous verrez un avertissement. 
-- Si le décalage de hello dépasse 15 minutes, les appareils hello mis hors connexion. Vous pouvez toujours utiliser cette applet de commande de tooforce une synchronisation. 
-- Toutefois, si le décalage de hello dépasse 15 heures, puis vous ne serez pas en mesure de tooforce-synchroniser l’heure hello et un message d’erreur s’affichera.
+## <a name="troubleshoot-with-the-sync-hcstime-cmdlet"></a>Résoudre les problèmes avec l’applet de commande Sync-HcsTime
+Utilisez cette applet de commande pour afficher l’heure de l’appareil. Si l’heure de l’appareil est décalée par rapport à celle du serveur NTP, vous pouvez utiliser cette applet de commande pour forcer la synchronisation avec le serveur NTP.
+- Si le décalage entre l’appareil et le serveur NTP est supérieur à 5 minutes, un avertissement s’affiche. 
+- S’il excède 15 minutes, l’appareil est mis hors connexion. Vous pouvez toujours utiliser cette applet de commande pour forcer une synchronisation. 
+- Toutefois, si le décalage est supérieur à 15 heures, vous ne pouvez pas forcer la synchronisation, et un message d’erreur s’affiche.
 
 **Exemple de sortie : synchronisation forcée à l’aide de l’applet de commande Sync-HcsTime**
 
      Controller0>Sync-HcsTime
-     hello current device time is 4/24/2015 4:05:40 PM UTC.
+     The current device time is 4/24/2015 4:05:40 PM UTC.
 
-     Time difference between NTP server and appliance is 00.0824069 seconds. Do you want tooresync time with NTP server?
+     Time difference between NTP server and appliance is 00.0824069 seconds. Do you want to resync time with NTP server?
      [Y] Yes [N] No (Default is "Y"): Y
      Controller0>
 
-## <a name="troubleshoot-with-hello-enable-hcsping-and-disable-hcsping-cmdlets"></a>Résoudre les problèmes avec les applets de commande Enable-HcsPing et Disable-HcsPing hello
-Utilisez ces tooensure applets de commande que les interfaces réseau de hello sur votre appareil répondent tooICMP les requêtes de ping. Par défaut, les interfaces réseau de StorSimple hello ne répondent pas tooping demandes. Cette applet de commande est tooknow de façon plus simple de hello si votre appareil est en ligne et accessibles.
+## <a name="troubleshoot-with-the-enable-hcsping-and-disable-hcsping-cmdlets"></a>Résoudre les problèmes avec les applets de commande Enable-HcsPing et Disable-HcsPing
+Utilisez ces applets de commande pour vous assurer que les interfaces réseau de votre appareil répondent aux requêtes ping ICMP. Par défaut, les interfaces réseau de StorSimple ne répondent pas aux requêtes ping. Utiliser cette applet de commande est le moyen le plus simple de savoir si votre appareil est en ligne et accessible.
 
 **Exemple de sortie : Enable-HcsPing et Disable-HcsPing**
 
@@ -375,20 +376,20 @@ Utilisez ces tooensure applets de commande que les interfaces réseau de hello s
      Successfully disabled ping.
      Controller0>
 
-## <a name="troubleshoot-with-hello-trace-hcsroute-cmdlet"></a>Résoudre les problèmes avec l’applet de commande Trace-HcsRoute hello
-Utilisez cette applet de commande comme un outil de suivi d’itinéraire. Il envoie le routeur tooeach de paquets sur la destination finale du tooa hello moyen sur une période de temps et calcule ensuite les résultats basés sur les paquets hello renvoyés par chaque tronçon. Étant donné que l’applet de commande hello indique le degré de hello de perte de paquets sur n’importe quel routeur ou lien, vous pouvez identifier les routeurs ou des liens peuvent être à l’origine des problèmes de réseau.
+## <a name="troubleshoot-with-the-trace-hcsroute-cmdlet"></a>Résoudre les problèmes avec l’applet de commande Trace-HcsRoute
+Utilisez cette applet de commande comme un outil de suivi d’itinéraire. Elle envoie des paquets à chaque routeur jusqu’à une destination finale pendant une période donnée, puis calcule les résultats en fonction des paquets renvoyés par chaque tronçon. Comme cette applet de commande indique le degré de perte de paquets au niveau d’un routeur ou d’un lien donné, vous pouvez identifier les routeurs ou liens susceptibles de provoquer des problèmes de réseau.
 
-**Résultat de l’exemple montrant comment tootrace hello itinéraire d’un paquet avec HcsRoute de Trace**
+**Exemple de sortie indiquant comment suivre l’itinéraire d’un paquet avec Trace-HcsRoute**
 
      Controller0>Trace-HcsRoute -Target 10.126.174.25
 
-     Tracing route toocontoso.com [10.126.174.25]
+     Tracing route to contoso.com [10.126.174.25]
      over a maximum of 30 hops:
        0  HCSNode0 [10.126.173.90]
        1  contoso.com [10.126.174.25]
 
      Computing statistics for 25 seconds...
-                 Source tooHere   This Node/Link
+                 Source to Here   This Node/Link
      Hop  RTT    Lost/Sent = Pct  Lost/Sent = Pct  Address
        0                                           HCSNode0 [10.126.173.90]
                                      0/ 100 =  0%   |
@@ -397,16 +398,16 @@ Utilisez cette applet de commande comme un outil de suivi d’itinéraire. Il en
 
      Trace complete.
 
-## <a name="troubleshoot-with-hello-get-hcsroutingtable-cmdlet"></a>Résoudre les problèmes avec l’applet de commande Get-HcsRoutingTable hello
-Utilisez cette table de routage d’hello tooview applet de commande pour votre appareil StorSimple. Une table de routage est un ensemble de règles qui peuvent aider à déterminer où les paquets de données circulant sur un réseau IP (Internet Protocol) sont dirigés.
+## <a name="troubleshoot-with-the-get-hcsroutingtable-cmdlet"></a>Résoudre les problèmes avec l’applet de commande Get-HcsRoutingTable
+Utilisez cette applet de commande pour afficher la table de routage de votre appareil StorSimple. Une table de routage est un ensemble de règles qui peuvent aider à déterminer où les paquets de données circulant sur un réseau IP (Internet Protocol) sont dirigés.
 
-table de routage Hello montre les interfaces hello et réseaux spécifié hello passerelle que les itinéraires hello toohello de données. Elle donne également la métrique de routage hello est décideur hello pour tooreach de chemin d’accès emprunté hello une destination particulière. Hello inférieur hello routage métrique, hello hello une préférence plus élevée.
+La table de routage présente les interfaces et la passerelle qui achemine les données vers les réseaux spécifiés. Elle indique également la métrique de routage, qui décide du chemin d’accès emprunté pour atteindre une destination particulière. La métrique de routage est inversement proportionnelle à la préférence.
 
-Par exemple, si vous avez 2 interfaces réseau DATA 2 et 3, toohello connecté Internet. Si les métriques de routage hello pour DATA 2 et 3 sont respectivement de 15 et 261, DATA 2 avec une métrique de routage inférieure hello est interface par défaut du hello utilisé tooreach hello Internet.
+Exemple : vous avez 2 interfaces réseau, DATA 2 et DATA 3, connectées à Internet. Si les métriques de routage de DATA 2 et 3 sont respectivement 15 et 261, l’interface DATA 2 pourvue de la métrique de routage inférieure est l’interface préférée utilisée pour accéder à Internet.
 
-Si 1 de mise à jour sont en cours d’exécution sur votre appareil StorSimple, votre interface réseau DATA 0 possède une préférence plus élevée de hello pour le trafic cloud hello. Cela implique que, même s’il existe des autres interfaces activé pour le cloud, le trafic de nuage hello serait routé via DATA 0.
+Si vous utilisez Update 1 sur votre appareil StorSimple, votre interface réseau DATA 0 a la préférence la plus élevée pour le trafic de cloud. Cela signifie que même s’il existe d’autres interfaces compatibles avec le cloud, le trafic de cloud est acheminé via l’interface DATA 0.
 
-Si vous exécutez hello `Get-HcsRoutingTable` applet de commande sans spécifier tous les paramètres (comme hello suivant montre l’exemple), hello applet de commande affiche les tables de routage IPv4 et IPv6. Vous pouvez également spécifier `Get-HcsRoutingTable -IPv4` ou `Get-HcsRoutingTable -IPv6` tooget une table de routage appropriée.
+Si vous exécutez l’applet de commande `Get-HcsRoutingTable` sans spécifier de paramètres (comme dans l’exemple suivant), l’applet de commande génère en sortie des tables de routage IPv4 et IPv6. Vous pouvez également spécifier `Get-HcsRoutingTable -IPv4` ou `Get-HcsRoutingTable -IPv6` pour obtenir une table de routage pertinente.
 
       Controller0>
       Controller0>Get-HcsRoutingTable
@@ -473,15 +474,15 @@ Si vous exécutez hello `Get-HcsRoutingTable` applet de commande sans spécifier
       Controller0>
 
 ## <a name="step-by-step-storsimple-troubleshooting-example"></a>Exemple de résolution pas à pas des problèmes de StorSimple
-Hello suivant montre un dépannage pas à pas d’un déploiement de StorSimple. Dans le scénario d’exemple hello, DRS échoue avec un message d’erreur indiquant que les paramètres de réseau hello ou un nom DNS de hello est incorrecte.
+L’exemple suivant montre étape par étape comment résoudre les problèmes d’un déploiement StorSimple. Dans ce scénario, l’inscription de l’appareil échoue avec un message d’erreur indiquant que les paramètres réseau ou le nom DNS sont incorrects.
 
-message d’erreur Hello retourné est :
+Le message d’erreur retourné est :
 
-     Invoke-HcsSetupWizard: An error has occurred while registering hello device. This could be due tooincorrect IP address or DNS name. Please check your network settings and try again. If hello problems persist, contact Microsoft Support.
+     Invoke-HcsSetupWizard: An error has occurred while registering the device. This could be due to incorrect IP address or DNS name. Please check your network settings and try again. If the problems persist, contact Microsoft Support.
      +CategoryInfo: Not specified
      +FullyQualifiedErrorID: CiSClientCommunicationErros, Microsoft.HCS.Management.PowerShell.Cmdlets.InvokeHcsSetupWizardCommand
 
-Hello erreur pourrait résulter hello suivants :
+L’erreur peut provenir des éléments suivants :
 
 * Installation matérielle incorrecte
 * Interface(s) réseau défectueuse(s)
@@ -489,44 +490,44 @@ Hello erreur pourrait résulter hello suivants :
 * Clé d’inscription incorrecte
 * Paramètres de pare-feu incorrects
 
-### <a name="toolocate-and-fix-hello-device-registration-problem"></a>problème de l’inscription de périphérique hello toolocate et de correctif
-1. Vérifiez votre configuration de périphérique : sur le contrôleur actif de hello, exécutez `Invoke-HcsSetupWizard`.
+### <a name="to-locate-and-fix-the-device-registration-problem"></a>Pour localiser et résoudre le problème d’inscription de l’appareil
+1. Vérifiez la configuration de l’appareil : sur le contrôleur actif, exécutez `Invoke-HcsSetupWizard`.
    
    > [!NOTE]
-   > Assistant Hello doit s’exécuter sur le contrôleur actif de hello. tooverify que vous êtes le contrôleur actif toohello connectés, examinez la bannière hello présentée dans la console série hello. bannière de Hello indique que vous êtes connecté toocontroller 0 ou contrôleur 1, et si le contrôleur de hello est actif ou passif. Pour plus d’informations, consultez trop[identifier un contrôleur actif sur votre appareil](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device).
+   > L’Assistant Installation doit s’exécuter sur le contrôleur actif. Pour vérifier que vous êtes connecté au contrôleur actif, examinez la bannière présentée dans la console série. La bannière indique si vous êtes connecté au contrôleur 0 ou 1, et si le contrôleur est actif ou passif. Pour plus d’informations, consultez la page [Identification d’un contrôleur actif sur votre appareil](storsimple-8000-controller-replacement.md#identify-the-active-controller-on-your-device).
    
-2. Assurez-vous que cet appareil hello est branché correctement : Vérifiez réseau hello câblage sur périphérique hello fond de panier. câblage de Hello est modèle toohello spécifique de l’appareil. Pour plus d’informations, consultez trop[installer votre appareil StorSimple 8100](storsimple-8100-hardware-installation.md) ou [installer votre appareil StorSimple 8600](storsimple-8600-hardware-installation.md).
+2. Assurez-vous que l’appareil est câblé correctement : vérifiez le câblage sur le panneau arrière de l’appareil. Le câblage est spécifique au modèle d’appareil. Pour plus d’informations, consultez [Installation de votre appareil StorSimple 8100](storsimple-8100-hardware-installation.md) ou [Installation de votre appareil StorSimple 8600](storsimple-8600-hardware-installation.md).
    
    > [!NOTE]
-   > Si vous utilisez des ports réseau 10 GbE, vous devez hello toouse fourni adaptateurs QSFP-SFP et les câbles SFP. Pour plus d’informations, consultez hello [liste des câbles, commutateurs et transmetteurs recommandés pour les ports hello 10 GbE](storsimple-supported-hardware-for-10-gbe-network-interfaces.md).
+   > Si vous utilisez des ports réseau 10 GbE, vous devez utiliser les adaptateurs QSFP-SFP et les câbles SFP fournis. Pour plus d’informations, consultez la [liste des câbles, commutateurs et transmetteurs recommandés pour les ports GbE 10](storsimple-supported-hardware-for-10-gbe-network-interfaces.md).
   
-3. Vérifier le fonctionnement de hello d’interface de réseau hello :
+3. Vérifiez l’intégrité de l’interface réseau :
    
-   * Utilisez hello Get-NetAdapter applet de commande toodetect hello intégrité des hello interfaces réseau Data 0. 
-   * Si le lien de hello ne fonctionne pas, hello **ifindex** état indiquera cette interface hello est arrêté. Vous devez ensuite la connexion de réseau toocheck hello de dispositif de toohello port hello et toohello commutateur. Vous devez également toorule câbles incorrect. 
-   * Si vous pensez que hello DATA 0 port sur le contrôleur actif de hello a échoué, vous pouvez le vérifier en vous connectant toohello le port DATA 0 sur le contrôleur 1. tooconfirm, débranchez câble hello hello arrière appareil hello du contrôleur 0, connecter hello câble toocontroller 1, puis exécutez de nouveau l’applet de commande Get-NetAdapter de hello.
-     Si hello DATA 0 port sur un contrôleur est défaillant, [contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md) pour les étapes suivantes. Vous devrez peut-être le contrôleur de hello tooreplace sur votre système.
-4. Vérifiez que le commutateur de toohello hello connectivité :
+   * Utilisez l’applet de commande Get-NetAdapter pour détecter l’intégrité des interfaces réseau pour DATA 0. 
+   * Si le lien ne fonctionne pas, l’état **ifindex** indique que l’interface est arrêtée. Vous devez ensuite vérifier la connexion réseau du port au matériel et au commutateur. Vous devez également écarter les câbles défectueux. 
+   * Si vous pensez que le port DATA 0 sur le contrôleur actif est défectueux, vous pouvez le vérifier en vous connectant au port DATA 0 sur le contrôleur 1. Pour vérifier cela, débranchez le câble réseau du contrôleur 0 au dos de l’appareil, raccordez le câble au contrôleur 1, puis réexécutez l’applet de commande Get-NetAdapter.
+     Si le port DATA 0 sur un contrôleur échoue, [contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) pour les étapes suivantes. Vous devrez peut-être remplacer le contrôleur sur votre système.
+4. Vérifiez la connectivité au commutateur :
    
-   * Assurez-vous que les interfaces réseau DATA 0 sur les contrôleurs 0 et 1 dans le boîtier principal sont sur hello même sous-réseau. 
-   * Vérification hello concentrateur ou routeur. En règle générale, vous devez vous connecter à la fois toohello contrôleurs même concentrateur ou routeur. 
-   * Assurez-vous que hello commutateurs que vous utilisez pour la connexion de hello ont DATA 0 pour les deux contrôleurs Bonjour même réseau local virtuel.
+   * Assurez-vous que les interfaces réseau DATA 0 sur le contrôleur 0 et le contrôleur 1 dans votre boîtier principal sont sur le même sous-réseau. 
+   * Vérifiez le concentrateur ou le routeur. En règle générale, vous devez connecter les deux contrôleurs au même concentrateur ou routeur. 
+   * Assurez-vous que les commutateurs que vous utilisez pour la connexion ont des interfaces réseau DATA 0 pour les deux contrôleurs dans le même réseau local virtuel.
 5. Éliminez les erreurs utilisateur :
    
-   * Réexécutez l’Assistant Installation de hello (exécuter **Invoke-HcsSetupWizard**), puis entrez hello valeurs nouveau toomake assurer qu’il n’y a aucune erreur. 
-   * Vérification de l’inscription de hello clé utilisée. Hello la même clé d’inscription peut être utilisé tooconnect plusieurs périphériques tooa service du Gestionnaire de périphériques StorSimple. Utilisez la procédure hello dans [clé d’inscription Get hello](storsimple-8000-manage-service.md#get-the-service-registration-key) tooensure que vous utilisez hello clé d’inscription correcte.
+   * Réexécutez l’Assistant Installation (exécutez **Invoke-HcsSetupWizard**), puis entrez de nouveau les valeurs pour vous assurer qu’il n’y a pas d’erreur. 
+   * Vérifiez la clé d’inscription utilisée. La même clé d’inscription peut servir à connecter plusieurs appareils à un service StorSimple Device Manager. Utilisez la procédure décrite dans la section [Obtenir la clé d’inscription](storsimple-8000-manage-service.md#get-the-service-registration-key) pour vous assurer que vous utilisez la clé d’inscription correcte.
      
      > [!IMPORTANT]
-     > Si vous avez plusieurs services en cours d’exécution, vous devez tooensure cette clé d’inscription de hello pour service approprié de hello est appareil de hello tooregister utilisé. Si vous avez enregistré un appareil avec le service de gestionnaire de périphériques StorSimple hello incorrect, vous devez trop[contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md) pour les étapes suivantes. Vous avez peut-être tooperform une réinitialisation des paramètres de périphérique hello (ce qui peut entraîner une perte de données) toothen connecter toohello destinée service.
+     > Si vous avez plusieurs services en cours d’exécution, vous devez vous assurer que la clé d’inscription du service approprié est utilisée pour inscrire l’appareil. Si vous avez inscrit un appareil avec le service StorSimple Device Manager incorrect, vous devez [contacter le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) pour connaître les étapes suivantes. Vous devrez peut-être rétablir les paramètres d’usine de l’appareil (ce qui peut entraîner une perte de données) pour le connecter ensuite au service prévu.
      > 
      > 
-6. Utilisez tooverify d’applet de commande hello tester la connexion que vous avez toohello de connectivité en dehors du réseau. Pour plus d’informations, consultez trop[dépannage avec l’applet de commande Test-Connection de hello](#troubleshoot-with-the-test-connection-cmdlet).
-7. Vérifiez les interférences avec le pare-feu. Si vous avez vérifié que hello virtuel paramètres IP (VIP), de sous-réseau, passerelle et DNS sont corrects et vous rencontrez encore des problèmes de connectivité, puis il est possible que votre pare-feu bloque les communications entre votre appareil et un hello en dehors du réseau. Vous devez tooensure que les ports 80 et 443 sont disponibles sur votre appareil StorSimple pour les communications sortantes. Pour plus d’informations, consultez la page [Configuration réseau requise pour votre appareil StorSimple](storsimple-8000-system-requirements.md#networking-requirements-for-your-storsimple-device).
-8. Consultez les journaux hello. Accédez trop[prennent en charge des packages et des journaux de périphérique disponibles pour le dépannage](#support-packages-and-device-logs-available-for-troubleshooting).
-9. Si hello étapes précédentes ne résolvent pas le problème de hello, [contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md) pour obtenir une assistance.
+6. Utilisez l’applet de commande Test-Connection pour vérifier que vous disposez d’une connectivité vers le réseau externe. Pour plus d’informations, consultez la section [Dépannage avec l’applet de commande Test-Connection](#troubleshoot-with-the-test-connection-cmdlet).
+7. Vérifiez les interférences avec le pare-feu. Si vous avez vérifié que les paramètres d’adresse IP virtuelle, de sous-réseau, de passerelle et DNS sont tous corrects et que vous rencontrez encore des problèmes de connectivité, il est possible que votre pare-feu bloque les communications entre votre appareil et le réseau externe. Vérifiez que les ports 80 et 443 sont disponibles pour la communication sortante sur l’appareil StorSimple. Pour plus d’informations, consultez la page [Configuration réseau requise pour votre appareil StorSimple](storsimple-8000-system-requirements.md#networking-requirements-for-your-storsimple-device).
+8. Examinez les journaux. Consultez la page [Packages de support et journaux des appareils disponibles pour la résolution des problèmes](#support-packages-and-device-logs-available-for-troubleshooting).
+9. Si les étapes précédentes ne permettent pas de résoudre le problème, [contactez le support technique Microsoft](storsimple-8000-contact-microsoft-support.md) pour obtenir une assistance.
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Découvrez comment toouse hello Diagnostics outil tootroubleshoot un appareil StorSimple](storsimple-8000-diagnostics.md).
+[Découvrez comment utiliser l’outil de diagnostic pour résoudre les problèmes d’un appareil StorSimple](storsimple-8000-diagnostics.md).
 
 <!--Link references-->
 

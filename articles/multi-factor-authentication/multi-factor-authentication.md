@@ -1,7 +1,7 @@
 ---
-title: "aaaLearn sur la vérification en deux étapes dans l’authentification Multifacteur Azure | Documents Microsoft"
-description: "Quelle est l’authentification multifacteur Azure, pourquoi utiliser l’authentification Multifacteur, plus d’informations sur le client de l’authentification multifacteur hello et les différentes méthodes de hello et les versions disponibles. "
-keywords: "Introduction tooMFA, vue d’ensemble de l’authentification multifacteur, quelle est l’authentification multifacteur"
+title: "Vérification en deux étapes dans Azure MFA | Microsoft Docs"
+description: "En quoi consiste Azure Multi-Factor Authentication (MFA), pourquoi l’utiliser, informations sur le client MFA, différentes méthodes et versions disponibles. "
+keywords: "introduction à l'authentification multifacteur, vue d'ensemble de l'authentification multifacteur, définition de l'authentification multifacteur"
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,14 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/03/2017
 ms.author: kgremban
-ms.openlocfilehash: a91b8d6941d2b6ce72a789a97c57e10e594e7ada
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 231028a7389dba50efe7d197837855b39826f9b9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="what-is-azure-multi-factor-authentication"></a>Présentation d'Azure Multi-Factor Authentication
-Vérification en deux étapes est une méthode d’authentification qui nécessite plus d’une méthode de vérification et ajoute une seconde couche critique de sécurité toouser connexions et transactions. Elle fonctionne avec deux ou plusieurs de hello les méthodes de vérification suivantes :
+La vérification en deux étapes est une méthode d’authentification qui nécessite plusieurs méthodes de vérification et ajoute une deuxième couche critique de sécurité aux connexions et transactions des utilisateurs. Cette authentification fonctionne en nécessitant au minimum deux des méthodes de vérification suivantes :
 
 * Un élément que vous connaissez (généralement un mot de passe)
 * Un élément que vous possédez (un appareil de confiance qui n'est pas facilement dupliqué, comme un téléphone)
@@ -30,25 +30,21 @@ Vérification en deux étapes est une méthode d’authentification qui nécessi
 
 <center>![Nom d’utilisateur et mot de passe](./media/multi-factor-authentication/pword.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Certificats](./media/multi-factor-authentication/phone.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Smartphone](./media/multi-factor-authentication/hware.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Carte à puce](./media/multi-factor-authentication/smart.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Carte à puce virtuelle](./media/multi-factor-authentication/vsmart.png)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![Nom d’utilisateur et mot de passe](./media/multi-factor-authentication/cert.png)</center>
 
-Azure Multi-Factor Authentication (MFA) est la solution de vérification en deux étapes de Microsoft. Azure MFA permet toodata d’accès de sauvegarde et d’applications tout en répondant à la demande de l’utilisateur pour un processus de connexion simple. Il fournit une authentification forte au moyen de diverses méthodes de vérification, notamment les appels téléphoniques, l’envoi de SMS ou la vérification sur l’application mobile.
-
-> [!VIDEO https://channel9.msdn.com/Blogs/Azure/WA-MFA-Overview/player]
->
->
+Azure Multi-Factor Authentication (MFA) est la solution de vérification en deux étapes de Microsoft. Azure MFA contribue à sécuriser l’accès aux données et aux applications tout en répondant à la demande des utilisateurs souhaitant un processus d’authentification simple. Il fournit une authentification forte au moyen de diverses méthodes de vérification, notamment les appels téléphoniques, l’envoi de SMS ou la vérification sur l’application mobile.
 
 ## <a name="why-use-azure-multi-factor-authentication"></a>Pourquoi utiliser Azure Multi-Factor Authentication ?
-Aujourd’hui, plus que jamais, les personnes sont de plus en plus connectées. Avec les Smartphones, tablettes, ordinateurs portables et PC, personnes ont plusieurs options sur comment ils vont tooconnect et restent connectés à tout moment. Ils peuvent accéder à leurs comptes et leurs applications où qu’ils soient, cela signifie qu’ils peuvent être plus productifs et mieux servir leurs clients.
+Aujourd’hui, plus que jamais, les personnes sont de plus en plus connectées. Avec les smartphones, les tablettes, les PC portables et les PC de bureau, les utilisateurs ont plusieurs options différentes pour se connecter et rester connecté à tout moment. Ils peuvent accéder à leurs comptes et leurs applications où qu’ils soient, cela signifie qu’ils peuvent être plus productifs et mieux servir leurs clients.
 
-L’authentification multifacteur Azure est un toouse facile, évolutive, et une solution fiable qui fournit une deuxième méthode d’authentification pour vos utilisateurs sont toujours protégés.
+Azure Multi-Factor Authentication est une solution facile à utiliser, évolutive et fiable qui fournit une deuxième méthode d'authentification pour que vos utilisateurs soient toujours protégés.
 
-| ![TooUse simple](./media/multi-factor-authentication/simple.png) | ![Évolutif](./media/multi-factor-authentication/scalable.png) | ![Toujours protégé](./media/multi-factor-authentication/protected.png) | ![Fiable](./media/multi-factor-authentication/reliable.png) |
+| ![Facile à utiliser](./media/multi-factor-authentication/simple.png) | ![Évolutif](./media/multi-factor-authentication/scalable.png) | ![Toujours protégé](./media/multi-factor-authentication/protected.png) | ![Fiable](./media/multi-factor-authentication/reliable.png) |
 |:---:|:---:|:---:|:---:|
-| **Toouse simple** |**Évolutif** |**Toujours protégé** |**Fiable** |
+| **Facile à utiliser** |**Évolutif** |**Toujours protégé** |**Fiable** |
 
-* **TooUse facile** -Azure multi-Factor Authentication est simple tooset des et utilisation. Hello une protection supplémentaire qui est fourni avec l’authentification multifacteur Azure permet aux utilisateurs toomanage leurs propres appareils. De plus, dans de nombreux cas elle peut être configurée de manière très simple.
-* **Évolutive** -Azure multi-Factor Authentication utilise l’alimentation hello du cloud de hello et s’intègre à votre site AD et les applications personnalisées. Cette protection est étendue même tooyour des scénarios critiques, de haut volume.
-* **Toujours protégé** -Azure multi-Factor Authentication fournit une authentification forte à l’aide de normes du secteur hello la plus élevées.
-* **Fiable** : nous garantissons une disponibilité à 99,9 % d'Azure Multi-Factor Authentication. Hello service est considérée comme non disponible lorsqu’il est impossible de demandes de vérification tooreceive ou processus pour la vérification en deux étapes hello.
+* **Facile à utiliser** : Azure Multi-Factor Authentication est simple à configurer et utiliser. La protection supplémentaire fournie par Azure Multi-Factor Authentication permet aux utilisateurs de gérer leurs propres appareils. De plus, dans de nombreux cas elle peut être configurée de manière très simple.
+* **Évolutif** : Azure Multi-Factor Authentication utilise la puissance du cloud et s’intègre à votre site Active Directory local et à vos applications personnalisées. Cette protection est même étendue à vos scénarios à mission critique volumineux.
+* **Toujours protégé** : Azure Multi-Factor Authentication fournit une authentification forte qui utilise les normes les plus strictes du secteur.
+* **Fiable** : nous garantissons une disponibilité à 99,9 % d'Azure Multi-Factor Authentication. Le service est considéré comme non disponible quand il ne parvient pas à recevoir ou traiter des demandes de vérification pour la vérification en deux étapes.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Windows-Azure-Multi-Factor-Authentication/player]
 
@@ -57,4 +53,4 @@ L’authentification multifacteur Azure est un toouse facile, évolutive, et une
 
 - En savoir plus sur le [fonctionnement d’Azure Multi-Factor Authentication](multi-factor-authentication-how-it-works.md)
 
-- En savoir plus sur hello différents [versions et les méthodes de consommation pour l’authentification multifacteur Azure](multi-factor-authentication-versions-plans.md)
+- En savoir plus sur les différentes [versions et méthodes de consommation pour Azure Multi-Factor Authentication](multi-factor-authentication-versions-plans.md)

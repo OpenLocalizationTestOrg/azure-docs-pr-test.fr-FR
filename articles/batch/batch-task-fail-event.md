@@ -1,5 +1,5 @@
 ---
-title: "AAA « événement de basculement de tâche de traitement par lots Azure | Documents Microsoft »"
+title: "Événement d’échec de tâche Azure Batch | Microsoft Docs"
 description: "Référence pour l’événement d’échec de tâche Batch."
 services: batch
 author: tamram
@@ -12,18 +12,18 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: e92604671650900072ba27f807501b704329e865
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 08feb4ec34bb1635f8ea744b54a10b677b94ab3e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="task-fail-event"></a>Événement d’échec de tâche
 
- Cet événement est émis quand une tâche se termine avec une erreur. Actuellement, tous les codes de sortie autres que zéro sont considérés comme des échecs. Cet événement sera émis *à* une tâche Exécuter événement et peut être toodetect utilisé lorsqu’une tâche a échoué.
+ Cet événement est émis quand une tâche se termine avec une erreur. Actuellement, tous les codes de sortie autres que zéro sont considérés comme des échecs. Cet événement est émis *n plus* d’un événement de fin de tâche et peut être utilisé pour détecter si une tâche a échoué.
 
 
- Hello suivant montre corps hello d’une tâche événement d'échouer.
+ L’exemple suivant montre le corps d’un événement d’échec de tâche.
 
 ```
 {
@@ -53,41 +53,41 @@ ms.lasthandoff: 10/06/2017
 
 |Nom de l'élément|Type|Remarques|
 |------------------|----------|-----------|
-|jobId|String|id de Hello du travail hello contenant la tâche hello.|
-|id|String|id de Hello de tâche hello.|
-|taskType|String|type de Hello de tâche hello. Ce peut être « JobManager », indiquant qu’il s’agit une tâche du gestionnaire, ou « User », indiquant qu’il ne s’agit pas d’une tâche du gestionnaire. Cet événement n’est pas émis pour des tâches de préparation du travail, des tâches de fin de travail ou des tâches de démarrage.|
-|systemTaskVersion|Int32|Il s’agit de compteur de nouvelles tentatives internes hello sur une tâche. En interne, service de traitement par lots hello peut réessayer un tooaccount de tâche pour les problèmes temporaires. Ces problèmes peuvent inclure interne toorecover erreurs ou des tentatives de planification à partir des nœuds de calcul dans un état incorrect.|
-|[nodeInfo](#nodeInfo)|Type complexe|Contient des informations sur le nœud de calcul hello sur quel hello tâche s’est exécutée.|
-|[multiInstanceSettings](#multiInstanceSettings)|Type complexe|Spécifie que cette tâche hello est une tâche de plusieurs instances nécessitant plusieurs nœuds de calcul.  Pour plus d’informations, voir [multiInstanceSettings](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-task).|
-|[constraints](#constraints)|Type complexe|contraintes de l’exécution de Hello qui s’appliquent toothis tâche.|
-|[executionInfo](#executionInfo)|Type complexe|Contient des informations sur l’exécution de hello de tâche hello.|
+|jobId|String|ID du travail contenant la tâche.|
+|id|String|ID de la tâche.|
+|taskType|String|Type de la tâche. Ce peut être « JobManager », indiquant qu’il s’agit une tâche du gestionnaire, ou « User », indiquant qu’il ne s’agit pas d’une tâche du gestionnaire. Cet événement n’est pas émis pour des tâches de préparation du travail, des tâches de fin de travail ou des tâches de démarrage.|
+|systemTaskVersion|Int32|Compteur de tentatives internes d’exécution d’une tâche. En interne, le service Batch peut recommencer une tâche pour prendre en compte des problèmes temporaires. Ces problèmes peuvent être des erreurs de planification internes ou des tentatives de récupération à partir de nœuds de calcul en mauvais état.|
+|[nodeInfo](#nodeInfo)|Type complexe|Contient des informations sur le nœud de calcul sur lequel la tâche a été exécutée.|
+|[multiInstanceSettings](#multiInstanceSettings)|Type complexe|Spécifie que la tâche est une tâche multi-instance nécessitant plusieurs nœuds de calcul.  Pour plus d’informations, voir [multiInstanceSettings](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-task).|
+|[constraints](#constraints)|Type complexe|Contraintes d’exécution qui s’appliquent à cette tâche.|
+|[executionInfo](#executionInfo)|Type complexe|Contient des informations sur l’exécution de la tâche.|
 
 ###  <a name="nodeInfo"></a> nodeInfo
 
 |Nom de l'élément|Type|Remarques|
 |------------------|----------|-----------|
-|poolId|String|id de Hello de pool hello sur quel hello tâche s’est exécutée.|
-|nodeId|String|Hello l’id du nœud hello sur quel hello tâche s’est exécutée.|
+|poolId|Chaîne|ID u pool sur lequel la tâche a été exécutée.|
+|nodeId|String|ID du nœud sur lequel la tâche a été exécutée.|
 
 ###  <a name="multiInstanceSettings"></a> multiInstanceSettings
 
 |Nom de l'élément|Type|Remarques|
 |------------------|----------|-----------|
-|numberOfInstances|Int32|nombre de Hello de nœuds de calcul requis par la tâche hello.|
+|numberOfInstances|Int32|Nombre de nœuds de calcul requis pour la tâche.|
 
 ###  <a name="constraints"></a> constraints
 
 |Nom de l'élément|Type|Remarques|
 |------------------|----------|-----------|
-|maxTaskRetryCount|Int32|Bonjour le nombre maximal de tentatives de tâche hello peut être. Hello service Batch tente de renvoyer une tâche si son code de sortie est différent de zéro.<br /><br /> Notez que cette valeur contrôle spécifiquement nombre hello de nouvelles tentatives. service de traitement par lots Hello va tenter de tâche hello qu’une seule fois et peut être relancé puis des toothis limite. Par exemple, si le nombre maximal de tentatives de hello est 3, lot tente une tâche too4 fois (une fois initiale et 3 tentatives).<br /><br /> Si le nombre maximal de tentatives de hello est 0, hello service Batch ne réessaie pas de tâches.<br /><br /> Si le nombre maximal de tentatives de hello est -1, service de traitement par lots hello réessaie tâches sans limite.<br /><br /> Hello par défaut est 0 (aucune nouvelle tentative).|
+|maxTaskRetryCount|Int32|Nombre maximal de fois que la tâche peut être retentée. Le service Batch retente une tâche si le code de sortie de celle-ci diffère de zéro.<br /><br /> Notez que cette valeur contrôle spécifiquement le nombre de nouvelles tentatives. Le service Batch tente la tâche une fois et peut réessayer jusqu’à cette limite. Par exemple, si le nombre maximal de nouvelles tentatives est 3, le service Batch peut tenter d’exécuter la tâche jusqu’à 4 fois (tentative initiale + 3 tentatives supplémentaires).<br /><br /> Si le nombre maximal de tentatives est 0, le service Batch ne réessaye pas d’exécuter des tâches.<br /><br /> Si le nombre maximal de nouvelles tentatives est -1, le service Batch réessaie d’exécuter les tâches sans limite.<br /><br /> La valeur par défaut est 0 (aucune nouvelle tentative).|
 
 
 ###  <a name="executionInfo"></a> executionInfo
 
 |Nom de l'élément|Type|Remarques|
 |------------------|----------|-----------|
-|startTime|DateTime|heure de Hello à quelle tâche hello a démarré. « En cours d’exécution » correspond à toohello **en cours d’exécution** d’état, de sorte que si la tâche hello spécifie les fichiers de ressources ou des packages d’applications, l’heure de début hello reflète temps hello au démarrage du téléchargement ou déploiement de ces tâches hello.  Si la tâche hello a été redémarré ou renouvelée, il s’agit de hello heure la plus récente à la tâche hello a démarré.|
-|endTime|DateTime|heure de Hello à quelle tâche hello s’est terminée.|
-|exitCode|Int32|code de sortie Hello de tâche hello.|
-|retryCount|Int32|Bonjour le nombre de tentatives de tâche hello par le service de traitement par lots hello. tâche Hello est retentée si elle se termine avec un code de sortie différent de zéro, les toohello spécifié MaxTaskRetryCount.|
-|requeueCount|Int32|Bonjour le nombre de fois tâche hello a été remis en service de traitement par lots hello en tant que résultat de hello d’une demande de l’utilisateur.<br /><br /> Lorsque les supprime d’utilisateur hello nœuds à partir d’un pool (en les redimensionnant ou réduction hello pool) ou lorsque hello travail est désactivé, l’utilisateur de hello peuvent spécifier que les tâches en cours d’exécution sur les nœuds hello être remis pour l’exécution. Ce nombre reflète le nombre de fois où tâche hello a été remis pour ces raisons.|
+|startTime|DateTime|Heure à laquelle l’exécution de la tâche a commencé. « Running » correspond à l’état **en cours d’exécution**. Ainsi, si la tâche spécifie des fichiers de ressources ou des packages d’applications, l’heure de début est l’heure à laquelle la tâche a commencé à télécharger et à déployer ces éléments.  Si la tâche a été redémarrée ou retentée, il s’agit de la dernière heure à laquelle l’exécution de la tâche a commencé.|
+|endTime|DateTime|Heure à laquelle la tâche s’est terminée.|
+|exitCode|Int32|Code de sortie de la tâche.|
+|retryCount|Int32|Nombre de fois que le service Batch a réessayé d’exécuter la tâche. Si la tâche se termine avec un code de sortie autre que zéro, elle est retentée le nombre de fois spécifié par la valeur MaxTaskRetryCount.|
+|requeueCount|Int32|Nombre de fois que la tâche a été replacée en file d’attente par le service Batch à la suite d’une demande de l’utilisateur.<br /><br /> Lorsque l’utilisateur supprime des nœuds d’un pool (en redimensionnant ou en réduisant le pool), ou quand le travail est désactivé, l’utilisateur peut spécifier que les tâches en cours d’exécution sur les nœuds doivent être replacée en file d’attente pour exécution. Ce nombre reflète le nombre de fois que la tâche a été replacée en file d’attente pour ces raisons.|

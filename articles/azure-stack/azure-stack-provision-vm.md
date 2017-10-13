@@ -1,6 +1,6 @@
 ---
-title: aaaCreate un test de machine virtuelle dans Azure pile | Documents Microsoft
-description: "Découvrez comment tooprovision une machine virtuelle dans la pile d’Azure sous la forme d’un opérateur cloud de test."
+title: "Créer une machine virtuelle de test dans Azure Stack | Microsoft Docs"
+description: "Découvrez comment approvisionner une machine virtuelle dans Azure Stack en tant qu’opérateur cloud."
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -12,31 +12,34 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 7/21/2017
+ms.date: 9/25/2017
 ms.author: erikje
-ms.openlocfilehash: 9633cc20852e16283ad4522da78971133028efdd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 233cf4df53af6a49e5fe4c5d51e112d8196a7530
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-test-virtual-machine-in-azure-stack"></a>Créer une machine virtuelle de test dans Azure Stack
-Comme un opérateur cloud, vous pouvez créer un toovalidate d’ordinateur virtuel de test votre déploiement Azure pile.
+
+*S’applique à : Kit de développement Azure Stack*
+
+En tant qu’opérateur Azure Stack, vous pouvez créer une machine virtuelle de test pour valider votre déploiement du kit de développeur [Azure Stack](azure-stack-poc.md).
 
 > [!NOTE]
-> Vous pouvez configurer des machines virtuelles, vous devez [ajouter le marketplace Azure pile toohello hello Windows Server 2016 Evaluation image](azure-stack-add-default-image.md).
+> Avant de pouvoir approvisionner des machines virtuelles, vous devez [ajouter l’image d’évaluation de Windows Server 2016 à la Place de marché Azure Stack](azure-stack-add-default-image.md).
 > 
 > 
 
 ## <a name="create-a-virtual-machine"></a>Création d'une machine virtuelle
-1. Sur l’hôte du Kit de développement de pile Azure hello, [connectez-vous](azure-stack-connect-azure-stack.md) toohello portail d’administration (`https://adminportal.local.azurestack.external`), puis cliquez sur **nouveau** > **de calcul**  >  **Windows Server 2016 Datacenter Eval** > **créer**.  
-2. Bonjour **notions de base** panneau, tapez un **nom**, **nom d’utilisateur**, et **mot de passe**. Choisissez un **Abonnement**. Créez un **Groupe de ressources** ou sélectionnez un groupe existant, puis cliquez sur **OK**.  
-3. Bonjour **choisir une taille** panneau, cliquez sur **A1 Standard**, puis cliquez sur **sélectionnez**.  
-4. Bonjour **paramètres** panneau, acceptez les valeurs par défaut hello et cliquez sur **OK**
-5. Bonjour **Résumé** panneau, cliquez sur **OK** toocreate hello virtual machine.  
-6. toosee votre nouvel ordinateur virtuel, cliquez sur **toutes les ressources**, puis recherchez l’ordinateur virtuel de hello et cliquez sur son nom.
+1. Sur l’hôte du Kit de développement Azure Stack, [connectez-vous](azure-stack-connect-azure-stack.md) au portail d’administration (`https://adminportal.local.azurestack.external`), puis cliquez sur **Nouveau** > **Calcul** > **Windows Server 2016 Datacenter Evaluation** > **Créer**.  
+2. Dans le panneau **Informations de base**, entrez un **Nom**, un **Nom d’utilisateur** et un **Mot de passe**. Choisissez un **Abonnement**. Créez un **Groupe de ressources** ou sélectionnez un groupe existant, puis cliquez sur **OK**.  
+3. Dans le panneau **Choisir une taille**, cliquez sur **A1 Standard**, puis cliquez sur **Sélectionner**.  
+4. Dans le panneau **Paramètres**, acceptez les valeurs par défaut et cliquez sur **OK**.
+5. Dans le panneau **Résumé**, cliquez sur **OK** pour créer la machine virtuelle.  
+6. Pour voir votre nouvelle machine virtuelle, cliquez sur **Toutes les ressources**, puis recherchez la machine virtuelle et cliquez sur son nom.
     ![](media/azure-stack-provision-vm/image06.png)
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-[À l’aide des portails d’administrateur et utilisateur hello dans la pile de Azure](azure-stack-manage-portals.md)
+[Utilisation des portails administrateur et utilisateur dans Azure Stack](azure-stack-manage-portals.md)

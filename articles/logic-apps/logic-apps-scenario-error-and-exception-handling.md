@@ -1,5 +1,5 @@
 ---
-title: "aaaException gestion & Azure Logic Apps - scénario de journalisation erreur | Documents Microsoft"
+title: "Scénario de gestion des exceptions et de journalisation des erreurs Azure Logic Apps | Microsoft Docs"
 description: "Décrit un cas d’usage réel sur la gestion avancés des exceptions et la journalisation des erreurs pour Azure Logic Apps"
 keywords: 
 services: logic-apps
@@ -16,51 +16,51 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 07/29/2016
 ms.author: LADocs; b-hoedid
-ms.openlocfilehash: e893a7b652254dca7b8a82398e8afd571f6ccd25
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 044de27c75da93c95609110d2b73336c42f746fe
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scenario-exception-handling-and-error-logging-for-logic-apps"></a>Scénario : gestion des exceptions et journalisation des erreurs pour les applications logiques
 
-Ce scénario décrit comment vous pouvez étendre une logique application toobetter prise en charge la gestion des exceptions. Nous avons utilisé une question de hello tooanswer cas utilisation concrète : « Azure Logic Apps prend en charge exception et la gestion des erreurs ? »
+Ce scénario décrit comment vous pouvez étendre une application logique pour assurer une meilleure prise en charge de la gestion des exceptions. Nous avons utilisé un cas d’utilisation réel, et cet article répond à la question « Azure Logic Apps prend-il en charge la gestion des exceptions et des erreurs ? »
 
 > [!NOTE]
-> schéma de Azure Logic Apps actuel Hello fournit un modèle standard pour les réponses de l’action. Ce schéma inclut les réponses de type validation interne et de type erreur retournées depuis une application API.
+> Le schéma Azure Logic Apps actuel fournit un modèle standard pour les réponses à des actions. Ce schéma inclut les réponses de type validation interne et de type erreur retournées depuis une application API.
 
 ## <a name="scenario-and-use-case-overview"></a>Vue d’ensemble du scénario et du cas d’utilisation
 
-Voici un récit hello en cas d’usage hello pour ce scénario : 
+Voici le récit du cas d’utilisation qui sous-tend ce scénario : 
 
-Une organisation de soins de santé connue nous engagé toodevelop une solution Azure qui créerait un patient portail à l’aide de Microsoft Dynamics CRM Online. Ils nécessaire des enregistrements de rendez-vous toosend entre hello du portail patient Dynamics CRM Online et Salesforce. Nous avons demandées toouse hello [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) standard pour tous les patients.
+Un fameux organisme de santé nous a engagés pour développer une solution Azure afin de mettre en place un portail pour les patients à l’aide de Microsoft Dynamics CRM Online. L’organisme avait besoin d’envoyer des enregistrements de rendez-vous entre le portail patient Dynamics CRM Online et Salesforce. Il nous a été demandé d’utiliser la norme [HL7 FHIR](http://www.hl7.org/implement/standards/fhir/) pour tous les dossiers des patients.
 
-projet de Hello comportait deux exigences principales :  
+Le projet comportait deux exigences principales :  
 
-* Une méthode toolog enregistre envoyés à partir de hello portail Dynamics CRM Online
-* Un moyen tooview toutes les erreurs qui se sont produits dans le flux de travail hello
+* Une méthode pour journaliser les enregistrements envoyés à partir du portail Dynamics CRM Online.
+* La possibilité de visualiser les erreurs susceptibles de se produire dans le flux de travail.
 
 > [!TIP]
-> Pour visionner une vidéo de haut niveau de ce projet, consultez [groupe utilisateur d’intégration](http://www.integrationusergroup.com/logic-apps-support-error-handling/ "groupe utilisateur d’intégration").
+> Pour une vidéo détaillée sur ce projet, consultez [Groupe d’utilisateurs d’intégration](http://www.integrationusergroup.com/logic-apps-support-error-handling/ "Integration User Group").
 
-## <a name="how-we-solved-hello-problem"></a>Comment nous avons résolu le problème de hello
+## <a name="how-we-solved-the-problem"></a>Comment nous avons résolu le problème
 
-Nous avons choisi [base de données Azure Cosmos](https://azure.microsoft.com/services/documentdb/ "base de données Azure Cosmos") comme référentiel pour les enregistrements de journal et d’erreur hello (Cosmos DB fait référence toorecords sous forme de documents). Azure Logic Apps ayant un modèle standard pour toutes les réponses, nous n’aurait pas toocreate un schéma personnalisé. Nous pouvons créer une application API trop**insérer** et **requête** pour les enregistrements d’erreur et de journal. Nous avons également définir un schéma pour chaque application d’API hello.  
+Nous avons choisi [Azure Cosmos DB](https://azure.microsoft.com/services/documentdb/ "Azure Cosmos DB") comme référentiel pour les enregistrements de journal et d’erreur (Cosmos DB fait référence aux enregistrements en tant que documents). Comme Azure Logic Apps dispose d’un modèle standard pour toutes les réponses, nous n’avons pas à créer un schéma personnalisé. Nous pouvons créer une application API pour **insérer** et**interroger** les enregistrements d’erreur et de journal. Nous pouvons également définir un schéma pour chaque enregistrement au sein de l’application API.  
 
-Une autre exigence a été toopurge enregistrements après une certaine date. COSMOS DB a une propriété appelée [temps tooLive](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "temps tooLive") (TTL), ce qui nous a permis de tooset un **temps tooLive** valeur pour chaque enregistrement ou de la collection. Cette fonctionnalité éliminée hello besoin toomanually supprimer des enregistrements dans la base de données Cosmos.
+Une autre exigence consistait à vider les enregistrements au-delà d’une certaine date. Cosmos DB possède une propriété [Durée de vie](https://azure.microsoft.com/blog/documentdb-now-supports-time-to-live-ttl/ "Durée de vie") (TTL, Time To Live), qui nous a permis de définir une valeur **Durée de vie** pour chaque enregistrement ou pour toute une collection. Ainsi, nous n’avons plus à supprimer manuellement les enregistrements dans Cosmos DB.
 
 > [!IMPORTANT]
-> toocomplete ce didacticiel, vous devez toocreate une base de données de la base de données Cosmos et deux collections (journalisation et les erreurs).
+> Pour suivre ce didacticiel, vous devez créer une base de données Cosmos DB et deux collections (Journalisation et Erreurs).
 
-## <a name="create-hello-logic-app"></a>Créer la logique d’application hello
+## <a name="create-the-logic-app"></a>Création de l’application logique
 
-première étape de Hello est toocreate hello logique application et l’application hello ouvert dans le Concepteur de la logique d’application. Dans cet exemple, nous utilisons des applications logiques parent-enfant. Supposons que nous avoir déjà créé le parent de hello et que vous allez toocreate une application de logique enfant.
+La première étape consiste à créer l’application logique et à l’ouvrir dans le Concepteur d’application logique. Dans cet exemple, nous utilisons des applications logiques parent-enfant. Supposons que nous avons déjà créé le parent et que nous allons créer une application logique enfant.
 
-Étant donné que nous allons l’enregistrement de hello toolog issues de Dynamics CRM Online, nous pouvons commencer en haut de hello. Nous devons utiliser une **demande** déclencheur parce qu’hello parent logique application déclenche cet enfant.
+Étant donné que nous allons journaliser l’enregistrement provenant de Dynamics CRM Online, nous allons commencer par le haut. Nous devons utiliser un déclencheur **Requête**, car l’application logique parente déclenche cet enfant.
 
 ### <a name="logic-app-trigger"></a>Déclencheur d’application logique
 
-Nous utilisons un **demande** déclencher comme indiqué dans hello l’exemple suivant :
+Nous utilisons un déclencheur **Requête** comme indiqué dans l’exemple ci-dessous :
 
 ```` json
 "triggers": {
@@ -100,14 +100,14 @@ Nous utilisons un **demande** déclencher comme indiqué dans hello l’exemple 
 
 ## <a name="steps"></a>Étapes
 
-Nous devons du journal source hello (requête) de patients hello de portail de Dynamics CRM Online hello.
+Nous devons journaliser la source (requête) du dossier du patient à partir du portail Dynamics CRM Online.
 
 1. Nous devons d’abord obtenir un nouvel enregistrement de rendez-vous de Dynamics CRM Online.
 
-   déclencheur Hello en provenance de CRM nous fournit hello **CRM PatentId**, **type d’enregistrement**, **nouveau ou mis à jour un enregistrement** (nouvelle ou mise à jour de la valeur booléenne), et  **SalesforceId**. Hello **SalesforceId** peut avoir la valeur null, car il est utilisé uniquement pour une mise à jour.
-   Nous obtenons un enregistrement CRM hello à l’aide de hello CRM **PatientID** et hello **Type d’enregistrement**.
+   Le déclencheur provenant de CRM nous fournit les paramètres **ID de patient CRM****Type d’enregistrement**, **Enregistrement nouveau ou mis à jour** (valeur booléenne nouvelle ou mise à jour) et **ID Salesforce**. **L’ID Salesforce** peut être défini sur la valeur Null, car il est utilisé uniquement pour une mise à jour.
+   Nous allons obtenir l’enregistrement CRM à l’aide du **PatientID** et du **type d’enregistrement**.
 
-2. Ensuite, nous devons tooadd notre application API DocumentDB **InsertLogEntry** opération comme illustré ici dans le Concepteur de la logique d’application.
+2. Nous devons ensuite ajouter l’opération **InsertLogEntry** de notre application API DocumentDB, comme montré ici dans le concepteur d’application logique.
 
    **Insérer une entrée de journal**
 
@@ -124,15 +124,15 @@ Nous devons du journal source hello (requête) de patients hello de portail de D
 ## <a name="logic-app-source-code"></a>Code source d’application logique
 
 > [!NOTE]
-> Hello exemple suivant est des exemples uniquement. Ce didacticiel est basé sur une implémentation en production, hello valeur un **nœud Source** peuvent ne pas afficher les propriétés qui sont associée tooscheduling un rendez-vous. > 
+> Les exemples suivants ne sont que des échantillons. Comme ce didacticiel est basé sur une implémentation actuellement en production, la valeur d’un **Nœud source** peut ne pas afficher les propriétés qui sont liées à la planification d’un rendez-vous. 
 
 ### <a name="logging"></a>Journalisation
 
-Hello suivant le code d’application logique exemple montre comment toohandle journalisation.
+L’exemple de code d’application logique suivant indique comment gérer la journalisation.
 
 #### <a name="log-entry"></a>Entrée de journal
 
-Voici hello logique application source code pour l’insertion d’une entrée de journal.
+Voici le code source de l’application logique permettant d’insérer une entrée de journal.
 
 ``` json
 "InsertLogEntry": {
@@ -160,7 +160,7 @@ Voici hello logique application source code pour l’insertion d’une entrée d
 
 #### <a name="log-request"></a>Consigner une requête
 
-Voici le message de demande de journal hello publié l’application d’API toohello.
+Voici le message de journalisation de requête publié dans l’application API.
 
 ``` json
     {
@@ -180,7 +180,7 @@ Voici le message de demande de journal hello publié l’application d’API too
 
 #### <a name="log-response"></a>Consigner une réponse
 
-Voici le message de réponse hello journal à partir de l’application d’API hello.
+Voici le message de journalisation de réponse provenant de l’application API.
 
 ``` json
 {
@@ -214,15 +214,15 @@ Voici le message de réponse hello journal à partir de l’application d’API 
 
 ```
 
-Maintenant examinons hello de gestion d’erreur comme suit.
+Nous allons maintenant examiner les étapes de gestion des erreurs.
 
 ### <a name="error-handling"></a>Gestion des erreurs
 
-Hello logique application exemple de code montre comment vous pouvez implémenter la gestion des erreurs.
+L’exemple de code d’application logique suivant indique comment vous pouvez implémenter la gestion des erreurs.
 
 #### <a name="create-error-record"></a>Créer un enregistrement d’erreur
 
-Voici le code de source application hello logique pour la création d’un enregistrement d’erreur.
+Voici le code source de l’application logique permettant de créer un enregistrement d’erreur.
 
 ``` json
 "actions": {
@@ -269,7 +269,7 @@ Voici le code de source application hello logique pour la création d’un enreg
         "isError": true,
         "crmId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
         "patientId": "6b115f6d-a7ee-e511-80f5-3863bb2eb2d0",
-        "message": "Salesforce failed toocomplete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
+        "message": "Salesforce failed to complete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
         "providerId": "",
         "severity": 4,
         "salesforceId": "",
@@ -307,7 +307,7 @@ Voici le code de source application hello logique pour la création d’un enreg
         "action": "New_Patient",
         "salesforceId": "",
         "update": false,
-        "body": "CRM failed toocomplete task: Message: duplicate value found: CRM_HUB_ID__c duplicates value on record with id: 001U000001c83gK",
+        "body": "CRM failed to complete task: Message: duplicate value found: CRM_HUB_ID__c duplicates value on record with id: 001U000001c83gK",
         "source": "{/"Account_Class_vod__c/":/"PRAC/",/"Account_Status_MED__c/":/"I/",/"CRM_HUB_ID__c/":/"6b115f6d-a7ee-e511-80f5-3863bb2eb2d0/",/"Credentials_vod__c/":/"DO - Degree level is DO/",/"DTC_ID_MED__c/":/"/",/"Fax/":/"/",/"FirstName/":/"A/",/"Gender_vod__c/":/"/",/"IMS_ID__c/":/"/",/"LastName/":/"BAILEY/",/"MterID_mp__c/":/"/",/"Medicis_ID_MED__c/":/"851588/",/"Middle_vod__c/":/"/",/"NPI_vod__c/":/"/",/"PDRP_MED__c/":false,/"PersonDoNotCall/":false,/"PersonEmail/":/"/",/"PersonHasOptedOutOfEmail/":false,/"PersonHasOptedOutOfFax/":false,/"PersonMobilePhone/":/"/",/"Phone/":/"/",/"Practicing_Specialty__c/":/"FM - FAMILY MEDICINE/",/"Primary_City__c/":/"/",/"Primary_State__c/":/"/",/"Primary_Street_Line2__c/":/"/",/"Primary_Street__c/":/"/",/"Primary_Zip__c/":/"/",/"RecordTypeId/":/"012U0000000JaPWIA0/",/"Request_Date__c/":/"2016-06-10T22:31:55.9647467Z/",/"XXXXXXX/":/"/",/"Specialty_1_vod__c/":/"/",/"Suffix_vod__c/":/"/",/"Website/":/"/"}",
         "code": 400,
         "errors": null,
@@ -340,7 +340,7 @@ Voici le code de source application hello logique pour la création d’un enreg
     },
     "body": {
         "status": 400,
-        "message": "Salesforce failed toocomplete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
+        "message": "Salesforce failed to complete task: Message: duplicate value found: Account_ID_MED__c duplicates value on record with id: 001U000001c83gK",
         "source": "Salesforce.Common",
         "errors": []
     }
@@ -348,11 +348,11 @@ Voici le code de source application hello logique pour la création d’un enreg
 
 ```
 
-### <a name="return-hello-response-back-tooparent-logic-app"></a>Application de retour hello réponse tooparent précédent logique
+### <a name="return-the-response-back-to-parent-logic-app"></a>Renvoi de la réponse à l’application logique parente
 
-Après avoir obtenu la réponse de hello, vous pouvez passer la réponse de hello toohello arrière parent logique application.
+Lorsque vous disposez de la réponse, vous pouvez la transmettre à l’application logique parente.
 
-#### <a name="return-success-response-tooparent-logic-app"></a>Retourner l’application logique de réussite réponse tooparent
+#### <a name="return-success-response-to-parent-logic-app"></a>Retourner une réponse positive à l’application logique parente
 
 ``` json
 "SuccessResponse": {
@@ -374,7 +374,7 @@ Après avoir obtenu la réponse de hello, vous pouvez passer la réponse de hell
 }
 ```
 
-#### <a name="return-error-response-tooparent-logic-app"></a>Application de retour d’erreur réponse tooparent logique
+#### <a name="return-error-response-to-parent-logic-app"></a>Retourner une réponse d’erreur à l’application logique parente
 
 ``` json
 "ErrorResponse": {
@@ -404,12 +404,12 @@ Notre solution a permis d’ajouter des fonctionnalités avec [Cosmos DB](https
 
 ### <a name="error-management-portal"></a>Portail de gestion des erreurs
 
-des erreurs tooview hello, vous pouvez créer un enregistrements d’erreur MVC web application toodisplay hello à partir de la base de données Cosmos. Hello **liste**, **détails**, **modifier**, et **supprimer** opérations sont incluses dans la version actuelle de hello.
+Pour afficher les erreurs, vous pouvez créer une application web MVC afin d’afficher les enregistrements d’erreur à partir de Cosmos DB. Les opérations **Liste**, **Détails**, **Modifier** et **Supprimer** sont incluses dans la version actuelle.
 
 > [!NOTE]
-> Modifier l’opération : Cosmos DB remplace l’intégralité du document hello. Hello d’enregistrements affichés dans hello **liste** et **détail** les vues sont des exemples uniquement. Il ne s’agit pas d’enregistrements de rendez-vous de patients réels.
+> Opération Modifier : Cosmos DB remplace l’ensemble du document. Les enregistrements affichés dans les vues **Liste** et **Détail** représentent uniquement des exemples. Il ne s’agit pas d’enregistrements de rendez-vous de patients réels.
 
-Voici des exemples de notre application MVC est créé précédemment par hello décrites approche.
+Voici quelques exemples des détails de notre application MVC créée à l’aide de l’approche décrite précédemment.
 
 #### <a name="error-management-list"></a>Liste de gestion des erreurs
 ![Liste d'erreurs](media/logic-apps-scenario-error-and-exception-handling/errorlist.png)
@@ -419,7 +419,7 @@ Voici des exemples de notre application MVC est créé précédemment par hello 
 
 ### <a name="log-management-portal"></a>Portail de gestion des journaux
 
-journaux de hello tooview, nous avons créé également une application web MVC. Voici des exemples de notre application MVC est créé précédemment par hello décrites approche.
+Pour afficher les journaux, nous avons également créé une application web MVC. Voici quelques exemples des détails de notre application MVC créée à l’aide de l’approche décrite précédemment.
 
 #### <a name="sample-log-detail-view"></a>Exemple de vue détaillée de journal
 ![Vue détaillée de journal](media/logic-apps-scenario-error-and-exception-handling/samplelogdetail.png)
@@ -434,14 +434,14 @@ Notre application API de gestion des exceptions Azure Logic Apps en open source 
 * **LogController** insère un enregistrement de journal (document) dans une collection DocumentDB.
 
 > [!TIP]
-> Les deux contrôleurs utilisent `async Task<dynamic>` opérations, permettant ainsi l’opérations tooresolve lors de l’exécution, afin que nous pouvons créer hello schéma DocumentDB dans les corps de hello d’opération de hello. 
+> Les deux contrôleurs utilisent des opérations `async Task<dynamic>`, ce qui permet des opérations à résoudre lors de l’exécution. Nous pouvons donc créer le schéma DocumentDB dans le corps de l’opération. 
 > 
 
-Chaque document de DocumentDB doit posséder un ID unique. Nous utilisons `PatientId` et l’ajout d’un horodateur est converti de valeur d’horodateur tooa Unix (double). Nous tronquer hello tooremove hello fractions de seconde valeur.
+Chaque document de DocumentDB doit posséder un ID unique. Nous utilisons le paramètre `PatientId` et ajoutons un horodatage qui est converti en valeur d’horodatage Unix (double). Nous la tronquons la valeur pour supprimer la valeur fractionnaire.
 
-Vous pouvez afficher le code source de hello de notre contrôleur erreur API [à partir de GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs).
+Vous pouvez afficher le code source de notre API de contrôleur d’erreur [à partir de GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi/blob/master/Logic App Exception Management API/Controllers/ErrorController.cs).
 
-Nous appelons hello API à partir d’une application logique à l’aide de la syntaxe de hello :
+Nous appelons l’API à partir d’une application logique à l’aide de la syntaxe suivante :
 
 ``` json
  "actions": {
@@ -474,17 +474,17 @@ Nous appelons hello API à partir d’une application logique à l’aide de la 
  }
 ```
 
-Hello expression Bonjour précédant les vérifications d’exemple de code pour hello *Create_NewPatientRecord* état **n’a pas pu**.
+L’expression de l’exemple de code ci-dessus vérifie que l’état de l’enregistrement *Create_NewPatientRecord* est défini sur **Failed**.
 
 ## <a name="summary"></a>Résumé
 
 * Vous pouvez facilement implémenter la journalisation et la gestion des erreurs dans une application logique.
-* Vous pouvez utiliser DocumentDB comme référentiel de hello pour les enregistrements de journal et d’erreur (documents).
-* Vous pouvez utiliser MVC toocreate un journal toodisplay portail et les enregistrements d’erreur.
+* Vous pouvez utiliser DocumentDB comme référentiel pour les enregistrements de journal et d’erreur (documents).
+* Vous pouvez utiliser MVC pour créer un portail afin d’afficher les enregistrements de journal et d’erreur.
 
 ### <a name="source-code"></a>Code source
 
-code source Hello hello gestion des exceptions Logic Apps application API est disponible dans cette [référentiel GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "API de gestion des exceptions logique d’application").
+Le code source de l’application API de gestion des exceptions Logic Apps est disponible dans ce [référentiel GitHub](https://github.com/HEDIDIN/LogicAppsExceptionManagementApi "API de gestion des exceptions Logic Apps").
 
 ## <a name="next-steps"></a>Étapes suivantes
 

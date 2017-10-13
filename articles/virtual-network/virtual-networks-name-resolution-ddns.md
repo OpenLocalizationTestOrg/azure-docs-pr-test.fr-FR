@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing les noms d’hôte DNS dynamique tooregister"
-description: "Cette page fournit des détails sur la façon de tooset des noms d’hôtes de tooregister DNS dynamiques dans vos propres serveurs DNS."
+title: "Utilisation de DNS dynamique pour inscrire les noms d’hôte"
+description: "Cette page fournit des détails sur la configuration du DNS dynamique pour enregistrer les noms d’hôte sur vos propres serveurs DNS."
 services: dns
 documentationcenter: na
 author: GarethBradshawMSFT
@@ -14,31 +14,31 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2017
 ms.author: garbrad
-ms.openlocfilehash: 8d4b44265714e6976f26bfb3446e8101aa70996a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 440a062e5fff73526b2d77d7d0a7c52ca72a66f1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-dynamic-dns-tooregister-hostnames-in-your-own-dns-server"></a>À l’aide de noms d’hôtes de tooregister DNS dynamique dans votre propre serveur DNS
-[Azure fournit la résolution de noms](virtual-networks-name-resolution-for-vms-and-role-instances.md) pour les machines virtuelles et les instances de rôle. Cependant, lorsque votre résolution de noms doit aller au-delà de ceux fournis par Azure, vous pouvez fournir vos propres serveurs DNS. Cette offre vous hello power tootailor votre toosuit de solution DNS vos propres besoins. Par exemple, vous devrez peut-être tooaccess des ressources locales via votre contrôleur de domaine Active Directory.
+# <a name="using-dynamic-dns-to-register-hostnames-in-your-own-dns-server"></a>Utilisation de DNS dynamique pour inscrire les noms d’hôte sur votre propre serveur DNS
+[Azure fournit la résolution de noms](virtual-networks-name-resolution-for-vms-and-role-instances.md) pour les machines virtuelles et les instances de rôle. Cependant, lorsque votre résolution de noms doit aller au-delà de ceux fournis par Azure, vous pouvez fournir vos propres serveurs DNS. Cela vous permet de personnaliser votre solution DNS pour l’adapter à vos propres besoins. Par exemple, vous pouvez avoir besoin d’accéder à des ressources locales avec votre contrôleur de domaine Active Directory.
 
-Quand vos serveurs DNS personnalisés sont hébergés en tant que machines virtuelles de Azure vous pouvez transférer le nom d’hôte demande hello même réseau virtuel tooAzure tooresolve les noms d’hôte. Si vous ne souhaitez pas toouse cet itinéraire, vous pouvez inscrire les noms d’hôte de votre machine virtuelle dans votre serveur DNS à l’aide de DNS dynamique.  Azure n’hello capacité (par exemple, informations d’identification) toodirectly à créer des enregistrements dans vos serveurs DNS, afin d’autres mécanismes sont souvent nécessaires. Voici quelques scénarios courants avec des solutions alternatives.
+Lorsque vos serveurs DNS personnalisés sont hébergés en tant que machines virtuelles Azure, vous pouvez transférer les requêtes de nom d’hôte (pour le même réseau virtuel) vers Azure pour résoudre les noms d’hôte. Si vous ne souhaitez pas utiliser cet itinéraire, vous pouvez enregistrer les noms d’hôte de vos machines virtuelles dans votre serveur DNS à l’aide du DNS dynamique.  Comme Azure n’a pas la possibilité (informations d’identification, par exemple) de créer directement des enregistrements dans vos serveurs DNS, d’autres mécanismes sont souvent nécessaires. Voici quelques scénarios courants avec des solutions alternatives.
 
 ## <a name="windows-clients"></a>Clients Windows
-Les clients Windows non joints à un domaine tentent des mises à jour DNS dynamiques non sécurisées lors du démarrage ou de la modifications de leurs adresses IP. nom DNS de Hello est le nom d’hôte hello plus le suffixe DNS principal de hello. Azure laisse le suffixe DNS principal de hello vide, mais vous pouvez définir cette option Bonjour machine virtuelle, via hello [UI](https://technet.microsoft.com/library/cc794784.aspx) ou [à l’aide d’automation](https://social.technet.microsoft.com/forums/windowsserver/3720415a-6a9a-4bca-aa2a-6df58a1a47d7/change-primary-dns-suffix).
+Les clients Windows non joints à un domaine tentent des mises à jour DNS dynamiques non sécurisées lors du démarrage ou de la modifications de leurs adresses IP. Le nom DNS se compose du nom d’hôte et du suffixe DNS principal. Azure laisse le suffixe DNS principal vide, mais ce dernier peut être défini dans la machine virtuelle, via l’[interface utilisateur](https://technet.microsoft.com/library/cc794784.aspx) ou avec [Automation](https://social.technet.microsoft.com/forums/windowsserver/3720415a-6a9a-4bca-aa2a-6df58a1a47d7/change-primary-dns-suffix).
 
-Les clients appartenant au domaine Windows inscrivent leurs adresses IP avec le contrôleur de domaine hello à l’aide de DNS dynamique sécurisée. processus de jonction de domaine Hello définit le suffixe DNS principal de hello sur le client de hello, crée et gère la relation d’approbation hello.
+Les clients Windows joints à un domaine inscrivent leurs adresses IP auprès du contrôleur de domaine à l’aide de la mise à jour DNS dynamique sécurisée. Le processus de jonction de domaine définit le suffixe DNS principal sur le client, puis crée et gère la relation d’approbation.
 
 ## <a name="linux-clients"></a>Clients Linux
-Clients Linux généralement ne s’inscrire avec le serveur DNS de hello au démarrage, ils supposent que le serveur DHCP hello le fait. Les serveurs DHCP d’Azure n’ont pas de possibilité de hello ou les enregistrements de tooregister d’informations d’identification dans votre serveur DNS.  Vous pouvez utiliser un outil appelé *nsupdate*, qui est inclus dans le package de liaison hello, met à jour des DNS dynamiques toosend. Étant donné que le protocole DNS dynamique de hello est normalisé, vous pouvez utiliser *nsupdate* même lorsque vous utilisez pas liaison sur le serveur DNS de hello.
+En général, les clients Linux ne s’inscrivent pas eux-mêmes auprès du serveur DNS au démarrage et présument que ce dernier le fait à leur place. Les serveurs DHCP d’Azure n’ont pas la capacité ou les informations d’identification pour stocker des enregistrements dans votre serveur DNS.  Vous pouvez utiliser un outil appelé *nsupdate*, qui est inclus dans le package Bind, pour envoyer des mises à jour DNS dynamiques. Comme le protocole DNS dynamique est normalisé, vous pouvez utiliser *nsupdate* même quand vous n’utilisez pas Bind sur le serveur DNS.
 
-Vous pouvez utiliser des crochets hello fournis par toocreate de client DHCP hello et conserver l’entrée de nom d’hôte hello dans le serveur DNS hello. Cycle hello DHCP, les clients hello exécute des scripts de hello dans */etc/dhcp/dhclient-exit-hooks.d/*. Cela peut être utilisé tooregister hello nouvelle adresse IP à l’aide de *nsupdate*. Par exemple :
+Vous pouvez utiliser les raccordements fournis par le client DHCP pour créer et gérer l’entrée du nom d’hôte sur le serveur DNS. Au cours du cycle DHCP, le client exécute les scripts dans */etc/dhcp/dhclient-exit-hooks.d/*. Vous pouvez l’utiliser pour inscrire la nouvelle adresse IP à l’aide de *nsupdate*. Par exemple :
 
         #!/bin/sh
         requireddomain=mydomain.local
 
-        # only execute on hello primary nic
+        # only execute on the primary nic
         if [ "$interface" != "eth0" ]
         then
             return
@@ -60,11 +60,11 @@ Vous pouvez utiliser des crochets hello fournis par toocreate de client DHCP hel
         
         
 
-Vous pouvez également utiliser hello *nsupdate* tooperform de commande des mises à jour DNS dynamique sécurisée. Par exemple, quand vous utilisez un serveur DNS Bind, une paire de clés publique/privée est [générée](http://linux.yyz.us/nsupdate/).  le serveur DNS Hello est [configuré](http://linux.yyz.us/dns/ddns-server.html) avec la partie publique de hello de clé hello afin qu’il puisse vérifier la signature hello sur demande de hello. Vous devez utiliser hello *-k* option tooprovide hello paire de clés trop*nsupdate* par ordre de hello toobe demande signé de la mise à jour des DNS dynamique.
+Vous pouvez également utiliser la commande *nsupdate* pour effectuer des mises à jour DNS dynamiques sécurisées. Par exemple, quand vous utilisez un serveur DNS Bind, une paire de clés publique/privée est [générée](http://linux.yyz.us/nsupdate/).  Le serveur DNS est [configuré](http://linux.yyz.us/dns/ddns-server.html) avec la partie publique de la clé, ce qui lui permet de vérifier la signature sur la demande. Vous devez utiliser l’option *-k* pour fournir la paire de clés à *nsupdate* afin de signer la demande de mise à jour DNS dynamique.
 
-Lorsque vous utilisez un serveur DNS Windows, vous pouvez utiliser l’authentification Kerberos avec hello *-g* paramètre dans *nsupdate* (non disponible dans la version de Windows hello de *nsupdate* ). toodo cela, utilisez *kinit* informations d’identification de hello tooload (par exemple un [fichier keytab](http://www.itadmintools.com/2011/07/creating-kerberos-keytab-files.html)). Puis *nsupdate -g* collectera des informations d’identification hello à partir du cache de hello.
+Quand vous utilisez un serveur DNS Windows, l’authentification Kerberos peut être associée au paramètre *-g* dans *nsupdate* (non disponible dans la version Windows de *nsupdate*). Pour ce faire, utilisez *kinit* pour charger les informations d’identification (par exemple, depuis un [fichier keytab](http://www.itadmintools.com/2011/07/creating-kerberos-keytab-files.html)). *nsupdate -g* sélectionnera ensuite les informations d’identification à partir du cache.
 
-Si nécessaire, vous pouvez ajouter un tooyour de suffixe de recherche DNS machines virtuelles. suffixe DNS de Hello est spécifié dans hello */etc/resolv.conf* fichier. La plupart des distributions Linux prises gérer automatiquement le contenu de hello de ce fichier, généralement pas les modifier. Toutefois, vous pouvez remplacer le suffixe de hello à l’aide du client hello DHCP *remplacent* commande. toodo cela, dans */etc/dhcp/dhclient.conf*, ajoutez :
+Si nécessaire, vous pouvez ajouter un suffixe de recherche DNS à vos machines virtuelles. Le suffixe DNS est spécifié dans le fichier */etc/resolv.conf* . Comme la plupart des distributions Linux gèrent automatiquement le contenu de ce fichier, il ne peut généralement pas être modifié. Toutefois, vous pouvez remplacer le suffixe à l’aide de la commande *supersede* du client DHCP. Pour ce faire, dans */etc/dhcp/dhclient.conf*, ajoutez :
 
         supersede domain-name <required-dns-suffix>;
 

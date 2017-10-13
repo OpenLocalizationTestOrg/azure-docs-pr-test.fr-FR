@@ -1,3 +1,3 @@
 > [!IMPORTANT]
-> IoT hub de Hello seront publiquement détectable comme un point de terminaison DNS, vous devez donc vous assurer tooavoid toutes les informations sensibles tout en lui attribuant un nom.
+> Étant donné que l’IoT Hub sera publiquement détectable en tant que point de terminaison DNS, assurez-vous de ne pas utiliser d’informations sensibles en lui attribuant un nom.
 >

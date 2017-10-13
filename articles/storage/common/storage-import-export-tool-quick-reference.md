@@ -1,5 +1,5 @@
 ---
-title: "référence aaaQuick pour les commandes de travail d’importation outil d’importation/exportation Azure | Documents Microsoft"
+title: "Aide-mémoire sur les commandes de travail d’importation pour l’outil Azure Import/Export | Microsoft Docs"
 description: "Référence de l’outil Azure Import/Export pour les commandes de travail d’importation fréquemment utilisées."
 author: muralikk
 manager: syadav
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 35e46f24f764a5098ca465adb51badcab2d13e9d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d51ae35ead0e7d8289de663e5b7b48d28271e810
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="quick-reference-for-frequently-used-commands-for-import-jobs"></a>Aide-mémoire sur les commandes fréquemment utilisées pour les travaux d’importation
 
@@ -48,7 +48,7 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#2 /AbortSession
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3 /ResumeSession
 ```
 
-## <a name="add-drives-toolatest-session"></a>Ajouter des lecteurs toolatest session
+## <a name="add-drives-to-latest-session"></a>Ajouter des disques à la dernière session
 
 ```
 WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3 /AdditionalDriveSet:driveset-2.csv
@@ -56,4 +56,4 @@ WAImportExport.exe PrepImport /j:JournalTest.jrn /id:session#3 /AdditionalDriveS
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Exemple workflow tooprepare les disques durs pour un travail d’importation](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)
+* [Exemple de workflow pour préparer des disques durs à un travail d’importation](storage-import-export-tool-sample-preparing-hard-drives-import-job-workflow.md)

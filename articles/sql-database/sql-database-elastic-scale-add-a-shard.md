@@ -1,6 +1,6 @@
 ---
-title: "aaaAdding une partition à l’aide des outils de base de données élastique | Documents Microsoft"
-description: "Comment toouse API infrastructure élastique tooadd nouvelle partitions tooa partition définie."
+title: "Ajout d’une partition à l’aide des outils de base de données élastique | Microsoft Docs"
+description: "Utilisation des API avec infrastructure élastique pour ajouter de nouvelles partitions à un ensemble de partitions."
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: f44b59578376d1238b3012a3cb52339978079f0e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6a91ea2251ea3b748faba5c97765bfded9c00234
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="adding-a-shard-using-elastic-database-tools"></a>Ajout d’une partition à l’aide des outils de base de données élastique
-## <a name="tooadd-a-shard-for-a-new-range-or-key"></a>tooadd une partition pour une nouvelle plage ou une clé
-Applications souvent besoin toosimply ajouter de nouvelles partitions toohandle données qui sont attendues de nouvelles clés ou des plages de clés pour une carte de partitions qui existe déjà. Par exemple, une application partitionnée par ID client peut-être tooprovision une nouvelle partition pour un nouveau client, ou mensuelle partitionnée de données peut-être une nouvelle partition configurée avant le début de hello de chaque nouveau mois. 
+## <a name="to-add-a-shard-for-a-new-range-or-key"></a>Pour ajouter une partition pour une nouvelle plage ou clé
+Souvent, les applications n'ont qu'à ajouter de nouvelles partitions pour gérer des données prévues à partir de nouvelles clés ou plages de clés, pour une carte de partitions qui existe déjà. Par exemple, une application partitionnée par un ID de client peut requérir l'approvisionnement d'une nouvelle partition pour un nouveau client, ou des données partitionnées mensuellement peuvent requérir l'approvisionnement d'une nouvelle partition avant le début de chaque mois. 
 
-Si hello nouvelle plage de valeurs de clé n’est pas déjà partie d’un mappage existant, il est très simple tooadd hello nouvelle partition et associer hello nouvelle clé ou une plage toothat partition. 
+Si la nouvelle plage de valeurs de clé n’appartient pas déjà à un mappage existant, il est très simple d’ajouter la nouvelle partition et d’associer la nouvelle clé ou la plage à cette partition. 
 
-### <a name="example--adding-a-shard-and-its-range-tooan-existing-shard-map"></a>Exemple : ajout d’une partition et sa table de partition range tooan existant
-Cet exemple utilise hello [TryGetShard](https://msdn.microsoft.com/library/azure/dn823929.aspx) hello [CreateShard](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.createshard.aspx), [CreateRangeMapping](https://msdn.microsoft.com/library/azure/dn807221.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeShardMap`1.CreateRangeMapping\(Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeMappingCreationInfo{`0}\)) méthodes et crée une instance de hello [ShardLocation](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardlocation.shardlocation.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardLocation.) classe. Dans l’exemple hello ci-dessous, une base de données nommée **sample_shard_2** et tous les objets de schéma nécessaires à l’intérieur ont été créées toohold plage [300, 400).  
+### <a name="example--adding-a-shard-and-its-range-to-an-existing-shard-map"></a>Exemple : ajout d’une partition et de sa plage à une carte de partition existante
+Cet exemple utilise les méthodes [TryGetShard](https://msdn.microsoft.com/library/azure/dn823929.aspx), [CreateShard](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.createshard.aspx) et [CreateRangeMapping](https://msdn.microsoft.com/library/azure/dn807221.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeShardMap`1.CreateRangeMapping\(Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.RangeMappingCreationInfo{`0}\)), et crée une instance de la classe [ShardLocation](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardlocation.shardlocation.aspx#M:Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.ShardLocation.). Dans l’exemple ci-dessous, une base de données nommée **sample_shard_2** et tous les objets de schéma nécessaires qu’elle contient ont été créés pour contenir la plage [300, 400).  
 
     // sm is a RangeShardMap object.
-    // Add a new shard toohold hello range being added. 
+    // Add a new shard to hold the range being added. 
     Shard shard2 = null; 
 
     if (!sm.TryGetShard(new ShardLocation(shardServer, "sample_shard_2"),out shard2)) 
@@ -39,21 +39,21 @@ Cet exemple utilise hello [TryGetShard](https://msdn.microsoft.com/library/azure
         shard2 = sm.CreateShard(new ShardLocation(shardServer, "sample_shard_2"));  
     } 
 
-    // Create hello mapping and associate it with hello new shard 
+    // Create the mapping and associate it with the new shard 
     sm.CreateRangeMapping(new RangeMappingCreationInfo<long> 
                             (new Range<long>(300, 400), shard2, MappingStatus.Online)); 
 
 
-En guise d’alternative, vous pouvez utiliser Powershell toocreate un nouveau gestionnaire de carte de partitions. Un exemple est disponible [ici](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db).
+Comme alternative, vous pouvez utiliser PowerShell pour créer un gestionnaire de cartes de partitions. Un exemple est disponible [ici](https://gallery.technet.microsoft.com/scriptcenter/Azure-SQL-DB-Elastic-731883db).
 
-## <a name="tooadd-a-shard-for-an-empty-part-of-an-existing-range"></a>tooadd une partition pour une partie vide d’une plage existante
-Dans certains cas, vous avez déjà mappée une partition tooa de plage et partiellement avec des données, mais vous souhaitez maintenant différentes partitions de données à venir toobe tooa dirigée. Par exemple, vous partitions par jour de plage et avez déjà alloué partition tooa de 50 jours, mais le jour 24, que vous souhaitez tooland ultérieure de données dans une autre partition. base de données élastique Hello [outil de fusion et fractionnement](sql-database-elastic-scale-overview-split-and-merge.md) peuvent effectuer cette opération, mais si le déplacement des données n’est pas nécessaire (par exemple, les données de la plage de hello de jours [25, 50), c'est-à-dire, too50 inclusive de jour 25 exclusive, n’existe pas encore) que vous pouvez effectuer Cette exclusivement à l’aide de hello directement API de gestion de carte de partitions.
+## <a name="to-add-a-shard-for-an-empty-part-of-an-existing-range"></a>Pour ajouter une partition pour une partie vide d’une plage existante
+Il peut arriver que vous ayez déjà mappé une plage à une partition et l’ayez partiellement remplie avec des données, mais que vous souhaitiez maintenant que les données futures soient dirigées vers une autre partition. Par exemple, vous partitionnez par plage de jours et avez déjà alloué 50 jours à une partition, mais le jour 24, vous souhaitez que les données futures soient dirigées vers une autre partition. [L’outil de fusion et de fractionnement](sql-database-elastic-scale-overview-split-and-merge.md) de la base de données élastique peut effectuer cette opération, mais s’il n’est pas nécessaire de déplacer des données (par exemple, les données de la plage de jours [25, 50), c’est-à-dire le jour 25 inclus et le jour 50 exclu, qui n’existe pas encore) vous pouvez effectuer cela entièrement en utilisant directement les API de gestion de carte de partition.
 
-### <a name="example-splitting-a-range-and-assigning-hello-empty-portion-tooa-newly-added-shard"></a>Exemple : fractionnement d’une plage et l’affectation de hello vide partitions de nouvellement ajouté tooa partie
+### <a name="example-splitting-a-range-and-assigning-the-empty-portion-to-a-newly-added-shard"></a>Exemple : fractionnement d’une plage et affectation de la partie vide dans une partition nouvellement ajoutée
 Une base de données nommée « sample_shard_2 » et tous les objets de schéma nécessaires qu’elle contient ont été créés.  
 
     // sm is a RangeShardMap object.
-    // Add a new shard toohold hello range we will move 
+    // Add a new shard to hold the range we will move 
     Shard shard2 = null; 
 
     if (!sm.TryGetShard(new ShardLocation(shardServer, "sample_shard_2"),out shard2)) 
@@ -62,19 +62,19 @@ Une base de données nommée « sample_shard_2 » et tous les objets de schém
         shard2 = sm.CreateShard(new ShardLocation(shardServer, "sample_shard_2"));  
     } 
 
-    // Split hello Range holding Key 25 
+    // Split the Range holding Key 25 
 
     sm.SplitMapping(sm.GetMappingForKey(25), 25); 
 
-    // Map new range holding [25-50) toodifferent shard: 
+    // Map new range holding [25-50) to different shard: 
     // first take existing mapping offline 
     sm.MarkMappingOffline(sm.GetMappingForKey(25)); 
-    // now map while offline tooa different shard and take online 
+    // now map while offline to a different shard and take online 
     RangeMappingUpdate upd = new RangeMappingUpdate(); 
     upd.Shard = shard2; 
     sm.MarkMappingOnline(sm.UpdateMapping(sm.GetMappingForKey(25), upd)); 
 
-**Important**: utilisez cette technique uniquement si vous êtes certain qu’hello plage pour le mappage de hello mis à jour est vide.  méthodes Hello ci-dessus ne vérifient pas les données de la plage de hello déplacé, il est donc préférable tooinclude vérifie dans votre code.  S’il existe des lignes dans la plage de hello en cours de déplacement, distribution des données réelles hello ne correspondre pas de carte de partitions mis à jour de hello. Hello d’utilisation [outil de fusion et fractionnement](sql-database-elastic-scale-overview-split-and-merge.md) tooperform hello opération au lieu de cela dans ces cas.  
+**Important** : utilisez cette technique seulement si vous êtes certain que la plage de la carte mise à jour est vide.  Les méthodes ci-dessus ne vérifient pas les données de la plage déplacée, il est donc préférable d’inclure des vérifications dans votre code.  S’il existe des lignes dans la plage déplacée, la distribution des données réelle ne correspondra pas à la carte des partitions mise à jour. Utilisez [l’outil de fusion et de fractionnement](sql-database-elastic-scale-overview-split-and-merge.md) pour effectuer cette opération, au lieu de le faire dans ces cases.  
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure AD Connect : Certificat SSL hello mise à jour pour une batterie de serveurs de Services de fédération Active Directory (AD FS) | Documents Microsoft"
-description: "Ce document détails hello étapes tooupdate hello certificat SSL d’une batterie de serveurs AD FS à l’aide d’Azure AD Connect."
+title: "Azure AD Connect : Mettre à jour le certificat SSL pour une batterie de serveurs Active Directory Federation Services (AD FS) | Microsoft Docs"
+description: "Ce document détaille les étapes permettant de mettre à jour le certificat SSL d’une batterie de serveurs AD FS à l’aide d’Azure AD Connect."
 services: active-directory
 keywords: "azure ad connect, mise à jour de ssl adfs, mise à jour d’un certificat adfs, modifier un certificat adfs, nouveau certificat adfs, certificat adfs, mettre à jour un certificat ssl adf, mettre à jour un certificat adf ssl, configurer un certificat ssl adf, adfs, ssl, certificat, adfs certificat de communication de service, mettre à jour la fédération, configurer la fédération, aad connect"
 authors: anandyadavmsft
@@ -14,93 +14,93 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: anandy
-ms.openlocfilehash: bce7f75aab83b6abacb8472a6895054d137e10e0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 87807a203d71b3abfe3e93132eb7d0b82b14b4ee
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="update-hello-ssl-certificate-for-an-active-directory-federation-services-ad-fs-farm"></a>Mettre à jour le certificat SSL de hello pour une batterie de serveurs de Services de fédération Active Directory (AD FS)
+# <a name="update-the-ssl-certificate-for-an-active-directory-federation-services-ad-fs-farm"></a>Mettre à jour le certificat SSL pour une batterie de serveurs Active Directory Federation Services (AD FS)
 
 ## <a name="overview"></a>Vue d'ensemble
-Cet article décrit comment vous pouvez utiliser le certificat SSL de Azure AD Connect tooupdate hello pour une batterie de serveurs de Services de fédération Active Directory (AD FS). Vous pouvez utiliser le certificat SSL de hello Azure AD Connect outil tooeasily mise à jour hello pour la batterie de serveurs hello AD FS même si hello utilisateur méthode de connexion sélectionné n’est pas AD FS.
+Cet article explique comment utiliser Azure AD Connect pour mettre à jour le certificat SSL d’une batterie de serveurs Active Directory Federation Services (AD FS). Vous pouvez utiliser l’outil Azure AD Connect pour une mise à jour facile du certificat SSL pour la batterie de serveurs AD FS même si la méthode d’authentification sélectionnée n’est pas AD FS.
 
-Vous pouvez effectuer hello ensemble de l’opération de mise à jour le certificat SSL pour la batterie de serveurs hello AD FS sur l’ensemble de fédération et de serveurs Web Application Proxy (WAP) en trois étapes simples :
+Vous pouvez effectuer l’ensemble de l’opération de mise à jour du certificat SSL pour la batterie de serveurs AD FS sur l’ensemble des serveurs de fédération et Proxy d’application Web (WAP) en trois étapes simples :
 
 ![Trois étapes](./media/active-directory-aadconnectfed-ssl-update/threesteps.png)
 
 
 >[!NOTE]
->toolearn en savoir plus sur les certificats utilisés par AD FS, consultez [présentation des certificats utilisés par AD FS](https://technet.microsoft.com/library/cc730660.aspx).
+>Pour en savoir plus sur les certificats utilisés par AD FS, consultez l’article [Présentation des certificats utilisés par les services ADFS (Active Directory Federation Services)](https://technet.microsoft.com/library/cc730660.aspx).
 
 ## <a name="prerequisites"></a>Composants requis
 
 * **Batterie de serveurs AD FS** : Assurez-vous que votre batterie AD FS est basée sur Windows Server 2012 R2 ou version ultérieure.
-* **Azure AD Connect**: Vérifiez que hello version d’Azure AD Connect est 1.1.443.0 ou version ultérieure. Vous allez utiliser la tâche hello **mise à jour AD certificat SSL FS**.
+* **Azure AD Connect** : Assurez-vous que la version d’Azure AD Connect est 1.1.443.0 ou une version ultérieure. Vous utiliserez la tâche **Mettre à jour le certificat SSL AD FS**.
 
 ![Mettre à jour la tâche SSL](./media/active-directory-aadconnectfed-ssl-update/updatessltask.png)
 
 ## <a name="step-1-provide-ad-fs-farm-information"></a>Étape 1 : Fournir les informations sur la batterie de serveurs AD FS
 
-Azure AD Connect automatiquement par les tentatives tooobtain d’informations sur la batterie de serveurs hello AD FS :
-1. Interrogation des informations de batterie de serveurs hello d’AD FS (Windows Server 2016 ou version ultérieure).
-2. Référence à des informations de hello exécutions précédentes, qui sont stockés en local avec Azure AD Connect.
+Azure AD Connect tente d’obtenir automatiquement les informations sur la batterie de serveurs AD FS en effectuant les opérations suivantes :
+1. Interrogez les informations de la batterie à partir d’AD FS (Windows Server 2016 ou version ultérieure).
+2. Référencer les informations obtenues à partir d’exécutions précédentes stockées localement avec Azure AD Connect.
 
-Vous pouvez modifier la liste hello des serveurs qui sont affichés en ajoutant ou supprimant hello serveurs tooreflect hello configuration actuelle de la batterie de serveurs hello AD FS. Dès que les informations de serveur hello sont fournies, Azure AD Connect affiche la connectivité de hello et l’état actuel du certificat SSL.
+Vous pouvez modifier la liste des serveurs affichés en ajoutant ou en supprimant des serveurs afin de refléter la configuration actuelle de la batterie de serveurs AD FS. Dès que les informations de serveur sont fournies, Azure AD Connect affiche la connectivité et l’état actuel du certificat SSL.
 
 ![Informations du serveur AD FS](./media/active-directory-aadconnectfed-ssl-update/adfsserverinfo.png)
 
-Si la liste de hello contient un serveur qui ne fait plus partie de la batterie de serveurs hello AD FS, cliquez sur **supprimer** serveur hello toodelete liste hello des serveurs dans votre batterie AD FS.
+Si la liste contient un serveur qui ne fait plus partie de la batterie de serveurs AD FS, cliquez sur **Supprimer** pour le supprimer de la liste des serveurs de votre batterie de serveurs AD FS.
 
 ![Serveur hors connexion dans la liste](./media/active-directory-aadconnectfed-ssl-update/offlineserverlist.png)
 
 >[!NOTE]
-> Suppression d’un serveur à partir de la liste de hello de serveurs pour un AD FS de batterie de serveurs dans Azure AD Connect est une opération locale et les mises à jour hello concernant hello batterie AD FS qui tient à jour Azure AD Connect localement. Azure AD Connect ne modifie pas configuration hello sur AD FS tooreflect hello modification.    
+> La suppression d’un serveur dans la liste des serveurs de la batterie de serveurs AD FS dans Azure AD Connect est une opération locale qui met à jour les informations relatives à la batterie de serveurs AD FS qu’Azure AD Connect tient à jour localement. Azure AD Connect ne modifie pas la configuration AD FS pour refléter la modification.    
 
 ## <a name="step-2-provide-a-new-ssl-certificate"></a>Étape 2 : Fournir un nouveau certificat SSL
 
-Une fois que vous avez confirmé hello plus d’informations sur les serveurs de batterie de serveurs AD FS, Azure AD Connect demande un nouveau certificat SSL de hello. Fournir une installation de hello toocontinue protégé par mot de passe PFX certificat.
+Une fois que vous avez confirmé les informations sur les serveurs de la batterie de serveurs AD FS, Azure AD Connect demande le nouveau certificat SSL. Fournissez un certificat PFX protégé par mot de passe pour poursuivre l’installation.
 
 ![Certificat SSL](./media/active-directory-aadconnectfed-ssl-update/certificate.png)
 
-Une fois que vous fournissez le certificat de hello, Azure AD Connect passe par une série de conditions préalables. Vérifiez que hello certificat tooensure qui hello certificat est correct pour la batterie de serveurs hello AD FS :
+Une fois que vous fournissez le certificat, Azure AD Connect passe par une série de conditions préalables. Vérifiez le certificat pour vous assurer qu’il est correct pour la batterie de serveurs AD FS :
 
--   Bonjour nom d’objet/remplacement du nom de sujet de certificat de hello est même hello en tant que nom de service de fédération hello, ou il s’agit d’un certificat générique.
--   certificat de Hello est valide pendant plus de 30 jours.
--   chaîne d’approbation de certificat Hello est valide.
--   certificat de Hello est protégé par mot de passe.
+-   Le nom de sujet/l’autre nom de sujet du certificat est identique au nom du service de fédération ou est un certificat à caractères génériques.
+-   Le certificat est valide pendant plus de 30 jours.
+-   La chaîne d’approbation du certificat est valide.
+-   Le certificat est protégé par un mot de passe.
 
-## <a name="step-3-select-servers-for-hello-update"></a>Étape 3 : Sélectionner des serveurs de mise à jour hello
+## <a name="step-3-select-servers-for-the-update"></a>Étape 3 : Sélectionner les serveurs concernés par la mise à jour
 
-Dans l’étape suivante de hello, sélectionnez les serveurs de hello nécessitant un certificat SSL de toohave hello mis à jour. Serveurs qui sont hors connexion ne peut pas être sélectionnés pour la mise à jour hello.
+Dans l’étape suivante, sélectionnez les serveurs qui ont besoin d’avoir le certificat SSL mis à jour. Il est impossible de sélectionner les serveurs qui sont hors connexion pour la mise à jour.
 
-![Sélectionnez des serveurs tooupdate](./media/active-directory-aadconnectfed-ssl-update/selectservers.png)
+![Sélectionnez les serveurs à mettre à jour](./media/active-directory-aadconnectfed-ssl-update/selectservers.png)
 
-Après avoir terminé la configuration de hello, Azure AD Connect affiche de message de type hello qui indique l’état de hello de mise à jour hello et fournit une option tooverify hello AD FS connectez-vous.
+Après avoir terminé la configuration, Azure AD Connect affiche le message qui indique l’état de la mise à jour et fournit une option permettant de vérifier l’authentification dans AD FS.
 
 ![Configuration terminée](./media/active-directory-aadconnectfed-ssl-update/configurecomplete.png)   
 
 ## <a name="faqs"></a>FAQ
 
-* **Quelle doit être hello nom du sujet du certificat de hello hello nouveau certificat SSL AD FS ?**
+* **Quel doit être le nom de sujet du nouveau certificat SSL AD FS ?**
 
-    Azure AD Connect vérifie si hello/remplacement du nom du sujet nom du sujet hello certificat contient le nom de service de fédération hello. Par exemple, si le nom de votre service de fédération est fs.contoso.com, nom de l’objet de nom/autre sujet hello doit être fs.contoso.com.  Les certificats à caractères génériques sont également acceptés.
+    Azure AD Connect vérifie si le nom de sujet/l’autre nom de sujet du certificat contient le nom du service de fédération. Par exemple, si le nom de votre service de fédération est fs.contoso.com, le nom de sujet/l’autre nom de sujet doit être fs.contoso.com.  Les certificats à caractères génériques sont également acceptés.
 
-* **Pourquoi suis-je invité pour les informations d’identification à nouveau sur la page du serveur WAP hello ?**
+* **Pourquoi suis-je invité à respécifier des informations d’identification dans la page du serveur WAP ?**
 
-    Si les informations d’identification de hello que vous fournissez pour la connexion des serveurs de FS tooAD n’ont également les serveurs de proxy hello privilège toomanage hello, Azure AD Connect vous demande des informations d’identification qui ont des privilèges d’administrateur sur les serveurs de proxy hello.
+    Si les informations d’identification que vous avez fournies pour la connexion aux serveurs AD FS ne disposent également pas du privilège permettant de gérer les serveurs WAP, Azure AD Connect vous demande des informations d’identification bénéficiant du privilège administratif sur les serveurs WAP.
 
-* **serveur de Hello est affiché en mode hors connexion. Que dois-je faire ?**
+* **Le serveur est indiqué comme étant hors connexion. Que dois-je faire ?**
 
-    Azure AD Connect ne peut pas effectuer une opération si hello serveur est hors connexion. Si le serveur de hello fait partie de hello batterie AD FS, puis vérifiez le serveur de toohello connectivité hello. Une fois que vous avez résolu le problème de hello, appuyez sur hello actualisation icône tooupdate hello de l’état dans l’Assistant de hello. Si le serveur de hello faisait partie de hello batterie précédemment mais maintenant n’existe plus, cliquez sur **supprimer** toodelete tient à jour de liste de hello des serveurs Azure AD Connect. Suppression de serveur hello dans liste hello dans Azure AD Connect ne modifie pas hello configuration AD FS lui-même. Si vous utilisez AD FS dans Windows Server 2016 ou version ultérieure, reste du serveur hello dans les paramètres de configuration hello et s’affichera à nouveau hello prochaine hello tâche est exécutée.
+    Azure AD Connect ne peut effectuer aucune opération si le serveur est hors connexion. Si le serveur fait partie de la batterie de serveurs AD FS, vérifiez la connectivité au serveur. Une fois que vous avez résolu le problème, appuyez sur l’icône d’actualisation pour mettre à jour l’état de l’assistant. Si le serveur faisait déjà partie de la batterie de serveurs et qu’il n’existe plus, cliquez sur **Supprimer** pour le supprimer de la liste des serveurs qu’Azure AD Connect tient à jour. La suppression du serveur de la liste dans Azure AD Connect n’altère pas la configuration AD FS elle-même. Si vous utilisez AD FS dans Windows Server 2016 ou une version ultérieure, le serveur reste dans les paramètres de configuration et s’affiche à nouveau la prochaine fois que la tâche est exécutée.
 
-* **Puis-je mettre à jour un sous-ensemble de mes serveurs de la batterie de serveurs avec le nouveau certificat SSL de hello ?**
+* **Puis-je mettre à jour une partie des serveurs de ma batterie de serveurs avec le nouveau certificat SSL ?**
 
-    Oui. Vous pouvez toujours exécuter la tâche hello **certificat SSL de mise à jour** à nouveau les hello tooupdate serveurs restant. Sur hello **sélectionnez des serveurs SSL de certificats mise à jour** page, vous pouvez trier hello liste des serveurs sur **date d’expiration de SSL** tooeasily accès hello serveurs qui ne sont pas encore mis à jour.
+    Oui. Vous pouvez toujours exécuter la tâche **Mettre à jour le certificat SSL** pour mettre à jour les serveurs restants. Sur la page **Sélectionner des serveurs pour la mise à jour du certificat SSL**, vous pouvez trier la liste des serveurs sur **Date d’expiration SSL** pour accéder facilement aux serveurs qui ne sont pas encore mis à jour.
 
-* **J’ai supprimé serveur hello Bonjour précédente exécution, mais il est toujours affiché comme en mode hors connexion et est répertorié sur la page de serveurs ADFS hello AD. Pourquoi est-il toujours les serveur hors connexion hello même après la suppression d’il ?**
+* **J’ai supprimé le serveur lors de l’exécution précédente, mais il est toujours affiché comme étant hors connexion et listé dans la page Serveurs AD FS. Pourquoi le serveur hors connexion est-il toujours affiché même après sa suppression ?**
 
-    Suppression de serveur hello dans liste hello dans Azure AD Connect ne supprime Bonjour configuration AD FS. Azure AD Connect fait référence à AD FS (Windows Server 2016 ou version ultérieure) pour toutes les informations concernant la batterie de serveurs hello. Si le serveur de hello est toujours présente dans hello configuration AD FS, il sera répertorié dans la liste de hello.  
+    La suppression du serveur de la liste dans Azure AD Connect ne le supprime pas de la configuration AD FS. Azure AD Connect fait référence à AD FS (Windows Server 2016 ou version ultérieure) pour toutes les informations concernant la batterie de serveurs. Si le serveur est toujours présent dans la configuration AD FS, il sera répertorié dans la liste.  
 
 ## <a name="next-steps"></a>Étapes suivantes
 

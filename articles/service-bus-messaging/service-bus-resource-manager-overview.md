@@ -1,6 +1,6 @@
 ---
-title: "ressources d’Azure Service Bus aaaCreate à l’aide de modèles Azure Resource Manager | Documents Microsoft"
-description: "Utilisez Azure Resource Manager modèles tooautomate hello la création de ressources de Service Bus"
+title: "Création de ressources Azure Service Bus à l’aide de modèles Azure Resource Manager | Microsoft Docs"
+description: "Utilisez les modèles Azure Resource Manager pour automatiser la création de ressources Service Bus"
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm
-ms.openlocfilehash: e539902cae307b63ae7c332580e2064761331ec5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c8142d8edfd3a527b13d655bac21acf5332f2d14
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="create-service-bus-resources-using-azure-resource-manager-templates"></a>Création de ressources Service Bus à l’aide de modèles Azure Resource Manager
 
-Cet article décrit comment toocreate et déployer des ressources Service Bus à l’aide de modèles Azure Resource Manager, PowerShell et fournisseur de ressources de Service Bus hello.
+Cet article décrit comment créer et déployer des ressources Service Bus à l'aide de modèles Azure Resource Manager, de PowerShell et du fournisseur de ressources Service Bus.
 
-Modèles de gestionnaire de ressources Azure vous permettent de définir toodeploy de ressources hello pour une solution et les paramètres toospecify et les variables qui vous permettent de valeurs tooinput pour différents environnements. modèle de Hello se compose de JSON et les expressions que vous pouvez utiliser les valeurs tooconstruct pour votre déploiement. Pour plus d’informations sur l’écriture de modèles Azure Resource Manager et une description de format de modèle hello, consultez [structure et la syntaxe des modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
+Les modèles Azure Resource Manager vous permettent de définir les ressources à déployer pour une solution et de spécifier les paramètres et variables qui permettent d'entrer des valeurs pour les différents environnements. Le modèle se compose d’un JSON et d’expressions que vous pouvez utiliser pour construire des valeurs pour votre déploiement. Pour plus d’informations sur l’écriture de modèles Azure Resource Manager et sur le format du modèle, consultez [Structure et syntaxe de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).
 
 > [!NOTE]
-> Hello les exemples de cette montrent l’article comment toouse Azure Resource Manager toocreate un espace de noms Service Bus et la messagerie de l’entité (file d’attente). Pour obtenir des exemples de modèle, visitez hello [la galerie de modèles de démarrage rapide Azure] [ Azure Quickstart Templates gallery] et recherchez « Service Bus ».
+> Les exemples de cet article montrent comment utiliser Azure Resource Manager pour créer un espace de noms et une entité de messagerie (file d'attente) Service Bus. Pour accéder à d’autres exemples de modèles, recherchez « Service Bus » dans la [Galerie de modèles de démarrage rapide Azure][Azure Quickstart Templates gallery].
 >
 >
 
 ## <a name="service-bus-resource-manager-templates"></a>Modèles Resource Manager Service Bus
 
-Ces modèles Azure Resource Manager Service Bus sont disponibles au téléchargement et au déploiement. Cliquez sur hello suivant les liens pour plus d’informations sur chacune d’elles, avec des modèles de toohello de liens sur GitHub :
+Ces modèles Azure Resource Manager Service Bus sont disponibles au téléchargement et au déploiement. Cliquez sur les liens suivants pour plus d'informations sur chacun d’eux, ainsi que des liens vers les modèles sur GitHub :
 
 * [Création d'un espace de noms Service Bus](service-bus-resource-manager-namespace.md)
 * [Créer un espace de noms Service Bus avec file d’attente](service-bus-resource-manager-namespace-queue.md)
@@ -43,25 +43,25 @@ Ces modèles Azure Resource Manager Service Bus sont disponibles au télécharge
 
 ## <a name="deploy-with-powershell"></a>Déployer avec PowerShell
 
-Hello procédure suivante décrit comment toouse PowerShell toodeploy un modèle Azure Resource Manager qui crée un **Standard** de niveau espace de noms Service Bus et une file d’attente au sein de cet espace de noms. Cet exemple est basé sur hello [créer un espace de noms Service Bus avec la file d’attente](https://github.com/Azure/azure-quickstart-templates/tree/master/201-servicebus-create-queue) modèle. flux de travail approximatif Hello est comme suit :
+La procédure suivante décrit comment utiliser PowerShell pour déployer un modèle Azure Resource Manager qui crée un espace de noms Service Bus de niveau **Standard** et une file d’attente au sein de cet espace de noms. Cet exemple est basé sur le modèle [Créer un espace de noms Service Bus avec file d’attente](https://github.com/Azure/azure-quickstart-templates/tree/master/201-servicebus-create-queue). Le flux de travail est approximativement le suivant :
 
 1. Installez PowerShell.
-2. Créer le modèle de hello et (facultativement) d’un fichier de paramètres.
-3. Dans PowerShell, connectez-vous tooyour compte Azure.
+2. Créez le modèle et (éventuellement) un fichier de paramètres.
+3. Dans PowerShell, connectez-vous à votre compte Azure.
 4. Créez un groupe de ressources s'il n'en existe pas.
-5. Tester le déploiement de hello.
-6. Si vous le souhaitez, définissez le mode de déploiement hello.
-7. Déployer le modèle de hello.
+5. Testez le déploiement.
+6. Si vous le souhaitez, définissez le mode de déploiement.
+7. Déployez le modèle.
 
 Pour des informations complètes sur le déploiement de modèles Azure Resource Manager, consultez [Déployer des ressources à l’aide de modèles Azure Resource Manager][Deploy resources with Azure Resource Manager templates].
 
 ### <a name="install-powershell"></a>Installer PowerShell
 
-Installez Azure PowerShell en suivant les instructions de hello dans [prise en main d’Azure PowerShell](/powershell/azure/get-started-azureps).
+Installez Azure PowerShell en suivant les instructions disponibles dans [Prise en main d’Azure PowerShell](/powershell/azure/get-started-azureps).
 
 ### <a name="create-a-template"></a>Créer un modèle
 
-Clone ou copie hello [201-servicebus-créer-file d’attente](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json) modèle à partir de GitHub :
+Clonez ou copiez le modèle [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json) à partir de GitHub :
 
 ```json
 {
@@ -71,20 +71,20 @@ Clone ou copie hello [201-servicebus-créer-file d’attente](https://github.com
         "serviceBusNamespaceName": {
             "type": "string",
             "metadata": {
-                "description": "Name of hello Service Bus namespace"
+                "description": "Name of the Service Bus namespace"
             }
         },
         "serviceBusQueueName": {
             "type": "string",
             "metadata": {
-                "description": "Name of hello Queue"
+                "description": "Name of the Queue"
             }
         },
         "serviceBusApiVersion": {
             "type": "string",
             "defaultValue": "2015-08-01",
             "metadata": {
-                "description": "Service Bus ApiVersion used by hello template"
+                "description": "Service Bus ApiVersion used by the template"
             }
         }
     },
@@ -131,7 +131,7 @@ Clone ou copie hello [201-servicebus-créer-file d’attente](https://github.com
 
 ### <a name="create-a-parameters-file-optional"></a>Créer un fichier de paramètres (facultatif)
 
-toouse un fichier de paramètres facultatifs, hello de copie [201-servicebus-créer-file d’attente](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.parameters.json) fichier. Remplacez la valeur hello `serviceBusNamespaceName` avec nom hello d’espace de noms Service Bus hello votre choix toocreate dans ce déploiement, remplacez la valeur hello `serviceBusQueueName` avec nom hello de file d’attente hello souhaité toocreate.
+Pour utiliser un fichier de paramètres facultatif, copiez le fichier [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.parameters.json). Remplacez la valeur de `serviceBusNamespaceName` par le nom de l'espace de noms Service Bus que vous souhaitez créer dans ce déploiement, puis remplacez la valeur de `serviceBusQueueName` par le nom de la file d'attente que vous souhaitez créer.
 
 ```json
 {
@@ -151,37 +151,37 @@ toouse un fichier de paramètres facultatifs, hello de copie [201-servicebus-cr�
 }
 ```
 
-Pour plus d’informations, consultez hello [paramètres](../azure-resource-manager/resource-group-template-deploy.md#parameter-files) rubrique.
+Pour plus d’informations, consultez la rubrique [aramètres](../azure-resource-manager/resource-group-template-deploy.md#parameter-files).
 
-### <a name="log-in-tooazure-and-set-hello-azure-subscription"></a>Connectez-vous à tooAzure et définir hello abonnement Azure
+### <a name="log-in-to-azure-and-set-the-azure-subscription"></a>Se connecter à Azure et définir l’abonnement Azure
 
-À partir d’une invite de PowerShell, exécutez hello de commande suivante :
+À partir d’une invite de commandes PowerShell, exécutez la commande suivante :
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-Vous êtes invité à toolog sur tooyour compte Azure. Après l’ouverture de session, exécutez hello suivant commande tooview vos abonnements disponibles.
+Vous êtes invité à ouvrir une session sur votre compte Azure. Une fois connecté, exécutez la commande suivante pour afficher les abonnements disponibles.
 
 ```powershell
 Get-AzureRMSubscription
 ```
 
-Cette commande renvoie la liste des abonnements Azure disponibles. Choisissez un abonnement pour hello session en cours en exécutant hello commande suivante. Remplacez `<YourSubscriptionId>` par hello GUID pour hello abonnement Azure, vous souhaitez toouse.
+Cette commande renvoie la liste des abonnements Azure disponibles. Choisissez un abonnement pour la session en cours en exécutant la commande suivante. Remplacez `<YourSubscriptionId>` par le GUID de l’abonnement Azure que vous souhaitez utiliser.
 
 ```powershell
 Set-AzureRmContext -SubscriptionID <YourSubscriptionId>
 ```
 
-### <a name="set-hello-resource-group"></a>Définir le groupe de ressources hello
+### <a name="set-the-resource-group"></a>Définir le groupe de ressources
 
-Si vous n’avez pas une ressource existante, créer un groupe de ressources avec hello ** New-AzureRmResourceGroup ** commande. Fournir le nom hello du groupe de ressources hello et un emplacement toouse. Par exemple :
+Si vous n’avez pas de groupe de ressources, créez-en un avec la commande **New-AzureRmResourceGroup**. Indiquez le nom du groupe de ressources et l'emplacement que vous souhaitez utiliser. Par exemple :
 
 ```powershell
 New-AzureRmResourceGroup -Name MyDemoRG -Location "West US"
 ```
 
-En cas de réussite, un résumé du nouveau groupe de ressources hello s’affiche.
+En cas de réussite, un résumé du nouveau groupe de ressources s’affiche.
 
 ```powershell
 ResourceGroupName : MyDemoRG
@@ -191,44 +191,44 @@ Tags              :
 ResourceId        : /subscriptions/<GUID>/resourceGroups/MyDemoRG
 ```
 
-### <a name="test-hello-deployment"></a>Déploiement de test hello
+### <a name="test-the-deployment"></a>test du déploiement
 
-Valider votre déploiement en exécutant hello `Test-AzureRmResourceGroupDeployment` applet de commande. Lorsque vous testez le déploiement de hello, spécifiez les paramètres exactement comme vous le feriez lors de l’exécution du déploiement de hello.
-
-```powershell
-Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
-```
-
-### <a name="create-hello-deployment"></a>Créer le déploiement de hello
-
-toocreate hello nouveau déploiement, exécutez hello `New-AzureRmResourceGroupDeployment` applet de commande et fournir les paramètres nécessaires hello lorsque vous y êtes invité. les paramètres de Hello incluent un nom pour votre déploiement, le nom de votre groupe de ressources et le chemin d’accès hello ou le fichier de modèle d’URL toohello de hello. Si hello **Mode** paramètre n’est pas spécifié, hello la valeur par défaut de **incrémentiel** est utilisé. Pour plus d’informations, consultez [Déploiements incrémentiels et complets](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments).
-
-Hello après les invites de commandes vous pour les paramètres dans la fenêtre de PowerShell hello hello trois :
+Validez votre déploiement en exécutant l’applet de commande `Test-AzureRmResourceGroupDeployment`. Lorsque vous testez le déploiement, indiquez les paramètres exactement comme vous le feriez lors de l'exécution du déploiement.
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
+Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
 ```
 
-toospecify un fichier de paramètres, utilisez hello commande suivante.
+### <a name="create-the-deployment"></a>Créer le déploiement
+
+Pour créer le déploiement, exécutez l’applet de commande `New-AzureRmResourceGroupDeployment` et indiquez les paramètres nécessaires quand vous y êtes invité. Les paramètres incluent un nom pour votre déploiement, le nom de votre groupe de ressources, le chemin d’accès ou l’URL du fichier de modèle. Si le paramètre **Mode** n’est pas spécifié, la valeur par défaut **Incremental** est utilisée. Pour plus d’informations, consultez [Déploiements incrémentiels et complets](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments).
+
+La commande suivante vous invite à entrer les trois paramètres dans la fenêtre PowerShell :
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json -TemplateParameterFile <path tooparameters file>\azuredeploy.parameters.json
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
 ```
 
-Vous pouvez également utiliser des paramètres inclus lorsque vous exécutez l’applet de commande de déploiement hello. commande Hello est comme suit :
+Pour spécifier un fichier de paramètres à la place, utilisez la commande suivante.
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json -parameterName "parameterValue"
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -TemplateParameterFile <path to parameters file>\azuredeploy.parameters.json
 ```
 
-toorun un [complète](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments) hello d’ensemble du déploiement, **Mode** paramètre trop**Complete**:
+Vous pouvez également utiliser des paramètres inclus lorsque vous exécutez l'applet de commande de déploiement. La commande est la suivante :
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -Mode Complete -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -parameterName "parameterValue"
 ```
 
-### <a name="verify-hello-deployment"></a>Vérifier le déploiement de hello
-Si les ressources hello sont déployées avec succès, un résumé du déploiement de hello s’affiche dans la fenêtre de PowerShell hello :
+Pour exécuter un déploiement [complet](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments), affectez la valeur **Complet** au paramètre **Mode** :
+
+```powershell
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -Mode Complete -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
+```
+
+### <a name="verify-the-deployment"></a>Vérifier le déploiement
+Si les ressources sont déployées avec succès, un résumé du déploiement s’affiche dans la fenêtre PowerShell :
 
 ```powershell
 DeploymentName    : MyDemoDeployment
@@ -247,7 +247,7 @@ Parameters        :
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous avez maintenant vu des flux de travail hello et les commandes pour le déploiement d’un modèle Azure Resource Manager. Pour plus d’informations, visitez hello suivant liens :
+Vous avez maintenant vu le flux de travail et les commandes de base pour le déploiement d'un modèle Azure Resource Manager. Pour plus d'informations, consultez les liens suivants :
 
 * [Présentation d’Azure Resource Manager][Azure Resource Manager overview]
 * [Déployer des ressources à l’aide de modèles Resource Manager et d’Azure PowerShell][Deploy resources with Azure Resource Manager templates]

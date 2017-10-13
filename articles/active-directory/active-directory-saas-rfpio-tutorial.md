@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à RFPIO | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et RFPIO."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et RFPIO."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,51 +13,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: jeedes
-ms.openlocfilehash: e0c692276276edd8f859e73d81cf54d75a65957a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 26a8bb17dad5a01b401ce7f9b484f09822825cbf
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-rfpio"></a>Didacticiel : Intégration d’Azure Active Directory à RFPIO
 
-Dans ce didacticiel, vous apprendrez comment toointegrate RFPIO avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer RFPIO à Azure Active Directory (Azure AD).
 
-Intégration RFPIO à Azure AD offre hello avantages suivants :
+L’intégration de RFPIO dans Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler qui dans Azure AD qui a accès tooRFPIO.
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooRFPIO (Single Sign-On) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central--hello portail Azure.
+- Dans Azure AD, vous pouvez contrôler qui a accès à RFPIO.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à RFPIO (par authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes à un emplacement central : le portail Azure.
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec RFPIO, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD avec RFPIO, vous avez besoin des éléments suivants :
 
-- Un abonnement Azure AD
+- Un abonnement Azure AD.
 - Un abonnement RFPIO pour lequel l’authentification unique est activée.
 
 > [!NOTE]
-> Nous ne vous recommandons d’utiliser une procédure de production environnement tootest hello dans ce didacticiel.
+> Nous déconseillons l’utilisation d’un environnement de production pour tester les étapes de ce didacticiel.
 
-étapes de hello tootest dans ce didacticiel, suivez ces recommandations :
+Pour tester la procédure de ce didacticiel, suivez les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario de Hello est décrit dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de RFPIO à partir de la galerie de hello.
-2. Configuration et test de l’authentification unique Azure AD
+1. Ajout de RFPIO depuis la galerie.
+2. Configuration et test de l’authentification unique Azure AD.
 
-## <a name="add-rfpio-from-hello-gallery"></a>Ajouter des RFPIO à partir de la galerie de hello
-intégration de hello tooconfigure de RFPIO dans Azure AD, vous devez tooadd RFPIO à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="add-rfpio-from-the-gallery"></a>Ajout de RFPIO depuis la galerie
+Pour configurer l’intégration de RFPIO avec Azure AD, vous devez ajouter RFPIO à partir de la galerie à votre liste d’applications SaaS gérées.
 
-### <a name="tooadd-rfpio-from-hello-gallery"></a>tooadd RFPIO à partir de la galerie de hello
+### <a name="to-add-rfpio-from-the-gallery"></a>Pour ajouter RFPIO depuis la galerie
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**, sur hello du volet de navigation gauche, sélectionnez hello **Azure Active Directory** icône. 
+1. Dans le panneau de navigation de gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
@@ -65,66 +65,66 @@ intégration de hello tooconfigure de RFPIO dans Azure AD, vous devez tooadd RFP
 
     ![Applications][2]
     
-3. tooadd une nouvelle application, sélectionnez hello **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter une nouvelle application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **RFPIO**.
+4. Dans la zone de recherche, saisissez **RFPIO**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-rfpio-tutorial/tutorial_rfpio_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **RFPIO**, puis sélectionnez hello **ajouter** bouton application hello de tooadd.
+5. Dans le panneau de résultats, sélectionnez **RFPIO**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-rfpio-tutorial/tutorial_rfpio_addfromgallery.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec RFPIO, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quelle relation hello est entre équivalent dans RFPIO un utilisateur et dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans RFPIO doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit définir la relation entre l’utilisateur équivalent dans RFPIO et un utilisateur dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur RFPIO associé doit être établie.
 
-Dans RFPIO, affecter la valeur de hello de **nom d’utilisateur** dans Azure AD en tant que valeur hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans RFPIO, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec RFPIO, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec RFPIO, vous devez suivre les indications des sections suivantes :
 
-1. **[Configurer Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**--tooenable votre toouse utilisateurs cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**--tootest Azure AD l’authentification unique avec Britta Simon.
-3. **[Créer un utilisateur de test RFPIO](#creating-a-rfpio-test-user)**  toohave--un équivalent de Britta Simon dans RFPIO est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Affecter l’utilisateur de test hello Azure AD](#assigning-the-azure-ad-test-user)**tooenable--Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Tester l’authentification unique sur](#testing-single-sign-on)**  --tooverify si hello configuration fonctionne.
+1. **[Configurer l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Créer un utilisateur de test RFPIO](#creating-a-rfpio-test-user)** pour avoir un équivalent de Britta Simon dans RFPIO lié à la représentation Azure AD de l’utilisateur.
+4. **[Affecter l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Tester l’authentification unique](#testing-single-sign-on)** pour vérifier que la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application RFPIO.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application RFPIO.
 
-**tooconfigure Azure AD single sign-on avec RFPIO, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec RFPIO, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **RFPIO** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **RFPIO**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/tutorial_rfpio_samlbase.png)
 
-3. Sur hello **RFPIO domaine et les URL** section, si vous le souhaitez application hello tooconfigure **IDP** en mode initié par :
+3. Dans la section **Domaines et URL RFPIO**, si vous souhaitez configurer l’application en mode initié par **IDP**, suivez les étapes ci-dessous :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/tutorial_rfpio_url.png)
 
-    a. Bonjour **identificateur** zone de texte, tapez l’URL hello :`https://www.rfpio.com`
+    a. Dans la zone de texte **Identificateur**, saisissez l’URL : `https://www.rfpio.com`
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/tutorial_rfpio_url1.png)
 
     b. Cliquez sur **Afficher les paramètres d’URL avancés**.
 
-    c. Bonjour **relais état** zone de texte Entrez une valeur de chaîne. Contact [RFPIO l’équipe de support](https://www.rfpio.com/contact/) tooget cette valeur. 
+    c. Dans la zone de texte **État de relais**, entrez une valeur de chaîne. Contactez l’[équipe de support technique de RFPIO](https://www.rfpio.com/contact/) pour obtenir cette valeur. 
 
-4. Cliquez sur **Afficher les paramètres d’URL avancés**. Si vous le souhaitez application hello tooconfigure **SP** en mode initié par :   
+4. Cliquez sur **Afficher les paramètres d’URL avancés**. Si vous souhaitez configurer l’application en mode initié par le **fournisseur de service** : 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/tutorial_rfpio_url2.png)
 
-    Bonjour **URL de connexion** zone de texte, tapez l’URL hello :`https://www.app.rfpio.com`
+    Dans la zone de texte **URL d’authentification**, saisissez l’URL : `https://www.app.rfpio.com`
 
-5. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+5. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/tutorial_rfpio_certificate.png) 
 
@@ -132,21 +132,21 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/tutorial_general_400.png)
 
-7. Dans une fenêtre de navigateur web, connexion toohello **RFPIO** site Web en tant qu’administrateur.
+7. Dans une autre fenêtre de navigateur web, connectez-vous au site web **RFPIO** en tant qu’administrateur.
 
-8. Cliquez sur la liste déroulante de hello en bas à gauche.
+8. Cliquez sur la liste déroulante située en bas à gauche.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/app1.png)
 
-9. Cliquez sur hello **paramètres de l’organisation**. 
+9. Cliquez sur **Paramètres de l’organisation**. 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/app2.png)
 
-10. Cliquez sur hello **intégration et fonctionnalités**.
+10. Cliquez sur **FONCTIONNALITÉS ET INTÉGRATION**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/app4.png)
 
-11. Bonjour **Configuration de l’authentification unique SAML** cliquez sur **modifier**.
+11. Dans **Configuration SAML SSO**, cliquez sur **Modifier**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/app3.png)
 
@@ -154,66 +154,66 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/app5.png)
     
-    a. Copier le contenu de hello Hello **XML de métadonnées téléchargé** et collez-le dans hello **configuration d’identité** champ.
+    a. Copiez le contenu du **fichier XML de métadonnées téléchargé** et collez-le dans le champ **Configuration de l’identité**.
 
     > [!NOTE]
-    >hello toocopy contenu de téléchargé **Metadata XML** utilisez **bloc-notes ++** ou appropriée **éditeur XML**. 
+    >Pour copier le contenu du fichier **XML de métadonnées** téléchargé, utilisez **Notepad++** ou **XML Editor**. 
 
     b. Cliquez sur **Valider**.
 
-    c. Après avoir fait de cliquer sur **Validate**, retourner **SAML(Enabled)** tooon.
+    c. Après avoir cliqué sur **Valider**, activez **SAML(Enabled)**.
 
     d. Cliquez sur **Envoyer**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-rfpio-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-rfpio-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-rfpio-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-rfpio-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-a-rfpio-test-user"></a>Créer un utilisateur de test RFPIO
 
-tooenable Azure AD les utilisateurs toolog dans tooRFPIO, vous devez les configurer dans RFPIO.  
-Dans les cas de hello de RFPIO, cette configuration est une tâche manuelle.
+Pour se connecter à RFPIO, les utilisateurs d’Azure AD doivent être configurés dans RFPIO.  
+Dans le cas de RFPIO, l’approvisionnement se fait manuellement.
 
-**tooprovision un compte d’utilisateur, effectuez hello comme suit :**
+**Pour approvisionner un compte d’utilisateur, procédez comme suit :**
 
-1. Ouvrez une session dans tooyour site d’entreprise RFPIO en tant qu’administrateur.
+1. Connectez-vous à votre site d’entreprise RFPIO en tant qu’administrateur.
 
-2. Cliquez sur la liste déroulante de hello en bas à gauche.
+2. Cliquez sur la liste déroulante située en bas à gauche.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/app1.png)
 
-3. Cliquez sur hello **paramètres de l’organisation**. 
+3. Cliquez sur **Paramètres de l’organisation**. 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/app2.png)
 
@@ -225,36 +225,36 @@ Dans les cas de hello de RFPIO, cette configuration est une tâche manuelle.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/app7.png)
 
-6. Bonjour **ajouter de nouveaux membres** section. Procédez comme suit :
+6. Dans la section **Ajouter de nouveaux membres**. Procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/app8.png)
 
-    a. Entrée **adresse de messagerie** Bonjour **Entrez une adresse de messagerie par ligne** champ.
+    a. Entrez l’**adresse e-mail** dans le champ **Entrer une adresse e-mail par ligne**.
 
     b. Sélectionnez le **Rôle** selon vos besoins.
 
     c. Cliquez sur **AJOUTER DES MEMBRES**.
         
     > [!NOTE]
-    > titulaire du compte Azure Active Directory Hello reçoit un message électronique et suit un tooconfirm de lier leur compte avant son activation.
+    > Le titulaire du compte Azure Active Directory reçoit un e-mail contenant un lien à suivre pour confirmer son compte et l’activer.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooRFPIO.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à RFPIO.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooRFPIO, effectuez hello comme suit :**
+**Pour affecter Britta Simon à RFPIO, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **RFPIO**.
+2. Dans la liste des applications, sélectionnez **RFPIO**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-rfpio-tutorial/tutorial_rfpio_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -262,7 +262,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -270,14 +270,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous testez votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur hello RFPIO vignette dans le volet d’accès de hello, vous devez obtenir l’application de RFPIO tooyour automatiquement signé sur.
-Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
+Lorsque vous cliquez sur la vignette RFPIO dans le panneau d’accès, vous devez être connecté automatiquement à votre application RFPIO.
+Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de toointegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur les procédures d’intégration des applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

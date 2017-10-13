@@ -1,6 +1,6 @@
 ---
-title: "aaaAMQP 1.0 dans Azure Service Bus et concentrateurs d’événements guide de protocole | Documents Microsoft"
-description: "Protocole guide tooexpressions et une description de AMQP 1.0 dans Azure Service Bus et concentrateurs d’événements"
+title: Guide du protocole AMQP 1.0 dans Azure Service Bus et Event Hubs | Microsoft Docs
+description: "Guide du protocole pour les expressions et description d’AMQP 1.0 dans Azure Service Bus et Event Hubs"
 services: service-bus-messaging,event-hubs
 documentationcenter: .net
 author: clemensv
@@ -14,139 +14,139 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: clemensv;hillaryc;sethm
-ms.openlocfilehash: 882ce0fc84af11d9f61bc95dc3e4db0b67b2b020
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2ef07d78a9d81fac933f2c3359e9ee48f86e6790
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # Guide du protocole AMQP 1.0 dans Azure Service Bus et Event Hubs
 
-Hello Advanced Message Queueing protocole 1.0 est un protocole de tramage et transfert standardisé pour transférer en toute sécurité en mode asynchrone et fiable des messages entre deux parties. Il est hello principal de messagerie Azure Service Bus et Azure Event Hubs. Les deux services prennent également en charge le protocole HTTPS. Hello SBMP protocole propriétaire qui est également pris en charge est en cours de retrait des fonctionnalités en faveur d’AMQP.
+Advanced Message Queueing Protocol 1.0 est un protocole de transfert et de tramage normalisé permettant de transférer de manière asynchrone, sécurisée et fiable des messages entre deux parties. Il est le principal protocole de messagerie Azure Service Bus et Azure Event Hubs. Les deux services prennent également en charge le protocole HTTPS. Le protocole SBMP propriétaire qui est également pris en charge est progressivement supprimé en faveur du protocole AMQP.
 
-AMQP 1.0 est un résultat hello de collaboration hétérogène qui rassembler des fournisseurs d’intergiciel (middleware), tels que Microsoft et Red Hat, comportant de nombreux utilisateurs intergiciel (middleware) de messagerie telles que JP Morgan Chase représentant le secteur des services financiers hello. forum de normalisation technique Hello pour les spécifications de protocole et l’extension AMQP hello est OASIS, et il a obtenu comme une norme internationale en tant que norme ISO/IEC 19494 formelles d’approbation.
+AMQP 1.0 est le résultat d’une vaste collaboration au sein du secteur entre des fournisseurs de middleware, tels que Microsoft et Red Hat et de nombreux utilisateurs de middleware de messagerie, tels que JP Morgan Chase représentant le secteur des services financiers. OASIS est le forum de normalisation technique destiné au protocole AMQP et aux spécifications d’extension ayant été approuvé officiellement comme norme internationale nommée ISO/IEC 19494.
 
 ## Objectifs
 
-Cet article résume les concepts de base hello de spécification de messagerie hello AMQP 1.0 avec un petit ensemble de spécifications extension qui sont actuellement en cours de finalisation dans comité technique OASIS AMQP de hello brièvement et explique le fonctionnement d’Azure Service Bus implémente et s’appuie sur ces spécifications.
+Cet article résume brièvement les concepts fondamentaux de la spécification relative à la messagerie AMQP 1.0 et un petit ensemble de spécifications d’extension à l’état de projet, en cours de finalisation par le comité technique AMQP d’OASIS, et explique comment Azure Service Bus implémente et s’appuie sur ces spécifications.
 
-Hello vise pour tout développeur à l’aide d’une pile de client AMQP 1.0 existante sur n’importe quel toointeract en mesure de toobe plateforme avec Azure Service Bus via AMQP 1.0.
+L’objectif est de permettre à tout développeur utilisant une pile de client AMQP 1.0 existante sur n’importe quelle plateforme d’interagir avec Azure Service Bus via AMQP 1.0.
 
-Les piles AMQP 1.0 courantes à usage général, telles que Apache Proton ou AMQP.NET Lite, implémentent déjà tous les mouvements AMQP 1.0 de base. Les mouvements fondamentaux sont parfois encapsulés avec une API de niveau supérieur ; Proton d’Apache offre même deux, hello impératif Messenger API et hello réactive réacteur API.
+Les piles AMQP 1.0 courantes à usage général, telles que Apache Proton ou AMQP.NET Lite, implémentent déjà tous les mouvements AMQP 1.0 de base. Ces mouvements fondamentaux sont parfois encapsulés dans une API de niveau plus élevé. Apache Proton offre même les deux, l’API Messenger impérative et l’API Reactor réactive.
 
-Bonjour suivant de discussion, nous supposons que gestion hello de connexions, sessions et la gestion des liens et hello de transferts de frame et de contrôle de flux AMQP sont gérées par la pile de hello respectifs (par exemple Apache Proton-C) et ne nécessitent pas beaucoup le cas échéant spécifique attention des développeurs d’applications. Nous supposons due existence hello de quelques API primitives, tels que tooconnect de capacité hello et toocreate une forme de *expéditeur* et *récepteur* objets abstraction, puis comprendre certaines formes de `send()`et `receive()` opérations, respectivement.
+Dans la discussion suivante, nous allons supposer que la gestion des connexions, des sessions et des liens AMQP, ainsi que le traitement des transferts de trame et de contrôle de flux sont effectués par la pile respective (telle qu’Apache Proton-C) et qu’ils nécessitent peu d’attention, si ce n’est celle des développeurs d’applications. Nous allons supposer l’existence de quelques API primitives, telles que la possibilité de se connecter et de créer une certaine forme d’objets d’abstraction *expéditeur* et *destinataire*, qui ont respectivement une forme d’opérations `send()` et `receive()`.
 
 Lorsque nous aborderons les fonctionnalités avancées d’Azure Service Bus, telles que la recherche de messages ou la gestion des sessions, celles-ci seront expliquées en termes AMQP, mais également sous la forme d’une pseudo-implémentation en couche au-dessus de cette abstraction d’API supposée.
 
 ## Qu’est-ce que le protocole AMQP ?
 
-AMQP est un protocole de tramage et de transfert. Le tramage signifie qu’il fournit la structure des flux de données binaires qui circulent dans les deux directions d’une connexion réseau. structure de Hello fournit délimitation pour différents blocs de données, appelées *frames*, toobe échangées entre les parties hello connecté. fonctionnalités de transfert Hello Assurez-vous que les deux parties communicantes peuvent établir une compréhension commune sur lorsque les frames sont transférés, et lorsque les transferts doivent être considérée comme terminés.
+AMQP est un protocole de tramage et de transfert. Le tramage signifie qu’il fournit la structure des flux de données binaires qui circulent dans les deux directions d’une connexion réseau. La structure délimite les blocs de données distincts (*trames*) à échanger entre les parties connectées. Les fonctionnalités de transfert s’assurent que les deux parties qui communiquent peuvent établir une compréhension partagée pour savoir quand les trames doivent être transférées et à quel moment les transferts doivent être considérés comme terminés.
 
-Contrairement aux précédemment expirées brouillon versions produites par groupe de travail AMQP hello qui sont en cours d’utilisation par plusieurs brokers de message, du groupe de travail hello final et standardisé AMQP 1.0 au protocole n’impose pas de présence de hello d’un courtier de messages ou de n’importe quelle topologie particulière pour les entités à l’intérieur d’un courtier de messages.
+Contrairement aux précédents projets de version expirés élaborés par le groupe de travail AMQP, qui sont encore en cours d’utilisation par quelques courtiers de messages, le protocole AMQP 1.0 normalisé et finalisé du groupe de travail ne recommande pas la présence d’un courtier de messages ou d’une topologie spécifique pour les entités situées dans un courtier de messages.
 
-protocole de Hello peut être utilisé pour la communication de pair à pair symétrique, pour l’interaction avec des brokers de message qui prennent en charge des files d’attente et des entités de publication/abonnement, contrairement à Azure Service Bus. Il peut également être utilisé pour l’interaction avec l’infrastructure de messagerie où les modèles d’interaction hello sont différents des files d’attente standards, comme hello Azure Event Hubs. Un concentrateur d’événements agit comme une file d’attente lorsque les événements sont envoyés tooit mais agit plus comme un service de stockage série lorsque les événements sont lus à partir de celui-ci ; Il est quelque peu semblable un lecteur de bande. client de Hello choisit un décalage dans le flux de données disponibles hello et est ensuite pris en charge tous les événements à partir de ce décalage toohello dernière version disponible.
+Le protocole peut être utilisé pour la communication pair à pair symétrique, pour l’interaction avec les courtiers de messages qui prennent en charge les files d’attente et les entités de publication/d’abonnement, comme le fait Azure Service Bus. Il peut également être utilisé pour l’interaction avec l’infrastructure de messagerie où les modèles d’interaction diffèrent des files d’attente standards, comme c’est le cas avec Azure Event Hubs. Un Event Hub agit comme une file d’attente lorsque des événements lui sont envoyés, mais se comporte comme un service de stockage en série lorsque les événements sont lus à partir de celui-ci ; cela ressemble un peu à un lecteur de bande. Le client choisit un décalage dans le flux de données disponibles, et tous les événements sont ensuite traités à partir de ce décalage vers le dernier disponible.
 
-Hello protocole AMQP 1.0 est conçue toobe extensibles autres spécifications tooenhance ses fonctionnalités. trois spécifications extension Hello, présentées dans ce document pour illustrer ce propos. Pour les communications sur infrastructure HTTPS/WebSockets existante, où la configuration hello native AMQP des ports TCP peut être difficile, une spécification de liaison définit comment toolayer AMQP sur WebSockets. Pour interagir avec l’infrastructure de messagerie hello dans une demande/réponse manière à des fins de gestion ou des fonctionnalités avancée de tooprovide, spécification de la gestion hello AMQP définit des primitives d’interaction de base hello requis. Pour l’intégration de modèle d’autorisation fédérée, hello spécification de sécurité basée sur des revendications AMQP définit comment tooassociate et renouveler des jetons d’autorisation associés aux liens.
+Le protocole AMQP 1.0 est conçu pour être extensible et autoriser d’autres spécifications pour améliorer ses fonctionnalités. Les trois spécifications d’extension que nous abordons dans ce document illustrent ce principe. Pour les communications via l’infrastructure HTTPS/WebSockets où la configuration des ports AMQP TCP natifs peut être difficile, une spécification de liaison définit comment disposer AMQP sur WebSocket. Pour l’interaction avec l’infrastructure de messagerie sous forme de demande/réponse à des fins de gestion ou pour fournir des fonctionnalités avancées, la spécification de gestion AMQP définit les primitives d’interaction de base requises. Pour l’intégration du modèle d’autorisation fédérée, la spécification de la sécurité basée sur des revendications AMQP définit comment associer et renouveler des jetons d’autorisation associés aux liens.
 
 ## Scénarios AMQP de base
 
-Cette section explique l’utilisation de base hello d’AMQP 1.0 avec Service Bus de Azure, qui inclut la création de connexions, sessions et des liens et le transfert de messages tooand à partir des entités telles que les files d’attente, rubriques et abonnements Service Bus.
+Cette section explique l’utilisation de base d’AMQP 1.0 avec Azure Service Bus, qui inclut la création de connexions, de sessions et de liens et le transfert de messages vers et depuis des entités Service Bus, telles que des files d’attente, des rubriques et des abonnements.
 
-Hello plus autorité source toolearn sur le fonctionne du protocole AMQP est la spécification de hello AMQP 1.0, mais la spécification de hello a été écrite de mise en œuvre du guide tooprecisely et non pas le protocole de hello tooteach. Cette section se concentre sur la présentation de toute la terminologie nécessaire à la description de l’utilisation d’AMQP 1.0 par Service Bus. Pour un tooAMQP présentation plus complète, ainsi que d’une description plus détaillée d’AMQP 1.0, vous pouvez consulter [ce cours vidéo][this video course].
+La source faisant le plus autorité pour découvrir comment fonctionne AMQP est la spécification AMQP 1.0. La spécification a été élaborée pour guider de manière précise l’implémentation et non pour être formé au protocole. Cette section se concentre sur la présentation de toute la terminologie nécessaire à la description de l’utilisation d’AMQP 1.0 par Service Bus. Pour une présentation plus complète d’AMQP, et pour aborder plus largement AMQP 1.0, vous pouvez consulter [ce cours vidéo][this video course].
 
 ### Connexions et sessions
 
-Hello d’appels AMQP communication programmes *conteneurs*; ces contiennent *nœuds*, qui hello communiquent les entités à l’intérieur de ces conteneurs. Une file d’attente peut être un nœud. AMQP permet de multiplexage, une seule connexion peut être utilisée pour plusieurs chemins d’accès de communication entre les nœuds ; par exemple, une application cliente peut simultanément recevoir à partir d’une file d’attente et de file d’attente de tooanother envoi via hello même connexion réseau.
+AMQP appelle les *conteneurs* de programmes de communication ; ceux-ci contiennent les *nœuds*, qui sont les entités communiquant à l’intérieur de ces conteneurs. Une file d’attente peut être un nœud. AMQP permet le multiplexage, de sorte qu’une seule connexion peut être utilisée pour nombreux chemins de communication entre les nœuds ; par exemple, un client d’application peut recevoir simultanément à partir d’une file d’attente et envoyer vers une autre file d’attente via la même connexion réseau.
 
 ![][1]
 
-connexion de réseau Hello est donc ancrée sur le conteneur de hello. Il est initialisé par le conteneur hello dans le rôle de client hello qui effectue un conteneur de tooa de connexion de socket TCP sortant dans le rôle de récepteur hello, qui écoute et accepte les connexions TCP entrantes. la négociation de connexion Hello inclut la négociation de la version du protocole hello, déclaration ou négocier utilisation hello de sécurité de niveau Transport (TLS/SSL) et une négociation d’authentification/autorisation étendue hello connexion basée sur SASL.
+La connexion réseau est par conséquent ancrée sur le conteneur. Elle est lancée par le conteneur dans le rôle client établissant une connexion de socket TCP sortante vers un conteneur dans le rôle de récepteur qui écoute et accepte les connexions TCP entrantes. L’établissement d’une liaison de connexion inclut la négociation de la version du protocole, la déclaration ou la négociation de l’utilisation du protocole Transport Level Security (TLS/SSL) et l’établissement d’une liaison d’authentification/autorisation au niveau de la portée de la connexion basée sur SASL.
 
-Azure Service Bus requiert l’utilisation hello TLS à tout moment. Il prend en charge les connexions sur le port TCP 5671, selon laquelle la connexion TCP de hello est tout d’abord superposé avec TLS avant d’entrer la négociation de protocole AMQP hello et prend également en charge les connexions sur le port TCP 5672 : hello immédiatement propose une mise à niveau obligatoire de tooTLS de connexion à l’aide du modèle d’AMQP prescrit hello. liaison de AMQP WebSockets Hello crée un tunnel via le port TCP 443 qui est ensuite les 5671 connexions tooAMQP équivalent.
+Azure Service Bus requiert l’utilisation de TLS à tout moment. Il prend en charge les connexions sur le port TCP 5671, dans le cadre duquel, la connexion TCP est tout d’abord superposée à TLS avant la saisie de la négociation du protocole AMQP et prend également en charge les connexions sur le port TCP 5672, dans le cadre duquel le serveur propose immédiatement une mise à niveau de connexion obligatoire vers TLS à l’aide du modèle prescrit par AMQP. La liaison AMQP WebSockets crée un tunnel via le port TCP 443 qui équivaut alors aux connexions AMQP 5671.
 
-Après avoir configuré la connexion de hello et TLS, Service Bus offre deux options de mécanisme SASL :
+Après avoir configuré la connexion et le protocole TLS, Service Bus propose deux options de mécanisme SASL :
 
-* SASL brut est couramment utilisé pour le passage du serveur de tooa d’informations d’identification nom d’utilisateur et mot de passe. Service Bus n’a pas de compte, mais des [règles de sécurité d’accès partagé](service-bus-sas.md) nommées, qui confèrent des droits et sont associées à une clé. nom de Hello d’une règle est utilisé comme nom d’utilisateur hello et clé de hello (texte de codé en base64) est utilisée comme mot de passe hello. droits Hello associés hello choisi règle régissant les opérations de hello autorisées sur la connexion de hello.
-* SASL anonyme est utilisé pour le contournement de l’autorisation de SASL lorsque le client de hello souhaite que le modèle de (CBS) toouse hello sécurité basée sur des revendications qui est décrite plus loin. Avec cette option, une connexion cliente peut être établie anonymement pendant une courte période pendant le hello client ne peut interagir avec le point de terminaison CBS hello et procédez de la négociation de CBS hello.
+* SASL PLAIN est couramment utilisé pour transmettre des informations d’identification de nom d’utilisateur et de mot de passe à un serveur. Service Bus n’a pas de compte, mais des [règles de sécurité d’accès partagé](service-bus-sas.md) nommées, qui confèrent des droits et sont associées à une clé. Le nom d’une règle est utilisé comme nom d’utilisateur et la clé (comme texte codé en base64) est utilisé comme mot de passe. Les droits associés à la règle choisie régissent les opérations autorisées sur la connexion.
+* SASL ANONYMOUS est utilisé pour ignorer l’autorisation SASL lorsque le client souhaite utiliser le modèle (CBS) de sécurité basé sur des revendications, qui fait l’objet d’une description ultérieure. Avec cette option, une connexion cliente peut être établie de manière anonyme pour une courte période pendant laquelle le client peut uniquement interagir avec le point de terminaison CBS, et la négociation CBS doit s’effectuer.
 
-Une fois la connexion de transport hello est établie, les conteneurs hello chacun déclarent taille de trame maximale hello toohandle prêt, et elles après un délai d’inactivité ils allez déconnecter unilatéralement s’il n’existe aucune activité sur une connexion de hello.
+Une fois la connexion de transport établie, chaque conteneur déclare la taille de trame maximale qu’il souhaite traiter, et le délai d’inactivité au terme duquel ils se déconnectent de manière unilatérale en l’absence d’activité sur la connexion.
 
-Ils déclarent également le nombre de canaux simultanés pris en charge. Un canal est un chemin d’accès de transfert virtuel sortante unidirectionnelle par-dessus la connexion de hello. Une session prend un canal à partir de chaque chemin de communication hello conteneurs interconnectés tooform un bidirectionnelles.
+Ils déclarent également le nombre de canaux simultanés pris en charge. Un canal est un chemin d’accès de transfert virtuel, unidirectionnel et sortant sur la connexion. Une session emprunte un canal à partir de chacun des conteneurs interconnectés pour former un chemin de communication bidirectionnelle.
 
-Sessions ont un modèle de contrôle de flux basé sur la fenêtre ; Lorsqu’une session est créée, chaque partie déclare le nombre d’images, il est prêt tooaccept dans sa fenêtre de réception. Étant donné que transférées hello parties exchange frames, frames remplir que fenêtre et des transferts de s’arrêter lorsque la fenêtre hello est plein et jusqu'à ce que la fenêtre hello est réinitialisé ou développée à l’aide de hello *flux performative* (*performative*est hello AMQP terme mouvements au niveau du protocole échangés entre les parties hello deux).
+Les sessions disposent d’un modèle de contrôle de flux utilisant une fenêtre ; lorsqu’une session est créée, chaque partie déclare le nombre de trames qu’elle est prête à accepter dans sa fenêtre de réception. Alors que les parties échangent des trames, les trames transférées remplissent cette fenêtre et les transferts s’arrêtent une fois la fenêtre pleine et jusqu’à sa réinitialisation ou expansion à l’aide du *performatif de flux* (*performatif* est le terme AMQP pour les mouvements au niveau du protocole échangés entre les deux parties).
 
-Ce modèle basé sur la fenêtre est à peu près semblable toohello concept de TCP du contrôle de flux basé sur la fenêtre, mais au niveau session hello hello socket. Hello concept du protocole de permettant à plusieurs sessions simultanées existe afin que le trafic de priorité élevée peut être manquer son au-delà d’accélérée trafic normal, comme sur un couloir express route.
+Ce modèle utilisant une fenêtre est à peu près semblable au concept de contrôle de flux utilisant une fenêtre, mais au niveau de la session à l’intérieur du socket. Le concept du protocole visant à autoriser plusieurs sessions simultanées consiste à ce que le trafic à priorité élevée soit prioritaire sur un trafic normal ralenti, comme sur une voie expresse.
 
-Azure Service Bus utilise actuellement une session pour chaque connexion. Hello Service Bus-taille de trame maximale est 262 144 octets (256 Ko) pour le Bus de Service Standard et les concentrateurs d’événements. Elle est de 1 048 576 (1 Mo) pour la version Premium de Service Bus. Service Bus n’impose pas de toute fenêtre de limitation de niveau session particulière, mais les réinitialisations hello fenêtre régulièrement dans le cadre du contrôle de flux au niveau du lien (consultez [hello section suivante](#links)).
+Azure Service Bus utilise actuellement une session pour chaque connexion. La taille maximale de trame de Service Bus est de 262 144 octets (256 Ko) pour la version Standard de Service Bus et Event Hubs. Elle est de 1 048 576 (1 Mo) pour la version Premium de Service Bus. Service Bus n’impose pas de fenêtre de limitation spécifique au niveau de la session, mais réinitialise la fenêtre régulièrement dans le cadre du contrôle de flux au niveau du lien (voir [la section suivante](#links)).
 
-Les connexions, les canaux et les sessions sont éphémères. Si la connexion sous-jacente de hello est réduit, les connexions, le tunnel TLS, SASL du contexte d’autorisation et les sessions doivent être rétablies.
+Les connexions, les canaux et les sessions sont éphémères. En cas de coupure de la connexion sous-jacente, les connexions, le tunnel TLS, le contexte d’autorisation SASL et les sessions doivent être rétablis.
 
 ### Liens
 
-AMQP transfère les messages via des liens. Un lien est un chemin d’accès de communication créé sur une session qui permet le transfert de messages dans une direction ; négociation de statut de transfert Hello est sur le lien de hello et bidirectionnelles entre les parties hello connecté.
+AMQP transfère les messages via des liens. Un lien est un chemin de communication créé sur une session qui permet le transfert de messages dans une seule direction ; la négociation du statut de transfert s’effectue sur le lien et est bidirectionnelle entre les parties connectées.
 
 ![][2]
 
-Liens peuvent être créés par un conteneur à tout moment et sur une session existante, ce qui rend AMQP différent de nombreux protocoles, y compris HTTP et MQTT, où l’émission de hello de transfert et le chemin d’accès de transfert est un privilège exclusif du tiers hello création connexion du socket Hello.
+Des liens peuvent être créés par un conteneur à tout moment et sur une session existante, ce qui rend AMQP différent de nombreux protocoles, y compris HTTP et MQTT, où le lancement de transferts et le chemin d’accès de transfert sont un privilège exclusif de la partie créant la connexion de socket.
 
-conteneur qui initie le lien de Hello pose hello opposé conteneur tooaccept un lien, il choisit un rôle d’expéditeur ou récepteur. Par conséquent, conteneur peut lancer la création unidirectionnelle ou chemins d’accès de la communication bidirectionnelle, par hello ce dernier se modélisée en tant que paires de liens.
+Le conteneur à l’origine du lien demande au conteneur opposé d’accepter un lien et il choisit un rôle d’expéditeur ou de destinataire. Par conséquent, chaque conteneur peut être à l’origine de la création de chemins d’accès unidirectionnels ou bidirectionnels, le dernier étant modélisé sous forme de paires de liens.
 
-Des liens sont nommés et associés à des nœuds. Comme indiqué dans le début de hello, les nœuds sont hello communique des entités à l’intérieur d’un conteneur.
+Des liens sont nommés et associés à des nœuds. Comme indiqué au début, les nœuds sont les entités qui communiquent à l’intérieur d’un conteneur.
 
-Dans Service Bus, un nœud est équivalent tooa file d’attente, une rubrique, un abonnement ou une sous-file d’attente de lettres mortes d’une file d’attente ou d’abonnement. nom du nœud Hello utilisé dans AMQP est par conséquent hello nom relatif d’entité hello au sein de l’espace de noms Service Bus hello. Si une file d’attente est nommée **myqueue**, ce dernier est également son nom de nœud AMQP. Un abonnement à une rubrique suit la convention d’API HTTP hello par en cours de tri dans une collection de ressources « abonnements » et par conséquent, un abonnement **sub** ou une rubrique **mytopic** a du nom de nœud hello AMQP **mytopic/abonnements/sub**.
+Dans Service Bus, un nœud est l’équivalent direct d’une file d’attente, d’une rubrique, d’un abonnement ou d’une sous-file d’attente de lettre morte d’une file d’attente ou d’un abonnement. Le nom de nœud utilisé dans AMQP est donc le nom relatif de l’entité au sein de l’espace de noms Service Bus. Si une file d’attente est nommée **myqueue**, ce dernier est également son nom de nœud AMQP. Un abonnement de rubrique suit la convention de l’API HTTP dans la mesure où il est trié dans la collection de ressources « subscriptions ». Par conséquent, un abonnement **sub** ou une rubrique **mytopic** porte le nom de nœud AMQP **mytopic/subscriptions/sub**.
 
-Hello client se connectant est également requis toouse un nom de nœud local pour la création de liens ; Bus de service n’est pas recommandée sur les noms de nœud et n’interprète pas les. En règle générale, les piles de client AMQP 1.0 utilisent un tooassure de schéma que ces noms de nœud éphémères sont uniques dans la portée de hello du client de hello.
+Le client qui se connecte doit également utiliser un nom de nœud local pour la création de liens. Service Bus n’est pas normatif concernant ces noms de nœud et ne les interprète pas. Les piles de client AMQP 1.0 utilisent en général un schéma pour s’assurer que ces noms de nœud éphémères sont uniques dans le cadre du client.
 
 ### Transferts
 
-Une fois qu’un lien a été établi, les messages peuvent être transférés via celui-ci. Dans AMQP, un transfert est exécuté avec un mouvement de protocole explicite (hello *transfert* performative) qui déplace un message à partir de l’expéditeur tooreceiver sur un lien. Un transfert est terminé lorsqu’il est « réglée, » ce qui signifie que les deux parties ont établie une compréhension commune des résultats hello de ce transfert.
+Une fois qu’un lien a été établi, les messages peuvent être transférés via celui-ci. Dans AMQP, un transfert est exécuté avec un mouvement de protocole explicite (le performatif de *transfert*) qui déplace un message de l’expéditeur vers le destinataire via un lien. Un transfert est terminé lorsqu’il « réglé », ce qui signifie que les deux parties ont établi une compréhension commune du résultat de ce transfert.
 
 ![][3]
 
-Dans le cas le plus simple hello, l’expéditeur de hello peut choisir les messages toosend « préalable réglées », ce qui signifie que les clients hello n’est pas intéressé par résultat de hello et récepteur de hello ne fournit pas de vos commentaires concernant les opération hello résultat hello. Ce mode est pris en charge par Service Bus à hello au niveau du protocole AMQP, mais pas exposé dans une des API clientes de hello.
+Dans le cas le plus simple, l’expéditeur peut choisir d’envoyer des messages « préalablement réglés », ce qui signifie que le client n’est pas intéressé par le résultat et que le destinataire ne fournira pas de commentaires sur le résultat de l’opération. Ce mode est pris en charge par Service Bus au niveau protocole AMQP, mais n’est pas exposé dans les API du client.
 
-Hello régulière cas est que les messages sont envoyés non réglées et récepteur de hello puis indique l’acceptation ou refus à l’aide de hello *disposition* performative. Rejet se produit lorsque le récepteur de hello ne peut pas accepter un message de type hello pour une raison quelconque, et le message de rejet hello contient des informations sur la raison de hello, qui est une structure d’erreur définie par l’AMQP. Si les messages sont rejetés en raison d’erreurs toointernal à l’intérieur du Bus des services, service de hello retourne des informations supplémentaires à l’intérieur de cette structure peut être utilisée pour fournir des diagnostics personnel de toosupport indicateurs si vous utilisez des demandes de prise en charge. Nous aborderons les erreurs plus en détail ultérieurement.
+En temps normal les messages sont envoyés non réglés et le destinataire indique l’acceptation ou le rejet à l’aide du performatif de *traitement*. Le rejet se produit lorsque le destinataire ne peut pas accepter le message pour une raison quelconque. Le message de refus contient des informations sur la raison, qui est une structure d’erreur définie par AMQP. Si les messages sont rejetés en raison d’erreurs internes dans Service Bus, le service renvoie des informations supplémentaires à l’intérieur de cette structure utilisables pour fournir des indications de diagnostic au personnel chargé du support technique si vous déposez des demandes de support. Nous aborderons les erreurs plus en détail ultérieurement.
 
-Une forme particulière de rejet est hello *publié* d’état, ce qui signifie que récepteur hello n’a aucun transfert de toohello objection technique, mais également aucun intérêt en réglant ne hello transfert. Que cas existe, par exemple, lorsqu’un message est remis client de Service Bus tooa et client de hello choisit trop « abandonner « message de type hello, car il ne peut pas effectuer le travail hello résultant du traitement du message de type hello ; remise des messages Hello lui-même n’est pas en cause. Une variation de cet état est hello *modifié* état, ce qui permet à message toohello de modifications qu’elles sont publiées. Cet état n’est pas utilisé par Service Bus à l’heure actuelle.
+Une forme spéciale de rejet est l’état *released*, qui indique que le destinataire n’oppose pas d’objection technique au transfert, et qu’il n’est pas intéressé par le fait de régler ce dernier. Ce cas survient, par exemple, lorsqu’un message est envoyé à un client de Service Bus et que le client choisit d’« abandonner » le message, car il ne peut pas effectuer le travail issu du traitement du message, alors que la remise du message proprement dite n’est pas en cause. L’état *modified* est une variante de cet état. Il permet de modifier le message au moment de sa publication. Cet état n’est pas utilisé par Service Bus à l’heure actuelle.
 
-Hello spécification AMQP 1.0 définit une autre disposition état appelé *reçu*, qui aide à récupération du lien toohandle. Récupération du lien permet de reconstituer état hello d’un lien et en attente des remises sur une nouvelle connexion et la session, lorsque les connexion préalable hello et la session ont été perdues.
+La spécification AMQP 1.0 définit un autre état de traitement, *received*, qui permet de traiter spécifiquement la récupération de liens. La récupération de liens permet de reconstituer l’état d’un lien et toutes les remises en attente sur une nouvelle connexion et session, lorsque la session et la connexion précédentes ont été perdues.
 
-Service Bus ne prend pas en charge la récupération du lien ; Si le client de hello perd hello connexion tooService Bus avec un message non réglé transférer en attente, ce transfert de message est perdu et hello du client doit se reconnecter, rétablissement de la liaison de hello et essayer des transférer hello.
+Service Bus ne prend pas en charge la récupération de liens ; si le client perd la connexion à Service Bus avec un transfert de message non réglé en attente, ce transfert de message est perdu et le client doit se reconnecter, rétablir le lien et relancer le transfert.
 
-Par conséquent, Service Bus et concentrateurs d’événements prennent en charge « au moins une fois » transferts où hello expéditeur puisse être assurée pour le message de type hello ayant été stockées et acceptés, mais ne gèrent pas « exactement une fois » transferts à hello niveau AMQP, où le système de hello tentent toorecover Hello lien et continuer la duplication de tooavoid toonegotiate hello remise état hello de transfert de messages.
+Ainsi, Service Bus et Event Hubs prennent en charge les transferts « au moins une fois » où l’expéditeur peut être assuré du stockage et de l’acceptation de son message. Toutefois, les transferts « une fois au maximum » au niveau AMQP, au cours desquels le système tenterait de récupérer le lien et continuerait de négocier l’état de remise pour éviter la duplication du transfert du message, ne sont pas pris en charge.
 
-toocompensate les doublons possibles envoie, Service Bus prend en charge la détection des doublons comme une fonctionnalité facultative sur les files d’attente et rubriques. Les enregistrements de détection des doublons hello ID des messages de tous les messages entrants pendant une période définie par l’utilisateur, puis en mode silencieux supprime avec que tous les messages envoyés hello mêmes message-ID au cours de cette même fenêtre.
+Pour compenser les potentiels envois en double, Service Bus prend en charge la détection des doublons comme fonctionnalité facultative sur les files d’attente et les rubriques. La détection des doublons enregistre les ID de message de tous les messages entrants pendant un laps de temps défini par l’utilisateur et annule de manière silencieuse tous les messages envoyés avec le même ID de message au cours de cette même période.
 
 ### Contrôle de flux
 
-De plus de contrôle de flux au niveau de la session toohello modèle qui décrit précédemment, chaque lien a son propre modèle de flux de contrôle. Contrôle de flux au niveau de la session protège conteneur de hello de ne pas avoir de toohandle trop grand nombre d’images à une seule fois, contrôle de flux au niveau du lien place application hello responsable combien messages toohandle souhaite disposer d’un lien et quand.
+Outre le modèle de contrôle de flux au niveau de la session indiqué précédemment, chaque lien a son propre modèle de contrôle de flux. Le contrôle de flux au niveau de la session évite au conteneur de devoir gérer un trop grand nombre de trames en une seule fois. Le contrôle de flux au niveau du lien charge l’application de décider du nombre de messages qu’elle souhaite gérer à partir d’un lien et à quel moment.
 
 ![][4]
 
-Sur un lien, transferts ne peuvent se produire lorsque hello expéditeur est suffisant *lien crédit*. Crédit de lien est un ensemble de compteurs en récepteur hello à l’aide de hello *flux* performative, qui est une étendue tooa lien. Lors de l’expéditeur de hello est attribué le crédit de lien, il tente toouse de ce crédit par la remise des messages. Chaque décrémente de remise de message hello crédit restant de lien par 1. Lorsque le crédit de lien de hello est utilisé, les remises arrêter.
+Les transferts ne peuvent se produire sur un lien que lorsque l’expéditeur dispose d’un « *crédit de lien* » suffisant. Le crédit de lien est un compteur défini par le récepteur à l’aide du performatif de *flux*, qui est limité à un lien. Dès que l’expéditeur se voit attribuer un crédit de lien, il tente de l’utiliser en envoyant des messages. Chaque remise de message décrémente d’autant (1) le crédit de lien restant. Lorsque le crédit de lien est épuisé, les remises s’interrompent.
 
-Lorsque le Service Bus est dans le rôle de récepteur hello, fournit instantanément l’expéditeur de hello avec crédit de lien propose un grand nombre, afin que les messages peuvent être envoyés immédiatement. Comme lien crédit est utilisé, le Service Bus envoie occasionnellement un *flux* solde du crédit lien toohello performative expéditeur tooupdate hello.
+Lorsque Service Bus se trouve dans le rôle du destinataire, il offre instantanément à l’expéditeur un crédit de lien important permettant d’envoyer immédiatement des messages. À mesure que le crédit de lien est utilisé, Service Bus envoie parfois un performatif de *flux* à l’expéditeur pour mettre à jour le solde du crédit de lien.
 
-Dans le rôle d’expéditeur hello, Service Bus envoie toouse de messages de crédit lien en attente.
+Dans le rôle de l’expéditeur, Service Bus envoie des messages afin d’épuiser tout crédit de lien restant.
 
-Se traduit par un appel de « réception » au niveau de l’API de hello un *flux* performative est envoyé tooService Bus par client de hello et Service Bus consomme que tout d’abord de crédit en prenant les hello, message de file d’attente de hello, verrouiller, déverrouillé et transférer. Si aucun message n’est immédiatement disponible pour la remise, tout crédit en suspens par n’importe quel lien établi avec qu’entité particulière reste enregistrée dans l’ordre d’arrivée et les messages sont verrouillés et transférées dès qu’elles deviennent disponibles, toouse tout crédit en cours.
+Un appel de « réception » au niveau de l’API se traduit par un performatif de *flux* envoyé à Service Bus par le client. Service Bus utilise ce crédit en prenant le premier message non verrouillé disponible de la file d’attente, en le verrouillant et en le transférant. Si aucun message n’est immédiatement disponible pour la remise, tout crédit restant par tout lien établi avec cette entité spécifique reste enregistré dans l’ordre d’arrivée et les messages sont verrouillés et transférés dès qu’ils sont disponibles pour utiliser tout crédit en attente.
 
-verrou de Hello sur un message est libéré lorsque le transfert de hello est réglé dans un des États de Terminal Server hello *accepté*, *rejeté*, ou *publié*. message de type Hello est supprimé de Service Bus lorsque l’état de terminal hello est *accepté*. Il reste dans Service Bus et est remis récepteur suivant de toohello lorsque le transfert de hello atteint un des hello autres États. Service Bus déplace automatiquement le message de type hello en file d’attente de lettres mortes de l’entité hello lorsqu’il atteint le nombre maximal de diffusions de hello autorisé pour l’entité hello en raison des rejets de toorepeated ou de versions.
+Le verrouillage d’un message est levé dès que l’état terminal d’un transfert est *accepted*, *rejected*, ou *released*. Le message est supprimé de Service Bus lorsque l’état terminal est *accepted*. Il reste dans Service Bus et est remis au destinataire suivant dès que le transfert se voit attribuer un des autres états. Service Bus déplace automatiquement le message vers la file d’attente de lettre morte de l’entité lorsque le nombre maximal de remises autorisé pour l’entité est atteint, en raison des rejets ou libérations répétés.
 
-Même si hello API Service Bus n’exposent pas directement une telle option aujourd'hui, un client de protocole AMQP de niveau inférieur peut utiliser hello crédit de lien modèle tooturn hello de style « pull » une interaction de l’émission d’une unité de crédit pour chaque demande de réception dans un modèle de style « push » en émettant un grand nombre de lien crédits et puis recevoir des messages dès qu’elles sont disponibles sans intervention supplémentaire. Push est pris en charge par le biais hello [MessagingFactory.PrefetchCount](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_PrefetchCount) ou [MessageReceiver.PrefetchCount](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_PrefetchCount) les paramètres de propriété. Lorsqu’ils sont non nulle, client AMQP l’hello utilise en tant que crédit de lien de hello.
+Bien qu’aujourd’hui les API Service Bus n’exposent pas directement une telle option, un client de protocole AMQP de niveau inférieur peut utiliser le modèle de crédit de lien pour transformer l’interaction de style « pull», qui consiste à émettre une unité de crédit pour chaque demande de réception en un modèle de style « push » qui consiste à émettre un grand nombre de crédits de lien et à recevoir les messages dès qu’ils sont disponibles, sans intervention supplémentaire. Le modèle Push est pris en charge par le biais des paramètres de propriétés [MessagingFactory.PrefetchCount](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_PrefetchCount) ou [MessageReceiver.PrefetchCount](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_PrefetchCount). Lorsqu’ils sont différents de zéro, le client AMQP l’utilise comme crédit de lien.
 
-Dans ce contexte, sa, toounderstand important de qui hello horloge l’expiration du verrou hello sur le message de salutation au sein de l’entité de hello hello démarre lorsque hello message provient de l’entité de hello, pas lorsque message de type hello est placé sur le câble de hello. Chaque fois que le client de hello indique la disponibilité de messages de tooreceive en émettant le crédit de lien, est attendu toobe messages activement extraction réseau hello et être prêt toohandle les. Sinon, verrou de message hello a peut-être expiré avant que le message de type hello est remis même. utilisation de Hello credit de liaison de contrôle de flux doit refléter directement toodeal de préparation immédiate hello avec les messages disponibles distribués toohello récepteur.
+Dans ce contexte, il est important de comprendre que l’horloge d’expiration du verrou sur le message situé à l’intérieur de l’entité démarre lorsque le message est extrait de l’entité, et non lorsqu’il est envoyé. Chaque fois que le client indique qu’il est prêt à recevoir des messages en émettant un crédit de lien, on s’attend à ce qu’il extrait de manière active des messages sur le réseau et qu’il soit prêt à les gérer. Sinon, le verrouillage du message peut expirer avant même la remise du message. L’utilisation du contrôle de flux de crédit de lien doit refléter directement la disponibilité de traitement immédiate des messages disponibles distribués auprès du destinataire.
 
-En résumé, hello sections suivantes fournissent une vue d’ensemble schématique de flux de performative hello lors des interactions de l’API. Chaque section décrit une opération logique différente. Certaines de ces interactions peuvent être « différées », ce qui signifie qu’elles peuvent être effectuées uniquement en cas de besoin. Création d’un expéditeur du message ne peut pas provoquer une interaction réseau jusqu'à ce que le premier message de type hello est envoyé ou demandé.
+En résumé, les sections suivantes fournissent une vue d’ensemble schématique du flux performatif lors des différentes interactions de l’API. Chaque section décrit une opération logique différente. Certaines de ces interactions peuvent être « différées », ce qui signifie qu’elles peuvent être effectuées uniquement en cas de besoin. La création d’un expéditeur de message peut ne pas provoquer d’interaction réseau tant que le premier message n’est pas envoyé ou demandé.
 
-des flèches de Hello Bonjour tableau suivant indiquent la direction du flux performative hello.
+Les flèches dans le tableau suivant indiquent le sens du flux performatif.
 
 #### Création du destinataire du message
 
 | Client | SERVICE BUS |
 | --- | --- |
-| --> attach(<br/>name={nom du lien},<br/>handle={gestion numérique},<br/>role=**receiver**,<br/>source={nom de l’entité},<br/>target={id du lien client}<br/>) |Client joint tooentity en tant que récepteur |
-| Réponses de service Bus attachement en fin de lien de hello |<-- attach(<br/>name={nom du lien},<br/>handle={gestion numérique},<br/>role=**sender**,<br/>source={nom de l’entité},<br/>target={id du lien client}<br/>) |
+| --> attach(<br/>name={nom du lien},<br/>handle={gestion numérique},<br/>role=**receiver**,<br/>source={nom de l’entité},<br/>target={id du lien client}<br/>) |Le client se joint à l’entité en tant que destinataire |
+| Service Bus répond en attachant son extrémité du lien |<-- attach(<br/>name={nom du lien},<br/>handle={gestion numérique},<br/>role=**sender**,<br/>source={nom de l’entité},<br/>target={id du lien client}<br/>) |
 
 #### Création de l’expéditeur du message
 
@@ -203,7 +203,7 @@ des flèches de Hello Bonjour tableau suivant indiquent la direction du flux per
 
 ### Messages
 
-Hello sections suivantes expliquent les propriétés à partir des sections de message AMQP standards hello sont utilisées par Service Bus et leur mappage d’ensemble de l’API Service Bus toohello.
+Les sections suivantes expliquent quelles propriétés des sections de message AMQP standard sont utilisées par Service Bus et comment elles correspondent aux API Service Bus.
 
 #### en-tête
 
@@ -211,7 +211,7 @@ Hello sections suivantes expliquent les propriétés à partir des sections de m
 | --- | --- | --- |
 | durable |- |- |
 | priority |- |- |
-| ttl |Temps toolive pour ce message |[TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive) |
+| ttl |Durée de vie de ce message |[TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive) |
 | first-acquirer |- |- |
 | delivery-count |- |[DeliveryCount](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeliveryCount) |
 
@@ -220,33 +220,33 @@ Hello sections suivantes expliquent les propriétés à partir des sections de m
 | Nom du champ | Usage | Nom de l’API |
 | --- | --- | --- |
 | message-id |Identifiant défini par l’application, au format libre pour ce message. Utilisation pour la détection des doublons. |[MessageId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) |
-| user-id |Identifiant d’utilisateur défini par l’application, non interprété par Service Bus. |Accessible via hello API Service Bus. |
-| trop|Identifiant de destination défini par l’application, non interprété par Service Bus. |[To](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_To) |
+| user-id |Identifiant d’utilisateur défini par l’application, non interprété par Service Bus. |Pas accessible via l’API Service Bus. |
+| to |Identifiant de destination défini par l’application, non interprété par Service Bus. |[To](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_To) |
 | subject |Identifiant d’objet de message défini par l’application, non interprété par Service Bus. |[Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) |
-| réponse trop|Indicateur reply-path défini par l’application, non interprété par Service Bus. |[ReplyTo](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ReplyTo) |
+| reply-to |Indicateur reply-path défini par l’application, non interprété par Service Bus. |[ReplyTo](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ReplyTo) |
 | correlation-id |Identifiant de corrélation défini par l’application, non interprété par Service Bus. |[CorrelationId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_CorrelationId) |
-| content-type |Indicateur de type de contenu défini par l’application pour le corps de hello, ne pas interprété par le Service Bus. |[ContentType](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ContentType) |
-| content-encoding |Défini par l’application indicateur l’encodage de contenu pour le corps de hello, ne pas interprété par le Service Bus. |Accessible via hello API Service Bus. |
-| absolute-expiry-time |Déclare le hello instantanée absolu message expire. Ignoré en entrée (la durée de vie de l’en-tête est observée), fait autorité en sortie. |[ExpiresAtUtc](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ExpiresAtUtc) |
-| creation-time |Déclare à quels hello temps le message a été créé. Pas utilisé par Service Bus |Accessible via hello API Service Bus. |
+| content-type |Indicateur de type de contenu défini par l’application pour le corps, non interprété par Service Bus. |[ContentType](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ContentType) |
+| content-encoding |Indicateur d’encodage de contenu défini par l’application pour le corps, non interprété par Service Bus. |Pas accessible via l’API Service Bus. |
+| absolute-expiry-time |Déclare à quel instant absolu le message expire. Ignoré en entrée (la durée de vie de l’en-tête est observée), fait autorité en sortie. |[ExpiresAtUtc](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ExpiresAtUtc) |
+| creation-time |Déclare à quelle heure le message a été créé. Pas utilisé par Service Bus |Pas accessible via l’API Service Bus. |
 | group-id |Identifiant défini par l’application pour un ensemble de messages connexes. Utilisé pour les sessions Service Bus. |[SessionId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_SessionId) |
-| group-sequence |Compteur de numéro d’identification hello séquence relative de message de type hello à l’intérieur d’une session. Ignoré par Service Bus. |Accessible via hello API Service Bus. |
+| group-sequence |Compteur identifiant le nombre de séquences relatives du message se trouvant dans la session. Ignoré par Service Bus. |Pas accessible via l’API Service Bus. |
 | reply-to-group-id |- |[ReplyToSessionId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ReplyToSessionId) |
 
 ## Fonctionnalités avancées de Service Bus
 
-Cette section traite des fonctionnalités avancées d’Azure Service Bus qui reposent sur brouillon extensions tooAMQP, en cours de développement Bonjour comité technique OASIS pour AMQP. Bus de service implémente hello dernières versions de ces projets et adopte les modifications introduites comme les brouillons atteint état standard.
+Cette section traite des fonctionnalités avancées d’Azure Service Bus qui reposent sur des projets d’extension d’AMQP en cours de développement au sein du comité technique OASIS pour AMQP. Service Bus implémente la dernière version de ces projets et adopte les modifications introduites dès que ces projets sont normalisés.
 
 > [!NOTE]
-> Les opérations avancées de messagerie Service Bus sont prises en charge via un modèle de demande/réponse. Hello des détails sur ces opérations sont décrites dans le document de hello [AMQP 1.0 dans Service Bus : opérations demande-réponse](service-bus-amqp-request-response.md).
+> Les opérations avancées de messagerie Service Bus sont prises en charge via un modèle de demande/réponse. Les détails de ces opérations sont décrits dans le document [AMQP 1.0 in Service Bus: request/response-based operations](service-bus-amqp-request-response.md) (AMQP 1.0 dans Service Bus : opérations basées sur le modèle de demande-réponse).
 > 
 > 
 
 ### Gestion du protocole AMQP
 
-Hello spécification de la gestion AMQP est hello premier des extensions de projet hello présentées ici. Cette spécification définit un ensemble de mouvements protocole superposée hello protocole AMQP qui autorisent les interactions de gestion avec hello infrastructure de messagerie via AMQP. spécification de Hello définit les opérations génériques tels que *créer*, *lire*, *mettre à jour*, et *supprimer* pour la gestion des entités à l’intérieur d’un infrastructure de messagerie et un ensemble d’opérations de requête.
+La spécification de gestion du protocole AMQP est le premier projet d’extension dont nous parlerons ici. Cette spécification définit un ensemble de mouvements de protocole disposés en couche au-dessus du protocole AMQP, qui permettent des interactions de gestion avec l’infrastructure de messagerie via AMQP. La spécification définit des opérations génériques, telles que la *création*, la *lecture*, la *mise à jour* et la *suppression*, pour la gestion des entités au sein d’une infrastructure de messagerie et un ensemble d’opérations de requête.
 
-Tous les mouvements nécessitent une interaction de demande/réponse entre le client de hello et infrastructure de messagerie hello et spécification de hello définit donc comment toomodel cette interaction modèle par-dessus AMQP : hello se connecte toohello de messagerie infrastructure, initie une session, puis crée une paire de liens. Sur un lien, hello fait Office de l’expéditeur et sur hello autres agit en tant que récepteur, créant ainsi une paire de liens peuvent agir comme un canal bidirectionnel.
+Tous ces mouvements nécessitent une interaction demande/réponse entre le client et l’infrastructure de messagerie. Par conséquent, la spécification définit comment modéliser ce modèle d’interaction au-dessus d’AMQP : le client se connecte à l’infrastructure de messagerie, lance une session, puis crée une paire de liens. Sur un lien, le client joue le rôle d’expéditeur et sur l’autre, il agit en tant que destinataire, créant ainsi une paire de liens pouvant agir sous forme de canal bidirectionnel.
 
 | Opération logique | Client | Service Bus |
 | --- | --- | --- |
@@ -255,41 +255,41 @@ Tous les mouvements nécessitent une interaction de demande/réponse entre le cl
 | Création d’un chemin d’accès de réponse à une demande |--> attach(<br/>name={*nom du lien*},<br/>handle={*gestion numérique*},<br/>role=**receiver**,<br/>source=”myentity/$management”,<br/>target=”myclient$id”<br/>) | |
 | Création d’un chemin d’accès de réponse à une demande |Aucune action |\<-- attach(<br/>name={*nom du lien*},<br/>handle={*gestion numérique*},<br/>role=**sender**,<br/>source=”myentity”,<br/>target=”myclient$id”<br/>) |
 
-Absence de cette paire de liens, mise en œuvre de demande/réponse hello est simple : une demande est un message envoyé d’entité tooan au sein de l’infrastructure de messagerie hello qui comprend ce modèle. Dans ce message de demande, hello *réponse* champ hello *propriétés* section a la valeur toohello *cible* identificateur de lien de hello sur la réponse de hello toodeliver. Hello, la gestion des entités traite la demande de hello et fournit une réponse hello sur hello lier dont *cible* hello indiqué correspond à l’identificateur *réponse* identificateur.
+Une fois cette paire de liens en place, l’implémentation de la demande/réponse est simple : une demande est un message envoyé à une entité se trouvant au sein de l’infrastructure de messagerie qui comprend ce modèle. Dans ce message de demande, le champ *reply-to* de la section des *propriétés* est défini sur l’identifiant *cible* du lien sur lequel remettre la réponse. L’entité de gestion traite la demande, puis envoie la réponse sur le lien dont l’identifiant *cible* correspond à l’identifiant *reply-to* indiqué.
 
-modèle de Hello nécessite évidemment que conteneur de client hello et l’identificateur de client généré hello pour la destination de réponse hello sont uniques sur tous les clients et, pour des raisons de sécurité, toopredict également difficile.
+Ce modèle nécessite évidemment que le conteneur du client et l’identifiant généré par le client pour la destination de la réponse soient uniques sur tous les clients et, pour des raisons de sécurité, qu’ils soient également difficiles à deviner.
 
-les échanges de messages Hello utilisé pour le protocole de gestion hello et pour tous les autres protocoles que hello utilisez même modèle se produisent au niveau de l’application hello ; ils ne définissent pas de nouveaux mouvements d’au niveau du protocole AMQP. Cela est intentionnel afin que les applications puissent tirer immédiatement parti de ces extensions avec les piles compatibles AMQP 1.0.
+Les échanges de messages utilisés pour le protocole de gestion et pour tous les autres protocoles utilisant le même modèle se produisent au niveau de l’application ; ils ne définissent pas de nouveaux mouvements au niveau du protocole AMQP. Cela est intentionnel afin que les applications puissent tirer immédiatement parti de ces extensions avec les piles compatibles AMQP 1.0.
 
-Bus de service n’implémente pas actuellement une des fonctionnalités de base hello de spécification de la gestion hello, mais le modèle de demande/réponse hello défini par la spécification de la gestion hello est fondamental pour la fonctionnalité de sécurité basée sur des revendications hello et pour presque tous les Hello avancées décrites dans les sections suivantes de hello.
+Service Bus n’implémente aucune des principales fonctionnalités de la spécification de gestion. Toutefois, le modèle demande/réponse défini par cette dernière est indispensable pour la fonctionnalité de sécurité basée sur des revendications et pour presque toutes les fonctionnalités avancées que nous aborderons dans les sections suivantes.
 
 ### Autorisation basée sur des revendications
 
-projet de spécification d’autorisation en fonction des revendications AMQP (CBS) Hello s’appuie sur le modèle de demande/réponse de spécification de gestion hello et décrit un modèle généralisé pour comment toouse fédéré avec AMQP, les jetons de sécurité.
+Le projet de spécification d’autorisation basée sur des revendications AMQP (CBS) s’appuie sur le modèle demande/réponse de la spécification de gestion et décrit un modèle généralisé pour l’utilisation des jetons de sécurité fédérés avec AMQP.
 
-modèle de sécurité par défaut Hello de AMQP décrite dans l’introduction de hello est basé sur SASL et s’intègre à la négociation de connexion AMQP hello. À l’aide de SASL a parti hello qu’il fournit un modèle extensible pour lequel un ensemble de mécanismes ont été définies à partir de laquelle tout protocole qui utilise formellement SASL peut bénéficier. Parmi ces mécanismes sont « PLAIN » pour le transfert de noms d’utilisateur et mots de passe, la sécurité de tooTLS au niveau toobind « Externe », absence de hello tooexpress « Anonyme » de l’authentification/autorisation explicite et une grande variété de mécanismes supplémentaires qui permettent le passage des informations d’identification d’authentification et/ou l’autorisation ou de jetons.
+Le modèle de sécurité par défaut du protocole AMQP abordé dans l’introduction repose sur SASL et s’intègre à la négociation de connexion AMQP. L’utilisation de SASL a l’avantage de fournir un modèle extensible pour lequel un ensemble de mécanismes a été défini desquels tout protocole reposant officiellement sur SASL peut bénéficier. Parmi ces mécanismes figurent « PLAIN » pour le transfert des noms d’utilisateurs et des mots de passe, « EXTERNAL » pour la liaison avec la sécurité au niveau TLS, « ANONYMOUS » pour exprimer l’absence d’authentification/autorisation explicite et une grande variété de mécanismes supplémentaires qui permettent de transmettre des jetons ou des informations d’identification d’authentification et/ou d’autorisation.
 
 L’intégration de SASL au protocole AMQP présente deux inconvénients :
 
-* Toutes les informations d’identification et les jetons sont incluses dans l’étendue toohello connexion. Une infrastructure de messagerie souhaitant tooprovide différenciée le contrôle d’accès sur une base par entité ; par exemple, ce qui permet de porteur hello d’un jeton toosend tooqueue A, mais pas tooqueue B. Contexte d’autorisation hello ancré sur la connexion de hello, il est toouse n’est pas possible une connexion unique et encore utiliser des jetons d’accès différents pour la file d’attente A et de la file d’attente B.
-* Les jetons d’accès sont généralement valides uniquement pour une durée limitée. Cette validité nécessite des jetons d’acquérir à nouveau hello utilisateur tooperiodically et fournit une toorefuse de l’émetteur de jeton toohello opportunité émettre un nouveau jeton si hello autorisations d’accès ont été modifiés. Les connexions AMQP peuvent durer longtemps. Hello SASL modèle uniquement fournit une chance tooset un jeton au moment de la connexion, ce qui signifie que hello infrastructure de messagerie soit a client de hello toodisconnect lors de l’expiration du jeton de hello ou doit être risque de hello tooaccept de permettre des communications continues avec un client qui a des droits d’accès ont été révoqués Bonjour intermédiaires.
+* L’ensemble des informations d’identification et des jetons se limite à la connexion. Une infrastructure de messagerie peut vouloir fournir un contrôle d’accès différencié par entité. Par exemple, en autorisant le porteur d’un jeton à effectuer un envoi vers la file d’attente A, mais pas la file d’attente B. Dans la mesure où le contexte d’autorisation est ancré à la connexion, il est impossible d’utiliser une connexion unique et des jetons d’accès différents pour les files d’attente A et B.
+* Les jetons d’accès sont généralement valides uniquement pour une durée limitée. Cela oblige l’utilisateur à réacquérir régulièrement des jetons et offre la possibilité à l’émetteur du jeton de refuser d’en émettre un nouveau si les autorisations d’accès de l’utilisateur ont été modifiées. Les connexions AMQP peuvent durer longtemps. Le modèle SASL permet uniquement de définir un jeton au moment de la connexion, ce qui signifie que l’infrastructure de messagerie doit déconnecter le client lorsque le jeton a expiré ou accepter le risque lié au fait d’autoriser des communications continues avec un client dont les droits d’accès peuvent avoir été révoqués entre-temps.
 
-Hello la spécification AMQP CBS, implémentée par le Service Bus, permet une solution de contournement élégante pour les deux de ces problèmes : il permet à un client tooassociate des jetons d’accès à chaque nœud et tooupdate les jetons avant leur expiration, sans interrompre le flux de messages hello.
+La spécification AMQP CBS, implémentée par Service Bus, offre une solution de contournement élégante pour ces deux problèmes : elle permet à un client d’associer des jetons d’accès à chaque nœud et de mettre à jour ces jetons avant leur expiration, sans interrompre le flux de messages.
 
-CBS définit un nœud de gestion virtuelle nommé *$cbs*, toobe fournie par l’infrastructure de messagerie hello. nœud de gestion Hello accepte les jetons pour le compte de tous les autres nœuds Bonjour infrastructure de messagerie.
+CBS définit un nœud de gestion virtuel nommé *$cbs*, qui doit être fourni par l’infrastructure de messagerie. Le nœud de gestion accepte les jetons pour le compte de tous les autres nœuds dans l’infrastructure de messagerie.
 
-mouvement de protocole Hello est un échange de demande/réponse, tel que défini par la spécification de la gestion hello. Que signifie hello client établit une paire de liens avec hello *$cbs* nœud, puis transmet une demande sur hello lien sortant, puis attend la réponse de hello sur hello lien entrant.
+Le mouvement de protocole est un échange de demande/réponse, tel que défini par la spécification de gestion. Cela signifie que le client établit une paire de liens avec le nœud *$cbs*, transmet une demande sur le lien sortant, puis attend la réponse sur le lien entrant.
 
-message de demande Hello a hello application propriétés suivantes :
+Le message de demande possède les propriétés d’application suivantes :
 
 | Clé | Facultatif | Type de valeur | Contenu de la valeur |
 | --- | --- | --- | --- |
 | operation |Non |string |**put-token** |
-| type |Non |string |type Hello du jeton hello placé. |
-| name |Non |string |jeton de hello toowhich Hello « audience » s’applique. |
-| expiration |Oui |timestamp |délai d’expiration Hello du jeton de hello. |
+| type |Non |string |Type du jeton placé. |
+| name |Non |string |« Audience » à laquelle le jeton s’applique. |
+| expiration |Oui |timestamp |Délai d’expiration du jeton. |
 
-Hello *nom* propriété identifie l’entité hello quels hello jeton doit être associé. Dans le Bus de Service de file d’attente de toohello hello chemin d’accès ou de rubrique/abonnement. Hello *type* propriété identifie le type de jeton hello :
+La propriété *name* identifie l’entité avec laquelle le jeton doit être associé. Dans Service Bus, il s’agit du chemin d’accès à la file d’attente ou à la rubrique/l’abonnement. La propriété *type* identifie le type de jeton :
 
 | Type de jeton | Description du jeton | Type de corps | Remarques |
 | --- | --- | --- | --- |
@@ -297,30 +297,30 @@ Hello *nom* propriété identifie l’entité hello quels hello jeton doit être
 | amqp:swt |Clé d’authentification Web simple (SWT) |Valeur AMQP (chaîne) |Pris en charge uniquement pour les clés d’authentification web simples SWT émises par AAD/ACS |
 | servicebus.windows.net:sastoken |Jeton SAS Service Bus |Valeur AMQP (chaîne) |- |
 
-Les jetons confèrent des droits. Service Bus connaît trois droits fondamentaux : « Envoyer » autorise l’envoi, « Écouter » autorise la réception, et « Gérer » autorise la manipulation d’entités. Les jetons SWT émis par AAD/ACS incluent explicitement ces droits en tant que revendications. Jetons SAP de Bus de service consultez toorules configuré sur l’espace de noms hello ou de l’entité, et ces règles sont configurées avec des droits. Droits respectifs du jeton hello express hello qui rend donc le jeton de signature hello avec clé hello associée à cette règle. jeton Hello associé à une entité à l’aide de *put-jeton* autorise hello connecté toointeract du client avec l’entité hello par des droits de jeton hello. Un lien sur lequel le client de hello prend sur hello *expéditeur* rôle requiert hello « Envoi » à droite ; sur hello *récepteur* rôle requiert le droit de « Écouter » hello.
+Les jetons confèrent des droits. Service Bus connaît trois droits fondamentaux : « Envoyer » autorise l’envoi, « Écouter » autorise la réception, et « Gérer » autorise la manipulation d’entités. Les jetons SWT émis par AAD/ACS incluent explicitement ces droits en tant que revendications. Les jetons SAP Service Bus font référence aux règles configurées sur l’espace de noms ou l’entité. Ces dernières sont configurées avec des droits. Le fait de signer le jeton avec la clé associée à cette règle permet au jeton d’exprimer les droits respectifs. Le jeton associé à une entité à l’aide de *put-token* permet au client connecté d’interagir avec l’entité selon les droits du jeton. Un lien sur lequel le client joue le rôle *d’expéditeur* exige le droit « Envoyer ». Le rôle de *destinataire* exige le droit « Écouter ».
 
-message de réponse Hello comporte suivants de hello *-propriétés de l’application* valeurs
+Le message de réponse a les valeurs *application-properties* suivantes :
 
 | Clé | Facultatif | Type de valeur | Contenu de la valeur |
 | --- | --- | --- | --- |
 | status-code |Non |int |Code de réponse HTTP **[RFC2616]**. |
-| status-description |Oui |string |Description du statut de hello. |
+| status-description |Oui |string |Description de l’état. |
 
-Hello client peut appeler *put-jeton* d’une entité de l’infrastructure de messagerie hello et à plusieurs reprises. les jetons de Hello sont toohello étendue actuel du client et ancrés sur la connexion en cours de hello, serveur hello de signification supprime tous les jetons de retenue lors de la connexion de hello supprime.
+Le client peut appeler *put-token* à plusieurs reprises pour toutes les entités de l’infrastructure de messagerie. Les jetons portent sur le client actuel et sont ancrés sur la connexion actuelle, ce qui signifie que le serveur annule tous les jetons conservés en cas d’abandon de la connexion.
 
-implémentation de Service Bus actuelle Hello autorise uniquement CBS conjointement avec hello (méthode) SASL « Anonyme ». Une connexion SSL/TLS doit toujours exister la négociation SASL toohello préalable.
+L’implémentation actuelle de Service Bus autorise uniquement l’utilisation de CBS conjointement à la méthode SASL « ANONYMOUS ». Une connexion SSL/TLS doit toujours exister avant la négociation SASL.
 
-Hello mécanisme anonyme doit donc être pris en charge par hello choisi client AMQP 1.0. Signifie que l’accès anonyme qui hello la négociation de connexion initiale, y compris la création de session initiale de hello se produit sans Service Bus fait de savoir qui consiste à créer des connexions de hello.
+Le mécanisme ANONYMOUS doit donc être pris en charge par le client AMQP 1.0 choisi. L’accès anonyme signifie que la négociation de connexion initiale, y compris la création de la session initiale se produit sans que Service Bus sache qui crée la connexion.
 
-Une fois la connexion de hello et la session est établie, l’attachement hello lie toohello *$cbs* nœud et l’envoi de hello *put-jeton* demande sont hello uniquement les opérations autorisées. Un jeton valide doit être défini avec succès à l’aide un *put-jeton* demande pour un nœud d’entité dans les 20 secondes après la connexion de hello a été établie, sinon hello unilatéralement déconnexion par Service Bus.
+Une fois la session et la connexion établies, l’association des liens avec le nœud *$cbs* et l’envoi de la demande *put-token* sont les seules opérations autorisées. Un jeton valide doit être défini avec succès à l’aide d’une demande *put-token* pour un nœud d’entité dans les 20 secondes suivant l’établissement de la connexion, sans quoi la connexion sera abandonnée unilatéralement par Service Bus.
 
-Hello client est ensuite chargé de suivi d’expiration du jeton. Quand un jeton expire, Service Bus supprime rapidement tous les liens sur l’entité de hello connexion toohello respectifs. tooprevent, hello client peut remplacer un jeton hello pour le nœud de hello avec une autre à tout moment via hello virtuel *$cbs* nœud de gestion avec hello même *put-jeton* de mouvement et sans mise en route Bonjour méthode de charge utile de hello le trafic de ce flux sur différents liens.
+Le client est ensuite chargé de vérifier l’expiration du jeton. Lorsqu’un jeton arrive à expiration, Service Bus annule rapidement tous les liens sur la connexion à l’entité respective. Pour éviter cela, le client peut remplacer le jeton du nœud par un nouveau jeton à tout moment via le nœud de gestion *$cbs* virtuel avec le même mouvement *put-token* et sans gêner le trafic de la charge utile qui transite sur différents liens.
 
 ## Étapes suivantes
 
-toolearn en savoir plus sur AMQP, visitez hello suivant liens :
+Pour plus d’informations sur AMQP, consultez les liens suivants :
 
-* [Vue d’ensemble du protocole AMQP de Service Bus]
+* [Vue d’ensemble d’AMQP de Service Bus]
 * [Prise en charge d’AMQP 1.0 dans les rubriques et files d’attente partitionnées Service Bus]
 * [AMQP dans Service Bus pour Windows Server]
 
@@ -330,6 +330,6 @@ toolearn en savoir plus sur AMQP, visitez hello suivant liens :
 [3]: ./media/service-bus-amqp-protocol-guide/amqp3.png
 [4]: ./media/service-bus-amqp-protocol-guide/amqp4.png
 
-[Vue d’ensemble du protocole AMQP de Service Bus]: service-bus-amqp-overview.md
+[Vue d’ensemble d’AMQP de Service Bus]: service-bus-amqp-overview.md
 [Prise en charge d’AMQP 1.0 dans les rubriques et files d’attente partitionnées Service Bus]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [AMQP dans Service Bus pour Windows Server]: https://msdn.microsoft.com/library/dn574799.aspx

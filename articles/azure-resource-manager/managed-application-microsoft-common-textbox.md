@@ -1,9 +1,9 @@
 ---
-title: "élément de l’interface utilisateur de zone de texte pour les Application gérés aaaAzure | Documents Microsoft"
-description: "Décrit les hello élément d’interface utilisateur de Microsoft.Common.TextBox pour des Applications managées Azure"
+title: "Élément d’interface utilisateur TextBox des applications gérées Azure | Microsoft Docs"
+description: "Décrit l’élément d’interface utilisateur Microsoft.Common.TextBox pour les applications gérées Azure"
 services: azure-resource-manager
 documentationcenter: na
-author: tabrezm
+author: tfitzmac
 manager: timlt
 editor: tysonn
 ms.service: azure-resource-manager
@@ -12,15 +12,15 @@ ms.topic: reference
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/12/2017
-ms.author: tabrezm;tomfitz
-ms.openlocfilehash: 11771cd1d689b720384df98b8d1465703068af37
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: tomfitz
+ms.openlocfilehash: 6643f5d8f82472a0698d751151f9eb97610e5d7c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="microsoftcommontextbox-ui-element"></a>Élément d’interface utilisateur Microsoft.Common.TextBox
-Un contrôle qui peut être utilisé tooedit sans mise en forme de texte. Vous utilisez cet élément lors de la [création d’une application gérée Azure](managed-application-publishing.md).
+Contrôle pouvant être utilisé pour modifier du texte non mis en forme. Vous utilisez cet élément lors de la [création d’une application gérée Azure](managed-application-publishing.md).
 
 ## <a name="ui-sample"></a>Exemple d’interface utilisateur
 ![Microsoft.Common.TextBox](./media/managed-application-elements/microsoft.common.textbox.png)
@@ -36,17 +36,17 @@ Un contrôle qui peut être utilisé tooedit sans mise en forme de texte. Vous u
   "constraints": {
     "required": true,
     "regex": "^[a-z0-9A-Z]{1,30}$",
-    "validationMessage": "Only alphanumeric characters are allowed, and hello value must be 1-30 characters long."
+    "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
   },
   "visible": true
 }
 ```
 
 ## <a name="remarks"></a>Remarques
-- Si `constraints.required` est défini trop**true**, puis de la zone de texte hello doit contenir une valeur toovalidate avec succès. la valeur par défaut Hello est **false**.
-- `constraints.regex` est un modèle d’expression régulière JavaScript. Si spécifié, puis la valeur de la zone de texte hello doit correspondre hello modèle toovalidate avec succès. La valeur par défaut est **null**.
-- `constraints.validationMessage`est une chaîne de toodisplay lorsque la valeur de la zone de texte hello de validation échoue. Si ce n’est pas spécifié, puis hello de validation intégrées de la zone de texte les messages sont utilisés. la valeur par défaut Hello est **null**.
-- Il toospecify possible une valeur pour `constraints.regex` lorsque `constraints.required` est défini trop**false**. Dans ce scénario, une valeur n’est pas requise pour toovalidate de zone de texte hello avec succès. S’il est spécifié, il doit correspondre au modèle d’expression régulière hello.
+- Si `constraints.required` est défini sur **true**, la zone de texte doit contenir une valeur permettant de réussir la validation. La valeur par défaut est **false**.
+- `constraints.regex` est un modèle d’expression régulière JavaScript. S’il est spécifié, la valeur de la zone de texte doit correspondre au modèle pour permettre la réussite de la validation. La valeur par défaut est **null**.
+- `constraints.validationMessage` est une chaîne à afficher en cas d’échec de la validation de la valeur de la zone de texte. Si elle n’est pas spécifiée, les messages de validation intégrés de la zone de texte sont utilisés. La valeur par défaut est **null**.
+- Il est possible de spécifier une valeur pour `constraints.regex` lorsque `constraints.required` est défini sur **false**. Dans ce scénario, aucune valeur n’est requise pour valider la zone de texte. Si elle est spécifiée, celle-ci doit correspondre au modèle d’expression régulière.
 
 ## <a name="sample-output"></a>Exemple de sortie
 
@@ -55,6 +55,6 @@ Un contrôle qui peut être utilisé tooedit sans mise en forme de texte. Vous u
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour une introduction toomanaged les applications, voir [vue d’ensemble de l’Application Azure géré](managed-application-overview.md).
-* Pour les définitions d’interface utilisateur toocreating une présentation, consultez [prise en main de CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Pour voir une présentation des applications gérées, consultez [Vue d’ensemble des applications gérées Azure](managed-application-overview.md).
+* Pour voir une présentation de la création de définitions d’interface utilisateur, consultez la page [Prise en main de CreateUiDefinition](managed-application-createuidefinition-overview.md).
 * Pour obtenir une description des propriétés communes des éléments d’interface utilisateur, consultez la page [Éléments de CreateUiDefinition](managed-application-createuidefinition-elements.md).

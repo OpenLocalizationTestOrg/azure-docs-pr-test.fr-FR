@@ -1,6 +1,6 @@
 ---
-title: aaaAbout Azure DevTest Labs | Documents Microsoft
-description: "Découvrez comment DevTest Labs peut rendre toocreate facile, gérer et surveiller des machines virtuelles"
+title: "À propos d’Azure DevTest Labs | Microsoft Docs"
+description: "Découvrez comment DevTest Labs peut faciliter la création, la gestion et la surveillance des machines virtuelles Azure"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/11/2017
 ms.author: tarcher
-ms.openlocfilehash: 5e5aa683f80144a2f6872c7fa328016120ea6253
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 62e2d214d6d685c7f27c8c45cae161eb25ed1cbd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="about-azure-devtest-labs"></a>À propos d’Azure DevTest Labs
-## <a name="overview"></a>Vue d'ensemble
-Les développeurs et testeurs recherchent des retards de toosolve hello dans la création et la gestion de leurs environnements en accédant toohello cloud.  Azure résout le problème de hello de délais d’environnement et permet de libre-service au sein d’une nouvelle structure efficace de coût.  Toutefois, les développeurs et testeurs encore besoin de beaucoup de temps toospend configuration de leurs environnements non traitées. En outre, les décideurs appartiennent des doutes sur comment tooleverage hello cloud toomaximize leurs économies sans ajouter trop traitent surcharge.
+## <a name="overview"></a>Vue d’ensemble
+Les développeurs et testeurs cherchent à résoudre les problèmes de retards dans la création et la gestion de leurs environnements en accédant au cloud.  Azure résout ces problèmes et permet le libre-service dans une nouvelle structure économique.  Toutefois, les développeurs et testeurs doivent toujours consacrer beaucoup de temps à configurer leurs environnements en libre-service. En outre, les décideurs ne savent pas précisément comment exploiter le cloud afin d’optimiser leurs économies tout en allégeant le fardeau administratif.
 
-Azure DevTest Labs est un service permettant aux développeurs et aux testeurs de créer rapidement des environnements dans Azure tout en réduisant le temps perdu et les coûts. Vous pouvez tester la version la plus récente de votre application hello en configurant rapidement les environnements Windows et Linux à l’aide des artefacts et des modèles réutilisables. S’intégrer facilement votre pipeline de déploiement avec les environnements de DevTest Labs tooprovision à la demande. Faites évoluer votre test de charge de travail en approvisionnant plusieurs agents de test et créez des environnements pré-approvisionnés pour des formations et des démonstrations.
+Azure DevTest Labs est un service permettant aux développeurs et aux testeurs de créer rapidement des environnements dans Azure tout en réduisant le temps perdu et les coûts. Vous pouvez tester la dernière version de votre application en approvisionnant rapidement des environnements Windows et Linux à l’aide d’artefacts et de modèles réutilisables. DevTest Labs facilite l’intégration de votre pipeline de déploiement pour approvisionner des environnements à la demande. Faites évoluer votre test de charge de travail en approvisionnant plusieurs agents de test et créez des environnements pré-approvisionnés pour des formations et des démonstrations.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/What-is-Azure-DevTest-Labs/player]
 > 
 > 
 
-DevTest Labs fournit hello avantages dans la création, la configuration et la gestion des environnements de développement et de test dans le cloud de hello suivants
+DevTest Labs offre les avantages suivants lors de la création, de la configuration et de la gestion des environnements de test et de développement dans le cloud :
 
 ## <a name="worry-free-self-service"></a>Libre-service convivial
-DevTest Labs rend plus facile toocontrol coûts en permettant aux stratégies de tooset sur votre lab - telles que le nombre d’ordinateurs virtuels (VM) par utilisateur et le nombre de machines virtuelles par lab. DevTest Labs également permet de vous toocreate stratégies tooautomatically arrêter et démarrer les ordinateurs virtuels.
+DevTest Labs facilite le contrôle des coûts en vous permettant de définir des stratégies pour votre laboratoire, comme le nombre de machines virtuelles par utilisateur et par laboratoire. DevTest Labs vous permet également de créer des stratégies pour arrêter et démarrer automatiquement vos machines virtuelles.
 
-## <a name="quickly-get-tooready-to-test"></a>Obtenir rapidement des tooready de test
-DevTest Labs vous permet de toocreate les environnements préconfiguré avec tout ce dont votre équipe doit toostart développer et tester des applications. Simplement revendication environnements hello où hello dernière bonne version de votre application est installée et obtenir travailler directement. Vous pouvez également utiliser des conteneurs pour créer plus rapidement et facilement des environnements.
+## <a name="quickly-get-to-ready-to-test"></a>Vos applications sont prêtes pour le test en un clin d’œil
+DevTest Labs vous permet de créer des environnements pré-approvisionnés avec tous les éléments dont votre équipe a besoin pour commencer à développer et à tester des applications. Il vous suffit de revendiquer les environnements où la dernière version fonctionnelle de votre application est installée et de commencer à travailler directement. Vous pouvez également utiliser des conteneurs pour créer plus rapidement et facilement des environnements.
 
 ## <a name="create-once-use-everywhere"></a>Créez, réutilisez
-Capturer et partager des modèles de l’environnement et les artefacts de votre équipe ou organisation - dans le contrôle de code source - toocreate développeur et facilement les environnements de test.
+Capturez et partagez les artefacts et modèles d’environnement au sein de votre équipe ou organisation, tout cela dans le contrôle du code source, pour créer facilement des environnements de développement et de test.
 
 ## <a name="integrates-with-your-existing-toolchain"></a>Intégré à votre chaîne d’outils existante
-Tirer parti des plug-ins prédéfinies ou notre API tooprovision Dev/des environnements de Test directement à partir de votre outil préféré l’intégration continue (CI), développement environnement intégré (IDE) ou automatisée de pipeline de mise en production. Vous pouvez également utiliser notre outil en ligne de commande complet.
+Tirez parti des plug-ins prêts à l’emploi ou de notre API pour approvisionner des environnement de développement/test directement à partir de votre outil d’intégration continue préféré, d’un environnement de développement intégré ou d’un pipeline de mise en production automatisé. Vous pouvez également utiliser notre outil en ligne de commande complet.
 
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]

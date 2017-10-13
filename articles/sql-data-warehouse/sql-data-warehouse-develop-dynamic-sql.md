@@ -1,5 +1,5 @@
 ---
-title: aaaDynamic SQL dans SQL Data Warehouse | Documents Microsoft
+title: "Code SQL dynamique dans SQL Data Warehouse | Microsoft Docs"
 description: "Conseils relatifs à l’utilisation de code SQL dynamique dans Azure SQL Data Warehouse pour le développement de solutions."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,14 +15,14 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 4d66eecb37621510f657d1ec9a2a935daaa16052
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 29228676373aee8dbc7b1b2a7d92ffc978333804
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="dynamic-sql-in-sql-data-warehouse"></a>Code SQL dynamique dans SQL Data Warehouse
-Lors du développement de code d’application pour SQL Data Warehouse, vous pouvez peut-être toouse sql dynamique toohelp offrent des solutions flexibles, génériques et modulaires. SQL Data Warehouse ne prend pas en charge les données de type objet blob pour l’instant. Cela peut limiter la taille de hello vos chaînes en tant que types d’objets blob incluent les types varchar (max) et nvarchar (max). Si vous avez utilisé ces types dans votre code d’application lors de la génération de chaînes de très grande taille, vous devez code hello de toobreak en segments et de l’instruction use hello EXEC à la place.
+Quand vous développez le code d’une application pour SQL Data Warehouse, vous pouvez avoir besoin d’utiliser un code SQL dynamique de façon à offrir des solutions flexibles, génériques et modulaires. SQL Data Warehouse ne prend pas en charge les données de type objet blob pour l’instant. Cette restriction peut limiter la taille de vos chaînes, car les types d’objet blob comprennent les types varchar(max) et nvarchar(max). Si vous avez utilisé ces types dans votre code d’application pendant la création de chaînes de très grande taille, vous devez segmenter le code et utiliser plutôt l’instruction EXEC.
 
 Voici un exemple simple :
 
@@ -34,10 +34,10 @@ DECLARE @sql_fragment1 VARCHAR(8000)=' SELECT name '
 EXEC( @sql_fragment1 + @sql_fragment2 + @sql_fragment3);
 ```
 
-Si la chaîne de hello est courte, vous pouvez utiliser [sp_executesql] [ sp_executesql] normalement.
+Si la chaîne est courte, vous pouvez utiliser [sp_executesql][sp_executesql] normalement.
 
 > [!NOTE]
-> Instructions exécutées en tant que code SQL dynamique sera toujours les règles de validation d’objet tooall TSQL.
+> Les instructions exécutées en tant qu'instructions SQL dynamiques sont toujours soumises à l'ensemble des règles de validation TSQL.
 > 
 > 
 

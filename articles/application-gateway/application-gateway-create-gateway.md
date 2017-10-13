@@ -1,9 +1,9 @@
 ---
-title: "aaaCreate, de démarrer ou de supprimer une passerelle d’application | Documents Microsoft"
-description: "Cette page fournit des instructions toocreate, configurer, démarrer et supprimer une passerelle d’application Windows Azure"
+title: "Création, démarrage ou suppression d’une passerelle Application Gateway | Microsoft Docs"
+description: "Cette page fournit des instructions pour créer, configurer, démarrer et supprimer une passerelle Application Gateway Azure"
 documentationcenter: na
 services: application-gateway
-author: georgewallace
+author: davidmu1
 manager: timlt
 editor: tysonn
 ms.assetid: 577054ca-8368-4fbf-8d53-a813f29dc3bc
@@ -14,12 +14,12 @@ ms.tgt_pltfrm: na
 ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
-ms.author: gwallace
-ms.openlocfilehash: 3efef5b49880c9efdafad8b88d4bce5b749b82af
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: davidmu
+ms.openlocfilehash: 7fb54e96d20d34f453b7b016094b84504348335b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-start-or-delete-an-application-gateway-with-powershell"></a>Création, démarrage ou suppression d’une passerelle Application Gateway avec PowerShell 
 
@@ -30,47 +30,47 @@ ms.lasthandoff: 10/06/2017
 > * [Modèle Azure Resource Manager](application-gateway-create-gateway-arm-template.md)
 > * [Interface de ligne de commande Azure](application-gateway-create-gateway-cli.md)
 
-La passerelle Azure Application Gateway est un équilibreur de charge de couche 7. Il fournit un basculement, routage des performances des requêtes HTTP entre différents serveurs, qu’ils soient sur le cloud de hello ou localement. Application Gateway offre de nombreuses fonctionnalités de contrôleur de livraison d’applications (ADC) : équilibrage de charge HTTP, affinité de session basée sur les cookies, déchargement SSL (Secure Sockets Layer), sondes d’intégrité personnalisées, prise en charge de plusieurs sites, etc. toofind une liste complète des fonctionnalités prises en charge, visitez [vue d’ensemble de la passerelle Application](application-gateway-introduction.md)
+La passerelle Azure Application Gateway est un équilibreur de charge de couche 7. Elle assure l’exécution des requêtes HTTP de basculement et de routage des performances entre serveurs locaux ou dans le cloud. Application Gateway offre de nombreuses fonctionnalités de contrôleur de livraison d’applications (ADC) : équilibrage de charge HTTP, affinité de session basée sur les cookies, déchargement SSL (Secure Sockets Layer), sondes d’intégrité personnalisées, prise en charge de plusieurs sites, etc. Pour obtenir une liste complète des fonctionnalités prises en charge, consultez [Vue d’ensemble d’Application Gateway](application-gateway-introduction.md)
 
-Cet article vous guide tout au long des hello étapes toocreate, configurer, démarrer et supprimer une passerelle d’application.
+Cet article vous guide lors des étapes de création, de configuration, de démarrage et de suppression d’une passerelle Application Gateway.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-1. Installer version la plus récente des applets de commande PowerShell Azure hello hello à l’aide de hello Web Platform Installer. Vous pouvez télécharger et installer la version la plus récente hello de hello **Windows PowerShell** section Hello [page Téléchargements](https://azure.microsoft.com/downloads/).
-2. Si vous avez un réseau virtuel existant, sélectionnez un sous-réseau vide existant ou créer un sous-réseau dans votre réseau virtuel existant uniquement pour une utilisation par la passerelle d’application hello. Vous ne pouvez pas déployer hello application passerelle tooa autre réseau virtuel que les ressources hello vous avez l’intention toodeploy derrière la passerelle d’application hello, sauf si le réseau virtuel d’homologation est utilisé. toolearn visitez plus [d’homologation de réseau virtuel](../virtual-network/virtual-network-peering-overview.md)
-3. Vérifiez que vous disposez d'un réseau virtuel qui fonctionne avec un sous-réseau valide. Assurez-vous qu’aucun ordinateur virtuel ou les déploiements de cloud ne sont à l’aide de sous-réseau de hello. passerelle d’application Hello doit être par lui-même dans un sous-réseau de réseau virtuel.
-4. serveurs Hello configurer la passerelle d’application hello toouse doivent exister ou aient leurs points de terminaison créés dans le réseau virtuel de hello ou avec une adresse IP publique/VIP affectés.
+1. Installez la dernière version des applets de commande Azure PowerShell à l’aide de Web Platform Installer. Vous pouvez télécharger et installer la dernière version à partir de la section **Windows PowerShell** de la [page Téléchargements](https://azure.microsoft.com/downloads/).
+2. Si vous disposez d’un réseau virtuel, sélectionnez un sous-réseau vide existant ou créez un sous-réseau de votre réseau virtuel existant uniquement pour une utilisation par la passerelle Application Gateway. Vous ne pouvez pas déployer la passerelle Application Gateway sur un autre réseau virtuel constitué par les ressources que vous avez l’intention de déployer derrière la passerelle Application Gateway, sauf si l’homologation de réseaux virtuels est utilisée. Pour en savoir plus, consultez [Homologation de réseaux virtuels](../virtual-network/virtual-network-peering-overview.md)
+3. Vérifiez que vous disposez d'un réseau virtuel qui fonctionne avec un sous-réseau valide. Assurez-vous qu’aucun ordinateur virtuel ou déploiement cloud n’utilise le sous-réseau. La passerelle Application Gateway doit être seule sur un sous-réseau virtuel.
+4. Les serveurs que vous configurez pour utiliser la passerelle Application Gateway doivent exister ou vous devez créer leurs points de terminaison sur le réseau virtuel ou avec une adresse IP/VIP publique affectée.
 
-## <a name="what-is-required-toocreate-an-application-gateway"></a>Qu’est requis toocreate une passerelle d’application ?
+## <a name="what-is-required-to-create-an-application-gateway"></a>Quels sont les éléments nécessaires pour créer une passerelle Application Gateway ?
 
-Lorsque vous utilisez hello `New-AzureApplicationGateway` passerelle d’application hello commande toocreate, aucune configuration n’est définie à ce stade et ressources de hello nouvellement créé sont configurés à l’aide de XML ou un objet de configuration.
+Lorsque vous utilisez la commande `New-AzureApplicationGateway` pour créer la passerelle Application Gateway, aucune configuration n’est définie et vous devez configurer la ressource créée à l’aide de XML ou d’un objet de configuration.
 
-les valeurs Hello sont :
+Les valeurs sont :
 
-* **Pool de serveur principal :** liste hello des adresses IP des serveurs principaux de hello. adresses IP de Hello répertoriés doivent appartenir soit de sous-réseau de réseau virtuel toohello ou doivent être une adresse IP/VIP publique.
-* **Paramètres du pool de serveurs principaux :** chaque pool comporte des paramètres tels que le port, le protocole et une affinité basée sur des cookies. Ces paramètres sont lié tooa pool et sont des serveurs tooall appliqué dans le pool de hello.
-* **Port frontal :** ce port est le port public hello qui est ouvert sur la passerelle d’application hello. Le trafic atteint ce port et obtient redirigés tooone de hello sur les serveurs principaux.
-* **Écouteur :** hello port d’écoute utilise un port frontal, un protocole (Http ou Https, ces valeurs respectent la casse) et le nom du certificat SSL hello (si le déchargement de la configuration de SSL).
-* **La règle :** règle de hello lie le port d’écoute hello et pool de serveur principal hello et définit le trafic de hello de pool de serveur principal doit être dirigée toowhen il atteint un écouteur particulier.
+* **Pool de serveurs principaux :** liste des adresses IP des serveurs principaux. Les adresses IP répertoriées doivent appartenir au sous-réseau de réseau virtuel ou doivent correspondre à une adresse IP/VIP publique.
+* **Paramètres du pool de serveurs principaux :** chaque pool comporte des paramètres tels que le port, le protocole et une affinité basée sur des cookies. Ces paramètres sont liés à un pool et sont appliqués à tous les serveurs du pool.
+* **Port frontal :** il s’agit du port public ouvert sur la passerelle Application Gateway. Le trafic atteint ce port, puis il est redirigé vers l’un des serveurs principaux.
+* **Écouteur :** l’écouteur a un port frontal, un protocole (Http ou Https, avec respect de la casse) et le nom du certificat SSL (en cas de configuration du déchargement SSL).
+* **Règle :** la règle lie l’écouteur et le pool de serveurs principaux et définit vers quel pool de serveurs principaux le trafic doit être dirigé quand il atteint un écouteur spécifique.
 
-## <a name="create-an-application-gateway"></a>Créer une passerelle Application Gateway
+## <a name="create-an-application-gateway"></a>Créez une passerelle d’application
 
-toocreate une passerelle d’application :
+Pour créer une passerelle d’application :
 
-1. Créez une ressource Application Gateway.
+1. Créez une ressource de passerelle d’application.
 2. Créez un fichier XML de configuration ou un objet de configuration.
-3. Valider hello toohello de configuration qui vient d’être créé ressource passerelle d’application.
+3. Validez la configuration de la ressource Application Gateway nouvellement créée.
 
 > [!NOTE]
-> Si vous devez tooconfigure une sonde personnalisée pour votre passerelle d’application, consultez [créer une passerelle d’application en testant personnalisé à l’aide de PowerShell](application-gateway-create-probe-classic-ps.md). Pour plus d’informations, découvrez les [sondes personnalisées et l’analyse du fonctionnement](application-gateway-probe-overview.md) .
+> Si vous devez configurer une sonde personnalisée pour votre passerelle Application Gateway, consultez [Création d’une passerelle Application Gateway avec des sondes personnalisées à l’aide de PowerShell](application-gateway-create-probe-classic-ps.md). Pour plus d’informations, découvrez les [sondes personnalisées et l’analyse du fonctionnement](application-gateway-probe-overview.md) .
 
 ![Exemple de scénario][scenario]
 
 ### <a name="create-an-application-gateway-resource"></a>Créer une ressource de passerelle d’application
 
-passerelle de hello toocreate, utilisez hello `New-AzureApplicationGateway` applet de commande, en remplaçant les valeurs hello par les vôtres. La facturation pour la passerelle de hello ne démarre pas à ce stade. La facturation commence dans une étape ultérieure, lorsque la passerelle de hello a démarré correctement.
+Pour créer la passerelle, utilisez l’applet de commande `New-AzureApplicationGateway` en remplaçant les valeurs par les vôtres. La facturation de la passerelle ne démarre pas à ce stade. La facturation commence à une étape ultérieure, lorsque la passerelle a démarré correctement.
 
-Hello exemple suivant crée une passerelle d’application à l’aide d’un réseau virtuel appelé « testvnet1 » et un sous-réseau nommé « sous-réseau-1 » :
+L’exemple ci-après illustre la création d’une passerelle Application Gateway à l’aide d’un réseau virtuel appelé « testvnet1 » et d’un sous-réseau appelé « subnet-1 » :
 
 ```powershell
 New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subnet-1")
@@ -78,7 +78,7 @@ New-AzureApplicationGateway -Name AppGwTest -VnetName testvnet1 -Subnets @("Subn
 
 *Description*, *InstanceCount* et *GatewaySize* sont des paramètres facultatifs.
 
-toovalidate qui hello passerelle a été créé, vous pouvez utiliser hello `Get-AzureApplicationGateway` applet de commande.
+Pour valider la création de la passerelle, vous pouvez utiliser l’applet de commande `Get-AzureApplicationGateway`.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -97,21 +97,21 @@ DnsName       :
 ```
 
 > [!NOTE]
-> Hello la valeur par défaut de *InstanceCount* est 2, avec une valeur maximale de 10. Hello la valeur par défaut de *GatewaySize* est moyenne. Vous pouvez choisir Small, Medium ou Large.
+> La valeur par défaut pour *InstanceCount* est 2, avec une valeur maximale de 10. La valeur par défaut du paramètre *GatewaySize* est Medium. Vous pouvez choisir Small, Medium ou Large.
 
-*Présence* et *DnsName* sont affichés comme vide, car la passerelle de hello n’a pas encore démarré. Ceux-ci sont créés une fois la passerelle de hello en hello état en cours d’exécution.
+Les paramètres *VirtualIPs* et *DnsName* sont sans valeur, car la passerelle n’a pas encore démarré. Ces valeurs seront créées une fois la passerelle en cours d'exécution.
 
-## <a name="configure-hello-application-gateway"></a>Configurer la passerelle d’application hello
+## <a name="configure-the-application-gateway"></a>Configurer la passerelle Application Gateway
 
-Vous pouvez configurer la passerelle d’application hello à l’aide de XML ou un objet de configuration.
+Vous pouvez configurer la passerelle Application Gateway à l’aide d’un objet de configuration ou de XML.
 
-### <a name="configure-hello-application-gateway-by-using-xml"></a>Configurer la passerelle d’application hello à l’aide de XML
+### <a name="configure-the-application-gateway-by-using-xml"></a>Configurer la passerelle Application Gateway à l’aide de XML
 
-Bonjour l’exemple suivant, un tooconfigure de fichier XML tous les paramètres de passerelle d’application et de les valider toohello ressource de passerelle d’application.  
+Dans l’exemple ci-dessous, vous allez utiliser un fichier XML pour configurer tous les paramètres de la passerelle d’application et les valider dans la ressource de passerelle d’application.  
 
-#### <a name="step-1"></a>Étape 1
+#### <a name="step-1"></a>Étape 1 :
 
-Copiez hello suivant tooNotepad de texte.
+Copiez le texte suivant dans le Bloc-notes.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -158,12 +158,12 @@ Copiez hello suivant tooNotepad de texte.
 </ApplicationGatewayConfiguration>
 ```
 
-Modifier les valeurs hello entre parenthèses hello pour les éléments de configuration hello. Hello enregistrez-le avec l’extension .xml.
+Modifiez les valeurs entre parenthèses pour les éléments de configuration. Enregistrez le fichier avec l’extension .xml.
 
 > [!IMPORTANT]
-> l’élément Hello protocole Http ou Https est sensible à la casse.
+> L’élément de protocole Http ou Https est sensible à la casse.
 
-Bonjour à l’exemple suivant montre comment toouse une configuration de fichier tooset de passerelle d’application hello. charge d’exemple Hello équilibre le trafic HTTP sur le port public 80 et envoie le trafic réseau tooback-end port80 entre deux adresses IP.
+L’exemple suivant montre comment configurer la passerelle Application Gateway à l’aide d’un fichier de configuration. L’exemple de charge équilibre le trafic HTTP sur le port public 80 et envoie le trafic réseau au port 80 principal entre deux adresses IP.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -210,26 +210,26 @@ Bonjour à l’exemple suivant montre comment toouse une configuration de fichie
 </ApplicationGatewayConfiguration>
 ```
 
-#### <a name="step-2"></a>Étape 2
+#### <a name="step-2"></a>Étape 2 :
 
-Définissez ensuite la passerelle d’application hello. Hello d’utilisation `Set-AzureApplicationGatewayConfig` applet de commande avec un fichier XML de configuration.
+Ensuite, définissez la passerelle Application Gateway. Utilisez l’applet de commande `Set-AzureApplicationGatewayConfig` avec un fichier XML de configuration.
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -ConfigFile "D:\config.xml"
 ```
 
-### <a name="configure-hello-application-gateway-by-using-a-configuration-object"></a>Configurer la passerelle d’application hello à l’aide d’un objet de configuration
+### <a name="configure-the-application-gateway-by-using-a-configuration-object"></a>Configurer la passerelle Application Gateway à l’aide d’un objet de configuration
 
-Bonjour à l’exemple suivant montre comment tooconfigure hello passerelle d’application à l’aide d’objets de configuration. Tous les éléments de configuration doivent être configurées individuellement et ensuite ajoutés objet de configuration de passerelle tooan application. Après avoir créé un objet de configuration hello, vous utilisez hello `Set-AzureApplicationGateway` commande toocommit hello configuration toohello créé précédemment des ressources de passerelle d’application.
+L’exemple suivant montre comment configurer la passerelle Application Gateway à l’aide d’objets de configuration. Vous devez configurer tous les éléments de configuration individuellement, puis les ajouter à un objet de configuration de passerelle d’application. Après avoir créé l’objet de configuration, vous utilisez la commande `Set-AzureApplicationGateway` pour valider la configuration dans la ressource Application Gateway créée précédemment.
 
 > [!NOTE]
-> Avant d’attribuer un objet de configuration de tooeach de valeur, vous devez toodeclare le type d’objet PowerShell utilise pour le stockage. éléments individuels de Hello première ligne toocreate hello définit ce que `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)` sont utilisés.
+> Avant d’affecter une valeur à chaque objet de configuration, vous devez déclarer le type d’objet dans lequel PowerShell le stockera. La première ligne de création des différents éléments définit les objets `Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model(object name)` utilisés.
 
 #### <a name="step-1"></a>Étape 1
 
 Créez tous les éléments de configuration.
 
-Créer un IP frontale de hello comme Bonjour l’exemple suivant.
+Créez l’IP frontale comme indiqué dans l’exemple suivant.
 
 ```powershell
 $fip = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendIPConfiguration
@@ -238,7 +238,7 @@ $fip.Type = "Private"
 $fip.StaticIPAddress = "10.0.0.5"
 ```
 
-Créer un port frontal de hello comme Bonjour l’exemple suivant.
+Créez le port frontal comme indiqué dans l’exemple suivant.
 
 ```powershell
 $fep = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort
@@ -246,9 +246,9 @@ $fep.Name = "fep1"
 $fep.Port = 80
 ```
 
-Créer un pool de serveur principal hello.
+Créez le pool de serveurs principaux.
 
-Définir les adresses IP hello ajoutés toohello pool de serveur principal comme indiqué dans l’exemple suivant de hello.
+Définissez les adresses IP qui sont ajoutées au pool de serveurs principaux, comme indiqué dans l’exemple suivant.
 
 ```powershell
 $servers = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendServerCollection
@@ -256,7 +256,7 @@ $servers.Add("10.0.0.1")
 $servers.Add("10.0.0.2")
 ```
 
-Utilisez hello $server tooadd hello valeurs toohello principal pool d’objet ($pool).
+Utilisez l’objet $server pour ajouter les valeurs à l’objet de pool principal ($pool)
 
 ```powershell
 $pool = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool
@@ -264,7 +264,7 @@ $pool.BackendServers = $servers
 $pool.Name = "pool1"
 ```
 
-Créer un paramètre de pool hello serveur principal.
+Créez le paramètre de pool de serveurs principaux.
 
 ```powershell
 $setting = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings
@@ -274,7 +274,7 @@ $setting.Port = 80
 $setting.Protocol = "http"
 ```
 
-Créer un écouteur de hello.
+Créez l’écouteur.
 
 ```powershell
 $listener = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener
@@ -285,7 +285,7 @@ $listener.Protocol = "http"
 $listener.SslCert = ""
 ```
 
-Créer la règle de hello.
+Créez la règle.
 
 ```powershell
 $rule = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule
@@ -296,11 +296,11 @@ $rule.Listener = "listener1"
 $rule.BackendAddressPool = "pool1"
 ```
 
-#### <a name="step-2"></a>Étape 2
+#### <a name="step-2"></a>Étape 2 :
 
-Attribuez toutes les configuration individuelle des éléments tooan application passerelle configuration objet ($appgwconfig).
+Affectez tous les éléments de configuration à un objet de configuration Application Gateway ($appgwconfig).
 
-Ajouter hello frontal IP toohello configuration.
+Ajoutez l’adresse IP frontale à la configuration.
 
 ```powershell
 $appgwconfig = New-Object Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.ApplicationGatewayConfiguration
@@ -308,63 +308,63 @@ $appgwconfig.FrontendIPConfigurations = New-Object "System.Collections.Generic.L
 $appgwconfig.FrontendIPConfigurations.Add($fip)
 ```
 
-Ajouter hello port frontal toohello configuration.
+Ajoutez le port frontal à la configuration.
 
 ```powershell
 $appgwconfig.FrontendPorts = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.FrontendPort]"
 $appgwconfig.FrontendPorts.Add($fep)
 ```
-Ajouter hello serveur principal pool toohello configuration.
+Ajoutez le pool de serveurs principaux à la configuration.
 
 ```powershell
 $appgwconfig.BackendAddressPools = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendAddressPool]"
 $appgwconfig.BackendAddressPools.Add($pool)
 ```
 
-Ajoutez toohello configuration de pool de back-end hello.
+Ajoutez le paramètre de pool principal à la configuration.
 
 ```powershell
 $appgwconfig.BackendHttpSettingsList = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.BackendHttpSettings]"
 $appgwconfig.BackendHttpSettingsList.Add($setting)
 ```
 
-Ajoutez toohello configuration de l’écouteur hello.
+Ajoutez l’écouteur à la configuration.
 
 ```powershell
 $appgwconfig.HttpListeners = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpListener]"
 $appgwconfig.HttpListeners.Add($listener)
 ```
 
-Ajouter la configuration des règles de toohello hello.
+Ajoutez la règle à la configuration.
 
 ```powershell
 $appgwconfig.HttpLoadBalancingRules = New-Object "System.Collections.Generic.List[Microsoft.WindowsAzure.Commands.ServiceManagement.Network.ApplicationGateway.Model.HttpLoadBalancingRule]"
 $appgwconfig.HttpLoadBalancingRules.Add($rule)
 ```
 
-### <a name="step-3"></a>Étape 3 :
-Valider les ressources de passerelle d’application toohello hello configuration objets à l’aide de `Set-AzureApplicationGatewayConfig`.
+### <a name="step-3"></a>Étape 3
+Validez l’objet de configuration dans la ressource Application Gateway à l’aide de `Set-AzureApplicationGatewayConfig`.
 
 ```powershell
 Set-AzureApplicationGatewayConfig -Name AppGwTest -Config $appgwconfig
 ```
 
-## <a name="start-hello-gateway"></a>Démarrer hello passerelle
+## <a name="start-the-gateway"></a>Démarrer la passerelle
 
-Une fois que la passerelle de hello a été configurée, utilisez hello `Start-AzureApplicationGateway` passerelle de hello toostart applet de commande. Le coût d’une passerelle d’application commence une fois la passerelle de hello a démarré.
+Une fois la passerelle configurée, utilisez l’applet de commande `Start-AzureApplicationGateway` pour démarrer la passerelle. La facturation pour une passerelle Application Gateway commence une fois la passerelle démarrée avec succès.
 
 > [!NOTE]
-> Hello `Start-AzureApplicationGateway` applet de commande peut prendre les toofinish too15 à 20 minutes.
+> La règle `Start-AzureApplicationGateway` peut prendre jusqu’à 15 à 20 minutes.
 
 ```powershell
 Start-AzureApplicationGateway AppGwTest
 ```
 
-## <a name="verify-hello-gateway-status"></a>Vérifiez l’état de la passerelle hello
+## <a name="verify-the-gateway-status"></a>Vérifier l'état de la passerelle
 
-Hello d’utilisation `Get-AzureApplicationGateway` état de hello toocheck applet de commande de passerelle de hello. Si `Start-AzureApplicationGateway` a réussi à l’étape précédente de hello, *état* doit être en cours d’exécution, et *Vip* et *DnsName* doit avoir des entrées valides.
+Utilisez l’applet de commande `Get-AzureApplicationGateway` pour vérifier l’état de la passerelle. Si `Start-AzureApplicationGateway` a réussi à l’étape précédente, *l’état* doit être En cours d’exécution, et les paramètres *Vip* et *DnsName* doivent posséder des entrées valides.
 
-Hello suivant montre une passerelle d’application qui est en cours d’exécution, vers le haut et le trafic de prêt tootake destinés `http://<generated-dns-name>.cloudapp.net`.
+L’exemple suivant montre une passerelle Application Gateway opérationnelle, en cours d’exécution et prête à prendre le trafic destiné à `http://<generated-dns-name>.cloudapp.net`.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -384,15 +384,15 @@ Vip           : 138.91.170.26
 DnsName       : appgw-1b8402e8-3e0d-428d-b661-289c16c82101.cloudapp.net
 ```
 
-## <a name="delete-hello-application-gateway"></a>Suppression de la passerelle d’application hello
+## <a name="delete-the-application-gateway"></a>Supprimer la passerelle Application Gateway
 
-passerelle d’application toodelete hello :
+Pour supprimer la passerelle Application Gateway :
 
-1. Hello d’utilisation `Stop-AzureApplicationGateway` passerelle de hello toostop applet de commande.
-2. Hello d’utilisation `Remove-AzureApplicationGateway` passerelle de hello tooremove applet de commande.
-3. Vérifiez cette passerelle hello a été supprimée à l’aide de hello `Get-AzureApplicationGateway` applet de commande.
+1. Utilisez l’applet de commande `Stop-AzureApplicationGateway` pour arrêter la passerelle.
+2. Utilisez l’applet de commande `Remove-AzureApplicationGateway` pour supprimer la passerelle.
+3. Vérifiez que la passerelle a été supprimée à l’aide de l’applet de commande `Get-AzureApplicationGateway`.
 
-exemple Hello présente hello `Stop-AzureApplicationGateway` applet de commande sur la première ligne de hello, suivie des hello.
+L’exemple suivant montre l’applet de commande `Stop-AzureApplicationGateway` sur la première ligne, suivie de la sortie.
 
 ```powershell
 Stop-AzureApplicationGateway AppGwTest
@@ -406,7 +406,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   ce6c6c95-77b4-2118-9d65-e29defadffb8
 ```
 
-Une fois que la passerelle d’application hello est dans un état arrêté, utilisez hello `Remove-AzureApplicationGateway` service de hello tooremove applet de commande.
+Une fois la passerelle Application Gateway dans un état arrêté, utilisez l’applet de commande `Remove-AzureApplicationGateway` pour supprimer le service.
 
 ```powershell
 Remove-AzureApplicationGateway AppGwTest
@@ -420,7 +420,7 @@ Name       HTTP Status Code     Operation ID                             Error
 Successful OK                   055f3a96-8681-2094-a304-8d9a11ad8301
 ```
 
-tooverify qui hello service a été supprimé, vous pouvez utiliser hello `Get-AzureApplicationGateway` applet de commande. Cette étape n'est pas requise.
+Pour vérifier que le service a été supprimé, vous pouvez utiliser l’applet de commande `Get-AzureApplicationGateway`. Cette étape n'est pas requise.
 
 ```powershell
 Get-AzureApplicationGateway AppGwTest
@@ -429,15 +429,15 @@ Get-AzureApplicationGateway AppGwTest
 ```
 VERBOSE: 10:52:46 PM - Begin Operation: Get-AzureApplicationGateway
 
-Get-AzureApplicationGateway : ResourceNotFound: hello gateway does not exist.
+Get-AzureApplicationGateway : ResourceNotFound: The gateway does not exist.
 .....
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Si vous souhaitez tooconfigure le déchargement SSL, consultez [configurer une passerelle d’application pour le déchargement SSL](application-gateway-ssl.md).
+Si vous souhaitez configurer le déchargement SSL, consultez [Configuration d’une passerelle Application Gateway pour le déchargement SSL](application-gateway-ssl.md).
 
-Si vous souhaitez tooconfigure un toouse de passerelle d’application avec un équilibrage de charge interne, consultez [créer une passerelle d’application avec un équilibreur de charge interne (ILB)](application-gateway-ilb.md).
+Si vous voulez configurer une passerelle Application Gateway à utiliser avec l’équilibreur de charge interne, consultez [Création d’une passerelle Application Gateway avec un équilibrage de charge interne (ILB)](application-gateway-ilb.md).
 
 Si vous souhaitez plus d'informations sur les options d'équilibrage de charge en général, consultez :
 

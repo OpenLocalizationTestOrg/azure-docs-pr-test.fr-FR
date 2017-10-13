@@ -1,6 +1,6 @@
 ---
-title: aaaBacking des manifestes de lecteur Azure Import/Export | Documents Microsoft
-description: "Découvrez comment toohave votre lecteur de manifestes pour le service de Microsoft Azure Import/Export hello sauvegardée automatiquement."
+title: Sauvegarde de manifestes de lecteur Azure Import/Export | Microsoft Docs
+description: "Découvrez comment sauvegarder automatiquement vos manifestes de lecteur pour le service Microsoft Azure Import/Export."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: f48b97a2cce62714aace2b30a393305202c7ecd9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 33eb8e1eea8f8aa7b79ef3e54f2b1ed88dc794ae
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="backing-up-drive-manifests-for-azure-importexport-jobs"></a>Sauvegarde de manifestes de lecteur pour les travaux Azure Import/Export
 
-Manifestes de lecteur peuvent être automatiquement sauvegardés tooblobs en définissant un hello `BackupDriveManifest` propriété trop`true` Bonjour [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) ou [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) opérations d’API REST. Par défaut, les manifestes de lecteur hello ne sont pas sauvegardés. sauvegardes de manifeste de lecteur Hello sont stockées en tant qu’objets BLOB de blocs dans un conteneur avec un compte de stockage hello associé hello travail. Par défaut, le nom du conteneur hello est `waimportexport`, mais vous pouvez spécifier un autre nom Bonjour `DiagnosticsPath` propriété lors de l’appel hello `Put Job` ou `Update Job Properties` operations. Hello manifeste sauvegarde d’objet blob sont nommés hello suivant le format : `waies/jobname_driveid_timestamp_manifest.xml`.
+Les manifestes de lecteur peuvent être automatiquement sauvegardés vers des objets blob en définissant la propriété `BackupDriveManifest` sur `true` dans les opérations [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) ou [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) de l’API REST. Par défaut, les manifestes de lecteur ne sont pas sauvegardés. Les sauvegardes de manifestes de lecteur sont stockées en tant qu’objets blob de blocs dans un conteneur au sein du compte de stockage associé au travail. Par défaut, le nom du conteneur est `waimportexport`, mais vous pouvez spécifier un autre nom dans la propriété `DiagnosticsPath` lors de l’appel des opérations `Put Job` ou `Update Job Properties`. Les objets blob de manifeste sauvegardés sont nommés selon le format suivant : `waies/jobname_driveid_timestamp_manifest.xml`.
 
- Vous pouvez récupérer hello URI de disque de sauvegarde hello manifestes pour un travail en appelant hello [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) opération. blob Hello URI est retourné dans hello `ManifestUri` propriété pour chaque lecteur.
+ Vous pouvez récupérer l’URI des manifestes de lecteur sauvegardés pour un travail en appelant l’opération [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get). L’URI de l’objet blob est retourné dans la propriété `ManifestUri` pour chaque lecteur.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [À l’aide des API REST du service importation/exportation hello](storage-import-export-using-the-rest-api.md)
+* [Utilisation de l’API REST du service Import/Export](storage-import-export-using-the-rest-api.md)

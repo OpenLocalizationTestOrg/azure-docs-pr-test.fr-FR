@@ -1,6 +1,6 @@
 ---
-title: "alertes en temps réel du CDN aaaAzure | Documents Microsoft"
-description: "Alertes en temps réel dans Microsoft Azure CDN. Les alertes en temps réel fournissent des notifications sur les performances de hello de points de terminaison hello dans votre profil CDN."
+title: "Alertes en temps réel Azure CDN | Microsoft Docs"
+description: "Alertes en temps réel dans Microsoft Azure CDN. Les alertes en temps réel fournissent des notifications sur les performances des points de terminaison dans votre profil CDN."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 269c90437088bbc41bf899a8c02749e8e6f3006c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 51dce1680be5f5f4387c2ba02827195bcdbe9b48
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="real-time-alerts-in-microsoft-azure-cdn"></a>Alertes en temps réel dans Microsoft Azure CDN
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Ce document explique les alertes en temps réel dans Microsoft Azure CDN. Cette fonctionnalité fournit des notifications en temps réel sur les performances de hello de points de terminaison hello dans votre profil CDN.  Vous pouvez configurer des alertes par courrier électronique ou HTTP en fonction des éléments suivants :
+Ce document explique les alertes en temps réel dans Microsoft Azure CDN. Cette fonctionnalité fournit des notifications en temps réel sur les performances des points de terminaison dans votre profil CDN.  Vous pouvez configurer des alertes par courrier électronique ou HTTP en fonction des éléments suivants :
 
 * Bande passante
 * Codes d’état
@@ -32,67 +32,67 @@ Ce document explique les alertes en temps réel dans Microsoft Azure CDN. Cette 
 * Connexions
 
 ## <a name="creating-a-real-time-alert"></a>Création d’une alerte en temps réel
-1. Bonjour [Azure Portal](https://portal.azure.com), recherchez le profil CDN tooyour.
+1. Dans le [portail Azure](https://portal.azure.com), accédez à votre profil CDN.
    
-    ![Panneau du profil CDN](./media/cdn-real-time-alerts/cdn-profile-blade.png)
-2. À partir du Panneau de profil hello CDN, cliquez sur hello **gérer** bouton.
+    ![Profil CDN](./media/cdn-real-time-alerts/cdn-profile-blade.png)
+1. Dans le panneau de profil CDN, cliquez sur le bouton **Gérer** .
    
-    ![Bouton de gestion du panneau de profil CDN](./media/cdn-real-time-alerts/cdn-manage-btn.png)
+    ![Bouton de gestion du profil CDN](./media/cdn-real-time-alerts/cdn-manage-btn.png)
    
-    portail de gestion CDN Hello s’ouvre.
-3. Placez votre curseur sur hello **Analytique** tab, puis pointez sur hello **les statistiques en temps réel** menu volant.  Cliquez sur **Alertes en temps réel**.
+    Le portail de gestion CDN s'ouvre.
+3. Pointez sur l’onglet **Analyse**, puis sur le menu volant **Statistiques en temps réel**.  Cliquez sur **Alertes en temps réel**.
    
     ![Portail de gestion CDN](./media/cdn-real-time-alerts/cdn-premium-portal.png)
    
-    liste de Hello des configurations d’alerte existantes (le cas échéant) s’affiche.
-4. Cliquez sur hello **ajouter alertes** bouton.
+    La liste des configurations d’alerte existantes (le cas échéant) s’affiche.
+4. Cliquez sur le bouton **Ajouter une alerte** .
    
     ![Bouton d’ajout d’alerte](./media/cdn-real-time-alerts/cdn-add-alert.png)
    
     Un formulaire s’affiche pour créer une nouvelle alerte.
    
     ![Formulaire de nouvelle alerte](./media/cdn-real-time-alerts/cdn-new-alert.png)
-5. Si vous souhaitez que cette alerte toobe active lorsque vous cliquez sur **enregistrer**, vérifiez hello **alerte activée** case à cocher.
-6. Entrez un nom descriptif pour votre alerte Bonjour **nom** champ.
-7. Bonjour **le Type de média** liste déroulante, sélectionnez **LOB HTTP**.
+5. Si vous souhaitez que cette alerte soit active lorsque vous cliquez sur **Enregistrer**, cochez la case **Alerte activée**.
+6. Entrez un nom descriptif pour votre alerte dans le champ **Nom** .
+7. Dans la liste déroulante **Type de média**, sélectionnez **HTTP Large Object**.
    
     ![Type de média avec HTTP Large Object sélectionné](./media/cdn-real-time-alerts/cdn-http-large.png)
    
    > [!IMPORTANT]
-   > Vous devez sélectionner **LOB HTTP** comme hello **le Type de média**.  Hello autres choix n’est pas utilisés par **Azure CDN de Verizon**.  Échec tooselect **LOB HTTP** entraîne votre alerte déclenchée toonever.
+   > Vous devez sélectionner **HTTP Large Object** comme **Type de média**.  Les autres options ne sont pas utilisées par **Azure CDN de Verizon**.  Si vous ne sélectionnez pas **Objet volumineux HTTP**, votre alerte ne se déclenche jamais.
    > 
    > 
-8. Créer un **Expression** toomonitor en sélectionnant un **métrique**, **opérateur**, et **déclencher la valeur**.
+8. Créez une **Expression** à surveiller en sélectionnant **Mesure**, **Opérateur** et **Valeur de déclenchement**.
    
-   * Pour **métrique**, sélectionnez le type hello de condition que vous souhaitez analyser.  **Mbits/s de bande passante** est la quantité de hello d’utilisation de la bande passante en mégabits par seconde.  **Nombre total de connexions** est nombre hello de tooour de connexions HTTP simultanée serveurs edge.  Pour les définitions de hello différents États de cache et les codes d’état, consultez [Codes d’état du Cache Azure CDN](https://msdn.microsoft.com/library/mt759237.aspx) et [Codes d’état HTTP Azure CDN](https://msdn.microsoft.com/library/mt759238.aspx)
-   * **Opérateur** est hello opérateur mathématique qui établit la relation hello entre les métriques de hello et valeur de déclenchement hello.
-   * **Déclencher la valeur** est de valeur de seuil hello qui doit être remplie avant une notification est envoyée.
+   * Pour **Mesure**, sélectionnez le type de condition que vous souhaitez surveiller.  **Bandwidth Mbps (Mbits/s de bande passante)** est la quantité de bande passante en mégabits par seconde.  **Nombre total de connexions** est le nombre de connexions HTTP simultanées à nos serveurs Edge.  Pour obtenir les définitions des différents états de cache et les codes d’état, voir [Azure CDN Cache Status Codes (Codes d’état du cache Azure CDN)](https://msdn.microsoft.com/library/mt759237.aspx) et [Azure CDN HTTP Status Codes (Codes d’état HTTP d’Azure CDN)](https://msdn.microsoft.com/library/mt759238.aspx)
+   * **Opérateur** est l’opérateur mathématique qui établit la relation entre la mesure et la valeur du déclencheur.
+   * **Valeur de déclenchement** est la valeur de seuil qui doit être atteinte avant l’envoi d’une notification.
      
-     Bonjour exemple ci-dessous, expression hello, j’ai créé indique que j’aimerais toobe averti lorsque le nombre de hello des codes d’état 404 est supérieur à 25.
+     Dans l’exemple suivant, l’expression créée indique qu’une notification est envoyée lorsque le nombre de codes d’état 404 est supérieur à 25.
      
      ![Expression de l’exemple d’alerte en temps réel](./media/cdn-real-time-alerts/cdn-expression.png)
-9. Pour **intervalle**, entrez la fréquence à laquelle vous souhaitez que l’expression hello évaluée.
-10. Bonjour **notifier sur** liste déroulante, sélectionnez lorsque vous souhaitez toobe informé hello l’expression est vraie.
+9. Pour **Intervalle**, entrez la fréquence à laquelle vous souhaitez que l’expression soit évaluée.
+10. Dans la liste déroulante **Notify on (Notifier sur)** , sélectionnez quand vous souhaitez être averti lorsque l’expression est vraie.
     
-    * **Début de la condition** indique qu’une notification est envoyée lorsque hello spécifié de la première détection de condition.
-    * **Fin de la condition** indique qu’une notification est envoyée lorsque hello spécifié la condition n’est plus détectée. Cette notification ne peut être déclenchée une fois notre système de surveillance de réseau a détecté que hello spécifiée s’est produite lors d’une condition.
-    * **Continue** indique qu’une notification sera envoyée chaque fois que hello système de surveillance réseau détecte hello spécifié condition. Gardez à l’esprit ce réseau hello surveillance système sera uniquement cocher qu’une seule fois par intervalle hello pour les conditions spécifiées.
-    * **Début de la condition et de fin** indique qu’une notification sera envoyée hello la première fois que hello la condition spécifiée est détecté et qu’une seule fois à nouveau lorsque la condition de hello n’est plus détectée.
-11. Si vous voulez tooreceive notifications par courrier électronique, activez hello **notification par courrier électronique** case à cocher.  
+    * **Début de la condition** indique qu’une notification est envoyée dès la première détection de la condition spécifiée.
+    * **Fin de la condition** indique qu’une notification est envoyée lorsque la condition spécifiée n’est plus détectée. Cette notification ne peut être déclenchée qu’une fois que notre système de surveillance du réseau a détecté que la condition spécifiée s’est produite.
+    * **Continu** indique qu’une notification est envoyée chaque fois que le système de surveillance du réseau détecte la condition spécifiée. N’oubliez pas que le système de surveillance du réseau ne recherche la condition spécifiée qu’une seule fois par intervalle.
+    * **Début et fin de la condition** indique qu’une notification est envoyée dès la première détection de la condition spécifiée, puis à nouveau lorsque la condition n’est plus détectée.
+1. Si vous souhaitez recevoir des notifications par courrier électronique, cochez la case **Notify by Email (Notifier par courrier électronique)** .  
     
     ![Formulaire de notification par courrier électronique](./media/cdn-real-time-alerts/cdn-notify-email.png)
     
-    Bonjour **à** , entrez l’adresse de messagerie hello où vous souhaitez que les notifications envoyées. Pour **sujet** et **corps**, vous pouvez laisser la valeur par défaut de hello, ou vous pouvez personnaliser le message de type hello à l’aide de hello **mots clés disponibles** liste toodynamically insérer des données d’alerte lorsque message de type Hello est envoyé.
+    Dans le champ **À** , entrez l’adresse de messagerie à laquelle vous voulez que les notifications soient envoyées. Pour **Objet** et **Corps**, vous pouvez laisser la valeur par défaut ou personnaliser le message à l’aide de la liste **Available keywords (Mots clés disponibles)** pour insérer dynamiquement les données d’alerte lors de l’envoi du message.
     
     > [!NOTE]
-    > Vous pouvez tester la notification par courrier électronique de hello en cliquant sur hello **une Notification de Test** bouton, mais uniquement après l’enregistrement de configuration d’alerte hello.
+    > Vous pouvez tester la notification par courrier électronique en cliquant sur le bouton **Tester la notification** , mais uniquement après l’enregistrement de la configuration de l’alerte.
     > 
     > 
-12. Si vous souhaitez toobe notifications validée de serveur web de tooa, vérifiez hello **notifier par HTTP Post** case à cocher.
+12. Si vous souhaitez que les notifications soient publiées sur un serveur web, cochez la case **Notify par HTTP Post (Notifier par HTTP Post)** .
     
     ![Formulaire de notification par HTTP Post](./media/cdn-real-time-alerts/cdn-notify-http.png)
     
-    Bonjour **Url** , entrez l’URL hello où que vous voulez message de type hello HTTP validée. Bonjour **en-têtes** zone de texte, entrez toobe d’en-têtes hello HTTP envoyé dans demande de hello.  Pour **corps** vous pouvez personnaliser le message de type hello à l’aide de hello **mots clés disponibles** liste toodynamically insérer des données d’alerte lorsque le message de type hello est envoyé.  **En-têtes** et **corps** par défaut toohello similaire de charge utile XML tooan exemple ci-dessous.
+    Dans le champ **Url** , entrez l’adresse URL à laquelle vous souhaitez que le message HTTP soit publié. Dans la zone de texte **En-têtes** , entrez les en-têtes HTTP à envoyer dans la demande.  Pour **Corps**, vous pouvez personnaliser le message à l’aide de la liste **Mots clés disponibles** pour insérer dynamiquement les données d’alerte lors de l’envoi du message.  La valeur par défaut des zones **En-têtes** et **Corps** est une charge utile XML semblable à celle de l’exemple suivant :
     
     ```
     <string xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
@@ -101,10 +101,10 @@ Ce document explique les alertes en temps réel dans Microsoft Azure CDN. Cette 
     ```
     
     > [!NOTE]
-    > Vous pouvez tester hello notification de requête HTTP Post en cliquant sur hello **une Notification de Test** bouton, mais uniquement après l’enregistrement de configuration d’alerte hello.
+    > Vous pouvez tester la notification HTTP Post en cliquant sur le bouton **Tester la notification** , mais uniquement après l’enregistrement de la configuration de l’alerte.
     > 
     > 
-13. Cliquez sur hello **enregistrer** bouton toosave votre configuration d’alerte.  Si vous avez coché la case **Alerte activée** à l’étape 5, votre alerte est maintenant active.
+13. Cliquez sur le bouton **Enregistrer** pour enregistrer votre configuration d’alerte.  Si vous avez coché la case **Alerte activée** à l’étape 5, votre alerte est maintenant active.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * Analyser des [statistiques en temps réel dans Azure CDN](cdn-real-time-stats.md)

@@ -1,6 +1,6 @@
 ---
-title: "le secret de coffre aaaKey avec modèle Resource Manager | Documents Microsoft"
-description: "Montre comment toopass une clé secrète à partir d’une clé de coffre en tant que paramètre pendant le déploiement."
+title: "Clé secrète de coffre de clés avec un modèle Resource Manager | Microsoft Docs"
+description: "Montre comment passer une clé secrète à partir d’un coffre de clés en tant que paramètre lors du déploiement."
 services: azure-resource-manager,key-vault
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 0bb7760c95b3b4ef34c9e5cc2e3421be56b5e5e3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ca72599e67e79d42a3d430dbb13e89ea7265334
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="use-key-vault-toopass-secure-parameter-value-during-deployment"></a>Utiliser la valeur de paramètre secure toopass le coffre de clés pendant le déploiement
+# <a name="use-key-vault-to-pass-secure-parameter-value-during-deployment"></a>Utiliser Key Vault pour transmettre une valeur de paramètre sécurisée pendant le déploiement
 
-Lorsque vous devez toopass une valeur sûre (par exemple, un mot de passe) en tant que paramètre pendant le déploiement, vous pouvez récupérer la valeur hello un [Azure Key Vault](../key-vault/key-vault-whatis.md). Vous récupérez la valeur de hello en référençant le coffre de clés hello et secret dans votre fichier de paramètres. valeur de Hello n’est jamais exposée parce que vous référencez uniquement son ID de coffre de clés. Vous n’avez pas besoin toomanually Entrez la valeur de hello pour secret de hello chaque fois que vous déployez des ressources de hello. coffre de clés Hello peut exister dans un autre abonnement à un groupe de ressources hello que vous effectuez le déploiement. Lorsque vous référencez un coffre de clés hello, vous incluez l’ID d’abonnement hello.
+Lorsque vous avez besoin de passer une valeur sécurisée (par exemple, un mot de passe) comme paramètre au cours du déploiement, vous pouvez récupérer la valeur à partir d’un coffre [Azure Key Vault](../key-vault/key-vault-whatis.md). Vous récupérez la valeur en référençant le coffre de clés et la clé secrète dans votre fichier de paramètres. La valeur n’est jamais exposée, car vous référencez uniquement son ID de coffre de clés. Il est inutile d’entrer manuellement la valeur de la clé secrète chaque fois que vous déployez les ressources. Le coffre de clés peut exister dans un autre abonnement que le groupe de ressources sur lequel vous effectuez le déploiement. Lorsque vous référencez le coffre de clés, incluez l’ID d’abonnement.
 
-Lorsque vous créez un coffre de clés hello, définissez hello *enabledForTemplateDeployment* propriété trop*true*. En définissant cette valeur tootrue, vous autorisez l’accès à partir de modèles de gestionnaire de ressources pendant le déploiement.  
+Lorsque vous créez le coffre de clés, définissez la propriété *enabledForTemplateDeployment* sur *true*. En définissant cette valeur sur true, vous autorisez l’accès depuis des modèles Resource Manager pendant le déploiement.  
 
 ## <a name="deploy-a-key-vault-and-secret"></a>Déploiement d'un coffre de clés et d’une clé secrète
 
-toocreate un coffre de clés et la clé secrète, utilisez CLI d’Azure ou de PowerShell. Notez que ce coffre de clés hello est activé pour le déploiement d’un modèle. 
+Pour créer un coffre de clés et une clé secrète, utilisez l’interface de ligne de commande Azure CLI ou PowerShell. Remarque : le coffre de clés est activé pour le déploiement du modèle. 
 
 Pour l’interface de ligne de commande Azure, consultez :
 
@@ -53,14 +53,14 @@ $secretvalue = ConvertTo-SecureString $password -AsPlainText -Force
 Set-AzureKeyVaultSecret -VaultName $vaultname -Name "examplesecret" -SecretValue $secretvalue
 ```
 
-## <a name="enable-access-toohello-secret"></a>Activer le secret d’accès toohello
+## <a name="enable-access-to-the-secret"></a>Autoriser l’accès à la clé secrète
 
-Si vous utilisez un coffre de clés nouveau ou existant, assurez-vous que l’utilisateur hello déploiement hello modèle accès hello secret. utilisateur Hello déploiement d’un modèle qui fait référence à une clé secrète doit avoir hello `Microsoft.KeyVault/vaults/deploy/action` l’autorisation de coffre de clés hello. Hello [propriétaire](../active-directory/role-based-access-built-in-roles.md#owner) et [collaborateur](../active-directory/role-based-access-built-in-roles.md#contributor) rôles à la fois accordent cet accès. Vous pouvez également créer un [rôle personnalisé](../active-directory/role-based-access-control-custom-roles.md) qui accorde cette autorisation et ajouter le rôle toothat hello. Pour plus d’informations sur l’ajout d’un rôle d’utilisateur tooa, consultez [affecter un utilisateur tooadministrator des rôles dans Azure Active Directory](../active-directory/active-directory-users-assign-role-azure-portal.md).
+Que vous utilisiez un coffre de clés nouveau ou existant, vérifiez que l’utilisateur qui déploie le modèle peut accéder à la clé secrète. L’utilisateur déployant un modèle qui fait référence à une clé secrète doit avoir l’autorisation `Microsoft.KeyVault/vaults/deploy/action` pour le coffre de clés. Les rôles [propriétaire](../active-directory/role-based-access-built-in-roles.md#owner) et [contributeur](../active-directory/role-based-access-built-in-roles.md#contributor) accordent cet accès. Vous pouvez également créer un [rôle personnalisé](../active-directory/role-based-access-control-custom-roles.md) qui accorde cette autorisation et ajouter l’utilisateur à ce rôle. Pour en savoir plus sur l’ajout d’un utilisateur à un rôle, voir [Affecter des rôles d’administrateur à un utilisateur dans Azure Active Directory](../active-directory/active-directory-users-assign-role-azure-portal.md).
 
 
 ## <a name="reference-a-secret-with-static-id"></a>Référencement d’un secret avec un ID statique
 
-modèle Hello reçoit un secret de coffre de clés est comme tout autre modèle. C’est parce que **vous référencez le coffre de clés hello dans fichier de paramètres hello, pas les modèles hello.** Par exemple, hello suivant le modèle déploie une base de données SQL qui inclut un mot de passe administrateur. paramètre de mot de passe Hello a la valeur chaîne sécurisée de tooa. Toutefois, modèle de hello ne spécifie pas d'où vient cette valeur.
+Le modèle qui reçoit un secret de coffre de clés est similaire à n’importe quel modèle. Ceci s’explique par le fait que **vous référencez le coffre de clés dans le fichier de paramètres, et non dans le modèle.** Par exemple, le modèle suivant déploie une base de données SQL qui inclut un mot de passe administrateur. Le paramètre du mot de passe est défini sur une chaîne sécurisée. Toutefois, le modèle ne spécifie pas d’où vient cette valeur.
 
 ```json
 {
@@ -146,7 +146,7 @@ modèle Hello reçoit un secret de coffre de clés est comme tout autre modèle.
 }
 ```
 
-À présent, créez un fichier de paramètres pour hello précédant le modèle. Dans le fichier de paramètres hello, spécifier un paramètre qui correspond au nom hello du paramètre hello dans le modèle de hello. Pour la valeur du paramètre hello, référencer hello secrète hello coffre de clés. Vous référencez le secret de hello en passant l’identificateur de ressource de hello du coffre de clés hello et nom hello du secret de hello. Dans l’exemple suivant de hello, secret de coffre de clés hello doit déjà exister, et vous fournir une valeur statique pour son ID de ressource.
+À présent, créez un fichier de paramètres pour le modèle précédent. Dans le fichier de paramètres, spécifiez un paramètre qui correspond au nom du paramètre dans le modèle. Pour la valeur du paramètre, référencez le secret du coffre de clés. Vous référencez la clé secrète en passant l'identificateur de ressource du coffre de clés et le nom de la clé secrète. Dans l’exemple suivant, la clé secrète du coffre de clés doit déjà exister, et vous définissez une valeur statique pour son ID de ressource.
 
 ```json
 {
@@ -194,9 +194,9 @@ modèle Hello reçoit un secret de coffre de clés est comme tout autre modèle.
 
 ## <a name="reference-a-secret-with-dynamic-id"></a>Référencement d’un secret avec un ID dynamique
 
-section précédente de Hello a montré comment toopass un ID de ressource statique pour la clé de hello secret de coffre. Toutefois, dans certains scénarios, vous devez tooreference un secret de coffre de clés qui varie en fonction de déploiement en cours hello. Dans ce cas, vous ne pouvez pas coder en dur hello les ID de ressource dans le fichier de paramètres hello. Malheureusement, vous ne peut pas générer dynamiquement des ID de ressource hello dans le fichier de paramètres hello car les expressions de modèle ne sont pas autorisées dans le fichier de paramètres hello.
+La section précédente expliquait comment transmettre un ID de ressource statique pour la clé secrète du coffre de clés. Toutefois, dans certains scénarios, vous devez référencer une clé secrète de coffre de clés qui varie selon le déploiement actuel. Dans ce cas, vous ne pouvez pas coder en dur l’ID de ressource dans le fichier de paramètres. Malheureusement, vous ne pouvez pas générer dynamiquement l’ID de ressource dans le fichier de paramètres, car les expressions de modèle ne sont pas autorisées dans ce dernier.
 
-toodynamically générer ID de ressource de hello pour un secret de coffre de clés, vous devez déplacer les ressources hello dont a besoin de la clé secrète de hello dans un modèle imbriqué. Dans votre modèle principal, vous ajoutez les modèles imbriqués hello et passez dans un paramètre qui contient l’ID de ressource hello générée de façon dynamique.
+Pour générer dynamiquement l’ID de ressource pour une clé secrète de coffre de clés, vous devez déplacer la ressource qui a besoin de la clé secrète dans un modèle imbriqué. Dans votre modèle principal, vous ajoutez le modèle imbriqué et passez un paramètre qui contient l’ID de ressource généré dynamiquement.
 
 ```json
 {

@@ -1,6 +1,6 @@
 ---
-title: "disques aaaExclude de la protection à l’aide d’Azure Site Recovery | Documents Microsoft"
-description: "Explique pourquoi et comment tooexclude VM disques de la réplication pour les scénarios de tooAzure de VMware et Hyper-V tooAzure."
+title: "Exclure des disques de la protection à l’aide d’Azure Site Recovery | Microsoft Docs"
+description: "Décrit pourquoi et comment exclure des disques de machine virtuelle de la réplication pour les scénarios VMware vers Azure et Hyper-V vers Azure."
 services: site-recovery
 documentationcenter: 
 author: nsoneji
@@ -14,129 +14,129 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/05/2017
 ms.author: nisoneji
-ms.openlocfilehash: f47146bc57aeab3fce90123d0894fa86dde93417
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fccbe88e3c0c2b2f3e9958f5f2f27adc017e4d03
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="exclude-disks-from-replication"></a>Exclure les disques de la réplication
-Cet article décrit comment tooexclude disques de la réplication. Cette exclusion peut optimiser la bande passante de la réplication hello consommé ou optimiser les ressources côté cible hello qui utilisent des disques de ce type. Hello est prise en charge pour les scénarios de tooAzure de VMware et Hyper-V tooAzure.
+Cet article décrit comment exclure des disques de la réplication. Cette exclusion permet d’optimiser la bande passante utilisée pour la réplication ou les ressources côté serveur que ces disques utilisent. Cette fonctionnalité est prise en charge pour les scénarios VMware vers Azure et Hyper-V vers Azure.
 
 ## <a name="prerequisites"></a>Composants requis
 
-Par défaut, tous les disques d’une machine sont répliqués. tooexclude un disque de la réplication, vous devez installer manuellement hello service mobilité sur l’ordinateur de hello avant d’activer la réplication si vous effectuez la réplication à partir de VMware tooAzure.
+Par défaut, tous les disques d’une machine sont répliqués. Pour exclure un disque de la réplication, vous devez installer le service Mobilité manuellement sur la machine avant d’activer la réplication si vous procédez à une réplication de VMware vers Azure.
 
 
 ## <a name="why-exclude-disks-from-replication"></a>Pourquoi exclure des disques de la réplication ?
 L’exclusion de disques de la réplication se révèle souvent nécessaire pour les raisons suivantes :
 
-- données Hello sont modifiées sur le disque de hello exclu ne sont pas importantes ou n’a pas besoin de toobe répliquée.
+- Les données hautement évolutives sur le disque exclu ne sont pas importantes ou n’ont pas besoin d’être répliquées.
 
-- Souhaité toosave des ressources réseau et de stockage en ne répliquent ne pas cet évolution du code.
+- Vous voulez économiser des ressources de stockage et réseau en ne répliquant pas ces données.
 
-## <a name="what-are-hello-typical-scenarios"></a>Quels sont les scénarios classiques hello ?
-Vous pouvez identifier des exemples précis de données qui sont d’excellents candidats pour l’exclusion. Par exemple écrit le fichier d’échange tooa (pagefile.sys) et fichiers de tempdb toohello de Microsoft SQL Server. En fonction de la charge de travail hello et le sous-système de stockage hello, fichier d’échange hello peut enregistrer une quantité importante d’évolution. Toutefois, la réplication des données à partir de tooAzure du site principal hello serait beaucoup de ressources. Par conséquent, vous pouvez utiliser hello après la réplication toooptimize étapes d’un ordinateur virtuel avec un disque virtuel qui possède le système d’exploitation de hello et fichier d’échange hello :
+## <a name="what-are-the-typical-scenarios"></a>Quels sont les scénarios classiques ?
+Vous pouvez identifier des exemples précis de données qui sont d’excellents candidats pour l’exclusion. Parmi les exemples figurent les écritures dans un fichier d’échange (pagefile.sys) et les écritures dans le fichier tempdb Microsoft SQL Server. Selon la charge de travail et le sous-système de stockage, le fichier d’échange peut enregistrer une quantité significative de données à fort taux d’évolution. Toutefois, la réplication de ces données du site principal vers Azure nécessiterait de nombreuses ressources. Par conséquent, vous pouvez procéder comme suit pour optimiser la réplication d’une machine virtuelle avec un seul disque virtuel qui contient le système d’exploitation et le fichier d’échange :
 
-1. Fractionner disque virtuel hello en deux disques virtuels. Un disque virtuel a le système d’exploitation de hello et hello autres possède le fichier d’échange hello.
-2. Exclure le disque du fichier de pagination hello de la réplication.
+1. Fractionnez le disque virtuel unique en deux disques virtuels. Un disque virtuel comporte le système d’exploitation, et l’autre le fichier d’échange.
+2. Excluez le disque de fichier d’échange de la réplication.
 
-De même, vous pouvez utiliser les hello suivant les étapes toooptimize un disque qui possède les deux tempdb de Microsoft SQL Server hello fichier et hello du fichier de base de données système :
+De même, vous pouvez procéder comme suit pour optimiser un disque qui contient à la fois le fichier tempdb Microsoft SQL Server et le fichier de base de données système :
 
-1. Conserver la base de données système hello et tempdb sur deux disques différents.
-2. Exclure le disque de tempdb hello de la réplication.
+1. Stockez la base de données système et la base de données tempdb sur deux disques différents.
+2. Excluez le disque de base de données tempdb de la réplication.
 
-## <a name="how-tooexclude-disks-from-replication"></a>Comment tooexclude disques de la réplication ?
+## <a name="how-to-exclude-disks-from-replication"></a>Comment exclure des disques de la réplication ?
 
-### <a name="vmware-tooazure"></a>VMware tooAzure
-Suivez hello [activer la réplication](site-recovery-vmware-to-azure.md) tooprotect de flux de travail une machine virtuelle à partir du portail d’Azure Site Recovery hello. Dans hello quatrième étape du flux de travail hello, utilisez hello **tooREPLICATE de disque** disques tooexclude de colonne de la réplication. Par défaut, tous les disques sont sélectionnés pour la réplication. Désactivez la case à cocher de disques que vous souhaitez tooexclude à partir de la réplication et puis exécutez hello étapes tooenable hello.
+### <a name="vmware-to-azure"></a>VMware vers Azure
+Pour protéger une machine virtuelle du portail Azure Site Recovery, suivez le workflow [Activer la réplication](site-recovery-vmware-to-azure.md). Dans la quatrième étape du workflow, utilisez la colonne **DISQUE À RÉPLIQUER** pour exclure des disques de la réplication. Par défaut, tous les disques sont sélectionnés pour la réplication. Décochez les cases correspondant aux disques que vous souhaitez exclure de la réplication, puis exécutez la procédure d’activation de la réplication.
 
-![Exclure les disques de la réplication et activer la réplication pour la restauration automatique de VMware tooAzure](./media/site-recovery-exclude-disk/v2a-enable-replication-exclude-disk1.png)
+![Exclure les disques de la réplication et activer la réplication de la restauration automatique de VMware vers Azure](./media/site-recovery-exclude-disk/v2a-enable-replication-exclude-disk1.png)
 
 
 >[!NOTE]
 >
-> * Vous pouvez exclure uniquement les disques qui déjà hello mobilité service sont installé. Vous devez toomanually installation du service mobilité hello, hello service mobilité est uniquement installée par à l’aide du mécanisme de diffusion hello après que la réplication est activée.
+> * Vous pouvez uniquement exclure des disques sur lesquels le service Mobilité est déjà installé. Vous devez installer le service Mobilité manuellement, car il n’est installé qu’à l’aide du mécanisme Push après l’activation de la réplication.
 > * Seuls les disques de base peuvent être exclus de la réplication. Vous ne pouvez pas exclure de système d’exploitation ni de disque dynamique.
-> * Une fois la réplication activée, vous ne pouvez pas ajouter ni supprimer de disques pour la réplication. Si vous souhaitez tooadd ou excluez un disque, vous devez toodisable protection pour l’ordinateur de hello et réactivez-la.
-> * Si vous excluez un disque qui est nécessaire pour une application toooperate, après le basculement tooAzure, vous devez disque de hello toocreate manuellement dans Azure afin que l’application hello répliquée permettre s’exécuter. Vous pouvez également intégrer Azure automation en un disque de récupération plan toocreate hello pendant le basculement de l’ordinateur de hello.
-> * Machine virtuelle Windows : les disques que vous créez manuellement dans Azure ne sont pas restaurés automatiquement. Par exemple, si vous basculez trois disques et que vous en créez deux directement dans Azure Virtual Machines, seuls les trois disques qui ont été basculés sont restaurés automatiquement. Vous ne pouvez inclure les disques que vous avez créé manuellement dans la restauration automatique ou reprotection de local tooAzure.
+> * Une fois la réplication activée, vous ne pouvez pas ajouter ni supprimer de disques pour la réplication. Si vous voulez ajouter ou exclure un disque, vous devez désactiver la protection de la machine, puis la réactiver.
+> * Si vous excluez un disque requis pour le bon fonctionnement d’une application, après le basculement vers Azure, vous devez créer manuellement le disque dans Azure afin que l’application répliquée puisse s’exécuter. Vous pouvez également intégrer Azure Automation dans un plan de récupération afin de créer le disque pendant le basculement de la machine.
+> * Machine virtuelle Windows : les disques que vous créez manuellement dans Azure ne sont pas restaurés automatiquement. Par exemple, si vous basculez trois disques et que vous en créez deux directement dans Azure Virtual Machines, seuls les trois disques qui ont été basculés sont restaurés automatiquement. Vous ne pouvez pas inclure de disques créés manuellement dans le processus de restauration automatique ou de reprotection à partir de l’hôte local vers Azure.
 > * Machine virtuelle Linux : les disques que vous créez manuellement dans Azure sont restaurés automatiquement. Par exemple, si vous basculez trois disques et créez deux disques directement dans Azure Virtual Machines, les cinq disques seront restaurés. Vous ne pouvez pas exclure de disques créés manuellement de la restauration automatique.
 >
 
-### <a name="hyper-v-tooazure"></a>Hyper-V tooAzure
-Suivez hello [activer la réplication](site-recovery-hyper-v-site-to-azure.md) tooprotect de flux de travail une machine virtuelle à partir du portail d’Azure Site Recovery hello. Dans hello quatrième étape du flux de travail hello, utilisez hello **tooREPLICATE de disque** disques tooexclude de colonne de la réplication. Par défaut, tous les disques sont sélectionnés pour la réplication. Désactivez la case à cocher de disques que vous souhaitez tooexclude à partir de la réplication et puis exécutez hello étapes tooenable hello.
+### <a name="hyper-v-to-azure"></a>Hyper-V vers Azure
+Pour protéger une machine virtuelle du portail Azure Site Recovery, suivez le workflow [Activer la réplication](site-recovery-hyper-v-site-to-azure.md). Dans la quatrième étape du workflow, utilisez la colonne **DISQUE À RÉPLIQUER** pour exclure des disques de la réplication. Par défaut, tous les disques sont sélectionnés pour la réplication. Décochez les cases correspondant aux disques que vous souhaitez exclure de la réplication, puis exécutez la procédure d’activation de la réplication.
 
-![Exclure les disques de la réplication et activer la réplication pour la restauration automatique de tooAzure Hyper-V](./media/site-recovery-vmm-to-azure/enable-replication6-with-exclude-disk.png)
+![Exclure les disques de la réplication et activer la réplication de la restauration automatique de Hyper-V vers Azure](./media/site-recovery-vmm-to-azure/enable-replication6-with-exclude-disk.png)
 
 >[!NOTE]
 >
-> * Seuls les disques de base peuvent être exclus de la réplication. Vous ne pouvez pas exclure les disques de système d’exploitation. Nous vous recommandons de ne pas exclure de disques dynamiques. Azure Site Recovery ne peut pas identifier le disque dur virtuel (VHD) est de base ou dynamiques dans l’ordinateur virtuel hello.  Si tous les disques de volume dynamique dépendants ne sont pas exclues, disque protégé hello devient un disque en panne sur un ordinateur virtuel de basculement et hello données sur ce disque ne sont pas accessibles.
-> * Une fois la réplication activée, vous ne pouvez pas ajouter ni supprimer de disques pour la réplication. Si vous souhaitez tooadd ou excluez un disque, vous devez toodisable protection pour la machine virtuelle de hello et réactivez-la.
-> * Si vous excluez un disque que nécessaire pour une application toooperate, après le basculement tooAzure vous devez disque de hello toocreate manuellement dans Azure afin que l’application hello répliquée permettre s’exécuter. Vous pouvez également intégrer Azure automation en un disque de récupération plan toocreate hello pendant le basculement de l’ordinateur de hello.
-> * Les disques que vous créez manuellement dans Azure ne seront pas restaurés automatiquement. Par exemple, si vous échouer trois disques et que vous créez deux disques directement dans Azure Virtual Machines, uniquement trois disques qui ont été basculés va échouer à partir tooHyper-V Azure. Vous ne pouvez inclure des disques qui ont été créés manuellement dans la restauration automatique ou dans la réplication inverse depuis tooAzure d’Hyper-V.
+> * Seuls les disques de base peuvent être exclus de la réplication. Vous ne pouvez pas exclure les disques de système d’exploitation. Nous vous recommandons de ne pas exclure de disques dynamiques. Azure Site Recovery ne peut pas identifier si les disques durs virtuels (VHD) sont de base ou dynamiques sur les machines virtuelles invitées.  Si tous les disques de volume dynamique dépendants ne sont pas exclus, le disque dynamique protégé devient un disque défectueux sur la machine virtuelle de basculement, et les données de ce disque ne sont pas accessibles.
+> * Une fois la réplication activée, vous ne pouvez pas ajouter ni supprimer de disques pour la réplication. Si vous voulez ajouter ou exclure un disque, vous devez désactiver la protection de la machine virtuelle, puis la réactiver.
+> * Si vous excluez un disque requis pour le bon fonctionnement d’une application, après le basculement vers Azure, vous devez créer manuellement le disque dans Azure afin que l’application répliquée puisse s’exécuter. Vous pouvez également intégrer Azure Automation dans un plan de récupération afin de créer le disque pendant le basculement de la machine.
+> * Les disques que vous créez manuellement dans Azure ne seront pas restaurés automatiquement. Par exemple, si vous basculez trois disques et que vous en créez deux directement dans Azure Virtual Machines, seuls les trois disques qui ont été basculés seront restaurés automatiquement à partir d’Azure sur Hyper-V. Vous ne pouvez pas inclure de disques créés manuellement dans le processus de restauration automatique ou de réplication inverse d’Hyper-V vers Azure.
 
 
 
 ## <a name="end-to-end-scenarios-of-exclude-disks"></a>Scénarios d’exclusion de disques de bout en bout
-Prenons la fonctionnalité de disque deux scénarios toounderstand hello exclusion :
+Pour vous aider à bien comprendre la fonctionnalité d’exclusion de disques, considérons deux scénarios :
 
 - Disque de base de données tempdb SQL Server
 - Disque de fichier d’échange (pagefile.sys)
 
-### <a name="exclude-hello-sql-server-tempdb-disk"></a>Exclure le disque de tempdb de SQL Server hello
+### <a name="exclude-the-sql-server-tempdb-disk"></a>Exclure le disque de base de données tempdb SQL Server
 Considérons l’exemple d’une machine virtuelle SQL Server dotée d’un disque de base de données tempdb pouvant être exclu.
 
-nom de Hello du disque virtuel de hello est SalesDB.
+Le nom du disque virtuel est SalesDB.
 
-Les disques sur un ordinateur virtuel de hello source sont les suivantes :
+Les disques sur la machine virtuelle source sont les suivants :
 
 
-**Nom du disque** | **Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque de hello**
+**Nom du disque** | **Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Disque de système d’exploitation
 DB-Disk1| Disk1 | D:\ | Base de données système SQL et base de données utilisateur 1
-Base de données-2 (disque de hello exclus de la protection) | Disk2 | E:\ | Fichiers temporaires
-Base de données-disquette n° 3 (disque de hello exclus de la protection) | Disk3 | F:\ | Base de données tempdb SQL (chemin d’accès du dossier (F:\MSSQL\Data\) < /br/>< /br/> Notez le chemin d’accès du dossier hello avant le basculement.
+DB-Disk2 (disque exclu de la protection) | Disk2 | E:\ | Fichiers temporaires
+DB-Disk3 (disque exclu de la protection) | Disk3 | F:\ | Base de données tempdb SQL (chemin du dossier (F:\MSSQL\Data\) </br /></br />Notez le chemin du dossier avant de procéder au basculement.
 DB-Disk4 | Disk4 |G:\ |Base de données utilisateur 2
 
-Étant donné que l’évolution des données sur deux disques de machine virtuelle de hello est temporaire, tout en protégeant les machines virtuelles de SalesDB hello, exclure 2 et disquette n° 3 de la réplication. Azure Site Recovery ne répliquera pas ces disques. Lors du basculement, ces disques ne sera pas présents sur l’ordinateur de virtuel basculement hello sur Azure.
+Étant donné que l’évolution des données sur deux disques de la machine virtuelle est temporaire, lorsque vous protégez la machine virtuelle SalesDB, excluez les disques Disk2 et Disk3 de la réplication. Azure Site Recovery ne répliquera pas ces disques. Lors du basculement, ces disques ne seront pas présents sur la machine virtuelle de basculement sur Azure.
 
-Les disques sur la machine virtuelle Azure après le basculement de hello sont les suivantes :
+Les disques sur la machine virtuelle Azure après le basculement sont les suivants :
 
-**Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque de hello**
+**Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque**
 --- | --- | ---
 DISK0 | C:\ | Disque de système d’exploitation
-Disk1 | E:\ | Stockage temporaire < /br / >< /br / > Azure ajoute ce disque et affecte la première lettre de lecteur disponible hello.
+Disk1 | E:\ | Stockage temporaire</br /> </br />Azure ajoute ce disque et lui attribue la première lettre de lecteur disponible.
 Disk2 | D:\ | Base de données système SQL et base de données utilisateur 1
 Disk3 | G:\ | Base de données utilisateur 2
 
-2 et disquette n° 3 ont été exclus de la machine virtuelle de SalesDB hello, E: étant première lettre de lecteur hello à partir de la liste des composants disponibles hello. Azure attribue un volume de stockage temporaire toohello E:. Pour tous les disques hello répliquée, lecteur hello lettres restent hello identiques.
+Étant donné que les disques Disk2 et Disk3 ont été exclus de la machine virtuelle SalesDB, E: est la première lettre de lecteur disponible dans la liste. Azure attribue donc la lettre E: au volume de stockage temporaire. Pour tous les disques répliqués, la lettre de lecteur reste la même.
 
-Disquette n° 3, ce qui était hello SQL tempdb disque (chemin d’accès du dossier tempdb F:\MSSQL\Data\), a été exclu de la réplication. disque de Hello n’est pas disponible sur l’ordinateur virtuel de basculement hello. Par conséquent, hello service SQL est dans un état arrêté, et il doit le chemin d’accès de hello F:\MSSQL\Data.
+Le disque Disk3, qui était le disque tempdb SQL (chemin d’accès du dossier tempdb F:\MSSQL\Data\), a été exclu de la réplication. Le disque n’est pas disponible sur la machine virtuelle de basculement. Par conséquent, le service SQL présente l’état arrêté et a besoin du chemin F:\MSSQL\Data.
 
-Il existe deux façons toocreate ce chemin d’accès :
+Il existe deux façons de créer ce chemin :
 
 - Ajoutez un nouveau disque et attribuez-lui le chemin du dossier de tempdb.
-- Utilisez un disque de stockage temporaire existant pour le chemin d’accès au dossier hello tempdb.
+- Utilisez un disque de stockage temporaire existant pour le chemin du dossier de tempdb.
 
 #### <a name="add-a-new-disk"></a>Ajouter un nouveau disque :
 
-1. Notez les chemins d’accès hello de SQL tempdb.mdf et tempdb.ldf avant le basculement.
-2. À partir de hello portail Azure, ajouter une disque toohello basculement machine virtuelle avec hello même ou à une taille plus que celle du disque de tempdb SQL hello source (disquette n° 3).
-3. Se connecter toohello machine virtuelle Azure. À partir de la console de gestion (diskmgmt.msc) du disque hello, d’initialisation et de format hello récemment ajouté de disque.
-4. Hello Assign même lettre qui était utilisé par un disque de tempdb SQL hello (F:) de lecteur.
-5. Créez un dossier de tempdb sur hello le volume F: (F:\MSSQL\Data).
-6. Démarrer le service SQL de hello à partir de la console de service hello.
+1. Notez le chemin des fichiers SQL tempdb.mdf et tempdb.ldf avant de procéder au basculement.
+2. À partir du portail Azure, ajoutez à la machine virtuelle de basculement un nouveau disque présentant une taille identique ou supérieure à celle du disque de base de données tempdb SQL source (Disk3).
+3. Connectez-vous à la machine virtuelle Azure. À partir de la console de gestion des disques (diskmgmt.msc), initialisez et formatez le disque que vous venez d’ajouter.
+4. Attribuez-lui la lettre de lecteur qui était utilisée par le disque de base de données tempdb SQL (F:).
+5. Créez un dossier de tempdb sur le volume F: (F:\MSSQL\Data).
+6. Démarrez le service SQL à partir de la console de service.
 
-#### <a name="use-an-existing-temporary-storage-disk-for-hello-sql-tempdb-folder-path"></a>Utilisez un disque de stockage temporaire existant pour le chemin d’accès du dossier hello SQL tempdb :
+#### <a name="use-an-existing-temporary-storage-disk-for-the-sql-tempdb-folder-path"></a>Utilisez un disque de stockage temporaire existant pour le chemin du dossier de tempdb :
 
 1. Ouvrez une invite de commandes.
-2. Exécutez SQL Server en mode de récupération à partir de l’invite de commandes hello.
+2. Exécutez SQL Server en mode de récupération à partir de l’invite de commande.
 
         Net start MSSQLSERVER /f / T3608
 
-3. Exécutez hello suivant sqlcmd toochange hello tempdb toohello nouveau chemin.
+3. Exécutez la commande sqlcmd suivante pour remplacer le chemin de la base de données tempdb par un nouveau chemin.
 
         sqlcmd -A -S SalesDB        **Use your SQL DBname**
         USE master;     
@@ -149,50 +149,50 @@ Il existe deux façons toocreate ce chemin d’accès :
         GO
 
 
-4. Arrêter le service de Microsoft SQL Server hello.
+4. Arrêtez le service Microsoft SQL Server.
 
         Net stop MSSQLSERVER
-5. Démarrer le service de Microsoft SQL Server hello.
+5. Démarrez le service Microsoft SQL Server.
 
         Net start MSSQLSERVER
 
-Consultez toohello suivant les indications de Azure pour le disque de stockage temporaire :
+Consultez les recommandations Azure ci-après concernant le disque de stockage temporaire :
 
-* [À l’aide de disques SSD dans les machines virtuelles Azure toostore TempDB de SQL Server et les Extensions du Pool de mémoires tampons](https://blogs.technet.microsoft.com/dataplatforminsider/2014/09/25/using-ssds-in-azure-vms-to-store-sql-server-tempdb-and-buffer-pool-extensions/)
+* [Utilisation des disques SSD dans les machines virtuelles Azure pour stocker TempDB et les extensions des pools de mémoires tampons de SQL Server](https://blogs.technet.microsoft.com/dataplatforminsider/2014/09/25/using-ssds-in-azure-vms-to-store-sql-server-tempdb-and-buffer-pool-extensions/)
 * [Meilleures pratiques relatives aux performances de SQL Server dans les machines virtuelles Azure](https://docs.microsoft.com/azure/virtual-machines/windows/sql/virtual-machines-windows-sql-performance)
 
-### <a name="failback-from-azure-tooan-on-premises-host"></a>Restauration automatique (à partir de l’hôte local de tooan Azure)
-Maintenant essayons de comprendre les disques hello qui sont répliqués lorsque vous basculez de l’hôte de VMware ou Hyper-V du local tooyour Azure. Les disques que vous créez manuellement dans Azure ne seront pas répliqués. Par exemple, si vous basculez trois disques et que vous en créez deux directement dans Azure Virtual Machines, seuls les trois disques qui ont été basculés seront restaurés automatiquement. Vous ne pouvez inclure des disques qui ont été créés manuellement dans la restauration automatique ou reprotection de local tooAzure. Aussi, il ne réplique pas hôtes de tooon local de disque de stockage temporaire hello.
+### <a name="failback-from-azure-to-an-on-premises-host"></a>Restauration automatique (d’Azure vers un hôte local)
+À présent, découvrons les disques qui sont répliqués lorsque vous procédez à un basculement d’Azure vers votre hôte Hyper-V ou VMware local. Les disques que vous créez manuellement dans Azure ne seront pas répliqués. Par exemple, si vous basculez trois disques et que vous en créez deux directement dans Azure Virtual Machines, seuls les trois disques qui ont été basculés seront restaurés automatiquement. Vous ne pouvez pas inclure de disques créés manuellement dans le processus de restauration automatique à partir de l’hôte local vers Azure. En outre, le disque de stockage temporaire n’est pas répliqué vers les hôtes locaux.
 
-#### <a name="failback-toooriginal-location-recovery"></a>Récupération de la restauration automatique toooriginal emplacement
+#### <a name="failback-to-original-location-recovery"></a>Restauration automatique pour la récupération à l’emplacement d’origine
 
-Dans l’exemple précédent de hello, configuration de disque de machine virtuelle Azure hello est comme suit :
+Dans l’exemple précédent, les disques de la machine virtuelle Azure sont configurés comme suit :
 
-**Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque de hello**
+**Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque**
 --- | --- | ---
 DISK0 | C:\ | Disque de système d’exploitation
-Disk1 | E:\ | Stockage temporaire < /br / >< /br / > Azure ajoute ce disque et affecte la première lettre de lecteur disponible hello.
+Disk1 | E:\ | Stockage temporaire</br /> </br />Azure ajoute ce disque et lui attribue la première lettre de lecteur disponible.
 Disk2 | D:\ | Base de données système SQL et base de données utilisateur 1
 Disk3 | G:\ | Base de données utilisateur 2
 
 
-#### <a name="vmware-tooazure"></a>VMware tooAzure
-Une fois la restauration automatique terminée emplacement d’origine de toohello, configuration de disque de machine virtuelle de la restauration automatique hello n’a pas de disques exclus. Les disques qui ont été exclus de VMware tooAzure ne seront pas disponibles sur l’ordinateur virtuel de la restauration automatique hello.
+#### <a name="vmware-to-azure"></a>VMware vers Azure
+Lorsque la restauration automatique est effectuée à l’emplacement d’origine, la configuration des disques de la machine virtuelle de restauration automatique ne comporte aucun disque exclu. Les disques qui étaient exclus de VMware vers Azure ne seront pas disponibles sur la machine virtuelle de restauration automatique.
 
-Après un basculement planifié à partir de Azure local tooon VMware, les disques de machine virtuelle de VMWare hello (emplacement d’origine) sont les suivantes :
+Après le basculement planifié d’Azure vers l’hôte VMware local, les disques sur la machine virtuelle VMWare (emplacement d’origine) se présentent comme suit :
 
-**Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque de hello**
+**Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque**
 --- | --- | ---
 DISK0 | C:\ | Disque de système d’exploitation
 Disk1 | D:\ | Base de données système SQL et base de données utilisateur 1
 Disk2 | G:\ | Base de données utilisateur 2
 
-#### <a name="hyper-v-tooazure"></a>Hyper-V tooAzure
-Lorsque la restauration automatique est l’emplacement d’origine de toohello, hello la restauration automatique machine virtuelle disque configuration reste hello même que celui de la configuration de disque de machine virtuelle d’origine pour Hyper-V. Les disques qui ont été exclus de tooAzure du site Hyper-V sont disponibles sur l’ordinateur virtuel de la restauration automatique hello.
+#### <a name="hyper-v-to-azure"></a>Hyper-V vers Azure
+Lorsque la restauration automatique est effectuée à l’emplacement d’origine, la configuration des disques de la machine virtuelle de restauration automatique reste la même que celle des disques de la machine virtuelle d’origine pour Hyper-V. Les disques qui étaient exclus de Hyper-V vers Azure sont disponibles sur la machine virtuelle de restauration automatique.
 
-Après un basculement planifié à partir du site tooon Azure Hyper-V, les disques sur l’ordinateur virtuel de Hyper-V hello (emplacement d’origine) sont les suivantes :
+Après le basculement planifié d’Azure vers l’hôte Hyper-V local, les disques sur la machine virtuelle Hyper-V (emplacement d’origine) se présentent comme suit :
 
-**Nom du disque** | **Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque de hello**
+**Nom du disque** | **Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 |   C:\ | Disque de système d’exploitation
 DB-Disk1 | Disk1 | D:\ | Base de données système SQL et base de données utilisateur 1
@@ -201,69 +201,69 @@ DB-Disk3 (disque exclu) | Disk3 | F:\ | Base de données tempdb SQL (chemin du d
 DB-Disk4 | Disk4 | G:\ | Base de données utilisateur 2
 
 
-#### <a name="exclude-hello-paging-file-pagefilesys-disk"></a>Exclure le disque du fichier (pagefile.sys) hello la pagination
+#### <a name="exclude-the-paging-file-pagefilesys-disk"></a>Exclure le disque de fichier d’échange (pagefile.sys)
 
 Considérons l’exemple d’une machine virtuelle dotée d’un disque de fichier d’échange pouvant être exclu.
 Il existe deux cas.
 
-#### <a name="case-1-hello-paging-file-is-configured-on-hello-d-drive"></a>Cas n° 1 : fichier d’échange hello est configuré sur hello lecteur D:
-Voici la configuration de disque hello :
+#### <a name="case-1-the-paging-file-is-configured-on-the-d-drive"></a>Cas 1 : le fichier d’échange est configuré sur le lecteur D:
+Voici la configuration des disques :
 
 
-**Nom du disque** | **Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque de hello**
+**Nom du disque** | **Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Disque de système d’exploitation
-(Disque de hello exclus de la protection de hello) de base de données-disque 1 | Disk1 | D:\ | pagefile.sys
+DB-Disk1 (disque exclu de la protection) | Disk1 | D:\ | pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Données utilisateur 1
 DB-Disk3 | Disk3 | F:\ | Données utilisateur 2
 
-Voici les paramètres fichier d’échange hello sur l’ordinateur virtuel de hello source :
+Voici les paramètres du fichier d’échange sur la machine virtuelle source :
 
 ![Paramètres du fichier d’échange sur la machine virtuelle source](./media/site-recovery-exclude-disk/pagefile-on-d-drive-sourceVM.png)
 
 
-Après le basculement de l’ordinateur virtuel hello VMware tooAzure ou tooAzure de Hyper-V, les disques sur hello machine virtuelle Azure sont les suivantes :
+Après le basculement de la machine virtuelle VMware vers Azure ou Hyper-V vers Azure, les disques sur la machine virtuelle Azure se présentent comme suit :
 
-**Nom du disque** | **Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque de hello**
+**Nom du disque** | **Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Disque de système d’exploitation
 DB-Disk1 | Disk1 | D:\ | Stockage temporaire</br /> </br />pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Données utilisateur 1
 DB-Disk3 | Disk3 | F:\ | Données utilisateur 2
 
-Étant donné que le disque 1 (d) a été exclue, D: est première lettre de lecteur hello à partir de la liste des composants disponibles hello. Azure attribue un volume de stockage temporaire toohello D:. D: étant disponible sur hello machine virtuelle Azure, le paramètre fichier d’échange hello de hello machine virtuelle reste hello même.
+Étant donné que le disque Disk1 (D:) a été exclu, D: est la première lettre de lecteur disponible. Azure attribue donc la lettre D: au volume de stockage temporaire. Étant donné que D: est disponible sur la machine virtuelle Azure, les paramètres du fichier d’échange de la machine virtuelle restent inchangés.
 
-Voici les paramètres fichier d’échange hello sur hello machine virtuelle Azure :
+Voici les paramètres du fichier d’échange sur la machine virtuelle Azure :
 
 ![Paramètres du fichier d’échange sur la machine virtuelle Azure](./media/site-recovery-exclude-disk/pagefile-on-Azure-vm-after-failover.png)
 
-#### <a name="case-2-hello-paging-file-is-configured-on-another-drive-other-than-d-drive"></a>Cas 2 : le fichier d’échange hello est configuré sur un autre lecteur (autre que le lecteur D:)
+#### <a name="case-2-the-paging-file-is-configured-on-another-drive-other-than-d-drive"></a>Cas 2 : le fichier d’échange est configuré sur un autre lecteur (autre que le lecteur D:)
 
-Voici la configuration de disque de machine virtuelle source hello :
+Voici la configuration des disques de la machine virtuelle source :
 
-**Nom du disque** | **Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque de hello**
+**Nom du disque** | **Numéro du disque du système d’exploitation invité** | **Lettre de lecteur** | **Type de données sur le disque**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0 | C:\ | Disque de système d’exploitation
-Base de données-disque 1 (disque de hello exclus de la protection) | Disk1 | G:\ | pagefile.sys
+DB-Disk1 (disque exclu de la protection) | Disk1 | G:\ | pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Données utilisateur 1
 DB-Disk3 | Disk3 | F:\ | Données utilisateur 2
 
-Voici les paramètres fichier d’échange hello sur l’ordinateur virtuel de local hello :
+Voici les paramètres du fichier d’échange sur la machine virtuelle locale :
 
-![Paramètres du fichier sur l’ordinateur virtuel de local hello d’échange](./media/site-recovery-exclude-disk/pagefile-on-g-drive-sourceVM.png)
+![Paramètres du fichier d’échange sur la machine virtuelle locale](./media/site-recovery-exclude-disk/pagefile-on-g-drive-sourceVM.png)
 
-Après le basculement de l’ordinateur virtuel VMware/Hyper-V tooAzure hello, les disques sur hello machine virtuelle Azure sont les suivantes :
+Après le basculement de la machine virtuelle VMware/Hyper-V vers Azure, les disques sur la machine virtuelle Azure se présentent comme suit :
 
-**Nom du disque**| **Numéro du disque du système d’exploitation invité**| **Lettre de lecteur** | **Type de données sur le disque de hello**
+**Nom du disque**| **Numéro du disque du système d’exploitation invité**| **Lettre de lecteur** | **Type de données sur le disque**
 --- | --- | --- | ---
 DB-Disk0-OS | DISK0  |C:\ |Disque de système d’exploitation
 DB-Disk1 | Disk1 | D:\ | Stockage temporaire</br /> </br />pagefile.sys
 DB-Disk2 | Disk2 | E:\ | Données utilisateur 1
 DB-Disk3 | Disk3 | F:\ | Données utilisateur 2
 
-D: étant la première lettre de lecteur hello à partir de la liste de hello disponibles, Azure affecte d : volume de stockage temporaire toohello. Pour tous les disques hello répliquée, le reste de lettre de lecteur hello hello même. Étant donné que hello G: disque n’est pas disponible, hello système utilise lecteur C: de hello pour le fichier d’échange de hello.
+Étant donné que D: est la première lettre de lecteur disponible dans la liste, Azure attribue la lettre D: au volume de stockage temporaire. Pour tous les disques répliqués, la lettre de lecteur reste la même. Étant donné que le lecteur G: n’est pas disponible, le système utilisera le lecteur C: pour le fichier d’échange.
 
-Voici les paramètres fichier d’échange hello sur hello machine virtuelle Azure :
+Voici les paramètres du fichier d’échange sur la machine virtuelle Azure :
 
 ![Paramètres du fichier d’échange sur la machine virtuelle Azure](./media/site-recovery-exclude-disk/pagefile-on-Azure-vm-after-failover-2.png)
 

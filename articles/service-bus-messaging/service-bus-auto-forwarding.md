@@ -1,6 +1,6 @@
 ---
-title: "entités de messagerie Azure Service Bus aaaAuto transfert | Documents Microsoft"
-description: "Comment toochain un Bus de Service de file d’attente ou une rubrique ou file d’attente de tooanother abonnement."
+title: "Transfert automatique d’entités de messagerie Azure Service Bus | Microsoft Docs"
+description: "Guide pratique pour chaîner une file d’attente ou un abonnement Service Bus à une autre file d’attente ou rubrique."
 services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm
-ms.openlocfilehash: af18273e4e2f81c5363eb830c7decf313afd8307
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2656b3a276c542ca836b3949e4e493d7c7f48f16
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="chaining-service-bus-entities-with-auto-forwarding"></a>Chaînage des entités Service Bus avec transfert automatique
 
-Hello Service Bus *transfert automatique* fonctionnalité vous permet de file d’attente de tooanother abonnement ou toochain une file d’attente ou une rubrique qui fait partie de hello même espace de noms. Lorsque le transfert automatique est activé, Service Bus automatiquement supprime les messages sont placés dans la file d’attente de la première hello ou un abonnement (source) et les place dans la file d’attente de la deuxième hello ou une rubrique (destination). Notez qu’il est toujours possible de toosend une entité de destination de message toohello directement. En outre, il n’est pas possible de toochain une sous-file d’attente, tel qu’une file d’attente de lettres mortes, la file d’attente tooanother ou la rubrique.
+La fonctionnalité de *transfert automatique* de Service Bus vous permet de chaîner une file d’attente ou un abonnement à une autre file d’attente ou rubrique qui fait partie du même espace de noms. Lorsque le transfert automatique est activé, Service Bus supprime automatiquement les messages placés dans la première file d’attente ou le premier abonnement (source) pour les placer dans la deuxième file d’attente ou rubrique (destination). Notez qu'il est toujours possible d'envoyer un message à l'entité de destination directement. Notez également qu’il n’est pas possible de chaîner une sous-file d’attente, comme une file d’attente de rebut, à une autre file d’attente ou rubrique.
 
 ## <a name="using-auto-forwarding"></a>Utilisation du transfert automatique
-Vous pouvez activer le transfert automatique en définissant un hello [QueueDescription.ForwardTo] [ QueueDescription.ForwardTo] ou [SubscriptionDescription.ForwardTo] [ SubscriptionDescription.ForwardTo] propriétés de hello [QueueDescription] [ QueueDescription] ou [SubscriptionDescription] [ SubscriptionDescription] objets de source de hello, comme dans hello exemple suivant.
+Vous pouvez activer le transfert automatique en définissant les propriétés [QueueDescription.ForwardTo][QueueDescription.ForwardTo] ou [SubscriptionDescription.ForwardTo][SubscriptionDescription.ForwardTo] sur les objets [QueueDescription][QueueDescription] ou [SubscriptionDescription][SubscriptionDescription] pour la source, comme dans l’exemple suivant.
 
 ```csharp
 SubscriptionDescription srcSubscription = new SubscriptionDescription (srcTopic, srcSubscriptionName);
@@ -33,37 +33,37 @@ srcSubscription.ForwardTo = destTopic;
 namespaceManager.CreateSubscription(srcSubscription));
 ```
 
-entité de destination Hello doit exister au moment de hello hello source entité est créée. Si l’entité de destination hello n’existe pas, le Service Bus retourne une exception lorsque toocreate posée hello entité source.
+L'entité de destination doit exister au moment de la création de l'entité source. Si l'entité de destination n'existe pas, Service Bus renvoie une exception lorsqu'il lui est demandé de créer l'entité source.
 
-Vous pouvez utiliser tooscale de transfert automatique à une rubrique particulière. Service Bus limites hello [nombre d’abonnements à une rubrique donnée](service-bus-quotas.md) too2, 000. Vous pouvez créer des abonnements supplémentaires en créant des rubriques de second niveau. Notez que même si vous ne sont pas liés par hello Service Bus limitation nombre hello d’abonnements, l’ajout d’un second niveau de rubriques peut améliorer hello débit global de votre rubrique.
+Vous pouvez utiliser le transfert automatique pour faire évoluer une rubrique particulière. Service Bus limite le [nombre d’abonnements à une rubrique donnée](service-bus-quotas.md) à 2 000. Vous pouvez créer des abonnements supplémentaires en créant des rubriques de second niveau. Même si vous n’êtes pas lié par la limitation de Service Bus sur le nombre d’abonnements, l’ajout d’un deuxième niveau de rubriques peut améliorer le débit global de votre rubrique.
 
 ![Scénario de transfert automatique][0]
 
-Vous pouvez également utiliser des expéditeurs de messages toodecouple de transfert automatique à partir de récepteurs. Par exemple, considérez un système ERP qui se compose de trois modules : Traitement des commandes, Gestion des stocks et Gestion des relations client. Chacun de ces modules génère des messages qui sont placés en file d’attente dans une rubrique correspondante. Alice et Bob sont des représentants commerciaux intéressés par tous les messages qui se rapportent aux clients de tootheir. tooreceive ces messages, Alice et Bob créent une file d’attente personnel et un abonnement sur chacune des rubriques hello ERP qui transfèrent automatiquement tous les messages tootheir file d’attente.
+Vous pouvez également utiliser le transfert automatique pour découpler les expéditeurs de messages des récepteurs. Par exemple, considérez un système ERP qui se compose de trois modules : Traitement des commandes, Gestion des stocks et Gestion des relations client. Chacun de ces modules génère des messages qui sont placés en file d’attente dans une rubrique correspondante. Alice et Bob sont des représentants commerciaux qui s'intéressent à tous les messages liés à leurs clients. Pour recevoir ces messages, Alice et Bob créent chacun une file d’attente personnelle et un abonnement sur chacune des rubriques ERP qui transfèrent automatiquement tous les messages à leur file d’attente.
 
 ![Scénario de transfert automatique][1]
 
-Si Alice part en vacances, sa file d’attente personnelle, plutôt que rubrique ERP de hello, soit saturé. Dans ce scénario, car un représentant commercial n’a pas reçu les messages, aucun des rubriques ERP de hello n’atteignent jamais leur quota.
+Si Alice part en vacances, sa file d’attente personnelle, et non la rubrique ERP, se remplit. Dans ce scénario, étant donné qu’un représentant commercial n’a pas reçu les messages, aucun des rubriques ERP n’atteint jamais son quota.
 
 ## <a name="auto-forwarding-considerations"></a>Considérations sur le transfert automatique
 
-Si l’entité de destination hello accumule trop grand nombre de messages et dépasse le quota de hello ou entité de destination hello est désactivée, l’entité source hello ajoute hello messages tooits [file d’attente de lettres mortes](service-bus-dead-letter-queues.md) jusqu'à ce que l’espace dans la destination de hello (ou entité de hello est réactivée). Ces messages continue toolive dans la file d’attente de lettres mortes hello, vous devez donc explicitement de réception et les traiter à partir de la file d’attente de lettres mortes hello.
+Si l’entité de destination accumule de nombreux messages et dépasse le quota, ou si l’entité de destination est désactivée, l’entité source ajoute les messages à sa [file d’attente de rebut](service-bus-dead-letter-queues.md) jusqu’à ce qu’il y ait de l’espace dans la destination (ou que l’entité soit réactivée). Ces messages continuent de résider dans la file d'attente de rebut, donc vous devez explicitement les recevoir et les traiter à partir de la file d'attente de rebut.
 
-Lors du chaînage des rubriques individuelles tooobtain une rubrique composite avec de nombreux abonnements, il est recommandé d’avoir un nombre modéré d’abonnements sur la rubrique de premier niveau hello et un grand nombre de rubriques de second niveau hello. Par exemple, une rubrique de premier niveau possédant 20 abonnements, chacun d’eux chaînés tooa rubrique de second niveau possédant 200 abonnements, permet un débit plus élevé à une rubrique de premier niveau possédant 200 abonnements, chacun attaché tooa rubrique de second niveau possédant 20 abonnements .
+Lors du chaînage de rubriques individuelles pour obtenir une rubrique composite avec de nombreux abonnements, nous vous recommandons d’avoir un nombre modéré d’abonnements à la rubrique de premier niveau et beaucoup d’abonnements aux rubriques de second niveau. Par exemple, une rubrique de premier niveau avec 20 abonnements, chacun étant chaîné à une rubrique de second niveau possédant 200 abonnements, permet d’obtenir un débit plus élevé qu’une rubrique de premier niveau possédant 200 abonnements, chacun étant chaîné à une rubrique de second niveau possédant 20 abonnements.
 
-Service Bus facture une opération pour chaque message transféré. Par exemple, envoi d’une rubrique de message de tooa possédant 20 abonnements, chacun d’eux configuré les messages avant de tooauto file d’attente tooanother ou une rubrique, est facturé 21 opérations si tous les abonnements de premier niveau reçoivent une copie du message de type hello.
+Service Bus facture une opération pour chaque message transféré. Par exemple, l’envoi d’un message à une rubrique possédant 20 abonnements, chacun d’eux étant configuré pour transférer automatiquement les messages vers une autre file d’attente ou rubrique, est facturé en tant que 21 opérations si tous les abonnements de premier niveau reçoivent une copie du message.
 
-toocreate un abonnement qui est la file d’attente tooanother chaînées ou une rubrique, le créateur de hello d’abonnement de hello doit avoir **gérer** autorisations sur la source de hello et entité de destination hello. Envoi de rubrique de messages toohello source nécessite uniquement **envoyer** autorisations sur la rubrique source de hello.
+Pour créer un abonnement qui est chaîné à une autre file d’attente ou rubrique, le créateur de l’abonnement doit disposer des autorisations de **gestion** de l’entité source et l’entité de destination. L’envoi de messages à la rubrique source ne nécessite que des autorisations **d’envoi** sur la rubrique source.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur le transfert automatique, consultez hello rubriques de référence suivantes :
+Pour plus d’informations sur le transfert automatique, consultez les rubriques de référence suivantes :
 
 * [ForwardTo][QueueDescription.ForwardTo]
 * [QueueDescription][QueueDescription]
 * [SubscriptionDescription][SubscriptionDescription]
 
-toolearn en savoir plus sur les améliorations des performances de Service Bus, consultez 
+Pour en savoir plus sur les améliorations des performances de Service Bus, consultez 
 
 * [Meilleures pratiques relatives aux améliorations de performances à l’aide de la messagerie Service Bus](service-bus-performance-improvements.md)
 * [Files d’attente et rubriques partitionnées][Partitioned messaging entities].

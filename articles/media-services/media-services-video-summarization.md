@@ -1,6 +1,6 @@
 ---
-title: "aaaUse Azure Media vidéo miniatures tooCreate une synthèse vidéo | Documents Microsoft"
-description: "Synthèse vidéo peut vous aider à créer des résumés de vidéos long en sélectionnant automatiquement extraits intéressantes à partir de la vidéo source de hello. Cela est utile lorsque vous souhaitez tooprovide un aperçu rapide de quel tooexpect dans une vidéo longue."
+title: "Utiliser Azure Media Video Thumbnails pour créer une synthèse d’une vidéo | Microsoft Docs"
+description: "La synthèse d’une vidéo peut vous aider à créer des synthèses de longues vidéos en sélectionnant automatiquement des extraits intéressants à partir de la vidéo source. Elle est utile quand vous voulez offrir une présentation rapide de ce qui se trouve dans une vidéo longue."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,26 +14,26 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: milanga;juliako;
-ms.openlocfilehash: 0a8f0bba6c12a948b940114fe4937e675688a8c7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5d5afdaf22ffea8f3b77a154acb5d0a8dda74405
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-azure-media-video-thumbnails-toocreate-a-video-summarization"></a>Utiliser Azure Media vidéo miniatures tooCreate une synthèse de la vidéo
+# <a name="use-azure-media-video-thumbnails-to-create-a-video-summarization"></a>Utiliser Azure Media Video Thumbnails pour créer une synthèse d’une vidéo
 ## <a name="overview"></a>Vue d'ensemble
-Hello **miniatures de vidéo Azure Media** le processeur multimédia (MP) vous permet de toocreate un résumé d’une vidéo qui est utile toocustomers souhaitant simplement toopreview un résumé d’une vidéo longue. Par exemple, les clients souhaiteront toosee un bref « résumé vidéo » quand ils pointez sur une miniature. En modifiant les paramètres de hello de **Azure Media vidéo miniatures** via une présélection de configuration, vous pouvez utiliser la détection de scènes puissant hello du point de gestion et de concaténation technologie tooalgorithmically générer un sous-élément descriptif.  
+Le processeur multimédia **Azure Media Video Thumbnails** vous permet de créer une synthèse d’une vidéo pour les clients souhaitant juste voir un aperçu d’une vidéo longue. Par exemple, les clients peuvent vouloir visionner une courte « synthèse d’une vidéo » quand ils passent le pointeur sur une miniature. En ajustant les paramètres d’ **Azure Media Video Thumbnails** via une configuration prédéfinie, vous pouvez faire appel à la puissance de la technologie de détection et de concaténation d’images pour générer de façon algorithmique un sous-clip descriptif.  
 
-Hello **miniature de vidéo Azure Media** Pack d’administration est actuellement en version préliminaire.
+Le processeur multimédia **Azure Media Video Thumbnail** est actuellement en version préliminaire.
 
-Cette rubrique fournit des détails sur **miniature de vidéo Azure Media** et montre comment toouse avec Media Services SDK pour .NET.
+Cette rubrique donne des informations détaillées sur **Azure Media Video Thumbnail** et montre comment l’utiliser avec le SDK Media Services pour .NET.
 
 ## <a name="limitations"></a>Limites
 
-Dans certains cas, si votre vidéo n’est pas composé d’arrière-plan différente, hello sortie sera uniquement un seul plan.
+Dans certains cas, si votre vidéo n’est pas composée de scènes différentes, la sortie sera composée d’un seul plan.
 
 ## <a name="video-summary-example"></a>Exemple de synthèse d’une vidéo
-Voici quelques exemples des processeurs multimédia Azure Media vidéo miniatures hello :
+Voici quelques exemples de ce que le processeur Azure Media Video Thumbnails peut faire :
 
 ### <a name="original-video"></a>Vidéo d’origine
 [Vidéo d’origine](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Fnimbuscdn-nimbuspm.streaming.mediaservices.windows.net%2Faed33834-ec2d-4788-88b5-a4505b3d032c%2FMicrosoft%27s%20HoloLens%20Live%20Demonstration.ism%2Fmanifest)
@@ -42,26 +42,26 @@ Voici quelques exemples des processeurs multimédia Azure Media vidéo miniature
 [Résultat de la vidéo miniature](http://ampdemo.azureedge.net/azuremediaplayer.html?url=http%3A%2F%2Fnimbuscdn-nimbuspm.streaming.mediaservices.windows.net%2Ff5c91052-4232-41d4-b531-062e07b6a9ae%2FHololens%2520Demo_VideoThumbnails_MotionThumbnail.mp4)
 
 ## <a name="task-configuration-preset"></a>Configuration de la tâche (préconfiguration)
-Lors de la création d’une tâche de vidéo miniature avec **Azure Media Video Thumbnails**, vous devez spécifier une configuration prédéfinie. Hello miniature exemple ci-dessus a été créé avec hello base JSON configuration suivante :
+Lors de la création d’une tâche de vidéo miniature avec **Azure Media Video Thumbnails**, vous devez spécifier une configuration prédéfinie. L’exemple de miniature ci-dessus a été créé avec la configuration JSON de base suivante :
 
     {"version":"1.0"}
 
-Actuellement, vous pouvez modifier hello paramètres suivants :
+Actuellement, vous pouvez modifier les paramètres suivants :
 
 | Paramètre | Description |
 | --- | --- |
-| outputAudio |Spécifie ou non les vidéo résultants hello contient son audio. <br/>Les valeurs autorisées sont : True ou False. La valeur par défaut est True. |
-| fadeInFadeOut |Spécifie ou non atténuation passe sont utilisés entre les miniatures de mouvement distinctes hello.  <br/>Les valeurs autorisées sont : True ou False.  La valeur par défaut est True. |
-| maxMotionThumbnailDurationInSecs |Entier qui spécifie la durée pendant laquelle hello ensemble résultant de la vidéo est.  La valeur par défaut dépend de la durée de la vidéo d’origine. |
+| outputAudio |Spécifie si la vidéo obtenue contient, ou non, des données audio. <br/>Les valeurs autorisées sont : True ou False. La valeur par défaut est True. |
+| fadeInFadeOut |Spécifie si des transitions en fondu sont, ou non, utilisées entre les différentes miniatures du film.  <br/>Les valeurs autorisées sont : True ou False.  La valeur par défaut est True. |
+| maxMotionThumbnailDurationInSecs |Entier qui spécifie la durée que doit avoir la vidéo obtenue.  La valeur par défaut dépend de la durée de la vidéo d’origine. |
 
-Hello tableau suivant décrit la durée par défaut de hello, lorsque **maxMotionThumbnailInSecs** n’est pas utilisé.
+Le tableau suivant décrit la durée par défaut, quand **maxMotionThumbnailInSecs** n’est pas utilisé.
 
 |  |  |  |
 | --- | --- | --- | --- | --- |
 | Durée de la vidéo |d < 3 min |3 min < d < 15 min |
 | Durée de la miniature |15 s (2-3 scènes) |30 s (3-5 scènes) |
 
-Hello JSON suivant définit les paramètres disponibles.
+Le code JSON suivant définit les paramètres disponibles.
 
     {
         "version": "1.0",
@@ -74,10 +74,10 @@ Hello JSON suivant définit les paramètres disponibles.
 
 ## <a name="net-sample-code"></a>Exemple de code .NET
 
-suivant de Hello programme montre comment :
+Le programme suivant montre comment effectuer les tâches suivantes :
 
-1. Créer un élément multimédia et téléchargez un fichier multimédia en ressource de hello.
-2. Crée une tâche avec une tâche de miniature vidéo basée sur un fichier de configuration qui contient hello suivant présélection de json. 
+1. Créer un élément multimédia et charger un fichier multimédia dans l’élément multimédia.
+2. Créer un travail avec une tâche de vidéo miniature basée sur un fichier de configuration qui contient la présélection JSON suivante. 
    
         {                
             "version": "1.0",
@@ -87,11 +87,11 @@ suivant de Hello programme montre comment :
                 "fadeInFadeOut": "false"
             }
         }
-3. Télécharge les fichiers de sortie hello. 
+3. Télécharger les fichiers de sortie. 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>Créer et configurer un projet Visual Studio
 
-Configurer votre environnement de développement et de remplir le fichier app.config de hello avec les informations de connexion, comme décrit dans [développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
+Configurez votre environnement de développement et ajoutez des informations de connexion au fichier app.config selon la procédure décrite dans l’article [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Exemple
 
@@ -107,7 +107,7 @@ Configurer votre environnement de développement et de remplir le fichier app.co
     {
         class Program
         {
-            // Read values from hello App.config file.
+            // Read values from the App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -124,17 +124,17 @@ Configurer votre environnement de développement et de remplir le fichier app.co
                 _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
 
-                // Run hello thumbnail job.
+                // Run the thumbnail job.
                 var asset = RunVideoThumbnailJob(@"C:\supportFiles\VideoThumbnail\BigBuckBunny.mp4",
                                             @"C:\supportFiles\VideoThumbnail\config.json");
 
-                // Download hello job output asset.
+                // Download the job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\VideoThumbnail\Output");
             }
 
             static IAsset RunVideoThumbnailJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload hello input media file toostorage.
+                // Create an asset and upload the input media file to storage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Video Thumbnail Input Asset",
                     AssetCreationOptions.None);
@@ -142,38 +142,38 @@ Configurer votre environnement de développement et de remplir le fichier app.co
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Video Thumbnail Job");
 
-                // Get a reference tooAzure Media Video Thumbnails.
+                // Get a reference to Azure Media Video Thumbnails.
                 string MediaProcessorName = "Azure Media Video Thumbnails";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from hello specified file.
+                // Read configuration from the specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with hello encoding details, using a string preset.
+                // Create a task with the encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Video Thumbnail Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify hello input asset.
+                // Specify the input asset.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job.
+                // Add an output asset to contain the results of the job.
                 task.OutputAssets.AddNew("My Video Thumbnail Output Asset", AssetCreationOptions.None);
 
-                // Use hello following event handler toocheck job progress.  
+                // Use the following event handler to check job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch hello job.
+                // Launch the job.
                 job.Submit();
 
-                // Check job execution and wait for job toofinish.
+                // Check job execution and wait for job to finish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, hello event handling
+                // If job state is Error, the event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

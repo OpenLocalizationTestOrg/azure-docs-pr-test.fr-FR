@@ -1,5 +1,5 @@
 ---
-title: "aaaChoose une référence (SKU) ou le niveau de tarification pour Azure Search | Documents Microsoft"
+title: "Choisir une référence (SKU) ou un niveau tarifaire pour la Recherche Azure | Microsoft Docs"
 description: "Azure Search peut être configuré sur ces niveaux de référence (SKU) : Gratuit, De base et Standard, où Standard est disponible dans différentes configurations de ressources et différents niveaux de capacité."
 services: search
 documentationcenter: 
@@ -15,63 +15,63 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 10/24/2016
 ms.author: heidist
-ms.openlocfilehash: eac9a09266db9da4900766808be3bc3b3ff11519
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f9f3a7b2369818791ffac1c8eeccef45216c2ff0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="choose-a-sku-or-pricing-tier-for-azure-search"></a>Choisir une référence (SKU) ou un niveau tarifaire pour Azure Search
 Dans Azure Search, un [service est configuré](search-create-service-portal.md) sur un niveau tarifaire ou une SKU spécifique. Vous avez le choix entre les options suivantes : **Gratuit**, **De base** ou **Standard**, où **Standard** est disponible dans plusieurs configurations et capacités.
 
-Hello cet article vise toohelp vous choisissez un niveau. Si capacité d’un niveau s’élève toobe trop bas, vous aurez besoin des tooprovision un nouveau service de niveau supérieur de hello et recharger votre index. Il n’existe aucune mise à niveau in situ de hello même service à partir d’une référence (SKU) tooanother.
+Cet article vise à vous aider à choisir une option. Si la capacité d’un niveau tarifaire est trop basse, vous devrez configurer un nouveau service au niveau supérieur, puis recharger vos index. Il n’existe aucune mise à niveau sur place du même service d’une référence (SKU) à un autre.
 
 > [!NOTE]
-> Une fois que vous choisissez un niveau et [configurer un service de recherche](search-create-service-portal.md), vous pouvez augmenter le réplica et les nombres de partition dans le service de hello. Consultez [Mettre à l’échelle les niveaux de ressources pour interroger et indexer les charges de travail](search-capacity-planning.md) pour en savoir plus.
+> Une fois que vous avez choisi un niveau et [configuré un service de recherche](search-create-service-portal.md), vous pouvez augmenter le nombre de réplicas et de partitions au sein du service. Consultez [Mettre à l’échelle les niveaux de ressources pour interroger et indexer les charges de travail](search-capacity-planning.md) pour en savoir plus.
 >
 >
 
-## <a name="how-tooapproach-a-pricing-tier-decision"></a>Comment la décision de niveau tooapproach une tarification
-Dans Azure Search, couche de hello détermine la capacité, la disponibilité des fonctionnalités pas. De manière générale, les fonctionnalités sont disponibles à chaque niveau, notamment les fonctionnalités préliminaires. une exception de Hello n’est aucune prise en charge pour les indexeurs dans S3 HD.
+## <a name="how-to-approach-a-pricing-tier-decision"></a>Comment choisir un niveau tarifaire
+Dans Azure Search, le niveau détermine la capacité et non la disponibilité des fonctionnalités. De manière générale, les fonctionnalités sont disponibles à chaque niveau, notamment les fonctionnalités préliminaires. La seule exception est que les indexeurs dans S3 HD ne sont pas pris en charge.
 
 > [!TIP]
-> Nous vous recommandons de toujours configurer un service **Gratuit** (un par abonnement, sans date d’expiration) afin qu’il soit facilement disponible pour les petits projets. Hello d’utilisation **libre** service de test et d’évaluation ; créez un deuxième service facturable à hello **base** ou **Standard** couche de grandes charges de travail de test ou de production.
+> Nous vous recommandons de toujours configurer un service **Gratuit** (un par abonnement, sans date d’expiration) afin qu’il soit facilement disponible pour les petits projets. Utilisez le service **Gratuit** à des fins de test et d’évaluation. Créez un deuxième service facturable de niveau **De base** ou **Premium** pour des charges de travail de production ou de test plus importantes.
 >
 >
 
-La capacité et les coûts de l’exécution du service de hello accédez dans pair. Informations de cet article peuvent vous aider à décider quels SKU remet équilibre hello, mais pour un de ses toobe utile, vous devez au moins les estimations sur les éléments suivants de hello :
+La capacité et les coûts d’exécution du service vont de pair. Les informations contenues dans cet article peuvent vous aider à décider quelle référence (SKU) offre le juste équilibre. Mais, pour que ces indications soient utiles, vous avez besoin d’estimations approximatives pour les éléments suivants :
 
-* Nombre et la taille des index vous envisagez de toocreate
-* Nombre et taille de tooupload de documents
+* Nombre et taille des index que vous envisagez de créer.
+* Nombre et taille des documents à télécharger.
 * Volume de requêtes, en termes de requêtes par seconde (RPS).
 
-Nombre et taille sont importants, car les limites maximales sont accessibles via une limite inconditionnelle sur nombre hello d’index ou de documents dans un service, ou sur les ressources (stockage ou des réplicas) utilisées par le service de hello. Bonjour limite réelle pour votre service est retenue utilisée en premier : ressources ou des objets.
+Le nombre et la taille sont des éléments importants, car les limites maximales sont atteintes via une limite stricte sur le nombre d’index ou de documents dans un service, ou sur les ressources (stockage ou réplicas) utilisées par le service. La limite réelle de votre service est déterminée par l’élément épuisé en premier (ressources ou objets).
 
-Des estimations dans main, hello suit doit simplifier hello :
+Une fois les estimations connues, les étapes suivantes doivent simplifier le processus :
 
-* **Étape 1** examiner les descriptions de référence (SKU) hello ci-dessous toolearn sur les options disponibles.
-* **Étape 2** répondre aux questions de hello ci-dessous tooarrive à une décision préliminaire.
+* **Étape 1** Consulter les descriptions de la référence (SKU) ci-dessous pour découvrir les options disponibles.
+* **Étape 2** Répondre aux questions ci-dessous pour arriver à une décision préliminaire.
 * **Étape 3** Valider votre décision en passant en revue des limites strictes en matière de stockage et de tarification.
 
 ## <a name="sku-descriptions"></a>Descriptions de la référence (SKU)
-Hello tableau suivant fournit des descriptions de chaque couche.
+Le tableau suivant fournit des descriptions de chaque niveau.
 
 | Niveau | Principaux scénarios |
 | --- | --- |
-| **Gratuit** |Un service partagé, sans frais, utilisé pour l’évaluation, l’investigation ou de petites charges de travail. Car il est partagé avec d’autres abonnés, débit de requête et d’indexation varie en fonction qui d’autre utilise un service de hello. Faible capacité (50 Mo ou 3 index contenant jusqu’à 10 000 documents chacun). |
-| **De base** |Charges de travail de production de petite taille sur du matériel dédié. Hautement disponible. La capacité est too3 réplicas et 1 partition (2 Go). |
+| **Gratuit** |Un service partagé, sans frais, utilisé pour l’évaluation, l’investigation ou de petites charges de travail. Dans la mesure où il est partagé avec d’autres abonnés, le débit des requêtes et l’indexation varient en fonction des autres utilisateurs ayant recours au service. Faible capacité (50 Mo ou 3 index contenant jusqu’à 10 000 documents chacun). |
+| **De base** |Charges de travail de production de petite taille sur du matériel dédié. Hautement disponible. Capacité maximale de 3 réplicas et 1 partition (2 Go). |
 | **S1** |Standard 1 prend en charge les combinaisons flexibles de partitions (12) et de réplicas (12), utilisées pour des charges de travail de taille moyenne sur du matériel dédié. Vous pouvez allouer des partitions et des réplicas dans des combinaisons prises en charge par un nombre maximal de 36 unités de recherche facturables. À ce niveau, les partitions sont de 25 Go chacune et le RPS est d’environ 15 requêtes par seconde. |
-| **S2** |Standard 2 s’exécute de grandes charges de travail de production à l’aide d’unités de recherche hello même 36 que S1, mais avec des réplicas et des partitions de tailles supérieure. À ce niveau, les partitions sont de 100 Go chacune et le RPS est d’environ 60 requêtes par seconde. |
-| **S3** |3 standard s’exécute les charges de production proportionnellement plus volumineux sur les systèmes haut de gamme, dans des configurations de too12 partitions ou des 12 réplicas sous 36 unités de recherche. À ce niveau, les partitions sont de 200 Go chacune et le RPS est d’environ 60 requêtes par seconde. |
-| **S3 HD** |Standard 3 haute densité est conçu pour un grand nombre d’index plus petits. Vous pouvez avoir des partitions too3, à 200 Go. Le RPS est supérieur à 60 requêtes par seconde. |
+| **S2** |Standard 2 exécute les grandes charges de travail de production à l’aide des mêmes 36 unités de recherche que S1, mais avec des partitions et des réplicas plus importants. À ce niveau, les partitions sont de 100 Go chacune et le RPS est d’environ 60 requêtes par seconde. |
+| **S3** |Standard 3 exécute les charges de production proportionnellement plus importantes sur les systèmes haut de gamme, dans des configurations allant jusqu’à 12 partitions ou 12 réplicas sous 36 unités de recherche. À ce niveau, les partitions sont de 200 Go chacune et le RPS est d’environ 60 requêtes par seconde. |
+| **S3 HD** |Standard 3 haute densité est conçu pour un grand nombre d’index plus petits. Vous pouvez avoir jusqu'à 3 partitions de 200 Go chacune. Le RPS est supérieur à 60 requêtes par seconde. |
 
 > [!NOTE]
-> Valeurs maximales de réplica et de la partition sont facturées comme unités de recherche (36 unité maximum par service), qui impose une limite inférieure effective que le maximum de hello implique à la valeur de la face. Par exemple, au maximum hello toouse 12 réplicas, vous pouvez avoir au maximum 3 partitions (12 * 3 = 36 unités). De même, toouse nombre maximal de partitions, réduire too3 de réplicas. Pour accéder à un graphique sur les combinaisons autorisées, voir [Mettre à l’échelle les niveaux de ressources pour interroger et indexer les charges de travail dans Azure Search](search-capacity-planning.md) .
+> Les valeurs maximales de réplica et de partition sont facturées en tant qu’unités de recherche (36 unités maximum par service), ce qui impose une limite effective inférieure à ce que la valeur maximale indique au premier abord. Par exemple, pour utiliser le nombre maximal de 12 réplicas, vous pouvez avoir au maximum 3 partitions (3 * 12 = 36 unités). De même, pour utiliser le nombre maximal de partitions, vous devez réduire les réplicas à 3. Pour accéder à un graphique sur les combinaisons autorisées, voir [Mettre à l’échelle les niveaux de ressources pour interroger et indexer les charges de travail dans Azure Search](search-capacity-planning.md) .
 >
 >
 
 ## <a name="review-limits-per-tier"></a>Passer en revue les limites par couche
-Hello graphique suivant est un sous-ensemble des limites hello de [limites de Service dans Azure Search](search-limits-quotas-capacity.md). Il répertorie hello facteurs tooimpact probablement une décision de référence (SKU). Vous pouvez faire référence toothis graphique lorsque vous parcourez les questions de hello ci-dessous.
+Le tableau suivant est un sous-ensemble des [Limites de service dans Azure Search](search-limits-quotas-capacity.md). Il répertorie les facteurs susceptibles d’avoir un impact sur le choix de la référence (SKU). Vous pouvez vous référer à ce graphique pour répondre aux questions ci-dessous.
 
 | Ressource | Gratuit | De base | S1 | S2 | S3 | S3 HD |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -79,37 +79,37 @@ Hello graphique suivant est un sous-ensemble des limites hello de [limites de Se
 | Limites d’index |3 |5 |50 |200 |200 |1000 <sup>2</sup> |
 | Limites du document |10 000 au total |1 million par service |15 millions par partition |60 millions par partition |120 millions par partition |1 million par index |
 | Partitions maximales |N/A |1 |12 |12 |12 |3 <sup>2</sup> |
-| Taille de partition |50 Mo au total |2 Go par service |25 Go par partition |100 Go par partition (haut tooa maximum 1,2 To par service) |200 Go par partition (haut tooa to au maximum 2,4 par service) |200 Go (haut tooa maximum 600 Go par service) |
+| Taille de partition |50 Mo au total |2 Go par service |25 Go par partition |100 Go par partition (jusqu’à 1,2 To par service) |200 Go par partition (jusqu’à 2,4 To par service) |200 Go (jusqu'à un maximum de 600 Go par service) |
 | Réplicas maximales |N/A |3 |12 |12 |12 |12 |
 | Requêtes par seconde |N/A |~3 par réplica |~15 par réplica |~60 par réplica |Moins de 60 par réplica |Moins de 60 par réplica |
 
-<sup>1</sup> Les fonctionnalités de niveau Gratuit et d’évaluation ne sont pas fournies avec des Contrats de niveau de service (SLA). Pour tous les niveaux facturables, les SLA entrent en vigueur lorsque vous approvisionnez une redondance suffisante pour votre service. Un SLA de requête (lecture) requiert au moins deux réplicas. Un SLA de requête et d’indexation (lecture-écriture) nécessite au moins trois réplicas. nombre de Hello de partitions n’est pas un facteur de contrat SLA. 
+<sup>1</sup> Les fonctionnalités de niveau Gratuit et d’évaluation ne sont pas fournies avec des Contrats de niveau de service (SLA). Pour tous les niveaux facturables, les SLA entrent en vigueur lorsque vous approvisionnez une redondance suffisante pour votre service. Un SLA de requête (lecture) requiert au moins deux réplicas. Un SLA de requête et d’indexation (lecture-écriture) nécessite au moins trois réplicas. Le nombre de partitions n’est pas pris en compte dans les SLA. 
 
-<sup>2</sup> Les niveaux S3 et S3 HD sont soutenus par une infrastructure haute capacité identique, mais chacun d’eux atteint sa limite maximale de différentes façons. S3 permet de cibler un plus petit nombre d’index très volumineux. Par conséquent, sa limite maximale est liée à la ressource (2,4 To pour chaque service). S3 HD cible un grand nombre de très petits index. Au niveau des index de 1 000, S3 HD atteint ses limites sous forme de hello de contraintes d’index. Si vous êtes un client S3 HD qui nécessite plus de 1 000 index, contactez le Support Microsoft pour plus d’informations sur la façon de tooproceed.
+<sup>2</sup> Les niveaux S3 et S3 HD sont soutenus par une infrastructure haute capacité identique, mais chacun d’eux atteint sa limite maximale de différentes façons. S3 permet de cibler un plus petit nombre d’index très volumineux. Par conséquent, sa limite maximale est liée à la ressource (2,4 To pour chaque service). S3 HD cible un grand nombre de très petits index. Avec 1 000 index, S3 HD atteint ses limites sous la forme de contraintes d’index. Si vous êtes un client S3 HD qui nécessite plus de 1 000 index, contactez le Support Microsoft pour plus d’informations sur la marche à suivre.
 
 ## <a name="eliminate-skus-that-dont-meet-requirements"></a>Éliminer les références qui ne répondent pas aux exigences
-Hello suivant questions peut vous aider à arriver à la bonne décision de référence (SKU) hello pour votre charge de travail.
+Les questions suivantes peuvent vous aider à mieux choisir la référence (SKU) adaptée à votre charge de travail.
 
-1. Avez-vous des exigences en matière de **contrat de niveau de service (SLA)** ? Vous pouvez utiliser n’importe quel niveau facturable (De base et plus), mais vous devez configurer votre service pour assurer la redondance. Un SLA de requête (lecture) requiert au moins deux réplicas. Un SLA de requête et d’indexation (lecture-écriture) nécessite au moins trois réplicas. nombre de Hello de partitions n’est pas un facteur de contrat SLA.
-2. **De combien d’index** avez-vous besoin ? Une des variables de plus grands hello factorisant à une décision de référence (SKU) est le nombre de hello d’index pris en charge par chaque référence (SKU). Prise en charge de l’index est à nettement différents niveaux dans hello inférieur niveaux tarifaires. Les exigences en matière de nombre d’index sont déterminantes dans le choix d’une référence (SKU).
-3. **Le nombre de documents** sera chargée dans chaque index ? nombre de hello et la taille des documents déterminera la taille finale de hello d’index de hello. En supposant que vous pouvez estimer hello taille prévue de l’index de hello, vous pouvez comparer ce nombre par rapport à la taille de la partition hello par référence (SKU), étendu par nombre de hello de toostore requis de partitions d’un index de cette taille.
-4. **Quelle est la charge de requête attendu hello**? Une fois que les besoins de stockage sont compris, penchez-vous sur les charges de travail de requête. Les références (SKU) S2 et S3 offrent un débit presque équivalent, mais les exigences du contrat SLA écartent toute référence (SKU) de version préliminaire.
-5. Si vous envisagez de hello S2 ou S3 niveau, déterminez si vous avez besoin [indexeurs](search-indexer-overview.md). Les indexeurs ne sont pas encore disponibles pour le niveau de S3 HD hello. Autre approche consiste à toouse un modèle d’émission pour les mises à jour de l’index, où vous écrivez toopush de code d’application, un index de tooan du jeu de données.
+1. Avez-vous des exigences en matière de **contrat de niveau de service (SLA)** ? Vous pouvez utiliser n’importe quel niveau facturable (De base et plus), mais vous devez configurer votre service pour assurer la redondance. Un SLA de requête (lecture) requiert au moins deux réplicas. Un SLA de requête et d’indexation (lecture-écriture) nécessite au moins trois réplicas. Le nombre de partitions n’est pas pris en compte dans les SLA.
+2. **De combien d’index** avez-vous besoin ? L’un des principaux éléments à prendre en compte lorsque vous choisissez une référence (SKU) est le nombre d’index pris en charge par chaque référence. La prise en charge de l’index est sensiblement différente dans les niveaux de tarification inférieurs. Les exigences en matière de nombre d’index sont déterminantes dans le choix d’une référence (SKU).
+3. **Combien de documents** seront chargés dans chaque index ? Le nombre et la taille des documents déterminent la taille finale de l’index. En supposant que vous puissiez estimer la taille prévue de l’index, vous pouvez comparer ce nombre avec la taille de partition par référence (SKU), étendue par le nombre de partitions nécessaires pour stocker un index de cette taille.
+4. **Quelle est la charge de requête attendue**? Une fois que les besoins de stockage sont compris, penchez-vous sur les charges de travail de requête. Les références (SKU) S2 et S3 offrent un débit presque équivalent, mais les exigences du contrat SLA écartent toute référence (SKU) de version préliminaire.
+5. Si vous envisagez d’utiliser le niveau S2 ou S3, déterminez si vous avez besoin [d’indexeurs](search-indexer-overview.md). Les indexeurs ne sont pas encore disponibles pour le niveau S3 HD. Une autre approche consiste à utiliser un modèle Push pour les mises à jour de l’index, dans lequel vous écrivez le code d’application pour envoyer des notifications Push de jeu de données à un index.
 
-La plupart des clients peuvent de règle d’un SKU spécifique ou de sortie en fonction de leur toohello réponses ci-dessus. Si vous savez toujours le toogo de référence (SKU) avec, vous pouvez publier des questions tooMSDN ou forums de dépassement de capacité, ou contactez le Support technique Azure pour obtenir des instructions.
+La plupart des clients peuvent choisir ou écarter une référence spécifique en fonction de leurs réponses aux questions ci-dessus. Si encore ne savez pas quelle référence adopter, vous pouvez poser des questions sur les forums MSDN ou StackOverflow ou contacter le Support Azure pour obtenir une assistance.
 
-## <a name="decision-validation-does-hello-sku-offer-sufficient-storage-and-qps"></a>La décision de validation : hello référence (SKU) offre suffisamment de stockage et de requêtes par seconde ?
-La dernière étape, réexaminer hello [page de tarification](https://azure.microsoft.com/pricing/details/search/) et hello [sections par service et par index dans les limites de Service](search-limits-quotas-capacity.md) toodouble-Vérifiez vos estimations par rapport aux limites d’abonnement et le service.
+## <a name="decision-validation-does-the-sku-offer-sufficient-storage-and-qps"></a>Décision de validation : la référence (SKU) offre-t-elle suffisamment de stockage et de RPS ?
+La dernière étape consiste à revoir la [page de tarification](https://azure.microsoft.com/pricing/details/search/) et les [sections par service et par index dans les limites du service](search-limits-quotas-capacity.md) pour comparer vos estimations aux limites d’abonnement et de service.
 
-Si deux exigences de prix ou le stockage de hello sont hors limites, vous pourriez les charges de travail hello toorefactor parmi plusieurs services plus petits (par exemple). Sur un niveau plus granulaire, vous pourriez redéfinir toobe index plus petit, ou utilisez filtres toomake des requêtes plus efficaces.
+Si le prix ou les exigences de stockage sont trop élevés, vous souhaiterez peut-être refactoriser les charges de travail entre plusieurs services plus petits (par exemple). À un niveau plus granulaire, vous pourriez recréer des index plus petits, ou utiliser des filtres pour effectuer des requêtes plus efficaces.
 
 > [!NOTE]
-> Les besoins de stockage peuvent être augmentés de façon excessive si les documents contiennent des données superflues. Dans l’idéal, les documents sont constitués uniquement de métadonnées ou de données interrogeables. Données binaires sont non interrogeables et doivent être stockées séparément (peut-être dans un stockage de table ou un objet blob Azure) avec un champ hello index toohold un données externe de toohello référence d’une URL. Hello d’un document individuel est de 16 Mo (ou moins se vous sont plusieurs documents dans une demande de chargement en bloc). Pour plus d’informations, voir [Limites de service d’Azure Search](search-limits-quotas-capacity.md) .
+> Les besoins de stockage peuvent être augmentés de façon excessive si les documents contiennent des données superflues. Dans l’idéal, les documents sont constitués uniquement de métadonnées ou de données interrogeables. Les données binaires ne sont pas interrogeables et doivent être stockées séparément (dans une table ou un objet blob de stockage Azure) avec un champ dans l’index pour conserver une référence URL aux données externes. La taille maximale d’un document individuel est de 16 Mo (ou moins si vous chargez en bloc plusieurs documents en une seule demande). Pour plus d’informations, voir [Limites de service d’Azure Search](search-limits-quotas-capacity.md) .
 >
 >
 
 ## <a name="next-step"></a>Étape suivante
-Une fois que vous savez qui référence (SKU) est hello ajuster à droite, poursuivez comme suit :
+Une fois que vous avez déterminé la référence (SKU) qui convient le mieux, poursuivez avec ces étapes :
 
-* [Créer un service de recherche dans le portail de hello](search-create-service-portal.md)
-* [Modifier l’allocation de partitions et réplicas tooscale hello votre service](search-capacity-planning.md)
+* [Créer un service de recherche dans le portail](search-create-service-portal.md)
+* [Modifier l’allocation des partitions et des réplicas à l’échelle de votre service](search-capacity-planning.md)

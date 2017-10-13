@@ -1,6 +1,6 @@
 ---
-title: "aaaUse des émoticônes Emoji dans Azure Mobile Engagement"
-description: "Comment toouse des émoticônes Emoji dans vos notifications push"
+title: "Utiliser des émoticônes Emoji dans Azure Mobile Engagement"
+description: "Comment utiliser des émoticônes Emoji dans vos notifications push"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 63bfc59ef472e9fe9aa28b5ac8761017b9250e0f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bbb7ce5e95b229a7505c5e97b6866d5a302a1d27
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="use-emoji-emoticon-within-push-notifications"></a>Utiliser l’émoticône Emoji dans les notifications push
 Vous pouvez inclure des émoticônes Emoji dans votre notification Push en quelques étapes simples : 
 
-1. Tout d’abord, vous devez toofind hello Emoji souhaité toosend dans le message de type hello. Vérifiez que hello Emoji que vous sélectionnez sera pris en charge par le périphérique cible de hello comme les fabricants de périphériques prennent certaines tooadd temps des plateformes d’appareils toohello Emojis qui vient d’être approuvées. 
-2. Sur **Windows** -vous pouvez naviguer toothis [lien](http://apps.timwhitlock.info/emoji/tables/unicode) et l’icône de copie hello 'Native'.
+1. Recherchez d’abord l’Emoji à insérer dans le message. Veillez à ce qu’elle soit prise en charge par l’appareil cible. En effet, l’ajout d’émoticônes Emoji nouvellement approuvées aux plateformes d’appareils peut prendre un certain temps. 
+2. Sur **Windows** : vous pouvez accéder à ce [lien](http://apps.timwhitlock.info/emoji/tables/unicode) et copier l’icône « Native ».
    
     ![][7] 
-3. Sur **Mac** -vous pouvez trouver hello Emojis dans une application de type dictionnaire sous Modifier -> Emoji et symboles.
+3. Sur **Mac** : les émoticônes Emoji se trouvent dans l’application Dictionnaire sous Modifier -> Emoji et symboles.
    
     ![][6] 
-4. Passez maintenant toohello **atteindre** onglet sur le portail Azure Mobile Engagement hello hello. Sélectionnez le type hello votre notification push (annonce, sondages, etc.). Pour cet exemple, nous choisissons une annonce push.
-5. Spécifiez hello différents champs de notification de hello jusqu'à ce que vous atteigniez texte hello de notification de hello. C’est là que vous allez ajouter votre émoticône Emoji. Vous pouvez choisir tooput dans le titre de hello, le message de type hello ou les deux. Vous devez toodrag et supprimer ou copier hello Emoji que vous trouvez à partir d’emplacements hello ci-dessus. 
+4. Accédez à l’onglet **Reach** du portail Azure Mobile Engagement. Sélectionnez le type de votre notification push (annonce, interrogation, etc.). Pour cet exemple, nous choisissons une annonce push.
+5. Spécifiez les différents champs de la notification jusqu'à ce que vous atteigniez le texte de la notification. C’est là que vous allez ajouter votre émoticône Emoji. Vous pouvez la placer dans le titre, dans le message ou les deux. Faites glisser-déplacer ou copiez les émoticônes Emoji figurant dans les emplacements ci-dessus. 
    
     ![][1]
-6. Complète hello autres champs pour la notification de hello et l’enregistrer. 
-7. Lorsque vous exécutez un test ou que vous activez l’annonce de type hello vous verrez une notification avec les émoticône hello comme spécifié.   
+6. Renseignez les autres champs de la notification et enregistrez-la. 
+7. Lorsque vous exécutez un test ou activez l'annonce, une notification s’affiche avec l'émoticône spécifiée.   
    
-    ![][3]![][4]![][5]
+    ![][3] ![][4] ![][5]
 
 <!-- Images. -->
 [1]: ./media/mobile-engagement-use-emoji-with-push/notification_input.png

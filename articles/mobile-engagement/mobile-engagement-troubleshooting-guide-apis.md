@@ -1,5 +1,5 @@
 ---
-title: aaaAzure Mobile Engagement Troubleshooting Guide - API
+title: "Guide de résolution des problèmes d'Azure Mobile Engagement : les API"
 description: "Guides de dépannage pour Azure Mobile Engagement : les API"
 services: mobile-engagement
 documentationcenter: 
@@ -14,66 +14,66 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 10/04/2016
 ms.author: piyushjo
-ms.openlocfilehash: 5656b6f0f1aaf3e496a168c7cf09b307b9ab2a4c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a7ae0a83046f2d67b790f672dcd3ae261987357a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshooting-guide-for-api-issues"></a>Guide de résolution des problèmes pour les problèmes d'API
-Hello Voici les problèmes possibles, que vous pouvez rencontrer avec les administrateurs interagissent Azure Mobile Engagement via hello API.
+Les problèmes suivants sont des problèmes que vous pouvez rencontrer lorsque des administrateurs interagissent avec Azure Mobile Engagement via les API.
 
 ## <a name="syntax-issues"></a>Problèmes de syntaxe
 ### <a name="issue"></a>Problème
-* Erreurs de syntaxe à l’aide des API de hello (ou un comportement inattendu).
+* Erreurs de syntaxe lors de l'utilisation de l'API (ou comportement inattendu).
 
 ### <a name="causes"></a>Causes
 * Problèmes de syntaxe :
-  * Vérifiez que hello toocheck syntaxe de hello les API spécifiques que vous utilisez tooconfirm qui hello option est disponible.
-  * Un problème courant avec l’utilisation de l’API est tooconfuse hello portée API et hello API Push (la plupart des tâches doit être effectuée avec hello API couverture au lieu de l’API de Push de hello). 
-  * Un autre problème courant avec l’intégration du Kit de développement logiciel et l’utilisation de l’API est tooconfuse hello clé du SDK et hello clé API.
-  * Les scripts qui se connectent toohello API doivent toosend données au moins toutes les 10 minutes ou une connexion de hello expire (notamment le cas dans les scripts d’analyse API à l’écoute pour les données). tooprevent des délais d’attente, avoir votre envoi script un ping XMPP chaque session de hello 10 minutes tookeep active avec le serveur de hello.
+  * Veillez à vérifier la syntaxe de l'API spécifique que vous utilisez pour vérifier que l'option est disponible.
+  * Un problème courant avec l'utilisation de l'API est la confusion entre l'API Reach et l'API Push (la plupart des tâches doivent être effectuées avec l'API Reach et non l'API Push). 
+  * Un autre problème courant avec l'intégration du SDK et l'utilisation de l'API est la confusion entre la clé du Kit de développement logiciel et la clé d'API.
+  * Les scripts qui se connectent aux API doivent envoyer des données au moins 10 minutes, ou la connexion expire (fréquent surtout dans les scripts d'analyse API écoute pour les données). Pour éviter les délais d'attente, faites en sorte que votre script envoie une commande ping XMPP toutes les 10 minutes afin que la session avec le serveur reste active.
 
 ### <a name="see-also"></a>Voir aussi
 * [Documentation de l’API][Link 4]
 * [Informations sur le protocole XMPP](http://xmpp.org/extensions/xep-0199.html)
 
-## <a name="unable-toouse-hello-api-tooperform-hello-same-action-available-in-hello-azure-mobile-engagement-ui"></a>Impossible de toouse hello API tooperform hello même action disponible Bonjour Azure Mobile Engagement UI
+## <a name="unable-to-use-the-api-to-perform-the-same-action-available-in-the-azure-mobile-engagement-ui"></a>Impossible d'utiliser l'API pour effectuer la même action disponible dans l'interface utilisateur d'Azure Mobile Engagement
 ### <a name="issue"></a>Problème
-* Une action qui travaille à partir de hello Qu'azure Mobile Engagement UI ne fonctionne pas à partir de hello liés à Azure Mobile Engagement API.
+* Une action qui fonctionne à partir de l'interface utilisateur d'Azure Mobile Engagement ne fonctionne pas dans l'API Mobile Azure Engagement qui lui est associée.
 
 ### <a name="causes"></a>Causes
-* Confirmer que vous puissiez effectuer la même action de hello Azure Mobile Engagement interface montre que vous avez correctement intégré cette fonctionnalité d’Azure Mobile Engagement avec hello hello SDK.
+* Confirmer que vous pouvez effectuer la même action à partir de l'interface utilisateur de Azure Mobile Engagement indique que vous avez correctement intégré cette fonctionnalité d'Azure Mobile Engagement avec le Kit de développement.
 
 ### <a name="see-also"></a>Voir aussi
 * [Documentation sur l’interface utilisateur][Link 1]
 
 ## <a name="error-messages"></a>Messages d'erreur
 ### <a name="issue"></a>Problème
-* Codes d’erreur à l’aide des API hello affichée lors de l’exécution ou dans les journaux.
+* Des codes d'erreur lors de l'utilisation de l'API s'affichent lors de l'exécution ou dans les journaux.
 
 ### <a name="causes"></a>Causes
 * Voici une liste composite de numéros de codes d'état d'API courants pour référence et dépannage préliminaire :
   
         200        Success.
-        200        Account updated: device registered, associated, updated, or removed from hello current account.
-        200        Returns a list of projects as a JSON object or an authentication token generated and returned in hello response’s body.
+        200        Account updated: device registered, associated, updated, or removed from the current account.
+        200        Returns a list of projects as a JSON object or an authentication token generated and returned in the response’s body.
         201        Account created.
-        400        Invalid parameter or validation exception (check payload for details). hello parameters provided toohello API or service are invalid. In this case, hello HTTP response will embed more details. Make sure tootest for hello MIME type of hello response as hello payload can either be plain text or a JSON object.
-        401        Authentication error. No user is currently authenticated or connected (check hello AppID and SDK key).
-        402        Billing lock. hello application is either off its quotas or is currently in a bad billing state.
-        403        hello application is not enabled or hello specific API is disabled for this application.
-        403        Unauthorized access toohello project or application, invalid access key (hello key must match hello one provided when created).
-        403        Campaign specific errors: campaign must be finished (or has already been activated), hello suspend action can only be performed on an scheduled campaign, cannot finish a campaign that is not currently “in progress”, campaign must be “in progress” and hello campaign’s property named, manual Push must be set tootrue.
-        403        hello email address is already associated tooanother account (a super user for instance). No authentication token will be generated.
+        400        Invalid parameter or validation exception (check payload for details). The parameters provided to the API or service are invalid. In this case, the HTTP response will embed more details. Make sure to test for the MIME type of the response as the payload can either be plain text or a JSON object.
+        401        Authentication error. No user is currently authenticated or connected (check the AppID and SDK key).
+        402        Billing lock. The application is either off its quotas or is currently in a bad billing state.
+        403        The application is not enabled or the specific API is disabled for this application.
+        403        Unauthorized access to the project or application, invalid access key (the key must match the one provided when created).
+        403        Campaign specific errors: campaign must be finished (or has already been activated), the suspend action can only be performed on an scheduled campaign, cannot finish a campaign that is not currently “in progress”, campaign must be “in progress” and the campaign’s property named, manual Push must be set to true.
+        403        The email address is already associated to another account (a super user for instance). No authentication token will be generated.
         404        Application, device, campaign, or project identifier not found.
         404        Query parameter is invalid JSON or has a field with an unexpected value.
-        404        hello email address is not associated with an account. Please create or update hello account first.
-        405        Invalid HTTP method (GET, POST, etc.) or trying tooedit a read only segment (i.e. add or update or delete a criterion). A segment becomes read only after it has been computed for hello first time.
-        409        Name already associated tooa different device ID or campaign.
-        413        Too many device identifiers (current limit is 1,000), POST URL encoded entity is over 2MB, or hello period is too large toobe displayed (hello server didn’t retrieve hello analytics because hello user request is for a period that is too large).
-        503        Analytics not available yet (hello requested information is not computed yet for an application).
-        504        hello server was not able toohandle your request in a reasonable time (if you make multiple calls tooan API very quickly, try toomake one call at a time and spread hello calls out over time).
+        404        The email address is not associated with an account. Please create or update the account first.
+        405        Invalid HTTP method (GET, POST, etc.) or trying to edit a read only segment (i.e. add or update or delete a criterion). A segment becomes read only after it has been computed for the first time.
+        409        Name already associated to a different device ID or campaign.
+        413        Too many device identifiers (current limit is 1,000), POST URL encoded entity is over 2MB, or the period is too large to be displayed (the server didn’t retrieve the analytics because the user request is for a period that is too large).
+        503        Analytics not available yet (the requested information is not computed yet for an application).
+        504        The server was not able to handle your request in a reasonable time (if you make multiple calls to an API very quickly, try to make one call at a time and spread the calls out over time).
 
 ### <a name="see-also"></a>Voir aussi
 * [Documentation sur les API : pour connaître le détail des erreurs de chaque API spécifique][Link 4]
@@ -83,8 +83,8 @@ Hello Voici les problèmes possibles, que vous pouvez rencontrer avec les admini
 * L'action de l'API échoue et aucun message d'erreur ne s'affiche lors de l'exécution ou dans les journaux.
 
 ### <a name="causes"></a>Causes
-* Nombre d’éléments sera désactivé dans l’interface utilisateur de Azure Mobile Engagement s’ils ne sont pas intégrés correctement, mais échoueront silencieusement hello API, par conséquent, n’oubliez pas de hello tootest hello même fonctionnalité à partir de hello UI toosee si elle fonctionne.
-* Azure Mobile Engagement et nombreuses fonctionnalités avancées d’Azure Mobile Engagement vous essayez de toouse, toobe besoin individuellement intégré dans votre application avec le Kit de développement logiciel de hello séparément avant de pouvoir les utiliser.
+* Nombre d'éléments sera désactivé dans l'interface utilisateur de Azure Mobile Engagement si elles ne sont pas intégrées correctement, mais échouent silencieusement à partir de l'API, par conséquent, n'oubliez pas de tester la même fonctionnalité à partir de l'interface utilisateur pour voir si elle fonctionne.
+* Azure Engagement Mobile et de nombreuses fonctionnalités avancées d'Azure Mobile Engagement que vous essayez d'utiliser doivent être intégrés individuellement dans votre application avec le Kit de développement logiciel, dans le cadre d'étapes distinctes, avant de pouvoir les utiliser.
 
 ### <a name="see-also"></a>Voir aussi
 * [Guide de résolution des problèmes - Kit de développement logiciel (SDK)][Link 25]

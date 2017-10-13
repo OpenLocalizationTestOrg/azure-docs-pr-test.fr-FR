@@ -1,6 +1,6 @@
 ---
-title: "emplacement dans le modèle de la ressource aaaAzure | Documents Microsoft"
-description: "Montre comment tooset un emplacement pour une ressource dans un modèle Azure Resource Manager"
+title: "Emplacement des ressources Azure dans un modèle | Microsoft Docs"
+description: "Explique comment définir un emplacement pour une ressource dans un modèle Azure Resource Manager"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: tomfitz
-ms.openlocfilehash: f2ad6ca6ac5f34484a2e5e57dd8d67c77dacc41a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 73e50a593c41e841dcaf184abb895406ff5001e9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="set-resource-location-in-azure-resource-manager-templates"></a>Définir l’emplacement des ressources dans des modèles Azure Resource Manager
-Lorsque vous déployez un modèle, vous devez fournir un emplacement pour chaque ressource. Cette rubrique montre comment les emplacements hello toodetermine abonnement tooyour disponibles pour chaque ressource de type.
+Lorsque vous déployez un modèle, vous devez fournir un emplacement pour chaque ressource. Cette rubrique vous explique comment déterminer quels emplacements sont disponibles pour votre abonnement pour chaque type de ressource.
 
 ## <a name="determine-supported-locations"></a>Déterminer les emplacements pris en charge
 
-Pour obtenir une liste complète des emplacements pris en charge pour chaque type de ressource, consultez [Disponibilité des produits par région](https://azure.microsoft.com/regions/services/). Toutefois, votre abonnement peut-être pas accès tooall hello emplacements dans cette liste. toosee une liste personnalisée des emplacements qui sont disponibles tooyour abonnement, utilisez Azure PowerShell ou CLI d’Azure. 
+Pour obtenir une liste complète des emplacements pris en charge pour chaque type de ressource, consultez [Disponibilité des produits par région](https://azure.microsoft.com/regions/services/). Toutefois, votre abonnement peut ne pas avoir accès à tous les emplacements de cette liste. Pour afficher une liste personnalisée des emplacements disponibles pour votre abonnement, utilisez Azure PowerShell ou l’interface de ligne de commande Azure. 
 
-Hello exemple suivant utilise PowerShell tooget hello emplacements pour hello `Microsoft.Web\sites` type de ressource :
+L’exemple suivant utilise PowerShell pour obtenir les emplacements pour le type de ressource `Microsoft.Web\sites` :
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
 ```
 
-Hello exemple suivant utilise Azure CLI 2.0 tooget hello emplacements pour hello `Microsoft.Web\sites` type de ressource :
+L’exemple suivant utilise Azure CLI 2.0 pour obtenir les emplacements pour le type de ressource `Microsoft.Web\sites` :
 
 ```azurecli
 az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites'].locations"
@@ -41,9 +41,9 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 
 ## <a name="set-location-in-template"></a>Définir les emplacements dans un modèle
 
-Après avoir déterminé les emplacements hello pris en charge pour vos ressources, vous devez tooset cet emplacement dans votre modèle. Hello tooset de façon plus simple cette valeur est toocreate une ressource de groupe dans un emplacement qui prend en charge les types de ressources hello et définir chaque emplacement trop`[resourceGroup().location]`. Vous pouvez redéployer les groupes de tooresource modèle hello dans différents emplacements et modifie pas les valeurs dans le modèle de hello ou des paramètres. 
+Après avoir déterminé les emplacements pris en charge pour vos ressources, vous devez définir cet emplacement dans votre modèle. Le moyen le plus simple pour définir cette valeur consiste à créer un groupe de ressources dans un emplacement qui prend en charge les types de ressources, puis de définir chaque emplacement sur `[resourceGroup().location]`. Vous pouvez redéployer le modèle dans des groupes de ressources à des emplacements différents et ne pas modifier les valeurs dans le modèle ou les paramètres. 
 
-Hello suivant montre un compte de stockage qui est déployé toohello même emplacement que le groupe de ressources hello :
+L’exemple suivant illustre le déploiement d’un compte de stockage au même emplacement que le groupe de ressources :
 
 ```json
 {
@@ -72,7 +72,7 @@ Hello suivant montre un compte de stockage qui est déployé toohello même empl
 }
 ```
 
-Si vous avez besoin d’emplacement de hello toohardcode dans votre modèle, fournir hello nom de l’une des régions de hello pris en charge. Bonjour à l’exemple suivant montre un compte de stockage est toujours déployé tooNorth du centre des États-Unis :
+Si vous devez coder en dur l’emplacement dans votre modèle, indiquez le nom de l’une des régions prises en charge. L’exemple suivant montre un compte de stockage qui est toujours déployé dans la région Nord du centre des États-Unis :
 
 ```json
 {
@@ -99,5 +99,5 @@ Si vous avez besoin d’emplacement de hello toohardcode dans votre modèle, fou
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour obtenir des recommandations sur la façon toocreate modèles, consultez [meilleures pratiques pour la création de modèles Azure Resource Manager](resource-manager-template-best-practices.md).
+* Pour des recommandations sur la création de modèles, consultez [Bonnes pratiques relatives à la création de modèles Azure Resource Manager](resource-manager-template-best-practices.md).
 

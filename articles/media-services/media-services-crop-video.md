@@ -1,6 +1,6 @@
 ---
-title: "vidéos de toocrop aaaHow avec Media Encoder Standard - Azure | Documents Microsoft"
-description: "Cet article explique comment les vidéos toocrop avec Media Encoder Standard."
+title: "Guide pratique pour rogner des vidéos avec Media Encoder Standard - Azure | Microsoft Docs"
+description: "Cet article explique comment rogner des vidéos avec Media Encoder Standard."
 services: media-services
 documentationcenter: 
 author: anilmur
@@ -14,31 +14,31 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: anilmur;juliako;
-ms.openlocfilehash: 2b4ac3d96228b93c890a38c57c4913988de1e8bb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 60d0ce14a271fcbe698559da95ca011cb888b221
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="crop-videos-with-media-encoder-standard"></a>Rogner des vidéos avec l’encodeur multimédia standard
-Vous pouvez utiliser Media Encoder Standard (MES) toocrop votre entrée vidéo. Rognage consiste hello en sélectionnant une fenêtre rectangulaire dans les images vidéo hello et encodage simplement les pixels hello dans cette fenêtre. Hello suivant schéma permet d’illustrer le processus de hello.
+Vous pouvez utiliser Media Encoder Standard (MES) pour rogner votre vidéo d’entrée. Le rognage consiste à sélectionner une fenêtre rectangulaire dans l’image vidéo et à encoder uniquement les pixels dans cette fenêtre. Le schéma suivant permet d’illustrer le processus.
 
 ![Rogner une vidéo](./media/media-services-crop-video/media-services-crop-video01.png)
 
-Vous disposez en tant qu’entrée une vidéo qui a une résolution de 1920 x 1080 pixels (rapport 16:9), mais n’a noires (zones pilier) sur hello gauche et droite, afin que seuls une fenêtre 4:3 ou 1440 x 1080 pixels contient vidéo active. Vous pouvez utiliser MES toocrop ou modifier des barres de hello noir et coder la région de 1440 x 1080 hello.
+Vous disposez en tant qu’entrée d’une vidéo présentant une résolution de 1920 x 1080 pixels (proportions 16:9), avec des barres noires (pillarbox) à gauche et à droite, de manière à ce que seule une fenêtre de 4:3 ou 1440 x 1080 pixels puisse contenir une vidéo active. Vous pouvez utiliser MES pour rogner ou modifier les barres noires, et coder la région 1440 x 1080.
 
-Rognage dans MES étant une étape de prétraitement, les paramètres de rognage hello dans la valeur prédéfinie d’encodage hello s’appliquent toohello de vidéo d’entrée d’origine. L’encodage est à un stade ultérieur, et les paramètres de largeur/hauteur de hello s’appliquent toohello *traité au préalable* vidéo et toohello pas de vidéo d’origine. Lors de la conception de votre présélection toodo, hello éléments suivants sont nécessaires : (un), sélectionnez les paramètres de culture hello hello de vidéo d’entrée d’origine et (b), sélectionnez votre encoder des paramètres en fonction de hello rognée vidéo. Si vous ne correspondent pas votre Encoder toohello paramètres rognée vidéo, la sortie de hello ne sera pas comme prévu.
+Le rognage dans MES étant une étape de prétraitement, les paramètres de rognage de la présélection d’encodage s’appliquent à la vidéo d’entrée d’origine. L’encodage s’effectue à un stade ultérieur, et les paramètres de largeur/hauteur s’appliquent à la vidéo *prétraitée* et non à la vidéo d’origine. Lorsque vous concevez votre présélection, vous devez effectuer les opérations suivantes : (a) sélectionnez les paramètres de rognage en fonction de la vidéo d’entrée d’origine et (b) sélectionnez vos paramètres d’encodage en fonction de la vidéo rognée. Si vos paramètres d’encodage ne correspondent pas à la vidéo rognée, le résultat ne répondra pas à vos attentes.
 
-Hello [suivant](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet) rubrique indique comment toocreate un travail d’encodage avec MES et comment toospecify personnalisé prédéfini pour hello tâche d’encodage. 
+La rubrique [suivante](media-services-custom-mes-presets-with-dotnet.md#encoding_with_dotnet) montre comment créer une tâche d’encodage avec MES et comment spécifier une présélection personnalisée pour la tâche d’encodage. 
 
 ## <a name="creating-a-custom-preset"></a>Création d’une présélection personnalisée
-Dans l’exemple hello hello illustré :
+Dans l’exemple ci-dessous :
 
 1. L’entrée d’origine est 1920 x 1080.
-2. Il doit toobe rognée sortie tooan de 1440 x 1080, qui est centrée dans le cadre d’entrée de hello
+2. Elle doit être rognée sur une sortie de 1440 x 1080, centrée dans le cadre d’entrée.
 3. Cela implique un décalage X de (1920 – 1440)/2 = 240 et un décalage Y de zéro.
-4. Hello largeur et hauteur du rectangle de rognage hello sont respectivement 1440 et 1080,
-5. Bonjour étape coder, hello poser est tooproduce trois couches, sont respectivement les résolutions 1440 x 1080, 960 x 720 et 480 x 360,
+4. La largeur et la hauteur du rectangle de rognage sont de 1440 et 1080, respectivement.
+5. Dans la phase de codage, la tâche consiste à produire trois couches avec des résolutions respectives de 1440 x 1080, 960 x 720 et 480 x 360.
 
 ### <a name="json-preset"></a>Présélection JSON
     {
@@ -126,19 +126,19 @@ Dans l’exemple hello hello illustré :
 
 
 ## <a name="restrictions-on-cropping"></a>Restrictions sur le rognage
-Hello rogner la fonction est censée toobe manuel. Vous devez tooload votre entrée vidéo dans un outil d’édition approprié qui vous permet de sélectionner les images d’intérêt, positionner hello curseur toodetermine offsets pour hello rectangle de rognage, toodetermine hello valeur prédéfinie d’encodage qui est réglé pour que des vidéos, etc. particulier. Cette fonctionnalité n’est pas destinée tooenable des éléments tels que : détection automatique et la suppression des bordures noir letterbox/pillarbox de votre entrée vidéo.
+La fonctionnalité de rognage est destinée à être manuelle. Vous devez charger votre vidéo d’entrée dans un outil d’édition approprié qui vous permet de sélectionner des images d’intérêt, de positionner le curseur pour déterminer les décalages du rectangle de rognage, de déterminer que la présélection d’encodage est réglée pour une vidéo en particulier, etc. Cette fonctionnalité n’est pas destinée à activer des éléments tels que la détection automatique et la suppression des bordures noires letterbox/pillarbox de votre vidéo d’entrée.
 
-Les contraintes suivantes s’appliquent à toohello rogner la fonctionnalité. Si elles ne sont pas remplies, hello encoder la tâche peut échouer ou produire une sortie inattendue.
+Les contraintes suivantes s’appliquent à la fonctionnalité de rognage. Si elles ne sont pas remplies, la tâche de codage peut échouer ou produire un résultat inattendu.
 
-1. Hello les coordonnées et la taille du rectangle de rognage hello ont toofit au sein de la vidéo d’entrée de hello
-2. Comme indiqué ci-dessus, hello largeur et hauteur Bonjour Encoder paramètres ont toohello toocorrespond rognée vidéo
-3. Rognage s’applique toovideos capturée dans le mode paysage (autrement dit, non applicable toovideos enregistrés avec un smartphone maintenus verticalement ou en mode portrait)
+1. Les coordonnées et la taille du rectangle de rognage doivent tenir dans la vidéo d’entrée.
+2. Comme mentionné ci-dessus, la largeur et la hauteur dans les paramètres d’encodage doivent correspondre à la vidéo rognée.
+3. Le rognage s’applique aux vidéos capturées en mode paysage (c’est-à-dire qu’il ne s’applique pas aux vidéos enregistrées avec un smartphone maintenu verticalement ou en mode portrait).
 4. Fonctionne mieux avec une vidéo progressive capturée avec des pixels carrés.
 
 ## <a name="provide-feedback"></a>Fournir des commentaires
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-step"></a>Étape suivante
-Consultez toohelp de chemins d’accès que vous en savoir plus sur les fonctionnalités offertes par AMS de formation Azure Media Services.  
+Consultez les parcours d’apprentissage Azure Media Services pour en savoir plus sur les fonctionnalités exceptionnelles offertes par AMS.  
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

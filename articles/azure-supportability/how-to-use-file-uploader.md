@@ -1,6 +1,6 @@
 ---
-title: "aaaMicrosoft Azure nouvelle prise en charge demande de téléchargement de fichier de directives d’utilitaire | Documents Microsoft"
-description: "Décrit les instructions hello lors de l’utilisation de Microsoft Azure nouvelle demande de support utilitaire de téléchargement de fichiers"
+title: "Recommandations pour l’utilisation de l’utilitaire de téléchargement de fichiers dans le cadre d’une nouvelle demande de support Microsoft Azure | Microsoft Docs"
+description: "Décrit les recommandations d’utilisation de l’utilitaire de téléchargement de fichiers dans le cadre d’une nouvelle demande de support Microsoft Azure"
 services: 
 documentationcenter: 
 author: genlin
@@ -15,28 +15,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
-ms.openlocfilehash: 19e51b40b82a71454b4b04752ebeefd5d26c2db5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ba6dafd8d890d88478a5e3213dd023921908f4bf
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="microsoft-azure-new-support-request-file-upload-utility-guidelines"></a>Recommandations pour l’utilisation de l’utilitaire de téléchargement de fichiers dans le cadre d’une nouvelle demande de support Microsoft Azure
-Lorsque vous [créer une demande de support](https://portal.azure.com/#create/Microsoft.Support), utilitaire de téléchargement de fichier hello peut vous aider à facilement tous les autres fichiers que vous pensez sont pertinentes toohello incident ou télécharger les fichiers de diagnostic.  
+Lorsque vous [créez une demande de support](https://portal.azure.com/#create/Microsoft.Support), l’utilitaire de téléchargement de fichiers peut vous aider à charger facilement des fichiers de diagnostic ou tout autre fichier qui vous semble s’appliquer à l’incident.  
 
 > [!NOTE]
-> tooprotect votre confidentialité, n’incluez pas d’informations personnelles dans le téléchargement.
+> Pour protéger votre confidentialité, évitez d’inclure des informations personnelles dans votre téléchargement.
 >
 >
 
-Suivez ces instructions lorsque vous utilisez l’utilitaire de téléchargement de fichier hello :
+Suivez ces instructions lorsque vous utilisez l’utilitaire de téléchargement de fichiers :
 
-* Tous les fichiers doivent avoir une extension de nom de fichier, telle que .docx ou .xlsx. Consultez la table hello pour la liste des extensions de nom de fichier autorisée hello.
-* nom de fichier Hello doit être non plu de 110 caractères.
+* Tous les fichiers doivent avoir une extension de nom de fichier, telle que .docx ou .xlsx. Consultez le tableau pour obtenir la liste des extensions de fichier autorisées.
+* Le nom de fichier doit être inférieur à 110 caractères.
 * Vous ne pouvez pas télécharger plusieurs fichiers.
 * Les fichiers ne peuvent pas être supérieurs à 4 Mo.
 
-## <a name="table-of-hello-allowed-file-name-extensions"></a>Table de hello extensions de noms de fichiers autorisées
+## <a name="table-of-the-allowed-file-name-extensions"></a>Tableau des extensions de nom de fichier autorisées
 | 0-9, A-C    | D-G   | H-M         | N-P   | R-T      | U-W        | X-Z     |
 |-------------|-------|-------------|-------|----------|------------|---------|
 | .7Z         | .dat  | .hwl        | .odx  | .rar     | .tdb       | .xlam   |

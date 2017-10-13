@@ -1,6 +1,6 @@
 ---
-title: "les files d’attente d’aaaHow toouse Service Bus avec PHP | Documents Microsoft"
-description: "Découvrez comment toouse Service Bus de files d’attente dans Azure. Exemples de code écrits en PHP."
+title: "Utilisation des files d’attente Service Bus avec PHP | Microsoft Docs"
+description: "Découvrez comment utiliser les files d'attente Service Bus dans Azure. Exemples de code écrits en PHP."
 services: service-bus-messaging
 documentationcenter: php
 author: sethmanheim
@@ -14,42 +14,42 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: 8cf233176029b679d172eaf713632087beca5e4e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3514812f7f087582035dad5d9a4d620652aa4da9
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="how-toouse-service-bus-queues-with-php"></a>Comment toouse Service Bus de files d’attente avec PHP
+# <a name="how-to-use-service-bus-queues-with-php"></a>Utilisation des files d’attente Service Bus avec PHP
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-Ce guide vous montre comment les files d’attente de toouse Service Bus. exemples de Hello sont écrits en PHP et utiliser hello [Azure SDK pour PHP](../php-download-sdk.md). Hello scénarios abordés incluent **création de files d’attente**, **envoyer et recevoir des messages**, et **la suppression de files d’attente**.
+Ce guide vous montre comment utiliser les files d’attente Service Bus. Les exemples sont écrits en PHP et utilisent le [Kit de développement logiciel (SDK) Azure pour PHP](../php-download-sdk.md). Les scénarios couverts dans ce guide sont les suivants : **création de files d’attente**, **envoi et réception de messages** et **suppression de files d’attente**.
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
 ## <a name="create-a-php-application"></a>Création d'une application PHP
-Hello uniquement requis pour la création d’une application PHP qui accède au service d’objets Blob Azure hello est hello faisant référence à des classes de hello [Azure SDK pour PHP](../php-download-sdk.md) à partir de votre code. Vous pouvez utiliser n’importe quel toocreate d’outils de développement de votre application, ou le bloc-notes.
+Le référencement de classes issues du [Kit de développement logiciel (SDK) Azure pour PHP](../php-download-sdk.md) dans votre code constitue la seule exigence pour créer une application PHP qui accède au service blob Azure. Vous pouvez utiliser tous les outils de développement pour créer votre application, ou Bloc-notes.
 
 > [!NOTE]
-> Votre installation PHP doit également avoir hello [OpenSSL extension](http://php.net/openssl) installé et activé.
+> L’[extension OpenSSL](http://php.net/openssl) doit également être installée et activée dans votre installation PHP.
 > 
 > 
 
 Dans ce guide, vous allez utiliser les fonctionnalités du service qui peuvent être appelées dans une application PHP en local, ou dans le code s'exécutant dans un rôle web, un rôle de travail ou un site web Azure.
 
-## <a name="get-hello-azure-client-libraries"></a>Obtenir les bibliothèques clientes Azure hello
+## <a name="get-the-azure-client-libraries"></a>Obtention des bibliothèques clientes Azure
 [!INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-toouse-service-bus"></a>Configurer votre toouse application Service Bus
-file d’attente de Service Bus toouse hello API, hello suivant :
+## <a name="configure-your-application-to-use-service-bus"></a>Configuration de votre application pour l’utilisation de Service Bus
+Pour utiliser des API de file d'attente Service Bus, procédez comme suit :
 
-1. Fichier de chargeur automatique de hello référence à l’aide de hello [require_once] [ require_once] instruction.
+1. Référencez le fichier de chargeur automatique à l’aide de l’instruction [require_once][require_once].
 2. référencer toute classe que vous êtes susceptible d'utiliser.
 
-Hello suivant montre comment tooinclude hello hello de référence et le fichier de chargeur automatique `ServicesBuilder` classe.
+L’exemple suivant montre comment inclure le fichier du chargeur automatique et référencer la classe `ServicesBuilder`.
 
 > [!NOTE]
-> Cet exemple (et autres exemples de cet article) suppose que vous avez installé les bibliothèques clientes hello PHP pour Azure via le compositeur. Si vous avez installé les bibliothèques hello manuellement ou en tant que package poire, vous devez référencer hello **WindowsAzure.php** fichier de chargeur automatique.
+> Cet exemple et d'autres exemples de cet article partent du principe que vous avez installé les bibliothèques clientes PHP pour Azure via Composer. Si vous avez installé les bibliothèques manuellement ou en tant que package PEAR, vous devez référencer le fichier de chargeur automatique **WindowsAzure.php**.
 > 
 > 
 
@@ -58,25 +58,25 @@ require_once 'vendor/autoload.php';
 use WindowsAzure\Common\ServicesBuilder;
 ```
 
-Dans les exemples de hello ci-dessous, hello `require_once` instruction est toujours affichée, mais uniquement les classes de hello nécessaires pour hello exemple tooexecute sont référencés.
+Dans les exemples ci-dessous, l'instruction `require_once` s'affichera toujours, mais seules les classes nécessaires aux besoins de l'exemple à exécuter sont référencées.
 
 ## <a name="set-up-a-service-bus-connection"></a>Configuration d’une connexion Service Bus
-tooinstantiate un client Service Bus, vous devez avoir une chaîne de connexion valide au format suivant :
+Pour instancier un client Service Bus, vous devez disposer au préalable d'une chaîne de connexion valide au format suivant :
 
 ```
 Endpoint=[yourEndpoint];SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[Primary Key]
 ```
 
-Où `Endpoint` est généralement hello format `[yourNamespace].servicebus.windows.net`.
+où `Endpoint` est généralement au format `[yourNamespace].servicebus.windows.net`.
 
-toocreate n’importe quel client de service Azure que vous devez utiliser hello `ServicesBuilder` classe. Vous pouvez :
+Pour créer un client de service Azure, vous devez utiliser la classe `ServicesBuilder`. Vous pouvez :
 
-* Passer hello connexion chaîne directement tooit.
-* Utilisez hello **CloudConfigurationManager (CCM)** toocheck externe de plusieurs sources pour la chaîne de connexion hello :
+* Lui passer directement la chaîne de connexion.
+* utiliser **CloudConfigurationManager (CCM)** pour vérifier plusieurs sources externes pour la chaîne de connexion :
   * par défaut une source externe est prise en charge : variables d'environnement
-  * Vous pouvez ajouter de nouvelles sources en étendant hello `ConnectionStringSource` classe
+  * Vous pouvez ajouter de nouvelles sources en étendant la classe `ConnectionStringSource`.
 
-Pour obtenir des exemples hello décrites ici, la chaîne de connexion hello est passé directement.
+Dans les exemples ci-dessous, la chaîne de connexion est passée directement.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -89,9 +89,9 @@ $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($
 ```
 
 ## <a name="create-a-queue"></a>Création d’une file d’attente
-Vous pouvez effectuer les opérations de gestion des files d’attente Service Bus via hello `ServiceBusRestProxy` classe. A `ServiceBusRestProxy` objet est construit via hello `ServicesBuilder::createServiceBusService` méthode de fabrique avec une chaîne de connexion appropriée qui encapsule hello autorisations jeton toomanage il.
+Vous pouvez effectuer des opérations de gestion pour les files d’attente Service Bus en utilisant la classe `ServiceBusRestProxy`. Un objet `ServiceBusRestProxy` est construit via la méthode d’usine `ServicesBuilder::createServiceBusService` avec une chaîne de connexion appropriée qui encapsule les autorisations de jeton pour le gérer.
 
-Hello suivant montre l’exemple de comment tooinstantiate un `ServiceBusRestProxy` et appelez `ServiceBusRestProxy->createQueue` toocreate une file d’attente nommée `myqueue` dans un `MySBNamespace` espace de noms de service :
+L’exemple suivant montre comment instancier un `ServiceBusRestProxy` et appeler `ServiceBusRestProxy->createQueue` pour créer une file d’attente nommée `myqueue` dans un espace de noms de service `MySBNamespace` :
 
 ```php
 require_once 'vendor/autoload.php';
@@ -120,12 +120,12 @@ catch(ServiceException $e){
 ```
 
 > [!NOTE]
-> Vous pouvez utiliser hello `listQueues` méthode sur `ServiceBusRestProxy` objets toocheck si une file d’attente portant le nom spécifié existe déjà dans un espace de noms.
+> vous pouvez utiliser la méthode `listQueues` sur les objets `ServiceBusRestProxy` pour vérifier s’il existe déjà une file d’attente d’un nom déterminé dans un espace de noms.
 > 
 > 
 
-## <a name="send-messages-tooa-queue"></a>Envoyer la file d’attente de messages tooa
-toosend une file d’attente Service Bus de messages tooa, votre application appelle hello `ServiceBusRestProxy->sendQueueMessage` (méthode). Hello suivant de code montre comment toosend un toohello message `myqueue` file d’attente créée précédemment dans le `MySBNamespace` espace de noms de service.
+## <a name="send-messages-to-a-queue"></a>Envoi de messages à une file d'attente
+Pour envoyer un message à une file d’attente Service Bus, votre application appelle la méthode `ServiceBusRestProxy->sendQueueMessage`. Le code suivant montre comment envoyer un message à la file d’attente `myqueue` créée plus haut dans l’espace de noms de service `MySBNamespace`.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -155,19 +155,19 @@ catch(ServiceException $e){
 }
 ```
 
-Messages trop envoyées (et reçues à partir de) les files d’attente Service Bus sont des instances de hello [BrokeredMessage] [ BrokeredMessage] classe. [BrokeredMessage] [ BrokeredMessage] objets comportent un ensemble de méthodes et propriétés qui sont utilisées toohold des propriétés personnalisées spécifiques à l’application et un corps de données d’application arbitraire standard.
+Les messages envoyés aux files d’attente Service Bus (et reçus de celles-ci) sont des instances de la classe [BrokeredMessage][BrokeredMessage]. Les objets [BrokeredMessage][BrokeredMessage] possèdent un ensemble de propriétés standard qui stockent des propriétés personnalisées propres à une application, ainsi qu’un corps de données d’application arbitraires.
 
-Les files d’attente Service Bus prend en charge une taille maximale de 256 Ko Bonjour [niveau Standard](service-bus-premium-messaging.md) et 1 Mo Bonjour [niveau Premium](service-bus-premium-messaging.md). en-tête Hello, qui inclut les standard hello et les propriétés de l’application personnalisée, peut avoir une taille maximale de 64 Ko. Il n’existe aucune limite du nombre de hello de messages dans une file d’attente mais hello de taille totale des messages hello détenus par une file d’attente est une extrémité de fin. La taille maximale de la file d'attente est de 5 Go.
+Les files d’attente Service Bus prennent en charge une taille de message maximale de 256 Ko dans le [niveau Standard](service-bus-premium-messaging.md) et d’1 Mo dans le [niveau Premium](service-bus-premium-messaging.md). L’en-tête, qui comprend les propriétés d’application standard et personnalisées, peut avoir une taille maximale de 64 Ko. Si une file d'attente n'est pas limitée par le nombre de messages qu'elle peut contenir, elle l'est en revanche par la taille totale des messages qu'elle contient. La taille maximale de la file d'attente est de 5 Go.
 
 ## <a name="receive-messages-from-a-queue"></a>Réception des messages d'une file d'attente
 
-messages Hello meilleure manière tooreceive à partir d’une file d’attente est toouse un `ServiceBusRestProxy->receiveQueueMessage` (méthode). Les messages peuvent être reçus dans deux modes : [*ReceiveAndDelete*](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) et [*PeekLock*](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock). **PeekLock** est la valeur par défaut hello.
+Le moyen le plus simple de recevoir les messages d’une file d’attente est d’utiliser une méthode `ServiceBusRestProxy->receiveQueueMessage`. Les messages peuvent être reçus dans deux modes : [*ReceiveAndDelete*](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) et [*PeekLock*](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock). **PeekLock** est la valeur par défaut.
 
-Lorsque vous utilisez [ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) , le mode de réception est une opération de prise de vue unique ; autrement dit, lorsque le Service Bus reçoit une demande de lecture d’un message dans une file d’attente, il marque le message de type hello comme ayant été consommé et le retourne toohello application. [ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) mode est le modèle le plus simple hello et convient le mieux pour les scénarios dans lesquels une application peut tolérer ne pas traiter un message dans l’événement hello d’un échec. toounderstand, envisagez un scénario dans les problèmes liés aux consommateurs de hello hello reçoit la demande et puis se bloque avant de le traiter. Comme Service Bus sera ont marqué hello message comme consommé, puis lors de l’application hello redémarre et commence à consommer des messages, elle aura manqué message de type hello qui a été consommée toohello préalable incident.
+Lorsque le mode [ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) est utilisé, la réception est une opération unique : quand Service Bus reçoit une demande de lecture d’un message figurant dans une file d’attente, il marque le message comme consommé et le renvoie à l’application. Le mode [ReceiveAndDelete](/dotnet/api/microsoft.servicebus.messaging.receivemode.receiveanddelete) est le modèle le plus simple et le mieux adapté aux scénarios dans lesquels une application est capable de tolérer le non-traitement d’un message en cas d’échec. Pour mieux comprendre, imaginez un scénario dans lequel le consommateur émet la demande de réception et subit un incident avant de la traiter. Comme Service Bus a marqué le message comme étant consommé, lorsque l’application redémarre et recommence à consommer des messages, elle manque le message consommé avant l’incident.
 
-Dans la valeur par défaut hello [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock) mode, la réception d’un message devient une opération en deux étapes, ce qui rend possible toosupport les applications qui ne peut pas tolérer des messages manquants. Lorsque le Service Bus reçoit une demande, il recherche hello suivant message toobe est utilisé, il verrouille tooprevent autres consommateurs de le recevoir, puis retourne toohello application. Une fois l’application hello termine le traitement de message de type hello (ou stocke de manière fiable pour un traitement ultérieur), il termine hello deuxième étape du hello processus de réception en passant le message de salutation reçu trop`ServiceBusRestProxy->deleteMessage`. Lorsque le Service Bus voit hello `deleteMessage` appel, il marque le message de type hello comme ayant été consommé et supprimez-le de la file d’attente hello.
+En mode [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock) par défaut), la réception d’un message devient une opération en deux étapes, ce qui permet de prendre en charge les applications qui ne tolèrent pas les messages manquants. Lorsque Service Bus reçoit une demande, il recherche le message suivant à consommer, le verrouille pour empêcher d'autres consommateurs de le recevoir, puis le renvoie à l'application. Dès que l’application a terminé de traiter le message (ou qu’elle l’a stocké de manière sûre en vue d’un traitement ultérieur), elle effectue la deuxième étape du processus de réception en transmettant le message reçu à `ServiceBusRestProxy->deleteMessage`. Lorsque Service Bus voit l’appel `deleteMessage`, il marque le message comme consommé et le supprime de la file d’attente.
 
-Hello suivant montre l’exemple de comment tooreceive et traiter un message à l’aide de [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock) mode (mode par défaut de hello).
+L’exemple ci-dessous montre comment recevoir et traiter un message avec le mode [PeekLock](/dotnet/api/microsoft.servicebus.messaging.receivemode.peeklock) (mode par défaut).
 
 ```php
 require_once 'vendor/autoload.php';
@@ -180,7 +180,7 @@ use WindowsAzure\ServiceBus\Models\ReceiveMessageOptions;
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 
 try    {
-    // Set hello receive mode tooPeekLock (default is ReceiveAndDelete).
+    // Set the receive mode to PeekLock (default is ReceiveAndDelete).
     $options = new ReceiveMessageOptions();
     $options->setPeekLock();
 
@@ -207,18 +207,18 @@ catch(ServiceException $e){
 }
 ```
 
-## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Comment toohandle application tombe en panne et messages illisibles
+## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Gestion des blocages d’application et des messages illisibles
 
-Service Bus fournit toohelp fonctionnalité que surmonter les erreurs dans votre application ou les difficultés du traitement d’un message. Si une application du récepteur ne peut pas tooprocess hello message pour une raison quelconque, elle peut appeler hello `unlockMessage` méthode sur le message de salutation reçu (au lieu de hello `deleteMessage` méthode). Cette opération provoquent le message de type hello toounlock Service Bus au sein de la file d’attente hello et rendre disponible toobe de nouveau reçu, soit hello par même consommation d’application ou par une autre application consommatrice.
+Service Bus intègre des fonctionnalités destinées à faciliter la récupération à la suite d’erreurs survenues dans votre application ou de difficultés à traiter un message. Si une application de réception ne parvient pas à traiter le message pour une raison quelconque, elle peut appeler la méthode `unlockMessage` sur le message reçu (au lieu de la méthode `deleteMessage`). Service Bus déverrouille alors le message dans la file d’attente et le rend à nouveau disponible en réception, pour la même application consommatrice ou pour une autre.
 
-Il existe également un délai d’attente d’un message verrouillé dans la file d’attente hello et en cas d’un message de type hello tooprocess avant application hello hello expiration délai de verrouillage (par exemple, si de l’application hello se bloque), puis le Service Bus déverrouille un message de type hello automatiquement et le rendre disponible toobe de nouveau reçu.
+De même, il faut savoir qu'un message verrouillé dans une file d'attente est assorti d'un délai d'expiration et que si l'application ne parvient pas à traiter le message dans le temps imparti (par exemple, si l'application subit un incident), Service Bus déverrouille le message automatiquement et le rend à nouveau disponible en réception.
 
-Bonjour événement hello application se bloque après le traitement de message de type hello mais avant hello `deleteMessage` demande est émise, puis le message de type hello sera redistribué toohello application lors de son redémarrage. Cela est souvent appelé *au moins une fois* traitement ; autrement dit, chaque message est traité au moins une fois, mais dans certain hello situations le même message peut être redistribué. Si le scénario de hello ne tolère pas le traitement dupliqué, puis ajouter des remise de messages en double logique tooapplications toohandle est recommandé. Cela est souvent obtenue à l’aide de hello `getMessageId` méthode de message de type hello, qui reste constante entre les tentatives de remise.
+Si l’application se bloque après le traitement du message mais avant l’émission de la demande `deleteMessage`, le message est à nouveau transmis à l’application lorsqu’elle redémarre. Ce traitement est souvent appelé *Au moins une fois*. Chaque message est traité au moins une fois, mais dans certaines circonstances, un même message peut être transmis une nouvelle fois. Si le scénario ne peut pas tolérer le traitement en double,l'ajout d'une logique supplémentaire à vos applications pour traiter la remise de messages en double est recommandé. Ceci, grâce à la méthode `getMessageId` du message, qui reste constante entre les tentatives de transmission.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez appris les notions de base de hello de files d’attente Service Bus, consultez [les files d’attente, rubriques et abonnements] [ Queues, topics, and subscriptions] pour plus d’informations.
+Maintenant que vous connaissez les principes de base des files d’attente Service Bus, consultez [Files d’attente, rubriques et abonnements][Queues, topics, and subscriptions] pour plus d’informations.
 
-Pour plus d’informations, reportez-vous également au hello [centre de développement PHP](https://azure.microsoft.com/develop/php/).
+Pour plus d’informations, visitez aussi le [Centre pour développeurs PHP](https://azure.microsoft.com/develop/php/).
 
 [BrokeredMessage]: /dotnet/api/microsoft.servicebus.messaging.brokeredmessage
 [Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md

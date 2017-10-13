@@ -1,6 +1,6 @@
 ---
-title: "aaaOverview Hello unité de calcul Azure | Documents Microsoft"
-description: "Vue d’ensemble du concept de hello de hello Azure compute unités pour Linux. Hello ACU fournit un moyen de comparer les performances de l’UC entre les références (SKU) de Azure."
+title: "Vue d’ensemble de l’unité de calcul Azure | Microsoft Docs"
+description: "Vue d’ensemble du concept d’unités de calcul Azure pour Linux. L’unité de calcul Azure offre un moyen de comparer les performances d’UC entre des références Azure."
 services: virtual-machines-linux
 documentationcenter: 
 author: jonbeck7
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: d94e35cf014de050c0fe4adc85d2f0090ef8eb9b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 82ccb9a3973b5a00ac442aa429634b19d0925dfa
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-compute-unit-acu"></a>Unité de calcul Azure (ACU)
 
 [!INCLUDE [virtual-machines-common-acu](../../../includes/virtual-machines-common-acu.md)]
 
 
-Ici sont des liens toomore des informations sur les tailles différentes hello :
+Voici des liens vers des informations complémentaires sur les différentes tailles :
 - [À usage général](sizes-general.md)
 - [Mémoire optimisée](sizes-memory.md)
 - [Optimisé pour le calcul](sizes-compute.md)

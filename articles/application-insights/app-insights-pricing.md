@@ -1,5 +1,5 @@
 ---
-title: "volume de la tarification et les données aaaManage pour Azure Application Insights | Documents Microsoft"
+title: "Gestion de la tarification et du volume de données Azure Application Insights | Microsoft Docs"
 description: "Gérer les volumes de données de télémétrie et surveiller les coûts dans Application Insights."
 services: application-insights
 documentationcenter: 
@@ -13,165 +13,165 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: bwren
-ms.openlocfilehash: 4621c989cd467735aefc48ec9547fcbe1b1ae41b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 65d11d30e23cd7671b769c3c17e4aba32c432340
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="manage-pricing-and-data-volume-in-application-insights"></a>Gérer la tarification et le volume de données dans Application Insights
 
 
-La tarification pour [Azure Application Insights][start] est basée sur le volume de données par application. Faible utilisation pendant le développement ou pour une petite application est probablement toobe libre, car il existe une indemnité mensuelle de 1 Go de données de télémétrie.
+La tarification pour [Azure Application Insights][start] est basée sur le volume de données par application. Une faible utilisation pendant le développement ou dans une petite application est susceptible d’être gratuite, compte tenu du quota mensuel de 1 Go de données de télémétrie accordé.
 
-Chaque ressource Application Insights est facturé comme un service distinct et qui contribue facture toohello tooAzure de votre abonnement.
+Chaque ressource d’Application Insights est facturée comme un service distinct et s’ajoute à votre facture d’abonnement à Azure.
 
-Il existe deux plans de tarification. plan de Hello par défaut est nommé Basic. Vous pouvez opter pour le plan d’entreprise hello, qui a une charge quotidienne, mais permet à certaines fonctionnalités supplémentaires telles que [exportation continue](app-insights-export-telemetry.md).
+Il existe deux plans de tarification. Le plan par défaut est nommé De base. Vous pouvez opter pour le plan Entreprise, facturé à la journée, qui donne accès à certaines fonctionnalités supplémentaires telles que [l’exportation continue](app-insights-export-telemetry.md).
 
-Si vous avez des questions sur le fonctionne de la tarification pour Application Insights, vous pouvez toopost libre une question dans nos [forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=ApplicationInsights). 
+Si vous avez des questions sur la tarification d’Application Insights, publiez une question dans notre [forum](https://social.msdn.microsoft.com/Forums/en-US/home?forum=ApplicationInsights). 
 
-## <a name="hello-price-plans"></a>prix des plans Hello
+## <a name="the-price-plans"></a>Les plans tarifaires
 
-Consultez hello [Application Insights, page de tarification] [ pricing] de prix actuelles dans votre devise.
+Consultez la [page de tarification d’Application Insights][pricing] pour connaître les prix actuels dans votre devise.
 
 ### <a name="basic-plan"></a>Plan De base
 
-plan de base Hello est par défaut de hello lorsqu’une nouvelle ressource Application Insights est créée et est suffisante pour la plupart des clients.
+Le plan De base est la valeur par défaut lorsqu’une ressource Application Insights est créée et est suffisante pour la plupart des clients.
 
-* Dans le plan de base hello, vous êtes facturé par volume de données : nombre d’octets de télémétrie reçus par l’Application Insights. Volume de données est mesuré en taille hello du package de données JSON hello non compressé reçu par Application Insights à partir de votre application.
-Pour [des données tabulaires importées dans Analytique](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-analytics-import), volume de données hello est mesurée comme hello taille non compressée des fichiers envoyés tooApplication Insights.  
-* Votre première 1 Go pour chaque application est gratuite, si vous utilisez simplement d’expérimentation ou de développement, vous êtes peu probable toohave toopay.
+* Dans le plan De base, vous êtes facturé en fonction du volume de données : nombre d’octets de données de télémétrie reçus par Application Insights. Le volume de données est mesuré comme la taille du package de données JSON non compressé reçu par Application Insights de la part de votre application.
+Pour [les données tabulaires importées dans Analytics](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-analytics-import), le volume de données est mesuré en tant que taille non compressée des fichiers envoyés à Application Insights.  
+* Votre premier 1 Go pour chaque application est gratuit. Si vous expérimentez ou développez simplement, vous n'aurez probablement pas à payer.
 * Les données des [Flux de métriques temps réel](app-insights-live-stream.md) ne sont pas comptabilisées dans la tarification.
-* [Exportation continue](app-insights-export-telemetry.md) est disponible pour des frais supplémentaires par Go dans le plan de base hello.
+* L[’exportation continue](app-insights-export-telemetry.md) est disponible moyennent des frais supplémentaires par Go dans le plan De base.
 
 ### <a name="enterprise-plan"></a>Plan Entreprise
 
-* Dans le plan d’entreprise hello, votre application peut utiliser toutes les fonctionnalités de hello d’Application Insights. L[’exportation continue](app-insights-export-telemetry.md) et 
+* Dans le plan Entreprise, votre application peut utiliser toutes les fonctionnalités d’Application Insights. L[’exportation continue](app-insights-export-telemetry.md) et 
 
-[Connecteur d’Analytique de journal](https://go.microsoft.com/fwlink/?LinkId=833039&amp;clcid=0x409) sont disponibles sans les frais supplémentaires dans le plan d’entreprise hello.
-* Vous payez par nœud qui envoie des données de télémétrie pour toutes les applications dans le plan d’entreprise hello. 
+le [connecteur Log Analytics](https://go.microsoft.com/fwlink/?LinkId=833039&amp;clcid=0x409) sont disponibles sans frais supplémentaires dans le plan Entreprise.
+* Vous payez pour chaque nœud qui envoie des données de télémétrie pour n'importe quelle application dans le plan Entreprise. 
  * Un *nœud* correspond à une machine serveur virtuelle ou physique ou à une instance de rôle Platform-as-a-Service qui héberge votre application.
  * Les ordinateurs de développement, les navigateurs clients et les appareils mobiles ne sont pas comptés comme nœuds.
  * Si votre application comporte plusieurs composants qui envoient des données de télémétrie, comme un service web et un Worker back-end, ces composants sont comptés séparément.
- * Les données [Flux de métriques en temps réel](app-insights-live-stream.md) ne sont pas comptabilisées dans la tarification.* Dans un abonnement, vos frais sont calculés par nœud et non par application. Si vous disposez de cinq nœuds envoi des données de télémétrie pour applications 12, puis hello facture est de cinq nœuds.
-* Bien que les frais indiqués soient par mois, vous êtes facturé uniquement pour toutes les heures dans lesquelles un nœud envoie des données de télémétrie à partir d’une application. Bonjour tarif horaire est hello entre guillemets frais mensuels / 744 (hello le nombre d’heures dans un mois de 31 jours).
-* Une allocation de volume de données de 200 Mo par jour est accordée pour chaque nœud détecté (avec une granularité par heure). L’allocation des données inutilisées n'est pas reportée à partir d’un jour toohello ensuite.
- * Si vous choisissez hello option tarification d’entreprise, chaque abonnement Obtient une indemnité de données en fonction du nombre de hello de nœuds d’envoi de données de télémétrie toohello ressource Application Insights dans cet abonnement. Par conséquent, si vous avez des 5 nœuds envoi de données toute la journée, vous aurez une allocation mis en pool des ressources d’Application Insights 1 Go appliqué tooall hello dans cet abonnement. Peu importe si certains nœuds sont envoie que plus de données que les autres nœuds hello inclus des données sont partagés entre tous les nœuds. Si un jour donné, ressources d’Application Insights hello recevoir davantage de données est inclus dans l’allocation des données quotidiennes hello pour cet abonnement, hello par Go dépassement des frais s’appliquent. 
- * allocation de données quotidienne Hello est calculée en tant que nombre de hello d’heures dans hello jour (UTC) que chaque nœud envoie des données de télémétrie divisée par 24 heures 200 Mo. Ainsi, si vous disposez de 4 nœuds envoi télémétrie pendant 15 Hello jour de hello de 24 heures, hello inclus données pour ce jour serait ((4 x 15) / 24) x 200 Mo = 500 Mo. Prix hello 2.30 USD par Go pour le dépassement de données, les frais de hello pour s’EUR 1,15 si les nœuds hello envoient 1 Go de données dans la journée.
- * Notez qu’indemnité du plan d’entreprise hello n’est pas partagée avec les applications pour lesquelles vous avez choisi d’option de base hello et indemnités inutilisée ne sont pas reportée d’un jour. 
+ * Les données [Flux de métriques en temps réel](app-insights-live-stream.md) ne sont pas comptabilisées dans la tarification.* Dans un abonnement, vos frais sont calculés par nœud et non par application. Si vous avez cinq nœuds envoyant des données de télémétrie pour 12 applications, les frais sont calculés pour cinq nœuds.
+* Bien que les frais indiqués soient par mois, vous êtes facturé uniquement pour toutes les heures dans lesquelles un nœud envoie des données de télémétrie à partir d’une application. Le tarif horaire est le prix mensuel indiqué / 744 (le nombre d’heures dans un mois de 31 jours).
+* Une allocation de volume de données de 200 Mo par jour est accordée pour chaque nœud détecté (avec une granularité par heure). L’allocation des données inutilisées n'est pas reportée d’un jour à l’autre.
+ * Lorsque vous choisissez l’option de tarification Entreprise, chaque abonnement reçoit un volume quotidien de données selon le nombre de nœuds qui envoient des données de télémétrie aux ressources Application Insights dans cet abonnement. Par conséquent, si vous avez 5 nœuds qui envoient des données toute la journée, une allocation groupée de 1 Go est appliquée à toutes les ressources Application Insights dans cet abonnement. Le fait que certains nœuds envoient plus de données que d’autres a peu d'importance, car les données incluses sont partagées entre tous les nœuds. Si, un jour donné, les ressources d’Application Insights reçoivent plus de données que le volume quotidien alloué pour cet abonnement, les frais de données de dépassement par Go s’appliquent. 
+ * Le volume de données quotidien alloué est calculé comme suit : nombre d’heures quotidiennes (UTC) pendant lesquelles chaque nœud envoie des données de télémétrie, divisé par 24 fois 200 Mo. Par conséquent, si 4 nœuds envoient des données de télémétrie pendant 15 heures sur les 24 heures de la journée, les données incluses pour le jour en question sont calculées comme suit : ((4 x 15)/24) x 200 Mo = 500 Mo. Au prix de 2,30 USD par Go pour le dépassement de données, les frais s'élèvent à 1,15 USD si les nœuds envoient 1 Go de données dans cette journée.
+ * Notez que le volume quotidien alloué pour le plan Entreprise n’est pas partagé avec les applications pour lesquelles vous avez choisi l’option De base et le volume alloué inutilisé n’est pas reporté de jour en jour. 
 * Voici quelques exemples de détermination du nombre de nœuds distincts :
 | Scénario                               | Nombre total de nœuds quotidien |
 |:---------------------------------------|:----------------:|
 | 1 application utilise 3 instances d'Azure App Service et 1 serveur virtuel | 4 |
-| 3 applications en cours d’exécution sur 2 machines virtuelles et les ressources d’Application Insights hello pour ces applications sont dans hello même abonnement et dans hello entreprise planifier | 2 | 
-| dont les ressources Insights d’Applications se trouvent dans les 4 applications hello même abonnement. Chaque application exécute 2 instances pendant 16 heures creuses et 4 instances pendant 8 heures de pointe. | 13.33 | 
+| 3 applications s’exécutant sur 2 machines virtuelles et les ressources Application Insights pour ces applications sont dans le même abonnement et dans le plan Entreprise | 2 | 
+| 4 applications dont les ressources Application Insights sont dans le même abonnement. Chaque application exécute 2 instances pendant 16 heures creuses et 4 instances pendant 8 heures de pointe. | 13.33 | 
 | Services cloud avec 1 rôle de travail et 1 rôle web, chacune exécutant 2 instances | 4 | 
 | Cluster de 5 nœuds Service Fabric exécutant 50 micro-services, chaque micro-service exécutant 3 instances | 5|
 
-* comportement de comptage de nœud précis Hello varie sur lequel utilise le Kit de développement logiciel Application Insights votre application. 
-  * Dans les versions du Kit de développement logiciel 2.2 et, à la fois hello Application Insights [kit](https://www.nuget.org/packages/Microsoft.ApplicationInsights/) ou [Web SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) sera chaque hôte d’application en tant que nœud de rapports, par exemple hello nom d’ordinateur pour le serveur physique et les hôtes d’ordinateur virtuel ou hello nom de l’instance dans les cas de hello de services de cloud computing.  Hello la seule exception est applications uniquement à l’aide de [.NET Core](https://dotnet.github.io/) et hello Application Insights Core SDK, dans lequel cas qu’un seul nœud sera signalé pour tous les ordinateurs hôtes, car le nom d’hôte hello n’est pas disponible. 
-  * Pour les versions antérieures du Kit de développement logiciel de hello, hello [Web SDK](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) se comporteront comme hello versions plus récentes de kit de développement logiciel, toutefois hello [kit](https://www.nuget.org/packages/Microsoft.ApplicationInsights/) signale qu’un seul nœud, quelle que soit le nombre de hello d’hôtes d’application réelle. 
-  * Notez que si votre application utilise la valeur personnalisé tooa du roleInstance tooset hello SDK, par défaut cette même valeur sera utilisé le nombre de hello toodetermine de nœuds. 
-  * Si vous utilisez une nouvelle version du Kit de développement logiciel avec une application qui est exécutée à partir d’appareils mobiles ou des ordinateurs clients, il est possible que nombre hello de nœuds peut retourner un nombre qui est très volumineux (hello grand nombre d’ordinateurs clients ou des périphériques mobiles). 
+* La méthode de comptage de nœuds précise varie selon le Kit de développement logiciel (SDK) Application Insights que votre application utilise. 
+  * Dans les versions du Kit de développement logiciel 2.2 et ultérieures, le [Kit de développement logiciel (SDK) principal](https://www.nuget.org/packages/Microsoft.ApplicationInsights/) ou [le Kit de développement logiciel (SDK) web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) Application Insights signale chaque hôte d’application en tant que nœud, par exemple le nom d’ordinateur pour le serveur physique et les hôtes de machine virtuelle ou le nom d’instance dans le cas de services cloud.  La seule exception concerne les applications qui utilisent uniquement [.NET Core](https://dotnet.github.io/) et le Kit de développement logiciel (SDK) principal Application Insights, auquel cas un seul nœud sera signalé pour tous les hôtes, car le nom d’hôte n’est pas disponible. 
+  * Pour les versions antérieures du Kit de développement logiciel (SDK), le [Kit de développement logiciel (SDK) web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/) se comporte comme les nouvelles versions du Kit de développement logiciel (SDK). Toutefois, le [Kit de développement logiciel (SDK) principal](https://www.nuget.org/packages/Microsoft.ApplicationInsights/) ne signale qu’un seul nœud, quel que soit le nombre d’hôtes d’application actuel. 
+  * Notez que, si votre application utilise le Kit de développement logiciel (SDK) pour définir l’instance de rôle (roleInstance) sur une valeur personnalisée, cette même valeur est utilisée par défaut pour déterminer le nombre de nœuds. 
+  * Si vous utilisez une nouvelle version du Kit de développement logiciel (SDK) avec une application exécutée à partir d’ordinateurs clients ou d'appareils mobiles, il est possible que le nombre de nœuds retourné soit très important (en raison du grand nombre d’ordinateurs clients ou d'appareils mobiles). 
 
 ### <a name="multi-step-web-tests"></a>Tests web à plusieurs étapes
 
-Des frais supplémentaires sont facturés pour les [tests web à plusieurs étapes](app-insights-monitor-web-app-availability.md#multi-step-web-tests). Il s’agit de tests tooweb qui effectuent une séquence d’actions. 
+Des frais supplémentaires sont facturés pour les [tests web à plusieurs étapes](app-insights-monitor-web-app-availability.md#multi-step-web-tests). Cela vaut pour les tests web qui exécutent une séquence d’actions. 
 
 Aucun frais supplémentaire n'est facturé pour les tests Ping sur une seule page. Les données de télémétrie des tests Ping et des tests à plusieurs étapes sont facturées, ainsi que d’autres données de télémétrie de votre application.
  
 ## <a name="operations-management-suite-subscription-entitlement"></a>Droit d’abonnement à Operations Management Suite
 
-En tant que [a récemment annoncé](https://blogs.technet.microsoft.com/msoms/2017/05/19/azure-application-insights-enterprise-as-part-of-operations-management-suite-subscription/), les clients qui achètent Microsoft Operations Management Suite E1 et E2 sont en mesure de tooget Application Insights entreprise comme un composant supplémentaire sans coût supplémentaire. Plus précisément, chaque unité de Operations Management Suite E1 et E2 inclut un nœud de too1 droit du plan d’entreprise hello d’Application Insights. Comme indiqué ci-dessus, chaque nœud de l’Application Insights inclut Mo too200 de données ingérées par jour (distinct à partir de la réception de données Analytique de journal), avec conservation des données de 90 jours sans coût supplémentaire. 
+Comme [annoncé récemment](https://blogs.technet.microsoft.com/msoms/2017/05/19/azure-application-insights-enterprise-as-part-of-operations-management-suite-subscription/), les clients qui achètent Microsoft Operations Management Suite E1 et E2 peuvent d’obtenir gratuitement Application Insights Enterprise comme composant supplémentaire. Plus précisément, chaque unité Operations Management Suite E1 et E2 inclut un droit à 1 nœud du plan Entreprise d’Application Insights. Comme indiqué ci-dessus, chaque nœud Application Insights inclut l’intégration de 200 Mo de données maximum par jour (en plus de l’intégration des données Log Analytics), avec une période de rétention des données de 90 jours, sans coût supplémentaire. 
 
 > [!NOTE]
-> tooensure que vous obtenez ce droit, vous devez avoir vos ressources d’Application Insights dans hello entreprise plan de tarification. Ce droit s’applique uniquement en tant que nœuds, les ressources Application Insights dans le plan de base hello ne seront pas en bénéficier. Notez que ce droit ne sera pas visible sur hello estimé des coûts affichés sur les fonctions hello + tarification panneau. 
+> Pour pouvoir bénéficier de ce droit, vos ressources Application Insights doivent figurer dans le plan de tarification Entreprise. Ce droit s’applique uniquement sous forme de nœuds, et les ressources Application Insights du plan De base ne pourront donc pas en bénéficier. Notez que ce droit n’apparaîtra pas dans les coûts estimés affichés dans le panneau Fonctionnalités + tarification. 
 >
  
 ## <a name="review-pricing-plans-and-estimate-costs"></a>Passer en revue les plans de tarification et estimer les coûts
 
-Applicaition Insights rend hello toounderstand facile tarifications disponibles et le coûts sont probablement de hello reposer sur des modèles d’utilisation récente. Commencez par ouvrir de hello **fonctionnalités + tarification** panneau Bonjour ressource Application Insights Bonjour portail Azure :
+Application Insights permet de comprendre facilement les plans de tarification disponibles et d’estimer les coûts en fonction des modèles d’utilisation récents. Commencez par ouvrir le panneau **Fonctionnalités + tarification** dans la ressource Application Insights du portail Azure :
 
 ![Choisissez Tarification.](./media/app-insights-pricing/01-pricing.png)
 
-**a.** Passez en revue votre volume de données pour le mois de hello. Cela inclut toutes les données de salutation reçu et conservées (après n’importe quel [échantillonnage](app-insights-sampling.md) à partir de votre serveur et les applications clientes et des tests de disponibilité.
+**a.** Consultez votre volume de données pour le mois. Cela inclut toutes les données reçues et conservées (après tous les [échantillonnages](app-insights-sampling.md) provenant de votre serveur, de vos applications clientes et des tests de disponibilité).
 
-**b.** Les [tests web multiétapes](app-insights-monitor-web-app-availability.md#multi-step-web-tests) font l’objet d’une facturation distincte. (Cela n’inclut pas les tests de disponibilité simple, qui sont inclus dans les frais de volume de données hello).
+**b.** Les [tests web multiétapes](app-insights-monitor-web-app-availability.md#multi-step-web-tests) font l’objet d’une facturation distincte. (Cela n’inclut pas les tests de disponibilité simples, qui sont compris dans les frais de volume de données.)
 
-**c.** Activer le plan d’entreprise hello.
+**c.** Activer le plan Entreprise.
 
-**d.** Parcourez le volume de données toodata gestion options tooview pourquoi le mois dernier, définir une limite quotidienne ou valeur d’échantillonnage d’ingestion.
+**d.** Cliquez pour accéder aux options de gestion des données pour afficher le volume de données pour le dernier mois et définir une limite quotidienne ou un échantillonnage d’ingestion.
 
-Des frais application Insights sont ajoutés tooyour facture Azure. Vous pouvez voir les détails de votre Azure facturer sur hello section facturation Hello portail Azure ou Bonjour [Azure Billing Portal](https://account.windowsazure.com/Subscriptions). 
+Les frais liés à Application Insights sont ajoutés à votre facture Azure. Les informations relatives à votre facture Azure s’affichent dans la section Facturation du portail Azure ou sur le [portail de facturation Azure](https://account.windowsazure.com/Subscriptions). 
 
-![Dans le menu latéral de hello, choisissez facturation.](./media/app-insights-pricing/02-billing.png)
+![Dans le menu latéral, choisissez Facturation.](./media/app-insights-pricing/02-billing.png)
 
 ## <a name="data-rate"></a>Débit de données
-Il existe trois façons les Bonjour vous envoyer des données de volume est limité :
+Le volume d’envoi de données est limité de trois façons :
 
-* **Échantillonnage :** ce mécanisme peut servir hello réduire de télémétrie envoyé à partir de vos applications serveur et client, avec des métriques de distorsion minimale. Il s’agit de hello principal outil quantité de hello tootune de données. Découvrez plus en détail les [fonctionnalités d’échantillonnage](app-insights-sampling.md). 
-* **Limite quotidienne :** quand la création d’une ressource Application Insights à partir de hello portail Azure cela a too500 Go/jour. Hello par défaut lors de la création d’une ressource Application Insights à partir de Visual Studio, est petit (seul 32,3 Mo/jour), qui est destinée uniquement toofaciliate de test. Dans ce cas, il est prévu que l’utilisateur hello déclenchera la limite quotidienne de hello avant de déployer l’application hello en production. capacité maximale de Hello est de 500 Go/jour, sauf si vous avez demandé un maximum supérieure pour une application de trafic élevé. Soyez prudent lorsque vous définissez la limite quotidienne de hello, comme votre intention doit être **jamais toohit hello limite quotidienne**, car vous allez ensuite de perdre des données pour reste hello du jour de hello et être toomonitor Impossible de votre application. toochange il, utilisez hello quotidienne volume cap panneau, lié à partir du Panneau de gestion des volumes de données hello (voir ci-dessous). Notez que certains types d’abonnement disposent d’un crédit qui ne peut pas être utilisé pour Application Insights. Si les abonnement hello de dépense limiter, hello quotidiennement panneau d’extrémité de fin n’a instructions comment tooremove elle et activer hello quotidienne toobe cap déclenché au-delà 32,3 Mo par jour.  
-* **La limitation :** cette limite hello données taux too32 k les événements par seconde, moyenne calculée sur 1 minute. 
+* **Échantillonnage :** ce mécanisme permet de réduire la quantité de données de télémétrie envoyées à partir de votre serveur et de vos applications clientes, avec une distorsion minimale des métriques. C’est le principal outil dont vous disposez pour ajuster la quantité de données. Découvrez plus en détail les [fonctionnalités d’échantillonnage](app-insights-sampling.md). 
+* **Limite quotidienne :** au moment de créer une ressource Application Insights à partir du portail Azure, cette limite est définie à 500 Go/jour. La valeur par défaut au moment de créer une ressource Application Insights à partir de Visual Studio est faible (seulement 32,3 Mo/jour) et vise uniquement à faciliter les tests. Dans ce cas, l’idée est que l’utilisateur augmente la limite quotidienne avant de déployer l’application en production. La limite maximale est de 500 Go/jour, à moins que vous en ayez demandé une plus élevée pour les besoins d’une application à fort trafic. Définissez la limite maximale avec précaution en partant du principe que vous ne devez **jamais atteindre la limite maximale**. Vous perdriez en effet le reste de données de la journée et ne pourriez pas surveiller votre application. Pour la modifier, servez-vous du panneau Limite quotidienne de volume, qui est lié au panneau Gestion du volume de données (voir ci-dessous). Notez que certains types d’abonnement disposent d’un crédit qui ne peut pas être utilisé pour Application Insights. Si l’abonnement impose une limite de dépense, le panneau Limite quotidienne indique comment la supprimer et permet d’augmenter la limite quotidienne au-delà de 32,3 Mo/jour.  
+* **Limitation :** ce paramètre limite le débit de données à 32 000 événements par seconde, en moyenne sur 1 minute. 
 
 
-*Que se passe-t-il si mon application dépasse le taux de limitation de hello ?*
+*Que se passe-t-il si mon application dépasse le taux limite ?*
 
-* volume Hello de données qui envoie de votre application est évaluée chaque minute. Si elle dépasse le taux par seconde de hello moyenne par minute de hello, serveur de hello refuse des demandes. Hello SDK met en mémoire tampon des données de hello et tente ensuite de tooresend, en répartissant un brusque sur plusieurs minutes. Si votre application envoie régulièrement des données au niveau au-dessus hello taux de limitation, certaines données sont supprimées. (hello ASP.NET, Java et kits de développement logiciel JavaScript essaient tooresend de cette manière ; autres kits de développement logiciel peuvent simplement les données de liste limitée). En cas de limitation, vous en êtes informé par un avertissement.
+* Le volume de données que votre application envoie est évalué à chaque minute. S’il dépasse le taux par seconde moyen de plus d’une minute, le serveur refuse des demandes. Le Kit de développement logiciel (SDK) met les données en mémoire tampon et essaie ensuite de renvoyer, en diffusant un pic pendant plusieurs minutes. Si votre application envoie régulièrement des données au-delà du taux limite, certaines données sont supprimées. (les kits de développement logiciel (SDK) ASP.NET, Java et JavaScript essaient de renvoyer de cette manière ; les autres SDK suppriment parfois simplement les données limitées). En cas de limitation, vous en êtes informé par un avertissement.
 
 *Comment déterminer la quantité de données envoyées par mon application ?*
 
-* Ouvrez hello **gestion des volumes de données** graphique du volume données quotidiennes panneau toosee hello. 
+* Ouvrez le panneau **Gestion du volume de données** pour afficher le graphique Volume de données quotidien. 
 * Ou dans Metrics Explorer, ajoutez un nouveau graphique et sélectionnez la mesure **Volume du point de données** . Basculez sur le regroupement et regroupez par **Type de données**.
 
-## <a name="tooreduce-your-data-rate"></a>tooreduce votre taux de données
-Voici quelques opérations que vous pouvez effectuer tooreduce votre volume de données :
+## <a name="to-reduce-your-data-rate"></a>Pour réduire le débit de données
+Voici quelques opérations possibles pour réduire le volume de données :
 
-* Utilisez l’ [échantillonnage](app-insights-sampling.md). Cette technologie réduit débit sans inclinaison vos métriques et sans interruption de toonavigate de capacité hello entre les éléments associés dans la recherche. Dans les applications serveurs, elle s’applique automatiquement.
-* [Limiter le nombre de hello des appels Ajax qui peuvent être signalées](app-insights-javascript.md#detailed-configuration) dans chaque affichage de page ou le commutateur hors tension Ajax reporting.
+* Utilisez l’ [échantillonnage](app-insights-sampling.md). Cette technologie réduit le débit de données sans fausser vos mesures et sans impacter la capacité à naviguer entre des éléments associés dans la recherche. Dans les applications serveurs, elle s’applique automatiquement.
+* [Limitez le nombre d’appels Ajax qui peuvent être signalés](app-insights-javascript.md#detailed-configuration) dans chaque affichage de page, ou désactivez les rapports Ajax.
 * Désactivez les modules de collecte dont vous n'avez pas besoin en [modifiant ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md). Par exemple, vous pouvez décider que les compteurs de performances ou les données de dépendance ne sont pas essentiels.
-* Fractionner vos clés d’instrumentation tooseparate télémétrie. 
-* Procédez à la pré-agrégation des métriques. Si vous avez placé les appels tooTrackMetric dans votre application, vous pouvez réduire le trafic à l’aide de la surcharge qui accepte le calcul de la moyenne de hello et l’écart type d’un lot de mesures hello. Une autre possibilité consiste à utiliser un [package de pré-agrégation](https://www.myget.org/gallery/applicationinsights-sdk-labs).
+* Diviser vos données de télémétrie pour séparer les clés d’instrumentation. 
+* Procédez à la pré-agrégation des métriques. Si vous avez placé des appels de TrackMetric dans votre application, vous pouvez réduire le trafic en utilisant la surcharge qui accepte votre calcul de la moyenne et de l’écart type d’un lot de mesures. Une autre possibilité consiste à utiliser un [package de pré-agrégation](https://www.myget.org/gallery/applicationinsights-sdk-labs).
 
-## <a name="managing-hello-maximum-daily-data-volume"></a>La gestion du volume de données quotidienne maximale hello
+## <a name="managing-the-maximum-daily-data-volume"></a>Gestion du volume maximal quotidien de données
 
-Vous pouvez utiliser hello quotidienne volume cap toolimit hello données collectées, mais si embout de hello est remplie, il entraîne une perte de toutes les telemetery envoyés à partir de votre application pour le reste de hello du jour de hello. Il s’agit de **déconseillé** toohave votre limite quotidienne hello application toohit depuis que vous avez sont tootrack impossible la santé hello et les performances de votre application après qu’il est atteint. 
+Vous pouvez utiliser un plafond de volume quotidien pour limiter les données collectées, mais si cette limite est atteinte, vous perdrez toute la télémétrie envoyée par votre application pour le reste de la journée. Il est **déconseillé** de laisser votre application atteindre le plafond quotidien, car vous ne pouvez pas suivre l’intégrité et les performances de votre application une fois que ce plafond est atteint. 
 
-Au lieu de cela, utilisez [échantillonnage](app-insights-sampling.md) tootune hello volume toohello niveau de données vous comme et utiliser la limite quotidienne de hello uniquement en tant que « dernier recours » dans le cas où votre application commence à envoyer de façon inattendue beaucoup plus grand nombre de telemetery. 
+Utilisez plutôt l’[échantillonnage](app-insights-sampling.md) pour ajuster le volume de données souhaité et utilisez le plafond quotidien uniquement en dernier recours, dans le cas où votre application commence à envoyer de beaucoup plus grands volumes de télémétrie de façon inattendue. 
 
-toochange la limite quotidienne de hello, Bonjour section de configuration de votre ressource Insihgts de l’Application, cliquez sur **gestion des volumes de données** puis **limite quotidienne**.
+Pour modifier la limite, dans la section Configurer de votre ressource Application Insights, cliquez sur **Gestion du volume de données**, puis sur **Limite quotidienne**.
 
-![Ajustement de limite de volume de données de télémétrie quotidienne hello](./media/app-insights-pricing/daily-cap.png) 
+![Ajustement de la limite du volume quotidien des données de télémétrie](./media/app-insights-pricing/daily-cap.png) 
 
 ## <a name="sampling"></a>échantillonnage
-[Échantillonnage](app-insights-sampling.md) est une méthode de réduction du taux de hello auquel télémétrie est envoyée au tooyour application, tandis qu’en conservant hello capacité toofind les événements liés au cours des recherches de diagnostic, et conserve toujours événement correcte compte. 
+[Sampling](app-insights-sampling.md) est une méthode vous permettant de réduire la fréquence d’envoi des données de télémétrie à votre application, tout en conservant la capacité à trouver des événements connexes lors des recherches de diagnostic, ainsi que le décompte des événements corrects. 
 
-L’échantillonnage est un moyen efficace tooreduce frais et rester au sein de votre quota mensuel. Hello algorithme d’échantillonnage conserve les éléments de télémétrie, afin que, par exemple, lorsque vous utilisez la recherche, vous pouvez rechercher les demande hello liées exception particulière de tooa. algorithme de Hello conserve également le nombre correct, afin que vous voyez hello des valeurs correctes dans l’Explorateur de métrique pour le taux de demandes, les taux d’exception et les autres compteurs.
+L’échantillonnage est un moyen efficace de réduire les coûts et de respecter votre quota mensuel. L’algorithme d’échantillonnage conserve les éléments associés à la télémétrie, afin que, lorsque vous utilisez la recherche par exemple, vous puissiez trouver la demande liée à une exception spécifique. L’algorithme conserve également le décompte correct. Cela vous permet de voir les valeurs correctes des taux de demandes, des taux d’exception et des autres compteurs dans Metric Explorer.
 
 Il existe plusieurs formes d’échantillonnage.
 
-* [Échantillonnage Adaptive](app-insights-sampling.md) est par défaut de hello pour hello Kit de développement ASP.NET, qui ajuste automatiquement le volume toohello de télémétrie envoie de votre application. Il s’exécute automatiquement dans hello SDK dans votre application web, afin que le trafic de télémétrie hello sur le réseau de hello est réduit. 
-* *Échantillonnage de l’ingestion* est une alternative qui fonctionne au niveau du point de hello où télémétrie à partir de votre application entre le service d’Application Insights hello. Il n’affecte pas volume hello de télémétrie envoyé à partir de votre application, mais elle réduit le volume hello conservée par le service de hello. Vous pouvez l’utiliser quota de hello tooreduce utilisé par les données de télémétrie à partir de navigateurs et d’autres kits de développement logiciel.
+* [L’échantillonnage adaptatif](app-insights-sampling.md) est la méthode par défaut pour le kit de développement logiciel (SDK) ASP.NET. Il s’ajuste automatiquement au volume de données de télémétrie envoyées par votre application. Il fonctionne automatiquement dans le Kit de développement logiciel (SDK) de votre application web, afin de réduire le trafic de télémétrie sur le réseau. 
+* *échantillonnage d’ingestion* est une méthode alternative qui fonctionne au niveau où les données de télémétrie issues de votre application entrent dans le service Application Insights. Il n’affecte pas le volume de télémétrie envoyé depuis votre application, mais il réduit le volume conservé par le service. Vous pouvez l’utiliser pour réduire le quota utilisé par les données de télémétrie provenant des navigateurs et d’autres kits de développement logiciel (SDK).
 
-réception tooset d’échantillonnage, définir le contrôle dans le panneau de tarification hello hello :
+Pour définir l’échantillonnage d’ingestion, définissez le contrôle dans le panneau Tarification :
 
-![Hello Quota et de tarification panneau, cliquez sur la vignette d’exemples hello et sélectionnez une fraction de l’échantillonnage.](./media/app-insights-pricing/04.png)
+![Dans le panneau Quotas et tarification, cliquez sur la vignette Exemples et sélectionnez une fraction d’échantillonnage.](./media/app-insights-pricing/04.png)
 
 > [!WARNING]
-> panneau d’échantillonnage des données Hello contrôle uniquement la valeur hello d’échantillonnage de l’ingestion. Il ne reflète le taux d’échantillonnage hello appliquée par hello Application Insights SDK dans votre application. Si les données de télémétrie entrants hello a déjà été échantillonnées à hello SDK, l’échantillonnage de réception n’est pas appliqué.
+> Le panneau d’échantillonnage de données contrôle uniquement la valeur d’échantillonnage de l’ingestion. Il ne reflète pas le taux d’échantillonnage qui est appliqué par le Kit de développement logiciel (SDK) Application Insights dans votre application. Si les données de télémétrie entrantes ont déjà été échantillonnées dans le kit de développement logiciel (SDK), l’échantillonnage d’ingestion n’est pas appliqué.
 > 
 
-hello toodiscover réel d’échantillonnage taux, quel que soit l’où il a été appliqué, utilisez un [les requête Analytique](app-insights-analytics.md) comme celui-ci :
+Pour découvrir le taux d’échantillonnage réel, indépendamment de l’endroit où il a été appliqué, utilisez une [requête Analytics](app-insights-analytics.md) telle que celle-ci :
 
     requests | where timestamp > ago(1d)
     | summarize 100/avg(itemCount) by bin(timestamp, 1h) 
     | render areachart 
 
-Chaque enregistrement, conservé `itemCount` indique nombre hello d’origine enregistrements qu’elle représente, too1 égal + nombre de hello d’anciens enregistrements rejetés. 
+Pour chaque enregistrement conservé, `itemCount` indique le nombre d’enregistrements d’origine qu’il représente, soit 1 + le nombre d’enregistrements précédents ignorés. 
 
 
 ## <a name="automation"></a>Automatisation
 
-Vous pouvez écrire un plan de prix script tooset hello, à l’aide de la gestion des ressources Azure. [Découvrez comment](app-insights-powershell.md#price).
+Vous pouvez utiliser le service de gestion de ressources Azure pour écrire un script de définition de plan tarifaire. [Découvrez comment](app-insights-powershell.md#price).
 
 ## <a name="limits-summary"></a>Synthèse des limites
 [!INCLUDE [application-insights-limits](../../includes/application-insights-limits.md)]

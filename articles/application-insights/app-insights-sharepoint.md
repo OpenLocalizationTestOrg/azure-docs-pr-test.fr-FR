@@ -1,5 +1,5 @@
 ---
-title: aaaMonitor un site SharePoint avec Application Insights
+title: "Surveillance d’un site SharePoint avec Application Insights"
 description: "Démarrage de la surveillance d'une nouvelle application avec une nouvelle clé d'instrumentation"
 services: application-insights
 documentationcenter: 
@@ -13,66 +13,66 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/24/2016
 ms.author: bwren
-ms.openlocfilehash: acfe99c24a4d77daec1017de0442ec952a1faba2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a3b37674469a131016f46af590e1eee3ba4cdc73
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="monitor-a-sharepoint-site-with-application-insights"></a>Surveillance d’un site SharePoint avec Application Insights
-Azure Application Insights hello contrôle la disponibilité, performances et l’utilisation de vos applications. Ici, vous allez apprendre comment tooset pour un site SharePoint.
+Azure Application Insights surveille la disponibilité, les performances et l’utilisation de vos applications. Vous allez maintenant apprendre à le configurer pour un site SharePoint.
 
 ## <a name="create-an-application-insights-resource"></a>Création d’une ressource Application Insights dans Azure
-Bonjour [portail Azure](https://portal.azure.com), créez une ressource Application Insights. Choisissez ASP.NET en tant que type de l’application hello.
+Dans le [portail Azure](https://portal.azure.com), créez une ressource Application Insights. Choisissez le type d'application ASP.NET.
 
-![Cliquez sur Propriétés, sélectionnez la clé de hello et appuyez sur ctrl + C](./media/app-insights-sharepoint/01-new.png)
+![Cliquez sur Propriétés, sélectionnez la clé et appuyez sur ctrl + C](./media/app-insights-sharepoint/01-new.png)
 
-panneau Hello qui s’ouvre est place hello où vous pouvez afficher des données d’utilisation et performances sur votre application. tooit de retour tooget prochaine que connexion tooAzure, vous devez rechercher une vignette pour qu’il sur l’écran d’accueil hello. Vous pouvez également cliquez sur Parcourir toofind il.
+Dans le panneau qui s’ouvre, vous trouverez des données relatives à l’utilisation et aux performances de votre application. Vous devriez trouver une vignette sur l’écran d’accueil pour accéder à ces informations, la prochaine fois que vous vous connecterez à Azure. Sinon, cliquez sur Parcourir.
 
-## <a name="add-our-script-tooyour-web-pages"></a>Ajouter notre script tooyour des pages web
-Dans le démarrage rapide, obtenir le script de hello pour les pages web :
+## <a name="add-our-script-to-your-web-pages"></a>Ajout de notre script dans vos pages web
+Dans Démarrage rapide, récupérez le script pour les pages Web :
 
 ![](./media/app-insights-sharepoint/02-monitor-web-page.png)
 
-Insérer un script hello juste avant hello &lt;/head&gt; balise de chaque page, vous souhaitez tootrack. Si votre site Web dispose d’une page maître, vous pouvez placer les script hello il. Par exemple, dans un projet ASP.NET MVC, vous placeriez le script dans View\Shared\_Layout.cshtml
+Insérez-le juste avant la balise &lt;/head&gt; de chaque page que vous voulez suivre. Si votre site Web possède une page maître, vous pouvez y placer le script. Par exemple, dans un projet ASP.NET MVC, vous placeriez le script dans View\Shared\_Layout.cshtml
 
-script de Hello contient la clé d’instrumentation hello qui dirige la ressource d’Application Insights hello télémétrie tooyour.
+Le script contient la clé d'instrumentation qui dirige la télémétrie vers votre ressource Application Insights.
 
-### <a name="add-hello-code-tooyour-site-pages"></a>Ajouter les pages du site hello code tooyour
-#### <a name="on-hello-master-page"></a>Sur la page maître de hello
-Si vous pouvez modifier la page maître du site hello, qui permettront aucune analyse pour chaque page dans le site de hello.
+### <a name="add-the-code-to-your-site-pages"></a>Ajouter le code aux pages de votre site
+#### <a name="on-the-master-page"></a>Sur la page maître
+Si vous pouvez modifier la page maître de votre site, vous pourrez surveiller chaque page du site.
 
-Extraire la page maître de hello et modifier à l’aide de SharePoint Designer ou un autre éditeur.
+Vérifiez la page maître et modifiez-la à l'aide de SharePoint Designer ou de n’importe quel autre éditeur.
 
 ![](./media/app-insights-sharepoint/03-master.png)
 
-Ajoutez le code hello juste avant hello </head> balise. 
+Ajoutez le code juste avant la balise </head> . 
 
 ![](./media/app-insights-sharepoint/04-code.png)
 
 #### <a name="or-on-individual-pages"></a>Ou sur des pages individuelles
-toomonitor un ensemble limité de pages, ajouter un script de hello séparément tooeach page. 
+Pour surveiller un ensemble limité de pages, ajoutez le script à chaque page, séparément. 
 
-Insérer un composant WebPart et incorporer l’extrait de code hello qu’elle contient.
+Insérez un composant Web et incorporez l'extrait de code qu'il contient.
 
 ![](./media/app-insights-sharepoint/05-page.png)
 
 ## <a name="view-data-about-your-app"></a>Affichage des données relatives à votre application
 Redéployez votre application.
 
-Panneau des applications tooyour retour Bonjour [portail Azure](https://portal.azure.com).
+Revenez au panneau de votre application dans le [portail Azure](https://portal.azure.com).
 
-événements de première Hello s’affichent dans la recherche. 
+Les premiers événements s’affichent dans Search. 
 
 ![](./media/app-insights-sharepoint/09-search.png)
 
 Après quelques secondes, cliquez sur Actualiser pour obtenir des données supplémentaires.
 
-Dans le panneau de vue d’ensemble de hello, cliquez sur **analytique de l’utilisation** toocharts toosee d’utilisateurs, les sessions et les vues de page :
+Dans le panneau de présentation, cliquez sur **Analyse de l’utilisation** pour accéder aux graphiques des utilisateurs, des sessions et des affichages de page :
 
 ![](./media/app-insights-sharepoint/06-usage.png)
 
-Cliquez sur n’importe quel toosee graphique plus de détails - par exemple les vues de Page :
+Par exemple, cliquez sur un graphique, comme celui nommé Affichages de page, pour plus d’informations :
 
 ![](./media/app-insights-sharepoint/07-pages.png)
 
@@ -81,14 +81,14 @@ Ou bien Utilisateurs :
 ![](./media/app-insights-sharepoint/08-users.png)
 
 ## <a name="capturing-user-id"></a>Capture des ID d’utilisateur
-extrait de code de page web standard Hello ne capture pas le nom d’utilisateur hello à partir de SharePoint, mais vous pouvez le faire avec une petite modification.
+L’extrait de code d’une page Web standard ne capture pas l’ID d’utilisateur à partir de SharePoint, mais vous pouvez y parvenir en effectuant une simple modification.
 
-1. Copiez hello Essentials liste déroulante dans Application Insights clé d’instrumentation de votre application. 
+1. Copiez la clé d’instrumentation de votre application de la liste déroulante Bases dans Application Insights. 
 
     ![](./media/app-insights-sharepoint/02-props.png)
 
-1. Remplacez par clé d’instrumentation hello « XXXX » dans l’extrait de code hello ci-dessous. 
-2. Incorporez un script de hello dans votre application SharePoint au lieu de l’extrait de code hello que vous obtenez à partir du portail de hello.
+1. Insérez la clé d’instrumentation à l’emplacement « XXXX » dans l’extrait de code ci-dessous. 
+2. Incorporez dans votre application SharePoint au lieu de l’extrait de code que vous obtenez à partir du portail.
 
 ```
 
@@ -99,26 +99,26 @@ extrait de code de page web standard Hello ne capture pas le nom d’utilisateur
 <script type="text/javascript"> 
 var personProperties; 
 
-// Ensure that hello SP.UserProfiles.js file is loaded before hello custom code runs. 
+// Ensure that the SP.UserProfiles.js file is loaded before the custom code runs. 
 SP.SOD.executeOrDelayUntilScriptLoaded(getUserProperties, 'SP.UserProfiles.js'); 
 
 function getUserProperties() { 
-    // Get hello current client context and PeopleManager instance. 
+    // Get the current client context and PeopleManager instance. 
     var clientContext = new SP.ClientContext.get_current(); 
     var peopleManager = new SP.UserProfiles.PeopleManager(clientContext); 
 
-    // Get user properties for hello target user. 
-    // tooget hello PersonProperties object for hello current user, use hello 
+    // Get user properties for the target user. 
+    // To get the PersonProperties object for the current user, use the 
     // getMyProperties method. 
 
     personProperties = peopleManager.getMyProperties(); 
 
-    // Load hello PersonProperties object and send hello request. 
+    // Load the PersonProperties object and send the request. 
     clientContext.load(personProperties); 
     clientContext.executeQueryAsync(onRequestSuccess, onRequestFail); 
 } 
 
-// This function runs if hello executeQueryAsync call succeeds. 
+// This function runs if the executeQueryAsync call succeeds. 
 function onRequestSuccess() { 
 var appInsights=window.appInsights||function(config){
 function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},r=document,f=window,e="script",o=r.createElement(e),i,u;for(o.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",r.getElementsByTagName(e)[0].parentNode.appendChild(o),t.cookie=r.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)s("track"+i.pop());return config.disableExceptionTracking||(i="onerror",s("_"+i),u=f[i],f[i]=function(config,r,f,e,o){var s=u&&u(config,r,f,e,o);return s!==!0&&t["_"+i](config,r,f,e,o),s}),t
@@ -129,7 +129,7 @@ function s(config){t[config]=function(){var i=arguments;t.queue.push(function(){
     appInsights.trackPageView(document.title,window.location.href, {User: personProperties.get_displayName()});
 } 
 
-// This function runs if hello executeQueryAsync call fails. 
+// This function runs if the executeQueryAsync call fails. 
 function onRequestFail(sender, args) { 
 } 
 </script> 
@@ -140,7 +140,7 @@ function onRequestFail(sender, args) {
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Tests Web](app-insights-monitor-web-app-availability.md) disponibilité de hello toomonitor de votre site.
+* [Tests Web](app-insights-monitor-web-app-availability.md) pour surveiller la disponibilité de votre site.
 * [Application Insights](app-insights-overview.md) pour les autres types d'applications.
 
 <!--Link references-->

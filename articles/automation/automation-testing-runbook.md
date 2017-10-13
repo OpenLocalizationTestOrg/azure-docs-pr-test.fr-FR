@@ -1,9 +1,9 @@
 ---
-title: aaaTesting un runbook dans Azure Automation | Documents Microsoft
-description: "Avant de publier un runbook dans Azure Automation, vous pouvez le tester tooensure fonctionne comme prévu.  Cet article décrit comment tootest un runbook et afficher sa sortie."
+title: "Test d’un runbook dans Azure Automation| Microsoft Docs"
+description: "Avant de publier un runbook dans Azure Automation, vous pouvez le tester pour vous assurer qu’il fonctionne comme prévu.  Cet article décrit la procédure de test d’un runbook et de l’affichage de son résultat."
 services: automation
 documentationcenter: 
-author: mgoedtel
+author: eslesar
 manager: jwhit
 editor: tysonn
 ms.assetid: 7f7db785-52c0-4613-aa12-b02fd32a5182
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/12/2016
 ms.author: magoedte;bwren
-ms.openlocfilehash: 8c531f702699d586f8215d4c171cb0ecf94732b7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2c811cc8c8277e9840babcf1043cde44238b8661
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="testing-a-runbook-in-azure-automation"></a>Test d’un runbook dans Azure Automation
-Lorsque vous testez un runbook, hello [brouillon](automation-creating-importing-runbook.md#publishing-a-runbook) est exécutée et la fin de toutes les actions qu’il effectue. Aucun historique des travaux ne sont créée, mais hello [sortie](automation-runbook-output-and-messages.md#output-stream) et [avertissement et erreur](automation-runbook-output-and-messages.md#message-streams) flux sont affichés dans hello Test volet de sortie. Messages toohello [flux détaillé](automation-runbook-output-and-messages.md#message-streams) s’affichent dans le volet de sortie de hello uniquement si hello [$VerbosePreference variable](automation-runbook-output-and-messages.md#preference-variables) a la valeur tooContinue.
+Lorsque vous testez un runbook, la [version Brouillon](automation-creating-importing-runbook.md#publishing-a-runbook) est exécutée et toutes les actions qu’il effectue sont finalisées. Aucun historique des tâches n’est créé, mais les flux [Résultat](automation-runbook-output-and-messages.md#output-stream) et [Avertissement et Erreur](automation-runbook-output-and-messages.md#message-streams) s’affichent dans le panneau de sortie du test. Les messages dirigés vers le [flux de messages](automation-runbook-output-and-messages.md#message-streams) s’affiche dans le panneau de résultat uniquement si la variable [$VerbosePreference variable](automation-runbook-output-and-messages.md#preference-variables) a pour valeur Continue.
 
-Bien que brouillon hello est en cours d’exécution, hello runbook toujours exécute normalement les flux de travail hello et effectue les actions relatives aux ressources dans un environnement de hello. Pour cette raison, vous devez tester les runbooks uniquement sur des ressources hors production.
+Bien que la version brouillon soit exécutée, le runbook exécute toujours le flux de travail normalement et effectue des actions sur des ressources dans l’environnement. Pour cette raison, vous devez tester les runbooks uniquement sur des ressources hors production.
 
-Hello procédure tootest chaque [type de runbook](automation-runbook-types.md) est hello identiques, et il n’existe aucune différence dans le test entre l’éditeur graphique de hello Bonjour portail Azure et l’éditeur de texte hello.  
+La procédure de chaque [type de runbook](automation-runbook-types.md) est identique et il n’y a aucune différence de test entre l’éditeur de texte et l’éditeur graphique dans le portail Azure.  
 
-## <a name="tootest-a-runbook-in-hello-azure-portal"></a>tootest un runbook dans hello portail Azure
-Vous pouvez travailler avec n’importe quelle [runbook type](automation-runbook-types.md) Bonjour portail Azure.
+## <a name="to-test-a-runbook-in-the-azure-portal"></a>Pour tester le runbook dans le portail Azure
+Vous pouvez utiliser n’importe quel [type de runbook](automation-runbook-types.md) dans le portail Azure.
 
-1. Ouvrez hello brouillon du runbook hello soit Bonjour [éditeur de texte](automation-edit-textual-runbook.md) ou [éditeur graphique](automation-graphical-authoring-intro.md).
-2. Cliquez sur hello **Test** Panneau de Test bouton tooopen hello.
-3. Si hello runbook possède des paramètres, ils seront afficheront dans le volet de gauche hello où vous pouvez fournir toobe de valeurs utilisée pour le test de hello.
-4. Si vous souhaitez que les tests de hello toorun sur un [Runbook Worker hybride](automation-hybrid-runbook-worker.md), puis modifiez **paramètres d’exécution** trop**Worker hybride** et le nom de select hello du groupe cible de hello.  Sinon, conservez la valeur par défaut hello **Azure** test de hello toorun dans le cloud de hello.
-5. Cliquez sur hello **Démarrer** test de bouton toostart hello.
-6. Si le runbook hello est [PowerShell Workflow](automation-runbook-types.md#powershell-workflow-runbooks) ou [Graphical](automation-runbook-types.md#graphical-runbooks), vous pouvez arrêter ou suspendre pendant est testée avec les boutons hello sous hello volet sortie. Lorsque vous interrompez hello runbook, il termine l’activité en cours hello avant de s’interrompre. Une fois hello runbook est interrompu, vous pouvez l’arrêter ou le redémarrer.
-7. Inspectez la sortie hello runbook hello dans le volet de sortie hello.
+1. Ouvrez la version Brouillon du runbook dans l’[éditeur de texte](automation-edit-textual-runbook.md) ou l’[éditeur graphique](automation-graphical-authoring-intro.md).
+2. Cliquez sur le bouton **Tester** pour ouvrir le panneau de test.
+3. Si le runbook possède des paramètres, ils figureront dans le volet gauche dans lequel vous pourrez fournir des valeurs à utiliser pour le test.
+4. Si vous souhaitez exécuter le test sur [Runbook Worker hybride](automation-hybrid-runbook-worker.md), définissez les **Paramètres d’exécution** sur **Worker hybride** et sélectionnez le nom du groupe cible.  Dans le cas contraire, conservez la valeur par défaut **Azure** pour exécuter le test dans le cloud.
+5. Cliquez sur le bouton **Démarrer** pour démarrer le test.
+6. Si le runbook est [PowerShell Workflow](automation-runbook-types.md#powershell-workflow-runbooks) ou [Graphique](automation-runbook-types.md#graphical-runbooks), vous pouvez l’arrêter ou le suspendre pendant qu’il est en cours de test en vous aidant des boutons situés sous le panneau de résultat. Lorsque vous interrompez le runbook, il termine l’activité en cours avant de s’interrompre. Lorsque le runbook est suspendu, vous pouvez l’arrêter ou le redémarrer.
+7. Inspectez la sortie du runbook dans le panneau de résultat.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* toolearn comment toocreate ou importer un runbook, consultez [création ou importation d’un runbook dans Azure Automation](automation-creating-importing-runbook.md)
-* toolearn plus sur la création de graphiques, consultez [création graphique dans Azure Automation](automation-graphical-authoring-intro.md)
-* tooget a démarré avec des runbooks de flux de travail PowerShell, consultez [mon premier runbook de flux de travail PowerShell](automation-first-runbook-textual.md)
-* toolearn plus sur la configuration des messages d’état runboks tooreturn et les erreurs, y compris les pratiques recommandées, consultez [Runbook sortie et les messages dans Azure Automation](automation-runbook-output-and-messages.md)
+* Pour savoir comment créer ou importer un Runbook, consultez [Création ou importation d’un runbook dans Azure Automation](automation-creating-importing-runbook.md)
+* Pour en savoir plus sur la création graphique, consultez [Création de graphiques dans Azure Automation](automation-graphical-authoring-intro.md)
+* Pour une prise en main des Runbooks de flux de travail PowerShell, consultez [Mon premier runbook PowerShell Workflow](automation-first-runbook-textual.md)
+* Pour en savoir plus sur la configuration de Runbooks pour renvoyer des messages d’état et des erreurs, y compris sur les pratiques recommandées, consultez [Sortie et messages de Runbook dans Azure Automation](automation-runbook-output-and-messages.md)
 

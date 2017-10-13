@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure clé de coffre Documentation - didacticiels, référence de l’API | Documents Microsoft"
-description: "Découvrez comment toouse le coffre de clés toocreate et mettre à jour les clés d’accès et de chiffrement les ressources de cloud, des applications et des solutions. Didacticiels, références d’API et autres."
+title: "Documentation Azure Key Vault - Didacticiels, informations de référence sur les API | Microsoft Docs"
+description: "Apprenez à utiliser Key Vault pour créer et gérer des clés d’accès et de chiffrement pour vos ressources, applications et solutions cloud. Didacticiels, références d’API et autres."
 services: key-vault
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: a7fbebf94b3f345731ccba0ab788c83efa4c021e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3267373f6db336c34d13709cc0392631531313f4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="key-vault-documentation"></a>Documentation Key Vault
 
-Découvrez comment toouse le coffre de clés toosafeguard et gérer des clés de chiffrement et les secrets utilisés par les applications cloud et les services. Didacticiels, des références de l’API et toute autre documentation vous montrent comment toocreate et gérer les clés d’accès et de chiffrement vos ressources et les solutions.
+Apprenez à utiliser Key Vault pour protéger et gérer les clés de chiffrement et les secrets utilisés par les services et les applications cloud. Des didacticiels, références d’API et autres documents vous montrent comment créer et gérer des clés d’accès et de chiffrement pour vos ressources et solutions.
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,6 +1,6 @@
 ---
-title: "guide d’aaaTroubleshooting pour la diffusion en continu | Documents Microsoft"
-description: "Cette rubrique fournit des suggestions sur comment tootroubleshoot live des problèmes de diffusion en continu."
+title: "Guide de dépannage de la vidéo en flux continu | Microsoft Docs"
+description: "Cette rubrique fournit des suggestions sur la façon de résoudre les problèmes de vidéo en flux continu."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,56 +14,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 8549bae947ff3b225ce624220d1e48b63f90208c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fa91baf7c494941fccf0e6ca38b930f3c2a521ce
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="troubleshooting-guide-for-live-streaming"></a>Guide de dépannage de la vidéo en flux continu
-Cette rubrique offre des suggestions sur la façon de tootroubleshoot dynamique de certains problèmes de diffusion en continu.
+Cette rubrique fournit des suggestions sur la façon de résoudre certains problèmes de vidéo en flux continu.
 
-## <a name="issues-related-tooon-premises-encoders"></a>Les problèmes liés à des encodeurs de tooon local
-Cette section fournit des suggestions de tootroubleshoot des problèmes connexes tooon local encodeurs qui sont configurés toosend un canaux tooAMS de flux à débit binaire unique qui est activés pour l’encodage live.
+## <a name="issues-related-to-on-premises-encoders"></a>Problèmes liés aux encodeurs locaux
+Cette section fournit des suggestions sur la façon de résoudre les problèmes liés aux encodeurs locaux qui sont configurés pour envoyer un flux à débit binaire unique à des canaux AMS activés pour l’encodage live.
 
-### <a name="problem-would-like-toosee-logs"></a>Problème : Aimeriez toosee journaux
+### <a name="problem-would-like-to-see-logs"></a>Problème : vous aimeriez voir les journaux
 * **Problème potentiel**: impossible de trouver des journaux de l’encodeur qui pourraient aider à déboguer des problèmes.
   
   * **Telestream Wirecast** : les journaux se trouvent en général sous C:\Users\{nom_utilisateur}\AppData\Roaming\Wirecast\ 
-  * **Live élémentaire**: vous trouverez a des liens toologs sur le portail de gestion hello. Cliquez sur **Statistiques**, puis **Journaux**. Sur hello **des fichiers journaux** page, vous verrez une liste de tous les journaux hello des éléments de l’événement en direct ; sélectionnez hello une correspondant à votre session actuelle. 
-  * **Flash Media Encoder de Live**: vous trouverez hello **répertoire du journal en cours...**  en naviguant toohello **journal de codage** onglet.
+  * **Elemental Live** : vous pouvez trouver des liens vers les journaux sur le portail de gestion. Cliquez sur **Statistiques**, puis **Journaux**. Dans la page **Fichiers journaux**, vous trouvez une liste des journaux pour tous les éléments LiveEvent. Sélectionnez celui qui correspond à votre session active. 
+  * **Flash Media Live Encoder** : vous pouvez trouver le **Répertoire des journaux...** en accédant à l’onglet **Journal d’encodage**.
 
 ### <a name="problem-there-is-no-option-for-outputting-a-progressive-stream"></a>Problème : il n’existe aucune option pour générer un flux progressif
-* **Problème potentiel**: encodeur hello utilisé ne désentrelacer automatiquement. 
+* **Problème potentiel**: l’encodeur utilisé n’effectue pas de désentrelacement automatique. 
   
-    **Étapes de dépannage**: recherchez une option de désentrelacement dans l’interface d’encodeur hello. Une fois le désentrelacement activé, revérifiez les paramètres de sortie progressive. 
+    **Étapes de dépannage**: recherchez une option de désentrelacement dans l’interface de l’encodeur. Une fois le désentrelacement activé, revérifiez les paramètres de sortie progressive. 
 
-### <a name="problem-tried-several-encoder-output-settings-and-still-unable-tooconnect"></a>Problème : A tenté de plusieurs paramètres de sortie l’encodeur et tooconnect toujours pas.
+### <a name="problem-tried-several-encoder-output-settings-and-still-unable-to-connect"></a>Problème : vous avez essayé plusieurs paramètres de sortie d’encodeur et la connexion échoue encore.
 * **Problème potentiel**: le canal d’encodage Azure n’a pas été réinitialisé correctement. 
   
-    **Étapes de dépannage**: Assurez-vous qu’encodeur de hello n’est plus repousse tooAMS, arrêter et réinitialiser le canal de hello. Une fois en cours d’exécution, essayez de connecter votre encodeur avec les nouveaux paramètres de hello. Si cela ne résout toujours pas de problème de hello, essayez de créer un nouveau canal entièrement, parfois, les canaux peuvent être endommagés après que plusieurs tentatives infructueuses.  
-* **Problème potentiel**: taille de GOP hello ou les paramètres de l’image clé ne sont pas optimaux. 
+    **Étapes de dépannage** : vérifiez que l’encodeur ne transmet plus les données à AMS, arrêtez puis réinitialisez le canal. Une fois le canal redémarré, essayez de connecter votre encodeur avec les nouveaux paramètres. Si cela ne résout toujours pas le problème, essayez de créer un canal. Parfois, les canaux peuvent être endommagés après plusieurs tentatives infructueuses.  
+* **Problème potentiel**: la taille de GOP ou les paramètres d’image clé ne sont pas optimaux. 
   
-    **Étapes de dépannage**: la taille de GOP ou l’intervalle d’image clé recommandé(e) est de deux secondes. Certains encodeurs calculent ce paramètre en nombre d’images, tandis que d’autres utilisent des secondes. Par exemple : lors de la sortie à 30 i/s, hello taille de GOP serait 60 frames, qui est équivalent too2 secondes.  
-* **Problème potentiel**: ports fermés bloquent les flux hello. 
+    **Étapes de dépannage**: la taille de GOP ou l’intervalle d’image clé recommandé(e) est de deux secondes. Certains encodeurs calculent ce paramètre en nombre d’images, tandis que d’autres utilisent des secondes. Par exemple : lors de la sortie de 30 i/s, la taille de GOP serait de 60 images, ce qui équivaut à deux secondes.  
+* **Problème potentiel**: des ports fermés bloquent le flux de données. 
   
-    **Étapes de dépannage**: lors de la diffusion en continu via le protocole RTMP, vérifiez le pare-feu et/ou tooconfirm de paramètres de proxy que les ports de sortie 1935 et 1936 sont ouverts. Lorsque vous utilisez la diffusion en flux continu RTP, vérifiez que le port sortant 2010 est ouvert. 
+    **Étapes de dépannage**: lors de la diffusion en flux continu via RTMP, vérifiez les paramètres de pare-feu et/ou de proxy pour confirmer que les ports sortants 1935 et 1936 sont ouverts. Lorsque vous utilisez la diffusion en flux continu RTP, vérifiez que le port sortant 2010 est ouvert. 
 
-### <a name="problem-when-configuring-hello-encoder-toostream-with-hello-rtp-protocol-there-is-no-place-tooenter-a-host-name"></a>Problème : Lorsque vous configurez hello encodeur toostream hello protocole RTP, il n’est pas tooenter un nom d’hôte.
-* **Problème potentiel**: les encodeurs de nombreux RTP ne permettent pas de noms d’hôte et une adresse IP doit toobe acquis.  
+### <a name="problem-when-configuring-the-encoder-to-stream-with-the-rtp-protocol-there-is-no-place-to-enter-a-host-name"></a>Problème : lors de la configuration de l’encodeur pour la diffusion avec le protocole RTP, il n’y a aucun emplacement où entrer un nom d’hôte.
+* **Problème potentiel**: de nombreux encodeurs RTP n’autorisent pas les noms d’hôtes et une adresse IP doit être acquise.  
   
-    **Étapes de dépannage**: toofind hello d’adresse IP, ouvrez une invite de commande sur n’importe quel ordinateur. toodo dans Windows, ouvrez hello Lanceur d’exécution (WIN + R) et tapez « cmd » tooopen.  
+    **Étapes de dépannage**: pour trouver l’adresse IP, ouvrez une invite de commandes sur n’importe quel ordinateur. Pour ce faire, dans Windows, ouvrez le lanceur Exécuter (touche Windows + R) et tapez « cmd ».  
   
-    Une fois que l’invite de commandes hello est ouvert, tapez « Ping [nom d’hôte de AMS] ». 
+    Une fois l’invite de commandes ouverte, tapez « Ping [nom_hôte_AMS] ». 
   
-    nom d’hôte Hello peut être dérivée en omettant le numéro du port hello de hello Azure URL de réception, mise en évidence dans hello l’exemple suivant : 
+    Vous pouvez obtenir le nom d’hôte en omettant le numéro de port de l’URL de réception Azure, comme illustré dans l’exemple suivant : 
   
     rtp://test2-amstest009.rtp.channel.mediaservices.windows.net:2010/ 
   
     ![FMLE](./media/media-services-fmle-live-encoder/media-services-fmle10.png)
 
 > [!NOTE]
-> Si après avoir appliqué les étapes de dépannage hello que vous toujours ne peut pas diffuser en continu, envoyer un ticket de support à l’aide de hello portail Azure.
+> Si, après avoir suivi la procédure de dépannage, vous ne pouvez toujours pas diffuser en continu avec succès, envoyez un ticket de support en utilisant le portail Azure.
 > 
 > 
 

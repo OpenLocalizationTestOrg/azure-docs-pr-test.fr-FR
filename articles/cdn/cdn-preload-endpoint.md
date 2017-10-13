@@ -1,6 +1,6 @@
 ---
-title: aaaPre-chargement des ressources sur un point de terminaison CDN Azure | Documents Microsoft
-description: "Découvrez comment toopre-charge mise en cache le contenu sur un point de terminaison CDN Azure."
+title: "Préchargement d’éléments multimédias sur un point de terminaison CDN Azure | Microsoft Docs"
+description: "Découvrez comment précharger du contenu mis en cache sur un point de terminaison CDN Azure."
 services: cdn
 documentationcenter: 
 author: smcevoy
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 08ac4b834f1ac8ce59d22e65fa8adea11bafcf17
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1f2dcd9a91bb6e883cbef06373c1acd98bf8d45f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="pre-load-assets-on-an-azure-cdn-endpoint"></a>Préchargement d’éléments multimédias sur un point de terminaison CDN Azure
 [!INCLUDE [cdn-verizon-only](../../includes/cdn-verizon-only.md)]
 
-Par défaut, les éléments sont d'abord mis en cache lorsqu'ils sont demandés. Cela signifie que hello première requête de chaque région peut être plus longue, étant donné que les serveurs de périphérie hello n’aura pas le contenu hello mis en cache et devez serveur d’origine toohello tooforward hello demande. Le préchargement du contenu permet d'éviter cette latence à la première occurrence.
+Par défaut, les éléments sont d'abord mis en cache lorsqu'ils sont demandés. Cela signifie que la première requête de chaque région peut prendre plus de temps puisque le contenu des serveurs Edge ne sera pas mis en cache et que vous devrez transmettre la requête au serveur d'origine. Le préchargement du contenu permet d'éviter cette latence à la première occurrence.
 
-En outre tooproviding une meilleure expérience client, préchargement vos ressources mises en cache peut également réduire le trafic réseau sur le serveur d’origine hello.
+En plus d’offrir une meilleure expérience client, le préchargement de vos ressources mises en cache peut également réduire le trafic réseau sur le serveur d'origine.
 
 > [!NOTE]
-> Préchargement des ressources est utile pour les événements de grande taille ou de contenu qui devient tooa accessibles simultanément un grand nombre d’utilisateurs, comme une nouvelle version de film ou d’une mise à jour logicielle.
+> Le préchargement des ressources est utile lors de grands événements ou lorsque le contenu est disponible simultanément pour un grand nombre d’utilisateurs, par exemple lors de la sortie d’un film ou d’une mise à jour logicielle.
 > 
 > 
 
 Ce didacticiel vous guide tout au long du préchargement de contenu mis en cache sur tous les nœuds de périphérie CDN Azure.
 
 ## <a name="walkthrough"></a>Procédure pas à pas
-1. Bonjour [Azure Portal](https://portal.azure.com), parcourir le profil CDN toohello contenant hello de point de terminaison souhaité toopre en charge.  Panneau de profil Hello s’ouvre.
-2. Cliquez sur le point de terminaison hello dans la liste de hello.  Panneau de point de terminaison Hello s’ouvre.
-3. À partir du Panneau de point de terminaison CDN hello, cliquez sur le bouton charger de hello.
+1. Dans le [portail Azure](https://portal.azure.com), recherchez le profil CDN qui contient le point de terminaison que vous souhaitez précharger.  Le panneau Profil s’ouvre.
+2. Cliquez sur le point de terminaison dans la liste.  Le panneau du point de terminaison s’ouvre.
+3. Dans le panneau du point de terminaison CDN, cliquez sur le bouton Charger.
    
     ![Panneau du point de terminaison CDN](./media/cdn-preload-endpoint/cdn-endpoint-blade.png)
    
-    Panneau de charge Hello s’ouvre.
+    Le panneau Charger s’ouvre.
    
     ![Panneau de chargement CDN](./media/cdn-preload-endpoint/cdn-load-blade.png)
-4. Entrez le chemin d’accès complet de hello de chaque élément multimédia, vous souhaitez tooload (par exemple, `/pictures/kitten.png`) Bonjour **chemin d’accès** zone de texte.
+4. Entrez le chemin complet de chaque élément multimédia que vous souhaitez charger (par exemple, `/pictures/kitten.png`) dans la zone de texte **Chemin d’accès** .
    
    > [!TIP]
-   > Plus **chemin d’accès** zones de texte s’affiche après que vous entrez le texte tooallow toobuild une liste de plusieurs ressources.  Vous pouvez supprimer des éléments multimédias à partir de la liste de hello en cliquant sur le bouton de sélection (...) hello.
+   > Après avoir saisi du texte, d’autres zones de texte **Chemin d’accès** s’afficheront pour vous permettre de créer une liste de plusieurs éléments multimédias.  Vous pouvez supprimer des éléments multimédias de la liste en cliquant sur le bouton points de suspension (...).
    > 
-   > Chemins d’accès doivent être une URL relative qui correspond à la suivante de hello [expression régulière](https://msdn.microsoft.com/library/az24scfc.aspx):  
+   > Les chemins d’accès doivent être une URL relative qui satisfait à [l’expression régulière](https://msdn.microsoft.com/library/az24scfc.aspx) suivante :  
    > >Chargement d’un fichier unique `@"^(?:\/[a-zA-Z0-9-_.%=\u0020]+)+$"`;  
    > >Chargement d’un fichier unique avec chaîne de requête `@"^(?:\?[-_a-zA-Z0-9\/%:;=!,.\+'&\u0020]*)?$";`  
    > 
@@ -58,7 +58,7 @@ Ce didacticiel vous guide tout au long du préchargement de contenu mis en cache
    > 
    
     ![Bouton Charger](./media/cdn-preload-endpoint/cdn-load-paths.png)
-5. Cliquez sur hello **charge** bouton.
+5. Cliquez sur le bouton **Charger** .
    
     ![Bouton Charger](./media/cdn-preload-endpoint/cdn-load-button.png)
 

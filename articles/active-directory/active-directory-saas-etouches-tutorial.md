@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à etouches | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et etouches."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et etouches."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,223 +14,223 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jeedes
-ms.openlocfilehash: 5f3ff7550e660b0fc52612140ca55061504b5edd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3cd9e9d6aae924369065ca492b1f6380c0ddc5fe
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-etouches"></a>Didacticiel : Intégration d’Azure Active Directory à etouches
 
-Dans ce didacticiel, vous apprendrez comment etouches toointegrate avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer etouches à Azure Active Directory (Azure AD).
 
-Intégration etouches à Azure AD offre hello avantages suivants :
+L’intégration d’etouches à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooetouches
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooetouches (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à etouches.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à etouches (via l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec etouches, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à etouches, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement etouches pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout d’etouches à partir de la galerie de hello
+1. Ajout d’etouches à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-etouches-from-hello-gallery"></a>Ajout d’etouches à partir de la galerie de hello
-intégration de hello tooconfigure d’etouches dans Azure AD, vous devez etouches tooadd à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-etouches-from-the-gallery"></a>Ajout d’etouches à partir de la galerie
+Pour configurer l’intégration d’etouches à Azure AD, vous devez ajouter etouches à partir de la galerie à votre liste d’applications SaaS gérées.
 
-**etouches tooadd à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter etouches à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
-    ![bouton d’Azure Active Directory Hello][1]
+    ![Bouton Azure Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
-    ![panneau des applications Enterprise Hello][2]
+    ![Panneau Applications d’entreprise][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
-    ![Nouveau bouton d’application Hello][3]
+    ![Bouton Nouvelle application][3]
 
-4. Dans la zone de recherche de hello, tapez **etouches**, sélectionnez **etouches** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
+4. Dans la zone de recherche, tapez **etouches**, sélectionnez **etouches** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
-    ![etouches dans la liste des résultats hello](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_addfromgallery.png)
+    ![etouches dans la liste des résultats](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_addfromgallery.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec etouches avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans etouches est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans etouches doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur etouches équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur etouches associé doit être établie.
 
-Dans etouches, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans etouches, assignez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec etouches, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec etouches, vous devez suivre les indications des sections suivantes :
 
-1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Créer un utilisateur de test etouches](#create-an-etouches-test-user)**  -toohave un homologue de Britta Simon dans etouches est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Créer un utilisateur de test etouches](#create-an-etouches-test-user)** pour avoir un équivalent de Britta Simon dans etouches lié à la représentation Azure AD associée.
+4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Tester l’authentification unique](#test-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application etouches.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application etouches.
 
-**tooconfigure Azure AD single sign-on avec etouches, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec etouches, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **etouches** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **etouches**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_samlbase.png)
 
-3. Sur hello **etouches domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL etouches**, procédez comme suit :
 
     ![Informations d’authentification unique dans Domaine et URL etouches](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://www.eiseverywhere.com/saml/accounts/?sso&accountid=<ACCOUNTID>`
+    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://www.eiseverywhere.com/saml/accounts/?sso&accountid=<ACCOUNTID>`
 
-    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://www.eiseverywhere.com/<instance name>`
+    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://www.eiseverywhere.com/<instance name>`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour de valeur de hello avec hello réel connectent URL et l’identificateur, qui est expliquée plus loin dans le didacticiel de hello.
+    > Il ne s’agit pas de valeurs réelles. Vous mettez à jour la valeur avec l’URL de connexion et l’identificateur réels. La procédure est expliquée plus loin dans le didacticiel.
     > 
 
-4. etouches application attend les assertions SAML hello dans un format spécifique. Configurer hello suivant des revendications pour cette application. Vous pouvez gérer les valeurs de ces attributs hello depuis hello **attribut utilisateur** de l’application hello. Hello suivant capture d’écran montre un exemple de cela. 
+4. L’application etouches attend les assertions SAML dans un format spécifique. Configurez les revendications suivantes pour cette application. Vous pouvez gérer les valeurs de ces attributs à partir des « **Attributs utilisateur** » de l’application. La capture d’écran suivante montre un exemple : 
 
     ![Attribut utilisateur](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_attribute.png) 
 
-5. Bonjour **attributs utilisateur** section hello **l’authentification unique** boîte de dialogue, configurer des attributs de jeton SAML comme indiqué dans l’image de hello et effectuer hello comme suit :
+5. Dans la section **Attributs utilisateur** de la boîte de dialogue **Authentification unique**, configurez l’attribut de jeton SAML comme sur l’image et procédez comme suit :
     
     | Nom de l'attribut | Valeur de l’attribut |
     | ------------------- | -------------------- |
     | Email | user.mail |    
     
-    a. Cliquez sur **ajouter un attribut** tooopen hello **ajouter un attribut** boîte de dialogue.
+    a. Cliquez sur **Ajouter un attribut** pour ouvrir la boîte de dialogue **Ajouter un attribut**.
 
     ![Ajouter un attribut](./media/active-directory-saas-etouches-tutorial/tutorial_attribute_04.png)
 
     ![Boîte de dialogue Ajouter un attribut](./media/active-directory-saas-etouches-tutorial/tutorial_attribute_05.png)
 
-    b. Bonjour **nom** zone de texte, nom d’attribut type hello indiqué pour cette ligne.
+    b. Dans la zone de texte **Attribut**, indiquez le nom d’attribut pour cette ligne.
 
-    c. À partir de hello **valeur** liste, la valeur d’attribut type hello indiqué pour cette ligne.
+    c. Dans la liste **Valeur** , saisissez la valeur d’attribut affichée pour cette ligne.
     
     d. Cliquez sur **OK**. 
 
-6. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+6. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
-    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_certificate.png) 
+    ![Lien Téléchargement de certificat](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_certificate.png) 
 
 7. Cliquez sur le bouton **Enregistrer** .
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-etouches-tutorial/tutorial_general_400.png)
 
-8. tooget SSO configuré pour votre application, effectuez hello dans l’application d’etouches hello comme suit : 
+8. Pour configurer l’authentification unique pour votre application, procédez comme suit dans l’application etouches : 
 
     ![Configuration d’etouches](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_06.png) 
 
-    a. Connexion trop**etouches** application à l’aide de droits d’administrateur hello.
+    a. Connectez-vous à l’application **etouches** à l’aide des droits d’administrateur.
    
-    b. Accédez toohello **SAML** Configuration.
+    b. Accédez à la configuration **SAML**.
 
-    c. Bonjour **paramètres généraux** section et ouvrez votre certificat téléchargé à partir du portail Azure dans le bloc-notes, hello copie le contenu, puis collez-la dans la zone de texte hello IDP métadonnées. 
+    c. Dans la section **Paramètres généraux**, ouvrez votre certificat téléchargé à partir du portail Azure dans le Bloc-notes, copiez le contenu, puis collez-le dans la zone de texte des métadonnées IDP. 
 
-    d. Cliquez sur hello **Enregistrer & rester** bouton.
+    d. Cliquez sur le bouton **Enregistrer et rester**.
   
-    e. Cliquez sur hello **mise à jour de métadonnées** bouton Bonjour section de métadonnées SAML. 
+    e. Dans la section SAML Metadata (Métadonnées SAML), cliquez sur le bouton **Update Metadata (Mettre à jour les métadonnées)** . 
 
-    f. S’ouvre hello page et effectuer l’authentification unique. Une fois hello SSO fonctionne, puis vous pouvez configurer de nom d’utilisateur hello.
+    f. Cela ouvre la page et effectue l’authentification unique. Une fois l’authentification unique effectuée, vous pouvez configurer le nom d’utilisateur.
 
-    g. Dans le champ de nom d’utilisateur de hello, sélectionnez hello **emailaddress** comme indiqué dans l’image hello ci-dessous. 
+    g. Dans le champ Nom d’utilisateur, sélectionnez **l’adresse e-mail** comme indiqué sur l’illustration ci-dessous. 
 
-    h. Hello de copie **ID d’entité SP** valeur et le coller dans hello **identificateur** zone de texte, qui se trouve dans **etouches domaine et les URL** section sur le portail Azure.
+    h. Copiez la valeur de l’**ID d’entité SP** et collez-la dans la zone de texte **Identificateur** de la section **Domaine et URL etouches** du portail Azure.
 
-    i. Hello de copie **URL SSO / ACS** valeur et le coller dans hello **URL de connexion** zone de texte, qui se trouve dans **etouches domaine et les URL** section sur le portail Azure.
+    i. Copiez la valeur de l’**URL d’authentification unique / ACS** et collez-la dans la zone de texte **URL de connexion** de la section **Domaine et URL etouches** du portail Azure.
    
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur de test Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
-    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-etouches-tutorial/create_aaduser_01.png) 
+    ![Bouton Azure Active Directory](./media/active-directory-saas-etouches-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
-    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-etouches-tutorial/create_aaduser_02.png) 
+    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-etouches-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
-    ![bouton Ajouter de Hello](./media/active-directory-saas-etouches-tutorial/create_aaduser_03.png) 
+    ![Bouton Ajouter](./media/active-directory-saas-etouches-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
-    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-etouches-tutorial/create_aaduser_04.png) 
+    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-etouches-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-an-etouches-test-user"></a>Créer un utilisateur de test etouches
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans etouches. Travailler avec [etouches Client prend en charge l’équipe](https://www.etouches.com/event-software/support/customer-support/) tooadd les utilisateurs de hello dans la plateforme d’etouches hello.
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans etouches. Collaborez avec l’[équipe du support technique etouches](https://www.etouches.com/event-software/support/customer-support/) pour ajouter des utilisateurs à la plateforme etouches.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooetouches.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à etouches.
 
-![Attribuer le rôle d’utilisateur hello][200] 
+![Attribuer le rôle d’utilisateur][200] 
 
-**tooassign Britta Simon tooetouches, effectuez hello comme suit :**
+**Pour affecter Britta Simon à etouches, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **etouches**.
+2. Dans la liste des applications, sélectionnez **etouches**.
 
-    ![lien d’etouches Hello dans la liste des Applications hello](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_app.png) 
+    ![Lien etouches dans la liste des applications](./media/active-directory-saas-etouches-tutorial/tutorial_etouches_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
-    ![lien de « Utilisateurs et groupes » Hello][202] 
+    ![Lien « Utilisateurs et groupes »][202] 
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![volet d’ajouter l’affectation de Hello][203]
+    ![Volet Ajouter une attribution][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -239,13 +239,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
 
-objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.
+L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur hello etouches vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour etouches application.
+Si vous cliquez sur la vignette etouches dans le volet d’accès, vous devez vous connecter automatiquement à votre application etouches.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

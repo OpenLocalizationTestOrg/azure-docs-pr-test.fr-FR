@@ -1,6 +1,6 @@
 ---
-title: "met à jour des IoT Suite à l’aide de Node.js toosupport microprogramme aaaConnect un tooAzure framboises Pi | Documents Microsoft"
-description: "Utilisez hello Microsoft Azure IoT Starter Kit pour hello framboises Pi 3 et Azure IoT Suite. Utiliser Node.js tooconnect votre solution de surveillance à distance de toohello framboises Pi, envoyer la télémétrie de capteurs toohello cloud et effectuer une mise à jour de microprogramme à distance."
+title: "Connexion d’un Raspberry Pi à Azure IoT Suite à l’aide de Node.js pour prendre en charge les mises à jour du microprogramme | Microsoft Docs"
+description: "Utilisez le Kit de démarrage Microsoft Azure IoT pour le Raspberry Pi 3 et IoT Azure Suite. Utilisez Node.js pour connecter votre Raspberry Pi à la solution de surveillance à distance, envoyer la télémétrie des capteurs dans le cloud et effectuer une mise à jour du microprogramme à distance."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -14,164 +14,164 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 43bd3f16ee3d292cd9cffa8bfe7d4ca721e5c39c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 54503d5d6a636239d240509d7d09cf334234bac7
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connect-your-raspberry-pi-3-toohello-remote-monitoring-solution-and-enable-remote-firmware-updates-using-nodejs"></a>Se connecter à votre solution de surveillance à distance de toohello framboises Pi 3 et activer les mises à jour de microprogramme à distance à l’aide de Node.js
+# <a name="connect-your-raspberry-pi-3-to-the-remote-monitoring-solution-and-enable-remote-firmware-updates-using-nodejs"></a>Connexion de votre Raspberry Pi 3 à la solution de surveillance à distance et activation des mises à jour de microprogramme à distance à l’aide de Node.js
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-selector](../../includes/iot-suite-raspberry-pi-kit-selector.md)]
 
-Ce didacticiel vous montre comment toouse hello Microsoft Azure IoT Starter Kit pour framboises Pi 3 à :
+Ce didacticiel vous montre comment utiliser le Kit de démarrage Microsoft Azure IoT pour Raspberry Pi 3 pour :
 
-* Développer un lecteur de température et humidité pouvant communiquer avec le cloud de hello.
-* Activer et exécuter une application cliente hello de tooupdate de mise à jour du microprogramme à distance sur hello framboises Pi.
+* développer un lecteur de température et d’humidité capable de communiquer avec le cloud ;
+* activer et effectuer une mise à jour à distance du microprogramme pour mettre à jour l’application cliente sur le Raspberry Pi.
 
-didacticiel de Hello utilise :
+Le didacticiel utilise :
 
-- Raspbian OS, hello Node.js langage de programmation et hello Microsoft Azure IoT SDK pour Node.js tooimplement un appareil de l’exemple.
-- la surveillance à distance Hello IoT Suite, solution préconfigurée comme hello nuage back-end.
+- Le système d’exploitation Raspbian, le langage de programmation Node.js et le Kit SDK Microsoft Azure IoT pour Node.js en vue d’implémenter un exemple d’appareil.
+- La solution préconfigurée de surveillance à distance Azure IoT Suite comme backend basé sur le cloud.
 
-## <a name="overview"></a>Vue d'ensemble
+## <a name="overview"></a>Vue d’ensemble
 
-Dans ce didacticiel, vous effectuez hello comme suit :
+Dans ce didacticiel, vous allez effectuer les étapes suivantes :
 
-- Déployer une instance de hello distant tooyour solution préconfigurée analyse abonnement Azure. Cette étape déploie et configure automatiquement plusieurs services Azure.
-- Configurer votre toocommunicate capteurs et de périphérique avec votre ordinateur et le hello solution de surveillance à distance.
-- Hello exemple périphérique code tooconnect toohello distant solution d’analyse de mise à jour et envoyer la télémétrie que vous pouvez afficher sur le tableau de bord de solution hello.
-- Utilisez hello exemple périphérique code tooupdate hello d’application cliente.
+- Déployer une instance de la solution préconfigurée de surveillance à distance dans votre abonnement Azure. Cette étape déploie et configure automatiquement plusieurs services Azure.
+- Configurer votre appareil pour qu’il communique avec votre ordinateur et avec la solution de surveillance à distance.
+- Mettre à jour l’exemple de code d’appareil pour se connecter à la solution de surveillance à distance et envoyer les données de télémétrie que vous pouvez afficher sur le tableau de bord de la solution.
+- Utiliser l’exemple de code d’appareil pour mettre à jour l’application cliente.
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-prerequisites](../../includes/iot-suite-raspberry-pi-kit-prerequisites.md)]
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 > [!WARNING]
-> Bonjour dispositions de solution de surveillance à distance à un ensemble de services Azure dans votre abonnement Azure. déploiement de Hello reflète une architecture d’entreprise réel. frais de la consommation Azure inutile tooavoid, supprimer votre instance de la solution de hello préconfiguré dans azureiotsuite.com lorsque vous avez terminé avec lui. Si vous avez besoin de hello solution préconfigurée à nouveau, vous pouvez le recréer facilement. Pour plus d’informations sur la réduction de la consommation lors hello s’exécute la solution de surveillance à distance, consultez [configuration Azure IoT Suite préconfiguré des solutions à des fins de démonstration][lnk-demo-config].
+> La solution de surveillance à distance configure un ensemble de services Azure dans votre abonnement Azure. Le déploiement reflète une architecture d’entreprise réelle. Pour éviter des frais de consommation Azure inutiles, supprimez votre instance de la solution préconfigurée dans azureiotsuite.com quand vous ne l’utilisez plus. Si vous avez à nouveau besoin de la solution préconfigurée, vous pouvez la recréer facilement. Pour plus d’informations sur la manière de réduire votre consommation pendant l’exécution de la solution de surveillance à distance, consultez [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config] (Configuration des solutions préconfigurées Azure IoT Suite à des fins de démonstration).
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-view-solution](../../includes/iot-suite-raspberry-pi-kit-view-solution.md)]
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-prepare-pi](../../includes/iot-suite-raspberry-pi-kit-prepare-pi.md)]
 
-## <a name="download-and-configure-hello-sample"></a>Télécharger et configurer l’exemple hello
+## <a name="download-and-configure-the-sample"></a>Télécharger et configurer l’exemple
 
-Vous pouvez maintenant télécharger et configurer l’application du client de contrôle à distance hello sur votre Pi framboises.
+Vous pouvez à présent télécharger et configurer l’application cliente de surveillance à distance sur votre Raspberry Pi.
 
 ### <a name="install-nodejs"></a>Installer Node.js
 
-Si vous ne l’avez pas déjà fait, installez Node.js sur votre Raspberry Pi. Hello IoT SDK pour Node.js nécessite 0.11.5 Node.js ou version ultérieure. Hello étapes suivantes vous montrent comment tooinstall les v6.10.2 de Node.js sur votre Pi framboises :
+Si vous ne l’avez pas déjà fait, installez Node.js sur votre Raspberry Pi. Le kit de développement logiciel (SDK) IoT pour Node.js requiert la version 0.11.5 de Node.js ou une version ultérieure. Les étapes suivantes vous montrent comment installer Node.js v6.10.2 sur votre Raspberry Pi :
 
-1. Utilisez hello suivant commande tooupdate votre Pi framboises :
+1. Pour mettre à jour votre Raspberry Pi, utilisez la commande suivante :
 
     ```sh
     sudo apt-get update
     ```
 
-1. Utilisez hello suivant commande toodownload hello Node.js binaires tooyour framboises Pi :
+1. Pour télécharger les fichiers binaires Node.js sur votre Raspberry Pi, utilisez la commande suivante :
 
     ```sh
     wget https://nodejs.org/dist/v6.10.2/node-v6.10.2-linux-armv7l.tar.gz
     ```
 
-1. Utilisez hello suivant des fichiers binaires de commande tooinstall hello :
+1. Pour installer les binaires, utilisez la commande suivante :
 
     ```sh
     sudo tar -C /usr/local --strip-components 1 -xzf node-v6.10.2-linux-armv7l.tar.gz
     ```
 
-1. Utilisez hello suivant tooverify commande avoir installé Node.js v6.10.2 correctement :
+1. Pour vérifier que Node.js v6.10.2 a été installé avec succès, utilisez la commande suivante :
 
     ```sh
     node --version
     ```
 
-### <a name="clone-hello-repositories"></a>Clone hello référentiels
+### <a name="clone-the-repositories"></a>Cloner les dépôts
 
-Si vous n’avez pas déjà fait, hello du clone requis référentiels en exécutant hello suivant de commandes sur votre Pi :
+Si vous ne l’avez pas déjà fait, clonez les dépôts requis en exécutant les commandes suivantes sur votre Pi :
 
 ```sh
 cd ~
 git clone --recursive https://github.com/Azure-Samples/iot-remote-monitoring-node-raspberrypi-getstartedkit.git
 ```
 
-### <a name="update-hello-device-connection-string"></a>Mettre à jour la chaîne de connexion de périphérique hello
+### <a name="update-the-device-connection-string"></a>Mettre à jour la chaîne de connexion d’appareil
 
-Fichier de configuration d’exemple hello ouvrir Bonjour **nano** éditeur à l’aide de hello de commande suivante :
+Ouvrez l’exemple de fichier de configuration dans l’éditeur **nano** à l’aide de la commande suivante :
 
 ```sh
 nano ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/advanced/config/deviceinfo
 ```
 
-Remplacez les valeurs d’espace réservé hello avec l’id de périphérique hello et informations IoT Hub vous avez créé et enregistré au démarrage hello de ce didacticiel.
+Remplacez les valeurs dans l’espace réservé par les informations sur l’appareil et l’IoT Hub que vous avez créées et enregistrées au début de ce didacticiel.
 
-Lorsque vous avez terminé, contenu hello du fichier deviceinfo de hello doit ressembler à hello l’exemple suivant :
+Lorsque vous avez terminé, le contenu du fichier deviceinfo doit ressembler à l’exemple suivant :
 
 ```conf
 yourdeviceid
 HostName=youriothubname.azure-devices.net;DeviceId=yourdeviceid;SharedAccessKey=yourdevicekey
 ```
 
-Enregistrez vos modifications (**Ctrl-O**, **entrée**) et quittez l’éditeur hello (**Ctrl-X**).
+Enregistrez vos modifications (**Ctrl-O**, **Entrée**) et quittez l’éditeur (**Ctrl-X**).
 
-## <a name="run-hello-sample"></a>Exécuter l’exemple hello
+## <a name="run-the-sample"></a>Exécution de l'exemple
 
-Les commandes de suivantes de hello exécution tooinstall packages de composants requis hello pour exemple hello :
+Exécutez les commandes suivantes pour installer les packages requis pour l’exemple :
 
 ```sh
 cd ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/advance/1.0
 npm install
 ```
 
-Vous pouvez maintenant exécuter l’exemple de programme hello sur hello framboises Pi. Entrez la commande hello :
+Vous pouvez maintenant exécuter l’exemple de programme sur le Raspberry Pi. Entrez la commande :
 
 ```sh
 sudo node ~/iot-remote-monitoring-node-raspberrypi-getstartedkit/advanced/1.0/remote_monitoring.js
 ```
 
-Hello exemple de sortie suivant est un exemple de sortie hello, que reportez-vous à l’invite de commande hello sur hello framboises Pi :
+La sortie suivante est un exemple de sortie qui peut s’afficher à l’invite de commandes sur le Raspberry Pi :
 
 ![Sortie de l’application de Raspberry Pi][img-raspberry-output]
 
-Appuyez sur **Ctrl-C** programme de hello tooexit à tout moment.
+Appuyez sur **Ctrl-C** pour quitter le programme à tout moment.
 
 [!INCLUDE [iot-suite-raspberry-pi-kit-view-telemetry-advanced](../../includes/iot-suite-raspberry-pi-kit-view-telemetry-advanced.md)]
 
-1. Dans le tableau de bord hello solution, cliquez sur **périphériques** toovisit hello **périphériques** page. Sélectionnez votre Pi framboises Bonjour **liste des appareils**. Ensuite, choisissez **Méthodes** :
+1. Dans le tableau de bord de la solution, cliquez sur **Appareils** pour accéder à la page **Appareils**. Sélectionnez votre Raspberry Pi dans la **Liste des appareils**. Ensuite, choisissez **Méthodes** :
 
     ![Liste des appareils dans le tableau de bord][img-list-devices]
 
-1. Sur hello **appeler une méthode** choisissez **InitiateFirmwareUpdate** Bonjour **méthode** liste déroulante.
+1. Sur la page **Appeler une méthode**, choisissez **InitiateFirmwareUpdate** dans la liste déroulante **Méthode**.
 
-1. Bonjour **FWPackageURI** , entrez **https://raw.githubusercontent.com/Azure-Samples/iot-remote-monitoring-node-raspberrypi-getstartedkit/master/advanced/2.0/raspberry.js**. Ce fichier contient l’implémentation de hello de la version 2.0 du microprogramme de hello.
+1. Dans le champ **FWPackageURI**, entrez **https://raw.githubusercontent.com/Azure-Samples/iot-remote-monitoring-node-raspberrypi-getstartedkit/master/advanced/2.0/raspberry.js**. Ce fichier contient l’implémentation de la version 2.0 du microprogramme.
 
-1. Choisissez **InvokeMethod**. application Hello sur hello framboises Pi envoie un tableau de bord d’accusé de réception différé toohello solution. Il démarre ensuite le processus de mise à jour de microprogramme hello en téléchargeant hello nouvelle version du microprogramme de hello :
+1. Choisissez **InvokeMethod**. L’application sur le Raspberry Pi envoie un accusé de réception au tableau de bord de la solution. Elle démarre ensuite le processus de mise à jour du microprogramme en téléchargeant la nouvelle version de ce dernier :
 
     ![Afficher l’historique de la méthode][img-method-history]
 
-## <a name="observe-hello-firmware-update-process"></a>Observez le processus de mise à jour de microprogramme hello
+## <a name="observe-the-firmware-update-process"></a>Observer le microprogramme des mises à jour
 
-Vous pouvez observer les processus de mise à jour de microprogramme hello lorsqu’elle s’exécute sur l’appareil de hello et que vous affichez hello signalés propriétés dans le tableau de bord de solution hello :
+Vous pouvez observer le processus de mise à jour du microprogramme en cours d’exécution sur l’appareil et en affichant les propriétés déclarées dans le tableau de bord de solution :
 
-1. Vous pouvez afficher la progression hello dans des processus de mise à jour hello sur hello framboises Pi :
+1. Vous pouvez afficher la progression du processus de mise à jour sur le Raspberry Pi :
 
     ![Afficher la progression de la mise à jour][img-update-progress]
 
     > [!NOTE]
-    > application de surveillance à distance Hello redémarre en mode silencieux lors de la mise à jour hello terminée. Utilisez la commande hello `ps -ef` tooverify, il est en cours d’exécution. Si vous souhaitez que le processus de hello tooterminate, utilisez hello `kill` avec l’id de processus hello.
+    > L’application de surveillance à distance redémarre en mode silencieux à l’issue de la mise à jour. Utilisez la commande `ps -ef` pour vérifier qu’elle est en cours d’exécution. Si vous souhaitez mettre fin au processus, utilisez la commande `kill` avec l’ID de processus.
 
-1. Vous pouvez afficher le statut hello de mise à jour du microprogramme hello, comme indiqué par l’appareil de hello, dans le portail de solution hello. Hello capture d’écran suivante montre les état hello et durée de chaque étape du processus de mise à jour hello et la nouvelle version de microprogramme hello :
+1. Vous pouvez afficher l’état de la mise à jour du microprogramme, comme indiqué par l’appareil, dans le portail de la solution. La capture d’écran suivante montre l’état et la durée de chaque étape du processus de mise à jour, ainsi que la nouvelle version du microprogramme :
 
     ![Afficher l’état du travail][img-job-status]
 
-    Si vous accédez à tableau de bord toohello précédent, vous pouvez vérifier le périphérique de hello envoie encore télémétrie après mise à jour du microprogramme hello.
+    Si vous accédez de nouveau au tableau de bord, vous pouvez vérifier que l’appareil continue d’envoyer la télémétrie après la mise à jour du microprogramme.
 
 > [!WARNING]
-> Si vous laissez hello solution en cours d’exécution dans votre compte Azure de surveillance à distance, vous êtes facturé pour hello exécution. Pour plus d’informations sur la réduction de la consommation lors hello s’exécute la solution de surveillance à distance, consultez [configuration Azure IoT Suite préconfiguré des solutions à des fins de démonstration][lnk-demo-config]. Supprimer la solution de hello préconfiguré à partir de votre compte Azure lorsque vous avez terminé.
+> Si vous quittez la solution de surveillance à distance en cours d’exécution dans votre compte Azure, vous êtes facturé en fonction du temps d’exécution. Pour plus d’informations sur la manière de réduire votre consommation pendant l’exécution de la solution de surveillance à distance, consultez [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config] (Configuration des solutions préconfigurées Azure IoT Suite à des fins de démonstration). Supprimez la solution préconfigurée de votre compte Azure lorsque vous avez fini de l’utiliser.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Visitez hello [centre de développement Azure IoT](https://azure.microsoft.com/develop/iot/) pour plus d’exemples et documentation sur Azure IoT.
+Visitez le [Centre de développement Azure IoT](https://azure.microsoft.com/develop/iot/) pour d’autres exemples et de la documentation complémentaire sur Azure IoT.
 
 
 [img-raspberry-output]: ./media/iot-suite-raspberry-pi-kit-node-get-started-advanced/app-output.png

@@ -1,6 +1,6 @@
 ---
-title: "aaaRemove une affectation d’utilisateur ou un groupe à partir d’une application d’entreprise dans Active Directory de Azure | Documents Microsoft"
-description: "Comment tooremove hello accéder à l’affectation d’un utilisateur ou un groupe à partir d’une application d’entreprise dans Azure Active Directory"
+title: "Supprimer l’affectation d’un utilisateur ou d’un groupe à une application d’entreprise dans Azure Active Directory | Microsoft Docs"
+description: "Comment supprimer l’affectation de l’accès à un utilisateur ou à un groupe à une application d’entreprise dans Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -12,34 +12,36 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 05/04/2017
+ms.date: 08/28/2017
 ms.author: curtand
-ms.openlocfilehash: c067ecf59b4dedfe8f848357ca8bd545bdc610eb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.reviewer: asteen
+ms.custom: it-pro
+ms.openlocfilehash: 99cbc54b4daa988dbf741275ce92d1c863af6720
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="remove-a-user-or-group-assignment-from-an-enterprise-app-in-azure-active-directory"></a>Supprimer l’affectation d’un utilisateur ou d’un groupe à une application d’entreprise dans Azure Active Directory
-Il est facile tooremove un utilisateur ou un groupe d’être assignée tooone d’accès de vos applications d’entreprise dans Azure Active Directory (Azure AD). Vous devez disposer des applications d’entreprise hello toomanage hello les autorisations appropriées, et vous devez être administrateur général pour le répertoire de hello.
+Il est facile de supprimer l’affectation de l’accès à un utilisateur ou un groupe à vos applications d’entreprise dans Azure Active Directory (Azure AD). Vous devez disposer des autorisations nécessaires pour gérer l’application d’entreprise, et vous devez être l’administrateur général du répertoire.
 
 ## <a name="how-do-i-remove-a-user-or-group-assignment"></a>Comment supprimer une affectation d’utilisateur ou de groupe ?
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) avec un compte qui est un administrateur global pour le répertoire de hello.
-2. Sélectionnez **davantage de services**, entrez **Azure Active Directory** dans hello de zone de texte, puis sélectionnez **entrée**.
-3. Sur hello **Azure Active Directory - *nom_répertoire***  blade (autrement dit, hello Azure AD panneau pour le répertoire hello vous gérez), sélectionnez **des applications d’entreprise**.
+1. Connectez-vous au [portail Azure](https://portal.azure.com) en utilisant un compte d’administrateur général pour le répertoire.
+2. Sélectionnez **Plus de services**, saisissez **Azure Active Directory** dans la zone de texte, puis sélectionnez **Entrée**.
+3. Dans le panneau **Azure Active Directory - *Nom_répertoire*** (autrement dit, le panneau Azure AD correspondant au répertoire que vous gérez), sélectionnez **Applications d’entreprise**.
 
     ![Ouverture des applications d’entreprise](./media/active-directory-coreapps-remove-assignment-user-azure-portal/open-enterprise-apps.png)
-4. Sur hello **des applications d’entreprise** panneau, sélectionnez **toutes les applications**. Vous verrez une liste d’applications hello que vous pouvez gérer.
-5. Sur hello **des applications d’entreprise - toutes les applications** panneau, sélectionnez une application.
-6. Sur hello ***appname*** blade (autrement dit, hello blade avec nom hello d’application sélectionné hello dans le titre de hello), sélectionnez **utilisateurs et groupes**.
+4. Dans le panneau **Applications d’entreprise**, sélectionnez **Toutes les applications**. Vous verrez une liste des applications que vous pouvez gérer.
+5. Sur le panneau **Applications d’entreprise - Toutes les applications** , sélectionnez une application.
+6. Dans le panneau ***NomApplication*** (autrement dit, le panneau avec le nom de l’application sélectionnée dans le titre), sélectionnez **Utilisateurs et groupes**.
 
     ![Sélection d’utilisateurs ou groupes](./media/active-directory-coreapps-remove-assignment-user-azure-portal/remove-app-users.png)
-7. Sur hello ***appname*** **-utilisateur et l’affectation du groupe** panneau, sélectionnez une des autres utilisateurs ou groupes, puis hello **supprimer** commande. Confirmer votre décision à l’invite de hello.
+7. Sur le panneau ***NomApplication***  **- Affectation d’utilisateur et de groupe**, sélectionnez un ou plusieurs utilisateurs ou groupes, puis sélectionnez la commande **Supprimer**. Confirmez votre choix dans l’invite de commandes.
 
-    ![En sélectionnant la commande de suppression hello](./media/active-directory-coreapps-remove-assignment-user-azure-portal/remove-users.png)
+    ![Sélection de la commande Supprimer](./media/active-directory-coreapps-remove-assignment-user-azure-portal/remove-users.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Voir tous mes groupes](active-directory-groups-view-azure-portal.md)
-* [Affecter une application d’entreprise tooan utilisateur ou un groupe](active-directory-coreapps-assign-user-azure-portal.md)
+* [Affecter un utilisateur ou un groupe à une application d’entreprise](active-directory-coreapps-assign-user-azure-portal.md)
 * [Désactiver les connexions utilisateur pour une application d’entreprise](active-directory-coreapps-disable-app-azure-portal.md)
-* [Modifier le nom hello ou un logo d’une application d’entreprise](active-directory-coreapps-change-app-logo-user-azure-portal.md)
+* [Modifier le nom ou le logo d’une application d’entreprise dans la version préliminaire d’Azure Active Directory](active-directory-coreapps-change-app-logo-user-azure-portal.md)

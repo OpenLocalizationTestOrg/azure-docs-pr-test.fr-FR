@@ -1,5 +1,5 @@
 ---
-title: "aaaSet d’Oracle ASM sur une machine virtuelle de Azure Linux | Documents Microsoft"
+title: Configurer Oracle ASM sur une machine virtuelle Linux Azure | Microsoft Docs
 description: "Rendez Oracle ASM opérationnel rapidement dans votre environnement Azure."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/19/2017
 ms.author: rclaus
-ms.openlocfilehash: d6a7046638e919876477d46943faabcb1872acac
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 117212a2e7e3da7c3e249798eec804a652e0ef58
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="set-up-oracle-asm-on-an-azure-linux-virtual-machine"></a>Configurer Oracle ASM sur une machine virtuelle Linux Azure  
 
-Les machines virtuelles fournissent un environnement informatique entièrement configurable et flexible. Ce didacticiel décrit le déploiement de base de machine virtuelle Azure combiné avec l’installation de hello et la configuration d’Oracle Automated Storage Management (ASM).  Vous allez apprendre à effectuer les actions suivantes :
+Les machines virtuelles fournissent un environnement informatique entièrement configurable et flexible. Ce didacticiel décrit le déploiement de base d’une machine virtuelle Azure associé à l’installation et à la configuration d’Oracle Automated Storage Management (ASM).  Vous allez apprendre à effectuer les actions suivantes :
 
 > [!div class="checklist"]
-> * Créer et connecter tooan machine virtuelle de base de données Oracle
+> * Créer une machine virtuelle Oracle Database et s’y connecter
 > * Installer et configurer Oracle Automated Storage Management
 > * Installer et configurer Oracle Grid Infrastructure
 > * Initialiser une installation Oracle ASM
@@ -35,13 +35,13 @@ Les machines virtuelles fournissent un environnement informatique entièrement c
 
 [!INCLUDE [cloud-shell-try-it.md](../../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez tooinstall et que vous utilisez hello CLI localement, ce didacticiel nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0.4 ou une version ultérieure pour poursuivre la procédure décrite dans ce didacticiel. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
-## <a name="prepare-hello-environment"></a>Préparer l’environnement de hello
+## <a name="prepare-the-environment"></a>Préparer l’environnement
 
 ### <a name="create-a-resource-group"></a>Créer un groupe de ressources
 
-toocreate un groupe de ressources, utilisez hello [création de groupe de az](/cli/azure/group#create) commande. Un groupe de ressources Azure est un conteneur logique dans lequel les ressources Azure sont déployées et gérées. Dans cet exemple, un groupe de ressources nommé *myResourceGroup* Bonjour *eastus* région.
+Pour créer un groupe de ressources, utilisez la commande [az group create](/cli/azure/group#create). Un groupe de ressources Azure est un conteneur logique dans lequel les ressources Azure sont déployées et gérées. Dans cet exemple, un groupe de ressources nommé *myResourceGroup* est créé dans la région *eastus*.
 
 ```azurecli-interactive
 az group create --name myResourceGroup --location eastus
@@ -49,9 +49,9 @@ az group create --name myResourceGroup --location eastus
 
 ### <a name="create-a-vm"></a>Créer une machine virtuelle
 
-toocreate un ordinateur virtuel basé sur l’image de base de données Oracle hello et configurez-le toouse Oracle ASM, utilisez hello [az vm créer](/cli/azure/vm#create) commande. 
+Pour créer une machine virtuelle basée sur l’image d’Oracle Database et la configurer pour utiliser Oracle ASM, exécutez la commande [az vm create](/cli/azure/vm#create). 
 
-Hello exemple suivant crée un ordinateur virtuel nommé myVM qui a une taille Standard_DS2_v2 avec quatre disques de données associés de 50 Go. Si elles n’existent pas déjà dans l’emplacement de la clé hello par défaut, il crée également des clés SSH.  toouse un ensemble spécifique de clés, utilisez hello `--ssh-key-value` option.  
+L’exemple suivant crée une machine virtuelle nommée myVM qui a une taille Standard_DS2_v2 avec quatre disques de données associés de 50 Go. Il crée également des clés SSH si elles n’existent pas encore à un emplacement de clé par défaut.  Pour utiliser un ensemble spécifique de clés, utilisez l’option `--ssh-key-value`.  
 
    ```azurecli-interactive
    az vm create --resource-group myResourceGroup \
@@ -62,7 +62,7 @@ Hello exemple suivant crée un ordinateur virtuel nommé myVM qui a une taille S
     --data-disk-sizes-gb 50 50 50 50
    ```
 
-Après avoir créé la machine virtuelle de hello, CLI d’Azure affiche des informations similaires toohello est l’exemple suivant. Notez la valeur hello pour `publicIpAddress`. Vous utilisez cette hello de tooaccess adresse machine virtuelle.
+Une fois que vous avez créé la machine virtuelle, Azure CLI affiche des informations similaires à l’exemple suivant. Notez la valeur pour `publicIpAddress`. Vous utilisez cette adresse pour accéder à la machine virtuelle.
 
    ```azurecli
    {
@@ -77,9 +77,9 @@ Après avoir créé la machine virtuelle de hello, CLI d’Azure affiche des inf
    }
    ```
 
-### <a name="connect-toohello-vm"></a>Se connecter toohello machine virtuelle
+### <a name="connect-to-the-vm"></a>Connexion à la machine virtuelle
 
-toocreate une session SSH avec hello de machine virtuelle et configurer des paramètres supplémentaires, utilisez hello commande suivante. Remplacer l’adresse IP de hello avec hello `publicIpAddress` valeur pour votre machine virtuelle.
+Pour créer une session SSH avec la machine virtuelle et configurer des paramètres supplémentaires, utilisez la commande suivante. Remplacez l’adresse IP par la valeur de `publicIpAddress` pour votre machine virtuelle.
 
 ```bash 
 ssh <publicIpAddress>
@@ -87,17 +87,17 @@ ssh <publicIpAddress>
 
 ## <a name="install-oracle-asm"></a>Installer Oracle ASM
 
-tooinstall Oracle ASM, hello complète comme suit. 
+Pour installer Oracle ASM, procédez comme suit. 
 
 Pour plus d’informations sur l’installation d’Oracle ASM, consultez [Oracle ASMLib Downloads for Oracle Linux 6](http://www.oracle.com/technetwork/server-storage/linux/asmlib/ol6-1709075.html).  
 
-1. Vous devez toologin en tant que racine dans toocontinue d’ordre d’installation de ASM :
+1. Vous devez ouvrir une session en tant qu’utilisateur ROOT afin de poursuivre l’installation d’ASM :
 
    ```bash
    sudo su -
    ```
    
-2. Exécutez ces commandes supplémentaires des composants Oracle ASM tooinstall :
+2. Exécutez ces commandes supplémentaires pour installer les composants Oracle ASM :
 
    ```bash
     yum list | grep oracleasm 
@@ -114,7 +114,7 @@ Pour plus d’informations sur l’installation d’Oracle ASM, consultez [Oracl
    rpm -qa |grep oracleasm
    ```
 
-    sortie Hello de cette commande doit répertorier hello suivant des composants :
+    Le résultat de cette commande doit énumérer les composants suivants :
 
     ```bash
    oracleasm-support-2.1.10-4.el6.x86_64
@@ -122,7 +122,7 @@ Pour plus d’informations sur l’installation d’Oracle ASM, consultez [Oracl
    oracleasmlib-2.0.12-1.el6.x86_64
     ```
 
-4. ASM requiert des utilisateurs spécifiques et les rôles dans l’ordre toofunction correctement. Hello suivant les commandes créer des groupes et comptes d’utilisateur requis hello : 
+4. ASM requiert des rôles et des utilisateurs spécifiques afin de fonctionner correctement. Les commandes suivantes créent les comptes d’utilisateur et les groupes prérequis : 
 
    ```bash
     groupadd -g 54345 asmadmin 
@@ -138,13 +138,13 @@ Pour plus d’informations sur l’installation d’Oracle ASM, consultez [Oracl
    id grid
    ```
 
-    Hello sortie de cette commande doit répertorier les suivant hello utilisateurs et groupes :
+    Le résultat de cette commande doit énumérer les utilisateurs et les groupes suivants :
 
     ```bash
     uid=3000(grid) gid=54321(oinstall) groups=54321(oinstall),54322(dba),54345(asmadmin),54346(asmdba),54347(asmoper)
     ```
  
-6. Créez un dossier pour l’utilisateur *grille* et changer le propriétaire de hello :
+6. Créez un dossier pour l’utilisateur*grid* et changez son propriétaire :
 
    ```bash
    mkdir /u01/app/grid 
@@ -153,38 +153,38 @@ Pour plus d’informations sur l’installation d’Oracle ASM, consultez [Oracl
 
 ## <a name="set-up-oracle-asm"></a>Configurer Oracle ASM
 
-Pour ce didacticiel, hello utilisateur par défaut est *grille* et le groupe par défaut hello est *asmadmin*. Vérifiez que hello *oracle* utilisateur fait partie du groupe d’asmadmin hello. tooset votre installation Oracle ASM, hello complète comme suit :
+Pour ce didacticiel, l’utilisateur par défaut est *grid* et le groupe par défaut est *asmadmin*. Vérifiez que l’utilisateur *oracle* fait partie du groupe asmadmin. Pour configurer votre installation Oracle ASM, procédez comme suit :
 
-1. Configuration d’un pilote de bibliothèque Oracle ASM hello implique la définition d’utilisateur par défaut de hello (grille) et le groupe par défaut (asmadmin), ainsi que la configuration hello lecteur toostart au démarrage du système (choisissez y) et tooscan de disques de démarrage (choisissez y). Vous avez besoin d’invites de hello tooanswer de hello de commande suivante :
+1. La configuration du pilote de la bibliothèque Oracle ASM implique la définition de l’utilisateur par défaut (grid) et du groupe par défaut (asmadmin), ainsi que la configuration du lecteur pour un lancement au démarrage (choisissez y) et l’analyse des disques au démarrage (choisissez y). Vous devez répondre aux invites de la commande suivante :
 
    ```bash
    /usr/sbin/oracleasm configure -i
    ```
 
-   sortie Hello de cette commande doit se présenter comme toohello suivant, l’arrêt avec toobe invites ayant obtenu une réponse.
+   Le résultat de cette commande doit ressembler à ce qui suit, jusqu’aux invites.
 
     ```bash
-   Configuring hello Oracle ASM library driver.
+   Configuring the Oracle ASM library driver.
 
-   This will configure hello on-boot properties of hello Oracle ASM library
-   driver. hello following questions will determine whether hello driver is
-   loaded on boot and what permissions it will have. hello current values
+   This will configure the on-boot properties of the Oracle ASM library
+   driver. The following questions will determine whether the driver is
+   loaded on boot and what permissions it will have. The current values
    will be shown in brackets ('[]'). Hitting <ENTER> without typing an
    answer will keep that current value. Ctrl-C will abort.
 
-   Default user tooown hello driver interface []: grid
-   Default group tooown hello driver interface []: asmadmin
+   Default user to own the driver interface []: grid
+   Default group to own the driver interface []: asmadmin
    Start Oracle ASM library driver on boot (y/n) [n]: y
    Scan for Oracle ASM disks on boot (y/n) [y]: y
    Writing Oracle ASM library driver configuration: done
    ```
 
-2. Afficher la configuration disque hello :
+2. Affichez la configuration du disque :
    ```bash
    cat /proc/partitions
    ```
 
-   sortie Hello de cette commande doit ressembler similaire toohello suivant de la liste des disques disponibles
+   Le résultat de cette commande doit ressembler à la liste suivante de disques disponibles.
 
    ```bash
    8       16   14680064 sdb
@@ -199,34 +199,34 @@ Pour ce didacticiel, hello utilisateur par défaut est *grille* et le groupe par
    11       0       1152 sr0
    ```
 
-3. Disque au format *sdc/dev/* en exécutant hello commande suivante et répondre aux hello invite avec :
+3. Formatez le disque */dev/sdc* en exécutant la commande suivante et en répondant aux invites avec :
    - *n* pour la nouvelle partition
    - *p* pour la partition principale
-   - *1* première partition de hello tooselect
-   - Appuyez sur `enter` pour le premier cylindre de hello par défaut
-   - Appuyez sur `enter` pour le dernier cylindre de hello par défaut
-   - Appuyez sur *w* table de partition toowrite hello modifications toohello  
+   - *1* pour sélectionner la première partition
+   - appuyez sur `enter` pour le premier cylindre de valeur par défaut
+   - appuyez sur `enter` pour le dernier cylindre de valeur par défaut
+   - appuyez sur *w* pour écrire les modifications dans la table de partition  
 
    ```bash
    fdisk /dev/sdc
    ```
    
-   Réponses hello fournis ci-dessus, sortie hello pour la commande de fdisk hello doit ressembler à celle de hello suivantes :
+   À l’aide des réponses fournies ci-dessus, la sortie de la commande fdisk doit se présenter comme suit :
 
    ```bash
    Device contains not a valid DOS partition table, or Sun, SGI or OSF disklabel
    Building a new DOS disklabel with disk identifier 0xf865c6ca.
-   Changes will remain in memory only, until you decide toowrite them.
-   After that, of course, hello previous content won't be recoverable.
+   Changes will remain in memory only, until you decide to write them.
+   After that, of course, the previous content won't be recoverable.
 
    Warning: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)
 
-   hello device presents a logical sector size that is smaller than
-   hello physical sector size. Aligning tooa physical sector (or optimal
+   The device presents a logical sector size that is smaller than
+   the physical sector size. Aligning to a physical sector (or optimal
    I/O) size boundary is recommended, or performance may be impacted.
 
    WARNING: DOS-compatible mode is deprecated. It's strongly recommended to
-           switch off hello mode (command 'c') and change display units to
+           switch off the mode (command 'c') and change display units to
            sectors (command 'u').
 
    Command (m for help): n
@@ -241,21 +241,21 @@ Pour ce didacticiel, hello utilisateur par défaut est *grille* et le groupe par
    Using default value 6527
 
    Command (m for help): w
-   hello partition table has been altered!
+   The partition table has been altered!
 
-   Calling ioctl() toore-read partition table.
+   Calling ioctl() to re-read partition table.
    Syncing disks.
    ```
 
-4. Répétition hello précédant la commande fdisk pour `/dev/sdd`, `/dev/sde`, et `/dev/sdf`.
+4. Répétez la commande fdisk précédente pour `/dev/sdd`, `/dev/sde` et `/dev/sdf`.
 
-5. Vérifier la configuration de disque hello :
+5. Vérifiez la configuration du disque :
 
    ```bash
    cat /proc/partitions
    ```
 
-   sortie Hello de commande hello doit ressembler à hello suivantes :
+   La sortie de la commande doit se présenter comme suit :
 
    ```bash
    major minor  #blocks  name
@@ -276,20 +276,20 @@ Pour ce didacticiel, hello utilisateur par défaut est *grille* et le groupe par
      11       0    1048575 sr0
    ```
 
-6. Vérifiez l’état du service Oracle ASM hello et démarrer le service Oracle ASM hello :
+6. Vérifiez l’état du service Oracle ASM et démarrez le service Oracle ASM :
 
    ```bash
    service oracleasm status 
    service oracleasm start
    ```
 
-   sortie Hello de commande hello doit ressembler à hello suivantes :
+   La sortie de la commande doit se présenter comme suit :
    
    ```bash
    Checking if ASM is loaded: no
    Checking if /dev/oracleasm is mounted: no
-   Initializing hello Oracle ASMLib driver:                     [  OK  ]
-   Scanning hello system for Oracle ASMLib disks:               [  OK  ]
+   Initializing the Oracle ASMLib driver:                     [  OK  ]
+   Scanning the system for Oracle ASMLib disks:               [  OK  ]
    ```
 
 7. Créez les disques Oracle ASM :
@@ -301,7 +301,7 @@ Pour ce didacticiel, hello utilisateur par défaut est *grille* et le groupe par
    service oracleasm createdisk FRA /dev/sdf1
    ```    
 
-   sortie Hello de commande hello doit ressembler à hello suivantes :
+   La sortie de la commande doit se présenter comme suit :
 
    ```bash
    Marking disk "ASMSP" as an ASM disk:                       [  OK  ]
@@ -316,7 +316,7 @@ Pour ce didacticiel, hello utilisateur par défaut est *grille* et le groupe par
    service oracleasm listdisks
    ```   
 
-   sortie Hello de commande hello doit répertorier off hello Oracle ASM disques suivants :
+   Le résultat de la commande doit énumérer les disques Oracle ASM suivants :
 
    ```bash
     ASMSP
@@ -325,7 +325,7 @@ Pour ce didacticiel, hello utilisateur par défaut est *grille* et le groupe par
     FRA
    ```
 
-9. Modifier les mots de passe hello pour les utilisateurs racine, oracle et grille hello. **Prenez note de ces nouveaux mots de passe** comme vous les utilisez plus tard pendant l’installation de hello.
+9. Modifiez les mots de passe pour les utilisateurs de la racine, d’Oracle et de Grid **Prenez note de ces nouveaux mots de passe**, car vous les utiliserez plus tard pendant l’installation.
 
    ```bash
    passwd oracle 
@@ -333,7 +333,7 @@ Pour ce didacticiel, hello utilisateur par défaut est *grille* et le groupe par
    passwd root
    ```
 
-10. Modifier les autorisations de dossier hello :
+10. Changez l’autorisation du dossier :
 
    ```bash
    chmod -R 775 /opt 
@@ -350,19 +350,19 @@ Pour ce didacticiel, hello utilisateur par défaut est *grille* et le groupe par
 
 ## <a name="download-and-prepare-oracle-grid-infrastructure"></a>Télécharger et préparer Oracle Grid Infrastructure
 
-toodownload et préparer des logiciels d’Infrastructure de grille Oracle hello, hello complète comme suit :
+Pour télécharger et préparer Oracle Grid Infrastructure, procédez comme suit :
 
-1. Télécharger l’Infrastructure de grille Oracle à partir de hello [page de téléchargement Oracle ASM](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/database12c-linux-download-2240591.html). 
+1. Téléchargez Oracle Grid Infrastructure à partir de la [page de téléchargement d’Oracle ASM](http://www.oracle.com/technetwork/database/enterprise-edition/downloads/database12c-linux-download-2240591.html). 
 
-   Sous Télécharger hello intitulée **Oracle Database 12C version 1 grille Infrastructure (12.1.0.2.0) pour Linux x86-64**, téléchargez les fichiers .zip hello deux.
+   Sous le téléchargement intitulé **Oracle Database 12c Release 1 Grid Infrastructure (12.1.0.2.0) for Linux x86-64**, téléchargez les deux fichiers .zip.
 
-2. Après avoir téléchargé hello .zip fichiers tooyour client ordinateur, vous pouvez utiliser Secure copie Protocol (SCP) toocopy hello fichiers tooyour machine virtuelle :
+2. Une fois que vous avez téléchargé les fichiers .zip sur votre ordinateur client, vous pouvez utiliser SCP (Secure Copy Protocol) pour les copier sur votre machine virtuelle :
 
    ```bash
    scp *.zip <publicIpAddress>:.
    ```
 
-3. SSH précédent dans votre machine virtuelle d’Oracle dans Azure dans les fichiers de commande toomove hello .zip dans hello / opt dossier. Ensuite, modifiez le propriétaire hello des fichiers de hello :
+3. Revenez via SSH sur votre machine virtuelle Oracle dans Azure afin de déplacer les fichiers .zip dans le dossier /opt. Ensuite, changez le propriétaire des fichiers :
 
    ```bash
    ssh <publicIPAddress>
@@ -372,7 +372,7 @@ toodownload et préparer des logiciels d’Infrastructure de grille Oracle hello
    sudo chown grid:oinstall linuxamd64_12102_grid_2of2.zip
    ```
 
-4. Décompressez les fichiers hello. (Installation hello Linux décompressez outil s’il n’est pas déjà installé).
+4. Décompressez les fichiers (installez l’outil de décompression Linux si ce n’est pas déjà fait).
    
    ```bash
    sudo yum install unzip
@@ -386,31 +386,31 @@ toodownload et préparer des logiciels d’Infrastructure de grille Oracle hello
    sudo chown -R grid:oinstall /opt/grid
    ```
 
-6. Mettez à jour l’espace d’échange configuré. Les composants de grille Oracle doivent au moins 6,8 Go d’espace de permutation tooinstall grille. taille de fichier d’échange Hello par défaut pour les images Oracle Linux dans Azure est uniquement 2 048 Mo. Vous devez tooincrease `ResourceDisk.SwapSizeMB` Bonjour `/etc/waagent.conf` de fichiers et de redémarrer hello WALinuxAgent service pour effet de tootake hello mis à jour les paramètres. S’agissant d’un fichier en lecture seule, vous avez besoin d’autorisations fichier toochange tooenable un accès en écriture.
+6. Mettez à jour l’espace d’échange configuré. Les composants Oracle Grid ont besoin d’au moins 6,8 Go d’espace d’échange pour installer Grid. La taille du fichier d’échange par défaut pour les images Oracle Linux dans Azure est seulement de 2 048 Mo. Vous devez augmenter `ResourceDisk.SwapSizeMB` dans le fichier `/etc/waagent.conf` et redémarrer le service WALinuxAgent afin que les paramètres mis à jour soient appliqués. S’agissant d’un fichier en lecture seule, vous devez modifier les autorisations de fichier pour permettre un accès en écriture.
 
    ```bash
    sudo chmod 777 /etc/waagent.conf  
    vi /etc/waagent.conf
    ```
    
-   Recherchez `ResourceDisk.SwapSizeMB` et également de modifier la valeur de hello**8192**. Vous devez toopress `insert` tooenter en mode d’insertion, le type de valeur hello de **8192** , puis appuyez sur `esc` tooreturn toocommand mode. modifications de hello toowrite et quittez hello, type de fichier `:wq` et appuyez sur `enter`.
+   Recherchez `ResourceDisk.SwapSizeMB` et remplacez la valeur par **8192**. Vous devez appuyer sur `insert` pour passer en mode d’insertion, saisir la valeur **8192**, puis appuyer sur `esc` pour revenir au mode de commande. Pour écrire les modifications et fermer le fichier, saisissez `:wq` et appuyez sur `enter`.
    
    > [!NOTE]
-   > Il est vivement recommandé de toujours utiliser `WALinuxAgent` tooconfigure espace d’échange afin qu’il est toujours créé sur hello local éphémère disque temporaire pour de meilleures performances. Pour plus d’informations, consultez [comment tooadd un échange de fichiers dans des machines virtuelles Linux Azure](https://support.microsoft.com/en-us/help/4010058/how-to-add-a-swap-file-in-linux-azure-virtual-machines).
+   > Nous vous recommandons vivement d’utiliser `WALinuxAgent` pour configurer l’espace d’échange afin qu’il soit toujours créé sur le disque éphémère local (temporaire). Vous bénéficierez ainsi de performances optimales. Pour plus d’informations, consultez [Comment faire pour ajouter un fichier d’échange dans des machines virtuelles Azure Linux](https://support.microsoft.com/en-us/help/4010058/how-to-add-a-swap-file-in-linux-azure-virtual-machines).
 
-## <a name="prepare-your-local-client-and-vm-toorun-x11"></a>Préparer votre client local et la machine virtuelle toorun x11
-Configuration d’Oracle ASM nécessite une interface graphique toocomplete hello installation et la configuration. Nous utilisons hello x11 protocole toofacilitate cette installation. Si vous utilisez un système client (Mac ou Linux) qui a déjà X11 fonctionnalités activé et configuré - vous pouvez ignorer cette configuration et le programme d’installation tooWindows exclusif machines. 
+## <a name="prepare-your-local-client-and-vm-to-run-x11"></a>Préparer votre client local et la machine virtuelle pour exécuter x11
+La configuration d’Oracle ASM nécessite une interface graphique pour mener à bien l’installation et la configuration. Nous utilisons le protocole x11 pour faciliter cette installation. Si vous utilisez un système client (Mac ou Linux) dont les fonctionnalités x11 sont déjà activées et configurées, vous pouvez ignorer cette installation et cette configuration propres aux ordinateurs Windows. 
 
-1. [Télécharger PuTTY](http://www.putty.org/) et [télécharger Xming](https://xming.en.softonic.com/) tooyour l’ordinateur Windows. Installation vous devez toocomplete hello de ces deux applications hello valeurs par défaut avant de continuer.
+1. Téléchargez [PuTTY](http://www.putty.org/) et [Xming](https://xming.en.softonic.com/) sur votre ordinateur Windows. Vous devez terminer l’installation de ces deux applications avec les valeurs par défaut avant de continuer.
 
-2. Après avoir installé PuTTY, ouvrez une invite de commandes en hello PuTTY dossier (par exemple, C:\Program Files\PuTTY) et modifier `puttygen.exe` commander toogenerate une clé.
+2. Après avoir installé PuTTY, ouvrez une invite de commandes dans le dossier PuTTY (par exemple, C:\Program Files\PuTTY) et modifiez `puttygen.exe` afin de générer une clé.
 
 3. Dans PuTTY Key Generator :
    
-   1. Générer une clé en sélectionnant hello `Generate` bouton.
-   2. Copier le contenu de hello de clé de hello (Ctrl + C).
-   3. Sélectionnez hello `Save private key` bouton.
-   4. Ignorer l’avertissement hello sur la sécurisation de clé hello avec un mot de passe, puis sélectionnez `OK`.
+   1. Générez une clé en sélectionnant le bouton `Generate`.
+   2. Copiez le contenu de la clé (Ctrl+C).
+   3. Sélectionnez le bouton `Save private key`.
+   4. Ignorez l’avertissement sur la sécurisation de la clé avec une phrase secrète, puis sélectionnez `OK`.
 
    ![Capture d’écran du générateur de clé PuTTY](./media/oracle-asm/puttykeygen.png)
 
@@ -422,88 +422,88 @@ Configuration d’Oracle ASM nécessite une interface graphique toocomplete hell
    cd .ssh
    ```
 
-5. Créez un fichier appelé `authorized_keys`. Collez le contenu hello de clé de hello dans ce fichier, puis enregistrez le fichier de hello.
+5. Créez un fichier appelé `authorized_keys`. Collez le contenu de la clé dans ce fichier, puis enregistrez-le.
 
    > [!NOTE]
-   > clé de Hello doit contenir la chaîne de hello `ssh-rsa`. En outre, le contenu hello de clé de hello doit être une seule ligne de texte.
+   > La clé doit contenir la chaîne `ssh-rsa`. En outre, le contenu de la clé doit être constitué d’une seule ligne de texte.
    >  
 
-6. Sur votre système client, démarrez PuTTY. Bonjour **catégorie** volet, accédez trop**connexion** > **SSH** > **Auth**. Bonjour **fichier de clé privée pour l’authentification** , naviguez jusque toohello clé que vous avez créé précédemment.
+6. Sur votre système client, démarrez PuTTY. Dans le volet **Category** (Catégorie), accédez à **Connection** > **SSH** > **Auth** (Connexion > SSH > Authentification). Dans la zone **Private key file for authentication** (Fichier de clé privée pour l’authentification), accédez à la clé que vous avez générée précédemment.
 
-   ![Capture d’écran des options d’authentification SSH hello](./media/oracle-asm/setprivatekey.png)
+   ![Capture d’écran des options d’authentification SSH](./media/oracle-asm/setprivatekey.png)
 
-7. Bonjour **catégorie** volet, accédez trop**connexion** > **SSH** > **X11**. Sélectionnez hello **X11 d’activer le transfert** case à cocher.
+7. Dans le volet **Category** (Catégorie), accédez à **Connection** > **SSH** > **X11** (Connexion > SSH > X11). Activez la case à cocher **Enable X11 forwarding** (Activer le transfert X11).
 
-   ![Capture d’écran de hello SSH X11 options de transfert](./media/oracle-asm/enablex11.png)
+   ![Capture d’écran des options de transfert SSH X11](./media/oracle-asm/enablex11.png)
 
-8. Bonjour **catégorie** volet, accédez trop**Session**. Entrez votre machine virtuelle ASM de Oracle `<publicIPaddress>` dans la boîte de dialogue Nom hôte hello renseigner un nouvel `Saved Session` nom, puis cliquez sur `Save`.  Une fois enregistré, cliquez sur `open` tooconnect tooyour Oracle ASM virtual machine.  Hello première connexion, vous recevez un avertissement système à distance de hello n’est pas mis en cache dans le Registre. Cliquez sur `yes` tooadd il et continuer.
+8. Dans le volet **Category** (Catégorie), accédez à **Session**. Indiquez votre machine virtuelle Oracle ASM `<publicIPaddress>` dans la boîte de dialogue du nom hôte, renseignez un nouveau nom `Saved Session`, puis cliquez sur `Save`.  Une fois les modifications enregistrées, cliquez sur `open` pour vous connecter à votre machine virtuelle Oracle ASM.  Lors de la première connexion, vous êtes averti que le système distant n’est pas mis en cache dans le registre. Cliquez sur `yes` pour l’ajouter et continuer.
 
-   ![Capture d’écran des options de session PuTTY hello](./media/oracle-asm/puttysession.png)
+   ![Capture d’écran des options de session PuTTY](./media/oracle-asm/puttysession.png)
 
 ## <a name="install-oracle-grid-infrastructure"></a>Installer Oracle Grid Infrastructure
 
-tooinstall Infrastructure de grille Oracle, hello complète comme suit :
+Pour installer Oracle Grid Infrastructure, procédez comme suit :
 
-1. Connectez-vous en tant que **grid**. (Vous devez être en mesure de toosign dans sans être invité à entrer un mot de passe.) 
+1. Connectez-vous en tant que **grid**. (Vous devez pouvoir vous connecter sans avoir à saisir un mot de passe.) 
 
    > [!NOTE]
-   > Si vous exécutez Windows, assurez-vous que vous avez démarré Xming avant de commencer l’installation de hello.
+   > Si vous exécutez Windows, vérifiez que vous avez démarré Xming avant de commencer l’installation.
 
    ```bash
    cd /opt/grid
    ./runInstaller
    ```
 
-   Le programme d’installation d’Oracle Grid Infrastructure 12c Release 1 s’ouvre. (Il peut prendre quelques minutes pour toostart du programme d’installation hello.)
+   Le programme d’installation d’Oracle Grid Infrastructure 12c Release 1 s’ouvre. (Plusieurs minutes peuvent être nécessaires au démarrage du programme d’installation.)
 
-2. Sur hello **sélectionner l’Option Installation** , sélectionnez **installez et configurez l’Infrastructure de grille Oracle pour un serveur autonome**.
+2. Dans la page **Select Installation Option** (Sélectionner l’option d’installation), sélectionnez **Install and Configure Oracle Grid Infrastructure for a Standalone Server** (Installer et configurer Oracle Grid Infrastructure pour un serveur autonome).
 
-   ![Capture d’écran de la page de sélectionner l’Option Installation hello du programme d’installation](./media/oracle-asm/install01.png)
+   ![Capture d’écran de la page Select Installation Option (Sélectionner l’option d’installation)](./media/oracle-asm/install01.png)
 
-3. Sur hello **sélectionner les langues de produits** , vérifiez **anglais** ou langue hello de votre choix est sélectionné.  Cliquez sur `next`.
+3. Sur la page **Select Product Languages** (Sélectionner les langues du produit), vérifiez que **English** (Anglais) ou la langue souhaitée est sélectionné.  Cliquez sur `next`.
 
-4. Sur hello **créer un groupe de disques ASM** page :
-   - Entrez un nom pour le groupe de disques hello.
+4. Dans la page **Create ASM Disk Group** (Créer un groupe de disques ASM) :
+   - Entrez un nom pour le groupe de disques.
    - Sous **Redundancy** (Redondance), sélectionnez **External** (Externe).
    - Sous **Allocation Unit Size** (Taille d’unité d’allocation), sélectionnez **4**.
    - Sous **Add Disks** (Ajouter des disques), sélectionnez **ORCLASMSP**.
    - Cliquez sur `next`.
 
-5. Sur hello **spécifier le mot de passe ASM** page, sélectionnez hello **utiliser les mêmes mots de passe pour ces comptes** , puis entrez un mot de passe.
+5. Dans la page **Specify ASM Password** (Spécifier le mot de passe ASM), sélectionnez l’option **Use same passwords for these accounts** (Utiliser les mêmes mots de passe pour ces comptes) et entrez un mot de passe.
 
-   ![Capture d’écran de la page de spécifier le mot de passe ASM hello du programme d’installation](./media/oracle-asm/install04.png)
+   ![Capture d’écran de la page Specify ASM Password (Spécifier le mot de passe ASM) du programme d’installation](./media/oracle-asm/install04.png)
 
-6. Sur hello **spécifier les Options de gestion** page, vous avez hello option tooconfigure EM Cloud contrôle. Cette option est ignorée, cliquez `next` toocontinue. 
+6. Sur la page **Specify Management Options** (Spécifier les options de gestion), vous pouvez configurer EM Cloud Control. Cette option est ignorée ; cliquez sur `next` pour continuer. 
 
-7. Sur hello **groupes privilégiés de système d’exploitation** page, les paramètres par défaut hello. Cliquez sur `next` toocontinue.
+7. Dans la page **Privileged Operating System Groups** (Groupes privilégiés du système d’exploitation), utilisez les paramètres par défaut. Cliquez sur `next` pour continuer.
 
-8. Sur hello **spécifier l’emplacement d’Installation** page, les paramètres par défaut hello. Cliquez sur `next` toocontinue.
+8. Dans la page **Specify Installation Location** (Spécifier l’emplacement d’installation), utilisez les paramètres par défaut. Cliquez sur `next` pour continuer.
 
-9. Sur hello **créer un inventaire** , changez hello inventaire active trop`/u01/app/grid/oraInventory`. Cliquez sur `next` toocontinue.
+9. Sur la page **Create Inventory** (Créer un inventaire), remplacez le répertoire de l’inventaire par `/u01/app/grid/oraInventory`. Cliquez sur `next` pour continuer.
 
-   ![Capture d’écran de la page Créer un inventaire de hello du programme d’installation](./media/oracle-asm/install08.png)
+   ![Capture d’écran de la page Create Inventory (Créer un inventaire) du programme d’installation](./media/oracle-asm/install08.png)
 
-10. Sur hello **configuration de l’exécution de script racine** page, sélectionnez hello **exécuter automatiquement les scripts de configuration** case à cocher. Ensuite, sélectionnez hello **utiliser les informations d’identification utilisateur de « root »** , puis entrez le mot de passe utilisateur hello racine.
+10. Dans la page **Root script execution configuration** (Configuration de l’exécution des scripts root), actualisez la case à cocher **Automatically run configuration scripts** (Exécuter automatiquement les scripts de configuration). Ensuite, sélectionnez l’option **Use "root" user credential** (Utiliser les informations d’identification de l’utilisateur « root »), puis entrez le mot de passe de l’utilisateur root.
 
-    ![Capture d’écran de la page de configuration de l’exécution du programme d’installation hello racine script](./media/oracle-asm/install09.png)
+    ![Capture d’écran de la page Use "root" user credential (Utiliser les informations d’identification de l’utilisateur « root ») du programme d’installation](./media/oracle-asm/install09.png)
 
-11. Sur hello **effectuer Prerequisite Checks** la page, le programme d’installation en cours de hello échouera avec des erreurs. Ce comportement est normal. Sélectionnez `Fix & Check Again`.
+11. Sur la page **Perform Prerequisite Checks** (Effectuer les tests de prérequis), le programme d’installation en cours échoue avec des erreurs. Ce comportement est normal. Sélectionnez `Fix & Check Again`.
 
-12. Bonjour **Script de correction** boîte de dialogue, cliquez sur `OK`.
+12. Dans la boîte de dialogue **Fixup Script** (Corriger le script), cliquez sur `OK`.
 
-13. Sur hello **Résumé** page, passez en revue les paramètres sélectionnés, puis cliquez sur `Install`.
+13. Sur la page **Summary** (Récapitulatif), passez en revue les paramètres sélectionnés, puis cliquez sur `Install`.
 
-    ![Capture d’écran de la page de résumé hello du programme d’installation](./media/oracle-asm/install12.png)
+    ![Capture d’écran de la page Summary (Récapitulatif) du programme d’installation](./media/oracle-asm/install12.png)
 
-14. Une boîte de dialogue d’avertissement s’affiche pour signaler les scripts de configuration vous devez toobe exécuter en tant qu’un utilisateur doté de privilèges. Cliquez sur `Yes` toocontinue.
+14. Une boîte de dialogue d’avertissement apparaît. Elle vous informe que les scripts de configuration doivent être exécutés en tant qu’utilisateur doté de privilèges. Cliquez sur `Yes` pour continuer.
 
-15. Sur hello **Terminer** , cliquez sur `Close` installation de hello toofinish.
+15. Sur la page **Finish** (Terminer), cliquez sur `Close` pour terminer l’installation.
 
 ## <a name="set-up-your-oracle-asm-installation"></a>Configurer votre installation Oracle ASM
 
-tooset votre installation Oracle ASM, hello complète comme suit :
+Pour configurer votre installation Oracle ASM, procédez comme suit :
 
-1. Vérifiez que vous êtes toujours connecté en tant que **grid** à partir de votre session X11. Vous devrez peut-être toohit `enter` hello toorevive Terminal Server. Puis lancez hello Oracle automatisée stockage gestion Assistant de Configuration :
+1. Vérifiez que vous êtes toujours connecté en tant que **grid** à partir de votre session X11. Vous devrez peut-être appuyer sur `enter` pour réactiver le terminal. Ensuite, lancez l’Assistant de configuration d’Oracle Automated Storage Management :
 
    ```bash
    cd /u01/app/grid/product/12.1.0/grid/bin
@@ -512,40 +512,40 @@ tooset votre installation Oracle ASM, hello complète comme suit :
 
    L’Assistant de configuration d’Oracle ASM s’ouvre.
 
-2. Bonjour **configurer un ASM : groupes de disques** boîte de dialogue, cliquez sur hello `Create` bouton, puis cliquez sur `Show Advanced Options`.
+2. Dans la boîte de dialogue **Configure ASM: Disk Groups** (Configurer ASM : groupes de disques), cliquez sur le bouton `Create`, puis sur `Show Advanced Options`.
 
-3. Bonjour **créer un groupe de disques** boîte de dialogue :
+3. Dans la boîte de dialogue **Create Disk Group** (Créer un groupe de disques) :
 
-   - Entrez le nom du groupe hello disque **données**.
+   - Entrez le nom de groupe de disques **DATA**.
    - Sous **Select Member Disks** (Sélectionner les disques membres), sélectionnez **ORCL_DATA** et **ORCL_DATA1**.
    - Sous **Allocation Unit Size** (Taille d’unité d’allocation), sélectionnez **4**.
-   - Cliquez sur `ok` le groupe de disques toocreate hello.
-   - Cliquez sur `ok` fenêtre de confirmation tooclose hello.
+   - Cliquez sur `ok` pour créer le groupe de disques.
+   - Cliquez sur `ok` pour fermer la fenêtre de confirmation.
 
-   ![Capture d’écran de la boîte de dialogue Créer un groupe de disques hello](./media/oracle-asm/asm02.png)
+   ![Capture d’écran de la boîte de dialogue Create Disk Group (Créer un groupe de disques)](./media/oracle-asm/asm02.png)
 
-4. Bonjour **configurer un ASM : groupes de disques** boîte de dialogue, cliquez sur hello `Create` bouton, puis cliquez sur `Show Advanced Options`.
+4. Dans la boîte de dialogue **Configure ASM: Disk Groups** (Configurer ASM : groupes de disques), cliquez sur le bouton `Create`, puis sur `Show Advanced Options`.
 
-5. Bonjour **créer un groupe de disques** boîte de dialogue :
+5. Dans la boîte de dialogue **Create Disk Group** (Créer un groupe de disques) :
 
-   - Entrez le nom du groupe hello disque **FRA**.
+   - Entrez le nom de groupe de disques **FRA**.
    - Sous **Redundancy** (Redondance), sélectionnez **External (none)** (Externe (aucun)).
    - Sous **Select Member Disks** (Sélectionner les disques membres), sélectionnez **ORCL_FRA**.
    - Sous **Allocation Unit Size** (Taille d’unité d’allocation), sélectionnez **4**.
-   - Cliquez sur `ok` le groupe de disques toocreate hello.
-   - Cliquez sur `ok` fenêtre de confirmation tooclose hello.
+   - Cliquez sur `ok` pour créer le groupe de disques.
+   - Cliquez sur `ok` pour fermer la fenêtre de confirmation.
 
-   ![Capture d’écran de la boîte de dialogue Créer un groupe de disques hello](./media/oracle-asm/asm04.png)
+   ![Capture d’écran de la boîte de dialogue Create Disk Group (Créer un groupe de disques)](./media/oracle-asm/asm04.png)
 
-6. Sélectionnez **Exit** tooclose ASM l’Assistant Configuration.
+6. Sélectionnez **Exit** (Quitter) pour fermer l’Assistant de configuration d’ASM.
 
-   ![Capture d’écran de hello ASM de configurer : boîte de dialogue de groupes de disques avec le bouton Quitter](./media/oracle-asm/asm05.png)
+   ![Capture d’écran de la boîte de dialogue Configure ASM: Disk Groups (Configurer ASM : Groupes de disques) avec le bouton Exit (Quitter)](./media/oracle-asm/asm05.png)
 
-## <a name="create-hello-database"></a>Créer la base de données hello
+## <a name="create-the-database"></a>Création de la base de données
 
-Hello logiciel de base de données Oracle est déjà installé sur l’image d’Azure Marketplace hello. toocreate une base de données, hello complète comme suit :
+Le logiciel de base de données Oracle est déjà installé sur l’image de la Place de marché Azure. Pour créer une base de données, exécutez les étapes suivantes :
 
-1. Basculez superutilisateur de Oracle toohello utilisateurs et puis initialisez écouteur hello pour l’enregistrement :
+1. Changez l’utilisateur et passez au superutilisateur d’Oracle, puis initialisez l’écouteur pour la journalisation :
 
    ```bash
    su - oracle
@@ -554,27 +554,27 @@ Hello logiciel de base de données Oracle est déjà installé sur l’image d�
    ```
    L’Assistant de configuration de base de données s’ouvre.
 
-2. Sur hello **opération de base de données** , cliquez sur `Create Database`.
+2. Sur la page **Database Operation** (Opération de base de données), cliquez sur `Create Database`.
 
-3. Sur hello **Mode de création de** page :
+3. Dans la page **Creation Mode** (Mode de création ) :
 
-   - Entrez un nom pour la base de données hello.
+   - Entrez un nom pour la base de données.
    - Pour **Storage Type** (Type de stockage), assurez-vous que l’option **Automatic Storage Management (ASM)** est sélectionnée.
-   - Pour **emplacement des fichiers de base de données**, utiliser la valeur par défaut hello ASM suggéré emplacement.
-   - Pour **zone de récupération rapide**, utiliser la valeur par défaut hello ASM suggéré emplacement.
+   - Pour l’**emplacement des fichiers de base de données**, utilisez l’emplacement par défaut ASM suggéré.
+   - Pour la **zone de récupération rapide**, utilisez l’emplacement par défaut ASM suggéré.
    - Saisissez un **mot de passe administrateur** et **confirmez le mot de passe**.
    - Vérifiez que l’option `create as container database` est sélectionnée.
    - Saisissez une valeur pour `pluggable database name`.
 
-4. Sur hello **Résumé** page, passez en revue les paramètres sélectionnés, puis cliquez sur `Finish` base de données toocreate hello.
+4. Sur la page **Summary** (Récapitulatif), passez en revue les paramètres sélectionnés, puis cliquez sur `Finish` pour créer la base de données.
 
-   ![Capture d’écran de la page de résumé hello](./media/oracle-asm/createdb03.png)
+   ![Capture d’écran de la page Summary (Récapitulatif)](./media/oracle-asm/createdb03.png)
 
-5. Hello de base de données a été créé. Sur hello **Terminer** page, vous avez hello option toounlock des comptes supplémentaires toouse cette base de données et modifier les mots de passe hello. Si vous souhaitez donc toodo, sélectionnez **gestion de mot de passe** -Cliquez sinon sur `close`.
+5. La base de données a été créée. Sur la page **Finish** (Terminer), vous pouvez déverrouiller des comptes supplémentaires pour utiliser cette base de données et modifier les mots de passe. Pour ce faire, sélectionnez **Password Management** (Gestion des mots de passe). Sinon, cliquez sur `close`.
 
-## <a name="delete-hello-vm"></a>Supprimer hello machine virtuelle
+## <a name="delete-the-vm"></a>Supprimer la machine virtuelle
 
-Vous avez correctement configuré la gestion du stockage automatisé Oracle sur l’image de base de données Oracle hello de hello Azure Marketplace.  Lorsque vous ne devez plus cet ordinateur virtuel, vous pouvez utiliser hello suivant du groupe de ressources de commande tooremove hello, machine virtuelle et toutes les ressources :
+Vous avez correctement configuré Oracle Automated Storage Management sur l’image de base de données Oracle à partir de la Place de marché Microsoft Azure.  Si vous n’avez plus besoin de cette machine virtuelle, vous pouvez utiliser la commande suivante pour supprimer le groupe de ressources, la machine virtuelle et toutes les ressources associées :
 
 ```azurecli
 az group delete --name myResourceGroup

@@ -1,5 +1,5 @@
 ---
-title: "quota de cœurs du Gestionnaire de ressources aaaAzure augmenter demandes | Documents Microsoft"
+title: "Demandes d’augmentation du quota de base d’Azure Resource Manager | Microsoft Docs"
 description: "Demandes d’augmentation du quota de base d’Azure Resource Manager"
 author: ganganarayanan
 ms.author: gangan
@@ -7,24 +7,24 @@ ms.date: 1/18/2017
 ms.topic: article
 ms.service: microsoft-docs
 ms.assetid: ce37c848-ddd9-46ab-978e-6a1445728a3b
-ms.openlocfilehash: b158b9f0e0338eb239da9253c2146ea93c02e316
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cb6c5b3e86f126d4110d1cd29d8c9891e356e414
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="resource-manager-core-quota-increase-requests"></a>Demandes d’augmentation du quota de base de Resource Manager
 
-Quotas de noyaux de gestionnaire de ressources ne sont appliqués au niveau de la région de hello et au niveau de la family de référence (SKU).
-En savoir plus sur la façon dont les quotas sont appliqués sur hello [abonnement Azure et limites de service](http://aka.ms/quotalimits) page.
-toolearn plus d’informations sur les familles de référence (SKU), peuvent être considérés coût et les performances sur hello [tarification des Machines virtuelles](http://aka.ms/pricingcompute) page.
+Les quotas de base de Resource Manager sont appliqués au niveau de la région et de la famille de références (SKU).
+Pour en savoir plus sur la façon dont les quotas sont appliqués, consultez la page [Abonnement Azure et limites, quotas et contraintes de service](http://aka.ms/quotalimits).
+Pour en savoir plus sur les familles de références, vous pouvez comparer le coût et les performances sur la page [Tarification des machines virtuelles](http://aka.ms/pricingcompute).
 
-toorequest une augmentation, créer un cas de prise en charge de Quota de cœurs dans hello portail Azure, [https://portal.azure.com](https://portal.azure.com).
+Pour demander une augmentation, créez un cas de prise en charge de quota de cœurs dans le portail Azure, [https://portal.azure.com](https://portal.azure.com).
 
 > [!NOTE]
-> Découvrez comment trop[créer une demande de support](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request) Bonjour portail Azure
+> Découvrez comment [créer une demande de support](https://docs.microsoft.com/azure/azure-supportability/how-to-create-azure-support-request) dans le portail Azure.
 
-1. Sur la nouvelle page de demande de support hello, sélectionnez type de problème en tant que « Quota » et le type de Quota en tant que « Cœurs ».
+1. Dans la nouvelle page de demande de support, sélectionnez le type de problème « Quota » et le type de quota « Cœurs ».
 
     ![Panneau Informations de base du quota](./media/resource-manager-core-quotas-request/Basics-blade.png)
 
@@ -32,13 +32,13 @@ toorequest une augmentation, créer un cas de prise en charge de Quota de cœurs
 
     ![Panneau Problème de quota](./media/resource-manager-core-quotas-request/Problem-step.png)
 
-3. Sélectionnez les familles de SKU hello qui nécessitent une augmentation.
+3. Sélectionnez les familles de références qui nécessitent une augmentation.
 
     ![Série de références sélectionnée](./media/resource-manager-core-quotas-request/SKU-selected.png)
 
-4. Entrez hello nouvelles limites que vous souhaitez que sur les abonnement hello.
+4. Entrez les nouvelles limites que vous souhaitez appliquer à l’abonnement.
 
     ![Nouvelle demande de quota de référence](./media/resource-manager-core-quotas-request/SKU-new-quota.png)
 
-- tooremove une ligne, décochez la case hello référence (SKU) à partir de hello SKU famille liste déroulante ou cliquez sur hello rejet « x » icône.
-Après avoir entré le quota de votre choix hello pour chaque famille de référence (SKU), cliquez sur « Suivant » dans hello problème étape page toocontinue avec la création de la demande hello prise en charge.
+- Pour supprimer une ligne, désactivez la case de la référence dans la liste déroulante de la famille de références ou cliquez sur l’icône de fermeture « x ».
+Après avoir entré le quota de votre choix pour chaque famille de références, cliquez sur « Suivant » sur la page de l’étape Problème pour poursuivre la création de demande de support.

@@ -1,24 +1,24 @@
 ## <a name="traffic-manager-profile"></a>Profil Traffic Manager
-Traffic manager et ses ressources de point de terminaison enfant activer tooendpoints de routage DNS dans Azure et en dehors d’Azure. Cette répartition du trafic est régie par des stratégies de routage. Traffic manager permet également de point de terminaison d’intégrité toobe analysée et le trafic détourné de manière appropriée en fonction d’intégrité de hello du point de terminaison. 
+Traffic Manager et ses ressources de point de terminaison enfant activent le routage DNS vers les points de terminaison dans Azure et en dehors d’Azure. Cette répartition du trafic est régie par des stratégies de routage. Traffic Manager permet également de surveiller l'intégrité des points de terminaison, ainsi que le trafic dévié de manière appropriée en fonction de l'intégrité d'un point de terminaison. 
 
 | Propriété | Description |
 | --- | --- |
 | **trafficRoutingMethod** |Les valeurs possibles sont *Performances*, *Pondéré* et *Priorité*. |
-| **dnsConfig** |Nom de domaine complet pour le profil de hello |
+| **dnsConfig** |Nom de domaine complet du profil |
 | **Protocole** |Protocole de surveillance. Les valeurs possibles sont *HTTP* et *HTTPS*. |
 | **Port** |Port de surveillance |
 | **Chemin d’accès** |Chemin d’accès de surveillance |
 | **Points de terminaison** |Conteneur pour les ressources des points de terminaison |
 
 ### <a name="endpoint"></a>Point de terminaison
-Un point de terminaison est une ressource enfant d'un profil Traffic Manager. Il représente un service ou le trafic des utilisateurs web point de terminaison toowhich est distribué selon la stratégie hello configuré Bonjour ressource du profil Traffic Manager. 
+Un point de terminaison est une ressource enfant d'un profil Traffic Manager. Il représente un service ou un point de terminaison web vers lequel le trafic est réparti en fonction de la stratégie configurée dans la ressource de profil Traffic Manager. 
 
 | Propriété | Description |
 | --- | --- |
-| **Type** |Hello du type de point de terminaison hello, les valeurs possibles sont *point de terminaison d’Azure*, *point de terminaison externe*, et *le point de terminaison imbriqués* |
+| **Type** |Type du point de terminaison. Les valeurs possibles sont *Point de terminaison Azure*, *Point de terminaison externe* et *Point de terminaison imbriqué*. |
 | **targetResourceId** |Adresse IP publique d’un service ou d’un point de terminaison web. Ce peut être un point de terminaison Azure ou un point de terminaison externe. |
 | **Poids** |Poids du point de terminaison utilisé dans la gestion du trafic. |
-| **Priorité** |priorité du point de terminaison hello, toodefine utilisé une action de basculement |
+| **Priorité** |Priorité du point de terminaison, utilisée pour définir une action de basculement. |
 
 Exemple Traffic Manager au format Json : 
 

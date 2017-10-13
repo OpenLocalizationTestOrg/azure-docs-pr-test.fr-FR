@@ -1,6 +1,6 @@
 ---
-title: aaaUse Hadoop Sqoop avec Curl dans HDInsight - Azure | Documents Microsoft
-description: "Découvrez comment tooremotely soumettre Sqoop tooHDInsight de travaux à l’aide de Curl."
+title: Utiliser Hadoop Sqoop avec Curl dans HDInsight - Azure | Microsoft Docs
+description: "Découvrez comment transmettre à distance des travaux Sqoop vers HDInsight à l’aide de Curl."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -14,108 +14,102 @@ ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: big-data
-ms.date: 05/25/2017
+ms.date: 09/22/2017
 ms.author: jgao
-ms.openlocfilehash: d9c09a6704ab6c5f48be50ed6d6314ec406df8ea
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5aa47b4b12dc136a3f6ba66688804859f9eb5446
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="run-sqoop-jobs-with-hadoop-in-hdinsight-with-curl"></a>Exécution de travaux Sqoop avec Hadoop dans HDInsight via Curl
 [!INCLUDE [sqoop-selector](../../includes/hdinsight-selector-use-sqoop.md)]
 
-Découvrez comment de cluster toouse Curl toorun Sqoop travaux sur un Hadoop dans HDInsight.
+Apprenez à utiliser Curl pour exécuter des tâches Sqoop sur un cluster Hadoop dans HDInsight.
 
-Curl est utilisé toodemonstrate comment vous pouvez interagir avec HDInsight à l’aide de toorun de demandes HTTP brut, analyse et récupérer les résultats de hello de Sqoop travaux. Cela fonctionne à l’aide de hello WebHCat API REST (anciennement Templeton) fournie par votre cluster HDInsight.
-
-> [!NOTE]
-> Si vous êtes déjà familiarisé avec l’utilisation de serveurs de Hadoop basé sur Linux, mais sont tooHDInsight nouvelle, consultez [plus d’informations sur l’utilisation de HDInsight sur Linux](hdinsight-hadoop-linux-information.md).
-> 
-> 
+Curl est utilisé pour illustrer comment interagir avec HDInsight en utilisant des demandes HTTP brutes pour exécuter, analyser et récupérer des travaux Sqoop. Cela fonctionne à l’aide de l’API REST WebHCat (anciennement Templeton) fournie par votre cluster HDInsight.
 
 ## <a name="prerequisites"></a>Composants requis
-toocomplete hello étapes décrites dans cet article, vous devez suivant de hello :
+Pour effectuer les étapes présentées dans cet article, vous avez besoin des éléments suivants :
 
-* Un cluster Hadoop sur HDInsight (Linux ou Windows)
-* [Curl](http://curl.haxx.se/)
-* [jq](http://stedolan.github.io/jq/)
+* Suivez la procédure [Utiliser Sqoop avec Hadoop dans HDInsight](./hdinsight-use-sqoop.md#create-cluster-and-sql-database) pour configurer un environnement avec un cluster HDInsight et une base de données SQL Azure.
+* [Curl](http://curl.haxx.se/). Curl est un outil pour transférer des données depuis ou vers un cluster HDInsight.
+* [jq](http://stedolan.github.io/jq/). L’utilitaire jq est utilisé pour traiter les données JSON renvoyées à partir de demandes REST.
 
 ## <a name="submit-sqoop-jobs-by-using-curl"></a>Envoi de travaux Sqoop avec Curl
 > [!NOTE]
-> Lorsque vous utilisez Curl ou toute autre communication reste avec WebHCat, vous devez vous authentifier les demandes hello en fournissant le nom d’utilisateur hello et mot de passe administrateur de cluster HDInsight hello. Vous devez également utiliser le nom du cluster hello comme partie d’identificateur de ressource uniforme (URI) de hello utilisé serveur toohello de toosend hello demandes.
+> Lorsque vous utilisez Curl ou toute autre communication REST avec WebHCat, vous devez authentifier les demandes en fournissant le nom d'utilisateur et le mot de passe de l'administrateur du cluster HDInsight. Vous devez également utiliser le nom du cluster dans l’URI (Uniform Resource Identifier) utilisé pour envoyer les demandes au serveur.
 > 
-> Pour les commandes hello dans cette section, remplacez **nom d’utilisateur** avec cluster de toohello tooauthenticate hello utilisateur, puis remplacez **mot de passe** avec mot de passe hello hello compte d’utilisateur. Remplacez **CLUSTERNAME** avec nom hello de votre cluster.
+> Pour les commandes de cette section, remplacez **USERNAME** par l’utilisateur à authentifier sur le cluster et **PASSWORD** par le mot de passe du compte d’utilisateur. Remplacez **CLUSTERNAME** par le nom de votre cluster.
 > 
-> API REST Hello est sécurisé via [l’authentification de base](http://en.wikipedia.org/wiki/Basic_access_authentication). Vous devez toujours effectuer des requêtes en utilisant HTTP sécurisée (HTTPS) toohelp vous assurer que vos informations d’identification sont envoyées en toute sécurité toohello server.
+> L’API REST est sécurisée à l’aide de l’ [authentification de base](http://en.wikipedia.org/wiki/Basic_access_authentication). Vous devez toujours effectuer les demandes à l’aide du protocole Secure HTTP (HTTPS) pour aider à vous assurer que vos informations d’identification sont envoyées en toute sécurité sur le serveur.
 > 
 > 
 
-1. À partir d’une ligne de commande, utilisez hello suivant tooverify de commande que vous pouvez vous connecter à tooyour HDInsight cluster :
+1. À partir d’une ligne de commande, exécutez la commande suivante pour vérifier que vous pouvez vous connecter à votre cluster HDInsight.
+
+    ```bash   
+    curl -u USERNAME:PASSWORD -G https://CLUSTERNAME.azurehdinsight.net/templeton/v1/status
+    ```
+
+    Vous devez recevoir une réponse ayant l'aspect suivant :
+
+    ```json   
+    {"status":"ok","version":"v1"}
+    ```
    
-        curl -u USERNAME:PASSWORD -G https://CLUSTERNAME.azurehdinsight.net/templeton/v1/status
+    Les paramètres utilisés dans cette commande sont les suivants :
    
-    Vous devez recevoir une suivant toohello similaire de réponse :
-   
-        {"status":"ok","version":"v1"}
-   
-    paramètres de Hello utilisés dans cette commande sont les suivantes :
-   
-   * **-u** -nom d’utilisateur hello et le mot de passe de demande de hello tooauthenticate utilisé.
+   * **-u** : le nom d’utilisateur et le mot de passe utilisés pour authentifier la demande.
    * **-G** : indique qu’il s’agit d’une demande GET.
      
-     Bonjour à partir de l’URL de hello, **https://CLUSTERNAME.azurehdinsight.net/templeton/v1**, sera hello identique pour toutes les demandes. chemin d’accès de Hello, **/Status**, indique cette demande hello est tooreturn état WebHCat (également appelé Templeton) pour le serveur de hello. 
-2. Utilisez hello suivant toosubmit un travail sqoop :
+     Le début de l’URL, **https://CLUSTERNAME.azurehdinsight.net/templeton/v1**, est le même pour toutes les demandes. Le chemin d’accès, **/status**, indique que la demande doit renvoyer le statut de WebHCat (également appelé Templeton) au serveur. 
+2. Pour envoyer un travail Sqoop, utilisez la commande suivante :
 
-        curl -u USERNAME:PASSWORD -d user.name=USERNAME -d command="export --connect jdbc:sqlserver://SQLDATABASESERVERNAME.database.windows.net;user=USERNAME@SQLDATABASESERVERNAME;password=PASSWORD;database=SQLDATABASENAME --table log4jlogs --export-dir /tutorials/usesqoop/data --input-fields-terminated-by \0x20 -m 1" -d statusdir="wasb:///example/curl" https://CLUSTERNAME.azurehdinsight.net/templeton/v1/sqoop
+    ```bash
+    curl -u USERNAME:PASSWORD -d user.name=USERNAME -d command="export --connect jdbc:sqlserver://SQLDATABASESERVERNAME.database.windows.net;user=USERNAME@SQLDATABASESERVERNAME;password=PASSWORD;database=SQLDATABASENAME --table log4jlogs --export-dir /example/data/sample.log --input-fields-terminated-by \0x20 -m 1" -d statusdir="wasb:///example/data/sqoop/curl" https://CLUSTERNAME.azurehdinsight.net/templeton/v1/sqoop
+    ```
 
-    paramètres de Hello utilisés dans cette commande sont les suivantes :
+    Les paramètres utilisés dans cette commande sont les suivants :
 
-    * **-d** - depuis `-G` n’est pas utilisé, demande de hello par défaut est la méthode POST de toohello. `-d`Spécifie les valeurs de données hello qui sont envoyés avec la demande de hello.
+    * **-d** : étant donné que `-G` n’est pas utilisé, la demande passe par défaut à la méthode POST. `-d` spécifie les valeurs de données envoyées avec la demande.
 
-        * **User.nom** -utilisateur hello qui commande hello est en cours d’exécution.
+        * **user.name** : l’utilisateur qui exécute la commande.
 
-        * **commande** -hello Sqoop commande tooexecute.
+        * **command** : commande Sqoop à exécuter.
 
-        * **statusdir** -répertoire hello hello l’état de cette tâche sera écrit dans.
+        * **statusdir** : le répertoire où seront enregistrés les statuts de cette tâche.
 
-    Cette commande doit retourner un ID de tâche qui peut être l’état de hello toocheck utilisés du travail de hello.
+    Cette commande doit retourner un ID de tâche qui peut être utilisé pour vérifier le statut de la tâche.
 
+        ```json
         {"id":"job_1415651640909_0026"}
+        ```
 
-1. état de hello toocheck du travail hello, hello utilisez commande suivante. Remplacez **JOBID** avec la valeur hello retourné à l’étape précédente de hello. Par exemple, si hello retourner la valeur était `{"id":"job_1415651640909_0026"}`, puis **JOBID** serait `job_1415651640909_0026`.
-   
-        curl -G -u USERNAME:PASSWORD -d user.name=USERNAME https://CLUSTERNAME.azurehdinsight.net/templeton/v1/jobs/JOBID | jq .status.state
-   
-    Si le travail de hello terminée, hello état n’aura pas **SUCCEEDED**.
-   
-   > [!NOTE]
-   > Cette demande Curl retourne un document JavaScript Objet Notation (JSON) avec des informations sur la tâche de hello ; jq sert tooretrieve hello uniquement la valeur d’état.
-   > 
-   > 
-2. Une fois que l’état hello du travail de hello a changé trop**SUCCEEDED**, vous pouvez récupérer les résultats de hello du travail de hello à partir du stockage d’objets Blob Azure. Hello `statusdir` passés avec la requête de hello contient l’emplacement hello hello du fichier de sortie ; dans ce cas, **wasb : / / exemple/curl**. Cette adresse stocke la sortie hello du travail de hello Bonjour **exemple/curl** répertoire sur le conteneur de stockage hello par défaut utilisé par votre cluster HDInsight.
-   
-    Vous pouvez répertorier et télécharger ces fichiers à l’aide de hello [CLI d’Azure](../cli-install-nodejs.md). Par exemple, fichiers toolist **exemple/curl**, utilisez hello de commande suivante :
-   
-        azure storage blob list <container-name> example/curl
-   
-    toodownload un fichier, utilisez hello qui suit :
-   
-        azure storage blob download <container-name> <blob-name> <destination-file>
+3. Pour vérifier le statut de la tâche, utilisez la commande suivante. Remplacez **JOBID** par la valeur retournée à l’étape précédente. Par exemple, si la valeur de retour était `{"id":"job_1415651640909_0026"}`, le **JOBID** est `job_1415651640909_0026`.
+
+    ```bash
+    curl -G -u USERNAME:PASSWORD -d user.name=USERNAME https://CLUSTERNAME.azurehdinsight.net/templeton/v1/jobs/JOBID | jq .status.state
+    ```
+
+    Si le travail est terminé, l’état est **TERMINÉ**.
    
    > [!NOTE]
-   > Vous devez spécifier soit le nom de compte de stockage hello qui contient l’objet blob de hello à l’aide de hello `-a` et `-k` paramètres, ou ensemble hello **AZURE\_stockage\_compte** et **AZURE\_stockage\_accès\_clé** variables d’environnement. Consultez <a href="hdinsight-upload-data.md" target="_blank" pour plus d'informations.
+   > Cette demande Curl retourne un document JSON (JavaScript Object Notation) avec des informations sur la tâche ; jq est utilisé pour récupérer uniquement la valeur de statut.
    > 
    > 
+4. Une fois que le statut de la tâche est passé à **TERMINÉ**, vous pouvez récupérer les résultats depuis le stockage blob Azure. Le paramètre `statusdir` transmis avec la requête contient l’emplacement du fichier de sortie ; dans notre cas, **wasb:///exemple/data/sqoop/curl**. Cette adresse stocke la sortie de la tâche dans le répertoire **exemple/data/sqoop/curl** sur le conteneur de stockage par défaut utilisé par votre cluster HDInsight.
+   
+    Vous pouvez utiliser le portail Azure pour accéder aux objets BLOB stderr et stdout.  Vous pouvez également utiliser Microsoft SQL Server Management Studio pour vérifier les données chargées vers la table log4jlogs.
 
 ## <a name="limitations"></a>Limites
-* L’exportation en bloc - basés sur Linux avec un HDInsight, hello Sqoop connecteur utilisé tooexport données tooMicrosoft SQL Server ou base de données SQL Azure ne prend actuellement pas en charge les insertions en bloc.
-* Le traitement par lot - Hdinsight basés sur Linux, lorsque vous utilisez hello `-batch` commutateur lorsque vous effectuez des insertions, Sqoop effectue plusieurs insertions au lieu de traitement par lot des opérations d’insertion hello.
+* Exportation en bloc : avec HDInsight sous Linux, le connecteur Sqoop utilisé pour exporter des données vers Microsoft SQL Server ou la base de données SQL Azure ne prend pas en charge les insertions en bloc.
+* Traitement par lots : avec HDInsight sous Linux, lorsque vous utilisez le commutateur `-batch` pour effectuer des insertions, Sqoop effectue plusieurs insertions plutôt qu’un traitement par lots des opérations d’insertion.
 
 ## <a name="summary"></a>Résumé
-Comme illustré dans ce document, vous pouvez utiliser un toorun de demande HTTP brut, analyse et afficher les résultats des travaux de Sqoop hello sur votre cluster HDInsight.
+Comme illustré dans ce document, vous pouvez utiliser une demande HTTP brute pour exécuter, surveiller et afficher les résultats des travaux Sqoop sur votre cluster HDInsight.
 
-Pour plus d’informations sur l’interface REST de hello utilisée dans cet article, consultez hello <a href="https://sqoop.apache.org/docs/1.99.3/RESTAPI.html" target="_blank">guide de l’API REST de Sqoop</a>.
+Pour plus d’informations sur l’interface REST utilisée dans cet article, consultez le document <a href="https://sqoop.apache.org/docs/1.99.3/RESTAPI.html" target="_blank">Sqoop REST API guide</a> (Guide de l’API REST Sqoop).
 
 ## <a name="next-steps"></a>Étapes suivantes
 Pour obtenir des informations générales sur Hive avec HDInsight :
@@ -128,29 +122,12 @@ Pour plus d’informations sur d’autres méthodes de travail avec Hadoop sur H
 * [Utilisation de Pig avec Hadoop sur HDInsight](hdinsight-use-pig.md)
 * [Utilisation de MapReduce avec Hadoop sur HDInsight](hdinsight-use-mapreduce.md)
 
-[hdinsight-sdk-documentation]: http://msdnstage.redmond.corp.microsoft.com/library/dn479185.aspx
+Pour d’autres articles HDInsight impliquant curl :
+ 
+* [Créer des clusters Hadoop à l’aide de l’API REST Azure](hdinsight-hadoop-create-linux-clusters-curl-rest.md)
+* [Exécuter des requêtes Hive avec Hadoop dans HDInsight à l’aide de REST](hdinsight-hadoop-use-hive-curl.md)
+* [Exécution des tâches MapReduce avec Hadoop sur HDInsight avec REST](hdinsight-hadoop-use-mapreduce-curl.md)
+* [Exécution à distance des tâches Pig avec Hadoop sur HDInsight à l’aide de Curl](hdinsight-hadoop-use-pig-curl.md)
 
-[azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/
-[azure-member-offers]: http://azure.microsoft.com/pricing/member-offers/
-[azure-free-trial]: http://azure.microsoft.com/pricing/free-trial/
-
-[apache-tez]: http://tez.apache.org
-[apache-hive]: http://hive.apache.org/
-[apache-log4j]: http://en.wikipedia.org/wiki/Log4j
-[hive-on-tez-wiki]: https://cwiki.apache.org/confluence/display/Hive/Hive+on+Tez
-[import-to-excel]: http://azure.microsoft.com/documentation/articles/hdinsight-connect-excel-power-query/
-
-
-[hdinsight-use-oozie]: hdinsight-use-oozie.md
-[hdinsight-analyze-flight-data]: hdinsight-analyze-flight-delay-data.md
-
-
-
-
-[hdinsight-provision]: hdinsight-hadoop-provision-linux-clusters.md
-[hdinsight-submit-jobs]: hdinsight-submit-hadoop-jobs-programmatically.md
-[hdinsight-upload-data]: hdinsight-upload-data.md
-
-[powershell-here-strings]: http://technet.microsoft.com/library/ee692792.aspx
 
 

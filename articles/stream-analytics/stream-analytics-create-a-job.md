@@ -1,5 +1,5 @@
 ---
-title: "aaaHow toocreate un travail de traitement de données analytique pour les flux de données Analytique | Documents Microsoft"
+title: "Guide pratique pour créer un travail de traitement d’analyse de données pour Stream Analytics | Microsoft Docs"
 description: "Créer une tâche de traitement d’analyse de données pour Stream Analytics | segment du parcours d’apprentissage."
 keywords: "traitement d’analyse de données"
 documentationcenter: 
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: samacha
-ms.openlocfilehash: d4a3c89d8862d59688d06a1719b063efa2ab1c93
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 05fdf1e20efd129cdfc27e1d37bc9e124edf5dcd
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toocreate-a-data-analytics-processing-job-for-stream-analytics"></a>Comment toocreate un traitement analytique des données de la tâche de flux de données Analytique
-ressources de niveau supérieur Hello dans Analytique de flux de données Azure est une tâche Analytique de flux de données.  Il se compose d’une ou plusieurs d’entrée à des sources de données, une requête exprimant la transformation de données hello et une ou plusieurs cibles de sortie qui sont écrits dans. Ensemble, ces activer analytique de données hello utilisateur tooperform scénarios de traitement des données de diffusion en continu.
+# <a name="how-to-create-a-data-analytics-processing-job-for-stream-analytics"></a>Comment créer une tâche de traitement d’analyse de données pour Stream Analytics
+La ressource de niveau supérieur dans Azure Stream Analytics est une tâche Stream Analytics.  Elle se compose d'une ou plusieurs sources de données d'entrée, une requête exprimant la transformation de données et une ou plusieurs cibles de sortie où les résultats sont écrits. Ensemble, ces éléments permettent à l’utilisateur de traiter l’analyse des données dans différents scénarios de données de diffusion en continu.
 
-toostart à l’aide de flux de données Analytique, commencez par créer une nouvelle tâche de flux de données Analytique.  Notez que cette action n’a aucune incidence facturation jusqu'à ce que la tâche hello est démarrée.
+Pour utiliser Stream Analytics, commencez par créer une tâche Stream Analytics.  Notez que cette action n'a aucune incidence de facturation tant que la tâche n'a pas démarré.
 
-1. Connectez-vous à hello en ligne [portail Azure classic](http://manage.windowsazure.com) ou hello [portail Azure](https://portal.azure.com/).
-2. Dans le portail de hello : **cliquez sur Nouveau**, puis cliquez sur **Data Services** ou **données Analytique** en fonction de votre portail et le puis cliquez sur **Analytique de flux de données Azure** ou **flux Analytique** , puis **création rapide**.
+1. Connectez-vous au [portail Azure Classic](http://manage.windowsazure.com) en ligne ou au [portail Azure](https://portal.azure.com/).
+2. Dans le portail : cliquez successivement sur **Nouveau**, sur **Data Services** ou **Data Analytics** (selon votre portail), sur **Azure Stream Analytics** ou **Stream Analytics**, puis sur **Création rapide**.
    
    ![Assistant Tâche de traitement d’analyse de données](./media/stream-analytics-create-a-job/1-stream-analytics-create-a-job.png)  
    
    ![Créer une tâche de traitement d’analyse de données](./media/stream-analytics-create-a-job/4-stream-analytics-create-a-job.png)  
-3. Spécifiez la configuration souhaitée de hello de la tâche de flux de données Analytique de hello.
+3. Spécifiez la configuration souhaitée pour la tâche Stream Analytics.
    
-   * Bonjour **nom de la tâche** , entrez un nom tooidentify hello Analytique de flux du travail. Hello lorsque **nom de la tâche** est validé, une coche verte s’affiche dans la zone de nom de la tâche hello. Hello **nom de la tâche** peuvent uniquement contenir des caractères alphanumériques et hello '-' caractère et doit être comprise entre 3 et 63 caractères.
-   * Utilisez **région** Bonjour portail Azure ou **emplacement** Bonjour Azure toospecify portail hello emplacement géographique où vous souhaitez que le travail de hello de toorun.
-   * Si à l’aide de hello le portail Azure, sélectionnez ou créez un toouse de compte de stockage comme hello **compte de stockage de surveillance régionale**. Ce compte de stockage est utilisé toostore données d’analyse de toutes les tâches de flux de données Analytique en cours d’exécution dans cette région.
-   * Si à l’aide de hello le portail Azure, spécifiez un nouveau ou existant **groupe de ressources** toohold liés des ressources pour votre application.
-4. Une fois les nouvelles options de tâche de flux Analytique hello sont configurées, cliquez sur **créer une tâche de flux de données Analytique**. Il peut prendre quelques minutes pour hello flux Analytique travail toobe est créé. état de hello toocheck, vous pouvez surveiller la progression de hello dans hub de Notifications hello.
+   * Dans la zone **Nom de la tâche** , entrez un nom pour identifier la tâche Stream Analytics. Une fois le **nom de la tâche** validé, une coche verte s’affiche dans la zone Nom de la tâche. Le **Nom de la tâche** ne peut contenir que des caractères alphanumériques et le caractère « - », et doit compter entre 3 et 63 caractères.
+   * Utilisez **Région** dans le portail Azure ou **Emplacement** dans le portail Azure pour spécifier l’emplacement géographique où vous souhaitez exécuter le travail.
+   * Si vous utilisez le portail Azure, sélectionnez ou créez un compte de stockage à utiliser comme **Compte de stockage de surveillance régionale**. Ce compte de stockage est utilisé pour stocker les données de surveillance de toutes les tâches Stream Analytics en cours d'exécution dans cette région.
+   * Si vous utilisez le portail Azure, indiquez un **groupe de ressources** nouveau ou existant contenant les ressources associées à votre application.
+4. Une fois les options de la nouvelle tâche Stream Analytics configurées, cliquez sur **Créer une tâche Stream Analytics**. La création de la tâche Stream Analytics peut prendre plusieurs minutes. Pour vérifier l'état, vous pouvez suivre l'avancement dans le hub de notifications.
    
    ![Hub de notification des tâches de traitement d’analyse de données](./media/stream-analytics-create-a-job/2-stream-analytics-create-a-job.png)  
    
    ![Créer une tâche de traitement d’analyse de données dans le portail Azure](./media/stream-analytics-create-a-job/5-stream-analytics-create-a-job.png)  
-5. nouvelle tâche de Hello présentent l’état de **créé**. Notez que hello **Démarrer** bouton est désactivé. Configurer hello travail entrée, de requête et de sortie avant de démarrer le travail de hello.
+5. Le nouveau travail est affiché avec l’état **Créé**. Notez que le bouton **Démarrer** est désactivé. Avant de pouvoir démarrer la tâche, vous devez configurer son entrée, sa requête et sa sortie.
    
    ![Statut de la tâche de traitement d’analyse de données](./media/stream-analytics-create-a-job/3-stream-analytics-create-a-job.png)  
    
@@ -53,7 +53,7 @@ toostart à l’aide de flux de données Analytique, commencez par créer une no
 Pour obtenir une assistance, essayez notre [forum Azure Stream Analytics](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Introduction tooAzure Analytique de flux de données](stream-analytics-introduction.md)
+* [Présentation d’Azure Stream Analytics](stream-analytics-introduction.md)
 * [Prise en main d’Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [Mise à l'échelle des travaux Azure Stream Analytics](stream-analytics-scale-jobs.md)
 * [Références sur le langage des requêtes d'Azure Stream Analytics](https://msdn.microsoft.com/library/azure/dn834998.aspx)

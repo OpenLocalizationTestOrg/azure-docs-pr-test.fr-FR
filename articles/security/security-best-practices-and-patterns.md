@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure sécurité meilleures pratiques et modèles | Documents Microsoft"
-description: "article de Hello fournit une introduction sur les meilleures pratiques de sécurité Azure et de modèles et d’une liste organisée des meilleures pratiques de sécurité pour les différentes ressources Azure."
+title: "Bonnes pratiques et tendances Azure relatives à la sécurité | Microsoft Docs"
+description: "Cet article fournit une introduction sur les meilleures pratiques et tendances de sécurité Azure, ainsi qu’une liste organisée de meilleures pratiques de sécurité pour les différentes ressources Azure."
 services: azure-security
 documentationcenter: na
 author: TomShinder
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/06/2017
 ms.author: terrylan
-ms.openlocfilehash: eaaa9457faa1d5906275eb1fd8988d4d4aad101a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1cc0d2d1e9a62ff8531f963413ff573713d508ad
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-security-best-practices-and-patterns"></a>Meilleures pratiques et tendances Azure relatives à la sécurité
-Nous disposons actuellement hello suivant articles meilleures de modèles et pratiques de sécurité Azure. Rendre toovisit que ce site régulièrement toosee met à jour la liste croissante de tooour des modèles et meilleures pratiques de sécurité Azure :  
+Nous disposons actuellement des articles suivants sur les tendances et meilleures pratiques de sécurité Azure. Veillez à consulter ce site régulièrement pour voir les mises à jour de notre liste croissante de tendances et meilleures pratiques de sécurité Azure :  
 
 * [Meilleures pratiques Azure en matière de sécurité réseau](azure-security-network-security-best-practices.md)
 * [Meilleures pratiques Azure en matière de chiffrement et de sécurité des données](azure-security-data-encryption-best-practices.md)
@@ -32,18 +32,18 @@ Nous disposons actuellement hello suivant articles meilleures de modèles et pra
 * [Implémentation d’une architecture réseau hybride sécurisée dans Azure](../guidance/guidance-iaas-ra-secure-vnet-hybrid.md)
 * [Meilleurs pratiques relatives à Azure PaaS] (https://docs.microsoft.com/en-us/azure/security/security-paas-deployments)
 
-Azure fournit une plateforme sécurisée sur laquelle vous pouvez créer vos solutions. Nous fournissons également toomake technologies et services de vos solutions sur Azure plus sécurisé. En raison de hello nombreux tooyou disponible options, nombre d'entre vous ont manifesté un intérêt pour ce que Microsoft vous recommande d’en tant que meilleures pratiques et des modèles pour améliorer la sécurité.
+Azure fournit une plateforme sécurisée sur laquelle vous pouvez créer vos solutions. Nous proposons également des services et des technologies pour sécuriser davantage vos solutions sur Azure. En raison de la multitude d’options disponibles, vous êtes nombreux à avoir demandé à Microsoft de recommander les meilleures pratiques et tendances pour améliorer la sécurité.
 
-Comprendre votre intérêt et que nous avons créé une collection de documents qui décrivent les actions possibles, contexte droite hello, sécurité de hello tooimprove de déploiements Azure donné.
+Nous comprenons votre intérêt et avons créé une collection de documents qui décrivent les choses à faire, en fonction du contexte, pour améliorer la sécurité des déploiements Azure.
 
-Ces articles présentent un ensemble de meilleures pratiques et de tendances utiles sur des sujets spécifiques. Ces meilleures pratiques et les modèles sont dérivés de notre expérience avec ces technologies et les expériences hello de clients comme vous-même.
+Ces articles présentent un ensemble de meilleures pratiques et de tendances utiles sur des sujets spécifiques. Ces meilleures pratiques et tendances sont issues de notre expérience avec ces technologies, mais également de celle des clients, comme vous.
 
-Pour chaque meilleure pratique, nous nous efforçons tooexplain :
+Pour chaque meilleure pratique, nous tentons d’expliquer les éléments suivants :
 
-* Les meilleures pratiques de hello est
-* Raison pour laquelle vous souhaitez tooenable que les meilleures pratiques
-* Ce que peut être le résultat de hello si vous ne parvenez pas la meilleure pratique de tooenable hello
-* Meilleure pratique de toohello alternatives possibles
-* Comment vous pouvez apprendre tooenable hello il est recommandé
+* Nature de la meilleure pratique
+* Raison pour laquelle activer cette bonne pratique
+* Conséquence possible en cas de non-utilisation de la meilleure pratique
+* Alternatives possibles à la meilleure pratique
+* Comment apprendre à utiliser la meilleure pratique
 
-Nous sommes impatients tooincluding beaucoup plus d’articles sur l’architecture de sécurité Azure et les meilleures pratiques. S’il existe des rubriques que vous souhaitez que nous tooinclude, faites-nous part dans la zone de discussion hello bas hello de cette page.
+Nous sommes impatients d’ajouter de nombreux autres articles sur l’architecture de sécurité Azure et les meilleures pratiques. Si vous souhaitez que nous incluions certaines rubriques, faites-le nous savoir dans la zone de discussion en bas de cette page.

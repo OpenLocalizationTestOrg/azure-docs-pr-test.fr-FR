@@ -1,9 +1,9 @@
 ---
-title: "stratégies d’authentification de gestion des API aaaAzure | Documents Microsoft"
-description: "En savoir plus sur les stratégies d’authentification disponibles pour une utilisation dans la gestion des API Azure hello."
+title: "Stratégies d’authentification dans Gestion des API Azure | Microsoft Docs"
+description: "Découvrez les stratégies d’authentification disponibles dans Gestion des API Azure."
 services: api-management
 documentationcenter: 
-author: miaojiang
+author: vladvino
 manager: erikre
 editor: 
 ms.assetid: 061702a7-3a78-472b-a54a-f3b1e332490d
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: ce93cced66cb67520e97c7c15f3685bffb08e1f5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2907c1e4e39f975b4dc4e9382d7258c5d56dbbdc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="api-management-authentication-policies"></a>Stratégies d’authentification dans Gestion des API
-Cette rubrique fournit une référence pour hello suivant des stratégies de gestion des API. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=398186).  
+Cette rubrique est une ressource de référence au sujet des stratégies Gestion des API suivantes. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="AuthenticationPolicies"></a> Stratégies d’authentification  
   
@@ -30,9 +30,9 @@ Cette rubrique fournit une référence pour hello suivant des stratégies de ges
 -   [Authenticate with client certificate](api-management-authentication-policies.md#ClientCertificate) : authentification avec un service principal à l’aide de certificats clients.  
   
 ##  <a name="Basic"></a> Authenticate with Basic  
- Hello d’utilisation `authentication-basic` tooauthenticate de stratégie avec un service principal à l’aide de l’authentification de base. Cette stratégie définit efficacement hello d’autorisation HTTP en-tête toohello valeur correspondante toohello informations d’identification fournies dans la stratégie de hello.  
+ La stratégie `authentication-basic` permet l’authentification auprès d’un service principal à l’aide de l’authentification de base. Cette stratégie définit en réalité l’en-tête d’autorisation HTTP sur la valeur correspondant aux informations d’identification fournies dans la stratégie.  
   
-### <a name="policy-statement"></a>Instruction de la stratégie  
+### <a name="policy-statement"></a>Déclaration de stratégie  
   
 ```xml  
 <authentication-basic username="username" password="password" />  
@@ -54,20 +54,20 @@ Cette rubrique fournit une référence pour hello suivant des stratégies de ges
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|username|Spécifie le nom d’utilisateur hello des informations d’identification de base hello.|Oui|N/A|  
-|password|Spécifie le mot de passe hello des informations d’identification de base hello.|Oui|N/A|  
+|username|Spécifie le nom d’utilisateur associé aux informations d’identification de base.|Oui|N/A|  
+|password|Spécifie le mot de passe associé aux informations d’identification de base.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
   
--   **Sections de la stratégie :** inbound  
+-   **Sections de la stratégie :** inbound (entrant)  
   
 -   **Étendues de la stratégie :** API  
   
 ##  <a name="ClientCertificate"></a> Authenticate with client certificate  
- Hello d’utilisation `authentication-certificate` tooauthenticate de stratégie avec un service principal à l’aide du certificat client. certificat de Hello doit toobe [installé dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=511599) premier et est identifiée par son empreinte numérique.  
+ La stratégie `authentication-certificate` permet l’authentification auprès d’un service principal à l’aide d’un certificat client. Le certificat doit être [installé dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=511599) en premier et identifié par son empreinte.  
   
-### <a name="policy-statement"></a>Instruction de la stratégie  
+### <a name="policy-statement"></a>Déclaration de stratégie  
   
 ```xml  
 <authentication-certificate thumbprint="thumbprint" />  
@@ -89,12 +89,12 @@ Cette rubrique fournit une référence pour hello suivant des stratégies de ges
   
 |Nom|Description|Requis|Default|  
 |----------|-----------------|--------------|-------------|  
-|thumbprint|Bonjour à l’empreinte numérique du certificat client hello.|Oui|N/A|  
+|thumbprint|Empreinte du certificat client.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
+ Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
   
--   **Sections de la stratégie :** inbound  
+-   **Sections de la stratégie :** inbound (entrant)  
   
 -   **Étendues de la stratégie :** API  
   

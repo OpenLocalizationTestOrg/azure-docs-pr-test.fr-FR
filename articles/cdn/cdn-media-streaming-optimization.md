@@ -1,5 +1,5 @@
 ---
-title: aaaMedia optimisation via hello Azure Content Delivery Network de diffusion en continu
+title: "Optimisation de la diffusion multimédia en continu via le réseau Azure Content Delivery Network"
 description: "Optimisation de la diffusion en continu de fichiers multimédias pour une distribution lisse"
 services: cdn
 documentationcenter: 
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: v-semcev
-ms.openlocfilehash: a05a86204708c7ea7ef1f9be04323cdda6a2d403
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 02cd0fe30a2a14f42a16ed12f714d496bbb23b36
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="media-streaming-optimization-via-hello-azure-content-delivery-network"></a>Optimisation via hello Azure Content Delivery Network de diffusion multimédia en continu 
+# <a name="media-streaming-optimization-via-the-azure-content-delivery-network"></a>Optimisation de la diffusion multimédia en continu via le réseau Azure Content Delivery Network 
  
-Utilisation de la vidéo haute définition augmente sur hello Internet, ce qui pose des difficultés pour la remise efficace des fichiers volumineux. Les clients attendent une lecture fluide de vidéo à la demande ou live ressources vidéo sur des réseaux et les clients monde hello. Un mécanisme de livraison rapide et efficace pour les fichiers de diffusion multimédia en continu est critique tooensure une expérience de consommateur lisse et plus agréable.  
+L’utilisation de la vidéo haute définition augmente sur Internet, ce qui crée des difficultés pour une distribution efficace de fichiers volumineux. Les clients attendent une lecture fluide de ressources de vidéo en direct ou à la demande sur toutes sortes de réseaux, et une clientèle mondiale. Un mécanisme de distribution rapide et efficace pour la diffusion multimédia de ces fichiers est essentiel pour garantir au consommateur une expérience fluide et agréable.  
 
-Support de diffusion en continu en direct est toodeliver particulièrement difficile en raison de grande taille de hello et le nombre d’utilisateurs simultanés. Un retard provoque tooleave d’utilisateurs. Étant donné que les flux live ne peut pas être mis en cache avance et latences élevées ne sont pas acceptables tooviewers, fragments vidéo doivent être remis en temps voulu. 
+La diffusion multimédia en continu en direct est particulièrement difficile à distribuer en raison des tailles importantes des fichiers et du grand nombre d’utilisateurs simultanés. Des délais d’attente prolongés découragent les utilisateurs. Les flux temps réel ne peuvent pas être mis en cache en avance et d’importantes latences ne sont pas acceptables pour les utilisateurs. C’est pourquoi les fragments vidéo doivent être distribués en temps opportun. 
 
-modèles de demande Hello de diffusion en continu fournissent également certains défis. Quand un flux en direct populaires ou une nouvelle série est publiée pour la vidéo à la demande, des milliers toomillions des visionneuses peut demander le flux hello en hello même temps. Dans ce cas, demande active consolidation est vital toonot surcharger les serveurs d’origine hello lorsque les ressources hello ne sont pas encore mis en cache.
+Les modèles de requêtes de diffusion en continu présentent également certains défis. Quand un flux temps réel populaire ou une nouvelle série sont publiés pour la vidéo à la demande, des millions d’utilisateurs peuvent demander ce flux simultanément. Dans ce cas, une consolidation des requêtes actives intelligente est essentielle pour ne pas surcharger les serveurs d’origine lorsque les ressources ne sont pas encore mises en cache.
  
-Bonjour Azure Content Delivery Network à partir d’Akamai propose désormais une fonctionnalité qui fournit les éléments multimédias en flux continu efficacement toousers monde hello à grande échelle. fonctionnalité de Hello réduit les latences, car il réduit la charge de hello sur les serveurs d’origine hello. Cette fonctionnalité est disponible avec le niveau de tarification Standard Akamai hello. 
+Le réseau Azure Content Delivery Network d’Akamai offre désormais une fonctionnalité qui fournit du contenu multimédia en flux continu efficacement, à grande échelle, à des utilisateurs dans le monde entier. La fonctionnalité réduit les latences, car elle réduit la charge sur les serveurs d’origine. Cette fonctionnalité est disponible au niveau de tarification Standard d’Akamai. 
 
-Bonjour Azure Content Delivery Network de Verizon remet la diffusion multimédia en continu directement dans le type d’optimisation remise hello web général.
+Le réseau Azure Content Delivery Network de Verizon distribue le contenu multimédia en diffusion continue directement dans le type d’optimisation de livraison web générale.
  
-## <a name="configure-an-endpoint-toooptimize-media-streaming-in-hello-azure-content-delivery-network-from-akamai"></a>Configurer un point de terminaison toooptimize diffusion multimédia en continu Bonjour Azure Content Delivery Network à partir d’Akamai
+## <a name="configure-an-endpoint-to-optimize-media-streaming-in-the-azure-content-delivery-network-from-akamai"></a>Configurer un point de terminaison pour optimiser la diffusion multimédia en continu dans le réseau Azure Content Delivery Network d’Akamai
  
-Vous pouvez configurer la remise toooptimize point de terminaison de votre diffusion de contenu (CDN) de réseau pour les fichiers volumineux via hello portail Azure. Vous pouvez également utiliser nos API REST ou des hello client SDK toodo cela. Hello étapes suivantes montrent les processus hello via hello portail Azure :
+Vous pouvez configurer votre point de terminaison CDN pour optimiser la distribution de fichiers volumineux via le portail Azure. Pour ce faire, vous pouvez également utiliser nos API REST ou tout SDK client. Les étapes suivantes montrent le processus via le portail Azure :
 
-1. tooadd un nouveau point de terminaison, sur hello **profil CDN** page, sélectionnez **point de terminaison**.
+1. Pour ajouter un nouveau point de terminaison, dans la page **Profil CDN**, sélectionnez **Point de terminaison**.
   
     ![Nouveau point de terminaison](./media/cdn-media-streaming-optimization/01_Adding.png)
 
-2. Bonjour **optimisé pour** la liste déroulante, sélectionnez **vidéo sur la diffusion de contenu multimédia à la demande** pour les ressources de vidéo à la demande. Si vous offrez une combinaison de diffusion en continu en direct et de vidéo à la demande, sélectionnez **Streaming de contenu général**.
+2. Dans la liste déroulante **Optimisé pour**, sélectionnez **Streaming de vidéo à la demande** pour les ressources de vidéo à la demande. Si vous offrez une combinaison de diffusion en continu en direct et de vidéo à la demande, sélectionnez **Streaming de contenu général**.
 
     ![Diffusion en continu sélectionné](./media/cdn-media-streaming-optimization/02_Creating.png) 
  
-Après avoir créé le point de terminaison hello, elle s’applique à l’optimisation de hello pour tous les fichiers qui correspondent à certains critères. Hello après section décrit ce processus. 
+Une fois le point de terminaison créé, il applique les optimisations pour tous les fichiers correspondant à certains critères. La section suivante décrit ce processus. 
  
-## <a name="media-streaming-optimizations-for-hello-azure-content-delivery-network-from-akamai"></a>Optimisations pour hello Azure Content Delivery Network à partir d’Akamai de diffusion multimédia en continu
+## <a name="media-streaming-optimizations-for-the-azure-content-delivery-network-from-akamai"></a>Optimisations de la diffusion multimédia en continu pour le réseau Azure Content Delivery Network d’Akamai
  
 L’optimisation de la diffusion multimédia en continu d’Akamai est efficace pour la diffusion multimédia en continu en direct ou en vidéo à la demande, qui utilise des fragments multimédias individuels pour la remise. Ce processus diffère du transfert d’une seule ressource volumineuse via un téléchargement progressif ou en utilisant des demandes de plage d’octets. Pour plus d’informations sur ce style de livraison de données multimédia, voir [Optimisation des fichiers volumineux](cdn-large-file-optimization.md).
 
 
-Hello media général de remise ou de vidéo à la demande media remise optimisation types utilisent un CDN multimédias toodeliver de back-end optimisations plus rapidement. Elle utilisent également des configurations pour les ressources multimédias, basées sur les meilleures pratiques apprises au fil du temps.
+L’optimisation des livraisons de données multimédias générale ou en vidéo à la demande utilise un CDN avec des optimisations du serveur principal pour distribuer plus rapidement des ressources multimédias. Elle utilisent également des configurations pour les ressources multimédias, basées sur les meilleures pratiques apprises au fil du temps.
 
 ### <a name="caching"></a>Mise en cache
 
-Si hello Azure Content Delivery Network à partir d’Akamai détecte que cet élément multimédia hello est un manifeste de diffusion en continu ou un fragment, il utilise différents délais d’expiration mise en cache à partir de la diffusion sur le web général. (Consultez la liste complète de hello Bonjour tableau suivant). Comme toujours, le cache-control ou Expires les en-têtes envoyés à partir de l’origine de hello sont respectées. Si l’élément multimédia de hello n’est pas une ressource multimédia, il met en cache à l’aide des délais d’expiration hello pour la remise de web général.
+Si le réseau Azure Content Delivery Network d’Akamai détecte que la ressource est un manifeste ou un fragment de diffusion en continu, il utilise des délais d’expiration de mise en cache différents de la livraison web générale (voir la liste complète dans le tableau suivant). Comme toujours, les en-têtes Cache-control ou Expires en provenance de l’origine sont respectés. Si la ressource n’est pas une ressource multimédia, elle est mise en cache dans le respect des délais d’expiration pour la livraison web générale.
 
-temps de mise en cache négatif court Hello est utile pour origine déchargement lorsque de nombreux utilisateurs demandent un fragment qui n’existe pas encore. Un exemple est un flux en continu où les paquets hello ne sont pas disponibles à partir de l’origine de hello cette seconde. intervalle de mise en cache plus Hello permet également de décharger des demandes à partir de l’origine de hello, car il est en général, le contenu vidéo n’est pas modifié.
+Le temps de mise en cache négatif court est utile pour le déchargement de l’origine lorsque de nombreux utilisateurs demandent un fragment qui n’existe pas encore. Un exemple est un flux temps réel où les paquets ne sont pas disponibles à l’origine à cette seconde. L’intervalle de mise en cache plus long facilite également les demandes de déchargement de l’origine, car le contenu vidéo n’est généralement pas modifié.
  
 
-|    | Généralités<br> web<br>livraison continue | Généralités<br> Médias<br> diffusion en continu | Vidéo à la demande <br>Médias<br> diffusion en continu  
+|   | Livraison web générale | Diffusion multimédia en continu générale | Diffusion multimédia en continu de vidéo à la demande  
 --- | --- | --- | ---
 Mise en cache : positive <br> HTTP 200, 203, 300, <br> 301, 302 et 410 | 7 jours |365 jours | 365 jours   
 Mise en cache : négative <br> HTTP 204, 305, 404, <br> et 405 | Aucune | 1 seconde | 1 seconde
  
 ### <a name="deal-with-origin-failure"></a>Traitement des défaillances de l’origine  
 
-Les livraisons de données multimédias générale et en vidéo à la demande ont aussi un délai d’expiration d’origine et un journal des tentatives basé sur les meilleures pratiques pour les modèles de demande standard. Par exemple, car la remise de support général est dynamiquement pour et livraison du support de vidéo à la demande, il utilise un délai plus court de la connexion en raison de la nature de temps toohello de diffusion en continu.
+Les livraisons de données multimédias générale et en vidéo à la demande ont aussi un délai d’expiration d’origine et un journal des tentatives basé sur les meilleures pratiques pour les modèles de demande standard. Par exemple, étant donné que la livraison de données multimédias générale est destinée la distribution en direct et en vidéo à la demande, elle utilise un délai d'expiration de connexion plus court parce que la diffusion en continu en direct est, par nature, soumise à une contrainte de temps.
 
-Lorsqu’une connexion arrive à expiration, hello CDN tente de renvoyer un nombre de fois avant l’envoi d’un client de toohello d’erreur « délai de la passerelle 504 - ». 
+Quand une connexion arrive à expiration, le CDN retente de l’établir un certain nombre de fois avant d’envoyer une erreur « 504 - Dépassement du délai de la passerelle » au client. 
 
-Lorsqu’un fichier correspond à la liste conditions hello fichier type et la taille, hello CDN utilise un comportement de hello pour la diffusion multimédia en continu. Autrement, il utilise une livraison web générale.
+Quand un fichier correspond à la liste des types de fichiers et des conditions de taille, le CDN utilise le comportement applicable à la diffusion multimédia en continu. Autrement, il utilise une livraison web générale.
    
 ### <a name="conditions-for-media-streaming-optimization"></a>Conditions d’optimisation de la diffusion multimédia en direct 
 
-Hello tableau suivant répertorie hello de toobe des critères pour l’optimisation de diffusion multimédia en continu : 
+Le tableau suivant répertorie l’ensemble des critères à satisfaire pour cette optimisation de la diffusion multimédia en continu : 
  
 Types de diffusions en continu pris en charge | Extensions de fichier  
 --- | ---  
@@ -86,15 +86,15 @@ Diffusion en continu lisse | /manifest/,/QualityLevels/Fragments/
   
 
  
-## <a name="media-streaming-optimizations-for-hello-azure-content-delivery-network-from-verizon"></a>Optimisations pour hello Azure Content Delivery Network de Verizon de diffusion multimédia en continu
+## <a name="media-streaming-optimizations-for-the-azure-content-delivery-network-from-verizon"></a>Optimisations de la diffusion multimédia en continu pour le réseau Azure Content Delivery Network de Verizon
 
-Bonjour Azure Content Delivery Network de Verizon remet multimédias diffusion en continu directement à l’aide du type d’optimisation remise hello web général. Quelques fonctionnalités hello CDN aider directement à la livraison de ressources par défaut.
+Le réseau Azure Content Delivery Network de Verizon distribue les ressources multimédia en diffusion continue directement en utilisant le type d’optimisation de livraison web générale. Quelques fonctionnalités du CDN contribuent directement à la distribution de ressources multimédias par défaut.
 
 ### <a name="partial-cache-sharing"></a>Partage de cache partiel
 
-Partage du cache partiel permet de demandes de contenu toonew hello CDN tooserve partiellement mises en cache. Par exemple, si hello première demande toohello CDN entraîne une absence dans le cache, demande de hello est envoyé toohello origine. Bien que ce contenu incomplète est chargé dans hello cache du CDN, autres toohello demandes CDN peut démarrer l’obtention de ces données. 
+Le partage de cache partiel permet au CDN de servir du contenu partiellement mis en cache aux nouvelles demandes. Par exemple, si la première demande adressée au CDN aboutit à une absence dans le cache, la demande est envoyée à l’origine. Bien que ce contenu incomplet soit chargé dans le cache du CDN, d’autres demandes adressées au CDN peuvent commencer à obtenir ces données. 
 
 ### <a name="cache-fill-wait-time"></a>Temps d’attente de remplissage du cache
 
- fonction d’heure Hello cache remplissage attente force hello edge server toohold toutes les demandes ultérieures pour hello même ressource jusqu'à ce que la réponse HTTP en-têtes arrivent à partir du serveur d’origine hello. Si les en-têtes de réponse HTTP à partir de l’origine de hello arrivent avant expiration de hello, toutes les demandes qui ont été mis en attente sont pris en charge hors hello agrandissement du cache. À hello même moment, hello cache est rempli par les données d’origine de hello. Par défaut, le temps d’attente de hello cache remplissage a la valeur too3, 000 millisecondes. 
+ La fonctionnalité de temps d’attente de remplissage du cache oblige le serveur de périphérie à mettre en attente toutes les demandes suivantes pour la même ressource jusqu'à ce que les en-têtes de réponse HTTP arrivent en provenance du serveur d’origine. Si les en-têtes de réponse HTTP en provenance de l’origine arrivent avant l’expiration du minuteur, toutes les demandes mises en attente sont servies à partir du cache croissant. En même temps, le cache est rempli par des données en provenance de l’origine. Par défaut, le temps d’attente de remplissage du cache est défini sur 3 000 millisecondes. 
 

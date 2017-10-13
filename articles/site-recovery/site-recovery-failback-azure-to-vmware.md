@@ -1,6 +1,6 @@
 ---
-title: "aaaFailback les ordinateurs virtuels VMware à partir d’Azure site tooon | Documents Microsoft"
-description: "En savoir plus sur l’échec des deux sites locaux toohello précédent après le basculement des ordinateurs virtuels VMware et tooAzure des serveurs physiques."
+title: "Restaurer automatiquement en local des machines virtuelles VMware à partir d’Azure | Microsoft Docs"
+description: "Découvrez la restauration automatique sur le site local après le basculement des machines virtuelles VMware et des serveurs physiques vers Azure."
 services: site-recovery
 documentationcenter: 
 author: ruturaj
@@ -14,159 +14,159 @@ ms.topic: article
 ms.workload: storage-backup-recovery
 ms.date: 03/27/2017
 ms.author: ruturajd
-ms.openlocfilehash: 258f5a55252083135b2040e5a235fa1ffbf3b9d0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dde0bb6b4f6bc10afdd7d40adc6689d42b37de81
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="fail-back-vmware-virtual-machines-and-physical-servers-toohello-on-premises-site"></a>Échec des ordinateurs virtuels VMware arrière et des serveurs physiques toohello sur site local
+# <a name="fail-back-vmware-virtual-machines-and-physical-servers-to-the-on-premises-site"></a>Restaurer automatiquement des machines virtuelles VMware et des serveurs physiques sur le site local
 
 
-Cet article décrit comment toofailback Azure machines virtuelles à partir du site local de toohello Azure. Suivez les instructions de hello ici quand vous êtes prêt toofail sauvegarder vos machines virtuelles VMware ou serveurs physiques Windows ou Linux après avoir protégé vos ordinateurs à l’aide de ce nouveau [référence](site-recovery-how-to-reprotect.md).
+Cet article explique comment restaurer automatiquement des machines virtuelles Azure à partir d’Azure vers le site local. Suivez ces instructions lorsque vous êtes prêt à restaurer automatiquement vos machines virtuelles VMware ou vos serveurs physiques Windows ou Linux après avoir protégé à nouveau vos machines en suivant cette [référence](site-recovery-how-to-reprotect.md).
 
 >[!NOTE]
->Si vous utilisez le portail Azure classic de hello, reportez-vous à tooinstructions mentionnées [ici](site-recovery-failback-azure-to-vmware-classic.md) pour l’architecture tooAzure VMware améliorée et [ici](site-recovery-failback-azure-to-vmware-classic-legacy.md) d’architecture hello hérité
+>Si vous utilisez le Portail Azure Classic, reportez-vous aux instructions mentionnées [ici](site-recovery-failback-azure-to-vmware-classic.md) pour l’architecture VMware vers Azure améliorée et [ici](site-recovery-failback-azure-to-vmware-classic-legacy.md) pour l’architecture héritée.
 
 ## <a name="overview"></a>Vue d'ensemble
-diagrammes Hello dans cette section montrent l’architecture de la restauration automatique hello pour ce scénario.
+Le diagramme de cette section illustre l’architecture de restauration automatique correspondant à ce scénario.
 
-Lorsque hello serveur de processus est local et que vous utilisez une connexion Azure ExpressRoute, utilisez cette architecture :
+Utilisez cette architecture lorsque le serveur de processus est local et que vous utilisez une connexion Azure ExpressRoute :
 
 ![Diagramme d’architecture pour ExpressRoute](./media/site-recovery-failback-azure-to-vmware-classic/architecture.png)
 
-Lorsque hello serveur de processus est sur Azure et que vous avez un VPN ou une connexion ExpressRoute, utilisez cette architecture :
+Utilisez cette architecture lorsque le serveur de processus est sur Azure et que vous disposez d’une connexion VPN ou ExpressRoute :
 
 ![Diagramme d’architecture pour VPN](./media/site-recovery-failback-azure-to-vmware-classic/architecture2.png)
 
-Pour obtenir une liste complète des ports et diagramme d’architecture de la restauration automatique hello, consultez toohello suivant l’image :
+Pour afficher la liste complète des ports et le diagramme de l’architecture de restauration automatique, reportez-vous à l’image suivante :
 
 ![Liste des ports de basculement-restauration automatique](./media/site-recovery-failback-azure-to-vmware-classic/Failover-Failback.png)
 
-Une fois que vous avez basculé tooAzure, vous ne parvenez pas tooyour arrière sur site local en trois étapes :
+Une fois que vous avez procédé au basculement vers Azure, vous pouvez effectuer une restauration automatique sur votre site local en trois étapes :
 
-* **Étape 1**: Protégez-les de machines virtuelles de Azure hello pour qu’ils commencer la réplication des machines virtuelles VMware toohello précédent qui s’exécutent sur votre site local.
-* **Étape 2**: une fois que vos machines virtuelles Azure sont répliquées tooyour un site local, vous exécutez un basculement toofail précédent à partir d’Azure.
-* **Étape 3**: une fois que vos données a échoué en retour, vous protégez de nouveau hello sauvegarder des machines virtuelles locales que vous avez effectué, pour qu’ils commencer la réplication tooAzure.
+* **Étape 1** : reprotégez les machines virtuelles Azure afin qu’elles soient répliquées sur les machines virtuelles VMware qui s’exécutent sur votre site local.
+* **Étape 2** : une fois que vos machines virtuelles Azure sont répliquées vers votre site local, exécutez un basculement pour procéder à la restauration automatique à partir d’Azure.
+* **Étape 3**: une fois vos données restaurées automatiquement, reprotégez les machines virtuelles locales vers lesquelles vous avez procédé à la restauration automatique pour qu’elles soient répliquées vers Azure.
 
-### <a name="fail-back-toohello-original-location-or-an-alternate-location"></a>Emplacement d’origine du précédent toohello échouent ou un autre emplacement
-Après avoir basculé une VM VMware, vous pouvez basculer toohello arrière même source de machine virtuelle si elle existe toujours sur site. Dans ce scénario, uniquement les deltas hello sont rétablies.
+### <a name="fail-back-to-the-original-location-or-an-alternate-location"></a>Récupération automatique vers l’emplacement d’origine ou un autre emplacement
+Après avoir effectué le basculement d’une machine virtuelle VMware, vous pouvez procéder à une restauration automatique vers la même machine virtuelle source si celle-ci existe toujours sur le site local. Dans ce scénario, seules les modifications delta sont restaurées automatiquement.
 
-Si vous effectuez le basculement des serveurs physiques, la restauration automatique est toujours tooa nouveau VMware VM. Avant d’effectuer la restauration automatique d’un ordinateur physique, notez les points suivants :
-* Un ordinateur physique protégé reviendra comme un ordinateur virtuel après un basculement à partir de tooVMware Azure. Une machine Windows Server 2008 R2 SP1, si elle est protégée et basculé tooAzure, ne peut pas être rétablie. Un ordinateur Windows Server 2008 R2 SP1 démarré, car un ordinateur virtuel local sera en mesure de toofail précédent.
-* Assurez-vous que vous découvriez au moins un serveur cible maître avec hello pour les hôtes ESX/ESXi nécessaires que vous devez toofail revenir.
+Si vous avez procédé au basculement de serveurs physiques, la restauration automatique est toujours effectuée vers une nouvelle machine virtuelle VMware. Avant d’effectuer la restauration automatique d’un ordinateur physique, notez les points suivants :
+* Un ordinateur physique protégé reviendra comme un ordinateur virtuel après un basculement à partir d’Azure vers VMware. Une machine physique Windows Server 2008 R2 SP1 protégée et basculée vers Azure ne peut pas être restaurée. Une machine Windows Server 2008 R2 SP1 qui a démarré comme une machine virtuelle locale pourra être restaurée automatiquement.
+* Veillez à découvrir au moins un serveur cible maître ainsi que les hôtes ESX/ESXi nécessaires sur lesquels vous devez effectuer une restauration automatique.
 
-Si vous ne parvenez pas toohello précédent ordinateur virtuel d’origine, hello Voici requis :
+Si vous procédez à une restauration automatique vers la machine virtuelle d’origine, les conditions suivantes doivent être respectées :
 
-* Si hello machine virtuelle est géré par un serveur vCenter, hello ESX hôte du serveur cible maître doit avoir accès toohello machines virtuelles banque de données.
-* Si hello machine virtuelle se trouve sur un ordinateur hôte ESX, mais n’est pas géré par vCenter, disque dur de hello Hello machine virtuelle doit être dans une banque de données est accessible par l’hôte de hello de MT.
-* Si votre machine virtuelle se trouve sur un ordinateur hôte ESX et n’utilise pas vCenter, détection de l’ordinateur hôte ESX hello Hello MT doit se terminer avant que vous protégez de nouveau. Cela s’applique également si vous restaurez automatiquement des serveurs physiques.
-* Une autre option (si hello local machine virtuelle existe) est toodelete avant de procéder à une restauration automatique. La restauration automatique crée ensuite une nouvelle machine virtuelle sur hello le même hôte que l’ordinateur hôte ESX hello cible maître.
+* Si la machine virtuelle est gérée par un serveur vCenter, l’ordinateur hôte ESX du serveur cible maître doit avoir accès à la banque de données des machines virtuelles.
+* Si la machine virtuelle se trouve sur un ordinateur hôte ESX, mais n’est pas gérée par vCenter, son disque dur doit se situer dans une banque de données accessible par l’ordinateur hôte du serveur cible maître.
+* Si votre machine virtuelle se trouve sur un ordinateur hôte ESX et n’utilise pas vCenter, vous devez exécuter la détection de l’ordinateur hôte ESX du serveur cible maître avant d’assurer la reprotection. Cela s’applique également si vous restaurez automatiquement des serveurs physiques.
+* Une autre option (si la machine virtuelle locale existe) consiste à la supprimer avant de procéder à une restauration automatique. L’opération de restauration automatique crée ensuite une machine virtuelle sur le même hôte que l’ordinateur hôte ESX cible maître.
 
-Lorsque vous ne parvenez pas tooan arrière autre emplacement, les données de salutation sont récupérée toohello même magasin de données et hello même ordinateur hôte ESX que celle utilisée par le serveur cible maître de local hello.
+Si vous effectuez la restauration automatique vers un autre emplacement, les données sont récupérées dans la même banque de données et sur le même ordinateur hôte ESX que ceux qui sont utilisés par le serveur cible maître local.
 
 ## <a name="prerequisites"></a>Composants requis
-* toofail les ordinateurs virtuels VMware et serveurs physiques, vous avez besoin d’un environnement VMware. Échec en arrière tooa serveur physique n’est pas pris en charge.
-* toofail précédent, vous devez avoir créé un réseau Azure lorsque vous définissez initialement la protection. La restauration automatique a besoin d’une connexion VPN ou ExpressRoute à partir de hello Azure réseau dans lequel hello machines virtuelles Azure sont toohello trouve un site local.
-* Si hello machines virtuelles que vous souhaitez toofail sauvegarder tooare géré par un serveur vCenter, assurez-vous que vous disposez des autorisations hello requis pour la découverte d’ordinateurs virtuels sur les serveurs vCenter. Pour plus d’informations, consultez [les ordinateurs virtuels VMware de répliquer et tooAzure des serveurs physiques avec Azure Site Recovery](site-recovery-vmware-to-azure-classic.md).
-* Si des instantanés sont présents sur une machine virtuelle, la reprotection échouera. Vous pouvez supprimer les captures instantanées de hello ou des disques de hello.
+* Vous avez besoin d’un environnement VMware afin de restaurer automatiquement les machines virtuelles VMware et les serveurs physiques. La restauration automatique vers les serveurs physiques n’est pas prise en charge.
+* Pour procéder à une restauration automatique, vous devez avoir créé un réseau Azure lors de la configuration initiale de la protection. La restauration automatique nécessite une connexion VPN ou ExpressRoute à partir du réseau Azure dans lequel les machines virtuelles Azure sont situées sur le site local.
+* Si les machines virtuelles vers lesquelles vous voulez effectuer une restauration automatique sont gérées par un serveur vCenter, assurez-vous de disposer des autorisations requises pour la détection des machines virtuelles sur les serveurs vCenter. Pour en savoir plus, consultez l’article [Répliquer des machines virtuelles VMware et des serveurs physiques sur Azure avec Azure Site Recovery](site-recovery-vmware-to-azure-classic.md).
+* Si des instantanés sont présents sur une machine virtuelle, la reprotection échouera. Vous pouvez supprimer les instantanés ou les disques.
 * Avant de procéder à la restauration automatique, créez les composants suivants :
-  * **Créez un serveur de processus dans Azure**. Il s’agit d’une machine virtuelle Azure que vous créez et maintenez en cours d’exécution pendant la restauration automatique. Vous pouvez supprimer hello machine virtuelle une fois la restauration automatique terminée.
-  * **Créer un serveur cible maître**: serveur cible maître de hello envoie et reçoit des données de la restauration automatique. serveur d’administration Hello que vous avez créé sur site possède un serveur cible maître qui est installé par défaut. Toutefois, en fonction du volume hello du trafic de sauvegarde a échoué, vous devrez peut-être toocreate un serveur cible maître distinct pour la restauration automatique.
-  * toocreate un serveur cible maître supplémentaires qui s’exécute sur Linux, configurez hello Linux VM avant d’installer le serveur cible maître de hello, comme décrit plus loin.
-* Le serveur de configuration est requis en local lorsque vous effectuez une restauration automatique. Lors du retour arrière, machine virtuelle de hello doit exister dans la base de données de serveur de configuration hello. Si la base de données de serveur de configuration hello ne contient aucune machine virtuelle, la restauration automatique ne peut pas réussir. Vous devez donc veiller à planifier une sauvegarde régulière de votre serveur. En cas de sinistre, vous devez toorestore avec hello d’adresses IP même afin que la restauration automatique fonctionne.
-* Définition des paramètres de disk.enableUUID=true hello pour **les paramètres de Configuration** du maître de hello cibler les ordinateurs virtuels dans les environnements VMware. Si cette ligne n’existe pas, ajoutez-la. Ce paramètre est requis tooprovide un fichier de disque (VMDK) d’ordinateur virtuel de toohello identificateur unique universel (UUID) cohérente afin qu’il est monté correctement.
-* Tenez compte d’un « maître serveur cible ne peut pas être vMotioned de stockage « condition, ce qui peut entraîner des toofail de la restauration automatique hello. Hello machine virtuelle ne peut pas démarrer car les disques hello ne sont pas apportées tooit disponible.
-* Ajouter un lecteur, appelé un lecteur de rétention sur le serveur cible maître de hello. Ajouter un disque et formater le lecteur hello.
+  * **Créez un serveur de processus dans Azure**. Il s’agit d’une machine virtuelle Azure que vous créez et maintenez en cours d’exécution pendant la restauration automatique. Vous pouvez supprimer cette machine virtuelle à l’issue de la restauration automatique.
+  * **Créez un serveur cible maître**. Le serveur cible maître envoie et reçoit des données de restauration automatique. Un serveur cible maître est installé par défaut sur le serveur d’administration que vous avez créé sur site. Toutefois, en fonction du volume de trafic restauré automatiquement, vous devrez peut-être créer un serveur cible maître distinct pour procéder à la restauration automatique.
+  * Pour créer un autre serveur cible maître s’exécutant sur Linux, configurez la machine virtuelle Linux avant d’installer le serveur cible maître, comme décrit ci-dessous.
+* Le serveur de configuration est requis en local lorsque vous effectuez une restauration automatique. Lors de la restauration automatique, la machine virtuelle doit exister dans la base de données du serveur de configuration. Si la base de données du serveur de configuration ne contient aucune machine virtuelle, la restauration automatique échouera. Vous devez donc veiller à planifier une sauvegarde régulière de votre serveur. En cas d’incident, vous devrez le restaurer avec la même adresse IP pour que la restauration automatique réussisse.
+* Définissez le paramètre disk.enableUUID=true dans les **paramètres de configuration** de la machine virtuelle cible maître dans VMware. Si cette ligne n’existe pas, ajoutez-la. Ce paramètre est requis pour fournir un identificateur unique universel (UUID) cohérent au fichier de disque de machine virtuelle afin qu’il soit monté correctement.
+* Soyez attentif à la condition « Le serveur cible maître ne peut pas être Storage vMotioned », qui peut faire échouer la restauration automatique. La machine virtuelle ne s’affichera pas car les disques ne sont pas mis à sa disposition.
+* Ajoutez un lecteur, appelé lecteur de rétention, sur le serveur cible maître. Ajoutez un disque et formatez le lecteur.
 
 ## <a name="failback-policy"></a>Stratégie de restauration automatique
-tooreplicate arrière tooon local, vous devez une stratégie de restauration automatique. stratégie de Hello est créé automatiquement lorsque vous créez une stratégie du haut vers le bas, et il est automatiquement associé au serveur de configuration hello. Elle n’est pas modifiable. stratégie de Hello a hello suivant les paramètres de réplication :
+Pour effectuer une réplication en retour vers votre site local, vous avez besoin d’une stratégie de restauration automatique. La stratégie est automatiquement créée lorsque vous créez une stratégie dans le sens initial et est automatiquement associée au serveur de configuration. Elle n’est pas modifiable. La stratégie comprend les paramètres de réplication suivants :
 
 * Seuil d’objectif de point de récupération : 15 minutes
 * Rétention de point de récupération : 24 heures
 * Fréquence des instantanés de cohérence au niveau application : 60 minutes
 
- ![Paramètres de réplication de la stratégie de restauration automatique hello](./media/site-recovery-failback-azure-to-vmware-new/failback-policy.png)
+ ![Paramètres de réplication de la stratégie de restauration automatique](./media/site-recovery-failback-azure-to-vmware-new/failback-policy.png)
 
 ## <a name="set-up-a-process-server-in-azure"></a>Configurer un serveur de processus dans Azure
-Installer un serveur de traitement dans Azure afin que les machines virtuelles de Azure hello peut envoyer le serveur cible maître local hello données toohello précédent.
+Installez un serveur de processus dans Azure pour que les machines virtuelles Azure puissent renvoyer les données vers un serveur cible maître local.
 
-Si vous avez protégé vos machines virtuelles en tant que ressources classiques (autrement dit, hello machine virtuelle récupérée dans Azure est un ordinateur virtuel qui a été créé à l’aide du modèle de déploiement classique hello), vous avez besoin d’un serveur de traitement dans Azure. Si vous avez récupéré hello machines virtuelles Azure Resource Manager en tant que type de déploiement hello, hello processus serveur doit avoir le Gestionnaire de ressources en tant que type de déploiement hello. Hello type de déploiement est sélectionné par hello Azure réseau virtuel que vous déployez hello processus serveur.
+Si vous avez protégé vos machines en tant que ressources classiques (la machine virtuelle récupérée dans Azure est une machine virtuelle créée à l’aide du modèle de déploiement classique), vous aurez besoin d’un serveur de processus dans Azure. Si vous avez récupéré les machines virtuelles en définissant le type de déploiement sur Azure Resource Manager, le type de déploiement du serveur de processus doit également être défini sur Resource Manager. Le type de déploiement est sélectionné par le réseau virtuel Azure dans lequel vous déployez le serveur de processus.
 
-1. Dans **coffre** > **paramètres** > **Infrastructure de la récupération de sites** (sous **gérer**) > **Serveurs de configuration** (sous **pour VMware et des Machines physiques**), sélectionnez le serveur de configuration hello.
+1. Dans **Coffre** > **Paramètres** > **Infrastructure Site Recovery** (sous **Gérer**) > **Serveurs de configuration** (sous **Pour VMware et les machines physiques**), sélectionnez le serveur de configuration.
 2. Cliquez sur **Serveur de processus**.
 
   ![Bouton Serveur de processus](./media/site-recovery-failback-azure-to-vmware-classic/add-processserver.png)
-3. Choisissez toodeploy hello du serveur de traitement en tant que **déployer une restauration automatique du serveur de traitement dans Azure**.
-4. Sélectionnez l’abonnement hello que vous avez récupéré des machines virtuelles hello.
-5. Sélectionnez hello réseau Azure que vous avez récupéré des machines virtuelles hello. Hello processus serveur doit toobe Bonjour que même réseau afin que hello récupéré des machines virtuelles et hello processus serveur peut communiquer.
-6. Si vous avez sélectionné un *modèle de déploiement classique* réseau, créez une machine virtuelle via hello Azure Marketplace, puis installez hello serveur de processus qu’elle contient.
+3. Pour le déploiement du serveur de processus, choisissez **Déployer un serveur de processus de restauration automatique dans Azure**.
+4. Sélectionnez l’abonnement dans lequel vous avez récupéré les machines virtuelles.
+5. Sélectionnez le réseau Azure dans lequel vous avez récupéré les machines virtuelles. Le serveur de processus doit se trouver dans le même réseau, de sorte que les machines virtuelles récupérées et le serveur de processus puissent communiquer.
+6. Si vous avez sélectionné un réseau créé selon un *modèle de déploiement classique*, créez une machine virtuelle via la place de marché Azure, puis installez-y le serveur de processus.
 
- ![fenêtre de « Serveur de processus ajouter » Hello](./media/site-recovery-failback-azure-to-vmware-classic/add-classic.png)
+ ![Fenêtre Ajouter un serveur de processus](./media/site-recovery-failback-azure-to-vmware-classic/add-classic.png)
 
- Lorsque vous créez hello serveur de processus, de paie suivant de toohello attention :
- * le nom de l’image de hello Hello est *Microsoft Azure Site Recovery processus serveur V2*. Sélectionnez **classique** en tant que modèle de déploiement hello.
+ Lorsque vous créez le serveur de processus, faites attention à ce qui suit :
+ * Le nom de l’image est *Microsoft Azure Site Recovery Process Server V2*. Sélectionnez le modèle de déploiement **Classique**.
 
-       ![Select "Classic" as hello Process Server deployment model](./media/site-recovery-failback-azure-to-vmware-classic/templatename.png)
- * Hello serveur de processus conséquente toohello les instructions d’installation dans [les ordinateurs virtuels VMware de répliquer et tooAzure des serveurs physiques avec Azure Site Recovery](site-recovery-vmware-to-azure-classic.md).
-7. Si vous sélectionnez hello *le Gestionnaire de ressources* Azure réseau, déployer hello serveur de processus en fournissant hello informations suivantes :
+       ![Select "Classic" as the Process Server deployment model](./media/site-recovery-failback-azure-to-vmware-classic/templatename.png)
+ * Installez le serveur de processus en suivant les instructions de la rubrique [Répliquer des machines virtuelles VMware et des serveurs physiques sur Azure avec Azure Site Recovery](site-recovery-vmware-to-azure-classic.md).
+7. Si vous sélectionnez le réseau Azure *Resource Manager*, déployez le serveur de processus en fournissant les informations suivantes :
 
-  * nom Hello hello du groupe de ressources que vous voulez toodeploy hello server
-  * nom Hello du serveur de hello
-  * Un nom d’utilisateur et un mot de passe pour établir la connexion toohello server
-  * compte de stockage Hello que vous voulez toodeploy hello server
-  * sous-réseau de Hello et interface de réseau hello que vous souhaitez tooconnect tooit
+  * Le nom du groupe de ressources dans lequel vous souhaitez déployer le serveur
+  * Le nom du serveur
+  * Un nom d’utilisateur et un mot de passe pour la connexion au serveur
+  * Le compte de stockage dans lequel vous souhaitez déployer le serveur
+  * Le sous-réseau et l’interface réseau pour la connexion au serveur
    >[!NOTE]
-   >Vous devez créer votre propre [interface réseau](../virtual-network/virtual-networks-multiple-nics.md) (NIC) et sélectionnez alors que vous déployez hello serveur de processus.
+   >Vous devez créer votre propre [interface réseau](../virtual-network/virtual-networks-multiple-nics.md) et la sélectionner lors du déploiement du serveur de processus.
 
-    ![Entrez les informations dans la boîte de dialogue « Ajouter un processus serveur » hello](./media/site-recovery-failback-azure-to-vmware-classic/psinputsadd.png)
+    ![Saisir les informations dans la boîte de dialogue « Ajouter un serveur de processus »](./media/site-recovery-failback-azure-to-vmware-classic/psinputsadd.png)
 
-8. Cliquez sur **OK**. Cette action déclenche une tâche qui crée un ordinateur virtuel de gestionnaire de ressources du déploiement type pendant l’installation du serveur de processus hello. tooregister hello toohello configuration serveur, le programme d’installation de hello exécution à l’intérieur de hello machine virtuelle en suivant les instructions de hello dans [les ordinateurs virtuels VMware de répliquer et tooAzure des serveurs physiques avec Azure Site Recovery](site-recovery-vmware-to-azure-classic.md). Un Bonjour toodeploy de travail serveur de processus est également déclenché.
+8. Cliquez sur **OK**. Cela déclenche une tâche qui crée une machine virtuelle selon le type de déploiement Resource Manager lors de l’installation du serveur de processus. Pour enregistrer le serveur sur le serveur de configuration, exécutez l’installation au sein de la machine virtuelle en suivant les instructions de la rubrique [Répliquer des machines virtuelles VMware et des serveurs physiques sur Azure avec Azure Site Recovery](site-recovery-vmware-to-azure-classic.md). Une tâche de déploiement du serveur de processus est également déclenchée.
 
-  Serveur de processus Hello est répertorié sur hello **serveurs de Configuration** > **serveurs associés** > **serveurs de processus** onglet.
+  Le serveur de processus s’affiche dans l’onglet **Serveurs de configuration** > **Serveurs associés** > **Serveurs de processus**.
 
     ![](./media/site-recovery-failback-azure-to-vmware-new/pslistingincs.png)
 
     > [!NOTE]
-    > Hello serveur de processus n’est pas visible sous **propriétés de la machine virtuelle**. Il n’est visible uniquement sur hello **serveurs** onglet dans le serveur d’administration hello il est enregistré dans. Il peut prendre 10 minutes too15 tooappear du serveur de processus hello.
+    > Le serveur de processus ne s’affiche pas sous **Propriétés de la machine virtuelle**. Il s’affiche uniquement dans l’onglet **Serveurs** du serveur d’administration dans lequel il est enregistré. L’affichage du serveur de processus peut prendre environ 10 à 15 minutes.
 
 
-## <a name="set-up-hello-master-target-server-on-premises"></a>Configurer la cible maître hello/server sur site
-serveur cible maître de Hello reçoit les données de la restauration automatique hello. Hello serveur est automatiquement installé sur le serveur d’administration local hello, mais si vous êtes échouent dans trop de données, vous devrez peut-être tooset d’un serveur cible maître supplémentaires. tooset une maître cibler le serveur local, hello suivant :
+## <a name="set-up-the-master-target-server-on-premises"></a>Configurer le serveur cible maître local
+Le serveur cible maître reçoit les données de restauration automatique. Le serveur est automatiquement installé sur le serveur d’administration local, mais si vous effectuez une restauration automatique d’un trop grand nombre de données, il se peut que vous deviez configurer un serveur cible maître supplémentaire. Pour configurer un serveur cible maître local, procédez comme suit :
 
 > [!NOTE]
-> tooset d’un serveur cible maître sur Linux, ignorer la procédure suivante de toohello. Utilisez uniquement CentOS 6.6 système d’exploitation minimal comme hello cible maître du système d’exploitation.
+> Pour configurer un serveur cible maître sous Linux, passez à la procédure suivante. Utilisez uniquement le système d’exploitation CentOS 6.6 Minimal comme système d’exploitation du serveur cible maître.
 
-1. Si vous installez le serveur cible maître de hello sur Windows, ouvrez la page de démarrage rapide de hello de hello machine virtuelle que vous installez un serveur cible maître de hello sur.
-2. Télécharger le fichier d’installation hello pour l’Assistant d’installation de Unified Azure Site Recovery hello.
-3. Exécutez le programme d’installation hello et, dans **avant de commencer**, sélectionnez **ajouter tooscale de serveurs de traitement supplémentaire déploiement**.
-4. Assistant hello complète Bonjour même façon que lorsque vous [configurer le serveur d’administration hello](site-recovery-vmware-to-azure-classic.md). Sur hello **détails du serveur Configuration** page, spécifiez l’adresse IP de hello du serveur cible maître de hello et entrez un Bonjour tooaccess de phrase secrète machine virtuelle.
+1. Si vous configurez le serveur cible maître sous Windows, ouvrez la page de démarrage rapide de la machine virtuelle sur laquelle vous installez le serveur cible maître.
+2. Téléchargez le fichier d’installation pour le programme d’installation unifiée d’Azure Site Recovery.
+3. Exécutez le programme d’installation puis, dans la zone **Avant de commencer**, sélectionnez **Ajouter des serveurs de processus supplémentaires pour augmenter la taille du déploiement**.
+4. Terminez l’Assistant de la même façon que lors de la [configuration du serveur d’administration](site-recovery-vmware-to-azure-classic.md). Sur la page **Détails du serveur de configuration**, spécifiez l’adresse IP du serveur cible maître ainsi qu’une phrase secrète pour accéder à la machine virtuelle.
 
-### <a name="set-up-a-linux-vm-as-hello-master-target-server"></a>Configurer un VM Linux en tant que serveur cible maître de hello
-tooset serveur de gestion hello exécutant le serveur cible maître de hello comme un VM Linux, installez hello CentOS 6.6 minimale du système d’exploitation. Ensuite, extraire des ID de SCSI hello pour chaque disque SCSI, installer des packages supplémentaires et appliquer des modifications personnalisées.
+### <a name="set-up-a-linux-vm-as-the-master-target-server"></a>Configurer une machine virtuelle Linux en tant que serveur cible maître
+Pour configurer le serveur d’administration exécutant le serveur cible maître comme une machine virtuelle Linux, installez le système d’exploitation CentOS 6.6 Minimal. Ensuite, récupérez les ID SCSI pour chaque disque dur SCSI, installez des packages supplémentaires et appliquez des modifications personnalisées.
 
 #### <a name="install-centos-66"></a>Installer CentOS 6.6
 
-1. Installez hello CentOS 6.6 minimale du système d’exploitation sur le serveur d’administration hello machine virtuelle. Conserver hello ISO sur un lecteur de DVD et hello système de démarrage. Ignorer les tests de support hello. Sélectionnez **anglais (États-Unis)** en tant que langage de hello, sélectionnez **périphériques de stockage de base**, vérifiez que le disque dur de hello ne comporte aucune donnée importante, cliquez sur **Oui**et ignorer les données. Entrez le nom d’hôte hello hello du serveur d’administration et sélectionnez la carte réseau du serveur hello.  Bonjour **système de montage** boîte de dialogue, sélectionnez **me connecter automatiquement**, puis ajoutez les paramètres DNS, réseau et une adresse IP statique. Spécifiez un fuseau horaire. tooaccess hello serveur d’administration, entrez le mot de passe racine hello.
-2. Lorsque vous êtes invité à quel type d’installation que vous souhaitez, sélectionnez **créer une disposition de personnalisée** en tant que partition de hello. Cliquez sur **Suivant**. Sélectionnez **Free** (Libre), puis cliquez sur **Créer**. Créez les partitions **/**,  **/var/crash** et **/home** avec **FS Type:** **ext4**. Créer la partition d’échange hello en tant que **FS Type : échange**.
-3. Si des appareils préexistants sont trouvés, un message d’avertissement s’affiche. Cliquez sur **Format** lecteur de hello tooformat avec les paramètres de partition hello. Cliquez sur **écriture modifier toodisk** modifications de partition tooapply hello.
-4. Sélectionnez **chargeur de démarrage d’installation** > **suivant** tooinstall chargeur de démarrage hello sur la partition racine hello.
-5. Lors de l’installation de hello est terminée, cliquez sur **redémarrer**.
+1. Installez le système d’exploitation minimal CentOS 6.6 sur la machine virtuelle du serveur d’administration. Conservez l’image ISO dans un lecteur de DVD et démarrez le système. Ignorez les tests de média. Sélectionnez la langue **US English** (Anglais US) et **Appareils de stockage de base**, vérifiez que le disque dur ne comporte pas de données importantes et cliquez sur **Oui** pour supprimer toutes les données. Entrez le nom d’hôte du serveur d’administration et sélectionnez la carte réseau du serveur.  Dans la boîte de dialogue **Système de modification**, sélectionnez **Connecter automatiquement**, puis ajoutez une adresse IP statique, un réseau et des paramètres DNS. Spécifiez un fuseau horaire. Pour accéder au serveur d’administration, entrez le mot de passe racine.
+2. Quand le système vous demande le type d’installation souhaitée, sélectionnez **Créer une disposition personnalisée** comme partition. Cliquez sur **Suivant**. Sélectionnez **Free** (Libre), puis cliquez sur **Créer**. Créez les partitions **/**,  **/var/crash** et **/home** avec **FS Type:** **ext4**. Créez la partition d’échange **FS Type: swap**.
+3. Si des appareils préexistants sont trouvés, un message d’avertissement s’affiche. Cliquez sur **Format** pour formater le lecteur avec les paramètres de partition. Cliquez sur **Enregistrer les modifications sur le disque** pour appliquer les modifications de partition.
+4. Sélectionnez **Installer le chargeur de démarrage** > **Suivant** pour installer le chargeur de démarrage dans la partition racine.
+5. Une fois l’installation terminée, cliquez sur **Redémarrer**.
 
-#### <a name="retrieve-hello-scsi-ids"></a>Récupérer des ID SCSI hello
+#### <a name="retrieve-the-scsi-ids"></a>Récupérer les ID SCSI
 
-1. Après l’installation de hello, récupérer des ID SCSI hello pour chaque disque SCSI Bonjour machine virtuelle. toodo arrêté, le serveur d’administration hello machine virtuelle. Dans les propriétés de machine virtuelle hello dans VMware, cliquez sur entrée de machine virtuelle hello > **modifier les paramètres** > **Options**.
-2. Sélectionnez **Avancé** > **Général**, puis cliquez sur **Paramètres de configuration**. Cette option n’est pas disponible lors de la machine de hello est en cours d’exécution. Pour toobe d’option hello disponible, machine de hello doit être arrêté.
-3. Effectuez une des manières suivantes les hello :
- * Si hello ligne **disque. EnableUUID** existe, vérifiez que hello a la valeur trop**True** (sensible à la casse). Si la valeur de hello est déjà défini tooTrue, vous pouvez annuler et tester la commande hello SCSI à l’intérieur d’un système d’exploitation invité après que qu’il est démarré.
- * Si hello ligne **disque. EnableUUID** n’existe pas, cliquez sur **ajouter une ligne**, puis ajoutez-le avec hello **True** valeur. N’utilisez pas de guillemets doubles.
+1. À l’issue de l’installation, récupérez les ID SCSI de chaque disque dur SCSI de la machine virtuelle. Pour ce faire, arrêtez la machine virtuelle du serveur d’administration. Dans les propriétés de la machine virtuelle dans VMware, cliquez avec le bouton droit sur l’entrée de la machine virtuelle > **Modifier les paramètres** > **Options**.
+2. Sélectionnez **Avancé** > **Général**, puis cliquez sur **Paramètres de configuration**. Cette option n’est pas disponible lorsque la machine est en cours d’exécution. Pour que l’option soit disponible, vous devez arrêter la machine.
+3. Effectuez l’une des actions suivantes :
+ * Si la ligne **disk.EnableUUID** existe, vérifiez que la valeur est définie sur **True** (Vrai) (la valeur est sensible à la casse). Si c’est déjà le cas, vous pouvez annuler et tester la commande SCSI dans un système d’exploitation invité après son démarrage.
+ * Si la ligne **disk.EnableUUID** n’existe pas, cliquez sur **Ajouter une ligne** et ajoutez-la avec la valeur **True** (Vrai). N’utilisez pas de guillemets doubles.
 
 #### <a name="install-additional-packages"></a>Installer des packages supplémentaires
 Téléchargez et installez des packages supplémentaires.
 
-1. Assurez-vous que le serveur cible maître de hello est connecté toohello Internet.
-2. toodownload et les packages d’installation de 15 à partir du référentiel de CentOS hello, exécutez la commande suivante : `# yum install –y xfsprogs perl lsscsi rsync wget kexec-tools`.
-3. Si les ordinateurs source hello que vous protégez sont en cours d’exécution Linux avec un Reiser ou XFS système pour le périphérique de démarrage ou de la racine de hello de fichiers, téléchargez et installez les packages supplémentaires comme suit :
+1. Vérifiez que le serveur cible maître est connecté à Internet.
+2. Pour télécharger et installer 15 packages depuis le référentiel CentOS, exécutez la commande suivante : `# yum install –y xfsprogs perl lsscsi rsync wget kexec-tools`.
+3. Si les machines sources que vous protégez exécutent Linux avec le système de fichiers Reiser ou XFS pour l’appareil racine ou de démarrage, vous devez télécharger et installer des packages supplémentaires comme suit :
 
    * \# cd /usr/local
    * \# wget [http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm](http://elrepo.org/linux/elrepo/el6/x86_64/RPMS/kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm)
@@ -174,72 +174,72 @@ Téléchargez et installez des packages supplémentaires.
    * \# rpm –ivh kmod-reiserfs-0.0-1.el6.elrepo.x86_64.rpm reiserfs-utils-3.6.21-1.el6.elrepo.x86_64.rpm
    * \# wget [http://mirror.centos.org/centos/6.6/os/x86_64/Packages/xfsprogs-3.1.1-16.el6.x86_65.rpm](http://mirror.centos.org/centos/6.6/os/x86_64/Packages/xfsprogs-3.1.1-16.el6.x86_65.rpm)
    * \# rpm –ivh xfsprogs-3.1.1-16.el6.x86_64.rpm
-   * \#YUM installer MPIO de mappeur de périphérique (packages MPIO tooenable requis sur le serveur cible maître de hello)
+   * \# yum install device-mapper-multipath (requis pour activer les packages à plusieurs chemins sur le serveur cible maître)
 
 #### <a name="apply-custom-changes"></a>Appliquer des modifications personnalisées
-Après avoir terminé les étapes de post-installation hello et les packages installés hello, appliquer des modifications personnalisées de manière hello suivante :
+Pour appliquer des modifications personnalisées après avoir effectué les étapes de post-installation et installé les packages, procédez comme suit :
 
-1. Copiez hello RHEL 6-64 unifiée de l’Agent toohello binaire machine virtuelle. hello toountar binaire, exécutez la commande suivante : `tar –zxvf <file name>`.
-2. autorisations de toogive, exécutez la commande suivante : `# chmod 755 ./ApplyCustomChanges.sh`.
-3. Exécution hello suivants script : `# ./ApplyCustomChanges.sh`. Exécutez-le une seule fois. Une fois qu’il s’exécute correctement, redémarrez serveur de hello.
+1. Copiez le binaire de l’agent unifié RHEL (Red Hat Enterprise Linux) 6-64 sur la machine virtuelle. Pour décompresser le fichier binaire, exécutez la commande suivante : `tar –zxvf <file name>`.
+2. Pour accorder des autorisations, exécutez la commande suivante : `# chmod 755 ./ApplyCustomChanges.sh`.
+3. Exécutez le script suivant : `# ./ApplyCustomChanges.sh`. Exécutez-le une seule fois. Redémarrez le serveur après l’exécution du script.
 
-## <a name="run-hello-failback"></a>Exécuter la restauration automatique de hello
-### <a name="reprotect-hello-azure-vms"></a>Rétablissez les machines virtuelles de Azure hello
-1. Dans **coffre**, dans **éléments répliqués**, hello machine virtuelle qui a été basculé d’avec le bouton droit, puis sélectionnez **Reprotéger**.
-2. Dans Panneau de hello, vous pouvez voir cette direction hello de protection **tooOn local Azure** est déjà sélectionné.
-3. Dans **serveur cible maître** et **serveur de processus**hello du serveur de processus de machine virtuelle Azure et sélectionnez le serveur cible maître de local hello.
-4. Sélectionnez hello le magasin de données que vous souhaitez les disques hello toorecover locale vers. Utilisez cette option lorsque hello local machine virtuelle est supprimée et que vous devez toocreate nouveaux disques. Ignorer l’option de hello si hello disques existent déjà, mais vous devez toospecify une valeur.
-5. Utilisez une rétention lecteur toostop hello points où hello machine virtuelle est répliquée local tooon précédent. Vous trouverez ci-après quelques critères d’un lecteur de rétention. Sans ces critères, le lecteur de hello n’est pas répertorié pour le serveur cible maître de hello.
+## <a name="run-the-failback"></a>Exécuter la restauration automatique
+### <a name="reprotect-the-azure-vms"></a>Reprotéger les machines virtuelles Azure
+1. Dans **Coffre**, sous **Éléments répliqués**, cliquez avec le bouton droit sur la machine virtuelle ayant basculé et sélectionnez **Reprotéger**.
+2. Dans le panneau, vous pouvez voir que la direction de protection **d’Azure à local** est déjà sélectionnée.
+3. Dans les champs **Serveur cible maître** et **Serveur de processus**, sélectionnez le serveur cible maître local et le serveur de processus de machine virtuelle Azure.
+4. Sélectionnez la banque de données dans laquelle vous souhaitez récupérer les disques locaux. Utilisez cette option lorsque la machine virtuelle locale est supprimée et que vous devez créer de nouveaux disques. Ignorez cette option si les disques existent déjà, mais que vous devez toujours spécifier une valeur.
+5. Utilisez un lecteur de rétention pour arrêter les points dans le temps lorsque la machine virtuelle est répliquée vers le site local. Vous trouverez ci-après quelques critères d’un lecteur de rétention. Sans ces critères, le lecteur ne s’affiche pas pour le serveur cible maître.
 
   * Le volume ne doit pas être utilisé à d’autres fins (cible de réplication, etc.).
   * Le volume ne doit pas être en mode de verrouillage.
-  * Le volume ne doit pas être un volume de cache. (installation du serveur cible maître hello ne doit pas exister sur ce volume. Hello du serveur de traitement plus master volume d’installation personnalisée de cible n’est pas éligible pour le volume de rétention. Ici, hello installé le serveur de processus ainsi que le volume cible maître est le volume de cache hello du serveur cible maître hello.)
-  * type de système de fichiers de volume Hello ne doivent pas être FAT et FAT32.
-  * capacité du volume Hello doit être différente de zéro.
-  * volume de rétention par défaut Hello pour Windows est un volume de R.
-  * volume de rétention par défaut Hello pour Linux est /mnt/retention.
+  * Le volume ne doit pas être un volume de cache. (Aucune installation de serveur maître cible ne doit exister sur ce volume. Un volume d’installation personnalisée serveur de processus+serveur cible maître n’est pas éligible comme volume de rétention. Ici, le volume serveur de processus+serveur cible maître installé est le volume de cache du serveur cible maître.)
+  * Le type de système de fichiers du volume ne doit pas être FAT ou FAT32.
+  * La capacité du volume ne doit pas être nulle.
+  * Le volume de rétention par défaut pour Windows est le volume R.
+  * Le volume de rétention par défaut pour Linux est /mnt/retention.
 
-6. stratégie de restauration automatique Hello est sélectionné automatiquement.
-7. Après avoir cliqué sur **OK** toobegin reprotection, un travail commence tooreplicate hello machine virtuelle à partir du site local de toohello Azure. Vous pouvez suivre la progression de hello sur hello **travaux** onglet.
+6. La stratégie de restauration automatique est sélectionnée automatiquement.
+7. Une fois que vous avez cliqué sur **OK** pour démarrer la reprotection, une tâche est lancée pour répliquer la machine virtuelle à partir d’Azure vers le site local. Vous pouvez en suivre la progression sous l’onglet **Travaux** .
 
-Si vous souhaitez toorecover tooan autre emplacement, sélectionnez le lecteur de rétention hello et magasin de données qui sont configurés pour le serveur cible maître de hello. Lorsque vous ne parvenez pas toohello arrière sur site local, hello les ordinateurs virtuels VMware dans un plan de protection de la restauration automatique hello utiliser hello même magasin de données en tant que serveur cible maître de hello. Si vous souhaitez toorecover hello réplica Azure VM toohello même local machine virtuelle, hello local machine virtuelle doit déjà être dans hello même magasin de données en tant que serveur cible maître de hello. En l’absence de machine virtuelle locale, une nouvelle machine virtuelle de ce type est créée pendant la reprotection.
+Si vous souhaitez procéder à la récupération vers un autre emplacement, sélectionnez le lecteur de rétention et la banque de données configurés pour le serveur cible maître. Si vous effectuez la restauration automatique vers le site local, les machines virtuelles VMware du plan de protection de la restauration automatique utilisent la même banque de données que le serveur cible maître. Si vous voulez récupérer la machine virtuelle Azure de réplica vers la même machine virtuelle locale, celle-ci doit déjà figurer dans la même banque de données que le serveur cible maître. En l’absence de machine virtuelle locale, une nouvelle machine virtuelle de ce type est créée pendant la reprotection.
 
-![Sélectionnez « Azure local tooon » dans le menu déroulant de hello](./media/site-recovery-failback-azure-to-vmware-new/reprotectinputs.png)
+![Sélectionner « Azure vers site local » dans le menu déroulant](./media/site-recovery-failback-azure-to-vmware-new/reprotectinputs.png)
 
-Vous pouvez également effectuer la reprotection au niveau du plan de récupération. Si vous avez un groupe de réplication, il peut être reprotégé uniquement à l’aide d’un plan de récupération. Lorsque vous protégez de nouveau à l’aide d’un plan de récupération, utilisez les valeurs précédentes hello pour chaque ordinateur protégé.
+Vous pouvez également effectuer la reprotection au niveau du plan de récupération. Si vous avez un groupe de réplication, il peut être reprotégé uniquement à l’aide d’un plan de récupération. Lorsque vous restaurez la protection à l’aide d’un plan de récupération, utilisez les valeurs précédentes pour chaque machine protégée.
 
 > [!NOTE]
-> Groupes de réplication doivent être protégés avec hello même cible maître. Si ce n’est pas le cas, aucun point dans le temps commun ne pourra être défini pour ces groupes.
+> Les groupes de réplication doivent être reprotégés à l’aide du même serveur cible maître. Si ce n’est pas le cas, aucun point dans le temps commun ne pourra être défini pour ces groupes.
 
-### <a name="run-a-failover-toohello-on-premises-site"></a>Exécuter un basculement toohello sur site local
-Une fois que vous protégez de nouveau hello machine virtuelle, vous pouvez lancer un basculement à partir d’Azure tooon local.
+### <a name="run-a-failover-to-the-on-premises-site"></a>Exécuter un basculement vers le site local
+Après la reprotection de la machine virtuelle, vous pouvez initier un basculement à partir d’Azure vers le site local.
 
-1. Sur la page d’éléments répliqués hello, avec le bouton droit hello virtual machine, puis **basculement non planifié**.
-2. Dans **confirmer le basculement**, vérifiez le sens du basculement hello (à partir de Azure), puis sélectionnez le point de récupération hello que vous souhaitez toouse pour le basculement hello (hello plus récentes ou hello dernier cohérents au niveau de l’application de point de récupération). Un point de récupération cohérents avec l’application se produit avant le point le plus récent hello dans le temps, et il entraîne une perte de données.
-3. Pendant le basculement, récupération de Site arrête hello machines virtuelles Azure. Après avoir vérifié que la restauration a été effectuée comme prévu, vous pouvez vérifier tooensure hello Azure VM a été arrêté comme prévu.
+1. Sur la page Éléments répliqués, cliquez avec le bouton droit sur la machine virtuelle, puis sélectionnez **Basculement non planifié**.
+2. Dans **Confirmer le basculement**, vérifiez le sens du basculement (à partir d’Azure) et sélectionnez le point de récupération à utiliser pour le basculement (le dernier point ou le dernier point de cohérence au niveau application). Un point de récupération de cohérence au niveau application se produit avant le dernier point dans le temps et entraîne une perte de données.
+3. Site Recovery arrête les machines virtuelles Azure pendant le basculement. Une fois que vous avez vérifié que la restauration automatique s’est terminée comme prévu, vous pouvez vous assurer que les machines virtuelles Azure ont été arrêtées correctement.
 
-### <a name="reprotect-hello-on-premises-site"></a>Protégez de nouveau site local de hello
-Une fois la restauration automatique terminée, validation hello machine virtuelle tooensure qui hello récupérées dans Azure de machines virtuelles sont supprimés. toodo, élément de hello protégé d’avec le bouton droit, puis cliquez sur **valider**. Cette action déclenche une tâche qui supprime les ordinateurs virtuels récupérée ancien hello dans Azure.
+### <a name="reprotect-the-on-premises-site"></a>Reprotéger le site local
+Une fois la restauration automatique terminée, validez la machine virtuelle pour garantir la suppression des machines virtuelles récupérées dans Azure. Pour ce faire, cliquez avec le bouton droit sur l’élément protégé, puis cliquez sur **Valider**. Ceci déclenche une tâche qui supprimera les anciennes machines virtuelles récupérées dans Azure.
 
-Après la fin de la validation de hello, vos données doivent être sur site local de hello, mais il ne sera pas être protégé. là encore, tooAzure de réplication toostart hello suivant :
+Une fois la validation terminée, vos données devraient se trouver à nouveau sur le site local, sans toutefois être protégées. Pour démarrer une nouvelle réplication vers Azure, procédez comme suit :
 
-1. Dans **coffre**, dans **paramètre** > **éléments répliqués**, sélectionnez les ordinateurs virtuels hello qui ont échoué précédent, puis cliquez sur **Reprotéger**.
-2. Affectez la valeur hello hello serveur de processus qui a besoin de toobe utilisé toosend données back tooAzure à.
+1. Dans **Coffre**, sous **Paramètres** > **Éléments répliqués**, sélectionnez les machines virtuelles qui ont été restaurées automatiquement, puis cliquez sur **Reprotéger**.
+2. Affectez la valeur du serveur de processus à utiliser pour renvoyer les données vers Azure.
 3. Cliquez sur **OK**.
 
-Une fois terminée la reprotection de hello, hello VM réplique tooAzure précédent et vous pouvez effectuer un basculement.
+Une fois la reprotection effectuée, la machine virtuelle est répliquée vers Azure et vous pouvez effectuer un basculement.
 
 ### <a name="resolve-common-failback-issues"></a>Résoudre les problèmes courants lors de la restauration automatique
-* Si vous effectuez une découverte vCenter en mode lecture seule utilisateur et protégez des machines virtuelles, l’opération réussit et le basculement fonctionne. Lors de la reprotection, basculement échoue, car il est hello banques de données ne peut pas être découvert. Comme un symptôme, vous ne verrez pas les magasins de données hello répertorié au cours de la reprotection. tooresolve ce problème, vous pouvez mettre à jour des informations d’identification de vCenter hello avec un compte approprié qui dispose des autorisations et recommencez la tâche de hello. Pour plus d’informations, consultez [les ordinateurs virtuels VMware de répliquer et tooAzure des serveurs physiques avec Azure Site Recovery](site-recovery-vmware-to-azure-classic.md)
-* Lorsque vous restaurez un VM Linux et l’exécuter localement, vous pouvez voir que ce package du Gestionnaire de réseau hello a été désinstallé de la machine de hello. Cette désinstallation se produit, car le package du Gestionnaire de réseau hello est supprimé lors de la récupération hello machine virtuelle dans Azure.
-* Lorsqu’une machine virtuelle est configurée avec une adresse IP statique et est basculée tooAzure, adresse IP de hello est acquis via DHCP. Lorsque vous basculez tooon locale précédent, hello machine virtuelle continue à adresse IP de toouse DHCP tooacquire hello. Manuellement, connectez-vous à toohello ordinateur et affecter hello tooa arrière statique adresse si nécessaire.
-* Si vous utilisez la version gratuite d’ESXi 5.5 ou de vSphere 6 Hypervisor, le basculement aboutira, mais pas la restauration automatique. restauration automatique tooenable, la licence d’évaluation du programme de mise à niveau tooeither.
-* Si vous ne pouvez pas contacter le serveur de configuration de hello de hello serveur de processus, vérifiez le serveur de configuration de connectivité toohello en Telnet toohello configuration du serveur sur le port 443. Vous pouvez également essayer le serveur de configuration tooping hello à partir de l’ordinateur du serveur de processus hello. Un serveur de processus doit également avoir une pulsation lorsqu’il est le serveur de configuration toohello connecté.
-* Si vous essayez de vCenter de remplacement toofail tooan arrière, assurez-vous que votre nouveau vCenter est détecté et que le serveur cible maître hello est également détecté. Courant est que les banques de données hello ne sont pas accessibles ou visibles Bonjour **Reprotéger** boîte de dialogue.
-* Un ordinateur WS2008R2SP1 qui est protégé comme un ordinateur physique local ne peut pas être ayant échoué depuis Azure tooon local.
+* Si vous effectuez une découverte vCenter en mode lecture seule utilisateur et protégez des machines virtuelles, l’opération réussit et le basculement fonctionne. Au cours de la reprotection, le basculement échoue car les banques de données ne peuvent pas être détectées. Par conséquent, les banques de données ne seront pas répertoriées lors de la reprotection. Pour résoudre ce problème, mettez à jour les informations d’identification vCenter à l’aide du compte approprié disposant des autorisations requises, puis renouvelez l’opération. Pour en savoir plus, consultez l’article [Répliquer des machines virtuelles VMware et des serveurs physiques sur Azure avec Azure Site Recovery](site-recovery-vmware-to-azure-classic.md).
+* Lorsque vous restaurez automatiquement une machine virtuelle Linux et l’exécutez localement, vous constaterez que le package du Gestionnaire de réseau est désinstallé de l’ordinateur. En effet, celui-ci est supprimé une fois la machine virtuelle récupérée dans Azure.
+* Lorsqu’une machine virtuelle est configurée avec une adresse IP statique puis restaurée automatiquement vers Azure, l’adresse IP est obtenue via DHCP. Lorsque vous basculez à nouveau en local, la machine virtuelle continue d’utiliser DHCP pour obtenir l’adresse IP. Connectez-vous manuellement à l’ordinateur et redéfinissez l’adresse IP sur une adresse statique le cas échéant.
+* Si vous utilisez la version gratuite d’ESXi 5.5 ou de vSphere 6 Hypervisor, le basculement aboutira, mais pas la restauration automatique. Vous devrez effectuer une mise à niveau vers une licence d’évaluation d’un des programmes pour activer la restauration automatique.
+* Si vous ne pouvez pas communiquer avec le serveur de configuration à partir du serveur de processus, vérifiez la connectivité au serveur de configuration via Telnet vers l’ordinateur du serveur de configuration sur le port 443. Vous pouvez également essayer d’exécuter un test ping sur le serveur de configuration à partir de l’ordinateur du serveur de processus. Un serveur de processus doit également avoir une pulsation lorsqu’il est connecté au serveur de configuration.
+* Si vous tentez d’effectuer une restauration automatique vers un autre serveur vCenter, vérifiez que le nouveau serveur vCenter et le serveur cible maître sont détectés. Un symptôme courant est que les banques de données ne sont pas accessibles/visibles dans la boîte de dialogue **Reprotéger**.
+* Une machine WS2008R2SP1 protégée comme machine physique locale ne peut pas être restaurée localement à partir d’Azure.
 
 ## <a name="fail-back-with-expressroute"></a>Effectuer une restauration automatique avec ExpressRoute
-Vous pouvez effectuer une restauration automatique à l’aide d’une connexion VPN ou ExpressRoute. Si vous souhaitez toouse une connexion ExpressRoute, notez hello qui suit :
+Vous pouvez effectuer une restauration automatique à l’aide d’une connexion VPN ou ExpressRoute. Si vous souhaitez utiliser une connexion ExpressRoute, notez les points suivants :
 
-* Hello connexion ExpressRoute doit être configurée sur hello réseau virtuel Azure que les ordinateurs source hello basculent tooand où hello machines virtuelles Azure sont situés après le basculement hello.
-* Les données sont répliquée tooan compte de stockage Azure sur un point de terminaison public. toouse une connexion ExpressRoute, configurer l’homologation publique dans ExpressRoute avec le centre de données cible hello pour la réplication de la récupération de Site.
+* La connexion ExpressRoute doit être configurée sur le réseau virtuel Azure vers lequel les machines sources basculent, et sur lequel les machines virtuelles Azure sont hébergées après le basculement.
+* Les données sont répliquées vers un compte de stockage Azure sur un point de terminaison public. Pour utiliser une connexion ExpressRoute, vous devez configurer une homologation publique dans ExpressRoute avec le centre de données cible pour la réplication Site Recovery.

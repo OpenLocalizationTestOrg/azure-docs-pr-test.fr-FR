@@ -1,6 +1,6 @@
 ---
-title: "utilisateur de tooconfigure aaaHow approvisionnement d’une application de la galerie tooan Azure AD | Documents Microsoft"
-description: "Comment vous pouvez configurer rapidement compte utilisateur riche et annulation tooapplications déjà énumérées dans la galerie d’applications Azure AD de hello"
+title: "Comment configurer l’approvisionnement des utilisateurs pour une application relevant de la galerie Azure AD | Microsoft Docs"
+description: "Comment configurer rapidement un approvisionnement et une annulation d’approvisionnement complets des comptes d’utilisateur pour des applications déjà répertoriées dans la galerie d’applications Azure AD"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,42 +13,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 2c28e59a3ac8f221ed93b2f6b0b1221f7604af23
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2e38fcb30ea7632339a3ba8815a536872cfcc69e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-tooconfigure-user-provisioning-tooan-azure-ad-gallery-application"></a>La configuration d’application de la galerie tooan Azure AD de l’utilisateur tooconfigure
+# <a name="how-to-configure-user-provisioning-to-an-azure-ad-gallery-application"></a>Comment configurer l’approvisionnement des utilisateurs pour une application relevant de la galerie Azure AD
 
-*L’approvisionnement de comptes utilisateur* est act hello de création, mise à jour et/ou la désactivation des enregistrements de compte d’utilisateur dans le magasin de profils utilisateur local d’une application. La plupart des cloud et les applications SaaS hello utilisateurs rôles et autorisations dans leur propre magasin de profils utilisateur local est enregistré et la présence d’un enregistrement d’utilisateur dans leur magasin local *requis* pour toowork d’accès et de l’authentification unique.
+*L’approvisionnement de comptes d’utilisateur* consiste à créer, mettre à jour et/ou désactiver des enregistrements de compte d’utilisateur dans le magasin local de profils utilisateur d’une application. La plupart des applications cloud et SaaS stockent le rôle et les autorisations des utilisateurs dans leur propre magasin local de profils utilisateur. La présence de ces enregistrements d’utilisateur dans leur magasin local est *requise* pour l’authentification unique et l’accès aux opérations.
 
-Bonjour portail Azure, hello **Provisioning** onglet dans le volet de navigation gauche hello pour une application d’entreprise affiche les modes de configuration sont pris en charge pour cette application. Deux valeurs sont possibles :
+Dans le Portail Azure, l’onglet **Approvisionnement** du volet de navigation de gauche affiche les modes d’approvisionnement pris en charge pour l’application d’entreprise concernée. Deux valeurs sont possibles :
 
 ## <a name="configuring-an-application-for-manual-provisioning"></a>Configuration d’une application pour l’approvisionnement manuel
 
-*Manuel* configuration signifie que les comptes d’utilisateur doivent être créés manuellement à l’aide de méthodes de hello fournies par cette application. Cela peut impliquer une connexion à un portail d’administration pour cette application et l’ajout d’utilisateurs à l’aide d’une interface utilisateur web. Il peut également s’agir d’une feuille de calcul comportant les détails des comptes d’utilisateur, qui doit être chargée à l’aide d’un mécanisme fourni par l’application. Consultez la documentation de hello fournie par l’application hello ou application hello contact mécanismes de développeur toodetermine wat sont disponibles.
+*Manuel* : dans le cadre d’un approvisionnement manuel, les comptes d’utilisateur doivent être créés manuellement à l’aide des méthodes fournies par cette application. Cela peut impliquer une connexion à un portail d’administration pour cette application et l’ajout d’utilisateurs à l’aide d’une interface utilisateur web. Il peut également s’agir d’une feuille de calcul comportant les détails des comptes d’utilisateur, qui doit être chargée à l’aide d’un mécanisme fourni par l’application. Consultez la documentation fournie par l’application ou contactez le développeur de l’application pour déterminer les mécanismes disponibles.
 
-Si manuelle est seule hello affiché pour une application donnée, cela signifie qu’aucun AD Azure automatique mise en service du connecteur n’a été créé pour l’application hello. Ou bien, cela signifie que l’application hello n'est pas prise en charge hello préalable utilisateur API de gestion sur le toobuild un connecteur d’approvisionnement automatisé.
+Si le mode manuel est le seul proposé par une application donnée, cela signifie qu’aucun connecteur d’approvisionnement Azure AD automatique n’a encore été créé pour l’application. Cela peut également signifier que l’application ne prend pas en charge l’API de gestion des utilisateurs requise sur laquelle doit s’appuyer la création d’un connecteur d’approvisionnement automatisé.
 
-Si vous souhaitez que la prise en charge de toorequest pour la configuration automatique pour une application donnée, vous pouvez remplir une demande à <http://aka.ms/aadapprequest>.
+Si vous avez besoin d’assistance en matière d’approvisionnement automatique pour une application donnée, vous pouvez effectuer une demande à l’adresse <http://aka.ms/aadapprequest>.
 
 ## <a name="configuring-an-application-for-automatic-provisioning"></a>Configuration d’une application pour l’approvisionnement automatique
 
-*Automatique* : dans le cadre d’un approvisionnement automatique, un connecteur d’approvisionnement Azure AD a été développé pour cette application. Pour plus d’informations sur hello Azure AD de configuration de service et de son fonctionnement, consultez [tooSaaS automatiser l’approvisionnement des utilisateurs et Deprovisioning Applications avec Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning).
+*Automatique* : dans le cadre d’un approvisionnement automatique, un connecteur d’approvisionnement Azure AD a été développé pour cette application. Pour plus d’informations sur le service d’approvisionnement Azure AD et sur son fonctionnement, consultez [Automatisation de l’approvisionnement et de l’annulation de l’approvisionnement des utilisateurs pour les applications SaaS avec Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-app-provisioning).
 
-Pour plus d’informations sur comment tooprovision des utilisateurs spécifiques et l’application de tooan de groupes, consultez [la gestion de l’approvisionnement de comptes utilisateur pour les applications d’entreprise](https://docs.microsoft.com/azure/active-directory/active-directory-enterprise-apps-manage-provisioning).
+Pour plus d’informations sur l’approvisionnement d’utilisateurs et de groupes spécifiques sur une application, consultez [Gestion de l’approvisionnement de comptes d’utilisateur pour les applications d’entreprise](https://docs.microsoft.com/azure/active-directory/active-directory-enterprise-apps-manage-provisioning).
 
-Hello étapes réelles des tooenable requis et configurer la configuration automatique varient en fonction de l’application hello.
+Les étapes nécessaires pour activer et configurer l’approvisionnement automatique varient selon l’application.
 
 >[!NOTE]
->Vous devez commencer par recherche hello toosetting spécifique didacticiel de programme d’installation de configuration pour votre application et d’après ces étapes de tooconfigure application hello et Azure AD toocreate hello connexion mise en service. 
+>Vous devez toujours commencer par rechercher le didacticiel spécifique à la configuration de l’approvisionnement pour votre application. Suivez ensuite ces étapes afin de configurer l’application et Azure AD pour créer la connexion d’approvisionnement. 
 >
 >
 
-Vous trouverez des didacticiels de l’application à [liste de didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list).
+Vous trouverez les didacticiels spécifiques aux applications à la page [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list).
 
-Un tooconsider plus important lors de la configuration de l’approvisionnement d’être tooreview et configurer les mappages d’attributs hello et flux de travail qui définissent le flux de propriétés utilisateur (ou groupe) à partir de l’application de toohello Azure AD. Cela inclut le paramètre hello « correspondance property » être toouniquely utilisé identifier et correspondent aux utilisateurs/groupes entre les systèmes de hello deux. Pour plus d’informations sur ce processus important.
+Lors de la configuration de l’approvisionnement, il est important de vérifier et configurer les mappages d’attributs et les workflows qui définissent les propriétés de l’utilisateur (ou du groupe) passant d’Azure AD à l’application. Cela inclut la définition d’une « propriété correspondante », qui sera utilisée pour identifier de façon unique et mettre en correspondance des utilisateurs/groupes entre les deux systèmes. Pour plus d’informations sur ce processus important.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Personnalisation des mappages d’attributs d’approvisionnement d’utilisateurs pour les applications SaaS dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings)

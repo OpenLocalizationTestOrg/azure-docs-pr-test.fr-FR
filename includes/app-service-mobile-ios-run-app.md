@@ -1,8 +1,8 @@
 
-1. Sur votre Mac, visitez hello [Azure Portal]. Cliquez sur **parcourir tous les** > **Mobile Apps** > hello principal que vous venez de créer. Dans les paramètres de l’application mobile hello, cliquez sur **Quickstart** > **iOS (Objective-C)**. Si vous préférez Swift, cliquez sur **Démarrage rapide** > **iOS (Swift)**. Sous **Télécharger et exécuter votre projet iOS**, cliquez sur **Télécharger**. Cela permet de télécharger un projet Xcode complet pour un serveur principal d’application préconfigurée tooconnect tooyour. Ouvrez le projet hello à l’aide de Xcode.
-2. Hello de presse **exécuter** bouton projet de hello toobuild et démarrer l’application hello dans le simulateur iOS de hello.
-3. Dans l’application hello, tapez un texte explicite, tel que *didacticiel de hello complète* puis cliquez sur hello signe plu (**+**) icône. Envoie un toohello de demande POST Azure principal que vous avez déployé précédemment. insertions de back-end Hello des données de demande de hello dans hello table TodoItem SQL et retourne les informations sur hello stockées qui vient d’être des éléments de sauvegarde toohello des applications mobiles. application mobile Hello affiche ces données dans la liste de hello. 
+1. Sur votre Mac, accédez au [portail Azure]. Cliquez sur **Parcourir tout** > **Applications mobiles** > le serveur principal que vous venez de créer. Dans les paramètres de l’application mobile, cliquez sur **Démarrage rapide** > **iOS (Objective-C)**. Si vous préférez Swift, cliquez sur **Démarrage rapide** > **iOS (Swift)**. Sous **Télécharger et exécuter votre projet iOS**, cliquez sur **Télécharger**. Un projet Xcode complet pour une application préconfigurée pour se connecter à votre serveur principal est téléchargé. Ouvrez le projet à l’aide de Xcode.
+2. Appuyez sur le bouton **Exécuter** pour générer le projet et démarrer l’application dans le simulateur iOS.
+3. Dans l’application, tapez un texte explicite, comme *Suivre le didacticiel* , puis cliquez sur l’icône plus (**+**). Cette action envoie une requête POST au serveur principal Azure déployé précédemment. Le backend insère les données de la requête dans la table SQL TodoItem et renvoie des informations sur les éléments récemment stockés à l’application mobile. L’application mobile affiche ces données dans la liste. 
 
    ![Application de démarrage rapide en cours d’exécution sur iOS](./media/app-service-mobile-ios-quickstart/mobile-quickstart-startup-ios.png)
 
-[Azure Portal]: https://portal.azure.com/
+[portail Azure]: https://portal.azure.com/

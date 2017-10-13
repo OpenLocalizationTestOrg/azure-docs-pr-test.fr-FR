@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Mobile Engagement - fonctionnalités de la clé"
-description: "Décrit les principales fonctionnalités de hello d’Azure Mobile Engagement"
+title: "Azure Mobile Engagement - Principales fonctionnalités"
+description: "Décrit les principales fonctionnalités d’Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 46906033046fc6dd915fb6943f5f89d4b4a27704
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8270a223ca31c623c1b760a64c0e4d64fb85e080
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-mobile-engagement---key-features"></a>Azure Mobile Engagement - Principales fonctionnalités
-Cet article donne une vue d’ensemble de haut niveau sur les fonctionnalités clés de hello de plateforme Mobile Engagement de hello. 
+Cet article donne une vue d’ensemble globale des principales fonctionnalités de la plateforme Mobile Engagement. 
 
 ## <a name="general"></a>**Généralités**
 * **Kits de développement logiciel (SDK) disponibles pour toutes les principales plateformes** : iOS, Android, plateforme Windows universelle, Windows Phone Silverlight, Kindle, Cordova. 
-  Nous fournissons des kits de développement logiciel toointegrate facile et tooget documentation utile que vous avez démarré sur n’importe quelle plateforme de votre choix. 
-* **Portail SaaS distinct** permet toohello un accès facile équipe sans toogo besoin de hello via le portail de gestion Azure hello marketing. 
-* **Disponibilité d’API REST** toointegrate et automatiser avec les systèmes CRM/CMS/informatique à l’aide des API de plateforme de l’ouvrir, nous fournir ouvrir tooconsume API REST et .NET SDK ces API qui peut vous permettre de tooeasily intégrer et d’automatiser avec Mobile Engagement. Consultez [ces informations](mobile-engagement-api-authentication.md) pour plus de détails. 
-* **Le connecteur Power BI disponible** vous pouvez également extraire les graphiques de clé analytique hello dans un tableau de bord Power BI. Consultez ce [guide](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-mobile/)
-* **Garantie de sécurité et confidentialité** Azure Mobile Engagement faisant partie de hello famille Azure suit tous les hello standard meilleures pratiques pour la sécurité et confidentialité attendu pour un service cloud.
+  Nous fournissons des Kits de développement logiciel (SDK) faciles à intégrer et une documentation utile pour vous aider à démarrer sur la plateforme de votre choix. 
+* **Portail SaaS distinct** : permet d’accéder facilement à l’équipe marketing sans avoir à passer par le portail de gestion Azure. 
+* **Disponibilité des API REST en open source** : pour une intégration et une automatisation avec les systèmes CRM/CMS/informatiques utilisant des API multiplateformes, nous fournissons des API REST open source et un Kit de développement logiciel (SDK) .NET pour utiliser ces API et vous permettre une intégration et une automatisation facilitées avec Mobile Engagement. Consultez [ces informations](mobile-engagement-api-authentication.md) pour plus de détails. 
+* **Connecteur Power BI disponible** : vous pouvez également extraire des graphiques d’analyse clés dans un tableau de bord Power BI. Consultez ce [guide](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-mobile/)
+* **Sécurité et confidentialité garanties** : Azure Mobile Engagement fait partie de la famille Azure et suit toutes les meilleures pratiques standard concernant la sécurité et la confidentialité attendues pour un service cloud.
 
 ## <a name="actionable-analytics"></a>**Analytique actionnable**
-* **Surveiller les données en temps réel** : vous pouvez suivre les analyses en temps réel à l’aide de notre module d’analyse qui affiche des détails tels que les sessions, les événements, les erreurs et les incidents en temps réel. Examinons cela [article](mobile-engagement-concepts.md) tooget une compréhension des concepts de base hello. 
+* **Surveiller les données en temps réel** : vous pouvez suivre les analyses en temps réel à l’aide de notre module d’analyse qui affiche des détails tels que les sessions, les événements, les erreurs et les incidents en temps réel. Consultez cet [article](mobile-engagement-concepts.md) pour comprendre les concepts de base. 
   
     ![][1]
   
     ![][2]        
-* **Afficher des données agrégées** vous obtenez également une vue plus riche de vos données agrégées analytique à l’aide de notre module Analytique qui vous permet de filtrer des tooeasily vos données selon les périodes de version et l’heure application.
+* **Afficher des données agrégées** : vous obtenez également une vue plus riche de vos données d’analyse agrégées à l’aide de notre module d’analyse qui vous permet de filtrer facilement vos données selon les périodes et la version de l’application.
   
     ![][3]        
 * **Obtenir des informations sur les utilisateurs et le modèle de rétention**
   
     ![][4]        
-* **Obtenir des informations en provenant des utilisateurs et combien de temps sont elles dépenses dans l’écran hello**
+* **Obtenir des informations sur la provenance des utilisateurs et la durée de leur visite**
   
     ![][5]        
   
     ![][6]        
-* **Découvrez les écrans sont des utilisateurs de votre application sur le site et comment optimiser de chemin d’accès utilisateur de hello** cela leur permet de toodiscover écrans et fonctionnalités que vous souhaitez.
+* **Savoir quels écrans consultent les utilisateurs de votre application et comment vous optimisez le parcours de l’utilisateur** : cela leur permet de découvrir les écrans et fonctionnalités que vous souhaitez.
   
     ![][7]        
   
     ![][8]        
-* **Obtenir des informations qui sont hello événements plus fréquentes dans votre application et de comprendre le fonctionnement de votre processus d’entreprise en fonction de ces événements.** 
+* **Obtenir des informations sur les événements les plus fréquents dans votre application et comprendre votre processus d’entreprise en fonction de ces événements** 
   
     ![][9]    
 * **Suivre les erreurs et incidents courants et obtenir des informations pour votre équipe de développeurs**
@@ -61,20 +61,20 @@ Cet article donne une vue d’ensemble de haut niveau sur les fonctionnalités c
     ![][10]        
   
     ![][11]    
-* **Comprendre les périphériques et les réseaux sont votre toooptimize hello application, les utilisateurs d’application l’accès à votre application à partir de** 
+* **Comprendre les appareils et les réseaux que vos utilisateurs utilisent pour accéder à votre application et ainsi vous permettre d’optimiser l’application** 
   
     ![][12]    
 
 ## <a name="targeted--personalized-push-notifications"></a>**Notifications Push personnalisées et ciblées**
-* **Créer un segment basé sur les données de salutation collectée** vous pouvez utiliser les données d’événement/Session/activité/travail/incident/erreur/balises hello pour cela.
+* **Créer un segment basé sur les données collectées** : pour ce faire, vous pouvez utiliser les données sur les événements, sessions, activités, tâches, incidents, erreurs et balises.
   
     ![][13]
   
     ![][14]        
-* **Enregistrer l’historique de hello de votre journée de segments créé par jour**
+* **Suivre l’historique des segments créés jour après jour**
   
     ![][15]    
-* **Envoyer des notifications ciblées** ciblant couramment utilisées comme ancien/nouveaux utilisateurs etc. ou segment de tooyour personnalisé créé
+* **Envoyer des notifications ciblées** ciblant les anciens et nouveaux utilisateurs ou un segment personnalisé
   
     ![][16]    
 * **Envoyer des notifications Push à partir des applications directement dans un format HTML enrichi ou en dehors des applications/systèmes**
@@ -82,33 +82,33 @@ Cet article donne une vue d’ensemble de haut niveau sur les fonctionnalités c
     ![][17]    
   
     ![][18]    
-* **Cibler les notifications dans l’application tooshow sur une écran/activité spécifique dans une application hello**
+* **Cibler les notifications dans l’application pour qu’elles s’affichent sur un écran/une activité spécifique dans l’application**
   
     ![][19]    
-* **Spécifier une « action » lorsque l’utilisateur de hello clique sur une notification** il peut être aussi simple que l’ouverture d’une page Web ou en naviguant au sein de l’écran spécifique tooa application hello au clic hello de notification de hello. 
+* **Spécifier une « action » lorsque l’utilisateur clique sur une notification** : cela peut être aussi simple que l’ouverture d’une page web ou la navigation au sein de l’application sur un écran spécifique lorsqu’un utilisateur clique sur la notification. 
   
     ![][20]
-* **Envoyer des notifications localisées** afin qu’il s’adresse utilisateurs d’application toohello en langage hello qu’ils sont plus à l’aise dans. 
+* **Envoyer des notifications localisées** afin qu’elles s’adressent aux utilisateurs dans la langue dans laquelle ils sont le plus à l’aise. 
   
     ![][21]    
 * **Spécifier les heures de début et de fin de vos campagnes marketing** 
   
     ![][22]    
-* **Tester facilement vos notifications** en inscrire un appareil de test et en envoyant hello test notification tooonly cet appareil.
+* **Tester facilement vos notifications** en enregistrant un appareil de test et en envoyant la notification de test à cet appareil uniquement.
   
     ![][23]    
-* **Facilement définissez un tooshow de notification dans l’application comme une interrogation/enquête rapide**  
+* **Configurer facilement une notification dans l’application pour qu’elle apparaisse sous forme de sondage/d’enquête rapide**  
   
     ![][24]
-* **Obtenir les statistiques de campagne push** pour votre toogive notifications vous une idée de succès ont été vos notifications.
+* **Obtenir des statistiques sur les campagnes pus** pour vos notifications afin de vous donner une idée du succès de vos notifications.
   
     ![][25]    
-* **Personnaliser facilement et de donner les notifications de tooyour de caractère à l’aide d’app-info/balises et emojis** 
+* **Personnaliser facilement et donner forme à vos notifications à l’aide de balises, d’informations dans l’application et d’emojis** 
   
     ![][26]    
   
     ![][27]    
-* **Définissez tooprevent limites de poussée du courrier indésirable des utilisateurs** vous ne voulez toosend un grand nombre d’utilisateurs d’application push tooyour et sont au format de courrier indésirable les. C’est là la fonction de limites Push utile qui vous permet de limites de push tooconfigure granularité hello d’un segment. 
+* **Définir des limites Push pour empêcher le spam** : vous ne voulez pas envoyer un grand nombre de notifications Push aux utilisateurs de votre application, ce qui serait considéré comme du spam. Ces limites Push sont utiles, car vous pouvez les configurer au niveau de granularité d’un segment. 
   
     ![][28]            
 

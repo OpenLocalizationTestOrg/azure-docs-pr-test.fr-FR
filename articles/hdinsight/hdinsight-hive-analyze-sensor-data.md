@@ -1,6 +1,6 @@
 ---
-title: "les données de capteur aaaAnalyze à l’aide de la ruche et Hadoop - Azure HDInsight | Documents Microsoft"
-description: "Découvrez comment les données de capteur tooanalyze à l’aide de hello Console de requête Hive hdinsight (Hadoop), puis visualiser des données dans Microsoft Excel avec PowerView hello."
+title: "Analyse des données de capteur au moyen de Hive et de Hadoop - HDInsight | Microsoft Docs"
+description: "Découvrez comment analyser des données de capteur au moyen de la console de requête Hive avec HDInsight (Hadoop), puis visualiser les données dans Microsoft Excel avec Power View."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,28 +16,28 @@ ms.topic: article
 ms.date: 04/14/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 70e595705c33d9835dc9809161f79c3ac5ece870
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3abb71c12b4769bebd808276f8bdd832aad22d7a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="analyze-sensor-data-using-hello-hive-query-console-on-hadoop-in-hdinsight"></a>Analyser les données de capteur à l’aide de hello Console de requête Hive sur Hadoop dans HDInsight
+# <a name="analyze-sensor-data-using-the-hive-query-console-on-hadoop-in-hdinsight"></a>Analyse des données de capteur à l’aide de la console de requête Hive sur Hadoop dans HDInsight
 
-Découvrez comment les données de capteur tooanalyze à l’aide de hello Console de requête Hive hdinsight (Hadoop), puis visualiser les données de hello dans Microsoft Excel à l’aide de Power View.
+Découvrez comment analyser des données de capteur au moyen de la console de requête Hive avec HDInsight (Hadoop), puis visualiser les données dans Microsoft Excel à l’aide de Power View.
 
 > [!IMPORTANT]
-> les étapes dans ce travail seul document avec des clusters HDInsight de basés sur Windows Hello. HDInsight est uniquement disponible sur Windows pour les versions antérieures à HDInsight 3.4. Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Les étapes décrites dans ce document fonctionnent uniquement avec les clusters HDInsight Windows. HDInsight est uniquement disponible sur Windows pour les versions antérieures à HDInsight 3.4. Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 
-Dans cet exemple, les données d’historique tooprocess Hive et d’identifier des problèmes avec les systèmes de chauffage et la climatisation. Plus précisément, vous identifiez les systèmes sont tooreliably n’a pas pu mettre à jour une jeu de température en effectuant hello tâches suivantes :
+Dans cet exemple, vous utilisez Hive pour traiter les données historiques et identifier les problèmes relatifs aux systèmes de chauffage et de climatisation. Plus précisément, vous identifiez les systèmes qui ne sont pas en mesure de maintenir de façon fiable une température donnée en effectuant les tâches suivantes :
 
-* Créer des tables de la ruche tooquery les données stockées dans les fichiers de valeurs séparées par des virgules (CSV).
-* Créer des requêtes HIVE tooanalyze les données de salutation.
-* les données analysée de hello tooretrieve, utilisez tooHDInsight tooconnect de Microsoft Excel.
-* les données de salutation toovisualize, utilisez Power View.
+* Créer des tables HIVE pour interroger des données stockées dans des fichiers au format CSV.
+* Créer des requêtes HIVE pour analyser les données.
+* Utiliser Microsoft Excel pour vous connecter à HDInsight et extraire les données analysées.
+* Utiliser Power View pour visualiser les données.
 
-![Un diagramme d’architecture de solution hello](./media/hdinsight-hive-analyze-sensor-data/hvac-architecture.png)
+![A diagram of the solution architecture](./media/hdinsight-hive-analyze-sensor-data/hvac-architecture.png)
 
 ## <a name="prerequisites"></a>Composants requis
 
@@ -49,18 +49,18 @@ Dans cet exemple, les données d’historique tooprocess Hive et d’identifier 
 
 * [Pilote ODBC Microsoft Hive](http://www.microsoft.com/download/details.aspx?id=40886)
 
-## <a name="toorun-hello-sample"></a>hello, exemple toorun
+## <a name="to-run-the-sample"></a>Exécution de l'exemple
 
-1. À partir de votre navigateur web, accédez à toohello suivant l’URL : 
+1. À partir d’un navigateur web, accédez à l'URL suivante : 
 
          https://<clustername>.azurehdinsight.net
 
-    Remplacez `<clustername>` par nom de hello de votre cluster HDInsight.
+    Remplacez `<clustername>` par le nom de votre cluster HDInsight :
 
-    Lorsque vous y êtes invité, s’authentifier en utilisant le nom d’utilisateur administrateur hello et le mot de passe utilisé lors de la configuration de ce cluster.
+    À l’invite, authentifiez-vous au moyen du nom d’utilisateur et du mot de passe d’administrateur que vous avez utilisés lors de l’approvisionnement de ce cluster.
 
-2. Hello page web qui s’ouvre, cliquez sur hello **prise en main galerie** onglet, puis sous hello **Solutions avec des exemples de données** catégorie, cliquez sur hello **analyse des données de capteur** exemple.
+2. Dans la page web qui s’ouvre, cliquez sur l’onglet **Galerie de mise en route**, puis sous la catégorie **Solutions avec des exemples de données**, cliquez sur l’exemple **Analyse des données de capteur**.
 
     ![Image Galerie de mise en route](./media/hdinsight-hive-analyze-sensor-data/getting-started-gallery.png)
 
-3. Suivez les instructions hello de toofinish hello exemple hello page web.
+3. Suivez les instructions fournies dans la page web pour terminer l'exemple.

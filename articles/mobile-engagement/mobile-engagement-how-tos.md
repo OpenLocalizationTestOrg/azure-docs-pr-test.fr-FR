@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure l’Interface utilisateur Mobile Engagement - atteindre How To"
+title: "Interface utilisateur d'Azure Mobile Engagement - Procédure de Reach"
 description: "Présentation de l'interface utilisateur d'Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 4b6dafd09d894214d4c386f5c6f157a77671606f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 33a0a9d0c399cb7f0a791c4c16dde2e2d62364ca
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooget-started-using-and-managing-pushes-tooreach-out-tooyour-end-users"></a>Comment tooget utilisation et gestion pousse tooreach des utilisateurs finaux de tooyour
-Une fois que hello SDK est entièrement intégré à votre application, vous pouvez commencer à l’aide de la section de portée hello hello de hello UI tooPush notifications toohello les utilisateurs de votre application.  
+# <a name="how-to-get-started-using-and-managing-pushes-to-reach-out-to-your-end-users"></a>Procédure de mise en route pour l’utilisation et la gestion des push en vue d’atteindre vos utilisateurs finaux
+Une fois que le Kit de développement logiciel (SDK) est totalement intégré à votre application, vous pouvez commencer à utiliser la section Reach de l'interface utilisateur pour envoyer des notifications Push aux utilisateurs de votre application.  
 
 ## <a name="do-your-first-push-notification-campaign"></a>Lancer votre première campagne de notification push
-* Vérifiez que votre portée est intégrée dans votre application avec le Kit de développement logiciel de hello. 
+* Vérifiez que votre module Couverture est intégré à votre application avec le SDK. 
 * Sélectionnez votre application
 
 ![Premier 1][1]
 
-* Accédez toohello Section de « Portée » et cliquez sur « nouvelle annonce »
+* Accédez à la section « Couverture », puis cliquez sur « Nouvelle annonce »
 
 ![Premier 2][2]
 
@@ -37,19 +37,19 @@ Une fois que hello SDK est entièrement intégré à votre application, vous pou
   
 ![Premier 3][3]
 
-* Sélectionnez le mode de remise des notifications de hello, comme dans l’application uniquement
+* Sélectionnez la façon dont la notification doit être remise, par exemple, dans l'application uniquement
 
 ![Premier 4][4]
 
-* Créer le message de type hello souhaité toopush
+* Créez le message à envoyer
 
 ![Premier 5][5]
 
-* Vous pouvez écrire un titre sur la notification de hello (facultatif).
+* Vous pouvez donner un titre à la notification (facultatif).
 * Écrivez le contenu du message push.
-* Vous pouvez télécharger une image. N’oubliez pas que taille hello du fichier de hello ne peut pas dépasser 32 768 octets.
-* Vous avez également hello capacité tooselect plus d’options, mais de focus hello de ce didacticiel, nous verrons que plus tard.
-* Sélectionnez le type de contenu hello en tant que Notification uniquement
+* Vous pouvez télécharger une image. N'oubliez pas que la taille du fichier ne peut pas dépasser 32 768 octets.
+* Vous avez également la possibilité de sélectionner d'autres options, mais pour les besoins de ce didacticiel, nous les aborderons plus tard.
+* Sélectionnez Notification uniquement comme type de contenu
 
 ![Premier 6][6]
 
@@ -61,58 +61,58 @@ Une fois que hello SDK est entièrement intégré à votre application, vous pou
 ![Test 1][8]
 
 * Enregistrez votre appareil.
-* Cliquez sur la case à cocher hello du périphérique de hello souhaité toopush.
-* Cliquez sur hello le périphérique toohello de « Test » bouton toosend hello par émission de données.
+* Cliquez sur la case à cocher de l'appareil auquel vous voulez envoyer la notification push.
+* Cliquez sur le bouton « Test » pour envoyer la notification push à l'appareil.
 
 ![Test 2][9]
 
-* Activer hello campagne
+* Activez la campagne
 
 ![Test 3][10]
 
-* Maintenant que vous avez créé votre campagne vous devez simplement tooactivate pour hello notification toobe envoyées tooyour utilisateurs.
+* Maintenant que vous avez créé votre campagne, vous devez l'activer pour que la notification soit envoyée à vos utilisateurs.
 
 ## <a name="send-personalized-pushes"></a>Envoyer des notifications push personnalisées
-* Cet exemple crée un push où un code de remise personnalisée est entré dans la notification d’émission hello.
+* Cet exemple crée une opération push à l'endroit où un code remise personnalisé est entré dans la notification push.
 
 ![Personnalisé 1][11]
 
-Fonctionnement de la personnalisation en remplaçant un marqueur par une application d’info par conséquent, vous aurez toomake qu’utilisateur de hello a hello approprié-informations sur l’application d’abord définis. Dans cette hello exemple utilisateurs ciblés aura une balise d’informations application nommée rebate_code définie.
-Comme ci-dessus, consultez le contenu de notification push hello inclut hello marqueur ${rebate_code} qui indique qu’il s’agit de toobe remplacé par le contenu réel de hello de balise d’info application hello.
+La personnalisation consiste à remplacer un marqueur d'une balise d'informations de l'application. Vous devez donc d'abord vous assurer que les informations d'application appropriées sont définies pour l'utilisateur. Dans cet exemple, la balise d'informations de l'application rebate_code est définie pour les utilisateurs ciblés.
+Comme vous pouvez le constater ci-dessus, le contenu de la notification push inclut le marqueur ${rebate_code}, qui indique qu'il doit être remplacé par le contenu réel de la balise d'informations de l'application.
 
 > [!WARNING]
-> Si l’étiquette d’info hello application n’est pas défini pour l’utilisateur de hello, utilisateur de hello ne recevra pas de push de hello.
+> si la balise d'informations de l'application n'est pas définie pour l'utilisateur, ce dernier ne recevra pas la notification push.
 
 * Résultat
 
 ![Personnalisé 2][12]
 
-### <a name="you-can-further-personalize-hello-text-your-notification"></a>Vous pouvez personnaliser encore plus texte hello votre notification
+### <a name="you-can-further-personalize-the-text-your-notification"></a>Vous pouvez personnaliser le texte de votre notification
 ![Personnalisé 3][13]
 
-* Y compris le titre hello de notification de hello,
-* Et le contenu du message de type hello hello.
-* Choisissez le type hello d’annonce (affichage du texte ou Web)
+* Notamment le titre de la notification
+* et le contenu du message.
+* Choisissez le type d'annonce (vue de texte ou vue web)
 
 ![Personnalisé 4][14]
 
-### <a name="hello-body-of-an-announcement-may-also-be-personalized-with"></a>corps Hello d’une annonce peut également être personnalisée avec :
-* URL d’action Hello, si vous souhaitez que hello toocustomize page d’accueil
-* titre de Hello,
-* corps de Hello du message de type hello.
+### <a name="the-body-of-an-announcement-may-also-be-personalized-with"></a>Le corps d'une annonce peut également être personnalisé avec les éléments suivants :
+* l'URL de l'action, en cas de personnalisation de la page d'accueil ;
+* le titre ;
+* le corps du message.
 
 ## <a name="differentiate-your-push-notification-in-or-out-of-app"></a>Différencier votre notification push (dans ou en dehors de l'application)
-* Choisissez le type hello de notification push, sélectionnez votre application, accédez toohello « Portée » section, sélectionner ou créer une campagne de push et atteindre la section « Notification » de toohello.
-* Cliquez sur hello « mode de livraison » que vous souhaitez.
-* Cliquez sur la case à cocher « Activités restreindre » lorsque vous souhaitez que la notification de hello se produit sur des activités spécifiques (écrans) de hello.
+* Choisissez le type de notification que vous allez envoyer, sélectionnez votre application, accédez à la section « Couverture », sélectionnez ou créez une campagne push et accédez à la section « Notification ».
+* Cliquez sur le « mode de remise » souhaité.
+* Cochez la case « Restreindre les activités » si vous voulez que la notification se produise pour des activités spécifiques (écrans).
 
 ![Différentiation 1][15]
 
 ### <a name="out-of-app-only-delivery-mode"></a>Mode de remise « Hors de l'application uniquement »
 ![Différentiation 2][16]
 
-« Hors de l’application » mode de livraison fournit des notifications push lors de l’application hello est fermée. Il s’agit de hello standard de notifications push.
-Lorsque vous sélectionnez « hors de l’application », vous devez avoir déjà fourni certificats hello à partir de la plateforme de hello spécialisée (APN ou GCM) dans votre application.
+Le mode de remise « Hors de l'application uniquement » envoie une notification push quand l'application est fermée. Il s'agit de la notification push standard.
+Quand vous sélectionnez « Hors de l'application uniquement », vous devez déjà avoir fourni les certificats de la plateforme sur laquelle est créée votre application (service APN ou GCM).
 
 ### <a name="see-also"></a>Voir aussi
 * [Service de notification Push d’Apple – Certificats](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW9), [Google Cloud Messaging – Certificat](http://developer.android.com/google/gcm/index.html) 
@@ -120,75 +120,75 @@ Lorsque vous sélectionnez « hors de l’application », vous devez avoir dé
 ### <a name="in-app-only-delivery-mode"></a>Mode de remise « Dans l'application uniquement »
 ![Différentiation 3][17]
 
-Mode de livraison « Dans l’application uniquement » fournit des notifications push lors de l’application hello est en cours d’exécution.
-Pour cette notification, il est inutile toogo via hello APN et système GCM.
-Vous pouvez utiliser tooreach de système de messagerie dans l’application hello vos utilisateurs finaux.
-Vous pouvez entièrement personnaliser hello notification et décider dans quelle activité (écran) une notification de hello s’affichera.
+Le mode de remise « Dans l'application uniquement » envoie la notification push pendant l'exécution de l'application.
+Pour cette notification, il est inutile de passer par le service APN ou le système GCM.
+Vous pouvez utiliser le système de remise dans l'application pour toucher vos utilisateurs finaux.
+Vous pouvez entièrement personnaliser la notification et décider dans quelle activité (écran) la notification va apparaître.
 
 ### <a name="anytime-delivery-mode"></a>Mode de remise « À tout moment »
-Vous pouvez choisir un mode de livraison « À tout moment », vous garantit tooreach votre utilisateur final hello si application est en cours d’exécution ou non.
-Lorsque vous sélectionnez « Achat », vous devez avoir déjà fourni certificats hello à partir de la plateforme de hello la création de votre application (APN ou GCM). 
+Vous pouvez choisir le mode de remise « À tout moment », qui vous permet de toucher vos utilisateurs finaux, que l'application soit en cours d'exécution ou non.
+Quand vous sélectionnez « À tout moment », vous devez déjà avoir fourni les certificats de la plateforme sur laquelle est créée votre application (service APN ou GCM). 
 
 ## <a name="schedule-a-push-campaign"></a>Planifier une campagne push
-### <a name="plan-toostart-a-campaign"></a>Planifier une campagne de tooStart
+### <a name="plan-to-start-a-campaign"></a>Planifiez le début de la campagne
 ![Planification 1][18]
 
-Il est hello 21 mars et vous disposez d’une annonce toomake et planifié pour hello 22 du mois de mars, à minuit. Vous n’avez pas toostay devant hello interface toodo un push ! Vous pouvez planifier à l’avance hello exacte minute notifications seront envoyées.
+Nous sommes le 21 mars et vous devez diffuser une annonce le 22 mars à minuit. Vous n'êtes pas obligé de rester devant l'interface pour envoyer une notification push ! Vous pouvez planifier à l'avance la minute exacte à laquelle les notifications seront envoyées.
 
-* Décochez la case hello « None » case à cocher et sélectionnez une heure de début 
-* Choisissez la date de hello et l’heure hello campagne de push toostart hello.
+* Décochez la case « Aucune » et sélectionnez une heure de début 
+* Choisissez la date et l'heure auxquelles vous voulez démarrer la campagne push.
 
-### <a name="plan-tooend-a-campaign"></a>Planifier une campagne de tooend
+### <a name="plan-to-end-a-campaign"></a>Planifiez la fin de la campagne
 ![Planification 2][19]
 
-Vous souhaitez que votre toostop campagne sur hello 25 du mois de mars à 15 h 00, mais vous savez que vous ne serez plus toodo il.
-Vous n’avez pas toostay devant hello interface toopush ! Vous pouvez planifier à l’avance hello exacte minute que votre campagne s’arrêtera.
+Vous voulez que votre campagne s'arrête le 25 mars à 15 h 00, mais vous savez que vous ne serez pas là pour le faire.
+Vous n'êtes pas obligé de rester devant l'interface pour envoyer une notification push ! Vous pouvez planifier à l'avance la minute exacte à laquelle votre campagne s'arrêtera.
 
-* Cliquez sur hello, « None » case à cocher ou sélectionnez une heure de fin
-* Choisissez la date de hello et l’heure hello campagne de push toofinish hello.
+* Cochez la case « Aucune » ou sélectionnez une heure de fin
+* Choisissez la date et l'heure auxquelles vous voulez arrêter la campagne push.
 
 ### <a name="end-a-campaign-manually"></a>Arrêter manuellement une campagne
 ![Planification 3][20]
 
-Par défaut, hello « None »-cases sont cochées.
-Cela signifie que la campagne de hello démarre dès que vous l’activez Bonjour atteindre la section et de fin lorsque vous l’arrêtez sur hello atteindra section.
+Par défaut, la case « Aucune » est cochée.
+Cela signifie que la campagne démarrera ou s'arrêtera dès que l'activerez ou la désactiverez dans la section Couverture.
 
 > [!NOTE]
-> Les campagnes créées sans une date de fin stockent hello push localement sur l’appareil de hello et les affichent hello prochaine application hello est ouvert, même si la campagne de hello terminée manuellement.
+> Les campagnes marketing créées sans date de fin stockent le push localement sur le périphérique et l'affichent lors de la prochaine ouverture de l'application, même si la campagne est terminée manuellement.
 
 ## <a name="enhance-a-push-notification-with-a-text-view"></a>Renforcer une notification push avec une vue de texte
 ### <a name="what-is-a-text-view"></a>Qu'est-ce que la vue de texte ?
 ![Vue de texte 1][21]
 
-Une vue de texte est une fenêtre contextuelle contenant du texte. Cette fenêtre contextuelle apparaît une fois que l’utilisateur final hello a cliqué sur la notification d’émission hello.
-Une vue de texte vous permet de toopresent par l’utilisateur de tooyour plus de contenu. Il s’agit également hello opportunité toopresent une tooaction appel telles que le moment du saut de page tooa de votre application, en redirigeant tooa ouverture de magasin, une page web, envoyer un message électronique, à partir d’un GÉOLOCALISÉS de recherche, un etc....
+Une vue de texte est une fenêtre contextuelle contenant du texte. Cette fenêtre contextuelle apparaît une fois que l'utilisateur final a cliqué sur la notification push.
+Une vue de texte vous permet de présenter plus de contenu à l'utilisateur final. C'est également une opportunité de présenter un appel à l'action, par exemple, l'accès à une page de votre application, la redirection vers une boutique d'applications, l'ouverture d'une page web, l'envoi d'un message électronique, le lancement d'une recherche géo-localisée, etc.
 
 ### <a name="example-text-view"></a>Exemple : vue de texte
-* Créer votre campagne de notification Push dans la section de « Atteindre » hello et donnez un nom à votre campagne
+* Créez votre campagne de notification push dans la section « Couverture » et donnez un nom à votre campagne
 
 ![Vue de texte 2][22]
 
-* Écrire le message de type hello qui s’affiche lors de la notification de hello.
-* Sélectionnez hello annonce les Type de contenu de « texte »
+* Écrivez le message qui s'affichera dans la notification.
+* Sélectionnez « Texte » comme type de contenu de l'annonce
 
 ![Vue de texte 3][23]
 
 > [!NOTE]
 > Quand vous envoyez une vue de texte, elle est toujours précédée d’une notification. 
 
-* Définir le texte hello (après avoir sélectionné texte annonce hello, sous-section hello s’affiche, ce qui vous toodefine hello texte toobe affiché.)
+* Définissez le texte (une fois que vous avez sélectionné l'annonce textuelle, une sous-section apparaît dans laquelle vous pouvez définir le texte à afficher.)
 
 ![Vue de texte 4][24]
 
-* Écrire hello titre qui s’affiche en haut de hello du message de type hello.
-* Écriture du contenu principal de hello de vue de texte hello.
-* Écriture du contenu de hello qui apparaîtra sur le bouton d’action hello (un bouton d’action permet de hello application toomake une action spécifique telle que l’ouverture d’une page de l’application hello, redirection tooan App store ou tout type de sources, que vous pouvez fournir).
-* Contenu hello écriture qui apparaîtra sur le bouton de sortie hello (en cliquant sur le bouton de sortie hello, affichage de texte hello disparaît.)
-* Créer votre campagne de notification push et elle apparaîtra dans la liste des campagnes hello.
+* Écrivez le titre qui apparaîtra en haut du message.
+* Écrivez le contenu principal de la vue de texte.
+* Écrivez le contenu qui s'affichera sur le bouton d'action (un bouton d'action permet à l'application d'effectuer une action spécifique, comme l'ouverture d'une page de l'application, la redirection vers une boutique d'applications ou tout type de sources que vous pouvez fournir).
+* Écrivez le contenu qui s'affichera sur le bouton Quitter (en cliquant sur le bouton Quitter, la vue de texte disparaît.)
+* Créez votre campagne de notification push. Elle apparaîtra dans votre liste de campagnes.
 
 ![Vue de texte 5][25]
 
-* Activez vos utilisateurs push notification campagne toosend hello texte vue tooyour.
+* Activez votre campagne de notifications push pour envoyer la vue de texte à vos utilisateurs.
 
 ![Vue de texte 6][26]
 
@@ -196,51 +196,51 @@ Une vue de texte vous permet de toopresent par l’utilisateur de tooyour plus d
 
 ![Vue de texte 7][27]
 
-* Hello utilisateur reçoit une notification de hello, puis cliquez dessus.
-* affichage de texte Hello apparaît comme un toointeract utilisateur hello autoriser publicitaires avec lui.
+* L'utilisateur reçoit la notification et clique dessus.
+* La vue web apparaît sous forme de fenêtre contextuelle dans laquelle l'utilisateur peut interagir.
 
 ## <a name="enhance-a-push-notification-with-a-web-view"></a>Renforcer une notification push avec une vue web
 ### <a name="what-is-a-web-view"></a>Qu'est-ce qu'une vue web ?
 ![Vue web 1][28]
 
-Une vue web est une fenêtre contextuelle avec du contenu web. Cette fenêtre contextuelle s’affiche lorsque l’utilisateur final hello a cliqué sur la notification d’émission hello.
-Un affichage web vous permet de toohave plus d’interaction avec l’utilisateur final hello.
-Il s’agit également hello opportunité toopresent une tooaction appel telles que la redirection tooApp magasin, ouverture d’une page web, envoyer un message électronique, à partir d’un GÉOLOCALISÉS de recherche, un etc....
+Une vue web est une fenêtre contextuelle avec du contenu web. Cette fenêtre contextuelle apparaît une fois que l'utilisateur final a cliqué sur la notification push.
+Une vue web favorise l'interaction avec l'utilisateur final.
+C'est également une opportunité de présenter un appel à l'action, par exemple, la redirection vers une boutique d'applications, l'ouverture d'une page web, l'envoi d'un message électronique, le lancement d'une recherche géo-localisée, etc.
 
 ### <a name="example-web-view"></a>Exemple : vue web
-* Créer votre campagne Push dans la section de « Atteindre » hello et donnez un nom à votre campagne.
+* Créez votre campagne de notification push dans la section « Couverture » et donnez un nom à votre campagne.
 
 ![Vue web 2][29]
 
-* Écrire le message de type hello qui s’affiche lors de la notification de hello.
-* Sélectionnez hello annonce le Type de contenu en tant que « web »
+* Écrivez le message qui s'affichera dans la notification.
+* Sélectionnez « Web » comme type de contenu de l'annonce
 
 ![Vue web 3][30]
 
 ### <a name="about-announcement-types"></a>À propos des types d'annonce :
-* Notification uniquement : il s’agit d’une simple notification standard. Ce qui signifie que si un utilisateur clique dessus, aucun affichage supplémentaire ne s’affiche, mais seulement l’action hello associée tooit se produira.
-* Annonce de texte : il est une notification qui engage hello utilisateur toohave examiner une vue de texte.
-* Annonce de Web : il est une notification qui engage hello utilisateur toohave examiner un affichage web.
-  Sélectionnez hello contenu de « Annonce Web ».
+* Notification uniquement : il s’agit d’une simple notification standard. Cela signifie que si un utilisateur clique dessus, aucun affichage supplémentaire n'apparaîtra. Seule l'action qui y est associée s'affichera.
+* Annonce texte : il s’agit d’une notification qui invite l’utilisateur à regarder une vue de texte.
+* Annonce web : il s’agit d’une notification qui invite l’utilisateur à regarder une vue web.
+  Sélectionnez le contenu « Annonce web ».
 
 > [!NOTE]
 > quand vous envoyez une vue web, elle est toujours précédée d'une notification.
 
-* Définir le contenu web hello (après avoir sélectionné un contenu hello web annonce, sous-section de hello s’affiche, ce qui vous toodefine hello afficher le contenu web souhaitée toobe affiché.)
+* Définissez le contenu web (une fois que vous avez sélectionné le contenu de l'annonce web, une sous-section apparaît dans laquelle vous pouvez définir le contenu de la vue web à afficher.)
 
 ![Vue web 4][31]
 
-* Écrire hello titre qui s’affiche en haut de hello du message de type hello (facultatif).
+* Écrivez le titre qui apparaîtra en haut du message (facultatif).
 * Écrivez ici votre code HTML.
-* Cliquez sur l’édition de tooswitch de bouton de mode d’édition de la source hello et voir comment il ressemble.
-* Écriture du contenu de hello qui apparaîtra sur le bouton d’action hello (un bouton d’action permet de hello application toomake une action spécifique telle que l’ouverture d’une page de l’application hello, redirection tooa magasin ou tous les types de sources, que vous pouvez fournir).
-* Contenu hello écriture qui apparaîtra sur le bouton de sortie hello (en cliquant sur le bouton de sortie hello, l’affichage web hello disparaît).
+* Cliquez sur le bouton du mode d'édition de la source pour basculer l'affichage et découvrir à quoi ressemble votre annonce.
+* Écrivez le contenu qui s'affichera sur le bouton d'action (un bouton d'action permet à l'application d'effectuer une action spécifique, comme l'ouverture d'une page de l'application, la redirection vers une boutique d'applications ou tout type de sources que vous pouvez fournir).
+* Écrivez le contenu qui s'affichera sur le bouton Quitter (en cliquant sur le bouton Quitter, la vue web disparaît.)
 * Résultat
 
 ![Vue web 5][32]
 
-* utilisateur de Hello recevoir une notification de hello et cliquez dessus.
-* affichage de texte Hello apparaît comme un toointeract utilisateur hello autoriser publicitaires avec lui.
+* L'utilisateur reçoit la notification et clique dessus.
+* La vue web apparaît sous forme de fenêtre contextuelle dans laquelle l'utilisateur peut interagir.
 
 <!--Image references-->
 [1]: ./media/mobile-engagement-how-tos/First1.png

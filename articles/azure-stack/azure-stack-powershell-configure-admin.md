@@ -1,6 +1,6 @@
 ---
-title: "environnement de l’opérateur aaaConfigure hello pile d’Azure PowerShell | Documents Microsoft"
-description: "Découvrez comment tooConfigure hello environnement de l’opérateur de la pile d’Azure PowerShell."
+title: "Configurer l’environnement PowerShell de l’opérateur Azure Stack | Microsoft Docs"
+description: "Découvrez comment configurer l’environnement PowerShell de l’opérateur Azure Stack."
 services: azure-stack
 documentationcenter: 
 author: SnehaGunda
@@ -12,52 +12,60 @@ ms.workload: na
 pms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/18/2017
+ms.date: 09/25/2017
 ms.author: sngun
-ms.openlocfilehash: 1a1e95b95598062f155126b9560934bba4994f4f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7e912dcbfd1c745df2a0fc8717a075c0476e8d60
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="configure-hello-azure-stack-operators-powershell-environment"></a>Configurer l’environnement de l’opérateur hello pile d’Azure PowerShell
+# <a name="configure-the-azure-stack-operators-powershell-environment"></a>Configurer l’environnement PowerShell de l’opérateur Azure Stack
 
-En tant qu’opérateur Azure Stack, vous pouvez configurer l’environnement PowerShell de votre Kit de développement Azure Stack. Après avoir configuré, vous pouvez utiliser de ressources Azure pile toomanage PowerShell telles que la création d’offres, les plans, les quotas, la gestion des alertes, etc.. Cette rubrique est étendue toouse avec l’opérateur de cloud hello environnements uniquement, si vous souhaitez tooset de PowerShell pour l’environnement utilisateur hello, reportez-vous trop[configurer l’environnement de l’utilisateur hello pile d’Azure PowerShell](azure-stack-powershell-configure-user.md) rubrique. 
+*S’applique à : systèmes intégrés Azure Stack et Kit de développement Azure Stack*
+
+En tant qu’opérateur Azure Stack, vous pouvez configurer l’environnement PowerShell de votre Kit de développement Azure Stack. Une fois la configuration effectuée, vous pouvez utiliser PowerShell pour gérer les ressources Azure Stack, par exemple créer des offres, des plans et des quotas, gérer les alertes, et ainsi de suite. Cette rubrique concerne uniquement les environnements d’opérateur cloud. Si vous souhaitez configurer PowerShell pour l’environnement utilisateur, consultez la rubrique [Configurer l’environnement PowerShell de l’utilisateur Azure Stack](user/azure-stack-powershell-configure-user.md). 
 
 ## <a name="prerequisites"></a>Composants requis
 
-Exécution hello suivant la configuration requise à partir de hello [kit de développement](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-remote-desktop), ou à partir d’un client externe basé sur Windows si vous êtes [connectés via VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn): 
+Effectuez les étapes prérequises suivantes à partir du [Kit de développement](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-remote-desktop) ou à partir d’un client externe Windows si vous êtes [connecté par le biais d’un VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn) : 
 
 * Installez les [modules Azure PowerShell compatibles avec Azure Stack](azure-stack-powershell-install.md).  
-* Télécharger hello [toowork requis d’outils avec Azure pile](azure-stack-powershell-download.md).  
+* Téléchargez les [outils nécessaires pour utiliser Azure Stack](azure-stack-powershell-download.md).  
 
-## <a name="configure-hello-operator-environment-and-sign-in-tooazure-stack"></a>Configurer l’environnement d’opérateur hello et connectez-vous à tooAzure pile
+## <a name="configure-the-operator-environment-and-sign-in-to-azure-stack"></a>Configurer l’environnement de l’opérateur et se connecter à Azure Stack
 
-En fonction de type hello du déploiement (Azure AD ou AD FS), exécutez une des hello suivant script tooconfigure hello Azure opérateur environnement pile avec PowerShell :
+Selon le type de déploiement (Azure AD ou AD FS), exécutez un des scripts suivants pour configurer l’environnement de l’opérateur Azure Stack avec PowerShell (veillez à remplacer les valeurs AAD tenantName, GraphAudience et ArmEndpoint selon la configuration de votre environnement) :
 
 ### <a name="azure-active-directory-aad-based-deployments"></a>Déploiements basés sur Azure Active Directory (AAD)
        
   ```powershell
-  # Navigate toohello downloaded folder and import hello **Connect** PowerShell module
+  # Navigate to the downloaded folder and import the **Connect** PowerShell module
   Set-ExecutionPolicy RemoteSigned
   Import-Module .\Connect\AzureStack.Connect.psm1
+
+  # For Azure Stack development kit, this value is set to https://adminmanagement.local.azurestack.external. To get this value for Azure Stack integrated systems, contact your service provider.
+  $ArmEndpoint = "<Resource Manager endpoint for your environment>"
+
+  # For Azure Stack development kit, this value is set to https://graph.windows.net/. To get this value for Azure Stack integrated systems, contact your service provider.
+  $GraphAudience = "<GraphAuidence endpoint for your environment>"
 
   # Register an AzureRM environment that targets your Azure Stack instance
   Add-AzureRMEnvironment `
     -Name "AzureStackAdmin" `
-    -ArmEndpoint "https://adminmanagement.local.azurestack.external"
+    -ArmEndpoint $ArmEndpoint
 
-  # Set hello GraphEndpointResourceId value
+  # Set the GraphEndpointResourceId value
   Set-AzureRmEnvironment `
     -Name "AzureStackAdmin" `
-    -GraphAudience "https://graph.windows.net/"
+    -GraphAudience $GraphAudience
 
-  # Get hello Active Directory tenantId that is used toodeploy Azure Stack
+  # Get the Active Directory tenantId that is used to deploy Azure Stack
   $TenantID = Get-AzsDirectoryTenantId `
     -AADTenantName "<myDirectoryTenantName>.onmicrosoft.com" `
     -EnvironmentName "AzureStackAdmin"
 
-  # Sign in tooyour environment
+  # Sign in to your environment
   Login-AzureRmAccount `
     -EnvironmentName "AzureStackAdmin" `
     -TenantId $TenantID 
@@ -66,40 +74,46 @@ En fonction de type hello du déploiement (Azure AD ou AD FS), exécutez une des
 ### <a name="active-directory-federation-services-ad-fs-based-deployments"></a>Déploiements basés sur Active Directory Federation Services (AD FS)
          
   ```powershell
-  # Navigate toohello downloaded folder and import hello **Connect** PowerShell module
+  # Navigate to the downloaded folder and import the **Connect** PowerShell module
   Set-ExecutionPolicy RemoteSigned
   Import-Module .\Connect\AzureStack.Connect.psm1
+
+  # For Azure Stack development kit, this value is set to https://adminmanagement.local.azurestack.external. To get this value for Azure Stack integrated systems, contact your service provider.
+  $ArmEndpoint = "<Resource Manager endpoint for your environment>"
+
+  # For Azure Stack development kit, this value is set to https://graph.local.azurestack.external/. To get this value for Azure Stack integrated systems, contact your service provider.
+  $GraphAudience = "<GraphAuidence endpoint for your environment>"
 
   # Register an AzureRM environment that targets your Azure Stack instance
   Add-AzureRMEnvironment `
     -Name "AzureStackAdmin" `
-    -ArmEndpoint "https://adminmanagement.local.azurestack.external"
+    -ArmEndpoint $ArmEndpoint
 
-  # Set hello GraphEndpointResourceId value
+  # Set the GraphEndpointResourceId value
   Set-AzureRmEnvironment `
     -Name "AzureStackAdmin" `
-    -GraphAudience "https://graph.local.azurestack.external/" `
+    -GraphAudience $GraphAudience `
     -EnableAdfsAuthentication:$true
 
-  # Get hello Active Directory tenantId that is used toodeploy Azure Stack     
+  # Get the Active Directory tenantId that is used to deploy Azure Stack     
   $TenantID = Get-AzsDirectoryTenantId `
     -ADFS `
     -EnvironmentName "AzureStackAdmin"
 
-  # Sign in tooyour environment
+  # Sign in to your environment
   Login-AzureRmAccount `
     -EnvironmentName "AzureStackAdmin" `
     -TenantId $TenantID 
   ```
 
-## <a name="test-hello-connectivity"></a>Tester la connectivité hello
+## <a name="test-the-connectivity"></a>Tester la connectivité
 
-Maintenant que nous avons tout configurer, nous allons utiliser de ressources au sein de la pile d’Azure PowerShell toocreate. Par exemple, vous pouvez créer un groupe de ressources pour une application et ajouter une machine virtuelle. Hello utilisation suivant commande toocreate un groupe de ressources nommé « MyResourceGroup » :
+Nous avons terminé l’installation. Nous allons maintenant utiliser PowerShell pour créer des ressources dans Azure Stack. Par exemple, vous pouvez créer un groupe de ressources pour une application et ajouter une machine virtuelle. Utilisez la commande suivante pour créer le groupe de ressources nommé « myResourceGroup » :
 
 ```powershell
 New-AzureRmResourceGroup -Name "MyResourceGroup" -Location "Local"
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Développer des modèles pour Azure Stack](azure-stack-develop-templates.md)
-* [Déployer des modèles avec PowerShell](azure-stack-deploy-template-powershell.md)
+* [Développer des modèles pour Azure Stack](user/azure-stack-develop-templates.md)
+* [Déployer des modèles avec PowerShell](user/azure-stack-deploy-template-powershell.md)

@@ -1,6 +1,6 @@
 ---
-title: aaaAccount notifications de configuration | Documents Microsoft
-description: "Découvrez comment tooensure que vous êtes averti des problèmes liés à toouser de configuration qui nécessitent votre attention en activant les notifications de configuration de compte."
+title: "Notifications d’approvisionnement de comptes| Microsoft Docs"
+description: "Découvrez comment vous assurer d’être informé des problèmes liés à l’approvisionnement des utilisateurs qui nécessitent votre attention en activant les notifications d’approvisionnement de comptes."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -13,39 +13,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: markvi
-ms.openlocfilehash: e33d1dd806fff43fc96f843a9dcddd7375d2e3c4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b99037fc28eca1a3ebffefb9e99991e74f52c9a5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="account-provisioning-notifications"></a>Notifications d’approvisionnement de comptes
-Configuration de l’utilisateur, vous pouvez automatiser les processus de hello de gestion des utilisateurs dans les applications SaaS tierces. <br>
-Bien que cela soit un processus automatisé, votre interaction avec ce processus provient tootime temps requis. <br>
-C’est par exemple hello cas, lorsque le mot de passe hello du compte hello vous avez configuré les données tooexchange avec une troisième application SaaS tierce a expiré. 
+Avec l’approvisionnement d’utilisateurs, vous pouvez automatiser le processus de gestion des utilisateurs dans les applications SaaS tierces. <br>
+Bien qu’il soit automatisé, votre interaction avec ce processus est parfois nécessaire. <br>
+C’est par exemple le cas quand le mot de passe du compte que vous avez configuré pour échanger des données avec une application SaaS tierce a expiré. 
 
-En activant les notifications de configuration de compte, vous pouvez vous assurer que vous êtes averti des problèmes connexe toouser configuration qui nécessitent votre attention.
+En activant les notifications d’approvisionnement de comptes, vous pouvez vous assurer d’être informé des problèmes liés à l’approvisionnement des utilisateurs qui nécessitent votre attention.
 
 Vous activez ou désactivez les notifications d’approvisionnement de comptes dans le cadre de votre configuration d’approvisionnement d’utilisateurs pour une application SaaS tierce.
 
-![Approvisionnement de l’utilisateur][1] 
+![Approvisionnement d’utilisateurs][1] 
 
-tooactivate compte des notifications de mise en service, sélectionnez hello case associée sur hello **Confirmation** page de boîte de dialogue, puis les alias de type hello messagerie électronique du destinataire de hello.
+Pour activer les notifications d’approvisionnement de comptes, cochez la case associée dans la page de boîte de dialogue **Confirmation** , puis tapez l’alias de messagerie du destinataire.
 
 ![Notifications d’approvisionnement de comptes][2]
 
-Vous pouvez entrer une liste de distribution comme destinataire ; Toutefois, il est important toonote que le courrier électronique de notification hello contient tooreports des liens qui sont uniquement accessibles par les administrateurs de hello Azure AD.
+Vous pouvez entrer une liste de distribution comme destinataire ; toutefois, il convient de noter que le message électronique de notification contient des liens vers des rapports qui sont accessibles uniquement aux administrateurs Azure AD.
 
-Si vous avez activées les notifications de configuration de compte, vous recevez des messages électroniques relatifs aux problèmes critiques qui sont associée toouser de configuration. Toutefois, tooavoid une surcharge de messages électroniques, vous ne recevrez qu’un courrier électronique de notification par jour pour chaque SaaS application hello courrier est activé.
+Si vous avez activé les notifications d’approvisionnement de comptes, vous recevrez des messages électroniques à propos des problèmes critiques liés à l’approvisionnement des utilisateurs. Cependant, pour éviter une surcharge de courrier électronique, vous recevrez un seul message de notification par jour pour chaque application SaaS pour laquelle la notification par courrier électronique est activée.
 
 ## <a name="related-articles"></a>Articles connexes
 * [Index d’articles pour la gestion des applications dans Azure Active Directory](active-directory-apps-index.md)
-* [Automatiser la configuration d’utilisateur/Deprovisioning tooSaaS applications](active-directory-saas-app-provisioning.md)
+* [Automatiser l’approvisionnement/le déprovisionnement des utilisateurs pour les applications SaaS](active-directory-saas-app-provisioning.md)
 * [Personnalisation des mappages d’attributs pour l’approvisionnement des utilisateurs](active-directory-saas-customizing-attribute-mappings.md)
 * [Écriture d’expressions pour les mappages d’attributs](active-directory-saas-writing-expressions-for-attribute-mappings.md)
 * [Filtres d’étendue pour l’approvisionnement des utilisateurs](active-directory-saas-scoping-filters.md)
-* [SCIM tooenable la configuration automatique des utilisateurs et groupes à partir d’Azure Active Directory tooapplications](active-directory-scim-provisioning.md)
-* [Liste des didacticiels sur la façon de tooIntegrate applications SaaS](active-directory-saas-tutorial-list.md)
+* [Utilisation de SCIM pour activer la configuration automatique des utilisateurs et des groupes d’Azure Active Directory sur des applications](active-directory-scim-provisioning.md)
+* [Liste des didacticiels sur l’intégration des applications SaaS](active-directory-saas-tutorial-list.md)
 
 <!--Image references-->
 [1]: ./media/active-directory-saas-account-provisioning-notifications/ic766307.png

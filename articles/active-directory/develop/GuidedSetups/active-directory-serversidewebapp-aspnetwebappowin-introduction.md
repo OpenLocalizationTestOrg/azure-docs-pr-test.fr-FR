@@ -1,6 +1,6 @@
 ---
-title: aaaAzure AD v2 ASP.NET Web Server mise en route - introduction | Documents Microsoft
-description: "Implémentation de la connexion Microsoft dans une solution ASP.NET avec une application basée sur un navigateur web traditionnel utilisant le standard OpenID Connect"
+title: Prise en main du serveur web ASP.NET Azure AD v2 - Intro | Microsoft Docs
+description: "Implémentation de la connexion Microsoft sur une solution ASP.NET avec une application basée sur un navigateur web traditionnel avec une norme OpenID Connect"
 services: active-directory
 documentationcenter: dev-center-name
 author: andretms
@@ -15,33 +15,33 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: d6449926af2bdad24cbc8e91f74885a08f909103
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8062923b6270ec6253dc231a3db4333cf4666b42
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-sign-in-with-microsoft-tooan-aspnet-web-app"></a>Ajouter la connexion à l’aide de l’application web ASP.NET tooan Microsoft
+# <a name="add-sign-in-with-microsoft-to-an-aspnet-web-app"></a>Ajouter la connexion avec Microsoft à une application ASP.NET
 
-Ce guide montre comment tooimplement connectez-vous avec Microsoft à l’aide d’une solution ASP.NET MVC avec une application web classique basée sur navigateur, à l’aide de OpenID Connect. 
+Ce guide explique comment implémenter la connexion avec Microsoft à l’aide d’une solution ASP.NET MVC avec une application basée sur un navigateur web traditionnel avec une norme OpenID Connect. 
 
-À la fin de hello de ce guide, votre application sera ins du personnel des comptes (y compris les outlook.com, live.com et autres) ainsi que comment utiliser l’authentification en mesure de tooaccept comptes professionnels et scolaires à partir de toute entreprise ou d’une organisation qui a intégré à Azure Active Directory. 
+À la fin de ce guide, votre application pourra accepter des connexions de comptes personnels (y compris outlook.com, live.com et autres), ainsi que des comptes professionnels et scolaires de n’importe quelle société ou organisation ayant intégré Azure Active Directory. 
 
 > Ce guide requiert Visual Studio 2015 Update 3 ou Visual Studio 2017.  Ni l’un, ni l’autre ne sont installés sur votre ordinateur ?  [Téléchargez gratuitement Visual Studio 2017](https://www.visualstudio.com/downloads/)
 
 ## <a name="how-this-guide-works"></a>Fonctionnement de ce guide
 
-![Fonctionnement de ce guide](media/active-directory-serversidewebapp-aspnetwebappowin-intro/aspnetbrowsergeneral.png)
+![Comment fonctionne ce guide](media/active-directory-serversidewebapp-aspnetwebappowin-intro/aspnetbrowsergeneral.png)
 
-Ce guide se base sur le scénario hello où un navigateur accède à un site web ASP.NET, demande un tooauthenticate utilisateur via un bouton de connexion. Dans ce scénario, la majeure partie de la page web de hello travail toorender hello se produit côté serveur de hello.
+Ce guide est basé sur des scénarios dans lesquels un navigateur accède à un site web ASP.NET, invitant un utilisateur à s’authentifier via un bouton de connexion. Dans ce scénario, la majorité du travail pour afficher la page web se passe côté serveur.
 
 ## <a name="libraries"></a>Bibliothèques
 
-Ce guide utilise hello suivant bibliothèques :
+Ce guide utilise les bibliothèques suivantes :
 
 |Bibliothèque|Description|
 |---|---|
-|[Microsoft.Owin.Security.OpenIdConnect](https://www.nuget.org/packages/Microsoft.Owin.Security.OpenIdConnect/)|Intergiciel (middleware) qui permet à une application de toouse OpenIdConnect pour l’authentification|
-|[Microsoft.Owin.Security.Cookies](https://www.nuget.org/packages/Microsoft.Owin.Security.Cookies)|Intergiciel (middleware) qui permet à une session d’utilisateur toomaintain application à l’aide de cookies|
-|[Microsoft.Owin.Host.SystemWeb](https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb)|Permet de toorun des applications OWIN sur IIS à l’aide du pipeline de demande ASP.NET hello|
+|[Microsoft.Owin.Security.OpenIdConnect](https://www.nuget.org/packages/Microsoft.Owin.Security.OpenIdConnect/)|Intergiciel qui permet à une application d’utiliser OpenIDConnect pour l’authentification.|
+|[Microsoft.Owin.Security.Cookies](https://www.nuget.org/packages/Microsoft.Owin.Security.Cookies)|Intergiciel qui permet à une application de maintenir la session utilisateur à l’aide de cookies.|
+|[Microsoft.Owin.Host.SystemWeb](https://www.nuget.org/packages/Microsoft.Owin.Host.SystemWeb)|Permet aux applications basées sur OWIN de s’exécuter sur IIS à l’aide du pipeline de requête ASP.NET.|
 

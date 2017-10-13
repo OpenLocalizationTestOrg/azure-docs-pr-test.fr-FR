@@ -1,6 +1,6 @@
 ---
-title: aaaBasic de commandes Azure CLI 1.0 pour Linux et Mac | Documents Microsoft
-description: "Tooget de commandes Azure CLI 1.0 base que vous avez démarré la gestion de vos machines virtuelles en mode Azure Resource Manager sur Mac et Linux"
+title: "Commandes Azure CLI 1.0 de base pour Linux et Mac | Documents Microsoft"
+description: "Commandes Azure CLI 1.0 de base vous permettant de prendre en main la gestion de vos machines virtuelles en mode Azure Resource Manager sous Linux et Mac"
 services: virtual-machines-linux
 documentationcenter: 
 author: RicksterCDN
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: rclaus
-ms.openlocfilehash: 58019dc5aefad801b976d261f4a239f5cf8c6dad
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 67830e40065f8c09f2b04de431aa17ecf5a83d2e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="common-azure-cli-10-commands-on-linux-and-mac"></a>Commandes Azure CLI 1.0 courantes sur Linux et Mac
 [!INCLUDE [virtual-machines-common-cli-manage-nodejs](../../../includes/virtual-machines-common-cli-manage-nodejs.md)]

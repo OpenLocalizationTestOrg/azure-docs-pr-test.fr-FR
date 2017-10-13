@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy une application de Web démarrage ressort sur Linux dans le Service de conteneur Azure | Documents Microsoft"
-description: "Ce didacticiel vous guide cependant hello étapes toodeploy une application de démarrage du ressort comme une application web de Linux sur Microsoft Azure."
+title: "Déployer une application web Spring Boot sur Linux dans Azure Container Service | Microsoft Docs"
+description: "Ce didacticiel vous guide à travers les étapes pour déployer une application Spring Boot en tant qu’application web Linux sur Microsoft Azure."
 services: container-service
 documentationcenter: java
 author: rmcmurray
@@ -15,26 +15,26 @@ ms.topic: article
 ms.date: 08/04/2017
 ms.author: asirveda;robmcm
 ms.custom: mvc
-ms.openlocfilehash: 2c44be1c7f66a38f48239001f0be9e90c7e6edef
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5f0b470bd46cfeaf00b3092dbe9db507ed50f622
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="deploy-a-spring-boot-application-on-linux-in-hello-azure-container-service"></a>Déployer une application de démarrage du ressort sur Linux Bonjour Service de conteneur Azure
+# <a name="deploy-a-spring-boot-application-on-linux-in-the-azure-container-service"></a>Déployer une application Spring Boot sur Linux dans Azure Container Service
 
-Hello  **[Spring Framework]**  est une solution open source qui permet aux développeurs Java de créer des applications d’entreprise. Un des projets plus-populaires hello qui est créé de plateforme est [ressort démarrage], qui fournit une approche simplifiée pour la création d’applications Java autonomes.
+**[Spring Framework]** est une solution open source qui aide les développeurs Java à créer des applications d’entreprise. L’un des projets les plus connus basés sur cette plateforme est [Spring Boot], qui fournit une approche simplifiée pour la création d’applications Java autonomes.
 
-**[client Docker]**  solutions en open source qui permet aux développeurs d’automatiser hello déploiement, mise à l’échelle et la gestion de leurs applications qui s’exécutent dans des conteneurs.
+**[client Docker]** est une solution open source qui aide les développeurs à automatiser le déploiement, la mise à l’échelle et la gestion de leurs applications qui s’exécutent dans des conteneurs.
 
-Ce didacticiel vous guide à l’aide de Docker toodevelop et déployer un hôte Linux de démarrage du ressort application tooa Bonjour [Azure conteneur de Service (ACS)].
+Ce didacticiel vous guide dans l’utilisation de Docker pour développer et déployer une application Spring Boot sur un hôte Linux dans [Azure Container Service (ACS)].
 
 ## <a name="prerequisites"></a>Composants requis
 
-Commande toocomplete hello étapes décrites dans ce didacticiel, vous devez hello toohave suivant des conditions préalables :
+Pour pouvoir effectuer les étapes de ce didacticiel, vous avez besoin des éléments suivants :
 
 * Un abonnement Azure. Si vous n’avez pas déjà un abonnement Azure, vous pouvez activer vos [avantages d’abonné MSDN] ou vous inscrire pour un [compte Azure gratuit].
-* Hello [Azure Interface de ligne de commande (CLI)].
+* [Azure CLI].
 * Un [JDK (Java Developer Kit)] à jour.
 * L’outil de génération [Maven] (version 3) d’Apache.
 * Un [client Git].
@@ -42,14 +42,14 @@ Commande toocomplete hello étapes décrites dans ce didacticiel, vous devez hel
 
 > [!NOTE]
 >
-> En raison des exigences de la virtualisation toohello de ce didacticiel, vous ne peut pas suivre les étapes de hello dans cet article sur un ordinateur virtuel ; Vous devez utiliser un ordinateur physique avec les fonctionnalités de virtualisation activées.
+> En raison des nécessités liées à la virtualisation de ce didacticiel, vous ne pouvez pas suivre les étapes de cet article sur une machine virtuelle : vous devez utiliser un ordinateur physique où les fonctionnalités de virtualisation sont activées.
 >
 
-## <a name="create-hello-spring-boot-on-docker-getting-started-web-app"></a>Créer hello ressort démarrage sur Docker prise en main d’application web
+## <a name="create-the-spring-boot-on-docker-getting-started-web-app"></a>Créer l’application web Spring Boot on Docker Getting Started
 
-Hello étapes suivantes vous guident étapes hello toocreate requis une application web de démarrage du ressort simple et de le tester localement.
+La procédure suivante vous guide à travers les étapes nécessaires pour créer une application web Spring Boot simple et pour la tester localement.
 
-1. Ouvrez une invite de commandes et créer un répertoire local de toohold votre application, puis accédez au répertoire toothat ; par exemple :
+1. Ouvrez une invite de commandes et créez un répertoire local pour y stocker votre application, puis accédez à ce répertoire. Par exemple :
    ```
    md C:\SpringBoot
    cd C:\SpringBoot
@@ -60,70 +60,70 @@ Hello étapes suivantes vous guident étapes hello toocreate requis une applicat
    cd /users/robert/SpringBoot
    ```
 
-1. Hello du clone [démarrage ressort sur Docker mise en route] exemple de projet dans le répertoire hello créé ; par exemple :
+1. Clonez l’exemple de projet [Spring Boot on Docker Getting Started] dans le répertoire que vous venez de créer. Par exemple :
    ```
    git clone https://github.com/spring-guides/gs-spring-boot-docker.git
    ```
 
-1. Changer le projet toohello terminée Active ; par exemple :
+1. Accédez au répertoire du projet terminé. Par exemple :
    ```
    cd gs-spring-boot-docker/complete
    ```
 
-1. Générer le fichier JAR hello à l’aide de Maven ; par exemple :
+1. Générez le fichier JAR en utilisant Maven. Par exemple :
    ```
    mvn package
    ```
 
-1. Une fois que l’application hello web a été créée, modifier le répertoire toohello `target` répertoire dans lequel le fichier JAR hello se trouve et démarrer l’application web hello ; par exemple :
+1. Une fois l’application web créée, accédez au répertoire `target` où se trouve fichier JAR et démarrez l’application web. Par exemple :
    ```
    cd target
    java -jar gs-spring-boot-docker-0.1.0.jar
    ```
 
-1. Tester l’application web hello en parcourant tooit localement à l’aide d’un navigateur web. Par exemple, si vous avez curl disponible et vous configuré hello Tomcat server toorun sur le port 80 :
+1. Testez l’application web en y accédant localement via un navigateur web. Par exemple, si curl est disponible et que vous configuré le serveur Tomcat pour s’exécuter sur le port 80 :
    ```
    curl http://localhost
    ```
 
-1. Vous devez voir hello message suivant s’affiche : **Docker de Hello World !**
+1. Vous devez normalement voir le message suivant : **Hello Docker World!**
 
    ![Parcourir l’exemple d’application en local][SB01]
 
-## <a name="create-an-azure-container-registry-toouse-as-a-private-docker-registry"></a>Créer un toouse de Registre de conteneur Azure comme un Registre Docker privé
+## <a name="create-an-azure-container-registry-to-use-as-a-private-docker-registry"></a>Créer un registre de conteneurs Azure à utiliser comme registre Docker privé
 
-Hello étapes suivantes vous guident à l’aide de hello toocreate portail Azure un Registre de conteneur Azure.
+Les étapes suivantes vous guident dans l’utilisation du portail Azure pour créer un registre de conteneurs Azure.
 
 > [!NOTE]
 >
-> Si vous souhaitez toouse hello CLI d’Azure au lieu de hello portail Azure, suivez les étapes de hello dans [créer un Registre de conteneur Docker privé à l’aide de hello Azure CLI 2.0](../../container-registry/container-registry-get-started-azure-cli.md).
+> Si vous souhaitez utiliser Azure CLI au lieu du portail Azure, suivez les étapes décrites dans [Créer un registre de conteneurs Docker privé à l’aide d’Azure CLI 2.0](../../container-registry/container-registry-get-started-azure-cli.md).
 >
 
-1. Parcourir toohello [portail Azure] et connectez-vous.
+1. Accédez au [portail Azure] et connectez-vous.
 
-   Une fois que vous avez connecté compte tooyour sur hello portail Azure, vous pouvez suivre les étapes de hello Bonjour [créer un Registre de conteneur Docker privé à l’aide de hello portail Azure] article, qui sont paraphrase Bonjour comme suit pour hello exploration d’opportunité.
+   Une fois que vous êtes connecté à votre compte sur le portail Azure, vous pouvez suivre les étapes décrites dans l’article [Créer un registre de conteneurs Docker privé à l’aide du portail Azure], qui sont formulées différemment ci-après pour la circonstance.
 
-1. Cliquez sur icône du menu hello pour **+ nouveau**, puis cliquez sur **conteneurs**, puis cliquez sur **Registre de conteneur Azure**.
+1. Cliquez sur l’icône de menu pour **+ Nouveau**, cliquez sur **Conteneurs** puis cliquez sur **Registre de conteneurs Azure**.
    
    ![Créer un registre de conteneurs Azure][AR01]
 
-1. Lorsque la page d’informations hello pour le modèle de Registre de conteneur Azure hello s’affiche, cliquez sur **créer**. 
+1. Quand la page d’informations pour le modèle de registre de conteneurs Azure s’affiche, cliquez sur **Créer**. 
 
    ![Créer un registre de conteneurs Azure][AR02]
 
-1. Hello lorsque **Registre de conteneur créer** page s’affiche, entrez votre **nom de Registre** et **groupe de ressources**, choisissez **activer** pour Hello **utilisateur Admin**, puis cliquez sur **créer**.
+1. Quand la page **Créer un registre de conteneurs** s’affiche, entrez votre **Nom du registre** et votre **Groupe de ressources**, choisissez **Activer** pour **l’utilisateur administrateur**, puis cliquez sur **Créer**.
 
    ![Configurer les paramètres du registre de conteneurs Azure][AR03]
 
-1. Une fois votre Registre de conteneur a été créé, accédez de Registre de conteneur tooyour Bonjour portail Azure, puis cliquez sur **clés d’accès**. Prenez note du nom d’utilisateur hello et un mot de passe pour les étapes suivantes de hello.
+1. Une fois votre registre de conteneurs créé, accédez à celui-ci dans le portail Azure puis cliquez sur **Clés d’accès**. Notez le nom d’utilisateur et le mot de passe pour les étapes suivantes.
 
    ![Clés d’accès du registre de conteneurs Azure][AR04]
 
-## <a name="configure-maven-toouse-your-azure-container-registry-access-keys"></a>Configurer Maven toouse vos clés d’accès de Registre de conteneur Azure
+## <a name="configure-maven-to-use-your-azure-container-registry-access-keys"></a>Configurer Maven pour utiliser les clés d’accès de votre registre de conteneurs Azure
 
-1. Parcourir le répertoire de configuration toohello pour votre installation Maven et ouvrez hello *settings.xml* fichier avec un éditeur de texte.
+1. Accédez au répertoire de configuration de votre installation de Maven et ouvrez le fichier *settings.xml* avec un éditeur de texte.
 
-1. Ajouter des paramètres du Registre de conteneur Azure d’accès à partir de la section précédente de hello de ce didacticiel toohello `<servers>` collection Bonjour *settings.xml* fichier ; par exemple :
+1. Ajoutez les paramètres d’accès de votre registre de conteneurs Azure de la section précédente de ce didacticiel à la collection `<servers>` dans le fichier *settings.xml*. Par exemple :
 
    ```xml
    <servers>
@@ -135,9 +135,9 @@ Hello étapes suivantes vous guident à l’aide de hello toocreate portail Azur
    </servers>
    ```
 
-1. Accédez répertoire du projet pour votre application de démarrage du ressort, toohello terminée (par exemple : «*C:\SpringBoot\gs-spring-boot-docker\complete*« ou »*/users/robert/SpringBoot/gs-spring-boot-docker / complète*») et ouvrez hello *pom.xml* fichier avec un éditeur de texte.
+1. Accédez au répertoire de projet terminé de votre application Spring Boot (par exemple : « *C:\SpringBoot\gs-spring-boot-docker\complete* » ou « */users/robert/SpringBoot/gs-spring-boot-docker/complete* ») et ouvrez le fichier *pom.xml* avec un éditeur de texte.
 
-1. Hello de mise à jour `<properties>` collection Bonjour *pom.xml* fichier avec la valeur hello du serveur de connexion pour votre Registre de conteneur Azure à partir de la section précédente de hello de ce didacticiel ; par exemple :
+1. Mettez à jour la collection `<properties>` dans le fichier *pom.xml* avec la valeur du serveur de connexion pour votre registre de conteneurs Azure de la section précédente de ce didacticiel. Par exemple :
 
    ```xml
    <properties>
@@ -146,7 +146,7 @@ Hello étapes suivantes vous guident à l’aide de hello toocreate portail Azur
    </properties>
    ```
 
-1. Hello de mise à jour `<plugins>` collection Bonjour *pom.xml* de fichiers afin que hello `<plugin>` contient hello adresse et du Registre nom du serveur pour votre Registre de conteneur Azure à partir de la section précédente de hello de ce didacticiel. Par exemple :
+1. Mettez à jour la collection `<plugins>` dans le fichier *pom.xml* de façon à ce que le `<plugin>` contienne l’adresse du serveur de connexion et le nom de registre de votre registre de conteneurs Azure de la section précédente de ce didacticiel. Par exemple :
 
    ```xml
    <plugin>
@@ -169,7 +169,7 @@ Hello étapes suivantes vous guident à l’aide de hello toocreate portail Azur
    </plugin>
    ```
 
-1. Accédez répertoire du projet pour votre application de démarrage du ressort toohello s’est terminée et exécutez hello après application de commande toorebuild hello push hello conteneur tooyour Registre de conteneur Azure :
+1. Accédez au répertoire du projet terminé de votre application Spring Boot, et exécutez la commande suivante pour régénérer l’application et placer le conteneur dans votre registre de conteneurs Azure :
 
    ```
    mvn package docker:build -DpushImage 
@@ -177,38 +177,38 @@ Hello étapes suivantes vous guident à l’aide de hello toocreate portail Azur
 
 > [!NOTE]
 >
-> Lorsque vous transmettez vos tooAzure de conteneur Docker, vous pouvez recevoir un message d’erreur est similaire tooone de hello suivant même si votre conteneur Docker a été créé avec succès :
+> Quand vous placez votre conteneur Docker dans Azure, vous pouvez recevoir un message d’erreur similaire à un de ceux-ci, même si votre conteneur Docker a été créé correctement :
 >
-> * `[ERROR] Failed tooexecute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: no basic auth credentials`
+> * `[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: no basic auth credentials`
 >
-> * `[ERROR] Failed tooexecute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: Incomplete Docker registry authorization credentials. Please provide all of username, password, and email or none.`
+> * `[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: Incomplete Docker registry authorization credentials. Please provide all of username, password, and email or none.`
 >
-> Dans ce cas, vous devrez peut-être toosign dans tooyour compte Azure à partir de la ligne de commande Docker hello ; par exemple :
+> Dans ce cas, vous pouvez être amené à vous connecter à votre compte Azure à partir de la ligne de commande de Docker. Par exemple :
 >
 > `docker login -u wingtiptoysregistry -p "AbCdEfGhIjKlMnOpQrStUvWxYz" wingtiptoysregistry.azurecr.io`
 >
-> Vous pouvez ensuite distribuer votre conteneur à partir de la ligne de commande hello ; par exemple :
+> Vous pouvez ensuite placer votre conteneur à partir de la ligne de commande. Par exemple :
 >
 > `docker push wingtiptoysregistry.azurecr.io/gs-spring-boot-docker`
 >
 
 ## <a name="create-a-web-app-on-linux-on-azure-app-service-using-your-container-image"></a>Créer une application web sur Linux sur Azure App Service en utilisant votre image de conteneur
 
-1. Parcourir toohello [portail Azure] et connectez-vous.
+1. Accédez au [portail Azure] et connectez-vous.
 
-1. Cliquez sur icône du menu hello pour **+ nouveau**, puis cliquez sur **Web + Mobile**, puis cliquez sur **l’application Web sur Linux**.
+1. Cliquez sur l’icône de menu pour **+ Nouveau**, cliquez sur **Web + Mobile** puis cliquez sur **Application web sur Linux**.
    
-   ![Créer une application web Bonjour portail Azure][LX01]
+   ![Créer une application web dans le portail Azure][LX01]
 
-1. Hello lorsque **l’application Web sur Linux** page s’affiche, entrez hello informations suivantes :
+1. Quand la page **Application web sur Linux** s’affiche, entrez les informations suivantes :
 
-   a. Entrez un nom unique pour hello **nom de l’application**; par exemple : «*wingtiptoyslinux*. »
+   a. Entrez un nom unique pour le **Nom de l’application**, par exemple : « *wingtiptoyslinux* ».
 
-   b. Choisissez votre **abonnement** à partir de la liste déroulante de hello.
+   b. Choisissez votre **abonnement** dans la liste déroulante.
 
-   c. Sélectionnez un existant **groupe de ressources**, ou spécifiez un nom de toocreate un groupe de ressources.
+   c. Choisissez un **Groupe de ressources** existant ou spécifiez un nom pour en créer un.
 
-   d. Cliquez sur **configurer conteneur** et entrez hello informations suivantes :
+   d. Cliquez sur **Configurer le conteneur** et entrez les informations suivantes :
 
       * Choisissez **Registre privé**.
 
@@ -218,7 +218,7 @@ Hello étapes suivantes vous guident à l’aide de hello toocreate portail Azur
 
       * **Nom d’utilisateur de connexion** et **Mot de passe** : spécifiez vos informations d’identification de connexion des **clés d’accès** que vous avez utilisées dans les étapes précédentes.
    
-   e. Une fois que vous avez entré toutes hello au-dessus des informations, cliquez sur **OK**.
+   e. Après avoir entré toutes les informations ci-dessus, cliquez sur **OK**.
 
    ![Configurer les paramètres de l’application web][LX02]
 
@@ -226,69 +226,69 @@ Hello étapes suivantes vous guident à l’aide de hello toocreate portail Azur
 
 > [!NOTE]
 >
-> Azure mappera automatiquement serveur Internet demandes tooembedded Tomcat qui s’exécute sur des ports standard hello de 80 ou 8080. Toutefois, si vous avez configuré votre toorun du serveur Tomcat incorporée sur un port personnalisé, vous devez tooadd une application web de variable tooyour environnement qui définit le port hello pour votre serveur Tomcat incorporé. toodo utilisez donc hello comme suit :
+> Azure mappera automatiquement les demandes Internet au serveur Tomcat incorporé qui s’exécute sur les ports standard 80 ou 8080. Cependant, si vous avez configuré votre serveur Tomcat incorporé pour qu’il s’exécute sur un port personnalisé, vous devez ajouter une variable d’environnement à votre application web qui définit le port pour votre serveur Tomcat incorporé. Pour ce faire, procédez comme suit :
 >
-> 1. Parcourir toohello [portail Azure] et connectez-vous.
+> 1. Accédez au [portail Azure] et connectez-vous.
 > 
-> 2. Cliquez sur icône hello **des Services d’application**. (Consultez l’article #1 dans l’image hello ci-dessous.)
+> 2. Cliquez sur l’icône pour **App Services**. (Voir l’élément 1 de l’image ci-dessous.)
 >
-> 3. Sélectionnez votre application web à partir de la liste de hello. (Élément #2 dans l’image hello ci-dessous).
+> 3. Sélectionnez votre application web dans la liste. (Élément 2 de l’image ci-dessous.)
 >
-> 4. Cliquez sur **Paramètres de l’application**. (Élément #3 dans l’image hello ci-dessous).
+> 4. Cliquez sur **Paramètres de l’application**. (Élément 3 de l’image ci-dessous.)
 >
-> 5. Bonjour **paramètres de l’application** section, ajoutez une nouvelle variable d’environnement nommée **PORT** et entrez votre numéro de port personnalisé pour la valeur de hello. (Élément #4 dans l’image hello ci-dessous).
+> 5. Dans la section **Paramètres de l’application**, ajoutez une nouvelle variable d’environnement nommée **PORT** et entrez comme valeur votre numéro de port personnalisé. (Élément 4 de l’image ci-dessous.)
 >
-> 6. Cliquez sur **Enregistrer**. (Article #5 image hello ci-dessous.)
+> 6. Cliquez sur **Save**. (Élément 5 de l’image ci-dessous.)
 >
-> ![L’enregistrement d’un numéro de port personnalisé Bonjour portail Azure][LX03]
+> ![Enregistrement d’un numéro de port personnalisé dans le portail Azure][LX03]
 >
 
 <!--
-##  OPTIONAL: Configure hello embedded Tomcat server toorun on a different port
+##  OPTIONAL: Configure the embedded Tomcat server to run on a different port
 
-hello embedded Tomcat server in hello sample Spring Boot application is configured toorun on port 8080 by default. However, if you want toorun hello embedded Tomcat server toorun on a different port, such as port 80 for local testing, you can configure hello port by using hello following steps.
+The embedded Tomcat server in the sample Spring Boot application is configured to run on port 8080 by default. However, if you want to run the embedded Tomcat server to run on a different port, such as port 80 for local testing, you can configure the port by using the following steps.
 
-1. Go toohello *resources* directory (or create hello directory if it does not exist); for example:
+1. Go to the *resources* directory (or create the directory if it does not exist); for example:
    ```shell
    cd src/main/resources
    ```
 
-1. Open hello *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
+1. Open the *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
 
-1. Modify hello **server** setting so that hello server runs on port 80; for example:
+1. Modify the **server** setting so that the server runs on port 80; for example:
    ```yaml
    server:
       port: 80
    ```
 
-1. Save and close hello *application.yml* file.
+1. Save and close the *application.yml* file.
 -->
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur l’utilisation des applications de démarrage du ressort sur Azure, consultez hello suivant des articles :
+Pour plus d’informations sur l’utilisation d’applications Spring Boot sur Azure, consultez les articles suivants :
 
-* [Déployer un toohello ressort démarrage Application Azure App Service](../../app-service/app-service-deploy-spring-boot-web-app-on-azure.md)
-* [Déployer une Application de démarrage ressort sur un Kubernetes Cluster Bonjour Service de conteneur Azure](container-service-deploy-spring-boot-app-on-kubernetes.md)
+* [Déployer une application Spring Boot sur Azure App Service](../../app-service/app-service-deploy-spring-boot-web-app-on-azure.md)
+* [Déployer une application Spring Boot sur un cluster Kubernetes dans Azure Container Service](container-service-deploy-spring-boot-app-on-kubernetes.md)
 
-Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez hello [centre de développement Java Azure] et hello [outils Java pour Visual Studio Team Services].
+Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le [Centre de développement Java pour Azure] et les [outils Java pour Visual Studio Team Services].
 
-Pour plus d’informations sur hello ressort démarrage sur l’exemple de projet Docker, consultez [démarrage ressort sur Docker mise en route].
+Pour plus d’informations sur l’exemple de projet Spring Boot on Docker, consultez [Spring Boot on Docker Getting Started].
 
-Pour avec prise en main de vos propres applications ressort démarrage, consultez hello **ressort Initializr** à https://start.spring.io/.
+Pour de l’aide sur la mise en route de vos propres applications Spring Boot, consultez **Spring Initializr** à l’adresse https://start.spring.io/.
 
-Pour plus d’informations sur la prise en main de la création d’une application de démarrage du ressort simple, consultez hello ressort Initializr à https://start.spring.io/.
+Pour plus d’informations sur la création d’une application Spring Boot simple, consultez « Spring Initializr » à l’adresse https://start.spring.io/.
 
-Pour obtenir des exemples supplémentaires pour comment toouse personnalisé Docker images avec Azure, consultez [à l’aide d’une image Docker personnalisée pour l’application Web Azure sous Linux].
+Pour obtenir des exemples supplémentaires sur l’utilisation d’images Docker personnalisées avec Azure, consultez [Comment utiliser une image Docker personnalisée pour Azure Web App sur Linux].
 
 <!-- URL List -->
 
-[Azure Interface de ligne de commande (CLI)]: /cli/azure/overview
-[Azure conteneur de Service (ACS)]: https://azure.microsoft.com/services/container-service/
-[centre de développement Java Azure]: https://azure.microsoft.com/develop/java/
+[Azure CLI]: /cli/azure/overview
+[Azure Container Service (ACS)]: https://azure.microsoft.com/services/container-service/
+[Centre de développement Java pour Azure]: https://azure.microsoft.com/develop/java/
 [portail Azure]: https://portal.azure.com/
-[créer un Registre de conteneur Docker privé à l’aide de hello portail Azure]: /azure/container-registry/container-registry-get-started-portal
-[à l’aide d’une image Docker personnalisée pour l’application Web Azure sous Linux]: /azure/app-service-web/app-service-linux-using-custom-docker-image
+[Créer un registre de conteneurs Docker privé à l’aide du portail Azure]: /azure/container-registry/container-registry-get-started-portal
+[Comment utiliser une image Docker personnalisée pour Azure Web App sur Linux]: /azure/app-service-web/app-service-linux-using-custom-docker-image
 [client Docker]: https://www.docker.com/
 [compte Azure gratuit]: https://azure.microsoft.com/pricing/free-trial/
 [client Git]: https://github.com/
@@ -296,8 +296,8 @@ Pour obtenir des exemples supplémentaires pour comment toouse personnalisé Doc
 [outils Java pour Visual Studio Team Services]: https://java.visualstudio.com/
 [Maven]: http://maven.apache.org/
 [avantages d’abonné MSDN]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
-[ressort démarrage]: http://projects.spring.io/spring-boot/
-[démarrage ressort sur Docker mise en route]: https://github.com/spring-guides/gs-spring-boot-docker
+[Spring Boot]: http://projects.spring.io/spring-boot/
+[Spring Boot on Docker Getting Started]: https://github.com/spring-guides/gs-spring-boot-docker
 [Spring Framework]: https://spring.io/
 
 <!-- IMG List -->

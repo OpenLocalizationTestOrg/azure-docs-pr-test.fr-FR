@@ -1,6 +1,6 @@
 ---
-title: "aaaLearn sur les protocoles d’autorisation hello pris en charge par Azure AD v2.0 | Documents Microsoft"
-description: Un guide tooprotocols pris en charge par le point de terminaison v2.0 hello Azure AD.
+title: "En savoir plus sur les protocoles d’autorisation pris en charge par Azure AD v2.0 | Microsoft Docs"
+description: Un guide sur les protocoles pris en charge par le point de terminaison Azure AD v2.0.
 services: active-directory
 documentationcenter: 
 author: dstrockis
@@ -15,69 +15,69 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: f90511b1880ff223f725c1f79df9f79bddccc7bf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3750f975600575349e5ea9de249cf4521636fd2f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # Protocoles v2.0 - OAuth 2.0 et OpenID Connect
-point de terminaison Hello v2.0 permettre utiliser Azure AD pour l’identité-as-a-service avec des protocoles standard, OpenID Connect et OAuth 2.0.  Alors que le service de hello est conforme aux normes, il peut y avoir des différences subtiles entre les deux implémentations de ces protocoles.  informations Hello ici sera utiles si vous choisissez toowrite votre code en envoyant directement et la gestion des requêtes HTTP ou utilisez un 3e partie ouvrir la bibliothèque de source, au lieu d’utiliser un de nos bibliothèques open source.
-<!-- TODO: Need link toolibraries above -->
+Le point de terminaison v2.0 peut utiliser Azure AD pour l’identité en tant que service avec les protocoles standard, OpenID Connect et OAuth 2.0.  Bien que ce service soit conforme aux normes, vous pouvez constater de subtiles différences entre deux implémentations différentes de ces protocoles.  Les informations fournies ici vous seront utiles si vous choisissez d’écrire votre code en envoyant ou en traitant directement des requêtes HTTP ou si vous utilisez une bibliothèque open source tierce, plutôt qu’en utilisant l’une de nos bibliothèques open source.
+<!-- TODO: Need link to libraries above -->
 
 > [!NOTE]
-> Pas tous les scénarios Azure Active Directory et les fonctionnalités sont prises en charge par le point de terminaison hello v2.0.  toodetermine si vous devez utiliser le point de terminaison hello v2.0, en savoir plus sur [v2.0 limitations](active-directory-v2-limitations.md).
+> Les scénarios et les fonctionnalités Azure Active Directory ne sont pas tous pris en charge par le point de terminaison v2.0.  Pour déterminer si vous devez utiliser le point de terminaison v2.0, consultez les [limites de v2.0](active-directory-v2-limitations.md).
 >
 >
 
-## Hello notions de base
-Dans presque tous les flux OAuth et OpenID Connect, il existe quatre parties impliquées dans l’échange de hello :
+## Concepts de base
+Dans presque tous les flux OAuth et OpenID Connect, quatre parties sont concernées par l’échange :
 
 ![Rôles OAuth 2.0](../../media/active-directory-v2-flows/protocols_roles.png)
 
-* Hello **serveur d’autorisation** est le point de terminaison hello v2.0.  Il est chargé de garantir l’identité de l’utilisateur hello, octroi et révocation d’accès tooresources émission de jetons.  Il est également connue sous le fournisseur d’identité hello - elle traite de manière sécurisée tout élément toodo avec l’utilisateur hello plus d’informations, leur accès et des relations d’approbation entre les parties dans un flux hello.
-* Hello **propriétaire de la ressource** est généralement l’utilisateur final hello.  Il s’agit de tiers hello qui possède les données hello et a hello power tooallow tiers tooaccess ces données, ou la ressource.
-* Hello **OAuth Client** est votre application, identifiée par son ID d’Application.  Il est généralement hello tiers que l’utilisateur final hello interagit avec, et elle demande des jetons hello serveur d’autorisation.  client de Hello doit pouvoir autorisation tooaccess hello ressource par le propriétaire de la ressource hello.
-* Hello **serveur de ressources** où réside hello ressource ou données.  Il approuve hello serveur d’autorisation toosecurely authentifier et autoriser des hello OAuth Client et utilise le support tooensure access_tokens qui accèdent aux ressources de tooa peut être accordée.
+* Le **serveur d’autorisation** est le point de terminaison v2.0.  Il est chargé de garantir l’identité de l’utilisateur, l’octroi et la révocation de l’accès aux ressources et l’émission de jetons.  Il est également connu sous le nom du fournisseur d’identité. Il traite de manière sécurisée les informations de l’utilisateur, leur accès et les relations de confiance entre les parties des flux.
+* Le **propriétaire de la ressource** est généralement l'utilisateur final.  Il s’agit de la partie détentrice des données, qui a le pouvoir d’autoriser les tierces parties à accéder à ces données ou à cette ressource.
+* Le **Client OAuth** est votre application, identifiée par son ID d'application.  Il s’agit généralement de la partie avec laquelle l’utilisateur final interagit ; elle demande des jetons provenant du serveur d’autorisation.  Le client doit se voir octroyer une autorisation d’accès à la ressource par le propriétaire de cette dernière.
+* Le **serveur de ressources** héberge la ressource ou les données.  Il approuve le serveur d’autorisation pour authentifier et autoriser de manière sûre le client OAuth et utilise les jetons d’accès porteurs pour garantir l’octroi de l’accès à une ressource.
 
 ## Inscription d’application
-Chaque application qui utilise le point de terminaison hello v2.0 doit toobe enregistré auprès de [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) avant qu’elle peut interagir à l’aide d’OAuth ou OpenID Connect.  processus d’inscription d’application Hello collecter & affecter l’application de tooyour quelques valeurs :
+Toutes les applications qui utilisent le point de terminaison v2.0 doivent être inscrites à l’adresse [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList) avant de pouvoir interagir à l’aide d’OAuth ou d’OpenID Connect.  Le processus d’inscription des applications collecte quelques valeurs et les affecte à votre application :
 
 * un **ID d’application** qui identifie de manière unique votre application ;
-* A **URI de redirection** ou **identificateur de Package** qui peut être utilisé toodirect réponses arrière tooyour application
+* un **URI de redirection** ou un **identificateur de package** pouvant être utilisé pour diriger des réponses vers votre application ;
 * quelques valeurs spécifiques au scénario.
 
-Pour plus d’informations, découvrez comment trop[inscrire une application](active-directory-v2-app-registration.md).
+Pour plus d’informations, découvrez comment [inscrire une application](active-directory-v2-app-registration.md).
 
 ## Points de terminaison
-Une fois inscrit, application hello communique avec Azure AD en envoyant des requêtes toohello v2.0 point de terminaison :
+Une fois inscrite, l’application communique avec Azure AD en transmettant les requêtes au point de terminaison v2.0 :
 
 ```
 https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize
 https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token
 ```
 
-Où hello `{tenant}` peut prendre une des quatre valeurs différentes :
+Où le `{tenant}` peut prendre l’une de quatre valeurs différentes :
 
 | Valeur | Description |
 | --- | --- |
-| `common` |Permet aux utilisateurs avec des comptes personnels Microsoft et comptes de travail/school à partir d’Azure Active Directory toosign dans l’application hello. |
-| `organizations` |Autorise uniquement les utilisateurs avec des comptes de travail/school à partir d’Azure Active Directory toosign dans l’application hello. |
-| `consumers` |Autorise uniquement les utilisateurs avec personnel toosign de comptes (MSA) de Microsoft dans l’application hello. |
-| `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` ou `contoso.onmicrosoft.com` |Autorise uniquement les utilisateurs avec des comptes de travail/school à partir d’un toosign de locataire Azure Active Directory particulier dans une application hello.  Nom de domaine convivial hello de hello locataire Azure AD ou identificateur de guid du locataire hello peut être utilisé. |
+| `common` |Permet aux utilisateurs avec des comptes Microsoft personnels et des comptes professionnels/scolaires Azure Active Directory de se connecter à l’application. |
+| `organizations` |Permet uniquement aux utilisateurs avec des comptes professionnels/scolaires Azure Active Directory de se connecter à l’application. |
+| `consumers` |Permet uniquement aux utilisateurs avec des comptes personnels Microsoft (MSA) de se connecter à l’application. |
+| `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` ou `contoso.onmicrosoft.com` |Permet uniquement aux utilisateurs avec des comptes professionnels/scolaires d’un client Azure Active Directory spécifique de se connecter à l’application.  Le nom de domaine convivial du client Azure AD ou l’identificateur guid du client peut être utilisé. |
 
-Pour plus d’informations sur la façon de toointeract avec ces points de terminaison, choisissez un type particulier d’application ci-dessous.
+Pour plus d’informations sur la façon d’interagir avec ces points de terminaison, choisissez un type particulier d’application ci-dessous.
 
 ## Jetons
-implémentation de v2.0 Hello de OAuth 2.0 et OpenID Connect utilisent beaucoup de jetons de support, y compris les jetons de support représentés comme jetons Web JSON. Un jeton de support est un jeton de sécurité léger qu’accorde hello tooa d’accès « support » une ressource protégée. Dans ce sens, hello « support » est une partie capable de présenter le jeton de hello. Si un tiers doit s’authentifier avec un jeton de support pour Azure AD tooreceive hello, si nécessaire de hello étapes ne sont pas prises jeton de hello toosecure de transmission et de stockage, il peut être interceptée et utilisée par une partie indésirable. Bien que certains jetons de sécurité intègrent un mécanisme de protection contre l’utilisation par des parties non autorisées, les jetons porteurs n’en sont pas dotés et doivent donc être acheminés sur un canal sécurisé, par exemple à l’aide du protocole TLS (HTTPS). Si un jeton de support est transmis en clair de hello, une attaque hello man-in peut être utilisé par un jeton de hello tooacquire partie malveillante et l’utiliser pour une ressource tooa protégée de tout accès non autorisé. Bonjour les mêmes principes de sécurité s’appliquent lors du stockage ou la mise en cache des jetons de support pour une utilisation ultérieure. Veillez systématiquement à ce que votre application transmette et stocke les jetons porteurs de manière sécurisée. Pour en savoir plus sur les aspects de sécurité des jetons porteurs, consultez [RFC 6750 Section 5](http://tools.ietf.org/html/rfc6750).
+L’implémentation d’OAuth 2.0 et d’OpenID Connect par v2.0 utilise massivement les jetons du porteur, y compris ceux représentés sous forme de JWT. Un jeton porteur est un jeton de sécurité léger qui octroie l’accès à une ressource protégée au « porteur ». En ce sens, le « porteur » désigne toute partie qui peut présenter le jeton. Une partie doit certes d’abord s’authentifier auprès d’Azure AD pour recevoir le jeton porteur, mais si les mécanismes nécessaires à la sécurité du jeton lors de la transmission et du stockage ne sont pas en place, il peut être intercepté et utilisé par une partie non autorisée. Bien que certains jetons de sécurité intègrent un mécanisme de protection contre l’utilisation par des parties non autorisées, les jetons porteurs n’en sont pas dotés et doivent donc être acheminés sur un canal sécurisé, par exemple à l’aide du protocole TLS (HTTPS). Si un jeton porteur est transmis en clair, une partie malveillante peut utiliser une attaque d’intercepteur afin de s’approprier le jeton et de l’utiliser pour accéder sans autorisation à une ressource protégée. Les mêmes principes de sécurité s’appliquent au stockage ou à la mise en cache des jetons porteurs pour une utilisation ultérieure. Veillez systématiquement à ce que votre application transmette et stocke les jetons porteurs de manière sécurisée. Pour en savoir plus sur les aspects de sécurité des jetons porteurs, consultez [RFC 6750 Section 5](http://tools.ietf.org/html/rfc6750).
 
-En savoir plus sur différents types de jetons sont utilisés dans le point de terminaison hello v2.0 est disponible dans [hello référence de jeton de point de terminaison v2.0](active-directory-v2-tokens.md).
+Pour plus d’informations sur les différents types de jetons utilisés dans le point de terminaison v2.0, consultez la page de [Référence sur les jetons du point de terminaison v2.0](active-directory-v2-tokens.md).
 
 ## Protocoles
-Si vous êtes prêt toosee quelques exemples de demandes, prise en main une Hello ci-dessous didacticiels.  Chacun d’eux correspond scénario d’authentification particulier tooa.  Si vous avez besoin d’aide pour déterminer ce qui est le flux de droite hello pour vous, consultez [hello des types d’applications que vous pouvez générer avec hello v2.0](active-directory-v2-flows.md).
+Si vous êtes prêt à voir des exemples de demandes, entamez l’un des didacticiels ci-dessous.  Chacun d’eux correspond à un scénario d’authentification particulier.  Si vous avez besoin d’aide pour déterminer le flux qui vous convient, consultez les [types d’applications que vous pouvez créer avec le point de terminaison v2.0](active-directory-v2-flows.md).
 
 * [Génération d’une application mobile et native avec OAuth 2.0](active-directory-v2-protocols-oauth-code.md)
 * [Génération d’applications web avec Open ID Connect](active-directory-v2-protocols-oidc.md)
-* [Créer des applications de Page unique avec hello flux implicite d’OAuth 2.0](active-directory-v2-protocols-implicit.md)
-* [Générer les démons ou processus du côté serveur avec hello flux d’informations d’identification Client OAuth 2.0](active-directory-v2-protocols-oauth-client-creds.md)
-* [Obtenir des jetons dans une API Web avec hello OAuth 2.0 de la part de flux](active-directory-v2-protocols-oauth-on-behalf-of.md)
+* [Génération d'applications de page unique avec le flux implicite OAuth 2.0](active-directory-v2-protocols-implicit.md)
+* [Génération de démons ou de processus côté serveur avec le flux d’informations d’identification de client OAuth 2.0](active-directory-v2-protocols-oauth-client-creds.md)
+* [Obtention de jetons dans une API web avec le flux Au nom de d’OAuth 2.0](active-directory-v2-protocols-oauth-on-behalf-of.md)

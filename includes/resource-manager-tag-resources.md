@@ -1,24 +1,24 @@
-1. balises de hello tooview pour une ressource ou un groupe de ressources, sélectionnez hello **balises** icône. 
+1. Pour afficher les balises pour une ressource ou un groupe de ressources, sélectionnez l’icône **Balises**. 
    
      ![Sélectionner des balises dans les panneaux de ressources et de groupe de ressources](./media/resource-manager-tag-resources/select-tag-icon.png)
-2. Vous voyez les balises existantes hello pour la ressource de hello. Si vous n’avez pas précédemment appliqué de balises, la liste de hello est vide. 
+2. Vous voyez les balises existantes pour la ressource. Si vous n’avez préalablement appliqué aucune balise, cette liste est vide. 
 
      ![Afficher les balises existantes des panneaux de ressources et de groupe de ressources](./media/resource-manager-tag-resources/existing-tags.png)
-3. tooadd une étiquette, tapez un nom et une valeur, ou sélectionnez-en un existant à partir du menu déroulant de hello. Sélectionnez **Enregistrer**.
+3. Pour ajouter une balise, tapez un nom et une valeur ou sélectionnez-en dans le menu déroulant. Sélectionnez **Enregistrer**.
 
      ![Ajouter une balise](./media/resource-manager-tag-resources/tag-resources.png)
-3. sélectionner de toutes les ressources hello qui ont une valeur de balise, tooview  **>**  (**davantage de services**) et entrez le mot hello **balises** dans la zone de texte de filtre hello. Sélectionnez **balises** parmi les options disponibles hello.
+3. Pour afficher toutes les ressources ayant une valeur de balise, sélectionnez **>** (**Plus de services**) et saisissez le mot **Balises** dans la zone de texte de filtre. Sélectionnez **Balises** parmi les options disponibles.
    
-     ![Rechercher des balises via un concentrateur de parcourir hello](./media/resource-manager-tag-resources/browse-tags.png)
-4. Vous consultez un résumé des balises de hello dans vos abonnements.
+     ![Rechercher des balises via le hub Parcourir](./media/resource-manager-tag-resources/browse-tags.png)
+4. Un résumé des balises de vos abonnements s’affiche.
    
      ![Afficher toutes les balises](./media/resource-manager-tag-resources/tag-taxonomy.png)
-5. Sélectionnez une des hello balises toodisplay hello ressources et groupes de ressources avec cette balise.
+5. Sélectionnez l’une de ces balises pour afficher les ressources et les groupes de ressources associés à cette balise.
    
      ![Afficher les ressources balisées](./media/resource-manager-tag-resources/show-tagged-resources.png)
-6. Sélectionnez **Pin panneau toodashboard** pour un accès rapide.
+6. Sélectionnez **Épingler le panneau au tableau de bord** pour y accéder rapidement.
    
-     ![Tableau de bord de code confidentiel balises toohello](./media/resource-manager-tag-resources/pin-tag.png)
-7. Vous pouvez sélectionner la balise de hello épinglée à partir des ressources de hello toosee hello du tableau de bord avec cette balise.
+     ![Épingler des balises au tableau de bord](./media/resource-manager-tag-resources/pin-tag.png)
+7. Vous pouvez sélectionner la balise épinglée sur le tableau de bord pour afficher les ressources associées à cette balise.
 
-     ![Tableau de bord de code confidentiel balises toohello](./media/resource-manager-tag-resources/show-pinned-tag.png)
+     ![Épingler des balises au tableau de bord](./media/resource-manager-tag-resources/show-pinned-tag.png)

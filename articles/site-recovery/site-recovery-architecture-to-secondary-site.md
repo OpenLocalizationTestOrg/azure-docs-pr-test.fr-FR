@@ -1,6 +1,6 @@
 ---
-title: "aaaHow fonctionne localement machine réplication tooa secondaire local site dans Azure Site Recovery ? | Microsoft Docs"
-description: "Cet article fournit une vue d’ensemble des composants et architecture utilisée lors de la réplication locale machines virtuelles et des serveurs physiques tooa le site secondaire ayant hello service Azure Site Recovery."
+title: "Comment fonctionne la réplication de machines locales vers un site local secondaire dans Azure Site Recovery ? | Microsoft Docs"
+description: "Cet article fournit une vue d’ensemble des composants et de l’architecture utilisés lors de la réplication de serveurs physiques et de machines virtuelles locaux vers un site secondaire avec le service Azure Site Recovery."
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,93 +14,93 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/29/2017
 ms.author: raynew
-ms.openlocfilehash: 097a3f43446fec69ed7f9e0b7f11e8d11f41cc6a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fca95c63964b955db7ddfbe53250702cc8af122e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-does-on-premises-machine-replication-tooa-secondary-site-work-in-site-recovery"></a>Comment local machine travail de site secondaire tooa de réplication en cours de récupération de Site ?
+# <a name="how-does-on-premises-machine-replication-to-a-secondary-site-work-in-site-recovery"></a>Comment fonctionne la réplication de machines locales vers un site secondaire dans Site Recovery ?
 
-Cet article décrit les composants hello et processus impliqués lors de la réplication locale des ordinateurs virtuels et tooAzure des serveurs physiques, à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) service.
+Cet article décrit les composants et les processus impliqués dans la réplication des serveurs physiques et des machines virtuelles locaux sur Azure à l’aide du service [Azure Site Recovery](site-recovery-overview.md).
 
-Vous pouvez répliquer hello tooa secondaire local site suivant :
+Vous pouvez répliquer les éléments suivants vers un site local secondaire :
 - Machines virtuelles Hyper-V locales, sur clusters Hyper-V et hôtes autonomes qui sont gérés dans des clouds System Center Virtual Machine Manager (VMM).
 - Machines virtuelles VMware locales et serveurs physiques Windows/Linux. Dans ce scénario, la réplication est gérée par Scout.
 
-Valider les commentaires en bas de hello de cet article ou Bonjour [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Publiez des commentaires au bas de cet article, ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
-## <a name="replicate-hyper-v-vms-tooa-secondary-on-premises-site"></a>Répliquer des ordinateurs virtuels Hyper-V tooa secondaire sur-site local
+## <a name="replicate-hyper-v-vms-to-a-secondary-on-premises-site"></a>Répliquer des machines virtuelles Hyper-V vers un site local secondaire
 
 
 ### <a name="architectural-components"></a>Composants architecturaux
 
-Voici ce que vous avez besoin pour la réplication de site secondaire de tooa des ordinateurs virtuels Hyper-V.
+Voici ce dont vous avez besoin pour la réplication des machines virtuelles Hyper-V vers un site secondaire.
 
 **Composant** | **Emplacement** | **Détails**
 --- | --- | ---
 **Microsoft Azure** | Vous avez besoin d’un compte Microsoft. |
-**Serveur VMM** | Nous vous recommandons d’un serveur VMM dans le site principal de hello et un site secondaire de hello | Chaque serveur VMM doit être connecté toohello internet.<br/><br/> Chaque serveur doit avoir au moins un cloud privé VMM avec l’ensemble de profils de capacité hello Hyper-V.<br/><br/> Vous installez hello fournisseur Azure Site Recovery sur le serveur VMM de hello. Hello fournisseur coordonne et orchestre la réplication avec hello service Site Recovery sur hello internet. Les communications entre hello fournisseur et Azure sont sécurisé et chiffré.
-**Serveur Hyper-V** |  Serveurs d’hôte Hyper-V un ou plusieurs dans des clouds VMM principaux et secondaires hello.<br/><br/> Les serveurs doivent être connecté toohello internet.<br/><br/> Données sont répliquées entre hello serveurs principaux et secondaires Hyper-V hôte via hello LAN ou VPN, à l’aide de l’authentification Kerberos ou le certificat.  
-**Machines virtuelles Hyper-V** | Situé sur le serveur hôte de hello source Hyper-V. | serveur hôte de Hello source doit avoir au moins une machine virtuelle que vous souhaitez tooreplicate.
+**Serveur VMM** | Nous recommandons l’utilisation d’un serveur VMM dans le site principal et un autre dans le site secondaire | Chaque serveur VMM doit être connecté à Internet.<br/><br/> Chaque serveur doit avoir au moins un cloud privé VMM avec l’ensemble des profils de fonctionnalités Hyper-V.<br/><br/> Vous installez le fournisseur Azure Site Recovery sur le serveur VMM. Le fournisseur coordonne et orchestre la réplication avec le service Site Recovery via Internet. Les communications entre le fournisseur et Azure sont sécurisées et chiffrées.
+**Serveur Hyper-V** |  Un ou plusieurs serveurs hôtes Hyper-V dans les clouds VMM principaux et secondaires.<br/><br/> Les serveurs doivent être connectés à Internet.<br/><br/> Les données sont répliquées entre les serveurs hôtes Hyper-V principal et secondaire via une liaison LAN ou VPN, en utilisant Kerberos ou une authentification par certificat.  
+**Machines virtuelles Hyper-V** | Situé sur le serveur hôte Hyper-V source. | Le serveur hôte source doit avoir au moins une machine virtuelle que vous souhaitez répliquer.
 
 ### <a name="replication-process"></a>Processus de réplication
 
-1. Permet de paramétrer hello compte Azure.
+1. Vous configurez le compte Azure.
 2. Vous créez un coffre Replication Services pour Site Recovery et configurez les paramètres du coffre, notamment :
 
-    - Hello réplication sites source et cible (principales et secondaires).
-    - Installation de type hello fournisseur Azure Site Recovery et l’agent de Microsoft Azure Recovery Services hello. Hello fournisseur est installé sur les serveurs VMM et agent hello sur chaque ordinateur hôte Hyper-V.
-    - Vous créez une stratégie de réplication pour le cloud VMM source. stratégie de Hello est appliqué tooall machines virtuelles situées sur des ordinateurs hôtes dans le cloud de hello.
-    - Vous activez la réplication pour les machines virtuelles Hyper-V. La réplication initiale se produit conformément aux paramètres de stratégie de réplication hello.
-4. Suivi des modifications de données et la réplication delta change toobegins après la réplication initiale hello. Les modifications qui font l’objet d’un suivi sont conservées dans un fichier .hrl.
-5. Vous exécutez un toomake de basculement de test que tout fonctionne.
+    - Source et cible de la réplication (sites principal et secondaire).
+    - Installation du fournisseur Azure Site Recovery et de l’agent Microsoft Azure Recovery Services. Le fournisseur est installé sur les serveurs VMM et l’agent sur chaque hôte Hyper-V.
+    - Vous créez une stratégie de réplication pour le cloud VMM source. La stratégie est appliquée à toutes les machines virtuelles situées sur des hôtes dans le cloud.
+    - Vous activez la réplication pour les machines virtuelles Hyper-V. La réplication initiale se déclenche selon les paramètres de la stratégie de réplication.
+4. Les modifications des données font l’objet d’un suivi et la réplication des modifications delta débute après la réplication initiale. Les modifications qui font l’objet d’un suivi sont conservées dans un fichier .hrl.
+5. Vous effectuez un test de basculement pour vérifier que tout fonctionne bien.
 
-**Figure 1 : Réplication de tooVMM VMM**
+**Figure 1 : réplication de VMM vers VMM**
 
-![Tooon-site local](./media/site-recovery-components/arch-onprem-onprem.png)
+![Local vers local](./media/site-recovery-components/arch-onprem-onprem.png)
 
 ### <a name="failover-and-failback-process"></a>Processus de basculement et de restauration automatique
 
-1. Vous pouvez effectuer un [basculement](site-recovery-failover.md) planifié ou non planifié entre des sites locaux. Si vous exécutez un basculement planifié, alors que les machines virtuelles source sont arrêtés tooensure aucune perte de données.
-2. Vous pouvez basculer d’un seul ordinateur, ou créer [plans de récupération](site-recovery-create-recovery-plans.md) basculement tooorchestrate de plusieurs ordinateurs.
-4. Si vous effectuez un basculement non planifié tooa site secondaire une fois que les machines de basculement hello dans l’emplacement secondaire de hello ne sont pas activés pour la réplication ou de protection. Si vous avez exécuté un basculement planifié, après le basculement de hello, dans l’emplacement secondaire de hello, les ordinateurs sont protégés.
-5. Ensuite, vous validez hello basculement toostart accès hello la charge de travail à partir de l’ordinateur virtuel de réplication hello.
-6. Lorsque votre site principal est à nouveau disponible, vous lancez tooreplicate la réplication inverse de hello toohello de site secondaire principal. La réplication inverse place les ordinateurs virtuels de hello dans un état protégé, mais hello de centre de données secondaire est toujours un emplacement Directory hello.
-7. site principal de hello toomake dans un emplacement Directory hello là encore, vous initiez un basculement planifié à partir de tooprimary secondaire, suivie de la réplication inverse un autre.
+1. Vous pouvez effectuer un [basculement](site-recovery-failover.md) planifié ou non planifié entre des sites locaux. Si vous exécutez un basculement planifié, les machines virtuelles sources sont arrêtées pour éviter toute perte de données.
+2. Vous pouvez basculer vers une seule machine ou créer des [plans de récupération](site-recovery-create-recovery-plans.md) pour orchestrer le basculement de plusieurs machines.
+4. Si vous effectuez un basculement non planifié vers un site secondaire, une fois l’opération terminée, les machines de l’emplacement secondaire ne sont pas protégées ou réplicables. Si vous avez lancé un basculement planifié, une fois l’opération terminée, les machines de l’emplacement secondaire sont protégées.
+5. Ensuite, validez le basculement pour accéder à la charge de travail à partir de la machine virtuelle répliquée.
+6. Lorsque votre site principal est à nouveau disponible, vous déclenchez la réplication inverse depuis le site secondaire vers le site principal. La réplication inverse affecte aux machines virtuelles l’état protégé, mais l’emplacement actif est toujours le centre de données secondaire.
+7. Pour placer le site principal à l’emplacement actif, lancez un basculement planifié depuis le site secondaire vers le site principal, puis une autre réplication inverse.
 
 
 
 
-## <a name="replicate-vmware-vmsphysical-servers-tooa-secondary-site"></a>Répliquer le site secondaire de machines virtuelles de VMware/physiques serveurs tooa
+## <a name="replicate-vmware-vmsphysical-servers-to-a-secondary-site"></a>Réplication de machines virtuelles VMware/serveurs physiques sur un site secondaire
 
-Vous pouvez répliquer des ordinateurs virtuels VMware ou serveurs physiques tooa secondaire à l’aide de InMage Scout, à l’aide de ces composants architecturaux :
+Vous répliquez les machines virtuelles ou les serveurs physiques VMware vers un site secondaire à l’aide d’InMage Scout, à l’aide des composants architecturaux suivants :
 
 
 ### <a name="architectural-components"></a>Composants architecturaux
 
 **Composant** | **Emplacement** | **Détails**
 --- | --- | ---
-**Microsoft Azure** | InMage Scout. | tooobtain InMage Scout, vous avez besoin d’un abonnement Azure.<br/><br/> Après avoir créé un coffre Recovery Services, vous téléchargez InMage Scout et installez hello dernières mises à jour tooset le déploiement de hello.
-**Serveur de traitement** | Situé dans le site principal | Vous déployez hello processus serveur toohandle la mise en cache, la compression et l’optimisation des données.<br/><br/> Il gère également installation push du hello toomachines unifiée de l’Agent vous souhaitez tooprotect.
-**Serveur de configuration** | Situé sur le site secondaire | serveur de configuration Hello gère, configurer et surveiller votre déploiement, soit à l’aide du site Web de gestion hello ou console v-continuum de hello.
-**Serveur vContinuum** | facultatif. Installation Bonjour même emplacement que le serveur de configuration hello. | Il intègre une console qui vous permet de gérer et surveiller votre environnement protégé.
-**Serveur cible maître** | Situé dans le site secondaire de hello | serveur cible maître de Hello conserve les données répliquées. Reçoit les données de serveur de processus hello, crée une machine de réplication dans le site secondaire de hello et contient des points de rétention de données hello.<br/><br/> nombre de Hello de serveurs cible maître que nécessaires dépend de nombre de hello d’ordinateurs que vous protégez.<br/><br/> Si vous souhaitez que le site principal de toofail toohello précédent, vous devez un serveur cible maître il trop. Hello unifiée de l’Agent est installé sur ce serveur.
-**Serveur VMware ESX/ESXi et vCenter** |  Les machines virtuelles sont hébergées sur des hôtes ESX/ESXi. Les hôtes sont gérés avec un serveur vCenter | Vous avez besoin d’un tooreplicate d’infrastructure VMware les ordinateurs virtuels VMware.
-**Machines virtuelles/serveurs physiques** |  Unifiée Agent installé sur les ordinateurs virtuels VMware et des serveurs physiques que vous souhaitez tooreplicate. | l’agent de Hello agit comme un fournisseur de la communication entre tous les composants de hello.
+**Microsoft Azure** | InMage Scout. | Pour obtenir InMage Scout, vous avez besoin d’un abonnement Azure.<br/><br/> Après avoir créé un coffre Recovery Services, téléchargez InMage Scout et installez les dernières mises à jour pour configurer le déploiement.
+**Serveur de traitement** | Situé dans le site principal | Vous déployez le serveur de traitement pour gérer la mise en cache, la compression et l’optimisation des données.<br/><br/> Il gère aussi l’installation Push de l’Agent unifié sur les machines à protéger.
+**Serveur de configuration** | Situé sur le site secondaire | Le serveur de configuration gère, configure et surveille votre déploiement via le site web de gestion ou la console vContinuum.
+**Serveur vContinuum** | facultatif. Installé au même emplacement que le serveur de configuration. | Il intègre une console qui vous permet de gérer et surveiller votre environnement protégé.
+**Serveur cible maître** | Situé sur le site secondaire | Le serveur cible maître stocke les données répliquées. Il reçoit les données du serveur de traitement, crée une machine de réplication sur le site secondaire et stocke les points de rétention des données.<br/><br/> Le nombre de serveurs cibles maîtres dont vous avez besoin dépend du nombre de machines que vous protégez.<br/><br/> Si vous voulez effectuer une restauration sur le site principal, vous avez là aussi besoin d’un serveur cible maître. L’Agent unifié est installé sur ce serveur.
+**Serveur VMware ESX/ESXi et vCenter** |  Les machines virtuelles sont hébergées sur des hôtes ESX/ESXi. Les hôtes sont gérés avec un serveur vCenter | Vous avez besoin d’une infrastructure VMware pour répliquer des machines virtuelles VMware.
+**Machines virtuelles/serveurs physiques** |  L’Agent unifié installé sur les machines virtuelles VMware et les serveurs physiques que vous souhaitez répliquer. | Il joue le rôle de fournisseur de communication entre tous les composants.
 
 
 ### <a name="replication-process"></a>Processus de réplication
 
-1. Configurer des serveurs de composant hello dans chaque site (configuration, process, serveur cible maître) et les installer hello unifié Agent sur les ordinateurs que vous souhaitez tooreplicate.
-2. Après la réplication initiale, l’agent de hello sur chaque ordinateur envoie delta de réplication modifications toohello processus serveur.
-3. serveur de processus Hello optimise les données de salutation et les transfère de serveur cible maître de toohello sur le site secondaire de hello. serveur de configuration Hello gère le processus de réplication hello.
+1. Vous configurez les serveurs de composants dans chaque site (configuration, processus, cible maître) et installez l’Agent unifié sur les ordinateurs que vous souhaitez répliquer.
+2. Après la réplication initiale, l’agent de chaque machine envoie les modifications de réplication différentielle au serveur de traitement.
+3. Le serveur de traitement optimise ces données et les transfère vers le serveur cible maître du site secondaire. Le serveur de configuration gère le processus de réplication.
 
-**Figure 2 : VMware tooVMware réplication**
+**Figure 2 : réplication de VMware vers VMware**
 
-![VMware tooVMware](./media/site-recovery-components/vmware-to-vmware.png)
+![VMware vers VMware](./media/site-recovery-components/vmware-to-vmware.png)
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Hello de révision [matrice de prise en charge](site-recovery-support-matrix-to-sec-site.md)
+Examen de la [matrice de prise en charge](site-recovery-support-matrix-to-sec-site.md)

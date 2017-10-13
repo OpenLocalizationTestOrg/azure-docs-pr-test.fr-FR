@@ -1,7 +1,7 @@
 ## <a name="obtain-an-azure-resource-manager-token"></a>Obtenir un jeton Azure Resource Manager
-Azure Active Directory doit authentifier toutes les tâches hello que vous effectuez sur les ressources à l’aide de hello Azure Resource Manager. Hello exemple indiqué ici utilise l’authentification du mot de passe, pour d’autres approches, consultez [demande d’authentification Azure Resource Manager][lnk-authenticate-arm].
+Azure Active Directory doit authentifier toutes les tâches que vous effectuez sur des ressources à l’aide d’Azure Resource Manager. L’exemple présenté ici utilise une authentification par mot de passe. Pour d’autres approches, consultez [Demandes d’authentification Azure Resource Manager][lnk-authenticate-arm].
 
-1. Ajouter hello suivant code toohello **Main** méthode dans Program.cs tooretrieve un jeton d’Azure AD à l’aide des id de l’application hello et le mot de passe.
+1. Ajoutez le code suivant à la méthode **Main** dans le fichier Program.cs pour récupérer un jeton d’Azure AD à l’aide de l’ID d’application et d’un mot de passe.
    
     ```
     var authContext = new AuthenticationContext(string.Format  
@@ -12,18 +12,18 @@ Azure Active Directory doit authentifier toutes les tâches hello que vous effec
    
     if (token == null)
     {
-      Console.WriteLine("Failed tooobtain hello token");
+      Console.WriteLine("Failed to obtain the token");
       return;
     }
     ```
-2. Créer un **ResourceManagementClient** de l’objet qu’utilise hello jeton en ajoutant hello suivant fin toohello de code Hello **Main** méthode :
+2. Créez un objet **ResourceManagementClient** qui utilise le jeton en ajoutant le code suivant à la fin de la méthode **Main** :
    
     ```
     var creds = new TokenCredentials(token.AccessToken);
     var client = new ResourceManagementClient(creds);
     client.SubscriptionId = subscriptionId;
     ```
-3. Créer ou obtenir une référence au groupe de ressources hello que vous utilisez :
+3. Créez ou obtenez une référence au groupe de ressources que vous utilisez :
    
     ```
     var rgResponse = client.ResourceGroups.CreateOrUpdate(rgName,

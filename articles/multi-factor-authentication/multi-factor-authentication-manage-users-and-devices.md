@@ -1,6 +1,6 @@
 ---
-title: "aaaAdmins gérer les utilisateurs et périphériques - l’authentification Multifacteur Azure | Documents Microsoft"
-description: "Cette section décrit comment toochange les paramètres utilisateur tels que forcer hello utilisateurs toodo hello processus preuve à nouveau."
+title: Gestion des utilisateurs et des appareils par les administrateurs - Azure MFA | Microsoft Docs
+description: "Cette section vous explique comment modifier les paramètres utilisateur tels que le fait de forcer les utilisateurs à réexécuter le processus de vérification."
 documentationcenter: 
 services: multi-factor-authentication
 author: kgremban
@@ -15,67 +15,67 @@ ms.date: 06/23/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: it-pro
-ms.openlocfilehash: 8c35435e4f6504014d9a4f6f1b837639c3b53481
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e9b8504d4a59cf0fae69a4e975d6f834028066d5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="manage-user-settings-with-azure-multi-factor-authentication-in-hello-cloud"></a>Gérer les paramètres de l’utilisateur avec Azure multi-Factor Authentication dans le cloud de hello
-En tant qu’administrateur, vous pouvez gérer hello suivant les paramètres utilisateur et périphérique :
+# <a name="manage-user-settings-with-azure-multi-factor-authentication-in-the-cloud"></a>Gestion des paramètres utilisateur avec Azure Multi-Factor Authentication dans le cloud
+En tant qu’administrateur, vous pouvez gérer les paramètres des utilisateurs et des appareils :
 
-* Exiger des méthodes de contact tooprovide les utilisateurs à nouveau
+* Demander aux utilisateurs de fournir à nouveau des méthodes de contact
 * Supprimer des mots de passe d’application
 * Exiger l’authentification MFA sur tous les appareils de confiance 
 
-## <a name="require-users-tooprovide-contact-methods-again"></a>Exiger des méthodes de contact tooprovide les utilisateurs à nouveau
-Ce paramètre oblige le processus d’inscription hello hello utilisateur toocomplete à nouveau. Les applications sans navigateur continuent toowork si utilisateur de hello possède des mots de passe d’application pour eux.  Vous pouvez supprimer des mots de passe d’application aux utilisateurs hello en choisissant **supprimer mots de passe d’application existant toutes générées par les utilisateurs de hello sélectionné**.
+## <a name="require-users-to-provide-contact-methods-again"></a>Demander aux utilisateurs de fournir à nouveau des méthodes de contact
+Ce paramètre force l’utilisateur à réexécuter le processus d’inscription. Les applications sans navigateur continuent de fonctionner si l’utilisateur dispose pour elles de mots de passe d’application.  Vous pouvez supprimer les mots de passe d’application des utilisateurs en choisissant **Supprimer tous les mots d'application existants, générés par les utilisateurs sélectionnés**.
 
-### <a name="how-toorequire-users-tooprovide-contact-methods-again"></a>Comment toorequire utilisateurs tooprovide méthodes de contact à nouveau
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
-2. Sur hello gauche, sélectionnez **Azure Active Directory** > **utilisateurs et groupes** > **tous les utilisateurs**.
-3. Sélectionnez **Multi-Factor Authentication**. page de l’authentification multifacteur Hello s’ouvre. 
-4. Vérifiez hello boîte suivant toohello ou les utilisateurs que vous souhaitez toomanage. Une liste d’options d’étape rapide apparaissent sur hello droite. 
+### <a name="how-to-require-users-to-provide-contact-methods-again"></a>Demander aux utilisateurs sélectionnés de fournir à nouveau des méthodes de contact
+1. Connectez-vous au [portail Azure](https://portal.azure.com).
+2. À gauche, sélectionnez **Azure Active Directory** > **Utilisateurs et groupes** > **Tous les utilisateurs**.
+3. Sélectionnez **Multi-Factor Authentication**. La page de l’authentification multifacteur s’affiche. 
+4. Cochez la case en regard du ou des utilisateurs que vous souhaitez gérer. Une liste d’options rapides s’affiche à droite. 
 5. Sélectionnez **Gérer les paramètres utilisateur**.
-6. Case de hello pour **obliger les utilisateurs sélectionnés à nouveau des méthodes de contact de tooprovide**.
+6. Cochez la case **Demander aux utilisateurs sélectionnés de fournir à nouveau des méthodes de contact**.
    ![Fournir des méthodes de contact](./media/multi-factor-authentication-manage-users-and-devices/reproofup.png)
 7. Cliquez sur **save**.
 8. Cliquez sur **Fermer**.
 
 ## <a name="delete-users-existing-app-passwords"></a>Supprimer les mots de passe d’application existants des utilisateurs
-Ce paramètre supprime tous les hello application des mots de passe un utilisateur a créé. Les applications sans navigateur qui ont été associées à ces mots de passe d’application cessent de fonctionner jusqu’à la création d’un nouveau mot de passe d’application.
+Ce paramètre supprime tous les mots de passe d’application créés par un utilisateur. Les applications sans navigateur qui ont été associées à ces mots de passe d’application cessent de fonctionner jusqu’à la création d’un nouveau mot de passe d’application.
 
-### <a name="how-toodelete-users-existing-app-passwords"></a>Comment les utilisateurs toodelete existante des mots de passe d’application
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
-2. Sur hello gauche, sélectionnez **Azure Active Directory** > **utilisateurs et groupes** > **tous les utilisateurs**.
-3. Sélectionnez **Multi-Factor Authentication**. page de l’authentification multifacteur Hello s’ouvre. 
-6. Vérifiez hello boîte suivant toohello ou les utilisateurs que vous souhaitez toomanage. Une liste d’options d’étape rapide apparaissent sur hello droite. 
+### <a name="how-to-delete-users-existing-app-passwords"></a>Supprimer les mots de passe d’application existants des utilisateurs
+1. Connectez-vous au [portail Azure](https://portal.azure.com).
+2. À gauche, sélectionnez **Azure Active Directory** > **Utilisateurs et groupes** > **Tous les utilisateurs**.
+3. Sélectionnez **Multi-Factor Authentication**. La page de l’authentification multifacteur s’affiche. 
+6. Cochez la case en regard du ou des utilisateurs que vous souhaitez gérer. Une liste d’options rapides s’affiche à droite. 
 7. Sélectionnez **Gérer les paramètres utilisateur**.
-8. Case de hello pour **supprimer mots de passe d’application existant toutes générées par les utilisateurs de hello sélectionné**.
+8. Cochez la case **Supprimer tous les mots de passe d’application existants, générés par les utilisateurs sélectionnés**.
    ![Supprimer des mots de passe d'application](./media/multi-factor-authentication-manage-users-and-devices/deleteapppasswords.png)
 9. Cliquez sur **save**.
 10. Cliquez sur **Fermer**.
 
 ## <a name="restore-mfa-on-all-remembered-devices-for-a-user"></a>Restaurer MFA sur tous les appareils mémorisés d’un utilisateur
-Une des fonctionnalités configurables de hello d’Azure multi-Factor Authentication est distribution périphériques de toomark option hello un niveau de confiance à vos utilisateurs. Pour plus d’informations, consultez [Configurer les paramètres d’Azure Multi-Factor Authentication](multi-factor-authentication-whats-next.md#remember-multi-factor-authentication-for-devices-that-users-trust).
+L’une des fonctionnalités configurables d’Azure Multi-Factor Authentication permet à vos utilisateurs de marquer les appareils comme approuvés. Pour plus d’informations, consultez [Configurer les paramètres d’Azure Multi-Factor Authentication](multi-factor-authentication-whats-next.md#remember-multi-factor-authentication-for-devices-that-users-trust).
 
-Les utilisateurs peuvent refuser la vérification en deux étapes pendant un nombre configurable de jours sur les appareils qu’ils utilisent régulièrement. Si un compte est compromis, ou un périphérique de confiance est perdu, vous devez les toobe tooremove en mesure de hello approuvé état et exiger la vérification en deux étapes à nouveau.
+Les utilisateurs peuvent refuser la vérification en deux étapes pendant un nombre configurable de jours sur les appareils qu’ils utilisent régulièrement. Si un compte est compromis ou si un appareil de confiance est perdu, vous devez être en mesure de supprimer l’état approuvé et d’exiger à nouveau la vérification en deux étapes.
 
-Hello **restaurer l’authentification multifacteur sur tous les appareils mémorisés** paramètre signifie que l’utilisateur hello sera hello de vérification en deux étapes récusé tooperform leur prochaine connexion, quel que soit le qu’ils ont choisi toomark leurs périphérique un niveau de confiance. 
+Le paramètre **Restaurer l’authentification multifacteur pour tous les appareils mémorisés** signifie que l’utilisateur sera invité à procéder à la vérification en deux étapes lors de sa prochaine connexion, qu’il ait choisi ou non de marquer son appareil comme approuvé. 
 
-### <a name="how-toorestore-mfa-on-all-suspended-devices-for-a-user"></a>Comment toorestore l’authentification Multifacteur sur tous les appareils suspendus pour un utilisateur
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
-2. Sur hello gauche, sélectionnez **Azure Active Directory** > **utilisateurs et groupes** > **tous les utilisateurs**.
-3. Sélectionnez **Multi-Factor Authentication**. page de l’authentification multifacteur Hello s’ouvre. 
-6. Vérifiez hello boîte suivant toohello ou les utilisateurs que vous souhaitez toomanage. Une liste d’options d’étape rapide apparaissent sur hello droite. 
+### <a name="how-to-restore-mfa-on-all-suspended-devices-for-a-user"></a>Restaurer MFA sur tous les appareils interrompus d’un utilisateur
+1. Connectez-vous au [portail Azure](https://portal.azure.com).
+2. À gauche, sélectionnez **Azure Active Directory** > **Utilisateurs et groupes** > **Tous les utilisateurs**.
+3. Sélectionnez **Multi-Factor Authentication**. La page de l’authentification multifacteur s’affiche. 
+6. Cochez la case en regard du ou des utilisateurs que vous souhaitez gérer. Une liste d’options rapides s’affiche à droite. 
 7. Sélectionnez **Gérer les paramètres utilisateur**.
-8. Case de hello pour **restaurer l’authentification multifacteur sur tous les appareils mémorisés**
-   ![supprimer des mots de passe d’application](./media/multi-factor-authentication-manage-users-and-devices/rememberdevices.png)
+8. Cochez la case **Restaurer Multi-Factor Authentication sur tous les appareils mémorisés**
+   ![Supprimer les mots de passe d’application](./media/multi-factor-authentication-manage-users-and-devices/rememberdevices.png)
 9. Cliquez sur **save**.
 10. Cliquez sur **Fermer**.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Obtenir plus d’informations sur la façon de trop[les paramètres de configuration de l’authentification multifacteur Azure](multi-factor-authentication-whats-next.md)
+- Pour plus d’informations, consultez [Configurer les paramètres d’Azure Multi-Factor Authentication](multi-factor-authentication-whats-next.md)
 
-- Si vos utilisateurs ont besoin d’aide, faire pointer vers hello [guide de l’utilisateur pour la vérification en deux étapes](./end-user/multi-factor-authentication-end-user.md)
+- Si vos utilisateurs ont besoin d’aide, dirigez-les vers le [guide de l’utilisateur pour la vérification en deux étapes](./end-user/multi-factor-authentication-end-user.md)

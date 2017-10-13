@@ -1,6 +1,6 @@
 ---
-title: "aaaConnect un tooAzure passerelle IoT Suite à l’aide d’un NUC Intel | Documents Microsoft"
-description: "Utilisez hello Microsoft IoT Commercial passerelle Kit et hello distant préconfigurée solution d’analyse. Utilisez Bonjour Azure IoT bord tooconnect toohello distant analyse de la solution, envoyer la télémétrie simulé toohello cloud et répondre toomethods appelé à partir du tableau de bord de solution hello."
+title: "Connecter une passerelle à Azure IoT Suite à l’aide d’un Intel NUC | Documents Microsoft"
+description: "Utilisez le kit de passerelle commerciale Microsoft IoT et la solution préconfigurée de surveillance à distance. Utilisez la passerelle Azure IoT Edge pour vous connecter à la solution de surveillance à distance, envoyer la télémétrie simulée dans le cloud et répondre aux méthodes appelées à partir du tableau de bord de la solution."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 46b545fc21b054191c8f78ace20fc628f839a819
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9ed57d3c23e2adbd42c054f33c8ed46e3d6c9792
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connect-your-azure-iot-edge-gateway-toohello-remote-monitoring-preconfigured-solution-and-send-simulated-telemetry"></a>Se connecter à votre toohello de passerelle Azure IoT bord solution préconfigurée de surveillance à distance et d’envoyer la télémétrie simulé
+# <a name="connect-your-azure-iot-edge-gateway-to-the-remote-monitoring-preconfigured-solution-and-send-simulated-telemetry"></a>Connecter votre passerelle Azure IoT Edge à la solution préconfigurée de surveillance à distance et envoyer la télémétrie simulée
 
 [!INCLUDE [iot-suite-gateway-kit-selector](../../includes/iot-suite-gateway-kit-selector.md)]
 
-Ce didacticiel vous montre comment toouse Azure IoT bord toosimulate température et l’humidité données toosend toohello l’analyse à distance préconfiguré solution. didacticiel de Hello utilise :
+Ce didacticiel montre comment utiliser Azure IoT Edge pour simuler des données de température et d’humidité à envoyer à la solution préconfigurée de surveillance à distance. Le tutoriel utilise :
 
-- Un exemple de passerelle du tooimplement IoT bord Azure.
-- la surveillance à distance Hello IoT Suite, solution préconfigurée comme hello nuage back-end.
+- Azure IoT Edge pour implémenter un exemple de passerelle.
+- la solution préconfigurée de surveillance à distance Azure IoT Suite comme serveur principal basé sur le cloud.
 
-## <a name="overview"></a>Vue d'ensemble
+## <a name="overview"></a>Vue d’ensemble
 
-Dans ce didacticiel, vous effectuez hello comme suit :
+Dans ce didacticiel, vous allez effectuer les étapes suivantes :
 
-- Déployer une instance de hello distant tooyour solution préconfigurée analyse abonnement Azure. Cette étape déploie et configure automatiquement plusieurs services Azure.
-- Configurer votre toocommunicate de périphérique de passerelle Intel NUC avec votre ordinateur et de la solution d’analyse à distance hello.
-- Configurer hello IoT bord passerelle toosend simulée télémétrie que vous pouvez afficher sur le tableau de bord de solution hello.
+- Déployer une instance de la solution préconfigurée de surveillance à distance dans votre abonnement Azure. Cette étape déploie et configure automatiquement plusieurs services Azure.
+- Configurez votre appareil de passerelle Intel NUC pour qu’il communique avec votre ordinateur et avec la solution de surveillance à distance.
+- Configurez la passerelle IoT Edge pour qu’elle envoie la télémétrie simulée que vous pouvez afficher sur le tableau de bord de la solution.
 
 [!INCLUDE [iot-suite-gateway-kit-prerequisites](../../includes/iot-suite-gateway-kit-prerequisites.md)]
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 > [!WARNING]
-> Bonjour dispositions de solution de surveillance à distance à un ensemble de services Azure dans votre abonnement Azure. déploiement de Hello reflète une architecture d’entreprise réel. frais de la consommation Azure inutile tooavoid, supprimer votre instance de la solution de hello préconfiguré dans azureiotsuite.com lorsque vous avez terminé avec lui. Si vous avez besoin de hello solution préconfigurée à nouveau, vous pouvez le recréer facilement. Pour plus d’informations sur la réduction de la consommation lors hello s’exécute la solution de surveillance à distance, consultez [configuration Azure IoT Suite préconfiguré des solutions à des fins de démonstration][lnk-demo-config].
+> La solution de surveillance à distance configure un ensemble de services Azure dans votre abonnement Azure. Le déploiement reflète une architecture d’entreprise réelle. Pour éviter des frais de consommation Azure inutiles, supprimez votre instance de la solution préconfigurée dans azureiotsuite.com quand vous ne l’utilisez plus. Si vous avez à nouveau besoin de la solution préconfigurée, vous pouvez la recréer facilement. Pour plus d’informations sur la manière de réduire votre consommation pendant l’exécution de la solution de surveillance à distance, consultez [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config] (Configuration des solutions préconfigurées Azure IoT Suite à des fins de démonstration).
 
 [!INCLUDE [iot-suite-gateway-kit-view-solution](../../includes/iot-suite-gateway-kit-view-solution.md)]
 
-Répétez hello précédentes étapes tooadd un deuxième appareil à l’aide d’un ID de périphérique comme **device02**. exemple Hello envoie des données à partir de deux appareils simulés dans hello passerelle toohello distant solution d’analyse.
+Répétez les étapes précédentes pour ajouter un deuxième appareil à l’aide d’un ID d’appareil tel que **device02**. L’exemple envoie des données à partir de deux appareils simulés dans la passerelle à la solution de surveillance à distance.
 
 [!INCLUDE [iot-suite-gateway-kit-prepare-nuc-connectivity](../../includes/iot-suite-gateway-kit-prepare-nuc-connectivity.md)]
 
 [!INCLUDE [iot-suite-gateway-kit-prepare-nuc-software](../../includes/iot-suite-gateway-kit-prepare-nuc-software.md)]
 
-## <a name="build-hello-custom-iot-edge-module"></a>Génération du module de IoT bord hello personnalisé
+## <a name="build-the-custom-iot-edge-module"></a>Créer le module IoT Edge personnalisé
 
-Vous pouvez à présent générer hello IoT bord module personnalisé qui permet de hello passerelle toosend messages toohello distant solution d’analyse. Pour plus d’informations sur la configuration d’une passerelle et des modules IoT Edge, voir [Concepts relatifs à Azure IoT Edge][lnk-gateway-concepts].
+Vous pouvez maintenant générer le module IoT personnalisé qui permet à la passerelle d’envoyer des messages à la solution de surveillance à distance. Pour plus d’informations sur la configuration d’une passerelle et des modules IoT Edge, voir [Concepts relatifs à Azure IoT Edge][lnk-gateway-concepts].
 
-Télécharger le code de source de hello pour les modules de IoT bord hello personnalisés à partir de GitHub à l’aide de hello suivant de commandes :
+Téléchargez le code source pour les modules IoT Edge personnalisés à partir de GitHub à l’aide des commandes suivantes :
 
 ```bash
 cd ~
 git clone https://github.com/Azure-Samples/iot-remote-monitoring-c-intel-nuc-gateway-getting-started.git
 ```
 
-Génération du module IoT bord personnalisé de hello, à l’aide de hello suivant de commandes :
+Créez le module IoT Edge personnalisé à l’aide des commandes suivantes :
 
 ```bash
 cd ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator
@@ -72,22 +72,22 @@ sed -i -e 's/\r$//' build.sh
 ./build.sh
 ```
 
-script de compilation Hello place le module de IoT bord personnalisé hello libsimulator.so dans le dossier de génération hello.
+Le script de génération place le module IoT Edge personnalisé libsimulator.so dans le dossier de génération.
 
-## <a name="configure-and-run-hello-iot-edge-gateway"></a>Configurer et exécuter hello IoT passerelle
+## <a name="configure-and-run-the-iot-edge-gateway"></a>Configurer et exécuter la passerelle IoT Edge
 
-Vous pouvez maintenant configurer hello IoT bord passerelle toosend télémétrie simulé tooyour distant analyse du tableau de bord. Pour plus d’informations sur la configuration d’une passerelle et des modules IoT Edge, voir [Concepts relatifs à Azure IoT Edge][lnk-gateway-concepts].
+Vous pouvez maintenant configurer la passerelle IoT Edge pour qu’elle envoie la télémétrie simulée au tableau de bord de la solution de surveillance à distance. Pour plus d’informations sur la configuration d’une passerelle et des modules IoT Edge, consultez [Concepts Azure IoT Edge][lnk-gateway-concepts].
 
 > [!TIP]
-> Dans ce didacticiel, vous utilisez standard de hello `vi` éditeur de texte sur hello NUC d’Intel. Si vous n’avez pas utilisé `vi` auparavant, vous devez effectuer un didacticiel d’introduction, telles que [Unix - hello vi didacticiel de l’éditeur] [ lnk-vi-tutorial] toofamiliarize vous-même avec cet éditeur. Vous pouvez également installer hello plus conviviaux [nano](https://www.nano-editor.org/) éditeur à l’aide de la commande hello `smart install nano -y`.
+> Dans ce didacticiel, vous utilisez l’éditeur de texte `vi` standard sur l’Intel Nuc. Si vous n’avez pas utilisé `vi` précédemment, vous devez suivre un didacticiel d’introduction, tel que [Unix - Didacticiel de l’éditeur vi][lnk-vi-tutorial], pour vous familiariser avec cet éditeur. Vous pouvez également installer l’éditeur [nano](https://www.nano-editor.org/), plus convivial, à l’aide de la commande `smart install nano -y`.
 
-Fichier de configuration d’exemple hello ouvrir Bonjour **vi** éditeur à l’aide de hello de commande suivante :
+Ouvrez l’exemple de fichier de configuration dans l’éditeur **vi** à l’aide de la commande suivante :
 
 ```bash
 vi ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator/remote_monitoring.json
 ```
 
-Recherchez hello lignes dans la configuration de hello pour le module de IoTHub hello suivantes :
+Recherchez les lignes suivantes dans la configuration pour le module IoTHub :
 
 ```json
 "args": {
@@ -97,9 +97,9 @@ Recherchez hello lignes dans la configuration de hello pour le module de IoTHub 
 }
 ```
 
-Remplacez l’espace réservé de hello valeurs hello informations IoT Hub vous avez créé et enregistré à hello Démarrer de ce didacticiel. valeur Hello pour IoTHubName ressemble à **yourrmsolution37e08**, et la valeur hello pour IoTSuffix est généralement **azure-devices.net**.
+Remplacez les valeurs de l’espace réservé par les informations sur l’IoT Hub que vous avez créées et enregistrées au début de ce tutoriel. La valeur de IoTHubName ressemble à **yourrmsolution37e08** et la valeur de IoTSuffix est généralement **azure-devices.net**.
 
-Recherchez hello lignes dans la configuration de hello pour le module de mappage hello suivantes :
+Recherchez les lignes suivantes dans la configuration du module de mappage :
 
 ```json
 args": [
@@ -116,39 +116,39 @@ args": [
 ]
 ```
 
-Remplacez hello **deviceID** et **deviceKey** des espaces réservés avec les identificateurs hello et des clés pour les appareils hello deux créé précédemment dans la solution d’analyse à distance hello.
+Remplacez les espaces réservés **deviceID** et **deviceKey** par les ID et les clés des deux appareils que vous avez créés précédemment dans la solution de surveillance à distance.
 
 Enregistrez vos modifications.
 
-Vous pouvez maintenant exécuter hello IoT passerelle hello suivant à l’aide de commandes :
+Vous pouvez maintenant exécuter la passerelle IoT Edge en utilisant les commandes suivantes :
 
 ```bash
 cd ~/iot-remote-monitoring-c-intel-nuc-gateway-getting-started/simulator
 /usr/share/azureiotgatewaysdk/samples/simulated_device_cloud_upload/simulated_device_cloud_upload remote_monitoring.json
 ```
 
-passerelle de Hello démarre sur hello Intel NUC et envoie la solution de surveillance à distance de télémétrie simulé toohello :
+La passerelle démarre sur l’appareil Intel NUC et envoie la télémétrie simulée à la solution de surveillance à distance :
 
 ![La passerelle IoT Edge génère la télémétrie simulée][img-simulated telemetry]
 
-Appuyez sur **Ctrl-C** programme de hello tooexit à tout moment.
+Appuyez sur **Ctrl-C** pour quitter le programme à tout moment.
 
-## <a name="view-hello-telemetry"></a>Télémétrie des consultations de hello
+## <a name="view-the-telemetry"></a>Afficher les données de télémétrie
 
-Hello IoT passerelle envoie maintenant télémétrie simulé toohello une solution d’analyse à distance. Vous pouvez afficher les données de télémétrie hello sur le tableau de bord de solution hello.
+La passerelle IoT Edge envoie à présent la télémétrie simulée à la solution de surveillance à distance. Vous pouvez afficher les données de télémétrie sur le tableau de bord de la solution.
 
-- Accédez à tableau de bord toohello solution.
-- Sélectionnez un des périphériques hello deux vous avez configuré dans la passerelle hello Bonjour **tooView de périphérique** liste déroulante.
-- télémétrie Hello à partir des passerelles hello s’affiche sur le tableau de bord hello.
+- Accédez au tableau de bord de la solution.
+- Sélectionnez un des deux appareils que vous avez configurés dans la passerelle dans la liste déroulante **Appareil à afficher**.
+- Les données de télémétrie des appareils de passerelle s’affichent sur le tableau de bord.
 
-![Afficher les données de télémétrie des passerelles hello simulé][img-telemetry-display]
+![Afficher les données de télémétrie depuis les appareils de passerelle][img-telemetry-display]
 
 > [!WARNING]
-> Si vous laissez hello solution en cours d’exécution dans votre compte Azure de surveillance à distance, vous êtes facturé pour hello exécution. Pour plus d’informations sur la réduction de la consommation lors hello s’exécute la solution de surveillance à distance, consultez [configuration Azure IoT Suite préconfiguré des solutions à des fins de démonstration][lnk-demo-config]. Supprimer la solution de hello préconfiguré à partir de votre compte Azure lorsque vous avez terminé.
+> Si vous quittez la solution de surveillance à distance en cours d’exécution dans votre compte Azure, vous êtes facturé en fonction du temps d’exécution. Pour plus d’informations sur la manière de réduire votre consommation pendant l’exécution de la solution de surveillance à distance, consultez [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config] (Configuration des solutions préconfigurées Azure IoT Suite à des fins de démonstration). Supprimez la solution préconfigurée de votre compte Azure lorsque vous avez fini de l’utiliser.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Visitez hello [centre de développement Azure IoT](https://azure.microsoft.com/develop/iot/) pour plus d’exemples et documentation sur Azure IoT.
+Visitez le [Centre de développement Azure IoT](https://azure.microsoft.com/develop/iot/) pour d’autres exemples et de la documentation complémentaire sur Azure IoT.
 
 [img-simulated telemetry]: ./media/iot-suite-gateway-kit-get-started-simulator/appoutput.png
 

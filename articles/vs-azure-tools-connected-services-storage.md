@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd stockage Azure à l’aide des Services connectés dans Visual Studio | Documents Microsoft"
-description: "Ajouter une application de tooyour de stockage Azure en utilisant la boîte de dialogue hello Visual Studio ajouter des Services connectés"
+title: "Ajouter Azure Storage à l’aide des services connectés dans Visual Studio | Microsoft Docs"
+description: "Ajouter le stockage Azure à votre application à l’aide de la boîte de dialogue Ajouter des services connectés de Visual Studio"
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/26/2017
 ms.author: kraigb
-ms.openlocfilehash: 56b42063d86510b330e405108e28d50e6ba4da05
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 35638083cd75e1b751d00a9c8163a3bc7480f0cd
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="adding-azure-storage-by-using-visual-studio-connected-services"></a>Ajout de stockage Azure à l’aide des services connectés de Visual Studio
-Avec Visual Studio, vous pouvez connecter des hello suivant tooAzure stockage à l’aide de hello **ajouter des Services connectés** boîte de dialogue :
+Avec Visual Studio, vous pouvez connecter les éléments suivants au Stockage Azure à l’aide de la boîte de dialogue **Ajouter des services connectés** :
 
 - Service cloud C#
 - Service mobile principal .NET
@@ -29,41 +29,41 @@ Avec Visual Studio, vous pouvez connecter des hello suivant tooAzure stockage à
 - Service Core ASP.NET
 - Service de tâche web Azure 
 
-Hello service connecté fonctionnalité ajoute toutes les références de hello nécessité et projet de tooyour de code de connexion et modifie vos fichiers de configuration de manière appropriée. 
+La fonctionnalité de service connecté ajoute l’ensemble des références et du code de connexion nécessaires à votre projet, et modifie vos fichiers de configuration de manière appropriée. 
 
-Une fois terminé, hello **ajouter des Services connectés** boîte de dialogue affiche automatiquement la documentation détaillant les toostart requis étapes hello fonctionne avec le stockage d’objets blob, files d’attente et les tables.
+Une fois cette opération terminée, la boîte de dialogue **Ajouter des services connectés** affiche automatiquement une documentation décrivant les étapes nécessaires pour commencer à travailler avec le Stockage Blob, les files d’attente et les tables.
 
-## <a name="connect-tooazure-storage-using-hello-connected-services-dialog"></a>Se connecter tooAzure stockage à l’aide des Services connectés hello boîte de dialogue
+## <a name="connect-to-azure-storage-using-the-connected-services-dialog"></a>Connexion au stockage Azure à l’aide de la boîte de dialogue Services connectés
 1. Ouvrez votre projet dans Visual Studio.
 
-1. Dans **l’Explorateur de solutions**, avec le bouton hello **Services connectés** nœud et, dans le menu contextuel de hello, sélectionnez **ajouter un Service connecté**.
+1. Dans **l’Explorateur de solutions**, cliquez avec le bouton droit sur le nœud **Services connectés**, puis sélectionnez **Ajouter un service connecté** dans le menu contextuel.
    
     ![Ajouter un service connecté Azure](./media/vs-azure-tools-connected-services-storage/IC796702.png)
 
-1. Bonjour **Services connectés** page, sélectionnez **stockage en Cloud avec le stockage Azure**.
+1. Sur la page **Services connectés**, sélectionnez **Stockage cloud avec le Stockage Azure**.
    
     ![Ajouter le Stockage Azure](./media/vs-azure-tools-connected-services-storage/add-azure-storage.png)
 
-1. Bonjour **Azure Storage** boîte de dialogue, sélectionnez un compte de stockage existant et sélectionnez **ajouter**.
+1. Dans la boîte de dialogue **Stockage Azure**, sélectionnez un compte de stockage existant, puis sélectionnez **Ajouter**.
    
-    Si vous avez besoin de toocreate un compte de stockage, accédez toohello prochaine étape. Sinon, passez toostep 6.
+    Si vous devez créer un compte de stockage, passez à l’étape suivante. Sinon, passez à l’étape 6.
     
-    ![Ajouter tooproject de compte de stockage existant](./media/vs-azure-tools-connected-services-storage/select-azure-storage-account.png)
+    ![Ajouter un compte de stockage existant au projet](./media/vs-azure-tools-connected-services-storage/select-azure-storage-account.png)
 
-1. toocreate un compte de stockage : 
+1. Pour créer un compte de stockage : 
    
-   1. Sélectionnez **créer un nouveau compte de stockage** bas hello de boîte de dialogue hello.
+   1. Sélectionnez **Créer un compte de stockage** au bas de la boîte de dialogue.
 
-   1. Remplir hello **créer un compte de stockage** boîte de dialogue, puis sélectionnez **créer**.
+   1. Renseignez les informations demandées dans la boîte de dialogue **Créer un compte de stockage**, puis sélectionnez **Créer**.
       
        ![Nouveau compte de stockage Azure](./media/vs-azure-tools-connected-services-storage/create-storage-account.png)
       
-   1. Hello lorsque **Azure Storage** boîte de dialogue s’affiche, le nouveau compte de stockage hello s’affiche dans la liste de hello. Sélectionnez le nouveau compte de stockage hello dans la liste de hello, puis sélectionnez **ajouter**.
+   1. Lorsque la boîte de dialogue **Stockage Azure** apparaît, le nouveau compte de stockage s’affiche dans la liste. Sélectionnez le nouveau compte de stockage dans la liste, puis **Ajouter**.
 
-1. Hello stockage service connecté s’affiche sous hello **références de Service** nœud de votre projet.
+1. Le service connecté de stockage s’affiche sous le nœud **Références de service** de votre projet.
    
 ## <a name="how-your-project-is-modified"></a>Modifications apportées à votre projet
-Lorsque vous avez terminé la boîte de dialogue hello, Visual Studio ajoute des références et modifie certains fichiers de configuration. modifications Hello varient selon le type de projet hello : 
+Quand vous avez terminé la boîte de dialogue, Visual Studio ajoute des références et modifie certains fichiers de configuration. Les modifications spécifiques varient selon le type de projet : 
 
 - Projet ASP.NET : [Que s’est-il passé ? – Projets ASP.NET](http://go.microsoft.com/fwlink/p/?LinkId=513126)
 - Projet Core ASP.NET : [Que s’est-il passé ? – Projets ASP.NET 5](http://go.microsoft.com/fwlink/p/?LinkId=513124) 

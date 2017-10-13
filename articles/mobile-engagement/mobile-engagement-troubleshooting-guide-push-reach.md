@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure Mobile Engagement Troubleshooting Guide - Push/portée"
+title: "Guide de dépannage d’Azure Mobile Engagement - Push/Reach"
 description: "Résolution des problèmes des interactions et des notifications utilisateur dans Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 4ee0b34b9b753a98ccf24863acb28a5dc76bfb95
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ef6f34404b97a6972fc136262920a1bdbc4117b0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshooting-guide-for-push-and-reach-issues"></a>Guide de dépannage pour les problèmes liés à Push et Reach
-Hello Voici les problèmes possibles, que vous pouvez rencontrer avec comment Azure Mobile Engagement renvoie les informations que les utilisateurs tooyour.
+Voici des problèmes potentiels liés à la façon dont Azure Mobile Engagement envoie des informations à vos utilisateurs.
 
 ## <a name="push-failures"></a>Échecs Push
 ### <a name="issue"></a>Problème
 * Push ne fonctionne pas (dans l'application, hors de l'application, ou les deux).
 
 ### <a name="causes"></a>Causes
-* Autant de fois un échec de push est une indication que Azure Mobile Engagement, portée ou une autre fonctionnalité avancée d’Azure Mobile Engagement n’est pas correctement intégrée ou qu’une mise à niveau est requise dans hello SDK toofix un problème connu avec une nouvelle plateforme de système d’exploitation ou l’appareil.
-* Si un élément est un problème dans l’application ou de test simplement un push dans l’application et simplement un toodetermine de push hors de l’application.
-* Tester à partir de l’interface utilisateur de hello et hello API comme un toosee étape de dépannage les informations d’erreur supplémentaire sont disponibles aux deux emplacements.
-* Hors de l’application push ne fonctionne pas si Azure Mobile Engagement et portée sont intégrés dans le Kit de développement logiciel de hello.
-* Les transmissions de type push ne fonctionneront pas si les certificats ne sont pas valides, ou s’ils utilisent PROD DEV correctement (iOS uniquement). (**Remarque :** « hors de l’application » des notifications push peuvent ne pas être remises tooiOS, si les deux développement hello (DEV) et les versions de production (production) de votre application sont installés sur hello même appareil depuis le jeton de sécurité hello associé avec votre certificat peut être invalidée par Apple. tooresolve ce problème, désinstallez hello développement et les versions de production de votre application et réinstaller le programme uniquement hello une version sur votre appareil.)
-* Hors de l’application des nombres de push sont gérées différemment dans les différentes plateformes (iOS affiche moins d’informations que Android si push natif est désactivées sur un appareil, hello API peut fournir plus d’informations que l’interface utilisateur de hello des statistiques de push de).
+* Un échec push indique souvent qu'Azure Mobile Engagement, Reach ou une autre fonctionnalité avancée d'Azure Mobile Engagement n'est pas correctement intégrée ou qu'une mise à niveau est requise dans le Kit de développement logiciel (SDK) pour résoudre un problème connu avec une nouvelle plate-forme de système d'exploitation ou de périphérique.
+* Testez simplement un push dans l'application et un push hors de l'application pour déterminer si le problème se situe dans l'application ou hors de l'application.
+* Dans le cadre du dépannage, effectuez des tests à partir de l'interface utilisateur et à partir de l'API pour voir les informations d'erreur supplémentaires disponibles aux deux emplacements.
+* Les push en dehors de l'application ne fonctionneront pas si Azure Mobile Engagement et Reach sont intégrés dans le Kit de développement logiciel (SDK).
+* Les transmissions de type push ne fonctionneront pas si les certificats ne sont pas valides, ou s’ils utilisent PROD DEV correctement (iOS uniquement). (**Remarque :** les notifications Push « en dehors de l’application » ne sont pas remises à iOS, si les versions de développement (DEV) et de production (PROD) de votre application sont installées sur le même périphérique, dans la mesure où le jeton de sécurité associé à votre certificat peut être invalidé par Apple. Pour résoudre ce problème, désinstallez les versions PROD et DEV de votre application et ré-installez uniquement une version sur votre périphérique.)
+* Les décomptes de push en dehors de l'application sont gérés différemment sur des plates-formes différentes (iOS affiche moins d'informations qu'Android si les push natifs sont désactivés sur un périphérique, l'API peut fournir davantage d'informations que l'interface utilisateur dans les statistiques de push).
 * Les push en dehors de l'application peuvent être bloqués par les clients au niveau du système d'exploitation (iOS et Android).
-* Hors de l’application push s’affichera comme étant désactivés Bonjour Azure Mobile Engagement UI s’ils ne sont pas intégrés correctement, mais risque d’échouer en mode silencieux à partir de l’API de hello.
-* Dans l’application push ne fonctionne pas si Azure Mobile Engagement et portée sont intégrés dans le Kit de développement logiciel de hello.
-* Push GCM et ADM ne fonctionne pas si Azure Mobile Engagement et serveur spécifique de hello sont intégrés dans hello SDK (Android uniquement).
-* En application et hors de l’application push doit-elle être testés séparément toodetermine s’il s’agit d’un problème de Push ou de portée.
-* Dans l’application push nécessitent cette application hello ouvrir toobe reçu.
-* Dans l’application push est souvent toobe le programme d’installation filtré par une balise d’informations sur application opt-in ou de refus.
-* Si vous utilisez une catégorie personnalisée dans les notifications de portée toodisplay dans l’application, vous devez toofollow hello correct cycle de vie de la notification de hello, sans quoi les notification hello ne peut pas être effacée lorsque les utilisateur hello faire disparaître.
-* Si vous démarrez une campagne avec aucune date de fin et un appareil reçoit hello dans la notification de l’application, mais elle n’apparaît pas encore, hello utilisateur toujours recevra hello de notification hello leur prochaine que connexion dans l’application hello, même si vous arrêtez manuellement les campagnes hello.
-* Pour les problèmes avec les API de Push de hello, confirmez que vraiment et vous souhaitez toouse hello API de Push au lieu de l’API couverture de hello (étant donné que hello API couverture est utilisée plus souvent) que vous n’êtes pas à confusion hello « charge utile » et les paramètres de « notifiant ».
-* Tester votre campagne push avec à la fois un appareil connecté via le Wi-Fi et 3G tooeliminate hello connexion réseau comme une source possible de problèmes.
+* Les push en dehors de l'application apparaissent comme désactivés dans l'interface utilisateur d'Azure Mobile Engagement s'ils ne sont pas correctement intégrés, mais peuvent échouer en mode silencieux à partir de l'API.
+* Les push dans l'application ne fonctionneront pas si Azure Mobile Engagement et Reach sont intégrés dans le Kit de développement logiciel (SDK).
+* Les push GCM et ADM ne fonctionneront pas si Azure Mobile Engagement et le serveur spécifique sont intégrés dans le Kit de développement logiciel (Android uniquement).
+* Les push dans l'application et en dehors de l'application doivent être testés séparément pour déterminer s'il s'agit d'un problème Push ou Reach.
+* Les push dans l'application requièrent que l'application soit ouverte pour être reçue.
+* Les push dans l'application sont souvent configurés pour être filtrés par une balise d'informations d'application d'inclusion ou d'exclusion.
+* Si vous utilisez une catégorie personnalisée dans Reach pour afficher les notifications dans l'application, vous devez suivre le cycle de vie correct de la notification, sans quoi la notification pourrait ne pas être effacée lorsque l'utilisateur la fait disparaître.
+* Si vous lancez une campagne sans date de fin et qu'un périphérique reçoit la notification dans l'application mais ne l'affiche pas encore, l'utilisateur continuera à recevoir la notification lors de sa prochaine connexion à l'application, même si vous arrêtez manuellement la campagne.
+* Pour les problèmes avec l'API Push, confirmez que vous souhaitez vraiment utiliser l'API Push au lieu de l'API Reach (l'API Reach étant utilisée plus souvent) et que vous ne confondez pas les paramètres « charge utile » et « notificateur ».
+* Testez votre campagne push avec à la fois un périphérique connecté via le Wi-Fi et 3G pour éliminer la connexion réseau comme source potentielle de problèmes.
 
 ## <a name="push-testing"></a>Test push
 ### <a name="issue"></a>Problème
-* Push peut être envoyé tooa de périphérique spécifique basé sur un ID de périphérique.
+* Les push peuvent être envoyés à un périphérique spécifique basé sur un ID de périphérique.
 
 ### <a name="causes"></a>Causes
-* Appareils de test sont configurés différemment pour chaque plateforme, mais à l’origine d’un événement dans votre application sur un appareil de test et recherchez l’ID de votre appareil dans le portail de hello doivent fonctionner toofind ID de votre appareil pour toutes les plateformes.
+* Appareils de test sont configurés différemment pour chaque plate-forme, mais à l'origine d'un événement dans votre application sur un périphérique de test et recherchez votre ID de périphérique dans le portail doivent fonctionner pour trouver votre ID de périphérique pour toutes les plateformes.
 * Les périphériques de test fonctionnent différemment avec IDFA et IDFV (iOS uniquement).
 
 ## <a name="push-customization"></a>Personnalisation push
 ### <a name="issue"></a>Problème
 * L'élément de contenu push avancé ne fonctionne pas (badge, sonnerie, vibration, image, etc.).
-* Des liens à partir de push ne fonctionnent pas (hors de l’application, dans l’application, du site Web tooa, emplacement tooa dans l’application).
-* Afficher des statistiques par émission de données que de push n’a pas envoyé à tooas de nombreuses personnes comme prévu (trop ou pas assez).
+* Les liens de push ne fonctionnent pas (hors de l'application, dans l'application, vers un site Web, à un emplacement dans l'application).
+* Les statistiques de push indiquent qu'un push n'a pas été envoyé au nombre de personnes prévu (trop ou trop peu).
 * Push dupliqués et reçus en double.
 * Impossible d'inscrire le dispositif de test pour les push Azure Mobile Engagement (avec votre propre application de production ou développement).
 
 ### <a name="causes"></a>Causes
-* toolink tooa emplacement spécifique dans l’application requiert « catégories » (Android uniquement).
-* Approfondie liaison schémas tooredirect utilisateurs tooan un autre emplacement après avoir cliqué sur une notification push devez toobe créé dans et géré par votre appareil hello d’application et de système d’exploitation non par Mobile Engagement directement. (**Remarque :** hors de l’application notifications ne peut pas lier directement des emplacements d’application tooin avec iOS comme pour Android.)
-* Serveurs de l’image externe doivent toouse en mesure de toobe HTTP « GET » et « HEAD » pour l’image volumineuse exécute un push toowork (Android uniquement).
-* Dans votre code, vous pouvez désactiver l’agent d’Azure Mobile Engagement hello lorsque les clavier hello sont ouvert et que votre code de réactiver l’agent d’Azure Mobile Engagement hello une fois que le clavier de hello est fermée afin que hello clavier n’affecte pas apparence hello de votre notification (iOS uniquement).
+* Pour créer un lien vers un emplacement spécifique dans l'application requiert "categories" (Android uniquement).
+* Des schémas de lien profond pour rediriger les utilisateurs vers un autre emplacement après avoir cliqué sur une notification Push doivent être créés dans votre application et le système d’exploitation du périphérique et gérés par ces derniers, et non par Mobile Engagement directement. (**Remarque :** les notifications en dehors de l’application ne peuvent pas lier directement à des emplacements au sein de l’application avec iOS, contrairement à Android.)
+* Les serveurs d'images externes doivent être en mesure d'utiliser HTTP « GET » et « HEAD » pour que les push de grandes images fonctionnent (Android uniquement).
+* Dans votre code, vous pouvez désactiver l'agent Azure Mobile Engagement lorsque le clavier est ouvert et que votre code réactive l'agent Azure Mobile Engagement une fois que le clavier est fermé afin que le clavier n'affecte pas l'apparence de votre notification (iOS uniquement).
 * Certains éléments ne fonctionnent pas dans les simulations de test, mais uniquement les campagnes réelles (badge, sonnerie, vibration, image, etc.).
-* Aucun côté serveur données sont enregistrées lorsque vous utilisez le bouton de hello trop « test » exécute un push. Les données sont enregistrées uniquement pour les campagnes push réelles.
-* toohelp isoler le problème, résoudre les problèmes avec : test, de simuler et une campagne réelle dans la mesure où ils fonctionnent différemment.
-* Hello durée que de « application » et les campagnes « tout temps » sont planifiée toorun peut affecter des numéros de remise dans la mesure où une campagne est adressée uniquement toousers qui sont « dans l’application » pendant l’exécution de la campagne de hello (et les utilisateurs qui disposent de leurs paramètres de périphérique définir tooreceive notifications « hors de l’application »).
-* différences de comment handle Android et iOS en dehors des notifications de l’application le rend difficile toodirectly Hello comparer les statistiques de push entre hello Android et iOS une version de votre application. Android fournit plus d’informations de notification au niveau du système d’exploitation qu’iOS. Android signale quand une notification native est reçue, un clic sur ou supprimée dans le centre de notifications hello, mais iOS ne signale pas ces informations, sauf si les notifications hello sont cliquée. 
-* Hello principale raison pour laquelle les nombres « poussées » sont différentes de celles de l’autre que « remis » des numéros pour atteint des campagnes est que « dans l’application » et « hors de l’application » notifications sont comptées différemment. « Dans l’application » notifications sont gérées par Mobile Engagement, mais « hors de l’application » notifications sont gérées par le centre de notifications hello Bonjour du système d’exploitation de votre appareil.
+* Aucune donnée du côté serveur n'est enregistrée lorsque vous utilisez le bouton pour « tester » les push. Les données sont enregistrées uniquement pour les campagnes push réelles.
+* Pour aider à isoler le problème, résolvez les problèmes avec : tester, simuler et une campagne réelle puisque chacun d'eux fonctionne légèrement différemment.
+* La durée pendant laquelle vos campagnes « dans l’application » et « à tout moment » sont planifiées pour s’exécuter affecte les numéros de livraison, dans la mesure où une campagne n’est remise qu’aux utilisateurs « dans l’application » pendant son exécution (et aux utilisateurs disposant de paramètres de périphérique définis pour recevoir des notifications « en dehors de l’application »).
+* Les différences de gestion des notifications en dehors de l’application entre Android et iOS compliquent la comparaison directe des statistiques de transmission entre la version Android et iOS de votre application. Android fournit plus d’informations de notification au niveau du système d’exploitation qu’iOS. Android signale dans le centre de notification lorsqu’une notification native est reçue, supprimée ou qu’un utilisateur clique dessus, mais iOS ne signale pas ces informations, à moins que l’utilisateur clique sur la notification. 
+* La principale raison pour laquelle les statistiques de « push » sont différentes de celles de « livraison » pour campagnes Reach est que les notifications « dans l’application » et « en dehors de l’application » sont comptées différemment. Les notifications « dans l’application » sont gérées par Mobile Engagement, tandis que les notifications « en dehors de l’application » sont gérées par le centre de notification du système d’exploitation de votre périphérique.
 
 ## <a name="push-targeting"></a>Ciblage push
 ### <a name="issue"></a>Problème
@@ -82,21 +82,21 @@ Hello Voici les problèmes possibles, que vous pouvez rencontrer avec comment Az
 * Les options de langue ne fonctionnent pas comme prévu.
 
 ### <a name="causes"></a>Causes
-* Assurez-vous que vous avez téléchargé les balises d’informations application via hello Azure Mobile Engagement UI ou des API.
-* Limitation hello vitesse ou push quota push au niveau de l’application hello ou limitation audience hello au niveau de campagne hello peut empêcher une personne de recevoir une notification push spécifique même si elles répondent à vos critères de ciblage. 
+* Assurez-vous que vous avez téléchargé les balises d'informations d'applications via l'interface utilisateur ou l'API Azure Mobile.
+* La limitation de la vitesse des push ou le quota de push au niveau de l'application, ou la limitation de l'audience au niveau de la campagne peut empêcher une personne de recevoir un push spécifique, même si elle répond à vos critères de ciblage. 
 * La définition d'une « langue » est différente du ciblage en fonction du pays ou des paramètres régionaux, qui lui-même est différent du ciblage en fonction de l'emplacement géographique basé sur l'emplacement téléphonique ou du GPS.
-* message de type Hello Bonjour « langue par défaut » est envoyé client tooany ne disposant pas leur appareil définir tooone de langue de remplacement hello que vous spécifiez.
+* Le message dans la « langue par défaut » est envoyé à tous les clients dont le périphérique n'est pas défini sur l'une des langues alternatives que vous spécifiez.
 
 ## <a name="push-scheduling"></a>Planification push
 ### <a name="issue"></a>Problème
 * La planification push ne fonctionne pas comme prévu (envoi trop précoce ou retardé).
 
 ### <a name="causes"></a>Causes
-* Fuseaux horaires peuvent problèmes grâce à la planification, surtout lorsque vous utilisez le fuseau horaire de hello les utilisateurs finaux.
+* Fuseaux horaires peuvent problèmes grâce à la planification, surtout lorsque vous utilisez le fuseau horaire de l'utilisateur final.
 * Les fonctionnalités push avancées peuvent retarder les push.
-* Ciblage basé sur le téléphone paramètres (au lieu d’application Info balises) susceptibles de retarder la pousse car Azure Mobile Engagement peuvent avoir des données en temps réel hello phone toorequest avant d’envoyer une notification push.
-* Les campagnes créées sans une date de fin stockent hello push localement sur l’appareil de hello et les affichent hello prochaine application hello est ouvert, même si la campagne de hello terminée manuellement.
-* À partir de plusieurs campagnes à hello même temps peut prendre un tooscan plu de temps votre base d’utilisateurs (essayez tooonly démarrer une campagne à l’aide d’un maximum de quatre, également cibler uniquement les utilisateurs actifs tooyour afin que les anciens utilisateurs n’aient pas toobe analysé).
-* Si vous utilisez option de « Ignorer Audience, push seront envoyés toousers via hello API » hello de section de « De la campagne » hello d’une couverture campagne, campagne de hello n’envoie pas automatiquement, vous devez toosend manuellement via l’API couverture de hello.
-* Si vous utilisez une catégorie personnalisée dans les notifications de portée toodisplay dans l’application, vous devez toofollow hello correct cycle de vie d’une notification, ou bien les notifications hello ne peuvent pas être effacée lorsque les utilisateur hello faire disparaître.
+* Le ciblage en fonction des paramètres du téléphone (au lieu des balises d'informations de l'application) peut retarder les push car Azure Mobile Engagement peut avoir à demander les données du téléphone en temps réel avant d'envoyer un push.
+* Les campagnes marketing créées sans date de fin stockent le push localement sur le périphérique et l'affichent lors de la prochaine ouverture de l'application, même si la campagne est terminée manuellement.
+* Le démarrage simultané de plusieurs campagnes peut mettre plus de temps à analyser votre base d'utilisateurs (essayez de démarrer une seule campagne à la fois avec un maximum de quatre, et ciblez uniquement vos utilisateurs actifs afin que les anciens utilisateurs n'aient pas à être analysés).
+* Si vous utilisez l'option « Ignorer l'audience, la notification Push sera envoyée aux utilisateurs via l'API Reach » dans la section « Campagne » de la campagne Reach, cette campagne ne sera pas automatiquement envoyée. Vous devrez l'envoyer manuellement via l'API Reach.
+* Si vous utilisez une catégorie personnalisée dans Reach pour afficher les notifications dans l'application, vous devez suivre le cycle de vie correct d'une notification, sans quoi la notification pourrait ne pas être effacée lorsque l'utilisateur la fait disparaître.
 

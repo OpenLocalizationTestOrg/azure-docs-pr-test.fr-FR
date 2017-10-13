@@ -1,5 +1,5 @@
 ---
-title: aaaAutoscale Windows machines virtuelles identiques | Documents Microsoft
+title: "Mettre à l’échelle automatiquement des groupes identiques de machines virtuelles Windows | Microsoft Docs"
 description: "Mettre à l’échelle automatiquement un jeu de mise à l’échelle de machine virtuelle Windows à l’aide d’Azure PowerShell"
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,18 +15,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: adegeo
-ms.openlocfilehash: 67cf1c5063ceba4fc076dc270090defdbddbcfe0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91f731bec46c005221f4e66e95822994070d4c26
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="automatically-scale-machines-in-a-virtual-machine-scale-set"></a>Mettre automatiquement à l’échelle des machines dans un jeu de mise à l’échelle de machines virtuelles
-Machines virtuelles identiques facilitent vous toodeploy et gérer des machines virtuelles identiques en tant qu’ensemble. Les groupes à échelle identique fournissent une couche de calcul hautement évolutive et personnalisable pour les applications « hyperscale », et prennent en charge les images de plateforme Windows, les images de plateforme Linux, des images personnalisées et les extensions. Pour plus d’informations sur les jeux de mise à l’échelle, consultez [Jeux de mise à l’échelle de machine virtuelle](virtual-machine-scale-sets-overview.md).
+Les jeux de mise à l’échelle de machines virtuelles facilitent le déploiement et la gestion de machines virtuelles identiques en tant qu’ensemble. Les groupes à échelle identique fournissent une couche de calcul hautement évolutive et personnalisable pour les applications « hyperscale », et prennent en charge les images de plateforme Windows, les images de plateforme Linux, des images personnalisées et les extensions. Pour plus d’informations sur les jeux de mise à l’échelle, consultez [Jeux de mise à l’échelle de machine virtuelle](virtual-machine-scale-sets-overview.md).
 
-Ce didacticiel vous montre comment définie les toocreate un ensemble d’échelle de machines virtuelles Windows et de machines Bonjour Bonjour à l’échelle automatiquement. Vous créez la montée en puissance hello définir et configurer la mise à l’échelle en créant un modèle Azure Resource Manager et de déploiement à l’aide d’Azure PowerShell. Pour en savoir plus sur les modèles, consultez [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md). toolearn en savoir plus sur la mise à l’échelle automatique de jeux de mise à l’échelle, consultez [mise à l’échelle automatique et mise à l’échelle de Machine virtuelle définit](virtual-machine-scale-sets-autoscale-overview.md).
+Ce didacticiel vous montre comment créer un jeu de mise à l’échelle de machines virtuelles Windows et mettre automatiquement à l’échelle les machines de ce jeu. Pour créer le jeu de mise à l’échelle et configurer la mise à l’échelle, créez un modèle Azure Resource Manager et déployez-le à l’aide d’Azure PowerShell. Pour en savoir plus sur les modèles, consultez [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md). Pour plus d'informations sur la mise à l'échelle automatique de jeux de mise à l'échelle, consultez la rubrique [Mise à l'échelle automatique et jeux de mise à l'échelle de machines virtuelles](virtual-machine-scale-sets-autoscale-overview.md).
 
-Dans cet article, vous déployez des éléments suivants de hello extensions et ressources :
+Cet article décrit comment déployer les ressources et extensions suivantes :
 
 * Microsoft.Storage/storageAccounts
 * Microsoft.Network/virtualNetworks
@@ -41,16 +41,16 @@ Dans cet article, vous déployez des éléments suivants de hello extensions et 
 Pour plus d’informations sur les ressources Azure Manager, consultez [Déploiement Azure Resource Manager et déploiement classique](../azure-resource-manager/resource-manager-deployment-model.md).
 
 ## <a name="step-1-install-azure-powershell"></a>Étape 1 : installer Azure PowerShell
-Consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) pour plus d’informations sur l’installation de version la plus récente d’Azure PowerShell hello, en sélectionnant votre abonnement et la signature dans tooAzure.
+Pour plus d’informations sur l’installation de la version la plus récente d’Azure PowerShell en sélectionnant votre abonnement et en vous connectant à Azure, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) .
 
 ## <a name="step-2-create-a-resource-group-and-a-storage-account"></a>Étape 2 : créer un groupe de ressources et un compte de stockage
-1. **Créer un groupe de ressources** – toutes les ressources doivent être le groupe de ressources tooa déployé. Utilisez [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/mt603739.aspx) toocreate un groupe de ressources nommé **vmsstestrg1**.
-2. **Créer un compte de stockage** – ce compte de stockage consiste à stocker de modèle de hello. Utilisez [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) toocreate un compte de stockage nommé **vmsstestsa**.
+1. **Créer un groupe de ressources** : toutes les ressources doivent être déployées dans un groupe de ressources. Utilisez [New-AzureRmResourceGroup](https://msdn.microsoft.com/library/mt603739.aspx) pour créer un groupe de ressources nommé **vmsstestrg1**.
+2. **Créer un compte de stockage** : ce compte de stockage est l’emplacement dans lequel le modèle est stocké. Utilisez [New-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607148.aspx) pour créer un compte de stockage nommé **vmsstestsa**.
 
-## <a name="step-3-create-hello-template"></a>Étape 3 : Créer le modèle de hello
-Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer des ressources Azure ensemble à l’aide d’une description JSON des ressources de hello et des paramètres de déploiement associés.
+## <a name="step-3-create-the-template"></a>Étape 3 : créer le modèle
+Un modèle Azure Resource Manager permet de déployer et gérer des ressources Azure simultanément grâce à une description des ressources JSON et des paramètres de déploiement associés.
 
-1. Dans votre éditeur favori, créer le fichier hello C:\VMSSTemplate.json et ajouter hello initiales JSON structure toosupport hello du modèle.
+1. Dans votre éditeur favori, créez le fichier C:\VMSSTemplate.json et ajoutez la structure JSON initiale pour prendre en charge le modèle.
 
     ```json
     {
@@ -65,7 +65,7 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     }
     ```
 
-2. Paramètres ne sont pas toujours nécessaires, mais ils fournissent un moyen tooinput valeurs lorsque le modèle de hello est déployé. Ajouter ces paramètres sous l’élément parent de hello paramètres que vous avez ajouté le modèle de toohello.
+2. Les paramètres ne sont pas toujours nécessaires, mais ils offrent un moyen d’entrer des valeurs lors du déploiement du modèle. Ajoutez ces paramètres sous l’élément parent des paramètres que vous avez ajouté au modèle.
 
     ```json   
     "vmName": { "type": "string" },
@@ -76,13 +76,13 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     "resourcePrefix": { "type": "string" }
     ```
    
-    * Un nom pour la machine virtuelle distincte hello constituant des machines de hello tooaccess utilisé dans l’ensemble d’échelle hello.
-    * nom Hello hello du compte de stockage où se trouve le modèle de hello.
-    * nombre de Hello de machines virtuelles tooinitially créer dans un ensemble d’échelle hello.
-    * nom de Hello et le mot de passe du compte d’administrateur hello sur des machines virtuelles de hello.
-    * Un préfixe de nom pour les ressources hello qui sont créés à l’échelle de hello toosupport définie.
+    * Nom de la machine virtuelle distincte utilisée pour accéder aux machines du groupe à échelle identique.
+    * Nom du compte de stockage dans lequel le modèle est stocké.
+    * Nombre de machines virtuelles à créer initialement dans le jeu de mise à l’échelle.
+    * Nom et mot de passe du compte d’administrateur sur les machines virtuelles.
+    * Préfixe de nom pour les ressources qui sont créées pour prendre en charge le jeu de mise à l’échelle.
 
-3. Variables peuvent être utilisées dans un valeurs toospecify de modèle qui changent fréquemment ou les valeurs qui doivent toobe créées à partir d’une combinaison de valeurs de paramètre. Ajoutez ces variables sous l’élément parent de hello variables que vous avez ajouté le modèle de toohello.
+3. Des variables peuvent être utilisées dans un modèle pour spécifier des valeurs qui changent fréquemment ou qui doivent être créées à partir d’une combinaison de valeurs de paramètres. Ajoutez ces variables sous l’élément parent des variables que vous avez ajouté au modèle.
 
     ```json
     "dnsName1": "[concat(parameters('resourcePrefix'),'dn1')]",
@@ -104,14 +104,14 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     "wadcfgxend": "[concat('\"><MetricAggregation scheduledTransferPeriod=\"PT1H\"/><MetricAggregation scheduledTransferPeriod=\"PT1M\"/></Metrics></DiagnosticMonitorConfiguration></WadCfg>')]"
     ```
    
-    * Noms DNS qui sont utilisés par les interfaces réseau hello.
+    * Noms DNS utilisés par les interfaces réseau.
 
-        * les noms d’adresses IP Hello et préfixes pour le réseau virtuel de hello et sous-réseaux.
-        * Hello noms et les identificateurs de réseau virtuel de hello, équilibreur de charge et les interfaces réseau.
-        * Noms de compte de stockage pour les comptes de hello associés avec des machines hello dans un ensemble d’échelle hello.
-        * Paramètres de hello extension de Diagnostics qui est installée sur les ordinateurs virtuels de hello. Pour plus d’informations sur l’extension des Diagnostics de hello, consultez [créer une machine virtuelle Windows avec l’analyse et de diagnostics à l’aide du modèle de gestionnaire de ressources Azure](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+        * Les noms d’adresse IP et les préfixes destinés au réseau et aux sous-réseaux.
+        * Les noms et les identificateurs du réseau virtuel, de l’équilibreur de charge et des interfaces réseau.
+        * Les noms de compte de stockage pour les comptes associés aux machines du groupe à échelle identique.
+        * Paramètres de l’extension de diagnostic qui est installé sur les machines virtuelles. Pour plus d’informations sur l’extension de diagnostic, consultez [Créer une machine virtuelle Windows avec des fonctionnalités de surveillance et de diagnostics à l’aide d’un modèle Azure Resource Manager](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-4. Ajouter une ressource de compte de stockage hello sous l’élément parent de hello ressources que vous avez ajouté le modèle de toohello. Ce modèle utilise un Bonjour toocreate de boucle recommandé cinq comptes de stockage où sont stockées les disques du système d’exploitation hello et les données de diagnostic. Cet ensemble de comptes peut prendre en charge les machines virtuelles de too100 dans un ensemble d’échelle, qui est la valeur maximale actuelle de hello. Chaque compte de stockage est nommé avec un indicateur de lettre qui a été défini dans les variables hello combinés avec le préfixe hello que vous fournissez dans les paramètres de hello pour le modèle de hello.
+4. Ajoutez la ressource de compte de stockage sous l’élément parent de ressources que vous avez ajouté au modèle. Ce modèle utilise une boucle pour créer les cinq comptes de stockage recommandés dans lesquels les disques de système d’exploitation et les données de diagnostic sont stockés. Cet ensemble de comptes peut prendre en charge jusqu’à 100 machines virtuelles dans un groupe à échelle identique, qui est la valeur maximale actuelle. Chaque compte de stockage est nommé avec un indicateur de lettre défini dans les variables, combiné au préfixe que vous fournissez dans les paramètres du modèle.
 
     ```json
     {
@@ -127,7 +127,7 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     },
     ```
 
-5. Ajouter une ressource de réseau virtuel hello. Pour plus d’informations, consultez [Fournisseurs de ressources réseau](../virtual-network/resource-groups-networking.md).
+5. Ajoutez la ressource de réseau virtuelle. Pour plus d’informations, consultez [Fournisseurs de ressources réseau](../virtual-network/resource-groups-networking.md).
 
     ```json
     {
@@ -147,7 +147,7 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     },
     ```
 
-6. Ajoutez hello publiques ressources d’adresse IP qui sont utilisés par hello équilibreur de charge et interface réseau.
+6. Ajoutez des ressources d’adresse IP publiques qui sont utilisées par l’équilibrage de charge et l’interface réseau.
 
     ```json
     {
@@ -176,7 +176,7 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     },
     ```
 
-7. Ajouter une ressource d’équilibrage de charge hello qui est utilisé par un ensemble d’échelle hello. Pour plus d’informations, consultez [Prise en charge d’un équilibreur de charge par Azure Resource Manager](../load-balancer/load-balancer-arm.md)
+7. Ajoutez la ressource d’équilibrage de charge utilisée par le groupe à échelle identique. Pour plus d’informations, consultez [Prise en charge d’un équilibreur de charge par Azure Resource Manager](../load-balancer/load-balancer-arm.md)
 
     ```json   
     {
@@ -217,7 +217,7 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     },
     ```
 
-8. Ajouter la ressource d’interface réseau hello qui est utilisé par la machine virtuelle distincte de hello. Étant donné que les ordinateurs dans un ensemble d’échelle ne sont pas accessibles via une adresse IP publique, un ordinateur virtuel distinct est créé dans hello même virtuel réseau tooremotely accès hello machines.
+8. Ajoutez la ressource d’interface réseau qui est utilisée par la machine virtuelle distincte. Étant donné que les machines virtuelles d’un jeu de mise à l’échelle ne sont pas accessibles via une adresse IP publique, une machine virtuelle distincte est créée dans le même réseau virtuel pour accéder à distance aux machines.
 
     ```json  
     {
@@ -248,7 +248,7 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     },
     ```
 
-9. Ajouter la machine virtuelle distincte de hello Bonjour même réseau que l’ensemble d’échelle hello.
+9. Ajoutez la machine virtuelle distincte dans le même réseau que le groupe à échelle identique.
 
     ```json
     {
@@ -294,7 +294,7 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     },
     ```
 
-10. Ajouter l’ensemble d’échelle de machine virtuelle hello de ressource et spécifiez l’extension diagnostics hello qui est installée sur tous les ordinateurs virtuels dans un ensemble d’échelle hello. La plupart des paramètres hello pour cette ressource sont similaires avec la ressource d’ordinateur virtuel hello. Hello principales différences sont les élément capacité hello qui spécifie le nombre de hello d’ordinateurs virtuels dans un ensemble d’échelle hello et upgradePolicy qui spécifie comment les mises à jour sont effectuées toovirtual machines. Hello ensemble d’échelle n’est pas créé tant que tous les comptes de stockage hello sont créés comme spécifié avec l’élément dependsOn de hello.
+10. Ajoutez la ressource de jeu de mise à l’échelle de machines virtuelles et spécifiez l’extension Diagnostics installée sur toutes les machines virtuelles du jeu de mise à l’échelle. La plupart des paramètres de cette ressource sont similaires à la ressource de machine virtuelle. Les principales différences sont l’élément capacity qui spécifie le nombre de machines virtuelles du jeu de mise à l’échelle et le paramètre upgradePolicy qui spécifie la manière dont les mises à jour sont appliquées aux machines virtuelles. Le jeu de mise à l’échelle n’est pas créé tant que tous les comptes de stockage ne sont pas créés, comme spécifié par l’élément dependsOn.
 
     ```json
     {
@@ -399,7 +399,7 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     },
     ```
 
-11. Ajouter une ressource autoscaleSettings hello qui définit comment l’ensemble d’échelle hello s’ajuste en fonction de l’utilisation du processeur sur les ordinateurs hello dans un ensemble d’échelle hello hello.
+11. Ajoutez la ressource autoscaleSettings qui définit comment le jeu de mise à l’échelle s’ajuste en fonction de l’utilisation du processeur sur les machines du jeu de mise à l’échelle.
 
     ```json
     {
@@ -452,73 +452,73 @@ Un modèle Azure Resource Manager rend possible pour vous toodeploy et gérer de
     Pour ce didacticiel, les valeurs suivantes sont importantes :
     
     * **metricName**  
-    Cette valeur est hello identique au compteur de performance hello que nous avons défini dans la variable de wadperfcounter hello. À l’aide de cette variable, hello extension Diagnostics collecte hello **processeur (_Total)\% temps processeur** compteur.
+    Cette valeur est la même que celle du compteur de performances que nous avons défini dans la variable wadperfcounter. Grâce à cette variable, l’extension Diagnostics relève le compteur **Processor(_Total)\% Processor Time**.
     
     * **metricResourceUri**  
-    Cette valeur est l’identificateur de ressource de hello de hello machines virtuelles identiques.
+    Cette valeur est l’identificateur de ressource du groupe de machines virtuelles identiques.
     
     * **timeGrain**  
-    Cette valeur est la granularité hello des métriques de hello sont collectés. Dans ce modèle, il a la valeur tooone minute.
+    Cette valeur est la granularité des mesures collectées. Dans ce modèle, elle est définie sur une minute.
     
     * **statistic**  
-    Cette valeur détermine comment les métriques de hello sont hello tooaccommodate combinée automatique d’action de mise à l’échelle. Hello les valeurs possibles sont : moyenne, Min, Max. Dans ce modèle, hello total utilisation moyenne du processeur d’ordinateurs virtuels hello est collectée.
+    Cette valeur détermine la façon dont les mesures sont combinées pour prendre en charge l’action de mise à l’échelle automatique. Les valeurs possibles sont : Moyenne, Min, Max. Dans ce modèle, l’utilisation moyenne totale du processeur des machines virtuelles est collectée.
     
     * **timeWindow**  
-    Cette valeur est la plage de hello de temps dans laquelle les données d’instance sont collectées. Elle doit être comprise entre 5 minutes et 12 heures.
+    Cette valeur est la plage de temps pendant laquelle les données d’instance sont collectées. Elle doit être comprise entre 5 minutes et 12 heures.
     
     * **timeAggregation**  
-    sa valeur détermine l’association de données hello collectées au fil du temps. valeur par défaut de Hello est moyenne. Hello les valeurs possibles sont : moyenne, Minimum, Maximum, dernier, Total, le nombre.
+    Cette valeur détermine la façon dont les données collectées doivent être combinées au fil du temps. La valeur par défaut est Average. Les valeurs possibles sont : Moyenne, Minimum, Maximum, Dernier, Total, Nombre.
     
     * **operator**  
-    Cette valeur est un opérateur hello toocompare utilisé hello métrique données et hello du seuil. Hello les valeurs possibles sont : Equals, NotEquals, GreaterThan, GreaterThanOrEqual, LessThan, LessThanOrEqual.
+    Cette valeur est l’opérateur utilisé pour comparer les données de mesure et le seuil. Les valeurs possibles sont : est égal à -Equals), différent de (NotEquals), supérieur à (GreaterThan), égal ou supérieur à (GreaterThanOrEqual), Inférieur à (LessThan), Inférieur ou égal à (LessThanOrEqual).
     
     * **threshold**  
-    Cette valeur est hello qui déclenche l’action de mise à l’échelle hello. Dans ce modèle, les ordinateurs sont ajoutés échelle toohello définie lors de l’utilisation moyenne du processeur hello entre les ordinateurs dans le jeu de hello est supérieure à 50 %.
+    Cette valeur est celle qui déclenche l’action de mise à l’échelle. Dans ce modèle, les machines sont ajoutées au jeu de mise à l’échelle défini lorsque l’utilisation moyenne du processeur dans le jeu de machines des est supérieur à 50 %.
     
     * **direction**  
-    Cette valeur détermine l’action hello qui est effectuée lorsque la valeur de seuil hello est atteint. les valeurs possibles de Hello sont augmentent ou diminuent. Dans ce modèle, hello nombre d’ordinateurs virtuels dans un ensemble d’échelle hello est augmenté si le seuil de hello est supérieure à 50 % dans la fenêtre de temps hello défini.
+    Cette valeur détermine l’opération qui est effectuée lorsque la valeur de seuil est atteinte. Les valeurs possibles sont Augmenter ou Diminuer. Dans ce modèle, le nombre de machines virtuelles dans le jeu de mise à l’échelle est augmenté si le seuil est supérieur à 50 % dans la fenêtre de temps définie.
     
     * **type**  
-    Cette valeur est de type hello d’action qui doit se produire et doit avoir la valeur tooChangeCount.
+    Cette valeur est le type d’action qui doit se produire. Elle doit être définie sur ChangeCount.
     
     * **value**  
-    Cette valeur est le nombre de hello d’ordinateurs virtuels qui sont ajoutés ou supprimés à partir d’un ensemble d’échelle hello. Cette valeur doit être définie sur 1 ou supérieur. Hello par défaut est 1. Dans ce modèle, nombre de hello d’ordinateurs dans l’échelle de hello jeu augmente de 1 lorsque hello seuil est atteint.
+    Cette valeur est le nombre de machines virtuelles qui sont ajoutées ou supprimées dans le groupe identique. Cette valeur doit être définie sur 1 ou supérieur. La valeur par défaut est 1. Dans ce modèle, le nombre d’ordinateurs présent dans le jeu de mise à l’échelle augmente de 1 lorsque le seuil est atteint.
     
     * **cooldown**  
-    Cette valeur est hello toowait de temps depuis la dernière action de mise à l’échelle hello avant l’action suivante de hello se produit. Elle doit être comprise entre une minute et une semaine.
+    Cette valeur est la durée d’attente depuis la dernière opération de mise à l’échelle avant que l’action suivante se produise. Elle doit être comprise entre une minute et une semaine.
 
-12. Enregistrez le fichier de modèle hello.    
+12. Enregistrez le fichier de modèle.    
 
-## <a name="step-4-upload-hello-template-toostorage"></a>Étape 4 : Télécharger hello modèle toostorage
-modèle de Hello peut être téléchargé en tant que vous connaissez le nom de hello et une clé primaire hello du compte de stockage que vous avez créé à l’étape 1.
+## <a name="step-4-upload-the-template-to-storage"></a>Étape 4 : charger le modèle dans le stockage
+Le modèle peut être chargé pour autant que vous connaissiez le nom et la clé primaire du compte de stockage que vous avez créé à l’étape 1.
 
-1. Dans la fenêtre de Microsoft Azure PowerShell hello, définissez une variable qui spécifie le nom hello hello du compte de stockage que vous avez créé à l’étape 1.
+1. Dans la fenêtre Microsoft Azure PowerShell, définissez une variable qui spécifie le nom du compte de stockage que vous avez créé à l’étape 1.
    
     ```powershell
     $storageAccountName = "vmstestsa"
     ```
 
-2. Définir une variable qui spécifie la clé primaire de hello hello du compte de stockage.
+2. Définissez une variable qui spécifie la clé primaire du compte de stockage.
    
     ```powershell
     $storageAccountKey = "<primary-account-key>"
     ```
    
-   Vous pouvez obtenir cette clé en cliquant sur icône de clé hello lors de l’affichage des ressources de compte de stockage hello Bonjour portail Azure.
-3. Créer un objet de contexte de compte de stockage de hello est opérations toovalidate utilisé avec le compte de stockage hello.
+   Vous pouvez obtenir cette clé en cliquant sur l’icône de clé lors de l’affichage de la ressource de compte de stockage dans le portail Azure.
+3. Créez l’objet de contexte de compte de stockage utilisé pour valider les opérations avec le compte de stockage.
    
     ```powershell
     $ctx = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
     ```
 
-4. Créer un conteneur hello pour le stockage hello modèle.
+4. Créez le conteneur pour stocker le modèle.
 
     ```powershell
     $containerName = "templates"
     New-AzureStorageContainer -Name $containerName -Context $ctx  -Permission Blob
     ```
 
-5. Télécharger un nouveau conteneur hello modèle fichier toohello.
+5. Chargez le fichier de modèle correspondant au nouveau conteneur.
 
     ```powershell   
     $blobName = "VMSSTemplate.json"
@@ -526,14 +526,14 @@ modèle de Hello peut être téléchargé en tant que vous connaissez le nom de 
     Set-AzureStorageBlobContent -File $fileName -Container $containerName -Blob  $blobName -Context $ctx
     ```
 
-## <a name="step-5-deploy-hello-template"></a>Étape 5 : Déployer le modèle de hello
-Maintenant que vous avez créé le modèle de hello, vous pouvez commencer à déployer des ressources de hello. Utilisez ce processus de hello toostart commande :
+## <a name="step-5-deploy-the-template"></a>Étape 5 : déployer le modèle
+Maintenant que vous avez créé le modèle, vous pouvez commencer à déployer les ressources. Utilisez cette commande pour démarrer le processus :
 
 ```powershell
 New-AzureRmResourceGroupDeployment -Name "vmsstestdp1" -ResourceGroupName "vmsstestrg1" -TemplateUri "https://vmsstestsa.blob.core.windows.net/templates/VMSSTemplate.json"
 ```
 
-Lorsque vous appuyez sur, entrez, vous sont des valeurs de tooprovide demandées pour les variables hello que vous affectés. Remplacez les valeurs suivantes :
+Lorsque vous appuyez sur Entrée, vous êtes invité à fournir des valeurs pour les variables que vous avez affectées. Remplacez les valeurs suivantes :
 
 ```powershell
 vmName: vmsstestvm1
@@ -544,22 +544,22 @@ vmName: vmsstestvm1
   resourcePrefix: vmsstest
 ```
 
-Il doit prendre environ 15 minutes pour tous les toosuccessfully de ressources hello être déployé.
+Environ 15 minutes sont nécessaires pour le déploiement correct de toutes les ressources.
 
 > [!NOTE]
-> Vous pouvez également utiliser les ressources de hello du portail hello capacité toodeploy. Utilisez le lien suivant : « https://portal.azure.com/#create/Microsoft.Template/uri/<link tooVM Scale Set JSON template>»
+> Vous pouvez également utiliser la capacité du portail à déployer les ressources. Utilisez le lien suivant : « https://portal.azure.com/#create/Microsoft.Template/uri/<link to VM Scale Set JSON template>»
 > 
 > 
 
 ## <a name="step-6-monitor-resources"></a>Étape 6 : surveiller les ressources
 Vous pouvez obtenir des informations sur les jeux de mise à l’échelle de machine virtuelle à l’aide des méthodes suivantes :
 
-* Hello portail Azure, vous pouvez obtenir actuellement une quantité limitée d’informations à l’aide du portail de hello.
-* Hello [Explorateur de ressources Azure](https://resources.azure.com/) -cet outil est hello meilleur pour Explorer l’état actuel de hello de votre ensemble d’échelle. Suivez ce chemin d’accès, et vous devez voir vue d’instance hello de montée en puissance hello définie que vous avez créé :
+* Le portail Azure : vous pouvez en obtenir une quantité limitée d’informations sur l’utilisation du portail.
+* [Explorateur de ressources Azure](https://resources.azure.com/) : cet outil est le meilleur qui soit pour déterminer l’état actuel de votre groupe identique. Suivez ce chemin d’accès. Vous devriez voir la vue de l’instance du groupe à échelle identique que vous avez créée :
   
     abonnements > {votre abonnement} > resourceGroups > vmsstestrg1 > fournisseurs > Microsoft.Compute > virtualMachineScaleSets > vmsstest1 > virtualMachines
 
-* Azure PowerShell - Utilisez cette tooget commande certaines informations :
+* Azure PowerShell : utilisez cette commande pour obtenir des informations :
 
   ```powershell
   Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
@@ -571,28 +571,28 @@ Vous pouvez obtenir des informations sur les jeux de mise à l’échelle de mac
   Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceView
   ```
 
-* Se connecter machine virtuelle distincte de toohello comme vous le feriez pour n’importe quel autre ordinateur et vous pouvez ensuite accéder à distance virtuels hello dans toomonitor hello échelle ensemble des processus individuels.
+* Connectez-vous à la machine virtuelle séparée comme vous le feriez pour n’importe quel autre ordinateur. Vous pouvez ensuite accéder à distance aux machines virtuelles du jeu de mise à l’échelle pour surveiller des processus individuels.
 
 > [!NOTE]
 > Vous trouverez une API REST complète permettant d’obtenir des informations sur les jeux de mise à l’échelle dans [Ensembles de mise à l’échelle de machine virtuelle](https://msdn.microsoft.com/library/mt589023.aspx)
 
-## <a name="step-7-remove-hello-resources"></a>Étape 7 : Supprimer des ressources de hello
-Vous êtes facturé pour les ressources utilisées dans Azure, il est toujours ressource toodelete bonnes pratiques qui n’est plus nécessaires. Vous n’avez pas besoin toodelete chaque ressource séparément à partir d’un groupe de ressources. Vous pouvez supprimer le groupe de ressources hello et toutes ses ressources sont automatiquement supprimés.
+## <a name="step-7-remove-the-resources"></a>Étape 7 : supprimer les ressources
+Étant donné que les ressources utilisées dans Microsoft Azure vous sont facturées, il est toujours conseillé de supprimer les ressources qui ne sont plus nécessaires. Vous n’avez pas besoin de supprimer séparément les ressources d’un groupe de ressources. Vous pouvez supprimer le groupe de ressources pour supprimer automatiquement toutes ses ressources.
 
   ```powershell
   Remove-AzureRmResourceGroup -Name vmsstestrg1
   ```
 
-Si vous souhaitez tookeep votre groupe de ressources, vous pouvez supprimer uniquement à la définition de la montée en puissance hello.
+Si vous souhaitez conserver votre groupe de ressources, vous pouvez supprimer uniquement le jeu de mise à l’échelle.
 
   ```powershell
   Remove-AzureRmVmss -ResourceGroupName "resource group name" –VMScaleSetName "scale set name"
   ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Gérer ensemble d’échelle hello que vous venez de créée à l’aide des informations de hello dans [gérer des ordinateurs virtuels dans un ensemble d’échelle de Machine virtuelle](virtual-machine-scale-sets-windows-manage.md).
+* Gérez le jeu de mise à l’échelle que vous avez créé à l’aide des informations figurant dans [Gérer des machines dans un jeu de mise à l’échelle de machines virtuelles](virtual-machine-scale-sets-windows-manage.md).
 * En savoir plus sur la mise à l’échelle verticale en consultant l’article [Mise à l’échelle verticale avec des jeux de mise à l’échelle de machines virtuelles](virtual-machine-scale-sets-vertical-scale-reprovision.md)
 * Découvrez des exemples de fonctionnalités de surveillance Azure Monitor dans les [exemples de démarrage rapide d’Azure Monitor PowerShell](../monitoring-and-diagnostics/insights-powershell-samples.md)
-* En savoir plus sur les fonctionnalités de notification de [utiliser échelle actions toosend par courrier électronique et webhook des notifications d’alerte dans le moniteur de Azure](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)
-* Découvrez comment trop[toosend par courrier électronique et webhook des notifications d’alerte de les journaux d’audit d’utilisation dans le moniteur de Azure](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
+* Pour en savoir plus sur les fonctionnalités de notification, consultez [Utilisation d’actions de mise à l’échelle automatique pour envoyer des notifications d’alerte webhook et par courrier électronique dans Azure Monitor](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)
+* Découvrez comment [utiliser les journaux d’audit pour envoyer des notifications d’alerte webhook et par courrier électronique dans Azure Monitor](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
 

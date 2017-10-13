@@ -1,5 +1,5 @@
 ---
-title: "aaaAMQP 1.0 dans les opérations de réponse de demande de Service Bus de Azure | Documents Microsoft"
+title: "AMQP 1.0 dans les opérations basées sur les requêtes-réponses d’Azure Service Bus | Microsoft Docs"
 description: "Liste des opérations basées sur les requêtes-réponses de Microsoft Azure Service Bus."
 services: service-bus-messaging
 documentationcenter: na
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/27/2017
 ms.author: sethm
-ms.openlocfilehash: e4f26219c53b0c4172747af683fe511d6366ff2d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 756565b3da6e0a818d1ee3d5e17f942d96be14f0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="amqp-10-in-microsoft-azure-service-bus-request-response-based-operations"></a>AMQP 1.0 dans Microsoft Azure Service Bus : opérations basées sur les requêtes-réponses
 
-Cette rubrique définit la liste hello des opérations de demande/réponse de Microsoft Azure Service Bus. Ces informations sont basées sur brouillon hello AMQP Management Version 1.0.  
+Cette rubrique définit la liste des opérations basées sur les requêtes-réponses de Microsoft Azure Service Bus. Ces informations sont basées sur la première ébauche d’AMQP Management Version 1.0.  
   
-Pour plus d’informations au niveau du câble AMQP 1.0 protocole, qui explique comment le Bus de Service implémente et s’appuie sur hello spécifications OASIS AMQP, consultez hello [AMQP 1.0 dans Azure Service Bus et concentrateurs d’événements guide de protocole](service-bus-amqp-protocol-guide.md).  
+Pour un guide détaillé sur le protocole AMQP 1.0 au niveau des câbles qui explique comment Service Bus implémente et s’appuie sur la spécification technique AMQP OASIS, consultez le [Guide du protocole AMQP 1.0 dans Azure Service Bus et Event Hubs](service-bus-amqp-protocol-guide.md).  
   
 ## <a name="concepts"></a>Concepts  
   
 ### <a name="entity-description"></a>Description d’entité  
 
-Une description de l’entité fait référence à un Bus des services de tooeither [classe QueueDescription](/dotnet/api/microsoft.servicebus.messaging.queuedescription), [TopicDescription classe](/dotnet/api/microsoft.servicebus.messaging.topicdescription), ou [SubscriptionDescription classe](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription) objet.  
+Une description d’entité fait référence à un objet Service Bus [classe QueueDescription](/dotnet/api/microsoft.servicebus.messaging.queuedescription), [classe TopicDescription](/dotnet/api/microsoft.servicebus.messaging.topicdescription), ou [Classe SubscriptionDescription](/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription).  
   
 ### <a name="brokered-message"></a>Message réparti  
 
-Représente un message dans le Bus des services, qui est mappé tooan AMQP message. mappage de Hello est défini dans hello [guide de protocole de Service Bus AMQP](service-bus-amqp-protocol-guide.md).  
+Représente un message Service Bus mappé à un message AMQP. Le mappage est défini dans le [guide du protocole AMQP de Service Bus](service-bus-amqp-protocol-guide.md).  
   
-## <a name="attach-tooentity-management-node"></a>Attacher le nœud de gestion tooentity  
+## <a name="attach-to-entity-management-node"></a>Attacher à un nœud de gestion d’entité  
 
-Toutes les opérations de hello décrites dans ce document suivent un modèle demande/réponse, sont incluses dans l’étendue tooan entité et nécessitent l’attachement du nœud de gestion d’entité tooan.  
+Toutes les opérations décrites dans ce document suivent un modèle demande/réponse sont limitées à une entité et nécessitent l’attachement à un nœud de gestion d’entité.  
   
 ### <a name="create-link-for-sending-requests"></a>Créer le lien pour l’envoi des demandes  
 
-Crée un nœud de gestion toohello lien pour envoyer des demandes.  
+Crée un lien vers le nœud de gestion pour envoyer des demandes.  
   
 ```  
 requestLink = session.attach(     
@@ -55,7 +55,7 @@ role: SENDER,
   
 ### <a name="create-link-for-receiving-responses"></a>Créer le lien pour la réception des réponses  
 
-Crée un lien pour recevoir des réponses à partir du nœud de gestion hello.  
+Crée un lien pour la réception des réponses à partir du nœud de gestion.  
   
 ```  
 responseLink = session.attach(    
@@ -85,13 +85,13 @@ requestLink.sendTransfer(
   
 ### <a name="receive-a-response-message"></a>Recevoir un message de réponse  
 
-Reçoit le message de réponse hello à partir du lien de réponse hello.  
+Reçoit le message de réponse à partir du lien de réponse.  
   
 ```  
 responseMessage = responseLink.receiveTransfer()  
 ```  
   
-message de réponse Hello est Bonjour suivant du formulaire :
+La réponse présente le format suivant :
   
 ```  
 Message(  
@@ -120,37 +120,37 @@ Les entités Service Bus doivent être traitées comme suit :
   
 ### <a name="message-renew-lock"></a>Verrouillage du renouvellement du message  
 
-Étend le verrou hello d’un message par heure hello spécifié dans la description de l’entité hello.  
+Étend le verrouillage d’un message à la durée spécifiée dans la description d’entité.  
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:renew-lock`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
- corps du message de demande Hello doit se composer d’une section amqp-valeur contenant un mappage avec hello suivant entrées :  
+ Le corps du message de requête doit contenir une section amqp-value comprenant un mappage avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
-|`lock-tokens`|tableau d’uuid|Oui|Toorenew de jetons de verrou de message.|  
+|`lock-tokens`|tableau d’uuid|Oui|Jetons de verrouillage de message à renouveler.|  
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK-réussite, sinon échec.|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
-corps du message de réponse Hello doit se composer d’une section amqp-valeur contenant un mappage avec hello suivant entrées :  
+Le corps du message de réponse doit contenir une section amqp-value comprenant un mappage avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
-|expirations|tableau d’horodatage|Oui|Message verrou jeton nouvelle expiration correspondante toohello demande verrou de jetons.|  
+|expirations|tableau d’horodatage|Oui|La nouvelle expiration du jeton de verrouillage de message correspond désormais aux jetons de verrouillage des demandes.|  
   
 ### <a name="peek-message"></a>Lire furtivement un message  
 
@@ -158,36 +158,36 @@ Lit furtivement les messages sans les verrouiller.
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:peek-message`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
-|`from-sequence-number`|long|Oui|Numéro de séquence du lire toostart.|  
-|`message-count`|int|Oui|Nombre maximal de messages toopeek.|  
+|`from-sequence-number`|long|Oui|Numéro de séquence à partir duquel commencer la lecture furtive.|  
+|`message-count`|int|Oui|Nombre maximal de messages à lire furtivement.|  
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK : a plus de messages<br /><br /> 0xcc : aucun contenu – plus de messages|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
-corps de message de réponse Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de réponse doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |Cloud vers appareil|liste des mappages|Oui|Liste de messages dans laquelle chaque mappage représente un message.|  
   
-carte Hello représentant un message doit contenir hello suivant entrées :  
+Le mappage représentant un message doit contenir les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -199,20 +199,20 @@ Messages de planification.
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:schedule-message`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |Cloud vers appareil|liste des mappages|Oui|Liste de messages dans laquelle chaque mappage représente un message.|  
   
-carte Hello représentant un message doit contenir hello suivant entrées :  
+Le mappage représentant un message doit contenir les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -223,18 +223,18 @@ carte Hello représentant un message doit contenir hello suivant entrées :
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK-réussite, sinon échec.|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
-corps de message de réponse Hello doit être un **amqp-valeur** section contenant un mappage avec hello suivant entrées :  
+Le corps du message de réponse doit contenir une section **amqp-value** comprenant un mappage avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
-|sequence-numbers|tableau de type long|Oui|Numéro de séquence des messages planifiés. Numéro de séquence est toocancel utilisé.|  
+|sequence-numbers|tableau de type long|Oui|Numéro de séquence des messages planifiés. Le numéro de séquence est utilisé pour annuler.|  
   
 ### <a name="cancel-scheduled-message"></a>Annuler le message planifié  
 
@@ -242,50 +242,50 @@ Annule les messages planifiés.
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:cancel-scheduled-message`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
-|sequence-numbers|tableau de type long|Oui|Numéros de séquence de messages planifiés toocancel.|  
+|sequence-numbers|tableau de type long|Oui|Numéros de séquence des messages planifiés pour annuler.|  
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK-réussite, sinon échec.|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
-corps de message de réponse Hello doit être un **amqp-valeur** section contenant un mappage avec hello suivant entrées :  
+Le corps du message de réponse doit contenir une section **amqp-value** comprenant un mappage avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
-|sequence-numbers|tableau de type long|Oui|Numéro de séquence des messages planifiés. Numéro de séquence est toocancel utilisé.|  
+|sequence-numbers|tableau de type long|Oui|Numéro de séquence des messages planifiés. Le numéro de séquence est utilisé pour annuler.|  
   
 ## <a name="session-operations"></a>Opérations de session  
   
 ### <a name="session-renew-lock"></a>Verrouillage de renouvellement de session  
 
-Étend le verrou hello d’un message par heure hello spécifié dans la description de l’entité hello.  
+Étend le verrouillage d’un message à la durée spécifiée dans la description d’entité.  
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:renew-session-lock`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -293,14 +293,14 @@ corps de message de demande Hello doit être un **amqp-valeur** section contenan
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK : a plus de messages<br /><br /> 0xcc : aucun contenu – plus de messages|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
-corps de message de réponse Hello doit être un **amqp-valeur** section contenant un mappage avec hello suivant entrées :  
+Le corps du message de réponse doit contenir une section **amqp-value** comprenant un mappage avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -312,37 +312,37 @@ Lit furtivement les messages de session sans les verrouiller.
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:peek-message`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
-|from-sequence-number|long|Oui|Numéro de séquence du lire toostart.|  
-|message-count|int|Oui|Nombre maximal de messages toopeek.|  
+|from-sequence-number|long|Oui|Numéro de séquence à partir duquel commencer la lecture furtive.|  
+|message-count|int|Oui|Nombre maximal de messages à lire furtivement.|  
 |session-id|string|Oui|ID de la session.|  
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK : a plus de messages<br /><br /> 0xcc : aucun contenu – plus de messages|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
-corps de message de réponse Hello doit être un **amqp-valeur** section contenant un mappage avec hello suivant entrées :  
+Le corps du message de réponse doit contenir une section **amqp-value** comprenant un mappage avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |Cloud vers appareil|liste des mappages|Oui|Liste de messages dans laquelle chaque mappage représente un message.|  
   
- carte Hello représentant un message doit contenir hello suivant entrées :  
+ Le mappage représentant un message doit contenir les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -350,18 +350,18 @@ corps de message de réponse Hello doit être un **amqp-valeur** section contena
   
 ### <a name="set-session-state"></a>Définir l’état d’une session  
 
-Jeux de hello état d’une session.  
+Définit l’état d’une session.  
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:peek-message`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -370,27 +370,27 @@ corps de message de demande Hello doit être un **amqp-valeur** section contenan
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK-réussite, sinon échec|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
 ### <a name="get-session-state"></a>Obtenir l’état d’une session  
 
-Obtient l’état de hello d’une session.  
+Obtient l’état d’une session.  
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:get-session-state`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -398,14 +398,14 @@ corps de message de demande Hello doit être un **amqp-valeur** section contenan
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK-réussite, sinon échec|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
-corps de message de réponse Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de réponse doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -417,31 +417,31 @@ corps de message de réponse Hello doit être un **amqp-valeur** section contena
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:get-message-sessions`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
-|last-updated-time|timestamp|Oui|Filtrer les sessions uniquement tooinclude mis à jour après un moment donné.|  
+|last-updated-time|timestamp|Oui|Filtre permettant d’inclure uniquement les sessions mises à jour après une durée donnée.|  
 |skip|int|Oui|Ignore un certain nombre de sessions.|  
 |top|int|Oui|Nombre maximal de sessions.|  
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK : a plus de messages<br /><br /> 0xcc : aucun contenu – plus de messages|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
-corps de message de réponse Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de réponse doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -454,35 +454,35 @@ corps de message de réponse Hello doit être un **amqp-valeur** section contena
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:add-rule`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |rule-name|string|Oui|Nom de règle, à l’exception des noms d’abonnement et de rubrique.|  
 |rule-description|map|Oui|Description de la règle comme indiqué dans la section suivante.|  
   
-Hello **description de la règle** mappage doit inclure hello suivant entrées, où **sql-filtre** et **filtre de corrélation** s’excluent mutuellement :  
+Le mappage **rule-description** doit inclure les entrées suivantes, où **sql-filter** et **correlation-filter** s’excluent mutuellement :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
-|sql-filter|map|Oui|`sql-filter`, comme indiqué dans la section suivante de hello.|  
-|correlation-filter|map|Oui|`correlation-filter`, comme indiqué dans la section suivante de hello.|  
-|sql-rule-action|map|Oui|`sql-rule-action`, comme indiqué dans la section suivante de hello.|  
+|sql-filter|map|Oui|`sql-filter`, comme indiqué dans la section suivante.|  
+|correlation-filter|map|Oui|`correlation-filter`, comme indiqué dans la section suivante.|  
+|sql-rule-action|map|Oui|`sql-rule-action`, comme indiqué dans la section suivante.|  
   
-mappage de filtre sql Hello doit inclure hello suivant entrées :  
+Le mappage sql-filter doit inclure les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |expression|string|Oui|Expression de filtre Sql.|  
   
-Hello **filtre de corrélation** mappage doit inclure au moins un des hello suivant entrées :  
+Le mappage **correlation-filter** doit inclure au moins l’une des entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -494,9 +494,9 @@ Hello **filtre de corrélation** mappage doit inclure au moins un des hello suiv
 |session-id|string|Non||  
 |reply-to-session-id|string|Non||  
 |content-type|string|Non||  
-|properties|map|Non|Mappe tooService Bus [BrokeredMessage.Properties](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Properties).|  
+|properties|map|Non|Mappage sur [BrokeredMessage.Properties](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Properties) de Service Bus.|  
   
-Hello **sql d’action de règle** mappage doit inclure hello suivant entrées :  
+Le mappage **sql-rule-action** doit inclure les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -504,25 +504,25 @@ Hello **sql d’action de règle** mappage doit inclure hello suivant entrées 
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK-réussite, sinon échec|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
 ### <a name="remove-rule"></a>Supprimer la règle  
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:remove-rule`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -530,12 +530,12 @@ corps de message de demande Hello doit être un **amqp-valeur** section contenan
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK-réussite, sinon échec|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
 ## <a name="deferred-message-operations"></a>Opérations relatives aux messages différés  
   
@@ -545,14 +545,14 @@ Reçoit des messages différés par numéro de séquence.
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:receive-by-sequence-number`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -561,20 +561,20 @@ corps de message de demande Hello doit être un **amqp-valeur** section contenan
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK-réussite, sinon échec|  
-|statusDescription|string|Non|Description du statut de hello.|  
+|statusDescription|string|Non|Description de l’état.|  
   
-corps de message de réponse Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de réponse doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |Cloud vers appareil|liste des mappages|Oui|Liste de messages dans laquelle chaque mappage représente un message.|  
   
-carte Hello représentant un message doit contenir hello suivant entrées :  
+Le mappage représentant un message doit contenir les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
@@ -583,44 +583,44 @@ carte Hello représentant un message doit contenir hello suivant entrées :
   
 ### <a name="update-disposition-status"></a>Mettre à jour le statut de disposition  
 
-Met à jour d’état de la disposition des messages différés hello.  
+Met à jour le statut de disposition des messages différés.  
   
 #### <a name="request"></a>Demande  
 
-message de demande Hello doit inclure hello application propriétés suivantes :  
+Le message de requête doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |operation|string|Oui|`com.microsoft:update-disposition`|  
 |`com.microsoft:server-timeout`|uint|Non|Délai d’expiration du serveur de l’opération en millisecondes.|  
   
-corps de message de demande Hello doit être un **amqp-valeur** section contenant un **carte** avec hello suivant entrées :  
+Le corps du message de requête doit contenir une section **amqp-value** comprenant un **mappage** avec les entrées suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |disposition-status|string|Oui|Terminé<br /><br /> abandonné<br /><br /> interrompu|  
-|lock-tokens|tableau d’uuid|Oui|Statut de disposition de tooupdate de jetons de verrou de message.|  
-|deadletter-reason|string|Non|Peut être définie si l’état de la disposition est défini trop**suspendu**.|  
-|deadletter-description|string|Non|Peut être définie si l’état de la disposition est défini trop**suspendu**.|  
-|properties-to-modify|map|Non|Liste de Service Bus répartie toomodify des propriétés de message.|  
+|lock-tokens|tableau d’uuid|Oui|Jetons de verrouillage de message pour mettre à jour le statut de disposition.|  
+|deadletter-reason|string|Non|Peut être défini si le statut de disposition est défini sur **interrompu**.|  
+|deadletter-description|string|Non|Peut être défini si le statut de disposition est défini sur **interrompu**.|  
+|properties-to-modify|map|Non|Liste des propriétés de message réparti Service Bus à modifier.|  
   
 #### <a name="response"></a>Réponse  
 
-message de réponse Hello doit inclure hello application propriétés suivantes :  
+Le message de réponse doit inclure les propriétés d’application suivantes :  
   
 |Clé|Type de valeur|Requis|Contenu de la valeur|  
 |---------|----------------|--------------|--------------------|  
 |statusCode|int|Oui|Code de réponse HTTP [RFC2616]<br /><br /> 200 : OK-réussite, sinon échec|  
-|statusDescription|string|Non|Description du statut de hello.|
+|statusDescription|string|Non|Description de l’état.|
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-toolearn en savoir plus sur AMQP et Service Bus, visitez hello suivant liens :
+Pour en savoir plus sur AMQP et Service Bus, consultez les liens suivants :
 
-* [Vue d’ensemble du protocole AMQP de Service Bus]
+* [Vue d’ensemble d’AMQP de Service Bus]
 * [Prise en charge d’AMQP 1.0 dans les rubriques et files d’attente partitionnées Service Bus]
 * [AMQP dans Service Bus pour Windows Server]
 
-[Vue d’ensemble du protocole AMQP de Service Bus]: service-bus-amqp-overview.md
+[Vue d’ensemble d’AMQP de Service Bus]: service-bus-amqp-overview.md
 [Prise en charge d’AMQP 1.0 dans les rubriques et files d’attente partitionnées Service Bus]: service-bus-partitioned-queues-and-topics-amqp-overview.md
 [AMQP dans Service Bus pour Windows Server]: https://msdn.microsoft.com/library/dn574799.asp

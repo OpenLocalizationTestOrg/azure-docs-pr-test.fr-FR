@@ -1,5 +1,5 @@
 ---
-title: "aaaSecure une base de données SQL Data Warehouse | Documents Microsoft"
+title: "Sécuriser une base de données dans SQL Data Warehouse | Microsoft Docs"
 description: "Conseils relatifs à la sécurisation d’une base de données dans Microsoft Azure SQL Data Warehouse, dans le cadre du développement de solutions."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 5ef4d760e00be46bfe7808bc95dbe1e4b3a51165
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6ea45c40bc428282faf24b4a08f8b0d345adb3fd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="secure-a-database-in-sql-data-warehouse"></a>Sécuriser une base de données dans SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -30,72 +30,72 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Cet article explique les concepts de base hello de la sécurisation de votre base de données de l’entrepôt de données SQL Azure. Plus spécifiquement, cet article vous offre un aperçu sur les ressources dédiées à la limitation de l’accès, à la protection des données et à la surveillance des activités sur une base de données.
+Cet article présente les principes de base de la sécurisation de votre base de données Microsoft Azure SQL Data Warehouse. Plus spécifiquement, cet article vous offre un aperçu sur les ressources dédiées à la limitation de l’accès, à la protection des données et à la surveillance des activités sur une base de données.
 
 ## <a name="connection-security"></a>Sécurité de la connexion
-Sécurité de connexion fait référence à toohow vous limitez et sécurisez les connexions tooyour base de données à l’aide de règles de pare-feu et de chiffrement de la connexion.
+L’expression « sécurité de la connexion » fait référence au mode de restriction et de sécurisation appliqué aux connexions à votre base de données, au moyen de règles de pare-feu et d’une fonction de chiffrement des connexions.
 
-Règles de pare-feu sont utilisés par les deux hello hello et serveur de base de données tooreject tentatives de connexion à partir d’adresses IP qui n’ont pas été explicitement dans la liste approuvée. tooallow des connexions à partir de votre application ou l’adresse IP publique de l’ordinateur client, vous devez d’abord créer une règle de pare-feu de niveau serveur à l’aide de hello portail Azure, les API REST ou PowerShell. Comme meilleure pratique, vous devez restreindre les plages d’adresses IP hello autorisés via le pare-feu de votre serveur autant que possibles.  tooaccess Azure SQL Data Warehouse à partir de votre ordinateur local, assurez-vous que le pare-feu hello sur votre réseau et l’ordinateur local autorise les communications sortantes sur le port TCP 1433.  Pour plus d’informations, consultez [Pare-feu d’Azure SQL Database][Azure SQL Database firewall], [sp_set_firewall_rule][sp_set_firewall_rule] et [sp_set_database_firewall_rule][sp_set_database_firewall_rule].
+Les règles de pare-feu sont utilisées par le serveur et la base de données pour refuser toute tentative de connexion d’une adresse IP qui ne fait pas partie d’une liste approuvée explicite. Pour permettre une connexion depuis l’adresse IP publique de l’ordinateur client ou votre application, vous devez d’abord créer une règle de pare-feu au niveau du serveur à l’aide du portail Azure, d’une API REST ou de PowerShell. Nous vous recommandons, à titre de meilleure pratique, de limiter autant que possible le nombre de plages d’adresses IP autorisées à traverser le pare-feu de votre serveur.  Pour accéder à SQL Data Warehouse à partir de votre ordinateur local, vérifiez que le pare-feu sur votre réseau et l’ordinateur local autorise les communications sortantes sur le port TCP 1433.  Pour plus d’informations, consultez [Pare-feu d’Azure SQL Database][Azure SQL Database firewall], [sp_set_firewall_rule][sp_set_firewall_rule] et [sp_set_database_firewall_rule][sp_set_database_firewall_rule].
 
-Connexions tooyour SQL Data Warehouse sont chiffrées par défaut.  Chiffrement modification toodisable des paramètres de connexion sont ignorés.
+Par défaut, les connexions à SQL Data Warehouse sont chiffrées.  La modification des paramètres de connexion pour désactiver le chiffrement est ignorée.
 
 ## <a name="authentication"></a>Authentification
-L’authentification fait référence toohow vous prouver votre identité lors de la connexion de base de données toohello. SQL Data Warehouse prend actuellement en charge l’authentification SQL Server avec un nom d’utilisateur et un mot de passe, ainsi qu’Azure Active Directory. 
+Le terme « authentification » fait référence au processus de validation de votre identité lorsque vous vous connectez à la base de données. SQL Data Warehouse prend actuellement en charge l’authentification SQL Server avec un nom d’utilisateur et un mot de passe, ainsi qu’Azure Active Directory. 
 
-Lorsque vous avez créé un serveur logique de hello pour votre base de données, vous avez spécifié un compte de connexion « server admin » avec un nom d’utilisateur et un mot de passe. À l’aide de ces informations d’identification, vous pouvez authentifier tooany de base de données sur ce serveur en tant que propriétaire de base de données hello ou « dbo » via l’authentification SQL Server.
+Lorsque vous avez créé un serveur logique pour votre base de données, vous avez spécifié un compte de connexion « Admin serveur », associé à un nom d’utilisateur et à un mot de passe. À l’aide de ces informations d’identification, vous pouvez vous authentifier auprès de n’importe quelle base de données sur ce serveur, en tant que propriétaire de la base de données, ou « dbo » via l’authentification SQL Server.
 
-Toutefois, comme il est recommandé aux utilisateurs de votre organisation doivent utiliser un compte différent de tooauthenticate. De cette manière, vous pouvez limiter les autorisations hello toohello application et réduire les risques de hello d’activités malveillantes au cas où votre code d’application est d’attaque par injection de SQL tooa vulnérable. 
+Toutefois, au titre de meilleure pratique, il est recommandé que les utilisateurs de votre organisation utilisent un compte différent pour s’authentifier. Cela vous permet de limiter les autorisations accordées à cette application et de réduire les risques d’activité malveillante, au cas où le code de votre application serait vulnérable à une attaque par injection de code SQL. 
 
-toocreate un utilisateur authentifié de SQL Server, connexion toohello **master** sur votre serveur avec votre connexion d’administrateur de serveur de base de données et créez une nouvelle connexion serveur.  En outre, il est une bonne idée de toocreate un utilisateur dans la base de données master hello pour les utilisateurs d’Azure SQL Data Warehouse. Création d’un utilisateur dans master permet une toologin d’utilisateur à l’aide des outils tels que SSMS sans spécifier un nom de base de données.  Cela leur permet également toouse hello objet explorer tooview toutes les bases de données sur un serveur SQL server.
+Pour créer un utilisateur authentifié par SQL Server, connectez-vous à la base de données **master** sur votre serveur avec votre identifiant de connexion d’administrateur du serveur, et créez un nouvel identifiant de connexion au serveur.  En outre, il est judicieux de créer un utilisateur dans la base de données master pour les utilisateurs d’Azure SQL Data Warehouse. La création d’un utilisateur dans la base de données master permet à un utilisateur de se connecter à l’aide d’outils tels que SSMS sans spécifier un nom de base de données.  Elle permet également d’utiliser l’Explorateur d’objets pour afficher toutes les bases de données sur un serveur SQL Server.
 
 ```sql
--- Connect toomaster database and create a login
+-- Connect to master database and create a login
 CREATE LOGIN ApplicationLogin WITH PASSWORD = 'Str0ng_password';
 CREATE USER ApplicationUser FOR LOGIN ApplicationLogin;
 ```
 
-Puis, connectez tooyour **base de données SQL Data Warehouse** avec votre connexion d’administration de serveur et créez un utilisateur de base de données en fonction de la connexion au serveur hello vous venez de créer.
+Ensuite, connectez-vous à votre **base de données SQL Data Warehouse** avec votre identifiant de connexion d’administrateur du serveur, puis créez un utilisateur de base de données basé sur l’identifiant de connexion au serveur que vous venez de créer.
 
 ```sql
--- Connect tooSQL DW database and create a database user
+-- Connect to SQL DW database and create a database user
 CREATE USER ApplicationUser FOR LOGIN ApplicationLogin;
 ```
 
-Si un utilisateur prévoyez d’effectuer des opérations supplémentaires telles que la création de connexions ou la création de nouvelles bases de données, ils devront également toobe affecté toohello `Loginmanager` et `dbmanager` rôles dans la base de données master hello. Pour plus d’informations sur ces autres rôles et l’authentification tooa de base de données SQL, consultez [gestion des bases de données et des connexions dans la base de données SQL Azure][Managing databases and logins in Azure SQL Database].  Pour plus d’informations sur Azure AD pour l’entrepôt de données SQL, consultez [connexion tooSQL données entrepôt par à l’aide d’authentification Azure Active Directory][Connecting tooSQL Data Warehouse By Using Azure Active Directory Authentication].
+Si un utilisateur effectue d’autres opérations telles que la création de connexions ou d’une base de données, il devra également être affecté aux rôles `Loginmanager` et `dbmanager` dans la base de données master. Pour en savoir plus sur ces rôles supplémentaires et sur l’authentification auprès d’une base de données SQL, consultez la rubrique [Gestion des bases de données et connexions dans Azure SQL Database][Managing databases and logins in Azure SQL Database].  Pour plus de détails sur Azure AD pour SQL Data Warehouse, consultez [Connexion à SQL Data Warehouse avec l’authentification Azure Active Directory][Connecting to SQL Data Warehouse By Using Azure Active Directory Authentication].
 
 ## <a name="authorization"></a>Autorisation
-Autorisation fait référence toowhat vous pouvez effectuer dans une base de données Azure SQL Data Warehouse, et cela est contrôlé par les autorisations et les appartenances aux rôles de votre compte d’utilisateur. Comme meilleure pratique, vous devriez hello d’utilisateurs des privilèges minimaux nécessaires. Azure SQL Data Warehouse rend cette toomanage facile avec les rôles dans T-SQL :
+Le terme « autorisation » fait référence aux actions que vous pouvez exécuter dans une base de données Microsoft Azure SQL Data Warehouse, actions contrôlées par les autorisations et l’appartenance au rôle de votre compte utilisateur. Nous vous recommandons, à titre de meilleure pratique, d’accorder aux utilisateurs des privilèges aussi réduits que possible. La base de données Microsoft Azure SQL Data Warehouse facilite la gestion des rôles dans T-SQL :
 
 ```sql
-EXEC sp_addrolemember 'db_datareader', 'ApplicationUser'; -- allows ApplicationUser tooread data
-EXEC sp_addrolemember 'db_datawriter', 'ApplicationUser'; -- allows ApplicationUser toowrite data
+EXEC sp_addrolemember 'db_datareader', 'ApplicationUser'; -- allows ApplicationUser to read data
+EXEC sp_addrolemember 'db_datawriter', 'ApplicationUser'; -- allows ApplicationUser to write data
 ```
 
-compte d’administrateur de serveur Hello que vous connectez à l’aide est un membre de db_owner ayant autorité toodo quoi que ce soit dans la base de données hello. Enregistrez ce compte pour l’utiliser lors du déploiement des mises à niveau de schéma et d’autres opérations de gestion. Utiliser le compte de « ApplicationUser » de hello avec tooconnect d’autorisations plus limitée à partir de votre base de données application toohello avec hello des privilèges minimaux requis par votre application.
+Le compte d’administrateur du serveur avec lequel vous vous connectez appartient au groupe « db_owner », qui est autorisé à effectuer tout type d’opérations dans la base de données. Enregistrez ce compte pour l’utiliser lors du déploiement des mises à niveau de schéma et d’autres opérations de gestion. Utilisez le compte « ApplicationUser », doté d’autorisations plus limitées, pour vous connecter à la base de données à partir de votre application, en bénéficiant du niveau de privilèges le moins élevé requis par cette dernière.
 
-Il existe façons toofurther limite un utilisateur peut faire avec la base de données SQL Azure :
+Il existe d’autres méthodes pour limiter le nombre d’actions que peut réaliser un utilisateur avec la base de données SQL Microsoft Azure :
 
-* Niveau de granularité [autorisations] [ Permissions] vous permettent de contrôle les opérations que vous pouvez sur des colonnes, tables, vues, procédures et autres objets de base de données hello. Utilisation des autorisations granulaires toohave hello un contrôle optimal et accordez hello les autorisations minimales nécessaires. système d’autorisation granulaire Hello est quelque peu complexe et nécessite quelques toouse étude efficacement.
-* [Rôles de base de données] [ Database roles] autres que db_datareader et db_datawriter peuvent être utilisé toocreate les comptes d’utilisateur application plus puissants ou des comptes de gestion moins puissants. rôles de base de données fixe intégrée Hello fournissent un moyen simple toogrant des autorisations, mais peuvent entraîner l’octroi d’autorisations plus que nécessaire.
-* [Procédures stockées] [ Stored procedures] peut être utilisé toolimit actions hello qui peuvent être effectuées sur la base de données hello.
+* Des [autorisations][Permissions] granulaires vous permettent de contrôler les opérations que vous pouvez exécuter sur des colonnes, des tables, des vues, des procédures et d’autres objets individuels dans la base de données. Utilisez les autorisations granulaires pour avoir un contrôle optimal et accordez les autorisations minimales nécessaires. Le système d'autorisation granulaire est quelque peu compliqué et nécessitera un apprentissage avant de pouvoir l’utiliser efficacement.
+* Les [rôles de base de données][Database roles] autres que « db_datareader » et « db_datawriter » peuvent être utilisés pour créer des comptes d’utilisateur plus puissants ou des comptes de gestion moins puissants pour votre application. Les rôles de base de données fixes intégrés offrent un moyen facile d'accorder des autorisations, mais peuvent entraîner l'octroi d'autorisations excessives.
+* Les [procédures stockées][Stored procedures] vous permettent de limiter le nombre d’actions susceptibles d’être exécutées sur la base de données.
 
-Gérer des bases de données et les serveurs logiques dans hello portail classique Azure ou à l’aide des API Azure Resource Manager de hello est contrôlé par les attributions de rôles de votre compte d’utilisateur du portail. Pour en savoir plus à ce sujet, consultez [Contrôle d’accès en fonction du rôle dans le portail Azure][Role-based access control in Azure Portal].
+La gestion des bases de données et serveurs logiques à partir du portail Azure Classic et l’utilisation de l’API Azure Resource Manager sont contrôlées par les affectations associées au rôle de votre compte d’utilisateur sur le portail. Pour en savoir plus à ce sujet, consultez [Contrôle d’accès en fonction du rôle dans le portail Azure][Role-based access control in Azure Portal].
 
 ## <a name="encryption"></a>Chiffrement
-Azure SQL données entrepôt Transparent Data Encryption (TDE) protège contre les menaces hello d’activités malveillantes en effectuant le chiffrement en temps réel et déchiffrement de vos données au repos.  Lorsque vous chiffrez votre base de données, les sauvegardes associées et les fichiers journaux des transactions sont chiffrées sans nécessiter de toutes les applications de tooyour de modifications. Stockage hello d’une base de données entière est chiffré à l’aide d’une clé de chiffrement de base de données hello appelée de clé symétrique. Dans la base de données SQL, clé de chiffrement de base de données hello est protégé par un certificat de serveur intégré. certificat de serveur intégré Hello est unique pour chaque serveur de base de données SQL. Microsoft alterne automatiquement ces certificats au moins tous les 90 jours. algorithme de chiffrement Hello utilisé par SQL Data Warehouse est AES-256. Pour obtenir une description générale du chiffrement transparent des données, consultez la page [Transparent Data Encryption][Transparent Data Encryption].
+Le chiffrement transparent des données de Microsoft Azure SQL Data Warehouse vous aide à vous protéger contre les menaces d’activités malveillantes, par le biais d’un chiffrement et d’un déchiffrement en temps réel de vos données au repos.  Lorsque vous chiffrez votre base de données, les fichiers de sauvegardes et les journaux de transactions associés sont chiffrés, sans que cela ne nécessite de modifications de vos applications. Le chiffrement transparent des données chiffre le stockage d’une base de données entière à l’aide d’une clé symétrique appelée clé de chiffrement de base de données. Dans la base de données SQL, la clé de chiffrement de base de données est protégée par un certificat de serveur intégré. Le certificat de serveur intégré est unique pour chaque serveur de base de données SQL. Microsoft alterne automatiquement ces certificats au moins tous les 90 jours. L’algorithme de chiffrement utilisé par SQL Data Warehouse est AES-256. Pour obtenir une description générale du chiffrement transparent des données, consultez la page [Transparent Data Encryption][Transparent Data Encryption].
 
-Vous pouvez chiffrer votre base de données à l’aide de hello [Azure Portal] [ Encryption with Portal] ou [T-SQL][Encryption with TSQL].
+Vous pouvez chiffrer votre base de données à l’aide du [portail Azure][Encryption with Portal] ou de [T-SQL][Encryption with TSQL].
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations et des exemples sur la connexion tooyour SQL Data Warehouse avec différents protocoles, consultez [connecter tooSQL Data Warehouse][Connect tooSQL Data Warehouse].
+Pour plus d’informations sur la connexion à SQL Data Warehouse avec différents protocoles et voir des exemples, consultez [Se connecter à SQL Data Warehouse][Connect to SQL Data Warehouse].
 
 <!--Image references-->
 
 <!--Article references-->
-[Connect tooSQL Data Warehouse]: ./sql-data-warehouse-connect-overview.md
+[Connect to SQL Data Warehouse]: ./sql-data-warehouse-connect-overview.md
 [Encryption with Portal]: ./sql-data-warehouse-encryption-tde.md
 [Encryption with TSQL]: ./sql-data-warehouse-encryption-tde-tsql.md
-[Connecting tooSQL Data Warehouse By Using Azure Active Directory Authentication]: ./sql-data-warehouse-authentication.md
+[Connecting to SQL Data Warehouse By Using Azure Active Directory Authentication]: ./sql-data-warehouse-authentication.md
 
 <!--MSDN references-->
 [Azure SQL Database firewall]: https://msdn.microsoft.com/library/ee621782.aspx

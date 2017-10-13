@@ -1,6 +1,6 @@
 ---
-title: "contenu d’Azure Media Services aaaPublish à l’aide de REST"
-description: "Découvrez comment toocreate un localisateur de toobuild utilisé une URL de diffusion en continu. code de Hello utilise l’API REST."
+title: "Publier du contenu Azure Media Services à l’aide de REST"
+description: "Apprenez à créer un localisateur utilisé pour générer une URL de diffusion en continu. Le code utilise l’API REST."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: f849e21b3103b9b33bc652e886b2016ea495b19a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d1e0a112040f6aa4cfa9e8c323507b1c0a223f3e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="publish-azure-media-services-content-using-rest"></a>Publier du contenu Azure Media Services à l’aide de REST
 > [!div class="op_single_selector"]
@@ -29,40 +29,40 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a name="overview"></a>Vue d'ensemble
-Vous pouvez diffuser un MP4 à débit adaptatif défini par la création d’un localisateur de diffusion en continu à la demande et la création d’une URL de diffusion en continu. Hello [encodage d’un élément multimédia](media-services-rest-encode-asset.md) rubrique montre comment définie les tooencode dans un MP4 à débit adaptatif. Si votre contenu est chiffré, configurez la stratégie de livraison d’éléments multimédias (comme décrit dans [cette](media-services-rest-configure-asset-delivery-policy.md) rubrique) avant de créer un localisateur. 
+Vous pouvez diffuser un MP4 à débit adaptatif défini par la création d’un localisateur de diffusion en continu à la demande et la création d’une URL de diffusion en continu. La rubrique [Encodage d’un élément multimédia](media-services-rest-encode-asset.md) indique comment encoder un ensemble de fichiers MP4 à débit adaptatif. Si votre contenu est chiffré, configurez la stratégie de livraison d’éléments multimédias (comme décrit dans [cette](media-services-rest-configure-asset-delivery-policy.md) rubrique) avant de créer un localisateur. 
 
-Vous pouvez également utiliser une URL de toobuild que les fichiers de point de tooMP4 qui peuvent être téléchargé progressivement de diffusion en continu à la demande.  
+Vous pouvez également utiliser un localisateur de diffusion en continu à la demande pour créer des URL qui pointent vers les fichiers MP4 pouvant être téléchargés progressivement.  
 
-Cette rubrique montre comment toocreate un localisateur de diffusion en continu à la demande de commande toopublish votre élément multimédia et le générer un Smooth Streaming, MPEG DASH et HLS URL de diffusion en continu. Il montre également à chaud toobuild URL de téléchargement progressif.
+Cette rubrique montre comment créer un localisateur de streaming à la demande pour publier votre élément multimédia et créer des URL de diffusion en continu Smooth, MPEG DASH et HLS. Elle explique également la création d’URL de téléchargement progressif.
 
-Hello [suivant](#types) section affiche hello types enum dont les valeurs sont utilisées dans les appels REST hello.   
+La section [suivante](#types) indique les types d’énumération dont les valeurs sont utilisées dans les appels REST.   
 
 > [!NOTE]
 > Lors de l’accès aux entités dans Media Services, vous devez définir les valeurs et les champs d’en-tête spécifiques dans vos requêtes HTTP. Pour plus d'informations, consultez [Installation pour le développement REST API de Media Services](media-services-rest-how-to-use.md).
 > 
 
-## <a name="connect-toomedia-services"></a>Connecter les Services de tooMedia
+## <a name="connect-to-media-services"></a>Connexion à Media Services
 
-Pour plus d’informations sur la façon dont tooconnect toohello AMS API, consultez [hello accès API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Pour savoir comment vous connecter à l’API AMS, consultez [Accéder à l’API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Après vous être connecté toohttps://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI de Media Services. Vous devez effectuer les appels suivants toohello nouvel URI.
+>Après vous être connecté à https://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI Media Services. Vous devez faire d’autres appels au nouvel URI.
 
 ## <a name="create-an-ondemand-streaming-locator"></a>Création d’un localisateur de diffusion en continu à la demande
-toocreate hello localisateur de diffusion en continu à la demande et obtenir l’URL que vous avez besoin de hello toodo suivant :
+Pour créer le localisateur de diffusion en continu à la demande et obtenir les URL, vous devez effectuer les opérations suivantes :
 
-1. Si le contenu de hello est chiffré, définir une stratégie d’accès.
+1. Si le contenu est chiffré, définissez une stratégie d'accès.
 2. Création d’un localisateur de diffusion en continu à la demande.
-3. Si vous envisagez toostream, obtenir hello de diffusion en continu le fichier manifeste (.ism) dans l’élément multimédia de hello. 
+3. Si vous envisagez de diffuser en continu, obtenez le fichier manifeste de diffusion en continu (.ism) dans la ressource. 
    
-   Si vous envisagez de téléchargement de tooprogressively, obtenir les noms de hello de fichiers MP4 dans un élément multimédia de hello. 
-4. Générer le fichier de manifeste toohello URL ou fichiers MP4. 
+   Si vous souhaitez télécharger progressivement, obtenez les noms des fichiers MP4 dans la ressource. 
+4. Création d’URL vers le fichier manifeste ou les fichiers MP4. 
 5. Notez que vous ne pouvez créer un localisateur de diffusion en continu en utilisant une stratégie d’accès qui inclut des autorisations d’écriture ou de suppression.
 
 ### <a name="create-an-access-policy"></a>Définition d’une stratégie d’accès.
 
 >[!NOTE]
->Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser hello ID de stratégie même si vous utilisez toujours hello même jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs sont tooremain prévue en place pendant une longue période (non-téléchargement stratégies). Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .
+>Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser le même ID de stratégie si vous utilisez toujours les mêmes jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs destinées à demeurer en place pendant une longue période (stratégies sans chargement). Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .
 
 Demande :
 
@@ -100,7 +100,7 @@ Réponse :
     {"odata.metadata":"https://media.windows.net/api/$metadata#AccessPolicies/@Element","Id":"nb:pid:UUID:69c80d98-7830-407f-a9af-e25f4b0d3e5f","Created":"2015-02-18T06:52:09.8862191Z","LastModified":"2015-02-18T06:52:09.8862191Z","Name":"access policy","DurationInMinutes":43200.0,"Permissions":1}
 
 ### <a name="create-an-ondemand-streaming-locator"></a>Création d’un localisateur de diffusion en continu à la demande
-Créer le repère hello pour élément multimédia spécifié de hello et stratégie d’élément multimédia.
+Créez le localisateur pour la ressource et la stratégie de ressource spécifiées.
 
 Demande :
 
@@ -138,7 +138,7 @@ Réponse :
     {"odata.metadata":"https://media.windows.net/api/$metadata#Locators/@Element","Id":"nb:lid:UUID:be245661-2bbd-4fc6-b14f-9cf9a1492e5e","ExpirationDateTime":"2015-03-20T06:34:47.267872+00:00","Type":2,"Path":"http://amstest1.streaming.mediaservices.windows.net/be245661-2bbd-4fc6-b14f-9cf9a1492e5e/","BaseUri":"http://amstest1.streaming.mediaservices.windows.net","ContentAccessComponent":"be245661-2bbd-4fc6-b14f-9cf9a1492e5e","AccessPolicyId":"nb:pid:UUID:1480030d-c481-430a-9687-535c6a5cb272","AssetId":"nb:cid:UUID:cc1e445d-1500-80bd-538e-f1e4b71b465e","StartTime":"2015-02-18T06:34:47.267872+00:00","Name":null}
 
 ### <a name="build-streaming-urls"></a>Création d’URL de diffusion
-Hello d’utilisation **chemin d’accès** valeur retournée après la création de hello Hello de hello localisateur toobuild Smooth, HLS et MPEG DASH URL. 
+Utilisez la valeur **Chemin d’accès** renvoyée après la création du localisateur pour générer les URL Smooth, HLS et MPEG DASH. 
 
 Smooth Streaming : **Chemin d’accès** + nom du fichier manifeste + "/manifest"
 
@@ -161,7 +161,7 @@ exemple :
 
 
 ### <a name="build-progressive-download-urls"></a>Génération d’URL de téléchargement progressif
-Hello d’utilisation **chemin d’accès** valeur retournée après la création de hello d’URL de téléchargement progressif hello locator toobuild hello.   
+Utilisez la valeur **Chemin d’accès** renvoyée après la création du localisateur pour générer l’URL de téléchargement progressif.   
 
 URL : **Chemin d’accès** + nom du fichier de ressource mp4
 

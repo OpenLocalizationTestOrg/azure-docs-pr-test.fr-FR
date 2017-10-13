@@ -1,6 +1,6 @@
 ---
-title: "aaaUse métriques toomonitor Azure IoT Hub | Documents Microsoft"
-description: "Comment surveiller et toouse Azure IoT Hub métriques tooassess hello l’intégrité globale de vos hubs IoT."
+title: "Utiliser des métriques pour surveiller Azure IoT Hub | Microsoft Docs"
+description: "Guide d’utilisation des métriques Azure IoT Hub pour évaluer et surveiller l’intégrité globale de votre IoT Hub."
 services: iot-hub
 documentationcenter: 
 author: nberdy
@@ -15,89 +15,89 @@ ms.workload: na
 ms.date: 08/25/2017
 ms.author: nberdy
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 7d045013fb0229f488e72c93a6f668048b9d5c25
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e850370faf2d271b4adad1af48c1ead7b316fa67
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="understand-iot-hub-metrics"></a>Comprendre les métriques IoT Hub
-Métriques de IoT Hub vous permettent de mieux données sur l’état de hello des ressources d’Azure IoT hello dans votre abonnement Azure. Activer de métriques IoT Hub vous tooassess hello l’intégrité globale du hello IoT Hub service et les appareils hello connecté tooit. Statistiques de la direction de l’utilisateur sont importants car ils vous permettent de voir ce qui se passe vos problèmes de causes IoT hub et aide sans avoir besoin de toocontact prise en charge Azure.
+Les métriques IoT Hub vous offrent de meilleures données sur l’état des ressources Azure IoT de votre abonnement Azure. Grâce aux métriques IoT Hub, vous pouvez évaluer l’intégrité globale du service et des appareils connectés à ce dernier. Les statistiques accessibles à l’utilisateur sont importantes, car elles vous permettent d’effectuer le suivi de votre hub IoT et de connaître les causes des problèmes sans contacter le support Azure.
 
-Les métriques sont activées par défaut. Vous pouvez afficher les métriques de IoT Hub de hello portail Azure.
+Les métriques sont activées par défaut. Vous pouvez afficher les métriques IoT Hub à partir du portail Azure.
 
-## <a name="how-tooview-iot-hub-metrics"></a>Comment tooview les métriques IoT Hub
-1. Créez un hub IoT. Vous trouverez des instructions sur la façon de toocreate un hub IoT Bonjour [prise en main] [ lnk-get-started] guide.
-2. Ouvrez le panneau hello de votre hub IoT. Ici, cliquez sur **Métriques**.
+## <a name="how-to-view-iot-hub-metrics"></a>Affichage des métriques IoT Hub
+1. Créez un hub IoT. Pour savoir comment créer un hub IoT, consultez le guide [Prise en main][lnk-get-started].
+2. Ouvrez le panneau de votre hub IoT. Ici, cliquez sur **Métriques**.
    
     ![][1]
-3. À partir du Panneau de métriques hello, vous pouvez afficher les métriques de hello pour votre IoT hub et créer des vues personnalisées de vos mesures de. Vous pouvez choisir toosend votre point de terminaison du service Event Hubs de tooan données métriques ou d’un compte de stockage Azure en cliquant sur **paramètres de diagnostic**.
+3. Dans le panneau de métriques, vous pouvez afficher les métriques IoT Hub et créer des vues personnalisées de ces dernières. Vous pouvez choisir d’envoyer vos données métriques vers un point de terminaison Event Hubs ou un compte de stockage Azure en cliquant sur **Paramètres de diagnostic**.
    
     ![][2]
 
-## <a name="iot-hub-metrics-and-how-toouse-them"></a>Les métriques IoT Hub et la manière dont toouse les
-IoT Hub fournit plusieurs mesures toogive une vue d’ensemble de la santé de votre concentrateur et de hello hello nombre total des périphériques connectés. Vous pouvez combiner les informations de plusieurs mesures toopaint une image plus grande d’état hello de hub IoT de hello. Hello tableau suivant décrit les mesures de hello qu'effectue le suivi de chaque IoT hub, et comment chaque mesure est liée toohello globale état hello IoT hub.
+## <a name="iot-hub-metrics-and-how-to-use-them"></a>Métriques IoT Hub et instructions d’utilisation
+IoT Hub fournit plusieurs métriques afin de vous donner une vue d’ensemble de l’intégrité de votre hub et du nombre total d’appareils connectés. Vous pouvez combiner les informations de plusieurs métriques pour obtenir une image plus grande de l’état du hub IoT. Le tableau suivant décrit les métriques dont chaque hub IoT effectue le suivi et la relation de chacune avec l’état global du hub IoT.
 
 |Mesure|Nom d’affichage de la mesure|Unité|Type d’agrégation|Description|
 |---|---|---|---|---|
-|d2c.telemetry.ingress.allProtocol|Tentatives d’envoi de message de télémétrie|Nombre|Total|Nombre de toobe de tentative de messages appareil-à-cloud télémétrie envoyé tooyour IoT hub|
-|d2c.telemetry.ingress.success|Messages de télémétrie envoyés|Nombre|Total|Nombre de messages de l’appareil-à-cloud télémétrie envoyé tooyour IoT hub|
-|c2d.commands.egress.complete.success|Commandes terminées|Nombre|Total|Nombre de commandes cloud-à-appareil effectués par l’appareil de hello|
-|c2d.commands.egress.abandon.success|Commandes abandonnées|Nombre|Total|Nombre de commandes cloud-à-appareil abandonnées par le périphérique de hello|
-|c2d.commands.egress.reject.success|Commandes rejetées|Nombre|Total|Nombre de commandes cloud-à-appareil rejetés par le périphérique de hello|
-|devices.totalDevices|Nombre total d’appareils|Nombre|Total|Nombre de périphériques inscrits tooyour IoT hub|
-|devices.connectedDevices.allProtocol|Appareils connectés|Nombre|Total|Nombre d’unités connectées tooyour IoT hub|
-|d2c.telemetry.egress.success|Messages de télémétrie remis|Nombre|Total|Nombre de fois où les messages ont été correctement écrites tooendpoints (total)|
-|d2c.telemetry.egress.dropped|Messages supprimés|Nombre|Total|Nombre de messages ignorés, car ils ne correspond pas à tous les itinéraires et itinéraire de secours hello a été désactivée.|
-|d2c.telemetry.egress.orphaned|Messages orphelins|Nombre|Total|nombre de Hello de messages ne correspond ne pas à tous les itinéraires, y compris la gamme de secours hello|
-|d2c.telemetry.egress.invalid|Messages non valides|Nombre|Total|Hello nombre de messages non remis en raison tooincompatibility avec point de terminaison hello|
-|d2c.telemetry.egress.fallback|Messages correspondant à une condition de secours|Nombre|Total|Nombre de messages écrits de point de terminaison de secours toohello|
-|d2c.endpoints.egress.eventHubs|Messages remis tooEvent points de terminaison de Hub|Nombre|Total|Nombre de messages ont des points de terminaison de Hub tooEvent écrit avec succès|
-|d2c.endpoints.latency.eventHubs|Latence des messages des points de terminaison Event Hub|Millisecondes|Moyenne|latence de Hello moyenne entre toohello IoT hub message en entrée et d’entrée de message dans un point de terminaison de Hub d’événements, en millisecondes|
-|d2c.endpoints.egress.serviceBusQueues|Messages remis tooService points de terminaison de file d’attente du Bus|Nombre|Total|Nombre de messages ont des points de terminaison de file d’attente du Bus tooService écrit avec succès|
-|d2c.endpoints.latency.serviceBusQueues|Latence des messages des points de terminaison de files d’attente Service Bus|Millisecondes|Moyenne|latence de Hello moyenne entre toohello IoT hub message en entrée et d’entrée de message dans un point de terminaison de file d’attente du Bus de Service, en millisecondes|
-|d2c.endpoints.egress.serviceBusTopics|Messages remis tooService points de terminaison de la rubrique Bus|Nombre|Total|Nombre de fois où les messages ont été correctement écrit tooService rubrique Bus points de terminaison|
-|d2c.endpoints.latency.serviceBusTopics|Latence des messages des points de terminaison de rubriques Service Bus|Millisecondes|Moyenne|latence de Hello moyenne entre toohello IoT hub message en entrée et d’entrée de message dans un point de terminaison de la rubrique Service Bus, en millisecondes|
-|d2c.endpoints.egress.builtIn.events|Messages remis du point de terminaison toohello intégrés (messages/événements)|Nombre|Total|Nombre de fois où les messages ont été le point de terminaison a été écrite toohello intégrés (messages/événements)|
-|d2c.endpoints.latency.builtIn.events|Latence des messages pour point de terminaison hello intégrés (messages/événements)|Millisecondes|Moyenne|latence de Hello moyenne entre toohello IoT hub message en entrée et d’entrée de message dans hello intégrés point de terminaison (événements/messages), en millisecondes |
-|d2c.twin.read.success|Lectures de représentations réussies d’appareils|Nombre|Total|nombre de Hello de toutes les lectures de double d’initiée par l’appareil.|
-|d2c.twin.read.failure|Lectures de représentations d’appareils en échec|Nombre|Total|nombre de Hello de tous les échecs d’initiés par le périphérique de double lectures.|
-|d2c.twin.read.size|Taille de la réponse des lectures de représentations des appareils|Octets|Moyenne|moyenne de Hello, min et max de réussite initiée par l’appareil à deux lectures.|
-|d2c.twin.update.success|Mises à jour de représentations réussies d’appareils|Nombre|Total|nombre de Hello de toutes les mises à jour de double d’initiée par l’appareil.|
-|d2c.twin.update.failure|Mises à jour de représentations d’appareils en échec|Nombre|Total|nombre de Hello de tous les échecs d’initiés par le périphérique de double les mises à jour.|
-|d2c.twin.update.size|Taille des mises à jour de représentations d’appareils|Octets|Moyenne|moyenne de Hello, min et taille maximale de tous les initiés par le périphérique à deux mises à jour.|
-|c2d.methods.success|Appels de méthode directe réussis|Nombre|Total|nombre de Hello réussite directe d’appels de méthode.|
-|c2d.methods.failure|Appels de méthode directe en échec|Nombre|Total|nombre de Hello de tous les échecs d’appels de méthode directe.|
-|c2d.methods.requestSize|Taille de demande des appels de méthode directe|Octets|Moyenne|moyenne de Hello, min et max de toutes les demandes de méthode directe.|
-|c2d.methods.responseSize|Taille de réponse des appels de méthode directe|Octets|Moyenne|moyenne de Hello, min et max de toutes les réponses de réussite méthode directe.|
-|c2d.twin.read.success|Lectures de représentations réussies de serveur principal|Nombre|Total|nombre de Hello de toutes les lectures de double d’initiée par back-end.|
-|c2d.twin.read.failure|Lectures de représentations de serveur principal en échec|Nombre|Total|nombre de Hello de tous les échecs initiée par back-end de double lectures.|
-|c2d.twin.read.size|Taille de la réponse des lectures de représentations de serveur principal|Octets|Moyenne|moyenne de Hello, min et max de réussite initiée par back-end à deux lectures.|
-|c2d.twin.update.success|Mises à jour de représentations réussies de serveur principal|Nombre|Total|nombre de Hello de toutes les mises à jour de double d’initiée par back-end.|
-|c2d.twin.update.failure|Mises à jour de représentations de serveur principal en échec|Nombre|Total|nombre de Hello de tous les échecs initiée par back-end de double les mises à jour.|
-|c2d.twin.update.size|Taille des mises à jour de représentations de serveur principal|Octets|Moyenne|moyenne de Hello, min et max taille de tous les initiée par back-end à deux mises à jour.|
-|twinQueries.success|Requêtes de représentations réussies|Nombre|Total|nombre de Hello de toutes les requêtes de double réussie.|
-|twinQueries.failure|Requêtes de représentations en échec|Nombre|Total|nombre de Hello de toutes les requêtes ayant échoué double.|
-|twinQueries.resultSize|Taille du résultat des requêtes de représentations|Octets|Moyenne|moyenne de Hello, min et max de la taille des résultats de toutes les requêtes réussies double hello.|
-|jobs.createTwinUpdateJob.success|Créations réussies des travaux de mises à jour de représentations|Nombre|Total|nombre de Hello de tous les travaux de mise à jour de double réussie.|
-|jobs.createTwinUpdateJob.failure|Créations des travaux de mises à jour de représentations en échec|Nombre|Total|nombre de Hello de tout échec de la création de travaux de mise à jour de double.|
-|jobs.createDirectMethodJob.success|Créations réussies des travaux d’appel de méthode|Nombre|Total|nombre de Hello de tous les travaux d’appel de méthode directe réussie.|
-|jobs.createDirectMethodJob.failure|Créations des travaux d’appel de méthode en échec|Nombre|Total|nombre de Hello de tout échec de la création de travaux d’appel de méthode directe.|
-|jobs.listJobs.success|Travaux de toolist appels réussis|Nombre|Total|nombre de Hello de tous les travaux de toolist appels réussis.|
-|jobs.listJobs.failure|Échecs des appels toolist travaux|Nombre|Total|nombre de Hello de tous les travaux de toolist d’appels ayant échoué.|
-|jobs.cancelJob.success|Annulations de travaux réussies|Nombre|Total|nombre de Hello de réussite appelle toocancel un travail.|
-|jobs.cancelJob.failure|Annulations de travaux en échec|Nombre|Total|nombre de Hello de tous les appels ayant échoué toocancel un travail.|
-|jobs.queryJobs.success|Requêtes de travaux réussies|Nombre|Total|nombre de Hello de tous les travaux de tooquery appels réussis.|
-|jobs.queryJobs.failure|Requêtes de travaux en échec|Nombre|Total|nombre de Hello de tous les travaux de tooquery d’appels ayant échoué.|
-|jobs.completed|Travaux terminés|Nombre|Total|nombre de Hello de toutes les tâches terminées.|
-|jobs.failed|Travaux en échec|Nombre|Total|nombre de Hello de toutes les tâches ayant échoué.|
+|d2c.telemetry.ingress.allProtocol|Tentatives d’envoi de message de télémétrie|Nombre|Total|Nombre de tentatives d’envoi de messages de télémétrie appareil vers cloud à votre hub IoT|
+|d2c.telemetry.ingress.success|Messages de télémétrie envoyés|Nombre|Total|Nombre de messages de télémétrie appareil vers cloud envoyés avec succès à votre hub IoT|
+|c2d.commands.egress.complete.success|Commandes terminées|Nombre|Total|Nombre de commandes cloud vers appareil terminées avec succès par l’appareil|
+|c2d.commands.egress.abandon.success|Commandes abandonnées|Nombre|Total|Nombre de commandes cloud vers appareil abandonnées par l’appareil|
+|c2d.commands.egress.reject.success|Commandes rejetées|Nombre|Total|Nombre de commandes cloud vers appareil rejetées par l’appareil|
+|devices.totalDevices|Nombre total d’appareils|Nombre|Total|Nombre d’appareils enregistrés sur votre hub IoT|
+|devices.connectedDevices.allProtocol|Appareils connectés|Nombre|Total|Nombre d’appareils connectés à votre hub IoT|
+|d2c.telemetry.egress.success|Messages de télémétrie remis|Nombre|Total|Nombre de fois où des messages ont été écrits aux points de terminaison (total)|
+|d2c.telemetry.egress.dropped|Messages supprimés|Nombre|Total|Nombre de messages supprimés parce qu’ils ne correspondaient pas aux itinéraires et que l’itinéraire de secours était désactivé|
+|d2c.telemetry.egress.orphaned|Messages orphelins|Nombre|Total|Nombre de messages ne correspondant à aucun itinéraire, itinéraire de secours compris|
+|d2c.telemetry.egress.invalid|Messages non valides|Nombre|Total|Nombre de messages non remis en raison d’une incompatibilité avec le point de terminaison|
+|d2c.telemetry.egress.fallback|Messages correspondant à une condition de secours|Nombre|Total|Nombre de messages écrits au point de terminaison de secours|
+|d2c.endpoints.egress.eventHubs|Messages remis aux points de terminaison Event Hub|Nombre|Total|Nombre de fois où des messages ont été écrits aux points de terminaison Event Hub|
+|d2c.endpoints.latency.eventHubs|Latence des messages des points de terminaison Event Hub|Millisecondes|Moyenne|Latence moyenne entre les entrées de messages vers l’IoT Hub et dans un point de terminaison Event Hub, en millisecondes|
+|d2c.endpoints.egress.serviceBusQueues|Messages remis aux points de terminaison de file d’attente Service Bus|Nombre|Total|Nombre de fois où des messages ont été écrits aux points de terminaison de file d’attente Service Bus|
+|d2c.endpoints.latency.serviceBusQueues|Latence des messages des points de terminaison de files d’attente Service Bus|Millisecondes|Moyenne|Latence moyenne entre les entrées de messages vers l’IoT Hub et dans un point de terminaison de file d’attente Service Bus, en millisecondes|
+|d2c.endpoints.egress.serviceBusTopics|Messages remis aux points de terminaison de rubrique Service Bus|Nombre|Total|Nombre de fois où des messages ont été écrits aux points de terminaison de rubrique Service Bus|
+|d2c.endpoints.latency.serviceBusTopics|Latence des messages des points de terminaison de rubriques Service Bus|Millisecondes|Moyenne|Latence moyenne entre les entrées de messages vers l’IoT Hub et dans un point de terminaison de rubrique Service Bus, en millisecondes|
+|d2c.endpoints.egress.builtIn.events|Messages remis au point de terminaison intégré (messages/événements)|Nombre|Total|Nombre de fois où des messages ont été écrits au point de terminaison intégré (messages/événements)|
+|d2c.endpoints.latency.builtIn.events|Latence de message pour le point de terminaison intégré (messages/événements)|Millisecondes|Moyenne|Latence moyenne entre les entrées de messages vers l’IoT Hub et dans un point de terminaison prédéfini (messages/événements), en millisecondes |
+|d2c.twin.read.success|Lectures de représentations réussies d’appareils|Nombre|Total|Total des lectures de représentations réussies initiées par un appareil.|
+|d2c.twin.read.failure|Lectures de représentations d’appareils en échec|Nombre|Total|Total des lectures de représentations en échec initiées par un appareil.|
+|d2c.twin.read.size|Taille de la réponse des lectures de représentations des appareils|Octets|Moyenne|Moyenne, minimum et maximum de toutes les lectures de représentations réussies initiées par un appareil.|
+|d2c.twin.update.success|Mises à jour de représentations réussies d’appareils|Nombre|Total|Total des mises à jour de représentations réussies initiées par un appareil.|
+|d2c.twin.update.failure|Mises à jour de représentations d’appareils en échec|Nombre|Total|Total des mises à jour de représentations en échec initiées par un appareil.|
+|d2c.twin.update.size|Taille des mises à jour de représentations d’appareils|Octets|Moyenne|Taille moyenne, minimale et maximale de toutes les mises à jour de représentations réussies initiées par un appareil.|
+|c2d.methods.success|Appels de méthode directe réussis|Nombre|Total|Total des appels de méthode directe réussis.|
+|c2d.methods.failure|Appels de méthode directe en échec|Nombre|Total|Total des appels de méthode directe en échec.|
+|c2d.methods.requestSize|Taille de demande des appels de méthode directe|Octets|Moyenne|Moyenne, minimum et maximum de toutes les demandes de méthode directe réussies.|
+|c2d.methods.responseSize|Taille de réponse des appels de méthode directe|Octets|Moyenne|Moyenne, minimum et maximum de toutes les réponses de méthode directe réussies.|
+|c2d.twin.read.success|Lectures de représentations réussies de serveur principal|Nombre|Total|Total des lectures de représentations réussies initiées par un serveur principal.|
+|c2d.twin.read.failure|Lectures de représentations de serveur principal en échec|Nombre|Total|Total des lectures de représentations en échec initiées par un serveur principal.|
+|c2d.twin.read.size|Taille de la réponse des lectures de représentations de serveur principal|Octets|Moyenne|Moyenne, minimum et maximum de toutes les lectures de représentations réussies initiées par un serveur principal.|
+|c2d.twin.update.success|Mises à jour de représentations réussies de serveur principal|Nombre|Total|Total des mises à jour de représentations réussies initiées par un serveur principal.|
+|c2d.twin.update.failure|Mises à jour de représentations de serveur principal en échec|Nombre|Total|Total des mises à jour de représentations en échec initiées par un serveur principal.|
+|c2d.twin.update.size|Taille des mises à jour de représentations de serveur principal|Octets|Moyenne|Taille moyenne, minimale et maximale de toutes les mises à jour de représentations réussies initiées par un serveur principal.|
+|twinQueries.success|Requêtes de représentations réussies|Nombre|Total|Total des requêtes de représentations réussies.|
+|twinQueries.failure|Requêtes de représentations en échec|Nombre|Total|Total des requêtes de représentations en échec.|
+|twinQueries.resultSize|Taille du résultat des requêtes de représentations|Octets|Moyenne|Moyenne, minimum et maximum de la taille du résultat de toutes les requêtes de représentations réussies.|
+|jobs.createTwinUpdateJob.success|Créations réussies des travaux de mises à jour de représentations|Nombre|Total|Total des créations réussies de travaux de mises à jour de représentations.|
+|jobs.createTwinUpdateJob.failure|Créations des travaux de mises à jour de représentations en échec|Nombre|Total|Total des créations en échec des travaux de mises à jour de représentations.|
+|jobs.createDirectMethodJob.success|Créations réussies des travaux d’appel de méthode|Nombre|Total|Total des créations réussies des travaux d’appel de méthode directe.|
+|jobs.createDirectMethodJob.failure|Créations des travaux d’appel de méthode en échec|Nombre|Total|Total des créations en échec des travaux d’appel de méthode directe.|
+|jobs.listJobs.success|Appels réussis pour répertorier les travaux|Nombre|Total|Total des appels réussis pour répertorier les travaux.|
+|jobs.listJobs.failure|Appels en échec pour répertorier les travaux|Nombre|Total|Total des appels en échec pour répertorier les travaux.|
+|jobs.cancelJob.success|Annulations de travaux réussies|Nombre|Total|Total des appels réussis pour annuler un travail.|
+|jobs.cancelJob.failure|Annulations de travaux en échec|Nombre|Total|Total des appels en échec pour annuler un travail.|
+|jobs.queryJobs.success|Requêtes de travaux réussies|Nombre|Total|Total des appels réussis pour interroger les travaux.|
+|jobs.queryJobs.failure|Requêtes de travaux en échec|Nombre|Total|Total des appels en échec pour interroger les travaux.|
+|jobs.completed|Travaux terminés|Nombre|Total|Total des travaux terminés.|
+|jobs.failed|Travaux en échec|Nombre|Total|Total des travaux en échec.|
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez déjà vu une vue d’ensemble des métriques de IoT Hub, suivez ce lien de toolearn plus d’informations sur la gestion de Azure IoT Hub :
+Les métriques IoT Hub n’étant plus un secret pour vous, suivez le lien ci-après pour en savoir plus sur la gestion d’Azure IoT Hub :
 
 * [Surveillance des opérations][lnk-monitor]
 
-toofurther Explorez les fonctionnalités de hello d’IoT Hub, consultez :
+Pour explorer davantage les capacités de IoT Hub, consultez :
 
 * [Guide du développeur IoT Hub][lnk-devguide]
 * [Simulation d’un appareil avec Azure IoT Edge][lnk-iotedge]

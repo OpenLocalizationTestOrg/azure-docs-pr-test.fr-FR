@@ -1,6 +1,6 @@
 ---
-title: aaaGet plus sur Azure Application Insights | Documents Microsoft
-description: "Après la mise en route avec Application Insights, Voici un résumé des fonctionnalités de hello, vous pouvez Explorer."
+title: "Tirer parti d’Azure Application Insights | Microsoft Docs"
+description: "Après avoir pris en main Application Insights, voici un résumé des fonctionnalités que vous pouvez explorer."
 services: application-insights
 documentationcenter: .net
 author: CFreemanwa
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: bwren
-ms.openlocfilehash: 2023728afcf5aa5ecab8b957c8517d4872668765
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 127fd6e3012bdb0788ed23ae5e8921df651d863b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="more-telemetry-from-application-insights"></a>Plus de télémétrie dans Application Insights
-Une fois que vous avez [ajouté Application Insights tooyour ASP.NET code](app-insights-asp-net.md), il existe quelques opérations pouvant être exécutées tooget même plus de télémétrie. 
+Une fois que vous avez [ajouté Application Insights à votre code ASP.NET](app-insights-asp-net.md), vous pouvez encore suivre quelques étapes supplémentaires pour obtenir davantage de données de télémétrie. 
 
 | Action | Ce que vous obtenez|
 |---|---|
-|(serveurs IIS) [Installer Status Monitor](http://go.microsoft.com/fwlink/?LinkId=506648) sur chaque ordinateur serveur.<br/>(Les applications web azure) Dans hello Azure le panneau de configuration pour l’application web de hello, ouvrez le panneau d’Application Insights hello.| [**Compteurs de performance**](app-insights-performance-counters.md)<br/>[**Exceptions**](app-insights-asp-net-exceptions.md) - arborescences détaillées des appels de procédure<br/>[**Dépendances**](app-insights-asp-net-dependencies.md)|
-|[Ajouter des pages web tooyour hello JavaScript extrait de code](app-insights-javascript.md)|[Performances des pages](app-insights-web-track-usage.md), exceptions du navigateur, performances AJAX. Télémétrie côté client personnalisée.|
+|(serveurs IIS) [Installer Status Monitor](http://go.microsoft.com/fwlink/?LinkId=506648) sur chaque ordinateur serveur.<br/>(Applications web Azure) Dans le panneau de configuration Azure de l’application web, ouvrez le panneau Application Insights.| [**Compteurs de performance**](app-insights-performance-counters.md)<br/>[**Exceptions**](app-insights-asp-net-exceptions.md) - arborescences détaillées des appels de procédure<br/>[**Dépendances**](app-insights-asp-net-dependencies.md)|
+|[Ajouter l’extrait de code JavaScript à vos pages web](app-insights-javascript.md)|[Performances des pages](app-insights-web-track-usage.md), exceptions du navigateur, performances AJAX. Télémétrie côté client personnalisée.|
 |[Créer des tests web de disponibilité](app-insights-monitor-web-app-availability.md)|Recevoir des alertes si votre site est indisponible|
 |[Vérifier que buildinfo.config](https://msdn.microsoft.com/library/dn449058.aspx) est généré par MSBuild|[Créer des annotations dans les graphiques de mesures ](https://blogs.msdn.microsoft.com/visualstudioalm/2013/11/14/implementing-deployment-markers-in-application-insights/)
 |[Écrire des mesures et des événements personnalisés](app-insights-api-custom-events-metrics.md)|Compter des mesures et des événements commerciaux, suivre l’utilisation détaillée et plus encore.|

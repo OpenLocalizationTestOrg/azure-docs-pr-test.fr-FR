@@ -1,6 +1,6 @@
 ---
-title: "aaaConfigure les volumes RAID logiciels sur un ordinateur virtuel exécutant Linux | Documents Microsoft"
-description: "Découvrez comment toouse mdadm tooconfigure RAID sur Linux dans Azure."
+title: "Configuration logicielle de RAID sur une machine virtuelle exécutant Linux | Microsoft Docs"
+description: "Apprenez à utiliser mdadm pour configurer RAID sur Linux dans Azure."
 services: virtual-machines-linux
 documentationcenter: na
 author: rickstercdn
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: rclaus
-ms.openlocfilehash: f06e2679d953faf88ffee9991226cdb3cc1cbdb0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 12f540a700fbf85e579e8aadc9f6def039299ff7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-software-raid-on-linux"></a>Configuration d’un RAID logiciel sur Linux
-Il est un commun scénario toouse les volumes RAID logiciels sur les ordinateurs virtuels Linux dans Azure toopresent données jointes plusieurs disques comme un périphérique RAID unique. Cela vous pouvez généralement les performances tooimprove utilisé et autoriser pour améliorée débit comparées toousing un seul disque.
+L'utilisation d'un RAID logiciel pour les machines virtuelles Linux sur Azure est un scénario fréquent afin de regrouper plusieurs disques de données attachés sous la forme d'un périphérique RAID unique. En règle générale, ce scénario permet d'optimiser les performances et d'améliorer le débit par rapport à l'utilisation d'un disque unique.
 
 ## <a name="attaching-data-disks"></a>Disques de données attachés
-Deux ou plusieurs disques de données vides sont nécessaire tooconfigure un périphérique RAID.  Hello principal motif de création d’un périphérique RAID est tooimprove les performances de votre disque e/s.  Selon vos besoins d’e/s, vous pouvez choisir les disques tooattach qui sont stockées dans notre stockage Standard, avec des e/s de too500/ps par le stockage sur disque ou notre Premium avec des e/s de too5000/ps par disque. Cet article n’aborde pas de détails sur la façon de tooprovision et attacher une machine virtuelle Linux données disques tooa.  Consultez l’article de Microsoft Azure hello [attacher un disque](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) pour obtenir des instructions détaillées sur tooattach un vide de données de disque virtuels tooa Linux sur Azure.
+Au moins deux disques de données sont nécessaires pour configurer un périphérique RAID.  La raison principale pour la création d’un appareil RAID est d’améliorer les performances de vos E/S de disque.  En fonction de vos besoins d’E/S, vous pouvez choisir d’attacher des disques qui sont stockés dans notre stockage Standard, avec un maximum de 500 opérations d’E/S par disque ou dans notre stockage Premium avec un maximum de 5 000 opérations d’E/S par disque. Cet article n’aborde pas en détail la marche à suivre pour approvisionner et attacher des disques de données sur une machine virtuelle Linux.  Consultez l’article Microsoft Azure [Attacher un disque](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) pour obtenir des instructions détaillées sur la marche à suivre pour attacher un disque de données vide à une machine virtuelle Linux dans Azure.
 
-## <a name="install-hello-mdadm-utility"></a>Installer l’utilitaire de mdadm hello
+## <a name="install-the-mdadm-utility"></a>Installation de l'utilitaire mdadm
 * **Ubuntu**
 ```bash
 sudo apt-get update
@@ -44,30 +44,30 @@ sudo yum install mdadm
 zypper install mdadm
 ```
 
-## <a name="create-hello-disk-partitions"></a>Créer des partitions de disque hello
-Dans cet exemple, nous créons une partition de disque unique sur /dev/sdc. nouvelle partition de disque Hello sera appelée /dev/sdc1.
+## <a name="create-the-disk-partitions"></a>Création des partitions de disque
+Dans cet exemple, nous créons une partition de disque unique sur /dev/sdc. La nouvelle partition de disque sera appelée /dev/sdc1.
 
-1. Démarrer `fdisk` toobegin création de partitions
+1. Démarrez `fdisk` pour lancer la création des partitions
 
     ```bash
     sudo fdisk /dev/sdc
     Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
     Building a new DOS disklabel with disk identifier 0xa34cb70c.
-    Changes will remain in memory only, until you decide toowrite them.
-    After that, of course, hello previous content won't be recoverable.
+    Changes will remain in memory only, until you decide to write them.
+    After that, of course, the previous content won't be recoverable.
 
     WARNING: DOS-compatible mode is deprecated. It's strongly recommended to
-                    switch off hello mode (command 'c') and change display units to
+                    switch off the mode (command 'c') and change display units to
                     sectors (command 'u').
     ```
 
-2. Appuyez sur « n » à toocreate d’invite de commandes hello un  **n** partition de la nouvelle :
+2. Appuyez sur « n » à l’invite de commandes pour créer un  **n** partition de la nouvelle :
 
     ```bash
     Command (m for help): n
     ```
 
-3. Ensuite, appuyez sur « p » toocreate un **p**rincipal partition :
+3. Ensuite, appuyez sur « p » à l'invite pour créer une partition **p**rincipale :
 
     ```bash 
     Command action
@@ -75,50 +75,50 @@ Dans cet exemple, nous créons une partition de disque unique sur /dev/sdc. nouv
             p   primary partition (1-4)
     ```
 
-4. Appuyez sur le numéro de partition '1' tooselect 1 :
+4. Appuyez sur « 1 » pour sélectionner la partition numéro 1 :
 
     ```bash
     Partition number (1-4): 1
     ```
 
-5. Sélectionnez hello point de départ de la partition hello, ou appuyez sur `<enter>` partition tooaccept hello par défaut tooplace hello au début de hello d’espace disque de hello hello :
+5. Sélectionnez le point de départ de la nouvelle partition ou appuyez sur `<enter>` pour accepter le paramètre par défaut et placer la partition au début de l’espace libre sur le disque :
 
     ```bash   
     First cylinder (1-1305, default 1):
     Using default value 1
     ```
 
-6. Sélectionnez la taille de partition hello, par exemple le type '+10G' toocreate une partition de 10 gigaoctets hello. Ou bien, appuyez sur `<enter>` créer une seule partition qui couvre l’intégralité du lecteur hello :
+6. Sélectionnez la taille de la partition. Par exemple, tapez « +10G » pour créer une partition de 10 Go. Vous pouvez aussi appuyer sur `<enter>` pour créer une seule partition pour l’intégralité du disque :
 
     ```bash   
     Last cylinder, +cylinders or +size{K,M,G} (1-1305, default 1305): 
     Using default value 1305
     ```
 
-7. Ensuite, modifiez les ID hello et **t**ype de partition hello à partir de la valeur par défaut hello ID '83' (Linux) tooID 'fd' (Linux raid auto) :
+7. Ensuite, remplacez l'ID et le **t**ype de partition de l'ID par défaut « 83 » (Linux) par l'ID « fd » (raid auto Linux) :
 
     ```bash  
     Command (m for help): t
     Selected partition 1
-    Hex code (type L toolist codes): fd
+    Hex code (type L to list codes): fd
     ```
 
-8. Enfin, écrire le lecteur de toohello de table de partition hello et quitter fdisk :
+8. Enfin, écrivez la table de partition sur le disque et quittez fdisk :
 
     ```bash   
     Command (m for help): w
-    hello partition table has been altered!
+    The partition table has been altered!
     ```
 
-## <a name="create-hello-raid-array"></a>Création de disques RAID hello
-1. Hello suivant va de l’exemple « bandes » (RAID de niveau 0) trois partitions situées sur trois disques de données distinct (sdc1, sdd1, sde1).  Après l’exécution de cette commande, un nouveau périphérique RAID dénommé **/dev/md127** est créé. Notez également que si ces données disques nous précédemment partie d’un autre tableau RAID obsolète il peut être nécessaire de tooadd hello `--force` paramètre toohello `mdadm` commande :
+## <a name="create-the-raid-array"></a>Création du contrôleur RAID
+1. L’exemple suivant permet de créer un volume agrégé par bandes (RAID 0) de trois partitions sur trois disques de données distincts (sdc1, sdd1, sde1).  Après l’exécution de cette commande, un nouveau périphérique RAID dénommé **/dev/md127** est créé. Notez que si les disques de données précédemment utilisés font partie d’un autre contrôleur RAID qui n’existe plus, il peut s'avérer nécessaire d’ajouter le paramètre `--force` à la commande `mdadm`.
 
     ```bash  
     sudo mdadm --create /dev/md127 --level 0 --raid-devices 3 \
         /dev/sdc1 /dev/sdd1 /dev/sde1
     ```
 
-2. Créer un système de fichiers hello sur un périphérique RAID nouvelle hello
+2. Créez le système de fichiers sur le nouveau périphérique RAID.
    
     a. **CentOS, Oracle Linux, SLES 12, openSUSE et Ubuntu**
 
@@ -144,16 +144,16 @@ Dans cet exemple, nous créons une partition de disque unique sur /dev/sdc. nouv
    > 
    > 
 
-## <a name="add-hello-new-file-system-tooetcfstab"></a>Ajouter hello nouveau fichier système trop/etc/fstab
+## <a name="add-the-new-file-system-to-etcfstab"></a>Ajout du nouveau système de fichiers à /etc/fstab
 > [!IMPORTANT]
-> Modification incorrecte de fichier/etc/fstab de hello peut entraîner un système non démarrable. En cas de doute, consultez la documentation de la distribution toohello pour plus d’informations sur la façon dont tooproperly modifier ce fichier. Il est également recommandé qu’une sauvegarde de fichier/etc/fstab de hello est créée avant la modification.
+> si vous ne modifiez pas correctement le fichier /etc/fstab, il se peut que le système ne puisse plus démarrer. En cas de doute, reportez-vous à la documentation de la distribution pour obtenir des informations sur la modification adéquate de ce fichier. Il est par ailleurs vivement recommandé de créer une sauvegarde du fichier /etc/fstab avant de le modifier.
 
-1. Créez le point de montage hello souhaité pour votre nouveau système de fichiers, par exemple :
+1. Créez le point de montage désiré pour le nouveau système de fichiers. Par exemple :
 
     ```bash
     sudo mkdir /data
     ```
-2. Lorsque vous modifiez/etc/fstab, hello **UUID** doit être utilisé tooreference hello système plutôt que hello appareil nom de fichier.  Hello d’utilisation `blkid` hello de toodetermine utilitaire UUID hello nouveau système de fichiers :
+2. Lors de la modification du fichier /etc/fstab, l' **identificateur unique universel** doit être utilisé pour faire référence au système de fichiers plutôt qu'au nom de périphérique.  Servez-vous de l'utilitaire `blkid` pour déterminer l'identificateur unique universel (UUID) du nouveau système de fichiers :
 
     ```bash   
     sudo /sbin/blkid
@@ -161,7 +161,7 @@ Dans cet exemple, nous créons une partition de disque unique sur /dev/sdc. nouv
     /dev/md127: UUID="aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" TYPE="ext4"
     ```
 
-3. Ouvrez/etc/fstab dans un éditeur de texte et ajoutez une entrée pour le nouveau système de fichiers hello, par exemple :
+3. Ouvrez /etc/fstab dans un éditeur de texte, puis ajoutez une entrée pour le nouveau système de fichiers, par exemple :
 
     ```bash   
     UUID=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee  /data  ext4  defaults  0  2
@@ -175,15 +175,15 @@ Dans cet exemple, nous créons une partition de disque unique sur /dev/sdc. nouv
    
     Ensuite, enregistrez et fermez /etc/fstab.
 
-4. Tester que hello/etc/fstab entrée est correcte :
+4. Vérifiez si l'entrée /etc/fstab est correcte :
 
     ```bash  
     sudo mount -a
     ```
 
-    Si cette commande renvoie un message d’erreur, vérifiez la syntaxe hello dans le fichier/etc/fstab de hello.
+    Si cette commande génère un message d’erreur, vérifiez que la syntaxe utilisée dans le fichier /etc/fstab est correcte.
    
-    Prochaine exécution hello `mount` système de fichiers de commandes tooensure hello est monté :
+    Ensuite, exécutez la commande `mount` pour vérifier que le système de fichiers est monté :
 
     ```bash   
     mount
@@ -195,7 +195,7 @@ Dans cet exemple, nous créons une partition de disque unique sur /dev/sdc. nouv
    
     **Configuration fstab**
    
-    Nombre de distributions inclure soit hello `nobootwait` ou `nofail` monter des paramètres qui peuvent être ajoutés à un fichier fstab toohello/etc /. Ces paramètres permettent échecs lors du montage d’un système de fichiers particulier et autoriser hello Linux système toocontinue tooboot même s’il est impossible de tooproperly montage hello RAID. Pour plus d’informations sur ces paramètres, consultez la documentation de la distribution tooyour.
+    De nombreuses distributions comprennent les paramètres de montage `nobootwait` ou `nofail` pouvant être ajoutés au fichier /etc/fstab. Ces paramètres autorisent les échecs lors du montage d'un système de fichiers donné et permettent au système Linux de continuer à démarrer même s'il n'a pas été en mesure de monter le système de fichiers RAID. Pour plus d’informations sur ces paramètres, reportez-vous à la documentation de votre distribution.
    
     Exemple (Ubuntu) :
 
@@ -205,26 +205,26 @@ Dans cet exemple, nous créons une partition de disque unique sur /dev/sdc. nouv
 
     **Paramètres de démarrage Linux**
    
-    Dans toohello ajout au-dessus de paramètres, hello au paramètre de noyau «`bootdegraded=true`» peut autoriser hello système tooboot même si hello RAID est perçu comme endommagé ou détérioré, par exemple, si un lecteur de données est supprimé par inadvertance de la machine virtuelle de hello. Par défaut, cette situation peut également rendre impossible le démarrage du système.
+    En plus des paramètres ci-dessus, le paramètre de noyau «`bootdegraded=true`» peut permettre au système de démarrer, même si le RAID est identifié comme endommagé ou détérioré, par exemple si un disque de données est supprimé par inadvertance de la machine virtuelle. Par défaut, cette situation peut également rendre impossible le démarrage du système.
    
-    Consultez la documentation de la distribution tooyour sur comment tooproperly modifier les paramètres de noyau. Par exemple, dans de nombreuses distributions (CentOS, Oracle Linux SLES et 11), ces paramètres peuvent être ajoutés manuellement toohello «`/boot/grub/menu.lst`« fichier.  Sur Ubuntu ce paramètre peut être ajouté à toohello `GRUB_CMDLINE_LINUX_DEFAULT` variable sur « / etc/par défaut/grub ».
+    Pour plus d'informations sur la modification adéquate des paramètres de noyau, reportez-vous à la documentation de votre distribution. Par exemple, dans de nombreuses distributions (CentOS, Oracle Linux, SLES 11), ces paramètres peuvent être ajoutés manuellement au fichier «`/boot/grub/menu.lst`».  Sur Ubuntu, ce paramètre peut être ajouté à la variable `GRUB_CMDLINE_LINUX_DEFAULT` dans « /etc/default/grub ».
 
 
 ## <a name="trimunmap-support"></a>Prise en charge de TRIM/UNMAP
-Certains noyaux Linux prend en charge TRIM/annuler le mappage operations toodiscard les blocs inutilisés sur le disque de hello. Ces opérations sont principalement dans tooinform standard de stockage Azure qui pages supprimées ne sont plus valides et peuvent être ignorées. Le fait d’ignorer des pages peut vous permettre de réaliser des économies si vous créez des fichiers volumineux, puis les supprimez.
+Certains noyaux Linux prennent en charge les opérations TRIM/UNMAP pour ignorer les blocs inutilisés sur le disque. Ces opérations sont particulièrement utiles dans un stockage standard pour informer Azure que des pages supprimées ne sont plus valides et peuvent être ignorées. Le fait d’ignorer des pages peut vous permettre de réaliser des économies si vous créez des fichiers volumineux, puis les supprimez.
 
 > [!NOTE]
-> RAID ne peut pas émettre des commandes de rejet si la taille de segment de hello pour le tableau de hello a la valeur accessible sans que la valeur par défaut de hello (512 Ko). C’est parce que hello annuler le mappage granularité sur hello hôte est également de 512 Ko. Si vous avez modifié le taille de segment du tableau hello par le biais de mdadm `--chunk=` paramètre, puis les demandes/annuler le mappage de découpage peuvent être ignoré par le noyau de hello.
+> RAID ne peut pas émettre de commandes Ignorer si la taille de segment de tableau est inférieure à la valeur par défaut (512 Ko). La raison en est que la granularité d’annulation de mappage sur l’ordinateur hôte est également de 512 Ko. Si vous avez modifié la taille de segment du tableau par l’intermédiaire du paramètre `--chunk=` de mdadm, les demandes TRIM ou d’annulation de mappage peuvent être ignorées par le noyau.
 
-Il existe deux façons tooenable TRIM prend en charge dans votre VM Linux. Comme d’habitude, consultez votre distribution pour hello approche recommandée :
+Il existe deux façons d’activer la prise en charge de TRIM sur votre machine virtuelle Linux. Comme d’habitude, consultez votre distribution pour connaître l’approche recommandée :
 
-- Hello d’utilisation `discard` monter option dans `/etc/fstab`, par exemple :
+- Utilisez l’option de montage `discard` dans `/etc/fstab`, par exemple :
 
     ```bash
     UUID=aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee  /data  ext4  defaults,discard  0  2
     ```
 
-- Dans certains hello cas `discard` option peut avoir des conséquences sur les performances. Vous pouvez également exécuter hello `fstrim` commande manuellement à partir de la ligne de commande hello ou ajoutez-le tooyour crontab toorun régulièrement :
+- Dans certains cas, l’option `discard` peut avoir un impact sur la performance. Vous pouvez également exécuter la commande `fstrim` manuellement à partir de la ligne de commande ou l’ajouter à votre crontab pour l’exécuter régulièrement :
 
     **Ubuntu**
 

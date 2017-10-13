@@ -1,39 +1,39 @@
-Lorsque vous n’avez plus besoin un disque de données est attachée tooa virtual machine, vous pouvez facilement la détacher. Détachement d’un disque supprime le disque de hello à partir de l’ordinateur virtuel de hello, mais ne supprime pas les disques hello de hello compte de stockage Azure.
+Lorsque vous n’avez plus besoin d’un disque de données qui est attaché à une machine virtuelle, vous pouvez le détacher facilement. Détacher un disque supprime le disque de la machine virtuelle, mais ne supprime pas le disque du compte de stockage Azure.
 
-Si vous souhaitez toouse hello données existantes hello disque à nouveau, vous pouvez rattacher il toohello même ordinateur virtuel ou un autre.  
+Si vous souhaitez réutiliser les données du disque, vous pouvez l’attacher à la même machine virtuelle ou à une autre.  
 
 > [!NOTE]
-> toodetach un disque de système d’exploitation, vous devez tout d’abord toodelete hello virtual machine.
+> Pour détacher un disque de système d’exploitation, vous devez tout d’abord supprimer la machine virtuelle.
 >
 
-## <a name="find-hello-disk"></a>Trouver de disque de hello
-Si vous ne connaissez nom hello de hello disque ou souhaitez tooverify avant de vous détacher, procédez comme suit.
+## <a name="find-the-disk"></a>Recherche du disque
+Si vous ne connaissez pas le nom du disque ou souhaitez le vérifier avant de le détacher, procédez comme suit.
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
+1. Connectez-vous au [portail Azure](https://portal.azure.com).
 
-2. Cliquez sur **virtuels**, et puis sélectionnez hello machine virtuelle appropriée.
+2. Cliquez sur **Machines virtuelles**, puis sélectionnez la machine virtuelle appropriée.
 
-3. Cliquez sur **disques** le long de hello bord gauche du tableau de bord de machine virtuelle hello, sous **paramètres**.
+3. Cliquez sur **Disques** sur le bord gauche du tableau de bord de la machine virtuelle, sous **Paramètres**.
 
- tableau de bord de machine virtuelle Hello répertorie le nom de hello et type de tous les disques attachés. Par exemple, cet écran affiche une machine virtuelle avec un disque de système d’exploitation et un disque de données :
+ Ce tableau de bord de machine virtuelle répertorie le nom et le type de tous les disques attachés. Par exemple, cet écran affiche une machine virtuelle avec un disque de système d’exploitation et un disque de données :
 
     ![Rechercher un disque de données](./media/howto-detach-disk-windows-linux/vmwithdisklist.png)
 
-## <a name="detach-hello-disk"></a>Détacher un disque de hello
-1. À partir de hello portail Azure, cliquez sur **virtuels**, puis cliquez sur nom hello de machine virtuelle hello qui possède le disque de données hello souhaité toodetach.
+## <a name="detach-the-disk"></a>Détachement du disque
+1. À partir du portail Azure, cliquez sur **Machines virtuelles**, sur le nom de la machine virtuelle qui comporte le disque de données que vous souhaitez détacher.
 
-2. Cliquez sur **disques** le long de hello bord gauche du tableau de bord de machine virtuelle hello, sous **paramètres**.
+2. Cliquez sur **Disques** sur le bord gauche du tableau de bord de la machine virtuelle, sous **Paramètres**.
 
-3. Cliquez sur le disque hello toodetach.
+3. Cliquez sur le disque que vous souhaitez détacher.
 
-  ![Identifier hello disque toodetach](./media/howto-detach-disk-windows-linux/disklist.png)
+  ![Identification du disque à détacher](./media/howto-detach-disk-windows-linux/disklist.png)
 
-4. Dans la barre de commandes hello, cliquez sur **détachement**.
+4. Dans la barre de commandes, cliquez sur **Détacher**.
 
-  ![Recherchez hello detach, commande](./media/howto-detach-disk-windows-linux/diskdetachcommand.png)
+  ![Localiser la commande de détachement](./media/howto-detach-disk-windows-linux/diskdetachcommand.png)
 
-5. Dans la fenêtre de confirmation hello, cliquez sur **Oui** disque de hello toodetach.
+5. Dans la fenêtre de confirmation, cliquez sur **Oui** pour détacher le disque.
 
-  ![Confirmer le détachement du disque hello](./media/howto-detach-disk-windows-linux/confirmdetach.png)
+  ![Confirmation du détachement du disque](./media/howto-detach-disk-windows-linux/confirmdetach.png)
 
-disque de Hello reste dans le stockage, mais n’est plus attaché tooa virtual machine.
+Le disque reste dans le stockage, mais il n’est plus attaché à une machine virtuelle.

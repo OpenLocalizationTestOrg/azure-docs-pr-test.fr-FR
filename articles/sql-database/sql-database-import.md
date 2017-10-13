@@ -1,5 +1,5 @@
 ---
-title: "aaaImport un fichier BACPAC fichier toocreate une base de données SQL Azure | Documents Microsoft"
+title: "Importer un fichier BACPAC pour créer une base de données SQL Azure | Microsoft Docs"
 description: "Créez une base de données SQL Azure en important un fichier BACPAC."
 services: sql-database
 documentationcenter: 
@@ -15,60 +15,58 @@ ms.author: carlrab
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.openlocfilehash: 0d5fc93acf27b79502969fcd6199d11161915b19
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5ff4184a6147c367c64b5c90c090e1abe59edb90
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="import-a-bacpac-file-tooa-new-azure-sql-database"></a>Importer un tooa de fichier BACPAC nouvelle base de données de SQL Azure
+# <a name="import-a-bacpac-file-to-a-new-azure-sql-database"></a>Importer un fichier BACPAC dans une nouvelle base de données SQL Azure
 
-Lorsque vous avez besoin d’une base de données à partir d’une archive de tooimport ou lors de la migration à partir d’une autre plateforme, vous pouvez importer des schémas hello et les données à partir d’un [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4) fichier. Un fichier BACPAC est un fichier ZIP avec une extension de fichier BACPAC qui contient les métadonnées de hello et les données à partir d’une base de données SQL Server. Il peut être importé à partir du Stockage Blob Azure (stockage standard uniquement) ou à partir du stockage local dans un emplacement local. vitesse d’importation toomaximize hello, nous recommandons que vous spécifiez des performances et le niveau de niveau de service, par exemple un P6 et puis mettre à l’échelle toodown selon une fois l’importation de hello réussie. En outre, le niveau de compatibilité de base de données hello après l’importation de hello est basé sur le niveau de compatibilité hello de base de données source hello. 
+Lorsque vous avez besoin d’importer une base de données à partir d’une archive ou lors de la migration à partir d’une autre plateforme, vous pouvez importer les données et le schéma de base de données à partir d’un fichier [BACPAC](https://msdn.microsoft.com/library/ee210546.aspx#Anchor_4). Un fichier BACPAC est un fichier ZIP avec une extension de fichier BACPAC contenant les métadonnées et les données à partir d’une base de données SQL Server. Il peut être importé à partir du Stockage Blob Azure (stockage standard uniquement) ou à partir du stockage local dans un emplacement local. Pour optimiser la vitesse de l’importation, nous vous recommandons de spécifier un niveau de performances et un niveau de service supérieurs, par exemple P6, puis de descendre en puissance une fois l’importation réussie. En outre, le niveau de compatibilité de la base de données après l’importation est basé sur le niveau de compatibilité de la base de données source. 
 
 > [!IMPORTANT] 
-> Après avoir migré votre tooAzure de base de données de la base de données SQL, vous pouvez choisir la base de données toooperate hello à son niveau de compatibilité actuel (niveau 100 pour la base de données AdventureWorks2008R2 hello) ou à un niveau supérieur. Pour plus d’informations sur les implications en matière de hello et les options pour l’exploitation d’une base de données à un niveau de compatibilité spécifiques, consultez [niveau de compatibilité ALTER DATABASE](https://docs.microsoft.com/sql/t-sql/statements/alter-database-transact-sql-compatibility-level). Voir aussi [ALTER DATABASE SCOPED CONFIGURATION](https://docs.microsoft.com/sql/t-sql/statements/alter-database-scoped-configuration-transact-sql) pour plus d’informations sur les paramètres de niveau de base de données supplémentaires liées toocompatibility niveaux.   >
+> Après avoir migré votre base de données vers la base de données SQL Azure, vous pouvez choisir d’utiliser la base de données avec son niveau de compatibilité actuel (niveau 100 pour la base de données AdventureWorks2008R2) ou à un niveau supérieur. Pour plus d’informations sur les implications et les options du fonctionnement d’une base de données à un niveau de compatibilité spécifique, consultez [Niveau de compatibilité ALTER DATABASE](https://docs.microsoft.com/sql/t-sql/statements/alter-database-transact-sql-compatibility-level). Consultez également [ALTER DATABASE SCOPED CONFIGURATION](https://docs.microsoft.com/sql/t-sql/statements/alter-database-scoped-configuration-transact-sql) pour plus d’informations sur des paramètres supplémentaires au niveau de la base de données relatifs aux niveaux de compatibilité.   >
 
 > [!NOTE]
-> tooimport un BACPAC tooa nouvelle base de données, vous devez d’abord créer un serveur logique de base de données SQL Azure. Pour obtenir un didacticiel montrant comment toomigrate un serveur SQL Server de base de données tooAzure base de données SQL à l’aide de SQLPackage, consultez [migrer une base de données SQL Server](sql-database-migrate-your-sql-server-database.md)
+> Pour importer un fichier BACPAC dans une nouvelle base de données, vous devez d’abord créer un serveur logique de base de données SQL Azure. Pour obtenir un didacticiel indiquant comment migrer une base de données SQL Server vers une base de données SQL Azure à l’aide de SQLPackage, consultez [Migrer une base de données SQL Server](sql-database-migrate-your-sql-server-database.md)
 >
 
 ## <a name="import-from-a-bacpac-file-using-azure-portal"></a>Importation à partir d’un fichier BACPAC à l’aide du portail Azure
 
-Cet article fournit des instructions pour la création d’une base de données SQL Azure à partir d’un fichier BACPAC stocké dans le stockage blob Azure à l’aide de hello [portail Azure](https://portal.azure.com). Importation à l’aide de hello uniquement le portail Azure prend en charge l’importation d’un fichier BACPAC à partir du stockage d’objets blob Azure.
+Cet article fournit des instructions pour créer une base de données SQL Azure à partir d’un fichier BACPAC stocké dans le Stockage Blob Azure à l’aide du [portail Azure](https://portal.azure.com). L’importation à l’aide du portail Azure ne prend en charge que l’importation d’un fichier BACPAC à partir du Stockage Blob Azure.
 
-une base de données à l’aide de tooimport hello portail Azure, page hello ouvert pour votre base de données cliquez sur **importation** sur la barre d’outils hello. Spécifiez le compte de stockage hello et un conteneur et sélectionnez hello BACPAC fichier tooimport. Sélectionnez la taille de base de données hello hello (généralement hello même origine) et fournissent des informations d’identification de SQL Server de destination hello.  
+Pour importer une base de données à l’aide du portail Azure, ouvrez la page du serveur auquel associer la base de données, puis cliquez sur **Importer** dans la barre d’outils. Spécifiez le compte de stockage et le conteneur, puis sélectionnez le fichier BACPAC que vous souhaitez importer. Sélectionnez la taille de la base de données (généralement la même que celle d’origine) et indiquez les informations d’identification du serveur SQL Server de destination.  
 
    ![Importation de base de données](./media/sql-database-import/import.png)
 
-progression de hello toomonitor Hello l’opération d’importation, ouvrez une page hello pour hello serveur logique contenant hello de base de données en cours d’importation. Faites défiler la liste trop**Operations** puis cliquez sur **Import/Export** l’historique.
+Pour surveiller la progression de l’opération d’importation, ouvrez la page du serveur logique qui contient la base de données en cours d’importation. Faites défiler jusqu'à **Operations**, puis cliquez sur l’historique **Import/Export**.
 
-### <a name="monitor-hello-progress-of-an-import-operation"></a>Surveiller la progression d’une opération d’importation hello
+### <a name="monitor-the-progress-of-an-import-operation"></a>Surveiller la progression d’une opération d’importation
 
-progression de hello toomonitor Hello l’opération d’importation, ouvrez une page hello pour hello serveur logique dans le hello base de données est en cours d’importation importé. Faites défiler la liste trop**Operations** puis cliquez sur **Import/Export** l’historique.
+Pour surveiller la progression de l’opération d’importation, ouvrez la page du serveur logique dans laquelle la base de données est en cours d’importation. Faites défiler jusqu'à **Operations**, puis cliquez sur l’historique **Import/Export**.
    
    ![importer](./media/sql-database-import/import-history.png)![état d’importation](./media/sql-database-import/import-status.png)
 
-base de données tooverify hello est actif sur le serveur de hello, cliquez sur **bases de données SQL** et vérifiez que la nouvelle base de données hello **Online**.
+Pour vérifier que la base de données est en ligne sur le serveur, cliquez sur **Bases de données SQL** et assurez-vous que la nouvelle base de données est définie sur **En ligne**.
 
 ## <a name="import-from-a-bacpac-file-using-sqlpackage"></a>Importer à partir d’un fichier BACPAC à l’aide de SQLPackage
 
-tooimport SQL de base de données à l’aide de hello [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx) utilitaire de ligne de commande, consultez [importer les paramètres et les propriétés](https://msdn.microsoft.com/library/hh550080.aspx#Import Parameters and Properties). Hello SQLPackage utilitaire est fourni avec les versions les plus récentes de hello [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) et [SQL Server Data Tools pour Visual Studio](https://msdn.microsoft.com/library/mt204009.aspx), ou vous pouvez télécharger la version la plus récente de hello [ SqlPackage](https://www.microsoft.com/download/details.aspx?id=53876) directement hello Microsoft Centre de téléchargement.
+Pour importer une base de données SQL à l’aide de l’utilitaire de ligne de commande [SqlPackage](https://msdn.microsoft.com/library/hh550080.aspx), consultez [Paramètres et propriétés d’importation](https://msdn.microsoft.com/library/hh550080.aspx#Import Parameters and Properties). L’utilitaire SQLPackage est fourni avec les dernières versions de [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) et de [SQL Server Data Tools pour Visual Studio](https://msdn.microsoft.com/library/mt204009.aspx). Vous pouvez également télécharger la dernière version de [SqlPackage](https://www.microsoft.com/download/details.aspx?id=53876) directement à partir du Centre de téléchargement Microsoft.
 
-Nous vous recommandons d’utiliser hello Hello SQLPackage utilitaire pour l’évolutivité et de performances dans la plupart des environnements de production. Pour une équipe de consultants clients SQL Server à l’aide des fichiers BACPAC, consultez le blog sur la migration [migration à partir de SQL Server tooAzure de la base de données SQL à l’aide des fichiers BACPAC](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/).
+Nous recommandons l’utilisation de l’utilitaire SQLPackage afin de bénéficier de l’évolutivité et des performances dans la plupart des environnements de production. Pour consulter le billet du blog SQL Server Customer Advisory Team sur la migration de SQL Server vers Azure SQL Database à l’aide de fichiers BACPAC (en anglais), rendez-vous [ici](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/).
 
-Consultez hello commande SQLPackage pour un exemple de script de la façon suivante tooimport hello **AdventureWorks2008R2** base de données à partir du stockage local tooan base de données SQL Azure serveur logique, appelée **mynewserver20170403** dans cet exemple. Ce script illustre la création d’une base de données appelée hello **myMigratedDatabase**, avec un niveau de service de **Premium**et un objectif de Service de **P6**. Modifiez ces valeurs comme environnement de tooyour appropriée.
+Consultez la commande SQLPackage suivante pour obtenir un exemple de script afin de savoir comment importer la base de données **AdventureWorks2008R2** à partir du stockage local vers un serveur logique de base de données SQL Azure, appelé **mynewserver20170403** dans cet exemple. Ce script illustre la création d’une base de données appelée **myMigratedDatabase**, avec un niveau de service **Premium**et un objectif de service **P6**. Modifiez ces valeurs en fonction de votre environnement.
 
 ```cmd
 SqlPackage.exe /a:import /tcs:"Data Source=mynewserver20170403.database.windows.net;Initial Catalog=myMigratedDatabase;User Id=ServerAdmin;Password=<change_to_your_password>" /sf:AdventureWorks2008R2.bacpac /p:DatabaseEdition=Premium /p:DatabaseServiceObjective=P6
 ```
 
-   ![importer sqlpackage](./media/sql-database-migrate-your-sql-server-database/sqlpackage-import.png)
-
 > [!IMPORTANT]
-> Un serveur logique Azure SQL Database écoute sur le port 1433. Si vous essayez de tooconnect tooan base de données SQL Azure serveur logique au sein d’un pare-feu d’entreprise, ce port doit être ouvert dans le pare-feu d’entreprise hello pour toosuccessfully de vous connecter.
+> Un serveur logique Azure SQL Database écoute sur le port 1433. Si vous essayez de vous connecter à un serveur logique Azure SQL Database à partir d’un pare-feu d’entreprise, ce port doit être ouvert dans le pare-feu d’entreprise pour que vous puissiez vous connecter.
 >
 
-Cet exemple montre comment tooimport une base de données à l’aide de SqlPackage.exe avec l’authentification universelle Active Directory :
+Cet exemple montre comment exporter une base de données à l’aide de SqlPackage.exe avec l’authentification Active Directory universelle :
 
 ```cmd
 SqlPackage.exe /a:Import /sf:testExport.bacpac /tdn:NewDacFX /tsn:apptestserver.database.windows.net /ua:True /tid:"apptest.onmicrosoft.com"
@@ -76,7 +74,7 @@ SqlPackage.exe /a:Import /sf:testExport.bacpac /tdn:NewDacFX /tsn:apptestserver.
 
 ## <a name="import-from-a-bacpac-file-using-powershell"></a>Importer à partir d’un fichier BACPAC à l’aide de PowerShell
 
-Hello d’utilisation [New-AzureRmSqlDatabaseImport](/powershell/module/azurerm.sql/new-azurermsqldatabaseimport) toosubmit de l’applet de commande un toohello de requête de base de données importation service de base de données SQL Azure. Selon la taille de hello de votre base de données, opération d’importation hello peut prendre quelques toocomplete de temps.
+Utilisez l’applet de commande [New-AzureRmSqlDatabaseImport](/powershell/module/azurerm.sql/new-azurermsqldatabaseimport) pour soumettre une demande d’importation de base de données au service de base de données SQL Azure. Selon la taille de votre base de données, l'opération d'importation peut prendre plus ou moins longtemps.
 
  ```powershell
  $importRequest = New-AzureRmSqlDatabaseImport -ResourceGroupName "myResourceGroup" `
@@ -93,7 +91,7 @@ Hello d’utilisation [New-AzureRmSqlDatabaseImport](/powershell/module/azurerm.
 
  ```
 
-état de hello toocheck Hello la demande d’importation, utilisez hello [Get-AzureRmSqlDatabaseImportExportStatus](/powershell/module/azurerm.sql/get-azurermsqldatabaseimportexportstatus) applet de commande. Cela exécute immédiatement après hello demande généralement retourne **état : InProgress**. Lorsque vous consultez **état : a réussi** hello l’importation est terminée.
+Pour vérifier l’état de la demande d’importation, utilisez l’applet de commande [Get-AzureRmSqlDatabaseImportExportStatus](/powershell/module/azurerm.sql/get-azurermsqldatabaseimportexportstatus). L’exécution immédiatement après la demande retourne généralement **État : en cours**. Lorsque **État : réussite** s’affiche, l’importation est terminée.
 
 ```powershell
 $importStatus = Get-AzureRmSqlDatabaseImportExportStatus -OperationStatusLink $importRequest.OperationStatusLink
@@ -112,9 +110,9 @@ $importStatus
 Pour un autre exemple de script, consultez [Importation d’une base de données à partir d’un fichier BACPAC](scripts/sql-database-import-from-bacpac-powershell.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* toolearn tooconnect tooand interroger une base de données SQL importée, voir [connecter tooSQL de base de données avec SQL Server Management Studio et exécuter un exemple de requête T-SQL](sql-database-connect-query-ssms.md).
-* Pour une équipe de consultants clients SQL Server à l’aide des fichiers BACPAC, consultez le blog sur la migration [migration à partir de SQL Server tooAzure de la base de données SQL à l’aide des fichiers BACPAC](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/).
-* Pour en savoir plus sur hello entière SQL Server de base de données du processus de migration, y compris les recommandations relatives aux performances, consultez [migrer un tooAzure de base de données SQL Server de la base de données SQL](sql-database-cloud-migrate.md).
+* Pour vous connecter et interroger une base de données SQL importée, consultez [Se connecter à la base de données SQL avec SQL Server Management Studio et exécuter un exemple de requête T-SQL](sql-database-connect-query-ssms.md).
+* Pour consulter le billet du blog SQL Server Customer Advisory Team sur la migration de SQL Server vers Azure SQL Database à l’aide de fichiers BACPAC (en anglais), rendez-vous [ici](https://blogs.msdn.microsoft.com/sqlcat/2016/10/20/migrating-from-sql-server-to-azure-sql-database-using-bacpac-files/).
+* Pour une description du processus complet de migration d’une base de données SQL Server, y compris les recommandations relatives aux performances, consultez [Migration de base de données SQL Server vers SQL Database dans le cloud](sql-database-cloud-migrate.md).
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: aaaOverview du stockage Azure Table | Documents Microsoft
-description: "Stocker des données structurées dans le cloud hello avec le stockage Table Azure, un magasin de données NoSQL."
+title: "Vue d’ensemble du stockage de table Azure | Microsoft Docs"
+description: "Stockez des données structurées dans le cloud à l’aide du stockage de tables Azure, un magasin de données NoSQL."
 services: cosmos-db
 documentationcenter: .net
 author: mimig1
@@ -14,29 +14,29 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/23/2017
 ms.author: mimig
-ms.openlocfilehash: 8643cc666f000e078644981381a086e1ccc44067
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9099e90c402185b371495379db943d64fb82cdb8
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-table-storage-overview"></a>Vue d’ensemble du stockage de table Azure
 
 [!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
 
-Stockage de Table Azure est un service qui stocke NoSQL structuré du magasin de données dans le cloud de hello, en fournissant un attribut key/avec une conception schemaless. Stockage de Table schemaless, il est facile tooadapt d’evolve de votre application a besoin de vos données en tant que hello. Accéder aux données de stockage tooTable est rapide et économique pour de nombreux types d’applications et est généralement inférieur coût SQL traditionnel pour les volumes de données similaires.
+Le Stockage Table Azure est un service qui stocke des données NoSQL structurées dans le cloud, en fournissant une conception sans schéma à un magasin de clés/attributs. Comme le stockage de tables est sans schéma, il est aisé d’adapter vos données en fonction des besoins de votre application. L’accès aux données du Stockage Table est rapide et économique pour de nombreux types d’applications, et généralement moins coûteux que le SQL traditionnel pour des volumes de données similaires.
 
-Vous pouvez utiliser la Table stockage toostore flexible des groupes de données comme les données utilisateur pour les applications web, carnets d’adresses, les informations de périphérique ou autres types de votre service requiert des métadonnées. Vous pouvez stocker n’importe quel nombre d’entités dans une table, et un compte de stockage peut contenir n’importe quel nombre de tables, des limites de capacité toohello hello du compte de stockage.
+Vous pouvez utiliser le Stockage Table pour stocker des jeux de données flexibles, comme des données utilisateur pour des applications Web, des carnets d’adresses, des informations sur les périphériques ou d’autres types de métadonnées requis par votre service. Vous pouvez stocker un nombre quelconque d'entités dans une table, et un compte de stockage peut contenir un nombre quelconque de tables, jusqu'à la limite de capacité du compte de stockage.
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) est une application autonome gratuit, à partir de Microsoft qui vous permet de toowork visuellement avec des données de stockage Azure sur Windows, Mac OS et Linux.
+* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) est une application autonome et gratuite de Microsoft qui vous permet d’exploiter visuellement les données de Stockage Azure sur Windows, macOS et Linux.
 
 * [Getting Started with Azure Table Storage in .NET (Prise en main de Stockage Table Azure dans .NET)](table-storage-how-to-use-dotnet.md)
 
-* Afficher la documentation de référence de service de Table hello pour plus d’informations sur les API disponibles :
+* Pour plus d'informations sur les API disponibles, consultez la documentation de référence du service de Table :
 
     * [Référence de la bibliothèque cliente de stockage pour .NET](http://go.microsoft.com/fwlink/?LinkID=390731&clcid=0x409)
 

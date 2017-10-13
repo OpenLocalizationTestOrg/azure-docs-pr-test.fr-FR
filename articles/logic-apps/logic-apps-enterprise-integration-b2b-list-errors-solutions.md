@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/02/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 0340e2979f1972ba631354e206c93969e55946e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1865d75f1b4c2aa18d5a3130f639572d19563b3e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="logic-apps-b2b-list-of-errors-and-solutions"></a>Liste des erreurs et des solutions Logic Apps B2B  
 Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le cadre des scénarios Logic Apps B2B et suggère des actions appropriées pour corriger ces erreurs.
@@ -31,7 +31,7 @@ Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le 
 |   |   |  
 |---|---|
 | Description de l’erreur | Aucun accord trouvé avec les paramètres de résolution d’accord|    
-| Action requise | accord de Hello doit être ajouté toohello compte d’intégration avec des identités d’entreprise convenu.</br> les identités d’entreprise Hello doivent correspondre à l’ID de message d’entrée toohello|  
+| Action requise | L’accord doit être ajouté au compte d’intégration avec les identités commerciales convenues.</br> Les identités commerciales doivent correspondre aux ID de message entrant.|  
 |   |   |
 
 ### <a name="-no-agreement-found-with-identities"></a>* Aucun accord trouvé avec les identités
@@ -39,7 +39,7 @@ Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le 
 |   |   | 
 |---|---|
 | Description de l’erreur | Aucun accord trouvé avec les identités : ’AS2Identity’::’Partner1’ et ’AS2Identity’::’Partner3’.| 
-| Action requise | AS2 non valide-à partir d’ou AS2-tooconfigured pour l’accord. </br> Messages AS2 AS2-à partir d’ou en-têtes avec des configurations de contrat de message AS2-tooheaders ou contrat ID toomatch AS2 dans AS2 |
+| Action requise | En-tête AS2-From ou AS2-To non valide configuré pour l’accord. </br> Corrigez les en-têtes de message AS2 AS2-From ou AS2-To de l’accord de manière à ce que les ID AS2 des en-têtes de message AS2 correspondent aux configurations de l’accord. |
 |   |   |     
 
 ## <a name="as2"></a>AS2
@@ -49,7 +49,7 @@ Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le 
 |   |   |  
 |---|---|
 | Description de l’erreur| En-têtes AS2 non valides. L’en-tête « AS2-To » ou « AS2-From » est vide.| 
-| Action requise | Réception d’un message AS2 ne contenant pas hello AS2-à partir d’ou AS2-tooor les deux en-têtes. </br> Vérifiez le message AS2 AS2-à partir d’et AS2-tooheaders et corrigez-les en fonction de la configuration de l’accord |
+| Action requise | Un message AS2 ne contenant pas d’en-tête AS2-From ou AS2-To a été reçu. </br> Vérifiez les en-têtes AS2-From et AS2-To de message AS2 et corrigez-les en fonction de la configuration de l’accord. |
 |  |  | 
 
 
@@ -57,8 +57,8 @@ Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le 
 
 |   |   |  
 |---|---|
-| Description de l’erreur| contenu de la demande Hello est null ou vide | 
-| Action requise | Réception d’un message AS2 ne contenant pas de corps de message hello |
+| Description de l’erreur| Le contenu de la requête est nul ou vide. | 
+| Action requise | Un message AS2 ne comportant pas de corps de message a été reçu. |
 |  |  | 
 
 ### <a name="-as2-message-decryption-failure"></a>* Échec du déchiffrement de message AS2
@@ -66,7 +66,7 @@ Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le 
 |   |   | 
 |---|---|
 | Description de l’erreur |  [processed/Error: decryption-failed] | 
-| Action requise | Ajouter @base64ToBinary tooAS2Message avant d’envoyer toopartner 
+| Action requise | Ajoutez @base64ToBinary au message AS2 avant de l’envoyer au partenaire. 
 ```java
             "HTTP": {
                 "inputs": {
@@ -83,7 +83,7 @@ Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le 
 |   |   | 
 |---|---|
 | Description de l’erreur |  [processed/Error: decryption-failed] | 
-| Action requise | Ajouter @base64ToBinary tooMDN avant d’envoyer toopartner 
+| Action requise | Ajoutez @base64ToBinary au MDN avant de l’envoyer au partenaire. 
 ```java
             "Response": {
                 "inputs": {
@@ -98,7 +98,7 @@ Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le 
 
 |   |   |  
 |---|---|
-| Description de l’erreur| Hello certificat de signature n'a pas été configuré pour le tiers AS2. </br> AS2-From : partner1 AS2-To : partner2 | 
+| Description de l’erreur| Le certificat de signature n’a pas été configuré pour le tiers AS2. </br> AS2-From : partner1 AS2-To : partner2 | 
 | Action requise | Configurez les paramètres d’accord AS2 avec le certificat approprié pour la signature. |
 |  |  | 
 
@@ -108,34 +108,34 @@ Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le 
     
 |   |   | 
 |---|---|
-| Description de l’erreur | Erreur rencontrée lors de l’analyse. Hello document informatisé Edifact avec l’id ' 123456 'contenu dans l’échange (sans groupe) avec l’id ' 987654', id d’expéditeur 'Partner1', id de destinataire 'Partner2' est interrompu avec les erreurs suivantes : début à la fin de séparateur trouvé |
-| Action requise | toobe de paramètres d’accord Hello configuré tooallow de début et de fin d’espace. </br> Modifier le contrat paramètres tooallow début et de fin d’espace |
+| Description de l’erreur | Erreur rencontrée lors de l’analyse. Le document informatisé EDIFACT ayant l’id ’123456’ contenu dans l’échange (sans groupe) ayant l’id ’987654’, l’id d’expéditeur ’Partner1’, l’id de destinataire ’Partner2’ est interrompu avec les erreurs suivantes : Séparateur de début trouvé. |
+| Action requise | Les paramètres d’accord doivent être configurés de manière à autoriser les espaces de début et de fin. </br> Modifiez les paramètres d’accord de manière à autoriser les espaces de début et de fin. |
 |   |   |
 
 ![Autoriser l’espace](./media/logic-apps-enterprise-integration-b2b-list-errors-solutions/leadingandtrailing.png)
 
-### <a name="-duplicate-check-has-enabled-in-hello-agreement"></a>* Check en double a activé dans l’accord de hello
+### <a name="-duplicate-check-has-enabled-in-the-agreement"></a>* La vérification de doublons a été activée dans l’accord
 
 |   |   | 
 |---|---| 
 | Description de l’erreur | Numéro de contrôle en double |
-| Action requise | Cette erreur indique que message de salutation reçu a des numéros de contrôle dupliqués. </br> Corrigez le numéro de contrôle hello et renvoyez le message de type hello |
+| Action requise | Cette erreur indique que le message reçu contient des numéros de contrôle en double. </br> Corrigez le numéro de contrôle et renvoyez le message. |
 |   |   |
 
-### <a name="-missing-schema-in-hello-agreement"></a>* Schéma manquant dans le contrat de hello
+### <a name="-missing-schema-in-the-agreement"></a>* Schéma manquant dans l’accord
 
 |   |   | 
 |---|---| 
-| Description de l’erreur | Erreur rencontrée lors de l’analyse. jeu de transactions Hello X12 avec l’id '564220001' contenue dans le groupe fonctionnel avec l’id '56422', dans l’échange avec l’id '000056422', id d’expéditeur ' 12345678', id de destinataire ' 87654321' est interrompu avec les erreurs suivantes « message de salutation a un type de document inconnu PE et n’a pas résolu tooany de schémas existants de hello configuré dans l’accord de hello » |
-| Action requise | Configurer le schéma dans les paramètres de l’accord hello  |
+| Description de l’erreur | Erreur rencontrée lors de l’analyse. Le document informatisé X12 possédant l’id ’564220001’ contenu dans le groupe fonctionnel d’id ’56422’, dans l’échange possédant l’id ’000056422’, l’id d’expéditeur ’12345678       ’ et l’id de destinataire ’87654321       ’ est interrompu avec les erreurs suivantes : « Le type de document du message est inconnu, et n’a pas été résolu en l’un des schémas existants configurés dans l’accord. » |
+| Action requise | Configurez le schéma dans les paramètres d’accord.  |
 |   |   |
 
-### <a name="-incorrect-schema-in-hello-agreement"></a>* Schéma incorrect dans l’accord de hello
+### <a name="-incorrect-schema-in-the-agreement"></a>* Schéma incorrect dans l’accord
 
 |   |   | 
 |---|---| 
-| Description de l’erreur | message de type Hello a un type de document inconnu et tooany de schémas existants de hello configurés dans hello accord n’a pas été résolue. |
-| Action requise | Configurer le schéma correct dans les paramètres de l’accord hello  |
+| Description de l’erreur | Le type de document du message est inconnu, et n’a pas été résolu en l’un des schémas existants configurés dans l’accord. |
+| Action requise | Configurez le schéma correct dans les paramètres d’accord.  |
 |   |   |
 
 ## <a name="flat-file"></a>Fichier plat
@@ -144,9 +144,9 @@ Cet article vous aide à comprendre les erreurs qui peuvent se produire dans le 
 
 |   |   | 
 |---|---|
-| Description de l’erreur | Modèle non valide. Les expressions de langage de modèle tooprocess impossible dans les entrées d’action 'Flat_File_Decoding' à la ligne '1' et la colonne '1902' : ' requise de la propriété « content » attend une valeur, mais dispose null. Chemin d’accès « . ». |
-| Action requise | Cette erreur indique le message d’entrée de type hello ne contient pas un corps |
+| Description de l’erreur | Modèle non valide. Impossible de traiter les expressions de langage de gabarit dans les entrées d’action ’Flat_File_Decoding’ à la ligne « 1 » et à la colonne « 1902 » : La propriété « content » requise attend une valeur, mais a reçu null. Chemin d’accès « . ». |
+| Action requise | Cette erreur indique que le message d’entrée ne contient pas de corps. |
 |   |   | 
 
 ## <a name="learn-more"></a>En savoir plus
-[En savoir plus sur hello Pack d’intégration Enterprise](logic-apps-enterprise-integration-overview.md)
+[En savoir plus sur Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md)

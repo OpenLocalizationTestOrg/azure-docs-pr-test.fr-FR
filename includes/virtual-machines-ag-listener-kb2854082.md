@@ -1,13 +1,13 @@
-Ensuite, si tous les serveurs sur le cluster de hello exécutent Windows Server 2008 R2 ou Windows Server 2012, vous devez vérifier ce correctif hello [KB2854082](http://support.microsoft.com/kb/2854082) est installé sur chaque hello sur des serveurs locaux ou des machines virtuelles Azure qui font partie du cluster de hello. N’importe quel serveur ou la machine virtuelle qui est dans un cluster de hello, mais pas dans le groupe de disponibilité hello, également ce correctif logiciel doit être installé.
+Ensuite, si des serveurs du cluster exécutent Windows Server 2008 R2 ou Windows Server 2012, vous devez vérifier que le correctif logiciel [KB2854082](http://support.microsoft.com/kb/2854082) est installé sur chacun des serveurs locaux ou des machines virtuelles Azure qui font partie du cluster. Ce correctif logiciel doit également être installé sur tout serveur ou une machine virtuelle faisant partie du cluster, mais pas du groupe de disponibilité.
 
-Dans la session de bureau à distance hello pour chacun des nœuds de cluster hello, téléchargez [KB2854082](http://support.microsoft.com/kb/2854082) tooa les répertoire local. Ensuite, installez séquentiellement hello correctif sur chaque nœud du cluster. Si le service de cluster hello est en cours d’exécution sur le nœud de cluster hello, serveur de hello est redémarré à fin hello d’installation du correctif logiciel hello.
+Dans la session Bureau à distance, téléchargez [KB2854082](http://support.microsoft.com/kb/2854082) dans un répertoire local pour chacun des nœuds du cluster. Ensuite, installez le correctif logiciel sur chaque nœud du cluster séquentiellement. Si le service de cluster est en cours d'exécution sur le nœud de cluster, le serveur est redémarré à la fin de l'installation du correctif.
 
 > [!WARNING]
-> L’arrêt du service de cluster hello ou hello serveur affecte l’intégrité de quorum hello votre cluster et hello du groupe de disponibilité, et peut entraîner le votre toogo de cluster hors connexion. toomaintain hello haute disponibilité de votre cluster pendant l’installation, assurez-vous que :
+> L’arrêt du service de cluster ou le redémarrage du serveur affecte l’intégrité du quorum de votre cluster et le groupe de disponibilité et peut entraîner la mise hors connexion du cluster. Pour assurer la haute disponibilité de votre cluster lors de l'installation, vérifiez que :
 > 
-> * Hello cluster est l’intégrité du quorum optimal. 
-> * Avant d’installer les correctifs hello sur n’importe quel nœud, tous les nœuds de cluster sont en ligne.
-> * Avant d’installer les correctifs hello sur n’importe quel nœud du cluster de hello, autoriser hello correctif installation toorun toocompletion sur un nœud, notamment redémarrage hello serveur.
+> * L’intégrité du quorum du cluster est optimale. 
+> * Avant d’installer le correctif logiciel sur un nœud, tous les nœuds du cluster sont en ligne.
+> * Avant d’installer le correctif logiciel sur un autre nœud du cluster, autorisez l’installation complète du correctif logiciel sur un nœud, redémarrage complet du serveur inclus.
 > 
 > 
 

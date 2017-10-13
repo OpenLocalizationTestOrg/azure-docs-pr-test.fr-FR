@@ -1,6 +1,6 @@
 ---
-title: "référence des paramètres itinérants aaaWindows 10 | Documents Microsoft"
-description: "Une liste complète de tous les paramètres de hello qui seront déplacés ou sauvegardées dans Windows 10."
+title: "Référence des paramètres d’itinérance Windows 10 | Microsoft Docs"
+description: "Liste complète de tous les paramètres destinés à l’itinérance ou à la sauvegarde dans Windows 10."
 services: active-directory
 keywords: "Enterprise State Roaming, Cloud windows"
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/08/2017
 ms.author: markvi
-ms.openlocfilehash: 381e2220b698bb0e477c207984ff96c03ed132ca
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5082ed8d2f41e72fa979b978e2ac0b0840fdcdac
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="windows-10-roaming-settings-reference"></a>Référence des paramètres d’itinérance Windows 10
-Hello Voici une liste complète de tous les paramètres de hello qui seront déplacés ou sauvegardées dans Windows 10. 
+Voici une liste complète de tous les paramètres destinés à l’itinérance ou à la sauvegarde dans Windows 10. 
 
 ## <a name="devices-and-endpoints"></a>Appareils et points de terminaison
-Consultez hello tableau pour obtenir un résumé des périphériques de hello et de types de comptes qui sont pris en charge par la synchronisation de hello, sauvegarde, et de restauration framework dans Windows 10.
+Consultez le tableau suivant pour obtenir un récapitulatif des périphériques et des types de comptes pris en charge par la structure de synchronisation, de sauvegarde et de restauration framework dans Windows 10.
 
 | Type de compte et fonctionnement | Bureau | Mobile |
 | --- | --- | --- |
@@ -35,10 +35,10 @@ Consultez hello tableau pour obtenir un résumé des périphériques de hello et
 | Compte Microsoft : sauvegarde/restauration |Non |Oui |
 
 ## <a name="what-is-backup"></a>Qu’est-ce qu’une sauvegarde ?
-En général synchroniser les paramètres Windows par défaut, mais certains paramètres sont sauvegardées uniquement, telles que liste hello des applications installées sur un appareil. La sauvegarde est destinée uniquement aux appareils mobiles et n’est pas disponible pour les utilisateurs d’Enterprise State Roaming. Sauvegarde utilise un compte Microsoft et stocke les paramètres de hello et données d’application dans OneDrive. Si un utilisateur désactive la synchronisation sur l’appareil hello à l’aide d’application des paramètres de hello, données d’application qui normalement se synchronise devient sauvegarde uniquement. Données de sauvegarde est accessible uniquement via l’opération de restauration hello pendant hello, exécutez d’abord l’expérience d’un nouveau périphérique. Sauvegardes peut être désactivés via les paramètres de périphérique hello et peuvent être gérés et supprimés via le compte de l’utilisateur hello OneDrive.
+En règle générale, les paramètres Windows se synchronisent par défaut, cependant, certains paramètres sont simplement sauvegardés, notamment la liste des applications installées sur un périphérique. La sauvegarde est destinée uniquement aux appareils mobiles et n’est pas disponible pour les utilisateurs d’Enterprise State Roaming. La sauvegarde utilise un compte Microsoft et stocke les paramètres et données d’application dans OneDrive. Si, sur le périphérique , un utilisateur désactive la synchronisation avec l’application Settings, les données de l’application normalement synchronisées se transforment en simple sauvegarde. Les données de sauvegarde sont uniquement accessibles via l’opération de restauration lors de la première utilisation d’un nouvel appareil. Les sauvegardes peuvent être désactivées via les paramètres du périphérique et peuvent être gérées et supprimées via le compte OneDrive de l’utilisateur.
 
 ## <a name="windows-settings-overview"></a>Vue d’ensemble des paramètres Windows
-Hello des groupes de paramètres suivants sont disponibles pour la synchronisation de paramètres tooenable ou désactiver les utilisateurs finaux sur les appareils Windows 10.
+Les groupes de paramètres suivants sont disponibles pour les utilisateurs finaux et servent à activer/désactiver la synchronisation des paramètres sur les appareils Windows 10.
 
 * Thème : Arrière-plan du Bureau, Vignette de l’utilisateur, Position de la barre des tâches, etc. 
 * Paramètres Internet Explorer : Historique de navigation, URL saisies, Favoris, etc. 
@@ -54,10 +54,10 @@ La synchronisation de groupes de paramètres pour le navigateur Edge (favoris, l
 ![](./media/active-directory-enterprise-state-roaming/active-directory-enterprise-state-roaming-sync-content.png)
 
 ## <a name="windows-settings-details"></a>Détails des Paramètres Windows
-Dans le tableau suivant de hello, autres entrées dans la colonne du groupe de paramètres hello fait référence toosettings qui peut être désactivé en accédant tooSettings > comptes > synchroniser vos paramètres > Paramètres d’autres fenêtres. 
+Dans le tableau qui suit, les autres entrées de la colonne Groupe de paramètres font référence aux paramètres pouvant être désactivés en accédant à Paramètres > Comptes > Synchroniser vos paramètres > Autres Paramètres Windows. 
 
-Les entrées dans la colonne du groupe de paramètres hello internes font référence toosettings et les applications qui ne peuvent être désactivées à partir de la synchronisation dans l’application hello lui-même ou en désactivant la synchronisation pour hello ensemble de l’unité à l’aide de la gestion des appareils mobiles (MDM) ou les paramètres de stratégie de groupe.
-Les paramètres qui ne se déplacent ou synchronisation appartiennent pas tooa groupe.
+Les entrées internes dans la colonne Groupe de paramètres font référence aux paramètres et aux applications qui ne peuvent être désactivées de la synchronisation qu’au sein de l’application elle-même ou par la désactivation de l’ensemble du périphérique à l’aide des paramètres Gestion des périphériques mobiles ou des paramètres de stratégie de groupe.
+Les paramètres non itinérants ou la synchronisation n’appartiennent pas à un groupe.
 
 | Paramètres | Bureau | Mobile | Groupe |
 | --- | --- | --- | --- |
@@ -85,16 +85,16 @@ Les paramètres qui ne se déplacent ou synchronisation appartiennent pas tooa g
 | **Personnalisation du bureau**: papier peint en diaporama |sync |X |Thème |
 | **Personnalisation du bureau**: paramètres de la barre des tâches (position, masquage automatique, etc.) |sync |X |Thème |
 | **Personnalisation du bureau**: disposition de l’écran d’accueil |X |backup | |
-| **Appareils**: vous avez connecté trop des imprimantes partagées|X |X |Autres |
+| **Appareils**: imprimantes partagées auxquelles vous êtes connectées |X |X |Autres |
 | **Navigateur Edge**: liste de lecture |sync |sync |Interne |
 | **Navigateur Edge**: favoris |sync |sync |Interne |
 | **Navigateur Edge** : sites les plus consultés <sup>[[1]](#footnote-1)</sup> |sync |sync |Interne |
 | **Navigateur Edge** : URL entrées <sup>[[1]](#footnote-1)</sup> |sync |sync |Interne |
 | **Navigateur Edge** : paramètres de la barre des favoris <sup>[[1]](#footnote-1)</sup> |sync |sync |Interne |
-| **Navigateur Edge**: afficher le bouton d’accueil hello <sup> [[1]](#footnote-1)</sup> |sync |sync |Interne |
+| **Navigateur Edge** : afficher le bouton Accueil <sup>[[1]](#footnote-1)</sup> |sync |sync |Interne |
 | **Navigateur Edge** : bloquer les fenêtres publicitaires <sup>[[1]](#footnote-1)</sup> |sync |sync |Interne |
-| **Navigateur Edge**: me demander quel toodo avec chaque téléchargement <sup> [[1]](#footnote-1)</sup> |sync |sync |Interne |
-| **Navigateur Edge**: offrent des mots de passe toosave <sup> [[1]](#footnote-1)</sup> |sync |sync |Interne |
+| **Navigateur Edge** : me demander ce qu’il faut faire avec chaque téléchargement <sup>[[1]](#footnote-1)</sup> |sync |sync |Interne |
+| **Navigateur Edge** : proposer d’enregistrer les mots de passe <sup>[[1]](#footnote-1)</sup> |sync |sync |Interne |
 | **Navigateur Edge** : envoyer les demandes Ne pas me suivre <sup>[[1]](#footnote-1)</sup> |sync |sync |Interne |
 | **Navigateur Edge** : enregistrer les entrées des formulaires <sup>[[1]](#footnote-1)</sup> |sync |sync |Interne |
 | **Navigateur Edge** : afficher les suggestions de recherche et de site au fil de la frappe <sup>[[1]](#footnote-1)</sup> |sync |sync |Interne |
@@ -127,7 +127,7 @@ Les paramètres qui ne se déplacent ou synchronisation appartiennent pas tooa g
 | **Langue**: QWERTY CHS - touche bascule C/E, MAJ |sync |X |language |
 | **Langue**: QWERTY CHS - touche bascule C/E, Ctrl |sync |X |language |
 | **Langue**: WUBI CHS - mode de saisie de caractère unique |sync |X |language |
-| **Langue**: CHS WUBI - afficher hello restant de codage de candidat de hello |sync |X |language |
+| **Langue**: WUBI CHS - afficher le codage de candidats restant |sync |X |language |
 | **Langue**: WUBI CHS - émission d’un bip sonore lorsque le codage des 4 coins est non valide |sync |X |Langage |
 | **Langue** : Bopomofo CHS - inclure CJK Ext-A |sync |X |language |
 | **Langue**: IME japonais - frappe prédictive et mots personnalisés |sync |sync |language |
@@ -139,11 +139,11 @@ Les paramètres qui ne se déplacent ou synchronisation appartiennent pas tooa g
 | **Écran de verrouillage**: tous les paramètres de verrouillage |X |X | |
 | **Loupe**: activer ou désactiver (bascule maître) |X |X |options d’ergonomie |
 | **Loupe**: activer ou désactiver les couleurs d’inversion (désactivé par défaut) |sync |X |options d’ergonomie |
-| **La loupe**: suivi - suivi du focus clavier hello |sync |X |options d’ergonomie |
-| **La loupe**: suivi - suivez hello souris |sync |X |options d’ergonomie |
+| **Loupe**: suivre les éléments sélectionnés au clavier |sync |X |options d’ergonomie |
+| **Loupe**: suivre le curseur de la souris |sync |X |options d’ergonomie |
 | **Loupe**: démarrer lorsque les utilisateurs se connectent (désactivé par défaut) |sync |X |options d’ergonomie |
-| **Souris**: modifier la taille du curseur de souris hello |sync |X |autres |
-| **Souris**: modifier la couleur hello du curseur de souris |sync |X |Autres |
+| **Souris**: modifier la taille du curseur de la souris |sync |X |Autres |
+| **Souris**: modifier la couleur du curseur de la souris |sync |X |Autres |
 | **Souris**: tous les autres paramètres |X |X | |
 | **Narrateur**: lancement rapide |sync |X |options d’ergonomie |
 | **Narrateur**: les utilisateurs peuvent modifier la tonalité du narrateur |sync |X |options d’ergonomie |
@@ -153,8 +153,8 @@ Les paramètres qui ne se déplacent ou synchronisation appartiennent pas tooa g
 | **Narrateur**: insérer le curseur après le Narrateur (activé par défaut) |sync |X |options d’ergonomie |
 | **Narrateur**: activer la mise en évidence visuelle du curseur du Narrateur (activé par défaut) |sync |X |options d’ergonomie |
 | **Narrateur**: lire les pistes audio (activé par défaut) |sync |X |options d’ergonomie |
-| **Le Narrateur**: activer les touches du clavier de tactile hello lorsque vous relâchez votre doigt (désactivé par défaut) |sync |X |options d’ergonomie |
-| **Options d’ergonomie**: définir l’épaisseur de hello de curseur clignotant de hello |sync |X |options d’ergonomie |
+| **Narrateur**: activer les touches du clavier tactile lorsque vous levez le doigt (désactivé par défaut) |sync |X |options d’ergonomie |
+| **Options d’ergonomie**: définir l’épaisseur du curseur clignotant |sync |X |options d’ergonomie |
 | **Options d’ergonomie**: supprimer des images d’arrière-plan (désactivé par défaut) |sync |X |options d’ergonomie |
 | **Alimentation et mise en veille**: tous les paramètres |X |X | |
 | **Personnalisation de l’écran d’accueil** : couleur d’accentuation (téléphone uniquement) |X |sync |Thème |
@@ -163,8 +163,8 @@ Les paramètres qui ne se déplacent ou synchronisation appartiennent pas tooa g
 | **Frappe**: mettre en surbrillance les mots mal orthographiés |sync |backup |language |
 | **Frappe**: afficher les suggestions de texte en cours de frappe |sync |backup |language |
 | **Frappe**: ajouter un espace après la sélection d’une suggestion de texte |sync |backup |language |
-| **Tapant**: ajout d’une période, une fois que j’ai hello espace double-clic |sync |backup |language |
-| **Tapant**: majuscule hello de chaque phrase |sync |backup |language |
+| **Frappe**: ajouter un point après un double-clic sur la barre d’espace |sync |backup |language |
+| **Frappe**: mettre une majuscule sur la première lettre de chaque phrase |sync |backup |language |
 | **Frappe**: utiliser des lettres majuscules lorsque je double-clique sur la touche Maj |sync |backup |language |
 | **Frappe**: les touches émettent des sons pendant la frappe |sync |backup |language |
 | **Frappe**: données de personnalisation pour le clavier tactile |sync |backup |language |

@@ -1,6 +1,6 @@
 ---
-title: aaaReplicate des ordinateurs virtuels Hyper-V dans VMM nuages tooAzure avec Azure Site Recovery | Documents Microsoft
-description: "Fournit une vue d’ensemble pour répliquer des ordinateurs virtuels Hyper-V dans VMM tooAzure de nuages à l’aide du service d’Azure Site Recovery hello"
+title: "Réplication de machines virtuelles Hyper-V dans les clouds VMM vers Azure à l’aide d’Azure Site Recovery | Microsoft Docs"
+description: "Fournit une vue d’ensemble de la réplication de machines virtuelles Hyper-V dans les clouds VMM vers Azure à l’aide du service Azure Site Recovery"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2017
 ms.author: raynew
-ms.openlocfilehash: d6f729a49cc86ea07bebc4d7266fd7b58b3998f7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: af68d21184c137b2b0f1bb4c1afb9bf507e8332d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="replicate-hyper-v-virtual-machines-in-vmm-clouds-tooazure-using-site-recovery-in-hello-azure-portal"></a>Répliquer les machines virtuelles Hyper-V dans VMM tooAzure de nuages à l’aide de la récupération de Site Bonjour portail Azure
+# <a name="replicate-hyper-v-virtual-machines-in-vmm-clouds-to-azure-using-site-recovery-in-the-azure-portal"></a>Répliquer vers Azure des machines virtuelles Hyper-V hébergées dans des clouds VMM à l’aide de Site Recovery sur le Portail Azure
 > [!div class="op_single_selector"]
 > * [Portail Azure](site-recovery-vmm-to-azure.md)
 > * [Portail Azure Classic](site-recovery-vmm-to-azure-classic.md)
@@ -28,89 +28,89 @@ ms.lasthandoff: 10/06/2017
 > * [PowerShell Classic](site-recovery-deploy-with-powershell.md)
 
 
-Cet article fournit une vue d’ensemble de tooreplicate requis des étapes de hello local Hyper-V virtual machines virtuelles gérées dans System Center Virtual Machine Manager (VMM) clouds tooAzure, à l’aide de hello [Azure Site Recovery](site-recovery-overview.md) service dans Hello portail Azure.
+Cet article fournit une vue d’ensemble des étapes nécessaires pour répliquer vers Azure des machines virtuelles Hyper-V locales gérées dans les clouds System Center Virtual Machine Manager (VMM) à l’aide du service [Azure Site Recovery](site-recovery-overview.md) sur le portail Azure.
 
-Après avoir lu cet article, validez les commentaires au bas de hello, ou sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Après avoir lu cet article, publiez des commentaires au bas de ce dernier ou sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
-## <a name="step-1-review-hello-scenario-architecture"></a>Étape 1 : Passez en revue l’architecture du scénario de hello
+## <a name="step-1-review-the-scenario-architecture"></a>Étape 1 : Examen de l’architecture du scénario
 
-Avant de commencer le déploiement, examen de l’architecture du scénario hello et assurez-vous que vous comprenez tous les composants de hello, vous devez toodeploy.
+Avant de commencer le déploiement, vérifiez l’architecture du scénario et prenez connaissance de tous les composants que vous devez déployer.
 
-Accédez trop[étape 1 : examen de l’architecture de hello](vmm-to-azure-walkthrough-architecture.md)
+Aller à [Étape 1 : Examen de l’architecture](vmm-to-azure-walkthrough-architecture.md)
 
-## <a name="step-2-review-prerequisites-and-limitations"></a>Étape 2 : Vérifier les conditions préalables et les limitations
+## <a name="step-2-review-prerequisites-and-limitations"></a>Étape 2 : Examen des prérequis et des limitations
 
-Assurez-vous que vous comprenez les limitations et les conditions préalables au déploiement de hello.
+Vérifiez que vous comprenez les prérequis et les limitations du déploiement.
 
 **Conditions préalables Azure** : vous avez besoin d’un compte Microsoft Azure, d’un réseau Azure et de comptes de stockage.
-**Serveurs VMM et hôtes Hyper-V locaux** : assurez-vous que les serveurs VMM et les hôtes Hyper-V sont conformes et préparés pour le déploiement Site Recovery.
-**Répliquer les machines virtuelles**: Vérifiez que vous voulez tooreplicate de machines virtuelles sont conformes aux exigences d’Azure.
+**Serveurs VMM et hôtes Hyper-V locaux** : assurez-vous que les serveurs VMM et les hôtes Hyper-V sont conformes et préparés pour le déploiement Site Recovery.
+**Machines virtuelles répliquées** : vérifiez que les machines virtuelles à répliquer sont conformes aux conditions requises pour Azure.
 
-Accédez trop[étape 2 : vérifier les conditions préalables et restrictions](vmm-to-azure-walkthrough-prerequisites.md)
+Aller à [Étape 2 : vérifier les conditions préalables et les limitations](vmm-to-azure-walkthrough-prerequisites.md)
 
 ## <a name="step-3-plan-capacity"></a>Étape 3 : planifier la capacité
 
-Si vous effectuez un déploiement complet, vous devez toofigure à quelles ressources de réplication que vous avez besoin. Il existe deux de toohelp disponibles des outils pour cela. Si vous effectuez une rapide configurer tootest hello environnement, vous pouvez ignorer cette étape.
+Si vous effectuez un déploiement complet, vous devez déterminer les ressources de réplication dont vous avez besoin. Pour ce faire, vous disposez de plusieurs outils. Si vous souhaitez réaliser une configuration rapide pour tester l’environnement, vous pouvez ignorer cette étape.
 
-Accédez trop[étape 3 : planifier la capacité](vmm-to-azure-walkthrough-capacity.md)
+Aller à [Étape 3 : Planifier la capacité](vmm-to-azure-walkthrough-capacity.md)
 
 ## <a name="step-4-plan-networking"></a>Étape 4 : Planifier la mise en réseau
 
-Vous devez toodo certains tooensure que vous pouvez configurer le mappage réseau lorsque vous déployez le scénario de hello, de planification d’un réseau que les machines virtuelles Azure sera tooAzure connecté les réseaux virtuels après le basculement se produit et qu’ils sont attribués IP approprié répondant.
+Vous devez effectuer une planification réseau pour vous assurer que vous pouvez configurer le mappage réseau lorsque vous déployez le scénario, que les machines virtuelles Azure seront connectées aux réseaux virtuels Azure après le basculement et que des adresses IP appropriées leur sont attribuées.
 
-Accédez trop[étape 4 : planifier la mise en réseau](vmm-to-azure-walkthrough-network.md)
+Aller à [Étape 4 : Planifier la mise en réseau](vmm-to-azure-walkthrough-network.md)
 
 
 ## <a name="step-5-prepare-azure-resources"></a>Étape 5 : Préparer les ressources Azure
 
 Configurez un compte Azure, des réseaux et du stockage. Vous pouvez le faire pendant le déploiement, mais nous vous recommandons de vous en occuper avant de commencer.
 
-Accédez trop[étape 5 : préparer le Azure](vmm-to-azure-walkthrough-prepare-azure.md)
+Aller à [Étape 5 : Préparer Azure](vmm-to-azure-walkthrough-prepare-azure.md)
 
 ## <a name="step-6-prepare-vmm-and-hyper-v"></a>Étape 6 : Préparer VMM et Hyper-V
 
-Préparer les serveurs VMM hello local et les hôtes Hyper-V pour le déploiement de la récupération de Site.
+Préparez les serveurs VMM et les hôtes Hyper-V locaux pour le déploiement Site Recovery.
 
-Accédez trop[étape 6 : préparer les serveurs locaux](vmm-to-azure-walkthrough-vmm-hyper-v.md)
+Aller à [Étape 6 : Préparer les serveurs locaux](vmm-to-azure-walkthrough-vmm-hyper-v.md)
 
 ## <a name="step-7-set-up-a-vault"></a>Étape 7 : configurer un coffre
 
-Configurez un coffre Recovery Services. coffre de Hello contient les paramètres de configuration et orchestre la réplication.
+Configurez un coffre Recovery Services. Le coffre comporte les paramètres de configuration et orchestre la réplication.
 
 [Étape 7 : Configurer un coffre](vmm-to-azure-walkthrough-create-vault.md)
 
 ## <a name="step-8-configure-source-and-target-settings"></a>Étape 8 : configurer les paramètres de source et de cible
 
-Configurez les emplacements de hello source et cible de réplication. Ajouter hello VMM serveur toohello dans l’archivage et télécharger des fichiers d’installation hello pour les composants de Site Recovery. Exécutez le programme d’installation du fournisseur Azure Site Recovery sur le serveur VMM de hello. Le programme d’installation installe hello fournisseur sur le serveur VMM de hello et les enregistre sur le serveur hello dans le coffre de hello. Vous installez hello Microsoft Recovery Services agent sur chaque hôte Hyper-V.
+Configurez les emplacements de réplication source et cible. Ajoutez le serveur VMM au coffre et téléchargez les fichiers d’installation pour les composants de Site Recovery. Exécutez le fournisseur Azure Site Recovery sur le serveur VMM. La configuration installe le fournisseur sur le serveur VMM et enregistre ce dernier dans le coffre. Vous installez l’agent Microsoft Recovery Services sur chaque hôte Hyper-V.
 
-Accédez trop[étape 8 : configurer les paramètres source et cible](vmm-to-azure-walkthrough-source-target.md)
+Aller à [Étape 8 : Configurer les paramètres de source et de cible](vmm-to-azure-walkthrough-source-target.md)
 
 ## <a name="step-9-configure-network-mapping"></a>Étape 9 : Configurer le mappage réseau
 
-Mappage des locaux des réseaux virtuels VMM VM réseaux tooAzure. Après le basculement, les machines virtuelles Azure sont créés dans hello réseau Azure mappé toohello réseau d’ordinateurs virtuels en local dans le hello Hyper-V source se trouve.
+Mappez des réseaux de machines virtuels VMM locaux à des réseaux virtuels Azure. Après le basculement, les machines virtuelles Azure sont créées dans le réseau Azure mappé au réseau de machines virtuelles local dans lequel se trouve la source Hyper-V.
 
-Accédez trop[étape 9 : configurer le mappage réseau](vmm-to-azure-walkthrough-network-mapping.md)
+Aller à [Étape 9 : Configurer le mappage réseau](vmm-to-azure-walkthrough-network-mapping.md)
 
 
 ## <a name="step-10-set-up-a-replication-policy"></a>Étape 10 : Configurer une stratégie de réplication
 
-Spécifiez comment les machines virtuelles de local sera répliquée tooAzure.
+Spécifiez le mode de réplication des machines virtuelles locales vers Azure.
 
-Accédez trop[étape 10 : définir une stratégie de réplication](vmm-to-azure-walkthrough-replication.md)
+Aller à [Étape 10 : Configurer une stratégie de réplication](vmm-to-azure-walkthrough-replication.md)
 
 
 ## <a name="step-11-enable-replication-for-vms"></a>Étape 11 : Activer la réplication des machines virtuelles
 
-Sélectionnez hello machines virtuelles tooreplicate. Activation d’une machine virtuelle pour la réplication déclencheurs hello la réplication initiale tooAzure, suivie de la réplication delta en cours.
+Sélectionnez les machines virtuelles à répliquer. L’activation de la réplication d’une machine virtuelle déclenche la réplication initiale vers Azure, suivie de la réplication delta en cours.
 
-Accédez trop[étape 11 : activer la réplication](vmm-to-azure-walkthrough-enable-replication.md)
+Aller à [Étape 11 : activer la réplication](vmm-to-azure-walkthrough-enable-replication.md)
 
 
 ## <a name="step-12-run-a-test-failover"></a>Étape 12 : exécuter un test de basculement
 
-Exécutez un toomake de basculement de test que tout fonctionne comme prévu.
+Exécutez un test de basculement afin de vérifier que tout fonctionne bien.
 
-Accédez trop[étape 12 : exécuter un test de basculement](vmm-to-azure-walkthrough-test-failover.md)
+Aller à [Étape 12 : exécuter un test de basculement](vmm-to-azure-walkthrough-test-failover.md)
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : intégration d’Azure Active Directory à SAP Business ByDesign | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et SAP Business ByDesign."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et SAP Business ByDesign."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,238 +14,238 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: jeedes
-ms.openlocfilehash: c14714fd27f8d7fc555f25c7be83fad2b0d7f333
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ab76a0ac1ef954efd3c66e6f565514b889ed9444
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-sap-business-bydesign"></a>Didacticiel : Intégration d’Azure Active Directory à SAP Business ByDesign
 
-Dans ce didacticiel, vous apprendrez comment toointegrate SAP ByDesign d’entreprise avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer SAP Business ByDesign à Azure Active Directory (Azure AD).
 
-Intégration de SAP Business ByDesign avec Azure AD offre hello avantages suivants :
+L’intégration de SAP Business ByDesign à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooSAP ByDesign de l’entreprise.
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooSAP ByDesign entreprise (SSO) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.
+- Dans Azure AD, vous pouvez déterminer qui a accès à SAP Business ByDesign.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à SAP Business ByDesign (par le biais de l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure.
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec SAP Business ByDesign, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD avec SAP Business ByDesign, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement SAP Business ByDesign pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de SAP Business ByDesign à partir de la galerie de hello
+1. Ajouter SAP Business ByDesign à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-sap-business-bydesign-from-hello-gallery"></a>Ajout de SAP Business ByDesign à partir de la galerie de hello
-tooconfigure hello intégration de SAP Business ByDesign dans Azure AD, vous devez tooadd SAP Business ByDesign à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-sap-business-bydesign-from-the-gallery"></a>Ajouter SAP Business ByDesign à partir de la galerie
+Pour configurer l’intégration de SAP Business ByDesign à Azure AD, vous devez ajouter SAP Business ByDesign depuis la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd ByDesign d’entreprise SAP à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter SAP Business ByDesign à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
-    ![bouton d’Azure Active Directory Hello][1]
+    ![Bouton Azure Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
-    ![panneau des applications Enterprise Hello][2]
+    ![Panneau Applications d’entreprise][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
-    ![Nouveau bouton d’application Hello][3]
+    ![Bouton Nouvelle application][3]
 
-4. Dans la zone de recherche de hello, tapez **SAP Business ByDesign**, sélectionnez **SAP Business ByDesign** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
+4. Dans la zone de recherche, saisissez **SAP Business ByDesign.**, sélectionnez **SAP Business ByDesign.** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
-    ![ByDesign d’entreprise SAP dans la liste des résultats hello](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_addfromgallery.png)
+    ![SAP Business ByDesign dans la liste des résultats](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec SAP Business ByDesign, en tirant parti d’un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans SAP Business ByDesign est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans SAP Business ByDesign doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur SAP Business ByDesign équivalent dans Azure AD. En d’autres termes, un lien entre un utilisateur Azure AD et l’utilisateur SAP Business ByDesign associé doit être établi.
 
-Dans SAP Business ByDesign, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans SAP Business ByDesign, assignez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **Nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec SAP Business ByDesign, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec SAP Business ByDesign, vous devez suivre les indications des sections suivantes :
 
-1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Créer un utilisateur de test SAP Business ByDesign](#create-an-sap-business-bydesign-test-user)**  -toohave un équivalent de Britta Simon dans SAP Business ByDesign qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Créer un utilisateur de test SAP Business ByDesign](#create-an-sap-business-bydesign-test-user)** pour avoir un équivalent de Britta Simon dans SAP Business ByDesign, lié à la représentation Azure AD associée.
+4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application SAP Business ByDesign.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application SAP Business ByDesign.
 
-**tooconfigure Azure AD l’authentification unique avec SAP Business ByDesign, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec SAP Business ByDesign, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **SAP Business ByDesign** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, dans la page d’intégration de l’application **SAP Business ByDesign**, cliquez sur **Authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_samlbase.png)
 
-3. Sur hello **URL et le domaine de SAP Business ByDesign** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL SAP Business ByDesign**, procédez comme suit :
 
     ![Informations d’authentification unique dans la section Domaine et URL SAP Business ByDesign](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<servername>.sapbydesign.com`
+    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<servername>.sapbydesign.com`
 
-    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<servername>.sapbydesign.com`
+    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<servername>.sapbydesign.com`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur. Contact [équipe de support SAP Business ByDesign Client](https://www.sap.com/products/cloud-analytics.support.html) tooget ces valeurs.
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Pour obtenir ces valeurs, contactez [l’équipe de support technique SAP Business ByDesign](https://www.sap.com/products/cloud-analytics.support.html).
 
-4. Sur hello **attributs utilisateur** section, effectuer hello comme suit :
+4. Dans la section **Attributs d’utilisateur**, procédez comme suit :
 
     ![Section d’attribut de SAP Business ByDesign](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_attribute.png)
     
-    a. Dans **identificateur de l’utilisateur** liste, sélectionnez hello **ExtractMailPrefix()** (fonction).
+    a. Dans la liste **Identificateur de l’utilisateur**, sélectionnez la fonction **ExtractMailPrefix()**.
     
-    b. À partir de hello **Mail** liste, sélectionnez hello utilisateur attribut toouse pour votre implémentation. Par exemple, si vous voulez toouse hello EmployeeID comme identificateur d’utilisateur unique et si vous avez stocké la valeur de l’attribut hello Bonjour ExtensionAttribute2, puis sélectionnez user.extensionattribute2.   
+    b. Dans la liste **Courrier** , sélectionnez l’attribut utilisateur que vous souhaitez utiliser pour votre implémentation. Par exemple, si vous souhaitez utiliser EmployeeID comme identificateur d’utilisateur unique et que vous avez stocké la valeur d’attribut dans ExtensionAttribute2, sélectionnez user.extensionattribute2.     
 
-5. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+5. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
-    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_certificate.png) 
+    ![Lien Téléchargement de certificat](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_certificate.png) 
 
 6. Cliquez sur le bouton **Enregistrer** .
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_general_400.png)
 
-7. Sur hello **SAP Business ByDesign Configuration** , cliquez sur **configurer de SAP Business ByDesign** tooopen **configurer l’authentification** fenêtre. Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
+7. Dans la section **Configuration de SAP Business ByDesign**, cliquez sur **Configurer SAP Business ByDesign** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
 
     ![Configuration de SAP Business ByDesign](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_configure.png) 
 
-8. tooget SSO configuré pour votre application, effectuez hello comme suit :
+8. Pour configurer l’authentification unique pour votre application, procédez comme suit :
    
-    a. Se connecter sur le portail SAP Business ByDesign tooyour avec des droits d’administrateur.
+    a. Connectez-vous à votre portail SAP Business ByDesign avec des droits d’administrateur.
    
-    b. Accédez trop**Application et la tâche courante de gestion utilisateur** et cliquez sur hello **fournisseur d’identité** onglet.
+    b. Accédez à **Application and User Management Common Task (Tâche courante d’application et de gestion des utilisateurs)** et cliquez sur l’onglet **Identity Provider (Fournisseur d’identité)**.
    
-    c. Cliquez sur **nouveau fournisseur d’identité** et le fichier XML de métadonnées hello select que vous avez téléchargé à partir de hello portail Azure. En important des métadonnées de hello, système de hello télécharge automatiquement le certificat de signature requis hello et certificat de chiffrement.
+    c. Cliquez sur **New Identity Provider** (Nouveau fournisseur d’identité) et sélectionnez le fichier XML de métadonnées que vous avez téléchargé à partir du portail Azure. En important les métadonnées, le système charge automatiquement le certificat de signature ainsi que le certificat de chiffrement requis.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_54.png)
    
-    d. tooinclude hello **Assertion Consumer Service URL** dans la demande SAML hello, sélectionnez **inclure l’URL Assertion Consumer Service**.
+    d. Pour inclure **l’URL Assertion Consumer Service** dans la requête SAML, sélectionnez **Include Assertion Consumer Service URL (Inclure l’URL Assertion Consumer Service)**.
    
     e. Cliquez sur **Activate Single Sign-On**(Activer l’authentification unique).
    
     f. Enregistrez vos modifications.
    
-    g. Cliquez sur hello **mon système** onglet.
+    g. Cliquez sur l’onglet **My System** (Mon système).
    
     ![Configurer l’authentification unique](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_52.png)
    
-    h. Coller **SAML Sign-On URL du Service unique**, lequel vous avez copié à partir de hello portail Azure il dans hello **Azure AD l’URL de connexion** zone de texte.
+    h. Dans la zone de texte de **l’URL du service d’authentification unique Azure AD**, collez **l’URL du service d’authentification unique SAML** que vous avez copiée à partir du portail Azure.
    
     ![Configurer l’authentification unique](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_53.png)
    
-    i. Spécifier si les employés hello peuvent manuellement choisir entre l’ouverture de session avec l’ID d’utilisateur et mot de passe ou l’authentification unique en sélectionnant **sélection de fournisseur d’identité manuelle**.
+    i. Précisez si l’employé peut choisir manuellement entre l’authentification à l’aide d’un ID d’utilisateur/mot de passe ou l’authentification unique en cliquant sur **Manual Identity Provider Selection**(Sélection manuelle du fournisseur d’identité).
    
-    j. Bonjour **URL SSO** section, spécifier des URL hello qui doit être utilisée par le système de toohello toologon hello employé. 
-    Dans la liste de déroulante tooEmployee URL envoyée hello, vous pouvez choisir entre hello options suivantes :
+    j. Dans la section **URL SSO** , spécifiez l’URL devant être utilisée par l’employé pour se connecter au système. 
+    Dans la liste déroulante URL Sent to Employee (URL envoyée à l’employé), vous pouvez choisir entre les options suivantes :
    
     **Non-SSO URL**
    
-    système de Hello envoie employé toohello hello uniquement des URL de normal du système. employé de Hello ne peut pas se connecter à l’aide de l’authentification unique et doit utiliser le mot de passe ou de certificats à la place.
+    Le système envoie uniquement l’URL du système normale à l’employé. L’employé ne peut pas se connecter à l’aide de l’authentification unique ; il doit donc utiliser un mot de passe ou un certificat.
    
     **URL SSO** 
    
-    système de Hello envoie uniquement les employés de toohello URL SSO hello. les employés Hello peuvent se connecter à l’aide de l’authentification unique. Demande d’authentification est redirigée via hello IdP.
+    Le système envoie uniquement l’URL SSO à l’employé. L’employé peut se connecter à l’aide de l’authentification unique. La demande d’authentification est redirigée via l’IdP.
    
     **Sélection automatique**
    
-    Si l’authentification unique n’est pas actif, système de hello envoie employé de toohello URL hello normal du système. Si l’authentification unique est actif, système de hello vérifie si les employés hello a un mot de passe. Si un mot de passe est disponible, les URL d’authentification unique et Non-SSO URL sont envoyées toohello employé. Toutefois, si l’employé de hello n’a aucun mot de passe, uniquement hello URL d’authentification unique est envoyé toohello employé.
+    Si l’authentification unique n’est pas activée, le système envoie l’URL du système normale à l’employé. Si l’authentification unique est activée, le système vérifie si l’employé possède un mot de passe. Le cas échéant, les URL SSO et les URL non SSO sont envoyées à l’employé. Toutefois, si l’employé ne possède aucun mot de passe, seule l’URL SSO est envoyée à l’employé.
    
     k. Enregistrez vos modifications.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
    ![Créer un utilisateur de test Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.
+1. Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.
 
-    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_01.png)
+    ![Bouton Azure Active Directory](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_01.png)
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
 
-    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_02.png)
+    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.
 
-    ![bouton Ajouter de Hello](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_03.png)
+    ![Bouton Ajouter](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_03.png)
 
-4. Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
 
-    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_04.png)
+    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-sapbusinessbydesign-tutorial/create_aaduser_04.png)
 
-    a. Bonjour **nom** , tapez **BrittaSimon**.
+    a. Dans la zone **Nom**, tapez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.
+    b. Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.
 
-    c. Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.
+    c. Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-an-sap-business-bydesign-test-user"></a>Créer un utilisateur de test pour SAP Business ByDesign
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans SAP Business ByDesign. Collaborez avec [équipe de support SAP Business ByDesign Client](https://www.sap.com/products/cloud-analytics.support.html) tooadd les utilisateurs de hello dans la plateforme de SAP Business ByDesign hello. 
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans SAP Business ByDesign. Veuillez contacter [l’équipe de prise en charge des clients de SAP Business ByDesign](https://www.sap.com/products/cloud-analytics.support.html) pour ajouter des utilisateurs sur la plateforme SAP Business ByDesign. 
 
 > [!NOTE]
-> Assurez-vous que NameID valeur doit correspondre au champ de nom d’utilisateur hello dans la plateforme de SAP Business ByDesign hello.
+> Assurez-vous que la valeur NameID correspond au champ de nom d’utilisateur dans la plateforme SAP Business ByDesign.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooSAP ByDesign de l’entreprise.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à SAP Business ByDesign.
 
-![Attribuer le rôle d’utilisateur hello][200] 
+![Assigner le rôle d’utilisateur][200] 
 
-**tooassign Britta Simon tooSAP ByDesign de l’entreprise, effectuez hello comme suit :**
+**Pour affecter Britta Simon à SAP Business ByDesign, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **SAP Business ByDesign**.
+2. Dans la liste des applications, sélectionnez **SAP Business ByDesign**.
 
-    ![lien de SAP Business ByDesign Hello dans la liste des Applications hello](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_app.png)  
+    ![Lien correspondant à SAP Business ByDesign dans la liste des applications](./media/active-directory-saas-sapbusinessbydesign-tutorial/tutorial_sapbusinessbydesign_app.png)  
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
-    ![lien de « Utilisateurs et groupes » Hello][202]
+    ![Lien « Utilisateurs et groupes »][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![volet d’ajouter l’affectation de Hello][203]
+    ![Volet Ajouter une attribution][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -253,13 +253,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque de SAP Business ByDesign hello Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour SAP Business ByDesign application.
+Lorsque vous cliquez sur la vignette SAP Business ByDesign dans le volet d’accès, vous devez être connecté automatiquement à votre application SAP Business ByDesign.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

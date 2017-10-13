@@ -1,38 +1,38 @@
-Dans cette étape, vous créez manuellement l’écouteur du groupe de disponibilité hello dans le Gestionnaire du Cluster de basculement et de SQL Server Management Studio.
+Dans cette étape, vous créez manuellement l’écouteur du groupe de disponibilité dans le Gestionnaire du cluster de basculement et SQL Server Management Studio.
 
-1. Ouvrez le Gestionnaire du Cluster de basculement à partir du nœud hello qui héberge le réplica principal de hello.
+1. Ouvrez le Gestionnaire du cluster de basculement à partir du nœud qui héberge le réplica principal.
 
-2. Sélectionnez hello **réseaux** nœud, puis le nom de réseau du cluster Remarque hello. Ce nom est utilisé dans la variable hello $ClusterNetworkName Bonjour script PowerShell.
+2. Sélectionnez le nœud **Réseaux**, puis notez le nom de réseau du cluster. Ce nom est utilisé dans la variable $ClusterNetworkName dans le script PowerShell.
 
-3. Développez le nom du cluster hello, puis cliquez sur **rôles**.
+3. Développez le nom du cluster, puis cliquez sur **Rôles**.
 
-4. Bonjour **rôles** volet, le groupe de disponibilité avec le bouton hello nom et sélectionnez **ajouter une ressource** > **Point d’accès Client**.
+4. Dans le volet **Rôles**, cliquez avec le bouton droit sur le nom du groupe de disponibilité, puis sélectionnez **Ajouter une ressource** > **Point d’accès client**.
    
     ![Ajouter un point d’accès client pour le groupe de disponibilité](./media/virtual-machines-sql-server-configure-alwayson-availability-group-listener/IC678769.gif)
 
-5. Bonjour **nom** , créez un nom pour ce nouveau port d’écoute, cliquez sur **suivant** à deux reprises, puis cliquez sur **Terminer**.  
-    Ne mettez pas hello port d’écoute ou ressource en ligne à ce stade.
+5. Dans la zone **Nom**, créez un nom pour ce nouvel écouteur, cliquez à deux reprises sur **Suivant**, puis cliquez sur **Terminer**.  
+    Ne mettez pas l'écouteur ou la ressource en ligne à ce stade.
 
-6. Cliquez sur hello **ressources** onglet, puis cliquez sur point d’accès client hello vous venez de créer. 
-    ressource d’adresse IP Hello pour chaque réseau de cluster dans votre cluster s’affiche. S’il s’agit d’une solution basée uniquement sur Azure, une seule ressource d’adresse IP est affichée.
+6. Cliquez sur l’onglet **Ressources**, puis développez le point d’accès client vous venez de créer. 
+    La ressource d’adresse IP de chaque réseau de cluster dans votre cluster est affichée. S’il s’agit d’une solution basée uniquement sur Azure, une seule ressource d’adresse IP est affichée.
 
-7. Effectuez une des manières suivantes les hello :
+7. Effectuez l’une des actions suivantes :
    
-   * tooconfigure une solution hybride :
+   * Pour configurer une solution hybride :
      
-        a. Cliquez sur la ressource d’adresse IP hello qui correspond le sous-réseau local de tooyour, puis sélectionnez **propriétés**. Notez le nom de l’adresse IP hello et nom de réseau.
+        a. Cliquez avec le bouton droit sur la ressource d’adresse IP qui correspond à votre sous-réseau local, puis sélectionnez **Propriétés**. Notez le nom de l’adresse IP et le nom du réseau.
    
         b. Sélectionnez **Adresse IP statique**, affectez une adresse IP inutilisée, puis cliquez sur **OK**.
  
-   * tooconfigure une solution Azure uniquement :
+   * Pour configurer une solution basée uniquement sur Azure :
 
-        a. Cliquez sur la ressource d’adresse IP hello correspondant tooyour sous-réseau Azure, puis sélectionnez **propriétés**.
+        a. Cliquez avec le bouton droit sur la ressource d’adresse IP qui correspond à votre sous-réseau Azure, puis sélectionnez **Propriétés**.
        
        > [!NOTE]
-       > Si l’écouteur de hello échoue ultérieurement toocome en ligne en raison d’une adresse IP conflictuelle par DHCP, vous pouvez configurer une adresse IP statique valide dans cette fenêtre de propriétés.
+       > Si la mise en ligne de l’écouteur échoue par la suite en raison d’un conflit avec l’adresse IP sélectionnée par DHCP, vous pouvez configurer une adresse IP statique valide dans cette fenêtre de propriétés.
        > 
        > 
 
-       b. Dans hello même **adresse IP** fenêtre Propriétés, modification hello **nom de l’adresse IP**.  
-        Ce nom est utilisé dans la variable hello $IPResourceName Hello script PowerShell. Si votre solution couvre plusieurs réseaux virtuels Azure, répétez cette étape pour chaque ressource IP.
+       b. Dans la même fenêtre de propriétés **Adresse IP**, modifiez le **Nom de l’adresse IP**.  
+        Ce nom est utilisé dans la variable $IPResourceName du script PowerShell. Si votre solution couvre plusieurs réseaux virtuels Azure, répétez cette étape pour chaque ressource IP.
 

@@ -1,5 +1,5 @@
 ---
-title: "aaaProblems configuration ou de l’enregistrement de mon application »"
+title: "Problèmes lors de la configuration ou de l’inscription de mon application"
 description: "Problèmes lors de la configuration ou de l’inscription de mon application"
 services: active-directory
 documentationcenter: 
@@ -12,35 +12,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 9a3a971c3f2873e581fae907c22ddf4dff304d0c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 573fa7e9017e0b7746e40639370e68a2b7bb8548
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="problems-configuring-or-registering-my-application"></a>Problèmes lors de la configuration ou de l’inscription de mon application
 
 
 
-## <a name="i-dont-know-how-tooconfigure-my-application"></a>Je ne sais pas comment tooconfigure mon application
-  Hello documents suivants peuvent vous aider à tooresolve certains des problèmes les plus courants de hello dans cette catégorie.
-  * [Je ne sais pas quels sont les points de terminaison d’authentification hello pour mon application](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
-  * [Je ne sais pas comment tooconfigure l’authentification unique toomy application](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-sso-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
-  * [Je ne sais pas comment toofill un champ spécifique sur l’objet application hello](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-specific-application-property-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+## <a name="i-dont-know-how-to-configure-my-application"></a>Je ne sais pas comment configurer mon application
+  Les documents suivants peuvent vous aider à résoudre certains des problèmes les plus courants de cette catégorie.
+  * [Je ne sais pas quels sont les points de terminaison d’authentification pour mon application](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+  * [Je ne sais pas comment configurer l’authentification unique à mon application](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-sso-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+  * [Je ne sais pas comment remplir un champ spécifique sur l’objet application](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-specific-application-property-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
 
-## <a name="i-dont-know-how-toocreate-and-configure-a-multi-tenant-application"></a>Je ne sais pas comment toocreate et configurer une application mutualisée
-  Hello documents suivants peuvent vous aider à tooresolve certains des problèmes les plus courants de hello dans cette catégorie.
-  * [Je ne sais pas comment tooset une application mutualisée](https://docs.microsoft.com/azure/active-directory/application-dev-setup-multi-tenant-app/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
-  * [Je ne sais pas comment tooadd mon Galerie d’applications application mutualisée toohello Azure AD](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-multi-tenant-application-add-to-gallery-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+## <a name="i-dont-know-how-to-create-and-configure-a-multi-tenant-application"></a>Je ne sais pas comment créer et configurer une application mutualisée
+  Les documents suivants peuvent vous aider à résoudre certains des problèmes les plus courants de cette catégorie.
+  * [Je ne sais pas comment configurer une application mutualisée](https://docs.microsoft.com/azure/active-directory/application-dev-setup-multi-tenant-app/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+  * [Je ne sais pas comment ajouter mon application mutualisée dans la galerie d’applications Azure AD](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-multi-tenant-application-add-to-gallery-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
 
-## <a name="i-dont-know-how-tooselect-or-manage-permissions-for-my-application"></a>Je ne sais pas comment tooselect ou gérer les autorisations pour mon application
-  Hello documents suivants peuvent vous aider à tooresolve certains des problèmes les plus courants de hello dans cette catégorie.
-  * [Je ne sais pas l’autorisations tooselect pour une API donnée](https://docs.microsoft.com/azure/active-directory/application-dev-perms-for-given-api/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+## <a name="i-dont-know-how-to-select-or-manage-permissions-for-my-application"></a>Je ne sais pas comment sélectionner ou gérer des autorisations pour mon application
+  Les documents suivants peuvent vous aider à résoudre certains des problèmes les plus courants de cette catégorie.
+  * [Je ne sais pas quelles autorisations sélectionner pour une API donnée](https://docs.microsoft.com/azure/active-directory/application-dev-perms-for-given-api/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
 
 ## <a name="im-having-a-problem-using-or-finding-a-specific-api"></a>Je rencontre un problème lors de l’ajout ou de la recherche d’une API
-  Hello documents suivants peuvent vous aider à tooresolve certains des problèmes les plus courants de hello dans cette catégorie.
-  * [Impossible de trouver hello API ai-je besoin toouse pour mon application](https://docs.microsoft.com/azure/active-directory/application-dev-api-find-an-api-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
-  * [Je ne sais pas comment la durée de vie toochange hello par défaut pour mon application](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-change-token-lifetime-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+  Les documents suivants peuvent vous aider à résoudre certains des problèmes les plus courants de cette catégorie.
+  * [Impossible de trouver l’API que je dois utiliser pour mon application](https://docs.microsoft.com/azure/active-directory/application-dev-api-find-an-api-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+  * [Je ne sais pas comment modifier les valeurs par défaut de la durée de vie des jetons pour mon application](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-change-token-lifetime-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
   * [Je ne sais pas comment le consentement relatif à l’application fonctionne](https://docs.microsoft.com/azure/active-directory/application-dev-consent-framework/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
-  * [Je ne sais pas comment application de toomy toogrant autorisations](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-grant-permissions-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
-  * [Je ne comprennent pas différence hello entre les autorisations déléguées et d’application](https://docs.microsoft.com/azure/active-directory/application-dev-delegated-and-app-perms/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+  * [Je ne sais pas comment accorder des autorisations à mon application](https://docs.microsoft.com/azure/active-directory/application-dev-registration-config-grant-permissions-how-to/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)
+  * [Je ne comprends pas la différence entre les autorisations déléguées et les autorisations d’application](https://docs.microsoft.com/azure/active-directory/application-dev-delegated-and-app-perms/?/?WT.mc_id=DMC_AAD_Develop_Apps_Troubleshooting_Nav)

@@ -1,6 +1,6 @@
 ---
-title: "aaaTesting proposent de votre modèle de solution pour hello Marketplace | Documents Microsoft"
-description: "Comprendre comment tootest votre modèle de solution offre pour hello Azure Marketplace."
+title: "Test de votre offre de modèle de solution pour Marketplace | Microsoft Docs"
+description: "Découvrez comment tester votre offre de modèle de solution pour Azure Marketplace."
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/04/2015
 ms.author: hascipio; v-divte
-ms.openlocfilehash: 9c195c465d2fc6aa349e4bbcc348e5325f32850d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: da1fc4713fd1d832c7ba91226f72cbef63b241bc
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="test-your-solution-template-offer-in-staging"></a>Test de votre offre de modèle de solution en mode intermédiaire
-Désigne un déploiement de votre offre un « bac à sable » où vous pouvez tester et vérifier son fonctionnement avant d’en exécutant un push tooproduction privé de mise en lots. offre de Hello s’affiche dans la mise en lots comme il le ferait client tooa qui a déployé. Votre offre doit être certifié toobe envoyée toostaging.
+Dans le cadre du déploiement dans un environnement intermédiaire, vous déployez votre offre dans un « bac à sable » (sandbox) privé dans lequel vous pouvez tester et vérifier ses fonctionnalités avant le lancement de sa production. L'offre apparaît avec le statut Intermédiaire, comme pour un client l'ayant déployée. Votre offre doit être certifiée pour passer en mode intermédiaire.
 
-Une fois que l’offre de hello soit préparé, vous pouvez afficher et de test offre hello Bonjour [Azure Portal](https://portal.azure.com/).
+Une fois que votre offre a le statut Intermédiaire, vous pouvez l’afficher et la tester dans le [portail Azure](https://portal.azure.com/).
 
-Suivez les étapes de hello ci-dessous toopush toostaging de votre offre et le tester hello [portail Azure](https://portal.azure.com/):
+Suivez les étapes ci-dessous pour faire passer votre offre en mode Intermédiaire et la tester dans le [portail Azure](https://portal.azure.com/):
 
-1. Accédez toohello [portail de publication](https://publish.windowsazure.com) > **des modèles de Solution** onglet > votre offre > **publier** > **tooStaging de Push** .
-2. Fournir la liste hello des abonnements Azure que vous allez utiliser toopreview et tester votre offre.
-3. Dans le portail Azure en version préliminaire de toohello à l’aide de l’authentification hello ID d’abonnement que vous avez utilisé à l’étape précédente de hello.
-4. Effectuer au moins une série de tests dans le portail Azure en version préliminaire de hello sur les points de hello mentionnées ci-dessous :
-   * Assurez-vous que le contenu de marketing s’affiche correctement Bonjour Azure Marketplace.
-   * Déploiement de bout en bout de la topologie de hello.
+1. Accédez au [portail de publication](https://publish.windowsazure.com) > **Modèles de solution** > votre offre > **Publier** > **Push to Staging (Déployer dans un environnement intermédiaire)**.
+2. Fournissez la liste des abonnements Azure que vous utiliserez pour l'aperçu et le test de votre offre.
+3. Connectez-vous au portail Azure en version préliminaire à l'aide de l'ID d'abonnement utilisé dans l'étape précédente.
+4. Effectuez au moins une série de tests des points mentionnés ci-dessous dans le portail Azure en version préliminaire.
+   * Assurez-vous que le contenu marketing s'affiche correctement sur Azure Marketplace.
+   * Réalisez un déploiement de bout en bout de la topologie.
    * Réalisez des tests de performances et de contrainte.
-   * Assurez-vous que votre topologie respecte toohello meilleures pratiques.
+   * Assurez-vous que votre topologie respecte les meilleures pratiques.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Si vous êtes satisfait des résultats de hello, vous pouvez passer offre finale de toohello publication phase, **étape 4**: [déploiement votre toohello offre Marketplace](marketplace-publishing-push-to-production.md). Sinon, apportez les modifications nécessaires à votre offre et effectuez de nouveau une demande de certification.
+Si vous êtes satisfait des résultats, vous pouvez passer à la phase finale de publication de l’offre, **Étape 4** : [Déploiement de votre offre dans Marketplace](marketplace-publishing-push-to-production.md). Sinon, apportez les modifications nécessaires à votre offre et effectuez de nouveau une demande de certification.
 
 > [!NOTE]
 > En cas de modifications de contenus marketing, la certification n'est pas nécessaire.
 > 
 > 
 
-Consultez [mise en route : comment toopublish une toohello offre Azure Marketplace](marketplace-publishing-getting-started.md) pour une tâche de serveur de publication tooall guide.
+Consultez [Prise en main : Publier une offre dans Azure Marketplace](marketplace-publishing-getting-started.md) pour obtenir un guide sur toutes les tâches du serveur de publication.
 

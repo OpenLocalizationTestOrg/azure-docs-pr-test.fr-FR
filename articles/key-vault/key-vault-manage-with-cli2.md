@@ -1,6 +1,6 @@
 ---
-title: "aaaManage Azure Key Vault à l’aide de CLI | Documents Microsoft"
-description: "Utilisez ce didacticiel tooautomate des tâches courantes dans le coffre de clés à l’aide de hello CLI 2.0"
+title: "Gestion de Azure Key Vault à l’aide de l’interface de ligne de commande (CLI) | Microsoft Docs"
+description: "Utilisez ce tutoriel pour automatiser les tâches courantes dans Key Vault à l’aide de l’interface de ligne de commande CLI 2.0"
 services: key-vault
 documentationcenter: 
 author: amitbapat
@@ -14,73 +14,73 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/08/2017
 ms.author: ambapat
-ms.openlocfilehash: 76855c0ea09b6b307159468382a6a63627205556
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5da9f5eceda71ac85259193e0f183c72813e1679
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-key-vault-using-cli-20"></a>Gestion de Key Vault à l’aide de l’interface de ligne de commande (CLI) 2.0
-Azure Key Vault est disponible dans la plupart des régions. Pour plus d’informations, consultez hello [page de tarification de coffre de clés](https://azure.microsoft.com/pricing/details/key-vault/).
+Azure Key Vault est disponible dans la plupart des régions. Pour plus d’informations, consultez la [page de tarification de Key Vault](https://azure.microsoft.com/pricing/details/key-vault/).
 
 ## <a name="introduction"></a>Introduction
-Utilisez ce didacticiel toohelp que vous obtenez en main d’Azure Key Vault toocreate un conteneur renforcé (un coffre) dans Azure, toostore et gérer les clés de chiffrement et les clés secrètes dans Azure. Il vous guide tout au long des processus de hello d’à l’aide d’une Interface de ligne multiplateforme Azure toocreate un coffre qui contient une clé ou un mot de passe que vous pouvez ensuite utiliser avec une application Windows Azure. Il vous montre également comment une application peut ensuite utiliser cette clé ou ce mot de passe.
+Ce didacticiel vous aide à démarrer avec Azure Key Vault pour créer un conteneur renforcé (un coffre) dans Azure afin de stocker et gérer les clés de chiffrement et les secrets dans Azure. Il vous guide tout au long du processus d’utilisation de l’interface de ligne de commande interplateforme Azure pour créer un coffre qui contient une clé ou un mot de passe que vous pouvez ensuite utiliser avec une application Azure. Il vous montre également comment une application peut ensuite utiliser cette clé ou ce mot de passe.
 
-**Estimation du temps toocomplete :** 20 minutes
+**Durée estimée :** 20 minutes
 
 > [!NOTE]
-> Ce didacticiel n’inclut pas d’obtenir des instructions sur la façon dont toowrite hello Azure application incluant une des étapes de hello, qui montre comment tooauthorize un toouse application une clé ou au secret dans la clé de hello coffre.
+> Ce didacticiel n’inclut pas d’instructions sur l’écriture de l’application Azure abordée dans une des étapes, qui montre comment autoriser une application à utiliser une clé ou un secret dans le coffre de clés.
 >
-> Ce didacticiel utilise hello dernière Azure CLI 2.0.
+> Ce tutoriel utilise la dernière version d’Azure CLI 2.0.
 >
 >
 
 Pour plus d’informations générales sur Azure Key Vault, consultez la page [Présentation d’Azure Key Vault](key-vault-whatis.md)
 
 ## <a name="prerequisites"></a>Composants requis
-toocomplete ce didacticiel, vous devez avoir hello suivant :
+Pour suivre ce didacticiel, vous avez besoin des éléments suivants :
 
-* Un abonnement tooMicrosoft Azure. Si vous n’en avez pas, vous pouvez vous inscrire pour bénéficier d’un [essai gratuit](https://azure.microsoft.com/pricing/free-trial)dès aujourd’hui.
-* Interface de ligne de commande Azure, version 2.0 ou ultérieure. tooinstall hello version la plus récente et se connecter tooyour abonnement Azure, consultez [installer et configurer hello une Interface de ligne de Cross-Platform Azure 2.0](/cli/azure/install-azure-cli).
-* Une application qui sera la clé de hello toouse configuré ou le mot de passe que vous créez dans ce didacticiel. Un exemple d’application est disponible à partir de hello [Microsoft Download Center](http://www.microsoft.com/download/details.aspx?id=45343). Pour obtenir des instructions, consultez hello qui accompagne le fichier Lisez-moi.
+* Un abonnement Microsoft Azure. Si vous n’en avez pas, vous pouvez vous inscrire pour bénéficier d’un [essai gratuit](https://azure.microsoft.com/pricing/free-trial)dès aujourd’hui.
+* Interface de ligne de commande Azure, version 2.0 ou ultérieure. Pour installer la dernière version et l’associer à votre abonnement Azure, consultez la page [Installation et configuration de l’interface de ligne de commande multiplateforme Azure 2.0](/cli/azure/install-azure-cli).
+* Une application configurée pour utiliser la clé ou le mot de passe que vous créez dans ce didacticiel. Un exemple d’application est disponible dans le [Centre de téléchargement Microsoft](http://www.microsoft.com/download/details.aspx?id=45343). Pour obtenir des instructions, consultez le fichier Lisez-moi fourni.
 
 ## <a name="getting-help-with-azure-cross-platform-command-line-interface"></a>Obtention d’aide avec l’interface de ligne de commande interplateforme Azure
-Ce didacticiel suppose que vous êtes familiarisé avec une interface de ligne hello (interpréteur de commandes, Terminal Server, invite de commandes)
+Ce didacticiel suppose que vous êtes familiarisé avec l’interface de ligne de commande (Bash, Terminal, invite de commandes)
 
-Hello--help ou-h paramètre peut être utilisé tooview aide pour des commandes spécifiques. Ou bien, l’aide hello azure [commande] [options] format peut également être utilisé tooreturn hello mêmes informations. Par exemple, suivant de hello commandes retournent tous les hello les mêmes informations :
+Le paramètre --help ou -h peut être utilisé pour afficher l'aide relative à des commandes particulières. Le format azure help [commande] [options] permet également de renvoyer les mêmes informations. Les commandes suivantes, par exemple, renvoient les mêmes informations :
 
 ```
 az account set --help
 az account set -h
 ```
 
-En cas de doute sur les paramètres de hello requis par une commande, reportez-vous à l’aide de toohelp--help, -h ou az help [commande].
+Si vous avez des doutes sur les paramètres exigés par une commande, reportez-vous à l'aide en utilisant --help, -h ou az help [commande].
 
-Vous pouvez également lire hello suivant tooget didacticiels familiarisé avec Azure Resource Manager dans une Interface de ligne multiplateforme Azure :
+Consultez également les didacticiels suivants afin de vous familiariser avec Azure Resource Manager dans l’interface de ligne de commande interplateforme Azure :
 
 * [Installation de l’interface de ligne de commande Azure](/cli/azure/install-azure-cli)
 * [Prise en main d’Azure CLI 2.0](/cli/azure/get-started-with-azure-cli)
 
-## <a name="connect-tooyour-subscriptions"></a>Se connecter tooyour abonnements
-toolog à l’aide d’un compte professionnel, hello utilisez commande suivante :
+## <a name="connect-to-your-subscriptions"></a>Connexion à vos abonnements
+Pour vous connecter avec un compte professionnel, utilisez la commande suivante :
 
 ```
 az login -u username@domain.com -p password
 ```
 
-ou si vous voulez toolog en tapant de manière interactive
+ou si vous voulez vous connecter en tapant de façon interactive
 
 ```
 az login
 ```
 
-Si vous avez plusieurs abonnements et que vous souhaitez toospecify un un toouse spécifique pour Azure Key Vault, tapez Bonjour suivant toosee les abonnements de hello pour votre compte :
+Si vous disposez de plusieurs abonnements et que vous souhaitez spécifier un abonnement spécifique à utiliser pour Azure Key Vault, tapez la commande suivante pour afficher les abonnements de votre compte :
 
 ```
 az account list
 ```
 
-Ensuite, toospecify hello abonnement toouse, type :
+Ensuite, pour indiquer l’abonnement, tapez ce qui suit :
 
 ```
 az account set --subscription <subscription name or ID>
@@ -95,131 +95,131 @@ Lorsque vous utilisez Azure Resource Manager, toutes les ressources associées s
 az group create -n 'ContosoResourceGroup' -l 'East Asia'
 ```
 
-premier paramètre de Hello est le nom de groupe de ressources et hello deuxième paramètre est emplacement de hello. Pour l’emplacement, utilisez la commande hello `az account list-locations` tooidentify comment toospecify un autre emplacement toohello un dans cet exemple. Si vous avez besoin de plus d’informations, tapez : `az account list-locations -h`.
+Le premier paramètre est le nom de groupe de ressources et le deuxième paramètre est l’emplacement. Pour l’emplacement, utilisez la commande `az account list-locations` pour savoir comment spécifier un autre emplacement que celui de cet exemple. Si vous avez besoin de plus d’informations, tapez : `az account list-locations -h`.
 
-## <a name="register-hello-key-vault-resource-provider"></a>Inscrire le fournisseur de ressources hello coffre de clés
+## <a name="register-the-key-vault-resource-provider"></a>Inscription du fournisseur de ressources Key Vault
 Assurez-vous que le fournisseur de ressources Key Vault est inscrit dans votre abonnement :
 
 ```
 az provider register -n Microsoft.KeyVault
 ```
 
-Cette opération ne doit toobe réalisée une fois par abonnement.
+Cette opération ne doit être effectuée qu'une fois par abonnement.
 
 ## <a name="create-a-key-vault"></a>Création d’un coffre de clés
-Hello d’utilisation `az keyvault create` commande toocreate un coffre de clés. Ce script a trois paramètres obligatoires : un nom de groupe de ressources, d’un coffre de clés et d’un emplacement géographique de hello.
+Utilisez la commande `az keyvault create` pour créer un coffre de clés. Ce script a trois paramètres obligatoires : un nom de groupe de ressources, un nom de coffre de clés et l’emplacement géographique.
 
-Par exemple, si vous utilisez le nom du coffre hello de ContosoKeyVault, nom de groupe de ressources hello de ContosoResourceGroup et l’emplacement de hello d’Asie orientale, tapez :
+Par exemple, si vous utilisez le nom de coffre ContosoKeyVault, le nom de groupe de ressources ContosoResourceGroup et l’emplacement Asie de l’Est, tapez :
 ```
 az keyvault create --name 'ContosoKeyVault' --resource-group 'ContosoResourceGroup' --location 'East Asia'
 ```
 
-sortie Hello de cette commande affiche les propriétés du coffre de clés hello que vous venez de créer. propriétés les plus importantes Hello deux sont :
+La sortie de cette commande affiche les propriétés du coffre de clés que vous venez de créer. Les deux propriétés les plus importantes sont :
 
-* **nom**: dans l’exemple de hello, cela est ContosoKeyVault. Vous allez utiliser ce nom pour les autres commandes Key Vault.
-* **vaultUri**: dans l’exemple de hello, cela est https://contosokeyvault.vault.azure.net. Les applications qui utilisent votre coffre via son API REST doivent utiliser cet URI.
+* **Nom**: dans l’exemple : ContosoKeyVault. Vous allez utiliser ce nom pour les autres commandes Key Vault.
+* **vaultUri** : dans l’exemple, il s’agit de https://contosokeyvault.vault.azure.net/. Les applications qui utilisent votre coffre via son API REST doivent utiliser cet URI.
 
-Votre compte Azure est désormais toutes les opérations sur cette clé de coffre tooperform autorisé. coffre de clés.
+Votre compte Azure est pour l’instant le seul autorisé à effectuer des opérations sur ce coffre de clés.
 
-## <a name="add-a-key-or-secret-toohello-key-vault"></a>Ajouter une clé ou un coffre de clés secrètes toohello
-Si vous souhaitez que le coffre de clés Azure toocreate une clé protégée par logiciel pour vous, utilisez hello `az key create` de commandes et tapez Bonjour qui suit :
+## <a name="add-a-key-or-secret-to-the-key-vault"></a>Ajout d’une clé ou d’un secret au coffre de clés
+Si vous souhaitez qu’Azure Key Vault crée pour vous une clé protégée par logiciel, utilisez la commande `az key create` et tapez ce qui suit :
 ```
 az keyvault key create --vault-name 'ContosoKeyVault' --name 'ContosoFirstKey' --protection software
 ```
-Toutefois, si vous avez une clé existante dans un fichier .pem enregistré en tant que fichier local dans un fichier nommé softkey.pem que vous souhaitez tooupload tooAzure le coffre de clés, tapez Bonjour suivant clé de hello tooimport hello. Fichier PEM, qui protège la clé de hello par logiciel dans hello service Key Vault :
+Toutefois, si vous avez une clé existante dans un fichier .pem enregistré sous la forme d’un fichier local dans un fichier nommé softkey.pem que vous souhaitez télécharger dans Azure Key Vault, tapez la commande suivante pour importer la clé à partir du fichier .PEM qui protège la clé par logiciel dans le service Key Vault :
 ```
 az keyvault key import --vault-name 'ContosoKeyVault' --name 'ContosoFirstKey' --pem-file './softkey.pem' --pem-password 'PaSSWORD' --protection software
 ```
-Vous pouvez maintenant référencer clé hello que vous avez créé ou téléchargé tooAzure le coffre de clés, à l’aide de son URI. Utilisez **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey** tooalways obtenir la version actuelle de hello et utiliser **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey/ cgacf4f763ar42ffb0a1gca546aygd87** tooget cette version spécifique.
+Vous pouvez maintenant référencer la clé que vous avez créée ou téléchargée dans Azure Key Vault à l’aide de son URI. Utilisez **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey** pour toujours obtenir la version actuelle, et **https://ContosoKeyVault.vault.azure.net/keys/ContosoFirstKey/cgacf4f763ar42ffb0a1gca546aygd87** pour obtenir cette version spécifique.
 
-tooadd un coffre toohello secrète, qui est un mot de passe nommé SQLPassword et qui a valeur hello Pa$ $w0rd tooAzure le coffre de clés, hello du type suivant :
+Pour ajouter un secret dans le coffre, c’est-à-dire un mot de passe nommé SQLPassword avec la valeur Pa$$w0rd dans Azure Key Vault, tapez le code suivant :
 ```
 az keyvault secret set --vault-name 'ContosoKeyVault' --name 'SQLPassword' --value 'Pa$$w0rd'
 ```
-Vous pouvez maintenant référencer ce mot de passe que vous avez ajouté tooAzure le coffre de clés, à l’aide de son URI. Utilisez **https://ContosoVault.vault.azure.net/secrets/SQLPassword** tooalways obtenir la version actuelle de hello et utiliser **https://ContosoVault.vault.azure.net/secrets/SQLPassword/ 90018dbb96a84117a0d2847ef8e7189d** tooget cette version spécifique.
+Vous pouvez maintenant référencer ce mot de passe que vous avez ajouté dans Azure Key Vault à l’aide de son URI. Utilisez **https://ContosoVault.vault.azure.net/secrets/SQLPassword** pour toujours obtenir la version actuelle, et **https://ContosoVault.vault.azure.net/secrets/SQLPassword/90018dbb96a84117a0d2847ef8e7189d** pour obtenir cette version spécifique.
 
-Examinons la clé de hello ou le secret que vous venez de créer :
+Examinons la clé ou le secret que vous venez de créer :
 
-* tooview votre type de clé, :`az keyvault key list --vault-name 'ContosoKeyVault'`
-* tooview votre secret principal, type :`az keyvault secret list --vault-name 'ContosoKeyVault'`
+* Pour afficher votre clé, tapez : `az keyvault key list --vault-name 'ContosoKeyVault'`
+* Pour afficher votre secret, tapez : `az keyvault secret list --vault-name 'ContosoKeyVault'`
 
 ## <a name="register-an-application-with-azure-active-directory"></a>Inscription d’une application auprès d’Azure Active Directory
-Cette étape est généralement effectuée par un développeur et sur un ordinateur distinct. Il n’est pas spécifique tooAzure le coffre de clés, mais est inclus ici, par souci d’exhaustivité.
+Cette étape est généralement effectuée par un développeur et sur un ordinateur distinct. Bien que non spécifique d’Azure Key Vault, elle est incluse ici par souci d’exhaustivité.
 
 > [!IMPORTANT]
-> didacticiel de hello toocomplete, votre compte, le coffre de hello et l’application hello que vous inscrivez dans cette étape doivent toutes être Bonjour même annuaire Azure.
+> Pour suivre le didacticiel, le compte, le coffre et l’application que vous inscrivez dans cette étape doivent tous se trouver dans le même répertoire Azure.
 >
 >
 
-Les applications qui utilisent un coffre de clés doivent s’authentifier à l’aide d’un jeton à partir d’Azure Active Directory. toodo, hello propriétaire de l’application hello doit inscrire tout d’abord des application hello dans leur annuaire Active Directory de Azure. À fin hello d’enregistrement, le propriétaire de l’application hello obtient hello valeurs suivantes :
+Les applications qui utilisent un coffre de clés doivent s’authentifier à l’aide d’un jeton à partir d’Azure Active Directory. Pour ce faire, le propriétaire de l’application doit d’abord inscrire l’application dans Azure Active Directory. À la fin de l’inscription, le propriétaire de l’application obtient les valeurs suivantes :
 
-* Un **ID d’Application** (également appelé ID de Client) et **clé d’authentification** (également appelé un secret partagé hello). application Hello doit présenter les deux de ces valeurs de tooAzure Active Directory, tooget un jeton. Comment application hello est configuré toodo que cela dépend application hello. Pour un exemple d’application le coffre de clés de hello, le propriétaire de l’application hello définit ces valeurs dans le fichier app.config hello.
+* Un **ID d’application** (également appelé ID de client) et une **clé d’authentification** (également appelée secret partagé). L’application doit présenter ces deux valeurs à Azure Active Directory afin d’obtenir un jeton. La manière dont l’application est configurée pour cela dépend de l’application en question. Pour l’exemple d’application de coffre de clés, le propriétaire de l’application définit ces valeurs dans le fichier app.config.
 
-application hello tooregister dans Azure Active Directory :
+Pour inscrire votre application auprès d’Azure Active Directory :
 
-1. Se connecter toohello portail Azure.
-2. Sur hello gauche, cliquez sur **Azure Active Directory**, puis sélectionnez le répertoire hello dans lequel vous allez inscrire votre application. <br> <br> 
+1. Connectez-vous au portail Azure.
+2. Dans le volet gauche, cliquez sur **Azure Active Directory**, puis sélectionnez le répertoire dans lequel vous allez inscrire votre application. <br> <br> 
 
 > [!Note] 
-> Vous devez sélectionner hello même répertoire contienne hello abonnement Azure avec lequel vous avez créé votre coffre de clés. Si vous ne savez pas quel répertoire cela est, cliquez sur **paramètres**, d’identifier l’abonnement hello avec lequel vous avez créé votre coffre de clés et nom de hello note du répertoire de hello affiché dans la dernière colonne de hello.
+> Vous devez sélectionner le répertoire qui contient l’abonnement Azure avec lequel vous avez créé votre coffre de clés. Si vous ne savez pas de quel répertoire il s’agit, cliquez sur **Paramètres**, identifiez l’abonnement avec lequel vous avez créé votre coffre de clés et notez le nom du répertoire affiché dans la dernière colonne.
 
-3. Cliquez sur **APPLICATIONS**. Si aucune application n’a été ajoutée tooyour active, cette page affiche uniquement hello **ajouter une application** lien. Cliquez sur le lien de hello, ou vous pouvez également cliquer hello **ajouter** sur la barre de commandes hello.
-4. Bonjour **ajouter une APPLICATION** Assistant, sur hello **comment vous souhaitez toodo ?** , cliquez sur **ajouter une application développée par mon organisation**.
-5. Sur hello **Parlez-nous de votre application** page, spécifiez un nom pour votre application et sélectionnez **WEB APPLICATION et/ou API WEB** (hello par défaut). Cliquez sur icône suivant de hello.
-6. Sur hello **propriétés de l’application** , spécifiez hello **URL de connexion** et **URI ID d’application** pour votre application web. Si votre application n’a pas ces valeurs, vous pouvez les créer pour cette étape (par exemple, vous pouvez spécifier http://test1.contoso.com pour les deux zones). Il n’a pas d’importance s’il existe de ces sites ; l’essentiel est que URI ID d’application hello pour chaque application est différente pour chaque application dans votre annuaire. répertoire de Hello utilise tooidentify de cette chaîne de votre application.
-7. Cliquez sur hello icône terminée toosave vos modifications dans l’Assistant de hello.
-8. Dans la page de démarrage rapide de hello, cliquez sur **configurer**.
-9. Faites défiler toohello **clés** section, sélectionnez la durée de hello, puis cliquez sur **enregistrer**. page de Hello actualise et affiche maintenant une valeur de clé. Vous devez configurer votre application avec cette valeur de clé et le hello **ID CLIENT** valeur. (Les instructions relatives à cette configuration sont propres à l’application).
-10. Copiez la valeur d’ID client hello à partir de cette page, vous allez utiliser dans hello prochaine étape tooset des autorisations sur votre coffre.
+3. Cliquez sur **APPLICATIONS**. Si aucune application n’a été ajoutée à votre répertoire, cette page affiche uniquement le lien **Ajouter une application**. Cliquez sur le lien. Vous pouvez également cliquer sur **AJOUTER** dans la barre de commandes.
+4. Dans l’Assistant **AJOUTER UNE APPLICATION**, dans la page **Que voulez-vous faire ?**, cliquez sur **Ajouter une application développée par mon organisation**.
+5. Dans la page **Parlez-nous de votre application**, spécifiez un nom pour votre application et sélectionnez **APPLICATION WEB ET/OU API WEB** (par défaut). Cliquez sur l’icône Suivant.
+6. Dans la page **Propriétés de l’application**, spécifiez l’**URL DE CONNEXION** et l’**URI ID D’APPLICATION** pour votre application web. Si votre application n’a pas ces valeurs, vous pouvez les créer pour cette étape (par exemple, vous pouvez spécifier http://test1.contoso.com pour les deux zones). Peu importe si ces sites existent. L’important est que l’URI d’ID d’application est différent pour chaque application dans votre répertoire. Le répertoire utilise cette chaîne pour identifier votre application.
+7. Cliquez sur l’icône Terminé pour enregistrer vos modifications dans l’Assistant.
+8. Dans la page Démarrage rapide, cliquez sur **CONFIGURER**.
+9. Accédez à la section **clés** , sélectionnez la durée, puis cliquez sur **ENREGISTRER**. La page est actualisée et affiche à présent une valeur de clé. Vous devez configurer votre application avec cette valeur de clé et la valeur d’ **ID CLIENT** . (Les instructions relatives à cette configuration sont propres à l’application).
+10. Copiez la valeur d’ID client à partir de cette page. Vous l’utiliserez à l’étape suivante pour définir des autorisations sur votre coffre.
 
-## <a name="authorize-hello-application-toouse-hello-key-or-secret"></a>Autoriser hello application toouse hello clé ou le secret
-tooauthorize hello application tooaccess hello clé ou le secret de coffre hello, utilisez hello `az keyvault set-policy` commande.
+## <a name="authorize-the-application-to-use-the-key-or-secret"></a>Autorisation de l’application à utiliser la clé ou le secret
+Pour autoriser l’application à accéder à la clé ou au secret dans le coffre, utilisez la commande `az keyvault set-policy` .
 
-Par exemple, si votre nom de coffre est ContosoKeyVault et hello application souhaité tooauthorize a l’ID client 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed, et que vous souhaitez tooauthorize hello application toodecrypt et connectez-vous avec des clés dans le coffre, puis exécutez hello suivant :
+Par exemple, si le nom de votre coffre est ContosoKeyVault, que l’application que vous souhaitez autoriser a l’ID client 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed et que vous souhaitez autoriser l’application à déchiffrer et à signer avec des clés dans le coffre, exécutez la commande suivante :
 ```
 az keyvault set-policy --name 'ContosoKeyVault' --spn 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed --key-permissions decrypt sign
 ```
 
-Si vous souhaitez tooauthorize que secrets de tooread même application dans le coffre, exécutez suivante de hello :
+Si vous souhaitez autoriser cette même application à lire les éléments secrets de votre coffre, exécutez la commande suivante :
 ```
 az keyvault set-policy --name 'ContosoKeyVault' --spn 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed --secret-permissions get
 ```
-## <a name="if-you-want-toouse-a-hardware-security-module-hsm"></a>Si vous voulez toouse un module de sécurité matériel (HSM)
-Pour plus de sûreté, vous pouvez importer ou générer des clés dans les modules de sécurité matériel (HSM) qui ne quittent jamais les limites HSM hello. Hello HSM sont FIPS 140-2 niveau 2 validé. Si cette exigence ne s’applique pas tooyou, ignorez cette section et passez trop[supprimer le coffre de clés hello et les clés associées et les secrets](#delete-the-key-vault-and-associated-keys-and-secrets).
+## <a name="if-you-want-to-use-a-hardware-security-module-hsm"></a>Si vous souhaitez utiliser un module de sécurité matériel (HSM)
+Pour une meilleure garantie, vous pouvez importer ou générer des clés dans des modules de sécurité matériels (HSM) qui ne franchissent jamais les limites HSM. Les modules HSM bénéficient d’une validation FIPS 140-2 de niveau 2. Si cette exigence ne s’applique pas à vous, ignorez cette section et accédez à [Supprimer le coffre de clés et les clés et secrets associés](#delete-the-key-vault-and-associated-keys-and-secrets).
 
-toocreate ces clés protégées par HSM, vous devez avoir un abonnement de coffre qui prend en charge les clés protégées par HSM.
+Pour créer ces clés protégées par HSM, vous devez disposer d'un abonnement de coffre qui prend en charge les clés protégées par HSM.
 
-Lorsque vous créez hello keyvault, ajouter le paramètre de 'sku' hello :
+Lorsque vous créez le coffre de clés, ajoutez le paramètre « SKU » :
 
 ```
 az keyvault create --name 'ContosoKeyVaultHSM' --resource-group 'ContosoResourceGroup' --location 'East Asia' --sku 'Premium'
 ```
-Vous pouvez ajouter des clés protégées par le logiciel (comme indiqué plus haut) et de coffre de clés protégées par HSM toothis. toocreate une clé protégée par HSM, jeu hello Destination paramètre too'HSM':
+Vous pouvez ajouter des clés protégées par logiciel (comme indiqué plus haut) et des clés protégées par HSM dans ce coffre. Pour créer une clé protégée par HSM, définissez le paramètre Destination sur « HSM » :
 
 ```
 az keyvault key create --vault-name 'ContosoKeyVaultHSM' --name 'ContosoFirstHSMKey' --protection 'hsm'
 ```
 
-Vous pouvez utiliser hello suivant commande tooimport une clé à partir d’un fichier .pem sur votre ordinateur. Cette commande importe la clé de hello dans les modules HSM Bonjour service Key Vault :
+Vous pouvez utiliser la commande suivante pour importer une clé à partir d’un fichier pem sur votre ordinateur. Cette commande importe la clé dans les modules de sécurité matériels dans le service Key Vault :
 
 ```
 az keyvault key import --vault-name 'ContosoKeyVaultHSM' --name 'ContosoFirstHSMKey' --pem-file '/.softkey.pem' --protection 'hsm' --pem-password 'PaSSWORD'
 ```
-commande suivant Hello importe un « apportez votre propre clé » package (BYOK). Cela vous permet de générer votre clé dans votre HSM local et la transférez tooHSMs Bonjour service Key Vault, sans clé hello en laissant la limite HSM hello :
+La commande suivante importe un package BYOK (Bring Your Own Key, Apporter votre propre clé). Cela vous permet de générer votre clé dans votre module de sécurité matériel local et de la transférer vers les modules de sécurité matériels du service Key Vault, sans que la clé quitte la limite HSM :
 
 ```
 az keyvault key import --vault-name 'ContosoKeyVaultHSM' --name 'ContosoFirstHSMKey' --byok-file './ITByok.byok' --protection 'hsm'
 ```
-Pour plus d’instructions sur la procédure toogenerate ce package BYOK, consultez [comment toouse clés HSM-Protected avec Azure Key Vault](key-vault-hsm-protected-keys.md).
+Pour plus d’instructions sur la génération de ce package BYOK, consultez la page [Génération et transfert de clés protégées par HSM pour le coffre de clés Azure](key-vault-hsm-protected-keys.md).
 
-## <a name="delete-hello-key-vault-and-associated-keys-and-secrets"></a>Supprimer le coffre de clés hello et les clés associées et les secrets
-Si vous n’avez plus besoin coffre de clés hello et clé de hello ou le secret qu’il contient, vous pouvez supprimer le coffre de clés hello à l’aide de hello `az keyvault delete` commande :
+## <a name="delete-the-key-vault-and-associated-keys-and-secrets"></a>Supprimer le coffre de clés et les clés et secrets associés
+Si vous n’avez plus besoin du coffre de clés ni de la clé ou du secret qu’il contient, vous pouvez supprimer le coffre de clés à l’aide de la commande `az keyvault delete` :
 
 ```
 az keyvault delete --name 'ContosoKeyVault'
 ```
 
-Ou bien, vous pouvez supprimer un groupe de ressources Azure entier, ce qui inclut le coffre de clés hello et d’autres ressources que vous avez incluses dans ce groupe :
+Vous pouvez également supprimer un groupe de ressources Azure, qui inclut le coffre de clés et les autres ressources incluses dans ce groupe :
 
 ```
 az group delete --name 'ContosoResourceGroup'
@@ -232,7 +232,7 @@ Cette commande permet d’obtenir un affichage sous forme de tableau de l’ense
 
 az keyvault key list --vault-name 'ContosoKeyVault'
 
-Cette commande affiche une liste complète des propriétés de clé spécifiée de hello :
+Cette commande affiche la liste complète des propriétés pour la clé spécifiée :
 
 az keyvault key show --vault-name 'ContosoKeyVault' --name 'ContosoFirstKey'
 
@@ -240,11 +240,11 @@ Cette commande permet d’obtenir un affichage sous forme de tableau de l’ense
 
 az keyvault secret list --vault-name 'ContosoKeyVault'
 
-Voici un exemple de procédure tooremove une clé spécifique :
+Voici un exemple montrant comment supprimer une clé spécifique :
 
 az keyvault key delete --vault-name 'ContosoKeyVault' --name 'ContosoFirstKey'
 
-Voici un exemple de procédure tooremove un secret spécifique :
+Voici un exemple montrant comment supprimer un secret spécifique :
 
 az keyvault secret delete --vault-name 'ContosoKeyVault' --name 'SQLPassword'
 
@@ -252,4 +252,4 @@ az keyvault secret delete --vault-name 'ContosoKeyVault' --name 'SQLPassword'
 ## <a name="next-steps"></a>Étapes suivantes
 Pour accéder à une documentation de référence complète sur l’interface Azure CLI pour les commandes Key Vault, consultez le document de [référence sur l’interface de ligne de commande Key Vault](/cli/azure/keyvault).
 
-Pour les références de programmation, consultez [hello guide du développeur Azure Key Vault](key-vault-developers-guide.md).
+Pour les références de programmation, consultez le [guide du développeur de coffre de clés Azure](key-vault-developers-guide.md).

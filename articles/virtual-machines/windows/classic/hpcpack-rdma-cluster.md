@@ -1,6 +1,6 @@
 ---
-title: aaaSet une applications MPI de Windows RDMA cluster toorun | Documents Microsoft
-description: "Découvrez comment toocreate un cluster Windows HPC Pack avec toouse H16r, H16mr, A8 ou A9 VMs de taille hello RDMA Azure réseau toorun MPI applications."
+title: "Configuration d’un cluster Windows RDMA pour exécuter des applications MPI | Microsoft Docs"
+description: "Apprenez à créer un cluster Windows HPC Pack avec des machines virtuelles de taille H16r, H16mr, A8 ou A9 pour utiliser le réseau Azure RDMA afin d’exécuter des applications MPI."
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -15,176 +15,176 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 06/01/2017
 ms.author: danlep
-ms.openlocfilehash: 23bc8740dbd05a7c7ab3f998489a41d0df4520a2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 19be1d693fe13af0f6c1ab0cb6f7bc829b9fad5a
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="set-up-a-windows-rdma-cluster-with-hpc-pack-toorun-mpi-applications"></a>Configuration d’un cluster Windows RDMA avec des applications MPI HPC Pack toorun
-Configuration d’un cluster Windows RDMA dans Azure avec [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029) et [tailles de machine virtuelle de calcul haute performance](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) toorun les applications Interface MPI (Message Passing) parallèles. Lorsque vous configurez des nœuds Windows Server compatibles RDMA dans un cluster HPC Pack, les applications MPI communiquent efficacement sur un réseau à latence faible et à débit élevé dans Azure, reposant sur la technologie d’accès direct à la mémoire à distance (RDMA).
+# <a name="set-up-a-windows-rdma-cluster-with-hpc-pack-to-run-mpi-applications"></a>Configuration d’un cluster Windows RDMA avec HPC Pack pour exécuter des applications MPI
+Configurez un cluster RDMA Windows dans Azure avec [Microsoft HPC Pack](https://technet.microsoft.com/library/cc514029) et des [tailles de machines virtuelles de calcul haute performance](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) pour exécuter des applications MPI (Message Passing Interface) parallèles. Lorsque vous configurez des nœuds Windows Server compatibles RDMA dans un cluster HPC Pack, les applications MPI communiquent efficacement sur un réseau à latence faible et à débit élevé dans Azure, reposant sur la technologie d’accès direct à la mémoire à distance (RDMA).
 
-Si vous souhaitez que les charges de travail MPI toorun sur les machines virtuelles Linux réseau RDMA Azure hello accès, consultez [configurer une application MPI de Linux RDMA cluster toorun](../../linux/classic/rdma-cluster.md).
+Si vous souhaitez exécuter des charges de travail MPI sur des machines virtuelles Linux qui accèdent au réseau Azure RDMA, consultez [Configuration d’un cluster Linux RDMA pour exécuter des applications MPI](../../linux/classic/rdma-cluster.md).
 
 ## <a name="hpc-pack-cluster-deployment-options"></a>Options de déploiement de cluster HPC Pack
-Microsoft HPC Pack est un outil fourni à aucune toocreate coût supplémentaire des clusters HPC local ou dans les toorun Azure Windows ou Linux HPC. HPC Pack comprend un environnement d’exécution pour l’implémentation Microsoft hello hello Message passant Interface pour Windows (MS-MPI). Lorsqu’il est utilisé avec des instances en charge RDMA exécutant un système d’exploitation de Windows Server pris en charge, HPC Pack fournit un option efficace toorun Windows MPI des applications réseau RDMA Azure hello accès. 
+Microsoft HPC Pack est un outil fourni sans frais supplémentaires pour créer des clusters HPC locaux ou dans Azure afin d’exécuter des applications HPC Windows ou Linux. HPC Pack comprend un environnement d'exécution pour l'implémentation Microsoft de MPI pour Windows (MS-MPI). Dans le cas d’une utilisation d’instances compatibles RDMA exécutant un système d’exploitation Windows Server pris en charge, HPC Pack est un moyen efficace d’exécuter des applications MPI Windows qui accèdent au réseau Azure compatible RDMA. 
 
-Cet article présente deux scénarios et des liens tooset de conseils toodetailed configuration d’un cluster Windows RDMA avec Microsoft HPC Pack. 
+Cet article présente deux scénarios, ainsi que des liens vers des instructions détaillées, pour configurer un cluster RDMA Windows avec Microsoft HPC Pack. 
 
 * Scénario 1 Déployer des instances de rôle de travail nécessitant beaucoup de ressources système (PaaS)
 * Scénario 2 Déployer des nœuds de calcul sur des machines virtuelles nécessitant beaucoup de ressources système (IaaS)
 
-Pour les instances de calcul intensif préalables toouse avec Windows, consultez [tailles de machine virtuelle de calcul haute performance](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Pour connaître les conditions préalables à l’utilisation d’instances nécessitant beaucoup de ressources système avec Windows, consultez [Tailles de machines virtuelles de calcul haute performance](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="scenario-1-deploy-compute-intensive-worker-role-instances-paas"></a>Scénario 1 : Déployer des instances de rôle de travail nécessitant beaucoup de ressources système (PaaS)
-À partir d’un cluster HPC Pack existant, ajoutez des ressources de calcul supplémentaires dans les instances de rôle de travail Azure (nœuds Azure) en cours d’exécution dans un service cloud (PaaS). Cette fonctionnalité, également appelée « rafale tooAzure » à partir de HPC Pack, prend en charge une plage de tailles pour les instances de rôle de travail hello. Lors de l’ajout de hello nœuds Azure, spécifiez une des tailles de hello prenant en charge RDMA.
+À partir d’un cluster HPC Pack existant, ajoutez des ressources de calcul supplémentaires dans les instances de rôle de travail Azure (nœuds Azure) en cours d’exécution dans un service cloud (PaaS). Cette fonctionnalité, également appelée « Intégration à Azure » à partir de HPC Pack, prend en charge une plage de tailles d’instances de rôle de travail. Lors de l’ajout des nœuds Azure, spécifiez l’une des tailles compatibles RDMA.
 
-Voici les considérations et la procédure tooburst compatible tooRDMA instances Azure à partir d’un fichier (généralement local) cluster. Utilisez similaire procédures tooadd travail rôle instances tooan nœud principal HPC Pack déployé dans une machine virtuelle Azure.
+Voici les considérations et les étapes pour l’intégration aux instances Azure compatibles avec RDMA à partir d’un cluster existant (généralement local). Utilisez des procédures similaires pour ajouter des instances de rôle de travail à un nœud principal HPC Pack déployé dans une machine virtuelle Azure.
 
 > [!NOTE]
-> Pour un didacticiel tooburst tooAzure avec HPC Pack, consultez [configurer un cluster hybride avec HPC Pack](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md). Notez les considérations de hello Bonjour suivant les étapes qui s’appliquent spécifiquement les nœuds Azure tooRDMA compatibles.
+> Pour obtenir un didacticiel sur l’intégration à Azure avec HPC Pack, consultez [Configurer un cluster hybride avec HPC Pack](../../../cloud-services/cloud-services-setup-hybrid-hpcpack-cluster.md). Tenez compte des considérations dans les étapes suivantes qui s’appliquent spécifiquement aux nœuds Azure compatibles RDMA.
 > 
 > 
 
-![Croissance tooAzure][burst]
+![Intégration à Azure][burst]
 
 ### <a name="steps"></a>Étapes
 1. **Déployer et configurer un nœud principal HPC Pack 2012 R2**
    
-    Télécharger le package d’installation de HPC Pack dernière hello de hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=49922). Pour tooprepare configuration requise et des instructions pour un déploiement de croissance Azure, consultez [croître tooAzure des Instances de travail avec Microsoft HPC Pack](https://technet.microsoft.com/library/gg481749.aspx).
-2. **Configurer un certificat de gestion Bonjour abonnement Azure**
+    Téléchargez le dernier package d’installation de HPC Pack à partir du [Centre de téléchargement Microsoft](https://www.microsoft.com/download/details.aspx?id=49922). Pour plus d’informations sur la configuration requise et des instructions de préparation pour le déploiement d’intégrations à Azure, consultez [Burst to Azure with Microsoft HPC Pack (Intégration à Azure avec Microsoft HPC Pack)](https://technet.microsoft.com/library/gg481749.aspx).
+2. **Configurer un certificat de gestion dans l’abonnement Azure**
    
-    Configurer une connexion de hello toosecure certificat entre le nœud principal de hello et Azure. Pour plus d’options et les procédures, consultez [hello tooConfigure de scénarios le certificat de gestion Azure pour HPC Pack](http://technet.microsoft.com/library/gg481759.aspx). Pour les déploiements de test, HPC Pack installe un certificat par défaut Microsoft HPC Azure gestion vous pouvez télécharger rapidement tooyour abonnement Azure.
+    Configurez un certificat pour sécuriser la connexion entre le nœud principal et Azure. Pour connaître les options et les procédures, consultez [Scénarios pour configurer le certificat de gestion Azure pour HPC Pack](http://technet.microsoft.com/library/gg481759.aspx). Pour les déploiements de test, HPC Pack installe un certificat Microsoft HPC Azure Management par défaut que vous pouvez télécharger rapidement dans votre abonnement Azure.
 3. **Créer un nouveau service cloud et un compte de stockage**
    
-    Utilisez hello toocreate portail Azure, un service cloud et un compte de stockage pour le déploiement de hello dans une région où les instances hello prenant en charge RDMA sont disponibles.
+    Utilisez le portail Azure pour créer un service cloud et un compte de stockage pour le déploiement dans une région où les instances compatibles RDMA sont disponibles.
 4. **Créer un modèle de nœud Azure**
    
-    Utilisez l’Assistant Création d’un modèle de nœud de hello dans HPC Cluster Manager. Pour obtenir des instructions, consultez [créer un modèle de nœud Azure](http://technet.microsoft.com/library/gg481758.aspx#BKMK_Templ) dans « Étapes tooDeploy des nœuds Azure avec Microsoft HPC Pack ».
+    Utilisez l’Assistant Créer un modèle de nœud dans HPC Cluster Manager. Pour les étapes, consultez [Créer un modèle de nœud Azure](http://technet.microsoft.com/library/gg481758.aspx#BKMK_Templ) dans « Étapes à suivre pour déployer des nœuds Azure avec Microsoft HPC Pack ».
    
-    Pour les premiers tests, nous vous suggérons de configuration d’une stratégie de disponibilité manuelle dans le modèle de hello.
-5. **Ajouter toohello nœuds du cluster**
+    Pour les premiers tests, nous vous suggérons de configurer une stratégie de disponibilité manuelle dans le modèle.
+5. **Ajouter un nœud au cluster**
    
-    Utilisez hello Assistant Ajout d’un nœud dans HPC Cluster Manager. Pour plus d’informations, consultez [toohello d’ajouter des nœuds Azure Cluster Windows HPC](http://technet.microsoft.com/library/gg481758.aspx#BKMK_Add).
+    Utilisez l’Assistant Ajouter un nœud dans HPC Cluster Manager. Pour plus d’informations, consultez [Ajout des nœuds Azure au cluster Windows HPC](http://technet.microsoft.com/library/gg481758.aspx#BKMK_Add).
    
-    Lorsque vous spécifiez la taille hello de nœuds de hello, sélectionnez une des tailles d’instance prenant en charge RDMA hello.
+    Lorsque vous spécifiez la taille des nœuds, sélectionnez des tailles d’instance compatibles RDMA.
    
    > [!NOTE]
-   > Dans chaque déploiement de tooAzure croissance avec des instances de calcul intensif hello, HPC Pack déploie automatiquement un minimum de deux instances prenant en charge RDMA (telles que A8) en tant que nœuds de proxy, en outre les instances de rôle de travail Azure toohello vous spécifiez. nœuds de proxy Hello utilisent des cœurs qui sont alloués toohello abonnement et occasionnent des frais avec les instances de rôle de travail Azure hello.
+   > Dans chaque déploiement d’intégration à Azure avec les instances nécessitant beaucoup de ressources système, HPC Pack déploie automatiquement un minimum de deux instances compatibles RDMA (de taille A8) comme nœuds proxy, en plus des instances de rôle de travail Azure que vous spécifiez. Les nœuds proxy utilisent des cœurs qui sont affectés à l’abonnement et occasionnent des frais avec les instances de rôle de travail Azure.
    > 
    > 
-6. **Démarrer (approvisionner) les nœuds de hello et les mettre en ligne toorun travaux**
+6. **Démarrer (approvisionner) les nœuds et les mettre en ligne pour exécuter des travaux**
    
-    Sélectionnez les nœuds hello et utiliser hello **Démarrer** action dans HPC Cluster Manager. Lors de la configuration est terminée, sélectionnez les nœuds hello et utiliser hello **mettre en ligne** action dans HPC Cluster Manager. les nœuds de Hello sont prêt toorun travaux.
-7. **Soumettre le cluster toohello de travaux**
+    Sélectionnez les nœuds et utilisez l’action **Démarrer** dans HPC Cluster Manager. Lorsque l’approvisionnement est terminé, sélectionnez les nœuds et utilisez l’action **Mettre en ligne** dans HPC Cluster Manager. Les nœuds sont prêts à exécuter des travaux.
+7. **Envoyer des travaux au cluster**
    
-   Utiliser des travaux de cluster HPC Pack travail soumission outils toorun. Consultez [Microsoft HPC Pack : gestion des travaux](http://technet.microsoft.com/library/jj899585.aspx).
-8. **Arrêter les nœuds de hello (annuler le déploiement)**
+   Utilisez les outils de soumission de travaux HPC Pack pour exécuter des travaux de cluster. Consultez [Microsoft HPC Pack : gestion des travaux](http://technet.microsoft.com/library/jj899585.aspx).
+8. **Arrêter (annuler le déploiement) les nœuds**
    
-   Lorsque vous avez terminé les tâches en cours d’exécution, mettez les nœuds hello hors connexion et utilisez hello **arrêter** action dans HPC Cluster Manager.
+   Lorsque vous avez terminé l’exécution des travaux, déconnectez les nœuds et utilisez l’action **Arrêter** dans HPC Cluster Manager.
 
 ## <a name="scenario-2-deploy-compute-nodes-in-compute-intensive-vms-iaas"></a>Scénario 2 : Déployer des nœuds de calcul sur des machines virtuelles nécessitant beaucoup de ressources système (IaaS)
-Dans ce scénario, vous déployez du nœud principal HPC Pack hello et les nœuds de calcul sur des machines virtuelles dans un réseau virtuel Azure. HPC Pack fournit un certain nombre [d’options de déploiement sur les machines virtuelles Azure](../../linux/hpcpack-cluster-options.md), y compris les scripts de déploiement automatisé et les modèles de démarrage rapide Azure. Par exemple, hello considérations relatives à la suite et étapes vous guide toouse hello [script de déploiement IaaS de HPC Pack](hpcpack-cluster-powershell-script.md) pour automatiser le déploiement d’un cluster HPC Pack 2012 R2 dans Azure hello.
+Dans ce scénario, vous déployez le nœud principal HPC Pack et les nœuds de calcul de cluster sur des machines virtuelles dans un réseau virtuel Azure. HPC Pack fournit un certain nombre [d’options de déploiement sur les machines virtuelles Azure](../../linux/hpcpack-cluster-options.md), y compris les scripts de déploiement automatisé et les modèles de démarrage rapide Azure. Par exemple, les considérations et procédures suivantes vous guident dans l’utilisation du [script de déploiement de HPC Pack IaaS](hpcpack-cluster-powershell-script.md) pour automatiser le déploiement d’un cluster HPC Pack 2012 R2 dans Azure.
 
 ![Cluster sur les machines virtuelles Azure][iaas]
 
 ### <a name="steps"></a>Étapes
-1. **Créer un nœud principal du cluster et les machines virtuelles de nœud de calcul en exécutant le script de déploiement IaaS de HPC Pack hello sur un ordinateur client**
+1. **Créer un nœud principal de cluster et des machines virtuelles à nœud de calcul en exécutant le script de déploiement de HPC Pack IaaS sur un ordinateur client**
    
-    Télécharger le package de Script de déploiement IaaS de HPC Pack hello de hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=49922).
+    Téléchargez le package de script de déploiement de HPC Pack IaaS à partir du [Centre de téléchargement Microsoft](https://www.microsoft.com/download/details.aspx?id=49922).
    
-    ordinateur client de hello tooprepare, créer le fichier de configuration hello et exécution hello script, consultez [créer un Cluster HPC avec hello script de déploiement IaaS de HPC Pack](hpcpack-cluster-powershell-script.md). 
+    Pour préparer l’ordinateur client, créez le fichier de configuration de script, puis exécutez le script. Consultez [Créer un cluster de calcul haute performance (HPC) Windows avec le script de déploiement du HPC Pack IaaS](hpcpack-cluster-powershell-script.md). 
    
-    nœuds de calcul toodeploy prenant en charge RDMA, hello Remarque suivant des considérations supplémentaires :
+    Pour déployer les nœuds de calcul compatibles RDMA, notez les considérations supplémentaires suivantes :
    
-   * **Réseau virtuel**: spécifiez un réseau virtuel dans une région qui Bonjour prenant en charge RDMA taille d’instance que vous souhaitez toouse est disponible.
-   * **Système d’exploitation Windows Server**: toosupport la connectivité RDMA, spécifiez un système d’exploitation Windows Server 2012 R2 ou Windows Server 2012 pour les machines virtuelles de nœud de calcul hello.
+   * **Réseau virtuel** : spécifiez un nouveau réseau virtuel dans une région dans laquelle la taille d’instance compatible RDMA souhaitée est disponible.
+   * **Système d’exploitation Windows Server** : pour prendre en charge la connectivité RDMA, spécifiez un système d’exploitation Windows Server 2012 R2 ou Windows Server 2012 pour les machines virtuelles de nœud de calcul.
    * **Services cloud** : nous vous recommandons de déployer votre nœud principal dans un service cloud et vos nœuds de calcul dans un autre service cloud.
-   * **Taille du nœud principal**: pour ce scénario, envisagez une taille d’au moins A4 (très grande) pour le nœud principal de hello.
-   * **Extension HpcVmDrivers**: script de déploiement hello installe hello Agent de machine virtuelle Azure et hello extension HpcVmDrivers automatiquement lorsque vous déployez des nœuds de calcul taille A8 ou A9 avec un système d’exploitation Windows. HpcVmDrivers installe des pilotes sur des machines virtuelles de nœud de calcul hello afin qu’ils peuvent se connecter réseau RDMA de toohello. Sur les machines virtuelles de série H prenant en charge RDMA, vous devez installer manuellement extension HpcVmDrivers de hello. Consultez [Tailles de machines virtuelles de calcul haute performance](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
-   * **Configuration réseau du cluster**: script de déploiement hello configure automatiquement le cluster HPC Pack de hello dans la topologie 5 (tous les nœuds sur le réseau d’entreprise hello). Cette topologie est requise pour tous les déploiements de cluster HPC Pack dans les machines virtuelles. Ne modifiez pas topologie réseau du cluster hello plus tard.
-2. **Mettre des nœuds de calcul hello toorun en ligne de travaux**
+   * **Taille du nœud principal** : pour ce scénario, considérez une taille d’au moins A4 (très grande) pour le nœud principal.
+   * **Extension HpcVmDrivers** : le script de déploiement installe l’agent de machine virtuelle Azure et l’extension HpcVmDrivers automatiquement lors du déploiement de nœuds de calcul de taille A8 ou A9 avec un système d’exploitation Windows Server. HpcVmDrivers installe des pilotes sur des machines virtuelles à nœud de calcul afin qu’ils puissent se connecter au réseau RDMA. Sur les machines virtuelles de série H compatibles RDMA, vous devez installer manuellement l’extension HpcVmDrivers. Consultez [Tailles de machines virtuelles de calcul haute performance](../sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+   * **Configuration du réseau de clusters** : le script de déploiement définit automatiquement le cluster HPC Pack dans la topologie 5 (tous les nœuds sur le réseau d’entreprise). Cette topologie est requise pour tous les déploiements de cluster HPC Pack dans les machines virtuelles. Ne modifiez pas la topologie de réseau de clusters ultérieurement.
+2. **Mettre en ligne les nœuds de calcul pour exécuter des travaux**
    
-    Sélectionnez les nœuds hello et utiliser hello **mettre en ligne** action dans HPC Cluster Manager. les nœuds de Hello sont prêt toorun travaux.
-3. **Soumettre le cluster toohello de travaux**
+    Sélectionnez les nœuds et utilisez l’action **Mettre en ligne** dans HPC Cluster Manager. Les nœuds sont prêts à exécuter des travaux.
+3. **Envoyer des travaux au cluster**
    
-    Connecter des travaux de toosubmit toohello du nœud principal, ou configurer un toodo d’ordinateur local, cela. Pour plus d’informations, consultez [tooan d’envoyer des travaux HPC cluster dans Azure](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
-4. **Take hello nœuds hors connexion et arrêter (libérer)**
+    Connectez-vous au nœud principal pour soumettre des travaux, ou configurez un ordinateur local pour ce faire. Pour plus d’informations, consultez [Envoyer des travaux à un cluster HPC dans Azure](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+4. **Déconnecter les nœuds et les arrêter (désallouer)**
    
-    Lorsque vous avez terminé les tâches en cours d’exécution, vous pouvez prendre nœuds hello hors connexion dans HPC Cluster Manager. Ensuite, utilisez tooshut des outils de gestion Azure leur vers le bas.
+    Lorsque vous avez terminé l’exécution des travaux, déconnectez les nœuds dans HPC Cluster Manager. Puis, utilisez les outils de gestion Azure pour les arrêter.
 
-## <a name="run-mpi-applications-on-hello-cluster"></a>Exécuter des applications MPI sur le cluster de hello
+## <a name="run-mpi-applications-on-the-cluster"></a>Exécuter des applications MPI sur le cluster
 ### <a name="example-run-mpipingpong-on-an-hpc-pack-cluster"></a>Exemple : Exécuter mpipingpong sur un cluster HPC Pack
-tooverify un déploiement de HPC Pack des instances hello prenant en charge RDMA, exécutez hello HPC Pack **mpipingpong** commande sur le cluster de hello. **MPIPingPong** envoie les paquets de données entre des nœuds appariés de mesurer le débit et de latence toocalculate à plusieurs reprises et les statistiques de réseau applicatif RDMA de hello. Cet exemple montre un modèle par défaut pour l’exécution d’un travail MPI (dans ce cas, **mpipingpong**) à l’aide de cluster de hello **mpiexec** commande.
+Pour vérifier un déploiement HPC Pack des instances compatibles RDMA, exécutez la commande HPC Pack **mpipingpong** sur le cluster. **mpipingpong** envoie des paquets de données entre des nœuds associés de façon répétée pour calculer la latence et les mesures et statistiques de débit sur le réseau d’application RDMA. Cet exemple montre un modèle classique d’exécution d’un travail MPI (dans ce cas, **mpipingpong**) à l’aide de la commande de cluster **mpiexec**.
 
-Cet exemple suppose que vous avez ajouté des nœuds Azure dans une configuration « croître tooAzure » ([scénario 1](#scenario-1.-deploy-compute-intensive-worker-role-instances-\(PaaS\) in this article). Si vous avez déployé HPC Pack sur un cluster de machines virtuelles Azure, vous devez toomodify hello commande syntaxe toospecify un autre groupe de nœuds et définir l’environnement supplémentaires variables toodirect trafic toohello RDMA réseau.
+Cet exemple suppose que vous ayez ajouté des nœuds Azure dans une configuration de type « intégration à Azure» ([scénario 1](#scenario-1.-deploy-compute-intensive-worker-role-instances-\(PaaS\) in this article). Si vous avez déployé HPC Pack sur un cluster de machines virtuelles Azure, vous devez modifier la syntaxe de commande pour spécifier un autre groupe de nœuds et définir des variables d’environnement supplémentaires pour diriger le trafic réseau vers le réseau RDMA.
 
-mpipingpong toorun sur le cluster de hello :
+Pour exécuter mpipingpong sur le cluster :
 
-1. Sur le nœud principal de hello ou sur un ordinateur client correctement configuré, ouvrez une invite de commandes.
-2. latence tooestimate entre les paires de nœuds dans un déploiement de croissance Azure de quatre nœuds, hello du type suivant de commande toosubmit un mpipingpong toorun de travail avec une petite taille de paquet et le nombre d’itérations :
+1. Sur le nœud principal ou sur un ordinateur client correctement configuré, ouvrez une invite de commande.
+2. Pour estimer la latence entre les paires de nœuds dans un déploiement d’intégration à Azure de quatre nœuds, tapez la commande suivante afin de soumettre un travail pour exécuter mpipingpong avec une petite taille de paquet et un grand nombre d’itérations :
    
     ```Command
     job submit /nodegroup:azurenodes /numnodes:4 mpiexec -c 1 -affinity mpipingpong -p 1:100000 -op -s nul
     ```
    
-    commande Hello retourne ID hello du travail de hello est envoyé.
+    La commande retourne l’ID du travail soumis.
    
-    Si vous avez déployé le cluster HPC Pack de hello déployé sur des machines virtuelles Azure, spécifiez un groupe de nœuds contenant déployés dans un seul service cloud de machines virtuelles de nœud de calcul et modifier hello **mpiexec** commande comme suit :
+    Si vous avez déployé le cluster HPC Pack déployé sur les machines virtuelles Azure, spécifiez un groupe de nœuds qui contient des machines virtuelles à nœud de calcul déployées dans un même service cloud et modifiez la commande **mpiexec** comme suit :
    
     ```Command
     job submit /nodegroup:vmcomputenodes /numnodes:4 mpiexec -c 1 -affinity -env MSMPI_DISABLE_SOCK 1 -env MSMPI_PRECONNECT all -env MPICH_NETMASK 172.16.0.0/255.255.0.0 mpipingpong -p 1:100000 -op -s nul
     ```
-3. En cas de hello est terminée, tooview hello sortie (dans ce cas, sortie hello de la tâche 1 du travail de hello), hello du type suivant
+3. Lorsque le travail est terminé, pour afficher le résultat (dans ce cas, la sortie de la tâche 1 du travail), tapez la commande suivante :
    
     ```Command
     task view <JobID>.1
     ```
    
-    où &lt; *JobID* &gt; hello des ID de tâche hello qui a été soumis.
+    où &lt;*JobID*&gt; est l’ID du travail qui a été soumis.
    
-    sortie de Hello inclut latence des résultats similaires toohello éléments suivants.
+    La sortie indiquera des résultats de latence semblables à ceci :
    
     ![Latence ping pong][pingpong1]
-4. nœuds de croissance de débit tooestimate entre les paires de Azure, tapez ce qui suit hello commande toosubmit un toorun travail **mpipingpong** avec une grande taille de paquet et quelques itérations :
+4. Pour estimer le débit entre les paires de nœuds d’extension Azure, tapez la commande suivante afin de soumettre un travail pour exécuter **mpipingpong** avec une grande taille de paquet et quelques itérations :
    
     ```Command
     job submit /nodegroup:azurenodes /numnodes:4 mpiexec -c 1 -affinity mpipingpong -p 4000000:1000 -op -s nul
     ```
    
-    commande Hello retourne ID hello du travail de hello est envoyé.
+    La commande retourne l’ID du travail soumis.
    
-    Sur un cluster HPC Pack déployé sur les machines virtuelles Azure, modifiez la commande hello comme indiqué à l’étape 2.
-5. En cas de hello est terminée, tooview hello sortie (dans ce cas, sortie hello de la tâche 1 du travail de hello), hello du type suivant :
+    Sur un cluster HPC Pack déployé sur les machines virtuelles Azure, modifiez la commande comme indiqué à l’étape 2.
+5. Une fois le travail terminé, pour afficher le résultat (dans ce cas, la sortie de la tâche 1 du travail), tapez la commande suivante :
    
     ```Command
     task view <JobID>.1
     ```
    
-   sortie de Hello inclut le débit des résultats similaires toohello après.
+   La sortie indiquera des résultats de débit semblables à ceci :
    
    ![Débit ping pong][pingpong2]
 
 ### <a name="mpi-application-considerations"></a>Considérations sur les applications MPI
-Vous trouverez ci-dessous des considérations relatives à l’exécution d’applications MPI avec le HPC Pack dans Azure. Certains s’appliquent uniquement aux toodeployments de nœuds Azure (instances de rôle de travail ajoutés dans une configuration de « croissance tooAzure »).
+Vous trouverez ci-dessous des considérations relatives à l’exécution d’applications MPI avec le HPC Pack dans Azure. Certaines s’appliquent uniquement aux déploiements de nœuds Azure (instances de rôle de travail ajoutées dans une configuration de type « intégration à Azure »).
 
-* Les instances de rôle de travail dans un service cloud sont régulièrement réapprovisionnées sans préavis par Azure (par exemple, pour la maintenance du système ou en cas d’échec d’une instance). Si une instance est remise en service en cours d’exécution d’un travail MPI, instance de hello perd ses données et retourne l’état de toohello lors de son premier déploiement, ce qui peut entraîner des toofail de travail MPI hello. Hello plus de nœuds que vous utilisez pour un seul travail MPI, hello plus hello travail s’exécute, hello plus probable qu’une des instances de hello est remise en service pendant l’exécution d’un travail. Considérer ceci si vous désignez un seul nœud dans le déploiement de hello comme un serveur de fichiers.
-* toorun des travaux MPI dans Azure, vous ne disposez d’instances de toouse hello prenant en charge RDMA. Vous pouvez utiliser n’importe quelle taille d’instance prise en charge par HPC Pack. Toutefois, les instances de prenant en charge RDMA hello sont recommandées pour l’exécution des travaux MPI à relativement grande échelle qui sont sensibles toohello latence et bande passante réseau hello qui connecte les nœuds hello hello. Si vous utilisez d’autres travaux MPI de tailles toorun sensibles et de la bande passante, nous vous recommandons d’exécuter de petits travaux, dans lequel une seule tâche s’exécute sur plusieurs nœuds.
-* Les applications déployées tooAzure instances sont toohello sujet associé application hello de contrat de licence. Vérifiez auprès du fournisseur de hello de toute application commerciale pour le Gestionnaire de licences ou d’autres restrictions pour l’exécution dans le cloud de hello. Tous les fournisseurs ne proposent pas le paiement à l'utilisation pour les licences.
-* Instances Azure vous doivent installer autres nœuds de tooaccess locaux, les partages et les serveurs de licences. Par exemple, tooenable hello nœuds Azure tooaccess un serveur de licences sur site, vous pouvez configurer un réseau virtuel Azure de site à site.
-* toorun des applications MPI sur des instances Azure, inscrire chaque application MPI avec le pare-feu Windows sur les instances de hello en exécutant hello **hpcfwutil** commande. Cela permet de MPI communications tootake sur place sur un port affecté dynamiquement par le pare-feu hello.
+* Les instances de rôle de travail dans un service cloud sont régulièrement réapprovisionnées sans préavis par Azure (par exemple, pour la maintenance du système ou en cas d’échec d’une instance). Si une instance est réapprovisionnée alors qu’elle exécute un travail MPI, elle perd ses données et retourne à l’état de son premier déploiement, ce qui peut entraîner l’échec du travail MPI. Plus vous utilisez de nœuds pour un même travail MPI et plus le travail sera long, plus la probabilité de réapprovisionnement de l’une des instances au cours d’un travail sera élevée. Prenez également ce point en considération si vous désignez un seul nœud dans le déploiement comme serveur de fichiers.
+* Pour exécuter des travaux MPI dans Azure, vous n’avez pas besoin d’utiliser des instances compatibles RDMA. Vous pouvez utiliser n’importe quelle taille d’instance prise en charge par HPC Pack. Toutefois, les instances compatibles RDMA sont recommandées pour l’exécution de travaux MPI relativement volumineux qui sont sensibles à la latence et à la bande passante du réseau qui connecte les nœuds. Si vous utilisez d’autres tailles pour exécuter des travaux MPI pour lesquels la bande passante et la latence sont essentiels, nous vous recommandons d’exécuter de petits travaux où une tâche donnée s’exécute sur quelques nœuds seulement.
+* Les applications déployées sur des instances Azure sont soumises aux termes du contrat de licence associés à l’application. Vérifiez auprès du fournisseur de toute application commerciale les questions de licence ou toute autre restriction relative à l’exécution dans le cloud. Tous les fournisseurs ne proposent pas le paiement à l'utilisation pour les licences.
+* Les instances Azure nécessitent une configuration supplémentaire pour accéder aux nœuds locaux, partages et serveurs de licences. Par exemple, pour activer les nœuds Azure pour accéder à un serveur de licences local, vous pouvez configurer un réseau virtuel Azure de site à site.
+* Pour exécuter des applications MPI sur des instances Azure, enregistrez chaque application MPI sur les instances avec le pare-feu Windows en exécutant la commande **hpcfwutil** . Cela permet aux communications MPI d’avoir lieu sur un port affecté dynamiquement par le pare-feu.
   
   > [!NOTE]
-  > Pour les déploiements en rafale tooAzure, vous pouvez également configurer un toorun de commande d’exception pare-feu automatiquement tous les nouveaux nœuds Azure ajoutés tooyour cluster. Une fois que vous exécutez hello **hpcfwutil** de commandes et vérifiez que votre application fonctionne, ajoutez le script de démarrage hello commande tooa pour vos nœuds Azure. Pour plus d'informations, consultez [Utiliser un script de démarrage pour les nœuds Azure](https://technet.microsoft.com/library/jj899632.aspx).
+  > Pour des déploiements d’intégration à Azure, vous pouvez également configurer une commande d’exception de pare-feu pour qu’elle s’exécute automatiquement sur tous les nouveaux nœuds Azure ajoutés à votre cluster. Après avoir exécuté la commande **hpcfwutil** et vérifié que votre application fonctionne, ajoutez la commande à un script de démarrage pour vos nœuds Azure. Pour plus d'informations, consultez [Utiliser un script de démarrage pour les nœuds Azure](https://technet.microsoft.com/library/jj899632.aspx).
   > 
   > 
-* HPC Pack utilise hello CCP_MPI_NETMASK cluster environnement variable toospecify une plage d’adresses acceptables pour la communication MPI. À compter de HPC Pack 2012 R2, variable d’environnement de cluster CCP_MPI_NETMASK hello affecte uniquement communication MPI entre les nœuds de calcul joints au domaine (localement ou dans des machines virtuelles Azure). variable de Hello est ignorée par les nœuds ajoutés dans une configuration de tooAzure de croissance.
-* Impossible d’exécuter des travaux MPI entre des instances Azure déployées dans différents services cloud (par exemple, dans les déploiements de tooAzure croissance avec différents modèles de nœud ou les nœuds de calcul de machine virtuelle Azure déployées dans plusieurs services cloud). Si vous avez plusieurs déploiements de nœuds Azure démarrés avec différents modèles de nœud, hello MPI doit s’exécuter sur un seul jeu de nœuds Azure.
-* Lorsque vous ajoutez des nœuds Azure tooyour cluster et les mettez en ligne, hello Service Planificateur de travaux HPC immédiatement tente toostart les travaux sur les nœuds hello. Si seule une partie de votre charge de travail peut exécuter sur Azure, assurez-vous de mettre à jour ou de créer toodefine des modèles de projet quel travail types peuvent s’exécuter sur Azure. Par exemple, tooensure que les travaux soumis avec un modèle de travail uniquement s’exécuter sur des nœuds Azure, ajouter un modèle de tâche hello nœud groupes propriété toohello et sélectionnez AzureNodes hello valeur requise. toocreate des groupes personnalisés pour vos nœuds Azure, utilisez l’applet de commande Add-HpcGroup HPC PowerShell hello.
+* HPC Pack utilise la variable d’environnement de cluster CCP_MPI_NETMASK pour spécifier une plage d’adresses acceptables pour la communication MPI. Depuis HPC Pack 2012 R2, la variable d’environnement de cluster CCP_MPI_NETMASK affecte uniquement la communication MPI entre les nœuds de calcul cluster appartenant à un domaine (localement ou sur des machines virtuelles Azure). La variable est ignorée par les nœuds ajoutés dans une configuration d’intégration à Azure.
+* Les travaux MPI ne peuvent pas s’exécuter sur des instances Azure déployées dans différents services cloud (par exemple, dans des déploiements d’intégration à Azure avec différents modèles de nœud ou des nœuds de calcul dans des machines virtuelles Azure déployés dans plusieurs services cloud). Si vous avez plusieurs déploiements de nœuds Azure démarrés avec différents modèles de nœud, le travail MPI doit s’exécuter sur un seul ensemble de nœuds Azure.
+* Lorsque vous ajoutez des nœuds Azure à votre cluster et que vous les mettez en ligne, le service de planification de travaux HPC essaie immédiatement de démarrer les travaux sur les nœuds. Si seulement une partie de votre charge de travail peut s’exécuter sur Azure, assurez-vous de mettre à jour ou de créer des modèles de projet pour définir les types de travaux qui peuvent s’exécuter sur Azure. Par exemple, pour vous assurer que les travaux soumis avec un modèle de travail s’exécutent uniquement sur des nœuds Azure, ajoutez la propriété Node Groups au modèle de travail et sélectionnez AzureNodes comme valeur requise. Pour créer des groupes personnalisés pour vos nœuds Azure, utilisez l'applet de commande Add-HpcGroup HPC PowerShell.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Comme un toousing autre HPC Pack, développer des applications MPI sur des pools gérés de nœuds de calcul dans Azure avec toorun de service de traitement par lots Azure hello. Consultez [multi-instance utilisez tâches toorun les applications d’Interface MPI (Message Passing) dans Azure Batch](../../../batch/batch-mpi.md).
-* Si vous souhaitez toorun Linux MPI les applications qui accèdent au réseau RDMA Azure de hello, consultez [configurer une application MPI de Linux RDMA cluster toorun](../../linux/classic/rdma-cluster.md).
+* Comme alternative à l'utilisation de HPC Pack, développez avec le service Azure Batch pour exécuter des applications MPI sur des pools gérés de nœuds de calcul dans Azure. Consultez [Utiliser les tâches multi-instances pour exécuter des applications MPI (Message Passing Interface) dans Azure Batch](../../../batch/batch-mpi.md).
+* Si vous souhaitez exécuter des applications MPI qui accèdent au réseau Azure RDMA, consultez [Configuration d’un cluster Linux RDMA pour exécuter des applications MPI](../../linux/classic/rdma-cluster.md).
 
 <!--Image references-->
 [burst]:media/hpcpack-rdma-cluster/burst.png

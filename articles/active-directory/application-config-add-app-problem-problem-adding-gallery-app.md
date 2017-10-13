@@ -1,6 +1,6 @@
 ---
-title: "aaaProblem Ajout d’une application Azure AD galerie | Documents Microsoft"
-description: "Comprendre le cadran de personnes hello courantes des problèmes lors de l’ajout d’applications de la galerie d’Azure AD et que vous pouvez faire tooresolve les"
+title: "Problème lors de l’ajout d’une application de la galerie Azure AD | Microsoft Docs"
+description: "Découvrez les problèmes courants auxquels les utilisateurs sont confrontés lors de l’ajout d’applications de la galerie Azure AD et ce que vous pouvez faire pour les résoudre"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,120 +13,120 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 654f98116176d5590563c0471b92809f8763fbd7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b3ae472d52208d3c76424d29192c1eb982639572
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="problem-adding-an-azure-ad-gallery-application"></a>Problème lors de l’ajout d’une application de la galerie Azure AD
 
-Cet article vous a-t-il face de personnes toounderstand hello courantes des problèmes lors de l’ajout d’applications de la galerie d’Azure AD et que vous pouvez faire tooresolve les.
+Cet article vous aide à comprendre les problèmes courants auxquels les utilisateurs sont confrontés lors de l’ajout d’applications de la galerie Azure AD et ce que vous pouvez faire pour les résoudre.
 
-## <a name="i-clicked-hello-add-button-and-my-application-took-a-long-time-tooappear"></a>J’ai cliqué sur hello « ajouter » bouton et mon application a eu un tooappear beaucoup de temps
+## <a name="i-clicked-the-add-button-and-my-application-took-a-long-time-to-appear"></a>J’ai cliqué sur le bouton « Ajouter » et l’application a mis beaucoup de temps à s’afficher
 
-Dans certaines circonstances, il peut prendre 1 à 2 minutes (et parfois plus) pour un tooappear application après l’avoir ajoutée tooyour active. Bien que cela ne soit pas performances normales hello, vous pouvez voir l’ajout d’application hello est en cours d’exécution en cliquant sur hello **Notifications** icône (clochette hello) dans hello coin supérieur droit hello [Azure Portal](https://portal.azure.com/)et en recherchant un **en cours** ou **terminé** notification étiquetée **créer l’application.**
+Dans certaines conditions, 1 à 2 minutes (et parfois plus) peuvent être nécessaires pour qu’une application apparaisse après avoir été ajoutée à votre annuaire. Même si ce comportement demeure anormal, vous pouvez visualiser la progression de l’ajout de l’application en cliquant sur l’icône **Notifications** (cloche) dans le coin supérieur droit du [portail Azure](https://portal.azure.com/) et en recherchant la notification **En cours** ou **Terminé** pour le champ **Créer une application**.
 
-Si votre application n’est jamais ajoutée, ou si vous rencontrez une erreur lorsque vous cliquez hello **ajouter** bouton, vous verrez un **Notification** dans un **erreur** état. Si vous souhaitez plus d’informations sur les toolearn d’erreur hello tooor plus partager avec un engingeer de prise en charge, vous pouvez voir plus d’informations sur l’erreur de hello en suivant les étapes de hello Bonjour [comment toosee les détails de hello d’une notification de portail](#how-to-see-the-details-of-a-portal-notification) section.
+Si votre application n’est jamais ajoutée, ou si vous rencontrez une erreur lorsque vous cliquez sur le bouton **Ajouter**, une **notification** affiche l’état **Erreur**. Si vous souhaitez obtenir plus de détails sur l’erreur afin d’en savoir plus sur ou de partager ces informations avec un ingénieur du support, vous pouvez afficher plus d’informations sur l’erreur en suivant les étapes décrites dans la section [Guide pratique pour afficher les détails d’une notification du portail](#how-to-see-the-details-of-a-portal-notification).
 
-## <a name="i-clicked-hello-add-button-and-my-application-didnt-appear"></a>J’ai cliqué sur le bouton « Ajouter » de hello et mon application n’est pas apparu
+## <a name="i-clicked-the-add-button-and-my-application-didnt-appear"></a>J’ai cliqué sur le bouton « Ajouter » et mon application n’apparaît pas
 
-Parfois, en raison de problèmes de tootransient, des problèmes réseau ou un bogue, ajout d’un échec de l’application. Vous pouvez indiquer cela se produit lorsque vous cliquez sur hello **Notifications** icône (clochette hello) dans hello coin supérieur droit de hello portail Azure et que vous consultez une croix rouge ( !) tooyour suivant d’icône **créer application** notification. Cela indique une erreur est survenue lors de la création d’application hello.
+En raison de problèmes temporaires, de problèmes de réseau ou d’un bogue, l’ajout d’une application peut parfois échouer. Ce problème se manifeste lorsque vous cliquez sur l’icône **Notifications** (cloche) dans le coin supérieur droit du portail Azure et qu’une icône rouge (!) apparaît en regard de votre notification **Créer une application**. Cela indique qu’une erreur est survenue lors de la création de l’application.
 
-Si vous rencontrez une erreur lorsque vous cliquez hello **ajouter** bouton, vous verrez un **Notification** dans un **erreur** état. Si vous souhaitez plus d’informations sur les toolearn d’erreur hello tooor plus partager avec un engingeer de prise en charge, vous pouvez voir plus d’informations sur l’erreur de hello en suivant les étapes de hello Bonjour [comment toosee les détails de hello d’une notification de portail](#how-to-see-the-details-of-a-portal-notification) section.
+Si vous rencontrez une erreur lorsque vous cliquez sur le bouton **Ajouter**, une **notification** affiche l’état **Erreur**. Si vous souhaitez obtenir plus de détails sur l’erreur afin d’en savoir plus ou de partager ces informations avec un ingénieur du support, vous pouvez afficher plus d’informations sur l’erreur en suivant les étapes décrites dans la section [Comment afficher les détails d’une notification du portail](#how-to-see-the-details-of-a-portal-notification).
 
- ## <a name="i-dont-know-how-tooset-up-my-application-once-ive-added-it"></a>Je ne sais pas comment tooset mon application une fois j’ai ajouté il
+ ## <a name="i-dont-know-how-to-set-up-my-application-once-ive-added-it"></a>Je ne sais pas comment configurer mon application une fois que je l’ai ajoutée
 
-Si vous avez besoin d’aide à en savoir plus sur les applications, hello [liste de didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list) l’article est un bon point toostart.
+Si vous avez besoin d’aide pour en savoir plus sur les applications, la [liste des tutoriels sur l’intégration d’applications SaaS avec Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-tutorial-list) est un bon point de départ.
 
-En outre toothis, hello [Azure bibliothèque de documents des Applications AD](https://docs.microsoft.com/azure/active-directory/active-directory-apps-index) vous aider à toolearn en savoir plus sur l’authentification unique sur auprès d’Azure AD et comment il fonctionne.
+En outre, la [bibliothèque de documents Applications Azure AD](https://docs.microsoft.com/azure/active-directory/active-directory-apps-index) vous fournit plus d’informations sur l’authentification unique avec Azure AD et son fonctionnement.
 
-## <a name="how-toosee-hello-details-of-a-portal-notification"></a>Comment toosee les détails de hello d’une notification de portail
+## <a name="how-to-see-the-details-of-a-portal-notification"></a>Guide pratique pour afficher les détails d’une notification du portail
 
-Vous pouvez voir les détails de hello toute notification portail en suivant les étapes de hello ci-dessous :
+Vous pouvez afficher les détails d’une notification provenant du portail en suivant les étapes ci-dessous :
 
-1.  Cliquez sur hello **Notifications** icône (clochette hello) dans hello coin supérieur droit de hello portail Azure
+1.  Cliquez sur l’icône **Notifications** (cloche) dans le coin supérieur droit du portail Azure.
 
-2.  Sélectionnez une notification dans un **erreur** état (celles avec un toothem suivant rouge ( !)).
+2.  Sélectionnez n’importe quelle notification avec l’état **Erreur**, signalée par une croix rouge (!).
 
     >[!NOTE]
     >Vous ne pouvez pas cliquer sur les notifications affichant l’état **Réussi** ou **En cours**.
     >
     >
 
-3.  Cette hello ouvrir **détails de la Notification** panneau.
+3.  Le volet **Détails de la notification** apparaît.
 
-4.  Utilisez ces informations vous-même toounderstand plus des détails sur le problème de hello.
+4.  Utilisez ces informations pour en savoir plus sur le problème.
 
-5.  Si vous avez toujours besoin d’aide, vous pouvez également partager ces informations avec une prise en charge ingénieur ou hello groupe tooget aide produit avec votre problème.
+5.  Si vous avez encore besoin d’aide, vous pouvez également partager ces informations avec un ingénieur du support technique ou le groupe de produits qui vous aidera à résoudre votre problème.
 
-6.  Cliquez sur hello **copie** **icône** toohello à droite de hello **copiez erreur** toocopy de zone de texte tous les hello tooshare détails de notification avec un ingénieur du groupe de support ou de produit
+6.  Cliquez sur l’**icône** de **copie** à droite de la zone de texte **Erreur de copie** pour copier tous les détails de la notification afin de les partager avec un ingénieur du support technique ou du groupe de produits.
 
-## <a name="how-tooget-help-by-sending-notification-details-tooa-support-engineer"></a>Comment tooget aider en envoyant l’ingénieur du support de notification détails tooa
+## <a name="how-to-get-help-by-sending-notification-details-to-a-support-engineer"></a>Guide pratique pour obtenir de l’aide en envoyant les détails de la notification à un ingénieur du support technique
 
-Il est très important que vous partagez **tous hello détails ci-dessous** avec un ingénieur du support, si vous avez besoin d’aide, afin qu’ils peuvent vous aider à rapidement. Vous pouvez facilement en cela **prendre une capture d’écran,** ou en cliquant sur hello **icône d’erreur de copie**, trouvé toohello Hello **erreur de copie** zone de texte.
+Il est très important que vous partagiez **tous les détails ci-dessous** avec un ingénieur du support technique si vous avez besoin d’aide, car celui-ci peut vous permettre de résoudre rapidement le problème. Vous pouvez facilement le faire en **prenant une capture d’écran** ou en cliquant sur **l’icône d’erreur de copie** située à droite de la zone de texte **Erreur de copie**.
 
 ## <a name="notification-details-explained"></a>Explication des détails de la notification
 
-Hello ci-dessous explique plus la fonction de chacun des éléments de notification hello et donne des exemples de chacun d’eux.
+Vous trouverez ci-dessous plus d’informations sur la signification de chaque notification ainsi que des exemples de chacune d’elles.
 
 ### <a name="essential-notification-items"></a>Éléments essentiels de la notification
 
--   **Titre** : hello titre descriptif de la notification de hello
+-   **Titre** : titre descriptif de la notification
 
   * Exemple : **Paramètres de proxy d’application**
 
--   **Description** – hello description de ce qui s’est produite en raison de l’opération de hello
+-   **Description** : description de ce qui s’est produit suite à l’opération
 
     -   Exemple : **L’URL interne entrée est déjà utilisée par une autre application**
 
--   **Id de notification** – id unique de hello de notification de hello
+-   **ID de notification** : ID unique de la notification
 
     -   Exemple : **clientNotification-2adbfc06-2073-4678-a69f-7eb78d96b068**
 
--   **Id de demande client** – id de demande spécifique hello effectuée par votre navigateur
+-   **ID de demande client** : ID de la demande spécifique faite par votre navigateur
 
     -   Exemple : **302fd775-3329-4670-a9f3-bea37004f0bc**
 
--   **Heure UTC de marqueur** – hello horodatage au cours de laquelle hello notification s’est produite, en heure UTC
+-   **Horodatage UTC** : horodatage de l’affichage de la notification, au format UTC
 
     -   Exemple : **2017-03-23T19:50:43.7583681Z**
 
--   **Id de Transaction interne** – hello ID interne, nous pouvons utiliser des erreurs de hello toolook dans nos systèmes
+-   **ID de transaction interne** : ID interne nous permettant de rechercher l’erreur dans nos systèmes
 
     -   Exemple : **71a2f329-ca29-402f-aa72-bc00a7aca603**
 
--   **UPN** – utilisateur hello qui a effectué l’opération de hello
+-   **UPN** : utilisateur qui a effectué l’opération
 
     -   Exemple : **tperkins@f128.info**
 
--   **Id de locataire** – ID unique de hello du client, hello dont hello utilisateur qui a effectué l’opération de hello était membre
+-   **ID de locataire** : ID unique du locataire dont l’utilisateur qui a effectué l’opération était membre
 
     -   Exemple : **7918d4b5-0442-4a97-be2d-36f9f9962ece**
 
--   **L’Id d’objet utilisateur** – hello ID unique de l’utilisateur hello qui a effectué l’opération de hello
+-   **ID de l’objet utilisateur** : ID unique de l’utilisateur qui a effectué l’opération
 
     -   Exemple : **17f84be4-51f8-483a-b533-383791227a99**
 
 ### <a name="detailed-notification-items"></a>Éléments détaillés de la notification
 
--   **Nom d’affichage** – **(peut être vide)** un nom d’affichage plus détaillé pour l’erreur de hello
+-   **Nom d’affichage** : **(peut être vide)** nom d’affichage plus détaillé de l’erreur
 
-    -   Exemple : **Paramètres de proxy d’application**
+    -   Exemple : **paramètres de proxy d’application**
 
--   **État** – hello état spécifique de la notification de hello
+-   **État** : état spécifique de la notification
 
     -   Exemple : **Échec**
 
--   **Id d’objet** – **(peut être vide)** hello ID d’objet sur le hello opération a été effectuée
+-   **ID de l’objet** : **(peut être vide)** ID de l’objet sur lequel l’opération a été effectuée
 
     -   Exemple : **8e08161d-f2fd-40ad-a34a-a9632d6bb599**
 
--   **Détails** – hello description détaillée de ce qui s’est produite en raison de l’opération de hello
+-   **Détails** : description détaillée de ce qui s’est produit suite à l’opération
 
     -   Exemple : **l’URL interne 'http://bing.com/' n’est pas valide car elle est déjà en cours d’utilisation**
 
--   **Erreur de copie** – cliquez sur hello **icône de copie** toohello à droite de hello **copiez erreur** toocopy de zone de texte tous les hello tooshare détails de notification avec un ingénieur du groupe de support ou de produit
+-   **Erreur de copie** : cliquez sur l**’icône de copie** à droite de la zone de texte **Erreur de copie** pour copier tous les détails de la notification afin de les partager avec un ingénieur du support technique ou du groupe de produits
 
     -   Exemple ```{"errorCode":"InternalUrl\_Duplicate","localizedErrorDetails":{"errorDetail":"Internal url 'http://google.com/' is invalid since it is already in use"},"operationResults":\[{"objectId":null,"displayName":null,"status":0,"details":"Internal url 'http://bing.com/' is invalid since it is already in use"}\],"timeStampUtc":"2017-03-23T19:50:26.465743Z","clientRequestId":"302fd775-3329-4670-a9f3-bea37004f0bb","internalTransactionId":"ea5b5475-03b9-4f08-8e95-bbb11289ab65","upn":"tperkins@f128.info","tenantId":"7918d4b5-0442-4a97-be2d-36f9f9962ece","userObjectId":"17f84be4-51f8-483a-b533-383791227a99"}```
 

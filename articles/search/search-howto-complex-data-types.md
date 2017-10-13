@@ -1,5 +1,5 @@
 ---
-title: "types de données complexes aaaHow toomodel dans Azure Search | Documents Microsoft"
+title: "Modélisation de types de données complexes dans Recherche Azure | Microsoft Docs"
 description: "Les structures de données imbriquées ou hiérarchiques peuvent être modélisées dans un index Recherche Azure à l’aide d’un ensemble de lignes aplati et du type de données Collection."
 services: search
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 05/01/2017
 ms.author: liamca
-ms.openlocfilehash: b330c5b322f4f33123a454be11733b977684b9e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d576fd7bb267ae7a100589413185b595e3b2be42
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toomodel-complex-data-types-in-azure-search"></a>Comment des types de données complexes de toomodel dans Azure Search
-Jeux de données externes utilisées toopopulate un index Azure Search incluent parfois sous-structures hiérarchiques ou imbriquées qui ne désactiver parfaitement dans un ensemble de lignes tabulaire. Des exemples de telles structures incluent les emplacements et les numéros de téléphone multiples pour un même client, les couleurs et les tailles multiples pour une même référence, les auteurs multiples pour un même livre, etc. En termes de modélisation, vous pouvez voir ces structures visés tooas *types de données complexes*, *composée des types de données*, *types de données composites*, ou *d’agrégation types de données*, tooname quelques.
+# <a name="how-to-model-complex-data-types-in-azure-search"></a>Modélisation de types de données complexes dans Recherche Azure
+Les jeux de données externes utilisés pour remplir un index Recherche Azure inclut parfois des sous-structures hiérarchiques ou imbriquées qui ne sont pas réparties proprement en un ensemble de lignes tabulaire. Des exemples de telles structures incluent les emplacements et les numéros de téléphone multiples pour un même client, les couleurs et les tailles multiples pour une même référence, les auteurs multiples pour un même livre, etc. En termes de modélisation, ces structures peuvent être désignées sous le nom de *types de données complexes*, *types de données composées*, *types de données composites* ou *types de données agrégées*, entre autres.
 
-Types de données complexes ne sont pas pris en charge en mode natif dans Azure Search, mais une excellente solution de contournement inclut un processus en deux étapes de mise à plat de la structure de hello, puis en utilisant un **Collection** structure intérieurs de hello tooreconstitute de type de données. Technique de hello décrite dans cet article permet toobe de contenu hello recherchée, à facettes, filtrées et triées.
+Les types de données complexes ne sont pas pris en charge nativement dans Recherche Azure, mais une solution de contournement éprouvée inclut un processus en deux étapes consistant à aplatir la structure, puis à utiliser un type de données **Collection** pour reconstituer la structure interne. Avec la technique décrite dans cet article, le contenu peut faire l’objet de recherches, être à choix multiples, filtré et trié.
 
 ## <a name="example-of-a-complex-data-structure"></a>Exemple d’une structure de données complexe
-En règle générale, les données de salutation en question résident en tant qu’ensemble de documents JSON ou XML, ou en tant qu’éléments dans une banque NoSQL comme base de données Azure Cosmos. Point de vue structurel, défi de hello provient d’avoir plusieurs éléments enfants qui doivent toobe recherché et filtré.  Comme point de départ pour illustrer la solution de contournement hello, prenez hello suivant du document JSON qui répertorie un ensemble de contacts, par exemple :
+En règle générale, les données en question sont stockées sous la forme d’un ensemble de documents JSON ou XML, ou sous la forme d’éléments dans une banque NoSQL telle que Azure Cosmos DB. Du point de vue structurel, le défi provient de l’existence de plusieurs éléments enfants qui doivent pouvoir faire l’objet de recherches et être filtrés.  Pour commencer à illustrer la solution de contournement, prenons l’exemple du document JSON suivant, qui répertorie un ensemble de contacts :
 
 ~~~~~
 [
@@ -63,22 +63,22 @@ En règle générale, les données de salutation en question résident en tant q
 }]
 ~~~~~
 
-Alors que les champs hello nommée « id », « name » et « société » peuvent facilement être mappés un à un en tant que champs dans un index Azure Search, champ de « emplacements » hello contient un tableau d’emplacements, les deux un ensemble d’identificateurs de localisation, ainsi que des descriptions de l’emplacement. Étant donné que Azure Search n’a pas un type de données qui prend en charge, nous avons besoin un toomodel de manière différente dans Azure Search. 
+Bien que les champs nommés « id », « name » et « company » puissent facilement être mappés un à un en tant que champs au sein d’un index Recherche Azure, le champ « locations » contient un tableau d’emplacements, qui présentent chacun un ID et une description. Comme Recherche Azure ne propose pas de type de données prenant cette structure en charge, nous devons trouver un autre moyen pour la modéliser dans Recherche Azure. 
 
 > [!NOTE]
-> Cette technique est également décrit par Kirk Evans dans un billet de blog [l’indexation de DocumentDB avec Azure Search](https://blogs.msdn.microsoft.com/kaevans/2015/03/09/indexing-documentdb-with-azure-seach/), qui montre une technique appelée « aplatissement hello données », dans laquelle vous aurait un champ appelé `locationsID` et `locationsDescription` qui sont tous deux [collections](https://msdn.microsoft.com/library/azure/dn798938.aspx) (ou un tableau de chaînes).   
+> Cette technique est également décrite par Kirk Evans dans le billet de blog [Indexing DocumentDB with Azure Search](https://blogs.msdn.microsoft.com/kaevans/2015/03/09/indexing-documentdb-with-azure-seach/) (Indexation de DocumentDB avec Recherche Azure), où il présente une technique appelée « aplatissement de données », qui consiste, dans notre exemple, à faire appel à des champs `locationsID` et `locationsDescription` qui sont tous deux des [collections](https://msdn.microsoft.com/library/azure/dn798938.aspx) (ou un tableau de chaînes).   
 > 
 > 
 
-## <a name="part-1-flatten-hello-array-into-individual-fields"></a>Partie 1 : Aplanir un tableau de hello dans des champs individuels
-toocreate un index Azure Search adapté à ce jeu de données, créer des champs individuels de sous-structure imbriqués de hello : `locationsID` et `locationsDescription` avec un type de données [collections](https://msdn.microsoft.com/library/azure/dn798938.aspx) (ou un tableau de chaînes). Dans ces champs vous serez valeurs d’index hello '1' et '2' dans hello `locationsID` champ pour les valeurs de John Smith et hello '3' & '4' dans hello `locationsID` champ Jen Campbell.  
+## <a name="part-1-flatten-the-array-into-individual-fields"></a>Partie 1 : Aplatir le tableau en champs individuels
+Pour créer un index Recherche Azure prenant en charge ce jeu de données, créez des champs individuels pour la sous-structure imbriquée : `locationsID` et `locationsDescription` avec un type de données [collections](https://msdn.microsoft.com/library/azure/dn798938.aspx) (ou un tableau de chaînes). Vous devez indexer les valeurs « 1 » et « 2 » dans le champ `locationsID` pour John Smith et les valeurs « 3 » et « 4 » dans le champ `locationsID` pour Jen Campbell.  
 
 Vos données dans Recherche Azure présentent l’aspect suivant : 
 
 ![Exemple de données, 2 lignes](./media/search-howto-complex-data-types/sample-data.png)
 
-## <a name="part-2-add-a-collection-field-in-hello-index-definition"></a>Partie 2 : Ajouter un champ de regroupement dans la définition d’index hello
-Dans le schéma d’index hello, les définitions de champ hello peut se présenter exemple toothis similaire.
+## <a name="part-2-add-a-collection-field-in-the-index-definition"></a>Partie 2 : Ajouter un champ collection dans la définition d’index
+Dans le schéma d’index, les définitions de champ peuvent ressembler à cet exemple.
 
 ~~~~
 var index = new Index()
@@ -95,18 +95,18 @@ var index = new Index()
 };
 ~~~~
 
-## <a name="validate-search-behaviors-and-optionally-extend-hello-index"></a>Valider les comportements de recherche et d’éventuellement étendre les index hello
-Si vous indexez hello créé et les données de hello chargé, vous pouvez maintenant tester hello solution tooverify recherche l’exécution des requêtes sur hello le jeu de données. Chaque champ **collection** doit **pouvoir faire l’objet de recherches**, être **filtrable** et **à choix multiples**. Vous devez être en mesure de toorun des requêtes comme :
+## <a name="validate-search-behaviors-and-optionally-extend-the-index"></a>Valider les comportements de recherche et éventuellement étendre l’index
+En supposant que vous avez créé l’index et chargé les données, vous pouvez maintenant tester la solution pour vérifier l’exécution des requêtes de recherche sur le jeu de données. Chaque champ **collection** doit **pouvoir faire l’objet de recherches**, être **filtrable** et **à choix multiples**. Vous devez pouvoir exécuter des requêtes telles que :
 
-* Trouver toutes les personnes qui travaillent à hello « Siège social de Adventureworks ».
-* Obtention d’un nombre du nombre de hello de personnes qui travaillent dans un bureau « accueil ».  
-* De hello personnes travaillant dans un bureau d’accueil, afficher les autres bureaux elles fonctionnent en même temps que le nombre de personnes hello dans chaque emplacement.  
+* Trouver toutes les personnes qui travaillent au siège d’Adventureworks (Adventureworks Headquarters).
+* Obtenir le nombre de personnes qui font du télétravail (Home Office).  
+* Des personnes qui font du télétravail, afficher les bureaux avec lesquels elles travaillent, ainsi que le nombre d’employés de chaque emplacement.  
 
-Où cette technique réduit à néant est lorsque vous devez toodo une recherche qui combine des id d’emplacement hello ainsi que description de l’emplacement hello. Par exemple :
+Cette technique s’avère cependant inutilisable lorsque vous avez besoin d’effectuer une recherche associant l’ID et la description d’emplacement. Par exemple :
 
 * Trouver toutes les personnes qui font du télétravail et dont l’ID d’emplacement est 4.  
 
-Si vous vous souvenez de contenu d’origine de hello présentait ainsi :
+Pour mémoire, le contenu d’origine ressemblait à ceci :
 
 ~~~~
    {
@@ -115,9 +115,9 @@ Si vous vous souvenez de contenu d’origine de hello présentait ainsi :
    }
 ~~~~
 
-Toutefois, maintenant que nous avons séparées par des données de salutation dans des champs distincts, nous n’avons aucun moyen de savoir si hello particuliers pour Jen Campbell concerne trop`locationsID 3` ou `locationsID 4`.  
+Cependant, maintenant que nous avons séparé les données en champs distincts, il est impossible de savoir si la valeur « Home Office » pour Jen Campbell se rapporte à `locationsID 3` ou `locationsID 4`.  
 
-toohandle ce cas, définissez un autre champ dans l’index hello qui combine toutes les données de hello en une collection unique.  Dans notre exemple, nous appellerons ce champ `locationsCombined` et nous allons séparer contenu hello avec un `||` bien que vous pouvez choisir n’importe quel séparateur que vous pensez serait un jeu unique de caractères pour votre contenu. Par exemple : 
+Pour gérer ce cas, définissez un autre champ d’index qui regroupe l’ensemble des données dans une collection unique.  Pour notre exemple, nous appellerons ce champ `locationsCombined` et nous séparerons le contenu à l’aide d’un `||`, bien que vous puissiez choisir comme séparateur n’importe quel ensemble de caractères unique pour votre contenu. Par exemple : 
 
 ![Exemple de données, 2 lignes avec séparateur](./media/search-howto-complex-data-types/sample-data-2.png)
 
@@ -129,12 +129,12 @@ toohandle ce cas, définissez un autre champ dans l’index hello qui combine to
 ## <a name="limitations"></a>Limitations
 Cette technique est utile pour un certain nombre de scénarios, mais elle n’est pas applicable dans tous les cas.  Par exemple :
 
-1. Si vous n’avez pas d’un ensemble statique de champs dans votre type de données complexe et il n’a aucun toomap de façon possible de hello tous les types de champ tooa. 
-2. Mise à jour des objets de hello imbriqué requiert certains toodetermine travail supplémentaire à exactement ce qui doit toobe mis à jour dans l’index de recherche de Azure hello
+1. Si vous ne disposez pas d’un ensemble de champs dans votre type de données complexe et il était impossible de mapper tous les types possibles à un seul champ. 
+2. La mise à jour des objets imbriqués demande du travail supplémentaire pour déterminer avec exactitude ce qui doit être mis à jour dans l’index Recherche Azure.
 
 ## <a name="sample-code"></a>Exemple de code
-Vous pouvez afficher un exemple de comment tooindex un complexes JSON jeu de données dans Azure Search et effectuer un nombre de requêtes sur ce jeu de données sur ce [référentiel GitHub](https://github.com/liamca/AzureSearchComplexTypes).
+Pour obtenir un exemple de l’indexation d’un jeu de données JSON complexe dans Recherche Azure de l’exécution d’un certain nombre de requêtes sur ce jeu de données, consultez ce [référentiel GitHub](https://github.com/liamca/AzureSearchComplexTypes).
 
 ## <a name="next-step"></a>Étape suivante
-[Vote pour la prise en charge native pour les types de données complexes](https://feedback.azure.com/forums/263029-azure-search) sur hello Azure recherche UserVoice page et fournir une entrée supplémentaire que vous souhaitez que nous tooconsider concernant l’implémentation des fonctionnalités. Vous pouvez également contacter toome directement sur Twitter à @liamca.
+[Votez pour la prise en charge native des types de données complexes](https://feedback.azure.com/forums/263029-azure-search) sur la page UserVoice de Recherche Azure et ajoutez tout commentaire que vous aimeriez que nous prenions en compte concernant l’implémentation de fonctionnalités. Vous pouvez également me contacter directement sur Twitter sur @liamca.
 

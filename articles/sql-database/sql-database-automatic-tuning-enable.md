@@ -1,5 +1,5 @@
 ---
-title: "aaaEnable automatique de paramétrage de base de données SQL Azure | Documents Microsoft"
+title: "Activer le réglage automatique pour Azure SQL Database | Microsoft Docs"
 description: "Vous pouvez facilement activer le réglage automatique sur Azure SQL Database."
 services: sql-database
 documentationcenter: 
@@ -13,41 +13,41 @@ ms.devlang: NA
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: NA
-ms.date: 06/05/2016
+ms.date: 09/19/2016
 ms.author: vvasic
-ms.openlocfilehash: af9da161eabc0f8c4cb100c050288f234efb8093
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 378e5a6a8cea80a551666c3692f8aa650620f66d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="enable-automatic-tuning"></a>Activer le réglage automatique
 
-Base de données SQL Azure est un service de données managées automatiquement constamment surveille vos requêtes et identifie l’action hello que vous puissiez effectuer tooimprove les performances de votre charge de travail. Vous pouvez consulter les recommandations et les appliquer manuellement ou laisser Azure SQL Database appliquer automatiquement des actions correctives : il s’agit du **mode de réglage automatique**. Le paramétrage automatique peut être activé au niveau de base de données de hello ou de serveur de hello.
+Azure SQL Database est un service de données géré automatiquement qui surveille vos requêtes en permanence et identifie les actions que vous pouvez effectuer pour améliorer les performances de votre charge de travail. Vous pouvez consulter les recommandations et les appliquer manuellement ou laisser Azure SQL Database appliquer automatiquement des actions correctives : il s’agit du **mode de réglage automatique**. Le réglage automatique peut être activé au niveau du serveur ou de la base de données.
 
 ## <a name="enable-automatic-tuning-on-server"></a>Activer le réglage automatique sur le serveur
 
-tooenable automatique de paramétrage sur le serveur de base de données SQL Azure, accédez à serveur toohello dans Azure portail, puis sélectionnez **le paramétrage automatique** dans le menu de hello. Sélectionnez hello des options de paramétrage automatique souhaitée tooenable **appliquer**:
+Pour activer le réglage automatique sur le serveur Azure SQL Database, accédez au serveur dans le portail Azure, puis sélectionnez **Réglage automatique** dans le menu. Sélectionnez les options de réglage automatique que vous souhaitez activer et sélectionnez **Appliquer** :
 
 ![Serveur](./media/sql-database-automatic-tuning-enable/server.png)
 
-Options de serveur de réglage automatiques sont tooall appliqué des bases de données sur le serveur de hello. Par défaut, toutes les bases de données héritent la configuration de hello depuis le serveur de leur parent, mais cela peut être substituée et être spécifiée individuellement pour chaque base de données.
+Les options de réglage automatique sur le serveur sont appliquées à toutes les bases de données du serveur. Par défaut, toutes les bases de données héritent de la configuration de leur serveur parent, mais celle-ci peut être remplacée et spécifiée individuellement pour chaque base de données.
 
 ## <a name="configure-automatic-tuning-on-database"></a>Configurer le réglage automatique sur la base de données
 
-Bonjour Azure permet de portail tooindividually vous spécifiez la configuration de réglage automatique hello sur chaque base de données.
+Le portail Azure vous permet de spécifier individuellement la configuration de réglage automatique de chaque base de données.
 
 > [!NOTE]
-> recommandation générale de Hello est toomanage hello paramétrage configuration automatique au niveau serveur hello dans ce même paramètres de configuration peuvent être appliquées automatiquement sur chaque base de données. Configurez le paramétrage automatique sur une base de données si la base de données hello est autre que d’autres membres de hello même serveur.
+> Il est généralement recommandé de gérer la configuration du réglage automatique au niveau du serveur, afin que les mêmes paramètres de configuration soient appliqués automatiquement à chaque base de données. Configurez le réglage automatique au niveau d’une base de données si celle-ci est différente des autres sur le même serveur.
 >
 
-tooenable automatique de paramétrage sur une base de données, accédez à base de données toohello Bonjour portail Azure et puis sélectionnez **le paramétrage automatique**. Vous pouvez configurer une seule base de données tooinherit hello les paramètres de base de données hello en sélectionnant la case à cocher hello ou vous pouvez spécifier individuellement configuration hello pour une base de données.
+Pour activer le réglage automatique sur une seule base de données, accédez à la base de données dans le portail Azure, puis sélectionnez **Réglage automatique**. Vous pouvez configurer une seule base de données de façon à ce qu’elle hérite des paramètres du serveur en sélectionnant l’option, ou vous pouvez spécifier individuellement la configuration d’une base de données.
 
 ![Base de données](./media/sql-database-automatic-tuning-enable/database.png)
 
 Une fois que vous avez sélectionné la configuration appropriée, cliquez sur **Appliquer**.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Hello de lecture [article Paramétrage automatique](sql-database-automatic-tuning.md) toolearn plus d’informations sur le paramétrage automatique et comment il peut vous aider à améliorer les performances.
+* Lisez l’[article Réglage automatique](sql-database-automatic-tuning.md) pour en savoir plus sur le réglage automatique et sur la manière dont il peut vous aider à améliorer vos performances.
 * Consultez [Recommandations en matière de performances](sql-database-advisor.md) pour obtenir une vue d’ensemble des recommandations relatives aux performances Azure SQL Database.
-* Consultez [analyse des performances des requêtes](sql-database-query-performance.md) toolearn sur l’affichage des performances hello de vos requêtes principales.
+* Pour connaître l’impact de vos principales requêtes sur les performances, consultez [Query Performance Insights](sql-database-query-performance.md).

@@ -1,6 +1,6 @@
 ---
-title: "exemples de démarrage rapide d’aaaAzure moniteur CLI 1.0. | Microsoft Docs"
-description: "Exemples de commandes de l’interface CLI 1.0 pour accéder aux fonctionnalités d’Azure Monitor. Moniteur de Azure est un service Microsoft Azure qui vous permet de toosend des notifications d’alerte, des URL web appel en fonction des valeurs de données de télémétrie configuré et les Services de cloud computing de mise à l’échelle, les ordinateurs virtuels et les applications Web."
+title: "Exemples de démarrage rapide de l’interface CLI 1.0 pour Azure Monitor | Microsoft Docs"
+description: "Exemples de commandes de l’interface CLI 1.0 pour accéder aux fonctionnalités d’Azure Monitor. Azure Monitor est un service Microsoft Azure qui vous permet d’envoyer des notifications d’alerte, ou d’appeler des URL web en fonction des valeurs des données de télémétrie configurées ainsi que de mettre à l’échelle automatiquement des services cloud, des machines virtuelles et des applications web."
 author: kamathashwin
 manager: orenr
 editor: 
@@ -14,101 +14,101 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: ashwink
-ms.openlocfilehash: 6cd9cd62b3a1977276563f5e43f5384ccca66247
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ec4512500dc3c77a40d2ebd1e6b460d5bb005811
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-monitor--cross-platform-cli-10-quick-start-samples"></a>Exemple de démarrage rapide de l’interface CLI 1.0 multiplateforme pour Azure Monitor
-Cet article explique les exemples de toohelp de commandes de l’interface de ligne de commande (CLI) vous accéder aux fonctionnalités du moniteur de Windows Azure. Moniteur de Azure vous permet de tooAutoScale Services de cloud computing, Machines virtuelles et les applications Web et toosend des notifications d’alerte ou des URL web appel en fonction des valeurs de données de télémétrie configuré.
+Cet article vous montre des exemples de commandes d’interface de ligne de commande (CLI) qui vous permettent d’accéder aux fonctionnalités de surveillance d’Azure Monitor. Azure Monitor permet une mise à l'échelle automatique des services cloud, des machines virtuelles et des applications web, et d’envoyer des notifications d'alerte ou d’appeler des URL web basées sur des valeurs de données de télémétrie configurées.
 
 > [!NOTE]
-> Moniteur de Azure est hello nouveau nom pour ce qui a été appelé « Azure Insights » jusqu'à 25 septembre 2016. Toutefois, les espaces de noms hello et, par conséquent, les commandes hello ci-dessous encore contient insights » l’hello ».
+> Azure Monitor est le nouveau nom de ce qui était appelé « Azure Insights » jusqu’au 25 septembre 2016. Toutefois, les espaces de noms et, par conséquent, les commandes ci-dessous contiennent toujours « insights ».
 > 
 > 
 
-## <a name="prerequisites"></a>Composants requis
-Si vous n’avez pas déjà installé hello CLI d’Azure, consultez [installation Bonjour Azure CLI](../cli-install-nodejs.md). Si vous n’êtes pas familiarisé avec l’interface CLI d’Azure, vous pouvez en savoir plus sur à l’adresse [hello d’utilisation CLI d’Azure pour Mac, Linux et Windows avec Azure Resource Manager](../xplat-cli-azure-resource-manager.md).
+## <a name="prerequisites"></a>Conditions préalables
+Si vous n’avez pas déjà installé l’interface de ligne de commande Azure, consultez [Installer l’interface de ligne de commande Azure](../cli-install-nodejs.md). Si vous ne connaissez pas bien l’interface de ligne de commande Azure, découvrez-la plus en détails dans l’article [Utiliser l’interface de ligne de commande Azure pour Mac, Linux et Windows avec Azure Resource Manager](../xplat-cli-azure-resource-manager.md).
 
-Dans Windows, installez npm de hello [site Web Node.js](https://nodejs.org/). Au terme de l’installation de hello, à l’aide de CMD.exe avec des privilèges d’exécution en tant qu’administrateur, exécutez les hello qui suit à partir du dossier hello où npm est installé :
+Dans Windows, installez npm à partir du [site web Node.js](https://nodejs.org/). Une fois l’installation terminée, à l’aide de CMD.exe avec les privilèges d’exécution en tant qu’administrateur, exécutez les commandes suivantes à partir du dossier où npm est installé :
 
 ```console
 npm install azure-cli --global
 ```
 
-Ensuite, accédez tooany/emplacement du dossier souhaitée, puis tapez sur hello de ligne de commande :
+Accédez ensuite à un dossier/emplacement quelconque et tapez à la ligne de commande :
 
 ```console
 azure help
 ```
 
-## <a name="log-in-tooazure"></a>Connectez-vous à tooAzure
-première étape de Hello est toologin tooyour compte Azure.
+## <a name="log-in-to-azure"></a>Connexion à Azure
+La première étape consiste à vous connecter à votre compte Azure.
 
 ```console
 azure login
 ```
 
-Après avoir exécuté cette commande, vous avez toosign dans via des instructions sur l’écran hello hello. Une fois cette opération effectuée, vos compte, ID de locataire et ID d’abonnement par défaut s’affichent. Toutes les commandes de travail dans le contexte de hello de votre abonnement par défaut.
+Après avoir exécuté cette commande, vous devez vous connecter via les instructions à l’écran. Une fois cette opération effectuée, vos compte, ID de locataire et ID d’abonnement par défaut s’affichent. Toutes les commandes fonctionnent dans le cadre de votre abonnement par défaut.
 
-Détails de hello toolist de votre abonnement actuel, utilisez hello commande suivante.
+Pour répertorier les détails de votre abonnement actuel, utilisez la commande suivante.
 
 ```console
 azure account show
 ```
 
-toochange travail contexte tooa autre abonnement, hello utilisez commande suivante.
+Pour remplacer le contexte de travail par un autre abonnement, utilisez la commande suivante.
 
 ```console
 azure account set "subscription ID or subscription name"
 ```
 
-toouse Azure Resource Manager et Azure moniteur des commandes, vous devez toobe en mode Azure Resource Manager.
+Pour utiliser les commandes Azure Resource Manager et Azure Monitor, vous devez être en mode Azure Resource Manager.
 
 ```console
 azure config mode arm
 ```
 
-tooview une liste de toutes les commandes prises en charge de moniteur de Windows Azure, effectuez des opérations suivantes de hello.
+Pour afficher une liste de toutes les commandes Azure Monitor prises en charge, effectuez les opérations suivantes.
 
 ```console
 azure insights
 ```
 
 ## <a name="view-activity-log-for-a-subscription"></a>Afficher le journal d’activité pour un abonnement
-tooview une liste des événements de journal d’activité, effectuez des opérations suivantes de hello.
+Pour afficher une liste d’événements du journal d’activité, effectuez les opérations suivantes.
 
 ```console
 azure insights logs list [options]
 ```
 
-Essayez de hello suivant tooview toutes les options disponibles.
+Pour voir toutes les options disponibles, essayez les opérations suivantes.
 
 ```console
 azure insights logs list -help
 ```
 
-Voici un exemple des journaux de toolist par un groupe de ressources
+Voici un exemple permettant de répertorier les journaux par groupe de ressources
 
 ```console
 azure insights logs list --resourceGroup "myrg1"
 ```
 
-Journaux de toolist exemple par l’appelant
+Exemple pour répertorier les journaux par appelant
 
 ```console
 azure insights logs list --caller "myname@company.com"
 ```
 
-Journaux de toolist exemple par l’appelant sur un type de ressource au sein d’une date de début et de fin
+Exemple pour répertorier les journaux par appelant sur un type de ressource, entre une date de début et une date de fin
 
 ```console
 azure insights logs list --resourceProvider "Microsoft.Web" --caller "myname@company.com" --startTime 2016-03-08T00:00:00Z --endTime 2016-03-16T00:00:00Z
 ```
 
 ## <a name="work-with-alerts"></a>Utilisation des alertes
-Vous pouvez utiliser les informations de hello dans toowork de section hello des alertes.
+Vous pouvez utiliser les informations figurant dans la section pour utiliser les alertes.
 
 ### <a name="get-alert-rules-in-a-resource-group"></a>Obtenir des règles d’alerte dans un groupe de ressources
 ```console
@@ -134,7 +134,7 @@ azure insights alerts rule delete abhingrgtest123 andy0323
 ```
 
 ## <a name="log-profiles"></a>Profils de journal
-Utilisez les informations de hello toowork de cette section avec des profils de journal.
+Utilisez les informations figurant dans cette section pour utiliser les profils de journal.
 
 ### <a name="get-a-log-profile"></a>Obtenir un profil de journal
 ```console
@@ -165,7 +165,7 @@ azure insights logprofile add --name default --storageId /subscriptions/1a66ce04
 
 
 ## <a name="diagnostics"></a>Diagnostics
-Utilisez les informations de hello toowork de cette section avec les paramètres de diagnostic.
+Utilisez les informations figurant dans cette section pour utiliser les paramètres de diagnostic.
 
 ### <a name="get-a-diagnostic-setting"></a>Obtenir un paramètre de diagnostic
 ```console
@@ -184,7 +184,7 @@ azure insights diagnostic set --resourceId /subscriptions/df602c9c-7aa0-407d-a6f
 
 
 ## <a name="autoscale"></a>Autoscale
-Utilisez les informations de hello toowork de cette section avec les paramètres de mise à l’échelle. Vous devez toomodify ces exemples.
+Utilisez les informations figurant dans cette section pour utiliser les paramètres de mise à l’échelle automatique. Vous devez modifier ces exemples.
 
 ### <a name="get-autoscale-settings-for-a-resource-group"></a>Obtenir les paramètres de mise à l’échelle automatique pour un groupe de ressources
 ```console

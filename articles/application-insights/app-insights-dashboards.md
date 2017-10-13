@@ -1,5 +1,5 @@
 ---
-title: aaaDashboards et navigation dans hello Azure Application Insights | Documents Microsoft
+title: Tableaux de bord et navigation dans Azure Application Insights | Microsoft Docs
 description: "Créez des vues de votre principaux graphiques et requêtes APM."
 services: application-insights
 documentationcenter: 
@@ -13,95 +13,95 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: 58811388205643bb672e0405b3226f12d0f447a9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9987f04e7e71df5fe10c8bc209a390cb940ec4f2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="navigation-and-dashboards-in-hello-application-insights-portal"></a>Navigation et des tableaux de bord dans le portail Application Insights de hello
-Une fois que vous avez [configurer Application Insights sur votre projet](app-insights-overview.md), les données télémétriques sur les performances et l’utilisation de votre application seront affiche dans la ressource d’Application Insights de votre projet dans hello [portail Azure](https://portal.azure.com).
+# <a name="navigation-and-dashboards-in-the-application-insights-portal"></a>Navigation et tableaux de bord dans le portail Application Insights
+Une fois que vous avez [configuré Application Insights sur votre projet](app-insights-overview.md), les données de télémétrie relatives aux performances et à l’utilisation de votre application apparaissent dans les ressources Application Insights de votre projet dans le [portail Azure](https://portal.azure.com).
 
 ## <a name="find-your-telemetry"></a>Rechercher vos données de télémétrie
-Connectez-vous à toohello [portail Azure](https://portal.azure.com) et accédez ressource Application Insights toohello que vous avez créé pour votre application.
+Connectez-vous au [portail Azure](https://portal.azure.com) et accédez à la ressource Application Insights que vous avez créée pour votre application.
 
 ![Cliquez sur Parcourir, sélectionnez Application Insights, puis sélectionnez votre application.](./media/app-insights-dashboards/00-start.png)
 
-Panneau de vue d’ensemble de Hello (page) pour votre application affiche un résumé des métriques de diagnostic clés hello de votre application et est une passerelle toohello autres fonctionnalités du portail de hello.
+Le panneau de vue d’ensemble (page) de votre application affiche un résumé des principales mesures de diagnostic de votre application et constitue une passerelle vers les autres fonctionnalités du portail.
 
-![Les principales itinéraires tooview votre télémétrie](./media/app-insights-dashboards/010-oview.png)
+![Procédures principales d'affichage de vos données de télémétrie](./media/app-insights-dashboards/010-oview.png)
 
-Vous pouvez personnaliser une des grilles et des graphiques de hello et épingler un tableau de bord tooa. De cette façon, vous pouvez rassembler télémétrie de clé hello à partir de différentes applications dans un tableau de bord central.
+Vous pouvez personnaliser tous les graphiques et grilles et les intégrer à un tableau de bord. De cette façon, vous pouvez regrouper les données de télémétrie clés issues de différentes applications sur un tableau de bord central.
 
 ## <a name="dashboards"></a>Tableaux de bord
-Hello première chose que vous voyez lorsque vous êtes connecté toohello [portail Microsoft Azure](https://portal.azure.com) est un tableau de bord. Ici vous pouvez rassembler des graphiques hello qui sont plus importante tooyou sur toutes vos ressources Azure, y compris les données de télémétrie des [Azure Application Insights](app-insights-overview.md).
+La première chose que vous voyez après vous être connecté au [portail Microsoft Azure](https://portal.azure.com) est un tableau de bord. Celui-ci vous permet de rassembler les graphiques les plus importants pour vous pour toutes vos ressources Azure, notamment les données de télémétrie d’[Azure Application Insights](app-insights-overview.md).
 
 ![Un tableau de bord personnalisé.](./media/app-insights-dashboards/31.png)
 
-1. **Accédez toospecific ressources** telles que votre application dans Application Insights : utiliser la barre gauche hello.
-2. **Tableau de bord actuel toohello retour**, ou basculer entre les vues récente tooother : utilisez hello déroulante en haut à gauche.
-3. **Passer des tableaux de bord**: utilisez hello déroulante sur le titre du tableau de bord hello
-4. **Créer, modifier et partager des tableaux de bord** dans la barre d’outils du tableau de bord hello.
-5. **Modifier le tableau de bord hello**: placez le curseur sur une vignette, puis utiliser son haut barre toomove, personnaliser, ou le supprimer.
+1. **Accédez à des ressources spécifiques** telles que votre application dans Application Insights par le biais de la barre de gauche.
+2. **Revenez au tableau de bord actuel** ou basculez vers les autres vues récentes en utilisant le menu déroulant en haut à gauche.
+3. **Changez de tableaux de bord** en utilisant le menu déroulant sur le titre du tableau de bord.
+4. **Créez, modifiez et partagez des tableaux de bord** à l’aide de la barre d’outils du tableau de bord.
+5. **Modifiez le tableau de bord** en pointant sur une vignette, puis en utilisant sa barre supérieure pour déplacer, personnaliser ou supprimer la vignette.
 
-## <a name="add-tooa-dashboard"></a>Ajouter le tableau de bord tooa
-Lorsque vous examinez un panneau ou un ensemble de graphiques qui est particulièrement intéressante, vous pouvez épingler une copie du tableau de bord toohello. Celui-ci sera affiché lors de votre prochain accès au tableau de bord.
+## <a name="add-to-a-dashboard"></a>Ajouter des données à un tableau de bord
+Lorsque vous examinez un panneau ou un ensemble de graphiques qui est particulièrement intéressant, vous pouvez en épingler une copie au tableau de bord. Celui-ci sera affiché lors de votre prochain accès au tableau de bord.
 
-![toopin un graphique, pointez sur celui-ci, puis sur «... » dans l’en-tête de hello.](./media/app-insights-dashboards/33.png)
+![Pour épingler un graphique, passez la souris sur celui-ci, puis cliquez sur « ... » dans l’en-tête.](./media/app-insights-dashboards/33.png)
 
-1. Épingler le graphique toodashboard. Une copie du graphique de hello s’affiche sur le tableau de bord hello.
-2. Tableau de bord de toohello de code confidentiel hello ensemble panneau - il apparaît dans le tableau de bord hello sous forme de vignette que vous pouvez cliquer.
-3. Cliquez sur hello en haut à gauche tooreturn toohello tableau de bord actuel. Puis vous pouvez utiliser la vue actuelle du toohello tooreturn menu déroulant hello.
+1. Épinglez un graphique au tableau de bord. Une copie du graphique apparaît sur le tableau de bord.
+2. Épinglez la totalité du panneau au tableau de bord. Il apparaît alors sur le tableau de bord sous la forme d’une vignette sur laquelle vous pouvez cliquer.
+3. Cliquez sur le coin supérieur gauche pour revenir au tableau de bord actuel. Vous pouvez ensuite utiliser le menu déroulant pour revenir à la vue actuelle.
 
-Notez que les graphiques sont regroupés en vignettes : une vignette peut contenir plusieurs graphiques. Vous épinglez toohello du tableau de bord entier vignette hello.
+Notez que les graphiques sont regroupés en vignettes : une vignette peut contenir plusieurs graphiques. Vous épinglez la vignette entière au tableau de bord.
 
-Hello graphique est automatiquement actualisé avec une fréquence qui varie selon l’intervalle de temps du graphique hello :
+Le graphique est automatiquement actualisé à une fréquence qui varie selon l’intervalle de temps du graphique :
 
-* La période d’heure de too1 : actualiser toutes les 5 minutes
+* Intervalle de temps de 1 heure maximum : actualisation toutes les 5 minutes
 * Intervalle de temps entre 1 et 24 heures : actualisation toutes les 15 minutes
 * Intervalle de temps supérieur à 24 heures : (intervalle de temps)/60.
 
 ### <a name="pin-any-query-in-analytics"></a>Épinglez n’importe quelle requête dans Analytics
-Vous pouvez également [épingler Analytique](app-insights-analytics-using.md#pin-to-dashboard) graphiques tooa [partagé](#share-dashboards-with-your-team) tableau de bord. Cela vous permet de graphiques tooadd de toute requête arbitraire en même temps que les métriques standard hello. 
+Vous pouvez également [épingler des graphiques Analytics](app-insights-analytics-using.md#pin-to-dashboard) à un tableau de bord [partagé](#share-dashboards-with-your-team). Ainsi, vous pouvez ajouter les graphiques de toute requête arbitraire en parallèle des mesures standards. 
 
-Les résultats sont recalculés automatiquement toutes les heures. Cliquez sur icône d’actualisation hello sur hello graphique toorecalculate immédiatement. (L’actualisation du navigateur ne permet pas de lancer un nouveau calcul.)
+Les résultats sont recalculés automatiquement toutes les heures. Cliquez sur l’icône Actualiser du graphique pour recalculer immédiatement. (L’actualisation du navigateur ne permet pas de lancer un nouveau calcul.)
 
-## <a name="adjust-a-tile-on-hello-dashboard"></a>Ajuster une vignette de tableau de bord hello
-Une fois une vignette de tableau de bord hello, vous pouvez la modifier.
+## <a name="adjust-a-tile-on-the-dashboard"></a>Ajustement d’une vignette sur le tableau de bord
+Lorsqu’une vignette se trouve sur le tableau de bord, vous pouvez l’ajuster.
 
-![Placez-la sur un graphique dans la commande tooedit.](./media/app-insights-dashboards/36.png)
+![Survolez un graphique avec la souris pour le modifier.](./media/app-insights-dashboards/36.png)
 
-1. Ajouter une vignette de toohello graphique.
-2. Définir la métrique de hello, dimension group by et le style (table, graphique) d’un graphique.
-3. Faites glisser toozoom de diagramme hello dans ; Cliquez sur hello annulation bouton tooreset hello timespan ; Définissez les propriétés de filtre pour les graphiques hello sur la vignette de hello.
+1. Ajoutez un graphique à la vignette.
+2. Définissez la mesure, la dimension et le style de regroupement (tableau, graphique) d’un graphique.
+3. Faites glisser le curseur dans le diagramme pour faire un zoom avant ; cliquez sur le bouton Annuler pour réinitialiser la période ; définissez les propriétés de filtre pour les graphiques sur la vignette.
 4. Définissez le titre de la vignette.
 
 Les vignettes épinglées à partir des panneaux de Metrics Explorer ont davantage d’options d’édition que les vignettes épinglées à partir d’un panneau Vue d’ensemble.
 
-vignette d’origine Hello que vous avez épinglées n’est pas affectée par vos modifications.
+La vignette d’origine que vous avez épinglée n’est pas affectée par vos modifications.
 
 ## <a name="switch-between-dashboards"></a>Basculement entre les tableaux de bord
-Vous pouvez enregistrer plusieurs tableaux de bord et basculer entre ceux-ci. Quand vous épinglez un graphique ou un panneau, elles sont ajoutées toohello de tableau de bord actuel.
+Vous pouvez enregistrer plusieurs tableaux de bord et basculer entre ceux-ci. Lorsque vous épinglez un graphique ou un panneau, il est ajouté au tableau de bord actuel.
 
-![tooswitch entre les tableaux de bord, cliquez sur tableau de bord et sélectionnez un tableau de bord enregistré. toocreate et enregistrer un nouveau tableau de bord, cliquez sur Nouveau. toorearrange, cliquez sur Modifier.](./media/app-insights-dashboards/32.png)
+![Pour basculer entre les tableaux de bord, cliquez sur Tableau de bord et sélectionnez un tableau de bord enregistré. Pour créer et enregistrer un nouveau tableau de bord, cliquez sur Nouveau. Pour les réorganiser, cliquez sur Modifier.](./media/app-insights-dashboards/32.png)
 
-Par exemple, vous pouvez avoir un tableau de bord pour l’affichage plein écran dans la salle d’équipe hello et l’autre pour le développement général.
+Vous pouvez, par exemple, avoir un tableau de bord pour l’affichage en plein écran dans la salle de réunion et un autre pour le développement général.
 
-Tableau de bord de hello, un panneau s’affiche sous forme de vignette : activez-la toogo toohello panneau. Un graphique réplique graphique hello dans son emplacement d’origine.
+Sur le tableau de bord, un panneau s’affiche sous forme de vignette : cliquez dessus pour accéder au panneau. Un graphique réplique le graphique dans son emplacement d’origine.
 
-![Cliquez sur une lame de hello tooopen vignette qu’elle représente](./media/app-insights-dashboards/35.png)
+![Cliquez sur une vignette pour ouvrir le panneau qu’elle représente.](./media/app-insights-dashboards/35.png)
 
 ## <a name="share-dashboards"></a>Partager des tableaux de bord
 Lorsque vous avez créé un tableau de bord, vous pouvez le partager avec d’autres utilisateurs.
 
-![Dans l’en-tête du tableau de bord hello, cliquez sur Partager](./media/app-insights-dashboards/41.png)
+![Dans l’en-tête du tableau de bord, cliquez sur Partager](./media/app-insights-dashboards/41.png)
 
 Apprenez-en davantage sur [les rôles et le contrôle d’accès](app-insights-resources-roles-access-control.md).
 
 ## <a name="app-navigation"></a>Navigation au sein d’une application
-Panneau de vue d’ensemble de Hello est hello passerelle toomore plus d’informations sur votre application.
+Le panneau de vue d’ensemble constitue une passerelle permettant d’accéder à des informations supplémentaires sur votre application.
 
-* **Tout graphique ou la vignette** - cliquez sur n’importe quelle vignette ou un graphique toosee plus en détail ce qu’il affiche.
+* **N’importe quel graphique ou vignette** : cliquez sur un graphique ou une vignette pour voir plus de détails sur ce qui est affiché.
 
 ### <a name="overview-blade-buttons"></a>Boutons du panneau Vue d’ensemble
 ![Barre de navigation supérieure du panneau Vue d’ensemble](./media/app-insights-dashboards/app-overview-top-nav.png)
@@ -109,8 +109,8 @@ Panneau de vue d’ensemble de Hello est hello passerelle toomore plus d’infor
 * [**Metrics Explorer**](app-insights-metrics-explorer.md) : créez vos propres graphiques sur les performances et l’utilisation.
 * [**Rechercher**](app-insights-diagnostic-search.md) : analysez des instances spécifiques d’événements telles que les demandes, les exceptions ou les suivis de journal.
 * [**Analytics**](app-insights-analytics.md) : pour des requêtes puissantes sur vos données de télémétrie.
-* **Intervalle de temps** -ajuster la plage hello affichée par tous les graphiques hello sur le panneau de hello.
-* **Supprimer** -supprimer la ressource d’Application Insights hello pour cette application. Vous devez également supprimer les packages d’Application Insights hello de code de votre application, ou modifier hello [clé d’instrumentation](app-insights-create-new-resource.md#copy-the-instrumentation-key) dans votre application toodirect télémétrie tooa autre Application Insights ressource.
+* **Période** : ajustez la plage affichée par tous les graphiques dans le panneau.
+* **Supprimer** : supprimez la ressource Application Insights correspondant à cette application. Vous devez également supprimer les packages Application Insights à partir de votre code d’application ou modifier la [clé d’instrumentation](app-insights-create-new-resource.md#copy-the-instrumentation-key) dans votre application pour diriger la télémétrie vers une autre ressource Application Insights.
 
 ### <a name="essentials-tab"></a>Onglet Bases
 * [Clé d’instrumentation](app-insights-create-new-resource.md#copy-the-instrumentation-key) : identifie la ressource de cette application.
@@ -119,18 +119,18 @@ Panneau de vue d’ensemble de Hello est hello passerelle toomore plus d’infor
 ### <a name="app-navigation-bar"></a>Barre de navigation au sein d’une application
 ![Barre de navigation gauche](./media/app-insights-dashboards/app-left-nav-bar.png)
 
-* **Vue d’ensemble** -panneau Vue d’ensemble de l’application toohello retour.
+* **Vue d’ensemble** : revenez au panneau de vue d’ensemble de l’application.
 * **Journal d’activité** : alertes et événements d’administration Azure.
-* [**Contrôle d’accès** ](app-insights-resources-roles-access-control.md) -fournissent l’accès aux membres de tooteam et d’autres.
-* [**Balises** ](../azure-resource-manager/resource-group-using-tags.md) -utilisation des balises toogroup votre application avec d’autres utilisateurs.
+* [**Contrôle d’accès**](app-insights-resources-roles-access-control.md) : donnez accès aux membres de l’équipe et à d’autres utilisateurs.
+* [**Balises**](../azure-resource-manager/resource-group-using-tags.md) : utilisez des balises pour regrouper votre application avec d’autres utilisateurs.
 
 EXAMINER
 
-* [**Mappage d’application** ](app-insights-app-map.md) -carte Active affichant les composants de votre application, d’hello dérivé des informations de dépendance hello.
+* [**Plan de l’application**](app-insights-app-map.md) : plan actif présentant les composants de votre application, dérivé des informations de dépendance.
 * [**Détection intelligente**](app-insights-proactive-diagnostics.md) : consultez les récentes alertes sur les performances.
 * [**Flux en direct**](app-insights-live-stream.md) pour un ensemble de mesures quasi instantanées, ce qui est utile lors du déploiement d’une nouvelle version ou du débogage.
-* [**Disponibilité / tests Web** ](app-insights-monitor-web-app-availability.md) -envoyer les requêtes régulières tooyour application web à partir d’autour hello monde.*
-* [**Les échecs, performances** ](app-insights-web-monitor-performance.md) -Exceptions, les taux d’échec et réponse arrive trop de demandes tooyour application et des requêtes à partir de votre application[dépendances](app-insights-asp-net-dependencies.md).
+* [**Tests de disponibilité/web**](app-insights-monitor-web-app-availability.md) : envoyez des demandes régulières à votre site à partir de votre application web dans le monde entier.*
+* [**Échecs, Performances**](app-insights-web-monitor-performance.md) : exceptions, taux d’échec et temps de réponse des demandes adressées à votre application et des demandes de votre application à destination des [dépendances](app-insights-asp-net-dependencies.md).
 * [**Performances**](app-insights-web-monitor-performance.md) : temps de réponse, temps de réponse de dépendance.
 * [Serveurs](app-insights-web-monitor-performance.md) : compteurs de performances. Disponible si vous [installez Status Monitor](app-insights-monitor-performance-live-website-now.md).
 * **Navigateur** : nombre de pages consultées et performances AJAX. Disponible si vous [instrumentez vos pages web](app-insights-javascript.md).
@@ -141,16 +141,16 @@ CONFIGURER
 * **Prise en main** : didacticiel en ligne.
 * **Propriétés** : clé d’instrumentation, abonnement et ID de ressource.
 * [Alertes](app-insights-alerts.md) : configuration des alertes de métriques.
-* [Exportation continue](app-insights-export-telemetry.md) -configurer l’exportation de stockage tooAzure de télémétrie.
+* [Exportation continue](app-insights-export-telemetry.md) : configurez l’exportation des données de télémétrie vers le stockage Azure.
 * [Tests de performances](app-insights-monitor-web-app-availability.md#performance-tests) : configurez une charge synthétique sur votre site web.
 * [Quota et tarification](app-insights-pricing.md)et [échantillonnage d’ingestion](app-insights-sampling.md).
-* **Accès aux API** -créer [annotations de version](app-insights-annotations.md) et pourquoi les API d’accès aux données.
-* [**Éléments de travail** ](app-insights-diagnostic-search.md#create-work-item) -se connecter travail tooa système de suivi afin que vous pouvez créer des bogues lors de l’examen des données de télémétrie.
+* **Accès à l’API** : créez des [annotations de mise en production](app-insights-annotations.md) et pour l’API d’accès aux données.
+* [**Éléments de travail**](app-insights-diagnostic-search.md#create-work-item) : connectez-vous à un système de suivi du travail afin de créer des bogues lors de l’inspection de la télémétrie.
 
 PARAMÈTRES
 
 * [**Verrous**](../azure-resource-manager/resource-group-lock-resources.md) : verrouillez les ressources Azure.
-* [**Script d’automatisation** ](app-insights-powershell.md) -exporter une définition de ressource Azure de hello afin que vous puissiez l’utiliser comme un modèle toocreate nouvelle des ressources.
+* [**Script d’automatisation**](app-insights-powershell.md) : exportez une définition de la ressource Azure afin de l’utiliser comme modèle pour créer d’autres ressources.
 
 
 ## <a name="video"></a>Vidéo

@@ -1,5 +1,5 @@
 ---
-title: "aaaCreate une application de la fonction et déployer le code de fonction à partir de GitHub | Documents Microsoft"
+title: "Créer une Function App et déployer le code de fonction à partir de GitHub | Microsoft Docs"
 description: "Exemple de script Azure CLI - Créer une Function App et déployer le code de fonction à partir de GitHub"
 services: functions
 keywords: 
@@ -9,21 +9,21 @@ ms.date: 04/27/2017
 ms.topic: sample
 ms.service: functions
 ms.custom: mvc
-ms.openlocfilehash: 026886f11909149db695d9a52d0aa37f109f64e4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 39e26ba6c3ae0927fbf6c62af0bd3b48d16657ad
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-function-app-and-deploy-function-code-from-github"></a>Créer une Function App et déployer le code de fonction à partir de GitHub
 
-Cet exemple de script crée une application de la fonction à l’aide de hello [le plan de la consommation](../functions-scale.md#consumption-plan) avec ses ressources connexes et déploie votre code de fonction à partir d’un référentiel GitHub public (sans déploiement continu). En ce qui concerne la livraison continue du code de fonction à partir de GitHub, consultez la page [Créer une Function App et déployer en continu à partir de GitHub](functions-cli-create-function-app-github-continuous.md)
+Cet exemple de script crée une Function App à l’aide du [plan de consommation](../functions-scale.md#consumption-plan) avec les ressources associées et déploie votre code de fonction à partir d’un référentiel GitHub public (sans déploiement continu). En ce qui concerne la livraison continue du code de fonction à partir de GitHub, consultez la page [Créer une Function App et déployer en continu à partir de GitHub](functions-cli-create-function-app-github-continuous.md)
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez tooinstall et que vous utilisez hello CLI localement, cette rubrique requiert que vous exécutez hello CLI d’Azure version 2.0 ou ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0 ou une version ultérieure pour poursuivre la procédure décrite dans cet article. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Exemple de script
 
@@ -35,17 +35,17 @@ Cet exemple crée une Function App Azure et déploie le code de fonction à part
 
 ## <a name="script-explanation"></a>Explication du script
 
-Chaque commande figurant dans la documentation spécifique du toocommand liens table hello. Ce script utilise hello suivant de commandes :
+Chaque commande du tableau renvoie à une documentation spécifique. Ce script utilise les commandes suivantes :
 
 | Commande | Remarques |
 |---|---|
-| [az group create](https://docs.microsoft.com/cli/azure/group#create) | Crée un groupe de ressources dans lequel toutes les ressources sont stockées. |
-| [az storage account create](https://docs.microsoft.com/cli/azure/appservice/plan#create) | Crée un plan App Service. |
-| [az functionapp create](https://docs.microsoft.com/cli/azure/appservice/web#delete) | Crée une Function App Azure. |
-| [az appservice web source-control config](https://docs.microsoft.com/cli/azure/appservice/web/source-control#config) | Associe une Function App à un référentiel Git ou Mercurial. |
+| [az group create](https://docs.microsoft.com/cli/azure/group#az_group_create) | Crée un groupe de ressources dans lequel toutes les ressources sont stockées. |
+| [az storage account create](https://docs.microsoft.com/cli/azure/appservice/plan#az_appservice_plan_create) | Crée un plan App Service. |
+| [az functionapp create](https://docs.microsoft.com/cli/azure/appservice/web#az_appservice_web_delete) | Crée une Function App Azure. |
+| [az appservice web source-control config](https://docs.microsoft.com/cli/azure/appservice/web/source-control#az_appservice_web_source_control_config) | Associe une Function App à un référentiel Git ou Mercurial. |
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
 
-Vous trouverez des exemples supplémentaires de script CLI de fonctions Azure Bonjour [documentation Azure fonctions](../functions-cli-samples.md).
+Vous trouverez des exemples supplémentaires de scripts CLI Azure Functions dans la [documentation d’Azure Functions](../functions-cli-samples.md).

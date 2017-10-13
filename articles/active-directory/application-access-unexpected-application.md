@@ -1,6 +1,6 @@
 ---
-title: "application aaaUnexpected dans la liste d’applications | Documents Microsoft"
-description: "Comment toosee toutes les applications dans votre client et de comprendre comment les applications s’affichent dans la liste de toutes les Applications dans les Applications d’entreprise"
+title: "Application inattendue dans ma liste d’applications | Microsoft Docs"
+description: "Guide pratique pour afficher toutes les applications dans votre client et comprendre comment les applications apparaissent dans votre liste Toutes les applications sous Applications d’entreprise"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,113 +13,113 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 2f974046b655bc36a05f002c56511a8a988cd01c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0f8136cb066fa6e3e4a8dd06e34b9f866e3916f6
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="unexpected-application-in-my-applications-list"></a>Application inattendue dans ma liste d’applications
 
-Cet article vous a-t-il toounderstand l’apparence des applications dans votre **toutes les Applications** liste sous **des Applications d’entreprise**. 
+Cet article vous aide à comprendre comment les applications apparaissent dans votre liste **Toutes les applications** sous **Applications d’entreprise**. 
 
-## <a name="how-toosee-all-applications-in-your-tenant"></a>Comment toosee toutes les applications dans votre client
+## <a name="how-to-see-all-applications-in-your-tenant"></a>Guide pratique pour afficher toutes les applications dans votre client
 
-toosee tous hello des applications dans votre client, vous devez toouse hello **filtre** contrôler tooshow **toutes les Applications** sous hello **toutes les Applications** liste. toodo, suit hello suivantes :
+Pour afficher toutes les applications dans votre client, vous devez utiliser le contrôle **Filtrer** pour afficher **Toutes les applications** sous la liste **Toutes les applications**. Pour ce faire, procédez comme suit :
 
-1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
+1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur.**
 
-2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
+2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
 
-3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
+3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
 
-4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
+4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
 
-5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
+5.  Cliquez sur **Toutes les applications** pour afficher une liste de toutes vos applications.
 
-6.  Cliquez sur Bonjour utilisez Bonjour **filtre** contrôle haut hello hello **liste de toutes les Applications**.
+6.  Cliquez sur le contrôle **Filtrer** en haut de la **liste de toutes les applications**.
 
-7.  Sur hello **filtre** panneau, jeu hello **afficher** option trop**toutes les Applications.**
+7.  Sur le panneau **Filtrer**, définissez l’option **Afficher** sur **Toutes les applications.**
 
 ## <a name="why-does-a-specific-application-appear-in-my-all-applications-list"></a>Pourquoi une application spécifique apparaît-elle dans ma liste de toutes les applications ?
 
-Lors du filtrage trop**toutes les Applications**, hello **toutes les Applications** **liste** montre tous les objets Principal du Service dans votre client. Les objets Principal de service peuvent apparaître dans cette liste de différentes façons :
+Lors du filtrage avec **Toutes les applications**, la **liste** **Toutes les applications** affiche chaque objet Principal de service dans votre client. Les objets Principal de service peuvent apparaître dans cette liste de différentes façons :
 
-1.  Lorsque vous ajoutez une application à partir de la galerie d’applications hello, y compris :
+1.  Lorsque vous ajoutez une application à partir de la galerie d’applications, y compris :
 
    1. **Applications de la galerie Azure AD** : applications pré-intégrées pour l’authentification unique avec Azure AD.
 
-   2. **Applications du Proxy d’application** : une application en cours d’exécution dans votre environnement local que vous souhaitez tooprovide sécurisé l’authentification unique sur tooexternally.
+   2. **Applications du proxy d’application** : applications s’exécutant dans votre environnement local, pour lesquelles vous souhaitez utiliser l’authentification unique en externe.
 
-   3. **Applications personnalisées** : une application de votre organisation souhaite toodevelop sur hello Azure plateforme de développement d’Application Active Directory, mais qui n’existe pas encore.
+   3. **Applications personnalisées** : applications que votre organisation souhaite développer sur la plateforme de développement d’applications Azure AD, mais qui n’existent pas encore.
 
-   4. **Applications hors galerie** : créez vos propres applications ! N’importe quel lien web ou toute application qui affiche un champ de nom d’utilisateur et mot de passe, prend en charge les protocoles SAML ou OpenID Connect, ou prend en charge SCIM sur laquelle vous souhaitez toointegrate pour l’authentification unique avec Azure AD.
+   4. **Applications hors galerie** : créez vos propres applications ! Tous les liens web et toutes les applications disposant d’un champ de nom d’utilisateur et de mot de passe prennent en charge les protocoles SAML ou OpenID Connect, ou prennent en charge SCIM pour l’intégration à l’authentification unique avec Azure AD.
 
 2.  Lors de l’inscription ou de l’ouverture d’une session, une application <sup>tierce</sup> intégrée à Azure Active Directory. Exemple : [Smartsheet](https://app.smartsheet.com/b/home) ou [DocuSign](https://www.docusign.net/member/MemberLogin.aspx).
 
-3.  Lors de l’inscription ou l’ajout d’un utilisateur tooa de licence ou d’une groupe tooa première application de, telles que [Microsoft Office 365](http://products.office.com/).
+3.  Lors de l’inscription ou de l’ajout d’une licence à un utilisateur ou à un groupe à une première application, par exemple [Microsoft Office 365](http://products.office.com/).
 
-4.  Lorsque vous ajoutez une nouvelle inscription de l’application en créant une application personnalisée à l’aide de hello [Registre de l’Application](https://docs.microsoft.com/azure/active-directory/active-directory-app-registration).
+4.  Lorsque vous ajoutez une inscription pour une nouvelle ’application en créant une application personnalisée à l’aide du [Registre d’application](https://docs.microsoft.com/azure/active-directory/active-directory-app-registration).
 
-5.  Lorsque vous ajoutez une nouvelle inscription de l’application en créant une application personnalisée à l’aide de hello [portail de l’enregistrement d’Application V2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-app-registration#visit-the-microsoft-app-registration-portal).
+5.  Lorsque vous ajoutez une inscription pour une nouvelle ’application en créant une application personnalisée à l’aide du [Portail d’inscription des applications V2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-app-registration#visit-the-microsoft-app-registration-portal).
 
 6.  Lorsque vous ajoutez une application que vous développez à l’aide des [méthodes d’authentification ASP.net](http://www.asp.net/visual-studio/overview/2013/creating-web-projects-in-visual-studio#orgauthoptions) ou des [Services connectés](http://blogs.msdn.com/b/visualstudio/archive/2014/11/19/connecting-to-cloud-services.aspx) de Visual Studio.
 
-7.  Lorsque vous créez un objet principal de service à l’aide de hello [Module PowerShell Azure AD](/powershell/azure/install-adv2?view=azureadps-2.0).
+7.  Lorsque vous créez un objet Principal de service à l’aide du [module Azure AD PowerShell](/powershell/azure/install-adv2?view=azureadps-2.0).
 
-8.  Lorsque vous [consentement tooan application](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent) comme un données toouse de l’administrateur de votre client.
+8.  Lorsque vous [donnez votre consentement à une application](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent) en tant qu’administrateur afin d’utiliser les données dans votre client.
 
-9.  Lorsqu’un [utilisateur y consent tooan application](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent) toouse les données dans votre client.
+9.  Lorsqu’un [utilisateur donne son consentement à une application](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent) afin d’utiliser les données dans votre client.
 
-10. Lorsque vous activez certains services qui stockent des données dans votre client. Un exemple est de réinitialiser un mot de passe, qui est modelée comme un toostore principal de service de votre mot de passe réinitialisation stratégie en toute sécurité.
+10. Lorsque vous activez certains services qui stockent des données dans votre client. Un exemple est la réinitialisation du mot de passe, opération modélisée comme un principal de service pour stocker de façon sécurisée la stratégie de réinitialisation de votre mot de passe.
 
-lire de plus d’informations sur comment les applications sont ajoutées tooyour active, tooget [comment et pourquoi les applications sont ajoutées tooAzure AD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-how-applications-are-added).
+Pour plus d’informations sur la façon dont les applications sont ajoutées à votre annuaire, lisez [Comment et pourquoi les applications sont ajoutées à Azure AD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-how-applications-are-added).
 
-## <a name="i-want-tooremove-a-specific-users-or-groups-assignment-tooan-application"></a>Je veux tooremove un utilisateur spécifique ou du groupe affectation tooan une application
+## <a name="i-want-to-remove-a-specific-users-or-groups-assignment-to-an-application"></a>Je souhaite supprimer l’attribution d’une application à un utilisateur ou groupe spécifique
 
-tooremove une application utilisateur ou groupe affectation tooan, suivez les étapes de hello répertoriées dans hello [supprimer une attribution de l’utilisateur ou un groupe à partir d’une application d’entreprise dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-remove-assignment-azure-portal) l’article.
+Pour supprimer l’attribution d’une application à un utilisateur ou groupe, suivez les étapes répertoriées dans l’article [Supprimer l’attribution d’une application à un utilisateur ou groupe à partir d’une application d’entreprise dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-remove-assignment-azure-portal).
 
-## <a name="i-want-toodisable-all-access-tooan-application-for-every-user"></a>Je veux toodisable tous les accès tooan d’applications pour chaque utilisateur
+## <a name="i-want-to-disable-all-access-to-an-application-for-every-user"></a>Je souhaite désactiver tous les accès à une application pour chaque utilisateur
 
-toodisable toutes les applications de la tooan de connexions utilisateur, suivez les étapes de hello répertoriés dans hello [désactiver des connexions utilisateur pour une application d’entreprise dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-disable-app-azure-portal) l’article.
+Pour désactiver toutes les connexions des utilisateurs à une application, suivez les étapes répertoriées dans l’article [Désactiver les connexions des utilisateurs à une application d’entreprise dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-disable-app-azure-portal).
 
-## <a name="i-want-toodelete-an-application-entirely"></a>Je veux toodelete une application entièrement
+## <a name="i-want-to-delete-an-application-entirely"></a>Je veux complètement supprimer une passerelle d’application
 
-trop**supprimer une application**, suivez les instructions de hello ci-dessous :
+Pour **supprimer une application**, suivez les instructions ci-dessous :
 
-1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
+1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur.**
 
-2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
+2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
 
-3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
+3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
 
-4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
+4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
 
-5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
+5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
 
-  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
+  * Si l’application que vous recherchez n’apparaît pas, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
 
-6.  Sélectionnez l’application hello toodelete.
+6.  Sélectionnez l’application que vous voulez supprimer.
 
-7.  Une fois le charge de l’application hello, cliquez sur **supprimer** icône à partir de l’application hello supérieur **vue d’ensemble** panneau.
+7.  Une l’application chargée, cliquez sur l’icône **Supprimer** dans le panneau supérieur **Vue d’ensemble** de l’application.
 
-## <a name="i-want-toodisable-all-future-user-consent-operations-tooany-application"></a>Je veux toodisable tooany application de tous les futurs utilisateur consentement opérations
+## <a name="i-want-to-disable-all-future-user-consent-operations-to-any-application"></a>Je veux désactiver toutes les futures opérations de consentement de l’utilisateur pour n’importe quelle application
 
-La désactivation de consentement de l’utilisateur pour éviter que les utilisateurs finaux d’application de tooany terme autorisation tout le répertoire. Les administrateurs peuvent toujours donner leur consentement au nom de l’utilisateur. toolearn en savoir plus sur l’application de consentement, et pourquoi vous pouvez ou pas souhaitiez toodo, lecture [utilisateur de présentation et de consentement de l’administrateur](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent).
+La désactivation du consentement de l’utilisateur pour votre annuaire entier empêche les utilisateurs finaux de donner leur consentement pour n’importe quelle application. Les administrateurs peuvent toujours donner leur consentement au nom de l’utilisateur. Pour en savoir plus sur le consentement de l’application et les conditions pour donner ou refuser ce consentement, lisez la rubrique [Comprendre le consentement de l’utilisateur et de l’administrateur](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent).
 
-trop**désactiver toutes les opérations de consentement d’utilisateur futures dans tout le répertoire**, suivez les instructions de hello ci-dessous :
+Pour **désactiver toutes les futures opérations de consentement de l’utilisateur dans votre annuaire entier**, suivez les instructions ci-dessous :
 
-1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
+1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général.**
 
-2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
+2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
 
-3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
+3.  Tapez « **Azure Active Directory** » dans la zone de recherche du filtre et sélectionnez l’élément **Azure Active Directory**.
 
-4.  Cliquez sur **utilisateurs et groupes** dans le menu de navigation hello.
+4.  Cliquez sur **Utilisateurs et groupes** dans le menu de navigation.
 
 5.  Cliquez sur **Paramètres utilisateur**.
 
-6.  Désactiver toutes les opérations de consentement d’utilisateur futures en définissant un hello **les utilisateurs peuvent autoriser des applications tooaccess leurs données** basculer trop**non** et cliquez sur hello **enregistrer** bouton.
+6.  Désactivez toutes les futures opérations de consentement de l’utilisateur en définissant l’option **Les utilisateurs peuvent autoriser les applications à accéder à leurs données** sur **Non**, puis cliquez sur le bouton **Enregistrer**.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Gestion des applications avec Azure Active Directory](active-directory-enable-sso-scenario.md)

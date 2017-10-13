@@ -1,6 +1,6 @@
 ---
-title: "vue d’ensemble de la communication aaaReliable Services | Documents Microsoft"
-description: "Vue d’ensemble du modèle de communication des Services fiables hello, y compris lors de l’ouverture des écouteurs sur les services, résolution des points de terminaison et pour communiquer entre les services."
+title: "Vue d’ensemble de la communication Reliable Services | Microsoft Docs"
+description: "Présentation du modèle de communication Reliable Services, notamment de l’ouverture d’écouteurs sur les services, de la résolution des points de terminaison et de la communication entre les services."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 04/07/2017
 ms.author: vturecek
-ms.openlocfilehash: 93a7017b50df0822969daa5ad78302c73e8ba641
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b418904f50b772c12bfcdbb95beb9312c8b9fb00
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-hello-reliable-services-communication-apis"></a>Comment toouse hello API de communication des Services fiables
-Azure Service Fabric, en tant que plateforme, est totalement indépendant de la communication entre les services. Tous les protocoles et les piles sont acceptables, UDP tooHTTP. C’est toohello service développeur toochoose comment les services doivent communiquer. infrastructure d’application des Services fiables Hello fournit des piles de communication intégrée, ainsi que des API que vous pouvez utiliser toobuild vos composants de communication personnalisées.
+# <a name="how-to-use-the-reliable-services-communication-apis"></a>Utilisation des API de communication de Reliable Services
+Azure Service Fabric, en tant que plateforme, est totalement indépendant de la communication entre les services. Tous les protocoles et toutes les piles sont acceptables, de UDP à HTTP. C'est au développeur de services de choisir comment les services doivent communiquer. L’infrastructure d’application de Reliable Services fournit des piles de communication intégrées, ainsi que des API que vous pouvez utiliser pour générer vos composants de communication personnalisés.
 
 ## <a name="set-up-service-communication"></a>Configurer la communication de service
-Hello API des Services fiables utilise une interface simple pour la communication de service. tooopen un point de terminaison pour votre service, implémentez simplement cette interface :
+L'API Reliable Services utilise une interface simple pour la communication de service. Pour ouvrir un point de terminaison pour votre service, implémentez simplement cette interface :
 
 ```csharp
 
@@ -92,9 +92,9 @@ class MyStatefulService : StatefulService
 }
 ```
 
-Dans les deux cas, vous retournez une collection d’écouteurs. Cela permet à votre toolisten service sur plusieurs points de terminaison, éventuellement à l’aide de différents protocoles, à l’aide de plusieurs écouteurs. Par exemple, vous pouvez avoir un écouteur HTTP et un écouteur WebSocket distinct. Chaque écouteur Obtient le nom et la collection résultante de hello de *nom : adresse* paires sont représentées en tant qu’objet JSON, lorsqu’un client demande des adresses d’écoute hello pour une instance de service ou d’une partition.
+Dans les deux cas, vous retournez une collection d’écouteurs. Cela permet à votre service d’écouter sur plusieurs points de terminaison, utilisant éventuellement différents protocoles, à l’aide de plusieurs écouteurs. Par exemple, vous pouvez avoir un écouteur HTTP et un écouteur WebSocket distinct. Chaque écouteur obtient un nom et la collection qui résulte des paires *nom : adresse* est représentée en tant qu’objet JSON quand un client demande les adresses d’écoute pour une instance de service ou une partition.
 
-Dans un service sans état, hello remplacement retourne une collection de ServiceInstanceListeners. A `ServiceInstanceListener` contient une fonction toocreate un `ICommunicationListener(C#) / CommunicationListener(Java)` et lui attribue un nom. Pour les services avec état, hello remplacement retourne une collection de ServiceReplicaListeners. Cela est légèrement différente de son homologue sans état, car un `ServiceReplicaListener` a une option tooopen un `ICommunicationListener` sur les réplicas secondaires. Non seulement vous pouvez utiliser plusieurs écouteurs de communication dans un service, mais vous pouvez également spécifier ceux qui acceptent les demandes sur les réplicas secondaires, et ceux qui écoutent uniquement sur les réplicas principaux.
+Dans un service sans état, la substitution retourne une collection de ServiceInstanceListeners. Un `ServiceInstanceListener` contient une fonction permettant de créer un `ICommunicationListener(C#) / CommunicationListener(Java)` et de lui donner un nom. Pour les services avec état, la substitution retourne une collection de ServiceReplicaListener. Cela diffère légèrement de son homologue sans état, car un `ServiceReplicaListener` a une option pour ouvrir un `ICommunicationListener` sur des réplicas secondaires. Non seulement vous pouvez utiliser plusieurs écouteurs de communication dans un service, mais vous pouvez également spécifier ceux qui acceptent les demandes sur les réplicas secondaires, et ceux qui écoutent uniquement sur les réplicas principaux.
 
 Par exemple, vous pouvez avoir un ServiceRemotingListener qui ne prend les appels RPC que sur les réplicas principaux, et un second écouteur personnalisé qui prend les demandes de lecture sur les réplicas secondaires sur HTTP :
 
@@ -121,7 +121,7 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 >
 >
 
-Enfin, décrivez les points de terminaison hello qui sont requis pour le service hello Bonjour [manifeste de service](service-fabric-application-model.md) sous la section hello sur les points de terminaison.
+Pour finir, décrivez les points de terminaison nécessaires pour le service dans le [manifeste de service](service-fabric-application-model.md) , dans la section consacrée aux points de terminaison.
 
 ```xml
 <Resources>
@@ -133,7 +133,7 @@ Enfin, décrivez les points de terminaison hello qui sont requis pour le service
 
 ```
 
-écouteur de communications Hello peut accéder aux ressources de point de terminaison de hello allouées tooit de hello `CodePackageActivationContext` Bonjour `ServiceContext`. écouteur de Hello peut alors commencer à écouter les requêtes lorsqu’il est ouvert.
+L’écouteur de communication peut accéder aux ressources de point de terminaison qui lui sont allouées à partir du `CodePackageActivationContext` dans `ServiceContext`. L’écouteur peut alors commencer à écouter les demandes quand il est ouvert.
 
 ```csharp
 var codePackageActivationContext = serviceContext.CodePackageActivationContext;
@@ -147,12 +147,12 @@ int port = codePackageActivationContext.getEndpoint("ServiceEndpoint").getPort()
 ```
 
 > [!NOTE]
-> Ressources du point de terminaison sont package de service entier toohello courants, et ils sont alloués par l’infrastructure de Service lorsque le package de service hello est activé. Plusieurs réplicas de service hébergés dans hello même ServiceHost peut-être partager hello même port. Cela signifie que cet écouteur de communication hello doit prendre en charge le partage de port. Hello recommandé d’effectuer cette opération consiste pour hello communication écouteur toouse hello partition ID et l’ID de réplica/instance lorsqu’il génère l’adresse d’écoute hello.
+> Les ressources de point de terminaison sont communes au package de service entier et elles sont allouées par Service Fabric à l’activation du package de service. Plusieurs réplicas de service hébergés dans le même ServiceHost peuvent partager le même port. Cela signifie que l'écouteur de communication doit prendre en charge le partage de port. La méthode recommandée consiste à configurer l’écouteur de communication afin qu’il utiliser l’ID de la partition et l’ID du réplica/de l’instance lors de la génération de l’adresse d’écoute.
 >
 >
 
 ### <a name="service-address-registration"></a>Enregistrement d’adresse de service
-Un service système appelé hello *Naming Service* s’exécute sur des clusters Service Fabric. Hello d’affectation de noms de Service est un bureau d’enregistrement pour les services et leurs adresses qui écoute sur chaque instance ou un réplica du service de hello. Hello lorsque `OpenAsync(C#) / openAsync(Java)` méthode d’un `ICommunicationListener(C#) / CommunicationListener(Java)` terminée, son retour valeur enregistrée Bonjour Naming Service. Cette retourne la valeur qui obtient hello publiée dans le Service d’affectation de noms est une chaîne dont la valeur peut être rien du tout. Cette valeur de chaîne est ce que les clients voient quand ils demandent une adresse de service hello hello Naming Service.
+Un service système appelé *service d’attribution de noms* s’exécute sur les clusters Service Fabric. Le service d’attribution de noms est un bureau d’enregistrement pour les services et leurs adresses sur lesquelles chaque instance ou réplica du service écoute. Une fois l’exécution de la méthode `OpenAsync(C#) / openAsync(Java)` d’un `ICommunicationListener(C#) / CommunicationListener(Java)` terminée, la valeur retournée est enregistrée dans le service d’attribution de noms. Cette valeur publiée dans le service d’attribution de noms est une chaîne dont le contenu peut être absolument quelconque. Cette valeur de chaîne est ce que les clients voient quand ils demandent au service d’attribution de noms une adresse pour le service.
 
 ```csharp
 public Task<string> OpenAsync(CancellationToken cancellationToken)
@@ -169,7 +169,7 @@ public Task<string> OpenAsync(CancellationToken cancellationToken)
 
     this.webApp = WebApp.Start(this.listeningAddress, appBuilder => this.startup.Invoke(appBuilder));
 
-    // hello string returned here will be published in hello Naming Service.
+    // the string returned here will be published in the Naming Service.
     return Task.FromResult(this.publishAddress);
 }
 ```
@@ -184,26 +184,26 @@ public CompletableFuture<String> openAsync(CancellationToken cancellationToken)
     this.webApp = new WebApp(port);
     this.webApp.start();
 
-    /* hello string returned here will be published in hello Naming Service.
+    /* the string returned here will be published in the Naming Service.
      */
     return CompletableFuture.completedFuture(this.publishAddress);
 }
 ```
 
-L’infrastructure de service fournit des API qui autorisent les clients et les autres toothen services demandera cette adresse par nom de service. Ceci est important, car l’adresse du service hello n’est pas statique. Les services sont déplacés dans le cluster hello pour à des fins de disponibilité et de l’équilibrage de la ressource. Il s’agit de mécanisme hello qui permettent aux clients hello tooresolve adresse pour un service d’écoute.
+Service Fabric fournit des API qui permettent aux clients et à d’autres services de demander cette adresse par nom de service. Ceci est important, car l’adresse du service n’est pas statique. Les services se déplacent dans le cluster à des fins d’équilibrage des ressources et de disponibilité. Ce mécanisme permet aux clients de résoudre l'adresse d'écoute pour un service.
 
 > [!NOTE]
-> Pour une présentation complète des toowrite un écouteur de communication, voir [services API Web du Service Fabric avec OWIN auto-hébergement](service-fabric-reliable-services-communication-webapi.md) pour c#, tandis que pour Java, vous pouvez écrire votre propre implémentation de serveur HTTP, consultez EchoServer application exemple à https://github.com/Azure-Samples/service-fabric-java-getting-started.
+> Pour une vue d’ensemble complète de l’écriture d’un écouteur de communication, consultez [Services de l’API Web Service Fabric avec auto-hébergement OWIN](service-fabric-reliable-services-communication-webapi.md) pour C#. Pour Java, vous pouvez écrire votre propre implémentation de serveur HTTP en suivant l’exemple d’application EchoServer sur https://github.com/Azure-Samples/service-fabric-java-getting-started.
 >
 >
 
 ## <a name="communicating-with-a-service"></a>Communication avec un service
-Hello API des Services fiables fournit hello suivant clients toowrite bibliothèques qui communiquent avec les services.
+L’API Reliable Services fournit les bibliothèques suivantes pour l’écriture de clients qui communiquent avec des services.
 
 ### <a name="service-endpoint-resolution"></a>Résolution de point de terminaison de service
-Hello première étape toocommunication avec un service est tooresolve une adresse de point de terminaison de la partition de hello ou une instance du service hello tootalk à. Hello `ServicePartitionResolver(C#) / FabricServicePartitionResolver(Java)` classe utilitaire est une primitive de base qui aide les clients à déterminer le point de terminaison hello d’un service en cours d’exécution. Dans la terminologie de Service Fabric, processus hello permettant de déterminer le point de terminaison hello d’un service est référencé tooas hello *résolution de point de terminaison de service*.
+La première étape de la communication avec un service consiste à résoudre une adresse de point de terminaison de la partition ou une instance du service avec lequel vous souhaitez communiquer. La classe utilitaire `ServicePartitionResolver(C#) / FabricServicePartitionResolver(Java)` est une primitive de base qui aide les clients à déterminer le point de terminaison d’un service au moment de l’exécution. Dans la terminologie Service Fabric, le processus de détermination du point de terminaison d’un service est appelé *résolution de point de terminaison de service*.
 
-tooservices tooconnect au sein d’un cluster, ServicePartitionResolver peut être créé à l’aide des paramètres par défaut. Il s’agit de hello recommandé d’utilisation pour la plupart des situations :
+Pour vous connecter à des services dans un cluster, vous pouvez créer un ServicePartitionResolver à l’aide de paramètres par défaut. Il s’agit de l’utilisation recommandée pour la plupart des situations :
 
 ```csharp
 ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
@@ -212,7 +212,7 @@ ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
 FabricServicePartitionResolver resolver = FabricServicePartitionResolver.getDefault();
 ```
 
-tooservices tooconnect dans un cluster différent, un ServicePartitionResolver peut être créée avec un ensemble de points de terminaison de passerelle de cluster. Notez que les points de terminaison de passerelle sont uniquement des points de terminaison pour la connexion toohello même cluster. Par exemple :
+Pour vous connecter à des services figurant dans un autre cluster, vous pouvez créer un ServicePartitionResolver avec un ensemble de points de terminaison de passerelle de cluster. Notez que les points de terminaison de passerelle sont simplement des points de terminaison différents pour la connexion au même cluster. Par exemple :
 
 ```csharp
 ServicePartitionResolver resolver = new  ServicePartitionResolver("mycluster.cloudapp.azure.com:19000", "mycluster.cloudapp.azure.com:19001");
@@ -221,7 +221,7 @@ ServicePartitionResolver resolver = new  ServicePartitionResolver("mycluster.clo
 FabricServicePartitionResolver resolver = new  FabricServicePartitionResolver("mycluster.cloudapp.azure.com:19000", "mycluster.cloudapp.azure.com:19001");
 ```
 
-Vous pouvez également `ServicePartitionResolver` peut être accordée à une fonction de création d’un `FabricClient` toouse en interne :
+En guise d’alternative, un `ServicePartitionResolver` peut recevoir une fonction de création d’un `FabricClient` à utiliser en interne :
 
 ```csharp
 public delegate FabricClient CreateFabricClientDelegate();
@@ -236,7 +236,7 @@ public interface CreateFabricClient {
 }
 ```
 
-`FabricClient`est un objet hello toocommunicate utilisé avec un cluster Service Fabric de hello pour plusieurs opérations de gestion sur le cluster de hello. Cela est utile quand vous souhaitez contrôler davantage la façon dont un programme de résolution de partition de service interagit avec votre cluster. `FabricClient`effectue la mise en cache en interne et est généralement coûteuse toocreate, par conséquent, il est important tooreuse `FabricClient` instances autant que possibles.
+`FabricClient` est l’objet utilisé pour communiquer avec le cluster Service Fabric pour diverses opérations de gestion sur le cluster. Cela est utile quand vous souhaitez contrôler davantage la façon dont un programme de résolution de partition de service interagit avec votre cluster. `FabricClient` effectue la mise en cache en interne et sa création est généralement coûteuse. Il est donc important de réutiliser les instances `FabricClient` autant que possible.
 
 ```csharp
 ServicePartitionResolver resolver = new  ServicePartitionResolver(() => CreateMyFabricClient());
@@ -245,7 +245,7 @@ ServicePartitionResolver resolver = new  ServicePartitionResolver(() => CreateMy
 FabricServicePartitionResolver resolver = new  FabricServicePartitionResolver(() -> new CreateFabricClientImpl());
 ```
 
-Une méthode de résolution est utilisé tooretrieve hello adresse d’un service ou une partition de service pour les services partitionnées.
+Une méthode de résolution est ensuite utilisée pour récupérer l’adresse d’un service ou d’une partition de service pour les services partitionnés.
 
 ```csharp
 ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
@@ -260,16 +260,16 @@ CompletableFuture<ResolvedServicePartition> partition =
     resolver.resolveAsync(new URI("fabric:/MyApp/MyService"), new ServicePartitionKey());
 ```
 
-Une adresse de service peut être résolue facilement à l’aide d’un ServicePartitionResolver, mais le travail supplémentaire est nécessaire tooensure hello résolu l’adresse peut être utilisée correctement. Votre client doit toodetect si la tentative de connexion hello a échoué en raison d’une erreur temporaire et peut être retentée (par exemple, service déplacé ou est temporairement indisponible), ou une erreur permanente (par exemple, le service a été supprimé ou le hello ressource demandée n’existe plus). Instances de service ou de réplicas peuvent déplacer à partir du nœud toonode à tout moment pour plusieurs raisons. adresse du service Hello résolu par ServicePartitionResolver peut-être être obsolète par heure hello que tooconnect tente de votre code client. Dans ce cas à nouveau hello client a besoin adresse de hello toore résoudre. Fournissant hello précédente `ResolvedServicePartition` indique que hello tootry des besoins de programme de résolution à nouveau au lieu de simplement récupérer une adresse en mémoire cache.
+Un ServicePartitionResolver peut facilement résoudre une adresse de service, mais il faut davantage de travail pour s’assurer que l’adresse résolue est correctement utilisable. Votre client doit détecter si la tentative de connexion a échoué en raison d’une erreur temporaire et peut être retentée (par exemple, le service a changé d’emplacement ou est temporairement indisponible), ou d’une erreur permanente (par exemple, le service a été supprimé ou la ressource demandée n’existe plus). Des instances de service ou réplicas peuvent passer d’un nœud à l’autre à tout moment pour plusieurs raisons. L’adresse de service résolue par le biais de ServicePartitionResolver peut être obsolète au moment où votre code client tente de se connecter. Dans ce cas encore, le client doit à nouveau résoudre l’adresse. Le code `ResolvedServicePartition` précédent indique que le programme de résolution doit effectuer une nouvelle tentative au lieu de simplement récupérer une adresse en mémoire cache.
 
-En règle générale, le code client hello devez fonctionne pas avec hello ServicePartitionResolver directement. Elle est créée et passée sur les fabriques de client toocommunication Bonjour API des Services fiables. fabriques de Hello utilisent le programme de résolution hello en interne un objet client qui peut être toocommunicate utilisé avec les services de toogenerate.
+Généralement, le code client ne doit pas fonctionner directement avec ServicePartitionResolver. Il est créé et transmis à des fabriques de clients de communication dans l’API Reliable Services. Les fabriques utilisent le programme de résolution en interne pour générer un objet client utilisable pour communiquer avec les services.
 
 ### <a name="communication-clients-and-factories"></a>Fabriques et clients de communication
-bibliothèque de fabrique de communication Hello implémente un modèle de nouvelle tentative de gestion d’erreurs standard qui facilite la nouvelle tentative points de terminaison de service tooresolved connexions. bibliothèque de fabrique Hello fournit le mécanisme de nouvelle tentative hello pendant que vous fournissez des gestionnaires d’erreurs hello.
+La bibliothèque de fabrique de communication implémente un modèle standard de nouvelle tentative de gestion des erreurs, qui facilite les nouvelles tentatives de connexion aux points de terminaison de service résolus. La bibliothèque de fabrique fournit le mécanisme de nouvelle tentative, tandis que vous fournissez les gestionnaires d’erreurs.
 
-`ICommunicationClientFactory(C#) / CommunicationClientFactory(Java)`définit l’interface de base hello implémentée par une fabrique de client de communication qui produit des clients qui peuvent communiquer avec les services de Service Fabric tooa. Bonjour implémentation de hello que communicationclientfactory dépend de la pile de communication hello utilisé par le service de Service Fabric hello où le client de hello veut toocommunicate. Hello fiable API des Services fournit un `CommunicationClientFactoryBase<TCommunicationClient>`. Cela fournit une implémentation de base de l’interface de CommunicationClientFactory hello et effectue des tâches qui sont des piles de communication commun tooall hello. (Ces tâches incluent à l’aide d’un point de terminaison ServicePartitionResolver toodetermine hello). Les clients implémentent généralement hello abstraite CommunicationClientFactoryBase toohandle logique de la classe qui est la pile de communication toohello spécifique.
+`ICommunicationClientFactory(C#) / CommunicationClientFactory(Java)` définit l’interface de base implémentée par une fabrique de clients de communication qui produit des clients capables de communiquer avec un service Service Fabric. L’implémentation de CommunicationClientFactory dépend de la pile de communication utilisée par le service Service Fabric avec lequel le client veut communiquer. L’API Reliable Services fournit un `CommunicationClientFactoryBase<TCommunicationClient>`. Celui-ci assure une implémentation de base de l’interface CommunicationClientFactory et effectue des tâches communes à toutes les piles de communication. (ces tâches incluent l’utilisation d’un ServicePartitionResolver pour déterminer le point de terminaison de service). Les clients implémentent généralement la classe abstraite CommunicationClientFactoryBase pour gérer la logique spécifique de la pile de communication.
 
-client de communication Hello simplement reçoit une adresse et il utilise le service de tooa tooconnect. client de la Hello peut utiliser tout protocole il veut.
+Le client de communication reçoit simplement une adresse qu’il utilise pour se connecter à un service. Le client peut utiliser n’importe quel protocole.
 
 ```csharp
 class MyCommunicationClient : ICommunicationClient
@@ -294,7 +294,7 @@ public class MyCommunicationClient implements CommunicationClient {
 }
 ```
 
-fabrique de clients Hello est principalement responsable de la création de clients de communication. Pour les clients qui ne maintiennent pas une connexion permanente, tel qu’un client HTTP, la fabrique de hello doit uniquement toocreate et client de retour hello. Autres protocoles permettant de maintenir une connexion permanente, telles que certains protocoles binaire, doivent également être validés par hello fabrique toodetermine si la connexion de hello doit toobe recréée.  
+La fabrique de clients est principalement responsable de la création de clients de communication. Pour les clients qui ne maintiennent de connexion permanente, tel un client HTTP, la fabrique doit uniquement créer et retourner le client. D’autres protocoles qui maintiennent une connexion permanente, tels certains protocoles binaires, doivent également être validés par la fabrique pour déterminer si la connexion doit être recréée.  
 
 ```csharp
 public class MyCommunicationClientFactory : CommunicationClientFactoryBase<MyCommunicationClient>
@@ -337,14 +337,14 @@ public class MyCommunicationClientFactory extends CommunicationClientFactoryBase
 }
 ```
 
-Enfin, un gestionnaire d’exceptions est chargé de déterminer quel tootake action lorsqu’une exception se produit. Les exceptions sont classées en **reproductibles** et **non reproductibles**.
+Enfin, un gestionnaire d’exceptions doit déterminer l’action à exécuter si une exception se produit. Les exceptions sont classées en **reproductibles** et **non reproductibles**.
 
-* **Non renouvelable** exceptions simplement obtient à nouveau levées toohello arrière appelant.
+* Les exceptions **Non reproductibles** sont simplement renvoyées à l’appelant.
 * Les exceptions **reproductibles** sont encore classées en **temporaires** et **non temporaires**.
-  * **Transitoire** exceptions sont ceux qui peut simplement être tentée sans adresse de point de terminaison de service hello résoudre à nouveau. Il s’agit notamment des problèmes réseau temporaires ou réponses d’erreur service autre que ceux qui indiquent l’adresse de point de terminaison de service hello n’existe pas.
-  * **Non transitoires** exceptions sont ceux qui nécessitent des toobe d’adresse du point de terminaison de service hello résolu à nouveau. Il s’agit notamment des exceptions qui indiquent le point de terminaison de service hello est inaccessible, indiquant le service de hello a été déplacé tooa autre nœud.
+  * **temporaires** sont celles qui peuvent simplement faire l’objet d’une nouvelle tentative, sans nouvelle résolution de l’adresse du point de terminaison de service. Elles incluent notamment des problèmes réseau temporaires ou des réponses d’erreur de service autres que celles indiquant que l’adresse du point de terminaison de service est inexistante.
+  * **Non-transient** sont celles qui nécessitent une nouvelle résolution de l’adresse du point de terminaison de service. Elles incluent notamment les exceptions indiquant que le point de terminaison de service n’a pas pu être atteint, ce qui signifie que le service s’est déplacé vers un autre nœud.
 
-Hello `TryHandleException` prend une décision sur une exception donnée. Si elle **ne sait pas** le toomake décisions relatives à une exception, elle doit retourner **false**. Si elle **connaît** quel toomake de décision, il doit définir le résultat de hello en conséquence et retourner **true**.
+La fonction `TryHandleException` prend une décision concernant une exception donnée. Si elle **ne sait pas** quelle décision prendre à propos d’une exception, elle doit retourner la valeur **false**. Si elle **sait** quelle décision prendre, elle doit définir le résultat en conséquence et retourner la valeur **true**.
 
 ```csharp
 class MyExceptionHandler : IExceptionHandler
@@ -360,7 +360,7 @@ class MyExceptionHandler : IExceptionHandler
         result = new ExceptionHandlingRetryResult(exceptionInformation.Exception, false, retrySettings, retrySettings.DefaultMaxRetryCount);
         return true;
 
-        // if exceptionInformation.Exception is unknown (let hello next IExceptionHandler attempt toohandle it)
+        // if exceptionInformation.Exception is unknown (let the next IExceptionHandler attempt to handle it)
         result = null;
         return false;
     }
@@ -383,7 +383,7 @@ public class MyExceptionHandler implements ExceptionHandler {
         result = new ExceptionHandlingRetryResult(exceptionInformation.getException(), false, retrySettings, retrySettings.getDefaultMaxRetryCount());
         return true;
 
-        /* if exceptionInformation.getException() is unknown (let hello next ExceptionHandler attempt toohandle it)
+        /* if exceptionInformation.getException() is unknown (let the next ExceptionHandler attempt to handle it)
          */
         result = null;
         return false;
@@ -392,7 +392,7 @@ public class MyExceptionHandler implements ExceptionHandler {
 }
 ```
 ### <a name="putting-it-all-together"></a>Exemple complet
-Avec un `ICommunicationClient(C#) / CommunicationClient(Java)`, `ICommunicationClientFactory(C#) / CommunicationClientFactory(Java)`, et `IExceptionHandler(C#) / ExceptionHandler(Java)` construit autour d’un protocole de communication, un `ServicePartitionClient(C#) / FabricServicePartitionClient(Java)` encapsule tous les éléments et fournit la gestion des erreurs de hello et boucle de résolution service partition adresse autour de ces composants.
+Avec des composants `ICommunicationClient(C#) / CommunicationClient(Java)`, `ICommunicationClientFactory(C#) / CommunicationClientFactory(Java)` et `IExceptionHandler(C#) / ExceptionHandler(Java)` construits autour d’un protocole de communication, un `ServicePartitionClient(C#) / FabricServicePartitionClient(Java)` encapsule le tout et fournit la boucle de gestion des erreurs et de résolution d’adresse de partition de service autour de ces composants.
 
 ```csharp
 private MyCommunicationClientFactory myCommunicationClientFactory;
@@ -405,7 +405,7 @@ var myServicePartitionClient = new ServicePartitionClient<MyCommunicationClient>
 
 var result = await myServicePartitionClient.InvokeWithRetryAsync(async (client) =>
    {
-      // Communicate with hello service using hello client.
+      // Communicate with the service using the client.
    },
    CancellationToken.None);
 
@@ -420,7 +420,7 @@ FabricServicePartitionClient myServicePartitionClient = new FabricServicePartiti
     myPartitionKey);
 
 CompletableFuture<?> result = myServicePartitionClient.invokeWithRetryAsync(client -> {
-      /* Communicate with hello service using hello client.
+      /* Communicate with the service using the client.
        */
    });
 

@@ -1,26 +1,26 @@
 <!--author=SharS last changed: 02/22/16-->
 
-### <a name="tooconfigure-and-register-hello-device"></a>Appareil de hello tooconfigure et Registre
-1. Accéder à l’interface Windows PowerShell hello sur votre console série du périphérique StorSimple. Consultez [console série du périphérique toohello tooconnect utilisez PuTTY](#use-putty-to-connect-to-the-device-serial-console) pour obtenir des instructions. **Être procédure de hello toofollow vraiment exactement ou vous ne serez pas la console de hello tooaccess en mesure de.**
-2. Dans la session hello qui s’ouvre, appuyez sur entrée une fois tooget une invite de commandes. 
-3. Vous seront demandées toochoose hello langage que tooset pour votre appareil. Spécifier la langue de hello, puis appuyez sur ENTRÉE. 
+### <a name="to-configure-and-register-the-device"></a>Configuration et inscription de l’appareil
+1. Accédez à l’interface Windows PowerShell sur la console série de votre appareil StorSimple. Consultez la page [Utilisation de PuTTY pour se connecter à la console en série de l’appareil](#use-putty-to-connect-to-the-device-serial-console) pour obtenir des instructions. **Veillez à suivre la procédure pas à pas, sans quoi vous ne pourrez pas accéder à la console.**
+2. Dans la session qui s’ouvre, appuyez une fois sur Entrée pour lancer une invite de commandes. 
+3. Vous devez choisir la langue que vous souhaitez définir pour votre appareil. Spécifiez la langue, puis appuyez sur Entrée. 
    
     ![Configuration et inscription de l’appareil StorSimple 1](./media/storsimple-configure-and-register-device-gov/HCS_RegisterYourDevice1-gov-include.png)
-4. Dans le menu de console série hello qui s’affiche, choisissez l’option 1 toolog sur avec un accès complet. 
+4. Dans le menu de console en série qui s’affiche, choisissez l’option 1 pour ouvrir une session offrant un accès complet. 
    
     ![Inscription de l’appareil StorSimple 2](./media/storsimple-configure-and-register-device-gov/HCS_RegisterYourDevice2-gov-include.png)
-5. Effectuer hello suivant les paramètres de procédure tooconfigure hello réseau minimaux requis pour votre appareil.
+5. Procédez comme suit pour configurer les paramètres réseau minimum requis pour votre appareil.
    
    > [!IMPORTANT]
-   > Ces étapes de configuration doivent toobe effectuée sur le contrôleur actif de hello du périphérique de hello. menu de console série Hello indique l’état du contrôleur hello dans message de bannière hello. Si vous ne sont pas connecter contrôleur actif de toohello, se déconnecter, puis connectez contrôleur actif de toohello.
+   > Ces étapes de configuration doivent être effectuées sur le contrôleur actif de l’appareil. Le menu de la console en série indique l’état du contrôleur dans le message de bannière. Si vous n’êtes pas connecté au contrôleur actif, déconnectez-vous, puis connectez-vous à ce contrôleur.
    > 
    > 
    
-   1. À l’invite de commandes hello, tapez votre mot de passe. mot de passe par défaut Hello est **Password1**.
-   2. Tapez hello de commande suivante :
+   1. À l’invite de commandes, tapez votre mot de passe. Le mot de passe par défaut de l’appareil est **Password1**.
+   2. Tapez la commande suivante : 
       
         `Invoke-HcsSetupWizard`
-   3. Un Assistant d’installation s’affiche toohelp configurer les paramètres de réseau hello pour appareil de hello. Fournissez hello informations suivantes : 
+   3. Un Assistant Installation s’affiche pour vous aider à configurer les paramètres réseau de l’appareil. Fournissez les informations suivantes : 
       
       * Adresse IP de l’interface réseau DATA 0
       * Masque de sous-réseau
@@ -29,27 +29,27 @@
       * Adresse IP du serveur NTP principal
       
       > [!NOTE]
-      > Vous avez peut-être toowait pendant quelques minutes pour le masque de sous-réseau hello et toobe de paramètres DNS appliqué. 
+      > Vous devrez peut-être attendre quelques minutes que les paramètres de masque de sous-réseau et de DNS soient appliqués. 
       > 
       > 
    4. Configurez éventuellement votre serveur proxy web.
       
       > [!IMPORTANT]
-      > Bien que la configuration du proxy web soit facultative, si vous en utilisez un, vous pouvez uniquement le configurer ici. Pour plus d’informations, consultez trop[configurer un proxy web pour votre appareil](../articles/storsimple/storsimple-configure-web-proxy.md). 
+      > Bien que la configuration du proxy web soit facultative, si vous en utilisez un, vous pouvez uniquement le configurer ici. Pour plus d’informations, consultez la section [Configuration du proxy web pour votre appareil](../articles/storsimple/storsimple-configure-web-proxy.md). 
       > 
       > 
-6. Appuyez sur Ctrl + C Assistant d’installation tooexit hello.
-7. Installez les mises à jour hello comme suit :
+6. Appuyez sur Ctrl+C pour quitter l’Assistant Installation.
+7. Installez les mises à jour comme suit :
    
-   1. Utilisez hello suivant tooset de l’applet de commande des adresses IP sur les deux contrôleurs hello :
+   1. Pour définir les adresses IP sur les deux contrôleurs, utilisez l’applet de commande suivante :
       
       `Set-HcsNetInterface -InterfaceAlias Data0 -Controller0IPv4Address <Controller0 IP> -Controller1IPv4Address <Controller1 IP>`
-   2. À l’invite de commandes hello, exécutez `Get-HcsUpdateAvailability`. Vous devez recevoir une notification indiquant que les mises à jour sont disponibles.
-   3. Exécutez `Start-HcsUpdate`. Vous pouvez exécuter cette commande sur n’importe quel nœud. Les mises à jour seront appliquées sur le premier contrôleur de hello, hello contrôleur bascule et puis hello mises à jour seront appliquées sur hello autre contrôleur.
+   2. À l’invite de commandes, exécutez `Get-HcsUpdateAvailability`. Vous devez recevoir une notification indiquant que les mises à jour sont disponibles.
+   3. Exécutez `Start-HcsUpdate`. Vous pouvez exécuter cette commande sur n’importe quel nœud. Les mises à jour sont appliquées sur le premier contrôleur, le contrôleur bascule, puis les mises à jour sont appliquées à l’autre contrôleur.
       
-      Vous pouvez surveiller la progression hello de mise à jour hello en exécutant `Get-HcsUpdateStatus`.    
+      Pour surveiller la progression de la mise à jour, exécutez `Get-HcsUpdateStatus`.    
       
-      Hello résultat de l’exemple suivant illustre hello mise à jour en cours d’exécution.
+      L’exemple de sortie suivant indique que la mise à jour est en cours.
       
       ````
       Controller0>Get-HcsUpdateStatus
@@ -60,7 +60,7 @@
       Controller1Events   : 
       ````
       
-      Hello suivant l’exemple de sortie indique que cette mise à jour hello est terminée.
+      L’exemple de sortie suivant indique que la mise à jour est terminée.
       
       ````
       Controller1>Get-HcsUpdateStatus
@@ -73,68 +73,68 @@
       
       ````
       
-      Il peut prendre des heures too11 tooapply tous hello mises à jour, y compris hello mises à jour Windows.
+      L’application de toutes les mises à jour, y compris Windows Updates, peut prendre jusqu’à 11 heures.
 
-8. Une fois toutes les hello mises à jour sont correctement installés, hello exécutez tooconfirm applet de commande suivant qui hello logicielles mises à jour ont été appliquées correctement :
+8. Une fois toutes les mises à jour installées, exécutez l’applet de commande suivante pour confirmer que les mises à jour logicielles ont été appliquées correctement :
    
      `Get-HcsSystem`
    
-    Vous devez voir hello versions suivantes :
+    Vous devez voir les versions suivantes :
    
    * HcsSoftwareVersion : 6.3.9600.17491
    * CisAgentVersion : 1.0.9037.0
    * MdsAgentVersion : 26.0.4696.1433
-9. Exécution hello suivant tooconfirm applet de commande qui hello mise à jour du microprogramme a été appliqué correctement :
+9. Exécutez l’applet de commande suivante pour confirmer que la mise à jour du microprogramme a été appliquée correctement :
    
     `Start-HcsFirmwareCheck`.
    
-     état du microprogramme Hello doit être **UpToDate**.
-10. Exécutez hello suivant le portail de Microsoft Azure Government applet de commande toopoint hello appareils toohello (car elle pointe toohello portail classique Azure public par défaut). Les deux contrôleurs redémarrent. Nous vous recommandons d’utiliser deux sessions PuTTY toosimultaneously connecter tooboth contrôleurs afin que vous puissiez voir quand chaque contrôleur est redémarré.
+     L’état du microprogramme doit être **À jour**.
+10. Exécutez l’applet de commande suivante pour faire pointer l’appareil vers le portail Microsoft Azure Government (il pointe en effet vers le portail Azure Classic par défaut). Les deux contrôleurs redémarrent. Nous vous recommandons d’utiliser deux sessions PuTTY pour vous connecter simultanément aux deux contrôleurs afin de voir quand chacun d’eux est redémarré.
     
      `Set-CloudPlatform -AzureGovt_US`
     
-    Un message de confirmation s’affiche. Accepter la valeur par défaut hello (**Y**).
-11. Exécutez hello après l’installation de tooresume d’applet de commande :
+    Un message de confirmation s’affiche. Acceptez la valeur par défaut (**Y**).
+11. Exécutez l’applet de commande suivante pour reprendre l’installation :
     
      `Invoke-HcsSetupWizard`
     
      ![Reprise de l’Assistant Installation](./media/storsimple-configure-and-register-device-gov/HCS_ResumeSetup-gov-include.png)
     
-    Lorsque vous reprenez le programme d’installation, Assistant de hello sera version hello Update 1 (qui correspond à tooversion 17469). 
-12. Acceptez les paramètres de réseau hello. Un message de validation apparaît lorsque vous acceptez un paramètre.
-13. Pour des raisons de sécurité, mot de passe administrateur hello appareil expire au bout de hello première session, et vous devrez toochange informatique maintenant. Lorsque vous y êtes invité, fournissez un mot de passe administrateur de l’appareil. Un mot de passe administrateur d’appareil valide doit comprendre entre 8 et 15 caractères. Hello mot de passe doit contenir 3 des éléments suivants de hello : caractères en minuscules, majuscules, numériques et spéciaux.
+    Lorsque vous reprenez l’installation, l’Assistant a la version Update 1 (qui correspond à la version 17469). 
+12. Acceptez les paramètres réseau. Un message de validation apparaît lorsque vous acceptez un paramètre.
+13. Pour des raisons de sécurité, le mot de passe administrateur de l’appareil expire après la première session, et vous devez le modifier maintenant. Lorsque vous y êtes invité, fournissez un mot de passe administrateur de l’appareil. Un mot de passe administrateur d’appareil valide doit comprendre entre 8 et 15 caractères. Le mot de passe doit contenir trois des éléments suivants : caractères en minuscules, en majuscules, numériques et spéciaux.
     
     <br/>![Inscription de l’appareil StorSimple 5](./media/storsimple-configure-and-register-device-gov/HCS_RegisterYourDevice5_gov-include.png)
-14. étape finale de Hello dans l’Assistant Installation de hello inscrit votre appareil avec hello service StorSimple Manager. Pour ce faire, vous serez peut-être hello clé d’inscription de service que vous avez obtenue dans [étape 2 : clé d’inscription Get hello](#step-2-get-the-service-registration-key). Une fois que vous fournissez la clé d’inscription de hello, vous devrez peut-être toowait 2-3 minutes avant l’inscription de périphérique de hello.
+14. La dernière étape de l’Assistant Installation inscrit votre appareil auprès du service StorSimple Manager. Pour cela, vous avez besoin de la clé d’inscription de service que vous avez obtenue à [l’étape 2 : obtention de la clé d’inscription](#step-2-get-the-service-registration-key). Après avoir entré la clé d’inscription, vous devrez peut-être attendre 2 à 3 minutes avant que l’appareil ne soit inscrit.
     
     > [!NOTE]
-    > Vous pouvez appuyer sur Ctrl + C à n’importe quel Assistant Installation de temps tooexit hello. Si vous avez entré tous les paramètres de réseau hello (adresse IP de Data 0, masque de sous-réseau et passerelle), les entrées sont conservées.
+    > Vous pouvez appuyer sur Ctrl + C à tout moment pour quitter l’Assistant Installation. Si vous avez entré tous les paramètres réseau (adresse IP pour Data 0, masque de sous-réseau et passerelle), vos entrées sont conservées.
     > 
     > 
     
     ![Progression de l’inscription de StorSimple](./media/storsimple-configure-and-register-device-gov/HCS_RegistrationProgress-gov-include.png)
-15. Après l’inscription d’appareil de hello, une clé de chiffrement de données de Service s’affiche. Copiez-la et enregistrez-la en lieu sûr. **Cette clé sera requise avec hello service d’inscription tooregister clé des unités supplémentaires dans hello service StorSimple Manager.** Consultez trop[sécurité StorSimple](../articles/storsimple/storsimple-security.md) pour plus d’informations sur cette clé.
+15. Une fois l’appareil inscrit, une clé de chiffrement de données de service s’affiche. Copiez-la et enregistrez-la en lieu sûr. **Cette clé et la clé d’enregistrement de service sont requises pour l’inscription d’appareils supplémentaires avec le service StorSimple Manager.** Reportez-vous à la section [Sécurité StorSimple](../articles/storsimple/storsimple-security.md) pour plus d’informations sur cette clé.
     
     ![Inscription de l’appareil StorSimple 7](./media/storsimple-configure-and-register-device-gov/HCS_RegisterYourDevice7_gov-include.png)    
     
     > [!IMPORTANT]
-    > texte hello de toocopy à partir de la fenêtre de console série hello, sélectionnez simplement le texte hello. Vous devez maintenant être en mesure de toopaste dans le Presse-papiers de hello ou un éditeur de texte. 
+    > Pour copier le texte à partir de la fenêtre de console de série, sélectionnez-le simplement. Vous devez ensuite pouvoir le coller dans le Presse-papiers ou dans un éditeur de texte. 
     > 
-    > N’utilisez pas de Ctrl + C toocopy hello clé de chiffrement. À l’aide de Ctrl + C Assitant vous tooexit hello le programme d’installation. Par conséquent, mot de passe administrateur hello périphérique ne sera pas modifié et l’appareil hello seront rétablis toohello un mot de passe par défaut.
+    > N’utilisez PAS Ctrl + C pour copier la clé de chiffrement de données de service. Cette combinaison de touches ferme l’Assistant Installation. Par conséquent, le mot de passe administrateur de l’appareil n’est pas modifié et l’appareil rétablit le mot de passe par défaut.
     > 
     > 
-16. Quittez la console série hello.
-17. Retournez toohello portail Azure du gouvernement et terminer hello comme suit :
+16. Quittez la console en série.
+17. Revenez au portail Azure Government et procédez comme suit :
     
-    1. Double-cliquez sur votre hello tooaccess du service StorSimple Manager **Quick Start** page.
+    1. Double-cliquez sur le service StorSimple Manager pour accéder à la page **Démarrage rapide** .
     2. Cliquez sur **Afficher les appareils connectés**.
-    3. Sur hello **périphériques** page, vérifiez que cet appareil hello toohello service connecté en vérifiant hello état. état du périphérique Hello doit être **Online**.
+    3. Sur la page **Appareils** , vérifiez que l’appareil s’est bien connecté au service en vérifiant son état. L’état de l’appareil doit être **En ligne**.
        
         ![Page Appareils StorSimple](./media/storsimple-configure-and-register-device-gov/HCS_DeviceOnline-gov-include.png) 
        
-        Si l’état du périphérique hello est **hors connexion**, attendez quelques minutes pour hello appareil toocome en ligne. 
+        Si l’état de l’appareil est **Hors ligne**, attendez quelques minutes qu’il soit en ligne. 
        
-        Si les appareils hello sont encore hors connexion après quelques minutes, vous devez toomake que votre réseau de pare-feu a été configuré comme décrit dans [configuration réseau requise pour votre appareil StorSimple](../articles/storsimple/storsimple-system-requirements.md). 
+        Si l’appareil est toujours déconnecté après quelques minutes, vous devez vous assurer que votre réseau de pare-feu a été configuré comme décrit dans [Configuration réseau requise pour votre appareil StorSimple](../articles/storsimple/storsimple-system-requirements.md). 
        
-        Vérifiez que le port 9354 est ouvert aux communications sortantes comme il est utilisé par bus de service hello pour la communication de service sur l’appareil StorSimple Manager.
+        Vérifiez que le port 9354 est ouvert pour la communication sortante, car le Service Bus l’utilise pour la communication entre le service StorSimple Manager et l’appareil.
 

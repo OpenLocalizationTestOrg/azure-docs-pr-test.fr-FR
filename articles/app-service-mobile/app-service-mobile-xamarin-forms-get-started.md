@@ -1,6 +1,6 @@
 ---
-title: "aaaGet démarrée avec des applications mobiles à l’aide de Xamarin.Forms"
-description: "Suivez ce didacticiel toostart à l’aide des applications mobiles pour le développement de Xamarin.Forms"
+title: "Prise en main de Mobile Apps à l’aide de Xamarin.Forms"
+description: "Suivez ce didacticiel pour commencer à utiliser Azure Mobile Apps pour le développement Xamarin.Forms"
 services: app-service\mobile
 documentationcenter: xamarin
 author: ggailey777
@@ -14,172 +14,172 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: af6b1c1ce4cf91c397552aa3d8ee40728129238c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ee12caaad4095cff6dae3282f747ae804f93db81
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-a-xamarinforms-app"></a>Créer une application Xamarin.Forms
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Ce didacticiel vous montre comment une application mobile principaux services de cloud computing tooa Xamarin.Forms à l’aide de tooadd hello fonctionnalité des applications mobiles de Service d’applications Azure en tant que serveur principal de hello. Vous allez créer un serveur principal d’applications mobiles et une simple application Xamarin.Forms de liste de tâches qui stocke les données d’application dans Azure.
+Ce didacticiel vous montre comment ajouter un service principal cloud à une application Xamarin.Forms en utilisant la fonctionnalité Azure Mobile Apps d’Azure App Service en tant que back end. Vous allez créer un serveur principal d’applications mobiles et une simple application Xamarin.Forms de liste de tâches qui stocke les données d’application dans Azure.
 
 Vous devez suivre ce didacticiel avant de pouvoir suivre tous les autres didacticiels Mobile Apps pour les applications Xamarin.Forms.
 
 ## <a name="prerequisites"></a>Composants requis
-toocomplete ce didacticiel, vous devez hello suivant :
+Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
 
-* Un compte Azure actif. Si vous n’avez pas un compte, vous pouvez souscrire à la période d’évaluation d’Azure et obtenir des too10 libre les applications mobiles que vous pouvez continuer à utiliser même après la fin de votre version d’évaluation. Pour plus d’informations, consultez la page [Version d’évaluation gratuite d’Azure](https://azure.microsoft.com/pricing/free-trial/).
+* Un compte Azure actif. Si vous n'avez pas de compte, vous pouvez vous inscrire pour une évaluation d'Azure et obtenir jusqu'à 10 applications mobiles gratuites que vous pourrez conserver après l'expiration de votre période d'évaluation. Pour plus d’informations, consultez la page [Version d’évaluation gratuite d’Azure](https://azure.microsoft.com/pricing/free-trial/).
 
-* Visual Studio avec Xamarin. Pour plus d’informations, consultez hello [définir configurer et installer Visual Studio et Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) page.
+* Visual Studio avec Xamarin. Pour plus d’informations, consultez la page [Configuration et installation pour Visual Studio et Xamarin](https://msdn.microsoft.com/library/mt613162.aspx).
 
 * Un Mac sur lequel sont installés Xcode v7.0 ou version ultérieure et Xamarin Studio Community. Pour plus d’informations, consultez les articles [Configurer et installer Visual Studio et Xamarin](https://msdn.microsoft.com/library/mt613162.aspx) et [Configurer, installer et vérifier pour les utilisateurs de Mac](https://msdn.microsoft.com/library/mt488770.aspx) (MSDN).
 
 ## <a name="create-a-new-mobile-apps-back-end"></a>Créer un back end Mobile Apps
 
-toocreate mettre fin à un nouveau Mobile Apps précédent, procédez comme hello suivant :
+Pour créer un nouveau back end Mobile Apps, procédez comme suit :
 
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
-Vous avez maintenant configuré un back end Mobile Apps que vos applications client mobiles peuvent utiliser. Ensuite, télécharger un projet de serveur pour des tâches simples liste principale et publiez-le tooAzure.
+Vous avez maintenant configuré un back end Mobile Apps que vos applications client mobiles peuvent utiliser. Vous allez ensuite télécharger un projet de serveur pour un simple back end de liste de tâches et le publier dans Azure.
 
-## <a name="configure-hello-server-project"></a>Configurer le projet de serveur hello
+## <a name="configure-the-server-project"></a>Configurer le projet de serveur
 
-toouse de project server tooconfigure hello hello back-end Node.js ou .NET, hello suivant :
+Pour configurer le projet de serveur de sorte qu’il utilise le back end Node.js ou .NET, procédez comme suit :
 
 [!INCLUDE [app-service-mobile-configure-new-backend](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## <a name="download-and-run-hello-xamarinforms-solution"></a>Téléchargez et exécutez la solution de Xamarin.Forms hello
+## <a name="download-and-run-the-xamarinforms-solution"></a>Télécharger et exécuter la solution Xamarin.Forms
 
-Vous pouvez télécharger la solution hello de deux manières. Téléchargez-le tooa Mac et ouvrez-le dans Xamarin Studio, ou téléchargez-le tooa l’ordinateur Windows et ouvrez-le dans Visual Studio à l’aide d’un Mac en réseau pour la création d’application iOS de hello. Pour plus d’informations, consultez la page [Configuration et installation pour Visual Studio et Xamarin](https://msdn.microsoft.com/library/mt613162.aspx).
+Vous pouvez télécharger la solution de la manière de votre choix. Téléchargez la solution sur un Mac et ouvrez-la dans Xamarin Studio, ou bien téléchargez la solution sur un ordinateur Windows et ouvrez-la dans Visual Studio à l’aide d’un ordinateur Mac connecté au réseau pour la création de l’application iOS. Pour plus d’informations, consultez la page [Configuration et installation pour Visual Studio et Xamarin](https://msdn.microsoft.com/library/mt613162.aspx).
 
-Sur un ordinateur Mac ou Windows, hello suivant :
+Sur un ordinateur Mac ou Windows, procédez comme suit :
 
-1. Accédez toohello [portail Azure].
+1. Accédez au [portail Azure].
 
-2. Sur hello **paramètres** panneau pour votre application mobile, sous **Mobile**, sélectionnez **prise en main** > **Xamarin.Forms**. À l’**étape 3**, sélectionnez **Créer une application**, puis sélectionnez **Télécharger**.
+2. Dans le panneau **Paramètres** de votre application mobile, dans **Mobile**, cliquez sur **Commencer** > **Xamarin.Forms**. À l’**étape 3**, sélectionnez **Créer une application**, puis sélectionnez **Télécharger**.
 
-   Cette action télécharge un projet qui contient une application cliente qui est connecté tooyour des applications mobiles. Enregistrer l’ordinateur local du tooyour fichier projet compressée hello et prenez note d’où vous l’enregistrez.
+   Cette action télécharge un projet qui contient une application cliente connectée à votre application mobile. Enregistrez le fichier projet compressé sur votre ordinateur local et notez l'emplacement où vous l'avez enregistré.
 
-3. Extraire le projet hello que vous avez téléchargé, puis ouvrez-le dans Visual Studio (Windows) ou de Xamarin Studio (Mac).
+3. Extrayez le projet que vous avez téléchargé, puis ouvrez-le dans Xamarin Studio (Mac) ou Visual Studio (Windows).
 
    ![Projet extrait dans Xamarin Studio][9]
 
    ![Projet extrait dans Visual Studio][8]
 
-## <a name="optional-run-hello-ios-project"></a>(Facultatif) Exécutez le projet iOS de hello
-Dans cette section, vous exécutez projet d’iOS Xamarin hello pour les appareils iOS. Vous pouvez ignorer cette section si vous n’utilisez pas d’appareils iOS.
+## <a name="optional-run-the-ios-project"></a>(Facultatif) Exécuter le projet iOS
+Dans cette section, vous exécutez le projet iOS Xamarin pour les appareils iOS. Vous pouvez ignorer cette section si vous n’utilisez pas d’appareils iOS.
 
 #### <a name="in-xamarin-studio"></a>Dans Xamarin Studio
-1. Projet d’iOS hello d’avec le bouton droit et sélectionnez **définir comme projet de démarrage**.
+1. Cliquez avec le bouton droit sur le projet iOS, puis cliquez sur **Définir comme projet de démarrage**.
 
-2. Sur hello **exécuter** menu, sélectionnez **démarrer le débogage** toobuild hello du projet et démarrer l’application hello dans l’émulateur d’iPhone hello.
+2. Dans le menu **Exécuter**, cliquez sur **Démarrer le débogage** pour créer le projet et démarrer l’application dans l’émulateur iPhone.
 
 #### <a name="in-visual-studio"></a>Dans Visual Studio
-1. Projet d’iOS hello d’avec le bouton droit et sélectionnez **définir comme projet de démarrage**.
+1. Cliquez avec le bouton droit sur le projet iOS, puis cliquez sur **Définir comme projet de démarrage**.
 
-2. Sur hello **générer** menu, sélectionnez **Configuration Manager**.
+2. Dans le menu **Générer**, cliquez sur **Gestionnaire de configuration**.
 
-3. Bonjour **Configuration Manager** boîte de dialogue, sélectionnez hello **générer** et **déployer** projet iOS toohello suivant de cases à cocher.
+3. Dans la boîte de dialogue **Gestionnaire de configuration**, cochez les cases **Générer** et **Déployer** situées à côté du projet iOS.
 
-4. toobuild hello du projet et démarrer l’application hello dans l’émulateur de hello iPhone, sélectionnez hello **F5** clé.
+4. Pour générer le projet et démarrer l’application dans l’émulateur iPhone, appuyez sur la touche **F5**.
 
    > [!NOTE]
-   > Si vous avez des problèmes de génération de projet de hello, exécutez hello NuGet package manager et mise à jour toohello version la plus récente des packages de prise en charge de Xamarin hello. Projets de démarrage rapide peuvent être lente tooupdate toohello versions les plus récentes.    
+   > Si vous avez des problèmes pour générer le projet, exécutez le gestionnaire de package NuGet et mettez à jour vers la dernière version des packages de support Xamarin. La mise à jour des dernières versions des projets de démarrage rapide peut être lente.    
    >
    >
 
-5. Dans l’application hello, tapez un texte explicite, tel que *Xamarin d’en savoir plus*, et puis sélectionnez hello signe plus (**+**).
+5. Dans l’application, tapez un texte explicite, tel que *Découvrir Xamarin*, puis cliquez sur le bouton « + » (**+**).
 
     ![][10]
 
-    Cette action envoie un toohello de demande post que nouvelles applications mobiles back-end qui est hébergé dans Azure. Les données à partir de la demande de hello sont insérées dans la table TodoItem de hello. Les éléments qui sont stockés dans la table de hello sont retournés par hello dans les applications mobiles se termine et hello données sont affichées dans la liste de hello.
+    Cette action envoie une demande post vers le back end Mobile Apps qui est hébergé dans Azure. Les données de la requête sont insérées dans la table TodoItem. Les éléments stockés dans cette table sont renvoyés par le backend Mobile Apps et les données sont affichées dans la liste.
 
     > [!NOTE]
-    > Vous trouverez le code hello qui accède à vos applications mobiles back-end Bonjour c# TodoItemManager.cs le fichier de projet de bibliothèque de classes portable hello de votre solution.
+    > Vous trouverez le code qui vous permet d’accéder à votre back end Mobile Apps dans le fichier C# TodoItemManager.cs du projet de bibliothèque de classes portables de votre solution.
     >
     >
 
-## <a name="optional-run-hello-android-project"></a>(Facultatif) Exécutez le projet Android de hello
-Dans cette section, vous exécutez le projet de droid Xamarin hello pour Android. Vous pouvez ignorer cette section si vous n’utilisez pas d’appareils Android.
+## <a name="optional-run-the-android-project"></a>(Facultatif) Exécuter le projet Android
+Dans cette section, vous exécutez le projet droïde Xamarin pour Android. Vous pouvez ignorer cette section si vous n’utilisez pas d’appareils Android.
 
 #### <a name="in-xamarin-studio"></a>Dans Xamarin Studio
 
-1. Les projets Android hello d’avec le bouton droit et sélectionnez **définir comme projet de démarrage**.
+1. Cliquez avec le bouton droit sur le projet Android, puis cliquez sur **Définir comme projet de démarrage**.
 
-2. toobuild hello du projet et démarrer l’application hello dans un émulateur Android, sur hello **exécuter** menu, sélectionnez **démarrer le débogage**.
+2. Pour générer le projet et démarrer l’application dans l’émulateur Android, dans le menu **Exécuter**, cliquez sur **Démarrer le débogage**.
 
 #### <a name="in-visual-studio"></a>Dans Visual Studio
 
-1. Projet Android (Droid) de hello d’avec le bouton droit et sélectionnez **définir comme projet de démarrage**.
+1. Cliquez avec le bouton droit sur le projet Android (Droid), puis cliquez sur **Définir comme projet de démarrage**.
 
-2. Sur hello **générer** menu, sélectionnez **Configuration Manager**.
+2. Dans le menu **Générer**, cliquez sur **Gestionnaire de configuration**.
 
-3. Bonjour **Configuration Manager** boîte de dialogue, sélectionnez hello **générer** et **déployer** prochain projet de Android toohello cases à cocher.
+3. Dans la boîte de dialogue **Gestionnaire de configuration**, cochez les cases **Générer** et **Déployer** situées à côté du projet Android.
 
-4. toobuild hello du projet et démarrer l’application hello dans un émulateur Android, sélectionnez hello **F5** clé.
+4. Pour générer le projet et démarrer l’application dans l’émulateur Android, appuyez sur la touche **F5**.
 
    > [!NOTE]
-   > Si vous avez des problèmes de génération de projet de hello, exécutez hello NuGet package manager et mise à jour toohello version la plus récente des packages de prise en charge de Xamarin hello. Projets de démarrage rapide peuvent être lente tooupdate toohello versions les plus récentes.    
+   > Si vous avez des problèmes pour générer le projet, exécutez le gestionnaire de package NuGet et mettez à jour vers la dernière version des packages de support Xamarin. La mise à jour des dernières versions des projets de démarrage rapide peut être lente.    
    >
    >
 
-5. Dans l’application hello, tapez un texte explicite, tel que *Xamarin d’en savoir plus*, et puis sélectionnez hello signe plus (**+**).
+5. Dans l’application, tapez un texte explicite, tel que *Découvrir Xamarin*, puis cliquez sur le bouton « + » (**+**).
 
     ![][11]
     
-    Cette action envoie un toohello de demande post que nouvelles applications mobiles back-end qui est hébergé dans Azure. Les données à partir de la demande de hello sont insérées dans la table TodoItem de hello. Les éléments qui sont stockés dans la table de hello sont retournés par hello dans les applications mobiles se termine et hello données sont affichées dans la liste de hello.
+    Cette action envoie une demande post vers le back end Mobile Apps qui est hébergé dans Azure. Les données de la requête sont insérées dans la table TodoItem. Les éléments stockés dans cette table sont renvoyés par le backend Mobile Apps et les données sont affichées dans la liste.
     
     > [!NOTE]
-    > Vous trouverez le code hello qui accède à vos applications mobiles back-end Bonjour c# TodoItemManager.cs le fichier de projet de bibliothèque de classes portable hello de votre solution.
+    > Vous trouverez le code qui vous permet d’accéder à votre back end Mobile Apps dans le fichier C# TodoItemManager.cs du projet de bibliothèque de classes portables de votre solution.
     >
     >
 
-## <a name="optional-run-hello-windows-project"></a>(Facultatif) Exécutez le projet d’application Windows hello
+## <a name="optional-run-the-windows-project"></a>(Facultatif) Exécuter le projet Windows
 
-Dans cette section, vous exécutez hello projet Xamarin WinApp pour les appareils Windows. Vous pouvez ignorer cette section si vous n’utilisez pas d’appareils Windows.
+Dans cette section, vous exécutez le projet WinApp Xamarin pour les appareils Windows. Vous pouvez ignorer cette section si vous n’utilisez pas d’appareils Windows.
 
 #### <a name="in-visual-studio"></a>Dans Visual Studio
 
-1. Cliquez sur un des projets d’application Windows hello et sélectionnez **définir comme projet de démarrage**.
+1. Cliquez avec le bouton droit sur les projets Windows, puis cliquez sur **Définir comme projet de démarrage**.
 
-2. Sur hello **générer** menu, sélectionnez **Configuration Manager**.
+2. Dans le menu **Générer**, cliquez sur **Gestionnaire de configuration**.
 
-3. Bonjour **Configuration Manager** boîte de dialogue, sélectionnez hello **générer** et **déployer** cases à cocher prochain toohello Windows projet que vous avez choisi.
+3. Dans la boîte de dialogue **Gestionnaire de configuration**, cochez les cases **Générer** et **Déployer** situées à côté du projet Windows que vous avez choisi.
 
-4. toobuild hello du projet et démarrer l’application hello dans un émulateur de Windows, sélectionnez hello **F5** clé.
+4. Pour générer le projet et démarrer l’application dans un émulateur Windows, appuyez sur la touche **F5**.
 
    > [!NOTE]
-   > Si vous avez des problèmes de génération de projet de hello, exécutez hello NuGet package manager et mise à jour toohello version la plus récente des packages de prise en charge de Xamarin hello. Projets de démarrage rapide peuvent être lente tooupdate toohello versions les plus récentes.    
+   > Si vous avez des problèmes pour générer le projet, exécutez le gestionnaire de package NuGet et mettez à jour vers la dernière version des packages de support Xamarin. La mise à jour des dernières versions des projets de démarrage rapide peut être lente.    
    >
    >
 
-5. Dans l’application hello, tapez un texte explicite, tel que *Xamarin d’en savoir plus*, et puis sélectionnez hello signe plus (**+**).
+5. Dans l’application, tapez un texte explicite, tel que *Découvrir Xamarin*, puis cliquez sur le bouton « + » (**+**).
 
-    Cette action envoie un toohello de demande post que nouvelles applications mobiles back-end qui est hébergé dans Azure. Les données à partir de la demande de hello sont insérées dans la table TodoItem de hello. Les éléments qui sont stockés dans la table de hello sont retournés par hello dans les applications mobiles se termine et hello données sont affichées dans la liste de hello.
+    Cette action envoie une demande post vers le back end Mobile Apps qui est hébergé dans Azure. Les données de la requête sont insérées dans la table TodoItem. Les éléments stockés dans cette table sont renvoyés par le backend Mobile Apps et les données sont affichées dans la liste.
     
     ![][12]
     
     > [!NOTE]
-    > Vous trouverez le code hello qui accède à vos applications mobiles back-end Bonjour c# TodoItemManager.cs le fichier de projet de bibliothèque de classes portable hello de votre solution.
+    > Vous trouverez le code qui vous permet d’accéder à votre back end Mobile Apps dans le fichier C# TodoItemManager.cs du projet de bibliothèque de classes portables de votre solution.
     >
     >
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Ajouter une application de tooyour d’authentification](app-service-mobile-xamarin-forms-get-started-users.md)  
-  Découvrez comment tooauthenticate les utilisateurs de votre application avec un fournisseur d’identité.
+* [Ajout de l’authentification à votre application](app-service-mobile-xamarin-forms-get-started-users.md)  
+  Découvrez comment authentifier les utilisateurs de votre application avec un fournisseur d’identité.
 
-* [Ajouter une application de tooyour de notifications push](app-service-mobile-xamarin-forms-get-started-push.md)  
-  Découvrez comment les notifications push tooadd prennent en charge tooyour application et configurer vos applications mobiles back-end toouse Azure Notification Hubs toosend hello des notifications push.
+* [Ajouter des notifications Push à votre application Android](app-service-mobile-xamarin-forms-get-started-push.md)  
+  Découvrez comment ajouter la prise en charge des notifications Push à votre application et configurer le back end Mobile Apps pour utiliser Azure Notification Hubs afin d’envoyer les notifications Push.
 
 * [Activer la synchronisation hors connexion pour votre application](app-service-mobile-xamarin-forms-get-started-offline-data.md)  
-  Découvrez comment tooadd la prise en charge en mode hors connexion pour votre application à l’aide d’un Mobile Apps back-end. La synchronisation hors connexion permet d’afficher, d’ajouter ou de modifier les données d’une application mobile même en l’absence de connexion au réseau.
+  Découvrez comment ajouter une prise en charge hors connexion à votre application à l’aide d’un serveur principal Mobile Apps. La synchronisation hors connexion permet d’afficher, d’ajouter ou de modifier les données d’une application mobile même en l’absence de connexion au réseau.
 
-* [Utiliser les clients gérés hello pour les applications mobiles](app-service-mobile-dotnet-how-to-use-client-library.md)  
-  Découvrez comment toowork avec hello gérées client SDK dans votre application Xamarin.
+* [Utilisation du client géré pour Mobile Apps](app-service-mobile-dotnet-how-to-use-client-library.md)  
+  Découvrez comment utiliser le Kit de développement logiciel (SDK) dans votre application Xamarin.
 
 <!-- Anchors. -->
 [Get started with Mobile Apps back ends]:#getting-started

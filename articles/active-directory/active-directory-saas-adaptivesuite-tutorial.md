@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Adaptative Suite | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et de la Suite adaptative."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Adaptive Suite."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,110 +13,110 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/22/2017
 ms.author: jeedes
-ms.openlocfilehash: af309c27ab74098c1e229c80adb11c96dc2774fb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5d7ba2f4c7d814e3aaa1bf804ddc5030380ccb2d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-adaptive-suite"></a>Didacticiel : Intégration d’Azure Active Directory à Adaptative Suite
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Suite adaptative avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Adaptive Suite dans Azure Active Directory (Azure AD).
 
-Intégration Suite adaptative à Azure AD offre hello avantages suivants :
+L’intégration d’Adaptive Suite dans Azure AD offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooAdaptive Suite
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooAdaptive Suite (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à Adaptive Suite
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Adaptive Suite (par le biais de l’authentification unique) avec leur compte Azure AD
+- Vous pouvez gérer vos comptes depuis un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec Suite adaptative, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD dans Adaptive Suite, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Adaptive Suite pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de Suite adaptative à partir de la galerie de hello
+1. Ajout d’Adaptive Suite à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-adaptive-suite-from-hello-gallery"></a>Ajout de Suite adaptative à partir de la galerie de hello
-intégration de hello tooconfigure de Suite adaptative dans Azure AD, vous devez tooadd Suite adaptative à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-adaptive-suite-from-the-gallery"></a>Ajout d’Adaptive Suite à partir de la galerie
+Pour configurer l’intégration d’Adaptive Suite dans Azure AD, vous devez ajouter Adaptive Suite, disponible dans la galerie, à votre liste d’applications SaaS gérées.
 
-**tooadd Suite adaptative à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Adaptive Suite à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **Suite adaptative**.
+4. Dans la zone de recherche, tapez **Adaptive Suite**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-adaptivesuite-tutorial/tutorial_adaptivesuite_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **Suite adaptative**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le volet de résultats, sélectionnez **Adaptive Suite**, puis cliquez sur **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-adaptivesuite-tutorial/tutorial_adaptivesuite_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Adaptive Suite, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur équivalent hello Suite adaptative est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur dans la Suite adaptative hello doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Adaptive Suite correspondant dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur Adaptive Suite associé doit être établie.
 
-Dans la Suite adaptative, affecter la valeur de hello de hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Adaptive Suite, assignez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec Suite adaptative, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Adaptive Suite, vous devez suivre les indications des sections ci-dessous :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test Suite adaptative](#creating-an-adaptive-suite-test-user)**  -toohave un équivalent de Britta Simon dans Suite adaptative qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Adaptive Suite](#creating-an-adaptive-suite-test-user)** pour avoir un équivalent de Britta Simon dans Adaptive Suite lié à la représentation Azure AD de l’utilisateur.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Suite adaptative.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Adaptive Suite.
 
-**tooconfigure Azure AD single sign-on avec Suite adaptative, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Adaptive Suite, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **Suite adaptative** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **Adaptive Suite**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-adaptivesuite-tutorial/tutorial_adaptivesuite_samlbase.png)
 
-3. Sur hello **adaptative Suite de domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL Adaptive Suite**, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-adaptivesuite-tutorial/tutorial_adaptivesuite_url.png)
 
-    Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://login.adaptiveinsights.com:443/samlsso/<unique-id>`
+    Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://login.adaptiveinsights.com:443/samlsso/<unique-id>`
 
     >[!NOTE]
-    > Vous pouvez obtenir cette valeur à partir de hello Suite adaptative **SAML SSO Settings** page.
+    > Vous pouvez obtenir cette valeur dans la page **SAML SSO Settings** d’Adaptive Suite.
     >  
 
-4. Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-adaptivesuite-tutorial/tutorial_adaptivesuite_certificate.png) 
 
@@ -124,123 +124,123 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-adaptivesuite-tutorial/tutorial_general_400.png)
 
-6. Sur hello **Configuration de la Suite adaptative** , cliquez sur **configurer la Suite adaptative** tooopen **configurer l’authentification** fenêtre. Hello de copie **ID d’entité SAML et SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
+6. Dans la section **Configuration d’Adaptive Suite**, cliquez sur **Configurer Adaptive Suite** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l’**ID d’entité SAML et l’URL du service d’authentification unique SAML** à partir de la **section Référence rapide**
 
     ![Configurer l’authentification unique](./media/active-directory-saas-adaptivesuite-tutorial/tutorial_adaptivesuite_configure.png) 
 
-7. Dans une fenêtre de navigateur web, ouvrez une session dans le site d’entreprise tooyour Suite adaptative en tant qu’administrateur.
+7. Dans une autre fenêtre de navigateur web, connectez-vous à votre site d’entreprise Adaptive Suite en tant qu’administrateur.
 
-8. Accédez trop**Admin**.
+8. Accédez à **Admin**.
    
     ![Administrateur](./media/active-directory-saas-adaptivesuite-tutorial/IC805644.png "Administrateur")
 
-9. Bonjour **utilisateurs et rôles** , cliquez sur **gérer les paramètres de l’authentification unique SAML**.
+9. Dans la section **Users and Roles**, cliquez sur **Manage SAML SSO Settings**.
    
     ![Gérer les paramètres d’authentification unique de SAML](./media/active-directory-saas-adaptivesuite-tutorial/IC805645.png "Gérer les paramètres d’authentification unique de SAML")
 
-10. Sur hello **SAML SSO Settings** page, effectuer hello comme suit :
+10. Dans la page **SAML SSO Settings** , procédez comme suit :
    
     ![Paramètres d’authentification unique de SAML](./media/active-directory-saas-adaptivesuite-tutorial/IC805646.png "Paramètres d’authentification unique de SAML")
 
-    a. Bonjour **nom de fournisseur d’identité** zone de texte, tapez un nom pour votre configuration.
+    a. Dans la zone de texte **Identity provider name** , attribuez un nom à votre configuration.
     
-    b. Hello de coller **ID d’entité SAML** valeur copiée à partir du portail Azure dans hello **fournisseur d’identité de l’entité** zone de texte.
+    b. Collez la valeur **ID d’entité SAML** copiée à partir du portail Azure dans la zone de texte **ID d’entité du fournisseur d’identité**.
   
-    c. Hello de coller **SAML Sign-On URL du Service unique** valeur copiée à partir du portail Azure dans hello **fournisseur d’identité URL SSO** zone de texte.
+    c. Collez la valeur **URL du service d’authentification unique SAML** copiée à partir du portail Azure dans la zone de texte **URL SSO du fournisseur d’identité**.
   
-    d. Hello de coller **SAML Sign-On URL du Service unique** valeur copiée à partir du portail Azure dans hello **URL de déconnexion personnalisé** zone de texte.
+    d. Collez la valeur **URL du service d’authentification unique SAML** copiée à partir du portail Azure dans la zone de texte **Custom logout URL** (URL de connexion personnalisée).
   
-    e. tooupload votre certificat téléchargé, cliquez sur **choisir un fichier**.
+    e. Pour charger votre certificat téléchargé, cliquez sur **Choisir un fichier**.
   
-    f. Sélectionnez hello qui suit, pour :
+    f. Sélectionnez les options suivantes :
     * Pour **SAML user id**, sélectionnez **User’s Adaptive Insights user name**.
     * Pour **SAML user id location**, sélectionnez **User id in NameID of Subject**.
     * Pour **SAML NameID format**, sélectionnez **Email address**.
     * Pour **Enable SAML**, sélectionnez **Allow SAML SSO and direct Adaptive Insights login**.
     
-    g. Cliquez sur **Enregistrer**.
+    g. Cliquez sur **Save**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-adaptivesuite-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-adaptivesuite-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-adaptivesuite-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-adaptivesuite-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-an-adaptive-suite-test-user"></a>Création d’un utilisateur de test Adaptive Suite
 
-tooenable Azure AD les utilisateurs toolog dans tooAdaptive Suite, vous devez les configurer dans Suite adaptative.  
+Pour permettre aux utilisateurs Azure AD de se connecter à Adaptive Suite, vous devez les approvisionner dans Adaptive Suite.  
 
-* Dans les cas de hello de Suite adaptative, cette configuration est une tâche manuelle.
+* Dans le cas d’Adaptive Suite, cet approvisionnement est une tâche manuelle.
 
-**configuration, de l’utilisateur tooconfigure effectuer hello comme suit :** 
+**Pour configurer l'approvisionnement des utilisateurs, procédez comme suit :** 
 
-1. Connectez-vous à tooyour **Suite adaptative** site d’entreprise en tant qu’administrateur.
-2. Accédez trop**Admin**.
+1. Connectez-vous à votre site d’entreprise **Adaptive Suite** en tant qu’administrateur.
+2. Accédez à **Admin**.
    
    ![Administrateur](./media/active-directory-saas-adaptivesuite-tutorial/IC805644.png "Administrateur")
-3. Bonjour **utilisateurs et rôles** , cliquez sur **ajouter un utilisateur**.
+3. Dans la section **Users and Roles**, cliquez sur **Add User**.
    
    ![Ajouter un utilisateur](./media/active-directory-saas-adaptivesuite-tutorial/IC805648.png "Ajouter un utilisateur")
-4. Bonjour **nouvel utilisateur** section, effectuer hello comme suit :
+4. Dans la section **New User** , procédez comme suit :
    
    ![Envoyer](./media/active-directory-saas-adaptivesuite-tutorial/IC805649.png "Envoyer")   
 
-   a. Hello de type **nom**, **connexion**, **messagerie**, **mot de passe** d’un utilisateur Azure Active Directory valide que vous souhaitez tooprovision dans hello liée zones de texte.
+   a. Tapez le nom, l’identifiant de connexion, l’adresse de messagerie et le mot de passe de l’utilisateur Azure Active Directory valide que vous souhaitez renseigner dans les zones de texte correspondantes, à savoir, **Name**, **Login**, **Email** et **Password**.
   
    b. Sélectionnez un **rôle**.
   
    c. Cliquez sur **Envoyer**.
 
 >[!NOTE]
->Vous pouvez utiliser n’importe quel autre Suite adaptative utilisateur compte outil de création ou API fournie par la Suite adaptative tooprovision des comptes d’utilisateur AAD.
+>Vous pouvez utiliser n’importe quel autre outil ou API de création de compte d’utilisateur Adaptive Suite fourni par ce service pour approvisionner des comptes d’utilisateur Azure Active Directory.
 >  
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooAdaptive Suite.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Adaptive Suite.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooAdaptive Suite, procédez hello comme suit :**
+**Pour assigner Britta Simon à Adaptive Suite, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Suite adaptative**.
+2. Dans la liste des applications, sélectionnez **Adaptive Suite**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-adaptivesuite-tutorial/tutorial_adaptivesuite_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -248,7 +248,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -256,14 +256,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-objectif Hello de cette section est tootest votre Microsoft Azure AD Single Sign-On configuration à l’aide de hello panneau d’accès.
+L’objectif de cette section est de tester la configuration de l’authentification unique Microsoft Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque Suite adaptative hello hello volet d’accès, vous devez obtenir l’application de Suite adaptative tooyour automatiquement signé sur.
+Lorsque vous cliquez sur la vignette Adaptive Suite dans le panneau d’accès, vous devez être connecté automatiquement à votre application Adaptive Suite.
 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

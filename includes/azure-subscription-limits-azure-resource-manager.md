@@ -17,14 +17,14 @@
 
 <sup>1</sup>Les limites par défaut varient selon le type de catégorie d’offre, comme Essai gratuit ou Paiement à l’utilisation, et selon la gamme (Dv2, F, G, etc.).
 
-<sup>2</sup>Cela inclut à la fois les comptes de stockage Standard et Premium. Si vous avez besoin de plus de 200 comptes de stockage, sollicitez le [Support Azure](https://azure.microsoft.com/support/faq/)pour obtenir une assistance. équipe du stockage Azure Hello Examinez vos cas et peut approuver les comptes de stockage too250.
+<sup>2</sup>Cela inclut à la fois les comptes de stockage Standard et Premium. Si vous avez besoin de plus de 200 comptes de stockage, sollicitez le [Support Azure](https://azure.microsoft.com/support/faq/)pour obtenir une assistance. L’équipe Azure Storage examinera votre cas d’entreprise et pourra approuver jusqu’à 250 comptes de stockage.
 
-<sup>3</sup>Vous pouvez appliquer un nombre illimité de balises par abonnement. nombre de Hello de balises par ressource ou un groupe de ressources est limitée too15. Le Gestionnaire de ressources retourne uniquement un [liste de valeurs et le nom de balise unique](/rest/api/resources/tags#Tags_List) dans l’abonnement hello lorsque nombre hello de balises est inférieur ou égal à 10 000. Toutefois, vous pouvez toujours trouver une ressource par balise lorsque le nombre de hello est supérieur à 10 000.  
+<sup>3</sup>Vous pouvez appliquer un nombre illimité de balises par abonnement. Le nombre de balises par ressource ou groupe de ressources est limité à 15. Le Gestionnaire des ressources retourne uniquement une [liste comportant le nom et les valeurs de balise unique](/rest/api/resources/tags#Tags_List) dans l’abonnement lorsque le nombre de balises est inférieur ou égal à 10 000. Toutefois, vous pouvez toujours trouver une ressource par balise lorsque le nombre de balises est supérieur à 10 000.  
 
-<sup>4</sup>ces fonctionnalités ne sont plus nécessaires avec des groupes de ressources Azure et hello Azure Resource Manager.
+<sup>4</sup>Ces fonctionnalités ne sont plus nécessaires avec les groupes de ressources Azure et Azure Resource Manager.
 
 > [!NOTE]
-> Il est important tooemphasize qui cœurs de l’ordinateur virtuel ont une limite totale régionale ainsi un régionales par limite de série (Dv2, F, etc.) qui sont appliquées séparément.  Par exemple, considérons un abonnement dont le nombre total limite de cœurs de machine virtuelle est de 30 pour la région Est, de 30 pour la gamme A et de 30 pour la gamme D.  Cet abonnement serait autorisé toodeploy 30, A1 machines virtuelles, ou 30 ordinateurs virtuels de D1, ou une combinaison de hello deux pas tooexceed un total de 30 cœurs (par exemple, 10 machines virtuelles de A1 et 20 ordinateurs virtuels de D1).  
+> Il est important de noter qu’une limite totale régionale et une limite régionale par gamme de taille (Dv2, F, etc.) s’appliquent séparément aux cœurs de machine virtuelle.  Par exemple, considérons un abonnement dont le nombre total limite de cœurs de machine virtuelle est de 30 pour la région Est, de 30 pour la gamme A et de 30 pour la gamme D.  Cet abonnement serait autorisé à déployer 30 machines virtuelles A1, ou 30 machines virtuelles D1, ou encore une combinaison de ces deux types de machines dans la limite de 30 cœurs au total (par exemple, 10 machines virtuelles A1 et 20 machines virtuelles D1).  
 > <!-- -->
 > 
 > 

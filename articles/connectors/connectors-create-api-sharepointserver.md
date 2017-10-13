@@ -1,6 +1,6 @@
 ---
-title: aaaUse hello connecteur du serveur SharePoint dans vos applications logiques | Documents Microsoft
-description: Prise en main Bonjour Bonjour SharePoint Server Connector dans vos applications logiques
+title: Utiliser le connecteur SharePoint Server dans vos applications logiques | Microsoft Docs
+description: "Commencer à utiliser le connecteur SharePoint Server dans vos applications logiques"
 services: logic-apps
 documentationcenter: 
 author: MandiOhlinger
@@ -15,46 +15,46 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 3b814f42611e4971ff5c94ae3b021829217911dc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0f3274816e279a1aa57febaa2f8294914900799a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-sharepoint-connector"></a>Prise en main connecteur de SharePoint hello
-Hello connecteur SharePoint fournit un toowork de façon avec les listes sur SharePoint.
+# <a name="get-started-with-the-sharepoint-connector"></a>Prise en main du connecteur SharePoint
+Le connecteur SharePoint permet d’utiliser des listes dans SharePoint.
 
 Commencez par créer une application logique. Pour cela, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-toosharepoint"></a>Créer un tooSharePoint de connexion
-toouse hello connecteur de SharePoint, vous commencez par créer un **connexion** puis fournissez les informations de hello pour ces propriétés : 
+## <a name="create-a-connection-to-sharepoint"></a>Créer une connexion à SharePoint
+Pour utiliser le connecteur SharePoint, vous devez créer une **connexion** , puis fournir les détails de ces propriétés : 
 
 | Propriété | Requis | Description |
 | --- | --- | --- |
 | Jeton |Oui |Fournir les informations d’identification SharePoint |
 
-tooconnect trop**SharePoint**, entrez votre tooSharePoint d’identité (nom d’utilisateur et mot de passe, informations d’identification de carte à puce, etc.). Une fois que vous avez été authentifié, vous pouvez passer le connecteur de SharePoint toouse hello dans votre application logique. 
+Pour vous connecter à **SharePoint**, entrez votre identité (nom d’utilisateur et mot de passe, informations d’identification de la carte à puce, etc.) dans SharePoint. Une fois que vous avez été authentifié, vous pouvez utiliser le connecteur SharePoint dans votre application logique. 
 
-Tandis que sur le Concepteur de hello de votre application logique, suivez ces toosign étapes dans une connexion SharePoint toocreate hello **connexion** pour une utilisation dans votre application logique :
+Dans le Concepteur de votre application logique, procédez comme suit pour vous connecter à SharePoint afin de créer la **connexion** à utiliser dans votre application logique :
 
-1. Entrez SharePoint dans la zone de recherche hello et attendre que toutes les entrées avec SharePoint dans le nom de hello hello recherche tooreturn :   
+1. Entrez SharePoint dans la zone de recherche et attendez que la recherche renvoie toutes les entrées contenant SharePoint dans leur nom :    
    ![Configurer SharePoint][1]  
 2. Sélectionner **SharePoint - Quand un fichier est créé**   
-3. Sélectionnez **connecter tooSharePoint**:   
+3. Sélectionnez **Connexion à SharePoint** :   
    ![Configurer SharePoint][2]    
-4. Fournissez votre toosign d’informations d’identification SharePoint dans tooauthenticate avec SharePoint   
+4. Entrez vos informations d’identification SharePoint pour vous connecter et vous authentifier auprès de SharePoint    
    ![Configurer SharePoint][3]     
-5. Une fois l’authentification de hello est terminée, vous serez redirigé tooyour logique application toocomplete par la configuration de SharePoint **lorsqu’un fichier est créé** boîte de dialogue.          
+5. Une fois l’authentification terminée, vous serez redirigé vers votre application logique pour la terminer en configurant la boîte de dialogue **Quand un fichier est créé** de SharePoint.          
    ![Configurer SharePoint][4]  
-6. Vous pouvez ensuite ajouter d’autres déclencheurs et les actions que vous devez toocomplete votre application logique.   
-7. Enregistrez votre travail en sélectionnant **enregistrer** sur la barre de menus hello ci-dessus.  
+6. Vous pouvez ensuite ajouter d’autres déclencheurs et actions dont vous avez besoin pour terminer votre application logique.   
+7. Enregistrez votre travail en sélectionnant **Enregistrer** sur la barre de menu supérieure.  
 
-## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
+## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
 
-Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/sharepoint/).
+Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/sharepoint/).
 
 ## <a name="more-connectors"></a>Autres connecteurs
-Revenir en arrière toohello [liste des API](apis-list.md).
+Revenir à la [liste des API](apis-list.md).
 
 [1]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig1.png  
 [2]: ../../includes/media/connectors-create-api-sharepointonline/connectionconfig2.png 

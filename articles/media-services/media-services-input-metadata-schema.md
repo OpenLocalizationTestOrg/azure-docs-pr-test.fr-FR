@@ -1,6 +1,6 @@
 ---
-title: "schéma de métadonnées d’entrée de Media Services aaaAzure | Documents Microsoft"
-description: "rubrique de Hello donne une vue d’ensemble du schéma de métadonnées d’entrée Azure Media Services."
+title: "Schéma de métadonnées d’entrée Azure Media Services | Microsoft Docs"
+description: "Cette rubrique fournit une vue d’ensemble du schéma de métadonnées d’entrée d’Azure Media Services."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: juliako
-ms.openlocfilehash: 9b72c6ff317aa98451ea75548465dc6023b44a55
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4787e4033e1afda6339b0b917263ecc165e400ad
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="input-metadata"></a>Métadonnées d'entrée
-Un travail d’encodage est associé à un élément multimédia d’entrée (ou actifs) sur lequel vous souhaitez tooperform certaines tâches d’encodage.  À l’achèvement d’une tâche, une ressource de sortie est générée.  la ressource en sortie Hello contient vidéo, audio, des miniatures, manifestes, etc. hello ressource en sortie contient également un fichier contenant des métadonnées sur l’élément multimédia d’entrée de hello. nom du fichier XML de métadonnées hello Hello a hello suivant le format : &lt;id_élément_multimédia&gt;_metadata.xml (par exemple, 41114ad3-eb5e - 4c 57-8d92-5354e2b7d4a4_metadata), où &lt;id_ressource&gt; est hello AssetId valeur de l’élément multimédia d’entrée de hello.  
+Un travail d’encodage est associé à un élément multimédia d’entrée (ou plusieurs) sur lequel vous souhaitez effectuer des tâches d’encodage.  À l’achèvement d’une tâche, une ressource de sortie est générée.  L’élément multimédia de sortie contient la vidéo, l’audio, les miniatures, le manifeste, et ainsi de suite. Il contient également un fichier avec des métadonnées relatives à l’élément multimédia d’entrée. Le nom du fichier XML de métadonnées a le format suivant : &lt;asset_id&gt;_metadata.xml (par exemple, 41114ad3-eb5e-4c57-8d92-5354e2b7d4a4_metadata.xml), où &lt;asset_id&gt; est la valeur AssetId de l’élément multimédia d’entrée.  
 
-Si vous souhaitez que le fichier de métadonnées tooexamine hello, vous pouvez créer un **SAS** recherche et le téléchargement hello ordinateur local tooyour de fichier. Vous trouverez un exemple sur la façon de toocreate un localisateur SAS et télécharger un fichier [à l’aide des Extensions de hello Media Services .NET SDK](media-services-dotnet-get-started.md).  
+Si vous souhaitez examiner le fichier de métadonnées, vous pouvez créer un localisateur **SAS** et télécharger le fichier sur votre ordinateur local. Vous trouverez un exemple illustrant comment créer un localisateur SAS et télécharger un fichier dans la rubrique [Utilisation des extensions du SDK Media Services .NET](media-services-dotnet-get-started.md).  
 
-Cette rubrique décrit les éléments de hello et types de schéma XML de hello de quels des métadonnées d’entrée de hello (&lt;id_élément_multimédia&gt;_metadata.xml) est basé.  Pour plus d’informations sur le fichier hello qui contient des métadonnées sur l’élément multimédia de sortie hello, consultez [sortie métadonnées](media-services-output-metadata-schema.md).  
+Cette rubrique décrit les éléments et types du schéma XML sur lesquels les métadonnées d’entrée (&lt;asset_id&gt;_metadata.xml) sont basées.  Pour plus d’informations sur le fichier qui contient des métadonnées sur la ressource de sortie, consultez [Métadonnées de sortie](media-services-output-metadata-schema.md).  
 
 > [!NOTE]
-> Vous pouvez trouver hello [Code schéma](media-services-input-metadata-schema.md#code) un [exemple XML](media-services-input-metadata-schema.md#xml) à fin hello de cette rubrique.  
+> Vous pouvez trouver le [Code du schéma](media-services-input-metadata-schema.md#code) et un [exemple de XML](media-services-input-metadata-schema.md#xml) à la fin de cette rubrique.  
 > 
 > 
 
 ## <a name="AssetFiles"></a> Élément AssetFiles (élément racine)
-Contient une collection de [élément AssetFile](media-services-input-metadata-schema.md#AssetFile)s pour le travail d’encodage hello.  
+Contient une collection [d’éléments AssetFile](media-services-input-metadata-schema.md#AssetFile) pour le travail d’encodage.  
 
-Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-services-input-metadata-schema.md#xml).  
+Consultez l’exemple de XML à la fin de cette rubrique : [Exemple de XML](media-services-input-metadata-schema.md#xml).  
 
 | Nom | Description |
 | --- | --- |
@@ -44,40 +44,40 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 ## <a name="AssetFile"></a> Élément AssetFile
  Contient des attributs et des éléments qui décrivent une ressource.  
 
- Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-services-input-metadata-schema.md#xml).  
+ Consultez l’exemple de XML à la fin de cette rubrique : [Exemple de XML](media-services-input-metadata-schema.md#xml).  
 
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
 | --- | --- | --- |
 | **Name**<br /><br /> Requis |**xs:string** |Nom du fichier de ressource. |
-| **Taille**<br /><br /> Requis |**xs:long** |Taille de fichier d’élément multimédia hello en octets. |
+| **Taille**<br /><br /> Requis |**xs:long** |Taille du fichier de ressource en octets. |
 | **Durée**<br /><br /> Requis |**xs:duration** |Durée de lecture du contenu. Exemple : Duration="PT25M37.757S". |
-| **NumberOfStreams**<br /><br /> Requis |**xs:int** |Nombre de flux dans le fichier d’élément multimédia hello. |
+| **NumberOfStreams**<br /><br /> Requis |**xs:int** |Nombre de flux dans le fichier de ressource. |
 | **FormatNames**<br /><br /> Requis |**xs:string** |Noms de format. |
 | **FormatVerboseNames**<br /><br /> Requis |**xs:string** |Noms détaillés des formats. |
 | **StartTime** |**xs:duration** |Heure de début du contenu. Exemple : StartTime="PT2.669S". |
-| **OverallBitRate** |**xs:int** |Débit binaire moyen du fichier d’actif hello en Kbits/s. |
+| **OverallBitRate** |**xs:int** |Vitesse de transmission moyenne du fichier de ressource en kbit/s. |
 
 > [!NOTE]
-> Hello les 4 éléments enfants doit apparaître dans une séquence.  
+> Les 4 éléments enfants suivants doivent apparaître dans une séquence.  
 > 
 > 
 
 ### <a name="child-elements"></a>Éléments enfants
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Programmes**<br /><br /> minOccurs="0" | |Collection de tous les [élément Programs](media-services-input-metadata-schema.md#Programs) lorsque le fichier d’élément multimédia hello est dans un format MPEG-TS. |
-| **VideoTracks**<br /><br /> minOccurs="0" | |Chaque élément AssetFile physique peut contenir zéro ou plusieurs pistes vidéo entrelacées dans un format de conteneur approprié. Cet élément constituée une collection de tous les [élément VideoTracks](media-services-input-metadata-schema.md#VideoTracks) qui font partie d’un fichier d’élément multimédia hello. |
-| **AudioTracks**<br /><br /> minOccurs="0" | |Chaque élément AssetFile physique peut contenir zéro ou plusieurs pistes audio entrelacées dans un format de conteneur approprié. Cet élément constituée une collection de tous les [élément AudioTracks](media-services-input-metadata-schema.md#AudioTracks) qui font partie d’un fichier d’élément multimédia hello. |
+| **Programmes**<br /><br /> minOccurs="0" | |Collection de tous les [éléments Programs](media-services-input-metadata-schema.md#Programs) lorsque le fichier de ressource est au format MPEG-TS. |
+| **VideoTracks**<br /><br /> minOccurs="0" | |Chaque élément AssetFile physique peut contenir zéro ou plusieurs pistes vidéo entrelacées dans un format de conteneur approprié. Cet élément contient une collection de tous les [éléments VideoTracks](media-services-input-metadata-schema.md#VideoTracks) qui font partie du fichier de ressource. |
+| **AudioTracks**<br /><br /> minOccurs="0" | |Chaque élément AssetFile physique peut contenir zéro ou plusieurs pistes audio entrelacées dans un format de conteneur approprié. Cet élément contient une collection de tous les [éléments AudioTracks](media-services-input-metadata-schema.md#AudioTracks) qui font partie du fichier de ressource. |
 | **Métadonnées**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[MetadataType](media-services-input-metadata-schema.md#MetadataType) |Les métadonnées du fichier de ressource représentées sous la forme de chaînes clé/valeur. Par exemple :<br /><br /> **&lt;Metadata key="language" value="eng" /&gt;** |
 
 ## <a name="TrackType"></a> TrackType
-Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-services-input-metadata-schema.md#xml).  
+Consultez l’exemple de XML à la fin de cette rubrique : [Exemple de XML](media-services-input-metadata-schema.md#xml).  
 
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Id**<br /><br /> Requis |**xs:int** |Index de base zéro de cette piste audio ou vidéo.<br /><br /> Cela n’est pas nécessairement que hello trackid tel qu’utilisé dans un fichier MP4. |
+| **Id**<br /><br /> Requis |**xs:int** |Index de base zéro de cette piste audio ou vidéo.<br /><br /> Il ne s’agit pas nécessairement du trackid tel qu’utilisé dans un fichier MP4. |
 | **Codec** |**xs:string** |Chaîne de codec de la piste vidéo. |
 | **CodecLongName** |**xs:string** |Nom long du codec de piste audio ou vidéo. |
 | **TimeBase**<br /><br /> Requis |**xs:string** |Période. Exemple : TimeBase="1/48000" |
@@ -86,7 +86,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 | **Durée** |**xs:duration** |Durée de la piste. Exemple : Duration="PTSampleFormat M37.757S". |
 
 > [!NOTE]
-> Hello les 2 éléments enfants doit apparaître dans une séquence.  
+> Les 2 éléments enfants suivants doivent apparaître dans une séquence.  
 > 
 > 
 
@@ -94,14 +94,14 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 | Nom | Type | Description |
 | --- | --- | --- |
 | **Disposition**<br /><br /> minOccurs="0" maxOccurs="1" |[StreamDispositionType](media-services-input-metadata-schema.md#StreamDispositionType) |Contient des informations de présentation (par exemple, si une piste audio particulière est destinée aux utilisateurs malvoyants). |
-| **Métadonnées**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[MetadataType](media-services-input-metadata-schema.md#MetadataType) |Chaînes clé/valeur générique qui peuvent être utilisé toohold diverses informations. Par exemple, key=”language”, et value=”eng”. |
+| **Métadonnées**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[MetadataType](media-services-input-metadata-schema.md#MetadataType) |Des chaînes clé/valeur génériques qui peuvent être utilisées pour contenir différents types d’informations. Par exemple, key=”language”, et value=”eng”. |
 
 ## <a name="AudioTrackType"></a> AudioTrackType (hérite de TrackType)
  **AudioTrackType** est un type complexe global qui hérite de [TrackType](media-services-input-metadata-schema.md#TrackType).  
 
- type de Hello représente une piste audio spécifique dans le fichier d’élément multimédia hello.  
+ Le type représente une piste audio spécifique dans le fichier de ressource.  
 
- Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-services-input-metadata-schema.md#xml).  
+ Consultez l’exemple de XML à la fin de cette rubrique : [Exemple de XML](media-services-input-metadata-schema.md#xml).  
 
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
@@ -110,15 +110,15 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 | **ChannelLayout** |**xs:string** |Disposition de canal. |
 | **Canaux**<br /><br /> Requis |**xs:int** |Nombre (0 ou plus) de canaux audio. |
 | **SamplingRate**<br /><br /> Requis |**xs:int** |Taux d’échantillonnage audio en échantillons/sec ou Hz. |
-| **Bitrate** |**xs:int** |Débit binaire audio moyen en bits par seconde, tel que calculé à partir du fichier d’élément multimédia hello. Seulement charge utile hello flux élémentaire est comptée et surcharge de packaging hello n’est pas inclus dans ce nombre. |
-| **BitsPerSample** |**xs:int** |Type de bits par échantillon pour le format wFormatTag hello. |
+| **Bitrate** |**xs:int** |Débit binaire audio moyen en bits par seconde, tel que calculé à partir du fichier de ressource. Seule la charge utile de flux élémentaire est comptée et la surcharge de packaging n’est pas incluse dans ce nombre. |
+| **BitsPerSample** |**xs:int** |Bits par échantillon pour le type de format wFormatTag. |
 
 ## <a name="VideoTrackType"></a> VideoTrackType (hérite de TrackType)
 **VideoTrackType** est un type complexe global qui hérite de [TrackType](media-services-input-metadata-schema.md#TrackType).  
 
-type de Hello représente une piste vidéo spécifique dans le fichier d’élément multimédia hello.  
+Le type représente une piste vidéo spécifique dans le fichier de ressource.  
 
-Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-services-input-metadata-schema.md#xml).  
+Consultez l’exemple de XML à la fin de cette rubrique : [Exemple de XML](media-services-input-metadata-schema.md#xml).  
 
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
@@ -135,20 +135,20 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 | **SampleAspectRatioNumerator** |**xs:double** |Numérateur des proportions d’échantillon vidéo. |
 | **SampleAspectRatioNumerator** |**xs:double** |Dénominateur des proportions d’échantillon vidéo. |
 | **FrameRate**<br /><br /> Requis |**xs:decimal** |Fréquence d’images vidéo mesurée au format .3f. |
-| **Bitrate** |**xs:int** |Débit binaire vidéo moyen en kilobits par seconde, tel que calculé à partir du fichier d’élément multimédia hello. Seulement charge utile hello flux élémentaire est comptée et surcharge de packaging hello n’est pas inclus. |
+| **Bitrate** |**xs:int** |Débit binaire vidéo moyen en kilobits par seconde, tel que calculé à partir du fichier de ressource. Seule la charge utile de flux élémentaire est comptée et la surcharge de packaging n’est pas incluse. |
 | **MaxGOPBitrate** |**xs:int** |Vitesse de transmission moyenne GOP maximum pour cette piste vidéo, en kilobits par seconde. |
 | **HasBFrames** |**xs:int** |Numéro de piste vidéo des trames B. |
 
 ## <a name="MetadataType"></a> MetadataType
 **MetadataType** est un type complexe global qui décrit les métadonnées d’un fichier de ressource en tant que chaînes clé/valeur. Par exemple, key=”language”, et value=”eng”.  
 
-Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-services-input-metadata-schema.md#xml).  
+Consultez l’exemple de XML à la fin de cette rubrique : [Exemple de XML](media-services-input-metadata-schema.md#xml).  
 
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
 | --- | --- | --- |
-| **key**<br /><br /> Requis |**xs:string** |clé Hello dans la paire clé/valeur de hello. |
-| **value**<br /><br /> Requis |**xs:string** |valeur de Hello dans la paire clé/valeur de hello. |
+| **key**<br /><br /> Requis |**xs:string** |La clé dans la paire clé/valeur. |
+| **value**<br /><br /> Requis |**xs:string** |La valeur dans la paire clé/valeur. |
 
 ## <a name="ProgramType"></a> ProgramType
 **ProgramType** est un type complexe global qui décrit un programme.  
@@ -164,24 +164,24 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 | **EndPTS** |**xs: long** |Horodatage de fin de présentation. |
 
 ## <a name="StreamDispositionType"></a> StreamDispositionType
-**StreamDispositionType** est un type complexe global qui décrit le flux de données hello.  
+**StreamDispositionType** est un type complexe global qui décrit le flux de données.  
 
-Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-services-input-metadata-schema.md#xml).  
+Consultez l’exemple de XML à la fin de cette rubrique : [Exemple de XML](media-services-input-metadata-schema.md#xml).  
 
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Par défaut**<br /><br /> Requis |**xs:int** |Définissez cette tooindicate de too1 attribut de qu'il s’agit présentation par défaut de hello. |
-| **Dub**<br /><br /> Requis |**xs:int** |Définissez cette propriété cette tooindicate de too1 d’attribut est hello doublage de présentation. |
-| **Ressource d’origine**<br /><br /> Requis |**xs:int** |Définition de cette tooindicate de too1 attribut de qu'il s’agit la présentation d’origine de hello. |
-| **Commentaire**<br /><br /> Requis |**xs:int** |Définissez cette tooindicate de too1 attribut cette piste contient des commentaires. |
-| **Lyrics**<br /><br /> Requis |**xs:int** |Définissez cette tooindicate de too1 attribut cette piste contient des paroles. |
-| **Karaoke**<br /><br /> Requis |**xs:int** |Affectez cette tooindicate de too1 attribut représente hello piste karaoké (musique de fond, aucune voix). |
-| **Forced**<br /><br /> Requis |**xs:int** |Définition de cette tooindicate de too1 attribut de qu'il s’agit la présentation de hello forcé. |
-| **HearingImpaired**<br /><br /> Requis |**xs:int** |Définissez cette tooindicate de too1 attribut que cette piste est destinée aux personnes malentendantes de hello. |
-| **VisualImpaired**<br /><br /> Requis |**xs:int** |Définissez cette tooindicate de too1 attribut que cette piste est destinée hello malvoyants. |
-| **CleanEffects**<br /><br /> Requis |**xs:int** |Définissez cette tooindicate de too1 attribut que cette piste contient effets propres. |
-| **AttachedPic**<br /><br /> Requis |**xs:int** |Définir ce tooindicate de too1 attribut que cette piste contient des images. |
+| **Par défaut**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer qu’il s’agit de la présentation par défaut. |
+| **Dub**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer qu’il s’agit de la présentation doublée. |
+| **Ressource d’origine**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer qu’il s’agit de la présentation d’origine. |
+| **Commentaire**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer que cette piste contient des commentaires. |
+| **Lyrics**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer que cette piste contient des paroles. |
+| **Karaoke**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer qu’il s’agit d’une piste de karaoké (musique de fond, sans voix). |
+| **Forced**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer qu’il s’agit la présentation forcée. |
+| **HearingImpaired**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer que cette piste est destinée aux personnes malentendantes. |
+| **VisualImpaired**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer que cette piste est destinée aux personnes malvoyantes. |
+| **CleanEffects**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer que cette piste comporte des effets propres. |
+| **AttachedPic**<br /><br /> Requis |**xs:int** |Définissez cet attribut sur 1 pour indiquer que cette piste contient des images. |
 
 ## <a name="Programs"></a> Programmes (élément)
 Élément wrapper contenant plusieurs éléments **Program**.  
@@ -189,27 +189,27 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 ### <a name="child-elements"></a>Éléments enfants
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Programme**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[ProgramType](media-services-input-metadata-schema.md#ProgramType) |Pour les fichiers de ressources qui sont dans un format MPEG-TS, contient des informations sur les programmes dans le fichier d’élément multimédia hello. |
+| **Programme**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[ProgramType](media-services-input-metadata-schema.md#ProgramType) |Pour les fichiers de ressource qui sont dans un format MPEG-TS, contient des informations sur les programmes dans le fichier de ressource. |
 
 ## <a name="VideoTracks"></a> Élément VideoTracks
  Élément wrapper contenant plusieurs éléments **VideoTrack**.  
 
- Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-services-input-metadata-schema.md#xml).  
+ Consultez l’exemple de XML à la fin de cette rubrique : [Exemple de XML](media-services-input-metadata-schema.md#xml).  
 
 ### <a name="child-elements"></a>Éléments enfants
 | Nom | Type | Description |
 | --- | --- | --- |
-| **VideoTrack**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[VideoTrackType (hérite de TrackType)](media-services-input-metadata-schema.md#VideoTrackType) |Contient des informations sur les pistes vidéo dans le fichier d’élément multimédia hello. |
+| **VideoTrack**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[VideoTrackType (hérite de TrackType)](media-services-input-metadata-schema.md#VideoTrackType) |Contient des informations sur les pistes vidéo dans le fichier de ressource. |
 
 ## <a name="AudioTracks"></a> Élément AudioTracks
  Élément wrapper contenant plusieurs éléments **AudioTrack**.  
 
- Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-services-input-metadata-schema.md#xml).  
+ Consultez l’exemple de XML à la fin de cette rubrique : [Exemple de XML](media-services-input-metadata-schema.md#xml).  
 
 ### <a name="elements"></a>elements
 | Nom | Type | Description |
 | --- | --- | --- |
-| **AudioTrack**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[AudioTrackType (hérite de TrackType)](media-services-input-metadata-schema.md#AudioTrackType) |Contient des informations sur les pistes audio dans le fichier d’élément multimédia hello. |
+| **AudioTrack**<br /><br /> minOccurs="0" maxOccurs="unbounded" |[AudioTrackType (hérite de TrackType)](media-services-input-metadata-schema.md#AudioTrackType) |Contient des informations sur les pistes audio dans le fichier de ressource. |
 
 ## <a name="code"></a> Code du schéma
     <?xml version="1.0" encoding="utf-8"?>  
@@ -277,7 +277,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
         </xs:sequence>  
         <xs:attribute name="Id" use="required">  
           <xs:annotation>  
-            <xs:documentation>zero-based index of this video track. Note: this is not necessarily hello TrackID as used in an MP4 file</xs:documentation>  
+            <xs:documentation>zero-based index of this video track. Note: this is not necessarily the TrackID as used in an MP4 file</xs:documentation>  
           </xs:annotation>  
           <xs:simpleType>  
             <xs:restriction base="xs:int">  
@@ -324,7 +324,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 
       <xs:complexType name="VideoTrackType">  
         <xs:annotation>  
-          <xs:documentation>A specific video track in hello parent AssetFile</xs:documentation>  
+          <xs:documentation>A specific video track in the parent AssetFile</xs:documentation>  
         </xs:annotation>  
         <xs:complexContent>  
           <xs:extension base="TrackType">  
@@ -421,7 +421,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
             </xs:attribute>  
             <xs:attribute name="Bitrate">  
               <xs:annotation>  
-                <xs:documentation>average video bit rate in kilobits per second, as calculated from hello AssetFile. Counts only hello elementary stream payload, and does not include hello packaging overhead</xs:documentation>  
+                <xs:documentation>average video bit rate in kilobits per second, as calculated from the AssetFile. Counts only the elementary stream payload, and does not include the packaging overhead</xs:documentation>  
               </xs:annotation>  
               <xs:simpleType>  
                 <xs:restriction base="xs:int">  
@@ -450,7 +450,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 
       <xs:complexType name="AudioTrackType">  
         <xs:annotation>  
-          <xs:documentation>a specific audio track in hello parent AssetFile</xs:documentation>  
+          <xs:documentation>a specific audio track in the parent AssetFile</xs:documentation>  
         </xs:annotation>  
         <xs:complexContent>  
           <xs:extension base="TrackType">  
@@ -486,7 +486,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
             </xs:attribute>  
             <xs:attribute name="Bitrate">  
               <xs:annotation>  
-                <xs:documentation>average audio bit rate in bits per second, as calculated from hello AssetFile. Counts only hello elementary stream payload, and does not include hello packaging overhead</xs:documentation>  
+                <xs:documentation>average audio bit rate in bits per second, as calculated from the AssetFile. Counts only the elementary stream payload, and does not include the packaging overhead</xs:documentation>  
               </xs:annotation>  
               <xs:simpleType>  
                 <xs:restriction base="xs:int">  
@@ -496,7 +496,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
             </xs:attribute>  
             <xs:attribute name="BitsPerSample">  
               <xs:annotation>  
-                <xs:documentation>Bits per sample for hello wFormatTag format type</xs:documentation>  
+                <xs:documentation>Bits per sample for the wFormatTag format type</xs:documentation>  
               </xs:annotation>  
               <xs:simpleType>  
                 <xs:restriction base="xs:int">  
@@ -510,7 +510,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 
       <xs:element name="AssetFiles">  
         <xs:annotation>  
-          <xs:documentation>Collection of AssetFile entries for hello encoding job</xs:documentation>  
+          <xs:documentation>Collection of AssetFile entries for the encoding job</xs:documentation>  
         </xs:annotation>  
         <xs:complexType>  
           <xs:sequence>  
@@ -522,7 +522,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
                 <xs:sequence>  
                   <xs:element name="Programs" minOccurs="0">  
                     <xs:annotation>  
-                      <xs:documentation>This is hello collection of all programs when file is MPEG-TS</xs:documentation>  
+                      <xs:documentation>This is the collection of all programs when file is MPEG-TS</xs:documentation>  
                     </xs:annotation>  
                     <xs:complexType>  
                       <xs:sequence>  
@@ -532,7 +532,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
                   </xs:element>  
                   <xs:element name="VideoTracks" minOccurs="0">  
                     <xs:annotation>  
-                      <xs:documentation>Each physical AssetFile can contain in it zero or more video tracks interleaved into an appropriate container format. This is hello collection of all those video tracks</xs:documentation>  
+                      <xs:documentation>Each physical AssetFile can contain in it zero or more video tracks interleaved into an appropriate container format. This is the collection of all those video tracks</xs:documentation>  
                     </xs:annotation>  
                     <xs:complexType>  
                       <xs:sequence>  
@@ -542,7 +542,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
                   </xs:element>  
                   <xs:element name="AudioTracks" minOccurs="0">  
                     <xs:annotation>  
-                      <xs:documentation>each physical AssetFile can contain in it zero or more audio tracks interleaved into an appropriate container format. This is hello collection of all those audio tracks</xs:documentation>  
+                      <xs:documentation>each physical AssetFile can contain in it zero or more audio tracks interleaved into an appropriate container format. This is the collection of all those audio tracks</xs:documentation>  
                     </xs:annotation>  
                     <xs:complexType>  
                       <xs:sequence>  
@@ -554,7 +554,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
                 </xs:sequence>  
                 <xs:attribute name="Name" type="xs:string" use="required">  
                   <xs:annotation>  
-                    <xs:documentation>hello media asset file name</xs:documentation>  
+                    <xs:documentation>the media asset file name</xs:documentation>  
                   </xs:annotation>  
                 </xs:attribute>  
                 <xs:attribute name="Size" use="required">  
@@ -594,7 +594,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
                 </xs:attribute>  
                 <xs:attribute name="OverallBitRate">  
                   <xs:annotation>  
-                    <xs:documentation>average bitrate of hello asset file in kbps</xs:documentation>  
+                    <xs:documentation>average bitrate of the asset file in kbps</xs:documentation>  
                   </xs:annotation>  
                   <xs:simpleType>  
                     <xs:restriction base="xs:int">  
@@ -611,7 +611,7 @@ Voir un exemple XML à la fin de hello de cette rubrique : [exemple XML](media-
 
 
 ## <a name="xml"></a> Exemple XML
-Hello Voici un exemple de fichier de métadonnées d’entrée hello.  
+Voici un exemple de fichier de métadonnées d’entrée.  
 
     <?xml version="1.0" encoding="utf-8"?>  
     <AssetFiles xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/windowsazure/mediaservices/2014/07/mediaencoder/inputmetadata">  

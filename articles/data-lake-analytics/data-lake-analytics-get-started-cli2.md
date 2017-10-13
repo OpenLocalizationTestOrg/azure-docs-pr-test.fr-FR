@@ -1,6 +1,6 @@
 ---
-title: "aaaGet main Analytique de LAC de données Azure à l’aide d’Azure CLI 2.0 | Documents Microsoft"
-description: "Découvrez comment toouse hello une Interface de ligne de Azure 2.0 toocreate un compte Analytique lac de données, créez une tâche Analytique lac de données à l’aide de U-SQL et envoi de la tâche de hello. "
+title: "Prise en main d’Azure Data Lake Analytics à l’aide de l’interface de ligne de commande Azure 2.0 | Microsoft Docs"
+description: "Découvrez comment utiliser l’interface de ligne de commande Azure 2.0 pour créer un compte Data Lake Analytics, créer un travail Data Lake Analytics avec U-SQL et le soumettre. "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -13,108 +13,108 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: jgao
-ms.openlocfilehash: c4e91c0d3526e4932c2948c0a326d4cedc985791
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fe2b84aac718ff5eddd4d73b5dc2120362952c1e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="get-started-with-azure-data-lake-analytics-using-azure-cli-20"></a>Prise en main d’Azure Data Lake Analytics à l’aide d’Azure CLI 2.0
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-Dans ce didacticiel, vous développez un travail qui lit un fichier TSV (valeurs séparées par des tabulations) et le convertit en fichier CSV (valeurs séparées par des virgules). toogo hello même didacticiel d’autres prises en charge par le biais des outils, utiliser la liste déroulante hello haut hello de cette section.
+Dans ce didacticiel, vous développez un travail qui lit un fichier TSV (valeurs séparées par des tabulations) et le convertit en fichier CSV (valeurs séparées par des virgules). Pour suivre ce didacticiel même à l’aide d’autres outils pris en charge, utilisez la liste déroulante en haut de cette section.
 
 ## <a name="prerequisites"></a>Composants requis
-Avant de commencer ce didacticiel, vous devez disposer des éléments suivants de hello :
+Avant de commencer ce didacticiel, vous devez disposer des éléments suivants :
 
 * **Un abonnement Azure**. Consultez la page [Obtention d’un essai gratuit d’Azure](https://azure.microsoft.com/pricing/free-trial/).
 * **Azure CLI 2.0**. Consultez [Installation et configuration de l’interface de ligne de commande Azure](https://docs.microsoft.com/cli/azure/install-azure-cli).
 
-## <a name="log-in-tooazure"></a>Connectez-vous à tooAzure
+## <a name="log-in-to-azure"></a>Connexion à Azure
 
-toolog dans tooyour abonnement Azure :
+Pour vous connecter à votre abonnement Azure :
 
 ```
 azurecli
 az login
 ```
 
-Vous êtes demandé toobrowse tooa URL et que vous entrez un code d’authentification.  Puis suivez hello instructions tooenter vos informations d’identification.
+Vous êtes invité à accéder à une URL, et à entrer un code d’authentification.  Ensuite, suivez les instructions pour entrer vos informations d’identification.
 
-Une fois que vous êtes connecté, la commande de connexion hello répertorie vos abonnements.
+Une fois que vous êtes connecté, la commande de connexion répertorie vos abonnements.
 
-toouse un abonnement spécifique :
+Pour utiliser un abonnement spécifique :
 
 ```
 az account set --subscription <subscription id>
 ```
 
 ## <a name="create-data-lake-analytics-account"></a>Créer un compte Analytique Data Lake
-Vous devez disposer d’un compte Data Lake Analytics avant de pouvoir exécuter des travaux quelconques. toocreate un compte Analytique lac de données, vous devez spécifier hello éléments suivants :
+Vous devez disposer d’un compte Data Lake Analytics avant de pouvoir exécuter des travaux quelconques. Pour créer un compte Data Lake Analytics, vous devez spécifier les éléments suivants :
 
-* **Groupe de ressources Azure**. Un compte Data Lake Analytics doit être créé au sein d’un groupe de ressources Azure. [Le Gestionnaire de ressources Azure](../azure-resource-manager/resource-group-overview.md) vous permet de toowork avec des ressources hello dans votre application en tant que groupe. Vous pouvez déployer, mettre à jour ou supprimer toutes les ressources de hello pour votre application dans une opération unique et coordonnée.  
+* **Groupe de ressources Azure**. Un compte Data Lake Analytics doit être créé au sein d’un groupe de ressources Azure. [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) vous permet de manipuler les ressources de votre application sous la forme d’un groupe. Vous pouvez déployer, mettre à jour ou supprimer toutes les ressources de votre application dans le cadre d’une opération unique et coordonnée.  
 
-toolist hello des groupes de ressource sous votre abonnement :
+Pour répertorier les groupes de ressources existants dans votre abonnement :
 
 ```
 az group list
 ```
 
-toocreate un groupe de ressources :
+Pour créer un groupe de ressources :
 
 ```
 az group create --name "<Resource Group Name>" --location "<Azure Location>"
 ```
 
 * **Nom du compte Data Lake Analytics**. Chaque compte Data Lake Analytics porte un nom.
-* **Emplacement**. Utilisez une des centres de données Azure hello qui prend en charge les données de LAC Analytique.
+* **Emplacement**. Utilisez l’un des centres de données Azure prenant en charge Data Lake Analytics.
 * **Compte Data Lake Store par défaut** : chaque compte Data Lake Analytics possède un compte Data Lake Store par défaut.
 
-toolist hello Data Lake Store compte existant :
+Pour répertorier le compte Data Lake Store existant :
 
 ```
 az dls account list
 ```
 
-toocreate un nouveau compte Data Lake Store :
+Pour créer un compte Data Lake Store :
 
 ```azurecli
 az dls account create --account "<Data Lake Store Account Name>" --resource-group "<Resource Group Name>"
 ```
 
-Utilisez hello suivant de syntaxe toocreate un compte Analytique lac de données :
+Utilisez la syntaxe suivante pour créer un compte Data Lake Analytics :
 
 ```
 az dla account create --account "<Data Lake Analytics Account Name>" --resource-group "<Resource Group Name>" --location "<Azure location>" --default-data-lake-store "<Default Data Lake Store Account Name>"
 ```
 
-Après avoir créé un compte, vous pouvez utiliser les hello suivant des comptes de commandes toolist hello et afficher les détails du compte :
+Après avoir créé un compte, vous pouvez utiliser les commandes suivantes pour répertorier les comptes et afficher leurs détails :
 
 ```
 az dla account list
 az dla account show --account "<Data Lake Analytics Account Name>"            
 ```
 
-## <a name="upload-data-toodata-lake-store"></a>Télécharger des données tooData Lake Store
-Dans ce didacticiel, vous traitez des journaux de recherche.  journal des recherches Hello peut être stockée dans le magasin de LAC de données ou le stockage Blob Azure.
+## <a name="upload-data-to-data-lake-store"></a>Téléchargement de données vers Data Lake Store
+Dans ce didacticiel, vous traitez des journaux de recherche.  Le journal de recherche peut être stocké dans Data Lake Store ou dans le stockage d’objets blobs Azure.
 
-Hello portail Azure fournit une interface utilisateur pour la copie de certains exemples données fichiers toohello par défaut compte Data Lake Store, qui incluent un fichier journal de recherche. Consultez [préparer les données sources](data-lake-analytics-get-started-portal.md) compte Data Lake Store de tooupload hello données toohello par défaut.
+Le portail Azure fournit une interface utilisateur pour la copie de fichiers de données d’exemple vers le compte Data Lake Store par défaut, y compris un fichier de journal de recherche. Voir [Préparer des données sources](data-lake-analytics-get-started-portal.md) pour charger les données dans le compte Data Lake Store par défaut.
 
-fichiers tooupload à l’aide de la version 2.0 CLI, utilisez hello suivant les commandes :
+Pour charger des fichiers à l’aide de l’interface de CLI 2.0, utilisez les commandes suivantes :
 
 ```
 az dls fs upload --account "<Data Lake Store Account Name>" --source-path "<Source File Path>" --destination-path "<Destination File Path>"
 az dls fs list --account "<Data Lake Store Account Name>" --path "<Path>"
 ```
 
-Analytique Data Lake peut également accéder au stockage d’objets blobs Azure.  Pour télécharger le stockage d’objets Blob de données tooAzure, consultez [Using hello CLI d’Azure avec le stockage Azure](../storage/common/storage-azure-cli.md).
+Analytique Data Lake peut également accéder au stockage d’objets blobs Azure.  Pour télécharger des données dans le Blob Storage Azure, consultez [Utilisation de la CLI Microsoft Azure avec Microsoft Azure Storage](../storage/common/storage-azure-cli.md).
 
 ## <a name="submit-data-lake-analytics-jobs"></a>Envoyer des travaux Analytique Data Lake
-travaux de Hello Analytique lac de données est écrites dans hello langage U-SQL. toolearn en savoir plus sur U-SQL, consultez [prise en main langage U-SQL](data-lake-analytics-u-sql-get-started.md) et [U-SQL language eence](http://go.microsoft.com/fwlink/?LinkId=691348).
+Les travaux Data Lake Analytics sont écrits en langage U-SQL. Pour en savoir plus sur U-SQL, consultez [Prise en main du langage U-SQL](data-lake-analytics-u-sql-get-started.md) et [Référence du langage U-SQL](http://go.microsoft.com/fwlink/?LinkId=691348).
 
-**toocreate un script de travail Analytique lac de données**
+**Pour créer un script de travail Analytique Data Lake**
 
-Créez un fichier texte avec le script U-SQL suivant, enregistrez la station de travail hello texte fichier tooyour :
+Créez un fichier texte avec le script U-SQL suivant, puis enregistrez le fichier texte sur votre station de travail :
 
 ```
 @a  = 
@@ -125,21 +125,21 @@ Créez un fichier texte avec le script U-SQL suivant, enregistrez la station de 
         ) AS 
               D( customer, amount );
 OUTPUT @a
-    too"/data.csv"
+    TO "/data.csv"
     USING Outputters.Csv();
 ```
 
-Ce script U-SQL lit le fichier de données source hello via **Extractors.Tsv()**, puis crée un fichier csv en utilisant **Outputters.Csv()**.
+Ce script U-SQL lit le fichier de données source avec **Extractors.Tsv()**, puis crée un fichier csv à l’aide d’**Outputters.Csv()**.
 
-Ne modifiez pas deux chemins d’accès de hello, sauf si vous copiez le fichier de source de hello dans un autre emplacement.  Analytique de LAC de données crée le dossier de sortie hello si elle n’existe pas.
+Ne modifiez pas les deux chemins d’accès, sauf si vous copiez le fichier source dans un autre emplacement.  Data Lake Analytics crée le dossier de sortie s’il n’existe pas encore.
 
-Il est plus simples toouse chemins d’accès relatifs pour les fichiers stockés sur les comptes Data Lake Store par défaut. Vous pouvez également utiliser des chemins d’accès absolus.  Par exemple :
+Il est plus simple d’utiliser des chemins d’accès relatifs pour les fichiers stockés dans les comptes Data Lake Store par défaut. Vous pouvez également utiliser des chemins d’accès absolus.  Par exemple :
 
 ```
 adl://<Data LakeStorageAccountName>.azuredatalakestore.net:443/Samples/Data/SearchLog.tsv
 ```
 
-Vous devez utiliser des chemins d’accès absolus des fichiers de tooaccess dans les comptes de stockage liés.  syntaxe de Hello pour les fichiers stockés dans le compte de stockage Azure associé est la suivante :
+Vous devez utiliser des chemins d’accès absolus pour accéder aux fichiers dans les comptes de stockage liés.  La syntaxe des fichiers stockés dans le compte de stockage Azure lié est la suivante :
 
 ```
 wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Data/SearchLog.tsv
@@ -150,9 +150,9 @@ wasb://<BlobContainerName>@<StorageAccountName>.blob.core.windows.net/Samples/Da
 > Le conteneur d’objets Blob Azure avec des conteneurs publics n’est pas pris en charge.      
 >
 
-**travaux de toosubmit**
+**Pour soumettre les travaux**
 
-Utilisez hello suivant de syntaxe toosubmit un travail.
+Pour soumettre un travail, utilisez la syntaxe suivante.
 
 ```
 az dla job submit --account "<Data Lake Analytics Account Name>" --job-name "<Job Name>" --script "<Script Path and Name>"
@@ -164,7 +164,7 @@ Par exemple :
 az dla job submit --account "myadlaaccount" --job-name "myadlajob" --script @"C:\DLA\myscript.txt"
 ```
 
-**travaux de toolist et afficher les détails de travail**
+**Pour répertorier les travaux et afficher leurs détails**
 
 ```
 azurecli
@@ -172,7 +172,7 @@ az dla job list --account "<Data Lake Analytics Account Name>"
 az dla job show --account "<Data Lake Analytics Account Name>" --job-identity "<Job Id>"
 ```
 
-**travaux de toocancel**
+**Pour annuler les travaux**
 
 ```
 az dla job cancel --account "<Data Lake Analytics Account Name>" --job-identity "<Job Id>"
@@ -180,7 +180,7 @@ az dla job cancel --account "<Data Lake Analytics Account Name>" --job-identity 
 
 ## <a name="retrieve-job-results"></a>Récupérer les résultats de travaux
 
-Lorsqu’un travail est terminé, vous pouvez utiliser hello suivant des fichiers de sortie de commandes toolist hello et télécharger les fichiers de hello :
+Une fois qu’un travail est terminé, vous pouvez utiliser les commandes suivantes pour répertorier les fichiers sortants et télécharger les fichiers :
 
 ```
 az dls fs list --account "<Data Lake Store Account Name>" --source-path "/Output" --destination-path "<Destintion>"
@@ -199,7 +199,7 @@ az dls fs downlod --account "myadlsaccount" --source-path "/Output/SearchLog-fro
 
 **Obtenir des informations sur les pipelines et les récurrences**
 
-Hello d’utilisation `az dla job pipeline` commandes informations de pipeline toosee hello envoyés précédemment des travaux.
+Utilisez les commandes `az dla job pipeline` pour afficher les tâches déjà soumises sur les informations de pipeline.
 
 ```
 az dla job pipeline list --account "<Data Lake Analytics Account Name>"
@@ -207,7 +207,7 @@ az dla job pipeline list --account "<Data Lake Analytics Account Name>"
 az dla job pipeline show --account "<Data Lake Analytics Account Name>" --pipeline-identity "<Pipeline ID>"
 ```
 
-Hello d’utilisation `az dla job recurrence` commandes d’informations sur la périodicité toosee hello pour les travaux soumis précédemment.
+Utilisez les commandes `az dla job recurrence` pour afficher les tâches déjà soumises sur les informations de récurrences.
 
 ```
 az dla job recurrence list --account "<Data Lake Analytics Account Name>"
@@ -217,6 +217,6 @@ az dla job recurrence show --account "<Data Lake Analytics Account Name>" --recu
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* toosee hello Data Lake Analytique CLI 2.0 de document de référence, consultez [Analytique lac de données](https://docs.microsoft.com/cli/azure/dla).
-* toosee hello Data Lake Store CLI 2.0 de document de référence, consultez [Data Lake Store](https://docs.microsoft.com/cli/azure/dls).
-* toosee une requête plus complexe, consultez [site Web d’analyse se connecte à l’aide d’Analytique de LAC de données Azure](data-lake-analytics-analyze-weblogs.md).
+* Pour afficher le document de référence Data Lake Analytics CLI 2.0, consultez [Data Lake Analytics](https://docs.microsoft.com/cli/azure/dla).
+* Pour afficher le document de référence Data Lake Store CLI 2.0, consultez [Data Lake Store](https://docs.microsoft.com/cli/azure/dls).
+* Pour voir une requête plus complexe, consultez [Analyse de journaux des sites web à l'aide d'Azure Data Lake Analytics](data-lake-analytics-analyze-weblogs.md).

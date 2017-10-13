@@ -14,48 +14,48 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/24/2017
 ms.author: joroja
-ms.openlocfilehash: 90a495029f48d70232ef3f99de4ea4d351395aa7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dc319c97e64e55861b84cc3943667418077a05d8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="walkthrough-integrate-rest-api-claims-exchanges-in-your-azure-ad-b2c-user-journey-as-an-orchestration-step"></a>Procédure pas à pas : intégration des échanges de revendications de l’API REST dans votre parcours utilisateur Azure AD B2C comme étape d’orchestration
 
-Hello identité expérience Framework (IEF) qui se trouve sous Azure Active Directory B2C (B2C Active Directory de Azure) permet de hello identité développeur toointegrate une interaction avec une API RESTful dans un parcours de l’utilisateur.  
+L’infrastructure d’expérience d’identité sur laquelle repose Azure Active Directory B2C (Azure AD B2C) permet au développeur d’identité d’intégrer une interaction avec une API RESTful dans un parcours utilisateur.  
 
-À la fin de hello de cette procédure pas à pas, vous serez en mesure de toocreate un voyage utilisateur Azure AD B2C qui interagit avec les services RESTful.
+À la fin de cette procédure pas à pas, vous pourrez créer un parcours utilisateur Azure AD B2C qui interagit avec les services RESTful.
 
-Hello IEF envoie des données dans les demandes et reçoit des données dans les revendications. Hello exchange de revendications d’API REST :
+L’IEF envoie des données dans des revendications et reçoit en retour des données via des revendications. L’échange de revendications de l’API REST :
 
 - Peut être conçue comme une étape d’orchestration.
 - Peut déclencher une action externe. Par exemple, elle peut enregistrer un événement dans une base de données externe.
-- Peut être utilisé toofetch une valeur et puis le stocker dans la base de données utilisateur hello.
+- Peut être utilisée pour extraire une valeur puis la stocker dans la base de données utilisateur.
 
-Vous pouvez utiliser les revendications hello a reçu des flux de hello toochange ultérieure d’exécution.
+Vous pouvez utiliser ultérieurement les revendications reçues pour modifier le flux d’exécution.
 
-Vous pouvez également concevoir interaction hello tant que profil de validation. Pour plus d’informations, consultez [Intégration des échanges de revendications de l’API REST dans votre parcours utilisateur Azure Active Directory B2C comme validation d’une entrée de l’utilisateur](active-directory-b2c-rest-api-validation-custom.md).
+Vous pouvez aussi concevoir l’interaction comme un profil de validation. Pour plus d’informations, consultez [Intégration des échanges de revendications de l’API REST dans votre parcours utilisateur Azure Active Directory B2C comme validation d’une entrée de l’utilisateur](active-directory-b2c-rest-api-validation-custom.md).
 
-scénario de Hello est que lorsqu’un utilisateur effectue une modification de profil, nous voulons :
+Le scénario est le suivant : quand un utilisateur effectue une modification du profil, nous voulons :
 
-1. Rechercher hello utilisateur dans un système externe.
-2. Obtenir la ville hello dans laquelle cet utilisateur est enregistré.
-3. Retourner l’application toohello attribut comme une revendication.
+1. Rechercher l’utilisateur dans un système externe.
+2. Obtenir la ville dans laquelle cet utilisateur est inscrit.
+3. Retourner cet attribut à l’application sous forme de revendication.
 
 ## <a name="prerequisites"></a>Composants requis
 
-- Un toocomplete de client configuré un compte de connexion-haut/connectez-vous, comme décrit dans Azure AD B2C [mise en route](active-directory-b2c-get-started-custom.md).
-- Un toointeract de point de terminaison API REST avec. Cette procédure pas à pas utilise comme exemple un webhook d’application de fonction Azure simple.
-- *Recommandé*: hello complète [API REST de procédure pas à pas d’exchange en tant qu’une étape de validation des revendications](active-directory-b2c-rest-api-validation-custom.md).
+- Un locataire Azure AD B2C configuré pour effectuer une inscription/connexion à un compte local, comme décrit dans [Bien démarrer](active-directory-b2c-get-started-custom.md).
+- Un point de terminaison API REST avec lequel vous allez interargir. Cette procédure pas à pas utilise comme exemple un webhook d’application de fonction Azure simple.
+- *Recommandé* : suivez la procédure pas à pas d’échange de revendications de l’[API REST comme une étape de validation](active-directory-b2c-rest-api-validation-custom.md).
 
-## <a name="step-1-prepare-hello-rest-api-function"></a>Étape 1 : Préparer la fonction d’API REST hello
+## <a name="step-1-prepare-the-rest-api-function"></a>Étape 1 : préparation de la fonction de l’API REST
 
 > [!NOTE]
-> Le programme d’installation de fonctions de l’API REST est en dehors de la portée de hello de cet article. [Les fonctions Azure](https://docs.microsoft.com/azure/azure-functions/functions-reference) fournit un excellente toolkit toocreate des services RESTful dans le cloud de hello.
+> Cet article ne traite pas de la configuration des fonctions de l’API REST. [Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-reference) fournit un excellent kit de ressources pour la création de services RESTful dans le cloud.
 
-Nous avons mis en place une fonction Azure qui reçoit une demande de remboursement appelé `email`, et puis retourne hello revendication `city` avec la valeur hello affecté `Redmond`. l’exemple Hello fonction Azure se trouve sur [GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples).
+Nous avons configuré une fonction Azure qui reçoit une revendication appelée `email` puis qui retourne simplement la revendication `city` avec la valeur affectée `Redmond`. L’exemple de fonction Azure se trouve sur [Github](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples).
 
-Hello `userMessage` revendication hello retours de fonction Azure est facultative dans ce contexte et hello IEF il sera ignoré. Vous pouvez éventuellement l’utiliser comme un message transmis toohello application et présentées toohello utilisateur plus tard.
+La revendication `userMessage` retournée par la fonction Azure est facultative dans ce contexte et elle sera ignorée par l’infrastructure d’expérience d’identité. Vous pouvez éventuellement l’utiliser comme message passé à l’application et présenté ultérieurement à l’utilisateur.
 
 ```csharp
 if (requestContentAsJObject.email == null)
@@ -78,14 +78,14 @@ return request.CreateResponse<ResponseContent>(
     "application/json");
 ```
 
-Une application Azure fonction rend tooget facile hello fonction URL, ce qui peut inclure un identificateur de fonction spécifique de hello hello. Dans ce cas, les URL de hello est : https://wingtipb2cfuncs.azurewebsites.net/api/LookUpLoyaltyWebHook?code=MQuG7BIE3eXBaCZ/YCfY1SHabm55HEphpNLmh1OP3hdfHkvI2QwPrw==. Vous pouvez l’utiliser pour les tests.
+Une application de fonction Azure facilite l’obtention de l’URL de la fonction, qui inclut l’identificateur de la fonction spécifique. Dans ce cas, l’URL est : https://wingtipb2cfuncs.azurewebsites.net/api/LookUpLoyaltyWebHook?code=MQuG7BIE3eXBaCZ/YCfY1SHabm55HEphpNLmh1OP3hdfHkvI2QwPrw==. Vous pouvez l’utiliser pour les tests.
 
-## <a name="step-2-configure-hello-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworextensionsxml-file"></a>Étape 2 : Configurer exchange de revendications d’API RESTful hello comme profil technique dans votre fichier TrustFrameworExtensions.xml
+## <a name="step-2-configure-the-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworextensionsxml-file"></a>Étape 2 : configuration de l’échange de revendications de l’API RESTful comme profil technique dans votre fichier TrustFrameworExtensions.xml
 
-Un profil de technique est la configuration complète de hello d’exchange hello souhaitée avec hello service RESTful. Ouvrir le fichier de TrustFrameworkExtensions.xml hello et ajouter hello suivant extrait XML à l’intérieur de hello `<ClaimsProvider>` élément.
+Le profil technique est la configuration complète de l’échange souhaité avec le service RESTful. Ouvrez le fichier TrustFrameworkExtensions.xml et ajoutez l’extrait de code XML suivant à l’intérieur de l’élément `<ClaimsProvider>`.
 
 > [!NOTE]
-> Bonjour, XML, fournisseur RESTful suivant `Version=1.0.0.0` est décrite en tant que protocole de hello. Le considérer comme fonction hello qui interagit avec un service externe de hello. <!-- TODO: A full definition of hello schema can be found...link tooRESTful Provider schema definition>-->
+> Dans le code XML suivant, le fournisseur RESTful `Version=1.0.0.0` est décrit comme étant le protocole. Considérez-le comme étant la fonction qui interagit avec le service externe. <!-- TODO: A full definition of the schema can be found...link to RESTful Provider schema definition>-->
 
 ```XML
 <ClaimsProvider>
@@ -111,18 +111,18 @@ Un profil de technique est la configuration complète de hello d’exchange hell
 </ClaimsProvider>
 ```
 
-Hello `<InputClaims>` élément définit les revendications hello qui seront envoyées à partir de hello service REST de toohello IEF. Dans cet exemple, hello le contenu de la revendication de hello `givenName` service REST de toohello sera envoyé en tant que revendication de hello `email`.  
+L’élément `<InputClaims>` définit les revendications qui seront envoyées depuis l’IEF vers le service REST. Dans cet exemple, le contenu de la revendication `givenName` sera envoyé au service REST en tant que revendication `email`.  
 
-Hello `<OutputClaims>` élément définit les revendications hello que hello IEF s’attend à partir du service REST hello. Quel que soit le nombre de hello de revendications qui sont reçus, hello IEF utilisera uniquement les identifié ici. Dans cet exemple, une revendication reçue en tant que `city` sera mappé tooan IEF revendication appelée `city`.
+L’élément `<OutputClaims>` définit les revendications que l’IEF doit recevoir du service REST. Quel que soit le nombre de revendications reçues, l’infrastructure d’expérience d’identité utilisera seulement celles qui sont identifiées ici. Dans cet exemple, une revendication reçue en tant que `city` sera mappée à une revendication de l’infrastructure d’expérience d’identité appelée `city`.
 
-## <a name="step-3-add-hello-new-claim-city-toohello-schema-of-your-trustframeworkextensionsxml-file"></a>Étape 3 : Ajouter la nouvelle revendication d’hello `city` schéma toohello de votre fichier TrustFrameworkExtensions.xml
+## <a name="step-3-add-the-new-claim-city-to-the-schema-of-your-trustframeworkextensionsxml-file"></a>Étape 3 : ajout d’une nouvelle revendication `city` au schéma de votre fichier TrustFrameworkExtensions.xml
 
-revendication de Hello `city` n’est pas encore défini n’importe où dans notre schéma. Par conséquent, ajoutez une définition dans un élément hello `<BuildingBlocks>`. Vous pouvez trouver cet élément au début de hello du fichier de TrustFrameworkExtensions.xml hello.
+La revendication `city` n’est définie pour l’instant nulle part dans notre schéma. Ajoutez donc une définition à l’intérieur de l’élément `<BuildingBlocks>`. Vous pouvez trouver cet élément au début du fichier TrustFrameworkExtensions.xml.
 
 ```XML
 <BuildingBlocks>
-    <!--hello claimtype city must be added toohello TrustFrameworkPolicy-->
-    <!-- You can add new claims in hello BASE file Section III, or in hello extensions file-->
+    <!--The claimtype city must be added to the TrustFrameworkPolicy-->
+    <!-- You can add new claims in the BASE file Section III, or in the extensions file-->
     <ClaimsSchema>
         <ClaimType Id="city">
             <DisplayName>City</DisplayName>
@@ -134,14 +134,14 @@ revendication de Hello `city` n’est pas encore défini n’importe où dans no
 </BuildingBlocks>
 ```
 
-## <a name="step-4-include-hello-rest-service-claims-exchange-as-an-orchestration-step-in-your-profile-edit-user-journey-in-trustframeworkextensionsxml"></a>Étape 4 : Inclure hello REST service revendications exchange en tant qu’orchestration étape dans votre profil Modifier utilisateur du voyage dans TrustFrameworkExtensions.xml
+## <a name="step-4-include-the-rest-service-claims-exchange-as-an-orchestration-step-in-your-profile-edit-user-journey-in-trustframeworkextensionsxml"></a>Étape 4 : inclusion de l’échange de revendications du service REST en tant qu’étape d’orchestration dans votre parcours utilisateur de modification de profil dans votre fichier TrustFrameworkExtensions.xml
 
-Ajoutez une étape voyage utilisateur modifier toohello profil, une fois hello utilisateur a été authentifié (étapes d’orchestration 1-4 Bonjour XML suivant) et l’utilisateur de hello a fourni les informations de profil hello mis à jour (étape 5).
+Ajoutez une étape au parcours utilisateur de modification de profil, une fois que l’utilisateur a été authentifié (étapes d’orchestration 1 à 4 du fichier XML suivant) et qu’il a fourni les informations de profil mises à jour (étape 5).
 
 > [!NOTE]
-> Il existe plusieurs cas d’usage où hello appel d’API REST peut être utilisé en tant qu’orchestration étape. En guise d’étape d’orchestration, il peut servir un système externe tooan de mise à jour après qu’un utilisateur a terminé une tâche comme première inscription ou tant que profil de mettre à jour les informations tookeep synchronisées. Dans ce cas, il est utilisé tooaugment hello informations toohello application une fois le profil de hello modifier.
+> Vous pouvez utiliser l’appel de l’API REST comme étape d’orchestration dans de nombreux cas d’utilisation. Il peut par exemple être utilisé comme mise à jour pour un système externe une fois qu’un utilisateur a terminé une tâche, comme sa première inscription ou une mise à jour de son profil, afin de synchroniser les informations. Dans ce cas, il est utilisé pour transférer les informations fournies à l’application après la modification du profil.
 
-Copier le profil hello Modifier code XML utilisateur voyage hello TrustFrameworkBase.xml tooyour TrustFrameworkExtensions.xml fichier à l’intérieur de hello `<UserJourneys>` élément. Apportez la modification de hello sous l’étape 6.
+Copiez le code XML du parcours utilisateur de modification du profil du fichier TrustFrameworkBase.xml vers votre fichier TrustFrameworkExtensions.xml, à l’intérieur de l’élément `<UserJourneys>`. Effectuez la modification de l’étape 6.
 
 ```XML
 <OrchestrationStep Order="6" Type="ClaimsExchange">
@@ -152,9 +152,9 @@ Copier le profil hello Modifier code XML utilisateur voyage hello TrustFramework
 ```
 
 > [!IMPORTANT]
-> Si l’ordre de hello ne correspond pas à votre version, assurez-vous que vous insérez le code de hello en tant qu’étape hello avant hello `ClaimsExchange` type `SendClaims`.
+> Si l’ordre ne correspond pas à votre version, veillez à insérer le code comme étape avant le type `ClaimsExchange` `SendClaims`.
 
-Hello XML final pour le voyage d’utilisateur hello doit ressembler à ceci :
+Le code XML final pour le parcours utilisateur doit ressembler à ceci :
 
 ```XML
 <UserJourney Id="ProfileEdit">
@@ -200,7 +200,7 @@ Hello XML final pour le voyage d’utilisateur hello doit ressembler à ceci :
                 <ClaimsExchange Id="B2CUserProfileUpdateExchange" TechnicalProfileReferenceId="SelfAsserted-ProfileUpdate" />
             </ClaimsExchanges>
         </OrchestrationStep>
-        <!-- Add a step 6 toohello user journey before hello JWT token is created-->
+        <!-- Add a step 6 to the user journey before the JWT token is created-->
         <OrchestrationStep Order="6" Type="ClaimsExchange">
             <ClaimsExchanges>
                 <ClaimsExchange Id="GetLoyaltyData" TechnicalProfileReferenceId="AzureFunctions-LookUpLoyaltyWebHook" />
@@ -212,11 +212,11 @@ Hello XML final pour le voyage d’utilisateur hello doit ressembler à ceci :
 </UserJourney>
 ```
 
-## <a name="step-5-add-hello-claim-city-tooyour-relying-party-policy-file-so-hello-claim-is-sent-tooyour-application"></a>Étape 5 : Ajouter des revendications de hello `city` stratégie tiers de la partie de confiance tooyour fichier afin de la revendication de hello est envoyée à tooyour application
+## <a name="step-5-add-the-claim-city-to-your-relying-party-policy-file-so-the-claim-is-sent-to-your-application"></a>Étape 5 : ajout de la revendication `city` à votre fichier de stratégie de partie de confiance pour que la revendication soit envoyée à votre application
 
-Modifiez votre fichier tiers (RP) de la partie de confiance ProfileEdit.xml et hello `<TechnicalProfile Id="PolicyProfile">` suivant de hello élément tooadd : `<OutputClaim ClaimTypeReferenceId="city" />`.
+Ouvrez votre fichier de partie de confiance ProfileEdit.xml et modifiez l’élément `<TechnicalProfile Id="PolicyProfile">` en y ajoutant ceci : `<OutputClaim ClaimTypeReferenceId="city" />`.
 
-Après avoir ajouté la nouvelle revendication de hello, profil de technique hello ressemble à ceci :
+Une fois que vous avez ajouté la nouvelle revendication, le profil technique ressemble à ceci :
 
 ```XML
 <DisplayName>PolicyProfile</DisplayName>
@@ -231,15 +231,15 @@ Après avoir ajouté la nouvelle revendication de hello, profil de technique hel
 
 ## <a name="step-6-upload-your-changes-and-test"></a>Étape 6 : téléchargement et test de vos modifications
 
-Remplacer les versions existantes de hello de stratégie de hello.
+Remplacez les versions existantes de la stratégie.
 
-1.  (Facultatif :) Enregistrez version existante de hello (en le téléchargeant) de votre fichier extensions avant de continuer. tookeep hello initiale complexité faible, nous recommandons que vous ne téléchargez pas plusieurs versions du fichier des extensions hello.
-2.  (Facultatif :) Renommer la nouvelle version de hello d’ID de stratégie hello pour modifier le fichier de stratégie hello en modifiant `PolicyId="B2C_1A_TrustFrameworkProfileEdit"`.
-3.  Téléchargez le fichier des extensions hello.
-4.  Téléchargez hello stratégie modifier RP le fichier.
-5.  Utilisez **exécuter maintenant** stratégie de hello tootest. Jeton hello révision hello IEF retourne toohello application.
+1.  (Facultatif :) Enregistrez la version existante de votre fichier d’extensions (en la téléchargeant) avant de continuer. Nous vous recommandons de ne pas télécharger plusieurs versions du fichier d’extensions afin de ne pas compliquer l’opération.
+2.  (Facultatif :) Renommez la nouvelle version de l’ID de stratégie pour le fichier de modification de stratégie en changeant `PolicyId="B2C_1A_TrustFrameworkProfileEdit"`.
+3.  Chargez le fichier d’extensions.
+4.  Chargez le fichier de partie de confiance de modification de stratégie.
+5.  Utilisez **Exécuter maintenant** pour tester la stratégie. Examinez le jeton retourné par l’infrastructure d’expérience d’identité à l’application.
 
-Si tout est configuré correctement, le jeton de hello inclura la nouvelle revendication d’hello `city`, avec la valeur de hello `Redmond`.
+Si tout est bien configuré, le jeton inclut la nouvelle revendication `city`, avec la valeur `Redmond`.
 
 ```JSON
 {
@@ -261,4 +261,4 @@ Si tout est configuré correctement, le jeton de hello inclura la nouvelle reven
 
 [Use a REST API as a validation step](active-directory-b2c-rest-api-validation-custom.md) (Utilisation d’une API REST comme une étape de validation)
 
-[Modifier hello profil modifier toogather des informations supplémentaires à partir de vos utilisateurs](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)
+[Changer la modification de profil pour rassembler des informations supplémentaires de vos utilisateurs](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)

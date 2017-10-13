@@ -1,6 +1,6 @@
 ---
-title: "aaaDesign votre première Azure SQL database : C# | Documents Microsoft"
-description: "En savoir plus toodesign votre première base de données SQL Azure et se connecter tooit avec un programme c# à l’aide d’ADO.NET."
+title: "Concevoir sa première base de données SQL Azure - C# | Microsoft Docs"
+description: "Apprenez à concevoir votre première base de données SQL Azure et vous y connecter à l’aide d’un programme C# utilisant ADO.NET."
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -9,27 +9,27 @@ editor: CarlRabeler
 tags: 
 ms.assetid: 
 ms.service: sql-database
-ms.custom: develop databases
+ms.custom: develop databases, mvc
 ms.devlang: na
-ms.topic: article
+ms.topic: tutorial
 ms.tgt_pltfrm: na
 ms.workload: 
-ms.date: 07/31/2017
-ms.author: genemi;carlrab
-ms.openlocfilehash: 8161de24bff1ec2fa307efa93adab2bd1b761fd9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.date: 08/25/2017
+ms.author: genemi
+ms.openlocfilehash: 1deffdd05c195597f4c63e3b5570ed94566b1f7c
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="design-an-azure-sql-database-and-connect-with-cx23-and-adonet"></a>Concevoir une base de données SQL Azure et se connecter avec C&#x23; et ADO.NET
 
-Base de données SQL Azure est un relationnel de base de données comme un service (DBaaS) Bonjour Microsoft Cloud (« Azure »). Dans ce didacticiel, vous découvrez comment toouse hello portail Azure et ADO.NET avec Visual Studio pour : 
+Azure SQL Database est une solution DBaaS relationnelle gérée dans Microsoft Cloud (« Azure »). Ce didacticiel vous montre comment utiliser le portail Azure et ADO.NET avec Visual Studio pour : 
 
 > [!div class="checklist"]
-> * Créer une base de données Bonjour portail Azure
-> * Définir une règle de pare-feu de niveau serveur Bonjour portail Azure
-> * Se connecter toohello de base de données avec ADO.NET et de Visual Studio
+> * Créer une base de données dans le portail Azure
+> * Configurer une règle de pare-feu au niveau du serveur dans le portail Azure
+> * Se connecter à la base de données avec ADO.NET et Visual Studio
 > * Créer des tables avec ADO.NET
 > * Insérer, mettre à jour et supprimer des données avec ADO.NET 
 > * Interroger les données avec ADO.NET
@@ -40,14 +40,14 @@ Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https:/
 
 Une installation de [Visual Studio Community 2017, Visual Studio Professional 2017 ou Visual Studio Enterprise 2017](https://www.visualstudio.com/downloads/).
 
-<!-- hello following included .md, sql-database-tutorial-portal-create-firewall-connection-1.md, is long.
+<!-- The following included .md, sql-database-tutorial-portal-create-firewall-connection-1.md, is long.
 And it starts with a ## H2.
 -->
 
 [!INCLUDE [sql-database-tutorial-portal-create-firewall-connection-1](../../includes/sql-database-tutorial-portal-create-firewall-connection-1.md)]
 
 
-<!-- hello following included .md, sql-database-csharp-adonet-create-query-2.md, is long.
+<!-- The following included .md, sql-database-csharp-adonet-create-query-2.md, is long.
 And it starts with a ## H2.
 -->
 
@@ -56,17 +56,17 @@ And it starts with a ## H2.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez appris les tâches de base de données telles que la création une base de données et les tables, charger et interroger des données et restaurer le point précédent du tooa hello de base de données dans le temps. Vous avez appris à effectuer les actions suivantes :
+Dans ce didacticiel, vous avez appris à exécuter des tâches de base de données classiques telles que la création d’une base de données et de tables, le chargement et l’interrogation de données, ainsi que la restauration de la base de données à un point antérieur dans le temps. Vous avez appris à effectuer les actions suivantes :
 > [!div class="checklist"]
 > * Créer une base de données
 > * Configurer une règle de pare-feu
-> * Se connecter à base de données toohello avec [Visual Studio et Visual c#](sql-database-connect-query-dotnet-visual-studio.md)
+> * Se connecter à la base de données avec [Visual Studio et C#](sql-database-connect-query-dotnet-visual-studio.md)
 > * créez des tables
 > * Insérer, mettre à jour et supprimer des données
 > * Données de requête
 
-Avance toohello toolearn de didacticiel suivant sur la migration de vos données.
+Passez au didacticiel suivant pour en savoir plus sur la migration de vos données.
 
 > [!div class="nextstepaction"]
->[Migrer votre tooAzure de base de données SQL Server de la base de données SQL](sql-database-migrate-your-sql-server-database.md)
+>[Migrer votre base de données SQL Server vers Azure SQL Database](sql-database-migrate-your-sql-server-database.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaPrepare VMware ressources locales pour tooAzure de réplication avec Azure Site Recovery | Documents Microsoft"
-description: "Résume les étapes hello pour répliquer les charges de travail en cours d’exécution sur les ordinateurs virtuels VMware tooAzure stockage"
+title: "Préparer les ressources VMware locales pour réplication vers Azure avec Azure Site Recovery | Microsoft Docs"
+description: "Résume les étapes à suivre pour répliquer des charges de travail exécutées sur des machines virtuelles VMware sur un stockage Azure"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 09d81f15f6ee764135a62f5555e458c55fa30048
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3e1c589030210c2eae1ad9c02811775d9d6365d4
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="step-6-prepare-on-premises-vmware-replication-tooazure"></a>Étape 6 : Préparation de tooAzure de réplication locale VMware
+# <a name="step-6-prepare-on-premises-vmware-replication-to-azure"></a>Étape 6 : Préparer la réplication VMware local vers Azure
 
-Utilisez les instructions hello dans cette toointeract de serveurs VMware de l’article tooprepare local avec Azure Site Recovery et préparer des ordinateurs virtuels VMWare à l’installation du service mobilité de hello. agent de service de mobilité Hello doit être installé sur tous les ordinateurs virtuels de local que vous souhaitez tooreplicate tooAzure.
+Pour préparer l’interaction des serveurs VMware locaux avec Azure Site Recovery, et pour préparer les machines virtuelles VMWare à l’installation du service mobilité, suivez les instructions fournies dans cet article. L’agent du service Mobilité doit être installé sur toutes les machines virtuelles VMware locales que vous souhaitez répliquer.
 
 ## <a name="prepare-for-automatic-discovery"></a>Préparation pour la détection automatique
 
-Site Recovery détecte automatiquement les machines virtuelles s’exécutant sur des hôtes ESXi vSphere (avec ou sans serveur vCenter). Pour la détection automatique, les besoins de récupération de Site un hôtes tooaccess de compte et les serveurs :
+Site Recovery détecte automatiquement les machines virtuelles s’exécutant sur des hôtes ESXi vSphere (avec ou sans serveur vCenter). Pour la détection automatique, Site Recovery a besoin d’un compte pour accéder aux hôtes et aux serveurs :
 
-1. toouse un compte dédié, créer un rôle (au niveau de vCenter hello, avec des autorisations hello décrites dans le tableau hello ci-dessous. Donnez-lui un nom, tel que **Azure_Site_Recovery**.
-2. Ensuite, créez un utilisateur sur le serveur hôte/vCenter de vSphere hello et affecter hello rôle toohello utilisateur. Vous spécifiez ce compte d’utilisateur pendant le déploiement de Site Recovery.
+1. Pour utiliser un compte dédié, définissez un rôle (au niveau du serveur vCenter, avec les autorisations indiquées dans le tableau ci-dessous). Donnez-lui un nom, tel que **Azure_Site_Recovery**.
+2. Créez ensuite un utilisateur sur l’hôte vSphere/le serveur vCenter et attribuez le rôle à l’utilisateur. Vous spécifiez ce compte d’utilisateur pendant le déploiement de Site Recovery.
 
 
 ### <a name="vmware-account-permissions"></a>Autorisations du compte VMware
 
-Les besoins de récupération de site accès tooVMware hello processus serveur tooautomatically découvrir les machines virtuelles et pour le basculement et la restauration des machines virtuelles.
+Site Recovery a besoin d’accéder à VMware pour que le serveur de processus découvre automatiquement des machines virtuelles ainsi que pour le basculement et la restauration automatique des machines virtuelles.
 
-- **Migrer**: Si vous souhaitez uniquement toomigrate les ordinateurs virtuels VMware tooAzure, sans jamais les échoue de nouveau, vous pouvez utiliser un compte de VMware avec un rôle en lecture seule. Ce type de rôle peut exécuter le basculement mais ne peut pas arrêter les machines source protégées. Cela n’est pas nécessaire pour la migration.
-- **Réplication/récupération**: Si vous souhaitez que le compte de hello toodeploy réplication complète (replicate, basculement, la restauration automatique) doit être toorun en mesure des opérations telles que la création et la suppression de disques, sous tension etc. de machines virtuelles.
+- **Migrer** : si vous souhaitez uniquement migrer des machines virtuelles VMware vers Azure, sans jamais procéder à leur restauration automatique, vous pouvez utiliser un compte VMware avec un rôle en lecture seule. Ce type de rôle peut exécuter le basculement mais ne peut pas arrêter les machines source protégées. Cela n’est pas nécessaire pour la migration.
+- **Réplication/restauration** : si vous souhaitez déployer la réplication complète (réplication, basculement et restauration automatique), le compte doit être en mesure d’exécuter des opérations telles que la création et la suppression de disques, l’alimentation de machines virtuelles, etc.
 - **Découverte automatique** : au moins un compte en lecture seule est nécessaire.
 
 
 **Tâche** | **Nécessite un compte/rôle** | **Autorisations** | **Détails**
 --- | --- | --- | ---
-**Le serveur de processus découvre automatiquement les machines virtuelles VMware** | Vous devez disposer d’au moins un utilisateur en lecture seule | Objet de centre de données -> propager tooChild objet rôle = lecture seule | Utilisateur affecté au niveau du centre de données et a accès tooall hello objets dans le centre de données hello.<br/><br/> accès toorestrict, affecter hello **aucun accès** rôle avec hello **propager toochild** toohello des objets enfants (hôtes de vSphere, magasins de données, machines virtuelles et réseaux), l’objet.
-**Type de basculement** | Vous devez disposer d’au moins un utilisateur en lecture seule | Objet de centre de données -> propager tooChild objet rôle = lecture seule | Utilisateur affecté au niveau du centre de données et a accès tooall hello objets dans le centre de données hello.<br/><br/> accès toorestrict, affecter hello **aucun accès** rôle avec hello **propager toochild** toohello (hôtes de vSphere, magasins de données, machines virtuelles et réseaux) des objets enfants de l’objet.<br/><br/> Utile à des fins de migration, mais pas pour la réplication complète, le basculement et la restauration automatique.
-**Basculement et restauration automatique** | Nous vous suggérons de vous créez un rôle (Azure_Site_Recovery) avec les autorisations hello requis, puis affectez hello rôle tooa VMware utilisateur ou un groupe | Objet de centre de données -> propager tooChild objet rôle = Azure_Site_Recovery<br/><br/> Banque de données -> Allouer de l’espace, parcourir la banque de données, opérations de fichier de bas niveau, supprimer le fichier, mettre à jour les fichiers de machine virtuelle<br/><br/> Réseau -> Attribution de réseau<br/><br/> Ressource -> pool tooresource d’affecter un ordinateur virtuel, migrez la machine virtuelle hors tension, migrer sous tension sur la machine virtuelle<br/><br/> Tâches -> Créer une tâche, Mettre à jour une tâche<br/><br/> Machine virtuelle -> Configuration<br/><br/> Machine virtuelle -> Interagir -> répondre à la question, connexion d’appareil, configurer un support de CD, configurer une disquette, mettre hors tension, mettre sous tension, installation des outils VMware<br/><br/> Machine virtuelle -> Stock -> Créer, inscrire, désinscrire<br/><br/> Machine virtuelle -> Approvisionnement -> Autoriser le téléchargement de machines virtuelles, autoriser le chargement de fichiers de machine virtuelle<br/><br/> Machine virtuelle -> Instantanés -> Supprimer les instantanés | Utilisateur affecté au niveau du centre de données et a accès tooall hello objets dans le centre de données hello.<br/><br/> accès toorestrict, affecter hello **aucun accès** rôle avec hello **propager toochild** toohello des objets enfants (hôtes de vSphere, magasins de données, machines virtuelles et réseaux), l’objet.
+**Le serveur de processus découvre automatiquement les machines virtuelles VMware** | Vous devez disposer d’au moins un utilisateur en lecture seule | Objet de centre de données -> Propager vers l’objet enfant, rôle = lecture seule | L’utilisateur est affecté au niveau du centre de données et a accès à tous les objets dans le centre de données.<br/><br/> Pour restreindre l’accès, attribuez le rôle **Aucun accès** avec l’objet **Propager vers enfant** aux objets enfants (hôtes vSphere, banques de données, machines virtuelles et réseaux).
+**Type de basculement** | Vous devez disposer d’au moins un utilisateur en lecture seule | Objet de centre de données -> Propager vers l’objet enfant, rôle = lecture seule | L’utilisateur est affecté au niveau du centre de données et a accès à tous les objets dans le centre de données.<br/><br/> Pour restreindre l’accès, attribuez le rôle **Aucun accès** avec l’objet **Propager vers enfant** aux objets enfants (hôtes vSphere, banques de données, machines virtuelles et réseaux).<br/><br/> Utile à des fins de migration, mais pas pour la réplication complète, le basculement et la restauration automatique.
+**Basculement et restauration automatique** | Nous vous suggérons de créer un rôle (Azure_Site_Recovery) avec les autorisations nécessaires, puis d’attribuer le rôle à un utilisateur ou à un groupe d’utilisateurs VMware. | Objet de centre de données -> Propager vers l’objet enfant, rôle = Azure_Site_Recovery<br/><br/> Banque de données -> Allouer de l’espace, parcourir la banque de données, opérations de fichier de bas niveau, supprimer le fichier, mettre à jour les fichiers de machine virtuelle<br/><br/> Réseau -> Attribution de réseau<br/><br/> Ressource -> Affecter les machines virtuelles au pool de ressources, migrer des machines virtuelles hors tension, migrer des machines virtuelles sous tension<br/><br/> Tâches -> Créer une tâche, Mettre à jour une tâche<br/><br/> Machine virtuelle -> Configuration<br/><br/> Machine virtuelle -> Interagir -> répondre à la question, connexion d’appareil, configurer un support de CD, configurer une disquette, mettre hors tension, mettre sous tension, installation des outils VMware<br/><br/> Machine virtuelle -> Stock -> Créer, inscrire, désinscrire<br/><br/> Machine virtuelle -> Approvisionnement -> Autoriser le téléchargement de machines virtuelles, autoriser le chargement de fichiers de machine virtuelle<br/><br/> Machine virtuelle -> Instantanés -> Supprimer les instantanés | L’utilisateur est affecté au niveau du centre de données et a accès à tous les objets dans le centre de données.<br/><br/> Pour restreindre l’accès, attribuez le rôle **Aucun accès** avec l’objet **Propager vers enfant** aux objets enfants (hôtes vSphere, banques de données, machines virtuelles et réseaux).
 
 
-## <a name="prepare-for-push-installation-of-hello-mobility-service"></a>Préparer l’installation push du service mobilité de hello
+## <a name="prepare-for-push-installation-of-the-mobility-service"></a>Préparer l’installation Push du service Mobilité
 
-Hello service mobilité doit être installé sur tous les ordinateurs virtuels, vous souhaitez tooreplicate. Il existe plusieurs façons tooinstall hello du service de, y compris l’installation manuelle, une installation poussée du serveur de processus de récupération de Site hello et installation à l’aide de méthodes telles que System Center Configuration Manager.
+Le service Mobilité doit être installé sur toutes les machines virtuelles que vous souhaitez répliquer. Il existe plusieurs façons d’installer le service, dont l’installation manuelle, l’installation push à partir du serveur de processus de Site Recovery, et l’installation à l’aide de System Center Configuration Manager, par exemple.
 
-Si vous souhaitez toouse poussée, vous devez tooprepare un compte que récupération de Site peut utiliser tooaccess hello machine virtuelle.
+Si vous souhaitez utiliser l’installation push, vous devez préparer un compte dont Site Recovery pourra se servir pour accéder à la machine virtuelle.
 
 - Vous pouvez utiliser un compte local ou de domaine
-- Pour Windows, si vous n’utilisez pas un compte de domaine, vous devez toodisable contrôle des accès utilisateur à distance sur l’ordinateur local de hello. toodo, Bonjour Enregistrer sous **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System**, ajouter l’entrée DWORD de hello **LocalAccountTokenFilterPolicy**, avec la valeur 1.
-- Si vous souhaitez l’entrée de Registre tooadd hello pour Windows à partir d’une interface CLI, tapez :``REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1.``
-- Pour Linux, hello doit être racine sur le serveur de Linux hello source.
+- Pour Windows, si vous n’utilisez pas un compte de domaine, vous devez désactiver le contrôle d’accès utilisateur distant sur la machine locale. Pour cela, dans le registre situé sous **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System**, ajoutez l’entrée DWORD **LocalAccountTokenFilterPolicy** avec une valeur de 1.
+- Si vous souhaitez ajouter l’entrée de Registre pour Windows à partir d’une interface CLI, tapez :       ``REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d 1.``
+- Pour Linux, le compte doit être un utilisateur racine sur le serveur Linux source.
 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Accédez trop[étape 7 : créer un coffre](vmware-walkthrough-create-vault.md)
+Aller à l’[Étape 7 : créer un coffre](vmware-walkthrough-create-vault.md)

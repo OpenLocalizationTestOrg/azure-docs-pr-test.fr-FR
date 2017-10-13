@@ -1,6 +1,6 @@
 ---
-title: guide de programmation aaaSCP.NET | Documents Microsoft
-description: "Découvrez comment toouse SCP.NET toocreate. Topologies de Storm basée sur le réseau pour les utilisent avec Storm sur HDInsight."
+title: Guide de programmation SCP.NET | Microsoft Docs
+description: "Découvrez comment utiliser SCP.NET pour créer des topologies Storm basées sur .NET en vue d’une utilisation avec Storm sur HDInsight."
 services: hdinsight
 documentationcenter: 
 author: raviperi
@@ -15,42 +15,42 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/16/2016
 ms.author: raviperi
-ms.openlocfilehash: a57f4217b07e0e82a3f36650308695fbb45d9128
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3d76aebd2a1fd729c8e0639e6afcbde4c3fb752b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scp-programming-guide"></a>Guide de programmation SCP
-SCP est une plateforme toobuild en temps réel, une application de traitement de données fiable, cohérente et plus performante. Il est construit sur [Apache Storm](http://storm.incubator.apache.org/) --un système conçu par les Communautés hello OSS de traitement du flux de données. Storm est conçu par Nathan Marz et diffusé en open source par Twitter. Il s’appuie sur [Apache soigneur](http://zookeeper.apache.org/), Apache un autre projet tooenable coordination distribuée hautement fiable et la gestion d’état. 
+SCP est une plateforme permettant de développer des applications de traitement de données en temps réel, fiables, cohérentes et aux performances élevées. Elle est basée sur [Apache Storm](http://storm.incubator.apache.org/) , système de traitement par flux conçu par la communauté OSS. Storm est conçu par Nathan Marz et diffusé en open source par Twitter. Il exploite [Apache ZooKeeper](http://zookeeper.apache.org/), un autre projet Apache pour fournir une coordination et une gestion d’état très fiables. 
 
-Non seulement les projets hello SCP déplacée Storm sur Windows, mais également le projet de hello ajouté extensions et personnalisation pour l’écosystème de Windows hello. les extensions de Hello incluent l’expérience de développement .NET et des bibliothèques, personnalisation de hello inclut le déploiement basé sur Windows. 
+Le projet SCP ne se contente pas de faire migrer Storm sur Windows : il permet également d'étendre et de personnaliser l'écosystème Windows. Ses extensions améliorent l’expérience des développeurs .NET et les bibliothèques, tandis que sa capacité de personnalisation permet un déploiement basé sur Windows. 
 
-personnalisation et extension de hello est effectuée de sorte que nous n’avez pas besoin de projets de systèmes d’exploitation toofork hello et nous avons tirer parti des écosystèmes dérivées reposant sur Storm.
+Grâce à ces capacités d'extension et de personnalisation, vous n'aurez pas à répliquer vos projets OSS tout en tirant partie des écosystèmes dérivés basés sur Storm.
 
 ## <a name="processing-model"></a>Modèle de traitement
-les données de salutation SCP sont modélisées en tant que flux continus de tuples. En général, les tuples hello flux dans une file d’attente tout d’abord, puis récupéré et transformés par la logique métier hébergée au sein d’une topologie Storm, enfin hello sortie peut être transmis en tant que système tooanother SCP de tuples, ou être validées toostores comme système de fichiers distribués ou bases de données tels que SQL Server.
+Les données de SCP sont modélisées en tant que flux de tuples continus. Généralement, les tuples sont d'abord diffusés en file d'attente, puis récupérés et transformés par une logique métier dans une topologie Storm. Puis le résultat peut être redirigé en tant que tuples vers un autre système SCP ou être validés pour des magasins tels qu'un système de fichiers distribués ou des bases de données comme SQL Server.
 
-![Un diagramme d’une file d’attente tooprocessing de données qui alimente un magasin de données d’alimentation](media/hdinsight-storm-scp-programming-guide/queue-feeding-data-to-processing-to-data-store.png)
+![Diagramme d’une file d’attente fournissant des données à traiter, destinées à une banque de données](media/hdinsight-storm-scp-programming-guide/queue-feeding-data-to-processing-to-data-store.png)
 
-Dans Storm, une topologie d'application définit un graphique de calcul. Chaque nœud d'une topologie contient une logique de traitement et les liens entre ces nœuds indiquent les flux de données. données d’entrée tooinject nœuds Hello dans la topologie de hello sont appelées becs verseurs, qui peuvent être des données hello toosequence utilisé. données d’entrée Hello peuvent résider dans des fichiers journaux, de la base de données transactionnelle, compteur de performance système nœuds de hello etc. avec les deux flux de données d’entrée et de sortie sont appelées boulons, lequel hello le filtrage des données réelles et les sélections et agrégation.
+Dans Storm, une topologie d'application définit un graphique de calcul. Chaque nœud d'une topologie contient une logique de traitement et les liens entre ces nœuds indiquent les flux de données. Les nœuds permettant d'injecter des données d'entrée dans la topologie sont nommés des « Spouts ». Ils permettent de séquencer les données. Les données d’entrée peuvent résider dans des fichiers journaux, une base de données transactionnelle, un compteur de performances système, etc. Les nœuds avec à la fois des flux de données d’entrée et de sortie sont appelés bolts ; ces derniers assurent les opérations de filtrage et de sélection des données, ainsi que d’agrégation.
 
-SCP prend en charge les types de traitement de données Meilleur effort, Une fois au minimum et Exactement une. Dans une application distribuée de traitement de diffusion en continu, diverses erreurs peuvent se produire pendant le traitement des données, telles qu’une erreur de code utilisateur, la défaillance d’un ordinateur ou une panne du réseau. Au moins une transformation garantit que toutes les données sont traitées au moins une fois par relecture automatiquement hello données mêmes lorsqu’une erreur se produit. Le type de traitement Une fois au minimum est simple et fiable et s'adapte à de nombreuses applications. Toutefois, lors de l’application hello requiert le comptage exact, par exemple, au moins une est insuffisante car hello mêmes données pourraient potentiellement être lu dans la topologie de l’application hello. Dans ce cas, exactement-une fois que le traitement est conçu toomake que résultat de hello est correct, même lorsque les données de salutation peuvent être relues et traitées plusieurs fois.
+SCP prend en charge les types de traitement de données Meilleur effort, Une fois au minimum et Exactement une. Dans une application distribuée de traitement de diffusion en continu, diverses erreurs peuvent se produire pendant le traitement des données, telles qu’une erreur de code utilisateur, la défaillance d’un ordinateur ou une panne du réseau. Le type de traitement Une fois au minimum garantit que toutes les données sont traitées au moins une fois en relisant automatiquement les mêmes données quand une erreur se produit. Le type de traitement Une fois au minimum est simple et fiable et s'adapte à de nombreuses applications. Cependant, lorsqu'une application requiert un comptage exact, le traitement Une fois au minimum n'est pas suffisant, car les mêmes données peuvent potentiellement être lues dans la topologie de l'application. Dans ce cas, le type de traitement Exactement une est conçu pour garantir l'exactitude du résultat, même lorsque les données peuvent être relues et traitées plusieurs fois.
 
-SCP permet d’applications de processus de données en temps réel de toodevelop pour les développeurs .NET lorsque hello de tirer parti de la Machine virtuelle Java (JVM) en fonction de Storm sous hello. Hello .NET et JVM communiquent via le socket TCP local. En principe chaque bec/éclair est une paire de processus .net/Java, où la logique de l’utilisateur hello s’exécute dans des processus de .net comme un plug-in.
+SCP permet aux développeurs .NET de développer des applications de traitement de données en temps réel tout en exploitant le projet Storm basé sur JVM (Java Virtual Machine). .NET et JVM communiquent via un socket local TCP. Fondamentalement, chaque Spout/Bolt constitue une paire de processus .Net/Java, où la logique utilisateur s'exécute dans un processus .Net en tant que plug-in.
 
-toobuild un application par-dessus SCP de traitement des données, plusieurs étapes sont nécessaires :
+Pour générer une application de traitement de données sur SCP, vous devez suivre plusieurs étapes :
 
-* Concevoir et implémenter hello becs verseurs toopull dans les données à partir de la file d’attente.
-* Concevoir et implémenter des données d’entrée de boulons tooprocess hello et enregistrer des magasins de données tooexternal comme base de données.
-* Conception de topologie de hello, puis soumettre et exécuter la topologie de hello. Hello topologie définit les sommets et les données de salutation flux entre les sommets hello. SCP prend la spécification de topologie hello et déployez-le sur un cluster Storm, où chaque sommet s’exécute sur un seul nœud logique. basculement de Hello et mise à l’échelle seront être pris en charge par le Planificateur de tâches Storm hello.
+* Concevez et implémentez les Spouts pour intégrer des données en file d'attente.
+* Concevez et implémentez des Bolts pour traiter les données d'entrée, puis enregistrez les données vers des magasins externes tels que des bases de données.
+* Concevez la topologie, puis validez-la et exécutez-la. La topologie définit les points et les flux de données entre ces points. SCP récupère alors la spécification de la topologie et la déploie dans un cluster Storm, où chaque point est exécuté sur un nœud logique. Le planificateur de tâches de Storm s'occupe du basculement et de la mise à l'échelle.
 
-Ce document utilise certains toowalk exemples simples via l’application de traitement des données toobuild avec SCP.
+Ce document présente quelques exemples pour illustrer le développement d'applications de traitement des données avec SCP.
 
 ## <a name="scp-plugin-interface"></a>Interface de plug-in SCP
-Plug-ins SCP (ou applications) sont des exécutables autonomes qui peuvent s’exécuter à l’intérieur de Visual Studio pendant la phase de développement hello et être intégrés au pipeline de Storm hello après le déploiement en production. L’écriture de plug-in hello SCP est simplement hello identique à celui de l’écriture de toutes les autres applications Windows standard console. Plateforme SCP.NET déclare une interface pour bec/éclair et code de plug-in hello utilisateur doit implémenter ces interfaces. Hello principal de cette conception vise que cet utilisateur hello peut se concentrer sur leur propre logique d’entreprise et en laissant les autres toobe éléments géré par la plateforme SCP.NET.
+Les plug-ins (ou applications) SCP sont des exécutables (.EXE) autonomes que vous pouvez exécuter dans Visual Studio durant le développement, puis brancher sur le pipeline Storm après le déploiement dans un environnement de production. L'écriture d'un plug-in SCP est identique à celle de n'importe quelle application console Windows standard. La plateforme SCP.NET déclare certaines interfaces pour spout/bolt, et le code du plug-in utilisateur doit implémenter ces interfaces. L'objectif principal de cette conception est de permettre à l'utilisateur de se concentrer sur ses propres logiques métier, en laissant la plateforme SCP.NET s'occuper du reste.
 
-code de plug-in Hello utilisateur doit implémenter l’une des interfaces de ce qui suit hello, varie selon que la topologie de hello est transactionnelle ou non transactionnelle, et si le composant de hello est bec ou éclair.
+Le code du plug-in utilisateur doit implémenter l'une des interfaces suivantes, selon que la topologie soit transactionnelle ou non, et que le composant soit spout ou bolt.
 
 * ISCPSpout
 * ISCPBolt
@@ -58,14 +58,14 @@ code de plug-in Hello utilisateur doit implémenter l’une des interfaces de ce
 * ISCPBatchBolt
 
 ### <a name="iscpplugin"></a>ISCPPlugin
-ISCPPlugin est l’interface commune de hello pour tous les types de plug-ins. Actuellement, c'est une interface factice.
+ISCPPlugin est l'interface la plus répandue pour tous les types de plug-in. Actuellement, c'est une interface factice.
 
     public interface ISCPPlugin 
     {
     }
 
 ### <a name="iscpspout"></a>ISCPSpout
-ISCPSpout est interface hello bec non transactionnelle.
+ISCPSpout est l'interface pour les composants spout non transactionnels.
 
      public interface ISCPSpout : ISCPPlugin                    
      {
@@ -74,28 +74,28 @@ ISCPSpout est interface hello bec non transactionnelle.
          void Fail(long seqId, Dictionary<string, Object> parms);  
      }
 
-Lorsque `NextTuple()` est appelée, hello C\# un ou plusieurs tuples peut émettre du code utilisateur. Si aucune n’est tooemit, cette méthode doit retourner sans l’émission de quoi que ce soit. Notez que `NextTuple()`, `Ack()` et `Fail()` sont toutes appelées dans une boucle étroite d’un thread unique dans un processus C\#. Lorsqu’il n’y a aucune tooemit tuples, il est toohave courtois NextTuple veille pour un laps de temps (par exemple, les 10 millisecondes) ainsi en toowaste pas trop de ressources processeur.
+Quand `NextTuple()` est appelé, le code utilisateur C\# peut émettre un ou plusieurs tuples. S'il n'y a rien à émettre, cette méthode doit effectuer un renvoi sans émettre quoi que ce soit. Notez que `NextTuple()`, `Ack()` et `Fail()` sont toutes appelées dans une boucle étroite d’un thread unique dans un processus C\#. Quand il n'y a aucun tuple à émettre, il est recommandé de mettre NextTuple en veille pour un bref instant (10 millisecondes par exemple) pour ne pas gaspiller trop de ressources processeur.
 
-`Ack()` et `Fail()` sont appelées uniquement quand le mécanisme d’accusé de réception (ack) est activé dans le fichier spec. Hello `seqId` est utilisé tooidentify hello tuple, qui est reçu ou a échoué. Par conséquent, si l’accusé de réception est activée dans une topologie non transactionnel, hello suivant emit fonction doit être utilisé dans bec :
+`Ack()` et `Fail()` sont appelées uniquement quand le mécanisme d’accusé de réception (ack) est activé dans le fichier spec. `seqId` est utilisé pour identifier le tuple qui a été reçu ou qui a échoué. Donc, si l'accusé de réception est activé dans une topologie non transactionnelle, la fonction d'émission suivante doit être utilisée dans Spout :
 
     public abstract void Emit(string streamId, List<object> values, long seqId); 
 
-Si l’accusé de réception n’est pas pris en charge dans une topologie non transactionnel, hello `Ack()` et `Fail()` peut être laissée en tant que fonction vide.
+Si l’accusé de réception n’est pas pris en charge dans une topologie non transactionnelle, les fonctions `Ack()` et `Fail()` peuvent être laissées vides.
 
-Hello `parms` des paramètres d’entrée de ces fonctions sont simplement vide dictionnaire, ils sont réservés à un usage ultérieur.
+Les paramètres d’entrée `parms` de ces fonctions correspondent simplement à un Dictionnaire vide, ils seront utilisés plus tard.
 
 ### <a name="iscpbolt"></a>ISCPBolt
-ISCPBolt est interface hello éclair non transactionnelle.
+ISCPBolt est l'interface pour les composants bolt non transactionnels.
 
     public interface ISCPBolt : ISCPPlugin 
     {
     void Execute(SCPTuple tuple);           
     }
 
-Lors de la nouvelle tuple est disponible, hello `Execute()` fonction sera appelée tooprocess il.
+Quand un nouveau tuple est disponible, la fonction `Execute()` est appelée pour son traitement.
 
 ### <a name="iscptxspout"></a>ISCPTxSpout
-ISCPTxSpout est interface hello bec transactionnels.
+ISCPTxSpout est l'interface pour les composants spout transactionnels.
 
     public interface ISCPTxSpout : ISCPPlugin
     {
@@ -104,16 +104,16 @@ ISCPTxSpout est interface hello bec transactionnels.
         void Fail(long seqId, Dictionary<string, Object> parms);        
     }
 
-Tout comme leurs équivalentes non-transactionnelles, les fonctions `NextTx()`, `Ack()` et `Fail()` sont toutes appelées dans une boucle étroite d’un thread unique dans un processus C\#. Lorsqu’il n’y a aucune tooemit de données, il est toohave courtois `NextTx` mise en veille pendant un court laps de temps (10 millisecondes) ainsi en toowaste pas trop de ressources processeur.
+Tout comme leurs équivalentes non-transactionnelles, les fonctions `NextTx()`, `Ack()` et `Fail()` sont toutes appelées dans une boucle étroite d’un thread unique dans un processus C\#. Quand il n’y a aucune donnée à émettre, il est recommandé de mettre `NextTx` en veille pour un bref instant (10 millisecondes par exemple) pour ne pas gaspiller trop de ressources processeur.
 
-`NextTx()`est appelé toostart une nouvelle transaction, hello paramètre out `seqId` tooidentify utilisé hello transaction, qui est également utilisée dans `Ack()` et `Fail()`. Dans `NextTx()`, utilisateur peut émettre du côté tooJava de données. Hello données seront stockées dans la relecture toosupport soigneur. Capacité hello soigneur étant très limitée, utilisateur doit émettre uniquement des métadonnées, pas les données en bloc dans bec transactionnelle.
+`NextTx()` est appelée pour démarrer une nouvelle transaction, le paramètre de sortie `seqId` est utilisé pour identifier la transaction, qui est également utilisée dans les fonctions `Ack()` et `Fail()`. Dans `NextTx()`, l’utilisateur peut émettre des données vers le côté Java. Les données seront stockées dans ZooKeeper pour prendre en charge la relecture. Comme la capacité de ZooKeeper est très limitée, l'utilisateur doit seulement émettre des métadonnées, et non pas des données en bloc dans un spout transactionnel.
 
-Si une transaction échoue, Storm la relit automatiquement. Il ne faut donc pas appeler la fonction `Fail()` dans un cas normal. Mais si le SCP peut vérifier les métadonnées hello émises par bec transactionnels, elle peut appeler `Fail()` lorsque les métadonnées hello ne sont pas valide.
+Si une transaction échoue, Storm la relit automatiquement. Il ne faut donc pas appeler la fonction `Fail()` dans un cas normal. Mais si SCP peut contrôler les métadonnées émises par un spout transactionnel, il peut appeler la fonction `Fail()` quand les métadonnées ne sont pas correctes.
 
-Hello `parms` des paramètres d’entrée de ces fonctions sont simplement vide dictionnaire, ils sont réservés à un usage ultérieur.
+Les paramètres d’entrée `parms` de ces fonctions correspondent simplement à un Dictionnaire vide, ils seront utilisés plus tard.
 
 ### <a name="iscpbatchbolt"></a>ISCPBatchBolt
-ISCPBatchBolt est interface hello éclair transactionnelle.
+ISCPBatchBolt est l'interface pour les composants bolt transactionnels.
 
     public interface ISCPBatchBolt : ISCPPlugin           
     {
@@ -121,15 +121,15 @@ ISCPBatchBolt est interface hello éclair transactionnelle.
         void FinishBatch(Dictionary<string, Object> parms);  
     }
 
-`Execute()`est appelé en cas de nouvelle tuple arrivant à éclair de hello. `FinishBatch()` est appelé quand cette transaction est terminée. Hello `parms` paramètre d’entrée est réservé à un usage ultérieur.
+`Execute()` est appelé quand un nouveau tuple arrive sur le bolt. `FinishBatch()` est appelé quand cette transaction est terminée. Le paramètre d’entrée `parms` est réservé à un usage futur.
 
-Il existe un concept important pour la topologie transactionnelle : `StormTxAttempt`. Il comporte deux champs : `TxId` et `AttemptId`. `TxId`est utilisé tooidentify une transaction spécifique, et pour une transaction donnée, il peut y avoir plusieurs tentative si les transactions hello échoue et sont relu. SCP.NET sera à nouveau un autre ISCPBatchBolt objet tooprocess chaque `StormTxAttempt`, à l’instar de quel souhaitez-vous Storm côté de Java. Hello cette conception vise toosupport le traitement des transactions parallèles. Utilisateur devez la conserver à l’esprit que si la tentative de transaction est terminée et hello correspondant ISCPBatchBolt objet sera détruit par le garbage collector.
+Il existe un concept important pour la topologie transactionnelle : `StormTxAttempt`. Il comporte deux champs : `TxId` et `AttemptId`. `TxId` est utilisé pour identifier une transaction spécifique. Si une transaction donnée échoue et est relue, il peut y avoir plusieurs tentatives. SCP.NET va créer un objet ISCPBatchBolt différent pour traiter chaque `StormTxAttempt`, tout comme le ferait Storm côté Java. Cette conception permet de prendre en charge le traitement des transactions parallèles. L'utilisateur ne doit pas oublier que si la tentative de transaction est terminée, l'objet ISCPBatchBolt correspondant sera détruit et récupéré par le garbage collector.
 
 ## <a name="object-model"></a>Modèle objet
-SCP.NET fournit également un ensemble simple des objets clés pour les développeurs des tooprogram avec. Il s’agit des objets **Context**, **StateStore** et **SCPRuntime**. Elles sont abordées dans la partie de rest hello de cette section.
+SCP.NET fournit également un ensemble d'objets clés pour les développeurs. Il s’agit des objets **Context**, **StateStore** et **SCPRuntime**. Ils seront présentés dans la suite de cette section.
 
 ### <a name="context"></a>Context
-Contexte fournit une application de toohello d’environnement en cours d’exécution. Chaque instance ISCPPlugin (ISCPSpout/ISCPBolt/ISCPTxSpout/ISCPBatchBolt) dispose d'une instance Context correspondante. fonctionnalité Hello fournie par le contexte peut être divisée en deux parties : partie statique de hello (1) qui est disponible dans hello ensemble C\# traiter, la partie dynamique de hello (2) qui est disponible uniquement pour l’instance spécifique de contexte hello.
+L'objet Context fournit un environnement d'exécution pour l'application. Chaque instance ISCPPlugin (ISCPSpout/ISCPBolt/ISCPTxSpout/ISCPBatchBolt) dispose d'une instance Context correspondante. La fonctionnalité fournie par un objet Context peut être divisée en deux : (1) une partie statique qui est disponible dans l’ensemble du processus C\#, (2) une partie dynamique qui est uniquement disponible pour l’instance Context spécifique.
 
 ### <a name="static-part"></a>Partie statique
     public static ILogger Logger = null;
@@ -139,7 +139,7 @@ Contexte fournit une application de toohello d’environnement en cours d’exé
 
 `Logger` est fourni à des fins de journalisation.
 
-`pluginType`est utilisé le type de plug-in tooindicate hello Hello C\# processus. Si hello C\# processus est exécuté en mode de test local (sans Java), le type de plug-in hello est `SCP_NET_LOCAL`.
+`pluginType` permet d’indiquer le type de plug-in du processus C\#. Si le processus C\# est exécuté dans un mode de test local (sans Java), le type de plug-in est `SCP_NET_LOCAL`.
 
     public enum SCPPluginType 
     {
@@ -150,12 +150,12 @@ Contexte fournit une application de toohello d’environnement en cours d’exé
         SCP_NET_BATCH_BOLT = 4  
     }
 
-`Config`est fourni à des paramètres de configuration tooget du côté de Java. paramètres de Hello sont passés du côté de Java lorsque C\# plug-in est initialisé. Hello `Config` paramètres sont divisés en deux parties : `stormConf` et `pluginConf`.
+`Config` est fourni pour obtenir des paramètres de configuration côté Java. Les paramètres sont transférés à partir du côté Java lors de l’initialisation du plug-in C\#. Les paramètres `Config` sont divisés en deux parties : `stormConf` et `pluginConf`.
 
     public Dictionary<string, Object> stormConf { get; set; }  
     public Dictionary<string, Object> pluginConf { get; set; }  
 
-`stormConf`est des paramètres définis par Storm et `pluginConf` est paramètres hello définis par le SCP. Par exemple :
+`stormConf` correspond aux paramètres définis par Storm, tandis que `pluginConf` correspond aux paramètres définis par SCP. Par exemple :
 
     public class Constants
     {
@@ -169,9 +169,9 @@ Contexte fournit une application de toohello d’environnement en cours d’exé
         public static readonly String STORM_ZOOKEEPER_PORT = "storm.zookeeper.port";                 
     }
 
-`TopologyContext`est fourni le contexte de topologie tooget hello, il est particulièrement utile pour les composants avec plusieurs parallélisme. Voici un exemple :
+`TopologyContext` est fourni pour obtenir le contexte de topologie et est plus utile pour les composants dotés de plusieurs parallélismes. Voici un exemple :
 
-    //demo how tooget TopologyContext info
+    //demo how to get TopologyContext info
     if (Context.pluginType != SCPPluginType.SCP_NET_LOCAL)                      
     {
         Context.Logger.Info("TopologyContext info:");
@@ -186,24 +186,24 @@ Contexte fournit une application de toohello d’environnement en cours d’exé
     }
 
 ### <a name="dynamic-part"></a>Partie dynamique
-Hello après les interfaces est pertinente tooa certaine l’instance de contexte. l’instance de contexte Hello est créé par la plateforme SCP.NET et passé toohello le code utilisateur :
+Les interfaces suivantes sont pertinentes pour une instance de l'objet Context bien précise. Cette instance de l'objet Context est créée par la plateforme SCP.NET, puis transmise vers le code utilisateur :
 
-    // Declare hello Output and Input Stream Schemas
+    // Declare the Output and Input Stream Schemas
 
     public void DeclareComponentSchema(ComponentStreamSchema schema);   
 
-    // Emit tuple toodefault stream.
+    // Emit tuple to default stream.
     public abstract void Emit(List<object> values);                   
 
-    // Emit tuple toohello specific stream.
+    // Emit tuple to the specific stream.
     public abstract void Emit(string streamId, List<object> values);  
 
-Pour bec non transactionnelle prenant en charge l’accusé de réception, hello suivant de méthode est fournie :
+La méthode suivante est fournie pour les spouts non transactionnels prenant en charge le mécanisme d'accusé de réception (ack) :
 
     // for non-transactional Spout which supports ack
     public abstract void Emit(string streamId, List<object> values, long seqId);  
 
-Pour éclair non transactionnelle prenant en charge l’accusé de réception, il doit explicitement `Ack()` ou `Fail()` hello tuple qu’il a reçu. Et lors de l’émission de tuple de nouveau, il doit également spécifier ancres hello du tuple de nouveau hello. Hello méthodes suivantes est fournie.
+Dans le cas des bolts non transactionnels prenant en charge le mécanisme d’accusé de réception (ack), la fonction `Ack()` ou `Fail()` est appliquée de façon explicite au tuple reçu. Puis, lors de l'émission d'un nouveau tuple, les signets du nouveau tuple doivent également être spécifiés. Les méthodes suivantes sont fournies.
 
     public abstract void Emit(string streamId, IEnumerable<SCPTuple> anchors, List<object> values); 
     public abstract void Ack(SCPTuple tuple);
@@ -212,12 +212,12 @@ Pour éclair non transactionnelle prenant en charge l’accusé de réception, i
 ### <a name="statestore"></a>StateStore
 `StateStore` fournit des services de métadonnées, une génération de séquence unitone et une coordination sans attente. Il est possible de développer des abstractions concurrentielles distribuées et globales sur `StateStore`, notamment des verrous distribués, des files d’attente distribuées, des barrières et des services de transaction.
 
-Les applications de SCP peuvent utiliser hello `State` objet toopersist certaines informations de soigneur, en particulier pour la topologie transactionnelle. Ce faisant, si bec transactionnels tombe en panne et redémarrer, il peut récupérer les informations nécessaires hello soigneur et redémarrez le pipeline de hello.
+Les applications SCP peuvent utiliser l’objet `State` pour conserver des informations dans ZooKeeper, notamment la topologie transactionnelle. Ainsi, si un spout transactionnel se bloque et redémarre, il peut récupérer les informations nécessaires à partir de ZooKeeper, puis redémarrer le pipeline.
 
-Hello `StateStore` objet comprend principalement les méthodes suivantes :
+L’objet `StateStore` dispose principalement de ces méthodes :
 
     /// <summary>
-    /// Static method tooretrieve a state store of hello given path and connStr 
+    /// Static method to retrieve a state store of the given path and connStr 
     /// </summary>
     /// <param name="storePath">StateStore Path</param>
     /// <param name="connStr">StateStore Address</param>
@@ -237,9 +237,9 @@ Hello `StateStore` objet comprend principalement les méthodes suivantes :
     public IEnumerable<State> GetUnCommitted();
 
     /// <summary>
-    /// Get all hello States in hello StateStore
+    /// Get all the States in the StateStore
     /// </summary>
-    /// <returns>All hello States</returns>
+    /// <returns>All the States</returns>
     public IEnumerable<State> States();
 
     /// <summary>
@@ -251,70 +251,70 @@ Hello `StateStore` objet comprend principalement les méthodes suivantes :
     public T Get<T>(string info = null);
 
     /// <summary>
-    /// List all hello committed states
+    /// List all the committed states
     /// </summary>
-    /// <returns>Registries contain hello Committed State </returns> 
+    /// <returns>Registries contain the Committed State </returns> 
     public IEnumerable<Registry> Commited();
 
     /// <summary>
-    /// List all hello Aborted State in hello StateStore
+    /// List all the Aborted State in the StateStore
     /// </summary>
-    /// <returns>Registries contain hello Aborted State</returns>
+    /// <returns>Registries contain the Aborted State</returns>
     public IEnumerable<Registry> Aborted();
 
     /// <summary>
     /// Retrieve an existing state object from this state store instance 
     /// </summary>
     /// <returns>State from StateStore</returns>
-    /// <typeparam name="T">stateId, id of hello State</typeparam>
+    /// <typeparam name="T">stateId, id of the State</typeparam>
     public State GetState(long stateId)
 
-Hello `State` objet comprend principalement les méthodes suivantes :
+L’objet `State` dispose principalement de ces méthodes :
 
     /// <summary>
-    /// Set hello status of hello state object toocommit 
+    /// Set the status of the state object to commit 
     /// </summary>
     public void Commit(bool simpleMode = true); 
 
     /// <summary>
-    /// Set hello status of hello state object tooabort 
+    /// Set the status of the state object to abort 
     /// </summary>
     public void Abort();
 
     /// <summary>
-    /// Put an attribute value under hello give key 
+    /// Put an attribute value under the give key 
     /// </summary>
     /// <param name="key">Key</param> 
     /// <param name="attribute">State Attribute</param> 
     public void PutAttribute<T>(string key, T attribute); 
 
     /// <summary>
-    /// Get hello attribute value associated with hello given key 
+    /// Get the attribute value associated with the given key 
     /// </summary>
     /// <param name="key">Key</param> 
     /// <returns>State Attribute</returns>               
     public T GetAttribute<T>(string key);                    
 
-Pourquoi `Commit()` la méthode simpleMode a la valeur tootrue, supprimera simplement hello correspondant ZNode dans soigneur. Sinon, elle supprimera hello ZNode actuel et l’ajout d’un nouveau nœud Bonjour validé\_chemin d’accès.
+Dans le cas de la méthode `Commit()` , quand simpleMode est défini sur true, cela entraîne simplement la suppression du ZNode correspondant dans ZooKeeper. Sinon, le ZNode en cours est supprimé, puis un nouveau nœud est ajouté au COMMITTED\_PATH.
 
 ### <a name="scpruntime"></a>SCPRuntime
-SCPRuntime fournit deux méthodes suivantes de hello.
+SCPRuntime fournit les deux méthodes suivantes.
 
     public static void Initialize();
 
     public static void LaunchPlugin(newSCPPlugin createDelegate);  
 
-`Initialize()`est un environnement d’exécution hello SCP tooinitialize utilisé. Dans cette méthode, hello C\# processus se connecteront à côté de Java toohello et obtient les paramètres de configuration et le contexte de la topologie.
+`Initialize()` permet d’initialiser l’environnement de runtime de SCP. Dans cette méthode, le processus C\# se connecte au côté Java et obtient les paramètres de configuration ainsi que le contexte de topologie.
 
-`LaunchPlugin()`est utilisé tookick désactiver le message de type hello du traitement de boucle. Dans cette boucle, hello C\# plug-in reçoit les messages formulaire côté Java (y compris les signaux tuples et de contrôle) et traiter les messages hello, l’appel de la méthode d’interface hello peut-être fournissent par du code utilisateur hello. paramètre d’entrée Hello pour la méthode `LaunchPlugin()` est un délégué qui peut retourner un objet qui implémente l’interface de ISCPSpout/IScpBolt/ISCPTxSpout/ISCPBatchBolt.
+`LaunchPlugin()` permet d’envoyer la boucle de traitement du message. Dans cette boucle, le plug-in C\# reçoit des messages depuis le côté Java (notamment les tuples et les signaux de contrôle), puis il traite les messages, en appelant par exemple la méthode d’interface fournie par le code utilisateur. Le paramètre d’entrée pour la méthode `LaunchPlugin()` est un délégué qui peut renvoyer un objet implémentant l’interface ISCPSpout/IScpBolt/ISCPTxSpout/ISCPBatchBolt.
 
     public delegate ISCPPlugin newSCPPlugin(Context ctx, Dictionary\<string, Object\> parms); 
 
-Pour ISCPBatchBolt, nous pouvons obtenir `StormTxAttempt` de `parms`et l’utiliser toojudge s’il s’agit d’une tentative de relue. Cela est généralement effectué à éclair de validation hello et il est présenté dans hello `HelloWorldTx` exemple.
+Pour ISCPBatchBolt, nous pouvons obtenir `StormTxAttempt` à partir de `parms` et l’utiliser pour savoir s’il s’agit d’une tentative relue. Ceci est généralement fait sur le bolt de validation, puis il est montré dans l’exemple `HelloWorldTx` .
 
-En règle générale, hello plug-ins SCP peut-être s’exécuter dans deux modes ici :
+De façon générale, les plug-ins peuvent s'exécuter dans les deux modes suivants :
 
-1. Mode de Test local : Hello dans ce mode, plug-ins SCP (hello C\# code utilisateur) exécuté à l’intérieur de Visual Studio pendant la phase de développement hello. `LocalContext`peut être utilisé dans ce mode, qui fournit une méthode tooserialize hello émis tuples toolocal fichiers et lire à nouveau toomemory.
+1. Mode de test local : dans ce mode, les plug-ins SCP (le code utilisateur C\#) s’exécutent dans Visual Studio durant la phase de développement. `LocalContext` dans ce mode, qui fournit une méthode pour sérialiser les tuples émis vers des fichiers locaux, puis les lire une fois qu’ils retournent à la mémoire.
    
         public interface ILocalContext
         {
@@ -322,7 +322,7 @@ En règle générale, hello plug-ins SCP peut-être s’exécuter dans deux mode
             void WriteMsgQueueToFile(string filepath, bool append = false);  
             void ReadFromFileToMsgQueue(string filepath);                    
         }
-2. Mode Normal : Dans ce mode, les plug-ins de SCP hello sont lancées par le processus java de storm.
+2. Mode ordinaire : dans ce mode, les plug-ins SCP sont démarrés par un processus Java Storm.
    
     Voici un exemple de démarrage de plug-in SCP :
    
@@ -341,7 +341,7 @@ En règle générale, hello plug-ins SCP peut-être s’exécuter dans deux mode
         {
             static void Main(string[] args)
             {
-            /* Setting hello environment variable here can change hello log file name */
+            /* Setting the environment variable here can change the log file name */
             System.Environment.SetEnvironmentVariable("microsoft.scp.logPrefix", "HelloWorld");
    
             SCPRuntime.Initialize();
@@ -353,56 +353,56 @@ En règle générale, hello plug-ins SCP peut-être s’exécuter dans deux mode
 ## <a name="topology-specification-language"></a>Langage de spécification de topologie
 La spécification de topologie SCP est un langage de domaine spécifique pour décrire et configurer les topologies SCP. Il est basé sur Clojure DSL de Storm (<http://storm.incubator.apache.org/documentation/Clojure-DSL.html>) et est étendu par SCP.
 
-Spécifications de topologie peuvent être envoyées directement toostorm de cluster pour l’exécution via hello ***runspec*** commande.
+Vous pouvez envoyer directement des spécifications de topologie vers le cluster Storm pour les exécuter via la commande ***runspec***.
 
-SCP.NET a Ajouter suivez fonctions toodefine hello topologie transactionnelle :
+SCP.NET a ajouté les fonctions suivantes pour définir la topologie transactionnelle :
 
 | **Nouvelles fonctions** | **Paramètres** | **Description** |
 | --- | --- | --- |
-| **tx-topolopy** |topology-name<br />spout-map<br />bolt-map |Définition d’une topologie transactionnelle avec le nom de topologie hello, &nbsp;becs verseurs amovibles de mappage de la définition et le mappage de définition de boulons hello |
-| **scp-tx-spout** |exec-name<br />args<br />fields |Permet de définir un spout transactionnel. Il s’exécutera application hello avec ***exec-name*** à l’aide de ***args***.<br /><br />Hello ***champs*** est les champs de sortie hello pour bec |
-| **scp-tx-batch-bolt** |exec-name<br />args<br />fields |Permet de définir un lot bolt transactionnel. Il s’exécutera application hello avec ***exec-name*** à l’aide de ***args.***<br /><br />Hello champs sont hello champs de sortie pour éclair. |
-| **scp-tx-commit-bolt** |exec-name<br />args<br />fields |Permet de définir un validateur bolt transactionnel. Il s’exécutera application hello avec ***exec-name*** à l’aide de ***args***.<br /><br />Hello ***champs*** est les champs de sortie hello pour éclair |
-| **nontx-topolopy** |topology-name<br />spout-map<br />bolt-map |Définition d’une topologie non transactionnel avec le nom de topologie hello,&nbsp; becs verseurs amovibles de mappage de la définition et le mappage de définition de boulons hello |
-| **scp-spout** |exec-name<br />args<br />fields<br />Paramètres |Permet de définir un spout non transactionnel. Il s’exécutera application hello avec ***exec-name*** à l’aide de ***args***.<br /><br />Hello ***champs*** est les champs de sortie hello pour bec<br /><br />Hello ***paramètres*** est facultatif, à l’aide d’il toospecify certains paramètres, tels que « nontransactional.ack.enabled ». |
-| **scp-bolt** |exec-name<br />args<br />fields<br />Paramètres |Permet de définir un bolt non transactionnel. Il s’exécutera application hello avec ***exec-name*** à l’aide de ***args***.<br /><br />Hello ***champs*** est les champs de sortie hello pour éclair<br /><br />Hello ***paramètres*** est facultatif, à l’aide d’il toospecify certains paramètres, tels que « nontransactional.ack.enabled ». |
+| **tx-topolopy** |topology-name<br />spout-map<br />bolt-map |Permet de définir une topologie transactionnelle avec un nom de topologie, &nbsp;une carte de définition de spouts et une carte de définition de bolts. |
+| **scp-tx-spout** |exec-name<br />args<br />fields |Permet de définir un spout transactionnel. Exécutera l’application avec ***exec-name*** en utilisant ***args***.<br /><br />***fields*** correspond aux champs de sortie du spout. |
+| **scp-tx-batch-bolt** |exec-name<br />args<br />fields |Permet de définir un lot bolt transactionnel. Exécutera l’application avec ***exec-name*** en utilisant ***args.***<br /><br />Le paramètre Fields correspond aux champs de sortie du bolt. |
+| **scp-tx-commit-bolt** |exec-name<br />args<br />fields |Permet de définir un validateur bolt transactionnel. Exécutera l’application avec ***exec-name*** en utilisant ***args***.<br /><br />***fields*** correspond aux champs de sortie du bolt. |
+| **nontx-topolopy** |topology-name<br />spout-map<br />bolt-map |Permet de définir une topologie non transactionnelle avec un nom de topologie,&nbsp; une carte de définition de spouts et une carte de définition de bolts. |
+| **scp-spout** |exec-name<br />args<br />fields<br />Paramètres |Permet de définir un spout non transactionnel. Exécutera l’application avec ***exec-name*** en utilisant ***args***.<br /><br />***fields*** correspond aux champs de sortie du spout.<br /><br />***parameters*** est facultatif, il permet de spécifier certains paramètres tels que « nontransactional.ack.enabled ». |
+| **scp-bolt** |exec-name<br />args<br />fields<br />Paramètres |Permet de définir un bolt non transactionnel. Exécutera l’application avec ***exec-name*** en utilisant ***args***.<br /><br />***fields*** correspond aux champs de sortie du bolt.<br /><br />***parameters*** est facultatif, il permet de spécifier certains paramètres tels que « nontransactional.ack.enabled ». |
 
 Les mots clés suivants sont définis pour SCP.NET :
 
 | **Mots clés** | **Description** |
 | --- | --- |
-| **:name** |Définir hello nom de la topologie |
-| **:topology** |Définir hello topologie à l’aide de hello au-dessus de fonctions et générer dans celles. |
-| **:p** |Définir l’indicateur de parallélisme hello pour chaque bec ou un éclair. |
-| **:config** |Définir configurer le paramètre ou la mise à jour hello existants |
-| **:schema** |Définissez hello schéma de flux de données. |
+| **:name** |Permet de définir le nom de la topologie. |
+| **:topology** |Permet de définir la topologie en utilisant les fonctions précédentes et d'en intégrer d'autres. |
+| **:p** |Permet de définir l'indicateur de parallélisme pour chaque spout ou bolt. |
+| **:config** |Permet de définir le paramètre de configuration ou de mettre à jour celui existant. |
+| **:schema** |Permet de définir le schéma de flux. |
 
 Et voici des paramètres fréquemment utilisés :
 
 | **Paramètre** | **Description** |
 | --- | --- |
-| **« plugin.name »** |nom de fichier exe du plug-in hello c# |
+| **« plugin.name »** |Nom du fichier .exe du plug-in C# |
 | **« plugin.args »** |Arguments du plug-in |
 | **« output.schema »** |Schéma de sortie |
 | **« nontransactional.ack.enabled »** |Indique si le mécanisme d'accusé de réception (ack) est activé pour la topologie non transactionnelle. |
 
-commande de runspec Hello est déployé avec les bits hello, l’utilisation de hello est similaire à :
+La commande runspec sera déployée avec les octets. Elle s'utilise comme ceci :
 
     .\bin\runSpec.cmd
     usage: runSpec [spec-file target-dir [resource-dir] [-cp classpath]]
     ex: runSpec examples\HelloWorld\HelloWorld.spec specs examples\HelloWorld\Target
 
-Hello ***ressource-dir*** paramètre est facultatif, vous devez toospecify lorsque vous souhaitez tooplug C\# application et ce répertoire contiendra application hello, les dépendances de hello et les configurations.
+Le paramètre ***resource-dir*** est facultatif, vous devez le spécifier lorsque vous voulez brancher une application C\#. Ce répertoire contient l’application, ses dépendances et sa configuration.
 
-Hello ***classpath*** paramètre est également facultatif. Il est utilisé toospecify hello Java classpath fichier spec de hello contient Java bec ou éclair.
+Le paramètre ***classpath*** est également facultatif. Il permet de spécifier le chemin d'accès des classes Java si le fichier spec contient un spout ou un bolt Java.
 
 ## <a name="miscellaneous-features"></a>Fonctionnalités diverses
 ### <a name="input-and-output-schema-declaration"></a>Déclaration de schéma d’entrée et de sortie
-utilisateur de Hello peut émettre du tuple dans C\# traiter, hello plate-forme doit tooserialize hello tuple en byte [], transfert tooJava côté, et Storm transférera cette cibles toohello de tuple. Pendant ce temps, dans le composant en aval, hello C\# processus recevra le tuple de côté de java et convertir les types d’origine toohello par plateforme, toutes ces opérations sont masquées par hello plateforme.
+L’utilisateur peut émettre un tuple dans le processus C\#, la plateforme doit sérialiser ce tuple dans byte[], le transférer côté Java, avant que Storm ne le transfère vers les cibles. Pendant ce temps dans le composant en aval, le processus C\# reçoit le tuple à partir du côté Java, puis le convertit vers les types d’origine de chaque plateforme. Toutes ces opérations sont masquées par la plateforme.
 
-sérialisation de hello toosupport et la désérialisation, le code utilisateur a besoin de schéma de hello toodeclare de hello entrées et sorties.
+Pour prendre en charge la sérialisation et la désérialisation, le code utilisateur doit déclarer le schéma des entrées et sorties.
 
-schéma de flux de données d’entrée/sortie Hello est défini en tant que dictionnaire, clé de hello est hello StreamId et hello valeur hello des Types de colonnes de hello. composant de Hello peut avoir plusieurs flux de données déclaré.
+Le schéma de flux d'entrée/sortie est défini en tant que dictionnaire, la clé est le StreamId et la valeur correspond aux types des colonnes. Le multiflux peut être déclaré pour le composant.
 
     public class ComponentStreamSchema
     {
@@ -416,29 +416,29 @@ schéma de flux de données d’entrée/sortie Hello est défini en tant que dic
     }
 
 
-Dans l’objet de contexte, nous avons hello ajouté des API suivante :
+Les API suivantes sont ajoutées à l'objet Context :
 
     public void DeclareComponentSchema(ComponentStreamSchema schema)
 
-Code utilisateur doit vérifier les tuples hello émis obéissent aux règles de schéma de hello défini pour ce flux de données ou système de hello lève une exception runtime.
+Le code utilisateur doit garantir que les tuples émis respectent le schéma défini pour ce flux, ou le système génère une exception de runtime.
 
 ### <a name="multi-stream-support"></a>Prise en charge multiflux
-SCP prend en charge utilisateur tooemit de code ou de réception à partir de plusieurs flux distincts à hello même temps. prise en charge Hello reflète dans l’objet de contexte hello hello Emit méthode prend un paramètre d’ID de flux de données facultatif.
+SCP prend en charge le code utilisateur pour émettre ou recevoir depuis plusieurs flux en même temps. La prise en charge s'affiche dans l'objet Context lorsque la méthode Emit possède un paramètre ID de flux facultatif.
 
-Deux méthodes dans l’objet de contexte de SCP.NET de hello ont été ajoutés. Ils sont utilisés tooemit Tuple ou Tuples toospecify StreamId. Hello StreamId est une chaîne et doit toobe cohérents dans les deux C\# et hello les spécifications de définition de topologie.
+Deux méthodes ont été ajoutées dans l'objet Context de SCP.NET. Elles permettent d'émettre un ou plusieurs tuples pour spécifier StreamId. StreamId est une chaîne et elle doit être cohérente dans C\# et la spécification de définition de topologie.
 
-        /* Emit tuple toohello specific stream. */
+        /* Emit tuple to the specific stream. */
         public abstract void Emit(string streamId, List<object> values);
 
         /* for non-transactional Spout only */
         public abstract void Emit(string streamId, List<object> values, long seqId);
 
-flux Hello l’émission tooa non existante entraîne des exceptions runtime.
+L'émission vers un flux qui n'existe pas entraînera des exceptions de runtime.
 
 ### <a name="fields-grouping"></a>Regroupement de champs
-Hello build dans le regroupement des champs dans Strom ne fonctionne pas correctement dans SCP.NET. Sur le côté du Proxy Java de hello, tous les types de données des champs hello sont réellement byte [] et champs hello regroupement utilise le regroupement de hello tooperform objet hachage code hello byte []. code de hachage de l’objet de Hello byte [] est l’adresse hello de cet objet en mémoire. Regroupement de hello est donc incorrect pour deux octets [] objets que hello partage même contenu, mais pas hello même adresse.
+Le regroupement de champs intégré à Storm ne fonctionne pas correctement dans SCP.NET. Sur le côté du proxy Java, tous les types de données de champs correspondent à la sémantique byte[], et le regroupement de champs utilise le code de hachage d’objet byte pour effectuer le regroupement. Le code de hachage d'objet byte[] correspond à l'adresse de cet objet en mémoire. Le regroupement sera donc incorrect pour deux objets byte[] partageant le même contenu mais pas la même adresse.
 
-SCP.NET ajoute une méthode de regroupement personnalisées, et il utilisera le contenu hello de regroupement de hello toodo hello byte []. Dans **SPEC** fichier, syntaxe de hello est similaire à :
+SCP.NET ajoute une méthode de regroupement personnalisée et utilise le contenu de byte[] pour procéder au regroupement. Dans le fichier **SPEC** , la syntaxe correspond à :
 
     (bolt-spec
         {
@@ -451,36 +451,36 @@ SCP.NET ajoute une méthode de regroupement personnalisées, et il utilisera le 
 Ici,
 
 1. « scp-field-group » signifie « Regroupement de champs personnalisé implémenté par SCP ».
-2. « :tx » ou « :non-tx » signifie qu’il s’agit d’une topologie transactionnelle. Nous avons besoin de ces informations depuis hello index de début est différent dans tx et non-tx topologies.
+2. « :tx » ou « :non-tx » signifie qu’il s’agit d’une topologie transactionnelle. Nous avons besoin de cette information, car l'index de démarrage est différent si la topologie est tx ou non-tx.
 3. [0,1] représente un hashset d'ID de champ, commençant à 0.
 
 ### <a name="hybrid-topology"></a>Topologie hybride
-Hello que Storm native est écrite en langage Java. Et SCP.Net il bénéficie tooenable notre toowrite douane C\# code toohandle leur logique métier. Mais nous prenons également en charge les topologies hybrides, qui contiennent des spouts/bolts C\#, ainsi que des spouts/bolts Java.
+Le Storm natif est écrit en Java. En outre, SCP.Net l’a amélioré pour permettre à nos clients d’écrire du code C\# pour gérer leur logique métier. Mais nous prenons également en charge les topologies hybrides, qui contiennent des spouts/bolts C\#, ainsi que des spouts/bolts Java.
 
 ### <a name="specify-java-spoutbolt-in-spec-file"></a>Indiquer le spout/bolt Java dans le fichier spec
-Dans le fichier spec, « scp-bec » et « scp-éclair » peuvent également être utilisé toospecify becs verseurs amovibles de Java et boulons, Voici un exemple :
+Vous pouvez également utiliser « scp-spout » et « scp-bolt » dans le fichier spec pour spécifier les spouts et les bolts Java. Par exemple :
 
     (spout-spec 
       (microsoft.scp.example.HybridTopology.Generator.)           
       :p 1)
 
-Ici `microsoft.scp.example.HybridTopology.Generator` hello désigne hello Java bec de classe.
+Ici `microsoft.scp.example.HybridTopology.Generator` est le nom de la classe Spout Java.
 
 ### <a name="specify-java-classpath-in-runspec-command"></a>Spécifier le chemin d’accès des classes Java dans une commande runSpec
-Si vous souhaitez topologie toosubmit contenant Java becs verseurs amovibles ou boulons, vous devez les hello de compilation toofirst Java becs verseurs amovibles ou boulons et obtenez les fichiers Jar hello. Vous devez spécifier classpath java hello qui contient les fichiers Jar hello lors de la soumission de topologie. Voici un exemple :
+Si vous voulez envoyer une topologie contenant des spouts ou des bolts Java, vous devez d’abord compiler les spouts ou bolts Java et récupérer les fichiers Jar. Puis, vous devez spécifier le chemin d’accès des classes Java contenant les fichiers Jar au moment de l’envoi de la topologie. Voici un exemple :
 
     bin\runSpec.cmd examples\HybridTopology\HybridTopology.spec specs examples\HybridTopology\net\Target -cp examples\HybridTopology\java\target\*
 
-Ici **exemples\\HybridTopology\\java\\cible\\**  est le dossier de hello contenant fichier Jar de Java bec/éclair de hello.
+Ici **examples\\HybridTopology\\java\\target\\** correspond au dossier contenant le fichier Jar spout/bolt Java.
 
 ### <a name="serialization-and-deserialization-between-java-and-c"></a>Sérialisation et désérialisation entre Java et C\
-Notre composant SCP a un côté Java et un côté C\#. Dans l’ordre toointeract avec natives Java becs verseurs/boulons, la sérialisation/désérialisation doivent être effectuée entre le côté de Java et C\# côté, comme illustré dans hello suivant du graphique.
+Notre composant SCP a un côté Java et un côté C\#. Pour interagir avec des spouts/bolts Java natifs, la sérialisation/désérialisation doit intervenir entre le côté Java et le côté C\#, comme l’illustre le graphique suivant.
 
-![diagramme de composant java envoi composant tooSCP envoi tooJava composant](media/hdinsight-storm-scp-programming-guide/java-compent-sending-to-scp-component-sending-to-java-component.png)
+![Diagramme d’un flux entre un composant Java et un composant SCP, et inversement](media/hdinsight-storm-scp-programming-guide/java-compent-sending-to-scp-component-sending-to-java-component.png)
 
 1. **Sérialisation côté Java et désérialisation côté C\#**
    
-   Tout d’abord, nous fournissons une implémentation par défaut pour la sérialisation côté Java et la désérialisation côté C\#. méthode de sérialisation de Hello côté de Java peut être spécifiée dans le fichier SPEC :
+   Tout d’abord, nous fournissons une implémentation par défaut pour la sérialisation côté Java et la désérialisation côté C\#. La méthode de sérialisation côté Java peut être spécifiée dans le fichier SPEC :
    
        (scp-bolt
            {
@@ -490,23 +490,23 @@ Notre composant SCP a un côté Java et un côté C\#. Dans l’ordre toointerac
                "customized.java.serializer" ["microsoft.scp.storm.multilang.CustomizedInteropJSONSerializer"]
            })
    
-   Hello méthode de désérialisation dans C\# côté doit être spécifié en C\# code utilisateur :
+   La méthode de désérialisation côté C\# doit être spécifiée dans le code utilisateur C\# :
    
        Dictionary<string, List<Type>> inputSchema = new Dictionary<string, List<Type>>();
        inputSchema.Add("default", new List<Type>() { typeof(Person) });
        this.ctx.DeclareComponentSchema(new ComponentStreamSchema(inputSchema, null));
        this.ctx.DeclareCustomizedDeserializer(new CustomizedInteropJSONDeserializer());            
    
-   Cette implémentation par défaut doit gérer la plupart des cas si le type de données hello n’est pas trop complexe. Dans certains cas, soit, car hello type de données utilisateur est trop complexe ou hello performances de notre implémentation par défaut ne répond pas aux hello spécification de l’utilisateur, plug-in d’utilisateur peuvent leur propre implémentation.
+   Cette implémentation par défaut peut gérer la plupart des cas si le type de données n'est pas trop complexe. Dans certains cas, soit parce que le type de données utilisateur est trop complexe, soit parce que les performances de notre implémentation par défaut ne répondent pas aux besoins de l'utilisateur, ce dernier peut utiliser sa propre implémentation en plug-in.
    
-   Hello de sérialiser l’interface Java côté est défini en tant que :
+   L'interface de sérialisation côté Java se définit comme suit :
    
        public interface ICustomizedInteropJavaSerializer {
            public void prepare(String[] args);
            public List<ByteBuffer> serialize(List<Object> objectList);
        }
    
-   Hello désérialiser interface en C\# côté est défini en tant que :
+   L’interface de désérialisation côté C\# se définit comme suit :
    
    public interface ICustomizedInteropCSharpDeserializer
    
@@ -516,11 +516,11 @@ Notre composant SCP a un côté Java et un côté C\#. Dans l’ordre toointerac
        }
 2. **Sérialisation côté C\# et désérialisation côte Java**
    
-   Hello la méthode de sérialisation dans C\# côté doit être spécifié en C\# code utilisateur :
+   La méthode de sérialisation côté C\# doit être spécifiée dans le code utilisateur C\# :
    
        this.ctx.DeclareCustomizedSerializer(new CustomizedInteropJSONSerializer()); 
    
-   Hello, méthode de désérialisation du côté Java doit être spécifié dans le fichier SPEC :
+   La méthode de désérialisation côté Java doit être spécifiée dans le fichier SPEC :
    
      (scp-spout
    
@@ -531,16 +531,16 @@ Notre composant SCP a un côté Java et un côté C\#. Dans l’ordre toointerac
          "customized.java.deserializer" ["microsoft.scp.storm.multilang.CustomizedInteropJSONDeserializer" "microsoft.scp.example.HybridTopology.Person"]
        })
    
-   Nom hello de désérialiseur est « microsoft.scp.storm.multilang.CustomizedInteropJSONDeserializer » et « microsoft.scp.example.HybridTopology.Person » est que les données de salutation de classe cible hello sont désérialisées en.
+   Ici « microsoft.scp.storm.multilang.CustomizedInteropJSONDeserializer » est le nom du désérialiseur, tandis que « microsoft.scp.example.HybridTopology.Person » est la classe cible vers laquelle les données sont désérialisées.
    
-   L’utilisateur peut également appliquer sa propre implémentation du sérialiseur C\# et du désérialiseur Java. Il s’agit d’interface hello pour C\# sérialiseur :
+   L’utilisateur peut également appliquer sa propre implémentation du sérialiseur C\# et du désérialiseur Java. Voici l’interface du sérialiseur C\# :
    
        public interface ICustomizedInteropCSharpSerializer
        {
            List<byte[]> Serialize(List<object> dataList);
        }
    
-   Il s’agit d’interface hello pour Java désérialiseur :
+   Voici l’interface du désérialiseur Java :
    
        public interface ICustomizedInteropJavaDeserializer {
            public void prepare(String[] targetClassNames);
@@ -548,7 +548,7 @@ Notre composant SCP a un côté Java et un côté C\#. Dans l’ordre toointerac
        }
 
 ## <a name="scp-host-mode"></a>Mode d’hébergement SCP
-Dans ce mode, utilisateur peut compiler leur tooDLL de codes et utiliser SCPHost.exe fournie par la topologie de toosubmit SCP. fichier de spécification de Hello ressemble à ceci :
+Dans ce mode, l'utilisateur peut compiler ses codes en DLL, puis utiliser le fichier SCPHost.exe fourni par SCP pour l'envoi de topologie. Le fichier spec ressemble à ceci :
 
     (scp-spout
       {
@@ -559,36 +559,36 @@ Dans ce mode, utilisateur peut compiler leur tooDLL de codes et utiliser SCPHost
 
 Ici, `plugin.name` est spécifié en tant que `SCPHost.exe` fourni par le Kit de développement logiciel (SDK) SCP. SCPHost.exe accepte exactement trois paramètres :
 
-1. Bonjour tout d’abord une est hello nom de la DLL, qui est `"HelloWorld.dll"` dans cet exemple.
-2. deuxième Hello est hello nom de la classe, qui est `"Scp.App.HelloWorld.Generator"` dans cet exemple.
-3. Hello troisième un est hello nom d’une méthode statique publique, qui peut être appelée tooget une instance de ISCPPlugin.
+1. Le premier est le nom DLL ( `"HelloWorld.dll"` dans notre exemple).
+2. Le second est le nom de la classe ( `"Scp.App.HelloWorld.Generator"` dans notre exemple).
+3. Le troisième est le nom de la méthode statique publique, qui peut être appelée pour obtenir une instance de ISCPPlugin.
 
-En mode d'hébergement, le code utilisateur est compilé en tant que DLL, puis appelé par la plateforme SCP. Par conséquent plateforme de SCP peut obtenir un contrôle total de la logique de traitement entier hello. Nous vous recommandons de nos clients topologie toosubmit en mode d’hôte SCP, car elle peut simplifier l’expérience de développement hello et nous apporter plus de souplesse et une meilleure compatibilité descendante pour une version ultérieure ainsi.
+En mode d'hébergement, le code utilisateur est compilé en tant que DLL, puis appelé par la plateforme SCP. La plateforme SCP peut donc contrôler complètement l'ensemble de la logique de traitement. Nous recommandons donc à nos clients d'envoyer la topologie en mode d'hébergement SCP, car elle peut simplifier le développement et améliorer la flexibilité et la compatibilité descendante pour les versions ultérieures.
 
 ## <a name="scp-programming-examples"></a>Exemples de programmation SCP
 ### <a name="helloworld"></a>HelloWorld
-**HelloWorld** est un exemple très simple de tooshow un aperçu de SCP.Net. Il emploie une topologie non transactionnelle, avec un spout appelé **generator**, et deux bolts appelés **splitter** et **counter**. bec de Hello **Générateur** aléatoire génère des phrases et l’émettre ces phrases trop**fractionnement**. éclair de Hello **fractionnement** sera fractionnée hello phrases toowords et émettre ces mots trop**compteur** éclair. Hello éclair « counter » utilise un numéro d’occurrence dictionnaire toorecord hello de chaque mot.
+**HelloWorld** est un exemple très simple qui offre un avant-goût de SCP.Net. Il emploie une topologie non transactionnelle, avec un spout appelé **generator**, et deux bolts appelés **splitter** et **counter**. Le spout **generator** va générer des phrases aléatoirement, avant de les émettre vers **splitter**. Le bolt **splitter** va diviser les phrases en mots et les émettre vers le bolt **counter**. Le bolt « counter » utilise un dictionnaire pour enregistrer le nombre d’occurrences de chaque mot.
 
-L’exemple contient deux fichiers spec, **HelloWorld.spec** et **HelloWorld\_EnableAck.spec**. Bonjour C\# code, peuvent se trouver si l’accusé de réception est activé en obtenant hello pluginConf du côté de Java.
+L’exemple contient deux fichiers spec, **HelloWorld.spec** et **HelloWorld\_EnableAck.spec**. Dans le code C\#, vous pouvez savoir si le mécanisme d'accusé de réception (ack) est activé en récupérant le pluginConf côté Java.
 
-    /* demo how tooget pluginConf info */
+    /* demo how to get pluginConf info */
     if (Context.Config.pluginConf.ContainsKey(Constants.NONTRANSACTIONAL_ENABLE_ACK))
     {
         enableAck = (bool)(Context.Config.pluginConf[Constants.NONTRANSACTIONAL_ENABLE_ACK]);
     }
     Context.Logger.Info("enableAck: {0}", enableAck);
 
-Dans un bec hello, si l’accusé de réception est activé, un dictionnaire est utilisé toocache hello tuples qui n’ont pas été reçu. Si Fail() est appelée, hello tuple ayant échoué doit être réexécutée :
+Dans le spout, si le ack est activé, un dictionnaire est utilisé pour mettre en cache les tuples n'ayant pas été reçus. Si Fail() est appelée, les tuples ayant échoué sont relus :
 
     public void Fail(long seqId, Dictionary<string, Object> parms)
     {
         Context.Logger.Info("Fail, seqId: {0}", seqId);
         if (cachedTuples.ContainsKey(seqId))
         {
-            /* get hello cached tuple */
+            /* get the cached tuple */
             string sentence = cachedTuples[seqId];
 
-            /* replay hello failed tuple */
+            /* replay the failed tuple */
             Context.Logger.Info("Re-Emit: {0}, seqId: {1}", sentence, seqId);
             this.ctx.Emit(Constants.DEFAULT_STREAM_ID, new Values(sentence), seqId);
         }
@@ -599,19 +599,19 @@ Dans un bec hello, si l’accusé de réception est activé, un dictionnaire est
     }
 
 ### <a name="helloworldtx"></a>HelloWorldTx
-Hello **HelloWorldTx** exemple illustre la topologie de transactionnelle tooimplement. Il contient un spout nommé **generator**, un bolt par lots nommé **partial-count** et un bolt de validation nommé **count-sum**. Il contient également trois fichiers txt : **DataSource0.txt**, **DataSource1.txt** et **DataSource2.txt**.
+L’exemple **HelloWorldTx** illustre l’implémentation d’une topologie transactionnelle. Il contient un spout nommé **generator**, un bolt par lots nommé **partial-count** et un bolt de validation nommé **count-sum**. Il contient également trois fichiers txt : **DataSource0.txt**, **DataSource1.txt** et **DataSource2.txt**.
 
-Lors de chaque transaction, hello bec **Générateur** sera de façon aléatoire choisissez deux fichiers hello trois fichiers créé au préalable et émettre hello deux fichiers noms toohello **partielle-count** éclair. éclair de Hello **partielle-count** sera tout d’abord obtenir un nom de fichier hello du tuple de salutation reçue, puis numéro de hello hello Ouvrir fichier et le nombre de mots dans ce fichier et enfin émettre toohello numéro du mot hello **somme-**éclair. Hello **-somme** éclair résume le nombre total de hello.
+Dans chaque transaction, le spout **generator** sélectionne deux des trois fichiers txt de façon aléatoire, avant de les émettre vers le bolt **partial-count**. Le bolt **partial-count** va d’abord récupérer le nom du fichier à partir du tuple reçu, puis ouvrir le fichier et compter le nombre de mots qu’il contient, avant d’émettre ce résultat vers le bolt **count-sum**. Le bolt **count-sum** résume le résultat total.
 
-tooachieve **exactement une fois** sémantique, éclair de validation hello **-somme** devez toojudge s’il s’agit d’une transaction relue. Dans cet exemple, il est doté d'une variable de membre statique :
+Pour mener à bien la sémantique **Une fois au minimum**, le bolt de validation **count-sum** doit décider s’il s’agit d’une transaction relue. Dans cet exemple, il est doté d'une variable de membre statique :
 
     public static long lastCommittedTxId = -1; 
 
-Lorsqu’une instance de ISCPBatchBolt est créée, elle obtiendra hello `txAttempt` à partir des paramètres d’entrée :
+Au moment de la création d’une instance ISCPBatchBolt, `txAttempt` est récupéré à partir des paramètres d’entrée :
 
     public static CountSum Get(Context ctx, Dictionary<string, Object> parms)
     {
-        /* for transactional topology, we can get txAttempt from hello input parms */
+        /* for transactional topology, we can get txAttempt from the input parms */
         if (parms.ContainsKey(Constants.STORM_TX_ATTEMPT))
         {
             StormTxAttempt txAttempt = (StormTxAttempt)parms[Constants.STORM_TX_ATTEMPT];
@@ -623,7 +623,7 @@ Lorsqu’une instance de ISCPBatchBolt est créée, elle obtiendra hello `txAtte
         }
     }
 
-Lorsque `FinishBatch()` est appelée, hello `lastCommittedTxId` sera mise à jour si elle n’est pas une transaction relue.
+Quand `FinishBatch()` est appelé, `lastCommittedTxId` est mis à jour s’il ne s’agit pas d’une transaction relue.
 
     public void FinishBatch(Dictionary<string, Object> parms)
     {
@@ -632,7 +632,7 @@ Lorsque `FinishBatch()` est appelée, hello `lastCommittedTxId` sera mise à jou
 
         if (!replay)
         {
-            /* If it is not replayed, update hello toalCount and lastCommittedTxId vaule */
+            /* If it is not replayed, update the toalCount and lastCommittedTxId vaule */
             totalCount = totalCount + this.count;
             lastCommittedTxId = this.txAttempt.TxId;
         }
@@ -641,19 +641,19 @@ Lorsque `FinishBatch()` est appelée, hello `lastCommittedTxId` sera mise à jou
 
 
 ### <a name="hybridtopology"></a>HybridTopology
-Cette topologie contient un spout Java et un bolt C\#. Il utilise hello par défaut sérialisation et désérialisation implémentation fournie par la plateforme de SCP. Veuillez hello de ref **HybridTopology.spec** dans **exemples\\HybridTopology** dossier hello spec les données de fichier, et **SubmitTopology.bat** de procédure toospecify Java classpath.
+Cette topologie contient un spout Java et un bolt C\#. Elle utilise l'implémentation de sérialisation et de désérialisation par défaut fournie par la plateforme SCP. Consultez **HybridTopology.spec** dans le dossier **examples\\HybridTopology** pour obtenir les détails du fichier spec et **SubmitTopology.bat** pour savoir comment spécifier le chemin d’accès des classes Java.
 
 ### <a name="scphostdemo"></a>SCPHostDemo
-Cet exemple est fondamentalement hello identique HelloWorld. Hello seule différence est que le code utilisateur hello est compilé en tant que DLL et topologie de hello est envoyé à l’aide de SCPHost.exe. Veuillez section de hello ref « Mode de hôte SCP » pour une explication plus détaillée.
+Cet exemple est sensiblement identique à HelloWorld. Les seules différences sont que le code utilisateur est compilé en tant que DLL et que la topologie est envoyée en utilisant SCPHost.exe. Pour en savoir plus, consultez la section « Mode d’hébergement SCP ».
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour obtenir des exemples de topologies Storm créés à l’aide de SCP, voir hello :
+Pour obtenir des exemples de topologies Storm créées à l’aide de SCP, consultez les articles suivants :
 
 * [Développement de topologies C# pour Apache Storm dans HDInsight à l'aide de Visual Studio](hdinsight-storm-develop-csharp-visual-studio-topology.md)
 * [Traitement d'événements à partir d'Azure Event Hubs avec Storm dans HDInsight](hdinsight-storm-develop-csharp-event-hub-topology.md)
 * [Création de plusieurs flux de données dans une topologie C# Storm](hdinsight-storm-twitter-trending.md)
-* [Utiliser les données de toovisualize Power Bi à partir d’une topologie Storm](hdinsight-storm-power-bi-topology.md)
+* [Utiliser Power BI pour visualiser les données d’une topologie Storm](hdinsight-storm-power-bi-topology.md)
 * [Traitement des données de capteur de véhicule à partir d'Event Hubs à l'aide de Storm dans HDInsight](https://github.com/hdinsight/hdinsight-storm-examples/tree/master/IotExample)
-* [Extraction, transformation et chargement (ETL) à partir d’Azure Event Hubs tooHBase](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/RealTimeETLExample)
+* [Extraction, transformation et chargement (ETL) à partir d’Azure Event Hubs dans HBase](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/RealTimeETLExample)
 * [Corrélation des événements à l’aide de Storm et HBase sur HDInsight](hdinsight-storm-correlation-topology.md)
 

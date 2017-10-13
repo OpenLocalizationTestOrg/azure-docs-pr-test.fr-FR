@@ -1,6 +1,6 @@
 ---
-title: aaaScale un service cloud Azure dans Windows PowerShell | Documents Microsoft
-description: "(classique) Découvrez comment toouse PowerShell tooscale un rôle web ou un rôle de travail ou arrière dans Azure."
+title: "Mise à l’échelle d’un service cloud Azure dans Windows PowerShell | Microsoft Docs"
+description: "(classique) Découvrez comment utiliser PowerShell pour mettre à l’échelle un rôle web ou un rôle de travail dans Azure."
 services: cloud-services
 documentationcenter: 
 author: mmccrory
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/01/2016
 ms.author: mmccrory
-ms.openlocfilehash: cfac6660e84f8ae24e4e9bdd5bf2016fb9cd7045
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a7ae8ff202d403dff19b8c9a6a09492235db27ac
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooscale-a-cloud-service-in-powershell"></a>Comment tooscale un cloud service dans PowerShell
+# <a name="how-to-scale-a-cloud-service-in-powershell"></a>Mise à l’échelle d’un service cloud dans PowerShell
 
-Vous pouvez utiliser Windows PowerShell tooscale un rôle web ou un rôle de travail ou en ajoutant ou supprimant des instances.  
+Vous pouvez utiliser Windows PowerShell à pour mettre à l’échelle un rôle web ou un rôle de travail en ajoutant ou supprimant des instances.  
 
-## <a name="log-in-tooazure"></a>Connectez-vous à tooAzure
+## <a name="log-in-to-azure"></a>Connexion à Azure
 
 Avant de pouvoir effectuer des opérations sur votre abonnement via PowerShell, vous devez vous connecter :
 
@@ -32,50 +32,50 @@ Avant de pouvoir effectuer des opérations sur votre abonnement via PowerShell, 
 Add-AzureAccount
 ```
 
-Si vous avez plusieurs abonnements associés à votre compte, vous devrez peut-être toochange hello abonnement en fonction de l’emplacement de votre service cloud. toocheck hello abonnement actuel exécuter :
+Si vous avez plusieurs abonnements associés à votre compte, vous devrez peut-être modifier l’abonnement actuel en fonction de l’emplacement de votre service cloud. Pour vérifier l’abonnement actuel, exécutez :
 
 ```powershell
 Get-AzureSubscription -Current
 ```
 
-Si vous avez besoin d’abonnement toochange hello, exécutez :
+Si vous devez modifier l’abonnement en cours, exécutez :
 
 ```powershell
 Set-AzureSubscription -SubscriptionId <subscription_id>
 ```
 
-## <a name="check-hello-current-instance-count-for-your-role"></a>Vérifier le nombre d’instances actuelles hello pour votre rôle.
+## <a name="check-the-current-instance-count-for-your-role"></a>Vérifiez le nombre d’instances actuel pour votre rôle
 
-état actuel de hello toocheck de votre rôle, exécutez :
+Pour vérifier l’état actuel de votre rôle, exécutez :
 
 ```powershell
 Get-AzureRole -ServiceName '<your_service_name>' -RoleName '<your_role_name>'
 ```
 
-Vous devez obtenir des informations sur le rôle hello, y compris son décompte de version et l’instance actuelle du système d’exploitation. Dans ce cas, le rôle de hello a une seule instance.
+Vous devriez obtenir des informations sur le rôle, y compris la version actuelle de son système d’exploitation et le nombre d’instances. Dans ce cas, le rôle a une seule instance.
 
-![Plus d’informations sur le rôle de hello](./media/cloud-services-how-to-scale-powershell/get-azure-role.png)
+![Informations sur le rôle](./media/cloud-services-how-to-scale-powershell/get-azure-role.png)
 
-## <a name="scale-out-hello-role-by-adding-more-instances"></a>Rôle de hello faire évoluer en ajoutant plusieurs instances
+## <a name="scale-out-the-role-by-adding-more-instances"></a>Augmentation de la taille du rôle en ajoutant des instances
 
-tooscale à votre rôle, passe hello nombre souhaité d’instances comme hello **nombre** paramètre toohello **Set-AzureRole** applet de commande :
+Pour augmenter la taille de votre rôle, passez le nombre souhaité d’instances en tant que paramètre **Count** paramètre à l’applet de commande **Set-AzureRole** :
 
 ```powershell
 Set-AzureRole -ServiceName '<your_service_name>' -RoleName '<your_role_name>' -Slot <target_slot> -Count <desired_instances>
 ```
 
-blocs d’applet de commande Hello momentanément lors de nouvelles instances de hello sont configurés et démarrés. Pendant ce temps, si vous ouvrez une nouvelle fenêtre PowerShell et appel **Get-AzureRole** comme indiqué précédemment, vous verrez le nombre d’instances hello nouvelle cible. Et si vous Inspectez le statut du rôle hello dans le portail de hello, vous devez voir hello nouvelle instance démarre :
+L’applet de commande se bloque momentanément pendant que les nouvelles instances sont configurées et démarrées. Pendant ce temps, si vous ouvrez une fenêtre PowerShell et appelez **Get-AzureRole** comme présenté précédemment, vous verrez le nouveau nombre d’instances cibles. Et si vous examinez l’état du rôle dans le portail, vous devriez voir la nouvelle instance démarrer :
 
 ![Instance de machine virtuelle en cours de démarrage dans le portail](./media/cloud-services-how-to-scale-powershell/role-instance-starting.png)
 
-Une fois les nouvelles instances de hello ont démarré, applet de commande hello retournera correctement :
+Une fois les nouvelles instances démarrées, l’applet de commande renvoie correctement :
 
 ![Augmentation du nombre d’instances du rôle réussie](./media/cloud-services-how-to-scale-powershell/set-azure-role-success.png)
 
-## <a name="scale-in-hello-role-by-removing-instances"></a>Mettre à l’échelle dans le rôle de hello en supprimant des instances
+## <a name="scale-in-the-role-by-removing-instances"></a>Diminution de la taille du rôle en supprimant des instances
 
-Vous pouvez faire évoluer dans un rôle en supprimant des instances de hello identique. Ensemble hello **nombre** paramètre sur **Set-AzureRole** toohello nombre d’instances souhaitées toohave après la mise à l’échelle de hello dans l’opération est terminée.
+Vous pouvez diminuer la taille d’un rôle en supprimant des instances de la même façon. Définissez le paramètre **Count** paramètre sur **Set-AzureRole** pour le nombre d’instances que vous souhaitez avoir une fois l’opération de mise à l’échelle terminée.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Il n’est pas possible de tooconfigure à l’échelle automatique pour les services de cloud à partir de PowerShell. toodo qui, consultez [comment tooauto l’échelle un service cloud](cloud-services-how-to-scale-portal.md).
+Il n’est pas possible de configurer la mise à l’échelle automatique pour les services cloud à partir de PowerShell. Pour ce faire, consultez [Mise à l’échelle automatique d’un service cloud](cloud-services-how-to-scale-portal.md).

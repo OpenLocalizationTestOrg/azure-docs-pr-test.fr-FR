@@ -1,5 +1,5 @@
 ---
-title: "vue d’ensemble du contrôle d’intégrité de ressource aaaAzure | Documents Microsoft"
+title: "Présentation d’Azure Resource Health | Microsoft Docs"
 description: "Vue d’ensemble d’Azure Resource Health"
 services: Resource health
 documentationcenter: 
@@ -14,80 +14,80 @@ ms.tgt_pltfrm: na
 ms.workload: Supportability
 ms.date: 07/01/2017
 ms.author: BernardoAMunoz
-ms.openlocfilehash: f06153864090487829f717dc3e8972c78a4a58af
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 040d58a81a9b41fe660e4276d698bf884f90bb6c
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
 # <a name="azure-resource-health-overview"></a>Présentation d’Azure Resource Health
  
-Resource Health vous permet d’établir des diagnostics et d’obtenir de l’aide lorsqu’un problème touchant Azure a des répercussions sur vos ressources. Il vous informe de la santé de vos ressources hello actuelles et passées et vous permet d’atténuer les problèmes. Resource Health propose un support technique dès lors que vous êtes confronté à des problèmes de service Azure et que vous avez besoin d’aide.
+Resource Health vous permet d’établir des diagnostics et d’obtenir de l’aide lorsqu’un problème touchant Azure a des répercussions sur vos ressources. Il vous informe de l’intégrité (actuelle et passée) de vos ressources et vous aide à atténuer les problèmes. Resource Health propose un support technique dès lors que vous êtes confronté à des problèmes de service Azure et que vous avez besoin d’aide.
 
-Alors que [Azure Status](https://status.azure.com) vous informe des problèmes de service qui affectent un large éventail de clients Azure, l’intégrité des ressources vous offre un tableau de bord personnalisé d’intégrité hello de vos ressources. L’intégrité des ressources vous montre toutes les heures hello vos ressources n’étaient pas disponibles dans hello passé en raison de problèmes de service tooAzure. Cela rend simple pour vous toounderstand si un contrat SLA a été violé. 
+Là où le [Statut Azure](https://status.azure.com) vous informe des problèmes de service qui affectent un grand nombre de clients Azure, Resource Health vous offre un tableau de bord personnalisé de l’intégrité de vos ressources. Resource Health vous montre toutes les fois où vos ressources ont été indisponibles dans le passé en raison de problèmes de service Azure. Cela vous permet de comprendre simplement si un contrat SLA a été enfreint. 
 
 ## <a name="what-is-considered-a-resource-and-how-does-resource-health-decides-if-a-resource-is-healthy-or-not"></a>Qu’est-ce qu’une ressource et comment Resource Health juge-t-il de l’intégrité d’une ressource ?
 Une ressource est une instance créée par un utilisateur d’un type de ressource fourni par un service Azure via Azure Resource Manager, par exemple une machine virtuelle, une application web ou une base de données SQL.
 
-L’intégrité des ressources s’appuie sur des signaux émis par hello différents services Azure tooassess si une ressource est saine ou non. Si une ressource est défectueux, l’intégrité des ressources analyse les informations supplémentaires toodetermine hello source hello problème. Il identifie également les actions que Microsoft prend toofix hello problème ou faire ce qui les actions à entreprendre tooaddress hello provoquent de problème de hello. 
+Resource Health s’appuie sur des signaux émis par les différents services Azure pour évaluer l’intégrité d’une ressource. Si une ressource n’est pas intègre, Resource Health analyse des informations supplémentaires pour déterminer la source du problème. Il identifie également les actions adoptées par Microsoft pour résoudre le problème ou les actions que vous pouvez prendre pour résoudre la cause du problème. 
 
-Révision hello la liste complète des types de ressources et d’intégrité vérifie [l’intégrité des ressources Azure](resource-health-checks-resource-types.md) pour plus d’informations sur la procédure d’évaluation d’intégrité.
+Passez en revue la liste complète de types de ressource et de vérifications d’intégrité dans [Azure Resource Health](resource-health-checks-resource-types.md) pour plus d’informations sur la procédure d’évaluation de l’intégrité.
 
 ## <a name="health-status-provided-by-resource-health"></a>L’état d’intégrité fourni par Resource Health
-intégrité Hello d’une ressource est un des hello suivant des États :
+L’intégrité d’une ressource affiche un des états suivants :
 
 ### <a name="available"></a>Disponible
-service de Hello n’a détecté que tous les événements ayant un impact sur l’intégrité de hello de ressource de hello. Dans les cas où les ressources hello a récupéré de temps d’arrêt non planifié pendant hello dernières 24 heures, vous verrez hello **récemment récupéré** notification.
+Le service n’a pas détecté d’événements ayant un impact sur l’intégrité de la ressource. Dans les cas où la ressource a récupéré d’un arrêt non planifié au cours des dernières 24 heures, vous verrez la notification **récupération récente**.
 
 ![Machine virtuelle disponible Resource Health](./media/resource-health-overview/Available.png)
 
 ### <a name="unavailable"></a>Non disponible
-service de Hello a détecté une plateforme en cours ou un événement non-plateforme ayant un impact sur l’intégrité de hello de ressource de hello.
+Le service a détecté un événement de plateforme ou hors plateforme en cours ayant un impact sur l’intégrité de la ressource.
 
 #### <a name="platform-events"></a>Événements de plateforme
-Ces événements sont déclenchés par plusieurs composants de hello infrastructure Azure et incluent les actions planifiées telles que de maintenance planifiée et des incidents inattendues comme un redémarrage de l’ordinateur hôte non planifié.
+Ces événements sont déclenchés par plusieurs composants de l’infrastructure Azure et incluent les actions planifiées telles que de la maintenance planifiée, ainsi que les incidents inattendus, comme un redémarrage non planifié de l’hôte.
 
-L’intégrité des ressources fournit des détails supplémentaires sur l’événement hello, processus de récupération hello et vous permet la prise en charge de toocontact même si vous n’avez pas de contrat de support technique d’un Microsoft actif.
+Resource Health fournit des détails supplémentaires sur l’événement et le processus de récupération et vous permet de contacter le support technique même si vous n’avez pas un contrat de support technique Microsoft actif.
 
-![Ressource d’intégrité indisponible virtual machine en raison de l’événement de tooplatform](./media/resource-health-overview/Unavailable.png)
+![Machine virtuelle indisponible Resource Health en raison d’un événement de plateforme](./media/resource-health-overview/Unavailable.png)
 
 #### <a name="non-platform-events"></a>Événements hors plateforme
-Ces événements sont déclenchés par les actions effectuées par les utilisateurs, par exemple l’arrêt d’un ordinateur virtuel ou atteindre hello le nombre maximal de connexions tooa Cache Redis.
+Ces événements sont déclenchés par des actions effectuées par les utilisateurs, par exemple l’arrêt d’une machine virtuelle ou l’arrivée au nombre maximal de connexions à un cache Redis.
 
-![Ressource d’intégrité indisponible virtual machine en raison de l’événement de plate-forme de toonon](./media/resource-health-overview/Unavailable_NonPlatform.png)
+![Machine virtuelle indisponible Resource Health en raison d’un événement hors plateforme](./media/resource-health-overview/Unavailable_NonPlatform.png)
 
 ### <a name="unknown"></a>Unknown
-L’état d’intégrité indique que Resource Health n’a reçu aucune information sur cette ressource depuis plus de 10 minutes. Cet état n’est pas une indication définitive de l’état hello de ressource de hello, il est un point de données importantes dans hello processus de dépannage :
-* Si les ressources hello sont en cours d’exécution en tant qu’état hello attendu de ressource de hello met à jour tooAvailable après quelques minutes.
-* Si vous rencontrez des problèmes avec les ressources hello, hello état d’intégrité inconnu peut suggérer la ressource de hello est affectée par un événement de plate-forme de hello.
+L’état d’intégrité indique que Resource Health n’a reçu aucune information sur cette ressource depuis plus de 10 minutes. Si cet état n’est pas une indication définitive de l’état de la ressource, il s’agit d’un point de données important dans le processus de dépannage :
+* Si la ressource fonctionne comme prévu, l’état de la ressource est mis à jour sur Disponible après quelques minutes.
+* Si vous rencontrez des problèmes avec la ressource, l’état d’intégrité Inconnu peut suggérer que la ressource est affectée par un événement dans la plateforme.
 
 ![Machine virtuelle inconnue Resource Health](./media/resource-health-overview/Unknown.png)
 
 ## <a name="report-an-incorrect-status"></a>Signaler un état incorrect
-Si à tout moment, vous pensez état d’intégrité actuel de hello est incorrect, vous pouvez faites-le nous savoir en cliquant sur **signaler l’état d’intégrité incorrect**. Dans les cas où vous n’êtes affecté à un problème d’Azure, nous vous encourageons prise en charge toocontact à partir du Panneau de contrôle d’intégrité des ressources hello. 
+Si à tout moment, vous pensez que l’état actuel est incorrect, vous pouvez nous le faire savoir en cliquant sur **Signaler un état d’intégrité incorrect**. Dans le cas où vous êtes affecté par un problème avec Azure, nous vous invitons à contacter le support à partir du panneau Resource Health. 
 
 ![Signaler un état incorrect dans Resource Health](./media/resource-health-overview/incorrect-status.png)
 
 ## <a name="historical-information"></a>Informations d’historique
-Vous pouvez accéder à des jours too14 des données historiques d’intégrité en cliquant sur **afficher l’historique** dans le panneau de contrôle d’intégrité des ressources hello. 
+Vous pouvez accéder aux données historiques d’intégrité jusqu'à 14 jours en cliquant sur **Afficher l’historique** dans le panneau de Resource Health. 
 
 ![Historique des rapports de Resource Health](./media/resource-health-overview/history-blade.png)
 
 ## <a name="getting-started"></a>Prise en main
-tooopen l’intégrité des ressources pour une ressource
-1.  Connectez-vous en hello portail Azure.
-2.  Accédez tooyour ressource.
-3.  Dans le menu de ressource hello situé dans la partie gauche hello, cliquez sur **l’intégrité des ressources**.
+Pour ouvrir Resource Health pour une ressource
+1.  Connectez-vous au portail Azure.
+2.  Accédez à votre ressource.
+3.  Dans le menu de ressources situé dans la partie gauche, cliquez sur **Intégrité des ressources**.
 
 ![Ouvrir Resource Health depuis le panneau Ressource](./media/resource-health-overview/from-resource-blade.png)
 
-Vous pouvez également accéder à l’intégrité des ressources en cliquant sur **davantage de services**et en tapant **l’intégrité des ressources** Bonjour de tooopen de zone de texte filtre **aide et Support** panneau. Cliquez enfin sur [**Intégrité des ressources**](https://ms.portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/resourceHealth).
+Vous pouvez également accéder à Resource Health en cliquant sur **Plus de services** et en saisissant **Resource Health** dans la zone de texte de filtre pour ouvrir le panneau **Aide + Support**. Cliquez enfin sur [**Intégrité des ressources**](https://ms.portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/resourceHealth).
 
 ![Ouvrir Resource Health depuis Plus de services](./media/resource-health-overview/FromOtherServices.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Passez en revue ces toolearn de ressources en savoir plus sur l’intégrité des ressources :
+Pour en savoir plus sur Resource Health, consultez les ressources suivantes :
 -  [Types de ressources et les contrôles d’intégrité dans Azure Resource Health](resource-health-checks-resource-types.md)
 -  [Forum aux questions sur Azure Resource Health](resource-health-faq.md)
 

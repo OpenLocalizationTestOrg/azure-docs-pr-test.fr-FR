@@ -1,6 +1,6 @@
 ---
-title: "d’aaaHow tooremove un utilisateur accéder à application de tooan | Documents Microsoft"
-description: "Comprendre comment de tooremove un utilisateur accéder à tooan d’application"
+title: "Guide pratique pour retirer l’accès d’un utilisateur à une application | Microsoft Docs"
+description: "Comprendre comment retirer l’accès d’un utilisateur à une application"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,62 +13,62 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 17017bddb73aad5a0ef3a411ac91bf0423f0b600
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 497429e7bf62f7e1d67ea429d6b858725f843688
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-tooremove-a-users-access-tooan-application"></a>Comment de tooremove un utilisateur accéder à tooan d’application
+# <a name="how-to-remove-a-users-access-to-an-application"></a>Guide pratique pour retirer l’accès d’un utilisateur à une application
 
-Cet article vous a-t-il toounderstand comment de tooremove un utilisateur accéder à tooan d’application.
+Cet article vous aide à comprendre comment retirer l’accès d’un utilisateur à une application.
 
-## <a name="i-want-tooremove-a-specific-users-or-groups-assignment-tooan-application"></a>Je veux tooremove un utilisateur spécifique ou du groupe affectation tooan une application
+## <a name="i-want-to-remove-a-specific-users-or-groups-assignment-to-an-application"></a>Je souhaite supprimer l’attribution d’une application à un utilisateur ou groupe spécifique
 
-tooremove une application utilisateur ou groupe affectation tooan, suivez les étapes de hello répertoriées dans hello [supprimer une attribution de l’utilisateur ou un groupe à partir d’une application d’entreprise dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-remove-assignment-azure-portal) l’article.
+Pour supprimer l’attribution d’une application à un utilisateur ou groupe, suivez les étapes répertoriées dans l’article [Supprimer l’attribution d’une application à un utilisateur ou groupe à partir d’une application d’entreprise dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-remove-assignment-azure-portal).
 
-. ## souhaitée toodisable tous les accès tooan d’applications pour chaque utilisateur
+. ## je souhaite désactiver tous les accès à une application pour chaque utilisateur
 
-toodisable toutes les applications de la tooan de connexions utilisateur, suivez les étapes de hello répertoriés dans hello [désactiver des connexions utilisateur pour une application d’entreprise dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-disable-app-azure-portal) l’article.
+Pour désactiver toutes les connexions des utilisateurs à une application, suivez les étapes répertoriées dans l’article [Désactiver les connexions des utilisateurs à une application d’entreprise dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-disable-app-azure-portal).
 
-## <a name="i-want-toodelete-an-application-entirely"></a>Je veux toodelete une application entièrement
+## <a name="i-want-to-delete-an-application-entirely"></a>Je veux complètement supprimer une passerelle d’application
 
-trop**supprimer une application**, suivez les instructions de hello ci-dessous :
+Pour **supprimer une application**, suivez les instructions ci-dessous :
 
-1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
+1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur.**
 
-2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
+2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
 
-3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
+3.  Tapez « **Azure Active Directory** » dans la zone de recherche du filtre et sélectionnez l’élément **Azure Active Directory**.
 
-4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
+4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
 
-5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
+5.  Cliquez sur **Toutes les applications** pour afficher une liste de toutes vos applications.
 
-   * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
+   * Si l’application que vous recherchez n’apparaît pas, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
 
-6.  Sélectionnez l’application hello toodelete.
+6.  Sélectionnez l’application que vous voulez supprimer.
 
-7.  Une fois le charge de l’application hello, cliquez sur **supprimer** icône à partir de l’application hello supérieur **vue d’ensemble** panneau.
+7.  Une l’application chargée, cliquez sur l’icône **Supprimer** dans le panneau supérieur **Vue d’ensemble** de l’application.
 
-## <a name="i-want-toodisable-all-future-user-consent-operations-tooany-application"></a>Je veux toodisable tooany application de tous les futurs utilisateur consentement opérations
+## <a name="i-want-to-disable-all-future-user-consent-operations-to-any-application"></a>Je veux désactiver toutes les futures opérations de consentement de l’utilisateur pour n’importe quelle application
 
-La désactivation de consentement de l’utilisateur pour éviter que les utilisateurs finaux d’application de tooany terme autorisation tout le répertoire. Les administrateurs peuvent toujours donner leur consentement au nom de l’utilisateur. toolearn en savoir plus sur l’application de consentement, et pourquoi vous pouvez ou pas souhaitiez toodo, lecture [utilisateur de présentation et de consentement de l’administrateur](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent).
+La désactivation du consentement de l’utilisateur pour votre annuaire entier empêche les utilisateurs finaux de donner leur consentement pour n’importe quelle application. Les administrateurs peuvent toujours donner leur consentement au nom de l’utilisateur. Pour en savoir plus sur le consentement de l’application et les conditions pour donner ou refuser ce consentement, lisez la rubrique [Comprendre le consentement de l’utilisateur et de l’administrateur](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent).
 
-trop**désactiver toutes les opérations de consentement d’utilisateur futures dans tout le répertoire**, suivez les instructions de hello ci-dessous :
+Pour **désactiver toutes les futures opérations de consentement de l’utilisateur dans votre annuaire entier**, suivez les instructions ci-dessous :
 
-1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
+1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général.**
 
-2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
+2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
 
-3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
+3.  Tapez « **Azure Active Directory** » dans la zone de recherche du filtre et sélectionnez l’élément **Azure Active Directory**.
 
-4.  Cliquez sur **utilisateurs et groupes** dans le menu de navigation hello.
+4.  Cliquez sur **Utilisateurs et groupes** dans le menu de navigation.
 
 5.  Cliquez sur **Paramètres utilisateur**.
 
-6.  Désactiver toutes les opérations de consentement d’utilisateur futures en définissant un hello **les utilisateurs peuvent autoriser des applications tooaccess leurs données** basculer trop**non** et cliquez sur hello **enregistrer** bouton.
+6.  Désactivez toutes les futures opérations de consentement de l’utilisateur en définissant l’option **Les utilisateurs peuvent autoriser les applications à accéder à leurs données** sur **Non**, puis cliquez sur le bouton **Enregistrer**.
 
 
 # <a name="next-steps"></a>Étapes suivantes
-[Gestion des accès tooapps](active-directory-managing-access-to-apps.md)
+[Gestion de l’accès aux applications](active-directory-managing-access-to-apps.md)

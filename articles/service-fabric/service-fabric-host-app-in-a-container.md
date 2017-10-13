@@ -1,6 +1,6 @@
 ---
-title: aaaDeploy une application .NET dans un conteneur de tooAzure Service Fabric | Documents Microsoft
-description: "Vous apprend comment toopackage une application .NET dans Visual Studio dans un conteneur Docker. Cette nouvelle application « conteneur » est ensuite déployée cluster Service Fabric de tooa."
+title: "Déployer une application .NET dans un conteneur vers Azure Service Fabric | Microsoft Docs"
+description: "Explique comment empaqueter une application .NET dans Visual Studio dans un conteneur Docker. Cette nouvelle application « conteneur » est ensuite déployée sur un cluster Service Fabric."
 services: service-fabric
 documentationcenter: .net
 author: mikkelhegn
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/19/2017
 ms.author: mikhegn
-ms.openlocfilehash: 094b0e71d76b2e56ffb9b23638dd8154b3aff5fb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 021c695a91ff46274b2a5174918711d04bcff239
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="deploy-a-net-application-in-a-windows-container-tooazure-service-fabric"></a>Déployer une application .NET dans un tooAzure de conteneur Windows Service Fabric
+# <a name="deploy-a-net-application-in-a-windows-container-to-azure-service-fabric"></a>Déployer une application .NET dans un conteneur Windows vers Azure Service Fabric
 
-Ce didacticiel vous montre comment toodeploy une application ASP.NET existante dans un conteneur Windows sur Azure.
+Ce didacticiel explique comment déployer une application ASP.NET dans un conteneur Windows sur Azure.
 
 Ce didacticiel vous montre comment effectuer les opérations suivantes :
 
@@ -34,21 +34,21 @@ Ce didacticiel vous montre comment effectuer les opérations suivantes :
 ## <a name="prerequisites"></a>Conditions préalables
 
 1. Installez [Docker CE pour Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows?tab=description) afin que vous puissiez exécuter des conteneurs sur Windows 10.
-2. Familiarisez-vous avec hello [démarrage rapide des conteneurs de Windows 10][link-container-quickstart].
-3. Télécharger hello [Fabrikam Fiber CallCenter] [ link-fabrikam-github] exemple d’application.
+2. Familiarisez-vous avec [l’utilisation de Windows 10 Containers][link-container-quickstart].
+3. Téléchargez l’exemple d’application [Fabrikam Fiber CallCenter][link-fabrikam-github].
 4. Installez [Azure PowerShell][link-azure-powershell-install]
-5. Installer hello [extension des outils de livraison continue pour Visual Studio 2017][link-visualstudio-cd-extension]
+5. Installez l’[Extension Outils de livraison continue pour Visual Studio 2017][link-visualstudio-cd-extension]
 6. Créez un [Abonnement Azure][link-azure-subscription] et un [Compte Visual Studio Team Services][link-vsts-account]. 
 7. [Créez un cluster sur Azure](service-fabric-tutorial-create-cluster-azure-ps.md)
 
-## <a name="containerize-hello-application"></a>Mettez en conteneur application hello
+## <a name="containerize-the-application"></a>Conteneuriser l’application
 
-Maintenant que vous avez un [cluster Service Fabric s’exécute dans Azure](service-fabric-tutorial-create-cluster-azure-ps.md) vous êtes prêt toocreate et que vous déployez une application en conteneur. toostart notre application en cours d’exécution dans un conteneur, nous devons tooadd **prise en charge Docker** projet toohello dans Visual Studio. Lorsque vous ajoutez **prise en charge Docker** toohello application, deux événements se produisent. Tout d’abord, un _Dockerfile_ est ajouté toohello projet. Ce nouveau fichier décrit comment image de conteneur hello toobe généré. Puis la deuxième, un nouveau _docker-composer_ projet est ajouté à la solution de toohello. nouveau projet Hello contient quelques docker-composer des fichiers. Fichiers de composer de docker peuvent être utilisé toodescribe comment conteneur de hello est exécuté.
+À présent que vous disposez d’un [cluster Service Fabric s’exécutant dans Azure](service-fabric-tutorial-create-cluster-azure-ps.md) vous êtes prêt à créer et à déployer une application en conteneur. Pour commencer à exécuter notre application dans un conteneur, nous devons ajouter la **prise en charge Docker** au projet dans Visual Studio. Lorsque vous ajoutez la **prise en charge Docker** à l’application, deux événements se produisent. Premièrement, un _Fichier Docker_ est ajouté au projet. Ce nouveau fichier décrit la manière dont doit être générée l’image de conteneur. Dans un deuxième temps, un nouveau projet _docker-compose_ est ajouté à la solution. Le nouveau projet contient quelques fichiers docker-compose. Les fichiers docker-compose peuvent être utilisés pour décrire la manière dont le conteneur est exécuté.
 
 En savoir plus sur l’utilisation de [Visual Studio Container Tools][link-visualstudio-container-tools].
 
 >[!NOTE]
->S’il est hello première fois que vous les images de conteneur Windows sont en cours d’exécution sur votre ordinateur, CE de Docker doit le chercher les images de base hello pour vos conteneurs. les images de Hello utilisés dans ce didacticiel sont 14 Go. Pour commencer, exécutez hello suivant des images de base hello toopull commande Terminal Server :
+>Si vous utilisez pour la première fois des images de conteneurs Windows sur votre ordinateur, Docker CE doit extraire les images de base de vos conteneurs. Les images utilisées dans ce didacticiel font une taille de 14 Go. Poursuivez et exécutez la commande de terminal suivante pour extraire les images de base :
 >```cmd
 >docker pull microsoft/mssql-server-windows-developer
 >docker pull microsoft/aspnet:4.6.2
@@ -56,17 +56,17 @@ En savoir plus sur l’utilisation de [Visual Studio Container Tools][link-visua
 
 ### <a name="add-docker-support"></a>Ajouter la prise en charge Docker
 
-Ouvrez hello [FabrikamFiber.CallCenter.sln] [ link-fabrikam-github] fichier dans Visual Studio.
+Ouvrez le fichier [FabrikamFiber.CallCenter.sln][link-fabrikam-github] dans Visual Studio.
 
-Avec le bouton hello **FabrikamFiber.Web** projet > **ajouter** > **prise en charge Docker**.
+Cliquez avec le bouton droit sur le projet **FabrikamFiber.Web** > **Ajouter** > **Prise en charge de Docker**.
 
 ### <a name="add-support-for-sql"></a>Ajouter la prise en charge de SQL
 
-Cette application utilise SQL en tant que fournisseur de données hello, par conséquent, un serveur SQL server est requis toorun hello application. Référencez une image de conteneur SQL Server dans notre fichier docker-compose.override.yml.
+Puisque cette application utilise SQL en tant que fournisseur de données, vous avez besoin d’un SQL Server pour exécuter l’application. Référencez une image de conteneur SQL Server dans notre fichier docker-compose.override.yml.
 
-Dans Visual Studio, ouvrez **l’Explorateur de solutions**, trouver **composer de docker**et ouvrez hello **docker-compose.override.yml**.
+Dans Visual Studio, ouvrez l’**Explorateur de solutions**, cherchez **docker-compose**, puis ouvrez le fichier **docker-compose.override.yml**.
 
-Accédez toohello `services:` nœud, ajoutez un nœud nommé `db:` qui définit l’entrée de SQL Server hello pour le conteneur de hello.
+Accédez au nœud `services:`, ajoutez un nœud nommé `db:` qui définit l’entrée SQL Server pour le conteneur.
 
 ```yml
   db:
@@ -86,9 +86,9 @@ Accédez toohello `services:` nœud, ajoutez un nœud nommé `db:` qui définit 
 >Vous pouvez utiliser l’instance SQL Server de votre choix pour le débogage local, tant qu’elle est accessible à partir de votre hôte. **localdb** ne prend cependant pas en charge la communication `container -> host`.
 
 >[!WARNING]
->L’exécution de SQL Server dans un conteneur ne prend pas en charge les données persistantes. Lorsque le conteneur de hello s’arrête, vos données sont effacées. N’utilisez pas cette configuration pour la production.
+>L’exécution de SQL Server dans un conteneur ne prend pas en charge les données persistantes. Lorsque le conteneur s’arrête, vos données sont effacées. N’utilisez pas cette configuration pour la production.
 
-Accédez toohello `fabrikamfiber.web:` nœud et ajouter un nœud enfant nommé `depends_on:`. Cela garantit que hello `db` service (conteneur de SQL Server hello) démarre avant que notre application web (fabrikamfiber.web).
+Accédez au nœud `fabrikamfiber.web:`, puis ajoutez un nœud enfant nommé `depends_on:`. Le service `db` (le conteneur SQL Server) peut ainsi démarrer avant notre application web (fabrikamfiber.web).
 
 ```yml
   fabrikamfiber.web:
@@ -96,9 +96,9 @@ Accédez toohello `fabrikamfiber.web:` nœud et ajouter un nœud enfant nommé `
       - db
 ```
 
-### <a name="update-hello-web-config"></a>Mettre à jour hello web config
+### <a name="update-the-web-config"></a>Mettre à jour la configuration web
 
-Dans hello **FabrikamFiber.Web** projet, la chaîne de connexion de mise à jour hello Bonjour **web.config** toopoint toohello SQL Server dans le conteneur de hello, de fichiers.
+De retour dans le projet **FabrikamFiber.Web**, mettez à jour la chaîne de connexion dans le fichier **web.config** pour pointer vers le serveur SQL Server dans le conteneur.
 
 ```xml
 <add name="FabrikamFiber-Express" connectionString="Data Source=db,1433;Database=FabrikamFiber;User Id=sa;Password=Password1;MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
@@ -107,33 +107,33 @@ Dans hello **FabrikamFiber.Web** projet, la chaîne de connexion de mise à jour
 ```
 
 >[!NOTE]
->Si vous voulez toouse un autre serveur SQL Server lors de la création d’une version de build de votre application web, ajoutez un autre fichier de web.release.config tooyour chaîne connexion.
+>Si vous souhaitez utiliser un autre SQL Server lors de la création d’une version build de votre application web, ajoutez une autre chaîne de connexion à votre fichier web.release.config.
 
 ### <a name="test-your-container"></a>Tester votre conteneur
 
-Appuyez sur **F5** toorun et déboguer l’application hello dans votre conteneur.
+Appuyez sur **F5** pour exécuter et déboguer l’application dans votre conteneur.
 
-Bord ouvre la page de lancement défini de votre application à l’aide d’adresse IP de hello du conteneur de hello sur le réseau interne NAT (généralement 172.x.x.x) de hello. toolearn en savoir plus sur le débogage d’applications dans des conteneurs à l’aide de Visual Studio 2017, consultez [cet article][link-debug-container].
+Edge ouvre la page de démarrage définie de votre application en utilisant l’adresse IP du conteneur sur le réseau NAT interne (généralement 172.x.x.x). Pour en savoir plus sur le débogage des applications dans des conteneurs à l’aide de Visual Studio 2017, consultez [cet article][link-debug-container].
 
 ![exemple de fabrikam dans un conteneur][image-web-preview]
 
-Hello conteneur est maintenant prêt toobe généré et empaqueté dans une application de Service Fabric. Une fois que vous avez hello conteneur génération de l’image sur votre ordinateur, vous pouvez distribuer le Registre de conteneur tooany et par l’extraction vers le bas tooany hôte toorun.
+Le conteneur est désormais prêt à être généré et empaqueté dans une application Service Fabric. Une fois l’image de conteneur intégrée sur votre ordinateur, vous pouvez la placer dans n’importe quel registre de conteneur et la transmettre à n’importe quel hôte pour l’exécuter.
 
-## <a name="get-hello-application-ready-for-hello-cloud"></a>Préparer l’application hello pour le cloud de hello
+## <a name="get-the-application-ready-for-the-cloud"></a>Préparer l’application pour le cloud
 
-l’application de hello tooget prête pour l’exécution dans l’infrastructure de Service dans Azure, nous devons toocomplete deux étapes :
+Pour préparer l’application en vue de son exécution dans Service Fabric dans Azure, nous devons effectuer deux étapes :
 
-1. Exposer le port hello que nous voulons tooreach en mesure de toobe notre application web dans le cluster Service Fabric de hello.
+1. Exposer le port sur lequel nous souhaitons pouvoir atteindre notre application web dans le cluster Service Fabric.
 2. Fournir une base de données SQL prête pour notre application.
 
-### <a name="expose-hello-port-for-hello-app"></a>Exposer le port hello pour une application hello
-cluster Service Fabric de Hello que nous avons configuré, a port *80* ouvert par défaut dans hello équilibrage de charge Azure, qui équilibre cluster de toohello le trafic entrant. Nous pouvons exposer notre conteneur sur ce port par le biais de notre fichier docker-compose.yml.
+### <a name="expose-the-port-for-the-app"></a>Exposer le port pour l’application
+Le cluster Service Fabric que nous avons configuré a son port *80* ouvert par défaut dans Azure Load Balancer, qui équilibre le trafic entrant vers le cluster. Nous pouvons exposer notre conteneur sur ce port par le biais de notre fichier docker-compose.yml.
 
-Dans Visual Studio, ouvrez **l’Explorateur de solutions**, trouver **composer de docker**et ouvrez hello **docker-compose.override.yml**.
+Dans Visual Studio, ouvrez **l’Explorateur de solutions**, recherchez **docker-compose** et ouvrez le fichier **docker-compose.yml**.
 
-Modifier hello `fabrikamfiber.web:` nœud, ajoutez un nœud enfant nommé `ports:`.
+Modifiez le nœud `fabrikamfiber.web:`, puis ajoutez un nœud enfant nommé `ports:`.
 
-Ajoutez une entrée chaîne `- "80:80"`.
+Ajoutez une entrée chaîne `- "80:80"`. Votre fichier docker-compose.yml doit ressembler à ceci :
 
 ```yml
   version: '3'
@@ -149,62 +149,62 @@ Ajoutez une entrée chaîne `- "80:80"`.
 ```
 
 ### <a name="use-a-production-sql-database"></a>Utiliser une base de données SQL de production
-Lors de l’exécution dans un environnement de production, nos données doivent être persistantes dans la base de données. Il n’existe actuellement aucune donnée persistante de façon tooguarantee dans un conteneur, par conséquent vous ne pouvez pas stocker les données de production dans SQL Server dans un conteneur.
+Lors de l’exécution dans un environnement de production, nos données doivent être persistantes dans la base de données. Comme il n’existe aucun moyen de garantir la persistance des données dans un conteneur, vous ne pouvez pas stocker les données de production de SQL Server dans un conteneur.
 
-Nous vous recommandons d’utiliser une base de données Azure SQL Database. tooset haut et exécuter un serveur SQL géré dans Azure, visitez hello [Démarrages rapides de base de données Azure SQL] [ link-azure-sql] l’article.
+Nous vous recommandons d’utiliser une base de données Azure SQL Database. Pour configurer et exécuter un serveur SQL Server managé dans Azure, voir [Démarrages rapides d’Azure SQL Database][link-azure-sql].
 
 >[!NOTE]
->N’oubliez pas de serveur SQL toochange hello connexion chaînes toohello Bonjour **web.release.config** fichier Bonjour **FabrikamFiber.Web** projet.
+>N’oubliez pas de modifier les chaînes de connexion au serveur SQL dans le fichier **web.release.config** dans le projet **FabrikamFiber.Web**.
 >
->Cette application échoue normalement si aucune base de données SQL n’est accessible. Vous pouvez choisir toogo avance et déployer l’application hello avec aucun serveur SQL server.
+>Cette application échoue normalement si aucune base de données SQL n’est accessible. Vous pouvez choisir de poursuivre et de déployer l’application sans serveur SQL.
 
 ## <a name="deploy-with-visual-studio-team-services"></a>Déployer avec Visual Studio Team Services
 
-tooset le déploiement à l’aide de Visual Studio Team Services, vous devez tooinstall hello [extension des outils de livraison continue pour Visual Studio 2017][link-visualstudio-cd-extension]. Cette extension rend facile toodeploy tooAzure par la configuration de Visual Studio Team Services et obtenir votre cluster Service Fabric de tooyour application déployée.
+Pour configurer le déploiement à l’aide de Visual Studio Team Services, vous devez installer [l’extension Continuous Delivery Tools pour Visual Studio 2017][link-visualstudio-cd-extension]. Cette extension facilite le déploiement dans Azure en configurant Visual Studio Team Services et vous permet de déployer votre application sur votre cluster Service Fabric.
 
-tooget démarré, votre code doit être hébergé dans le contrôle de code source. reste Hello de cette section suppose que **git** est utilisé.
+Pour commencer, votre code doit être hébergé dans le contrôle de code source. Le reste de cette section utilise **git**.
 
 ### <a name="set-up-a-vsts-repo"></a>Configurer un référentiel VSTS
-En hello en bas à droite de Visual Studio, cliquez sur **ajouter tooSource contrôle** > **Git** (ou de l’option que vous préférez).
+En bas à droite de Visual Studio, cliquez sur **Ajouter au contrôle de code Source** > **Git** (ou l’option de votre choix).
 
-![Appuyez sur le bouton de contrôle de source de hello][image-source-control]
+![appuyez sur le bouton de contrôle de code source][image-source-control]
 
-Bonjour _Team Explorer_ volet, appuyez sur **publier le référentiel Git**.
+Dans le volet _Team Explorer_, appuyez sur **Publier le dépôt Git**.
 
 Sélectionnez le nom de votre dépôt VSTS et appuyez sur **Dépôt**.
 
-![publier le référentiel tooVSTS][image-publish-repo]
+![publier un dépôt dans VSTS][image-publish-repo]
 
 Maintenant que votre code est synchronisé avec un dépôt de code source VSTS, vous pouvez configurer l’intégration continue et la livraison continue.
 
 ### <a name="setup-continuous-delivery"></a>Configurer une livraison continue
 
-Dans _l’Explorateur de solutions_, avec le bouton hello **solution** > **configurer la livraison continue**.
+Dans _l’Explorateur de solutions_, cliquez avec le bouton droit sur la **solution** > **Configurer la livraison continue**.
 
-Sélectionnez hello abonnement Azure.
+Sélectionnez l’abonnement Azure.
 
-Définissez **Type d’hôte** trop**Cluster Service Fabric**.
+Définissez **Type d’hôte** sur **Cluster Service Fabric**.
 
-Définissez **hôte cible** toohello cluster service fabric vous avez créé dans la section précédente de hello.
+Définissez **Hôte cible** sur le cluster Service Fabric que vous avez créé dans la section précédente.
 
-Choisissez un **Registre de conteneur** toopublish à votre conteneur.
+Choisissez un **Registre de conteneurs** dans lequel publier votre conteneur.
 
 >[!TIP]
->Hello d’utilisation **modifier** bouton toocreate un Registre de conteneur.
+>Cliquez sur le bouton **Modifier** pour créer un registre de conteneurs.
 
 Appuyez sur **OK**.
 
 ![configurer l’intégration continue pour service fabric][image-setup-ci]
    
-   Une fois la configuration hello est terminée, votre conteneur est déployé tooService l’ensemble fibre optique. Chaque fois que vous effectuez un push référentiel toohello de mises à jour une nouvelle build et la version est exécutée.
+   Une fois la configuration terminée, votre conteneur est déployé sur Service Fabric. Chaque fois que vous placez des mises à jour dans le dépôt, de nouvelles build et version Release sont exécutées.
    
    >[!NOTE]
-   >Images de conteneur de construction hello prennent environ 15 minutes.
-   >Hello premier déploiement toohello Service Fabric cluster entraîne hello base Windows Server Core conteneur images toobe téléchargé. téléchargement de Hello prend plus de 5 à 10 minutes toocomplete.
+   >La génération des images du conteneur prend environ 15 minutes.
+   >Le premier déploiement sur le cluster Service Fabric entraîne le téléchargement des images du conteneur Windows Server Core de base. Le téléchargement prend 5 à 10 minutes supplémentaires.
 
-Parcourir l’application de centre d’appels Fabrikam toohello à l’aide des url hello de votre cluster : par exemple, *http://mycluster.westeurope.cloudapp.azure.com*
+Accédez à l’application Fabrikam Call Center à l’aide de l’url de votre cluster : par exemple, *http://mycluster.westeurope.cloudapp.azure.com*
 
-Maintenant que vous avez placées dans des conteneurs et déployé la solution de centre d’appels Fabrikam hello, vous pouvez ouvrir hello [portail Azure] [ link-azure-portal] et voir l’application hello en cours d’exécution dans l’infrastructure de Service. application de hello tootry, ouvrez un navigateur web et accédez toohello des URL de votre cluster Service Fabric.
+Maintenant que vous avez mis en conteneur et déployé la solution de centre d’appareils Fabrikam, vous pouvez ouvrir le [portail Azure][link-azure-portal] et voir l’application en cours d’exécution dans Service Fabric. Pour tester l’application, ouvrez un navigateur web et accédez à l’URL de votre cluster Service Fabric.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
@@ -215,12 +215,14 @@ Dans ce didacticiel, vous avez appris à :
 > * Mettre en conteneur une application existante
 > * Configurer l’intégration continue avec Visual Studio et VSTS
 
+Dans la partie suivante du didacticiel, vous apprendrez à configurer [la surveillance pour votre conteneur](service-fabric-tutorial-monitoring-wincontainers.md).
+
 <!--   NOTE SURE WHAT WE SHOULD DO YET HERE
 
-Advance toohello next tutorial toolearn how toobind a custom SSL certificate tooit.
+Advance to the next tutorial to learn how to bind a custom SSL certificate to it.
 
 > [!div class="nextstepaction"]
-> [Bind an existing custom SSL certificate tooAzure Web Apps](app-service-web-tutorial-custom-ssl.md)
+> [Bind an existing custom SSL certificate to Azure Web Apps](app-service-web-tutorial-custom-ssl.md)
 
 ## Next steps
 

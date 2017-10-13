@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure sauvegarde pour les charges de travail de SQL Server à l’aide d’Azure Backup Server | Documents Microsoft"
-description: "Un toobacking présentation des bases de données SQL Server à l’aide d’Azure Backup Server"
+title: "Sauvegarde Azure pour les charges de travail SQL Server à l’aide du serveur de sauvegarde Azure | Microsoft Docs"
+description: "Présentation de la sauvegarde de bases de données SQL Server à l’aide du serveur de sauvegarde Azure"
 services: backup
 documentationcenter: 
 author: pvrk
@@ -14,145 +14,145 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: pullabhk
-ms.openlocfilehash: 3a94338e8aca3f9d8611a72bcd223397ffb96f3c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2af9ebaa8f52690ed63406cbd85b77544d2d900d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="back-up-sql-server-tooazure-with-azure-backup-server"></a>Sauvegarder SQL Server tooAzure avec Azure Backup Server
-Cet article vous guide tout au long des étapes de configuration hello pour la sauvegarde des bases de données SQL Server à l’aide de Microsoft Azure sauvegarde serveur (MABS).
+# <a name="back-up-sql-server-to-azure-with-azure-backup-server"></a>Sauvegarder des données SQL Server vers Azure à l’aide du serveur de sauvegarde Azure
+Cet article vous guide tout au long des étapes de configuration de la sauvegarde des bases de données SQL Server à l’aide du serveur de sauvegarde Microsoft Azure.
 
-gestion de Hello des tooAzure de sauvegarde de base de données SQL Server et de récupération à partir de Azure implique trois étapes :
+La gestion de sauvegarde et de récupération de base de données SQL Server dans Azure implique trois étapes :
 
-1. Créer un tooAzure de bases de données de stratégie de sauvegarde tooprotect SQL Server.
-2. Créer des copies de sauvegarde à la demande tooAzure.
-3. Récupérer hello de base de données Azure.
+1. Créez une stratégie de sauvegarde pour protéger les bases de données SQL Server dans Azure.
+2. Créez des copies de sauvegarde à la demande vers Azure.
+3. Récupérer la base de données à partir d’Azure.
 
 ## <a name="before-you-start"></a>Avant de commencer
-Avant de commencer, assurez-vous d’avoir [installé et préparé hello Azure Backup Server](backup-azure-microsoft-azure-backup.md).
+Avant de commencer, assurez-vous d’avoir [installé et préparé le serveur de sauvegarde Azure](backup-azure-microsoft-azure-backup.md).
 
-## <a name="create-a-backup-policy-tooprotect-sql-server-databases-tooazure"></a>Créer un tooAzure de bases de données de stratégie de sauvegarde tooprotect SQL Server
-1. Sur hello l’interface utilisateur de serveur de sauvegarde Azure, cliquez sur hello **Protection** espace de travail.
-2. Dans la barre d’outils hello, cliquez sur **nouveau** toocreate un nouveau groupe de protection.
+## <a name="create-a-backup-policy-to-protect-sql-server-databases-to-azure"></a>Créer une stratégie de sauvegarde pour protéger les bases de données SQL Server dans Azure
+1. Dans l’interface utilisateur du serveur de sauvegarde Azure, cliquez sur l’espace de travail **Protection**.
+2. Dans le ruban des outils, cliquez sur **Nouveau** pour créer un nouveau groupe de protection.
 
     ![Créer un groupe de protection](./media/backup-azure-backup-sql/protection-group.png)
-3. MABS affiche l’écran d’accueil hello grâce à l’aide de hello sur la création d’un **groupe de Protection**. Cliquez sur **Suivant**.
+3. Le serveur de sauvegarde Microsoft Azure affiche l’écran de démarrage avec les conseils destinés à la création d’un **groupe de protection**. Cliquez sur **Suivant**.
 4. Sélectionnez **Serveurs**.
 
     ![Sélectionner le type de groupe de protection - « Servers »](./media/backup-azure-backup-sql/pg-servers.png)
-5. Développez l’ordinateur SQL Server hello où hello toobe de bases de données sauvegardée sont présents. Le serveur de sauvegarde Microsoft Azure affiche diverses sources de données pouvant être sauvegardées à partir de ce serveur. Développez hello **tous les partages SQL** et sélectionnez les bases de données hello (dans ce cas nous sélectionné ReportServer$ MSDPM2012 et ReportServer$ MSDPM2012TempDB) toobe sauvegardé. Cliquez sur **Suivant**.
+5. Développez l'ordinateur SQL Server sur lequel se trouvent les bases de données à sauvegarder. Le serveur de sauvegarde Microsoft Azure affiche diverses sources de données pouvant être sauvegardées à partir de ce serveur. Développez **Tous les partages SQL** et sélectionnez les bases de données (dans ce cas, nous avons sélectionné ReportServer$ MSDPM2012 et ReportServer$ MSDPM2012TempDB) à sauvegarder. Cliquez sur **Suivant**.
 
     ![Sélectionner la base de données SQL](./media/backup-azure-backup-sql/pg-databases.png)
-6. Fournissez un nom pour le groupe de protection hello et sélectionnez hello **je souhaite une Protection en ligne** case à cocher.
+6. Donnez un nom au groupe de protection, puis cochez la case **Je souhaite une protection en ligne** .
 
     ![Méthode de Protection des données - disque à court terme et Azure en ligne](./media/backup-azure-backup-sql/pg-name.png)
-7. Bonjour **spécifier les objectifs à court terme** écran, inclure toodisk de points de sauvegarde toocreate hello entrées nécessaires.
+7. Dans l'écran **Spécifier les objectifs à court terme** , incluez les entrées nécessaires à la création de points de sauvegarde sur disque.
 
-    Ici, nous constatons que **de rétention** est défini trop*5 jours*, **la fréquence de synchronisation** a la valeur tooonce chaque *15 minutes* qui est hello fréquence à laquelle la sauvegarde est effectuée. **Sauvegarde complète rapide** est défini trop*8 h 00*.
+    Nous voyons ici que la **Durée de rétention** est définie sur *5 jours*, **la fréquence de synchronisation** sur une fois toutes les *15 minutes* qui est la fréquence à laquelle la sauvegarde est effectuée. **sauvegarde expresse rapide** est définie sur *20h00*.
 
     ![Spécifier les objectifs à court terme](./media/backup-azure-backup-sql/pg-shortterm.png)
 
    > [!NOTE]
-   > À 8 h 00 (selon l’entrée d’écran de toohello), un point de sauvegarde est créé chaque jour par le transfert de données hello qui a été modifiées de hello point de sauvegarde de 8 h 00 du jour précédent. Ce processus est appelé **Sauvegarde expresse rapide**. Pendant la synchronisation des journaux de transactions hello toutes les 15 minutes, si elle existe une base de données nécessaire toorecover hello à 21:00 – point de hello est créée en relisant les journaux hello de hello express dernier point de sauvegarde complète (20 h 00 dans ce cas).
+   > À 20 h 00 (selon la saisie de l’écran), un point de sauvegarde est créé chaque jour par le transfert de données modifiées depuis le point de sauvegarde de 20 h 00 du jour précédent. Ce processus est appelé **Sauvegarde expresse rapide**. Lorsque les journaux de transaction sont synchronisés toutes les 15 minutes, s'il faut récupérer la base de données à 21h00, le point est créé suite à la relecture des journaux à partir du point de sauvegarde complète rapide (20h00 dans le cas présent).
    >
    >
 
 8. Cliquez sur **Suivant**
 
-    MABS affiche hello globale espace de stockage disponible et hello potentielle d’espace disque utilisé.
+    Le serveur de sauvegarde Microsoft Azure affiche l’espace de stockage global disponible et l’utilisation potentielle de l’espace disque.
 
     ![Allocation de disque](./media/backup-azure-backup-sql/pg-storage.png)
 
-    Par défaut, MABS crée un volume par la source de données (base de données SQL Server) qui est utilisé pour la copie de sauvegarde initiale hello. À l’aide de cette approche, hello Gestionnaire de disque logique (LDM) limite les sources de données too300 MABS protection (bases de données SQL Server). toowork contourner cette limitation, sélectionnez hello **colocaliser les données dans le Pool de stockage DPM**, option. Si vous utilisez cette option, MABS utilise un volume unique pour plusieurs sources de données, ce qui permet de tooprotect MABS des bases de données SQL too2000.
+    Par défaut, le serveur de sauvegarde Microsoft Azure crée un volume par source de données (base de données SQL Server) utilisée pour la copie de sauvegarde initiale. Suivant cette approche, le Gestionnaire de disque logique (LDM) limite la protection du serveur de sauvegarde Microsoft Azure à 300 sources de données (bases de données SQL Server). Pour contourner cette limitation, sélectionnez l’option **Colocaliser les données dans le pool de stockage DPM**. Si vous choisissez cette option, le serveur de sauvegarde Microsoft Azure utilise un même volume pour plusieurs sources de données, ce qui lui permet de protéger jusqu’à 2 000 bases de données SQL.
 
-    Si **augmenter automatiquement les volumes hello** option est sélectionnée, MABS peut compte pour le volume de sauvegarde hello augmente à mesure que les données de production hello augmentent. Si **augmenter automatiquement les volumes hello** option n’est pas sélectionnée, MABS limite de stockage de sauvegarde utilisé hello toohello des sources de données dans le groupe de protection hello.
-9. Les administrateurs obtiennent choix hello de transfert de cette surcharge de la bande passante initiale tooavoid sauvegarde manuellement (hors réseau) ou sur le réseau de hello. Ils peuvent également configurer le moment hello à quels hello transfert initial peut se produire. Cliquez sur **Suivant**.
+    Si l’option **Augmenter automatiquement les volumes** est sélectionnée, le serveur de sauvegarde Microsoft Azure peut gérer l’augmentation du volume de sauvegarde à mesure que les données de production augmentent. Si l’option **Augmenter automatiquement les volumes** n’est pas sélectionnée, le serveur de sauvegarde Microsoft Azure limite le stockage de sauvegarde utilisé pour les sources de données dans le groupe de protection.
+9. Les administrateurs peuvent opter pour le transfert manuel de cette sauvegarde initiale manuellement (hors réseau) pour éviter l’encombrement de la bande passante ou sur le réseau. Ils peuvent également configurer l’heure à laquelle le transfert initial peut se produire. Cliquez sur **Suivant**.
 
     ![Méthode de réplication initiale](./media/backup-azure-backup-sql/pg-manual.png)
 
-    copie de sauvegarde initiale Hello nécessite le transfert de hello toute source de données (base de données SQL Server) à partir de tooMABS (ordinateur SQL Server) de serveur de production. Ces données peuvent être volumineux et transfert de données hello réseau hello peut dépasser la bande passante. Pour cette raison, les administrateurs peuvent choisir de sauvegarde initiale de hello tootransfer : **manuellement** (à l’aide d’un support amovible) tooavoid congestion de la bande passante, ou **automatiquement sur le réseau de hello** (au niveau spécifié heure).
+    La copie de sauvegarde initiale nécessite le transfert de la source de données complète (base de données SQL Server) à partir du serveur de production (ordinateur SQL Server) vers le serveur de sauvegarde Microsoft Azure. Ces données peuvent être volumineuses et leur transfert sur le réseau peut dépasser la bande passante. Pour cette raison, les administrateurs peuvent choisir de transférer la sauvegarde initiale : **Manuellement** (à l’aide d’un support amovible) afin d’éviter la congestion de la bande passante, ou **Automatiquement sur le réseau** (à un moment précis).
 
-    Une fois la sauvegarde initiale de hello est terminée, hello autres sauvegardes de hello sont des sauvegardes incrémentielles sur la copie de sauvegarde initiale hello. Les sauvegardes incrémentielles ont tendance toobe petit et peuvent être facilement transférés réseau hello.
-10. Indiquez quand vous voulez toorun de vérification de cohérence hello et cliquez sur **suivant**.
+    Une fois la sauvegarde initiale terminée, le reste des sauvegardes se compose de sauvegardes incrémentielles sur la copie de sauvegarde initiale. Les sauvegardes incrémentielles sont en général très limitées et sont faciles à transférer sur le réseau.
+10. Choisissez si vous souhaitez ou non exécuter la vérification de cohérence, puis cliquez sur **Suivant**.
 
     ![Vérifier la cohérence](./media/backup-azure-backup-sql/pg-consistent.png)
 
-    MABS peut effectuer une cohérence vérifier toocheck hello l’intégrité du point de sauvegarde hello. Il calcule la somme de contrôle hello hello du fichier de sauvegarde sur le serveur de production hello (SQL Server de l’ordinateur dans ce scénario) et hello les données sauvegardées pour ce fichier dans MABS. Dans les cas de hello d’un conflit, il est supposé que hello sauvegardé à MABS est endommagé. MABS règlent hello les données sauvegardées en envoyant des blocs hello correspondant non-concordance de somme de contrôle toohello. Comme la vérification de cohérence hello est une opération qui exigent des performances, les administrateurs ont option hello de planification de la vérification de cohérence hello ou de l’exécuter automatiquement.
-11. toospecify protection en ligne de sources de données hello, toobe de bases de données Sélectionnez hello protégé tooAzure et cliquez sur **suivant**.
+    Le serveur de sauvegarde Microsoft Azure peut effectuer un contrôle de cohérence pour vérifier l’intégrité du point de sauvegarde. Il calcule la somme de contrôle du fichier de sauvegarde sur le serveur de production (ordinateur SQL Server dans ce scénario) et des données sauvegardée pour ce fichier sur le serveur de sauvegarde Microsoft Azure. En cas de conflit, on considère que le fichier sauvegardé sur le serveur de sauvegarde Microsoft Azure est endommagé. Le serveur de sauvegarde Microsoft Azure corrige les données sauvegardées en envoyant les blocs correspondant à l’incohérence du contrôle de cohérence. Le contrôle de cohérence étant une opération exigeante en matière de performances, les administrateurs ont la possibilité de le planifier ou de l’exécuter automatiquement.
+11. Pour spécifier la protection des sources de données en ligne, sélectionnez les bases de données à protéger sur Azure et cliquez sur **Suivant**.
 
     ![Sélectionner les sources de données](./media/backup-azure-backup-sql/pg-sqldatabases.png)
 12. Les administrateurs peuvent choisir les planifications de sauvegarde et les stratégies de rétention adaptées à leurs stratégies d’entreprise.
 
     ![Planification de sauvegarde et rétention](./media/backup-azure-backup-sql/pg-schedule.png)
 
-    Dans cet exemple, les sauvegardes sont effectuées une fois par jour à 12 h 00 et 20 h 00 (partie inférieure de l’écran hello)
+    Dans cet exemple, les sauvegardes sont effectuées une fois par jour à 12 h 00 et 20 h 00 (partie inférieure de l’écran)
 
     > [!NOTE]
-    > Il s’agit d’une bonne approche en matière toohave quelques points de récupération à court terme sur disque, pour une récupération rapide. Ces points de récupération sont utilisés pour la « restauration opérationnelle ». Azure constitue un bon emplacement hors site, avec des contrats de niveau de service supérieurs et une disponibilité garantie.
+    > Il est conseillé de disposer de plusieurs points de récupération à court terme sur disque pour une récupération rapide. Ces points de récupération sont utilisés pour la « restauration opérationnelle ». Azure constitue un bon emplacement hors site, avec des contrats de niveau de service supérieurs et une disponibilité garantie.
     >
     >
 
-    **Meilleures pratiques**: Assurez-vous que les sauvegardes Azure sont planifiées après l’achèvement de hello de sauvegardes de disque local à l’aide de DPM. Cela permet de hello dernière disque toobe sauvegarde copié tooAzure.
+    **Meilleure pratique**: assurez-vous que les sauvegardes Azure Backup sont prévues après l'exécution de sauvegardes sur disque local à l'aide de DPM. Cela permet la copie de la dernière sauvegarde de disque sur Azure.
 
-13. Choisissez la planification de stratégie de rétention hello. plus d’informations sur le fonctionne de la stratégie de rétention hello en Hello sont assurées au [utilisez Azure Backup tooreplace l’article de votre infrastructure de bande](backup-azure-backup-cloud-as-tape.md).
+13. Cliquez sur la planification de stratégie de rétention. Les détails du fonctionnement de la stratégie de rétention sont fournis dans la section [Utilisation d'Azure Backup pour remplacer votre infrastructure sur bande](backup-azure-backup-cloud-as-tape.md).
 
     ![Stratégie de rétention](./media/backup-azure-backup-sql/pg-retentionschedule.png)
 
     Dans cet exemple :
 
-    * Les sauvegardes sont effectuées une fois par jour à 12 h 00 et 20 h 00 (partie inférieure de l’écran hello) et sont conservées pendant 180 jours.
-    * sauvegarde Hello le samedi à 12 h 00. est conservée pendant 104 semaines
-    * sauvegarde Hello dernier samedi à 12 h 00. est conservée pendant 60 mois
-    * sauvegarde Hello dernier samedi de mars à 12 h 00. est conservée pendant 10 ans
-14. Cliquez sur **suivant** et sélectionnez hello option appropriée pour le transfert de tooAzure de copie de sauvegarde initiale hello. Vous pouvez choisir **automatiquement sur le réseau de hello** ou **sauvegarde hors connexion**.
+    * Les sauvegardes sont effectuées une fois par jour à 12 h 00 et 20 h 00 (partie inférieure de l’écran) et sont conservées pendant 180 jours.
+    * La sauvegarde le samedi à 12 h 00 est conservée pendant 104 semaines
+    * La sauvegarde le dernier samedi à 12 h 00 est conservée pendant 60 mois
+    * La sauvegarde le dernier samedi de mars à 12 h 00 est conservée pendant 10 ans
+14. Cliquez sur **Suivant** et sélectionnez l'option appropriée pour le transfert de la copie de sauvegarde initiale vers Azure. Vous pouvez choisir **Automatiquement sur le réseau** ou **Sauvegarde hors connexion**.
 
-    * **Automatiquement sur le réseau de hello** transferts hello tooAzure de données de sauvegarde conformément à planification hello choisie pour la sauvegarde.
+    * **Automatiquement sur le réseau** transfère les données de sauvegarde vers Azure en respectant la planification de sauvegarde sélectionnée.
     * Le fonctionnement de la **Sauvegarde en mode hors connexion** est décrit à dans la section [Flux de travail de sauvegarde en mode hors connexion dans Azure Backup](backup-azure-backup-import-export.md).
 
-    Choisissez transfert pertinentes de hello mécanisme toosend hello copie de sauvegarde initiale tooAzure et cliquez sur **suivant**.
-15. Une fois que vous passez en revue les détails de la stratégie hello Bonjour **Résumé** de l’écran, cliquez sur hello **créer un groupe** flux de travail bouton toocomplete hello. Vous pouvez cliquer sur hello **fermer** bouton et le moniteur hello progression de la tâche dans l’espace de travail surveillance.
+    Choisissez le mécanisme de transfert adapté à l'envoi de la copie de sauvegarde initiale vers Azure, puis cliquez sur **Suivant**.
+15. Après avoir passé en revue les détails de la stratégie dans l’écran **Résumé**, cliquez sur le bouton **Créer un groupe** pour terminer le flux de travail. Vous pouvez cliquer sur le bouton **Fermer** et surveiller la progression du travail d'analyse de l'espace de travail.
 
     ![Créer un groupe de Protection en cours en progression](./media/backup-azure-backup-sql/pg-summary.png)
 
 ## <a name="on-demand-backup-of-a-sql-server-database"></a>Sauvegarde à la demande d’une base de données SQL Server
-Alors que les étapes précédentes hello créé une stratégie de sauvegarde, un « point de récupération » est créé uniquement lors de la première sauvegarde de hello se produit. Au lieu d’attendre tookick de planificateur hello dans, les étapes hello ci-dessous la création de hello déclencheur d’une récupération point manuellement.
+Alors que les étapes précédentes ont créé une stratégie de sauvegarde, un « point de récupération » est créé uniquement à l’occasion de la première sauvegarde. Au lieu d’attendre que le planificateur arrive, les étapes ci-dessous déclenchent la création manuelle d’un point de récupération.
 
-1. Attendez que l’état du groupe de protection hello montre **OK** de base de données hello avant de créer le point de récupération hello.
+1. Attendez que l'état du groupe de protection indique **OK** pour la base de données avant de créer le point de récupération.
 
     ![Membres du groupe de protection](./media/backup-azure-backup-sql/sqlbackup-recoverypoint.png)
-2. Avec le bouton droit sur la base de données hello et sélectionnez **créer un Point de récupération**.
+2. Cliquez avec le bouton droit sur la base de données, puis sélectionnez **Créer un point de récupération**.
 
     ![Créer un point de récupération en ligne](./media/backup-azure-backup-sql/sqlbackup-createrp.png)
-3. Choisissez **Protection en ligne** dans le menu déroulant de hello et cliquez sur **OK**. Cela lance la création de hello d’un point de récupération dans Azure.
+3. Choisissez **Protection en ligne** dans le menu déroulant, puis cliquez sur **OK**. Ceci démarre la création d’un point de récupération dans Azure.
 
     ![Créer un point de récupération](./media/backup-azure-backup-sql/sqlbackup-azure.png)
-4. Vous pouvez afficher la progression de la tâche hello Bonjour **analyse** où vous trouverez une progression dans un espace de travail de la tâche comme une mentionnés dans la figure suivante hello hello.
+4. Vous pouvez afficher la progression du travail dans l’espace de travail **Surveillance** , où vous trouverez un travail en cours similaire à celui qui est représenté dans la figure suivante.
 
     ![Console de surveillance](./media/backup-azure-backup-sql/sqlbackup-monitoring.png)
 
 ## <a name="recover-a-sql-server-database-from-azure"></a>Récupération d'une base de données SQL Server à partir d'Azure
-Hello étapes suivantes sont requise toorecover une entité protégée (base de données SQL Server) à partir d’Azure.
+Les étapes suivantes sont nécessaires pour récupérer une entité protégée (base de données SQL Server) à partir d'Azure.
 
-1. Ouvrez le serveur DPM hello Console de gestion. Accédez trop**récupération** espace de travail où vous pouvez consulter les serveurs hello sauvegardée par DPM. Parcourir la base de données requis hello (dans ce ReportServer cas MSDPM2012$). Sélectionnez une durée **Restauration depuis** qui se termine par **En ligne**.
+1. Ouvrir la Console de gestion du serveur DPM. Accédez à l’espace de travail **Récupération** où vous pourrez voir les serveurs sauvegardés par DPM. Accédez à la base de données requise (dans ce cas, ReportServer $MSDPM2012). Sélectionnez une durée **Restauration depuis** qui se termine par **En ligne**.
 
     ![Sélectionner un point de récupération](./media/backup-azure-backup-sql/sqlbackup-restorepoint.png)
-2. Cliquez sur le nom de base de données hello et cliquez sur **récupérer**.
+2. Cliquez avec le bouton droit sur le nom de base de données et cliquez sur **Récupérer**.
 
     ![Récupérer depuis Azure](./media/backup-azure-backup-sql/sqlbackup-recover.png)
-3. DPM affiche les détails de hello hello du point de récupération. Cliquez sur **Suivant**. base de données toooverwrite hello, le type de récupération hello sélectionnez **instance toooriginal de restauration de SQL Server**. Cliquez sur **Suivant**.
+3. DPM affiche les détails du point de récupération. Cliquez sur **Suivant**. Pour remplacer la base de données, sélectionnez le type de récupération **Récupérer l’instance d’origine de SQL Server**. Cliquez sur **Suivant**.
 
-    ![Récupérer tooOriginal emplacement](./media/backup-azure-backup-sql/sqlbackup-recoveroriginal.png)
+    ![Récupérer à l’emplacement d’origine](./media/backup-azure-backup-sql/sqlbackup-recoveroriginal.png)
 
-    Dans cet exemple, DPM permet la récupération de l’instance de SQL Server tooanother hello de base de données ou un dossier de réseau tooa autonome.
-4. Bonjour **les options de récupération de spécifier** écran, vous pouvez sélectionner les options de récupération hello comme toothrottle hello la bande passante utilisée par la récupération de la limitation d’utilisation de la bande passante réseau. Cliquez sur **Suivant**.
-5. Bonjour **Résumé** écran, vous voyez toutes les configurations de récupération hello fournies jusqu'à présent. Cliquez sur **Restaurer**.
+    Dans cet exemple, DPM permet la récupération de la base de données vers une autre instance SQL Server ou dans un dossier de réseau autonome.
+4. Dans l'écran **Spécifier des options de récupération** , vous pouvez sélectionner les options de récupération telles que la limitation de bande passante réseau pour limiter la bande passante utilisée par la récupération. Cliquez sur **Suivant**.
+5. Dans l’écran **Résumé** , vous voyez toutes les configurations de récupération fournies jusqu’à présent. Cliquez sur **Restaurer**.
 
-    Hello état de récupération s’affiche en cours de récupération de la base de données hello. Vous pouvez cliquer sur **fermer** tooclose hello Assistant et vue hello progression Bonjour **analyse** espace de travail.
+    L’état de récupération indique la base de données en cours de récupération. Vous pouvez cliquer sur **Fermer** pour fermer l’Assistant et afficher la progression dans l’espace de travail **Surveillance**.
 
     ![Initier le processus de récupération](./media/backup-azure-backup-sql/sqlbackup-recoverying.png)
 
-    Une fois la récupération hello est terminée, la base de données de hello restauré est cohérence de l’application.
+    Une fois la restauration terminée, la base de données restaurée est cohérente avec l’application.
 
 ### <a name="next-steps"></a>Étapes suivantes :
 •    [Sauvegarde Azure - FAQ](backup-azure-backup-faq.md)

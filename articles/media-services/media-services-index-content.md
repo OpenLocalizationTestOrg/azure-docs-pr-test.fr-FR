@@ -1,6 +1,6 @@
 ---
-title: "aaaIndexing des fichiers multimédias avec Azure Media Indexer"
-description: "Azure Media Indexer vous permet de toomake le contenu de votre recherche de fichiers multimédias et toogenerate une transcription en texte intégral de sous-titrage et les mots clés. Cette rubrique montre comment toouse Media Indexer."
+title: "Indexation de fichiers multimédias avec Azure Media Indexer"
+description: "Azure Media Indexer permet de rendre le contenu de vos fichiers multimédias consultable et de générer une transcription en texte intégral de sous-titrages et de mots-clés. Cette rubrique explique comment utiliser Media Indexer."
 services: media-services
 documentationcenter: 
 author: Asolanki
@@ -14,49 +14,49 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: adsolank;juliako;johndeu
-ms.openlocfilehash: c1bed774e302e61ca3510668645dc2015b434a0c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f75be3280ffd869339972859c028a178ec728480
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="indexing-media-files-with-azure-media-indexer"></a>Indexation de fichiers multimédias avec Azure Media Indexer
-Azure Media Indexer vous permet de toomake le contenu de votre recherche de fichiers multimédias et toogenerate une transcription en texte intégral de sous-titrage et les mots clés. Vous pouvez traiter un fichier multimédia ou plusieurs dans un lot.  
+Azure Media Indexer permet de rendre le contenu de vos fichiers multimédias consultable et de générer une transcription en texte intégral de sous-titrages et de mots-clés. Vous pouvez traiter un fichier multimédia ou plusieurs dans un lot.  
 
 > [!IMPORTANT]
-> Lors de l’indexation de contenu, assurez-vous que toouse des fichiers multimédias qui sont très clair (sans musique de fond, bruit, effets ou souffle de microphone). Voici quelques exemples de contenu approprié : des réunions, des conférences ou des présentations enregistrées. Hello contenu suivant peut ne pas convenir pour l’indexation : films, émissions de télévision n’est pas défini avec audio mixte et effets sonores, contenu mal enregistrement avec bruit de fond (souffle).
+> Lors de l’indexation de contenu, veillez à utiliser des fichiers multimédias avec des mots clairs (sans musique de fond, bruit, effets ou sifflement du microphone). Voici quelques exemples de contenu approprié : des réunions, des conférences ou des présentations enregistrées. Le contenu suivant peut ne pas convenir à l’indexation : des films, des émissions de télévision, des fichiers avec du son et des effets sonores mélangés, du contenu mal enregistré avec un bruit de fond (sifflement).
 > 
 > 
 
-Un travail d’indexation peut générer hello suivant sorties :
+Une tâche d’indexation peut générer les sorties suivantes :
 
-* Fichiers de sous-titres Bonjour suivant formats : **SAMI**, **TTML**, et **WebVTT**.
+* Fichiers de sous-titres codés dans les formats suivants : **SAMI**, **TTML** et **WebVTT**.
   
-    Fichiers de sous-titres contiennent une balise appelée des raisons de reconnaissance, les scores d’un travail d’indexation en fonction de comment reconnaissable vocale hello dans la vidéo source de hello est.  Vous pouvez utiliser la valeur hello raisons de reconnaissance tooscreen des fichiers de sortie de la facilité d’utilisation. Un faible score signifie mauvais résultats d’indexation en raison de la qualité de tooaudio.
+    Les fichiers de sous-titres codés incluent une balise appelée Recognizability, qui note une tâche d’indexation en fonction de la possibilité de reconnaître les mots de la vidéo source.  Vous pouvez utiliser la valeur de Recognizability pour filtrer les fichiers de sortie en fonction de leur usage. Un faible score sous-entend de mauvais résultats d’indexation en raison de la qualité audio.
 * Un fichier de mot-clé(XML).
 * Un fichier blob d’indexation audio (AIB) à utiliser avec SQL Server.
   
     Pour plus d’informations, consultez [Utilisation de fichiers AIB avec Azure Media Indexer et SQL Server](https://azure.microsoft.com/blog/2014/11/03/using-aib-files-with-azure-media-indexer-and-sql-server/).
 
-Cette rubrique montre comment l’indexation de toocreate travaux trop**indexer un élément multimédia** et **plusieurs fichiers d’Index**.
+Cette rubrique explique comment créer des travaux d’indexation pour **indexer un élément multimédia** et **indexer plusieurs fichiers**.
 
-Bonjour Azure Media Indexer mises à jour récentes, consultez [blogs de Media Services](#preset).
+Pour connaître les dernières mises à jour de l’indexeur multimédia Azure, consultez les [blogs Media Services](#preset).
 
 ## <a name="using-configuration-and-manifest-files-for-indexing-tasks"></a>Utilisation des fichiers de configuration et manifeste pour l’indexation des tâches
-Vous pouvez définir plus de détails pour vos tâches d’indexation en utilisant une configuration de tâche. Par exemple, vous pouvez spécifier quels toouse de métadonnées de votre fichier multimédia. Ces métadonnées sont utilisées par tooexpand de moteur de langage hello son vocabulaire et améliore considérablement la précision de la reconnaissance vocale hello.  Vous est également en mesure de toospecify vos fichiers de sortie souhaité.
+Vous pouvez définir plus de détails pour vos tâches d’indexation en utilisant une configuration de tâche. Par exemple, vous pouvez spécifier les métadonnées à utiliser pour votre fichier multimédia. Ces métadonnées sont utilisées par le moteur de langue pour développer son vocabulaire et améliorent considérablement la précision de la reconnaissance vocale.  Vous pouvez également spécifier vos fichiers de sortie souhaités.
 
 Vous pouvez également traiter plusieurs fichiers multimédias à la fois à l’aide d’un fichier manifeste.
 
 Pour plus d’informations, consultez [Présélection de tâches pour Azure Media Indexer](https://msdn.microsoft.com/library/dn783454.aspx).
 
 ## <a name="index-an-asset"></a>Indexation d’une ressource
-Hello méthode ci-dessous télécharge un fichier multimédia comme un élément multimédia et crée un élément multimédia de travail tooindex hello.
+La méthode suivante télécharge un fichier multimédia en tant que ressource et crée une tâche pour indexer la ressource.
 
-Notez que si aucun fichier de configuration n’est spécifié, fichier de média hello sera annexé avec tous les paramètres par défaut.
+Notez que si aucun fichier de configuration n’est spécifié, la ressource est indexée avec tous les paramètres par défaut.
 
     static bool RunIndexingJob(string inputMediaFilePath, string outputFolder, string configurationFile = "")
     {
-        // Create an asset and upload hello input media file toostorage.
+        // Create an asset and upload the input media file to storage.
         IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
             "My Indexing Input Asset",
             AssetCreationOptions.None);
@@ -64,45 +64,45 @@ Notez que si aucun fichier de configuration n’est spécifié, fichier de médi
         // Declare a new job.
         IJob job = _context.Jobs.Create("My Indexing Job");
 
-        // Get a reference toohello Azure Media Indexer.
+        // Get a reference to the Azure Media Indexer.
         string MediaProcessorName = "Azure Media Indexer";
         IMediaProcessor processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
         // Read configuration from file if specified.
         string configuration = string.IsNullOrEmpty(configurationFile) ? "" : File.ReadAllText(configurationFile);
 
-        // Create a task with hello encoding details, using a string preset.
+        // Create a task with the encoding details, using a string preset.
         ITask task = job.Tasks.AddNew("My Indexing Task",
             processor,
             configuration,
             TaskOptions.None);
 
-        // Specify hello input asset toobe indexed.
+        // Specify the input asset to be indexed.
         task.InputAssets.Add(asset);
 
-        // Add an output asset toocontain hello results of hello job.
+        // Add an output asset to contain the results of the job.
         task.OutputAssets.AddNew("My Indexing Output Asset", AssetCreationOptions.None);
 
-        // Use hello following event handler toocheck job progress.  
+        // Use the following event handler to check job progress.  
         job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-        // Launch hello job.
+        // Launch the job.
         job.Submit();
 
-        // Check job execution and wait for job toofinish.
+        // Check job execution and wait for job to finish.
         Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
         progressJobTask.Wait();
 
-        // If job state is Error, hello event handling
+        // If job state is Error, the event handling
         // method for job progress should log errors.  Here we check
         // for error state and exit if needed.
         if (job.State == JobState.Error)
         {
-            Console.WriteLine("Exiting method due toojob error.");
+            Console.WriteLine("Exiting method due to job error.");
             return false;
         }
 
-        // Download hello job outputs.
+        // Download the job outputs.
         DownloadAsset(task.OutputAssets.First(), outputFolder);
 
         return true;
@@ -142,32 +142,32 @@ Notez que si aucun fichier de configuration n’est spécifié, fichier de médi
     }  
 <!-- __ -->
 ### <a id="output_files"></a>Fichiers de sortie
-Par défaut, un travail d’indexation génère hello les fichiers de sortie suivants. Hello fichiers seront stockés dans la première ressource en sortie hello.
+Par défaut, une tâche d’indexation génère les fichiers de sortie suivants. Les fichiers sont stockés dans la première ressource de sortie.
 
-Lorsqu’il existe plusieurs fichiers multimédias d’entrée, indexeur génère un fichier manifeste pour les sorties de travail hello, nommé « JobResult.txt ». Pour chaque fichier multimédia d’entrée, hello résultant AIB, SAMI, TTML, WebVTT et fichiers de mot clé, sont séquentiellement numérotés et nommées à l’aide de hello « Alias ».
+Lorsqu’il existe plusieurs fichiers multimédias d’entrée, Indexer génère un fichier manifeste pour les sorties de la tâche, nommé « JobResult.txt ». Pour chaque fichier multimédia d’entrée, les fichiers AIB, SAMI, TTML et WebVTT et les fichiers de mots clés qui en résultent sont numérotés de façon séquentielle et nommé à l’aide d’« Alias ».
 
 | Nom de fichier | Description |
 | --- | --- |
-| **InputFileName.aib** |Fichier blob d’indexation audio. <br/><br/> Un fichier blob d’indexation audio (AIB) est un fichier binaire qui peut être recherché dans le serveur Microsoft SQL à l’aide de la recherche de texte intégral.  fichier AIB de Hello est plus performante que les fichiers de légende simple hello, car il contient des alternatives pour chaque mot, ce qui permet une expérience plus riche de la recherche. <br/> <br/>Elle nécessite l’installation de hello du module complémentaire Indexer SQL de hello sur un ordinateur exécutant Microsoft SQL server 2008 ou version ultérieur. Recherche en texte intégral serveur recherche hello AIB à l’aide de Microsoft SQL fournit des résultats plus précis que recherche hello fermé les fichiers de légende générés par WAMI. Il s’agit, car hello AIB contient des alternatives prononciation similaire, tandis que hello fermé les fichiers de légende contient hello plus élevé en toute confiance word pour chaque segment de données audio de hello. Si la recherche des mots revêt une importance parlé, il est recommandé toouse hello fichier AIB conjointement avec Microsoft SQL Server.<br/><br/> toodownload hello module complémentaire, cliquez sur <a href="http://aka.ms/indexersql">module complémentaire de Azure Media Indexer SQL</a>. <br/><br/>Il est également possible de tooutilize autres moteurs de recherche tels que hello d’index Apache Lucene/Solr toosimply vidéo basées sur la légende de hello fermé et le mot clé des fichiers XML, mais cela entraîne des résultats moins précis. |
-| **InputFileName.smi**<br/>**InputFileName.ttml**<br/>**InputFileName.vtt** |Fichiers de sous-titres (CC) aux formats SAMI, TTML et WebVTT.<br/><br/>Ils peuvent être utilisés toomake audio et vidéo de fichiers accessible toopeople malentendantes.<br/><br/>Les fichiers de légende fermés contiennent une balise appelée <b>raisons de reconnaissance</b> qui évalue un travail d’indexation en fonction de comment reconnaissable vocale hello dans la vidéo source de hello est.  Vous pouvez utiliser la valeur hello <b>raisons de reconnaissance</b> tooscreen facilité d’utilisation dans les fichiers de sortie. Un faible score signifie mauvais résultats d’indexation en raison de la qualité de tooaudio. |
-| **InputFileName.kw.xml<br/>InputFileName.info** |Fichiers de mots clés et d’informations. <br/><br/>Fichier de mot clé est un fichier XML qui contient des mots clés extraits à partir du contenu de reconnaissance vocale hello, avec la fréquence et les informations de décalage. <br/><br/>Un fichier d’informations est un fichier de texte brut qui contient des informations précises sur chaque terme reconnu. première ligne de Hello est spécial et contient le score de raisons de reconnaissance hello. Chaque ligne suivante est une liste de séparés par des tabulations de hello données suivantes : démarrer l’heure, heure de fin, mot/expression, en toute confiance. les durées de Hello sont exprimées en secondes et en toute confiance hello est fourni en tant que nombre de 0-1. <br/><br/>Exemple de ligne : "1.20    1.45    word    0.67" <br/><br/>Ces fichiers peuvent être utilisés pour de nombreuses fins, par exemple, tooperform analytique de reconnaissance vocale, ou toosearch exposé moteurs tels que Bing, Google ou Microsoft SharePoint toomake hello fichiers multimédias plus détectables, ou même utilisé toodeliver annonces plus pertinentes. |
-| **JobResult.txt** |Manifeste de sortie présente uniquement lorsque l’indexation de plusieurs fichiers, contenant hello informations suivantes :<br/><br/><table border="1"><tr><th>InputFile</th><th>Alias</th><th>MediaLength</th><th>Erreur</th></tr><tr><td>a.mp4</td><td>Media_1</td><td>300</td><td>0</td></tr><tr><td>b.mp4</td><td>Media_2</td><td>0</td><td>3000</td></tr><tr><td>c.mp4</td><td>Media_3</td><td>600</td><td>0</td></tr></table><br/> |
+| **InputFileName.aib** |Fichier blob d’indexation audio. <br/><br/> Un fichier blob d’indexation audio (AIB) est un fichier binaire qui peut être recherché dans le serveur Microsoft SQL à l’aide de la recherche de texte intégral.  Un fichier AIB est plus puissant que les fichiers de sous-titres simples, car il contient des alternatives pour chaque mot, pour une expérience de recherche plus riche. <br/> <br/>Il requiert l’installation du module complémentaire d’indexeur SQL sur un ordinateur exécutant Microsoft SQL Server 2008 ou une version ultérieure. La recherche du fichier AIB à l’aide de la recherche de texte intégral de Microsoft SQL Server fournit des résultats de recherche plus précis que pour les fichiers de sous-titres générés par WAMI. Cela vient du fait que l’AIB contient des alternatives phonétiquement proches, tandis que les fichiers de sous-titres contiennent le mot avec le niveau de confiance le plus élevé pour chaque segment du fichier audio. Si la recherche de mots est très importante, il est recommandé d’utiliser AIB avec Microsoft SQL Server.<br/><br/> Pour télécharger le composant additionnel, cliquez sur <a href="http://aka.ms/indexersql">Composant additionnel d’Indexeur multimédia SQL</a>. <br/><br/>Il est également possible d’utiliser d’autres moteurs de recherche comme Apache Lucene/Solr pour indexer la vidéo selon les sous-titres et les fichiers XML de mots clés, mais les résultats sont moins précis. |
+| **InputFileName.smi**<br/>**InputFileName.ttml**<br/>**InputFileName.vtt** |Fichiers de sous-titres (CC) aux formats SAMI, TTML et WebVTT.<br/><br/>Ils permettent de rendre un fichier audio et vidéo accessible aux malentendants.<br/><br/>Les fichiers de sous-titres codés incluent une balise appelée <b>Recognizability</b>, qui note une tâche d’indexation en fonction de la possibilité de reconnaître les mots de la vidéo source.  Vous pouvez utiliser la valeur de <b>Recognizability</b> pour filtrer les fichiers de sortie en fonction de leur usage. Un faible score sous-entend de mauvais résultats d’indexation en raison de la qualité audio. |
+| **InputFileName.kw.xml<br/>InputFileName.info** |Fichiers de mots clés et d’informations. <br/><br/>Un fichier de mot-clé est un fichier XML qui contient les mots clés extraits à partir du contenu de la reconnaissance vocale, avec les informations relatives à la fréquence et à la référence. <br/><br/>Un fichier d’informations est un fichier de texte brut qui contient des informations précises sur chaque terme reconnu. La première ligne est spéciale et contient le score Recognizability. Chaque ligne suivante est une liste des données suivantes séparées par des tabulations : heure de début, heure de fin, mot/expression, fiabilité. Les heures sont exprimées en secondes et la fiabilité est exprimée comme un nombre compris entre 0 et 1. <br/><br/>Exemple de ligne : "1.20    1.45    word    0.67" <br/><br/>Ces fichiers peuvent être utilisés à différentes fins, par exemple pour effectuer une analyse vocale ou être présentés à des moteurs de recherche comme Bing, Google ou Microsoft SharePoint pour rendre les fichiers multimédia plus détectables, ou même pour fournir des publicités plus pertinentes. |
+| **JobResult.txt** |Manifeste de sortie, présent uniquement en cas d’indexation de plusieurs fichiers, contenant les informations suivantes :<br/><br/><table border="1"><tr><th>InputFile</th><th>Alias</th><th>MediaLength</th><th>Erreur</th></tr><tr><td>a.mp4</td><td>Media_1</td><td>300</td><td>0</td></tr><tr><td>b.mp4</td><td>Media_2</td><td>0</td><td>3000</td></tr><tr><td>c.mp4</td><td>Media_3</td><td>600</td><td>0</td></tr></table><br/> |
 
-Si tous les fichiers multimédias d’entrée sont correctement indexées, la tâche d’indexation hello échoue avec le code d’erreur 4000. Pour plus d’informations, consultez les [codes d’erreur](#error_codes).
+Si tous les fichiers multimédias d’entrée ne sont pas correctement indexés, la tâche d’indexation échoue avec le code d’erreur 4000. Pour plus d’informations, consultez les [codes d’erreur](#error_codes).
 
 ## <a name="index-multiple-files"></a>indexer plusieurs fichiers
-Bonjour méthode télécharge plusieurs fichiers multimédias en tant qu’un élément multimédia et crée un travail tooindex tous ces fichiers dans un lot.
+La méthode suivante télécharge plusieurs fichiers multimédias en tant que ressource et crée une tâche pour indexer tous ces fichiers en lot.
 
-Un fichier manifeste avec l’extension .lst de hello est créé et téléchargé dans l’élément multimédia de hello. fichier de manifeste de Hello contient la liste hello de tous les fichiers de ressources hello. Pour plus d’informations, consultez [Présélection de tâches pour Azure Media Indexer](https://msdn.microsoft.com/library/dn783454.aspx).
+Un fichier manifeste avec l’extension .lst est créé et téléchargé dans la ressource. Le fichier manifeste contient la liste de tous les fichiers de ressources. Pour plus d’informations, consultez [Présélection de tâches pour Azure Media Indexer](https://msdn.microsoft.com/library/dn783454.aspx).
 
     static bool RunBatchIndexingJob(string[] inputMediaFiles, string outputFolder)
     {
-        // Create an asset and upload toostorage.
+        // Create an asset and upload to storage.
         IAsset asset = CreateAssetAndUploadMultipleFiles(inputMediaFiles,
             "My Indexing Input Asset - Batch Mode",
             AssetCreationOptions.None);
 
-        // Create a manifest file that contains all hello asset file names and upload toostorage.
+        // Create a manifest file that contains all the asset file names and upload to storage.
         string manifestFile = "input.lst";            
         File.WriteAllLines(manifestFile, asset.AssetFiles.Select(f => f.Name).ToArray());
         var assetFile = asset.AssetFiles.Create(Path.GetFileName(manifestFile));
@@ -176,45 +176,45 @@ Un fichier manifeste avec l’extension .lst de hello est créé et télécharg�
         // Declare a new job.
         IJob job = _context.Jobs.Create("My Indexing Job - Batch Mode");
 
-        // Get a reference toohello Azure Media Indexer.
+        // Get a reference to the Azure Media Indexer.
         string MediaProcessorName = "Azure Media Indexer";
         IMediaProcessor processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
         // Read configuration.
         string configuration = File.ReadAllText("batch.config");
 
-        // Create a task with hello encoding details, using a string preset.
+        // Create a task with the encoding details, using a string preset.
         ITask task = job.Tasks.AddNew("My Indexing Task - Batch Mode",
             processor,
             configuration,
             TaskOptions.None);
 
-        // Specify hello input asset toobe indexed.
+        // Specify the input asset to be indexed.
         task.InputAssets.Add(asset);
 
-        // Add an output asset toocontain hello results of hello job.
+        // Add an output asset to contain the results of the job.
         task.OutputAssets.AddNew("My Indexing Output Asset - Batch Mode", AssetCreationOptions.None);
 
-        // Use hello following event handler toocheck job progress.  
+        // Use the following event handler to check job progress.  
         job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-        // Launch hello job.
+        // Launch the job.
         job.Submit();
 
-        // Check job execution and wait for job toofinish.
+        // Check job execution and wait for job to finish.
         Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
         progressJobTask.Wait();
 
-        // If job state is Error, hello event handling
+        // If job state is Error, the event handling
         // method for job progress should log errors.  Here we check
         // for error state and exit if needed.
         if (job.State == JobState.Error)
         {
-            Console.WriteLine("Exiting method due toojob error.");
+            Console.WriteLine("Exiting method due to job error.");
             return false;
         }
 
-        // Download hello job outputs.
+        // Download the job outputs.
         DownloadAsset(task.OutputAssets.First(), outputFolder);
 
         return true;
@@ -234,37 +234,37 @@ Un fichier manifeste avec l’extension .lst de hello est créé et télécharg�
     }
 
 ### <a name="partially-succeeded-job"></a>Tâche partiellement réussie
-Si tous les fichiers multimédias d’entrée sont correctement indexées, la tâche d’indexation hello échoue avec le code d’erreur 4000. Pour plus d’informations, consultez les [codes d’erreur](#error_codes).
+Si tous les fichiers multimédias d’entrée ne sont pas correctement indexés, la tâche d’indexation échoue avec le code d’erreur 4000. Pour plus d’informations, consultez les [codes d’erreur](#error_codes).
 
-Hello mêmes sorties (que les travaux réussis) sont générés. Vous pouvez faire référence toohello sortie fichier manifeste toofind les fichiers d’entrée défaillants, en fonction des valeurs de colonne d’erreur toohello. Pour les fichiers d’entrée qui a échoué, hello résultant AIB, SAMI, TTML, WebVTT et les fichiers de mot clé ne seront pas générées.
+Les mêmes sorties que pour des tâches réussies sont générées. Vous pouvez consulter le fichier manifeste de sortie pour savoir quels fichiers d’entrée ont échoué, en fonction des valeurs de la colonne d’erreur. Pour les fichiers d’entrée ayant échoué, les fichiers AIB, SAMI, TTML et WebVTT et les fichiers de mots clés ne sont PAS générés.
 
 ### <a id="preset"></a> Présélection de tâches pour l’Indexeur multimédia Azure
-Bonjour Azure Media Indexer de traitement peut être personnalisé en fournissant une tâche facultative prédéfinie en même temps que la tâche hello.  la section suivante de Hello décrit format hello de ce fichier de configuration xml.
+Le traitement de l’Indexeur multimédia Azure peut être personnalisé par une tâche facultative prédéfinie à côté de la tâche.  La section suivante décrit le format de ce fichier xml de configuration.
 
 | Nom | Require | Description |
 | --- | --- | --- |
-| **Entrée** |false |Fichier (s) actif que vous souhaitez tooindex.</p><p>Azure Media Indexer prend en charge hello suivant les formats de fichiers multimédias : MP4, WMV, MP3, M4A, WMA, AAC, WAV.</p><p>Vous pouvez spécifier le nom de fichier hello (s) Bonjour **nom** ou **liste** attribut Hello **d’entrée** élément (comme indiqué ci-dessous). Si vous ne spécifiez pas le tooindex de fichier actif, le fichier primaire de hello est choisi. Si aucun fichier principal n’est définie, le premier fichier de ressource en entrée hello hello est indexé.</p><p>tooexplicitly spécifier le nom du fichier multimédia hello, procédez comme :<br/>`<input name="TestFile.wmv">`<br/><br/>Vous pouvez également indexer plusieurs fichiers d’éléments multimédias à la fois (des fichiers de too10). toodo cela :<br/><br/><ol class="ordered"><li><p>Créez un fichier texte (fichier manifeste) et affectez-lui une extension .lst. </p></li><li><p>Ajouter une liste de tous les noms de fichiers de ressources hello dans votre fichier de manifeste toothis élément multimédia d’entrée. </p></li><li><p>Ajoutez (Téléchargez) thanifest fichier toohello actif.  </p></li><li><p>Spécifier le nom hello du fichier de manifeste hello dans l’attribut de la liste de l’entrée hello.<br/>`<input list="input.lst">`</li></ol><br/><br/>Remarque : Si vous ajoutez le fichier manifeste de plus de 10 fichiers toohello, hello l’indexation de travail échoue avec le code d’erreur 2006 hello. |
-| **métadonnées** |false |Métadonnées de hello spécifié utilisés pour l’Adaptation de vocabulaire ou les fichiers actifs.  Tooprepare utile indexeur toorecognize vocabulaire non standard des mots tels que des noms propres.<br/>`<metadata key="..." value="..."/>` <br/><br/>Vous pouvez fournir des **valeurs** pour les **clés** prédéfinies. Hello suivant clés est actuellement prises en charge :<br/><br/>« title » et « description » - utilisés pour vocabulaire adaptation tootweak hello langue de modèle pour votre travail et améliorer la précision de la reconnaissance vocale.  les valeurs Hello amorcer Internet recherche toofind des documents texte approprié en fonction du contexte, à l’aide du dictionnaire interne pour hello contenu tooaugment hello pour la durée de la tâche d’indexation hello.<br/>`<metadata key="title" value="[Title of hello media file]" />`<br/>`<metadata key="description" value="[Description of hello media file] />"` |
-| **fonctionnalités** <br/><br/> ajoutées dans la version 1.2. Actuellement, la fonctionnalité de hello uniquement pris en charge est la reconnaissance vocale (« ASR »). |false |fonctionnalité de reconnaissance vocale Hello a hello suivant les clés de paramètres :<table><tr><th><p>Clé</p></th>        <th><p>Description</p></th><th><p>Exemple de valeur</p></th></tr><tr><td><p>language</p></td><td><p>toobe de langage naturel Hello reconnu dans le fichier multimédia de hello.</p></td><td><p>Anglais, espagnol</p></td></tr><tr><td><p>CaptionFormats</p></td><td><p>une liste délimitée par des points-virgules de hello souhaitée des formats de sortie de légende (le cas échéant)</p></td><td><p>ttml;sami;webvtt</p></td></tr><tr><td><p>GenerateAIB</p></td><td><p>Indicateur booléen indiquant si un fichier AIB est requis (pour une utilisation avec SQL Server et hello Indexer IFilter client).  Pour plus d’informations, consultez <a href="http://azure.microsoft.com/blog/2014/11/03/using-aib-files-with-azure-media-indexer-and-sql-server/">Utilisation de fichiers AIB avec Azure Media Indexer et SQL Server</a>.</p></td><td><p>True; False</p></td></tr><tr><td><p>GenerateKeywords</p></td><td><p>Indicateur booléen indiquant si un fichier XML de mot-clé est requis ou non.</p></td><td><p>True; False. </p></td></tr><tr><td><p>ForceFullCaption</p></td><td><p>Indicateur booléen indiquant si tooforce complète légendes (quel que soit le niveau de confiance).  </p><p>Valeur par défaut est false, auquel cas mots et expressions qui ont un niveau de confiance de 50 % inférieurs sont omises de sorties de légende final hello et remplacées par les points de suspension («... »).  points de suspension Hello sont utiles pour l’audit et de contrôle de qualité de légende.</p></td><td><p>True; False. </p></td></tr></table> |
+| **Entrée** |false |Fichiers de ressources que vous souhaitez indexer.</p><p>Azure Media Indexer prend en charge les formats de fichiers multimédias suivants : MP4, WMV, MP3, M4A, WMA, AAC, WAV.</p><p>Vous pouvez spécifier les noms de fichier dans l’attribut **name** ou **list** attribut de l’élément **d’entrée** (comme indiqué ci-dessous). Si vous ne spécifiez pas de fichier de ressource à indexer, le fichier principal est sélectionné. Si aucun fichier principal n’est défini, le premier fichier de ressource d’entrée est indexé.</p><p>Pour spécifier explicitement le nom du fichier multimédia, effectuez ceci :<br/>`<input name="TestFile.wmv">`<br/><br/>Vous pouvez également indexer plusieurs fichiers de ressources à la fois (jusqu'à 10 fichiers). Pour ce faire :<br/><br/><ol class="ordered"><li><p>Créez un fichier texte (fichier manifeste) et affectez-lui une extension .lst. </p></li><li><p>Ajoutez une liste de tous les noms de fichier d’élément multimédia à ce fichier de manifeste. </p></li><li><p>Ajoutez (téléchargez) le fichier manifeste vers la ressource.  </p></li><li><p>Spécifiez le nom du fichier manifeste dans l’attribut list de l’entrée.<br/>`<input list="input.lst">`</li></ol><br/><br/>Remarque : si vous ajoutez plus de 10 fichiers dans le fichier manifeste, la tâche d’indexation échoue avec le code d’erreur 2006. |
+| **métadonnées** |false |Métadonnées pour les fichiers de ressources actives utilisés pour l’Adaptation du vocabulaire.  Il est utile préparer l’indexeur à reconnaître les mots de vocabulaire non standard tels que des noms propres.<br/>`<metadata key="..." value="..."/>` <br/><br/>Vous pouvez fournir des **valeurs** pour les **clés** prédéfinies. Les clés actuellement prises en charge sont les suivantes :<br/><br/>« titre » et « description ». Elles servent à l’adaptation du vocabulaire pour sélectionner le modèle de langue pour votre travail et améliorer la précision de la reconnaissance vocale.  Les valeurs amorcent des recherches sur Internet pour rechercher des documents pertinents du point de vue contextuel en utilisant le contenu pour étoffer le dictionnaire interne pour la durée de la tâche d’indexation.<br/>`<metadata key="title" value="[Title of the media file]" />`<br/>`<metadata key="description" value="[Description of the media file] />"` |
+| **fonctionnalités** <br/><br/> ajoutées dans la version 1.2. Actuellement, la seule fonctionnalité prise en charge est la reconnaissance vocale (« ASR »). |false |La fonctionnalité de reconnaissance vocale a les clés de paramètres suivantes :<table><tr><th><p>Clé</p></th>        <th><p>Description</p></th><th><p>Exemple de valeur</p></th></tr><tr><td><p>Langage</p></td><td><p>La langue naturelle à reconnaître dans le fichier multimédia.</p></td><td><p>Anglais, espagnol</p></td></tr><tr><td><p>CaptionFormats</p></td><td><p>une liste délimitée par des points-virgules des formats de sous-titre souhaités (le cas échéant)</p></td><td><p>ttml;sami;webvtt</p></td></tr><tr><td><p>GenerateAIB</p></td><td><p>Un indicateur booléen indiquant si un fichier AIB est requis (pour une utilisation avec SQL Server et l’indexeur IFilter client).  Pour plus d’informations, consultez <a href="http://azure.microsoft.com/blog/2014/11/03/using-aib-files-with-azure-media-indexer-and-sql-server/">Utilisation de fichiers AIB avec Azure Media Indexer et SQL Server</a>.</p></td><td><p>True; False</p></td></tr><tr><td><p>GenerateKeywords</p></td><td><p>Indicateur booléen indiquant si un fichier XML de mot-clé est requis ou non.</p></td><td><p>True; False. </p></td></tr><tr><td><p>ForceFullCaption</p></td><td><p>Indicateur booléen spécifiant s’il faut forcer ou non les sous-titres complets (quel que soit le niveau de confiance).  </p><p>La valeur par défaut est false, auquel cas les mots et expressions dont le niveau de confiance est inférieur ou égal à 50 % sont omis dans les sous-titres finaux et remplacés par des points de suspension («... »).  Les points de suspension sont utiles pour le contrôle de la qualité et l’audit des sous-titres.</p></td><td><p>True; False. </p></td></tr></table> |
 
 ### <a id="error_codes"></a>Codes d’erreur
-Dans le cas de hello d’une erreur, signalez Azure Media Indexer un Hello suivant des codes d’erreur en arrière :
+En cas d’erreur, Azure Media indexeur doit signaler un des codes d’erreur suivants :
 
 | Code | Nom | Causes possibles |
 | --- | --- | --- |
 | 2000 |Configuration non valide |Configuration non valide |
 | 2001 |Ressources d’entrée non valides |Ressources d’entrée manquantes ou vides. |
 | 2002 |Manifeste non valide |Le manifeste est vide ou contient des éléments non valides. |
-| 2003 |Fichier de média toodownload ayant échoué |L’URL dans le fichier manifeste n’est pas valide. |
+| 2003 |Impossible de télécharger le fichier multimédia |L’URL dans le fichier manifeste n’est pas valide. |
 | 2004 |Protocole non pris en charge |Le protocole de l'URL du média n’est pas pris en charge. |
 | 2005 |Type de fichier non pris en charge |Le type de fichier multimédia d’entrée n’est pas pris en charge. |
-| 2006 |Trop de fichiers d’entrée |Il existe plus de 10 fichiers dans le manifeste d’entrée de hello. |
-| 3000 |Fichier de média toodecode ayant échoué |Codec de média non pris en charge  <br/>ou<br/> Fichier multimédia endommagé <br/>ou<br/> Il n’y a aucun flux audio dans le fichier d’entrée. |
-| 4000 |Indexation en lot partiellement réussie |Certains des médias d’entrée de hello sont des fichiers a échoué toobe indexé. Pour plus d’informations, consultez <a href="#output_files">Fichiers de sortie</a>. |
+| 2006 |Trop de fichiers d’entrée |Le manifeste d’entrée comporte plus de 10 fichiers. |
+| 3000 |Impossible de décoder le fichier multimédia |Codec de média non pris en charge  <br/>ou<br/> Fichier multimédia endommagé <br/>ou<br/> Il n’y a aucun flux audio dans le fichier d’entrée. |
+| 4000 |Indexation en lot partiellement réussie |Impossible d'indexer certains des fichiers multimédias d’entrée. Pour plus d’informations, consultez <a href="#output_files">Fichiers de sortie</a>. |
 | autres |Erreurs internes |Veuillez contacter l’équipe du support technique. indexer@microsoft.com |
 
 ## <a id="supported_languages"></a>Langues prises en charge
-Actuellement, les langues anglaise et espagnole hello sont pris en charge. Pour plus d’informations, consultez [hello billet de blog de mise en production v1.2](https://azure.microsoft.com/blog/2015/04/13/azure-media-indexer-spanish-v1-2/).
+Les langues prises en charge pour le moment sont l’anglais et l’espagnol. Pour plus d’informations, consultez [ce billet de blog de v1.2](https://azure.microsoft.com/blog/2015/04/13/azure-media-indexer-spanish-v1-2/).
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

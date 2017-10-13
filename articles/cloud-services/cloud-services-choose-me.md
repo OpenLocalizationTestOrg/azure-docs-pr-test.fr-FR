@@ -1,5 +1,5 @@
 ---
-title: options - Services de cloud computing de calcul aaaAzure | Documents Microsoft
+title: Options de calcul Azure - Cloud Services | Microsoft Docs
 description: "Découvrez les options hébergement de calcul Azure et leur fonctionnement : App Service, Cloud Services et Virtual Machines"
 services: cloud-services
 documentationcenter: 
@@ -13,27 +13,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: adegeo
-ms.openlocfilehash: e7f109a54c61cc2f37644d39a61d2d932a374587
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e8053b74e0e4d721523f49bcbb9e33b08bb7a1dc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="should-i-choose-cloud-services-or-something-else"></a>Dois-je choisir Cloud Services ou un autre service ?
-Constitue le choix de hello de Services de cloud computing de Azure pour vous ? Azure propose différents modèles d’hébergement d’applications. Chacun d’eux fournit un ensemble de services différent, donc celui que vous choisissez dépend d’exactement ce que vous essayez toodo.
+Azure Cloud Services est-il fait pour vous ? Azure propose différents modèles d’hébergement d’applications. Chaque modèle fournit un ensemble différent de services, donc votre choix dépend exactement ce que vous essayez de faire.
 
 [!INCLUDE [compute-table](../../includes/compute-options-table.md)]
 
 <a name="tellmecs"></a>
 
 ## <a name="tell-me-about-cloud-services"></a>En savoir plus sur Cloud Services
-Cloud Services est un exemple de [platform as a service](https://azure.microsoft.com/overview/what-is-paas/) (PaaS). Comme [du Service d’applications](../app-service-web/app-service-web-overview.md), cette technologie est conçue toosupport des applications évolutives, fiables et toooperate bon marché. Tout comme un Service d’application est hébergé sur des machines virtuelles, par conséquent, sont également des Services de cloud computing, toutefois, vous avez davantage de contrôle sur les machines virtuelles de hello. Vous pouvez installer votre logiciel sur des machines virtuelles de Cloud Service et vous y connecter à distance.
+Cloud Services est un exemple de [platform as a service](https://azure.microsoft.com/overview/what-is-paas/) (PaaS). Tout comme [App Service](../app-service/app-service-web-overview.md), cette technologie est conçue pour prendre en charge des applications évolutives, fiables et dont l’exploitation est peu coûteuse. Tout comme App Service, Cloud Services est hébergé sur des machines virtuelles, bien que celui-ci vous permette de mieux les contrôler. Vous pouvez installer votre logiciel sur des machines virtuelles de Cloud Service et vous y connecter à distance.
 
 ![cs_diagram](./media/cloud-services-choose-me/diagram.png)
 
-Un contrôle supérieur signifie également une convivialité réduite. Sauf si vous avez besoin d’options de contrôle supplémentaires hello, c’est généralement plus rapide et plus facile de tooget une application web et en cours d’exécution dans les applications Web dans le Service d’applications par rapport à tooCloud Services.
+Un contrôle supérieur signifie également une convivialité réduite. Si vous n’avez pas besoin d’options de contrôle supplémentaires, il est généralement plus rapide et plus facile de faire fonctionner une application web dans Web Apps dans App Service qu’avec Cloud Services.
 
-Il existe deux types de rôle de service cloud. Bonjour seule différence entre hello deux est comment votre rôle est hébergé sur l’ordinateur virtuel de hello.
+Il existe deux types de rôle de service cloud. La seule différence entre les deux est le mode d’hébergement de votre rôle sur la machine virtuelle.
 
 * **Rôle Web**  
 Déploie et héberge automatiquement votre application, via IIS.
@@ -41,21 +41,21 @@ Déploie et héberge automatiquement votre application, via IIS.
 * **Rôle de travail**  
 Exécute votre application de façon autonome, sans utiliser IIS.
 
-Par exemple, une application simple peut utiliser un rôle web unique, servant un site web. Une application plus complexe peut utiliser un toohandle de rôle web les demandes entrantes provenant d’utilisateurs, puis passer ces demandes sur le rôle de travail tooa pour le traitement. (Cette communication pourrait utiliser [Service Bus](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md) ou les [files d’attente Azure](../storage/common/storage-introduction.md).)
+Par exemple, une application simple peut utiliser un rôle web unique, servant un site web. À l’inverse, une application plus complexe peut utiliser un rôle web pour traiter les requêtes entrantes des utilisateurs, puis transmettre ces requêtes à un rôle de travail, à des fins de traitement. (Cette communication pourrait utiliser [Service Bus](../service-bus-messaging/service-bus-fundamentals-hybrid-solutions.md) ou les [files d’attente Azure](../storage/common/storage-introduction.md).)
 
-En tant que hello suggère la figure précédente, tous hello des machines virtuelles dans une application unique qui s’exécutent dans hello même service cloud. Utilisateurs accès hello application via une adresse IP publique unique, avec les requêtes automatiquement la charge équilibrée sur les machines virtuelles de l’application hello. plateforme de Hello [met à l’échelle et déploie](cloud-services-how-to-scale.md) hello des machines virtuelles dans une application de Services de cloud computing d’une façon qui permet d’éviter un point unique d’une défaillance matérielle.
+Ainsi que le suggère la figure ci-dessus, toutes les machines virtuelles d’une même application s’exécutent dans le même service cloud. Les utilisateurs accèdent à l’application par le biais d’une seule adresse IP publique, avec un équilibrage automatique de la charge des requêtes entre les machines virtuelles de cette application. La plateforme [met à l’échelle et déploie](cloud-services-how-to-scale.md) les machines virtuelles dans une application Cloud Services, afin d’éviter un point unique de défaillance matérielle.
 
-Bien que les applications s’exécutent sur des machines virtuelles, il est important toounderstand que Services de cloud computing offre PaaS, pas IaaS. Voici une façon toothink concernant : avec IaaS, telles que des Machines virtuelles Azure, vous tout d’abord créer et configurer l’environnement hello exécute votre application, puis déployer votre application dans cet environnement. Vous êtes chargé de gérer une grande partie de ce monde, faire les choses telles que le déploiement de nouvelles versions de correctifs de système d’exploitation hello chaque machine virtuelle. Dans PaaS, en revanche, il est comme si hello environnement existe déjà. Tout ce que vous avez toodo est de déployer votre application. Gestion de plateforme hello qu'il s’exécute, y compris pour déployer de nouvelles versions du système d’exploitation de hello, est traitée pour vous.
+Même si les applications s'exécutent sur des machines virtuelles, il est important de comprendre que Cloud Services fournit l'option PaaS, et non IaaS. Le processus peut être décrit de la manière suivante : avec la technologie IaaS (par exemple avec Azure Virtual Machines), vous commencez par créer et configurer l’environnement dans lequel s’exécutera votre application, puis vous déployez votre application dans cet environnement. Il vous appartient de gérer une grande partie de ce monde, par exemple, en déployant de nouvelles versions corrigées du système d'exploitation dans chaque machine virtuelle. Avec PaaS, en revanche, c'est comme si l'environnement existait déjà. Vous n'avez plus qu'à déployer votre application. La gestion de la plateforme sur laquelle elle s'exécute, y compris le déploiement de nouvelles versions du système d'exploitation, est assurée à votre place.
 
 ## <a name="scaling-and-management"></a>Mise à l'échelle et gestion
-Avec Cloud Services, vous ne créez pas de machines virtuelles. Au lieu de cela, vous fournissez un fichier de configuration qui indique à Azure de leur nombre souhaité, tel que **trois instances de rôle web** et **deux instances de rôle de travail**, et la plateforme de hello crée pour vous.  Vous continuez de choisir [la taille](cloud-services-sizes-specs.md) que doivent avoir ces machines virtuelles de stockage, mais vous ne les créez pas vous-même de manière explicite. Si votre application doit toohandle une charge plus importante, vous pouvez demander davantage d’ordinateurs virtuels et Azure crée ces instances. Si la charge de hello diminue, vous pouvez arrêter ces instances et arrêter la payer pour eux.
+Avec Cloud Services, vous ne créez pas de machines virtuelles. Au contraire, vous fournissez un fichier de configuration qui indique à Azure le nombre d'instances de chaque type voulu, par exemple, **trois instances de rôle Web** et **deux instances de rôle de travail**, et la plateforme se charge de les créer pour vous.  Vous continuez de choisir [la taille](cloud-services-sizes-specs.md) que doivent avoir ces machines virtuelles de stockage, mais vous ne les créez pas vous-même de manière explicite. Si votre application a besoin de traiter une charge plus importante, vous pouvez demander davantage de machines virtuelles ; Azure créera ces instances. Si la charge diminue, vous pouvez arrêter ces instances et cesser de payer pour elles.
 
-Une application de Services de cloud computing est généralement établie toousers disponible via un processus en deux étapes. Un développeur de première [téléchargements hello application](cloud-services-how-to-create-deploy.md) toohello plate-forme de zone de transfert. Lorsque le développeur de hello est prêt application hello de toomake live, ils utilisent intermédiaire de Azure tooswap portail hello avec la production. Cela [basculer d’un intermédiaire et de production](cloud-services-nodejs-stage-application.md) peut être effectuée sans temps mort, ce qui permet à une application en cours d’exécution d’être mis à niveau tooa une nouvelle version sans porter atteinte à ses utilisateurs.
+Une application Cloud Services est normalement mise à la disposition des utilisateurs au moyen d'un processus en deux étapes. Un développeur [télécharge d'abord l'application](cloud-services-how-to-create-deploy.md) dans la zone de transit de la plateforme. Lorsqu’il est prêt à activer l’application, il utilise le portail de gestion Azure pour la faire passer de l’étape intermédiaire à l’environnement de production. Le [basculement entre la zone de transit et l'environnement de production](cloud-services-nodejs-stage-application.md) peut se faire sans temps d'arrêt, ce qui permet de mettre à niveau une application en cours d'exécution vers une nouvelle version sans perturbation pour les utilisateurs.
 
 ## <a name="monitoring"></a>Surveillance
-Cloud Services fournit également la surveillance. Comme des Machines virtuelles Azure, il détecte un serveur physique ayant échoué et redémarre les machines virtuelles hello en cours d’exécution sur ce serveur sur un nouvel ordinateur. Mais Cloud Services détecte aussi les échecs des machines virtuelles et des applications, et pas seulement les défaillances matérielles. Contrairement aux Machines virtuelles, il dispose d’un agent à l’intérieur de chaque rôle web et de travail, et il est donc en mesure de toostart nouvelles machines virtuelles et instances de l’application lorsque des erreurs se produisent.
+Cloud Services fournit également la surveillance. À l’instar d’Azure Virtual Machines, il détecte l’échec d’un serveur physique et redémarre sur un nouvel ordinateur les machines virtuelles qui étaient exécutées sur ce serveur. Mais Cloud Services détecte aussi les échecs des machines virtuelles et des applications, et pas seulement les défaillances matérielles. À la différence des machines virtuelles, ils ont un agent à l'intérieur de chaque rôle Web et de travail, et sont donc en mesure de démarrer de nouvelles instances des machines virtuelles et des applications lorsqu'une défaillance se produit.
 
-Hello nature PaaS des Services Cloud a des autres conséquences, trop. Une des hello plus important est que les applications basées sur cette technologie doivent être écrit toorun correctement en cas d’échec de n’importe quelle instance de rôle web ou de travail. tooachieve cela, une application ne doit pas tenir à jour des Services de cloud computing dans l’état hello du système de fichiers de ses propres machines virtuelles. Contrairement aux ordinateurs virtuels créés avec des Machines virtuelles Azure, écritures effectuées tooCloud, Services de machines virtuelles ne sont pas persistants ; Il est nothing, comme un disque de données de Machines virtuelles. Au lieu de cela, une application doit explicitement des Services de cloud computing écrire tous les tooSQL état de la base de données, les objets BLOB, tables, ou un autre stockage externe. Création d’applications de cette manière, les rend tooscale plus facile et plus résistant toofailure, les deux principaux objectifs des Services Cloud.
+La nature PaaS de Cloud Services a également d'autres implications. L'une des principales est le fait que les applications basées sur cette technologie doivent être écrites pour s'exécuter correctement en cas d'échec d'un rôle Web ou de travail. Cela nécessite qu'une application Cloud Services ne conserve pas l'état dans le système de fichiers de ses propres machines virtuelles. Les écritures dans les machines virtuelles Cloud Services ne sont pas persistantes, comme elles le sont dans les machines virtuelles créées avec Azure Virtual Machines ; il n'existe rien de tel qu'un disque de données des machines virtuelles. En revanche, une application Cloud Services doit écrire explicitement tous les états dans la base de données SQL, les objets blob, les tables ou un autre stockage externe. Les applications créées de la sorte sont plus faciles à mettre à l'échelle et davantage résistantes aux défaillances, deux objectifs importants de Cloud Services.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Créer une application de service cloud dans .NET](cloud-services-dotnet-get-started.md)  

@@ -1,6 +1,6 @@
 ---
-title: "une alerte de métrique avec un modèle de gestionnaire de ressources d’aaaCreate | Documents Microsoft"
-description: "Découvrez comment toouse un toocreate de modèle de gestionnaire de ressources une métrique tooreceive des notifications par courrier électronique ou webhook d’alerte."
+title: "Créer une alerte de mesure avec un modèle Resource Manager | Microsoft Docs"
+description: "Découvrez comment utiliser un modèle Resource Manager pour créer une alerte de mesure pour recevoir des notifications par e-mail ou webhook."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 6/21/2017
 ms.author: johnkem
-ms.openlocfilehash: dcf92b189f56a8389fff007c82197527239b96b8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ac12605636d21fd0b5c89512c454ef2d899ef6dc
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-metric-alert-with-a-resource-manager-template"></a>Créer une alerte de mesure avec un modèle Resource Manager
-Cet article montre comment vous pouvez utiliser un [modèle Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) tooconfigure Azure alertes métriques. Cela vous permet de tooautomatically configurer des alertes sur vos ressources lors de leur création tooensure que toutes les ressources sont analysés correctement.
+Cet article explique comment vous pouvez utiliser un [modèle Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) pour configurer les alertes de mesures Azure. Cela vous permet de configurer automatiquement des alertes sur vos ressources lorsqu’elles sont créées pour vous assurer que toutes les ressources sont analysées correctement.
 
-les étapes de base Hello sont les suivantes :
+Procédure de base :
 
-1. Créer un modèle en tant qu’un fichier JSON qui décrit comment toocreate hello alerte.
-2. [Déployer à l’aide de n’importe quelle méthode de déploiement de modèle de hello](../azure-resource-manager/resource-group-template-deploy.md).
+1. Créez un modèle sous la forme d’un fichier JSON qui décrit comment créer l’alerte.
+2. [Déployez le modèle à l’aide de n’importe quelle méthode de déploiement](../azure-resource-manager/resource-group-template-deploy.md).
 
-Ci-dessous, nous allons décrire comment toocreate un modèle de gestionnaire de ressources tout d’abord pour une alerte uniquement, puis d’une alerte lors de la création de hello d’une autre ressource.
+Ci-dessous, nous décrivons comment créer un modèle Resource Manager, d’abord pour une alerte uniquement, puis pour une alerte lors de la création d’une autre ressource.
 
 ## <a name="resource-manager-template-for-a-metric-alert"></a>Modèle Resource Manager pour une alerte de mesure
-toocreate une alerte à l’aide d’un modèle de gestionnaire de ressources, vous créez une ressource de type `Microsoft.Insights/alertRules` et renseigner toutes les propriétés. Voici un modèle qui crée une règle d’alerte.
+Pour créer une alerte à l’aide d’un modèle Resource Manager, vous créez une ressource de type `Microsoft.Insights/alertRules` et renseignez toutes les propriétés. Voici un modèle qui crée une règle d’alerte.
 
 ```json
 {
@@ -62,14 +62,14 @@ toocreate une alerte à l’aide d’un modèle de gestionnaire de ressources, v
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Resource ID of hello resource emitting hello metric that will be used for hello comparison."
+                "description": "Resource ID of the resource emitting the metric that will be used for the comparison."
             }
         },
         "metricName": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Name of hello metric used in hello comparison tooactivate hello alert."
+                "description": "Name of the metric used in the comparison to activate the alert."
             }
         },
         "operator": {
@@ -82,14 +82,14 @@ toocreate une alerte à l’aide d’un modèle de gestionnaire de ressources, v
                 "LessThanOrEqual"
             ],
             "metadata": {
-                "description": "Operator comparing hello current value with hello threshold value."
+                "description": "Operator comparing the current value with the threshold value."
             }
         },
         "threshold": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "hello threshold value at which hello alert is activated."
+                "description": "The threshold value at which the alert is activated."
             }
         },
         "aggregation": {
@@ -103,35 +103,35 @@ toocreate une alerte à l’aide d’un modèle de gestionnaire de ressources, v
                 "Total"
             ],
             "metadata": {
-                "description": "How hello data that is collected should be combined over time."
+                "description": "How the data that is collected should be combined over time."
             }
         },
         "windowSize": {
             "type": "string",
             "defaultValue": "PT5M",
             "metadata": {
-                "description": "Period of time used toomonitor alert activity based on hello threshold. Must be between five minutes and one day. ISO 8601 duration format."
+                "description": "Period of time used to monitor alert activity based on the threshold. Must be between five minutes and one day. ISO 8601 duration format."
             }
         },
         "sendToServiceOwners": {
             "type": "bool",
             "defaultValue": true,
             "metadata": {
-                "description": "Specifies whether alerts are sent tooservice owners"
+                "description": "Specifies whether alerts are sent to service owners"
             }
         },
         "customEmailAddresses": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "Comma-delimited email addresses where hello alerts are also sent"
+                "description": "Comma-delimited email addresses where the alerts are also sent"
             }
         },
         "webhookUrl": {
             "type": "string",
             "defaultValue": "",
             "metadata": {
-                "description": "URL of a webhook that will receive an HTTP POST when hello alert activates."
+                "description": "URL of a webhook that will receive an HTTP POST when the alert activates."
             }
         }
     },
@@ -178,10 +178,10 @@ toocreate une alerte à l’aide d’un modèle de gestionnaire de ressources, v
 }
 ```
 
-Explication des propriétés et schéma de hello pour une règle d’alerte [sont disponibles ici](https://msdn.microsoft.com/library/azure/dn933805.aspx).
+Une explication du schéma et des propriétés pour une règle d’alerte [est disponible ici](https://msdn.microsoft.com/library/azure/dn933805.aspx).
 
 ## <a name="resource-manager-template-for-a-resource-with-an-alert"></a>Modèle Resource Manager pour une ressource avec une alerte
-Une alerte sur un modèle Resource Manager est le plus souvent utile lors de la création d’une alerte pendant la création d’une ressource. Par exemple, vous souhaiterez peut-être tooensure qui un « processeur % > 80 « règle chaque fois que vous déployez un ordinateur virtuel est définie. toodo, vous ajoutez une règle d’alerte hello en tant que ressource dans le tableau des ressources hello pour votre modèle d’ordinateur virtuel et que vous ajoutez une dépendance à l’aide de hello `dependsOn` ID de ressource de propriété toohello machine virtuelle. Voici un exemple complet qui crée une machine virtuelle Windows et ajoute une alerte qui avertit les administrateurs d’abonnements hello l’utilisation du processeur dépasse 80 %.
+Une alerte sur un modèle Resource Manager est le plus souvent utile lors de la création d’une alerte pendant la création d’une ressource. Par exemple, vous pourriez souhaiter vous assurer qu’une règle « processeur > 80 % » est définie chaque fois que vous déployez une machine virtuelle. Pour ce faire, vous ajoutez la règle d’alerte en tant que ressource dans le tableau des ressources pour votre modèle de machine virtuelle et ajoutez une dépendance à l’aide de la propriété `dependsOn` de l’ID de ressource de machine virtuelle. Voici un exemple complet qui crée une machine virtuelle Windows et ajoute une alerte qui avertit les administrateurs d’abonnement lorsque l’utilisation du processeur dépasse 80 %.
 
 ```json
 {
@@ -191,25 +191,25 @@ Une alerte sur un modèle Resource Manager est le plus souvent utile lors de la 
         "newStorageAccountName": {
             "type": "string",
             "metadata": {
-                "Description": "hello name of hello storage account where hello VM disk is stored."
+                "Description": "The name of the storage account where the VM disk is stored."
             }
         },
         "adminUsername": {
             "type": "string",
             "metadata": {
-                "Description": "hello name of hello administrator account on hello VM."
+                "Description": "The name of the administrator account on the VM."
             }
         },
         "adminPassword": {
             "type": "securestring",
             "metadata": {
-                "Description": "hello administrator account password on hello VM."
+                "Description": "The administrator account password on the VM."
             }
         },
         "dnsNameForPublicIP": {
             "type": "string",
             "metadata": {
-                "Description": "hello name of hello public IP address used tooaccess hello VM."
+                "Description": "The name of the public IP address used to access the VM."
             }
         }
     },
@@ -402,5 +402,5 @@ Une alerte sur un modèle Resource Manager est le plus souvent utile lors de la 
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [En savoir plus sur les alertes](insights-receive-alert-notifications.md)
-* [Ajouter des paramètres de Diagnostic](monitoring-enable-diagnostic-logs-using-template.md) tooyour Gestionnaire de ressources du modèle
+* [Ajout de paramètres de diagnostic](monitoring-enable-diagnostic-logs-using-template.md) à votre modèle Resource Manager
 

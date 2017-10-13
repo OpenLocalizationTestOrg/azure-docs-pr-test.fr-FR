@@ -1,6 +1,6 @@
 ---
-title: "aaaManage Analytique de LAC de données Azure à l’aide d’une Interface de ligne Azure | Documents Microsoft"
-description: "Découvrez comment les comptes toomanage Analytique lac de données, sources de données, des travaux et des utilisateurs à l’aide de CLI d’Azure"
+title: "Gestion d’Azure Data Lake Analytics à l’aide de l’interface de ligne de commande Azure | Microsoft Docs"
+description: "Apprenez à gérer des comptes Data Lake Analytics, des sources de données, des utilisateurs et des travaux à l'aide de l’interface de ligne de commande Azure."
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-ms.openlocfilehash: 0af1f89080739b39f6980989b7694734cc135715
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f90bada3572c0ed40b07d76ec02c1b499bbd1428
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-command-line-interface-cli"></a>Gestion de Azure Data Lake Analytics à l’aide de l’interface de ligne de commande Azure (CLI)
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-Découvrez comment des comptes toomanage Analytique de LAC de données Azure, des sources de données, des utilisateurs et des travaux à l’aide de hello CLI d’Azure. les rubriques de gestion toosee à l’aide d’autres outils, cliquez sur l’onglet hello ci-dessus, sélectionnez.
+Découvrez comment gérer des comptes Azure Data Lake Analytics, des sources de données, des utilisateurs et des travaux à l’aide de l’interface de ligne de commande Azure. Pour afficher les rubriques de gestion à l’aide d’autres outils, cliquez sur l’onglet de sélection ci-dessus.
 
 
 **Configuration requise**
 
-Avant de commencer ce didacticiel, vous devez disposer de hello :
+Avant de commencer ce didacticiel, vous devez disposer des éléments suivants :
 
 * **Un abonnement Azure**. Consultez la page [Obtention d’un essai gratuit d’Azure](https://azure.microsoft.com/pricing/free-trial/).
 * **Interface de ligne de commande Azure**. Consultez [Installation et configuration de l’interface de ligne de commande Azure](../cli-install-nodejs.md).
-  * Téléchargez et installez hello **préliminaires** [outils CLI d’Azure](https://github.com/MicrosoftBigData/AzureDataLake/releases) commander toocomplete cette démonstration.
-* **Authentification**, à l’aide hello la commande suivante :
+  * Téléchargez et installez les **outils d’interface de ligne de commande Azure** [version préliminaire](https://github.com/MicrosoftBigData/AzureDataLake/releases) pour effectuer cette démonstration.
+* **Authentication**, en utilisant la commande  suivante :
   
         azure login
-    Pour plus d’informations sur l’authentification à l’aide d’un compte professionnel ou scolaire, consultez [connecter tooan abonnement Azure à partir de hello CLI d’Azure](../xplat-cli-connect.md).
-* **Passez en mode Azure Resource Manager de toohello**, à l’aide hello la commande suivante :
+    Pour plus d’informations sur l’authentification à l’aide d’un compte professionnel ou scolaire, consultez la section [Se connecter à un abonnement Azure à partir de l’interface de ligne de commande Azure](../xplat-cli-connect.md).
+* **Passez en mode Azure Resource Manager**en exécutant la commande suivante :
   
         azure config mode arm
 
-**toolist hello Data Lake Store et Analytique lac de données de commandes :**
+**Pour répertorier les commandes Data Lake Store et Data Lake Analytics :**
 
     azure datalake store
     azure datalake analytics
@@ -49,14 +49,14 @@ Avant de commencer ce didacticiel, vous devez disposer de hello :
 <!-- ################################ -->
 <!-- ################################ -->
 ## <a name="manage-accounts"></a>Gérer les comptes
-Avant d'exécuter des travaux Data Lake Analytics, vous devez avoir un compte Data Lake Analytics. Contrairement à Azure HDInsight, vous ne payez pas pour un compte Analytics lorsque celui-ci n'exécute aucun travail.  Vous payez uniquement pour fois hello lorsqu’il exécute un travail.  Pour plus d'informations, consultez [Présentation d'Azure Data Lake Analytics](data-lake-analytics-overview.md).  
+Avant d'exécuter des travaux Data Lake Analytics, vous devez avoir un compte Data Lake Analytics. Contrairement à Azure HDInsight, vous ne payez pas pour un compte Analytics lorsque celui-ci n'exécute aucun travail.  Vous payez uniquement lorsqu'il exécute un travail.  Pour plus d'informations, consultez [Présentation d'Azure Data Lake Analytics](data-lake-analytics-overview.md).  
 
 ### <a name="create-accounts"></a>Création de comptes
       azure datalake analytics account create "<Data Lake Analytics Account Name>" "<Azure Location>" "<Resource Group Name>" "<Default Data Lake Account Name>"
 
 
 ### <a name="update-accounts"></a>Mise à jour de comptes
-Hello commande suivante met à jour les propriétés de hello d’un compte d’Analytique Data Lake existant
+La commande suivante met à jour les propriétés d'un compte Data Lake Analytics existant
 
     azure datalake analytics account set "<Data Lake Analytics Account Name>"
 
@@ -81,17 +81,17 @@ Obtenir des détails sur un compte Data Lake Analytics spécifique
 <!-- ################################ -->
 <!-- ################################ -->
 ## <a name="manage-account-data-sources"></a>Gestion des sources de données du compte
-Analytique lac de données prend en charge actuellement les hello les sources de données suivantes :
+Data Lake Analytics prend actuellement en charge les sources de données suivantes :
 
 * [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md)
-* [Azure Storage](../storage/common/storage-introduction.md)
+* [Stockage Azure](../storage/common/storage-introduction.md)
 
-Lorsque vous créez un compte Analytique, vous devez désigner un compte de stockage par défaut de stockage de LAC de données Azure compte toobe hello. Hello compte de stockage par défaut ADL sert toostore métadonnée de la tâche et le travail de journaux d’audit. Après la création d'un compte Analytics, vous pouvez ajouter des comptes Data Lake Storage et/ou des comptes Azure Storage supplémentaires. 
+Lorsque vous créez un compte Analytics, vous devez désigner un compte Azure Data Lake Storage comme compte de stockage par défaut. Le compte de stockage ADL par défaut est utilisé pour stocker les métadonnées du travail et les journaux d'audit du travail. Après la création d'un compte Analytics, vous pouvez ajouter des comptes Data Lake Storage et/ou des comptes Azure Storage supplémentaires. 
 
-### <a name="find-hello-default-adl-storage-account"></a>Recherchez le compte de stockage ADL hello par défaut
+### <a name="find-the-default-adl-storage-account"></a>Recherchez le compte de stockage ADL par défaut
     azure datalake analytics account show "<Data Lake Analytics Account Name>"
 
-valeur de Hello est répertorié sous propriétés : datalakeStoreAccount:name.
+La valeur est répertoriée sous properties:datalakeStoreAccount:name.
 
 ### <a name="add-additional-azure-blob-storage-accounts"></a>Ajouter des comptes de stockage d'objets Blob Azure supplémentaires
       azure datalake analytics account datasource add -n "<Data Lake Analytics Account Name>" -b "<Azure Blob Storage Account Short Name>" -k "<Azure Storage Account Key>"
@@ -104,14 +104,14 @@ valeur de Hello est répertorié sous propriétés : datalakeStoreAccount:name.
 ### <a name="add-additional-data-lake-store-accounts"></a>Ajouter des comptes Data Lake Store supplémentaires
       azure datalake analytics account datasource add -n "<Data Lake Analytics Account Name>" -l "<Data Lake Store Account Name>" [-d]
 
-[-d] est un tooindicate commutateur facultatif si hello lac de données ajouté est le compte Data Lake n’hello par défaut. 
+[-d] est un commutateur facultatif pour indiquer si le Data Lake ajouté est le compte Data Lake par défaut. 
 
 ### <a name="update-existing-data-source"></a>Mettre à jour la source de données existante
-tooset une valeur par défaut de hello toobe existante Data Lake Store compte :
+Pour faire d’un compte existant de magasin Data Lake un compte par défaut :
 
       azure datalake analytics account datasource set -n "<Data Lake Analytics Account Name>" -l "<Azure Data Lake Store Account Name>" -d
 
-tooupdate une clé de compte de stockage Blob :
+Pour mettre à jour une clé de compte Blob Storage existante :
 
       azure datalake analytics account datasource set -n "<Data Lake Analytics Account Name>" -b "<Blob Storage Account Name>" -k "<New Blob Storage Account Key>"
 
@@ -121,11 +121,11 @@ tooupdate une clé de compte de stockage Blob :
 ![Data Lake Analytics : énumérer les sources de données](./media/data-lake-analytics-manage-use-cli/data-lake-analytics-list-data-source.png)
 
 ### <a name="delete-data-sources"></a>Supprimer des sources de données :
-toodelete un compte Data Lake Store :
+Pour supprimer un compte de magasin Data Lake :
 
       azure datalake analytics account datasource delete "<Data Lake Analytics Account Name>" "<Azure Data Lake Store Account Name>"
 
-toodelete un compte de stockage d’objets Blob :
+Pour supprimer un compte de stockage Blob :
 
       azure datalake analytics account datasource delete "<Data Lake Analytics Account Name>" "<Blob Storage Account Name>"
 
@@ -142,20 +142,20 @@ Vous devez disposer d'un compte Data Lake Analytics avant de pouvoir créer un t
 
 ### <a name="submit-jobs"></a>Soumettre les travaux
 > [!NOTE]
-> priorité par défaut de Hello d’une tâche est comprise entre 1000 et hello par défaut de parallélisme pour un travail est 1.
+> La priorité par défaut d'un travail est 1 000 et le degré de parallélisme par défaut d'un travail est 1.
 > 
 > 
 
     azure datalake analytics job create  "<Data Lake Analytics Account Name>" "<Job Name>" "<Script>"
 
 ### <a name="cancel-jobs"></a>Annuler les travaux
-Utilisez l’id de tâche hello liste commande toofind hello et utilisez annulation du travail toocancel hello.
+Utilisez la commande list pour trouver l'id de travail, puis utilisez la fonction d’annulation pour annuler le travail.
 
       azure datalake analytics job list -n "<Data Lake Analytics Account Name>"
       azure datalake analytics job cancel "<Data Lake Analytics Account Name>" "<Job ID>"
 
 ## <a name="manage-catalog"></a>Gestion du catalogue
-catalogue de Hello U-SQL est utilisé toostructure données et le code afin qu’ils peuvent être partagés par les scripts U-SQL. catalogue de Hello permet hello performances maximales des données dans Azure Data Lake. Pour plus d'informations, consultez [Utilisation du catalogue U-SQL](data-lake-analytics-use-u-sql-catalog.md).
+Le catalogue U-SQL est utilisé pour structurer les données et le code afin que les scripts U-SQL puissent les partager. Le catalogue permet les meilleures performances possibles avec les données comprises dans Azure Data Lake. Pour plus d'informations, consultez [Utilisation du catalogue U-SQL](data-lake-analytics-use-u-sql-catalog.md).
 
 ### <a name="list-catalog-items"></a>Répertorier les éléments du catalogue
     #List databases
@@ -164,26 +164,26 @@ catalogue de Hello U-SQL est utilisé toostructure données et le code afin qu�
     #List tables
     azure datalake analytics catalog list -n "<Data Lake Analytics Account Name>" -t table
 
-les types de Hello incluent la base de données, schéma, assembly, source de données externe, table, fonction table ou des statistiques de table.
+Les types incluent : database, schema, assembly, external data source, table, table valued function ou table statistics.
 
 <!-- ################################ -->
 <!-- ################################ -->
 ## <a name="use-arm-groups"></a>Utilisez des groupes ARM
-Les applications sont généralement constituées de nombreux composants, par exemple une application web, base de données, serveur de base de données, stockage et services tiers. Azure Resource Manager (ARM) vous permet de toowork avec des ressources dans votre application comme une tooas de groupe, ou un groupe de ressources Azure hello. Vous pouvez déployer, mettre à jour, analyser ou supprimer toutes les ressources de hello pour votre application dans une opération unique et coordonnée. Vous utilisez un modèle de déploiement pouvant fonctionner avec différents environnements (environnements de test, intermédiaire et de production). Vous pouvez de clarifier la facturation pour votre organisation en consultant les coûts de hello reportées pour l’ensemble du groupe hello. Pour plus d'informations, consultez [Présentation d'Azure Resource Manager](../azure-resource-manager/resource-group-overview.md). 
+Les applications sont généralement constituées de nombreux composants, par exemple une application web, base de données, serveur de base de données, stockage et services tiers. Azure Resource Manager (ARM) vous permet de manipuler les ressources de votre application sous la forme d’un groupe, nommé groupe de ressources Azure. Vous pouvez déployer, mettre à jour, surveiller ou supprimer toutes les ressources de votre application dans le cadre d’une opération unique et coordonnée. Vous utilisez un modèle de déploiement pouvant fonctionner avec différents environnements (environnements de test, intermédiaire et de production). Vous pouvez clarifier la facturation pour votre organisation en visualisant les coûts cumulés pour l’ensemble du groupe. Pour plus d'informations, consultez [Présentation d'Azure Resource Manager](../azure-resource-manager/resource-group-overview.md). 
 
-Un service de données Lake Analytique peut inclure hello suivant des composants :
+Un service Data Lake Analytics peut inclure les composants suivants :
 
 * Compte Azure Data Lake Analytics
 * Compte Azure Data Lake Storage par défaut requis
 * Comptes Azure Data Lake Storage supplémentaires
 * Comptes Azure Storage supplémentaires
 
-Vous pouvez créer tous ces composants sous un toomake de groupe ARM les toomanage plus facile.
+Vous pouvez créer tous ces composants dans un groupe ARM pour les rendre plus facile à gérer.
 
 ![Compte et stockage Azure Data Lake Analytics](./media/data-lake-analytics-manage-use-portal/data-lake-analytics-arm-structure.png)
 
-Un compte Analytique lac de données et les comptes de stockage dépendant de hello doivent être placés dans hello même centre de données Azure.
-groupe de Hello ARM peut cependant se trouver dans un autre centre de données.  
+Un compte Data Lake Analytics et les compte de stockage dépendants doivent se trouver dans le même centre de données Azure.
+Le groupe ARM peut cependant se trouver dans un autre centre de données.  
 
 ## <a name="see-also"></a>Voir aussi
 * [Vue d'ensemble de Microsoft Azure Data Lake Analytics](data-lake-analytics-overview.md)

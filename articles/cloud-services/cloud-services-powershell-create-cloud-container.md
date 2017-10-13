@@ -1,6 +1,6 @@
 ---
-title: aaaCreate un conteneur de service cloud avec PowerShell | Documents Microsoft
-description: "Cet article explique comment toocreate un cloud service conteneur avec PowerShell. conteneur de Hello héberge les rôles web et worker."
+title: "Créer un conteneur de service cloud avec PowerShell | Microsoft Docs"
+description: "Cet article explique comment créer un conteneur de service cloud avec PowerShell. Le conteneur héberge les rôles Web et de travail."
 services: cloud-services
 documentationcenter: .net
 author: cawaMS
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: powershell
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: cawa
-ms.openlocfilehash: 4c47b10b5ba1f9cc39594a45cd869bf04fcaadf6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2023fa7b318f9f76ce1e1ea0a46110297be9a001
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-an-azure-powershell-command-toocreate-an-empty-cloud-service-container"></a>Utilisez un toocreate de commande Azure PowerShell un conteneur de service cloud vide
-Cet article explique comment tooquickly créer un conteneur de Services de cloud computing à l’aide des applets de commande PowerShell de Azure. Suivez les étapes de hello ci-dessous :
+# <a name="use-an-azure-powershell-command-to-create-an-empty-cloud-service-container"></a>Utiliser une commande Azure PowerShell pour créer un conteneur de service cloud vide
+Cet article explique comment créer rapidement un conteneur Cloud Services à l’aide d’applets de commande Azure PowerShell. Procédez comme suit :
 
-1. Installer l’applet de commande PowerShell de Microsoft Azure hello de hello [Azure PowerShell télécharge](http://aka.ms/webpi-azps) page.
-2. Ouvrez l’invite de commandes PowerShell hello.
-3. Hello d’utilisation [Add-AzureAccount](https://msdn.microsoft.com/library/dn495128.aspx) toosign dans.
+1. Installez l’applet de commande Microsoft Azure PowerShell à partir de la page [Téléchargements d’Azure PowerShell](http://aka.ms/webpi-azps) .
+2. Ouvrez l’invite de commandes PowerShell.
+3. Utilisez l’applet de commande [Add-AzureAccount](https://msdn.microsoft.com/library/dn495128.aspx) pour vous connecter.
 
    > [!NOTE]
-   > Pour obtenir des instructions supplémentaires sur l’installation d’applet de commande PowerShell Azure hello et la connexion tooyour abonnement Azure, consultez trop[comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview).
+   > Pour obtenir des instructions complémentaires sur l’installation de l’applet de commande Azure PowerShell et sur la connexion à votre abonnement Azure, consultez l’article [Installation et configuration d’Azure PowerShell](/powershell/azure/overview).
    >
    >
-4. Hello d’utilisation **New-AzureService** toocreate de l’applet de commande un conteneur de service cloud Azure vide.
+4. Créez un conteneur de service cloud Azure vide à l’aide de l’applet de commande **New-AzureService** .
 
     ```
     New-AzureService [-ServiceName] <String> [-AffinityGroup] <String> [[-Label] <String>] [[-Description] <String>] [[-ReverseDnsFqdn] <String>] [<CommonParameters>]
     New-AzureService [-ServiceName] <String> [-Location] <String> [[-Label] <String>] [[-Description] <String>] [[-ReverseDnsFqdn] <String>] [<CommonParameters>]
    ```
-5. Suivez cette applet de commande hello de tooinvoke exemple :
+5. Suivez cet exemple pour appeler l’applet de commande :
 
    ```
    New-AzureService -ServiceName "mytestcloudservice" -Location "Central US" -Label "mytestcloudservice"
    ```
 
-Pour plus d’informations sur la création de service de cloud Azure hello, exécutez :
+Pour plus d’informations sur la création du service cloud Azure, exécutez :
 
 ```
 Get-help New-AzureService
 ```
 
 ### <a name="next-steps"></a>Étapes suivantes
-* toomanage hello déploiement du service cloud, consultez le toohello [Get-AzureService](https://msdn.microsoft.com/library/azure/dn495131.aspx), [Remove-AzureService](https://msdn.microsoft.com/library/azure/dn495120.aspx), et [Set-AzureService](https://msdn.microsoft.com/library/azure/dn495242.aspx) commandes. Vous pouvez également faire référence trop[tooconfigure de services cloud](cloud-services-how-to-configure.md) pour plus d’informations.
-* toopublish votre service cloud tooAzure de projet, consultez le toohello **PublishCloudService.ps1** exemple de code à partir de [livraison continue pour le service cloud dans Azure](cloud-services-dotnet-continuous-delivery.md).
+* Pour gérer le déploiement du service cloud, reportez-vous aux rubriques relatives aux commandes [Get-AzureService](https://msdn.microsoft.com/library/azure/dn495131.aspx), [Remove-AzureService](https://msdn.microsoft.com/library/azure/dn495120.aspx) et [Set-AzureService](https://msdn.microsoft.com/library/azure/dn495242.aspx). Pour plus d’informations, vous pouvez également consulter l’article [Configuration des services cloud](cloud-services-how-to-configure.md) .
+* Pour publier votre projet de service cloud dans Azure, consultez l’exemple de code **PublishCloudService.ps1** dans l’article [Livraison continue du service cloud dans Azure](cloud-services-dotnet-continuous-delivery.md).

@@ -1,6 +1,6 @@
 ---
-title: "architecture mutualisée dans Azure pile aaaEnable | Documents Microsoft"
-description: "Découvrez comment toosupport plusieurs annuaires Azure Active Directory dans la pile de Azure"
+title: "Activer l’architecture multilocataire dans Azure Stack | Microsoft Docs"
+description: "Découvrez comment prendre en charge plusieurs annuaires Azure Active Directory dans Azure Stack."
 services: azure-stack
 documentationcenter: 
 author: HeathL17
@@ -11,50 +11,52 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/26/2017
+ms.date: 09/25/2017
 ms.author: helaw
-ms.openlocfilehash: d7e404894a65f6786c42c5c27f76d46f353cb8c1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3a90057b43e3f2074e72f3d0f896b35b4884368b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="enable-multi-tenancy-in-azure-stack"></a>Activer l’architecture multilocataire dans Azure Stack
 
-Vous pouvez configurer les utilisateurs toosupport de pile de Azure à partir de plusieurs services toouse de locataires Azure Active Directory (Azure AD) dans la pile de Azure. Par exemple, considérez hello scénario :
+*S’applique à : systèmes intégrés Azure Stack et Kit de développement Azure Stack*
 
- - Vous êtes hello administrateur du Service de contoso.onmicrosoft.com, où la pile de Azure est installé.
- - Mary est hello administrateur d’annuaire de fabrikam.onmicrosoft.com, dans lequel se trouvent les utilisateurs invités. 
- - Société de Mary reçoit des services IaaS et PaaS à partir de votre entreprise et doit tooallow hello invité active (fabrikam.onmicrosoft.com) toosign dans utilisateurs et utilise des ressources de la pile d’Azure dans contoso.onmicrosoft.com.
+Vous pouvez configurer Azure Stack pour prendre en charge l’utilisation des services Azure Stack par les utilisateurs de plusieurs locataires Azure Active Directory (Azure AD). Par exemple, considérez le scénario suivant :
 
-Ce guide fournit les étapes hello requis dans le contexte de hello de ce scénario, tooconfigure une architecture mutualisée de pile de Azure.  Dans ce scénario, vous Mary doit effectuer les étapes que l’utilisateur à partir de toosign Fabrikam dans tooenable et consommer des services à partir de hello déploiement Azure pile de Contoso.  
+ - Vous êtes l’administrateur de services de contoso.onmicrosoft.com, où Azure Stack est installé.
+ - Marie est l’administrateur de l’annuaire de fabrikam.onmicrosoft.com, où se trouvent les utilisateurs invités. 
+ - La société de Marie reçoit des services IaaS et PaaS de la part de votre entreprise, et doit autoriser les utilisateurs de l’annuaire invité (fabrikam.onmicrosoft.com) à se connecter et à utiliser des ressources Azure Stack dans contoso.onmicrosoft.com.
+
+Ce guide fournit les étapes nécessaires, dans le cadre de ce scénario, pour configurer une architecture multilocataire dans Azure Stack.  Dans ce scénario, Marie et vous-même devez effectuer des étapes pour permettre aux utilisateurs de Fabrikam de se connecter et d’utiliser les services du déploiement Azure Stack dans Contoso.  
 
 ## <a name="before-you-begin"></a>Avant de commencer
-Il existe quelques tooaccount de conditions préalables pour avant de configurer une architecture mutualisée de pile de Azure :
+Il existe quelques prérequis à prendre en compte avant de configurer une architecture multilocataire Azure Stack :
   
- - Vous Mary doit coordonner des étapes administratives sur les deux annuaires hello Azure pile est installé dans (Contoso) et hello active de l’invité (Fabrikam).  
+ - Marie et vous-même devez coordonner les étapes administratives dans l’annuaire où Azure Stack est installé (Contoso) et dans l’annuaire invité (Fabrikam).  
  - Vérifiez que vous avez [installé](azure-stack-powershell-install.md) et [configuré](azure-stack-powershell-configure-admin.md) PowerShell pour Azure Stack.
- - [Télécharger les outils de pile Azure hello](azure-stack-powershell-download.md)et importer des modules de se connecter et d’identité hello :
+ - [Téléchargez les outils Azure Stack](azure-stack-powershell-download.md) et importez les modules de connexion et d’identité :
 
     ````PowerShell
         Import-Module .\Connect\AzureStack.Connect.psm1
         Import-Module .\Identity\AzureStack.Identity.psm1
     ```` 
- - Mary nécessitera [VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn) tooAzure pile d’accès. 
+ - Mary aura besoin d’un accès [VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn) à Azure Stack. 
 
 ## <a name="configure-azure-stack-directory"></a>Configurer l’annuaire Azure Stack
-Dans cette section, vous configurez Azure pile tooallow les connexions depuis des clients d’annuaire Azure AD de Fabrikam.
+Dans cette section, vous allez configurer Azure Stack pour autoriser les connexions à partir de locataires de l’annuaire Azure AD Fabrikam.
 
 ### <a name="onboard-guest-directory-tenant"></a>Intégrer le locataire d’annuaire invité
-TooAzure du locataire d’annuaire invité (Fabrikam) suivant, intégrer hello pile.  Cette étape configure le Gestionnaire de ressources Azure tooaccept utilisateurs et principaux de service à partir du locataire d’annuaire hello invité.
+Ensuite, intégrez le locataire d’annuaire invité (Fabrikam) à Azure Stack.  Cette étape configure Azure Resource Manager pour accepter les utilisateurs et les principaux du service du locataire d’annuaire invité.
 
 ````PowerShell
 $adminARMEndpoint = "https://adminmanagement.local.azurestack.external"
 
-## Replace hello value below with hello Azure Stack directory
+## Replace the value below with the Azure Stack directory
 $azureStackDirectoryTenant = "contoso.onmicrosoft.com"
 
-## Replace hello value below with hello guest tenant directory. 
+## Replace the value below with the guest tenant directory. 
 $guestDirectoryTenantToBeOnboarded = "fabrikam.onmicrosoft.com"
 
 Register-AzSGuestDirectoryTenant -AdminResourceManagerEndpoint $adminARMEndpoint `
@@ -66,15 +68,15 @@ Register-AzSGuestDirectoryTenant -AdminResourceManagerEndpoint $adminARMEndpoint
 
 
 ## <a name="configure-guest-directory"></a>Configurer l’annuaire invité
-Après avoir terminé les étapes décrites dans le répertoire de pile de Azure hello, Mary doit fournir son consentement tooAzure pile accès hello invité annuaire et Azure pile auprès active d’invité hello. 
+Après avoir terminé les étapes dans l’annuaire Azure Stack, Marie doit autoriser Azure Stack à accéder à l’annuaire invité et inscrire Azure Stack auprès de l’annuaire invité. 
 
-### <a name="registering-azure-stack-with-hello-guest-directory"></a>L’inscription de la pile d’Azure avec le répertoire d’invité hello
-Une fois que l’administrateur d’annuaire hello invité a fourni le consentement pour le répertoire de la pile de Azure tooaccess Fabrikam, ils doivent s’inscrire à Azure pile de locataire d’annuaire de Fabrikam.
+### <a name="registering-azure-stack-with-the-guest-directory"></a>Inscription d’Azure Stack auprès de l’annuaire invité
+Une fois que l’administrateur de l’annuaire invité a autorisé Azure Stack à accéder à l’annuaire de Fabrikam, il doit inscrire Azure Stack auprès du locataire d’annuaire de Fabrikam.
 
 ````PowerShell
 $tenantARMEndpoint = "https://management.local.azurestack.external"
     
-## Replace hello value below with hello guest tenant directory. 
+## Replace the value below with the guest tenant directory. 
 $guestDirectoryTenantName = "fabrikam.onmicrosoft.com"
 
 Register-AzSWithMyDirectoryTenant `
@@ -82,10 +84,10 @@ Register-AzSWithMyDirectoryTenant `
  -DirectoryTenantName $guestDirectoryTenantName ` 
  -Verbose 
 ````
-## <a name="direct-users-toosign-in"></a>Toosign de diriger les utilisateurs dans
-Maintenant que vous et Mary terminées active de hello étapes tooonboard Mary, Mary peut diriger toosign les utilisateurs de Fabrikam dans.  Les utilisateurs de Fabrikam (autrement dit, les utilisateurs avec le suffixe de fabrikam.onmicrosoft.com hello) se connectent en visitant https://portal.local.azurestack.external.  
+## <a name="direct-users-to-sign-in"></a>Inviter les utilisateurs à se connecter
+Maintenant que Marie et vous-même avez effectué les étapes d’intégration de l’annuaire de Marie, celle-ci peut inviter les utilisateurs de Fabrikam à se connecter.  Les utilisateurs de Fabrikam (autrement dit, ceux avec le suffixe fabrikam.onmicrosoft.com) se connectent en accédant à https://portal.local.azurestack.external.  
 
-Mary dirigera les [étrangère principaux](../active-directory/active-directory-understanding-resource-access.md) dans toosign de répertoire (autrement dit, les utilisateurs dans le répertoire de Fabrikam hello sans suffixe hello fabrikam.onmicrosoft.com) hello Fabrikam à l’aide de https://portal.local.azurestack.external/fabrikam.onmicrosoft.com.  Si elles n’utilisent pas cette URL, ils sont envoyés de répertoire par défaut de tootheir (Fabrikam) et vous recevez une erreur indiquant que leur administrateur n’a pas donné son consentement.
+Marie invitera les [principaux étrangers](../active-directory/active-directory-understanding-resource-access.md) dans l’annuaire Fabrikam (autrement dit, les utilisateurs dans l’annuaire Fabrikam sans le suffixe fabrikam.onmicrosoft.com) à se connecter à l’aide de https://portal.local.azurestack.external/fabrikam.onmicrosoft.com.  S’ils n’utilisent pas cette URL, ils sont dirigés vers leur annuaire par défaut (Fabrikam) et reçoivent une erreur indiquant que leur administrateur n’a pas donné son consentement.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooconfigure un toouse d’application de Proxy d’Application PingAccess | Documents Microsoft"
-description: "Découvrez comment toouse PingAccess tooextend hello avantages de tooapplications de Proxy d’Application à l’aide de l’authentification basée sur l’en-tête"
+title: "Comment configurer une application de proxy d’application pour utiliser PingAccess | Microsoft Docs"
+description: "Découvrez comment utiliser PingAccess pour apporter les avantages du proxy d’application aux applications utilisant l’authentification basée sur l’en-tête"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: fa4c9747b7bf5a135425be270e4f7eadf95248fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a9da67373465cebbdbecae5c8fb8bd0a0ee3c171
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-tooconfigure-an-application-proxy-application-toouse-pingaccess"></a>Comment tooconfigure un toouse d’application de Proxy d’Application PingAccess
+# <a name="how-to-configure-an-application-proxy-application-to-use-pingaccess"></a>Comment configurer une application de proxy d’application pour utiliser PingAccess
 
-Notre collaboration avec PingAccess maintenant vous permet de tooextend les avantages de hello de tooapplications de Proxy d’Application à l’aide de l’authentification basée sur l’en-tête. Si vos applications n’utilisent pas d’en-têtes, vous trouverez des informations sur les alternatives disponibles dans notre [documentation sur l’authentification unique](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd).
+Grâce à notre collaboration avec PingAccess, vous pouvez désormais apporter les avantages du proxy d’application aux applications utilisant l’authentification basée sur l’en-tête. Si vos applications n’utilisent pas d’en-têtes, vous trouverez des informations sur les alternatives disponibles dans notre [documentation sur l’authentification unique](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd).
 
 ## <a name="overview-of-steps-and-recommended-documents"></a>Vue d’ensemble des étapes et documents recommandés
 
-tooconfigure une application avec PingAccess, il existe quatre étapes :
+Vous devez suivre les quatre étapes suivantes pour configurer une application avec PingAccess :
 
 1.  Configurer les connecteurs de proxy d’application
 

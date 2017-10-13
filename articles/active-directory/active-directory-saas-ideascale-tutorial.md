@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec IdeaScale | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et IdeaScale."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et IdeaScale."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,115 +13,115 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/16/2017
 ms.author: jeedes
-ms.openlocfilehash: 10722b137e7565ee165e73994fd5a60b994719bf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 88099e942319f16dd721da83e4e69b8fcb836c0d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-ideascale"></a>Didacticiel : Intégration d’Azure Active Directory à IdeaScale
 
-Dans ce didacticiel, vous apprendrez comment toointegrate IdeaScale avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer IdeaScale à Azure Active Directory (Azure AD).
 
-Intégration d’IdeaScale à Azure AD offre hello avantages suivants :
+L’intégration d’IdeaScale à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooIdeaScale
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooIdeaScale (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à IdeaScale.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à IdeaScale (via l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD à IdeaScale, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à IdeaScale, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement IdeaScale pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout d’IdeaScale à partir de la galerie de hello
+1. Ajout d’IdeaScale à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-ideascale-from-hello-gallery"></a>Ajout d’IdeaScale à partir de la galerie de hello
-intégration de hello tooconfigure de IdeaScale dans Azure AD, vous devez tooadd IdeaScale à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-ideascale-from-the-gallery"></a>Ajout d’IdeaScale à partir de la galerie
+Pour configurer l’intégration d’IdeaScale à Azure AD, vous devez ajouter IdeaScale à partir de la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd IdeaScale à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter IdeaScale à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **IdeaScale**.
+4. Dans la zone de recherche, tapez **IdeaScale**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **IdeaScale**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le panneau de résultats, sélectionnez **IdeaScale**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec IdeaScale à l’aide d’un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans IdeaScale est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans IdeaScale doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur IdeaScale équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur IdeaScale associé doit être établie.
 
-En l’occurrence, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans IdeaScale, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique à IdeaScale, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec IdeaScale, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test IdeaScale](#creating-an-ideascale-test-user)**  -toohave un équivalent de Britta Simon dans IdeaScale est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test IdeaScale](#creating-an-ideascale-test-user)** pour avoir un équivalent de Britta Simon dans IdeaScale lié à la représentation Azure AD de l’utilisateur.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application IdeaScale.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application IdeaScale.
 
-**tooconfigure Azure AD single sign-on avec IdeaScale, procédez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec IdeaScale, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **IdeaScale** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **IdeaScale**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_samlbase.png)
 
-3. Sur hello **IdeaScale domaine et les URL** section, effectuer hello comme suit :
+3. Dans la section **IdeaScale Domain and URLs** (Domaine et URL IdeaScale), procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<companyname>.ideascale.com`
+    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<companyname>.ideascale.com`
 
-    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :
+    b. Dans la zone de texte **Identificateur**, entrez une URL au format suivant :
     | |
     |--|
     | `http://<companyname>.ideascale.com`  |
     | `https://<companyname>.ideascale.com` |
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur. Contact [équipe de support Client de IdeaScale](http://support.ideascale.com/) tooget ces valeurs. 
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Pour obtenir ces valeurs, contactez [l’équipe de support technique IdeaScale](http://support.ideascale.com/). 
  
-4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_certificate.png) 
 
@@ -129,17 +129,17 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-ideascale-tutorial/tutorial_general_400.png)
 
-6. Sur hello **IdeaScale Configuration** , cliquez sur **IdeaScale de configurer** tooopen **configurer l’authentification** fenêtre. Hello de copie **URL de déconnexion et l’ID d’entité SAML** de hello **section de référence rapide**.
+6. Dans la section **IdeaScale Configuration** (Configuration d’IdeaScale), cliquez sur **Configure IdeaScale** (Configurer IdeaScale) pour ouvrir la fenêtre **Configurer l’authentification**. Copiez **l’URL de déconnexion et l’ID d’entité SAML** à partir de la **section Référence rapide**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_configure.png) 
 
-7. Dans une fenêtre de navigateur web, ouvrez une session dans le site d’entreprise IdeaScale tooyour en tant qu’administrateur.
+7. Dans une autre fenêtre de navigateur web, connectez-vous à votre site d’entreprise IdeaScale en tant qu’administrateur.
 
-8. Accédez trop**paramètres de la Communauté**.
+8. Accédez à **Community Settings**.
    
     ![Community Settings](./media/active-directory-saas-ideascale-tutorial/ic790847.png "Community Settings")
 
-9. Accédez trop**sécurité \> les paramètres d’authentification unique**.
+9. Accédez à **Security \> Single Signon Settings**.
    
     ![Single Signon Settings](./media/active-directory-saas-ideascale-tutorial/ic790848.png "Single Signon Settings")
 
@@ -147,103 +147,103 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
    
     ![Single Signon Type](./media/active-directory-saas-ideascale-tutorial/ic790849.png "Single Signon Type")
 
-11. Sur hello **les paramètres d’authentification unique** boîte de dialogue, effectuer hello comme suit :
+11. Dans la page de boîte de dialogue **Paramètres de l’authentification unique** , procédez comme suit :
    
     ![Single Signon Settings](./media/active-directory-saas-ideascale-tutorial/ic790850.png "Single Signon Settings")
    
-    a. Dans **SAML IdP Entity ID** zone de texte, valeur hello coller **ID d’entité SAML** dont vous avez copié à partir du portail Azure.
+    a. Dans la zone de texte **SAML IdP Entity ID** (ID d’entité du fournisseur d’identité SAML), collez la valeur de **l’ID d’entité SAML** que vous avez copiée depuis le portail Azure.
 
-    b. Copier le contenu de hello de votre fichier de métadonnées téléchargé à partir du portail Azure et collez-le dans hello **SAML IdP Metadata** zone de texte.
+    b. Copiez le contenu de votre fichier de métadonnées téléchargé depuis le portail Azure et collez-le dans la zone de texte **SAML IdP Metadata** (Métadonnées du fournisseur d’identité SAML).
 
-    c. Dans **Logout Success URL** zone de texte, valeur hello coller **URL de déconnexion** dont vous avez copié à partir du portail Azure.
+    c. Dans la zone de texte **Logout Success URL** (URL de déconnexion réussie), collez la valeur de **l’URL de déconnexion** que vous avez copiée à partir du portail Azure.
 
     d. Cliquez sur **Enregistrer les modifications**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ideascale-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ideascale-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ideascale-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-ideascale-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-an-ideascale-test-user"></a>Création d’un utilisateur de test IdeaScale
 
-tooenable Azure AD les utilisateurs toolog en l’occurrence, ils doivent être configurés dans tooIdeaScale. Dans le cas de hello d’IdeaScale, cette configuration est une tâche manuelle.
+Pour permettre aux utilisateurs Azure AD de se connecter à IdeaScale, vous devez les approvisionner dans IdeaScale. Dans le cas d’IdeaScale, l’approvisionnement est une tâche manuelle.
 
-**configuration, de l’utilisateur tooconfigure effectuer hello comme suit :**
+**Pour configurer l'approvisionnement des utilisateurs, procédez comme suit :**
 
-1. Connectez-vous à tooyour **IdeaScale** site d’entreprise en tant qu’administrateur.
+1. Connectez-vous à votre site d’entreprise **IdeaScale** en tant qu’administrateur.
 
-2. Accédez trop**paramètres de la Communauté**.
+2. Accédez à **Community Settings**.
    
     ![Community Settings](./media/active-directory-saas-ideascale-tutorial/ic790847.png "Community Settings")
 
-3. Accédez trop**les paramètres de base \> membre gestion**.
+3. Accédez à **Basic Settings \> Member Management**.
 
 4. Cliquez sur **Add Member**.
    
     ![Member Management](./media/active-directory-saas-ideascale-tutorial/ic790852.png "Member Management")
 
-5. Dans la section Add New Member de hello, procédez hello comme suit :
+5. Dans la section Add New Member, procédez comme suit :
    
     ![Add New Member](./media/active-directory-saas-ideascale-tutorial/ic790853.png "Add New Member")
    
-    a. Bonjour **les adresses de messagerie** zone de texte, tapez Bonjour adresse de messagerie d’un compte AAD valide que vous souhaitez tooprovision.
+    a. Indiquez l’adresse de messagerie d’un compte Azure Active Directory valide que vous souhaitez approvisionner dans la zone de texte **Email Addresses** .
    
     b. Cliquez sur **Enregistrer les modifications**. 
    
     >[!NOTE]
-    >titulaire du compte Azure Active Directory Hello Obtient un message électronique avec un compte de hello tooconfirm lien avant son activation.
+    >Le titulaire du compte Azure Active Directory reçoit un message électronique avec un lien pour confirmer le compte avant qu’il ne soit activé.
       
 >[!NOTE]
->Vous pouvez utiliser n’importe quel autre IdeaScale utilisateur compte outil de création ou API fournie par IdeaScale tooprovision des comptes d’utilisateur AAD.
+>Vous pouvez utiliser tout autre outil ou n’importe quelle API de création de compte d’utilisateur fournis par IdeaScale pour approvisionner des comptes d’utilisateur Azure Active Directory.
  
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooIdeaScale.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à IdeaScale.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooIdeaScale, effectuez hello comme suit :**
+**Pour affecter Britta Simon à IdeaScale, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **IdeaScale**.
+2. Dans la liste des applications, sélectionnez **IdeaScale**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-ideascale-tutorial/tutorial_ideascale_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -251,7 +251,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -260,13 +260,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
 
-objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.
+L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque IdeaScale hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour IdeaScale application.
+Si vous cliquez sur la vignette IdeaScale dans le panneau d’accès, vous devez vous connecter automatiquement à votre application IdeaScale.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,118 +1,136 @@
 ---
-titre : aaa « leçon du didacticiel Azure Analysis Services 5 : créer des colonnes calculées | Description de Microsoft Docs » : décrit comment toocreate calculées des colonnes dans le projet du didacticiel hello Azure Analysis Services. Services : analysis services documentationcenter : '' auteur : minewiskan manager : erikre éditeur : '' balises : ».
-
-MS.AssetId : ms.service : ms.devlang d’analysis services : NA ms.topic : get-started-article ms.tgt_pltfrm : NA ms.workload : na ms.date : 01/06/2017 ms.author : owend
+title: "Leçon 5 du didacticiel Azure Analysis Services : Créer des colonnes calculées | Microsoft Docs"
+description: "Explique comment créer des colonnes calculées dans le projet du didacticiel Azure Analysis Services."
+services: analysis-services
+documentationcenter: 
+author: Minewiskan
+manager: erikre
+editor: 
+tags: 
+ms.assetid: 
+ms.service: analysis-services
+ms.devlang: NA
+ms.topic: get-started-article
+ms.tgt_pltfrm: NA
+ms.workload: na
+ms.date: 09/20/2017
+ms.author: owend
+ms.openlocfilehash: eab74fbadc6a143ca5a2bc57a1762539a6d489c1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="lesson-5-create-calculated-columns"></a>Leçon 5 : Créer des colonnes calculées
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-Dans le cadre de cette leçon, vous créez des données dans votre modèle en ajoutant des colonnes calculées. Vous pouvez créer des colonnes calculées (en tant que colonnes personnalisées) lorsque vous utilisez obtenir des données, à l’aide de l’éditeur de requête hello ou plus loin dans le type de Concepteur de modèle hello suivre ici. toolearn, voir [des colonnes calculées](https://docs.microsoft.com/sql/analysis-services/tabular-models/ssas-calculated-columns).
+Dans le cadre de cette leçon, vous créez des données dans votre modèle en ajoutant des colonnes calculées. Vous pouvez créer des colonnes calculées (sous la forme de colonnes personnalisées) lorsque vous utilisez Obtenir des données, à l’aide de l’Éditeur de requêtes, ou ultérieurement dans le Concepteur de modèles comme décrit dans cette leçon. Pour en savoir plus, consultez [Colonnes calculées](https://docs.microsoft.com/sql/analysis-services/tabular-models/ssas-calculated-columns).
   
-Vous créez cinq colonnes calculées dans trois tables différentes. Hello étapes sont légèrement différentes pour chaque tâche indiquant de plusieurs manières toocreate colonnes, les renommer et les placer à différents emplacements dans une table.  
+Vous créez cinq colonnes calculées dans trois tables différentes. La procédure diffère légèrement pour chacune des tâches, de façon à montrer qu’il existe plusieurs façons de créer des colonnes, de les renommer et de les placer à différents emplacements d’une table.  
 
-Cette leçon vous permet également d’utiliser pour la première fois le langage DAX (Data Analysis Expressions). DAX est un langage spécial permettant de créer des expressions de formule hautement personnalisables pour les modèles tabulaires. Dans ce didacticiel, vous utilisez les colonnes calculée de toocreate DAX, les mesures et les filtres de rôle. toolearn, voir [DAX dans les modèles tabulaires](https://docs.microsoft.com/sql/analysis-services/tabular-models/understanding-dax-in-tabular-models-ssas-tabular). 
+Cette leçon vous permet également d’utiliser pour la première fois le langage DAX (Data Analysis Expressions). DAX est un langage spécial permettant de créer des expressions de formule hautement personnalisables pour les modèles tabulaires. Dans le cadre de ce didacticiel, vous utilisez DAX pour créer des colonnes calculées, des mesures et des filtres de rôle. Pour en savoir plus, consultez [DAX dans les modèles tabulaires](https://docs.microsoft.com/sql/analysis-services/tabular-models/understanding-dax-in-tabular-models-ssas-tabular). 
   
-Estimé temps toocomplete cette leçon : **15 minutes**  
+Durée estimée pour suivre cette leçon : **15 minutes**  
   
-## <a name="prerequisites"></a>Composants requis  
-Cette rubrique fait partie d’un didacticiel de modélisation tabulaire, qui doit être suivi dans l’ordre prévu. Avant d’effectuer les tâches de hello dans cette leçon, vous devez avoir terminé les leçon précédente hello : [leçon 4 : créer des relations](../tutorials/aas-lesson-4-create-relationships.md). 
+## <a name="prerequisites"></a>Prérequis  
+Cette rubrique fait partie d’un didacticiel de modélisation tabulaire, qui doit être suivi dans l’ordre prévu. Avant d’effectuer les tâches de cette leçon, vous devez avoir suivi la leçon précédente : [Leçon 4 : Créer des relations](../tutorials/aas-lesson-4-create-relationships.md). 
   
 ## <a name="create-calculated-columns"></a>Créer des colonnes calculées  
   
-#### <a name="create-a-monthcalendar-calculated-column-in-hello-dimdate-table"></a>Créer une colonne calculée MonthCalendar dans la table DimDate de hello  
+#### <a name="create-a-monthcalendar-calculated-column-in-the-dimdate-table"></a>Créer une colonne calculée MonthCalendar dans la table DimDate  
   
-1.  Cliquez sur hello **modèle** menu > **vue de modèle** > **vue données**.  
+1.  Cliquez sur le menu **Modèle**> **Vue du modèle** > **Vue de données**.  
   
-    Les colonnes calculées peuvent uniquement être créées à l’aide du Générateur de modèles hello dans la vue de données.  
+    Les colonnes calculées peuvent uniquement être créées à l’aide du Concepteur de modèles dans la vue de données.  
   
-2.  Dans le Concepteur de modèle hello, cliquez sur hello **DimDate** table (onglet).  
+2.  Dans le Concepteur de modèles, cliquez sur la table **DimDate** (onglet).  
   
-3.  Avec le bouton hello **CalendarQuarter** en-tête de colonne, puis cliquez sur **insérer une colonne**.  
+3.  Cliquez avec le bouton droit sur l’en-tête de colonne **CalendarQuarter**, puis cliquez sur **Insérer une colonne**.  
   
-    Une nouvelle colonne nommée **1 de colonne calculée** est inséré toohello gauche hello **trimestre** colonne.  
+    Une nouvelle colonne nommée **Calculated Column 1** est insérée à gauche de la colonne **Calendar Quarter**.  
   
-4.  Dans la barre de formule hello au-dessus de table de hello, tapez Bonjour DAX formule suivante : vous aide à la saisie semi-automatique vous tapez hello des noms complets des colonnes et tables et listes hello des fonctions qui sont disponibles.  
+4.  Dans la barre de formule située au-dessus de la table, tapez la formule DAX ci-après. La saisie semi-automatique vous aide à taper les noms complets des colonnes et des tables, et répertorie les fonctions disponibles.  
   
     ```  
     =RIGHT(" " & FORMAT([MonthNumberOfYear],"#0"), 2) & " - " & [EnglishMonthName]  
     ``` 
   
-    Des valeurs remplissent ensuite toutes les lignes hello dans la colonne calculée de hello. Si vous faites défiler la table de hello, vous consultez lignes peuvent avoir des valeurs différentes pour cette colonne, en fonction des données hello dans chaque ligne.    
+    Les valeurs remplissent alors toutes les lignes de la colonne calculée. Si vous faites défiler la table vers le bas, vous remarquez que les lignes peuvent avoir des valeurs différentes pour cette colonne, en fonction des données figurant dans chaque ligne.    
   
-5.  Renommer cette colonne trop**MonthCalendar**. 
+5.  Renommez cette colonne **MonthCalendar**. 
 
     ![aas-lesson5-newcolumn](../tutorials/media/aas-lesson5-newcolumn.png) 
   
-colonne calculée de MonthCalendar Hello fournit un nom triable pour le mois.  
+La colonne calculée MonthCalendar fournit un nom triable pour le mois.  
   
-#### <a name="create-a-dayofweek-calculated-column-in-hello-dimdate-table"></a>Créer une colonne calculée DayOfWeek dans la table DimDate de hello  
+#### <a name="create-a-dayofweek-calculated-column-in-the-dimdate-table"></a>Créer une colonne calculée DayOfWeek dans la table DimDate  
   
-1.  Avec hello **DimDate** toujours active, cliquez sur hello **colonne** menu, puis sur **ajouter une colonne**.  
+1.  La table **DimDate** étant toujours active, cliquez sur le menu **Colonne**, puis sur **Ajouter une colonne**.  
   
-2.  Dans la barre de formule hello, tapez hello formule suivante :  
+2.  Dans la barre de formule, tapez la formule suivante :  
     
     ```
     =RIGHT(" " & FORMAT([DayNumberOfWeek],"#0"), 2) & " - " & [EnglishDayNameOfWeek]  
     ```
     
-    Lorsque vous avez terminé de créer la formule de hello, appuyez sur ENTRÉE. Hello nouvelle colonne est ajoutée toohello plus à droite de la table de hello.  
+    Quand vous avez terminé de générer la formule, appuyez sur Entrée. La nouvelle colonne est ajoutée à l’extrême droite de la table.  
   
-3.  Renommer les colonnes hello trop**DayOfWeek**.  
+3.  Renommez la colonne en **DayOfWeek**.  
   
-4.  Cliquez sur l’en-tête de colonne hello, puis faites glisser les colonnes hello entre hello **EnglishDayNameOfWeek** colonne et hello **DayNumberOfMonth** colonne.  
+4.  Cliquez sur l’en-tête de colonne, puis faites glisser la colonne entre la colonne **EnglishDayNameOfWeek** et la colonne **DayNumberOfMonth**.  
   
     > [!TIP]  
-    > Déplacer les colonnes dans votre table rend toonavigate plus facile.  
+    > Déplacer les colonnes dans la table facilite la navigation.  
   
-colonne calculée de Hello DayOfWeek fournit un nom triable pour le jour hello de la semaine.  
+La colonne calculée DayOfWeek fournit un nom triable pour le jour de la semaine.  
   
-#### <a name="create-a-productsubcategoryname-calculated-column-in-hello-dimproduct-table"></a>Créer une colonne calculée ProductSubcategoryName dans la table DimProduct de hello  
+#### <a name="create-a-productsubcategoryname-calculated-column-in-the-dimproduct-table"></a>Créer une colonne calculée ProductSubcategoryName dans la table DimProduct  
   
   
-1.  Bonjour **DimProduct** table, faites défiler toohello plus à droite de la table de hello. Colonne de notification hello plus à droite est nommée **ajouter une colonne** (en italique), cliquez sur l’en-tête de colonne hello.  
+1.  Dans la table **DimProduct**, faites défiler l’affichage jusqu’à l’extrême droite de la table. Notez que la colonne la plus à droite est nommée **Add Column** (en italique). Cliquez sur l’en-tête de colonne.  
   
-2.  Dans la barre de formule hello, tapez hello formule suivante :  
+2.  Dans la barre de formule, tapez la formule suivante :  
     
     ```
     =RELATED('DimProductSubcategory'[EnglishProductSubcategoryName])  
     ```
   
-3.  Renommer les colonnes hello trop**ProductSubcategoryName**.  
+3.  Renommez la colonne en **ProductSubcategoryName**.  
   
-colonne calculée de Hello ProductSubcategoryName est toocreate utilisé une hiérarchie dans la table DimProduct hello, qui inclut des données à partir de la colonne de EnglishProductSubcategoryName hello dans la table DimProductSubcategory de hello. Les hiérarchies ne peuvent pas couvrir plusieurs tables. Vous créerez des hiérarchies ultérieurement, dans le cadre de la Leçon 9.  
+La colonne calculée ProductSubcategoryName est utilisée pour créer une hiérarchie dans la table DimProduct, qui inclut les données de la colonne EnglishProductSubcategoryName de la table DimProductSubcategory. Les hiérarchies ne peuvent pas couvrir plusieurs tables. Vous créerez des hiérarchies ultérieurement, dans le cadre de la Leçon 9.  
   
-#### <a name="create-a-productcategoryname-calculated-column-in-hello-dimproduct-table"></a>Créer une colonne calculée ProductCategoryName dans la table DimProduct de hello  
+#### <a name="create-a-productcategoryname-calculated-column-in-the-dimproduct-table"></a>Créer une colonne calculée ProductCategoryName dans la table DimProduct  
   
-1.  Avec hello **DimProduct** toujours active, cliquez sur hello **colonne** menu, puis sur **ajouter une colonne**.  
+1.  La table **DimProduct** étant toujours active, cliquez sur le menu **Colonne**, puis sur **Ajouter une colonne**.  
   
-2.  Dans la barre de formule hello, tapez hello formule suivante :  
+2.  Dans la barre de formule, tapez la formule suivante :  
   
     ```
     =RELATED('DimProductCategory'[EnglishProductCategoryName]) 
     ```
     
-3.  Renommer les colonnes hello trop**ProductCategoryName**.  
+3.  Renommez la colonne en **ProductCategoryName**.  
   
-colonne calculée de ProductCategoryName Hello est toocreate utilisé une hiérarchie dans la table DimProduct hello, qui inclut des données à partir de la colonne de EnglishProductCategoryName hello dans la table de DimProductCategory hello. Les hiérarchies ne peuvent pas couvrir plusieurs tables.  
+La colonne calculée ProductCategoryName est utilisée pour créer une hiérarchie dans la table DimProduct, qui inclut les données de la colonne EnglishProductCategoryName de la table DimProductCategory. Les hiérarchies ne peuvent pas couvrir plusieurs tables.  
   
-#### <a name="create-a-margin-calculated-column-in-hello-factinternetsales-table"></a>Créer une colonne calculée de marge dans la table FactInternetSales de hello  
+#### <a name="create-a-margin-calculated-column-in-the-factinternetsales-table"></a>Créer une colonne calculée Margin dans la table FactInternetSales  
   
-1.  Dans le Concepteur de modèle hello, sélectionnez hello **FactInternetSales** table.  
+1.  Dans le Concepteur de modèles, sélectionnez la table **FactInternetSales**.  
   
-2.  Créer une nouvelle colonne calculée entre hello **SalesAmount** colonne et hello **TaxAmt** colonne.  
+2.  Créez une colonne calculée entre la colonne **SalesAmount** et la colonne **TaxAmt**.  
   
-3.  Dans la barre de formule hello, tapez hello formule suivante :  
+3.  Dans la barre de formule, tapez la formule suivante :  
   
     ```
     =[SalesAmount]-[TotalProductCost]
     ``` 
 
-4.  Renommer les colonnes hello trop**marge**.  
+4.  Renommez la colonne en **Margin**.  
  
       ![aas-lesson5-newmargin](../tutorials/media/aas-lesson5-newmargin.png)
       
-    colonne calculée de marge Hello est marges tooanalyze utilisés pour chaque vente.  
+    La colonne calculée Margin est utilisée pour analyser les marges pour chaque vente.  
   
 ## <a name="whats-next"></a>Et ensuite ?
 [Leçon 6 : Créer des mesures](../tutorials/aas-lesson-6-create-measures.md).

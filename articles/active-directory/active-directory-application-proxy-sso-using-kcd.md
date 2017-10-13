@@ -1,6 +1,6 @@
 ---
-title: "aaaSingle l’authentification avec le Proxy d’Application | Documents Microsoft"
-description: "Décrit comment tooprovide l’authentification unique à l’aide du Proxy d’Application Azure AD."
+title: "Authentification unique avec le proxy d’application | Microsoft Docs"
+description: "Explique comment fournir l’authentification unique à l’aide du proxy d’application Azure AD."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,55 +15,55 @@ ms.date: 07/25/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: H1Hack27Feb2017, it-pro
-ms.openlocfilehash: 0047e834cd42e057a75ebc0c5dcf860734464a05
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 149af1f68e574f78127a9c2de8a0e79ed8774d29
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="kerberos-constrained-delegation-for-single-sign-on-tooyour-apps-with-application-proxy"></a>La délégation contrainte Kerberos pour les applications tooyour de l’authentification unique avec le Proxy d’Application
+# <a name="kerberos-constrained-delegation-for-single-sign-on-to-your-apps-with-application-proxy"></a>Délégation contrainte Kerberos pour l’authentification unique à vos applications avec le proxy d’application
 
-Vous pouvez fournir l’authentification unique pour les applications locales publiées via le proxy d’application et sécurisées avec l’authentification Windows intégrée. L’accès à ces applications nécessitent un ticket Kerberos. Le Proxy d’application utilise la délégation Kerberos (KCD) toosupport ces applications. 
+Vous pouvez fournir l’authentification unique pour les applications locales publiées via le proxy d’application et sécurisées avec l’authentification Windows intégrée. L’accès à ces applications nécessitent un ticket Kerberos. Le proxy d’application utilise la délégation Kerberos contrainte(KCD) pour prendre en charge ces applications. 
 
-Vous pouvez activer les applications tooyour de l’authentification unique à l’aide de l’authentification Windows (intégrée) en attribuant l’autorisation de connecteurs de Proxy d’Application dans Active Directory tooimpersonate users. les connecteurs Hello utilisent toosend de cette autorisation et recevoir des jetons en leur nom.
+Vous pouvez activer l’authentification unique pour vos applications avec l’authentification Windows intégrée en attribuant aux connecteurs du proxy d’application dans Active Directory l’autorisation d’emprunter l’identité des utilisateurs. Les connecteurs utilisent cette autorisation pour envoyer et recevoir des jetons en leur nom.
 
 ## <a name="how-single-sign-on-with-kcd-works"></a>Fonctionnement de l’authentification unique avec KCD
-Ce diagramme explique le flux de hello lorsqu’un utilisateur tente de tooaccess une application locale qui utilise IWA.
+Ce diagramme explique le flux quand un utilisateur tente d’accéder à une application locale qui utilise I’authentification Windows intégrée.
 
 ![Diagramme de flux de l’authentification Microsoft AAD](./media/active-directory-application-proxy-sso-using-kcd/AuthDiagram.png)
 
-1. utilisateur de Hello passe à l’application hello URL tooaccess hello local via le Proxy d’Application.
-2. Le Proxy d’application redirige hello demande tooAzure AD authentication services toopreauthenticate. À ce stade, Azure AD applique les stratégies d’authentification et d’autorisation applicables, comme l’authentification multifacteur. Si l’utilisateur de hello est validé, Azure AD crée un jeton et l’envoie toohello utilisateur.
-3. Hello passe tooApplication de jeton hello Proxy.
-4. Le Proxy d’application valide le jeton de hello et récupère hello nom d’utilisateur Principal (UPN) à partir de celui-ci, et puis envoie hello demande hello UPN et hello toohello de nom de Principal du Service (SPN) connecteur via un canal sécurisé doublement authentifié.
-5. Hello connecteur effectue une négociation de la délégation Kerberos (KCD) avec hello local AD, l’emprunt d’identité hello utilisateur tooget une application de toohello jeton Kerberos.
-6. Active Directory envoie le jeton Kerberos de hello pour hello application toohello connecteur.
-7. Hello connecteur envoie hello d’origine demande toohello serveur d’applications, à l’aide du jeton Kerberos de hello que provenant d’AD.
-8. application Hello envoie hello réponse toohello connecteur, qui est renvoyée au service de Proxy d’Application toohello et enfin toohello utilisateur.
+1. L’utilisateur entre l’URL pour accéder à l’application locale via le proxy d’application.
+2. Le proxy d’application redirige la demande vers les services d’authentification d’Azure AD pour effectuer la préauthentification. À ce stade, Azure AD applique les stratégies d’authentification et d’autorisation applicables, comme l’authentification multifacteur. Si l’utilisateur est validé, Azure AD crée un jeton et l’envoie à l’utilisateur.
+3. L’utilisateur transmet le jeton au proxy d’application.
+4. Le proxy d’application valide le jeton et y récupère le nom d’utilisateur principal (UPN), puis envoie la demande, l’UPN et le nom de principal du service (SPN) au connecteur via un canal sécurisé doublement authentifié.
+5. Le connecteur effectue une négociation de délégation Kerberos contrainte avec Active Directory local, en empruntant l’identité de l’utilisateur pour obtenir un jeton Kerberos pour l’application.
+6. Active Directory envoie le jeton Kerberos de l’application au connecteur.
+7. Le connecteur envoie la demande d’origine au serveur d’applications, en utilisant le jeton Kerberos reçu d’Active Directory.
+8. L’application envoie la réponse au connecteur, qui est ensuite retournée au service de proxy d’application et enfin à l’utilisateur.
 
 ## <a name="prerequisites"></a>Composants requis
-Avant de commencer avec l’authentification unique pour les applications IWA, assurez-vous que votre environnement est prêt à hello suivant les paramètres et les configurations :
+Avant de commencer avec l’authentification unique pour les applications IWA, assurez-vous que votre environnement est prêt à l’aide des configurations et paramètres suivants :
 
-* Vos applications, telles que les applications SharePoint Web, sont définies toouse l’authentification Windows intégrée. Pour plus d’informations, consultez [Activer la prise en charge de l’authentification Kerberos](https://technet.microsoft.com/library/dd759186.aspx) ou, pour SharePoint, consultez [Planifier l’authentification Kerberos dans SharePoint 2013](https://technet.microsoft.com/library/ee806870.aspx).
+* Vos applications, comme les applications web SharePoint, sont configurées pour utiliser l’authentification Windows intégrée. Pour plus d’informations, consultez [Activer la prise en charge de l’authentification Kerberos](https://technet.microsoft.com/library/dd759186.aspx) ou, pour SharePoint, consultez [Planifier l’authentification Kerberos dans SharePoint 2013](https://technet.microsoft.com/library/ee806870.aspx).
 * Toutes vos applications disposent de [Noms de principal du service](https://social.technet.microsoft.com/wiki/contents/articles/717.service-principal-names-spns-setspn-syntax-setspn-exe.aspx).
-* hello en cours d’exécution du serveur Hello connecteur et serveur hello application hello en cours d’exécution sont joints à un domaine et une partie de hello même domaine ou domaines autorisés à approuver. Pour plus d’informations sur la jonction de domaine, consultez [joindre un domaine de tooa ordinateur](https://technet.microsoft.com/library/dd807102.aspx).
-* serveur Hello hello connecteur possède un attribut TokenGroupsGlobalAndUniversal hello de tooread d’accès pour les utilisateurs. Ce paramètre par défaut peut avoir affecté par l’environnement de hello de renforcement de la sécurité.
+* Le serveur exécutant le connecteur et le serveur exécutant l’application sont joints au domaine et font partie du même domaine ou de domaines sécurisés. Pour plus d’informations sur la jonction à un domaine, consultez [Joindre un ordinateur à un domaine](https://technet.microsoft.com/library/dd807102.aspx).
+* Le serveur exécutant le connecteur est autorisé à lire l’attribut TokenGroupsGlobalAndUniversal pour les utilisateurs. Ce paramètre par défaut peut avoir été affecté par la sécurisation renforcée de l’environnement.
 
 ### <a name="configure-active-directory"></a>Configurer Active Directory
-configuration d’Active Directory Hello varie, selon si votre connecteur de Proxy d’Application et le serveur d’applications hello sont dans hello même domaine ou non.
+La configuration d’Active Directory varie selon que votre connecteur de proxy d’application et le serveur d’application sont dans le même domaine ou non.
 
-#### <a name="connector-and-application-server-in-hello-same-domain"></a>Connecteur et serveur d’applications Bonjour même domaine
-1. Dans Active Directory, accédez trop**outils** > **utilisateurs et ordinateurs**.
-2. Sélectionnez serveur hello connecteur de hello en cours d’exécution.
+#### <a name="connector-and-application-server-in-the-same-domain"></a>Le connecteur et le serveur d’application sont dans le même domaine
+1. Dans Active Directory, accédez à **Outils** > **Utilisateurs et ordinateurs**.
+2. Sélectionnez le serveur exécutant le connecteur.
 3. Cliquez avec le bouton droit, puis sélectionnez **Properties** > **Délégation**.
-4. Sélectionnez **n’approuver cet ordinateur pour les services uniquement de délégation toospecified**. 
-5. Sous **Services toowhich ce compte peut présenter des informations d’identification déléguées** Ajouter valeur hello pour hello identité SPN hello du serveur d’applications. Ainsi, hello connecteur Proxy d’Application tooimpersonate les utilisateurs dans Active Directory par rapport aux applications hello définies dans la liste de hello.
+4. Sélectionnez **N’approuver cet ordinateur que pour la délégation aux services spécifiés**. 
+5. Sous **Services auxquels ce compte peut présenter des informations d’identification déléguées**, ajoutez la valeur de l’identité du nom de principal du service (SPN) du serveur d’applications. Ceci permet au connecteur de proxy d’application d’emprunter l’identité des utilisateurs dans Active Directory pour les applications définies dans la liste.
 
    ![Capture d’écran de la fenêtre Propriétés du connecteur-SVR](./media/active-directory-application-proxy-sso-using-kcd/Properties.jpg)
 
 #### <a name="connector-and-application-server-in-different-domains"></a>Le connecteur et le serveur d’application sont dans des domaines différents
 1. Pour obtenir la liste des conditions préalables à l’utilisation de la délégation Kerberos contrainte entre domaines, consultez [Délégation Kerberos contrainte entre domaines](https://technet.microsoft.com/library/hh831477.aspx).
-2. Hello d’utilisation `principalsallowedtodelegateto` propriété sur le Proxy d’Application hello connecteur serveur tooenable hello toodelegate pour le serveur de connecteur hello. serveur d’applications Hello `sharepointserviceaccount` et hello délégation du serveur est `connectormachineaccount`. Pour Windows 2012 R2, utilisez ce code comme exemple :
+2. Utilisez la propriété `principalsallowedtodelegateto` du serveur de connecteur pour activer le proxy d’application à déléguer pour le serveur de connecteur. Le serveur d’application est `sharepointserviceaccount` et le serveur qui délègue est `connectormachineaccount`. Pour Windows 2012 R2, utilisez ce code comme exemple :
 
         $connector= Get-ADComputer -Identity connectormachineaccount -server dc.connectordomain.com
 
@@ -71,61 +71,61 @@ configuration d’Active Directory Hello varie, selon si votre connecteur de Pro
 
         Get-ADComputer sharepointserviceaccount -Properties PrincipalsAllowedToDelegateToAccount
 
-Sharepointserviceaccount peut être un compte de service sous le hello SPS pool d’applications est en cours d’exécution ou de compte d’ordinateur hello SPS.
+Le Sharepointserviceaccount peut être le compte de la machine SPS ou un compte de service dans lequel s’exécute le pool d’applications SPS.
 
 ## <a name="configure-single-sign-on"></a>Configurer l’authentification unique 
-1. Publier votre application en fonction des instructions toohello décrites dans [publier des applications avec Proxy d’Application](application-proxy-publish-azure-portal.md). Assurez-vous que tooselect **Azure Active Directory** comme hello **méthode de pré-authentification**.
-2. Une fois que votre application s’affiche dans la liste hello d’applications d’entreprise, sélectionnez-la et cliquez sur **l’authentification unique**.
-3. Définir hello seul mode d’authentification trop**l’authentification Windows intégrée**.  
-4. Entrez hello **SPN d’Application interne** hello serveur d’applications. Dans cet exemple, hello SPN pour notre application publiée est http/www.contoso.com. Cette toobe de besoins SPN dans liste hello du connecteur de hello toowhich services peut présenter des informations d’identification déléguées. 
-5. Choisissez hello **identité déléguée** pour toouse de connecteur hello pour le compte de vos utilisateurs. Pour plus d’informations, consultez [Utilisation d’identités cloud et locales différentes](#Working-with-different-on-premises-and-cloud-identities)
+1. Publiez votre application en suivant les instructions décrites dans [Publier des applications avec le proxy d’application](application-proxy-publish-azure-portal.md). Veillez à sélectionner **Azure Active Directory** comme **méthode de préauthentification**.
+2. Dès que votre application apparaît dans la liste des applications d’entreprise, sélectionnez-la, puis cliquez sur **Authentification unique**.
+3. Définissez le mode d’authentification unique sur **Authentification Windows intégrée**.  
+4. Entrez le **SPN d’application interne** du serveur d’applications. Dans cet exemple, le nom de principal du service pour notre application publiée est http/www.contoso.com. Ce SPN doit se trouver dans la liste des services auxquels le connecteur peut présenter des informations d’identification déléguées. 
+5. Choisissez l’**Identité de connexion déléguée** pour le connecteur à utiliser pour le compte de vos utilisateurs. Pour plus d’informations, consultez [Utilisation d’identités cloud et locales différentes](#Working-with-different-on-premises-and-cloud-identities)
 
    ![Configuration avancée des applications](./media/active-directory-application-proxy-sso-using-kcd/cwap_auth2.png)  
 
 
 ## <a name="sso-for-non-windows-apps"></a>Authentification unique pour les applications non Windows
-Hello flux de délégation contrainte Kerberos dans le Proxy d’Application Azure AD démarre lorsque Azure AD authentifie l’utilisateur hello dans le cloud de hello. Une fois la demande de hello arrive sur site, hello Proxy d’Application Azure Active Directory connector émet un ticket Kerberos pour le compte d’utilisateur de hello en interagissant avec hello Active Directory local. Ce processus est tooas auxquels la délégation Kerberos (KCD). Bonjour la phase suivante, une demande est envoyée toohello l’application principale avec ce ticket Kerberos. Il existe plusieurs protocoles qui définissent comment toosend ces demandes. La plupart des serveurs non Windows supposent qu’il s’agit de Negotiate/SPNego, qui est maintenant pris en charge sur le proxy d’application Azure AD.
+Le flux de délégation Kerberos dans le proxy d’application Azure AD démarre quand Azure AD authentifie l’utilisateur dans le cloud. Une fois que la demande est disponible localement, le connecteur du proxy d’application AD Azure émet un ticket Kerberos pour le compte de l’utilisateur en interagissant avec le répertoire Active Directory local. Ce processus est appelé délégation Kerberos contrainte (KCD). Au cours de la phase suivante, une demande est envoyée à l’application principale avec ce ticket Kerberos. Plusieurs protocoles définissent la manière d’envoyer ces demandes. La plupart des serveurs non Windows supposent qu’il s’agit de Negotiate/SPNego, qui est maintenant pris en charge sur le proxy d’application Azure AD.
 
-Pour plus d’informations sur Kerberos, consultez [vous souhaitez tooknow sur la délégation Kerberos (KCD)](https://blogs.technet.microsoft.com/applicationproxyblog/2015/09/21/all-you-want-to-know-about-kerberos-constrained-delegation-kcd).
+Pour plus d’informations sur Kerberos, consultez la page [All you want to know about Kerberos Constrained Delegation (KCD)](https://blogs.technet.microsoft.com/applicationproxyblog/2015/09/21/all-you-want-to-know-about-kerberos-constrained-delegation-kcd) (Tout ce que vous voulez savoir sur Kerberos Constrained Delegation (KCD)).
 
-Les applications non Windows utilisent en général les noms d’utilisateur ou les noms de compte SAM au lieu des adresses e-mail de domaine. Si cette situation s’applique tooyour applications, vous devez tooconfigure hello déléguée connexion identité champ tooconnect vos identités d’application cloud identités tooyour. 
+Les applications non Windows utilisent en général les noms d’utilisateur ou les noms de compte SAM au lieu des adresses e-mail de domaine. Si cette situation s’applique à vos applications, vous devez configurer le champ d’identité de connexion déléguée pour connecter vos identités cloud à vos identités d’application. 
 
 ## <a name="working-with-different-on-premises-and-cloud-identities"></a>Utilisation d’identités cloud et locales différentes
-Le Proxy d’application part du principe que les utilisateurs ont exactement hello même identité dans le cloud de hello et sur site. Si tel n’est pas le cas de hello, vous pouvez peuvent toujours utiliser KCD pour l’authentification unique. Configurer un **déléguée identité** pour chaque toospecify application quelle identité doit être utilisée lors de l’exécution de l’authentification unique.  
+Le proxy d’application suppose que les utilisateurs ont exactement la même identité dans le cloud et localement. Dans le cas contraire, vous pouvez toujours utiliser KCD pour l’authentification unique. Configurez une **Identité de connexion déléguée** pour chaque application afin de spécifier l’identité qui doit être utilisée pendant l’exécution d’une authentification unique.  
 
-Cette fonctionnalité permet à de nombreuses organisations qui ont des différents locaux et cloud identités toohave l’authentification unique à partir d’applications de site tooon hello cloud sans nécessiter de hello utilisateurs tooenter différents noms d’utilisateur et mots de passe. Cela inclut les organisations qui :
+Grâce à cette fonctionnalité, de nombreuses organisations disposant d’identités locales et cloud différentes peuvent mettre en œuvre l’authentification unique des applications cloud aux applications locales sans contraindre les utilisateurs à entrer des noms d’utilisateur et des mots de passe différents. Cela inclut les organisations qui :
 
-* Disposent de plusieurs domaines en interne (joe@us.contoso.com, joe@eu.contoso.com) et un domaine unique dans le cloud de hello (joe@contoso.com).
-* Avoir le nom de domaine non routable en interne (joe@contoso.usa) et un juridique dans le cloud de hello.
+* disposent de plusieurs domaines en interne (joe@us.contoso.com, joe@eu.contoso.com) et d’un domaine unique dans le cloud (joe@contoso.com) ;
+* disposent d’un nom de domaine non routable en interne (joe@contoso.usa) et d’un nom de domaine légal dans le cloud ;
 * n’utilisent pas de noms de domaine en interne (joe) ;
-* Utilisez des alias différents localement et dans le cloud de hello. Par exemple, joe-johns@contoso.com et joej@contoso.com  
+* utilisent différents alias localement et dans le cloud, Par exemple, joe-johns@contoso.com et joej@contoso.com  
 
-Proxy d’Application, vous pouvez sélectionner le hello de tooobtain toouse identité ticket Kerberos. Ce paramètre est à configurer application par application. Certaines de ces options sont adaptées pour les systèmes qui n’acceptent pas le format d’adresse de messagerie, tandis que d’autres sont conçues pour les connexions alternatives.
+Avec le proxy d’application, vous pouvez sélectionner l’identité à utiliser pour obtenir le ticket Kerberos. Ce paramètre est à configurer application par application. Certaines de ces options sont adaptées pour les systèmes qui n’acceptent pas le format d’adresse de messagerie, tandis que d’autres sont conçues pour les connexions alternatives.
 
 ![Capture d’écran du paramètre Identité de connexion déléguée](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_upn.png)
 
-Si l’identité déléguée est utilisée, hello valeur ne peut pas être unique entre tous les domaines de hello ou les forêts de votre organisation. Vous pouvez éviter ce problème en publiant ces applications deux fois à l’aide de deux groupes de connecteurs différents. Étant donné que chaque application possède une audience utilisateur différent, vous pouvez joindre son domaine différent de tooa de connecteurs.
+Si l’identité de connexion déléguée est utilisée, il se peut que la valeur ne soit pas la même pour l’ensemble des domaines ou forêts de votre organisation. Vous pouvez éviter ce problème en publiant ces applications deux fois à l’aide de deux groupes de connecteurs différents. Dans la mesure où chaque application possède sa propre audience utilisateur, vous pouvez joindre ses connecteurs à un autre domaine.
 
 ### <a name="configure-sso-for-different-identities"></a>Configuration de l’authentification unique pour différentes identités
-1. Configurer les paramètres d’Azure AD Connect identité principale de hello est l’adresse de messagerie hello (messagerie). Cette opération s’effectue comme partie de hello personnaliser le processus, en modifiant hello **nom d’utilisateur Principal** champ dans les paramètres de synchronisation hello. Ces paramètres déterminent également comment les utilisateurs du journal dans tooOffice365, les appareils Windows 10 Professionnel et d’autres applications qui utilisent Azure AD en tant que leur magasin d’identités.  
+1. Configurez les paramètres Azure AD Connect de manière à ce que l’identité principale soit l’adresse de messagerie (courrier). Cette opération est effectuée dans le cadre du processus de personnalisation, en modifiant le champ **Nom d’utilisateur principal** dans les paramètres de synchronisation. Ces paramètres déterminent également comment les utilisateurs se connectent à Office 365, aux appareils Windows 10 et autres applications qui utilisent Azure AD comme magasin d’identités.  
    ![Capture d’écran de l’identification des utilisateurs : liste déroulante Nom d’utilisateur principal](./media/active-directory-application-proxy-sso-using-kcd/app_proxy_sso_diff_id_connect_settings.png)  
-2. Dans les paramètres de Configuration de l’Application hello pour une application hello vous aimeriez toomodify, sélectionnez hello **identité déléguée** toobe utilisé :
+2. Dans les paramètres de configuration de l’application à modifier, sélectionnez l’ **Identité de connexion déléguée** à utiliser :
 
    * Nom d’utilisateur principal (par exemple, joe@contoso.com)
    * Nom d’utilisateur principal alternatif (par exemple, joed@contoso.local)
    * Partie correspondant au nom d’utilisateur dans le nom d’utilisateur principal (par exemple, joe)
    * Partie correspondant au nom d’utilisateur dans le nom d’utilisateur principal alternatif (par exemple, joed)
-   * Nom de compte SAM local (dépend de la configuration du contrôleur de domaine hello)
+   * Nom du compte SAM local (en fonction de la configuration du contrôleur de domaine)
 
 ### <a name="troubleshooting-sso-for-different-identities"></a>Résolution des problèmes liés à l’authentification unique pour différentes identités
-S’il existe une erreur dans hello processus d’authentification unique, il apparaît dans le journal des événements hello connecteur ordinateur comme expliqué dans [dépannage](application-proxy-back-end-kerberos-constrained-delegation-how-to.md).
-Toutefois, dans certains cas, demande de hello est envoyée avec succès l’application principale toohello alors que cette application répond dans divers autres réponses HTTP. Résolution des problèmes de ces cas doivent commencer en examinant le numéro d’événement 24029 sur l’ordinateur de connecteur hello dans le journal des événements session hello Proxy d’Application. identité de l’utilisateur Hello qui a été utilisée pour la délégation s’affiche dans le champ « utilisateur » de hello dans les détails de l’événement hello. tooturn sur le journal de session, sélectionnez **afficher d’analyse et les journaux de débogage** dans le menu Affichage de hello événements Observateur.
+Si une erreur se produit dans le processus d’authentification unique, elle apparaît dans le journal des événements d’ordinateur du connecteur, comme expliqué dans la section [Résolution des problèmes](application-proxy-back-end-kerberos-constrained-delegation-how-to.md).
+Toutefois, dans certains cas, la demande est correctement envoyée à l’application principale, mais celle-ci répond dans plusieurs réponses HTTP. Pour résoudre ces cas, il faut tout d’abord examiner le numéro d’événement 24029 sur l’ordinateur connecteur dans le journal des événements de session du proxy d’application. L’identité de l’utilisateur qui a été utilisée pour la délégation s’affiche dans le champ « utilisateur » dans les détails de l’événement. Pour activer le journal de session, sélectionnez **Afficher les journaux d’analyse et de débogage** dans le menu Affichage de l’Observateur d’événements.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Comment tooconfigure un toouse d’application de Proxy d’Application la délégation contrainte Kerberos](application-proxy-back-end-kerberos-constrained-delegation-how-to.md)
+* [Comment configurer une application de proxy d’application pour utiliser la délégation Kerberos contrainte ?](application-proxy-back-end-kerberos-constrained-delegation-how-to.md)
 * [Résoudre les problèmes rencontrés avec le proxy d’application](active-directory-application-proxy-troubleshoot.md)
 
 
-Pour les informations les plus récentes hello et mises à jour, consultez hello [blog de Proxy d’Application](http://blogs.technet.com/b/applicationproxyblog/)
+Pour les dernières nouvelles et mises à jour, visitez [Application Proxy blog](http://blogs.technet.com/b/applicationproxyblog/)
 

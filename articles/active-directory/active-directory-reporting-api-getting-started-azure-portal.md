@@ -1,6 +1,6 @@
 ---
-title: "aaaGetting a démarré avec l’API de création de rapports hello Azure AD | Documents Microsoft"
-description: Comment tooget main hello rapport API Azure Active Directory
+title: "Prise en main de l’API de création de rapports Azure AD | Microsoft Docs"
+description: "Prise en main de l'API de création de rapports Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,32 +15,32 @@ ms.workload: identity
 ms.date: 08/18/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: bb7d72ba445daa367d7502889c38a605a16f26d2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9944cbd2b1b7c4acb18d37da1394c0bbc170f77d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="getting-started-with-hello-azure-active-directory-reporting-api"></a>Prise en main de hello Azure Active Directory API de création de rapports
+# <a name="getting-started-with-the-azure-active-directory-reporting-api"></a>Prise en main de l’API de création de rapports Azure Active Directory
 
-Azure Active Directory vous fournit plusieurs rapports. données de Hello de ces rapports peuvent être très utile tooyour applications, telles que les systèmes SIEM, l’audit et les outils Business intelligence. Bonjour Azure AD reporting Qu'api fournit des données de toohello de l’accès par programme via un ensemble d’API REST. Vous pouvez appeler ces API à partir de divers outils et langages de programmation.
+Azure Active Directory vous fournit plusieurs rapports. Les données de ces rapports peuvent être très utiles pour vos applications, telles que les systèmes SIEM, l’audit et les outils d’analyse décisionnelle. Les API de création de rapports Azure AD fournissent un accès par programme aux données via un ensemble d’API REST. Vous pouvez appeler ces API à partir de divers outils et langages de programmation.
 
-Cet article fournit des informations de hello vous devez tooget main hello Azure AD reporting API.
-Dans la section suivante de hello, vous découvrez plus d’informations sur l’utilisation de hello d’audit et de connexion dans les API. 
+Cet article vous fournit les informations dont vous avez besoin pour vous familiariser avec l’API de création de rapports Azure AD.
+Dans la section suivante, vous trouverez plus d’informations sur l’utilisation des API d’audit et de connexion. 
 
 Pour consulter les questions les plus fréquentes, lisez notre [FAQ](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-reporting-faq). En cas de problème, [Envoyez un ticket de support](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-troubleshooting-support-howto).
 
 ## <a name="learning-map"></a>Carte d’apprentissage
-1. **Préparer** -avant de pouvoir tester vos exemples d’API, vous devez toocomplete hello [API reporting de conditions préalables tooaccess hello Azure AD](active-directory-reporting-api-prerequisites-azure-portal.md).
-2. **Explorer** -obtenir une première impression de hello API de création de rapports :
+1. **Préparer** : avant de pouvoir tester les exemples d’API, vous devez respecter la [configuration requise pour accéder à l’API de création de rapports Azure AD](active-directory-reporting-api-prerequisites-azure-portal.md).
+2. **Explorer** : faites-vous une première impression des API de création de rapports :
    
-   * [À l’aide des exemples de hello pour l’audit hello API](active-directory-reporting-api-audit-samples.md) 
-   * [À l’aide des exemples de hello pour l’API de rapport d’activité de connexion hello](active-directory-reporting-api-sign-in-activity-samples.md)
+   * [Utilisation des exemples pour l’API d’audit](active-directory-reporting-api-audit-samples.md) 
+   * [Utilisation des exemples pour l’API de création de rapports sur l’activité de connexion](active-directory-reporting-api-sign-in-activity-samples.md)
 3. **Personnaliser** : créez votre propre solution : 
    
-   * [À l’aide de la référence de l’API hello d’audit](active-directory-reporting-api-audit-reference.md) 
-   * [À l’aide de rapports d’activité de connexion hello font référence des API](active-directory-reporting-api-sign-in-activity-reference.md)
+   * [Utilisation de la référence d’API d’audit](active-directory-reporting-api-audit-reference.md) 
+   * [Utilisation de la référence d’API de création de rapports sur l’activité de connexion](active-directory-reporting-api-sign-in-activity-reference.md)
 
 ## <a name="next-steps"></a>Étapes suivantes
-Si vous êtes toosee obtenir des informations toutes les API Azure AD Graph points de terminaison disponibles, utilisez ce lien : [https://graph.windows.net/tenant-name/activities/$ métadonnées ? api-version = beta](https://graph.windows.net/tenant-name/activities/$metadata?api-version=beta).
+Si vous voulez consulter l’ensemble des points de terminaison de l’API Azure AD Graph disponibles, utilisez ce lien : [https://graph.windows.net/tenant-name/activities/$metadata?api-version=beta](https://graph.windows.net/tenant-name/activities/$metadata?api-version=beta).
 

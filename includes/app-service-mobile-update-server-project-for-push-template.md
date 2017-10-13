@@ -1,22 +1,22 @@
-Dans cette section, vous mettez à jour code dans votre toosend de projet de serveur principal Mobile Apps existant une notification push chaque fois qu’un nouvel élément est ajouté. Il est alimenté par hello [modèle](../articles/notification-hubs/notification-hubs-templates-cross-platform-push-messages.md) fonctionnalité d’Azure Notification Hubs, l’activation de push d’inter-plateformes. différents clients Hello sont inscrits pour les notifications push à l’aide de modèles, et un push universels unique peut obtenir tooall plates-formes clientes.
+Dans cette section, vous mettez à jour le code dans votre projet de serveur principal Mobile Apps existant pour envoyer une notification Push chaque fois qu’un nouvel élément est ajouté. Cette opération est rendue possible par la fonctionnalité [modèle](../articles/notification-hubs/notification-hubs-templates-cross-platform-push-messages.md) d’Azure Notification Hubs, qui autorise l’envoi de notifications Push multiplateforme. Les différents clients sont inscrits pour les notifications Push à l’aide de modèles, et une notification Push universelle unique peut accéder à toutes les plates-formes clientes.
 
-Choisissez une des hello procédures suivantes qui correspond à votre type de projet de serveur principal&mdash;soit [.NET back-end](#dotnet) ou [Node.js back-end](#nodejs).
+Choisissez l’une des procédures ci-après correspondant au type de votre projet de serveur principal &mdash; [projet de serveur principal .NET](#dotnet) ou [projet de serveur principal Node.js](#nodejs).
 
 ### <a name="dotnet"></a>Projet de serveur principal .NET
-1. Dans Visual Studio, cliquez sur le projet de serveur hello et cliquez sur **gérer les Packages NuGet**. Recherchez `Microsoft.Azure.NotificationHubs`, puis cliquez sur **Installer**. Bibliothèque de concentrateurs de Notification hello pour envoyer des notifications à partir de votre serveur principal sont ainsi installés.
-2. Dans le projet de serveur hello, ouvrez **contrôleurs** > **TodoItemController.cs**et ajoutez hello qui suit à l’aide des instructions :
+1. Dans Visual Studio, cliquez avec le bouton droit sur le projet de serveur, puis cliquez sur **Gérer les packages NuGet**. Recherchez `Microsoft.Azure.NotificationHubs`, puis cliquez sur **Installer**. Cette opération installe la bibliothèque Notification Hubs pour l’envoi de notifications à partir de votre serveur principal.
+2. Dans le projet de serveur, ouvrez **Contrôleurs** > **TodoItemController.cs** et ajoutez les instructions using suivantes :
 
         using System.Collections.Generic;
         using Microsoft.Azure.NotificationHubs;
         using Microsoft.Azure.Mobile.Server.Config;
-3. Bonjour **PostTodoItem** (méthode), ajouter hello suivant code après appel de hello trop**InsertAsync**:  
+3. Dans la méthode **PostTodoItem**, ajoutez le code suivant après l’appel à **InsertAsync** :  
 
-        // Get hello settings for hello server project.
+        // Get the settings for the server project.
         HttpConfiguration config = this.Configuration;
         MobileAppSettingsDictionary settings =
             this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
-        // Get hello Notification Hubs credentials for hello Mobile App.
+        // Get the Notification Hubs credentials for the Mobile App.
         string notificationHubName = settings.NotificationHubName;
         string notificationHubConnection = settings
             .Connections[MobileAppSettingsKeys.NotificationHubConnectionString].ConnectionString;
@@ -25,32 +25,32 @@ Choisissez une des hello procédures suivantes qui correspond à votre type de p
         NotificationHubClient hub = NotificationHubClient
         .CreateClientFromConnectionString(notificationHubConnection, notificationHubName);
 
-        // Sending hello message so that all template registrations that contain "messageParam"
-        // will receive hello notifications. This includes APNS, GCM, WNS, and MPNS template registrations.
+        // Sending the message so that all template registrations that contain "messageParam"
+        // will receive the notifications. This includes APNS, GCM, WNS, and MPNS template registrations.
         Dictionary<string,string> templateParams = new Dictionary<string,string>();
-        templateParams["messageParam"] = item.Text + " was added toohello list.";
+        templateParams["messageParam"] = item.Text + " was added to the list.";
 
         try
         {
-            // Send hello push notification and log hello results.
+            // Send the push notification and log the results.
             var result = await hub.SendTemplateNotificationAsync(templateParams);
 
-            // Write hello success result toohello logs.
+            // Write the success result to the logs.
             config.Services.GetTraceWriter().Info(result.State.ToString());
         }
         catch (System.Exception ex)
         {
-            // Write hello failure result toohello logs.
+            // Write the failure result to the logs.
             config.Services.GetTraceWriter()
                 .Error(ex.Message, null, "Push.SendAsync Error");
         }
 
-    Envoie une notification de modèle qui contient l’élément de hello. Texte lorsqu’un nouvel élément est inséré.
-4. Publiez de nouveau projet de serveur hello.
+    Une notification de modèle contenant item.Text est ensuite envoyée quand un nouvel élément est inséré.
+4. Publier à nouveau le projet de serveur
 
 ### <a name="nodejs"></a>Projet de serveur principal Node.js
-1. Si vous n’avez pas déjà fait, [télécharger hello quickstart principal projet](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart), ou sinon utilisez hello [éditeur en ligne Bonjour Azure portal](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor).
-2. Remplacez le code existant dans todoitem.js hello suivant de hello :
+1. Si vous ne l’avez pas encore fait, [téléchargez le projet de serveur principal de démarrage rapide](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart) ou utilisez [l’éditeur en ligne du Portail Azure](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor).
+2. Remplacez le code présent dans todoitem.js par le code suivant :
 
         var azureMobileApps = require('azure-mobile-apps'),
         promises = require('azure-mobile-apps/src/utilities/promises'),
@@ -59,18 +59,18 @@ Choisissez une des hello procédures suivantes qui correspond à votre type de p
         var table = azureMobileApps.table();
 
         table.insert(function (context) {
-        // For more information about hello Notification Hubs JavaScript SDK,
+        // For more information about the Notification Hubs JavaScript SDK,
         // see http://aka.ms/nodejshubs
         logger.info('Running TodoItem.insert');
 
-        // Define hello template payload.
+        // Define the template payload.
         var payload = '{"messageParam": "' + context.item.text + '" }';  
 
-        // Execute hello insert.  hello insert returns hello results as a Promise,
-        // Do hello push as a post-execute action within hello promise flow.
+        // Execute the insert.  The insert returns the results as a Promise,
+        // Do the push as a post-execute action within the promise flow.
         return context.execute()
             .then(function (results) {
-                // Only do hello push if configured
+                // Only do the push if configured
                 if (context.push) {
                     // Send a template notification.
                     context.push.send(null, payload, function (error) {
@@ -81,7 +81,7 @@ Choisissez une des hello procédures suivantes qui correspond à votre type de p
                         }
                     });
                 }
-                // Don't forget tooreturn hello results from hello context.execute()
+                // Don't forget to return the results from the context.execute()
                 return results;
             })
             .catch(function (error) {
@@ -91,5 +91,5 @@ Choisissez une des hello procédures suivantes qui correspond à votre type de p
 
         module.exports = table;  
 
-    Envoie une notification de modèle qui contient les item.text hello lorsqu’un nouvel élément est inséré.
-3. Lorsque vous modifiez le fichier hello sur votre ordinateur local, le projet de serveur hello republier.
+    Une notification de modèle contenant item.Text est ensuite envoyée quand un nouvel élément est inséré.
+3. Quand vous modifiez le fichier sur votre ordinateur local, republiez le projet serveur.

@@ -1,6 +1,6 @@
 ---
-title: "aaaGetting démarré avec des Tables temporelles dans la base de données SQL Azure | Documents Microsoft"
-description: "Découvrez comment tooget main à l’aide des Tables temporelles dans la base de données SQL Azure."
+title: Prise en main des tables temporelles dans Azure SQL Database | Microsoft Docs
+description: "Découvrez comment prendre en main les tables temporelles dans Azure SQL Database."
 services: sql-database
 documentationcenter: 
 author: bonova
@@ -15,42 +15,42 @@ ms.tgt_pltfrm: NA
 ms.workload: sql-database
 ms.date: 01/10/2017
 ms.author: bonova
-ms.openlocfilehash: 54f394b51df07aa2f9bb299f207e692171d23479
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d84db682089c65c2716d2d9bd92f7bc0ac47af27
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="getting-started-with-temporal-tables-in-azure-sql-database"></a>Prise en main des tables temporelles dans Azure SQL Database
-Tables temporelles sont une nouvelle fonctionnalité de programmabilité de la base de données SQL Azure qui vous permet de tootrack et analyser l’historique complet de hello des modifications dans vos données, sans avoir besoin de hello de codage personnalisé. Tables temporelles conserver contexte tootime étroitement liés de données afin que les faits stockés peuvent être interprétées comme étant valides uniquement au sein de la période spécifique de hello. Cette propriété des tables temporelles permet une analyse efficace basée sur le temps et permet d’obtenir des informations à partir de l’évolution des données.
+Les tables temporelles sont une nouvelle fonctionnalité de programmabilité d’Azure SQL Database qui vous permet de suivre et d’analyser l’historique complet des modifications apportées à vos données, sans codage personnalisé. Les tables temporelles conservent les données étroitement liées au contexte temporel afin que les faits stockés puissent être interprétés comme étant valides uniquement dans une période spécifique. Cette propriété des tables temporelles permet une analyse efficace basée sur le temps et permet d’obtenir des informations à partir de l’évolution des données.
 
 ## <a name="temporal-scenario"></a>Scénario temporel
-Cet article explique hello étapes tooutilize Tables temporelles dans un scénario d’application. Supposons que vous souhaitez tootrack l’activité des utilisateurs sur un site Web qui est en cours de développement à partir de zéro ou sur un site Web existant, que vous souhaitez tooextend avec analytique d’activité utilisateur. Dans cet exemple simplifié, nous supposons que plusieurs hello des pages web visités pendant une période de temps est un indicateur qui doit toobe capturées et analysées dans la base de données du site Web hello est hébergé sur la base de données SQL Azure. objectif Hello d’analyse de l’historique hello d’activités des utilisateurs est le site Web de tooget entrées tooredesign et fournir la meilleure expérience pour les visiteurs de hello.
+Cet article illustre les étapes permettant d’utiliser les tables temporelles dans un scénario d’application. Supposons que vous voulez effectuer le suivi de l’activité utilisateur sur un nouveau site web en cours de développement ou sur un site web existant que vous voulez enrichir avec l’analyse de l’activité utilisateur. Dans cet exemple simplifié, nous partons du principe que le nombre de pages web visitées pendant une période de temps est un indicateur qui doit être capturé et analysé dans la base de données du site web hébergée sur Azure SQL Database. L’objectif de l’analyse de l’historique de l’activité utilisateur est d’obtenir des informations pour redessiner le site web et fournir une meilleure expérience pour les visiteurs.
 
-modèle de base de données Hello pour ce scénario est très simple : mesure d’activité utilisateur est représentée avec un champ d’entier unique, **PageVisited**et sont capturées en même temps que les informations de base sur le profil d’utilisateur hello. En outre, pour l’analyse de l’heure, vous conservez une série de lignes pour chaque utilisateur, où chaque ligne représente le nombre de hello de pages consultée par un utilisateur particulier au sein d’une période spécifique.
+Le modèle de base de données pour ce scénario est très simple : la mesure de l’activité utilisateur est représentée par un champ d’entier unique, **PageVisited**, et est capturée en même temps que des informations de base sur le profil utilisateur. En outre, pour l’analyse temporelle, vous conservez une série de lignes pour chaque utilisateur, où chaque ligne représente le nombre de pages visitées par un utilisateur particulier dans une période de temps spécifique.
 
 ![Schéma](./media/sql-database-temporal-tables/AzureTemporal1.png)
 
-Heureusement, vous n’avez pas besoin tooput tout effort dans votre application toomaintain ces informations d’activité. Avec les Tables temporelles, ce processus est automatisé - ce qui vous donne une souplesse complète pendant la conception de site Web et plus toofocus de temps sur l’analyse de données hello lui-même. Hello la seule chose que vous avez toodo est tooensure qui **WebSiteInfo** table est configurée en tant que [temporelles avec version système](https://msdn.microsoft.com/library/dn935015.aspx#Anchor_0). Hello étapes exactes tooutilize Tables temporelles dans ce scénario sont décrites ci-dessous.
+Heureusement, vous n’avez pas besoin d’intervenir sur votre application pour gérer les informations de cette activité. Avec les tables temporelles, ce processus est automatisé : ce qui vous donne une grande souplesse pour concevoir le site web et davantage de temps pour vous concentrer sur l’analyse des données. La seule chose que vous avez à faire est de garantir que la table **WebSiteInfo** est configurée en tant que table [temporelle avec versions gérées par le système](https://msdn.microsoft.com/library/dn935015.aspx#Anchor_0). Les étapes à suivre pour utiliser les tables temporelles dans ce scénario sont décrites ci-dessous.
 
 ## <a name="step-1-configure-tables-as-temporal"></a>Étape 1: Configurer les tables comme tables temporelles
 Selon que vous commencez le développement d’une nouvelle application ou que vous mettez à niveau une application existante, vous créez des tables temporelles ou vous modifiez des tables existantes en ajoutant des attributs temporels. En général, votre scénario peut être une combinaison de ces deux options. Exécutez ces opérations à l’aide de [SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx) (SSMS), [SQL Server Data Tools](https://msdn.microsoft.com/library/mt204009.aspx) (SSDT) ou tout autre outil de développement Transact-SQL.
 
 > [!IMPORTANT]
-> Il est recommandé de toujours utiliser hello dernière version de Management Studio tooremain synchronisés avec les mises à jour tooMicrosoft Azure et base de données SQL. [Mettre à jour SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
+> Nous vous recommandons d’utiliser systématiquement la dernière version de Management Studio afin de rester en cohérence avec les mises à jour de Microsoft Azure et Base de données SQL. [Mettre à jour SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
 > 
 > 
 
 ### <a name="create-new-table"></a>Créer une table
-Utilisez l’élément de menu contextuel « Nouvelle Table avec version système » dans l’éditeur de requête de l’Explorateur d’objets SSMS tooopen hello avec un script de modèle de table temporelle et ensuite utiliser le modèle de hello toopopulate « Spécifier les valeurs de paramètres de modèle « (Ctrl + Maj + M) :
+Utilisez l’élément de menu contextuel Nouvelle table avec version système dans l’Explorateur d’objets SSMS pour ouvrir l’éditeur de requête avec un script de modèle de table temporelle, puis utilisez « Spécifier les valeurs des paramètres du modèle » (Ctrl+Maj+M) pour remplir le modèle :
 
 ![SSMSNewTable](./media/sql-database-temporal-tables/AzureTemporal2.png)
 
-Dans SSDT, a choisi le modèle de « Table temporelle (système par version) » lors de l’ajout du nouveau projet de base de données des éléments toohello. Que sont le Concepteur de tables ouverts et activer tooeasily vous spécifiez hello disposition de table :
+Dans SSDT, choisissez le modèle « Table temporelle (Système par version) » quand vous ajoutez de nouveaux éléments au projet de base de données. Cette opération ouvre le concepteur de tables et vous permet de spécifier facilement la disposition de la table :
 
 ![SSDTNewTable](./media/sql-database-temporal-tables/AzureTemporal3.png)
 
-Vous pouvez également une instruction create temporal table en spécifiant les instructions Transact-SQL de hello directement, comme indiqué dans l’exemple hello ci-dessous. Notez que hello éléments obligatoires de chaque table temporelle sont la définition de la période hello et clause SYSTEM_VERSIONING de hello avec une table d’utilisateur tooanother référence qui stocke les versions de ligne d’historique :
+Vous pouvez également créer une table temporelle en spécifiant les instructions Transact-SQL directement, comme indiqué dans l’exemple ci-dessous. Notez que les éléments obligatoires de chaque table temporelle sont la définition de PERIOD et la clause SYSTEM_VERSIONING avec une référence à une autre table utilisateur qui stocke les versions de ligne historiques :
 
 ````
 CREATE TABLE WebsiteUserInfo 
@@ -65,15 +65,15 @@ CREATE TABLE WebsiteUserInfo
  WITH (SYSTEM_VERSIONING = ON (HISTORY_TABLE = dbo.WebsiteUserInfoHistory));
 ````
 
-Lorsque vous créez la table temporelle avec version système, hello accompagnant la table d’historique hello configuration par défaut est automatiquement créé. table d’historique par défaut Hello contient un index B-tree de cluster sur les colonnes de période hello (début, fin) avec la compression de page activée. Cette configuration est optimale pour la majorité de hello des scénarios dans lesquels les tables temporelles sont utilisés, en particulier pour [l’audit des données](https://msdn.microsoft.com/library/mt631669.aspx#Anchor_0). 
+Quand vous créez une table temporelle avec versions gérées par le système, la table d’historique associée avec la configuration par défaut est automatiquement créée. La table d’historique par défaut contient un index cluster arbre B (B-tree) sur les colonnes de période (début, fin) pour lequel la compression de page est activée. Cette configuration est optimale pour la plupart des scénarios dans lesquels les tables temporelles sont utilisées, en particulier pour l’ [audit des données](https://msdn.microsoft.com/library/mt631669.aspx#Anchor_0). 
 
-Dans ce cas particulier, nous visent tooperform temporels tendances sur un historique de données plus long et de jeux de données plus grande, choix du stockage pour la table d’historique hello hello est un index cluster columnstore. L’index cluster columnstore fournit une très bonne compression et des performances optimales pour les requêtes analytiques. Fournissent des Tables temporel vous hello index tooconfigure de flexibilité sur les tables actuelles et temporelles hello totalement indépendants. 
+Dans ce cas particulier, nous voulons effectuer une analyse temporelle des tendances sur un historique de données plus long et avec des jeux de données plus volumineux, le choix du stockage pour la table d’historique est donc un index cluster columnstore. L’index cluster columnstore fournit une très bonne compression et des performances optimales pour les requêtes analytiques. Les tables temporelles vous donnent la possibilité de configurer complètement indépendamment des index sur les tables actuelles et temporelles. 
 
 > [!NOTE]
-> Index ColumnStore sont uniquement disponibles dans le niveau de service premium hello.
+> Les index columnstore sont uniquement disponibles au niveau de service Premium.
 >
 
-Hello script suivant montre comment les index par défaut sur la table d’historique peut être modifiées toohello clusterisé columnstore :
+Le script suivant montre comment l’index par défaut sur la table d’historique peut être modifié en index cluster columnstore :
 
 ````
 CREATE CLUSTERED COLUMNSTORE INDEX IX_WebsiteUserInfoHistory
@@ -81,12 +81,12 @@ ON dbo.WebsiteUserInfoHistory
 WITH (DROP_EXISTING = ON); 
 ````
 
-Tables temporelles sont représentés dans hello l’Explorateur d’objets avec une icône spécifique de hello pour faciliter l’identification, tandis que sa table d’historique est affiché comme un nœud enfant.
+Les tables temporelles sont représentées dans l’Explorateur d’objets avec une icône spécifique pour faciliter l’identification, tandis que la table d’historique s’affiche comme un nœud enfant.
 
 ![AlterTable](./media/sql-database-temporal-tables/AzureTemporal4.png)
 
-### <a name="alter-existing-table-tootemporal"></a>ALTER tootemporal de table existant
-Nous allons couvrir les scénarios alternatifs hello dans le hello WebsiteUserInfo table existe déjà, mais n’était pas tookeep conçu un historique des modifications. Dans ce cas, vous pouvez étendre toobecome table hello existant temporelle, comme indiqué dans hello l’exemple suivant :
+### <a name="alter-existing-table-to-temporal"></a>Transformer une table existante en table temporelle
+Examinons l’autre scénario dans lequel la table WebsiteUserInfo existe déjà, mais n’a pas été conçue pour conserver un historique des modifications. Dans ce cas, vous pouvez simplement étendre la table existante pour qu’elle devienne temporelle, comme indiqué dans l’exemple suivant :
 
 ````
 ALTER TABLE WebsiteUserInfo 
@@ -107,23 +107,23 @@ WITH (DROP_EXISTING = ON);
 ````
 
 ## <a name="step-2-run-your-workload-regularly"></a>Étape 2 : Exécuter votre charge de travail de façon régulière
-Hello principal avantage des Tables temporelles est ne pas besoin de toochange ou d’ajuster votre site Web dans n’importe quel moyen tooperform le suivi. Une fois créées, les tables temporelles conservent en toute transparence les versions précédentes des lignes chaque fois que vous effectuez des modifications sur vos données. 
+Le principal avantage des tables temporelles est que vous n’avez pas besoin de modifier ou d’ajuster votre site web de quelque façon que ce soit pour effectuer le suivi des modifications. Une fois créées, les tables temporelles conservent en toute transparence les versions précédentes des lignes chaque fois que vous effectuez des modifications sur vos données. 
 
-Dans l’ordre tooleverage suivi des modifications automatique pour ce scénario particulier, nous allons simplement mettre à jour colonne **PagesVisited** chaque fois que lorsque l’utilisateur met fin à sa session sur le site Web de hello :
+Pour tirer parti du suivi automatique des modifications dans ce scénario particulier, nous allons simplement mettre à jour la colonne **PagesVisited** chaque fois qu’un utilisateur met fin à sa session sur le site web :
 
 ````
 UPDATE WebsiteUserInfo  SET [PagesVisited] = 5 
 WHERE [UserID] = 1;
 ````
 
-Il est important de toonotice qui hello requête mise à jour n’a pas besoin tooknow hello heure exacte à laquelle s’est produite lors de l’opération réelle de hello, ni comment les données d’historique seront conservées pour une analyse future. Les deux aspects sont gérées automatiquement par hello de base de données SQL Azure. Hello diagramme suivant illustre comment les données d’historique sont générées sur chaque mise à jour.
+Notez que la requête de mise à jour n’a pas besoin de connaître l’heure exacte à laquelle s’est produit l’opération réelle ni comment les données historiques sont conservées pour une future analyse. Ces deux aspects sont gérés automatiquement par Azure SQL Database. Le diagramme suivant illustre la façon dont les données d’historique sont générées à chaque mise à jour.
 
 ![TemporalArchitecture](./media/sql-database-temporal-tables/AzureTemporal5.png)
 
 ## <a name="step-3-perform-historical-data-analysis"></a>Étape 3: Analyser les données historiques
-Une fois que la gestion de version des tables temporelles par le système est activée, il vous suffit d’une seule requête pour analyser les données historiques. Dans cet article, nous allons sera fournir quelques exemples de scénarios courants analyse - toolearn tous les détails, Explorer différentes options introduites par Bonjour [FOR SYSTEM_TIME](https://msdn.microsoft.com/library/dn935015.aspx#Anchor_3) clause.
+Une fois que la gestion de version des tables temporelles par le système est activée, il vous suffit d’une seule requête pour analyser les données historiques. Dans cet article, nous fournissons des exemples de scénarios d’analyse courants. Pour connaître tous les détails, explorez les diverses options introduites avec la clause [FOR SYSTEM_TIME](https://msdn.microsoft.com/library/dn935015.aspx#Anchor_3).
 
-toosee hello top 10 utilisateurs classés par nombre de hello de pages web visitées à partir d’une heure, exécutez cette requête :
+Pour afficher les 10 principaux utilisateurs classés par nombre de pages web visitées durant la dernière heure, exécutez cette requête :
 
 ````
 DECLARE @hourAgo datetime2 = DATEADD(HOUR, -1, SYSUTCDATETIME());
@@ -131,9 +131,9 @@ SELECT TOP 10 * FROM dbo.WebsiteUserInfo FOR SYSTEM_TIME AS OF @hourAgo
 ORDER BY PagesVisited DESC
 ````
 
-Vous pouvez facilement modifier cette requête tooanalyze hello visites un jour il y a un mois d’avance ou à tout moment dans hello précédente vous le souhaitez.
+Vous pouvez facilement modifier cette requête pour analyser les visites du site au cours du dernier jour, du dernier mois ou à n’importe quel moment dans le passé.
 
-analyse de statistiques de base de tooperform pour hello jour précédent, utilisez hello l’exemple suivant :
+Pour effectuer l’analyse statistique de base du jour précédent, utilisez l’exemple suivant :
 
 ````
 DECLARE @twoDaysAgo datetime2 = DATEADD(DAY, -2, SYSUTCDATETIME());
@@ -147,7 +147,7 @@ FOR SYSTEM_TIME BETWEEN @twoDaysAgo AND @aDayAgo
 GROUP BY UserId
 ````
 
-toosearch pour les activités d’un utilisateur spécifique, dans un laps de temps, utilisez hello CONTAINED IN clause :
+Pour rechercher les activités d’un utilisateur spécifique dans une période de temps, utilisez la clause CONTAINED IN :
 
 ````
 DECLARE @hourAgo datetime2 = DATEADD(HOUR, -1, SYSUTCDATETIME());
@@ -162,7 +162,7 @@ La visualisation graphique est particulièrement pratique pour les requêtes tem
 ![TemporalGraph](./media/sql-database-temporal-tables/AzureTemporal6.png)
 
 ## <a name="evolving-table-schema"></a>Évolution du schéma de table
-En règle générale, vous devez schéma de table temporelle toochange hello pendant que vous faites le développement d’applications. Pour ce faire, il suffit d’exécuter les instructions ALTER TABLE régulières et base de données SQL Azure seront propagées correctement la table d’historique des modifications toohello. Hello script suivant montre comment vous pouvez ajouter des attributs supplémentaires pour le suivi :
+En règle générale, vous devez modifier le schéma de table temporelle pendant le développement d’applications. Pour ce faire, exécutez simplement des instructions ALTER TABLE standard et Azure SQL Database propage les modifications de manière appropriée dans la table d’historique. Le script suivant montre comment ajouter un attribut supplémentaire pour le suivi :
 
 ````
 /*Add new column for tracking source IP address*/
@@ -173,7 +173,7 @@ ADD  [IPAddress] varchar(128) NOT NULL CONSTRAINT DF_Address DEFAULT 'N/A';
 De même, vous pouvez modifier la définition de colonne pendant que votre charge de travail est active :
 
 ````
-/*Increase hello length of name column*/
+/*Increase the length of name column*/
 ALTER TABLE dbo.WebsiteUserInfo 
     ALTER COLUMN  UserName nvarchar(256) NOT NULL;
 ````
@@ -186,15 +186,15 @@ ALTER TABLE dbo.WebsiteUserInfo
     DROP COLUMN TemporaryColumn; 
 ````
 
-Vous pouvez également utiliser plus tard [SSDT](https://msdn.microsoft.com/library/mt204009.aspx) toochange temporelle schéma de table pendant que vous êtes connecté toohello la base de données (mode en ligne) ou en tant que partie du projet de base de données hello (mode hors connexion).
+Vous pouvez également utiliser la dernière version de [SSDT](https://msdn.microsoft.com/library/mt204009.aspx) pour modifier un schéma de table temporelle quand vous êtes connecté à la base de données (mode en ligne) ou dans le cadre du projet de base de données (mode hors connexion).
 
 ## <a name="controlling-retention-of-historical-data"></a>Contrôle de la rétention des données historiques
-Avec des tables temporelles avec version gérée par le système de table d’historique hello peut augmenter de taille de base de données hello plus de tables normales. Une table d’historique volumineuse et qui ne cesse de croître peut devenir un problème en raison des coûts de stockage toopure ainsi qu’imposant des performances sur l’interrogation temporelle. Par conséquent, le développement d’une stratégie de rétention de données pour la gestion des données dans la table d’historique hello est un aspect important de la planification et la gestion du cycle de vie hello de chaque table temporelle. Avec la base de données SQL Azure, vous avez hello méthodes pour la gestion des données d’historique dans la table temporelle hello suivantes :
+Avec les tables temporelles avec versions gérées par le système, la table d’historique peut augmenter la taille de la base de données davantage que les tables normales. Une table d’historique volumineuse qui continue à croître peut devenir un problème non seulement en raison des coûts de stockage, mais aussi parce qu’elle a un impact négatif sur les performances de l’interrogation temporelle. Par conséquent, le développement d’une stratégie de rétention des données pour gérer les données dans la table d’historique est un aspect important de la planification et de la gestion du cycle de vie de chaque table temporelle. Avec Azure SQL Database, vous bénéficiez des approches suivantes pour gérer les données historiques dans la table temporelle :
 
 * [Partitionnement de tables](https://msdn.microsoft.com/library/mt637341.aspx#Anchor_2)
 * [Script de nettoyage personnalisé](https://msdn.microsoft.com/library/mt637341.aspx#Anchor_3)
 
 ## <a name="next-steps"></a>Étapes suivantes
 Pour plus d’informations sur les tables temporelles, consultez la [documentation MSDN](https://msdn.microsoft.com/library/dn935015.aspx).
-Visitez Channel 9 toohear un [réussite implémentation temporelle de client réel](https://channel9.msdn.com/Blogs/jsturtevant/Azure-SQL-Temporal-Tables-with-RockStep-Solutions) et Espion un [live démonstration temporelle](https://channel9.msdn.com/Shows/Data-Exposed/Temporal-in-SQL-Server-2016).
+Visitez Channel 9 pour écouter le [témoignage d’un client sur l’implémentation temporelle](https://channel9.msdn.com/Blogs/jsturtevant/Azure-SQL-Temporal-Tables-with-RockStep-Solutions) et regardez une [démonstration de table temporelle en direct](https://channel9.msdn.com/Shows/Data-Exposed/Temporal-in-SQL-Server-2016).
 

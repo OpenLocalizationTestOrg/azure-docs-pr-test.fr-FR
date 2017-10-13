@@ -1,6 +1,6 @@
 ---
-title: "aaaMonitor accéder aux journaux, des journaux de performances, d’intégrité du serveur principal et de mesures pour la passerelle d’Application | Documents Microsoft"
-description: "Découvrez comment tooenable et gérer les journaux d’accès et des journaux de performances pour la passerelle d’Application"
+title: "Surveiller les journaux d’accès, les journaux des performances, l’intégrité du serveur principal, ainsi que les métriques d’Application Gateway | Microsoft Docs"
+description: "Découvrez comment activer et gérer les journaux d’accès et les journaux des performances pour Application Gateway"
 services: application-gateway
 documentationcenter: na
 author: amitsriva
@@ -15,46 +15,46 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/17/2017
 ms.author: amitsriva
-ms.openlocfilehash: 36ebf15c28f776158350ef8e73d617ef68e09266
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 12c252340b82aba5ee69b12db83353750782e7c5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="back-end-health-diagnostic-logs-and-metrics-for-application-gateway"></a>Intégrité du serveur principal, journaux de diagnostic et métriques pour la passerelle Application Gateway
 
-À l’aide de passerelle d’Application Azure, vous pouvez surveiller les ressources Bonjour suivant des façons :
+À l’aide de la passerelle Azure Application Gateway, vous pouvez surveiller les ressources des manières suivantes :
 
-* [Contrôle d’intégrité du serveur principal](#back-end-health): passerelle d’Application fournit hello capacité toomonitor hello la santé des serveurs hello Bonjour pools principaux via le portail Azure de hello et PowerShell. Vous trouverez également la santé des pools de back-end hello via les journaux de diagnostic de performances hello hello.
+* [Intégrité du serveur principal](#back-end-health) : Application Gateway permet de surveiller l’intégrité des serveurs dans les pools principaux au moyen du portail Azure et de Powershell. Vous pouvez également accéder à l’intégrité des pools principaux via les journaux de diagnostic des performances.
 
-* [Journaux](#diagnostic-logs): autoriser les journaux pour les performances, l’accès, et autres toobe données enregistré ou consommés à partir d’une ressource pour la surveillance.
+* [Journaux](#diagnostic-logs) : les journaux permettent d’enregistrer ou d’utiliser les performances, les accès et les autres données à partir d’une ressource à des fins de surveillance.
 
-* [Mesures](#metrics) : la passerelle Application Gateway possède actuellement une métrique. Cette mesure mesure débit hello de passerelle d’application hello en octets par seconde.
+* [Mesures](#metrics) : la passerelle Application Gateway possède actuellement une métrique. Cette métrique mesure le débit de la passerelle Application Gateway en octets par seconde.
 
 ## <a name="back-end-health"></a>Intégrité du serveur principal
 
-Passerelle d’application fournit l’intégrité hello capacité toomonitor hello des membres individuels des pools de back-end hello via le portail de hello, PowerShell et hello interface de ligne de commande (CLI). Vous pouvez également trouver l’état d’intégrité agrégé résumé des pools principaux via les journaux de diagnostic de performances hello. 
+La passerelle Application Gateway permet de surveiller l’intégrité des membres individuels des pools principaux au moyen du portail, de PowerShell et de l’interface de ligne de commande (CLI). Une synthèse de l’intégrité agrégée des pools principaux est également accessible via les journaux de diagnostic des performances. 
 
-rapport de contrôle d’intégrité du serveur principal Hello reflète la sortie hello d’instances de hello Application Gateway intégrité sonde toohello principal. Lors de la détection a réussi et hello précédent fin peut recevoir du trafic, il est considéré comme sain. Sinon, il est considéré comme défaillant.
+Le rapport d’intégrité du serveur principal reflète les résultats de la sonde d’intégrité de la passerelle Application Gateway sur les instances de serveur principal. Si la détection réussit et que le trafic peut être orienté vers le serveur principal, ce dernier est considéré comme intègre. Sinon, il est considéré comme défaillant.
 
 > [!IMPORTANT]
-> S’il existe un groupe de sécurité réseau (NSG) sur un sous-réseau de passerelle d’Application, ouvrez les plages de ports 65503-65 534 sur le sous-réseau de passerelle d’Application hello pour le trafic entrant. Ces ports sont requis pour toowork d’API hello d’intégrité du serveur principal.
+> Si le sous-réseau Application Gateway comporte un groupe de sécurité réseau (NSG), ouvrez les plages de ports 65503-65534 sur ce sous-réseau pour permettre l’arrivée du trafic entrant. Ces ports sont requis pour permettre à l’API relative à l’intégrité du serveur principal de fonctionner correctement.
 
 
-### <a name="view-back-end-health-through-hello-portal"></a>Afficher l’intégrité du serveur principal via le portail de hello
+### <a name="view-back-end-health-through-the-portal"></a>Affichage de l’intégrité du serveur principal via le portail
 
-Dans le portail hello, contrôle d’intégrité du serveur principal est fourni automatiquement. Dans une passerelle Application Gateway existante, sélectionnez **Analyse** > **Intégrité du serveur principal**. 
+Dans le portail, l’intégrité du serveur principal est indiquée automatiquement. Dans une passerelle Application Gateway existante, sélectionnez **Analyse** > **Intégrité du serveur principal**. 
 
-Chaque membre dans le pool principal d’hello est répertorié dans cette page (si elle est une carte réseau, IP ou nom de domaine complet). Le nom du pool principal, le port, le nom et l’état d’intégrité des paramètres HTTP principaux sont affichés. Les valeurs valides de l’état d’intégrité sont **Healthy** (Intègre), **Unhealthy** (Défaillant) et **Unknown** (Inconnu).
+Chaque membre du pool principal est répertorié sur cette page (qu’il s’agisse d’une carte réseau, d’un IP ou d’un nom de domaine complet). Le nom du pool principal, le port, le nom et l’état d’intégrité des paramètres HTTP principaux sont affichés. Les valeurs valides de l’état d’intégrité sont **Healthy** (Intègre), **Unhealthy** (Défaillant) et **Unknown** (Inconnu).
 
 > [!NOTE]
-> Si vous voyez l’état d’intégrité du serveur principal **inconnu**, assurez-vous que principale toohello d’accès n’est pas bloqué par une règle de groupe de sécurité réseau, un itinéraire défini par l’utilisateur (UDR) ou un DNS personnalisé hello du réseau virtuel.
+> Si l’état d’intégrité du serveur principal affiché est **Unknown** (Inconnu), assurez-vous que l’accès au serveur principal n’est pas bloqué par une règle de groupe de sécurité réseau, un itinéraire défini par l’utilisateur ou un DNS personnalisé dans le réseau virtuel.
 
 ![Intégrité du serveur principal][10]
 
 ### <a name="view-back-end-health-through-powershell"></a>Affichage de l’intégrité du serveur principal via PowerShell
 
-Hello suivant code PowerShell montre comment le contrôle d’intégrité du serveur principal tooview à l’aide de hello `Get-AzureRmApplicationGatewayBackendHealth` applet de commande :
+Le code PowerShell suivant montre comment afficher l’intégrité du serveur principal en utilisant l’applet de commande `Get-AzureRmApplicationGatewayBackendHealth` :
 
 ```powershell
 Get-AzureRmApplicationGatewayBackendHealth -Name ApplicationGateway1 -ResourceGroupName Contoso
@@ -68,7 +68,7 @@ az network application-gateway show-backend-health --resource-group AdatumAppGat
 
 ### <a name="results"></a>Résultats
 
-Hello suivant extrait de code illustre un exemple de réponse de hello :
+L’extrait de code suivant montre un exemple de la réponse :
 
 ```json
 {
@@ -97,46 +97,46 @@ Hello suivant extrait de code illustre un exemple de réponse de hello :
 
 ## <a name="diagnostic-logging"></a>Journaux de diagnostic
 
-Vous pouvez utiliser différents types de journaux dans Azure toomanage et résoudre les problèmes de passerelles d’application. Vous pouvez accéder à certaines de ces journaux via le portail de hello. Tous les journaux peuvent être extraits à partir d’un stockage Blob Azure et affichés dans différents outils, comme [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md), Excel et PowerBI. Pour plus d’informations sur hello différents types de journaux de hello suivant liste :
+Vous pouvez utiliser différents types de journaux dans Azure pour gérer les passerelles Application Gateway et résoudre les problèmes associés. Vous pouvez accéder à certains de ces journaux via le portail. Tous les journaux peuvent être extraits à partir d’un stockage Blob Azure et affichés dans différents outils, comme [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md), Excel et PowerBI. Pour en savoir plus sur les différents types de journaux, consultez la liste suivante :
 
-* **Journal d’activité**: vous pouvez utiliser [journaux d’activité Azure](../monitoring-and-diagnostics/insights-debugging-with-events.md) (précédemment appelés journaux des opérations et les journaux d’audit) tooview toutes les opérations qui sont soumis tooyour abonnement Azure, ainsi que leur état. Entrées de journal d’activité sont collectées par défaut, et vous pouvez les visualiser dans hello portail Azure.
-* **Journal d’accès**: vous pouvez utiliser cette modèles d’accès journal tooview passerelle d’Application et analyser des informations importantes, l’appelant, y compris hello IP, URL demandée, latence de la réponse, code de retour et d’octets et l’extraction. Un journal d’accès est collecté toutes les 300 secondes. Ce journal contient un enregistrement par instance Application Gateway. instance de la passerelle d’Application Hello peut être identifiée par la propriété instanceId de hello.
-* **Journal de performances**: vous pouvez utiliser cette tooview du journal des performances des instances de la passerelle d’Application. Ce journal capture des informations sur les performances de chaque instance, notamment le nombre total de requêtes traitées, le débit en octets, le nombre total de requêtes présentées, le nombre de requêtes ayant échoué, le nombre d’instances du serveur principal intègres et défectueuses. Le journal des performances est collecté toutes les 60 secondes.
-* **Journal du pare-feu**: vous pouvez utiliser ce journal tooview hello les demandes qui sont enregistrés via le mode de détection ou de prévention d’une passerelle d’application qui est configuré avec un pare-feu d’applications web hello.
+* **Journal d’activité** : vous pouvez utiliser le [Journal d’activité Azure](../monitoring-and-diagnostics/insights-debugging-with-events.md) (anciennement journaux des opérations et journaux d’audit) pour afficher toutes les opérations soumises à votre abonnement Azure, ainsi que leur état. Les entrées du journal d’activité sont recueillies par défaut et vous pouvez les afficher dans le Portail Azure.
+* **Journaux d’accès** : vous pouvez utiliser ce journal pour afficher les modèles d’accès Application Gateway et analyser des informations importantes, notamment l’adresse IP de l’appelant, l’URL demandée, la latence de réponse, le code de retour, les octets d’entrée et de sortie. Un journal d’accès est collecté toutes les 300 secondes. Ce journal contient un enregistrement par instance Application Gateway. L’instance de la passerelle Application Gateway peut être identifiée par la propriété instanceId.
+* **Journaux de performances** : vous pouvez utiliser ce journal pour afficher les performances des instances de la passerelle Application Gateway. Ce journal capture des informations sur les performances de chaque instance, notamment le nombre total de requêtes traitées, le débit en octets, le nombre total de requêtes présentées, le nombre de requêtes ayant échoué, le nombre d’instances du serveur principal intègres et défectueuses. Le journal des performances est collecté toutes les 60 secondes.
+* **Journaux du pare-feu** : vous pouvez utiliser ce journal pour afficher les requêtes consignées via le mode de détection ou de prévention d’une passerelle Application Gateway configuré avec un pare-feu d’applications web.
 
 > [!NOTE]
-> Les journaux sont disponibles uniquement pour les ressources déployées dans le modèle de déploiement du Gestionnaire de ressources Azure hello. Vous ne pouvez pas utiliser les journaux pour les ressources dans le modèle de déploiement classique hello. Pour mieux comprendre les modèles hello deux, consultez hello [déploiement du Gestionnaire de ressources de présentation et déploiement classique](../azure-resource-manager/resource-manager-deployment-model.md) l’article.
+> Les journaux ne sont disponibles que pour les ressources déployées dans le modèle de déploiement Azure Resource Manager. Vous ne pouvez pas les utiliser pour les ressources utilisant le modèle de déploiement classique. Pour mieux comprendre ces deux modèles, consultez l’article [Présentation du déploiement de Resource Manager et du déploiement classique](../azure-resource-manager/resource-manager-deployment-model.md) .
 
 Pour stocker vos journaux, vous disposez de trois options :
 
 * **Compte de stockage** : les comptes de stockage conviennent parfaitement aux journaux lorsqu’ils sont stockés pour une durée plus longue et consultés lorsque nécessaire.
-* **Concentrateurs d’événements**: concentrateurs d’événements sont une option intéressante pour l’intégration avec d’autres informations de sécurité et des outils de gestion des événements (SEIM) tooget des alertes sur vos ressources.
+* **Concentrateurs d’événements** : les concentrateurs d’événements constituent une excellente solution pour l’intégration avec d’autres outils SEIM (Security Information and Event Management) afin de recevoir des alertes sur vos ressources.
 * **Log Analytics** : Log Analytics convient parfaitement pour la surveillance en temps réel générale de votre application ou la recherche de tendances.
 
 ### <a name="enable-logging-through-powershell"></a>Activation de la journalisation avec PowerShell
 
-La journalisation d’activité est automatiquement activée pour chaque ressource Resource Manager. Vous devez activer l’accès et toostart de journalisation de performances collecte des données hello ces journaux. tooenable journalisation, hello utilisation comme suit :
+La journalisation d’activité est automatiquement activée pour chaque ressource Resource Manager. Vous devez activer la journalisation de l’accès et des performances pour commencer à collecter les données disponibles dans ces journaux. Pour activer la journalisation, utilisez les étapes suivantes :
 
-1. Notez l’ID de ressource de votre compte de stockage, où sont stockées les données de journal hello. Cette valeur se présente sous forme de hello : /subscriptions/\<subscriptionId\>/resourceGroups/\<nom de groupe de ressources\>/providers/Microsoft.Storage/storageAccounts/\<le nom de compte de stockage\>. Vous pouvez utiliser n’importe quel compte de stockage dans votre abonnement. Ces informations, vous pouvez utiliser hello toofind portail Azure.
+1. Notez l’ID de ressource de votre compte de stockage, où les données de journalisation sont stockées. Cette valeur a le format suivant : /abonnements/\<subscriptionId\>/resourceGroups/\<nom du groupe de ressources\>/providers/Microsoft.Storage/storageAccounts/\<nom du compte de stockage\>. Vous pouvez utiliser n’importe quel compte de stockage dans votre abonnement. Vous pouvez utiliser le portail Azure pour rechercher ces informations.
 
     ![Portail : ID de ressource du compte de stockage](./media/application-gateway-diagnostics/diagnostics1.png)
 
-2. Notez l’ID de ressource de votre passerelle Application Gateway pour laquelle la journalisation est activée. Cette valeur se présente sous forme de hello : /subscriptions/\<subscriptionId\>/resourceGroups/\<nom de groupe de ressources\>/providers/Microsoft.Network/applicationGateways/\<passerelle d’application nom\>. Vous pouvez utiliser les toofind portail hello ces informations.
+2. Notez l’ID de ressource de votre passerelle Application Gateway pour laquelle la journalisation est activée. Cette valeur a le format suivant : /abonnements/\<subscriptionId\>/resourceGroups/\<nom du groupe de ressources\>/providers/Microsoft.Network/applicationGateways/\<nom de la passerelle Application Gateway\>. Vous pouvez utiliser le portail pour rechercher ces informations.
 
     ![Portail : ID de ressource de la passerelle Application Gateway](./media/application-gateway-diagnostics/diagnostics2.png)
 
-3. Activer la journalisation de diagnostic à l’aide de hello suivant l’applet de commande PowerShell :
+3. Activez la journalisation des diagnostics à l’aide de l’applet de commande PowerShell suivante :
 
     ```powershell
     Set-AzureRmDiagnosticSetting  -ResourceId /subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Network/applicationGateways/<application gateway name> -StorageAccountId /subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Storage/storageAccounts/<storage account name> -Enabled $true     
     ```
     
 > [!TIP] 
->Les journaux d’activité ne nécessitent pas de compte de stockage distinct. utilisation de Hello du stockage pour l’accès et l’enregistrement des performances entraîne des frais de service.
+>Les journaux d’activité ne nécessitent pas de compte de stockage distinct. L’utilisation du stockage pour la journalisation de l’accès et des performances occasionne des frais de service.
 
-### <a name="enable-logging-through-hello-azure-portal"></a>Activer la journalisation via hello portail Azure
+### <a name="enable-logging-through-the-azure-portal"></a>Activation de la journalisation avec le portail Azure
 
-1. Hello portail Azure, votre ressource et cliquez sur **journaux de Diagnostic**.
+1. Dans le portail Azure, recherchez votre ressource, puis cliquez sur **Journaux de diagnostic**.
 
    Pour Application Gateway, trois journaux d’audit sont disponibles :
 
@@ -144,46 +144,46 @@ La journalisation d’activité est automatiquement activée pour chaque ressour
    * Journal des performances
    * Journal du pare-feu
 
-2. toostart la collecte de données, cliquez sur **activer les diagnostics**.
+2. Cliquez sur **Activer les diagnostics** pour démarrer la collecte de données.
 
    ![Activation des diagnostics][1]
 
-3. Hello **paramètres de diagnostic** panneau fournit les paramètres hello hello des journaux de diagnostic. Dans cet exemple, Analytique de journal stocke les journaux de hello. Cliquez sur **configurer** sous **Analytique de journal** tooconfigure votre espace de travail. Vous pouvez également utiliser des hubs d’événements et un stockage compte toosave hello diagnostic se connecte.
+3. Le panneau **Paramètres de diagnostic** contient les paramètres des journaux de diagnostic. Dans cet exemple, Log Analytics stocke les journaux. Cliquez sur **Configurer** sous **Log Analytics** pour configurer votre espace de travail. Vous pouvez également utiliser des concentrateurs d’événements et un compte de stockage pour enregistrer les journaux de diagnostic.
 
-   ![Démarrage du processus de configuration hello][2]
+   ![Démarrage du processus de configuration][2]
 
 4. Sélectionnez ou créez un espace de travail OMS (Operations Management Suite) existant. Cet exemple utilise un espace de travail existant.
 
    ![Options des espaces de travail OMS][3]
 
-5. Confirmez les paramètres hello et cliquez sur **enregistrer**.
+5. Confirmez les paramètres et cliquez sur **Enregistrer**.
 
    ![Panneau des paramètres de diagnostic avec des sélections][4]
 
 ### <a name="activity-log"></a>Journal d’activité
 
-Azure génère un journal d’activité hello par défaut. dans le magasin de journaux des événements Azure hello, Hello journaux sont conservées pendant 90 jours. En savoir plus sur ces journaux en lisant hello [afficher les événements et le journal d’activité](../monitoring-and-diagnostics/insights-debugging-with-events.md) l’article.
+Par défaut, Azure génère le journal d’activité. Les journaux sont conservés pendant 90 jours dans la banque de journaux d’événements d’Azure. Pour en savoir plus sur ces journaux, lisez l’article [Affichage des événements et du journal d’activité](../monitoring-and-diagnostics/insights-debugging-with-events.md).
 
 ### <a name="access-log"></a>Journal d’accès
 
-journal d’accès Hello est généré uniquement si vous l’avez activé sur chaque instance de la passerelle d’Application, comme expliqué dans les étapes précédentes de hello. les données de Hello sont stockées dans le compte de stockage hello que vous avez spécifié lorsque vous avez activé la journalisation hello. Chaque accès de la passerelle d’Application est enregistré au format JSON, comme indiqué dans hello l’exemple suivant :
+Le journal d’accès n’est généré que si vous l’avez activé sur chaque instance Application Gateway, comme détaillé dans les étapes précédentes. Les données sont stockées dans le compte de stockage spécifié lors de l’activation de la journalisation. Chaque accès à la passerelle Application Gateway est journalisé au format JSON, comme indiqué dans l’exemple suivant :
 
 
 |Valeur  |Description  |
 |---------|---------|
-|instanceId     | Cette demande hello servi d’instance de passerelle d’application.        |
-|clientIP     | Adresse IP d’origine pour la demande de hello.        |
-|clientPort     | Port de demande de hello d’origine.       |
-|httpMethod     | Méthode HTTP utilisée par la demande de hello.       |
-|requestUri     | URI de hello a reçu une demande.        |
-|RequestQuery     | **Server avait acheminé**: instance de pool principal qui a été envoyé à la demande de hello. </br> **X-AzureApplicationGateway-journal-ID**: ID de corrélation utilisé pour la demande de hello. Il peut être utilisé tootroubleshoot les problèmes de trafic sur les serveurs principaux hello. </br>**ÉTAT du serveur**: code de réponse HTTP passerelle d’Application a reçu back-end hello.       |
-|UserAgent     | Agent utilisateur à partir de l’en-tête de demande HTTP de hello.        |
-|httpStatus     | Code d’état HTTP retourné toohello client à partir de la passerelle d’Application.       |
-|httpVersion     | Version HTTP de la demande de hello.        |
+|instanceId     | Instance Application Gateway ayant traité la requête.        |
+|clientIP     | Adresse IP d’origine de la requête.        |
+|clientPort     | Port d’origine de la requête.       |
+|httpMethod     | Méthode HTTP utilisée par la requête.       |
+|requestUri     | URI de la requête reçue.        |
+|RequestQuery     | **Acheminée par le serveur** : instance de pool principal à laquelle la requête a été envoyée. </br> **X-AzureApplicationGateway-journal-ID** : ID de corrélation utilisé pour la requête. Peut être utilisée pour résoudre les problèmes de trafic sur les serveurs principaux. </br>**ÉTAT DU SERVEUR** : code de réponse HTTP reçu par Application Gateway à partir du serveur principal.       |
+|UserAgent     | Agent utilisateur de l’en-tête de requête HTTP.        |
+|httpStatus     | Code d’état HTTP renvoyé au client à partir de d’Application Gateway.       |
+|httpVersion     | Version HTTP de la requête.        |
 |receivedBytes     | Taille du paquet reçu, en octets.        |
 |sentBytes| Taille du paquet envoyé, en octets.|
-|timeTaken| Durée (en millisecondes) nécessaire pour une toobe demande traités et son toobe de réponse envoyé. Elle est calculée comme intervalle hello de temps hello lorsque la passerelle d’Application reçoit hello premier octet d’une durée de toohello de demande HTTP lorsque la réponse de hello envoyez fin de l’opération. Il est important de toonote qui hello Time-Taken le champ généralement inclut le temps hello hello demande et réponse les paquets réseau hello. |
-|sslEnabled| Indique si les pools de communication toohello principal utilisé SSL. Les valeurs valides sont On (Activé) et Off (Désactivé).|
+|timeTaken| Durée (en millisecondes) nécessaire pour le traitement d’une requête et l’envoi de la réponse. Elle est calculée en fonction de l’intervalle entre le moment où Application Gateway reçoit le premier octet d’une requête HTTP et le moment où l’opération d’envoi d’une réponse se termine. Il est important de noter que le champ Time-Taken inclut généralement l’heure à laquelle la requête et les paquets de réponse circulent sur le réseau. |
+|sslEnabled| Détermine si la communication avec les pools principaux utilisait SSL. Les valeurs valides sont On (Activé) et Off (Désactivé).|
 ```json
 {
     "resourceId": "/SUBSCRIPTIONS/{subscriptionId}/RESOURCEGROUPS/PEERINGTEST/PROVIDERS/MICROSOFT.NETWORK/APPLICATIONGATEWAYS/{applicationGatewayName}",
@@ -210,18 +210,18 @@ journal d’accès Hello est généré uniquement si vous l’avez activé sur c
 
 ### <a name="performance-log"></a>Journal des performances
 
-journal de performances Hello est généré uniquement si vous l’avez activé sur chaque instance de la passerelle d’Application, comme expliqué dans les étapes précédentes de hello. les données de Hello sont stockées dans le compte de stockage hello que vous avez spécifié lorsque vous avez activé la journalisation hello. données de journal de performances Hello sont générées par intervalles de 1 minute. Hello données suivantes est journalisé :
+Le journal des performances n’est généré que si vous l’avez activé sur chaque instance Application Gateway, comme détaillé dans les étapes précédentes. Les données sont stockées dans le compte de stockage spécifié lors de l’activation de la journalisation. Les données du journal des performances sont générées par intervalles d’1 minute. Les données suivantes sont enregistrées :
 
 
 |Valeur  |Description  |
 |---------|---------|
 |instanceId     |  Instance Application Gateway pour laquelle les données des performances sont générées. Pour une passerelle Application Gateway à plusieurs instances, il y a une ligne par instance.        |
-|healthyHostCount     | Nombre d’hôtes intègres dans le pool principal d’hello.        |
-|unHealthyHostCount     | Nombre d’hôtes défectueux dans le pool principal d’hello.        |
+|healthyHostCount     | Nombre d’hôtes intègres dans le pool principal.        |
+|unHealthyHostCount     | Nombre d’hôtes défaillants dans le pool principal.        |
 |requestCount     | Nombre de requêtes traitées.        |
-|latency | Latence (en millisecondes) des demandes de hello instance toohello back-end qui sert les demandes hello. |
+|latency | Latence (en millisecondes) des requêtes à partir de l’instance vers le serveur principal qui traite les requêtes. |
 |failedRequestCount| Nombre d’échecs de requêtes.|
-|throughput| Débit moyen depuis le dernier journal hello, mesurée en octets par seconde.|
+|throughput| Débit moyen depuis le dernier journal, mesuré en octets par seconde.|
 
 ```json
 {
@@ -243,30 +243,30 @@ journal de performances Hello est généré uniquement si vous l’avez activé 
 ```
 
 > [!NOTE]
-> La latence est calculée à partir de l’heure hello lorsque hello du premier octet de demande de hello HTTP est reçu toohello pendant laquelle hello dernier octet de réponse HTTP de hello est envoyée. Son hello somme de hello passerelle d’Application le temps de traitement plus hello toohello du coût du réseau précédent se terminer, plus le temps hello hello back-end prend tooprocess hello demande.
+> La latence est calculée à partir de l’heure de la réception du premier octet de la requête HTTP jusqu’à l’heure de l'envoi du dernier octet de la réponse HTTP. Il s’agit de la somme du temps de traitement d’Application Gateway et du coût du réseau pour le serveur principal, ainsi que le temps pris par le serveur principal pour traiter la requête.
 
 ### <a name="firewall-log"></a>Journal du pare-feu
 
-journal du pare-feu Hello est généré uniquement si vous l’avez activé pour chaque application gateway, comme expliqué dans les étapes précédentes de hello. Ce fichier journal nécessite également que hello web application le pare-feu est configuré sur une passerelle d’application. les données de Hello sont stockées dans le compte de stockage hello que vous avez spécifié lorsque vous avez activé la journalisation hello. Hello données suivantes est journalisé :
+Le journal du pare-feu n’est généré que si vous l’avez activé sur chaque passerelle Application Gateway, comme détaillé dans les étapes précédentes. Ce fichier journal nécessite également que ce pare-feu d’applications web soit configuré sur une passerelle Application Gateway. Les données sont stockées dans le compte de stockage spécifié lors de l’activation de la journalisation. Les données suivantes sont enregistrées :
 
 
 |Valeur  |Description  |
 |---------|---------|
 |instanceId     | Instance Application Gateway pour laquelle les données du pare-feu sont générées. Pour une passerelle Application Gateway à plusieurs instances, il y a une ligne par instance.         |
-|clientIp     |   Adresse IP d’origine pour la demande de hello.      |
-|clientPort     |  Port de demande de hello d’origine.       |
-|requestUri     | URL de hello a reçu une demande.       |
-|ruleSetType     | Type d’ensemble de règles. la valeur disponible Hello est OWASP avoir.        |
+|clientIp     |   Adresse IP d’origine de la requête.      |
+|clientPort     |  Port d’origine de la requête.       |
+|requestUri     | URL de la requête reçue.       |
+|ruleSetType     | Type d’ensemble de règles. La valeur disponible est OWASP.        |
 |ruleSetVersion     | Version d’ensemble de règles utilisée. Les valeurs disponibles sont 2.2.9 et 3.0.     |
-|ruleId     | ID de règle de hello déclenchant l’événement.        |
-|Message     | Message convivial pour hello déclenchant l’événement. Plus de détails sont fournis dans la section relative aux détails hello.        |
-|action     |  Action effectuée sur la demande de hello. Les valeurs disponibles sont bloquées et autorisées.      |
-|site     | Site pour le hello journal a été généré. Actuellement, seul Global est répertorié car les règles sont globales.|
-|détails     | Détails de hello déclenchant l’événement.        |
-|details.message     | Description de règle de hello.        |
-|details.data     | Données spécifiques trouvé dans la demande de cette règle de mise en correspondance hello.         |
-|details.file     | Fichier de configuration contenant une règle de hello.        |
-|details.line     | Numéro de ligne dans le fichier de configuration hello ayant déclenché l’événement de hello.       |
+|ruleId     | ID de règle de l’événement de déclenchement.        |
+|Message     | Message convivial pour l’événement de déclenchement. La section Détails vous fournit plus d’informations.        |
+|action     |  Action effectuée sur la requête. Les valeurs disponibles sont bloquées et autorisées.      |
+|site     | Site pour lequel le journal a été généré. Actuellement, seul Global est répertorié car les règles sont globales.|
+|détails     | Détails de l’événement de déclenchement.        |
+|details.message     | Description de la règle.        |
+|details.data     | Données spécifiques trouvées dans la requête correspondant à la règle.         |
+|details.file     | Fichier de configuration qui contenait la règle.        |
+|details.line     | Numéro de ligne dans le fichier de configuration ayant déclenché l’événement.       |
 
 ```json
 {
@@ -296,63 +296,63 @@ journal du pare-feu Hello est généré uniquement si vous l’avez activé pour
 
 ```
 
-### <a name="view-and-analyze-hello-activity-log"></a>Afficher et analyser le journal d’activité hello
+### <a name="view-and-analyze-the-activity-log"></a>Afficher et analyser le journal d’activité
 
-Vous pouvez afficher et analyser les données de journal d’activité à l’aide d’une des méthodes suivantes de hello :
+Vous pouvez afficher et analyser les données du journal d’activité en utilisant l’une des méthodes suivantes :
 
-* **Windows Azure tools**: extraire des informations du journal d’activité hello Azure PowerShell, hello CLI d’Azure, hello API REST de Azure, ou hello portail Azure. Des instructions détaillées pour chaque méthode sont détaillées dans hello [opérations de l’activité avec le Gestionnaire de ressources](../azure-resource-manager/resource-group-audit.md) l’article.
-* **Power BI** : si vous n’avez pas encore de compte [Power BI](https://powerbi.microsoft.com/pricing) , vous pouvez l’essayer gratuitement. À l’aide de hello [journaux d’activité Azure pack de contenu pour Power BI](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-audit-logs/), vous pouvez analyser vos données avec des tableaux de bord préconfigurés que vous pouvez utiliser ou personnaliser.
+* **Outils Azure** : récupérez les informations à partir du journal d’activité au moyen d’Azure PowerShell, d’Azure CLI, de l’API REST Azure ou du Portail Azure. Des instructions pas à pas pour chaque méthode sont détaillées dans l’article [Opérations d’activité avec Resource Manager](../azure-resource-manager/resource-group-audit.md).
+* **Power BI** : si vous n’avez pas encore de compte [Power BI](https://powerbi.microsoft.com/pricing) , vous pouvez l’essayer gratuitement. À l’aide du [pack de contenus des journaux d’activité Azure pour Power BI](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-pack-azure-audit-logs/), vous pouvez analyser vos données avec des tableaux de bord préconfigurés à utiliser en l’état ou à personnaliser.
 
-### <a name="view-and-analyze-hello-access-performance-and-firewall-logs"></a>Afficher et analyser les accès hello, les performances et les journaux de pare-feu
+### <a name="view-and-analyze-the-access-performance-and-firewall-logs"></a>Affichage et analyse des journaux d’accès, des performances et du pare-feu
 
-Azure [Analytique de journal](../log-analytics/log-analytics-azure-networking-analytics.md) peut collecter des fichiers de journal des événements et compteurs de hello à partir de votre compte de stockage d’objets Blob. Il inclut des visualisations et recherche de puissantes fonctionnalités tooanalyze vos journaux.
+Azure [Log Analytics](../log-analytics/log-analytics-azure-networking-analytics.md) peut collecter les fichiers du compteur et du journal d’événements à partir de votre compte de stockage d’objets Blob. Il inclut des visualisations et des fonctionnalités puissantes de recherche pour analyser vos journaux.
 
-Vous pouvez également connecter le compte de stockage tooyour et récupérer les entrées de journal hello JSON pour les journaux de performances et d’accès. Après avoir téléchargé les fichiers au format JSON hello, vous pouvez convertir les tooCSV et les afficher dans Excel, Power BI ou tout autre outil de visualisation des données.
+Vous pouvez également vous connecter à votre compte de stockage et récupérer les entrées de journal JSON pour les journaux d’accès et des performances. Après avoir téléchargé les fichiers JSON, vous pouvez les convertir en CSV et les afficher dans Excel, PowerBI ou tout autre outil de visualisation de données.
 
 > [!TIP]
-> Si vous êtes familiarisé avec Visual Studio et les concepts de base de la modification des valeurs de constantes et variables dans c#, vous pouvez utiliser hello [ouvrir une session outils de convertisseur](https://github.com/Azure-Samples/networking-dotnet-log-converter) disponible à partir de GitHub.
+> Si vous savez utiliser Visual Studio et les concepts de base de la modification des valeurs de constantes et variables en C#, vous pouvez utiliser les [outils de convertisseur de journaux](https://github.com/Azure-Samples/networking-dotnet-log-converter) disponibles dans GitHub.
 > 
 > 
 
 ## <a name="metrics"></a>Mesures
 
-Métriques sont une fonctionnalité de certaines ressources Azure où vous pouvez afficher les compteurs de performance dans le portail de hello. Pour Application Gateway, une métrique est désormais disponible. Cette mesure est le débit, et vous pouvez le voir dans le portail de hello. Parcourir la passerelle d’application tooan et cliquez sur **métriques**. les valeurs hello tooview, sélectionnez débit Bonjour **métriques disponibles** section. Dans hello suivant l’image, vous pouvez voir un exemple avec des filtres hello que vous pouvez utiliser les données de salutation toodisplay dans les plages de temps différent.
+Les mesures représentent une fonctionnalité de certaines ressources Azure, vous permettant d’afficher les compteurs de performances dans le portail. Pour Application Gateway, une métrique est désormais disponible. Vous pouvez afficher cette métrique, le débit, dans le portail. Accédez à une passerelle Application Gateway et cliquez sur **Métriques**. Sélectionnez Débit dans la section **Mesures disponibles** pour afficher les valeurs. L’image suivante montre un exemple avec les filtres que vous pouvez utiliser pour afficher les données dans différentes périodes.
 
 ![Affichage de métriques avec des filtres][5]
 
-toosee liste actuelle des métriques, consultez [prise en charge des métriques avec Azure analyse](../monitoring-and-diagnostics/monitoring-supported-metrics.md).
+Pour afficher une liste actuelle des métriques, consultez [Mesures prises en charge avec Azure Monitor](../monitoring-and-diagnostics/monitoring-supported-metrics.md).
 
 ### <a name="alert-rules"></a>Règles d'alerte
 
-Vous pouvez démarrer des règles d’alerte en fonction des métriques d’une ressource. Par exemple, une alerte peut appeler un webhook ou un administrateur de messagerie, si le débit de passerelle d’application hello hello est au-dessus, au-dessous ou à un seuil pour une période spécifiée.
+Vous pouvez démarrer des règles d’alerte en fonction des métriques d’une ressource. Par exemple, une alerte peut appeler un webhook ou envoyer un e-mail à un administrateur si le débit de la passerelle Application Gateway est au-dessus ou en dessous d’un seuil pour une période spécifiée.
 
-Bonjour à l’exemple suivant vous guide tout au long de la création d’une règle d’alerte qui envoie un administrateur de la messagerie tooan après un seuil, les violations de débit :
+L’exemple suivant vous guide dans la création d’une règle d’alerte qui envoie un e-mail à un administrateur lorsqu’un seuil de débit est dépassé :
 
-1. Cliquez sur **ajouter une alerte métrique** tooopen hello **ajouter une règle** panneau. Vous pouvez également atteindre ce panneau à partir du Panneau de métriques hello.
+1. Cliquez sur **Ajouter une alerte Métrique** pour ouvrir le panneau **Ajouter une règle**. Ce panneau est également accessible à partir du panneau Métriques.
 
    ![Bouton Ajouter une alerte Métrique][6]
 
-2. Sur hello **ajouter une règle** panneau, renseignez le nom hello, condition et informer des sections, puis cliquez sur **OK**.
+2. Dans le panneau **Ajouter une règle**, remplissez les sections Nom, Condition et Notifier, puis cliquez sur **OK**.
 
-   * Bonjour **Condition** sélecteur, sélectionnez une des valeurs de hello quatre : **supérieur**, **égal ou supérieur**, **moins**, ou  **Inférieur ou égal à**.
+   * Dans le sélecteur **Condition**, sélectionnez une des 4 valeurs : **Supérieur à**, **Supérieur ou égal à**, **Inférieur à** ou **Inférieur ou égal à**.
 
-   * Bonjour **période** sélecteur, sélectionnez une période de 5 minutes too6 heures.
+   * Dans le sélecteur **Période**, sélectionnez une période allant de 5 minutes à 6 heures.
 
-   * Si vous sélectionnez **propriétaires, collaborateurs et les lecteurs de messagerie**, messagerie de hello peut être dynamique basées sur les utilisateurs de hello qui ont accès toothat ressource. Sinon, vous pouvez fournir une liste séparée par des virgules des utilisateurs dans hello **administrateur supplémentaire email(s)** boîte.
+   * Si vous sélectionnez **Envoyer des e-mails aux propriétaires, contributeurs et lecteurs** , l’e-mail peut être dynamiquement basé sur les utilisateurs qui ont accès à cette ressource. Dans le cas contraire, vous pouvez fournir une liste d’utilisateurs séparée par des virgules dans la zone **Adresse(s) de messagerie d’administrateur(s) supplémentaire(s)** .
 
    ![Panneau Ajouter une règle][7]
 
-Si le seuil de hello est dépassé, un message électronique qui est similaire toohello un Bonjour suivant image arrive :
+Si le seuil est dépassé, un e-mail similaire à celui de l’image suivante vous est envoyé :
 
 ![E-mail en cas de dépassement de seuil][8]
 
-Une liste d’alertes apparaît une fois que vous avez créé une alerte Métrique. Il fournit une vue d’ensemble de toutes les règles d’alerte hello.
+Une liste d’alertes apparaît une fois que vous avez créé une alerte Métrique. Elle fournit une vue d’ensemble de toutes les règles d’alerte.
 
 ![Liste d’alertes et de règles][9]
 
-toolearn en savoir plus sur les notifications d’alerte, consultez [recevoir des notifications d’alerte](../monitoring-and-diagnostics/insights-receive-alert-notifications.md).
+Pour en savoir plus sur les notifications d’alerte, consultez [Réception de notifications d’alerte](../monitoring-and-diagnostics/insights-receive-alert-notifications.md).
 
-toounderstand en savoir plus sur le webhooks et comment vous pouvez les utiliser avec les alertes, visitez [configurer un webhook sur une alerte de métrique Azure](../monitoring-and-diagnostics/insights-webhooks-alerts.md).
+Pour en savoir plus sur les webhooks et sur la façon de les utiliser avec des alertes, consultez [Configurer un webhook sur une alerte de métrique Azure](../monitoring-and-diagnostics/insights-webhooks-alerts.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 

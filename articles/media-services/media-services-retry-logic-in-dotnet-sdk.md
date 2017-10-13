@@ -1,6 +1,6 @@
 ---
-title: logique aaaRetry Bonjour Media Services SDK pour .NET | Documents Microsoft
-description: "rubrique de Hello donne une vue d’ensemble de la logique de nouvelle tentative dans hello Media Services SDK pour .NET."
+title: "Logique de nouvelle tentative dans le Kit de développement logiciel (SDK) Media Services pour .NET | Microsoft Docs"
+description: "La rubrique fournit une vue d’ensemble de la logique de nouvelle tentative dans le Kit de développement logiciel (SDK) pour .NET."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: juliako
-ms.openlocfilehash: 18d0a9d68e55a48bc769fb6ae5711ddba78ed8e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 859dd76db4ba06196a853469a1385703d835fa22
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="retry-logic-in-hello-media-services-sdk-for-net"></a>Recommencez logique Bonjour Media Services SDK pour .NET
-Lorsque vous utilisez les services Microsoft Azure, des erreurs temporaires peuvent se produire. Si une erreur temporaire se produit, dans la plupart des cas, après plusieurs tentatives hello réussit. Hello Media Services SDK pour .NET implémente hello réessayer logique toohandle transitoires associés aux exceptions et erreurs provoquées par des demandes web, l’exécution de requêtes, l’enregistrement des modifications et les opérations de stockage.  Par défaut, Media Services SDK pour .NET de hello exécute quatre nouvelles tentatives avant application de tooyour hello exception est levée à nouveau. code Hello dans votre application doit gérer puis de cette exception correctement.  
+# <a name="retry-logic-in-the-media-services-sdk-for-net"></a>Logique de nouvelle tentative dans le Kit de développement logiciel (SDK) Media Services pour .NET
+Lorsque vous utilisez les services Microsoft Azure, des erreurs temporaires peuvent se produire. Si une erreur temporaire se produit, dans la plupart des cas, après plusieurs tentatives, l’opération aboutit. Le Kit de développement logiciel (SDK) Media Services pour .NET implémente la logique de nouvelle tentative pour gérer des défaillances temporaires liées à des exceptions et erreurs générées par des requêtes web, l’exécution de requêtes, l’enregistrement de modifications et des opérations de stockage.  Par défaut, le Kit de développement logiciel (SDK) Media Services pour .NET effectue quatre nouvelles tentatives avant de lever une nouvelle exception pour votre application. Le code de votre application doit ensuite gérer cette exception correctement.  
 
- Hello Voici une brève indication des stratégies de requête Web, le stockage, la requête et les SaveChanges :  
+ Voici une brève indication des stratégies Web Request, Storage, Query et SaveChanges :  
 
-* Hello stratégie de stockage est utilisé pour les opérations de stockage blob (téléchargements ou le téléchargement de fichiers d’éléments multimédias).  
-* Hello Web demander une stratégie est utilisée pour les demandes web générique (par exemple, pour obtenir une authentification par jeton et la résolution de point de terminaison de cluster aux utilisateurs de hello).  
-* stratégie de requête de Hello est utilisé pour interroger les entités à partir de REST (par exemple, mediaContext.Assets.Where(...)).  
-* Hello SaveChanges stratégie est utilisée pour effectuer tout ce qui modifie des données dans service hello (par exemple, la création d’une entité à une entité, en appelant une fonction de service pour une opération de mise à jour).  
+* La stratégie Storage est utilisée pour les opérations de stockage d’objets blob (chargements ou téléchargement de fichiers de ressources).  
+* La stratégie Web Request est utilisée pour les demandes web génériques (par exemple, pour obtenir un jeton d’authentification et résoudre le point de terminaison du cluster de l’utilisateur).  
+* La stratégie Query permet d’interroger des entités à partir de REST (par exemple, mediaContext.Assets.Where(...)).  
+* La stratégie SaveChanges permet d’effectuer toute opération qui modifie des données au sein du service (par exemple, création d’une entité, mise à jour d’une entité, appel d’une fonction de service pour une opération).  
   
-  Cette rubrique répertorie les types d’exception et la logique de nouvelle tentative des codes d’erreur qui sont gérés par hello Media Services SDK pour .NET.  
+  Cette rubrique répertorie les types d’exceptions et codes d’erreur qui sont gérés par le Kit de développement logiciel (SDK) Media Services pour la logique de nouvelle tentative .NET.  
 
 ## <a name="exception-types"></a>Types d'exceptions
-Hello tableau suivant décrit les exceptions que hello Media Services SDK pour .NET gère ou ne gère pas pour certaines opérations qui peuvent provoquer des erreurs temporaires.  
+Le tableau suivant décrit les exceptions que le Kit de développement logiciel (SDK) Media Services pour .NET gère ou ne gère pas pour certaines opérations susceptibles de provoquer des défaillances temporaires.  
 
 | Exception | Web Request | Storage | Requête | SaveChanges |
 | --- | --- | --- | --- | --- |
-| WebException<br/>Pour plus d’informations, consultez hello [codes d’état WebException](media-services-retry-logic-in-dotnet-sdk.md#WebExceptionStatus) section. |Oui |Oui |Oui |OUI |
+| WebException<br/>Pour plus d’informations, voir la section [Codes d’état WebException](media-services-retry-logic-in-dotnet-sdk.md#WebExceptionStatus). |OUI |Oui |Oui |OUI |
 | DataServiceClientException<br/> Pour plus d’informations, voir [Codes d’état d’erreur HTTP](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode). |Non |Oui |Oui |OUI |
 | DataServiceQueryException<br/> Pour plus d’informations, voir [Codes d’état d’erreur HTTP](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode). |Non |Oui |Oui |OUI |
 | DataServiceRequestException<br/> Pour plus d’informations, voir [Codes d’état d’erreur HTTP](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode). |Non |Oui |Oui |OUI |
@@ -48,7 +48,7 @@ Hello tableau suivant décrit les exceptions que hello Media Services SDK pour .
 | IOException |Non |Oui |Non |Non |
 
 ### <a name="WebExceptionStatus"></a> Codes d’état WebException
-Hello tableau suivant indique pour quelle erreur WebException logique de nouvelle tentative de codes hello est implémentée. Hello [WebExceptionStatus](http://msdn.microsoft.com/library/system.net.webexceptionstatus.aspx) énumération définit les codes d’état hello.  
+Le tableau suivant présente les codes d’erreur WebException pour lesquels la logique de nouvelle tentative est implémentée. L’énumération [WebExceptionStatus](http://msdn.microsoft.com/library/system.net.webexceptionstatus.aspx) définit les codes d’état.  
 
 | État | Web Request | Storage | Requête | SaveChanges |
 | --- | --- | --- | --- | --- |
@@ -63,10 +63,10 @@ Hello tableau suivant indique pour quelle erreur WebException logique de nouvell
 | ReceiveFailure |OUI |Oui |Oui |Non |
 | RequestCanceled |OUI |Oui |Oui |Non |
 | Délai d'expiration |OUI |Oui |Oui |Non |
-| ProtocolError <br/>nouvelle tentative de Hello sur ProtocolError est contrôlé par la gestion hello du code de statut HTTP. Pour plus d’informations, voir [Codes d’état d’erreur HTTP](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode). |OUI |Oui |Oui |OUI |
+| ProtocolError <br/>La nouvelle tentative sur ProtocolError est contrôlée par la gestion des codes d’état HTTP. Pour plus d’informations, voir [Codes d’état d’erreur HTTP](media-services-retry-logic-in-dotnet-sdk.md#HTTPStatusCode). |OUI |Oui |Oui |OUI |
 
 ### <a name="HTTPStatusCode"></a> Codes d’état d’erreur HTTP
-Lorsque les opérations de requête et SaveChanges lèvent DataServiceClientException, DataServiceQueryException ou DataServiceQueryException, hello code d’état HTTP erreur est retourné dans hello propriété StatusCode.  Hello tableau suivant répertorie les codes d’erreur logique de nouvelle tentative hello est implémentée.  
+Lorsque les opérations Query et SaveChanges lèvent les exceptions DataServiceClientException, DataServiceQueryException ou DataServiceQueryException, le code d’état d’erreur HTTP est retourné dans la propriété StatusCode.  Le tableau suivant présente les codes d’erreur pour lesquels la logique de nouvelle tentative est implémentée.  
 
 | État | Web Request | Storage | Requête | SaveChanges |
 | --- | --- | --- | --- | --- |
@@ -79,7 +79,7 @@ Lorsque les opérations de requête et SaveChanges lèvent DataServiceClientExce
 | 503 |OUI |Oui |Oui |OUI |
 | 504 |OUI |Oui |Oui |Non |
 
-Si vous souhaitez tootake examiner implémentation réelle de hello Hello SDK Media Services pour la logique de nouvelle tentative de .NET, consultez [azure sdk pour media services](https://github.com/Azure/azure-sdk-for-media-services/tree/dev/src/net/Client/TransientFaultHandling).
+Pour l’implémentation réelle du Kit de développement logiciel (SDK) Media Services pour la logique de nouvelle tentative .NET, voir [azure-sdk-for-media-services](https://github.com/Azure/azure-sdk-for-media-services/tree/dev/src/net/Client/TransientFaultHandling).
 
 ## <a name="next-steps"></a>Étapes suivantes
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

@@ -1,5 +1,5 @@
 ---
-title: "vue d’ensemble des Services de support aaaAzure | Documents Microsoft"
+title: "Vue d’ensemble d’Azure Media Services | Microsoft Docs"
 description: Cette rubrique offre une vue d'ensemble d'Azure Media Services
 services: media-services
 documentationcenter: 
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 07/04/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: 81f9f4d9ff75effea30c10fd09449e9d2025f377
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2a175aed40b9775d9a4de6877eb3467b43819568
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-media-services-overview"></a>Vue d’ensemble d’Azure Media Services 
 
-Microsoft Azure Media Services est une plateforme cloud extensible qui permet aux développeurs toobuild de contenu multimédia évolutives gestion et remise applications. Media Services est basé sur les API REST qui vous permettent de téléchargement de toosecurely, stocker, encoder et empaqueter le contenu vidéo ou audio pour la demande et live diffusion en continu remise toovarious les clients (par exemple, TV, PC et appareils mobiles).
+Microsoft Azure Media Services est une plateforme extensible basée sur le cloud qui permet aux développeurs de créer des applications évolutives de gestion et de diffusion de médias. Media Services est basé sur les API REST qui permettent de télécharger, stocker, encoder et empaqueter en toute sécurité du contenu vidéo ou audio destiné à être diffusé à la demande ou en direct sur différents clients (par exemple, téléviseurs, PC et appareils mobiles).
 
-Vous pouvez créer des flux de travail de bout en bout en utilisant uniquement Media Services. Vous pouvez également choisir toouse des composants tiers pour certaines parties de votre flux de travail. (par exemple, en encodant avec un encodeur tiers). Le contenu est ensuite téléchargé, protégé, empaqueté et remis à l'aide de Media Services.
+Vous pouvez créer des flux de travail de bout en bout en utilisant uniquement Media Services. Vous pouvez aussi choisir d'utiliser des composants tiers pour certaines parties de votre flux de travail (par exemple, en encodant avec un encodeur tiers). Le contenu est ensuite téléchargé, protégé, empaqueté et remis à l'aide de Media Services.
 
-Vous pouvez choisir toostream votre contenu en direct ou fournir le contenu à la demande. rubrique de Hello lie également les rubriques pertinentes de tooother.
+Vous pouvez choisir de diffuser votre contenu en direct ou de le distribuer à la demande. La rubrique contient également des liens vers d’autres rubriques pertinentes.
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 Vous pouvez afficher les parcours d’apprentissage d’AMS ici :
@@ -36,25 +36,25 @@ Vous pouvez afficher les parcours d’apprentissage d’AMS ici :
 
 ## <a name="prerequisites"></a>Composants requis
 
-toostart à l’aide d’Azure Media Services, vous devez disposer de hello :
+Pour commencer à utiliser Azure Media Services, vous devez disposer des éléments suivants :
 
 * Un compte Azure. Si vous ne possédez pas de compte, vous pouvez créer un compte d'évaluation gratuit en quelques minutes. Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com).
 * Un compte Azure Media Services. Pour plus d’informations, consultez [Créer un compte](media-services-portal-create-account.md).
 * (Facultatif) Un environnement de développement configuré. Choisissez .NET ou API REST comme environnement de développement. Pour plus d’informations, consultez [Configuration d'environnement](media-services-dotnet-how-to-use.md).
 
-    En outre, apprenez comment trop[connecter par programmation tooAMS API](media-services-use-aad-auth-to-access-ams-api.md).
+    De plus, découvrez comment [vous connecter par programmation à l’API AMS](media-services-use-aad-auth-to-access-ams-api.md).
 * Un point de terminaison de streaming standard ou premium à l’état Démarré.  Pour plus d’informations, consultez [Gestion des points de terminaison de streaming](media-services-portal-manage-streaming-endpoints.md).
 
 ## <a name="sdks-and-tools"></a>Kits de développement logiciel (SDK) et outils
 
-solutions de Media Services toobuild, vous pouvez utiliser :
+Pour créer des solutions Media Services, vous pouvez utiliser les composants suivants :
 
 * [API REST Media Services](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)
-* L’un des kits de développement logiciel de client disponibles hello :
+* Un des Kits de développement logiciel (SDK) de client disponibles :
     * [Kit de développement logiciel (SDK) Azure Media Services pour .NET](https://github.com/Azure/azure-sdk-for-media-services),
     * [Kit de développement logiciel (SDK) Azure pour Java](https://github.com/Azure/azure-sdk-for-java),
     * [Kit de développement logiciel (SDK) Azure pour PHP](https://github.com/Azure/azure-sdk-for-php),
-    * [Azure Media Services pour Node.js](https://github.com/michelle-becker/node-ams-sdk/blob/master/lib/request.js) (il s’agit d’une version non Microsoft du Kit de développement logiciel (SDK) Node.js. Il est géré par une Communauté et n’a pas une couverture de 100 % de hello AMS APIs).
+    * [Azure Media Services pour Node.js](https://github.com/michelle-becker/node-ams-sdk/blob/master/lib/request.js) (il s’agit d’une version non Microsoft du Kit de développement logiciel (SDK) Node.js. Il est géré par une communauté et ne fournit pas une couverture à 100 % des API AMS).
 * Outils existants :
     * [portail Azure](https://portal.azure.com/)
     * [Azure-Media-Services-Explorer](https://github.com/Azure/Azure-Media-Services-Explorer) (Azure Media Services Explorer (AMSE) est une application Winforms/C# pour Windows)
@@ -62,7 +62,7 @@ solutions de Media Services toobuild, vous pouvez utiliser :
 ## <a name="concepts-and-overview"></a>Concepts et vue d’ensemble
 Pour les concepts Azure Media Services, consultez [Concepts](media-services-concepts.md).
 
-Pour une procédure-tooseries qui vous présente tooall hello principaux composants d’Azure Media Services, consultez [didacticiels pas à pas de Azure Media Services](https://docs.com/fukushima-shigeyuki/3439/english-azure-media-services-step-by-step-series). Cette série a une excellente présentation des concepts et il utilise des tâches de hello AMSE outil toodemonstrate AMS. L’outil AMSE est un outil Windows. Cet outil prend en charge la plupart des tâches hello vous pouvez obtenir par programme avec [AMS Kit de développement logiciel pour .NET](https://github.com/Azure/azure-sdk-for-media-services), [SDK Azure pour Java](https://github.com/Azure/azure-sdk-for-java), ou [Azure PHP SDK](https://github.com/Azure/azure-sdk-for-php).
+Pour découvrir une série de procédures qui présente tous les principaux composants d’Azure Media Services, consultez les [didacticiels pas à pas Azure Media Services](https://docs.com/fukushima-shigeyuki/3439/english-azure-media-services-step-by-step-series). Cette série constitue une excellente présentation des concepts, et utilise l’outil AMSE pour effectuer les tâches AMS. L’outil AMSE est un outil Windows. Cet outil prend en charge la plupart des tâches que vous pouvez obtenir par programmation avec le [Kit de développement logiciel (SDK) AMS pour .NET](https://github.com/Azure/azure-sdk-for-media-services), le [Kit de développement logiciel (SDK) Azure pour Java](https://github.com/Azure/azure-sdk-for-java) ou le [Kit de développement logiciel (SDK) Azure pour PHP](https://github.com/Azure/azure-sdk-for-php).
 
 ## <a name="supported-scenarios-and-availability-of-media-services-across-data-centers"></a>Scénarios pris en charge et disponibilité de Media Services dans les centres de données
 
@@ -72,13 +72,13 @@ Pour plus d’informations, consultez [Scénarios AMS et disponibilité des fonc
 
 * Pour Media Services, nous garantissons une disponibilité de 99,9 % des transactions d'API REST.
 * Pour la diffusion en continu, nous traiterons avec succès les demandes de service avec une garantie de disponibilité de 99,9 % pour le contenu multimédia existant si un point de terminaison de streaming standard ou premium est acheté.
-* Pour les canaux de Live, nous garantissons que les canaux en cours d’exécution aura une connectivité externe au moins 99,9 % du temps de hello.
-* Pour la Protection du contenu, nous garantissons que nous avons correctement effectuera principales demandes au moins 99,9 % du temps de hello.
-* Pour l’indexeur, nous sera correctement demandes de service indexeur tâche traitées avec un encodage de réservé unité 99,9 % du temps de hello.
+* Pour les Canaux en Direct, nous garantissons que les canaux en cours d’exécution auront une connectivité externe au moins 99,9 % du temps.
+* Pour la Protection de Contenu, nous garantissons que nous serons en mesure de traiter les demandes de clé au moins 99,9 % du temps.
+* Pour l’Indexeur, nous serons en mesure d’assurer les demandes de tâche d’indexation traitées avec une unité réservée d’encodage 99,9 % du temps.
 
 Pour plus d’informations, consultez le [contrat SLA Microsoft Azure](https://azure.microsoft.com/support/legal/sla/).
 
-Pour plus d’informations sur la disponibilité des centres de données, consultez hello [Avaiability](scenarios-and-availability.md#availability) section.
+Pour plus d’informations sur la disponibilité dans les centres de données, consultez la section [Disponibilité](scenarios-and-availability.md#availability).
 
 ## <a name="support"></a>Support
 

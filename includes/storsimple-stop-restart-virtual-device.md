@@ -1,16 +1,16 @@
-#### <a name="toostop-and-start-a-virtual-device"></a>toostop et démarrer un appareil virtuel
-toostop un appareil virtuel, cliquez sur son nom, puis cliquez sur **arrêt**. Pendant l’arrêt de l’appareil virtuel de hello, son état est **arrêt**. Une fois un appareil virtuel hello est arrêté, son état est **arrêté**.
+#### <a name="to-stop-and-start-a-virtual-device"></a>Arrêt et démarrage d’un appareil virtuel
+Pour arrêter un appareil virtuel, cliquez sur son nom, puis sur **Arrêter**. Lorsque l’appareil virtuel est en train de s’arrêter, son état est **Arrêt en cours**. Une fois l’appareil virtuel arrêté, son état est **Arrêté**.
 
-Utilisez hello suivant toostop d’applets de commande et démarrez un appareil virtuel.
+Utilisez les applets de commande suivantes pour arrêter et démarrer un appareil virtuel.
 
 `Stop-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 
 `Start-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 
-#### <a name="toorestart-a-virtual-device"></a>toorestart un appareil virtuel
-Lorsqu’un périphérique virtuel est en cours d’exécution et que vous souhaitez toorestart, cliquez sur son nom, puis cliquez sur **redémarrer**. Pendant le redémarrage de périphérique virtuel de hello, son état est **redémarrage**. Quand un appareil virtuel hello est prêt à vous toouse, son état est **en cours d’exécution**.
+#### <a name="to-restart-a-virtual-device"></a>Redémarrage d’un appareil virtuel
+Lorsqu’un appareil virtuel est en cours d’exécution et que vous souhaitez le redémarrer, cliquez sur son nom, puis sur **Redémarrer**. Lorsque l’appareil virtuel est en cours de redémarrage, son état est **Redémarrage en cours**. Lorsque l’appareil virtuel est prêt à être utilisé, son état est **En cours d’exécution**.
 
-Utilisez hello suivant l’applet de commande toorestart un appareil virtuel.
+Utilisez les applets de commande suivantes pour redémarrer un appareil virtuel.
 
 `Restart-AzureVM -ServiceName "MyStorSimpleservice1" -Name "MyStorSimpleDevice"`
 

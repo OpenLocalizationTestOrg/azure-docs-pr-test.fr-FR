@@ -1,6 +1,6 @@
 ---
-title: "aaaEnable connexion Bureau à distance pour un rôle dans les Services de cloud computing Azure | Documents Microsoft"
-description: "Tooconfigure votre azure cloud service connexions Bureau à distance tooallow d’application"
+title: "Activer une connexion Bureau à distance pour un rôle dans Azure Cloud Services | Microsoft Docs"
+description: "Configuration de l’application de service cloud Azure pour autoriser les connexions Bureau à distance"
 services: cloud-services
 documentationcenter: 
 author: mmccrory
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
 ms.author: mmccrory
-ms.openlocfilehash: 55d7043df571c2e88b04aa9ef01dc8ae1d6784f7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0ff7fde5f3753aa6a24fb0af54d68d0dc0bd96a4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="enable-remote-desktop-connection-for-a-role-in-azure-cloud-services"></a>Activer une connexion Bureau à distance pour un rôle dans Azure Cloud Services
 > [!div class="op_single_selector"]
@@ -29,46 +29,46 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Bureau à distance vous permet de bureau de hello tooaccess d’un rôle en cours d’exécution dans Azure. Vous pouvez utiliser un tootroubleshoot de connexion Bureau à distance et diagnostiquer les problèmes avec votre application pendant son exécution.
+Le Bureau à distance vous permet d'accéder au bureau d'un rôle en cours d'exécution dans Azure. Vous pouvez utiliser une connexion Bureau à distance pour dépanner et diagnostiquer les problèmes rencontrés par votre application lorsqu'elle est en cours d'exécution.
 
-Vous pouvez activer une connexion Bureau à distance dans votre rôle pendant le développement en incluant les modules de bureau à distance hello dans votre définition de service, ou vous pouvez choisir tooenable Bureau à distance via hello Extension Bureau à distance. Hello approche par défaut est toouse hello Bureau à distance extension que vous pouvez activer le Bureau à distance même après que l’application hello est déployée sans tooredeploy votre application.
+Vous pouvez activer une connexion Bureau à distance dans votre rôle pendant le développement en incluant les modules Bureau à distance dans votre définition de service. Vous pouvez aussi activer le Bureau à distance via l’extension Bureau à distance. Cette deuxième approche est recommandée, car elle vous permet d’activer le Bureau à distance sans avoir à redéployer votre application.
 
-## <a name="configure-remote-desktop-from-hello-azure-portal"></a>Configurer le Bureau à distance à partir de hello portail Azure
-Hello portail Azure utilise approche d’Extension Bureau à distance hello même après que l’application hello est déployée, vous pouvez activer Bureau à distance. Hello **Bureau à distance** panneau pour votre service cloud vous permet de tooenable Bureau à distance, modifier le compte d’administrateur local hello utilisé tooconnect toohello virtuels, les certificats hello utilisés dans l’authentification et définir hello date d’expiration.
+## <a name="configure-remote-desktop-from-the-azure-portal"></a>Configurer le Bureau à distance à partir du portail Azure
+Le portail Azure utilise l’approche basée sur l’extension Bureau à distance, ce qui vous permet d’activer le Bureau à distance même après avoir déployé l’application. Le panneau **Bureau à distance** de votre service cloud vous permet d’activer le Bureau à distance, de changer le compte Administrateur local utilisé pour la connexion aux machines virtuelles ou le certificat employé dans l’authentification, et de définir la date d’expiration.
 
-1. Cliquez sur **Services de cloud computing**, cliquez sur nom hello du service de cloud hello, puis cliquez sur **Bureau à distance**.
+1. Cliquez sur **Cloud Services**, cliquez sur le nom du service cloud, puis sur **Bureau à distance**.
 
     ![Bureau à distance des Services Cloud](./media/cloud-services-role-enable-remote-desktop-new-portal/CloudServices_Remote_Desktop.png)
 
-2. Choisissez si vous souhaitez tooenable Bureau à distance pour un rôle individuel ou pour tous les rôles, puis modifiez trop de valeur du sélecteur de hello hello**activé**.
+2. Choisissez si vous souhaitez activer le Bureau à distance pour un rôle individuel ou pour tous les rôles, puis modifier la valeur du sélecteur en **Activé**.
 
-3. Renseignez les champs hello requis pour le nom d’utilisateur, mot de passe, d’expiration et certificat.
+3. Renseignez les champs requis pour le nom d’utilisateur, le mot de passe, la date d’expiration et le certificat.
 
     ![Bureau à distance des Services Cloud](./media/cloud-services-role-enable-remote-desktop-new-portal/CloudServices_Remote_Desktop_Details.png)
 
    > [!WARNING]
-   > toutes les instances de rôle sont redémarrées lorsque vous activez pour la première fois le Bureau à distance et cliquez sur OK (coche). tooprevent un redémarrage, le mot de passe hello hello certificat tooencrypt utilisé doit être installé sur le rôle de hello. tooprevent un redémarrage, [télécharger un certificat pour le service cloud hello](cloud-services-configure-ssl-certificate.md#step-3-upload-a-certificate) , puis revenez toothis la boîte de dialogue.
+   > toutes les instances de rôle sont redémarrées lorsque vous activez pour la première fois le Bureau à distance et cliquez sur OK (coche). Pour éviter un redémarrage, le certificat utilisé pour chiffrer le mot de passe doit être installé sur le rôle. Pour éviter un redémarrage, [téléchargez un certificat pour le service cloud](cloud-services-configure-ssl-certificate.md#step-3-upload-a-certificate) , puis revenez à cette boîte de dialogue.
    >
    >
-3. Dans **rôles**, sélectionnez rôle hello souhaité tooupdate **tous les** pour tous les rôles.
+3. Dans **Roles**, sélectionnez le rôle que vous voulez mettre à jour ou sélectionnez **Tous** pour tous les rôles.
 
-4. Lorsque les mises à jour de la configuration sont terminées, cliquez sur **Enregistrer**. Il prendra un certain temps avant que vos instances de rôle sont des connexions de tooreceive prêt.
+4. Lorsque les mises à jour de la configuration sont terminées, cliquez sur **Enregistrer**. Vos instances de rôles pourront recevoir les connexions quelques instants plus tard.
 
 ## <a name="remote-into-role-instances"></a>À distance dans les instances de rôle
-Une fois que Bureau à distance est activé sur les rôles de hello, vous pouvez établir une connexion directement à partir de hello portail Azure :
+Une fois que le Bureau à distance est activé sur les rôles, vous pouvez initier une connexion directement à partir du portail Azure :
 
-1. Cliquez sur **Instances** tooopen hello **Instances** panneau.
+1. Pour ouvrir le panneau **Instances**, cliquez sur **Instances**.
 2. Sélectionnez une instance de rôle pour laquelle la fonctionnalité Bureau à distance est configurée.
-3. Cliquez sur **Connect** toodownload un RDP de fichiers pour une instance de rôle hello.
+3. Cliquez sur **Connecter** afin de télécharger un fichier RDP pour l’instance de rôle.
 
     ![Bureau à distance des Services Cloud](./media/cloud-services-role-enable-remote-desktop-new-portal/CloudServices_Remote_Desktop_Connect.png)
 
-4. Cliquez sur **ouvrir** , puis **Connect** toostart hello connexion Bureau à distance.
+4. Cliquez sur **Ouvrir**, puis sur **Connecter** pour démarrer la connexion Bureau à distance.
 
 >[!NOTE]
-> Si votre service cloud se trouve derrière un groupe de sécurité réseau, vous devrez peut-être toocreate les règles qui autorisent le trafic sur les ports **3389** et **20000**.  Bureau à distance utilise le port **3389**.  Les instances de Service cloud sont à charge équilibrée, donc vous ne pouvez pas contrôler directement le tooconnect d’instance pour.  Hello *RemoteForwarder* et *RemoteAccess* agents gérer le trafic RDP et hello client toosend un cookie RDP et de spécifier un tooconnect instance individuelle pour.  Hello *RemoteForwarder* et *RemoteAccess* agents nécessitent ce port **20000*** être ouvert, ce qui peut être bloqué si vous disposez d’un groupe de sécurité réseau.
+> Si votre service cloud se trouve derrière un groupe de sécurité réseau, il peut être nécessaire de créer des règles qui autorisent le trafic sur les ports **3389** et **20000**.  Bureau à distance utilise le port **3389**.  Les instances de service cloud sont soumis à l’équilibrage de charge, donc vous ne pouvez pas contrôler directement à quelle instance vous vous connectez.  Les agents *RemoteForwarder* et *RemoteAccess* gèrent le trafic RDP, et permettent au client d’envoyer un cookie RDP et de spécifier une instance individuelle à laquelle se connecter.  Les agents *RemoteForwarder* et *RemoteAccess* nécessitent que ce port **20000*** soit ouvert : il peut être bloqué si vous avez un groupe de sécurité réseau.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-[Comment tooConfigure Services de cloud computing](cloud-services-how-to-configure.md)
-[Cloud FAQ - des services Bureau à distance](cloud-services-faq.md)
+[Configuration des services cloud](cloud-services-how-to-configure.md)
+[FAQ relatif aux services cloud : Bureau à distance](cloud-services-faq.md)

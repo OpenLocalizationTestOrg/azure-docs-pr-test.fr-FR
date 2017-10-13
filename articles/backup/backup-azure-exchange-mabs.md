@@ -1,6 +1,6 @@
 ---
-title: "aaaBack d’un tooAzure du serveur Exchange sauvegarde avec Azure Backup Server | Documents Microsoft"
-description: "Découvrez comment tooback d’un tooAzure du serveur Exchange de sauvegarde à l’aide d’Azure Backup Server"
+title: "Sauvegarder un serveur Exchange dans une sauvegarde Microsoft Azure avec le serveur de sauvegarde Azure | Microsoft Docs"
+description: "Découvrez comment sauvegarder un serveur Exchange dans une sauvegarde Microsoft Azure avec le serveur de sauvegarde Azure."
 services: backup
 documentationcenter: 
 author: pvrk
@@ -14,98 +14,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: pullabhk
-ms.openlocfilehash: db874161151fc57c5b79c41531e18d577f567f66
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 60b784fd00013c2b9504f8635c6b5c4c592563be
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="back-up-an-exchange-server-tooazure-backup-with-azure-backup-server"></a>Sauvegarder un tooAzure du serveur Exchange sauvegarde avec Azure Backup Server
-Cet article décrit comment tooback de Microsoft Azure Backup Server (MABS) tooconfigure d’un tooAzure de serveur Microsoft Exchange.  
+# <a name="back-up-an-exchange-server-to-azure-backup-with-azure-backup-server"></a>Sauvegarder un serveur Exchange dans une sauvegarde Microsoft Azure avec le serveur de sauvegarde Azure
+Cet article explique comment configurer un serveur de sauvegarde Azure pour sauvegarder un serveur Microsoft Exchange dans une sauvegarde Microsoft Azure.  
 
 ## <a name="prerequisites"></a>Composants requis
 Avant de continuer, assurez-vous que le serveur de sauvegarde Azure est [installé et prêt](backup-azure-microsoft-azure-backup.md).
 
 ## <a name="mabs-protection-agent"></a>Agent de protection du serveur de sauvegarde Azure
-tooinstall hello MABS l’agent de protection sur le serveur Exchange de hello, procédez comme suit :
+Pour installer l’agent de protection du serveur de sauvegarde Azure sur le serveur Exchange, procédez comme suit :
 
-1. Assurez-vous que les pare-feux hello est correctement configurés. Consultez [configurer des exceptions de pare-feu pour l’agent de hello](https://technet.microsoft.com/library/Hh758204.aspx).
-2. Installer l’agent de hello sur le serveur Exchange de hello en cliquant sur **Gestion > Agents > installer** dans la Console Administrateur de MABS. Consultez [installer l’agent de protection hello MABS](https://technet.microsoft.com/library/hh758186.aspx?f=255&MSPPError=-2147217396) pour obtenir des instructions détaillées.
+1. Assurez-vous que les pare-feux sont correctement configurés. Consultez la page [Configuration d’exceptions de pare-feu pour l’agent](https://technet.microsoft.com/library/Hh758204.aspx).
+2. Installez l’agent sur le serveur Exchange, en cliquant sur **Gestion > Agents > Installer** dans la console administrateur du serveur de sauvegarde Azure. Pour obtenir des instructions détaillées, consultez la page [Installation de l’agent de protection du serveur de sauvegarde Azure](https://technet.microsoft.com/library/hh758186.aspx?f=255&MSPPError=-2147217396).
 
-## <a name="create-a-protection-group-for-hello-exchange-server"></a>Créer un groupe de protection pour Exchange server de hello
-1. Dans la Console Administrateur de MABS de hello, cliquez sur **Protection**, puis cliquez sur **nouveau** sur Bonjour outil ruban tooopen Bonjour **créer un nouveau groupe de Protection** Assistant.
-2. Sur hello **Bienvenue** écran de hello, cliquez sur Assistant **suivant**.
-3. Sur hello **sélectionner le type de groupe de protection** , sélectionnez **serveurs** et cliquez sur **suivant**.
-4. Base de données Sélectionnez hello Exchange server que vous souhaitez tooprotect, cliquez sur **suivant**.
+## <a name="create-a-protection-group-for-the-exchange-server"></a>Créer un groupe de protection pour le serveur Exchange
+1. Dans la console administrateur du serveur de sauvegarde Azure, cliquez sur **Protection**, puis sélectionnez **Nouveau** dans la barre d’outils pour ouvrir l’assistant **Créer un groupe de protection**.
+2. Dans l’écran d’**accueil** de l’assistant, cliquez sur **Suivant**.
+3. Dans l’écran **Sélectionner le type de groupe de protection**, sélectionnez **Serveurs**, puis cliquez sur **Suivant**.
+4. Sélectionnez la base de données du serveur Exchange que vous souhaitez protéger, puis cliquez sur **Suivant**.
 
    > [!NOTE]
-   > Si vous protégez Exchange 2013, vérifiez hello [Exchange 2013 prerequisites](https://technet.microsoft.com/library/dn751029.aspx).
+   > Si vous protégez Exchange 2013, vérifiez les [Conditions préalables pour Exchange 2013](https://technet.microsoft.com/library/dn751029.aspx).
    >
    >
 
-    Bonjour l’exemple suivant, la base de données hello Exchange 2010 est sélectionné.
+    Dans l’exemple suivant, la base de données Exchange 2010 est sélectionnée.
 
     ![Sélectionner les membres du groupe](./media/backup-azure-backup-exchange-server/select-group-members.png)
-5. Sélectionnez la méthode de protection des données hello.
+5. Sélectionnez la méthode de protection des données.
 
-    Nom de groupe de protection hello et sélectionnez les deux hello options suivantes :
+    Attribuez un nom au groupe de protection, puis sélectionnez les deux options suivantes :
 
    * Je souhaite une protection à court terme à l’aide de Disque.
    * Je voudrais une protection en ligne.
 6. Cliquez sur **Suivant**.
-7. Sélectionnez hello **l’intégrité des données toocheck exécuter Eseutil** option si vous souhaitez que l’intégrité de hello toocheck des bases de données Exchange Server hello.
+7. Sélectionnez l’option **Exécuter Eseutil pour vérifier l’intégrité des données** si vous souhaitez vérifier l’intégrité des bases de données Exchange Server.
 
-    Une fois que vous sélectionnez cette option, la vérification de cohérence de sauvegarde sur est exécutée MABS tooavoid hello d’e/s le trafic généré en exécutant hello **eseutil** commande sur le serveur Exchange de hello.
+    Une fois cette option sélectionnée, une vérification de la cohérence de sauvegarde s’exécute sur le serveur de sauvegarde Azure, afin d’éviter le trafic d’E/S généré lors de l’exécution de la commande **eseutil** sur le serveur Exchange.
 
    > [!NOTE]
-   > toouse cette option, vous devez copier hello Ese.dll et le répertoire C:\Program Files\Microsoft Azure Backup\DPM\DPM\bin toohello des fichiers Eseutil.exe sur le serveur d’AMC hello. Dans le cas contraire, hello l’erreur suivante est déclenchée :  
+   > Pour utiliser cette option, vous devez copier les fichiers Ese.dll et Eseutil.exe dans le répertoire C:\Program Files\Microsoft Azure Backup\DPM\DPM\bin sur le serveur de sauvegarde Azure. Dans le cas contraire, l’erreur suivante est déclenchée :   
    > ![erreur eseutil](./media/backup-azure-backup-exchange-server/eseutil-error.png)
    >
    >
 8. Cliquez sur **Suivant**.
-9. Base de données Sélectionnez hello pour **sauvegarde de copie**, puis cliquez sur **suivant**.
+9. Sélectionnez la base de données pour **Sauvegarde de copie**, puis cliquez sur **Suivant**.
 
    > [!NOTE]
    > Si vous ne sélectionnez pas « Sauvegarde complète » pour au moins une copie DAG d’une base de données, les journaux ne seront pas tronqués.
    >
    >
-10. Configurer les objectifs de hello pour **sauvegarde à court terme**, puis cliquez sur **suivant**.
-11. Passez en revue l’espace disque disponible hello, puis cliquez sur **suivant**.
-12. Sélectionnez heure hello à quels hello AMC serveur sera créé, la réplication initiale hello, puis cliquez sur **suivant**.
-13. Sélectionnez les options de vérification de cohérence hello, puis cliquez sur **suivant**.
-14. Choisissez hello la base de données que vous souhaitez tooback les tooAzure, puis cliquez sur **suivant**. Par exemple :
+10. Configurez les objectifs de **Sauvegarde à court terme**, puis cliquez sur **Suivant**.
+11. Vérifiez l’espace disque disponible, puis cliquez sur **Suivant**.
+12. Sélectionnez l’heure à laquelle le serveur de sauvegarde Azure doit créer la réplication initiale, puis cliquez sur **Suivant**.
+13. Sélectionnez les options de vérification de cohérence, puis cliquez sur **Suivant**.
+14. Choisissez la base de données que vous souhaitez sauvegarder sur Azure, puis cliquez sur **Suivant**. Par exemple :
 
     ![Spécifier les données de protection en ligne](./media/backup-azure-backup-exchange-server/specify-online-protection-data.png)
-15. Définir la planification de hello pour **Azure Backup**, puis cliquez sur **suivant**. Par exemple :
+15. Définissez la planification pour **Azure Backup**, puis cliquez sur **Suivant**. Par exemple :
 
     ![Spécifier la planification de sauvegarde en ligne](./media/backup-azure-backup-exchange-server/specify-online-backup-schedule.png)
 
     > [!NOTE]
-    > Notez que les points de récupération en ligne sont basés sur des points de récupération complète express. Par conséquent, vous devez planifier un point de récupération hello après hello est spécifié pour hello express point de récupération complète.
+    > Notez que les points de récupération en ligne sont basés sur des points de récupération complète express. Par conséquent, vous devez planifier le point de récupération en ligne après l’heure spécifiée pour le point de récupération complète express.
     >
     >
-16. Configurer la stratégie de rétention hello pour **Azure Backup**, puis cliquez sur **suivant**.
+16. Configurer la stratégie de rétention pour **Azure Backup**, puis cliquez sur **Suivant**.
 17. Choisissez une option de réplication en ligne, puis cliquez sur **Suivant**.
 
-    Si vous avez une base de données volumineux, il peut prendre beaucoup de temps pour toobe sauvegarde initiale hello créée via le réseau de hello. tooavoid ce problème, vous pouvez créer une sauvegarde hors connexion.  
+    Si vous disposez d’une base de données volumineuse, la création de la sauvegarde initiale sur le réseau peut prendre un long moment. Pour éviter ce problème, vous pouvez créer une sauvegarde hors connexion.  
 
     ![Spécifier la stratégie de rétention en ligne](./media/backup-azure-backup-exchange-server/specify-online-retention-policy.png)
-18. Confirmez les paramètres de hello, puis cliquez sur **créer un groupe**.
+18. Confirmez les paramètres, puis cliquez sur **Créer un groupe**.
 19. Cliquez sur **Fermer**.
 
-## <a name="recover-hello-exchange-database"></a>Récupérer la base de données Exchange hello
-1. toorecover une base de données Exchange, cliquez sur **récupération** Bonjour Console MABS administrateur.
-2. Localisez la base de données Exchange hello que vous souhaitez toorecover.
-3. Sélectionnez un point de récupération en ligne à partir de hello *temps de récupération* liste déroulante.
-4. Cliquez sur **récupérer** toostart hello **Assistant récupération**.
+## <a name="recover-the-exchange-database"></a>Récupérer la base de données Exchange
+1. Pour récupérer une base de données Exchange, cliquez sur **Récupération** dans la console administrateur du serveur de sauvegarde Azure.
+2. Localisez la base de données Exchange que vous souhaitez récupérer.
+3. Sélectionnez un point de récupération en ligne dans la liste déroulante *Heure de récupération* .
+4. Cliquez sur **Récupérer** pour lancer **l’Assistant Récupération**.
 
 Pour les points de récupération en ligne, il existe cinq types de récupération :
 
-* **Récupérer l’emplacement du serveur Exchange toooriginal :** les données de salutation sera récupérée toohello d’origine Exchange server.
-* **Récupérer la base de données tooanother sur un serveur Exchange :** les données de salutation seront récupérés tooanother de base de données sur un autre serveur Exchange.
-* **Récupérer tooa de base de données de récupération :** les données de salutation seront récupéré tooan de base de données de récupération Exchange (RDB).
-* **Copier le dossier réseau tooa :** les données de salutation sera récupérée tooa dossier du réseau.
-* **Copiez tootape :** si vous avez une bibliothèque de bandes ou un lecteur de bande autonome attaché et configuré sur MABS, point de récupération hello seront copiés les bandes libres tooa.
+* **Récupérer à l’emplacement d’origine du serveur Exchange :** les données seront récupérées sur le serveur Exchange d’origine.
+* **Récupérer vers une autre base de données sur un serveur Exchange :** les données seront récupérées dans une autre base de données sur un autre serveur Exchange.
+* **Récupérer dans une base de données de récupération :** les données seront récupérées dans une base de données de récupération Exchange (RDB).
+* **Copier dans un dossier réseau :** les données seront récupérées dans un dossier réseau.
+* **Copier sur bande :** si une bibliothèque de bandes ou un lecteur de bandes autonome sont attachés et configurés sur le serveur de sauvegarde Azure, le point de récupération est copié sur une bande disponible.
 
     ![Choisir la réplication en ligne](./media/backup-azure-backup-exchange-server/choose-online-replication.png)
 

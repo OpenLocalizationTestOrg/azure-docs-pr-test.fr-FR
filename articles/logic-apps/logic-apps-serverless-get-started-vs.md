@@ -1,6 +1,6 @@
 ---
-title: aaaBuild une application sans dans Visual Studio | Documents Microsoft
-description: "Prise en main votre première application sans serveur avec ce guide sur la création, de déploiement et de gestion d’application hello dans Visual Studio."
+title: "Création d’une application sans serveur dans Visual Studio | Documents Microsoft"
+description: "Prenez en main votre première application sans serveur avec ce guide sur la création, le déploiement et la gestion de l’application dans Visual Studio."
 keywords: 
 services: logic-apps
 author: jeffhollan
@@ -15,77 +15,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/30/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: 74530eea6060ffe2139f7c9d6daab8a46f808162
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3672beda8a502e5fe2c8182076a8edef7ee9ebf6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="build-a-serverless-app-in-visual-studio-with-logic-apps-and-functions"></a>Création d’une application dans Visual Studio à l’aide de Logic Apps et Functions
 
-Les outils et fonctionnalités sans serveur dans Azure permettent un développement rapide et le déploiement d’applications cloud.  Ce document se concentre sur la façon de tooget démarré dans Visual Studio, créez une application sans serveur.  [Vous trouverez dans cet article](logic-apps-serverless-overview.md) une vue d’ensemble de la création d’une application sans serveur dans Azure.
+Les outils et fonctionnalités sans serveur dans Azure permettent un développement rapide et le déploiement d’applications cloud.  Ce document se concentre sur la prise en main de la création d’une application sans serveur dans Visual Studio.  [Vous trouverez dans cet article](logic-apps-serverless-overview.md) une vue d’ensemble de la création d’une application sans serveur dans Azure.
 
 ## <a name="getting-everything-ready"></a>Tout préparer
 
-Voici une application sans serveur à partir de Visual Studio hello requis toobuild :
+Voici les conditions préalables nécessaires à la création d’une application sans serveur à partir de Visual Studio :
 
 * [Visual Studio 2017](https://www.visualstudio.com/vs/) ou Visual Studio 2015 : Communauté, Professionnel ou Entreprise
 * [Outils Logic Apps pour Visual Studio](https://marketplace.visualstudio.com/items?itemName=VinaySinghMSFT.AzureLogicAppsToolsforVisualStudio-18551)
 * [Dernier kit de développement logiciel (SDK) Azure](https://azure.microsoft.com/downloads/) (2.9.1 ou supérieur)
 * [Azure PowerShell](https://github.com/Azure/azure-powershell#installation)
-* [Outils de principaux de fonctions Azure](https://www.npmjs.com/package/azure-functions-core-tools) toodebug fonctions localement
-* Web toohello d’accès lors de l’utilisation de hello incorporé Concepteur d’application logique
+* [Azure Functions Core Tools](https://www.npmjs.com/package/azure-functions-core-tools) pour déboguer les fonctions localement
+* Accès au web lors de l’utilisation du concepteur d’application logique intégré
 
 ## <a name="getting-started-with-a-deployment-template"></a>Prise en main avec un modèle de déploiement
 
-La gestion des ressources dans Azure est effectuée au sein d’un groupe de ressources.  Un groupe de ressources est un regroupement logique de ressources.  Les groupes de ressources permettent le déploiement et la gestion d’une collecte de ressources.  Pour une application sans serveur dans Azure, notre groupe de ressources comprend Azure Logic Apps et Azure Functions.  En utilisant le projet de groupe de ressources hello dans Visual Studio, nous sommes en mesure de toodevelop, gérer et déployer l’application entière hello en tant qu’un seul élément multimédia.
+La gestion des ressources dans Azure est effectuée au sein d’un groupe de ressources.  Un groupe de ressources est un regroupement logique de ressources.  Les groupes de ressources permettent le déploiement et la gestion d’une collecte de ressources.  Pour une application sans serveur dans Azure, notre groupe de ressources comprend Azure Logic Apps et Azure Functions.  Avec le projet de groupe de ressources dans Visual Studio, nous pouvons développer, gérer et déployer l’application complète en tant que ressource unique.
 
 ### <a name="create-a-resource-group-project-in-visual-studio"></a>Création d’un projet de groupe de ressources dans Visual Studio
 
-1. Dans Visual Studio, cliquez sur tooadd un **nouveau projet**
-1. Bonjour **Cloud** catégorie, sélectionnez toocreate Azure **groupe de ressources** projet  
- * Si vous ne voyez pas le projet répertoriés ou hello, veillez à ce que vous avez hello Azure SDK est installé pour Visual Studio
-1. Donnez à hello projet un nom et un emplacement, puis sélectionnez **Ok** toocreate Visual Studio vous invite à entrer un modèle de tooselect.  Vous pouvez sélectionner toostart de démarrer avec une logique d’application, vide ou une autre ressource.  Toutefois, nous utilisons dans ce cas un tooget de modèle de démarrage rapide Azure que nous a démarré avec une application sans serveur.
-1. Sélectionner les modèles de tooshow de **démarrage rapide d’Azure** ![les modèles en sélectionnant le démarrage rapide Azure][1]
-1. Modèle de démarrage rapide sans Select hello : **101-logic-app-and-function-app** et cliquez sur **Ok**
+1. Dans Visual Studio, cliquez sur l’option **Nouveau projet** pour en ajouter un.
+1. Dans la catégorie **Cloud**, sélectionnez l’option permettant de créer un projet **Groupe de ressources** Azure.  
+ * Si la catégorie ou le projet n’apparaissent pas dans la liste, assurez-vous que le Kit de développement logiciel Azure est installé pour Visual Studio.
+1. Nommez le projet et choisissez un emplacement, puis sélectionnez **Ok** afin de créer des invites Visual Studio pour sélectionner un modèle.  Vous pouvez sélectionner l’option permettant de démarrer à partir de l’espace vide, démarrer avec une application logique ou une autre ressource.  Toutefois, dans ce cas nous utilisons un modèle de démarrage rapide Azure pour commencer avec une application sans serveur.
+1. Sélectionnez cette option pour afficher les modèles de **Azure Quickstart** ![les modèles en sélectionnant le démarrage rapide Azure][1]
+1. Sélectionnez le modèle de démarrage rapide sans serveur : **101-logic-app-and-function-app** et cliquez sur **Ok**
 
-modèle de démarrage rapide de Hello crée un modèle de déploiement dans votre projet de groupe de ressources.  modèle de Hello contient une application logique simple qui appelle un fonctions Azure et retourne le résultat de hello.  Si vous ouvrez hello `azuredeploy.json` fichier hello l’Explorateur de solutions, vous pouvez voir les ressources hello pour une application sans serveur hello.
+Le modèle de démarrage rapide crée un modèle de déploiement dans votre projet de groupe de ressources.  Le modèle comprend une application logique simple qui appelle une fonction Azure et renvoie le résultat.  Si vous ouvrez le fichier `azuredeploy.json` dans l’explorateur de solutions, vous pouvez voir les ressources de l’application sans serveur.
 
-## <a name="deploying-hello-serverless-application"></a>Déploiement d’application sans serveur hello
+## <a name="deploying-the-serverless-application"></a>Déploiement de l’application sans serveur
 
-Avant de pouvoir ouvrir le concepteur visual hello application logique dans Visual Studio, il doit y toobe un groupe de ressources Azure déjà déployés.  Ainsi, toocreate de concepteur hello et utilisez connexions tooresources et services dans l’application logique de hello.  tooget démarré, il suffit de solution de hello toodeploy créée.
+Pour pouvoir ouvrir le concepteur visuel d’application logique dans Visual Studio, un groupe de ressources Azure doit être pré-déployé.  Le concepteur peut ainsi créer et utiliser des connexions aux services et aux ressources dans l’application logique.  Pour commencer, nous devons simplement déployer la solution créée.
 
-1. Projet de hello avec le bouton droit dans Visual Studio, sélectionnez **déployer**et créer un **nouveau** déploiement ![en sélectionnant le nouveau déploiement de ressources][2]
+1. Cliquez sur le projet dans Visual Studio, sélectionnez **déployer**et créer un **nouveau** déploiement ![en sélectionnant le nouveau déploiement de ressources][2]
 1. Sélectionnez un abonnement Azure et un groupe de ressources valides
-1. Sélectionnez trop**déployer** hello solution
-1. Entrez nom hello pour hello application logique et hello fonction l’application Azure.  nom de la fonction d’Azure Hello doit-elle toobe globalement unique.
+1. Sélectionnez l’option permettant de **Déployer** la solution.
+1. Entrez le nom de l’application logique et de l’application Azure Function.  Le nom de la fonction Azure Function doit être unique à l’échelle mondiale.
 
-les solutions sans serveur Hello déploiement dans le groupe de ressources spécifié hello.  Si vous examinez hello **sortie** dans Visual Studio, vous pouvez voir État hello du déploiement de hello.
+La solution sans serveur est déployée dans le groupe de ressources spécifié.  Si vous examinez la **sortie** dans Visual Studio, vous pouvez voir l’état du déploiement.
 
-## <a name="editing-hello-logic-app-in-visual-studio"></a>Modification d’application logique de hello dans Visual Studio
+## <a name="editing-the-logic-app-in-visual-studio"></a>Modification de l’application logique dans Visual Studio
 
-Une fois la solution de hello a été déployée dans n’importe quel groupe de ressources, concepteur visuel de hello pouvez tooedit utilisé et les rendre l’application de modifications toohello logique.
+Une fois que la solution a été déployée dans un groupe de ressources, le concepteur visuel peut modifier et apporter des modifications à l’application logique.
 
-1. Avec le bouton hello `azuredeploy.json` fichier hello l’Explorateur de solutions et sélectionnez **ouvrir avec logique applications Designer**
-1. Sélectionnez hello **groupe de ressources** et **emplacement** hello solution a été déployé tooand sélectionnez **OK**
+1. Avec le bouton droit de la souris, cliquez sur le fichier `azuredeploy.json` dans l’explorateur de solutions et sélectionnez **Ouvrir avec le concepteur de Logic Apps**.
+1. Sélectionnez le **groupe de ressources** et l’**emplacement** dans lesquels la solution a été déployée, puis cliquez sur **OK**.
 
-Concepteur visuel de Hello application logique doit maintenant être visible avec Visual Studio.  Vous pouvez continuer tooadd étapes, modifier le flux de travail hello et enregistrer les modifications.  Vous pouvez également créer des applications logiques à partir de Visual Studio.  Si vous cliquez sur hello **ressources** dans le navigateur de modèle hello, vous pouvez choisir tooadd un **application logique** toohello projet.  Les applications logique vide chargent dans le concepteur visual hello sans un avant déploiement dans un groupe de ressources.
+Le concepteur visuel d’application logique doit désormais être visible dans Visual Studio.  Vous pouvez continuer à ajouter des étapes, modifier le flux de travail et enregistrer les modifications.  Vous pouvez également créer des applications logiques à partir de Visual Studio.  Si vous cliquez avec le bouton droit de la souris sur les **Ressources** dans le navigateur de modèle, vous pouvez choisir d’ajouter une **application logique** au projet.  Les applications logiques vides sont chargées dans le concepteur visuel sans avoir été pré-déployées dans un groupe de ressources.
 
 ### <a name="managing-and-viewing-run-history-for-a-deployed-logic-app"></a>Gestion et affichage de l’historique d’exécution d’une application logique déployée
 
-Vous pouvez également gérer et afficher l’historique de hello exécuter pour les applications de logique déployées dans Azure.  Si vous ouvrez hello **Cloud Explorer** outil dans Visual Studio, vous pouvez avec le bouton droit n’importe quelle application logique et choisissez tooedit, désactiver, afficher les propriétés ou la vue de l’historique d’exécution.  En cliquant sur Modifier vous permet également toodownload une application publiée logique dans un projet de groupe de ressources Visual Studio.  Cela signifie que même si vous avez démarré la génération de votre application logique Bonjour portail Azure, vous pouvez toujours importer et gérer à partir de Visual Studio.
+Vous pouvez également gérer et afficher l’historique d’exécution des applications logiques déployées dans Azure.  Si vous ouvrez l’outil **Cloud Explorer** dans Visual Studio, vous pouvez cliquer avec le bouton droit de la souris sur n’importe quelle application logique et choisir de modifier, désactiver, afficher les propriétés ou afficher l’historique d’exécution.  En cliquant sur Modifier, vous pouvez également télécharger une application logique publiée dans un projet de groupe de ressources Visual Studio.  Ainsi, même si vous avez démarré la création de votre application logique dans le portail Azure, vous pouvez toujours l’importer et la gérer dans Visual Studio.
 
 ## <a name="developing-an-azure-function-in-visual-studio"></a>Développement d’une fonction Azure Function dans Visual Studio
 
-modèle de déploiement Hello déploie toutes les fonctions d’Azure qui sont contenus dans la solution hello pour le référentiel git de hello spécifié dans hello `azuredeploy.json` variables.  Si vous créez un projet de fonction au sein de la solution de hello, archivez-le dans le contrôle de code source (GitHub, Visual Studio Team Services, etc.) et mettre à jour de hello `repo` variable, modèle de hello déployer hello Azure (fonction).
+Le modèle de déploiement déploie toutes les fonctions Azure Function de la solution pour le référentiel git indiqué dans les variables `azuredeploy.json`.  Si vous créez un projet de fonction au sein de la solution, archivez-le dans le contrôle de code source (GitHub, Visual Studio Team Services, etc.) et mettez à jour la variable `repo` ; le modèle déploiera la fonction Azure Function.
 
 ### <a name="creating-an-azure-function-project"></a>Création d’un projet Azure Function
 
-Si à l’aide de JavaScript, Python, F #, un interpréteur de commandes, lot ou de PowerShell, suivez hello [étapes Bonjour fonctions CLI](../azure-functions/functions-run-local.md) toocreate un projet.  Si vous développez une fonction en c#, vous pouvez utiliser un [bibliothèque de classes c#](https://blogs.msdn.microsoft.com/appserviceteam/2017/03/16/publishing-a-net-class-library-as-a-function-app/) dans la solution actuelle de hello pour hello Azure (fonction).
+Si vous utilisez JavaScript, Python, F#, Bash, Batch ou PowerShell, suivez les [étapes qui se trouvent dans l’interface CLI de fonctions](../azure-functions/functions-run-local.md) pour créer un projet.  Si vous développez une fonction dans C#, vous pouvez utiliser une [bibliothèque de classes C#](https://blogs.msdn.microsoft.com/appserviceteam/2017/03/16/publishing-a-net-class-library-as-a-function-app/) dans la solution actuelle pour la fonction Azure Function.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Découvrez comment toobuild un tableau de bord social sans serveur](logic-apps-scenario-social-serverless.md)
+* [Découvrir comment créer un tableau de bord social sans serveur](logic-apps-scenario-social-serverless.md)
 * [Gestion d’une application logique à partir de Visual Studio Cloud Explorer](logic-apps-manage-from-vs.md)
 * [Langage de définition de flux de travail d’application logique](logic-apps-workflow-definition-language.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaConnect un appareil à l’aide de C sur Windows | Documents Microsoft"
-description: "Décrit comment tooconnect un toohello appareil Azure IoT Suite préconfiguré solution d’analyse à distance à l’aide d’une application écrite en C s’exécutant sous Windows."
+title: "Connexion d’un périphérique à l’aide de C sur Windows | Microsoft Docs"
+description: "Explique comment connecter un appareil à la solution de surveillance à distance Azure IoT Suite préconfigurée à l’aide d’une application écrite en C et exécutée sous Windows."
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,48 +15,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 51041e0cec113a5cfa006ab2276096baf928eef5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d222bcbd64f288d4091acb0ecd2922b9ceee57e5
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-windows"></a>Se connecter à votre solution préconfigurée (Windows) de surveillance à distance de toohello périphérique
+# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-windows"></a>Connexion de votre appareil à la solution préconfigurée de surveillance à distance (Windows)
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
 ## <a name="create-a-c-sample-solution-on-windows"></a>Création d’un exemple de solution C sur Windows
-Hello suit vous montre comment toocreate une application cliente qui communique avec le contrôle à distance hello solution préconfigurée. Cette application est écrite en C, générée et exécutée sur Windows.
+Les étapes suivantes vous montrent comment créer une application cliente qui communique avec la solution préconfigurée de surveillance à distance. Cette application est écrite en C, générée et exécutée sur Windows.
 
-Créer un projet de démarrage dans Visual Studio 2015 ou Visual Studio 2017 et ajouter les packages NuGet hello IoT Hub périphérique client :
+Créez un projet de démarrage dans Visual Studio 2015 ou Visual Studio 2017 et ajoutez les packages NuGet clients de l’appareil IoT Hub :
 
-1. Dans Visual Studio, créez une application de console C à l’aide de Visual C++ de hello **Application Console Win32** modèle. Projet de hello nom **RMDevice**.
-2. Sur hello **paramètres de l’Application** page Bonjour **Assistant Application Win32**, vérifiez que **application Console** est sélectionné, puis décochez la case **précompilé en-tête** et **du cycle de vie de développement de sécurité (SDL) vérifie**.
-3. Dans **l’Explorateur de solutions**, supprimer hello fichiers stdafx.h, targetver.h et stdafx.cpp.
-4. Dans **l’Explorateur de solutions**, renommez hello fichier RMDevice.cpp tooRMDevice.c.
-5. Dans **l’Explorateur de solutions**, avec le bouton droit sur hello **RMDevice** de projet, puis cliquez sur **gérer les packages NuGet**. Cliquez sur **Parcourir**, puis recherchez et installez hello suivant les packages NuGet :
+1. Dans Visual Studio, créez une application console C à l’aide du modèle **Application console Win32** de Visual C++. Nommez le projet **RMDevice**.
+2. Sur la page **Paramètres de l’application** dans **l’Assistant Application Win32**, assurez-vous que l’option **Application console** est sélectionnée et décochez les cases **En-tête précompilé** et **Vérifications SDL (Security Development Lifecycle)**.
+3. Dans l’ **Explorateur de solutions**, supprimez les fichiers stdafx.h, targetver.h et stdafx.cpp.
+4. Dans l’ **Explorateur de solutions**, renommez le fichier RMDevice.cpp en RMDevice.c.
+5. Dans **l’Explorateur de solutions**, cliquez avec le bouton droit sur le projet **RMDevice**, puis cliquez sur **Gérer les packages NuGet**. Cliquez sur **Parcourir**, puis recherchez et installez les packages NuGet suivants :
    
    * Microsoft.Azure.IoTHub.Serializer
    * Microsoft.Azure.IoTHub.IoTHubClient
    * Microsoft.Azure.IoTHub.MqttTransport
-6. Dans **l’Explorateur de solutions**, avec le bouton droit sur hello **RMDevice** de projet, puis cliquez sur **propriétés** du projet tooopen hello **Pages de propriétés**boîte de dialogue. Pour plus d’informations, consultez [Setting Visual C++ Project Properties (Définition des propriétés de projet Visual C++)][lnk-c-project-properties]. 
-7. Cliquez sur hello **l’éditeur de liens** dossier, puis cliquez sur hello **entrée** page de propriétés.
-8. Ajouter **crypt32.lib** toohello **dépendances supplémentaires** propriété. Cliquez sur **OK** , puis **OK** à nouveau les valeurs de propriété du projet toosave hello.
+6. Dans **l’Explorateur de solutions**, cliquez avec le bouton droit sur le projet **RMDevice**, puis cliquez sur **Propriétés** pour ouvrir la boîte de dialogue **Pages de propriétés** du projet. Pour plus d’informations, consultez [Setting Visual C++ Project Properties (Définition des propriétés de projet Visual C++)][lnk-c-project-properties]. 
+7. Cliquez sur le dossier **Linker**, puis cliquez sur la page de propriétés **d’entrée**.
+8. Ajoutez **crypt32.lib** à la propriété **Dépendances supplémentaires**. Cliquez sur **OK**, puis de nouveau sur **OK** pour enregistrer les valeurs des propriétés du projet.
 
-Ajouter hello Parson JSON bibliothèque toohello **RMDevice** de projet et ajouter hello requis `#include` instructions :
+Ajoutez la bibliothèque JSON Parson au projet **RMDevice** ainsi que les instructions `#include` requises :
 
-1. Dans un dossier approprié sur votre ordinateur, cloner le référentiel de Parson GitHub hello à l’aide de hello de commande suivante :
+1. Dans un dossier approprié sur votre ordinateur, clonez le référentiel GitHub Parson à l’aide de la commande suivante :
 
     ```
     git clone https://github.com/kgabis/parson.git
     ```
 
-1. Copiez les fichiers parson.h et parson.c hello copie locale hello hello Parson référentiel tooyour **RMDevice** dossier du projet.
+1. Copiez les fichiers parson.h et parson.c de la copie locale du référentiel Parson dans le dossier de votre projet **RMDevice**.
 
-1. Dans Visual Studio, avec le bouton droit hello **RMDevice** de projet, cliquez sur **ajouter**, puis cliquez sur **élément existant**.
+1. Dans Visual Studio, cliquez avec le bouton droit sur le projet **RMDevice**, cliquez sur **Ajouter**, puis sur **Élément existant**.
 
-1. Bonjour **ajouter un élément existant** boîte de dialogue, sélectionnez hello parson.h et parson.c les fichiers de hello **RMDevice** dossier du projet. Puis cliquez sur **ajouter** tooadd ces projets tooyour de deux fichiers.
+1. Dans la boîte de dialogue **Ajouter un élément existant**, sélectionnez les fichiers parson.h et parson.c dans le dossier du projet **RMDevice**. Cliquez ensuite sur **Ajouter** pour ajouter ces deux fichiers à votre projet.
 
-1. Dans Visual Studio, ouvrez le fichier de RMDevice.c hello. Remplacer hello `#include` instructions avec hello suivant de code :
+1. Dans Visual Studio, ouvrez le fichier RMDevice.c. Remplacez les instructions existantes `#include` par ce qui suit :
    
     ```c
     #include "iothubtransportmqtt.h"
@@ -70,15 +70,15 @@ Ajouter hello Parson JSON bibliothèque toohello **RMDevice** de projet et ajout
     ```
 
     > [!NOTE]
-    > Vous pouvez maintenant vérifier que votre projet comporte les dépendances appropriées hello en créer.
+    > À présent, vous pouvez vérifier que votre projet contient les dépendances appropriées définies en le générant.
 
 [!INCLUDE [iot-suite-connecting-code](../../includes/iot-suite-connecting-code.md)]
 
-## <a name="build-and-run-hello-sample"></a>Générer et exécuter l’exemple hello
+## <a name="build-and-run-the-sample"></a>Créer et exécuter l’exemple.
 
-Ajouter hello tooinvoke de code **distant\_analyse\_exécuter** fonction puis générer et exécuter l’application d’appareil hello.
+Ajoutez du code pour appeler la fonction **remote\_monitoring\_run**, puis générez et exécutez l’application de l’appareil.
 
-1. Remplacez hello **principal** fonction avec hello de tooinvoke de code suivant **distant\_analyse\_exécuter** fonction :
+1. Remplacez la fonction **main** par le code suivant pour appeler la fonction **remote\_monitoring\_run** :
    
     ```c
     int main()
@@ -88,9 +88,9 @@ Ajouter hello tooinvoke de code **distant\_analyse\_exécuter** fonction puis g�
     }
     ```
 
-1. Cliquez sur **générer** , puis **générer la Solution** application d’appareil toobuild hello.
+1. Cliquez sur **Générer**, puis sur **Générer la solution** pour générer l’application de l’appareil.
 
-1. Dans **l’Explorateur de solutions**, avec le bouton hello **RMDevice** de projet, cliquez sur **déboguer**, puis cliquez sur **démarrer une nouvelle instance** toorun hello exemple. console de Hello affiche les messages hello application envoie exemple télémétrie toohello solution préconfigurée, reçoit les valeurs de propriétés souhaitées définies dans le tableau de bord de solution hello et répond toomethods appelée à partir du tableau de bord de solution hello.
+1. Dans **l’Explorateur de solutions**, cliquez avec le bouton droit sur le projet **RMDevice**, cliquez sur **Déboguer**, puis cliquez sur **Démarrer une nouvelle instance** pour exécuter l’exemple. La console affiche des messages, car l’application envoie un échantillon de données de télémétrie à la solution préconfigurée, reçoit les valeurs de propriété souhaitées définies dans le tableau de bord de la solution et répond aux méthodes appelées à partir du tableau de bord de la solution.
 
 [!INCLUDE [iot-suite-visualize-connecting](../../includes/iot-suite-visualize-connecting.md)]
 

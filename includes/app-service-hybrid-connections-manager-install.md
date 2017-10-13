@@ -1,22 +1,22 @@
 
-1. Bonjour **connexions hybrides** panneau, cliquez sur la connexion hybride hello vous venez de créer, puis cliquez sur **écouteur le programme d’installation**.
+1. Dans le panneau **Connexions hybrides**, cliquez sur la connexion hybride que vous avez créée, puis sur **Configuration de l’écouteur**.
    
     ![Click Listener Setup](./media/app-service-hybrid-connections-manager-install/D04ClickListenerSetup.png)
-2. Hello **propriétés de connexion hybride** panneau s’ouvre. Sous **Gestionnaire de connexions hybrides local**, choisissez **télécharger et configurer manuellement**enregistrer hello téléchargé HybridConnectionManager.msi package et copiez la chaîne de connexion de passerelle hello.
+2. Le volet **Propriétés de la connexion hybride** s'ouvre. Sous **Gestionnaire de connexions hybrides locales**, choisissez **télécharger et configurer manuellement**, enregistrez le package HybridConnectionManager.msi téléchargé, puis copiez la chaîne de connexion de la passerelle.
    
-    ![Cliquez ici tooinstall](./media/app-service-hybrid-connections-manager-install/D05ClickToInstallHCM.png)
-3. À partir d’une invite de commandes administrateur, tapez Bonjour suivant le programme d’installation de commande toostart hello :
+    ![Cliquez ici pour l'installer](./media/app-service-hybrid-connections-manager-install/D05ClickToInstallHCM.png)
+3. À partir d'une invite de commandes administrateur, tapez la commande suivante pour démarrer le programme d'installation :
    
         start HybridConnectionManager.msi
-4. Après avoir hello s’exécute le programme d’installation, cliquez sur **pas maintenant**, puis recherchez le dossier de %ProgramFiles%\Microsoft\HybridConnectionManager toohello, exécutez HCMConfigWizard.exe et cliquez sur **Oui** Bonjour **utilisateur Contrôle de compte** boîte de dialogue.
-5. Collez la chaîne de connexion hybride hello que vous avez copiés précédemment et cliquez sur **OK**. 
+4. Une fois le programme d’installation lancé, cliquez sur **Pas maintenant**, accédez au dossier %ProgramFiles%\Microsoft\HybridConnectionManager, exécutez HCMConfigWizard.exe, puis cliquez sur **Oui** dans la boîte de dialogue **Contrôle de compte d’utilisateur**.
+5. Collez la chaîne de connexion hybride copiée précédemment, puis cliquez sur **OK**. 
    
     ![Installation](./media/app-service-hybrid-connections-manager-install/D08aHCMInstallManual.png)
-6. Fin de l’installation de hello, cliquez sur **fermer**.
+6. Une fois l'installation terminée, cliquez sur **Fermer**.
    
     ![Click Close](./media/app-service-hybrid-connections-manager-install/D09HCMInstallComplete.png)
    
-    Sur hello **connexions hybrides** panneau, hello **état** colonne affiche à présent **connecté**. 
+    Dans le panneau **Connexions hybrides**, la colonne **Statut** indique à présent **Connecté**. 
    
     ![Connected Status](./media/app-service-hybrid-connections-manager-install/D10HCStatusConnected.png)
 

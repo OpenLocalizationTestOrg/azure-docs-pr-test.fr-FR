@@ -1,6 +1,6 @@
 ---
-title: aaaAzure IoT Hub comment trop | Documents Microsoft
-description: "En tant que développeur, comment utiliser hello diverses fonctionnalités de IoT Hub ?"
+title: "Guide Azure IoT Hub | Microsoft Docs"
+description: "En tant que développeur, comment utiliser les différentes fonctionnalités IoT Hub ?"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,51 +14,51 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: d9c6e25bb332704dee4327bcdc361a299c064130
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 786121ae249d69376b4be4c74000868cbb208989
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-azure-iot-hub"></a>Comment toouse Azure IoT Hub
+# <a name="how-to-use-azure-iot-hub"></a>Utilisation d’Azure IoT Hub
 
-Vous disposez de différentes options toolearn comment toodevelop pour hello IoT Hub de service :
+Vous disposez de plusieurs options pour vous former au développement pour le service IoT Hub :
 
-* Lire les articles conceptuels hello qui décrivent les fonctionnalités de hello d’IoT Hub en détail.
-* Suivez l’une des didacticiels hello qui couvrent hello diverses fonctionnalités du IoT Hub.
+* Lisez les articles conceptuels qui décrivent les fonctionnalités de IoT Hub en détail.
+* Suivez l’un des didacticiels qui couvrent les différentes fonctionnalités de IoT Hub.
 
 ## <a name="developer-guide"></a>Guide du développeur
 
-En tant que développeur, vous pouvez lire des instructions détaillées conceptuelle sur IoT Hub Bonjour [Guide du développeur][lnk-devguide]. Ce guide comprend les éléments suivants :
+En tant que développeur, vous trouverez des recommandations détaillées sur l’IoT Hub dans le [Guide du développeur][lnk-devguide]. Ce guide comprend les éléments suivants :
 
-* Détails de toutes les fonctionnalités de IoT Hub qui vous aident à toolearn comment toouse les.
-* Des conseils sur la façon de toochoose lorsque plusieurs options sont disponibles.
+* Description détaillée de toutes les fonctionnalités de IoT Hub pour vous apprendre à les utiliser.
+* Conseils pour choisir entre plusieurs options disponibles.
 
 ## <a name="tutorials"></a>Didacticiels
 
-Si vous préférez toolearn sur les fonctionnalités de IoT Hub spécifiques en passant par des exercices pratiques, il existe plusieurs didacticiels toochoose, à partir de. La plupart de ces didacticiels sont disponibles dans plusieurs langages de programmation. Voici les didacticiels disponibles :
+Si vous souhaitez découvrir les fonctionnalités spécifiques de IoT Hub par le biais d’exercices pratiques, vous disposez à cet effet de plusieurs didacticiels. La plupart de ces didacticiels sont disponibles dans plusieurs langages de programmation. Voici les didacticiels disponibles :
 
-- [Traiter les messages appareil-à-cloud IoT Hub en utilisant les itinéraires][lnk-routes-tutorial]. Ce didacticiel vous montre comment toouse IoT Hub règles de routage toodispatch les messages appareil-à-cloud dans un moyen simple et basée sur la configuration.
+- [Traiter les messages appareil-à-cloud IoT Hub en utilisant les itinéraires][lnk-routes-tutorial]. Ce didacticiel explique comment utiliser les règles de routage de IoT Hub pour distribuer facilement les messages appareil-à-cloud.
 
-- [Envoi de messages cloud-à-appareil avec IoT Hub][lnk-c2d-tutorial]. Ce didacticiel vous montre comment les messages toosend cloud-à-appareil via IoT Hub et recevoir des messages cloud-à-appareil sur un appareil.
+- [Envoi de messages cloud-à-appareil avec IoT Hub][lnk-c2d-tutorial]. Ce didacticiel explique comment envoyer des messages cloud-à-appareil via IoT Hub et comment recevoir des messages cloud-à-appareil sur un appareil.
 
-- [Télécharger des fichiers à partir du cloud de toohello périphériques avec IoT Hub][lnk-upload-tutorial]. Ce didacticiel vous montre comment toouse hello téléchargement fonctionnalités du IoT Hub.
+- [Télécharger des fichiers à partir d’appareils vers le cloud avec IoT Hub][lnk-upload-tutorial]. Ce didacticiel vous montre comment utiliser les fonctions de téléchargement de fichiers de IoT Hub.
 
-- [Prise en main des représentations d’appareils][lnk-twin-tutorial]. Ce didacticiel vous présente toodevice jumeaux, les propriétés signalées, les propriétés souhaitées et les balises. Vous utilisez des valeurs de périphérique jumeaux toosynchronize avec vos appareils.
+- [Prise en main des représentations d’appareils][lnk-twin-tutorial]. Ce didacticiel décrit les jumeaux d’appareils, les propriétés déclarées, les propriétés souhaitées et les balises. Vous pouvez utiliser des jumeaux d’appareils pour synchroniser les valeurs de vos appareils.
 
-- [Utilisation des méthodes directes][lnk-methods-tutorial]. Ce didacticiel vous montre comment toouse directe des méthodes. Vous ajoutez un gestionnaire pour une méthode directe dans votre appareil simulé et que vous appelez la méthode directe hello de IoT Hub.
+- [Utilisation des méthodes directes][lnk-methods-tutorial]. Ce didacticiel explique comment utiliser des méthodes directes. Vous ajoutez un gestionnaire pour une méthode directe dans votre appareil simulé et appelez la méthode directe depuis IoT Hub.
 
-- [Prise en main de la gestion d’appareils][lnk-dm-tutorial]. Ce didacticiel vous montre comment la gestion des appareils clé toouse fonctionnalités telles que jumeaux et méthodes directes. Vous utilisez ces redémarrage tooremotely de fonctionnalités de votre appareil simulé.
+- [Prise en main de la gestion d’appareils][lnk-dm-tutorial]. Ce didacticiel vous montre comment utiliser les principales fonctionnalités de gestion d’appareils, notamment les jumeaux et les méthodes directes. Ces fonctionnalités vous permettent de redémarrer à distance votre appareil simulé.
 
-- [Utiliser les propriétés souhaitées tooconfigure périphériques][lnk-properties-tutorial]. Ce didacticiel vous montre comment double de toouse hello périphérique souhaité et qu’il a signalé des propriétés, tooremotely configurer votre appareil.
+- [Utilisation des propriétés souhaitées pour configurer des appareils][lnk-properties-tutorial]. Ce didacticiel explique comment combiner les propriétés souhaitées des jumeaux d’appareils aux propriétés signalées afin de configurer votre appareil à distance.
 
-- [Utiliser le périphérique travaux tooinitiate une mise à jour du microprogramme de périphérique][lnk-jobs-tutorial]. Ce didacticiel vous montre comment la gestion des appareils clé toouse fonctionnalités telles que jumeaux et méthodes directes. Vous apprendrez comment toouse tooremotely de ces fonctionnalités mettre à jour le microprogramme d’un périphérique.
+- [Utilisation de la gestion des appareils pour lancer une mise à jour du microprogramme d’un appareil][lnk-jobs-tutorial]. Ce didacticiel vous montre comment utiliser les principales fonctionnalités de gestion d’appareils, notamment les jumeaux et les méthodes directes. Vous apprenez à utiliser ces fonctionnalités pour mettre à jour à distance le microprogramme de votre appareil.
 
-- [Planifier et diffuser des travaux][lnk-schedule-tutorial]. Ce didacticiel vous montre comment toouse souhaité propriétés et méthodes directes toointeract avec plusieurs périphériques à une heure planifiée.
+- [Planifier et diffuser des travaux][lnk-schedule-tutorial]. Ce didacticiel vous montre comment utiliser les propriétés souhaitées et les méthodes directes pour interagir avec plusieurs appareils à une heure planifiée.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-toolearn en savoir plus sur hello service d’IoT Hub, consultez hello [Guide du développeur][lnk-devguide].
+Pour en savoir plus sur le service IoT Hub, consultez le [Guide du développeur][lnk-devguide].
 
 [lnk-devguide]: ./iot-hub-devguide.md
 [lnk-routes-tutorial]: ./iot-hub-csharp-csharp-process-d2c.md

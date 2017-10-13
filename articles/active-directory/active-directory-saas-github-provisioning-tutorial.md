@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : configuration de GitHub pour l’approvisionnement automatique d’utilisateurs avec Azure Active Directory | Documents Microsoft"
-description: "Découvrez comment tooconfigure Azure Active Directory tooautomatically disposition et la disposition de l’utilisateur des comptes tooGitHub."
+description: "Découvrez comment configurer Azure Active Directory pour approvisionner et déprovisionner automatiquement des comptes utilisateur sur GitHub."
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,89 +14,89 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: asmalser-msft
-ms.openlocfilehash: c1f0f7a42e4f8a94db3f409cd463e13bb1bc13bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3cc70273e95dbf4913e7bbcd8a37bd9a52987b60
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
 # <a name="tutorial-configuring-github-for-automatic-user-provisioning"></a>Didacticiel : configuration de GitHub pour l’approvisionnement automatique d’utilisateurs
 
 
-objectif Hello de ce didacticiel est tooshow vous hello étapes que vous devez tooperform dans GitHub et Azure AD tooautomatically approvisionner et configurer des comptes d’utilisateur à partir d’Azure AD tooGitHub. 
+L’objectif de ce didacticiel est de vous indiquer les étapes à suivre dans GitHub et Azure AD pour approvisionner et déprovisionner automatiquement des comptes utilisateur d’Azure AD vers GitHub. 
 
 ## <a name="prerequisites"></a>Composants requis
 
-scénario de Hello décrite dans ce didacticiel part du principe que vous avez déjà hello éléments suivants :
+Le scénario décrit dans ce didacticiel part du principe que vous disposez des éléments suivants :
 
-*   Un locataire Azure Active Directory
-*   Un locataire Github avec hello [offre commerciale](https://help.github.com/articles/organization-billing-plans/#business-plan) ou mieux activé 
+*   Un client Azure Active Directory
+*   Un client GitHub avec le [Plan d’entreprise](https://help.github.com/articles/organization-billing-plans/#business-plan) ou supérieur 
 *   Un compte d’utilisateur dans GitHub avec des autorisations d’administrateur 
 
 > [!NOTE]
-> Hello mise en service d’intégration de Azure AD s’appuie sur hello [GitHub SCIM API](https://developer.github.com/v3/scim/), qui est disponible tooGithub équipes sur le plan d’entreprise hello ou supérieures.
+> L’intégration de l’approvisionnement Azure AD s’appuie sur [l’API GitHub SCIM](https://developer.github.com/v3/scim/) disponible pour les équipes GitHub disposant du Plan d’entreprise ou supérieur.
 
-## <a name="assigning-users-toogithub"></a>Affectation d’utilisateurs tooGitHub
+## <a name="assigning-users-to-github"></a>Attribution d’utilisateurs à GitHub
 
-Azure Active Directory utilise un concept appelé toodetermine « affectations » les utilisateurs qui doivent recevoir l’accès tooselected applications. Dans le contexte de hello de configuration de compte automatique d’utilisateurs, seuls les utilisateurs de hello et les groupes qui ont été « affectés » application tooan dans Azure AD est synchronisé. 
+Azure Active Directory utilise un concept appelé « affectations » pour déterminer les utilisateurs devant recevoir l’accès aux applications sélectionnées. Dans le cadre de l’approvisionnement automatique de comptes utilisateur, seuls les utilisateurs et les groupes qui ont été « attribués » à une application dans Azure AD sont synchronisés. 
 
-Avant de configurer et de l’activation de hello service de configuration, vous devez toodecide quels utilisateurs ou des groupes dans Azure AD représentent hello utilisateurs qui doivent accéder à application de GitHub tooyour. Après choisi, vous pouvez attribuer à ces applications de GitHub tooyour les utilisateurs en suivant les instructions hello ici :
+Avant de configurer et d’activer le service d’approvisionnement, vous devez déterminer quels utilisateurs et/ou groupes dans Azure AD représentent les utilisateurs qui ont besoin d’accéder à votre application GitHub. Une fois que vous avez choisi, vous pouvez attribuer ces utilisateurs à votre application GitHub en suivant les instructions fournies ici :
 
-[Affecter une application d’entreprise tooan utilisateur ou un groupe](active-directory-coreapps-assign-user-azure-portal.md)
+[Affecter un utilisateur ou un groupe à une application d’entreprise](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-toogithub"></a>Conseils importants pour l’affectation d’utilisateurs tooGitHub
+### <a name="important-tips-for-assigning-users-to-github"></a>Conseils importants pour l’attribution d’utilisateurs à GitHub
 
-*   Il est recommandé qu’un seul utilisateur Azure AD est attribué tooGitHub tootest hello est mise en service de configuration. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
+*   Nous vous recommandons de n’assigner qu’un seul utilisateur Azure AD à GitHub afin de tester la configuration de l’approvisionnement. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
 
-*   Lorsque vous affectez un tooGitHub d’utilisateur, vous devez sélectionner soit hello **utilisateur** rôle, ou un autre valide spécifique à l’application (si disponible) dans la boîte de dialogue attribution hello. Hello **accès par défaut** rôle ne fonctionne pas pour la configuration, et ces utilisateurs sont ignorés.
+*   Quand vous attribuez un utilisateur à GitHub, vous devez sélectionner le rôle **Utilisateur** ou un autre rôle valide propre à l’application (si disponible) dans la boîte de dialogue d’attribution. Le rôle **Accès par défaut** ne fonctionne pas pour l’approvisionnement et ces utilisateurs sont ignorés.
 
 
-## <a name="configuring-user-provisioning-toogithub"></a>Configuration tooGitHub de configuration de l’utilisateur 
+## <a name="configuring-user-provisioning-to-github"></a>Configuration de l'approvisionnement des utilisateurs sur GitHub 
 
-Cette section vous guide à travers de la connexion du compte d’utilisateur de votre tooGitHub AD Azure API de configuration et configurez hello toocreate du service de configuration, de mettre à jour et de désactiver les comptes d’utilisateur affecté dans GitHub en fonction de l’affectation d’utilisateurs et de groupes dans Azure AD.
+Cette section explique comment connecter votre Azure AD à l’API d’approvisionnement de comptes d’utilisateur de GitHub pour créer, mettre à jour et désactiver les comptes d’utilisateur attribués dans GitHub en fonction des attributions d’utilisateurs et de groupes dans Azure AD.
 
 > [!TIP]
-> Vous pouvez également choisir tooenabled basé sur SAML Single Sign-On pour GitHub, en suivant les instructions hello fournies dans [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
+> Vous pouvez également choisir d’activer l’authentification unique basée sur SAML pour GitHub en suivant les instructions fournies dans le [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
 
 
-### <a name="configure-automatic-user-account-provisioning-toogithub-in-azure-ad"></a>Configurer le compte d’automatique de l’utilisateur de configuration tooGitHub dans Azure AD
+### <a name="configure-automatic-user-account-provisioning-to-github-in-azure-ad"></a>Configurer l’approvisionnement automatique de comptes utilisateurs vers GitHub dans Azure AD
 
 
-1. Bonjour [portail Azure](https://portal.azure.com), parcourir toohello **Azure Active Directory > applications d’entreprise > toutes les applications** section.
+1. Dans le [portail Azure](https://portal.azure.com), accédez à la section **Azure Active Directory > Applications d’entreprise > Toutes les applications**.
 
-2. Si vous avez déjà configuré GitHub pour l’authentification unique, recherchez votre instance de GitHub à l’aide du champ de recherche hello. Sinon, sélectionnez **ajouter** et recherchez **GitHub** dans la galerie d’applications hello. Sélectionnez GitHub à partir des résultats de recherche hello et ajoutez-le tooyour la liste des applications.
+2. Si vous avez déjà configuré GitHub pour l’authentification unique, recherchez votre instance de GitHub à l’aide du champ de recherche. Sinon, sélectionnez **Ajouter** et recherchez **GitHub** dans la galerie d’applications. Sélectionnez GitHub dans les résultats de recherche et ajoutez-le à votre liste d’applications.
 
-3. Sélectionnez votre instance de GitHub, puis hello **Provisioning** onglet.
+3. Sélectionnez votre instance de GitHub, puis sélectionnez l’onglet **Approvisionnement**.
 
-4. Ensemble hello **Mode d’approvisionnement** trop**automatique**.
+4. Définissez le **Mode d’approvisionnement** sur **Automatique**.
 
     ![Approvisionnement GitHub](./media/active-directory-saas-github-provisioning-tutorial/GitHub1.png)
 
-5. Sous hello **informations d’identification administrateur** , cliquez sur **Authorize**. Cette opération ouvre une boîte de dialogue d’autorisation GitHub dans une nouvelle fenêtre du navigateur. 
+5. Sous la section **informations d’identification de l’administrateur**, cliquez sur **Autoriser**. Cette opération ouvre une boîte de dialogue d’autorisation GitHub dans une nouvelle fenêtre du navigateur. 
 
-6. Dans la nouvelle fenêtre de hello, connectez-vous à GitHub à l’aide de votre compte d’administrateur. Hello résultant d’autorisation boîte de dialogue, sélectionnez équipe de GitHub hello que vous souhaitez la préparation de tooenable, puis sélectionnez **Authorize**. Une fois terminée, retournez toohello toocomplete portail Azure hello est mise en service de configuration.
+6. Dans la nouvelle fenêtre, connectez-vous à GitHub à l’aide de votre compte d’administrateur. Dans la boîte de dialogue d’autorisation qui s’affiche, sélectionnez l’équipe GitHub pour laquelle vous souhaitez activer l’approvisionnement, puis sélectionnez **Autoriser**. Une fois cela terminé, revenez au portail Azure pour terminer la configuration de l’approvisionnement.
 
     ![Boîte de dialogue d’autorisation](./media/active-directory-saas-github-provisioning-tutorial/GitHub2.png)
 
-7. Bonjour portail Azure, d’entrée **URL de client** et cliquez sur **tester la connexion** tooensure AD Azure peut se connecter tooyour GitHub application. Si hello connexion échoue, vérifiez votre compte GitHub dispose des autorisations administratives et **URl de client** vous entrez correctement, puis essayez de hello à nouveau l’étape « Autoriser » (vous pouvez constituer **URL de client** par règle : « https : //api.github.com/scim/v2/organizations/ + < Organizations_name > », vous pouvez trouver votre organisation sous votre compte GitHub : **paramètres** > **organisations**).
+7. Dans le portail Azure, entrez **URL cliente** et cliquez sur **Connexion test** pour vous assurer qu’Azure AD peut se connecter à votre application GitHub. Si la connexion échoue, vérifiez votre compte GitHub dispose des autorisations administratives et que**URl de client** est correctement entrée, puis recommencez l’étape « Autoriser » (vous pouvez constituer **l’URL de client** par règle : « https://api.github.com/scim/v2/organizations/ + < Organizations_name > », vous pouvez rechercher votre organisation sous votre compte GitHub : **Paramètres** > **Organisations**).
 
     ![Boîte de dialogue d’autorisation](./media/active-directory-saas-github-provisioning-tutorial/GitHub3.png)
 
-8. Entrez hello adresse de messagerie d’une personne ou un groupe qui doit recevoir des notifications d’erreur approvisionnement hello **courrier électronique de Notification** champ et la case à cocher de vérification hello « envoient une notification par courrier électronique lorsqu’une défaillance se produit ».
+8. Entrez l’adresse e-mail d’une personne ou d’un groupe qui doit recevoir les notifications d’erreur d’approvisionnement dans le champ **E-mail de notification**, puis cochez la case « Envoyer une notification par e-mail en cas de défaillance ».
 
 9. Cliquez sur **Enregistrer**. 
 
-10. Sous la section des mappages de hello, sélectionnez **tooGitHub de synchronisation Azure Active Directory Users**.
+10. Dans la section Mappages, sélectionnez **Synchroniser les utilisateurs Azure Active Directory avec GitHub**.
 
-11. Bonjour **des mappages d’attributs** section, passez en revue les attributs utilisateur hello qui sont synchronisés à partir d’Azure AD tooGitHub. Hello attributs sélectionnés en tant que **correspondance** propriétés sont des comptes d’utilisateur hello toomatch utilisés dans GitHub pour les opérations de mise à jour. Sélectionnez toocommit de bouton hello enregistrer toutes les modifications.
+11. Dans la section **Mappages des attributs**, passez en revue les attributs d’utilisateur qui sont synchronisés d’Azure AD vers GitHub. Les attributs sélectionnés en tant que propriétés de **Correspondance** sont utilisés pour faire correspondre les comptes d’utilisateur dans GitHub pour les opérations de mise à jour. Cliquez sur le bouton Enregistrer pour valider les modifications.
 
-12. tooenable hello service de configuration d’Azure AD pour GitHub, modification hello **état d’approvisionnement** trop**sur** Bonjour **paramètres** section
+12. Pour activer le service d’approvisionnement Azure AD pour GitHub, définissez **l’état d’approvisionnement** sur **Activé** dans la section **Paramètres**
 
 13. Cliquez sur **Enregistrer**. 
 
-Cette opération démarre la synchronisation initiale d’utilisateurs et/ou groupes affectés tooGitHub Bonjour les utilisateurs et la section groupes de hello. la synchronisation initiale Hello prend tooperform plus de temps que les synchronisations suivantes, qui se produisent toutes les 20 minutes environ tant que service de hello est en cours d’exécution. Vous pouvez utiliser hello **détails de synchronisation** section toomonitor cours et suivre des rapports d’activité tooprovisioning des liens, qui décrivent toutes les actions effectuées par hello service de configuration.
+Cette opération démarre la synchronisation initiale des utilisateurs et/ou des groupes attribués à GitHub dans la section Utilisateurs et Groupes. La synchronisation initiale prend plus de temps que les synchronisations suivantes, qui se produisent environ toutes les 20 minutes, tant que le service est en cours d’exécution. Vous pouvez utiliser la section **Détails de la synchronisation** pour surveiller la progression et suivre les liens vers les rapports d’activité d’approvisionnement, qui décrivent toutes les actions effectuées par le service d’approvisionnement.
 
-Pour plus d’informations sur l’approvisionnement hello Azure AD tooread du mode de connexion, consultez [création de rapports sur la configuration de compte automatique d’utilisateurs](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
+Pour plus d’informations sur la lecture des journaux d’approvisionnement Azure AD, consultez [Création de rapports sur l’approvisionnement automatique de comptes d’utilisateur](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
@@ -106,4 +106,4 @@ Pour plus d’informations sur l’approvisionnement hello Azure AD tooread du m
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Découvrez comment tooreview se connecte et obtenir des rapports sur l’activité de configuration](active-directory-saas-provisioning-reporting.md)
+* [Découvrez comment consulter les journaux et obtenir des rapports sur l’activité d’approvisionnement](active-directory-saas-provisioning-reporting.md)

@@ -1,6 +1,6 @@
 ---
-title: "Exporter tooSQL à partir de l’Application Azure Insights | Documents Microsoft"
-description: "En continu exporter tooSQL de données d’Application Insights à l’aide de flux de données Analytique."
+title: "Exporter vers SQL à partir d’Application Insights | Microsoft Docs"
+description: "Exportez de façon continue les données Application Insights vers SQL à l’aide de Stream Analytics."
 services: application-insights
 documentationcenter: 
 author: noamben
@@ -13,89 +13,89 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2015
 ms.author: bwren
-ms.openlocfilehash: 58b579499113751a088dc7e66cbec71529773322
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d51e80509ffb63cef0d01133a2295d58757d5b1a
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="walkthrough-export-toosql-from-application-insights-using-stream-analytics"></a>Procédure pas à pas : Exportation tooSQL à partir de l’Application Insights à l’aide de flux de données Analytique
-Cet article explique comment toomove vos données de télémétrie de [Azure Application Insights] [ start] dans une base de données SQL Azure à l’aide de [de l’exportation continue] [ export] et [Azure Stream Analytique](https://azure.microsoft.com/services/stream-analytics/). 
+# <a name="walkthrough-export-to-sql-from-application-insights-using-stream-analytics"></a>Procédure pas à pas : exporter vers SQL à partir d’Application Insights à l’aide de Stream Analytics
+Cet article explique comment déplacer vos données de télémétrie à partir d’[Azure Application Insights][start] vers une base de données SQL Azure à l’aide de l’[Exportation continue][export] et d’[Azure Stream Analytics](https://azure.microsoft.com/services/stream-analytics/). 
 
-L’exportation continue déplace vos données de télémétrie vers le stockage Azure au format JSON. Nous analyser hello des objets JSON à l’aide d’Analytique de flux de données Azure et créer des lignes dans une table de base de données.
+L’exportation continue déplace vos données de télémétrie vers le stockage Azure au format JSON. Nous analyserons les objets JSON à l’aide d’Azure Stream Analytics et créerons des lignes dans une table de base de données.
 
-(Plus généralement, l’exportation continue est hello moyen toodo votre propre analyse des données de télémétrie hello tooApplication Insights d’envoi de vos applications. Vous pourriez adapter cette toodo exemple de code autres choses avec les données de télémétrie hello exportée, telles que l’agrégation de données.)
+(Plus généralement, l’exportation continue est la méthode qui vous permet de réaliser votre propre analyse des données de télémétrie que vos applications transmettent à Application Insights. Vous pourriez adapter cet exemple de code pour effectuer d’autres actions à l’aide des données de télémétrie exportées, comme agréger les données.)
 
-Nous allons commencer par hypothèse hello que vous avez déjà application hello toomonitor.
+Nous allons partir du principe que vous disposez déjà de l’application que vous voulez analyser.
 
-Dans cet exemple, nous allons utiliser des données d’affichage page hello, mais hello même modèle peut facilement être étendu tooother des types de données tels que les événements personnalisés et les exceptions. 
+Dans cet exemple, nous allons utiliser les données d’affichage de page. Toutefois, le même modèle peut facilement être étendu à d’autres types de données, tels que des événements et des exceptions personnalisés. 
 
-## <a name="add-application-insights-tooyour-application"></a>Ajouter Application Insights tooyour application
-tooget démarré :
+## <a name="add-application-insights-to-your-application"></a>Ajouter Application Insights à votre application
+Pour commencer :
 
 1. [Configurer Application Insights pour vos pages web](app-insights-javascript.md). 
    
-    (Dans cet exemple, nous allons nous concentrer sur le traitement des données d’affichage de page dans les navigateurs clients hello, mais vous pouvez également configurer Application Insights pour côté serveur hello votre [Java](app-insights-java-get-started.md) ou [ASP.NET](app-insights-asp-net.md) application et le processus de demande dépendances et autres données de télémétrie du serveur.)
+    (Dans cet exemple, nous allons nous concentrer sur le traitement des données d’affichage de page dans les navigateurs clients, mais vous pouvez également configurer Application Insights pour le côté serveur de votre application [Java](app-insights-java-get-started.md) ou [ASP.NET](app-insights-asp-net.md) et traiter la demande, les dépendances et d’autres données de télémétrie du serveur.)
 2. Publiez votre application et surveillez les données de télémétrie apparaissant dans votre ressource Application Insights.
 
 ## <a name="create-storage-in-azure"></a>Création d’un stockage dans Azure
-Exportation continue retourne toujours le compte de stockage Azure données tooan, donc vous devez tout d’abord le stockage de hello toocreate.
+Comme l’exportation continue génère toujours des données vers un compte de stockage Azure, vous devez commencer par créer ce stockage.
 
-1. Créer un compte de stockage dans votre abonnement Bonjour [portail Azure][portal].
+1. Créez un compte de stockage dans votre abonnement sur le [portail Azure][portal].
    
     ![Sur le portail Azure, choisissez Nouveau, Données, Stockage. Sélectionnez Classique, cliquez sur Créer. Fournissez un nom de stockage.](./media/app-insights-code-sample-export-sql-stream-analytics/040-store.png)
 2. Créez un conteneur.
    
-    ![Dans un nouveau stockage hello, sélectionnez les conteneurs, cliquez sur la vignette de conteneurs hello, puis sur Ajouter](./media/app-insights-code-sample-export-sql-stream-analytics/050-container.png)
-3. Copiez la clé d’accès de stockage de hello
+    ![Dans le nouvel emplacement de stockage, sélectionnez Conteneurs, cliquez sur la mosaïque Conteneurs puis sur Ajouter.](./media/app-insights-code-sample-export-sql-stream-analytics/050-container.png)
+3. Copiez la clé d’accès au stockage.
    
-    Vous en aurez besoin dès tooset hello toohello d’entrée flux analytique service.
+    Vous en aurez bientôt besoin pour configurer l’entrée dans le service Stream analytics.
    
-    ![Dans le stockage de hello, ouvrez les paramètres, clés et effectuer une copie de hello clé d’accès primaire](./media/app-insights-code-sample-export-sql-stream-analytics/21-storage-key.png)
+    ![Dans le stockage, ouvrez Paramètres, Clés et copiez la clé d’accès principale.](./media/app-insights-code-sample-export-sql-stream-analytics/21-storage-key.png)
 
-## <a name="start-continuous-export-tooazure-storage"></a>Démarrer l’exportation continue tooAzure stockage
-1. Bonjour portail Azure, parcourir les ressources d’Application Insights toohello que vous avez créé pour votre application.
+## <a name="start-continuous-export-to-azure-storage"></a>Démarrer l’exportation continue vers le stockage Azure
+1. Sur le portail Azure, accédez à la ressource Application Insights que vous avez créée pour votre application.
    
     ![Sélectionnez Parcourir, Application Insights, puis votre application.](./media/app-insights-code-sample-export-sql-stream-analytics/060-browse.png)
 2. Créez une exportation continue.
    
     ![Choisissez Paramètres, Exportation continue, Ajouter.](./media/app-insights-code-sample-export-sql-stream-analytics/070-export.png)
 
-    Sélectionnez le compte de stockage hello que vous avez créé précédemment :
+    Sélectionnez le compte de stockage que vous avez préalablement créé.
 
-    ![Définir la destination de l’exportation hello](./media/app-insights-code-sample-export-sql-stream-analytics/080-add.png)
+    ![Définissez la destination de l’exportation.](./media/app-insights-code-sample-export-sql-stream-analytics/080-add.png)
 
-    Définir les types d’événement hello toosee :
+    Définissez les types d’événements que vous souhaitez afficher :
 
     ![Choisissez les types d’événements.](./media/app-insights-code-sample-export-sql-stream-analytics/085-types.png)
 
 
 1. Laissez les données s'accumuler. Installez-vous confortablement et laissez les utilisateurs utiliser votre application pendant un certain temps. Les données de télémétrie vont vous être transmises et vous permettre d’afficher des graphiques statistiques dans [Metrics explorer](app-insights-metrics-explorer.md) et des événements dans [Recherche de diagnostic](app-insights-diagnostic-search.md). 
    
-    Et, en outre, les données de salutation exportera tooyour stockage. 
-2. Inspecter les données hello exportée, soit dans le portail de hello - choisir **Parcourir**, sélectionnez votre compte de stockage, puis **conteneurs** - ou dans Visual Studio. Dans Visual Studio, sélectionnez **Afficher / Cloud Explorer**, puis ouvrez Azure / Stockage. (Si vous n’avez pas cette option de menu, vous devez tooinstall hello Azure SDK : ouvrir la boîte de dialogue Nouveau projet hello et ouvrez Visual C# / Cloud / obtenir Microsoft Azure SDK pour .NET.)
+    Les données seront également exportées vers votre stockage. 
+2. Inspectez les données exportées, soit dans le portail (choisissez **Parcourir**, sélectionnez votre compte de stockage, puis **Conteneurs**), soit dans Visual Studio. Dans Visual Studio, sélectionnez **Afficher / Cloud Explorer**, puis ouvrez Azure / Stockage. (Si vous n'avez pas cette option, vous devez installer le SDK Azure : Ouvrez la boîte de dialogue Nouveau projet et ouvrez Visual C# / Cloud / Obtenir Microsoft Azure SDK pour .NET.)
    
     ![Dans Visual Studio, ouvrez Explorateur de serveurs, Azure, Stockage](./media/app-insights-code-sample-export-sql-stream-analytics/087-explorer.png)
    
-    Prenez note de la partie commune de hello du nom de chemin d’accès de hello, qui est dérivé de la clé de nom et d’instrumentation application hello. 
+    Prenez note de la partie commune du nom du chemin d'accès, qui est dérivée du nom de l'application et de la clé d'instrumentation. 
 
-événements de Hello sont écrits les fichiers de tooblob au format JSON. Chaque fichier peut contenir un ou plusieurs événements. Par conséquent, nous souhaitons les données d’événement tooread hello et filtrer les champs hello. Il existe toutes sortes de choses que nous pouvons faire avec les données de hello, mais notre plan aujourd'hui est toouse flux Analytique toomove hello données tooa base de données SQL. Qui rend un grand nombre de toorun facile de requêtes intéressantes.
+Les événements sont écrits dans des fichiers blob au format JSON. Chaque fichier peut contenir un ou plusieurs événements. Donc, nous devons lire les données d’événement et filtrer les champs voulus. Nous pourrions effectuer toutes sortes d’opérations avec les données, mais notre objectif aujourd’hui est d’utiliser Stream Analytics pour déplacer les données vers une base de données SQL. Cette action va simplifier l’exécution d’un grand nombre de requêtes intéressantes.
 
 ## <a name="create-an-azure-sql-database"></a>Création d’une base de données SQL Azure
-À nouveau à partir de votre abonnement dans [portail Azure][portal], créer la base de données hello (et un nouveau serveur, sauf si vous avez déjà une) toowhich, vous allez écrire les données de salutation.
+Là encore, à partir de votre abonnement dans le [portail Azure][portal], créez la base de données (et un serveur si ce n’est déjà fait) dans laquelle vous allez écrire les données.
 
 ![Nouveau, Données, SQL](./media/app-insights-code-sample-export-sql-stream-analytics/090-sql.png)
 
-Assurez-vous que ce serveur de base de données hello autorise l’accès tooAzure services :
+Assurez-vous que le serveur de base de données permet d’accéder aux services Azure :
 
-![Parcourir, des serveurs, votre serveur, les paramètres, les pare-feu, autoriser l’accès à tooAzure](./media/app-insights-code-sample-export-sql-stream-analytics/100-sqlaccess.png)
+![Parcourir, Serveurs, votre serveur, Paramètres, Pare-feu, Autoriser l’accès à Azure](./media/app-insights-code-sample-export-sql-stream-analytics/100-sqlaccess.png)
 
 ## <a name="create-a-table-in-azure-sql-db"></a>Créer une table dans la base de données SQL Azure
-Se connecter toohello de base de données créée dans la section précédente, hello à votre outil de gestion préférés. Dans cette procédure pas à pas, nous utiliserons [Outils d’administration SQL Server](https://msdn.microsoft.com/ms174173.aspx) (SSMS).
+Connectez-vous à la base de données créée dans la section précédente à l’aide de votre outil de gestion préféré. Dans cette procédure pas à pas, nous utiliserons [Outils d’administration SQL Server](https://msdn.microsoft.com/ms174173.aspx) (SSMS).
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/31-sql-table.png)
 
-Créer une requête et exécutez hello T-SQL suivant :
+Créez une nouvelle requête et exécutez le T-SQL suivant :
 
 ```SQL
 
@@ -137,64 +137,64 @@ CREATE CLUSTERED INDEX [pvTblIdx] ON [dbo].[PageViewsTable]
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/34-create-table.png)
 
-Dans cet exemple, nous utilisons les données issues des affichages de pages. toosee hello d’autres données disponibles, examinez la sortie JSON et voir hello [exporter le modèle de données](app-insights-export-data-model.md).
+Dans cet exemple, nous utilisons les données issues des affichages de pages. Pour voir les autres données disponibles, examinez la sortie JSON et consultez le [modèle d’exportation de données](app-insights-export-data-model.md).
 
 ## <a name="create-an-azure-stream-analytics-instance"></a>Création d’une instance Azure Stream Analytics
-À partir de hello [portail Azure Classic](https://manage.windowsazure.com/), sélectionnez le service d’Analytique de flux de données Azure hello et créer une nouvelle tâche de flux de données Analytique :
+À partir du [portail classique Azure](https://manage.windowsazure.com/), sélectionnez le service Azure Stream Analytics et créez une nouvelle tâche Stream Analytics :
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/37-create-stream-analytics.png)
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/38-create-stream-analytics-form.png)
 
-Lors de la création de tâche hello, développer ses détails :
+Une fois la tâche créée, développez les informations qui s’y rapportent :
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/41-sa-job.png)
 
 #### <a name="set-blob-location"></a>Définition de l’emplacement des objets blob
-Définissez-le entrée tootake à partir de votre objet blob de l’exportation continue :
+Définissez-le pour qu’il tienne compte des données de votre objet blob d’exportation continue :
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/42-sa-wizard1.png)
 
-Vous devez maintenant hello clé d’accès primaire à partir de votre compte de stockage que vous avez notée précédemment. Définir en tant que clé de compte de stockage de hello.
+Vous devez maintenant disposer de la clé d’accès principale issue de votre compte de stockage, que vous avez notée précédemment. Définissez-la comme clé de compte de stockage.
 
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/46-sa-wizard2.png)
 
 #### <a name="set-path-prefix-pattern"></a>Définition de la séquence d’octets préfixe du chemin d’accès
 ![](./media/app-insights-code-sample-export-sql-stream-analytics/47-sa-wizard3.png)
 
-Être hello tooset que Format de Date trop**AAAA-MM-jj** (avec **tirets**).
+Veillez à définir le format de date sur **AAAA-MM-JJ** (avec des **tirets**).
 
-Hello modèle du préfixe de chemin d’accès spécifie comment Analytique de flux de données recherche les fichiers d’entrée hello dans le stockage hello. Vous devez tooset il toohow toocorrespond de l’exportation continue stocke les données de hello. Définissez-la comme suit :
+La séquence d’octets préfixe du chemin d’accès spécifie la manière dont Stream Analytics recherche les fichiers d’entrée dans le stockage. Vous devez la configurer pour correspondre au mode de stockage des données de l'exportation continue. Définissez-la comme suit :
 
     webapplication27_12345678123412341234123456789abcdef0/PageViews/{date}/{time}
 
 Dans cet exemple :
 
-* `webapplication27`est le nom hello Hello ressource Application Insights, **tout en minuscules**. 
-* `1234...`est la clé d’instrumentation hello Hello ressource Application Insights **et tirets supprimés**. 
-* `PageViews`est hello type de données, nous souhaitons tooanalyze. les types disponibles Hello dépendent de filtre hello que vous définissez dans l’exportation continue. Examiner les autres types disponibles hello de toosee données exportées hello et consultez hello [exporter le modèle de données](app-insights-export-data-model.md).
+* `webapplication27` est le nom de la ressource Application Insights, **tout en minuscules**. 
+* `1234...` est la clé d’instrumentation de la ressource Application Insights **avec les tirets supprimés**. 
+* `PageViews` est le type de données que nous souhaitons analyser. Les types disponibles varient selon le filtre que vous définissez dans l’exportation continue. Examinez les données exportées pour voir les autres types disponibles et consultez le [modèle d’exportation de données](app-insights-export-data-model.md).
 * `/{date}/{time}` est une séquence écrite de manière littérale.
 
-nom de hello tooget iKey de votre ressource Application Insights, ouvrez Essentials dans sa page de présentation et ouvrir les paramètres.
+Pour obtenir le nom et l’iKey de votre ressource Application Insights, ouvrez Essentials sur sa page de présentation ou ouvrez Paramètres.
 
 #### <a name="finish-initial-setup"></a>Fin de l’installation initiale
-Vérifiez le format de sérialisation hello :
+Confirmez le format de sérialisation :
 
 ![Confirmez et fermez l’assistant.](./media/app-insights-code-sample-export-sql-stream-analytics/48-sa-wizard4.png)
 
-Fermez l’Assistant de hello et attendez hello le programme d’installation toocomplete.
+Fermez l’assistant et attendez la fin de l’installation.
 
 > [!TIP]
-> Utilisez hello exemple fonction toocheck que vous avez défini un chemin d’accès d’entrée de hello correctement. En cas d’échec : Vérifiez qu’il existe des données dans le stockage hello pour la plage de temps exemple hello choisis. Modifier la définition d’entrée de hello et définir le compte de stockage hello, préfixe de chemin d’accès et de format de date correctement.
+> Utilisez l’exemple de fonction pour vérifier que vous avez correctement défini le chemin d’accès d’entrée. En cas d’échec, vérifiez qu’il y a des données dans le stockage pour l’exemple de période que vous avez choisi. Modifiez la définition de l’entrée et vérifiez que vous avez correctement défini le compte de stockage, le préfixe de chemin d’accès et le format de date.
 > 
 > 
 
 ## <a name="set-query"></a>Définition d’une requête
-Ouvrez la section de requête hello :
+Ouvrez la section de la requête :
 
 ![Dans Stream analytics, sélectionnez Requête.](./media/app-insights-code-sample-export-sql-stream-analytics/51-query.png)
 
-Remplacez la requête par défaut de hello avec :
+Remplacez la requête par défaut par :
 
 ```SQL
 
@@ -232,37 +232,37 @@ Remplacez la requête par défaut de hello avec :
 
 ```
 
-Notez que hello tout d’abord certaines propriétés sont spécifiques de toopage afficher les données. Les exportations d’autres types de télémétrie disposent de propriétés différentes. Consultez hello [détaillées de référence de modèle de données pour les valeurs et les types de propriété hello.](app-insights-export-data-model.md)
+Notez que les premières propriétés sont spécifiques aux données d’affichage de page. Les exportations d’autres types de télémétrie disposent de propriétés différentes. Consultez la [référence de modèle de données détaillé pour les valeurs et types de propriétés.](app-insights-export-data-model.md)
 
-## <a name="set-up-output-toodatabase"></a>Configurer la sortie toodatabase
-Sélectionnez SQL en tant que sortie de hello.
+## <a name="set-up-output-to-database"></a>Configuration de la sortie vers la base de données
+Sélectionnez SQL comme sortie.
 
 ![Dans Stream analytics, sélectionnez Sorties.](./media/app-insights-code-sample-export-sql-stream-analytics/53-store.png)
 
-Spécifiez la base de données SQL hello.
+Spécifiez la base de données SQL.
 
-![Renseignez les détails de hello de votre base de données](./media/app-insights-code-sample-export-sql-stream-analytics/55-output.png)
+![Remplissez les détails de votre base de données.](./media/app-insights-code-sample-export-sql-stream-analytics/55-output.png)
 
-Fermez l’Assistant de hello et attendre une notification de sortie de hello a été configuré.
+Fermez l’assistant et attendez une notification indiquant que la sortie a été configurée.
 
 ## <a name="start-processing"></a>Démarrage du traitement
-Démarrer le travail de hello à partir de la barre d’action hello :
+Démarrez la tâche à partir de la barre d’action :
 
 ![Dans Stream Analytics, cliquez sur Démarrer.](./media/app-insights-code-sample-export-sql-stream-analytics/61-start.png)
 
-Vous pouvez choisir si le traitement de toostart hello des données à partir de maintenant, ou toostart avec des données antérieures. Hello ce dernier est utile si vous avez eu l’exportation continue déjà en cours d’exécution pendant un certain temps.
+Vous pouvez choisir de démarrer le traitement à partir de données actuelles ou de données antérieures. La dernière possibilité est utile si l’exportation continue fonctionne déjà depuis un certain temps.
 
 ![Dans Stream Analytics, cliquez sur Démarrer.](./media/app-insights-code-sample-export-sql-stream-analytics/63-start.png)
 
-Après quelques minutes, outils de gestion de serveur tooSQL revenir en arrière et regarder la hello données circulent dans. Utilisez, par exemple, le type de requête suivant :
+Après quelques minutes, revenez aux Outils d’administration SQL Server et observez les données qui y circulent. Utilisez, par exemple, le type de requête suivant :
 
     SELECT TOP 100 *
     FROM [dbo].[PageViewsTable]
 
 
 ## <a name="related-articles"></a>Articles connexes
-* [TooPowerBI d’exportation à l’aide de flux de données Analytique](app-insights-export-power-bi.md)
-* [Informations de référence pour les types de propriété hello et les valeurs de modèle de données détaillées.](app-insights-export-data-model.md)
+* [Exporter vers PowerBI à l’aide de Stream Analytics](app-insights-export-power-bi.md)
+* [Référence de modèle de données détaillé pour les valeurs et types de propriétés.](app-insights-export-data-model.md)
 * [Exportation continue dans Application Insights](app-insights-export-telemetry.md)
 * [Application Insights](https://azure.microsoft.com/services/application-insights/)
 

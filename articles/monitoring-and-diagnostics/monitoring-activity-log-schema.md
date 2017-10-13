@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure schéma événements des journaux d’activité | Documents Microsoft"
-description: "Comprendre le schéma d’événement hello pour les données émises dans le journal d’activité de hello"
+title: "Schéma d’événements du journal d’activité Azure | Documents Microsoft"
+description: "Comprendre le schéma d’événement pour les données émises dans le journal d’activité"
 author: johnkemnetz
 manager: robb
 services: monitoring-and-diagnostics
@@ -12,17 +12,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: johnkem
-ms.openlocfilehash: dfece949a20a4d9b4e8a4d488c1c34842d87d586
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a4ceb822e0ec3e1c1dc31ece1db761834e795f6c
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="azure-activity-log-event-schema"></a>Schéma d’événements du journal d’activité
-Hello **journal des activités Azure** est un journal qui fournit un aperçu de tous les événements de niveau d’abonnement qui se sont produites dans Azure. Cet article décrit le schéma d’événement hello par catégorie de données.
+Le **Journal d’activité Azure** est un journal qui fournit un aperçu de tous les événements de niveau d’abonnement qui se sont produits dans Azure. Cet article décrit le schéma d’événements par catégorie de données.
 
 ## <a name="administrative"></a>Administratif
-Cette catégorie contient les enregistrement hello de tous les créer, les opérations de mise à jour, de suppression et d’action effectuée par le biais du Gestionnaire de ressources. Exemples de hello les types d’événements que vous verriez dans cette catégorie incluent « créer la machine virtuelle » et « supprimer un groupe de sécurité réseau « chaque action effectuée par un utilisateur ou l’application à l’aide du Gestionnaire de ressources est modelée comme une opération sur un type particulier. Si le type d’opération hello est écrire, supprimer, ou Action, enregistrements hello de début de hello et réussite ou Échec de cette opération sont enregistrées dans la catégorie Administrative de hello. catégorie Administrative de Hello inclut également toutes les modifications de contrôle d’accès toorole dans un abonnement.
+Cette catégorie contient l’enregistrement de toutes les opérations de création, mise à jour, suppression et action effectuées par le biais du gestionnaire de ressources. Les exemples de types d’événements que vous pouvez voir dans cette catégorie incluent « créer une machine virtuelle » et « supprimer un groupe de sécurité réseau ». Toute mesure prise par un utilisateur ou une application utilisant le gestionnaire de ressources est modélisée comme une opération sur un type de ressources en particulier. Si le type d’opération est Écrire, Supprimer ou Action, les enregistrements de début et de réussite ou d’échec de cette opération sont enregistrés dans la catégorie Administrative. La catégorie Administrative inclut également toute modification apportée à un contrôle d’accès basé sur un rôle dans un abonnement.
 
 ### <a name="sample-event"></a>Exemple d’événement
 ```json
@@ -102,29 +102,29 @@ Cette catégorie contient les enregistrement hello de tous les créer, les opér
 ### <a name="property-descriptions"></a>Description des propriétés
 | Nom de l’élément | Description |
 | --- | --- |
-| autorisation |Objet BLOB de propriétés RBAC de l’événement de hello. Inclut généralement les propriétés « action », « rôle » et « portée » hello. |
-| caller |Adresse de messagerie de l’utilisateur de hello qui a effectué les opération hello, revendication UPN ou revendication SPN basée sur la disponibilité. |
-| channels |Une des valeurs suivantes de hello : « Admin », « Opération » |
-| réclamations |un jeton JWT Hello utilisés par Active Directory tooauthenticate hello utilisateur ou l’application tooperform cette opération dans le Gestionnaire de ressources. |
-| correlationId |Généralement, un GUID au format de chaîne hello. Les événements qui partagent un ID de corrélation appartiennent toohello même action uber. |
+| autorisation |Objet blob des propriétés RBAC de l’événement. Inclut généralement les propriétés « action », « role » et « scope ». |
+| caller |Adresse e-mail de l’utilisateur qui a effectué l’opération, la revendication UPN ou la revendication SPN basée sur la disponibilité. |
+| channels |L’une des valeurs suivantes : « Admin », « Operation ». |
+| réclamations |Le jeton JWT utilisé par Active Directory pour authentifier l’utilisateur ou l’application afin d’effectuer cette opération dans le gestionnaire de ressources. |
+| correlationId |Généralement un GUID au format chaîne. Les événements qui partagent un correlationId appartiennent à la même action uber. |
 | description |Description textuelle statique d’un événement. |
 | eventDataId |Identificateur unique d’un événement. |
-| httpRequest |BLOB hello décrivant requête Http. Inclut généralement hello « clientRequestId », « clientIpAddress » et « method » (méthode HTTP. Par exemple, PUT). |
-| level |Niveau d’événement de hello. Une des valeurs suivantes de hello : « Critiques », « Erreur », « Avertissement », « Information » et « Commentaires » |
-| resourceGroupName |Nom du groupe de ressources hello pour hello incidence sur la ressource. |
-| resourceProviderName |Nom du fournisseur de ressources hello pour hello affectées les ressources |
-| resourceId |Id de ressource de hello affectées les ressources. |
-| operationId |Un GUID est partagé entre les événements hello qui correspondent tooa une seule opération. |
-| operationName |Nom de l’opération de hello. |
-| properties |Jeu de `<Key, Value>` paires (autrement dit, un dictionnaire) hello décrivant les événements hello. |
-| status |Chaîne décrivant l’état hello d’opération de hello. Certaines valeurs courantes sont : Started, In Progress, Succeeded, Failed, Active, Resolved. |
-| subStatus |Généralement hello le code d’état HTTP de hello correspondant appel REST, mais peut également inclure d’autres chaînes décrivant un sous-état, telles que ces valeurs courantes : OK (Code d’état HTTP : 200), créé (Code d’état HTTP : 201), accepté (Code d’état HTTP : 202), aucun contenu (HTTP Code d’état : 204), demande incorrecte (Code d’état HTTP : 400), il est introuvable (Code d’état HTTP : 404), conflit (Code d’état HTTP : 409), erreur interne au serveur (Code d’état HTTP : 500), Service indisponible (Code d’état HTTP : 503), délai d’attente de la passerelle (Code d’état HTTP : 504). |
-| eventTimestamp |Horodatage lors de l’événement de hello a été généré par hello du traitement du service Azure hello demande événement hello correspondant. |
-| submissionTimestamp |Horodatage lors de l’événement de hello sont devenues disponible pour l’interrogation. |
+| httpRequest |Objet blob décrivant la requête Http. Inclut généralement clientRequestId, clientIpAddress et la méthode (méthode HTTP. Par exemple, PUT). |
+| minimal |Niveau de l’événement. Une des valeurs suivantes : Critical, Error, Warning, Informational et Verbose |
+| resourceGroupName |Nom du groupe de ressources de la ressource affectée. |
+| resourceProviderName |Nom du fournisseur de ressources de la ressource affectée. |
+| resourceId |ID de ressource de la ressource affectée. |
+| operationId |Un GUID partagé par les événements correspondant à une opération unique. |
+| operationName |Nom de l’opération. |
+| properties |Jeu de paires `<Key, Value>` (c’est-à-dire Dictionary) décrivant les détails de l’événement. |
+| status |Chaîne décrivant l’état de l’opération. Certaines valeurs courantes sont : Started, In Progress, Succeeded, Failed, Active, Resolved. |
+| subStatus |Il s’agit généralement du code d’état HHTP de l’appel REST correspondant, mais également d’autres chaînes décrivant un sous-état, comme ces valeurs courantes : OK (Code d’état HTTP : 200), Created (Code d’état HTTP : 201), Accepted (Code d’état HTTP : 202), No content (Code d’état HTTP : 204), Bad Request (Code d’état HTTP : 400), Not found (Code d’état HTTP : 404), Conflict (Code d’état HTTP : 409), Internal Server Error (Code d’état HTTP : 500), Service Unavailable (Code d’état HTTP : 503), Gateway Timeout (Code d’état HTTP : 504). |
+| eventTimestamp |Horodatage lorsque l’événement a été généré par le service Azure traitant la demande correspondant à l’événement. |
+| submissionTimestamp |Horodatage lorsque l’événement est devenu disponible pour l’interrogation. |
 | subscriptionId |ID d’abonnement Azure. |
 
 ## <a name="service-health"></a>État d’intégrité du service
-Cette catégorie contient un enregistrement hello n’importe quel contrôle d’intégrité des incidents de services qui se sont produites dans Azure. Un exemple de type hello d’événement que vous verriez dans cette catégorie est « SQL Azure dans l’est des États-Unis rencontre des temps d’arrêt. » Événements de contrôle d’intégrité de service existe cinq types : Action requise, récupération d’assistance, Incident, Maintenance, informations ou la sécurité et n’apparaissent que si vous avez une ressource dans l’abonnement hello qui est affecté par l’événement de hello.
+Cette catégorie contient l’enregistrement de tout incident de l’état d’intégrité du service qui se sont produits dans Azure. Un exemple du type d’événement que vous pouvez voir dans cette catégorie est « SQL Azure dans l’est des États-Unis rencontre des temps d’arrêt. » Les événements de l’état d’intégrité du service se présentent sous cinq variétés : action requise, récupération assistée, incident, maintenance, informations ou sécurité et n’apparaissent que si une ressource de votre abonnement est affectée par l’événement.
 
 ### <a name="sample-event"></a>Exemple d’événement
 ```json
@@ -168,13 +168,13 @@ Cette catégorie contient un enregistrement hello n’importe quel contrôle d�
     "title": "Network Infrastructure - UK South",
     "service": "Service Fabric",
     "region": "UK South",
-    "communication": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited tooApp Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows toomitigate hello impact. hello next update will be provided in 60 minutes, or as events warrant.",
+    "communication": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited to App Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows to mitigate the impact. The next update will be provided in 60 minutes, or as events warrant.",
     "incidentType": "Incident",
     "trackingId": "NA0F-BJG",
     "impactStartTime": "2017-07-20T21:41:00.0000000Z",
     "impactedServices": "[{\"ImpactedRegions\":[{\"RegionName\":\"UK South\"}],\"ServiceName\":\"Service Fabric\"}]",
     "defaultLanguageTitle": "Network Infrastructure - UK South",
-    "defaultLanguageContent": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited tooApp Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows toomitigate hello impact. hello next update will be provided in 60 minutes, or as events warrant.",
+    "defaultLanguageContent": "Starting at approximately 21:41 UTC on 20 Jul 2017, a subset of customers in UK South may experience degraded performance, connectivity drops or timeouts when accessing their Azure resources hosted in this region. Engineers are investigating underlying Network Infrastructure issues in this region. Impacted services may include, but are not limited to App Services, Automation, Service Bus, Log Analytics, Key Vault, SQL Database, Service Fabric, Event Hubs, Stream Analytics, Azure Data Movement, API Management, and Azure Search. Multiple engineering teams are engaged in multiple workflows to mitigate the impact. The next update will be provided in 60 minutes, or as events warrant.",
     "stage": "Active",
     "communicationId": "636361902146035247",
     "version": "0.1.1"
@@ -185,34 +185,34 @@ Cette catégorie contient un enregistrement hello n’importe quel contrôle d�
 ### <a name="property-descriptions"></a>Description des propriétés
 Nom de l’élément | Description
 -------- | -----------
-channels | Est une des valeurs suivantes de hello : « Admin », « Opération »
-correlationId | Est généralement un GUID au format de chaîne hello. Événements appartenant toohello même action uber partagent généralement hello même correlationId.
-description | Description de l’événement de hello.
-eventDataId | Bonjour à l’identificateur unique d’un événement.
-eventName | titre de Hello d’événement de hello.
-level | Niveau d’événement de hello. Une des valeurs suivantes de hello : « Critiques », « Erreur », « Avertissement », « Information » et « Commentaires »
-resourceProviderName | Nom du fournisseur de ressources hello pour hello incidence sur la ressource. S’il est inconnu, cette option sera nulle.
-resourceType| type Hello de ressource de hello affectées les ressources. S’il est inconnu, cette option sera nulle.
+channels | Est une des valeurs suivantes : « Admin », « Operation »
+correlationId | Est généralement un GUID au format chaîne. Les événements qui appartiennent à la même action uber partagent généralement le même correlationId.
+Description | Description de l’événement.
+eventDataId | L’identificateur unique d’un événement.
+eventName | Le titre de l’événement.
+level | Niveau de l’événement. Une des valeurs suivantes : Critical, Error, Warning, Informational et Verbose
+resourceProviderName | Nom du fournisseur de ressources de la ressource affectée. S’il est inconnu, cette option sera nulle.
+resourceType| Le type de ressource de la ressource affectée. S’il est inconnu, cette option sera nulle.
 subStatus | Généralement nul pour les événements de l’état d’intégrité du service.
-eventTimestamp | Horodatage lors de l’événement du journal hello a été générée et envoyée toohello journal d’activité.
-submissionTimestamp |   Horodatage lors de l’événement de hello est devenu disponible dans le journal d’activité de hello.
-subscriptionId | Bonjour abonnement Azure dans laquelle cet événement a été enregistré.
-status | Chaîne décrivant l’état hello d’opération de hello. Certaines valeurs courantes sont : actif, résolu.
-operationName | Nom de l’opération de hello. Généralement Microsoft.ServiceHealth/incident/action.
+eventTimestamp | Horodatage lorsque l’événement du journal a été généré et envoyé au journal d’activité.
+submissionTimestamp |   Horodatage lorsque l’événement est devenu disponible dans le journal d’activité.
+subscriptionId | L’abonnement Azure dans lequel l’événement est enregistré.
+status | Chaîne décrivant l’état de l’opération. Certaines valeurs courantes sont : actif, résolu.
+operationName | Le nom de l’opération. Généralement Microsoft.ServiceHealth/incident/action.
 category | « ServiceHealth »
-resourceId | Id de ressource de hello une incidence sur la ressource, s’il est connu. L’ID d’abonnement est fourni dans le cas contraire.
-Properties.title | Hello titre localisé pour cette communication. L’anglais est la langue par défaut de hello.
-Properties.communication | Hello localisées des détails de communication hello par un balisage HTML. L’anglais est la valeur par défaut hello.
+resourceId | ID ressource de la ressource affectée, s’il est connu. L’ID d’abonnement est fourni dans le cas contraire.
+Properties.title | Le titre localisé pour cette communication. La langue par défaut est l’anglais.
+Properties.communication | Les détails localisés de la communication avec le balisage HTML. L’anglais est la langue par défaut.
 Properties.incidentType | valeurs possibles : AssistedRecovery, ActionRequired, Information, Incident, Maintenance, Security
-Properties.trackingId | Identifie l’incident hello que cet événement est associé. Utilisez cet incident de toocorrelate hello événements tooan connexes.
-Properties.impactedServices | Un séquence d’échappement blob JSON qui décrit les services hello et les régions qui sont affectées par l’incident de hello. Une liste de services, chacun possédant un ServiceName et une liste d’ImpactedRegions, chacune ayant un RegionName.
-Properties.defaultLanguageTitle | communication Hello en anglais
-Properties.defaultLanguageContent | communication Hello en anglais en tant que balisage html ou texte brut
+Properties.trackingId | Identifie l’incident associé à cet événement. Cela permet de mettre en corrélation les événements liés à un incident.
+Properties.impactedServices | Un échappement blob JSON qui décrit les services et régions qui sont affectés par l’incident. Une liste de services, chacun possédant un ServiceName et une liste d’ImpactedRegions, chacune ayant un RegionName.
+Properties.defaultLanguageTitle | La communication en anglais
+Properties.defaultLanguageContent | La communication en anglais en tant que HTML ou texte brut
 Properties.stage | Les valeurs possibles pour AssistedRecovery, ActionRequired, Information, Incident et Security sont Active, Resolved. Pour Maintenance, les valeurs possibles sont Active, Planned, InProgress, Canceled, Rescheduled, Resolved et Complete
-Properties.communicationId | communication de Hello cet événement est associé.
+Properties.communicationId | La communication associée à cet événement.
 
 ## <a name="alert"></a>Alerte
-Cette catégorie contient un enregistrement hello de toutes les activations d’alertes Azure. Un exemple de type hello d’événement que vous verriez dans cette catégorie est « % du processeur sur myVM a été plus de 80 pour hello 5 dernières minutes. » Une variété de systèmes Azure possèdent un concept d’alertes : vous pouvez définir une règle quelconque et recevoir une notification lorsque les conditions correspondent à cette règle. Chaque fois qu’un type d’alerte Azure pris en charge 'active,' ou hello conditions sont rempli toogenerate une notification, un enregistrement de l’activation de hello est envoyé également catégorie toothis Hello journal d’activité.
+Cette catégorie contient l’enregistrement de toutes les activations des alertes Azure. Un exemple du type d’événement que vous pouvez voir dans cette catégorie est « % du processeur sur myVM a été supérieur à 80 pour les 5 dernières minutes. » Une variété de systèmes Azure possèdent un concept d’alertes : vous pouvez définir une règle quelconque et recevoir une notification lorsque les conditions correspondent à cette règle. Chaque fois qu’un type d’alerte Azure pris en charge « s’active » ou si les conditions sont remplies pour générer une notification, un enregistrement de l’activation est également envoyé à cette catégorie du journal d’activité.
 
 ### <a name="sample-event"></a>Exemple d’événement
 
@@ -224,7 +224,7 @@ Cette catégorie contient un enregistrement hello de toutes les activations d’
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/spn": "Microsoft.Insights/alertRules"
   },
   "correlationId": "/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/microsoft.insights/alertrules/myalert/incidents/L3N1YnNjcmlwdGlvbnMvZGY2MDJjOWMtN2FhMC00MDdkLWE2ZmItZWIyMGM4YmQxMTkyL3Jlc291cmNlR3JvdXBzL0NzbUV2ZW50RE9HRk9PRC1XZXN0VVMvcHJvdmlkZXJzL21pY3Jvc29mdC5pbnNpZ2h0cy9hbGVydHJ1bGVzL215YWxlcnQwNjM2MzYyMjU4NTM1MjIxOTIw",
-  "description": "'Disk read LessThan 100000 ([Count]) in hello last 5 minutes' has been resolved for CloudService: myResourceGroup/Production/Event.BackgroundJobsWorker.razzle (myResourceGroup)",
+  "description": "'Disk read LessThan 100000 ([Count]) in the last 5 minutes' has been resolved for CloudService: myResourceGroup/Production/Event.BackgroundJobsWorker.razzle (myResourceGroup)",
   "eventDataId": "149d4baf-53dc-4cf4-9e29-17de37405cd9",
   "eventName": {
     "value": "Alert",
@@ -280,52 +280,52 @@ Cette catégorie contient un enregistrement hello de toutes les activations d’
 | --- | --- |
 | caller | Toujours Microsoft.Insights/alertRules |
 | channels | Toujours « Admin, opération » |
-| réclamations | Objet blob de JSON avec hello SPN (nom principal de service), ou une ressource de type, de moteur d’alerte hello. |
-| correlationId | Un GUID au format de chaîne hello. |
-| description |Description de texte statique de l’événement d’alerte hello. |
-| eventDataId |Identificateur unique de l’événement d’alerte hello. |
-| level |Niveau d’événement de hello. Une des valeurs suivantes de hello : « Critiques », « Erreur », « Avertissement », « Information » et « Commentaires » |
-| resourceGroupName |Nom du groupe de ressources hello pour hello affectée ressource s’il s’agit d’une alerte de métrique. Pour les autres types d’alerte, il s’agit de nom de hello hello du groupe de ressources qui contient l’alerte hello lui-même. |
-| resourceProviderName |Nom du fournisseur de ressources hello pour hello affectée ressource s’il s’agit d’une alerte de métrique. Pour les autres types d’alerte, il s’agit de nom de hello de fournisseur de ressources hello pour alerte hello lui-même. |
-| resourceId | Nom de l’ID de ressource hello pour hello affectée ressource s’il s’agit d’une alerte de métrique. Pour les autres types d’alerte, il s’agit de hello les ID de ressource de ressource d’alerte hello elle-même. |
-| operationId |Un GUID est partagé entre les événements hello qui correspondent tooa une seule opération. |
-| operationName |Nom de l’opération de hello. |
-| properties |Jeu de `<Key, Value>` paires (autrement dit, un dictionnaire) hello décrivant les événements hello. |
-| status |Chaîne décrivant l’état hello d’opération de hello. Certaines valeurs courantes sont : Started, In Progress, Succeeded, Failed, Active, Resolved. |
+| réclamations | Objet blob JSON avec le type de SPN (nom principal de service) ou de ressource du moteur d’alertes. |
+| correlationId | Un GUID au format chaîne. |
+| Description |Description textuelle statique de l’événement d’alerte. |
+| eventDataId |Identificateur unique de l'événement d’alerte. |
+| level |Niveau de l’événement. Une des valeurs suivantes : Critical, Error, Warning, Informational et Verbose |
+| resourceGroupName |Nom du groupe de ressources de la ressource affectée s’il s’agit d’une alerte métrique. Pour les autres types d’alertes, ceci est le nom du groupe de ressources qui contient l’alerte elle-même. |
+| resourceProviderName |Nom du fournisseur de ressources de la ressource affectée s’il s’agit d’une alerte métrique. Pour les autres types d’alertes, ceci est le nom du fournisseur de ressources pour l’alerte elle-même. |
+| resourceId | Nom de l’ID de ressource de la ressource affectée s’il s’agit d’une alerte métrique. Pour les autres types d’alertes, ceci est le nom de l’ID de ressource pour l’alerte elle-même. |
+| operationId |Un GUID partagé par les événements correspondant à une opération unique. |
+| operationName |Nom de l’opération. |
+| properties |Jeu de paires `<Key, Value>` (c’est-à-dire Dictionary) décrivant les détails de l’événement. |
+| status |Chaîne décrivant l’état de l’opération. Certaines valeurs courantes sont : Started, In Progress, Succeeded, Failed, Active, Resolved. |
 | subStatus | Généralement, nul pour les alertes. |
-| eventTimestamp |Horodatage lors de l’événement de hello a été généré par hello du traitement du service Azure hello demande événement hello correspondant. |
-| submissionTimestamp |Horodatage lors de l’événement de hello sont devenues disponible pour l’interrogation. |
+| eventTimestamp |Horodatage lorsque l’événement a été généré par le service Azure traitant la demande correspondant à l’événement. |
+| submissionTimestamp |Horodatage lorsque l’événement est devenu disponible pour l’interrogation. |
 | subscriptionId |ID d’abonnement Azure. |
 
 ### <a name="properties-field-per-alert-type"></a>Champ Propriétés par type d’alerte
-champ de propriétés Hello contient des valeurs différentes en fonction de la source de hello d’événement d’alerte hello. Deux fournisseurs d’événements d’alertes courants sont les alertes du journal d’activité et les alertes métriques.
+Le champ Propriétés contient des valeurs différentes en fonction de la source de l’événement d’alerte. Deux fournisseurs d’événements d’alertes courants sont les alertes du journal d’activité et les alertes métriques.
 
 #### <a name="properties-for-activity-log-alerts"></a>Propriétés pour les alertes du journal d’activité
 | Nom de l’élément | Description |
 | --- | --- |
-| properties.subscriptionId | ID d’abonnement Hello à partir de l’événement de journal d’activité hello qui a provoqué cette toobe de règle d’alerte de journal activité activé. |
-| properties.eventDataId | Hello des ID de données d’événement à partir de l’événement de journal d’activité hello qui a provoqué cette toobe de règle d’alerte de journal activité activé. |
-| properties.resourceGroup | groupe de ressources Hello à partir de l’événement de journal d’activité hello qui a provoqué cette toobe de règle d’alerte de journal activité activé. |
-| properties.resourceId | ID de ressource Hello à partir de l’événement de journal d’activité hello qui a provoqué cette toobe de règle d’alerte de journal activité activé. |
-| properties.eventTimestamp | Bonjour horodatage d’un événement de l’événement de journal d’activité hello qui a provoqué cette toobe de règle d’alerte de journal activité activé. |
-| properties.operationName | nom de l’opération Hello à partir de l’événement de journal d’activité hello qui a provoqué cette toobe de règle d’alerte de journal activité activé. |
-| Properties.Status | état de Hello à partir de l’événement de journal d’activité hello qui a provoqué cette toobe de règle d’alerte de journal activité activé.|
+| properties.subscriptionId | L’ID d’abonnement depuis l’événement du journal d’activité qui a provoqué l’activation de cette règle d’alerte du journal d’activité. |
+| properties.eventDataId | L’ID des données de l’événement depuis l’événement du journal d’activité qui a provoqué l’activation de cette règle d’alerte du journal d’activité. |
+| properties.resourceGroup | Le groupe de ressources depuis l’événement du journal d’activité qui a provoqué l’activation de cette règle d’alerte du journal d’activité. |
+| properties.resourceId | L’ID de ressource depuis l’événement du journal d’activité qui a provoqué l’activation de cette règle d’alerte du journal d’activité. |
+| properties.eventTimestamp | L’horodatage des événements de l’événement du journal d’activité qui a provoqué l’activation de cette règle d’alerte du journal d’activité. |
+| properties.operationName | Le nom de l’opération depuis l’événement du journal d’activité qui a provoqué l’activation de cette règle d’alerte du journal d’activité. |
+| Properties.Status | L’état depuis l’événement du journal d’activité qui a provoqué l’activation de cette règle d’alerte du journal d’activité.|
 
 #### <a name="properties-for-metric-alerts"></a>Propriétés des alertes métriques
 | Nom de l’élément | Description |
 | --- | --- |
-| Propriétés. RuleUri | ID de ressource de hello métrique règle d’alerte lui-même. |
-| Propriétés. Nom_règle | nom Hello de règle d’alerte métrique hello. |
-| Propriétés. RuleDescription | description de Hello de règle d’alerte métrique hello (tel que défini dans la règle d’alerte hello). |
-| Propriétés. Seuil | valeur de seuil Hello utilisée dans l’évaluation de hello de règle d’alerte métrique hello. |
-| properties.WindowSizeInMinutes | taille de la fenêtre Hello utilisée dans l’évaluation de hello de règle d’alerte métrique hello. |
-| properties.Aggregation | type d’agrégation Hello défini dans la règle d’alerte métrique hello. |
-| properties.Operator | opérateur conditionnel de Hello utilisée dans l’évaluation de hello de règle d’alerte métrique hello. |
-| properties.MetricName | nom de la métrique Hello de métrique hello utilisée dans l’évaluation de hello de règle d’alerte métrique hello. |
-| properties.MetricUnit | unité de mesure Hello pour métrique hello utilisée dans l’évaluation de hello de règle d’alerte métrique hello. |
+| Propriétés. RuleUri | L’ID de ressource de la règle d’alerte métrique elle-même. |
+| Propriétés. Nom_règle | Le nom de la règle d’alerte métrique. |
+| Propriétés. RuleDescription | La description de la règle d’alerte métrique (telle que définie dans la règle d’alerte). |
+| Propriétés. Seuil | La valeur de seuil utilisée dans l’évaluation de la règle d’alerte métrique. |
+| properties.WindowSizeInMinutes | La taille de la fenêtre utilisée dans l’évaluation de la règle d’alerte métrique. |
+| properties.Aggregation | Le type d’agrégation défini dans la règle d’alerte métrique. |
+| properties.Operator | L’opérateur conditionnel utilisé dans l’évaluation de la règle d’alerte métrique. |
+| properties.MetricName | Le nom métrique utilisé dans l’évaluation de la règle d’alerte métrique. |
+| properties.MetricUnit | L’unité métrique utilisée dans l’évaluation de la règle d’alerte métrique. |
 
 ## <a name="autoscale"></a>Autoscale
-Cette catégorie contient un enregistrement hello de toute opération toohello connexes d’événements du moteur de mise à l’échelle hello selon les paramètres d’échelle automatique que vous avez défini dans votre abonnement. Un exemple de type hello d’événement que vous verriez dans cette catégorie est « Mise à l’échelle mise à l’échelle de l’échec de l’action. » À l’aide de la mise à l’échelle, vous pouvez automatiquement montée en puissance parallèle ou mettre à l’échelle dans hello nombre d’instances d’un type de ressource pris en charge basée sur l’heure du jour et/ou la charge des données (métriques) à l’aide d’un paramètre de mise à l’échelle. En cas de hello conditions sont remplies tooscale vers le haut ou vers le bas, hello démarrer et a réussi, ou les événements ayant échouées seront enregistrés dans cette catégorie.
+Cette catégorie contient l’enregistrement de tous les événements liés au fonctionnement du moteur de mise à l’échelle automatique selon les paramètres d’échelle automatique définis dans votre abonnement. Un exemple du type d’événement que vous pouvez voir dans cette catégorie est « Échec de l’action de monter en puissance de la mise à l’échelle automatique. » À l’aide de la mise à l’échelle automatique, vous pouvez automatiquement augmenter ou diminuer la taille des instances dans un type de ressource pris en charge basé sur l’heure du jour et/ou les données de charge (métriques) à l’aide d’un paramètre de mise à l’échelle automatique. Lorsque les conditions sont remplies pour monter ou descendre en puissance, les événements de démarrage réussis ou échoués sont enregistrés dans cette catégorie.
 
 ### <a name="sample-event"></a>Exemple d’événement
 ```json
@@ -336,7 +336,7 @@ Cette catégorie contient un enregistrement hello de toute opération toohello c
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/spn": "Microsoft.Insights/autoscaleSettings"
   },
   "correlationId": "fc6a7ff5-ff68-4bb7-81b4-3629212d03d0",
-  "description": "hello autoscale engine attempting tooscale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count too2 instances count.",
+  "description": "The autoscale engine attempting to scale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count to 2 instances count.",
   "eventDataId": "a5b92075-1de9-42f1-b52e-6f3e4945a7c7",
   "eventName": {
     "value": "AutoscaleAction",
@@ -364,7 +364,7 @@ Cette catégorie contient un enregistrement hello de toute opération toohello c
     "localizedValue": "Microsoft.Insights/AutoscaleSettings/Scaledown/Action"
   },
   "properties": {
-    "Description": "hello autoscale engine attempting tooscale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count too2 instances count.",
+    "Description": "The autoscale engine attempting to scale resource '/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count to 2 instances count.",
     "ResourceName": "/subscriptions/mySubscriptionID/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource",
     "OldInstancesCount": "3",
     "NewInstancesCount": "2",
@@ -389,28 +389,28 @@ Cette catégorie contient un enregistrement hello de toute opération toohello c
 | --- | --- |
 | caller | Always Microsoft.Insights/autoscaleSettings |
 | channels | Toujours « Admin, opération » |
-| réclamations | Objet blob de JSON avec hello type SPN (nom principal de service) ou des ressources, du moteur de mise à l’échelle hello. |
-| correlationId | Un GUID au format de chaîne hello. |
-| description |Description de texte statique d’événement de mise à l’échelle hello. |
-| eventDataId |Identificateur unique de l’événement de mise à l’échelle hello. |
-| level |Niveau d’événement de hello. Une des valeurs suivantes de hello : « Critiques », « Erreur », « Avertissement », « Information » et « Commentaires » |
-| resourceGroupName |Nom du groupe de ressources hello pour le paramètre de mise à l’échelle hello. |
-| resourceProviderName |Nom du fournisseur de ressources hello pour le paramètre de mise à l’échelle hello. |
-| resourceId |Id de ressource du paramètre de mise à l’échelle hello. |
-| operationId |Un GUID est partagé entre les événements hello qui correspondent tooa une seule opération. |
-| operationName |Nom de l’opération de hello. |
-| properties |Jeu de `<Key, Value>` paires (autrement dit, un dictionnaire) hello décrivant les événements hello. |
-| properties.Description | Description détaillée des opérations en cours dans le moteur de mise à l’échelle hello. |
-| properties.ResourceName | ID de ressource de hello affectées les ressources (hello des ressources sur le hello à l’échelle a été effectuée.) |
-| properties.OldInstancesCount | nombre de Hello d’instances avant l’action de mise à l’échelle hello a pris effet. |
-| properties.NewInstancesCount | nombre de Hello d’instances une fois que l’action de mise à l’échelle hello a pris effet. |
-| properties.LastScaleActionTime | horodatage de Hello de lorsque l’action de mise à l’échelle hello s’est produite. |
-| status |Chaîne décrivant l’état hello d’opération de hello. Certaines valeurs courantes sont : Started, In Progress, Succeeded, Failed, Active, Resolved. |
+| réclamations | Objet blob JSON avec le type de SPN (nom principal de service) ou de ressource du moteur de mise à l’échelle automatique. |
+| correlationId | Un GUID au format chaîne. |
+| Description |Description textuelle statique de l’événement de mise à l’échelle automatique. |
+| eventDataId |Identificateur unique de l'événement de mise à l’échelle automatique. |
+| level |Niveau de l’événement. Une des valeurs suivantes : Critical, Error, Warning, Informational et Verbose |
+| resourceGroupName |Nom du groupe de ressources du paramètre de mise à l’échelle automatique. |
+| resourceProviderName |Nom du fournisseur de ressources du paramètre de mise à l’échelle automatique. |
+| resourceId |ID de ressource du paramètre de mise à l’échelle automatique. |
+| operationId |Un GUID partagé par les événements correspondant à une opération unique. |
+| operationName |Nom de l’opération. |
+| properties |Jeu de paires `<Key, Value>` (c’est-à-dire Dictionary) décrivant les détails de l’événement. |
+| properties.Description | Description détaillée de ce que fait le moteur de mise à l’échelle automatique. |
+| properties.ResourceName | ID de ressource de la ressource affectée (la ressource sur laquelle l’action de mise à l’échelle a été effectuée) |
+| properties.OldInstancesCount | Le nombre d’instances avant la prise d’effet de l’action de mise à l’échelle automatique. |
+| properties.NewInstancesCount | Le nombre d’instances après la prise d’effet de l’action de mise à l’échelle automatique. |
+| properties.LastScaleActionTime | Horodatage de lorsque l’action de mise à l’échelle s’est produite. |
+| status |Chaîne décrivant l’état de l’opération. Certaines valeurs courantes sont : Started, In Progress, Succeeded, Failed, Active, Resolved. |
 | subStatus | Généralement, nul pour la mise à l’échelle automatique. |
-| eventTimestamp |Horodatage lors de l’événement de hello a été généré par hello du traitement du service Azure hello demande événement hello correspondant. |
-| submissionTimestamp |Horodatage lors de l’événement de hello sont devenues disponible pour l’interrogation. |
+| eventTimestamp |Horodatage lorsque l’événement a été généré par le service Azure traitant la demande correspondant à l’événement. |
+| submissionTimestamp |Horodatage lorsque l’événement est devenu disponible pour l’interrogation. |
 | subscriptionId |ID d’abonnement Azure. |
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [En savoir plus sur hello journal d’activité (anciennement les journaux d’Audit)](monitoring-overview-activity-logs.md)
-* [Flux tooEvent du journal des activités Azure hello concentrateurs](monitoring-stream-activity-logs-event-hubs.md)
+* [En savoir plus sur le journal d’activité (autrefois appelé journal d’audit)](monitoring-overview-activity-logs.md)
+* [Stream the Azure Activity Log to Event Hubs (Diffuser en continu le journal d’activités Azure vers Event Hubs)](monitoring-stream-activity-logs-event-hubs.md)

@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à UNIFI | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et UNIFI."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et UNIFI."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,112 +13,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: jeedes
-ms.openlocfilehash: af7cc1167b5c0cff2a1f4cdaa8a2b93f5a718f81
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 09074d4628825909f0bb961c8001e53fb06cf7c0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-unifi"></a>Didacticiel : Intégration d’Azure Active Directory à UNIFI
 
-Dans ce didacticiel, vous apprendrez comment toointegrate UNIFI avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer UNIFI à Azure Active Directory (Azure AD).
 
-Intégration UNIFI à Azure AD offre hello avantages suivants :
+L’intégration d’UNIFI dans Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooUNIFI
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooUNIFI (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Dans Azure AD, vous pouvez contrôler qui a accès à UNIFI.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à UNIFI (via l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec UNIFI, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD avec UNIFI, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement UNIFI pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de UNIFI à partir de la galerie de hello
+1. Ajout d’UNIFI depuis la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-unifi-from-hello-gallery"></a>Ajout de UNIFI à partir de la galerie de hello
-tooconfigure hello intégration de UNIFI dans Azure AD, vous devez tooadd UNIFI à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-unifi-from-the-gallery"></a>Ajout d’UNIFI depuis la galerie
+Pour configurer l’intégration d’UNIFI avec Azure AD, vous devez ajouter UNIFI à partir de la galerie à votre liste d’applications SaaS gérées.
 
-**tooadd UNIFI à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter UNIFI à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **UNIFI**.
+4. Dans la zone de recherche, saisissez **UNIFI**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-unifi-tutorial/tutorial_unifi_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **UNIFI**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le volet de résultats, sélectionnez **UNIFI**, puis cliquez sur **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-unifi-tutorial/tutorial_unifi_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec UNIFI, avec un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur équivalent hello UNIFI est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans UNIFI doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur UNIFI équivalent dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur UNIFI associé doit être établie.
 
-Dans UNIFI, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans UNIFI, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec UNIFI, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec UNIFI, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un UNIFI utilisateur de test](#creating-a-unifi-test-user)**  -toohave un équivalent de Britta Simon dans UNIFI est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test UNIFI](#creating-a-unifi-test-user)** pour obtenir un équivalent de Britta Simon dans UNIFI lié à la représentation Azure AD de l’utilisateur.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application UNIFI.
+Dans cette section, vous activez l’authentification unique Azure AD dans le portail Azure et configurez l’authentification unique dans votre application UNIFI.
 
-**tooconfigure Azure AD single sign-on avec UNIFI, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec UNIFI, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **UNIFI** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, sur la page d’intégration de l’application **UNIFI**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-unifi-tutorial/tutorial_unifi_samlbase.png)
 
-3. Sur hello **UNIFI domaine et les URL** section, si vous le souhaitez application hello tooconfigure **IDP** en mode initié par :
+3. Dans la section **Domaines et URL UNIFI**, si vous souhaitez configurer l’application en mode initié par **IDP**, suivez les étapes ci-dessous :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-unifi-tutorial/tutorial_unifi_url1.png)
 
-    Bonjour **identificateur** zone de texte, valeur de type hello :`INVIEWlabs` 
+    Dans la zone de texte **Identificateur**, entrez la valeur : `INVIEWlabs` 
 
-4. Vérifiez **afficher les paramètres d’URL avancés**, si vous le souhaitez application hello tooconfigure **SP** en mode initié par :
+4. Cochez **Afficher les paramètres d’URL avancés** si vous souhaitez configurer l’application en mode initié par le **fournisseur de service** :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-unifi-tutorial/tutorial_unifi_url2.png)
 
-    Bonjour **URL de connexion** zone de texte, tapez l’URL hello :`https://app.discoverunifi.com/login`
+    Dans la zone de texte **URL de connexion**, entrez l’URL : `https://app.discoverunifi.com/login`
 
-5. Sur hello **le certificat de signature SAML** , cliquez sur **Certificate(Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
+5. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-unifi-tutorial/tutorial_unifi_certificate.png) 
 
@@ -126,88 +126,88 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-unifi-tutorial/tutorial_general_400.png)
     
-7. Sur hello **UNIFI Configuration** , cliquez sur **UNIFI de configurer** tooopen **configurer l’authentification** fenêtre. Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
+7. Dans la section **Configuration d’UNIFI**, cliquez sur **Configurer UNIFI** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
 
     ![Configurer l’authentification unique](./media/active-directory-saas-unifi-tutorial/tutorial_unifi_configure.png)
 
-8. Dans une fenêtre de navigateur web, connectez-vous tooyour **UNIFI** site d’entreprise en tant qu’administrateur.
+8. Dans une autre fenêtre de navigateur web, connectez-vous au site de votre entreprise **UNIFI** en tant qu’administrateur.
 
-9. Cliquez sur hello **utilisateurs**.
+9. Cliquez sur **Utilisateurs**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-unifi-tutorial/app1.png) 
 
-10. Cliquez sur hello **Ajouter nouveau fournisseur d’identité**.
+10. Cliquez sur **Ajouter un nouveau fournisseur d’identité**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-unifi-tutorial/app2.png)
 
-11. Bonjour **ajouter un fournisseur d’identité** section, effectuer hello comme suit :   
+11. Dans la section **Ajouter un fournisseur d’identité**, procédez comme suit :   
 
     ![Configurer l’authentification unique](./media/active-directory-saas-unifi-tutorial/app3.png) 
 
-    a. Bonjour **nom du fournisseur** zone de texte, nom du type hello Hello fournisseur d’identité...
+    a. Dans la zone de texte **Nom du fournisseur**, entrez le nom du fournisseur d’identité.
 
-    b. Bonjour de hello **URL du fournisseur** textbox coller hello **SAML Sign-On URL du Service unique** valeur, qui vous avez copié à partir du portail Azure.
+    b. Dans la zone de texte **URL du fournisseur**, collez l’**URL du service d’authentification unique SAML** que vous avez copiée sur le portail Azure.
 
-    c. Ouvrez hello de certificat que vous avez téléchargé à partir de hello portail Azure dans le bloc-notes, supprimez hello **---BEGIN CERTIFICATE---** et **---END CERTIFICATE---** balise, puis collez hello restant contenu dans Hello **certificat** zone de texte.
+    c. Ouvrez le certificat que vous avez téléchargé à partir du portail Azure dans le bloc-notes, supprimez les balises **---BEGIN CERTIFICATE---** et **---END CERTIFICATE---**, puis collez le contenu restant dans la zone de texte **Certificat**.
 
-    d. Sélectionnez hello **est le fournisseur par défaut** case à cocher.
+    d. Cochez la case **est le fournisseur par défaut**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-unifi-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-unifi-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-unifi-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-unifi-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-unifi-test-user"></a>Création d’un utilisateur de test UNIFI
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon. **UNIFI** prend en charge l’approvisionnement automatique de l’utilisateur. Par conséquent, aucune action manuelle n’est requise. Les utilisateurs sont créés automatiquement après une authentification réussie à partir de hello Azure AD.
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon. **UNIFI** prend en charge l’approvisionnement automatique de l’utilisateur. Par conséquent, aucune action manuelle n’est requise. Lorsque l’authentification a réussi à partir d’Azure AD, les utilisateurs sont créés automatiquement.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooUNIFI.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à UNIFI.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooUNIFI, effectuez hello comme suit :**
+**Pour affecter Britta Simon à UNIFI, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **UNIFI**.
+2. Dans la liste des applications, sélectionnez **UNIFI**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-unifi-tutorial/tutorial_unifi_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -215,7 +215,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -223,14 +223,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur hello UNIFI vignette Bonjour volet d’accès, vous devez obtenir l’application de UNIFI tooyour automatiquement signé sur.
-Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md). 
+Lorsque vous cliquez sur la vignette UNIFI dans le panneau d’accès, vous êtes automatiquement connecté à votre application UNIFI.
+Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

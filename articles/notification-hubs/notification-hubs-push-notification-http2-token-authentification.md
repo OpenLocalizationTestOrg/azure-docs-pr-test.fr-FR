@@ -1,6 +1,6 @@
 ---
-title: "aaaToken-(HTTP/2) l’authentification pour APNS dans Azure Notification Hubs | Documents Microsoft"
-description: Cette rubrique explique comment tooleverage hello nouvelle authentification de jeton pour APNS
+title: "Authentification basée sur un jeton (HTTP/2) pour APNS dans Azure Notification Hubs | Microsoft Docs"
+description: Cette rubrique explique comment tirer parti de la nouvelle authentification de jeton pour APNS
 services: notification-hubs
 documentationcenter: .net
 author: kpiteira
@@ -13,67 +13,67 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/17/2017
 ms.author: kapiteir
-ms.openlocfilehash: 3353d7f16033ce0b68edec9ee9aeb98f47faa1fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5a21bcd9f12fc3f96b17a556ba15526c35ababe2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="token-based-http2-authentication-for-apns"></a>Authentification basée sur un jeton (HTTP/2) pour APNS
 ## <a name="overview"></a>Vue d'ensemble
-Cet article décrit en détail comment toouse hello nouveau APNS HTTP/2 protocole avec le jeton d’authentification basée sur les.
+Cet article explique comment utiliser le nouveau protocole APNS HTTP/2 avec une authentification basée sur un jeton.
 
-Hello des avantages clés de l’utilisation du nouveau protocole de hello :
--   Génération de jeton est relativement vous soucier libre (comparés toocertificates)
+Les principaux avantages de l’utilisation du nouveau protocole sont notamment :
+-   La génération de jetons est relativement simple (par rapport aux certificats)
 -   Plus de date d’expiration : vous contrôlez vos jetons d’authentification et leur révocation
--   Charges utiles peuvent maintenant être des too4 Ko
+-   Les charges utiles peuvent maintenant atteindre 4 Ko
 - Les commentaires sont synchrones
--   Vous êtes sur le protocole de dernière d’Apple – certificats utilisent toujours le protocole binaire hello, qui est marquée pour l’abandon
+-   Vous utilisez le dernier protocole d’Apple : les certificats utilisent toujours le protocole binaire, qui est marqué pour dépréciation
 
 L’utilisation de ce nouveau mécanisme peut être lancée en deux étapes et en quelques minutes :
-1.  Obtenir les informations nécessaires hello à partir du portail de compte de développeur Apple hello
-2.  Configurer votre concentrateur de notification avec les nouvelles informations de hello
+1.  Obtenez les informations nécessaires auprès du portail du compte de développeur Apple
+2.  Configurez votre hub de notification avec les nouvelles informations
 
-Concentrateurs de notification est désormais tous ensemble toouse hello nouveau système d’authentification avec APNS. 
+Notification Hubs est maintenant entièrement configuré pour utiliser le nouveau système d’authentification avec APNS. 
 
 Notez que, si vous n’utilisez plus les informations d’identification de certificat pour APNS :
-- Propriétés du jeton Hello remplacement votre certificat dans notre système.
-- mais votre application continue tooreceive notifications en toute transparence.
+- les propriétés de jeton remplacent votre certificat dans notre système,
+- mais votre application continue de recevoir des notifications sans interruption.
 
 ## <a name="obtaining-authentication-information-from-apple"></a>Obtention d’informations d’authentification auprès d’Apple
-l’authentification basée sur les jetons tooenable, vous devez hello propriétés suivantes à partir de votre compte de développeur Apple :
+Pour activer l’authentification basée sur un jeton, vous devez obtenir les propriétés suivantes auprès de votre compte de développeur Apple :
 ### <a name="key-identifier"></a>Identificateur de clé
-identificateur de clé Hello peut être obtenu à partir de la page « Clés » de hello dans votre compte de développeur Apple
+L’identificateur de clé peut être obtenu à partir de la page « Clés » dans le compte de développeur Apple
 
 ![](./media/notification-hubs-push-notification-http2-token-authentification/obtaining-auth-information-from-apple.png)
 
 ### <a name="application-identifier--application-name"></a>Identificateur de l’application et nom de l’application
-nom de l’application Hello est disponible via la page de codes de l’application hello Bonjour compte de développeur. 
+Le nom de l’application est disponible via la page des ID d’application dans le compte de développeur. 
 ![](./media/notification-hubs-push-notification-http2-token-authentification/app-name.png)
 
-identificateur de l’application Hello est disponible via la page de détails d’appartenance hello hello compte de développeur.
+L’identificateur de l’application est disponible via la page des détails de l’adhésion dans le compte de développeur.
 ![](./media/notification-hubs-push-notification-http2-token-authentification/app-id.png)
 
 
 ### <a name="authentication-token"></a>Jeton d’authentification
-jeton d’authentification Hello peut être téléchargé après avoir généré un jeton pour votre application. Pour plus d’informations sur comment toogenerate ce jeton, consultez trop[documentation pour développeurs d’Apple](http://help.apple.com/xcode/mac/current/#/dev11b059073?sub=dev1eb5dfe65).
+Le jeton d’authentification peut être téléchargé après avoir généré un jeton pour votre application. Pour plus d’informations sur la façon de générer ce jeton, reportez-vous à la [documentation du développeur Apple](http://help.apple.com/xcode/mac/current/#/dev11b059073?sub=dev1eb5dfe65).
 
-## <a name="configuring-your-notification-hub-toouse-token-based-authentication"></a>Configuration de l’authentification basée sur les jetons de notification hub toouse
-### <a name="configure-via-hello-azure-portal"></a>Configurer via hello portail Azure
-jeton de tooenable en fonction de l’authentification dans le portail hello, ouvrez une session toohello portail Azure et accédez tooyour Hub de Notification > Services de Notification > Panneau de configuration APNS. 
+## <a name="configuring-your-notification-hub-to-use-token-based-authentication"></a>Configuration de votre hub de notification pour utiliser l’authentification basée sur un jeton
+### <a name="configure-via-the-azure-portal"></a>Configurer via le portail Azure
+Pour activer l’authentification basée sur un jeton dans le portail, connectez-vous au portail Azure et accédez au panneau Hub de notification > Services de notification > APNS. 
 
-Il existe une nouvelle propriété : *Mode d’authentification*. En sélectionnant le jeton vous permet de tooupdate votre concentrateur avec toutes les propriétés pertinentes hello du jeton.
+Il existe une nouvelle propriété : *Mode d’authentification*. La sélection de Jeton vous permet de mettre à jour votre hub avec toutes les propriétés de jeton appropriées.
 
 ![](./media/notification-hubs-push-notification-http2-token-authentification/azure-portal-apns-settings.png)
 
-- Entrez les propriétés hello récupérés à partir de votre compte de développeur Apple, 
+- Entrez les propriétés que vous avez récupérées à partir de votre compte de développeur Apple, 
 - choisissez votre mode d’application : Production ou Bac à sable (sandbox), 
-- Cliquez sur Enregistrer tooupdate vos informations d’identification APNS. 
+- cliquez sur Enregistrer pour mettre à jour vos informations d’identification APNS. 
 
 ### <a name="configure-via-management-api-rest"></a>Configurer via l’API de gestion (REST)
 
-Vous pouvez utiliser notre [API de gestion](https://msdn.microsoft.com/library/azure/dn495827.aspx) tooupdate votre notification hub toouse token d’authentification.
-Selon qu’application hello que vous configurez est une application de Production ou de bac à sable (spécifiée dans votre compte de développeur Apple), utilisez un des points de terminaison hello correspondants :
+Vous pouvez utiliser nos [API de gestion](https://msdn.microsoft.com/library/azure/dn495827.aspx) afin de mettre à jour votre hub de notification pour utiliser l’authentification basée sur un jeton.
+Selon que l’application que vous configurez est une application de production ou Bac à sable (sandbox), ce qui est indiqué dans votre compte de développeur Apple, utilisez l’un des points de terminaison correspondants :
 
 - Point de terminaison sandbox : [https://api.development.push.apple.com:443/3/device](https://api.development.push.apple.com:443/3/device)
 - Point de terminaison de production : [https://api.push.apple.com:443/3/device](https://api.push.apple.com:443/3/device)
@@ -83,7 +83,7 @@ Selon qu’application hello que vous configurez est une application de Producti
 > 
 > 
 
-Voici un exemple d’un tooupdate de demande PUT un concentrateur avec l’authentification basée sur un jeton :
+Voici un exemple d’une demande PUT pour mettre à jour un hub avec l’authentification basée sur un jeton :
 
 
         PUT https://{namespace}.servicebus.windows.net/{Notification Hub}?api-version=2017-04
@@ -100,10 +100,10 @@ Voici un exemple d’un tooupdate de demande PUT un concentrateur avec l’authe
           }
         
 
-### <a name="configure-via-hello-net-sdk"></a>Configurer via hello .NET SDK
-Vous pouvez configurer votre concentrateur toouse authentification par jeton notre [dernière version du Kit de développement logiciel client](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/1.0.8). 
+### <a name="configure-via-the-net-sdk"></a>Configurer via le Kit SDK .NET
+Vous pouvez configurer votre hub pour utiliser l’authentification basée sur un jeton à l’aide de notre [dernier Kit SDK client](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/1.0.8). 
 
-Voici un exemple de code illustrant l’utilisation correcte de hello :
+Voici un exemple de code illustrant l’utilisation correcte :
 
 
         NamespaceManager nm = NamespaceManager.CreateFromConnectionString(_endpoint);
@@ -111,10 +111,10 @@ Voici un exemple de code illustrant l’utilisation correcte de hello :
         string keyId = "YOUR KEY ID HERE";
         string appName = "YOUR APP NAME HERE";
         string appId = "YOUR APP ID HERE";
-        NotificationHubDescription desc = new NotificationHubDescription("PATH tooYOUR HUB");
+        NotificationHubDescription desc = new NotificationHubDescription("PATH TO YOUR HUB");
         desc.ApnsCredential = new ApnsCredential(token, keyId, appId, appName);
         desc.ApnsCredential.Endpoint = @"https://api.development.push.apple.com:443/3/device";
         nm.UpdateNotificationHubAsync(desc);
 
-## <a name="reverting-toousing-certificate-based-authentication"></a>Authentification basée sur certificat rétablissement toousing
-Vous pouvez revenir à n’importe quel moment toousing authentification par certificat à l’aide de n’importe quel certificat précédent de hello méthode et en passant au lieu des propriétés de jeton hello. Qu’action remplace hello précédemment stockées les informations d’identification.
+## <a name="reverting-to-using-certificate-based-authentication"></a>Rétablissement de l’utilisation de l’authentification basée sur les certificats
+Vous pouvez rétablir à tout moment l’utilisation de l’authentification basée sur les certificats en utilisant l’une des méthodes précédentes et en passant le certificat au lieu des propriétés de jeton. Cette action remplace les informations d’identification précédemment stockées.

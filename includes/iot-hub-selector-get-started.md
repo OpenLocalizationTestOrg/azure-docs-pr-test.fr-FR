@@ -7,15 +7,15 @@
 > 
 
 ## <a name="introduction"></a>Introduction
-Azure IoT Hub est un service entièrement géré qui permet des communications bidirectionnelles fiables et sécurisées entre des millions d’appareils IoT (Internet des objets) et un serveur principal de solution. Un des défis majeurs de hello qui IoT projets face est comment tooreliably et connectez-vous en toute sécurité des appareils toohello solution back-end. tooaddress ce défi, IoT Hub :
+Azure IoT Hub est un service entièrement géré qui permet des communications bidirectionnelles fiables et sécurisées entre des millions d’appareils IoT (Internet des objets) et un serveur principal de solution. L’une des plus grandes difficultés des projets IoT consiste à connecter des appareils au serveur principal de la solution de manière fiable et sécurisée. Pour relever ce défi, IoT Hub :
 
 * Offre une messagerie évolutive Appareil vers cloud et Cloud vers appareil fiable.
 * Assure la sécurité des communications grâce aux informations d’identification de sécurité par appareil et au contrôle d’accès.
-* Inclut des bibliothèques de périphérique pour les plateformes et les langues les plus populaires hello.
+* Inclut des bibliothèques d’appareils pour les langages et les plateformes les plus courants.
 
 Ce didacticiel vous explique les procédures suivantes :
 
-* Utilisez hello toocreate portail Azure un IoT hub.
+* Utilisez le portail Azure pour créer un hub IoT.
 * Créer une identité de l’appareil dans votre hub IoT.
-* Créer une application d’appareil simulé qui envoie les données de télémétrie tooyour solution back-end.
+* Créer une application de périphérique simulé qui envoie les données de télémétrie au serveur back-end de votre solution.
 

@@ -1,6 +1,6 @@
 ---
-title: "méthode de routage à l’aide de Azure Traffic Manager du trafic aaaConfigure performances | Documents Microsoft"
-description: Cet article explique comment tooconfigure Traffic Manager tooroute trafic toohello le point de terminaison avec une latence plus faible
+title: "Configurer la méthode de routage du trafic selon les performances à l’aide d’Azure Traffic Manager | Microsoft Docs"
+description: "Cet article explique comment configurer Traffic Manager pour router le trafic vers le point de terminaison présentant la latence plus faible."
 services: traffic-manager
 documentationcenter: 
 author: kumudd
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/20/2017
 ms.author: kumud
-ms.openlocfilehash: d0ccd4c9de411844c6f36068859265244f4aa52b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 014aa646459cd64fca7c697419324caa3edaeeea
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="configure-hello-performance-traffic-routing-method"></a>Configurer la méthode de routage du trafic hello performances
+# <a name="configure-the-performance-traffic-routing-method"></a>Configurer la méthode de routage en fonction des performances
 
-Hello, méthode de routage de trafic de performances vous permet de point de terminaison toodirect trafic toohello avec une latence plus faible à partir du réseau du client hello hello. En règle générale, hello de centre de données avec une latence plus faible hello est hello le plus proche dans la distance géographique. Cette méthode de routage du trafic ne peut pas prendre en compte des modifications en temps réel de la configuration ou de la charge du réseau.
+La méthode de routage du trafic en fonction des performances vous permet de diriger le trafic vers le point de terminaison dont la latence est la plus faible dans le réseau du client. En règle générale, le centre de données dont la latence est la plus faible est géographiquement le plus proche. Cette méthode de routage du trafic ne peut pas prendre en compte des modifications en temps réel de la configuration ou de la charge du réseau.
 
-##  <a name="tooconfigure-performance-routing-method"></a>méthode de routage de performances tooconfigure
+##  <a name="to-configure-performance-routing-method"></a>Pour configurer la méthode de routage basé sur les performances
 
-1. À partir d’un navigateur, connectez-vous toohello [portail Azure](http://portal.azure.com). Si vous ne possédez pas encore de compte, vous pouvez [vous inscrire pour bénéficier d’un essai gratuit d’un mois](https://azure.microsoft.com/free/). 
-2. Dans la barre de recherche du portail hello, recherchez hello **profils Traffic Manager** puis cliquez sur nom du profil hello tooconfigure méthode de routage hello pour souhaitées.
-3. Bonjour **profil Traffic Manager** panneau, vérifiez que les deux hello services de cloud computing et sites Web que vous souhaitez tooinclude dans votre configuration sont présents.
-4. Bonjour **paramètres** , cliquez sur **Configuration**et Bonjour **Configuration** panneau, terminée, comme suit :
+1. Dans un navigateur, connectez-vous au [portail Azure](http://portal.azure.com). Si vous ne possédez pas encore de compte, vous pouvez [vous inscrire pour bénéficier d’un essai gratuit d’un mois](https://azure.microsoft.com/free/). 
+2. Dans la barre de recherche du portail, recherchez les **profils Traffic Manager** et cliquez sur le nom du profil pour lequel vous souhaitez configurer la méthode de routage.
+3. Dans le panneau **Profil Traffic Manager**, vérifiez que les services cloud et les sites web que vous souhaitez inclure dans votre configuration sont présents.
+4. Dans la section **Paramètres**, cliquez sur **Configuration** et dans le panneau **Configuration**, procédez comme suit :
     1. Pour les **paramètres de la méthode de routage du trafic**, pour la **méthode de routage** sélectionnez **Performances**.
-    2. Ensemble hello **paramètres du moniteur de point de terminaison** identiques pour tous les chaque point de terminaison dans ce profil comme suit :
-        1. Sélectionnez hello approprié **protocole**et spécifiez hello **Port** nombre. 
-        2. Pour **Chemin d’accès**, entrez une barre oblique */*. points de terminaison toomonitor, vous devez spécifier un chemin d’accès et le nom de fichier. Une barre oblique « / » est une entrée valide pour le chemin d’accès relatif de hello et implique que le fichier hello se trouve dans le répertoire racine de hello (par défaut).
-        3. En hello haut hello, cliquez sur **enregistrer**.
-5.  Testez les modifications hello dans votre configuration comme suit :
-    1.  Dans la barre de recherche du portail hello, recherchez le nom du profil Traffic Manager hello et cliquez sur le profil Traffic Manager hello dans les résultats de hello que hello affiché.
-    2.  Bonjour **Traffic Manager** panneau, cliquez sur **vue d’ensemble**.
-    3.  Hello **profil Traffic Manager** panneau affiche le nom DNS de hello de votre profil Traffic Manager nouvellement créé. Cela peut servir par les clients (par exemple, en accédant à l’aide d’un navigateur web de tooit) tooget routé toohello droite point de terminaison tel que déterminé par le type de routage hello. Dans ce cas, toutes les demandes sont routés toohello le point de terminaison avec une latence plus faible à partir du réseau du client hello hello.
-6. Une fois que votre profil Traffic Manager fonctionne, vous pouvez modifier enregistrement DNS de hello sur votre toopoint de serveur DNS faisant autorité votre nom de domaine de société domaine nom toohello Traffic Manager.
+    2. Définissez l’option **Paramètres de surveillance des points de terminaison** de manière identique pour tous les points de terminaison de ce profil comme suit :
+        1. Sélectionnez le **protocole** approprié et spécifiez le numéro du **port**. 
+        2. Pour **Chemin d’accès**, entrez une barre oblique */*. Pour surveiller les points de terminaison, vous devez indiquer un chemin et un nom de fichier. Une barre oblique (« / ») est une entrée valide pour le chemin d’accès relatif. Elle implique que le fichier se trouve dans le répertoire racine (par défaut).
+        3. En haut de la page, cliquez sur **Enregistrer**.
+5.  Testez les modifications dans votre configuration comme suit :
+    1.  Dans la barre de recherche du portail, recherchez le nom du profil Traffic Manager et cliquez sur le profil Traffic Manager dans les résultats affichés.
+    2.  Dans le panneau du profil **Traffic Manager**, cliquez sur **Vue d’ensemble**.
+    3.  Le panneau **Profil Traffic Manager** affiche le nom DNS de votre profil Traffic Manager nouvellement créé. Celui-ci peut être utilisé par tous les clients (par exemple, en y accédant à l’aide d’un navigateur web) pour être routés vers le point de terminaison correct, comme déterminé par le type de routage. Dans ce cas, toutes les demandes sont routées vers le point de terminaison avec la latence la plus faible dans le réseau du client.
+6. Une fois le profil Traffic Manager opérationnel, modifiez l’enregistrement DNS sur le serveur DNS faisant autorité, afin de faire pointer votre nom de domaine d’entreprise vers le nom de domaine Traffic Manager.
 
 ![Configuration de la méthode de routage du trafic selon les performances à l’aide de Traffic Manager][1]
 
@@ -48,7 +48,7 @@ Hello, méthode de routage de trafic de performances vous permet de point de ter
 - En savoir plus sur la [méthode de routage du trafic par pondération](traffic-manager-configure-weighted-routing-method.md).
 - En savoir plus sur la [méthode de routage prioritaire](traffic-manager-configure-priority-routing-method.md).
 - En savoir plus sur la [méthode de routage géographique](traffic-manager-configure-geographic-routing-method.md).
-- Découvrez comment trop[tester les paramètres de Traffic Manager](traffic-manager-testing-settings.md).
+- Découvrez comment [tester les paramètres Traffic Manager](traffic-manager-testing-settings.md).
 
 <!--Image references-->
 [1]: ./media/traffic-manager-performance-routing-method/traffic-manager-performance-routing-method.png

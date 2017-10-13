@@ -1,6 +1,6 @@
 ---
-title: "Gestionnaire d’instantanés StorSimple avec les appareils aaaManage | Documents Microsoft"
-description: "Décrit comment toouse hello StorSimple Snapshot Manager MMC enfichable tooconnect et gérer les appareils StorSimple."
+title: "Gérer les appareils avec le Gestionnaire d’instantanés StorSimple | Microsoft Docs"
+description: "Décrit comment utiliser le composant logiciel enfichable MMC du Gestionnaire d’instantanés StorSimple pour connecter et gérer des appareils StorSimple."
 services: storsimple
 documentationcenter: 
 author: SharS
@@ -14,38 +14,38 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/05/2017
 ms.author: v-sharos
-ms.openlocfilehash: 7a2a2ca830e4ea6eb4b01f2542958df3871c1700
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f5e3186a4271e0be781f367fa75ada195c58c960
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-storsimple-snapshot-manager-tooconnect-and-manage-storsimple-devices"></a>Utilisez le Gestionnaire d’instantanés StorSimple tooconnect et gérer les appareils StorSimple
+# <a name="use-storsimple-snapshot-manager-to-connect-and-manage-storsimple-devices"></a>Utiliser le Gestionnaire d’instantanés StorSimple pour connecter et gérer des appareils StorSimple
 ## <a name="overview"></a>Vue d'ensemble
-Vous pouvez utiliser des nœuds Bonjour Gestionnaire d’instantanés StorSimple **étendue** volet tooverify importé des données de l’appareil StorSimple et actualiser les périphériques de stockage connectés. En outre, lorsque vous cliquez sur hello **périphériques** nœud, vous pouvez afficher la liste des périphériques connectés et les informations d’état correspondantes dans hello **résultats** volet.
+Vous pouvez utiliser les nœuds du volet **Étendue** du Gestionnaire d’instantanés StorSimple afin de vérifier les données importées de l’appareil StorSimple et d’actualiser les appareils de stockage connectés. Par ailleurs, lorsque vous cliquez sur le nœud **Appareils**, vous pouvez consulter une liste des appareils connectés et des informations de statut correspondantes dans le volet **Résultats**.
 
 ![Appareils connectés](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_connect_devices.png)
 
 **Figure 1 : Appareil connecté du Gestionnaire d’instantanés StorSimple** 
 
-Selon votre **vue** sélections, hello **résultats** volet affiche hello suivant des informations sur chaque appareil. (Pour plus d’informations sur la configuration d’une vue, consultez trop[menu Affichage](storsimple-use-snapshot-manager.md#view-menu).
+En fonction de vos sélections **Affichage**, le volet **Résultats** indique les informations suivantes à propos de chaque appareil. (Pour plus d’informations sur la configuration d’une vue, accédez au [Menu Affichage](storsimple-use-snapshot-manager.md#view-menu).)
 
 | Colonne de résultats | Description |
 |:--- |:--- |
-| Nom |nom Hello du périphérique hello tel que configuré dans hello portail Azure classic |
-| Modèle |numéro de modèle Hello du périphérique de hello |
-| Version |Hello version de hello logiciel installé sur l’appareil de hello |
-| État |Si l’appareil de hello est disponible |
-| Dernière synchronisation |Date et heure lors de la dernière synchronisation de hello du périphérique |
-| Numéro de série |numéro de série Hello pour appareil de hello |
+| Nom |Le nom de l’appareil, tel que configuré dans le portail Azure Classic |
+| Modèle |Le numéro de modèle de l’appareil |
+| Version |La version du logiciel installé sur l’appareil |
+| Statut |La disponibilité de l’appareil |
+| Dernière synchronisation |Date et heure de la dernière synchronisation de l’appareil |
+| Numéro de série |Le numéro de série de l’appareil |
 
-Si vous cliquez sur hello **périphériques** nœud Bonjour **étendue** , vous pouvez sélectionner à partir de hello suivant des actions :
+Si vous cliquez avec le bouton droit sur le nœud **Appareils** du volet **Étendue**, vous pouvez sélectionner les actions suivantes :
 
 * Ajout ou remplacement d’un appareil
 * Connexion d’un appareil et vérification des importations
 * Actualisation des appareils connectés
 
-Si vous cliquez sur hello **périphériques** nom de nœud et avec le bouton droit puis un appareil Bonjour **résultats** , vous pouvez sélectionner à partir de hello suivant des actions :
+Si vous cliquez sur le nœud **Appareils** puis cliquez avec le bouton droit sur le volet **Résultats**, vous pouvez sélectionner les actions suivantes :
 
 * Authentification d’un appareil
 * Affichage des détails sur l’appareil
@@ -54,10 +54,10 @@ Si vous cliquez sur hello **périphériques** nom de nœud et avec le bouton dro
 * Modification du mot de passe d’un appareil
 
 > [!NOTE]
-> Toutes ces actions sont également disponibles dans hello **Actions** volet.
+> L’ensemble de ces actions sont également disponibles dans le volet **Actions** .
 
 
-Ce didacticiel explique comment toouse tooconnect de gestionnaire d’instantanés StorSimple et gérer des appareils et d’effectuer hello tâches suivantes :
+Ce didacticiel explique comment utiliser le Gestionnaire d’instantanés StorSimple pour connecter et gérer les appareils et effectuer les tâches suivantes :
 
 * Ajout ou remplacement d’un appareil
 * Connexion d’un appareil et vérification des importations
@@ -70,144 +70,144 @@ Ce didacticiel explique comment toouse tooconnect de gestionnaire d’instantan�
 * Remplacement d’un appareil défaillant
 
 > [!NOTE]
-> Pour obtenir des informations générales sur l’utilisation d’interface de gestionnaire d’instantanés StorSimple hello, accédez trop[interface utilisateur de gestionnaire d’instantanés StorSimple](storsimple-use-snapshot-manager.md).
+> Pour consulter des informations générales sur l’utilisation de l’interface du Gestionnaire d’instantanés StorSimple, accédez à la page [Interface utilisateur du Gestionnaire d’instantanés StorSimple](storsimple-use-snapshot-manager.md).
 
 
 ## <a name="add-or-replace-a-device"></a>Ajout ou remplacement d’un appareil
-Utilisez hello suivant la procédure tooadd ou remplacer un appareil StorSimple.
+Exécutez la procédure suivante pour ajouter ou remplacer un appareil StorSimple.
 
-#### <a name="tooadd-or-replace-a-device"></a>tooadd ou remplacer un appareil
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, avec le bouton hello **périphériques** nœud, puis cliquez sur **configurer un appareil**. Hello **configurer un appareil** boîte de dialogue s’affiche.
+#### <a name="to-add-or-replace-a-device"></a>Pour ajouter ou remplacer un appareil
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez avec le bouton droit sur le nœud **Appareils**, puis cliquez sur **Configurer un appareil**. La boîte de dialogue **Configurer un appareil** apparaît.
    
     ![Configurer un appareil StorSimple](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_config_device.png) 
-3. Bonjour **périphérique** zone de liste déroulante, sélectionnez hello adresseIP de périphérique de hello ou un périphérique virtuel. 
-4. Bonjour **mot de passe** zone de texte, de type hello Gestionnaire d’instantanés StorSimple un mot de passe que vous avez créé pour appareil de hello en hello portail Azure classic. Cliquez sur **OK**. Gestionnaire d’instantanés StorSimple recherche le périphérique hello que vous avez identifié. 
+3. Dans la liste déroulante **Appareil** , sélectionnez l’adresse IP de l’appareil ou de l’appareil virtuel. 
+4. Dans la zone de texte **Mot de passe** , entrez le mot de passe du Gestionnaire d’instantanés StorSimple que vous avez créé pour l’appareil dans le portail Azure Classic. Cliquez sur **OK**. Le Gestionnaire d’instantanés StorSimple recherche l’appareil que vous avez identifié. 
    
-   * Si l’appareil de hello est disponible, le Gestionnaire d’instantanés StorSimple ajoute une connexion.
-   * Si l’appareil de hello est indisponible pour une raison quelconque, le Gestionnaire d’instantanés StorSimple retourne un message d’erreur. Cliquez sur **OK** tooclose hello du message d’erreur, puis cliquez sur **Annuler** tooclose hello **configurer un appareil** boîte de dialogue.
+   * Si l’appareil est disponible, le Gestionnaire d’instantanés StorSimple ajoute une connexion.
+   * Si, pour une raison quelconque, l’appareil est indisponible, le Gestionnaire d’instantanés StorSimple renvoie un message d’erreur. Cliquez sur **OK** pour fermer le message d’erreur, puis cliquez sur **Annuler** pour fermer la boîte de dialogue **Configurer un appareil**.
 
 ## <a name="connect-a-device-and-verify-imports"></a>Connexion d’un appareil et vérification des importations
-Utilisez hello suivant la procédure tooconnect un appareil StorSimple et vérifiez que les groupes de volumes existants qui sont associés à des sauvegardes sont importés.
+Appliquez la procédure suivante pour connecter un appareil StorSimple et vérifier que les groupes de volumes existants qui présentent des sauvegardes associées sont importés.
 
-#### <a name="tooconnect-a-device-and-verify-imports"></a>tooconnect un appareil et vérifier les importations
-1. tooconnect un tooStorSimple appareil Gestionnaire d’instantanés, suivez les instructions de hello dans Ajouter ou remplacer un appareil. Lorsqu’il connecte tooa périphérique, le Gestionnaire d’instantanés StorSimple répond comme suit :
+#### <a name="to-connect-a-device-and-verify-imports"></a>Pour connecter un appareil et vérifier les importations
+1. Pour connecter un appareil au Gestionnaire d’instantanés StorSimple, suivez les instructions de la section Ajouter ou remplacer un appareil. Lorsqu’il se connecte à un appareil, le Gestionnaire d’instantanés StorSimple réagit de la manière suivante :
    
-   * Si l’appareil de hello est indisponible pour une raison quelconque, le Gestionnaire d’instantanés StorSimple retourne un message d’erreur. 
+   * Si, pour une raison quelconque, l’appareil est indisponible, le Gestionnaire d’instantanés StorSimple renvoie un message d’erreur. 
    
-   * Si l’appareil de hello est disponible, le Gestionnaire d’instantanés StorSimple ajoute une connexion. Lorsque vous sélectionnez le périphérique de hello, il apparaît dans hello **résultats** volet, et le champ d’état hello indique que ce périphérique hello **disponible**. Gestionnaire d’instantanés StorSimple importe tous les groupes de volumes configurés pour appareil de hello, sous réserve que les sauvegardes soient associées aux groupes de volumes hello. Les stratégies de sauvegarde ne sont pas importées. Les groupes de volumes qui ne sont associés à aucune sauvegarde ne sont pas importés.
-2. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-3. Nœud supérieur de clic droit hello Bonjour **étendue** volet, puis cliquez sur **activer/désactiver l’affichage des importations**.
+   * Si l’appareil est disponible, le Gestionnaire d’instantanés StorSimple ajoute une connexion. Lorsque vous sélectionnez un appareil, il apparaît dans le volet **Résultats**, et le champ de statut indique que l’appareil est **Disponible**. Le Gestionnaire d’instantanés StorSimple importe les groupes de volumes configurés pour l’appareil, à condition que les groupes de volumes présentent des sauvegardes associées. Les stratégies de sauvegarde ne sont pas importées. Les groupes de volumes qui ne présentent pas de sauvegardes associées ne sont pas importés.
+2. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+3. Cliquez sur le nœud supérieur du volet **Étendue**, puis cliquez sur **Basculer l’affichage des importations**.
    
     ![Sélectionner Basculer l’affichage des importations](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Toggle_Imports_Display.png) 
-4. Hello **activer/désactiver l’affichage des importations** boîte de dialogue s’affiche, indiquant hello état hello importé les groupes de volumes et les sauvegardes. Cliquez sur **OK**.
+4. La boîte de dialogue **Basculer l’affichage des importations** apparaît ; elle indique le statut des groupes de volumes et des sauvegardes importés. Cliquez sur **OK**.
 
-Une fois les sauvegardes et les groupes de volumes hello importation réussie, vous pouvez utiliser Gestionnaire d’instantanés StorSimple toomanage leur, exactement comme vous le feriez groupes de volumes et sauvegardes que vous avez créé et configuré avec Gestionnaire d’instantanés StorSimple. 
+Une fois que les groupes de volumes et les sauvegardes ont été importés, vous pouvez utiliser le Gestionnaire d’instantanés StorSimple pour les gérer de la manière dont vous géreriez des groupes de volumes et des sauvegardes créés et configurés avec le Gestionnaire d’instantanés StorSimple. 
 
 ## <a name="refresh-connected-devices"></a>Actualisation des appareils connectés
-Utilisez hello suivant la procédure toosynchronize hello connecté StorSimple appareils auprès de StorSimple Snapshot Manager.
+Exécutez la procédure suivante afin de synchroniser les appareils StorSimple connectés avec le Gestionnaire d’instantanés StorSimple.
 
-#### <a name="toorefresh-connected-devices"></a>toorefresh les périphériques connectés
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, avec le bouton droit **périphériques**, puis cliquez sur **actualiser les périphériques**. Cette opération synchronise hello connecté appareils auprès de StorSimple Snapshot Manager afin que vous pouvez afficher les groupes de volumes hello et des sauvegardes, y compris les ajouts les plus récents. 
+#### <a name="to-refresh-connected-devices"></a>Pour actualiser les appareils connectés
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez avec le bouton droit sur **Appareils**, puis cliquez sur **Actualiser la liste des appareils**. Cette action synchronise les appareils connectés avec le Gestionnaire d’instantanés StorSimple, ce qui vous permet de consulter les groupes de volumes et les sauvegardes, notamment les récents ajouts. 
    
-    ![Actualiser les appareils StorSimple hello](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Refresh_devices.png)
+    ![Actualiser les appareils StorSimple](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Refresh_devices.png)
 
-Hello **actualiser les périphériques** action récupère les nouveaux groupes de volumes et les sauvegardes associées depuis les périphériques connectés. Contrairement aux hello **rescanner les volumes** action disponible pour hello **Volumes** nœud, **actualiser les périphériques** ne pas restaurer le Registre de sauvegarde hello.
+L’action **Actualiser la liste des appareils** permet de récupérer les nouveaux groupes de volumes et les sauvegardes associées des appareils connectés. Contrairement à l’action **Relancer l’analyse des volumes** disponible pour le nœud **Volumes**, l’action **Actualiser la liste des appareils** ne restaure pas le registre de sauvegarde.
 
 ## <a name="authenticate-a-device"></a>Authentification d’un appareil
-Utilisez hello suivant la procédure tooauthenticate un appareil StorSimple auprès de StorSimple Snapshot Manager.
+Exécutez la procédure suivante afin d’authentifier un appareil StorSimple avec le Gestionnaire d’instantanés StorSimple.
 
-#### <a name="tooauthenticate-a-device"></a>tooauthenticate un appareil
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, cliquez sur **périphériques**.
-3. Bonjour **résultats** volet, cliquez sur le nom hello du périphérique de hello, puis cliquez sur **authentifier**.
-4. Hello **authentifier** boîte de dialogue s’affiche. Tapez le mot de passe de périphérique hello, puis cliquez sur **OK**.
+#### <a name="to-authenticate-a-device"></a>Pour authentifier un appareil
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez sur **Appareils**.
+3. Dans le volet **Résultats**, cliquez avec le bouton droit sur le nom de l’appareil, puis cliquez sur **Authentifier**.
+4. La boîte de dialogue **Authentifier** apparaît. Saisissez le mot de passe de l’appareil, puis cliquez sur **OK**.
    
     ![Boîte de dialogue Authentifier](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Authenticate.png) 
 
 ## <a name="view-device-details"></a>Affichage des détails sur l’appareil
-Utilisez hello suivant la procédure tooview hello plus d’informations d’un appareil StorSimple et, si nécessaire, resynchroniser l’appareil hello avec Gestionnaire d’instantanés StorSimple.
+Exécutez la procédure suivante pour consulter les détails sur un appareil StorSimple et, si nécessaire, synchroniser de nouveau l’appareil avec le Gestionnaire d’instantanés StorSimple.
 
-#### <a name="tooview-and-resynchronize-device-details"></a>Détails de l’appareil tooview et se resynchronisent
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, cliquez sur **périphériques**.
-3. Bonjour **résultats** volet, cliquez sur le nom hello du périphérique de hello, puis cliquez sur **détails**.
+#### <a name="to-view-and-resynchronize-device-details"></a>Pour afficher et synchroniser de nouveau les détails sur l’appareil
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez sur **Appareils**.
+3. Dans le volet **Résultats**, cliquez sur le nom de l’appareil, puis cliquez sur **Détails**.
 
-4 hello **détails de l’appareil** boîte de dialogue s’affiche. Cette zone affiche le nom de hello, modèle, version, numéro de série, état, cible iSCSI nom qualifié (IQN) et dernière synchronisation date et l’heure.
+4. La boîte de dialogue **Informations sur l’appareil** s’affiche. Cette zone indique le nom, le modèle, la version, le numéro de série, le statut, le nom qualifié iSCSI cible, ainsi que la date et l’heure de la dernière synchronisation.
 
-* Cliquez sur **Resync** appareil de hello toosynchronize.
-* Cliquez sur **OK** ou **Annuler** boîte de dialogue tooclose hello.
+* Cliquez sur **Resynchroniser** pour synchroniser l’appareil.
+* Cliquez sur **OK** ou sur **Annuler** pour fermer la boîte de dialogue.
   
   ![Informations sur l’appareil](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_Device_details.png) 
 
 ## <a name="refresh-an-individual-device"></a>Actualisation d’un appareil
-Utilisez hello suivant la procédure tooresynchronize un appareil StorSimple individuel avec Gestionnaire d’instantanés StorSimple.
+Exécutez la procédure suivante pour synchroniser de nouveau un appareil StorSimple avec le Gestionnaire d’instantanés StorSimple.
 
-#### <a name="toorefresh-a-device"></a>toorefresh un appareil
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple. 
-2. Bonjour **étendue** volet, cliquez sur **périphériques**. 
-3. Bonjour **résultats** volet, cliquez sur le nom hello du périphérique de hello, puis cliquez sur **actualiser l’appareil**. Appareil de hello se synchronise avec Gestionnaire d’instantanés StorSimple.
+#### <a name="to-refresh-a-device"></a>Pour actualiser un appareil
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple. 
+2. Dans le volet **Étendue**, cliquez sur **Appareils**. 
+3. Dans le volet **Résultats**, cliquez avec le bouton droit sur le nom de l’appareil, puis cliquez sur **Actualiser l’appareil**. L’appareil est synchronisé avec le Gestionnaire d’instantanés StorSimple.
 
 ## <a name="delete-a-device-configuration"></a>Suppression de la configuration d’un appareil
-Utilisez hello suivant procédure toodelete une configuration de l’appareil StorSimple individuelle à partir de gestionnaire d’instantanés StorSimple.
+Utilisez la procédure suivante pour supprimer une configuration d’appareil StorSimple du Gestionnaire d’instantanés StorSimple.
 
-#### <a name="toodelete-a-device-configuration"></a>toodelete une configuration d’appareil
-1. Cliquez sur icône du bureau de hello toostart Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, cliquez sur **périphériques**. 
-3. Bonjour **résultats** volet, cliquez sur le nom hello du périphérique de hello, puis cliquez sur **supprimer**. 
-4. Hello message suivant s’affiche. Cliquez sur **Oui** toodelete hello configuration ou cliquez sur **non** toocancel la suppression hello.
+#### <a name="to-delete-a-device-configuration"></a>Pour supprimer une configuration d’appareil
+1. Cliquez sur l’icône de bureau pour démarrer le Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez sur **Appareils**. 
+3. Dans le volet **Résultats**, cliquez avec le bouton droit sur le nom de l’appareil, puis cliquez sur **Supprimer**. 
+4. Le message suivant s’affiche. Cliquez sur **Oui** pour supprimer la configuration, ou sur **Non** pour annuler la suppression.
    
     ![Supprimer la configuration de l’appareil](./media/storsimple-snapshot-manager-manage-devices/HCS_SSM_DeleteDevice.png)
 
 ## <a name="change-an-expired-device-password"></a>Modification d’un mot de passe expiré d’appareil
-Vous devez entrer un mot de passe de tooauthenticate un appareil StorSimple auprès de StorSimple Snapshot Manager. Vous configurez ce mot de passe lorsque vous utilisez hello Windows PowerShell interface tooset périphérique de hello. Toutefois, le mot de passe hello peut expirer. Dans ce cas, vous pouvez utiliser le mot de passe hello toochange de portail classique Azure hello. Puis, car l’appareil de hello a été configuré dans Gestionnaire d’instantanés StorSimple avant l’expiration du mot de passe hello, vous devez authentifier de nouveau l’appareil hello dans Gestionnaire d’instantanés StorSimple.
+Vous devez entrer un mot de passe pour authentifier un appareil StorSimple avec le Gestionnaire d’instantanés StorSimple. Vous définissez ce mot de passe lorsque vous utilisez l’interface Windows PowerShell pour configurer l’appareil. Toutefois, le mot de passe peut expirer. Le cas échéant, vous avez la possibilité de le modifier à l’aide du portail Azure Classic. Ensuite, l’appareil ayant été configuré dans le Gestionnaire d’instantanés StorSimple avant l’expiration du mot de passe, vous devez de nouveau authentifier l’appareil dans le Gestionnaire d’instantanés StorSimple.
 
-#### <a name="toochange-hello-expired-password"></a>mot de passe expiré toochange hello
-1. Bonjour portail Azure classic, démarrez le service StorSimple Manager hello.
-2. Cliquez sur **périphériques** > **configurer** pour appareil de hello.
-3. Faites défiler toohello section du Gestionnaire d’instantanés StorSimple. Entrez un mot de passe comportant entre 14 et 15 caractères. Assurez-vous que ce mot de passe hello contient une combinaison de caractères en majuscules, minuscules, numériques et spéciaux.
-4. Entrez de nouveau tooconfirm de mot de passe hello il.
-5. Cliquez sur **enregistrer** bas hello de page de hello.
+#### <a name="to-change-the-expired-password"></a>Pour modifier le mot de passe expiré
+1. Dans le portail Azure Classic, démarrez le service StorSimple Manager.
+2. Cliquez sur **Appareils** > **Configurer** pour l’appareil.
+3. Faites défiler jusqu’à la section du Gestionnaire d’instantanés StorSimple. Entrez un mot de passe comportant entre 14 et 15 caractères. Assurez-vous que le mot de passe contient un mélange de majuscules, de minuscules, de chiffres et de caractères spéciaux.
+4. Entrez de nouveau le mot de passe pour le confirmer.
+5. Cliquez sur **Enregistrer** au bas de la page.
 
-#### <a name="toore-authenticate-hello-device"></a>toore-authentifier hello périphérique
+#### <a name="to-re-authenticate-the-device"></a>Pour authentifier de nouveau l’appareil
 1. Démarrez le Gestionnaire d’instantanés StorSimple.
-2. Bonjour **étendue** volet, cliquez sur **périphériques**. Une liste des périphériques configurés apparaît dans hello **résultats** volet.
-3. Sélectionnez le périphérique de hello, avec le bouton droit, puis cliquez sur **authentifier**.
-4. Bonjour **authentifier** fenêtre, entrez le nouveau mot de passe hello.
-5. Sélectionnez le périphérique de hello, avec le bouton droit et sélectionnez **actualisation périphérique**. Appareil de hello se synchronise avec Gestionnaire d’instantanés StorSimple.
+2. Dans le volet **Étendue**, cliquez sur **Appareils**. Une liste des appareils configurés apparaît dans le volet **Résultats** .
+3. Sélectionnez l’appareil, cliquez avec le bouton droit, puis cliquez sur **Authentifier**.
+4. Dans la fenêtre **Authentifier** saisissez le nouveau mot de passe.
+5. Sélectionnez l’appareil, cliquez avec le bouton droit, puis sélectionnez **Actualiser l’appareil**. L’appareil est synchronisé avec le Gestionnaire d’instantanés StorSimple.
 
 ## <a name="replace-a-failed-device"></a>Remplacement d’un appareil défaillant
-Si un appareil StorSimple échoue et est remplacé par un périphérique de secours (basculement), hello utilisation suivant les étapes tooconnect le mode et toohello nouveau périphérique hello sauvegardes associées.
+Si un appareil StorSimple défaillant est remplacé par un appareil de secours (basculement), procédez comme suit pour connecter le nouvel appareil et afficher les sauvegardes associées.
 
-#### <a name="tooconnect-tooa-new-device-after-failover"></a>tooconnect tooa nouveau périphérique après basculement
-1. Reconfigurer hello iSCSI connexion toohello le nouveau périphérique. Pour obtenir des instructions, consultez trop « étape 7 : monter, initialiser et formatez un volume » dans [déployer l’appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md).
+#### <a name="to-connect-to-a-new-device-after-failover"></a>Pour se connecter à un nouvel appareil après un basculement
+1. Reconfigurez la connexion iSCSI au nouvel appareil. Pour obtenir les instructions, accédez à « Étape 7 : Montage, initialisation et formatage d’un volume » de la page [Déploiement de votre appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md).
 
 > [!NOTE]
-> Si l’appareil StorSimple nouveau hello a hello même adresse IP que hello ancien, vous pouvez être ancienne configuration de tooconnect en mesure de hello.
+> Si le nouvel appareil StorSimple possède la même adresse que l’ancien, il est possible que vous puissiez connecter l’ancienne configuration.
 
 
-1. Arrêter hello Service de gestion StorSimple de Microsoft :
+1. Arrêtez le service de gestion Microsoft StorSimple :
    
    1. Démarrez le Gestionnaire de serveur.
-   2. Sur hello du tableau de bord Gestionnaire de serveur, sur hello **outils** menu, sélectionnez **Services**.
-   3. Sur hello **Services** fenêtre, sélectionnez hello **Microsoft StorSimple Management Service**.
-   4. Bonjour avec le bouton droit volet, sous **Microsoft StorSimple Management Service**, cliquez sur **arrêter le service de hello**.
-2. Supprimer l’ancien périphérique hello configuration informations toohello connexes :
+   2. Sur le tableau de bord du Gestionnaire de serveur, dans le menu **Outils**, sélectionnez **Services**.
+   3. Dans la fenêtre **Services**, sélectionnez le **Service de gestion Microsoft StorSimple**.
+   4. Dans le volet droit, sous **Service de gestion Microsoft StorSimple**, cliquez sur **Arrêter le service**.
+2. Supprimez les informations de configuration relatives à l’ancien appareil :
    
-   1. Dans l’Explorateur de fichiers, accédez à tooC:\ProgramData\Microsoft\StorSimple\BACatalog.
-   2. Supprimez les fichiers hello dans le dossier BACatalog de hello.
-3. Redémarrez hello Service de gestion StorSimple de Microsoft :
+   1. Dans l’Explorateur de fichiers, accédez à C:\ProgramData\Microsoft\StorSimple\BACatalog.
+   2. Supprimez les fichiers du dossier BACatalog.
+3. Redémarrez le service de gestion Microsoft StorSimple :
    
-   1. Sur hello du tableau de bord Gestionnaire de serveur, sur hello **outils** menu, sélectionnez **Services**.
-   2. Sur hello **Services** fenêtre, sélectionnez hello **Microsoft StorSimple Management Service**.
-   3. Bonjour avec le bouton droit volet, sous **Microsoft StorSimple Management Service**, cliquez sur **redémarrer hello service**.
+   1. Sur le tableau de bord du Gestionnaire de serveur, dans le menu **Outils**, sélectionnez **Services**.
+   2. Dans la fenêtre **Services**, sélectionnez le **Service de gestion Microsoft StorSimple**.
+   3. Dans le volet droit, sous **Service de gestion Microsoft StorSimple**, cliquez sur **Redémarrer le service**.
 4. Démarrez le Gestionnaire d’instantanés StorSimple.
-5. tooconfigure hello nouveau StorSimple périphérique hello terminé les étapes à l’étape 2 : connecter un appareil StorSimple dans [déployer le Gestionnaire d’instantanés StorSimple](storsimple-snapshot-manager-deployment.md).
-6. Nœud de niveau supérieur avec le bouton hello Bonjour **étendue** volet (Gestionnaire d’instantanés StorSimple dans l’exemple de hello), puis cliquez sur **activer/désactiver l’affichage des importations**. 
-7. Un message s’affiche lorsque hello importé des groupes de volumes et sauvegardes sont visibles dans Gestionnaire d’instantanés StorSimple. Cliquez sur **OK**.
+5. Pour configurer le nouvel appareil StorSimple, exécutez la procédure décrite dans Étape 2 : Connexion d’un appareil StorSimple de la page [Déployer le Gestionnaire d’instantanés StorSimple](storsimple-snapshot-manager-deployment.md).
+6. Cliquez avec le bouton droit sur le nœud de niveau supérieur du volet **Étendue** (Gestionnaire d’instantanés StorSimple dans l’exemple), puis cliquez sur **Basculer l’affichage des importations**. 
+7. Un message s’affiche lorsque les groupes de volumes et les sauvegardes importés sont visibles dans le Gestionnaire d’instantanés StorSimple. Cliquez sur **OK**.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment trop[utiliser le Gestionnaire d’instantanés StorSimple tooadminister votre solution StorSimple](storsimple-snapshot-manager-admin.md).
-* Découvrez comment trop[tooview de gestionnaire d’instantanés StorSimple et gérer les volumes](storsimple-snapshot-manager-manage-volumes.md).
+* Découvrez comment [utiliser le Gestionnaire d’instantanés StorSimple pour gérer votre solution StorSimple](storsimple-snapshot-manager-admin.md).
+* Découvrez comment [utiliser le Gestionnaire d’instantanés StorSimple pour afficher et gérer les volumes](storsimple-snapshot-manager-manage-volumes.md).
 

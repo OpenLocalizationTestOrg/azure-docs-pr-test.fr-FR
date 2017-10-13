@@ -1,6 +1,6 @@
-## <a name="versions-of-hello-azure-cli"></a>Versions de hello CLI d’Azure
+## <a name="versions-of-the-azure-cli"></a>Versions d’Azure CLI
 
-Il existe deux versions de hello Azure Interface de ligne de commande (CLI) actuellement disponibles :
+Deux versions de l’interface de ligne de commande (CLI) Azure sont actuellement disponibles :
 
-* [Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md): notre CLI de nouvelle génération écrit dans Python, pour une utilisation avec le modèle de déploiement du Gestionnaire de ressources hello.
-* [Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md): notre CLI écrites en Node.js, pour une utilisation avec hello classique et les modèles de déploiement de gestionnaire de ressources.
+* [Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md) : notre interface de ligne de commande nouvelle génération écrite en Python à utiliser pour le modèle de déploiement Resource Manager.
+* [Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md) : notre interface de ligne de commande écrite dans le fichier Node.js, à utiliser pour les modèles de déploiement Azure Classic et Azure Resource Manager.

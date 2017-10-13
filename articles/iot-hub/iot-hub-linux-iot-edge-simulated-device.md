@@ -1,6 +1,6 @@
 ---
-title: aaaSimulate un appareil avec Azure IoT bord (Linux) | Documents Microsoft
-description: "Comment toouse Azure IoT Edge sur Linux toocreate un appareil simulé qui envoie des données de télémétrie via un bord IoT IoT hub tooan de passerelle."
+title: Simuler un appareil avec Azure IoT Edge (Windows) | Documents Microsoft
+description: "Comment utiliser le Kit de développement logiciel (SDK) de la passerelle Azure IoT sous Windows pour créer un appareil simulé qui envoie les données de télémétrie à un Azure IoT Hub via une passerelle."
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/09/2017
 ms.author: andbuc
-ms.openlocfilehash: 168fb8eda8671d02c63073bdf36dfcd88b397fe2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5349960373ae6815862c5f79a69dd6d5d9d624ab
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-azure-iot-edge-toosend-device-to-cloud-messages-with-a-simulated-device-linux"></a>Utiliser des messages de périphérique dans le cloud Azure IoT bord toosend avec un appareil simulé (Linux)
+# <a name="use-azure-iot-edge-to-send-device-to-cloud-messages-with-a-simulated-device-linux"></a>Utilisation d’Azure IoT Edge pour envoyer des messages appareil-à-cloud avec un appareil simulé (Linux)
 
 [!INCLUDE [iot-hub-iot-edge-simulated-selector](../../includes/iot-hub-iot-edge-simulated-selector.md)]
 
 [!INCLUDE [iot-hub-iot-edge-install-build-linux](../../includes/iot-hub-iot-edge-install-build-linux.md)]
 
-## <a name="how-toorun-hello-sample"></a>Comment toorun hello exemple
+## <a name="how-to-run-the-sample"></a>Comment exécuter l’exemple
 
-Hello **build.sh** script génère sa sortie dans hello **générer** dossier dans votre copie locale de hello **iot-bord** référentiel. Cette sortie inclut quatre modules IoT bord hello, utilisées dans cet exemple.
+Le script **build.sh** génère sa sortie dans le dossier **build** de votre copie locale du référentiel **iot-edge**. Cette sortie inclut les quatre modules IoT Edge utilisés dans cet exemple.
 
-Hello build script place le :
+Le script build place les fichiers comme suit :
 
-* **liblogger.so** Bonjour **/modules/journal de build** dossier.
-* **libiothub.so** Bonjour **build/modules/iothub** dossier.
-* **LIB\_identité\_map.so** Bonjour **build/modules/identitymap** dossier.
-* **libsimulated\_device.so** Bonjour **build/modules/simulée\_périphérique** dossier.
+* **liblogger.so** dans le dossier **build/modules/logger**.
+* **libiothub.so** dans le dossier **build/modules/iothub**.
+* **lib\_identity\_map.so** dans le dossier **build/modules/identitymap**.
+* **libsimulated\_device.so** dans le dossier **build/modules/simulated\_device**.
 
-Utilisez ces chemins d’accès pour hello **chemin du module** valeurs comme indiqué dans hello le fichier de paramètres JSON suivant :
+Utilisez ces chemins pour les valeurs **module path** comme indiqué dans le fichier de paramètres JSON suivant :
 
-Hello simulée\_périphérique\_cloud\_télécharger\_exemple de processus prend le fichier de configuration hello chemin d’accès tooa JSON comme un argument de ligne de commande. exemple de fichier JSON suivant Hello est fourni dans le référentiel du Kit de développement logiciel hello à **exemples\\simulé\_périphérique\_cloud\_télécharger\_exemple\\src\\ simulé\_périphérique\_cloud\_télécharger\_exemple\_lin.json**. Ce fonctionne de fichier de configuration en l’état, sauf si vous modifiez hello construire des modules hello tooplace de script IoT bord ou un échantillon exécutables dans les emplacements par défaut.
+Le processus simulated\_device\_cloud\_upload\_sample utilise le chemin vers un fichier de configuration JSON comme argument de ligne de commande. L’exemple de fichier JSON suivant est fourni dans le référentiel du Kit de développement logiciel, sous **samples\\simulated\_device\_cloud\_upload\_sample\\src\\simulated\_device\_cloud\_upload\_sample\_lin.json**. Ce fichier de configuration fonctionne comme tel, sauf si vous modifiez le script build pour placer des modules IoT Edge ou des exécutables de l’exemple dans des emplacements autres que ceux par défaut.
 
 > [!NOTE]
-> chemins d’accès du module de Hello sont Active toohello relatif à partir duquel vous exécutez hello simulée\_périphérique\_cloud\_télécharger\_exécutable de l’exemple, pas le répertoire hello où se trouve le fichier exécutable de hello. fichier de configuration JSON exemple Hello par défaut est toowriting too'deviceCloudUploadGatewaylog.log' dans votre répertoire de travail actuel.
+> Les chemins d’accès du module sont relatifs au répertoire à partir duquel vous exécutez l’exécutable simulated\_device\_cloud\_upload\_sample, et non au répertoire où se trouve l’exécutable. L’exemple de fichier de configuration JSON écrit par défaut dans « deviceCloudUploadGatewaylog.log » dans votre répertoire de travail actuel.
 
-Dans un éditeur de texte, ouvrez le fichier de hello **exemples/simulée\_périphérique\_cloud\_télécharger\_exemple/src/simulée\_périphérique\_cloud\_télécharger\_lin.json** dans votre copie locale de hello **iot-bord** référentiel. Ce fichier configure les modules IoT bord hello dans l’exemple de passerelle hello :
+Dans un éditeur de texte, ouvrez le fichier **samples/simulated\_device\_cloud\_upload\_sample/src/simulated\_device\_cloud\_upload\_lin.json** dans votre copie locale du référentiel **iot-edge**. Ce fichier configure les modules IoT Edge dans l'exemple de passerelle :
 
-* Hello **IoTHub** module connecte tooyour IoT hub. Vous configurer tooyour IoT hub toosend données. Plus précisément, jeu hello **IoTHubName** valeur nom toohello de votre hub IoT et définir hello **IoTHubSuffix** valeur trop**azure-devices.net**. Ensemble hello **Transport** tooone de valeur de : **HTTP**, **AMQP**, ou **MQTT**. Actuellement, seul **HTTP** partage une connexion TCP pour tous les messages d’appareils. Si la valeur hello trop**AMQP**, ou **MQTT**, passerelle de hello conserve un tooIoT connexion TCP de distinct concentrateur pour chaque périphérique.
-* Hello **mappage** module mappe les adresses MAC hello de votre ID d’appareil simulé appareils tooyour IoT Hub. Assurez-vous que **deviceId** valeurs correspondance hello ID de hello deux périphériques que vous avez ajouté tooyour IoT hub et ce hello **deviceKey** valeurs contiennent des clés de hello de vos appareils de deux.
-* Hello **BLE1** et **BLE2** modules sont des périphériques de hello simulé. Notez comment leur MAC adresses correspondance hello adresses Bonjour **mappage** module.
-* Hello **journal** module connecte à votre fichier tooa d’activité passerelle.
-* Hello **chemin du module** valeurs hello illustrés supposent que vous exécutez l’exemple hello de hello **générer** dossier dans votre copie locale de hello **iot-bord** référentiel.
-* Hello **liens** tableau bas hello du fichier JSON de hello connecte hello **BLE1** et **BLE2** modules toohello **mappage** module et hello **mappage** module toohello **IoTHub** module. Cela garantit également que tous les messages sont enregistrés par hello **journal** module.
+* Le module **IoTHub** se connecte à votre hub IoT. Vous le configurez pour envoyer des données à votre hub IoT. Plus précisément, définissez la valeur **IoTHubName** sur le nom de votre IoT Hub et la valeur **IoTHubSuffix** sur **azure-devices.net**. Définissez la valeur de **Transport** sur **HTTP**, **AMQP** ou **MQTT**. Actuellement, seul **HTTP** partage une connexion TCP pour tous les messages d’appareils. Si vous définissez la valeur sur **AMQP** ou **MQTT**, la passerelle gère une connexion TCP à IoT Hub distincte pour chaque appareil.
+* Le module **mapping** mappe les adresses MAC des appareils simulés aux ID de vos appareils IoT Hub. Assurez-vous que les valeurs **deviceId** correspondent aux ID des deux appareils que vous avez ajoutés à votre IoT Hub et que les valeurs **deviceKey** contiennent les clés de vos deux appareils.
+* Les modules **BLE1** et **BLE2** sont les appareils simulés. Notez comment leurs adresses MAC correspondent à celles du module **mapping**.
+* Le module **Logger** consigne l’activité de votre passerelle dans un fichier.
+* Les valeurs **module path** affichées dans l’exemple supposent que vous exécuterez l’exemple à partir du dossier **build** de votre copie locale du référentiel **iot-edge**.
+* Le tableau **links** à la fin du fichier JSON se connecte les modules **BLE1** et **BLE2** au module **mapping**, et le module **mapping** au module **IoTHub**. Il garantit également que tous les messages sont consignés par le module **Logger** .
 
 ```json
 {
@@ -149,17 +149,17 @@ Dans un éditeur de texte, ouvrez le fichier de hello **exemples/simulée\_péri
 }
 ```
 
-Enregistrez les modifications hello apportées toohello les fichier de configuration.
+Enregistrez les modifications apportées au fichier de configuration.
 
-toorun hello, exemple :
+Pour exécuter l'exemple :
 
-1. Dans votre interpréteur de commandes, accédez à toohello **iot-bord/build** dossier.
-2. Exécutez hello de commande suivante :
+1. Dans votre interpréteur de commandes, accédez au dossier **iot-edge/build**.
+2. Exécutez la commande suivante :
    
     ```sh
     ./samples/simulated_device_cloud_upload/simulated_device_cloud_upload_sample ../samples/simulated_device_cloud_upload/src/simulated_device_cloud_upload_lin.json
     ```
-3. Vous pouvez utiliser hello [Explorateur de périphérique] [ lnk-device-explorer] ou [iothub-explorer] [ lnk-iothub-explorer] outil messages hello toomonitor IoT hub reçoit de hello passerelle. Par exemple, à l’aide de l’Explorateur du iothub vous pouvez surveiller les messages de périphérique dans le cloud à l’aide de hello de commande suivante :
+3. Vous pouvez utiliser l’outil [Explorateur d’appareils][lnk-device-explorer] ou [iothub-explorer][lnk-iothub-explorer] pour analyser les messages qu’IoT Hub reçoit de la passerelle. Par exemple, à l’aide d’iothub-explorer, vous pouvez surveiller les messages appareil-à-cloud à l’aide de la commande suivante :
 
     ```sh
     iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey={Your IoT Hub key}"
@@ -167,15 +167,15 @@ toorun hello, exemple :
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-toogain une plus grande maîtrise de Azure IoT Edge et expérience avec quelques exemples de code, visitez hello développeur didacticiels et ressources :
+Pour approfondir vos connaissances sur Azure IoT Edge et découvrir certains exemples de code, consultez les didacticiels de développement et les ressources suivants :
 
 * [Envoi de messages appareil-à-cloud à partir d’un appareil physique avec Azure IoT Edge][lnk-physical-device]
 * [Azure IoT Edge][lnk-iot-edge]
 
-toofurther Explorez les fonctionnalités de hello d’IoT Hub, consultez :
+Pour explorer davantage les capacités de IoT Hub, consultez :
 
 * [Guide du développeur IoT Hub][lnk-devguide]
-* [Sécuriser votre solution IoT hello d’arrière-plan][lnk-securing]
+* [Sécuriser votre solution IoT de bout en bout][lnk-securing]
 
 <!-- Links -->
 [lnk-iot-edge]: https://github.com/Azure/iot-edge/

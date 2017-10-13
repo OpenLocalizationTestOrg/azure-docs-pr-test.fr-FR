@@ -1,6 +1,6 @@
 ---
-title: "packages d’applications aaaInstall sur les nœuds de calcul - Azure Batch | Documents Microsoft"
-description: "Utiliser la fonctionnalité packages application hello de traitement par lots Azure tooeasily gérer plusieurs applications et les nœuds de calcul des versions pour l’installation sur le lot."
+title: "Installer des packages d’applications sur des nœuds de calcul - Azure Batch | Microsoft Docs"
+description: "Utilisez la fonctionnalité de packages d’applications d’Azure Batch pour gérer facilement plusieurs applications et versions pour l’installation sur des nœuds de calcul Batch."
 services: batch
 documentationcenter: .net
 author: tamram
@@ -15,197 +15,197 @@ ms.workload: big-compute
 ms.date: 07/20/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 683be7b7f1bd5db7835332016f6dccb72f45c3b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: afcc04c80ec15872a22de5d5969a7ef6a583562f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="deploy-applications-toocompute-nodes-with-batch-application-packages"></a>Déployer des nœuds de toocompute d’applications avec les packages d’applications de traitement par lots
+# <a name="deploy-applications-to-compute-nodes-with-batch-application-packages"></a>Déployer des applications sur les nœuds avec des packages d’applications Batch
 
-fonctionnalité Hello de packages d’application de traitement par lots Azure fournit une gestion plus simple des applications de la tâche et leur toohello déploiement nœuds de calcul dans le pool. Avec les packages d’application, vous pouvez télécharger et gérer plusieurs versions d’applications hello que vos tâches de s’exécuter, y compris leurs fichiers de support. Vous pouvez ensuite automatiquement déployer une ou plusieurs de ces applications toohello nœuds de calcul dans le pool.
+La fonctionnalité de packages d’application d’Azure Batch permet de gérer facilement les applications de tâche et leur déploiement sur les nœuds de calcul dans votre pool. Grâce aux packages d’application, vous pouvez charger et gérer plusieurs versions des applications que vos tâches exécutent, notamment leurs fichiers de prise en charge. Vous pouvez ensuite déployer automatiquement une ou plusieurs de ces applications sur les nœuds de calcul de votre pool.
 
-Dans cet article, vous allez apprendre comment tooupload et gérer des packages d’application Bonjour portail Azure. Vous apprendrez ensuite comment tooinstall sur d’un pool nœuds de calcul avec hello [Batch .NET] [ api_net] bibliothèque.
+Dans cet article, vous allez apprendre à charger et gérer des packages d’application à l’aide du Portail Azure. Vous apprendrez ensuite à les installer sur les nœuds de calcul d’un pool au moyen de la bibliothèque [Batch .NET][api_net].
 
 > [!NOTE]
 > 
-> Les packages d’applications sont pris en charge sur tous les pools Batch créés après le 5 juillet 2017. Elles sont prises en charge sur les pools de traitement par lots créés entre 10 mars 2016 et 5 juillet 2017 uniquement si le pool de hello a été créé à l’aide d’une configuration de Service Cloud. Les pools de lot créés too10 préalable mars 2016 ne gèrent pas les packages d’applications.
+> Les packages d’applications sont pris en charge sur tous les pools Batch créés après le 5 juillet 2017. Ils sont pris en charge sur les pools Batch créés entre le 10 mars 2016 et le 5 juillet 2017 uniquement si le pool a été créé à l’aide d’une configuration de service cloud. Les pools Batch créés avant le 10 mars 2016 ne prennent pas en charge les packages d’applications.
 >
-> API pour créer et gérer des packages d’application Hello font partie de hello [Batch Management .NET] [[api_net_mgmt]] bibliothèque. API pour l’installation des packages d’application sur un nœud de calcul Hello font partie de hello [Batch .NET] [ api_net] bibliothèque.  
+> Les API servant à la création et la gestion des packages d’application font partie de la bibliothèque [Batch Management .NET] [[api_net_mgmt]]. Les API servant à l’installation des packages d’application sur un nœud de calcul font partie de la bibliothèque [Batch .NET][api_net].  
 >
-> fonctionnalité de packages d’application Hello décrite ici remplace la fonctionnalité des applications Batch hello disponible dans les versions précédentes du service de hello.
+> La fonctionnalité de packages d’application décrite ici remplace la fonctionnalité d’applications Batch disponible dans les versions précédentes du service.
 > 
 > 
 
 ## <a name="application-package-requirements"></a>Configuration requise des packages d’application
-toouse des packages d’applications, vous devez trop[lier un compte de stockage Azure](#link-a-storage-account) tooyour compte Batch.
+Pour utiliser des packages d’application, vous devez [lier un compte de stockage Azure](#link-a-storage-account) à votre compte Batch.
 
-Cette fonctionnalité a été introduite dans [API REST de traitement par lots] [ api_rest] version 2015-12-01.2.2). et hello correspondant [Batch .NET] [ api_net] version de la bibliothèque 3.1.0. Nous vous recommandons de toujours utiliser version plus récente de l’API hello lorsque vous travaillez avec un lot.
+Cette fonctionnalité a été introduite dans la version 2015-12-01.2.2 de [l’API REST Batch][api_rest] et dans la version 3.1.0 de la bibliothèque [Batch .NET][api_net] correspondante. Nous vous recommandons de toujours utiliser la dernière version de l’API lorsque vous utilisez Batch.
 
 > [!NOTE]
-> Les packages d’applications sont pris en charge sur tous les pools Batch créés après le 5 juillet 2017. Elles sont prises en charge sur les pools de traitement par lots créés entre 10 mars 2016 et 5 juillet 2017 uniquement si le pool de hello a été créé à l’aide d’une configuration de Service Cloud. Les pools de lot créés too10 préalable mars 2016 ne gèrent pas les packages d’applications.
+> Les packages d’applications sont pris en charge sur tous les pools Batch créés après le 5 juillet 2017. Ils sont pris en charge sur les pools Batch créés entre le 10 mars 2016 et le 5 juillet 2017 uniquement si le pool a été créé à l’aide d’une configuration de service cloud. Les pools Batch créés avant le 10 mars 2016 ne prennent pas en charge les packages d’applications.
 >
 >
 
 ## <a name="about-applications-and-application-packages"></a>Concernant les applications et les packages d’applications
-Dans le traitement par lots Azure, un *application* fait référence à set tooa des fichiers binaires avec version qui peuvent être des nœuds de calcul toohello automatiquement téléchargé dans votre pool de. Un *package d’application* fait référence tooa *ensemble spécifique* des fichiers binaires et représente une donnée *version* de l’application hello.
+Dans Azure Batch, une *application* fait référence à un jeu de versions de fichiers binaires automatiquement téléchargeable sur les nœuds de calcul de votre pool. Un *package d’application* désigne un *jeu spécifique* de ces fichiers binaires et représente une *version* donnée de l’application.
 
 ![Diagramme détaillé sur les applications et les packages d’applications][1]
 
 ### <a name="applications"></a>Applications
-Une application dans le lot contient une ou plusieurs applications, packages et spécifie les options de configuration de l’application hello. Par exemple, une application peut spécifier hello par défaut application package version tooinstall sur les nœuds de calcul et si ses packages peuvent être mis à jour ou supprimées.
+Dans Batch, une application contient un ou plusieurs packages d’application et spécifie les options de configuration de l’application. Par exemple, une application peut indiquer la version par défaut du package d’application à installer sur les nœuds de calcul, et préciser si ses packages peuvent être mis à jour ou supprimés.
 
 ### <a name="application-packages"></a>packages d’application
-Un package d’application est un fichier .zip qui contient les fichiers binaires d’application hello et les fichiers de prise en charge qui sont requises pour votre application de hello toorun tâches. Chaque package d’application représente une version spécifique de l’application hello.
+Un package d’application est un fichier .zip contenant les fichiers binaires de l’application et les fichiers de prise en charge requis pour que vos tâches puissent exécuter l’application. Chaque package d’application représente une version spécifique de l’application.
 
-Vous pouvez spécifier les packages d’applications au niveau hello pool et des tâches. Lorsque vous créez un pool ou une tâche, vous pouvez spécifier un ou plusieurs de ces packages et, le cas échéant, une version.
+Vous pouvez spécifier des packages d’application aux niveaux d’un pool et d’une tâche. Lorsque vous créez un pool ou une tâche, vous pouvez spécifier un ou plusieurs de ces packages et, le cas échéant, une version.
 
-* **Les packages d’applications du pool** sont déployés trop*chaque* nœud dans le pool de hello. Les applications sont déployées lorsqu’un nœud rejoint un pool, et lorsqu’il est redémarré ou réinitialisé.
+* **Les packages d’application du pool** sont déployés sur *tous* les nœuds dans le pool. Les applications sont déployées lorsqu’un nœud rejoint un pool, et lorsqu’il est redémarré ou réinitialisé.
   
-    Les packages d’application de pool sont appropriés lorsque tous les nœuds dans un pool exécutent les tâches d’un travail. Vous pouvez spécifier un ou plusieurs packages d’application lorsque vous créez un pool, et vous pouvez ajouter ou mettre à jour les packages d’un pool existant. Si vous mettez à jour les packages d’applications d’un pool existant, vous devez redémarrer ses nœuds tooinstall hello nouveau package.
-* **Les packages d’applications de tâches** sont déployées uniquement le nœud de calcul tooa planifiée toorun une tâche, juste avant d’exécuter la ligne de commande de la tâche hello. Si hello spécifié version et le package d’application est déjà sur le nœud de hello, il n’est pas redéployé et hello les package existant est utilisé.
+    Les packages d’application de pool sont appropriés lorsque tous les nœuds dans un pool exécutent les tâches d’un travail. Vous pouvez spécifier un ou plusieurs packages d’application lorsque vous créez un pool, et vous pouvez ajouter ou mettre à jour les packages d’un pool existant. Si vous mettez à jour les packages d’application d’un pool existant, vous devez redémarrer ses nœuds pour installer le nouveau package.
+* **Les packages d’application de tâche** sont déployés uniquement sur un nœud de calcul programmé pour exécuter une tâche, juste avant d’exécuter la ligne de commande de la tâche. Si le package d’application spécifié et la version sont déjà sur le nœud, il n’est pas redéployé et le package existant est utilisé.
   
-    Packages d’applications de tâche sont utiles dans les environnements de pool partagé, où différentes tâches sont exécutées sur un pool et pool de hello n’est pas supprimé lorsqu’un travail est terminé. Si votre travail comporte moins de tâches que les nœuds dans le pool de hello, packages d’applications de tâche peuvent réduire le transfert de données depuis votre application est déployée toohello uniquement les nœuds qui exécutent des tâches.
+    Les packages d’application de tâche sont utiles dans les environnements de pool partagé, où différents travaux sont exécutés sur un même pool et le pool n’est pas supprimé lorsqu’un travail est terminé. Si votre travail présente moins de tâches que le pool ne contient de nœuds, les packages d’applications au niveau des tâches peuvent réduire le transfert de données, votre application n’étant déployée que sur les nœuds exécutant les tâches.
   
-    Les autres scénarios pouvant tirer parti des packages d’application de tâche sont les travaux qui exécutent une application lourde, mais uniquement pour un petit nombre de tâches. Par exemple, une étape de prétraitement ou une tâche de fusion, où les application de pré-traitement ou de fusion hello est lourd, peut-être bénéficier à l’aide de packages d’applications Office.
+    Les autres scénarios pouvant tirer parti des packages d’application de tâche sont les travaux qui exécutent une application lourde, mais uniquement pour un petit nombre de tâches. Par exemple, une phase de prétraitement ou une tâche de fusion, où l’application de pré-traitement ou de fusion est lourde, peuvent bénéficier de l’utilisation de packages d’application de tâche.
 
 > [!IMPORTANT]
-> Il existe des restrictions de nombre de hello des applications et des packages d’applications au sein d’un compte de traitement par lots et de la taille du package maximale application hello. Consultez [Quotas et limites pour hello service Azure Batch](batch-quota-limit.md) pour plus d’informations sur ces limites.
+> Il existe des restrictions au nombre d’applications et de packages d’application à l’intérieur d’un compte Batch, ainsi qu’à la taille maximale des packages d’application. Pour plus d’informations sur ces limites, voir [Quotas et limites pour le service Azure Batch](batch-quota-limit.md) .
 > 
 > 
 
 ### <a name="benefits-of-application-packages"></a>Avantages des packages d’applications
-Les packages d’applications peuvent simplifier le code hello dans votre solution de traitement par lots et des inférieur hello généraux toomanage requis hello applications vos tâches.
+Les packages d’application peuvent simplifier le code de votre solution Batch et alléger les coûts requis par la gestion des applications exécutées par vos tâches.
 
-Avec les packages d’application, tâche de démarrage de votre pool n’est toospecify une longue liste de tooinstall des fichiers de ressources individuels sur les nœuds hello. Vous n’avez pas toomanually gérer plusieurs versions de vos fichiers d’application dans le stockage Azure, ou sur les nœuds. Et vous n’avez pas besoin de tooworry sur la génération de [URL de SAP](../storage/common/storage-dotnet-shared-access-signature-part-1.md) tooprovide toohello accéder aux fichiers de votre compte de stockage. Fonctionne en arrière-plan hello avec les packages d’applications Azure Storage toostore du lot et les déployer toocompute nœuds.
+Avec des packages d’application, la tâche de démarrage de votre pool ne doit pas nécessairement spécifier une longue liste de fichiers de ressources à installer sur les nœuds. Vous n’êtes pas obligé de gérer manuellement plusieurs versions de vos fichiers dans le stockage Azure ni sur vos nœuds. En outre, inutile de vous soucier de la génération [d’URL SAP](../storage/common/storage-dotnet-shared-access-signature-part-1.md) pour fournir l’accès aux fichiers dans votre compte de stockage. Batch fonctionne en arrière-plan avec le stockage Azure pour stocker des packages d’application et les déployer sur les nœuds de calcul.
 
 > [!NOTE] 
-> Hello taille totale d’une tâche de démarrage doit être inférieur ou égal too32768 caractères, y compris les fichiers de ressources et les variables d’environnement. Si votre tâche de démarrage dépasse cette limite, l’utilisation de packages d’application est une autre option. Vous pouvez également créer une archive ZIP qui contient vos fichiers de ressources, télécharger sous la forme d’un objet blob de tooAzure stockage, puis décompressez-le à partir de la ligne de commande hello de votre tâche de démarrage. 
+> La taille totale d’une tâche de démarrage doit être inférieure ou égale à 32 768 caractères, y compris les fichiers de ressources et les variables d’environnement. Si votre tâche de démarrage dépasse cette limite, l’utilisation de packages d’application est une autre option. Vous pouvez également créer une archive zippée contenant vos fichiers de ressources, la charger en tant qu’objet blob sur Stockage Azure, puis la décompresser à partir de la ligne de commande de votre tâche de démarrage. 
 >
 >
 
 ## <a name="upload-and-manage-applications"></a>Téléchargement et gestion des applications
-Vous pouvez utiliser hello [portail Azure] [ portal] ou hello [Batch Management .NET](batch-management-dotnet.md) packages d’application bibliothèque toomanage hello dans votre compte Batch. Dans hello ensuite des sections suivantes, nous montrer tout d’abord comment toolink un compte de stockage, puis discutez ajoutant des applications et packages et les gérer avec hello portal.
+Vous pouvez utiliser le [Portail Azure][portal] ou la bibliothèque [Batch Management .NET](batch-management-dotnet.md) pour gérer les packages d’application dans votre compte Batch. Dans les sections suivantes, nous allons commencer par montrer comment lier un compte de stockage, puis nous aborderons l’ajout d’applications et de packages et leur gestion avec le portail.
 
 ### <a name="link-a-storage-account"></a>Liaison d’un compte de stockage
-toouse des packages d’applications, vous devez d’abord lier un tooyour de compte de stockage Azure du compte Batch. Si vous n’avez pas encore configuré un compte de stockage, hello portail Azure affiche un avertissement hello première fois que vous cliquez sur hello **Applications** vignette Bonjour **compte Batch** panneau.
+Pour utiliser les packages d’application, vous devez commencer par lier un compte Azure Storage à votre compte Batch. Si vous n’avez pas encore configuré de compte de stockage, le portail Azure affiche un avertissement la première fois que vous cliquez sur la vignette **Applications** dans le panneau **Compte Batch**.
 
 > [!IMPORTANT]
-> Prend en charge du lot actuellement *uniquement* hello **à usage général** type de compte de stockage comme décrit à l’étape 5, [créer un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account), dans [sur Azure comptes de stockage](../storage/common/storage-create-storage-account.md). Lorsque vous liez un tooyour de compte de stockage Azure du compte Batch, *uniquement* un **à usage général** compte de stockage.
+> Batch prend actuellement en charge *uniquement* le type de compte de stockage **à usage général**, comme décrit à l’étape 5, [Créer un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account), dans [À propos des comptes de stockage Azure](../storage/common/storage-create-storage-account.md). Quand vous liez un compte de stockage Azure à votre compte Batch, liez *uniquement* un compte de stockage **à usage général**.
 > 
 > 
 
 ![Avertissement « Aucun compte de stockage configuré » dans le portail Azure][9]
 
-Hello lot service utilise hello associés toostore de compte de stockage vos packages d’application. Une fois que vous avez lié des deux comptes de hello, lot peut déployer automatiquement des packages de hello stockées dans les nœuds de calcul hello lié stockage compte tooyour. toolink un tooyour de compte de stockage du compte Batch, cliquez sur **les paramètres de compte de stockage** sur hello **avertissement** panneau, puis cliquez sur **compte de stockage** sur hello **Compte de stockage** panneau.
+Le service Batch utilise le compte de stockage associé pour stocker vos packages d’application. Une fois que vous avez lié les deux comptes, Batch peut déployer automatiquement les packages stockés dans le compte de stockage lié sur vos nœuds de calcul. Pour lier un compte de stockage à votre compte Batch, dans le panneau **Avertissement**, cliquez sur **Paramètres du compte de stockage**, puis, dans le panneau **Compte de stockage**, cliquez sur **Compte de stockage**.
 
 ![Panneau Sélectionner un compte de stockage dans le Portail Azure][10]
 
-Nous vous recommandons de créer un compte de stockage *spécifiquement* destiné à être utilisé avec votre compte Batch et de le sélectionner ici. Pour plus d’informations sur la façon toocreate un compte de stockage, consultez la section « Créer un compte de stockage » dans [les comptes sur le stockage Azure](../storage/common/storage-create-storage-account.md). Une fois que vous avez créé un compte de stockage, vous pouvez ensuite lier il tooyour lot compte à l’aide de hello **compte de stockage** panneau.
+Nous vous recommandons de créer un compte de stockage *spécifiquement* destiné à être utilisé avec votre compte Batch et de le sélectionner ici. Pour plus d’informations sur la création d’un compte de stockage, consultez la section « Créer un compte de stockage » dans [À propos des comptes de stockage Azure](../storage/common/storage-create-storage-account.md). Après avoir créé un compte de stockage, vous pouvez le lier à votre compte Batch à l’aide du panneau **Compte de stockage** .
 
 > [!WARNING]
-> Hello service Batch utilise le stockage Azure toostore vos packages d’application en tant qu’objets BLOB de blocs. Vous êtes [facturé comme d’habitude] [ storage_pricing] pour les données blob de bloc hello. Être sûr de taille de hello tooconsider et nombre de vos packages d’application et supprimer régulièrement les coûts de toominimize déconseillées de packages.
+> Le service Batch utilise un stockage Azure pour stocker vos packages d’application en tant qu’objets blob de blocs. Vous êtes [facturé comme d’habitude][storage_pricing] pour les données d’objet blob de bloc. Veillez à prendre en compte la taille et le nombre de vos packages d’application, ainsi qu’à supprimer régulièrement les packages obsolètes afin de minimiser les coûts.
 > 
 > 
 
 ### <a name="view-current-applications"></a>Affichage des applications en cours
-applications de hello tooview dans votre compte de traitement par lots, cliquez sur hello **Applications** élément de menu dans le menu de gauche hello lors de l’affichage hello **compte Batch** panneau.
+Pour visualiser les applications dans votre compte Batch, cliquez sur l’élément de menu **Applications** dans le menu gauche pendant que vous affichez le panneau **Compte Batch**.
 
 ![Vignette Applications][2]
 
-Cette option de menu ouvre hello **Applications** panneau :
+La sélection de cette option de menu a pour effet d’ouvrir le panneau **Applications** :
 
 ![Liste des applications][3]
 
-Hello **Applications** panneau affiche hello ID de chaque application dans votre compte et hello les propriétés suivantes :
+Le panneau **Applications** affiche l’ID de chaque application dans votre compte et les propriétés suivantes :
 
-* **Packages**: hello le nombre de versions associées à cette application.
-* **Version par défaut**: version de l’application hello installée si vous n’indiquez pas une version lorsque vous spécifiez l’application hello pour un pool. Ce paramètre est facultatif.
-* **Autoriser les mises à jour**: valeur hello qui spécifie si le package met à jour, suppressions et les ajouts sont autorisés. Si la valeur est trop**non**, mises à jour de package et les suppressions sont désactivées pour l’application hello. Seules les nouvelles versions de package d’application pourront être ajoutées. valeur par défaut Hello est **Oui**.
+* **Packages** : nombre de versions associées à cette application.
+* **Version par défaut** : version d’application installée si vous n’indiquez pas de version lorsque vous spécifiez l’application pour un pool. Ce paramètre est facultatif.
+* **Autoriser les mises à jour** : valeur spécifiant si les mises à jour, les suppressions et les ajouts de packages sont autorisés. Si ce paramètre présente la valeur **Non**, les mises à jour et les suppressions de packages sont désactivées pour l’application. Seules les nouvelles versions de package d’application pourront être ajoutées. La valeur par défaut de ce paramètre est **Oui**.
 
 ### <a name="view-application-details"></a>Affichage des détails de l’application
-panneau hello tooopen qui inclut des détails de hello pour une application, sélectionnez hello Bonjour **Applications** panneau.
+Pour ouvrir le panneau contenant les détails d’une application, dans le panneau **Applications**, sélectionnez l’application.
 
 ![Détails de l’application][4]
 
-Dans le panneau des détails de l’application hello, vous pouvez configurer hello suivant les paramètres de votre application.
+Dans le panneau des détails de l’application, vous pouvez configurer les paramètres suivants pour votre application.
 
 * **Autoriser les mises à jour** : permet de spécifier si ses packages d’application peuvent être mis à jour ou supprimés. Voir la section « Mettre à jour ou supprimer un package d’application » dans la suite de cet article.
-* **Version par défaut**: spécifiez une valeur par défaut package toodeploy toocompute des nœuds d’applications.
-* **Nom d’affichage**: spécifiez un nom convivial votre solution peut utiliser lorsqu’il affiche plus d’informations sur l’application hello, par exemple, Bonjour l’interface utilisateur d’un service que vous fournissez tooyour des clients via le traitement de lot.
+* **Version par défaut** : permet de spécifier un package d’application par défaut à déployer sur les nœuds de calcul.
+* **Nom d’affichage** : permet de spécifier un nom « convivial » que votre solution Batch peut utiliser pendant l’affichage d’informations sur l’application, comme dans l’interface utilisateur d’un service que vous fournissez à vos clients via Batch.
 
 ### <a name="add-a-new-application"></a>Ajout d’une application
-toocreate une nouvelle application, ajoutez un package d’application et spécifier un ID d’application des nouveaux et uniques. Hello premier package d’application que vous ajoutez à un nouvel ID d’application hello crée également la nouvelle application de hello.
+Pour créer une application, ajoutez un package d’application et spécifiez un nouvel ID d’application unique. Le premier package d’application que vous ajoutez avec le nouvel ID d’application crée également l’application.
 
-Cliquez sur **ajouter** sur hello **Applications** hello tooopen de panneau **nouvelle application** panneau.
+Dans le panneau **Applications**, cliquez sur **Ajouter** pour ouvrir le panneau **Nouvelle application**.
 
 ![Panneau Nouvelle application dans le Portail Azure][5]
 
-Hello **nouvelle application** panneau fournit des paramètres de hello toospecify de votre package d’application et la nouvelle application de champs de suivant de hello.
+Le panneau **Nouvelle application** contient les champs ci-après pour vous permettre de spécifier les paramètres de la nouvelle application et du nouveau package d’application.
 
 **ID d’application**
 
-Ce champ spécifie l’ID hello de votre nouvelle application, qui est le sujet toohello standard ID de lot Azure des règles de validation. règles de Hello pour fournir un ID d’application sont les suivantes :
+Ce champ spécifie l’ID de votre nouvelle application, qui est soumis aux règles de validation des ID Azure Batch standard. Les règles pour la fourniture d’un ID d’application sont les suivantes :
 
-* Sur les nœuds de Windows hello ID peut contenir n’importe quelle combinaison de caractères alphanumériques, des traits d’union et des traits de soulignement. Sur des nœuds Linux, seuls les caractères alphanumériques et les traits de soulignement sont autorisés.
+* Sur des nœuds Windows, l’ID peut contenir n’importe quelle combinaison de caractères alphanumériques, de tirets et de traits de soulignement. Sur des nœuds Linux, seuls les caractères alphanumériques et les traits de soulignement sont autorisés.
 * Ne peut pas contenir plus de 64 caractères.
-* Doit être unique au sein de hello compte Batch.
+* Doit être unique dans le compte Batch.
 * Conserve la casse et ne respecte pas la casse.
 
 **Version**
 
-Ce champ spécifie la version de hello du package d’application hello que vous téléchargez. Chaînes de version sont toohello sujet suivant les règles de validation :
+Ce champ spécifie la version du package d’application que vous chargez. Les chaînes de version sont soumises aux règles de validation suivantes :
 
-* Sur les nœuds de Windows, chaîne de version hello peut contenir n’importe quelle combinaison de caractères alphanumériques, des traits d’union, des traits de soulignement et des points. Des nœuds Linux, la chaîne de version hello peut contenir uniquement des caractères alphanumériques et des traits de soulignement.
+* Sur des nœuds Windows, la chaîne de version peut contenir n’importe quelle combinaison de caractères alphanumériques, de tirets, de traits de soulignement et de points. Sur des nœuds Linux, la chaîne de version peut contenir uniquement des caractères alphanumériques et des traits de soulignement.
 * Ne peut pas contenir plus de 64 caractères.
-* Doit être unique au sein de l’application hello.
+* Doit être unique dans l’application.
 * Conservent la casse et ne respectent pas la casse.
 
 **Package d’application**
 
-Ce champ spécifie le fichier .zip hello qui contient les fichiers binaires d’application hello et fichiers de prise en charge l’application hello tooexecute requis. Cliquez sur hello **sélectionner un fichier** zone ou hello tooand de toobrowse icône de dossier sélectionner un fichier .zip qui contient les fichiers de votre application.
+Ce champ spécifie le fichier .zip contenant les fichiers binaires de l’application et les fichiers de prise en charge qui sont requis pour l’exécution de l’application. Cliquez sur la zone **Sélectionner un fichier** ou sur l’icône de dossier pour rechercher et sélectionner un fichier .zip contenant les fichiers de votre application.
 
-Une fois que vous avez sélectionné un fichier, cliquez sur **OK** toobegin hello téléchargement tooAzure stockage. Lors de l’opération de téléchargement de hello est terminée, portail de hello affiche une notification et ferme le panneau de hello. Selon la taille de hello du fichier hello que vous êtes hello et téléchargement de la vitesse de votre connexion réseau, cette opération peut prendre un certain temps.
+Après avoir sélectionné un fichier, cliquez sur **OK** pour commencer le chargement dans le stockage Azure. Une fois l’opération de chargement terminée, le portail affiche une notification et ferme le panneau. Selon la taille du fichier que vous chargez et la vitesse de votre connexion réseau, cette opération peut prendre un certain temps.
 
 > [!WARNING]
-> Ne fermez pas hello **nouvelle application** panneau avant de l’opération de téléchargement de hello est terminée. Cela arrête les processus de téléchargement hello.
+> Ne fermez pas le panneau **Nouvelle application** avant que l’opération de chargement soit terminée. La fermeture du panneau met fin au processus de chargement.
 > 
 > 
 
 ### <a name="add-a-new-application-package"></a>Ajout d’un package d’application
-tooadd une nouvelle version de package d’application pour une application existante, sélectionnez une application Bonjour **Applications** panneau, cliquez sur **Packages**, puis cliquez sur **ajouter** tooopen Hello **un package** panneau.
+Pour ajouter une nouvelle version de package d’application pour une application existante, sélectionnez une application dans le panneau **Applications**, cliquez sur **Packages**, puis sur **Ajouter** pour ouvrir le panneau **Ajouter un package**.
 
 ![Panneau Ajouter un package d’application dans le Portail Azure][8]
 
-Comme vous pouvez le voir, les champs hello correspondent à celles de hello **nouvelle application** panneau mais hello **id de l’Application** à cocher est désactivée. Comme vous l’avez fait pour application hello, spécifiez hello **Version** pour votre nouveau package, parcourir tooyour **package d’Application** .zip de fichier, puis cliquez sur **OK** hello de tooupload package.
+Comme vous pouvez le voir, les champs correspondent à ceux du panneau **Nouvelle application**, mais la zone **ID d’application** est désactivée. Comme vous l’avez fait pour la nouvelle application, spécifiez la **version** de votre nouveau package, accédez au fichier .zip de votre **package d’application**, puis cliquez sur **OK** pour charger le package.
 
 ### <a name="update-or-delete-an-application-package"></a>Mettre à jour ou supprimer un package d’application
-tooupdate ou supprimer un package d’application, panneau de détails hello ouvert pour l’application hello, cliquez sur **Packages** tooopen hello **Packages** panneau, cliquez sur hello **sélection**dans la ligne hello hello du package d’application que vous souhaitez toomodify et sélectionnez l’action hello que vous souhaitez tooperform.
+Pour mettre à jour ou supprimer un package d’application existant, ouvrez le panneau des détails de l’application, cliquez sur **Packages** pour ouvrir le panneau **Packages**, cliquez sur les **points de suspension** dans la ligne du package d’application que vous voulez modifier, puis sélectionnez l’action à exécuter.
 
 ![Mettre à jour ou supprimer un package dans le Portail Azure][7]
 
 **Mettre à jour**
 
-Lorsque vous cliquez sur **mise à jour**, hello *package de mise à jour* panneau s’affiche. Ce panneau est similaire toohello *nouveau package d’application* panneau toutefois seul champ de sélection de package de hello est activé, ce qui vous toospecify une nouvelle tooupload de fichier ZIP.
+Quand vous cliquez sur **Mettre à jour**, le panneau *Mettre à jour le package* s’affiche. Ce panneau est semblable au panneau *Nouveau package d’application* ; toutefois, seul le champ de sélection du package est activé, ce qui vous permet de spécifier un nouveau fichier ZIP à charger.
 
 ![Panneau Mettre à jour un package dans le Portail Azure][11]
 
 **Supprimer**
 
-Lorsque vous cliquez sur **supprimer**, vous êtes invité à la suppression hello tooconfirm de version du package hello et lot supprime le package de hello depuis le stockage Azure. Si vous supprimez la version par défaut de hello d’une application, hello **version par défaut** paramètre est supprimé pour l’application hello.
+Lorsque vous cliquez sur **Supprimer**, vous êtes invité à confirmer la suppression de la version du package, puis Batch supprime le package du stockage Azure. Si vous supprimez la version par défaut d’une application, le paramètre **Version par défaut** est supprimé de l’application.
 
 ![Supprimer l’application][12]
 
 ## <a name="install-applications-on-compute-nodes"></a>Installation d’applications sur des nœuds de calcul
-Maintenant que vous avez appris comment toomanage application packages avec hello portail Azure, nous pouvons voir comment toodeploy les nœuds de toocompute et de les exécuter avec les tâches de traitement par lots.
+Maintenant que vous avez vu comment gérer les packages d’application avec le portail Azure, nous pouvons discuter de leur déploiement sur les nœuds de calcul et leur exécution avec des tâches Batch.
 
 ### <a name="install-pool-application-packages"></a>Installation des packages d’application de pool
-tooinstall un package d’application sur tous les nœuds de calcul dans un pool, spécifiez au moins un package d’application *références* pour le pool de hello. les packages d’applications Hello que vous spécifiez pour un pool sont installés sur chaque nœud de calcul lorsque ce nœud rejoint le pool de hello et lorsque le nœud de hello est redémarré ou la réinitialisation.
+Pour installer un package d’application sur les nœuds de calcul d’un pool, spécifiez au moins une *référence* de package d’application pour le pool. Les packages d’applications que vous spécifiez pour un pool sont installés sur chaque nœud de calcul lorsque ce nœud rejoint le pool, et lorsque le nœud est redémarré ou réinitialisé.
 
-Dans Batch .NET, spécifiez une ou plusieurs propriétés [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref] lorsque vous créez un pool ou pour un pool existant. Hello [ApplicationPackageReference] [ net_pkgref] classe spécifie un ID d’application et la version tooinstall sur d’un pool nœuds de calcul.
+Dans Batch .NET, spécifiez une ou plusieurs propriétés [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref] lorsque vous créez un pool ou pour un pool existant. La classe [ApplicationPackageReference][net_pkgref] spécifie un ID et la version d’une application à installer sur les nœuds de calcul d’un pool.
 
 ```csharp
-// Create hello unbound CloudPool
+// Create the unbound CloudPool
 CloudPool myCloudPool =
     batchClient.PoolOperations.CreatePool(
         poolId: "myPool",
@@ -213,7 +213,7 @@ CloudPool myCloudPool =
         virtualMachineSize: "small",
         cloudServiceConfiguration: new CloudServiceConfiguration(osFamily: "4"));
 
-// Specify hello application and version tooinstall on hello compute nodes
+// Specify the application and version to install on the compute nodes
 myCloudPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
 {
     new ApplicationPackageReference {
@@ -221,20 +221,20 @@ myCloudPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
         Version = "1.1001.2b" }
 };
 
-// Commit hello pool so that it's created in hello Batch service. As hello nodes join
-// hello pool, hello specified application package is installed on each.
+// Commit the pool so that it's created in the Batch service. As the nodes join
+// the pool, the specified application package is installed on each.
 await myCloudPool.CommitAsync();
 ```
 
 > [!IMPORTANT]
-> Si un déploiement de package d’application échoue pour une raison quelconque, les marques de service de traitement par lots hello hello nœud [inutilisable][net_nodestate], et aucune tâche est planifiée pour l’exécution sur ce nœud. Dans ce cas, vous devez **redémarrer** hello de déploiement de package de nœud tooreinitiate hello. Nœud de hello redémarrage vous permet également de planification des tâches à nouveau sur le nœud de hello.
+> Si un déploiement de package d’application échoue pour une raison quelconque, le service Batch marque le nœud comme [inutilisable][net_nodestate], et aucune tâche n’est planifiée sur ce nœud. Dans ce cas, vous devez **redémarrer** le nœud pour relancer le déploiement du package. Le redémarrage du nœud réactive également la planification des tâches sur celui-ci.
 > 
 > 
 
 ### <a name="install-task-application-packages"></a>Installation des packages d’application de tâche
-Pool de tooa similaire, spécifiez de package d’application *références* pour une tâche. Lorsqu’une tâche est planifiée toorun sur un nœud, le package de hello est téléchargé et extrait juste avant l’exécution de la ligne de commande de la tâche hello. Si une version et le package spécifié est déjà installé sur le nœud de hello, package de hello n’est pas téléchargé et hello les package existant est utilisé.
+À l’instar de l’installation sur un pool, vous spécifiez les *références* de package d’application pour une tâche. Lorsqu’une tâche est planifiée pour s’exécuter sur un nœud, le package est téléchargé et extrait juste avant que la ligne de commande de la tâche soit exécutée. Si une version et un package spécifiés sont déjà installés sur le nœud, le package n’est pas téléchargé et le package existant est utilisé.
 
-tooinstall un package d’application Office, configurez la tâche hello [CloudTask][net_cloudtask].[ ApplicationPackageReferences] [ net_cloudtask_pkgref] propriété :
+Pour installer un package d’application de tâche, configurer la propriété [CloudTask][net_cloudtask].[ApplicationPackageReferences][net_cloudtask_pkgref] de la tâche :
 
 ```csharp
 CloudTask task =
@@ -252,44 +252,44 @@ task.ApplicationPackageReferences = new List<ApplicationPackageReference>
 };
 ```
 
-## <a name="execute-hello-installed-applications"></a>Exécuter des applications de hello installé
-Hello packages que vous avez spécifié pour un pool ou une tâche sont téléchargés et extrait tooa nommé répertoire hello `AZ_BATCH_ROOT_DIR` du nœud de hello. Traitement par lots crée également une variable d’environnement qui contient toohello de chemin d’accès hello nommé active. Les lignes de commande de tâche utiliser cette variable d’environnement pour référencer l’application hello sur le nœud de hello. 
+## <a name="execute-the-installed-applications"></a>Exécution des applications installées
+Les packages que vous avez spécifiés pour un pool ou une tâche sont téléchargés et extraits dans un répertoire nommé au sein du `AZ_BATCH_ROOT_DIR` du nœud. Batch crée également une variable d’environnement qui contient le chemin d’accès au répertoire nommé. Vos lignes de commande de tâche utilisent cette variable d’environnement lors du référencement de l’application sur le nœud. 
 
-Sur les nœuds de Windows, variable de hello est Bonjour suivant le format :
+Sur des nœuds Windows, le format de la variable est le suivant :
 
 ```
 Windows:
 AZ_BATCH_APP_PACKAGE_APPLICATIONID#version
 ```
 
-Des nœuds Linux, le format de hello est légèrement différente. Points (.), des tirets (-) et des signes dièse (#) sont mis à plat toounderscores dans la variable d’environnement hello. Par exemple :
+Sur des nœuds Linux, le format est légèrement différent. Les points (.), les tirets (-) et les signes dièse (#) sont aplatis en traits de soulignement dans la variable d’environnement. Par exemple :
 
 ```
 Linux:
 AZ_BATCH_APP_PACKAGE_APPLICATIONID_version
 ```
 
-`APPLICATIONID`et `version` sont des valeurs qui correspondent toohello application et la version du package que vous avez spécifié pour le déploiement. Par exemple, si vous avez spécifié cette version 2.7 d’application *blender* doit être installé sur les nœuds de Windows, les lignes de commande de tâche utiliseriez cette tooaccess de variable d’environnement ses fichiers :
+`APPLICATIONID` et `version` sont des valeurs qui correspondent à la version de l’application et du package que vous avez spécifiées pour le déploiement. Par exemple, si vous spécifiez que la version 2.7 de l’application *blender* doit être installée sur des nœuds Windows, vos lignes de commande de tâche utilisent cette variable d’environnement pour accéder aux fichiers de l’application :
 
 ```
 Windows:
 AZ_BATCH_APP_PACKAGE_BLENDER#2.7
 ```
 
-Des nœuds Linux, spécifiez la variable d’environnement hello dans ce format :
+Sur des nœuds Linux, spécifiez la variable d’environnement au format suivant :
 
 ```
 Linux:
 AZ_BATCH_APP_PACKAGE_BLENDER_2_7
 ``` 
 
-Lorsque vous téléchargez un package d’application, vous pouvez spécifier un tooyour toodeploy de version par défaut des nœuds de calcul. Si vous avez spécifié une version par défaut pour une application, vous pouvez omettre suffixe de version hello lorsque vous faites référence application hello. Vous pouvez spécifier la version de l’application par défaut hello Bonjour portail Azure, dans le panneau des Applications hello, comme indiqué dans [télécharger et gérer des applications](#upload-and-manage-applications).
+Lorsque vous téléchargez un package d’application, vous pouvez spécifier une version par défaut à déployer sur vos nœuds de calcul. Si vous avez spécifié une version par défaut pour une application, vous pouvez omettre le suffixe de version lorsque vous faites référence à l’application. Vous pouvez spécifier la version d’application par défaut sur le portail Azure, sur le panneau Applications, tel qu’illustré dans la section [Téléchargement et gestion des applications](#upload-and-manage-applications).
 
-Par exemple, si vous définissez « 2.7 » en tant que version par défaut de hello pour application *blender*, vos tâches référencent hello suivant la variable d’environnement, puis les nœuds de Windows seront exécute la version 2.7 :
+Par exemple, si vous définissez « 2.7 » comme version par défaut pour l’application *blender*, et si vos tâches référencent la variable d’environnement suivante, vos nœuds Windows exécutent la version 2.7 :
 
 `AZ_BATCH_APP_PACKAGE_BLENDER`
 
-Hello extrait de code suivant montre un exemple de ligne de commande tâche qui lance la version par défaut de hello Hello *blender* application :
+L’extrait de code suivant montre un exemple de ligne de commande de tâche qui lance la version par défaut de l’application *blender* :
 
 ```csharp
 string taskId = "blendertask01";
@@ -299,18 +299,18 @@ CloudTask blenderTask = new CloudTask(taskId, commandLine);
 ```
 
 > [!TIP]
-> Consultez [paramètres d’environnement pour les tâches](batch-api-basics.md#environment-settings-for-tasks) Bonjour [vue d’ensemble de lot](batch-api-basics.md) pour plus d’informations sur les paramètres d’environnement de nœud de calcul.
+> Pour plus d’informations sur les paramètres d’environnement de nœud de calcul, voir la section [Paramètres d’environnement des tâches](batch-api-basics.md#environment-settings-for-tasks) de l’article [Présentation des fonctionnalités du service Batch pour les développeurs](batch-api-basics.md).
 > 
 > 
 
 ## <a name="update-a-pools-application-packages"></a>Mise à jour des packages d’applications d’un pool
-Si un pool existant a déjà été configuré avec un package d’application, vous pouvez spécifier un nouveau package pour le pool de hello. Si vous spécifiez une nouvelle référence de package pour un pool, suivants de hello s’appliquent :
+Si un pool existant a déjà été configuré avec un package d’application, vous pouvez spécifier un nouveau package pour le pool. Si vous spécifiez une nouvelle référence de package pour un pool, les points suivants s’appliquent :
 
-* Hello service Batch installe package nouvellement spécifié de hello sur tous les nœuds nouveau joindre le pool de hello et sur n’importe quel nœud existant qui est redémarré ou la réinitialisation.
-* Calcul des nœuds qui sont déjà dans le pool de hello lorsque vous mettez à jour les références de package hello n’installent pas automatiquement le nouveau package d’application hello. Ces nœuds doivent être redémarrés ou réinitialisé tooreceive hello nouveau package de calcul.
-* Lorsqu’un nouveau package est déployé, hello créé des variables d’environnement reflètent les nouvelles références de package d’application hello.
+* Le service Batch installe le package nouvellement spécifié sur tous les nouveaux nœuds rejoignant le pool, ainsi que sur tout nœud actuel redémarré ou réinitialisé.
+* Les nœuds de calcul qui sont déjà dans le pool lorsque vous mettez à jour les références du package n’installent pas automatiquement le nouveau package d’application. Ces nœuds de calcul doivent être redémarrés ou réinitialisés pour recevoir le nouveau package.
+* Lorsqu’un nouveau package est déployé, les variables d’environnement créées reflètent les références du nouveau package d’application.
 
-Dans cet exemple, un pool existant hello a la version 2.7 de hello *blender* application configurée comme l’un de ses [CloudPool][net_cloudpool].[ ApplicationPackageReferences][net_cloudpool_pkgref]. nœuds du pool tooupdate hello avec la version 2.76b, spécifiez un nouveau [ApplicationPackageReference] [ net_pkgref] avec la nouvelle version de hello et validation hello modification.
+Dans cet exemple, le pool existant comporte la version 2.7 de l’application *blender* configurée comme l’une de ses propriétés [CloudPool][net_cloudpool].[ApplicationPackageReferences][net_cloudpool_pkgref]. Pour mettre à jour les nœuds du pool avec la version 2.76b, spécifiez une nouvelle classe [ApplicationPackageReference][net_pkgref] avec la nouvelle version, puis validez la modification.
 
 ```csharp
 string newVersion = "2.76b";
@@ -324,13 +324,13 @@ boundPool.ApplicationPackageReferences = new List<ApplicationPackageReference>
 await boundPool.CommitAsync();
 ```
 
-Maintenant que hello nouvelle version a été configurée, hello service Batch installe la version 2.76b tooany *nouveau* nœud qui rejoint hello pool. tooinstall 2.76b sur nœuds hello *déjà* dans le pool de hello, redémarrez ou les réinitialiser. Notez que les nœuds redémarrés conservent fichiers hello à partir des déploiements de package précédents.
+Maintenant que la nouvelle version a été configurée, le service Batch installe la version 2.76b sur tout *nouveau* nœud rejoignant le pool. Pour installer la version 2.76b sur des nœuds qui figurent *déjà* dans le pool, redémarrez ou réinitialisez ces derniers. Notez que les nœuds redémarrés conservent les fichiers des déploiements précédents du package.
 
-## <a name="list-hello-applications-in-a-batch-account"></a>Liste des applications hello dans un compte Batch
-Vous pouvez répertorier les applications hello et les packages dans un compte de traitement par lots à l’aide de hello [ApplicationOperations][net_appops].[ ListApplicationSummaries] [ net_appops_listappsummaries] (méthode).
+## <a name="list-the-applications-in-a-batch-account"></a>Liste des applications dans un compte Batch
+Vous pouvez lister les applications et leurs packages dans un compte Batch à l’aide de la méthode [ApplicationOperations][net_appops].[ListApplicationSummaries][net_appops_listappsummaries].
 
 ```csharp
-// List hello applications and their application packages in hello Batch account.
+// List the applications and their application packages in the Batch account.
 List<ApplicationSummary> applications = await batchClient.ApplicationOperations.ListApplicationSummaries().ToListAsync();
 foreach (ApplicationSummary app in applications)
 {
@@ -344,11 +344,11 @@ foreach (ApplicationSummary app in applications)
 ```
 
 ## <a name="wrap-up"></a>Conclusion
-Avec les packages d’application, vous pouvez aider vos clients sélectionnez applications hello pour leurs tâches et spécifiez hello version exacte toouse lors du traitement des travaux avec votre service de traitement par lots. Vous pouvez également permettre de hello pour votre tooupload clients et effectuer le suivi de leurs propres applications dans votre service.
+Grâce aux packages d’application, vous pouvez aider vos clients à sélectionner les applications pour leurs travaux et à spécifier la version exacte à utiliser lors du traitement de travaux avec votre service Batch. Vous pouvez également fournir à vos clients la possibilité de télécharger et d’effectuer le suivi de leurs propres applications dans votre service.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Hello [API REST de traitement par lots] [ api_rest] fournit également la prise en charge toowork avec les packages d’applications. Par exemple, consultez hello [applicationPackageReferences] [ rest_add_pool_with_packages] élément [ajouter un compte du pool de tooan] [ rest_add_pool] pour plus d’informations sur la façon toospecify tooinstall de packages à l’aide des API REST de hello. Consultez [Applications] [ rest_applications] pour plus d’informations sur comment informations à l’aide de l’application tooobtain hello API REST de traitement par lots.
-* Découvrez comment tooprogrammatically [gérer les quotas avec Batch Management .NET et des comptes Azure Batch](batch-management-dotnet.md). Hello [Batch Management .NET][api_net_mgmt] bibliothèque peut activer des fonctionnalités de création et la suppression de compte pour votre application de traitement ou d’un service.
+* [L’API REST Batch][api_rest] prend également en charge l’utilisation de packages d’application. Par exemple, pour plus d’informations sur la spécification des packages à installer à l’aide de l’API REST, voir l’élément [applicationPackageReferences][rest_add_pool_with_packages] de l’article [Ajouter un pool à un compte][rest_add_pool]. Pour plus de détails sur l’obtention d’informations sur l’application à l’aide de l’API REST Batch, consultez la page [Applications][rest_applications].
+* Découvrez comment [gérer les quotas et les comptes Azure Batch avec Batch Management .NET](batch-management-dotnet.md)par programme. La bibliothèque [Batch Management .NET][api_net_mgmt] peut activer les fonctionnalités de création et de suppression de compte pour votre application ou service Batch.
 
 [api_net]: https://docs.microsoft.com/dotnet/api/overview/azure/batch/client?view=azure-dotnet
 [api_net_mgmt]: https://docs.microsoft.com/dotnet/api/overview/azure/batch/management?view=azure-dotnet

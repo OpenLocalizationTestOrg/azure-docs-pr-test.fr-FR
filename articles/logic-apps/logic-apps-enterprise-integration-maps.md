@@ -1,6 +1,6 @@
 ---
-title: aaaTransform XML avec XSLT mappages - Azure Logic Apps | Documents Microsoft
-description: "Ajouter que XSLT mappe des données XML tootransform avec Azure Logic Apps et hello Pack d’intégration Enterprise"
+title: "Convertir des données XML avec des mappages XSLT - Azure Logic Apps | Microsoft Docs"
+description: "Ajouter des mappages XSLT pour convertir des données XML avec Azure Logic Apps et Enterprise Integration Pack"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 720e6f988b8542136dfcc402c3c463fcfb2f23cf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4445a84a6c6425110e7d705019a28b5cc5447046
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="add-maps-for-xml-data-transform"></a>Ajouter des mappages de conversion des données XML
 
-Enterprise integration utilise maps tootransform XML des données entre les formats. Un mappage est un document XML qui définit les données de salutation dans un document qui doit être transformé en un autre format. 
+Enterprise Integration utilise des mappages pour convertir les données XML d’un format vers un autre. Un mappage est un document XML qui définit les données d’un document qui doivent être converties dans un autre format. 
 
 ## <a name="why-use-maps"></a>Pourquoi utiliser des mappages ?
 
-Supposons que vous recevez régulièrement B2B commandes ou des factures à partir d’un client qui utilise le format YYYMMDD hello pour les dates. Toutefois, dans votre organisation, vous stockez les dates au format MMDDYYY hello. Vous pouvez utiliser un mappage trop*transformer* format de date YYYMMDD hello en hello MMDDYYY avant le stockage des détails de commande ou une facture hello dans votre base de données de l’activité client.
+Imaginons que vous recevez régulièrement des commandes ou des factures B2B de la part d’un client qui utilise le format AAAMMJJ pour les dates. Mais dans votre entreprise, les dates sont enregistrées au format MMJJAAA. Vous pouvez utiliser un mappage pour *convertir* le format de date AAAMMJJ vers MMJJAAA avant d'enregistrer les détails de la commande ou de la facture dans votre base de données clients.
 
 ## <a name="how-do-i-create-a-map"></a>Comment créer un mappage ?
 
-Vous pouvez créer des projets d’intégration de BizTalk avec hello [Pack d’intégration Enterprise](logic-apps-enterprise-integration-overview.md "en savoir plus sur le Pack d’intégration de hello entreprise") pour Visual Studio 2015. Vous pouvez ensuite créer un fichier de mappage d’intégration qui vous permet de représenter graphiquement les éléments entre les deux fichiers de schéma XML. Après avoir créé ce projet, vous disposerez d’un document XSLT.
+Vous pouvez créer des projets d’intégration BizTalk grâce à [Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "En savoir plus sur Enterprise Integration Pack") pour Visual Studio 2015. Vous pouvez ensuite créer un fichier de mappage d’intégration qui vous permet de représenter graphiquement les éléments entre les deux fichiers de schéma XML. Après avoir créé ce projet, vous disposerez d’un document XSLT.
 
 ## <a name="how-do-i-add-a-map"></a>Comment ajouter un mappage ?
 
-1. Bonjour portail Azure, sélectionnez **Parcourir**.
+1. Dans le portail Azure, sélectionnez **Parcourir**.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-1.png)
 
-2. Dans la zone de recherche de filtre hello, entrez **intégration**, puis sélectionnez **comptes d’intégration** à partir de la liste des résultats hello.
+2. Entrez **intégration** dans la zone de recherche de filtre et sélectionnez **Comptes d’intégration** dans la liste des résultats.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-2.png)
 
-3. Sélectionnez le compte d’intégration hello où vous souhaitez que le plan de hello de tooadd.
+3. Sélectionnez le compte d’intégration auquel vous souhaitez ajouter le mappage.
 
     ![](./media/logic-apps-enterprise-integration-overview/overview-3.png)
 
-4. Sélectionnez hello **cartes** vignette.
+4. Sélectionnez la mosaïque **Mappages**.
 
     ![](./media/logic-apps-enterprise-integration-maps/map-1.png)
 
-5. Une fois que le panneau de mappages hello s’ouvre, choisissez **ajouter**.
+5. Une fois le panneau Mappages ouvert, choisissez **Ajouter**.
 
     ![](./media/logic-apps-enterprise-integration-maps/map-2.png)  
 
-6. Entrez un **nom** pour votre mappage. mappage de hello tooupload fichier, choisissez l’icône de dossier hello sur le côté droit de hello Hello **carte** zone de texte. Après la fin du processus de téléchargement hello, choisissez **OK**.
+6. Entrez un **nom** pour votre mappage. Pour télécharger le fichier de mappage, sélectionnez l’icône de dossier située à droite de la zone de texte **Mappage**. Une fois le processus de téléchargement terminé, sélectionnez **OK**.
 
     ![](./media/logic-apps-enterprise-integration-maps/map-3.png)
 
-7. Une fois Azure ajoute le compte d’intégration tooyour hello carte, vous obtenez un message à l’écran qui affiche si votre fichier de mappage a été ajoutée ou non. Une fois que vous obtenez ce message, choisissez hello **cartes** vignette afin que vous puissiez afficher hello qui vient d’être ajouté de mappage.
+7. Une fois qu’Azure ajoute le mappage à votre compte d’intégration, vous obtenez un message à l’écran qui indique si votre fichier de mappage a été ajouté ou non. Une fois que vous obtenez ce message, choisissez la mosaïque **Mappages** pour pouvoir afficher le mappage ajouté.
 
     ![](./media/logic-apps-enterprise-integration-maps/map-4.png)
 
 ## <a name="how-do-i-edit-a-map"></a>Comment modifier un mappage ?
 
-Vous devez télécharger un nouveau fichier de mappage avec les modifications hello que vous souhaitez. Vous pouvez tout d’abord télécharger carte hello pour la modification.
+Vous devez télécharger un nouveau fichier de mappage intégrant les modifications souhaitées. Vous pouvez d’abord télécharger le mappage pour modification.
 
-tooupload un nouveau mappage qui remplace le mappage existant de hello, procédez comme suit.
+Pour télécharger un nouveau mappage remplaçant un mappage existant, procédez comme suit :
 
-1. Choisissez hello **cartes** vignette.
+1. Choisissez la mosaïque **Mappages**.
 
-2. Une fois le panneau de mappages hello s’ouvre, sélectionnez hello mappage que tooedit.
+2. Dans le panneau Mappages qui s’affiche, sélectionnez le mappage que vous souhaitez modifier.
 
-3. Sur hello **cartes** panneau, choisissez **mise à jour**.
+3. Dans le panneau **Mappage**, choisissez **Mettre à jour**.
 
     ![](./media/logic-apps-enterprise-integration-maps/edit-1.png)
 
-4. Dans le sélecteur de fichier hello, sélectionnez le fichier de mappage de hello que vous souhaitez tooupload, puis sélectionnez **ouvrir**.
+4. Dans le sélecteur de fichiers, sélectionnez le fichier de mappage que vous souhaitez télécharger, puis sélectionnez **Ouvrir**.
 
     ![](./media/logic-apps-enterprise-integration-maps/edit-2.png)
 
-## <a name="how-toodelete-a-map"></a>Comment toodelete une carte ?
+## <a name="how-to-delete-a-map"></a>Comment supprimer un mappage ?
 
-1. Choisissez hello **cartes** vignette.
+1. Choisissez la mosaïque **Mappages**.
 
-2. Une fois le panneau de mappages hello s’ouvre, sélectionnez le mappage hello toodelete.
+2. Dans le panneau Mappages qui s’affiche, sélectionnez le mappage que vous souhaitez supprimer.
 
 3. Choisissez **Supprimer**.
 
     ![](./media/logic-apps-enterprise-integration-maps/delete.png)
 
-4. Confirmer la carte de hello toodelete.
+4. Confirmez que vous souhaitez supprimer le mappage.
 
     ![](./media/logic-apps-enterprise-integration-maps/delete-confirmation-1.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [En savoir plus sur hello Pack d’intégration Enterprise](logic-apps-enterprise-integration-overview.md "en savoir plus sur le Pack d’intégration Enterprise")  
+* [En savoir plus sur Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "Découvrez Enterprise Integration Pack")  
 * [En savoir plus sur les contrats](../logic-apps/logic-apps-enterprise-integration-agreements.md "Découvrez les contrats d’intégration d’entreprise")  
 * [En savoir plus sur les transformations](logic-apps-enterprise-integration-transform.md "Découvrez les transformations d’intégration d’entreprise")  
 

@@ -1,6 +1,6 @@
 ---
-title: aaaHow toouse hello SendGrid au service de messagerie (PHP) | Documents Microsoft
-description: "Découvrez comment envoyer un courrier électronique avec hello SendGrid au service de messagerie sur Azure. Exemples de code écrits en PHP."
+title: "Utilisation du service de messagerie électronique SendGrid (PHP) | Microsoft Docs"
+description: "Découvrez comment envoyer un courrier électronique avec le service de messagerie SendGrid dans Azure. Exemples de code écrits en PHP."
 documentationcenter: php
 services: 
 manager: sendgrid
@@ -14,23 +14,23 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 10/30/2014
 ms.author: elmer.thomas@sendgrid.com; erika.berkland@sendgrid.com; vibhork; matt.bernier@sendgrid.com
-ms.openlocfilehash: 0076e56dc185cb8f52e629395e7d2c143cb5cfa9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 523b986f66a2e48685e9707903194856f0dcf4a2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toouse-hello-sendgrid-email-service-from-php"></a>Comment tooUse hello SendGrid Service de messagerie à partir de PHP
-Ce guide montre comment tooperform des tâches de programmation courantes avec hello SendGrid envoyer par courrier électronique service sur Azure. exemples de Hello sont écrits en PHP.
-Hello scénarios abordés incluent **construction de messagerie**, **envoi de courrier électronique**, et **Ajout de pièces jointes**. Pour plus d’informations sur SendGrid et envoi de courrier électronique, consultez hello [étapes](#next-steps) section.
+# <a name="how-to-use-the-sendgrid-email-service-from-php"></a>Utilisation du service de messagerie électronique SendGrid à partir de PHP
+Ce guide présente l'exécution de tâches de programmation courantes avec le service de messagerie SendGrid dans Azure. Les exemples sont écrits en PHP.
+Les scénarios traités incluent la **construction**, l'**envoi de courriers électroniques** et l'**ajout de pièces jointes**. Pour plus d'informations sur SendGrid et sur l'envoi de courrier électronique, consultez la section [Étapes suivantes](#next-steps) .
 
-## <a name="what-is-hello-sendgrid-email-service"></a>Qu’est hello SendGrid au Service de messagerie ?
+## <a name="what-is-the-sendgrid-email-service"></a>Définition du service de messagerie SendGrid
 SendGrid est un [service de messagerie dans le cloud] qui fournit des fonctionnalités fiables en matière de [remise de courrier électronique transactionnelle], d'extensibilité et d'analyse en temps réel, ainsi que des API flexibles qui facilitent l'intégration personnalisée. Voici quelques scénarios courants en termes d'utilisation de SendGrid :
 
-* Envoyer automatiquement des accusés de réception toocustomers
+* Envoi automatique d'accusés de réception aux clients
 * Administration de listes de distribution pour un envoi mensuel de prospectus électroniques et d'offres spéciales aux clients
 * Collecte de mesures en temps réel concernant des éléments tels que les messages électroniques bloqués et la réactivité vis-à-vis des clients
-* Génération de rapports toohelp identifier les tendances
+* Génération de rapports pour identifier les tendances
 * Transfert des demandes des clients
 * Notifications par courriers électroniques depuis votre application
 
@@ -40,21 +40,21 @@ Pour plus d’informations, consultez la page [https://sendgrid.com][https://sen
 [!INCLUDE [sendgrid-sign-up](../includes/sendgrid-sign-up.md)]
 
 ## <a name="using-sendgrid-from-your-php-application"></a>Utilisation de SendGrid à partir de votre application PHP
-L'utilisation de SendGrid dans une application Azure PHP ne nécessite ni configuration spéciale, ni codage particulier. SendGrid étant un service, il est accessible dans hello exactement identique à partir d’une application cloud tel qu’il peut à partir d’une application sur site.
+L'utilisation de SendGrid dans une application Azure PHP ne nécessite ni configuration spéciale, ni codage particulier. SendGrid étant un service, l'accès s'effectue exactement de la même manière qu'il s'agisse d'une application cloud ou d'une application locale.
 
 ## <a name="how-to-send-an-email"></a>Envoi d'un message électronique
-Vous pouvez envoyer par courrier électronique à l’aide de SMTP ou hello Web API fournie par SendGrid.
+Vous pouvez envoyer un courrier électronique à l'aide de l'API SMTP ou de l'API web fournie par SendGrid.
 
 ### <a name="smtp-api"></a>API SMTP
-messagerie de toosend à l’aide de hello SendGrid SMTP API, utilisez *Swift Mailer*, une bibliothèque de base de composants pour l’envoi des messages électroniques à partir d’applications PHP. Vous pouvez télécharger hello *Swift Mailer* bibliothèque à partir de [http://swiftmailer.org/download] [ http://swiftmailer.org/download] v5.3.0 (utilisez [Composer] tooinstall Distribution rapide). Envoi de courrier électronique avec la bibliothèque de hello implique la création d’instances de la <span class="auto-style2">Swift\_SmtpTransport</span>, <span class="auto-style2">Swift\_Mailer</span>, et <span class="auto-style2">Swift\_Message </span> classes, en définissant les propriétés appropriées et en appelant le <span class="auto-style2">Swift\_Mailer::send</span> (méthode).
+Pour envoyer un courrier électronique à l'aide de l'API SMTP SendGrid, utilisez *Swift Mailer*, une bibliothèque à base de composants destinée à l'envoi de courriers à partir d'applications PHP. Vous pouvez télécharger la bibliothèque *Swift Mailer* à partir de [http://swiftmailer.org/download][http://swiftmailer.org/download] v5.3.0 (utilisez [Composer] pour installer Swift Mailer). L'envoi d'un courrier électronique avec la bibliothèque suppose la création d'instances des classes <span class="auto-style2">Swift\_SmtpTransport</span>, <span class="auto-style2">Swift\_Mailer</span> et <span class="auto-style2">Swift\_Message</span>,la définition des propriétés, et l'appel de la méthode <span class="auto-style2">Swift\_Mailer::send</span>.
 
     <?php
      include_once "vendor/autoload.php";
      /*
-      * Create hello body of hello message (a plain-text and an HTML version).
+      * Create the body of the message (a plain-text and an HTML version).
       * $text is your plain-text email
-      * $html is your html version of hello email
-      * If hello receiver is able tooview html emails then only hello html
+      * $html is your html version of the email
+      * If the receiver is able to view html emails then only the html
       * email will be displayed
       */
      $text = "Hi!\nHow are you?\n";
@@ -67,9 +67,9 @@ messagerie de toosend à l’aide de hello SendGrid SMTP API, utilisez *Swift Ma
            </body>
            </html>";
      // This is your From email address
-     $from = array('someone@example.com' => 'Name tooAppear');
+     $from = array('someone@example.com' => 'Name To Appear');
      // Email recipients
-     $too= array(
+     $to = array(
            'john@contoso.com'=>'Destination 1 Name',
            'anna@contoso.com'=>'Destination 2 Name'
      );
@@ -89,7 +89,7 @@ messagerie de toosend à l’aide de hello SendGrid SMTP API, utilisez *Swift Ma
      // Create a message (subject)
      $message = new Swift_Message($subject);
 
-     // attach hello body of hello email
+     // attach the body of the email
      $message->setFrom($from);
      $message->setBody($html, 'text/html');
      $message->setTo($to);
@@ -99,7 +99,7 @@ messagerie de toosend à l’aide de hello SendGrid SMTP API, utilisez *Swift Ma
      if ($recipients = $swift->send($message, $failures))
      {
          // This will let us know how many users received this message
-         echo 'Message sent out too'.$recipients.' users';
+         echo 'Message sent out to '.$recipients.' users';
      }
      // something went wrong =(
      else
@@ -109,7 +109,7 @@ messagerie de toosend à l’aide de hello SendGrid SMTP API, utilisez *Swift Ma
      }
 
 ### <a name="web-api"></a>API Web
-Utilisation de PHP [curl fonction] [ curl function] toosend à l’aide de messagerie hello SendGrid Web API.
+Utilisez la [fonction curl][curl function] de PHP pour envoyer un courrier électronique à l’aide de l’API web de SendGrid.
 
     <?php
 
@@ -132,13 +132,13 @@ Utilisation de PHP [curl fonction] [ curl function] toosend à l’aide de messa
      // Generate curl request
      $session = curl_init($request);
 
-     // Tell curl toouse HTTP POST
+     // Tell curl to use HTTP POST
      curl_setopt ($session, CURLOPT_POST, true);
 
-     // Tell curl that this is hello body of hello POST
+     // Tell curl that this is the body of the POST
      curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
 
-     // Tell curl not tooreturn headers, but do return hello response
+     // Tell curl not to return headers, but do return the response
      curl_setopt($session, CURLOPT_HEADER, false);
      curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
 
@@ -149,19 +149,19 @@ Utilisation de PHP [curl fonction] [ curl function] toosend à l’aide de messa
      // print everything out
      print_r($response);
 
-Web API de SendGrid est très similaire tooa API REST, s’il n’est pas réellement une API RESTful, car, dans la plupart des appels, à la fois obtenir et les verbes POST peuvent être utilisées indifféremment.
+L'API web de SendGrid présente de nombreuses similitudes avec l'API REST. Cependant, il ne s'agit pas à proprement parler d'une API RESTful, dans la mesure où les verbes GET et POST peuvent être utilisés de manière interchangeable dans la plupart des appels.
 
 ## <a name="how-to-add-an-attachment"></a>Ajout d'une pièce jointe
 ### <a name="smtp-api"></a>API SMTP
-Envoi d’une pièce jointe à l’aide de hello SMTP API implique une ligne de code toohello exemple de script pour envoyer un courrier électronique avec Swift Mailer.
+L'envoi d'une pièce jointe à l'aide de l'API SMTP comprend une seule ligne de code supplémentaire par rapport à l'exemple de script destiné à l'envoi d'un courrier électronique avec Swift Mailer.
 
     <?php
      include_once "vendor/autoload.php";
      /*
-      * Create hello body of hello message (a plain-text and an HTML version).
+      * Create the body of the message (a plain-text and an HTML version).
       * $text is your plain-text email
-      * $html is your html version of hello email
-      * If hello reciever is able tooview html emails then only hello html
+      * $html is your html version of the email
+      * If the reciever is able to view html emails then only the html
       * email will be displayed
       */
      $text = "Hi!\nHow are you?\n";
@@ -175,10 +175,10 @@ Envoi d’une pièce jointe à l’aide de hello SMTP API implique une ligne de 
           </html>";
 
      // This is your From email address
-     $from = array('someone@example.com' => 'Name tooAppear');
+     $from = array('someone@example.com' => 'Name To Appear');
 
      // Email recipients
-     $too= array(
+     $to = array(
           'john@contoso.com'=>'Destination 1 Name',
           'anna@contoso.com'=>'Destination 2 Name'
      );
@@ -198,7 +198,7 @@ Envoi d’une pièce jointe à l’aide de hello SMTP API implique une ligne de 
      // Create a message (subject)
      $message = new Swift_Message($subject);
 
-     // attach hello body of hello email
+     // attach the body of the email
      $message->setFrom($from);
      $message->setBody($html, 'text/html');
      $message->setTo($to);
@@ -209,7 +209,7 @@ Envoi d’une pièce jointe à l’aide de hello SMTP API implique une ligne de 
      if ($recipients = $swift->send($message, $failures))
      {
           // This will let us know how many users received this message
-          echo 'Message sent out too'.$recipients.' users';
+          echo 'Message sent out to '.$recipients.' users';
      }
      // something went wrong =(
      else
@@ -218,14 +218,14 @@ Envoi d’une pièce jointe à l’aide de hello SMTP API implique une ligne de 
           print_r($failures);
      }
 
-la ligne de code supplémentaire Hello est comme suit :
+Cette ligne de code supplémentaire est la suivante :
 
      $message->attach(Swift_Attachment::fromPath("path\to\file")->setFileName('file_name'));
 
-Cette ligne de code appelle hello attach (méthode) sur le <span class="auto-style2">Swift\_Message</span> de l’objet et utilise la méthode statique <span class="auto-style2">fromPath</span> sur la <span class="auto-style2">Swift\_pièce jointe</span>tooget de classe et de joindre un message tooa de fichier.
+Cette ligne de code appelle la méthode d'attachement sur l'objet <span class="auto-style2">Swift\_Message</span> et utilise la méthode statique <span class="auto-style2">fromPath</span> sur la classe <span class="auto-style2">Swift\_Attachment</span> pour obtenir et joindre un fichier à un message.
 
 ### <a name="web-api"></a>API Web
-Envoi d’une pièce jointe à l’aide des API Web de hello est très similaire toosending un courrier électronique à l’aide de hello API Web. Toutefois, notez que dans l’exemple hello qui suit, tableau de paramètres hello doit contenir cet élément :
+La procédure d'envoi d'une pièce jointe à l'aide de l'API web est pratiquement identique à celle utilisée pour envoyer un courrier à l'aide de l'API web. Notez toutefois que dans l'exemple suivant, le tableau de paramètres doit contenir cet élément :
 
     'files['.$fileName.']' => '@'.$filePath.'/'.$fileName
 
@@ -245,8 +245,8 @@ Exemple :
          'api_key' => $pass,
          'to' =>'john@contoso.com',
          'subject' => 'test of file sends',
-         'html' => '<p> hello HTML </p>',
-         'text' => 'hello plain text',
+         'html' => '<p> the HTML </p>',
+         'text' => 'the plain text',
          'from' => 'anna@contoso.com',
          'files['.$fileName.']' => '@'.$filePath.'/'.$fileName
      );
@@ -258,13 +258,13 @@ Exemple :
      // Generate curl request
      $session = curl_init($request);
 
-     // Tell curl toouse HTTP POST
+     // Tell curl to use HTTP POST
      curl_setopt ($session, CURLOPT_POST, true);
 
-     // Tell curl that this is hello body of hello POST
+     // Tell curl that this is the body of the POST
      curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
 
-     // Tell curl not tooreturn headers, but do return hello response
+     // Tell curl not to return headers, but do return the response
      curl_setopt($session, CURLOPT_HEADER, false);
      curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
 
@@ -275,12 +275,12 @@ Exemple :
      // print everything out
      print_r($response);
 
-## <a name="how-to-use-filters-tooenable-footers-tracking-and-analytics"></a>Comment : utiliser des filtres Analytique, suivi et les pieds de page tooEnable
-SendGrid fournit les fonctionnalités de messagerie supplémentaires via l’utilisation de hello de « filtres ». Il s’agit des paramètres qui peuvent être ajoutées e-mail tooan pour activer des fonctionnalités spécifiques telles que l’activation de suivi des clics, Google analytique, abonnement suivi des modifications, et ainsi de suite.
+## <a name="how-to-use-filters-to-enable-footers-tracking-and-analytics"></a>Utilisation de filtres pour activer les pieds de page, le suivi et l'analyse
+SendGrid offre d'autres fonctionnalités de messagerie grâce à l'utilisation de 'filtres'. Il s'agit de paramètres que vous pouvez ajouter à un message électronique pour activer des fonctionnalités spécifiques telles que le suivi des clics, Google Analytics, le suivi d'abonnement, etc.
 
-Filtres peuvent être appliqués tooa message en utilisant la propriété de filtres hello. Chaque filtre est spécifié par un hachage contenant des paramètres propres au filtre. L’exemple suivant active le filtre de pied de page hello et spécifie un message texte qui sera ajouté bas toohello d’e-mail hello.
+Il est possible d'appliquer des filtres à un message par l'intermédiaire de la propriété filters. Chaque filtre est spécifié par un hachage contenant des paramètres propres au filtre. L'exemple suivant active le filtre de pied de page et indique un message texte qui sera ajouté au bas du message électronique.
 Pour cet exemple, nous utiliserons la bibliothèque [sendgrid-php].
-Utilisez [Composer] tooinstall bibliothèque :
+Utilisez [Composer] pour installer la bibliothèque :
 
     php composer.phar require sendgrid/sendgrid 2.1.1
 
@@ -293,17 +293,17 @@ Exemple :
      include "vendor/autoload.php";
 
      $email = new SendGrid\Email();
-     // hello list of addresses this message will be sent to
-     // [This list is used for sending multiple emails using just ONE request tooSendGrid]
+     // The list of addresses this message will be sent to
+     // [This list is used for sending multiple emails using just ONE request to SendGrid]
      $toList = array('john@contoso.com', 'anna@contoso.com');
 
-     // Specify hello names of hello recipients
+     // Specify the names of the recipients
      $nameList = array('Name 1', 'Name 2');
 
      // Used as an example of variable substitution
      $timeList = array('4 PM', '5 PM');
 
-     // Set all of hello above variables
+     // Set all of the above variables
      $email->setTos($toList);
      $email->addSubstitution('-name-', $nameList);
      $email->addSubstitution('-time-', $timeList);
@@ -312,34 +312,34 @@ Exemple :
      $email->addCategory("initial");
 
      // You can optionally setup individual filters here, in this example, we have
-     // enabled hello footer filter
+     // enabled the footer filter
      $email->addFilter('footer', 'enable', 1);
      $email->addFilter('footer', "text/plain", "Thank you for your business");
      $email->addFilter('footer', "text/html", "Thank you for your business");
 
-     // hello subject of your email
+     // The subject of your email
      $subject = 'Example SendGrid Email';
 
      // Where is this message coming from. For example, this message can be from
      // support@yourcompany.com, info@yourcompany.com
      $from = 'someone@example.com';
 
-     // If you do not specify a sender list above, you can specifiy hello user here. If
+     // If you do not specify a sender list above, you can specifiy the user here. If
      // a sender list IS specified above, this email address becomes irrelevant.
-     $too= 'john@contoso.com';
+     $to = 'john@contoso.com';
 
-     # Create hello body of hello message (a plain-text and an HTML version).
+     # Create the body of the message (a plain-text and an HTML version).
      # text is your plain-text email
-     # html is your html version of hello email
-     # if hello receiver is able tooview html emails then only hello html
+     # html is your html version of the email
+     # if the receiver is able to view html emails then only the html
      # email will be displayed
 
      /*
-      * Note hello variable substitution here =)
+      * Note the variable substitution here =)
       */
      $text = "
      Hello -name-,
-     Thank you for your interest in our products. We have set up an appointment toocall you at -time- EST toodiscuss your needs in more detail.
+     Thank you for your interest in our products. We have set up an appointment to call you at -time- EST to discuss your needs in more detail.
      Regards,
      Fred";
 
@@ -349,7 +349,7 @@ Exemple :
      <body>
      <p>Hello -name-,<br>
      Thank you for your interest in our products. We have set up an appointment
-     toocall you at -time- EST toodiscuss your needs in more detail.
+     to call you at -time- EST to discuss your needs in more detail.
 
      Regards,
 
@@ -361,7 +361,7 @@ Exemple :
      // set subject
      $email->setSubject($subject);
 
-     // attach hello body of hello email
+     // attach the body of the email
      $email->setFrom($from);
      $email->setHtml($html);
      $email->addTo($to);
@@ -380,13 +380,13 @@ Exemple :
      print_r($response);
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez appris les notions de base de hello Hello au service de messagerie de SendGrid, suivez ces liens de toolearn plus.
+Maintenant que vous avez appris les bases du service de messagerie SendGrid, consultez ces liens pour en savoir plus.
 
 * Documentation de SendGrid : <https://sendgrid.com/docs>
 * Bibliothèque PHP de SendGrid : <https://github.com/sendgrid/sendgrid-php>
 * Offre spéciale SendGrid pour les clients Azure : <https://sendgrid.com/windowsazure.html>
 
-Pour plus d’informations, consultez également hello [centre de développement PHP](/develop/php/).
+Pour plus d’informations, consultez également le [Centre pour développeurs PHP](/develop/php/).
 
 [https://sendgrid.com]: https://sendgrid.com
 [https://sendgrid.com/transactional-email/pricing]: https://sendgrid.com/transactional-email/pricing

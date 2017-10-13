@@ -14,13 +14,13 @@
 ## [Découvrir les sources de données](data-catalog-how-to-discover.md)
 ## [Annoter des sources de données](data-catalog-how-to-annotate.md)
 ## [Documentation de sources de données](data-catalog-how-to-documentation.md)
-## [Connecter des sources de toodata](data-catalog-how-to-connect.md)
+## [Se connecter aux sources de données](data-catalog-how-to-connect.md)
 ## [Utiliser des sources Big Data](data-catalog-how-to-big-data.md)
 ## [Profilage de données dans des sources de données](data-catalog-how-to-data-profile.md)
 ## [Gérer les ressources de données](data-catalog-how-to-manage.md)
 ## [Enregistrer des recherches et épingler des ressources de données](data-catalog-how-to-save-pin.md)
-## [Configurer le glossaire métier de hello](data-catalog-how-to-business-glossary.md)
-## [Catalogue de toodata un accès sécurisé](data-catalog-how-to-secure-catalog.md)
+## [Configurer le glossaire métier](data-catalog-how-to-business-glossary.md)
+## [Sécuriser l’accès au catalogue de données](data-catalog-how-to-secure-catalog.md)
 ## [Afficher les actifs données connexes](data-catalog-how-to-view-related-data-assets.md) 
 
 # Référence

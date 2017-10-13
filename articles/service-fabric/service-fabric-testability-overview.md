@@ -1,6 +1,6 @@
 ---
-title: "vue d’ensemble du Service d’analyse aaaFault | Documents Microsoft"
-description: "Cet article décrit hello erreur Analysis Service dans le Service Fabric pour induire des erreurs et l’exécution de scénarios de test par rapport à vos services."
+title: "Vue d’ensemble du service d’analyse des erreurs | Documents Microsoft"
+description: "Cet article décrit le service d’analyse des erreurs dans Service Fabric qui permet de produire des erreurs et d’exécuter des scénarios de test sur vos services."
 services: service-fabric
 documentationcenter: .net
 author: anmolah
@@ -14,91 +14,91 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/15/2017
 ms.author: anmola
-ms.openlocfilehash: deac16ec830aa10d4e488e60691faa9ef2b6cd33
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f275fa5d3d6d727b016e55c188321d7e68091a33
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="introduction-toohello-fault-analysis-service"></a>Introduction toohello erreur Analysis Service
-Hello erreur Analysis Services est conçu pour tester les services qui reposent sur Microsoft Azure Service Fabric. Avec hello erreur Analysis Service, vous pouvez induire des erreurs significatives et exécuter des scénarios de test complet sur vos applications. Ces erreurs et les scénarios de tester et valider hello de nombreux États et transitions subissent un service tout au long de sa durée de vie, tout de façon contrôlée, sécurisée et cohérente.
+# <a name="introduction-to-the-fault-analysis-service"></a>Introduction au service d’analyse des erreurs
+Le service d’analyse des erreurs est conçu pour tester les services qui s’appuient sur Microsoft Azure Service Fabric. Avec le service d’analyse des erreurs, vous pouvez provoquer des erreurs significatives et exécuter des scénarios de test complets sur vos applications. Ces erreurs et scénarios exercent et valident les nombreux états et transitions qu’un service connaît tout au long de sa durée de vie, le tout de manière contrôlée, sécurisée et cohérente.
 
-Actions sont hello des erreurs individuelles ciblant un service pour le tester. Un développeur de service peut utiliser en tant que blocs de construction toowrite compliquée scénarios. Par exemple :
+Les actions sont les erreurs isolées introduites dans un service pour le tester. Un développeur de services peut les utiliser en tant blocs de constructions afin d’écrire des scénarios compliqués. Par exemple :
 
-* Redémarrer un toosimulate de nœud de n’importe quel nombre de situations où un ordinateur ou un ordinateur virtuel est redémarré.
-* Déplacer un réplica de l’équilibrage de charge toosimulate service avec état, basculement ou de mise à niveau de l’application.
-* Appelez la perte du quorum dans un service avec état de toocreate une situation où les opérations d’écriture ne peut pas continuer, car il n’existe pas suffisamment réplicas « sauvegarde » ou « secondaire » tooaccept de nouvelles données.
-* Appelez la perte de données sur un service avec état de toocreate une situation dans laquelle tous les États en mémoire sont complètement supprimé.
+* Redémarrez un nœud pour simuler différentes situations dans lesquelles une machine ou une machine virtuelle est redémarrée.
+* Déplacez un réplica de votre service avec état pour simuler l’équilibrage de charge, le basculement ou la mise à niveau de l’application.
+* Appelez la perte de quorum sur votre service avec état afin de créer une situation où les opérations d’écriture sont interrompues en raison d’un nombre insuffisant de réplicas de sauvegarde ou secondaire pour l’acceptation des nouvelles données.
+* Appelez la perte des données sur un service avec état pour créer une situation où l’intégralité de l’état en mémoire est effacé.
 
-Les scénarios sont des opérations complexes composées d’une ou plusieurs actions. Hello erreur Analysis Services fournit deux scénarios intégrés :
+Les scénarios sont des opérations complexes composées d’une ou plusieurs actions. Le service d’analyse des erreurs fournit deux scénarios complets intégrés :
 
 * Scénario de chaos
 * Scénario de basculement
 
 ## <a name="testing-as-a-service"></a>Tests en tant que service
-Hello erreur Analysis Service est un service de système de l’infrastructure de Service est démarré automatiquement avec un cluster Service Fabric. Ce service agit comme hôte hello pour l’injection d’erreurs, l’exécution de scénario de test et analyse de l’état. 
+Le service d’analyse des erreurs est un service du système Service Fabric qui démarre automatiquement avec un cluster Service Fabric. Ce service agit comme un hôte pour l’injection d’erreurs, l’exécution de scénarios de test et l’analyse d’intégrité. 
 
 ![Service d’analyse des erreurs][0]
 
-Lorsqu’un scénario d’action ou de test de défaillance est lancé, une commande est envoyée toohello erreur Analysis Service toorun hello action ou test de scénario de panne. Hello erreur Analysis Service est avec état afin qu’il peut fiable exécuter les scénarios et les erreurs et validez les résultats. Par exemple, un scénario de test durée d’exécution longue peut être exécuté de façon fiable par hello erreur Analysis Service. Et parce que les tests sont en cours d’exécution à l’intérieur du cluster de hello, service de hello peut examiner état hello du cluster de hello et vos services tooprovide plus d’informations sur les échecs.
+Quand une action d’erreur ou un scénario de test est déclenché, une commande est envoyée au service d’analyse des erreurs pour exécuter l’action d’erreur ou le scénario de test. Le service d’analyse des erreurs est avec état de sorte qu’il peut exécuter les scénarios et les erreurs de façon fiable et valider les résultats. Par exemple, un scénario de test à longue durée d'exécution peut être exécuté de manière fiable par le service d’analyse des erreurs. Et, étant donné que les tests sont exécutés à l'intérieur du cluster, le service peut examiner l'état du cluster et de vos services pour fournir des informations plus détaillées sur les échecs.
 
 ## <a name="testing-distributed-systems"></a>Test des systèmes distribués
-Service Fabric rend la tâche hello d’écriture et de gestion des applications évolutives distribuées sensiblement plus faciles. Hello erreur Analysis Service rend le test d’une application distribuée de la même façon plus facile. Il existe trois principaux problèmes qui doivent toobe résolu lors du test :
+Service Fabric simplifie considérablement les tâches d’écriture et de gestion des applications évolutives distribuées. De même, le service d’analyse des erreurs facilite le test d’une application distribuée. Trois problématiques liées au test doivent être résolues :
 
-1. Simulation/génération d’erreurs pouvant se produire dans des scénarios concrets : un des aspects importants de hello de Service Fabric est qu’elle permet à toorecover d’applications distribuées à partir de diverses défaillances. Toutefois, tootest qui hello application est en mesure de toorecover à partir de ces échecs, nous devons un toosimulate du mécanisme/générer ces défaillances réelles dans un environnement de test contrôlé.
-2. Hello capacité toogenerate corrélées échecs : Basic de hello système, tels que les défaillances réseau et d’ordinateur, sont facilement tooproduce individuellement. Génération d’un nombre important de scénarios qui peuvent se produire dans Bonjour réel suite à des interactions hello des ces échecs est non trivial.
-3. Expérience unifiée au sein de divers niveaux de développement et de déploiement : de nombreux systèmes d’injection d’erreurs peuvent générer différents types de défaillances. Toutefois, expérience hello dans tous ces éléments est médiocre lorsque le déplacement à partir des scénarios de développement d’une case, hello toorunning même dans les environnements de test volumineux, toousing les teste pour des tests en production.
+1. Simulation/Génération de défaillances réalistes : Service Fabric permet notamment aux applications distribuées de récupérer de diverses défaillances. Toutefois, pour évaluer la capacité de l’application à récupérer de la sorte, nous devons recourir à un mécanisme de simulation/de génération de ces défaillances réalistes au sein d’un environnement de test contrôlé.
+2. La capacité à générer des défaillances liées : les défaillances de base du système, comme les défaillances réseau et les défaillances de machines, sont faciles à générer de manière isolée. Les interactions entre les défaillances isolées peuvent entraîner un nombre incalculable de scénarios de dysfonctionnement. La génération de ces contextes revêt une importance toute particulière.
+3. Expérience unifiée au sein de divers niveaux de développement et de déploiement : de nombreux systèmes d’injection d’erreurs peuvent générer différents types de défaillances. Toutefois, cette expérience unifiée est pauvre en transposant les scénarios de test de développement au sein des grands environnements de test, puis en production.
 
-Bien qu’il existe plusieurs mécanismes toosolve ces problèmes, un système qui identique à hello avec les garanties requises--tous les moyen hello à partir d’un environnement de développement d’une case, tootest dans les clusters de production--est manquant. Hello erreur Analysis Services permet aux développeurs d’applications hello se concentrer sur leur logique métier de test. Hello erreur Analysis Services fournit que toutes les fonctions hello requise interaction de hello tootest du service de hello avec un système distribué hello sous-jacent.
+Il existe de nombreux mécanismes permettant de résoudre ces problèmes, mais il manque un élément : un système qui joue le même rôle avec les garanties requises, de l’environnement de test des développeurs aux clusters de production. Le service d’analyse des erreurs permet aux développeurs d’applications de se concentrer sur le test de leur logique métier. Le service d’analyse des erreurs fournit toutes les capacités requises pour tester l’interaction du service avec le système distribué sous-jacent.
 
 ### <a name="simulatinggenerating-real-world-failure-scenarios"></a>Simulation/Génération de scénarios de défaillances réalistes
-robustesse de hello tootest d’un système distribué contre les défaillances, nous devons un toogenerate d’échecs de mécanisme. En théorie, générer une défaillance comme un nœud vers le bas semble simple, qu'il démarre atteignez hello même jeu de problèmes de cohérence que toosolve est la tentative de l’infrastructure de Service. Par exemple, si nous voulons que tooshut arrêt d’un nœud, hello requis de flux de travail est suivant de hello :
+Pour éprouver la solidité d’un système distribué contre les défaillances, nous recourons à un mécanisme de génération d’erreurs. En théorie, il semble facile de générer une défaillance comme un arrêt de nœud. Néanmoins, cette opération soulève des problématiques de cohérence identiques à celles que Service Fabric tente de résoudre. Par exemple, si vous voulez arrêter un nœud, le flux de travail suivant est requis :
 
-1. À partir du client de hello, émettre une demande d’arrêt du nœud.
-2. Envoyer le nœud approprié de hello demande toohello.
+1. À partir du client, émettez une requête d’arrêt du nœud.
+2. Envoyez la requête au nœud approprié.
    
-    a. Si le nœud de hello n’est trouvé, il doit échouer.
+    a. Si le nœud est introuvable, elle doit être mise en échec.
    
-    b. Si le nœud de hello est trouvée, elle doit retourner uniquement si le nœud de hello est arrêté.
+    b. Si le nœud est trouvé, elle doit être renvoyée uniquement si le nœud est arrêté.
 
-Échec de hello tooverify à partir d’une perspective de test, les tests hello doit tooknow que lorsque cet échec ne soit induit, Échec de hello réellement se produire. garantie de Hello offre de Service Fabric est que des nœuds hello seront arrêtera ou était déjà arrêté lors de la commande hello atteint le nœud de hello. Dans les deux cas hello test doit être raison toocorrectly en mesure sur l’état de hello et réussissent ou échouent correctement dans sa validation. Un système est implémenté en dehors de hello de toodo Service Fabric que même jeu d’échecs a accès au que réseau sont nombreuses, le matériel et les problèmes de logiciel, ce qui empêcheraient de fournir des garanties précédents hello. En présence de hello des problèmes hello indiqué précédemment, le Service Fabric reconfigurer hello cluster état toowork des problèmes de hello et par conséquent hello erreur Analysis Service aura toujours hello toogive en mesure de droite la valeur de garanties.
+Pour vérifier la défaillance dans le cadre d’un test, celui-ci doit savoir que quand cette défaillance est provoquée, elle se produit réellement. Avec Service Fabric, vous êtes assuré que le nœud va être arrêté ou est déjà arrêté, au moment où la commande l’atteint. Dans les deux cas, le test peut examiner correctement l’état et procéder de manière appropriée à la validation. Un système implémenté en dehors de Service Fabric pour exécuter le même ensemble de défaillances pourrait rencontrer une multitude de problèmes de réseau, matériels et logiciels, qui l’empêcheraient de fournir les garanties précédentes. Si les problèmes évoqués précédemment sont identifiés, Service Fabric reconfigure l’état du cluster afin de les contourner. En conséquence, le service d’analyse des erreurs vous procure les garanties adéquates.
 
 ### <a name="generating-required-events-and-scenarios"></a>Génération des événements et scénarios requis
-Simulation d’un échec réel constamment est difficile toostart avec, hello capacité toogenerate corrélée échecs est encore davantage. Par exemple, une perte de données se produit dans un service rendues persistantes avec état lorsque hello suivant les choses se produire :
+Tandis que la simulation des défaillances réalistes peut s’avérer difficile, la génération des défaillances liées est encore plus compliquée. Par exemple, une perte de données se produit dans un service persistant avec état quand les événements suivants se produisent :
 
-1. Uniquement un quorum d’écriture des réplicas de hello sont en retard sur la réplication. Tous les réplicas secondaires hello être en décalage hello principal.
-2. quorum d’écriture Hello tombe en panne en raison de réplicas hello en panne (en raison de package de code tooa ou nœud en panne).
-3. quorum d’écriture Hello ne peut pas revenir données hello pour les réplicas de hello étant perdues (échéance toodisk endommagée ou réinitialisation de l’ordinateur).
+1. Seul un quorum d’écriture est traité par la réplication. L’ensemble des réplicas secondaires sont derrière le réplica primaire.
+2. L’arrêt des réplicas provoque l’arrêt du quorum d’écriture (en raison de l’arrêt du package de code ou du nœud).
+3. Le quorum d’écriture ne peut pas réapparaître en raison de la perte des données associées aux réplicas (causée par la corruption des disques ou la réinitialisation de la machine).
 
-Ces échecs corrélés se produisent dans le monde réel de hello, mais pas aussi souvent que les échecs. tootest de capacité Hello pour ces scénarios avant qu’ils se produisent en production est critique. Encore plus important est hello capacité toosimulate ces scénarios avec des charges de travail dans des circonstances contrôlées (intercepteur hello du jour hello avec les ingénieurs de pont). Qui est beaucoup plu qu’il se produire pour hello première en production à 02:00.
+Ces défaillances liées se produisent vraiment, mais pas aussi souvent que les défaillances isolées. Il est primordial de pouvoir tester ces scénarios avant qu’ils ne se produisent en environnement de production. La capacité à simuler ces scénarios avec des charges de travail de production dans des circonstances contrôlées (en plein milieu de la journée avec tous les ingénieurs sur le pont) est encore plus importante. De telles circonstances sont bien plus efficaces qu’un premier test en production à 2h00 du matin.
 
 ### <a name="unified-experience-across-different-environments"></a>Expérience unifiée au sein d’environnements différents
-pratique de Hello traditionnellement toocreate trois types différents d’expériences, l’autre pour l’environnement de développement hello, un pour les tests et un pour la production. modèle de Hello était :
+Traditionnellement, l’idée est de développer trois différents ensembles d’expériences, un pour l’environnement de développement, un pour les tests et un autre pour la production. Le modèle se présentait ainsi :
 
-1. Dans l’environnement de développement hello, produire des transitions d’état qui permettent des tests unitaires de méthodes individuelles.
-2. Dans l’environnement de test hello, produire des tests de bout en bout tooallow échecs qui vérifient les différents scénarios d’échec.
-3. Conservez hello production environnement dénué tooprevent tout non naturelle échecs et la tooensure qu’il y a toofailure de réponse humaine extrêmement rapide.
+1. Dans l’environnement de développement, produisez des transitions d’état prenant en charge des tests d’unités de méthodes individuelles.
+2. Dans l’environnement de test, produisez des erreurs dans le cadre de tests de bout en bout illustrant différents scénarios de défaillances.
+3. Conservez l’environnement de production intact pour empêcher tout risque de défaillance non naturelle et garantir une réponse humaine extrêmement rapide aux défaillances.
 
-Dans l’infrastructure de Service, par le biais hello erreur Analysis Service, nous proposons en conséquence tooturn cela autour et utilisez hello même méthodologie de tooproduction d’environnement de développement. Il existe deux façons tooachieve cela :
+Dans Service Fabric, par le biais du service d’analyse des erreurs, nous proposons de bouleverser cette définition en appliquant une méthodologie unique de l’environnement de développement à la production. Il existe deux moyens de parvenir à cet objectif :
 
-1. échecs de tooinduce contrôlée, utilisez hello erreur Analysis Service API à partir d’un environnement d’une case tooproduction de façon hello tous les clusters.
-2. toogive hello une peste qui provoque des échecs automatique d’induction automatique d’échecs, utilisez hello erreur Analysis Service toogenerate du cluster. Contrôle taux hello d’échecs via la configuration active hello même service toobe testé différemment dans différents environnements.
+1. Pour provoquer des défaillances contrôlées, utilisez les API de service d’analyse des erreurs d’un environnement à boîtier unique sur l’ensemble du processus, jusqu’aux clusters de production.
+2. Pour instaurer dans le cluster une atmosphère provoquant l’introduction automatique de défaillance, recourez au service d’analyse des erreurs afin de générer des erreurs automatiques. En configurant le taux de défaillances, vous êtes à même de tester un même service dans divers environnements.
 
-Avec Service Fabric, même si échelle hello d’échecs est différent dans différents environnements de hello, les mécanismes réels hello serait identiques. Ainsi, pour beaucoup plus rapide au déploiement de code pipeline et hello capacité tootest hello services sous des charges réelles.
+Avec Service Fabric, la mise à l’échelle des défaillances ne serait pas la même au sein des différents environnements. En revanche, les mécanismes réels seraient identiques. Cela permet de diffuser un code plus rapide vers le pipeline de déploiement et de tester les services sous des charges de travail réelles.
 
-## <a name="using-hello-fault-analysis-service"></a>À l’aide de hello erreur Analysis Service
+## <a name="using-the-fault-analysis-service"></a>Utilisation du service d’analyse des erreurs
 **C#**
 
-Fonctionnalités de Service d’analyse de pannes sont dans l’espace de noms hello System.Fabric Bonjour package NuGet de Microsoft.ServiceFabric. fonctionnalités de Service d’analyse de pannes toouse hello, inclure package nuget de hello en tant que référence dans votre projet.
+Les fonctionnalités du service d’analyse des erreurs sont dans l'espace de noms System.Fabric du package NuGet de Microsoft.ServiceFabric. Pour pouvoir utiliser les fonctionnalités du service d’analyse des erreurs, incorporez le package NuGet en tant que référence dans votre projet.
 
 **PowerShell**
 
-toouse PowerShell, vous devez installer hello SDK de l’infrastructure de Service. Après avoir hello que SDK est installé, hello ServiceFabric PowerShell module est automatiquement chargé pour vous toouse.
+Pour utiliser PowerShell, vous devez installer le Kit de développement logiciel (SDK) Service Fabric. Une fois qu’il est installé, le module PowerShell Service Fabric est chargé automatiquement, et rendu disponible.
 
 ## <a name="next-steps"></a>Étapes suivantes
-toocreate réellement l’échelle du cloud services, il est critique tooensure, avant et après le déploiement, que les services peuvent résister aux défaillances du monde réel. Dans le monde de services hello aujourd'hui, hello capacité tooinnovate rapidement et déplacez le code tooproduction rapidement est très importante. Hello erreur Analysis Services permet de toodo les développeurs de service précisément qui.
+Pour créer des services vraiment à l’échelle du cloud, il est primordial de vérifier, avant et après le déploiement, que ces services peuvent résister à des défaillances réalistes. Dans le monde des services actuel, vous avez tout intérêt à démontrer une capacité à innover et à déployer rapidement du code en production. C’est précisément cela que le service d’analyse des erreurs permet de faire aux développeurs de services.
 
-Commencer à tester vos applications et services à l’aide intégrée de hello [les scénarios de test](service-fabric-testability-scenarios.md), ou créer vos propres scénarios de test à l’aide de hello [actions d’erreur](service-fabric-testability-actions.md) fournie par hello erreur Analysis Service.
+Commencez à tester vos applications et services à l’aide des [scénarios de test](service-fabric-testability-scenarios.md) intégrés, ou créez vos propres scénarios de test à l’aide des [actions d’erreur](service-fabric-testability-actions.md) fournies par le service d’analyse des erreurs.
 
 <!--Image references-->
 [0]: ./media/service-fabric-testability-overview/faultanalysisservice.png

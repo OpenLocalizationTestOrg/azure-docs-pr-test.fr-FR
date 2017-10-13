@@ -1,6 +1,6 @@
 ---
-title: fichiers aaaUpload dans un compte Azure Media Services, Azure StorSimple | Documents Microsoft
-description: "Cet article donne une brève vue d’ensemble d’Azure StorSimple Data Manager. article de Hello contient également des liens tootutorials qui vous montrent comment les données tooextract de StorSimple et le télécharger en tant que ressources tooan compte Azure Media Services."
+title: "Charger des fichiers dans un compte Azure Media Services à partir d’Azure StorSimple | Microsoft Docs"
+description: "Cet article donne une brève vue d’ensemble de Azure StorSimple Data Manager. L’article contient également des liens vers des didacticiels qui expliquent comment extraire des données de StorSimple et les charger en tant que ressources dans un compte Azure Media Services."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/27/2017
 ms.author: juliako
-ms.openlocfilehash: 7e9712aa480106bbd5fcc63eaecf0418b24a8bef
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 636d55c15aa383208ffb39d5224123831af962c9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="upload-files-into-an-azure-media-services-account-from-azure-storsimple"></a>Charger des fichiers dans un compte Azure Media Services à partir d’Azure StorSimple
 
-Cet article donne une brève vue d’ensemble d’Azure StorSimple Data Manager. article de Hello contient également des liens tootutorials qui vous montrent comment les données tooextract de StorSimple et charger ces données en tant que ressources tooan compte d’Azure Media Services (AMS).
+Cet article donne une brève vue d’ensemble d’Azure StorSimple Data Manager. L’article contient également des liens vers des didacticiels qui expliquent comment extraire des données de StorSimple et les charger en tant que ressources dans un compte Azure Media Services (AMS).
 
 > 
 > [!NOTE]
@@ -31,22 +31,22 @@ Cet article donne une brève vue d’ensemble d’Azure StorSimple Data Manager.
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Dans Media Services, vous téléchargez vos fichiers numériques dans une ressource. Hello actif peut contenir vidéo, audio, images, collections de miniatures, texte assure le suivi et sous-titres fichiers (et les métadonnées hello sur ces fichiers.) Une fois que les fichiers hello sont téléchargés, votre contenu est stocké en toute sécurité dans le cloud hello pour le traitement et la diffusion en continu.
+Dans Media Services, vous téléchargez vos fichiers numériques dans une ressource. L’élément multimédia peut contenir des fichiers vidéo, des fichiers audio, des images, des collections de miniatures, des pistes textuelles et des légendes (ainsi que les métadonnées concernant ces fichiers). Une fois les fichiers téléchargés, votre contenu est stocké en toute sécurité dans le cloud et peut faire l’objet d’un traitement et d’un streaming.
 
-[Azure StorSimple](https://docs.microsoft.com/azure/storsimple/) utilise le stockage cloud comme une extension de hello solution locale et reconnaît automatiquement les données sur un stockage local hello et de stockage cloud. l’appareil StorSimple Hello dedupes et compresse les données avant de les envoyer cloud toohello rend très efficace pour l’envoi de cloud de toohello des fichiers volumineux. Hello [StorSimple Data Manager](../storsimple/storsimple-data-manager-overview.md) service fournit des API que vous tooextract les données à partir de StorSimple et de les présentent comme des ressources AMS.
+[Azure StorSimple](https://docs.microsoft.com/azure/storsimple/) utilise le stockage cloud pour étendre la solution sur site et hiérarchise automatiquement les données sur le stockage local et le stockage cloud. L’appareil StorSimple déduplique et compresse les données avant de les envoyer vers le cloud. Il améliore considérablement l’efficacité d’envoi de fichiers volumineux vers le cloud. Le service [StorSimple Data Manager](../storsimple/storsimple-data-manager-overview.md) fournit des API vous permettant d’extraire des données à partir de StorSimple et de les présenter sous la forme de ressources AMS.
 
 ## <a name="get-started"></a>Prise en main
 
-1. [Créer un compte Media Services](media-services-portal-create-account.md) dans lequel vous souhaitez actifs de hello tootransfer.
-2. S’inscrire pour l’aperçu du Gestionnaire de données, comme décrit dans hello [StorSimple Data Manager](../storsimple/storsimple-data-manager-overview.md) l’article.
+1. [Créer un compte Media Services](media-services-portal-create-account.md) dans lequel vous souhaitez transférer les ressources.
+2. Inscrivez-vous à la version préliminaire de Data Manager, comme décrit dans l’article [StorSimple Data Manager](../storsimple/storsimple-data-manager-overview.md).
 3. Créez un compte StorSimple Data Manager.
 4. Créez un travail de transformation de données qui extrait des données d’un appareil StorSimple et les transfère vers un compte AMS en tant que ressources. 
 
-    Lors de la tâche de hello commence à s’exécuter, une file d’attente de stockage est créé. Cette file d’attente est renseignée avec des messages sur les objets blob transformés, au fur et à mesure de leur mise à disposition. nom de Hello de cette file d’attente est hello identique au nom de la définition de la tâche hello hello. Vous pouvez utiliser cette toodetermine de file d’attente lorsque comme élément multimédia est prêt et appeler votre toorun d’opération Media Services souhaitée sur celle-ci. Par exemple, vous pouvez utiliser cette tootrigger de file d’attente une fonction d’Azure qui contient du code de Media Services nécessaire hello qu’elle contient.
+    Une file d’attente de stockage est créée dès le début d’exécution du travail. Cette file d’attente est renseignée avec des messages sur les objets blob transformés, au fur et à mesure de leur mise à disposition. Le nom de cette file d’attente est identique à celui de la définition du travail. Vous pouvez utiliser cette file d’attente pour déterminer quand une ressource est prête et appeler l’opération Media Services souhaitée pour l’exécuter sur celle-ci. Par exemple, vous pouvez utiliser cette file d’attente pour déclencher une fonction Azure qui contient le code Media Services nécessaire.
 
 ## <a name="see-also"></a>Voir aussi
 
-[Utilisez hello .net SDK travaux tootrigger Bonjour Data Manager](../storsimple/storsimple-data-manager-dotnet-jobs.md)
+[Utiliser le Kit de développement logiciel (SDK) .Net pour déclencher des travaux dans le gestionnaire de données](../storsimple/storsimple-data-manager-dotnet-jobs.md)
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

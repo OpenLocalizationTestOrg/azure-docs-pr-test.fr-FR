@@ -1,6 +1,6 @@
 ---
-title: "sérialisation de type de notes d’acteurs d’aaaReliable sur acteur | Documents Microsoft"
-description: "Décrit les exigences de base pour la définition d’interfaces et des classes sérialisables qui peuvent être utilisé toodefine Service Fabric Reliable Actors États"
+title: "Remarques sur Reliable Actors pour la sérialisation de type d’acteur | Documents Microsoft"
+description: "Traite des exigences de base pour la définition des classes sérialisables pouvant servir à définir les interfaces et les états Service Fabric Reliable Actors"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: d8584e7d90fe1c68af38983e71e5d0a7554689bf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4b48b893e5a3bf5620f00a336576efe1ad63def8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="notes-on-service-fabric-reliable-actors-type-serialization"></a>Remarques sur la sérialisation de type Reliable Actors Service Fabric
-arguments Hello de toutes les méthodes, types de résultats de tâches de hello retournées par chaque méthode dans une interface d’acteur et objets stockés dans le Gestionnaire d’état d’un acteur doivent être [de contrat de données sérialisable](https://msdn.microsoft.com/library/ms731923.aspx). Cela s’applique également toohello les arguments des méthodes hello définies dans [interfaces d’événements acteur](service-fabric-reliable-actors-events.md). (Les méthodes d’interface d’événement d’acteur retournent toujours la valeur nulle.)
+Les arguments de toutes les méthodes, les types de résultats des tâches retournées par chaque méthode dans une interface d’acteur et les objets stockés dans le Gestionnaire d’état d’un acteur doivent être [sérialisables en contrat de données](https://msdn.microsoft.com/library/ms731923.aspx). Cela s’applique également aux arguments des méthodes définies dans les [interfaces d’événement d’acteur](service-fabric-reliable-actors-events.md). (Les méthodes d’interface d’événement d’acteur retournent toujours la valeur nulle.)
 
 ## <a name="custom-data-types"></a>Types de données personnalisés
-Dans cet exemple, hello suivant interface d’acteur définit une méthode qui retourne un type de données personnalisé appelé `VoicemailBox`:
+Dans cet exemple, l’interface d’acteur suivante définit une méthode qui retourne un type de données personnalisé appelé `VoicemailBox` :
 
 ```csharp
 public interface IVoiceMailBoxActor : IActor
@@ -40,7 +40,7 @@ public interface VoiceMailBoxActor extends Actor
 }
 ```
 
-interface de Hello est implémentée par un acteur qui utilise hello état manager toostore un `VoicemailBox` objet :
+L’interface est implémentée par un acteur qui utilise le gestionnaire d’état pour stocker un objet `VoicemailBox` :
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -76,12 +76,12 @@ public class VoiceMailBoxActorImpl extends FabricActor implements VoicemailBoxAc
 
 ```
 
-Dans cet exemple, hello `VoicemailBox` l’objet est sérialisé lorsque :
+Dans cet exemple, l’objet `VoicemailBox` est sérialisé quand :
 
-* objet de Hello transmise entre une instance de l’acteur et un appelant.
-* objet de Hello est enregistré dans le Gestionnaire d’état hello où elle est persistante toodisk et répliquées tooother nœuds.
+* L’objet est transmis entre une instance d’acteur et un appelant.
+* L’objet est enregistré dans le gestionnaire d’état quand il est enregistré sur disque et répliqué vers d’autres nœuds.
 
-infrastructure de Reliable Actor Hello utilise la sérialisation de DataContract. Hello, par conséquent, les objets de données personnalisés et leurs membres doivent être annotés avec hello **DataContract** et **DataMember** des attributs, respectivement.
+L’infrastructure Reliable Actor utilise la sérialisation DataContract. Par conséquent, les objets de données personnalisés et leurs membres doivent être annotés avec les attributs **DataContract** et **DataMember**, respectivement.
 
 ```csharp
 [DataContract]

@@ -1,6 +1,6 @@
 ---
-title: "aaaSet de glossaire métier de hello pour baliser les régi dans Azure Data Catalog | Documents Microsoft"
-description: "Procédure-tooarticle glossaire métier hello mise en surbrillance dans Azure Data Catalog pour définir et utiliser un tootag de vocabulaire métier commun inscrit des ressources de données."
+title: "Configurer le glossaire métier pour un balisage géré dans Azure Data Catalog | Microsoft Docs"
+description: "Article de procédure relatif au glossaire métier d’Azure Data Catalog, qui permet de définir et d’utiliser un vocabulaire métier commun en vue de baliser les ressources de données inscrites."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,71 +15,71 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: c9adf663bd08ac3c0c7b5d3551e6af409fe69ebc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 83ca3b2d89a335a5fd6dddeaca7c11f6d0492234
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="set-up-hello-business-glossary-for-governed-tagging"></a>Paramétrer glossaire métier de hello régie marquage
+# <a name="set-up-the-business-glossary-for-governed-tagging"></a>Configurer le glossaire métier pour un balisage géré
 ## <a name="introduction"></a>Introduction
-Azure Data Catalog permet la découverte de la source de données, afin de pouvoir facilement découvrir et comprendre les sources de données hello devez tooperform analyse et de prendre des décisions. Ces fonctionnalités font impressionnants hello lorsque vous pouvez rechercher et comprendre hello plus large gamme de sources de données disponibles.
+Azure Data Catalog autorise la détection de sources de données pour que vous puissiez découvrir et comprendre facilement les sources de données dont vous avez besoin pour effectuer des analyses et prendre des décisions. Ces fonctionnalités se révèlent tout particulièrement utiles lorsque vous pouvez trouver et comprendre le plus large éventail de sources de données disponibles.
 
-L’une des fonctionnalités de Data Catalog qui favorise une meilleure compréhension des données de ressources est le balisage. En utilisant le balisage, vous pouvez associer des mots clés à un élément multimédia ou une colonne, qui à son tour rend plus facile asset de hello toodiscover via la recherche. Marquage vous aide également à plus facilement comprendre le contexte de hello et l’intention de l’élément multimédia de hello.
+L’une des fonctionnalités de Data Catalog qui favorise une meilleure compréhension des données de ressources est le balisage. En utilisant le balisage, vous pouvez associer des mots clés à une ressource ou une colonne, ce qui rendra la recherche et la navigation plus efficaces. Le balisage vous permet aussi de mieux comprendre le contexte et le rôle d’une ressource.
 
 Cependant, le balisage peut parfois engendrer des problèmes qui lui sont propres. Voici quelques exemples de problèmes potentiels liés au balisage :
 
-* Hello l’utilisation de texte développé sur d’autres personnes et les abréviations sur certaines ressources. Cette incohérence entraîne une dégradation découverte hello d’actifs, même si l’intention de hello a été actifs de hello tootag avec hello même balise.
-* Le sens peut varier, selon le contexte. Par exemple, une balise appelée *chiffre d’affaires* sur un client, jeu de données peut signifier chiffre d’affaires par le client, mais hello même balise sur un jeu de données de ventes trimestriel, cela peut signifier chiffre d’affaires trimestriel de société de hello.  
+* Utilisation d’abréviations pour certaines ressources, et de texte développé pour d’autres. Cette incohérence est un obstacle à la découverte de ressources, même si l’intention était de baliser les ressources avec la même balise.
+* Le sens peut varier, selon le contexte. Par exemple, l’application de la balise *Chiffre d’affaires* sur un jeu de données clients pourrait désigner le chiffre d’affaires par client, alors que l’application de la même balise à un jeu de données de ventes trimestrielles pourrait désigner le chiffre d’affaires trimestriel de l’entreprise.  
 
-toohelp résoudre des problèmes similaires, le catalogue de données inclut un glossaire métier.
+Pour faire face à ce type de difficulté, Data Catalog met à disposition un glossaire métier.
 
-À l’aide de glossaire de hello catalogue de données métier, une organisation peut documenter les termes métier importants et leur définitions de toocreate un vocabulaire métier commun. Cette gouvernance permet une cohérence dans l’utilisation des données de l’entreprise hello. Après avoir défini un terme de glossaire métier de hello, il peut être affecté tooa ressource de données dans le catalogue de hello. Cette approche, *régie marquage*, est hello même approche balisage.
+Le glossaire métier de Data Catalog permet aux organisations de rassembler les principaux termes métier et leurs définitions pour créer un vocabulaire métier commun. Cette gouvernance favorise une utilisation cohérente des données à l’échelle de l’organisation. Après avoir défini un terme dans le glossaire métier, il peut être affecté à une ressource de données du catalogue. Cette approche, *le balisage géré*, est similaire au balisage classique.
 
 ## <a name="glossary-availability-and-privileges"></a>Disponibilité du glossaire et privilèges
-glossaire métier de Hello est uniquement disponible dans hello Édition Standard d’Azure Data Catalog. Hello données catalogue gratuit n’inclut pas un glossaire et il ne fournit pas de fonctionnalités pour baliser les régi.
+Le glossaire métier est disponible uniquement dans l’édition Standard d’Azure Data Catalog. L’édition gratuite de Data Catalog n’inclut pas de glossaire ni ne fournit de fonctionnalités de balisage géré.
 
-Vous pouvez accéder à glossaire métier de hello via hello **glossaire** option dans le menu de navigation du portail hello catalogue de données.  
+Le glossaire métier est accessible via l’option **Glossaire** du menu de navigation du portail Data Catalog.  
 
-![L’accès à glossaire métier de hello](./media/data-catalog-how-to-business-glossary/01-portal-menu.png)
+![Accès au glossaire métier](./media/data-catalog-how-to-business-glossary/01-portal-menu.png)
 
-Les administrateurs de catalogue de données et les membres du glossaire hello rôle Administrateurs permettre créer, modifier et supprimer des termes du glossaire glossaire métier de hello. Tous les utilisateurs du catalogue de données peuvent afficher les définitions des termes hello et baliser des éléments avec des termes de glossaire.
+Les administrateurs de Data Catalog et les membres du rôle Administrateurs de glossaire peuvent créer, modifier et supprimer des termes dans le glossaire métier. Tous les utilisateurs de Data Catalog peuvent consulter les définitions des termes et baliser les ressources avec ces termes du glossaire.
 
 ![Ajout d’un nouveau terme de glossaire](./media/data-catalog-how-to-business-glossary/02-new-term.png)
 
 ## <a name="creating-glossary-terms"></a>Création de termes de glossaire
-Administrateurs de catalogue de données et glossaire peut créer des termes de glossaire en cliquant sur hello **nouveau terme** bouton. Chaque terme de glossaire contient hello champs qui suivent :
+Les administrateurs de Data Catalog et les administrateurs de glossaire peuvent créer des termes de glossaire en cliquant sur **Nouveau terme**. Chaque terme de glossaire contient les champs suivants :
 
-* Une définition d’entreprise pour le terme de hello
-* Une description qui capture hello prévu ou professionnelles des règles pour les ressources hello ou une colonne
-* Une liste des parties prenantes qui connaissent hello plus sur le terme de hello
-* terme parent Hello, qui définit la hiérarchie hello dans le hello terme est organisé
+* définition métier du terme ;
+* description qui rend compte de l’usage prévu ou des règles métier de la ressource ou de la colonne ;
+* liste des parties prenantes qui connaissent le mieux le terme ;
+* terme parent qui définit la hiérarchie dont dépend le terme.
 
 ## <a name="glossary-term-hierarchies"></a>Hiérarchies de termes de glossaire
-À l’aide de glossaire métier de catalogue de données hello, une organisation peut décrire son vocabulaire métier en tant que hiérarchie de termes du contrat, et il peut créer une classification de termes qui représente mieux sa classification de l’entreprise.
+Le glossaire métier de Data Catalog permet aux organisations de construire son vocabulaire métier comme une hiérarchie de termes et de créer une classification de termes qui représente mieux la taxonomie de son entreprise.
 
-Un terme doit être unique à un niveau donné de la hiérarchie. Les noms en double ne sont pas autorisés. Il n’existe aucun toohello limiter le nombre de niveaux dans une hiérarchie, mais une hiérarchie est souvent plus faciles à comprendre quand il existe trois niveaux ou moins.
+Un terme doit être unique à un niveau donné de la hiérarchie. Les noms en double ne sont pas autorisés. Il n’existe aucune limite quant au nombre de niveaux dont est constituée une hiérarchie, mais celle-ci sera plus facile à cerner si elle n’en comporte pas plus de trois.
 
-utilisation de Hello des hiérarchies de glossaire métier de hello est facultative. Laisser hello terme le champ parent vide pour les termes du glossaire crée une liste de plats (non hiérarchiques) des termes de glossaire de hello.  
+L’utilisation de hiérarchies dans le glossaire métier est facultative. Le fait de laisser le champ Terme parent vide pour des termes du glossaire a pour effet de créer une liste de termes plate (non hiérarchisée) dans le glossaire.  
 
 ## <a name="tagging-assets-with-glossary-terms"></a>Balisage de ressources avec des termes de glossaire
-Une fois les termes du glossaire ont été définies dans le catalogue de hello, expérience hello marquage actifs est glossaire de hello toosearch optimisé comme un utilisateur tape une balise. portail de catalogue de données Hello affiche une liste de correspondance toochoose de termes de glossaire de. Si l’utilisateur de hello sélectionne un terme de glossaire à partir de la liste de hello, terme de hello est ajouté toohello actif en tant que balise (également appelée une balise glossaire). Hello utilisateur peut également choisir toocreate une nouvelle balise en tapant un terme qui n’est pas hello glossaire (également appelé une balise de l’utilisateur).
+Après avoir défini des termes de glossaire dans le catalogue, le balisage de ressources est optimisé pour les recherches dans le glossaire à mesure qu’un utilisateur tape une balise. Le portail Data Catalog affiche une liste de termes de glossaire correspondants à choisir. Si l’utilisateur sélectionne un terme de glossaire dans la liste, celui-ci est ajouté à la ressource sous forme de balise (également appelée balise de glossaire). L’utilisateur peut aussi choisir de créer une balise en tapant un terme qui ne se trouve pas dans le glossaire (dans ce cas, on parle de balise utilisateur).
 
 ![Ressource de données balisée avec une balise utilisateur et deux balises de glossaire](./media/data-catalog-how-to-business-glossary/03-tagged-asset.png)
 
 > [!NOTE]
-> Balises de l’utilisateur sont hello uniquement le type de balise pris en charge dans hello données catalogue gratuit.
+> La balise utilisateur est le seul type de balise pris en charge dans l’édition gratuite de Data Catalog.
 >
 >
 
 ### <a name="hover-behavior-on-tags"></a>Comportement du pointage sur les balises
-Dans le portail du catalogue de données hello, hello deux types de balises sont les comportements visuellement distinctes et présentes pointage différents. Lorsque vous pointez sur une balise de l’utilisateur, vous pouvez voir le texte de balise hello et hello ou les utilisateurs qui ont ajouté hello. Lorsque vous pointez sur une balise de glossaire, vous consultez également hello définition du terme de glossaire hello et une lien tooopen hello entreprise glossaire tooview hello complète définition du terme de hello.
+Dans le portail Data Catalog, les deux types de balise se distinguent l’un de l’autre tant sur le plan visuel que sur le plan du comportement du pointage. En pointant sur une balise utilisateur, vous pouvez voir le texte de la balise et l’identité du ou des utilisateurs ayant ajouté la balise. En pointant sur une balise de glossaire, vous obtenez aussi la définition du terme de glossaire, ainsi qu’un lien permettant d’ouvrir le glossaire métier pour y consulter la définition complète du terme.
 
 ### <a name="search-filters-for-tags"></a>Filtres de recherche pour les balises
 Les balises de glossaire comme les balises utilisateur peuvent non seulement faire l’objet de recherches, mais elles peuvent aussi servir de filtres dans une recherche.
 
 ## <a name="summary"></a>Résumé
-À l’aide de glossaire métier de hello dans Azure Data Catalog et hello régie marquage il active, vous pouvez identifier, gérer et découvrir des ressources de données de façon cohérente. glossaire métier de Hello pouvez promouvoir l’apprentissage de vocabulaire d’entreprise hello par les membres de l’organisation. glossaire de Hello prend également en charge la capture des métadonnées explicites, pour simplifier la compréhension et la découverte de l’élément multimédia.
+Le glossaire métier d’Azure Data Catalog et le balisage géré qu’il autorise vous permettent d’identifier, de gérer et de découvrir les ressources de données de façon cohérente. Le glossaire métier permet de promouvoir l’apprentissage du vocabulaire métier par les employés. Le glossaire prend également en charge la capture de métadonnées explicites, ce qui simplifie la compréhension et la détection de ressource.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Documentation de l’API REST pour les opérations de glossaire métier](https://msdn.microsoft.com/library/mt708855.aspx)

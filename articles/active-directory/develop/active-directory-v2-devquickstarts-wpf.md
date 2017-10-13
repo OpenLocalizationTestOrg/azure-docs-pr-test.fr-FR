@@ -1,6 +1,6 @@
 ---
-title: aaaAzure Active Directory v2.0 application Native .NET | Documents Microsoft
-description: Comment toobuild une application native .NET qui connecte aux utilisateurs avec les deux Account personnel de Microsoft et comptes professionnels ou scolaires.
+title: Application native .NET Azure Active Directory v2.0 | Microsoft Docs
+description: "Comment créer une application native .NET qui se connecte avec les comptes Microsoft personnels, ainsi qu’avec les comptes professionnels ou scolaires."
 services: active-directory
 documentationcenter: 
 author: jmprieur
@@ -15,59 +15,59 @@ ms.topic: article
 ms.date: 07/30/2016
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: 9418eeba02b800feee5cb00219574eb16506f0a1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7389f55ee6fef9548abb0ca4ac1bbd0399868d47
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-sign-in-tooa-windows-desktop-app"></a>Ajouter une application de bureau Windows de connexion tooa
-Avec le point de terminaison hello hello v2.0, vous pouvez ajouter rapidement des applications de bureau tooyour l’authentification avec prise en charge pour les deux comptes personnels de Microsoft et comptes professionnels ou scolaires.  Elle aussi Active toosecurely de votre application communiquer avec un service principal web api, ainsi que [hello Microsoft Graph](https://graph.microsoft.io) et quelques exemples de hello [les API Office 365 unifiée](https://www.msdn.com/office/office365/howto/authenticate-Office-365-APIs-using-v2).
+# <a name="add-sign-in-to-a-windows-desktop-app"></a>Ajouter une connexion à une application de bureau Windows
+Le point de terminaison v2.0 vous permet de rapidement ajouter une authentification à vos applications de bureau avec la prise en charge des comptes Microsoft personnels, ainsi que les comptes professionnels ou scolaires.  Il permet également à votre application de communiquer de manière sécurisée avec une API web principale, ainsi qu’avec [Microsoft Graph](https://graph.microsoft.io) et un nombre limité [d’API unifiées Office 365](https://www.msdn.com/office/office365/howto/authenticate-Office-365-APIs-using-v2).
 
 > [!NOTE]
-> Pas toutes les fonctionnalités et scénarios d’Azure Active Directory (AD) sont pris en charge par le point de terminaison hello v2.0.  toodetermine si vous devez utiliser le point de terminaison hello v2.0, en savoir plus sur [v2.0 limitations](active-directory-v2-limitations.md).
+> Les scénarios et les fonctionnalités Azure Active Directory (AD) ne sont pas tous pris en charge par le point de terminaison v2.0.  Pour déterminer si vous devez utiliser le point de terminaison v2.0, consultez les [limitations de v2.0](active-directory-v2-limitations.md).
 > 
 > 
 
-Pour [.NET des applications natives qui s’exécutent sur un appareil](active-directory-v2-flows.md#mobile-and-native-apps), Azure AD fournit hello bibliothèque d’authentification d’identité ou MSAL.  Seul but de MSAL vie est toomake tooget de votre application plus facilement des jetons pour appeler des services web.  toodemonstrate facilité il s’agit, ici nous allons construire une application de liste de tâches WPF .NET :
+Pour les [applications natives .NET qui s’exécutent sur un appareil](active-directory-v2-flows.md#mobile-and-native-apps), Azure AD fournit la bibliothèque d’authentification Microsoft Identity (bibliothèque MSAL).  Le seul objectif de cette bibliothèque MSAL est de faciliter l’obtention de jetons pour votre application, qui les utilise pour appeler les services Web.  Pour illustrer sa facilité d’utilisation, nous allons créer une application de liste des tâches .NET WPF qui exécute les activités suivantes :
 
-* Signes hello utilisateur dans & obtient accéder aux jetons à l’aide de hello [protocole d’authentification OAuth 2.0](active-directory-v2-protocols.md).
+* connexion de l’utilisateur et obtention des jetons d’accès à l’aide du [protocole d’authentification OAuth 2.0](active-directory-v2-protocols.md) ;
 * appel sécurisé d’un service Web principal de liste de tâches, qui est également sécurisé par OAuth 2.0 ;
-* Utilisateur se connecte hello out.
+* déconnexion de l’utilisateur.
 
 ## <a name="download-sample-code"></a>Télécharger l’exemple de code
-code Hello pour ce didacticiel est maintenue [sur GitHub](https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet).  toofollow le long, vous pouvez [structure de l’application hello en tant qu’un fichier ZIP de téléchargement](https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet/archive/skeleton.zip) ou un clone hello squelette :
+Le code associé à ce didacticiel est stocké [sur GitHub](https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet).  Pour suivre la procédure, vous pouvez [télécharger la structure de l’application au format .zip](https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet/archive/skeleton.zip) ou la cloner :
 
     git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet.git
 
-application Hello terminée est fournie à des fin de hello de ce didacticiel également.
+L'application terminée est également fournie à la fin de ce didacticiel.
 
 ## <a name="register-an-app"></a>Inscription d’une application
 Créez une application à l’adresse [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), ou suivez cette [procédure détaillée](active-directory-v2-app-registration.md).  Veillez à respecter les points suivants :
 
-* Copie vers le bas hello **Id d’Application** affecté tooyour application, vous en aurez besoin plus rapidement.
-* Ajouter hello **Mobile** plate-forme pour votre application.
+* copier l' **ID d'application** attribué à votre application, vous en aurez bientôt besoin ;
+* ajouter la plateforme **Mobile** pour votre application ;
 
 ## <a name="install--configure-msal"></a>Installation et configuration de la bibliothèque MSAL
-Maintenant que vous disposez d’une application enregistrée auprès de Microsoft, vous pouvez installer la bibliothèque MSAL et écrire votre code associé aux identités.  Point de terminaison MSAL toobe toocommunicate en mesure de hello v2.0, vous devez tooprovide avec des informations sur l’inscription de votre application.
+Maintenant que vous disposez d’une application enregistrée auprès de Microsoft, vous pouvez installer la bibliothèque MSAL et écrire votre code associé aux identités.  Pour permettre à la bibliothèque MSAL de communiquer avec le point de terminaison v2.0, vous devez lui fournir des informations sur l’enregistrement de votre application.
 
-* Commencez par ajouter le projet de TodoListClient toohello MSAL à l’aide de la Console du Gestionnaire de Package de hello.
+* Commencez par ajouter la bibliothèque MSAL au projet TodoListClient à l’aide de la console du gestionnaire de package.
 
 ```
 PM> Install-Package Microsoft.Identity.Client -ProjectName TodoListClient -IncludePrerelease
 ```
 
-* Dans le projet de TodoListClient hello, ouvrez `app.config`.  Remplacez les valeurs hello d’éléments hello Bonjour `<appSettings>` hello tooreflect de section les valeurs d’entrée dans le portail de l’enregistrement d’application hello.  Votre code se réfère à ces valeurs chaque fois qu’il utilise la bibliothèque MSAL.
+* Dans le projet TodoListClient, ouvrez `app.config`.  Remplacez les valeurs des éléments de la section `<appSettings>` afin qu’elles reflètent les valeurs saisies dans le portail d’inscription d’applications.  Votre code se réfère à ces valeurs chaque fois qu’il utilise la bibliothèque MSAL.
   
-  * Hello `ida:ClientId` est hello **Id d’Application** de votre application que vous avez copié à partir du portail de hello.
-* Dans le projet de hello TodoList-Service, ouvrez `web.config` dans racine hello du projet de hello.  
+  * L’élément `ida:ClientId` est l’ **ID d’application** de l’application copiée à partir du portail.
+* Dans le projet TodoList-Service, ouvrez l’élément `web.config` dans la racine du projet.  
   
-  * Remplacez hello `ida:Audience` valeur hello même **Id de l’Application** à partir du portail de hello.
+  * Remplacez la valeur `ida:Audience` par l’ **ID d’application** du portail.
 
-## <a name="use-msal-tooget-tokens"></a>Utiliser des jetons de tooget MSAL
-Bonjour derrière MSAL principe de base est que chaque fois que votre application a besoin d’un jeton d’accès, il suffit d’appeler `app.AcquireToken(...)`, et MSAL hello rest.  
+## <a name="use-msal-to-get-tokens"></a>Utilisation de la bibliothèque MSAL pour obtenir des jetons
+Le principe de base de la bibliothèque MSAL consiste simplement à appeler `app.AcquireToken(...)`chaque fois que votre application a besoin d’un jeton d’accès, et la bibliothèque MSAL s’occupe du reste.  
 
-* Bonjour `TodoListClient` projet, ouvrez `MainWindow.xaml.cs` et recherchez hello `OnInitialized(...)` (méthode).  première étape de Hello est tooinitialize de votre application `PublicClientApplication` -classe de principal du MSAL représentant des applications natives.  Il s’agit d’où vous passez MSAL hello coordonnées nécessaires toocommunicate avec Azure AD et d’indiquer comment les jetons toocache.
+* Dans le projet `TodoListClient`, ouvrez `MainWindow.xaml.cs` et recherchez la méthode `OnInitialized(...)`.  La première étape consiste à initialiser la `PublicClientApplication` de votre application, c’est-à-dire la classe principale de la bibliothèque MSAL représentant les applications natives.  C’est à ce moment-là que vous fournissez à la bibliothèque MSAL les coordonnées dont elle a besoin pour communiquer avec Azure AD et lui indiquer comment mettre en cache des jetons.
 
 ```C#
 protected override async void OnInitialized(EventArgs e)
@@ -80,18 +80,18 @@ protected override async void OnInitialized(EventArgs e)
 }
 ```
 
-* Lors de l’application hello démarre, toocheck et nous voir si hello utilisateur est déjà connecté à application hello.  Toutefois, nous ne voulons pas encore tooinvoke une interface utilisateur de l’authentification : nous allons effectuer les utilisateur hello cliquez sur « Sign In » toodo donc.  Également dans hello `OnInitialized(...)` méthode :
+* Lorsque l’application démarre, nous souhaitons vérifier si l’utilisateur est déjà connecté.  Toutefois, nous ne voulons pas encore invoquer d’interface utilisateur de connexion. Nous demanderons à l’utilisateur de cliquer sur l’option de connexion.  Également dans la méthode `OnInitialized(...)` :
 
 ```C#
-// As hello app starts, we want toocheck toosee if hello user is already signed in.
-// You can do so by trying tooget a token from MSAL, using hello method
-// AcquireTokenSilent.  This forces MSAL toothrow an exception if it cannot
-// get a token for hello user without showing a UI.
+// As the app starts, we want to check to see if the user is already signed in.
+// You can do so by trying to get a token from MSAL, using the method
+// AcquireTokenSilent.  This forces MSAL to throw an exception if it cannot
+// get a token for the user without showing a UI.
 try
 {
     result = await app.AcquireTokenSilentAsync(new string[] { clientId });
-    // If we got here, a valid token is in hello cache - or MSAL was able tooget a new oen via refresh token.
-    // Proceed toofetch hello user's tasks from hello TodoListService via hello GetTodoList() method.
+    // If we got here, a valid token is in the cache - or MSAL was able to get a new oen via refresh token.
+    // Proceed to fetch the user's tasks from the TodoListService via the GetTodoList() method.
 
     SignInButton.Content = "Clear Cache";
     GetTodoList();
@@ -100,8 +100,8 @@ catch (MsalException ex)
 {
     if (ex.ErrorCode == "user_interaction_required")
     {
-        // If user interaction is required, hello app should take no action,
-        // and simply show hello user hello sign in button.
+        // If user interaction is required, the app should take no action,
+        // and simply show the user the sign in button.
     }
     else
     {
@@ -117,17 +117,17 @@ catch (MsalException ex)
 
 ```
 
-* Si l’utilisateur de hello n’est pas connecté et ils cliquent sur hello » bouton se connecter », nous tooinvoke une interface utilisateur de connexion et souhaitez utilisateur de hello entrer leurs informations d’identification.  Implémenter le Gestionnaire du bouton hello-In :
+* Si l’utilisateur, non connecté, clique sur le bouton de connexion, nous souhaitons invoquer une interface utilisateur de connexion et lui demander de saisir ses informations d’identification.  Implémentez le gestionnaire du bouton de connexion :
 
 ```C#
 private async void SignIn(object sender = null, RoutedEventArgs args = null)
 {
-        // TODO: Sign hello user out if they clicked hello "Clear Cache" button
+        // TODO: Sign the user out if they clicked the "Clear Cache" button
 
-// If hello user clicked hello 'Sign-In' button, force
-// MSAL tooprompt hello user for credentials by using
-// AcquireTokenAsync, a method that is guaranteed tooshow a prompt toohello user.
-// MSAL will get a token for hello TodoListService and cache it for you.
+// If the user clicked the 'Sign-In' button, force
+// MSAL to prompt the user for credentials by using
+// AcquireTokenAsync, a method that is guaranteed to show a prompt to the user.
+// MSAL will get a token for the TodoListService and cache it for you.
 
 AuthenticationResult result = null;
 try
@@ -139,12 +139,12 @@ try
 catch (MsalException ex)
 {
     // If MSAL cannot get a token, it will throw an exception.
-    // If hello user canceled hello login, it will result in the
+    // If the user canceled the login, it will result in the
     // error code 'authentication_canceled'.
 
     if (ex.ErrorCode == "authentication_canceled")
     {
-        MessageBox.Show("Sign in was canceled by hello user");
+        MessageBox.Show("Sign in was canceled by the user");
     }
     else
     {
@@ -165,7 +165,7 @@ catch (MsalException ex)
 }
 ```
 
-* Si hello correctement les signes de l’utilisateur, MSAL recevra et mettre en cache un jeton pour vous et vous pouvez passer toocall hello `GetTodoList()` méthode en toute confiance.  Tout ce qui l’a laissé tooget les tâches d’un utilisateur est tooimplement hello `GetTodoList()` (méthode).
+* Si l’utilisateur parvient à se connecter, la bibliothèque MSAL reçoit et met en cache un jeton pour vous. Vous pouvez appeler la méthode `GetTodoList()` en toute confiance.  Pour récupérer les tâches d’un utilisateur, il ne vous reste plus qu’à implémenter la méthode `GetTodoList()`.
 
 ```C#
 private async void GetTodoList()
@@ -174,17 +174,17 @@ private async void GetTodoList()
 AuthenticationResult result = null;
 try
 {
-    // Here, we try tooget an access token toocall hello TodoListService
+    // Here, we try to get an access token to call the TodoListService
     // without invoking any UI prompt.  AcquireTokenSilentAsync forces
-    // MSAL toothrow an exception if it cannot get a token silently.
+    // MSAL to throw an exception if it cannot get a token silently.
 
 
     result = await app.AcquireTokenSilentAsync(new string[] { clientId });
 }
 catch (MsalException ex)
 {
-    // MSAL couldn't get a token silently, so show hello user a message
-    // and let them click hello Sign-In button.
+    // MSAL couldn't get a token silently, so show the user a message
+    // and let them click the Sign-In button.
 
     if (ex.ErrorCode == "user_interaction_required")
     {
@@ -206,9 +206,9 @@ catch (MsalException ex)
     return;
 }
 
-// Once hello token has been returned by MSAL,
-// add it toohello http authorization header,
-// before making hello call tooaccess hello tooDo list service.
+// Once the token has been returned by MSAL,
+// add it to the http authorization header,
+// before making the call to access the To Do list service.
 
 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", result.Token);
 
@@ -217,15 +217,15 @@ httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("
 ...
 
 
-- When hello user is done managing their To-Do List, they may finally sign out of hello app by clicking hello "Clear Cache" button.
+- When the user is done managing their To-Do List, they may finally sign out of the app by clicking the "Clear Cache" button.
 
 ```C#
 private async void SignIn(object sender = null, RoutedEventArgs args = null)
 {
-        // If hello user clicked hello 'clear cache' button,
-        // clear hello MSAL token cache and show hello user as signed out.
-        // It's also necessary tooclear hello cookies from hello browser
-        // control so hello next user has a chance toosign in.
+        // If the user clicked the 'clear cache' button,
+        // clear the MSAL token cache and show the user as signed out.
+        // It's also necessary to clear the cookies from the browser
+        // control so the next user has a chance to sign in.
 
         if (SignInButton.Content.ToString() == "Clear Cache")
         {
@@ -240,24 +240,24 @@ private async void SignIn(object sender = null, RoutedEventArgs args = null)
 ```
 
 ## <a name="run"></a>Exécuter
-Félicitations ! Vous maintenant disposerez d’une application WPF .NET qui a des utilisateurs tooauthenticate hello capacité & appelez en toute sécurité des API Web à l’aide d’OAuth 2.0.  Exécutez vos projets et connectez-vous avec un compte Microsoft personnel ou un compte professionnel ou scolaire.  Ajouter la liste des tâches de l’utilisateur toothat de tâches.  Déconnectez-vous et reconnectez-vous en tant qu’un autre utilisateur tooview leur liste de tâches.  Fermez l’application hello et réexécutez-la.  Notez comment de hello session reste intacte, c’est parce que l’application hello met en cache des jetons dans un fichier local.
+Félicitations ! Vous disposez désormais d’une application .NET WPF fonctionnelle, capable d’authentifier les utilisateurs et d’appeler des API web en toute sécurité via OAuth 2.0.  Exécutez vos projets et connectez-vous avec un compte Microsoft personnel ou un compte professionnel ou scolaire.  Ajoutez des tâches à la liste de tâches de cet utilisateur.  Déconnectez-vous et reconnectez-vous à l'aide du compte d'un autre utilisateur pour afficher sa liste de tâches.   Fermez l’application et exécutez-la de nouveau.  Remarquez à quel point la session de l’utilisateur reste intacte (cela s’explique par le fait que l’application cache des jetons dans un fichier local).
 
-MSAL rend fonctionnalités d’identité commune tooincorporate facile dans votre application, à l’aide des comptes personnels et professionnels.  Il s’occupe de tout le travail dirty hello vous - gestion du cache, la prise en charge de protocole d’OAuth, présentant les utilisateur hello avec une connexion de l’interface utilisateur, l’actualisation des jetons expirés et bien plus encore.  Vous devez vraiment tooknow est un simple appel d’API `app.AcquireTokenAsync(...)`.
+La bibliothèque MSAL permet d’intégrer facilement des fonctionnalités d’identité courantes à votre application à l’aide de vos comptes personnels et professionnels.  Elle effectue les tâches ingrates pour vous : gestion du cache, prise en charge du protocole OAuth, présentation d’une interface utilisateur de connexion à l’utilisateur, actualisation des jetons expirés et bien plus encore.  La seule chose que vous devez vraiment connaître est un appel unique d’API : `app.AcquireTokenAsync(...)`.
 
-Pour référence, hello effectuée exemple (sans les valeurs de configuration) [est fournie en tant qu’un fichier zip ici](https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet/archive/complete.zip), ou vous pouvez le cloner à partir de GitHub :
+Pour référence, l’exemple terminé (sans vos valeurs de configuration) [est fourni ici au format .zip](https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet/archive/complete.zip). Vous pouvez également le cloner à partir de GitHub :
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/AppModelv2-NativeClient-DotNet.git```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez maintenant aborder des rubriques plus sophistiquées.  Vous souhaiterez peut-être tootry :
+Vous pouvez maintenant aborder des rubriques plus sophistiquées.  Par exemple :
 
-* [Sécurisation de hello TodoListService Web API avec le point de terminaison hello v2.0](active-directory-v2-devquickstarts-dotnet-api.md)
+* [Sécurisation de l’API web TodoListService avec le point de terminaison v2.0](active-directory-v2-devquickstarts-dotnet-api.md)
 
 Pour obtenir des ressources supplémentaires, consultez :  
 
-* [guide du développeur v2.0 Hello >>](active-directory-appmodel-v2-overview.md)
-* [Balise « msal » StackOverflow &gt;&gt;](http://stackoverflow.com/questions/tagged/msal)
+* [Guide du développeur 2.0 >>](active-directory-appmodel-v2-overview.md)
+* [Balise « msal » StackOverflow >>](http://stackoverflow.com/questions/tagged/msal)
 
 ## <a name="get-security-updates-for-our-products"></a>Obtenir les mises à jour de sécurité de nos produits
-Nous vous conseillons de notifications tooget les incidents de sécurité se produire en vous rendant sur [cette page](https://technet.microsoft.com/security/dd252948) et l’abonnement d’alerte tooSecurity.
+Nous vous encourageons à activer les notifications d’incidents de sécurité en vous rendant sur [cette page](https://technet.microsoft.com/security/dd252948) et en vous abonnant aux alertes d’avis de sécurité.
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaMigrate un tooan VM classique ARM gérés disque VM | Documents Microsoft"
-description: "Migrer des machines virtuelles Azure à partir de déploiement classique de hello tooManaged des disques dans le modèle de déploiement du Gestionnaire de ressources hello de modèle."
+title: "Migrer une machine virtuelle classique vers une machine virtuelle avec disque managé par ARM | Microsoft Docs"
+description: "Migrez une machine virtuelle Azure unique à partir du modèle de déploiement Classic vers Managed Disks dans le modèle de déploiement Resource Manager."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,37 +15,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: cynthn
-ms.openlocfilehash: d8c4b9431f5dd8a071fcbc2ee36581a33f76ba62
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 82389834d85981c0ed71bdcc891fbfdbe1377654
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="manually-migrate-a-classic-vm-tooa-new-arm-managed-disk-vm-from-hello-vhd"></a>Migrer manuellement un tooa VM classique ARM gérés disque machine virtuelle à partir de hello disque dur virtuel 
+# <a name="manually-migrate-a-classic-vm-to-a-new-arm-managed-disk-vm-from-the-vhd"></a>Migrer manuellement une machine virtuelle classique vers une nouvelle machine virtuelle avec disque managé par ARM depuis le disque dur virtuel 
 
 
-Cette section vous aide à vous toomigrate vos machines virtuelles Azure existantes à partir du modèle de déploiement classique hello trop[disques gérés](managed-disks-overview.md) dans le modèle de déploiement du Gestionnaire de ressources hello.
+Cette section vous aide à migrer vos machines virtuelles Azure existantes à partir du modèle de déploiement Classic vers [Managed Disks](managed-disks-overview.md) dans le modèle de déploiement Resource Manager.
 
 
-## <a name="plan-for-hello-migration-toomanaged-disks"></a>Planifier la migration de hello de tooManaged disques
+## <a name="plan-for-the-migration-to-managed-disks"></a>Planification de la migration vers Managed Disks
 
-Cette section vous aide à toomake hello meilleure décision sur les types de machine virtuelle et le disque.
+Cette section vous aide à prendre la meilleure décision concernant les types de machines virtuelles et de disques.
 
 
-### <a name="location"></a>Lieu
+### <a name="location"></a>Emplacement
 
-Choisissez un emplacement où Azure Managed Disks est disponible. Si vous migrez des disques gérés tooPremium, vérifiez également que le stockage Premium est disponible dans la région de hello lorsque vous prévoyez de toomigrate à. Pour obtenir des informations à jour sur les emplacements disponibles, consultez [Services Azure par région](https://azure.microsoft.com/regions/#services).
+Choisissez un emplacement où Azure Managed Disks est disponible. Si vous effectuez une migration vers des disques gérés Premium, assurez-vous également que le stockage Premium est disponible dans la région où vous prévoyez la migration. Pour obtenir des informations à jour sur les emplacements disponibles, consultez [Services Azure par région](https://azure.microsoft.com/regions/#services).
 
 ### <a name="vm-sizes"></a>Tailles de machine virtuelle
 
-Si vous effectuez une migration tooPremium des disques gérés, vous tooupdate hello taille êtes de hello VM tooPremium taille capable de stockage disponible dans la région de hello où se trouve la machine virtuelle. Passez en revue les tailles de machine virtuelle hello qui sont capables de stockage Premium. spécifications de taille de machine virtuelle Azure Hello sont répertoriées dans [tailles des machines virtuelles](sizes.md).
-Passez en revue les caractéristiques de performances hello d’ordinateurs virtuels qui fonctionnent avec un stockage Premium et choisissez hello plus approprié taille de machine virtuelle qui convient le mieux à votre charge de travail. Assurez-vous qu’il y suffisamment de bande passante disponible sur votre trafic de disque de machine virtuelle toodrive hello.
+Si vous effectuez une migration vers des disques gérés Premium, vous devez mettre à jour la taille de la machine virtuelle par rapport à la capacité de stockage Premium disponible dans la région où se trouve la machine virtuelle. Passez en revue les tailles de machine virtuelle compatibles avec le stockage Premium. Les spécifications des tailles des machines virtuelles Azure sont répertoriées dans la section [Tailles des machines virtuelles](sizes.md).
+Passez en revue les caractéristiques de performances des machines virtuelles fonctionnant avec Premium Storage et choisissez la taille de machine virtuelle la mieux adaptée à votre charge de travail. Assurez-vous que la bande passante disponible est suffisante sur votre machine virtuelle pour gérer le trafic du disque.
 
 ### <a name="disk-sizes"></a>Tailles du disque
 
 **Disques gérés Premium**
 
-Il existe sept types de disques gérés Premium qui peuvent être utilisés avec votre machine virtuelle, chacun d’eux présentant des limites d’E/S par seconde et de débit spécifiques. Prendre en compte ces limites lorsque vous choisissez hello le type de disque Premium pour votre machine virtuelle en fonction des besoins de hello de votre application en termes de capacité, les performances, l’évolutivité, et des pics.
+Il existe sept types de disques gérés Premium qui peuvent être utilisés avec votre machine virtuelle, chacun d’eux présentant des limites d’E/S par seconde et de débit spécifiques. Prenez en compte ces limites lors de la sélection du type de disque Premium pour votre machine virtuelle en fonction des besoins en capacité, en performances, en extensibilité et en charges maximales de votre application.
 
 | Type de disque Premium  | P4    | P6    | P10   | P20   | P30   | P40   | P50   | 
 |---------------------|-------|-------|-------|-------|-------|-------|-------|
@@ -55,7 +55,7 @@ Il existe sept types de disques gérés Premium qui peuvent être utilisés avec
 
 **Disques gérés Standard**
 
-Il existe sept types de disques gérés Standard qui peuvent être utilisés avec votre machine virtuelle. Chacun d’eux dispose d’une capacité différente, mais ils partagent les mêmes limites d’E/S par seconde et de débit. Choisissez le type hello de disques gérés Standard selon les besoins en capacité hello de votre application.
+Il existe sept types de disques gérés Standard qui peuvent être utilisés avec votre machine virtuelle. Chacun d’eux dispose d’une capacité différente, mais ils partagent les mêmes limites d’E/S par seconde et de débit. Choisissez le type de disque géré Standard selon les besoins en capacité de votre application.
 
 | Type de disque Standard  | S4               | S6               | S10              | S20              | S30              | S40              | S50              | 
 |---------------------|---------------------|---------------------|------------------|------------------|------------------|------------------|------------------| 
@@ -68,32 +68,32 @@ Il existe sept types de disques gérés Standard qui peuvent être utilisés ave
 
 **Disques gérés Premium**
 
-Par défaut, la mise en cache de stratégie est *en lecture seule* pour tous les hello disques de données Premium, et *en lecture-écriture* hello Premium système d’exploitation attaché toohello machine virtuelle. Ce paramètre de configuration est recommandé tooachieve hello des performances optimales IOs de votre application. Pour les disques de données en écriture seule ou avec d'importantes opérations d'écriture (par ex., les fichiers journaux de SQL Server), désactivez la mise en cache du disque pour de meilleures performances de l'application.
+Par défaut, la stratégie de mise en cache est *Lecture seule* pour tous les disques de données Premium et *Lecture-écriture* pour le disque du système d’exploitation Premium attaché à la machine virtuelle. Ce paramètre de configuration est recommandé pour optimiser les performances des E/S de votre application. Pour les disques de données en écriture seule ou avec d'importantes opérations d'écriture (par ex., les fichiers journaux de SQL Server), désactivez la mise en cache du disque pour de meilleures performances de l'application.
 
 ### <a name="pricing"></a>Tarification
 
-Hello de révision [prix des disques gérés](https://azure.microsoft.com/en-us/pricing/details/managed-disks/). Tarification de disques gérés de Premium est identique hello les disques Premium non managé. En revanche, la tarification des disques gérés Standard est différente de celle des disques non gérés Standard.
+Consultez la [tarification des disques gérés](https://azure.microsoft.com/en-us/pricing/details/managed-disks/). La tarification des disques gérés Premium est identique à celle des disques non gérés Premium. En revanche, la tarification des disques gérés Standard diffère de celle des disques Standard non gérés.
 
 
 ## <a name="checklist"></a>Liste de contrôle
 
-1.  Si vous migrez des disques gérés tooPremium, assurez-vous qu’il est disponible dans la région de hello que vous effectuez la migration.
+1.  Si vous effectuez une migration vers des disques gérés Premium, assurez-vous qu’ils sont disponibles dans la région vers laquelle vous effectuez la migration.
 
-2.  Décidez nouvelle série VM hello, que vous allez utiliser. Il doit être un stockage Premium compatibles si vous migrez des disques gérés tooPremium.
+2.  Choisissez la nouvelle série de machines virtuelles que vous allez utiliser. Elle doit être compatible avec le stockage Premium si vous migrez vers des disques gérés Premium.
 
-3.  Décidez hello exacte taille de machine virtuelle que vous utiliserez qui sont disponibles dans la région de hello que vous effectuez la migration. Taille de machine virtuelle doit toobe toosupport suffisamment grand hello différents disques de données que vous avez. Par exemple, si vous avez quatre disques de données, hello machine virtuelle doit avoir deux ou plusieurs noyaux. Prenez également en considération les besoins en puissance, mémoire et bande passante réseau.
+3.  Définissez la taille de machine virtuelle exacte que vous allez utiliser, disponible dans la région vers laquelle vous effectuez la migration. La taille de machine virtuelle doit être suffisante pour prendre en charge le nombre de disques de données dont vous disposez. Par exemple, si vous avez quatre disques de données, la machine virtuelle doit avoir au moins deux cœurs. Prenez également en considération les besoins en puissance, mémoire et bande passante réseau.
 
-4.  Des informations VM hello en cours pratiques, y compris les listes de hello des disques et des objets BLOB de disque dur virtuel correspondant.
+4.  Gardez à portée de main les informations détaillées sur les machines virtuelles, notamment la liste des disques et des blobs de disques durs virtuels correspondants.
 
-Préparez votre application pour les interruptions de service. toodo une nouvelle migration, vous avez toostop tout traitement hello dans le système actuel de hello. Alors seulement vous pouvez l’obtenir état tooconsistent dont vous pouvez migrer toohello nouvelle plateforme. Temps d’arrêt dépend de la quantité de hello de données dans toomigrate de disques hello.
-
-
-## <a name="migrate-hello-vm"></a>Migrer hello machine virtuelle
-
-Préparez votre application pour les interruptions de service. toodo une nouvelle migration, vous avez toostop tout traitement hello dans le système actuel de hello. Alors seulement vous pouvez l’obtenir état tooconsistent dont vous pouvez migrer toohello nouvelle plateforme. Temps d’arrêt dépend de quantité hello d’hello disques toomigrate.
+Préparez votre application pour les interruptions de service. Pour effectuer une migration sans erreur, vous devez arrêter tous les processus en cours d’exécution dans le système actuel. Ce n’est qu’à cette condition que le système présentera un état cohérent, permettant sa migration vers la nouvelle plateforme. La durée de l’interruption de service dépend de la quantité de données dans les disques à migrer.
 
 
-1.  Tout d’abord, définissez les paramètres communs hello :
+## <a name="migrate-the-vm"></a>Migrer la machine virtuelle
+
+Préparez votre application pour les interruptions de service. Pour effectuer une migration sans erreur, vous devez arrêter tous les processus en cours d’exécution dans le système actuel. Ce n’est qu’à cette condition que le système présentera un état cohérent, permettant sa migration vers la nouvelle plateforme. La durée de l’interruption de service dépend de la quantité de données dans les disques à migrer.
+
+
+1.  Tout d’abord, définissez les paramètres communs :
 
     ```powershell
     $resourceGroupName = 'yourResourceGroupName'
@@ -119,9 +119,9 @@ Préparez votre application pour les interruptions de service. toodo une nouvell
     $dataDiskName = 'dataDisk1'
     ```
 
-2.  Créer un disque du système d’exploitation géré à l’aide de hello disque dur virtuel à partir de hello VM classique.
+2.  Créez un disque de système d’exploitation géré à l’aide du disque dur virtuel de la machine virtuelle classique.
 
-    Assurez-vous d’avoir fourni hello compléter URI Hello paramètre toohello $osVhdUri de disque dur virtuel du système d’exploitation. De plus, dans **Type de compte**, indiquez **PremiumLRS** ou **StandardLRS** selon le type de disque (Premium ou Standard) vers lequel vous effectuez la migration.
+    Assurez-vous que vous avez indiqué l’URI complet du disque dur virtuel du système d’exploitation dans le paramètre $osVhdUri. De plus, dans **Type de compte**, indiquez **PremiumLRS** ou **StandardLRS** selon le type de disque (Premium ou Standard) vers lequel vous effectuez la migration.
 
     ```powershell
     $osDisk = New-AzureRmDisk -DiskName $osDiskName -Disk (New-AzureRmDiskConfig '
@@ -129,7 +129,7 @@ Préparez votre application pour les interruptions de service. toodo une nouvell
     -ResourceGroupName $resourceGroupName
     ```
 
-3.  Attacher hello du système d’exploitation disque toohello nouvelle machine virtuelle.
+3.  Attachez le disque du système d’exploitation à la nouvelle machine virtuelle.
 
     ```powershell
     $VirtualMachine = New-AzureRmVMConfig -VMName $virtualMachineName -VMSize $virtualMachineSize
@@ -137,7 +137,7 @@ Préparez votre application pour les interruptions de service. toodo une nouvell
     -StorageAccountType PremiumLRS -DiskSizeInGB 128 -CreateOption Attach -Windows
     ```
 
-4.  Créer un disque de données managées à partir du fichier de disque dur virtuel de données hello et l’ajouter toohello nouvelle machine virtuelle.
+4.  Créez un disque de données géré à partir du fichier de disque dur virtuel de données et ajoutez-le à la nouvelle machine virtuelle.
 
     ```powershell
     $dataDisk1 = New-AzureRmDisk -DiskName $dataDiskName -Disk (New-AzureRmDiskConfig '
@@ -148,7 +148,7 @@ Préparez votre application pour les interruptions de service. toodo une nouvell
     -CreateOption Attach -ManagedDiskId $dataDisk1.Id -Lun 1
     ```
 
-5.  Créer hello du nouvel ordinateur virtuel par définition publique IP, réseau virtuel et carte réseau.
+5.  Créez la machine virtuelle en définissant l’adresse IP publique, le réseau virtuel et la carte réseau.
 
     ```powershell
     $publicIp = New-AzureRmPublicIpAddress -Name ($VirtualMachineName.ToLower()+'_ip') '
@@ -166,11 +166,11 @@ Préparez votre application pour les interruptions de service. toodo une nouvell
     ```
 
 > [!NOTE]
->Il peut y avoir toosupport nécessaire des étapes supplémentaires votre application est ne pas couvert par ce guide.
+>Des étapes supplémentaires susceptibles de ne pas être exposées dans ce guide peuvent être nécessaires pour prendre en charge vos applications.
 >
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Connecter l’ordinateur virtuel de toohello. Pour obtenir des instructions, consultez [comment tooconnect et ouverture de session tooan Azure virtual machine exécutant Windows](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+- Connectez-vous à la machine virtuelle. Pour plus d’informations, voir [Connexion à une machine virtuelle Azure exécutant Windows](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooconfigure une application mutualisée | Documents Microsoft"
-description: "Découvrez comment tooconfigure fonctionne une application en tant qu’applications mutualisées et architecture mutualisées"
+title: Guide pratique pour configurer une nouvelle application multilocataire | Microsoft Docs
+description: "Découvrez comment configurer une application multilocataire et comment les applications multilocataires fonctionnent"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,20 +13,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: db62ea7a7cc5488961258e07e042bc160dbf92c0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 24e7e0d586dab3f77e643197594c3c4462ff997e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-tooconfigure-a-new-multi-tenant-application"></a>Comment tooconfigure une application mutualisée
+# <a name="how-to-configure-a-new-multi-tenant-application"></a>Guide pratique pour configurer une nouvelle application multilocataire
 
-Voici une liste de rubriques recommandées toolearn de plus d’informations sur les applications mutualisées :
+Voici une liste de rubriques recommandées pour en savoir plus sur les applications multilocataires :
 
-- Obtenir une idée générale des [signification toobe une application mutualisée](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#multi-tenant-application)
-- Obtenir une idée générale des [comment tooconfigure une mutualisée toobe d’application](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-multi-tenant-applications)
-- Obtenir une présentation détaillée de [utilisation de l’infrastructure de consentement hello Azure AD tooimplement consentement](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework), ce qui est nécessaire pour les applications mutualisées
-- Pour plus de détails, en savoir plus [comment une application mutualisée est configurée et codée de bout en bout](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview), y compris comment tooregister, le point de terminaison « commune » utilisation hello, implémenter « utilisateur » et « admin » consentement, comment tooimplement plus avancée à plusieurs niveaux scénarios
+- Présentation générale d’une [application multilocataire](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#multi-tenant-application)
+- Présentation générale de la [configuration d’une application pour qu’elle soit multilocataire](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-multi-tenant-applications)
+- Présentation détaillée de la façon dont[l’infrastructure de consentement d’Azure AD est utilisée pour implémenter le consentement](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework), qui est obligatoire pour les applications multilocataires
+- Pour plus d’informations, découvrez [comment une application multilocataire est configurée et codée de bout en bout](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview), notamment comment inscrire, utiliser le point de terminaison « commun », implémenter le consentement « utilisateur » et « administrateur », et implémenter des scénarios multiniveaux plus avancés
 
 ## <a name="next-steps"></a>Étapes suivantes
 [AzureAD StackOverflow](http://stackoverflow.com/questions/tagged/azure-active-directory)

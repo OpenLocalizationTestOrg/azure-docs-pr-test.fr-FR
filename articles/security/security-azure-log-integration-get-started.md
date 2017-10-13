@@ -1,6 +1,6 @@
 ---
-title: "aaaGet a démarré avec l’intégration d’Azure log | Documents Microsoft"
-description: "Découvrez comment tooinstall hello Azure journal service d’intégration et intégrer des journaux de stockage Azure, les journaux d’Audit Azure et les alertes du centre de sécurité Azure."
+title: "Bien démarrer l’intégration des journaux Azure | Microsoft Docs"
+description: "Découvrez comment installer le service d’intégration des journaux Azure et intégrer les journaux d’audit Azure et les alertes de l’Azure Security Center."
 services: security
 documentationcenter: na
 author: Barclayn
@@ -15,172 +15,172 @@ ums.workload: na
 ms.date: 07/26/2017
 ms.author: TomSh
 ms.custom: azlog
-ms.openlocfilehash: 26c19070d76ff73b1bdbd32ba77fb04978af387e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9d39ecd513386b75b4b640721f80991caaf9ade8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-log-integration-with-azure-diagnostics-logging-and-windows-event-forwarding"></a>Intégration des journaux Azure avec Azure Diagnostics Logging et Windows Event Forwarding
-Intégration d’Azure journal (AzLog) vous permet de toointegrate les journaux brut à partir de vos ressources Azure dans vos systèmes d’informations sur la sécurité et de gestion des événements (SIEM) local. Cette intégration rend possible toohave un tableau de bord unifiée de la sécurité pour tous vos actifs, en local ou dans le cloud de hello, afin que vous pouvez agréger, mettre en corrélation, l’analyse et alerte pour les événements de sécurité associés à vos applications.
+L’intégration des journaux Azure (AzLog) permet d’intégrer des journaux bruts de vos ressources Azure dans vos systèmes SIEM (Security Information and Event Management) locaux. Cette intégration offre un tableau de bord de sécurité unifié pour toutes vos ressources, en local ou dans le cloud, pour vous permettre d’agréger, de mettre en corrélation, d’analyser et d’alerter en cas d’événements de sécurité associés à vos applications.
 >[!NOTE]
-Pour plus d’informations sur l’intégration des journaux Azure, vous pouvez consulter hello [vue d’ensemble de l’intégration du journal Azure](https://docs.microsoft.com/azure/security/security-azure-log-integration-overview).
+Pour plus d’informations sur l’intégration des journaux Azure, vous pouvez consulter la [Présentation de l’intégration des journaux Azure](https://docs.microsoft.com/azure/security/security-azure-log-integration-overview).
 
-Cet article vous aidera à commencer par en mettant l’accent sur l’installation de hello de hello Azlog service et l’intégration de service de hello avec Azure Diagnostics avec l’intégration des journaux Azure. Hello service d’intégration des journaux Azure sera alors en mesure de toocollect les informations de journal des événements Windows à partir de hello canal d’événement de sécurité de Windows à partir d’ordinateurs virtuels déployés dans Azure IaaS. Cela est très similaire trop « Transfert d’événements » que vous avez peut-être utilisé localement.
+Cet article vous aidera à vous familiariser avec l’intégration des journaux Azure en se concentrant sur l’installation du service Azlog et en intégrant le service avec Diagnostics Azure. Le service d’intégration des journaux Azure sera alors en mesure de collecter les informations du journal des événements Windows provenant du canal des événements de sécurité Windows à partir des machines virtuelles déployées dans Azure IaaS. Cela est très similaire au « Transfert d’événements » que vous avez peut-être utilisé en local.
 
 >[!NOTE]
->sortie de hello toobring Hello possibilité d’intégration d’Azure log dans toohello SIEM est fournie par hello SIEM lui-même. Consultez l’article de hello [intégration de l’intégration du journal Azure avec votre serveur SIEM local](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) pour plus d’informations.
+>La possibilité de définir la sortie de l’intégration des journaux Azure sur le SIEM est fournie par le SIEM lui-même. Veuillez consulter l’article [Intégration de l’intégration des journaux Azure avec votre SIEM local](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) pour plus d’informations.
 
-toobe très claire - hello service d’intégration des journaux Azure s’exécute sur un ordinateur physique ou virtuel qui est à l’aide de hello Windows Server 2008 R2 ou version ultérieure de système d’exploitation (Windows Server 2012 R2 ou Windows Server 2016 sont par défaut).
+Pour être très clair, le service d’intégration des journaux Azure s’exécute sur un ordinateur physique ou virtuel qui utilise le système d’exploitation Windows Server 2008 R2 ou version ultérieure (Windows Server 2012 R2 ou Windows Server 2016 sont les versions préférées).
 
-ordinateur physique sur Hello puisse exécuter localement (ou sur un site de l’hébergeur). Si vous choisissez le service d’intégration des journaux Azure de hello toorun sur un ordinateur virtuel, que l’ordinateur virtuel peut être située localement ou dans un cloud public, tel que Microsoft Azure.
+L’ordinateur physique peut fonctionner en local (ou sur un site hébergeur). Si vous choisissez d’exécuter le service d’intégration des journaux Azure sur un ordinateur virtuel, cette machine virtuelle peut être située en local ou dans un cloud public tel que Microsoft Azure.
 
-Hello physique ou machine virtuelle exécutant le service d’intégration des journaux Azure hello nécessite toohello de connectivité réseau cloud public Azure. Étapes de cet article fournissent des détails sur la configuration de hello.
+La machine physique ou virtuelle qui exécute le service d’intégration des journaux Azure nécessite une connexion réseau avec le cloud public Azure. La procédure décrite dans cet article fournit des détails sur la configuration.
 
 ## <a name="prerequisites"></a>Composants requis
-Au minimum, l’installation de hello de AzLog nécessite hello éléments suivants :
+Au minimum, l’installation d’AzLog nécessite les éléments suivants :
 * Un **abonnement Azure**. Si vous n’en possédez pas, vous pouvez vous inscrire pour créer dès aujourd’hui un [compte gratuit](https://azure.microsoft.com/free/).
-* A **compte de stockage** qui peut être utilisé pour la journalisation des diagnostics Windows Azure (vous pouvez utiliser un compte de stockage préconfigurées, ou créer un nouveau – nous démontrer comment tooconfigure hello compte de stockage plus loin dans cet article)
+* Un **compte de stockage** qui peut être utilisé pour la journalisation des diagnostics Windows Azure (vous pouvez utiliser un compte de stockage préconfiguré ou en créer un nouveau : nous apprendrons à configurer le compte de stockage plus loin dans cet article)
   >[!NOTE]
-  Selon votre scénario, un compte de stockage n’est peut-être pas nécessaire. Pourquoi le scénario de diagnostics Azure abordées dans cet article que nécessaire.
-* **Deux systèmes**: un ordinateur qui exécutera le service d’intégration des journaux Azure hello et un ordinateur qui sera analysé et avoir ses informations de journalisation envoyées toohello Azlog ordinateur du service.
-   * Un ordinateur que vous souhaitez toomonitor – il s’agit d’une machine virtuelle en cours d’exécution en tant qu’un [Machine virtuelle Azure](../virtual-machines/virtual-machines-windows-overview.md)
-   * Un ordinateur qui exécutera le service d’intégration de Azure log hello ; Cet ordinateur collecte toutes les informations de journal hello plus tard à importer dans votre serveur SIEM.
+  Selon votre scénario, un compte de stockage n’est peut-être pas nécessaire. Pour le scénario des diagnostics Azure abordé dans cet article, un compte de stockage sera nécessaire.
+* **Deux systèmes** : une machine qui exécute le service d’intégration de journaux Azure et une machine qui sera surveillée et dont les informations de journalisation seront envoyées à la machine exécutant le service Azlog.
+   * Une machine que vous souhaitez surveiller : il s’agit d’une machine virtuelle utilisée comme [Machine virtuelle Azure](../virtual-machines/virtual-machines-windows-overview.md)
+   * Une machine qui exécute le service d’intégration des journaux Azure. Cette machine collecte toutes les informations de journalisation qui seront importées ultérieurement dans votre SIEM.
     * Ce système peut être local ou dans Microsoft Azure.  
-    * Il doit toobe en cours d’exécution un x64 version de Windows server 2008 R2 SP1 ou version ultérieure et que .NET 4.5.1 installé. Vous pouvez déterminer la version de .NET hello installée par hello ci-dessous intitulée [Comment : déterminer les .NET Framework Versions installées](https://msdn.microsoft.com/library/hh925568)  
-    Il doit avoir le compte de stockage Azure connectivité toohello utilisé pour la journalisation des diagnostics Azure. Nous fournirons des instructions plus loin dans cet article sur la façon dont vous pouvez vérifier cette connectivité
+    * Il doit fonctionner sous une version x64 de Windows Server 2008 R2 SP1 ou version ultérieure et .NET 4.5.1 doit être installé dessus. Vous pouvez déterminer la version de .NET installée en consultant l’article intitulé [Comment : déterminer les versions .NET Framework installées](https://msdn.microsoft.com/library/hh925568)  
+    Il doit être connecté à un compte de stockage Azure utilisé pour la journalisation des diagnostics Azure. Nous fournirons des instructions plus loin dans cet article sur la façon dont vous pouvez vérifier cette connectivité
 
-Pour une démonstration rapide du processus de création d’un ordinateur virtuel à l’aide de hello portail Azure de hello Examinons hello vidéo ci-dessous.
+Pour une démonstration rapide du processus de création d’une machine virtuelle à l’aide du portail Azure, visionnez la vidéo ci-dessous.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure-Security-Videos/Azure-Log-Integration-Videos-Create-a-Virtual-Machine/player]
 
 
 
 ## <a name="deployment-considerations"></a>Points à prendre en considération pour le déploiement
-Alors que vous testez l’intégration des journaux Azure, vous pouvez utiliser n’importe quel système qui répond aux exigences de configuration minimale du système d’exploitation hello. Toutefois, un Bonjour d’environnement de production charge peut nécessiter un tooplan vous mise à l’échelle de façon horizontale ou verticale.
+Lors du test d’intégration des journaux Azure, vous pouvez utiliser n’importe quel système qui respecte les exigences de configuration minimale du système d’exploitation. Toutefois, pour un environnement de production, la charge peut vous obliger à planifier une montée en puissance ou une augmentation de la taille des instances.
 
-Vous pouvez exécuter plusieurs instances du service d’intégration des journaux Azure hello (une seule instance par ordinateur physique ou virtuel) si le volume des événements est élevé. En outre, vous pouvez équilibrer la charge des comptes de stockage des Diagnostics Azure pour Windows (WAD) et le nombre hello d’instances de toohello tooprovide abonnements doivent être basés sur votre capacité.
+Vous pouvez exécuter plusieurs instances du service d’intégration des journaux Azure (une seule instance par machine physique ou virtuelle) si le volume d’événements est élevé. En outre, vous pouvez équilibrer la charge des comptes de stockage Diagnostics Windows Azure pour Windows (WAD) et le nombre d’abonnements à fournir aux instances doit être basé sur la capacité.
 >[!NOTE]
-À ce stade ne pas avoir des recommandations spécifiques pour laquelle tooscale des instances d’Azure journal machines d’intégration (autrement dit, les ordinateurs qui exécutent le service d’intégration Azure log hello), ou pour les abonnements ou les comptes de stockage. Les décisions de mise à l’échelle doivent être basées sur vos observations de performances dans chacun de ces domaines.
+À ce stade, nous n’avons aucune recommandation spécifique pour le moment auquel monter en puissance des instances des machines d’intégration de journaux Azure (par exemple, les machines qui exécutent le service d’intégration des journaux Azure), ou pour les abonnements ou comptes de stockage. Les décisions de mise à l’échelle doivent être basées sur vos observations de performances dans chacun de ces domaines.
 
-Vous avez également tooscale d’option hello des toohelp de service d’intégration des journaux Azure hello améliorer les performances. Hello suivant des métriques de performances peut vous aider à dimensionner les machines hello que vous choisissez le service d’intégration Azure log toorun hello :
+Vous avez également la possibilité de faire monter en puissance le service d’intégration des journaux Azure afin d’améliorer les performances. Les indicateurs de performance suivants peuvent vous aider à mettre à l’échelle les machines sur lesquelles vous choisissez d’exécuter le service d’intégration des journaux Azure :
 * Sur un ordinateur 8 processeurs (cœurs), une seule instance de l’intégrateur Azlog peut traiter environ 24 millions d’événements par jour (environ 1 million/heure).
 
 * Sur un ordinateur 4 processeurs (cœurs), une seule instance de l’intégrateur Azlog peut traiter environ 1,5 million d’événements par jour (environ 62 500 millions/heure).
 
 ## <a name="install-azure-log-integration"></a>Installer l’intégration des journaux Azure
-tooinstall intégration des journaux Azure, vous devez les hello toodownload [intégration d’Azure log](https://www.microsoft.com/download/details.aspx?id=53324) fichier d’installation. Exécutez via le programme d’installation de hello et décider si vous souhaitez tooprovide télémétrie informations tooMicrosoft.  
+Pour installer l’intégration des journaux Azure, vous devez télécharger le fichier d’installation [Intégration des journaux Azure](https://www.microsoft.com/download/details.aspx?id=53324). Exécutez la routine de configuration et décidez si vous souhaitez fournir des informations de télémétrie à Microsoft.  
 
 ![Écran d’installation avec la case Télémétrie cochée](./media/security-azure-log-integration-get-started/telemetry.png)
 
 *
 > [!NOTE]
-> Nous vous conseillons d’autoriser les données de télémétrie toocollect Microsoft. Vous pouvez désactiver la collecte des données de télémétrie en décochant cette option.
+> Nous vous conseillons d’autoriser Microsoft à collecter les données de télémétrie. Vous pouvez désactiver la collecte des données de télémétrie en décochant cette option.
 >
 
 
-Hello service d’intégration des journaux Azure collecte les données de télémétrie d’ordinateur hello sur lequel il est installé.  
+Le service d’intégration des journaux Azure collecte les données de télémétrie à partir de l’ordinateur sur lequel il est installé.  
 
 Les données de télémétrie recueillies sont les suivantes :
 
 * Les exceptions qui se produisent pendant l’exécution de l’intégration des journaux Azure
-* Métriques sur le nombre de hello de requêtes et des événements traités
+* Des métriques concernant le nombre de requêtes et d’événements traités
 * Des statistiques sur les options de ligne de commande Azlog.exe sont utilisées
 
-processus d’installation Hello est abordée dans hello vidéo ci-dessous.
+Le processus d’installation est traité dans la vidéo ci-dessous.
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure-Security-Videos/Azure-Log-Integration-Videos-Install-Azure-Log-Integration/player]
 
 
 
 ## <a name="post-installation-and-validation-steps"></a>Étapes postérieures à l’installation et la validation
-Après avoir effectué la routine de paramétrage de base hello, vous êtes prêt étape tooperform post validation et installation comme suit :
-1. Ouvrez une fenêtre PowerShell avec élévation de privilèges et accédez trop**c:\Program Files\Microsoft Azure journal d’intégration**
-2. Hello première étape tootake est hello tooget Qu'azlog Cmdlets importé. C’est également en exécutant le script de hello **LoadAzlogModule.ps1** (Notez hello ». \ « Bonjour commande suivante). Saisissez **.\LoadAzlogModule.ps1** et appuyez sur **Entrée**.  
-Vous devez voir quelque chose comme ce qui apparaît dans la figure ci-dessous hello. </br></br>
+À l’issue de la routine d’installation de base, vous êtes prêt à effectuer les étapes postérieures à l’installation et la validation :
+1. Ouvrez une fenêtre PowerShell avec élévation de privilèges et accédez à **c:\Program Files\Microsoft Azure Log Integration**
+2. La première étape à effectuer consiste à importer les applets de commande AzLog. Pour cela, exécutez le script **LoadAzlogModule.ps1** (remarquez le « .\ » dans la commande suivante). Saisissez **.\LoadAzlogModule.ps1** et appuyez sur **Entrée**.  
+Vous devriez voir quelque chose comme ce qui apparaît dans la figure ci-dessous. </br></br>
 ![Écran d’installation avec la case Télémétrie cochée](./media/security-azure-log-integration-get-started/loaded-modules.png) </br></br>
-3. Vous devez maintenant tooconfigure AzLog toouse un environnement Azure spécifique. Un « environnement Azure » est hello « type » du centre de données de cloud computing Azure avec que vous souhaitez toowork. Lorsqu’il existe plusieurs environnements Azure à ce stade, les options pertinentes actuellement hello sont **cloud Azure** ou **AzureUSGovernment**.   Dans votre environnement PowerShell avec élévation de privilèges, assurez-vous de vous trouver dans **c:\program files\Microsoft Azure Log Integration\** </br></br>
-    Une fois, exécutez les commandes hello : </br>
+3. Vous devez maintenant configurer AzLog afin d’utiliser un environnement Azure spécifique. Un « environnement Azure » est le « type » de centre de données cloud Azure avec lequel vous souhaitez travailler. Bien qu’il existe plusieurs environnements à ce stade, les options pertinentes pour le moment sont **AzureCloud** ou **AzureUSGovernment**.   Dans votre environnement PowerShell avec élévation de privilèges, assurez-vous de vous trouver dans **c:\program files\Microsoft Azure Log Integration\** </br></br>
+    Une fois que vous y êtes, exécutez la commande suivante : </br>
     ``Set-AzlogAzureEnvironment -Name AzureCloud`` (pour Azure Commercial)
 
       >[!NOTE]
-      Lors de la commande hello réussit, vous ne recevrez pas de vos commentaires.  Si vous souhaitez que le cloud de Azure de US Government toouse hello, vous utiliseriez **AzureUSGovernment** (pour hello - variable de nom) pour le cloud de gouvernement États-Unis de hello. Les autres clouds Azure ne sont pas pris en charge pour l’instant.  
-4. Avant de pouvoir analyser un système vous devez nom hello hello du compte de stockage en cours d’utilisation pour les Diagnostics Azure.  Bonjour Azure portal accédez trop**virtuels** et recherchez la machine virtuelle hello que vous allez surveiller. Bonjour **propriétés** , choisissez **les paramètres de Diagnostic**.  Cliquez sur **Agent** et prenez note du nom de compte de stockage hello spécifié. Vous aurez besoin de ce nom de compte pour une étape ultérieure.
+      Lorsque la commande aboutit, vous ne recevrez aucun retour.  Si vous souhaitez utiliser le cloud Azure du gouvernement américain, vous devez utiliser **AzureUSGovernment** (pour la variable -Nom) pour le cloud de gouvernement des États-Unis. Les autres clouds Azure ne sont pas pris en charge pour l’instant.  
+4. Pour pouvoir surveiller un système, vous aurez besoin du nom du compte de stockage utilisé pour les diagnostics Azure.  Dans le portail Azure, accédez à **Machines virtuelles** et recherchez la machine virtuelle à surveiller. Dans la section **Propriétés**, choisissez **Paramètres de diagnostic**.  Cliquez sur **Agent** et prenez note du nom de compte de stockage indiqué. Vous aurez besoin de ce nom de compte pour une étape ultérieure.
 ![Paramètres des diagnostics Azure](./media/security-azure-log-integration-get-started/storage-account-large.png) </br></br>
 
       ![Paramètres des diagnostics Azure](./media/security-azure-log-integration-get-started/azure-monitoring-not-enabled-large.png)
       >[!NOTE]
-      Si l’analyse n’a pas été activé lors de la création de la machine virtuelle vous sera attribué hello option tooenable comme indiqué ci-dessus.
-5. Maintenant, nous allons basculer notre toohello de retour attention machine d’intégration Azure log. Nous devons tooverify que vous avez connectivité toohello compte de stockage de système de hello où vous avez installé l’intégration du journal Azure. ordinateur physique de Hello ou de la machine virtuelle en cours d’exécution hello Azure journal d’intégration de service a besoin d’accéder aux informations de tooretrieve du compte de stockage toohello consignées par les Diagnostics Azure comme étant configuré sur chacun des hello analysé systèmes.  
+      Si la surveillance n’a pas été activée lors de la création de la machine virtuelle, vous aurez la possibilité de l’activer comme indiqué ci-dessus.
+5. Revenons à présent sur la machine exécutant l’intégration des journaux Azure. Nous devons vérifier que vous êtes connecté au compte de stockage à partir du système dans lequel vous avez installé l’intégration des journaux d’Azure. L’ordinateur physique ou la machine virtuelle qui exécute le service d’intégration des journaux Azure a besoin d’accéder au compte de stockage pour récupérer les informations journalisées par les diagnostics Azure, tel que configuré sur chacun des systèmes surveillés.  
   1. Vous pouvez télécharger l’Explorateur de stockage Azure [ici](http://storageexplorer.com/).
-  2. Exécuter via le programme d’installation de hello
-  3. Une fois l’installation de hello terminé cliquez **suivant** et laissez la case à cocher hello **lancer Microsoft Azure Storage Explorer** activée.  
-  4. Ouvrez une session dans tooAzure.
-  5. Vérifiez que vous pouvez voir le compte de stockage hello que vous avez configuré pour les Diagnostics Azure.  
+  2. Exécuter la routine d’installation
+  3. Une fois l’installation terminée, cliquez sur **Suivant** et laissez la case **Lancer l’Explorateur de stockage Microsoft Azure** cochée.  
+  4. Connectez-vous à Azure.
+  5. Vérifiez que vous pouvez voir le compte de stockage que vous avez configuré pour les diagnostics Azure.  
 ![Comptes de stockage](./media/security-azure-log-integration-get-started/storage-account.jpg) </br></br>
    6. Notez qu’il existe quelques options sous Comptes de stockage. L’une d’entre elles est **Tables**. Sous **Tables**, vous devriez voir une table nommée **WADWindowsEventLogsTable**. </br></br>
    ![Comptes de stockage](./media/security-azure-log-integration-get-started/storage-explorer.png) </br>
 
 ## <a name="integrate-azure-diagnostic-logging"></a>Intégrer la journalisation des diagnostics Azure
-Dans cette étape, vous allez configurer l’ordinateur hello hello Azure journal Integration service tooconnect toohello compte de stockage qui contient les fichiers journaux de hello en cours d’exécution.
-toocomplete cette étape, nous aurons besoin de quelques éléments au préalable.  
-* **FriendlyNameForSource :** il s’agit d’un nom convivial que vous pouvez appliquer toohello compte de stockage que vous avez configuré les informations toostore hello ordinateur virtuel à partir d’Azure Diagnostics
-* **StorageAccountName :** il s’agit nom hello hello du compte de stockage que vous avez spécifié lors de la configuration de diagnostic Azure.  
-* **Clé de stockage :** Voici hello stockage clé hello compte de stockage où hello informations de Diagnostics Azure est stockée pour cet ordinateur virtuel.  
+Dans cette étape, vous allez configurer la machine qui exécute le service d’intégration des journaux Azure pour qu’elle se connecte au compte de stockage qui contient les fichiers journaux.
+Pour effectuer cette étape, nous aurons besoin de quelques éléments.  
+* **FriendlyNameForSource :** il s’agit d’un nom convivial que vous pouvez appliquer au compte de stockage que vous avez configuré sur l’ordinateur virtuel pour stocker les informations de Diagnostics Azure
+* **StorageAccountName :** il s’agit du nom du compte de stockage que vous avez spécifié lorsque vous avez configuré les diagnostics Azure.  
+* **StorageKey :** il s’agit de la clé de stockage pour le compte de stockage où les informations de Diagnostics Azure sont stockées pour cette machine virtuelle.  
 
-Effectuez hello étapes tooobtain hello stockage clé suivante :
- 1. Parcourir toohello [portail Azure](http://portal.azure.com).
- 2. Dans le volet de navigation hello Hello Azure de la console, faites défiler toohello bas, cliquez sur **davantage de services.**
+Procédez comme suit pour obtenir la clé de stockage :
+ 1. Accédez au [portail Azure](http://portal.azure.com).
+ 2. Dans le volet de navigation de la console Azure, faites défiler vers le bas et cliquez sur **Plus de services**.
 
  ![Plus de services](./media/security-azure-log-integration-get-started/more-services.png)
- 3. Entrez **stockage** Bonjour **filtre** zone de texte. Cliquez sur **Comptes de stockage** (option qui apparaît une fois que vous entrez **Stockage**)
+ 3. Entrez **Stockage** dans la zone de texte **Filtre**. Cliquez sur **Comptes de stockage** (option qui apparaît une fois que vous entrez **Stockage**)
 
    ![zone filtre](./media/security-azure-log-integration-get-started/filter.png)
- 4. Une liste de comptes de stockage s’affiche, double-cliquez sur compte hello que vous avez affecté tooLog stockage.
+ 4. Une fois que la liste des comptes de stockage s’affiche, double-cliquez sur le compte que vous avez affecté au stockage des journaux.
 
    ![liste des comptes de stockage](./media/security-azure-log-integration-get-started/storage-accounts.png)
- 5. Cliquez sur **clés d’accès** Bonjour **paramètres** section.
+ 5. Cliquez sur **Clés d’accès** dans la section **Paramètres**.
 
   ![clés d'accès](./media/security-azure-log-integration-get-started/storage-account-access-keys.png)
- 6. Copie **key1** et le placer dans un emplacement sécurisé auquel vous pouvez accéder à l’étape suivante de hello.
+ 6. Copiez-collez **key1** dans un emplacement sécurisé auquel vous pouvez accéder à l’étape suivante.
 
    ![deux clés d’accès](./media/security-azure-log-integration-get-started/storage-account-access-keys.png)
- 7. Sur le serveur hello que vous avez installé l’intégration des journaux Azure, ouvrez une invite de commandes avec élévation de privilèges (Notez que nous utilisons ici une fenêtre d’invite de commandes avec élévation de privilèges, pas une console PowerShell avec élévation de privilèges).
- 8. Accédez trop**c:\Program Files\Microsoft Azure journal d’intégration**
- 9. Exécutez ``Azlog source add <FriendlyNameForTheSource> WAD <StorageAccountName> <StorageKey> ``. </br> Par exemple ``Azlog source add Azlogtest WAD Azlog9414 fxxxFxxxxxxxxywoEJK2xxxxxxxxxixxxJ+xVJx6m/X5SQDYc4Wpjpli9S9Mm+vXS2RVYtp1mes0t9H5cuqXEw==`` si vous souhaitez que hello abonnement ID tooshow dans XML d’événement hello, ajoutez le nom convivial toohello ID d’abonnement hello : ``Azlog source add <FriendlyNameForTheSource>.<SubscriptionID> WAD <StorageAccountName> <StorageKey>`` ou, par exemple,``Azlog source add Azlogtest.YourSubscriptionID WAD Azlog9414 fxxxFxxxxxxxxywoEJK2xxxxxxxxxixxxJ+xVJx6m/X5SQDYc4Wpjpli9S9Mm+vXS2RVYtp1mes0t9H5cuqXEw==``
+ 7. Sur le serveur sur lequel vous avez installé l’intégration des journaux Azure, ouvrez une invite de commandes avec élévation de privilèges (veuillez noter que nous utilisons ici une fenêtre d’invite de commandes avec élévation de privilèges et non une console PowerShell avec élévation de privilèges).
+ 8. Accédez à **c:\Program Files\Microsoft Azure Log Integration**
+ 9. Exécutez ``Azlog source add <FriendlyNameForTheSource> WAD <StorageAccountName> <StorageKey> ``. </br> Par exemple ``Azlog source add Azlogtest WAD Azlog9414 fxxxFxxxxxxxxywoEJK2xxxxxxxxxixxxJ+xVJx6m/X5SQDYc4Wpjpli9S9Mm+vXS2RVYtp1mes0t9H5cuqXEw==`` Si vous souhaitez que l’ID d’abonnement s’affiche dans le XML de l’événement, ajoutez l’ID d’abonnement au nom convivial : ``Azlog source add <FriendlyNameForTheSource>.<SubscriptionID> WAD <StorageAccountName> <StorageKey>`` ou par exemple, ``Azlog source add Azlogtest.YourSubscriptionID WAD Azlog9414 fxxxFxxxxxxxxywoEJK2xxxxxxxxxixxxJ+xVJx6m/X5SQDYc4Wpjpli9S9Mm+vXS2RVYtp1mes0t9H5cuqXEw==``
 
 >[!NOTE]  
-Attendez jusqu'à too60 minutes, puis afficher les événements de hello sont extraites de compte de stockage hello. tooview, ouvrez **Observateur d’événements > journaux Windows > événements transmis** sur hello Azlog intégrateur.
+Patientez jusqu'à 60 minutes, puis affichez les événements qui sont extraits du compte de stockage. Pour afficher, ouvrez **Observateur d’événements > Journaux Windows > Événements transférés** dans l’intégrateur Azlog.
 
-Ici, vous pouvez voir une vidéo sur les étapes de hello visées ci-dessus.
+Ici, vous pouvez visionner une vidéo répertoriant les étapes abordées ci-dessus.
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure-Security-Videos/Azure-Log-Integration-Videos-Enable-Diagnostics-and-Storage/player]
 
 
-## <a name="what-if-data-is-not-showing-up-in-hello-forwarded-events-folder"></a>Que se passe-t-il si les données s’affichent pas dossier d’événements transmis hello ?
-Si après une heure données s’affichent pas Bonjour **événements transmis** dossier, puis :
+## <a name="what-if-data-is-not-showing-up-in-the-forwarded-events-folder"></a>Que se passe-t-il si les données ne s’affichent pas dans le dossier Événements transférés ?
+Si les données ne s’affichent pas dans le dossier **Événements transférés** après une heure, procédez comme suit :
 
-1. Vérifier le service de journal d’intégration de Azure hello machine en cours d’exécution hello et confirmer qu’il peut accéder à Azure. tootest connectivité, essayez tooopen hello [portail Azure](http://portal.azure.com) à partir du navigateur de hello.
-2. Vérifiez que compte d’utilisateur hello **Azlog** a l’autorisation d’écriture sur le dossier de hello **users\Azlog**.
+1. Examinez la machine exécutant le service d’intégration des journaux Azure et vérifiez qu’elle peut accéder à Azure. Pour tester la connectivité, essayez d’ouvrir le [portail Azure](http://portal.azure.com) à partir du navigateur.
+2. Assurez-vous que le compte d’utilisateur **Azlog** dispose d’un accès en écriture au dossier **utilisateurs\Azlog**.
   <ol type="a">
    <li>Ouvrez l’**Explorateur Windows** </li>
-  <li> Accédez trop**c:\users** </li>
+  <li> Accédez à **c:\users** </li>
   <li> Faites un clic droit sur **c:\users\Azlog** </li>
   <li> Cliquez sur **Sécurité**  </li>
-  <li> Cliquez sur **NT Service\Azlog** et vérifier les autorisations hello pour le compte de hello. Si le compte de hello est absent de cet onglet, ou si les autorisations appropriées hello ne sont pas actuellement montrant vous pouvez accorder des droits de compte hello dans cet onglet.</li>
+  <li> Cliquez sur **Service NT\Azlog** et vérifiez les autorisations pour le compte. Si le compte n’apparaît pas dans cet onglet ou si les autorisations appropriées ne sont pas affichées pour l’instant, vous pouvez accorder les droits de compte dans cet onglet.</li>
   </ol>
-3.Que compte de stockage que hello ajouté dans la commande hello **Azlog source ajouter** figure lorsque vous exécutez la commande hello **liste des sources Azlog**.
-4. Accédez trop**Observateur d’événements > journaux Windows > Application** toosee si des erreurs sont signalées à partir de l’intégration d’Azure log hello.
+3. Assurez-vous que le compte de stockage ajouté à la commande **Azlog source add** est répertorié lorsque vous exécutez la commande **Azlog source list**.
+4. Accédez à **Observateur d’événements > Journaux Windows > Application** pour voir si des erreurs sont signalées par l’intégration des journaux Azure.
 
 
-Si vous rencontrez des problèmes pendant l’installation de hello et de configuration, ouvrez un [demande de support](../azure-supportability/how-to-create-azure-support-request.md), sélectionnez **journal intégration** en tant que service hello pour lequel vous demandez la prise en charge.
+Si vous rencontrez des problèmes pendant l’installation et la configuration, ouvrez une [demande de support](../azure-supportability/how-to-create-azure-support-request.md) et sélectionnez le service **Intégration des journaux** pour demander un support.
 
-Une autre option de prise en charge est hello [Forum MSDN de Azure journal intégration](https://social.msdn.microsoft.com/Forums/home?forum=AzureLogIntegration). Ici Communauté de hello peut prendre en charge l’autre avec des questions, des réponses, des conseils et astuces sur comment tooget hello plus en dehors de l’intégration du journal Azure. En outre, l’équipe d’intégration du journal Azure hello surveille ce forum et aidera à chaque fois que nous pouvons.
+Une autre option de support est le [Forum MSDN relatif à l’intégration des journaux Azure](https://social.msdn.microsoft.com/Forums/home?forum=AzureLogIntegration). Ce forum permet aux membres de la communauté de s’entraider, grâce à des questions, des réponses, des conseils et des astuces, afin de profiter au mieux de l’intégration des journaux Azure. En outre, l’équipe d’intégration des journaux Azure supervise ce forum et apporte son aide lorsque cela est possible.
 
 ## <a name="next-steps"></a>Étapes suivantes
-toolearn en savoir plus sur l’intégration des journaux Azure, consultez hello suivant des documents :
+Pour en savoir plus sur l’intégration des journaux Azure, consultez les documents suivants :
 
 * [Microsoft Azure Log Integration](https://www.microsoft.com/download/details.aspx?id=53324) : Centre de téléchargement pour plus d’informations, la configuration système requise et les instructions d’installation sur l’intégration des journaux Azure.
-* [Intégration du journal tooAzure introduction](security-azure-log-integration-overview.md) : ce document présente tooAzure journal intégration, ses fonctionnalités clées, et comment il fonctionne.
-* [Étapes de configuration du partenaire](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) – ce billet de blog montre comment tooconfigure Azure du journal toowork d’intégration avec les solutions de partenaire Splunk, HP ArcSight et QRadar d’IBM. Il s’agit de notre Conseil actuel sur comment tooconfigure hello les composants serveur SIEM. Pour plus d’informations, contactez d’abord votre fournisseur SIEM.
+* [Introduction à l’intégration de journaux Azure](security-azure-log-integration-overview.md) : ce document présente l’intégration des journaux Azure, ses principales fonctionnalités et son fonctionnement.
+* [Étapes de configuration de partenaires](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) : ce billet de blog vous montre comment configurer l’intégration des journaux Azure pour travailler avec des solutions de partenaires Splunk, HP ArcSight et IBM QRadar. Voici nos recommandations sur la configuration des composants SIEM. Pour plus d’informations, contactez d’abord votre fournisseur SIEM.
 * [FAQ de l’intégration des journaux Azure](security-azure-log-integration-faq.md) : ce forum aux questions répond aux questions sur l’intégration des journaux Azure.
-* [Intégration de centre de sécurité les alertes avec Azure journal intégration](../security-center/security-center-integrating-alerts-with-log-integration.md) – ce document vous montre comment le centre de sécurité toosync des alertes, ainsi que des événements de sécurité d’ordinateur virtuel collectées par Diagnostics Windows Azure et les journaux d’activité Azure, avec votre analytique de journal ou la solution SIEM.
-* [Nouvelles fonctionnalités pour les diagnostics Azure et les journaux d’Audit Azure](https://azure.microsoft.com/blog/new-features-for-azure-diagnostics-and-azure-audit-logs/) – ce billet de blog vous présente les journaux d’Audit de tooAzure et autres fonctionnalités qui vous aident à obtenir les opérations hello de vos ressources Azure.
+* [Intégration des alertes du Security Center avec les journaux Azure](../security-center/security-center-integrating-alerts-with-log-integration.md) : ce document montre comment synchroniser les alertes du Security Center, ainsi que les événements de sécurité des machines virtuelles collectés par Azure Diagnostics et les journaux d’activité Azure dans leur solution SIEM ou Log Analytics.
+* [Nouvelles fonctionnalités des diagnostics Azure et des journaux d’Audit Azure](https://azure.microsoft.com/blog/new-features-for-azure-diagnostics-and-azure-audit-logs/) : ce billet de blog présente les journaux d’Audit Azure et autres fonctionnalités pour vous permettre de mieux connaître les opérations de vos ressources Azure.

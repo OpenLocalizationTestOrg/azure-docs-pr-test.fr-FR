@@ -1,6 +1,6 @@
 ---
-title: "aaaQuickly déployer un cluster de Azure Service Fabric application tooan existant"
-description: Utilisez un toohost de cluster Azure Service Fabric une application Node.js existante avec Visual Studio.
+title: "Déployer rapidement une application existante dans un cluster Microsoft Azure Service Fabric"
+description: "Utilisez un cluster Microsoft Azure Service Fabric pour héberger une application Node.js existante avec Visual Studio."
 services: service-fabric
 documentationcenter: nodejs
 author: thraka
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/13/2017
 ms.author: adegeo
-ms.openlocfilehash: 20a3eb4a9206ba465acf96d0976ba241b07158bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3601b73872bbea4b4e5324382eb97b7384ca6e13
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
 # <a name="host-a-nodejs-application-on-azure-service-fabric"></a>Héberger une application Node.js sur Microsoft Azure Service Fabric
 
-Ce démarrage rapide vous permet de déployer un cluster de l’infrastructure de Service de tooa (Node.js dans cet exemple) d’application existant en cours d’exécution sur Azure.
+Ce démarrage rapide vous permet de déployer une application existante (Node.js dans cet exemple) dans un cluster Service Fabric s’exécutant sur Azure.
 
 ## <a name="prerequisites"></a>Composants requis
 
-Avant de commencer, assurez-vous que vous avez bien [configuré votre environnement de développement](service-fabric-get-started.md). Qui inclut l’installation de type hello Service Fabric SDK et Visual Studio 2017 ou 2015.
+Avant de commencer, assurez-vous que vous avez bien [configuré votre environnement de développement](service-fabric-get-started.md). Cela inclut l’installation du kit de développement logiciel (SDK) de Service Fabric et de Visual Studio 2017 ou 2015.
 
-Vous devez également toohave une application Node.js existante pour le déploiement. Ce démarrage rapide utilise un site web Node.js simple qui peut être téléchargé [ici][download-sample]. Extraire ce fichier tooyour `<path-to-project>\ApplicationPackageRoot\<package-name>\Code\` dossier après avoir créé un projet de hello dans l’étape suivante de hello.
+Vous devez également disposer d’une application Node.js existante pour le déploiement. Ce démarrage rapide utilise un site web Node.js simple qui peut être téléchargé [ici][download-sample]. Extrayez ce fichier vers votre dossier `<path-to-project>\ApplicationPackageRoot\<package-name>\Code\` après avoir créé le projet dans l’étape suivante.
 
 Si vous n’avez pas d’abonnement Azure, créez un [compte gratuit][create-account].
 
-## <a name="create-hello-service"></a>Créer le service de hello
+## <a name="create-the-service"></a>Créer le service
 
 Lancez Visual Studio en tant qu’**administrateur**.
 
 Créer un projet avec `CTRL`+`SHIFT`+`N`
 
-Bonjour **nouveau projet** boîte de dialogue, choisissez **Cloud > Application Service Fabric**.
+Dans la boîte de dialogue **Nouveau projet**, sélectionnez **Cloud > Application Service Fabric**.
 
-Nommez l’application hello **MyGuestApp** et appuyez sur **OK**.
+Nommez l’application **MyGuestApp**, puis cliquez sur **OK**.
 
 >[!IMPORTANT]
->Node.js peuvent facilement s’interrompre hello 260 caractères pour les tracés qui dispose de windows. Utilisez un chemin d’accès court pour le projet hello lui-même comme **c:\code\svc1**.
+>Node.js peut facilement dépasser la limite de 260 caractères pour les chemins d’accès de Windows. Utilisez un chemin d’accès court pour le projet en lui-même, par exemple **c:\code\svc1**.
    
 ![Boîte de dialogue Nouveau projet dans Visual Studio][new-project]
 
-Vous pouvez créer n’importe quel type de service Service Fabric à partir de la boîte de dialogue suivante hello. Pour ce démarrage rapide, choisissez **Exécutable invité**.
+Vous pouvez créer n’importe quel type de service Service Fabric à partir de la boîte de dialogue suivante. Pour ce démarrage rapide, choisissez **Exécutable invité**.
 
-Nom de votre service de hello **MyGuestService** et définir les options de hello sur toohello de droite hello des valeurs suivantes :
+Nommez le service **MyGuestService** et définissez les options à droite sur les valeurs suivantes :
 
 | Paramètre                   | Valeur |
 | ------------------------- | ------ |
-| Dossier du package de code       | _&lt;dossier Hello avec votre application Node.js&gt;_ |
-| Comportement du package de code     | Copiez le dossier contenu tooproject |
+| Dossier du package de code       | _&lt;le dossier avec votre application Node.js&gt;_ |
+| Comportement du package de code     | Copiez le contenu du dossier vers le projet |
 | Programme                   | node.exe |
 | Arguments                 | server.js |
 | Dossier de travail            | CodePackage |
@@ -63,9 +63,9 @@ Appuyez sur **OK**.
 
 ![Boîte de dialogue Nouveau service dans Visual Studio.][new-service]
 
-Visual Studio crée le projet d’application hello et de projet de service d’acteur hello et les affiche dans l’Explorateur de solutions.
+Visual Studio crée le projet d’application et le projet de service d’acteur et les affiche dans l’Explorateur de solutions.
 
-projet d’application Hello (**MyGuestApp**) ne contient pas de code directement. Au lieu de cela, il fait référence à un ensemble de projets de service. En outre, il contient trois autres types de contenu :
+Le projet d’application (**MyGuestApp**) ne contient pas de code directement. Au lieu de cela, il fait référence à un ensemble de projets de service. En outre, il contient trois autres types de contenu :
 
 * **Profils de publication**  
 Préférences d’outils pour différents environnements.
@@ -74,20 +74,20 @@ Préférences d’outils pour différents environnements.
 Script PowerShell de déploiement/mise à niveau de votre application.
 
 * **Définition d’application**  
-Inclut le manifeste de l’application hello sous *ApplicationPackageRoot*. Fichiers de paramètres d’application associée sont sous *ApplicationParameters*, qui définissent l’application hello et vous tooconfigure spécifiquement pour un environnement donné.
+Inclut le manifeste d’application dans le dossier *ApplicationPackageRoot*. Les fichiers de paramètres d’application associés, qui définissent l’application et vous permettent de la configurer spécifiquement pour un environnement donné, se trouvent dans le dossier *ApplicationParameters*.
     
-Pour une vue d’ensemble du contenu hello hello du projet de service, consultez [prise en main des Services fiables](service-fabric-reliable-services-quick-start.md).
+Pour avoir une vue d’ensemble du contenu du projet de service, consultez l’article [Prise en main de Reliable Services](service-fabric-reliable-services-quick-start.md).
 
 ## <a name="set-up-networking"></a>Configurer la mise en réseau
 
-exemple Hello application Node.js nous mettons déploiement utilise le port **80** et nous devons tootell Service Fabric dont nous avons besoin que le port exposé.
+L’exemple d’application Node.js que nous déployons utilise le port **80**, et nous devons indiquer à Service Fabric que nous avons besoin que ce port soit exposé.
 
-Ouvrez hello **ServiceManifest.xml** fichier de projet de hello. Bas hello du manifeste de hello, il existe un `<Resources> \ <Endpoints>` avec une entrée déjà définie. Modifier cette entrée tooadd `Port`, `Protocol`, et `Type`. 
+Ouvrez le fichier **ServiceManifest.xml** dans le projet. Au bas du manifeste, il existe un `<Resources> \ <Endpoints>` avec une entrée déjà définie. Modifiez cette entrée pour ajouter `Port`, `Protocol` et `Type`. 
 
 ```xml
   <Resources>
     <Endpoints>
-      <!-- This endpoint is used by hello communication listener tooobtain hello port on which too
+      <!-- This endpoint is used by the communication listener to obtain the port on which to 
            listen. Please note that if your service is partitioned, this port is shared with 
            replicas of different partitions that are placed in your code. -->
       <Endpoint Name="MyGuestAppServiceTypeEndpoint" Port="80" Protocol="http" Type="Input" />
@@ -95,45 +95,45 @@ Ouvrez hello **ServiceManifest.xml** fichier de projet de hello. Bas hello du ma
   </Resources>
 ```
 
-## <a name="deploy-tooazure"></a>Déployer tooAzure
+## <a name="deploy-to-azure"></a>Déployer dans Azure
 
-Si vous appuyez sur **F5** et exécutez hello projet, il est déployé toohello les cluster local. Toutefois, nous allons déployer tooAzure à la place.
+Si vous appuyez sur **F5** et exécutez le projet, il est déployé dans le cluster local. Toutefois, nous allons le déployer vers Azure.
 
-Avec le bouton droit sur le projet de hello et choisissez **publier...**  qui ouvre un tooAzure toopublish de boîte de dialogue.
+Cliquez avec le bouton droit sur le projet et choisissez **Publier...**, qui ouvre une boîte de dialogue de publication sur Azure.
 
-![Boîte de dialogue tooazure pour un service service fabric publier][publish]
+![Boîte de dialogue de publication sur Azure pour un service Service Fabric][publish]
 
-Sélectionnez hello **PublishProfiles\Cloud.xml** cibler profile.
+Sélectionnez le profil cible **PublishProfiles\Cloud.xml**.
 
-Si vous n’avez pas précédemment, choisissez un toodeploy compte Azure à. Si vous n’en avez pas, [obtenez-en un][create-account].
+Si vous ne l’avez pas fait précédemment, choisissez un compte Azure vers lequel effectuer le déploiement. Si vous n’en avez pas, [obtenez-en un][create-account].
 
-Sous **point de terminaison de connexion**, sélectionnez hello toodeploy du cluster Service Fabric pour. Si vous n’avez pas une option, sélectionnez  **&lt;créer un nouveau Cluster... &gt;**  qui ouvre toohello de fenêtre de navigateur web portail Azure. Pour plus d’informations, consultez [créer un cluster dans le portail de hello](service-fabric-cluster-creation-via-portal.md#create-cluster-in-the-azure-portal). 
+Sous **Point de terminaison de connexion**, sélectionnez le cluster Service Fabric vers lequel effectuer le déploiement. Si vous n’en avez pas, sélectionnez **&lt;Créer un cluster...&gt;** qui ouvre la fenêtre de navigateur web sur le portail Azure. Pour plus d’informations, consultez [Création d’un cluster dans le portail Azure](service-fabric-cluster-creation-via-portal.md#create-cluster-in-the-azure-portal). 
 
-Lorsque vous créez le cluster Service Fabric de hello, assurez-vous que tooset hello **les points de terminaison personnalisé** aussi un paramètre**80**.
+Lorsque vous créez le cluster Service Fabric, veillez à définir le paramètre **Points de terminaison personnalisés** sur **80**.
 
 ![Configuration de type nœud Service Fabric avec le point de terminaison personnalisé][custom-endpoint]
 
-Création d’un nouveau cluster Service Fabric prend quelques toocomplete de temps. Une fois qu’il a été créé, accédez toohello arrière boîte de dialogue Publier et sélectionnez  **&lt;Actualiser&gt;**. nouveau cluster de Hello est répertorié dans la zone de liste déroulante hello. Sélectionnez-la.
+La création d’un cluster Service Fabric prend un certain temps. Une fois qu’il a été créé, revenez à la boîte de dialogue de publication et sélectionnez **&lt;Actualiser&gt;**. Le nouveau cluster est répertorié dans la zone de liste déroulante ; sélectionnez-le.
 
-Appuyez sur **publier** et attendez hello déploiement toofinish.
+Appuyez sur **Publier** et attendez que le déploiement se termine.
 
-Cela peut prendre quelques minutes. Après avoir terminé, il peut prendre quelques minutes pour toobe d’application hello entièrement disponible.
+Cela peut prendre quelques minutes. Une fois terminé, quelques minutes peuvent être nécessaires pour que l’application soit totalement disponible.
 
-## <a name="test-hello-website"></a>Site Web de test hello
+## <a name="test-the-website"></a>Tester le site web
 
 Une fois que votre service a été publié, testez-le dans un navigateur web. 
 
-Tout d’abord, ouvrez hello portail Azure et trouver votre service Service Fabric.
+Tout d’abord, ouvrez le portail Azure et recherchez votre service Service Fabric.
 
-Vérifiez le panneau de vue d’ensemble de hello d’adresse de service hello. Nom de domaine hello utilisation à partir de hello _point de terminaison de connexion Client_ propriété. Par exemple, `http://mysvcfab1.westus2.cloudapp.azure.com`.
+Consultez le panneau Vue d’ensemble de l’adresse du service. Utilisez le nom de domaine de la propriété _Point de terminaison de connexion du client_. Par exemple, `http://mysvcfab1.westus2.cloudapp.azure.com`.
 
-![Panneau de vue d’ensemble de l’infrastructure de service sur hello portail Azure][overview]
+![Panneau Vue d’ensemble de Service Fabric sur le portail Azure][overview]
 
-Accédez adresse toothis où vous verrez hello `HELLO WORLD` réponse.
+Accédez à cette adresse où vous verrez la réponse `HELLO WORLD`.
 
-## <a name="delete-hello-cluster"></a>Supprimer le cluster de hello
+## <a name="delete-the-cluster"></a>Suppression du cluster
 
-N’oubliez pas de toodelete toutes les ressources hello que vous avez créé pour ce démarrage rapide, en tant que vous êtes facturés pour ces ressources.
+N’oubliez pas de supprimer toutes les ressources que vous avez créées pour ce démarrage rapide, car celles-ci vous sont facturées.
 
 ## <a name="next-steps"></a>Étapes suivantes
 Apprenez-en davantage sur les [exécutables invités](service-fabric-deploy-existing-app.md).

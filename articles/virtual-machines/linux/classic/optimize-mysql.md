@@ -1,6 +1,6 @@
 ---
-title: aaaOptimize des performances de MySQL sur Linux | Documents Microsoft
-description: "Découvrez comment toooptimize MySQL en cours d’exécution sur une machine virtuelle Azure (VM) Linux en cours d’exécution."
+title: "Optimiser les performances de MySQL sur Linux | Microsoft Docs"
+description: "Apprenez à optimiser MySQL sur une machine virtuelle Azure exécutant Linux."
 services: virtual-machines-linux
 documentationcenter: 
 author: NingKuang
@@ -15,37 +15,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: ningk
-ms.openlocfilehash: 9e6458723233721e06f30b9de33635d403eefcba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8f2ec884fa98e989448ac11675e71f39aa21fa7f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="optimize-mysql-performance-on-azure-linux-vms"></a>Optimiser les performances de MySQL sur les machines virtuelles Linux Azure
 De nombreux facteurs, en matière de choix de matériel virtuel et de configuration logicielle, ont une incidence sur les performances de MySQL sur Azure. Cet article se concentre sur l’optimisation des performances grâce aux configurations de stockage, système et de base de données.
 
 > [!IMPORTANT]
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Azure Resource Manager](../../../resource-manager-deployment-model.md) et classique. Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello. Pour plus d’informations sur les optimisations de Linux VM avec modèle de gestionnaire de ressources hello, consultez [optimiser votre VM Linux sur Azure](../optimization.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Azure Resource Manager](../../../resource-manager-deployment-model.md) et classique. Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager. Pour plus d’informations sur les optimisations de machines virtuelles Linux avec le modèle Resource Manager, consultez [Optimiser votre machine virtuelle Linux sur Azure](../optimization.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="utilize-raid-on-an-azure-virtual-machine"></a>Utiliser RAID sur une machine virtuelle Azure
-Le stockage est un facteur clé hello qui affecte les performances de base de données dans les environnements de cloud. Disque unique tooa comparés RAID peut fournir un accès plus rapide via la concurrence. Pour plus d’informations, consultez [Niveaux RAID standard](http://en.wikipedia.org/wiki/Standard_RAID_levels).   
+Le stockage est le facteur clé en matière d’incidence sur les performances de base de données dans les environnements de cloud. Grâce à la concurrence, RAID peut fournir un accès plus rapide qu’un seul disque. Pour plus d’informations, consultez [Niveaux RAID standard](http://en.wikipedia.org/wiki/Standard_RAID_levels).   
 
-Le débit d’E/S disque et le temps de réponse d’E/S dans Azure peuvent être améliorés grâce à RAID. Nos tests de laboratoire montrent que débit d’e/s disque peut être doublé et temps de réponse d’e/s peut être réduit de moitié en moyenne lorsque le nombre de hello de disques RAID est doublé (à partir de deux toofour, quatre tooeight, etc.). Voir l’ [annexe A](#AppendixA) pour plus d’informations.  
+Le débit d’E/S disque et le temps de réponse d’E/S dans Azure peuvent être améliorés grâce à RAID. Nos tests de laboratoire montrent que le débit d’E/S disque peut être multiplié par deux et le temps de réponse d’E/S réduit de moitié en moyenne lorsque le nombre de disques RAID est doublé (de deux à quatre, quatre à huit, etc.). Voir l’ [annexe A](#AppendixA) pour plus d’informations.  
 
-En outre e/s toodisk MySQL performances sont améliorées lorsque vous augmentez le niveau RAID de hello.  Voir l’ [annexe B](#AppendixB) pour plus d’informations.  
+En plus des E/S disque, augmenter le niveau RAID améliore également les performances MySQL.  Voir l’ [annexe B](#AppendixB) pour plus d’informations.  
 
-Vous pourriez également la taille de segment tooconsider hello. En règle générale, lorsque vous disposez d’une plus grande taille de segment, vous obtenez une surcharge inférieure, en particulier pour les écritures de grande taille. Toutefois, lorsque la taille de segment hello est trop volumineux, il peut ajouter une charge supplémentaire qui vous empêche de tirer parti de RAID. taille par défaut actuel de Hello est de 512 Ko, ce qui s’avère idéal pour les environnements de production plus générales toobe. Voir l’ [annexe C](#AppendixC) pour plus d’informations.   
+Il peut être intéressant de prendre en compte la taille de segment. En règle générale, lorsque vous disposez d’une plus grande taille de segment, vous obtenez une surcharge inférieure, en particulier pour les écritures de grande taille. Toutefois, lorsque la taille de segment est trop élevée, cela peut renforcer la surcharge et vous empêcher de tirer parti de RAID. La taille actuelle de la valeur par défaut est de 512 Ko, ce qui est le plus approprié pour les environnements de production standard. Voir l’ [annexe C](#AppendixC) pour plus d’informations.   
 
-Il existe des limites sur le nombre de disques que vous pouvez ajouter, selon le type de machine virtuelle. Ces limites sont présentées en détail sur la page [Tailles de machines virtuelles et services cloud pour Microsoft Azure](http://msdn.microsoft.com/library/azure/dn197896.aspx). Vous aurez besoin dans les données attachées disques toofollow hello RAID par exemple dans cet article, mais vous pouvez choisir tooset RAID avec moins de disques.  
+Il existe des limites sur le nombre de disques que vous pouvez ajouter, selon le type de machine virtuelle. Ces limites sont présentées en détail sur la page [Tailles de machines virtuelles et services cloud pour Microsoft Azure](http://msdn.microsoft.com/library/azure/dn197896.aspx). Vous aurez besoin de quatre disques de données attachés pour suivre l’exemple RAID de cet article, même si vous pouvez choisir de configurer RAID avec moins de disques.  
 
-Cet article suppose que vous avez déjà créé une machine virtuelle Linux et que MYSQL est installé et configuré. Pour plus d’informations sur la prise en main, consultez Comment tooinstall MySQL sur Azure.  
+Cet article suppose que vous avez déjà créé une machine virtuelle Linux et que MYSQL est installé et configuré. Pour plus d’informations sur la prise en main, consultez la page Installation de MySQL sur Azure.  
 
 ### <a name="set-up-raid-on-azure"></a>Configurer RAID sur Azure
-Hello étapes suivantes montrent comment toocreate RAID sur Azure à l’aide de hello portail Azure. Vous pouvez également configurer RAID à l’aide de scripts Windows PowerShell.
+Les étapes suivantes montrent comment créer RAID dans Azure à l’aide du portail Azure. Vous pouvez également configurer RAID à l’aide de scripts Windows PowerShell.
 Dans cet exemple, nous allons configurer RAID 0 avec quatre disques.  
 
-#### <a name="add-a-data-disk-tooyour-virtual-machine"></a>Ajouter un ordinateur virtuel de données disque tooyour
-Bonjour portail Azure, accédez toohello le tableau de bord et sélectionnez hello toowhich de machine virtuelle souhaité tooadd un disque de données. Dans cet exemple, la machine virtuelle de hello est mysqlnode1.  
+#### <a name="add-a-data-disk-to-your-virtual-machine"></a>Ajouter un disque de données à votre machine virtuelle
+Dans le portail Azure, accédez au tableau de bord et sélectionnez la machine virtuelle à laquelle vous souhaitez ajouter un disque de données. Dans cet exemple, la machine virtuelle est mysqlnode1.  
 
 <!--![Virtual machines][1]-->
 
@@ -53,51 +53,51 @@ Cliquez sur **Disques**, puis cliquez sur **Attach New** (Attacher nouveau).
 
 ![Les machines virtuelles ajoutent des disques.](media/optimize-mysql/virtual-machines-linux-optimize-mysql-perf-Disks-option.png)
 
-Créez un nouveau disque de 500 Go. Assurez-vous que **préférences de Cache hôte** est défini trop**aucun**.  Lorsque vous avez terminé, cliquez sur **OK**.
+Créez un nouveau disque de 500 Go. Assurez-vous que **Host Cache Preference** (Préférence de cache hôte) a la valeur **Aucun**.  Lorsque vous avez terminé, cliquez sur **OK**.
 
 ![Attacher un disque vide](media/optimize-mysql/virtual-machines-linux-optimize-mysql-perf-attach-empty-disk.png)
 
 
 Cela ajoute un disque vide à votre machine virtuelle. Répétez cette étape trois fois afin de disposer de quatre disques de données pour RAID.  
 
-Vous pouvez voir hello ajouté les lecteurs dans la machine virtuelle de hello en examinant le journal des messages hello du noyau. Par exemple, toosee cela sur Ubuntu, hello utilisez commande suivante :  
+Vous pouvez voir les disques ajoutés à la machine virtuelle en examinant le journal des messages du noyau. Par exemple, pour voir cela avec Ubuntu, utilisez la commande suivante :  
 
     sudo grep SCSI /var/log/dmesg
 
-#### <a name="create-raid-with-hello-additional-disks"></a>Créer RAID avec hello des disques supplémentaires
-Hello étapes suivantes décrivent comment trop[configurer le logiciel RAID sur Linux](../configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+#### <a name="create-raid-with-the-additional-disks"></a>Création de RAID avec les disques supplémentaires
+Les étapes suivantes décrivent la [configuration logicielle de RAID sur Linux](../configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 > [!NOTE]
-> Si vous utilisez un système de fichiers XFS hello, exécutez hello comme suit après avoir créé RAID.
+> Si vous utilisez le système de fichiers XFS, exécutez les étapes ci-dessous après avoir créé le RAID.
 >
 >
 
-tooinstall XFS sur Debian et Ubuntu Linux Mint, hello utilisez commande suivante :  
+Pour installer XFS sur Debian, Ubuntu ou Linux Mint, utilisez la commande suivante :  
 
     apt-get -y install xfsprogs  
 
-tooinstall XFS sur Fedora, CentOS ou RHEL, hello utilisez commande suivante :  
+Pour installer XFS sur Fedora, CentOS ou RHEL, utilisez la commande suivante :  
 
     yum -y install xfsprogs  xfsdump
 
 
 #### <a name="set-up-a-new-storage-path"></a>Configuration d’un nouveau chemin d’accès de stockage
-Utilisez hello suivant tooset de commande d’un nouveau chemin d’accès de stockage :  
+Utilisez la commande suivante pour configurer un nouveau chemin d’accès de stockage :  
 
     root@mysqlnode1:~# mkdir -p /RAID0/mysql
 
-#### <a name="copy-hello-original-data-toohello-new-storage-path"></a>Copie hello d’origine toohello nouveau stockage chemin de données
-Utilisez hello suivant commande toocopy données toohello nouveau stockage chemin d’accès :  
+#### <a name="copy-the-original-data-to-the-new-storage-path"></a>Copie des données d’origine vers le nouveau chemin d’accès de stockage
+Utilisez la commande suivante pour copier des données dans le nouveau chemin d’accès de stockage :  
 
     root@mysqlnode1:~# cp -rp /var/lib/mysql/* /RAID0/mysql/
 
-#### <a name="modify-permissions-so-mysql-can-access-read-and-write-hello-data-disk"></a>Modifier les autorisations pour MySQL puisse accéder aux (lecture et écriture) disque de données hello
-Utilisez hello commande toomodify autorisations suivantes :  
+#### <a name="modify-permissions-so-mysql-can-access-read-and-write-the-data-disk"></a>Modification des autorisations pour que MySQL puisse accéder (en lecture et écriture) au disque de données
+Utilisez la commande suivante pour modifier les autorisations :  
 
     root@mysqlnode1:~# chown -R mysql.mysql /RAID0/mysql && chmod -R 755 /RAID0/mysql
 
 
-## <a name="adjust-hello-disk-io-scheduling-algorithm"></a>Ajuster les e/s de disque hello algorithme de planification
+## <a name="adjust-the-disk-io-scheduling-algorithm"></a>Ajustement de l’algorithme de planification d’E/S disque
 Linux implémente quatre types d’algorithmes de planification d’E/S :  
 
 * Algorithme NOOP (aucune opération)
@@ -105,26 +105,26 @@ Linux implémente quatre types d’algorithmes de planification d’E/S :
 * Algorithme de file d’attente complètement juste (CFQ)
 * Algorithme de période de budget (anticipatif)  
 
-Vous pouvez sélectionner différents planificateurs d’e/s sous performances toooptimize de différents scénarios. Dans un environnement d’accès complètement aléatoire, il n'est pas une différence significative entre hello CFQ et les algorithmes d’échéance pour les performances. Nous vous recommandons de définir tooDeadline d’environnement hello MySQL de base de données pour la stabilité. En cas de nombreuses E/S séquentielles, CFQ peut réduire les performances d’E/S de disque.   
+Vous pouvez sélectionner différents planificateurs d’E/S sous différents scénarios pour optimiser les performances. Dans un environnement à accès complètement aléatoire, il n’existe pas de grande différence entre les algorithmes CFQ et d’échéance du point de vue des performances. Nous vous recommandons de définir l’environnement de base de données MySQL sur échéance pour la stabilité. En cas de nombreuses E/S séquentielles, CFQ peut réduire les performances d’E/S de disque.   
 
-Pour les disques SSD et d’autres équipements, NOOP ou échéance permettre obtenir de meilleures performances que le planificateur par défaut hello.   
+Pour les disques SSD et autres équipements, NOOP ou échéance peuvent fournir de meilleures performances que le planificateur par défaut.   
 
-Toohello préalable noyau 2.5, e/s de la valeur par défaut hello planification algorithme est échéance. CFQ à partir du noyau de hello 2.6.18, est devenu l’algorithme de planification d’e/s par défaut hello.  Vous pouvez spécifier ce paramètre au moment du démarrage du noyau ou modifier ce paramètre de manière dynamique lorsque le système de hello est en cours d’exécution.  
+Avant le noyau 2.5, l’algorithme de planification d’E/S par défaut est échéance. À partir du noyau 2.6.18, CFQ est devenu l’algorithme de planification d’E/S par défaut.  Vous pouvez spécifier ce paramètre au moment du démarrage du noyau ou le modifier dynamiquement lorsque le système est en cours d’exécution.  
 
-Bonjour à l’exemple suivant montre comment toocheck et ensemble hello algorithme NOOP toohello du planificateur par défaut dans la famille de distribution Debian hello.  
+L’exemple suivant montre comment vérifier et définir le planificateur par défaut sur l’algorithme NOOP dans la famille de distribution Debian.  
 
-### <a name="view-hello-current-io-scheduler"></a>Planificateur de vue hello actuel d’e/s
-Planificateur de hello tooview exécutez hello de commande suivante :  
+### <a name="view-the-current-io-scheduler"></a>Visualiser le planificateur d’E/S actuel
+Pour afficher le planificateur, exécutez la commande suivante :  
 
     root@mysqlnode1:~# cat /sys/block/sda/queue/scheduler
 
-Après la sortie, ce qui indique le planificateur actuel de hello s’affiche :  
+Vous verrez la sortie suivante, indiquant le planificateur actuel :  
 
     noop [deadline] cfq
 
 
-### <a name="change-hello-current-device-devsda-of-hello-io-scheduling-algorithm"></a>Changer de périphérique en cours hello (/ dev/sda) de l’algorithme de planification hello d’e/s
-Exécutez hello suivant de commandes toochange hello appareil :  
+### <a name="change-the-current-device-devsda-of-the-io-scheduling-algorithm"></a>Changer le dispositif actuel (/dev/sda) de l’algorithme de planification d’E/S
+Exécutez les commandes suivantes pour modifier le dispositif actuel :  
 
     azureuser@mysqlnode1:~$ sudo su -
     root@mysqlnode1:~# echo "noop" >/sys/block/sda/queue/scheduler
@@ -132,11 +132,11 @@ Exécutez hello suivant de commandes toochange hello appareil :
     root@mysqlnode1:~# update-grub
 
 > [!NOTE]
-> Définir cette propriété pour /dev/sda uniquement n’est pas utile. Elle doit être définie sur tous les disques de données où se trouve la base de données hello.  
+> Définir cette propriété pour /dev/sda uniquement n’est pas utile. Elle doit être définie sur tous les disques de données où réside la base de données.  
 >
 >
 
-Vous devez voir hello suivant de sortie, indiquant que grub.cfg a été reconstruite avec succès et que le planificateur par défaut hello a été mis à jour tooNOOP :  
+Vous devriez voir la sortie suivante, qui indique que grub.cfg a été régénéré avec succès et que le planificateur par défaut a été mis à jour vers NOOP :  
 
     Generating grub configuration file ...
     Found linux image: /boot/vmlinuz-3.13.0-34-generic
@@ -147,28 +147,28 @@ Vous devez voir hello suivant de sortie, indiquant que grub.cfg a été reconstr
     Found memtest86+ image: /memtest86+.bin
     done
 
-Pourquoi la famille de distribution Red Hat, vous devez uniquement hello de commande suivante :
+Pour la famille de distribution Red Hat, la commande suivante suffit :
 
     echo 'echo noop >/sys/block/sda/queue/scheduler' >> /etc/rc.local
 
 ## <a name="configure-system-file-operations-settings"></a>Configuration des paramètres d’opérations de fichier système
-Une meilleure pratique est toodisable hello *atime* fonctionnalité de journalisation sur le système de fichiers hello. Atime est le dernier temps d’accès fichier hello. Chaque fois qu’un fichier est accédé, les enregistrements de système de fichier hello hello horodatage dans le journal de hello. Toutefois, cette information est rarement utilisée. Vous pouvez la désactiver si vous n’en avez pas besoin, ce qui réduit le temps global d’accès au disque.  
+Une meilleure pratique consiste à désactiver la fonctionnalité de journalisation *atime* sur le système de fichiers. Atime est le dernier temps d’accès au fichier. Chaque fois qu’un fichier est accessible, le système de fichiers enregistre l’horodatage dans le journal. Toutefois, cette information est rarement utilisée. Vous pouvez la désactiver si vous n’en avez pas besoin, ce qui réduit le temps global d’accès au disque.  
 
-toodisable atime journalisation, vous devez toomodify hello fichier system configuration fichier trouve fstab et ajouter hello **noatime** option.  
+Pour désactiver la journalisation atime, vous devez modifier le fichier de configuration système /etc/ fstab et ajouter l’option **noatime** .  
 
-Par exemple, modifiez hello vim/etc/fstab fichier en ajoutant hello noatime comme indiqué dans hello suivant l’exemple :  
+Par exemple, modifiez le fichier vim /etc/fstab, en ajoutant noatime comme indiqué dans l’exemple ci-dessous :  
 
-    # CLOUD_IMG: This file was created/modified by hello Cloud Image build process
+    # CLOUD_IMG: This file was created/modified by the Cloud Image build process
     UUID=3cc98c06-d649-432d-81df-6dcd2a584d41       /        ext4   defaults,discard        0 0
-    #Add hello “noatime” option below toodisable atime logging
+    #Add the “noatime” option below to disable atime logging
     UUID="431b1e78-8226-43ec-9460-514a9adf060e"     /RAID0   xfs   defaults,nobootwait, noatime 0 0
     /dev/sdb1       /mnt    auto    defaults,nobootwait,comment=cloudconfig 0       2
 
-Ensuite, remontez le système de fichiers hello avec hello commande suivante :  
+Puis, remontez le système de fichiers avec la commande suivante :  
 
     mount -o remount /RAID0
 
-Hello de test modifié le résultat. Lorsque vous modifiez le fichier de test hello, temps d’accès hello n’est pas mis à jour. Bonjour suivant illustrent les exemples ressemble le code hello avant et après modification.
+Testez le résultat modifié. Lorsque vous modifiez le fichier de test, le temps d’accès n’est pas actualisé. Les exemples suivants montrent à quoi ressemble le code avant et après la modification.
 
 Avant :        
 
@@ -178,77 +178,77 @@ Après :
 
 ![Code après la modification de l’accès][6]
 
-## <a name="increase-hello-maximum-number-of-system-handles-for-high-concurrency"></a>Augmenter le nombre maximal de hello de handles du système d’accès concurrentiel élevé
-MySQL est une base de données à forte concurrence. nombre de handles simultanées par défaut de Hello est 1024 pour Linux, ce qui n’est pas toujours suffisant. Les étapes suivantes de hello utilisation tooincrease hello maximale simultanées poignées de hello système toosupport élevé d’accès concurrentiel de MySQL.
+## <a name="increase-the-maximum-number-of-system-handles-for-high-concurrency"></a>Augmentation du nombre maximal de handles du système pour la concurrence élevée
+MySQL est une base de données à forte concurrence. Le nombre de handles concurrents est de 1024 pour Linux, ce qui n’est pas toujours suffisant. Utilisez les étapes suivantes pour augmenter les handles simultanés maximaux du système pour prendre en charge la haute concurrence de MySQL.
 
-### <a name="modify-hello-limitsconf-file"></a>Modifier le fichier de limits.conf hello
-hello tooincrease maximale autorisée de descripteurs simultanées, ajouter hello quatre lignes dans le fichier de /etc/security/limits.conf hello suivantes. Notez que 65536 est le nombre maximal de hello système de hello pouvant prendre en charge.   
+### <a name="modify-the-limitsconf-file"></a>Modification du fichier limits.conf
+Ajoutez les quatre lignes suivantes dans le fichier /etc/security/limits.conf pour augmenter le nombre maximal de handles simultanés autorisés. Notez que 65536 est le nombre maximal que le système peut prendre en charge.   
 
     * soft nofile 65536
     * hard nofile 65536
     * soft nproc 65536
     * hard nproc 65536
 
-### <a name="update-hello-system-for-hello-new-limits"></a>Mettre à jour système hello pour les nouvelles limites de hello
-système de hello tooupdate, exécutez hello suivant de commandes :  
+### <a name="update-the-system-for-the-new-limits"></a>Mise à jour du système pour les nouvelles limites
+Pour mettre à jour le système, exécutez les commandes suivantes :  
 
     ulimit -SHn 65536
     ulimit -SHu 65536
 
-### <a name="ensure-that-hello-limits-are-updated-at-boot-time"></a>Assurez-vous que les limites de hello sont mis à jour au moment du démarrage
-Placez hello suivant les commandes de démarrage dans le fichier de /etc/rc.local hello afin qu’il prendra effet au moment du démarrage.  
+### <a name="ensure-that-the-limits-are-updated-at-boot-time"></a>Assurez-vous que les limites sont mises à jour au moment du démarrage
+Placez les commandes de démarrage suivantes dans le fichier /etc/rc.local afin qu’elles prennent effet lors du démarrage.  
 
     echo “ulimit -SHn 65536” >>/etc/rc.local
     echo “ulimit -SHu 65536” >>/etc/rc.local
 
 ## <a name="mysql-database-optimization"></a>Optimisation de base de données MySQL
-tooconfigure MySQL sur Azure, vous pouvez utiliser hello même stratégie réglage des performances que vous utilisez sur un ordinateur local.  
+Vous pouvez utiliser la même stratégie de réglage de performances pour configurer MySQL sur Azure que sur un ordinateur local.  
 
-règles d’optimisation Hello principales d’e/s sont :   
+Les règles d’optimisation d’E/S principales sont :   
 
-* Augmenter la taille du cache hello.
+* Augmentez la taille du cache.
 * Réduisez le délai de réponse E/S.  
 
-paramètres du serveur MySQL toooptimize, vous pouvez mettre à jour fichier my.cnf hello, qui est le fichier de configuration par défaut hello pour des ordinateurs clients et serveur.  
+Pour optimiser les paramètres du serveur MySQL, vous pouvez mettre à jour le fichier my.cnf, qui est le fichier de configuration par défaut du serveur et des ordinateurs clients.  
 
-Hello des éléments de configuration suivants sont hello principaux facteurs qui affectent les performances de MySQL :  
+Les éléments de configuration suivants sont les principaux facteurs qui ont une incidence sur les performances de MySQL :  
 
-* **innodb_buffer_pool_size**: pool de mémoires tampons hello contient les données mises en mémoire tampon et l’index de hello. Cela a généralement la valeur % too70 de mémoire physique.
-* **innodb_log_file_size**: taille de journal de restauration par progression hello. Vous utilisez tooensure de journaux de restauration par progression que les opérations d’écriture sont récupérables, fiable et rapide après un incident. A la valeur too512 Mo, ce qui vous donne suffisamment d’espace disque pour la journalisation des opérations d’écriture.
-* **max_connections** : parfois, les applications ne ferment pas les connexions correctement. Une valeur supérieure, vous accordez hello serveur toorecycle désactivé des connexions plus de temps. Hello le nombre maximal de connexions est 10 000, mais hello recommandé maximale est de 5 000.
-* **Innodb_file_per_table**: ce paramètre Active ou désactive la possibilité de hello des tables de toostore InnoDB dans des fichiers distincts. Activez tooensure d’option hello que plusieurs opérations d’administration avancées peuvent être appliquées efficacement. À partir d’un point de vue des performances, il peut accélérer la transmission d’espace table hello et optimiser les performances de gestion de débris hello. Hello recommandé pour cette option est activé.</br></br>
-À partir de MySQL 5.6, hello par défaut est ON, par conséquent, aucune action n’est requise. Pour les versions antérieures, hello par défaut est OFF. paramètre de Hello doit être modifié avant le chargement de données, car seules les tables nouvellement créés sont affectées.
-* **innodb_flush_log_at_trx_commit**: valeur par défaut de hello est 1, avec hello étendue too0 ~ 2. valeur par défaut de Hello est l’option la plus appropriée pour la base de données MySQL autonome hello. Hello de 2 permet hello plus l’intégrité des données et est adapté aux maître dans un MySQL Cluster. le paramètre Hello 0 permet de perte de données, ce qui peut affecter la fiabilité, dans certains cas avec de meilleures performances et convient aux subordonné dans un MySQL Cluster.
-* **Innodb_log_buffer_size**: tampon de journal hello permet des transactions toorun sans avoir tooflush hello journal toodisk avant la validation des transactions hello. Toutefois, s’il existe des objets binaires volumineux ou un champ de texte, le cache de hello est consommé rapidement et e/s disque fréquentes sera déclenché. Il est mieux augmenter la taille de mémoire tampon hello si la variable d’état Innodb_log_waits n’est pas 0.
-* **query_cache_size**: hello meilleure option est toodisable à partir du début de hello. Too0 query_cache_size (il s’agit de paramètre par défaut de hello dans MySQL 5.6) et utiliser d’autres toospeed méthodes des requêtes.  
+* **innodb_buffer_pool_size** : le pool de mémoires tampons contient les données mises en mémoire tampon et l’index. Il est généralement défini sur 70 % de la mémoire physique.
+* **innodb_log_file_size** : il s’agit de la taille du journal de rétablissement. Vous utilisez des journaux de rétablissement pour vous assurer que les opérations d’écriture sont rapides, fiables et récupérables après une panne. Il est défini sur 512 Mo, afin de vous donner suffisamment d’espace disque pour la journalisation des opérations d’écriture.
+* **max_connections** : parfois, les applications ne ferment pas les connexions correctement. Une valeur supérieure accordera au serveur davantage de temps pour recycler les connexions inactives. Le nombre maximal de connexions est de 10 000, mais le maximum recommandé est de 5 000.
+* **Innodb_file_per_table** : ce paramètre active ou désactive la capacité de InnoDB de stocker des tables dans des fichiers distincts. Activer l’option garantit que plusieurs opérations d’administration avancées peuvent être appliquées efficacement. Du point de vue des performances, elle peut accélérer la transmission d’espace de table et optimiser les performances de gestion de débris. Le paramètre recommandé pour cette option est ON.</br></br>
+À partir de MySQL 5.6, le paramètre par défaut est ON, donc aucune action n’est nécessaire. Pour les versions antérieures, le paramètre par défaut est OFF. Le paramètre doit être modifié avant le chargement des données, étant donné que seules les tables nouvellement créées sont affectées.
+* **innodb_flush_log_at_trx_commit** : la valeur par défaut est 1 et l’étendue 0~2. La valeur par défaut est l’option la plus adaptée pour une base de données MySQL autonome. Choisir 2 offre la meilleure intégrité des données et convient à Master dans le cluster MySQL. Choisir 0 autorise la perte de données, ce qui peut avoir une incidence sur la fiabilité (dans certains cas avec de meilleures performances) et convient à Slave dans le cluster MySQL.
+* **Innodb_log_buffer_size** : le tampon journal autorise les transactions à s’exécuter, sans avoir à vider le journal sur le disque avant la validation des transactions. Toutefois, s’il existe des objets binaires ou un champ de texte volumineux, le cache est consommé rapidement et des E/S disque fréquentes seront déclenchées. Il est préférable d’augmenter la taille de la mémoire tampon si la variable d’état Innodb_log_waits n’est pas 0.
+* **query_cache_size** : le meilleur choix consiste à la désactiver dès le départ. Définissez query_cache_size sur 0 (ce qui est le paramètre par défaut dans MySQL 5.6) et utilisez d’autres méthodes pour accélérer les requêtes.  
 
-Consultez [annexe D](#AppendixD) pour une comparaison des performances avant et après l’optimisation de hello.
+Consultez [l’Annexe D](#AppendixD) pour obtenir une comparaison des performances avant et après l’optimisation.
 
-## <a name="turn-on-hello-mysql-slow-query-log-for-analyzing-hello-performance-bottleneck"></a>Activer le journal des requêtes lentes hello MySQL pour l’analyse hello goulot d’étranglement
-journal des requêtes lentes Hello MySQL peut vous aider à identifier les requêtes lentes hello pour MySQL. Après avoir activé le journal des requêtes lentes hello MySQL, vous pouvez utiliser les outils MySQL comme **mysqldumpslow** goulot d’étranglement de performances tooidentify hello.  
+## <a name="turn-on-the-mysql-slow-query-log-for-analyzing-the-performance-bottleneck"></a>Activation du journal des requêtes lentes MySQL pour analyser le goulot d’étranglement de performances
+Le journal des requêtes lentes MySQL peut vous aider à identifier les requêtes lentes pour MySQL. Après avoir activé le journal des requêtes lentes MySQL, vous pouvez utiliser les outils MySQL comme **mysqldumpslow** pour identifier le goulot d’étranglement de performances.  
 
-Par défaut, cette option n’est pas activée. Journal des requêtes lentes hello sous tension peut consommer des ressources du processeur. Nous vous recommandons d’activer ce dernier temporairement, pour résoudre les goulots d’étranglement de performances. tooturn sur le journal des requêtes lentes hello :
+Par défaut, cette option n’est pas activée. Activer le journal des requêtes lentes peut consommer des ressources du processeur. Nous vous recommandons d’activer ce dernier temporairement, pour résoudre les goulots d’étranglement de performances. Pour activer le journal des requêtes lentes :
 
-1. Modifier le fichier my.cnf de hello en ajoutant hello suivant lignes toohello fin :
+1. Modifiez le fichier my.cnf en ajoutant les lignes suivantes à la fin :
 
         long_query_time = 2
         slow_query_log = 1
         slow_query_log_file = /RAID0/mysql/mysql-slow.log
 
-2. Redémarrez le serveur MySQL de hello.
+2. Redémarrez le serveur MySQL.
 
         service  mysql  restart
 
-3. Vérifiez si le paramètre de hello prend effet à l’aide de hello **afficher** commande.
+3. Vérifiez si le paramètre prend effet à l’aide de la commande **show**.
 
 ![Journal des requêtes lentes ON][7]   
 
 ![Résultats du journal des requêtes lentes][8]
 
-Dans cet exemple, vous pouvez voir que cette fonctionnalité de requête lentes hello a été activée. Vous pouvez ensuite utiliser hello **mysqldumpslow** outil toodetermine les goulots d’étranglement et optimiser les performances, telles que l’ajout d’index.
+Dans cet exemple, vous pouvez voir que la fonctionnalité de requête lente a été activée. Vous pouvez ensuite utiliser l’outil **mysqldumpslow** pour déterminer les goulots d’étranglement et optimiser les performances, comme l’ajout d’index.
 
 ## <a name="appendices"></a>Annexes
-Hello Voici des exemples de données test de performances produits dans un environnement lab ciblé. Ils fournissent des informations générales sur les tendances de données de performances hello avec des performances différentes approches de paramétrage. résultats de Hello peuvent varier sous différentes versions de produit ou d’environnement.
+Vous trouverez ci-dessous des exemples de données de test de performances obtenues sur un environnement lab ciblé. Ils fournissent des informations générales sur la tendance des données de performances, avec différentes approches de réglage des performances. Les résultats peuvent varier selon les versions de produit ou l’environnement.
 
 ### <a name="AppendixA"></a>Annexe A  
 **Performances du disque (IOPS) avec des niveaux RAID différents**
@@ -260,7 +260,7 @@ Hello Voici des exemples de données test de performances produits dans un envir
     fio -filename=/path/test -iodepth=64 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k -size=5G -numjobs=64 -runtime=30 -group_reporting -name=test-randwrite
 
 > [!NOTE]
-> la charge de travail Hello de ce test utilise 64 threads, la tentative de limite supérieure de hello tooreach de RAID.
+> La charge de travail de ce test utilise 64 threads, pour tenter d’atteindre la limite supérieure de RAID.
 >
 >
 
@@ -293,7 +293,7 @@ Hello Voici des exemples de données test de performances produits dans un envir
     fio -filename=/path/test -iodepth=64 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k -size=30G -numjobs=64 -runtime=30 -group_reporting -name=test-randwrite
     fio -filename=/path/test -iodepth=64 -ioengine=libaio -direct=1 -rw=randwrite -bs=4k -size=1G -numjobs=64 -runtime=30 -group_reporting -name=test-randwrite  
 
-tailles des fichiers Hello utilisés pour ce test sont 30 Go et 1 Go, respectivement, avec RAID 0 (4 disques) XFS système de fichiers.
+La taille des fichiers utilisés pour ce test est de 30 Go et 1 Go respectivement, avec le système de fichiers XFS RAID 0 (4 disques).
 
 ### <a name="AppendixD"></a>Annexe D  
 **Comparaison des performances (débit) MySQL avant et après l’optimisation**  
@@ -305,9 +305,9 @@ tailles des fichiers Hello utilisés pour ce test sont 30 Go et 1 Go, respective
 
     mysqlslap -p0ps.123 --concurrency=2 --iterations=1 --number-int-cols=10 --number-char-cols=10 -a --auto-generate-sql-guid-primary --number-of-queries=10000 --auto-generate-sql-load-type=write –engine=innodb,misam
 
-**Hello de configuration par défaut et l’optimisation est comme suit :**
+**Le paramètre de configuration pour la valeur par défaut et l’optimisation est le suivant :**
 
-| Paramètres | Default | Optimisation |
+| parameters | Default | Optimisation |
 | --- | --- | --- |
 | **innodb_buffer_pool_size** |Aucune |7 Go |
 | **innodb_log_file_size** |5 Mo |512 Mo |
@@ -317,7 +317,7 @@ tailles des fichiers Hello utilisés pour ce test sont 30 Go et 1 Go, respective
 | **innodb_log_buffer_size** |8 Mo |128 Mo |
 | **query_cache_size** |16 Mo |0 |
 
-Pour plus [les paramètres de configuration de l’optimisation](http://dev.mysql.com/doc/refman/5.6/en/innodb-configuration.html), consultez toohello [instructions officielles de MySQL](http://dev.mysql.com/doc/refman/5.6/en/innodb-parameters.html#sysvar_innodb_flush_method).  
+Pour obtenir plus de détails sur les [paramètres de configuration d’optimisation](http://dev.mysql.com/doc/refman/5.6/en/innodb-configuration.html), consultez les [instructions officielles de MySQL](http://dev.mysql.com/doc/refman/5.6/en/innodb-parameters.html#sysvar_innodb_flush_method).  
 
   **Environnement de test**  
 

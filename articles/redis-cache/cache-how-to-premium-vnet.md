@@ -1,6 +1,6 @@
 ---
-title: "aaaConfigure un réseau virtuel pour un Premium le Cache Redis Azure | Documents Microsoft"
-description: "Découvrez comment toocreate et gérer la prise en charge de réseau virtuel pour vos instances de Cache Redis Azure de niveau Premium"
+title: "Configurer un réseau virtuel pour un Cache Redis Azure Premium | Microsoft Docs"
+description: "Découvrez comment créer et gérer la prise en charge de réseau virtuel pour vos instances de Cache Redis Azure de niveau Premium"
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: sdanie
-ms.openlocfilehash: fab715f4d9365ee4c2f8b89d2e2e58768c25b671
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 59d46990e02c0719d2b4df01e216a97fd649c509
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tooconfigure-virtual-network-support-for-a-premium-azure-redis-cache"></a>Comment tooconfigure réseau virtuel prend en charge un Premium Azure Redis cache
-Cache Redis Azure a différentes offres de cache, qui fournissent une certaine flexibilité hello les choix de la taille du cache et de fonctionnalités, y compris les fonctionnalités de niveau Premium telles que le clustering, la persistance et la prise en charge du réseau virtuel. Un réseau virtuel est un réseau privé dans le cloud de hello. Lorsqu’une instance de Cache Redis Azure est configurée avec un réseau virtuel, il n’est pas publiquement adressable et sont accessibles à partir d’ordinateurs virtuels et les applications de hello réseau virtuel. Cet article décrit comment les réseaux virtuels tooconfigure prennent en charge pour une instance de Cache Redis Azure premium.
+# <a name="how-to-configure-virtual-network-support-for-a-premium-azure-redis-cache"></a>Comment configurer la prise en charge de réseau virtuel pour un Cache Redis Azure Premium
+Le Cache Redis Azure offre différents types de caches permettant de choisir en toute flexibilité parmi plusieurs tailles et fonctionnalités de caches, notamment les fonctionnalités de couche Premium telles que le clustering, la persistance et la prise en charge du réseau virtuel. Un réseau VNet est un réseau privé dans le cloud. Lorsqu’une instance de Cache Redis Azure est configurée avec un réseau virtuel, elle n’est pas adressable publiquement et est accessible uniquement à partir de machines virtuelles et d’applications sur le réseau virtuel. Cet article décrit comment configurer la prise en charge de réseau virtuel pour une instance Premium de Cache Redis Azure.
 
 > [!NOTE]
 > Le Cache Redis Azure prend en charge les réseaux virtuels classiques et de Gestionnaire de ressources.
 > 
 > 
 
-Pour plus d’informations sur d’autres fonctionnalités de cache premium, consultez [couche de présentation toohello Azure Redis Cache Premium](cache-premium-tier-intro.md).
+Pour plus d’informations sur les autres fonctionnalités du cache Premium, consultez [Introduction au niveau Premium du Cache Redis Azure](cache-premium-tier-intro.md).
 
 ## <a name="why-vnet"></a>Pourquoi un réseau virtuel ?
-[Réseau virtuel Azure (VNet)](https://azure.microsoft.com/services/virtual-network/) déploiement offre une sécurité accrue et isolation pour votre Cache Redis Azure, ainsi que des sous-réseaux, les stratégies de contrôle d’accès, et d’autres fonctionnalités toofurther restreindre l’accès.
+Le déploiement d’un [Réseau virtuel Azure (VNet)](https://azure.microsoft.com/services/virtual-network/) offre une sécurité et une isolation améliorées pour votre Cache Redis Azure, ainsi que des sous-réseaux, des stratégies de contrôle d’accès et d’autres fonctionnalités permettant de restreindre davantage l’accès.
 
 ## <a name="virtual-network-support"></a>Prise en charge des réseaux virtuels
-Prise en charge du réseau virtuel virtuel est configuré sur hello **nouveau Cache Redis** panneau lors de la création du cache. 
+La configuration de la prise en charge du réseau virtuel (VNet) s’effectue dans le panneau **Nouveau cache Redis** lors de la création du cache. 
 
 [!INCLUDE [redis-cache-create](../../includes/redis-cache-premium-create.md)]
 
-Une fois que vous avez sélectionné un niveau tarifaire premium, vous pouvez configurer l’intégration de réseau virtuel de Redis en sélectionnant un réseau virtuel qui se trouve dans hello même abonnement et l’emplacement que votre cache. toouse un nouveau réseau virtuel, créez-le tout d’abord en suivant les étapes de hello dans [créer un réseau virtuel à l’aide de hello portail Azure](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) ou [créer un réseau virtuel (classiques) à l’aide de hello portail Azure](../virtual-network/virtual-networks-create-vnet-classic-pportal.md) , puis revenez toohello **Nouveau Cache Redis** panneau toocreate et configurer votre cache premium.
+Une fois que vous avez sélectionné le niveau tarifaire Premium, vous pouvez configurer l’intégration du réseau virtuel Redis en sélectionnant un réseau virtuel situé dans le même abonnement et le même emplacement que votre cache. Pour utiliser un nouveau réseau virtuel, vous devez tout d’abord le créer en suivant les étapes indiquées dans [Créer un réseau virtuel à l’aide du Portail Azure](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) ou [Créer un réseau virtuel (classique) à l’aide du Portail ](../virtual-network/virtual-networks-create-vnet-classic-pportal.md). Revenez ensuite au panneau **Nouveau cache Redis** pour créer et configurer votre cache Premium.
 
-tooconfigure hello réseau virtuel pour votre nouveau cache, cliquez sur **réseau virtuel** sur hello **nouveau Cache Redis** panneau et sélectionnez hello souhaitée réseau virtuel à partir de la liste déroulante de hello.
+Pour configurer le réseau virtuel pour votre nouveau cache, cliquez sur **Réseau virtuel** dans le panneau **Nouveau cache Redis**, puis sélectionnez le réseau virtuel souhaité dans la liste déroulante.
 
 ![Réseau virtuel][redis-cache-vnet]
 
-Sélectionnez hello sous-réseau souhaité à partir de hello **sous-réseau** déroulante répertorier et spécifiez hello souhaité **adresse IP statique**. Si vous utilisez un Bonjour de réseau virtuel classique **adresse IP statique** champ est facultatif, et si aucun n’est spécifié, un est choisi de sous-réseau de hello sélectionné.
+Sélectionnez le sous-réseau souhaité dans la liste déroulante **Sous-réseau**, puis spécifiez **l’adresse IP statique** souhaitée. Si vous utilisez un réseau virtuel classique, le champ **Adresse IP statique** est facultatif. Si aucune adresse IP statique n’est spécifiée, une option sera choisie dans le sous-réseau sélectionné.
 
 > [!IMPORTANT]
-> Lorsque vous déployez un tooa de Cache Redis Azure Resource Manager VNet, le cache de hello doit être dans un sous-réseau dédié qui ne contient aucuns autres ressources à l’exception des instances de Cache Redis Azure. Si une tentative est faite toodeploy un tooa de Cache Redis Azure Resource Manager VNet tooa sous-réseau qui contient d’autres ressources, le déploiement de hello échoue.
+> Lorsque vous déployez un Cache Redis Azure vers un réseau virtuel Gestionnaire des ressources, le cache doit se trouver dans un sous-réseau dédié ne contenant pas de ressources autres que des instances du Cache Redis Azure. Si vous tentez de déployer un Cache Redis Azure sur un réseau virtuel Gestionnaire des ressources vers un sous-réseau contenant d’autres ressources, le déploiement échoue.
 > 
 > 
 
 ![Réseau virtuel][redis-cache-vnet-ip]
 
 > [!IMPORTANT]
-> Azure réserve dans chaque sous-réseau des adresses IP qui ne peuvent pas être utilisées. Hello prénom et adresses IP des sous-réseaux de hello sont réservés pour la conformité de protocole, ainsi que les trois adresses plus utilisé pour les services Azure. Pour plus d’informations, consultez [Existe-t-il des restrictions sur l’utilisation des adresses IP au sein de ces sous-réseaux ?](../virtual-network/virtual-networks-faq.md#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets)
+> Azure réserve dans chaque sous-réseau des adresses IP qui ne peuvent pas être utilisées. Les première et dernière adresse IP des sous-réseaux sont réservées à la conformité du protocole, et 3 adresses supplémentaires sont utilisées pour les services Azure. Pour plus d’informations, consultez [Existe-t-il des restrictions sur l’utilisation des adresses IP au sein de ces sous-réseaux ?](../virtual-network/virtual-networks-faq.md#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets)
 > 
-> Ajout des adresses IP toohello utilisé par l’infrastructure de réseau virtuel Azure hello, chaque Redis instance hello sous-réseau utilise deux adresses IP par partition et une adresse IP supplémentaire pour l’équilibrage de charge hello. Un cache non cluster est considéré comme toohave une seule partition.
+> Outre les adresses IP utilisées par l’infrastructure réseau virtuel Azure, chaque d’instance Redis dans le sous-réseau utilise deux adresses IP par partition et une adresse IP supplémentaire pour l’équilibrage de charge. Un cache non cluster est considéré comme ayant une seule partition.
 > 
 > 
 
-Une fois le cache de hello est créé, vous pouvez afficher la configuration hello pour hello réseau virtuel en cliquant sur **réseau virtuel** de hello **menu ressource**.
+Une fois le cache créé, vous pouvez afficher la configuration du réseau virtuel en cliquant sur **Réseau virtuel** dans le **menu Ressource**.
 
 ![Réseau virtuel][redis-cache-vnet-info]
 
-tooconnect tooyour Azure Redis cache instance lors de l’utilisation d’un réseau virtuel, spécifiez le nom d’hôte hello de votre cache dans la chaîne de connexion hello comme indiqué dans hello l’exemple suivant :
+Pour vous connecter à votre instance du Cache Redis Azure lorsque vous utilisez un réseau virtuel, spécifiez le nom d’hôte de votre cache dans la chaîne de connexion, comme indiqué dans l’exemple suivant :
 
     private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
     {
@@ -80,20 +80,20 @@ tooconnect tooyour Azure Redis cache instance lors de l’utilisation d’un ré
     }
 
 ## <a name="azure-redis-cache-vnet-faq"></a>Forum aux questions sur le réseau virtuel de Cache Redis Azure
-Hello suivant liste contient toocommonly des réponses aux questions sur la mise à l’échelle du Cache Redis Azure hello.
+La liste suivante présente différentes réponses aux questions les plus fréquemment posées sur la mise à l’échelle du Cache Redis Azure.
 
 * [Quels sont les problèmes de configuration les plus courants au niveau du Cache Redis Azure et des réseaux virtuels ?](#what-are-some-common-misconfiguration-issues-with-azure-redis-cache-and-vnets)
 * [Comment puis-je vérifier que mon cache fonctionne dans un réseau virtuel ?](#how-can-i-verify-that-my-cache-is-working-in-a-vnet)
 * [Puis-je utiliser des réseaux virtuels avec un cache De base ou Standard ?](#can-i-use-vnets-with-a-standard-or-basic-cache)
 * [Pourquoi la création d’un cache Redis échoue-t-elle dans certains sous-réseaux mais pas d’autres ?](#why-does-creating-a-redis-cache-fail-in-some-subnets-but-not-others)
-* [Quelles sont les conditions d’espace d’adressage hello sous-réseau ?](#what-are-the-subnet-address-space-requirements)
+* [Quelles sont les exigences d’espace d’adressage du sous-réseau ?](#what-are-the-subnet-address-space-requirements)
 * [Toutes les fonctionnalités fonctionnent-elles lorsque vous hébergez un cache dans un réseau virtuel ?](#do-all-cache-features-work-when-hosting-a-cache-in-a-vnet)
 
 ## <a name="what-are-some-common-misconfiguration-issues-with-azure-redis-cache-and-vnets"></a>Quels sont les problèmes de configuration les plus courants au niveau du Cache Redis Azure et des réseaux virtuels ?
-Lorsque le Cache Redis Azure est hébergé dans un réseau virtuel, les ports hello Bonjour les tableaux suivants sont utilisés. 
+Lorsque le Cache Redis Azure est hébergé dans un réseau virtuel, les ports dans les tableaux suivants sont utilisés. 
 
 >[!IMPORTANT]
->Si les ports hello Bonjour les tableaux suivants sont bloqués, le cache de hello peut ne pas fonctionne correctement. Un ou plusieurs de ces ports bloqués est problème de configuration incorrecte hello plus courant lors de l’utilisation du Cache Redis Azure dans un réseau virtuel.
+>Si ces ports dans les tableaux suivants sont bloqués, le cache risque de ne pas fonctionner correctement. Le blocage d’un ou plusieurs de ces ports constitue le problème de configuration le plus courant lorsque vous utilisez le Cache Redis Azure dans un réseau virtuel.
 > 
 > 
 
@@ -104,9 +104,9 @@ Lorsque le Cache Redis Azure est hébergé dans un réseau virtuel, les ports he
 
 Il existe sept configurations requises de port sortant.
 
-- Si vous le souhaitez, toutes les connexions sortantes toohello internet peut être effectuées par le biais d’un client audit appareil local.
-- Trois des ports de hello acheminer les points de terminaison du trafic tooAzure maintenance Azure Storage et Azure DNS.
-- Hello restant des plages de ports et les communications de sous-réseau internes Redis. Aucune règle de groupe de sécurité réseau de sous-réseau n’est requise pour les communications sur sous-réseau Redis interne.
+- Si vous le souhaitez, toutes les connexions sortantes vers Internet peuvent être effectuées via un appareil d’audit local du client.
+- Trois des ports acheminent le trafic vers des points de terminaison Azure se chargeant du stockage Azure et d’Azure DNS.
+- Les plages de ports restantes et pour les communications internes du sous-réseau Redis. Aucune règle de groupe de sécurité réseau de sous-réseau n’est requise pour les communications sur sous-réseau Redis interne.
 
 | Port(s) | Direction | Protocole de transfert | Objectif | Adresse IP locale | Adresse IP distante |
 | --- | --- | --- | --- | --- | --- |
@@ -121,89 +121,89 @@ Il existe sept configurations requises de port sortant.
 
 ### <a name="inbound-port-requirements"></a>Configuration requise des ports entrants
 
-Il existe huit configurations requises de port entrant. Les demandes entrantes de ces plages sont entrantes à partir d’autres services hébergés dans hello même réseau virtuel ou interne toohello communications de sous-réseau Redis.
+Il existe huit configurations requises de port entrant. Les requêtes entrantes dans ces plages proviennent d’autres services hébergés dans le même réseau virtuel ou des communications sur sous-réseau Redis interne.
 
 | Port(s) | Direction | Protocole de transfert | Objectif | Adresse IP locale | Adresse IP distante |
 | --- | --- | --- | --- | --- | --- |
-| 6379, 6380 |Trafic entrant |TCP |L’équilibrage de charge de Azure tooRedis de communication client, | (sous-réseau Redis) |Réseau virtuel, Azure Load Balancer |
+| 6379, 6380 |Trafic entrant |TCP |Communication client avec Redis, équilibrage de charge Azure | (sous-réseau Redis) |Réseau virtuel, Azure Load Balancer |
 | 8443 |Trafic entrant |TCP |Communications internes pour Redis | (sous-réseau Redis) |(sous-réseau Redis) |
 | 8500 |Trafic entrant |TCP/UDP |Équilibrage de charge Azure | (sous-réseau Redis) |Azure Load Balancer |
 | 10221-10231 |Trafic entrant |TCP |Communications internes pour Redis | (sous-réseau Redis) |(Sous-réseau Redis) Azure Load Balancer |
-| 13000-13999 |Trafic entrant |TCP |L’équilibrage de charge de Clusters, Azure tooRedis de communication client | (sous-réseau Redis) |Réseau virtuel, Azure Load Balancer |
-| 15000-15999 |Trafic entrant |TCP |L’équilibrage de charge de Clusters, Azure tooRedis de communication client | (sous-réseau Redis) |Réseau virtuel, Azure Load Balancer |
+| 13000-13999 |Trafic entrant |TCP |Communication client avec les clusters Redis, équilibrage de charge Azure | (sous-réseau Redis) |Réseau virtuel, Azure Load Balancer |
+| 15000-15999 |Trafic entrant |TCP |Communication client avec les clusters Redis, équilibrage de charge Azure | (sous-réseau Redis) |Réseau virtuel, Azure Load Balancer |
 | 16001 |Trafic entrant |TCP/UDP |Équilibrage de charge Azure | (sous-réseau Redis) |Azure Load Balancer |
 | 20226 |Trafic entrant |TCP |Communications internes pour Redis | (sous-réseau Redis) |(sous-réseau Redis) |
 
 ### <a name="additional-vnet-network-connectivity-requirements"></a>Conditions supplémentaires pour la connectivité réseau VNET
 
-Il existe des exigences de connectivité réseau pour le Cache Redis Azure qui peuvent ne pas être initialement satisfaites dans un réseau virtuel. Cache Redis Azure nécessite que tous les hello suivant toofunction éléments correctement lorsqu’il est utilisé dans un réseau virtuel.
+Il existe des exigences de connectivité réseau pour le Cache Redis Azure qui peuvent ne pas être initialement satisfaites dans un réseau virtuel. Le Cache Redis Azure nécessite tous les éléments suivants pour fonctionner correctement lorsqu’il est utilisé dans un réseau virtuel.
 
-* Réseau sortant connectivité tooAzure stockage points de terminaison dans le monde entier. Cela inclut les points de terminaison situés dans hello même région que l’instance de Cache Redis Azure hello, ainsi que les points de terminaison de stockage situés dans **autres** régions Azure. Résoudre les points de terminaison de stockage Azure sous hello suivant domaines DNS : *table.core.windows.net*, *blob.core.windows.net*, *queue.core.windows.net*et *file.core.windows.net*. 
-* Sortant trop de connectivité réseau*ocsp.msocsp.com*, *mscrl.microsoft.com*, et *crl.microsoft.com*. Cette connectivité est une fonctionnalité SSL toosupport nécessaires.
-* configuration du DNS pour le réseau virtuel de hello Hello doit être capable de résoudre tous les points de terminaison hello et domaines mentionné dans hello points précédents. Ces exigences DNS peuvent être remplies en garantissant une infrastructure DNS valide est configurée et gérée pour le réseau virtuel de hello.
-* Toohello de connectivité réseau sortant suivant de surveillance Azure points de terminaison résoudre sous hello suivant domaines DNS : shoebox2-black.shoebox2.metrics.nsatc.net, Nord-prod2.prod2.metrics.nsatc.net, azglobal black.azglobal.metrics.nsatc.net, shoebox2-red.shoebox2.metrics.nsatc.net, est-prod2.prod2.metrics.nsatc.net, azglobal-red.azglobal.metrics.nsatc.net.
+* Connectivité réseau sortante à des points de terminaison Azure Storage dans le monde entier. Cela inclut les points de terminaison situés dans la même région que le cache Redis Azure, ainsi que les points de terminaison de stockage situés dans d’ **autres** régions Azure. Les points de terminaison du Stockage Azure se résolvent dans les domaines DNS suivants : *table.core.windows.net*, *blob.core.windows.net*, *queue.core.windows.net* et *file.core.windows.net*. 
+* Connectivité réseau sortante à *ocsp.msocsp.com*, *mscrl.microsoft.com* et *crl.microsoft.com*. Cette connectivité est nécessaire pour prendre en charge la fonctionnalité SSL.
+* La configuration DNS pour le réseau virtuel doit être capable de résoudre tous les points de terminaison et les domaines mentionnés dans les points précédents. La configuration DNS requise peut être satisfaite en garantissant qu'une infrastructure DNS valide est configurée et gérée pour le réseau virtuel.
+* Connectivité réseau sortante aux points de terminaison de surveillance Azure suivants qui se résolvent dans les domaines DNS suivants : shoebox2-black.shoebox2.metrics.nsatc.net, north-prod2.prod2.metrics.nsatc.net, azglobal-black.azglobal.metrics.nsatc.net, shoebox2-red.shoebox2.metrics.nsatc.net, east-prod2.prod2.metrics.nsatc.net et azglobal-red.azglobal.metrics.nsatc.net.
 
 ### <a name="how-can-i-verify-that-my-cache-is-working-in-a-vnet"></a>Comment puis-je vérifier que mon cache fonctionne dans un réseau virtuel ?
 
 >[!IMPORTANT]
->Lors de la connexion d’instance de Cache Redis Azure tooan qui est hébergé dans un réseau virtuel, les clients doivent être dans le cache de votre hello même réseau virtuel, y compris les applications de test ou les outils de diagnostic de test ping.
+>Lors de la connexion à une instance Cache Redis Azure hébergée dans un réseau virtuel, vos clients de cache doivent figurer dans le même réseau virtuel, notamment les applications de test ou les outils de test Ping de diagnostic.
 >
 >
 
-Une fois les exigences du port hello sont configurés comme décrit dans la section précédente de hello, vous pouvez vérifier que votre cache fonctionne en effectuant hello comme suit.
+Une fois les exigences de port configurées comme décrit dans la section précédente, vous pouvez vérifier que votre cache fonctionne en procédant comme suit.
 
-- [Redémarrez](cache-administration.md#reboot) hello tous les nœuds de cache. Si toutes les Hello requises de dépendances de cache n’est pas accessible (comme décrit dans [entrant des exigences de ports](cache-how-to-premium-vnet.md#inbound-port-requirements) et [les exigences de port de sortie](cache-how-to-premium-vnet.md#outbound-port-requirements)), cache de hello ne pourra plus être en mesure de toorestart avec succès.
-- Une fois les nœuds de cache hello ont redémarré (comme indiqué par état du cache hello Bonjour portail Azure), vous pouvez effectuer hello suite de tests :
-  - ping hello cache du point de terminaison (à l’aide du port 6380) à partir d’un ordinateur qui se trouve dans hello même réseau virtuel en tant que hello mise en cache, à l’aide de [tcping](https://www.elifulkerson.com/projects/tcping.php). Par exemple :
+- [Redémarrez](cache-administration.md#reboot) tous les nœuds de cache. Si toutes les dépendances de cache requises sont inaccessibles (comme décrit dans [Configuration requise des ports entrants](cache-how-to-premium-vnet.md#inbound-port-requirements) et [Configuration requise des ports sortants](cache-how-to-premium-vnet.md#outbound-port-requirements)), le cache ne redémarre plus correctement.
+- Une fois les nœuds de cache redémarrés (comme indiqué par l’état du cache dans le portail Azure), vous pouvez effectuer les tests suivants :
+  - Vous pouvez effectuer un test ping du point de terminaison du cache (en utilisant le port 6380) à partir d’une machine figurant dans le même réseau virtuel que le cache, à l’aide de la commande [tcping](https://www.elifulkerson.com/projects/tcping.php). Par exemple :
     
     `tcping.exe contosocache.redis.cache.windows.net 6380`
     
-    Si hello `tcping` outil signale que hello port est ouvert, le cache de hello est disponible pour la connexion à partir de clients Bonjour réseau virtuel.
+    Si l’outil `tcping` signale que le port est ouvert, cela signifie que le cache est disponible pour connexion à partir de clients dans le réseau virtuel.
 
-  - Une autre façon tootest est toocreate un client de cache de test (qui peut être une simple application console à l’aide de StackExchange.Redis) qui se connecte toohello cache et ajoute et récupère des éléments du cache de hello. Installer hello exemple d’application cliente sur un ordinateur virtuel qui se trouve dans hello même réseau virtuel en tant que cache de hello et exécutez-le toohello cache de la connectivité tooverify.
+  - Un autre test consiste à créer un client de cache de test (qui peut être une simple application console utilisant StackExchange.Redis) qui se connecte au cache et ajoute et récupère des éléments de celui-ci. Installez l’exemple d’application cliente sur une machine virtuelle figurant dans le même réseau virtuel que le cache, puis exécutez l’application pour vérifier la connectivité au cache.
 
 
 ### <a name="can-i-use-vnets-with-a-standard-or-basic-cache"></a>Puis-je utiliser des réseaux virtuels avec un cache De base ou Standard ?
 Vous ne pouvez utiliser des réseaux virtuels qu’avec les caches de niveau Premium.
 
 ### <a name="why-does-creating-a-redis-cache-fail-in-some-subnets-but-not-others"></a>Pourquoi la création d’un cache Redis échoue-t-elle dans certains sous-réseaux mais pas d’autres ?
-Si vous déployez un tooa de Cache Redis Azure Resource Manager VNet, le cache de hello doit être dans un sous-réseau dédié qui ne contient aucun autre type de ressource. Si une tentative est faite toodeploy un tooa de Cache Redis Azure Resource Manager VNet sous-réseau qui contient d’autres ressources, le déploiement de hello échoue. Vous devez supprimer les ressources existantes de hello hello sous-réseau avant de pouvoir créer un nouveau cache Redis.
+Si vous déployez un Cache Redis Azure sur un réseau virtuel Gestionnaire des ressources, le cache doit se trouver dans un sous-réseau dédié qui ne contient aucun autre type de ressource. Si vous tentez de déployer un Cache Redis Azure sur un sous-réseau de réseau virtuel Gestionnaire des ressources vers un sous-réseau contenant d’autres ressources, le déploiement échoue. Vous devez supprimer les ressources existantes dans le sous-réseau avant de pouvoir créer un nouveau cache Redis.
 
-Vous pouvez déployer plusieurs types de ressources tooa réseau virtuel classique tant que vous disposez d’assez IP adresses disponibles.
+Vous pouvez déployer plusieurs types de ressources sur un réseau virtuel classique, à condition de disposer de suffisamment d’adresses IP disponibles.
 
-### <a name="what-are-hello-subnet-address-space-requirements"></a>Quelles sont les conditions d’espace d’adressage hello sous-réseau ?
-Azure réserve dans chaque sous-réseau des adresses IP qui ne peuvent pas être utilisées. Hello prénom et adresses IP des sous-réseaux de hello sont réservés pour la conformité de protocole, ainsi que les trois adresses plus utilisé pour les services Azure. Pour plus d’informations, consultez [Existe-t-il des restrictions sur l’utilisation des adresses IP au sein de ces sous-réseaux ?](../virtual-network/virtual-networks-faq.md#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets)
+### <a name="what-are-the-subnet-address-space-requirements"></a>Quelles sont les exigences d’espace d’adressage du sous-réseau ?
+Azure réserve dans chaque sous-réseau des adresses IP qui ne peuvent pas être utilisées. Les première et dernière adresse IP des sous-réseaux sont réservées à la conformité du protocole, et 3 adresses supplémentaires sont utilisées pour les services Azure. Pour plus d’informations, consultez [Existe-t-il des restrictions sur l’utilisation des adresses IP au sein de ces sous-réseaux ?](../virtual-network/virtual-networks-faq.md#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets)
 
-Ajout des adresses IP toohello utilisé par l’infrastructure de réseau virtuel Azure hello, chaque Redis instance hello sous-réseau utilise deux adresses IP par partition et une adresse IP supplémentaire pour l’équilibrage de charge hello. Un cache non cluster est considéré comme toohave une seule partition.
+Outre les adresses IP utilisées par l’infrastructure réseau virtuel Azure, chaque d’instance Redis dans le sous-réseau utilise deux adresses IP par partition et une adresse IP supplémentaire pour l’équilibrage de charge. Un cache non cluster est considéré comme ayant une seule partition.
 
 ### <a name="do-all-cache-features-work-when-hosting-a-cache-in-a-vnet"></a>Toutes les fonctionnalités fonctionnent-elles lorsque vous hébergez un cache dans un réseau virtuel ?
-Lorsque votre cache fait partie d’un réseau virtuel, uniquement les clients Bonjour réseau virtuel peuvent accéder les cache hello. Par conséquent, hello des fonctionnalités de gestion de cache suivantes ne fonctionnent pas pour l’instant.
+Quand votre cache fait partie d’un réseau virtuel, seuls les clients de ce réseau virtuel peuvent accéder au cache. Par conséquent, les fonctionnalités de gestion de cache suivantes ne fonctionnent pas pour l’instant.
 
-* Redis Console - Redis la Console s’exécutant dans votre navigateur, qui est en dehors de hello réseau virtuel, il ne peut pas se connecter à tooyour cache.
+* Console redis. Console Redis s’exécutant dans votre navigateur local situé à l’extérieur du réseau virtuel, il ne peut pas se connecter à votre cache.
 
 ## <a name="use-expressroute-with-azure-redis-cache"></a>Utiliser ExpressRoute avec le Cache Redis Azure
-Les clients peuvent se connecter une [Azure ExpressRoute](https://azure.microsoft.com/services/expressroute/) infrastructure de réseau virtuel tootheir du circuit, en étendant leur tooAzure de réseau local. 
+Les clients peuvent connecter un circuit [Azure ExpressRoute](https://azure.microsoft.com/services/expressroute/) à leur infrastructure de réseau virtuel pour étendre leur réseau local à Azure. 
 
-Par défaut, un circuit ExpressRoute nouvellement créé n’effectue pas de tunneling forcé (publication d’un routage par défaut, 0.0.0.0/0) sur un réseau virtuel. Par conséquent, connectivité Internet sortante est autorisée directement à partir de hello réseau virtuel et les applications clientes sont en mesure de tooconnect tooother Azure points de terminaison, y compris le Cache Redis Azure.
+Par défaut, un circuit ExpressRoute nouvellement créé n’effectue pas de tunneling forcé (publication d’un routage par défaut, 0.0.0.0/0) sur un réseau virtuel. Par conséquent, la connectivité Internet sortante est autorisée directement à partir du réseau virtuel, et les applications clientes sont en mesure de se connecter à d’autres points de terminaison Azure, dont Cache Redis Azure.
 
-Cependant une configuration de client courants est toouse le tunneling forcé (publier un itinéraire par défaut) qui oblige sortant Internet trafic tooinstead flux localement. Ce flux de trafic sauts de connectivité avec le Cache Redis Azure si le trafic sortant de hello est ensuite bloqué locaux tels que hello instance de Cache Redis Azure n’est pas en mesure de toocommunicate avec ses dépendances.
+Toutefois, une configuration de client courante consiste à utiliser un tunneling forcé (publication d’un routage par défaut), qui force le trafic Internet sortant à circuler localement à la place. Ce flux de trafic interrompt la connectivité avec le Cache Redis Azure si le trafic sortant est bloqué localement, par exemple, quand l’instance du Cache Redis Azure ne peut pas communiquer avec ses dépendances.
 
-solution de Hello est toodefine un (ou plusieurs) défini par l’utilisateur itinéraires (UDRs) sur le sous-réseau hello contenant hello du Cache Redis Azure. Un UDR définit les itinéraires de sous-réseau spécifique qui seront respectées au lieu de l’itinéraire par défaut hello.
+La solution consiste à définir un (ou plusieurs) itinéraires définis par l’utilisateur (UDR) sur le sous-réseau qui contient le Cache Redis Azure. Un itinéraire défini par l'utilisateur définit des itinéraires spécifiques au sous-réseau qui seront respectés au lieu de l'itinéraire par défaut.
 
-Si possible, il est recommandé de hello toouse configuration suivante :
+Si possible, il est recommandé d'utiliser la configuration suivante :
 
-* configuration de ExpressRoute Hello annonce 0.0.0.0/0 et par défaut force tunnels tout le trafic sortant sur site.
-* sous-réseau de toohello UDR appliqué contenant hello du Cache Redis Azure Hello définit 0.0.0.0/0 avec un itinéraire de travail pour toohello de trafic TCP/IP internet public ; par exemple en définissant un hello de tronçon suivant too'Internet de type'.
+* La configuration ExpressRoute annonce 0.0.0.0/0 et par défaut, tunnelise de force tout le trafic sortant sur site.
+* L’UDR appliqué au sous-réseau contenant le Cache Redis Azure définit 0.0.0.0/0 avec un itinéraire de travail pour le trafic TCP/IP vers le réseau internet public, par exemple, en définissant le type de tronçon suivant vers « Internet ».
 
-Bonjour effets combinés de ces étapes est qu’au niveau du sous-réseau UDR hello est prioritaire sur hello ExpressRoute forcé tunneling, garantissant ainsi un accès Internet sortant à partir de hello du Cache Redis Azure.
+L’effet combiné de ces étapes est que l’UDR de niveau sous-réseau a la priorité sur le tunneling forcé ExpressRoute, garantissant ainsi un accès Internet sortant à partir du Cache Redis Azure.
 
-Instance de Cache Redis Azure tooan se connectant à partir d’une application locale à l’aide d’ExpressRoute n’est pas un scénario classique d’utilisation en raison des raisons de tooperformance (pour optimiser les performances du Cache Redis Azure, les clients doivent être Bonjour même région que hello du Cache Redis Azure).
+La connexion à une instance du Cache Redis Azure à partir d’une application locale à l’aide d’ExpressRoute n’est pas un scénario d’utilisation classique pour des raisons de performances (pour des performances optimales, les clients du Cache Redis Azure doivent être situés dans la même région que le Cache Redis Azure).
 
 >[!IMPORTANT] 
->Hello itinéraires définis dans un UDR **doit** être suffisamment spécifique tootake priorité sur les itinéraires annoncés par la configuration de ExpressRoute hello. Hello exemple suivant utilise la plage d’adresses 0.0.0.0/0 large hello et par conséquent peut potentiellement être accidentellement remplacée par les annonces d’itinéraires à l’aide de plages d’adresses plus spécifiques.
+>Les itinéraires définis dans un UDR **doivent** être suffisamment spécifiques pour avoir la priorité sur les itinéraires annoncés par la configuration ExpressRoute. L'exemple suivant utilise la plage d'adresses 0.0.0.0/0 étendue qui peut potentiellement être remplacée accidentellement par les annonces de routage à l'aide de plages d'adresses plus spécifiques.
 
 >[!WARNING]  
->Cache Redis Azure n’est pas pris en charge avec des configurations de ExpressRoute qui **incorrectement cross-publier d’itinéraires de hello publics d’homologation toohello privés d’homologation chemin**. Les configurations ExpressRoute ayant une homologation publique configurée reçoivent des annonces de routage en provenance de Microsoft pour un grand ensemble de plages d’adresses IP Microsoft Azure. Si ces plages d’adresses sont incorrectement entre publiés sur le chemin d’accès d’homologation privée hello, hello résulte que tous les paquets réseau sortant à partir du sous-réseau de l’instance de Cache Redis Azure hello sont incorrectement en tunnel force le tooa local réseau client infrastructure. Ce flux réseau interrompt le Cache Redis Azure. problème de toothis solution Hello est itinéraires de publication entre toostop de hello publics d’homologation toohello privés d’homologation chemin d’accès.
+>Le cache Redis Azure n’est pas pris en charge avec les configurations ExpressRoute qui **publient incorrectement de façon croisée des itinéraires à partir du chemin d’accès d’homologation publique vers le chemin d’accès d’homologation privée**. Les configurations ExpressRoute ayant une homologation publique configurée reçoivent des annonces de routage en provenance de Microsoft pour un grand ensemble de plages d’adresses IP Microsoft Azure. Si ces plages d’adresses sont incorrectement publiées de façon croisée sur le chemin d’accès d’homologation privée, il en résulte que tous les paquets réseau sortants du sous-réseau de l’instance du Cache Redis Azure sont incorrectement acheminés de force vers l’infrastructure réseau locale d’un client. Ce flux réseau interrompt le Cache Redis Azure. La solution à ce problème consiste à arrêter les itinéraires croisés depuis le chemin d'accès d'homologation publique vers le chemin d'accès d'homologation privée.
 
 
 Vous trouverez des informations générales sur les itinéraires définis par l'utilisateur dans cette [présentation](../virtual-network/virtual-networks-udr-overview.md).
@@ -211,9 +211,9 @@ Vous trouverez des informations générales sur les itinéraires définis par l'
 Pour plus d’informations sur ExpressRoute, voir [Aperçu technique d’ExpressRoute](../expressroute/expressroute-introduction.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Découvrez comment mettre en cache des fonctionnalités par toouse plus premium.
+Découvrez comment utiliser davantage de fonctionnalités de cache de niveau Premium.
 
-* [Couche de présentation toohello Azure Redis Cache Premium](cache-premium-tier-intro.md)
+* [Introduction au niveau Premium du Cache Redis Azure](cache-premium-tier-intro.md)
 
 <!-- IMAGES -->
 

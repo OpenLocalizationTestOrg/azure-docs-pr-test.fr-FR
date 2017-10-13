@@ -1,6 +1,6 @@
 ---
-title: "aaaTutorial - hello d’utilisation du SDK de traitement par lots Azure pour Python | Documents Microsoft"
-description: "Découvrez les concepts de base hello de traitement par lots Azure et créer une solution simple à l’aide de Python."
+title: "Didacticiel : utiliser le Kit de développement logiciel (SDK) Azure Batch pour Python | Microsoft Docs"
+description: "Découvrez les concepts de base d’Azure Batch et créez une solution simple à l’aide de Python."
 services: batch
 documentationcenter: python
 author: tamram
@@ -15,13 +15,13 @@ ms.workload: big-compute
 ms.date: 02/27/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c4d5152aeef31848c50a7f2aae5e7a7e0e1e9535
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: bd5a977c10d3955639beb893cd7a37581b14f7c0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="get-started-with-hello-batch-sdk-for-python"></a>Prise en main hello lot SDK pour Python
+# <a name="get-started-with-the-batch-sdk-for-python"></a>Bien démarrer avec le Kit de développement logiciel (SDK)Batch pour Python
 
 > [!div class="op_single_selector"]
 > * [.NET](batch-dotnet-get-started.md)
@@ -30,12 +30,12 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Principes fondamentaux de hello [Azure Batch] [ azure_batch] et hello [lot Python] [ py_azure_sdk] client comme une petite application de traitement par lots écrite dans Python les sujets abordés. Nous allons comment deux exemples scripts utilisez hello lot service tooprocess une charge de travail parallèle sur les ordinateurs virtuels Linux dans le cloud de hello et comment ils interagissent avec [Azure Storage](../storage/common/storage-introduction.md) intermédiaire de fichier et l’extraction. Vous allez en savoir un flux de travail courant lot application acquérir une compréhension de base du hello principaux composants du lot telles que les travaux, les tâches, les pools et nœuds de calcul.
+Découvrez les principes de base des clients [Azure Batch][azure_batch] et [Batch Python][py_azure_sdk] dans cet article où nous décrivons une simple application Batch écrite en langage Python. Nous allons voir comment deux exemples de scripts tirent parti du service Batch pour traiter une charge de travail parallèle sur des machines virtuelles Linux dans le cloud, ainsi que la façon dont ceux-ci interagissent avec [Stockage Azure](../storage/common/storage-introduction.md) pour la gestion intermédiaire et la récupération des fichiers. Vous allez vous familiariser avec les flux de travail d’application Batch et découvrir une vue d’ensemble des principaux composants de Batch, tels que les travaux, les tâches, les pools et les nœuds de calcul.
 
 ![Flux de travail de la solution Batch (de base)][11]<br/>
 
 ## <a name="prerequisites"></a>Composants requis
-Cet article suppose que vous avez acquis une connaissance pratique de Python et que vous êtes familiarisé avec Linux. Il suppose également que vous êtes en mesure de toosatisfy hello création exigences relatives aux comptes qui sont spécifiées ci-dessous pour Azure et hello lot et les services de stockage.
+Cet article suppose que vous avez acquis une connaissance pratique de Python et que vous êtes familiarisé avec Linux. Il suppose également que vous êtes en mesure de satisfaire les exigences de création de compte spécifiées ci-dessous pour Azure et les services Batch et Storage.
 
 ### <a name="accounts"></a>Comptes
 * **Compte Azure** : si vous ne possédez pas encore d’abonnement Azure, [créez un compte Azure gratuit][azure_free_account].
@@ -43,16 +43,16 @@ Cet article suppose que vous avez acquis une connaissance pratique de Python et 
 * **Compte de stockage** : voir la section [Créer un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account) de l’article [À propos des comptes de stockage Azure](../storage/common/storage-create-storage-account.md).
 
 ### <a name="code-sample"></a>Exemple de code
-didacticiel de Python Hello [exemple de code] [ github_article_samples] est un des hello de nombreux exemples de code de lot trouvés dans hello [exemples de traitement par lots azure] [ github_samples] référentiel sur GitHub. Vous pouvez télécharger tous les exemples de hello en cliquant sur **Clone ou téléchargement > ZIP de téléchargement** sur la page d’accueil de référentiel hello, ou en cliquant sur hello [azure-lot-exemples-master.zip] [ github_samples_zip]lien direct. Une fois que vous avez extrait le contenu hello du fichier ZIP de hello, scripts hello deux pour ce didacticiel sont trouvent dans hello `article_samples` active :
+[L’exemple de code][github_article_samples] du didacticiel Python est l’un des nombreux exemples de code Batch disponibles dans le référentiel [azure-batch-samples][github_samples] sur GitHub. Vous pouvez télécharger tous les exemples en cliquant sur le bouton **Cloner ou télécharger > Télécharger ZIP** de la page d’accueil du référentiel ou en cliquant sur le lien de téléchargement direct [azure-batch-samples-master.zip][github_samples_zip]. Une fois que vous aurez extrait le contenu du fichier ZIP, les deux scripts de ce didacticiel se trouvent dans le répertoire `article_samples` :
 
 `/azure-batch-samples/Python/Batch/article_samples/python_tutorial_client.py`<br/>
 `/azure-batch-samples/Python/Batch/article_samples/python_tutorial_task.py`
 
 ### <a name="python-environment"></a>Environnement Python
-toorun hello *python_tutorial_client.py* exemple de script sur votre station de travail locale, vous devez un **interpréteur Python** compatible avec la version **2.7** ou **3.3 +**. script de Hello a été testé sur Linux et Windows.
+Pour exécuter l’exemple de script *python_tutorial_client.py* sur votre station de travail locale, vous aurez besoin d’un **interpréteur Python** compatible avec la version **2.7** ou **3.3+**. Le script a été testé sur Linux et Windows.
 
 ### <a name="cryptography-dependencies"></a>dépendances de chiffrement
-Vous devez installer les dépendances hello pour hello [cryptographie] [ crypto] bibliothèque, requis par hello `azure-batch` et `azure-storage` packages Python. Effectuez l’une des hello suit les opérations appropriées pour votre plateforme, ou consultez toohello [installation de chiffrement] [ crypto_install] pour plus d’informations :
+Vous devez installer les dépendances pour la bibliothèque de [chiffrement][crypto], qui sont requises par les packages Python `azure-batch` et `azure-storage`. Effectuez l’opération appropriée pour votre plateforme ci-dessous ou reportez-vous aux détails de [l’installation du chiffrement][crypto_install] pour plus d’informations :
 
 * Ubuntu
 
@@ -68,61 +68,61 @@ Vous devez installer les dépendances hello pour hello [cryptographie] [ crypto]
     `pip install cryptography`
 
 > [!NOTE]
-> Si l’installation de Python 3.3 + sur Linux, utilisez équivalents de python3 hello pour les dépendances de Python hello. Par exemple, sur Ubuntu : `apt-get update && apt-get install -y build-essential libssl-dev libffi-dev libpython3-dev python3-dev`
+> Si vous effectuez l’installation pour Python 3.3 + sur Linux, utilisez les équivalents python3 pour les dépendances Python. Par exemple, sur Ubuntu : `apt-get update && apt-get install -y build-essential libssl-dev libffi-dev libpython3-dev python3-dev`
 >
 >
 
 ### <a name="azure-packages"></a>Packages Azure
-Ensuite, installez hello **Azure Batch** et **Azure Storage** packages Python. Vous pouvez installer les deux packages à l’aide de **pip** et hello *requirements.txt* est disponible ici :
+Ensuite, installez les packages Python **Azure Batch** et **Stockage Azure**. Vous pouvez installer les deux packages à l’aide de **pip** et de *requirements.txt*, ici :
 
 `/azure-batch-samples/Python/Batch/requirements.txt`
 
-Problème suivant **pip** les packages tooinstall hello lot et le stockage de la commande :
+Exécutez la commande **pip** suivante pour installer les packages Batch et Storage :
 
 `pip install -r requirements.txt`
 
-Vous pouvez également installer hello [par lots azure] [ pypi_batch] et [le stockage azure] [ pypi_storage] Python packages manuellement :
+Vous pouvez également installer les packages Python [azure-batch][pypi_batch] et [azure-storage][pypi_storage] manuellement :
 
 `pip install azure-batch`<br/>
 `pip install azure-storage`
 
 > [!TIP]
-> Si vous utilisez un compte non privilégié, vous devrez peut-être tooprefix vos commandes avec `sudo`. Par exemple, `sudo pip install -r requirements.txt`. Pour plus d’informations sur l’installation des packages Python, voir [Installing Packages][pypi_install] (Installation des packages) sur python.org.
+> Vous devrez peut-être faire précéder vos commandes de `sudo` si vous utilisez un compte non privilégié. Par exemple : `sudo pip install -r requirements.txt`. Pour plus d’informations sur l’installation des packages Python, voir [Installing Packages][pypi_install] (Installation des packages) sur python.org.
 >
 >
 
 ## <a name="batch-python-tutorial-code-sample"></a>Exemple de code de didacticiel Python Batch
-exemple de code du didacticiel Hello Python de lot se compose de deux scripts Python et plusieurs fichiers de données.
+L’exemple de code du didacticiel Python Batch se compose de deux scripts Python et de quelques fichiers de données.
 
-* **python_tutorial_client.py**: interagit avec tooexecute de services de stockage et de traitement par lots hello une charge de travail parallèle sur les nœuds de calcul (machines virtuelles). Hello *python_tutorial_client.py* script s’exécute sur votre station de travail locale.
-* **python_tutorial_task.py**: script hello qui s’exécute sur les nœuds de calcul dans Azure tooperform travail hello. Dans l’exemple hello, *python_tutorial_task.py* analyse hello texte dans un fichier téléchargé depuis le stockage Azure (fichier d’entrée de hello). Ensuite, il génère un fichier texte (fichier de sortie hello) qui contient une liste de mots de trois premières hello qui s’affichent dans le fichier d’entrée de hello. Une fois qu’il crée le fichier de sortie hello, *python_tutorial_task.py* téléchargements hello fichier tooAzure stockage. Cela rend disponible pour le script de client toohello de téléchargement en cours d’exécution sur votre station de travail. Hello *python_tutorial_task.py* script s’exécute en parallèle sur plusieurs nœuds de calcul dans hello service Batch.
-* **./Data/taskdata\*.txt**: ces trois fichiers texte fournissent une entrée de hello pour les nœuds de calcul tâches hello qui s’exécutent sur hello.
+* **python_tutorial_client.py** : interagit avec les services Batch et Storage pour exécuter une charge de travail parallèle sur des nœuds de calcul (machines virtuelles). Le script *python_tutorial_client.py* s’exécute sur votre station de travail locale.
+* **python_tutorial_task.py** : le script qui s’exécute sur les nœuds de calcul dans Azure pour mener à bien l’opération proprement dite. Dans l’exemple, *python_tutorial_task.py* analyse le texte dans un fichier téléchargé depuis Stockage Azure (le fichier d’entrée). Ensuite, il génère un fichier texte (fichier de sortie) qui contient une liste des trois mots principaux qui s’affichent dans le fichier d’entrée. Après avoir créé le fichier de sortie, *python_tutorial_task.py* télécharge le fichier dans Stockage Azure. Cela permet de le télécharger vers le script client s’exécutant sur votre station de travail. Le script *python_tutorial_task.py* s’exécute en parallèle sur plusieurs nœuds de calcul dans le service Batch.
+* **./data/taskdata\*.txt** : ces trois fichiers texte fournissent l’entrée pour les tâches qui s’exécutent sur les nœuds de calcul.
 
-Hello suivant schéma illustre les opérations principales hello qui sont effectuées par les scripts de client et de la tâche hello. Ce flux de travail de base est caractéristique de nombreuses solutions de calcul créées avec Batch. Pendant qu’il ne présente pas toutes les fonctionnalités disponibles dans hello service Batch, presque tous les scénarios de traitement par lots inclut des parties de ce flux de travail.
+Le schéma suivant illustre les opérations principales effectuées par les scripts clients et de tâche. Ce flux de travail de base est caractéristique de nombreuses solutions de calcul créées avec Batch. Même s’il ne présente pas toutes les fonctionnalités disponibles dans le service Batch, la quasi-totalité des scénarios Batch comporte des processus de ce flux de travail.
 
 ![Exemple de flux de travail Batch][8]<br/>
 
 [**Étape 1.**](#step-1-create-storage-containers) Créer des **conteneurs** dans le Stockage Blob Azure.<br/>
-[**Étape 2.**](#step-2-upload-task-script-and-data-files) Téléchargez toocontainers de fichiers de script et d’entrée de tâche.<br/>
+[**Étape 2.**](#step-2-upload-task-script-and-data-files) Charger le script de tâche et les fichiers d’entrée dans les conteneurs.<br/>
 [**Étape 3.**](#step-3-create-batch-pool) Créer un **pool** Batch.<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**3a.** Hello pool **StartTask** téléchargements hello tâche script (python_tutorial_task.py) toonodes dès qu’ils rejoignent le pool de hello.<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;**3a.** Le pool **StartTask** télécharge le script de tâche (python_tutorial_task.py) dans les nœuds lorsque ces derniers rejoignent le pool.<br/>
 [**Étape 4.**](#step-4-create-batch-job) Créer un **travail** Batch.<br/>
-[**Étape 5.**](#step-5-add-tasks-to-job) Ajouter **tâches** toohello travail.<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**5a.** les tâches de Hello sont planifiée tooexecute sur les nœuds.<br/>
+[**Étape 5.**](#step-5-add-tasks-to-job) Ajoutez des **tâches** au travail.<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;**5a.** Les tâches sont planifiées pour s’exécuter sur des nœuds.<br/>
     &nbsp;&nbsp;&nbsp;&nbsp;**5b.** Chaque tâche télécharge ses données d’entrée depuis Stockage Azure, puis commence l’exécution.<br/>
 [**Étape 6.**](#step-6-monitor-tasks) Surveiller les tâches.<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**6a.** Comme les tâches sont effectuées, ils téléchargent leur tooAzure de données de sortie stockage.<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;**6a.** Lorsque les tâches sont terminées, les résultats générés sont chargés dans Stockage Azure.<br/>
 [**Étape 7.**](#step-7-download-task-output) Télécharger la sortie des tâches à partir de Storage.
 
 Comme indiqué précédemment, certaines solutions Batch ne suivent pas exactement cette procédure et peuvent exécuter de nombreuses autres opérations ; toutefois, cet exemple illustre les processus fréquemment inclus dans une solution Batch.
 
 ## <a name="prepare-client-script"></a>Préparer le script client
-Avant d’exécuter les exemples hello, ajoutez vos informations d’identification de compte de stockage et de traitement par lots trop*python_tutorial_client.py*. Si vous n’avez pas déjà fait, ouvrez les fichier hello dans votre hello Favoris d’éditeur et de mise à jour de lignes avec vos informations d’identification suivantes.
+Avant d’exécuter l’exemple, ajoutez vos informations d’identification du compte Batch et de Stockage Azure à *python_tutorial_client.py*. Si ce n’est déjà fait, ouvrez le fichier dans votre éditeur favori, puis mettez à jour les lignes suivantes avec vos informations d’identification.
 
 ```python
-# Update hello Batch and Storage account credential strings below with hello values
-# unique tooyour accounts. These are used when constructing connection strings
-# for hello Batch and Storage client objects.
+# Update the Batch and Storage account credential strings below with the values
+# unique to your accounts. These are used when constructing connection strings
+# for the Batch and Storage client objects.
 
 # Batch account credentials
 BATCH_ACCOUNT_NAME = ""
@@ -134,14 +134,14 @@ STORAGE_ACCOUNT_NAME = ""
 STORAGE_ACCOUNT_KEY = ""
 ```
 
-Vous pouvez trouver vos informations d’identification compte Batch et de stockage dans le panneau de compte hello de chaque service Bonjour [portail Azure][azure_portal]:
+Les informations d’identification de votre compte Batch et de votre compte de stockage figurent dans le panneau du compte de chaque service dans le [portail Azure][azure_portal] :
 
-![Traitement par lots les informations d’identification dans le portail de hello][9]
-![informations d’identification de stockage dans le portail de hello][10]<br/>
+![Informations d’identification Batch dans le portail][9]
+![Informations d’identification Stockage dans le portail][10]<br/>
 
-Bonjour les sections suivantes, nous analysons les étapes hello utilisés par hello scripts tooprocess une charge de travail Bonjour service Batch. Nous vous encourageons toorefer régulièrement toohello des scripts dans votre éditeur pendant que vous progressez via rest hello d’article de hello.
+Dans les sections suivantes, nous analyserons les processus utilisés par les scripts pour traiter une charge de travail dans le service Batch. Nous vous encourageons à consulter régulièrement les scripts dans votre éditeur à mesure que vous progressez dans la lecture de cet article.
 
-Accédez toohello ligne dans **python_tutorial_client.py** toostart à l’étape 1 :
+Accédez à la ligne suivante dans **python_tutorial_client.py** pour démarrer l’étape 1 :
 
 ```python
 if __name__ == '__main__':
@@ -151,24 +151,24 @@ if __name__ == '__main__':
 ![Créer des conteneurs dans le service Stockage Azure][1]
 <br/>
 
-Batch prend en charge l’interaction avec Azure Storage. Les conteneurs dans votre compte de stockage fournissent des fichiers de hello requis par les tâches de hello qui s’exécutent dans votre compte Batch. les conteneurs de Hello fournissent également des données de sortie de hello toostore sur place qui produisent des tâches de hello. Hello première hello *python_tutorial_client.py* du script est créer trois conteneurs dans [stockage d’objets Blob Azure](../storage/common/storage-introduction.md#blob-storage):
+Batch prend en charge l’interaction avec Azure Storage. Les conteneurs présents dans votre compte de stockage fournissent les fichiers nécessaires aux tâches s’exécutant dans votre compte Batch. Les conteneurs fournissent également un emplacement pour stocker les données de sortie générées par les tâches. Le script *python_tutorial_client.py* commence par créer trois conteneurs dans [Stockage Blob Azure](../storage/common/storage-introduction.md#blob-storage) :
 
-* **application**: ce conteneur stockera hello Python script exécuté par les tâches de hello, *python_tutorial_task.py*.
-* **d’entrée**: tâches téléchargera tooprocess de fichiers de données hello hello *d’entrée* conteneur.
-* **sortie**: lorsque les tâches de terminer le traitement du fichier d’entrée, ils téléchargeront hello résultats toohello *sortie* conteneur.
+* **application** : ce conteneur stocke le script Python exécuté par les tâches, *python_tutorial_task.py*.
+* **input**: les tâches téléchargeront les fichiers de données à traiter à partir du conteneur *input* .
+* **output**: une fois que les tâches auront terminé de traiter les fichiers d’entrée, elles chargeront leurs résultats dans le conteneur *output* .
 
-Dans l’ordre des toointeract avec un stockage de compte et de créer des conteneurs, nous utilisons hello [le stockage azure] [ pypi_storage] package toocreate un [BlockBlobService] [ py_blockblobservice] objet : hello « client de l’objet blob. » Ensuite, nous créons trois conteneurs hello compte de stockage à l’aide du client de blob hello.
+Pour interagir avec un compte de stockage et créer des conteneurs, nous utilisons le package [azure-storage][pypi_storage] pour créer un objet [BlockBlobService][py_blockblobservice] (le « client d’objet blob »). Ensuite, nous créons trois conteneurs dans le compte de stockage à l’aide du client d’objet blob.
 
 ```python
 import azure.storage.blob as azureblob
 
-# Create hello blob client, for use in obtaining references to
-# blob storage containers and uploading files toocontainers.
+# Create the blob client, for use in obtaining references to
+# blob storage containers and uploading files to containers.
 blob_client = azureblob.BlockBlobService(
     account_name=STORAGE_ACCOUNT_NAME,
     account_key=STORAGE_ACCOUNT_KEY)
 
-# Use hello blob client toocreate hello containers in Azure Storage if they
+# Use the blob client to create the containers in Azure Storage if they
 # don't yet exist.
 APP_CONTAINER_NAME = 'application'
 INPUT_CONTAINER_NAME = 'input'
@@ -178,54 +178,54 @@ blob_client.create_container(INPUT_CONTAINER_NAME, fail_on_exist=False)
 blob_client.create_container(OUTPUT_CONTAINER_NAME, fail_on_exist=False)
 ```
 
-Une fois que les conteneurs hello ont été créées, application hello peut maintenant télécharger des fichiers de hello qui seront utilisés par les tâches hello.
+Une fois les conteneurs créés, l’application peut charger les fichiers destinés à être utilisés par les tâches.
 
 > [!TIP]
-> [Comment toouse le stockage Blob Azure à partir de Python](../storage/blobs/storage-python-how-to-use-blob-storage.md) fournit une bonne vue d’ensemble de l’utilisation de conteneurs Azure Storage et les objets BLOB. Il doit être haut hello de votre liste de lecture commencer à utiliser avec le lot.
+> L’article [Utilisation du Stockage Blob Azure à partir de Python](../storage/blobs/storage-python-how-to-use-blob-storage.md) offre un bon aperçu de l’utilisation des conteneurs de stockage Azure et des objets blob. Il doit se trouver au début de votre liste de lecture lorsque vous commencez à travailler avec le traitement Batch.
 >
 >
 
 ## <a name="step-2-upload-task-script-and-data-files"></a>Étape 2 : charger les scripts de tâche et les fichiers de données
-![Tâche de chargement d’application et d’entrée (données) des fichiers toocontainers][2]
+![Charger les fichiers d’application de tâche et les fichiers (de données) d’entrée dans les conteneurs][2]
 <br/>
 
-Dans le fichier de hello Téléchargez opération, *python_tutorial_client.py* définit tout d’abord les collections de **application** et **d’entrée** chemins d’accès de fichiers tels qu’ils existent sur l’ordinateur local de hello. Puis il les télécharge ces conteneurs toohello de fichiers que vous avez créé à l’étape précédente de hello.
+Dans le cadre de l’opération de chargement des fichiers, *python_tutorial_client.py* commence par définir les groupes de chemins d’accès aux fichiers **application** et **input** tels qu’ils existent sur la machine locale. Il télécharge ensuite ces fichiers dans les conteneurs créés à l’étape précédente.
 
 ```python
-# Paths toohello task script. This script will be executed by hello tasks that
-# run on hello compute nodes.
+# Paths to the task script. This script will be executed by the tasks that
+# run on the compute nodes.
 application_file_paths = [os.path.realpath('python_tutorial_task.py')]
 
-# hello collection of data files that are toobe processed by hello tasks.
+# The collection of data files that are to be processed by the tasks.
 input_file_paths = [os.path.realpath('./data/taskdata1.txt'),
                     os.path.realpath('./data/taskdata2.txt'),
                     os.path.realpath('./data/taskdata3.txt')]
 
-# Upload hello application script tooAzure Storage. This is hello script that
-# will process hello data files, and is executed by each of hello tasks on the
+# Upload the application script to Azure Storage. This is the script that
+# will process the data files, and is executed by each of the tasks on the
 # compute nodes.
 application_files = [
     upload_file_to_container(blob_client, APP_CONTAINER_NAME, file_path)
     for file_path in application_file_paths]
 
-# Upload hello data files. This is hello data that will be processed by each of
-# hello tasks executed on hello compute nodes in hello pool.
+# Upload the data files. This is the data that will be processed by each of
+# the tasks executed on the compute nodes in the pool.
 input_files = [
     upload_file_to_container(blob_client, INPUT_CONTAINER_NAME, file_path)
     for file_path in input_file_paths]
 ```
 
-À l’aide de la compréhension de la liste, hello `upload_file_to_container` fonction est appelée pour chaque fichier dans les collections de hello et deux [ResourceFile] [ py_resource_file] collections sont remplies. Hello `upload_file_to_container` fonction apparaît ci-dessous :
+À l’aide de la compréhension de liste, la fonction `upload_file_to_container` est appelée pour chaque fichier dans les groupes et les deux groupes [ResourceFile][py_resource_file] sont remplis. La fonction `upload_file_to_container` apparaît ci-dessous :
 
 ```python
 def upload_file_to_container(block_blob_client, container_name, path):
     """
-    Uploads a local file tooan Azure Blob storage container.
+    Uploads a local file to an Azure Blob storage container.
 
     :param block_blob_client: A blob service client.
     :type block_blob_client: `azure.storage.blob.BlockBlobService`
-    :param str container_name: hello name of hello Azure Blob storage container.
-    :param str file_path: hello local path toohello file.
+    :param str container_name: The name of the Azure Blob storage container.
+    :param str file_path: The local path to the file.
     :rtype: `azure.batch.models.ResourceFile`
     :return: A ResourceFile initialized with a SAS URL appropriate for Batch
     tasks.
@@ -237,7 +237,7 @@ def upload_file_to_container(block_blob_client, container_name, path):
 
     blob_name = os.path.basename(path)
 
-    print('Uploading file {} toocontainer [{}]...'.format(path,
+    print('Uploading file {} to container [{}]...'.format(path,
                                                           container_name))
 
     block_blob_client.create_blob_from_path(container_name,
@@ -259,23 +259,23 @@ def upload_file_to_container(block_blob_client, container_name, path):
 ```
 
 ### <a name="resourcefiles"></a>Objets ResourceFile
-A [ResourceFile] [ py_resource_file] fournit des tâches dans un lot avec fichier de tooa hello URL dans le stockage Azure qui est téléchargé tooa nœud de calcul avant l’exécution de cette tâche. Hello [ResourceFile][py_resource_file]. **blob_source** propriété spécifie une URL complète du fichier de hello hello telle qu’elle existe dans le stockage Azure. URL de Hello peut-être également inclure une signature d’accès partagé (SAS) qui fournit un accès sécurisé toohello fichier. La propriété *ResourceFiles* est utilisée par la plupart des types de tâches dans Batch :
+Un objet [ResourceFile][py_resource_file] fournit aux tâches de Batch l’URL d’un fichier de Stockage Azure qui est téléchargé dans un nœud de calcul avant l’exécution de ces tâches. La propriété [ResourceFile][py_resource_file].**blob_source** spécifie l’URL complète du fichier tel qu’il existe dans Stockage Azure. L’URL peut également inclure une signature d’accès partagé (SAS) fournissant un accès sécurisé au fichier. La propriété *ResourceFiles* est utilisée par la plupart des types de tâches dans Batch :
 
 * [CloudTask][py_task]
 * [StartTask][py_starttask]
 * [JobPreparationTask][py_jobpreptask]
 * [JobReleaseTask][py_jobreltask]
 
-Cet exemple n’utilise pas de type hello JobPreparationTask ou JobReleaseTask les types de tâches, mais vous pouvez en savoir plus sur les [nœuds de calcul des tâches de préparation et l’achèvement de projet sur Azure Batch exécuter](batch-job-prep-release.md).
+Cet exemple n’utilise pas les types de tâche JobPreparationTask ou JobReleaseTask. Pour plus d’informations sur ces types de tâches, consultez la section [Exécution de tâches de préparation et de fin du travail sur les nœuds de calcul Azure Batch](batch-job-prep-release.md).
 
 ### <a name="shared-access-signature-sas"></a>Signature d’accès partagé (SAP)
-Signatures d’accès partagé sont des chaînes qui fournissent un accès sécurisé toocontainers et objets BLOB dans le stockage Azure. Hello *python_tutorial_client.py* script utilise les deux objets blob et les signatures d’accès partagé de conteneur et montre comment tooobtain ces partagés accéder aux chaînes de signature à partir de hello service de stockage.
+Les signatures d’accès partagé sont des chaînes qui offrent un accès sécurisé aux conteneurs et aux objets blob dans Azure Storage. Le script *python_tutorial_client.py* utilise les signatures d’accès partagé des objets blob et des conteneurs et montre comment obtenir ces chaînes de signature d’accès partagé auprès du service Storage.
 
-* **Signatures d’accès partagé d’objets BLOB**: utilise des StartTask du pool hello blob signatures d’accès partagé lorsqu’il télécharge hello tâche script et l’entrée des fichiers de données à partir du stockage (voir [étape 3](#step-3-create-batch-pool) ci-dessous). Hello `upload_file_to_container` fonctionner dans *python_tutorial_client.py* contient le code hello qui obtient la signature d’accès partagé de l’objet blob. Il le fait en appelant [BlockBlobService.make_blob_url] [ py_make_blob_url] dans le module de stockage hello.
-* **Signature d’accès partagé de conteneur**: que chaque tâche a terminé son travail sur le nœud de calcul hello, il télécharge sa toohello de fichier de sortie *sortie* conteneur dans le stockage Azure. toodo, *python_tutorial_task.py* utilise une signature d’accès partagé de conteneur qui fournit un accès en écriture toohello conteneur. Hello `get_container_sas_token` fonctionner dans *python_tutorial_client.py* Obtient la signature d’accès partagé du conteneur hello, qui est ensuite passée en tant que tâches de toohello un argument de ligne de commande. Étape 5 de #, [travail de tooa tâches ajouter](#step-5-add-tasks-to-job), traite de l’utilisation de hello de SAP de conteneur hello.
+* **Signature d’accès partagé d’objet blob**: le type de tâche StartTask du pool utilise les signatures d’accès partagé d’objet blob lors du téléchargement des scripts de tâche et des fichiers de données d’entrée à partir de Storage (voir [l’étape 3](#step-3-create-batch-pool) ci-dessous). La fonction `upload_file_to_container` dans *python_tutorial_client.py* contient le code qui obtient la signature d’accès partagé de l’objet blob. Elle le fait en appelant [BlockBlobService.make_blob_url][py_make_blob_url] dans le module Storage.
+* **Signature d’accès partagé de conteneur**: une fois que chaque tâche a mené à bien l’opération qui lui était affectée sur le nœud de calcul, elle charge son fichier de sortie dans le conteneur *output* de Stockage Azure. Pour ce faire, *python_tutorial_task.py* utilise une signature d’accès partagé de conteneur qui fournit l’accès en écriture au conteneur. La fonction `get_container_sas_token` dans *python_tutorial_client.py* obtient la signature d’accès partagé du conteneur, qui est ensuite transmise aux tâches en tant qu’argument de ligne de commande. L’étape 5, [Ajout de tâches à un travail](#step-5-add-tasks-to-job), décrit l’utilisation du SAP de conteneur.
 
 > [!TIP]
-> Extraction de série en deux parties hello sur les signatures d’accès partagé, [partie 1 : modèle de présentation hello SAP](../storage/common/storage-dotnet-shared-access-signature-part-1.md) et [partie 2 : créer et utiliser une SAP avec hello service Blob](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md), toolearn plus de fournir un accès sécurisé toodata dans votre compte de stockage.
+> Pour plus d’informations sur la sécurisation de l’accès aux données dans votre compte de stockage, consultez la série en deux parties sur les signatures d’accès partagé, [Partie 1 : présentation du modèle SAP](../storage/common/storage-dotnet-shared-access-signature-part-1.md) et [Partie 2 : création et utilisation d’une signature d’accès partagé avec le service BLOB](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md).
 >
 >
 
@@ -285,11 +285,11 @@ Signatures d’accès partagé sont des chaînes qui fournissent un accès sécu
 
 Un **pool** Batch est une collection de nœuds de calcul (machines virtuelles) sur lequel Batch exécute les tâches d’un travail.
 
-Une fois qu’il télécharge hello tâche script et les données de fichiers toohello compte de stockage, *python_tutorial_client.py* démarre son interaction avec le service de traitement par lots hello à l’aide du module de traitement par lots Python hello. toodo, un [BatchServiceClient] [ py_batchserviceclient] est créé :
+Après le chargement des tâches de script et des fichiers de données dans le compte de stockage, *python_tutorial_client.py* commence à interagir avec le service Batch à l’aide du module Batch Python. Pour ce faire, un [BatchServiceClient][py_batchserviceclient] est créé :
 
 ```python
-# Create a Batch service client. We'll now be interacting with hello Batch
-# service in addition tooStorage.
+# Create a Batch service client. We'll now be interacting with the Batch
+# service in addition to Storage.
 credentials = batchauth.SharedKeyCredentials(BATCH_ACCOUNT_NAME,
                                              BATCH_ACCOUNT_KEY)
 
@@ -298,18 +298,18 @@ batch_client = batch.BatchServiceClient(
     base_url=BATCH_ACCOUNT_URL)
 ```
 
-Ensuite, un pool de nœuds de calcul est créé dans hello compte Batch avec un appel trop`create_pool`.
+Ensuite, un pool de nœuds de calcul est créé dans le compte Batch avec un appel de `create_pool`.
 
 ```python
 def create_pool(batch_service_client, pool_id,
                 resource_files, publisher, offer, sku):
     """
-    Creates a pool of compute nodes with hello specified OS settings.
+    Creates a pool of compute nodes with the specified OS settings.
 
     :param batch_service_client: A Batch service client.
     :type batch_service_client: `azure.batch.BatchServiceClient`
-    :param str pool_id: An ID for hello new pool.
-    :param list resource_files: A collection of resource files for hello pool's
+    :param str pool_id: An ID for the new pool.
+    :param list resource_files: A collection of resource files for the pool's
     start task.
     :param str publisher: Marketplace image publisher
     :param str offer: Marketplace image offer
@@ -322,24 +322,24 @@ def create_pool(batch_service_client, pool_id,
     # nodes, see:
     # https://azure.microsoft.com/documentation/articles/batch-linux-nodes/
 
-    # Specify hello commands for hello pool's start task. hello start task is run
-    # on each node as it joins hello pool, and when it's rebooted or re-imaged.
-    # We use hello start task tooprep hello node for running our task script.
+    # Specify the commands for the pool's start task. The start task is run
+    # on each node as it joins the pool, and when it's rebooted or re-imaged.
+    # We use the start task to prep the node for running our task script.
     task_commands = [
-        # Copy hello python_tutorial_task.py script toohello "shared" directory
-        # that all tasks that run on hello node have access to.
+        # Copy the python_tutorial_task.py script to the "shared" directory
+        # that all tasks that run on the node have access to.
         'cp -r $AZ_BATCH_TASK_WORKING_DIR/* $AZ_BATCH_NODE_SHARED_DIR',
-        # Install pip and hello dependencies for cryptography
+        # Install pip and the dependencies for cryptography
         'apt-get update',
         'apt-get -y install python-pip',
         'apt-get -y install build-essential libssl-dev libffi-dev python-dev',
-        # Install hello azure-storage module so that hello task script can access
+        # Install the azure-storage module so that the task script can access
         # Azure Blob storage
         'pip install azure-storage']
 
-    # Get hello node agent SKU and image reference for hello virtual machine
+    # Get the node agent SKU and image reference for the virtual machine
     # configuration.
-    # For more information about hello virtual machine configuration, see:
+    # For more information about the virtual machine configuration, see:
     # https://azure.microsoft.com/documentation/articles/batch-linux-nodes/
     sku_to_use, image_ref_to_use = \
         common.helpers.select_latest_verified_vm_image_with_node_agent_sku(
@@ -367,41 +367,41 @@ def create_pool(batch_service_client, pool_id,
         raise
 ```
 
-Lorsque vous créez un pool, vous définissez un [PoolAddParameter] [ py_pooladdparam] qui spécifie plusieurs propriétés pour le pool de hello :
+Lorsque vous créez un pool, vous définissez un [PoolAddParameter][py_pooladdparam] qui spécifie plusieurs propriétés pour le pool :
 
-* **ID** de pool de hello (*id* - requis)<p/>Comme pour la plupart des entités dans Batch, votre nouveau pool doit avoir un ID unique au sein de votre compte Batch. Votre code fait référence à l’aide de son ID de pool de toothis, et c’est la façon dont vous identifiez pool hello Bonjour Azure [portal][azure_portal].
-* **Nombre de nœuds de calcul** (*target_dedicated* - obligatoire)<p/>Cette propriété spécifie le nombre de machines virtuelles doivent être déployés dans le pool de hello. Il est important toonote que tous les comptes de traitement par lots ont une valeur par défaut **quota** que limites hello nombre de **cœurs** (et par conséquent, les nœuds de calcul) dans un compte de traitement par lots. Vous trouverez les quotas par défaut hello et obtenir des instructions sur la façon de trop[un quota de](batch-quota-limit.md#increase-a-quota) (par exemple, le nombre maximal de hello de cœurs dans votre compte Batch) dans [Quotas et limites pour hello service Azure Batch](batch-quota-limit.md). Si vous vous demandez pourquoi votre pool n’atteint pas plus de X nœuds, Ce quota de base peut être la cause de hello.
-* **Système d’exploitation** pour les nœuds (*virtual_machine_configuration***ou***cloud_service_configuration* - obligatoire)<p/>Dans *python_tutorial_client.py*, nous créons un pool de nœuds Linux à l’aide de [VirtualMachineConfiguration][py_vm_config]. Hello `select_latest_verified_vm_image_with_node_agent_sku` fonctionner dans `common.helpers` simplifie l’utilisation de [Azure Marketplace de Machines virtuelles] [ vm_marketplace] images. Pour plus d’informations sur l’utilisation des images du Marketplace, voir [Configurer des nœuds de calcul Linux dans des pools Azure Batch](batch-linux-nodes.md) .
+* **ID** du pool (*id* - obligatoire)<p/>Comme pour la plupart des entités dans Batch, votre nouveau pool doit avoir un ID unique au sein de votre compte Batch. Votre code fait référence à ce pool en utilisant son ID ; c’est ainsi que vous pouvez identifier le pool dans le [portail][azure_portal] Azure.
+* **Nombre de nœuds de calcul** (*target_dedicated* - obligatoire)<p/>Cette propriété spécifie le nombre de machines virtuelles à déployer dans le pool. Il est important de noter que tous les comptes Batch ont un **quota** par défaut qui limite le nombre de **cœurs** (et par conséquent, celui des nœuds de calcul) dans un compte Batch. Pour en savoir plus sur les quotas par défaut et obtenir des instructions sur comment [augmenter un quota](batch-quota-limit.md#increase-a-quota) (par exemple, le nombre maximal de cœurs dans votre compte Batch), consultez l’article [Quotas et limites pour le service Azure Batch](batch-quota-limit.md). Si vous vous demandez pourquoi votre pool n’atteint pas plus de X nœuds, ce quota de cœurs peut en être la raison.
+* **Système d’exploitation** pour les nœuds (*virtual_machine_configuration***ou***cloud_service_configuration* - obligatoire)<p/>Dans *python_tutorial_client.py*, nous créons un pool de nœuds Linux à l’aide de [VirtualMachineConfiguration][py_vm_config]. La fonction `select_latest_verified_vm_image_with_node_agent_sku` dans `common.helpers` simplifie l’utilisation des images du [Marketplace de machines virtuelles Azure][vm_marketplace]. Pour plus d’informations sur l’utilisation des images du Marketplace, voir [Configurer des nœuds de calcul Linux dans des pools Azure Batch](batch-linux-nodes.md) .
 * **Taille des nœuds de calcul** (*vm_size* - obligatoire)<p/>Étant donné que nous spécifions des nœuds Linux pour notre [VirtualMachineConfiguration][py_vm_config], nous spécifions une taille de machine virtuelle (`STANDARD_A1` dans cet exemple) parmi les [tailles des machines virtuelles dans Azure](../virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Pour plus d’informations, voir [Configurer des nœuds de calcul Linux dans des pools Azure Batch](batch-linux-nodes.md) .
-* **Tâche de démarrage** (*start_task* : non obligatoire)<p/>En même temps que hello au-dessus des propriétés d’un nœud physique, vous pouvez également spécifier un [StartTask] [ py_starttask] pour le pool hello (il n’est pas obligatoire). Hello StartTask s’exécute sur chaque nœud de ce nœud rejoint le pool de hello, chaque fois qu’un nœud est redémarré. Hello StartTask est particulièrement utile pour la préparation des nœuds de calcul pour l’exécution de hello de tâches, telles que l’installation d’applications hello qui exécutent des tâches.<p/>Dans cet exemple d’application, hello StartTask copie les fichiers de hello qu’il télécharge à partir du stockage (qui sont spécifié à l’aide de hello StartTask **resource_files** propriété) à partir de hello StartTask *répertoire de travail* toohello *partagé* Active toutes les tâches en cours d’exécution sur le nœud de hello peuvent accéder. Pour l’essentiel, cette copie `python_tutorial_task.py` toohello répertoire partagé sur chaque nœud comme nœud de hello rejoint le pool de hello, afin que toutes les tâches qui s’exécutent sur le nœud de hello puissent y accéder.
+* **Tâche de démarrage** (*start_task* : non obligatoire)<p/>Outre les propriétés du nœud physique citées plus haut, vous pouvez également spécifier une [StartTask][py_starttask] pour le pool (celle-ci n’est cependant pas obligatoire). La tâche StartTask s’exécute sur chacun des nœuds rejoignant le pool, ainsi qu’à chaque redémarrage d’un nœud. StarTask est particulièrement utile pour préparer les nœuds de calcul à l’exécution des tâches, telles que l’installation des applications que vos tâches exécuteront.<p/>Dans cet exemple d’application, la tâche StartTask copie les fichiers qu’elle a téléchargés à partir de Storage (spécifiés avec la propriété **resource_files** de StartTask) depuis le *répertoire de travail* de StartTask vers le répertoire *partagé* accessible à toutes les tâches qui s’exécutent sur le nœud. Pour l’essentiel, ceci copie `python_tutorial_task.py` sur le répertoire partagé sur chaque nœud lorsque le nœud rejoint le pool, afin que toutes les tâches qui s’exécutent sur le nœud puissent y accéder.
 
-Vous pouvez remarquer hello appel toohello `wrap_commands_in_shell` fonction d’assistance. Cette fonction prend une collection de commandes distinctes et crée une ligne de commande unique adaptée à la propriété de ligne de commande d’une tâche.
+Vous remarquerez peut-être l’appel à la fonction d’assistance `wrap_commands_in_shell` . Cette fonction prend une collection de commandes distinctes et crée une ligne de commande unique adaptée à la propriété de ligne de commande d’une tâche.
 
-Remarquables dans l’extrait de code hello ci-dessus est également utiliser deux variables d’environnement Bonjour hello **lettre** propriété Hello StartTask : `AZ_BATCH_TASK_WORKING_DIR` et `AZ_BATCH_NODE_SHARED_DIR`. Chaque nœud de calcul au sein d’un pool de traitement par lots est automatiquement configuré avec plusieurs variables d’environnement qui sont tooBatch spécifique. Tout processus qui est exécutée par une tâche a des variables d’environnement toothese accès.
+Notez également que l’extrait de code ci-dessus utilise deux variables d’environnement dans la propriété **command_line** de StartTask : `AZ_BATCH_TASK_WORKING_DIR` et `AZ_BATCH_NODE_SHARED_DIR`. Chaque nœud de calcul au sein d’un pool Batch est automatiquement configuré avec plusieurs variables d’environnement propres au Batch. Tout processus qui est exécuté par une tâche a accès à ces variables d’environnement.
 
 > [!TIP]
-> toofind plus d’informations sur les variables d’environnement hello qui sont disponibles sur les nœuds de calcul dans un pool de traitement par lots, ainsi que les informations sur les répertoires de travail tâche, consultez **paramètres d’environnement pour les tâches** et **fichiers et répertoires**  Bonjour [vue d’ensemble des fonctionnalités de traitement par lots Azure](batch-api-basics.md).
+> Pour plus d’informations sur les variables d’environnement disponibles sur les nœuds de calcul d’un pool Batch, ainsi que sur les répertoires de travail de tâche, voir les sections **Paramètres d’environnement des tâches** et **Fichiers et répertoires** de l’article [Vue d’ensemble des fonctionnalités d’Azure Batch](batch-api-basics.md).
 >
 >
 
 ## <a name="step-4-create-batch-job"></a>Étape 4 : créer un travail Batch
 ![Créer un travail Batch][4]<br/>
 
-Un **travail** Batch constitue un ensemble de tâches et est associé à un pool de nœuds de calcul. tâches de Hello dans un travail s’exécutent sur les nœuds de calcul du pool hello associé.
+Un **travail** Batch constitue un ensemble de tâches et est associé à un pool de nœuds de calcul. Les tâches d’un travail s’exécutent sur les nœuds de calcul du pool associé.
 
-Vous pouvez utiliser une tâche pour l’organisation et le suivi des tâches dans les charges de travail, mais également pour imposer certaines contraintes--par exemple hello durée d’exécution pour le travail de hello (et par extension, ses tâches) et priorité des travaux dans les tâches de tooother de relation dans hello compte Batch. Dans cet exemple, toutefois, les travaux de hello est associé uniquement à pool hello qui a été créé à l’étape 3 de #. Aucune propriété supplémentaire n’est configurée.
+Vous pouvez utiliser un travail non seulement dans le cadre de l’organisation et du suivi des tâches dans des charges de travail liées, mais également pour imposer certaines contraintes telles que la durée d’exécution maximale du travail (et, par extension, de ses tâches) et la priorité du travail par rapport aux autres travaux du compte Batch. Dans cet exemple, toutefois, le travail est uniquement associé au pool qui a été créé à l’étape 3. Aucune propriété supplémentaire n’est configurée.
 
-Tous les travaux Batch sont associés à un pool spécifique. Cette association indique les nœuds d’exécutent des tâches du travail hello sur. Vous spécifiez un pool de hello à l’aide de hello [PoolInformation] [ py_poolinfo] propriété, comme indiqué dans l’extrait de code hello ci-dessous.
+Tous les travaux Batch sont associés à un pool spécifique. Cette association indique les nœuds sur lesquels les tâches du travail sont exécutées. Vous spécifiez le pool avec la propriété [PoolInformation][py_poolinfo], comme indiqué dans l’extrait de code ci-dessous.
 
 ```python
 def create_job(batch_service_client, job_id, pool_id):
     """
-    Creates a job with hello specified ID, associated with hello specified pool.
+    Creates a job with the specified ID, associated with the specified pool.
 
     :param batch_service_client: A Batch service client.
     :type batch_service_client: `azure.batch.BatchServiceClient`
-    :param str job_id: hello ID for hello job.
-    :param str pool_id: hello ID for hello pool.
+    :param str job_id: The ID for the job.
+    :param str pool_id: The ID for the pool.
     """
     print('Creating job [{}]...'.format(job_id))
 
@@ -416,34 +416,34 @@ def create_job(batch_service_client, job_id, pool_id):
         raise
 ```
 
-Maintenant qu’un travail a été créé, les tâches sont ajoutées travail hello de tooperform.
+Une fois qu’un travail a été créé, des tâches lui sont ajoutées pour mener à bien l’opération requise.
 
-## <a name="step-5-add-tasks-toojob"></a>Étape 5 : Ajouter des tâches toojob
-![Ajouter des tâches toojob][5]<br/>
-*(1) tâches sont ajoutés toohello travail, tâches de hello (2) sont planifiée toorun sur les nœuds et les tâches hello (3) téléchargement tooprocess de fichiers de données hello*
+## <a name="step-5-add-tasks-to-job"></a>Étape 5 : ajouter des tâches au travail
+![Ajouter des tâches au travail][5]<br/>
+*(1) Les tâches sont ajoutées au travail, (2) les tâches sont planifiées pour s’exécuter sur les nœuds et (3) les tâches téléchargent les fichiers de données à traiter*
 
-Lot **tâches** sont des nœuds de calcul hello unités de travail individuelles qui s’exécutent sur hello. Une tâche a une ligne de commande et exécute les scripts hello ou exécutables que vous spécifiez dans cette ligne de commande.
+Les **tâches** Batch constituent les unités de travail individuelles qui s’exécutent sur les nœuds de calcul. Une ligne de commande est associée à une tâche et cette dernière exécute les scripts ou les exécutables que vous spécifiez dans la ligne de commande.
 
-tooactually effectuer un travail, de tâches doivent être ajoutées à une tâche tooa. Chaque [CloudTask] [ py_task] est configuré avec une propriété de ligne de commande et [ResourceFiles] [ py_resource_file] (comme avec la tâche de début du pool hello) que hello tâche télécharge toohello nœud avant sa ligne de commande est exécutée automatiquement. Dans l’exemple hello, chaque tâche traite un seul fichier. Par conséquent, sa collection ResourceFiles contient un seul élément.
+Pour mener à bien l’opération requise, il est nécessaire d’ajouter les tâches à un travail. Chaque tâche [CloudTask][py_task] est configurée par le biais d’une propriété de ligne de commande et [ResourceFiles][py_resource_file] (comme avec la tâche StartTask du pool) que la tâche télécharge dans le nœud avant l’exécution automatique de sa ligne de commande. Dans l’exemple, chaque tâche traite un seul fichier. Par conséquent, sa collection ResourceFiles contient un seul élément.
 
 ```python
 def add_tasks(batch_service_client, job_id, input_files,
               output_container_name, output_container_sas_token):
     """
-    Adds a task for each input file in hello collection toohello specified job.
+    Adds a task for each input file in the collection to the specified job.
 
     :param batch_service_client: A Batch service client.
     :type batch_service_client: `azure.batch.BatchServiceClient`
-    :param str job_id: hello ID of hello job toowhich tooadd hello tasks.
+    :param str job_id: The ID of the job to which to add the tasks.
     :param list input_files: A collection of input files. One task will be
      created for each input file.
-    :param output_container_name: hello ID of an Azure Blob storage container to
-    which hello tasks will upload their results.
+    :param output_container_name: The ID of an Azure Blob storage container to
+    which the tasks will upload their results.
     :param output_container_sas_token: A SAS token granting write access to
-    hello specified Azure Blob storage container.
+    the specified Azure Blob storage container.
     """
 
-    print('Adding {} tasks toojob [{}]...'.format(len(input_files), job_id))
+    print('Adding {} tasks to job [{}]...'.format(len(input_files), job_id))
 
     tasks = list()
 
@@ -469,46 +469,46 @@ def add_tasks(batch_service_client, job_id, input_files,
 ```
 
 > [!IMPORTANT]
-> Lorsque leur accès aux variables d’environnement telles que `$AZ_BATCH_NODE_SHARED_DIR` ou exécuter une application introuvable dans du nœud hello `PATH`, lignes de commande de tâche doit appeler hello interface explicitement, comme avec `/bin/sh -c MyTaskApplication $MY_ENV_VAR`. Cette exigence n’est pas nécessaire si vos tâches exécutent une application dans du nœud hello `PATH` et ne font pas référence à des variables d’environnement.
+> Lorsqu’elles accèdent aux variables d’environnement telles que `$AZ_BATCH_NODE_SHARED_DIR` ou exécutent une application introuvable dans le `PATH` du nœud, les lignes de commande de tâche doivent appeler l’interpréteur de commandes explicitement, comme avec `/bin/sh -c MyTaskApplication $MY_ENV_VAR`. Cette exigence n’est pas nécessaire si vos tâches exécutent une application dans le `PATH` du nœud et ne référencent aucune variable d’environnement.
 >
 >
 
-Au sein de hello `for` boucle dans l’extrait de code hello ci-dessus, vous pouvez voir que la ligne de commande hello pour la tâche hello est construite avec cinq arguments de ligne de commande qui sont passés trop*python_tutorial_task.py*:
+Dans la boucle `for` de l’extrait de code ci-dessus, vous pouvez remarquer que la ligne de commande de la tâche est faite avec cinq arguments de ligne de commande, qui sont transmis à *python_tutorial_task.py* :
 
-1. **FilePath**: il s’agit hello chemin d’accès local toohello fichier tel qu’il existe sur le nœud de hello. Lorsque hello objet ResourceFile dans `upload_file_to_container` a été créé à l’étape 2 ci-dessus, le nom de fichier hello a été utilisée pour cette propriété (hello `file_path` paramètre hello ResourceFile constructeur). Cela indique que hello fichier se trouve dans hello même nœud hello en tant que répertoire *python_tutorial_task.py*.
-2. **NUMWORDS**: haut de hello *N* mots doivent être écrits en fichier de sortie toohello.
-3. **storageaccount**: nom hello Hello compte de stockage qui est propriétaire du résultat de la tâche hello conteneur toowhich hello doit être téléchargé.
-4. **storagecontainer**: nom de hello Hello de toowhich de conteneur de stockage hello sortie de fichiers doivent être téléchargés.
-5. **sastoken**: signature hello accès partagé (SAP) qui fournit un accès en écriture toohello **sortie** conteneur dans le stockage Azure. Hello *python_tutorial_task.py* script utilise cette signature d’accès partagé lorsque crée sa référence BlockBlobService. Cela fournit un accès en écriture toohello conteneur sans nécessiter une clé d’accès pour le compte de stockage hello.
+1. **filepath**: il s’agit du chemin d’accès local au fichier tel qu’il existe sur le nœud. Lorsque l’objet ResourceFile dans `upload_file_to_container` a été créé à l’étape 2, le nom de fichier a été utilisé pour cette propriété (le paramètre `file_path` dans le constructeur ResourceFile). Cela indique que le fichier se trouve dans le même répertoire que *python_tutorial_task.py* sur le nœud.
+2. **numwords**: les *N* premiers mots doivent être écrits dans le fichier de sortie.
+3. **storageaccount**: le nom du compte de stockage que possède le conteneur dans lequel la sortie de la tâche doit être chargée.
+4. **storagecontainer**: le nom du conteneur de stockage dans lequel les fichiers de sortie doivent être chargés.
+5. **sastoken** : la signature d’accès partagé (SAP) qui fournit un accès en écriture au conteneur **output** de Stockage Azure. Le script *python_tutorial_task.py* utilise cette signature d’accès partagé pour créer sa référence BlockBlobService. Cela fournit un accès en écriture au conteneur sans avoir recours à une clé d’accès pour le compte de stockage.
 
 ```python
 # NOTE: Taken from python_tutorial_task.py
 
-# Create hello blob client using hello container's SAS token.
-# This allows us toocreate a client that provides write
-# access only toohello container.
+# Create the blob client using the container's SAS token.
+# This allows us to create a client that provides write
+# access only to the container.
 blob_client = azureblob.BlockBlobService(account_name=args.storageaccount,
                                          sas_token=args.sastoken)
 ```
 
 ## <a name="step-6-monitor-tasks"></a>Étape 6 : surveiller les tâches
 ![Surveiller les tâches][6]<br/>
-*Hello tâches hello moniteurs (1) pour l’état d’achèvement et les tâches hello (2) téléchargement tooAzure de données de résultat stockage*
+*Le script (1) surveille l’état d’achèvement des tâches, et (2) les tâches chargent les données de résultat dans Stockage Azure*
 
-Lorsque les tâches sont ajoutées tooa travail, ils sont en file d’attente et planifiés pour l’exécution sur des nœuds de calcul dans le pool hello associé hello travail automatiquement. Selon les paramètres que vous spécifiez hello, lot gère queuing à toutes les tâches, la planification, une nouvelle tentative et autres tâches d’administration de tâche pour vous.
+Lorsque les tâches sont ajoutées à un travail, elles sont automatiquement mises en file d’attente et planifiées pour s’exécuter sur les nœuds de calcul dans le pool associé au travail. Selon les paramètres que vous spécifiez, Batch gère l’ensemble des opérations de mise en file d’attente, de planification, de ré-exécution et d’administration des tâches à votre intention.
 
-Il existe de nombreuses approches toomonitoring exécution de la tâche. Hello `wait_for_tasks_to_complete` fonctionner dans *python_tutorial_client.py* fournit un exemple simple de tâches de surveillance pour un certain état, dans ce cas, hello [terminé] [ py_taskstate] état.
+Il existe plusieurs approches pour l’exécution de la tâche d’analyse. La fonction `wait_for_tasks_to_complete` dans *python_tutorial_client.py* fournit un exemple simple de tâches d’analyse pour un certain état, dans ce cas, l’état [terminé][py_taskstate].
 
 ```python
 def wait_for_tasks_to_complete(batch_service_client, job_id, timeout):
     """
-    Returns when all tasks in hello specified job reach hello Completed state.
+    Returns when all tasks in the specified job reach the Completed state.
 
     :param batch_service_client: A Batch service client.
     :type batch_service_client: `azure.batch.BatchServiceClient`
-    :param str job_id: hello id of hello job whose tasks should be toomonitored.
-    :param timedelta timeout: hello duration toowait for task completion. If all
-    tasks in hello specified job do not reach Completed state within this time
+    :param str job_id: The id of the job whose tasks should be to monitored.
+    :param timedelta timeout: The duration to wait for task completion. If all
+    tasks in the specified job do not reach Completed state within this time
     period, an exception will be raised.
     """
     timeout_expiration = datetime.datetime.now() + timeout
@@ -537,19 +537,19 @@ def wait_for_tasks_to_complete(batch_service_client, job_id, timeout):
 ## <a name="step-7-download-task-output"></a>Étape 7 : télécharger la sortie des tâches
 ![Télécharger la sortie des tâches à partir du service Stockage][7]<br/>
 
-Maintenant que hello tâche terminée, sortie hello des tâches de hello peut être téléchargé depuis le stockage Azure. Cette opération s’effectue avec un appel trop`download_blobs_from_container` dans *python_tutorial_client.py*:
+Une fois le travail terminé, les données de sortie des tâches peuvent être téléchargées à partir d’Azure Storage. Cette opération s’effectue par le biais d’un appel de `download_blobs_from_container` dans *python_tutorial_client.py* :
 
 ```python
 def download_blobs_from_container(block_blob_client,
                                   container_name, directory_path):
     """
-    Downloads all blobs from hello specified Azure Blob storage container.
+    Downloads all blobs from the specified Azure Blob storage container.
 
     :param block_blob_client: A blob service client.
     :type block_blob_client: `azure.storage.blob.BlockBlobService`
-    :param container_name: hello Azure Blob storage container from which to
+    :param container_name: The Azure Blob storage container from which to
      download files.
-    :param directory_path: hello local directory toowhich toodownload hello files.
+    :param directory_path: The local directory to which to download the files.
     """
     print('Downloading all files from container [{}]...'.format(
         container_name))
@@ -563,7 +563,7 @@ def download_blobs_from_container(block_blob_client,
                                            blob.name,
                                            destination_file_path)
 
-        print('  Downloaded blob [{}] from container [{}] too{}'.format(
+        print('  Downloaded blob [{}] from container [{}] to {}'.format(
             blob.name,
             container_name,
             destination_file_path))
@@ -572,12 +572,12 @@ def download_blobs_from_container(block_blob_client,
 ```
 
 > [!NOTE]
-> Hello appel trop`download_blobs_from_container` dans *python_tutorial_client.py* Spécifie que les fichiers hello doivent être téléchargé tooyour répertoire de base. Pensez toomodify libre cette sortie d’emplacement.
+> L’appel de `download_blobs_from_container` dans *python_tutorial_client.py* spécifie que les fichiers doivent être téléchargés dans le répertoire de base de l’utilisateur. Vous pouvez modifier cet emplacement de sortie.
 >
 >
 
 ## <a name="step-8-delete-containers"></a>Étape 8 : supprimer les conteneurs
-Vous êtes facturé pour les données qui résident dans le stockage Azure, il est toujours un tooremove recommandé que tous les objets BLOB qui ne sont plus nécessaires pour vos traitements par lots. Dans *python_tutorial_client.py*, cette opération s’effectue avec trois appels trop[BlockBlobService.delete_container][py_delete_container]:
+Dans la mesure où les données qui résident dans Azure Storage vous sont facturées, il est toujours judicieux de supprimer tous les objets blob dont vous n’avez plus besoin pour vos travaux Batch. Dans *python_tutorial_client.py*, cela se fait par le biais de trois appels vers [BlockBlobService.delete_container][py_delete_container] :
 
 ```python
 # Clean up storage resources
@@ -587,13 +587,13 @@ blob_client.delete_container(input_container_name)
 blob_client.delete_container(output_container_name)
 ```
 
-## <a name="step-9-delete-hello-job-and-hello-pool"></a>Étape 9 : Supprimer le travail de hello et pool de hello
-À l’étape finale de hello, vous êtes le pool de travail et hello de hello toodelete demandées qui ont été créés par hello *python_tutorial_client.py* script. Bien que vous ne soyez pas facturé pour les travaux et les tâches à proprement parler, les nœuds de calcul vous *sont* facturés. Par conséquent, nous vous conseillons d’affecter les nœuds uniquement en fonction des besoins. La suppression des pools inutilisés peut être incluse dans votre processus de maintenance.
+## <a name="step-9-delete-the-job-and-the-pool"></a>Étape 9 : Supprimer le travail et le pool
+Au cours de la dernière étape, l’utilisateur est invité à supprimer le travail et le pool créés par le script *python_tutorial_client.py*. Bien que vous ne soyez pas facturé pour les travaux et les tâches à proprement parler, les nœuds de calcul vous *sont* facturés. Par conséquent, nous vous conseillons d’affecter les nœuds uniquement en fonction des besoins. La suppression des pools inutilisés peut être incluse dans votre processus de maintenance.
 
-Hello BatchServiceClient [JobOperations] [ py_job] et [PoolOperations] [ py_pool] ont tous deux des méthodes de suppression correspondantes, qui sont appelé si vous confirmez la suppression :
+Les classes [JobOperations][py_job] et [PoolOperations][py_pool] de BatchServiceClient disposent toutes deux de méthodes de suppression correspondantes, appelées si l’utilisateur confirme la suppression :
 
 ```python
-# Clean up Batch resources (if hello user so chooses).
+# Clean up Batch resources (if the user so chooses).
 if query_yes_no('Delete job?') == 'yes':
     batch_client.job.delete(_JOB_ID)
 
@@ -602,36 +602,36 @@ if query_yes_no('Delete pool?') == 'yes':
 ```
 
 > [!IMPORTANT]
-> N’oubliez pas que les ressources de calcul vous sont facturées et que la suppression des pools inutilisés vous permet de réduire les coûts. En outre, n’oubliez pas que la suppression d’un pool supprime tous les nœuds de calcul dans ce pool, et que toutes les données sur les nœuds hello seront irrécupérables après la suppression d’un pool de hello.
+> N’oubliez pas que les ressources de calcul vous sont facturées et que la suppression des pools inutilisés vous permet de réduire les coûts. Tenez également compte du fait que la suppression d’un pool permet la suppression de tous les nœuds de calcul de ce pool, et que toutes les données sur les nœuds seront irrécupérables une fois le pool supprimé.
 >
 >
 
-## <a name="run-hello-sample-script"></a>Exécutez le script d’exemple hello
-Lorsque vous exécutez hello *python_tutorial_client.py* script à partir du didacticiel de hello [exemple de code][github_article_samples], la sortie de console hello est similaire toohello suivant. Il existe une pause à `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` tandis que les nœuds de calcul du pool hello sont créés, démarré, et la tâche de démarrage du pool hello hello commandes est exécutées. Hello d’utilisation [portail Azure] [ azure_portal] toomonitor votre pool, nœuds de calcul, tâche et pendant et après l’exécution des tâches. Hello d’utilisation [portail Azure] [ azure_portal] ou hello [Microsoft Azure Storage Explorer] [ storage_explorer] tooview les ressources de stockage hello (conteneurs et objets BLOB) qui sont créés par l’application hello.
+## <a name="run-the-sample-script"></a>Exécuter l’exemple de script
+Lorsque vous exécutez le script *python_tutorial_client.py* du didacticiel [exemple de code][github_article_samples], la sortie de la console est identique à ce qui suit. Vous verrez une pause à `Monitoring all tasks for 'Completed' state, timeout in 0:20:00...` ; cela signifie que les nœuds de calcul du pool sont en cours de création et de démarrage et que les commandes de la tâche de démarrage du pool sont exécutées. Utilisez le [portail Azure][azure_portal] pour surveiller le pool, les nœuds de calcul, le travail et les tâches pendant et après l’exécution. Utilisez le [portail Azure][azure_portal] ou l’un des [explorateurs de stockage Microsoft Azure][storage_explorer] disponibles pour visualiser les ressources de stockage (conteneurs et objets blob) créées par l’application.
 
 > [!TIP]
-> Exécutez hello *python_tutorial_client.py* script à partir de hello `azure-batch-samples/Python/Batch/article_samples` active. Il utilise un chemin d’accès relatif pour hello `common.helpers` importation du module, vous voyez `ImportError: No module named 'common'` si vous n’exécutez pas script hello à partir de ce répertoire.
+> Exécutez le script *python_tutorial_client.py* à partir du répertoire `azure-batch-samples/Python/Batch/article_samples`. Comme ce script utilise un chemin d’accès relatif pour l’importation du module `common.helpers`, il se peut que le message d’erreur `ImportError: No module named 'common'` s’affiche si vous ne l’exécutez pas à partir de ce répertoire.
 >
 >
 
-Temps d’exécution par défaut est **environ 5 à 7 minutes** lorsque vous exécutez exemple hello dans sa configuration par défaut.
+Le temps d’exécution standard de l’exemple est **d’environ 5-7 minutes** avec la configuration par défaut.
 
 ```
 Sample start: 2016-05-20 22:47:10
 
-Uploading file /home/user/py_tutorial/python_tutorial_task.py toocontainer [application]...
-Uploading file /home/user/py_tutorial/data/taskdata1.txt toocontainer [input]...
-Uploading file /home/user/py_tutorial/data/taskdata2.txt toocontainer [input]...
-Uploading file /home/user/py_tutorial/data/taskdata3.txt toocontainer [input]...
+Uploading file /home/user/py_tutorial/python_tutorial_task.py to container [application]...
+Uploading file /home/user/py_tutorial/data/taskdata1.txt to container [input]...
+Uploading file /home/user/py_tutorial/data/taskdata2.txt to container [input]...
+Uploading file /home/user/py_tutorial/data/taskdata3.txt to container [input]...
 Creating pool [PythonTutorialPool]...
 Creating job [PythonTutorialJob]...
-Adding 3 tasks toojob [PythonTutorialJob]...
+Adding 3 tasks to job [PythonTutorialJob]...
 Monitoring all tasks for 'Completed' state, timeout in 0:20:00..........................................................................
-  Success! All tasks reached hello 'Completed' state within hello specified timeout period.
+  Success! All tasks reached the 'Completed' state within the specified timeout period.
 Downloading all files from container [output]...
-  Downloaded blob [taskdata1_OUTPUT.txt] from container [output] too/home/user/taskdata1_OUTPUT.txt
-  Downloaded blob [taskdata2_OUTPUT.txt] from container [output] too/home/user/taskdata2_OUTPUT.txt
-  Downloaded blob [taskdata3_OUTPUT.txt] from container [output] too/home/user/taskdata3_OUTPUT.txt
+  Downloaded blob [taskdata1_OUTPUT.txt] from container [output] to /home/user/taskdata1_OUTPUT.txt
+  Downloaded blob [taskdata2_OUTPUT.txt] from container [output] to /home/user/taskdata2_OUTPUT.txt
+  Downloaded blob [taskdata3_OUTPUT.txt] from container [output] to /home/user/taskdata3_OUTPUT.txt
   Download complete!
 Deleting containers...
 
@@ -641,17 +641,17 @@ Elapsed time: 0:06:02
 Delete job? [Y/n]
 Delete pool? [Y/n]
 
-Press ENTER tooexit...
+Press ENTER to exit...
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Estimez les modifications toomake libre trop*python_tutorial_client.py* et *python_tutorial_task.py* tooexperiment avec différents scénarios de calcul. Par exemple, essayez d’ajouter un délai d’exécution trop*python_tutorial_task.py* toosimulate longue des tâches et les surveiller dans le portail de hello. Essayez d’ajouter des tâches plus ou en ajustant de nombre hello de nœuds de calcul. Ajouter toocheck logique pour autoriser l’utilisation de hello de durée d’exécution de toospeed pool existant
+N’hésitez pas à apporter des modifications à *python_tutorial_client.py* et à *python_tutorial_task.py* pour découvrir des scénarios de calcul différents. Essayez par exemple d’ajouter une suspension d’exécution à *python_tutorial_task.py* pour simuler des tâches de longue durée et les surveiller dans le portail. Essayez d’ajouter davantage de tâches ou d’ajuster le nombre de nœuds de calcul. Ajoutez une logique pour vérifier et autoriser l’utilisation d’un pool existant pour raccourcir la durée d’exécution.
 
-Maintenant que vous êtes familiarisé avec les flux de travail de base hello d’une solution de traitement par lots, il est toodig de temps dans toohello des fonctionnalités supplémentaires de hello service Batch.
+À présent que vous voici familiarisé avec le flux de travail de base d’une solution Batch, il est temps pour vous d’approfondir les fonctionnalités supplémentaires du service Batch.
 
-* Hello de révision [les fonctionnalités de présentation d’Azure Batch](batch-api-basics.md) article, nous vous recommandons de si vous êtes de nouveau service toohello.
-* Démarrer sur hello autres articles de développement de lot sous **développement approfondie** Bonjour [cursus lot][batch_learning_path].
-* Extraire une implémentation différente du traitement de charge de travail hello « N premiers mots » traitement par lots Bonjour [TopNWords] [ github_topnwords] exemple.
+* Consultez l’article [Présentation des fonctionnalités de présentation d’Azure Batch](batch-api-basics.md) , que nous vous recommandons si vous ne connaissez pas le service.
+* Commencez par les autres articles de développement Batch sous **Développement approfondi** dans le [parcours d’apprentissage Batch][batch_learning_path].
+* Consultez une autre implémentation du traitement de la charge de travail « N premiers mots » à l’aide de Batch dans l’exemple [TopNWords][github_topnwords].
 
 [azure_batch]: https://azure.microsoft.com/services/batch/
 [azure_free_account]: https://azure.microsoft.com/free/
@@ -705,10 +705,10 @@ Maintenant que vous êtes familiarisé avec les flux de travail de base hello d�
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 
 [1]: ./media/batch-python-tutorial/batch_workflow_01_sm.png "Créer des conteneurs dans le Stockage Azure"
-[2]: ./media/batch-python-tutorial/batch_workflow_02_sm.png "Tâche de chargement d’application et d’entrée (données) des fichiers toocontainers"
+[2]: ./media/batch-python-tutorial/batch_workflow_02_sm.png "Charger les fichiers d’application de tâche et les fichiers (de données) d’entrée dans les conteneurs"
 [3]: ./media/batch-python-tutorial/batch_workflow_03_sm.png "Créer un pool Batch"
 [4]: ./media/batch-python-tutorial/batch_workflow_04_sm.png "Créer un travail Batch"
-[5]: ./media/batch-python-tutorial/batch_workflow_05_sm.png "Ajouter des tâches toojob"
+[5]: ./media/batch-python-tutorial/batch_workflow_05_sm.png "Ajouter des tâches au travail"
 [6]: ./media/batch-python-tutorial/batch_workflow_06_sm.png "Surveiller les tâches"
 [7]: ./media/batch-python-tutorial/batch_workflow_07_sm.png "Télécharger la sortie des tâches à partir de Storage"
 [8]: ./media/batch-python-tutorial/batch_workflow_sm.png "Flux de travail de la solution Batch (diagramme complet)"

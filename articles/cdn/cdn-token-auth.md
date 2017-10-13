@@ -1,6 +1,6 @@
 ---
-title: "actifs d’Azure CDN aaaSecuring avec l’authentification des jetons | Documents Microsoft"
-description: "À l’aide de l’authentification des jetons toosecure accès à tooyour Azure CDN des ressources."
+title: "Sécurisation des ressources CDN Azure avec l’authentification du jeton| Microsoft Docs"
+description: "Utilisation de l’authentification du jeton pour sécuriser l’accès à vos ressources CDN Azure."
 services: cdn
 documentationcenter: .net
 author: zhangmanling
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 11/11/2016
 ms.author: mezha
-ms.openlocfilehash: 5865bcb8eed7ced834970d52d30136252039265f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 42b182c314795b1ebf69639ec7ac5583208dc7c1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="securing-azure-cdn-assets-with-token-authentication"></a>Sécurisation des ressources CDN Azure avec l’authentification du jeton
 
@@ -26,25 +26,25 @@ ms.lasthandoff: 10/06/2017
 
 ##<a name="overview"></a>Vue d'ensemble
 
-L’authentification de jeton est un mécanisme qui vous permet de tooprevent CDN Azure prennent en charge des clients de toounauthorized actifs.  En général, cela tooprevent « hotlinking » du contenu, où un autre site Web, souvent un panneau de messages, utilise vos éléments multimédias sans autorisation.  ce qui peut avoir un impact sur les coûts de distribution de votre contenu. En activant cette fonctionnalité sur le CDN, les demandes seront authentifiées par le bord CDN POP avant la diffusion de contenu hello. 
+L’authentification du jeton est un mécanisme qui vous permet d’empêcher le CDN Azure de fournir des ressources à des clients non autorisés.  Il vise généralement à empêcher le « hotlinking » de contenu, c’est-à-dire l’utilisation de vos ressources sans permission par un autre site web (souvent un forum de discussion),  ce qui peut avoir un impact sur les coûts de distribution de votre contenu. Lorsque vous activez cette fonctionnalité sur le CDN, les demandes sont authentifiées par les points de présence de périphérie du CDN avant la distribution du contenu. 
 
 ## <a name="how-it-works"></a>Fonctionnement
 
-L’authentification des jetons vérifie les demandes sont générées par un site de confiance en demandant à une valeur de jeton contenant les informations encodées de demandeur de hello toocontain des demandes. Le contenu sera uniquement être pris en charge toorequester lorsque hello codés besoins hello satisfait, sinon les demandes seront refusées. Vous pouvez configurer exigence hello à l’aide d’un ou plusieurs paramètres ci-dessous.
+L’authentification du jeton vérifie que les demandes sont générées par un site de confiance en vérifiant si les demandes comportent une valeur de jeton contenant des informations codées sur le demandeur. Le contenu sera fourni au demandeur uniquement lorsque les informations codées respecteront les exigences définies. Dans le cas contraire, les demandes seront refusées. Vous pouvez configurer une exigence à l’aide de l’un ou plusieurs des paramètres ci-dessous.
 
 - Pays : pour autoriser ou refuser les demandes provenant des pays spécifiés.  [Liste des codes de pays valides.](https://msdn.microsoft.com/library/mt761717.aspx) 
-- URL : autoriser uniquement les toorequest actif ou le chemin d’accès spécifié.  
-- Hôte : autoriser ou refuser les demandes à l’aide d’ordinateurs hôtes indiqués dans l’en-tête de demande hello.
-- Point d’accès : autoriser ou refuser le toorequest de point d’accès spécifié.
+- URL : pour autoriser les demandes portant sur la ressource spécifiée ou présentant le chemin d’accès spécifié.  
+- Hôte : pour autoriser ou refuser des demandes utilisant les hôtes spécifiés dans l’en-tête de la demande.
+- Référent : pour autoriser ou refuser une demande provenant du référent spécifié.
 - Adresse IP : pour autoriser uniquement les demandes provenant d’une adresse ou d’un sous-réseau IP spécifique.
-- Protocole : autoriser ou bloquer les demandes selon le protocole de hello son utilisation toorequest hello.
-- Délai d’expiration : assigner une date et l’heure de période tooensure qu’un lien reste uniquement la valide pour une durée limitée.
+- Protocole : pour autoriser ou bloquer les demandes basées sur le protocole utilisé pour demander le contenu.
+- Date/heure d’expiration : pour assigner une date et une période afin de s’assurer que la liaison sera valide uniquement pendant une période limitée.
 
 Consultez l’exemple de configuration détaillée de chaque paramètre.
 
 ## <a name="reference-architecture"></a>Architecture de référence
 
-Voir ci-dessous une architecture de référence de configuration de l’authentification des jetons sur toowork CDN avec votre application Web.
+L’architecture de référence ci-dessous décrit la configuration de l’authentification du jeton sur le CDN pour une utilisation avec votre application web.
 
 ![Bouton de gestion du panneau de profil CDN](./media/cdn-token-auth/cdn-token-auth-workflow2.png)
 
@@ -56,11 +56,11 @@ Ce graphique décrit comment le CDN Azure valide la demande du client lorsque l�
 
 ## <a name="setting-up-token-authentication"></a>Configuration de l’authentification du jeton
 
-1. À partir de hello [portail Azure](https://portal.azure.com), recherchez le profil CDN tooyour, puis cliquez sur hello **gérer** portail supplémentaire du bouton toolaunch hello.
+1. À partir du [Portail Azure](https://portal.azure.com), accédez à votre profil CDN, puis cliquez sur le bouton **Gérer** pour ouvrir le portail supplémentaire.
 
     ![Bouton de gestion du panneau de profil CDN](./media/cdn-rules-engine/cdn-manage-btn.png)
 
-2. Placez le curseur sur **grand HTTP**, puis cliquez sur **Auth jeton** dans le menu volant des hello. Vous allez configurer la clé de chiffrement et les paramètres de chiffrement dans cet onglet.
+2. Placez le pointeur sur **HTTP Large**, puis cliquez sur **Token Auth** (Authentification du jeton) dans le menu volant. Vous allez configurer la clé de chiffrement et les paramètres de chiffrement dans cet onglet.
 
     1. Entrez une clé de chiffrement unique sous **Clé primaire**.  Entrez un autre clé sous **Backup Key** (Clé de sauvegarde)
 
@@ -70,16 +70,16 @@ Ce graphique décrit comment le CDN Azure valide la demande du client lorsque l�
 
         ![Bouton de gestion du panneau de profil CDN](./media/cdn-token-auth/cdn-token-auth-encrypttool.png)
 
-        - ec-expire : attribue un délai d’expiration spécifique à un jeton. Demandes soumises après que l’heure d’expiration de hello sera refusé. Ce paramètre utilise l’horodatage Unix (basé sur le nombre de secondes à partir de l’époque standard 01/01/1970 00:00:00 GMT. Vous pouvez utiliser les outils en ligne tooprovide de conversion entre Unix heure et.)  Par exemple, si vous souhaitez tooset des toobe de jeton hello a expiré à 31/12/2016 12:00:00 GMT, utilisez hello Unix temps : 1483185600 comme indiqué ci-dessous :
+        - ec-expire : attribue un délai d’expiration spécifique à un jeton. Les demandes soumises après le délai d’expiration seront refusées. Ce paramètre utilise l’horodatage Unix (basé sur le nombre de secondes à partir de l’époque standard 01/01/1970 00:00:00 GMT. Vous pouvez utiliser les outils en ligne pour obtenir une conversion entre l’heure standard et l’heure Unix.)  Par exemple, si vous souhaitez définir l’expiration du jeton au 31/12/2016 12:00:00 GMT, utilisez l’heure Unix : 1483185600 comme indiqué ci-dessous :
     
         ![Bouton de gestion du panneau de profil CDN](./media/cdn-token-auth/cdn-token-auth-expire2.png)
     
-        - Autoriser EC-url : vous permet d’élément multimédia en particulier tootailor jetons tooa ou chemin d’accès. Elle restreint toorequests accès dont l’URL démarrer avec un chemin d’accès relatif spécifique. Vous pouvez entrer plusieurs chemins d’accès en les séparant par une virgule. Les URL sont sensibles à la casse. Selon la spécification de hello, vous pouvez configurer différents valeur tooprovide différents niveaux d’accès. Voici quelques scénarios :
+        - ec-url-allow : vous permet d’adapter les jetons à une ressource ou un chemin d’accès particulier. Ce paramètre restreint l’accès aux demandes dont l’URL commence par un chemin d’accès relatif spécifique. Vous pouvez entrer plusieurs chemins d’accès en les séparant par une virgule. Les URL sont sensibles à la casse. Selon l’exigence, vous pouvez définir des valeurs différentes pour fournir différents niveaux d’accès. Voici quelques scénarios :
         
             Si votre URL est la suivante : http://www.mydomain.com/pictures/city/strasbourg.png. Définissez la valeur d’entrée « » et son niveau d’accès en conséquence
 
             1. Valeur d’entrée « / » : toutes les demandes sont autorisées
-            2. Valeur d’entrée « / images » : tous les hello suivant des demandes autorisera
+            2. Valeur d’entrée « /pictures » : toutes les demandes suivantes sont autorisées
             
                 - http://www.mydomain.com/pictures.png
                 - http://www.mydomain.com/pictures/city/strasbourg.png
@@ -89,17 +89,17 @@ Ce graphique décrit comment le CDN Azure valide la demande du client lorsque l�
     
         ![Bouton de gestion du panneau de profil CDN](./media/cdn-token-auth/cdn-token-auth-url-allow4.png)
     
-        - ec-country-allow : autorise uniquement les demandes provenant d’un ou plusieurs pays spécifiés. Les demandes provenant d’un autre pays seront refusées. Utilisez tooset de code de pays les paramètres de hello et les séparer chaque code de pays par une virgule. Par exemple, si vous souhaitez accéder tooallow à partir des États-Unis et en France, entrée US, FR dans la colonne hello comme ci-dessous.  
+        - ec-country-allow : autorise uniquement les demandes provenant d’un ou plusieurs pays spécifiés. Les demandes provenant d’un autre pays seront refusées. Utilisez les codes de pays pour définir les paramètres. Séparez-les par une virgule. Par exemple, si vous souhaitez autoriser l’accès depuis les États-Unis et la France, entrez US, FR dans la colonne comme indiqué ci-dessous.  
         
         ![Bouton de gestion du panneau de profil CDN](./media/cdn-token-auth/cdn-token-auth-country-allow.png)
 
-        - ec-country-deny : refuse les demandes provenant d’un ou plusieurs pays spécifiés. Les demandes provenant d’un autre pays sont autorisées. Utilisez tooset de code de pays les paramètres de hello et les séparer chaque code de pays par une virgule. Par exemple, si vous souhaitez accéder toodeny à partir des États-Unis et en France, entrée US, FR dans la colonne de hello.
+        - ec-country-deny : refuse les demandes provenant d’un ou plusieurs pays spécifiés. Les demandes provenant d’un autre pays sont autorisées. Utilisez les codes de pays pour définir les paramètres. Séparez-les par une virgule. Par exemple, si vous souhaitez refuser l’accès depuis les États-Unis et la France, entrez US, FR dans la colonne.
     
-        - ec-ref-allow : autorise uniquement les demandes provenant du référent spécifié. Un point d’accès identifie hello des URL de page web hello ressource toohello demandé a été liée. valeur du paramètre Hello point d’accès ne doit pas inclure le protocole de hello. Vous pouvez entrer un nom d’hôte et/ou un chemin d’accès particulier sur ce nom d’hôte. Vous pouvez également ajouter plusieurs référents au sein d’un même paramètre en les séparant par une virgule. Si vous avez spécifié une valeur de point d’accès, mais les informations de point d’accès hello ne sont pas envoyées dans la demande en raison de la configuration du navigateur toosome hello, ces demandes seront refusées par défaut. Vous pouvez affecter « Manquant » ou une valeur vierge dans hello paramètre tooallow ces demandes sans les informations de point d’accès. Vous pouvez également utiliser « *. consoto.com « tooallow tous les sous-domaines de consoto.com.  Par exemple, si vous souhaitez accéder tooallow pour les demandes de www.consoto.com, tous les sous-domaines sous consoto2.com et erquests avec reffers vides ou manquantes, valeur d’entrée ci-dessous :
+        - ec-ref-allow : autorise uniquement les demandes provenant du référent spécifié. Un référent identifie l’URL de la page web ayant fourni le lien vers la ressource demandée. La valeur du paramètre de référent ne doit pas inclure le protocole. Vous pouvez entrer un nom d’hôte et/ou un chemin d’accès particulier sur ce nom d’hôte. Vous pouvez également ajouter plusieurs référents au sein d’un même paramètre en les séparant par une virgule. Si vous avez spécifié une valeur de référent, mais que la configuration de navigateur ne permet pas l’envoi des informations sur le référent, les demandes sont refusées par défaut. Vous pouvez affecter la valeur « Missing » ou une valeur vide dans le paramètre pour autoriser les demandes sans informations sur le référent. Vous pouvez également utiliser « *. consoto.com » pour autoriser tous les sous-domaines de consoto.com.  Par exemple, si vous souhaitez autoriser l’accès aux demandes provenant de www.consoto.com et de tous les sous-domaines sous consoto2.com, ainsi que les demandes avec un référent vide ou manquant, entrez la valeur ci-dessous :
         
         ![Bouton de gestion du panneau de profil CDN](./media/cdn-token-auth/cdn-token-auth-referrer-allow2.png)
     
-        - ec-ref-deny : refuse les demandes provenant du référent spécifié. Consultez toodetails et exemple de paramètre de « ec-ref-autoriser ».
+        - ec-ref-deny : refuse les demandes provenant du référent spécifié. Reportez-vous aux informations détaillées et à l’exemple fournis pour le paramètre « ec-ref-allow ».
          
         - ec-proto-allow : autorise uniquement les demandes correspondant au protocole spécifié. Par exemple, http ou https.
         
@@ -107,26 +107,26 @@ Ce graphique décrit comment le CDN Azure valide la demande du client lorsque l�
             
         - ec-proto-deny : refuse les demandes correspondant au protocole spécifié. Par exemple, http ou https.
     
-        - ipclient-EC : limite d’adresse IP du demandeur accès toospecified. Les adresses IPV4 et IPV6 sont prises en charge. Vous pouvez spécifier un sous-réseau IP ou une adresse IP de demande unique.
+        - ec-clientip : limite l’accès à l’adresse IP de demandeur spécifiée. Les adresses IPV4 et IPV6 sont prises en charge. Vous pouvez spécifier un sous-réseau IP ou une adresse IP de demande unique.
             
         ![Bouton de gestion du panneau de profil CDN](./media/cdn-token-auth/cdn-token-auth-clientip.png)
         
-    3. Vous pouvez tester votre jeton avec l’outil de description hello.
+    3. Vous pouvez tester votre jeton avec l’outil de déchiffrement.
 
-    4. Vous pouvez également personnaliser le type hello de réponse qui sera renvoyé toouser lors de la demande est refusée. Par défaut, nous utilisons la réponse 403.
+    4. Vous pouvez également personnaliser le type de réponse qui sera renvoyé à l’utilisateur lorsque la demande est refusée. Par défaut, nous utilisons la réponse 403.
 
-3. Cliquez maintenant sur l’onglet **Moteur de règles** sous **HTTP Large**. Vous utiliser cette fonctionnalité hello de tooapply onglet toodefine chemins d’accès, activer la fonctionnalité de l’authentification des jetons hello et activer l’authentification des jetons supplémentaire liées de fonctionnalités.
+3. Cliquez maintenant sur l’onglet **Moteur de règles** sous **HTTP Large**. Cet onglet vous permet de définir les chemins d’accès pour appliquer la fonctionnalité, d’activer la fonctionnalité d’authentification du jeton et d’activer d’autres fonctionnalités d’authentification du jeton.
 
-    - Utilisez toodefine élément multimédia de la colonne « IF » ou le chemin d’accès que vous souhaitez tooapply l’authentification des jetons. 
-    - Cliquez sur tooadd « Jeton Auth » à partir de hello fonctionnalité déroulante tooenable jeton d’authentification.
+    - La colonne « IF » permet de définir la ressource ou le chemin d’accès pour lequel vous souhaitez appliquer l’authentification du jeton. 
+    - Cliquez sur « Token Auth » (Authentification du jeton) dans la liste déroulante des fonctionnalités pour activer l’authentification du jeton.
         
     ![Bouton de gestion du panneau de profil CDN](./media/cdn-token-auth/cdn-rules-engine-enable2.png)
 
-4. Bonjour **moteur de règles** onglet, il existe quelques fonctionnalités supplémentaires, vous pouvez activer.
+4. Vous pouvez activer quelques fonctionnalités supplémentaires dans l’onglet **Moteur de règles**.
     
-    - Code de refus d’authentification du jeton : détermine le type de hello de réponse qui sera renvoyé toouser lorsqu’une demande est refusée. Règles définies ici remplacent le paramètre de code hello refus dans l’onglet du jeton d’authentification hello.
-    - Jeton auth ignorer : détermine si le jeton de toovalidate URL utilisée sera respecte la casse.
-    - Paramètre de jeton d’authentification : renommer la requête de jeton d’authentification hello URL demandée de paramètre de chaîne indiquant hello. 
+    - Token auth denial code (Code de refus d’authentification du jeton) : détermine le type de réponse à retourner à un utilisateur quand une demande est refusée. Les règles définies ici remplacent le paramètre de code de refus dans l’onglet d’authentification de jeton.
+    - Token auth ignore (Ignorer la casse pour l’authentification du jeton) : détermine si la casse de l’URL utilisée pour valider le jeton est prise en compte.
+    - Token auth parameter (Paramètre d’authentification du jeton) : renomme le paramètre de chaîne de demande d’authentification du jeton indiquant l’URL demandée. 
         
     ![Bouton de gestion du panneau de profil CDN](./media/cdn-token-auth/cdn-rules-engine2.png)
 
@@ -143,4 +143,4 @@ Les langages disponibles sont notamment :
 
 ## <a name="azure-cdn-features-and-provider-pricing"></a>Tarification du fournisseur et des fonctionnalités du CDN Azure
 
-Consultez hello [vue d’ensemble du CDN](cdn-overview.md) rubrique.
+Consultez la rubrique [Présentation du CDN](cdn-overview.md).

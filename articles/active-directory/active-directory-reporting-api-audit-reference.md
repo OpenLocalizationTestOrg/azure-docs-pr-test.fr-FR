@@ -1,6 +1,6 @@
 ---
-title: "audit d’Active Directory aaaAzure référence de l’API | Documents Microsoft"
-description: "Comment tooget main hello API d’audit Azure Active Directory"
+title: "Référence d’API d’audit Azure Active Directory | Microsoft Docs"
+description: "Prise en main de l’API d’audit Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,22 +15,22 @@ ms.workload: identity
 ms.date: 07/05/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 5f33b62ede9be445f35704739e328580dc454368
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 573e940c5390e7b990d889681eb37b73c5b253d9
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-active-directory-audit-api-reference"></a>Référence d’API d’audit Azure Active Directory
-Cette rubrique fait partie d’une collection de rubriques hello Azure Active Directory sur les API de création de rapports.  
-Création de rapports Azure AD fournit une API qui vous permet de tooaccess les données d’audit à l’aide de code ou les outils connexes.
-Hello cette rubrique traite de tooprovide des informations de référence sur hello **audit API**.
+Cette rubrique fait partie d’un ensemble de rubriques relatives à l’API de création de rapports Azure Active Directory.  
+La création de rapports Azure AD fournit une API qui vous permet d’accéder aux données d’audit à l’aide de code ou d’outils associés.
+Cette rubrique a pour but de vous fournir des informations de référence sur **l’API d’audit**.
 
 Consultez l'article :
 
 * [Journaux d’audit](active-directory-reporting-azure-portal.md#activity-reports) pour plus d’informations conceptuelles
 
-* [Prise en main de hello API Azure Active Directory Reporting](active-directory-reporting-api-getting-started.md) pour plus d’informations sur les API de création de rapports de hello.
+* [Prise en main de l’API de création de rapports Azure Active Directory](active-directory-reporting-api-getting-started.md) pour plus d’informations sur l’API de création de rapports.
 
 
 Pour :
@@ -40,32 +40,32 @@ Pour :
 - En savoir plus les problèmes, consultez [Envoyer un ticket de support](active-directory-troubleshooting-support-howto.md). 
 
 
-## <a name="who-can-access-hello-data"></a>Qui peut accéder à des données de salutation ?
-* Utilisateurs dans le rôle d’administrateur de la sécurité ou de sécurité Reader hello
+## <a name="who-can-access-the-data"></a>Qui peut accéder aux données ?
+* Utilisateurs ayant le rôle d’administrateur de sécurité ou de lecteur de la sécurité
 * Administrateurs généraux
-* N’importe quelle application qui a l’autorisation tooaccess hello API (autorisation de l’application peut être configurés uniquement en fonction d’autorisation de l’administrateur Global)
+* Toute application qui a l’autorisation d’accéder à l’API (l’autorisation de l’application peut être configurée uniquement en fonction de l’autorisation Administrateur général)
 
 ## <a name="prerequisites"></a>Composants requis
-Dans tooaccess commande par le biais de ce rapport hello API de création de rapports, vous devez avoir :
+Pour accéder à ce rapport via l’API de création de rapports, vous devez disposer des éléments suivants :
 
 * Une [édition Azure Active Directory gratuite ou une édition récente](active-directory-editions.md)
-* Hello terminé [API reporting de conditions préalables tooaccess hello Azure AD](active-directory-reporting-api-prerequisites.md). 
+* Avoir respecté la [configuration requise pour accéder à l’API de création de rapports Azure AD](active-directory-reporting-api-prerequisites.md). 
 
-## <a name="accessing-hello-api"></a>L’accès aux API de hello
-Vous pouvez soit accéder à cette API via hello [Explorateur graphique](https://graphexplorer2.cloudapp.net) ou par programmation à l’aide, par exemple, PowerShell. Dans l’ordre pour PowerShell toocorrectly interpréter la syntaxe de filtre OData hello utilisée dans les appels de Graph AAD REST, vous devez utiliser hello backtick (aka : accent grave) caractère trop « caractère d’échappement « hello $. sert de caractère de guillemet inversé Hello [caractère d’échappement de PowerShell](https://technet.microsoft.com/library/hh847755.aspx), ce qui permet de PowerShell toodo une interprétation littéral de caractère de $ hello et éviter toute confusion entre elle en tant que nom d’une variable PowerShell (ie : $filter).
+## <a name="accessing-the-api"></a>Accès à l’API
+Vous pouvez soit accéder à cette API via [l’Afficheur Graph](https://graphexplorer2.cloudapp.net) , soit par programme à l’aide, par exemple, de PowerShell. Pour que PowerShell puisse interpréter correctement la syntaxe de filtre OData utilisée dans les appels REST Graph AAD, vous devez utiliser le caractère accent grave (`) pour « échapper » au caractère $. Le caractère accent grave sert de [caractère d’échappement de PowerShell](https://technet.microsoft.com/library/hh847755.aspx), ce qui permet à PowerShell d’effectuer une interprétation littérale du caractère $ et de ne pas le confondre avec un nom de variable PowerShell (par exemple : $filter).
 
-Hello de cette rubrique concerne les hello Explorateur graphique. Pour obtenir un exemple PowerShell, consultez ce [script PowerShell](active-directory-reporting-api-audit-samples.md#powershell-script).
+Cette rubrique porte sur l’Afficheur Graph. Pour obtenir un exemple PowerShell, consultez ce [script PowerShell](active-directory-reporting-api-audit-samples.md#powershell-script).
 
 ## <a name="api-endpoint"></a>Point de terminaison d’API
-Vous pouvez accéder à cette API à l’aide de hello suivant l’URI :  
+Vous pouvez accéder à cette API à l’aide de l’URI suivant :  
 
     https://graph.windows.net/contoso.com/activities/audit?api-version=beta
 
-Il n’existe aucune limite sur le nombre de hello d’enregistrements retournés par l’API d’audit hello Azure AD (à l’aide de la pagination de OData).
+Il n’existe aucune limite quant au nombre d’enregistrements retournés par l’API d’audit Azure AD (à l’aide de la pagination OData).
 Pour connaître les limites de rétention de données de rapports, consultez [Stratégies de rétention des rapports](active-directory-reporting-retention.md).
 
-Cet appel retourne les données de hello dans des lots. Chaque lot comporte un maximum de 1 000 enregistrements.  
-tooget hello suivant lot d’enregistrements, utilisez hello de lien suivant. Permet d’obtenir des informations de skiptoken hello hello premier ensemble d’enregistrements retournés. jeton d’évitement Hello sera à fin hello hello du jeu de résultats.  
+Cet appel renvoie les données par lots. Chaque lot comporte un maximum de 1 000 enregistrements.  
+Pour obtenir le lot d’enregistrements suivant, cliquez sur le lien Suivant. Obtenez les informations du jeton d’évitement dans le premier jeu d’enregistrements retournés. Le jeton d’évitement se trouve à la fin du jeu de résultats.  
 
     https://graph.windows.net/contoso.com/activities/audit?api-version=beta&%24skiptoken=-1339686058
 
@@ -73,26 +73,26 @@ tooget hello suivant lot d’enregistrements, utilisez hello de lien suivant. Pe
 
 
 ## <a name="supported-filters"></a>Filtres pris en charge
-Vous pouvez réduire nombre hello d’enregistrements retournés par une API appeler sous forme d’un filtre.  
-Connectez-vous API hello suivant des filtres, les données associées sont prises en charge :
+Vous pouvez réduire le nombre d’enregistrements qui sont retournés par un appel d’API à l’aide d’un filtre.  
+Pour les données liées à l’API de connexion, les filtres suivants sont pris en charge :
 
-* **$top =\<retourné de nombre d’enregistrements toobe\>**  -nombre de hello toolimit d’enregistrements renvoyés. Il s’agit d’une opération coûteuse. Vous ne devez pas utiliser ce filtre si vous souhaitez tooreturn des milliers d’objets.     
-* **$filter =\<votre instruction de filtrage\>**  -toospecify, sur la base de hello de champs de filtre pris en charge, type hello d’enregistrements qui vous intéressent
+* **$top=\<<nombre d’enregistrements à retourner>\>** : pour limiter le nombre d’enregistrements retournés. Il s’agit d’une opération coûteuse. N’utilisez pas ce filtre si vous souhaitez retourner des milliers d’objets.     
+* **$filter=\<<votre instruction de filtre>\>** : pour spécifier, en fonction des champs de filtre pris en charge, les types d’enregistrements qui vous intéressent
 
 ## <a name="supported-filter-fields-and-operators"></a>Opérateurs et champs de filtre pris en charge
-type de hello toospecify d’enregistrements qui que vous intéressent, vous pouvez générer une instruction de filtrage qui peut contenir un ou une combinaison de hello suivant des champs de filtre :
+Pour indiquer le type d’enregistrements qui vous intéressent, vous pouvez créer une déclaration de filtre contenant l’un des champs de filtre suivants ou une combinaison de ceux-ci :
 
 * [activityDate](#activitydate) : définit une date ou une plage de dates
-* [catégorie](#category) -définit hello catégorie toofilter sur.
-* [activityStatus](#activitystatus) -définit l’état de hello d’une activité
-* [type d’activité](#activitytype) -définit le type hello d’une activité
-* [activité](#activity) -définit l’activité hello en tant que chaîne  
-* [nom del’acteur/](#actorname) -définit l’acteur de hello sous forme de nom de hello acteur
-* [acteur/objectid](#actorobjectid) -définit l’acteur de hello sous forme d’ID de hello acteur   
-* [acteur/upn](#actorupn) -définit l’acteur de hello sous forme nom d’acteur hello d’utilisateur principal (UPN) 
-* [nom de la cible](#targetname) -définit la cible de hello sous forme de nom de hello acteur
-* [cible/objectid](#targetobjectid) -définit la cible de hello sous forme de hello ID cible  
-* [cible/upn](#targetupn) -définit l’acteur de hello sous forme nom d’acteur hello d’utilisateur principal (UPN)   
+* [category](#category) : définit la catégorie que vous voulez filtrer.
+* [activityStatus](#activitystatus) : définit l’état d’une activité
+* [activityType](#activitytype) : définit le type d’une activité
+* [activity](#activity) : définit l’activité en tant que chaîne  
+* [actor/name](#actorname) : définit l’acteur sous forme de nom de l’acteur
+* [actor/objectid](#actorobjectid) : définit l’acteur sous forme de l’ID de l’acteur   
+* [actor/upn](#actorupn) : définit l’acteur sous forme de nom d’utilisateur principal (UPN) de l’acteur 
+* [target/name](#targetname) : définit la cible sous forme de nom de l’acteur
+* [target/objectid](#targetobjectid) : définit la cible sous forme de l’ID de la cible  
+* [target/upn](#targetupn) : définit l’acteur sous forme de nom d’utilisateur principal (UPN) de l’acteur   
 
 - - -
 ### <a name="activitydate"></a>activityDate
@@ -212,8 +212,8 @@ ne respecte pas la casse
 
 **Remarques**:
 
-* ne respecte pas la casse
-* Vous avez besoin d’espace de noms complet tooadd hello lors de l’interrogation Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.TargetResourceUserEntity
+* Non-respect de la casse
+* Vous devez ajouter l’espace de noms complet lors de l’interrogation de Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.TargetResourceUserEntity
 
 - - -
 ### <a name="targetobjectid"></a>target/objectid
@@ -234,10 +234,10 @@ ne respecte pas la casse
 **Remarques**:
 
 * ne respecte pas la casse 
-* Vous avez besoin d’espace de noms complet tooadd hello lors de l’interrogation Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.ActorUserEntity
+* Vous devez ajouter l’espace de noms complet lors de l’interrogation de Microsoft.ActiveDirectory.DataService.PublicApi.Model.Reporting.AuditLog.ActorUserEntity
 
 - - -
 ## <a name="next-steps"></a>Étapes suivantes
-* Voulez-vous toosee exemples pour les activités filtrées système ? Extraire hello [exemples d’API d’audit Azure Active Directory](active-directory-reporting-api-audit-samples.md).
-* Voulez-vous tooknow plus d’informations sur les API de création de rapports hello Azure AD ? Consultez [prise en main de hello API Azure Active Directory Reporting](active-directory-reporting-api-getting-started.md).
+* Voulez-vous voir des exemples d’activités système filtrées ? Consultez les [exemples d’API d’audit Azure Active Directory](active-directory-reporting-api-audit-samples.md).
+* Vous souhaitez en savoir plus sur l’API de création de rapports Azure AD ? Consultez [Prise en main de l’API de création de rapports Azure Active Directory](active-directory-reporting-api-getting-started.md).
 

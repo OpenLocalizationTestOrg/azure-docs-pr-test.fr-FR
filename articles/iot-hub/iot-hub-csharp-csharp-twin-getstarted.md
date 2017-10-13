@@ -1,6 +1,6 @@
 ---
-title: "aaaGet main jumeaux d’appareil Azure IoT Hub (.NET/.NET) | Documents Microsoft"
-description: "Comment toouse Azure IoT Hub appareil jumeaux tooadd balises, puis utilisez une requête IoT Hub. Vous utilisez du SDK de périphérique Azure IoT hello pour application d’appareil simulé .NET tooimplement hello et hello Azure IoT service SDK pour .NET tooimplement une application de service qui ajoute des balises de hello et s’exécute hello requête de IoT Hub."
+title: "Bien démarrer avec les jumeaux d’appareil Azure IoT Hub (.NET/.NET) | Microsoft Docs"
+description: "Guide d’utilisation des jumeaux d’appareils Azure IoT Hub pour ajouter des balises, puis utiliser une requête IoT Hub. Vous utilisez le kit Azure IoT device SDK pour .NET pour implémenter l’application d’appareil simulé et le kit Azure IoT service SDK pour .NET pour implémenter une application de service qui ajoute des balises et exécute la requête IoT Hub."
 services: iot-hub
 documentationcenter: node
 author: dsk-2015
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: dkshir
-ms.openlocfilehash: 7fa73ac896c44e79c6522d252cd1515bd6e7bb2b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6073d594117e69676b753a1e3af25fffa3583a2b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-device-twins-netnet"></a>Bien démarrer avec les jumeaux d’appareils (.NET/.NET)
 [!INCLUDE [iot-hub-selector-twin-get-started](../../includes/iot-hub-selector-twin-get-started.md)]
 
-À la fin de hello de ce didacticiel, vous disposerez ces applications de console .NET :
+À la fin de ce didacticiel, vous disposerez des deux applications console .NET suivantes :
 
-* **CreateDeviceIdentity**, une application .NET qui crée une identité de l’appareil et la sécurité associés clé tooconnect votre application d’appareil simulé.
+* **CreateDeviceIdentity**, application .NET qui crée une identité d’appareil et une clé de sécurité associée pour connecter votre application d’appareil simulé.
 * **AddTagsAndQuery**, application principale .NET qui ajoute des balises et interroge des jumeaux d’appareil.
-* **ReportConnectivity**, une périphérique d’application .NET qui simule un appareil qui se connecte tooyour IoT hub avec l’identité de l’appareil hello créée précédemment et signale l’état de connectivité.
+* **ReportConnectivity**, application pour appareil .NET qui simule un appareil se connectant à votre hub IoT avec l’identité d’appareil créée précédemment, et signale son état de connectivité.
 
 > [!NOTE]
-> article de Hello [kits de développement logiciel Azure IoT] [ lnk-hub-sdks] fournit des informations sur hello kits de développement logiciel Azure IoT que vous pouvez utiliser toobuild applications de périphérique et back-end.
+> L’article [Kits Azure IoT SDK][lnk-hub-sdks] fournit des informations sur les kits Azure IoT SDK que vous pouvez utiliser pour générer des applications pour appareil et des applications principales.
 > 
 > 
 
-toocomplete ce didacticiel, vous devez suivant de hello :
+Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
 
 * Visual Studio 2015 ou Visual Studio 2017.
 * Un compte Azure actif. (Si vous ne possédez pas de compte, vous pouvez créer un [compte gratuit][lnk-free-trial] en quelques minutes.)
@@ -43,26 +43,26 @@ toocomplete ce didacticiel, vous devez suivant de hello :
 
 [!INCLUDE [iot-hub-get-started-create-device-identity-portal](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
-Si vous souhaitez identité d’appareil toocreate hello par programme à la place, lire la section correspondante de hello Bonjour [connectez votre concentrateur de IoT tooyour appareil simulé à l’aide de .NET] [ lnk-device-identity-csharp] l’article.
+Si vous voulez plutôt créer l’identité de l’appareil par programmation, lisez la section correspondante dans l’article [Connexion de l’appareil simulé à votre hub IoT à l’aide de .NET] [lnk-device-identity-csharp].
 
-## <a name="create-hello-service-app"></a>Créer l’application de service hello
-Dans cette section, vous créez .NET application console (à l’aide de c#) ajoute double d’appareil emplacement métadonnées toohello associé **myDeviceId**. Il interroge ensuite jumeaux de périphérique hello stockées dans hello IoT hub en sélectionnant les appareils hello situés dans hello nous et puis hello ceux qui a signalé une connexion cellulaire.
+## <a name="create-the-service-app"></a>Créer l’application de service
+Dans cette section, vous créez une application console (utilisant C#) qui ajoute des métadonnées d’emplacement au jumeau d’appareil associé à **myDeviceId**. L’application console interroge ensuite les jumeaux d’appareil stockés dans le hub IoT en sélectionnant les appareils situés aux États-Unis, puis ceux qui signalent une connexion mobile.
 
-1. Dans Visual Studio, ajoutez une solution d’actuel toohello de projet Visual c# bureau classique de Windows à l’aide de hello **Application Console** modèle de projet. Projet de hello nom **AddTagsAndQuery**.
+1. Dans Visual Studio, ajoutez un projet Visual C# Bureau classique Windows à la solution actuelle en utilisant le modèle de projet **Application Console** . Nommez le projet **AddTagsAndQuery**.
    
     ![Nouveau projet Visual C# Bureau classique Windows][img-createapp]
-1. Dans l’Explorateur de solutions, cliquez sur hello **AddTagsAndQuery** de projet, puis cliquez sur **gérer les Packages NuGet...** .
-1. Bonjour **Gestionnaire de Package NuGet** fenêtre, sélectionnez **Parcourir** et recherchez **microsoft.azure.devices**. Sélectionnez **installer** tooinstall hello **Microsoft.Azure.Devices** empaqueter et accepter les conditions d’utilisation de hello. Cette procédure télécharge, installe et ajoute une référence toohello [Azure IoT service SDK] [ lnk-nuget-service-sdk] NuGet package et ses dépendances.
+1. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur le projet **AddTagsAndQuery**, puis cliquez sur **Gérer les packages NuGet...**.
+1. Dans la fenêtre **Gestionnaire de Package NuGet**, sélectionnez **Parcourir**, puis recherchez **microsoft.azure.devices**. Sélectionnez **Installer** pour installer le package **Microsoft.Azure.Devices**, puis acceptez les conditions d’utilisation. Cette procédure lance le téléchargement et l’installation et ajoute une référence au [package Azure IoT Service SDK NuGet][lnk-nuget-service-sdk] et ses dépendances.
    
     ![Fenêtre du gestionnaire de package NuGet][img-servicenuget]
-1. Ajoutez hello suivant `using` instructions haut hello hello **Program.cs** fichier :
+1. Ajoutez les instructions `using` suivantes en haut du fichier **Program.cs** :
    
         using Microsoft.Azure.Devices;
-1. Ajouter hello suivant champs toohello **programme** classe. Remplacer la valeur d’espace réservé hello avec hello chaîne de connexion de IoT Hub hub hello que vous avez créé dans la section précédente de hello de.
+1. Ajoutez les champs suivants à la classe **Program** . Remplacez la valeur d’espace réservé par la chaîne de connexion IoT Hub pour le hub créé dans la section précédente.
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-1. Ajouter hello suivant de méthode toohello **programme** classe :
+1. Ajoutez la méthode suivante à la classe **Program** :
    
         public static async Task AddTagsAndQuery()
         {
@@ -87,54 +87,54 @@ Dans cette section, vous créez .NET application console (à l’aide de c#) ajo
             Console.WriteLine("Devices in Redmond43 using cellular network: {0}", string.Join(", ", twinsInRedmond43UsingCellular.Select(t => t.DeviceId)));
         }
    
-    Hello **RegistryManager** classe expose tous les hello méthodes requis toointeract avec jumeaux de périphérique à partir du service de hello. code précédent de Hello initialise tout d’abord hello **registryManager** de l’objet, puis récupère hello double de périphérique pour **myDeviceId**et enfin met à jour ses balises avec les informations d’emplacement hello souhaité.
+    La classe **RegistryManager** expose toutes les méthodes requises pour interagir avec des jumeaux d’appareil à partir du service. Le code précédent initialise l’objet **registryManager**, récupère le jumeau d’appareil de **myDeviceId**, puis met à jour ses balises avec les informations d’emplacement souhaitées.
    
-    Après la mise à jour, il exécute deux requêtes : hello sélectionne tout d’abord uniquement les jumeaux appareil hello des périphériques situés dans hello **Redmond43** usine et hello deuxième affine hello requête tooselect uniquement hello pour les appareils qui sont également connectés via réseau cellulaire.
+    Après la mise à jour, il exécute deux requêtes : la première sélectionne uniquement les jumeaux d’appareils situés dans l’usine **Redmond43** et la seconde affine la requête pour sélectionner uniquement les appareils qui sont également connectés via un réseau cellulaire.
    
-    Notez que hello le code précédent, lorsqu’il crée hello **requête** d’objet, spécifie un nombre maximal de documents renvoyés. Hello **requête** objet contient un **HasMoreResults** propriété booléenne que vous pouvez utiliser tooinvoke hello **GetNextAsTwinAsync** méthodes tooretrieve plusieurs fois tous les résultats. Une méthode appelée **GetNextAsJson** est disponible pour les résultats qui ne sont pas des jumeaux d’appareil, par exemple, les résultats de requêtes d’agrégation.
-1. Enfin, ajoutez hello suivant lignes toohello **Main** méthode :
+    Notez que le code précédent, quand il crée l’objet **query**, spécifie un nombre maximal de documents retournés. L’objet **query** contient une propriété booléenne **HasMoreResults** permettant d’appeler les méthodes **GetNextAsTwinAsync** plusieurs fois afin de récupérer tous les résultats. Une méthode appelée **GetNextAsJson** est disponible pour les résultats qui ne sont pas des jumeaux d’appareil, par exemple, les résultats de requêtes d’agrégation.
+1. Enfin, ajoutez les lignes suivantes à la méthode **Main** :
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         AddTagsAndQuery().Wait();
-        Console.WriteLine("Press Enter tooexit.");
+        Console.WriteLine("Press Enter to exit.");
         Console.ReadLine();
 
-1. Dans l’Explorateur de solutions de hello, ouvrez hello **projets de définir le démarrage...**  et assurez-vous que hello **Action** pour **AddTagsAndQuery** projet est **Démarrer**. Générez la solution de hello.
-1. Exécution de cette application en cliquant sur hello **AddTagsAndQuery** projet et en sélectionnant **déboguer**, suivi par **démarrer une nouvelle instance**. Vous devez voir un périphérique dans les résultats de hello pour poser des requêtes hello pour tous les appareils qui se trouve dans **Redmond43** et none pour les requêtes hello qui restreint hello toodevices qui utilisent un réseau cellulaire.
+1. Dans l’Explorateur de solutions, sélectionnez **Définir les projets de démarrage...** et vérifiez que l’**Action** définie pour le projet **AddTagsAndQuery** est **Démarrer**. Générez la solution.
+1. Exécutez cette application en cliquant avec le bouton droit sur le projet **AddTagsAndQuery** et en sélectionnant **Déboguer**, puis **Démarrer une nouvelle instance**. Vous devriez voir un appareil dans les résultats de la requête demandant tous les appareils situés à **Redmond43**, et aucun pour la requête limitant les résultats aux appareils utilisant un réseau cellulaire.
    
     ![Résultats de requête dans la fenêtre][img-addtagapp]
 
-Dans la section suivante de hello, vous créez une application de périphérique qui fournit des informations de connectivité hello et modifications hello résultat de requête hello dans la section précédente de hello.
+Dans la section suivante, vous allez créer une application d’appareil qui transmet les informations de connectivité et modifie le résultat de la requête de la section précédente.
 
-## <a name="create-hello-device-app"></a>Créer l’application hello
-Dans cette section, vous créez une application console .NET qui se connecte concentrateur tooyour **myDeviceId**, puis met à jour ses informations de hello toocontain propriétés signalé qu’il est connecté à l’aide d’un réseau cellulaire.
+## <a name="create-the-device-app"></a>Créer l’application pour appareil
+Dans cette section, vous allez créer une application console .NET qui se connecte à votre hub en tant que **myDeviceId**, puis met à jour ses propriétés signalées afin qu’elles contiennent les informations indiquant qu’elle est connectée par le biais d’un réseau mobile.
 
-1. Dans Visual Studio, ajoutez une solution d’actuel toohello de projet Visual c# bureau classique de Windows à l’aide de hello **Application Console** modèle de projet. Projet de hello nom **ReportConnectivity**.
+1. Dans Visual Studio, ajoutez un projet Visual C# Bureau classique Windows à la solution actuelle en utilisant le modèle de projet **Application Console** . Nommez le projet **ReportConnectivity**.
    
     ![Nouvelle application pour appareil Windows classique Visual C#][img-createdeviceapp]
     
-1. Dans l’Explorateur de solutions, cliquez sur hello **ReportConnectivity** de projet, puis cliquez sur **gérer les Packages NuGet...** .
-1. Bonjour **Gestionnaire de Package NuGet** fenêtre, sélectionnez **Parcourir** et recherchez **microsoft.azure.devices.client**. Sélectionnez **installer** tooinstall hello **Microsoft.Azure.Devices.Client** empaqueter et accepter les conditions d’utilisation de hello. Cette procédure télécharge, installe et ajoute une référence toohello [Azure IoT appareil SDK] [ lnk-nuget-client-sdk] NuGet package et ses dépendances.
+1. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur le projet **ReportConnectivity**, puis cliquez sur **Gérer les packages NuGet...**
+1. Dans la fenêtre **Gestionnaire de package NuGet**, sélectionnez **Parcourir**, puis recherchez **microsoft.azure.devices.client**. Sélectionnez **Installer** pour installer le package **Microsoft.Azure.Devices.Client**, puis acceptez les conditions d’utilisation. Cette procédure télécharge, installe et ajoute une référence au package NuGet [ Azure IoT device SDK][lnk-nuget-client-sdk] et à ses dépendances.
    
     ![Application cliente dans la fenêtre du gestionnaire de package NuGet][img-clientnuget]
-1. Ajoutez hello suivant `using` instructions haut hello hello **Program.cs** fichier :
+1. Ajoutez les instructions `using` suivantes en haut du fichier **Program.cs** :
    
         using Microsoft.Azure.Devices.Client;
         using Microsoft.Azure.Devices.Shared;
         using Newtonsoft.Json;
 
-1. Ajouter hello suivant champs toohello **programme** classe. Remplacez la valeur d’espace réservé hello avec la chaîne de connexion de périphérique hello que vous avez noté dans la section précédente de hello.
+1. Ajoutez les champs suivants à la classe **Program** . Remplacez la valeur d’espace réservé par la chaîne de connexion de l’appareil notée dans la section précédente.
    
         static string DeviceConnectionString = "HostName=<yourIotHubName>.azure-devices.net;DeviceId=<yourIotDeviceName>;SharedAccessKey=<yourIotDeviceAccessKey>";
         static DeviceClient Client = null;
 
-1. Ajouter hello suivant de méthode toohello **programme** classe :
+1. Ajoutez la méthode suivante à la classe **Program** :
 
        public static async void InitClient()
         {
             try
             {
-                Console.WriteLine("Connecting toohub");
+                Console.WriteLine("Connecting to hub");
                 Client = DeviceClient.CreateFromConnectionString(DeviceConnectionString, TransportType.Mqtt);
                 Console.WriteLine("Retrieving twin");
                 await Client.GetTwinAsync();
@@ -146,9 +146,9 @@ Dans cette section, vous créez une application console .NET qui se connecte con
             }
         }
 
-    Hello **Client** objet expose toutes les méthodes hello nécessitent de toointeract avec jumeaux de périphérique à partir de l’appareil de hello. Hello code ci-dessus, initialise hello **Client** objet, puis récupère hello appareil double pour **myDeviceId**.
+    L’objet **Client** expose toutes les méthodes requises pour interagir avec des jumeaux d’appareil à partir de l’appareil. Le code présenté ci-dessus initialise l’objet **Client**, puis récupère le jumeau d’appareil pour **myDeviceId**.
 
-1. Ajouter hello suivant de méthode toohello **programme** classe :
+1. Ajoutez la méthode suivante à la classe **Program** :
    
         public static async void ReportConnectivity()
         {
@@ -170,9 +170,9 @@ Dans cette section, vous créez une application console .NET qui se connecte con
             }
         }
 
-   Hello code au-dessus de mises à jour **myDeviceId**de signalé propriété avec les informations de connectivité hello.
+   Le code ci-dessus met à jour la propriété signalée de **myDeviceId** avec les informations de connectivité.
 
-1. Enfin, ajoutez hello suivant lignes toohello **Main** méthode :
+1. Enfin, ajoutez les lignes suivantes à la méthode **Main** :
    
        try
        {
@@ -184,27 +184,27 @@ Dans cette section, vous créez une application console .NET qui se connecte con
             Console.WriteLine();
             Console.WriteLine("Error in sample: {0}", ex.Message);
        }
-       Console.WriteLine("Press Enter tooexit.");
+       Console.WriteLine("Press Enter to exit.");
        Console.ReadLine();
 
-1. Dans l’Explorateur de solutions de hello, ouvrez hello **projets de définir le démarrage...**  et assurez-vous que hello **Action** pour **ReportConnectivity** projet est **Démarrer**. Générez la solution de hello.
-1. Exécution de cette application en cliquant sur hello **ReportConnectivity** projet et en sélectionnant **déboguer**, suivi par **démarrer une nouvelle instance**. Vous devez le voir obtention des informations sur le double hello et connectivité que d’envoyer un *signalé propriété*.
+1. Dans l’Explorateur de solutions, ouvrez **Définir les projets de démarrage...** et vérifiez que la valeur **Action** définie pour le projet **ReportConnectivity** est **Démarrer**. Générez la solution.
+1. Exécutez cette application en cliquant avec le bouton droit sur le projet **ReportConnectivity** et en sélectionnant **Déboguer**, puis **Démarrer une nouvelle instance**. Vous devez la voir obtenir les informations relatives au jumeau et envoyer la connectivité sous la forme d’une *propriété signalée*.
    
-    ![Exécuter une connexion de périphérique application tooreport][img-rundeviceapp]
+    ![Exécuter l’application pour appareil pour signaler la connectivité][img-rundeviceapp]
     
     
-1. Maintenant que hello appareil signalé ses informations de connectivité, il doit s’afficher dans les deux requêtes. Exécutez hello .NET **AddTagsAndQuery** hello de toorun application interroge à nouveau. Cette fois, **myDeviceId** doit apparaître dans les résultats des deux requêtes.
+1. À présent que l’appareil a signalé ses informations de connectivité, il doit apparaître dans les deux requêtes. Exécutez l’application .NET **AddTagsAndQuery** pour exécuter des requêtes à nouveau. Cette fois, **myDeviceId** doit apparaître dans les résultats des deux requêtes.
    
     ![Connectivité des appareils signalée avec succès][img-tagappsuccess]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans ce didacticiel, vous configuré un IoT hub Bonjour portail Azure et ensuite créé une identité d’appareil dans le Registre des identités de hello IoT hub. Vous ajouté des métadonnées de l’appareil sous forme de balises à partir d’une application back-end et a écrit un appareil simulé application tooreport appareil connectivité des informations en double du périphérique hello. Vous avez également appris tooquery ces informations à l’aide du langage de requête de type SQL IoT Hub hello.
+Dans ce didacticiel, vous avez configuré un nouveau hub IoT dans le portail Azure, puis créé une identité d’appareil dans le registre des identités du hub IoT. Vous avez ajouté des métadonnées d’appareil en tant que balises à partir d’une application principale et écrit une application pour appareil simulée pour signaler des informations de connectivité d’appareil dans le jumeau d’appareil. Vous avez également appris à interroger ces informations à l’aide du langage de requête IoT Hub de type SQL.
 
-Hello utilisation suivant comment les ressources toolearn à :
+Utilisez les ressources suivantes :
 
-* envoyer la télémétrie des appareils avec hello [prise en main IoT Hub] [ lnk-iothub-getstarted] (didacticiel),
-* configurer des appareils à l’aide des propriétés de votre choix du double de l’appareil avec hello [utilisation souhaitée propriétés tooconfigure dispositifs] [ lnk-twin-how-to-configure] (didacticiel),
-* contrôler les périphériques de manière interactive (telles que l’activation sur un ventilateur à partir d’une application contrôlée par l’utilisateur) avec hello [utiliser les méthodes directes] [ lnk-methods-tutorial] didacticiel.
+* Pour savoir comment envoyer les données de télémétrie à partir d’appareils, consultez le didacticiel [Prise en main d’IoT Hub][lnk-iothub-getstarted].
+* Pour savoir comment configurer des appareils à l’aide des propriétés de jumeau d’appareil souhaitées, voir le didacticiel [Utiliser des propriétés souhaitées pour configurer des appareils][lnk-twin-how-to-configure].
+* Pour savoir comment contrôler des appareils de façon interactive (par exemple en mettant en marche un ventilateur à partir d’une application contrôlée par l’utilisateur), voir le didacticiel [Utiliser des méthodes directes][lnk-methods-tutorial].
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-csharp-twin-getstarted/servicesdknuget.png

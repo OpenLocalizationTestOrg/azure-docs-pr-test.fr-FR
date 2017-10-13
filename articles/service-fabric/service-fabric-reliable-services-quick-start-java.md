@@ -1,6 +1,6 @@
 ---
-title: aaaCreate votre premier microservice de Azure fiable dans Java | Documents Microsoft
-description: "Introduction toocreating une application Microsoft Azure Service Fabric avec et sans état des services."
+title: "Créer votre premier microservice Azure fiable en Java | Microsoft Docs"
+description: "Introduction à la création d'une application Microsoft Azure Service Fabric avec des services avec et sans état."
 services: service-fabric
 documentationcenter: java
 author: vturecek
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 577d96591797bbfe6be5c1094426b5f1435cca0f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ebabe4844732412e04bab8c277f7ebbc4a5737c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="get-started-with-reliable-services"></a>Prise en main de Reliable Services
 > [!div class="op_single_selector"]
@@ -27,30 +27,30 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Cet article explique les principes fondamentaux de hello de Azure Service Fabric des Services fiables et vous guide dans la création et déploiement d’une simple application de Service fiable écrite en Java. Cette vidéo Microsoft Virtual Academy montre également comment toocreate un service fiable sans état :<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=DOX8K86yC_206218965">  
+Cet article explique les notions de base d’Azure Service Fabric Reliable Services et vous guide pas à pas dans la création et le déploiement d’une application Reliable Service simple écrite en Java. Cette vidéo Microsoft Virtual Academy vous montre également comment créer un service Reliable sans état :<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=DOX8K86yC_206218965">  
 <img src="./media/service-fabric-reliable-services-quick-start-java/ReliableServicesJavaVid.png" WIDTH="360" HEIGHT="244">  
 </a></center>
 
 ## <a name="installation-and-setup"></a>Installation et configuration
-Avant de commencer, assurez-vous que vous disposez d’environnement de développement de Service Fabric hello sur votre ordinateur.
-Si vous avez besoin de tooset, ça trop[mise en route sur Mac](service-fabric-get-started-mac.md) ou [mise en route sur Linux](service-fabric-get-started-linux.md).
+Avant de commencer, assurez-vous que l’environnement de développement Service Fabric est configuré sur votre ordinateur.
+Si vous devez le configurer, référez-vous à l’article sur la [prise en main sur Mac](service-fabric-get-started-mac.md) ou sur la [prise en main sur Linux](service-fabric-get-started-linux.md).
 
 ## <a name="basic-concepts"></a>Concepts de base
-tooget en main des Services fiables, vous seulement devez toounderstand quelques concepts de base :
+Pour prendre en main Reliable Services, il vous suffit de comprendre quelques concepts de base :
 
-* **Type de service** : il s’agit de l’implémentation de votre service. Il est défini par la classe hello vous écrivez qui étend `StatelessService` et tout autre code ou les dépendances utilisés ici, avec un nom et un numéro de version.
-* **Instance de service nommée**: toorun votre service, vous créez des instances nommées de votre type de service, beaucoup comme vous créez des instances d’objet d’un type de classe. Les instances de service sont en fait des instanciations d’objet de votre classe de service que vous écrivez.
-* **Hôte de service**: hello nommé des instances de service que vous créez toorun nécessaire à l’intérieur d’un ordinateur hôte. hôte de service Hello est simplement un processus dans lequel les instances de votre service peuvent exécuter.
-* **Inscription du service** : l’inscription rassemble tous les éléments. Hello service type doit être inscrit avec hello Service Fabric runtime dans un service hôte tooallow Service Fabric toocreate ses instances toorun.  
+* **Type de service** : il s’agit de l’implémentation de votre service. Elle est définie par la classe que vous écrivez qui étend `StatelessService` et tout autre code ou dépendances utilisés ici, ainsi qu’un nom et un numéro de version.
+* **Instance de service nommée** : pour exécuter votre service, vous créez des instances nommées de votre type de service, de la même manière que vous créez des instances d’objet d’un type de classe. Les instances de service sont en fait des instanciations d’objet de votre classe de service que vous écrivez.
+* **Hôte de service** : les instances de service nommées que vous créez doivent s’exécuter au sein d’un ordinateur hôte. L’hôte de service est simplement un processus dans lequel les instances de votre service peuvent s’exécuter.
+* **Inscription du service** : l’inscription rassemble tous les éléments. Le type de service doit être inscrit auprès du runtime Service Fabric dans un hôte de service pour autoriser Service Fabric à créer des instances de ce type à exécuter.  
 
 ## <a name="create-a-stateless-service"></a>Création d'un service sans état
-Commencez par créer une application Service Fabric. Hello SDK de l’infrastructure de Service pour Linux comprend un Yeoman générateur tooprovide hello génération de modèles automatique pour une application de Service Fabric avec un service sans état. Commencez par exécuter hello suivant Yeoman commande :
+Commencez par créer une application Service Fabric. Le Kit de développement logiciel (SDK) Service Fabric pour Linux comprend un générateur Yeoman qui assure la génération de modèles automatique pour une application Service Fabric avec un service sans état. Commencez par exécuter la commande Yeoman suivante :
 
 ```bash
 $ yo azuresfjava
 ```
 
-Suivez hello instructions toocreate un **un Service fiable sans état**. Pour ce didacticiel, l’application hello de nom « HelloWorldApplication » et hello service « HelloWorld ». résultat de Hello contient des répertoires pour hello `HelloWorldApplication` et `HelloWorld`.
+Suivez les instructions pour créer un **service sans état fiable**. Pour ce didacticiel, nommez l’application « HelloWorldApplication » et le service « HelloWorld ». Le résultat comprend des répertoires pour `HelloWorldApplication` et `HelloWorld`.
 
 ```bash
 HelloWorldApplication/
@@ -77,8 +77,8 @@ HelloWorldApplication/
 └── uninstall.sh
 ```
 
-## <a name="implement-hello-service"></a>Implémenter le service de hello
-Ouvrez **HelloWorldApplication/HelloWorld/src/statelessservice/HelloWorldService.java**. Cette classe définit le type de service hello et peut exécuter n’importe quel code. API de service Hello fournit deux points d’entrée pour votre code :
+## <a name="implement-the-service"></a>Mettre en œuvre le service
+Ouvrez **HelloWorldApplication/HelloWorld/src/statelessservice/HelloWorldService.java**. Cette classe définit le type de service et peut exécuter n’importe quel code. L'API de service fournit deux points d'entrée pour votre code :
 
 * Une méthode de point d’entrée de durée indéterminée, appelée `runAsync()`, avec laquelle vous pouvez commencer l’exécution de toute charge de travail, y compris les charges de travail de calcul de longue durée.
 
@@ -98,28 +98,28 @@ protected List<ServiceInstanceListener> createServiceInstanceListeners() {
 }
 ```
 
-Dans ce didacticiel, nous nous concentrer sur hello `runAsync()` méthode point d’entrée. C’est là que vous pouvez commencer immédiatement à exécuter votre code.
+Dans ce didacticiel, nous nous concentrons sur la méthode de point d’entrée `runAsync()`. C’est là que vous pouvez commencer immédiatement à exécuter votre code.
 
 ### <a name="runasync"></a>RunAsync
-plateforme de Hello appelle cette méthode lorsqu’une instance d’un service est tooexecute endroit et est prêt. Pour un service sans état, cela signifie simplement lors de l’instance de service hello est ouverte. Un jeton d’annulation est fourni toocoordinate lorsque votre instance de service doit toobe fermé. Dans l’infrastructure de Service, ce cycle d’ouverture/fermeture d’une instance de service peut se produire plusieurs fois sur la durée de vie hello du service de hello dans sa globalité. Il existe diverses raisons à cela, notamment :
+La plateforme appelle cette méthode quand une instance d’un service est placée et prête à être exécutée. Pour un service sans état, cela signifie simplement le moment où l’instance de service est ouverte. Un jeton d'annulation est fourni pour coordonner lorsque l'instance de service doit être fermée. Dans Service Fabric, ce cycle d’ouverture/fermeture d’une instance de service peut se produire plusieurs fois au cours de la durée de vie de votre service dans son ensemble. Il existe diverses raisons à cela, notamment :
 
-* système de Hello déplace vos instances de service pour l’équilibrage des ressources.
+* Le système déplace vos instances de service à des fins d’équilibrage des ressources.
 * Des erreurs surviennent dans votre code.
-* application Hello ou système est mis à niveau.
-* matériel sous-jacent de Hello connaît une panne.
+* L’application ou le système sont mis à niveau.
+* Le matériel sous-jacent tombe en panne.
 
-Cette orchestration est gérée par le Service Fabric tookeep votre service hautement disponible et correctement à charge équilibrée.
+Cette orchestration est gérée par Service Fabric afin de maintenir une haute disponibilité et un équilibrage correct pour votre service.
 
-`runAsync()` ne doit pas se bloquer de façon synchrone. Votre implémentation de runAsync doit retourner un toocontinue de runtime CompletableFuture tooallow hello. Si votre charge de travail a besoin d’une tâche de longue durée qui doit être effectuée à l’intérieur de tooimplement hello CompletableFuture.
+`runAsync()` ne doit pas se bloquer de façon synchrone. Votre implémentation de runAsync doit renvoyer un objet CompletableFuture pour permettre au runtime de continuer si votre charge de travail a besoin d’implémenter une tâche longue qui doit être effectuée à l’intérieur de l’objet CompletableFuture.
 
 #### <a name="cancellation"></a>Annulation
-L’annulation de votre charge de travail est un effort conjoint orchestré par hello fourni le jeton d’annulation. Hello le système attend votre tooend tâche (par la réussite, l’annulation ou erreur) avant de poursuivre. Il est important toohonor hello annulation jeton, terminer un travail et quitter `runAsync()` aussi rapidement que possible lorsque le système de hello demande l’annulation. Hello exemple suivant montre comment un événement d’annulation de toohandle :
+L'annulation de votre charge de travail est un effort conjoint orchestré par le jeton d'annulation fourni. Le système attend la fin de la tâche (suite à sa réussite, à son annulation ou à une défaillance) avant de poursuivre. Il est important de respecter le jeton d’annulation, de terminer le travail et de quitter `runAsync()` aussi rapidement que possible quand le système demande une annulation. L’exemple suivant montre comment gérer un événement d’annulation :
 
 ```java
     @Override
     protected CompletableFuture<?> runAsync(CancellationToken cancellationToken) {
 
-        // TODO: Replace hello following sample code with your own logic
+        // TODO: Replace the following sample code with your own logic
         // or remove this runAsync override if it's not needed in your service.
 
         CompletableFuture.runAsync(() -> {
@@ -140,7 +140,7 @@ L’annulation de votre charge de travail est un effort conjoint orchestré par 
 ```
 
 ### <a name="service-registration"></a>Inscription du service
-Types de service doivent être inscrit avec le runtime du Service Fabric hello. type de service Hello est défini dans hello `ServiceManifest.xml` et votre classe de service qui implémente `StatelessService`. L’enregistrement du service est effectué dans le point d’entrée principal processus hello. Dans cet exemple, hello le processus de point d’entrée principal est `HelloWorldServiceHost.java`:
+Les types de service doivent être inscrits auprès du runtime Service Fabric. Le type de service est défini dans le fichier `ServiceManifest.xml` et votre classe de service qui implémente `StatelessService`. L’inscription du service est réalisée dans le point d’entrée principal du processus. Dans cet exemple, le point d’entrée principal du processus est `HelloWorldServiceHost.java` :
 
 ```java
 public static void main(String[] args) throws Exception {
@@ -156,9 +156,9 @@ public static void main(String[] args) throws Exception {
 }
 ```
 
-## <a name="run-hello-application"></a>Exécutez l’application hello
+## <a name="run-the-application"></a>Exécution de l'application
 
-Hello Yeoman la structure inclut un gradle script toobuild hello d’application et un interpréteur de commandes de scripts toodeploy et supprimer l’application. application de hello toorun, première application hello de build avec gradle :
+La génération de modèles automatique Yeoman inclut un script Gradle permettant de créer l’application et des scripts bash permettant le déploiement et la suppression de l’application. Pour exécuter l’application, commencez par créer l’application avec Gradle :
 
 ```bash
 $ gradle
@@ -168,7 +168,7 @@ Cela génère un package d’application Service Fabric qui peut être déployé
 
 ### <a name="deploy-with-service-fabric-cli"></a>Effectuer un déploiement à l’aide de l’interface CLI Service Fabric
 
-script de install.sh Hello contient hello nécessaire Service Fabric CLI commandes toodeploy hello package d’application. Exécutez l’application de hello install.sh script toodeploy.
+Le script install.sh contient les commandes de l’interface CLI Service Fabric nécessaires pour déployer le package d’application. Exécutez le script install.sh pour déployer l’application.
 
 ```bash
 $ ./install.sh
@@ -176,4 +176,4 @@ $ ./install.sh
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Prise en main de l’interface de ligne de commande Service Fabric](service-fabric-cli.md)
+* [Bien démarrer avec l’interface de ligne de commande Service Fabric](service-fabric-cli.md)

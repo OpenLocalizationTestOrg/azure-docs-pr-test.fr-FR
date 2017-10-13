@@ -1,6 +1,6 @@
 ---
-title: "aaaTransfer données avec hello bibliothèque de déplacement des données de stockage Microsoft Azure | Documents Microsoft"
-description: "Utilisez hello bibliothèque de déplacement des données toomove ou copie de données tooor à partir de l’objet blob et le fichier de contenu. Copier des données tooAzure stockage à partir de fichiers locales, ou copier des données dans ou entre des comptes de stockage. Migrer facilement vos données de tooAzure stockage."
+title: "Transférer des données avec la bibliothèque de déplacement des données du Stockage Microsoft Azure | Microsoft Docs"
+description: "Utilisez la bibliothèque de déplacement des données pour déplacer ou copier des données vers ou à partir du contenu d'objets blob et de fichiers. Copiez des données vers Azure Storage à partir de fichiers locaux ou copiez des données dans ou entre des comptes de stockage. Migrez facilement vos données vers Azure Storage."
 services: storage
 documentationcenter: 
 author: seguler
@@ -12,29 +12,29 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
-ms.date: 03/22/2017
+ms.date: 09/27/2017
 ms.author: seguler
-ms.openlocfilehash: 9aec6cb171f794cc6ca432938ce499079e7dfdec
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7890159574de0db58dd2e7d1b6a19305381d29d6
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="transfer-data-with-hello-microsoft-azure-storage-data-movement-library"></a>Transfert de données avec hello bibliothèque de déplacement des données de Microsoft Azure Storage
+# <a name="transfer-data-with-the-microsoft-azure-storage-data-movement-library"></a>Transférer des données avec la bibliothèque de déplacement des données du Stockage Microsoft Azure
 
 ## <a name="overview"></a>Vue d'ensemble
-Hello bibliothèque de déplacement des données de Microsoft Azure Storage est une bibliothèque de multiplateforme open source qui est conçue pour des performances élevées, chargement, le téléchargement et copie des fichiers et des objets BLOB de stockage Azure. Cette bibliothèque est l’infrastructure de déplacement de données de base de hello donne toute sa puissance [AzCopy](../storage-use-azcopy.md). Hello bibliothèque de déplacement des données fournit des méthodes pratiques qui ne sont pas disponibles dans notre traditionnel [bibliothèque cliente de stockage de Azure .NET](../blobs/storage-dotnet-how-to-use-blobs.md). Cela inclut hello capacité tooset hello nombre d’opérations parallèles, suivre la progression du transfert, reprendre facilement un transfert annulé et bien plus encore.  
+La bibliothèque de déplacement des données du Stockage Microsoft Azure est une bibliothèque multiplateforme open source conçue pour charger, télécharger et copier des objets blob et des fichiers du Stockage Azure avec des performances élevées. Cette bibliothèque est l’infrastructure centrale de déplacement des données [d’AzCopy](../storage-use-azcopy.md). La bibliothèque de déplacement des données fournit des méthodes utiles qui ne sont pas disponibles dans notre [bibliothèque cliente classique du Stockage Azure .NET](../blobs/storage-dotnet-how-to-use-blobs.md). Parmi elles figure la capacité à définir le nombre d’opérations parallèles, à suivre la progression des transferts, à reprendre facilement un transfert annulé et bien plus encore.  
 
-Cette bibliothèque utilise également .NET Core, ce qui signifie que vous pouvez l’utiliser pour créer des applications .NET pour Windows, Linux et macOS. toolearn savoir plus sur .NET Core, consultez toohello [documentation de .NET Core](https://dotnet.github.io/). Cette bibliothèque fonctionne également pour les applications .NET Framework classiques pour Windows. 
+Cette bibliothèque utilise également .NET Core, ce qui signifie que vous pouvez l’utiliser pour créer des applications .NET pour Windows, Linux et macOS. Pour en savoir plus sur .NET Core, consultez la [Documentation .NET Core](https://dotnet.github.io/). Cette bibliothèque fonctionne également pour les applications .NET Framework classiques pour Windows. 
 
-Ce document montre comment toocreate un .NET Core console application qui s’exécute sur Windows, Linux et macOS qu’effectue hello les scénarios suivants :
+Ce document montre comment créer une application de console .NET Core qui s’exécute sous Windows, Linux et macOS et effectue les scénarios suivants :
 
-- Télécharger les fichiers et répertoires tooBlob stockage.
-- Définir le nombre de hello d’opérations parallèles lors du transfert de données.
+- charger des fichiers et des répertoires vers le Stockage Blob ;
+- définir le nombre d’opérations parallèles lors du transfert de données ;
 - suivre la progression du transfert de données ;
 - reprendre les transferts de données annulés ; 
-- Copiez le fichier à partir de l’URL tooBlob stockage. 
-- Copier à partir du stockage d’objets Blob tooBlob stockage.
+- copier des fichiers de l’URL vers le Stockage Blob ; 
+- copier d’un Stockage Blob à un autre.
 
 **Ce dont vous avez besoin :**
 
@@ -42,61 +42,47 @@ Ce document montre comment toocreate un .NET Core console application qui s’ex
 * Un [compte de stockage Azure](storage-create-storage-account.md#create-a-storage-account)
 
 > [!NOTE]
-> Ce guide part du principe que vous êtes déjà familiarisé avec [Azure Storage](https://azure.microsoft.com/services/storage/). Si non, la lecture hello [Introduction tooAzure stockage](storage-introduction.md) documentation est utile. Plus important encore, vous devez trop[créer un compte de stockage](storage-create-storage-account.md#create-a-storage-account) toostart à l’aide de hello bibliothèque de déplacement des données.
+> Ce guide part du principe que vous êtes déjà familiarisé avec [Azure Storage](https://azure.microsoft.com/services/storage/). Sinon, il est utile de lire la documentation [Introduction au Stockage Azure](storage-introduction.md). Plus important encore, vous devez [créer un compte de Stockage](storage-create-storage-account.md#create-a-storage-account) pour pouvoir utiliser la bibliothèque de déplacement des données.
 > 
 > 
 
 ## <a name="setup"></a>Paramétrage  
 
-1. Visitez hello [Guide d’Installation de .NET Core](https://www.microsoft.com/net/core) tooinstall .NET Core. Lors de la sélection de votre environnement, choisissez l’option de ligne de commande hello. 
-2. À partir de la ligne de commande hello, créez un répertoire pour votre projet. Naviguer dans ce répertoire, puis tapez `dotnet new` projet de console toocreate c#.
-3. Ouvrez ce répertoire dans Visual Studio Code. Cette étape peut être effectuée rapidement via la ligne de commande hello en tapant `code .`.  
-4. Installer hello [c# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) à partir de Visual Studio Code Marketplace de hello. Redémarrez Visual Studio Code. 
-5. À ce stade, vous devez voir deux invites. Un permet d’ajouter des « toobuild de ressources requis et débogage ». Cliquez sur « Oui ». L’autre invite permet de restaurer les dépendances non résolues. Cliquez sur « Restaurer ».
-6. Votre application doit maintenant contenir un `launch.json` fichier sous hello `.vscode` active. Dans ce fichier, modifiez hello `externalConsole` valeur trop`true`.
-7. Code Visual Studio vous permet de toodebug les applications .NET Core. Accès `F5` toorun votre application et vérifiez que votre programme d’installation fonctionne. « Hello World! » doit console de toohello imprimé. 
+1. Consultez le [Guide d’installation de .NET Core](https://www.microsoft.com/net/core) pour installer .NET Core. Lorsque vous sélectionnez votre environnement, choisissez l’option de ligne de commande. 
+2. En ligne de commande, créez un répertoire pour votre projet. Accédez à ce répertoire, puis tapez `dotnet new console -o <sample-project-name>` pour créer un projet de console C#.
+3. Ouvrez ce répertoire dans Visual Studio Code. Vous pouvez effectuer rapidement cette étape en tapant `code .` en ligne de commande dans Windows.  
+4. Installez [l’extension C#](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) à partir de la Place de marché Visual Studio. Redémarrez Visual Studio Code. 
+5. À ce stade, vous devez voir deux invites. L’une permet d’ajouter les « composants requis pour générer et déboguer ». Cliquez sur « Oui ». L’autre invite permet de restaurer les dépendances non résolues. Cliquez sur « Restaurer ».
+6. Modifiez `launch.json` sous `.vscode` pour utiliser un terminal externe comme console. Ce paramètre doit alors être ` "console": "externalTerminal"`.
+7. Visual Studio Code vous permet de déboguer les applications .NET Core. Appuyez sur `F5` pour exécuter votre application et vérifier que votre configuration fonctionne. « Hello World! » doit s’imprimer dans la console. 
 
-## <a name="add-data-movement-library-tooyour-project"></a>Ajouter le projet de bibliothèque de déplacement des données de tooyour
+## <a name="add-data-movement-library-to-your-project"></a>Ajouter la bibliothèque de déplacement des données à votre projet
 
-1. Ajouter la version la plus récente de hello bibliothèque de déplacement des données toohello hello `dependencies` section de votre `project.json` fichier. Au moment de l’écriture de hello, serait cette version`"Microsoft.Azure.Storage.DataMovement": "0.5.0"` 
-2. Ajouter `"portable-net45+win8"` toohello `imports` section. 
-3. Une invite doit s’afficher toorestore votre projet. Cliquez sur le bouton de « restaurer » hello. Vous pouvez également restaurer votre projet à partir de la ligne de commande hello en tapant la commande hello `dotnet restore` dans votre répertoire de projet racine hello.
+1. Ajoutez la dernière version de la bibliothèque de déplacement des données à la section `dependencies` de votre fichier `<project-name>.csproj`. Au moment de la rédaction de cette page, il s’agit de la version `"Microsoft.Azure.Storage.DataMovement": "0.6.2"`. 
+2. Une invite doit s’afficher pour restaurer votre projet. Cliquez sur le bouton « Restaurer ». Vous pouvez également restaurer votre projet en ligne de commande en tapant la commande `dotnet restore` à la racine du répertoire de votre projet.
 
-Modifiez `project.json` :
+Modifiez `<project-name>.csproj` :
 
-    {
-      "version": "1.0.0-*",
-      "buildOptions": {
-        "debugType": "portable",
-        "emitEntryPoint": true
-      },
-      "dependencies": {
-        "Microsoft.Azure.Storage.DataMovement": "0.5.0"
-      },
-      "frameworks": {
-        "netcoreapp1.1": {
-          "dependencies": {
-            "Microsoft.NETCore.App": {
-              "type": "platform",
-              "version": "1.1.0"
-            }
-          },
-          "imports": [
-            "dnxcore50",
-            "portable-net45+win8"
-          ]
-        }
-      }
-    }
+    <Project Sdk="Microsoft.NET.Sdk">
 
-## <a name="set-up-hello-skeleton-of-your-application"></a>Configurer la structure de hello de votre application
-Hello première chose à que faire est définir hello « squelette » code d’application. Ce code, nous vous invite à entrer pour une clé de compte et le nom du compte de stockage et utilise ces informations d’identification toocreate un `CloudStorageAccount` objet. Cet objet est utilisé toointeract avec notre compte de stockage dans tous les scénarios de transfert. Hello code nous invite également type hello de toochoose de l’opération de transfert, nous souhaiterions tooexecute. 
+        <PropertyGroup>
+            <OutputType>Exe</OutputType>
+            <TargetFramework>netcoreapp2.0</TargetFramework>
+        </PropertyGroup>
+        <ItemGroup>
+            <PackageReference Include="Microsoft.Azure.Storage.DataMovement" Version="0.6.2" />
+            </ItemGroup>
+        </Project>
+
+## <a name="set-up-the-skeleton-of-your-application"></a>Définir le squelette de votre application
+La première chose à faire est de définir le « squelette » de code de votre application. Ce code nous demande une clé et un nom de compte de Stockage et utilise ces informations d’identification pour créer un objet `CloudStorageAccount`. Cet objet est utilisé pour interagir avec notre compte de Stockage dans tous les scénarios de transfert. Le code nous invite également à choisir le type d’opération de transfert que nous souhaitons exécuter. 
 
 Modifiez `Program.cs` :
 
 ```csharp
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Diagnostics;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -122,7 +108,7 @@ namespace DMLibSample
 
         public static void ExecuteChoice(CloudStorageAccount account)
         {
-            Console.WriteLine("\nWhat type of transfer would you like tooexecute?\n1. Local file --> Azure Blob\n2. Local directory --> Azure Blob directory\n3. URL (e.g. Amazon S3 file) --> Azure Blob\n4. Azure Blob --> Azure Blob");
+            Console.WriteLine("\nWhat type of transfer would you like to execute?\n1. Local file --> Azure Blob\n2. Local directory --> Azure Blob directory\n3. URL (e.g. Amazon S3 file) --> Azure Blob\n4. Azure Blob --> Azure Blob");
             int choice = int.Parse(Console.ReadLine());
 
             if(choice == 1)
@@ -166,8 +152,8 @@ namespace DMLibSample
 }
 ```
 
-## <a name="transfer-local-file-tooazure-blob"></a>Transfert de fichier local tooAzure Blob
-Ajouter des méthodes hello `GetSourcePath` et `GetBlob` trop`Program.cs`:
+## <a name="transfer-local-file-to-azure-blob"></a>Transférer un fichier local dans le Stockage Blob Azure
+Ajoutez les méthodes `GetSourcePath` et `GetBlob` à `Program.cs` :
 
 ```csharp
 public static string GetSourcePath()
@@ -195,7 +181,7 @@ public static CloudBlockBlob GetBlob(CloudStorageAccount account)
 }
 ```
 
-Modifier hello `TransferLocalFileToAzureBlob` méthode :
+Modifiez la méthode `TransferLocalFileToAzureBlob` :
 
 ```csharp
 public static async Task TransferLocalFileToAzureBlob(CloudStorageAccount account)
@@ -209,34 +195,34 @@ public static async Task TransferLocalFileToAzureBlob(CloudStorageAccount accoun
 }
 ```
 
-Ce code nous demande hello chemin d’accès tooa local, hello nom d’un conteneur de nouveau ou existant et le fichier nom hello d’un nouvel objet blob. Hello `TransferManager.UploadAsync` méthode effectue le téléchargement de hello à l’aide de ces informations. 
+Ce code nous demande le chemin d’accès à un fichier local, le nom d’un conteneur nouveau ou existant et le nom d’un nouvel objet blob. La méthode `TransferManager.UploadAsync` effectue le chargement suivant ces informations. 
 
-Accès `F5` toorun votre application. Vous pouvez vérifier ce téléchargement hello s’est produite en affichant votre compte de stockage avec hello [Microsoft Azure Storage Explorer](http://storageexplorer.com/).
+Appuyez sur `F5` pour exécuter votre application. Vous pouvez vérifier que le chargement a bien été effectué en affichant votre compte de Stockage avec [l’Explorateur de Stockage Microsoft Azure](http://storageexplorer.com/).
 
 ## <a name="set-number-of-parallel-operations"></a>Définir un nombre d’opérations parallèles
-Une fonctionnalité intéressante offerte par hello que bibliothèque de déplacement des données est le nombre de hello tooset hello capacité de débit de transfert de données des opérations parallèles tooincrease hello. Par défaut, hello bibliothèque de déplacement de données définit le nombre hello d’opérations parallèles too8 * hello du nombre de cœurs sur votre ordinateur. 
+L’une des fonctionnalités intéressantes offertes par la bibliothèque de déplacement des données consiste à définir le nombre d’opérations parallèles pour augmenter le débit du transfert de données. Par défaut, la bibliothèque de déplacement des données fixe le nombre d’opérations parallèles à 8 * le nombre de cœurs sur votre ordinateur. 
 
-Gardez à l’esprit que nombreuses opérations parallèles dans un environnement à faible bande passante peuvent éviter tout problème de connexion de réseau hello et empêche réellement entièrement l’exécution des opérations. Vous devez tooexperiment avec toodetermine de ce paramètre qui vous convient le mieux en fonction sur votre bande passante réseau disponible. 
+Remarque : un grand nombre d’opérations parallèles dans un environnement à faible bande passante peut surcharger la connexion réseau et en réalité entraver le bon déroulement des opérations. Vous devrez faire des essais avec ce paramètre pour déterminer ce qui fonctionne le mieux en fonction de votre bande passante réseau disponible. 
 
-Vous allez ajouter du code qui nous permet un nombre de hello tooset d’opérations parallèles. Nous allons également ajouter le code de la durée de toocomplete de transfert hello.
+Nous allons ajouter du code pour pouvoir définir le nombre d’opérations parallèles. Ajoutons du code afin de chronométrer la durée du transfert.
 
-Ajouter un `SetNumberOfParallelOperations` méthode trop`Program.cs`:
+Ajoutez une méthode `SetNumberOfParallelOperations` à `Program.cs` :
 
 ```csharp
 public static void SetNumberOfParallelOperations()
 {
-    Console.WriteLine("\nHow many parallel operations would you like toouse?");
+    Console.WriteLine("\nHow many parallel operations would you like to use?");
     string parallelOperations = Console.ReadLine();
     TransferManager.Configurations.ParallelOperations = int.Parse(parallelOperations);
 }
 ```
 
-Modifier hello `ExecuteChoice` méthode toouse `SetNumberOfParallelOperations`:
+Modifiez la méthode `ExecuteChoice` de sorte qu’elle utilise `SetNumberOfParallelOperations` :
 
 ```csharp
 public static void ExecuteChoice(CloudStorageAccount account)
 {
-    Console.WriteLine("\nWhat type of transfer would you like tooexecute?\n1. Local file --> Azure Blob\n2. Local directory --> Azure Blob directory\n3. URL (e.g. Amazon S3 file) --> Azure Blob\n4. Azure Blob --> Azure Blob");
+    Console.WriteLine("\nWhat type of transfer would you like to execute?\n1. Local file --> Azure Blob\n2. Local directory --> Azure Blob directory\n3. URL (e.g. Amazon S3 file) --> Azure Blob\n4. Azure Blob --> Azure Blob");
     int choice = int.Parse(Console.ReadLine());
 
     SetNumberOfParallelOperations();
@@ -260,7 +246,7 @@ public static void ExecuteChoice(CloudStorageAccount account)
 }
 ```
 
-Modifier hello `TransferLocalFileToAzureBlob` méthode toouse un minuteur :
+Modifiez la méthode `TransferLocalFileToAzureBlob` de sorte qu’elle utilise un minuteur :
 
 ```csharp
 public static async Task TransferLocalFileToAzureBlob(CloudStorageAccount account)
@@ -277,9 +263,9 @@ public static async Task TransferLocalFileToAzureBlob(CloudStorageAccount accoun
 ```
 
 ## <a name="track-transfer-progress"></a>Suivre la progression des transferts
-Il est très utile de connaître le temps nécessaire pour notre tootransfer de données. Toutefois, le fait progression de hello toosee en mesure de notre transfert *pendant* est même préférable d’opération de transfert hello. tooachieve ce scénario, nous devons toocreate un `TransferContext` objet. Hello `TransferContext` objet se présente sous deux formes : `SingleTransferContext` et `DirectoryTransferContext`. Hello précédent est pour le transfert d’un seul fichier (c'est-à-dire que nous allons faire maintenant) et hello ce dernier est pour le transfert d’un répertoire de fichiers (ce qui nous ajoutons ultérieurement).
+Il est très utile de connaître la durée du transfert des données. Toutefois, il serait encore mieux de pouvoir voir la progression du transfert *pendant* l’opération de transfert. Pour appliquer ce scénario, nous devons créer un objet `TransferContext`. L’objet `TransferContext` se présente sous deux formes : `SingleTransferContext` et `DirectoryTransferContext`. La première permet de transférer un seul fichier (ce que nous faisons actuellement) et la seconde concerne le transfert d’un répertoire de fichiers (que nous ajouterons plus tard).
 
-Ajouter des méthodes hello `GetSingleTransferContext` et `GetDirectoryTransferContext` trop`Program.cs`: 
+Ajoutez les méthodes `GetSingleTransferContext` et `GetDirectoryTransferContext` à `Program.cs` : 
 
 ```csharp
 public static SingleTransferContext GetSingleTransferContext(TransferCheckpoint checkpoint)
@@ -307,7 +293,7 @@ public static DirectoryTransferContext GetDirectoryTransferContext(TransferCheck
 }
 ```
 
-Modifier hello `TransferLocalFileToAzureBlob` méthode toouse `GetSingleTransferContext`:
+Modifiez la méthode `TransferLocalFileToAzureBlob` de sorte qu’elle utilise `GetSingleTransferContext` :
 
 ```csharp
 public static async Task TransferLocalFileToAzureBlob(CloudStorageAccount account)
@@ -326,7 +312,7 @@ public static async Task TransferLocalFileToAzureBlob(CloudStorageAccount accoun
 ```
 
 ## <a name="resume-a-canceled-transfer"></a>Reprendre un transfert annulé
-Une autre fonctionnalité pratique offerte par hello bibliothèque de déplacement des données est hello capacité tooresume un transfert annulé. Vous allez ajouter du code qui permet le transfert de hello tootemporarily annuler en tapant `c`, puis reprendre le transfert de hello 3 secondes plus tard.
+Une autre fonctionnalité pratique offerte par la bibliothèque de déplacement des données consiste à pouvoir reprendre un transfert annulé. Nous allons ajouter du code qui nous permettra d’annuler temporairement le transfert en tapant `c`, puis de le reprendre trois secondes plus tard.
 
 Modifiez `TransferLocalFileToAzureBlob` :
 
@@ -338,7 +324,7 @@ public static async Task TransferLocalFileToAzureBlob(CloudStorageAccount accoun
     TransferCheckpoint checkpoint = null;
     SingleTransferContext context = GetSingleTransferContext(checkpoint); 
     CancellationTokenSource cancellationSource = new CancellationTokenSource();
-    Console.WriteLine("\nTransfer started...\nPress 'c' tootemporarily cancel your transfer...\n");
+    Console.WriteLine("\nTransfer started...\nPress 'c' to temporarily cancel your transfer...\n");
 
     Stopwatch stopWatch = Stopwatch.StartNew();
     Task task;
@@ -380,12 +366,12 @@ public static async Task TransferLocalFileToAzureBlob(CloudStorageAccount accoun
 }
 ```
 
-Jusqu'à présent, notre `checkpoint` a toujours été la valeur trop`null`. Maintenant, si nous annulons le transfert de hello, nous extraire hello dernier point de contrôle de notre transfert, puis utiliser ce nouveau point de contrôle dans notre contexte de transfert. 
+Jusqu'à présent, notre `checkpoint` a toujours eu la valeur `null`. Maintenant, si nous annulons le transfert, nous récupérons le dernier point de contrôle de notre transfert, puis nous utilisons ce nouveau point de contrôle dans notre contexte de transfert. 
 
-## <a name="transfer-local-directory-tooazure-blob-directory"></a>Transfert de répertoire d’objets Blob tooAzure répertoire local
-Il serait décevants hello bibliothèque de déplacement des données peut transférer un fichier à la fois. Heureusement, ce n’est pas le cas de hello. Hello bibliothèque de déplacement des données fournit hello capacité tootransfer un répertoire de fichiers et de tous ses sous-répertoires. Vous allez ajouter du code qui permet de toodo rien de plus.
+## <a name="transfer-local-directory-to-azure-blob-directory"></a>Transférer un répertoire local de transfert dans un répertoire Blob Azure
+Il serait décevant que la bibliothèque de déplacement des données ne puisse transférer qu’un fichier à la fois. Heureusement, ce n’est pas le cas. La bibliothèque de déplacement des données offre la capacité à transférer un répertoire de fichiers et tous ses sous-répertoires. Nous allons ajouter du code pour pouvoir effectuer cette opération.
 
-D’abord, ajoutez la méthode hello `GetBlobDirectory` trop`Program.cs`:
+Tout d’abord, ajoutez la méthode `GetBlobDirectory` à `Program.cs` :
 
 ```csharp
 public static CloudBlobDirectory GetBlobDirectory(CloudStorageAccount account)
@@ -413,7 +399,7 @@ public static async Task TransferLocalDirectoryToAzureBlobDirectory(CloudStorage
     TransferCheckpoint checkpoint = null;
     DirectoryTransferContext context = GetDirectoryTransferContext(checkpoint); 
     CancellationTokenSource cancellationSource = new CancellationTokenSource();
-    Console.WriteLine("\nTransfer started...\nPress 'c' tootemporarily cancel your transfer...\n");
+    Console.WriteLine("\nTransfer started...\nPress 'c' to temporarily cancel your transfer...\n");
 
     Stopwatch stopWatch = Stopwatch.StartNew();
     Task task;
@@ -460,10 +446,10 @@ public static async Task TransferLocalDirectoryToAzureBlobDirectory(CloudStorage
 }
 ```
 
-Il existe quelques différences entre cette méthode et la méthode hello pour télécharger un fichier unique. Nous utilisons maintenant `TransferManager.UploadDirectoryAsync` et hello `getDirectoryTransferContext` méthode que nous avons créés précédemment. En outre, nous proposons désormais une `options` valeur opération de téléchargement tooour, qui permet de tooindicate que nous souhaitons que dans les sous-répertoires tooinclude dans notre téléchargement. 
+Il existe quelques différences entre cette méthode et la méthode de chargement d’un seul fichier. Nous utilisons maintenant `TransferManager.UploadDirectoryAsync` et la méthode `getDirectoryTransferContext` créée précédemment. En outre, nous fournissons à présent une valeur `options` à notre opération de chargement, ce qui nous permet d’indiquer que nous souhaitons inclure les sous-répertoires à notre chargement. 
 
-## <a name="copy-file-from-url-tooazure-blob"></a>Copiez le fichier de l’URL tooAzure Blob
-Maintenant, nous allons ajouter du code qui permet de toocopy un fichier à partir d’une URL de tooan objets Blob Azure. 
+## <a name="copy-file-from-url-to-azure-blob"></a>Copier des fichiers de l’URL vers le Stockage Blob Azure
+À présent, nous allons ajouter du code permettant de copier un fichier à partir d’une URL vers un objet blob Azure. 
 
 Modifiez `TransferUrlToAzureBlob` :
 
@@ -475,7 +461,7 @@ public static async Task TransferUrlToAzureBlob(CloudStorageAccount account)
     TransferCheckpoint checkpoint = null;
     SingleTransferContext context = GetSingleTransferContext(checkpoint); 
     CancellationTokenSource cancellationSource = new CancellationTokenSource();
-    Console.WriteLine("\nTransfer started...\nPress 'c' tootemporarily cancel your transfer...\n");
+    Console.WriteLine("\nTransfer started...\nPress 'c' to temporarily cancel your transfer...\n");
 
     Stopwatch stopWatch = Stopwatch.StartNew();
     Task task;
@@ -517,10 +503,10 @@ public static async Task TransferUrlToAzureBlob(CloudStorageAccount account)
 }
 ```
 
-Un cas d’utilisation importante de cette fonctionnalité est lorsque vous avez besoin des données toomove à partir d’un autre tooAzure de service (par exemple, AWS) cloud. Tant que vous disposez d’une URL qui donne accès à toohello ressource, vous pouvez facilement déplacer cette ressource dans des objets BLOB Azure à l’aide de hello `TransferManager.CopyAsync` (méthode). Cette méthode introduit également un nouveau paramètre booléen. Ce paramètre trop`true` indique que nous voulons toodo une côté serveur asynchrone copie. Ce paramètre trop`false` indique une copie synchrone - ce qui signifie que les ressources hello sont téléchargés tooour les ordinateur local tout d’abord, puis téléchargé tooAzure Blob. Toutefois, copie synchrone est actuellement uniquement disponible pour la copie à partir d’un tooanother de ressource de stockage Azure. 
+L’un des cas d’utilisation les plus importants de cette fonctionnalité est le déplacement de données d’un autre service cloud (par exemple, AWS) vers Azure. Tant que vous disposez d’une URL qui vous permet d’accéder à la ressource, vous pouvez facilement déplacer cette ressource dans des objets blob Azure à l’aide de la méthode `TransferManager.CopyAsync`. Cette méthode introduit également un nouveau paramètre booléen. La valeur `true` de ce paramètre indique que nous souhaitons faire une copie asynchrone côté serveur. La valeur `false` de ce paramètre indique une copie synchrone, ce qui signifie que la ressource est d’abord téléchargée sur notre ordinateur local, puis chargée vers le Stockage Blob Azure. Toutefois, la copie synchrone n’est actuellement disponible que pour copier d’une ressource de Stockage Azure vers une autre. 
 
-## <a name="transfer-azure-blob-tooazure-blob"></a>Transfert de tooAzure d’objets Blob Azure Blob
-Une autre fonctionnalité qui identifie de façon unique fournie par hello bibliothèque de déplacement de données est toocopy de capacité hello à partir d’un tooanother de ressource de stockage Azure. 
+## <a name="transfer-azure-blob-to-azure-blob"></a>Copier d’un Stockage Blob Azure à un autre
+Une autre fonctionnalité offerte uniquement par la bibliothèque de déplacement des données est la capacité à copier d’une ressource de Stockage Azure vers une autre. 
 
 Modifiez `TransferAzureBlobToAzureBlob` :
 
@@ -532,7 +518,7 @@ public static async Task TransferAzureBlobToAzureBlob(CloudStorageAccount accoun
     TransferCheckpoint checkpoint = null;
     SingleTransferContext context = GetSingleTransferContext(checkpoint); 
     CancellationTokenSource cancellationSource = new CancellationTokenSource();
-    Console.WriteLine("\nTransfer started...\nPress 'c' tootemporarily cancel your transfer...\n");
+    Console.WriteLine("\nTransfer started...\nPress 'c' to temporarily cancel your transfer...\n");
 
     Stopwatch stopWatch = Stopwatch.StartNew();
     Task task;
@@ -574,13 +560,13 @@ public static async Task TransferAzureBlobToAzureBlob(CloudStorageAccount accoun
 }
 ```
 
-Dans cet exemple, nous avons défini le paramètre boolean hello `TransferManager.CopyAsync` trop`false` tooindicate que nous souhaitons toodo une copie synchrone. Cela signifie que les ressources hello sont téléchargés tooour les ordinateur local en premier, puis téléchargement tooAzure Blob. option de copie synchrone Hello est un tooensure idéal que votre opération de copie a une vitesse cohérente. En revanche, vitesse hello d’une copie côté serveur asynchrone est dépendante de la bande passante du réseau disponible hello sur serveur hello, qui peut varier. Toutefois, copie synchrone peut générer une copie de tooasynchronous de coût par rapport de sortie supplémentaires. Hello recommandé consiste toouse de copie synchrone dans une machine virtuelle Azure qui se trouve dans hello même région que votre coût sortie tooavoid de compte de stockage source.
+Dans cet exemple, nous donnons la valeur `false` au paramètre booléen `TransferManager.CopyAsync` pour indiquer que nous souhaitons effectuer une copie synchrone. Cela signifie que la ressource est d’abord téléchargée sur notre ordinateur local, puis chargée vers le Stockage Blob Azure. L’option de copie synchrone est un excellent moyen de veiller à ce que l’opération de copie ait une vitesse constante. À l’inverse, la vitesse de la copie asynchrone côté serveur dépend de la bande passante réseau disponible sur le serveur, qui peut varier. Toutefois, la copie synchrone peut générer des coûts de sortie supplémentaires par rapport à la copie asynchrone. L’approche recommandée consiste à utiliser la copie synchrone dans une machine virtuelle Azure qui se trouve dans la même région que votre compte de stockage source afin d’éviter les frais de sortie.
 
 ## <a name="conclusion"></a>Conclusion
-Notre application de déplacement des données est à présent terminée. [exemple de code complet Hello est disponible sur GitHub](https://github.com/azure-samples/storage-dotnet-data-movement-library-app). 
+Notre application de déplacement des données est à présent terminée. [L’exemple de code complet est disponible sur GitHub](https://github.com/azure-samples/storage-dotnet-data-movement-library-app). 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans ce guide de prise en main, nous avons créé une application qui interagit avec le Stockage Azure et s’exécute sur Windows, Linux et macOS. Il se concentre sur le Stockage Blob. Toutefois, cette même base de connaissances peut être appliqué tooFile de stockage. toolearn plus, consultez [documentation de référence de bibliothèque de déplacement des données de stockage Azure](https://azure.github.io/azure-storage-net-data-movement).
+Dans ce guide de prise en main, nous avons créé une application qui interagit avec le Stockage Azure et s’exécute sur Windows, Linux et macOS. Il se concentre sur le Stockage Blob. Toutefois, ces mêmes connaissances peuvent s’appliquer au Stockage Fichier. Pour plus d’informations, consultez la [Documentation de référence de la bibliothèque de déplacement des données du Stockage Azure](https://azure.github.io/azure-storage-net-data-movement).
 
 [!INCLUDE [storage-try-azure-tools-blobs](../../../includes/storage-try-azure-tools-blobs.md)]
 

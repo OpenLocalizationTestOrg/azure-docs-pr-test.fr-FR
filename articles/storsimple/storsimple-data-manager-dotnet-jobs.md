@@ -1,6 +1,6 @@
 ---
-title: "aaaUse Kit de développement .NET pour les travaux du Gestionnaire de données de Microsoft Azure StorSimple | Documents Microsoft"
-description: "Découvrez comment les travaux de toouse .NET SDK toolaunch StorSimple Data Manager (version préliminaire privée)"
+title: "Utiliser le kit SDK .NET pour les travaux Microsoft Azure StorSimple Data Manager | Microsoft Docs"
+description: "Découvrez comment utiliser le Kit SDK .NET pour lancer les travaux StorSimple Data Manager (version préliminaire privée)"
 services: storsimple
 documentationcenter: NA
 author: vidarmsft
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 11/22/2016
 ms.author: vidarmsft
-ms.openlocfilehash: b07fe64369574c994fd28d42786aa02dca435ccc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 44d243a034b20b99faf284c8615e470bc6f9d020
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="use-hello-net-sdk-tooinitiate-data-transformation-private-preview"></a>Utilisez hello .net SDK tooinitiate transformation des données (aperçu privé)
+# <a name="use-the-net-sdk-to-initiate-data-transformation-private-preview"></a>Utiliser le kit SDK .NET pour initier la transformation des données (préversion privée)
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Cet article explique comment vous pouvez utiliser la fonctionnalité de transformation de données hello dans hello StorSimple Data Manager service tootransform données de l’appareil StorSimple. Hello données transformées sont ensuite utilisées par d’autres services Azure dans le cloud de hello. l’article Hello a également un toohelp de procédure pas à pas créer un tooinitiate d’application exemple .NET console une tâche de transformation de données et ensuite effectuer le suivi d’achèvement.
+Cet article vous explique comment utiliser la fonctionnalité de transformation des données au sein du service StorSimple Data Manager afin de transformer les données de l’appareil StorSimple. Les données transformées sont ensuite utilisées par d’autres services Azure dans le cloud. L’article comporte également une procédure pas à pas pour créer un exemple d’application console .NET pour initier un travail de transformation de données et effectuer son suivi.
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Prérequis
 
 Avant de commencer, assurez-vous de satisfaire les exigences suivantes :
 *   Un système avec Visual Studio 2012, 2013, 2015 ou 2017 installé.
 *   Azure Powershell installé. [Téléchargez Azure Powershell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/).
-*   Configuration travail paramètres de tooinitialize hello Transformation de données (instructions tooobtain ces paramètres sont inclus ici).
+*   Les paramètres de configuration pour initialiser le travail de transformation des données (les instructions pour obtenir ces paramètres sont disponibles ici).
 *   Une définition de travail qui a été configurée correctement dans une ressource de données hybride dans un groupe de ressources.
-*   Toutes les DLL hello requis. Téléchargez ces DLL à partir de hello [référentiel GitHub](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls).
-*   `Get-ConfigurationParams.ps1`[script](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/blob/master/Data_Manager_Job_Run/Get-ConfigurationParams.ps1) à partir du référentiel github de hello.
+*   Toutes les DLL requises. Téléchargez ces DLL à partir du [dépôt GitHub](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls).
+*   `Get-ConfigurationParams.ps1` Le [script](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/blob/master/Data_Manager_Job_Run/Get-ConfigurationParams.ps1) du dépôt GitHub.
 
 ## <a name="step-by-step"></a>Procédure pas à pas
 
-Effectuer hello suivant les étapes toouse .NET toolaunch une tâche de transformation de données.
+Procédez comme suit pour utiliser .NET pour lancer un travail de transformation de données.
 
-1. paramètres de configuration tooretrieve hello, procédez comme hello comme suit :
-    1. Télécharger hello `Get-ConfigurationParams.ps1` de script de référentiel github hello dans `C:\DataTransformation` emplacement.
-    1. Exécutez hello `Get-ConfigurationParams.ps1` script à partir du référentiel github de hello. Tapez hello de commande suivante :
+1. Pour récupérer les paramètres de configuration, procédez comme suit :
+    1. Téléchargez l’élément `Get-ConfigurationParams.ps1` à partir du script du dépôt GitHub, dans l’emplacement `C:\DataTransformation`.
+    1. Exécutez le script `Get-ConfigurationParams.ps1` à partir du dépôt GitHub. Tapez la commande suivante :
 
         ```
         C:\DataTransformation\Get-ConfigurationParams.ps1 -SubscriptionName "AzureSubscriptionName" -ActiveDirectoryKey "AnyRandomPassword" -AppName "ApplicationName"
          ```
-        Vous pouvez passer dans toutes les valeurs de hello ActiveDirectoryKey et AppName.
+        Vous pouvez saisir les valeurs de votre choix pour les éléments ActiveDirectoryKey et AppName.
 
 
-2. Ce script génère hello valeurs suivantes :
+2. Ce script génère les valeurs suivantes :
     * ID client
     * ID client
-    * Clé Active Directory (identique à une entrée ci-dessus hello)
+    * Clé Active Directory (identique à celle entrée ci-dessus)
     * Identifiant d’abonnement
 
 3. À l'aide de Visual Studio 2012, 2013 ou 2015, créez une application console Visual C# .NET.
 
     1. Lancez **Visual Studio 2012/2013/2015**.
-    1. Cliquez sur **fichier**, pointez trop**nouveau**, puis cliquez sur **projet**.
+    1. Cliquez sur **Fichier**, pointez le curseur de la souris sur **Nouveau**, puis cliquez sur **Projet**.
     2. Développez **Modèles**, puis sélectionnez **Visual C#**.
-    3. Sélectionnez **Application Console** à partir de la liste hello des types de projets sur hello droite.
-    4. Entrez **DataTransformationApp** pour hello **nom**.
-    5. Sélectionnez **C:\DataTransformation** pour hello **emplacement**.
-    6. Cliquez sur **OK** projet hello de toocreate.
+    3. Sélectionnez **Application console** dans la liste des types de projet située sur la droite.
+    4. Saisissez **DataTransformationApp** pour le **Nom**.
+    5. Sélectionnez **C:\DataTransformation** pour l’**Emplacement**.
+    6. Cliquez sur **OK** pour créer le projet.
 
-4.  Maintenant, ajoutez toutes les DLL présents Bonjour [DLL](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls) dossier en tant que **références** dans le projet hello que vous avez créé. les fichiers dll toodownload hello, procédez comme hello suivant :
+4.  Maintenant, ajoutez l’ensemble des DLL présentes dans le dossier [dédié](https://github.com/Azure-Samples/storsimple-dotnet-data-manager-get-started/tree/master/Data_Manager_Job_Run/dlls) en tant que **Références**dans le projet que vous avez créé. Pour télécharger les fichiers DLL, procédez comme suit :
 
-    1. Dans Visual Studio, accédez trop**vue > Explorateur de solutions**.
-    1. Cliquez sur hello flèche toohello gauche de projet d’application de Transformation de données. Cliquez sur **références** , cliquez sur trop**ajouter une référence**.
-    2. Rechercher l’emplacement de toohello du dossier de packages hello, toutes les DLL hello, puis cliquez sur **ajouter**, puis cliquez sur **OK**.
+    1. Dans Visual Studio, accédez à **Affichage > Explorateur de solutions**.
+    1. Cliquez sur la flèche à gauche du projet de l’application de transformation des données. Cliquez sur **Références**, puis cliquez avec le bouton droit sur **Ajouter une référence**.
+    2. Accédez à l’emplacement du dossier des packages, sélectionnez l’ensemble des DLL, puis cliquez sur **Ajouter** et sur **OK**.
 
-5. Ajoutez hello suivant **à l’aide de** instructions toohello source fichier (Program.cs) hello projet.
+5. Ajoutez les instructions **using** suivantes au fichier source (Program.cs) dans le projet.
 
     ```
     using System;
@@ -84,10 +84,10 @@ Effectuer hello suivant les étapes toouse .NET toolaunch une tâche de transfor
     ```
 
 
-6. Hello suivant code initialise l’instance de tâche de transformation de données hello. Ce complément hello **méthode Main**. Remplacez les valeurs hello des paramètres de configuration tel qu’obtenu précédemment. Les valeurs hello de plug-in **nom de groupe de ressources** et **nom de la ressource de données hybride**. Hello **nom de groupe de ressources** hello n’est celui qui héberge la ressource de données hybride hello sur quel hello définition de la tâche a été configurée.
+6. Le code suivant initialise l’instance du travail de transformation de données. Add this in the **Méthode Main**. Remplacez les valeurs des paramètres de configuration obtenues précédemment. Insérez les valeurs de **Nom du groupe de ressources** et **Nom de la ressource de données hybride**. Le **Nom du groupe de ressources**est celui qui héberge la ressource de données hybride sur laquelle a été configurée la définition de travail.
 
     ```
-    // Setup hello configuration parameters.
+    // Setup the configuration parameters.
     var configParams = new ConfigurationParams
     {
         ClientId = "client-id",
@@ -98,12 +98,12 @@ Effectuer hello suivant les étapes toouse .NET toolaunch une tâche de transfor
         ResourceName = "resource-name"
     };
 
-    // Initialize hello Data Transformation Job instance.
+    // Initialize the Data Transformation Job instance.
     DataTransformationJob dataTransformationJob = new DataTransformationJob(configParams);
 
     ```
 
-7. Spécifiez hello quels hello définition du travail doit être toobe des paramètres d’exécution
+7. Spécifiez les paramètres avec lesquels exécuter la définition de travail
 
     ```
     string jobDefinitionName = "job-definition-name";
@@ -114,65 +114,65 @@ Effectuer hello suivant les étapes toouse .NET toolaunch une tâche de transfor
 
     (OU)
 
-    Si vous souhaitez que les paramètres de définition du travail toochange hello pendant l’exécution, puis ajoutez hello suivant de code :
+    Si vous souhaitez modifier les paramètres de définition de travail durant l’exécution, ajoutez le code suivant :
 
     ```
     string jobDefinitionName = "job-definition-name";
     // Must start with a '\'
     var rootDirectories = new List<string> {@"\root"};
 
-    // Name of hello volume on hello StorSimple device.
+    // Name of the volume on the StorSimple device.
     var volumeNames = new List<string> {"volume-name"};
 
     var dataTransformationInput = new DataTransformationInput
     {
-        // If you require hello latest existing backup toobe picked else use TakeNow tootrigger a new backup.
+        // If you require the latest existing backup to be picked else use TakeNow to trigger a new backup.
         BackupChoice = BackupChoice.UseExistingLatest.ToString(),
-        // Name of hello StorSimple device.
+        // Name of the StorSimple device.
         DeviceName = "device-name",
-        // Name of hello container in Azure storage where hello files will be placed after execution.
+        // Name of the container in Azure storage where the files will be placed after execution.
         ContainerName = "container-name",
-        // File name filter (search pattern) toobe applied on files under hello root directory. * - Match all files.
+        // File name filter (search pattern) to be applied on files under the root directory. * - Match all files.
         FileNameFilter = "*",
         // List of root directories.
         RootDirectories = rootDirectories,
-        // Name of hello volume on StorSimple device on which hello relevant data is present. 
+        // Name of the volume on StorSimple device on which the relevant data is present. 
         VolumeNames = volumeNames
     };
     
     ```
 
-8. Après l’initialisation de hello, ajoutez hello suivant code tootrigger une tâche de transformation de données sur la définition de la tâche hello. Plug-in hello approprié **nom de définition de la tâche**.
+8. Après l’initialisation, ajoutez le code suivant pour déclencher un travail de transformation de données sur la définition de travail. Insérez le **Job Definition Name** (Nom de définition de travail).
 
     ```
-    // Trigger a job, retrieve hello jobId and hello retry interval for polling.
+    // Trigger a job, retrieve the jobId and the retry interval for polling.
     int retryAfter;
     string jobId = dataTransformationJob.RunJobAsync(jobDefinitionName, 
     dataTransformationInput, out retryAfter);
 
     ```
 
-9. Cette tâche télécharge les fichiers de hello mis en correspondance présents dans le répertoire racine de hello sur le conteneur spécifié du toohello volume StorSimple hello. Quand un fichier est chargé, un message est déposé dans la file d’attente hello (Bonjour même compte de stockage en tant que conteneur de hello) avec hello même nom en tant que définition de la tâche hello. Ce message peut être utilisé comme un tooinitiate déclencheur tout le traitement de fichier de hello.
+9. Ce travail charge les fichiers correspondants présents sous le répertoire racine du volume StorSimple sur le conteneur spécifié. Lorsqu’un fichier est chargé, un message est déposé dans la file d’attente (dans le compte de stockage du conteneur), avec le nom de la définition de travail. Ce message peut être utilisé comme un déclencheur pour initier le traitement ultérieur du fichier.
 
-10. Une fois la tâche de hello a été déclenchée, ajoutez hello suivant le travail de hello tootrack code d’achèvement.
+10. Une fois le travail déclenché, ajoutez le code suivant afin de suivre son exécution.
 
     ```
     Job jobDetails = null;
 
-    // Poll hello job.
+    // Poll the job.
     do
     {
         jobDetails = dataTransformationJob.GetJob(jobDefinitionName, jobId);
 
-        // Wait before polling for hello status again.
+        // Wait before polling for the status again.
         Thread.Sleep(TimeSpan.FromSeconds(retryAfter));
 
     } while (jobDetails.Status == JobStatus.InProgress);
 
-    // Completion status of hello job.
+    // Completion status of the job.
     Console.WriteLine("JobStatus: {0}", jobDetails.Status);
     
-    // toohold hello console before exiting.
+    // To hold the console before exiting.
     Console.Read();
 
     ```
@@ -180,4 +180,4 @@ Effectuer hello suivant les étapes toouse .NET toolaunch une tâche de transfor
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-[Utilisez l’interface utilisateur de gestionnaire de données StorSimple tootransform vos données](storsimple-data-manager-ui.md).
+[Utilisez l’interface utilisateur de StorSimple Data Manager pour transformer vos données](storsimple-data-manager-ui.md).

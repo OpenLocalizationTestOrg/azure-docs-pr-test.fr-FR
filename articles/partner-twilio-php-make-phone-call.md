@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toomake un appel téléphonique à partir de Twilio (PHP) | Documents Microsoft"
-description: "Découvrez comment toomake un appel téléphonique et envoyer un SMS de message avec le service de l’API de Twilio hello sur Azure. Les exemples concernent une applications PHP."
+title: "Appel téléphonique à partir de Twilio (PHP) | Microsoft Docs"
+description: "Découvrez comment passer un appel téléphonique et envoyer un message texte avec le service d'API Twilio sur Azure. Les exemples concernent une applications PHP."
 documentationcenter: php
 services: 
 author: devinrader
@@ -14,25 +14,26 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 11/25/2014
 ms.author: microsofthelp@twilio.com
-ms.openlocfilehash: e6fecc345bf9ae787d14d533bd8d96b175c2453b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 9866a196b3be10548d7a431430e570b41c190fc0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toomake-a-phone-call-using-twilio-in-a-php-application-on-azure"></a>Comment tooMake un Twilio à l’aide d’un appel téléphonique dans une Application PHP sur Azure
-Hello suivant montre comment vous pouvez utiliser Twilio toomake un appel à partir d’une page web PHP hébergé dans Azure. application qui en résulte Hello invite utilisateur hello pour les valeurs de l’appel téléphonique, comme indiqué dans hello suivant capture d’écran.
+# <a name="how-to-make-a-phone-call-using-twilio-in-a-php-application-on-azure"></a>Exécution d'un appel téléphonique à l'aide de Twilio dans une application PHP sur Azure
+L'exemple qui suit montre comment utiliser Twilio pour passer un appel depuis une page web PHP hébergée sur Azure. L'application finale demande à l'utilisateur les valeurs de l'appel téléphonique, comme illustré dans la capture d'écran qui suit.
 
 ![Formulaire d'appel Azure avec Twilio et PHP][twilio_php]
 
-Éléments dont vous aurez besoin toodo hello code hello de toouse dans cette rubrique :
+Pour utiliser le code de cette rubrique, vous devrez effectuer les opérations suivantes :
 
-1. Obtenir un compte Twilio et un jeton d’authentification auprès de la [console Twilio][twilio_console]. tooget main Twilio, évaluer la tarification au [http://www.twilio.com/pricing][twilio_pricing]. Vous pouvez vous inscrire pour obtenir un compte d’évaluation dans la page [https://www.twilio.com/try-twilio][try_twilio].
-2. Obtenir hello [bibliothèque Twilio pour PHP](https://github.com/twilio/twilio-php) ou l’installer en tant que package poire. Pour plus d’informations, consultez hello [fichier Lisez-moi](https://github.com/twilio/twilio-php/blob/master/README.md).
-3. Installer hello Azure SDK pour PHP. Pour une vue d’ensemble de hello SDK et obtenir des instructions sur l’installation, consultez [définir hello Azure SDK pour PHP](app-service-web/web-sites-php-mysql-deploy-use-git.md)
+1. Obtenir un compte Twilio et un jeton d’authentification auprès de la [console Twilio][twilio_console]. Pour démarrer avec Twilio, évaluez les tarifs dans la page [http://www.twilio.com/pricing][twilio_pricing]. Vous pouvez vous inscrire pour obtenir un compte d’évaluation dans la page [https://www.twilio.com/try-twilio][try_twilio].
+2. Obtenez la [bibliothèque Twilio pour PHP](https://github.com/twilio/twilio-php) ou installez-la sous forme de package PEAR. Pour plus d’informations, consultez le fichier [Lisezmoi](https://github.com/twilio/twilio-php/blob/master/README.md).
+3. Installer le Kit de développement logiciel (SDK) Azure pour PHP. 
+<!-- For an overview of the SDK and instructions on installing it, see [Set up the Azure SDK for PHP](app-service-web/web-sites-php-mysql-deploy-use-git.md) -->
 
-## <a name="create-a-web-form-for-making-a-call"></a>Création d'un formulaire web pour passer un appel
-Hello suivant HTML de code montre comment toobuild une page web (**callform.html**) qui extrait des données de l’utilisateur d’un appel :
+## <a name="create-a-web-form-for-making-a-call"></a>Création d'un formulaire Web pour passer un appel
+Le code HTML qui suit présente la conception d'une page web (**callform.html**) qui extrait les données des utilisateurs pour passer un appel :
 
 ```html
 <!DOCTYPE html>
@@ -55,7 +56,7 @@ Hello suivant HTML de code montre comment toobuild une page web (**callform.html
       </tr>
       <tr>
         <td>Call message:</td>
-        <td><input name="callText" size="100" type="text" value="Hello. This is hello call text. Good bye."></td>
+        <td><input name="callText" size="100" type="text" value="Hello. This is the call text. Good bye."></td>
       </tr>
       <tr>
         <td colspan="2"><input type="submit" value="Make this call"></td>
@@ -66,8 +67,8 @@ Hello suivant HTML de code montre comment toobuild une page web (**callform.html
 </html>
 ```
 
-## <a name="create-hello-code-toomake-hello-call"></a>Créer l’appel de hello hello code toomake
-Hello suivant de code montre comment toobuild **makecall.php**, qui est appelé quand l’utilisateur de hello soumet écran hello affiché par **callform.html**. code Hello ci-dessous crée le message d’appel hello et génère l’appel de hello. En outre, être toouse que votre compte Twilio et l’authentification de jeton à partir de hello [Twilio Console] [ twilio_console] au lieu de valeurs d’espace réservé hello affectés trop**$sid** et **$token** dans le code hello ci-dessous.
+## <a name="create-the-code-to-make-the-call"></a>Création du code pour passer l'appel
+Le code qui suit montre comment créer **makecall.php** qui est appelé quand l’utilisateur envoie le formulaire affiché par **callform.html**. Le code présenté ici crée le message d'appel et passe l'appel. Veillez également à utiliser vos compte Twilio et jeton d’authentification à partir de la [console Twilio][twilio_console] plutôt que les valeurs d’espace réservé affectées à **$sid** et **$token** dans le code ci-dessous.
 
 ```html
 <html>
@@ -100,27 +101,24 @@ echo "URI resource: " . $call->uri . "<br />";
 </html>
 ```
 
-En outre toomaking hello appel, **makecall.php** affiche des métadonnées de l’appel, comme illustré dans l’image hello ci-dessous. Pour plus d’informations sur les métadonnées de l’appel, consultez la page [https://www.twilio.com/docs/api/rest/call#instance-properties][twilio_call_properties].
+En plus de passer l’appel, **makecall.php** affiche des métadonnées sur l’appel, comme illustré dans l’image ci-dessous. Pour plus d’informations sur les métadonnées de l’appel, consultez la page [https://www.twilio.com/docs/api/rest/call#instance-properties][twilio_call_properties].
 
 ![Réponse d'appel Azure avec Twilio et PHP][twilio_php_response]
 
-## <a name="run-hello-application"></a>Exécutez l’application hello
-étape suivante de Hello est toodeploy votre tooAzure d’application des sites Web. Hello articles suivants contiennent des informations hello pour la création d’un site Web et le déploiement de votre code avec Git, FTP ou WebMatrix (bien que toutes les informations de chaque article sont applique) :
-
-* [Création et déploiement d’un site web Azure PHP-MySQL avec Git](app-service-web/web-sites-php-mysql-deploy-use-git.md)
-* [Création et déploiement d’un site web Azure PHP-MySQL avec FTP](app-service-web/web-sites-php-mysql-deploy-use-ftp.md)
+## <a name="run-the-application"></a>Exécution de l'application
+L’étape suivante consiste à [déployer votre application sur Azure Web Apps avec Git](app-service/app-service-web-get-started-php.md) (bien que toutes les informations fournies ne soient pas utiles). 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Ce code a été fourni tooshow vous fonctionnalités de base à l’aide de Twilio dans PHP sur Azure. Avant de déployer tooAzure en production, vous souhaiterez tooadd plus de gestion des erreurs ou d’autres fonctionnalités. Par exemple :
+Ce code vous est fourni afin de vous présenter les fonctions de base de l'utilisation de Twilio dans PHP sur Azure. Avant d'effectuer le déploiement de production sur Azure, vous pouvez ajouter d'autres fonctionnalités telles que la gestion des erreurs. Par exemple :
 
-* Au lieu d’utiliser un formulaire web, vous pourriez utiliser des objets BLOB de stockage Azure ou les numéros de téléphone toostore de base de données SQL et appeler le texte. Pour plus d’informations sur l’utilisation d’objets blob de stockage Azure dans PHP, consultez la page [Utilisation du stockage Azure dans les applications PHP][howto_blob_storage_php]. Pour plus d’informations sur l’utilisation de la base de données SQL dans PHP, consultez la page [Utilisation de la base de données SQL avec les applications PHP][howto_sql_azure_php].
-* Hello **makecall.php** code utilise l’URL fournie par Twilio ([http://twimlets.com/message][twimlet_message_url]) tooprovide une réponse Twilio Markup Language (TwiML) expliquant comment Twilio tooproceed avec l’appel de hello. Par exemple, hello TwiML retourné peut contenir un `<Say>` verbe qui résulte dans le texte est prononcée toohello destinataire de l’appel. Au lieu d’utiliser l’URL fournie par Twilio de hello, vous pouvez générer demande de votre propre tooTwilio toorespond service ; Pour plus d’informations, consultez [comment tooUse Twilio pour la voix et de fonctionnalités SMS en PHP][howto_twilio_voice_sms_php]. Pour plus d’informations sur TwiML, consultez la page [http://www.twilio.com/docs/api/twiml][twiml], et pour plus d’informations sur `<Say>` et sur les autres verbes Twilio, consultez la page [http://www.twilio.com/docs/api/twiml/say][twilio_say].
-* Lisez les consignes de sécurité hello Twilio à [https://www.twilio.com/docs/security][twilio_docs_security].
+* Au lieu d'utiliser un formulaire web, vous pouvez utiliser des objets blob de stockage Azure ou SQL Database pour stocker les numéros de téléphone et le texte des appels. Pour plus d’informations sur l’utilisation d’objets blob de stockage Azure dans PHP, consultez la page [Utilisation du stockage Azure dans les applications PHP][howto_blob_storage_php]. Pour plus d’informations sur l’utilisation de la base de données SQL dans PHP, consultez la page [Utilisation de la base de données SQL avec les applications PHP][howto_sql_azure_php].
+* Le code **makecall.php** utilise une URL Twilio ([http://twimlets.com/message][twimlet_message_url]) pour fournir une réponse TwiML (Twilio Markup Language) qui précise à Twilio comment traiter l’appel. Par exemple, le code TwiML renvoyé peut contenir un verbe `<Say>` qui provoque la lecture audible du texte pour le destinataire de l'appel. Au lieu d’utiliser l’URL fournie par Twilio, vous pouvez concevoir votre propre service pour répondre à la demande de Twilio. Pour plus d’informations, consultez la page [Utilisation de Twilio pour les fonctionnalités vocales et de SMS dans PHP][howto_twilio_voice_sms_php]. Pour plus d’informations sur TwiML, consultez la page [http://www.twilio.com/docs/api/twiml][twiml], et pour plus d’informations sur `<Say>` et sur les autres verbes Twilio, consultez la page [http://www.twilio.com/docs/api/twiml/say][twilio_say].
+* Consultez les instructions de sécurité Twilio dans la page [https://www.twilio.com/docs/security][twilio_docs_security].
 
 Pour plus d’informations sur Twilio, consultez la page [https://www.twilio.com/docs][twilio_docs].
 
 ## <a name="see-also"></a>Voir aussi
-* [Comment tooUse Twilio pour les fonctionnalités de SMS en PHP et de la voix](partner-twilio-php-how-to-use-voice-sms.md)
+* [Utilisation de Twilio pour les fonctionnalités vocales et de SMS dans PHP](partner-twilio-php-how-to-use-voice-sms.md)
 
 [twilio_console]: https://www.twilio.com/console
 [twilio_pricing]: http://www.twilio.com/pricing
@@ -141,6 +139,4 @@ Pour plus d’informations sur Twilio, consultez la page [https://www.twilio.com
 [ssl_validation]: http://readthedocs.org/docs/twilio-php/en/latest/usage/rest.html
 [twilio_php]: ./media/partner-twilio-php-make-phone-call/WA_TwilioPHPCallForm.jpg
 [twilio_php_response]: ./media/partner-twilio-php-make-phone-call/WA_TwilioPHPMakeCall.jpg
-[website-git]: ./web-sites/web-sites-php-mysql-deploy-use-git.md
-[website-ftp]: ./web-sites/web-sites-php-mysql-deploy-use-ftp.md
 [twilio_php_github]: https://github.com/twilio/twilio-php

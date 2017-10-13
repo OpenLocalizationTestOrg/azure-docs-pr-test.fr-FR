@@ -1,6 +1,6 @@
 ---
-title: aaaHow tootag une machine virtuelle de Azure Linux | Documents Microsoft
-description: "En savoir plus sur le balisage d’une machine virtuelle de Azure Linux créée dans Azure à l’aide du modèle de déploiement du Gestionnaire de ressources hello."
+title: Comment baliser une machine virtuelle Azure Linux | Microsoft Docs
+description: "Découvrez comment baliser une machine virtuelle Azure Linux créée dans Azure à l’aide du modèle de déploiement de Resource Manager."
 services: virtual-machines-linux
 documentationcenter: 
 author: mmccrory
@@ -15,45 +15,45 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 02/28/2017
 ms.author: memccror
-ms.openlocfilehash: 456b226af4495c3b446cb79c99cf9494dde9fca5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: da3ff0de2a5d6ac8994b7c16b758f976228a53b0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-tootag-a-linux-virtual-machine-in-azure"></a>Comment tootag une machine virtuelle de Linux dans Azure
-Cet article décrit les différentes façons tootag une machine virtuelle de Linux dans Azure via le modèle de déploiement du Gestionnaire de ressources hello. Les balises sont des paires clé/valeur définies par l’utilisateur, qui peuvent être placées directement sur une ressource ou sur un groupe de ressources. Azure prend actuellement en charge des balises de too15 par la ressource et le groupe de ressources. Balises peuvent être placées sur une ressource au moment de la création de hello ou ajouté tooan les ressources existantes. Notez les balises sont pris en charge pour les ressources créées via le modèle de déploiement Resource Manager hello uniquement.
+# <a name="how-to-tag-a-linux-virtual-machine-in-azure"></a>Comment baliser une machine virtuelle Linux dans Azure
+Cet article décrit différentes façons d’ajouter des balises à une machine virtuelle Linux dans Azure à l’aide du modèle de déploiement Azure Resource Manager. Les balises sont des paires clé/valeur définies par l’utilisateur, qui peuvent être placées directement sur une ressource ou sur un groupe de ressources. Azure prend actuellement en charge jusqu’à 15 balises par ressource et par groupe de ressources. Les balises peuvent être placées sur une ressource au moment de la création ou bien ajoutées à une ressource existante. Notez que les balises ne sont prises en charge que pour les ressources créées via le modèle de déploiement Azure Resource Manager.
 
 [!INCLUDE [virtual-machines-common-tag](../../../includes/virtual-machines-common-tag.md)]
 
 ## <a name="tagging-with-azure-cli"></a>Balisage avec l’interface de ligne de commande Azure
-toobegin, vous devez hello dernières [Azure CLI 2.0 (version préliminaire)](/cli/azure/install-az-cli2) installé et connecté à l’aide du compte Azure tooan [ouverture de session az](/cli/azure/#login).
+Pour commencer, vous devez disposer de la dernière version [d’Azure CLI 2.0 (version préliminaire)](/cli/azure/install-az-cli2) et vous connecter à un compte Azure avec la commande [az login](/cli/azure/#login).
 
-Vous pouvez également effectuer ces étapes avec hello [Azure CLI 1.0](tag-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Vous pouvez également effectuer ces étapes à l’aide [d’Azure CLI 1.0](tag-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
-Vous pouvez afficher toutes les propriétés d’un ordinateur virtuel donné, y compris les balises de hello, à l’aide de cette commande :
+Vous pouvez afficher toutes les propriétés d’une machine virtuelle donnée, y compris les balises, à l’aide de cette commande :
 
         az vm show --resource-group MyResourceGroup --name MyTestVM
 
-tooadd une nouvelle balise de machine virtuelle via hello CLI d’Azure, vous pouvez utiliser hello `azure vm update` commande en même temps que le paramètre de la balise hello **--définir**:
+Pour ajouter une nouvelle balise de machine virtuelle via l'interface de ligne de commande Azure, vous pouvez utiliser la commande `azure vm update` avec le paramètre de balise **--set** :
 
         az vm update --resource-group MyResourceGroup --name MyTestVM –-set tags.myNewTagName1=myNewTagValue1 tags.myNewTagName2=myNewTagValue2
 
-les balises tooremove, vous pouvez utiliser hello **--supprimer** paramètre Bonjour `azure vm update` commande.
+Pour supprimer les balises, vous pouvez utiliser le paramètre **--remove** dans la commande `azure vm update`.
 
         az vm update –-resource-group MyResourceGroup –-name MyTestVM --remove tags.myNewTagName1
 
 
-Maintenant que nous ont appliqué les balises tooour ressources CLI d’Azure et hello Portal, examinons un toosee de détails d’utilisation hello les balises hello dans le portail de facturation hello.
+Maintenant que nous avons appliqué des balises à nos ressources via l’interface de ligne de commande et le portail, examinons les détails d’utilisation pour afficher les balises dans le portail de facturation.
 
 [!INCLUDE [virtual-machines-common-tag-usage](../../../includes/virtual-machines-common-tag-usage.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-* toolearn en savoir plus sur le marquage de vos ressources Azure, consultez [vue d’ensemble du Gestionnaire de ressources Azure] [ Azure Resource Manager Overview] et [à l’aide de balises tooorganize vos ressources Azure] [ Using Tags tooorganize your Azure Resources].
-* toosee balises peuvent vous aider à gérer votre utilisation des ressources Azure, voir [comprendre votre facture Azure] [ Understanding your Azure Bill] et [obtenir votre consommation de ressources Microsoft Azure] [Gain insights into your Microsoft Azure resource consumption].
+* Pour en savoir plus sur le balisage de vos ressources Azure, consultez la rubrique [Présentation d’Azure Resource Manager][Azure Resource Manager Overview] et [Organisation des ressources Azure à l’aide de balises][Using Tags to organize your Azure Resources].
+* Pour voir en quoi les balises peuvent vous aider à gérer votre utilisation des ressources Azure, consultez [Comprendre votre facture Azure][Understanding your Azure Bill] et [Obtenir une vue d’ensemble de votre consommation des ressources Microsoft Azure][Gain insights into your Microsoft Azure resource consumption].
 
 [Azure CLI environment]: ../../azure-resource-manager/xplat-cli-azure-resource-manager.md
 [Azure Resource Manager Overview]: ../../azure-resource-manager/resource-group-overview.md
-[Using Tags tooorganize your Azure Resources]: ../../azure-resource-manager/resource-group-using-tags.md
+[Using Tags to organize your Azure Resources]: ../../azure-resource-manager/resource-group-using-tags.md
 [Understanding your Azure Bill]: ../../billing/billing-understand-your-bill.md
 [Gain insights into your Microsoft Azure resource consumption]: ../../billing/billing-usage-rate-card-overview.md

@@ -1,6 +1,6 @@
 ---
-title: "aaaDiagnose et résoudre les problèmes | Documents Microsoft"
-description: "Ce didacticiel décrit comment toodiagnose et résoudre les problèmes dans votre environnement un aperçu en temps série"
+title: "Diagnostiquer et résoudre les problèmes | Microsoft Docs"
+description: "Ce didacticiel explique comment diagnostiquer et résoudre les problèmes dans votre environnement Time Series Insights."
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -8,74 +8,74 @@ author: venkatgct
 manager: almineev
 editor: cgronlun
 ms.assetid: 
-ms.service: time-series-insights
+ms.service: tsi
 ms.devlang: na
 ms.topic: how-to-article
 ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 04/24/2017
 ms.author: venkatja
-ms.openlocfilehash: 00893d4bec497f5f8bf7093be5b96f1844446d13
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4e10a009eb67706d927ece5692134d802094cdf9
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="diagnose-and-solve-problems-in-your-time-series-insights-environment"></a>Diagnostiquer et résoudre les problèmes dans votre environnement Time Series Insights
 
 ## <a name="i-dont-see-my-data"></a>Mes données ne s’affichent pas
-Voici quelques raisons pour lesquelles vous ne voyiez pas vos données dans votre environnement Bonjour [portail Azure temps série Insights](https://insights.timeseries.azure.com).
+Voici quelques raisons qui pourraient expliquer pourquoi vous ne voyez pas les données de votre environnement dans le [portail Azure Time Series Insights](https://insights.timeseries.azure.com).
 
 ### <a name="your-event-source-doesnt-have-data-in-json-format"></a>Votre source d’événement ne contient pas de données au format JSON
 Pour le moment, Azure Time Series Insights ne prend en charge que les données JSON. Pour obtenir des exemples de données JSON, consultez [Structures JSON prises en charge](time-series-insights-send-events.md#supported-json-shapes).
 
-### <a name="when-you-registered-your-event-source-you-didnt-provide-hello-key-that-has-hello-required-permission"></a>Lorsque vous avez inscrit votre source d’événements, vous n’avez pas fourni de clé hello qui a l’autorisation de hello requis
-* Pour un hub IoT, vous devez clé hello tooprovide a **service de se connecter** autorisation.
+### <a name="when-you-registered-your-event-source-you-didnt-provide-the-key-that-has-the-required-permission"></a>Lorsque vous avez inscrit votre source d’événements, vous n’avez pas fourni la clé qui a l’autorisation requise
+* Pour IoTHub, vous devez fournir la clé avec l’autorisation **Connexion de service**.
 
    ![Autorisation de connexion de service IoT Hub](media/diagnose-and-solve-problems/iothub-serviceconnect-permissions.png)
 
-   Comme indiqué dans hello précédant l’image, une des stratégies de hello **iothubowner** et **service** fonctionne, car les deux ont **service de se connecter** autorisation.
-* Pour un concentrateur d’événements, vous devez clé hello tooprovide a **écouter** autorisation.
+   Comme indiqué dans l’illustration précédente, les stratégies **iothubowner** et **service** sont acceptées, car elles disposent toutes deux de l’autorisation **Connexion de service**.
+* Pour Event Hub, vous devez fournir la clé avec l’autorisation **Écouter**.
 
    ![Autorisation d’écoute EventHub](media/diagnose-and-solve-problems/eventhub-listen-permissions.png)
 
-   Comme indiqué dans hello précédant l’image, une des stratégies de hello **lire** et **gérer** fonctionne, car les deux ont **écouter** autorisation.
+   Comme indiqué dans l’illustration précédente, les stratégies **read** et **manage** sont acceptées, car elles disposent toutes deux de l’autorisation **Listen**.
 
-### <a name="hello-provided-consumer-group-is-not-exclusive-tootime-series-insights"></a>Hello fourni le groupe de consommateurs n’est pas exclusive tooTime série Insights
-Un hub IoT ou un concentrateur d’événements, lors de l’inscription nous nécessiter un groupe de consommateurs hello toospecify qui doit être utilisé pour la lecture de vos données. Ce groupe de consommateurs ne doit pas être partagé. S’il est partagé, concentrateur d’événements hello sous-jacent déconnecte automatiquement un des lecteurs de hello aléatoirement.
+### <a name="the-provided-consumer-group-is-not-exclusive-to-time-series-insights"></a>Le groupe de consommateurs fourni n’est pas exclusif à Time Series Insights
+Lors de l’enregistrement dans IoT Hub ou Event Hub, nous vous demandons de spécifier le groupe de consommateurs qui sera utilisé pour la lecture de vos données. Ce groupe de consommateurs ne doit pas être partagé. S’il l’est, le concentrateur d’événements sous-jacent déconnecte automatiquement l’un des lecteurs au hasard.
 
 ## <a name="i-see-my-data-but-theres-a-lag"></a>Mes données s’affichent, mais avec un décalage
-Voici les raisons pour lesquelles pourquoi vous pouvez voir des données partielles dans votre environnement Bonjour [portail temps série Insights](https://insights.timeseries.azure.com).
+Voici quelques raisons qui pourraient expliquer pourquoi vous ne voyez que certaines des données de votre environnement dans le [portail Time Series Insights](https://insights.timeseries.azure.com).
 
 ### <a name="your-environment-is-getting-throttled"></a>Votre environnement est sujet à des limitations
-Hello limitation est appliquée en fonction du type de référence (SKU) et la capacité de l’environnement hello. Toutes les sources d’événements dans l’environnement de hello partagent cette capacité. Si la source d’événement hello pour votre hub IoT ou un concentrateur d’événements est effectué un push des données au-delà des limites de hello appliquée, vous consultez un décalage et limitation.
+Les limitations sont appliquées en fonction de la capacité et du type de référence de l’environnement. Cette capacité est répartie entre les différentes sources d’événements de l’environnement. Si la source d’événement pour votre Event Hub/IoT Hub envoie des données au-delà des limites définies, cela génère des limitations et un décalage.
 
-Hello suivant schéma montre un environnement de temps série Insights qui a une référence (SKU) de S1 et une capacité de 3. Cet environnement peut recevoir 3 millions d’événements par jour.
+Le diagramme suivant illustre un environnement Time Series Insights ayant une référence S1 et une capacité de 3 unités. Cet environnement peut recevoir 3 millions d’événements par jour.
 
 ![Capacité actuelle et référence de l’environnement](media/diagnose-and-solve-problems/environment-sku-current-capacity.png)
 
-Partons du principe que cet environnement est réception des messages à partir d’un concentrateur d’événements avec les taux d’entrée hello illustré hello suivant schéma :
+Supposons que cet environnement ait reçu des messages d’un concentrateur d’événements dont le taux d’entrée est indiqué dans le diagramme suivant :
 
 ![Exemple de taux d’entrée pour un concentrateur d’événements](media/diagnose-and-solve-problems/eventhub-ingress-rate.png)
 
-Comme indiqué dans le diagramme de hello, taux d’entrée quotidien hello est ~ 67 000 messages. Ce taux convertit les messages too46 environ toutes les minutes. Si chaque message d’événement de concentrateur est aplatie tooa événement temps série Insights, cet environnement ne voit aucune limitation. Si chaque message d’événement de concentrateur est aplatie too100 temps série Insights événements, puis 4 600 événements doivent être ingérées toutes les minutes. Un environnement de référence (SKU) S1 qui a une capacité de 3 peut uniquement prendre 2 100 événements d’entrée toutes les minutes (1 million d’événements par jour = 700 événements par minute à 3 unités = 2 100 événements par minute). Par conséquent, vous voyez un décalage toothrottling échéance. 
+Comme indiqué dans le diagramme, le taux d’entrée quotidien est d’environ 67 000 messages. Cela représente environ 46 messages par minute. Si chaque message du concentrateur d’événements est aplati dans un seul événement Time Series Insights, aucune limitation ne sera appliquée à cet environnement. Si chaque message du concentrateur d’événements est aplati dans 100 événements Time Series Insights, 4 600 événements devraient être reçus toutes les minutes. Un environnement de référence (SKU) S1 qui a une capacité de 3 peut uniquement prendre 2 100 événements d’entrée toutes les minutes (1 million d’événements par jour = 700 événements par minute à 3 unités = 2 100 événements par minute). Par conséquent, les limitations qui s’appliquent provoquent un décalage. 
 
 Pour en savoir plus sur la logique de mise à plat, consultez [Structures JSON prises en charge](time-series-insights-send-events.md#supported-json-shapes).
 
 #### <a name="recommended-steps"></a>Étapes recommandées
-retard hello toofix, hello d’augmentation de capacité de référence (SKU) de votre environnement. Pour plus d’informations, consultez [comment tooscale votre environnement temps série Insights](time-series-insights-how-to-scale-your-environment.md).
+Pour éviter tout décalage, augmentez la capacité de votre environnement. Pour plus d’informations, consultez [Comment mettre à l’échelle votre environnement Time Series Insights](time-series-insights-how-to-scale-your-environment.md).
 
 ### <a name="youre-pushing-historical-data-and-causing-slow-ingress"></a>Vous envoyez des données d’historique et causez un ralentissement en entrée
-Si vous vous connectez à une source d’événement existante, il est probable que votre concentrateur Event Hub ou IoT Hub comporte déjà des données. Par conséquent, hello démarrage environnement extrayant des données à partir du début hello de période de rétention de message de la source d’événement hello. 
+Si vous vous connectez à une source d’événement existante, il est probable que votre concentrateur Event Hub ou IoT Hub comporte déjà des données. Par conséquent, l’environnement démarre l’extraction des données depuis le début de la période de rétention des messages de la source d’événement. 
 
-Ce comportement est le comportement par défaut de hello et ne peut pas être substitué. Vous pouvez prendre part aux limitation, et peut prendre un certain temps toocatch haut sur la réception des données d’historique.
+Ce comportement est le comportement par défaut et ne peut être modifié. Vous pouvez appliquer des limitations, et l’ingestion des données historiques peut prendre un certain temps.
 
 #### <a name="recommended-steps"></a>Étapes recommandées
-retard hello toofix, hello prennent comme suit :
-1. Augmentez hello SKU capacité toohello valeur maximale autorisée (10 dans ce cas). Une fois que la capacité de hello est augmentée, processus d’entrée hello démarre rattrape le retard beaucoup plus rapidement. Vous pouvez visualiser la rapidité avec laquelle vous êtes rattrape le retard via le graphique de disponibilité hello Bonjour [portail temps série Insights](https://insights.timeseries.azure.com). Vous êtes facturé pour la capacité de hello augmenté.
-2. Après avoir hello lag est en retard, diminuer les taux d’entrée normal tooyour arrière capacités hello référence (SKU).
+Pour corriger le décalage, suivez les étapes ci-dessous :
+1. Définissez la capacité de référence sur la valeur maximale autorisée (10 unités dans ce cas). Une fois que la capacité a été augmentée, le processus d’entrée rattrape le retard beaucoup plus rapidement. Vous pouvez suivre sa progression rapide depuis le graphique de disponibilité dans le [portail Time Series Insights](https://insights.timeseries.azure.com). L’augmentation de capacité occasionne des frais supplémentaires.
+2. Une fois le retard rattrapé, rétablissez la capacité de référence sur votre taux d’entrée normal.
 
 ## <a name="my-event-sources-timestamp-property-name-setting-doesnt-work"></a>Le paramètre *Nom de la propriété timestamp* de ma source d’événement ne fonctionne pas
-Vérifiez que hello nom et la valeur sont conformes toohello suivant les règles :
-* nom de la propriété timestamp Hello est _respectant la casse_.
-* valeur de propriété timestamp Hello provenant de votre source d’événement, comme une chaîne JSON, doit avoir le format de hello _AAAA-MM-JJThh. FFFFFFFK_. Exemple de chaîne : 2008-04-12T12:53Z.
+Vérifiez que le nom et la valeur répondent aux critères suivants :
+* Le nom de la propriété timestamp est _sensible à la casse_.
+* La valeur de la propriété timestamp provenant de votre source d’événement, telle qu’une chaîne JSON, doit être au format _aaaa-MM-jjTHH:mm:ss.FFFFFFFK_. Exemple de chaîne : 2008-04-12T12:53Z.

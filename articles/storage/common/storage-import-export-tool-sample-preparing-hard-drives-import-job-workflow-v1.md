@@ -1,6 +1,6 @@
 ---
-title: importer des disques durs aaaSample workflow tooprep pour une importation/exportation Azure travail - v1 | Documents Microsoft
-description: "Consultez une procédure pas à pas de hello complète du processus de préparation des lecteurs pour un travail d’importation Bonjour service Azure Import/Export."
+title: "Exemple de workflow pour préparer des disques durs pour un travail d’importation Azure Import/Export - v1 | Microsoft Docs"
+description: "Obtenez la procédure pas à pas relative au processus de préparation des disques à un travail d’importation dans le service Azure Import/Export."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: eb77831a88c16c14838179a6432ddb06503067dd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 179c6bac9a2d9509baa0007a7008d75d0874a25e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="sample-workflow-tooprepare-hard-drives-for-an-import-job"></a>Exemple workflow tooprepare les disques durs pour un travail d’importation
-Cette rubrique vous guide tout au long des processus de préparation des lecteurs pour un travail d’importation hello.  
+# <a name="sample-workflow-to-prepare-hard-drives-for-an-import-job"></a>Exemple de workflow pour préparer des disques durs à un travail d’importation
+Cette rubrique vous guide tout au long du processus de préparation des disques pour un travail d’importation.  
   
-Cet exemple importe hello suivant des données dans un compte de stockage Windows Azure nommé `mystorageaccount`:  
+Cet exemple importe les données suivantes dans un compte de stockage Azure Windows nommé `mystorageaccount` :  
   
 |Lieu|Description|  
 |--------------|-----------------|  
@@ -32,7 +32,7 @@ Cet exemple importe hello suivant des données dans un compte de stockage Window
 |K:\Temp\FavoriteMovie.ISO|Image de disque Blu-ray™, 25 Go.|  
 |\\\bigshare\john\music|Collection de fichiers de musique sur un partage réseau, 10 Go au total.|  
   
-travail d’importation Hello importe ces données dans hello suivant destinations dans le compte de stockage hello :  
+Le travail d’importation importe ces données dans les destinations suivantes dans le compte de stockage :  
   
 |Source|Répertoire virtuel ou objet blob de destination|  
 |------------|-------------------------------------------|  
@@ -41,13 +41,13 @@ travail d’importation Hello importe ces données dans hello suivant destinatio
 |K:\Temp\FavoriteMovie.ISO|https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO|  
 |\\\bigshare\john\music|https://mystorageaccount.blob.core.windows.net/music|  
   
-Avec ce mappage, hello fichier `H:\Video\Drama\GreatMovie.mov` toohello importé BLOB `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.  
+Avec ce mappage, le fichier `H:\Video\Drama\GreatMovie.mov` est importé dans l’objet blob `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.  
   
-Toodetermine suivant, le nombre de disques dur nécessaires, taille de hello de calcul des données de hello :  
+Ensuite, pour déterminer le nombre de disques durs nécessaires, calculez la taille des données :  
   
 `5TB + 30GB + 25GB + 10GB = 5TB + 65GB`  
   
-Pour cet exemple, deux disques durs de 3 To devraient suffire. Toutefois, puisque le répertoire source hello `H:\Video` contient 5 To de données et la capacité de votre disque dur unique est uniquement de 3 To, il est nécessaire toobreak `H:\Video` en deux répertoires de plus petits : `H:\Video1` et `H:\Video2`, avant d’en cours d’exécution hello Microsoft Outil d’importation/exportation Azure. Cette étape génère hello suivant des répertoires sources :  
+Pour cet exemple, deux disques durs de 3 To devraient suffire. Cependant, comme le répertoire source `H:\Video` contient 5 To de données et que la capacité de votre disque dur unique est de 3 To seulement, il est nécessaire de diviser `H:\Video` en deux répertoires plus petits (`H:\Video1` et `H:\Video2`) avant d’exécuter l’outil Microsoft Azure Import/Export. Cette étape génère les répertoires sources suivants :  
   
 |Lieu|Taille|Répertoire virtuel ou objet blob de destination|  
 |--------------|----------|-------------------------------------------|  
@@ -57,9 +57,9 @@ Pour cet exemple, deux disques durs de 3 To devraient suffire. Toutefois, puisq
 |K:\Temp\FavoriteMovies.ISO|25 Go|https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO|  
 |\\\bigshare\john\music|10 Go|https://mystorageaccount.blob.core.windows.net/music|  
   
- Bien que hello `H:\Video`active a été fractionné tootwo répertoires, ils pointent toohello même répertoire virtuel de destination dans le compte de stockage hello. De cette manière, tous les fichiers vidéos sont conservés dans un seul `video` conteneur hello compte de stockage.  
+ Même si le répertoire `H:\Video` a été divisé en deux répertoires, ils pointent tous deux vers le même répertoire virtuel de destination dans le compte de stockage. De cette façon, tous les fichiers vidéo sont conservés dans un seul conteneur `video` au sein du compte de stockage.  
   
- Ensuite, les répertoires sources précédente hello sont distribuées uniformément toohello de deux disques durs :  
+ Ensuite, les répertoires sources précédents sont répartis uniformément sur les deux disques durs :  
   
 ||||  
 |-|-|-|  
@@ -70,7 +70,7 @@ Pour cet exemple, deux disques durs de 3 To devraient suffire. Toutefois, puisq
 ||K:\Temp\BlueRay.ISO||  
 ||\\\bigshare\john\music||  
   
-En outre, vous pouvez définir hello suivant des métadonnées pour tous les fichiers :  
+En outre, vous pouvez définir les métadonnées suivantes pour tous les fichiers :  
   
 -   **UploadMethod :** Service Windows Azure Import/Export  
   
@@ -78,7 +78,7 @@ En outre, vous pouvez définir hello suivant des métadonnées pour tous les fic
   
 -   **CreationDate :** 10/1/2013  
   
-métadonnées tooset pour les fichiers de hello importé, créez un fichier texte, `c:\WAImportExport\SampleMetadata.txt`, avec hello suivant le contenu :  
+Pour définir les métadonnées pour les fichiers importés, créez un fichier texte, `c:\WAImportExport\SampleMetadata.txt`, avec le contenu suivant :  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -89,7 +89,7 @@ métadonnées tooset pour les fichiers de hello importé, créez un fichier text
 </Metadata>  
 ```
   
-Vous pouvez également définir des propriétés pour hello `FavoriteMovie.ISO` blob :  
+Vous pouvez également définir des propriétés pour l’objet blob `FavoriteMovie.ISO` :  
   
 -   **Content-Type :** application/octet-stream  
   
@@ -97,7 +97,7 @@ Vous pouvez également définir des propriétés pour hello `FavoriteMovie.ISO` 
   
 -   **Cache-Control :** no-cache  
   
-tooset ces propriétés, créez un fichier texte, `c:\WAImportExport\SampleProperties.txt`:  
+Pour définir ces propriétés, créez un fichier texte, `c:\WAImportExport\SampleProperties.txt` :  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -108,30 +108,30 @@ tooset ces propriétés, créez un fichier texte, `c:\WAImportExport\SamplePrope
 </Properties>  
 ```
   
-Vous êtes maintenant prêt toorun hello outil d’importation/exportation Azure tooprepare hello deux disques durs. Notez les points suivants :  
+Vous êtes maintenant prêt à exécuter l’outil Azure Import/Export pour préparer les deux disques durs. Notez les points suivants :  
   
--   Hello premier disque est monté en tant que lecteur X.  
+-   Le premier disque est monté en tant que disque X.  
   
--   Hello deuxième disque est monté en tant que lecteur Y.  
+-   Le deuxième disque est monté en tant que disque Y.  
   
--   clé Hello pour le compte de stockage hello `mystorageaccount` est `8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg==`.  
+-   La clé du compte de stockage `mystorageaccount` est `8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg==`.  
 
 ## <a name="preparing-disk-for-import-when-data-is-pre-loaded"></a>Préparation du disque à l’importation lorsque des données sont pré-chargées
  
- Si hello toobe de données importé est déjà présent sur le disque de hello, utilisez hello indicateur /skipwrite. valeur Hello /t et /srcdir doit les deux disques point toohello en cours de préparation pour l’importation. Si tous les hello toobe de données importé ne va pas toohello même répertoire virtuel de destination ou racine hello du compte de stockage, exécution hello même commande pour chaque répertoire de destination séparément, en conservant la valeur hello /id hello même entre toutes les séries.
+ Si les données à importer sont déjà présentes sur le disque, utilisez l’indicateur /skipwrite. La valeur de /t et de /srcdir doit pointer vers le disque préparé pour l’importation. Si les données à importer ne vont pas toutes dans le même répertoire virtuel de destination ou la même racine du compte de stockage, exécutez la même commande pour chaque répertoire de destination séparément en conservant la même valeur /id pour toutes les exécutions.
 
 >[!NOTE] 
->Ne spécifiez pas/format qu’il sera Réinitialiser les données de hello sur le disque de hello. Vous pouvez spécifier / chiffrer ou /bk selon si hello disque est déjà chiffré ou non. 
+>Ne spécifiez pas la valeur /format car elle efface les données sur le disque. Vous pouvez spécifier la valeur /encrypt ou /bk selon que le disque est déjà chiffré ou non. 
 >
 
 ```
-    When data is already present on hello disk for each drive run hello following command.
+    When data is already present on the disk for each drive run the following command.
     WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Video1 /logdir:c:\logs /sk:8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg== /t:x /format /encrypt /srcdir:x:\Video1 /dstdir:video/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt /skipwrite
 ```
 
 ## <a name="copy-sessions---first-drive"></a>Session de copie - premier lecteur
 
-Pour le premier lecteur de hello, exécutez hello outil d’importation/exportation Azure source des deux fois les hello toocopy deux répertoires :  
+Pour le premier disque, exécutez l’outil Azure Import/Export deux fois pour copier les deux répertoires sources :  
 
 **Première session de copie**
   
@@ -147,7 +147,7 @@ WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Photo /srcdir:H:\Photo /dstd
 
 ## <a name="copy-sessions---second-drive"></a>Session de copie - deuxième lecteur
  
-Pourquoi second lecteur, exécutez hello outil d’importation/exportation Azure trois fois, une fois que chacun d’eux pour hello source des répertoires et qu’une seule fois pour la version autonome de hello Blu-Ray™ fichier image) :  
+Pour le deuxième disque, exécutez l’outil Azure Import/Export trois fois (une fois pour chaque répertoire source et une fois pour le fichier d’image Blu-Ray™ autonome) :  
   
 **Première session de copie** 
 
@@ -169,7 +169,7 @@ WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:BlueRayIso /srcfile:K:\Temp
 
 ## <a name="copy-session-completion"></a>Fin de la session de copie
 
-Une fois les sessions de copie hello terminés, vous pouvez vous déconnecter de deux lecteurs de hello à partir de l’ordinateur de copie hello et expédiez-les toohello centre de données Windows Azure approprié. Télécharger des fichiers de journal hello deux, `FirstDrive.jrn` et `SecondDrive.jrn`, lorsque vous créez un travail d’importation hello Bonjour [portail Windows Azure](https://manage.windowsazure.com/).  
+Une fois les sessions de copie terminées, vous pouvez déconnecter les deux disques de l’ordinateur de copie et les expédier au centre de données Windows Azure approprié. Chargez les deux fichiers journaux, `FirstDrive.jrn` et `SecondDrive.jrn`, au moment de créer le travail d’importation dans le [portail Microsoft Azure](https://manage.windowsazure.com/).  
   
 ## <a name="next-steps"></a>Étapes suivantes
 

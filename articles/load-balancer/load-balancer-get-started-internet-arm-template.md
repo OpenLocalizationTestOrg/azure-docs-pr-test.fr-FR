@@ -1,9 +1,9 @@
 ---
-title: "équilibrage de charge aaaCreate une côté Internet - modèle Azure | Documents Microsoft"
-description: "Découvrez comment toocreate une connecté à Internet l’équilibrage de charge dans le Gestionnaire de ressources à l’aide d’un modèle"
+title: "Créer un équilibrage de charge accessible sur Internet à l’aide du modèle Azure | Microsoft Docs"
+description: "Découvrez comment créer un équilibreur de charge accessible sur Internet dans Resource Manager à l’aide d’un modèle"
 services: load-balancer
 documentationcenter: na
-author: kumudd
+author: KumudD
 manager: timlt
 tags: azure-resource-manager
 ms.assetid: b24f4729-4559-4458-8527-71009d242647
@@ -12,13 +12,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-ms.date: 01/23/2017
+ms.date: 09/25/2017
 ms.author: kumud
-ms.openlocfilehash: 2bce8cb87303838f3bc732d51228ab46d8015552
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: f88e3cf6672d975793b4836434ec31d9f7d37016
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="creating-an-internet-facing-load-balancer-using-a-template"></a>Création d’un équilibrage de charge accessible sur Internet à l’aide d’un modèle
 
@@ -28,24 +28,26 @@ ms.lasthandoff: 10/06/2017
 > * [Interface de ligne de commande Azure](../load-balancer/load-balancer-get-started-internet-arm-cli.md)
 > * [Modèle](../load-balancer/load-balancer-get-started-internet-arm-template.md)
 
+[!INCLUDE [load-balancer-basic-sku-include.md](../../includes/load-balancer-basic-sku-include.md)]
+
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-Cet article décrit le modèle de déploiement du Gestionnaire de ressources hello. Vous pouvez également [apprendre comment toocreate une connecté à Internet à l’aide du modèle de déploiement classique de l’équilibrage de charge](load-balancer-get-started-internet-classic-portal.md)
+Cet article traite du modèle de déploiement de Resource Manager. Vous pouvez également [découvrir comment créer un équilibreur de charge accessible sur Internet à l'aide du modèle de déploiement classique](load-balancer-get-started-internet-classic-portal.md)
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
-## <a name="deploy-hello-template-by-using-click-toodeploy"></a>Déployer le modèle de hello à l’aide de cliquez sur toodeploy
+## <a name="deploy-the-template-by-using-click-to-deploy"></a>Déployer le modèle en un clic
 
-Hello exemple de modèle disponible dans le référentiel de public hello utilise un fichier de paramètre contenant le scénario hello hello par défaut les valeurs utilisées toogenerate décrit ci-dessus. toodeploy ce modèle à l’aide de cliquez toodeploy, suivez [ce lien](http://go.microsoft.com/fwlink/?LinkId=544801), cliquez sur **déployer tooAzure**, remplacez les valeurs de paramètre par défaut hello si nécessaire et suivez les instructions de hello dans le portail de hello.
+L’exemple de modèle disponible dans le référentiel public utilise un fichier de paramètres contenant les valeurs par défaut utilisées pour générer le scénario décrit ci-dessus. Pour déployer ce modèle en un clic, suivez [ce lien](http://go.microsoft.com/fwlink/?LinkId=544801), cliquez sur **Déployer dans Azure**, remplacez les valeurs de paramètre par défaut si nécessaire, puis suivez les instructions dans le portail.
 
-## <a name="deploy-hello-template-by-using-powershell"></a>Déployer le modèle de hello à l’aide de PowerShell
+## <a name="deploy-the-template-by-using-powershell"></a>Déployer le modèle à l’aide de PowerShell
 
-modèle de hello toodeploy vous avez téléchargé à l’aide de PowerShell, suivez les étapes de hello ci-dessous.
+Pour déployer le modèle téléchargé à l’aide de PowerShell, suivez les étapes ci-dessous.
 
-1. Si vous n’avez jamais utilisé Azure PowerShell, consultez [comment tooInstall et configurer Azure PowerShell](/powershell/azure/overview) et suivez les instructions de hello tous les toohello de façon hello fin toosign dans Azure et sélectionnez votre abonnement.
-2. Exécutez hello **New-AzureRmResourceGroupDeployment** toocreate d’applet de commande un groupe de ressources à l’aide de hello modèle.
+1. Si vous n’avez jamais utilisé Azure PowerShell, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) et suivez les instructions jusqu’à la fin pour vous connecter à Azure et sélectionner votre abonnement.
+2. Pour créer un groupe de ressources à l'aide du modèle, exécutez l'applet de commande **New-AzureRmResourceGroupDeployment** .
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name TestRG -Location uswest `
@@ -53,23 +55,23 @@ modèle de hello toodeploy vous avez téléchargé à l’aide de PowerShell, su
         -TemplateParameterFile 'https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.parameters.json'
     ```
 
-## <a name="deploy-hello-template-by-using-hello-azure-cli"></a>Déployer le modèle de hello à l’aide de hello CLI d’Azure
+## <a name="deploy-the-template-by-using-the-azure-cli"></a>Déployer le modèle à l’aide de l’interface de ligne de commande Azure
 
-modèle de hello toodeploy à l’aide de hello CLI d’Azure, suivez les étapes de hello ci-dessous.
+Pour déployer le modèle à l’aide de l’interface de ligne de commande Azure, procédez comme suit.
 
-1. Si vous n’avez jamais utilisé CLI d’Azure, consultez [installer et configurer hello CLI d’Azure](../cli-install-nodejs.md) et suivez les instructions de hello point toohello où vous sélectionnez votre compte Azure et votre abonnement.
-2. Exécutez hello **configuration azure mode** mode Manager tooResource commande tooswitch, comme indiqué ci-dessous.
+1. Si vous n’avez jamais utilisé l’interface de ligne de commande Azure, consultez [Installation et configuration de l’interface de ligne de commande Azure](../cli-install-nodejs.md) et suivez les instructions jusqu’à l’étape vous invitant à sélectionner votre compte et votre abonnement Azure.
+2. Exécutez la commande **azure config mode** pour passer en mode Resource Manager, comme illustré ci-dessous.
 
     ```azurecli
     azure config mode arm
     ```
 
-    Voici la sortie hello attendu pour la commande hello ci-dessus :
+    Voici le résultat attendu pour la commande ci-dessus :
 
         info:    New mode is arm
 
-3. À partir de votre navigateur, accédez trop[hello Quickstart modèle](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-loadbalancer-lbrules), copiez hello du contenu du fichier json de hello et collez dans un nouveau fichier sur votre ordinateur. Pour ce scénario, vous serez copie les valeurs hello ci-dessous fichier tooa nommé **c:\lb\azuredeploy.parameters.json**.
-4. Exécutez hello **créer de déploiement de groupe azure** applet de commande toodeploy hello un équilibrage de charge à l’aide des paramètres et modèle de hello fichiers téléchargés et de modifier les propriétés. liste de Hello affiché après la sortie de hello explique paramètres hello utilisés.
+3. Dans votre navigateur, accédez au [modèle de démarrage rapide](https://github.com/Azure/azure-quickstart-templates/tree/master/201-2-vms-loadbalancer-lbrules), copiez le contenu du fichier json et collez-le dans un nouveau fichier sur votre ordinateur. Pour ce scénario, vous allez copier les valeurs ci-dessous dans un fichier nommé **C:\lb\azuredeploy.parameters.json**.
+4. Exécutez l’applet de commande **azure group deployment create** pour déployer le nouvel équilibreur de charge à l’aide du modèle et des fichiers de paramètres que vous avez téléchargés et modifiés plus tôt. La liste affichée après le résultat présente les différents paramètres utilisés.
 
     ```azurecli
     azure group create --name TestRG --location westus --template-file 'https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/201-2-vms-loadbalancer-lbrules/azuredeploy.json' --parameters-file 'c:\lb\azuredeploy.parameters.json'

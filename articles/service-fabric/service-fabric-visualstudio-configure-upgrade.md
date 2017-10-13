@@ -1,6 +1,6 @@
 ---
-title: "mise à niveau de hello aaaConfigure d’une application de Service Fabric | Documents Microsoft"
-description: "Découvrez comment tooconfigure hello les paramètres de mise à niveau d’une application de Service Fabric à l’aide de Microsoft Visual Studio."
+title: "Configuration de la mise à niveau d’une application Service Fabric | Microsoft Docs"
+description: "Apprenez à configurer les paramètres de mise à niveau d'une application Service Fabric à l'aide de Microsoft Visual Studio."
 services: service-fabric
 documentationcenter: na
 author: mikkelhegn
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 06/29/2017
 ms.author: mikkelhegn
-ms.openlocfilehash: 8ca50aa9d911f3c98f017490c8fe29011e8d80cd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 314b29a56e4651222822f40a116af97a7372ff2c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="configure-hello-upgrade-of-a-service-fabric-application-in-visual-studio"></a>Configurer la mise à niveau hello d’une application de Service Fabric dans Visual Studio
-Visual Studio tools pour Azure Service Fabric fournissent la prise en charge de mise à niveau pour la publication toolocal ou des clusters distants. Il existe trois scénarios dans lesquels vous tooupgrade tooa nouvelle version de votre application au lieu de remplacer l’application hello durant les tests et de débogage :
+# <a name="configure-the-upgrade-of-a-service-fabric-application-in-visual-studio"></a>Configuration de la mise à niveau d’une application Service Fabric dans Visual Studio
+Les outils Visual Studio pour Azure Service Fabric fournissent une prise en charge des mises à niveau pour la publication vers des clusters locaux ou distants. Voici les trois cas dans lesquels vous devriez mettre à niveau votre application vers une version plus récente au lieu de la remplacer durant les tests et le débogage :
 
-* Données d’application ne seront pas perdues pendant la mise à niveau hello.
-* Disponibilité reste élevée afin qu’il ne sera pas y avoir toute interruption de service au cours de la mise à niveau de hello, s’il y a que suffisamment d’instances de service réparties sur plusieurs domaines de mise à niveau.
+* Les données d’application ne sont pas perdues lors de la mise à niveau.
+* La disponibilité reste élevée, car le service n’est pas interrompu au cours de la mise à niveau s’il y a suffisamment d’instances de service réparties sur plusieurs domaines de mise à niveau.
 * Une application peut faire l’objet de tests pendant sa mise à niveau.
 
-## <a name="parameters-needed-tooupgrade"></a>Les paramètres nécessaires tooupgrade
-Vous avez le choix entre deux types de déploiement : standard ou mise à niveau. Un déploiement régulière efface les données sur le cluster de hello et les informations sur le déploiement précédent pendant un déploiement de mise à niveau conserve. Lorsque vous mettez à niveau une application de Service Fabric dans Visual Studio, vous devez tooprovide paramètres de mise à niveau l’application et les stratégies de contrôle d’intégrité. Mise à niveau de l’application les paramètres permettent de contrôler la mise à niveau de la hello, tandis que les stratégies de contrôle d’intégrité déterminent si la mise à niveau hello a réussi. Pour en savoir plus, consultez [Mise à niveau d’une application Service Fabric : paramètres de mise à niveau](service-fabric-application-upgrade-parameters.md) .
+## <a name="parameters-needed-to-upgrade"></a>Paramètres nécessaires à la mise à niveau
+Vous avez le choix entre deux types de déploiement : standard ou mise à niveau. Un déploiement standard efface les informations relatives à tout déploiement précédent ainsi que les données du cluster, tandis qu’un déploiement de mise à niveau les conserve. Lorsque vous mettez à niveau une application Service Fabric dans Visual Studio, vous devez fournir les paramètres de mise à niveau de l'application et les stratégies de contrôle d’intégrité. Les paramètres de mise à niveau de l’application permettent de contrôler la mise à niveau, tandis que les stratégies de contrôle d’intégrité déterminent si la mise à niveau a réussi. Pour en savoir plus, consultez [Mise à niveau d’une application Service Fabric : paramètres de mise à niveau](service-fabric-application-upgrade-parameters.md) .
 
 Il existe trois modes de mise à niveau : *Monitored*, *UnmonitoredAuto* et *UnmonitoredManual*.
 
-* Une mise à niveau analysées automatise la mise à niveau hello et application du contrôle d’intégrité.
-* Une mise à niveau UnmonitoredAuto automatise la mise à niveau hello, mais ignore hello intégrité d’application.
-* Lorsque vous effectuez une mise à niveau UnmonitoredManual, vous devez toomanually mise à niveau de chaque domaine de mise à niveau.
+* Une mise à niveau Monitored automatise la mise à niveau et le contrôle d’intégrité de l’application.
+* Une mise à niveau UnmonitoredAuto automatise la mise à niveau, mais ignore le contrôle d’intégrité de l’application.
+* Quand vous effectuez une mise à niveau UnmonitoredManual, vous devez mettre à niveau manuellement chaque domaine de mise à niveau.
 
-Chaque mode de mise à niveau nécessite différents jeux de paramètres. Consultez [paramètres de mise à niveau l’Application](service-fabric-application-upgrade-parameters.md) toolearn plus d’informations sur les options de mise à niveau disponibles hello.
+Chaque mode de mise à niveau nécessite différents jeux de paramètres. Pour en savoir plus sur les options de mise à niveau disponibles, consultez [Paramètres de mise à niveau d’application](service-fabric-application-upgrade-parameters.md) .
 
 ## <a name="upgrade-a-service-fabric-application-in-visual-studio"></a>Mise à niveau d’une application Service Fabric dans Visual Studio
-Si vous utilisez hello Visual Studio Service Fabric tools tooupgrade une application de Service Fabric, vous pouvez spécifier une mise à niveau au lieu d’un déploiement régulière un toobe de processus de publication en vérifiant hello **mise à niveau d’application hello** vérifier zone.
+Si vous utilisez les outils Service Fabric de Visual Studio pour mettre à niveau une application Service Fabric, vous pouvez préciser si le processus de publication doit être une mise à niveau plutôt qu’un déploiement standard en cochant la case **Mettre à niveau l’application** .
 
-### <a name="tooconfigure-hello-upgrade-parameters"></a>paramètres de mise à niveau tooconfigure hello
-1. Cliquez sur hello **paramètres** bouton toohello case à cocher. Hello **modifier les paramètres de mise à niveau** boîte de dialogue s’affiche. Hello **modifier les paramètres de mise à niveau** boîte de dialogue prend en charge les modes mise à niveau de hello surveillés, UnmonitoredAuto et UnmonitoredManual.
-2. Sélectionnez hello le mode de mise à niveau que vous souhaitez toouse et puis remplissez à la grille de paramètres hello.
+### <a name="to-configure-the-upgrade-parameters"></a>Pour configurer les paramètres de mise à niveau
+1. Cliquez sur le bouton **Paramètres** en regard de la case à cocher. La boîte de dialogue **Modifier les paramètres de mise à niveau** s’affiche. La boîte de dialogue **Modifier les paramètres de mise à niveau** prend en charge les modes de mise à niveau Monitored, UnmonitoredAuto et UnmonitoredManual.
+2. Sélectionnez le mode de mise à niveau que vous souhaitez utiliser, puis remplissez la grille de paramètres.
 
-    Chaque paramètre a des valeurs par défaut. paramètre facultatif de Hello *DefaultServiceTypeHealthPolicy* prend une entrée de table de hachage. Voici un exemple de format d’entrée de la table de hachage d’hello pour *DefaultServiceTypeHealthPolicy*:
+    Chaque paramètre a des valeurs par défaut. Le paramètre facultatif *DefaultServiceTypeHealthPolicy* accepte une entrée de table de hachage. Voici un exemple du format d'entrée de table de hachage pour *DefaultServiceTypeHealthPolicy*:
 
     ```
     @{ ConsiderWarningAsError = "false"; MaxPercentUnhealthyDeployedApplications = 0; MaxPercentUnhealthyServices = 0; MaxPercentUnhealthyPartitionsPerService = 0; MaxPercentUnhealthyReplicasPerPartition = 0 }
     ```
 
-    *ServiceTypeHealthPolicyMap* est un autre paramètre facultatif qui accepte une entrée de table de hachage Bonjour suivant format :
+    *ServiceTypeHealthPolicyMap* est un autre paramètre facultatif qui acceptant une entrée de table de hachage au format suivant :
 
     ```    
     @ {"ServiceTypeName" : "MaxPercentUnhealthyPartitionsPerService,MaxPercentUnhealthyReplicasPerPartition,MaxPercentUnhealthyServices"}
@@ -62,15 +62,15 @@ Si vous utilisez hello Visual Studio Service Fabric tools tooupgrade une applica
     ```
     @{ "ServiceTypeName01" = "5,10,5"; "ServiceTypeName02" = "5,5,5" }
     ```
-3. Si vous sélectionnez le mode de mise à niveau UnmonitoredManual, vous devez manuellement un toocontinue de console PowerShell et terminer le processus de mise à niveau hello. Consultez trop[mise à niveau de Service Fabric application : rubriques avancées](service-fabric-application-upgrade-advanced.md) toolearn manuel Mise à niveau fonctionne.
+3. Si vous sélectionnez le mode de mise à niveau UnmonitoredManual, vous devrez démarrer manuellement une console PowerShell pour continuer et terminer le processus de mise à niveau. Pour en savoir plus sur le fonctionnement de la mise à niveau manuelle, consultez [Mise à niveau d’une application Service Fabric : rubriques avancées](service-fabric-application-upgrade-advanced.md) .
 
 ## <a name="upgrade-an-application-by-using-powershell"></a>Mettre à niveau une application à l’aide de PowerShell
-Vous pouvez utiliser les applets de commande de PowerShell tooupgrade une application de Service Fabric. Pour plus d’informations, consultez [Didacticiel sur la mise à niveau d’une application Service Fabric](service-fabric-application-upgrade-tutorial.md) et [Start-ServiceFabricApplicationUpgrade](https://msdn.microsoft.com/library/mt125975.aspx).
+Vous pouvez utiliser les applets de commande PowerShell pour mettre à niveau une application Service Fabric. Pour plus d’informations, consultez [Didacticiel sur la mise à niveau d’une application Service Fabric](service-fabric-application-upgrade-tutorial.md) et [Start-ServiceFabricApplicationUpgrade](https://msdn.microsoft.com/library/mt125975.aspx).
 
-## <a name="specify-a-health-check-policy-in-hello-application-manifest-file"></a>Spécifier une stratégie de contrôle d’intégrité dans le fichier manifeste d’application hello
-Chaque service dans une application de Service Fabric peut avoir ses propres paramètres de stratégie de contrôle d’intégrité qui remplacent les valeurs par défaut de hello. Vous pouvez fournir ces valeurs de paramètre dans le fichier manifeste d’application hello.
+## <a name="specify-a-health-check-policy-in-the-application-manifest-file"></a>Spécifier une stratégie de contrôle d’intégrité dans le fichier manifeste d’application
+Chaque service d’une application Service Fabric peut avoir ses propres paramètres de stratégie de contrôle d'intégrité, qui remplacent alors les valeurs par défaut. Vous pouvez définir les valeurs de ces paramètres dans le fichier manifeste d’application.
 
-Hello suivant montre comment tooapply un contrôle d’intégrité unique vérifier la stratégie pour chaque service dans le manifeste de l’application hello.
+L'exemple suivant montre comment appliquer une stratégie de contrôle d'intégrité unique pour chaque service du manifeste d'application.
 
 ```xml
 <Policies>

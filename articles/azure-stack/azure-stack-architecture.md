@@ -1,6 +1,6 @@
 ---
-title: "aaaMicrosoft architecture du Kit de développement de pile Azure | Documents Microsoft"
-description: "Hello vue architecture du Kit de développement Microsoft Azure pile."
+title: "Architecture du Kit de développement Microsoft Azure Stack | Microsoft Docs"
+description: "Affichez l’architecture du Kit de développement Microsoft Azure Stack."
 services: azure-stack
 documentationcenter: 
 author: heathl17
@@ -12,24 +12,27 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 08/03/2017
+ms.date: 09/25/2017
 ms.author: helaw
-ms.openlocfilehash: 32a19ced7ddd57b97ba796679c116132090402e2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e8ff17e069bd9237bf06cd79b4c222c50a999eda
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="microsoft-azure-stack-development-kit-architecture"></a>Architecture du Kit de développement Microsoft Azure Stack
-Hello Kit de développement de pile Azure est un déploiement à un seul nœud de pile de Azure. Tous les composants de hello sont installés sur des machines virtuelles en cours d’exécution sur un ordinateur hôte unique. 
+
+*S’applique à : Kit de développement Azure Stack*
+
+Le Kit de développement Azure Stack est un déploiement à nœud unique d’Azure Stack. Tous les composants sont installés sur des machines virtuelles exécutées sur un ordinateur hôte unique. 
 
 ## <a name="logical-architecture-diagram"></a>Schéma de l’architecture logique
-Hello diagramme suivant illustre architecture logique de hello du kit de développement Azure pile hello et ses composants.
+Le schéma suivant illustre l’architecture logique du Kit de développement Azure Stack et de ses composants.
 
 ![](media/azure-stack-architecture/image1.png)
 
 ## <a name="virtual-machine-roles"></a>Rôles de machine virtuelle
-Hello kit de développement de pile de Azure offre des services à l’aide de hello suivant des ordinateurs virtuels sur l’ordinateur hôte de hello :
+Le Kit de développement Azure Stack offre des services à l’aide des machines virtuelles suivantes sur l’ordinateur hôte :
 
 | Nom | Description |
 | ----- | ----- |
@@ -45,11 +48,11 @@ Hello kit de développement de pile de Azure offre des services à l’aide de h
 | **AzS-SQL01** | Magasin de données interne pour les rôles d’infrastructure Azure Stack.  |
 | **AzS-WAS01** | Portail d’administration Azure Stack et services Azure Resource Manager.|
 | **AzS-WASP01**| Portail utilisateur (locataire) Azure Stack et services Azure Resource Manager.|
-| **AzS-XRP01** | Contrôleur de gestion d’infrastructure pour la pile Microsoft Azure, y compris les fournisseurs de ressources de calcul, réseau et stockage hello.|
+| **AzS-XRP01** | Contrôleur de gestion d’infrastructure pour Microsoft Azure Stack, notamment les fournisseurs de ressources Calcul, Réseau et Stockage.|
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Déployer Azure Stack](azure-stack-deploy.md)
 
-[Première tootry de scénarios](azure-stack-first-scenarios.md)
+[Test des premiers scénarios](azure-stack-first-scenarios.md)
 

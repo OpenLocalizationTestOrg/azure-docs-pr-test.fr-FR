@@ -1,12 +1,12 @@
 ---
-title: aaaIntel Edison toocloud (Node.js) - se connecter le Edison Intel tooAzure IoT Hub | Documents Microsoft
-description: "Découvrez comment toosetup et connectez-vous Intel Edison tooAzure IoT Hub pour la plateforme de cloud computing Azure Intel Edison toosend données toohello dans ce didacticiel."
+title: "Intel Edison vers le cloud (Node.js) - Connecter Intel Edison à Azure IoT Hub | Microsoft Docs"
+description: "Dans ce didacticiel, découvrez comment configurer et connecter Intel Edison à Azure IoT Hub pour lui permettre d’envoyer des données à la plateforme cloud Azure."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timlt
 tags: 
-keywords: "Azure iot intel edison, intel hub iot d’edison, intel edison envoyer des données toocloud, intel edison toocloud"
+keywords: "azure iot intel edison, intel edison iot hub, intel edison envoyer des données vers le cloud, intel edison vers le cloud"
 ms.assetid: a7c9cf2d-c102-41b0-aa45-41285c6877eb
 ms.service: iot-hub
 ms.devlang: nodejs
@@ -16,17 +16,17 @@ ms.workload: na
 ms.date: 6/15/2017
 ms.author: xshi
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: bfc3387efc532b4b83f0626a9cf61d12c2952af2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5a31efba704045196b5563f7bc467c773bea7805
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connect-intel-edison-tooazure-iot-hub-nodejs"></a>Se connecter Intel Edison tooAzure IoT Hub (Node.js)
+# <a name="connect-intel-edison-to-azure-iot-hub-nodejs"></a>Connecter Intel Edison à Azure IoT Hub (Node.js)
 
 [!INCLUDE [iot-hub-get-started-device-selector](../../includes/iot-hub-get-started-device-selector.md)]
 
-Dans ce didacticiel, commencer par découvrir hello des bases de l’utilisation de Edison d’Intel. Vous apprendrez ensuite comment tooseamlessly connecter votre cloud toohello de périphériques à l’aide de [Azure IoT Hub](iot-hub-what-is-iot-hub.md).
+Dans ce didacticiel, vous commencez par découvrir les principes fondamentaux de l’utilisation d’Intel Edison. Vous apprenez ensuite à connecter en toute transparence vos appareils au cloud avec [Azure IoT Hub](iot-hub-what-is-iot-hub.md).
 
 Vous n’avez pas encore de kit ? Démarrer [ici](https://azure.microsoft.com/develop/iot/starter-kits)
 
@@ -35,41 +35,41 @@ Vous n’avez pas encore de kit ? Démarrer [ici](https://azure.microsoft.com/de
 * Configurez Intel Edison et les modules Grove.
 * Créez un hub IoT.
 * Inscrivez un appareil pour Edison dans votre IoT Hub.
-* Exécuter un exemple d’application sur le concentrateur de Edison toosend capteur données tooyour IoT.
+* Exécutez un exemple d’application sur Edison pour envoyer des données de capteur à votre IoT Hub.
 
-Connectez Intel Edison tooan IoT concentrateur que vous créez. Puis vous exécutez un exemple d’application sur Edison toocollect température et humidité les données à partir d’un capteur de température Grove. Enfin, vous envoyez le hub IoT tooyour hello capteur données.
+Connectez Intel Edison à un IoT Hub créé à cette fin. Exécutez ensuite un exemple d’application sur Edison pour collecter des données de température et d’humidité provenant d’un capteur de température Grove. Enfin, envoyez les données du capteur à votre IoT Hub.
 
 ## <a name="what-you-learn"></a>Contenu
 
-* Comment toocreate un Azure IoT hub et obtenir votre nouvelle chaîne de connexion de périphérique.
-* Comment tooconnect Edison avec un capteur de température Grove.
-* Comment les données de capteur toocollect par un exemple d’application en cours d’exécution sur Edison.
-* Comment le hub IoT tooyour toosend capteur données.
+* Création d’un Azure IoT Hub et obtention de la chaîne de connexion de votre nouvel appareil.
+* Connexion d’Edison à un capteur de température Grove.
+* Collecte des données du capteur en exécutant un exemple d’application sur Edison.
+* Envoi des données du capteur à votre IoT Hub.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
 
 ![Ce dont vous avez besoin](media/iot-hub-intel-edison-kit-node-get-started/0_kit.png)
 
-* Hello Conseil d’Intel Edison
+* La carte Intel Edison
 * Carte d’extension Arduino
 * Un abonnement Azure actif. Si vous ne possédez pas de compte Azure, vous pouvez [créer un compte d’évaluation Azure gratuit](https://azure.microsoft.com/free/) en quelques minutes.
 * Un Mac ou un PC exécutant Windows ou Linux.
 * Une connexion Internet.
-* Un câble USB d’un de tooType Micro B
+* Un câble USB Micro B vers Type A
 * Une alimentation en courant continu (CC). La puissance nominale de l’alimentation doit être :
   - 7-15 V CC
   - Au moins 1 500 mA
-  - code confidentiel de Hello center/interne doit être pôle positif de hello d’alimentation hello
+  - La broche centrale/intérieure doit être le pôle positif de l’alimentation
 
-Hello éléments suivants est facultatif :
+Les éléments suivants sont facultatifs :
 
 * Grove Base Shield V2
 * Capteur de température Grove
 * Câble Grove
-* Les barres d’espacement ni vis inclus dans le package hello, y compris des deux vis toofasten hello toohello expansion carte et quatre ensembles de vis et des séparateurs en plastique.
+* Les barres de séparation ou vis incluses dans l’emballage, y compris deux vis permettant de fixer le module sur la carte d’extension et quatre jeux de vis et séparateurs en plastique.
 
 > [!NOTE] 
-Ces éléments sont facultatifs, car la prise en charge des exemples de code hello simulée des données de capteur.
+Ces éléments sont facultatifs, car l’exemple de code prend en charge les données de capteur simulées.
 
 [!INCLUDE [iot-hub-get-started-create-hub-and-device](../../includes/iot-hub-get-started-create-hub-and-device.md)]
 
@@ -77,23 +77,23 @@ Ces éléments sont facultatifs, car la prise en charge des exemples de code hel
 
 ### <a name="assemble-your-board"></a>Assembler votre carte
 
-Cette section contient les étapes tooattach votre carte Intel® Edison tooyour d’extension.
+Cette section présente les étapes permettant de connecter votre module Intel® Edison à votre carte d’extension.
 
-1. Placez le module Intel® Edison hello hiérarchique de hello blanc dans votre tableau d’extension, de trous hello sur le module de hello avec vis hello sur la carte d’extension de hello s’aligne.
+1. Placez le module Intel® Edison à l’intérieur du cadre blanc sur votre carte d’extension, en alignant les trous du module avec les vis de la carte d’extension.
 
-2. Appuyez sur le module hello juste en dessous des mots hello `What will you make?` jusqu'à ce que vous pensez qu’un composant logiciel enfichable.
+2. Appuyez sur le module juste en dessous de l’indication `What will you make?` jusqu'à entendre un clic.
 
    ![assemblage de carte 2](media/iot-hub-intel-edison-kit-node-get-started/1_assemble_board2.jpg)
 
-3. Utilisez hello deux fruits hex (inclus dans le package de hello) toosecure hello toohello expansion carte.
+3. Utilisez les deux écrous hexagonaux (inclus dans le package) pour fixer le module sur la carte d’extension.
 
    ![assemblage de carte 3](media/iot-hub-intel-edison-kit-node-get-started/2_assemble_board3.jpg)
 
-4. Insérer une vis de l’une des quatre trous de coin hello sur la carte d’extension de hello. Torsion et renforcer un des séparateurs de plastique hello blanc sur vis de hello.
+4. Insérez une vis dans un des quatre trous situés dans les coins de la carte d’extension. Faites tourner et fixez un des séparateurs en plastique blancs sur la vis.
 
    ![assemblage de carte 4](media/iot-hub-intel-edison-kit-node-get-started/3_assemble_board4.jpg)
 
-5. Répétez cette opération pour hello autres séparateurs trois angle.
+5. Répétez l'opération pour les trois autres séparateurs situés dans les coins.
 
    ![assemblage de carte 5](media/iot-hub-intel-edison-kit-node-get-started/4_assemble_board5.jpg)
 
@@ -101,15 +101,15 @@ Votre carte est maintenant assemblée.
 
    ![carte assemblée](media/iot-hub-intel-edison-kit-node-get-started/5_assembled_board.jpg)
 
-### <a name="connect-hello-grove-base-shield-and-hello-temperature-sensor"></a>Se connecter hello Grove Base bouclier et capteur de température hello
+### <a name="connect-the-grove-base-shield-and-the-temperature-sensor"></a>Connecter le module Grove Base Shield et le capteur de température
 
-1. Placez hello Grove Base bouclier sur tooyour carte. Assurez-vous que toutes les broches sont bien insérées dans votre carte.
+1. Placez le module Grove Base Shield sur votre carte. Assurez-vous que toutes les broches sont bien insérées dans votre carte.
    
    ![Grove Base Shield](media/iot-hub-intel-edison-kit-node-get-started/6_grove_base_sheild.jpg)
 
-2. Capteur de température utilisez Grove câble tooconnect Grove sur hello Grove Base bouclier **A0** port.
+2. Utilisez un câble Grove pour connecter le capteur de température Grove sur le port **A0** du module Grove Base Shield.
 
-   ![Se connecter tootemperature capteur](media/iot-hub-intel-edison-kit-node-get-started/7_temperature_sensor.jpg)
+   ![Connexion au capteur de température](media/iot-hub-intel-edison-kit-node-get-started/7_temperature_sensor.jpg)
 
    ![Connexion d’Edison et du capteur](media/iot-hub-intel-edison-kit-node-get-started/16_edion_sensor.png)
 
@@ -117,78 +117,78 @@ Votre capteur est maintenant prêt.
 
 ### <a name="power-up-edison"></a>Mise sous tension d’Edison
 
-1. Branchez alimentation hello.
+1. Branchez le bloc d’alimentation.
 
    ![Branchement du bloc d'alimentation](media/iot-hub-intel-edison-kit-node-get-started/8_plug_power.jpg)
 
-2. Une DEL verte (étiquetée DS1 sur hello Arduino * de carte d’extension) doit s’allumer et restent allumée.
+2. Une LED verte (marquée DS1 sur la carte d’extension Arduino*) doit s’allumer et rester allumée.
 
-3. Patientez une minute pour toofinish de tableau hello le démarrage.
+3. Attendez une minute que la carte finisse de démarrer.
 
    > [!NOTE]
-   > Si vous ne disposez pas d’une alimentation de contrôleur de domaine, vous pouvez toujours de carte hello l’alimentation via un port USB. Consultez la section `Connect Edison tooyour computer` pour plus d’informations. Cette procédure de mise sous tension de votre carte peut entraîner un comportement imprévisible de la carte, en particulier si vous utilisez un réseau Wi-Fi ou des moteurs d’entraînement.
+   > Si vous ne disposez pas d’un bloc d’alimentation CC, vous pouvez toujours alimenter la carte via un port USB. Consultez la section `Connect Edison to your computer` pour plus d’informations. Cette procédure de mise sous tension de votre carte peut entraîner un comportement imprévisible de la carte, en particulier si vous utilisez un réseau Wi-Fi ou des moteurs d’entraînement.
 
-### <a name="connect-edison-tooyour-computer"></a>Connectez Edison tooyour ordinateur
+### <a name="connect-edison-to-your-computer"></a>Connexion d’Edison à votre ordinateur
 
-1. Basculer vers le bas microrupteur hello vers hello deux micro ports USB, afin que Edison est en mode de périphérique. Veuillez vous reporter [ici](https://software.intel.com/en-us/node/628233#usb-device-mode-vs-usb-host-mode) pour connaître les différences entre le mode appareil et le mode hôte.
+1. Basculez le microcommutateur vers les deux ports micro-USB afin de placer Edison est en mode appareil. Veuillez vous reporter [ici](https://software.intel.com/en-us/node/628233#usb-device-mode-vs-usb-host-mode) pour connaître les différences entre le mode appareil et le mode hôte.
 
-   ![Basculer vers le bas microrupteur de hello](media/iot-hub-intel-edison-kit-node-get-started/9_toggle_down_microswitch.jpg)
+   ![Basculement du microcommutateur vers le bas](media/iot-hub-intel-edison-kit-node-get-started/9_toggle_down_microswitch.jpg)
 
-2. Branchez les câbles USB micro hello le port USB supérieur micro hello.
+2. Connectez le câble micro USB au port micro USB du haut.
 
    ![Port micro USB du haut](media/iot-hub-intel-edison-kit-node-get-started/10_top_usbport.jpg)
 
-3. Plug hello l’autre extrémité du câble USB à votre ordinateur.
+3. Branchez l’autre extrémité du câble USB à votre ordinateur.
 
    ![USB de l’ordinateur](media/iot-hub-intel-edison-kit-node-get-started/11_computer_usb.jpg)
 
 4. Vous saurez que votre carte est entièrement initialisée lorsque l’ordinateur monte un nouveau lecteur (comme lorsque vous insérez une carte SD dans votre ordinateur).
 
-## <a name="download-and-run-hello-configuration-tool"></a>Téléchargez et exécutez l’outil de configuration hello
-Obtenir hello dernier outil de configuration à partir de [ce lien](https://software.intel.com/en-us/iot/hardware/edison/downloads) répertoriés sous hello `Installers` titre. Exécutez l’outil de hello et suivez sa à l’écran des instructions, en cliquant sur Suivant si nécessaire
+## <a name="download-and-run-the-configuration-tool"></a>Téléchargement et exécution de l’outil de configuration
+Consultez [ce lien](https://software.intel.com/en-us/iot/hardware/edison/downloads) répertorié sous le titre `Installers` pour obtenir le dernier outil de configuration. Exécutez l’outil et suivez ses instructions à l'écran en cliquant sur Suivant si nécessaire.
 
 ### <a name="flash-firmware"></a>Flashage du microprogramme
-1. Sur hello `Set up options` , cliquez sur `Flash Firmware`.
-2. Sélectionnez tooflash d’image hello sur votre carte mère en effectuant l’une des manières suivantes les hello :
-   - toodownload et flash votre carte mère avec hello dernière image de microprogramme auprès d’Intel, sélectionnez `Download hello latest image version xxxx`.
-   - sélectionner de votre tableau avec une image que vous avez déjà enregistré sur votre ordinateur, tooflash `Select hello local image`. Parcourir tooand hello sélectionnez image de carte de tooyour tooflash.
-3. outil de configuration Hello va tenter de tooflash votre carte mère. processus clignotant Hello peut prendre jusqu'à too10 minutes.
+1. Sur la page `Set up options`, cliquez sur `Flash Firmware`.
+2. Sélectionnez l’image à flasher sur votre carte en effectuant l’une des opérations suivantes :
+   - Pour télécharger et flasher votre carte avec la dernière image de microprogramme disponible d’Intel, sélectionnez `Download the latest image version xxxx`.
+   - Pour flasher votre carte avec une image que vous avez déjà enregistrée sur votre ordinateur, sélectionnez `Select the local image`. Recherchez et sélectionnez l’image à flasher sur votre carte.
+3. L’outil d’installation tente de flasher votre carte. L’ensemble du processus de flashage peut prendre jusqu’à 10 minutes.
 
 ### <a name="set-password"></a>Définition du mot de passe
-1. Sur hello `Set up options` , cliquez sur `Enable Security`.
+1. Sur la page `Set up options`, cliquez sur `Enable Security`.
 2. Vous pouvez attribuer un nom personnalisé à votre carte Intel® Edison. Cette étape est facultative.
 3. Tapez un mot de passe pour votre carte, puis cliquez sur `Set password`.
-4. Démarquer hello un mot de passe qui sera utilisé ultérieurement.
+4. Notez le mot de passe, qui sera utilisé ultérieurement.
 
 ### <a name="connect-wi-fi"></a>Connexion Wi-Fi
-1. Sur hello `Set up options` , cliquez sur `Connect Wi-Fi`. Attente d’une minute tooone sous la forme d’analyses de votre ordinateur pour les réseaux Wi-Fi disponibles.
-2. À partir de hello `Detected Networks` liste déroulante, sélectionnez votre réseau.
-3. À partir de hello `Security` liste déroulante, le type de sécurité du réseau : sélectionnez hello.
+1. Sur la page `Set up options`, cliquez sur `Connect Wi-Fi`. Attendez environ une minute que votre ordinateur recherche les réseaux Wi-Fi disponibles.
+2. Dans la liste déroulante `Detected Networks`, sélectionnez votre réseau.
+3. Dans la liste déroulante `Security`, sélectionnez le type de sécurité du réseau.
 4. Indiquez vos identifiant et mot de passe, puis cliquez sur `Configure Wi-Fi`.
-5. Démarquer hello adresse IP, qui est utilisée ultérieurement.
+5. Notez l’adresse IP, qui sera utilisée ultérieurement.
 
 > [!NOTE]
-> Assurez-vous que Edison est connecté toohello même réseau que votre ordinateur. Votre ordinateur connecte tooyour Edison en utilisant l’adresse IP de hello.
+> Assurez-vous qu’Edison est connecté au même réseau que votre ordinateur. Votre ordinateur se connecte à votre Edison à l’aide de l’adresse IP.
 
-   ![Se connecter tootemperature capteur](media/iot-hub-intel-edison-kit-node-get-started/12_configuration_tool.png)
+   ![Connexion au capteur de température](media/iot-hub-intel-edison-kit-node-get-started/12_configuration_tool.png)
 
 Félicitations ! Vous avez réussi à configurer Edison.
 
 ## <a name="run-a-sample-application-on-intel-edison"></a>Exécution d’un exemple d’application sur Intel Edison
 
-### <a name="prepare-hello-azure-iot-device-sdk"></a>Préparer hello SDK de périphérique Azure IoT
+### <a name="prepare-the-azure-iot-device-sdk"></a>Préparer le SDK Azure IoT Device
 
-1. Utilisez une des hello suivant clients SSH à partir de votre ordinateur hôte ordinateur tooconnect tooyour Edison d’Intel. adresse IP de Hello est à partir de l’outil de configuration hello et mot de passe hello hello que vous avez définie dans cet outil.
+1. Utilisez l’un des clients SSH suivants à partir de votre ordinateur hôte pour vous connecter à votre Intel Edison. L’adresse IP est obtenue à partir de l’outil de configuration et le mot de passe est celui que vous avez défini dans cet outil.
     - [PuTTY](http://www.putty.org/) pour Windows.
-    - client Hello intégré SSH sur Ubuntu ou macOS.
+    - Le client SSH intégré sur Ubuntu ou macOS.
 
-2. Clone hello exemple client tooyour périphérique d’application. 
+2. Clonez l’exemple d’application cliente sur votre appareil. 
    
    ```bash
    git clone https://github.com/Azure-Samples/iot-hub-node-intel-edison-client-app
    ```
 
-3. Il peut prendre un substance présentant minutes toocomplete, puis accédez toohello hello du toorun dossier de dépôt suivant commande tooinstall tous les packages.
+3. Accédez ensuite au dossier de référentiel pour exécuter la commande suivante afin d’installer tous les packages (la procédure peut prendre quelques minutes).
    
    ```bash
    cd iot-hub-node-intel-edison-client-app
@@ -196,9 +196,9 @@ Félicitations ! Vous avez réussi à configurer Edison.
    ```
 
 
-### <a name="configure-and-run-hello-sample-application"></a>Configurer et exécuter l’exemple d’application hello
+### <a name="configure-and-run-the-sample-application"></a>Configurer et exécuter l’exemple d’application
 
-1. Ouvrez le fichier de configuration de hello en hello suivant les commandes en cours d’exécution :
+1. Ouvrez le fichier de configuration en exécutant les commandes suivantes :
 
    ```bash
    nano config.json
@@ -206,28 +206,28 @@ Félicitations ! Vous avez réussi à configurer Edison.
 
    ![Fichier de configuration](media/iot-hub-intel-edison-kit-node-get-started/13_configure_file.png)
 
-   Deux éléments de type macros peuvent être configurés dans ce fichier. Bonjour tout d’abord un est `INTERVAL`, qui définit l’intervalle de temps hello entre les deux messages toocloud d’envoi. Hello deuxième `simulatedData`, qui est une valeur booléenne pour toouse indique si les données de capteur simulé ou non.
+   Deux éléments de type macros peuvent être configurés dans ce fichier. Le premier est `INTERVAL`, qui définit le délai entre deux messages envoyés au cloud. Le deuxième est `simulatedData`, qui est une valeur booléenne pour l’utilisation ou non des données de capteur simulées.
 
-   Si vous **n’avez pas capteur de hello**, affectez la valeur hello `simulatedData` valeur trop`true` toomake hello exemple d’application, créer et utiliser des données de capteur simulé.
+   Si vous **ne disposez pas du capteur**, définissez la valeur `simulatedData` sur `true` pour que l’exemple d’application crée et utilise des données de capteur simulées.
 
 1. Enregistrez et quittez en appuyant sur Ctrl-O > Entrée > Ctrl-X.
 
 
-1. Exécuter l’exemple d’application hello en exécutant hello de commande suivante :
+1. Exécutez l’exemple d’application en exécutant la commande suivante :
 
    ```bash
    sudo node index.js '<your Azure IoT hub device connection string>'
    ```
 
    > [!NOTE] 
-   Assurez-vous que vous copier-coller chaîne de connexion de périphérique hello dans des guillemets simples de hello.
+   Assurez-vous de copier-coller la chaîne de connexion de l’appareil entre les guillemets simples.
 
-Vous devez voir qu’affiche hello messages hello et les données de capteur envoyés tooyour IoT hub de sortie suivant de hello.
+Vous devriez voir le résultat suivant, qui affiche les données de capteur et les messages envoyés à votre IoT Hub.
 
-![Sortie - données de capteur envoyés à partir d’Intel Edison tooyour IoT hub](media/iot-hub-intel-edison-kit-node-get-started/15_message_sent.png)
+![Sortie : données de capteur envoyées depuis Intel Edison vers votre IoT Hub](media/iot-hub-intel-edison-kit-node-get-started/15_message_sent.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vous avez exécuté un exemple de données de capteur application toocollect et envoyez tooyour IoT hub.
+Vous avez exécuté un exemple d’application pour collecter des données de capteur et les envoyer à votre IoT Hub.
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

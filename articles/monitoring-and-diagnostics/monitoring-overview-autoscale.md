@@ -1,6 +1,6 @@
 ---
-title: "aaaOverview de mise à l’échelle dans les applications Web, Services de cloud computing et des Machines virtuelles Microsoft Azure | Documents Microsoft"
-description: "Vue d’ensemble de la mise à l’échelle automatique dans Microsoft Azure. S’applique tooVirtual Machines, Cloud Services et applications Web."
+title: "Vue d’ensemble de la mise à l’échelle automatique sur les machines virtuelles Microsoft Azure, les services cloud et les applications web | Microsoft Docs"
+description: "Vue d’ensemble de la mise à l’échelle automatique dans Microsoft Azure. S’applique aux machines virtuelles, aux services cloud et aux applications web."
 author: rboucher
 manager: carmonm
 editor: 
@@ -14,77 +14,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/02/2016
 ms.author: robb
-ms.openlocfilehash: ef68b722ea22c4149a7d7a89c5855ba761db9247
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 413828d79d79c181c662bc7cfb4114345de57f90
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="overview-of-autoscale-in-microsoft-azure-virtual-machines-cloud-services-and-web-apps"></a>Vue d’ensemble de la mise à l’échelle automatique sur les machines virtuelles Microsoft Azure, les services cloud et les applications web
-Cet article décrit la mise à l’échelle le Microsoft Azure, ses avantages, et comment tooget démarré à l’utiliser.  
+Cet article décrit la mise à l’échelle automatique Microsoft Azure ainsi que ses avantages, et comment commencer à l’utiliser.  
 
-Mise à l’échelle du moniteur Azure s’applique uniquement trop[machines virtuelles identiques](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [Services de cloud computing](https://azure.microsoft.com/services/cloud-services/), et [du Service d’applications - applications Web](https://azure.microsoft.com/services/app-service/web/).
+La mise à l’échelle automatique Azure Monitor s’applique uniquement aux [jeux de mise à l’échelle de machine virtuelle](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [services cloud](https://azure.microsoft.com/services/cloud-services/) et à [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/).
 
 > [!NOTE]
-> Azure dispose de deux méthodes de mise à l’échelle automatique. Une ancienne version de mise à l’échelle s’applique tooVirtual Machines (haute disponibilité). Cette fonctionnalité prend en charge limitée et nous vous recommandons d’échelle de machines toovirtual migration définit pour la prise en charge de la mise à l’échelle plus rapide et plus fiable. Un lien sur la technologie plus ancienne de toouse hello est incluse dans cet article.  
+> Azure dispose de deux méthodes de mise à l’échelle automatique. L’ancienne version de la mise à l’échelle automatique s’applique aux machines virtuelles (groupes à haute disponibilité). Cette fonctionnalité assure une prise en charge limitée et nous vous recommandons de migrer vers les jeux de mise à l’échelle de machine virtuelle pour une prise en charge plus rapide et plus fiable de la mise à l’échelle automatique. Un lien sur la façon d’utiliser l’ancienne technologie est inclus dans cet article.  
 >
 >
 
 ## <a name="what-is-autoscale"></a>Qu’est-ce que la mise à l’échelle automatique ?
-Mise à l’échelle vous permet de toohave hello bonne quantité de ressources toohandle hello charge en cours d’exécution sur votre application. Il vous permet de ressources tooadd toohandle les augmentations de chargent et également réaliser des économies en supprimant des ressources qui sont période d’inactivité. Vous spécifiez un nombre minimal et maximal d’instances toorun et ajoutez ou supprimez des machines virtuelles automatiquement selon un ensemble de règles. Avoir un nombre minimal d’instances permet de vous assurer que votre application est toujours en cours d’exécution même en l’absence de charge. Avoir un nombre maximal d’instances limite votre coût total possible par heure. Vous effectuez une mise à l’échelle automatique entre ces deux extrêmes, à l’aide de règles que vous créez.
+La mise à l’échelle automatique vous permet de disposer de la bonne quantité de ressources en cours d’exécution pour gérer la charge sur votre application. Elle vous permet d’ajouter des ressources pour gérer les augmentations de charge et d’économiser de l’argent en supprimant les ressources qui sont inactives. Vous spécifiez un nombre minimal et maximal d’instances à exécuter et ajoutez ou supprimez des machines virtuelles automatiquement en fonction d’un ensemble de règles. Avoir un nombre minimal d’instances permet de vous assurer que votre application est toujours en cours d’exécution même en l’absence de charge. Avoir un nombre maximal d’instances limite votre coût total possible par heure. Vous effectuez une mise à l’échelle automatique entre ces deux extrêmes, à l’aide de règles que vous créez.
 
  ![Description de la mise à l’échelle automatique. Ajouter et supprimer des machines virtuelles](./media/monitoring-overview-autoscale/AutoscaleConcept.png)
 
-Lorsque les conditions relatives aux règles sont remplies, une ou plusieurs actions de mise à l’échelle automatique sont déclenchées. Vous pouvez ajouter et supprimer des machines virtuelles ou effectuer d’autres actions. Hello diagramme conceptuel suivant illustre ce processus.  
+Lorsque les conditions relatives aux règles sont remplies, une ou plusieurs actions de mise à l’échelle automatique sont déclenchées. Vous pouvez ajouter et supprimer des machines virtuelles ou effectuer d’autres actions. Le schéma conceptuel suivant illustre ce processus.  
 
  ![Diagramme de flux de la mise à l’échelle automatique](./media/monitoring-overview-autoscale/Autoscale_Overview_v4.png)
 
-Hello explication ci-dessous s’applique toohello des éléments de diagramme précédent de hello.   
+La description suivante s’applique aux éléments du schéma précédent.   
 
 ## <a name="resource-metrics"></a>Métriques de ressources
 Les ressources émettent des métriques, qui sont ensuite traitées par des règles. Les mesures sont fournies via différentes méthodes.
-Machines virtuelles identiques utilisent des données de télémétrie d’agents de diagnostics Azure tandis que les données de télémétrie pour les applications Web et les services de cloud computing proviennent directement d’hello Infrastructure Azure. Parmi les statistiques couramment utilisées figurent l’utilisation du processeur, l’utilisation de la mémoire, le nombre de threads, la longueur de la file d’attente et l’utilisation du disque. Pour obtenir une liste des données de télémétrie que vous pouvez utiliser, voir [Mesures courantes pour la mise à l’échelle automatique](insights-autoscale-common-metrics.md).
+Les jeux de mise à l’échelle de machine virtuelle utilisent les données de télémétrie des agents de diagnostics Azure, tandis que les données de télémétrie pour les applications web et les services cloud proviennent directement de l’infrastructure Azure. Parmi les statistiques couramment utilisées figurent l’utilisation du processeur, l’utilisation de la mémoire, le nombre de threads, la longueur de la file d’attente et l’utilisation du disque. Pour obtenir une liste des données de télémétrie que vous pouvez utiliser, voir [Mesures courantes pour la mise à l’échelle automatique](insights-autoscale-common-metrics.md).
 
 ## <a name="custom-metrics"></a>Métriques personnalisées
-Vous pouvez également utiliser vos propres métriques personnalisées que peuvent émettre vos applications. Si vous avez configuré votre ordinateur ou les applications toosend métriques tooApplication Insights, vous pouvez tirer parti de ces décisions toomake de métriques s’il faut tooscale ou non. 
+Vous pouvez également utiliser vos propres métriques personnalisées que peuvent émettre vos applications. Si vous avez configuré vos applications pour envoyer des métriques à Application Insights, vous pouvez en tirer parti pour prendre des décisions au sujet de la mise à l’échelle. 
 
-## <a name="time"></a>Temps
+## <a name="time"></a>Time
 Les règles basées sur la planification s’appuient sur l’heure UTC. Vous devez définir votre fuseau horaire correctement lorsque vous configurez vos règles.  
 
 ## <a name="rules"></a>Règles
-diagramme de Hello ne montre qu’une seule règle de mise à l’échelle, mais vous pouvez avoir beaucoup d'entre eux. Vous pouvez créer des règles complexes qui se chevauchent en fonction de vos besoins.  Les types de règles incluent  
+Le diagramme montre une seule règle de mise à l’échelle automatique, mais vous pouvez en avoir plusieurs. Vous pouvez créer des règles complexes qui se chevauchent en fonction de vos besoins.  Les types de règles incluent  
 
 * **Basées sur des mesures** : par exemple, effectuer cette action lorsque l’utilisation du processeur est supérieure à 50 %.
 * **Basées sur l’heure** : par exemple, déclencher un webhook chaque samedi à 8h dans un fuseau horaire donné.
 
-Les règles basées sur les mesures mesurent la charge de l’application et ajoutent ou suppriment des machines virtuelles en fonction de cette charge. Règles basées sur une planification permettent de tooscale lorsque vous consultez des modèles d’heure dans votre charge et que vous souhaitez tooscale avant une augmentation de la charge possible ou diminution se produit.  
+Les règles basées sur les mesures mesurent la charge de l’application et ajoutent ou suppriment des machines virtuelles en fonction de cette charge. Les règles basées sur la planification vous permettent d’effectuer une mise à l’échelle lorsque vous voyez des modèles horaires dans votre charge et que vous souhaitez effectuer la mise à l’échelle avant qu’une augmentation ou diminution de charge possible ne se produise.  
 
 ## <a name="actions-and-automation"></a>Actions et automatisation
 Les règles peuvent déclencher un ou plusieurs types d’actions.
 
 * **Mise à l’échelle** : mettre les machines virtuelles à l’échelle
-* **Messagerie** -envoyer par courrier électronique toosubscription administrateurs, coadministrateurs et/ou adresse électronique supplémentaire que vous spécifiez.
+* **E-mail** : envoyer un e-mail aux administrateurs et coadministrateurs d’un abonnement, et/ou à toute adresse e-mail supplémentaire que vous spécifiez
 * **Automatisation via webhooks** : appeler des webhooks, qui peuvent déclencher plusieurs actions complexes à l’intérieur ou en dehors d’Azure. Dans Azure, vous pouvez démarrer un runbook Azure Automation, une fonction Azure ou une application logique Azure. Parmi les URL tierces en dehors d’Azure figurent des services comme Slack et Twilio.
 
 ## <a name="autoscale-settings"></a>Paramètres de mise à l’échelle automatique
-Mise à l’échelle, utilisez hello suit la terminologie et la structure.
+La mise à l’échelle automatique utilise la terminologie et la structure suivantes.
 
-- Un **paramètre de mise à l’échelle** est lu par hello échelle moteur toodetermine si tooscale vers le haut ou vers le bas. Il contient une ou plusieurs profils, plus d’informations sur la ressource cible de hello et les paramètres de notification.
+- Un **paramètre de mise à l’échelle automatique** est lu par le moteur de mise à l’échelle automatique afin de déterminer si une montée ou une descente en puissance est nécessaire. Il contient un ou plusieurs profils, des informations sur la ressource cible et des paramètres de notification.
 
     - Un **profil de mise à l’échelle automatique** est la combinaison des éléments suivants :
 
-        - **paramètre de capacité**, ce qui indique au minimum, maximum de hello et valeurs par défaut pour le nombre d’instances.
+        - Un **paramètre de capacité** indiquant les valeurs minimum, maximum et par défaut pour le nombre d’instances.
         - Un **ensemble de règles**, comprenant chacun un déclencheur (heure ou métrique) et une action de mise à l’échelle (augmentation ou réduction).
         - Une **périodicité** indiquant le moment auquel une mise à l’échelle automatique doit appliquer ce profil.
 
-        Vous pouvez avoir plusieurs profils, qui vous permettront de tootake administration des exigences différentes qui se chevauchent. Vous pouvez avoir des profils de mise à l’échelle différents pour différents moments de l’ou les jours de semaine de hello, par exemple.
+        Vous pouvez avoir plusieurs profils, ce qui vous permet de prendre en charge des exigences différentes qui se chevauchent. Vous pouvez avoir des profils de mise à l’échelle automatique différents pour différentes heures de la journée ou jours de la semaine, par exemple.
 
-    - A **paramètre de notification** définit quelles notifications doivent se produire lorsqu’un événement de mise à l’échelle se produit en fonction de répondant à des critères de l’un des profils du paramètre de mise à l’échelle hello hello. Mise à l’échelle peut notifier un ou plusieurs adresses de messagerie ou que les appels tooone ou plusieurs webhooks.
+    - Un **paramètre de notification** définit quelles notifications doivent se produire lorsqu’un événement de mise à l’échelle automatique a lieu en fonction de la satisfaction des critères de l’un des profils de paramètre de mise à l’échelle automatique. La mise à l’échelle automatique peut notifier une ou plusieurs adresses e-mail ou appeler un ou plusieurs webhooks.
 
 
 ![Structure de règle, de profil et de paramètre de mise à l’échelle automatique Azure](./media/monitoring-overview-autoscale/AzureResourceManagerRuleStructure3.png)
 
-Hello la liste complète des champs configurables et les descriptions n’est disponible dans hello [API REST de mise à l’échelle](https://msdn.microsoft.com/library/dn931928.aspx).
+La liste complète des descriptions et champs configurables est disponible dans [l’API REST de mise à l’échelle automatique](https://msdn.microsoft.com/library/dn931928.aspx).
 
 Pour plus d’exemples de code, consultez
 
@@ -92,9 +92,9 @@ Pour plus d’exemples de code, consultez
 * [Paramètres de mise à l’échelle automatique](https://msdn.microsoft.com/library/dn931953.aspx)
 
 ## <a name="horizontal-vs-vertical-scaling"></a>Mise à l’échelle horizontale/verticale
-Mise à l’échelle uniquement mettre à l’échelle horizontalement, qui est une augmentation (« out ») ou diminuer (« in ») dans nombre de hello d’instances de machine virtuelle.  Horizontal est plus souple dans une situation de cloud, car elle vous permet de toorun potentiellement des milliers de machines virtuelles toohandle charge.
+La mise à l’échelle automatique s’effectue uniquement horizontalement, ce qui correspond à une augmentation (« out ») ou à une diminution (« in ») du nombre d’instances de machine virtuelle.  La mise à l’échelle horizontale est plus flexible dans un environnement cloud, car elle vous permet d’exécuter des milliers de machines virtuelles pour gérer la charge.
 
-La mise à l’échelle verticale est différente. Il conserve hello même nombre d’ordinateurs virtuels, mais rend hello des machines virtuelles plus (« up ») ou moins (« bas ») puissant. La puissance se mesure en termes de mémoire, de vitesse du processeur, d’espace disque, etc.  La mise à l’échelle verticale a davantage de limites. Il est dépendant de la disponibilité de hello de matériel plus puissant, qui rapidement atteint une limite supérieure et peut varier selon la région. Vertical également généralement la mise à l’échelle nécessite une toostop de l’ordinateur virtuel et redémarrez.
+La mise à l’échelle verticale est différente. Elle conserve le même nombre de machines virtuelles, mais rend la machine virtuelle plus (« up ») ou moins (« down ») puissante. La puissance se mesure en termes de mémoire, de vitesse du processeur, d’espace disque, etc.  La mise à l’échelle verticale a davantage de limites. Elle dépend de la disponibilité d’un matériel plus puissant, qui peut atteindre rapidement sa limite et varier d’une région à l’autre. La mise à l’échelle verticale nécessite généralement un arrêt et un redémarrage de la machine virtuelle.
 
 Pour plus d’informations, voir [Évolution verticale des machines virtuelles Azure avec Azure Automation](../virtual-machines/linux/vertical-scaling-automation.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
@@ -117,10 +117,10 @@ Vous pouvez configurer la mise à l’échelle automatique via
 | Machines virtuelles : exemple Windows |[Configuration avancée de la mise à l’échelle automatique à l’aide des modèles Resource Manager pour les groupes de machines virtuelles identiques](insights-advanced-autoscale-virtual-machine-scale-sets.md) |
 
 ## <a name="next-steps"></a>Étapes suivantes
-toolearn en savoir plus sur la mise à l’échelle, utilisez hello Autoscale Walkthroughs répertoriées précédemment ou reportez-vous toohello suivant des ressources :
+Pour en savoir plus sur la mise à l’échelle automatique, utilisez les guides sur la mise à l’échelle automatique répertoriés précédemment ou consultez les ressources suivantes :
 
 * [Mesures courantes pour la mise à l’échelle automatique dans Azure Monitor](insights-autoscale-common-metrics.md)
 * [Meilleures pratiques pour la mise à l’échelle automatique d’Azure Insights](insights-autoscale-best-practices.md)
-* [Utilisez la mise à l’échelle actions toosend par courrier électronique et webhook des notifications d’alerte](insights-autoscale-to-webhook-email.md)
+* [Utilisation d’actions de mise à l’échelle automatique pour envoyer des notifications d’alerte webhook et par courrier électronique](insights-autoscale-to-webhook-email.md)
 * [Paramètres de mise à l’échelle automatique](https://msdn.microsoft.com/library/dn931953.aspx)
 * [Dépannage de la mise à l’échelle automatique avec des jeux de mise à l’échelle de machine virtuelle](../virtual-machine-scale-sets/virtual-machine-scale-sets-troubleshoot.md)

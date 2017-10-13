@@ -1,6 +1,6 @@
 ---
-title: "aaaSet des paramètres de réplication pour Azure Site Recovery | Documents Microsoft"
-description: "Décrit comment la réplication tooorchestrate toodeploy Site Recovery, le basculement et récupération des ordinateurs virtuels Hyper-V dans VMM nuages tooAzure."
+title: "Configurer les paramètres de réplication pour Azure Site Recovery | Microsoft Docs"
+description: "Explique comment déployer Site Recovery pour orchestrer la réplication, le basculement et la récupération de machines virtuelles Hyper-V dans des clouds VMM vers Azure."
 services: site-recovery
 documentationcenter: 
 author: sujayt
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 06/05/2017
 ms.author: sutalasi
-ms.openlocfilehash: 618e92e42411732a2a1bb75c5e5ea8a433cd7d58
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 73a1f19177f23441f5f7165cf2bc92ba85e62aa5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="manage-replication-policy-for-vmware-tooazure"></a>Gérer la stratégie de réplication pour VMware tooAzure
+# <a name="manage-replication-policy-for-vmware-to-azure"></a>Gérer la stratégie de réplication pour VMware dans Azure
 
 
 ## <a name="create-a-replication-policy"></a>Créer une stratégie de réplication
@@ -31,58 +31,58 @@ ms.lasthandoff: 10/06/2017
 
     ![Créer une stratégie de réplication](./media/site-recovery-setup-replication-settings-vmware/createpolicy.png)
 
-4. Entrez le nom de la stratégie hello.
+4. Entrez le nom de la stratégie.
 
-5. Dans **seuil RPO**, spécifiez la limite RPO hello. Des alertes sont générées lorsque la réplication continue dépasse cette limite.
-6. Dans **rétention du point de récupération**, spécifier (en heures) hello de durée de conservation hello pour chaque point de récupération. Les ordinateurs protégés peuvent être récupérées point tooany dans une fenêtre de rétention.
+5. Dans le champ **Seuil d’objectif de point de récupération**, spécifiez la limite de l’objectif de point de récupération. Des alertes sont générées lorsque la réplication continue dépasse cette limite.
+6. Dans **Rétention des points de récupération**, spécifiez la durée (en heures) de la fenêtre de rétention pour chaque point de récupération. Les machines protégées peuvent être récupérées à tout moment pendant cette fenêtre de rétention.
 
     > [!NOTE]
-    > Les heures too24 de rétention sont pris en charge pour les machines répliquées toopremium stockage. Les heures too72 de rétention sont pris en charge pour les machines répliquées toostandard stockage.
+    > Les machines virtuelles répliquées vers le Stockage Premium peuvent prendre en charge jusqu’à 24 heures de rétention. Les machines virtuelles répliquées vers le Stockage Standard peuvent prendre en charge jusqu’à 72 heures de rétention.
 
     > [!NOTE]
     > Une stratégie de réplication pour la restauration automatique est automatiquement créée.
 
 7. Dans **Fréquence des captures instantanées cohérentes au niveau de l’application**, spécifiez la fréquence de création des points de récupération qui contiennent des captures instantanées cohérentes au niveau de l’application (en minutes).
 
-8. Cliquez sur **OK**. stratégie de Hello doit être créée dans les 30 secondes too60.
+8. Cliquez sur **OK**. La création de la stratégie devrait prendre entre 30 et 60 secondes.
 
 ![Génération d’une stratégie de réplication](./media/site-recovery-setup-replication-settings-vmware/Creating-Policy.png)
 
 ## <a name="associate-a-configuration-server-with-a-replication-policy"></a>Associer un serveur de configuration à une stratégie de réplication
-1. Choisissez toowhich de stratégie de réplication hello tooassociate hello configuration serveur.
+1. Choisissez la stratégie de réplication à laquelle vous souhaitez associer le serveur de configuration.
 2. Cliquez sur **Associer**.
 ![Associer un serveur de configuration](./media/site-recovery-setup-replication-settings-vmware/Associate-CS-1.PNG)
 
-3. Sélectionnez le serveur de configuration hello de liste hello des serveurs.
-4. Cliquez sur **OK**. serveur de configuration Hello doit être associé dans un seul tootwo minutes.
+3. Sélectionnez le serveur de configuration dans la liste des serveurs.
+4. Cliquez sur **OK**. L’association du serveur de configuration devrait prendre entre une et deux minutes.
 
 ![Association du serveur de configuration](./media/site-recovery-setup-replication-settings-vmware/Associate-CS-2.png)
 
 ## <a name="edit-a-replication-policy"></a>Modifier une stratégie de réplication
-1. Choisissez la stratégie de réplication hello pour lequel vous souhaitez tooedit les paramètres de réplication.
+1. Choisissez la stratégie de réplication pour laquelle vous souhaitez modifier les paramètres de réplication.
 ![Modifier la stratégie de réplication](./media/site-recovery-setup-replication-settings-vmware/Select-Policy.png)
 
 2. Cliquez sur **Edit Settings**.
 ![Modifier les paramètres de la stratégie de réplication](./media/site-recovery-setup-replication-settings-vmware/Edit-Policy.png)
 
-3. Modifier les paramètres de hello selon vos besoins.
-4. Cliquez sur **Enregistrer**. stratégie de Hello doit être enregistré dans les deux minutes toofive, selon le nombre de machines virtuelles sont à l’aide de la stratégie de réplication.
+3. Modifiez les paramètres selon vos besoins.
+4. Cliquez sur **Save**. L’enregistrement de la stratégie devrait prendre entre deux et cinq minutes en fonction du nombre de machines virtuelles utilisant la stratégie de réplication.
 
 ![Enregistrer la stratégie de réplication](./media/site-recovery-setup-replication-settings-vmware/Save-Policy.png)
 
 ## <a name="dissociate-a-configuration-server-from-a-replication-policy"></a>Dissocier un serveur de configuration d’une stratégie de réplication
-1. Choisissez toowhich de stratégie de réplication hello tooassociate hello configuration serveur.
+1. Choisissez la stratégie de réplication à laquelle vous souhaitez associer le serveur de configuration.
 2. Cliquez sur **Dissocier**.
-3. Sélectionnez le serveur de configuration hello de liste hello des serveurs.
-4. Cliquez sur **OK**. serveur de configuration Hello doit être dissocié en un seul tootwo minutes.
+3. Sélectionnez le serveur de configuration dans la liste des serveurs.
+4. Cliquez sur **OK**. La dissociation du serveur de configuration devrait prendre entre une et deux minutes.
 
     > [!NOTE]
-    > Vous ne pouvez pas dissocier un serveur de configuration s’il existe au moins un élément répliqué à l’aide de la stratégie de hello. Assurez-vous qu’aucun élément répliquées à l’aide de la stratégie de hello avant de vous dissocier le serveur de configuration hello.
+    > Vous ne pouvez pas dissocier un serveur de configuration si un élément répliqué utilise cette stratégie. Vérifiez qu’aucun élément répliqué n’utilise la stratégie avant de dissocier le serveur de configuration.
 
 ## <a name="delete-a-replication-policy"></a>Supprimer une stratégie de réplication
 
-1. Choisissez la stratégie de réplication hello que vous souhaitez toodelete.
-2. Cliquez sur **Supprimer**. stratégie de Hello doit être supprimée en 30 secondes too60.
+1. Choisissez la stratégie de réplication que vous souhaitez supprimer.
+2. Cliquez sur **Supprimer**. La suppression de la stratégie devrait prendre entre 30 et 60 secondes.
 
     > [!NOTE]
-    > Vous ne pouvez pas supprimer une stratégie de réplication s’il a tooit de serveur associé au moins une configuration. Assurez-vous qu’aucun élément répliquées à l’aide de la stratégie de hello et supprimez que tous les hello associées des serveurs de configuration avant de supprimer la stratégie de hello.
+    > Vous ne pouvez pas supprimer une stratégie de réplication si un serveur de configuration lui est associé. Assurez-vous qu’aucun élément répliqué n’utilise la stratégie, et supprimez tous les serveurs de configuration avant de supprimer la stratégie.

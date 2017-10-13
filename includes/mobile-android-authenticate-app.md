@@ -1,7 +1,7 @@
 
-1. Ouvrez le projet de hello dans Android Studio.
+1. Ouvrez le projet dans Android Studio.
 
-2. Dans **Explorateur de projets** dans Android Studio, ouvrez le fichier ToDoActivity.java de hello et ajouter hello suivant les instructions d’importation :
+2. Dans l’**Explorateur de projets** d’Android Studio, ouvrez le fichier ToDoActivity.java, puis ajoutez les instructions d’importation suivantes :
 
         import java.util.concurrent.ExecutionException;
         import java.util.concurrent.atomic.AtomicBoolean;
@@ -13,13 +13,13 @@
         import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceAuthenticationProvider;
         import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 
-3. Ajouter hello suivant de méthode toohello **ToDoActivity** classe :
+3. Ajoutez la méthode suivante à la classe **ToDoActivity** :
 
-        // You can choose any unique number here toodifferentiate auth providers from each other. Note this is hello same code at login() and onActivityResult().
+        // You can choose any unique number here to differentiate auth providers from each other. Note this is the same code at login() and onActivityResult().
         public static final int GOOGLE_LOGIN_REQUEST_CODE = 1;
 
         private void authenticate() {
-            // Login using hello Google provider.
+            // Login using the Google provider.
             mClient.login("Google", "{url_scheme_of_your_app}", GOOGLE_LOGIN_REQUEST_CODE);
         }
 
@@ -27,7 +27,7 @@
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             // When request completes
             if (resultCode == RESULT_OK) {
-                // Check hello request code matches hello one we send in hello login request
+                // Check the request code matches the one we send in the login request
                 if (requestCode == GOOGLE_LOGIN_REQUEST_CODE) {
                     MobileServiceActivityResult result = mClient.onActivityResult(data);
                     if (result.isLoggedIn()) {
@@ -35,7 +35,7 @@
                         createAndShowDialog(String.format("You are now logged in - %1$2s", mClient.getCurrentUser().getUserId()), "Success");
                         createTable();
                     } else {
-                        // login failed, check hello error message
+                        // login failed, check the error message
                         String errorMessage = result.getErrorMessage();
                         createAndShowDialog(errorMessage, "Error");
                     }
@@ -43,36 +43,36 @@
             }
         }
 
-    Ce code crée un Bonjour de toohandle méthode processus d’authentification Google. Une boîte de dialogue affiche hello des ID d’utilisateur de hello authentifié. Vous pouvez agir uniquement si l’authentification a réussi.
+    Ce code crée une méthode pour gérer le processus d’authentification Google. Une boîte de dialogue affiche l’identificateur de l’utilisateur authentifié. Vous pouvez agir uniquement si l’authentification a réussi.
 
     > [!NOTE]
-    > Si vous utilisez un fournisseur d’identité autre que Google, modifiez la valeur hello passé toohello **connexion** tooone méthode Hello valeurs suivantes : _MicrosoftAccount_, _Facebook_, _Twitter_, ou _windowsazureactivedirectory_.
+    > Si vous utilisez un autre fournisseur d’identité que Google, remplacez la valeur transférée à la méthode **login** par l’une des valeurs suivantes : _MicrosoftAccount_, _Facebook_, _Twitter_ ou _windowsazureactivedirectory_.
 
-4. Bonjour **onCreate** (méthode), ajouter hello après la ligne de code après le code hello qui instancie hello `MobileServiceClient` objet.
+4. Dans la méthode **onCreate**, ajoutez la ligne de code suivante après le code qui permet d’instancier l’objet `MobileServiceClient`.
 
         authenticate();
 
-    Cet appel démarre le processus d’authentification hello.
+    Cet appel lance le processus d'authentification.
 
-5. Déplacer hello restant code après `authenticate();` Bonjour **onCreate** tooa méthode nouvelle **createTable** méthode :
+5. Déplacez le code restant après `authenticate();` dans la méthode **onCreate** vers une nouvelle méthode **createTable** :
 
         private void createTable() {
 
-            // Get hello table instance toouse.
+            // Get the table instance to use.
             mToDoTable = mClient.getTable(ToDoItem.class);
 
             mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
 
-            // Create an adapter toobind hello items with hello view.
+            // Create an adapter to bind the items with the view.
             mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
             ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
             listViewToDo.setAdapter(mAdapter);
 
-            // Load hello items from Azure.
+            // Load the items from Azure.
             refreshItemsFromTable();
         }
 
-6. tooensure redirection fonctionne comme prévu, ajoutez hello suivant extrait de _RedirectUrlActivity_ too_AndroidManifest.xml_ :
+6. Pour garantir la redirection souhaitée, ajoutez l’extrait de code suivant de _RedirectUrlActivity_ à _AndroidManifest.xml_ :
 
         <activity android:name="com.microsoft.windowsazure.mobileservices.authentication.RedirectUrlActivity">
             <intent-filter>
@@ -84,7 +84,7 @@
             </intent-filter>
         </activity>
 
-7. Ajoutez too_build.gradle_ redirectUriScheme de votre application Android.
+7. Ajoutez redirectUriScheme au _build.gradle_ de votre application Android.
 
         android {
             buildTypes {
@@ -99,13 +99,13 @@
             }
         }
 
-8. Ajouter des dépendances de toohello com.android.support:customtabs:23.0.1 dans votre build.gradle :
+8. Ajoutez com.android.support:customtabs:23.0.1 aux dépendances de votre build.gradle :
 
       dependencies {        // ...        compile ’com.android.support:customtabs:23.0.1’    }
 
-9. À partir de hello **exécuter** menu, cliquez sur **exécuter application** toostart hello application et connectez-vous avec votre fournisseur d’identité choisi.
+9. Dans le menu **Exécuter**, cliquez sur **Exécuter l’application** pour démarrer l’application, puis connectez-vous avec le fournisseur d’identité choisi.
 
 > [!WARNING]
-> Hello mentionné le modèle d’URL respecte la casse.  Vérifiez que toutes les occurrences de `{url_scheme_of_you_app}` utilisation hello même casse.
+> Le schéma d’URL mentionné respecte la casse.  Assurez-vous que toutes les occurrences de `{url_scheme_of_you_app}` utilisent la même casse.
 
-Lorsque vous êtes correctement connecté, application hello doit s’exécuter sans erreurs et vous devez être en mesure de tooquery hello principal service et effectuer des mises à jour toodata.
+Une fois que vous êtes connecté, l’application doit s’exécuter sans erreur et vous devez être en mesure d’interroger le service principal et de mettre à jour les données.

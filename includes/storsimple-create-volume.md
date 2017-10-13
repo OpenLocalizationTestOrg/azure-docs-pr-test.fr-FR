@@ -1,32 +1,32 @@
 <!--author=SharS last changed: 02/04/2016-->
 
-#### <a name="toocreate-a-volume"></a>toocreate un volume
-1. Sur l’appareil de hello **Quick Start** , cliquez sur **ajouter un volume**. Cette commande démarre hello Assistant Ajout d’un volume.
-2. Bonjour Assistant Ajout d’un volume, sous **les paramètres de base**, hello suivant :
+#### <a name="to-create-a-volume"></a>Pour créer un volume
+1. Sur la page **Démarrage rapide** de l’appareil, cliquez sur **Ajouter un volume**. L’assistant Ajouter un volume se lance.
+2. Dans l’Assistant Ajouter un volume, sous **Paramètres de base**, procédez comme suit :
    
    1. Saisissez un **nom** pour le volume.
-   2. Spécifiez hello **capacité approvisionnée** pour votre volume en Go ou to. capacité du volume Hello doit être comprise entre 1 et 64 To pour un périphérique physique.
-   3. Dans la liste déroulante hello, sélectionnez hello **Type d’utilisation** pour votre volume. 
-   4. Si vous utilisez ce volume de données d’archivage, sélectionnez hello **utiliser ce volume pour les données d’archive moins fréquemment sollicitées** case à cocher. Dans tous les autres cas, sélectionnez **Volume à plusieurs niveaux**. (Les volumes à plusieurs niveaux étaient appelés volumes principaux).
+   2. Indiquez la **capacité allouée** au volume en Go ou To. La capacité du volume doit être comprise entre 1 Go et 64 To pour un appareil physique.
+   3. Dans la liste déroulante, sélectionnez le **Type d’utilisation** pour le volume. 
+   4. Si vous utilisez ce volume pour les données d’archivage, cochez la case **Utiliser ce volume pour des données d’archivage moins fréquemment sollicitées** . Dans tous les autres cas, sélectionnez **Volume à plusieurs niveaux**. (Les volumes à plusieurs niveaux étaient appelés volumes principaux).
       
         ![Ajouter un volume](./media/storsimple-create-volume/ScreenshotUpdate1VolumeFlow.png)
       
-      1. Cliquez sur la flèche hello ![icône-flèche](./media/storsimple-create-volume/HCS_ArrowIcon-include.png) page suivante du toohello toogo.
-3. Bonjour **des paramètres supplémentaires** boîte de dialogue Ajouter un nouvel enregistrement de contrôle d’accès (ACR) :
+      1. Cliquez sur l’icône en forme de flèche  ![icône-flèche](./media/storsimple-create-volume/HCS_ArrowIcon-include.png) pour passer à la page suivante.
+3. Dans la boîte de dialogue **Paramètres supplémentaires** , ajoutez un nouvel enregistrement de contrôle d’accès (ACR) :
    
    1. Saisissez un **Nom** pour votre ACR.
-   2. Sous **nom de l’initiateur iSCSI**, fournir hello iSCSI nom qualifié (IQN) de votre hôte Windows. Si vous n’avez pas hello IQN, passez trop[Get hello IQN d’un hôte Windows Server](#get-the-iqn-of-a-windows-server-host).
-   3. Nous vous recommandons d’activer une sauvegarde par défaut en sélectionnant hello **activer une sauvegarde par défaut pour ce volume** case à cocher. sauvegarde par défaut de Hello créera une stratégie qui s’exécute à 22 h 30 (heure de l’appareil) quotidiennement et crée un instantané cloud de ce volume.
+   2. Sous **Nom de l’initiateur iSCSI**, indiquez le nom qualifié iSCSI  de votre hôte Windows. Si vous ne possédez pas le nom qualifié, accédez à [Obtenir le nom qualifié d’un hôte Windows Server](#get-the-iqn-of-a-windows-server-host).
+   3. Nous vous recommandons d’activer la sauvegarde par défaut en cochant la case **Activer une sauvegarde par défaut pour ce volume** . La sauvegarde par défaut crée une stratégie qui s’exécute à 22h30 chaque jour (heure de l’appareil) et crée un instantané de cloud de ce volume.
       
       > [!NOTE]
-      > Une fois la sauvegarde de hello est activée ici, il ne peut pas être annulée. Vous devez tooedit hello volume toomodify ce paramètre.
+      > Une fois la sauvegarde activée ici, elle ne peut pas être annulée. Vous devez modifier le volume pour modifier ce paramètre.
       > 
       > 
       
         ![Ajouter un volume](./media/storsimple-create-volume/AddVolume2-include.png)
-4. Cliquez sur une icône de coche hello ![icône en forme de coche](./media/storsimple-create-volume/HCS_CheckIcon-include.png). Un volume est créé par hello spécifié les paramètres.
+4. Cliquez sur l’icône en forme de coche  ![icône en forme de coche](./media/storsimple-create-volume/HCS_CheckIcon-include.png). Un volume est créé avec les paramètres spécifiés.
 
-![Vidéo disponible](./media/storsimple-create-volume/Video_icon.png)**Vidéo disponible**
+![Vidéo disponible](./media/storsimple-create-volume/Video_icon.png) **Vidéo disponible**
 
-toowatch une vidéo qui montre comment toocreate un volume StorSimple, cliquez sur [ici](https://azure.microsoft.com/documentation/videos/create-a-storsimple-volume/).
+Pour visionner une vidéo qui montre comment créer un volume StorSimple, cliquez [ici](https://azure.microsoft.com/documentation/videos/create-a-storsimple-volume/).
 

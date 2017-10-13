@@ -2,41 +2,41 @@
 
 ### <a name="install-raspbian"></a>Installer Raspbian
 
-S’il s’agit hello première fois que vous utilisez votre Pi framboises, vous devez tooinstall hello Raspbian système d’exploitation NOOBS sur la carte SD de hello inclus dans le kit de hello. Hello [framboises Pi logiciel Guide] [ lnk-install-raspbian] décrit comment tooinstall un système d’exploitation sur votre Pi framboises. Ce didacticiel suppose que vous avez installé le système d’exploitation de Raspbian hello sur votre Pi framboises.
+Si c’est la première fois que vous utilisez votre Raspberry Pi, vous devez installer le système d’exploitation Raspbian à l’aide de NOOBS sur la carte SD incluse dans le kit. Le [Raspberry Pi Software Guide][lnk-install-raspbian] (Guide logiciel du Raspberry Pi) indique comment installer un système d’exploitation sur votre Raspberry Pi. Pour effectuer ce didacticiel, vous devez avoir installé le système d’exploitation Raspbian sur votre Raspberry Pi.
 
 > [!NOTE]
-> carte SD de Hello inclus dans hello [Microsoft Azure IoT Starter Kit pour framboises Pi 3] [ lnk-starter-kits] a déjà NOOBS installé. Vous pouvez démarrer hello framboises Pi à partir de cette carte et choisissez tooinstall hello Raspbian du système d’exploitation.
+> NOOBS est déjà installé sur la carte SD incluse dans le [Microsoft Azure IoT Starter Kit pour Raspberry Pi 3][lnk-starter-kits]. Vous pouvez démarrer le Raspberry Pi à partir de cette carte et choisir d’installer le système d’exploitation Raspbian.
 
-le programme d’installation matérielle hello toocomplete, vous devez :
+Pour terminer la configuration matérielle, vous devez :
 
-- Connectez l’alimentation framboises Pi toohello incluse dans le kit de hello.
-- Connecter votre réseau de tooyour framboises Pi à l’aide d’un câble Ethernet hello inclus dans le kit de. Vous pouvez également configurer [Connectivité sans fil][lnk-pi-wireless] pour votre Raspberry Pi.
+- connecter votre Raspberry Pi à l’alimentation incluse dans le kit.
+- connecter votre Raspberry Pi à votre réseau à l’aide du câble Ethernet inclus dans votre kit. Vous pouvez également configurer [Connectivité sans fil][lnk-pi-wireless] pour votre Raspberry Pi.
 
-Vous avez maintenant terminé la configuration du matériel de votre Pi framboises hello.
+Vous avez maintenant terminé la configuration matérielle de votre Raspberry Pi.
 
-### <a name="sign-in-and-access-hello-terminal"></a>Se connecter et accéder à Terminal Server de hello
+### <a name="sign-in-and-access-the-terminal"></a>Se connecter et accéder au terminal
 
-Vous avez deux options tooaccess d’un environnement de Terminal Server sur votre Pi framboises :
+Deux méthodes vous permettent d’accéder à un environnement de type terminal sur votre Raspberry Pi :
 
-- Si vous possédez un clavier et surveillez tooyour connecté framboises Pi, vous pouvez utiliser hello Raspbian GUI tooaccess une fenêtre de terminal.
+- Si vous disposez d’un clavier et d’un moniteur connectés à votre Raspberry Pi, vous pouvez utiliser l’interface utilisateur graphique Raspbian pour accéder à une fenêtre de terminal.
 
-- Ligne de commande accès hello sur votre Pi framboises à l’aide de SSH à partir de votre ordinateur de bureau.
+- Accédez à la ligne de commande sur votre Raspberry Pi à l’aide de SSH à partir de votre ordinateur de bureau.
 
-#### <a name="use-a-terminal-window-in-hello-gui"></a>Utiliser une fenêtre de terminal dans l’interface graphique utilisateur de hello
+#### <a name="use-a-terminal-window-in-the-gui"></a>Utiliser une fenêtre de terminal dans l’interface utilisateur graphique
 
-informations d’identification par défaut de Hello pour Raspbian sont le nom d’utilisateur **pi** et le mot de passe **framboises**. Dans la barre des tâches hello Bonjour l’interface graphique utilisateur, vous pouvez lancer hello **Terminal** utility à l’aide d’icône hello qui ressemble à une analyse.
+Les informations d’identification par défaut pour Raspbian sont le nom d’utilisateur **pi** et le mot de passe **raspberry**. Dans la barre des tâches dans l’interface utilisateur graphique, vous pouvez lancer l’utilitaire **Terminal** à l’aide de l’icône qui ressemble à un moniteur.
 
 #### <a name="sign-in-with-ssh"></a>Se connecter avec SSH
 
-Vous pouvez utiliser SSH pour l’accès en ligne de commande tooyour framboises Pi. article de Hello [SSH (Secure Shell)] [ lnk-pi-ssh] décrit comment tooconfigure SSH sur votre Pi framboises et comment tooconnect de [Windows] [ lnk-ssh-windows] ou [Linux et Mac OS][lnk-ssh-linux].
+Vous pouvez utiliser SSH pour accéder à l’aide de la ligne de commande à votre Raspberry Pi. L’article [SSH (Secure Shell)][lnk-pi-ssh] décrit la configuration de SSH sur votre Raspberry Pi et la connexion à partir des systèmes d’exploitation [Windows][lnk-ssh-windows] ou [Linux et Mac][lnk-ssh-linux].
 
 Connectez-vous avec le nom d’utilisateur **pi** et le mot de passe **raspberry**.
 
 #### <a name="optional-share-a-folder-on-your-raspberry-pi"></a>Facultatif : partager un dossier sur votre Raspberry Pi
 
-Si vous le souhaitez, vous souhaiterez tooshare un dossier sur votre Pi framboises avec votre environnement de bureau. Partage d’un dossier permet de vous toouse votre éditeur de texte de bureau par défaut (tel que [Visual Studio Code](https://code.visualstudio.com/) ou [texte Sublime](http://www.sublimetext.com/)) tooedit des fichiers sur votre Pi framboises au lieu d’utiliser `nano` ou `vi`.
+Si vous le souhaitez, vous pouvez partager un dossier sur votre Raspberry Pi avec votre environnement de bureau. Partager un dossier vous permet d’utiliser votre éditeur de texte de bureau favori (tel que [Visual Studio Code](https://code.visualstudio.com/) ou [Sublime Text](http://www.sublimetext.com/)) pour modifier des fichiers sur votre Raspberry Pi au lieu d’utiliser `nano` ou `vi`.
 
-tooshare un dossier avec Windows, configurez un serveur Samba sur hello framboises Pi. Vous pouvez également utiliser intégrée de hello [SFTP](https://www.raspberrypi.org/documentation/remote-access/) serveur avec un client SFTP sur votre bureau.
+Pour partager un dossier avec Windows, configurez un serveur Samba sur le Raspberry Pi. Vous pouvez également utiliser le serveur [SFTP](https://www.raspberrypi.org/documentation/remote-access/) intégré avec un client SFTP sur votre Bureau.
 
 [lnk-install-raspbian]: https://www.raspberrypi.org/learning/software-guide/quickstart/
 [lnk-pi-wireless]: https://www.raspberrypi.org/documentation/configuration/wireless/README.md

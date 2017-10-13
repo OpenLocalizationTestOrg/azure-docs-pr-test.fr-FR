@@ -1,6 +1,6 @@
 ---
-title: aaaManage Azure recovery services coffres et serveurs | Documents Microsoft
-description: "Utilisez ce didacticiel toolearn comment les services de récupération Azure toomanage coffres et les serveurs."
+title: "Gérer les serveurs et les coffres Azure Recovery Services | Microsoft Docs"
+description: "Ce didacticiel vous apprend à gérer les serveurs et les coffres Azure Recovery Services."
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: markgal
-ms.openlocfilehash: b4c35c86faa0828b3c63a13b85c095c0cbaba50e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5922e308f5c205a07bd329c28322ae82cea0e1fa
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="monitor-and-manage-azure-recovery-services-vaults-and-servers-for-windows-machines"></a>Surveiller et gérer les serveurs et les coffres Azure Recovery services pour les ordinateurs Windows
 > [!div class="op_single_selector"]
@@ -27,52 +27,52 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Dans cet article vous trouverez une vue d’ensemble de hello analyse et gestion des tâches de sauvegarde disponibles via hello agent Microsoft Azure Backup Azure portal et hello. Cet article part du principe que vous disposez déjà d’un abonnement Azure et que vous avez créé au moins un coffre Recovery Services.
+Cet article offre une vue d’ensemble des tâches de surveillance et de gestion des sauvegardes disponibles via le portail Azure et l’agent Sauvegarde Microsoft Azure. Cet article part du principe que vous disposez déjà d’un abonnement Azure et que vous avez créé au moins un coffre Recovery Services.
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
 
 ## <a name="open-a-recovery-services-vault"></a>Ouvrez un coffre Recovery Services
 
-tableau de bord coffre de Services de récupération Hello vous montre les détails de hello ou les attributs d’un coffre Recovery Services.
+Le tableau de bord du coffre Recovery Services vous montre les détails ou les attributs d’un coffre Recovery Services.
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/) à l’aide de votre abonnement Azure.
-2. Dans le menu du Hub hello, cliquez sur **plus Services**.
+1. Connectez-vous au [portail Azure](https://portal.azure.com/) à l’aide de votre abonnement Azure.
+2. Dans le menu Hub, cliquez sur **Plus de services**.
 
     ![Ouvrir une liste de Recovery Services - Étape 1](./media/backup-azure-manage-windows-server/open-rs-vault-list.png) <br/>
 
-3. Vous voulez tooopen un coffre Recovery Services. Dans la boîte de dialogue hello, commencez à taper **Recovery Services**. Comme vous commencez à taper, liste de hello filtre en fonction de votre entrée. Cliquez sur **les coffres de Services de récupération** les coffres de liste de hello toodisplay des Services de récupération dans votre abonnement.
+3. Vous voulez ouvrir un coffre Recovery Services. Dans la boîte de dialogue, commencez à taper **Recovery Services**. Au fur et à mesure des caractères saisis, la liste est filtrée. Cliquez sur **Coffres Recovery Services** pour afficher la liste des coffres Recovery Services de votre abonnement.
 
     ![Créer un archivage de Recovery Services - Étape 1](./media/backup-azure-manage-windows-server/browse-to-rs-vaults-2.png) <br/>
 
-    liste Hello des archivages de Recovery Services s’ouvre.
+    La liste des coffres Recovery Services s’affiche.
 
     ![Créer un archivage de Recovery Services - Étape 1](./media/backup-azure-manage-windows-server/list-of-rs-vaults.png) <br/>
 
-4. À partir de la liste de hello des coffres, sélectionnez le nom de hello Hello coffre Recovery Services tooopen. Panneau de tableau de bord coffre Hello Recovery Services s’ouvre.
+4. Dans la liste des coffres, sélectionnez le coffre Recovery Services que vous souhaitez ouvrir. Le panneau du tableau de bord du coffre Recovery Services s’ouvre.
 
     ![coffre recovery services tableau de bord](./media/backup-azure-manage-windows-server/rs-vault-blade.png) <br/>
 
-    Maintenant que vous avez ouvert le coffre Recovery Services hello, essayez une des tâches de surveillance ni gestion hello.
+    Une fois le coffre Recovery Services ouvert, essayez l’une des tâches d’analyse ou de gestion.
 
 ## <a name="monitor-backup-jobs-and-alerts"></a>Surveiller les travaux et les alertes de sauvegarde
 
-Vous surveillez les travaux et alertes à partir de hello Services de récupération de coffre de tableau de bord, où vous voyez :
+Vous pouvez surveiller les travaux et les alertes à partir du tableau de bord du coffre Recovery Services dans lequel s’affichent :
 
 * Les détails des alertes de sauvegarde
-* Fichiers et dossiers, ainsi que les machines virtuelles protégées dans le cloud de hello
+* Les fichiers et dossiers, ainsi que les machines virtuelles Azure protégées dans le cloud
 * Le stockage total consommé dans Azure
 * L’état du travail de sauvegarde
 
 ![Tâches du tableau de bord Backup](./media/backup-azure-manage-windows-server/dashboard-tiles.png)
 
-En cliquant sur les informations de hello dans chacun de ces vignettes ouvrir Panneau associé de hello où vous gérer les tâches associées.
+Cliquez sur les informations contenues dans chacune de ces mosaïques pour ouvrir le panneau correspondant où vous pourrez gérer les tâches associées.
 
-De haut hello Hello du tableau de bord :
+De haut en bas dans le tableau de bord :
 
 * Panneau Paramètres : vous donne accès aux tâches de sauvegarde disponibles.
-* Coffre de sauvegarde - permet de sauvegarder des fichiers et dossiers (ou machines virtuelles Azure) toohello Recovery Services.
-* DELETE - si des services de récupération d’un coffre est n’est plus utilisé, vous pouvez le supprimer toofree l’espace de stockage. DELETE est activée uniquement après la suppression de tous les serveurs protégés à partir du coffre de hello.
+* Panneau Sauvegarde : vous permet de sauvegarder de nouveaux fichiers et dossiers (ou machines virtuelles Azure) dans le coffre Recovery Services.
+* Panneau Supprimer : si un coffre Recovery Services n’est plus utilisé, vous pouvez le supprimer pour libérer de l’espace de stockage. L’option Supprimer est disponible uniquement une fois que tous les serveurs protégés ont été supprimés du coffre.
 
 ![Tâches du tableau de bord Backup](./media/backup-azure-manage-windows-server/dashboard-tasks.png)
 
@@ -80,24 +80,24 @@ De haut hello Hello du tableau de bord :
 | Niveau d’alerte | Alertes envoyées |
 | --- | --- |
 | Critique |Échec de sauvegarde, échec de récupération |
-| Avertissement |Sauvegarde s’est terminée avec avertissements (si les fichiers de moins de cent ne sont pas sauvegardés en raison de problèmes de toocorruption, et plusieurs millions fichiers sont correctement sauvegardés) |
+| Avertissement |Sauvegarde terminée avec des avertissements (lorsque moins de cent fichiers n’ont pas été sauvegardés du fait de problèmes d’altération et que plus d’un million de fichiers ont été correctement sauvegardés) |
 | Informations |Aucun |
 
 ## <a name="manage-backup-alerts"></a>Gérer les alertes de sauvegarde
-Cliquez sur hello **les alertes de sauvegarde** vignette tooopen hello **les alertes de sauvegarde** panneau et gérer les alertes.
+Cliquez sur la mosaïque **Alertes de sauvegarde** pour ouvrir le panneau **Alertes de sauvegarde** et gérer les alertes.
 
 ![Alertes de sauvegarde](./media/backup-azure-manage-windows-server/manage-backup-alerts.png)
 
-Alertes de sauvegarde Hello vignette vous montre hello nombre de :
+La mosaïque Alertes de sauvegarde indique :
 
 * le nombre d’alertes critiques non résolues dans les 24 dernières heures
 * le nombre d’alertes d’avertissement non résolues dans les 24 dernières heures
 
-En cliquant sur chacun de ces liens vous conduit toohello **les alertes de sauvegarde** panneau avec une vue filtrée de ces alertes (critiques ou avertissements).
+Cliquez sur chacun de ces liens pour accéder au panneau **Alertes de sauvegarde** affichant une vue filtrée sur ces alertes (critiques ou d’avertissement).
 
-À partir du panneau d’alertes de sauvegarde hello, vous :
+Dans le panneau Alertes de sauvegarde, vous pouvez :
 
-* Choisissez tooinclude des informations appropriées hello avec vos alertes.
+* Choisir les informations appropriées à inclure dans vos alertes
 
     ![Choisir les colonnes](./media/backup-azure-manage-windows-server/choose-alerts-colunms.png)
 * Filtrer les alertes selon leur gravité, leur état et les heures de début/fin
@@ -107,90 +107,90 @@ En cliquant sur chacun de ces liens vous conduit toohello **les alertes de sauve
 
     ![Filtrer les alertes](./media/backup-azure-manage-windows-server/configure-notifications.png)
 
-Si **par alerte** est sélectionné comme hello **notifier** fréquence aucun regroupement ou une réduction des courriers électroniques se produit. Chaque alerte génère une notification. C’est le paramètre par défaut de hello et courrier électronique de résolution hello est envoyé également immédiatement.
+Si la fréquence de **notification** est définie sur **Par alerte**, le système ne procède à aucun regroupement ou réduction des e-mails. Chaque alerte génère une notification. Il s’agit du paramètre par défaut. Un e-mail de résolution accompagne chaque notification.
 
-Si **horaire Digest** est sélectionné comme hello **notifier** fréquence un e-mail est envoyée à utilisateur toohello indiquant qu’il n’y pas résolu nouvelles alertes générés Bonjour dernière heure. Un message électronique de résolution est envoyé à fin hello d’heure de hello.
+Si la fréquence de **notification** est définie sur **Synthèse horaire**, un e-mail est envoyé à l’utilisateur pour lui indiquer que de nouvelles alertes non résolues ont été générées au cours de la dernière heure. Un e-mail de résolution est envoyé à la fin de l’heure.
 
-Les alertes peuvent être envoyées pour hello suivant des niveaux de gravité :
+Des alertes peuvent être envoyées pour les niveaux de gravité suivants :
 
 * Critique
 * Avertissement
 * information
 
-Vous désactivez l’alerte hello avec hello **désactiver** bouton dans le panneau de détails de tâche hello. Lorsque vous cliquez sur Inactivate (Désactiver), vous pouvez ajouter des commentaires pour la résolution de l’alerte.
+Pour désactiver l’alerte, cliquez sur le bouton **Inactivate** (Désactiver) dans le panneau contenant les détails du travail. Lorsque vous cliquez sur Inactivate (Désactiver), vous pouvez ajouter des commentaires pour la résolution de l’alerte.
 
-Vous choisissez les colonnes hello souhaité dans le cadre de l’alerte hello avec hello tooappear **choisir les colonnes** bouton.
+Pour choisir les colonnes que vous souhaitez voir apparaître dans l’alerte, cliquez sur le bouton **Choisir les colonnes** .
 
 > [!NOTE]
-> À partir de hello **paramètres** panneau, vous gérez les alertes de sauvegarde en sélectionnant **analyse et rapports > alertes et événements > alertes de sauvegarde** , puis en cliquant sur **filtre** ou  **Configurer des Notifications**.
+> Dans le panneau **Paramètres**, vous pouvez gérer les alertes de sauvegarde en sélectionnant **Monitoring and Reports (Surveillance et rapports) > Alertes et événements > Alertes de sauvegarde**, puis en cliquant sur **Filtrer** ou **Configurer les notifications**.
 >
 >
 
 ## <a name="manage-backup-items"></a>Gérer les éléments de sauvegarde
-La gestion des sauvegardes en local est maintenant disponible dans le portail de gestion hello. Dans la section de sauvegarde hello du tableau de bord hello, hello **des éléments de sauvegarde** vignette affiche le nombre de hello des éléments de sauvegarde protégés toohello coffre.
+Vous pouvez désormais gérer les sauvegardes locales depuis le portail de gestion. Dans la section Sauvegarde du tableau de bord, la mosaïque **Éléments de sauvegarde** affiche le nombre d’éléments de sauvegarde protégés dans le coffre.
 
-Cliquez sur **fichiers-dossiers** Bonjour vignette d’éléments de sauvegarde.
+Dans la mosaïque Éléments de sauvegarde, cliquez sur **File-Folders** (Dossiers de fichiers).
 
 ![Mosaïque Éléments de sauvegarde](./media/backup-azure-manage-windows-server/backup-items-tile.png)
 
-les éléments de sauvegarde Hello panneau s’ouvre avec hello filtrer ensemble tooFile-dossier dans lequel vous consultez chaque élément répertorié de sauvegarde spécifique.
+Le panneau Éléments de sauvegarde s’ouvre avec le filtre défini sur File-Folders (Dossiers de fichiers) et affiche chaque élément de sauvegarde spécifique.
 
 ![Éléments de sauvegarde](./media/backup-azure-manage-windows-server/backup-item-list.png)
 
-Si vous sélectionnez un élément de sauvegarde spécifique à partir de la liste de hello, vous consultez des informations essentielles hello pour cet élément.
+Sélectionnez un élément de sauvegarde spécifique dans la liste pour en afficher les principaux détails.
 
 > [!NOTE]
-> À partir de hello **paramètres** panneau, vous gérez des fichiers et dossiers en sélectionnant **éléments protégés > des éléments de sauvegarde** , puis en sélectionnant **dossiers de fichiers** de hello menu déroulant.
+> Dans le panneau **Paramètres**, vous pouvez gérer les fichiers et dossiers en sélectionnant **Éléments protégés > Éléments de sauvegarde**, puis en sélectionnant **File-Folders** (Dossiers de fichiers) dans le menu déroulant.
 >
 >
 
 ![Éléments de sauvegarde à partir des paramètres](./media/backup-azure-manage-windows-server/backup-files-and-folders.png)
 
 ## <a name="manage-backup-jobs"></a>Gérer les travaux de sauvegarde
-Tâches de sauvegarde pour à la fois localement (lorsque le serveur local de hello sauvegarde tooAzure) et les sauvegardes Azure sont visibles dans le tableau de bord hello.
+Les travaux de sauvegarde réalisés en local (lorsque le serveur local sauvegarde vers Azure) et dans Azure s’affichent dans le tableau de bord.
 
-Dans la section de sauvegarde du tableau de bord hello de hello, vignette de travail de sauvegarde hello affiche hello nombre tâches :
+Dans la section Sauvegarde du tableau de bord, la mosaïque Travail de sauvegarde indique le nombre de travaux :
 
 * en cours
-* Échec de hello des dernières 24 heures.
+* ayant échoué au cours des 24 dernières heures
 
-toomanage vos travaux de sauvegarde, cliquez sur hello **les travaux de sauvegarde** vignette, qui ouvre le panneau des travaux de sauvegarde hello.
+Pour gérer vos travaux de sauvegarde, cliquez sur la mosaïque **Travaux de sauvegarde** pour ouvrir le panneau Travaux de sauvegarde.
 
 ![Éléments de sauvegarde à partir des paramètres](./media/backup-azure-manage-windows-server/backup-jobs.png)
 
-Vous modifiez les informations hello disponibles dans le panneau des travaux de sauvegarde hello avec hello **choisir les colonnes** bouton en hello haut hello.
+Cliquez sur le bouton **Choisir les colonnes** en haut de la page pour modifier les informations disponibles dans le panneau Travaux de sauvegarde.
 
-Hello d’utilisation **filtre** tooselect bouton entre fichiers et de dossiers et de sauvegarde de la machine virtuelle Azure.
+Utilisez le bouton **Filtrer** pour sélectionner les fichiers ou les dossiers, ainsi que la sauvegarde de la machine virtuelle Azure.
 
-Si vous ne voyez pas votre sauvegarde des fichiers et des dossiers, cliquez sur **filtre** bouton en haut de hello de page de hello et sélectionnez **fichiers et dossiers** à partir du menu de Type d’élément hello.
+Si vous ne voyez pas vos fichiers et dossiers sauvegardés, cliquez sur le bouton **Filtrer** en haut de la page et sélectionnez **Fichiers et dossiers** dans le menu Item Type (Type d’élément).
 
 > [!NOTE]
-> À partir de hello **paramètres** panneau, gérer des travaux de sauvegarde en sélectionnant **analyse et rapports > travaux > travaux de sauvegarde** , puis en sélectionnant **dossiers de fichiers** de dépôt de hello vers le bas du menu.
+> Dans le panneau **Paramètres**, vous pouvez gérer les travaux de sauvegarde en sélectionnant **Monitoring and Reports (Surveillance et rapports) > Travaux > Travaux de sauvegarde**, puis en sélectionnant **File-Folders** (Dossiers de fichiers) dans le menu déroulant.
 >
 >
 
 ## <a name="monitor-backup-usage"></a>Surveiller l’utilisation de la sauvegarde
-Dans la section de sauvegarde du tableau de bord hello de hello, vignette d’utilisation de la sauvegarde de hello montre stockage hello consommé dans Azure. Les données d’utilisation du stockage incluent :
+Dans la section Sauvegarde du tableau de bord, la mosaïque Backup Usage (Utilisation de la sauvegarde) indique le stockage consommé dans Azure. Les données d’utilisation du stockage incluent :
 
-* Utilisation du stockage LRS cloud associée hello coffre
-* Utilisation du stockage GRS cloud associée hello coffre
+* L’utilisation du stockage cloud LRS associée au coffre
+* L’utilisation du stockage cloud GRS associée au coffre
 
 ## <a name="manage-your-production-servers"></a>Gérer vos serveurs de production
-Cliquez sur les serveurs de production, toomanage **paramètres**.
+Pour gérer vos serveurs de production, cliquez sur **Paramètres**.
 
 Sous Gérer, cliquez sur **Infrastructure de sauvegarde > Serveurs de Production**.
 
-listes de panneau Hello les serveurs de Production de tous vos serveurs de production disponible. Cliquez sur un serveur dans les détails du serveur hello liste tooopen hello.
+Le panneau Serveurs de Production affiche une liste de tous vos serveurs de production disponibles. Cliquez sur un serveur dans la liste pour afficher les détails correspondants.
 
 ![Éléments protégés](./media/backup-azure-manage-windows-server/production-server-list.png)
 
 
-## <a name="open-hello-azure-backup-agent"></a>Agent de sauvegarde Azure hello ouvert
-Ouvrez hello **Microsoft Azure Backup agent** (vous le rechercher votre ordinateur pour *Microsoft Azure Backup*).
+## <a name="open-the-azure-backup-agent"></a>Ouvrir l’agent Azure Backup
+Ouvrez **l’agent Microsoft Azure Backup** (vous pouvez le trouver en recherchant *Microsoft Azure Backup*sur votre ordinateur).
 
 ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/snap-in-search.png)
 
-À partir de hello **Actions** disponible à l’adresse hello à droite de la console de l’agent de sauvegarde hello vous effectuez hello les tâches de gestion suivantes :
+Dans les **Actions** disponibles à droite de la console de l’agent de sauvegarde, vous pouvez effectuer les tâches de gestion suivantes :
 
 * Inscription du serveur
 * Planification d’une sauvegarde
@@ -200,65 +200,65 @@ Ouvrez hello **Microsoft Azure Backup agent** (vous le rechercher votre ordinate
 ![Actions de la console de l’agent Microsoft Azure Backup.](./media/backup-azure-manage-windows-server/console-actions.png)
 
 > [!NOTE]
-> trop**récupérer les données**, consultez [restaurer des fichiers tooa Windows server ou la machine du client Windows](backup-azure-restore-windows-server.md).
+> Pour **Récupérer des données**, consultez [Restauration de fichiers sur un serveur Windows ou un ordinateur client Windows](backup-azure-restore-windows-server.md).
 >
 >
 
-## <a name="modify-hello-backup-schedule"></a>Modifier la planification de sauvegarde hello
-1. Dans l’agent Microsoft Azure Backup hello, cliquez sur **planifier la sauvegarde**.
+## <a name="modify-the-backup-schedule"></a>Modifier la planification de sauvegarde
+1. Dans l’agent Microsoft Azure Backup, cliquez sur **Planifier la sauvegarde**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/schedule-backup.png)
-2. Bonjour **Assistant Planification de sauvegarde** laisser hello **apporter des modifications heures ou les éléments de toobackup** option est sélectionnée, puis cliquez sur **suivant**.
+2. Dans **l’Assistant Planification de sauvegarde**, conservez l’option **Modifier les éléments ou les dates/heures de sauvegarde** sélectionnée, puis cliquez sur **Suivant**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/modify-or-stop-a-scheduled-backup.png)
-3. Si vous souhaitez tooadd ou de modifier les éléments sur hello **tooBackup de sélectionner les éléments** écran, cliquez sur **ajouter les éléments**.
+3. Si vous souhaitez ajouter ou modifier des éléments, cliquez sur **Ajouter des éléments** dans l’écran **Sélectionner les éléments à sauvegarder**.
 
-    Vous pouvez également définir **paramètres d’Exclusion** à partir de cette page dans l’Assistant de hello. Si vous souhaitez que les fichiers tooexclude ou procédure hello pour l’ajout de lecture de types de fichiers [paramètres d’exclusion](#manage-exclusion-settings).
-4. Sélectionnez les fichiers de hello et les dossiers que vous souhaitez tooback haut et cliquez sur **OK**.
+    Vous pouvez également définir les **Paramètres d’exclusion** sur cette page de l’Assistant. Si vous souhaitez exclure des fichiers ou des types de fichiers, lisez la procédure permettant d’ajouter des [paramètres d’exclusion](#manage-exclusion-settings).
+4. Sélectionnez les fichiers et les dossiers que vous souhaitez sauvegarder, puis cliquez sur **OK**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/add-items-modify.png)
-5. Spécifiez hello **planification de sauvegarde** et cliquez sur **suivant**.
+5. Spécifiez la **planification de sauvegarde**, puis cliquez sur **Suivant**.
 
     Vous pouvez planifier des sauvegardes quotidiennes (au maximum 3 fois par jour) ou hebdomadaires.
 
     ![Éléments de sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/specify-backup-schedule-modify-close.png)
 
    > [!NOTE]
-   > Spécifier la planification de sauvegarde hello est expliquée en détail dans ce [article](backup-azure-backup-cloud-as-tape.md).
+   > La définition de la planification de sauvegarde est décrite en détail dans cet [article](backup-azure-backup-cloud-as-tape.md).
    >
 
-6. Sélectionnez hello **stratégie de rétention** pour la copie de sauvegarde hello et cliquez sur **suivant**.
+6. Sélectionnez la **Stratégie de rétention** pour la copie de sauvegarde et cliquez sur **Suivant**.
 
     ![Éléments de sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/select-retention-policy-modify.png)
-7. Sur hello **Confirmation** hello consulter les informations de l’écran, puis cliquez sur **Terminer**.
-8. Une fois l’Assistant de hello termine la création de hello **planification de sauvegarde**, cliquez sur **fermer**.
+7. Dans l’écran **Confirmation**, passez en revue les informations, puis cliquez sur **Terminer**.
+8. Dès que l’Assistant a terminé la création de la **planification de sauvegarde**, cliquez sur **Fermer**.
 
-    Après la modification de protection, vous pouvez vérifier le déclenchement de sauvegardes par toohello de va **travaux** onglet et en s’assurant que les modifications sont répercutées dans hello des travaux de sauvegarde.
+    Après la modification de la protection, vous pouvez confirmer le déclenchement correct des sauvegardes en accédant à l’onglet **Travaux** et en vérifiant que les modifications sont répercutées dans les tâches de sauvegarde.
 
 ## <a name="enable-network-throttling"></a>Activation de la limitation du réseau
 
-agent de sauvegarde Azure Hello comprend un onglet de limitation qui vous permet de toocontrol utilisation de la bande passante réseau lors du transfert de données. Ce contrôle peut être utile si vous devez tooback des données pendant les heures de travail mais que vous ne souhaitez pas que toointerfere du processus de sauvegarde hello avec tout autre trafic internet. La limitation des données de transfert s’applique tooback des activités et de restauration.  
+L’agent Azure Backup contient un onglet Limitation qui vous permet de contrôler l’utilisation de la bande passante réseau pendant le transfert de données. Cela peut s’avérer utile si vous avez besoin de sauvegarder des données pendant les heures de travail, mais ne souhaitez pas que le processus de sauvegarde interfère avec le reste du trafic internet. La limitation du transfert de données s’applique aux activités de sauvegarde et de restauration.  
 
-tooenable de limitation :
+Pour activer la limitation :
 
-1. Bonjour **agent de sauvegarde**, cliquez sur **modifier les propriétés**.
-2. Sur hello ** limitation onglet, sélectionnez **activer l’utilisation de la bande passante internet de limitation pour les opérations de sauvegarde**.
+1. Dans **l’agent de Sauvegarde**, cliquez sur **Modifier les propriétés**.
+2. Sous l’onglet **Limitation, sélectionnez la case **Activer la limitation de la bande passante sur Internet pour les opérations de sauvegarde**.
 
     ![Limitation du réseau](./media/backup-azure-manage-windows-server/throttling-dialog.png)
 
-    Une fois que vous avez activé la limitation, spécifiez hello autorisée de la bande passante pour transférer des données de sauvegarde pendant **des heures de travail** et **heures chômées**.
+    Une fois que vous avez activé la limitation, spécifiez la bande passante autorisée pour le transfert des données de sauvegarde durant les **Heures de travail** et les **Heures chômées**.
 
-    valeurs de la bande passante Hello commencent à 512 kilo-octets par seconde (Kbits/s) et peuvent atteindre la too1023 les mégaoctets par seconde (Mbits/s). Vous pouvez également désigner le début de hello et de fin de **des heures de travail**, et les jours de semaine de hello sont considérés comme travail jours. temps de Hello en dehors de hello désigné des heures de travail est toobe pris en compte les heures chômées.
+    Les valeurs de bande passante, qui démarrent à 512 kilo-octets par seconde, peuvent aller jusqu’à 1 023 mégaoctets par seconde. Vous pouvez également définir le début et la fin des **Heures de travail**et identifier les jours de la semaine considérés comme des jours de travail. Les intervalles de temps situés en dehors des heures de travail sont considérés comme des périodes (heures) chômées.
 3. Cliquez sur **OK**.
 
 ## <a name="manage-exclusion-settings"></a>Gérer les paramètres d’exclusion
-1. Ouvrez hello **Microsoft Azure Backup agent** (vous pouvez le trouver en recherchant de votre ordinateur pour *Microsoft Azure Backup*).
+1. Ouvrez **l’agent Microsoft Azure Backup** (vous pouvez le trouver en recherchant *Microsoft Azure Backup*sur votre ordinateur).
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/snap-in-search.png)
-2. Dans l’agent Microsoft Azure Backup hello, cliquez sur **planifier la sauvegarde**.
+2. Dans l’agent Microsoft Azure Backup, cliquez sur **Planifier la sauvegarde**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/schedule-backup.png)
-3. Bonjour Assistant Planification de sauvegarde, laissez hello **apporter des modifications heures ou les éléments de toobackup** option est sélectionnée, puis cliquez sur **suivant**.
+3. Dans l’Assistant Planification de sauvegarde, conservez l’option **Modifier les éléments ou les dates/heures de sauvegarde** sélectionnée, puis cliquez sur **Suivant**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/modify-or-stop-a-scheduled-backup.png)
 4. Cliquez sur **Paramètres d’exclusion**.
@@ -267,10 +267,10 @@ tooenable de limitation :
 5. Cliquez sur **Ajouter une exclusion**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/add-exclusion.png)
-6. Sélectionnez l’emplacement de hello et cliquez ensuite sur **OK**.
+6. Sélectionnez l’emplacement, puis cliquez sur **OK**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/exclusion-location.png)
-7. Extension de fichier hello Bonjour **Type de fichier** champ.
+7. Ajoutez l’extension de fichier dans le champ **Type de fichier** .
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/exclude-file-type.png)
 
@@ -278,44 +278,44 @@ tooenable de limitation :
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/exclude-mp3.png)
 
-    tooadd une autre extension, cliquez sur **ajouter une Exclusion** et entrez une autre extension de fichier (l’ajout d’une extension .jpeg).
+    Pour ajouter une autre extension, cliquez sur **Ajouter une exclusion** et entrez une autre extension de type de fichier (ajout d’une extension .jpeg).
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/exclude-jpg.png)
-8. Lorsque vous avez ajouté toutes les extensions de hello, cliquez sur **OK**.
-9. Poursuivez hello Assistant Planification de sauvegarde en cliquant sur **suivant** jusqu'à hello **page de Confirmation**, puis cliquez sur **Terminer**.
+8. Lorsque vous avez ajouté toutes les extensions, cliquez sur **OK**.
+9. Suivez les instructions de l’Assistant Planification de sauvegarde en cliquant sur **Suivant** jusqu’à la **page de Confirmation**, puis cliquez sur **Terminer**.
 
     ![Planifier une sauvegarde de Windows Server](./media/backup-azure-manage-windows-server/finish-exclusions.png)
 
 ## <a name="frequently-asked-questions"></a>Forum Aux Questions
-**Q1. état du travail de sauvegarde Hello affiche comme étant terminée en hello agent de sauvegarde Azure, pourquoi n’il obtenir répercutée immédiatement dans le portail ?**
+**Q1. Le travail de sauvegarde est indiqué comme terminé dans l’agent de sauvegarde Azure, pourquoi cela ne s’affiche pas immédiatement dans le portail ?**
 
-R1. Il est au délai maximal de 15 minutes entre l’état du travail de sauvegarde hello répercutée dans hello agent de sauvegarde Azure et hello portail Azure.
+R1. Un délai maximal de 15 minutes est nécessaire pour que l’état du travail de sauvegarde dans l’agent de sauvegarde Azure soit répercuté dans le portail Azure.
 
-**Q.2 en cas d’échec d’une opération de sauvegarde, combien de temps faut-il tooraise une alerte ?**
+**Q2. En cas d’échec d’un travail de sauvegarde, combien de temps faut-il pour déclencher une alerte ?**
 
-A.2 une alerte est générée au sein de 20 minutes de hello Échec de sauvegarde Azure.
+R2. Une alerte est générée dans les 20 minutes suivant l’échec de la sauvegarde Azure.
 
 **Q3. Est-il possible qu’aucun e-mail ne soit envoyé alors que les notifications sont activées ?**
 
-R3 Voici les cas de hello lorsque hello notification ne sera pas être envoyée dans un bruit de commande tooreduce hello alerte :
+R3 Voici les cas pour lesquels la notification ne sera pas envoyée afin de réduire le bruit des alertes :
 
-* Si les notifications sont configurées par heure et une alerte est déclenchée et résolue au sein de l’heure de hello
+* Si les notifications sont configurées sur une base horaire et qu’une alerte est déclenchée et résolue dans l’heure.
 * Si le travail est annulé.
 * Si le travail de sauvegarde secondaire a échoué, car un travail de sauvegarde d’origine est en cours.
 
 ## <a name="troubleshooting-monitoring-issues"></a>Résolution des problèmes de surveillance
-**Problème :** travaux et/ou les alertes à partir de l’agent de sauvegarde Azure hello n’apparaissent pas dans le portail de hello.
+**Problème :** les travaux et/ou les alertes de l’agent de sauvegarde Azure n’apparaissent pas sur le portail.
 
-**Étapes de dépannage :** hello processus, ```OBRecoveryServicesManagementAgent```, envoie hello toohello de données de travail et d’alerte service Azure Backup. Il peut arriver que ce processus se bloque ou s’arrête.
+**Étapes de dépannage :** le processus ```OBRecoveryServicesManagementAgent``` envoie les données relatives à l’alerte et au travail au service de sauvegarde Azure. Il peut arriver que ce processus se bloque ou s’arrête.
 
-1. processus de hello tooverify n’est pas en cours d’exécution, ouvrez **le Gestionnaire des tâches** et vérifiez si hello ```OBRecoveryServicesManagementAgent``` est en cours.
-2. En supposant que le processus de hello ne fonctionne pas, ouvrez **le panneau de configuration** et parcourir la liste hello des services. Démarrez ou redémarrez l’**Agent de gestion Microsoft Azure Recovery Services**.
+1. Pour vérifier que le processus n’est pas en cours d’exécution, ouvrez **Gestionnaire des tâches** et vérifiez si le processus ```OBRecoveryServicesManagementAgent``` est en cours.
+2. En supposant que le processus ne fonctionne pas, ouvrez le **Panneau de configuration** et parcourez la liste des services. Démarrez ou redémarrez l’**Agent de gestion Microsoft Azure Recovery Services**.
 
-    Pour plus d’informations, consultez journaux hello à :<br/>
+    Pour plus d’informations, consultez les journaux à l’emplacement suivant :<br/>
    `<AzureBackup_agent_install_folder>\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider*` Par exemple :<br/>
    `C:\Program Files\Microsoft Azure Recovery Services Agent\Temp\GatewayProvider0.errlog`
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Restaurer un serveur Windows Server ou un client Windows à partir d’Azure](backup-azure-restore-windows-server.md)
-* toolearn en savoir plus sur Azure Backup, consultez [vue d’ensemble de la sauvegarde Azure](backup-introduction-to-azure-backup.md)
-* Visitez hello [Forum de sauvegarde Azure](http://go.microsoft.com/fwlink/p/?LinkId=290933)
+* Pour en savoir plus sur Azure Backup, consultez la [vue d’ensemble d’Azure Backup](backup-introduction-to-azure-backup.md)
+* Consultez le [forum Azure Backup](http://go.microsoft.com/fwlink/p/?LinkId=290933)

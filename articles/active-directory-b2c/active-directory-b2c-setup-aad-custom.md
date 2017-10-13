@@ -14,21 +14,21 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/04/2017
 ms.author: parakhj
-ms.openlocfilehash: 9b0c32086cebc171d91da2e7bfb48136723ccd4d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6c073d70debfdc3560405955d65fa9ccaa7d8b1f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-active-directory-b2c-sign-in-by-using-azure-ad-accounts"></a>Azure Active Directory B2C : se connecter à l’aide de comptes Azure AD
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-Cet article vous explique comment tooenable connectez-vous pour les utilisateurs à partir d’une organisation Azure Active Directory (Azure AD) spécifique à l’aide de hello de [des stratégies personnalisées](active-directory-b2c-overview-custom.md).
+Cet article explique comment autoriser la connexion d’utilisateurs d’une organisation Azure Active Directory (Azure AD) spécifique en utilisant des [stratégies personnalisées](active-directory-b2c-overview-custom.md).
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Conditions préalables
 
-Hello terminé les étapes Bonjour [mise en route avec les stratégies personnalisées](active-directory-b2c-get-started-custom.md) l’article.
+Suivez les étapes décrites dans [Bien démarrer avec les stratégies personnalisées](active-directory-b2c-get-started-custom.md).
 
 Ces étapes sont les suivantes :
 
@@ -36,54 +36,54 @@ Ces étapes sont les suivantes :
 2. Création d’une application Azure AD B2C.
 3. Inscription de deux applications de moteur de stratégie.
 4. Configuration des clés.
-5. Configuration d’un pack de démarrage hello.
+5. Configuration du pack de démarrage.
 
 ## <a name="create-an-azure-ad-app"></a>Création d’une application Azure AD
 
-tooenable connectez-vous pour les utilisateurs spécifiques à une organisation Azure AD, vous devez tooregister une application au sein de client de hello d’organisation Azure AD.
+Pour autoriser la connexion des utilisateurs d’une organisation Azure AD spécifique, vous devez inscrire une application au sein du locataire Azure AD de l’organisation.
 
 >[!NOTE]
-> Nous utilisons « contoso.com » pour le locataire de hello d’organisation Azure AD et « fabrikamb2c.onmicrosoft.com » en tant que client hello Azure AD B2C Bonjour suivant les instructions.
+> Nous utilisons « contoso.com » pour l’organisation (locataire) Azure AD et « fabrikamb2c.onmicrosoft.com » comme locataire Azure AD B2C dans les instructions suivantes.
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
-1. Dans la barre supérieure de hello, sélectionnez votre compte. À partir de hello **répertoire** , choisissez locataire hello d’organisation Azure AD où vous souhaitez tooregister votre application (contoso.com).
-1. Sélectionnez **davantage de services** dans le volet gauche de hello et recherchez « Inscriptions d’application ».
+1. Connectez-vous au [portail Azure](https://portal.azure.com).
+1. Dans le menu supérieur, sélectionnez votre compte. Dans la liste **Répertoire**, choisissez l’organisation (locataire) Azure AD auprès de laquelle vous voulez inscrire votre application (contoso.com).
+1. Cliquez sur **Autres services** dans le volet gauche, puis recherchez « Inscriptions d’applications ».
 1. Sélectionnez **Nouvelle inscription d’application**.
 1. Entrez un nom pour votre application (par exemple, `Azure AD B2C App`).
-1. Sélectionnez **application Web / API** hello pour type d’application.
-1. Pour **URL de connexion**, entrez hello suivant URL, où `yourtenant` remplacé par le nom de votre client Azure AD B2C hello (`fabrikamb2c.onmicrosoft.com`) :
+1. Pour le type d’application, sélectionnez **Application web/API**.
+1. Pour **URL de connexion**, entrez l’URL suivante où `yourtenant` est remplacé par le nom de votre locataire Azure AD B2C (`fabrikamb2c.onmicrosoft.com`) :
 
     ```
     https://login.microsoftonline.com/te/yourtenant.onmicrosoft.com/oauth2/authresp
     ```
 
-1. Enregistrer l’ID d’application hello.
-1. Sélectionnez l’application hello nouvellement créé.
-1. Sous hello **paramètres** panneau, sélectionnez **clés**.
-1. Créez une clé et enregistrez-la. Vous allez l’utiliser dans les étapes de hello dans la section suivante de hello.
+1. Enregistrez l’ID de l’application.
+1. Sélectionnez l’application que vous venez de créer.
+1. Dans le panneau **Paramètres**, sélectionnez **Clés**.
+1. Créez une clé et enregistrez-la. Vous allez l’utiliser dans les étapes de la prochaine section.
 
-## <a name="add-hello-azure-ad-key-tooazure-ad-b2c"></a>Ajouter tooAzure de clé hello AD Azure AD B2C
+## <a name="add-the-azure-ad-key-to-azure-ad-b2c"></a>Ajouter la clé d’Azure AD à Azure AD B2C
 
-Vous avez besoin de clé d’application toostore hello contoso.com dans votre locataire Azure AD B2C. toodo cela :
-1. Accédez tooyour Azure AD B2C client, puis sélectionnez **B2C paramètres** > **infrastructure d’identité expérience** > **clés de stratégie**.
+Vous devez stocker la clé d’application contoso.com dans votre locataire Azure AD B2C. Pour ce faire :
+1. Accédez à votre locataire Azure AD B2C, puis sélectionnez **Paramètres Azure AD B2C** > **Infrastructure d’expérience d’identité** > **Clés de stratégie**.
 1. Sélectionnez **+Ajouter**.
 1. Sélectionnez ou entrez les options suivantes :
    * Sélectionnez **Manuel**.
-   * Pour **Nom**, choisissez un nom correspondant au nom de votre locataire Azure AD (par exemple, `ContosoAppSecret`).  préfixe de Hello `B2C_1A_` est ajouté automatiquement nom toohello de votre clé.
-   * Collez votre clé d’application Bonjour **Secret** boîte.
+   * Pour **Nom**, choisissez un nom correspondant au nom de votre locataire Azure AD (par exemple, `ContosoAppSecret`).  Le préfixe `B2C_1A_` est ajouté automatiquement au nom de votre clé.
+   * Collez votre clé d’application dans la zone **Secret**.
    * Sélectionnez **Signature**.
 1. Sélectionnez **Créer**.
-1. Vérifiez que vous avez créé la clé de hello `B2C_1A_ContosoAppSecret`.
+1. Vérifiez que vous avez créé la clé `B2C_1A_ContosoAppSecret`.
 
 
 ## <a name="add-a-claims-provider-in-your-base-policy"></a>Ajoutez un fournisseur de revendications dans votre stratégie de base
 
-Si vous souhaitez que les utilisateurs toosign à l’aide d’Azure AD, vous devez toodefine Azure AD comme fournisseur de revendications. En d’autres termes, vous devez toospecify un point de terminaison communique avec Azure Active Directory B2C. point de terminaison Hello fournissent un ensemble de revendications qui sont utilisés par Azure AD B2C tooverify authentifié un utilisateur spécifique. 
+Si vous souhaitez que les utilisateurs se connectent à l’aide d’Azure AD, vous devez définir Azure AD comme fournisseur de revendications. En d’autres termes, vous devez spécifier un point de terminaison avec lequel Azure AD B2C communiquera. Le point de terminaison fournit un ensemble de revendications utilisées par Azure AD B2C pour vérifier qu’un utilisateur spécifique s’est authentifié. 
 
-Vous pouvez définir Azure AD comme fournisseur de revendications en ajoutant Azure AD toohello `<ClaimsProvider>` nœud dans le fichier d’extension hello de votre stratégie :
+Vous pouvez définir Azure AD comme fournisseur de revendications en ajoutant Azure AD au nœud `<ClaimsProvider>` dans le fichier d’extension de votre stratégie :
 
-1. Ouvrez le fichier d’extension hello (TrustFrameworkExtensions.xml) à partir de votre répertoire de travail.
-1. Recherche hello `<ClaimsProviders>` section. Si elle n’existe pas, l’ajouter sous le nœud racine de hello.
+1. Ouvrez le fichier d’extension (TrustFrameworkExtensions.xml) à partir de votre répertoire de travail.
+1. Recherchez la section `<ClaimsProviders>`. Si elle n’existe pas, ajoutez-la sous le nœud racine.
 1. Ajoutez un nœud `<ClaimsProvider>` comme suit :
 
     ```XML
@@ -128,94 +128,94 @@ Vous pouvez définir Azure AD comme fournisseur de revendications en ajoutant Az
     </ClaimsProvider>
     ```
 
-1. Sous hello `<ClaimsProvider>` nœud, la valeur hello de mise à jour pour `<Domain>` tooa valeur unique qui peut être utilisé toodistinguish à partir d’autres fournisseurs d’identité.
-1. Sous hello `<ClaimsProvider>` nœud, la valeur hello de mise à jour pour `<DisplayName>` fournisseur de revendications de nom convivial tooa hello. Cette valeur n’est pas utilisée actuellement.
+1. Sous le nœud `<ClaimsProvider>`, mettez à jour la valeur de `<Domain>` sur une valeur unique utilisable pour la distinguer d’autres fournisseurs d’identité.
+1. Sous le nœud `<ClaimsProvider>`, mettez à jour la valeur de `<DisplayName>` sur un nom convivial pour le fournisseur de revendications. Cette valeur n’est pas utilisée actuellement.
 
-### <a name="update-hello-technical-profile"></a>Mettre à jour le profil de technique hello
+### <a name="update-the-technical-profile"></a>Mise à jour du profil technique
 
-tooget un jeton à partir du point de terminaison hello Azure AD, vous devez les protocoles de hello toodefine que Azure AD B2C doit utiliser toocommunicate avec Azure AD. Cette opération est effectuée à l’intérieur de hello `<TechnicalProfile>` élément de `<ClaimsProvider>`.
-1. Mise à jour ID hello Hello `<TechnicalProfile>` nœud. Cet ID est utilisé toorefer toothis profil technique à partir d’autres parties de la stratégie de hello.
-1. Mettre à jour la valeur hello pour `<DisplayName>`. Cette valeur s’affichera sur le bouton hello de connexion sur votre écran de connexion.
-1. Mettre à jour la valeur hello pour `<Description>`.
-1. Azure AD utilise le protocole OpenID Connect de hello, assurez-vous que valeur hello pour `<Protocol>` est `"OpenIdConnect"`.
+Pour obtenir un jeton à partir du point de terminaison Azure AD, vous devez définir les protocoles qu’Azure AD B2C doit utiliser pour communiquer avec Azure AD. Cela s’effectue à l’intérieur de l’élément `<TechnicalProfile>` de `<ClaimsProvider>`.
+1. Mettez à jour l’ID du nœud `<TechnicalProfile>`. Cet ID est utilisé pour faire référence à ce profil technique à partir d’autres parties de la stratégie.
+1. Mettez à jour la valeur pour `<DisplayName>`. Cette valeur s’affiche sur le bouton Se connecter dans votre écran de connexion.
+1. Mettez à jour la valeur pour `<Description>`.
+1. Azure AD utilisant le protocole OpenID Connect, vérifiez que la valeur de `<Protocol>` est bien `"OpenIdConnect"`.
 
-Vous devez tooupdate hello `<Metadata>` section dans le fichier XML de hello référencé des paramètres de configuration tooearlier tooreflect hello pour spécifique à votre client Azure AD. Dans le fichier XML de hello, mettre à jour les valeurs de métadonnées hello comme suit :
+Vous devez mettre à jour la section `<Metadata>` dans le XML évoqué précédemment pour refléter les paramètres de configuration de votre locataire Azure AD spécifique. Dans le fichier XML, mettez à jour les valeurs des métadonnées comme suit :
 
-1. Définissez `<Item Key="METADATA">` trop`https://login.windows.net/yourAzureADtenant/.well-known/openid-configuration`, où `yourAzureADtenant` est votre nom de client Azure AD (contoso.com).
-1. Ouvrez votre toohello navigateur et allez `METADATA` URL que vous venez de mettre à jour.
-1. Dans le navigateur de hello, recherche d’objet 'd’attribut issuer' hello et copiez sa valeur. Il doit ressembler à hello suivant : `https://sts.windows.net/{tenantId}/`.
-1. Collez la valeur hello pour `<Item Key="ProviderName">` dans le fichier XML de hello.
-1. Définissez `<Item Key="client_id">` toohello ID de l’application à partir de l’inscription d’une application hello.
-1. Définissez `<Item Key="IdTokenAudience">` toohello ID de l’application à partir de l’inscription d’une application hello.
-1. Vérifiez que `<Item Key="response_types">` est défini trop`id_token`.
-1. Vérifiez que `<Item Key="UsePolicyInRedirectUri">` est défini trop`false`.
+1. Définissez `<Item Key="METADATA">` sur `https://login.windows.net/yourAzureADtenant/.well-known/openid-configuration`, où `yourAzureADtenant` est le nom de votre locataire Azure AD (contoso.com).
+1. Ouvrez votre navigateur, puis accédez à l’URL `METADATA` que vous venez de mettre à jour.
+1. Dans le navigateur, recherchez l’objet « issuer » et copiez sa valeur. Elle doit ressembler à ceci : `https://sts.windows.net/{tenantId}/`.
+1. Collez la valeur de `<Item Key="ProviderName">` dans le fichier XML.
+1. Définissez `<Item Key="client_id">` sur l’ID d’application de l’inscription de l’application.
+1. Définissez `<Item Key="IdTokenAudience">` sur l’ID d’application de l’inscription de l’application.
+1. Vérifiez que `<Item Key="response_types">` est défini sur `id_token`.
+1. Vérifiez que `<Item Key="UsePolicyInRedirectUri">` est défini sur `false`.
 
-Vous devez également le code secret toolink hello Azure AD que vous avez enregistré dans votre toohello de locataire Azure AD B2C Azure AD `<ClaimsProvider>` informations :
+Vous devez également lier le secret Azure AD que vous avez inscrit dans votre locataire Azure AD B2C aux informations `<ClaimsProvider>` d’Azure AD :
 
-* Bonjour `<CryptographicKeys>` section Bonjour précédant le fichier XML, mettre à jour la valeur hello pour `StorageReferenceId` toohello ID de référence de clé secrète hello que vous avez définie (par exemple, `ContosoAppSecret`).
+* Dans la section `<CryptographicKeys>` du fichier XML ci-dessus, mettez à jour la valeur pour `StorageReferenceId` sur l’ID de référence du secret que vous avez défini (par exemple, `ContosoAppSecret`).
 
-### <a name="upload-hello-extension-file-for-verification"></a>Télécharger le fichier d’extension hello pour la vérification
+### <a name="upload-the-extension-file-for-verification"></a>Télécharger le fichier d’extension pour la vérification
 
-À ce stade, vous avez configuré votre stratégie afin que Azure AD B2C sait comment toocommunicate avec votre annuaire Azure AD. Essayez de télécharger le fichier d’extension hello de votre tooconfirm simplement stratégie qu’il ne possède pas les problèmes de jusqu'à présent. toodo pour :
+À ce stade, vous avez configuré votre stratégie afin qu’Azure AD B2C sache comment communiquer avec votre répertoire Azure AD. Essayez de télécharger le fichier d’extension de votre stratégie juste pour confirmer qu’il ne présente aucun problème pour le moment. Pour ce faire :
 
-1. Ouvrez hello **toutes les stratégies** panneau dans votre locataire Azure AD B2C.
-1. Vérifiez hello **remplacer la stratégie de hello si elle existe** boîte.
-1. Télécharger le fichier d’extension hello (TrustFrameworkExtensions.xml) et assurez-vous qu’il validation n’échoue pas hello.
+1. Accédez au panneau **Toutes les stratégies** dans votre locataire Azure AD B2C.
+1. Cochez la case **Remplacer la stratégie si elle existe**.
+1. Téléchargez le fichier d’extension (TrustFrameworkExtensions.xml) et vérifiez que sa validation n’échoue pas.
 
-## <a name="register-hello-azure-ad-claims-provider-tooa-user-journey"></a>Inscrire le parcours de hello Azure AD revendications fournisseur tooa utilisateur
+## <a name="register-the-azure-ad-claims-provider-to-a-user-journey"></a>Inscrire le fournisseur de revendications AD Azure dans un parcours utilisateur
 
-Vous devez maintenant tooadd hello Azure AD identity fournisseur tooone de votre parcours de l’utilisateur. À ce stade, le fournisseur d’identité hello a été configuré, mais il n’est pas disponible dans les écrans de connexion-haut/connectez-vous hello. toomake il est disponible, nous crée un doublon d’un déplacement de modèle à l’utilisateur existant et modifiez-le afin qu’il puisse également le fournisseur d’identité hello Azure AD :
+Vous devez maintenant ajouter le fournisseur d’identité Azure AD à l’un de vos parcours utilisateur. À ce stade, le fournisseur d’identité a été configuré, mais il n’est disponible dans aucun des écrans d’inscription ou de connexion. Pour changer cela, nous créons un doublon d’un modèle de parcours utilisateur et le modifions afin qu’il dispose également du fournisseur d’identité Azure AD :
 
-1. Ouvrez le fichier de base hello de votre stratégie (par exemple, TrustFrameworkBase.xml).
-1. Recherche hello `<UserJourneys>` hello élément et copie entière `<UserJourney>` nœud inclut `Id="SignUpOrSignIn"`.
-1. Ouvrez le fichier d’extension hello (par exemple, TrustFrameworkExtensions.xml) et recherche hello `<UserJourneys>` élément. Si l’élément de hello n’existe pas, ajoutez-en un.
-1. Hello coller entière `<UserJourney>` nœud que vous avez copié en tant qu’enfant de hello `<UserJourneys>` élément.
-1. Renommer des ID hello de parcours d’utilisateur nouveau hello (par exemple, renommer en tant que `SignUpOrSignUsingContoso`).
+1. Ouvrez le fichier de base de votre stratégie (par exemple, TrustFrameworkBase.xml).
+1. Recherchez l’élément `<UserJourneys>` et copiez l’ensemble du nœud `<UserJourney>` qui inclut `Id="SignUpOrSignIn"`.
+1. Ouvrez le fichier d’extension (par exemple, TrustFrameworkExtensions.xml), puis recherchez l’élément `<UserJourneys>`. Si l’élément n’existe pas, ajoutez-en un.
+1. Collez l’intégralité du nœud `<UserJourney>` que vous avez copié en tant qu’enfant de l’élément `<UserJourneys>`.
+1. Renommez l’ID du nouveau parcours utilisateur (par exemple, en `SignUpOrSignUsingContoso`).
 
-### <a name="display-hello-button"></a>Hello d’affichage « bouton »
+### <a name="display-the-button"></a>Afficher le « bouton »
 
-Hello `<ClaimsProviderSelection>` élément est le bouton de fournisseur d’identité tooan analogue sur un connexion-haut/écran de connexion. Si vous ajoutez un `<ClaimsProviderSelection>` élément pour Azure AD, un nouveau bouton apparaît lorsqu’un utilisateur arrive sur la page de hello. tooadd cet élément :
+L’élément `<ClaimsProviderSelection>` est analogue à un bouton de fournisseur d’identité sur un écran d’inscription/de connexion. Si vous ajoutez un élément `<ClaimsProviderSelection>` pour Azure AD, un nouveau bouton apparaît quand un utilisateur accède à la page. Pour ajouter cet élément :
 
-1. Recherche hello `<OrchestrationStep>` nœud incluant `Order="1"` dans voyage utilisateur hello que vous venez de créer.
-1. Ajoutez hello qui suit :
+1. Recherchez le nœud `<OrchestrationStep>` incluant `Order="1"` dans le parcours utilisateur que vous venez de créer.
+1. Ajoutez ce qui suit :
 
     ```XML
     <ClaimsProviderSelection TargetClaimsExchangeId="ContosoExchange" />
     ```
 
-1. Définissez `TargetClaimsExchangeId` tooan les valeur appropriée. Nous vous recommandons de suivant hello même convention que d’autres :  *\[ClaimProviderName\]Exchange*.
+1. Définissez `TargetClaimsExchangeId` sur une valeur appropriée. Nous vous recommandons de suivre la même convention que pour les autres : *\[ClaimProviderName\]Exchange*.
 
-### <a name="link-hello-button-tooan-action"></a>Action de lien hello bouton tooan
+### <a name="link-the-button-to-an-action"></a>Lier le bouton à une action
 
-Maintenant que vous avez un bouton en place, vous devez toolink il tooan action. action de Hello, dans ce cas, est de toocommunicate Azure AD B2C avec Azure AD tooreceive un jeton. Action de tooan bouton lien hello en liant le profil de technique hello pour votre fournisseur de revendications d’Azure AD :
+Maintenant que vous avez un bouton en place, vous devez le lier à une action. L’action est, dans ce cas, la communication d’Azure AD B2C avec Azure AD pour recevoir un jeton. Liez le bouton à une action en liant le profil technique de votre fournisseur de revendications Azure AD :
 
-1. Recherche hello `<OrchestrationStep>` qui inclut `Order="2"` Bonjour `<UserJourney>` nœud.
-1. Ajoutez hello qui suit :
+1. Recherchez l’élément `<OrchestrationStep>` qui inclut `Order="2"` dans le nœud `<UserJourney>`.
+1. Ajoutez ce qui suit :
 
     ```XML
     <ClaimsExchange Id="ContosoExchange" TechnicalProfileReferenceId="ContosoProfile" />
     ```
 
-1. Mise à jour `Id` toohello même valeur que celle de `TargetClaimsExchangeId` Bonjour précédant la section.
-1. Mise à jour `TechnicalProfileReferenceId` ID toohello Hello technique du profil que vous avez créé précédemment (ContosoProfile).
+1. Mettez à jour `Id` sur la même valeur que celle de `TargetClaimsExchangeId` dans la section précédente.
+1. Mettez à jour `TechnicalProfileReferenceId` sur l’ID du profil technique créé précédemment (ContosoProfile).
 
-### <a name="upload-hello-updated-extension-file"></a>Télécharger le fichier d’extension de mise à jour de hello
+### <a name="upload-the-updated-extension-file"></a>Téléchargez le fichier d’extension mis à jour
 
-Vous avez terminé la modification d’extension hello. Enregistrez-le. Puis téléchargez le fichier de hello et assurez-vous que toutes les validations réussissent.
+Vous avez terminé la modification du fichier d’extension. Enregistrez-le. Chargez ensuite le fichier et vérifiez que toutes les validations réussissent.
 
-### <a name="update-hello-rp-file"></a>Fichier de mise à jour hello RP
+### <a name="update-the-rp-file"></a>Mise à jour du fichier RP
 
-Vous devez maintenant tooupdate hello partie de confiance (RP) de tiers fichier qui exécutera voyage utilisateur hello que vous venez de créer :
+Vous devez maintenant mettre à jour le fichier de partie de confiance qui initialisera le parcours utilisateur que vous venez de créer :
 
-1. Faites une copie de SignUpOrSignIn.xml dans votre répertoire de travail et renommez-le (par exemple, renommer tooSignUpOrSignInWithAAD.xml).
-1. Hello de fichier et de mise à jour de nouveau hello ouvrir `PolicyId` attribut `<TrustFrameworkPolicy>` avec une valeur unique (par exemple, SignUpOrSignInWithAAD). <br> Ce sera le nom hello de votre stratégie (par exemple, B2C\_1 a\_SignUpOrSignInWithAAD).
-1. Modifier hello `ReferenceId` attribut `<DefaultUserJourney>` ID de hello toomatch nouveau voyage utilisateur hello, que vous avez créé (SignUpOrSignUsingContoso).
-1. Enregistrer vos modifications et téléchargez le fichier de hello.
+1. Effectuez une copie de SignUpOrSignIn.xml dans votre répertoire de travail et renommez-le (par exemple, SignUpOrSignInWithAAD.xml).
+1. Ouvrez le nouveau fichier et mettez à jour l’attribut `PolicyId` pour `<TrustFrameworkPolicy>` avec une valeur unique (par exemple, SignUpOrSignInWithAAD). <br> Celle-ci correspond au nom de votre stratégie (par exemple, B2C\_1A\_SignUpOrSignInWithAAD).
+1. Modifiez l’attribut `ReferenceId` dans `<DefaultUserJourney>` pour qu’il corresponde à l’ID du nouveau parcours utilisateur que vous avez créé (SignUpOrSignUsingContoso).
+1. Enregistrez vos modifications et chargez le fichier.
 
-## <a name="troubleshooting"></a>Résolution des problèmes
+## <a name="troubleshooting"></a>Résolution de problèmes
 
-Tester une stratégie personnalisée hello que vous venez de télécharger en cliquant sur son panneau **exécuter maintenant**. problèmes de toodiagnose, en savoir plus sur [dépannage](active-directory-b2c-troubleshoot-custom.md).
+Testez la stratégie personnalisée que vous venez de charger en ouvrant son panneau et en cliquant sur **Exécuter maintenant**. Pour diagnostiquer des problèmes, consultez la page sur la [résolution des problèmes](active-directory-b2c-troubleshoot-custom.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Fournir des commentaires trop[AADB2CPreview@microsoft.com](mailto:AADB2CPreview@microsoft.com).
+Envoyez vos commentaires à l’adresse [AADB2CPreview@microsoft.com](mailto:AADB2CPreview@microsoft.com).

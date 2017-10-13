@@ -1,6 +1,6 @@
-#### <a name="toodelete-a-virtual-device"></a>toodelete un appareil virtuel
+#### <a name="to-delete-a-virtual-device"></a>Suppression d’un appareil virtuel
 
-1. Se connecter toohello portail Azure classic.
-2. Cliquez sur **virtuels**, et puis sélectionnez hello périphérique virtuel.
-3. Cliquez sur **supprimer** et choisissez toodelete tous les disques de machine virtuelle hello.
+1. Connectez-vous à la version classique du portail Azure.
+2. Cliquez sur **Virtual Machines**, puis sélectionnez l’appareil virtuel.
+3. Cliquez sur **Supprimer** , puis choisissez de supprimer tous les disques de la machine virtuelle.
 

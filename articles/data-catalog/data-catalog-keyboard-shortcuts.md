@@ -1,6 +1,6 @@
 ---
-title: raccourcis aaaKeyboard pour Azure Data Catalog | Documents Microsoft
-description: "Cet article présente les raccourcis de clavier de hello pour Azure Data Catalog."
+title: Raccourcis clavier pour Azure Data Catalog  | Microsoft Docs
+description: "Cet article présente les raccourcis clavier pour Azure Data Catalog."
 services: data-catalog
 documentationcenter: 
 author: spelluru
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/17/2017
 ms.author: spelluru
-ms.openlocfilehash: 58511a27e9b4e7bf5ab0a38b13b1132ec6467512
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d498eac2d0dfe7d271bdb5e47159faa113545ab4
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="keyboard-shortcuts-for-azure-data-catalog"></a>Raccourcis clavier pour Azure Data Catalog
-## <a name="keyboard-shortcuts-for-hello-data-catalog-data-source-registration-tool"></a>Outil d’inscription de raccourcis clavier pour hello les données du catalogue de données source
+## <a name="keyboard-shortcuts-for-the-data-catalog-data-source-registration-tool"></a>Raccourcis clavier pour l’outil de référencement de données Data Catalog
 ### <a name="general-keyboard-shortcuts"></a>Raccourcis clavier généraux
 | Opération | Appuyez sur |
 | --- | --- |
-| Onglet contrôle tooeach sur une page |Tab |
+| Accéder à chaque contrôle sur une page |Tab |
 | Choisir une option |Entrée ou barre d’espace |
 | Agrandir la page. |WIN + HAUT |
 | Restaurer ou réduire la page. |WIN + BAS |
@@ -40,13 +40,13 @@ ms.lasthandoff: 10/06/2017
 ### <a name="data-source-selection-page"></a>Page de sélection de la source de données
 | Opération | Appuyez sur |
 | --- | --- |
-| Atteindre la page de toonext (si activé) |ALT + N |
-| Modifier le type sélectionné lorsque le focus de hello se trouve sur une vignette |FLÈCHE GAUCHE, HAUT, DROITE, ou BAS |
+| Accéder à la page suivante (si activé) |ALT + N |
+| Modifier la sélection lorsqu’une mosaïque est sélectionnée |FLÈCHE GAUCHE, HAUT, DROITE, ou BAS |
 
 ### <a name="data-source-connection-page"></a>Page de connexion à la source de données
 | Opération | Appuyez sur |
 | --- | --- |
-| Atteindre la page de tooprevious (si activé) |ALT + P |
+| Accéder à la page précédente (si activé) |ALT + P |
 | Sélectionner le bouton de connexion. |ALT + C |
 
 ### <a name="connection-context-page"></a>Page contextuelle de connexion
@@ -55,9 +55,9 @@ ms.lasthandoff: 10/06/2017
 | Bouton d’inscription (si activé) |ALT + R |
 | Inclure la case à cocher Aperçu (si disponible) |ALT + P |
 | Inclure la case à cocher Profil de données (si disponible) |ALT + D |
-| Accédez d’élément de liste tooeach |FLÈCHE HAUT ou BAS |
+| Accéder à chaque élément de la liste |FLÈCHE HAUT ou BAS |
 | Hiérarchie du serveur, développer un nœud de l’arborescence |FLÈCHE DROITE |
-| Déplacer les éléments sélectionnés pour **objets disponibles** ou **toobe objets inscrits** |BARRE D’ESPACE |
+| Déplacer les éléments sélectionnés vers **Objets disponibles** ou **Objets à inscrire** |BARRE D’ESPACE |
 
 ### <a name="publish-progress-page"></a>Page Progression de la publication
 | Opération | Appuyez sur |
@@ -72,7 +72,7 @@ ms.lasthandoff: 10/06/2017
 | Bouton Enregistrer (si activé) |ALT + S |
 | Bouton Annuler |ALT + C |
 
-## <a name="keyboard-shortcuts-for-hello-data-catalog-portal"></a>Raccourcis clavier pour le portail du catalogue de données hello
+## <a name="keyboard-shortcuts-for-the-data-catalog-portal"></a>Raccourcis clavier pour le portail Data Catalog
 | Opération | Appuyez sur |
 | --- | --- |
 | Naviguer |TAB et MAJ + TAB |
@@ -80,9 +80,9 @@ ms.lasthandoff: 10/06/2017
 | Explorer une section |ESPACE ou ENTRÉE |
 | Quitter une section |ÉCHAP |
 | Épingler/désépingler une ressource |ALT + P |
-| Sur hello découvrir la page, lorsqu’une ressource a le focus, sélectionnez actif |ESPACE ou ENTRÉE |
+| Sur la page de découverte, lorsqu'une ressource est sélectionnée, sélectionnez actif |ESPACE ou ENTRÉE |
 | Ajouter/supprimer des ressources à l’aide de la sélection multiple |CTRL + ESPACE ou ENTRÉE |
-| Basculer vers la recherche hello correspond au menu |ALT + S |
+| Activer/désactiver le menu de correspondances de recherche |ALT + S |
 | Activer/désactiver le menu **Ouvrir dans** |ALT + O |
-| Explorer le conteneur, si l’élément multimédia de hello est un conteneur |ALT + L |
+| Explorer le conteneur, si la ressource est un conteneur |ALT + L |
 

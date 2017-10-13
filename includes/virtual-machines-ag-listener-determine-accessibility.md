@@ -1,12 +1,12 @@
-Il est important toorealize qu’il existe deux façons tooconfigure un écouteur de groupe de disponibilité dans Azure. Hello méthodes diffèrent par type hello d’équilibrage de charge Azure que vous utilisez lorsque vous créez l’écouteur de hello. Hello tableau suivant décrit les différences de hello :
+Il est important de savoir qu’il existe deux manières de configurer un écouteur de groupe de disponibilité dans Azure. Ces méthodes diffèrent dans le type d’équilibrage de charge Azure que vous utilisez lorsque vous créez l’écouteur. Le tableau suivant décrit ces différences :
 
 | Type d’équilibrage de charge | Implémentation | Utilisez-la quand : |
 | --- | --- | --- |
-| **Externe** |Utilise hello *adresse IP virtuelle publique* du service de cloud hello qui héberge des ordinateurs virtuels de hello (VM). |Vous avez besoin d’écouteur de hello tooaccess à partir du réseau virtuel externe hello, y compris de hello Internet. |
-| **Interne** |Utilise un *équilibreur de charge interne* avec une adresse privée pour le port d’écoute hello. |Vous pouvez accéder à d’écouteur de hello uniquement à partir de hello même réseau virtuel. Cet accès inclut un réseau privé virtuel de site à site dans des scénarios hybrides. |
+| **Externe** |Utilise *l’adresse IP virtuelle publique* du service cloud qui héberge les machines virtuelles. |Vous devez accéder à l’écouteur en dehors du réseau virtuel, notamment depuis Internet. |
+| **Interne** |Utilise un *équilibrage de charge interne* avec une adresse privée pour l’écouteur. |Vous ne pouvez accéder à l’écouteur qu’à partir du même réseau virtuel. Cet accès inclut un réseau privé virtuel de site à site dans des scénarios hybrides. |
 
 > [!IMPORTANT]
-> Pour un port d’écoute qu’utilise adresse VIP publique du service de cloud hello (équilibrage de charge externe), tant que hello client, le port d’écoute et bases de données se trouvent dans hello même région Azure, vous ne mobilise pas les frais de sortie. Dans le cas contraire, toutes les données retournées par le biais hello écouteur est considéré comme sortie, et elle est facturée au taux de transfert de données normale. 
+> Pour un écouteur qui utilise l’adresse IP virtuelle publique du service cloud (équilibrage de charge externe), tant que le client, l’écouteur et les bases de données se trouvent dans la même région Azure, aucuns frais de sortie ne vous seront facturés. Sinon, les données retournées par l’écouteur sont considérées comme une sortie et facturées au taux de transfert de données normal. 
 > 
 > 
 

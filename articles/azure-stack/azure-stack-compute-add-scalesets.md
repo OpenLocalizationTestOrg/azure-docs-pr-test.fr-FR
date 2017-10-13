@@ -1,50 +1,53 @@
 ---
-title: "échelle de machines virtuelles aaaMake jeux disponible dans la pile de Azure"
-description: "Découvrez comment un administrateur de cloud peut ajouter toohello de mise à l’échelle de machine virtuelle Azure Marketplace de pile"
+title: "Mettre les groupes de machines virtuelles identiques à disposition dans Azure Stack"
+description: "Découvrez comment un administrateur cloud peut ajouter des machines virtuelles identiques à la Marketplace Azure Stack."
 services: azure-stack
 author: anjayajodha
 ms.service: azure-stack
 ms.topic: article
-ms.date: 8/4/2017
+ms.date: 9/25/2017
 ms.author: anajod
 keywords: 
-ms.openlocfilehash: 14365d62ac2f2bc453c25ce4769464eb30180ea8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 31aeb963bdf4fd32712bc6f29f64060ec1c77cb8
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="make-virtual-machine-scale-sets-available-in-azure-stack"></a>Mettre les groupes de machines virtuelles identiques à disposition dans Azure Stack
-Les groupes de machines virtuelles identiques constituent une ressource de calcul Azure Stack. Vous pouvez les utiliser toodeploy et gérer un ensemble de machines virtuelles identiques. Avec tous les ordinateurs virtuels configurés hello identiques, identiques ne nécessitent pas configuration anticipée des machines virtuelles. Il est plus facile toobuild à grande échelle des services qui ciblent des charges de travail big compute et données volumineuses.
 
-Cette rubrique vous guide tout au long de l’échelle hello processus toomake jeux disponibles Bonjour Azure Marketplace de pile. Après avoir terminé cette procédure, vos utilisateurs peuvent ajouter, échelle de machines virtuelles définit tootheir abonnements.
+*S’applique à : systèmes intégrés Azure Stack et Kit de développement Azure Stack*
 
-Les groupes de machines virtuelles identiques sur Azure Stack suivent le même principe que sur Azure. Pour plus d’informations, consultez hello suivant vidéos :
+Les groupes de machines virtuelles identiques constituent une ressource de calcul Azure Stack. Vous pouvez les utiliser pour déployer et gérer un groupe de machines virtuelles identiques. Dans la mesure où toutes les machines virtuelles sont configurées de la même façon, les groupes identiques ne requièrent pas d’approvisionnement préalable des machines virtuelles. Il est plus simple de créer des services à grande échelle qui ciblent le Big Compute, le Big Data et les charges de travail en conteneurs.
+
+Cette rubrique vous guide tout au long du processus de mise à disposition des groupes identiques dans la Marketplace Azure Stack. Lorsque vous aurez suivi cette procédure, vos utilisateurs pourront ajouter des groupes de machines virtuelles identiques à leurs abonnements.
+
+Les groupes de machines virtuelles identiques sur Azure Stack suivent le même principe que sur Azure. Pour plus d’informations, consultez les vidéos suivantes :
 * [Mark Russinovich parle des groupes identiques Azure](https://channel9.msdn.com/Blogs/Regular-IT-Guy/Mark-Russinovich-Talks-Azure-Scale-Sets/)
 * [Jeux de mise à l’échelle de machine virtuelle, avec Guy Bowerman](https://channel9.msdn.com/Shows/Cloud+Cover/Episode-191-Virtual-Machine-Scale-Sets-with-Guy-Bowerman)
 
-Sur Azure Stack, les groupes de machines virtuelles identiques ne sont pas compatibles avec la mise à l’échelle automatique. Vous pouvez ajouter plusieurs instances tooa mise à l’échelle définie à l’aide du portail de pile de Azure hello, des modèles de gestionnaire de ressources ou PowerShell.
+Sur Azure Stack, les groupes de machines virtuelles identiques ne sont pas compatibles avec la mise à l’échelle automatique. Vous pouvez ajouter d’autres instances à un groupe identique avec le portail Azure Stack, les modèles Resource Manager ou PowerShell.
 
 ## <a name="prerequisites"></a>Composants requis
 * **PowerShell et outils**
 
-   Installer et PowerShell configuré pour la pile d’Azure et les outils de pile de Azure hello. Consultez la page [Devenir opérationnel avec PowerShell dans Azure Stack](azure-stack-powershell-configure-quickstart.md).
+   Installer et configurez PowerShell pour Azure Stack et les outils Azure Stack. Consultez la page [Devenir opérationnel avec PowerShell dans Azure Stack](azure-stack-powershell-configure-quickstart.md).
 
-   Après avoir installé les outils de pile de Azure hello, assurez-vous d’importer hello suivant le module PowerShell (toohello relative du chemin d’accès. dossier \ComputeAdmin dans le dossier de hello AzureStack-outils-master) :
+   Après avoir installé les outils Azure Stack, veillez à importer le module PowerShell suivant (chemin d’accès relatif au dossier .\ComputeAdmin du dossier AzureStack-Tools-master) :
 
         Import-Module .\AzureStack.ComputeAdmin.psm1
 
 * **Image du système d’exploitation**
 
-   Si vous n’avez pas ajouté une tooyour d’image de système d’exploitation Azure Marketplace de pile, consultez [marketplace de la pile de Azure ajouter hello Windows Server 2016 VM image toohello](azure-stack-add-default-image.md).
+   Si vous n’avez pas ajouté d’image de système d’exploitation à votre Marketplace Azure Stack, consultez la page [Ajouter l’image de machine virtuelle de Windows Server 2016 à la marketplace Azure Stack](azure-stack-add-default-image.md).
 
-   Pour la prise en charge de Linux, téléchargez Ubuntu Server 16.04 et l’ajouter à l’aide de ```Add-AzsVMImage``` avec les paramètres suivants de hello : ```-publisher "Canonical" -offer "UbuntuServer" -sku "16.04-LTS"```.
+   Pour la prise en charge de Linux, téléchargez Ubuntu Server 16.04 et ajoutez-le à l’aide de ```Add-AzsVMImage``` avec les paramètres suivants : ```-publisher "Canonical" -offer "UbuntuServer" -sku "16.04-LTS"```.
 
-## <a name="add-hello-virtual-machine-scale-set"></a>Ajouter l’ensemble d’échelle de machine virtuelle hello
+## <a name="add-the-virtual-machine-scale-set"></a>Ajouter le groupe de machines virtuelles identiques
 
-Modifier hello PowerShell suivantes pour votre environnement de script et exécutez-le tooadd un tooyour de jeu de mise à l’échelle machine virtuelle Azure Marketplace de pile. 
+Modifiez le script PowerShell suivant en fonction de votre environnement, puis exécutez-le pour ajouter un groupe de machines virtuelles identiques à votre Marketplace Azure Stack. 
 
-``$User``est un compte de hello que vous utilisez le portail d’administration tooconnect hello. Par exemple, serviceadmin@contoso.onmicrosoft.com.
+``$User`` est le compte servant à se connecter au portail d’administration. Par exemple, serviceadmin@contoso.onmicrosoft.com.
 
 ```
 $Arm = "https://adminmanagement.local.azurestack.external"
@@ -69,12 +72,12 @@ Add-AzsVMSSGalleryItem -Location $Location
 
 ## <a name="remove-a-virtual-machine-scale-set"></a>Supprimer un groupe de machines virtuelles identiques
 
-tooremove un élément de galerie de machine virtuelle mise à l’échelle ensemble, exécutez hello suivant de commande PowerShell :
+Pour supprimer un élément de la galerie du groupe de machines virtuelles identiques, exécutez la commande PowerShell suivante :
 
     Remove-AzsVMSSGalleryItem
 
 > [!NOTE]
-> élément de la galerie Hello ne peut pas être supprimée immédiatement. Vous devrez peut-être portal de hello toorefresh plusieurs fois avant qu’il soit supprimé hello Marketplace.
+> L’élément de la galerie n’est pas forcément supprimé immédiatement de la marketplace. Vous devrez peut-être pour cela actualiser le portail plusieurs fois.
 
 
 ## <a name="next-steps"></a>Étapes suivantes

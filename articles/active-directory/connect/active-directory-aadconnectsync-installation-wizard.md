@@ -1,7 +1,7 @@
 ---
-title: "Assistant Installation de nouveau en cours d’exécution hello Azure AD Connect | Documents Microsoft"
-description: "Explique comment l’Assistant installation hello fonctionne hello deuxième fois que vous exécutez."
-keywords: "Assistant d’installation Bonjour Azure AD Connect vous permet de configurer des deuxième fois que vous exécutez hello de paramètres de maintenance"
+title: "Réexécution de l’Assistant Installation d’Azure AD Connect | Microsoft Docs"
+description: "Explique le fonctionnement de l’Assistant Installation la deuxième fois que vous l’exécutez."
+keywords: "L’Assistant Installation d’Azure AD Connect vous permet de configurer les paramètres de maintenance la deuxième fois que vous l’exécutez"
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -15,29 +15,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: 83cc74aca471ef9b4f65f7f3582e3e48d3d81cfe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 42855b785c0ab334e33a622c8db912ce2438c627
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="azure-ad-connect-sync-running-hello-installation-wizard-a-second-time"></a>Synchronisation Azure AD Connect : l’Assistant installation hello en cours d’exécution une deuxième fois.
-Hello première fois vous exécutez l’Assistant d’installation Bonjour Azure AD Connect, il vous guide tooconfigure votre installation. Si vous exécutez à nouveau l’Assistant installation Bonjour, il offre des options pour la maintenance.
+# <a name="azure-ad-connect-sync-running-the-installation-wizard-a-second-time"></a>Azure AD Connect Sync : exécuter l’Assistant Installation une deuxième fois
+La première fois que vous exécutez l’Assistant Installation d’Azure AD Connect, il vous guide dans la procédure de configuration de votre installation. Si vous réexécutez l’Assistant Installation, il vous propose des options de maintenance.
 
-Vous pouvez trouver l’Assistant installation hello dans le menu Démarrer de hello nommé **Azure AD Connect**.
+Vous trouverez l’Assistant Installation dans le menu Démarrer sous le nom **Azure Connect AD**.
 
 ![Menu Démarrer](./media/active-directory-aadconnectsync-installation-wizard/startmenu.png)
 
-Lorsque vous démarrez l’Assistant installation hello, vous voyez une page avec ces options :
+Lorsque vous démarrez l’Assistant Installation, une page s’affiche avec ces options :
 
 ![Page avec une liste de tâches supplémentaires](./media/active-directory-aadconnectsync-installation-wizard/additionaltasks.png)
 
-Si vous avez installé AD FS avec Azure AD Connect, vous avez davantage d’options. Hello options supplémentaires que vous avez pour ADFS sont documentées dans [gestion ADFS](active-directory-aadconnect-federation-management.md#manage-ad-fs).
+Si vous avez installé AD FS avec Azure AD Connect, vous avez davantage d’options. Les options supplémentaires que vous avez pour AD FS sont documentées dans [Gestion AD FS](active-directory-aadconnect-federation-management.md#manage-ad-fs).
 
-Sélectionnez une des tâches de hello et cliquez sur **suivant** toocontinue.
+Sélectionnez l’une des tâches et cliquez sur **Suivant** pour continuer.
 
 > [!IMPORTANT]
-> Alors que l’Assistant installation hello est ouvert, toutes les opérations de moteur de synchronisation hello sont suspendues. Assurez-vous que vous fermez l’Assistant installation hello dès que vous avez terminé vos modifications de configuration.
+> Tant que l’Assistant Installation est ouvert, toutes les opérations du moteur de synchronisation sont suspendues. Prenez soin de fermer l’Assistant Installation dès que vous avez terminé vos modifications de configuration.
 >
 >
 
@@ -46,45 +46,45 @@ Cette option vous donne un aperçu rapide de vos options actuellement configuré
 
 ![Page avec la liste de toutes les options et leur état](./media/active-directory-aadconnectsync-installation-wizard/viewconfig.png)
 
-Cliquez sur **précédent** toogo précédent. Si vous sélectionnez **Exit**, vous fermez l’Assistant installation hello.
+Cliquez sur **Précédent** pour revenir en arrière. Si vous sélectionnez **Quitter**, vous fermez l’Assistant Installation.
 
 ## <a name="customize-synchronization-options"></a>Personnaliser les options de synchronisation
-Cette option est la configuration de la synchronisation modifications toohello toomake utilisé. Vous consultez un sous-ensemble des options à partir du chemin d’installation de configuration personnalisée hello. Et ce, même si vous avez initialement utilisé l’installation rapide.
+Cette option est utilisée pour apporter des modifications à la configuration de la synchronisation. Vous voyez un sous-ensemble d’options provenant du chemin d’installation de la configuration personnalisée. Et ce, même si vous avez initialement utilisé l’installation rapide.
 
 * [Ajouter d’autres annuaires](active-directory-aadconnect-get-started-custom.md#connect-your-directories). Pour supprimer un annuaire, consultez [Supprimer un connecteur](active-directory-aadconnectsync-service-manager-ui-connectors.md#delete).
 * [Modifier le filtrage par domaine ou unité d’organisation](active-directory-aadconnect-get-started-custom.md#domain-and-ou-filtering).
 * Supprimer le filtrage de groupe.
 * [Modifier les fonctionnalités facultatives](active-directory-aadconnect-get-started-custom.md#optional-features).
 
-Bonjour autres options de l’installation initiale de hello ne peut pas être modifiées et ne sont pas disponibles. Ces options sont :
+Les autres options provenant de l’installation initiale ne peuvent pas être modifiées et ne sont pas disponibles. Ces options sont :
 
-* Modifiez toouse d’attribut hello pour userPrincipalName et sourceAnchor.
-* Modifier hello jointure de méthode pour les objets à partir de l’autre forêt.
+* Modifier l’attribut à utiliser pour userPrincipalName et sourceAnchor.
+* Modifier la méthode de jointure d’objets provenant de différentes forêts.
 * Activer le filtrage de groupe.
 
 ## <a name="refresh-directory-schema"></a>Actualiser le schéma d’annuaire
-Cette option est utilisée si vous avez modifié le schéma de hello dans un de vos locaux sur les forêts AD DS. Par exemple, vous avez peut-être installé Exchange ou mis à niveau le schéma tooa Windows Server 2012 avec les objets périphériques. Dans ce cas, vous avez besoin tooinstruct Azure AD Connect tooread hello schéma à partir des services AD DS et mettre à jour son cache. Cette opération régénère également les règles de synchronisation hello. Si vous ajoutez un schéma d’Exchange hello, par exemple, les règles de synchronisation hello pour Exchange sont ajoutés toohello configuration.
+Cette option est utilisée si vous avez modifié le schéma dans l’une de vos forêts AD DS locales. Par exemple, vous pouvez avoir installé Exchange ou effectué une mise à niveau vers un schéma Windows Server 2012 avec des objets de périphérique. Dans ce cas, vous devez demander à Azure AD Connect de relire le schéma AD DS et de mettre à jour son cache. Cette action régénère également les règles de synchronisation. Si vous ajoutez le schéma Exchange, par exemple, les règles de synchronisation d’Exchange sont ajoutées à la configuration.
 
-Lorsque vous sélectionnez cette option, tous les répertoires hello dans votre configuration sont répertoriés. Vous pouvez conserver le paramètre par défaut de hello et actualiser toutes les forêts ou désélectionnez certaines d'entre elles.
+Lorsque vous sélectionnez cette option, tous les annuaires de votre configuration sont répertoriés. Vous pouvez conserver le paramètre par défaut et actualiser toutes les forêts ou désélectionner certaines d’entre elles.
 
-![Page avec une liste de tous les répertoires dans un environnement de hello](./media/active-directory-aadconnectsync-installation-wizard/refreshschema.png)
+![Page avec la liste de tous les annuaires de l’environnement](./media/active-directory-aadconnectsync-installation-wizard/refreshschema.png)
 
 ## <a name="configure-staging-mode"></a>Configurer le mode de préproduction
-Cette option vous permet de tooenable et désactiver le mode de mise en lots sur le serveur de hello. Vous trouverez plus d’informations sur le mode de préproduction et son utilisation dans [Opérations](active-directory-aadconnectsync-operations.md#staging-mode).
+Cette option permet d’activer et de désactiver le mode de préproduction sur le serveur. Vous trouverez plus d’informations sur le mode de préproduction et son utilisation dans [Opérations](active-directory-aadconnectsync-operations.md#staging-mode).
 
-option de Hello indique si la mise en lots est actuellement activé ou désactivé :  
-![Option qui s’affiche également état actuel de hello du mode de mise en lots](./media/active-directory-aadconnectsync-installation-wizard/stagingmodecurrentstate.png)
+L’option s’affiche si la préproduction est actuellement activée ou désactivée :   
+![Option qui affiche également l’état actuel du mode de préproduction](./media/active-directory-aadconnectsync-installation-wizard/stagingmodecurrentstate.png)
 
-toochange hello état, sélectionnez cette option et la case à cocher Sélectionner ou désélectionner hello.  
-![Option qui s’affiche également état actuel de hello du mode de mise en lots](./media/active-directory-aadconnectsync-installation-wizard/stagingmodeenable.png)
+Pour modifier l’état, sélectionnez cette option et cochez ou décochez la case.  
+![Option qui affiche également l’état actuel du mode de préproduction](./media/active-directory-aadconnectsync-installation-wizard/stagingmodeenable.png)
 
 ## <a name="change-user-sign-in"></a>Modifier la connexion de l’utilisateur
-Cette option vous permet de toochange de toofederation de synchronisation de mot de passe ou hello inverse. Vous ne pouvez pas modifier trop**ne configurez pas**.
+Cette option vous permet de passer de la synchronisation de mot de passe à la fédération ou l’inverse. Vous ne pouvez pas passer à **ne pas configurer**.
 
 Pour plus d’informations sur cette option, consultez [connexion de l’utilisateur](active-directory-aadconnect-user-signin.md#changing-the-user-sign-in-method).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* En savoir plus sur le modèle de configuration hello utilisé par la synchronisation Azure AD Connect dans [approvisionnement déclaratif compréhension](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
+* En savoir plus sur le modèle de configuration utilisé par la synchronisation d’Azure AD Connect dans [Comprendre l’approvisionnement déclaratif](active-directory-aadconnectsync-understanding-declarative-provisioning.md).
 
 **Rubriques de présentation**
 

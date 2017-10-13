@@ -1,6 +1,6 @@
 ---
-title: "Azure B2C Active Directory : Basculement tooa B2C client | Documents Microsoft"
-description: Comment tooswitch en contexte hello de votre B2C Active Directory de client
+title: "Azure Active Directory B2C : Basculement vers un locataire B2C | Microsoft Docs"
+description: "Comment basculer dans le contexte de votre locataire Active Directory B2C"
 services: active-directory-b2c
 documentationcenter: 
 author: parakhj
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 4/13/2017
 ms.author: parakhj
-ms.openlocfilehash: 572f9ab283ecac68d284bb04fdfc98575bcf9393
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 40d8d57d974a949fbdc0a06eeceb2d06bfbaa09f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="switching-tooyour-azure-ad-b2c-tenant"></a>Commutation tooyour Azure AD B2C locataire
+# <a name="switching-to-your-azure-ad-b2c-tenant"></a>Basculement vers votre locataire Azure AD B2C
 
-Dans l’ordre tooconfigure Azure AD B2C, vous devez toobe dans le contexte de hello de votre locataire Azure AD B2C.
+Pour configurer Azure AD B2C, vous devez vous trouver dans le contexte de votre locataire Azure AD B2C.
 
 ## <a name="log-into-azure-ad-b2c-tenant"></a>Se connecter au locataire Azure AD B2C
 
-toonavigate tooyour de locataire Azure AD B2C, vous devez être connecté en tant qu’un administrateur général du locataire d’Azure AD B2C de hello en hello portail Azure.
+Pour accéder à votre locataire Azure AD B2C, vous devez être connecté au portail Azure en tant qu’administrateur général du locataire Azure AD B2C.
 
-1. L’authentification à hello [portail Azure](http://portal.azure.com).
-1. Basculer les locataires en cliquant sur votre adresse de messagerie ou d’une image dans l’angle supérieur droit de hello.
-1. Bonjour `Directory` liste qui s’affiche, le locataire hello sélectionnez Azure AD B2C que vous souhaitez toomanage.
+1. Connectez-vous au [portail Azure](http://portal.azure.com).
+1. Basculez les locataires en cliquant sur votre adresse de messagerie ou sur l’image dans le coin supérieur droit.
+1. Dans la liste `Directory` qui s’affiche, sélectionnez le locataire Azure AD B2C que vous souhaitez gérer.
 
-Actualise Hello portail Azure.  Maintenant, vous êtes connecté à hello portail Azure dans le contexte de hello de votre locataire Azure AD B2C.
+Le portail Azure s’actualise.  Vous êtes à présent connecté au portail Azure dans le contexte de votre locataire Azure AD B2C.
 
-## <a name="navigate-toohello-b2c-features-blade"></a>Accédez Panneau de fonctionnalités toohello B2C
+## <a name="navigate-to-the-b2c-features-blade"></a>Accéder au panneau de fonctionnalités B2C
 
-1. Cliquez sur **Parcourir** sur la navigation de gauche hello.
-1. Cliquez sur **> davantage de services** , puis recherchez `Azure AD B2C` dans le volet de navigation gauche hello.  (toopin tooyour gauche tableau d’accueil, cliquez sur à gauche en étoile toohello hello d’Azure AD B2C)
-1. Cliquez sur **Azure AD B2C** tooaccess hello Panneau de fonctionnalités B2C.
+1. Cliquez sur **Parcourir** dans le volet de navigation de gauche.
+1. Cliquez sur **> Plus de services**, puis recherchez `Azure AD B2C` dans le volet de navigation de gauche.  (Pour l’épingler à votre Tableau d’accueil sur la gauche, cliquez sur l’étoile située à gauche d’Azure AD B2C.)
+1. Cliquez sur **Azure AD B2C** pour accéder au panneau de fonctionnalités B2C.
    
-    ![Capture d’écran du Panneau de navigation tooB2C fonctionnalités](./media/active-directory-b2c-get-started/b2c-browse.png)
+    ![Capture d’écran du bouton Parcourir du panneau de fonctionnalités B2C](./media/active-directory-b2c-get-started/b2c-browse.png)
 
 > [!IMPORTANT]
-> Vous devez toobe un administrateur Global du panneau des fonctionnalités hello B2C locataire toobe tooaccess en mesure de hello B2C. L’administrateur général ou l’utilisateur de tout autre client ne pourra pas y accéder.  Vous pouvez basculer tooyour B2C client à l’aide du sélecteur de locataire hello dans hello coin supérieur droit de hello portail Azure.
+> Vous devez être administrateur général du client B2C pour accéder au volet des fonctionnalités B2C. L’administrateur général ou l’utilisateur de tout autre client ne pourra pas y accéder.  Vous pouvez basculer vers votre client B2C en utilisant le sélecteur de client dans le coin supérieur droit du portail Azure.

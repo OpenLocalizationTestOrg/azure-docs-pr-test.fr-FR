@@ -1,5 +1,5 @@
 ---
-title: aaaAdvanced Configuration pour Windows applications Engagement SDK Universal
+title: "Configuration avancée du Kit de développement logiciel (SDK) des applications Windows Universal pour Engagement"
 description: "Options de configuration avancées pour Engagement avec des applications Windows Universal"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 23bd05012bc25d438d8d4985a112280bed0292b8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: cb9454212c94cf65093219c3d24c71277ede7877
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="advanced-configuration-for-windows-universal-apps-engagement-sdk"></a>Configuration avancée du Kit de développement logiciel (SDK) des applications Windows Universal pour Engagement
 > [!div class="op_single_selector"]
@@ -29,27 +29,27 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Cette procédure décrit comment tooconfigure différentes options de configuration pour les applications Azure Mobile Engagement Android.
+Cette procédure explique comment définir différentes options de configuration pour les applications Azure Mobile Engagement pour Android.
 
 ## <a name="prerequisites"></a>Composants requis
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-windows-store-prereqs.md)]
 
 ## <a name="advanced-configuration"></a>Configuration avancée
 ### <a name="disable-automatic-crash-reporting"></a>Désactiver le signalement automatique des incidents
-Vous pouvez désactiver hello automatique de rapport d’incident fonctionnalité d’Engagement. Puis, lorsqu’une exception non gérée se produit, Engagement ne fait rien.
+Vous pouvez désactiver la fonctionnalité de signalement automatique des incidents d'Engagement. Puis, lorsqu’une exception non gérée se produit, Engagement ne fait rien.
 
 > [!WARNING]
-> Si vous désactivez cette fonctionnalité, puis lorsqu’un incident non gérée se produit dans votre application, Engagement n’envoie pas de blocage de hello **et** ne ferme pas la session de hello et les travaux.
+> Si vous désactivez cette fonctionnalité et qu'un incident non géré se produit dans votre application, 'Engagement n'envoie pas l'incident **ET** qu'il ne ferme ni la session ni les tâches.
 > 
 > 
 
-toodisable automatique sur incident reporting, personnaliser votre configuration en fonction de méthode hello vous l’avez déclarée :
+Pour désactiver le signalement automatique des incidents, personnalisez votre configuration en fonction de la façon dont vous l'avez déclarée :
 
 #### <a name="from-engagementconfigurationxml-file"></a>Dans le fichier `EngagementConfiguration.xml`
-Définir le rapport incident trop`false` entre `<reportCrash>` et `</reportCrash>` balises.
+Affectez au signalement des incidents la valeur `false` entre les balises `<reportCrash>` et `</reportCrash>`.
 
 #### <a name="from-engagementconfiguration-object-at-run-time"></a>Dans l'objet `EngagementConfiguration` au moment l'exécution
-Définissez toofalse de panne de rapport à l’aide de votre objet EngagementConfiguration.
+Affectez au signalement des incidents la valeur false à l'aide de votre objet EngagementConfiguration.
 
         /* Engagement configuration. */
         EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -59,18 +59,18 @@ Définissez toofalse de panne de rapport à l’aide de votre objet EngagementCo
         engagementConfiguration.Agent.ReportCrash = false;
 
 ### <a name="disable-real-time-reporting"></a>Désactiver les rapports en temps réel
-Par défaut, les rapports de service d’Engagement hello journaux en temps réel. Si votre application rapports journaux fréquemment, il est mieux toobuffer hello journaux et tooreport à la fois à une base de temps réguliers. On parle dans ce cas de « mode rafale ».
+Par défaut, le service Engagement génère des journaux en temps réel. Si votre application crée des journaux très fréquemment, il est préférable de les mettre en mémoire tampon et de les rassembler dans un rapport à intervalle régulier. On parle dans ce cas de « mode rafale ».
 
-toodo appeler par conséquent, la méthode hello :
+Pour cela, appelez la méthode :
 
         EngagementAgent.Instance.SetBurstThreshold(int everyMs);
 
-l’argument Hello est une valeur dans **millisecondes**. Chaque fois que vous souhaitez que la journalisation en temps réel tooreactivate hello, appelez la méthode hello sans paramètres ou avec la valeur de hello 0.
+L'argument est une valeur en **millisecondes**. Si vous souhaitez réactiver la génération de journaux en temps réel, appelez la méthode sans aucun paramètre ou avec la valeur 0.
 
-Mode rafale augmente l’autonomie des batteries hello légèrement mais a un impact sur hello Engagement moniteur : durée des sessions et les travaux toute sont arrondis toohello rafale seuil (par conséquent, les sessions et les travaux plus court que le seuil de croissance hello n’est pas forcément visible). Nous vous recommandons d'utiliser un seuil de rafale inférieur à 30000 (30 s). Journaux enregistrés sont des éléments too300 limité. Si l'envoi est trop long, vous risquez de perdre certains journaux.
+Le mode rafale accroît légèrement l'autonomie de la batterie, mais il affecte aussi Engagement Monitor. En effet, la durée des sessions et des tâches est arrondie au seuil de rafale (les sessions et les tâches plus courtes que le seuil de rafale ne sont donc pas visibles). Nous vous recommandons d'utiliser un seuil de rafale inférieur à 30000 (30 s). Les journaux enregistrés sont limités à 300 entrées. Si l'envoi est trop long, vous risquez de perdre certains journaux.
 
 > [!WARNING]
-> seuil de croissance Hello ne peut pas être configuré tooa période de moins d’une seconde. Si vous le faites, hello SDK montre une trace avec l’erreur de hello et réinitialise automatiquement toohello par défaut, zéro seconde. Cette hello tooreport de déclencheurs hello SDK se connecte en temps réel.
+> Il n'est pas possible de configurer un seuil de rafale inférieur à une seconde. Sinon, le SDK affiche une trace avec l'erreur et rétablit automatiquement la valeur par défaut, c'est-à-dire zéro seconde. Le SDK génère alors les journaux en temps réel.
 > 
 > 
 

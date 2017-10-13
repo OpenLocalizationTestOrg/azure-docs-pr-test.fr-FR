@@ -1,6 +1,6 @@
 ---
-title: "tailles d’aaaAzure Linux VM - stockage | Documents Microsoft"
-description: "Listes hello différente du stockage optimisé des tailles disponibles pour les ordinateurs virtuels Linux dans Azure."
+title: Tailles des machines virtuelles Linux Azure - Stockage | Microsoft Docs
+description: "Répertorie les différentes tailles optimisées pour le stockage disponibles pour les machines virtuelles Linux dans Azure."
 services: virtual-machines-linux
 documentationcenter: 
 author: jonbeck7
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: 6e73b8cdf995b43c01881e792d67899233ec06b1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 1403c6deb3a9892ff5e310038c0f4b289c0aa84b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="storage-optimized-linux-vm-sizes"></a>Tailles de machine virtuelle Linux optimisées pour le stockage
 

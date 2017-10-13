@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooresize un VM Linux avec hello Azure CLI 2.0 | Documents Microsoft
-description: "Comment tooscale des ou mise à l’échelle vers le bas d’une machine virtuelle Linux, en modifiant hello taille de machine virtuelle."
+title: "Comment redimensionner une machine virtuelle Linux avec Azure CLI 2.0 | Microsoft Docs"
+description: "Comment augmenter ou diminuer les capacités d’une machine virtuelle Linux, en en modifiant la taille."
 services: virtual-machines-linux
 documentationcenter: na
 author: mikewasson
@@ -16,34 +16,34 @@ ms.workload: infrastructure-services
 ms.date: 02/10/2017
 ms.author: mwasson
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e8fba485b5bcc7824f546de5cf3df77624a28008
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 23fc9f7f34732079682857d4ee685fe811751698
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="resize-a-linux-virtual-machine-using-cli-20"></a>Redimensionner une machine virtuelle Linux avec CLI 2.0
 
-Une fois que vous configurez un ordinateur virtuel (VM), vous pouvez augmenter ou diminuer la hello machine virtuelle en modifiant hello [taille de machine virtuelle][vm-sizes]. Dans certains cas, vous devez libérer hello VM tout d’abord. Vous devez toodeallocate hello machine virtuelle si vous le souhaitez hello taille n’est pas disponible sur le cluster de matériel hello qui héberge hello machine virtuelle. Cet article décrit en détail comment tooresize un VM Linux avec hello Azure CLI 2.0. Vous pouvez également effectuer ces étapes avec hello [Azure CLI 1.0](change-vm-size-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Après avoir approvisionné une machine virtuelle, vous pouvez le mettre à l’échelle en en modifiant la [taille][vm-sizes]. Dans certains cas, vous devez commencer par libérer la machine virtuelle. C’est le cas notamment lorsque la taille souhaitée n’est pas disponible sur le cluster matériel qui héberge la machine virtuelle. Cet article explique comment redimensionner une machine virtuelle Linux avec Azure CLI 2.0. Vous pouvez également effectuer ces étapes à l’aide [d’Azure CLI 1.0](change-vm-size-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="resize-a-vm"></a>Redimensionner une machine virtuelle
-tooresize une machine virtuelle, vous devez hello dernières [Azure CLI 2.0](/cli/azure/install-az-cli2) installé et connecté à l’aide du compte Azure tooan [ouverture de session az](/cli/azure/#login).
+Pour redimensionner une machine virtuelle, vous devez disposer de la dernière version [d’Azure CLI 2.0](/cli/azure/install-az-cli2) et vous connecter à un compte Azure avec la commande [az login](/cli/azure/#login).
 
-1. Afficher la liste hello des ordinateurs virtuels disponibles sur le cluster de matériel hello où hello machine virtuelle est hébergée avec des tailles de [az vm-vm-resize-options de la liste](/cli/azure/vm#list-vm-resize-options). Hello exemple suivant répertorie les tailles de machine virtuelle pour hello ordinateur virtuel nommé `myVM` dans le groupe de ressources hello `myResourceGroup` région :
+1. Affichez la liste des tailles de machine virtuelle disponibles dans le cluster matériel qui héberge la machine virtuelle à l’aide de la commande [az vm list-vm-resize-options](/cli/azure/vm#list-vm-resize-options). L’exemple suivant répertorie les tailles de machine virtuelle pour la machine virtuelle nommée `myVM` dans la région du groupe de ressources `myResourceGroup` :
    
     ```azurecli
     az vm list-vm-resize-options --resource-group myResourceGroup --name myVM --output table
     ```
 
-2. Si hello souhaité de taille de machine virtuelle est répertoriée, redimensionner hello machine virtuelle avec [az vm redimensionner](/cli/azure/vm#resize). Hello suivant redimensionne de l’exemple hello ordinateur virtuel nommé `myVM` toohello `Standard_DS3_v2` taille :
+2. Si la taille de machine virtuelle souhaitée est répertoriée, redimensionnez la machine virtuelle avec la commande [az vm resize](/cli/azure/vm#resize). L’exemple suivant redimensionne la machine virtuelle nommée `myVM` à la taille `Standard_DS3_v2` :
    
     ```azurecli
     az vm resize --resource-group myResourceGroup --name myVM --size Standard_DS3_v2
     ```
    
-    Hello machine virtuelle redémarre pendant ce processus. Après le redémarrage de hello, votre système d’exploitation existant et les disques de données sont remappés. Quoi que ce soit sur le disque temporaire de hello est perdu.
+    La machine virtuelle redémarre pendant le processus. Après le redémarrage, votre système d’exploitation existant et les disques de données sont remappés. Tout le contenu du disque temporaire est perdu.
 
-3. Si hello souhaité de taille de machine virtuelle n’est pas répertorié, vous devez toofirst désallouer hello machine virtuelle avec [az vm désallouer](/cli/azure/vm#deallocate). Ce processus autorise hello VM toothen être redimensionné tooany taille disponible qui prend en charge de la région de hello, puis démarré. Hello suit désallouer, redimensionner et puis démarrez hello ordinateur virtuel nommé `myVM` dans le groupe de ressources hello nommé `myResourceGroup`:
+3. Si la taille de machine virtuelle souhaitée n’est pas répertoriée, vous devez d’abord libérer la machine virtuelle avec la commande [az vm deallocate](/cli/azure/vm#deallocate). Ce processus permet de redimensionner ensuite la machine virtuelle à n’importe quelle taille disponible dans la région, puis de la redémarrer. Les étapes suivantes consistent à libérer, redimensionner, puis démarrer la machine virtuelle nommée `myVM` dans le groupe de ressources nommé `myResourceGroup` :
    
     ```azurecli
     az vm deallocate --resource-group myResourceGroup --name myVM
@@ -52,7 +52,7 @@ tooresize une machine virtuelle, vous devez hello dernières [Azure CLI 2.0](/cl
     ```
    
    > [!WARNING]
-   > Hello désallocation de machine virtuelle libère aussi toutes les adresses IP dynamiques affectées toohello machine virtuelle. Hello du système d’exploitation et des disques de données ne sont pas affectées.
+   > Le fait de libérer la machine virtuelle libère également toutes les adresses IP dynamiques affectées à la machine virtuelle. Les disques de données et du système d’exploitation ne sont pas affectés.
 
 ## <a name="next-steps"></a>Étapes suivantes
 Pour une évolutivité supplémentaire, exécutez plusieurs instances de machine virtuelle et augmentez leur taille. Pour plus d’informations, consultez [Mise à l’échelle automatique des machines Linux dans un groupe de machines virtuelles à échelle identique][scale-set]. 

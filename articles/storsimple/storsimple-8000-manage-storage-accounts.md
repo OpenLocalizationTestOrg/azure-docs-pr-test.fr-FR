@@ -1,6 +1,6 @@
 ---
-title: "aaaManage informations d’identification de votre compte de stockage StorSimple pour les appareils Microsoft Azure StorSimple 8000 series | Documents Microsoft"
-description: "Explique comment vous pouvez utiliser hello tooadd de page de configuration du Gestionnaire de périphériques StorSimple, modifier, supprimer ou les clés de sécurité hello rotation pour un compte de stockage."
+title: "Gérer vos informations d’identification de compte de stockage StorSimple pour les appareils de la gamme 8000 Microsoft Azure StorSimple | Microsoft Docs"
+description: "Explique comment utiliser la page Configurer du service StorSimple Device Manager pour ajouter, modifier ou supprimer les clés de sécurité d’un compte de stockage, ou pour effectuer une rotation de ces clés."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/29/2017
 ms.author: alkohli
-ms.openlocfilehash: 132ee46509b39db4d1b97b0f1077800a253e8da9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 36058ad69ea670998b50cf9038741c294a5b79ab
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-hello-storsimple-device-manager-service-toomanage-your-storage-account-credentials"></a>Utilisez hello le Gestionnaire de périphériques StorSimple service toomanage vos informations d’identification du compte de stockage
+# <a name="use-the-storsimple-device-manager-service-to-manage-your-storage-account-credentials"></a>Utiliser le service StorSimple Device Manager pour gérer vos informations d’identification de compte de stockage
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Hello **Configuration** section dans le panneau de service de gestionnaire de périphériques StorSimple hello présente tous les paramètres de service global hello qui peuvent être créés dans hello service du Gestionnaire de périphériques StorSimple. Ces paramètres peuvent être appliqués tooall hello appareils toohello service connecté et incluant :
+La section **Configuration** du panneau du service StorSimple Device Manager présente tous les paramètres de service généraux pouvant être créés dans le service StorSimple Device Manager. Ces paramètres peuvent être appliqués à tous les appareils connectés au service et incluent les éléments suivants :
 
 * Informations d’identification du compte de stockage
 * Modèles de bande passante 
 * Enregistrements de contrôle d’accès 
 
-Ce didacticiel explique comment tooadd, modifier ou supprimer les informations d’identification du compte de stockage ou faire tourner les clés de sécurité hello pour un compte de stockage.
+Ce didacticiel explique comment ajouter, modifier ou supprimer des informations d’identification de compte de stockage, ou effectuer une rotation des clés de sécurité d’un compte de stockage.
 
  ![Liste d’informations d’identification de compte de stockage](./media/storsimple-8000-manage-storage-accounts/createnewstorageacct6.png)  
 
-Comptes de stockage contiennent les informations d’identification hello hello StorSimple périphérique utilise tooaccess votre compte de stockage avec votre fournisseur de services cloud. Pour les comptes de stockage Microsoft Azure, il s’agit des informations d’identification telles que le nom du compte hello et clé d’accès primaire hello. 
+Les comptes de stockage contiennent les informations d’identification que l’appareil StorSimple utilise pour accéder au compte de stockage que vous procure votre fournisseur de services cloud. Pour les comptes de stockage Microsoft Azure, il s’agit d’informations d’identification telles que le nom du compte et la clé d’accès primaire. 
 
-Sur hello **informations d’identification du compte de stockage** panneau, stockage de tous les comptes qui sont créés pour hello facturation d’abonnement sont affichés dans un format tabulaire contenant hello informations suivantes :
+Sur le panneau **Informations d’identification du compte de stockage**, l’ensemble des comptes de stockage créés pour l’abonnement à la facturation sont affichés sous forme de tableau, et contiennent les données suivantes :
 
-* **Nom** – hello compte toohello de nom unique attribué lors de sa création.
-* **SSL activé** : indique si hello SSL est activé et la communication de l’appareil-à-cloud est sur un canal sécurisé hello.
-* **Utilisé par** – hello du nombre de volumes à l’aide du compte de stockage hello.
+* **Nom** : nom unique attribué au compte lors de sa création.
+* **SSL activé** : permet d’indiquer si le protocole SSL est activé et si la communication appareil-cloud s’effectue sur le canal sécurisé.
+* **Utilisé par** : nombre de volumes utilisant le compte de stockage.
 
-Hello courants des tâches connexes toostorage comptes qui peuvent être effectuées sont :
+Les tâches les plus courantes que vous pouvez effectuer sur les comptes de stockage sont les suivantes :
 
 * Ajout d’un compte de stockage 
 * Modification d’un compte de stockage 
@@ -53,59 +53,59 @@ Hello courants des tâches connexes toostorage comptes qui peuvent être effectu
 
 Vous pouvez utiliser trois types de compte de stockage avec votre appareil StorSimple.
 
-* **Les comptes de stockage généré automatiquement** – comme hello nom l’indique, ce type de compte de stockage est généré automatiquement lorsque le service de hello est créé. toolearn en savoir plus sur la création de ce compte de stockage, consultez [étape 1 : créer un nouveau service](storsimple-8000-deployment-walkthrough-u2.md#step-1-create-a-new-service) dans [déployer l’appareil StorSimple local](storsimple-8000-deployment-walkthrough-u2.md). 
-* **Comptes de stockage dans l’abonnement au service hello** – il s’agit des comptes de stockage Azure hello associés hello même abonnement que celui du service de hello. toolearn en savoir plus sur la façon dont ces comptes de stockage sont créés, consultez [sur les comptes de stockage Azure](../storage/common/storage-create-storage-account.md). 
-* **Comptes de stockage en dehors de l’abonnement au service hello** : il s’agit des comptes de stockage Azure hello qui ne sont pas associés à votre service et probablement hello se trouvait avant le service a été créé.
+* **Comptes de stockage générés automatiquement** : comme son nom l’indique, ce type de compte de stockage est généré automatiquement à la création du service. Pour en savoir plus sur la création de ces comptes de stockage, consultez l’[Étape 1 : création d’un nouveau service](storsimple-8000-deployment-walkthrough-u2.md#step-1-create-a-new-service) dans [Déploiement de l’appareil local StorSimple](storsimple-8000-deployment-walkthrough-u2.md). 
+* **Comptes de stockage de l’abonnement au service** : il s’agit des comptes de stockage Azure associés à l’abonnement au service. Pour en savoir plus sur la création de ces comptes de stockage, consultez la rubrique [À propos des comptes de stockage Azure](../storage/common/storage-create-storage-account.md). 
+* **Comptes de stockage hors abonnement au service** : il s’agit des comptes de stockage Azure qui ne sont pas associés à votre service et existaient probablement avant sa création.
 
 ## <a name="add-a-storage-account"></a>Ajout d’un compte de stockage
 
-Vous pouvez ajouter un compte de stockage en fournissant un unique conviviales accès et le nom des informations d’identification lié toohello compte de stockage (avec le fournisseur de services de cloud computing spécifié hello). Vous avez également option hello d’activation hello sécurisé Secure sockets layer (SSL) en mode toocreate un canal sécurisé pour la communication réseau entre votre cloud hello et des appareils.
+Vous pouvez ajouter un compte de stockage en fournissant un nom convivial unique et les informations d’accès liées au compte de stockage (du fournisseur de services cloud spécifié). Vous avez également la possibilité d’activer le mode SSL (Secure Sockets Layer) afin de créer un canal sécurisé pour la communication réseau entre l’appareil et le cloud.
 
-Vous pouvez créer plusieurs comptes pour un fournisseur de services cloud donné. Sachez, toutefois, qu’après la création d’un compte de stockage, vous ne pouvez pas modifier le fournisseur de services de cloud hello.
+Vous pouvez créer plusieurs comptes pour un fournisseur de services cloud donné. Veuillez noter toutefois qu’une fois qu’un compte de stockage a été créé, vous ne pouvez plus modifier le fournisseur de services cloud.
 
-Pendant l’enregistrement de compte de stockage hello, hello service essaie de toocommunicate avec votre fournisseur de services cloud. informations d’identification Hello et les informations d’accès hello que vous avez fournies sont authentifiées à ce stade. Un compte de stockage est créé uniquement si hello authentification réussit. Si l’authentification hello échoue, un message d’erreur s’affichera.
+Pendant l’enregistrement du compte de stockage, le service tente de communiquer avec votre fournisseur de services cloud. Les informations d’identification et les données d’accès que vous avez fournies sont alors authentifiées. Un compte de stockage est créé uniquement si l’authentification réussit. Si l’authentification échoue, un message d’erreur s’affiche.
 
-Utilisez hello suit les informations d’identification du compte Azure storage tooadd procédures :
+Appliquez les procédures suivantes pour ajouter les informations d’identification de compte de stockage Azure :
 
-* tooadd une information d’identification du compte de stockage qui a hello même abonnement Azure en tant que service du Gestionnaire de périphériques hello
-* tooadd une information d’identification du compte de stockage Azure qui est en dehors de l’abonnement au service Gestionnaire de périphériques hello
+* Pour ajouter une information d’identification de compte de stockage bénéficiant de la même inscription Azure que le service Device Manager
+* Pour ajouter des informations d’identification de compte de stockage Azure en dehors de l’abonnement au service Device Manager
 
 [!INCLUDE [add-a-storage-account-update2](../../includes/storsimple-8000-configure-new-storage-account-u2.md)]
 
-#### <a name="tooadd-an-azure-storage-account-credential-outside-of-hello-storsimple-device-manager-service-subscription"></a>tooadd une information d’identification du compte de stockage Azure en dehors de l’abonnement au service Gestionnaire de périphériques StorSimple hello
+#### <a name="to-add-an-azure-storage-account-credential-outside-of-the-storsimple-device-manager-service-subscription"></a>Pour ajouter des informations d’identification de compte de stockage Azure en dehors de l’abonnement au service StorSimple Device Manager
 
-1. Accédez tooyour service StorSimple le Gestionnaire de périphériques, sélectionnez et double-cliquez dessus. Cette opération ouvre hello **vue d’ensemble** panneau.
-2. Sélectionnez **informations d’identification du compte de stockage** dans hello **Configuration** section. Celle-ci répertorie toutes les informations d’identification de compte stockage existant associées hello service du Gestionnaire de périphériques StorSimple.
+1. Accédez au service StorSimple Device Manager, sélectionnez-le et double-cliquez. Cette opération provoque l’ouverture du panneau **Vue d’ensemble**.
+2. Sélectionnez **Informations d’identification du compte de stockage** dans la section **Configuration**. Ici sont répertoriées les informations d’identification de compte de stockage existantes associées au service StorSimple Device Manager.
 3. Cliquez sur **Add**.
-4. Bonjour **ajouter une information d’identification du compte de stockage** panneau, hello suivant :
+4. Dans le panneau **Ajouter les informations d’identification d’un compte de stockage**, procédez comme suit :
    
     1. Pour **Abonnement**, sélectionnez **Autre**.
    
-    2. Fournissez le nom hello de vos informations d’identification du compte de stockage Azure.
+    2. Sélectionnez le nom associé à vos informations d’identification de compte de stockage Azure.
    
-    3. Bonjour **clé d’accès de compte de stockage** zone de texte, alimentation hello clé d’accès primaire pour vos informations d’identification du compte de stockage Azure. tooget cette clé, passez le service de stockage Azure toohello, vos informations d’identification du compte de stockage, puis cliquez sur **gérer les clés de compte**. Vous pouvez maintenant copier la clé d’accès primaire hello.
+    3. Dans la zone textuelle **Clé d’accès au compte de stockage**, fournissez la clé primaire d’accès pour vos informations d’identification de compte de stockage Azure. Pour obtenir cette clé, accédez au service du stockage Azure, sélectionnez vos informations d’identification du compte de stockage, puis cliquez sur **Gérer les clés d’accès**. Vous pouvez maintenant copier la clé d’accès primaire.
    
-    4. tooenable SSL, cliquez sur hello **activer** bouton toocreate un canal sécurisé pour la communication réseau entre votre cloud de service et hello du Gestionnaire de périphériques StorSimple. Cliquez sur hello **désactiver** bouton uniquement si vous opérez dans un cloud privé.
+    4. Pour activer le mode SSL, cliquez sur le bouton **Activer** afin de créer un canal sécurisé pour la communication réseau entre votre service StorSimple Device Manager et le cloud. Cliquez sur le bouton **Désactiver** uniquement si vous évoluez au sein d’un cloud privé.
    
-    5. Cliquez sur **Add**. Vous êtes averti une fois les informations d’identification de compte de stockage hello sont créée avec succès.
+    5. Cliquez sur **Ajouter**. Un message s’affiche pour vous informer de la création des informations d’identification du compte de stockage.
 
-5. informations d’identification de compte de stockage Hello nouvellement créé s’affiche dans le panneau de service de configurer le Gestionnaire de périphériques StorSimple hello sous **informations d’identification du compte de stockage**.
+5. Les informations d’identification de compte de stockage nouvellement créées s’affiche sur le panneau du service Device Manager, sous **Informations d’identification du compte de stockage**.
    
 
 
 ## <a name="edit-a-storage-account"></a>Modification d’un compte de stockage
 
-Vous pouvez modifier un compte de stockage utilisé par un conteneur de volumes. Si vous modifiez un compte de stockage qui est actuellement en cours d’utilisation, hello uniquement les toomodify disponibles champ agit hello clé d’accès pour le compte de stockage hello. Vous pouvez fournir la clé d’accès de stockage de hello et enregistrer les paramètres de mise à jour de hello.
+Vous pouvez modifier un compte de stockage utilisé par un conteneur de volumes. Si vous modifiez un compte de stockage actuellement utilisé, le seul champ modifiable est celui de la clé d’accès du compte de stockage. Vous pouvez saisir la nouvelle clé d’accès de stockage et enregistrer les paramètres mis à jour.
 
-#### <a name="tooedit-a-storage-account"></a>tooedit un compte de stockage
+#### <a name="to-edit-a-storage-account"></a>Pour modifier un compte de stockage
 
-1. Atteindre le service du Gestionnaire de périphériques StorSimple tooyour. Bonjour **Configuration** , cliquez sur **informations d’identification du compte de stockage**.
+1. Accédez à votre service StorSimple Device Manager. Dans la section **Configuration**, cliquez sur **Informations d’identification du compte de stockage**.
 
     ![Informations d’identification du compte de stockage](./media/storsimple-8000-manage-storage-accounts/editstorageacct1.png)
 
-2. Bonjour **informations d’identification du compte de stockage** panneau, à partir de la liste de hello d’informations d’identification de compte de stockage, sélectionnez et cliquez sur une vous souhaitez tooedit hello. 
+2. Dans la liste des informations d’identification du compte de stockage du panneau **Informations d’identification du compte de stockage**, sélectionnez et cliquez sur les informations que vous souhaitez modifier. 
 
-3. Vous pouvez modifier hello **activer SSL** sélection. Vous pouvez également cliquer sur **plus...**  , puis sélectionnez **toorotate clé de synchronisation accès** vos clés de l’accès de compte de stockage. Accédez trop[rotation des comptes de stockage de clé](#key-rotation-of-storage-accounts) pour plus d’informations sur la façon dont tooperform permutation des clés. Une fois que vous avez modifié les paramètres de hello, cliquez sur **enregistrer**. 
+3. Vous pouvez modifier la sélection **Activer SSL**. Vous pouvez également cliquer sur **Plus**, puis sélectionner **Synchroniser la clé d’accès** pour effectuer la rotation de vos clés d’accès de compte de stockage. Consultez [Rotation des clés de comptes de stockage](#key-rotation-of-storage-accounts) pour plus d’informations sur la rotation des clés. Une fois que vous avez modifié les paramètres, cliquez sur **Enregistrer**. 
 
     ![Enregistrer les modifications apportées aux informations d’identification de compte de stockage](./media/storsimple-8000-manage-storage-accounts/editstorageacct3.png)
 
@@ -113,69 +113,69 @@ Vous pouvez modifier un compte de stockage utilisé par un conteneur de volumes.
 
     ![Confirmer les modifications](./media/storsimple-8000-manage-storage-accounts/editstorageacct4.png)
 
-paramètres de Hello sont mis à jour et enregistrés pour votre compte de stockage. 
+Les paramètres sont mis à jour et enregistrés pour votre compte de stockage. 
 
 ## <a name="delete-a-storage-account"></a>Suppression d'un compte de stockage
 
 > [!IMPORTANT]
-> Vous pouvez supprimer un compte de stockage uniquement s’il n’est pas utilisé par un conteneur de volumes. Si un compte de stockage est utilisé par un conteneur de volume, tout d’abord supprimer le conteneur de volume de hello et puis supprimez le compte de stockage hello associé.
+> Vous pouvez supprimer un compte de stockage uniquement s’il n’est pas utilisé par un conteneur de volumes. Si un compte de stockage est utilisé par un conteneur de volumes, supprimez d’abord ce dernier, puis le compte de stockage associé.
 
-#### <a name="toodelete-a-storage-account"></a>toodelete un compte de stockage
+#### <a name="to-delete-a-storage-account"></a>Pour supprimer un compte de stockage
 
-1. Atteindre le service du Gestionnaire de périphériques StorSimple tooyour. Bonjour **Configuration** , cliquez sur **informations d’identification du compte de stockage**.
+1. Accédez à votre service StorSimple Device Manager. Dans la section **Configuration**, cliquez sur **Informations d’identification du compte de stockage**.
 
-2. Dans la liste tabulaire hello de comptes de stockage, pointez sur compte hello que toodelete. Menu contextuel de hello tooinvoke et cliquez sur **supprimer**.
+2. Dans le tableau de comptes de stockage, placez le pointeur sur le compte à supprimer. Cliquez avec le bouton droit pour ouvrir le menu contextuel, puis cliquez sur **Supprimer**.
 
     ![Supprimer les informations d’identification de compte de stockage](./media/storsimple-8000-manage-storage-accounts/deletestorageacct1.png)
 
-3. Lorsque vous êtes invité à confirmer l’opération, cliquez sur **Oui** toocontinue avec suppression des hello. la liste tabulaire Hello sera mis à jour tooreflect hello modifications.
+3. Lorsque vous êtes invité à confirmer la suppression, cliquez sur **Oui** . La liste du tableau est mise à jour pour refléter les modifications.
 
     ![Confirmation de suppression](./media/storsimple-8000-manage-storage-accounts/deletestorageacct2.png)
 
 ## <a name="key-rotation-of-storage-accounts"></a>Rotation des clés de comptes de stockage
 
-Pour des raisons de sécurité, les centres de données exigent souvent une rotation des clés. Chaque abonnement Microsoft Azure peut être associé à un ou plusieurs comptes de stockage. comptes d’accès de toothese Hello est contrôlé par abonnement de hello et touches d’accès pour chaque compte de stockage. 
+Pour des raisons de sécurité, les centres de données exigent souvent une rotation des clés. Chaque abonnement Microsoft Azure peut être associé à un ou plusieurs comptes de stockage. L’accès à ces comptes est contrôlé par l’abonnement et les clés d’accès de chaque compte de stockage. 
 
-Lorsque vous créez un compte de stockage, Microsoft Azure génère deux clés d’accès de stockage de 512 bits sont utilisés pour l’authentification lors de l’accès au compte de stockage hello. Avoir deux clés d’accès de stockage vous permet de clés de hello tooregenerate avec aucun service de stockage tooyour d’interruption ou le service d’accès toothat. clé qui est actuellement en cours d’utilisation Hello est hello *principal* clé hello et la clé de sauvegarde est référencé tooas hello *secondaire* clé. Vous devez fournir une de ces deux clés lorsque votre appareil Microsoft Azure StorSimple accède à votre fournisseur de services de stockage cloud.
+Lorsque vous créez un compte de stockage, Microsoft Azure génère deux clés d’accès de stockage de 512 bits, qui servent à l’authentification lors de l’accès au compte de stockage. Grâce aux deux clés d’accès de stockage, vous pouvez régénérer les clés sans interrompre votre service de stockage ni l’accès à ce service. La clé actuellement utilisée est la clé *primaire* et la clé de sauvegarde est appelée clé *secondaire*. Vous devez fournir une de ces deux clés lorsque votre appareil Microsoft Azure StorSimple accède à votre fournisseur de services de stockage cloud.
 
 ## <a name="what-is-key-rotation"></a>La rotation des clés, de quoi s’agit-il ?
 
-En règle générale, les applications qu’un seul de hello clés tooaccess utilisent vos données. Après un certain temps, vous pouvez avoir vos applications pour basculer la deuxième clé de toousing hello. Après avoir basculé votre clé secondaire toohello d’applications, vous pouvez mettre hors service de la première clé de hello et puis générer une nouvelle clé. À l’aide de deux clés de hello de cette manière permet à vos données de toohello d’accès aux applications sans temps mort.
+En règle générale, les applications utilisent une seule clé pour accéder à vos données. Après un certain temps, vous pouvez faire en sorte que vos applications utilisent la deuxième clé. Une fois que vos applications utilisent la clé secondaire, vous pouvez mettre la première clé hors service et générer une nouvelle clé. En utilisant les deux clés de cette manière, vous permettez à vos applications d’accéder aux données sans provoquer de temps d’arrêt.
 
-les clés de compte de stockage Hello sont toujours stockées dans le service hello sous forme chiffrée. Toutefois, elles peuvent être réinitialisées via hello service du Gestionnaire de périphériques StorSimple. service de Hello peut obtenir la clé primaire de hello et la clé secondaire pour tous les hello Bonjour même abonnement, y compris les comptes créés dans le service de stockage hello ainsi que les comptes de stockage par défaut hello généré, les comptes de stockage lorsque hello le Gestionnaire de périphériques StorSimple service de création. Hello service du Gestionnaire de périphériques StorSimple sera obtient toujours ces clés à partir de hello portail Azure classic et les stocke sous forme chiffrée.
+Les clés de compte de stockage sont toujours stockées dans le service sous forme chiffrée. Toutefois, elles peuvent être réinitialisées par le biais du service StorSimple Device Manager. Ce service peut obtenir la clé primaire et la clé secondaire de tous les comptes de stockage d’un abonnement, y compris les comptes créés dans le service de stockage, ainsi que les comptes de stockage par défaut générés lors de la création du service StorSimple Device Manager. Le service StorSimple Device Manager obtient toujours ces clés à partir du portail Azure Classic et les stocke sous forme chiffrée.
 
 ## <a name="rotation-workflow"></a>Workflow de rotation
 
-Un administrateur de Microsoft Azure peut régénérer ou modifier la clé primaire ou secondaire de hello en accédant directement au compte de stockage hello (via le service Microsoft Azure Storage de hello). Hello service du Gestionnaire de périphériques StorSimple ne voit pas automatiquement ce changement.
+Un administrateur Microsoft Azure peut régénérer ou modifier la clé primaire ou secondaire en accédant directement au compte de stockage (via le service Microsoft Azure Storage). Le service StorSimple Device Manager ne voit pas automatiquement cette modification.
 
-le service de gestionnaire de périphériques StorSimple tooinform hello de modification de hello, vous devez tooaccess service de gestionnaire de périphériques StorSimple hello, accéder au compte de stockage hello, puis synchroniser la clé primaire ou secondaire hello (selon l’application a été modifiée). service de Hello puis obtient la clé la plus récente hello, chiffre hello clés et envoie hello chiffré appareil de la clé toohello.
+Pour informer le service StorSimple Device Manager de la modification, vous devez accéder au service StorSimple Device Manager et au compte de stockage, puis synchroniser la clé primaire ou secondaire (selon celle qui a été modifiée). Le service obtient alors la clé la plus récente, chiffre les clés, puis envoie la clé chiffrée à l’appareil.
 
-#### <a name="toosynchronize-keys-for-storage-accounts-in-hello-same-subscription-as-hello-service"></a>toosynchronize des clés pour les comptes de stockage dans hello même abonnement que le service de hello 
-1. Atteindre le service du Gestionnaire de périphériques StorSimple tooyour. Bonjour **Configuration** , cliquez sur **informations d’identification du compte de stockage**.
-2. À partir de hello tabulaire la liste des comptes de stockage, cliquez sur hello une que vous souhaitez toomodify. 
+#### <a name="to-synchronize-keys-for-storage-accounts-in-the-same-subscription-as-the-service"></a>Pour synchroniser les clés des comptes de stockage associés au même abonnement que le service 
+1. Accédez à votre service StorSimple Device Manager. Dans la section **Configuration**, cliquez sur **Informations d’identification du compte de stockage**.
+2. Dans la liste tabulaire des comptes de stockage, cliquez sur celui que vous souhaitez modifier. 
 
     ![synchroniser les clés](./media/storsimple-8000-manage-storage-accounts/syncaccesskey1.png)
 
-3. Cliquez sur **... Plus** , puis sélectionnez **toorotate clé de synchronisation accès**.   
+3. Cliquez sur **Plus**, puis sélectionnez **Synchroniser la clé d’accès** pour effectuer la rotation.   
 
     ![synchroniser les clés](./media/storsimple-8000-manage-storage-accounts/syncaccesskey2.png)
 
-4. Bonjour service du Gestionnaire de périphériques StorSimple, vous devez clé hello tooupdate qui a été précédemment modifié Bonjour service Microsoft Azure Storage. Si la clé d’accès primaire hello a été modifiée (régénérée), sélectionnez **principal** clé. Si la clé secondaire de hello a été modifié, sélectionnez **secondaire** clé. Cliquez sur **Synchroniser la clé**.
+4. Dans le service StorSimple Device Manager, vous devez mettre à jour la clé que vous avez précédemment modifiée dans le service de stockage Microsoft Azure. Si vous avez modifié (régénéré) la clé primaire, sélectionnez la clé **primaire**. Si vous avez modifié la clé secondaire, sélectionnez la clé **secondaire**. Cliquez sur **Synchroniser la clé**.
       
       ![synchroniser les clés](./media/storsimple-8000-manage-storage-accounts/syncaccesskey3.png)
 
-Vous serez averti une fois la clé de hello correctement sycnhronized.
+Un message vous informe que la clé est synchronisée.
 
-#### <a name="toosynchronize-keys-for-storage-accounts-outside-of-hello-service-subscription"></a>toosynchronize clés pour les comptes de stockage en dehors de l’abonnement au service hello
-1. Sur hello **Services** , cliquez sur hello **configurer** onglet.
+#### <a name="to-synchronize-keys-for-storage-accounts-outside-of-the-service-subscription"></a>Pour synchroniser les clés des comptes de stockage hors abonnement au service
+1. Dans la page **Services**, cliquez sur l’onglet **Configurer**.
 2. Cliquez sur **Ajouter/modifier des comptes de stockage**.
-3. Dans la boîte de dialogue hello, procédez comme hello suivant :
+3. Dans la boîte de dialogue qui s’affiche, procédez comme suit :
    
-   1. Sélectionnez le compte de stockage du hello avec la clé d’accès hello que vous souhaitez tooupdate.
-   2. Vous devez tooupdate hello clé d’accès Bonjour service du Gestionnaire de périphériques StorSimple. Dans ce cas, vous pouvez voir la clé d’accès de stockage de hello. Entrez la nouvelle clé de hello Bonjour **clé d’accès de compte de stockage** boîte. 
+   1. Sélectionnez le compte de stockage associé à la clé que vous souhaitez mettre à jour.
+   2. Vous devrez mettre à jour la clé d’accès de stockage dans le service StorSimple Device Manager. Dans ce cas, vous pouvez voir la clé d’accès de stockage. Entrez la nouvelle clé dans le champ **Clé d’accès au compte de stockage**. 
    3. Enregistrez vos modifications. La clé d’accès de votre compte de stockage doit maintenant être à jour.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * En savoir plus sur la [sécurité StorSimple](storsimple-8000-security.md).
-* En savoir plus sur [à l’aide de hello tooadminister du service Gestionnaire de périphériques StorSimple votre appareil StorSimple](storsimple-8000-manager-service-administration.md).
+* En savoir plus sur l’[utilisation du service StorSimple Device Manager pour gérer votre appareil StorSimple](storsimple-8000-manager-service-administration.md).
 

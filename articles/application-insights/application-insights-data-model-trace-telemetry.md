@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure modèle de données d’Application Insights télémétrie - télémétrie des traces | Documents Microsoft"
+title: "Modèle de données de télémétrie d’Azure Application Insights : télémétrie des traces | Microsoft Docs"
 description: "Modèle de données Application Insights pour la télémétrie des traces"
 services: application-insights
 documentationcenter: .net
@@ -12,15 +12,15 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: dfdee958e07d57448ff41abc5cd33bfd05dac090
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e1da0d6a6fbd9ca5486936c326ade667d7b01006
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="trace-telemetry-application-insights-data-model"></a>Télémétrie des traces : modèle de données Application Insights
 
-La télémétrie des traces (dans [Application Insights](app-insights-overview.md)) représente des instructions de traces de type `printf` qui font l’objet de recherches textuelles. `Log4Net`, `NLog` et les autres entrées de fichier journal de type texte sont converties en instances de ce type. trace de Hello n’a pas de mesures comme une extensibilité.
+La télémétrie des traces (dans [Application Insights](app-insights-overview.md)) représente des instructions de traces de type `printf` qui font l’objet de recherches textuelles. `Log4Net`, `NLog` et les autres entrées de fichier journal de type texte sont converties en instances de ce type. La trace ne comporte pas de mesures comme l’extensibilité.
 
 ## <a name="message"></a>Message
 

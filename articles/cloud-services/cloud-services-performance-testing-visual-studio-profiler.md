@@ -1,7 +1,7 @@
 ---
-title: "aaaProfiling un Service Cloud localement dans l’émulateur de calcul de hello | Documents Microsoft"
+title: "Profilage d’un service cloud local dans l’émulateur de calcul | Microsoft Docs"
 services: cloud-services
-description: "Résoudre les problèmes de performances dans les services de cloud avec le profileur Visual Studio de hello"
+description: "Examen des problèmes de performances dans les services cloud à l’aide du profileur Visual Studio"
 documentationcenter: 
 author: kraigb
 manager: ghogen
@@ -15,34 +15,34 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 11/18/2016
 ms.author: kraigb
-ms.openlocfilehash: fc37c85dad4db4cc0310f73afad56fc0fe5f3963
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 51c8192d8312dc5cf546b4c357aeecf6f19d56b8
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="testing-hello-performance-of-a-cloud-service-locally-in-hello-azure-compute-emulator-using-hello-visual-studio-profiler"></a>Test hello performances d’un Service Cloud localement Bonjour Azure Compute Emulator à l’aide de hello profileur Visual Studio
-Divers outils et techniques sont disponibles pour tester les performances de hello des services de cloud computing.
-Lorsque vous publiez un tooAzure de service cloud, vous pouvez avoir Visual Studio collecter les données de profilage et puis les analyser localement, comme décrit dans [profilage d’une Application Azure][1].
-Vous pouvez également utiliser tootrack diagnostics des compteurs de performances diverses, comme décrit dans [à l’aide des compteurs de performances dans Azure][2].
-Vous pouvez également vous tooprofile votre application localement dans l’émulateur de calcul hello avant de le déployer toohello cloud.
+# <a name="testing-the-performance-of-a-cloud-service-locally-in-the-azure-compute-emulator-using-the-visual-studio-profiler"></a>Test des performances d'un service cloud local dans l'émulateur de calcul Azure avec le profileur Visual Studio
+Différents outils et diverses techniques permettent de tester les performances des services cloud.
+Lorsque vous publiez un service cloud sur Azure, vous pouvez demander à ce que Visual Studio collecte des données de profilage, puis les analyse en local, comme décrit dans la page [Analyse du profil d’une application Azure][1].
+Vous pouvez également utiliser le diagnostic pour suivre tout un ensemble de compteurs de performances, comme décrit dans la rubrique [Utilisation de compteurs de performances dans Azure][2].
+Vous pouvez également profiler votre application en local dans l'émulateur de calcul avant de la déployer dans le cloud.
 
-Cet article décrit la méthode d’échantillonnage de l’UC hello de profilage, ce qui peut être effectué localement dans l’émulateur de hello. Cette méthode de profilage est peu intrusive. À un intervalle d’échantillonnage désigné, Générateur de profils hello prend un instantané de pile des appels hello. les données de Hello sont collectées sur une période de temps et affichées dans un rapport. Cette méthode de profilage a tendance à tooindicate où dans une application nécessitant la plupart du travail de hello du processeur est effectuée.  Ceci permet de vous hello toofocus opportunité sur hello « chemin réactif » où votre application passe hello plus de temps.
+Cet article présente la méthode de profilage par échantillonnage de l'UC, qui peut se faire en local dans l'émulateur. Cette méthode de profilage est peu intrusive. Selon une fréquence d'échantillonnage définie, le profileur enregistre un instantané de la pile d'appels. Les données sont collectées pendant un certain temps, puis sont présentées dans un rapport. Cette méthode de profilage indique plutôt, dans une application qui effectue beaucoup de calculs, où se fait la plus grande part du travail du processeur.  Ceci vous permet de vous occuper en priorité des « points chauds », là où votre application passe le plus de temps.
 
 ## <a name="1-configure-visual-studio-for-profiling"></a>1. Configuration de Visual Studio pour le profilage
-Tout d'abord, certaines options de configuration de Visual Studio peuvent s'avérer utiles dans le cadre du profilage. décryptage toomake hello des rapports de profilage, vous aurez besoin de symboles (.pdb) pour votre application, ainsi que les symboles pour les bibliothèques système. Vous souhaiterez toomake assurer que vous référencez des serveurs de symboles disponibles hello. toodo cette, hello **outils** menu dans Visual Studio, choisissez **Options**, puis choisissez **débogage**, puis **symboles**. Assurez-vous que Microsoft Symbol Servers figure bien dans **Emplacements du fichier de symboles (.pdb)**.  Vous pouvez également faire référence à http://referencesource.microsoft.com/symbols, qui peut comporter d'autres fichiers de symboles.
+Tout d'abord, certaines options de configuration de Visual Studio peuvent s'avérer utiles dans le cadre du profilage. Afin de bien comprendre les rapports de profilage, vous aurez besoin de symboles (fichiers .pdb) pour votre application, ainsi que de symboles pour les bibliothèques système. Assurez-vous que vous faites référence aux serveurs de symboles disponibles. Pour cela, dans le menu **Outils** de Visual Studio, sélectionnez **Options**, puis **Débogage**, et enfin **Symboles**. Assurez-vous que Microsoft Symbol Servers figure bien dans **Emplacements du fichier de symboles (.pdb)**.  Vous pouvez également faire référence à http://referencesource.microsoft.com/symbols, qui peut comporter d'autres fichiers de symboles.
 
 ![Options de symbole][4]
 
-Si vous le souhaitez, vous pouvez simplifier hello signale ce profileur hello génère en définissant uniquement mon Code. Avec uniquement mon Code est activée, les piles d’appels de fonction sont simplifiées ainsi que les appels toolibraries entièrement interne hello .NET Framework sont masqués à partir de rapports de hello. Sur hello **outils** menu, choisissez **Options**. Puis développez hello **outils de performances** nœud, puis choisissez **général**. Sélectionnez la case à cocher hello **activer uniquement mon Code pour les rapports de profileur**.
+Si vous le souhaitez, vous pouvez simplifier les rapports générés par le profileur en choisissant Uniquement mon code. Lorsque cette option est activée, les piles d'appels de fonction sont simplifiées afin que les appels purement internes aux bibliothèques et à .NET Framework soient masqués dans les rapports. Dans le menu **Outils**, choisissez **Options**. Développez le nœud **Outils de performances** et choisissez **Général**. Activez la case à cocher **Activer Uniquement mon code pour les rapports du profileur**.
 
 ![Options Uniquement mon code][17]
 
-Vous pouvez utiliser ces instructions dans un projet existant ou un nouveau projet.  Si vous créez un nouveau Bonjour de tootry projet techniques décrites ci-dessous, choisissez c# **Azure Cloud Service** le projet, puis sélectionnez un **rôle Web** et un **rôle de travail**.
+Vous pouvez utiliser ces instructions dans un projet existant ou un nouveau projet.  Si vous créez un projet pour tester une des techniques décrites plus bas, choisissez un projet C# **Service cloud Azure** et sélectionnez un **rôle web** et un **rôle de travail**.
 
 ![Rôles de projet Azure Cloud Services][5]
 
-Par exemple, à des fins, ajouter un projet de tooyour de code qui prend beaucoup de temps et présente un problème de performances évidente. Par exemple, ajouter hello suivant du projet de rôle de travail tooa code :
+Pour l'exemple, ajoutez à votre projet du code qui demande beaucoup de temps et provoque des problèmes de performances évidents. Par exemple, ajoutez le code suivant à un projet de rôle de travail :
 
     public class Concatenator
     {
@@ -58,11 +58,11 @@ Par exemple, à des fins, ajouter un projet de tooyour de code qui prend beaucou
         }
     }
 
-Appeler ce code à partir de la méthode RunAsync dans une classe dérivée de RoleEntryPoint du rôle de travail hello de hello. (Ignorer l’avertissement hello sur la méthode hello exécuter de façon synchrone.)
+Appelez ce code depuis la méthode RunAsync dans la classe RoleEntryPoint-derived du rôle de travail. (Ne tenez pas compte de l'avertissement indiquant l'exécution synchrone de la méthode.)
 
         private async Task RunAsync(CancellationToken cancellationToken)
         {
-            // TODO: Replace hello following with your own logic.
+            // TODO: Replace the following with your own logic.
             while (!cancellationToken.IsCancellationRequested)
             {
                 Trace.TraceInformation("Working");
@@ -70,61 +70,61 @@ Appeler ce code à partir de la méthode RunAsync dans une classe dérivée de R
             }
         }
 
-Générer et exécuter votre service cloud localement sans débogage (Ctrl + F5), avec la configuration de la solution hello définie trop**version**. Cela garantit que tous les fichiers et dossiers sont créés pour l’application hello s’exécute et garantit que tous les émulateurs hello sont démarrés. Démarrez hello Compute Emulator UI de tooverify de la barre des tâches de hello votre rôle de travail est en cours d’exécution.
+Générez et exécutez le service cloud en local sans débogage (Ctrl+F5), la configuration de solution étant définie sur **Version finale**. Les fichiers et dossiers sont ainsi créés pour l'exécution de l'application en local et tous les émulateurs sont démarrés. Démarrez l'interface de l'émulateur de calcul à partir de la barre des tâches pour vérifier que votre rôle de travail fonctionne correctement.
 
-## <a name="2-attach-tooa-process"></a>2 : attacher le processus de tooa
-Au lieu de profiler l’application hello en le démarrant à partir de hello IDE de Visual Studio 2010, vous devez joindre tooa de profileur hello processus en cours d’exécution. 
+## <a name="2-attach-to-a-process"></a>2. Attachement à un processus
+Au lieu de profiler l'application en la démarrant depuis l'interface de développement de Visual Studio 2010, vous devez attacher le profileur à un processus en cours d'exécution. 
 
-tooattach hello profiler tooa processus sur hello **analyser** menu, choisissez **Profiler** et **Attacher/Détacher**.
+Pour ce faire, dans le menu **Analyse**, sélectionnez **Profileur**, puis **Attacher/Détacher**.
 
 ![Option Joindre un profil][6]
 
-Pour un rôle de travail, de trouver le processus de WaWorkerHost.exe hello.
+Pour un rôle de travail, recherchez le processus WaWorkerHost.exe.
 
 ![Processus WaWorkerHost][7]
 
-Si votre dossier de projet se trouve sur un lecteur réseau, Générateur de profils hello vous demandera tooprovide hello de toosave un autre emplacement des rapports de profilage.
+Si votre dossier de projet se trouve sur un disque réseau, le profileur vous demande d'indiquer un autre emplacement pour enregistrer les rapports de profilage.
 
- Vous pouvez également attacher le rôle web de tooa en attachant tooWaIISHost.exe.
-S’il existe plusieurs processus de rôle de travail dans votre application, vous devez toouse hello processID toodistinguish les. Vous pouvez interroger hello processID par programme en accédant à des objets de processus hello. Par exemple, si vous ajoutez cette méthode d’exécution toohello code de classe dérivée de RoleEntryPoint de hello dans un rôle, vous pouvez consulter le journal dans hello Compute Emulator UI tooknow le tooconnect de processus pour.
+ Vous pouvez également l'attacher à un rôle web en l'attachant à WaIISHost.exe.
+Si votre application comporte plusieurs processus de rôle de travail, utilisez l'ID de processus pour les distinguer les uns des autres. Vous pouvez effectuer une requête par programme sur l'ID de processus en accédant à l'objet Process. Par exemple, si vous ajoutez ce code à la méthode Run de la classe RoleEntryPoint-derived dans un rôle, vous pouvez consulter le journal dans l'interface de l'émulateur de calcul pour savoir à quel processus se connecter.
 
     var process = System.Diagnostics.Process.GetCurrentProcess();
     var message = String.Format("Process ID: {0}", process.Id);
     Trace.WriteLine(message, "Information");
 
-journal de hello tooview, début hello Compute Emulator UI.
+Pour consulter le journal, ouvrez l'interface utilisateur de l'émulateur de calcul.
 
-![Démarrer hello Compute Emulator UI][8]
+![Démarrage de l’interface de l’émulateur de calcul][8]
 
-Ouvrez fenêtre de console hello travail rôle journal Bonjour Compute Emulator UI en cliquant sur la barre de titre de la fenêtre de console hello. Vous pouvez voir les ID de processus hello dans le journal de hello.
+Ouvrez la fenêtre de console du journal du rôle de travail dans l'interface utilisateur de l'émulateur de calcul en cliquant sur la barre de titre de la fenêtre de la console. L'ID du processus figure dans le journal.
 
 ![Afficher l’ID du processus][9]
 
-Un que vous avez joint, effectuez les opérations de hello dans l’interface utilisateur (si nécessaire) tooreproduce hello scénario de votre application.
+Une fois le profileur attaché, suivez les étapes de l'interface utilisateur de votre application (le cas échéant) afin de reproduire le scénario.
 
-Lorsque vous souhaitez toostop de profilage, choisissez hello **arrêter le profilage** lien.
+Lorsque vous souhaitez arrêter le profilage, cliquez sur le lien **Terminer le profilage** .
 
 ![Option Terminer le profilage][10]
 
 ## <a name="3-view-performance-reports"></a>3. Affichage des rapports de performances
-rapport de performances Hello pour votre application s’affiche.
+Le rapport de performances de votre application s'affiche.
 
-À ce stade, Générateur de profils hello arrête l’exécution, enregistre les données dans un fichier .vsp et affiche un rapport qui affiche une analyse de ces données.
+À ce stade, le profileur s'arrête, il enregistre les données dans un fichier .vsp et il affiche un rapport présentant une analyse des données.
 
 ![Rapport du profileur][11]
 
-Si vous voyez String.wstrcpy dans hello chemin réactif, cliquez sur uniquement mon Code toochange hello vue tooshow code utilisateur uniquement.  Si vous voyez String.Concat, essayez de cliquer sur Afficher tout Code hello.
+Si vous voyez String.wstrcpy dans le Chemin réactif, cliquez sur Uniquement mon code pour modifier l'affichage et ne voir que le code utilisateur.  Si vous voyez String.Concat, essayez de cliquer sur le bouton Afficher tout le code.
 
-Vous devez voir la méthode de concaténation hello et String.Concat occuper une grande partie du temps d’exécution hello.
+Vous devez voir que la méthode Concatenate et String.Concat occupent une grande partie du temps d'exécution.
 
 ![Analyse du rapport][12]
 
-Si vous avez ajouté le code de concaténation de chaîne hello dans cet article, vous devez voir un avertissement dans la liste des tâches de hello pour cela. Vous pouvez également voir un avertissement que qu’il existe une quantité excessive de garbage collection, en raison du nombre de toohello de chaînes qui sont créés et supprimés.
+Si vous avez ajouté le code de concaténation de chaîne dans cet article, vous devez obtenir un avertissement correspondant dans la Liste des tâches. Il est possible que vous voyiez également un avertissement lié au nettoyage de la mémoire, ce qui est dû au nombre de chaînes créées et rejetées.
 
 ![Avertissements liés aux performances][14]
 
 ## <a name="4-make-changes-and-compare-performance"></a>4 : Application de modifications et comparaison des performances
-Vous pouvez également comparer les performances de hello avant et après une modification du code.  Arrêter le processus en cours d’exécution de hello et modifiez hello code tooreplace hello concaténation de chaînes avec utilisation de hello de StringBuilder :
+Vous pouvez également comparer les performances avant et après la modification du code.  Interrompez le processus en cours d'exécution et modifiez le code de façon à remplacer l'opération de concaténation de chaîne à l'aide de StringBuilder :
 
     public static string Concatenate(int number)
     {
@@ -137,26 +137,26 @@ Vous pouvez également comparer les performances de hello avant et après une mo
         return builder.ToString();
     }
 
-Effectuez une autre exécution de performances et comparer les performances de hello. Dans l’Explorateur de performances de hello, si hello s’exécute est Bonjour même session, vous pouvez simplement sélectionner ces deux rapports, ouvrez le menu contextuel de hello et choisissez **comparer les rapports de performances**. Si vous souhaitez toocompare avec une exécution dans une autre session de performance, ouvrez hello **analyser** menu, puis choisissez **comparer les rapports de performances**. Dans la boîte de dialogue hello qui s’affiche, spécifiez les deux fichiers.
+Lancez un nouveau test de performances, et comparez les résultats. Dans l'Explorateur de performances, si les tests font partie de la même session, vous pouvez simplement sélectionner les deux rapports, ouvrir le menu contextuel et sélectionner **Comparer les rapports de performances**. Si vous souhaitez comparer un test avec un test d’une autre session de performances, ouvrez le menu **Analyse**, puis sélectionnez **Comparer les rapports de performances**. Spécifiez les deux fichiers dans la boîte de dialogue qui s'affiche.
 
 ![Option Comparer les rapports de performances][15]
 
-rapports de Hello mettre en évidence les différences entre deux exécutions de hello.
+Les rapports indiquent les différences entre les deux tests.
 
 ![Rapport de comparaison][16]
 
-Félicitations ! Vous avez obtenu en main du Générateur de profils hello.
+Félicitations ! Vous avez fait connaissance avec le profileur.
 
-## <a name="troubleshooting"></a>Résolution des problèmes
+## <a name="troubleshooting"></a>Résolution de problèmes
 * Assurez-vous que le profilage porte bien sur une build Release et exécutez sans débogage.
-* Si hello Attacher/Détacher option n’est pas activé sur le menu du Générateur de profils hello, exécutez hello Assistant Performance.
-* Utilisez hello Compute Emulator UI tooview hello statut de votre application. 
-* Si vous rencontrez des problèmes de démarrage des applications dans l’émulateur de hello ou attachement hello du Générateur de profils, arrêtez d’émulateur de calcul hello et redémarrez-le. Si cela ne résout pas le problème de hello, essayez de redémarrer. Ce problème peut se produire si vous utilisez toosuspend d’émulateur de calcul hello et supprimez les déploiements en cours d’exécution.
-* Si vous avez utilisé des hello profilage des commandes à partir de la ligne de commande, hello en particulier les paramètres globaux, vérifiez que VSPerfClrEnv /globaloff a été appelée et que VsPerfMon.exe a été arrêté.
-* Si lors de l’échantillonnage, vous voyez le message de type hello « PRF0025 : aucune donnée n’a été collectée, « vérifiez que hello processus attaché de toohas processeur activité. Les applications qui n'effectuent pas de calculs peuvent ne pas produire de données d'échantillonnage.  Il est également possible que les processus de hello est fermé avant tout échantillonnage a été effectuée. Vérifiez toosee méthode Run de hello pour un rôle que vous profilez n’arrête pas.
+* Si l'option Attacher/Détacher n'est pas activée dans le menu Profileur, exécutez l'Assistant Performance.
+* Utilisez l'émulateur de calcul pour connaître l'état de votre application. 
+* Si vous rencontrez des problèmes pour démarrer les applications dans l'émulateur de calcul ou pour attacher le profileur, arrêtez l'émulateur de calcul et redémarrez-le. Si cela ne résout pas le problème, essayez de redémarrer votre ordinateur. Ce problème peut survenir lorsque vous utilisez l'émulateur de calcul pour suspendre et supprimer des déploiements en cours d'exécution.
+* Si vous avez utilisé une des commandes de profilage depuis la ligne de commande, en particulier les paramètres globaux, assurez-vous que VSPerfClrEnv /globaloff a été appelé et que VsPerfMon.exe est arrêté.
+* Si lors de l’échantillonnage, le message « PRF0025 : aucune donnée n’a été collectée » s’affiche, vérifiez si le processus que vous avez attaché présente une activité dans le processeur. Les applications qui n'effectuent pas de calculs peuvent ne pas produire de données d'échantillonnage.  Il est également possible que le processus se soit terminé avant l'exécution de l'échantillonnage. Vérifiez si la méthode Run du rôle pour lequel vous établissez le profil ne s'est pas terminée.
 
 ## <a name="next-steps"></a>Étapes suivantes
-L’instrumentation de binaires Azure dans l’émulateur de hello n’est pas pris en charge dans le Générateur de profils Visual Studio hello, mais si vous souhaitez que l’allocation de mémoire tootest, vous pouvez choisir cette option lors du profilage. Vous pouvez également choisir de profilage d’accès concurrentiel, qui vous permet de déterminer si les threads sont gaspiller temps en concurrence pour les verrous, soit au niveau le profilage d’interaction, qui vous permet de détecter les problèmes de performances lors de l’interaction entre les couches d’une application, plus fréquemment entre la couche de données hello et un rôle de travail.  Vous pouvez afficher les requêtes de base de données hello que votre application génère et utiliser hello tooimprove de données de profilage de l’utilisation de base de données hello. Pour plus d’informations sur le profilage d’interaction de couche, voir blog de hello [procédure pas à pas : utilisation de hello profileur d’Interaction de couche dans Visual Studio Team System 2010][3].
+L'instrumentalisation d'exécutables Azure dans l'émulateur de calcul n'est pas prise en charge par le profileur Visual Studio, mais si vous souhaitez tester l'allocation de la mémoire, vous pouvez choisir cette option au moment du profilage. Vous pouvez également choisir le profilage d'accès concurrentiel, qui vous aide à savoir si des threads perdent du temps à se disputer les verrouillages, ou bien le profilage d'interaction de couche, qui permet de détecter les problèmes de performances lors de l'interaction entre différentes couches de l'application, la plupart du temps entre la couche de données et un rôle de travail.  Vous pouvez consulter les requêtes de base de données que votre application génère et utiliser les données de profilage pour optimiser l'utilisation de la base de données. Pour plus d’informations sur le profilage d’interaction de couche, consultez le billet de blog intitulé [Procédure pas à pas : utilisation du profileur d’interaction de couche dans Visual Studio Team System 2010][3].
 
 [1]: http://msdn.microsoft.com/library/azure/hh369930.aspx
 [2]: http://msdn.microsoft.com/library/azure/hh411542.aspx

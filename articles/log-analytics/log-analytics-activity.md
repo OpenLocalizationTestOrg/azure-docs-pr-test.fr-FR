@@ -1,6 +1,6 @@
 ---
-title: "aaaView activités Windows Azure se connecte avec Analytique de journal | Documents Microsoft"
-description: "Vous pouvez utiliser hello journaux d’activité Azure solution tooanalyze et journal des activités Windows Azure hello recherche dans tous vos abonnements Azure."
+title: "Consulter des journaux d’activité Azure avec Log Analytics | Microsoft Docs"
+description: "Vous pouvez utiliser la solution Journaux d’activité Azure pour analyser et rechercher le journal d’activité Azure parmi tous vos abonnements Azure."
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/07/2017
 ms.author: banders
-ms.openlocfilehash: 171d0d604d03a5714a9599cc0b448fc5f6471f69
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ad56a54f094f3c314596b3a7c9fecd09647d065
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="view-azure-activity-logs"></a>Consulter des journaux d’activité Azure
 
 ![Symbole des journaux d’activité Azure](./media/log-analytics-activity/activity-log-analytics.png)
 
-Hello solution d’Analytique de journal d’activité vous permet d’analyser et de recherche hello [journal des activités Azure](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md) dans tous vos abonnements Azure. Hello journal des activités Azure est un journal qui offre un aperçu hello les opérations effectuées sur les ressources dans vos abonnements. Hello journal d’activité était précédemment appelé *les journaux d’Audit* ou *journaux opérationnels* dans la mesure où il signale les événements pour vos abonnements.
+La solution Activity Log Analytics vous aide à analyser et rechercher le [journal d’activité Azure](../monitoring-and-diagnostics/monitoring-overview-activity-logs.md) parmi tous vos abonnements Azure. Le journal d’activité Azure est un journal qui fournit des informations sur les opérations réalisées sur les ressources de vos abonnements. Le journal d’activité était précédemment appelé *journal d’audit* ou *journal des opérations*, car il indique les événements pour vos abonnements.
 
-À l’aide de hello journal d’activité, vous pouvez déterminer hello *que*, *qui*, et *lorsque* pour les opérations d’écriture (PUT, POST, DELETE) effectuées pour les ressources hello dans votre abonnement. Vous pouvez également comprendre état hello d’opérations de hello et d’autres propriétés pertinentes. Hello journal d’activité n’inclut pas les opérations de (GET) en lecture ou de ressources qui utilisent le modèle de déploiement classique hello.
+Avec le journal d’activité, vous pouvez déterminer *qui*, *quand* et *quoi* pour toutes les opérations d’écriture (PUT, POST, DELETE) réalisées sur des ressources dans votre abonnement. Vous pouvez également comprendre l’état des opérations et d’autres propriétés pertinentes. Le journal d’activité n’inclut pas d’opérations de lecture (GET) ni d’opérations pour les ressources qui utilisent le modèle de déploiement Classic.
 
-Lorsque vous vous connectez votre tooLog de journaux des activités Windows Azure Analytique, vous pouvez :
+Lorsque vous connectez vos journaux d’activité Azure à Log Analytics, vous pouvez :
 
-- Analyser les journaux d’activité hello avec des vues prédéfinies
+- Analyser les journaux d’activité avec des affichages prédéfinis
 - Analyser et rechercher des journaux d’activité parmi plusieurs abonnements Azure
 - Conserver les journaux d’activité pendant plus de 90 jours<sup>1</sup>
 - Mettre en corrélation des journaux d’activité avec d’autres données d’application et de plateforme Azure
@@ -38,66 +38,66 @@ Lorsque vous vous connectez votre tooLog de journaux des activités Windows Azur
 - Voir les tendances des activités se produisant sur chacun de vos services Azure
 - Signaler les modifications d’autorisation sur toutes vos ressources Azure
 - Identifier les problèmes d’intégrité de service ou de panne qui ont un impact sur vos ressources
-- Utiliser des activités de recherche de journal toocorrelate utilisateur, les opérations à l’échelle automatique, les modifications d’autorisation et les journaux du service d’intégrité tooother ou les métriques à partir de votre environnement
+- Utiliser la fonction Recherche de journal pour mettre en corrélation les activités d’utilisateur, les opérations de mise à l’échelle automatique, les modifications d’autorisation et l’intégrité du service avec d’autres journaux ou métriques de votre environnement
 
-<sup>1</sup>par défaut, Analytique de journal conserve vos journaux d’activités Windows Azure pendant 90 jours, même si vous êtes sur le niveau gratuit de hello. Ou si votre espace de travail est réglé sur une rétention de moins de 90 jours. Si votre espace de travail présente la durée de rétention de plus de 90 jours, les journaux d’activité hello sont conservés pour la période de rétention de hello de votre espace de travail.
+<sup>1</sup>Par défaut, Log Analytics conserve vos journaux d’activité Azure pendant 90 jours, même si vous êtes sur le niveau Gratuit. Ou si votre espace de travail est réglé sur une rétention de moins de 90 jours. Si votre espace de travail a une rétention de plus de 90 jours, les journaux d’activité sont conservés pendant la période de rétention de votre espace de travail.
 
-Analytique de journal collecte des journaux d’activité gratuitement et stocke les journaux de hello pendant 90 jours gratuites. Si vous stockez les journaux pour plus de 90 jours, vous occasionnent des frais de rétention de données pour les données de hello stockées plus de 90 jours.
+Log Analytics collecte gratuitement les journaux d’activité et les conserve gratuitement pendant 90 jours. Si vous conservez des journaux pendant plus de 90 jours, des frais de rétention vous seront facturés pour les données stockées pendant plus de 90 jours.
 
-Lorsque vous êtes sur le niveau de tarification gratuit de hello, journaux d’activité ne s’appliquent pas la consommation de données quotidienne tooyour.
+Si vous êtes sur le niveau de tarification Gratuit, les journaux d’activité ne s’appliquent pas à votre consommation de données quotidienne.
 
 ## <a name="connected-sources"></a>Sources connectées
 
-Contrairement à la plupart des autres solutions Log Analytics, les données ne sont pas collectées pour les journaux d’activité par des agents. Toutes les données utilisées par la solution de hello proviennent directement d’Azure.
+Contrairement à la plupart des autres solutions Log Analytics, les données ne sont pas collectées pour les journaux d’activité par des agents. Toutes les données utilisées par la solution proviennent directement d’Azure.
 
 | Source connectée | Pris en charge | Description |
 | --- | --- | --- |
-| [Agents Windows](log-analytics-windows-agents.md) | Non | solution de Hello ne collecte pas les informations des agents de Windows. |
-| [Agents Linux](log-analytics-linux-agents.md) | Non | solution de Hello ne collecte pas les informations des agents de Linux. |
-| [Groupe d’administration SCOM](log-analytics-om-agents.md) | Non | solution de Hello ne collecte pas les informations des agents dans un groupe d’administration SCOM connecté. |
-| [Compte Azure Storage](log-analytics-azure-storage.md) | Non | solution de Hello ne collecte pas les informations depuis le stockage Azure. |
+| [Agents Windows](log-analytics-windows-agents.md) | Non | La solution ne collecte aucune information à partir d’agents Windows. |
+| [Agents Linux](log-analytics-linux-agents.md) | Non | La solution ne collecte aucune information à partir d’agents Linux. |
+| [Groupe d’administration SCOM](log-analytics-om-agents.md) | Non | La solution ne collecte aucune information à partir d’agents dans un groupe d’administration SCOM connecté. |
+| [Compte Stockage Azure](log-analytics-azure-storage.md) | Non | La solution ne collecte aucune information à partir de stockage Azure. |
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Prérequis
 
-- tooaccess informations du journal des activités Windows Azure, vous devez avoir un abonnement Azure.
+- Pour accéder aux informations des journaux d’activité Azure, vous devez posséder un abonnement Azure.
 
 ## <a name="configuration"></a>Configuration
 
-Effectuer hello suivant des solutions d’Analytique de journal d’activité étapes tooconfigure hello pour vos espaces de travail.
+Procédez comme suit pour configurer la solution Activity Log Analytics pour vos espaces de travail.
 
-1. Activer la solution Analytique de journal d’activité hello hello [Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureActivityOMS?tab=Overview) ou à l’aide de hello est décrite dans [solutions Analytique de journal ajouter à partir de la galerie des Solutions de hello](log-analytics-add-solutions.md).
-2. Configurer l’espace de travail activité journaux toogo tooyour Analytique de journal.
-    1. Dans hello portail Azure, sélectionnez votre espace de travail, puis sur **journal des activités Azure**.
-    2. Pour chaque abonnement, cliquez sur le nom de l’abonnement hello.  
+1. Activez la solution Activity Log Analytics depuis la [Place de marché Microsoft Azure](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureActivityOMS?tab=Overview) ou en procédant de la manière décrite dans [Ajouter des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md).
+2. Configurez les journaux d’activité de manière à ce qu’ils accèdent à votre espace de travail Log Analytics.
+    1. Dans le portail Azure, sélectionnez votre espace de travail, puis cliquez sur **Journal d’activité Azure**.
+    2. Pour chaque abonnement, cliquez sur le nom de l’abonnement.  
         ![ajouter un abonnement](./media/log-analytics-activity/add-subscription.png)
-    3. Bonjour *SubscriptionName* panneau, cliquez sur **connexion**.  
+    3. Dans le panneau *SubscriptionName*, cliquez sur **Connecter**.  
         ![connecter un abonnement](./media/log-analytics-activity/subscription-connect.png)
 
-Si vous ajoutez la solution hello à l’aide du portail OMS hello, vous verrez hello suivant vignette. Se connecter toohello tooconnect portail Azure un espace de travail tooyour abonnement Azure.  
+Si vous ajoutez la solution via le portail OMS, vous verrez la vignette suivante. Connectez-vous au portail Azure pour connecter un abonnement Azure à votre espace de travail.  
 ![exécution de l’évaluation](./media/log-analytics-activity/tile-performing-assessment.png)
 
-## <a name="using-hello-solution"></a>À l’aide de la solution de hello
+## <a name="using-the-solution"></a>Utilisation de la solution
 
-Lorsque vous ajoutez d’espace de travail hello Analytique de journal d’activité solution tooyour, hello **journaux d’activité Azure** vignette est ajoutée le tableau de bord de présentation tooyour. Cette vignette affiche le nombre hello d’enregistrements des activités Windows Azure pour hello des abonnements Azure hello solution a accès à.
+Lorsque vous ajoutez la solution Activity Log Analytics à votre espace de travail, la vignette **Journal d’activité Azure** est ajoutée à votre tableau de bord de présentation. Cette vignette affiche le nombre d’enregistrements d’activité Azure pour les abonnements Azure auxquels la solution a accès.
 
 ![Vignette Journaux d’activité Azure](./media/log-analytics-activity/azure-activity-logs-tile.png)
 
 ### <a name="view-azure-activity-logs"></a>Consulter des journaux d’activité Azure
 
-Cliquez sur hello **journaux d’activité Azure** vignette tooopen hello **journaux d’activité Azure** tableau de bord. tableau de bord Hello inclut les panneaux hello Bonjour tableau suivant. Chaque panneau répertorie les articles too10 mise en correspondance que les critères du panneau pour hello spécifié plage étendue et d’heure. Vous pouvez exécuter une recherche de journal qui retourne tous les enregistrements en cliquant sur **afficher tous les** bas hello du Panneau de hello ou en cliquant sur hello panneau en-tête.
+Cliquez sur la vignette **Journaux d’activité Azure** pour ouvrir le tableau de bord **Journaux d’activité Azure**. Le tableau de bord comprend les panneaux figurant dans le tableau suivant. Chaque panneau répertorie jusqu'à 10 éléments répondant à ses critères en ce qui concerne l’étendue et l’intervalle de temps spécifiés. Vous pouvez exécuter une recherche dans les journaux qui renvoie tous les enregistrements. Pour cela, cliquez sur **Afficher tout** en bas du panneau ou cliquez sur l’en-tête de panneau.
 
-Données de journal d’activité apparaissent uniquement *après* vous avez configuré votre solution activité journaux toogo toohello, donc vous ne pouvez pas afficher les données avant cette date.
+Les données de journal d’activité apparaissent uniquement *après* avoir configuré vos journaux d’activité pour qu’ils accèdent à la solution. Sans cela, vous ne pouvez pas les consulter.
 
 | Panneau | Description |
 | --- | --- |
-| Entrées de journal d’activité Azure | Affiche des totaux des enregistrements pour la plage de dates hello que vous avez sélectionné un graphique à barres de haut de hello entrée du journal des activités Windows Azure et affiche une liste de hello appelants d’activité 10 supérieure. Cliquez sur hello graphique à barres toorun une recherche de journal pour <code>Type=AzureActivity</code>. Cliquez sur un toorun d’élément appelant une recherche de journal retourner toutes les entrées de journal d’activité pour cet élément. |
-| Journaux d’activité par état | Affiche un graphique en anneau pour l’état du journal des activités Windows Azure pour la plage de dates hello que vous avez sélectionné. Affiche également la liste une liste d’enregistrements d’état dix principaux hello. Cliquez sur hello graphique toorun une recherche de journal pour <code>Type=AzureActivity &#124; measure count() by ActivityStatus</code>. Cliquez sur un toorun d’élément de statut à une recherche de journal retourner toutes les entrées de journal d’activité pour cet enregistrement de l’état. |
-| Journaux d’activité par ressource | Affiche le nombre total de hello de ressources avec des journaux d’activité et répertorie haut hello dénombre les dix ressources avec l’enregistrement de chaque ressource. Cliquez sur hello zone totale toorun une recherche de journal pour <code>Type=AzureActivity &#124; measure count() by Resource</code>, qui montre toutes les ressources Azure disponibles toohello solution. Cliquez sur une ressource toorun une recherche de journal retourner tous les enregistrements d’activité pour cette ressource. |
-| Journaux d’activité par fournisseur de ressources | Hello affiche le nombre total de fournisseurs de ressources qui produisent activité enregistre et répertorie les dix hello. Cliquez sur hello zone totale toorun une recherche de journal pour <code>Type=AzureActivity &#124; measure count() by ResourceProvider</code>, qui montre les fournisseurs de ressources Azure. Cliquez sur un toorun de fournisseur de ressources une recherche de journal retourner tous les enregistrements d’activité pour le fournisseur de hello. |
+| Entrées de journal d’activité Azure | Affiche un graphique à barres du plus grand nombre d’enregistrements d’entrée de journal d’activité Azure pour la période sélectionnée et affiche la liste des 10 premiers appelants d’activité. Cliquez sur le graphique à barres pour exécuter une recherche de journal pour <code>Type=AzureActivity</code>. Cliquez sur un élément appelant pour exécuter une recherche dans les journaux qui renvoie toutes les entrées de journal d’activité pour cet élément. |
+| Journaux d’activité par état | Affiche un graphique en anneau de l’état des journaux d’activité Azure pour la période sélectionnée. Affiche également la liste des dix premiers enregistrements d’état. Cliquez sur le graphique pour exécuter une recherche de journal pour <code>Type=AzureActivity &#124; measure count() by ActivityStatus</code>. Cliquez sur un élément d’état pour exécuter une recherche dans les journaux qui renvoie toutes les entrées de journal d’activité pour cet enregistrement d’état. |
+| Journaux d’activité par ressource | Affiche le nombre total de ressources avec les journaux d’activité et répertorie les dix premières ressources avec le nombre d’enregistrements pour chaque ressource. Cliquez sur la zone totale pour exécuter une recherche de journal pour <code>Type=AzureActivity &#124; measure count() by Resource</code>, qui montre toutes les ressources Azure disponibles à la solution. Cliquez sur une ressource pour exécuter une recherche dans les journaux qui renvoie tous les enregistrements d’activité pour cette ressource. |
+| Journaux d’activité par fournisseur de ressources | Affiche le nombre total de fournisseurs de ressources qui génèrent des journaux d’activité et répertorie les dix premiers. Cliquez sur la zone totale pour exécuter une recherche de journal pour <code>Type=AzureActivity &#124; measure count() by ResourceProvider</code>, qui montre les fournisseurs de ressources Azure. Cliquez sur un fournisseur de ressources pour exécuter une recherche dans les journaux qui renvoie tous les enregistrements d’activité pour ce fournisseur. |
 
 ![Tableau de bord Journaux d’activité Azure](./media/log-analytics-activity/activity-log-dash.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 - Créez une [alerte](log-analytics-alerts-creating.md) lorsqu’une activité spécifique se produit.
-- Utilisez [recherche de journal](log-analytics-log-searches.md) tooview détaillée des informations à partir de vos journaux d’activité.
+- Utilisez la fonction [Recherche dans les journaux](log-analytics-log-searches.md) pour afficher des informations détaillées provenant de vos journaux d’activité.

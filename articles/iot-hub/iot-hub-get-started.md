@@ -1,6 +1,6 @@
 ---
-title: IoT Hub Azure - prise en main de la connexion de cloud de toohello appareils IoT | Documents Microsoft
-description: "Découvrez comment tooconnect les starter kits tooAzure IoT Hub IoT cartes. Vos appareils peuvent envoyer la télémétrie tooIoT Hub IoT Hub peut surveiller et gérer vos appareils."
+title: "Azure IoT Hub : mise en route de la connexion des appareils IoT au cloud | Microsoft Docs"
+description: "Découvrez comment connecter vos starter kits et cartes IoT à Azure IoT Hub. Vos appareils peuvent envoyer des données de télémétrie à IoT Hub, et IoT Hub peut surveiller et gérer vos appareils."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/22/2017
 ms.author: dobett
-ms.openlocfilehash: 6dc956308009091532019ff84aec881f042f0104
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 45016e6383761ffe78f13ccef1112ab3d9753498
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-iot-hub-get-started-tutorials"></a>Tutoriels de prise en main d’Azure IoT Hub
 
-Vous pouvez utiliser Azure IoT Hub et les solutions de hello Azure IoT appareils kits de développement logiciel toobuild Internet of Things (IoT) :
+Vous pouvez utiliser Azure IoT Hub et les Kits de développement logiciel (SDK) Azure IoT device pour générer des solutions Internet des objets (IoT) :
 
-* IoT Hub Azure est un service entièrement géré dans le cloud hello qui se connecte en toute sécurité, surveille et gère vos appareils IoT. Utilisez hello kits de développement logiciel Azure IoT appareil tooimplement vos appareils IoT.
-* Utilisez une passerelle IoT dans des scénarios IoT plus complexes. Par exemple, où vous devez tooconsider des facteurs tels que des périphériques hérités, les coûts de bande passante, les stratégies de sécurité et de confidentialité ou le traitement des données edge. Dans ces scénarios, vous utilisez Azure IoT bord tooimplement une passerelle qui se connecte IoT hub tooyour de périphériques.
+* Azure IoT Hub est un service entièrement géré dans le cloud qui connecte, surveille et gère vos appareils IoT en toute sécurité. Utilisez les Kits de développement (SDK) d’appareil Azure IoT pour implémenter vos appareils IoT.
+* Utilisez une passerelle IoT dans des scénarios IoT plus complexes. Par exemple, dans les cas où vous devez tenir compte de facteurs tels que des périphériques d’ancienne génération, des coûts de bande passante, des stratégies de sécurité et de confidentialité ou le traitement de données edge. Dans ces scénarios, vous utilisez Azure IoT Edge pour mettre en œuvre une passerelle qui connecte des appareils à votre IoT Hub.
 
-## <a name="what-hello-tutorials-cover"></a>Éléments traitent dans les didacticiels hello
+## <a name="what-the-tutorials-cover"></a>Ce que couvrent les tutoriels
 
-Ces didacticiels présentent tooAzure IoT Hub et l’appareil hello kits de développement logiciel. didacticiels de Hello couvrent les fonctionnalités courantes que IoT scénarios toodemonstrate hello de IoT Hub. Hello didacticiels illustrent également la façon dont toocombine IoT Hub avec autres Azure services et les outils toobuild plus puissantes solutions IoT. Dans les didacticiels hello, vous pouvez choisir toouse des appareils IoT simulées ou réelles. En outre, vous pouvez apprendre comment toouse un IoT hub passerelle tooenable périphériques tooconnect tooyour.
+Ces tutoriels présentent Azure IoT Hub et les Kits de développement logiciel (SDK) d’appareil. Les tutoriels abordent des scénarios IoT courants pour faire la démonstration des fonctionnalités de IoT Hub. Ils illustrent également la manière dont IoT Hub peut être combiné avec d’autres services et outils Azure pour créer des solutions IoT plus puissantes. Dans les didacticiels, vous pouvez choisir d’utiliser des appareils IoT simulés ou réels. En outre, vous pouvez apprendre à utiliser une passerelle pour permettre aux appareils de se connecter à votre IoT Hub.
 
 ## <a name="set-up-your-device"></a>Configurer votre appareil
 
-Connecter un tooAzure périphérique ou passerelle IoT IoT Hub. Vous pouvez choisir un tooget périphérique physique ou simulé démarré :
+Configurer un appareil ou une passerelle IoT à Azure IoT Hub. Vous pouvez choisir un appareil physique ou simulé pour commencer :
 
 | Appareil IoT                       | Langage de programmation |
 |----------------------------------|----------------------|
@@ -47,7 +47,7 @@ Connecter un tooAzure périphérique ou passerelle IoT IoT Hub. Vous pouvez choi
 | Appareil simulé sur PC           | [.NET][Sim_NET], [Java][Sim_Jav], [Node.js][Sim_Nd], [Python][Sim_Pyth] |
 | Simulateur d’appareil en ligne         | [Raspberry Pi (Node.js)][Ol_Sim] |
 
-En outre, vous pouvez utiliser un IoT hub IoT bord passerelle tooenable périphériques tooconnect tooyour :
+En outre, vous pouvez utiliser une passerelle IoT Edge pour permettre à des appareils de se connecter à votre IoT Hub :
 
 | Appareil de passerelle               | Langage de programmation | Plateforme         |
 |------------------------------|----------------------|------------------|

@@ -1,6 +1,6 @@
 ---
-title: connecteur aaaRSS dans Azure Logic Apps | Documents Microsoft
-description: "Créez des applications logiques avec Azure App Service. Connecteur RSS permet hello utilisateurs toopublish et récupérer des éléments de flux. Il permet aussi hello tootrigger opérations lorsqu’un nouvel élément est publié toohello flux."
+title: Connecteur RSS dans Azure Logic Apps | Microsoft Docs
+description: "Créez des applications logiques avec Azure App Service. Le connecteur RSS permet aux utilisateurs de publier et d’extraire des éléments de flux. Il permet également aux utilisateurs de déclencher des opérations lorsqu’un nouvel élément est publié dans le flux."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 973ce930f5fa7226a918feebe0f9addef14f34e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 308d78550e9e60303b70d591eb4e6bfff3e49ce7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-rss-connector"></a>Prise en main connecteur RSS hello
-RSS est qu'un toopublish de format utilisé de syndication web populaires fréquemment mis à jour pour le contenu, telles que les entrées de blog et d’actualité.  De nombreux éditeurs de contenu fournissent qu'un flux RSS tooallow utilisateurs toosubscribe tooit.  Utilisez hello RSS connecteur tooretrieve flux d’informations et des flux lorsque de nouveaux éléments sont publiées dans un flux RSS.
+# <a name="get-started-with-the-rss-connector"></a>Prise en main du connecteur RSS
+RSS est un format de syndication populaire web utilisé pour publier du contenu fréquemment mise à jour, tel que des entrées de blog et des titres d’actualité.  De nombreux éditeurs de contenu fournissent un flux RSS pour permettre aux utilisateurs d’y souscrire.  Le connecteur RSS permet de récupérer le flux d’informations et de déclencher des flux lorsque de nouveaux éléments sont publiés dans un flux RSS.
 
 Vous pouvez commencer par créer une application logique. Pour cela, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-toorss"></a>Créer un tooRSS de connexion
-> [!INCLUDE [Steps toocreate a connection tooan RSS feed](../../includes/connectors-create-api-rss.md)]
+## <a name="create-a-connection-to-rss"></a>Créer une connexion à RSS
+> [!INCLUDE [Steps to create a connection to an RSS feed](../../includes/connectors-create-api-rss.md)]
 > 
 
-## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
+## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
 
-Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/rss/).
+Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/rss/).
 
 ## <a name="more-connectors"></a>Autres connecteurs
-Revenir en arrière toohello [liste des API](apis-list.md).
+Revenir à la [liste des API](apis-list.md).

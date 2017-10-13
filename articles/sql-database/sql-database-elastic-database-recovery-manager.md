@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing toofix du Gestionnaire de récupération partition mapper des problèmes | Documents Microsoft"
-description: "Utilisez hello RecoveryManager toosolve des problèmes de classe avec les cartes de partitions"
+title: "Utilisation du Recovery Manager pour résoudre les problèmes de mappage de partition | Microsoft Docs"
+description: "Utiliser la classe RecoveryManager pour résoudre les problèmes des mappages de partition"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/25/2016
 ms.author: ddove
-ms.openlocfilehash: 2218fb15122f1df466e65483480461e366317f2f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e60e2295484873ea15d52108b7d619319a57827f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="using-hello-recoverymanager-class-toofix-shard-map-problems"></a>À l’aide des problèmes du mappage de partitions hello RecoveryManager classe toofix
-Hello [RecoveryManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.aspx) classe fournit des applications ADO.Net hello capacité tooeasily détecter et corriger les incohérences entre la carte de partitions globales de hello (GSM) et la carte de partitions local hello (LSM) dans un environnement de base de données partitionnée. 
+# <a name="using-the-recoverymanager-class-to-fix-shard-map-problems"></a>Utilisation de la classe RecoveryManager pour résoudre les problèmes de correspondance de partitionnement
+La classe [RecoveryManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.aspx) permet aux applications ADO.Net de détecter et corriger facilement les incohérences entre le mappage de partitions global (GSM) et le mappage de partitions local (LSM) dans un environnement de base de données partitionné. 
 
-Hello GSM et LSM suivi hello mappage de chaque base de données dans un environnement partitionné. Parfois, un arrêt se produit entre hello GSM et hello LSM. Dans ce cas, utilisez hello RecoveryManager classe toodetect et réparer le saut de hello.
+Le GSM et LSM assurent le suivi de mappage de chaque base de données dans un environnement partitionné. Il arrive qu’un arrêt se produise entre le GSM et le LSM. Dans ce cas, utilisez la classe RecoveryManager pour détecter et résoudre l’arrêt.
 
-Hello RecoveryManager classe fait partie de hello [bibliothèque cliente de base de données élastique](sql-database-elastic-database-client-library.md). 
+La classe RecoveryManager fait partie de la [Bibliothèque de client de base de données élastique](sql-database-elastic-database-client-library.md). 
 
 ![Mappage de partition][1]
 
-Vous trouverez les définitions des termes évoqués ici dans la page [Glossaire des outils de base de données élastique](sql-database-elastic-scale-glossary.md). toounderstand comment hello **ShardMapManager** les données toomanage utilisé dans une solution partitionnée, consultez [gestion de carte de partitions](sql-database-elastic-scale-shard-map-management.md).
+Vous trouverez les définitions des termes évoqués ici dans la page [Glossaire des outils de base de données élastique](sql-database-elastic-scale-glossary.md). Pour comprendre comment **ShardMapManager** est utilisé pour gérer les données dans une solution partitionnée, voir [gestion de mappage de partition](sql-database-elastic-scale-shard-map-management.md).
 
-## <a name="why-use-hello-recovery-manager"></a>Pourquoi utiliser le Gestionnaire de récupération hello ?
-Dans un environnement de base de données partitionnée, il existe un seul client par base de données et plusieurs bases de données par serveur. Il peut être également de nombreux serveurs dans un environnement de hello. Chaque base de données est mappé dans la carte de partitions hello, appels peuvent avoir une base de données et routé toohello correcte du serveur. Bases de données sont traitées selon tooa **clé de partitionnement**, et chaque partition est attribuée un **plage de valeurs de clé**. Par exemple, une clé de partitionnement peut-être représenter des noms de clients hello de « D » trop « f ». Hello mappage de toutes les partitions (c'est-à-dire dans les bases de données) et de leurs plages de mappage sont contenues dans hello **le carte de partitions globales (GSM)**. Chaque base de données contient également un mappage de plages hello contenue dans la partition hello appelé hello **le carte de partitions local (LSM)**. Lorsqu’une application se connecte à des partitions de tooa, mappage de hello est mis en cache avec l’application hello pour la récupération rapide. Hello LSM donnée utilisé toovalidate mis en cache. 
+## <a name="why-use-the-recovery-manager"></a>Pourquoi utiliser le Recovery Manager ?
+Dans un environnement de base de données partitionnée, il existe un seul client par base de données et plusieurs bases de données par serveur. L'environnement peut également contenir plusieurs serveurs. Chaque base de données est mappée dans le mappage de partition, afin que les appels puissent être acheminés vers le serveur et la base de données corrects. Les bases de données sont suivies selon une **clé de partitionnement** et chaque partition se voit affecter une **plage de valeurs clés**. Par exemple, une clé de partitionnement peut représenter les noms de clients, de « D » à « F ». Le mappage de toutes les partitions (ou bases de données) et leurs plages de mappage sont contenus dans le **mappage de partition global (GSM)**. Chaque base de données contient également un mappage des plages contenues dans la partition. Il est connu comme **mappage de partition locale (LSM)**. Lorsqu'une application se connecte à une partition, le mappage est mis en cache avec l'application pour une récupération rapide. Le LSM est utilisé pour valider des données placées en mémoire cache. 
 
-Hello GSM et LSM peuvent devenir désynchronisés pour hello suivant raisons :
+Le GSM et le LSM peuvent devenir désynchronisés pour les raisons suivantes :
 
-1. suppression de Hello d’une partition dont l’étendue est considérée comme toono plu être utilisé, ou changement de nom d’une partition. La suppression d’une partition  se traduit par un **mappage de partition orphelin**. De même, une base de données renommée peut causer un mappage de partition orphelin. En fonction de la finalité de hello de modification de hello, les partitions hello peut-être toobe supprimé ou emplacement de partition hello doit toobe mis à jour. toorecover une base de données supprimée, consultez [restaurer une base de données supprimée](sql-database-recovery-using-backups.md).
-2. Un événement de géo-basculement se produit. toocontinue, un doit mettre à jour hello nom du serveur et nom de la base de données du Gestionnaire de carte de partitions dans l’application hello, puis Détails de mappage de mise à jour hello partition pour toutes les partitions dans une carte de partitions. S’il existe un basculement géographique, une telle logique de récupération doit être automatisée dans le flux de travail de basculement hello. L’automatisation des actions de récupération offre des possibilités de gestion sans friction pour les bases de données géolocalisées et évite les interventions manuelles. toolearn sur toorecover options une base de données en cas de panne du centre de données, consultez [continuité](sql-database-business-continuity.md) et [la récupération d’urgence](sql-database-disaster-recovery.md).
-3. Une partition ou hello ShardMapManager base de données est restaurée tooan antérieures point précis dans le temps. toolearn sur le point de récupération dans le temps à l’aide de sauvegardes, consultez [à l’aide de sauvegardes de récupération](sql-database-recovery-using-backups.md).
+1. La suppression d'un partitionnement dont on pense que la plage n'est plus utilisée ou l'attribution d'un nouveau nom au partitionnement. La suppression d’une partition  se traduit par un **mappage de partition orphelin**. De même, une base de données renommée peut causer un mappage de partition orphelin. En fonction de l'objectif de la modification, il peut être nécessaire de supprimer la partition ou de mettre à jour l'emplacement de partition. Pour récupérer une base de données supprimée, consultez [Restauration d’une base de données supprimée](sql-database-recovery-using-backups.md).
+2. Un événement de géo-basculement se produit. Pour continuer, il faut mettre à jour le nom du serveur et le nom de la base de données du gestionnaire de partitions dans l'application, puis mettre à jour les détails de mappage de partition pour toutes les partitions d'un mappage de partition. En cas de basculement géographique, cette logique de récupération doit être automatisée au sein du flux de travail de basculement. L’automatisation des actions de récupération offre des possibilités de gestion sans friction pour les bases de données géolocalisées et évite les interventions manuelles. Pour en savoir plus sur les options de récupération d’une base de données en cas de panne du centre de données, voir les rubriques sur la [continuité des activités](sql-database-business-continuity.md) et la [récupération d’urgence](sql-database-disaster-recovery.md).
+3. Une partition ou une base de données ShardMapManager est restaurée vers une version antérieure. Pour en savoir plus sur la récupération jusqu`à une date et heure avec les sauvegardes, consultez [Récupération avec des sauvegardes](sql-database-recovery-using-backups.md).
 
-Pour plus d’informations sur les outils de la base de données élastique de base de données SQL Azure, géo-réplication et de restauration, voir hello : 
+Pour plus d’informations sur les outils de base de données élastique, la géoréplication et la restauration d’Azure SQL Database, voir les rubriques suivantes : 
 
 * [Vue d’ensemble : continuité des activités cloud et récupération d’urgence d’une base de données avec SQL Database](sql-database-business-continuity.md) 
 * [Prise en main des outils de base de données élastiques](sql-database-elastic-scale-get-started.md)  
 * [Gestion de ShardMap](sql-database-elastic-scale-shard-map-management.md)
 
 ## <a name="retrieving-recoverymanager-from-a-shardmapmanager"></a>Récupération RecoveryManager à partir d’un ShardMapManager
-première étape de Hello est toocreate une instance RecoveryManager. Hello [GetRecoveryManager méthode](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.getrecoverymanager.aspx) renvoie hello Gestionnaire de récupération pour hello actuel [ShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) instance. mappent de toutes les incohérences dans les partitions hello tooaddress, vous devez d’abord récupérer hello RecoveryManager pour la carte de partitions particulier de hello. 
+Cette première sert à créer une instance de RecoveryManager. La [méthode GetRecoveryManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.getrecoverymanager.aspx) retourne le Recovery Manager de l’instance [ShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx) en cours. Pour résoudre les incohérences dans le mappage du partitionnement, vous devez d’abord récupérer RecoveryManager pour ce mappage de partition particulier. 
 
    ```
     ShardMapManager smm = ShardMapManagerFactory.GetSqlShardMapManager(smmConnnectionString,  
@@ -55,63 +55,63 @@ première étape de Hello est toocreate une instance RecoveryManager. Hello [Get
              RecoveryManager rm = smm.GetRecoveryManager(); 
    ```
 
-Dans cet exemple, hello RecoveryManager hello ShardMapManager est initialisé. Hello ShardMapManager contenant un ShardMap est également déjà initialisé. 
+Dans cet exemple, RecoveryManager est initialisé à partir de ShardMapManager. Le ShardMapManager contenant un ShardMap également déjà initialisé. 
 
-Étant donné que ce code de l’application manipule la carte de partitions hello lui-même, hello des informations d’identification utilisées dans la méthode de fabrique hello (Bonjour précédent exemple, smmConnectionString) doivent être des informations d’identification disposant des autorisations de lecture-écriture sur base de données GSM hello référencé par hello chaîne de connexion. Ces informations d’identification sont en général différentes de connexions de tooopen d’informations d’identification utilisées pour le routage dépendant des données. Pour plus d’informations, consultez [à l’aide des informations d’identification de client de base de données élastique hello](sql-database-elastic-scale-manage-credentials.md).
+Comme ce code d’application manipule la correspondance de mappage de partitionnement, les informations d’identification utilisées dans la méthode de fabrique (dans l’exemple précédent, smmConnectionString) doivent être des informations d’identification disposant des autorisations en lecture/écriture dans la base de données GSM référencée par la chaîne de connexion. Ces informations d’identification sont généralement différentes des informations d’identification utilisées pour ouvrir des connexions pour l’acheminement dépendant des données. Pour plus d’informations, consultez [Utilisation des informations d’identification dans le client de base de données élastique](sql-database-elastic-scale-manage-credentials.md).
 
-## <a name="removing-a-shard-from-hello-shardmap-after-a-shard-is-deleted"></a>Suppression d’une partition à partir de hello ShardMap après la suppression d’une partition
-Hello [DetachShard méthode](https://msdn.microsoft.com/library/azure/dn842083.aspx) détache hello fonction de partition à partir de la carte de partitions hello et supprime les mappages associés à des partitions de hello.  
+## <a name="removing-a-shard-from-the-shardmap-after-a-shard-is-deleted"></a>Suppression d’une partition du ShardMap après la suppression d’une partition
+La [méthode DetachShard](https://msdn.microsoft.com/library/azure/dn842083.aspx) détache la partition donnée du mappage de partition et supprime les mappages associés à la partition.  
 
-* paramètre d’emplacement Hello est l’emplacement des partitions hello, spécifiquement le nom du serveur et nom de la base de données de partition hello détachée. 
-* paramètre de shardMapName Hello est le nom de carte de partitions hello. Cela est uniquement requis lorsque plusieurs cartes de partitions sont gérés par hello même gestionnaire de carte de partitions. facultatif. 
+* Le paramètre d’emplacement est l’emplacement de partition, en particulier le nom du serveur et nom de la base de données de la partition qui est détachée. 
+* Le paramètre shardMapName correspond au nom de mappage de partition. Il est requis uniquement lorsque plusieurs mappages de partition sont gérés par le même gestionnaire de mappage de partition. facultatif. 
 
 
 > [!IMPORTANT]
-> Utilisez cette technique uniquement si vous êtes certain que la plage hello pour le mappage de hello mis à jour est vide. méthodes Hello ci-dessus ne vérifient pas les données de la plage de hello déplacé, il est donc préférable tooinclude vérifie dans votre code.
+> Utilisez cette technique seulement si vous êtes certain que la plage de mappage mis à jour est vide. Les méthodes ci-dessus ne vérifient pas les données de la plage déplacée, il est donc préférable d’inclure des vérifications dans votre code.
 >
 
-Cet exemple supprime les partitions à partir de la carte de partitions hello. 
+Cet exemple supprime les partitions du mappage de partition. 
 
    ```
    rm.DetachShard(s.Location, customerMap);
    ``` 
 
-carte de partitions Hello reflète l’emplacement des partitions hello Bonjour GSM avant la suppression de hello de partition de hello. Étant donné que les partitions hello a été supprimée, il est supposé cela n’est pas intentionnel, et plage de clés de partitionnement hello n’est plus en cours d’utilisation. Sinon, vous pouvez exécuter une restauration à un moment donné. partition de hello toorecover à partir d’un plus haut dans le temps. (Dans ce cas, passez en revue hello suivant des incohérences de partitions section toodetect.) toorecover, consultez [Point de récupération dans le temps](sql-database-recovery-using-backups.md).
+La carte de partitions reflète l’emplacement de la partition dans GSM avant sa suppression. Étant donné que la partition a été supprimée, on suppose que c’est intentionnel et la plage de clés de partitionnement n’est plus en cours d’utilisation. Sinon, vous pouvez exécuter une restauration à un moment donné. pour récupérer la partition à partir d’un point dans le temps ultérieur. (Dans ce cas, consultez la section suivante pour détecter les incohérences de partition.) Pour effectuer une récupération, consultez la rubrique sur la [récupération jusqu`à une date et heure](sql-database-recovery-using-backups.md).
 
-Dans la mesure où il est supposé hello de leur suppression n’est pas intentionnelle, hello action de nettoyage d’administration final est partition de toohello toodelete hello entrée dans le Gestionnaire de carte de partitions hello. Cela empêche l’application hello d’écrire par inadvertance des informations tooa plage qui n’est pas attendu.
+Si la suppression de base de données est intentionnelle, l’opération de nettoyage administratif final consiste à supprimer l’entrée de la partition dans le gestionnaire de table de partition. L’application évite ainsi d’écrire par inadvertance des informations pour une plage non prévue.
 
-## <a name="toodetect-mapping-differences"></a>différences de mappage toodetect
-Hello [DetectMappingDifferences méthode](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.detectmappingdifferences.aspx) sélectionne et retourne l’une des cartes de partitions hello (locales ou globales) en tant que source fiable hello et rapproche les mappages sur les deux cartes de partitions (GSM et LSM).
+## <a name="to-detect-mapping-differences"></a>Pour détecter les différences de mappage
+La [méthode DetectMappingDifferences](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.detectmappingdifferences.aspx) sélectionne et retourne un des mappages de partition (local ou global) comme source de vérité et rapproche les mappages sur les deux mappages de partition (GSM et LSM).
 
    ```
    rm.DetectMappingDifferences(location, shardMapName);
    ```
 
-* Hello *emplacement* Spécifie le nom du serveur hello et le nom de la base de données. 
-* Hello *shardMapName* paramètre est le nom de mappage de partitions hello. Cela est uniquement requis si plusieurs cartes de partitions sont gérés par hello même gestionnaire de carte de partitions. facultatif. 
+* L *’emplacement* indique le nom du serveur et le nom de la base de données. 
+* Le paramètre *shardMapName* correspond au nom de mappage de partition. Il est requis uniquement si plusieurs mappages de partition sont gérés par le même gestionnaire de mappage de partition. facultatif. 
 
-## <a name="tooresolve-mapping-differences"></a>différences de mappage tooresolve
-Hello [ResolveMappingDifferences méthode](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.resolvemappingdifferences.aspx) sélectionne l’une des cartes de partitions hello (locales ou globales) en tant que source de hello de vérité puis harmonise les mappages sur les deux cartes de partitions (GSM et LSM).
+## <a name="to-resolve-mapping-differences"></a>Pour résoudre les différences de mappage
+La [méthode ResolveMappingDifferences](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.resolvemappingdifferences.aspx) sélectionne l’un des mappages de partition (local ou global) en tant que source de vérité et rapproche les mappages sur les deux cartes de partitionnement (GSM et LSM).
 
    ```
    ResolveMappingDifferences (RecoveryToken, MappingDifferenceResolution.KeepShardMapping);
    ```
 
-* Hello *RecoveryToken* paramètre énumère hello différences dans les mappages hello hello GSM et hello LSM pour les partitions spécifiques hello. 
-* Hello [MappingDifferenceResolution énumération](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.mappingdifferenceresolution.aspx) est la méthode de hello tooindicate utilisé pour la résolution de différence hello entre les mappages de partition hello. 
-* **MappingDifferenceResolution.KeepShardMapping** est recommandé que lorsque hello LSM qui contient les correspondances exactes hello et mappage hello dans les partitions hello doit donc être utilisé. C’est généralement hello cas s’il existe un basculement : les partitions hello résident maintenant sur un nouveau serveur. Étant donné que les partitions hello doivent tout d’abord être supprimée de hello GSM (à l’aide de la méthode de RecoveryManager.DetachShard hello), un mappage n’existe plus sur hello GSM. Hello LSM doit donc être utilisé toore-établir le mappage de partitions hello.
+* Le paramètre *RecoveryToken* énumère les différences de mappage entre le GSM et le LSM pour la partition spécifique. 
+* L’ [énumération MappingDifferenceResolution](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.mappingdifferenceresolution.aspx) est utilisée pour indiquer la méthode de résolution de la différence entre les mappages de partition. 
+* **MappingDifferenceResolution.KeepShardMapping** est recommandé si LSM contient les correspondances exactes et que le mappage de la partition doit donc être utilisé. C’est généralement le cas lors d’un basculement : la partition se trouve désormais sur un nouveau serveur. Comme la partition doit d’abord être supprimée du GSM (à l’aide de la méthode RecoveryManager.DetachShard), il n’existe plus de mappage sur le GSM. Par conséquent, le LSM doit être utilisé pour rétablir le mappage de partition.
 
-## <a name="attach-a-shard-toohello-shardmap-after-a-shard-is-restored"></a>Attacher un toohello partition ShardMap après la restauration d’une partition
-Hello [AttachShard méthode](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.attachshard.aspx) attache hello carte de partitions toohello de partition donné. Il détecte des incohérences de mappage de partition et met à jour de la partition de hello hello mappages toomatch hello au moment même de restauration de partition hello. Il est supposé que Hello base de données est également renommée tooreflect hello nom d’origine (avant la restauration de partition de hello), étant donné que la restauration de point à temps hello par défaut est la nouvelle base de données tooa ajouté avec un horodateur de hello. 
+## <a name="attach-a-shard-to-the-shardmap-after-a-shard-is-restored"></a>Attachez une partition au ShardMap une fois la partition restaurée
+La [méthode AttachShard](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.recovery.recoverymanager.attachshard.aspx) attache la partition donnée à la table de partition. Il détecte des incohérences de mappage de partition et met à jour les mappages pour qu’ils correspondent à la partition au moment de la restauration de la partition. On suppose que la base de données est également renommée pour reprendre le nom de la base de données d’origine (avant la restauration de la partition), car la restauration à un point donné revient par défaut à une nouvelle base de données ajoutée avec un horodatage. 
 
    ```
    rm.AttachShard(location, shardMapName)
    ``` 
 
-* Hello *emplacement* paramètre est le nom du serveur hello et nom de la base de données de partition hello en cours d’attachement. 
-* Hello *shardMapName* paramètre est le nom de mappage de partitions hello. Cela est uniquement requis lorsque plusieurs cartes de partitions sont gérés par hello même gestionnaire de carte de partitions. facultatif. 
+* Le paramètre *location* est le nom du serveur et le nom de la base de données de la partition qui est attachée. 
+* Le paramètre *shardMapName* correspond au nom de mappage de partition. Il est requis uniquement lorsque plusieurs mappages de partition sont gérés par le même gestionnaire de mappage de partition. facultatif. 
 
-Cet exemple ajoute une carte de partitions toohello partition qui a été récemment restaurée à partir d’une heure antérieure de point. Étant donné que les partitions de hello (à savoir hello mappage de partitions hello Bonjour LSM) a été restaurée, il est potentiellement incohérent avec une entrée de partition hello Bonjour GSM. En dehors de cet exemple de code, les partitions hello a été restaurée et renommé toohello le nom d’origine de la base de données hello. Dans la mesure où il a été restaurée, il est supposé être mappage hello Bonjour LSM mappage de confiance hello. 
+Cet exemple ajoute une partition dans le mappage de la partition venant d'être restaurée à partir d'une restauration antérieure. Dans la mesure où la partition (à savoir le mappage pour la partition dans le LSM) a été restaurée, il est potentiellement incompatible avec l’entrée de partition dans le GSM. Hors de cet exemple de code, la partition a été restaurée et renommée avec le nom d’origine de la base de données. Comme elle a été restaurée, on suppose que le mappage présent dans le gestionnaire LSM est le mappage approuvé. 
 
    ```
    rm.AttachShard(s.Location, customerMap); 
@@ -122,24 +122,24 @@ Cet exemple ajoute une carte de partitions toohello partition qui a été récem
        } 
    ```
 
-## <a name="updating-shard-locations-after-a-geo-failover-restore-of-hello-shards"></a>Mise à jour des emplacements de partitions après un basculement géographique (restauration) de partitions de hello
-S’il existe un basculement géographique, base de données secondaire hello est accessibles écrire et devient hello base de données primaire. nom du serveur de hello et potentiellement hello base de données (selon votre configuration) de Hello, peut être différent du serveur principal d’origine de hello. Par conséquent hello des entrées de mappage de partitions hello Bonjour GSM et LSM doit être corrigée. De même, si hello base de données est restaurée tooa autre nom ou emplacement ou tooan point antérieur dans le temps, cela peut provoquer des incohérences dans les cartes de partitions hello. Hello Gestionnaire de carte de partitions gère la distribution hello de base de données de connexions ouvertes toohello correcte. Distribution est basée sur des données dans la carte de partitions hello et valeur hello de clé de partitionnement hello cible hello de demande d’applications hello hello. Après un basculement géographique, ces informations doivent être mis à jour avec le nom du serveur précis hello, nom de la base de données et le mappage de partition de base de données récupérée hello. 
+## <a name="updating-shard-locations-after-a-geo-failover-restore-of-the-shards"></a>Mise à jour des emplacements de partition après un basculement géographique (restauration) des partitions
+En cas de basculement géographique, la base de données secondaire est accessible en lecture et devient la nouvelle base de données primaire. Le nom du serveur et éventuellement la base de données (selon votre configuration), peut être différent de celui du site principal d’origine. Par conséquent, les entrées de mappage de la partition dans le GSM et LSM doivent être corrigées. De même, si la base de données est restaurée avec un autre nom ou  un emplacement, ou un  point antérieur dans le temps, ceci peut entraîner des incohérences dans les mappages de partition. Le Gestionnaire de mappage de partition gère la distribution des connexions ouvertes sur la base de données. La distribution est basée sur les données de la carte de partitions et la valeur de la clé de partitionnement cible de la demande d’application. Après un basculement géographique, cette information doit être mise à jour avec le bon nom de serveur, nom de base de données et mappage de partition de la base de données récupérée. 
 
 ## <a name="best-practices"></a>Meilleures pratiques
-Basculement géographique et restauration sont des opérations généralement gérées par un administrateur de cloud de l’application hello intentionnellement utilisant une des fonctionnalités de continuité d’activité de bases de données SQL Azure. Planification de la continuité des activités commerciales nécessite tooensure de mesures commerciales peuvent continuer sans interruption, des procédures et processus. Hello méthodes disponibles comme partie de hello RecoveryManager classe doit être utilisé dans ce hello de tooensure de flux de travail GSM et LSM sont mis à jour en fonction de l’action de récupération hello entreprise. Il existe cinq étapes de base tooproperly garantissant hello GSM et LSM reflètent des informations précises hello après un événement de basculement. Bonjour tooexecute de code d’application que ces étapes peuvent être intégrées dans les flux de travail et des outils existants. 
+Le basculement géographique et la restauration sont des opérations généralement gérées par un administrateur de cloud de l'application en utilisant intentionnellement l'une des fonctionnalités de continuité d'activité des bases de données SQL Azure. La planification de la continuité des activités requiert des processus, des procédures et des mesures garantissant que les opérations de l’entreprise peuvent continuer sans interruption. Les méthodes disponibles en tant que partie de la classe RecoveryManager doivent être utilisées dans ce flux de travail pour s’assurer que le GSM et LSM sont actualisés en fonction de l’opération de récupération exécutée. Il existe cinq opérations de base pour s’assurer que GSM et LSM reflètent bien les informations précises après un événement de basculement. Le code d’application servant à exécuter ces opérations peut être intégré dans des outils et de flux de travail existants. 
 
-1. Extraire hello RecoveryManager hello ShardMapManager. 
-2. Détachez la partition ancienne de hello à partir de la carte de partitions hello.
-3. Attachez hello nouvelle partition toohello carte de partitions, y compris le nouvel emplacement de partition hello.
-4. Détecter les incohérences Bonjour le mappage entre les hello GSM et LSM. 
-5. Résoudre les différences entre hello GSM et hello LSM, approbation hello LSM. 
+1. Récupérer RecoveryManager à partir de ShardMapManager. 
+2. Détacher la partition ancienne du mappage de partition.
+3. Attacher la nouvelle partition au mappage de partition, y compris le nouvel emplacement de la partition.
+4. Détecter des incohérences dans le mappage entre le GSM et LSM. 
+5. Résoudre les différences entre le GSM et le LSM et approuver le LSM. 
 
-Cet exemple exécute hello comme suit :
+Cet exemple effectue les étapes suivantes :
 
-1. Supprime les partitions de hello carte de partitions qui reflète les emplacements des partitions avant l’événement de basculement hello.
-2. Joint des partitions toohello carte de partitions réfléchissante hello nouvelle partition emplacements (le paramètre hello « Configuration.SecondaryServer » est le nom du nouveau serveur hello mais hello même nom de base de données).
-3. Récupère les jetons de récupération hello en détectant les différences de mappage entre hello GSM et hello LSM pour chaque partition. 
-4. Résout les incohérences hello en approbation mappage hello de hello LSM de chaque partition. 
+1. Supprimer les partitions du mappage de partition qui reflètent les emplacements des partitions avant l’événement de basculement.
+2. Joint des partitions au mappage de partition qui reflètent les nouveaux emplacements des partitions (le paramètre « Configuration.SecondaryServer » est le nouveau nom de serveur, mais le même nom de base de données).
+3. Extrait des jetons de récupération en détectant des différences de mappage entre le GSM et le LSM pour chaque partition. 
+4. Résout les incohérences en approuvant le mappage LSM de chaque partition. 
    
    ```
    var shards = smm.GetShards(); 

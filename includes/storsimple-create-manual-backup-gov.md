@@ -1,18 +1,18 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="toocreate-a-manual-backup"></a>toocreate une sauvegarde manuelle
-1. Sur hello **périphériques** page, aller toohello **stratégies de sauvegarde** onglet. Cet onglet répertorie toutes les stratégies de sauvegarde hello dans un format tabulaire, y compris la stratégie hello pour hello volume souhaité tooback des.
-2. Sélectionnez la stratégie de hello en cliquant sur n’importe où dans la ligne correspondante de hello, à l’exception de première colonne de hello. Au bas de hello de page de hello, cliquez sur **sauvegarde**. bouton de Hello développe les options de sauvegarde tooshow hello : instantané local et l’instantané cloud. 
+#### <a name="to-create-a-manual-backup"></a>Création d’une sauvegarde manuelle
+1. Dans la page **Appareils**, accédez à l’onglet **Stratégies de sauvegarde**. Cet onglet répertorie toutes les stratégies de sauvegarde au format tabulaire, y compris la stratégie du volume que vous souhaitez sauvegarder.
+2. Sélectionnez la stratégie en cliquant n’importe où dans la ligne correspondante, à l’exception de la première colonne. En bas de la page, cliquez sur **Sélectionner la sauvegarde**. Le bouton se développe pour afficher les options de sauvegarde : instantané local et instantané cloud. 
 3. Lorsque vous choisissez l’une de ces options, le système vous demande de confirmer votre choix. Cliquez sur **Oui**. 
    
     ![Création d’une sauvegarde manuelle1](./media/storsimple-create-manual-backup-gov/HCS_CreateManualBackup1-gov-include.png)
    
-    Démarre un travail de toocreate un instantané. Vous voyez une notification bas hello de page de hello après que hello tâche est créée.
-4. travail de hello toomonitor, cliquez sur **afficher le travail** dans la zone de notification de hello (en hello en bas de page de hello). 
+    Cette action lance un travail pour la création d’un instantané. Vous verrez une notification au bas de la page lorsque le travail aura été créé avec succès.
+4. Pour surveiller le travail, cliquez sur **Afficher le travail** dans la zone de notification (en bas de la page). 
    
     ![Création d’une sauvegarde manuelle2](./media/storsimple-create-manual-backup-gov/HCS_CreateManualBackup2-gov-include.png)
-5. À la fin du travail de sauvegarde hello, accédez à toohello **catalogue de sauvegarde** onglet.
-6. Définir le périphérique approprié du toohello sélections filtre hello, la stratégie de sauvegarde et plage de temps. Cliquez sur une icône de coche hello ![icône en forme de coche](./media/storsimple-create-manual-backup/HCS_CheckIcon-include.png) Après avoir défini les filtres hello.
+5. Une fois le travail de sauvegarde terminé, accédez à l’onglet **Catalogue de sauvegarde** .
+6. Définissez les sélections de filtre pour l’appareil approprié, la stratégie de sauvegarde et la plage horaire. Cliquez sur l’icône en forme de coche  ![icône en forme de coche](./media/storsimple-create-manual-backup/HCS_CheckIcon-include.png) après avoir défini les filtres.
    
-   sauvegarde de Hello doit apparaître dans la liste de hello des jeux de sauvegarde qui s’affiche dans le catalogue de hello.
+   La sauvegarde doit apparaître dans la liste des jeux de sauvegarde qui s’affiche dans le catalogue.
 

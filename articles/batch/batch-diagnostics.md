@@ -1,5 +1,5 @@
 ---
-title: "aaaEnable journalisation des diagnostics pour les événements de traitement par lots - Azure | Documents Microsoft"
+title: "Activer la journalisation des événements de lot - Azure | Microsoft Docs"
 description: "Enregistrez et analysez les événements du journal de diagnostic pour des ressources de compte Azure Batch telles que des pools et des tâches."
 services: batch
 documentationcenter: 
@@ -15,41 +15,41 @@ ms.workload: big-compute
 ms.date: 05/22/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 9d03303a3e857e9303f40cc6de5c32b5a51d8f8a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b7bc6fd9921ab0f2374ace33ea5c1ab93a78f860
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="log-events-for-diagnostic-evaluation-and-monitoring-of-batch-solutions"></a>Consigner des événements pour l’analyse et l’évaluation de diagnostic des solutions Batch
 
-Comme avec nombreux services Azure, hello service Batch émet des événements de journal pour certaines ressources pendant hello durée de vie de la ressource de hello. Vous pouvez activer des événements de toorecord de journaux de diagnostic Azure Batch pour les ressources, telles que les pools et les tâches et ensuite utiliser les journaux de hello pour l’évaluation de diagnostic et de suivi. Des événements tels qu’une création de pool, une suppression de pool, un démarrage de tâche ou un achèvement de tâche sont consignés dans les journaux de diagnostic de Batch.
+Comme de nombreux services Azure, le service Batch génère des événements de journal pour certaines ressources pendant la durée de vie de celles-ci. Vous pouvez activer les journaux de diagnostic Azure Batch afin d’enregistrer des événements pour des ressources telles que des pools et des tâches, puis utiliser les journaux à des fins d’évaluation et d’analyse des diagnostics. Des événements tels qu’une création de pool, une suppression de pool, un démarrage de tâche ou un achèvement de tâche sont consignés dans les journaux de diagnostic de Batch.
 
 > [!NOTE]
-> Cet article décrit la journalisation d’événements pour les ressources de compte Batch, pas les données de sortie de travail et de tâche. Pour plus d’informations sur le stockage des données de sortie hello des travaux et des tâches, consultez [sortie de projet et la tâche de rendre persistantes Azure Batch](batch-task-output.md).
+> Cet article décrit la journalisation d’événements pour les ressources de compte Batch, pas les données de sortie de travail et de tâche. Pour plus d’informations sur le stockage des données de sortie des travaux et des tâches, voir [Conserver une sortie de tâche et de travail Azure Batch](batch-task-output.md).
 > 
 > 
 
-## <a name="prerequisites"></a>Composants requis
+## <a name="prerequisites"></a>Configuration requise
 * [Compte Azure Batch](batch-account-create-portal.md)
-* [compte Stockage Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account)
+* [Compte Stockage Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account)
   
-  journaux de diagnostic de lot toopersist, vous devez créer un compte Azure Storage où Azure stocke les journaux hello. Vous spécifiez ce compte de stockage lorsque vous [activez la journalisation des diagnostics](#enable-diagnostic-logging) pour votre compte Batch. Hello compte de stockage que vous spécifiez lorsque vous activez la collecte de journaux est même hello pas comme un hello tooin référencé du compte stockage [les packages d’applications](batch-application-packages.md) et [sortie de la tâche persistance](batch-task-output.md) articles.
+  Pour conserver les journaux de diagnostic de Batch, vous devez créer un compte Stockage Azure dans lequel Azure stocke les journaux. Vous spécifiez ce compte de stockage lorsque vous [activez la journalisation des diagnostics](#enable-diagnostic-logging) pour votre compte Batch. Le compte de stockage que vous spécifiez lorsque vous activez la collecte de journaux n’est pas identique à un compte de stockage lié tel que décrit dans les articles relatifs aux [packages d’application](batch-application-packages.md) et à la [persistance en sortie des tâches](batch-task-output.md).
   
   > [!WARNING]
-  > Vous êtes **facturé** pour les données de hello stockées dans votre compte de stockage Azure. Cela inclut les journaux de diagnostic hello abordés dans cet article. Gardez cela à l’esprit lorsque vous élaborez votre [stratégie de rétention des journaux](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md).
+  > Vous êtes **facturé** pour les données stockées dans votre compte de Stockage Azure. Cela inclut les journaux de diagnostic abordés dans cet article. Gardez cela à l’esprit lorsque vous élaborez votre [stratégie de rétention des journaux](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md).
   > 
   > 
 
 ## <a name="enable-diagnostic-logging"></a>Activer la journalisation des diagnostics
-La journalisation des diagnostics n’est pas activée par défaut pour votre compte Batch. Vous devez explicitement activer la journalisation des diagnostics pour chaque compte de traitement par lots toomonitor :
+La journalisation des diagnostics n’est pas activée par défaut pour votre compte Batch. Vous devez activer explicitement la journalisation des diagnostics pour chaque compte Batch à analyser :
 
-[La collection tooenable de journaux de Diagnostic](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#how-to-enable-collection-of-resource-diagnostic-logs)
+[Comment activer la collecte des journaux de diagnostic](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md#how-to-enable-collection-of-resource-diagnostic-logs)
 
-Nous vous recommandons de lire hello complète [vue d’ensemble de Azure des journaux de Diagnostic](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) article toogain comprendre non seulement comment tooenable journalisation mais hello du journal catégories pris en charge par hello divers services Azure. Par exemple, Azure Batch prend actuellement en charge une seule catégorie de journal, celle des **journaux de service**.
+Nous vous recommandons de lire entièrement l’article [Présentation des journaux de diagnostic Azure](../monitoring-and-diagnostics/monitoring-overview-of-diagnostic-logs.md) pour comprendre non seulement comment activer la journalisation, mais aussi les catégories de journal prises en charge par les divers services Azure. Par exemple, Azure Batch prend actuellement en charge une seule catégorie de journal, celle des **journaux de service**.
 
 ## <a name="service-logs"></a>Journaux de service
-Journaux de Service de traitement par lots Azure contiennent des événements émis par le service de traitement par lots Azure hello lors de la durée de vie hello d’une ressource de lot comme une tâche ou un pool. Chaque événement émis par lot est stocké dans hello spécifié compte de stockage au format JSON. Par exemple, il s’agit d’un exemple de corps de la hello **créer un pool événement**:
+Les journaux de service Azure Batch contiennent des événements signalés par le service Azure Batch pendant la durée de vie d’une ressource Batch telle qu’un pool ou une tâche. Chaque événement émis par Batch est stocké dans le compte de stockage spécifié au format JSON. Par exemple, ceci est le corps d’un exemple d’**événement de création de pool** :
 
 ```json
 {
@@ -73,10 +73,10 @@ Journaux de Service de traitement par lots Azure contiennent des événements é
 }
 ```
 
-Chaque corps de l’événement réside dans un .json fichier Bonjour spécifié de compte de stockage Azure. Si vous souhaitez tooaccess hello directement les journaux, vous pouvez de tooreview hello [schéma des journaux de Diagnostic dans le compte de stockage hello](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md#schema-of-diagnostic-logs-in-the-storage-account).
+Chaque corps d’événement réside dans un fichier .json dans le compte de Stockage Azure spécifié. Si vous souhaitez accéder directement aux journaux, vous pouvez consulter le [Schéma des journaux de diagnostic dans le compte de stockage](../monitoring-and-diagnostics/monitoring-archive-diagnostic-logs.md#schema-of-diagnostic-logs-in-the-storage-account).
 
 ## <a name="service-log-events"></a>Événements du journal de service
-Hello service Batch émet actuellement hello après les événements du journal du Service. Cette liste n’est peut-être pas exhaustive, car des événements supplémentaires peuvent avoir été ajoutés depuis la dernière mise à jour de cet article.
+Actuellement, le service Batch émet les événements du journal de service suivants. Cette liste n’est peut-être pas exhaustive, car des événements supplémentaires peuvent avoir été ajoutés depuis la dernière mise à jour de cet article.
 
 | **Événements du journal de service** |
 | --- |
@@ -90,14 +90,14 @@ Hello service Batch émet actuellement hello après les événements du journal 
 | [Échec de la tâche][task_fail] |
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans les événements de journal de diagnostics toostoring ajout dans un compte de stockage Azure, vous pouvez aussi diffuser tooan des événements de journal du Service Batch [concentrateur d’événements Azure](../event-hubs/event-hubs-what-is-event-hubs.md)et les envoyer de trop[Analytique de journal Azure](../log-analytics/log-analytics-overview.md).
+Outre le stockage d’événements du journal de diagnostic dans un compte de Stockage Azure, vous pouvez diffuser des événements de journal de service Batch sur un [Azure Event Hub](../event-hubs/event-hubs-what-is-event-hubs.md), puis les envoyer à [Azure Log Analytics](../log-analytics/log-analytics-overview.md).
 
-* [Flux de données des journaux de Diagnostic Azure tooEvent concentrateurs](../monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Stream Azure Diagnostic Logs to Event Hubs (Diffuser en continu les journaux de diagnostic Azure vers Event Hubs)](../monitoring-and-diagnostics/monitoring-stream-diagnostic-logs-to-event-hubs.md)
   
-  Flux de service Batch des événements de diagnostic toohello données hautement évolutive en entrée, les concentrateurs d’événements. Le service Event Hubs peut traiter à chaque seconde des millions d’événements que vous pouvez transformer et stocker à l’aide de tout fournisseur d’analyses en temps réel.
+  Diffusez les événements de diagnostic de Batch vers le service d’entrée de données hautement extensible Event Hubs. Le service Event Hubs peut traiter à chaque seconde des millions d’événements que vous pouvez transformer et stocker à l’aide de tout fournisseur d’analyses en temps réel.
 * [Analyser les journaux de diagnostic Azure à l’aide de Log Analytics](../log-analytics/log-analytics-azure-storage.md)
   
-  Envoyez votre tooLog de journaux de diagnostic Analytique où vous pouvez les analyser dans le portail Operations Management Suite (OMS) de hello, ou les exporter pour analyse dans Power BI ou Excel.
+  Envoyez vos journaux de diagnostic à Log Analytics où vous pouvez les analyser via le portail Operations Management Suite (OMS), ou les exporter à des fins d’analyse vers Power BI ou Excel.
 
 [pool_create]: https://msdn.microsoft.com/library/azure/mt743615.aspx
 [pool_delete_start]: https://msdn.microsoft.com/library/azure/mt743610.aspx

@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd hello boîte connecteur tooyour Logic Apps | Documents Microsoft"
-description: "Vue d’ensemble du connecteur de zone hello avec des paramètres de l’API REST"
+title: "Ajouter le connecteur Box à vos applications logiques | Microsoft Docs"
+description: "Vue d’ensemble du connecteur Box avec les paramètres d’API REST"
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 0c64785a8e729fb0f1d06cd015b2351288b18f00
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7e48c60eb7305a1044db88489cad1f1b7fb3d522
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-box-connector"></a>Prise en main connecteur de zone hello
-Se connecter tooBox et créer des fichiers, supprimez des fichiers et bien plus encore. Avec Box, vous pouvez :
+# <a name="get-started-with-the-box-connector"></a>Prise en main du connecteur Box
+Connectez-vous à Box pour créer des fichiers, supprimer des fichiers et bien plus encore. Avec Box, vous pouvez :
 
-* Générer des flux de votre entreprise en fonction des données hello que vous obtenez à partir de la zone. 
+* Créer votre flux d'activité en fonction des données que vous obtenez de Box. 
 * Utiliser des déclencheurs quand un fichier est créé ou mis à jour.
-* Utiliser des actions pour copier un fichier, supprimer un fichier et bien plus encore. Ces actions Obtient une réponse et puis disposition de sortie de hello pour d’autres actions. Par exemple, lorsqu'un fichier est modifié dans Box, vous pouvez le sélectionner et l'envoyer par courrier électronique à l'aide d'Office 365.
+* Utiliser des actions pour copier un fichier, supprimer un fichier et bien plus encore. Ces actions obtiennent une réponse, puis mettent la sortie à la disposition d'autres actions. Par exemple, lorsqu'un fichier est modifié dans Box, vous pouvez le sélectionner et l'envoyer par courrier électronique à l'aide d'Office 365.
 
 Vous pouvez commencer par créer une application logique. Pour cela, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
+## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
 
-Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/box/).
+Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/box/).
 
 ## <a name="more-connectors"></a>Autres connecteurs
-Revenir en arrière toohello [liste des API](apis-list.md).
+Revenir à la [liste des API](apis-list.md).
 

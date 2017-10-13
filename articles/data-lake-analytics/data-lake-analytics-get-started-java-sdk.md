@@ -1,6 +1,6 @@
 ---
-title: applications de toodevelop aaaUse Data Lake Analytique Java SDK | Documents Microsoft
-description: Utiliser des applications Azure Data Lake Analytique Java SDK toodevelop
+title: "Utiliser le SDK Java Data Lake Analytics pour développer des applications | Microsoft Docs"
+description: "Utiliser le SDK Java Azure Data Lake Analytics pour développer des applications"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-ms.openlocfilehash: 0d975812fe659ed34ee9befd37ee7c0bf50d3414
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 795d9ec0b0cac5d74673404f1d0d851393336df0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-azure-data-lake-analytics-using-java-sdk"></a>Prise en main d’Azure Data Lake Analytics à l’aide du Kit de développement logiciel Java
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-Découvrez comment toouse hello Azure Data Lake Analytique Java SDK toocreate un compte Azure Data Lake et effectuer des opérations de base telles que créer des dossiers, télécharger des fichiers de données, supprimez votre compte et utiliser des travaux. Pour plus d’informations sur Data Lake, consultez [Azure Data Lake Analytics](data-lake-analytics-overview.md).
+Apprenez à utiliser le Kit de développement logiciel (SDK) Java Azure Data Lake Analytics pour créer un compte Azure Data Lake et effectuer des opérations de base comme créer des dossiers, charger et télécharger des fichiers de données, supprimer votre compte et effectuer des travaux. Pour plus d’informations sur Data Lake, consultez [Azure Data Lake Analytics](data-lake-analytics-overview.md).
 
-Dans ce didacticiel, vous allez développer une application de console Java qui contient des exemples de tâches d’administration courantes. Vous créerez ensuite des données de test et soumettrez un travail.  toogo via hello pris en charge de la même didacticiel d’autres outils, cliquez sur les onglets hello haut hello de cette section.
+Dans ce didacticiel, vous allez développer une application de console Java qui contient des exemples de tâches d’administration courantes. Vous créerez ensuite des données de test et soumettrez un travail.  Pour suivre ce didacticiel même à l'aide d'autres outils pris en charge, cliquez sur les onglets en haut de cette section.
 
 ## <a name="prerequisites"></a>Composants requis
 * Kit de développement Java (JDK) 8 (avec Java version 1.8).
-* IntelliJ ou un autre environnement de développement Java approprié. Ceci étape est facultatif mais recommandé. instructions de Hello ci-dessous utilisent IntelliJ.
+* IntelliJ ou un autre environnement de développement Java approprié. Ceci étape est facultatif mais recommandé. Les instructions ci-dessous utilisent IntelliJ.
 * **Un abonnement Azure**. Consultez la rubrique [Obtenir une version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/).
-* Création d’une application Azure Active Directory (AAD) et récupération de ses **ID client**, **ID de locataire** et **Clé**. Pour plus d’informations sur les applications AAD et des instructions sur la façon de tooget un ID de client, consultez [application créer Active Directory et principal du service à l’aide du portail](../azure-resource-manager/resource-group-create-service-principal-portal.md). Hello URI de réponse et la clé sera également disponible à partir du portail de hello une fois que vous avez application hello créé et est générée.
+* Création d’une application Azure Active Directory (AAD) et récupération de ses **ID client**, **ID de locataire** et **Clé**. Pour plus d’informations sur les applications AAD et pour savoir comment obtenir un ID client, consultez [Création de l’application Active Directory et du principal du service à l’aide du portail](../azure-resource-manager/resource-group-create-service-principal-portal.md). L’URI de réponse et la Clé seront également disponibles sur le portail une fois l’application créée et la clé générée.
 
 ## <a name="how-do-i-authenticate-using-azure-active-directory"></a>Comment s’authentifier à l’aide d’Azure Active Directory ?
-extrait de code Hello ci-dessous fournit du code pour **non interactif** l’authentification, où application hello fournit ses propres informations d’identification.
+L’extrait de code ci-dessous fournit le code pour une authentification **non interactive** , où l’application fournit ses propres informations d’identification.
 
-Vous devez toogive vos ressources de toocreate autorisation application dans Azure pour ce didacticiel toowork. Il s’agit de **hautement recommandé** que vous seulement donnez à ce groupe de ressources vide, inutilisées et nouvelle application collaborateurs autorisations tooa dans votre abonnement Azure hello pour ce didacticiel.
+Vous devrez donner à votre application l’autorisation de créer des ressources dans Azure pour que ce didacticiel fonctionne. Dans le cadre de ce didacticiel, il est **recommandé** de n’accorder à cette application que des autorisations de type Collaborateur pour un nouveau groupe de ressources, inutilisé et vide, dans votre abonnement Azure.
 
 ## <a name="create-a-java-application"></a>Création d’une application Java
-1. Ouvrez IntelliJ et créer un projet Java à l’aide de hello **application de ligne de commande** modèle.
-2. Avec le bouton droit sur le projet hello sur la partie gauche de l’écran hello et cliquez sur **ajouter la prise en charge Framework**. Choisissez **Maven** et cliquez sur **OK**.
-3. Ouvrez hello nouvellement créé **« pom.xml »** et ajoutez hello suivant extrait de texte entre hello  **\</version >** balise et hello  **\< /projet >** balise :
+1. Ouvrez IntelliJ et créez un nouveau projet Java à l’aide du modèle **Application de ligne de commande** .
+2. Cliquez avec le bouton droit sur le projet sur le côté gauche de l’écran et cliquez sur **Ajouter la prise en charge Framework**. Choisissez **Maven** et cliquez sur **OK**.
+3. Ouvrez le fichier **« pom.xml »** créé et ajoutez l’extrait de texte suivant entre la balise **\</version>** et la balise **\</project>** :
 
     >[!NOTE]
-    >Cette étape est temporaire tant que hello Azure Data Lake Analytique SDK est disponible dans Maven. Cet article sera mis à jour une fois hello SDK est disponible dans Maven. Toutes les futures mises à jour toothis SDK sera disponible via Maven.
+    >Cette étape est provisoire tant que le Kit de développement logiciel (SDK) Azure Data Lake Analytics n’est pas disponible dans Maven. Cet article sera mis à jour une fois le Kit de développement logiciel (SDK) disponible dans Maven. Toutes les futures mises à jour ce Kit de développement logiciel (SDK) seront disponibles via Maven.
     >
 
         <repositories>
@@ -95,13 +95,13 @@ Vous devez toogive vos ressources de toocreate autorisation application dans Azu
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
-4. Accédez trop**fichier**, puis **paramètres**, puis **générer**, **exécution**, **déploiement**. Sélectionnez **Outils de génération**, **Maven**, **Importation**. Cochez ensuite **Importer les projets Maven automatiquement**.
-5. Ouvrez **Main.java** et remplacer hello bloc de code existant par hello après le code. En outre, fournissent les valeurs hello pour les paramètres nommés dans l’extrait de code hello, tel que **localFolderPath**, **_adlaAccountName**, **_adlsAccountName**, **_ resourceGroupName** et remplacez les espaces réservés pour **ID de CLIENT**, **clé secrète CLIENT**, **ID de client**, et  **ID d’abonnement**.
+4. Accédez à **Fichier**, puis choisissez **Paramètres**, **Build**, **Exécution** et **Déploiement**. Sélectionnez **Outils de génération**, **Maven**, **Importation**. Cochez ensuite **Importer les projets Maven automatiquement**.
+5. Ouvrez **Main.java** et remplacez le bloc de code existant par le code suivant. De même, indiquez les valeurs des paramètres inclus dans l’extrait de code, tels que **localFolderPath**, **_adlaAccountName**, **_adlsAccountName**, **_resourceGroupName** et remplacez les espaces réservés pour **CLIENT-ID**, **CLIENT-SECRET**, **TENANT-ID** et **SUBSCRIPTION-ID**.
 
-    Ce code passe tout au long des processus de hello de création de comptes Data Lake Store et Analytique lac de données, créer des fichiers dans le magasin de hello, un travail en cours d’exécution, obtenir l’état du travail, le téléchargement sortie des tâches et enfin la suppression compte de hello.
+    Ce code mène à bien l’ensemble du processus, à savoir : création de comptes Data Lake Store et Data Lake Analytics, création de fichiers dans le magasin, exécution d’un travail, obtention de l’état du travail, téléchargement de la sortie du travail et enfin suppression du compte.
 
    > [!NOTE]
-   > Il est actuellement un problème connu avec hello Service lac de données Azure.  Si l’application d’exemple hello est interrompue ou rencontre une erreur, vous devrez peut-être toomanually supprimez hello Data Lake Store & Analytique lac de données les comptes hello script crée.  Si vous n’êtes pas familiarisé avec hello Portal, hello [gérer des Analytique des Lake Azure données à l’aide du portail Azure](data-lake-analytics-manage-use-portal.md) guide vous aideront à démarrer.
+   > Il existe actuellement un problème connu avec le service Azure Data Lake.  Si l’exemple d’application est interrompue ou rencontre une erreur, vous devrez peut-être supprimer manuellement les comptes Data Lake Store & Data Lake Analytics créés par le script.  Si vous n’êtes pas familiarisé avec le portail, le guide [Gérer les analyses Azure Data Lake à l’aide du portail Azure](data-lake-analytics-manage-use-portal.md) vous aidera à démarrer.
    >
    >
 
@@ -149,9 +149,9 @@ Vous devez toogive vos ressources de toocreate autorisation application dans Azu
                 _subId =  "<SUBSCRIPTION-ID>";
                 _clientId = "<CLIENT-ID>";
 
-                _clientSecret = "<CLIENT-SECRET>"; // TODO: For production scenarios, we recommend that you replace this line with a more secure way of acquiring hello application client secret, rather than hard-coding it in hello source code.
+                _clientSecret = "<CLIENT-SECRET>"; // TODO: For production scenarios, we recommend that you replace this line with a more secure way of acquiring the application client secret, rather than hard-coding it in the source code.
 
-                String localFolderPath = "C:\\local_path\\"; // TODO: Change this tooany unused, new, empty folder on your local machine.
+                String localFolderPath = "C:\\local_path\\"; // TODO: Change this to any unused, new, empty folder on your local machine.
 
                 // Authenticate
                 ApplicationTokenCredentials creds = new ApplicationTokenCredentials(_clientId, _tenantId, _clientSecret, null);
@@ -176,14 +176,14 @@ Vous devez toogive vos ressources de toocreate autorisation application dans Azu
                 WaitForNewline("Accounts displayed.", "Creating files.");
 
                 // Create a file in Data Lake Store: input1.csv
-                // TODO: these change order in hello next patch
+                // TODO: these change order in the next patch
                 byte[] bytesContents = "123,abc".getBytes();
                 _adlsFileSystemClient.getFileSystemOperations().create(_adlsAccountName, "/input1.csv", bytesContents, true);
 
                 WaitForNewline("File created.", "Submitting a job.");
 
-                // Submit a job tooData Lake Analytics
-                UUID jobId = SubmitJobByScript("@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input too@\"/output1.csv\" USING Outputters.Csv();", "testJob");
+                // Submit a job to Data Lake Analytics
+                UUID jobId = SubmitJobByScript("@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input TO @\"/output1.csv\" USING Outputters.Csv();", "testJob");
                 WaitForNewline("Job submitted.", "Getting job status.");
 
                 // Wait for job completion and output job status
@@ -219,13 +219,13 @@ Vous devez toogive vos ressources de toocreate autorisation application dans Azu
                 _adlaClient.setSubscriptionId(_subId);
             }
 
-            // Helper function tooshow status and wait for user input
+            // Helper function to show status and wait for user input
             public static void WaitForNewline(String reason, String nextAction)
             {
                 if (nextAction == null)
                     nextAction = "";
 
-                System.out.println(reason + "\r\nPress ENTER toocontinue...");
+                System.out.println(reason + "\r\nPress ENTER to continue...");
                 try{System.in.read();}
                 catch(Exception e){}
 
@@ -262,12 +262,12 @@ Vous devez toogive vos ressources de toocreate autorisation application dans Azu
                 adlaParameters.setName(_adlaAccountName);
                 adlaParameters.setProperties(adlaProperties);
 
-                    /* If this line generates an error message like "hello deep update for property 'DataLakeStoreAccounts' is not supported", please delete hello ADLS and ADLA accounts via hello portal and re-run your script. */
+                    /* If this line generates an error message like "The deep update for property 'DataLakeStoreAccounts' is not supported", please delete the ADLS and ADLA accounts via the portal and re-run your script. */
 
                 _adlaClient.getAccountOperations().create(_resourceGroupName, _adlaAccountName, adlaParameters);
             }
 
-            //todo: this changes in hello next version of hello API
+            //todo: this changes in the next version of the API
             public static void CreateFile(String path, String contents, boolean force) throws IOException, CloudException {
                 byte[] bytesContents = contents.getBytes();
 
@@ -307,7 +307,7 @@ Vous devez toogive vos ressources de toocreate autorisation application dans Azu
             }
 
             // Submit a U-SQL job by providing script contents.
-            // Returns hello job ID
+            // Returns the job ID
             public static UUID SubmitJobByScript(String script, String jobName) throws IOException, CloudException {
                 UUID jobId = java.util.UUID.randomUUID();
                 USqlJobProperties properties = new USqlJobProperties();
@@ -340,12 +340,12 @@ Vous devez toogive vos ressources de toocreate autorisation application dans Azu
             }
         }
 
-1. Suivez hello invites toorun et application hello terminée.
+1. Suivez les invites pour exécuter et terminer l’application.
 
 ## <a name="see-also"></a>Voir aussi
-* toosee hello même didacticiel à l’aide d’autres outils, cliquez sur les sélecteurs d’onglet hello haut hello de page de hello.
-* toosee une requête plus complexe, consultez [site Web d’analyse se connecte à l’aide d’Analytique de LAC de données Azure](data-lake-analytics-analyze-weblogs.md).
-* tooget en main le développement d’applications SQL-U, consultez [scripts développer U-SQL à l’aide de Data Lake Tools pour Visual Studio](data-lake-analytics-data-lake-tools-get-started.md).
-* toolearn U-SQL, consultez [prise en main langage lac de données Azure Analytique U-SQL](data-lake-analytics-u-sql-get-started.md), et [référence du langage U-SQL](http://go.microsoft.com/fwlink/?LinkId=691348).
+* Pour afficher le même didacticiel en utilisant d’autres outils, cliquez sur les sélecteurs d’onglet en haut de la page.
+* Pour voir une requête plus complexe, consultez [Analyse de journaux des sites web à l'aide d'Azure Data Lake Analytics](data-lake-analytics-analyze-weblogs.md).
+* Pour commencer à développer des applications U-SQL, consultez [Développer des scripts U-SQL avec Data Lake Tools pour Visual Studio](data-lake-analytics-data-lake-tools-get-started.md).
+* Pour découvrir U-SQL, consultez les articles [Prise en main du langage U-SQL Azure Data Lake Analytics](data-lake-analytics-u-sql-get-started.md) et [Référence sur le langage U-SQL](http://go.microsoft.com/fwlink/?LinkId=691348).
 * Pour les tâches de gestion, consultez [Gestion d’Azure Data Lake Analytics à l’aide du portail Azure](data-lake-analytics-manage-use-portal.md).
-* tooget une vue d’ensemble de données de LAC Analytique, consultez [vue d’ensemble Analytique de LAC de données Azure](data-lake-analytics-overview.md).
+* Pour obtenir une vue d’ensemble de Data Lake Analytics, consultez [Présentation d’Azure Data Lake Analytics](data-lake-analytics-overview.md).

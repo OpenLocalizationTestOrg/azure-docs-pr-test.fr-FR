@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure vue d’ensemble de Automation DSC | Documents Microsoft"
+title: "Vue d’ensemble d’Azure Automation DSC | Microsoft Docs"
 description: "Vue d'ensemble de la configuration d'état souhaité (DSC) Azure Automation, les termes s'y rapportant et les problèmes connus"
 services: automation
 documentationcenter: dev-center-name
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: powershell
 ms.workload: TBD
 ms.date: 06/15/2017
 ms.author: eslesar
-ms.openlocfilehash: 5b8e5104c7b5bed848c015ac26a8b7d1f5b24de9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 468321fa6863d78bc0d179fbe5c2ed6195040d50
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-automation-dsc-overview"></a>Vue d'ensemble d'Azure Automation DSC
 
-Azure Automation DSC est un service Azure qui vous permet de toowrite, de gérer et de compiler la Configuration d’état souhaité (DSC) PowerShell [configurations](https://msdn.microsoft.com/powershell/dsc/configurations), importer [des ressources DSC](https://msdn.microsoft.com/powershell/dsc/resources)et attribuer nœuds tootarget configurations, toutes dans le cloud de hello.
+Azure Automation DSC est un service Azure qui vous permet d’écrire, de gérer et de compiler les [configurations](https://msdn.microsoft.com/powershell/dsc/configurations) PowerShell DSC, d’importer des [ressources DSC](https://msdn.microsoft.com/powershell/dsc/resources) et d’assigner des configurations aux nœuds cibles, le tout dans le cloud.
 
 ## <a name="why-use-azure-automation-dsc"></a>Pourquoi utiliser Azure Automation DSC ?
 
@@ -30,39 +30,39 @@ Azure Automation DSC offre plusieurs avantages par rapport à l’utilisation de
 
 ### <a name="built-in-pull-server"></a>Serveur collecteur intégré
 
-Azure Automation fournit un [serveur collecteur DSC](https://msdn.microsoft.com/en-us/powershell/dsc/pullserver) afin que les nœuds cibles reçoivent automatiquement les configurations, conformes toohello souhaité état et rapport sur leur conformité.
-serveur d’extraction intégrée Hello dans Azure Automation élimine hello besoin tooset des et gérer votre propre serveur collecteur.
-Azure Automation peut cibler des ordinateurs physiques ou virtuels Windows ou Linux, dans le cloud de hello ou localement.
+Azure Automation fournit un [serveur collecteur DSC](https://msdn.microsoft.com/en-us/powershell/dsc/pullserver) afin que les nœuds cibles reçoivent automatiquement les configurations, soient conformes à l’état souhaité et renvoient un rapport attestant de leur conformité.
+Le serveur collecteur intégré dans Azure Automation vous permet d’éviter d’avoir à configurer et à gérer votre propre serveur collecteur.
+Azure Automation peut cibler des machines physiques ou virtuelles Windows ou Linux, dans le cloud ou en local.
 
 ### <a name="management-of-all-your-dsc-artifacts"></a>Gestion de tous vos artefacts DSC
 
-Azure Automation DSC met hello même couche de gestion trop[Configuration d’état souhaité PowerShell](https://msdn.microsoft.com/powershell/dsc/overview) Azure Automation offre pour l’écriture de scripts PowerShell.
+Azure Automation DSC apporte la même couche de gestion à la [configuration d’état souhaité PowerShell](https://msdn.microsoft.com/powershell/dsc/overview) que celle proposée par Azure Automation pour l’écriture de scripts PowerShell.
 
-À partir de hello portail Azure, ou à partir de PowerShell, vous pouvez gérer tous vos configurations DSC, les ressources et les nœuds cibles.
+À partir du portail Azure, ou de PowerShell, vous pouvez gérer toutes vos configurations DSC, vos ressources et vos nœuds cibles.
 
-![Capture d’écran du panneau d’Azure Automation hello](./media/automation-dsc-overview/azure-automation-blade.png)
+![Capture d’écran du panneau Azure Automation](./media/automation-dsc-overview/azure-automation-blade.png)
 
 ### <a name="import-reporting-data-into-log-analytics"></a>Importer des données de création de rapports dans Log Analytics
 
-Nœuds qui sont gérées avec Azure Automation DSC envoi détaillées état données toohello intégrées par extraction de données serveur de rapports.
-Vous pouvez configurer Azure Automation DSC toosend cet espace de travail de données tooyour Analytique de journal de Microsoft Operations Management Suite (OMS).
-toolearn tooyour de données d’état toosend DSC espace de travail Analytique des journaux, voir [par progression Azure Automation DSC tooOMS de données Analytique de journal de création de rapports](automation-dsc-diagnostics.md).
+Les nœuds gérés dans Azure Automation DSC envoient des données détaillées sur l’état de création de rapports au serveur collecteur intégré.
+Vous pouvez configurer Azure Automation DSC pour envoyer ces données à votre espace de travail Microsoft Operations Management Suite (OMS) Log Analytics.
+Pour savoir comment envoyer des données d’état DSC à votre espace de travail Log Analytics, consultez [Forward Azure Automation DSC reporting data to OMS Log Analytics](automation-dsc-diagnostics.md) (Transférer des données de création de rapports Azure Automation DSC à OMS Log Analytics).
 
 ## <a name="introduction-video"></a>Vidéo de présentation
 
-Préférez la surveillance tooreading ? Jetez un œil sur hello suivant vidéo à partir de mai 2015, quand Azure Automation DSC a été annoncée.
+Lire de la documentation vous enchante moyennement ? Jetez un œil à la vidéo ci-dessous, publiée en mai 2015 à l’occasion de l’annonce d’Azure Automation DSC.
 
 >[!NOTE]
->Alors que les concepts de hello et cycle de vie présentés dans cette vidéo sont corrects, Azure Automation DSC a beaucoup progressé depuis cette vidéo a été enregistrée.
->Il est désormais généralement disponible, a une interface utilisateur beaucoup plus étendue Bonjour portail Azure et prend en charge de nombreuses fonctions supplémentaires.
+>Bien que les concepts et le cycle de vie abordés dans cette vidéo soient corrects, Azure Automation DSC a beaucoup progressé depuis l’enregistrement de cette vidéo.
+>Désormais disponible au public, il dispose d’une interface utilisateur plus étendue dans le portail Azure et prend en charge des fonctionnalités supplémentaires.
 
 > [!VIDEO https://channel9.msdn.com/Events/Ignite/2015/BRK3467/player]
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* toolearn tooonboard nœuds toobe gérés dans Azure Automation DSC, voir [d’intégration des ordinateurs pour la gestion par Azure Automation DSC](automation-dsc-onboarding.md)
-* tooget démarré à l’aide d’Azure Automation DSC, consultez [prise en main d’Azure Automation DSC](automation-dsc-getting-started.md)
-* toolearn sur la compilation des configurations DSC afin que vous pouvez les affecter tootarget nœuds, consultez [la compilation des configurations dans Azure Automation DSC](automation-dsc-compile.md)
+* Pour savoir comment intégrer des nœuds devant être gérés avec Azure Automation DSC, consultez [Gestion de machines avec Azure Automation DSC](automation-dsc-onboarding.md).
+* Pour prendre en main Azure Automation DSC, consultez [Prise en main d’Azure Automation DSC](automation-dsc-getting-started.md).
+* Pour en savoir plus sur la compilation des configurations DSC pour les assigner à des nœuds cibles, consultez [Compilation de configurations dans Azure Automation DSC](automation-dsc-compile.md).
 * Pour la référence de cmdlet PowerShell pour Azure Automation DSC, consultez [AzureRM.Automation](/powershell/module/azurerm.automation/#automation).
 * Pour plus d’informations sur la tarification, consultez [Tarification de Automation](https://azure.microsoft.com/pricing/details/automation/).
-* toosee un exemple d’utilisation d’Azure Automation DSC dans un pipeline de déploiement continu, consultez [tooIaaS déploiement continu Chocolatey et les machines virtuelles à l’aide de Azure Automation DSC](automation-dsc-cd-chocolatey.md)
+* Pour voir un exemple d’utilisation d’Azure Automation DSC dans un pipeline de déploiement continu, consultez [déploiement continu pour IaaS machines virtuelles à l’aide de Azure Automation DSC et Chocolatey](automation-dsc-cd-chocolatey.md)

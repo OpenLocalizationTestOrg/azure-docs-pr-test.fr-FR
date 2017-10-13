@@ -1,6 +1,6 @@
 ---
-title: "Déplacer des circuits ExpressRoute de tooResource classique Manager : PowerShell : Azure | Documents Microsoft"
-description: "Cette page décrit comment toomove un toohello circuit classic déploiement du Gestionnaire de ressources du modèle à l’aide de PowerShell."
+title: "Déplacer des circuits ExpressRoute du modèle de déploiement classique vers le modèle de déploiement Resource Manager : PowerShell : Azure | Microsoft Docs"
+description: "Cette page décrit comment déplacer un circuit classique vers le modèle de déploiement Resource Manager à l’aide de PowerShell."
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -15,50 +15,50 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/03/2017
 ms.author: ganesr;cherylmc
-ms.openlocfilehash: 8dcadafca5e4f40773902cec5786eba1dbe133eb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c407e01e6d881cb8adcfe55faa246468669be883
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="move-expressroute-circuits-from-hello-classic-toohello-resource-manager-deployment-model-using-powershell"></a>Déplacer des circuits ExpressRoute à partir du modèle de déploiement de gestionnaire de ressources hello toohello classique à l’aide de PowerShell
+# <a name="move-expressroute-circuits-from-the-classic-to-the-resource-manager-deployment-model-using-powershell"></a>Déplacer des circuits ExpressRoute du modèle de déploiement classique vers le modèle de déploiement Resource Manager à l’aide de PowerShell
 
-toouse un circuit ExpressRoute pour hello classique et les modèles de déploiement de gestionnaire de ressources, vous devez déplacer le modèle de déploiement hello circuit toohello Gestionnaire de ressources. Hello sections suivantes vous aider à déplacer votre circuit à l’aide de PowerShell.
+Pour utiliser un circuit ExpressRoute pour les modèles de déploiement classique et Resource Manager, vous devez déplacer ce circuit vers le modèle de déploiement Resource Manager. Les sections suivantes vous aident à déplacer votre circuit à l’aide de PowerShell.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-* Vérifiez que vous disposez de version la plus récente des modules d’Azure PowerShell hello hello (au moins la version 1.0). Pour plus d’informations, consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview).
-* Assurez-vous que vous avez consulté hello [conditions préalables](expressroute-prerequisites.md), [exigences routage](expressroute-routing.md), et [workflows](expressroute-workflows.md) avant de commencer la configuration.
-* Passez en revue les informations hello qui sont fournies sous [déplacement d’un circuit ExpressRoute de tooResource classique Manager](expressroute-move.md). Assurez-vous de bien comprendre les limites de hello et limitations.
-* Vérifiez que le circuit de hello est complètement opérationnel dans le modèle de déploiement classique hello.
-* Assurez-vous que vous disposez d’un groupe de ressources qui a été créé dans le modèle de déploiement du Gestionnaire de ressources hello.
+* Vérifiez que vous disposez de la dernière version des modules Azure PowerShell (au moins la version 1.0). Pour plus d’informations, consultez la rubrique [Installation et configuration d’Azure PowerShell](/powershell/azure/overview).
+* Veillez à consulter les [conditions préalables](expressroute-prerequisites.md), la [configuration requise pour le routage](expressroute-routing.md) et les [flux de travail](expressroute-workflows.md) avant de commencer la configuration.
+* Examinez les informations fournies sous [Transfert des circuits ExpressRoute du modèle de déploiement classique vers le modèle de déploiement Resource Manager](expressroute-move.md). Vous devez avoir bien compris les limites et les limitations.
+* Vérifiez que le circuit est totalement opérationnel dans le modèle de déploiement classique.
+* Assurez-vous que vous disposez d’un groupe de ressources créé dans le modèle de déploiement Resource Manager.
 
 ## <a name="move-an-expressroute-circuit"></a>Déplacer un circuit ExpressRoute
 
-### <a name="step-1-gather-circuit-details-from-hello-classic-deployment-model"></a>Étape 1 : Collecter les détails du circuit de modèle de déploiement classique de hello
+### <a name="step-1-gather-circuit-details-from-the-classic-deployment-model"></a>Étape 1 : Collecter des informations sur le circuit à partir du modèle de déploiement classique
 
-Connectez-vous à toohello environnement classique Azure et recueillir la clé du service hello.
+Connectez-vous à l’environnement classique Azure et collectez la clé de service.
 
-1. Se connecter tooyour compte Azure.
+1. Connectez-vous à votre compte Azure.
 
   ```powershell
   Add-AzureAccount
   ```
 
-2. Sélectionnez un abonnement Azure approprié de hello.
+2. Sélectionnez l’abonnement Azure approprié.
 
   ```powershell
   Select-AzureSubscription "<Enter Subscription Name here>"
   ```
 
-3. Importez les modules PowerShell hello pour Azure et ExpressRoute.
+3. Importez les modules PowerShell pour Azure et ExpressRoute.
 
   ```powershell
   Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\Azure.psd1'
   Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\ExpressRoute\ExpressRoute.psd1'
   ```
 
-4. Utiliser l’applet de commande hello ci-dessous clés du service tooget hello pour toutes votre circuits ExpressRoute. Après la récupération des clés de hello, copiez hello **clé service** du circuit hello que vous souhaitez le modèle de déploiement du Gestionnaire de ressources toomove toohello.
+4. Utilisez l’applet de commande ci-dessous pour obtenir les clés de service pour tous les circuits imprimés ExpressRoute. Après avoir récupéré les clés, copiez la **clé de service** du circuit que vous souhaitez déplacer vers le modèle de déploiement Resource Manager.
 
   ```powershell
   Get-AzureDedicatedCircuit
@@ -66,92 +66,92 @@ Connectez-vous à toohello environnement classique Azure et recueillir la clé d
 
 ### <a name="step-2-sign-in-and-create-a-resource-group"></a>Étape 2 : connexion et création d’un groupe de ressources
 
-Se connecter dans l’environnement du Gestionnaire de ressources toohello et créer un nouveau groupe de ressources.
+Connectez-vous à l’environnement Resource Manager et créez un groupe de ressources.
 
-1. Environnement de Azure Resource Manager tooyour vous connecter.
+1. Connectez-vous à votre environnement Azure Resource Manager.
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-2. Sélectionnez un abonnement Azure approprié de hello.
+2. Sélectionnez l’abonnement Azure approprié.
 
   ```powershell
   Get-AzureRmSubscription -SubscriptionName "<Enter Subscription Name here>" | Select-AzureRmSubscription
   ```
 
-3. Modifier l’extrait de code hello ci-dessous toocreate un groupe de ressources si vous n’avez pas déjà un groupe de ressources.
+3. Modifiez l’extrait de code ci-dessous pour créer un groupe de ressources si vous n’en avez pas déjà un.
 
   ```powershell
   New-AzureRmResourceGroup -Name "DemoRG" -Location "West US"
   ```
 
-### <a name="step-3-move-hello-expressroute-circuit-toohello-resource-manager-deployment-model"></a>Étape 3 : Déplacer le modèle de déploiement du circuit toohello Gestionnaire de ressources hello ExpressRoute
+### <a name="step-3-move-the-expressroute-circuit-to-the-resource-manager-deployment-model"></a>Étape 3 : Transférer le circuit ExpressRoute vers le modèle de déploiement Resource Manager
 
-Vous est désormais prêt toomove votre circuit ExpressRoute à partir du modèle de déploiement du modèle toohello Gestionnaire de ressources hello déploiement classique. Avant de continuer, examinez les informations de hello fournies dans [déplacement d’un circuit ExpressRoute à partir du modèle de déploiement du Gestionnaire de ressources hello classique toohello](expressroute-move.md).
+Vous êtes maintenant prêt à déplacer votre circuit ExpressRoute du modèle de déploiement classique vers le modèle de déploiement Resource Manager. Avant de continuer, passez en revue les informations fournies sous [Transférer des circuits ExpressRoute du modèle de déploiement classique vers le modèle de déploiement Resource Manager](expressroute-move.md).
 
-toomove votre circuit, modifiez et exécutez hello suivant extrait de code :
+Pour déplacer votre circuit, modifiez et exécutez l’extrait de code suivant :
 
 ```powershell
 Move-AzureRmExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "DemoRG" -Location "West US" -ServiceKey "<Service-key>"
 ```
 
 > [!NOTE]
-> Une fois hello déplacement terminée, hello nouveau nom qui est répertorié dans l’applet de commande précédente hello sera utilisé tooaddress hello ressource. circuit de Hello essentiellement sera renommé.
+> Une fois le déplacement terminé, le nouveau nom répertorié dans l’applet de commande précédente sera utilisé pour traiter la ressource. Le circuit sera essentiellement renommé.
 > 
 
 ## <a name="modify-circuit-access"></a>Modifier l’accès d’un circuit
 
-### <a name="tooenable-expressroute-circuit-access-for-both-deployment-models"></a>tooenable accès de circuit ExpressRoute pour les deux modèles de déploiement
+### <a name="to-enable-expressroute-circuit-access-for-both-deployment-models"></a>Pour activer l’accès du circuit ExpressRoute pour les deux modèles de déploiement
 
-Après le déplacement de votre modèle de déploiement Resource Manager classique ExpressRoute circuit toohello, vous pouvez activer l’accès au modèle de déploiement tooboth. Exécutez hello suivant d’applets de commande tooenable accéder aux modèles de déploiement tooboth :
+Après avoir déplacé votre circuit ExpressRoute classique vers le modèle de déploiement Resource Manager, vous pouvez activer l’accès aux deux modèles de déploiement. Exécutez les applets de commande suivantes pour activer l’accès aux deux modèles de déploiement :
 
-1. Obtenir les détails du circuit hello.
+1. Obtenez les informations sur le circuit.
 
   ```powershell
   $ckt = Get-AzureRmExpressRouteCircuit -Name "DemoCkt" -ResourceGroupName "DemoRG"
   ```
 
-2. Définissez « Autoriser les opérations classiques » tooTRUE.
+2. Définissez « Autoriser les opérations classiques » sur TRUE.
 
   ```powershell
   $ckt.AllowClassicOperations = $true
   ```
 
-3. Mettre à jour de circuit de hello. Une fois cette opération terminée avec succès, vous serez tooview en mesure de circuit de hello dans le modèle de déploiement classique hello.
+3. Mettez à jour le circuit. Une fois cette opération terminée avec succès, vous serez en mesure d’afficher le circuit dans le modèle de déploiement classique.
 
   ```powershell
   Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
   ```
 
-4. Exécutez hello suivant applet de commande tooget hello détaille Hello circuit ExpressRoute. Vous devez être toosee en mesure de clé de service hello répertorié.
+4. Exécutez l’applet de commande suivante pour obtenir les informations concernant le circuit ExpressRoute. Vous devez être en mesure de voir la clé de service répertoriée.
 
   ```powershell
   get-azurededicatedcircuit
   ```
 
-5. Vous pouvez désormais gérer le circuit ExpressRoute de liens toohello à l’aide des commandes de modèle de déploiement classique de hello pour les réseaux virtuels classiques et les commandes de gestionnaire de ressources hello pour le Gestionnaire de ressources VNets. Hello articles suivants vous aider à gérer des liens toohello circuit ExpressRoute :
+5. Vous pouvez maintenant gérer les liens au circuit ExpressRoute à l’aide des commandes du modèle de déploiement classique pour les réseaux virtuels classiques, et des commandes Resource Manager pour les réseaux virtuels Resource Manager. Les articles suivants vous aident à gérer les liens vers le circuit ExpressRoute :
 
-    * [Lier votre réseau virtuel de tooyour circuit ExpressRoute dans le modèle de déploiement du Gestionnaire de ressources hello](expressroute-howto-linkvnet-arm.md)
-    * [Lier votre réseau virtuel de tooyour circuit ExpressRoute dans le modèle de déploiement classique de hello](expressroute-howto-linkvnet-classic.md)
+    * [Liaison de réseaux virtuels à des circuits ExpressRoute dans le modèle de déploiement Resource Manager](expressroute-howto-linkvnet-arm.md)
+    * [Liaison de réseaux virtuels à des circuits ExpressRoute dans le modèle de déploiement classique](expressroute-howto-linkvnet-classic.md)
 
-### <a name="toodisable-expressroute-circuit-access-toohello-classic-deployment-model"></a>modèle de déploiement classique du circuit accès toohello toodisable ExpressRoute
+### <a name="to-disable-expressroute-circuit-access-to-the-classic-deployment-model"></a>Pour désactiver l’accès du circuit ExpressRoute au modèle de déploiement classique
 
-Exécutez hello suivant le modèle de déploiement classique d’applets de commande toodisable accès toohello.
+Exécutez les applets de commande suivantes pour désactiver l’accès au modèle de déploiement classique.
 
-1. Obtenir les détails de hello circuit ExpressRoute.
+1. Obtenez les informations concernant le circuit ExpressRoute.
 
   ```powershell
   $ckt = Get-AzureRmExpressRouteCircuit -Name "DemoCkt" -ResourceGroupName "DemoRG"
   ```
 
-2. Définissez « Autoriser les opérations classiques » tooFALSE.
+2. Définissez « Autoriser les opérations classiques » sur FALSE.
 
   ```powershell
   $ckt.AllowClassicOperations = $false
   ```
 
-3. Mettre à jour de circuit de hello. Une fois cette opération terminée avec succès, vous ne serez pas tooview en mesure de circuit de hello dans le modèle de déploiement classique hello.
+3. Mettez à jour le circuit. Une fois cette opération terminée avec succès, vous ne serez pas en mesure d’afficher le circuit dans le modèle de déploiement classique.
 
   ```powershell
 Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
@@ -160,4 +160,4 @@ Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Créer et modifier le routage le routage pour votre circuit ExpressRoute](expressroute-howto-routing-arm.md)
-* [Lier votre réseau virtuel de tooyour circuit ExpressRoute](expressroute-howto-linkvnet-arm.md)
+* [Lier votre réseau virtuel à votre circuit ExpressRoute](expressroute-howto-linkvnet-arm.md)

@@ -1,6 +1,6 @@
 ---
-title: "contrôleurs de périphérique StorSimple aaaManage | Documents Microsoft"
-description: "Découvrez comment toostop, redémarrer, arrêter ou réinitialiser vos contrôleurs d’appareil StorSimple."
+title: "Gestion des contrôleurs d’appareil StorSimple | Microsoft Docs"
+description: "Découvrez comment arrêter, redémarrer, éteindre ou réinitialiser vos contrôleurs d’appareil StorSimple."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,174 +14,174 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/11/2016
 ms.author: alkohli
-ms.openlocfilehash: 9a86aa0f4a8fd96c36df206774972602c47a49a6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 67dbb0c4066002256efbab6061157c641527e441
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-your-storsimple-device-controllers"></a>Gestion de vos contrôleurs d’appareil StorSimple
 ## <a name="overview"></a>Vue d'ensemble
-Ce didacticiel décrit hello différentes opérations qui peuvent être effectuées sur vos contrôleurs d’appareil StorSimple. les contrôleurs de Hello dans votre appareil StorSimple sont des contrôleurs redondants (homologues) dans une configuration actif / passif. À un moment donné, un seul contrôleur est actif et traite toutes les opérations de disque et réseau hello. Hello autre contrôleur est en mode passif. Si le contrôleur actif de hello échoue, hello contrôleur passif prend automatiquement.
+Ce didacticiel décrit les différentes opérations qui peuvent être effectuées sur vos contrôleurs d’appareil StorSimple. Les contrôleurs de votre appareil StorSimple sont des contrôleurs redondants (homologues) en mode actif/passif. À un moment donné, un seul contrôleur est actif et procède au traitement de toutes les opérations de disque et du réseau. L’autre contrôleur est en mode passif. Si le contrôleur actif est défaillant, le contrôleur passif devient automatiquement actif.
 
-Ce didacticiel inclut des contrôleurs de périphérique de hello toomanage obtenir des instructions à l’aide de la :
+Ce didacticiel inclut des instructions détaillées pour gérer les contrôleurs d’appareil à l’aide de :
 
-* **Contrôleurs** section Hello **Maintenance** page Bonjour service StorSimple Manager
+* la section **Contrôleurs** de la page **Maintenance** dans le service StorSimple Manager
 * Windows PowerShell pour StorSimple
 
-Nous vous recommandons de gérer les contrôleurs de périphérique hello via le service StorSimple Manager hello. Si une action peut uniquement être effectuée à l’aide de Windows PowerShell pour StorSimple, didacticiel de hello rend une note.
+Nous vous recommandons de gérer les contrôleurs d’appareil via le service StorSimple Manager. Si une action ne peut être effectuée qu’à l’aide de Windows PowerShell pour StorSimple, le didacticiel l’indique.
 
 Après avoir lu ce didacticiel, vous pourrez :
 
 * redémarrer ou arrêter un contrôleur d’appareil StorSimple
 * arrêter un appareil StorSimple
-* Réinitialiser votre toofactory de périphérique StorSimple
+* rétablir les paramètres d’usine de votre appareil StorSimple
 
 ## <a name="restart-or-shut-down-a-single-controller"></a>Redémarrage ou arrêt d’un contrôleur unique
-Le redémarrage ou l’arrêt d’un contrôleur n’est pas nécessaire si le système fonctionne normalement. Les opérations d’arrêt d’un contrôleur d’appareil unique ne sont courantes que lorsqu’un composant matériel de l’appareil est défaillant et qu’il doit être remplacé. Le redémarrage d’un contrôleur peut également être nécessaire lorsque les performances sont affectées par une utilisation excessive de la mémoire ou un dysfonctionnement du contrôleur. Vous devez également toorestart un contrôleur après un remplacement de contrôleur réussi, si vous souhaitez tooenable hello remplacé contrôleur de test.
+Le redémarrage ou l’arrêt d’un contrôleur n’est pas nécessaire si le système fonctionne normalement. Les opérations d’arrêt d’un contrôleur d’appareil unique ne sont courantes que lorsqu’un composant matériel de l’appareil est défaillant et qu’il doit être remplacé. Le redémarrage d’un contrôleur peut également être nécessaire lorsque les performances sont affectées par une utilisation excessive de la mémoire ou un dysfonctionnement du contrôleur. Vous devrez peut-être également redémarrer un contrôleur qui a été remplacé, si vous souhaitez l’activer et le tester.
 
-Le redémarrage d’un périphérique n’est pas initiateurs tooconnected interruption de service, en supposant que le contrôleur passif de hello est disponible. Si un contrôleur passif n’est pas disponible ou mis hors tension, puis en redémarrant hello actif contrôleur peut entraîner une interruption de service et les temps morts hello.
+Le redémarrage d’un appareil n’est pas sans interruption pour les initiateurs connectés, en supposant que le contrôleur passif est disponible. Si un contrôleur passif est indisponible ou bien désactivé, son redémarrage peut entraîner l’interruption du service.
 
 > [!IMPORTANT]
 > * **Un contrôleur en cours d’exécution ne doit jamais être physiquement supprimé, car cela entraînerait une perte de redondance et une augmentation des risques d’interruption.**
-> * Hello procédure suivante s’applique uniquement toohello appareil physique StorSimple. Pour plus d’informations sur comment toostart, arrêt et redémarrage hello périphérique d’appel virtuel, consultez [travailler avec un appareil virtuel hello](storsimple-virtual-device-u2.md#work-with-the-storsimple-virtual-device).
+> * La procédure suivante s’applique uniquement à l’appareil physique StorSimple. Pour plus d’informations sur le démarrage, l’arrêt et le redémarrage de l’appareil virtuel, voir la rubrique [Utilisation de l’appareil virtuel](storsimple-virtual-device-u2.md#work-with-the-storsimple-virtual-device).
 > 
 > 
 
-Vous pouvez redémarrer ou arrêter un contrôleur de périphérique unique à l’aide de hello portail classique Azure du service de StorSimple Manager hello ou Windows PowerShell pour StorSimple
+Vous pouvez redémarrer ou arrêter un contrôleur d’appareil donné à l’aide du portail Azure Classic du Service StorSimple Manager ou de Windows PowerShell pour StorSimple
 
-effectuer des contrôleurs d’appareil à partir de hello portail Azure classic, toomanage hello comme suit.
+Pour gérer vos contrôleurs d’appareil à partir du portail Azure Classic, procédez comme suit.
 
-#### <a name="toorestart-or-shut-down-a-controller-in-classic-portal"></a>toorestart ou arrêter un contrôleur dans le portail classique
-1. Accédez trop**appareils > Maintenance**.
-2. Accédez trop**état du matériel** et vérifiez que hello de deux contrôleurs hello sur votre appareil sont **sain**.
+#### <a name="to-restart-or-shut-down-a-controller-in-classic-portal"></a>Pour redémarrer ou arrêter un contrôleur dans le portail Azure Classic
+1. Accédez à **Appareils > Maintenance**.
+2. Accédez à **Statut matériel**, puis vérifiez que le statut des deux contrôleurs de votre appareil est **Sain**.
    
     ![Vérifiez que les contrôleurs d’appareil StorSimple sont en bon état de fonctionnement](./media/storsimple-manage-device-controller/IC766017.png)
-3. À partir du bas hello Hello **Maintenance** , cliquez sur **gérer les contrôleurs**.
+3. En bas de la page **Maintenance**, cliquez sur **Gérer les contrôleurs**.
    
     ![Gestion des contrôleurs d’appareil StorSimple](./media/storsimple-manage-device-controller/IC766018.png)</br>
    
    > [!NOTE]
-   > Si vous ne voyez pas **gérer les contrôleurs**, vous avez besoin de mises à jour tooinstall. Pour plus d’informations, consultez [Mise à jour de votre appareil StorSimple](storsimple-update-device.md).
+   > Si l’option **Gérer les contrôleurs**n’apparaît pas, vous devez installer des mises à jour. Pour plus d’informations, consultez [Mise à jour de votre appareil StorSimple](storsimple-update-device.md).
    > 
    > 
-4. Bonjour **modifier les paramètres de contrôleur** boîte de dialogue zone, hello suivant :
+4. Dans la boîte de dialogue **Modifier les paramètres du contrôleur** , procédez comme suit :
    
-   1. À partir de hello **sélectionner un contrôleur** liste déroulante, sélectionnez hello contrôleur que toomanage. options de Hello sont des contrôleurs 0 et 1. Ces contrôleurs sont également identifiés comme actifs ou passifs.
+   1. Dans la liste déroulante **Sélectionner un contrôleur** , sélectionnez le contrôleur à gérer. Les options sont Contrôleur 0 et Contrôleur 1. Ces contrôleurs sont également identifiés comme actifs ou passifs.
       
       > [!NOTE]
-      > Un contrôleur ne peut pas être géré si elle est indisponible ou désactivé, et il n’apparaîtra pas dans la liste déroulante de hello.
+      > Un contrôleur ne peut pas être géré s’il est indisponible ou désactivé, et il n’apparaîtra pas dans la liste déroulante.
       > 
       > 
-   2. À partir de hello **sélectionner une Action** liste déroulante, sélectionnez **redémarrage du contrôleur** ou **arrêter contrôleur**.
+   2. Dans la liste déroulante **Sélectionner une action**, choisissez **Redémarrer le contrôleur** ou **Arrêter le contrôleur**.
       
        ![Redémarrage du contrôleur passif de l’appareil StorSimple](./media/storsimple-manage-device-controller/IC766020.png)
-   3. Cliquez sur une icône de coche hello ![Icône en forme de coche](./media/storsimple-manage-device-controller/IC740895.png).
+   3. Cliquez sur l’icône en forme de coche  ![Icône en forme de coche](./media/storsimple-manage-device-controller/IC740895.png).
 
-Cela redémarrer ou arrêter hello contrôleur. tableau Hello ci-dessous résume les détails de hello ce qui se produit en fonction des sélections hello que vous avez apportées dans hello **modifier les paramètres de contrôleur** boîte de dialogue.  
+Ceci redémarrera ou arrêtera le contrôleur. Le tableau ci-dessous récapitule les détails de ce qui se passe en fonction des sélections effectuées dans la boîte de dialogue **Modifier les paramètres du contrôleur**.  
 
 | # de sélection | Si vous choisissez de... | Ceci se produira. |
 | --- | --- | --- |
-| 1. |Redémarrer le contrôleur passif hello. |Une tâche sera créée le contrôleur de hello toorestart, et vous serez averti une fois hello tâche est créée. Ceci lancera le redémarrage du contrôleur hello. Vous pouvez surveiller le processus de redémarrage hello en accédant à **Service > tableau de bord > Afficher les journaux des opérations** , puis en filtrant par service tooyour spécifiques de paramètres. |
-| 2. |Redémarrez le contrôleur actif de hello. |Hello suivant d’avertissement s’affiche : « Si vous redémarrez le contrôleur actif de hello, hello appareil basculera sur le contrôleur passif de toohello. Voulez-vous toocontinue ? » </br>Si vous choisissez tooproceed avec cette opération, les étapes suivantes hello sera contrôleur passif de toothose identiques utilisé toorestart hello (voir Sélection 1). |
-| 3. |Arrêtez le contrôleur passif de hello. |Vous verrez hello message suivant : « une fois arrêté, vous devez toopush hello bouton d’alimentation sur votre contrôleur tooturn il sur. Êtes-vous sûr de que vouloir tooshut vers le bas de ce contrôleur ? » </br>Si vous choisissez tooproceed avec cette opération, les étapes suivantes hello sera contrôleur passif de toothose identiques utilisé toorestart hello (voir Sélection 1). |
-| 4. |Arrêtez le contrôleur actif de hello. |Vous verrez hello message suivant : « une fois arrêté, vous devez toopush hello bouton d’alimentation sur votre contrôleur tooturn il sur. Êtes-vous sûr de que vouloir tooshut vers le bas de ce contrôleur ? » </br>Si vous choisissez tooproceed avec cette opération, les étapes suivantes hello sera contrôleur passif de toothose identiques utilisé toorestart hello (voir Sélection 1). |
+| 1. |Redémarrer le contrôleur passif. |Un travail sera créé pour procéder au redémarrage du contrôleur, et un message s’affichera une fois l’opération terminée. Ceci lancera le redémarrage du contrôleur. Vous pouvez analyser le processus de redémarrage en accédant à **Service > Tableau de bord Affichage des journaux des opérations**, puis en filtrant à l’aide des paramètres spécifiques de votre service. |
+| 2. |Redémarrer le contrôleur actif. |L’avertissement suivant s’affiche : « Si vous redémarrez le contrôleur actif, l’appareil basculera vers le contrôleur passif. Voulez-vous continuer ? </br>Si vous choisissez d’effectuer cette opération, la suite de la procédure est identique à celle utilisée pour redémarrer le contrôleur passif (voir sélection 1). |
+| 3. |Arrêter le contrôleur passif. |Le message suivant s’affiche: « Une fois arrêté, vous devrez appuyer sur le bouton d’alimentation de votre contrôleur pour l’activer. Voulez-vous vraiment arrêter ce contrôleur ? </br>Si vous choisissez d’effectuer cette opération, la suite de la procédure est identique à celle utilisée pour redémarrer le contrôleur passif (voir sélection 1). |
+| 4. |Arrêter le contrôleur actif. |Le message suivant s’affiche: « Une fois arrêté, vous devrez appuyer sur le bouton d’alimentation de votre contrôleur pour l’activer. Voulez-vous vraiment arrêter ce contrôleur ? </br>Si vous choisissez d’effectuer cette opération, la suite de la procédure est identique à celle utilisée pour redémarrer le contrôleur passif (voir sélection 1). |
 
-#### <a name="toorestart-or-shut-down-a-controller-in-windows-powershell-for-storsimple"></a>toorestart ou arrêter un contrôleur dans Windows PowerShell pour StorSimple
-Effectuer hello suivant les étapes tooshut vers le bas ou redémarrer un contrôleur unique sur votre appareil StorSimple à partir de hello portail Azure classic.
+#### <a name="to-restart-or-shut-down-a-controller-in-windows-powershell-for-storsimple"></a>Pour redémarrer ou arrêter un contrôleur dans Windows PowerShell pour StorSimple
+Pour arrêter ou redémarrer un contrôleur sur votre appareil StorSimple à partir du portail Azure Classic, procédez comme suit.
 
-1. Équipement hello d’accès à l’aide de la console série de hello ou d’une session telnet à partir d’un ordinateur distant. Se connecter tooController 0 ou contrôleur 1 par hello suivant les étapes [console série du périphérique toohello tooconnect utilisez PuTTY](storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console).
-2. Dans le menu de console série hello, sélectionnez l’option 1, **connecter avec un accès complet**.
-3. Dans le message de bannière hello, prenez note de contrôleur hello que vous êtes connecté trop (contrôleur 0 ou 1) et qu’il soit hello active ou contrôleur (de secours) passif de hello.
+1. Accédez à l’appareil à l’aide de la console série ou d’une session telnet à partir d’un ordinateur distant. Connectez-vous au Contrôleur 0 ou au Contrôleur 1 en suivant la procédure décrite dans [Utilisation de PuTTY pour se connecter à la console série de l’appareil](storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console).
+2. Dans le menu de la console série, sélectionnez l’option 1, **Ouvrir une session avec un accès total**.
+3. Dans le message de bannière, prenez note du contrôleur auquel vous êtes connecté (contrôleur 0 ou contrôleur 1) et vérifiez s’il est actif ou bien passif (en veille).
    
-   * tooshut vers le bas un seul contrôleur, à l’invite de hello, tapez :
+   * Pour arrêter un contrôleur unique, à l’invite de commandes, tapez :
      
        `Stop-HcsController`
      
-       Cela arrêtera contrôleur hello auquel vous êtes connecté à. Si vous arrêtez le contrôleur actif de hello, puis il échouera sur le contrôleur passif de toohello avant son arrêt.
-   * toorestart un contrôleur, à l’invite de hello, tapez :
+       Ceci arrêtera le contrôleur auquel vous êtes connecté. Si vous arrêtez le contrôleur actif, l’appareil basculera vers le contrôleur passif avant de s’arrêter.
+   * Pour redémarrer un contrôleur, à l’invite de commandes, tapez :
      
        `Restart-HcsController`
      
-       Cette opération redémarre le contrôleur hello auquel vous êtes connecté à. Si vous redémarrez le contrôleur actif de hello, il échouera sur le contrôleur passif de toohello avant de redémarrer la hello.
+       Ceci redémarrera le contrôleur auquel vous êtes connecté. Si vous redémarrez le contrôleur actif, l’appareil basculera vers le contrôleur passif avant de redémarrer.
 
 ## <a name="shut-down-a-storsimple-device"></a>arrêter un appareil StorSimple
-Cette section explique comment tooshut vers le bas en cours d’exécution ou d’un appareil StorSimple a échoué à partir d’un ordinateur distant. Un périphérique est désactivé après l’arrêt des deux contrôleurs de périphérique hello. Un arrêt de l’appareil est effectué lors de l’appareil de hello est physiquement déplacé ou est mis hors service.
+Cette section vous explique comment arrêter un appareil StorSimple en cours d’exécution ou défaillant à partir d’un ordinateur distant. Un appareil est désactivé dès lors que les contrôleurs d’appareil sont arrêtés. L’arrêt d’un appareil est exécuté lorsque l’appareil a été physiquement déplacé ou mis hors service.
 
 > [!IMPORTANT]
-> Avant d’arrêter l’appareil de hello, vérifier l’intégrité de hello de composants de l’appareil hello. Accédez trop**appareils > Maintenance > état du matériel** et vérifiez que hello LED de tous les composants de hello sont verts. Un appareil en bon état de fonctionnement aura un état vert. Si votre appareil est arrêt tooreplace un composant défectueux, vous verrez un échec (rouge) ou un état détérioré (jaune) pour hello ou les composants respectifs.
+> Avant d’arrêter l’appareil, vérifiez l’intégrité des composants de l’appareil. Accédez à **Appareils > Maintenance > État du matériel** et assurez-vous que l’état des LED des composants est vert. Un appareil en bon état de fonctionnement aura un état vert. Si votre appareil est sur le point d’être arrêté pour procéder au remplacement d’un composant défaillant, vous verrez s’afficher un état Échec (rouge) ou un état Détérioré (jaune) pour les composants respectifs.
 > 
 > 
 
-#### <a name="tooshut-down-a-storsimple-device"></a>tooshut vers le bas un appareil StorSimple
-1. Hello d’utilisation [redémarrer ou arrêter un contrôleur de](#restart-or-shut-down-a-single-controller) tooidentify de procédure et arrêter le contrôleur passif de hello sur votre appareil. Vous pouvez effectuer cette opération dans hello portail Azure classic ou dans Windows PowerShell pour StorSimple.
-2. Répétez hello ci-dessus tooshut étape vers le bas du contrôleur actif de hello.
-3. Vous devez désormais toolook à hello fond de panier de périphérique de hello. Une fois que les deux contrôleurs de hello complètement arrêtés, hello DEL d’état sur les deux contrôleurs hello clignotent en rouge. Si vous devez tooturn hors tension de l’appareil de hello complètement à ce stade, les interrupteurs d’alimentation de la rotation hello sur les deux Modules de refroidissement (PCM) toohello OFF position. Ceci doit désactiver le dispositif de hello.
+#### <a name="to-shut-down-a-storsimple-device"></a>Pour arrêter un appareil StorSimple
+1. Utilisez la procédure [Redémarrage ou d’arrêt d’un contrôleur](#restart-or-shut-down-a-single-controller) pour identifier et arrêter le contrôleur passif sur votre appareil. Vous pouvez effectuer cette opération dans le portail Azure Classic ou dans Windows PowerShell pour StorSimple.
+2. Répétez l’étape précédente pour arrêter le contrôleur actif.
+3. Vous devez maintenant examiner le panneau arrière de l’appareil. Une fois les deux contrôleurs arrêtés, l’état des LED des deux contrôleurs doit être rouge clignotant. Si vous souhaitez désactiver complètement l’appareil à ce stade, assurez-vous que les commutateurs d’alimentation sont en position d’arrêt sur tous les PCM. Ceci désactivera l’appareil.
 
-<!--#### tooshut down a StorSimple device in Windows PowerShell for StorSimple
+<!--#### To shut down a StorSimple device in Windows PowerShell for StorSimple
 
-1. Connect toohello serial console of hello StorSimple device by following hello steps in [Use PuTTY tooconnect toohello device serial console](storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-serial-console).
+1. Connect to the serial console of the StorSimple device by following the steps in [Use PuTTY to connect to the device serial console](storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-serial-console).
 
-1. In hello serial console menu, verify from hello banner message that hello controller you are connected toois hello passive controller. If you are connected toohello active controller, disconnect from this controller and connect toohello other controller.
+1. In the serial console menu, verify from the banner message that the controller you are connected to is the passive controller. If you are connected to the active controller, disconnect from this controller and connect to the other controller.
 
-1. In hello serial console menu, choose option 1, **log in with full access**.
+1. In the serial console menu, choose option 1, **log in with full access**.
 
-1. At hello prompt, type:
+1. At the prompt, type:
 
     `Stop-HCSController`
 
-    This should shut down hello current controller. tooverify whether hello shutdown has finished, check hello back of hello device. hello controller status LED should be solid red.
+    This should shut down the current controller. To verify whether the shutdown has finished, check the back of the device. The controller status LED should be solid red.
 
-1. Repeat steps 1 through 4 tooconnect toohello active controller and then shut it down.
+1. Repeat steps 1 through 4 to connect to the active controller and then shut it down.
 
-1. After both hello controllers are completely shut down, hello status LEDs on both should be blinking red. If you need tooturn off hello device completely at this time, flip hello power switches on both Power and Cooling Modules (PCMs) toohello OFF position.-->
+1. After both the controllers are completely shut down, the status LEDs on both should be blinking red. If you need to turn off the device completely at this time, flip the power switches on both Power and Cooling Modules (PCMs) to the OFF position.-->
 
-## <a name="reset-hello-device-toofactory-default-settings"></a>Rétablir les paramètres par défaut de hello appareil toofactory
+## <a name="reset-the-device-to-factory-default-settings"></a>Rétablissement des paramètres d’usine de l’appareil
 > [!IMPORTANT]
-> Si vous devez tooreset les paramètres par défaut des appareils toofactory, contactez le Support Microsoft. procédure Hello décrite ci-dessous doit être utilisé qu’en association avec le Support technique de Microsoft.
+> Si vous devez rétablir les paramètres d’usine de l’appareil, contactez le Support Microsoft. La procédure décrite ci-dessous ne doit être effectuée qu’en coordination avec le Support Microsoft.
 > 
 > 
 
-Cette procédure décrit comment tooreset vos paramètres de valeur par défaut de Microsoft Azure StorSimple périphérique toofactory à l’aide de Windows PowerShell pour StorSimple.
-Réinitialiser un appareil supprime toutes les données et les paramètres à partir de l’ensemble du cluster hello par défaut.
+Cette procédure explique comment rétablir les paramètres d’usine de votre appareil Microsoft Azure StorSimple à l’aide de Windows PowerShell pour StorSimple.
+La réinitialisation d’un appareil supprime toutes les données et tous les paramètres de l’ensemble du cluster par défaut.
 
-Effectuez hello suivant les étapes tooreset vos paramètres par défaut de Microsoft Azure StorSimple périphérique toofactory :
+Pour rétablir les paramètres d’usine de votre appareil Microsoft Azure StorSimple, procédez comme suit :
 
-### <a name="tooreset-hello-device-toodefault-settings-in-windows-powershell-for-storsimple"></a>tooreset hello toodefault paramètres de périphérique dans Windows PowerShell pour StorSimple
-1. Périphérique de hello accès via sa console série. Vérifiez tooensure de message de bannière hello que vous êtes connecté toohello les contrôleur actif.
-2. Dans le menu de console série hello, sélectionnez l’option 1, **connecter avec un accès complet**.
-3. À l’invite de hello, tapez Bonjour suivant commande tooreset hello ensemble du cluster, la suppression de tous les paramètres de contrôleur, les métadonnées et les données :
+### <a name="to-reset-the-device-to-default-settings-in-windows-powershell-for-storsimple"></a>Pour rétablir les paramètres d’usine de l’appareil dans Windows PowerShell pour StorSimple
+1. Accédez à l’appareil via sa console série. Vérifiez le message de bannière pour vous assurer que vous êtes connecté au contrôleur actif.
+2. Dans le menu de la console série, sélectionnez l’option 1, **Ouvrir une session avec un accès total**.
+3. À l’invite, tapez la commande suivante pour réinitialiser l’ensemble du cluster et ainsi supprimer toutes les données, toutes les métadonnées et tous les paramètres du contrôleur :
    
     `Reset-HcsFactoryDefault`
    
-    tooinstead réinitialiser un seul contrôleur, utilisez hello [Reset-HcsFactoryDefault](http://technet.microsoft.com/library/dn688132.aspx) applet de commande avec hello `-scope` paramètre.)
+    Pour réinitialiser un seul contrôleur, utilisez l’applet de commande [Reset-HcsFactoryDefault](http://technet.microsoft.com/library/dn688132.aspx) avec le paramètre `-scope`.)
    
-    système de Hello va redémarrer plusieurs fois. Vous serez averti lorsque hello réinitialisation est terminée. Selon le modèle de système de hello, il peut prendre 45 à 60 minutes pour un appareil 8100 et 60 à 90 minutes pour un toofinish 8600 ce processus.
+    Le système redémarrera plusieurs fois. Un message s’affichera une fois la réinitialisation terminée. Selon le modèle du système, l’opération peut prendre 45 à 60 minutes pour un appareil 8 100 et 60 à 90 minutes pour un appareil 8 600.
    
    > [!TIP]
-   > * Si vous utilisez la mise à jour 1.2 ou antérieure utiliser hello `–SkipFirmwareVersionCheck` vérification de la version du microprogramme hello tooskip paramètre (dans le cas contraire, vous verrez une erreur d’incompatibilité du microprogramme : paramètres d’usine ne peut pas continuer en raison d’incompatibilité tooa dans les versions de microprogramme hello. Sinon, une erreur d’incompatibilité du microprogramme s’affiche : la réinitialisation aux paramètres d’usine ne peut pas se poursuivre en raison d’une incohérence dans les versions du microprogramme.
-   > * procédure de réinitialisation des paramètres d’usine Hello peut échouer pour les appareils StorSimple qui sont en cours d’exécution 1.1 ou mise à jour 1 dans le portail d’administration hello et ont effectué un remplacement de contrôleur de simples ou doubles réussi (avec des contrôleurs de remplacement qui ont été expédiées avec avant mise à jour 1 logiciel). Cela se produit lors de la réinitialisation hello image est validée présence hello d’un fichier SHA1 sur contrôleur hello qui n’existe pas pour les logiciels de 1 avant mise à jour. Si vous voyez cette fabrique de réinitialiser l’échec, contactez le Support technique de Microsoft tooassist vous hello étapes suivantes. Ce problème n’est pas affiché avec des contrôleurs de remplacement qui ont été expédiées à partir de la fabrique de hello avec Update 1 ou ultérieure du logiciel.
+   > * Si vous utilisez Update 1.2 ou une version antérieure, servez-vous du paramètre `–SkipFirmwareVersionCheck` pour ignorer la vérification de la version du microprogramme. Sinon, une erreur d’incompatibilité du microprogramme s’affiche : la réinitialisation aux paramètres d’usine ne peut pas se poursuivre en raison d’une incohérence dans les versions du microprogramme.
+   > * La procédure de réinitialisation aux paramètres d’usine peut échouer pour les appareils StorSimple qui exécutent la mise à jour 1 ou 1.1 sur le portail Government et ont effectué un remplacement d’un seul ou de deux contrôleurs avec succès (avec des contrôleurs de remplacement livrés avec un logiciel antérieur à la mise à jour 1). Cela se produit lorsque l’image de réinitialisation aux paramètres d’usine est validée pour la présence d'un fichier SHA1 sur le contrôleur qui n'existe pas pour un logiciel antérieur à la mise à jour 1. Si vous constatez l’échec de cette réinitialisation aux paramètres d’usine, contactez le support Microsoft pour obtenir de l’aide lors des étapes suivantes. Ce problème ne se produit pas avec des contrôleurs de remplacement sortis d’usine avec la mise à jour 1 ou une version ultérieure du logiciel.
    > 
    > 
 
 ## <a name="questions-and-answers-about-managing-device-controllers"></a>Questions et réponses sur la gestion des contrôleurs d’appareil
-Dans cette section, nous avons résumé des hello questions fréquemment posées concernant la gestion des contrôleurs de périphérique StorSimple.
+Dans cette section, vous trouverez des réponses à certaines questions fréquemment posées, relatives à la gestion des contrôleurs d’appareil StorSimple.
 
-**Q.** Que se passe-t-il si les deux hello contrôleurs sur mon appareil sont sain et activé sur et redémarrer ou arrêter le contrôleur actif de hello ?
+**Q.** Que se passe-t-il si les deux contrôleurs de mon appareil sont activés et en bon état de fonctionnement, et que je redémarre ou arrête le contrôleur actif ?
 
-**A.** Si les deux contrôleurs hello sur votre appareil sont sains et activés, vous serez invité à confirmer l’opération. Vous pouvez choisir de :
+**A.** Si les deux contrôleurs de votre appareil sont activés et en bon état de fonctionnement, vous serez invité à confirmer l’opération. Vous pouvez choisir de :
 
-* **Redémarrez le contrôleur actif de hello** – vous serez averti que le redémarrage d’un contrôleur actif provoquera hello appareil toofail sur le contrôleur passif de toohello. Hello redémarre.
-* **Arrêter un contrôleur actif** : un message vous avertit que l’arrêt d’un contrôleur actif entraîne une coupure du service. Vous devez également bouton d’alimentation hello toopush sur tooturn de périphérique hello sur le contrôleur de hello.
+* **Redémarrer le contrôleur actif** : un message vous avertit que le redémarrage d’un contrôleur actif entraîne un basculement de l’appareil vers le contrôleur passif. Le contrôleur redémarrera.
+* **Arrêter un contrôleur actif** : un message vous avertit que l’arrêt d’un contrôleur actif entraîne une coupure du service. Vous devrez également appuyer sur le bouton d’alimentation de l’appareil pour activer le contrôleur.
 
-**Q.** Que se passe-t-il si le contrôleur passif hello mon appareil est indisponible ou désactivé off et que je redémarre ou arrête contrôleur actif de hello ?
+**Q.** Que se passe-t-il si le contrôleur passif de mon appareil est indisponible ou désactivé, et que je redémarre ou arrête le contrôleur actif ?
 
-**A.** Si le contrôleur passif de hello sur votre appareil est indisponible ou désactivé et vous choisissez de :
+**A.** Si le contrôleur passif de votre appareil est indisponible ou désactivé, et que vous choisissez de :
 
-* **Redémarrez le contrôleur actif de hello** – vous serez averti que la poursuite de l’opération de hello entraîne une interruption temporaire du service de hello, et vous serez invité à confirmer l’opération.
-* **Arrêter un contrôleur actif** : vous êtes averti que poursuite de l’opération de hello provoquera un temps mort et que vous avez besoin de bouton d’alimentation hello toopush sur un ou deux tooturn contrôleurs sur l’appareil de hello. Vous êtes invité à confirmer l’opération.
+* **Redémarrer le contrôleur actif** : un message vous indiquera que la poursuite de l'opération entraînera une interruption temporaire du service, et vous serez invité à confirmer l’opération.
+* **Arrêter un contrôleur actif** : un message vous avertit que la poursuite de l’opération entraîne une interruption du service, et que vous devez appuyer sur le bouton d’alimentation d’au moins un des contrôleurs pour activer l’appareil. Vous êtes invité à confirmer l’opération.
 
-**Q.** Lorsque ne hello contrôleur redémarrage ou l’arrêt a échoué tooprogress ?
+**Q.** À quel moment le redémarrage ou l’arrêt du contrôleur échoue-t-il ?
 
 **A.** Le redémarrage ou l’arrêt d’un contrôleur peut échouer si :
 
@@ -191,17 +191,17 @@ Dans cette section, nous avons résumé des hello questions fréquemment posées
 
 **Q.** Comment pouvez-vous déterminer si un contrôleur a été redémarré ou arrêté ?
 
-**A.** Vous pouvez vérifier l’état du contrôleur hello sur la page Maintenance de hello. état du contrôleur Hello indique si un contrôleur a été redémarré ou arrêté. En outre, page des alertes hello contiendra une alerte d’information si le contrôleur de hello a été redémarré ou arrêté. opérations de redémarrage et d’arrêt du contrôleur Hello sont également enregistrées dans les journaux des opérations de hello. Pour plus d’informations sur les journaux des opérations, consultez trop[afficher les journaux des opérations de hello](storsimple-service-dashboard.md#view-the-operations-logs).
+**A.** Vous pouvez vérifier l’état du contrôleur dans la page Maintenance. L’état du contrôleur vous indiquera si un contrôleur a été redémarré ou arrêté. De plus, la page d’alertes contiendra une alerte d’information vous indiquant si le contrôleur a été redémarré ou arrêté. Les opérations de redémarrage et d’arrêt du contrôleur sont également enregistrées dans les journaux des opérations. Pour plus d’informations sur les journaux des opérations, consultez [Affichage des journaux des opérations](storsimple-service-dashboard.md#view-the-operations-logs).
 
-**Q.** Existe-t-il des toohello impact des e/s en raison du basculement du contrôleur ?
+**Q.** Le basculement du contrôleur a-t-il un impact sur les E/S ?
 
-**A.** les connexions TCP Hello entre les initiateurs et le contrôleur actif sont réinitialisées suite au basculement du contrôleur, mais rétablies lorsque le contrôleur passif de hello suppose que l’opération. Il peut exister une pause temporaire (moins de 30 secondes) dans l’activité d’e/s entre les initiateurs et les appareils hello hello pendant cette opération.
+**A.** Les connexions TCP entre les initiateurs et le contrôleur actif sont réinitialisées à la suite du basculement du contrôleur, mais elles seront rétablies lorsque le contrôleur passif effectuera l’opération. Une interruption temporaire (moins de 30 secondes) peut survenir dans l’activité d’E/S entre les initiateurs et l’appareil au cours de cette opération.
 
-**Q.** Comment retourner mon tooservice contrôleur une fois qu’il a été arrêté et supprimé ?
+**Q.** Comment puis-je remettre mon contrôleur en service une fois qu’il a été arrêté et supprimé ?
 
-**A.** tooreturn un tooservice de contrôleur, vous devez l’insérer dans le châssis de hello comme décrit dans [remplacer un module de contrôleur sur votre appareil StorSimple](storsimple-controller-replacement.md).
+**A.** Pour remettre en service un contrôleur, vous devez l’insérer dans le châssis, comme décrit dans [Remplacement d’un module de contrôleur sur votre appareil StorSimple](storsimple-controller-replacement.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Si vous rencontrez des problèmes avec vos contrôleurs d’appareil StorSimple que vous ne pouvez pas résoudre à l’aide de procédures hello répertoriées dans ce didacticiel, [contactez le Support Microsoft](storsimple-contact-microsoft-support.md).
-* toolearn plus sur l’utilisation de service de StorSimple Manager hello, accédez trop[utilisez hello tooadminister du service StorSimple Manager de votre appareil StorSimple](storsimple-manager-service-administration.md).
+* Si vous rencontrez des problèmes avec vos contrôleurs d’appareil StorSimple, que vous ne pouvez pas résoudre en suivant les procédures décrites dans ce didacticiel, [contactez le support technique Microsoft](storsimple-contact-microsoft-support.md).
+* Pour en savoir plus sur l’utilisation du service StorSimple Manager, consultez [Utilisation du service StorSimple Manager pour gérer votre appareil StorSimple](storsimple-manager-service-administration.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaWindows intégration de kit de développement logiciel Engagement applications universel"
-description: Comment tooIntegrate Azure Mobile Engagement avec les applications Windows universelles
+title: "Intégration du Kit de développement logiciel du module Engagement des applications universelles Windows"
+description: "Intégration du module Azure Mobile Engagement avec des applications universelles Windows"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 18543798099c233dbe55cc387ba0216e369c8596
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 898160814304fa8ec65622056a77ca9d4caf2c99
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="windows-universal-apps-engagement-sdk-integration"></a>Intégration du Kit de développement logiciel du module Engagement des applications universelles Windows
 > [!div class="op_single_selector"]
@@ -29,12 +29,12 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Cette procédure décrit Analytique hello la plus simple façon tooactivate Engagement et l’analyse des fonctions dans votre application Windows universelle.
+Cette procédure décrit comment activer les fonctions d'analyse et de surveillance d'Engagement dans votre application universelle Windows de la manière la plus simple possible.
 
-Hello suit est que suffisamment rapport hello tooactivate journaux nécessaires toocompute toutes les statistiques concernant les utilisateurs, Sessions, activités, blocages et Technicals. rapport Hello de journaux nécessaires toocompute autres statistiques telles que les événements, les erreurs et les tâches doivent être effectués manuellement à l’aide des API de l’Engagement de hello (consultez [comment toouse hello avancé Mobile Engagement marquage API dans votre application Windows universelle](mobile-engagement-windows-store-use-engagement-api.md) depuis Ces statistiques sont dépend de l’application.
+Les étapes suivantes permettent d'activer la génération des journaux nécessaires pour calculer toutes les statistiques concernant les utilisateurs, les sessions, les activités, les incidents et les informations techniques. Pour calculer d’autres statistiques qui dépendent de l’application, comme les événements, les erreurs et les travaux, vous devez générer manuellement les journaux correspondants à l’aide de l’API Engagement. Consultez [Comment utiliser l’API de balisage avancée Mobile Engagement dans votre application universelle Windows](mobile-engagement-windows-store-use-engagement-api.md).
 
 ## <a name="supported-versions"></a>Versions prises en charge
-Hello Mobile Engagement SDK pour applications Windows universelles peut uniquement être intégré dans Windows Runtime et les applications de plateforme Windows universelle qui ciblent :
+Le Kit de développement logiciel (SDK) Engagement Mobile pour les applications universelles Windows peut uniquement être intégré aux applications Windows Runtime et Universal Windows Platform ciblant :
 
 * Windows 8
 * Windows 8.1
@@ -42,63 +42,63 @@ Hello Mobile Engagement SDK pour applications Windows universelles peut uniqueme
 * Windows 10 (gammes mobiles et de bureau)
 
 > [!NOTE]
-> Si vous ciblez Windows Phone Silverlight, consultez toohello [procédure d’intégration de Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md).
+> Si vous ciblez Windows Phone Silverlight, consultez la [procédure d'intégration Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md).
 > 
 > 
 
-## <a name="install-hello-mobile-engagement-universal-apps-sdk"></a>Installer hello SDK des applications Universal Mobile Engagement
+## <a name="install-the-mobile-engagement-universal-apps-sdk"></a>Installation du Kit de développement d'applications universelles Mobile Engagement
 ### <a name="all-platforms"></a>Toutes les plateformes
-Hello Mobile Engagement SDK pour Windows application universelle est disponible comme package Nuget appelé *MicrosoftAzure.MobileEngagement*. Vous pouvez l’installer à partir de hello Gestionnaire de Package Nuget de Visual Studio.
+Le Kit de développement Mobile Engagement pour l’application universelle Windows est disponible comme package Nuget appelé *MicrosoftAzure.MobileEngagement*. Vous pouvez l'installer à partir du gestionnaire de package Nuget Visual Studio.
 
 ### <a name="windows-8x-and-windows-phone-81"></a>Windows 8.x et Windows Phone 8.1
-NuGet déploie automatiquement les ressources du Kit de développement logiciel hello Bonjour `Resources` dossier à votre projet d’application hello racine.
+NuGet déploie automatiquement les ressources du Kit de développement logiciel (SDK) dans le dossier `Resources` à la racine de votre projet d'application.
 
 ### <a name="windows-10-universal-windows-platform-applications"></a>Applications de la plateforme Windows universelle Windows 10
-NuGet ne déploie pas automatiquement les ressources du Kit de développement logiciel hello dans votre application UWP encore. Vous avez toodo manuellement avant le déploiement de ressources est réintroduit dans NuGet :
+NuGet ne déploie pas encore automatiquement les ressources du Kit de développement logiciel (SDK) dans votre application UWP. Vous devez le faire manuellement jusqu'à ce que le déploiement de ressources soit réintroduit dans NuGet :
 
 1. Ouvrez votre Explorateur de fichiers.
-2. Accédez toohello l’emplacement suivant (**x.x.x** est la version hello d’Engagement que vous installez) : *% USERPROFILE%\\.nuget\packages\MicrosoftAzure.MobileEngagement\\*  *x.x.x**\\content\win81*
-3. Glisser- déposer hello **ressources** dossier hello fichier explorer toohello de racine de votre projet dans Visual Studio.
-4. Dans Visual Studio, sélectionnez votre projet et activer hello **afficher tous les fichiers** icône au-dessus hello **l’Explorateur de solutions**.
-5. Certains fichiers ne sont pas inclus dans le projet de hello. tooimport à la fois avec le bouton droit à cliquer sur hello **ressources** dossier, **exclure du projet** puis un autre avec le bouton droit sur hello **ressources** dossier **Include dans le projet** toore-inclure la totalité du dossier hello. Tous les fichiers à partir de hello **ressources** dossier sont désormais incluses dans votre projet.
+2. Accédez à l’emplacement suivant (**x.x.x** est la version d’Engagement que vous installez) : *%USERPROFILE%\\.nuget\packages\MicrosoftAzure.MobileEngagement\\**x.x.x**\\content\win81*
+3. Faites glisser et déposez le dossier **Ressources** à partir de l'Explorateur de fichiers vers la racine de votre projet dans Visual Studio.
+4. Dans Visual Studio, sélectionnez votre projet et activez l’icône **Afficher tous les fichiers** dans la partie supérieure de **l’Explorateur de solutions**.
+5. Certains fichiers ne sont pas inclus dans le projet. Pour tous les importer à la fois, cliquez avec le bouton droit sur le dossier **Ressources**, sélectionnez **Exclure du projet**, puis cliquez de nouveau avec le bouton droit sur le dossier **Ressources**, sélectionnez **Inclure dans le projet** pour inclure à nouveau la totalité du dossier. Tous les fichiers du dossier **Ressources** sont désormais inclus dans votre projet.
 
-## <a name="add-hello-capabilities"></a>Ajouter des fonctionnalités hello
-Hello SDK de l’Engagement a besoin de certaines fonctionnalités de hello Kit de développement dans l’ordre toowork correctement.
+## <a name="add-the-capabilities"></a>Ajouter les fonctionnalités
+Pour fonctionner correctement, le SDK Engagement fait appel à certaines fonctionnalités du SDK Windows.
 
-Ouvrez votre `Package.appxmanifest` de fichiers et assurez-vous que hello suivant des fonctions sont déclarés :
+Ouvrez votre fichier `Package.appxmanifest` et vérifiez que les fonctionnalités suivantes sont déclarées :
 
 * `Internet (Client)`
 
-## <a name="initialize-hello-engagement-sdk"></a>Initialiser hello Engagement SDK
+## <a name="initialize-the-engagement-sdk"></a>Initialiser le SDK Engagement
 ### <a name="engagement-configuration"></a>Configuration d'Engagement
-configuration d’Engagement Hello centralisée dans hello `Resources\EngagementConfiguration.xml` fichier de votre projet.
+La configuration d'Engagement est centralisée dans le fichier `Resources\EngagementConfiguration.xml` de votre projet.
 
-Modifiez cette toospecify de fichier :
+Modifiez ce fichier pour spécifier :
 
 * Votre chaîne de connexion d'application entre les balises `<connectionString>` and `<\connectionString>`.
 
-Si vous souhaitez toospecify il lors de l’exécution au lieu de cela, vous pouvez appeler suivant de hello méthode avant l’initialisation de l’agent hello Engagement :
+Si vous souhaitez plutôt la spécifier au moment de l'exécution, vous pouvez appeler la méthode suivante avant l'initialisation de l'agent Engagement :
 
           /* Engagement configuration. */
           EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
 
-          /* Set hello Engagement connection string. */
+          /* Set the Engagement connection string. */
           engagementConfiguration.Agent.ConnectionString = "Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}";
 
           /* Initialize Engagement angent with above configuration. */
           EngagementAgent.Instance.Init(e, engagementConfiguration);
 
-chaîne de connexion Hello pour votre application s’affiche sur hello portail classique Azure.
+La chaîne de connexion de votre application est affichée sur le portail Azure Classic.
 
 ### <a name="engagement-initialization"></a>Initialisation d'Engagement
-Quand vous créez un projet, un fichier `App.xaml.cs` est généré. Cette classe hérite de `Application` et contient de nombreuses méthodes importantes. Il sera également utilisé tooinitialize hello Engagement SDK.
+Quand vous créez un projet, un fichier `App.xaml.cs` est généré. Cette classe hérite de `Application` et contient de nombreuses méthodes importantes. Son rôle consiste également à initialiser le SDK Engagement.
 
-Modifier hello `App.xaml.cs`:
+Modifiez le `App.xaml.cs`:
 
-* Ajouter tooyour `using` instructions :
+* Ajoutez à vos instructions `using` :
   
       using Microsoft.Azure.Engagement;
-* Définissez une initialisation d’Engagement méthode tooshare hello qu’une seule fois pour tous les appels :
+* Définissez une méthode pour partager l'initialisation Engagement une fois pour tous les appels :
   
       private void InitEngagement(IActivatedEventArgs e)
       {
@@ -108,13 +108,13 @@ Modifier hello `App.xaml.cs`:
   
         EngagementAgent.Instance.Init(e, engagementConfiguration);
       }
-* Appelez `InitEngagement` Bonjour `OnLaunched` méthode :
+* Appelez `InitEngagement` dans la méthode `OnLaunched` :
   
       protected override void OnLaunched(LaunchActivatedEventArgs e)
       {
         InitEngagement(e);
       }
-* Lorsque votre application est lancée à l’aide d’un schéma personnalisé, une autre ligne de commande de l’application ou hello hello puis `OnActivated` méthode est appelée. Vous devez également tooinitiate hello Engagement SDK quand votre application est activée. toodo donc remplacer `OnActivated` méthode :
+* Si votre application est lancée à partir d'un schéma personnalisé, d'une autre application ou de la ligne de commande, la méthode `OnActivated` est appelée. Vous devez également initier le Kit de développement logiciel (SDK) Engagement quand votre application est activée. Pour cela, remplacez la méthode `OnActivated` :
   
       protected override void OnActivated(IActivatedEventArgs args)
       {
@@ -122,20 +122,20 @@ Modifier hello `App.xaml.cs`:
       }
 
 > [!IMPORTANT]
-> Nous vous déconseillons de vous tooadd hello Engagement d’initialisation à un autre endroit de votre application.
+> Nous vous déconseillons fortement d'ajouter l'initialisation d'Engagement à un autre endroit de votre application.
 > 
 > 
 
 ## <a name="basic-reporting"></a>Génération de rapports de base
 ### <a name="recommended-method-overload-your-page-classes"></a>Méthode recommandée : surchargez vos classes `Page`
-Dans le rapport de hello order tooactivate de tous les journaux hello requis par Engagement toocompute utilisateurs, Sessions, activités, blocages et statistiques, vous pouvez simplement mettre toutes vos `Page` sous-classes héritent hello `EngagementPage` classes.
+Pour activer la génération de tous les journaux requis par Engagement pour calculer les statistiques concernant les utilisateurs, les sessions, les activités, les incidents et les informations techniques, vous pouvez simplement configurer toutes vos sous-classes `Page` de manière à ce qu'elles héritent des classes `EngagementPage`.
 
-Voici un exemple de procédure toodo pour une page de votre application. Vous pouvez effectuer hello identiques pour toutes les pages de votre application.
+Voici un exemple qui montre comment procéder pour une page de votre application. Vous pouvez faire la même chose pour toutes les pages de votre application.
 
 #### <a name="c-source-file"></a>Fichier source C#
 Modifiez le fichier `.xaml.cs` de votre page :
 
-* Ajouter tooyour `using` instructions :
+* Ajoutez à vos instructions `using` :
   
       using Microsoft.Azure.Engagement;
 * Remplacez `Page` par `EngagementPage` :
@@ -163,14 +163,14 @@ Modifiez le fichier `.xaml.cs` de votre page :
         }
 
 > [!IMPORTANT]
-> Si votre page substitue hello `OnNavigatedTo` (méthode), être toocall vraiment `base.OnNavigatedTo(e)`. Dans le cas contraire, activité hello n’est pas signalée (hello `EngagementPage` appelle `StartActivity` à l’intérieur de son `OnNavigatedTo` méthode).
+> Si votre page remplace la méthode `OnNavigatedTo`, veillez à appeler `base.OnNavigatedTo(e)`. Sinon, l’activité ne sera pas signalée (la `EngagementPage` appelle `StartActivity` à l’intérieur de sa méthode `OnNavigatedTo`).
 > 
 > 
 
 #### <a name="xaml-file"></a>Fichier XAML
 Modifiez le fichier `.xaml` de votre page :
 
-* Ajoutez les déclarations d’espaces de noms tooyour :
+* Ajoutez une déclaration d'espace de noms :
   
       xmlns:engagement="using:Microsoft.Azure.Engagement"
 * Remplacez `Page` par `engagement:EngagementPage` :
@@ -190,33 +190,33 @@ Modifiez le fichier `.xaml` de votre page :
             ...
         </engagement:EngagementPage >
 
-#### <a name="override-hello-default-behaviour"></a>Substituer le comportement par défaut de hello
-Par défaut, nom de la classe de page de hello hello est signalée comme nom de l’activité hello, avec sans supplémentaire. Si la classe hello utilise hello suffixe de « Page », Engagement entraîne également sa suppression.
+#### <a name="override-the-default-behaviour"></a>Remplacer le comportement par défaut
+Par défaut, le nom de classe de la page est signalé comme le nom de l'activité, sans informations supplémentaires. Si la classe utilise le suffixe « Page », Engagement le supprime également.
 
-Si vous souhaitez le comportement par défaut de hello toooverride pour le nom de hello, ajoutez simplement ce code tooyour :
+Si vous souhaitez remplacer le comportement par défaut associé au nom, ajoutez simplement ceci à votre code :
 
-        // in hello .xaml.cs file
+        // in the .xaml.cs file
         protected override string GetEngagementPageName()
         {
           /* your code */
           return "new name";
         }
 
-Si vous souhaitez tooreport certaines informations supplémentaires avec votre activité, vous pouvez ajouter ce code tooyour :
+Si vous souhaitez signaler des informations supplémentaires avec votre activité, vous pouvez ajouter ceci à votre code :
 
-        // in hello .xaml.cs file
+        // in the .xaml.cs file
         protected override Dictionary<object,object> GetEngagementPageExtra()
         {
           /* your code */
           return extra;
         }
 
-Ces méthodes sont appelées dans hello `OnNavigatedTo` méthode de votre page.
+Ces méthodes sont appelées depuis la méthode `OnNavigatedTo` de votre page.
 
 ### <a name="alternate-method-call-startactivity-manually"></a>Autre méthode : appeler `StartActivity()` manuellement
-Si vous ne pouvez pas ou ne souhaitez pas que toooverload votre `Page` classes, vous pouvez démarrer à la place de vos activités en appelant `EngagementAgent` direct de méthodes.
+Si vous ne pouvez pas ou ne souhaitez pas surcharger vos classes `Page`, vous pouvez démarrer vos activités en appelant directement les méthodes `EngagementAgent`.
 
-Nous vous recommandons de toocall `StartActivity` à l’intérieur de votre `OnNavigatedTo` méthode de votre Page.
+Nous vous recommandons d'appeler `StartActivity` à l'intérieur de la méthode `OnNavigatedTo` de votre Page.
 
             protected override void OnNavigatedTo(NavigationEventArgs e)
             {
@@ -227,31 +227,31 @@ Nous vous recommandons de toocall `StartActivity` à l’intérieur de votre `On
 > [!IMPORTANT]
 > Assurez-vous de terminer votre session correctement.
 > 
-> Hello SDK Universal Windows appelle automatiquement hello `EndActivity` méthode lors de l’application hello est fermée. Par conséquent, il est **hautement** recommandé toocall hello `StartActivity` méthode chaque fois que l’activité hello d’utilisateur de hello modifier et trop**jamais** appel hello `EndActivity` (méthode), cette méthode envoie tooEngagement serveur que l’utilisateur actuel a laissez hello application, ce sera a un impact sur tous les journaux d’application.
+> Le Kit de développement logiciel Windows Universal appelle automatiquement la méthode `EndActivity` quand l'application est fermée. Par conséquent, il est **FORTEMENT** recommandé d’appeler la méthode `StartActivity` chaque fois que l’activité de l’utilisateur change et de ne **JAMAIS** appeler la méthode `EndActivity`. Cette dernière envoie au serveur Engagement une notification indiquant que l’utilisateur actuel doit quitter l’application, ce qui aura un impact sur tous les journaux d’application.
 > 
 > 
 
 ## <a name="advanced-reporting"></a>Génération de rapports avancés
-Si vous le souhaitez, vous souhaiterez peut-être tooreport les événements d’application spécifique, les erreurs et les travaux, toodo donc, utilisez hello d’autres méthodes trouvés dans hello `EngagementAgent` classe. Hello Engagement API permet toouse toutes les fonctionnalités avancées d’Engagement.
+Vous pouvez éventuellement signaler les événements, erreurs et tâches spécifiques à l'application. Pour cela, utilisez les autres méthodes disponibles dans la classe `EngagementAgent`. L'API Engagement permet d'utiliser toutes les fonctionnalités avancées d'Engagement.
 
-Pour plus d’informations, consultez [comment toouse hello avancé Mobile Engagement marquage API dans votre application Windows universelle](mobile-engagement-windows-store-use-engagement-api.md).
+Pour plus d'informations, consultez [Utilisation de l'API de marquage avancée Mobile Engagement dans votre application Windows Phone](mobile-engagement-windows-store-use-engagement-api.md).
 
 ## <a name="advanced-configuration"></a>Configuration avancée
 ### <a name="disable-automatic-crash-reporting"></a>Désactiver le signalement automatique des incidents
-Vous pouvez désactiver hello automatique de rapport d’incident fonctionnalité d’Engagement. Dans ce cas, si une exception non gérée se produit, Engagement ne fait rien.
+Vous pouvez désactiver la fonctionnalité de signalement automatique des incidents d'Engagement. Dans ce cas, si une exception non gérée se produit, Engagement ne fait rien.
 
 > [!WARNING]
-> Si vous envisagez de toodisable cette fonctionnalité, gardez à l’esprit que, lorsqu’un incident non géré se produit dans votre application, Engagement n’envoie pas de blocage de hello **et** ne ferme pas la session de hello et les travaux.
+> Si vous désactivez cette fonctionnalité et qu'un incident non géré se produit dans votre application, sachez qu'Engagement n'envoie pas l'incident **ET** qu'il ne ferme ni la session ni les tâches.
 > 
 > 
 
-toodisable automatique sur incident reporting, simplement personnaliser votre configuration en fonction de méthode hello vous l’avez déclarée :
+Pour désactiver le signalement automatique des incidents, il vous suffit de personnaliser votre configuration en fonction de la façon dont vous l'avez déclarée :
 
 #### <a name="from-engagementconfigurationxml-file"></a>Dans le fichier `EngagementConfiguration.xml`
-Définir le rapport incident trop`false` entre `<reportCrash>` et `</reportCrash>` balises.
+Affectez au signalement des incidents la valeur `false` entre les balises `<reportCrash>` et `</reportCrash>`.
 
 #### <a name="from-engagementconfiguration-object-at-run-time"></a>Dans l'objet `EngagementConfiguration` au moment l'exécution
-Définissez toofalse de panne de rapport à l’aide de votre objet EngagementConfiguration.
+Affectez au signalement des incidents la valeur false à l'aide de votre objet EngagementConfiguration.
 
         /* Engagement configuration. */
         EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -261,18 +261,18 @@ Définissez toofalse de panne de rapport à l’aide de votre objet EngagementCo
         engagementConfiguration.Agent.ReportCrash = false;
 
 ### <a name="burst-mode"></a>Mode rafale
-Par défaut, les rapports de service d’Engagement hello journaux en temps réel. Si votre application rapports journaux très fréquemment, il est mieux toobuffer hello journaux et tooreport à la fois à une base de temps réguliers (appelée hello « mode de croissance »).
+Par défaut, le service Engagement génère des journaux en temps réel. Si votre application génère très fréquemment des journaux, il est préférable de les mettre en mémoire tampon et de les générer tous en même temps à intervalles réguliers (« mode rafale »).
 
-toodo appeler par conséquent, la méthode hello :
+Pour cela, appelez la méthode :
 
         EngagementAgent.Instance.SetBurstThreshold(int everyMs);
 
-l’argument Hello est une valeur dans **millisecondes**. À tout moment, si vous souhaitez que la journalisation en temps réel tooreactivate hello, appelez uniquement méthode hello sans paramètres ou avec la valeur de hello 0.
+L'argument est une valeur en **millisecondes**. Si vous souhaitez réactiver la génération de journaux en temps réel, vous pouvez appeler à tout moment la méthode sans aucun paramètre ou avec la valeur 0.
 
-Hello mode rafale légèrement augmenter la batterie de hello vie mais n’a un impact sur hello Engagement moniteur : toutes les sessions et les travaux seront arrondies toohello rafale seuil (par conséquent, les sessions et les travaux plus court que le seuil de croissance hello n’est pas forcément visible). Il est recommandé de toouse un seuil de croissance n’est plus à 30000 (30 s). Vous avez toobe souvenez-vous des journaux enregistrés too300 limité des éléments. Si l'envoi est trop long, vous risquez de perdre certains journaux.
+Le mode rafale accroît légèrement l'autonomie de la batterie, mais il affecte aussi Engagement Monitor. En effet, la durée des sessions et des tâches est arrondie au seuil de rafale (les sessions et les tâches plus courtes que le seuil de rafale ne sont donc pas visibles). Il est recommandé d'utiliser un seuil de rafale inférieur à 30 000 (30 s). Vous devez savoir que les journaux enregistrés sont limités à 300 entrées. Si l'envoi est trop long, vous risquez de perdre certains journaux.
 
 > [!WARNING]
-> seuil de croissance Hello ne peut pas être configurée période tooa inférieur à 1 s. Si vous essayez donc toodo, hello SDK affiche une trace avec l’erreur de hello et sera automatiquement réinitialisé toohello par défaut, c'est-à-dire 0. Cette opération déclenche hello SDK tooreport hello journaux en temps réel.
+> Vous ne pouvez pas configurer un seuil de rafale inférieur à 1 s. Sinon, le SDK affiche une trace avec l'erreur et rétablit automatiquement la valeur par défaut, c'est-à-dire 0 s. Le SDK génère alors les journaux en temps réel.
 > 
 > 
 

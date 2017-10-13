@@ -1,6 +1,6 @@
 ---
-title: "flux de travail aaaUse Oozie de Hadoop dans HDInsight de basés sur Linux | Documents Microsoft"
-description: "Utilisation de Hadoop Oozie dans HDInsight basé sur Linux. Découvrez comment toodefine Oozie d’un flux de travail et soumettre un travail Oozie."
+title: "Utilisation des workflows Hadoop Oozie dans HDInsight basé sur Linux | Microsoft Docs"
+description: "Utilisation de Hadoop Oozie dans HDInsight basé sur Linux. Découvrez comment définir un workflow Oozie et envoyer une tâche Oozie."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,27 +16,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: larryfr
-ms.openlocfilehash: cb5682837543312621e3424b7a9341b5d2a00bf8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7f6985b80a88fd2e5d1fe0dafae47b95358d012d
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-oozie-with-hadoop-toodefine-and-run-a-workflow-on-linux-based-hdinsight"></a>Utilisez Oozie avec Hadoop toodefine et exécuter un workflow sur HDInsight de basés sur Linux
+# <a name="use-oozie-with-hadoop-to-define-and-run-a-workflow-on-linux-based-hdinsight"></a>Utilisation d’Oozie avec Hadoop pour définir et exécuter un flux de travail dans HDInsight
 
 [!INCLUDE [oozie-selector](../../includes/hdinsight-oozie-selector.md)]
 
-Découvrez comment toouse Oozie Apache avec Hadoop dans HDInsight. Apache Oozie est un système de workflow/coordination qui gère les tâches Hadoop. Oozie est intégré à la pile de Hadoop hello, et il prend en charge hello suivant de tâches :
+Découvrez comment utiliser Apache Oozie avec Hadoop sur HDInsight. Apache Oozie est un système de workflow/coordination qui gère les tâches Hadoop. Oozie est intégré dans la pile Hadoop et prend en charge les travaux suivants :
 
 * Apache MapReduce
 * Apache Pig
 * Apache Hive
 * Apache Sqoop
 
-Oozie peut également être utilisé tooschedule les travaux système tooa spécifiques, tels que les programmes Java ou des scripts de shell
+Oozie peut également être utilisé pour planifier des travaux propres à un système, comme des programmes Java ou des scripts de l’interpréteur de commandes
 
 > [!NOTE]
-> Une autre option pour définir des flux de travail avec HDInsight consiste à utiliser Azure Data Factory. toolearn en savoir plus sur Azure Data Factory, consultez [utilisez Pig et Hive avec Data Factory][azure-data-factory-pig-hive].
+> Une autre option pour définir des flux de travail avec HDInsight consiste à utiliser Azure Data Factory. Pour en savoir plus sur Azure Data Factory, consultez la page [Utilisation de Pig et Hive avec Data Factory][azure-data-factory-pig-hive].
 
 > [!IMPORTANT]
 > Oozie n’est pas activé sur HDInsight joint à un domaine.
@@ -46,64 +46,64 @@ Oozie peut également être utilisé tooschedule les travaux système tooa spéc
 * **Un cluster HDInsight**: consultez la page [Prise en main de HDInsight sur Linux](hdinsight-hadoop-linux-tutorial-get-started.md)
 
   > [!IMPORTANT]
-  > étapes de Hello dans ce document nécessitent un cluster HDInsight qui utilise Linux. Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Les étapes décrites dans ce document nécessitent un cluster HDInsight utilisant Linux. Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="example-workflow"></a>Exemple de flux de travail
 
-flux de travail Hello utilisé dans ce document contient deux actions. Les actions sont des définitions de tâches, telles que l’exécution de Hive, Sqoop, MapReduce ou un autre processus :
+Le workflow utilisé dans ce document comporte deux actions. Les actions sont des définitions de tâches, telles que l’exécution de Hive, Sqoop, MapReduce ou un autre processus :
 
 ![Diagramme du workflow][img-workflow-diagram]
 
-1. Une ruche action s’exécute un script HiveQL tooextract enregistrements à partir de hello **hivesampletable** inclus avec HDInsight. Chaque ligne de données décrit un accès depuis un appareil mobile spécifique. le format d’enregistrement Hello apparaît toohello similaire après le texte :
+1. Une action Hive exécute un script HiveQL pour extraire des enregistrements à partir de la table **hivesampletable** incluse avec HDInsight. Chaque ligne de données décrit un accès depuis un appareil mobile spécifique. Le format d’enregistrement ressemble à ce qui suit :
 
         8       18:54:20        en-US   Android Samsung SCH-i500        California     United States    13.9204007      0       0
         23      19:19:44        en-US   Android HTC     Incredible      Pennsylvania   United States    NULL    0       0
         23      19:19:46        en-US   Android HTC     Incredible      Pennsylvania   United States    1.4757422       0       1
 
-    Hello script Hive utilisé dans ce document compte le nombre total de visites hello pour chaque plateforme (par exemple, Android ou iPhone) et stocke les nombres hello tooa nouvelle table de ruche.
+    Le script Hive utilisé dans ce document comptabilise le nombre total d’accès pour chaque plateforme (par exemple, Android ou iPhone) et stocke les nombres dans une nouvelle table Hive.
 
     Pour plus d’informations sur Hive, consultez l’article [Utilisation de Hive avec HDInsight][hdinsight-use-hive].
 
-2. Une action Sqoop exporte contenu hello de hello nouvelle table tooa table Hive dans une base de données SQL Azure. Pour plus d’informations sur Sqoop, consultez la rubrique [Utilisation de Hadoop Sqoop avec HDInsight][hdinsight-use-sqoop].
+2. Une action Sqoop exporte le contenu de la nouvelle table Hive vers une table dans la base de données SQL Azure. Pour plus d’informations sur Sqoop, consultez la rubrique [Utilisation de Hadoop Sqoop avec HDInsight][hdinsight-use-sqoop].
 
 > [!NOTE]
-> Pour les versions Oozie prises en charge sur les clusters HDInsight, consultez [quelles sont les nouveautés dans les versions de cluster Hadoop hello fournies par HDInsight][hdinsight-versions].
+> Pour obtenir la liste des versions Oozie prises en charge sur les clusters HDInsight, voir [Nouveautés des versions de cluster Hadoop fournies par HDInsight][hdinsight-versions].
 
-## <a name="create-hello-working-directory"></a>Créer le répertoire de travail hello
+## <a name="create-the-working-directory"></a>Création du répertoire de travail
 
-Oozie attend des ressources requises pour un travail toobe stockée Bonjour même répertoire. Cet exemple utilise **wasb:///tutorials/useoozie**. Utilisez hello suivant commande toocreate ce répertoire et le répertoire de données hello qui contient la nouvelle table Hive hello, créé par ce flux de travail :
+Oozie s’attend à ce que les ressources requises pour un travail soient stockées dans le même répertoire. Cet exemple utilise **wasb:///tutorials/useoozie**. Utilisez la commande suivante pour créer ce répertoire et le répertoire de données qui contient la nouvelle table Hive créée par ce workflow :
 
 ```
 hdfs dfs -mkdir -p /tutorials/useoozie/data
 ```
 
 > [!NOTE]
-> Hello `-p` paramètre indique tous les répertoires dans hello toobe de chemin d’accès créé. Hello **données** répertoire est données toohold utilisé utilisées par hello **useooziewf.hql** script.
+> Le paramètre `-p` a provoqué la création de tous les répertoires dans le chemin d’accès. Le répertoire **data** est utilisé pour contenir les données utilisées par le script **useooziewf.hql**.
 
-Également exécuter hello suivant de commande, ce qui garantit que Oozie peut emprunter l’identité de votre compte d’utilisateur lors de l’exécution de tâches Hive et Sqoop. Remplacez **USERNAME** par votre nom de connexion :
+Exécutez également la commande suivante, qui garantit que Oozie peut emprunter l’identité de votre compte d'utilisateur lors de l’exécution de travaux Hive et Sqoop. Remplacez **USERNAME** par votre nom de connexion :
 
 ```
 sudo adduser USERNAME users
 ```
 
 > [!NOTE]
-> Vous pouvez ignorer les erreurs de cet utilisateur hello est déjà membre de hello `users` groupe.
+> Vous pouvez ignorer les erreurs indiquant que l’utilisateur est déjà membre du groupe `users`.
 
 ## <a name="add-a-database-driver"></a>Ajout d’un pilote de base de données
 
-Étant donné que ce flux de travail utilise Sqoop tooexport tooSQL de données de base de données, vous devez fournir qu'une copie du pilote JDBC de hello utilisé tootalk tooSQL base de données. Utilisez hello suivant toocopy de commande de répertoire de travail toohello :
+Étant donné que ce flux de travail utilise Sqoop pour exporter des données vers la base de données SQL, vous devez fournir une copie du pilote JDBC utilisé pour communiquer avec la base de données SQL. Pour le copier dans le répertoire de travail, utilisez la commande suivante :
 
 ```
 hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc*.jar /tutorials/useoozie/
 ```
 
-Si votre flux de travail utilisé les autres ressources, telles que fichier jar contenant une application MapReduce, vous devez tooadd également ces ressources.
+Si votre flux de travail utilisait d’autres ressources, par exemple un fichier jar contenant une application MapReduce, vous devez également les ajouter.
 
-## <a name="define-hello-hive-query"></a>Définir la requête Hive de hello
+## <a name="define-the-hive-query"></a>Définition de la requête Hive
 
-Utilisez hello suivant les étapes toocreate un script HiveQL qui définit une requête, qui est utilisée dans un flux de travail Oozie plus loin dans ce document.
+Utilisez les étapes suivantes pour créer un script HiveQL qui définit une requête qui est utilisée dans un workflow Oozie plus loin dans ce document.
 
-1. Connectez le cluster toohello à l’aide de SSH. Bonjour commande suivante est un exemple d’utilisation hello `ssh` commande. Remplacez __nom d’utilisateur__ avec l’utilisateur SSH hello pour le cluster de hello. Remplacez __CLUSTERNAME__ avec nom hello du cluster HDInsight de hello.
+1. Connectez-vous au cluster à l'aide de SSH. La commande suivante est un exemple d’utilisation de la commande `ssh`. Remplacez __USERNAME__ par l’utilisateur SSH pour le cluster. Remplacez __CLUSTERNAME__ par le nom du cluster HDInsight.
 
     ```
     ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
@@ -111,13 +111,13 @@ Utilisez hello suivant les étapes toocreate un script HiveQL qui définit une r
 
     Pour en savoir plus, voir [Utilisation de SSH avec Hadoop Linux sur HDInsight depuis Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-2. À partir de hello connexion SSH, utilisez hello suivant commande toocreate un fichier :
+2. À partir de la connexion SSH, utilisez la commande suivante pour créer un fichier :
 
     ```
     nano useooziewf.hql
     ```
 
-3. Une fois que l’éditeur de nano hello s’ouvre, utilisez hello suivant la requête en tant que contenu hello du fichier de hello :
+3. Une fois que l’éditeur nano est ouvert, utilisez la requête suivante comme contenu du fichier :
 
     ```hiveql
     DROP TABLE ${hiveTableName};
@@ -126,39 +126,39 @@ Utilisez hello suivant les étapes toocreate un script HiveQL qui définit une r
     INSERT OVERWRITE TABLE ${hiveTableName} SELECT deviceplatform, COUNT(*) as count FROM hivesampletable GROUP BY deviceplatform;
     ```
 
-    Il existe deux variables utilisées dans un script de hello :
+    Deux variables sont utilisées dans le script :
 
-    * **${hiveTableName}**: contient le nom hello de hello toobe de table créé
+    * **${hiveTableName}** : contient le nom de la table à créer.
 
-    * **${hiveDataFolder}**: contient les fichiers de données hello emplacement toostore hello pour la table de hello
+    * **${hiveDataFolder}** : contient l’emplacement où stocker les fichiers de données pour la table.
 
-    le fichier de définition de flux de travail Hello (workflow.xml dans ce didacticiel) passe ces toothis valeurs HiveQL script en cours d’exécution
+    Le fichier de définition du workflow (workflow.xml dans ce didacticiel) transmet ces valeurs à ce script HiveQL au moment de l’exécution.
 
-4. éditeur de hello tooexit, appuyez sur Ctrl-X. Lorsque vous y êtes invité, sélectionnez **Y** toosave hello du fichier, puis utilisez **entrée** toouse hello **useooziewf.hql** nom de fichier.
+4. Appuyez sur Ctrl+X pour quitter l’éditeur. Lorsque vous y êtes invité, sélectionnez **Y** pour enregistrer le fichier, puis sélectionnez **Entrée** pour utiliser le nom de fichier **useooziewf.hql**.
 
-5. Suivant de hello utilisez commandes toocopy **useooziewf.hql** trop**wasb:///tutorials/useoozie/useooziewf.hql**:
+5. Utilisez les commandes suivantes pour copier **useooziewf.hql** vers **wasb:///tutorials/useoozie/useooziewf.hql** :
 
     ```
     hdfs dfs -put useooziewf.hql /tutorials/useoozie/useooziewf.hql
     ```
 
-    Ces commandes stockent hello **useooziewf.hql** fichier sur un stockage hello HDFS compatibles pour le cluster de hello.
+    Ces commandes stockent le fichier **useooziewf.hql** sur le stockage compatible avec HDFS pour le cluster.
 
-## <a name="define-hello-workflow"></a>Définir le flux de travail hello
+## <a name="define-the-workflow"></a>Définition du flux de travail
 
-Les définitions des workflows Oozie sont écrites en hPDL (un langage de définition du processus XML). Utilisez hello suivant du flux de travail suit toodefine hello :
+Les définitions des workflows Oozie sont écrites en hPDL (un langage de définition du processus XML). Pour définir le flux de travail, procédez comme suit :
 
-1. Utilisez hello suivant l’instruction toocreate et modifier un fichier :
+1. Pour créer et modifier un fichier, utilisez l’instruction suivante :
 
     ```
     nano workflow.xml
     ```
 
-2. Une fois que l’éditeur de nano hello s’ouvre, entrez hello XML suivant comme contenu du fichier hello :
+2. Une fois que l’éditeur nano est ouvert, saisissez le code XML suivant comme contenu du fichier :
 
     ```xml
     <workflow-app name="useooziewf" xmlns="uri:oozie:workflow:0.2">
-        <start too= "RunHiveScript"/>
+        <start to = "RunHiveScript"/>
         <action name="RunHiveScript">
         <hive xmlns="uri:oozie:hive-action:0.2">
             <job-tracker>${jobTracker}</job-tracker>
@@ -209,55 +209,55 @@ Les définitions des workflows Oozie sont écrites en hPDL (un langage de défin
     </workflow-app>
     ```
 
-    Il existe deux actions définies dans le flux de travail hello :
+    Deux actions sont définies dans le flux de travail :
 
-   * **RunHiveScript**: cette action est l’action de démarrage hello et s’exécute hello **useooziewf.hql** script Hive
+   * **RunHiveScript** : il s’agit de l’action de départ, qui exécute le script Hive **useooziewf.hql**
 
-   * **RunSqoopExport**: cette action exporte les données de hello créées à partir de hello ruche script tooSQL Sqoop à l’aide de la base de données. Cette action s’exécute uniquement si hello **RunHiveScript** action a abouti.
+   * **RunSqoopExport** : cette action exporte les données créées à partir du script Hive vers la base de données SQL à l’aide de Sqoop. Elle n’est exécutée que si l’action **RunHiveScript** a abouti.
 
-     flux de travail Hello a plusieurs entrées, telles que `${jobTracker}`. Ces entrées sont remplacées par les valeurs que vous utilisez dans la définition de la tâche hello. définition de la tâche Hello est créée ultérieurement dans ce document.
+     Le workflow a plusieurs entrées, telle que `${jobTracker}`. Ces entrées sont remplacées par les valeurs que vous utilisez dans la définition du travail. La définition du travail est créée ultérieurement dans ce document.
 
-     Hello de note également `<archive>sqljdbc4.jar</arcive>` entrée Bonjour Sqoop section. Cette entrée indique au Oozie toomake cette archive disponible pour Sqoop lors de l’exécution de cette action.
+     Notez également l’entrée `<archive>sqljdbc4.jar</arcive>` dans la section Sqoop. Celle-ci indique à Oozie de rendre cette archive disponible pour Sqoop lors de l’exécution de cette action.
 
-3. Utilisez Ctrl-X, puis **Y** et **entrée** fichier hello de toosave.
+3. Utilisez Ctrl-X, puis **Y** et **Entrée** pour enregistrer le fichier.
 
-4. Suivant de hello utilisez commande toocopy hello **workflow.xml** trop de fichiers**/tutorials/useoozie/workflow.xml**:
+4. Utilisez la commande suivante pour copier le fichier **workflow.xml** vers **/tutorials/useoozie/workflow.xml** :
 
     ```
     hdfs dfs -put workflow.xml /tutorials/useoozie/workflow.xml
     ```
 
-## <a name="create-hello-database"></a>Créer la base de données hello
+## <a name="create-the-database"></a>Création de la base de données
 
-toocreate une base de données SQL Azure, suivez les étapes de hello Bonjour [créer une base de données SQL](../sql-database/sql-database-get-started.md) document. Lors de la création de la base de données hello, utilisez `oozietest` comme nom de base de données hello. Notez également du nom de hello du serveur de base de données hello.
+Suivez les étapes du document [Création d’une base de données SQL](../sql-database/sql-database-get-started.md) afin de créer une base de données SQL Azure. Lorsque vous créez la base de données, utilisez `oozietest` comme nom de base de données. Prenez également note du nom du serveur de base de données.
 
-### <a name="create-hello-table"></a>Créer la table de hello
+### <a name="create-the-table"></a>Créer la table
 
 > [!NOTE]
-> Il existe de nombreuses façons tooconnect tooSQL base de données toocreate une table. Hello suivant l’utilisation d’étapes [FreeTDS](http://www.freetds.org/) à partir du cluster HDInsight de hello.
+> Il existe de nombreuses façons de se connecter à la base de données SQL pour créer une table. Les étapes suivantes utilisent [FreeTDS](http://www.freetds.org/) à partir du cluster HDInsight.
 
 
-1. Utilisez hello suivant de commande tooinstall FreeTDS de cluster HDInsight de hello :
+1. Utilisez la commande suivante pour installer FreeTDS sur le cluster HDInsight :
 
     ```
     sudo apt-get --assume-yes install freetds-dev freetds-bin
     ```
 
-2. Une fois que FreeTDS a été installé, utilisez hello suivant du serveur de base de données SQL commandes tooconnect toohello que vous avez créé précédemment :
+2. Une fois FreeTDS installé, utilisez la commande suivante pour vous connecter au serveur de base de données SQL créé précédemment :
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <sqlLogin> -P <sqlPassword> -p 1433 -D oozietest
     ```
 
-    Vous recevez toohello similaire de sortie suivant du texte :
+    Le résultat ressemble au texte suivant :
 
         locale is "en_US.UTF-8"
         locale charset is "UTF-8"
         using default charset "UTF-8"
-        Default database being set toooozietest
+        Default database being set to oozietest
         1>
 
-3. À hello `1>` invite, entrez hello lignes suivantes :
+3. À l’invite de commandes `1>` , entrez les lignes suivantes :
 
     ```
     CREATE TABLE [dbo].[mobiledata](
@@ -268,35 +268,35 @@ toocreate une base de données SQL Azure, suivez les étapes de hello Bonjour [c
     GO
     ```
 
-    Hello lorsque `GO` instruction est entrée, les instructions précédentes hello sont évaluées. Ces instructions créent une table nommée **mobiledata** qui est utilisé par les flux de travail hello.
+    Une fois l’instruction `GO` entrée, les instructions précédentes sont évaluées. Ces instructions créent une table nommée **mobiledata** qui est utilisé par le workflow.
 
-    Hello utilisation suivant tooverify qui hello table a été créé :
+    Vérifiez que la table a été créée à l’aide des éléments suivants :
 
     ```
     SELECT * FROM information_schema.tables
     GO
     ```
 
-    Vous consultez toohello similaire de sortie suivant du texte :
+    Le résultat est similaire au texte suivant :
 
     ```
     TABLE_CATALOG   TABLE_SCHEMA    TABLE_NAME      TABLE_TYPE
     oozietest       dbo     mobiledata      BASE TABLE
     ```
 
-4. Entrez `exit` à hello `1>` tooexit hello tsql utilitaire d’invite.
+4. Pour quitter l’utilitaire psql, entrez `exit` at the `1>` .
 
-## <a name="create-hello-job-definition"></a>Créer la définition de la tâche hello
+## <a name="create-the-job-definition"></a>Création de la définition de travail
 
-définition de la tâche Hello décrit où toofind hello workflow.xml. Il explique également où toofind autres fichiers utilisés par le flux de travail hello (par exemple, useooziewf.hql.) Il définit également les valeurs hello pour les propriétés utilisées dans le flux de travail hello et fichiers associés.
+La définition du travail indique où se trouve le fichier workflow.xml. Elle indique également où se trouvent les autres fichiers utilisés par le workflow (par exemple, useooziewf.hql). Elle définit également les valeurs des propriétés utilisées dans le flux de travail et les fichiers associés.
 
-1. Utilisez hello commande tooget hello adresse complète du stockage par défaut de hello suivante. Cette adresse est utilisée dans le fichier de configuration hello dans un instant :
+1. Utilisez la commande suivante pour obtenir l’adresse complète du stockage par défaut. Nous nous en servirons dans le fichier de configuration dans un moment :
 
     ```
     sed -n '/<name>fs.default/,/<\/value>/p' /etc/hadoop/conf/core-site.xml
     ```
 
-    Cette commande retourne des informations similaires toohello est XML suivant :
+    Cette commande renvoie des informations similaires au code XML suivant :
 
     ```xml
     <name>fs.defaultFS</name>
@@ -304,29 +304,29 @@ définition de la tâche Hello décrit où toofind hello workflow.xml. Il expliq
     ```
 
     > [!NOTE]
-    > Si le cluster HDInsight de hello utilise le stockage Azure en tant que stockage par défaut de hello, hello `<value>` le contenu d’éléments commence par `wasb://`. En revanche, si Azure Data Lake Store est utilisé, il commence par `adl://`.
+    > Si le cluster HDInsight utilise le stockage Azure comme stockage par défaut, le contenu de l’élément `<value>` commence par `wasb://`. En revanche, si Azure Data Lake Store est utilisé, il commence par `adl://`.
 
-    Enregistrer le contenu de hello hello `<value>` élément, tel qu’il est utilisé dans les étapes suivantes hello.
+    Enregistrez le contenu de l’élément `<value>`, tel qu’il est utilisé dans les prochaines étapes.
 
-2. Utilisez hello suivant commande tooget nom de domaine complet du nœud principal de cluster hello. Ces informations sont utilisées pour hello adresse JobTracker pour le cluster de hello :
+2. Utilisez la commande suivante pour obtenir le nom de domaine complet du nœud principal du cluster. Il est utilisé comme adresse JobTracker pour le cluster :
 
     ```
     hostname -f
     ```
 
-    Cet exemple renvoie toohello similaire à informations suivant le texte :
+    Cette commande renvoie des informations semblables au texte suivant :
 
     ```hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net```
 
-    Hello port utilisé pour hello JobTracker étant 8050, toouse d’adresse complète hello pour hello JobTracker est `hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8050`.
+    Le port utilisé pour JobTracker est 8050. Ainsi, l’adresse complète à utiliser pour JobTracker est la suivante : `hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:8050`.
 
-3. Utilisez hello toocreate hello Oozie travail définition configuration suivante :
+3. Utilisez la commande suivante pour créer la configuration de définition de travail Oozie :
 
     ```
     nano job.xml
     ```
 
-4. Une fois que l’éditeur de nano hello s’ouvre, utilisez hello XML suivant comme contenu hello du fichier de hello :
+4. Une fois que l’éditeur nano est ouvert, utilisez le code XML suivant comme contenu du fichier :
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -389,72 +389,72 @@ définition de la tâche Hello décrit où toofind hello workflow.xml. Il expliq
     </configuration>
     ```
 
-   * Remplacez toutes les instances de  **wasb://mycontainer@mystorageaccount.blob.core.windows.net**  avec la valeur hello reçu précédemment pour le stockage de la valeur par défaut.
+   * Remplacez toutes les instances de **wasb://mycontainer@mystorageaccount.blob.core.windows.net** par la valeur que vous avez reçue précédemment pour le stockage par défaut.
 
      > [!WARNING]
-     > Si le chemin d’accès hello est un `wasb` chemin d’accès, vous devez utiliser le chemin d’accès complet de hello. Ne le diminuez pas toojust `wasb:///`.
+     > Si le chemin d’accès est un chemin `wasb`, vous devez utiliser le chemin d’accès complet. Ne le limitez pas simplement à `wasb:///`.
 
-   * Remplacez **JOBTRACKERADDRESS** avec hello adresse JobTracker/ResourceManager reçu précédemment.
-   * Remplacez **votrenom** avec votre nom de connexion pour le cluster HDInsight de hello.
-   * Remplacez **nom_serveur**, **adminLogin**, et **adminPassword** avec des informations de hello pour votre base de données SQL Azure.
+   * Remplacez **JOBTRACKERADDRESS** par l’adresse de JobTracker/ResourceManager reçue précédemment.
+   * Remplacez **YourName** par votre nom de connexion pour le cluster HDInsight.
+   * Remplacez **serverName**, **adminLogin** et **adminPassword** par les informations de votre Azure SQL Database.
 
-     La plupart des informations hello dans ce fichier est toopopulate utilisé les valeurs hello utilisés dans les fichiers de hello workflow.xml ou ooziewf.hql (par exemple, ${nameNode}.)
+     La plupart des informations de ce fichier sont utilisées pour remplir les valeurs utilisées dans les fichiers workflow.xml ou ooziewf.hql (comme ${nameNode}).
 
      > [!NOTE]
-     > Hello **oozie.wf.application.path** entrée définit où fichier workflow.xml toofind hello, qui contient le flux de travail hello exécuté par ce travail.
+     > L’entrée **oozie.wf.application.path** définit l’emplacement du fichier workflow.xml, qui contient le flux de travail exécuté par ce travail.
 
-5. Utilisez Ctrl-X, puis **Y** et **entrée** fichier hello de toosave.
+5. Utilisez Ctrl-X, puis **Y** et **Entrée** pour enregistrer le fichier.
 
-## <a name="submit-and-manage-hello-job"></a>Soumettre et de gérer le travail de hello
+## <a name="submit-and-manage-the-job"></a>Soumission et gestion du travail
 
-Hello suit hello Oozie commande toosubmit et gérer des flux de travail Oozie sur le cluster de hello. Hello Oozie commande est une interface conviviale sur hello [Oozie REST API](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).
+Les étapes suivantes utilisent la commande Oozie pour soumettre et gérer des flux de travail Oozie sur le cluster. La commande Oozie est une interface conviviale sur l’ [API REST Oozie](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).
 
 > [!IMPORTANT]
-> Lorsque vous utilisez la commande de hello Oozie, vous devez utiliser hello nom de domaine complet pour le nœud principal de HDInsight hello. Ce nom de domaine complet n’est accessible à partir du cluster de hello, ou si hello cluster se trouve sur un réseau virtuel Azure, à partir d’autres ordinateurs sur hello même réseau.
+> Lorsque vous utilisez la commande Oozie, vous devez utiliser le nom de domaine complet pour le nœud principal HDInsight. Ce nom de domaine complet est uniquement accessible à partir du cluster, ou, si le cluster se trouve sur un réseau virtuel Azure, à partir des autres ordinateurs sur le même réseau.
 
 
-1. Utilisez hello après tooobtain hello URL toohello Oozie service :
+1. Utilisez la commande suivante pour obtenir l’URL du service Oozie :
 
     ```
     sed -n '/<name>oozie.base.url/,/<\/value>/p' /etc/oozie/conf/oozie-site.xml
     ```
 
-    Cet exemple renvoie toohello similaires à des informations XML suivant :
+    Cette commande renvoie des informations semblables au code XML suivant :
 
     ```xml
     <name>oozie.base.url</name>
     <value>http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie</value>
     ```
 
-    Hello `http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie` partie est toouse d’URL hello avec hello Oozie commande.
+    La partie `http://hn0-CLUSTERNAME.randomcharacters.cx.internal.cloudapp.net:11000/oozie` correspond à l’URL à utiliser avec la commande Oozie.
 
-2. Hello utilisation suivant toocreate une variable d’environnement pour l’URL de hello, donc vous n’avez pas tootype pour chaque commande :
+2. Pour créer une variable d’environnement pour l’URL de manière à ne pas être obligé de la taper pour chaque commande :
 
     ```
     export OOZIE_URL=http://HOSTNAMEt:11000/oozie
     ```
 
-    Remplacer les URL hello hello un reçu précédemment.
-3. Utilisez hello suivant le travail de hello toosubmit :
+    Remplacez l’URL par celle reçue précédemment.
+3. Pour envoyer le travail, utilisez la commande suivante :
 
     ```
     oozie job -config job.xml -submit
     ```
 
-    Cette commande charge des informations sur les travaux hello de **job.xml** et la soumet tooOozie, mais ne s’exécute ne pas.
+    Cette commande charge les informations du travail à partir de **job.xml** et les envoie à Oozie, mais n’exécute pas le travail.
 
-    Une fois la commande hello terminée, elle doit retourner hello des ID de tâche de hello. Par exemple, `0000005-150622124850154-oozie-oozi-W`. Cet ID est un travail de hello toomanage utilisé.
+    Une fois la commande terminée, elle retourne normalement l’ID du travail. Par exemple, `0000005-150622124850154-oozie-oozi-W`. Cet ID est utilisé pour gérer le travail.
 
-4. Afficher l’état de hello du travail hello à l’aide de hello de commande suivante :
+4. Affichez l’état du travail à l’aide de la commande suivante :
 
     ```
     oozie job -info <JOBID>
     ```
 
     > [!NOTE]
-    > Remplacez `<JOBID>` par hello ID retourné à l’étape précédente de hello.
+    > Remplacez `<JOBID>` par l’ID renvoyé à l’étape précédente.
 
-    Cet exemple renvoie toohello similaire à informations suivant le texte :
+    Cette commande renvoie des informations semblables au texte suivant :
 
     ```
     Job ID : 0000005-150622124850154-oozie-oozi-W
@@ -473,33 +473,33 @@ Hello suit hello Oozie commande toosubmit et gérer des flux de travail Oozie su
     ------------------------------------------------------------------------------------------------------------------------------------
     ```
 
-    Ce travail a le statut `PREP`, Cet état indique que le travail hello a été créé, mais n’a pas démarré.
+    Ce travail a le statut `PREP`, Cet état indique que le travail a été créé, mais qu’il n’a pas commencé.
 
-5. Utilisez hello suivant le travail de commande toostart hello :
+5. Utilisez la commande suivante pour démarrer le travail :
 
     ```
     oozie job -start JOBID
     ```
 
     > [!NOTE]
-    > Remplacez `<JOBID>` par hello ID retourné précédemment.
+    > Remplacez `<JOBID>` par l’ID renvoyé précédemment.
 
-    Si vous vérifiez l’état de hello après cette commande, il est en cours d’exécution, et informations sont retournées pour les actions de hello dans le travail de hello.
+    Si vous vérifiez l’état après cette commande, il sera en cours d’exécution et des informations pour les actions au sein du travail seront retournées.
 
-6. Une fois la tâche hello se termine correctement, vous pouvez vérifier que les données de salutation a été générées et exportés de table de base de données SQL toohello à l’aide de hello suivant de commandes :
+6. Une fois le travail terminé correctement, vous pouvez vérifier que les données ont été générées et exportées vers la table de base de données SQL en utilisant les commandes suivantes :
 
     ```
     TDSVER=8.0 tsql -H <serverName>.database.windows.net -U <adminLogin> -P <adminPassword> -p 1433 -D oozietest
     ```
 
-    À hello `1>` invite, entrez hello suivant la requête :
+    À l’invite de commandes `1>` , entrez la requête suivante :
 
     ```
     SELECT * FROM mobiledata
     GO
     ```
 
-    les informations de Hello retournées sont similaires toohello suivant du texte :
+    Les informations renvoyées sont semblables à ce qui suit :
 
         deviceplatform  count
         Android 31591
@@ -510,79 +510,79 @@ Hello suit hello Oozie commande toosubmit et gérer des flux de travail Oozie su
         Windows Phone   1791
         (6 rows affected)
 
-Pour plus d’informations sur hello Oozie commande, consultez [outil de ligne de commande Oozie](https://oozie.apache.org/docs/4.1.0/DG_CommandLineTool.html).
+Pour plus d’informations sur la commande Oozie, consultez la page [Outil en ligne de commande Oozie](https://oozie.apache.org/docs/4.1.0/DG_CommandLineTool.html).
 
 ## <a name="oozie-rest-api"></a>API REST Oozie
 
-Hello Oozie REST API vous permet de toobuild vos propres outils qui fonctionnent avec Oozie. Hello Voici HDInsight des informations spécifiques sur l’utilisation de hello Oozie REST API :
+L’API REST Oozie vous permet de créer vos propres outils fonctionnant avec Oozie. Les informations suivantes sont des informations spécifiques de HDInsight sur l’utilisation de l’API REST Oozie :
 
-* **URI**: hello API REST sont accessibles à partir de l’extérieur cluster hello à`https://CLUSTERNAME.azurehdinsight.net/oozie`
+* **URI** : l’API REST est accessible depuis l’extérieur du cluster à l’adresse `https://CLUSTERNAME.azurehdinsight.net/oozie`
 
-* **Authentification**: authentifier API toohello à l’aide du compte de cluster HTTP hello (administrateur) et le mot de passe. Par exemple :
+* **Authentification** : authentifiez-vous à l’API en utilisant le compte HTTP (admin) et le mot de passe du cluster. Par exemple :
 
     ```
     curl -u admin:PASSWORD https://CLUSTERNAME.azurehdinsight.net/oozie/versions
     ```
 
-Pour plus d’informations sur l’utilisation de hello Oozie REST API, consultez [API des Services Web Oozie](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).
+Pour plus d'informations sur l’utilisation de l’API REST Oozie, consultez la page [API des services web Oozie](https://oozie.apache.org/docs/4.1.0/WebServicesAPI.html).
 
 ## <a name="oozie-web-ui"></a>Interface utilisateur web Oozie
 
-Hello l’interface utilisateur Web de Oozie offre une vue basée sur le web état hello de Oozie travaux sur le cluster de hello. interface utilisateur web de Hello permet hello tooview informations suivantes :
+L’interface utilisateur web Oozie fournit une vue web de l’état des travaux Oozie sur le cluster. L’interface utilisateur web vous permet d’afficher les informations suivantes :
 
 * Statut de tâche
 * Définition du travail
 * Configuration
-* Un graphique des actions hello dans la tâche de hello
-* Journaux hello travail
+* Un graphique des actions exécutées sur le travail
+* Les journaux du travail
 
 Vous pouvez également afficher les détails pour les actions du travail.
 
-tooaccess hello l’interface utilisateur Web de Oozie, utilisez hello comme suit :
+Pour accéder à l'interface utilisateur web Oozie, procédez comme suit :
 
-1. Créer un cluster de HDInsight de toohello tunnel SSH. Pour plus d’informations, consultez hello [utiliser SSH Tunneling hdinsight](hdinsight-linux-ambari-ssh-tunnel.md) document.
+1. Créez un tunnel SSH vers le cluster HDInsight. Pour plus d’informations, consultez le document [Utilisation du tunnel SSH avec HDInsight](hdinsight-linux-ambari-ssh-tunnel.md).
 
-2. Une fois qu’un tunnel a été créé, ouvrez l’interface utilisateur web de Ambari hello dans votre navigateur web. Hello URI pour le site de Ambari hello est **https://CLUSTERNAME.azurehdinsight.net**. Remplacez **CLUSTERNAME** avec nom hello de votre cluster HDInsight de basés sur Linux.
+2. Une fois qu’un tunnel a été créé, ouvrez l’interface utilisateur web Ambari dans votre navigateur web. L’URI du site Ambari est **https://CLUSTERNAME.azurehdinsight.net**. Remplacez **CLUSTERNAME** par le nom de votre cluster HDInsight basé sur Linux.
 
-3. Bonjour à gauche de la page de hello, sélectionnez **Oozie**, puis **liens rapides**et enfin **l’interface utilisateur Web de Oozie**.
+3. Sur le côté gauche de la page, sélectionnez **Oozie**, puis **Liens rapides**, et enfin **Interface utilisateur web Oozie**.
 
-    ![image des menus de hello](./media/hdinsight-use-oozie-linux-mac/ooziewebuisteps.png)
+    ![image des menus](./media/hdinsight-use-oozie-linux-mac/ooziewebuisteps.png)
 
-4. Bonjour toodisplaying de valeurs par défaut de l’interface utilisateur Web de Oozie tâches de Workflow en cours d’exécution. sélectionner de toutes les tâches de workflow, toosee **tous les travaux**.
+4. L’interface utilisateur web Oozie affiche par défaut les travaux du flux de travail en cours d’exécution. Pour voir tous les travaux du flux de travail, sélectionnez **Tous les travaux**.
 
     ![Tous les travaux affichés](./media/hdinsight-use-oozie-linux-mac/ooziejobs.png)
 
-5. Sélectionnez un travail tooview plus d’informations sur la tâche de hello.
+5. Sélectionnez un travail pour afficher plus d’informations sur celui-ci.
 
     ![Job Info](./media/hdinsight-use-oozie-linux-mac/jobinfo.png)
 
-6. À partir de l’onglet informations du travail de hello, vous pouvez voir des informations sur les travaux de base et des actions individuelles hello dans le travail de hello. À l’aide des onglets de hello haut hello, que vous pouvez afficher hello définition du travail, Configuration des tâches, hello d’accès journal des travaux ou afficher un dirigées acycliques graphique (DAG) du travail de hello.
+6. Sous l’onglet Job Info, vous pouvez voir les informations de base sur le travail, ainsi que les actions individuelles au sein du travail. Les onglets visibles en haut de la page vous permettent d’afficher la définition du travail et la configuration du travail, d’accéder au journal du travail ou d’afficher un graphique non cyclique dirigé du travail.
 
-   * **Journal des travaux**: hello sélectionnez **GetLogs** tooget tous les journaux hello travail ou pour utiliser hello **Entrez un filtre de recherche** champ toofilter journaux
+   * **Job Log** : cliquez sur le bouton **GetLogs** pour obtenir tous les journaux du travail, ou utilisez le champ **Enter Search Filter** pour filtrer les journaux.
 
        ![Journal du travail](./media/hdinsight-use-oozie-linux-mac/joblog.png)
 
-   * **JobDAG**: hello DAG est une représentation graphique des chemins d’accès de données hello effectuée par le biais du flux de travail hello
+   * **JobDAG**: le graphique non cyclique dirigé est une représentation graphique des chemins de données utilisés à travers le flux de travail.
 
        ![Graphique non cyclique dirigé du travail](./media/hdinsight-use-oozie-linux-mac/jobdag.png)
 
-7. Sélectionner l’une des actions de hello dans hello **infos travail** onglet affiche des informations pour l’action de hello. Par exemple, sélectionnez hello **RunHiveScript** action.
+7. Lorsque vous sélectionnez l’une des actions sous l’onglet **Infos travail**, des informations sur l’action s’affichent. Par exemple, sélectionnez l’action **RunHiveScript** .
 
     ![Informations sur l’action](./media/hdinsight-use-oozie-linux-mac/action.png)
 
-8. Vous pouvez voir les détails pour hello action, comme un lien de toohello **URL de la Console**. Ce lien peut renvoyer des informations de JobTracker tooview utilisé pour le travail de hello.
+8. Vous pouvez voir les détails de l’action, notamment un lien vers **l’URL de la console** qui peut être utilisé pour afficher les informations de JobTracker pour le travail.
 
 ## <a name="scheduling-jobs"></a>Planification des travaux
 
-coordinateur de Hello vous permet de toospecify une fréquence d’occurrence, de début et de fin pour les travaux. toodefine une planification de flux de travail hello, hello utilisation comme suit :
+Le coordinateur vous permet de spécifier le début, la fin et la fréquence d’occurrence des travaux. Pour définir une planification pour le flux de travail, procédez comme suit :
 
-1. Hello utilisation suivant toocreate un fichier nommé **coordinator.xml**:
+1. Utilisez la commande suivante pour créer un fichier nommé **coordinator.xml** :
 
     ```
     nano coordinator.xml
     ```
 
-    Utilisez hello XML suivant comme contenu hello du fichier de hello :
+    Utilisez le code XML suivant comme contenu du fichier :
 
     ```xml
     <coordinator-app name="my_coord_app" frequency="${coordFrequency}" start="${coordStart}" end="${coordEnd}" timezone="${coordTimezone}" xmlns="uri:oozie:coordinator:0.4">
@@ -595,33 +595,33 @@ coordinateur de Hello vous permet de toospecify une fréquence d’occurrence, d
     ```
 
     > [!NOTE]
-    > Hello `${...}` variables sont remplacées par les valeurs dans la définition de la tâche hello au moment de l’exécution. variables de Hello sont :
+    > Les variables `${...}` sont remplacées par des valeurs dans la définition du travail lors de l’exécution. Les variables sont les suivantes :
     >
-    > * `${coordFrequency}`: Délai entre les instances de tâche de hello en cours d’exécution.
-    > ** `${coordStart}`: heure de début du travail de hello.
-    > * `${coordEnd}`: heure de fin de tâche hello.
-    > * `${coordTimezone}`: les travaux du coordinateur se trouvent dans un fuseau horaire fixe sans passage à l’heure d’été (généralement représenté par UTC). Ce fuseau horaire est appelé hello » Oozie traitement fuseau horaire. »
-    > * `${wfPath}`: hello workflow.xml toohello de chemin d’accès.
+    > * `${coordFrequency}` : délai entre les instances du travail en cours d’exécution.
+    > ** `${coordStart}` : heure de début du travail.
+    > * `${coordEnd}` : heure de fin du travail.
+    > * `${coordTimezone}`: les travaux du coordinateur se trouvent dans un fuseau horaire fixe sans passage à l’heure d’été (généralement représenté par UTC). Ce fuseau horaire est appelé le « fuseau horaire du traitement d’Oozie ».
+    > * `${wfPath}` : chemin d’accès au fichier workflow.xml.
 
-2. toosave hello, utilisez Ctrl-X, **Y**, et **entrée**.
+2. Sélectionnez Ctrl+X, **Y**, puis **Entrée** pour enregistrer le fichier.
 
-3. Hello suivant commande toocopy hello toohello travail répertoire du fichier pour cette tâche, utilisez :
+3. Pour le copier dans le répertoire de travail pour ce travail, utilisez la commande suivante :
 
     ```
     hadoop fs -put coordinator.xml /tutorials/useoozie/coordinator.xml
     ```
 
-4. Hello utilisation suivant toomodify hello **job.xml** fichier :
+4. Utilisez la commande suivante pour modifier le fichier **job.xml** :
 
     ```
     nano job.xml
     ```
 
-    Rendre hello modifications suivantes :
+    Effectuez les modifications suivantes :
 
-   * fichier tooinstruct oozie toorun hello coordinator au lieu de flux de travail hello, modification `<name>oozie.wf.application.path</name>` trop`<name>oozie.coord.application.path</name>`.
+   * Pour ordonner à Oozie d’exécuter le fichier coordinateur au lieu du fichier de workflow, remplacez `<name>oozie.wf.application.path</name>` par `<name>oozie.coord.application.path</name>`.
 
-   * tooset hello `workflowPath` variable utilisée par le coordinateur de hello, ajouter hello XML suivant :
+   * Pour définir la variable `workflowPath` utilisée par le coordinateur, ajoutez le code XML suivant :
 
         ```xml
         <property>
@@ -630,9 +630,9 @@ coordinateur de Hello vous permet de toospecify une fréquence d’occurrence, d
         </property>
         ```
 
-       Remplacez hello `wasb://mycontainer@mystorageaccount.blob.core.windows` texte avec la valeur de hello utilisée dans d’autres entrées dans le fichier de job.xml hello.
+       Remplacez le texte `wasb://mycontainer@mystorageaccount.blob.core.windows` par la valeur utilisée dans les autres entrées du fichier job.xml.
 
-   * toodefine hello début, fin et la fréquence de coordinateur de hello, ajoutent hello XML suivant :
+   * Pour définir le début, la fin et la fréquence correspondant au coordinateur, ajoutez le code XML suivant :
 
         ```xml
         <property>
@@ -656,89 +656,89 @@ coordinateur de Hello vous permet de toospecify une fréquence d’occurrence, d
         </property>
         ```
 
-       Ces valeurs définies hello début heure too12 : 00 PM sur 10 mai 2017, hello fin heure tooMay 12, 2017. Intervalle Hello pour l’exécution de ce travail tous les jours. fréquence de Hello est exprimée en minutes, par conséquent, 24 heures x 60 minutes = 1440 minutes. Enfin, hello timezone a la valeur tooUTC.
+       Ces valeurs définissent l’heure de début sur 12 h 00 le 10 mai 2017 et la fin sur le 12 mai 2017. L’intervalle d’exécution de ce travail est quotidien. La fréquence est exprimée en minutes, par conséquent, 24 heures x 60 minutes = 1 440 minutes. Enfin, le fuseau horaire est défini au format UTC.
 
-5. Utilisez Ctrl-X, puis **Y** et **entrée** fichier hello de toosave.
+5. Utilisez Ctrl-X, puis **Y** et **Entrée** pour enregistrer le fichier.
 
-6. travail de hello toorun, hello utilisez commande suivante :
+6. Utilisez la commande suivante pour exécuter le travail :
 
     ```
     oozie job -config job.xml -run
     ```
 
-    Cette commande envoie et démarre le travail de hello.
+    Cette commande envoie et démarre le travail.
 
-7. Si vous visitez hello l’interface utilisateur Web de Oozie et sélectionnez hello **travaux du coordinateur** onglet, vous voyez toohello similaire à informations suivant image :
+7. Si vous accédez à l’interface utilisateur web Oozie et sélectionnez l’onglet **Travaux du coordinateur**, vous obtenez des informations semblables à l’image suivante :
 
     ![Onglet Travaux du coordinateur](./media/hdinsight-use-oozie-linux-mac/coordinatorjob.png)
 
-    Hello **matérialisation suivant** entrée contient hello prochaine hello s’exécute.
+    L’entrée **Next Materialization** (Matérialisation suivante) indique l’heure de la prochaine exécution du travail.
 
-8. Toohello similaire précédente tâche de workflow, sélection d’entrée de tâche hello dans l’interface utilisateur web de hello affiche des informations sur les travaux hello :
+8. De même que pour le workflow précédent, lorsque vous sélectionnez l’entrée du travail dans l’interface utilisateur web, des informations sur le travail s’affichent :
 
     ![Informations sur les travaux du coordinateur](./media/hdinsight-use-oozie-linux-mac/coordinatorjobinfo.png)
 
     > [!NOTE]
-    > Cette image montre uniquement réussies exécutions du travail de hello, pas les actions au sein du flux de travail hello planifiée. toosee qui, sélectionnez une des hello **Action** entrées.
+    > L’image affiche uniquement les exécutions réussies du travail, et non les actions individuelles dans le workflow planifié. Pour voir ces dernières, sélectionnez l’une des entrées **Action** .
 
     ![Informations sur l’action](./media/hdinsight-use-oozie-linux-mac/coordinatoractionjob.png)
 
 ## <a name="troubleshooting"></a>Résolution des problèmes
 
-Hello Oozie UI vous permet de tooview Oozie journaux. Il contient également les journaux de tooJobTracker des liens pour les tâches MapReduce démarrés par le flux de travail hello. modèle de Hello pour le dépannage doit être :
+L’interface utilisateur Oozie vous permet d’afficher les journaux Oozie. Elle contient également des liens vers les journaux JobTracker pour les tâches MapReduce démarrées par le workflow. Le modèle pour la résolution des problèmes doit être le suivant :
 
-1. Afficher le travail hello dans l’interface utilisateur Web de Oozie.
+1. Afficher le travail dans l’interface utilisateur web Oozie.
 
-2. S’il existe une erreur ou un échec d’une action spécifique, sélectionnez hello action toosee si hello **Message d’erreur** champ fournit plus d’informations en cas d’échec hello.
+2. En cas d’erreur ou d’échec d’une action spécifique, sélectionnez l’action pour voir si le champ **Message d’erreur** fournit plus d’informations sur l’échec.
 
-3. S’il est disponible, utilisez URL hello hello action tooview plus de détails (par exemple, les journaux JobTracker) pour l’action de hello.
+3. Si elle est disponible, utilisez l’URL de l’action pour afficher des détails supplémentaires (tels que les journaux JobTracker) pour l’action.
 
-Hello suivantes sont des erreurs spécifiques, vous pouvez rencontrer, et comment tooresolve les.
+Voici des erreurs spécifiques que vous pouvez rencontrer avec une description de la marche à suivre pour les résoudre.
 
 ### <a name="ja009-cannot-initialize-cluster"></a>JA009 : Cannot initialize cluster (Impossible d'initialiser le cluster)
 
-**Symptômes**: hello les changements d’état de tâche trop**SUSPENDED**. Détails de tâche de hello indiquent l’état RunHiveScript hello **START_MANUAL**. Sélection de l’action de hello affiche hello message d’erreur suivant :
+**Symptômes** : l’état du travail devient **SUSPENDED**. Dans les détails du travail, **START_MANUAL** est affiché pour l’état de RunHiveScript. Lorsque vous sélectionnez l’action, le message d’erreur suivant apparaît :
 
     JA009: Cannot initialize Cluster. Please check your configuration for map
 
-**Cause**: hello adresses WASB utilisés Bonjour **job.xml** fichier ne contiennent pas de conteneur de stockage hello ou nom de compte de stockage. format d’adresse Hello WASB doit être `wasb://containername@storageaccountname.blob.core.windows.net`.
+**Cause** : les adresses WASB utilisées dans le fichier **job.xml** ne contiennent pas le conteneur de stockage ou le nom du compte de stockage. Le format d’adresse WASB doit être `wasb://containername@storageaccountname.blob.core.windows.net`.
 
-**Résolution**: modifier les adresses hello WASB utilisés par le travail de hello.
+**Résolution**: modifiez les adresses WASB utilisées par le travail.
 
-### <a name="ja002-oozie-is-not-allowed-tooimpersonate-ltuser"></a>JA002 : Oozie n’est pas autorisée tooimpersonate &lt;utilisateur >
+### <a name="ja002-oozie-is-not-allowed-to-impersonate-ltuser"></a>JA002 : Oozie is not allowed to impersonate &lt;USER> (Oozie ne peut pas emprunter l’identité USER>)
 
-**Symptômes**: hello les changements d’état de tâche trop**SUSPENDED**. Détails de tâche de hello indiquent l’état RunHiveScript hello **START_MANUAL**. Action de hello cochant hello message d’erreur suivant :
+**Symptômes** : l’état du travail devient **SUSPENDED**. Dans les détails du travail, **START_MANUAL** est affiché pour l’état de RunHiveScript. Lorsque vous sélectionnez l’action, le message d’erreur suivant apparaît :
 
-    JA002: User: oozie is not allowed tooimpersonate <USER>
+    JA002: User: oozie is not allowed to impersonate <USER>
 
-**Cause**: paramètres d’autorisation actuels n’autorisent pas Oozie tooimpersonate hello de compte d’utilisateur spécifié.
+**Cause**: les paramètres d’autorisation actuels ne permettent pas à Oozie d’emprunter l’identité du compte d’utilisateur spécifié.
 
-**Résolution**: Oozie est autorisé aux utilisateurs de tooimpersonate Bonjour **utilisateurs** groupe. Hello d’utilisation `groups USERNAME` groupes hello toosee hello du compte d’utilisateur est membre. Si l’utilisateur de hello n’est pas un membre de hello **utilisateurs** groupe, utilisez hello suivant du groupe de commandes tooadd hello utilisateur toohello :
+**Résolution** : Oozie est autorisé à emprunter l’identité des utilisateurs dans le groupe **users**. Utilisez le `groups USERNAME` pour voir les groupes dont le compte d’utilisateur est membre. Si l’utilisateur n’est pas membre du groupe **users** , utilisez la commande suivante pour ajouter l’utilisateur au groupe :
 
     sudo adduser USERNAME users
 
 > [!NOTE]
-> Il peut prendre plusieurs minutes avant de HDInsight reconnaît que toohello groupe a été ajouté à cet utilisateur hello.
+> Il peut se passer plusieurs minutes avant que HDInsight reconnaisse que l'utilisateur a été ajouté au groupe.
 
 ### <a name="launcher-error-sqoop"></a>Launcher ERROR (Sqoop) (Erreur du lanceur, Sqoop)
 
-**Symptômes**: hello les changements d’état de tâche trop**KILLED**. Détails de tâche de hello indiquent l’état RunSqoopExport hello **erreur**. Action de hello cochant hello message d’erreur suivant :
+**Symptômes** : l’état du travail devient **KILLED**. Les détails du travail affichent **ERROR** pour l’état de RunSqoopExport. Lorsque vous sélectionnez l’action, le message d’erreur suivant apparaît :
 
     Launcher ERROR, reason: Main class [org.apache.oozie.action.hadoop.SqoopMain], exit code [1]
 
-**Cause**: Sqoop est impossible tooload hello pilote requis tooaccess hello base de données.
+**Cause**: Sqoop ne peut pas charger le pilote de base de données requis pour accéder à la base de données.
 
-**Résolution**: lorsque vous utilisez Sqoop à partir d’un travail Oozie, vous devez inclure pilote de base de données hello avec hello autres ressources (par exemple hello workflow.xml) utilisés par le travail de hello. Font également référence archive hello contenant le pilote de base de données hello de hello `<sqoop>...</sqoop>` section de hello workflow.xml.
+**Résolution** : lors de l’utilisation de Sqoop à partir d’un travail Oozie, vous devez inclure le pilote de base de données avec les autres ressources (telles que workflow.xml) utilisées par le travail. Vous devez également référencer l’archive contenant le pilote de base de données à partir de la section `<sqoop>...</sqoop>` de workflow.xml.
 
-Par exemple, pour la tâche hello dans ce document, vous utiliseriez hello comme suit :
+Par exemple, pour le travail de ce document, vous utiliseriez les étapes suivantes :
 
-1. Copie hello sqljdbc4.1.jar toohello /tutorials/useoozie répertoire du fichier :
+1. Copier le fichier sqljdbc4.1.jar dans le répertoire /tutorials/useoozie :
 
     ```
     hdfs dfs -put /usr/share/java/sqljdbc_4.1/enu/sqljdbc41.jar /tutorials/useoozie/sqljdbc41.jar
     ```
 
-2. Modifier le XML suivant sur une nouvelle ligne au-dessus de Bonjour workflow.xml tooadd Bonjour `</sqoop>`:
+2. Modifier le fichier workflow.xml pour ajouter le code XML suivant sur une nouvelle ligne au-dessus de `</sqoop>` :
 
     ```xml
     <archive>sqljdbc41.jar</archive>
@@ -746,7 +746,7 @@ Par exemple, pour la tâche hello dans ce document, vous utiliseriez hello comme
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez appris comment toodefine Oozie d’un flux de travail et comment toorun un travail Oozie. toolearn en savoir plus sur l’utilisation de HDInsight, consultez hello suivant des articles :
+Dans ce didacticiel, vous avez appris comment définir un flux de travail Oozie et comment exécuter un travail Oozie. Pour en savoir plus sur l’utilisation de HDInsight, consultez les articles suivants :
 
 * [Utilisation du coordinateur Oozie basé sur le temps avec HDInsight][hdinsight-oozie-coordinator-time]
 * [Importation de données pour les tâches Hadoop dans HDInsight][hdinsight-upload-data]
@@ -756,7 +756,7 @@ Dans ce didacticiel, vous avez appris comment toodefine Oozie d’un flux de tra
 * [Développement de programmes MapReduce en Java pour HDInsight][hdinsight-develop-mapreduce]
 
 [hdinsight-cmdlets-download]: http://go.microsoft.com/fwlink/?LinkID=325563
-[azure-data-factory-pig-hive]: ../data-factory/data-factory-data-transformation-activities.md
+[azure-data-factory-pig-hive]: ../data-factory/transform-data.md
 [hdinsight-oozie-coordinator-time]: hdinsight-use-oozie-coordinator-time.md
 [hdinsight-versions]:  hdinsight-component-versioning.md
 [hdinsight-storage]: hdinsight-use-blob-storage.md

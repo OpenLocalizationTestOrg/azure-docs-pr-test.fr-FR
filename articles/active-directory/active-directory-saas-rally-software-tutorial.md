@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Rally Software | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Rally Software."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Rally Software."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,231 +14,231 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: jeedes
-ms.openlocfilehash: c75c8b98ce7fab19964c13de5ad7e19ef3ebd0e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6481c9ef0ca71419ccfa6f7956f4702985743df3
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-rally-software"></a>Didacticiel : Intégration d’Azure Active Directory à Rally Software
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Rally de logiciel avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Rally Software à Azure Active Directory (Azure AD).
 
-Intégration Rally Software à Azure AD offre hello avantages suivants :
+L’intégration de Rally Software à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooRally logiciel.
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooRally logiciels (Single Sign-On) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure.
+- Dans Azure AD, vous pouvez contrôler qui a accès à Rally Software.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Rally Software (via l’authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes dans un emplacement central : le portail Azure.
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD à Rally Software, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à Rally Software, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Rally Software pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de Rally Software à partir de la galerie de hello
+1. Ajout de Rally Software à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-rally-software-from-hello-gallery"></a>Ajout de Rally Software à partir de la galerie de hello
-tooconfigure hello intégration de Rally Software dans Azure AD, vous devez tooadd Rally Software à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-rally-software-from-the-gallery"></a>Ajout de Rally Software à partir de la galerie
+Pour configurer l’intégration de Rally Software à Azure AD, vous devez ajouter Rally Software à partir de la galerie, à votre liste d’applications SaaS managées.
 
-**tooadd Rally le logiciel à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Rally Software à partir de la galerie, effectuez les étapes suivantes :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
-    ![bouton d’Azure Active Directory Hello][1]
+    ![Bouton Azure Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
-    ![panneau des applications Enterprise Hello][2]
+    ![Panneau Applications d’entreprise][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
-    ![Nouveau bouton d’application Hello][3]
+    ![Bouton Nouvelle application][3]
 
-4. Dans la zone de recherche de hello, tapez **Rally Software**, sélectionnez **Rally Software** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
+4. Dans la zone de recherche, tapez **Rally Software**, sélectionnez **Rally Software** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
-    ![Rally Software dans la liste des résultats hello](./media/active-directory-saas-rally-software-tutorial/tutorial_rallysoftware_addfromgallery.png)
+    ![Rally Software dans la liste des résultats](./media/active-directory-saas-rally-software-tutorial/tutorial_rallysoftware_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Rally Software à l’aide d’un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Rally Software est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Rally Software doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD a besoin de savoir qui est l’utilisateur Rally Software équivalent dans Azure AD. En d’autres termes, un lien entre un utilisateur Azure AD et l’utilisateur Rally Software associé doit être établi.
 
-Dans Rally Software, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Rally Software, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec Rally Software, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Rally Software, vous devez suivre les indications des sections suivantes :
 
-1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Créer un utilisateur de test Rally Software](#create-a-rally-software-test-user)**  -toohave un équivalent de Britta Simon dans Rally Software qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Rally Software](#create-a-rally-software-test-user)** pour avoir un équivalent de Britta Simon dans Rally Software lié à la représentation Azure AD de l’utilisateur.
+4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Tester l’authentification unique](#test-single-sign-on)** : pour vérifier si la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Rally Software.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Rally Software.
 
-**tooconfigure Azure AD single sign-on avec Rally Software, procédez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Rally Software, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, sur hello **Rally Software** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Dans le portail Azure, dans la page d’intégration de l’application **Rally Software**, cliquez sur **Authentification unique**.
 
     ![Lien Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Boîte de dialogue Authentification unique](./media/active-directory-saas-rally-software-tutorial/tutorial_rallysoftware_samlbase.png)
 
-3. Sur hello **URL et le domaine de logiciel Rally** section, effectuer hello comme suit :
+3. Dans la section **Domaine et URL Rally Software**, effectuez les étapes suivantes :
 
     ![Informations d’authentification unique dans Domaine et URL Rally Software](./media/active-directory-saas-rally-software-tutorial/tutorial_rallysoftware_url.png)
 
-    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenant-name>.rally.com`
+    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<tenant-name>.rally.com`
 
-    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<tenant-name>.rally.com`
+    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<tenant-name>.rally.com`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur. Contact [équipe de support Client de logiciel Rally](https://help.rallydev.com/) tooget ces valeurs. 
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Pour obtenir ces valeurs, contactez [l’équipe du support Rally Software](https://help.rallydev.com/). 
  
 
 
-4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
-    ![lien de téléchargement du certificat Hello](./media/active-directory-saas-rally-software-tutorial/tutorial_rallysoftware_certificate.png) 
+    ![Lien Téléchargement de certificat](./media/active-directory-saas-rally-software-tutorial/tutorial_rallysoftware_certificate.png) 
 
 5. Cliquez sur le bouton **Enregistrer** .
 
     ![Bouton Enregistrer de la page Configurer l’authentification unique](./media/active-directory-saas-rally-software-tutorial/tutorial_general_400.png)
 
-6. Sur hello **Rally la Configuration logicielle** , cliquez sur **configurer Rally Software** tooopen **configurer l’authentification** fenêtre. Hello de copie **URL de déconnexion et l’ID d’entité SAML** de hello **section de référence rapide.**
+6. Dans la section **Configuration de Rally Software**, cliquez sur **Configurer Rally Software** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez **l’URL de déconnexion et l’ID d’entité SAML** à partir de la **section Référence rapide**.
 
     ![Configuration de Rally Software](./media/active-directory-saas-rally-software-tutorial/tutorial_rallysoftware_configure.png) 
 
-7. Connectez-vous à tooyour **Rally Software** client.
+7. Connectez-vous à votre locataire **Rally Software** .
 
-8. Dans la barre d’outils de hello en haut de hello, cliquez sur **le programme d’installation**, puis sélectionnez **abonnement**.
+8. Dans la barre d’outils située en haut, cliquez sur **Setup**, puis sélectionnez **Subscription**.
    
     ![Subscription](./media/active-directory-saas-rally-software-tutorial/ic769531.png "Subscription")
 
-9. Cliquez sur hello **Action** bouton. Sélectionnez **modifier un abonnement** à hello haut à droite de la barre d’outils hello.
+9. Cliquez sur le bouton **Action**. Sélectionnez **Modifier l’abonnement** en haut à droite de la barre d’outils.
 
-10. Sur hello **abonnement** page de boîte de dialogue, effectuer hello comme suit, puis cliquez sur **Enregistrer & fermer**:
+10. Dans la page **Subscription**, procédez comme suit, puis cliquez sur **Save & Close** :
    
     ![Authentication](./media/active-directory-saas-rally-software-tutorial/ic769542.png "Authentication")
    
     a. Sélectionnez **Rally or SSO authentication** dans la liste déroulante Authentication.
 
-    b. Bonjour **URL du fournisseur d’identité** zone de texte, valeur hello coller **ID d’entité SAML**, lequel vous avez copié à partir du portail Azure. 
+    b. Dans la zone de texte **Identity provider URL** (URL du fournisseur d’identité), collez **l’ID d’entité SAML** copié à partir du portail Azure. 
 
-    c. Bonjour **déconnexion de SSO** zone de texte, valeur hello coller **URL de déconnexion**, lequel vous avez copié à partir du portail Azure.
+    c. Dans la zone de texte **SSO Logout** (Déconnexion SSO), collez **l’URL de déconnexion** que vous avez copiée à partir du portail Azure.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
 
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
    ![Créer un utilisateur de test Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour portail Azure, dans le volet gauche de hello, cliquez sur hello **Azure Active Directory** bouton.
+1. Dans le volet gauche du Portail Azure, cliquez sur le bouton **Azure Active Directory**.
 
-    ![bouton d’Azure Active Directory Hello](./media/active-directory-saas-rally-software-tutorial/create_aaduser_01.png)
+    ![Bouton Azure Active Directory](./media/active-directory-saas-rally-software-tutorial/create_aaduser_01.png)
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes**, puis cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
 
-    ![Hello « Utilisateurs et groupes » et « Tous les utilisateurs » liens](./media/active-directory-saas-rally-software-tutorial/create_aaduser_02.png)
+    ![Liens « Utilisateurs et groupes » et « Tous les utilisateurs »](./media/active-directory-saas-rally-software-tutorial/create_aaduser_02.png)
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello hello **tous les utilisateurs** boîte de dialogue.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue **Tous les utilisateurs**.
 
-    ![bouton Ajouter de Hello](./media/active-directory-saas-rally-software-tutorial/create_aaduser_03.png)
+    ![Bouton Ajouter](./media/active-directory-saas-rally-software-tutorial/create_aaduser_03.png)
 
-4. Bonjour **utilisateur** boîte de dialogue, exécutez hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
 
-    ![boîte de dialogue utilisateur Hello](./media/active-directory-saas-rally-software-tutorial/create_aaduser_04.png)
+    ![Boîte de dialogue Utilisateur](./media/active-directory-saas-rally-software-tutorial/create_aaduser_04.png)
 
-    a. Bonjour **nom** , tapez **BrittaSimon**.
+    a. Dans la zone **Nom**, tapez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** zone, tapez Bonjour adresse de messagerie de l’utilisateur Britta Simon.
+    b. Dans la zone **Nom d’utilisateur** , tapez l’adresse e-mail de l’utilisateur Britta Simon.
 
-    c. Sélectionnez hello **afficher le mot de passe** case à cocher, puis écrire la valeur hello qui s’affiche dans hello **mot de passe** boîte.
+    c. Cochez la case **Afficher le mot de passe**, puis notez la valeur affichée dans le champ **Mot de passe**.
 
     d. Cliquez sur **Créer**.
  
 ### <a name="create-a-rally-software-test-user"></a>Créer un utilisateur de test Rally Software
 
-Pour Azure AD les utilisateurs toobe en mesure de toosign dans, ils doivent être mis en service toohello application Rally Software à l’aide de leur nom d’utilisateur Azure Active Directory.
+Pour que les utilisateurs Azure AD puissent se connecter, ils doivent être attribués dans l’application Rally Software avec leur nom d’utilisateur Azure Active Directory.
 
-**configuration, de l’utilisateur tooconfigure effectuer hello comme suit :**
+**Pour configurer l'approvisionnement des utilisateurs, procédez comme suit :**
 
-1. Ouvrez une session dans tooyour client Rally Software.
+1. Connectez-vous à votre locataire Rally Software.
 
-2. Accédez trop**le programme d’installation \> utilisateurs**, puis cliquez sur **+ ajouter un nouveau**.
+2. Accédez à **Setup \> USERS**, puis cliquez sur **+ Add New**.
    
     ![Utilisateurs](./media/active-directory-saas-rally-software-tutorial/ic781039.png "Utilisateurs")
 
-3. Nom de hello dans la zone de texte hello nouvel utilisateur, puis tapez **ajouter avec des détails**.
+3. Tapez le nom dans la zone de texte New User, puis cliquez sur **Add with Details**.
 
-4. Bonjour **Create User** section, effectuer hello comme suit :
+4. Dans la section **Create User** , procédez comme suit :
    
     ![Create User](./media/active-directory-saas-rally-software-tutorial/ic781040.png "Create User")
 
-    a. Bonjour **nom d’utilisateur** zone de texte, nom d’utilisateur comme hello du type **Brittsimon**.
+    a. Dans la zone de texte **User Name** (Nom d’utilisateur), tapez le nom complet d’un utilisateur, par exemple **Britta Simon**.
    
-    b. Dans **adresse de messagerie** zone de texte, entrez hello adresse de messagerie de l’utilisateur comme  **brittasimon@contoso.com** .
+    b. Dans la zone de texte **E-mail Address** (Adresse e-mail), entrez l’adresse e-mail de l’utilisateur, par exemple **brittasimon@contoso.com**.
 
-    c. Dans **prénom** texte, entrez le nom d’utilisateur comme hello **Brian**.
+    c. Dans la zone de texte **Prénom**, entrez le prénom de l’utilisateur, par exemple **Britta**.
 
-    d. Dans **nom** texte, entrez le nom d’utilisateur comme hello **Simon**.
+    d. Dans la zone de texte **Nom**, entrez le nom de l’utilisateur, par exemple **Simon**.
 
     e. Cliquez sur **Enregistrer et fermer**.
 
    >[!NOTE]
-   >Vous pouvez utiliser n’importe quel autre Rally Software utilisateur compte outil de création ou API fournie par Rally Software tooprovision comptes d’utilisateur Azure AD.
+   >Vous pouvez utiliser tout autre outil ou n’importe quelle API de création de compte d’utilisateur fournis par Rally Software pour approvisionner des comptes d’utilisateur Azure AD.
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooRally logiciel.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Rally Software.
 
-![Attribuer le rôle d’utilisateur hello][200] 
+![Attribuer le rôle utilisateur][200] 
 
-**tooassign Britta Simon tooRally logiciel, effectuez hello comme suit :**
+**Pour attribuer Britta Simon à Rally Software, effectuez les étapes suivantes :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Rally Software**.
+2. Dans la liste des applications, sélectionnez **Rally Software**.
 
-    ![lien de Rally Software Hello dans la liste des Applications hello](./media/active-directory-saas-rally-software-tutorial/tutorial_rallysoftware_app.png)  
+    ![Lien Rally Software dans la liste des applications](./media/active-directory-saas-rally-software-tutorial/tutorial_rallysoftware_app.png)  
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
-    ![lien de « Utilisateurs et groupes » Hello][202]
+    ![Lien « Utilisateurs et groupes »][202]
 
 4. Cliquez sur le bouton **Ajouter**. Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.
 
-    ![volet d’ajouter l’affectation de Hello][203]
+    ![Volet Ajouter une attribution][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -246,13 +246,13 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.
+L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur mosaïque Rally Software hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour application Rally Software.
+Lorsque vous cliquez sur la vignette Rally Software dans le panneau d’accès, vous devez être connecté automatiquement à votre application Rally Software.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

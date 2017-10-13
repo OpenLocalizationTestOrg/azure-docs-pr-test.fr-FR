@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooupdate un service cloud | Documents Microsoft
-description: "Découvrez comment tooupdate cloud services dans Azure. Découvrez comment une mise à jour sur un service cloud poursuit tooensure disponibilité."
+title: "Mise à jour d’un service cloud | Microsoft Docs"
+description: "Découvrez comment mettre à jour des services cloud dans Azure. Découvrez comment mettre à jour un service cloud se poursuit pour garantir la disponibilité."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: adegeo
-ms.openlocfilehash: 7e4c8bd46e51a555b4309ea8927d120e8efcf0ea
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2ba9676ed2afce7f18446642527971f5001b5ca7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooupdate-a-cloud-service"></a>Comment tooupdate un service cloud
+# <a name="how-to-update-a-cloud-service"></a>Mettre à jour un service cloud
 
-La mise à jour d’un service cloud, et notamment de ses rôles et du système d’exploitation invité, est un processus qui se déroule en trois étapes. Tout d’abord, fichiers binaires de hello et les fichiers de configuration pour hello nouveau service de cloud computing ou version du système d’exploitation doit être téléchargée. Ensuite, Azure réserve de ressources de calcul et de réseau pour le service cloud hello selon les besoins de la nouvelle version de service cloud hello hello. Enfin, Azure effectue une propagée mise à niveau tooincrementally mise à jour hello client toohello nouvelle version ou invité du système d’exploitation, tout en conservant la disponibilité de votre. Cet article décrit en détail hello de cette dernière étape : hello mise à niveau propagée.
+La mise à jour d’un service cloud, et notamment de ses rôles et du système d’exploitation invité, est un processus qui se déroule en trois étapes. Tout d’abord, les fichiers binaires et de configuration du nouveau Service Cloud et de la version de système d’exploitation doivent être téléchargés. Dans un deuxième temps, Azure réserve des ressources de calcul et réseau au Service Cloud selon les spécifications de la nouvelle version de Service Cloud. Enfin, Azure effectue une mise à niveau propagée pour effectuer une mise à jour incrémentielle du client vers la nouvelle version ou le nouveau système d’exploitation invité tout en préservant votre disponibilité. Cet article discute des détails de cette dernière étape, la mise à jour propagée.
 
 ## <a name="update-an-azure-service"></a>Mettre à jour un Service Azure
-Azure organise vos instances de rôle en regroupements logiques appelés domaines de mise à niveau (UD). Les domaines de mise à niveau (UD) sont des ensembles logiques d’instances de rôle qui sont mis à jour en tant que groupe.  Azure mises à jour un cloud service un UD à la fois, ce qui permet aux instances dans les autres toocontinue domaines d’erreur desservant le trafic.
+Azure organise vos instances de rôle en regroupements logiques appelés domaines de mise à niveau (UD). Les domaines de mise à niveau (UD) sont des ensembles logiques d’instances de rôle qui sont mis à jour en tant que groupe.  Azure met à jour un domaine de mise à niveau de Service Cloud à la fois, ce qui permet aux instances présentes sur les autres domaines de mise à niveau de maintenir le trafic.
 
-nombre de domaines de mise à niveau par défaut de Hello est 5. Vous pouvez spécifier un nombre différent de domaines de mise à niveau en incluant l’attribut d’upgradeDomainCount hello dans le fichier de définition du service hello (.csdef). Pour plus d’informations sur l’attribut d’upgradeDomainCount hello, consultez [WebRole schéma](https://msdn.microsoft.com/library/azure/gg557553.aspx) ou [WorkerRole schéma](https://msdn.microsoft.com/library/azure/gg557552.aspx).
+Le nombre de domaines de mise à niveau par défaut est de 5. Vous pouvez spécifier un nombre différent de domaines de mise à niveau en incluant l’attribut upgradeDomainCount dans le fichier de définition du service (.csdef). Pour plus d’informations sur l’attribut upgradeDomainCount, consultez [Schéma WebRole](https://msdn.microsoft.com/library/azure/gg557553.aspx) ou [Schéma WorkerRole](https://msdn.microsoft.com/library/azure/gg557552.aspx).
 
-Lorsque vous effectuez une mise à jour sur place d’un ou plusieurs rôles dans votre service, Azure met à jour les jeux d’instances de rôle en fonction de toohello toowhich de domaine de mise à niveau qu'auquel ils appartiennent. Azure mises à jour toutes les instances de hello dans un domaine de mise à niveau donné – les arrêter, les mettre à jour, les réafficher de sauvegarde en ligne – déplace ensuite sur le domaine suivant de hello. En arrêtant les seules instances hello en hello actuelle mise à niveau de domaine, Azure permet de s’assurer qu’une mise à jour se produit avec hello minimales toohello d’impact sur le service en cours d’exécution. Pour plus d’informations, consultez [l’exécution de mise à jour hello](#howanupgradeproceeds) plus loin dans cet article.
+Lorsque vous effectuez la mise à jour sur place d’un ou de plusieurs rôles dans votre service, Azure met à jour les ensembles d’instances de rôle en fonction du domaine de mise à niveau auquel ils appartiennent. Azure met à jour toutes les instances dans un domaine de mise à niveau donné (les arrête, les met à jour, les remet en ligne) puis passe au domaine suivant. En arrêtant uniquement les instances en cours d’exécution dans le domaine de mise à niveau en cours, Azure garantit que l’opération aura un impact minimal sur le service en cours d’exécution. Pour plus d’informations, consultez [Déroulement de la mise à niveau](#howanupgradeproceeds) plus loin dans cet article.
 
 > [!NOTE]
-> Alors que les termes du contrat de hello **mettre à jour** et **mise à niveau** ont une signification légèrement différente dans le contexte de hello Azure, ils peuvent être utilisées indifféremment pour les processus hello et les descriptions des fonctionnalités hello dans ce document.
+> Bien que les termes **mise à jour** et **mise à niveau** aient une signification légèrement différente dans le contexte Azure, ils peuvent être utilisés indifféremment pour les processus et les descriptions des fonctionnalités du présent document.
 >
 >
 
-Votre service doit définir au moins deux instances d’un rôle pour ce rôle toobe mis à jour sur place sans interruption de service. Si le service de hello se compose d’une seule instance d’un rôle, votre service n’est pas disponible tant que hello mise à jour sur place est terminée.
+Votre service doit définir au moins deux instances d’un rôle pour que le rôle soit mis à jour sur place, sans interruption de service. Si le service se compose d’une seule instance de rôle, votre service sera indisponible jusqu’à la fin de la mise à jour sur place.
 
-Cette rubrique couvre hello d’informations sur les mises à jour Azure suivantes :
+Cette rubrique décrit les informations suivantes sur les mises à jour Azure :
 
 * [Modifications de service autorisées pendant une mise à jour](#AllowedChanges)
 * [Déroulement d’une mise à niveau](#howanupgradeproceeds)
@@ -49,9 +49,9 @@ Cette rubrique couvre hello d’informations sur les mises à jour Azure suivant
 <a name="AllowedChanges"></a>
 
 ## <a name="allowed-service-changes-during-an-update"></a>Modifications de service autorisées pendant une mise à jour
-Hello tableau suivant montre hello autorisé modifications tooa service pendant une mise à jour :
+Le tableau suivant présente les modifications de service autorisées au cours d’une mise à jour :
 
-| Modifications autorisées toohosting, services et des rôles | Mise à jour sur place | Intermédiaire (échange d’adresses IP virtuelles) | Supprimer et redéployer |
+| Modifications autorisées de l’hébergement, des services et des rôles | Mise à jour sur place | Intermédiaire (échange d’adresses IP virtuelles) | Supprimer et redéployer |
 | --- | --- | --- | --- |
 | Version de système d’exploitation |Oui |Oui |Oui |
 | Niveau de confiance .NET |Oui |Oui |Oui |
@@ -66,44 +66,44 @@ Hello tableau suivant montre hello autorisé modifications tooa service pendant 
 | Modifier les certificats existants |Oui |Oui |Oui |
 | Déployer un nouveau code |Oui |Oui |Oui |
 
-<sup>1</sup> changement de taille limitée sous-ensemble toohello des tailles disponibles pour le service cloud hello.
+<sup>1</sup> Modification de la taille limitée au sous-ensemble des tailles disponibles pour le service cloud.
 
 <sup>2</sup> Nécessite le kit de développement logiciel (SDK) Azure 1.5 ou versions ultérieures.
 
 > [!WARNING]
-> Modification de la taille de machine virtuelle hello détruira les données locales.
+> La modification de la taille de machine virtuelle détruira les données locales.
 >
 >
 
-Hello éléments suivants n’est pas pris en charge pendant une mise à jour :
+Les éléments suivants ne sont pas pris en charge pendant une mise à jour :
 
-* Changement de nom hello d’un rôle. Supprimez, puis ajoutez rôle hello avec le nouveau nom de hello.
-* Modification de hello nombre de domaines de mise à niveau.
-* Diminution de la taille de hello des ressources locales de hello.
+* Modification du nom d’un rôle. Supprimez, puis ajoutez le rôle avec le nouveau nom.
+* Modification du nombre de domaines de mise à niveau.
+* Réduction de la taille des ressources locales.
 
-Si vous apportez des autres mises à jour de définition du service tooyour, tels que la diminution de la taille de hello de ressource locale, vous devez effectuer une mise à jour d’échange de VIP à la place. Pour plus d’informations, consultez [Déploiement d’échange](https://msdn.microsoft.com/library/azure/ee460814.aspx).
+Si vous exécutez d’autres mises à jour de votre définition de service, comme la réduction des ressources de taille locale, vous devez exécuter une mise à jour de l’échange d’adresses IP virtuelles. Pour plus d’informations, consultez [Déploiement d’échange](https://msdn.microsoft.com/library/azure/ee460814.aspx).
 
 <a name="howanupgradeproceeds"></a>
 
 ## <a name="how-an-upgrade-proceeds"></a>Déroulement d’une mise à niveau
-Vous pouvez décider si vous souhaitez que tooupdate tous les rôles hello dans votre service ou un rôle unique dans le service hello. Dans les deux cas, toutes les instances de chaque rôle qui est en cours de mise à niveau et appartiennent toohello premier domaine de mise à niveau sont arrêtés, mis à niveau et remis en ligne. Une fois qu’ils sont en ligne, hello instances dans le deuxième domaine de mise à niveau hello sont arrêtés, mis à niveau et remis en ligne. Un service cloud peut avoir au plus une mise à niveau active à la fois. mise à niveau Hello est toujours effectuée par rapport à la version la plus récente du service de cloud hello hello.
+Vous pouvez décider si vous souhaitez mettre à jour tous les rôles de votre service ou un seul rôle de ce service. Dans les deux cas, toutes les instances de chaque rôle mis à niveau qui appartiennent au premier domaine de mise à niveau sont arrêtées, mises à niveau et remises en ligne. Une fois de retour en ligne, les instances du deuxième domaine de mise à niveau sont arrêtées, mises à niveau et remises en ligne. Un service cloud peut avoir au plus une mise à niveau active à la fois. La mise à niveau s’effectue toujours sur la dernière version du service cloud.
 
-Hello diagramme suivant illustre comment la mise à niveau hello se poursuit si vous mettez à niveau tous les rôles hello dans le service hello :
+Le diagramme suivant montre comment la mise à niveau se poursuit si vous mettez à niveau tous les rôles dans le service :
 
 ![Mettre à niveau le service](media/cloud-services-update-azure-service/IC345879.png "Mettre à niveau le service")
 
-Le diagramme suivant montre comment la mise à jour hello se poursuit si vous mettez à niveau un seul rôle :
+Le diagramme suivant montre comment la mise à jour se déroule en cas de mise à jour d’un seul rôle :
 
 ![Mettre à niveau le rôle](media/cloud-services-update-azure-service/IC345880.png "Mettre à niveau le rôle")  
 
-Pendant une mise à jour automatique, hello contrôleur de structure Azure évalue périodiquement intégrité hello hello cloud service toodetermine lors de son toowalk safe hello UD suivant. Cette évaluation d’intégrité est effectuée sur une base par rôle et considère que les instances dans la version la plus récente hello (autrement dit, les instances à partir de domaines d’erreur qui ont déjà été parcourues). Il vérifie qu’un nombre minimum d’instances de rôle, pour chaque rôle, a atteint un état terminal satisfaisant.
+Pendant une mise à jour automatique, le 	contrôleur de structure Azure évalue de façon périodique l’état du service cloud pour déterminer quand il est temps de passer à un autre domaine de mise à niveau. Cette évaluation de l’état est effectuée sur une base par rôle et considère uniquement les instances de la dernière version (c’est-à-dire les instances de domaines de mise à niveau qui ont déjà été examinées). Il vérifie qu’un nombre minimum d’instances de rôle, pour chaque rôle, a atteint un état terminal satisfaisant.
 
 ### <a name="role-instance-start-timeout"></a>Délai de démarrage de l’instance de rôle
-Contrôleur de structure de Hello attendra 30 minutes pour chaque tooreach d’instance de rôle un état démarré. Si la durée du délai d’attente hello s’écoule, hello contrôleur de structure continuera de parcours toohello suivant instance de rôle.
+Le contrôleur de structure attend 30 minutes pour que chaque instance de rôle atteigne un état démarré. Si la durée d'expiration est écoulée, le contrôleur de structure continuera à remonter jusqu’à l'instance de rôle suivante.
 
-### <a name="impact-toodrive-data-during-cloud-service-upgrades"></a>Données d’impact toodrive pendant les mises à niveau de Service Cloud
+### <a name="impact-to-drive-data-during-cloud-service-upgrades"></a>Impact sur les données de lecteur lors de la mise à jour des services cloud
 
-Lors de la mise à niveau d’un service à partir d’une instance de toomultiple instance unique votre service sera réduit pendant la mise à niveau hello est effectuée en raison de la façon de toohello Qu'azure met à niveau les services. Hello service contrat de niveau garantissant la disponibilité s’applique uniquement à tooservices qui sont déployés avec plusieurs instances. Hello liste suivante décrit comment les données de hello sur chaque disque sont affectées par chaque scénario de mise à niveau de service Azure :
+Lors de la mise à niveau d’un service d’instance unique vers plusieurs instances, votre service est réduit pendant que la mise à niveau est exécutée, en fonction de la façon dont Azure met à niveau les services. Le contrat de niveau de service garantissant la disponibilité du service ne s’applique qu’aux services déployés avec plusieurs instances. La liste suivante décrit la façon dont les données de chaque lecteur sont affectées à chaque scénario de mise à niveau de service Azure :
 
 |Scénario|Lecteur C|Lecteur D|Lecteur E|
 |--------|-------|-------|-------|
@@ -113,79 +113,79 @@ Lors de la mise à niveau d’un service à partir d’une instance de toomultip
 |Mise à niveau sur place|Préservé|Préservé|Détruit|
 |Migration des nœuds|Détruit|Détruit|Détruit|
 
-Notez que, dans hello au-dessus de liste, hello lecteur E: représente le lecteur racine du rôle hello et ne doit pas être codées en dur. Au lieu de cela, utilisez hello **%roleroot%** lecteur de hello toorepresent variable environnement.
+Notez que, dans la liste ci-dessus, le lecteur E: représente le lecteur racine du rôle et qu’il ne doit pas être codées en dur. Utilisez plutôt la variable d’environnement **%RoleRoot%** pour représenter le lecteur.
 
-temps d’arrêt hello toominimize lors de la mise à niveau d’un service à instance unique, déployez un nouveau serveur à plusieurs instances service toohello intermédiaire et effectuez un échange d’adresses IP virtuelles.
+Pour réduire les temps d’arrêt en cas de mise à niveau d’un service à instance unique, déployez un nouveau service à instances multiples sur le serveur intermédiaire et effectuez un échange d’adresses IP virtuelles.
 
 <a name="RollbackofanUpdate"></a>
 
 ## <a name="rollback-of-an-update"></a>Restauration d’une mise à jour
-Azure fournit une grande souplesse dans la gestion des services pendant une mise à jour en vous permettant de lancer des opérations supplémentaires sur un service, une fois la demande de mise à jour initiale hello est accepté par le contrôleur de structure Azure de hello. Une restauration peut être effectuée uniquement quand une mise à jour (modification de la configuration) ou de mise à niveau est Bonjour **en cours d’exécution** état sur le déploiement de hello. Toobe en cours est considéré comme une mise à jour ou la mise à niveau, tant qu’il existe au moins une instance de service hello qui n’a pas encore été mis à jour toohello nouvelle version. tootest si une restauration est autorisée, vérifiez la valeur hello d’indicateur de RollbackAllowed hello, retourné par [obtenir le déploiement](https://msdn.microsoft.com/library/azure/ee460804.aspx) et [obtenir les propriétés de Service Cloud](https://msdn.microsoft.com/library/azure/ee460806.aspx) opérations, a la valeur tootrue.
+Azure offre une flexibilité dans la gestion des services pendant la mise à jour en vous permettant de lancer des opérations supplémentaires sur un service, une fois la demande de mise à jour initiale acceptée par le contrôleur d’architecture Azure. Une restauration ne peut être effectuée que lorsqu’une mise à jour (modification de configuration) ou une mise à niveau se trouve dans l’état **en cours** du déploiement. Une mise à jour ou mise à niveau est considérée comme en cours tant qu’il existe au moins une instance du service qui n’a pas encore été mise à jour vers la nouvelle version. Pour vérifier si une restauration est autorisée, assurez-vous que la valeur de l’indicateur RollbackAllowed retournée par les opérations [Obtention du déploiement](https://msdn.microsoft.com/library/azure/ee460804.aspx) et [Obtention des propriétés de service cloud](https://msdn.microsoft.com/library/azure/ee460806.aspx) est bien définie sur true.
 
 > [!NOTE]
-> Qu’il est judicieux toocall Rollback sur une **in situ** mettre à jour ou de mise à niveau, car l’adresse IP virtuelle impliquent de remplacer une instance en cours d’exécution complète de votre service avec un autre.
+> Il convient d’appeler la restauration uniquement sur une mise à jour ou une mise à niveau **sur place** , parce que les mises à niveau d’échange d’adresse virtuelle impliquent le remplacement d’une instance complète s’exécutant sur votre service avec une autre.
 >
 >
 
-Restauration d’une mise à jour en cours a hello suivant les effets sur le déploiement de hello :
+Le rétablissement d’une mise à jour en cours a les effets suivants sur le déploiement :
 
-* Toutes les instances de rôle qui n’avaient pas encore été mis à jour ou mise à niveau toohello nouvelle version ne sont pas mis à jour ou mise à niveau, car ces instances sont déjà équipés hello cible du service de hello.
-* Instances de n’importe quel rôle qui a déjà été mise à jour ou toohello mis à niveau une nouvelle version du package de service hello (\*.cspkg) configuration du service de fichier ou hello (\*.cscfg) fichier (ou les deux fichiers) sont toohello restaurée de pré-mise à niveau version de Ces fichiers.
+* Toutes les instances de rôle n’ayant pas encore été mises à jour ou à niveau vers la nouvelle version ne sont ni mises à jour ni mises à niveau, car les instances s’exécutent déjà sur la version cible du service.
+* Toutes les instances de rôle déjà mises à jour ou à niveau vers la nouvelle version du fichier de package de service (\*.cspkg) ou le fichier de configuration (\*.cscfg) (ou les deux fichiers) sont rétablies vers la version précédant la mise à niveau de ces fichiers.
 
-Cette fonction est assurée par hello suivant de fonctionnalités :
+Cette fonction est assurée par les fonctionnalités suivantes :
 
-* Hello [restauration mettre à jour ou mise à niveau](https://msdn.microsoft.com/library/azure/hh403977.aspx) opération, qui peut être appelée sur une mise à jour de configuration (déclenchée en appelant [modifier la Configuration déploiement](https://msdn.microsoft.com/library/azure/ee460809.aspx)) ou une mise à niveau (déclenchée en appelant [ Mettre à niveau un déploiement](https://msdn.microsoft.com/library/azure/ee460793.aspx)) tant qu’il existe au moins une instance de service de hello qui n’a pas encore été mis à jour toohello nouvelle version.
-* Hello verrouillé élément et élément de RollbackAllowed hello, qui sont retournées en tant que partie du corps de réponse hello Hello [obtenir le déploiement](https://msdn.microsoft.com/library/azure/ee460804.aspx) et [obtenir les propriétés de Service Cloud](https://msdn.microsoft.com/library/azure/ee460806.aspx) opérations :
+* La [restauration de mise à jour ou de mise à niveau](https://msdn.microsoft.com/library/azure/hh403977.aspx), qui peut être appelée sur une mise à jour de configuration (déclenchée par un appel [Modifier la configuration du déploiement](https://msdn.microsoft.com/library/azure/ee460809.aspx)) ou une mise à niveau (déclenchée par l’appel [Mettre à niveau un déploiement](https://msdn.microsoft.com/library/azure/ee460793.aspx)) tant qu’il reste au moins une instance du service qui n’a pas encore été mise à jour vers la nouvelle version.
+* L’élément Verrouillé et l’élément RollbackAllowed, qui sont retournés comme parties intégrantes du corps de réponse des opérations [Obtention du déploiement](https://msdn.microsoft.com/library/azure/ee460804.aspx) et [Obtention des propriétés de service cloud](https://msdn.microsoft.com/library/azure/ee460806.aspx) :
 
-  1. élément verrouillé de Hello vous permet de toodetect lorsqu’une opération de mutation peut être appelée sur un déploiement donné.
-  2. Hello RollbackAllowed élément vous permet de toodetect lorsque hello [restauration mise à jour ou mise à niveau](https://msdn.microsoft.com/library/azure/hh403977.aspx) opération peut être appelée sur un déploiement donné.
+  1. L’élément Verrouillé permet de détecter si une opération de mutation peut être appelée sur un déploiement donné.
+  2. L’élément RollbackAllowed vous permet de détecter lorsque l’opération de [restauration de mise à jour ou de mise à niveau](https://msdn.microsoft.com/library/azure/hh403977.aspx) peut être appelée sur un déploiement donné.
 
-  Dans l’ordre tooperform une restauration, il est inutile toocheck à la fois hello verrouillé et hello RollbackAllowed éléments. Il suffit de tooconfirm que RollbackAllowed a la valeur tootrue. Ces éléments sont retournés uniquement si ces méthodes sont appelées à l’aide d’en-tête de demande de hello défini trop « x-ms-version : 2011-10-01 » ou une version ultérieure. Pour plus d’informations sur les en-têtes de contrôle de version, consultez [Contrôle de version de gestion de service](https://msdn.microsoft.com/library/azure/gg592580.aspx).
+  Pour effectuer une restauration, il est inutile de vérifier les éléments Verrouillés et RollbackAllowed. Il suffit de vérifier que RollbackAllowed est défini sur true. Ces éléments sont retournés uniquement si ces méthodes sont appelées avec l’en-tête de demande défini sur « x-ms-version : 2011-10-01 » ou une version ultérieure. Pour plus d’informations sur les en-têtes de contrôle de version, consultez [Contrôle de version de gestion de service](https://msdn.microsoft.com/library/azure/gg592580.aspx).
 
 Dans certaines situations, la restauration d’une mise à jour ou d’une mise à niveau n’est pas prise en charge, notamment les suivantes :
 
-* Réduction des ressources locales - si hello mise à jour augmente hello des ressources locales pour un rôle hello plateforme Azure n’autorise pas restaurant.
-* Limitations de quota - si une mise à l’échelle vers le bas opération vous pouvez ne plus mise à jour hello n’a opération de restauration suffisante calcul quota toocomplete hello. Chaque abonnement Azure dispose d’un quota associé qui spécifie le nombre maximal de hello de cœurs qui peuvent être consommés par tous les services hébergés qui appartiennent toothat abonnement. Si l’exécution de la restauration d’une mise à jour donnée met votre abonnement au dessus du quota, la restauration ne sera pas activée.
-* Condition de concurrence - si la mise à jour initiale de hello terminée, une restauration n’est pas possible.
+* Réduction des ressources locale : si la mise à jour augmente les ressources locales d’un rôle, la plateforme Azure n’autorise pas la restauration.
+* Limitations de quota : si la mise à jour correspond à une opération de réduction, vous pouvez ne plus avoir suffisamment de capacité de calcul pour effectuer l’opération de restauration. Chaque abonnement Azure a un quota associé qui spécifie le nombre maximal de cœurs qui peuvent être utilisés par les services hébergés appartenant à cet abonnement. Si l’exécution de la restauration d’une mise à jour donnée met votre abonnement au dessus du quota, la restauration ne sera pas activée.
+* Condition de concurrence : si la mise à jour initiale est terminée, la restauration est impossible.
 
-Est d’un exemple de lorsque la restauration d’une mise à jour hello peut être utile si vous utilisez hello [mettre à niveau un déploiement](https://msdn.microsoft.com/library/azure/ee460793.aspx) opération taux de hello toocontrol mode manuel à laquelle un tooyour mise à niveau majeure sur place Azure le service hébergé est transférée.
+Exemple de la situation où le déploiement d’une mise à jour peut être utile si vous utilisez l’opération de [mise à niveau de déploiement](https://msdn.microsoft.com/library/azure/ee460793.aspx) en mode manuel pour contrôler la fréquence à laquelle la mise à niveau majeure d’un service hébergé Azure est exécutée.
 
-Lors du déploiement de mise à niveau hello hello vous appelez [mettre à niveau un déploiement](https://msdn.microsoft.com/library/azure/ee460793.aspx) en mode manuel et commencez les domaines de mise à niveau toowalk. Si à un moment donné, lorsque vous analysez la mise à niveau de hello, vous notez des instances de rôle dans hello premiers domaines de mise à niveau que vous examinez sont devenues ne répond pas, vous pouvez appeler hello [restauration mise à jour ou mise à niveau](https://msdn.microsoft.com/library/azure/hh403977.aspx) opération sur le déploiement de hello, qui Pour laisser instances hello intact qui n’avaient pas encore été mis à niveau et les instances de restauration qui avaient été mis à niveau toohello précédent package de service et de configuration.
+Lors du déploiement de la mise à niveau, vous appelez [Mettre à niveau un déploiement](https://msdn.microsoft.com/library/azure/ee460793.aspx) en mode manuel et commencez à parcourir les domaines de mise à niveau. Si à un moment donné, lorsque vous surveillez la mise à niveau, vous notez que des instances de rôle dans les premiers domaines de mise à niveau ne répondent plus, vous pouvez appeler une opération de [restauration de mise à jour ou de mise à niveau](https://msdn.microsoft.com/library/azure/hh403977.aspx) sur le déploiement, ce qui laissera les instances non mises à jour intactes, et restaurera les instances ayant été mises à niveau vers le package et la configuration de service à leur niveau antérieur.
 
 <a name="multiplemutatingoperations"></a>
 
 ## <a name="initiating-multiple-mutating-operations-on-an-ongoing-deployment"></a>Lancement de plusieurs opérations de mutation sur un déploiement en cours
-Dans certains cas vous souhaiterez tooinitiate plusieurs opérations de mutation simultanées sur un déploiement en cours. Par exemple, vous pouvez effectuer une mise à jour de service et, pendant cette mise à jour est déployée sur votre service, vous toomake certaines modifications, par exemple, tooroll hello mise à jour, appliquer une autre mise à jour ou le même supprimer hello. Un cas dans lesquels il peut être nécessaire est si une mise à niveau de service contient un code bogué qui provoque un blocage de toorepeatedly instance rôle mis à niveau. Dans ce cas, hello contrôleur de structure Azure ne sera pas toomake en mesure de sa progression dans l’application de mise à niveau, car un nombre insuffisant d’instances dans le domaine de mise à niveau de hello est intègre. Cet état est tooas auxquels un *déploiement bloqué*. Vous pouvez débloquer le déploiement de hello en annulation de la mise à jour hello ou en appliquant une nouvelle mise à jour par-dessus hello un échec.
+Dans certains cas, vous pouvez souhaiter initier plusieurs opérations de mutation simultanées sur un déploiement en cours. Par exemple, vous pouvez effectuer une mise à jour du service et, pendant la propagation de la mise à jour sur votre service, vous pouvez apporter des modifications, par exemple, restaurer la mise à jour, en appliquer une autre, ou encore supprimer le déploiement. Cela peut s’avérer nécessaire si une mise à niveau de service contient un code bogué qui entraîne des échecs répétés d’une instance de rôle mise à niveau. Dans ce cas, le contrôleur de structure Azure ne sera pas en mesure de faire avancer l’application de cette mise à jour, parce qu’un nombre insuffisant d’instances du domaine mis à niveau sont dans un bon état. Cet état est appelé *Déploiement bloqué*. Vous pouvez débloquer le déploiement en restaurant la mise à jour ou en appliquant une nouvelle mise à jour par dessus celle qui a échoué.
 
-Une fois que le service hello hello demande initiale tooupdate ou mise à niveau a été reçu par hello contrôleur de structure Azure, vous pouvez démarrer des opérations de mutation suivantes. Autrement dit, vous n’avez pas les toowait pour hello opération initiale toocomplete avant de commencer une autre opération de mutation.
+Une fois que le contrôleur de structure Azure a reçu la demande initiale de mise à jour ou de mise à niveau, vous pouvez démarrer des opérations de mutation suivantes. Autrement dit, il est inutile d’attendre la fin de l’opération initiale avant de commencer une autre opération de mutation.
 
-Initialisation d’une deuxième opération de mise à jour lors de la première mise à jour de hello est en cours effectue une opération rollback toohello similaire. Si la mise à jour de la deuxième hello est en mode automatique, hello premier domaine de mise à niveau est mis à niveau immédiatement, pouvant entraîner tooinstances à partir de plusieurs domaines de mise à niveau soient hors connexion au hello même point dans le temps.
+Le lancement d’une deuxième opération de mise à jour pendant que la première mise à jour est en cours permet d’effectuer une opération similaire à l’opération de restauration. Si la deuxième mise à jour est en mode automatique, le premier domaine de mise à niveau sera immédiatement, mis à niveau, ce qui pourra éventuellement provoquer la mise hors ligne de plusieurs domaines de mise à niveau hors ligne au même moment dans le temps.
 
-Hello opérations de mutation sont les suivantes : [modifier la Configuration déploiement](https://msdn.microsoft.com/library/azure/ee460809.aspx), [mettre à niveau un déploiement](https://msdn.microsoft.com/library/azure/ee460793.aspx), [état de déploiement de mise à jour](https://msdn.microsoft.com/library/azure/ee460808.aspx), [supprimer Déploiement](https://msdn.microsoft.com/library/azure/ee460815.aspx), et [mise à jour de la restauration ou de mise à niveau](https://msdn.microsoft.com/library/azure/hh403977.aspx).
+Les opérations de mutation sont les suivantes : [Modification de la configuration du déploiement](https://msdn.microsoft.com/library/azure/ee460809.aspx), [Mise à niveau du déploiement](https://msdn.microsoft.com/library/azure/ee460793.aspx), [Mise à jour de l’état du déploiement](https://msdn.microsoft.com/library/azure/ee460808.aspx), [Suppression du déploiement](https://msdn.microsoft.com/library/azure/ee460815.aspx) et [Restauration de mise à jour ou de mise à niveau](https://msdn.microsoft.com/library/azure/hh403977.aspx).
 
-Deux opérations, [obtenir le déploiement](https://msdn.microsoft.com/library/azure/ee460804.aspx) et [obtenir les propriétés de Service Cloud](https://msdn.microsoft.com/library/azure/ee460806.aspx), retourne un indicateur de verrouillé hello qui peut être examiné toodetermine si une opération de mutation peut être appelée sur un déploiement donné.
+Deux opérations, [Obtention du déploiement](https://msdn.microsoft.com/library/azure/ee460804.aspx) et [Obtention des propriétés de service cloud](https://msdn.microsoft.com/library/azure/ee460806.aspx), retournent l’indicateur Verrouillé qui peut être examiné pour déterminer si une opération de mutation peut être appelée sur un déploiement donné.
 
-Dans la commande toocall hello version de ces méthodes qui retourne hello verrouillé indicateur, vous devez définir des en-tête de demande trop « x-ms-version : 2011-10-01 » ou une version ultérieure. Pour plus d’informations sur les en-têtes de contrôle de version, consultez [Contrôle de version de gestion de service](https://msdn.microsoft.com/library/azure/gg592580.aspx).
+Pour appeler la version de ces méthodes qui renvoie un indicateur Verrouillé, vous devez définir un en-tête de requête « x-ms-version: 2011-10-01 » ou ultérieure. Pour plus d’informations sur les en-têtes de contrôle de version, consultez [Contrôle de version de gestion de service](https://msdn.microsoft.com/library/azure/gg592580.aspx).
 
 <a name="distributiondfroles"></a>
 
 ## <a name="distribution-of-roles-across-upgrade-domains"></a>Distribution des rôles entre domaines de mise à niveau
-Azure distribue uniformément les instances d’un rôle dans un nombre défini de domaines de mise à niveau, qui peuvent être configurés en tant que partie hello service (.csdef) du fichier de définition. Hello le nombre maximal de domaines de mise à niveau est 20 et par défaut de hello est 5. Pour plus d’informations sur la façon dont toomodify hello le fichier de définition de service, consultez [schéma de définition de Service Azure (fichier de .csdef)](cloud-services-model-and-package.md#csdef).
+Azure répartit les instances d’un rôle de manière égale sur un certain nombre de domaines de mise à niveau, qui peuvent être configurés dans le cadre du fichier de définition de service (.csdef). Le nombre maximal de domaines de mise à niveau est de 20, et le nombre par défaut est 5. Pour plus d’informations sur la façon de modifier le fichier de définition de service, consultez [Schéma de définition du service Azure (fichier .csdef)](cloud-services-model-and-package.md#csdef).
 
-Par exemple, si votre rôle comporte dix instances, par défaut, chaque domaine de mise à niveau contient deux instances. Si votre rôle a 14 instances, quatre des domaines de mise à niveau hello contiennent trois instances, et un cinquième domaine contient deux.
+Par exemple, si votre rôle comporte dix instances, par défaut, chaque domaine de mise à niveau contient deux instances. Si votre rôle comporte 14 instances, alors quatre des domaines de mise à niveau contiennent trois instances et un cinquième domaine en contient deux.
 
-Domaines de mise à niveau sont identifiés avec un index de base zéro : hello premier domaine de mise à niveau a un ID égal à 0, et deuxième domaine de mise à niveau hello possède un ID de 1 et ainsi de suite.
+Les domaines de mise à niveau sont identifiés avec un index de base zéro : l’ID du premier domaine de mise à niveau est égal à 0, et le deuxième domaine de mise à niveau possède un ID de 1 et ainsi de suite.
 
-Hello diagramme suivant illustre comment un service qui contient deux rôles sont distribués lors du service de hello définit deux domaines de mise à niveau. service de Hello exécute huit instances de rôle web de hello et neuf instances de rôle de travail hello.
+Le diagramme suivant montre comment un service contenant deux rôles qui sont distribués lorsque le service définit deux domaines de mise à niveau. Le service exécute huit instances de rôle web et neuf instances de rôle de travail.
 
 ![Distribution des domaines de mise à niveau](media/cloud-services-update-azure-service/IC345533.png "Distribution des domaines de mise à niveau")
 
 > [!NOTE]
-> Notez qu’Azure contrôle la façon dont les instances sont affectées entre d’un domaine de mise à niveau à l’autre. Il n’est pas possible toospecify les instances sont allouées toowhich domaine.
+> Notez qu’Azure contrôle la façon dont les instances sont affectées entre d’un domaine de mise à niveau à l’autre. Il est impossible de spécifier quelles sont les instances affectées, et à quel domaine.
 >
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Comment les Services de cloud computing tooManage](cloud-services-how-to-manage.md)  
-[Comment les Services de cloud computing tooMonitor](cloud-services-how-to-monitor.md)  
-[Comment les Services de cloud computing tooConfigure](cloud-services-how-to-configure.md)  
+[Gestion des services cloud](cloud-services-how-to-manage.md)  
+[Surveillance des services cloud](cloud-services-how-to-monitor.md)  
+[Configurer Cloud Services](cloud-services-how-to-configure.md)  

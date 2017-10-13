@@ -1,6 +1,6 @@
 ---
-title: "basculement aaaStorSimple, tooa de récupération d’urgence StorSimple Cloud Appliance | Documents Microsoft"
-description: "Découvrez le matériel de cloud toofail sur votre tooa de périphérique physique StorSimple 8000 series."
+title: "Basculement, récupération d’urgence StorSimple vers une StorSimple Cloud Appliance| Microsoft Docs"
+description: "Découvrez comment basculer votre appareil physique de la gamme StorSimple 8000 vers une appliance cloud."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,84 +14,84 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: alkohli
-ms.openlocfilehash: e8a0bca057024358e3a557fe85a42ddefea36cff
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ec8bebf2854e84a37e84b45564e80fc20b63d8d8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="fail-over-tooyour-storsimple-cloud-appliance"></a>Basculer tooyour StorSimple Appliance de Cloud
+# <a name="fail-over-to-your-storsimple-cloud-appliance"></a>Basculer vers votre StorSimple Cloud Appliance
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Ce didacticiel décrit toofail requis de hello étapes sur un tooa de périphérique physique StorSimple 8000 series StorSimple Appliance de Cloud s’il existe un reprise après sinistre. StorSimple utilise des données hello périphérique basculement fonctionnalité toomigrate à partir d’un périphérique physique source dans le dispositif de cloud hello datacenter tooa s’exécutant dans Azure. conseils Hello dans ce didacticiel s’applique des périphériques physiques tooStorSimple 8000 series et appareils de cloud qui exécutent des versions de logiciel mise à jour 3 et versions ultérieures.
+Ce didacticiel décrit les étapes requises pour basculer un appareil physique de la gamme StorSimple 8000 vers une StorSimple Cloud Appliance en cas de sinistre. StorSimple utilise l’option de basculement d’appareil pour migrer des données d’un appareil physique source dans le centre de données vers une appliance cloud exécutée dans Azure. Les instructions de ce didacticiel s’appliquent aux appareils physiques de gamme StorSimple 8000 et aux appliances cloud exécutant des versions logicielles Update 3 et versions ultérieures.
 
-toolearn en savoir plus sur le basculement de l’appareil et comment il est utilisé toorecover d’urgence, consultez trop[basculement et récupération d’urgence pour les unités StorSimple 8000 series](storsimple-8000-device-failover-disaster-recovery.md).
+Pour en savoir plus sur le basculement d’appareil et comment il est utilisé après un sinistre, accédez à [Basculement et récupération d’urgence pour les appareils StorSimple de la gamme 8000](storsimple-8000-device-failover-disaster-recovery.md).
 
-toofail sur un appareil StorSimple appareil physique tooanother physique, allez trop[basculer sur un appareil physique StorSimple de tooa](storsimple-8000-device-failover-physical-device.md). toofail sur un appareil tooitself, accédez trop[basculer toohello même appareil physique StorSimple](storsimple-8000-device-failover-same-device.md).
+Pour basculer un appareil physique StorSimple vers un autre appareil physique, accédez à [Basculer vers un appareil physique StorSimple](storsimple-8000-device-failover-physical-device.md). Pour basculer un appareil vers lui-même, accédez à [Basculer vers le même appareil physique StorSimple](storsimple-8000-device-failover-same-device.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-- Vérifiez que vous avez consulté les considérations hello pour le basculement de l’appareil. Pour plus d’informations, consultez trop[considérations courantes pour le basculement de l’appareil](storsimple-8000-device-failover-disaster-recovery.md).
+- Assurez-vous d’avoir passé en revue les considérations relatives au basculement d’appareil. Pour plus d’informations, accédez à [Considérations courantes relatives au basculement d’appareil](storsimple-8000-device-failover-disaster-recovery.md).
 
-- Vous devez avoir créé et configuré une StorSimple Cloud Appliance avant d’exécuter cette procédure. Si en cours d’exécution mettre à jour la version du logiciel 3 ou version ultérieure, envisagez d’utiliser un dispositif 8020 cloud pour hello récupération d’urgence. modèle 8020 de Hello a 64 To et utilise le stockage Premium. Pour plus d’informations, consultez trop[déployer et gérer une application de Cloud StorSimple](storsimple-8000-cloud-appliance-u2.md).
+- Vous devez avoir créé et configuré une StorSimple Cloud Appliance avant d’exécuter cette procédure. Si vous exécutez la version logicielle Update 3 ou une version ultérieure, envisagez d’utiliser une appliance cloud 8020 pour la récupération d’urgence. Le modèle 8020 a 64 To et utilise le stockage Premium. Pour plus d’informations, accédez à [Déployer et gérer une StorSimple Cloud Appliance](storsimple-8000-cloud-appliance-u2.md).
 
-## <a name="steps-toofail-over-tooa-cloud-appliance"></a>Toofail étapes cloud via tooa
+## <a name="steps-to-fail-over-to-a-cloud-appliance"></a>Étapes de basculement vers une appliance cloud
 
-Effectuer hello suivant les étapes toorestore hello appareil tooa cible StorSimple Appliance de Cloud.
+Procédez comme suit pour restaurer l’appareil vers une StorSimple Cloud Appliance cible.
 
-1.  Vérifiez que hello conteneur de volume toofail sur a associé à des instantanés cloud. Pour plus d’informations, consultez trop[sauvegardes toocreate du service Gestionnaire de périphériques StorSimple](storsimple-8000-manage-backup-policies-u2.md).
-2. Atteindre le service du Gestionnaire de périphériques StorSimple tooyour et cliquez sur **périphériques**. Bonjour **périphériques** panneau, accédez toohello la liste des périphériques connectés à votre service.
+1.  Vérifiez que le conteneur de volumes que vous souhaitez basculer est associé à des instantanés cloud. Pour plus d’informations, accédez à [Utiliser le service StorSimple Device Manager pour créer des sauvegardes](storsimple-8000-manage-backup-policies-u2.md).
+2. Accédez à votre service StorSimple Device Manager et cliquez sur **Appareils**. Dans le panneau **Appareils**, accédez à la liste des appareils connectés à votre service.
     ![Sélectionner l’appareil](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev1.png)
-3. Sélectionnez votre appareil source et cliquez dessus. Appareil de source de Hello dispose des conteneurs de volumes hello que vous souhaitez toofail par. Accédez trop**Paramètres > conteneurs de volumes**.
+3. Sélectionnez votre appareil source et cliquez dessus. L’appareil source comprend les conteneurs de volumes que vous souhaitez basculer. Accédez à **Paramètres > Conteneurs de volumes**.
 
     ![Sélectionnez l’appareil](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev2.png)
     
-4. Sélectionnez un conteneur de volumes que vous aimeriez toofail sur tooanother appareil. Cliquez sur hello volume conteneur toodisplay hello liste des volumes de ce conteneur. Sélectionnez un volume, avec le bouton droit, puis cliquez sur **mettre hors connexion** tootake le volume hello hors connexion.
+4. Sélectionnez un conteneur de volume que vous souhaitez basculer vers un autre appareil. Cliquez sur le conteneur de volume pour afficher la liste des volumes dans ce conteneur. Sélectionnez un volume, cliquez avec le bouton droit, puis cliquez sur **Mettre hors connexion** afin de mettre le volume hors connexion.
 
     ![Sélectionnez l’appareil](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev5.png)
 
-5. Répétez ce processus pour tous les volumes hello dans le conteneur de volume hello.
+5. Répétez ce processus pour tous les volumes dans le conteneur de volume.
 
      ![Sélectionnez l’appareil](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev7.png)
 
-6. Étape précédente de hello Répétez ces étapes pour tous les hello conteneurs de volumes vous aimeriez toofail sur tooanother appareil.
+6. Répétez l’étape précédente pour tous les conteneurs de volume que vous souhaitez basculer vers un autre appareil.
 
-7. Revenir en arrière toohello **périphériques** panneau. Dans la barre de commandes hello, cliquez sur **basculer**.
+7. Revenez au panneau **Appareils**. Dans la barre de commandes, cliquez sur **Effectuer un basculement**.
 
     ![Cliquer sur Effectuer un basculement](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev8.png)
-8. Bonjour **basculer** panneau, effectuer hello comme suit :
+8. Dans le panneau **Effectuer un basculement**, procédez comme suit :
    
-    1. Cliquez sur **Source**. Sélectionnez toofail de conteneurs de volume hello sur. **Hello uniquement les conteneurs de volumes avec des instantanés cloud associés et les volumes hors connexion sont affichés.**
+    1. Cliquez sur **Source**. Sélectionnez les conteneurs de volumes à basculer. **Seuls les conteneurs de volumes associés à des instantanés cloud et des volumes hors connexion sont affichés.**
         ![Sélectionner une source](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev11.png)
-    2. Cliquez sur **Cible**. Sélectionnez une cible cloud à partir de la liste déroulante de hello de périphériques disponibles. **Uniquement hello pour les appareils qui ont des conteneurs de volumes source suffisamment capacité tooaccommodate sont affichent dans la liste de hello.**
+    2. Cliquez sur **Cible**. Sélectionnez une appliance cloud cible dans la liste déroulante des appareils disponibles. **Seuls les appareils disposant d’une capacité suffisante pour accueillir les conteneurs de volumes source sont affichés dans la liste.**
 
         ![Sélectionner la cible](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev12.png)
 
-    3. Passez en revue les paramètres de basculement hello sous **Résumé** et sélectionnez la case à cocher de hello indiquant que les volumes hello dans les conteneurs de volumes sélectionnés sont hors connexion. 
+    3. Passez en revue les paramètres de basculement sous **Résumé** et activez la case à cocher indiquant que les volumes dans les conteneurs de volumes sélectionnés sont hors connexion. 
 
         ![Passer en revue les paramètres de basculement](./media/storsimple-8000-device-failover-disaster-recovery/failover-cloud-dev13.png)
 
-9. Un travail de basculement est créé. basculement de hello toomonitor des tâches, cliquez sur la notification de travail hello.
+9. Un travail de basculement est créé. Pour surveiller le travail de basculement, cliquez sur la notification de travail.
 
     ![Surveiller le travail de basculement](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev13.png)
 
-10. Une fois que hello basculement terminé, revenez toohello **périphériques** panneau.
+10. Une fois le basculement terminé, revenez au panneau **Appareils** .
 
-    1. Sélectionnez le périphérique hello qui a été utilisé en tant que cible de hello pour le basculement de hello.
+    1. Sélectionnez l’appareil qui a été utilisé en tant que cible pour le basculement.
 
        ![Sélectionnez l’appareil](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev14.png)
 
-    2. Cliquez sur **Conteneurs de volumes**. Tous les conteneurs de volume hello, ainsi que les volumes hello à partir de l’ancien périphérique de hello, doivent être répertoriés.
+    2. Cliquez sur **Conteneurs de volumes**. Tous les conteneurs de volume, ainsi que les volumes de l’ancien appareil, doivent être répertoriés.
 
-       Si le conteneur de volume hello ayant basculé a attaché localement les volumes, les volumes sont basculés en tant que volumes hiérarchisés. Les volumes épinglés localement ne sont pas pris en charge sur une StorSimple Cloud Appliance.
+       Si le conteneur de volumes que vous avez basculé contient des volumes épinglés localement, ces volumes sont basculés en tant que volumes à plusieurs niveaux. Les volumes épinglés localement ne sont pas pris en charge sur une StorSimple Cloud Appliance.
 
        ![Afficher les conteneurs de volumes cibles](./media/storsimple-8000-device-failover-disaster-recovery/failover-phy-dev17.png)
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Une fois que vous avez effectué un basculement, vous devrez peut-être trop[désactiver ou supprimer votre appareil StorSimple](storsimple-8000-deactivate-and-delete-device.md).
+* Après avoir effectué un basculement, vous devrez peut-être [désactiver ou supprimer votre appareil StorSimple](storsimple-8000-deactivate-and-delete-device.md).
 
-* Pour plus d’informations sur la façon dont toouse hello StorSimple le Gestionnaire de périphériques de service, accédez trop[utilisez hello tooadminister du service Gestionnaire de périphériques StorSimple votre appareil StorSimple](storsimple-8000-manager-service-administration.md).
+* Pour plus d’informations sur l’utilisation du service StorSimple Device Manager, accédez à [Use the StorSimple Device Manager service to administer your StorSimple device](storsimple-8000-manager-service-administration.md) (Utiliser le service StorSimple Device Manager pour gérer votre appareil StorSimple).
 

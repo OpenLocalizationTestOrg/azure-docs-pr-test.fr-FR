@@ -1,5 +1,5 @@
 > [!NOTE]
-> informations Hello dans ce document uniquement en fonction de tooWindows des clusters HDInsight.
+> Les informations présentes dans ce document sont spécifiques aux clusters HDInsight sous Windows.
 > 
 > 
 

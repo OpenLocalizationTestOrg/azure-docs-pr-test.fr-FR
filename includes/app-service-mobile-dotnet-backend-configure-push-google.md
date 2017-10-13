@@ -1,23 +1,23 @@
-Utiliser la procédure hello qui correspond à votre type de projet de serveur principal&mdash;soit [.NET back-end](#dotnet) ou [Node.js back-end](#nodejs).
+Utilisez la procédure ci-dessous correspondant à votre type de projet de serveur principal &mdash; [serveur principal .NET](#dotnet) ou [serveur principal Node.js](#nodejs).
 
 ### <a name="dotnet"></a>Projet de serveur principal .NET
-1. Dans Visual Studio, cliquez sur le projet de serveur hello, puis cliquez sur **gérer les Packages NuGet**. Recherchez `Microsoft.Azure.NotificationHubs`, puis cliquez sur **Installer**. Bibliothèque cliente de concentrateurs de Notification hello sont ainsi installés.
-2. Dans le dossier de contrôleurs hello, ouvrez TodoItemController.cs et ajoutez hello suit `using` instructions :
+1. Dans Visual Studio, cliquez avec le bouton droit sur le projet de serveur, puis cliquez sur **Gérer les packages NuGet**. Recherchez `Microsoft.Azure.NotificationHubs`, puis cliquez sur **Installer**. Cette commande installe la bibliothèque cliente Notification Hubs.
+2. Dans le dossier Contrôleurs, ouvrez TodoItemController.cs et ajoutez les instructions `using` suivantes :
 
         using Microsoft.Azure.Mobile.Server.Config;
         using Microsoft.Azure.NotificationHubs;
-3. Remplacez hello `PostTodoItem` méthode avec hello suivant de code :  
+3. Remplacez la méthode `PostTodoItem` par le code suivant :  
 
         public async Task<IHttpActionResult> PostTodoItem(TodoItem item)
         {
             TodoItem current = await InsertAsync(item);
-            // Get hello settings for hello server project.
+            // Get the settings for the server project.
             HttpConfiguration config = this.Configuration;
 
             MobileAppSettingsDictionary settings =
                 this.Configuration.GetMobileAppSettingsProvider().GetMobileAppSettings();
 
-            // Get hello Notification Hubs credentials for hello Mobile App.
+            // Get the Notification Hubs credentials for the Mobile App.
             string notificationHubName = settings.NotificationHubName;
             string notificationHubConnection = settings
                 .Connections[MobileAppSettingsKeys.NotificationHubConnectionString].ConnectionString;
@@ -31,26 +31,26 @@ Utiliser la procédure hello qui correspond à votre type de projet de serveur p
 
             try
             {
-                // Send hello push notification and log hello results.
+                // Send the push notification and log the results.
                 var result = await hub.SendGcmNativeNotificationAsync(androidNotificationPayload);
 
-                // Write hello success result toohello logs.
+                // Write the success result to the logs.
                 config.Services.GetTraceWriter().Info(result.State.ToString());
             }
             catch (System.Exception ex)
             {
-                // Write hello failure result toohello logs.
+                // Write the failure result to the logs.
                 config.Services.GetTraceWriter()
                     .Error(ex.Message, null, "Push.SendAsync Error");
             }
             return CreatedAtRoute("Tables", new { id = current.Id }, current);
         }
 
-4. Publiez de nouveau projet de serveur hello.
+4. Publier à nouveau le projet de serveur
 
 ### <a name="nodejs"></a>Projet de serveur principal Node.js
-1. Si vous n’avez pas déjà fait, [télécharger le projet de démarrage rapide de hello](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart), ou sinon utilisez hello [éditeur en ligne Bonjour Azure portal](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor).
-2. Remplacez le code existant dans le fichier de todoitem.js hello hello suivant de hello :
+1. Si vous ne l’avez pas encore fait, [téléchargez le projet de démarrage rapide](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#download-quickstart) ou utilisez [l’éditeur en ligne du Portail Azure](../articles/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#online-editor).
+2. Remplacez le code présent dans le fichier todoitem.js par le code suivant :
 
         var azureMobileApps = require('azure-mobile-apps'),
         promises = require('azure-mobile-apps/src/utilities/promises'),
@@ -59,22 +59,22 @@ Utiliser la procédure hello qui correspond à votre type de projet de serveur p
         var table = azureMobileApps.table();
 
         table.insert(function (context) {
-        // For more information about hello Notification Hubs JavaScript SDK,
+        // For more information about the Notification Hubs JavaScript SDK,
         // see http://aka.ms/nodejshubs
         logger.info('Running TodoItem.insert');
 
-        // Define hello GCM payload.
+        // Define the GCM payload.
         var payload = {
             "data": {
                 "message": context.item.text
             }
         };   
 
-        // Execute hello insert.  hello insert returns hello results as a Promise,
-        // Do hello push as a post-execute action within hello promise flow.
+        // Execute the insert.  The insert returns the results as a Promise,
+        // Do the push as a post-execute action within the promise flow.
         return context.execute()
             .then(function (results) {
-                // Only do hello push if configured
+                // Only do the push if configured
                 if (context.push) {
                     // Send a GCM native notification.
                     context.push.gcm.send(null, payload, function (error) {
@@ -85,7 +85,7 @@ Utiliser la procédure hello qui correspond à votre type de projet de serveur p
                         }
                     });
                 }
-                // Don't forget tooreturn hello results from hello context.execute()
+                // Don't forget to return the results from the context.execute()
                 return results;
             })
             .catch(function (error) {
@@ -95,5 +95,5 @@ Utiliser la procédure hello qui correspond à votre type de projet de serveur p
 
         module.exports = table;  
 
-    Envoie une notification GCM contenant hello item.text lors de l’insertion d’un nouvel élément de tâche.
-3. Lorsque vous modifiez le fichier hello sur votre ordinateur local, le projet de serveur hello republier.
+    Ce code envoie une notification GCM contenant item.text quand un nouvel élément todo est inséré.
+3. Quand vous modifiez le fichier sur votre ordinateur local, republiez le projet serveur.

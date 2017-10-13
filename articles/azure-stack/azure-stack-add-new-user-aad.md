@@ -1,6 +1,6 @@
 ---
-title: aaaAdd un nouveau compte de locataire Azure pile dans Azure Active Directory | Documents Microsoft
-description: "Après avoir déployé le Kit de développement de pile Microsoft Azure, vous devez toocreate au moins un compte d’utilisateur de client, vous pouvez explorer le portail de locataires hello."
+title: Ajouter un nouveau compte client Azure Stack dans Azure Active Directory | Microsoft Docs
+description: "Après le déploiement du Kit de développement Microsoft Azure Stack, vous devrez créer au moins un compte utilisateur client pour pouvoir explorer le portail client."
 services: azure-stack
 documentationcenter: 
 author: heathl17
@@ -12,55 +12,57 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-ms.date: 07/10/2017
+ms.date: 09/25/2017
 ms.author: helaw
-ms.openlocfilehash: f0cd380d4fc0b52f4e5f6f0c9ef80d3dd0d64443
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 91d1c52c0abf14656e08b511e4f6c8041e319020
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
+*S’applique à : Kit de développement Azure Stack*
+
 # <a name="add-a-new-azure-stack-tenant-account-in-azure-active-directory"></a>Ajouter un nouveau compte de locataire Azure Stack dans Azure Active Directory
-Après avoir [déploiement hello Kit de développement Azure pile](azure-stack-run-powershell-script.md), vous aurez besoin à un compte d’utilisateur locataire pour pouvoir Explorer le portail de locataires hello et vos offres et les plans de test. Vous pouvez créer un compte de locataire par [à l’aide de hello portail Azure](#create-an-azure-stack-tenant-account-using-the-azure-portal) ou par [à l’aide de PowerShell](#create-an-azure-stack-tenant-account-using-powershell).
+Après le [déploiement du Kit de développement Azure Stack](azure-stack-run-powershell-script.md), vous aurez besoin d’un compte utilisateur client afin de pouvoir explorer le portail client et tester vos offres et vos plans. Vous pouvez créer un compte client [à l’aide du portail Azure](#create-an-azure-stack-tenant-account-using-the-azure-portal) ou [à l’aide de PowerShell](#create-an-azure-stack-tenant-account-using-powershell).
 
-## <a name="create-an-azure-stack-tenant-account-using-hello-azure-portal"></a>Créer un compte de locataire Azure pile à l’aide de hello portail Azure
-Vous devez avoir un hello de toouse abonnement Azure portail Azure.
+## <a name="create-an-azure-stack-tenant-account-using-the-azure-portal"></a>Création d’un compte de locataire Azure Stack à l’aide du portail Azure
+Pour utiliser le portail Azure, vous devez disposer d’un abonnement Azure.
 
-1. Connectez-vous trop[Azure](http://manage.windowsazure.com).
+1. Connectez-vous à [Azure](http://manage.windowsazure.com).
 2. Dans la barre de navigation gauche Microsoft Azure, cliquez sur **Active Directory**.
-3. Dans la liste de répertoires hello, cliquez sur répertoire hello que vous souhaitez toouse pour la pile de Azure, ou créez un nouveau.
+3. Dans la liste des répertoires, cliquez sur le répertoire que vous souhaitez utiliser pour Azure Stack, ou créez-en un.
 4. Sur la page de ce répertoire, cliquez sur **Utilisateurs**.
 5. Cliquez sur **Add User**.
-6. Bonjour **ajouter un utilisateur** Assistant Bonjour **Type d’utilisateur** , choisissez **nouvel utilisateur dans votre organisation**.
-7. Bonjour **nom d’utilisateur** , tapez un nom d’utilisateur de hello.
-8. Bonjour  **@**  , choisissez l’entrée appropriée de hello.
-9. Cliquez sur flèche suivant de hello.
-10. Bonjour **profil utilisateur** page de l’Assistant de hello, tapez un **prénom**, **nom**, et **nom d’affichage**.
-11. Bonjour **rôle** , choisissez **utilisateur**.
-12. Cliquez sur flèche suivant de hello.
-13. Sur hello **mot de passe temporaire Get** , cliquez sur **créer**.
-14. Hello de copie **nouveau mot de passe**.
-15. Ouvrez une session dans tooMicrosoft Azure avec un nouveau compte de hello. Modifier le mot de passe hello lorsque vous y êtes invité.
-16. Connectez-vous trop`https://portal.local.azurestack.external` avec le portail de locataires hello nouveau compte toosee hello.
+6. Dans l’assistant **Ajouter un utilisateur**, dans la liste **Type d’utilisateur**, choisissez **Nouvel utilisateur dans votre organisation**.
+7. Dans la zone **Nom d’utilisateur** , saisissez le nom de l’utilisateur.
+8. Dans l’assistant **@** , sélectionnez l’entrée appropriée.
+9. Cliquez sur la flèche Suivant.
+10. Dans la page **Profil utilisateur** de l’assistant, tapez un **Prénom**, un **Nom** et un **Nom d’affichage**.
+11. Dans la liste **Rôle**, choisissez **Utilisateur**.
+12. Cliquez sur la flèche Suivant.
+13. Dans la page **Obtenir un mot de passe temporaire**, cliquez sur **Créer**.
+14. Copiez le **Nouveau mot de passe**.
+15. Connectez-vous à Microsoft Azure avec le nouveau compte. Modifiez le mot de passe lorsque vous y êtes invité.
+16. Connectez-vous à `https://portal.local.azurestack.external` avec le nouveau compte pour afficher le portail client.
 
 ## <a name="create-an-azure-stack-tenant-account-using-powershell"></a>Création d’un compte de locataire Azure Stack à l’aide de PowerShell
-Si vous n’avez pas un abonnement Azure, vous ne pouvez pas utiliser hello tooadd portail Azure un compte d’utilisateur client. Dans ce cas, vous pouvez utiliser les hello Azure Module Active Directory pour Windows PowerShell à la place.
+Si vous n’avez pas d’abonnement Azure, vous ne pouvez pas utiliser le portail Azure pour ajouter un compte utilisateur client. Dans ce cas, vous pouvez utiliser le module Azure Active Directory pour Windows PowerShell à la place.
 
 > [!NOTE]
-> Si vous utilisez Microsoft Account (Live ID) toodeploy Kit de développement de pile Azure, vous ne pouvez pas utiliser le compte client AAD PowerShell toocreate. 
+> Si vous utilisez un compte Microsoft (Live ID) pour déployer le Kit de développement Azure Stack, vous ne pouvez pas utiliser AAD PowerShell pour créer le compte client. 
 > 
 > 
 
-1. Installer hello [Assistant Microsoft Online Services Sign-In pour RTW de professionnels de l’informatique](https://www.microsoft.com/en-us/download/details.aspx?id=41950).
-2. Installer hello [Azure Module Active Directory pour Windows PowerShell (version 64 bits)](http://go.microsoft.com/fwlink/p/?linkid=236297) et ouvrez-le.
-3. Exécutez hello suivant d’applets de commande :
+1. Installez [l’Assistant de connexion Microsoft Online Services pour les professionnels de l’informatique RTW](https://www.microsoft.com/en-us/download/details.aspx?id=41950).
+2. Installez le [module Azure Active Directory pour Windows PowerShell (version 64 bits)](http://go.microsoft.com/fwlink/p/?linkid=236297) et ouvrez-le.
+3. Exécutez les applets de commande suivantes :
 
     ```powershell
-    # Provide hello AAD credential you use toodeploy Azure Stack Development Kit
+    # Provide the AAD credential you use to deploy Azure Stack Development Kit
 
             $msolcred = get-credential
 
-    # Add a tenant account "Tenant Admin <username>@<yourdomainname>" with hello initial password "<password>".
+    # Add a tenant account "Tenant Admin <username>@<yourdomainname>" with the initial password "<password>".
 
             connect-msolservice -credential $msolcred
             $user = new-msoluser -DisplayName "Tenant Admin" -UserPrincipalName <username>@<yourdomainname> -Password <password>
@@ -68,6 +70,6 @@ Si vous n’avez pas un abonnement Azure, vous ne pouvez pas utiliser hello tooa
 
     ```
 
-1. Connectez-vous tooMicrosoft Azure avec un nouveau compte de hello. Modifier le mot de passe hello lorsque vous y êtes invité.
-2. Connectez-vous trop`https://portal.local.azurestack.external` avec le portail de locataires hello nouveau compte toosee hello.
+1. Connectez-vous à Microsoft Azure avec le nouveau compte. Modifiez le mot de passe lorsque vous y êtes invité.
+2. Connectez-vous à `https://portal.local.azurestack.external` avec le nouveau compte pour afficher le portail client.
 

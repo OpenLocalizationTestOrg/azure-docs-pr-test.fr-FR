@@ -1,6 +1,6 @@
 ---
-title: "schéma de codage Standard aaaMedia | Documents Microsoft"
-description: "rubrique de Hello donne une vue d’ensemble du schéma de Media Encoder Standard hello."
+title: "Schéma Media Encoder Standard | Microsoft Docs"
+description: "Cette rubrique fournit une vue d’ensemble du schéma Media Encoder Standard."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: juliako
-ms.openlocfilehash: 82bad27b9546f75557ac691ff148b46990647632
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0d034e2c3827b297173262d294a2e566a6b45fac
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="media-encoder-standard-schema"></a>Schéma Media Encoder Standard
-Cette rubrique décrit certains des éléments de hello et types de schéma XML de hello sur lequel [prédéfinit Media Encoder Standard](media-services-mes-presets-overview.md) sont basées. rubrique de Hello donne l’explication des éléments et leurs valeurs valides. schéma complet de Hello est publié à une date ultérieure.  
+Cette rubrique décrit certains des éléments et types du schéma XML sur lequel [les préréglages Media Encoder Standard](media-services-mes-presets-overview.md) sont basés. La rubrique fournit des explications sur les éléments et leurs valeurs valides. Le schéma complet sera publié à une date ultérieure.  
 
 ## <a name="Preset"></a> Présélection (élément racine)
 Définit une valeur prédéfinie d’encodage.  
@@ -29,16 +29,16 @@ Définit une valeur prédéfinie d’encodage.
 ### <a name="elements"></a>Éléments
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Encodage** |[Encodage](media-services-mes-schema.md#Encoding) |Élément racine, indique que les sources d’entrée hello toobe encodé. |
+| **Encodage** |[Encodage](media-services-mes-schema.md#Encoding) |Élément racine, indique que les sources d’entrée doivent être encodées. |
 | **Sorties** |[Sorties](media-services-mes-schema.md#Output) |Collection de fichiers de sortie souhaités. |
 
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Version**<br/><br/> Requis |**xs:decimal** |version de présélection Hello. Hello restrictions suivantes s’appliquent : xs:fractionDigits valeur = « 1 » et xs:minInclusive value = « 1 » par exemple, **version = « 1.0 »**. |
+| **Version**<br/><br/> Requis |**xs:decimal** |La version de présélection. Les restrictions suivantes s’appliquent : xs:fractionDigits value="1"  et xs:minInclusive value="1" Par exemple, **version="1.0"**. |
 
 ## <a name="Encoding"></a> Encodage
-Contient une séquence de hello suivant d’éléments.  
+Contient une séquence des éléments suivants.  
 
 ### <a name="elements"></a>Éléments
 | Nom | Type | Description |
@@ -54,20 +54,20 @@ Contient une séquence de hello suivant d’éléments.
 | Nom | Type | Description |
 | --- | --- | --- |
 | **TwoPass**<br/><br/> minOccurs="0" |**xs:boolean** |Actuellement, seul l’encodage en une étape est pris en charge. |
-| **KeyFrameInterval**<br/><br/> minOccurs="0"<br/><br/> **default="00:00:02"** |**xs:time** |Détermine hello fixée l’espacement entre les frames IDR en unités de secondes. Également appelée durée de GOP tooas hello. Consultez **SceneChangeDetection** (ci-dessous) pour contrôler si hello encodeur peut s’écarter cette valeur. |
-| **SceneChangeDetection**<br/><br/> minOccurs="0"<br/><br/> default=”false” |**xs:boolean** |Si set tootrue, les tentatives d’encodeur toodetect scène modifier dans la vidéo de hello et insère un cadre IDR. |
-| **Complexité**<br/><br/> minOccurs="0"<br/><br/> default="Balanced" |**xs:string** |Contrôles hello compromis encoder la qualité de vitesse et de la vidéo. Peut être une des valeurs suivantes de hello : **vitesse**, **équilibré**, ou **qualité**<br/><br/> Par défaut : **Équilibré** |
+| **KeyFrameInterval**<br/><br/> minOccurs="0"<br/><br/> **default="00:00:02"** |**xs:time** |Détermine l’espacement fixe entre les images IDR en secondes. Également appelé durée GOP. Reportez-vous à **SceneChangeDetection** (ci-dessous) pour savoir si l’encodeur peut s’écarter de cette valeur. |
+| **SceneChangeDetection**<br/><br/> minOccurs="0"<br/><br/> default=”false” |**xs:boolean** |Si la valeur est définie sur true, l’encodeur essaie de détecter le changement de scène dans la vidéo et insère une trame IDR. |
+| **Complexité**<br/><br/> minOccurs="0"<br/><br/> default="Balanced" |**xs:string** |Contrôle le compromis entre vitesse d’encodage et qualité de la vidéo. Peut être une des valeurs suivantes : **Vitesse**, **Équilibré** ou **Qualité**<br/><br/> Par défaut : **Équilibré** |
 | **SyncMode**<br/><br/> minOccurs="0" | |Cette fonctionnalité sera présentée dans les versions à venir. |
 | **H264Layers**<br/><br/> minOccurs="0" |[H264Layers](media-services-mes-schema.md#H264Layers) |Collection de couches vidéo de sortie. |
 
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Condition** |**xs:string** | Lors de l’entrée de hello n’affiche aucune vidéo, vous pouvez choisir tooforce hello encodeur tooinsert une piste vidéo monochrome. toodo qui, à Condition d’utilisent = « InsertBlackIfNoVideoBottomLayerOnly » (tooinsert une vidéo avec uniquement le débit de la plus basse hello) ou une Condition = « InsertBlackIfNoVideo » (tooinsert une vidéo à tous les débits binaires de sortie). Pour plus d’informations, consultez [cette rubrique](media-services-advanced-encoding-with-mes.md#no_video) .|
+| **Condition** |**xs:string** | Lorsque l’entrée ne comporte aucune vidéo, vous pouvez vouloir forcer l’encodeur à insérer une piste vidéo monochrome. Pour ce faire, utilisez Condition="InsertBlackIfNoVideoBottomLayerOnly" (pour insérer une vidéo uniquement avec le débit le plus bas) ou Condition="InsertBlackIfNoVideo" (pour insérer une vidéo à tous les débits binaires de sortie). Pour plus d’informations, consultez [cette rubrique](media-services-advanced-encoding-with-mes.md#no_video) .|
 
 ## <a name="H264Layers"></a> H264Layers
 
-Par défaut, si vous envoyez un encodeur toohello d’entrée qui contient uniquement des données audio et aucune vidéo, hello élément multimédia de sortie contiennent les fichiers avec des données audio uniquement. Certains lecteurs ne pourront peut-être toohandle ce flux de sortie. Vous pouvez utiliser de hello H264Video **InsertBlackIfNoVideo** attribut tooforce hello encodeur tooadd une sortie toohello de piste vidéo dans ce scénario. Pour plus d’informations, consultez [cette rubrique](media-services-advanced-encoding-with-mes.md#no_video) .
+Par défaut, si vous envoyez à l’encodeur une entrée contenant uniquement de l’audio (sans contenu vidéo), le composant de sortie regroupera les fichiers qui contiennent uniquement des données audio. Certains lecteurs ne sont peut-être pas capables de gérer ces flux de sortie. Dans ce cas, vous pouvez utiliser l’attribut **InsertBlackIfNoVideo** H264Video pour forcer l’encodeur à ajouter une piste vidéo à la sortie. Pour plus d’informations, consultez [cette rubrique](media-services-advanced-encoding-with-mes.md#no_video) .
               
 ### <a name="elements"></a>Éléments
 | Nom | Type | Description |
@@ -76,56 +76,56 @@ Par défaut, si vous envoyez un encodeur toohello d’entrée qui contient uniqu
 
 ## <a name="H264Layer"></a> H264Layer
 > [!NOTE]
-> Limites vidéos sont basées sur les valeurs hello décrites dans hello [H264 niveaux](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC#Levels) table.  
+> Les limites vidéo sont basées sur les valeurs décrites dans le tableau [Niveaux H264](https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC#Levels).  
 > 
 > 
 
 ### <a name="elements"></a>Éléments
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Profil**<br/><br/> minOccurs="0"<br/><br/> default=”Auto” |**xs:string** |Peut être de l’un des éléments suivants de hello **xs : String** valeurs : **automatique**, **base**, **principal**, **haute**. |
+| **Profil**<br/><br/> minOccurs="0"<br/><br/> default=”Auto” |**xs:string** |Peut être une des valeurs  **xs:string** suivantes : **Auto**, **Ligne de base**, **Principal**, **Élevé**. |
 | **Niveau**<br/><br/> minOccurs="0"<br/><br/> default=”Auto” |**xs:string** | |
-| **Bitrate**<br/><br/> minOccurs="0" |**xs:int** |vitesse de transmission Hello utilisé pour cette couche vidéo, spécifiée en Kbits/s. |
-| **MaxBitrate**<br/><br/> minOccurs="0" |**xs:int** |Hello vitesse de transmission maximale utilisée pour cette couche vidéo, spécifiée en Kbits/s. |
-| **BufferWindow**<br/><br/> minOccurs="0"<br/><br/> default="00:00:05" |**xs:time** |Longueur du tampon de vidéo hello. |
-| **Largeur**<br/><br/> minOccurs="0" |**xs:int** |Largeur de hello sortie image vidéo, en pixels.<br/><br/> Notez qu’actuellement vous devez spécifier la largeur et la hauteur. avez besoin de nombres pairs de toobe Hello largeur et hauteur. |
-| **Hauteur**<br/><br/> minOccurs="0" |**xs:int** |Hauteur de hello sortie image vidéo, en pixels.<br/><br/> Notez qu’actuellement vous devez spécifier la largeur et la hauteur. avez besoin de nombres pairs de toobe Hello largeur et hauteur.|
+| **Bitrate**<br/><br/> minOccurs="0" |**xs:int** |Le débit utilisé pour cette couche vidéo, spécifiée en kbit/s. |
+| **MaxBitrate**<br/><br/> minOccurs="0" |**xs:int** |Le débit maximal utilisé pour cette couche vidéo, spécifiée en kbit/s. |
+| **BufferWindow**<br/><br/> minOccurs="0"<br/><br/> default="00:00:05" |**xs:time** |Longueur de la mémoire tampon vidéo. |
+| **Largeur**<br/><br/> minOccurs="0" |**xs:int** |La largeur de l’image vidéo de sortie, en pixels.<br/><br/> Notez qu’actuellement vous devez spécifier la largeur et la hauteur. La largeur et la hauteur doivent être des nombres pairs. |
+| **Hauteur**<br/><br/> minOccurs="0" |**xs:int** |La hauteur de l’image vidéo de sortie, en pixels.<br/><br/> Notez qu’actuellement vous devez spécifier la largeur et la hauteur. La largeur et la hauteur doivent être des nombres pairs.|
 | **BFrames**<br/><br/> minOccurs="0" |**xs:int** |Nombre de trames B entre les trames de référence. |
 | **ReferenceFrames**<br/><br/> minOccurs="0"<br/><br/> default=”3” |**xs:int** |Nombre de trames de référence dans un GOP. |
-| **EntropyMode**<br/><br/> minOccurs="0"<br/><br/> default=”Cabac” |**xs:string** |Peut être une des valeurs suivantes de hello : **Cabac** et **Cavlc**. |
-| **FrameRate**<br/><br/> minOccurs="0" |nombre rationnel |Détermine la fréquence d’images hello de sortie hello vidéo. Utilisez la valeur par défaut « 0/1 » toolet Bonjour encodeur utilisez Bonjour même fréquence d’images d’en tant qu’entrée de hello vidéo. Les valeurs autorisées sont toobe attendu courantes des fréquences d’images vidéo, comme indiqué ci-dessous. Cependant, toute valeur rationnelle est autorisée. Par exemple, 1/1 correspondrait à 1 i/s et serait valide.<br/><br/> - 12/1  (12 i/s)<br/><br/> - 15/1 (15 i/s)<br/><br/> - 24/1 (24 i/s)<br/><br/> - 24000/1001 (23,976 i/s)<br/><br/> - 25/1 (25 i/s)<br/><br/>  - 30/1 (30 i/s)<br/><br/> - 30000/1001 (29,97 i/s) <br/> <br/>**Remarque** si vous créez un paramètre prédéfini pour l’encodage de plusieurs débits, toutes les couches de hello présélection **doit** utilisation hello même valeur de fréquence d’images.|
+| **EntropyMode**<br/><br/> minOccurs="0"<br/><br/> default=”Cabac” |**xs:string** |Il doit s’agir de l’une des valeurs suivantes : **Cabac** ou **Cavlc**. |
+| **FrameRate**<br/><br/> minOccurs="0" |nombre rationnel |Détermine la fréquence d’images de la vidéo de sortie. Utilisez « 0/1 » par défaut pour permettre à l’encodeur d’utiliser la même fréquence d’images que l’entrée vidéo. Les valeurs autorisées doivent idéalement être des fréquences d’images vidéo courantes, comme indiqué ci-dessous. Cependant, toute valeur rationnelle est autorisée. Par exemple, 1/1 correspondrait à 1 i/s et serait valide.<br/><br/> - 12/1  (12 i/s)<br/><br/> - 15/1 (15 i/s)<br/><br/> - 24/1 (24 i/s)<br/><br/> - 24000/1001 (23,976 i/s)<br/><br/> - 25/1 (25 i/s)<br/><br/>  - 30/1 (30 i/s)<br/><br/> - 30000/1001 (29,97 i/s) <br/> <br/>**REMARQUE** Si vous créez une présélection personnalisée pour l’encodage multidébit, toutes les couches de la présélection **doivent** utiliser la même valeur de taux de trames (FrameRate).|
 | **AdaptiveBFrame**<br/><br/> minOccurs="0" |**xs:boolean** |Copie depuis l’encodeur multimédia Azure |
 | **Tranches**<br/><br/> minOccurs="0"<br/><br/> default="0" |**xs:int** |Détermine le nombre de tranches dans lequel une trame est divisée. Nous vous recommandons d'utiliser la valeur par défaut. |
 
 ## <a name="AACAudio"></a> AACAudio
- Contient une séquence de hello suivant des éléments et des groupes.  
+ Contient une séquence des éléments et groupes suivants.  
 
  Pour plus d’informations sur AAC, consultez [AAC](https://en.wikipedia.org/wiki/Advanced_Audio_Coding).  
 
 ### <a name="elements"></a>Éléments
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Profil**<br/><br/> minOccurs="0 "<br/><br/> default="AACLC" |**xs:string** |Peut être une des valeurs suivantes de hello : **AACLC**, **HEAACV1**, ou **HEAACV2**. |
+| **Profil**<br/><br/> minOccurs="0 "<br/><br/> default="AACLC" |**xs:string** |Il doit s’agir de l’une des valeurs suivantes : **AACLC**, **HEAACV1** ou **HEAACV2**. |
 
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Condition** |**xs:string** |tooforce hello encodeur tooproduce un élément multimédia contenant une piste audio en mode silencieux lors de l’entrée ne contient aucune donnée audio, spécifier la valeur de « InsertSilenceIfNoAudio » hello.<br/><br/> Par défaut, si vous envoyez un encodeur toohello d’entrée qui contient uniquement, audio et vidéo aucun, hello élément multimédia de sortie contient des fichiers qui contiennent des données vidéo uniquement. Certains lecteurs ne pourront peut-être toohandle ce flux de sortie. Vous pouvez utiliser cette tooadd d’encodeur de paramètre tooforce hello une sortie toohello de piste audio en mode silencieux dans ce scénario. |
+| **Condition** |**xs:string** |Pour forcer l’encodeur à produire un élément multimédia contenant une piste audio en mode silencieux lorsque l’entrée ne comporte pas de son, spécifiez la valeur « InsertSilenceIfNoAudio ».<br/><br/> Par défaut, si vous envoyez à l’encodeur une entrée contenant uniquement de la vidéo (sans contenu audio), l’élément multimédia de sortie regroupera les fichiers qui contiennent uniquement des données vidéo. Certains lecteurs ne sont peut-être pas capables de gérer ces flux de sortie. Dans ce cas, vous pouvez utiliser ce paramètre pour forcer l’encodeur à ajouter à la sortie une piste audio en mode silencieux. |
 
 ### <a name="groups"></a>Groupes
 | Référence | Description |
 | --- | --- |
-| [AudioGroup](media-services-mes-schema.md#AudioGroup)<br/><br/> minOccurs="0" |Consultez la description de [AudioGroup](media-services-mes-schema.md#AudioGroup) tooknow hello nombre approprié de canaux, taux d’échantillonnage et le taux de bits qui peut être défini pour chaque profil. |
+| [AudioGroup](media-services-mes-schema.md#AudioGroup)<br/><br/> minOccurs="0" |Consultez la description de [AudioGroup](media-services-mes-schema.md#AudioGroup) pour connaître le nombre approprié de canaux, le taux d’échantillonnage et le taux de bits qui peuvent être configurés pour chaque profil. |
 
 ## <a name="AudioGroup"></a> AudioGroup
-Pour plus d’informations sur les valeurs qui sont valides pour chaque profil, consultez la table « Détails du codec Audio » hello qui suit.  
+Pour plus d’informations sur les valeurs qui sont valides pour chaque profil, consultez le tableau « Détails des codecs audio ».  
 
 ### <a name="elements"></a>Éléments
 | Nom | Type | Description |
 | --- | --- | --- |
-| **Canaux**<br/><br/> minOccurs="0" |**xs:int** |nombre de Hello de canaux audio encodés. les options valides sont Hello suivantes : 1, 2, 5, 6 et 8.<br/><br/> Par défaut  : 2. |
-| **SamplingRate**<br/><br/> minOccurs="0" |**xs:int** |taux d’échantillonnage audio Hello, spécifiée en Hz. |
-| **Bitrate**<br/><br/> minOccurs="0" |**xs:int** |vitesse de transmission Hello utilisé lors de l’encodage audio de hello, spécifié en Kbits/s. |
+| **Canaux**<br/><br/> minOccurs="0" |**xs:int** |Le nombre de canaux audio encodés. Les valeurs suivantes sont valides : 1, 2, 5, 6 et 8.<br/><br/> Par défaut  : 2. |
+| **SamplingRate**<br/><br/> minOccurs="0" |**xs:int** |Le taux d’échantillonnage audio, spécifié en Hz. |
+| **Bitrate**<br/><br/> minOccurs="0" |**xs:int** |Le débit utilisé pour l’encodage de l’audio, spécifié en kbit/s. |
 
 ### <a name="audio-codec-details"></a>Détails du codec audio
 Codec audio|Détails  
@@ -139,25 +139,25 @@ Codec audio|Détails
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
 | --- | --- | --- |
-| **StartTime** |**xs:duration** |Spécifie l’heure de début hello d’une présentation. valeur de Hello de StartTime doit toomatch hello des horodateurs absolu de la vidéo d’entrée de hello. Par exemple, si hello du premier frame de la vidéo d’entrée de hello a un horodateur de 12:00:10.000, StartTime doit être au moins 12:00:10.000 ou supérieur. |
-| **Durée** |**xs:duration** |Spécifie la durée hello d’une présentation (par exemple, l’apparence d’une superposition vidéo de hello). |
+| **StartTime** |**xs:duration** |Spécifie l’heure de début d’une présentation. La valeur de StartTime doit correspondre aux horodatages absolus de la vidéo d'entrée. Par exemple, si la première image de la vidéo d'entrée a un horodatage de 12:00:10.000, la valeur de StartTime doit être égale ou supérieure à 12:00:10.000. |
+| **Durée** |**xs:duration** |Spécifie la durée d’une présentation (par exemple, apparition d’une superposition sur la vidéo). |
 
 ## <a name="Output"></a> Sortie
 ### <a name="attributes"></a>Attributs
 | Nom | Type | Description |
 | --- | --- | --- |
-| **FileName** |**xs:string** |nom Hello hello du fichier de sortie.<br/><br/> Vous pouvez utiliser les macros décrits dans hello suivant des noms de fichiers de sortie table toobuild hello. Par exemple :<br/><br/> **"Outputs": [      {       "FileName": "{Basename}*{Resolution}*{Bitrate}.mp4",       "Format": {         "Type": "MP4Format"       }     }   ]** |
+| **FileName** |**xs:string** |Le nom du fichier de sortie.<br/><br/> Vous pouvez utiliser les macros décrites dans le tableau suivant pour générer les noms de fichier de sortie. Par exemple :<br/><br/> **"Outputs": [      {       "FileName": "{Basename}*{Resolution}*{Bitrate}.mp4",       "Format": {         "Type": "MP4Format"       }     }   ]** |
 
 ### <a name="macros"></a>Macros
 | Macro | Description |
 | --- | --- |
-| **{Basename}** |Si vous effectuez le codage de la demande (VOD), hello {Basename} est hello les 32 premiers caractères de la propriété de AssetFile.Name hello du fichier primaire de hello dans l’élément multimédia d’entrée de hello.<br/><br/> Si la ressource en entrée hello est une archive en direct, puis hello {Basename} est dérivée des attributs de trackName hello dans le manifeste de serveur hello. Si vous soumettez un travail d’un sous-élément à l’aide de hello TopBitrate, comme dans : « < VideoStream\>TopBitrate < / VideoStream\>», fichier de sortie hello contient vidéo, puis hello {Basename} est hello les 32 premiers caractères de trackName hello Hello couche de vidéo avec un débit binaire plus élevé de hello.<br/><br/> Si à la place vous soumettez un travail d’un sous-élément à l’aide de toutes les vitesses de transmission hello d’entrée, tels que « < VideoStream\>* < / VideoStream\>», fichier de sortie hello contient vidéo, puis {Basename} est hello tout d’abord de 32 caractères de trackName hello de couche de vidéo Hello correspondante. |
-| **{Codec}** |Mappe trop « H264 » pour la vidéo et « AAC » pour l’audio. |
-| **{Bitrate}** |Hello vidéo débit cible si fichier de sortie hello contient vidéo et audio ou vitesse de transmission audio cible si le fichier de sortie hello contient uniquement des données audio. valeur de Hello utilisée est à débit binaire hello en Kbits/s. |
-| **{Channel}** |Nombre de canaux audio si le fichier de hello contient des données audio. |
-| **{Width}** |Largeur de hello vidéo, en pixels, dans le fichier de sortie hello, si les fichiers hello contient la vidéo. |
-| **{Height}** |Hauteur de hello vidéo, en pixels, dans le fichier de sortie hello, si les fichiers hello contient la vidéo. |
-| **{Extension}** |Hérite de hello propriété « Type » pour le fichier de sortie hello. nom de fichier de sortie Hello aura une extension qui fait partie de : « mp4 », « ts », « jpg », « png » ou « bmp ». |
+| **{Basename}** |Si vous effectuez l’encodage de VoD, {Basename} est composé des 32 premiers caractères de la propriété AssetFile.Name du fichier principal de la ressource d’entrée.<br/><br/> Si la ressource d’entrée est une archive en direct, {Basename} est dérivé des attributs trackName dans le manifeste du serveur. Si vous envoyez un travail de sous-clip avec TopBitrate, comme dans : « <VideoStream\>TopBitrate</VideoStream\> », et que le fichier de sortie contient de la vidéo, {Basename} est composé des 32 premiers caractères du trackName de la couche vidéo avec le débit le plus élevé.<br/><br/> Si vous envoyez plutôt un travail de sous-clip avec tous les débits d’entrée, comme dans : « <VideoStream\>*</VideoStream\> », et que le fichier de sortie contient de la vidéo, {Basename} est composé des 32 premiers caractères du trackName de la couche vidéo correspondante. |
+| **{Codec}** |Correspond à « H264 » pour la vidéo et « AAC » pour l’audio. |
+| **{Bitrate}** |Le débit vidéo cible si le fichier de sortie contient de la vidéo et de l’audio, ou le débit audio cible si le fichier de sortie contient uniquement des données audio. La valeur utilisée est le débit en kbit/s. |
+| **{Channel}** |Nombre de canaux audio si le fichier contient des données audio. |
+| **{Width}** |Largeur de la vidéo en pixels dans le fichier de sortie, si le fichier contient de la vidéo. |
+| **{Height}** |Hauteur de la vidéo en pixels dans le fichier de sortie, si le fichier contient de la vidéo. |
+| **{Extension}** |Hérite de la propriété « Type » du fichier de sortie. Le nom de fichier de sortie aura une des extensions suivantes : « mp4 », « ts », « jpg », « png » ou « bmp ». |
 | **{Index}** |Obligatoire pour la miniature. Ne doit être présent qu’une seule fois. |
 
 ## <a name="Video"></a> Vidéo (le type complexe hérite de Codec)
@@ -167,20 +167,20 @@ Codec audio|Détails
 | **Start** |**xs:string** | |
 | **Étape** |**xs:string** | |
 | **Plage** |**xs:string** | |
-| **PreserveResolutionAfterRotation** |**xs:boolean** |Pour une explication détaillée, consultez hello suivant la section : [PreserveResolutionAfterRotation](media-services-mes-schema.md#PreserveResolutionAfterRotation) |
+| **PreserveResolutionAfterRotation** |**xs:boolean** |Pour une explication détaillée, consultez la section suivante : [PreserveResolutionAfterRotation](media-services-mes-schema.md#PreserveResolutionAfterRotation) |
 
 ### <a name="PreserveResolutionAfterRotation"></a> PreserveResolutionAfterRotation
-Il est recommandé d’indicateur de PreserveResolutionAfterRotation toouse hello en association avec des valeurs de résolution exprimés en termes de pourcentage (largeur = « 100 % », Height = « 100 % »).  
+Il est recommandé d’utiliser l’indicateur PreserveResolutionAfterRotation en combinaison avec les valeurs de résolution exprimées en pourcentage (Width=”100%” , Height = “100%”).  
 
-Par défaut, hello encoder les paramètres de résolution (largeur, hauteur) Bonjour Media Encoder Standard (MES) prédéfinis sont ciblées sur les vidéos avec rotation de 0 degrés. Par exemple, si votre vidéo d’entrée est 1280 x 720 avec zéro degré de rotation, puis paramètres prédéfinis hello Assurez-vous que sortie de hello dispose hello même résolution. Voir l’image ci-dessous.  
+Par défaut, les paramètres de résolution d’encodage (largeur, hauteur) dans les paramètres prédéfinis de Media Encoder Standard (MES) sont destinés aux vidéos avec une rotation de 0 degré. Par exemple, si votre vidéo d’entrée a une résolution de 1280 x 720 avec une rotation de zéro degré, les paramètres prédéfinis assurent que la sortie a la même résolution. Voir l’image ci-dessous.  
 
 ![MESRoation1](./media/media-services-shemas/media-services-mes-roation1.png) 
 
-Toutefois, cela signifie que si la vidéo d’entrée de hello a été capturée avec rotation de zéro (par exemple). un smartphone ou tablette détenus verticalement), puis MES par défaut s’appliqueront hello coder la résolution d’entrée vidéo toohello de paramètres (largeur, hauteur), puis compenser rotation de hello. Par exemple, voir l’image de hello ci-dessous. Hello présélection utilise la largeur = « 100 % », Height = « 100 % », MES interprète comme nécessitant hello sortie toobe 1280 pixels de largeur et 720 pixels de hauteur. Après rotation vidéo de hello, il puis réduit hello image toofit dans cette fenêtre, entraînant des zones de toopillar-box sur hello gauche et droite.  
+Toutefois, cela signifie que si la vidéo d’entrée a été capturée avec une rotation non nulle (par ex. un smartphone ou une tablette à la verticale), MES applique par défaut les paramètres de résolution d’encodage (largeur, hauteur) à l’entrée vidéo, puis compense la rotation. Par exemple, reportez-vous à l’image ci-dessous. La présélection utilise les valeurs Width = “100%”, Height = “100%”, que MES interprète comme une exigence que la sortie soit de 1280 pixels de large et de 720 pixels de haut. Après rotation de la vidéo, MES réduit ensuite l’image pour tenir dans cette fenêtre, ce qui cause l’affichage de bandes sur la gauche et la droite.  
 
 ![MESRoation2](./media/media-services-shemas/media-services-mes-roation2.png) 
 
-Si hello ci-dessus n’est pas un comportement de hello souhaité, vous pouvez rendre utiliser Hello PreserveResolutionAfterRotation indicateur et définir trop « true » (valeur par défaut est « false »). Par conséquent, si votre prédéfini a une largeur = « 100 % », hauteur = « 100 % » et PreserveResolutionAfterRotation défini trop « true », une vidéo d’entrée qui est 1280 pixels de large et 720 pixels en hauteur avec une rotation de 90 degrés génère une sortie avec zéro degré de rotation, mais 720 pixels de larges et 1280 pixels de hauteur. Voir l’image de hello ci-dessous.  
+Si ce comportement n’est pas celui souhaité, vous pouvez utiliser l’indicateur PreserveResolutionAfterRotation et lui affecter la valeur « true » (la valeur par défaut est « false »). Par conséquent, si votre présélection a Width = “100%”, Height = “100%” et que PreserveResolutionAfterRotation a la valeur « true », une vidéo d’entrée qui fait 1280 pixels de large et 720 pixels de hauteur avec une rotation de 90 degrés produit une sortie avec une rotation de zéro degré, mais faisant 720 pixels de large et 1280 pixels de hauteur. Voir l’image ci-dessous.  
 
 ![MESRoation3](./media/media-services-shemas/media-services-mes-roation3.png) 
 

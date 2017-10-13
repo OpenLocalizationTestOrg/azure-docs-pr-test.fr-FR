@@ -1,6 +1,6 @@
 ---
-title: aaaManaging Azure ressources de Cloud Explorer | Documents Microsoft
-description: "Découvrez comment toouse Cloud Explorer toobrowse et gérer des ressources Azure dans Visual Studio."
+title: Gestion des ressources Azure avec Cloud Explorer | Microsoft Docs
+description: "Découvrez comment utiliser Cloud Explorer pour rechercher et gérer des ressources Azure dans Visual Studio."
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 03/25/2017
 ms.author: kraigb
-ms.openlocfilehash: 8a81660074d5d04be063df9e25076b7a97586514
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6e6d8d559f0251b71bfa6d529ead82a246cb3235
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="manage-hello-resources-associated-with-your-azure-accounts-in-visual-studio-cloud-explorer"></a>Gérer les ressources hello associés à vos comptes Azure dans Visual Studio Cloud Explorer
-Cloud Explorer Active vous tooview vos ressources Azure et les groupes de ressources, examiner leurs propriétés et effectuer des actions de diagnostics essentiels de développeur à partir de Visual Studio. 
+# <a name="manage-the-resources-associated-with-your-azure-accounts-in-visual-studio-cloud-explorer"></a>Gérer les ressources associées à vos comptes Azure dans Visual Studio Cloud Explorer
+Cloud Explorer vous permet de visualiser vos groupes de ressources et vos ressources Azure, d’inspecter leurs propriétés et d’exécuter des actions de diagnostic de développeur essentielles à partir de Visual Studio. 
 
-Comme hello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040), Cloud Explorer repose sur la pile du Gestionnaire de ressources Azure hello. Par conséquent, Cloud Explorer comprend des ressources, telles que les groupes de ressources Azure, et des services Azure, notamment Logic Apps et API Apps, et prend en charge le [contrôle d’accès en fonction du rôle](active-directory/role-based-access-control-configure.md) (RBAC). 
+Tout comme le [Portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040), Cloud Explorer repose sur la pile Azure Resource Manager. Par conséquent, Cloud Explorer comprend des ressources, telles que les groupes de ressources Azure, et des services Azure, notamment Logic Apps et API Apps, et prend en charge le [contrôle d’accès en fonction du rôle](active-directory/role-based-access-control-configure.md) (RBAC). 
 
 ## <a name="prerequisites"></a>Composants requis
-- [Visual Studio 2017](https://www.visualstudio.com/downloads/) avec hello **la charge de travail Azure** sélectionné, ou une version antérieure de Visual Studio avec hello [Microsoft Azure SDK pour .NET 2.9](https://www.microsoft.com/en-us/download/details.aspx?id=51657).
+- [Visual Studio 2017](https://www.visualstudio.com/downloads/) avec la **charge de travail Azure** sélectionnée, ou une version antérieure de Visual Studio avec le [Kit de développement logiciel (SDK) Microsoft Azure pour .NET 2.9](https://www.microsoft.com/en-us/download/details.aspx?id=51657).
 - Compte Microsoft Azure : si vous ne possédez pas de compte, vous pouvez [vous inscrire à un essai gratuit](http://go.microsoft.com/fwlink/?LinkId=623901) ou [activer les avantages de votre abonnement Visual Studio](http://go.microsoft.com/fwlink/?LinkId=623901).
 
 > [!NOTE]
-> tooview Cloud Explorer, sélectionnez **vue** > **Cloud Explorer** sur la barre de menus hello.   
+> Pour afficher Cloud Explorer, sélectionnez **Afficher** > **Cloud Explorer** sur la barre de menus.   
 > 
 > 
 
-## <a name="add-an-azure-account-toocloud-explorer"></a>Ajouter un compte Azure de tooCloud Explorer
-ressources de hello tooview associés à un compte Azure, vous devez d’abord ajouter hello compte tooCloud Explorer. 
+## <a name="add-an-azure-account-to-cloud-explorer"></a>Ajouter un compte Azure à Cloud Explorer
+Pour afficher les ressources associées à un compte Azure, vous devez commencer par ajouter le compte à Cloud Explorer. 
 
 1. Dans **Cloud Explorer**, sélectionnez **Paramètres de compte Azure**.
 
@@ -45,13 +45,13 @@ ressources de hello tooview associés à un compte Azure, vous devez d’abord a
 
     ![Lien Ajouter un compte Cloud Explorer](media/vs-azure-tools-resources-managing-with-cloud-explorer/add-account-link.png)
 
-1. Connectez-vous à toohello dont vous souhaitez que les ressources de compte Azure toobrowse. 
+1. Connectez-vous au compte Azure dont vous souhaitez parcourir les ressources. 
 
-1. Une fois connecté tooan compte Azure, affichent les abonnements hello associés à ce compte. Sélectionnez hello cases à cocher pour les abonnements de compte hello vous souhaitez toobrowse, puis sélectionnez **appliquer**. 
+1. Une fois que vous êtes connecté à un compte Azure, les abonnements associés à ce compte s’affichent. Cochez les cases des abonnements de compte que vous souhaitez parcourir, puis sélectionnez **Appliquer**. 
  
-    ![Cloud Explorer : sélectionnez toodisplay des abonnements Azure](media/vs-azure-tools-resources-managing-with-cloud-explorer/select-subscriptions.png)
+    ![Cloud Explorer : sélectionnez les abonnements Azure à afficher](media/vs-azure-tools-resources-managing-with-cloud-explorer/select-subscriptions.png)
 
-1. Après avoir sélectionné les abonnements dont vous souhaitez que les ressources hello toobrowse, ces abonnements et des ressources affichent Bonjour Cloud Explorer.
+1. Une fois que vous avez sélectionné les abonnements dont vous souhaitez parcourir les ressources, les abonnements et les ressources s’affichent dans Cloud Explorer.
 
     ![Listing des ressources Cloud Explorer pour un compte Azure](media/vs-azure-tools-resources-managing-with-cloud-explorer/resources-listed.png)
 
@@ -61,44 +61,44 @@ ressources de hello tooview associés à un compte Azure, vous devez d’abord a
 
     ![Icône des paramètres de compte Azure Cloud Explorer](media/vs-azure-tools-resources-managing-with-cloud-explorer/azure-account-settings.png)
 
-1. Suivant toohello compte tooremove, sélectionnez **supprimer**.
+1. En regard du compte à supprimer, sélectionnez **Supprimer**.
 
     ![Icône des paramètres de compte Azure Cloud Explorer](media/vs-azure-tools-resources-managing-with-cloud-explorer/remove-account.png)
 
 ## <a name="view-resource-types-or-resource-groups"></a>Afficher les types ou les groupes de ressources
-tooview vos ressources Azure, vous pouvez choisir le **Types de ressources** ou **groupes de ressources** vue.
+Pour afficher vos ressources Azure, vous pouvez choisir l’affichage **Types de ressources** ou **Groupes de ressources**.
 
-1. Dans **Cloud Explorer**, sélectionnez hello liste déroulante Affichage de ressources.
+1. Dans **Cloud Explorer**, sélectionnez la liste déroulante d’affichage des ressources.
 
-    ![Affichage de ressources de l’Explorateur déroulante liste tooselect hello souhaité de cloud computing](media/vs-azure-tools-resources-managing-with-cloud-explorer/resources-view-dropdown.png)
+    ![Liste déroulante Cloud Explorer pour sélectionner l’affichage des ressources souhaité](media/vs-azure-tools-resources-managing-with-cloud-explorer/resources-view-dropdown.png)
 
-1. À partir du menu contextuel de hello, sélectionnez hello affichage de votre choix : 
+1. Dans le menu contextuel, sélectionnez l’affichage souhaité : 
 
-    - **Types de ressources** affichage - hello commun utilisé sur hello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040), affiche vos ressources Azure classés par leur type, telles que les applications web, les comptes de stockage et les machines virtuelles. 
-    - **Groupes de ressources** afficher - ressources Azure de classe par groupe de ressources Azure hello auquel ils sont associés. Un groupe de ressources est un regroupement de ressources Azure, généralement utilisé par une application spécifique. toolearn savoir plus sur les groupes de ressources Azure, consultez [vue d’ensemble du Gestionnaire de ressources Azure](./azure-resource-manager/resource-group-overview.md).
+    - Affichage **Types de ressources** : l’affichage courant utilisé sur le [Portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040) affiche vos ressources Azure classées par type, par exemple applications web, comptes de stockage et machines virtuelles. 
+    - Affichage **Groupes de ressources** : organise les ressources Azure en fonction du groupe de ressources Azure auquel elles sont associées. Un groupe de ressources est un regroupement de ressources Azure, généralement utilisé par une application spécifique. Pour en savoir plus sur les groupes de ressources Azure, consultez [Présentation d’Azure Resource Manager](./azure-resource-manager/resource-group-overview.md).
 
-    Hello image suivante présente une comparaison des hello deux affichages de ressources :
+    L’image suivante compare les deux affichages de ressources :
 
     ![Comparaison des affichages des ressources Cloud Explorer](media/vs-azure-tools-resources-managing-with-cloud-explorer/resource-views-comparison.png)
 
 ## <a name="view-and-navigate-resources-in-cloud-explorer"></a>Afficher et parcourir les ressources dans Cloud Explorer
-toonavigate tooan ressource Azure et afficher les informations dans le Cloud Explorer, développez l’élément hello type ou groupe de ressources et puis sélectionnez les ressources hello. Lorsque vous sélectionnez une ressource, les informations s’affichent dans les onglets de hello deux - **Actions** et **propriétés** - bas hello Cloud Explorer. 
+Pour accéder à une ressource Azure et afficher ses informations dans Cloud Explorer, développez le type de l’élément ou le groupe de ressources associé, puis sélectionnez la ressource. Lorsque vous sélectionnez une ressource, les informations apparaissent dans les deux onglets, **Actions** et **Propriétés**, en bas de Cloud Explorer. 
 
-- **Actions** onglet - listes hello actions possibles dans Cloud Explorer pour la ressource de hello sélectionné. Vous pouvez également afficher ces options en cliquant sur hello ressource tooview son menu contextuel.
+- Onglet **Actions** : liste les actions possibles dans Cloud Explorer pour la ressource sélectionnée. Vous pouvez également voir ces options en cliquant avec le bouton droit sur la ressource pour afficher son menu contextuel.
 
-- **Propriétés** onglet - affiche les propriétés hello de ressource hello, telles que son groupe de type, de paramètres régionaux et de ressources auquel il est associé.
+- Onglet **Propriétés** : affiche les propriétés de la ressource, notamment son type, ses paramètres régionaux et le groupe de ressources auquel elle est associée.
 
-Hello image suivante montre une comparaison de l’exemple de ce que vous voyez sur chaque onglet pour un Service d’application :
+L’image suivante montre un exemple de comparaison de ce qui apparaît sur chaque onglet pour un service App Service :
 
 ![](./media/vs-azure-tools-resources-managing-with-cloud-explorer/actions-and-properties.png)
 
-Chaque ressource a d’action hello **ouvrir dans le portail**. Lorsque vous sélectionnez cette action, Cloud Explorer affiche les ressources hello sélectionné Bonjour [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040). Hello **ouvrir dans le portail** fonctionnalité est pratique pour parcourir les ressources de toodeeply imbriquée.
+Chaque ressource dispose de l'action **Ouvrir dans le portail**. Lorsque vous sélectionnez cette action, Cloud Explorer affiche la ressource sélectionnée dans le [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040). La fonctionnalité **Ouvrir dans le portail** est particulièrement pratique pour parcourir des ressources profondément imbriquées.
 
-Actions supplémentaires et des valeurs de propriété peuvent également apparaître en fonction de hello ressource Azure. Par exemple, les applications web et logique ont également les actions hello **ouvrir dans le navigateur** et **attacher le débogueur** en outre trop**ouvrir dans le portail**. Éditeurs de tooopen actions s’affichent lorsque vous choisissez un objet blob de compte de stockage, une file d’attente ou une table. Les applications Azure ont des propriétés **URL** et **État**, tandis que les ressources de stockage ont des propriétés clé et chaîne de connexion.
+Des actions et des valeurs de propriétés supplémentaires peuvent également s’afficher en fonction de la ressource Azure. Par exemple, les applications web et les applications logiques ont également les actions **Ouvrir dans un navigateur** et **Attacher le débogueur** en plus de l’action **Ouvrir dans le portail**. Les actions d’ouverture des éditeurs apparaissent lorsque vous sélectionnez un objet Blob, File d'attente ou Table de compte de stockage. Les applications Azure ont des propriétés **URL** et **État**, tandis que les ressources de stockage ont des propriétés clé et chaîne de connexion.
 
 ## <a name="find-resources-in-cloud-explorer"></a>Trouver des ressources dans Cloud Explorer
-ressources toolocate avec un nom spécifique dans vos abonnements de compte Azure, entrez les nom hello Bonjour **recherche** zone dans l’Explorateur de Cloud.
+Pour trouver des ressources portant un nom spécifique dans les abonnements de votre compte Azure, entrez le nom dans la zone **Recherche** de Cloud Explorer.
 
 ![Trouver des ressources dans Cloud Explorer](./media/vs-azure-tools-resources-managing-with-cloud-explorer/search-for-resources.png)
 
-Lorsque vous entrez des caractères dans hello **recherche** zone, uniquement les ressources qui correspondent à ces caractères s’affichent dans l’arborescence des ressources hello.
+Lorsque vous entrez des caractères dans la zone **Recherche**, seules les ressources qui correspondent à ces caractères apparaissent dans l’arborescence de ressources.

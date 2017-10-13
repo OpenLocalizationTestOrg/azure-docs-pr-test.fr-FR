@@ -1,6 +1,6 @@
 ---
-title: "tailles d’aaaAzure Linux VM - calcul optimisé | Documents Microsoft"
-description: "Répertorie les tailles de calcul différents optimisé hello disponibles pour les ordinateurs virtuels Linux dans Azure."
+title: "Tailles des machines virtuelles Linux Azure - Optimisées pour le calcul | Microsoft Docs"
+description: "Répertorie les différentes tailles optimisées pour le calcul pour les machines virtuelles Linux dans Azure."
 services: virtual-machines-linux
 documentationcenter: 
 author: jonbeck7
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: 92633d7b569eed084ac07258be4b2d67d9518dd3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 05b8fd98da0c87e383ba7d67fb8bee2eefb25981
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="compute-optimized-linux-vm-sizes"></a>Tailles de machine virtuelle Linux optimisées pour le calcul
 

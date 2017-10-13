@@ -1,6 +1,6 @@
 ---
-title: "implémentation de Mobile Engagement aaaAzure pour l’application de jeu"
-description: "Jeu tooimplement de scénario d’application Azure Mobile Engagement"
+title: "Mise en œuvre d’Azure Mobile Engagement avec une application de jeux"
+description: "Scénario d’application de jeux pour mettre en œuvre Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: b82b4a868a33f42e5b759e43e66103556c097f9e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0ca35a3d634db8eb5c63afacba046a35b8a3e7ed
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="implement-mobile-engagement-with-gaming-app"></a>Mise en œuvre de Mobile Engagement avec une application de jeu
 ## <a name="overview"></a>Vue d'ensemble
-Une jeune entreprise spécialisée dans les jeux a lancé un nouveau jeu de rôle/de stratégie sur le thème de la pêche. jeu de Hello est en cours d’exécution pendant 6 mois. Ce jeu est un succès considérable et il a des millions de téléchargements et la rétention de hello est applications de jeu de démarrage très élevé tooother comparés. À la réunion de révision de tous les trimestres de hello, les parties prenantes estiment que dont ils ont besoin de chiffre d’affaires moyen tooincrease par l’utilisateur (revenu moyen par abonné). Des packages au sein du jeu sont disponibles sous forme d’offres spéciales. Ces packs jeu autoriser l’apparence de hello tooupgrade les utilisateurs et les performances de leurs lignes de pêche et appâts ou de s’attaque dans le jeu de hello. Toutefois, les ventes de package sont très faibles. Afin de déterminer leur premier tooanalyze hello de l’expérience utilisateur avec un outil analytique, et puis toodevelop un engagement programme tooincrease ventes à l’aide de gestion avancée segmentation.
+Une jeune entreprise spécialisée dans les jeux a lancé un nouveau jeu de rôle/de stratégie sur le thème de la pêche. Ce jeu est opérationnel depuis 6 mois. Il connaît un énorme succès et a été téléchargé des millions de fois. De plus, la rétention est très élevée par rapport à d’autres applications de jeu. Lors de la réunion d’examen trimestrielle, les différents intervenants estiment qu’ils doivent augmenter les revenus moyens par utilisateur (revenu moyen par abonné). Des packages au sein du jeu sont disponibles sous forme d’offres spéciales. Ces packages de jeu permettent aux utilisateurs de mettre à niveau l’apparence et les performances de leurs lignes de pêche et des appâts et des articles au sein du jeu. Toutefois, les ventes de package sont très faibles. Par conséquent, il a été décidé dans un premier temps d’analyser l’expérience client à l’aide d’un outil d’analyse, puis de développer un programme d’engagement afin d’augmenter les ventes au moyen d’une segmentation avancée.
 
-En fonction de hello [Azure Mobile Engagement - Guide de démarrage avec les meilleures pratiques](mobile-engagement-getting-started-best-practices.md) qu’ils génèrent une stratégie d’engagement.
+En s’appuyant sur [Azure Mobile Engagement - Guide de prise en main et meilleures pratiques](mobile-engagement-getting-started-best-practices.md) , ils ont élaboré une stratégie d’engagement.
 
 ## <a name="objectives-and-kpis"></a>Objectifs et indicateurs clés de performance
-Principales parties prenantes pour répondre aux jeux de hello. Tous les s’accorder sur un objectif principal - ventes de package tooincrease premium de 15 %. Ils créent lecteur et entreprise indicateurs de Performance clés (KPI) toomeasure cet objectif
+Les différents intervenants du jeu se réunissent. Tous les intervenants sont d’accord sur un objectif principal : augmenter les ventes de packages premium de 15 %. Ils créent des indicateurs clés de performance (KPI) pour mesurer et atteindre cet objectif.
 
-* Sur quel niveau de jeu de hello ces packages sont achetés ?
-* Quel est le chiffre d’affaires hello par utilisateur, par session, par semaine et par mois ?
-* Quels sont les types de fournisseur favori hello ?
+* À quel niveau de la partie ces packages sont-ils achetés ?
+* Quel est le chiffre d’affaires par utilisateur, par session, par semaine et par mois ?
+* Quels sont les types d’achats préférés ?
 
-Partie 1 sur hello [Getting Started Guide](mobile-engagement-getting-started-best-practices.md) explique comment toodefine hello objectifs et des indicateurs de performance clés. 
+La première partie du [Guide de prise en main](mobile-engagement-getting-started-best-practices.md) explique comment définir des objectifs et des indicateurs de performance clés. 
 
-Hello de qu'indicateurs de performance clés Business est maintenant défini, hello Mobile Product Manager crée rétention et les tendances des utilisateurs nouveaux indicateurs de performance clés Engagement toodetermine.
+Une fois les indicateurs de performance clés d’entreprise définis, le responsable de produit mobile crée des indicateurs clés de performance clés pour déterminer les nouvelles tendances et rétention utilisateur.
 
-* Rétention de surveiller et d’utiliser le sur hello suivant des intervalles : tous les jours, toutes les 2 jours, hebdomadaire, mensuelle et tous les 3 mois
+* Contrôler la rétention et l’utilisation pendant les intervalles suivants : quotidien, tous les 2 jours, hebdomadaire, mensuel et trimestriel
 * Nombre d’utilisateurs actifs
-* classification des applications Hello Bonjour stocker
+* Évaluation de l’application dans le Windows Store
 
-Selon les recommandations de l’équipe informatique de hello, hello suivant techniques indicateurs de performance clés ont été ajoutée hello tooanswer suivant questions :
+Selon les recommandations de l’équipe informatique, les indicateurs clés de performance techniques suivants ont été ajoutés pour répondre aux questions suivantes :
 
 * Quel est mon parcours utilisateur (page visitée, temps passé dessus par l’utilisateur) ?
 * Quel est le nombre de pannes ou de bogues par session ?
 * Quelles sont les versions de système d’exploitation exécutées par mes utilisateurs ?
-* Quelle est hello de taille moyenne de l’écran pour mes utilisateurs ?
+* Quelle est la taille moyenne de l’écran de mes utilisateurs ?
 * De quels types de connectivité Internet mes utilisateurs doivent-ils disposer ?
 
-Pour chaque indicateur de performance clé hello Mobile Product Manager spécifie les données de hello dont elle a besoin et où il se trouve dans son manuel.
+Pour chaque indicateur de performance, le responsable de produit mobile spécifie les données nécessaires et l’endroit du manuel où elles se trouvent.
 
 ## <a name="engagement-program-and-integration"></a>Programme d’engagement et intégration
-Avant de générer un programme engagement avancées, hello directeur du projet Mobile responsable de projet de hello doit avoir une compréhension approfondie des quand et comment les produits sont consommés par les utilisateurs de hello.
+Avant de réaliser un programme d’engagement avancé, le responsable de projet mobile en charge doit bien connaître la manière et les moments où les produits sont consommés par les utilisateurs.
 
-Après 3 mois, hello directeur du projet Mobile a collecté suffisamment tooenhance données ses ventes de notification par envoi de données dans l’application. Il a notamment appris que :
+Après 3 mois, le responsable de projet mobile a recueilli suffisamment de données pour améliorer ses ventes par notification Push au sein de l’application. Il a notamment appris que :
 
-* premier achat de Hello se produit généralement au niveau de hello 14. Pour 90 % des cas, achat de hello est nouvelles armes reposant pour $3.
-* De 80 % des cas, les utilisateurs qui ont effectué un achat, continuez avec le produit de hello et effectuez plusieurs achats.
-* Les utilisateurs qui ont passé le niveau hello 20, démarrer toospend plus de 10 $par semaine.
-* Les utilisateurs ont tendance à toobuy les packages premium au niveau 16, 24 et 32.
+* Le premier achat a généralement lieu au niveau 14. Dans 90 % des cas, l’achat concerne des armes légendaires de 3 $.
+* Dans 80 % des cas, les utilisateurs qui ont effectué un achat continuent avec le produit et effectuent d’autres achats.
+* Les utilisateurs qui ont réussi le niveau 20 commencent à dépenser plus de 10 $/semaine.
+* Les utilisateurs ont tendance à acheter des packages premium aux niveaux 16, 24 et 32.
 
-Merci d’analyse toothis hello directeur du projet Mobile décide toocreate push spécifique notification séquences tooincrease dans les ventes de l’application. Il crée trois séquences Push qu’il nomme respectivement Bienvenue dans le programme, Programme commercial et Programme inactif. Pour plus d’informations, consultez toohello [règles](https://github.com/Azure/azure-mobile-engagement-samples/tree/master/Playbooks)![][1]
+Grâce à cette analyse, le responsable de projet mobile décide de créer des séquences de notification Push spécifiques pour augmenter les ventes d’application. Il crée trois séquences Push qu’il nomme respectivement Bienvenue dans le programme, Programme commercial et Programme inactif. Pour plus d’informations, reportez-vous à la [règles](https://github.com/Azure/azure-mobile-engagement-samples/tree/master/Playbooks)![][1]
 
 <!--Image references-->
 

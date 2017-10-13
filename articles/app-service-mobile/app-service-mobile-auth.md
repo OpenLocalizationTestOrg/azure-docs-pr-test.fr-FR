@@ -1,6 +1,6 @@
 ---
-title: "aaaAuthentication et l’autorisation dans les applications mobiles Azure | Documents Microsoft"
-description: "Référence conceptuel et vue d’ensemble de hello d’authentification / autorisation de fonctionnalité pour les applications mobiles Azure"
+title: Authentification et autorisation dans Azure Mobile Apps | Microsoft Docs
+description: "Référence et présentation conceptuelles de la fonctionnalité d’authentification/autorisation pour Azure Mobile Apps"
 services: app-service\mobile
 documentationcenter: 
 author: mattchenderson
@@ -14,95 +14,95 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: mahender
-ms.openlocfilehash: 5255734481ada11afb65982aebe45c2a349402fe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4105392f58eaf37e88c1d9ffb74f3f4133fa5482
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="authentication-and-authorization-in-azure-mobile-apps"></a>Authentification et autorisation dans Azure Mobile Apps
 ## <a name="what-is-app-service-authentication--authorization"></a>Qu’est-ce que l’authentification/autorisation App Service ?
 > [!NOTE]
-> Cette rubrique sera migré tooa consolidé [App Service authentification / autorisation](../app-service/app-service-authentication-overview.md) rubrique, qui couvre les applications API Web et Mobile.
+> Cette rubrique sera migrée vers une rubrique d’ [authentification/autorisation App Service](../app-service/app-service-authentication-overview.md) consolidée, qui couvre les applications web, mobile et les API Apps.
 > 
 > 
 
-Application Service authentification / autorisation est une fonctionnalité qui permet de toolog de votre application dans les utilisateurs sans aucune modification de code requise sur le serveur principal d’application hello. Il fournit un moyen simple de tooprotect votre application et travailler avec des données par l’utilisateur.
+L’authentification/autorisation App Service est une fonctionnalité qui permet à votre application de connecter des utilisateurs sans aucune modification de code sur le serveur principal. Elle propose un moyen simple de protéger votre application et fonctionne avec des données par utilisateur.
 
-Service de l’application utilise des identités fédérées, dans laquelle une partie 3 rd **fournisseur d’identité** (« IDP ») stocke les comptes et authentifie les utilisateurs et application hello utilise cette identité au lieu de son propre. Service d’applications prend en charge cinq fournisseurs d’identité en dehors de la zone de hello : *Azure Active Directory*, *Facebook*, *Google*, *Microsoft Account*, et *Twitter*. Vous pouvez également étendre cette prise en charge à vos applications en intégrant un autre fournisseur d’identité ou votre propre solution d’identité personnalisée.
+App Service utilise l’identité fédérée, dans laquelle un **fournisseur d’identité** tiers (« IDP ») stocke des comptes et authentifie des utilisateurs. L’application utilise cette identité au lieu de la sienne. App Service prend en charge cinq fournisseurs d’identité prêts à l’emploi : *Azure Active Directory*, *Facebook*, *Google*, *Compte Microsoft* et *Twitter*. Vous pouvez également étendre cette prise en charge à vos applications en intégrant un autre fournisseur d’identité ou votre propre solution d’identité personnalisée.
 
 Votre application peut exploiter plusieurs de ces fournisseurs d’identité, vous pouvez donc proposer à vos utilisateurs finaux plusieurs options de connexion.
 
-Si vous le souhaitez tooget démarré immédiatement, veuillez consultez hello suivant didacticiels :
+Si vous voulez commencer tout de suite, consultez l’un des didacticiels suivants :
 
-* [Ajouter une application de l’authentification tooyour iOS]
-* [Ajouter une application de l’authentification tooyour Xamarin.iOS]
-* [Ajouter une application de Xamarin.Android tooyour d’authentification]
-* [Ajouter l’application Windows authentification tooyour]
+* [Ajout de l'authentification à votre application iOS]
+* [Ajout de l'authentification à votre application Xamarin.iOS]
+* [Ajout de l'authentification à votre application Xamarin.Android]
+* [Ajout de l’authentification à votre application Windows]
 
 ## <a name="how-authentication-works"></a>Fonctionnement de l’authentification
-Dans tooauthenticate de commande à l’aide d’un des fournisseurs d’identité hello, vous devez d’abord tooconfigure hello identité fournisseur tooknow sur votre application. fournisseur d’identité Hello vous fournira avec l’ID et les secrets que vous fournissiez arrière toohello application. Cela termine la relation d’approbation hello et du Service d’applications toovalidate identités fournies tooit.
+Pour s’authentifier à l’aide d’un des fournisseurs d’identité, vous devez d’abord configurer le fournisseur d’identité pour qu’il reconnaisse votre application. Le fournisseur d’identité vous indique alors des ID et des clés secrètes que vous devez fournir à votre tour à l’application. Ceux-ci établissent la relation d’approbation et permettent à App Service de valider les identités qui lui sont fournies.
 
-Ces étapes sont détaillées dans hello rubriques suivantes :
+Ces étapes sont détaillées dans les rubriques suivantes :
 
-* [Comment tooconfigure votre nom de connexion app toouse Azure Active Directory]
-* [Comment tooconfigure votre connexion de Facebook toouse application]
-* [Comment tooconfigure votre connexion de Google toouse application]
-* [Comment tooconfigure votre connexion de Microsoft Account toouse application]
-* [Comment tooconfigure votre connexion de Twitter toouse application]
+* [Comment configurer votre application pour utiliser une connexion Azure Active Directory]
+* [Comment configurer votre application pour utiliser une connexion Facebook]
+* [Comment configurer votre application pour utiliser une connexion Google]
+* [Comment configurer votre application pour utiliser une connexion par compte Microsoft]
+* [Comment configurer votre application pour utiliser une connexion Twitter]
 
-Une fois que tout est configuré sur hello principal, vous pouvez modifier votre toolog client dans. Il existe deux approches :
+Une fois que tout est configuré sur le serveur principal, vous pouvez modifier votre client pour la connexion. Il existe deux approches :
 
-* À l’aide d’une seule ligne de code, permettent de hello des applications mobiles client SDK connectez-vous aux utilisateurs.
-* Tirer parti d’un kit de développement logiciel publié par une identité de tooestablish fournisseur identité donnée et ensuite obtenir l’accès tooApp Service.
+* À l’aide d’une seule ligne de code, laissez le Kit de développement logiciel (SDK) client Mobile Apps connecter des utilisateurs.
+* Exploitez un Kit de développement logiciel (SDK) publié par un fournisseur d’identité donnée pour établir l’identité, puis accédez à App Service.
 
 > [!TIP]
-> La plupart des applications doivent utiliser un tooget du Kit de développement logiciel fournisseur une expérience de connexion plus natif-sentiment et tooleverage actualisation prise en charge et d’autres avantages spécifiques au fournisseur.
+> La plupart des applications doivent utiliser un Kit de développement logiciel (SDK) de fournisseur pour obtenir une expérience de connexion plus native et tirer parti de la prise en charge de l’actualisation et d’autres avantages propres au fournisseur.
 > 
 > 
 
 ### <a name="how-authentication-without-a-provider-sdk-works"></a>Fonctionnement de l’authentification sans Kit de développement logiciel (SDK) de fournisseur
-Si vous ne souhaitez pas tooset un fournisseur de kit de développement logiciel, vous pouvez autoriser la connexion de hello tooperform applications mobiles pour vous. client des applications mobiles Hello SDK s’ouvre un fournisseur de toohello d’affichage web de votre choix et complètes hello de connexion. Occasionnellement sur les blogs et les forums, que vous pouvez voir cela appelle tooas hello « flux de serveur » ou « dirigée vers le serveur de flux » depuis le serveur de hello gère la connexion de hello et SDK de client hello ne reçoit jamais le jeton du fournisseur hello.
+Si vous ne voulez pas configurer un SDK de fournisseur, vous pouvez autoriser Mobile Apps à effectuer la connexion pour vous. Le SDK client Mobile Apps ouvre un affichage web du fournisseur de votre choix et procède à la connexion. Dans les blogs et sur les forums, cette opération est de temps en temps appelée « flux serveur » ou « flux dirigé vers le serveur », car le serveur gère la connexion et le Kit de développement logiciel (SDK) client ne reçoit jamais le jeton du fournisseur.
 
-code de Hello nécessaire toostart que ce flux est décrite dans le didacticiel d’authentification hello pour chaque plateforme. À fin hello du flux de hello, le client de hello SDK dispose d’un jeton du Service d’applications, et jeton de hello est automatiquement attaché tooall demandes toohello principal.
+Le code nécessaire pour démarrer ce flux est couvert dans le didacticiel sur l’authentification pour chaque plateforme. À la fin du flux, le SDK client dispose d’un jeton App Service et le jeton est automatiquement joint à toutes les requêtes adressées au serveur principal.
 
 ### <a name="how-authentication-with-a-provider-sdk-works"></a>Fonctionnement de l’authentification avec un Kit de développement logiciel (SDK) de fournisseur
-Utilisation d’un fournisseur de kit de développement logiciel permet toointeract d’ouverture de session de l’expérience hello plus étroitement avec la plateforme hello application hello de système d’exploitation est en cours d’exécution. Cela vous donne également un jeton du fournisseur et des informations utilisateur sur le client hello, ce qui rend beaucoup plus facile graphique de tooconsume API et personnaliser l’expérience utilisateur hello. Occasionnellement sur les blogs et forums vous verrez cette hello tooas référencé « flux client » ou « dirigée vers le client flux » depuis le code client de hello gère les connexion hello, et le code client hello a le jeton d’accès tooa fournisseur.
+L’utilisation d’un SDK de fournisseur permet à l’expérience de connexion d’interagir plus étroitement avec le système d’exploitation sur lequel l’application s’exécute. Elle permet également d’obtenir un jeton de fournisseur et certaines informations utilisateur sur le client, ce qui facilite beaucoup la consommation d’API graphiques et la personnalisation de l’expérience utilisateur. Dans les blogs et sur les forums, cette opération est de temps en temps appelée « flux client » ou « flux dirigé vers le client » car le code sur le client gère la connexion et a accès à un jeton de fournisseur.
 
-Une fois qu’un jeton du fournisseur est obtenu, il doit toobe envoyé tooApp Service pour la validation. À fin hello du flux de hello, le client de hello SDK dispose d’un jeton du Service d’applications, et jeton de hello est automatiquement attaché tooall demandes toohello principal. développeur de Hello peut également conserver un jeton du fournisseur toohello référence s’ils le souhaitent.
+Une fois qu’un jeton de fournisseur est obtenu, il doit être envoyé à App Service à des fins de validation. À la fin du flux, le SDK client dispose d’un jeton App Service et le jeton est automatiquement joint à toutes les requêtes adressées au serveur principal. Le développeur peut également conserver une référence au jeton de fournisseur s’il le souhaite.
 
 ## <a name="how-authorization-works"></a>Fonctionnement de l’autorisation
-Application Service authentification / autorisation expose plusieurs options pour **tootake Action lors de la demande n’est pas authentifiée**. Avant que votre code reçoit une demande donnée, vous pouvez avoir toosee de vérification du Service d’applications si hello requête est authentifiée et dans le cas contraire, il rejette et tentative de connexion de l’utilisateur toohave hello avant de réessayer.
+L’authentification/autorisation App Service expose plusieurs possibilités d’ **action à réaliser quand la requête n’est pas authentifiée**. Avant que votre code ne reçoive une demande donnée, App Service peut vérifier si la requête est authentifiée et si elle ne l’est pas, la rejeter et tenter d’inviter l’utilisateur à se connecter avant d’effectuer une nouvelle tentative.
 
-Une option consiste à rediriger les demandes de toohave non authentifié tooone hello des fournisseurs d’identité. Dans un navigateur web, il faudrait réellement nouvelle page hello utilisateur tooa. En revanche, votre client mobile ne peut pas être redirigé de cette façon et les réponses non authentifiées reçoivent une erreur HTTP *401 non autorisé*. Compte tenu de cela, hello première demande permet de votre client doit toujours toohello point de terminaison de connexion, et vous pouvez faire appelle tooany autres API. Si vous essayez d’une autre API toocall avant de vous connecter, votre client reçoit une erreur.
+Une option consiste à rediriger les requêtes non authentifiées vers l’un des fournisseurs d’identité. Dans un navigateur web, l’utilisateur serait redirigé vers une nouvelle page. En revanche, votre client mobile ne peut pas être redirigé de cette façon et les réponses non authentifiées reçoivent une erreur HTTP *401 non autorisé*. C’est pour cela que la première requête de votre client doit toujours être adressée au point de terminaison de connexion. Vous pouvez alors effectuer des appels à d’autres API. Si vous essayez d’appeler une autre API avant de vous connecter, votre client reçoit une erreur.
 
-Si vous le souhaitez toohave plus granulaire de contrôle sur les points de terminaison requièrent une authentification, vous pouvez également choisir « aucune action (autoriser la demande) » pour les demandes non authentifiées. Dans ce cas, toutes les décisions d’authentification sont différées tooyour code de l’application. Cela vous permet également aux utilisateurs toospecific tooallow accès selon les règles d’autorisation personnalisée.
+Si vous voulez un contrôle plus granulaire des points de terminaison qui exigent une authentification, vous pouvez également choisir « Aucune action (autoriser la requête) » pour les requêtes non authentifiées. Dans ce cas, toutes les décisions d’authentification sont reportées dans le code de votre application. Cela vous permet également d’autoriser l’accès à des utilisateurs spécifiques selon des règles d’autorisation personnalisées.
 
 ## <a name="documentation"></a>Documentation
-Hello suivant didacticiels indiquent comment tooadd authentification tooyour des clients mobiles à l’aide du Service d’applications :
+Les didacticiels suivants montrent comment ajouter l’authentification à vos clients mobiles à l’aide d’App Service :
 
-* [Ajouter une application de l’authentification tooyour iOS]
-* [Ajouter une application de l’authentification tooyour Xamarin.iOS]
-* [Ajouter une application de Xamarin.Android tooyour d’authentification]
-* [Ajouter l’application Windows authentification tooyour]
+* [Ajout de l'authentification à votre application iOS]
+* [Ajout de l'authentification à votre application Xamarin.iOS]
+* [Ajout de l'authentification à votre application Xamarin.Android]
+* [Ajout de l’authentification à votre application Windows]
 
-Hello suivant didacticiels indiquent comment tooconfigure du Service d’applications tooleverage différents fournisseurs d’authentification :
+Les didacticiels suivants montrent comment configurer App Service pour exploiter différents fournisseurs d’authentification :
 
-* [Comment tooconfigure votre nom de connexion app toouse Azure Active Directory]
-* [Comment tooconfigure votre connexion de Facebook toouse application]
-* [Comment tooconfigure votre connexion de Google toouse application]
-* [Comment tooconfigure votre connexion de Microsoft Account toouse application]
-* [Comment tooconfigure votre connexion de Twitter toouse application]
+* [Comment configurer votre application pour utiliser une connexion Azure Active Directory]
+* [Comment configurer votre application pour utiliser une connexion Facebook]
+* [Comment configurer votre application pour utiliser une connexion Google]
+* [Comment configurer votre application pour utiliser une connexion par compte Microsoft]
+* [Comment configurer votre application pour utiliser une connexion Twitter]
 
-Si vous le souhaitez toouse un système d’identité autre que ceux hello fournies ici, vous pouvez également exploiter hello [afficher un aperçu de la prise en charge de l’authentification personnalisée dans hello .NET server SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#custom-auth).
+Si vous voulez utiliser un système d’identité différent de ceux fournis ici, vous pouvez également exploiter la [prise en charge de l’authentification personnalisée en version préliminaire dans le Kit de développement logiciel (SDK) serveur .NET](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#custom-auth).
 
-[Ajouter une application de l’authentification tooyour iOS]: app-service-mobile-ios-get-started-users.md
-[Ajouter une application de l’authentification tooyour Xamarin.iOS]: app-service-mobile-xamarin-ios-get-started-users.md
-[Ajouter une application de Xamarin.Android tooyour d’authentification]: app-service-mobile-xamarin-android-get-started-users.md
-[Ajouter l’application Windows authentification tooyour]: app-service-mobile-windows-store-dotnet-get-started-users.md
+[Ajout de l'authentification à votre application iOS]: app-service-mobile-ios-get-started-users.md
+[Ajout de l'authentification à votre application Xamarin.iOS]: app-service-mobile-xamarin-ios-get-started-users.md
+[Ajout de l'authentification à votre application Xamarin.Android]: app-service-mobile-xamarin-android-get-started-users.md
+[Ajout de l’authentification à votre application Windows]: app-service-mobile-windows-store-dotnet-get-started-users.md
 
-[Comment tooconfigure votre nom de connexion app toouse Azure Active Directory]: app-service-mobile-how-to-configure-active-directory-authentication.md
-[Comment tooconfigure votre connexion de Facebook toouse application]: app-service-mobile-how-to-configure-facebook-authentication.md
-[Comment tooconfigure votre connexion de Google toouse application]: app-service-mobile-how-to-configure-google-authentication.md
-[Comment tooconfigure votre connexion de Microsoft Account toouse application]: app-service-mobile-how-to-configure-microsoft-authentication.md
-[Comment tooconfigure votre connexion de Twitter toouse application]: app-service-mobile-how-to-configure-twitter-authentication.md
+[Comment configurer votre application pour utiliser une connexion Azure Active Directory]: ../app-service/app-service-mobile-how-to-configure-active-directory-authentication.md
+[Comment configurer votre application pour utiliser une connexion Facebook]: ../app-service/app-service-mobile-how-to-configure-facebook-authentication.md
+[Comment configurer votre application pour utiliser une connexion Google]: ../app-service/app-service-mobile-how-to-configure-google-authentication.md
+[Comment configurer votre application pour utiliser une connexion par compte Microsoft]: ../app-service/app-service-mobile-how-to-configure-microsoft-authentication.md
+[Comment configurer votre application pour utiliser une connexion Twitter]: ../app-service/app-service-mobile-how-to-configure-twitter-authentication.md

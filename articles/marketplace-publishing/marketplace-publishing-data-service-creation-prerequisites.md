@@ -1,6 +1,6 @@
 ---
-title: "aaaTechnical les composants requis pour la création d’un Service de données pour hello Marketplace | Documents Microsoft"
-description: "Comprendre les exigences de hello pour la création d’un toodeploy du Service de données et de vendre sur hello Azure Marketplace"
+title: "Prérequis techniques pour la création d’un service de données pour Azure Marketplace | Microsoft Docs"
+description: "Identifier la configuration requise pour la création d'un service de données à déployer et à vendre sur Azure Marketplace"
 services: marketplace-publishing
 documentationcenter: 
 author: HannibalSII
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/26/2016
 ms.author: hascipio; avikova
-ms.openlocfilehash: 2bba4282473fed63c3fcab43043a97e179705844
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 52827723477677bc292c645e2390c435fbad3ee4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="technical-pre-requisites-for-creating-a-data-service-offer-for-hello-azure-marketplace"></a>Conditions préalables techniques pour la création d’un Service de données proposent pour hello Azure Marketplace
+# <a name="technical-pre-requisites-for-creating-a-data-service-offer-for-the-azure-marketplace"></a>Conditions techniques préalables à la création d’une offre de service de données pour Azure Marketplace
 > [!IMPORTANT]
-> **À ce stade, nous n’intégrons plus de nouveaux éditeurs de services de données. Le listing de nouveaux services de données ne sera pas approuvé.** Si vous avez une application SaaS vous aimeriez toopublish sur AppSource, vous trouverez plus d’informations [ici](https://appsource.microsoft.com/partners). Si vous avez des applications IaaS ou développeur de service vous serait comme toopublish sur Azure Marketplace, vous trouverez plus d’informations [ici](https://azure.microsoft.com/marketplace/programs/certified/).
+> **À ce stade, nous n’intégrons plus de nouveaux éditeurs de services de données. Le listing de nouveaux services de données ne sera pas approuvé.** Si vous avez une application SaaS professionnelle à publier sur AppSource, vous trouverez plus d’informations [ici](https://appsource.microsoft.com/partners). Si vous avez une application IaaS ou un service de développement à publier sur Azure Marketplace, vous trouverez plus d’informations [ici](https://azure.microsoft.com/marketplace/programs/certified/).
 > 
 > 
 
-Processus hello soigneusement avant le début de lire et comprendre où et pourquoi chaque étape est effectuée. Autant que possible, vous devez préparer les informations de votre société et d’autres données, téléchargez les outils nécessaires, ou créer des composants techniques avant de commencer le processus de création offre hello.
+Avant de commencer, lisez attentivement cette procédure, de manière à comprendre à quel moment effectuer une étape et pourquoi chaque étape doit être exécutée. Autant que possible, préparez les informations et autres données de votre entreprise, téléchargez les outils nécessaires et/ou créez les composants techniques avant de lancer le processus de création de l’offre.
 
-Vous devez avoir hello prêts avant de commencer le processus de hello des éléments suivants :
+Vous devez préparer les éléments suivants avant de commencer le processus :
 
-## <a name="make-a-decision-on-what-technology-will-be-used-toopublish-your-data-service-offer"></a>Prendre une décision sur quelle technologie sera toopublish utilisé votre offre de Service de données
-Un éditeur peut choisir entre plusieurs technologies lors de la publication du service de données dans Azure Marketplace. Hello principales technologies prises en charge décrites ci-dessous. Peu importe quelle technologie est utilisée toopublish hello Service de données, l’utilisateur final hello consomme des données de hello via hello **flux OData** exposées par le Service Azure Marketplace. Vous trouverez des informations détaillées sur le service OData à l’adresse [http://www.odata.org/](http://www.odata.org/)
+## <a name="make-a-decision-on-what-technology-will-be-used-to-publish-your-data-service-offer"></a>Prendre une décision sur la technologie qui sera utilisée pour publier votre offre de service de données
+Un éditeur peut choisir entre plusieurs technologies lors de la publication du service de données dans Azure Marketplace. Les principales technologies prises en charge décrites ci-dessous. Quelle que soit la technologie utilisée pour publier le service de données, l’utilisateur final consomme les données via le **flux OData** exposé par le service Azure Marketplace. Vous trouverez des informations détaillées sur le service OData à l’adresse [http://www.odata.org/](http://www.odata.org/)
 
 ## <a name="sql-azure-database"></a>Base de données SQL Azure
-Il incombe à l’éditeur de préparer le jeu de données dans SQL Azure. Vous devez toosubscribe tooAzure, configurer la taille appropriée de la base de données et télécharger vos données dans la base de données SQL Azure. Serveur de publication est également responsable tookeep ses données actualisées. Plus d’informations sur l’abonnement tooAzure Services que vous trouverez sur [https://azure.microsoft.com/services/sql-database/](https://azure.microsoft.com/services/sql-database/)
+Il incombe à l’éditeur de préparer le jeu de données dans SQL Azure. Vous devrez vous abonner à Azure, provisionner la taille appropriée de la base de données et charger vos données dans la base de données SQL Azure. L’éditeur doit s’assurer que ses données sont toujours actualisées. Vous trouverez plus d'informations sur la souscription d’un abonnement aux services Azure à l’adresse [https://azure.microsoft.com/services/sql-database/](https://azure.microsoft.com/services/sql-database/)
 
-Lors du déplacement des données de salutation dans SQL Azure, hello Azure Marketplace peut exposer des tables et des vues. Hello Publisher peut spécifier les tables/vues et les colonnes sont l’utilisateur final toohello exposé. Fournisseur de contenu hello supplémentaire peut également spécifier les colonnes qui peuvent être interrogées par l’utilisateur final hello et celles qui est retournés uniquement dans la charge utile de hello. Ainsi, un niveau élevé de flexibilité sur les données dans la base de données hello doivent être exposées. Les colonnes qui peuvent être interrogées doivent toobe soutenu par un ou plusieurs index de base de données.
+Lorsque vous déplacez des données vers SQL Azure, Azure Marketplace peut exposer des tables et des vues. L’éditeur peut spécifier quelles tables/vues et colonnes sont exposées à l'utilisateur final. Le fournisseur de contenu peut également préciser les colonnes qui peuvent être interrogées par l'utilisateur final et celles qui sont uniquement renvoyées dans la charge utile. Cela offre un niveau élevé de flexibilité pour choisir les données de la base de données qui doivent être exposées. Les colonnes qui peuvent être interrogées doivent être soutenues par un ou plusieurs index de base de données.
 
 ## <a name="rest-based-web-service"></a>Service web REST
 Protocole pris en charge : **HTTPS uniquement**
 
-Services basée sur REST existants peuvent être exposés via hello Azure Marketplace. Étant donné que hello jeu de données est toujours l’utilisateur final toohello exposé comme forme de flux OData, hello service Azure Marketplace doit toomap en mesure de toobe hello service tooa service OData basé. toodo donc tous les paramètres en tant que paramètres HTTP tooexpose pas besoin de points de terminaison hello basée sur REST.
+Les services REST existants peuvent être exposés via Azure Marketplace. Étant donné que le jeu de données est toujours exposé à l'utilisateur final comme un flux OData, le service Azure Marketplace doit pouvoir mapper le service à un service OData. Pour cela, les points de terminaison REST doivent exposer tous les paramètres en tant que paramètres HTTP.
 
-charge utile de Hello doit toobe dans un formulaire qui peut être mappé dans une réponse ATOM. Par conséquent, réponse hello à partir des services de hello doit toobe au format XML et ne peut contenir un élément extensible qui contient des valeurs de charge utile hello (par exemple, le jeu d’enregistrements). Hello service Azure Marketplace mappera hello extensible nœud toohello entrée dans les valeurs de charge utile ATOM et hello dans les nœuds de propriété dans le nœud d’entrée hello.
+La charge utile doit pouvoir être mappée à une réponse ATOM. Par conséquent, la réponse des services doit être au format XML et ne peut contenir qu’un élément récurrent avec des valeurs de charge utile (jeu d'enregistrements, par exemple). Le service Azure Marketplace mappera le nœud récurrent au nœud d'entrée dans ATOM et les valeurs de charge utile aux nœuds de propriétés dans le nœud d'entrée.
 
-Les informations d’autorisation (par exemple, API clés, l’authentification par jeton, etc.) doivent toobe fournie comme paramètre HTTP ou dans l’en-tête HTTP de hello (paire clé / valeur) : l’authentification de base est également pris en charge. Une clé valide doit toobe fournie et toutes les demandes via Azure Marketplace sont apportées via cette clé. Utilisateur d’analyse et de facturation s’effectue à la couche d’Azure Marketplace hello.
+Les informations d'autorisation (par exemple, la clé API, l'authentification par jeton, etc.) doivent être fournies comme un paramètre HTTP ou dans l'en-tête HTTP (paire clé-valeur) : l'authentification de base est également prise en charge. Une clé valide doit être fournie et toutes les requêtes via Azure Marketplace sont effectuées via cette clé. La surveillance et la facturation de l’utilisateur interviennent au niveau de la couche Azure Marketplace.
 
-Erreurs retournées par le service de hello doivent toobe mappé à des codes d’état HTTP. En cas de service de hello retourne un fichier XML qui contient l’erreur de hello ces allez toobe mappé par les codes d’état tooHTTP service hello Azure Marketplace.
+Les erreurs retournées par le service doivent être mappées à des codes d'état HTTP. Au cas où le service retourne un fichier XML contenant l'erreur, cette erreur sera mappée par le service Azure Marketplace à des codes d'état HTTP.
 
 ## <a name="soap-based-web-services"></a>Services web SOAP
 Protocole : **HTTPS uniquement**
 
-configuration requise de Hello est même hello comme dans la section de service basée sur REST hello. Hello seule différence est que les paramètres peuvent également être fournis dans un corps XML qui est en cours envoyés au service de l’éditeur toohello avec chaque demande effectuée via Azure Marketplace. Cela signifie qu’utilisateur hello de paramètres HTTP fournit à hello frontaux sont traduits dans les éléments XML d’un document XML qui est en cours de publication avec le service web de hello demande toohello du fournisseur de contenu.
+Les conditions requises sont les mêmes que dans le service REST. La seule différence réside dans le fait que les paramètres peuvent également être fournis dans un corps XML transmis au service de l'éditeur avec chaque demande effectuée sur Azure Marketplace. Cela signifie que les paramètres HTTP fournis par l’utilisateur au niveau frontal sont traduits en éléments XML dans un document XML transmis avec la requête au web service du fournisseur de contenu.
 
 ## <a name="odata-based-web-services"></a>Services web OData
 Protocole : **HTTPS uniquement**
 
-Données peuvent être exposées comme un tooAzure du service OData Marketplace. système de Hello est continu toopass service hello via et remplace racine hello du service de hello racine du service Azure Marketplace hello – tooensure tous les appels Parcourir Azure Marketplace.
+Les données peuvent être exposées comme un service OData sur Azure Marketplace. Le système fera passer le service et remplacera la racine du service Azure Marketplace par le service racine Azure Marketplace pour s’assurer que tous les appels ultérieurs transitent par Azure Marketplace.
 
-Les services OData seulement n’avez pas besoin toogo par rapport à une base de données back-end hello. OData prend en charge tout type de stockage ou business du service de hello logique toodrive.
+Les services OData ne doivent pas seulement être transmis à une base de données sur le serveur principal. OData prend en charge tout type de logique de stockage ou métier pour gérer le service.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous passé en revue les conditions préalables hello et effectué les tâches nécessaires hello, vous pouvez déplacer vers l’avant avec hello création de votre offre de Service de données en tant que hello détaillée dans [Guide de publication de Service de données](marketplace-publishing-data-service-creation.md).
+Maintenant que vous avez passé en revue les conditions préalables et effectué les tâches nécessaires, vous pouvez procéder à la création de votre offre de service de données, comme indiqué dans le [Guide de publication d’un service de données](marketplace-publishing-data-service-creation.md).
 
-Ou, si vous souhaitez que hello tooreview globale de processus et les articles respectifs hello pour chacun des hello phases de publication, consultez l’article de hello [mise en route : comment toopublish une toohello offre Azure Marketplace](marketplace-publishing-getting-started.md).
+Ou, si vous souhaitez passer en revue le processus global et les articles respectifs de chacune des phases de publication, consultez l'article [Mise en route : publier une offre sur Azure Marketplace](marketplace-publishing-getting-started.md).
 
 [link-acct]:marketplace-publishing-accounts-creation-registration.md

@@ -1,5 +1,5 @@
 ---
-title: "AAA « Niveaux de tarification dans la base de données Azure pour PostgreSQL »"
+title: "Niveaux tarifaires dans Base de données Azure pour PostgreSQL"
 description: "Niveaux tarifaires dans Base de données Azure pour PostgreSQL"
 services: postgresql
 author: kamathsun
@@ -10,37 +10,37 @@ ms.custom: mvc
 ms.service: postgresql
 ms.topic: article
 ms.date: 05/31/2017
-ms.openlocfilehash: f10389dd2ad1ff04e83b02786a407c10140a007b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 59ac187e50527517c402a5cc2aa871717dde5650
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-database-for-postgresql-options-and-performance-understand-whats-available-in-each-pricing-tier"></a>Options et performances de Base de données Azure pour PostgreSQL : comprendre les éléments disponibles dans chaque niveau tarifaire
-Lorsque vous créez une base de données PostgreSQL serveur Azure, vous décidez des trois options principales ressources de hello tooconfigure alloués pour ce serveur. Ces choix un impact sur les performances de hello et l’échelle du serveur de hello.
-- Niveau tarifaire 
+Quand vous créez un serveur Azure Database pour le serveur PostgreSQL, vous choisissez entre trois options principales pour configurer les ressources allouées pour ce serveur. Ces choix ont un impact sur les performances et la mise à l’échelle du serveur.
+- Niveau tarifaire
 - Unités de calcul
 - Stockage (Go)
 
-Chaque niveau de tarification a une plage de performances toochoose de niveaux (unités de calcul), selon vos besoins de charges de travail. Les niveaux de performance supérieurs fournissent des ressources supplémentaires pour votre débit toodeliver conçus de serveur. Vous pouvez modifier le niveau de performance du serveur hello au sein d’un niveau de tarification pratiquement sans interruption de l’application.
+Pour chaque niveau tarifaire, vous choisissez dans une plage de niveaux de performances (unités de calcul) en fonction de vos besoins en matière de charges de travail. Des niveaux de performances plus élevés offrent des ressources supplémentaires pour votre serveur, conçu pour délivrer un débit plus élevé. Vous pouvez changer le niveau de performances du serveur au sein d’un niveau tarifaire, pratiquement sans interruption des applications.
 
 > [!IMPORTANT]
-> Alors que le service de hello est en version préliminaire publique, il n’est pas une garantie contrat de niveau de Service (SLA).
+> Le service étant en préversion publique, il n’existe pas de contrat de niveau de service (SLA) garanti.
 
-Dans une Base de données Azure pour serveur PostgreSQL, vous pouvez avoir une ou plusieurs bases de données. Vous pouvez choisir toocreate une base de données par serveur tooutilize toutes les ressources hello ou créer plusieurs bases de données tooshare les ressources hello. 
+Dans une Base de données Azure pour serveur PostgreSQL, vous pouvez avoir une ou plusieurs bases de données. Vous pouvez choisir de créer une seule base de données par serveur pour utiliser toutes les ressources, ou de créer plusieurs bases de données pour partager les ressources. 
 
 ## <a name="choose-a-pricing-tier"></a>Sélectionnez un niveau tarifaire
 En phase de préversion, le service Base de données Azure pour PostgreSQL offre deux niveaux tarifaires : De base et Standard. Le niveau Premium n’est pas encore disponible, mais il le sera bientôt. 
 
-Hello tableau suivant fournit des exemples de hello tarification niveaux meilleures adaptés pour les charges de travail d’application.
+Le tableau suivant fournit des exemples de niveaux tarifaires adaptés à différentes charges de travail d’application.
 
-| Niveau tarifaire  | Charges de travail cibles |
+| Niveau tarifaire | Charges de travail cibles |
 | :----------- | :----------------|
 | De base | Idéal pour les petites charges de travail qui requièrent une capacité de calcul et de stockage évolutive sans garantie d’E/S par seconde. Exemple : serveurs utilisés pour le développement ou le test ou pour des applications à petite échelle rarement utilisées. |
-| Standard | Hello go-toooption pour cloud garantissent des applications nécessitant des e/s avec un débit élevé. Exemples : applications web ou applications d’analyse. |
-| Premium | Idéal pour les charges de travail nécessitant une latence faible pour les transactions et les E/S. Fournit la meilleure prise en charge de hello pour de nombreux utilisateurs simultanés. Toodatabases applicable qui prennent en charge des applications critiques.<br />niveau de tarification Hello Premium n’est pas disponible en version préliminaire. |
+| Standard | Le meilleur choix pour les applications cloud nécessitant une garantie d’E/S par seconde avec un débit élevé. Exemples : applications web ou applications d’analyse. |
+| Premium | Idéal pour les charges de travail nécessitant une latence faible pour les transactions et les E/S. Assure la meilleure prise en charge possible d’un grand nombre d’utilisateurs simultanés. S’applique aux bases de données qui prennent en charge les applications critiques.<br />Le niveau tarifaire Premium n’est pas disponible en préversion. |
 
-toodecide sur la tarification d’un niveau, premier démarrage en déterminant si votre charge de travail a besoin d’une garantie d’e/s. Si c’est le cas, utilisez le niveau tarifaire Standard.
+Pour choisir un niveau tarifaire, commencez par déterminer si votre charge de travail a besoin d’une garantie d’E/S par seconde. Si c’est le cas, utilisez le niveau tarifaire Standard.
 
 | **Caractéristiques des niveaux tarifaires** | **De base** | **Standard** |
 | :------------------------ | :-------- | :----------- |
@@ -50,15 +50,15 @@ toodecide sur la tarification d’un niveau, premier démarrage en déterminant 
 | E/S par seconde de stockage maximales | N/A  | 3 000 | 
 | Période de rétention de sauvegarde de bases de données | 7 jours | 35 jours | 
 
-Période hello preview, vous ne pouvez modifier le niveau tarifaire une fois que le serveur de hello est créé. Bonjour future, il sera tooupgrade possible ou rétrograder un serveur à partir d’un niveau de tooanother niveau tarifaire.
+Pendant la phase de préversion, vous ne pouvez pas changer le niveau tarifaire une fois que le serveur est créé. Ultérieurement, il sera possible de faire passer un serveur d’un niveau tarifaire à l’autre.
 
-## <a name="understand-hello-price"></a>Comprendre les prix hello
-Lorsque vous créez une nouvelle base de données Azure pour PostgreSQL à l’intérieur de hello [Azure Portal](https://portal.azure.com/#create/Microsoft.PostgreSQLServer), cliquez sur hello **niveau tarifaire** lame et hello coût mensuel seront affichera en fonction sur les options de hello que vous avez sélectionné. Si vous n’avez pas un abonnement Azure, utilisez hello tooget de calculatrice tarification Azure un prix estimé. Visitez hello [calculatrice de prix Azure](https://azure.microsoft.com/pricing/calculator/) site Web, puis cliquez sur **ajouter des éléments**, développez hello **bases de données** catégorie, puis choisissez **base de données Azure pour PostgreSQL** options de hello toocustomize.
+## <a name="understand-the-price"></a>Comprendre les tarifs
+Lorsque vous créez une base de données Azure pour PostgreSQL à l’intérieur du [portail Azure](https://portal.azure.com/#create/Microsoft.PostgreSQLServer), cliquez sur le panneau **Niveau tarifaire** pour afficher le coût mensuel en fonction des options que vous avez sélectionnées. Si vous n’avez pas d’abonnement Azure, utilisez la calculatrice de prix Azure pour obtenir un prix estimé. Pour personnaliser les options, visitez le site web [Calculatrice de prix d’Azure](https://azure.microsoft.com/pricing/calculator/), cliquez sur **Ajouter des produits à votre estimation**, développez la catégorie **Bases de données**, puis choisissez **Base de données Azure pour PostgreSQL**.
 
 ## <a name="choose-a-performance-level-compute-units"></a>Choisir un niveau de performances (unités de calcul)
-Une fois que vous avez déterminé hello niveau tarifaire pour votre base de données PostgreSQL serveur Azure, vous êtes au niveau de performances toodetermine prêt hello en sélectionnant nombre hello d’unités de calcul nécessaires. Un bon point de départ est 200 ou 400 unités de calcul pour les applications qui ont besoin d’accès concurrentiels en nombre plus élevé pour leurs charges de travail web ou d’analyse, puis d’ajuster par palier au fil des besoins. 
+Une fois que vous avez déterminé le niveau tarifaire de votre serveur Azure Database pour PostgreSQL, vous êtes prêt à déterminer le niveau de performances en sélectionnant le nombre d’unités de calcul nécessaires. Un bon point de départ est 200 ou 400 unités de calcul pour les applications qui ont besoin d’accès concurrentiels en nombre plus élevé pour leurs charges de travail web ou d’analyse, puis d’ajuster par palier au fil des besoins. 
 
-Les unités sont une mesure de débit de traitement de l’UC est garantie tooa disponible de toobe de calcul en une seule base de données Azure pour PostgreSQL serveur. Une unité de calcul est une mesure mélangée de ressources processeur et mémoire.  Pour plus d’informations, voir [Présentation des unités de calcul](concepts-compute-unit-and-storage.md)
+Les unités de calcul sont une mesure de débit de traitement processeur garanti disponible pour un serveur Azure Database pour PostgreSQL unique. Une unité de calcul est une mesure mélangée de ressources processeur et mémoire.  Pour plus d’informations, voir [Présentation des unités de calcul](concepts-compute-unit-and-storage.md)
 
 ### <a name="basic-pricing-tier-performance-levels"></a>Niveaux de performances du niveau tarifaire De base :
 
@@ -78,29 +78,29 @@ Les unités sont une mesure de débit de traitement de l’UC est garantie tooa 
 | Nombre maximal d’E/S par seconde du serveur approvisionnées | 3 000 E/S PAR SECONDE | 3 000 E/S PAR SECONDE | 3 000 E/S PAR SECONDE | 3 000 E/S PAR SECONDE |
 | Nombre maximal d’E/S par seconde du serveur approvisionnées par Go | 3 E/S par seconde fixes par Go | 3 E/S par seconde fixes par Go | 3 E/S par seconde fixes par Go | 3 E/S par seconde fixes par Go |
 
-\*Taille de stockage du serveur max fait référence taille maximale de stockage approvisionné de toohello pour votre serveur.
+\*La taille maximale de stockage du serveur fait référence à la taille maximale de stockage approvisionnée pour votre serveur.
 
 ## <a name="storage"></a>Storage 
-configuration du stockage Hello définit hello tooan disponible la capacité de stockage Azure de base de données PostgreSQL serveur. stockage Hello utilisé par le service de hello inclut les fichiers de base de données hello, les journaux des transactions et les journaux du serveur hello PostgreSQL. Prendre en compte la taille hello de stockage nécessaire toohost vos bases de données et hello des exigences de performances (par seconde IOPS) lors de la sélection de configuration du stockage hello.
+La configuration du stockage définit la quantité de stockage disponible pour un serveur Azure Database pour PostgreSQL. Le stockage utilisé par le service inclut les fichiers de base de données, les journaux de transaction et les journaux du serveur PostgreSQL. Lors de la sélection de la configuration du stockage, prenez en compte la taille du stockage nécessaire pour héberger vos bases de données et les besoins en performances (E/S par seconde).
 
-Une capacité de stockage est incluse au minimum avec chaque niveau de tarification, indiqué Bonjour précédant la table en tant que « Taille de stockage inclus ». Capacité de stockage supplémentaires peut être ajoutée lorsque le serveur de hello est créé, par incréments de 125 Go de stockage maximale autorisée de toohello. capacité de stockage supplémentaire Hello peut être configurée indépendamment de configuration des unités de calcul hello. modifications des prix Hello selon la quantité de hello de stockage sélectionné.
+Un minimum de capacité de stockage est inclus avec chaque niveau tarifaire, indiqué dans le tableau précédent par « Taille du stockage inclus ». Une capacité de stockage supplémentaire peut être ajoutée lors de la création du serveur, par incréments de 125 Go, jusqu’au stockage maximal autorisé. La capacité de stockage supplémentaire peut être configurée indépendamment de la configuration des unités de calcul. Le prix change en fonction de la quantité de stockage sélectionnée.
 
-configuration d’IOPS Hello dans chaque niveau de performance relative toohello niveau tarifaire et taille de stockage hello choisi. Le niveau De base n’offre pas de garantie d’E/S par seconde. Dans le niveau de tarification Standard hello, hello IOPS échelle proportionnellement toomaximum la taille de stockage dans un rapport de 3:1 fixe. Hello inclus un stockage de garanties de 125 Go pour 375 configuré IOPS, chacun avec une taille d’e/s de haut too256 Ko. Vous pouvez choisir le stockage supplémentaire des too1 To maximum, tooguarantee 3 000 configuré IOPS.
+La configuration des E/S par seconde dans chaque niveau de performances est relative au niveau tarifaire et à la taille de stockage choisis. Le niveau De base n’offre pas de garantie d’E/S par seconde. Dans le niveau tarifaire Standard, les E/S par seconde augmentent proportionnellement à la taille maximale de stockage, selon un ratio fixe de 3:1. Le stockage de 125 Go inclus garantit 375 E/S par seconde approvisionnées, chaque E/S pouvant atteindre 256 Ko. Vous pouvez choisir un stockage supplémentaire jusqu’à un maximum de 1 To, avec une garantie de 3 000 E/S par seconde approvisionnés.
 
-Graphique des métriques du moniteur hello Bonjour Azure portal ou écriture CLI d’Azure commandes toomeasure hello la consommation du stockage et des e/s. Mesures toomonitor sont la limite de stockage, pourcentage de stockage, espace de stockage utilisé et pourcentage d’e/s.
+Surveillez le graphe des métriques dans le portail Azure ou lancez des commandes Azure CLI pour mesurer la consommation de stockage et les E/S par seconde. Les métriques pertinentes à surveiller sont Limite de stockage, Pourcentage de stockage, Stockage utilisé et Pourcentage d’E/S.
 
 >[!IMPORTANT]
-> Dans l’aperçu, choisissez quantité hello de stockage au moment de hello lorsqu’un serveur de hello est créé. Modification de la taille de stockage hello sur un serveur existant n’est pas encore pris en charge. 
+> Pendant la phase de préversion, vous choisissez la quantité de stockage au moment de la création du serveur. Le changement de taille du stockage sur un serveur existant n’est pas encore pris en charge. 
 
 ## <a name="scaling-a-server-up-or-down"></a>Augmentation ou diminution de la puissance d’un serveur
-Vous choisissez initialement hello au niveau de performances et le niveau de tarification lorsque vous créez votre base de données Azure pour PostgreSQL. Une version ultérieure, vous pouvez faire évoluer hello unités de calcul monter ou Descendre dynamiquement, au sein de la plage de hello Hello même niveau de tarification. Hello portail Azure, faites glisser des unités de calcul hello sur le panneau de niveau de tarification du serveur hello ou créer un script en suivant cet exemple : [analyse et mise à l’échelle un serveur PostgreSQL unique à l’aide de CLI d’Azure](scripts/sample-scale-server-up-or-down.md)
+Vous choisissez initialement le niveau tarifaire et le niveau de performances quand vous créez votre serveur Azure Database pour PostgreSQL. Ultérieurement, vous pouvez augmenter ou diminuer dynamiquement les unités de calcul, dans la plage du même niveau de tarification. Dans le portail Azure, faites glisser le curseur des unités de calcul sur le panneau Niveau de tarification du serveur, ou créez un script en suivant cet exemple : [Surveiller et mettre à l’échelle un serveur PostgreSQL à l’aide d’Azure CLI](scripts/sample-scale-server-up-or-down.md)
 
-Mise à l’échelle des unités de calcul hello est effectuée indépendamment de taille de stockage maximale hello que vous avez choisi.
+La mise à l’échelle des unités de calcul se fait indépendamment de la taille maximale de stockage que vous avez choisie.
 
-Coulisses de hello, la modification du niveau de performance hello d’une base de données crée un réplica de base de données d’origine hello nouveau niveau de performances hello et bascule ensuite les connexions sur le réplica de toohello. Aucune donnée n’est perdue au cours de ce processus. Au cours de hello instants lorsque nous basculer toohello réplica, connexions toohello base de données sont désactivées, certaines transactions en vol peuvent être annulées. Cette fenêtre de désactivation varie, mais dure moins de 4 secondes en moyenne, et ne dépasse pas 30 secondes dans plus de 99 % des cas. S’il existe grand nombre de transactions en vol au niveau des connexions de moment hello est désactivés, cette fenêtre peut être plus longue.
+En réalité, un changement du niveau tarifaire d’une base de données crée un réplica de la base de données d’origine avec le nouveau niveau de performances, puis bascule les connexions vers ce réplica. Aucune donnée n’est perdue au cours de ce processus. Pendant le bref instant où nous basculons vers le réplica, les connexions à la base de données sont désactivées, de sorte que certaines transactions en cours sont susceptibles d’être annulées. Cette fenêtre de désactivation varie, mais dure moins de 4 secondes en moyenne, et ne dépasse pas 30 secondes dans plus de 99 % des cas. Cette durée peut se révéler supérieure, en particulier s’il existe un très grand nombre de transactions en cours au moment où les connexions sont désactivées.
 
-Durée Hello du processus de mise à l’échelle ensemble hello dépend de la taille de hello et niveau de tarification de serveur hello avant et après la modification de hello. Par exemple, un serveur qui est en cours de modification de calcul des unités au sein du niveau de tarification Standard hello, doit se terminer dans quelques minutes. Hello nouvelles propriétés de serveur de hello ne sont pas appliquées tant que hello modifications ont été effectuées.
+La durée de la totalité du processus de mise à l’échelle dépend de la taille et du niveau tarifaire du serveur avant et après le changement. Par exemple, le changement des unités de calcul au sein du niveau tarifaire Standard ne demande normalement que quelques minutes. Les nouvelles propriétés du serveur ne sont appliquées qu’une fois les modifications terminées.
 
 ## <a name="next-steps"></a>Étapes suivantes
-- Pour plus d’informations sur les unités de calcul, consultez [Présentation des unités de calcul](concepts-compute-unit-and-storage.md)
-- Découvrez comment trop[analyse et mise à l’échelle un serveur PostgreSQL unique à l’aide de CLI d’Azure](scripts/sample-scale-server-up-or-down.md)
+- Pour plus d’informations sur les unités de calcul, voir [Présentation des unités de calcul](concepts-compute-unit-and-storage.md)
+- Découvrir comment [Surveiller et mettre à l’échelle un seul serveur PostgreSQL à l’aide d’Azure CLI](scripts/sample-scale-server-up-or-down.md)

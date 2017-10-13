@@ -1,6 +1,6 @@
 ---
-title: "aaaIndexing des fichiers multimédias avec Azure Media Indexer 2 Aperçu | Documents Microsoft"
-description: "Azure Media Indexer vous permet de toomake le contenu de votre recherche de fichiers multimédias et toogenerate une transcription en texte intégral de sous-titrage et les mots clés. Cette rubrique montre comment afficher un aperçu des toouse Media Indexer 2."
+title: "Indexation de fichiers multimédias avec Azure Media Indexer 2 | Microsoft Docs"
+description: "Azure Media Indexer permet de rendre le contenu de vos fichiers multimédias consultable et de générer une transcription en texte intégral de sous-titrages et de mots-clés. Cette rubrique explique comment utiliser Media Indexer 2 Preview."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,48 +14,48 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: adsolank;juliako;
-ms.openlocfilehash: f83fa0db58b828ffa29933d68ce108b4906dcd78
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 0afdd1c04e50215a55fb92c70b1210d1f80d8e3f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="indexing-media-files-with-azure-media-indexer-2-preview"></a>Indexation de fichiers multimédias avec Azure Media Indexer 2 Preview
 ## <a name="overview"></a>Vue d'ensemble
-Hello **Azure Media Indexer 2 aperçu** le processeur multimédia (MP) vous permet de toomake des fichiers multimédias et contenu de recherche, ainsi que pour générer des pistes de sous-titres. Comparés toohello la version précédente de [Azure Media Indexer](media-services-index-content.md), **Azure Media Indexer 2 aperçu** effectue une indexation plus rapide et offre la prise en charge plus large. Les langues prises en charge incluent l’anglais, l’espagnol, le français, l’allemand, l’italien, le chinois (mandarin, simplifié), le portugais, l’arabe et le japonais.
+Le processeur multimédia **Azure Media Indexer 2 Preview** permet d’effectuer des recherches dans les fichiers multimédias et le contenu et de générer des pistes de sous-titrage. Par rapport à la version précédente d’ [Azure Media Indexer](media-services-index-content.md), **Azure Media Indexer 2 Preview** effectue une indexation plus rapide et offre une prise en charge plus large des langues. Les langues prises en charge incluent l’anglais, l’espagnol, le français, l’allemand, l’italien, le chinois (mandarin, simplifié), le portugais, l’arabe et le japonais.
 
-Hello **Azure Media Indexer 2 aperçu** Pack d’administration est actuellement en version préliminaire.
+Le processeur multimédia **Azure Media Indexer 2 Preview** est actuellement disponible en version préliminaire.
 
-Cette rubrique montre comment des travaux de l’indexation de toocreate avec **Azure Media Indexer 2 aperçu**.
+Cette rubrique explique comment créer des travaux d’indexation avec **Azure Media Indexer 2 Preview**.
 
 > [!NOTE]
-> Hello suivant considérations s’appliquent :
+> Les considérations suivantes s'appliquent :
 > 
 > Indexer 2 n’est pas pris en charge dans Azure China et Azure Government.
 > 
-> Lors de l’indexation de contenu, assurez-vous que toouse des fichiers multimédias qui sont très clair (sans musique de fond, bruit, effets ou souffle de microphone). Voici quelques exemples de contenu approprié : des réunions, des conférences ou des présentations enregistrées. Hello contenu suivant peut ne pas convenir pour l’indexation : films, émissions de télévision n’est pas défini avec audio mixte et effets sonores, contenu mal enregistrement avec bruit de fond (souffle).
+> Lors de l’indexation de contenu, veillez à utiliser des fichiers multimédias avec des mots clairs (sans musique de fond, bruit, effets ou sifflement du microphone). Voici quelques exemples de contenu approprié : des réunions, des conférences ou des présentations enregistrées. Le contenu suivant peut ne pas convenir à l’indexation : des films, des émissions de télévision, des fichiers avec du son et des effets sonores mélangés, du contenu mal enregistré avec un bruit de fond (sifflement).
 > 
 > 
 
-Cette rubrique fournit des détails sur **Azure Media Indexer 2 aperçu** et montre comment toouse avec Media Services SDK pour .NET
+Cette rubrique donne des informations détaillées sur **Azure Media Indexer 2 Preview** et illustre son utilisation avec le SDK Media Services pour .NET.
 
 ## <a name="input-and-output-files"></a>Fichiers d’entrée et de sortie
 ### <a name="input-files"></a>Fichiers d'entrée
 Fichiers audio ou vidéo
 
 ### <a name="output-files"></a>Fichiers de sortie
-Un travail d’indexation peut générer des fichiers de sous-titres Bonjour suivant formats :  
+Un travail d’indexation peut générer des fichiers de sous-titres dans les formats suivants :  
 
 * **SAMI**
 * **TTML**
 * **WebVTT**
 
-Les fichiers de sous-titres fermés dans ces formats peuvent être utilisés toomake audio et vidéo fichiers accessible toopeople malentendantes.
+Les fichiers de sous-titre dans ces formats permettent de rendre un fichier audio et vidéo accessible aux malentendants.
 
 ## <a name="task-configuration-preset"></a>Configuration de la tâche (préconfiguration)
 Lors de la création d’une tâche d’indexation avec **Azure Media Indexer 2 Preview**, vous devez spécifier une présélection de configuration.
 
-Hello JSON suivant définit les paramètres disponibles.
+Le code JSON suivant définit les paramètres disponibles.
 
     {
       "version":"1.0",
@@ -72,7 +72,7 @@ Hello JSON suivant définit les paramètres disponibles.
     }
 
 ## <a name="supported-languages"></a>Langues prises en charge
-Azure Media Indexer 2 en version préliminaire prend en charge vocale-texte hello suivant langues (lors de la spécification de nom de la langue hello dans la configuration de la tâche hello, utiliser le code de 4 caractères entre crochets comme indiqué ci-dessous) :
+Azure Media Indexer 2 Preview prend en charge la reconnaissance vocale pour les langues suivantes (lorsque vous spécifiez le nom de la langue dans la configuration de la tâche, utilisez un code à 4 caractères entre crochets, comme indiqué ci-dessous) :
 
 * Anglais [EnUs]
 * Espagnol [EsEs]
@@ -89,14 +89,14 @@ Azure Media Indexer 2 en version préliminaire prend en charge vocale-texte hell
 
 ## <a name="supported-file-types"></a>Types de fichiers pris en charge
 
-Pour plus d’informations sur les types de fichiers pris en charge, consultez hello [prise en charge des formats decodecs/](media-services-media-encoder-standard-formats.md#input-containerfile-formats) section.
+Pour plus d’informations sur les types de fichiers pris en charge, voir la section [codecs/format pris en charge](media-services-media-encoder-standard-formats.md#input-containerfile-formats).
 
 ## <a name="net-sample-code"></a>Exemple de code .NET
 
-suivant de Hello programme montre comment :
+Le programme suivant montre comment effectuer les tâches suivantes :
 
-1. Créer un élément multimédia et téléchargez un fichier multimédia en ressource de hello.
-2. Créer une tâche avec une tâche d’indexation basée sur un fichier de configuration qui contient hello suivant présélection de json.
+1. Créer un élément multimédia et charger un fichier multimédia dans l’élément multimédia.
+2. Créer un travail avec une tâche d’indexation basée sur un fichier de configuration qui contient la présélection JSON suivante.
    
         {
           "version":"1.0",
@@ -111,11 +111,11 @@ suivant de Hello programme montre comment :
                "Type":"SpReco"
             }]
         }
-3. Télécharger les fichiers de sortie hello. 
+3. Téléchargez les fichiers de sortie. 
    
 #### <a name="create-and-configure-a-visual-studio-project"></a>Créer et configurer un projet Visual Studio
 
-Configurer votre environnement de développement et de remplir le fichier app.config de hello avec les informations de connexion, comme décrit dans [développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
+Configurez votre environnement de développement et ajoutez des informations de connexion au fichier app.config selon la procédure décrite dans l’article [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
 
 #### <a name="example"></a>Exemple
 
@@ -131,7 +131,7 @@ Configurer votre environnement de développement et de remplir le fichier app.co
     {
         class Program
         {
-            // Read values from hello App.config file.
+            // Read values from the App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -151,13 +151,13 @@ Configurer votre environnement de développement et de remplir le fichier app.co
                 var asset = RunIndexingJob(@"C:\supportFiles\Indexer\BigBuckBunny.mp4",
                                             @"C:\supportFiles\Indexer\config.json");
 
-                // Download hello job output asset.
+                // Download the job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\Indexer\Output");
             }
 
             static IAsset RunIndexingJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload hello input media file toostorage.
+                // Create an asset and upload the input media file to storage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Indexing Input Asset",
                     AssetCreationOptions.None);
@@ -165,38 +165,38 @@ Configurer votre environnement de développement et de remplir le fichier app.co
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Indexing Job");
 
-                // Get a reference tooAzure Media Indexer 2 Preview.
+                // Get a reference to Azure Media Indexer 2 Preview.
                 string MediaProcessorName = "Azure Media Indexer 2 Preview";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from hello specified file.
+                // Read configuration from the specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with hello encoding details, using a string preset.
+                // Create a task with the encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Indexing Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify hello input asset toobe indexed.
+                // Specify the input asset to be indexed.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job.
+                // Add an output asset to contain the results of the job.
                 task.OutputAssets.AddNew("My Indexing Output Asset", AssetCreationOptions.None);
 
-                // Use hello following event handler toocheck job progress.  
+                // Use the following event handler to check job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch hello job.
+                // Launch the job.
                 job.Submit();
 
-                // Check job execution and wait for job toofinish.
+                // Check job execution and wait for job to finish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, hello event handling
+                // If job state is Error, the event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

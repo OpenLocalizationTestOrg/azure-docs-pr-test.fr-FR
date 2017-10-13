@@ -1,6 +1,6 @@
 ---
-title: "référence aaaPart pour le Concepteur de vue de l’Analytique des journaux OMS | Documents Microsoft"
-description: "Concepteur de vue de l’Analytique de journal vous permet de toocreate personnalisé dans la console OMS hello des vues qui contiennent différentes visualisations de données dans le référentiel d’OMS hello. Cet article fournit une référence des paramètres hello pour chacun des toouse disponibles des parties de visualisation hello dans vos affichages personnalisés."
+title: "Référence des composants pour le Concepteur de vue dans OMS Log Analytics | Microsoft Docs"
+description: "Le Concepteur de vues de Log Analytics permet de créer dans la console OMS des vues personnalisées contenant différentes visualisations des données du référentiel OMS. Cet article fournit une référence relative aux paramètres de chacun des composants de visualisation disponibles dans vos vues personnalisées."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,179 +14,179 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: bwren
-ms.openlocfilehash: 6a19a451cf4cefd2fa5c94e6f61d812c4f820f73
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 40a6101576708936404447576d704a49666143fe
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="log-analytics-view-designer-visualization-part-reference"></a>Référence des composants de visualisation du Concepteur de vues de Log Analytics
-Hello Concepteur de vue de l’Analytique de journal vous permet de toocreate des vues personnalisées dans la console OMS hello qui contiennent différentes visualisations de données à partir du référentiel d’OMS hello. Cet article fournit une référence des paramètres hello pour chacun des toouse disponibles des parties de visualisation hello dans vos affichages personnalisés.
+Le Concepteur de vues de Log Analytics permet de créer dans la console OMS des vues personnalisées contenant différentes visualisations de données du référentiel OMS. Cet article fournit une référence relative aux paramètres de chacun des composants de visualisation disponibles dans vos vues personnalisées.
 
 Autres articles disponibles concernant le Concepteur de vues :
 
-* [Afficher le concepteur](log-analytics-view-designer.md) -vue d’ensemble de hello Concepteur de vues et procédures pour créer et modifier des vues personnalisées.
-* [Vignette référence](log-analytics-view-designer-tiles.md) -référence des paramètres hello pour chacun des hello vignettes toouse disponible dans vos affichages personnalisés.
+* [Concepteur de vues](log-analytics-view-designer.md) - vue d’ensemble du Concepteur de vues et des procédures de création et de modification des vues personnalisées.
+* [Référence de vignette](log-analytics-view-designer-tiles.md) - référence des paramètres pour chacune des vignettes utilisables dans vos vues personnalisées.
 
 >[!NOTE]
-> Si votre espace de travail a été mis à niveau toohello [Analytique de journal nouveau langage de requête](log-analytics-log-search-upgrade.md), alors les requêtes dans toutes les vues doivent être écrits dans hello [nouveau langage de requête](https://go.microsoft.com/fwlink/?linkid=856078).  Toutes les vues qui ont été créés avant de l’espace de travail hello a été mis à niveau seront automatiquement converti.
+> Si votre espace de travail a été mis à niveau vers le [nouveau langage de requête Log Analytics](log-analytics-log-search-upgrade.md), les requêtes de toutes les vues doivent être écrites à l’aide du [nouveau langage de requête](https://go.microsoft.com/fwlink/?linkid=856078).  Toutes les vues créées avant la mise à niveau de l’espace de travail sont automatiquement converties.
 
-Hello tableau suivant décrit hello différents types de vignettes disponibles dans hello Concepteur de vue.  les sections de Hello ci-dessous décrivent chaque type de détail et leurs propriétés.
+Le tableau suivant décrit les différents types de vignettes disponibles dans le Concepteur de vues.  Les sections suivantes décrivent en détail chaque type de vignette et ses propriétés.
 
 | Type de vue | Description |
 |:--- |:--- |
-| [Liste de requêtes](#list-of-queries-part) |Affiche une liste des requêtes de recherche dans le journal.  Hello utilisateur peut cliquer sur chaque toodisplay requête ses résultats. |
-| [Nombre et liste](#number-amp-list-part) |L’en-tête affiche une valeur indiquant le nombre d’enregistrements obtenus à partir d’une requête de recherche dans le journal.  Liste affiche hello dix meilleurs résultats à partir d’une requête avec un graphique indiquant la valeur relative de hello d’une colonne numérique ou de sa modification dans le temps. |
-| [Deux nombres et liste](#two-numbers-amp-list-part) |L’en-tête affiche deux valeurs indiquant les nombres d’enregistrements obtenus à partir de requêtes de recherche distinctes dans le journal.  Liste affiche hello dix meilleurs résultats à partir d’une requête avec un graphique indiquant la valeur relative de hello d’une colonne numérique ou de sa modification dans le temps. |
-| [Anneau et liste](#donut-amp-list-part) |L’en-tête affiche un nombre résumé à partir d’une colonne de valeur dans une requête de journal.  anneau de Hello affiche graphiquement les résultats de trois principaux hello. |
-| [Deux chronologies et liste](#two-timelines-amp-list-part) |En-tête affiche hello les résultats des requêtes de journal deux au fil du temps sous forme de graphiques de colonne avec une légende affichant un nombre unique résumés à partir d’une colonne de valeur dans une requête de journal.  Liste affiche hello dix meilleurs résultats à partir d’une requête avec un graphique indiquant la valeur relative de hello d’une colonne numérique ou de sa modification dans le temps. |
+| [Liste de requêtes](#list-of-queries-part) |Affiche une liste des requêtes de recherche dans le journal.  L’utilisateur peut cliquer sur chaque requête pour afficher ses résultats. |
+| [Nombre et liste](#number-amp-list-part) |L’en-tête affiche une valeur indiquant le nombre d’enregistrements obtenus à partir d’une requête de recherche dans le journal.  La liste affiche les dix premiers résultats d’une requête, avec un graphique indiquant la valeur relative d’une colonne numérique ou ses changements avec le temps. |
+| [Deux nombres et liste](#two-numbers-amp-list-part) |L’en-tête affiche deux valeurs indiquant les nombres d’enregistrements obtenus à partir de requêtes de recherche distinctes dans le journal.  La liste affiche les dix premiers résultats d’une requête, avec un graphique indiquant la valeur relative d’une colonne numérique ou ses changements avec le temps. |
+| [Anneau et liste](#donut-amp-list-part) |L’en-tête affiche un nombre résumé à partir d’une colonne de valeur dans une requête de journal.  L’anneau affiche sous forme graphique les résultats des trois premiers enregistrements. |
+| [Deux chronologies et liste](#two-timelines-amp-list-part) |L’en-tête affiche les résultats de deux requêtes de journal dans le temps, sous forme d’histogrammes avec une légende affichant un nombre résumé à partir d’une colonne de valeur dans une requête de journal.  La liste affiche les dix premiers résultats d’une requête, avec un graphique indiquant la valeur relative d’une colonne numérique ou ses changements avec le temps. |
 | [Informations](#information-part) |L’en-tête affiche un texte statique et un lien facultatif.  La liste affiche un ou plusieurs éléments contenant un texte statique et un titre. |
-| [Graphique en courbes, légende et liste](#line-chart-callout-amp-list-part) |L’en-tête affiche un graphique en courbes avec plusieurs séries à partir d’une requête de journal dans le temps, et une légende avec une valeur de synthèse.  Liste affiche hello dix meilleurs résultats à partir d’une requête avec un graphique indiquant la valeur relative de hello d’une colonne numérique ou de sa modification dans le temps. |
-| [Graphique en courbes et liste](#line-chart-amp-list-part) |L’en-tête affiche un graphique en courbes avec plusieurs séries à partir d’une requête de journal dans le temps.  Liste affiche hello dix meilleurs résultats à partir d’une requête avec un graphique indiquant la valeur relative de hello d’une colonne numérique ou de sa modification dans le temps. |
+| [Graphique en courbes, légende et liste](#line-chart-callout-amp-list-part) |L’en-tête affiche un graphique en courbes avec plusieurs séries à partir d’une requête de journal dans le temps, et une légende avec une valeur de synthèse.  La liste affiche les dix premiers résultats d’une requête, avec un graphique indiquant la valeur relative d’une colonne numérique ou ses changements avec le temps. |
+| [Graphique en courbes et liste](#line-chart-amp-list-part) |L’en-tête affiche un graphique en courbes avec plusieurs séries à partir d’une requête de journal dans le temps.  La liste affiche les dix premiers résultats d’une requête, avec un graphique indiquant la valeur relative d’une colonne numérique ou ses changements avec le temps. |
 | [Partie de pile de graphiques de courbes](#stack-of-line-charts-part) |Affiche trois graphiques en courbes distincts avec plusieurs séries à partir d’une requête de journal dans le temps. |
 
 ## <a name="list-of-queries-part"></a>Liste de parties de requêtes
-Affiche une liste des requêtes de recherche dans le journal.  Hello utilisateur peut cliquer sur chaque toodisplay requête ses résultats.  affichage de Hello inclut une seule requête par défaut, et vous pouvez cliquer sur **+ requête** tooadd des requêtes supplémentaires.
+Affiche une liste des requêtes de recherche dans le journal.  L’utilisateur peut cliquer sur chaque requête pour afficher ses résultats.  La vue inclut une requête par défaut, et vous pouvez cliquer sur **+ Requête** pour ajouter des requêtes supplémentaires.
 
 ![Liste de vues de requêtes](media/log-analytics-view-designer/view-list-queries.png)
 
 | Paramètre | Description |
 |:--- |:--- |
 | **Généralités** | |
-| Intitulé |Toodisplay de texte en haut de hello de vue de hello. |
-| Nouveau groupe |Sélectionnez toocreate un nouveau groupe dans l’affichage de hello en commençant à l’affichage actuel de hello. |
-| Filtres présélectionnés |Virgule liste délimitée par des tooinclude de propriétés dans le volet de gauche filtre hello lorsque l’utilisateur de hello sélectionne une requête. |
-| Mode d’affichage |Vue initiale affichée lors de la requête de hello est sélectionnée.  Hello utilisateur sélectionne toutes les vues disponibles après l’ouverture de requête de hello. |
+| Intitulé |Texte à afficher en haut de la vue. |
+| Nouveau groupe |Sélectionnez cette option pour créer un groupe dans la vue commençant à la vue actuelle. |
+| Filtres présélectionnés |Liste avec virgules de séparation des propriétés à inclure dans le volet de filtre de gauche quand l’utilisateur sélectionne une requête. |
+| Mode d’affichage |Vue initiale affichée lorsque la requête est sélectionnée.  L’utilisateur peut sélectionner toute vue disponible après l’ouverture de la requête. |
 | **Requêtes** | |
-| Requête de recherche |Toorun de la requête. |
-| Nom convivial |Nom descriptif de l’utilisateur de toohello toodisplay hello requête. |
+| Requête de recherche |Requête à exécuter. |
+| Nom convivial |Nom descriptif de la requête à afficher à l’utilisateur. |
 
 ## <a name="number--list-part"></a>Nombre et composant de liste
-L’en-tête affiche une valeur indiquant le nombre d’enregistrements obtenus à partir d’une requête de recherche dans le journal.  Liste affiche hello dix meilleurs résultats à partir d’une requête avec un graphique indiquant la valeur relative de hello d’une colonne numérique ou de sa modification dans le temps.
+L’en-tête affiche une valeur indiquant le nombre d’enregistrements obtenus à partir d’une requête de recherche dans le journal.  La liste affiche les dix premiers résultats d’une requête, avec un graphique indiquant la valeur relative d’une colonne numérique ou ses changements avec le temps.
 
 ![Liste de vues de requêtes](media/log-analytics-view-designer/view-number-list.png)
 
 | Paramètre | Description |
 |:--- |:--- |
 | **Généralités** | |
-| Titre du groupe |Toodisplay de texte en haut de hello de vue de hello. |
-| Nouveau groupe |Sélectionnez toocreate un nouveau groupe dans l’affichage de hello en commençant à l’affichage actuel de hello. |
-| Icône |Image du fichier toodisplay toohello résultat suivant dans l’en-tête de hello. |
-| Icône Utiliser |Sélectionnez l’affichage de l’icône toohave hello. |
+| Titre du groupe |Texte à afficher en haut de la vue. |
+| Nouveau groupe |Sélectionnez cette option pour créer un groupe dans la vue commençant à la vue actuelle. |
+| Icône |Fichier image à afficher à côté du résultat dans l’en-tête. |
+| Icône Utiliser |Sélectionnez cette option pour que l’icône s’affiche. |
 | **Titre** | |
-| Légende |Toodisplay de texte en haut de hello d’en-tête de hello. |
-| Interroger |Toorun de requête pour l’en-tête de hello.  nombre de Hello de hello enregistrements retournés par la requête de hello s’affiche. |
+| Légende |Texte à afficher en haut de l’en-tête. |
+| Requête |Requête à exécuter pour l’en-tête.  Affiche le décompte du nombre d’enregistrements retournés par la requête. |
 | **Liste** | |
-| Interroger |Toorun de requête pour la liste hello.  Bonjour tout d’abord deux propriétés de hello dix premiers enregistrements dans les résultats de hello sont affichées.  propriété de première Hello doit être une texte valeur hello deuxième propriété et une valeur numérique.  Les barres sont automatiquement créés en fonction de la valeur relative de hello de colonne numérique de hello.<br><br>Utilisez la commande de tri de hello dans les enregistrements de hello toosort hello requête dans la liste de hello.  Hello utilisateur peut cliquer sur Afficher tous les toorun hello interroger et retourner tous les enregistrements. |
-| Masquer le graphique |Sélectionnez toodisable hello graphique toohello droite de la colonne numérique de hello. |
-| Activation des sparklines |Sélectionnez le graphique sparkline de toodisplay au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Couleur |Couleur des barres de hello ou des graphiques sparkline. |
-| Séparateur de noms et de valeurs |Séparateur de caractère si vous souhaitez que la propriété en texte hello tooparse en plusieurs valeurs.  Consultez [Paramètres communs](#name-value-separator) pour plus d’informations. |
-| Requête de navigation |Interroger toorun lors de l’utilisateur de hello sélectionne un élément dans la liste de hello.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
-| **Liste** |**&gt; Titres des colonnes** |
-| Nom |Toodisplay de texte en haut de hello de hello première colonne de liste de hello. |
-| Valeur |Toodisplay texte haut hello hello deuxième colonne de liste de hello. |
-| **Liste** |**&gt; Seuils** |
-| Activer les seuils |Sélectionnez tooenable seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
+| Requête |Requête à exécuter pour obtenir la liste.  Les deux premières propriétés des dix premiers enregistrements dans les résultats s’affichent.  La première propriété doit être une valeur de texte et la seconde une valeur numérique.  Les barres sont créées automatiquement en fonction de la valeur relative de la colonne numérique.<br><br>Utilisez la commande de tri dans la requête pour trier les enregistrements de la liste.  L’utilisateur peut cliquer sur Afficher tout pour exécuter la requête et renvoyer tous les enregistrements. |
+| Masquer le graphique |Sélectionnez cette option pour désactiver le graphique à droite de la colonne numérique. |
+| Activation des sparklines |Sélectionnez cette option pour afficher la sparkline au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Couleur |Couleur des barres ou sparklines. |
+| Séparateur de noms et de valeurs |Délimiteur de caractère unique si vous souhaitez analyser la propriété de texte en plusieurs valeurs.  Consultez [Paramètres communs](#name-value-separator) pour plus d’informations. |
+| Requête de navigation |Requête à exécuter lorsque l’utilisateur sélectionne un élément dans la liste.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
+| **Liste** |**> Titres des colonnes** |
+| Nom |Texte à afficher en haut de la première colonne de la liste. |
+| Valeur |Texte à afficher en haut de la deuxième colonne de la liste. |
+| **Liste** |**> Seuils** |
+| Activer les seuils |Sélectionnez cette option pour activer les seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
 
 ## <a name="two-numbers--list-part"></a>Deux nombres et composant de liste
-L’en-tête affiche deux valeurs indiquant les nombres d’enregistrements obtenus à partir de requêtes de recherche distinctes dans le journal.  Liste affiche hello dix meilleurs résultats à partir d’une requête avec un graphique indiquant la valeur relative de hello d’une colonne numérique ou de sa modification dans le temps.
+L’en-tête affiche deux valeurs indiquant les nombres d’enregistrements obtenus à partir de requêtes de recherche distinctes dans le journal.  La liste affiche les dix premiers résultats d’une requête, avec un graphique indiquant la valeur relative d’une colonne numérique ou ses changements avec le temps.
 
 ![Deux nombres et affichage de liste](media/log-analytics-view-designer/view-two-numbers-list.png)
 
 | Paramètre | Description |
 |:--- |:--- |
 | **Généralités** | |
-| Titre du groupe |Toodisplay de texte en haut de hello de vue de hello. |
-| Nouveau groupe |Sélectionnez toocreate un nouveau groupe dans l’affichage de hello en commençant à l’affichage actuel de hello. |
-| Icône |Image du fichier toodisplay toohello résultat suivant dans l’en-tête de hello. |
-| Icône Utiliser |Sélectionnez l’affichage de l’icône toohave hello. |
+| Titre du groupe |Texte à afficher en haut de la vue. |
+| Nouveau groupe |Sélectionnez cette option pour créer un groupe dans la vue commençant à la vue actuelle. |
+| Icône |Fichier image à afficher à côté du résultat dans l’en-tête. |
+| Icône Utiliser |Sélectionnez cette option pour que l’icône s’affiche. |
 | **Titre** | |
-| Légende |Toodisplay de texte en haut de hello d’en-tête de hello. |
-| Interroger |Toorun de requête pour l’en-tête de hello.  nombre de Hello de hello enregistrements retournés par la requête de hello s’affiche. |
+| Légende |Texte à afficher en haut de l’en-tête. |
+| Requête |Requête à exécuter pour l’en-tête.  Affiche le décompte du nombre d’enregistrements retournés par la requête. |
 | **Liste** | |
-| Interroger |Toorun de requête pour la liste hello.  Bonjour tout d’abord deux propriétés de hello dix premiers enregistrements dans les résultats de hello sont affichées.  propriété de première Hello doit être une texte valeur hello deuxième propriété et une valeur numérique.  Les barres sont automatiquement créés en fonction de la valeur relative de hello de colonne numérique de hello.<br><br>Utilisez la commande de tri de hello dans les enregistrements de hello toosort hello requête dans la liste de hello.  Hello utilisateur peut cliquer sur Afficher tous les toorun hello interroger et retourner tous les enregistrements. |
-| Masquer le graphique |Sélectionnez toodisable hello graphique toohello droite de la colonne numérique de hello. |
-| Activation des sparklines |Sélectionnez le graphique sparkline de toodisplay au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Couleur |Couleur des barres de hello ou des graphiques sparkline. |
-| Opération |Tooperform d’opération pour le graphique sparkline de hello.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Séparateur de noms et de valeurs |Séparateur de caractère si vous souhaitez que la propriété en texte hello tooparse en plusieurs valeurs.  Consultez [Paramètres communs](#name-value-separator) pour plus d’informations. |
-| Requête de navigation |Interroger toorun lors de l’utilisateur de hello sélectionne un élément dans la liste de hello.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
-| **Liste** |**&gt; Titres des colonnes** |
-| Nom |Toodisplay de texte en haut de hello de hello première colonne de liste de hello. |
-| Valeur |Toodisplay texte haut hello hello deuxième colonne de liste de hello. |
-| **Liste** |**&gt; Seuils** |
-| Activer les seuils |Sélectionnez tooenable seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
+| Requête |Requête à exécuter pour obtenir la liste.  Les deux premières propriétés des dix premiers enregistrements dans les résultats s’affichent.  La première propriété doit être une valeur de texte et la seconde une valeur numérique.  Les barres sont créées automatiquement en fonction de la valeur relative de la colonne numérique.<br><br>Utilisez la commande de tri dans la requête pour trier les enregistrements de la liste.  L’utilisateur peut cliquer sur Afficher tout pour exécuter la requête et renvoyer tous les enregistrements. |
+| Masquer le graphique |Sélectionnez cette option pour désactiver le graphique à droite de la colonne numérique. |
+| Activation des sparklines |Sélectionnez cette option pour afficher la sparkline au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Couleur |Couleur des barres ou sparklines. |
+| Opération |Opération à effectuer pour la sparkline.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Séparateur de noms et de valeurs |Délimiteur de caractère unique si vous souhaitez analyser la propriété de texte en plusieurs valeurs.  Consultez [Paramètres communs](#name-value-separator) pour plus d’informations. |
+| Requête de navigation |Requête à exécuter lorsque l’utilisateur sélectionne un élément dans la liste.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
+| **Liste** |**> Titres des colonnes** |
+| Nom |Texte à afficher en haut de la première colonne de la liste. |
+| Valeur |Texte à afficher en haut de la deuxième colonne de la liste. |
+| **Liste** |**> Seuils** |
+| Activer les seuils |Sélectionnez cette option pour activer les seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
 
 ## <a name="donut--list-part"></a>Anneau et composant de liste
-L’en-tête affiche un nombre résumé à partir d’une colonne de valeur dans une requête de journal.  anneau de Hello affiche graphiquement les résultats de trois principaux hello.
+L’en-tête affiche un nombre résumé à partir d’une colonne de valeur dans une requête de journal.  L’anneau affiche sous forme graphique les résultats des trois premiers enregistrements.
 
 ![Anneau et affichage de liste](media/log-analytics-view-designer/view-donut-list.png)
 
 | Paramètre | Description |
 |:--- |:--- |
 | **Généralités** | |
-| Titre du groupe |Toodisplay de texte en haut de hello Hello disposer en mosaïque. |
-| Nouveau groupe |Sélectionnez toocreate un nouveau groupe dans l’affichage de hello en commençant à l’affichage actuel de hello. |
-| Icône |Image du fichier toodisplay toohello résultat suivant dans l’en-tête de hello. |
-| Icône Utiliser |Sélectionnez l’affichage de l’icône toohave hello. |
+| Titre du groupe |Texte à afficher en haut de la vignette. |
+| Nouveau groupe |Sélectionnez cette option pour créer un groupe dans la vue commençant à la vue actuelle. |
+| Icône |Fichier image à afficher à côté du résultat dans l’en-tête. |
+| Icône Utiliser |Sélectionnez cette option pour que l’icône s’affiche. |
 | **En-tête** | |
-| Intitulé |Toodisplay de texte en haut de hello d’en-tête de hello. |
-| Sous-titre |Toodisplay texte sous hello titre en haut de hello d’en-tête de hello. |
+| Intitulé |Texte à afficher en haut de l’en-tête. |
+| Sous-titre |Texte à afficher sous le titre en haut de l’en-tête. |
 | **Anneau** | |
-| Interroger |Toorun de requête pour l’anneau de hello.  propriété de première Hello doit être une texte valeur hello deuxième propriété et une valeur numérique. |
-| **Anneau** |**&gt; Centrer** |
-| Texte |Toodisplay de texte sous la valeur hello à l’intérieur de hello anneau. |
-| Opération |Bonjour tooperform opération hello valeur propriété toosummarize tooa seule valeur.<br><br>-Somme : Ajouter des valeurs de hello de tous les enregistrements.<br>-Pourcentage : Pourcentage hello les enregistrements retournés par les valeurs hello dans **entraîner des valeurs utilisées dans le fonctionnement du centre** toohello nombre total d’enregistrements dans la requête de hello. |
-| Valeurs de résultat utilisées dans l’opération relative au centre |Si vous le souhaitez cliquer hello signe tooadd une ou plusieurs valeurs.  des résultats de requête de hello Hello sera limité toorecords avec les valeurs de propriété hello que vous spécifiez.  Si aucune valeur n’est ajouté, tous les enregistrements sont inclus dans la requête de hello. |
-| **Options supplémentaires** |**&gt; Couleurs** |
-| Couleur 1<br>Couleur 2<br>Couleur 3 |Sélectionnez couleur hello hello de valeurs hello affiché dans l’anneau de hello. |
-| **Options supplémentaires** |**&gt; Mappage avancé des couleurs** |
-| Valeur du champ |Nom du type hello d’un champ de toodisplay sous la forme d’une couleur différente si elle est incluse dans l’anneau de hello. |
-| Couleur |Sélectionnez la couleur hello pour un champ unique de hello. |
+| Requête |Requête à exécuter pour obtenir l’anneau.  La première propriété doit être une valeur de texte et la seconde une valeur numérique. |
+| **Anneau** |**> Centrer** |
+| Texte |Texte à afficher sous la valeur contenue dans l’anneau. |
+| Opération |Opération à effectuer sur la valeur de propriété à résumer en une valeur unique.<br><br>- Sum : addition des valeurs de tous les enregistrements.<br>- Percentage : pourcentage des enregistrements retournés par les valeurs figurant dans **Valeurs de résultat utilisées dans l’opération relative au centre** pour le nombre total d’enregistrements dans la requête. |
+| Valeurs de résultat utilisées dans l’opération relative au centre |Vous pouvez cliquer sur le signe plus (+) pour ajouter une ou plusieurs valeurs.  Les résultats de la requête sont alors limités aux enregistrements dont vous avez spécifié les valeurs de propriété.  Si aucune valeur n’est ajoutée, tous les enregistrements sont inclus dans la requête. |
+| **Options supplémentaires** |**> Couleurs** |
+| Couleur 1<br>Couleur 2<br>Couleur 3 |Sélectionnez la couleur pour chacune des valeurs affichées dans l’anneau. |
+| **Options supplémentaires** |**> Mappage avancé des couleurs** |
+| Valeur du champ |Saisissez le nom d’un champ pour l’afficher dans une couleur différente s’il est inclus dans l’anneau. |
+| Couleur |Sélectionnez la couleur pour le champ unique. |
 | **Liste** | |
-| Interroger |Toorun de requête pour la liste hello.  nombre de Hello de hello enregistrements retournés par la requête de hello s’affiche. |
-| Masquer le graphique |Sélectionnez toodisable hello graphique toohello droite de la colonne numérique de hello. |
-| Activation des sparklines |Sélectionnez le graphique sparkline de toodisplay au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Couleur |Couleur des barres de hello ou des graphiques sparkline. |
-| Opération |Tooperform d’opération pour le graphique sparkline de hello.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Séparateur de noms et de valeurs |Séparateur de caractère si vous souhaitez que la propriété en texte hello tooparse en plusieurs valeurs.  Consultez [Paramètres communs](#name-value-separator) pour plus d’informations. |
-| Requête de navigation |Interroger toorun lors de l’utilisateur de hello sélectionne un élément dans la liste de hello.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
-| **Liste** |**&gt; Titres des colonnes** |
-| Nom |Toodisplay de texte en haut de hello de hello première colonne de liste de hello. |
-| Valeur |Toodisplay texte haut hello hello deuxième colonne de liste de hello. |
-| **Liste** |**&gt; Seuils** |
-| Activer les seuils |Sélectionnez tooenable seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
+| Requête |Requête à exécuter pour obtenir la liste.  Affiche le décompte du nombre d’enregistrements retournés par la requête. |
+| Masquer le graphique |Sélectionnez cette option pour désactiver le graphique à droite de la colonne numérique. |
+| Activation des sparklines |Sélectionnez cette option pour afficher la sparkline au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Couleur |Couleur des barres ou sparklines. |
+| Opération |Opération à effectuer pour la sparkline.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Séparateur de noms et de valeurs |Délimiteur de caractère unique si vous souhaitez analyser la propriété de texte en plusieurs valeurs.  Consultez [Paramètres communs](#name-value-separator) pour plus d’informations. |
+| Requête de navigation |Requête à exécuter lorsque l’utilisateur sélectionne un élément dans la liste.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
+| **Liste** |**> Titres des colonnes** |
+| Nom |Texte à afficher en haut de la première colonne de la liste. |
+| Valeur |Texte à afficher en haut de la deuxième colonne de la liste. |
+| **Liste** |**> Seuils** |
+| Activer les seuils |Sélectionnez cette option pour activer les seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
 
 ## <a name="two-timelines--list-part"></a>Deux chronologies et composant de liste
-En-tête affiche hello les résultats des requêtes de journal deux au fil du temps sous forme de graphiques de colonne avec une légende affichant un nombre unique résumés à partir d’une colonne de valeur dans une requête de journal.  Liste affiche hello dix meilleurs résultats à partir d’une requête avec un graphique indiquant la valeur relative de hello d’une colonne numérique ou de sa modification dans le temps.
+L’en-tête affiche les résultats de deux requêtes de journal dans le temps, sous forme d’histogrammes avec une légende affichant un nombre résumé à partir d’une colonne de valeur dans une requête de journal.  La liste affiche les dix premiers résultats d’une requête, avec un graphique indiquant la valeur relative d’une colonne numérique ou ses changements avec le temps.
 
 ![Deux chronologies et affichage de liste](media/log-analytics-view-designer/view-two-timelines-list.png)
 
 | Paramètre | Description |
 |:--- |:--- |
 | **Généralités** | |
-| Titre du groupe |Toodisplay de texte en haut de hello Hello disposer en mosaïque. |
-| Nouveau groupe |Sélectionnez toocreate un nouveau groupe dans l’affichage de hello en commençant à l’affichage actuel de hello. |
-| Icône |Image du fichier toodisplay toohello résultat suivant dans l’en-tête de hello. |
-| Icône Utiliser |Sélectionnez l’affichage de l’icône toohave hello. |
+| Titre du groupe |Texte à afficher en haut de la vignette. |
+| Nouveau groupe |Sélectionnez cette option pour créer un groupe dans la vue commençant à la vue actuelle. |
+| Icône |Fichier image à afficher à côté du résultat dans l’en-tête. |
+| Icône Utiliser |Sélectionnez cette option pour que l’icône s’affiche. |
 | **Premier graphique<br>Deuxième graphique** | |
-| Légende |Toodisplay texte sous légende hello pour la première série de hello. |
-| Couleur |Toouse de couleur pour les colonnes hello dans la série de hello. |
-| Interroger |Toorun de requête pour la première série de hello.  nombre de Hello de hello enregistrements sur chaque intervalle de temps est représentée par les colonnes de graphique hello. |
-| Opération |Bonjour tooperform opération sur hello valeur toosummarize tooa seule valeur de propriété de légende de hello.<br><br>-Somme : Sum valeur hello à partir de tous les enregistrements.<br>-Moyenne : Moyenne valeur hello à partir de tous les enregistrements.<br>-Dernier exemple : Valeur à partir de hello dernier intervalle inclus dans le graphique de hello.<br>-Premier exemple : Valeur à partir de l’intervalle de première hello inclus dans le graphique de hello.<br>-Count : Nombre de tous les enregistrements retournés par la requête de hello. |
+| Légende |Texte à afficher dans la légende de la première série. |
+| Couleur |Couleur à utiliser pour les colonnes de la série. |
+| Interroger |Requête à exécuter pour la première série.  Le décompte du nombre d’enregistrements sur chaque intervalle de temps est représenté par les colonnes de graphique. |
+| Opération |Opération à effectuer sur la valeur de propriété à résumer en une valeur unique pour la légende.<br><br>-Sum : somme des valeurs de tous les enregistrements.<br>- Average : moyenne des valeurs de tous les enregistrements.<br>- Last Sample : valeur du dernier intervalle inclus dans le graphique.<br>- First Sample : valeur du premier intervalle inclus dans le graphique.<br>- Count : nombre de tous les enregistrements retournés par la requête. |
 | **Liste** | |
-| Interroger |Toorun de requête pour la liste hello.  nombre de Hello de hello enregistrements retournés par la requête de hello s’affiche. |
-| Masquer le graphique |Sélectionnez toodisable hello graphique toohello droite de la colonne numérique de hello. |
-| Activation des sparklines |Sélectionnez le graphique sparkline de toodisplay au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Couleur |Couleur des barres de hello ou des graphiques sparkline. |
-| Opération |Tooperform d’opération pour le graphique sparkline de hello.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Requête de navigation |Interroger toorun lors de l’utilisateur de hello sélectionne un élément dans la liste de hello.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
-| **Liste** |**&gt; Titres des colonnes** |
-| Nom |Toodisplay de texte en haut de hello de hello première colonne de liste de hello. |
-| Valeur |Toodisplay texte haut hello hello deuxième colonne de liste de hello. |
-| **Liste** |**&gt; Seuils** |
-| Activer les seuils |Sélectionnez tooenable seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
+| Requête |Requête à exécuter pour obtenir la liste.  Affiche le décompte du nombre d’enregistrements retournés par la requête. |
+| Masquer le graphique |Sélectionnez cette option pour désactiver le graphique à droite de la colonne numérique. |
+| Activation des sparklines |Sélectionnez cette option pour afficher la sparkline au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Couleur |Couleur des barres ou sparklines. |
+| Opération |Opération à effectuer pour la sparkline.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Requête de navigation |Requête à exécuter lorsque l’utilisateur sélectionne un élément dans la liste.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
+| **Liste** |**> Titres des colonnes** |
+| Nom |Texte à afficher en haut de la première colonne de la liste. |
+| Valeur |Texte à afficher en haut de la deuxième colonne de la liste. |
+| **Liste** |**> Seuils** |
+| Activer les seuils |Sélectionnez cette option pour activer les seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
 
 ## <a name="information-part"></a>Partie des informations
 L’en-tête affiche un texte statique et un lien facultatif.  La liste affiche un ou plusieurs éléments contenant un texte statique et un titre.
@@ -196,92 +196,92 @@ L’en-tête affiche un texte statique et un lien facultatif.  La liste affiche 
 | Paramètre | Description |
 |:--- |:--- |
 | **Généralités** | |
-| Titre du groupe |Toodisplay de texte en haut de hello Hello disposer en mosaïque. |
-| Nouveau groupe |Sélectionnez toocreate un nouveau groupe dans l’affichage de hello en commençant à l’affichage actuel de hello. |
-| Couleur |Couleur d’arrière-plan pour l’en-tête de hello. |
+| Titre du groupe |Texte à afficher en haut de la vignette. |
+| Nouveau groupe |Sélectionnez cette option pour créer un groupe dans la vue commençant à la vue actuelle. |
+| Couleur |Couleur d’arrière-plan de l’en-tête. |
 | **En-tête** | |
-| Image |Toodisplay de fichier image dans l’en-tête de hello. |
-| Étiquette |Toodisplay de texte dans l’en-tête de hello. |
-| **En-tête** |**&gt; Lien** |
+| Image |Fichier image à afficher dans l’en-tête. |
+| Étiquette |Texte à afficher dans l’en-tête. |
+| **En-tête** |**> Lien** |
 | Étiquette |Texte du lien. |
 | Url |URL du lien. |
 | **Éléments d’information** | |
-| Intitulé |Toodisplay de texte du titre de chaque élément. |
-| Contenu |Toodisplay de texte pour chaque élément. |
+| Intitulé |Texte à afficher pour le titre de chaque élément. |
+| Contenu |Texte à afficher pour chaque élément. |
 
 ## <a name="line-chart-callout--list-part"></a>Graphique en courbes, légende et composant de liste
-L’en-tête affiche un graphique en courbes avec plusieurs séries à partir d’une requête de journal dans le temps, et une légende avec une valeur de synthèse.  Liste affiche hello dix meilleurs résultats à partir d’une requête avec un graphique indiquant la valeur relative de hello d’une colonne numérique ou de sa modification dans le temps.
+L’en-tête affiche un graphique en courbes avec plusieurs séries à partir d’une requête de journal dans le temps, et une légende avec une valeur de synthèse.  La liste affiche les dix premiers résultats d’une requête, avec un graphique indiquant la valeur relative d’une colonne numérique ou ses changements avec le temps.
 
 ![Graphique en courbes, légende et affichage de liste](media/log-analytics-view-designer/view-line-chart-callout-list.png)
 
 | Paramètre | Description |
 |:--- |:--- |
 | **Généralités** | |
-| Titre du groupe |Toodisplay de texte en haut de hello Hello disposer en mosaïque. |
-| Nouveau groupe |Sélectionnez toocreate un nouveau groupe dans l’affichage de hello en commençant à l’affichage actuel de hello. |
-| Icône |Image du fichier toodisplay toohello résultat suivant dans l’en-tête de hello. |
-| Icône Utiliser |Sélectionnez l’affichage de l’icône toohave hello. |
+| Titre du groupe |Texte à afficher en haut de la vignette. |
+| Nouveau groupe |Sélectionnez cette option pour créer un groupe dans la vue commençant à la vue actuelle. |
+| Icône |Fichier image à afficher à côté du résultat dans l’en-tête. |
+| Icône Utiliser |Sélectionnez cette option pour que l’icône s’affiche. |
 | **En-tête** | |
-| Intitulé |Toodisplay de texte en haut de hello d’en-tête de hello. |
-| Sous-titre |Toodisplay texte sous hello titre en haut de hello d’en-tête de hello. |
+| Intitulé |Texte à afficher en haut de l’en-tête. |
+| Sous-titre |Texte à afficher sous le titre en haut de l’en-tête. |
 | **Graphique en courbes** | |
-| Interroger |Toorun de requête pour le graphique en courbes hello.  propriété de première Hello doit être une texte valeur hello deuxième propriété et une valeur numérique.  Il s’agit généralement d’une requête qui utilise hello **mesure** résultats toosummarize de mot clé.  Si la requête de hello utilise hello **intervalle** (mot clé) puis hello axe des abscisses du graphique de hello utilisera cet intervalle de temps.  Si les requêtes hello n’incluent pas de hello **intervalle** intervalles (mot clé), puis toutes les heures sont utilisés pour hello axe des abscisses. |
-| **Graphique en courbes** |**&gt; Légende** |
-| Titre de la légende |Toodisplay texte au-dessus de valeur de légende hello. |
-| Nom de la série |Valeur de propriété pour toouse de série hello pour la valeur de légende hello.  Si aucune série n’est fourni, tous les enregistrements à partir de la requête de hello sont utilisées. |
-| Opération |Bonjour tooperform opération sur hello valeur toosummarize tooa seule valeur de propriété de légende de hello.<br><br>-Moyenne : Moyenne valeur hello à partir de tous les enregistrements.<br>-Nombre de tous les enregistrements retournés par la requête de hello.<br>-Dernier exemple : Valeur à partir de hello dernier intervalle inclus dans le graphique de hello.<br>-Max : Valeur maximale à partir des intervalles de salutation inclus dans le graphique de hello.<br>-Min : Valeur minimale à partir des intervalles de salutation inclus dans le graphique de hello.<br>-Somme : Sum valeur hello à partir de tous les enregistrements. |
-| **Graphique en courbes** |**&gt; Axe des Y** |
-| Utiliser l’échelle logarithmique |Sélectionnez toouse une échelle logarithmique pour hello axe des ordonnées. |
-| Units |Spécifiez des unités hello pour les valeurs hello retournés par la requête de hello.  Ces informations sont utilisées toodisplay étiquettes sur graphique hello indiquant les types de valeur hello et éventuellement de convertir les valeurs de hello.  Hello Type d’unité spécifie la catégorie hello d’unité de hello et définit des valeurs de Type d’unité actuelle hello qui sont disponibles.  Si vous sélectionnez une valeur numérique Convert-toothen-Bonjour les valeurs sont converties à partir de hello unité actuelle type toohello Convert tootype. |
-| Étiquette personnalisée |Toodisplay de texte pour l’étiquette suivante toohello hello axe des Y pour le type d’unité hello.  Si aucune étiquette n’est spécifié, seul le type hello unité s’affiche. |
+| Requête |Requête à exécuter pour obtenir le graphique en courbes.  La première propriété doit être une valeur de texte et la seconde une valeur numérique.  Il s’agit généralement d’une requête qui utilise le mot clé **measure** pour résumer les résultats.  Si la requête utilise le mot clé **interval**, l’axe des abscisses (X) du graphique utilise cet intervalle de temps.  Si la requête n’inclut pas le mot clé **interval**, des intervalles horaires sont utilisés pour l’axe des abscisses (X). |
+| **Graphique en courbes** |**> Légende** |
+| Titre de la légende |Texte à afficher au-dessus de la valeur de la légende. |
+| Nom de la série |Valeur de propriété pour la série à utiliser pour la valeur de la légende.  Si aucune série n’est fournie, tous les enregistrements de la requête sont utilisés. |
+| Opération |Opération à effectuer sur la valeur de propriété à résumer en une valeur unique pour la légende.<br><br>- Average : moyenne des valeurs de tous les enregistrements.<br>- Count : nombre de tous les enregistrements retournés par la requête.<br>- Last Sample : valeur du dernier intervalle inclus dans le graphique.<br>- Max : valeur maximale des intervalles inclus dans le graphique.<br>-Min : valeur minimale des intervalles inclus dans le graphique.<br>-Sum : somme des valeurs de tous les enregistrements. |
+| **Graphique en courbes** |**> Axe des Y** |
+| Utiliser l’échelle logarithmique |Sélectionnez cette option pour utiliser une échelle logarithmique pour l’axe des ordonnées (Y). |
+| Units |Spécifiez les unités à utiliser pour exprimer les valeurs retournées par la requête.  Ces informations sont utilisées pour afficher sur le graphique des étiquettes indiquant les types de valeurs et, le cas échéant, pour convertir des valeurs.  Le type d’unité spécifie la catégorie de l’unité, et définit les valeurs de type Unité actuelle disponibles.  Si vous sélectionnez une valeur pour l’option Convertir en, les valeurs numériques sont converties du type Unité actuelle au type Convertir en. |
+| Étiquette personnalisée |Texte à afficher pour l’axe des X en regard de l’étiquette du type d’unité.  Si aucune étiquette n’est spécifiée, le type d’unité s’affiche. |
 | **Liste** | |
-| Interroger |Toorun de requête pour la liste hello.  nombre de Hello de hello enregistrements retournés par la requête de hello s’affiche. |
-| Masquer le graphique |Sélectionnez toodisable hello graphique toohello droite de la colonne numérique de hello. |
-| Activation des sparklines |Sélectionnez le graphique sparkline de toodisplay au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Couleur |Couleur des barres de hello ou des graphiques sparkline. |
-| Opération |Tooperform d’opération pour le graphique sparkline de hello.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Séparateur de noms et de valeurs |Séparateur de caractère si vous souhaitez que la propriété en texte hello tooparse en plusieurs valeurs.  Consultez [Paramètres communs](#name-value-separator) pour plus d’informations. |
-| Requête de navigation |Interroger toorun lors de l’utilisateur de hello sélectionne un élément dans la liste de hello.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
-| **Liste** |**&gt; Titres des colonnes** |
-| Nom |Toodisplay de texte en haut de hello de hello première colonne de liste de hello. |
-| Valeur |Toodisplay texte haut hello hello deuxième colonne de liste de hello. |
-| **Liste** |**&gt; Seuils** |
-| Activer les seuils |Sélectionnez tooenable seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
+| Requête |Requête à exécuter pour obtenir la liste.  Affiche le décompte du nombre d’enregistrements retournés par la requête. |
+| Masquer le graphique |Sélectionnez cette option pour désactiver le graphique à droite de la colonne numérique. |
+| Activation des sparklines |Sélectionnez cette option pour afficher la sparkline au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Couleur |Couleur des barres ou sparklines. |
+| Opération |Opération à effectuer pour la sparkline.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Séparateur de noms et de valeurs |Délimiteur de caractère unique si vous souhaitez analyser la propriété de texte en plusieurs valeurs.  Consultez [Paramètres communs](#name-value-separator) pour plus d’informations. |
+| Requête de navigation |Requête à exécuter lorsque l’utilisateur sélectionne un élément dans la liste.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
+| **Liste** |**> Titres des colonnes** |
+| Nom |Texte à afficher en haut de la première colonne de la liste. |
+| Valeur |Texte à afficher en haut de la deuxième colonne de la liste. |
+| **Liste** |**> Seuils** |
+| Activer les seuils |Sélectionnez cette option pour activer les seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
 
 ## <a name="line-chart--list-part"></a>Graphique en courbes et composant de liste
-L’en-tête affiche un graphique en courbes avec plusieurs séries à partir d’une requête de journal dans le temps.  Liste affiche hello dix meilleurs résultats à partir d’une requête avec un graphique indiquant la valeur relative de hello d’une colonne numérique ou de sa modification dans le temps.
+L’en-tête affiche un graphique en courbes avec plusieurs séries à partir d’une requête de journal dans le temps.  La liste affiche les dix premiers résultats d’une requête, avec un graphique indiquant la valeur relative d’une colonne numérique ou ses changements avec le temps.
 
 ![Affichage graphique et vue liste](media/log-analytics-view-designer/view-line-chart-callout-list.png)
 
 | Paramètre | Description |
 |:--- |:--- |
 | **Généralités** | |
-| Titre du groupe |Toodisplay de texte en haut de hello Hello disposer en mosaïque. |
-| Nouveau groupe |Sélectionnez toocreate un nouveau groupe dans l’affichage de hello en commençant à l’affichage actuel de hello. |
-| Icône |Image du fichier toodisplay toohello résultat suivant dans l’en-tête de hello. |
-| Icône Utiliser |Sélectionnez l’affichage de l’icône toohave hello. |
+| Titre du groupe |Texte à afficher en haut de la vignette. |
+| Nouveau groupe |Sélectionnez cette option pour créer un groupe dans la vue commençant à la vue actuelle. |
+| Icône |Fichier image à afficher à côté du résultat dans l’en-tête. |
+| Icône Utiliser |Sélectionnez cette option pour que l’icône s’affiche. |
 | **En-tête** | |
-| Intitulé |Toodisplay de texte en haut de hello d’en-tête de hello. |
-| Sous-titre |Toodisplay texte sous hello titre en haut de hello d’en-tête de hello. |
+| Intitulé |Texte à afficher en haut de l’en-tête. |
+| Sous-titre |Texte à afficher sous le titre en haut de l’en-tête. |
 | **Graphique en courbes** | |
-| Interroger |Toorun de requête pour le graphique en courbes hello.  propriété de première Hello doit être une texte valeur hello deuxième propriété et une valeur numérique.  Il s’agit généralement d’une requête qui utilise hello **mesure** résultats toosummarize de mot clé.  Si la requête de hello utilise hello **intervalle** (mot clé) puis hello axe des abscisses du graphique de hello utilisera cet intervalle de temps.  Si les requêtes hello n’incluent pas de hello **intervalle** intervalles (mot clé), puis toutes les heures sont utilisés pour hello axe des abscisses. |
-| **Graphique en courbes** |**&gt; Axe des Y** |
-| Utiliser l’échelle logarithmique |Sélectionnez toouse une échelle logarithmique pour hello axe des ordonnées. |
-| Units |Spécifiez des unités hello pour les valeurs hello retournés par la requête de hello.  Ces informations sont utilisées toodisplay étiquettes sur graphique hello indiquant les types de valeur hello et éventuellement de convertir les valeurs de hello.  Hello Type d’unité spécifie la catégorie hello d’unité de hello et définit des valeurs de Type d’unité actuelle hello qui sont disponibles.  Si vous sélectionnez une valeur numérique Convert-toothen-Bonjour les valeurs sont converties à partir de hello unité actuelle type toohello Convert tootype. |
-| Étiquette personnalisée |Toodisplay de texte pour l’étiquette suivante toohello hello axe des Y pour le type d’unité hello.  Si aucune étiquette n’est spécifié, seul le type hello unité s’affiche. |
+| Requête |Requête à exécuter pour obtenir le graphique en courbes.  La première propriété doit être une valeur de texte et la seconde une valeur numérique.  Il s’agit généralement d’une requête qui utilise le mot clé **measure** pour résumer les résultats.  Si la requête utilise le mot clé **interval**, l’axe des abscisses (X) du graphique utilise cet intervalle de temps.  Si la requête n’inclut pas le mot clé **interval**, des intervalles horaires sont utilisés pour l’axe des abscisses (X). |
+| **Graphique en courbes** |**> Axe des Y** |
+| Utiliser l’échelle logarithmique |Sélectionnez cette option pour utiliser une échelle logarithmique pour l’axe des ordonnées (Y). |
+| Units |Spécifiez les unités à utiliser pour exprimer les valeurs retournées par la requête.  Ces informations sont utilisées pour afficher sur le graphique des étiquettes indiquant les types de valeurs et, le cas échéant, pour convertir des valeurs.  Le type d’unité spécifie la catégorie de l’unité, et définit les valeurs de type Unité actuelle disponibles.  Si vous sélectionnez une valeur pour l’option Convertir en, les valeurs numériques sont converties du type Unité actuelle au type Convertir en. |
+| Étiquette personnalisée |Texte à afficher pour l’axe des X en regard de l’étiquette du type d’unité.  Si aucune étiquette n’est spécifiée, le type d’unité s’affiche. |
 | **Liste** | |
-| Interroger |Toorun de requête pour la liste hello.  nombre de Hello de hello enregistrements retournés par la requête de hello s’affiche. |
-| Masquer le graphique |Sélectionnez toodisable hello graphique toohello droite de la colonne numérique de hello. |
-| Activation des sparklines |Sélectionnez le graphique sparkline de toodisplay au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Couleur |Couleur des barres de hello ou des graphiques sparkline. |
-| Opération |Tooperform d’opération pour le graphique sparkline de hello.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
-| Séparateur de noms et de valeurs |Séparateur de caractère si vous souhaitez que la propriété en texte hello tooparse en plusieurs valeurs.  Consultez [Paramètres communs](#name-value-separator) pour plus d’informations. |
-| Requête de navigation |Interroger toorun lors de l’utilisateur de hello sélectionne un élément dans la liste de hello.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
-| **Liste** |**&gt; Titres des colonnes** |
-| Nom |Toodisplay de texte en haut de hello de hello première colonne de liste de hello. |
-| Valeur |Toodisplay texte haut hello hello deuxième colonne de liste de hello. |
-| **Liste** |**&gt; Seuils** |
-| Activer les seuils |Sélectionnez tooenable seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
+| Requête |Requête à exécuter pour obtenir la liste.  Affiche le décompte du nombre d’enregistrements retournés par la requête. |
+| Masquer le graphique |Sélectionnez cette option pour désactiver le graphique à droite de la colonne numérique. |
+| Activation des sparklines |Sélectionnez cette option pour afficher la sparkline au lieu de la barre horizontale.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Couleur |Couleur des barres ou sparklines. |
+| Opération |Opération à effectuer pour la sparkline.  Consultez [Paramètres communs](#sparklines) pour plus d’informations. |
+| Séparateur de noms et de valeurs |Délimiteur de caractère unique si vous souhaitez analyser la propriété de texte en plusieurs valeurs.  Consultez [Paramètres communs](#name-value-separator) pour plus d’informations. |
+| Requête de navigation |Requête à exécuter lorsque l’utilisateur sélectionne un élément dans la liste.  Consultez [Paramètres communs](#navigation-query) pour plus d’informations. |
+| **Liste** |**> Titres des colonnes** |
+| Nom |Texte à afficher en haut de la première colonne de la liste. |
+| Valeur |Texte à afficher en haut de la deuxième colonne de la liste. |
+| **Liste** |**> Seuils** |
+| Activer les seuils |Sélectionnez cette option pour activer les seuils.  Consultez [Paramètres communs](#thresholds) pour plus d’informations. |
 
 ## <a name="stack-of-line-charts-part"></a>Partie de pile de graphiques de courbes
 Affiche trois graphiques en courbes distincts avec plusieurs séries à partir d’une requête de journal dans le temps.
@@ -291,57 +291,57 @@ Affiche trois graphiques en courbes distincts avec plusieurs séries à partir d
 | Paramètre | Description |
 |:--- |:--- |
 | **Généralités** | |
-| Titre du groupe |Toodisplay de texte en haut de hello Hello disposer en mosaïque. |
-| Nouveau groupe |Sélectionnez toocreate un nouveau groupe dans l’affichage de hello en commençant à l’affichage actuel de hello. |
-| Icône |Image du fichier toodisplay toohello résultat suivant dans l’en-tête de hello. |
-| **Graphique 1<br>Graphique 2<br>Graphique 3** |**&gt; En-tête** |
-| Intitulé |Toodisplay de texte en haut de hello du graphique de hello. |
-| Sous-titre |Toodisplay texte sous hello titre en haut de hello du graphique de hello. |
+| Titre du groupe |Texte à afficher en haut de la vignette. |
+| Nouveau groupe |Sélectionnez cette option pour créer un groupe dans la vue commençant à la vue actuelle. |
+| Icône |Fichier image à afficher à côté du résultat dans l’en-tête. |
+| **Graphique 1<br>Graphique 2<br>Graphique 3** |**> En-tête** |
+| Intitulé |Texte à afficher en haut du graphique. |
+| Sous-titre |Texte à afficher sous le titre en haut du graphique. |
 | **Graphique 1<br>Graphique 2<br>Graphique 3** |**Graphique en courbes** |
-| Interroger |Toorun de requête pour le graphique en courbes hello.  propriété de première Hello doit être une texte valeur hello deuxième propriété et une valeur numérique.  Il s’agit généralement d’une requête qui utilise hello **mesure** résultats toosummarize de mot clé.  Si la requête de hello utilise hello **intervalle** (mot clé) puis hello axe des abscisses du graphique de hello utilisera cet intervalle de temps.  Si les requêtes hello n’incluent pas de hello **intervalle** intervalles (mot clé), puis toutes les heures sont utilisés pour hello axe des abscisses. |
-| **Graphique** |**&gt; Axe des Y** |
-| Utiliser l’échelle logarithmique |Sélectionnez toouse une échelle logarithmique pour hello axe des ordonnées. |
-| Units |Spécifiez des unités hello pour les valeurs hello retournés par la requête de hello.  Ces informations sont utilisées toodisplay étiquettes sur graphique hello indiquant les types de valeur hello et éventuellement de convertir les valeurs de hello.  Hello Type d’unité spécifie la catégorie hello d’unité de hello et définit des valeurs de Type d’unité actuelle hello qui sont disponibles.  Si vous sélectionnez une valeur numérique Convert-toothen-Bonjour les valeurs sont converties à partir de hello unité actuelle type toohello Convert tootype. |
-| Étiquette personnalisée |Toodisplay de texte pour l’étiquette suivante toohello hello axe des Y pour le type d’unité hello.  Si aucune étiquette n’est spécifié, seul le type hello unité s’affiche. |
+| Requête |Requête à exécuter pour obtenir le graphique en courbes.  La première propriété doit être une valeur de texte et la seconde une valeur numérique.  Il s’agit généralement d’une requête qui utilise le mot clé **measure** pour résumer les résultats.  Si la requête utilise le mot clé **interval**, l’axe des abscisses (X) du graphique utilise cet intervalle de temps.  Si la requête n’inclut pas le mot clé **interval**, des intervalles horaires sont utilisés pour l’axe des abscisses (X). |
+| **Graphique** |**> Axe des Y** |
+| Utiliser l’échelle logarithmique |Sélectionnez cette option pour utiliser une échelle logarithmique pour l’axe des ordonnées (Y). |
+| Units |Spécifiez les unités à utiliser pour exprimer les valeurs retournées par la requête.  Ces informations sont utilisées pour afficher sur le graphique des étiquettes indiquant les types de valeurs et, le cas échéant, pour convertir des valeurs.  Le type d’unité spécifie la catégorie de l’unité, et définit les valeurs de type Unité actuelle disponibles.  Si vous sélectionnez une valeur pour l’option Convertir en, les valeurs numériques sont converties du type Unité actuelle au type Convertir en. |
+| Étiquette personnalisée |Texte à afficher pour l’axe des X en regard de l’étiquette du type d’unité.  Si aucune étiquette n’est spécifiée, le type d’unité s’affiche. |
 
 ## <a name="common-settings"></a>Paramètres courants
-Hello les sections suivantes décrire des parties de visualisation tooseveral paramètres communes.
+Les sections suivantes décrivent les paramètres communs à plusieurs parties de visualisation.
 
 ### <a name="name-value-separator">Séparateur de noms et de valeurs</a>
-Séparateur de caractère si vous souhaitez que les propriétés de texte hello tooparse à partir d’une requête de liste en plusieurs valeurs.  Si vous spécifiez un délimiteur, vous pouvez fournir des noms pour chaque champ séparé par hello même délimiteur dans la zone de nom hello.
+Délimiteur de caractère unique si vous souhaitez analyser la propriété de texte d’une liste en plusieurs valeurs.  Si vous spécifiez un délimiteur, vous pouvez fournir des noms pour chaque champ, en les séparant par le même délimiteur quand dans le champ Nom.
 
-Par exemple, imaginez une propriété appelée *Location* incluant des valeurs telles que *Redmond-Building 41* et *Bellevue-Building12*.  Vous pouvez spécifier – pour hello nom & séparateur de valeur et *City-Building* pour hello nom.  Chaque valeur est alors analysée en deux propriétés respectivement nommées *City* et *Building*.
+Par exemple, imaginez une propriété appelée *Location* incluant des valeurs telles que *Redmond-Building 41* et *Bellevue-Building12*.  Vous pouvez spécifier – en tant que séparateur de noms et de valeurs, et *City-Building* en tant que nom.  Chaque valeur est alors analysée en deux propriétés respectivement nommées *City* et *Building*.
 
 ### <a name="navigation-query">Requête de navigation</a>
-Interroger toorun lors de l’utilisateur de hello sélectionne un élément dans la liste de hello.  Utilisez *{sélectionnée}* syntaxe hello tooinclude élément hello sélectionné par l’utilisateur.
+Requête à exécuter lorsque l’utilisateur sélectionne un élément dans la liste.  Utilisez *{selected item}* pour inclure la syntaxe de l’élément sélectionné par l’utilisateur.
 
-Par exemple, si hello requête possède une colonne appelée *ordinateur* et requête de navigation hello est *{sélectionnée}*, une requête comme *ordinateur = « Monordinateur »* doit être exécuté lorsque l’utilisateur Hello sélectionné un ordinateur.  Si la requête de navigation hello est *Type = Event {sélectionnée}* puis des requêtes hello *Type = ordinateur de l’événement = « Monordinateur »* doit être exécuté.
+Par exemple, si la requête comprend une colonne nommée *Computer* et que la requête de navigation est *{selected item}*, une requête telle que *Computer=”MyComputer”* est exécutée quand l’utilisateur sélectionne un ordinateur.  Si la requête de navigation est *Type=Event {selected item}*, la requête *Type=Event Computer=”MyComputer”* est exécutée.
 
 ### <a name="sparklines">Sparklines</a>
-Un graphique sparkline est un petit graphique en courbes qui illustre hello de la valeur d’une entrée de liste au fil du temps.  Pour les parties de la visualisation avec une liste, vous pouvez sélectionner si toodisplay une barre indiquant horizontale hello valeur relative d’une colonne numérique ou un graphique sparkline indiquant sa valeur au fil du temps.
+Une sparkline est un petit graphique en courbes qui illustre la valeur d’une entrée de liste au fil du temps.  Pour les parties de visualisation avec une liste, vous pouvez sélectionner si vous souhaitez afficher une barre horizontale qui indique la valeur relative d’une colonne numérique ou une sparkline indiquant sa valeur au fil du temps.
 
-Hello tableau suivant décrit les paramètres de hello pour les graphiques sparkline.
+Le tableau suivant décrit les paramètres pour les sparklines.
 
 | Paramètre | Description |
 |:--- |:--- |
-| Activation des sparklines |Sélectionnez le graphique sparkline de toodisplay au lieu de la barre horizontale. |
-| Opération |Si les graphiques sparkline sont activés, il s’agit de tooperform d’opération hello sur chaque propriété de valeurs de hello liste toocalculate hello pour le graphique sparkline de hello.<br><br>-Dernier exemple : La dernière valeur de série de hello sur intervalle de temps hello.<br>-Max : Valeur maximale série hello sur intervalle de temps hello.<br>-Min : Valeur minimale série hello sur intervalle de temps hello.<br>-Somme : Sum des valeurs de séries hello sur intervalle de temps hello.<br>-Résumé : Utilise hello même commande mesure en tant que requête hello dans l’en-tête de hello. |
+| Activation des sparklines |Sélectionnez cette option pour afficher la sparkline au lieu de la barre horizontale. |
+| Opération |Si les sparklines sont activées, il s’agit de l’opération à effectuer sur chaque propriété dans la liste pour calculer les valeurs du graphique sparkline.<br><br>- Last Sample : dernière valeur de la série sur l’intervalle de temps.<br>- Max : valeur maximale de la série sur l’intervalle de temps.<br>- Min : valeur minimale de la série sur l’intervalle de temps.<br>- Sum : somme des valeurs de la série sur l’intervalle de temps.<br>- Summary : utilise la même commande de mesure que la requête dans l’en-tête. |
 
 ### <a name="thresholds">Seuils</a>
-Seuils permettent de toodisplay un élément de tooeach suivant icône de couleur dans une liste, ce qui vous donne un indicateur visuel rapide d’éléments dépasse une valeur particulière ou est comprise dans une plage particulière.  Par exemple, vous pouvez afficher une icône verte pour les éléments avec une valeur acceptable, jaune, si la valeur de hello se trouve dans une plage qui indique un avertissement et le rouge si elle dépasse une valeur d’erreur.
+Les seuils vous permettent d’afficher une icône de couleur à côté de chaque élément dans une liste, ce qui vous donne une indication visuelle rapide des éléments qui dépassent une valeur particulière ou sont dans une plage particulière.  Par exemple, vous pouvez afficher une icône verte pour les éléments avec une valeur acceptable, jaune si la valeur est dans une plage qui indique un avertissement rouge si elle dépasse une valeur d’erreur.
 
-Lorsque vous activez des seuils pour une partie, vous devez spécifier un ou plusieurs seuils.  Si la valeur hello d’un élément est supérieur à une valeur de seuil et inférieure à la valeur de seuil suivante hello, cette couleur est utilisée.  Si l’élément de hello est supérieure à la valeur de seuil puis la plus élevée, cette couleur est définie.   
+Lorsque vous activez des seuils pour une partie, vous devez spécifier un ou plusieurs seuils.  Si la valeur d’un élément est supérieure à une valeur de seuil et inférieure à la valeur de seuil suivante, cette couleur est utilisée.  Si l’élément est supérieur à la valeur de puis la plus élevée, cette couleur est définie.   
 
-Chaque ensemble de seuils a un seuil avec la valeur **par défaut**.  Il s’agit de couleur hello si aucune autre valeur n’est dépassé.  Vous pouvez ajouter ou supprimer des seuils en cliquant sur hello  **+**  ou **x** bouton.
+Chaque ensemble de seuils a un seuil avec la valeur **par défaut**.  Il s’agit de la couleur définie si aucune autre valeur n’est dépassée.  Vous pouvez ajouter ou supprimer des seuils en cliquant sur les boutons **+** ou **x**.
 
-Hello tableau suivant décrit les paramètres de hello pour les seuils.
+Le tableau suivant décrit les paramètres pour les seuils.
 
 | Paramètre | Description |
 |:--- |:--- |
-| Activer les seuils |Sélectionnez toodisplay qu'une toohello icône de couleur à gauche de chaque valeur qui indique les seuils de toospecified relatif intégrité. |
-| Nom |Valeur de seuil de nom tooidentify hello. |
-| Seuil |Valeur de seuil de hello.  couleur de contrôle d’intégrité Hello pour chaque élément de liste a la valeur couleur toohello hello plus élevé de valeur de seuil dépassé par la valeur de l’élément hello.  Il existe un seuil par défaut qui est la couleur de hello si aucune valeur de seuil n’est atteint. |
-| Couleur |Couleur de la valeur de seuil hello. |
+| Activer les seuils |Sélectionnez cette option pour afficher une icône de couleur à gauche de chaque valeur et indiquer son état d’intégrité par rapport aux seuils spécifiés. |
+| Nom |Nom permettant d’identifier la valeur de seuil. |
+| Seuil |Valeur du seuil.  La couleur d’intégrité de chaque élément de liste est définie sur la couleur de la valeur du seuil le plus élevé dépassée par la valeur de l’élément.  Il existe un seuil par défaut qui est la couleur définie si aucune valeur de seuil n’est dépassée. |
+| Couleur |La couleur pour la valeur du seuil. |
 
 ## <a name="next-steps"></a>Étapes suivantes
-* En savoir plus sur [recherche de journal](log-analytics-log-searches.md) toosupport les requêtes de hello dans les parties de visualisation.
+* En savoir plus sur la [Recherche dans les journaux](log-analytics-log-searches.md) pour prendre en charge les requêtes dans des composants de visualisation.

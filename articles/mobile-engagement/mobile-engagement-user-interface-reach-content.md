@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure l’Interface utilisateur Mobile Engagement - atteindre le contenu"
-description: "Découvrez comment toomanage un contenu unique hello hello différents types de notifications push campagnes dans Azure Mobile Engagement"
+title: "Interface utilisateur d’Azure Mobile Engagement - Contenu Reach"
+description: "Apprenez à gérer le contenu unique des différents types de campagnes de notifications Push dans Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: de389eb4368d986ef00135036c26e26a2464663e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3741a43b74af5846e95e42d8a7b533621e780f2d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toomanage-hello-unique-content-of-hello-different-types-of-push-notification-campaigns"></a>Comment toomanage hello contenu unique de hello différents types de campagnes de notification push
-Vous pouvez utiliser la section de contenu hello d’un nouveau couvertures campagne toomodify hello de contenu des annonces, sondages, exécute un push de données et des vignettes (Windows Phone uniquement). le paramètre de contenu Hello de campagnes Push est type toohello spécifique de campagne. 
+# <a name="how-to-manage-the-unique-content-of-the-different-types-of-push-notification-campaigns"></a>Gestion du contenu unique des différents types de campagnes de notifications Push
+Vous pouvez utiliser la section Contenu d'une nouvelle campagne Reach pour modifier le contenu de vos annonces, sondages, Push de données et vignettes (Windows Phone uniquement). Le paramètre du contenu des campagnes Push est spécifique au type de campagne. 
 
 ### <a name="content-types"></a>Types de contenu :
 * Annonces
@@ -32,26 +32,26 @@ Vous pouvez utiliser la section de contenu hello d’un nouveau couvertures camp
 ## <a name="content-of-announcements"></a>Contenu des annonces
  ![Reach-Content1][30] 
 
-### <a name="choose-hello-type-of-your-announcement"></a>Choisissez le type hello de l’annonce :
-* Notification uniquement : il s’agit d’une simple notification standard. Ce qui signifie que si un utilisateur clique dessus, aucun affichage supplémentaire ne s’affiche, mais seulement l’action hello associée tooit se produira.
-* Annonce de texte : il est une notification qui engage hello utilisateur toohave examiner une vue de texte.
-* Annonce de Web : il est une notification qui engage hello utilisateur toohave examiner un affichage web.
+### <a name="choose-the-type-of-your-announcement"></a>Choisissez le type de votre annonce :
+* Notification uniquement : il s’agit d’une simple notification standard. Cela signifie que si un utilisateur clique dessus, aucun affichage supplémentaire n'apparaîtra. Seule l'action qui y est associée s'affichera.
+* Annonce texte : il s’agit d’une notification qui invite l’utilisateur à regarder une vue de texte.
+* Annonce Web : il s’agit d’une notification qui invite l’utilisateur à regarder l’affichage Web.
 
 ### <a name="see-also"></a>Voir aussi
 * [Reach - Procédures - Annonces][Link 3] 
 
 ### <a name="about-web-view-announcements"></a>À propos des annonces d'affichage Web :
-Occurrences de modèle hello « {deviceid} » dans le code de hello HTML ou le code JavaScript que vous fournissez ici seront automatiquement remplacées par identificateur hello du périphérique hello affichant l’annonce de type hello. Il s’agit d’un identificateurs d’appareil Azure Mobile Engagement tooretrieve facilement dans un externe de votre arrière-guichet de service web.
-Si vous voulez toocreate un plein écran affichage web (sans hello Action et quitter boutons que nous fournissons) vous pouvez utiliser hello suivant des fonctions à partir du code JavaScript de l’annonce de votre vue de web : 
+Les occurrences du modèle « {deviceid} » dans le code HTML ou le code JavaScript que vous fournissez ici seront automatiquement remplacées par l'identificateur de l'appareil qui affiche l'annonce. Il s'agit d'un moyen simple pour récupérer les identificateurs d'appareil Azure Mobile Engagement dans un service Web externe hébergé dans votre arrière-guichet.
+Si vous souhaitez créé un affichage Web plein écran (sans utiliser les boutons par défaut Action et Quitter que nous offrons), vous pouvez utiliser les fonctions suivantes depuis le code JavaScript de votre annonce d'affichage Web : 
 
-* effectuer l’action d’annonce hello : ReachContent.actionContent()
-* sortie de l’annonce de type hello : ReachContent.exitContent()
+* effectuer l’action de l’annonce : ReachContent.actionContent()
+* quitter l’annonce : ReachContent.actionContent()
 
 ### <a name="choose-your-action"></a>Choisissez votre action :
 ### <a name="about-action-urls"></a>À propos des URL d'action :
 Toute URL qui peut être interprétée par le système d'exploitation d'un appareil cible peut être utilisée comme une URL d'action.
-Toute URL dédiée par votre application peut prise en charge (par exemple, les utilisateurs toomake raccourcis tooa écran en particulier) peut également servir comme une URL d’action.
-Chaque occurrence de hello {deviceid} pattern est automatiquement remplacé par identificateur hello du périphérique hello action de hello. Cela peut être des identificateurs d’appareil Azure Mobile Engagement tooeasily utilisé récupérer via un service web externe de votre arrière-guichet.
+Toute URL dédiée pouvant être prise en charge par votre application (par exemple pour permettre à vos utilisateurs de passer à un écran spécifique) peut également être utilisée comme URL d'action.
+Chaque occurrence du modèle {deviceid} est automatiquement remplacée par l'identificateur de l'appareil réalisant l'action. Cela peut être utilisé pour récupérer facilement des identificateurs d'appareil Azure Mobile Engagement via un service Web externe hébergé dans votre arrière-guichet.
 
 * **Actions Android et iOS**
   * Ouvrir une page Web
@@ -59,7 +59,7 @@ Chaque occurrence de hello {deviceid} pattern est automatiquement remplacé par 
   * Exemple : http://www.azure.com
   * Envoyer un courrier électronique
   * mailto:\[destinataire-e-mail\]?subject=\[objet\]&body=\[message\] 
-  * Example:mailto:foo@example.com?subject=Greetings%20from%20Azure%20Mobile%20Engagement!&amp;body=Good%20stuff!
+  * Example:mailto:foo@example.com?subject=Greetings%20from%20Azure%20Mobile%20Engagement!&body=Good%20stuff!
   * Envoyer un SMS
   * sms:\[numéro-téléphone\] 
   * Exemple :sms:2125551212
@@ -67,14 +67,14 @@ Chaque occurrence de hello {deviceid} pattern est automatiquement remplacé par 
   * tel:\[numéro-téléphone\] 
   * Exemple :tel:2125551212
 * **Actions Android uniquement**
-  * Télécharger une application sur hello Play Store
+  * Télécharger une application du Play Store
   * market://details?id=\[package d’application\] 
   * Exemple :market://details?id=com.microsoft.office.word
   * Démarrer une recherche géolocalisée
   * geo:0,0?q=\[requête de recherche\] 
   * Exemple :geo:0,0?q=starbucks,paris
 * **Actions iOS uniquement**
-  * Télécharger une application sur hello App Store
+  * Télécharger une application depuis le Magasin d'applications
   * http://itunes.apple.com/[pays]/app/[nom de l’application]/id[ID de l’application]?mt=8 
   * Exemple: http://itunes.apple.com/fr/app/briquet-virtuel/id430154748?mt=8
   * Actions Windows
@@ -83,14 +83,14 @@ Chaque occurrence de hello {deviceid} pattern est automatiquement remplacé par 
   * Exemple : http://www.azure.com
   * Envoyer un courrier électronique
   * mailto:\[destinataire-e-mail\]?subject=\[objet\]&body=\[message\] 
-  * Example:mailto:foo@example.com?subject=Greetings%20from%20Azure%20Mobile%20Engagement!&amp;body=Good%20stuff!
+  * Example:mailto:foo@example.com?subject=Greetings%20from%20Azure%20Mobile%20Engagement!&body=Good%20stuff!
   * Envoyer un SMS (application Skype du Store requise)
   * sms:\[numéro-téléphone\] 
   * Exemple :sms:2125551212
   * Composer un numéro de téléphone (application Skype du Store requise)
   * tel:\[numéro-téléphone\] 
   * Exemple :tel:2125551212
-  * Télécharger une application sur hello Play Store
+  * Télécharger une application du Play Store
   * ms-windows-store:PDP?PFN=\[ID de package d’application\] 
   * Exemple :ms-windows-store:PDP?PFN=4d91298a-07cb-40fb-aecc-4cb5615d53c1
   * Démarrer une recherche Bing Cartes
@@ -104,10 +104,10 @@ Chaque occurrence de hello {deviceid} pattern est automatiquement remplacé par 
   * Exemple :myfolderdata.txt
 
 ### <a name="build-a-tracking-url"></a>Génération d'une URL de suivi :
-* Consultez hello la section « Paramètres » de hello <UI Documentation> pour obtenir des instructions sur la création d’une URL de suivi qui permettront de toodownload des utilisateurs de vos autres applications.
+* Consultez la section « Paramètres » de la <UI Documentation> pour les instructions relatives à la génération d'une URL de suivi qui permettra aux utilisateurs de télécharger une autre de vos applications.
 
-### <a name="define-hello-texts-of-your-announcement"></a>Définir les textes hello de l’annonce
-Renseignez le titre de hello, le contenu et les textes de bouton de l’annonce. Vous pouvez cibler un public d’une campagne de futures en fonction des commentaires de la portée de la façon dont les utilisateurs ont répondu toothis campagne hello. Ciblage de l’audience peut être basé sur les commentaires hello d’indique si cette campagne a été simplement envoyée, réponse, actionnés ou quittés.
+### <a name="define-the-texts-of-your-announcement"></a>Définition du texte de votre annonce
+Remplissez le titre, le contenu et le texte des boutons de votre annonce. Vous pouvez cibler une audience pour une future campagne suivant les commentaires Reach indiquant la façon dont les utilisateurs ont répondu à cette campagne. Le ciblage de l'audience peut se baser sur les commentaires déterminant si la campagne a été envoyée par notification Push, si elle a obtenu une réponse, si elle a été activée ou quittée.
 
 ### <a name="see-also"></a>Voir aussi
 * [Documentation sur l’interface utilisateur - Reach - Nouveau critère Push][Link 28]
@@ -115,8 +115,8 @@ Renseignez le titre de hello, le contenu et les textes de bouton de l’annonce.
 ## <a name="content-of-polls"></a>Contenu des sondages
 ![Reach-Content2][31] 
 
-Renseignez hello titre, description et les textes de bouton de l’annonce. Ajoutez ensuite des questions et choix pour les questions de tooyour réponses hello.
-Vous pouvez cibler un public d’une campagne de futures en fonction des commentaires de la portée de la façon dont les utilisateurs ont répondu toothis campagne hello. Le ciblage de l'audience est déterminé selon que la campagne est issue d'une transmission de type push, qu'elle a obtenu une réponse, qu'elle a été activée ou quittée. Ciblage de l’audience peut également être basé sur les commentaires de réponse au sondage, où les choix de questions et réponses hello sont utilisés comme critères.
+Remplissez le titre, la description et le texte des boutons de votre annonce. Ajoutez ensuite des questions et des choix de réponse pour ces questions.
+Vous pouvez cibler une audience pour une future campagne suivant les commentaires Reach indiquant la façon dont les utilisateurs ont répondu à cette campagne. Le ciblage de l'audience est déterminé selon que la campagne est issue d'une transmission de type push, qu'elle a obtenu une réponse, qu'elle a été activée ou quittée. Le ciblage de l'audience peut également se baser sur les commentaires de réponse du sondage pour lequel la question à choix multiple est utilisée comme critère.
 
 ### <a name="see-also"></a>Voir aussi
 * [Documentation sur l’interface utilisateur - Reach - Nouveau critère Push][Link 28]
@@ -124,15 +124,15 @@ Vous pouvez cibler un public d’une campagne de futures en fonction des comment
 ## <a name="content-of-data-pushes"></a>Contenu des Push de données
 ![Reach-Content3][32] 
 
-### <a name="choose-hello-type-of-your-data"></a>Choisissez le type hello de vos données :
+### <a name="choose-the-type-of-your-data"></a>Choisissez le type de vos données :
 * Texte
 * Données binaires
 * Données Base64
 
-### <a name="define-hello-content-of-your-data"></a>Définir le contenu de hello de vos données
-* Si vous avez sélectionné des données de texte toopush, copiez et collez le texte hello dans la zone « contenu » de hello.
-* Si vous avez sélectionné toopush données binaire ou en base 64, utilisez tooupload de bouton « Télécharger votre fichier » hello votre fichier.
-* Vous pouvez cibler un public d’une campagne de futures en fonction des commentaires de la portée de la façon dont les utilisateurs ont répondu toothis campagne hello. Le ciblage de l'audience est déterminé selon que la campagne est issue d'une transmission de type push, qu'elle a obtenu une réponse, qu'elle a été activée ou quittée.
+### <a name="define-the-content-of-your-data"></a>Définition du contenu de vos données
+* Si vous sélectionnez une transmission de type push des données de texte, copiez et collez le texte dans la boîte « contenu ».
+* Si vous sélectionnez une transmission de type push de données binaires ou base64, utilisez le bouton « Télécharger votre fichier » pour télécharger votre fichier.
+* Vous pouvez cibler une audience pour une future campagne suivant les commentaires Reach indiquant la façon dont les utilisateurs ont répondu à cette campagne. Le ciblage de l'audience est déterminé selon que la campagne est issue d'une transmission de type push, qu'elle a obtenu une réponse, qu'elle a été activée ou quittée.
 
 ### <a name="see-also"></a>Voir aussi
 * [Documentation sur l’interface utilisateur - Reach - Nouveau critère Push][Link 28]
@@ -140,9 +140,9 @@ Vous pouvez cibler un public d’une campagne de futures en fonction des comment
 ## <a name="content-of-tiles-windows-phone-only"></a>Contenu des vignettes (Windows Phone uniquement)
 ![Reach-Content4][33]
 
-### <a name="define-hello-content-of-your-tile"></a>Définir le contenu de votre vignette hello
-charge utile de vignette Hello est hello toobe de texte affichée dans la mosaïque hello de votre application sur les appareils Windows Phone.
-Un push de la vignette est version du Service de Notification Push Microsoft (MPNS) hello d’un push natif pour Windows Phone. Hello vignette push type est hello uniquement par émission de données qui n’a pas de réponse et donc audience hello de futures campagnes ne peut pas être généré sur les résultats d’une campagne de push de vignette hello. 
+### <a name="define-the-content-of-your-tile"></a>Définition du contenu de vos vignettes
+La charge utile de la vignette correspond au texte qui s'affichera dans la vignette de votre application sur les appareils Windows Phone.
+Un Push de vignette est la version du service de notifications Push de Microsoft (MPNS) d'un Push natif pour Windows Phone. Ce type de Push de vignette est le seul type de push qui n'a pas de réponse. L'audience des futures campagnes ne peut donc pas être déterminée en fonction des résultats d'une campagne de Push de vignette. 
 
 ### <a name="see-also"></a>Voir aussi
 * [Documentation sur les API - API Reach - Push natif][Link 4]

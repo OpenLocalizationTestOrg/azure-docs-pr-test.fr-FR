@@ -1,6 +1,6 @@
 ---
-title: "Application Insights tootroubleshoot stratégies personnalisées - Azure AD B2C | Documents Microsoft"
-description: "Comment toosetup Application Insights tootrace hello l’exécution de stratégies personnalisées"
+title: "Résoudre les problèmes liés aux stratégies personnalisées grâce à Application Insights - Azure AD B2C | Documents Microsoft"
+description: "configuration d’Application Insights pour suivre l’exécution de stratégies personnalisées"
 services: active-directory-b2c
 documentationcenter: 
 author: saeedakhter-msft
@@ -14,54 +14,54 @@ ms.topic: article
 ms.devlang: na
 ms.date: 08/04/2017
 ms.author: saeda
-ms.openlocfilehash: c02d7178512c7f9e022385371c3effd4f8cb7726
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8c79df33cd5f04f490e2cc6372f7e8ac1c4d9bbe
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-active-directory-b2c-collecting-logs"></a>Azure Active Directory B2C : collecte des journaux
 
 Cet article explique comment collecter les journaux à partir d’Azure AD B2C afin que vous puissiez diagnostiquer les problèmes liés à vos stratégies personnalisées.
 
 >[!NOTE]
->Actuellement, hello journaux d’activité détaillés décrites ici sont conçues **uniquement** tooaid dans le développement de stratégies personnalisées. N’utilisez pas le mode de développement en production.  Journaux de collectent toutes les revendications envoyées tooand hello fournisseurs d’identité au cours du développement.  Si utilisé en production, développeur de hello assume la responsabilité pour les informations d’identification personnelle (confidentiellement Identifiable Information) collectée dans le journal d’application Insights hello dont ils sont propriétaires.  Ces journaux détaillés est collectés uniquement lorsque la stratégie de hello est placé sur **MODE de développement**.
+>Actuellement, les journaux d’activité détaillés décrits ici sont conçus **UNIQUEMENT** pour faciliter le développement de stratégies personnalisées. N’utilisez pas le mode de développement en production.  Les journaux recueillent toutes les revendications envoyées par et aux fournisseurs d’identité au cours du développement.  En cas d’utilisation en production, le développeur assume la responsabilité des informations d’identification personnelle (PII) recueillies dans le journal Application Insights dont il est propriétaire.  Ces journaux détaillés ne sont collectés que si la stratégie est en **MODE DE DÉVELOPPEMENT**.
 
 
 ## <a name="use-application-insights"></a>Utiliser Application Insights
 
-Azure AD B2C prend en charge une fonctionnalité pour l’envoi de données tooApplication Insights.  Application Insights fournit un moyen toodiagnose des exceptions et visualiser les problèmes de performances des applications.
+Azure AD B2C prend en charge une fonctionnalité d’envoi de données à Application Insights.  Application Insights permet de diagnostiquer les exceptions et de visualiser les problèmes de performances des applications.
 
 ### <a name="setup-application-insights"></a>Configurer Application Insights
 
-1. Accédez toohello [portail Azure](https://portal.azure.com). Assurez-vous que vous êtes dans le locataire de hello avec votre abonnement Azure (pas votre locataire Azure AD B2C).
-1. Cliquez sur **+ nouveau** dans le menu de navigation gauche hello.
+1. Accédez au [portail Azure](https://portal.azure.com). Vérifiez que vous êtes sur le locataire avec votre abonnement Azure (pas votre locataire Azure AD B2C).
+1. Cliquez sur **+ Nouveau** dans le menu de navigation de gauche.
 1. Recherchez et sélectionnez **Application Insights**, puis cliquez sur **Créer**.
-1. Complétez le formulaire de hello et cliquez sur **créer**. Sélectionnez **général** pour hello **Type d’Application**.
-1. Une fois que la ressource de hello a été créée, ouvrir la ressource d’Application Insights hello.
-1. Rechercher **propriétés** dans hello menu de gauche, puis cliquez sur celle-ci.
-1. Hello de copie **clé d’Instrumentation** et l’enregistrer pour la section suivante de hello.
+1. Remplissez le formulaire et cliquez sur **Créer**. Sélectionnez **Général** comme **Type d’application**.
+1. Une fois que la ressource a été créée, ouvrez la ressource Application Insights.
+1. Recherchez **Propriétés** dans le menu de gauche, puis cliquez dessus.
+1. Copiez la **Clé d’instrumentation** et enregistrez-la pour la section suivante.
 
-### <a name="set-up-hello-custom-policy"></a>Configurer la stratégie personnalisée de hello
+### <a name="set-up-the-custom-policy"></a>Configurer la stratégie personnalisée
 
-1. Ouvrir le fichier de partie de confiance hello (par exemple, SignUpOrSignin.xml).
-1. Ajouter hello suivant attributs toohello `<TrustFrameworkPolicy>` élément :
+1. Ouvrez le fichier RP (par exemple, SignUpOrSignin.xml).
+1. Ajoutez les attributs suivants à l’élément `<TrustFrameworkPolicy>` :
 
   ```XML
   DeploymentMode="Development"
   UserJourneyRecorderEndpoint="urn:journeyrecorder:applicationinsights"
   ```
 
-1. Si elle n’existe pas déjà, ajoutez un nœud enfant `<UserJourneyBehaviors>` toohello `<RelyingParty>` nœud. Il doit être placé immédiatement après hello`<DefaultUserJourney ReferenceId="YourPolicyName" />`
-2. Ajouter hello suivant du nœud en tant qu’enfant de hello `<UserJourneyBehaviors>` élément. Assurez-vous que tooreplace `{Your Application Insights Key}` avec hello **clé d’Instrumentation** que vous avez obtenue à partir de l’Application Insights dans la section précédente de hello.
+1. S’il n’existe pas déjà, ajoutez un nœud enfant `<UserJourneyBehaviors>` au nœud `<RelyingParty>`. Il doit être placé immédiatement après le `<DefaultUserJourney ReferenceId="YourPolicyName" />`
+2. Ajoutez le nœud suivant en tant qu’enfant de l’élément `<UserJourneyBehaviors>`. Veillez à remplacer `{Your Application Insights Key}` par la **Clé d’instrumentation** que vous avez obtenue à partir d’Application Insights dans la section précédente.
 
   ```XML
   <JourneyInsights TelemetryEngine="ApplicationInsights" InstrumentationKey="{Your Application Insights Key}" DeveloperMode="true" ClientEnabled="false" ServerEnabled="true" TelemetryVersion="1.0.0" />
   ```
 
-  * `DeveloperMode="true"`Indique le bon ApplicationInsights tooexpedite les données de télémétrie hello via le pipeline de traitement de hello, pour le développement, mais limitée à des volumes élevés.
-  * `ClientEnabled="true"`envoie hello ApplicationInsights un script côté client pour le suivi des erreurs de page côté client et de la vue (ne pas nécessaires).
-  * `ServerEnabled="true"`envoie hello existant UserJourneyRecorder JSON comme une événement personnalisé de tooApplication Insights.
+  * `DeveloperMode="true"` indique à ApplicationInsights d’accélérer l’envoi de la télémétrie via le pipeline de traitement, valable pour le développement, mais limité à des volumes élevés.
+  * `ClientEnabled="true"` envoie le script côté client ApplicationInsights pour l’affichage de la page de suivi et les erreurs côté client (pas nécessaire).
+  * `ServerEnabled="true"` envoie le JSON UserJourneyRecorder existant en tant qu’événement personnalisé à Application Insights.
 Exemple :
 
   ```XML
@@ -82,32 +82,32 @@ Exemple :
   </TrustFrameworkPolicy>
   ```
 
-3. Télécharger la stratégie de hello.
+3. Téléchargez la stratégie.
 
-### <a name="see-hello-logs-in-application-insights"></a>Consultez hello consigne dans Application Insights
+### <a name="see-the-logs-in-application-insights"></a>Afficher des journaux dans Application Insights
 
 >[!NOTE]
 > Il y a un court délai (moins de cinq minutes) avant que les nouveaux journaux s’affichent dans Application Insights.
 
-1. Ouvrir la ressource Application Insights hello que vous avez créé dans hello [portail Azure](https://portal.azure.com).
-1. Bonjour **vue d’ensemble** menu, cliquez sur **Analytique**.
+1. Ouvrez la ressource Application Insights que vous avez créée sur le [portail Azure](https://portal.azure.com).
+1. Dans le menu **Aperçu**, cliquez sur **Analytics**.
 1. Ouvrez un nouvel onglet dans Application Insights.
-1. Voici une liste de requêtes, que vous pouvez utiliser les journaux hello toosee
+1. Voici une liste de requêtes que vous pouvez utiliser pour afficher les journaux
 
-| Interroger | Description |
+| Requête | Description |
 |---------------------|--------------------|
-traces | Afficher tous les journaux de hello générés par Azure AD B2C |
-traces \| where timestamp > ago(1d) | Afficher tous les fichiers journaux hello générés par Azure AD B2C pour hello dernier jour
+traces | Consultez tous les journaux générés par Azure AD B2C |
+traces \| where timestamp > ago(1d) | Consultez tous les journaux générés par Azure AD B2C pour le dernier jour
 
-les entrées de Hello peuvent être longues.  Exportez tooCSV pour une présentation détaillée.
+Les entrées peuvent être longues.  Exporter au format CSV pour une étude plus approfondie.
 
-Vous en apprendrez davantage sur outil d’Analytique hello [ici](https://docs.microsoft.com/azure/application-insights/app-insights-analytics).
-
->[!NOTE]
->Communauté de Hello a développé une développeurs d’identité toohelp visionneuse utilisateur voyage.  Elle n’est pas prise en charge par Microsoft et est mise à disposition tel quel.  Il lit à partir de votre instance d’Application Insights et fournit une vue de structure de la barre d’outils des événements de voyage hello utilisateur.  Obtenir le code source de hello et de le déployer dans votre propre solution.
+Pour plus d’informations sur l’outil Analytics, cliquez [ici](https://docs.microsoft.com/azure/application-insights/app-insights-analytics).
 
 >[!NOTE]
->Actuellement, hello journaux d’activité détaillés décrites ici sont conçues **uniquement** tooaid dans le développement de stratégies personnalisées. N’utilisez pas le mode de développement en production.  Journaux de collectent toutes les revendications envoyées tooand hello fournisseurs d’identité au cours du développement.  Si utilisé en production, développeur de hello assume la responsabilité pour les informations d’identification personnelle (confidentiellement Identifiable Information) collectée dans le journal d’application Insights hello dont ils sont propriétaires.  Ces journaux détaillés est collectés uniquement lorsque la stratégie de hello est placé sur **MODE de développement**.
+>La communauté a développé une visionneuse du parcours utilisateur pour aider les développeurs d’identité.  Elle n’est pas prise en charge par Microsoft et est mise à disposition tel quel.  Elle lit les données de votre instance d’Application Insights et présente les événements du parcours utilisateur d’une façon bien structurée.  Vous obtenez le code source et le déployez dans votre propre solution.
+
+>[!NOTE]
+>Actuellement, les journaux d’activité détaillés décrits ici sont conçus **UNIQUEMENT** pour faciliter le développement de stratégies personnalisées. N’utilisez pas le mode de développement en production.  Les journaux recueillent toutes les revendications envoyées par et aux fournisseurs d’identité au cours du développement.  En cas d’utilisation en production, le développeur assume la responsabilité des informations d’identification personnelle (PII) recueillies dans le journal Application Insights dont il est propriétaire.  Ces journaux détaillés ne sont collectés que si la stratégie est en **MODE DE DÉVELOPPEMENT**.
 
 [Référentiel Github pour exemples de stratégies personnalisées non pris en charge et outils connexes](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies)
 
@@ -115,4 +115,4 @@ Vous en apprendrez davantage sur outil d’Analytique hello [ici](https://docs.m
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Explorer les données hello dans toohelp Application Insights vous comprenez comment hello infrastructure d’identité expérience B2C sous-jacent fonctionne toodeliver rencontre de votre propre identité.
+Explorez les données d’Application Insights pour mieux comprendre la façon dont l’infrastructure d’expérience d’identité B2C sous-jacente fournit vos propres expériences d’identité.

@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate un IoT hub à l’aide d’Azure CLI (azure.js) | Documents Microsoft"
-description: "Comment toocreate une à l’aide de Azure IoT hub hello multiplateforme Azure CLI (azure.js)."
+title: "Création d’un IoT Hub à l’aide de l’interface de ligne de commande Azure (azure.js) | Microsoft Docs"
+description: "Création d’un Azure IoT Hub à l’aide de l’interface de ligne de commande Azure multiplateforme (azure.js)."
 services: iot-hub
 documentationcenter: .net
 author: BeatriceOltean
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/04/2017
 ms.author: boltean
-ms.openlocfilehash: c2a7ea98500b0a0e55a39f4cdfea4605c92add94
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5e37c6c5e8625ce446ab203f19f9a8b2f1cd5a46
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="create-an-iot-hub-using-hello-azure-cli"></a>Créez un IoT hub à l’aide de hello CLI d’Azure
+# <a name="create-an-iot-hub-using-the-azure-cli"></a>Création d’un IoT Hub à l’aide de l’interface de ligne de commande Azure
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 ## <a name="introduction"></a>Introduction
 
-Vous pouvez utiliser Azure CLI (azure.js) toocreate et gérer les hubs Azure IoT par programme. Cet article vous explique comment toouse hello CLI d’Azure (azure.js) toocreate un IoT hub.
+Vous pouvez utiliser l’interface de ligne de commande Azure (azure.js) pour créer et gérer des Azure IoT Hubs de façon programmée. Cet article explique comment utiliser l’interface de ligne de commande Azure (azure.js) pour créer un IoT Hub.
 
-Vous pouvez exécuter la tâche hello à l’aide de hello CLI versions suivantes :
+Vous pouvez exécuter la tâche en utilisant l’une des versions suivantes de l’interface de ligne de commande (CLI) :
 
-* CLI Azure (azure.js) – hello CLI pour hello classique et les modèles de déploiement de gestion des ressources comme décrit dans cet article.
-* [Azure CLI 2.0 (az.py)](iot-hub-create-using-cli.md) -hello nouvelle génération CLI pour le modèle de déploiement de gestion de ressources hello.
+* Azure CLI (azure.js) : l’interface de ligne de commande pour les modèles de déploiement Classique et Resource Manager décrits dans cet article.
+* [Azure CLI 2.0 (az.py)](iot-hub-create-using-cli.md) : interface de ligne de commande nouvelle génération pour le modèle de déploiement Resource Manager.
 
-toocomplete ce didacticiel, vous devez hello suivant :
+Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
 
 * Un compte Azure actif. Si vous ne possédez pas de compte, vous pouvez en créer un [gratuitement][lnk-free-trial] en quelques minutes.
-* [Azure CLI 0.10.4][lnk-CLI-install] ou version ultérieure. Si vous avez déjà hello CLI d’Azure installé, vous pouvez valider la version actuelle de hello invite de commandes hello avec hello de commande suivante :
+* [Azure CLI 0.10.4][lnk-CLI-install] ou version ultérieure. Si vous avez déjà installé l’interface de ligne de commande (CLI) Azure, vous pouvez valider la version actuelle à l’invite de commandes avec la commande suivante :
 
 ```azurecli
 azure --version
 ```
 
 > [!NOTE]
-> Azure dispose de deux modèles de déploiement pour créer et utiliser des ressources : [Azure Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md). Hello CLI d’Azure doit être en mode Azure Resource Manager :
+> Azure dispose de deux modèles de déploiement pour créer et utiliser des ressources : [Azure Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md). L’interface de ligne de commande (CLI) Azure doit être en mode Azure Resource Manager :
 >
 > ```azurecli
 > azure config mode arm
@@ -51,20 +51,20 @@ azure --version
 
 ## <a name="set-your-azure-account-and-subscription"></a>Configurer votre compte et votre abonnement Microsoft Azure
 
-1. À l’invite de commandes hello connexion en tapant hello la commande suivante :
+1. À l’invite de commandes, connectez-vous en tapant la commande suivante :
 
    ```azurecli
     azure login
    ```
 
-   Utilisez hello suggérée navigateur et tooauthenticate de code.
-1. Si vous avez plusieurs abonnements Azure, la connexion tooAzure vous accorde l’accès tooall hello Azure abonnements associés à vos informations d’identification. Vous pouvez afficher hello abonnements Azure et identifiez celui qui correspond à une valeur par défaut hello, à l’aide de la commande hello :
+   Utilisez le navigateur web suggéré et le code d’authentification.
+1. Si vous possédez plusieurs abonnements Azure, la connexion à Azure donne accès à tous les abonnements Azure associés à vos informations d’identification. Vous pouvez afficher les abonnements et identifier l’abonnement Azure par défaut à l’aide de la commande suivante :
 
    ```azurecli
     azure account list
    ```
 
-   contexte d’abonnement hello tooset sous lequel vous voulez reste hello toorun hello commandes utilisent :
+   Pour définir le contexte de l’abonnement sous lequel vous souhaitez exécuter le reste des commandes, utilisez la commande suivante :
 
    ```azurecli
     azure account set <subscription name>
@@ -77,7 +77,7 @@ azure --version
    ```
 
 > [!TIP]
-> article de Hello [utiliser hello CLI d’Azure toomanage Azure ressources et groupes de ressources] [ lnk-CLI-arm] fournit plus d’informations sur la façon dont toouse hello CLI d’Azure toomanage Azure ressources.
+> Pour plus d’informations sur l’utilisation de l’interface de ligne de commande Azure pour gérer des ressources Azure, voir l’article [Utiliser l’interface de ligne de commande Azure pour gérer les ressources et les groupes de ressources Azure][lnk-CLI-arm].
 
 ## <a name="create-an-iot-hub"></a>Création d’un IoT Hub
 
@@ -87,28 +87,28 @@ Paramètres obligatoires :
 azure iothub create -g <resource-group> -n <name> -l <location> -s <sku-name> -u <units>
 ```
 
-* **resource-group**. nom du groupe de ressources de Hello. format de Hello est un trait de soulignement alphanumérique, non-respect de la casse, trait d’union, longueur de 1 à 64.
-* **name**. nom de Hello de hello IoT hub toobe est créé. format de Hello est un trait de soulignement alphanumérique, non-respect de la casse et trait d’union, longueur de 3 à 50.
-* **location**. Hello emplacement (région/centre de données azure) tooprovision hello IoT hub.
-* **sku-name**. nom de Hello de hello référence (SKU), un des : [F1, S1, S2 et S3]. Pour hello dernières la liste complète, consultez toohello page de tarification pour IoT Hub.
-* **units**. nombre de Hello d’unités configurées. Plage : F1 [1-1] : S1, S2 [1-200] : S3 [1-10]. Les unités IoT Hub sont basées sur votre nombre total de messages hello et de nombre de périphériques, vous souhaitez tooconnect.
+* **resource-group**. Nom du groupe de ressources. Le format ne tient pas compte de la casse et accepte les caractères suivants : trait de soulignement, valeurs alphanumériques et trait d’union. La longueur doit être incluse entre 1 et 64 caractères.
+* **name**. Nom de l’instance IoT Hub à créer. Le format ne tient pas compte de la casse et accepte les caractères suivants : trait de soulignement, valeurs alphanumériques et trait d’union. La longueur doit être incluse entre 3 et 50 caractères.
+* **location**. Emplacement (région/centre de données Azure) associé à la configuration de l’instance IoT Hub.
+* **sku-name**. Nom de la référence, à choisir parmi les éléments suivants : [F1, S1, S2, S3]. Pour obtenir la liste complète la plus récente, reportez-vous à la page relative à la tarification d’IoT Hub.
+* **units**. Nombre d’unités configurées. Plage : F1 [1-1] : S1, S2 [1-200] : S3 [1-10]. Le nombre d’unités IoT Hub dépend du nombre total de messages et du nombre d’appareils que vous souhaitez connecter.
 
 [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
-toosee tous hello paramètres disponibles pour la création, vous pouvez utiliser la commande de help hello dans l’invite de commandes :
+Pour afficher tous les paramètres disponibles pour la création, vous pouvez utiliser la commande d’aide dans une invite de commandes :
 
 ```azurecli
 azure iothub create -h
 ```
 
-Exemple : toocreate un IoT Hub appelé **exampleIoTHubName** dans le groupe de ressources hello **exampleResourceGroup**, exécutez hello commande suivante :
+Voici un exemple rapide. Pour créer une instance IoT Hub appelée **exampleIoTHubName** dans le groupe de ressources **exampleResourceGroup**, exécutez la commande suivante :
 
 ```azurecli
 azure iothub create -g exampleResourceGroup -n exampleIoTHubName -l westus -k s1 -u 1
 ```
 
 > [!NOTE]
-> Cette commande CLI Azure crée un IoT Hub Standard S1 pour lequel vous êtes facturé. Vous pouvez supprimer le hub de IoT hello **exampleIoTHubName** à l’aide de commande suivante :
+> Cette commande CLI Azure crée un IoT Hub Standard S1 pour lequel vous êtes facturé. Vous pouvez supprimer l’IoT Hub **exampleIoTHubName** à l’aide de la commande suivante :
 >
 > ```azurecli
 > azure iothub delete -g exampleResourceGroup -n exampleIoTHubName
@@ -116,13 +116,13 @@ azure iothub create -g exampleResourceGroup -n exampleIoTHubName -l westus -k s1
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-toolearn plus sur le développement pour IoT Hub, consultez hello l’article suivant :
+Pour en savoir plus sur le développement pour IoT Hub, consultez l’article suivant :
 
 * [Kits de développement logiciel (SDK) IoT][lnk-sdks]
 
-toofurther Explorez les fonctionnalités de hello d’IoT Hub, consultez :
+Pour explorer davantage les capacités de IoT Hub, consultez :
 
-* [À l’aide de hello toomanage portail Azure IoT Hub][lnk-portal]
+* [Utilisation du portail Azure pour gérer IoT Hub][lnk-portal]
 
 <!-- Links -->
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/

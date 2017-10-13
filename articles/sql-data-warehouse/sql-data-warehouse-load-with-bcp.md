@@ -1,6 +1,6 @@
 ---
-title: "données de tooload aaaUse bcp dans SQL Data Warehouse | Documents Microsoft"
-description: "Découvrez quels bcp est et comment toouse pour les scénarios d’entreposage de données."
+title: "Utilisation de bcp pour charger des données dans SQL Data Warehouse | Microsoft Docs"
+description: "Découvrez bcp et apprenez comment utiliser cette solution avec les scénarios d’entreposage de données."
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 09a2980585097644924c71899f9e74fb32fbc26d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 7596eac10fdf53380d85128265430ce07b551fe3
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="load-data-with-bcp"></a>Chargement des données avec BCP
 > [!div class="op_single_selector"]
@@ -30,41 +30,41 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-**[bcp] [ bcp]**  est un utilitaire de chargement en masse de ligne de commande qui vous permet de toocopy des données entre SQL Server, les fichiers de données et SQL Data Warehouse. Utilisez bcp tooimport grand nombre de lignes dans des tables de l’entrepôt de données SQL ou de tooexport des données à partir des tables SQL Server dans les fichiers de données. Sauf lorsque utilisé avec l’option queryout hello, bcp ne nécessite aucune connaissance de Transact-SQL.
+**[bcp][bcp]** est un utilitaire de ligne de commande de chargement par lots qui vous permet de charger des données entre SQL Server, des fichiers de données et SQL Data Warehouse. Utilisez bcp pour importer un nombre important de lignes dans les tables SQL Data Warehouse ou pour exporter des données des tables SQL Server dans les fichiers de données. L’utilitaire bcp, sauf lorsqu’il est utilisé avec l’option queryout, ne nécessite aucune connaissance de Transact-SQL.
 
-bcp est un moyen simple et rapide toomove petits jeux de données dans et hors d’une base de données SQL Data Warehouse. varie en quantité exacte de Hello de données qu’il sont recommandées de tooload/extraction via bcp sur de réseau de centre de données Azure toohello de connexion.  En règle générale, les tables de dimension peuvent être chargées et extraites facilement avec bcp. Toutefois, bcp n’est pas recommandé pour le chargement ou l’extraction de volumes de données élevés.  Polybase est hello recommandé outil pour le chargement et l’extraction des volumes importants de données comme il le fait mieux tirer parti d’architecture de traitement parallèle massif hello d’entrepôt de données SQL.
+bcp permet d’importer et d’exporter rapidement et simplement des ensembles de données plus petits de la base de données SQL Data Warehouse. La quantité exacte de données qu’il est recommandé de charger/extraire via bcp dépend de la connexion de votre réseau au centre de données Microsoft Azure.  En règle générale, les tables de dimension peuvent être chargées et extraites facilement avec bcp. Toutefois, bcp n’est pas recommandé pour le chargement ou l’extraction de volumes de données élevés.  Polybase est l’outil recommandé pour le chargement et l’extraction de volumes de données élevés, car il exploite plus efficacement l’architecture MPP (Massively Parallel Processing) de SQL Data Warehouse.
 
 Avec bcp, vous pouvez :
 
-* Utilisez un utilitaire de ligne de commande simple tooload de données dans l’entrepôt de données SQL.
-* Utiliser un utilitaire de ligne de commande simple de données de tooextract à partir de l’entrepôt de données SQL.
+* Utiliser un utilitaire en ligne de commande simple pour charger des données dans SQL Data Warehouse.
+* Utiliser un utilitaire en ligne de commande simple pour extraire des données de SQL Data Warehouse.
 
 Ce didacticiel vous explique comment :
 
-* Importer des données dans une table à l’aide de bcp de hello dans la commande
-* Exporter des données à partir d’un bcp de hello table en utilisant des commandes
+* Importer des données dans une table à l’aide de la commande bcp in
+* Exporter des données d’une table à l’aide de la commande bcp out
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Loading-data-into-Azure-SQL-Data-Warehouse-with-BCP/player]
 > 
 > 
 
-## <a name="prerequisites"></a>Composants requis
-toostep dans ce didacticiel, vous devez :
+## <a name="prerequisites"></a>Configuration requise
+Pour parcourir ce didacticiel, vous avez besoin des éléments suivants :
 
 * Base de données SQL Data Warehouse
-* utilitaire de ligne de commande bcp Hello installé
-* Hello utilitaire de ligne de commande SQLCMD installé
+* Utilitaire en ligne de commande bcp installé
+* Utilitaire en ligne de commande SQLCMD installé
 
 > [!NOTE]
-> Vous pouvez télécharger les utilitaires bcp et sqlcmd hello hello [Microsoft Download Center][Microsoft Download Center].
+> Pour télécharger les utilitaires bcp et sqlcmd, accédez au [Centre de téléchargement Microsoft][Microsoft Download Center].
 > 
 > 
 
 ## <a name="import-data-into-sql-data-warehouse"></a>Importer des données dans SQL Data Warehouse
-Dans ce didacticiel, vous créez une table dans Azure SQL Data Warehouse et importer des données dans la table de hello.
+Dans ce didacticiel, vous allez créer une table dans Azure SQL Data Warehouse et importer des données dans la table.
 
 ### <a name="step-1-create-a-table-in-azure-sql-data-warehouse"></a>Étape 1 : Créer une table dans Azure SQL Data Warehouse
-À partir d’une invite de commandes, utilisez sqlcmd toorun hello est suivant de requête toocreate une table de votre instance de :
+À partir d’une invite de commandes, utilisez sqlcmd pour exécuter la requête suivante, afin de créer une table sur votre instance :
 
 ```sql
 sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q "
@@ -83,12 +83,12 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 ```
 
 > [!NOTE]
-> Consultez [vue d’ensemble de la Table] [ Table Overview] ou [syntaxe CREATE TABLE] [ CREATE TABLE syntax] pour plus d’informations sur la création d’une table sur SQL Data Warehouse et hello  options disponibles dans la clause WITH de hello.
+> Consultez la page [Table Overview][Table Overview] (Vue d’ensemble des tables) ou la [syntaxe de CREATE TABLE][CREATE TABLE syntax] pour en savoir plus sur la création d’une table dans SQL Data Warehouse et les options disponibles dans la clause WITH.
 > 
 > 
 
 ### <a name="step-2-create-a-source-data-file"></a>Étape 2 : Créer un fichier de données source
-Ouvrez le bloc-notes, puis copiez hello après des lignes de données dans un nouveau fichier texte, puis enregistrez ce fichier tooyour répertoire temp local, C:\Temp\DimDate2.txt.
+Ouvrez le Bloc-notes, copiez les lignes de données suivantes dans un nouveau fichier texte, puis enregistrez ce fichier dans votre répertoire temporaire local C:\Temp\DimDate2.txt.
 
 ```
 20150301,1,3
@@ -106,24 +106,24 @@ Ouvrez le bloc-notes, puis copiez hello après des lignes de données dans un no
 ```
 
 > [!NOTE]
-> Il est important tooremember que bcp.exe ne prend pas en charge l’encodage du fichier hello UTF-8. Utilisez des fichiers ASCII ou codés en UTF-16 lors de l’utilisation de bcp.exe.
+> Il est important de se souvenir que bcp.exe ne prend pas en charge le codage de fichier UTF-8. Utilisez des fichiers ASCII ou codés en UTF-16 lors de l’utilisation de bcp.exe.
 > 
 > 
 
-### <a name="step-3-connect-and-import-hello-data"></a>Étape 3 : Se connecter et importer des données de hello
-À l’aide de bcp, vous pouvez connecter et importer des données hello à l’aide de hello commande en remplaçant des valeurs hello comme appropriées suivantes :
+### <a name="step-3-connect-and-import-the-data"></a>Étape 3 : Connecter et importer les données
+Grâce à bcp, vous pouvez connecter et importer les données à l’aide de la commande suivante, qui remplace de manière appropriée les valeurs :
 
 ```sql
 bcp DimDate2 in C:\Temp\DimDate2.txt -S <Server Name> -d <Database Name> -U <Username> -P <password> -q -c -t  ','
 ```
 
-Vous pouvez vérifier les données ont été chargées en exécutant hello suivant la requête à l’aide de sqlcmd de hello :
+Vous pouvez vérifier que les données ont été chargées en exécutant la requête suivante à l’aide de sqlcmd :
 
 ```sql
 sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q "SELECT * FROM DimDate2 ORDER BY 1;"
 ```
 
-Cela doit retourner hello suivant des résultats :
+Les résultats suivants doivent s’afficher :
 
 | DateId | CalendarQuarter | FiscalQuarter |
 | --- | --- | --- |
@@ -141,9 +141,9 @@ Cela doit retourner hello suivant des résultats :
 | 20151201 |4 |2 |
 
 ### <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>Étape 4 : Créer des statistiques sur vos données nouvellement chargées
-Azure SQL Data Warehouse ne prend pas encore en charge les statistiques à création ou mise à jour automatique. Dans l’ordre tooget hello optimiser les performances de vos requêtes, il est important que créer des statistiques sur toutes les colonnes de toutes les tables après le premier chargement de hello ou toutes les modifications importantes se produisent dans les données de salutation. Pour obtenir une explication détaillée des statistiques, consultez hello [statistiques] [ Statistics] rubrique dans le groupe de développement hello de rubriques. Voici un exemple rapide de la façon dont les statistiques toocreate sur hello déposée chargement dans cet exemple
+Azure SQL Data Warehouse ne prend pas encore en charge les statistiques à création ou mise à jour automatique. Pour optimiser les performances de vos requêtes, il est important de créer les statistiques sur toutes les colonnes de toutes les tables après le premier chargement ou après toute modification substantielle dans les données. Pour une explication détaillée des statistiques, consultez la rubrique [Statistiques][Statistics] dans le groupe de rubriques sur le développement. Voici un exemple rapide de la création de statistiques sur le tableau chargé dans cet exemple
 
-Exécutez hello suivant les instructions CREATE STATISTICS à partir d’une invite de commandes sqlcmd :
+À partir d’une invite sqlcmd, exécutez les instructions CREATE STATISTICS suivantes :
 
 ```sql
 sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q "
@@ -154,15 +154,15 @@ sqlcmd.exe -S <server name> -d <database name> -U <username> -P <password> -I -Q
 ```
 
 ## <a name="export-data-from-sql-data-warehouse"></a>Exporter des données de SQL Data Warehouse
-Dans ce didacticiel, vous allez créer un fichier de données à partir d’une table de SQL Data Warehouse. Vous exporterez les données hello créée précédemment tooa nouveau fichier de données appelé DimDate2_export.txt.
+Dans ce didacticiel, vous allez créer un fichier de données à partir d’une table de SQL Data Warehouse. Nous allons exporter les données créées plus haut vers un nouveau fichier de données, DimDate2_export.txt.
 
-### <a name="step-1-export-hello-data"></a>Étape 1 : Exporter les données de salutation
-L’utilitaire bcp de hello, vous pouvez connecter et exporter des données à l’aide de hello commande en remplaçant des valeurs hello comme appropriées suivantes :
+### <a name="step-1-export-the-data"></a>Étape 1 : Exporter les données
+L’utilitaire bcp vous permet de connecter et d’exporter les données à l’aide de la commande suivante, qui remplace de manière appropriée les valeurs :
 
 ```sql
 bcp DimDate2 out C:\Temp\DimDate2_export.txt -S <Server Name> -d <Database Name> -U <Username> -P <password> -q -c -t ','
 ```
-Vous pouvez vérifier hello données a été correctement exportées en ouvrant le fichier hello. les données de salutation dans le fichier de hello doivent correspondre au texte hello ci-dessous :
+Pour vérifier que les données ont été exportées, ouvrez le nouveau fichier. Les données du fichier doivent correspondre au texte ci-dessus :
 
 ```
 20150301,1,3
@@ -180,7 +180,7 @@ Vous pouvez vérifier hello données a été correctement exportées en ouvrant 
 ```
 
 > [!NOTE]
-> En raison de la nature toohello des systèmes distribués, ordre des données hello peut-être pas hello même sur les bases de données SQL Data Warehouse. Une autre option consiste à toouse hello **queryout** fonction de bcp toowrite une requête extrait au lieu d’exporter la totalité de la table hello.
+> En raison de la nature des systèmes distribués, l’ordre des données peut ne pas être identique entre les différentes bases de données SQL Data Warehouse. Une autre option consiste à utiliser la fonction **queryout** de l’utilitaire bcp pour écrire un extrait de requête au lieu d’exporter la totalité de la table.
 > 
 > 
 

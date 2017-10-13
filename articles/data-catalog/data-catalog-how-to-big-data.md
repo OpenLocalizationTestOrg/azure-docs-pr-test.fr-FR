@@ -1,6 +1,6 @@
 ---
-title: "toowork aaaHow des sources de données de « données volumineuses » | Documents Microsoft"
-description: "Modèles de mise en surbrillance tooarticle de procédure pour l’utilisation d’Azure Data Catalog des sources de données de « données volumineuses », y compris le stockage d’objets Blob Azure, Azure Data Lake et Hadoop HDFS."
+title: "Utilisation des sources de données « Big Data » | Microsoft Docs"
+description: "Article de procédure expliquant comment utiliser Azure Data Catalog avec des sources de données « volumineuses », notamment le Stockage Blob Azure, Azure Data Lake et les fichiers Hadoop HDFS."
 services: data-catalog
 documentationcenter: 
 author: steelanddata
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/15/2017
 ms.author: maroche
-ms.openlocfilehash: e478f71f26744975a7d7e1784b74bf50b424cf65
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 001d80ce42f0e87276e59d70dffb75eb561d96cd
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="how-toowork-with-big-data-sources-in-azure-data-catalog"></a>Comment toowork avec les données sources dans Azure Data Catalog
+# <a name="how-to-work-with-big-data-sources-in-azure-data-catalog"></a>Utilisation des sources de données volumineuses dans Azure Data Catalog
 ## <a name="introduction"></a>Introduction
-**Microsoft Azure Data Catalog** est un service cloud entièrement géré qui sert de système d'inscription et de détection des sources de données d'entreprise. Il concerne toutes les personnes découvrir, comprendre et utiliser des sources de données et de contribuer aux organisations tooget plus de valeur à partir de leurs sources de données existantes, y compris les données volumineuses.
+**Microsoft Azure Data Catalog** est un service cloud entièrement géré qui sert de système d'inscription et de détection des sources de données d'entreprise. Il vise essentiellement à aider les utilisateurs à détecter, comprendre et utiliser des sources de données, et à permettre aux organisations de mieux exploiter leurs sources données existantes, y compris le Big Data.
 
-**Azure Data Catalog** prend en charge hello d’enregistrement des objets BLOB de stockage d’objets BLOB Azure et des répertoires ainsi que des fichiers de Hadoop HDFS et des répertoires. nature de semi-structurées Hello de ces sources de données offre une grande souplesse. Toutefois, tooget hello le meilleur parti de l’inscription avec **Azure Data Catalog**, les utilisateurs doivent envisager la façon dont les sources de données hello sont organisés.
+**Azure Data Catalog** prend en charge l’inscription d’objets et de répertoire de Stockage d’objets blob Azure ainsi que des fichiers et des répertoires HDFS Hadoop. La nature semi-structurée des sources de données offre une grande flexibilité. Toutefois, pour réellement profiter de leur enregistrement dans **Azure Data Catalog**, les utilisateurs doivent comprendre comment sont organisées les sources de données.
 
 ## <a name="directories-as-logical-data-sets"></a>Répertoires sous forme de jeux de données logiques
-Il est courant pour organiser les sources de données volumineuses tootreat répertoires en tant que jeux de données logique. Répertoires de niveau supérieur sont toodefine utilisé un jeu de données, tandis que les sous-dossiers définissent des partitions et des fichiers hello qu’ils contiennent stockent des données de hello lui-même.
+Un modèle répandu d’organisation de source de données volumineuses consiste à traiter des répertoires sous forme de jeux de données logique. Des répertoires de niveau supérieur sont utilisés pour définir un jeu de données, les sous-dossiers définissent des partitions, et les fichiers qu’ils contiennent stockent les données elles-mêmes.
 
 Voici quelques exemples de ce modèle :
 
@@ -47,10 +47,10 @@ Voici quelques exemples de ce modèle :
 
 Dans cet exemple, vehicle_maintenance_events et location_tracking_events représentent les jeux de données logiques. Chacun de ces dossiers contient des fichiers de données organisés par année et par mois en sous-dossiers. Chacun de ces dossiers peut contenir des centaines ou des milliers de fichiers.
 
-Dans ce modèle, l’enregistrement des fichiers individuels auprès d’ **Azure Data Catalog** ne sert sans doute à rien. Au lieu de cela, inscrivez les répertoires hello qui représentent des jeux de données hello être significatif toohello aux utilisateurs qui travaillent avec des données hello.
+Dans ce modèle, l’enregistrement des fichiers individuels auprès d’ **Azure Data Catalog** ne sert sans doute à rien. Au lieu de cela, enregistrez les répertoires qui représentent les jeux de données significatifs pour les utilisateurs travaillant avec ces données.
 
 ## <a name="reference-data-files"></a>Référence de fichiers de données
-Un modèle complémentaire est jeux de données de référence toostore en tant que fichiers individuels. Ces jeux de données peut être considéré comme le côté « small » de hello de données volumineuses et sont souvent toodimensions similaires dans un modèle de données analytiques. Les fichiers de données de référence contiennent des enregistrements contexte tooprovide utilisées en bloc de hello hello des fichiers de données stockés ailleurs dans le magasin de données volumineuses hello.
+Un modèle complémentaire consiste à stocker des jeux de données de référence sous forme de fichiers individuels. Ces ensembles de données peuvent être considérés comme le côté « émergé » des données volumineuses et sont souvent comparables aux dimensions d’un modèle de données analytiques. Les fichiers de données de référence contiennent des enregistrements utilisés pour offrir un contexte aux lots de fichiers de données stockées ailleurs dans le magasin de données volumineuses.
 
 Voici quelques exemples de ce modèle :
 
@@ -58,12 +58,12 @@ Voici quelques exemples de ce modèle :
     \maintenance_facilities.csv
     \maintenance_types.csv
 
-Quand un chercheur analyste ou données collabore avec données hello contenues dans les grandes structures de répertoire hello, données hello dans ces fichiers de référence peuvent être utilisé tooprovide des informations plus détaillées pour les entités qui sont visés tooonly par nom ou ID dans les données plus grandes hello ensemble.
+Lorsqu’un analyste ou un spécialiste des données travaille avec les données contenues dans des structures de répertoire plus grandes, les données présentes dans ces fichiers de référence fournissent des informations plus détaillées pour les entités référencées uniquement par nom ou ID du jeu de données plus grand.
 
-Dans ce modèle, il est logique des fichiers de données de référence de hello tooregister avec **Azure Data Catalog**. Chaque fichier représente un jeu de données, et chacun d’eux peut être annoté et découvert individuellement.
+Dans ce modèle, il est judicieux d’enregistrer les fichiers de données de référence avec **Azure Data Catalog**. Chaque fichier représente un jeu de données, et chacun d’eux peut être annoté et découvert individuellement.
 
 ## <a name="alternate-patterns"></a>Modèles alternatifs
-Hello modèles décrits dans la précédente section de hello deux méthodes sont possibles qu'un magasin de données volumineuses peut être organisé, mais chaque implémentation est différente. Quelle que soit la façon dont vos sources de données sont structurées, lors de l’inscription des sources de données volumineuses avec **Azure Data Catalog**, se concentrer sur l’enregistrement des fichiers de hello et de répertoires qui représentent des jeux de données hello de tooothers valeur au sein de votre organisation. L’inscription de tous les fichiers et répertoires permettre encombrer catalogue hello, rend plus difficile pour les utilisateurs toofind dont ils ont besoin.
+Les modèles décrits dans la section précédente représentent deux organisations possibles de magasins de données Big Data, mais chaque implémentation est différente. Quelle que soit la façon dont vos sources de données sont structurées, lors de l’enregistrement des sources de données Big Data auprès de **Azure Data Catalog**, concentrez-vous sur l’enregistrement des fichiers et des répertoires qui représentent les jeux de données qui ont une valeur pour les autres au sein de votre organisation. L’inscription de tous les fichiers et répertoires peut encombrer le catalogue, ce qui complique les opérations de recherche pour les utilisateurs.
 
 ## <a name="summary"></a>Résumé
-L’inscription des sources de données avec **Azure Data Catalog** rend plus facile toodiscover et à comprendre. En enregistrant et annoter les fichiers de données volumineuses hello et de répertoires qui représentent des jeux de données logiques, les utilisateurs peuvent aider à trouver et utiliser des sources de données volumineuses hello que dont ils ont besoin.
+L’inscription des sources de données auprès de **Azure Data Catalog** les facilite leur détection et leur compréhension. En enregistrant et en annotant les fichiers et les répertoires de données volumineuses qui représentent les jeux de données logiques, vous pouvez aider les utilisateurs à trouver et à utiliser les sources de données volumineuses dont ils ont besoin.

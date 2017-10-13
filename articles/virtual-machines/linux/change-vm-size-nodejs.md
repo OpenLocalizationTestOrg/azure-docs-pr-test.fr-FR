@@ -1,6 +1,6 @@
 ---
-title: aaaHow tooresize un VM Linux avec hello Azure CLI 1.0 | Documents Microsoft
-description: "Comment tooscale des ou mise à l’échelle vers le bas d’une machine virtuelle Linux, en modifiant hello taille de machine virtuelle."
+title: "Comment redimensionner une machine virtuelle Linux avec Azure CLI 1.0 | Microsoft Docs"
+description: "Comment augmenter ou diminuer les capacités d’une machine virtuelle Linux, en en modifiant la taille."
 services: virtual-machines-linux
 documentationcenter: na
 author: mikewasson
@@ -16,38 +16,38 @@ ms.workload: infrastructure-services
 ms.date: 05/16/2016
 ms.author: mwasson
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 43dd955dc2f2dd9d1b2da07ecbfbf2459bcaa4d2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 72f5a3cd6463befd5108040ed166984281bfc5f0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="resize-a-linux-vm-with-azure-cli-10"></a>Redimensionner une machine virtuelle Linux avec Azure CLI 1.0
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Une fois que vous configurez un ordinateur virtuel (VM), vous pouvez augmenter ou diminuer la hello machine virtuelle en modifiant hello [taille de machine virtuelle][vm-sizes]. Dans certains cas, vous devez libérer hello VM tout d’abord. Cela peut se produire si la nouvelle taille de hello n’est pas disponible sur le cluster de matériel hello qui héberge hello machine virtuelle.
+Après avoir approvisionné une machine virtuelle, vous pouvez le mettre à l’échelle en en modifiant la [taille][vm-sizes]. Dans certains cas, vous devez commencer par libérer la machine virtuelle. Cela peut se produire si la nouvelle taille n’est pas disponible sur le cluster matériel qui héberge la machine virtuelle.
 
-Cet article explique comment tooresize un VM Linux à l’aide de hello [CLI d’Azure][azure-cli].
+Cet article montre comment redimensionner une machine virtuelle Linux à l’aide de l’[interface de ligne de commande Azure][azure-cli].
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-rm-include.md)]
 
-## <a name="cli-versions-toocomplete-hello-task"></a>Tâche de hello CLI versions toocomplete
-Vous pouvez exécuter la tâche hello à l’aide de hello CLI versions suivantes :
+## <a name="cli-versions-to-complete-the-task"></a>Versions de l’interface de ligne de commande permettant d’effectuer la tâche
+Vous pouvez exécuter la tâche en utilisant l’une des versions suivantes de l’interface de ligne de commande (CLI) :
 
-- [Azure CLI 1.0](#resize-a-linux-vm) – notre CLI pour hello classique et la ressource gestion des modèles de déploiement (cet article)
-- [Azure CLI 2.0](change-vm-size.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -notre prochaine génération CLI pour le modèle de déploiement de gestion de ressources hello
+- [Azure CLI 1.0](#resize-a-linux-vm) : notre interface de ligne de commande pour les modèles de déploiement Classique et Resource Manager (cet article)
+- [Azure CLI 2.0](change-vm-size.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) : notre interface de ligne de commande nouvelle génération pour le modèle de déploiement Resource Manager
 
 
 ## <a name="resize-a-linux-vm"></a>Redimensionner une machine virtuelle Linux
-tooresize une machine virtuelle, effectuez hello comme suit.
+Pour redimensionner une machine virtuelle, procédez comme suit.
 
-1. Exécutez hello suivant commande CLI. Cette commande répertorie les tailles de machine virtuelle hello qui sont disponibles sur le cluster de matériel hello où hello ordinateur virtuel est hébergé.
+1. Exécutez la commande d’interface de ligne de commande ci-dessous. Cette commande répertorie les tailles de machines virtuelles qui sont disponibles sur le cluster matériel sur lequel la machine virtuelle est hébergée.
    
     ```azurecli
     azure vm sizes -g myResourceGroup --vm-name myVM
     ```
-2. Si hello souhaité est indiquée, exécutez hello suivant commande tooresize hello machine virtuelle.
+2. Si la taille voulue n’est pas répertoriée, exécutez la commande suivante pour redimensionner la machine virtuelle.
    
     ```azurecli
     azure vm set -g myResourceGroup --vm-size <new-vm-size> -n myVM  \
@@ -55,10 +55,10 @@ tooresize une machine virtuelle, effectuez hello comme suit.
         --boot-diagnostics-storage-uri https://mystorageaccount.blob.core.windows.net/ 
     ```
    
-    Hello machine virtuelle va redémarrer pendant ce processus. Après le redémarrage de hello, votre système d’exploitation existant et les disques de données seront remappés. Quoi que ce soit sur le disque temporaire de hello seront perdu.
+    La machine virtuelle redémarre pendant le processus. Après le redémarrage, votre système d’exploitation existant et les disques de données sont remappés. Tout le contenu du disque temporaire est perdu.
    
-    Hello d’utilisation `--enable-boot-diagnostics` option active [diagnostics de démarrage][boot-diagnostics], toolog tout toostartup connexes d’erreurs.
-3. Dans le cas contraire, si hello souhaité de taille n’est pas répertoriée, exécutez hello suivant les commandes toodeallocate hello VM, redimensionner et redémarrez hello machine virtuelle.
+    Utilisez l’option `--enable-boot-diagnostics` pour activer la consignation des erreurs de démarrage dans [Diagnostics de démarrage][boot-diagnostics].
+3. Sinon, si la taille souhaitée n’est pas répertoriée, exécutez les commandes suivantes pour libérer la machine virtuelle et la redimensionner, puis redémarrez-la.
    
     ```azurecli
     azure vm deallocate -g myResourceGroup myVM
@@ -69,7 +69,7 @@ tooresize une machine virtuelle, effectuez hello comme suit.
     ```
    
    > [!WARNING]
-   > Hello désallocation de machine virtuelle libère aussi toutes les adresses IP dynamiques affectées toohello machine virtuelle. Hello du système d’exploitation et des disques de données ne sont pas affectées.
+   > Le fait de libérer la machine virtuelle libère également toutes les adresses IP dynamiques affectées à la machine virtuelle. Les disques de données et du système d’exploitation ne sont pas affectés.
    > 
    > 
 

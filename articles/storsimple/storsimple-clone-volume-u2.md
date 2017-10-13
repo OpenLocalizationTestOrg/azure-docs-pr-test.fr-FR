@@ -1,6 +1,6 @@
 ---
-title: "aaaClone volume de série StorSimple 8000 | Documents Microsoft"
-description: "Décrit les types de clone différents hello et à quel moment toouse et explique comment vous pouvez utiliser un jeu de sauvegarde de tooclone un volume individuel."
+title: "Cloner un volume de la gamme StorSimple 8000 | Microsoft Docs"
+description: "Décrit les différents types de clone et les moments auxquels les utiliser et explique comment vous pouvez utiliser un jeu de sauvegarde pour cloner un volume individuel."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,72 +14,72 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 07/26/2017
 ms.author: alkohli
-ms.openlocfilehash: f457625d2e3aa173f7ccf26984e1902a64e33b5e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 2b627250df62bbe3299869ef3812947afbb8f29f
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="use-hello-storsimple-manager-service-tooclone-a-volume-update-2"></a>Utilisez hello StorSimple Manager service tooclone un volume (Update 2)
+# <a name="use-the-storsimple-manager-service-to-clone-a-volume-update-2"></a>Utiliser le service StorSimple Manager pour cloner un volume (Mise à jour 2)
 [!INCLUDE [storsimple-version-selector-clone-volume](../../includes/storsimple-version-selector-clone-volume.md)]
 
-## <a name="overview"></a>Vue d'ensemble
-Hello service StorSimple Manager **catalogue de sauvegarde** page affiche tous les jeux de sauvegarde hello qui sont créés lorsque des sauvegardes manuelles ou automatisées sont effectuées. Vous pouvez utiliser cette toolist page toutes les sauvegardes hello pour une stratégie de sauvegarde ou un volume, sélectionnez ou supprimer les sauvegardes, ou utiliser une sauvegarde toorestore ou cloner un volume.
+## <a name="overview"></a>Vue d’ensemble
+La page **Catalogue de sauvegarde** du service StorSimple Manager affiche tous les jeux de sauvegarde créés lors de sauvegardes manuelles ou automatisées. Vous pouvez utiliser cette page pour répertorier toutes les sauvegardes pour une stratégie de sauvegarde ou un volume, sélectionner ou supprimer des sauvegardes, ou utiliser une sauvegarde pour restaurer ou cloner un volume.
 
 ![Page Catalogue de sauvegarde](./media/storsimple-clone-volume-u2/backupCatalog.png)  
 
-Ce didacticiel explique comment vous pouvez utiliser un jeu de sauvegarde de tooclone un volume individuel. Elle explique également la différence de hello *temporaire* et *permanente* clone.
+Ce didacticiel explique comment vous pouvez utiliser un jeu de sauvegarde pour cloner un volume individuel. Il explique également la différence entre les clones *temporaires* et *permanents*.
 
 > [!NOTE]
-> Un volume épinglé localement sera cloné comme un volume à plusieurs niveaux. Si vous avez besoin de hello toobe volume cloné attaché localement, vous pouvez convertir ce volume hello tooa attaché localement après que l’opération de clonage hello est terminée avec succès. Pour plus d’informations sur la conversion d’un tooa volume hiérarchisé localement épinglé volume, accédez trop[modifier le type de volume hello](storsimple-manage-volumes-u2.md#change-the-volume-type).
+> Un volume épinglé localement sera cloné comme un volume à plusieurs niveaux. Si vous voulez que le volume cloné soit épinglé localement, vous pouvez convertir le clone en un volume localement épinglé une fois l'opération de clonage terminée. Pour plus d'informations sur la conversion d'un volume à plusieurs niveaux en volume épinglé localement, consultez la page [Changer de type de volume](storsimple-manage-volumes-u2.md#change-the-volume-type).
 > 
-> Si vous essayez tooconvert qu'un volume cloné à partir de plusieurs niveaux toolocally épinglé immédiatement après le clonage (lorsqu’il est toujours un clone temporaire), conversion de hello échoue avec hello message d’erreur suivant :
+> Si vous essayez de convertir un volume cloné de type plusieurs niveaux au type localement épinglé immédiatement après le clonage (lorsqu'il est toujours un clone temporaire), la conversion échoue avec le message d'erreur suivant :
 > 
-> `Unable toomodify hello usage type for volume {0}. This can happen if hello volume being modified is a transient clone and hasn’t been made permanent. Take a cloud snapshot of this volume and then retry hello modify operation.` 
+> `Unable to modify the usage type for volume {0}. This can happen if the volume being modified is a transient clone and hasn’t been made permanent. Take a cloud snapshot of this volume and then retry the modify operation.` 
 > 
-> Cette erreur se produit uniquement si vous effectuez un clonage sur tooa autre appareil. Vous pouvez convertir correctement les toolocally de volume hello épinglé si vous convertissez d’abord clone permanent de hello clone temporaire tooa. tooconvert hello clone temporaire tooa permanente cloner, prenez un instantané cloud de celui-ci.
+> Cette erreur est signalée uniquement si vous effectuez un clonage sur un autre appareil. Vous pouvez convertir correctement le volume au type épinglé localement si vous convertissez tout d'abord le clone temporaire en clone permanent. Pour convertir le clone temporaire en clone permanent, prenez un instantané cloud de celui-ci.
 > 
 > 
 
 ## <a name="create-a-clone-of-a-volume"></a>Création du clone d’un volume
-Vous pouvez créer un clone d’hello même périphérique, un autre appareil ou même une machine virtuelle à l’aide d’une variable locale ou dans le cloud instantané.
+Vous pouvez créer un clone sur le même appareil, sur un autre ou même une machine virtuelle à l'aide d'un instantané local ou cloud.
 
-#### <a name="tooclone-a-volume"></a>tooclone un volume
-1. Sur la page du service StorSimple Manager hello, cliquez sur hello **catalogue de sauvegarde** onglet et sélectionnez un jeu de sauvegarde.
-2. Développez hello jeu de sauvegarde tooview hello associée des volumes. Cliquez sur et sélectionnez un volume à partir du jeu de sauvegarde hello.
+#### <a name="to-clone-a-volume"></a>Clonage d’un volume
+1. Sur la page de service StorSimple Manager, cliquez sur l’onglet **Catalogue de sauvegarde** et sélectionnez un jeu de sauvegarde.
+2. Développez le jeu de sauvegarde pour afficher les volumes associés. Cliquez sur un volume et sélectionnez-le dans le jeu de sauvegarde.
    
      ![Clonage d’un volume](./media/storsimple-clone-volume-u2/CloneVol.png) 
-3. Cliquez sur **Clone** toobegin le clonage du volume de hello sélectionné.
-4. Dans l’Assistant clonage de volumes de hello, sous **spécifier le nom et l’emplacement**:
+3. Cliquez sur **Cloner** pour commencer le clonage du volume sélectionné.
+4. Dans l’Assistant Cloner le volume, sous **Spécifier le nom et l’emplacement**:
    
-   1. Identifiez un appareil cible. Il s’agit d’emplacement hello où clone de hello sera créé. Vous pouvez choisir hello même appareil ou spécifiez un autre périphérique. Si vous choisissez un volume associé aux autres fournisseurs de services cloud hello (pas Azure), liste déroulante répertorie pour l’appareil cible de hello affiche uniquement les périphériques physiques. Vous ne pouvez pas cloner un volume associé à d’autres fournisseurs de services cloud sur un appareil virtuel.
+   1. Identifiez un appareil cible. Il s’agit de l’emplacement où sera créé le clone. Vous pouvez choisir le même appareil ou en spécifier un autre. Si vous choisissez un volume associé à d’autres fournisseurs de service cloud (autres qu’Azure), la liste déroulante pour l’appareil cible affiche uniquement des appareils physiques. Vous ne pouvez pas cloner un volume associé à d’autres fournisseurs de services cloud sur un appareil virtuel.
       
       > [!NOTE]
-      > Assurez-vous que la capacité hello requise pour le clone de hello est inférieure à capacité hello disponible sur l’appareil cible de hello.
+      > Assurez-vous que la capacité requise pour le clone est inférieure à la capacité disponible sur le périphérique cible.
       > 
       > 
-   2. Indiquez un nom de volume unique pour votre clone. nom de Hello doit contenir entre 3 et 127 caractères. 
+   2. Indiquez un nom de volume unique pour votre clone. Le nom doit contenir entre 3 et 127 caractères. 
       
       > [!NOTE]
-      > Hello **Clone Volume en tant que** champ sera **à plusieurs niveaux** même si vous effectuez un clonage un volume attaché localement. Vous ne pouvez pas modifier ce paramètre ; Toutefois, si vous avez besoin de hello toobe volume cloné attaché localement, ainsi, vous pouvez convertir ce volume hello tooa attaché localement après avoir créé les clone hello. Pour plus d’informations sur la conversion d’un tooa volume hiérarchisé localement épinglé volume, accédez trop[modifier le type de volume hello](storsimple-manage-volumes-u2.md#change-the-volume-type).
+      > Le champ **Cloner le volume comme** sera **Hiérarchisé** même si vous clonez un volume épinglé localement. Vous ne pouvez pas modifier ce paramètre. Toutefois, si vous voulez que le volume cloné soit aussi épinglé localement, une fois le clone créé, vous pouvez le convertir en volume épinglé localement. Pour plus d'informations sur la conversion d'un volume à plusieurs niveaux en volume épinglé localement, consultez la page [Changer de type de volume](storsimple-manage-volumes-u2.md#change-the-volume-type).
       > 
       > 
       
         ![Assistant de clonage 1](./media/storsimple-clone-volume-u2/clone1.png) 
-   3. Cliquez sur la flèche hello ![icône-flèche](./media/storsimple-clone-volume-u2/HCS_ArrowIcon.png) page suivante du toohello tooproceed.
+   3. Cliquez sur l’icône en forme de flèche  ![icône-flèche](./media/storsimple-clone-volume-u2/HCS_ArrowIcon.png) pour passer à la page suivante.
 5. Sous **Spécifier des hôtes qui peuvent utiliser ce volume**:
    
-   1. Spécifiez un enregistrement de contrôle d’accès (ACR) pour le clone de hello. Vous pouvez ajouter un nouvel ACR ou choisissez dans la liste existante de hello.
+   1. Spécifiez un enregistrement de contrôle d’accès (ACR) pour le clone. Vous pouvez ajouter un nouvel ACR ou en choisir un dans la liste existante.
       
         ![Assistant de clonage 2](./media/storsimple-clone-volume-u2/clone2.png) 
-   2. Cliquez sur une icône de coche hello ![icône-coche](./media/storsimple-clone-volume-u2/HCS_CheckIcon.png)opération toocomplete hello.
-6. Un travail de clonage sera lancé et vous serez averti lorsque hello clone est correctement créé. Cliquez sur **afficher le travail** toomonitor travail de clonage hello sur hello **travaux** page. Vous verrez hello message suivant lors de la tâche de clone hello est terminée :
+   2. Cliquez sur l’icône en forme de coche  ![icône-coche](./media/storsimple-clone-volume-u2/HCS_CheckIcon.png)pour terminer l’opération.
+6. Un travail de clonage sera lancé et vous serez averti lorsque le clone sera créé avec succès. Cliquez sur **Afficher la tâche** pour surveiller le travail de clonage sur la page **Tâches**. Vous verrez le message suivant lorsque le travail de clonage est terminé :
    
     ![Message de clone](./media/storsimple-clone-volume-u2/CloneMsg.png) 
-7. Après avoir hello travail de clonage est terminée :
+7. Une fois le travail de clonage terminé :
    
-   1. Accédez toohello **périphériques** page et sélectionnez hello **conteneurs de volumes** onglet. 
-   2. Sélectionnez le conteneur de volume hello associé au volume source hello que vous avez cloné. Dans la liste de hello des volumes, vous devez voir clone hello qui vient d’être créé.
+   1. Accédez à la page **Appareils**, puis sélectionnez l’onglet **Conteneurs de volumes**. 
+   2. Sélectionnez le conteneur de volume associé au volume source que vous avez cloné. Dans la liste des volumes, vous devez voir le clone qui vient d’être créé.
 
 > [!NOTE]
 > La surveillance et la sauvegarde par défaut sont automatiquement désactivées sur un volume cloné.
@@ -88,27 +88,27 @@ Vous pouvez créer un clone d’hello même périphérique, un autre appareil ou
 
 Un clone créé de cette manière est un clone temporaire. Pour plus d’informations sur les types de clone, consultez la page [Clones temporaires et permanents](#transient-vs-permanent-clones).
 
-Ce clone est désormais un volume normal et toutes les opérations possibles sur un volume seront disponibles pour le clone de hello. Vous devez tooconfigure ce volume pour toutes les sauvegardes.
+Ce clone est désormais un volume normal et toute opération possible sur un volume sera disponible pour le clone. Vous devez configurer ce volume pour toutes les sauvegardes.
 
 ## <a name="transient-vs-permanent-clones"></a>Clones temporaires et permanents
-Clones temporaires sont créés uniquement lorsque vous clonez tooa autre appareil. Vous pouvez cloner un volume spécifique à partir d’un jeu de sauvegarde tooa autre périphérique géré par hello StorSimple Manager. clone temporaire de Hello sera ont des références toohello données dans le volume d’origine de hello et utilise ce tooread de données et écrire localement sur l’appareil cible de hello. 
+Les clones temporaires sont créés uniquement lorsque vous effectuez un clonage sur un autre appareil. Vous pouvez cloner un volume spécifique à partir d’un jeu de sauvegarde sur un autre appareil géré par StorSimple Manager. Le clone temporaire aura des références aux données dans le volume d’origine et utilisera ces données pour la lecture et l’écriture en local sur l’appareil cible. 
 
-Une fois que vous prenez un instantané cloud d’un clone temporaire, clone qui en résulte de hello sera un *permanente* clone. Pendant ce processus, une copie des données de hello est créée sur le cloud de hello hello toocopy temps que ces données sont déterminées par la taille de hello de données de hello et hello latences Azure (il s’agit d’une copie de Azure pour Azure). Ce processus peut prendre des jours tooweeks. clone temporaire de Hello devient un clone permanent de cette façon et n’a pas les références toohello données d’origine volume qui il a été cloné à partir de. 
+Si vous prenez un instantané de cloud d’un clone temporaire, le clone qui en résulte devient *permanent* . Pendant ce processus, une copie des données est créée sur le cloud et le temps nécessaire à la copie de ces données varie selon la taille des données et les latences Azure (il s’agit d’une copie interne à Azure). Ce processus peut prendre plusieurs jours voire semaines. Le clone temporaire devient un clone permanent de cette façon et n’a pas de références aux données du volume d’origine à partir duquel il a été cloné. 
 
 ## <a name="scenarios-for-transient-and-permanent-clones"></a>Scénarios pour les clones temporaires et permanents
-Hello les sections suivantes décrire des exemples de situations dans lequel les clones permanents et temporaires peuvent être utilisés.
+Les sections suivantes décrivent des exemples de situations dans lesquelles les clones temporaires et permanents peuvent être utilisés.
 
 ### <a name="item-level-recovery-with-a-transient-clone"></a>Récupération au niveau de l’élément avec un clone temporaire
-Vous devez toorecover un fichier de présentation Microsoft PowerPoint un ans. Votre administrateur informatique identifie la sauvegarde spécifique de hello à cette période, et puis filtres hello volume. Hello administrateur puis clone hello volume, localise hello fichier que vous recherchez et il fournit tooyou. Dans ce scénario, un clone temporaire est utilisé. 
+Vous devez récupérer un fichier de présentation Microsoft PowerPoint datant d’un an. Votre administrateur informatique identifie la sauvegarde spécifique dans cette période et filtre ensuite le volume. Ensuite, l’administrateur clone le volume, trouve le fichier que vous recherchez et vous le fournit. Dans ce scénario, un clone temporaire est utilisé. 
 
 ![Vidéo disponible](./media/storsimple-clone-volume-u2/Video_icon.png)**Vidéo disponible**
 
-toowatch une vidéo qui montre comment vous pouvez utiliser hello clone et restaurer les fonctionnalités dans les fichiers de StorSimple toorecover supprimé, cliquez sur [ici](https://azure.microsoft.com/documentation/videos/storsimple-recover-deleted-files-with-storsimple/).
+Pour visionner une vidéo expliquant comment utiliser les fonctionnalités de clonage et de restauration dans StorSimple pour récupérer des fichiers supprimés, cliquez [ici](https://azure.microsoft.com/documentation/videos/storsimple-recover-deleted-files-with-storsimple/).
 
-### <a name="testing-in-hello-production-environment-with-a-permanent-clone"></a>Les tests dans un environnement de production hello avec un clone permanent
-Vous devez tooverify un bogue de test dans un environnement de production hello. Vous créez un clone du volume de hello dans l’environnement de production hello et prenez un instantané cloud de cette toocreate de cloner un volume cloné indépendant. Dans ce scénario, un clone permanent est utilisé.  
+### <a name="testing-in-the-production-environment-with-a-permanent-clone"></a>Test dans l’environnement de production avec un clone permanent
+Vous devez vérifier un bogue de test dans l’environnement de production. Vous créez un clone du volume dans l’environnement de production et vous prenez ensuite un instantané cloud de ce clone pour créer un volume cloné indépendant. Dans ce scénario, un clone permanent est utilisé.  
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment trop[restaurer un volume StorSimple à partir d’un jeu de sauvegarde](storsimple-restore-from-backup-set-u2.md).
-* Découvrez comment trop[utilisez hello tooadminister du service StorSimple Manager de votre appareil StorSimple](storsimple-manager-service-administration.md).
+* Découvrez comment [restaurer un volume StorSimple à partir d’un jeu de sauvegarde](storsimple-restore-from-backup-set-u2.md).
+* Découvrez comment [utiliser le service StorSimple Manager pour gérer votre appareil StorSimple](storsimple-manager-service-administration.md).
 

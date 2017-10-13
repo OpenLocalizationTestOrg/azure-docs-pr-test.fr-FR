@@ -1,5 +1,5 @@
 ---
-title: "fonctionnalités et extensions de l’ordinateur aaaVirtual pour Linux | Documents Microsoft"
+title: "Extensions et fonctionnalités de machine virtuelle pour Linux | Microsoft Docs"
 description: "Découvrez les extensions disponibles pour les machines virtuelles, regroupées par ce qu’ils fournissent ou améliorent."
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,43 +15,43 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 04/26/2017
 ms.author: nepeters
-ms.openlocfilehash: e0d2ce794c76815ccc6743e8788ee5d9d931e9a4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 8a5b39351f665c51ae7d83f755329e54ff3cf786
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="virtual-machine-extensions-and-features-for-linux"></a>Extensions et fonctionnalités de machine virtuelle pour Linux
 
-Les extensions de machine virtuelle Azure sont de petites applications permettant d’exécuter des tâches de configuration et d’automatisation post-déploiement sur des machines virtuelles Azure. Par exemple, si un ordinateur virtuel requiert l’installation du logiciel, de protection antivirus ou de configuration de Docker, une extension de machine virtuelle peut être utilisé toocomplete ces tâches. Les extensions de machine virtuelle Azure peuvent être exécutées à l’aide de hello CLI d’Azure PowerShell, les modèles Azure Resource Manager et hello portail Azure. Les extensions peuvent être associées à un nouveau déploiement de machine virtuelle ou s’exécuter sur tout système existant.
+Les extensions de machine virtuelle Azure sont de petites applications permettant d’exécuter des tâches de configuration et d’automatisation post-déploiement sur des machines virtuelles Azure. Par exemple, si une machine virtuelle requiert l’installation d’un logiciel, une protection antivirus ou une configuration de Docker, il est possible d’effectuer ces tâches à l’aide d’une extension de machine virtuelle. Les extensions de machine virtuelle Azure peuvent être exécutées à l’aide de l’interface de ligne de commande Azure, de PowerShell, de modèles Azure Resource Manager et du portail Azure. Les extensions peuvent être associées à un nouveau déploiement de machine virtuelle ou s’exécuter sur tout système existant.
 
-Ce document fournit une vue d’ensemble des extensions de machine virtuelle, les conditions préalables pour l’utilisation des extensions de machine virtuelle Azure et de conseils toodetect, gérer et supprimer des extensions de machine virtuelle. Ce document fournit des informations générales, car de nombreuses extensions de machine virtuelle sont disponibles, chacune présentant une configuration potentiellement unique. Vous trouverez plus d’informations spécifiques à l’extension dans chaque document spécifique toohello individuels d’extension.
+Ce document offre une vue d’ensemble des extensions de machine virtuelle et des composants requis pour utiliser les extensions de machine virtuelle Azure. Il explique également comment détecter, gérer et supprimer les extensions de machine virtuelle. Ce document fournit des informations générales, car de nombreuses extensions de machine virtuelle sont disponibles, chacune présentant une configuration potentiellement unique. Vous trouverez des informations détaillées sur une extension spécifique dans la documentation consacrée à celle-ci.
 
 ## <a name="use-cases-and-samples"></a>Cas d’utilisation et exemples
 
 Plusieurs extensions de machine virtuelle Azure sont disponibles, chacune impliquant un cas d’utilisation spécifique. Voici quelques exemples :
 
-- Appliquer l’état souhaité de PowerShell configurations tooa machine virtuelle hello extension DSC pour Linux. Pour plus d’informations sur l’extension DSC Azure, consultez [cette page](https://github.com/Azure/azure-linux-extensions/tree/master/DSC).
-- Configurer la surveillance d’un ordinateur virtuel avec hello extension de machine virtuelle l’Agent de surveillance de Microsoft. Pour plus d’informations, consultez [comment toomonitor un VM Linux](tutorial-monitoring.md).
-- Configurer la surveillance de votre infrastructure d’Azure avec hello Datadog extension. Pour plus d’informations, consultez hello [Datadog blog](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/).
-- Configurer un hôte Docker sur une machine virtuelle Azure à l’aide d’extension de machine virtuelle de Docker hello. Pour plus d’informations sur l’extension de machine virtuelle Docker, consultez [cet article](dockerextension.md).
+- Appliquer des configurations d’état souhaité PowerShell à une machine virtuelle à l’aide de l’extension DSC pour Linux. Pour plus d’informations sur l’extension DSC Azure, consultez [cette page](https://github.com/Azure/azure-linux-extensions/tree/master/DSC) (en anglais).
+- Configurer l’analyse d’une machine virtuelle avec l’extension de machine virtuelle Microsoft Monitoring Agent. Pour plus d’informations, voir [How to monitor a Linux VM](tutorial-monitoring.md) (Surveillance d’une machine virtuelle Linux).
+- Configurer l’analyse de votre infrastructure Azure à l’aide de l’extension Datadog. Pour plus d’informations, consultez le [blog Datadog](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/).
+- Configurer un hôte Docker sur une machine virtuelle Azure avec l’extension de machine virtuelle Docker. Pour plus d’informations sur l’extension de machine virtuelle Docker, consultez [cet article](dockerextension.md).
 
-En outre extensions tooprocess spécifiques, une extension de Script personnalisé est disponible pour les machines virtuelles Windows et Linux. Hello, extension de Script personnalisé pour Linux permet de n’importe quel toobe de script d’interpréteur de commandes s’exécutent sur un ordinateur virtuel. Les scripts personnalisés s’avèrent utile pour concevoir des déploiements Azure qui nécessitent une configuration plus avancée que celle fournie par les outils Azure natifs. Pour plus d’informations sur l’extension de script personnalisé pour les machines virtuelles Linux, consultez [cet article](extensions-customscript.md).
+En plus des extensions propres à des processus, une extension de script personnalisé est disponible pour les machines virtuelles Windows et Linux. L’extension de script personnalisé pour Linux permet d’exécuter n’importe quel script Bash sur une machine virtuelle. Les scripts personnalisés s’avèrent utile pour concevoir des déploiements Azure qui nécessitent une configuration plus avancée que celle fournie par les outils Azure natifs. Pour plus d’informations sur l’extension de script personnalisé pour les machines virtuelles Linux, consultez [cet article](extensions-customscript.md).
 
 
 ## <a name="prerequisites"></a>Composants requis
 
-Chaque extension de machine virtuelle peut présenter son propre ensemble de composants requis. Par exemple, hello extension de machine virtuelle de Docker a une condition préalable d’une distribution Linux pris en charge. Configuration requise des extensions individuelles est détaillées dans la documentation spécifique à l’extension de hello.
+Chaque extension de machine virtuelle peut présenter son propre ensemble de composants requis. Par exemple, l’extension de machine virtuelle Docker nécessite une distribution Linux compatible. Les composants requis pour une extension spécifique sont présentés en détail dans la documentation consacrée à celle-ci.
 
 ### <a name="azure-vm-agent"></a>Agent de machine virtuelle Azure
 
-agent de machine virtuelle Azure Hello gère les interactions entre une machine virtuelle Azure et le contrôleur de structure Azure hello. agent de machine virtuelle Hello est chargé de nombreux aspects fonctionnels de déploiement et la gestion des machines virtuelles Azure, y compris les extensions de machine virtuelle en cours d’exécution. l’agent de machine virtuelle Azure Hello est préinstallé sur les images Azure Marketplace et peut être installé manuellement sur les systèmes d’exploitation pris en charge.
+L’agent de machine virtuelle Azure gère l’interaction entre une machine virtuelle et le contrôleur de structure Azure. L’agent de machine virtuelle est responsable de nombreux aspects fonctionnels liés au déploiement et à la gestion des machines virtuelles Azure, dont les extensions de machine virtuelle en cours d’exécution. L’agent de machine virtuelle Azure est préinstallé sur les images de la Place de marché Azure et peut être installé manuellement sur les systèmes d’exploitation pris en charge.
 
 Pour plus d’informations sur les systèmes d’exploitation pris en charge et sur la procédure d’installation, consultez l’article [Agent de machine virtuelle et extensions Azure](../windows/classic/agents-and-extensions.md).
 
 ## <a name="discover-vm-extensions"></a>Détecter les extensions de machine virtuelle
 
-De nombreuses extensions de machine virtuelle différentes peuvent être utilisées avec les machines virtuelles Azure. toosee une liste complète, exécutez hello suivant de commande avec hello CLI d’Azure, le remplacement d’emplacement d’exemple hello avec emplacement hello de votre choix.
+De nombreuses extensions de machine virtuelle différentes peuvent être utilisées avec les machines virtuelles Azure. Pour en obtenir la liste complète, exécutez la commande suivante avec l’interface de ligne de commande Azure, en remplaçant l’exemple d’emplacement par l’emplacement de votre choix.
 
 ```azurecli
 az vm extension image list --location westus -o table
@@ -59,13 +59,13 @@ az vm extension image list --location westus -o table
 
 ## <a name="run-vm-extensions"></a>Exécuter les extensions de machine virtuelle
 
-Extensions de machine virtuelle Azure peuvent être exécutées sur des machines virtuelles existantes, qui sont utiles lorsque vous avez besoin de modifications de configuration toomake ou restaurer la connectivité sur une machine virtuelle déjà déployée. Les extensions de machines virtuelles peuvent également être intégrées dans des déploiements de modèles Azure Resource Manager. L’utilisation d’extensions avec des modèles Resource Manager permet de déployer et de configurer des machines virtuelles Azure sans avoir à intervenir après le déploiement.
+Les extensions de machine virtuelle Azure peuvent être exécutées sur des machines virtuelles existantes. Elles s’avèrent utiles quand vous devez apporter des modifications de configuration ou restaurer la connectivité sur une machine virtuelle déjà déployée. Les extensions de machines virtuelles peuvent également être intégrées dans des déploiements de modèles Azure Resource Manager. L’utilisation d’extensions avec des modèles Resource Manager permet de déployer et de configurer des machines virtuelles Azure sans avoir à intervenir après le déploiement.
 
-Hello méthodes suivantes peut être utilisée toorun une extension sur un ordinateur virtuel existant.
+Les méthodes suivantes peuvent être utilisées pour exécuter une extension sur une machine virtuelle existante.
 
 ### <a name="azure-cli"></a>Interface de ligne de commande Azure
 
-Extensions de machine virtuelle Azure peuvent être exécutées sur un ordinateur virtuel existant à l’aide de hello `az vm extension set` commande. Cet exemple exécute une extension de script personnalisé hello contre un ordinateur virtuel.
+Les extensions de machine virtuelle peuvent être exécutées sur une machine virtuelle existante à l’aide de la commande `az vm extension set`. Cet exemple exécute l’extension de script personnalisé sur une machine virtuelle.
 
 ```azurecli
 az vm extension set `
@@ -76,28 +76,28 @@ az vm extension set `
   --settings '{"fileUris": ["https://gist.github.com/ahmetalpbalkan/b5d4a856fe15464015ae87d5587a4439/raw/466f5c30507c990a4d5a2f5c79f901fa89a80841/hello.sh"],"commandToExecute": "./hello.sh"}'
 ```
 
-Hello script produit la sortie similaire toohello suivant du texte :
+Le script génère une sortie semblable au texte suivant :
 
 ```azurecli
 info:    Executing command vm extension set
-+ Looking up hello VM "myVM"
++ Looking up the VM "myVM"
 + Installing extension "CustomScript", VM: "mvVM"
 info:    vm extension set command OK
 ```
 
 ### <a name="azure-portal"></a>Portail Azure
 
-Extensions de machine virtuelle peuvent être appliqué tooan une machine virtuelle existante via hello portail Azure. toodo par conséquent, activez la machine virtuelle de hello, choisissez **Extensions**, puis cliquez sur **ajouter**. Sélectionnez l’extension hello souhaité à partir de la liste de hello d’extensions disponibles et suivez les instructions hello dans l’Assistant de hello.
+Les extensions de machines virtuelles peuvent être appliquées à une machine virtuelle existante via le portail Azure. Pour ce faire, sélectionnez la machine virtuelle, choisissez **Extensions**, puis cliquez sur **Ajouter**. Sélectionnez l’extension souhaitée dans la liste des extensions disponibles, puis suivez les instructions de l’Assistant.
 
-Hello image suivante montre installation hello Hello extension de Script personnalisé de Linux à partir de hello portail Azure.
+L’image suivante illustre l’installation de l’extension de script personnalisé Linux à partir du portail Azure.
 
 ![Installer l’extension de script personnalisé](./media/extensions-features/installscriptextensionlinux.png)
 
 ### <a name="azure-resource-manager-templates"></a>Modèles Microsoft Azure Resource Manager
 
-Extensions de machine virtuelle peuvent être ajoutée tooan Azure Resource Manager modèle et exécutée avec un déploiement hello du modèle de hello. Lorsque vous déployez une extension avec un modèle, vous pouvez créer des déploiements Azure entièrement configurés. Par exemple, hello que JSON suivant est tiré d’un modèle de gestionnaire de ressources. modèle de Hello déploie un ensemble de l’équilibrage de la charge des machines virtuelles et d’une base de données SQL Azure et installe une application .NET Core sur chaque machine virtuelle. prend en charge de l’installation du logiciel hello Hello extension de machine virtuelle.
+Les extensions de machine virtuelle peuvent être ajoutées à un modèle Azure Resource Manager et exécutées avec le déploiement du modèle. Lorsque vous déployez une extension avec un modèle, vous pouvez créer des déploiements Azure entièrement configurés. Par exemple, le code JSON suivant est tiré partir d’un modèle Resource Manager. Ce modèle déploie un ensemble de machines virtuelles à charge équilibrée et une base de données SQL Azure, puis installe une application .NET Core sur chaque machine virtuelle. L’extension de machine virtuelle se charge de l’installation du logiciel.
 
-Pour plus d’informations, consultez hello complète [modèle Resource Manager](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux).
+Pour plus d’informations, consultez le [modèle Resource Manager complet](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux).
 
 ```json
 {
@@ -132,9 +132,9 @@ Pour plus d’informations, consultez [Création de modèles Azure Resource Mana
 
 ## <a name="secure-vm-extension-data"></a>Sécuriser les données des extensions de machine virtuelle
 
-Lorsque vous exécutez une extension de machine virtuelle, il peut être nécessaire de tooinclude des informations sensibles telles que les informations d’identification, les noms de compte de stockage et les clés d’accès de compte de stockage. Plusieurs extensions de machine virtuelle incluent une configuration protégée qui chiffre les données et la déchiffre uniquement à l’intérieur de la machine virtuelle cible hello. Chaque extension possède un schéma spécifique de configuration protégée, présenté en détail dans la documentation consacrée à l’extension.
+Lorsque vous exécutez une extension de machine virtuelle, vous pouvez avoir besoin d’inclure des informations sensibles telles que des informations d’identification, des noms de compte de stockage et des clés d’accès à des comptes de stockage. De nombreuses extensions de machine virtuelle comprennent une configuration protégée qui chiffre les données et les déchiffre uniquement à l’intérieur de la machine virtuelle cible. Chaque extension possède un schéma spécifique de configuration protégée, présenté en détail dans la documentation consacrée à l’extension.
 
-Bonjour à l’exemple suivant montre une instance de hello extension de Script personnalisé pour Linux. Notez que tooexecute de commande hello comprend un ensemble d’informations d’identification. Dans cet exemple, hello commande tooexecute n’est pas chiffrée.
+L’exemple suivant illustre une instance de l’extension de script personnalisé pour Linux. Notez que la commande à exécuter inclut un ensemble d’informations d’identification. Dans le cadre de cet exemple, la commande à exécuter ne sera pas chiffrée.
 
 
 ```json
@@ -164,7 +164,7 @@ Bonjour à l’exemple suivant montre une instance de hello extension de Script 
 }
 ```
 
-Déplacement hello **commande tooexecute** propriété toohello **protégé** configuration sécurise la chaîne de l’exécution de hello.
+Pour sécuriser la chaîne d’exécution, déplacez la propriété **commandToExecute** dans la configuration **protected**.
 
 ```json
 {
@@ -197,19 +197,19 @@ Déplacement hello **commande tooexecute** propriété toohello **protégé** co
 
 ## <a name="troubleshoot-vm-extensions"></a>Résoudre les problèmes liés aux extensions de machine virtuelle
 
-Chaque extension de machine virtuelle peut avoir l’extension de toohello spécifique d’étapes de résolution des problèmes. Par exemple, lorsque vous utilisez l’extension de Script personnalisé hello, détails de l’exécution de script sont accessibles localement sur l’ordinateur virtuel de hello sur lequel l’extension de hello a été exécutée. La procédure de résolution des problèmes spécifique d’une extension est présentée en détail dans la documentation de cette dernière.
+Chaque extension de machine virtuelle peut présenter une procédure de résolution des problèmes spécifique. Par exemple, lorsque vous utilisez l’extension de script personnalisé, les détails de l’exécution du script sont accessibles localement sur la machine virtuelle utilisée pour l’exécution de l’extension. La procédure de résolution des problèmes spécifique d’une extension est présentée en détail dans la documentation de cette dernière.
 
-Hello suivant les étapes de dépannage s’appliquent à des extensions de machine virtuelle tooall.
+La procédure de résolution des problèmes ci-dessous s’applique à toutes les extensions de machine virtuelle.
 
 ### <a name="view-extension-status"></a>Afficher l’état de l’extension
 
-Une fois une extension de machine virtuelle a été exécutée sur un ordinateur virtuel, utilisez hello suivant l’état de l’extension tooreturn commande CLI d’Azure. Remplacez les exemples de noms de paramètre par vos propres valeurs.
+Après avoir exécuté une extension de machine virtuelle, utilisez la commande d’interface de ligne de commande Azure suivante pour obtenir l’état de l’extension. Remplacez les exemples de noms de paramètre par vos propres valeurs.
 
 ```azurecli
 az vm extension list --resource-group myResourceGroup --vm-name myVM -o table
 ```
 
-sortie de Hello ressemble à hello suivant du texte :
+La sortie ressemble au texte suivant :
 
 ```azurecli
 AutoUpgradeMinorVersion    Location    Name          ProvisioningState    Publisher                   ResourceGroup      TypeHandlerVersion  VirtualMachineExtensionType
@@ -217,28 +217,28 @@ AutoUpgradeMinorVersion    Location    Name          ProvisioningState    Publis
 True                       westus      customScript  Succeeded            Microsoft.Azure.Extensions  exttest                             2  customScript
 ```
 
-État d’exécution de l’extension peut également trouver dans hello portail Azure. état de hello tooview d’extension, sélectionnez hello virtual machine, choisissez **Extensions**, et sélectionnez hello extension souhaitée.
+L’état d’exécution de l’extension est également visible dans le portail Azure. Pour afficher l’état d’une extension, sélectionnez la machine virtuelle, choisissez **Extensions**, puis sélectionnez l’extension souhaitée.
 
 ### <a name="rerun-a-vm-extension"></a>Réexécuter une extension de machine virtuelle
 
-Il peut y avoir des cas dans lesquels une extension de machine virtuelle doit toobe exécuter à nouveau. Vous pouvez réexécuter une extension en le supprimant, puis en réexécutant les extension hello avec une méthode d’exécution de votre choix. tooremove une extension, exécutez hello suivant de commande avec hello CLI d’Azure. Remplacez les exemples de noms de paramètre par vos propres valeurs.
+Dans certains cas, il se peut que vous deviez réexécuter une extension de machine virtuelle. Pour ce faire, supprimez-la, puis réexécutez-la avec la méthode d’exécution de votre choix. Pour supprimer une extension, exécutez la commande suivante dans l’interface de ligne de commande Azure. Remplacez les exemples de noms de paramètre par vos propres valeurs.
 
 ```azurecli
 az vm extension delete --name customScript --resource-group myResourceGroup --vm-name myVM
 ```
 
-Vous pouvez supprimer une extension à l’aide de hello Bonjour portail Azure comme suit :
+Vous pouvez supprimer une extension à partir du portail Azure en procédant comme suit :
 
 1. Sélectionnez une machine virtuelle.
 2. Choisissez **Extensions**.
-3. Sélectionnez l’extension hello souhaité.
+3. Sélectionnez l’extension souhaitée.
 4. Choisissez **Désinstaller**.
 
 ## <a name="common-vm-extension-reference"></a>Informations de référence sur les extensions de machine virtuelle courantes
 | Nom de l’extension | Description | Plus d’informations |
 | --- | --- | --- |
 | Extension de script personnalisé pour Linux |Exécuter des scripts sur une machine virtuelle Azure |[Extension de script personnalisé pour Linux](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
-| Extension Docker |Installez hello Docker démon toosupport à distance les commandes Docker. |[Extension de machine virtuelle Docker](dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
-| Extension d’accès aux machines virtuelles |Récupérer l’accès tooan machine virtuelle Azure |[Extension d’accès aux machines virtuelles](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) |
+| Extension Docker |Installer le démon Docker pour prendre en charge les commandes Docker distantes |[Extension de machine virtuelle Docker](dockerextension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) |
+| Extension d’accès aux machines virtuelles |Récupérer l’accès à une machine virtuelle Azure |[Extension d’accès aux machines virtuelles](https://github.com/Azure/azure-linux-extensions/tree/master/VMAccess) |
 | Extension Diagnostics Azure |Gérer les diagnostics Azure |[Extension Diagnostics Azure](https://azure.microsoft.com/blog/windows-azure-virtual-machine-monitoring-with-wad-extension/) |
 | Extension d’accès aux machines virtuelles Azure |Gérer les utilisateurs et les informations d’identification |[Extension d’accès aux machines virtuelles pour Linux](https://azure.microsoft.com/en-us/blog/using-vmaccess-extension-to-reset-login-credentials-for-linux-vm/) |

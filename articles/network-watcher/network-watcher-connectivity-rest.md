@@ -1,9 +1,9 @@
 ---
-title: "connectivité aaaCheck avec l’Observateur réseau de Azure - portail Azure | Documents Microsoft"
-description: "Cette page explique comment toocheck une connectivité avec l’Observateur réseau dans hello portail Azure"
+title: "Vérifier la connectivité avec Azure Network Watcher - portail Azure | Microsoft Docs"
+description: "Cette page explique comment vérifier la connectivité avec Network Watcher dans le portail Azure"
 services: network-watcher
 documentationcenter: na
-author: georgewallace
+author: jimdial
 manager: timlt
 editor: 
 ms.service: network-watcher
@@ -12,14 +12,14 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/02/2017
-ms.author: gwallace
-ms.openlocfilehash: 8560011906fcce46d31556fc52cbfa671e8e653a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.author: jdial
+ms.openlocfilehash: 802658b50d8e398451507ad11c76fedd0db697df
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="check-connectivity-with-azure-network-watcher-using-hello-azure-portal"></a>Vérifiez la connectivité avec l’Observateur réseau de Azure à l’aide de hello portail Azure
+# <a name="check-connectivity-with-azure-network-watcher-using-the-azure-portal"></a>Vérifier la connectivité avec Azure Network Watcher à l’aide du portail Azure
 
 > [!div class="op_single_selector"]
 > - [Portail](network-watcher-connectivity-portal.md)
@@ -27,41 +27,41 @@ ms.lasthandoff: 10/06/2017
 > - [CLI 2.0](network-watcher-connectivity-cli.md)
 > - [API REST Azure](network-watcher-connectivity-rest.md)
 
-Découvrez comment toouse connectivité tooverify si une connexion TCP directe à partir d’un tooa de machine virtuelle donné du point de terminaison peut être établie.
+Découvrez comment utiliser la connectivité pour vérifier si une connexion TCP directe entre une machine virtuelle et un point de terminaison donné peut être établie.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Cet article suppose que vous avez hello suivant des ressources :
+Cet article part du principe que vous disposez des ressources suivantes :
 
-* Une instance de l’Observateur réseau dans la région de hello souhaité toocheck connectivité.
+* Une instance de Network Watcher dans la région où vous souhaitez vérifier la connectivité.
 
-* Machines virtuelles toocheck la connectivité avec.
+* Des machines virtuelles avec lesquelles vérifier la connectivité.
 
-ARMclient est utilisé toocall hello REST API à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
+ARMclient permet d’appeler l’API REST à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
 
-Ce scénario suppose que vous avez déjà suivi les étapes hello dans [créer un observateur réseau](network-watcher-create.md) toocreate un observateur réseau.
+Ce scénario suppose que vous ayez déjà suivi la procédure décrite dans [Créer une instance d’Azure Network Watcher](network-watcher-create.md) pour créer un Network Watcher.
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 > [!IMPORTANT]
-> La vérification de la connectivité requiert une extension de machine virtuelle `AzureNetworkWatcherExtension`. Pour installer l’extension de hello sur une machine virtuelle Windows, visitez [extension de machine virtuelle d’Agent de l’Observateur réseau Azure pour Windows](../virtual-machines/windows/extensions-nwa.md) et de, visitez Linux VM [extension de machine virtuelle Azure réseau Observateur Agent pour Linux](../virtual-machines/linux/extensions-nwa.md).
+> La vérification de la connectivité requiert une extension de machine virtuelle `AzureNetworkWatcherExtension`. Pour installer l’extension sur une machine virtuelle Windows, consultez la page [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) (Extension de machine virtuelle Azure Network Watcher Agent pour Windows). Pour une machine virtuelle Linux, consultez la page [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md) (Extension de machine virtuelle Azure Network Watcher Agent pour Linux).
 
-## <a name="register-hello-preview-capability"></a>Inscrire la fonction d’aperçu hello
+## <a name="register-the-preview-capability"></a>Inscrire la fonction de version préliminaire
 
-Vérification de la connectivité est actuellement en version préliminaire publique, toouse cette fonctionnalité, qu'il doit toobe inscrit. toodo, exécution hello suivant l’exemple PowerShell :
+La vérification de connectivité est actuellement en préversion publique. Pour l’utiliser, cette fonctionnalité doit être inscrite. Pour ce faire, exécutez l’exemple PowerShell suivant :
 
 ```powershell
 Register-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace Microsoft.Network
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
 ```
 
-l’inscription de hello tooverify a réussi, exécutez hello suivant l’exemple Powershell :
+Pour vérifier que l’inscription s’est bien déroulée, exécutez l’exemple Powershell suivant :
 
 ```powershell
 Get-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace  Microsoft.Network
 ```
 
-Si la fonctionnalité de hello a été inscrit correctement, sortie de hello doit correspondre au suivant de hello :
+Si la fonctionnalité a été correctement inscrite, vous devez obtenir la sortie suivante :
 
 ```
 FeatureName                             ProviderName      RegistrationState
@@ -71,7 +71,7 @@ AllowNetworkWatcherConnectivityCheck    Microsoft.Network Registered
 
 ## <a name="log-in-with-armclient"></a>Se connecter à ARMClient
 
-Ouvrez une session dans tooarmclient avec vos informations d’identification Azure.
+Vous connecter à armclient avec vos informations d’identification Azure.
 
 ```PowerShell
 armclient login
@@ -79,12 +79,12 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>Récupérer une machine virtuelle
 
-Exécutez hello suivant script tooreturn une machine virtuelle. Ces informations sont nécessaires pour l’exécution de la connectivité. 
+Exécutez le script suivant pour renvoyer une machine virtuelle. Ces informations sont nécessaires pour l’exécution de la connectivité. 
 
-Hello suivant code doit valeurs pour hello suivant variables :
+Les codes suivants ont besoin de valeurs pour les variables suivantes :
 
-- **ID d’abonnement** -hello toouse de ID d’abonnement.
-- **resourceGroupName** hello - nom du groupe de ressources qui contient des machines virtuelles.
+- **subscriptionId** : l’ID d’abonnement à utiliser.
+- **resourceGroupName** - Le nom d’un groupe de ressources qui contient les machines virtuelles.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -93,7 +93,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-À partir de la sortie suivante de hello, hello des ID de machine virtuelle de hello est utilisée dans hello l’exemple suivant :
+À partir de la sortie suivante, l’ID de la machine virtuelle est utilisé dans l’exemple suivant :
 
 ```json
 ...
@@ -108,9 +108,9 @@ armclient get https://management.azure.com/subscriptions/${subscriptionId}/Resou
 }
 ```
 
-## <a name="check-connectivity-tooa-virtual-machine"></a>Vérifiez la connectivité tooa virtual machine
+## <a name="check-connectivity-to-a-virtual-machine"></a>Vérifier la connectivité à une machine virtuelle
 
-Cet exemple vérifie l’ordinateur virtuel de destination de tooa connectivité via le port 80.
+Cet exemple vérifie la connectivité à une machine virtuelle de destination sur le port 80.
 
 ### <a name="example"></a>Exemple
 
@@ -137,11 +137,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-Étant donné que cette opération est longue en cours d’exécution, hello URI pour le résultat de hello est retourné dans l’en-tête de réponse hello comme indiqué dans hello suivant la réponse :
+Étant donné que l’exécution de cette opération demande un certain temps, l’URI du résultat est renvoyé dans l’en-tête de réponse, comme indiqué dans la réponse suivante :
 
 **Valeurs importantes**
 
-* **Emplacement** -cette propriété contient hello URI où hello résultats sont lorsque hello l’opération est terminée
+* **Location** : cette propriété contient l’URI de l’emplacement des résultats une fois que l’opération a été effectuée.
 
 ```
 HTTP/1.1 202 Accepted
@@ -162,7 +162,7 @@ null
 
 ### <a name="response"></a>Réponse
 
-Hello suivant la réponse est à partir de l’exemple précédent de hello.  Dans cette réponse, hello `ConnectionStatus` est **inaccessible**. Vous pouvez voir que tous les hello sondes envoyées ayant échouées. Échec de la connectivité de Hello au niveau de l’appliance virtuelle hello tooa échéance configurée par l’utilisateur `NetworkSecurityRule` nommé **UserRule_Port80**, configuré tooblock du trafic entrant sur le port 80. Ces informations peuvent être utilisées tooresearch les problèmes de connexion.
+La réponse suivante est tirée de l’exemple précédent.  Dans cette réponse, `ConnectionStatus` est **Inaccessible**. Vous pouvez constater que toutes les sondes envoyées ont échoué. La connectivité a échoué au niveau de l’appliance virtuelle en raison de `NetworkSecurityRule`, configuré par l’utilisateur et nommé **UserRule_Port80**, destiné à bloquer le trafic entrant sur le port 80. Ces informations peuvent être utilisées pour mener des recherches sur les problèmes de connexion.
 
 ```json
 {
@@ -226,7 +226,7 @@ Hello suivant la réponse est à partir de l’exemple précédent de hello.  Da
 
 ## <a name="validate-routing-issues"></a>Valider les problèmes de routage
 
-exemple de Hello vérifie la connectivité entre un ordinateur virtuel et un point de terminaison distant.
+Cet exemple vérifie la connectivité entre une machine virtuelle et un point de terminaison distant.
 
 ### <a name="example"></a>Exemple
 
@@ -253,11 +253,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-Étant donné que cette opération est longue en cours d’exécution, hello URI pour le résultat de hello est retourné dans l’en-tête de réponse hello comme indiqué dans hello suivant la réponse :
+Étant donné que l’exécution de cette opération demande un certain temps, l’URI du résultat est renvoyé dans l’en-tête de réponse, comme indiqué dans la réponse suivante :
 
 **Valeurs importantes**
 
-* **Emplacement** -cette propriété contient hello URI où hello résultats sont lorsque hello l’opération est terminée
+* **Location** : cette propriété contient l’URI de l’emplacement des résultats une fois que l’opération a été effectuée.
 
 ```
 HTTP/1.1 202 Accepted
@@ -278,7 +278,7 @@ null
 
 ### <a name="response"></a>Réponse
 
-Dans l’exemple suivant de hello, hello `connectionStatus` est affiché comme **inaccessible**. Bonjour `hops` plus d’informations, vous pouvez voir sous `issues` que le trafic de hello a été bloqué échéance tooa `UserDefinedRoute`.
+Dans l’exemple suivant, `connectionStatus` est **Inaccessible**. Dans les informations relatives à `hops`, vous pouvez constater sous `issues` que le trafic a été bloqué par `UserDefinedRoute`.
 
 ```json
 {
@@ -322,7 +322,7 @@ Dans l’exemple suivant de hello, hello `connectionStatus` est affiché comme *
 
 ## <a name="check-website-latency"></a>Vérifier la latence du site Web
 
-Hello exemple suivant vérifie le site Web du tooa hello connectivité.
+L’exemple suivant vérifie la connectivité à un site Web.
 
 ### <a name="example"></a>Exemple
 
@@ -349,11 +349,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-Étant donné que cette opération est longue en cours d’exécution, hello URI pour le résultat de hello est retourné dans l’en-tête de réponse hello comme indiqué dans hello suivant la réponse :
+Étant donné que l’exécution de cette opération demande un certain temps, l’URI du résultat est renvoyé dans l’en-tête de réponse, comme indiqué dans la réponse suivante :
 
 **Valeurs importantes**
 
-* **Emplacement** -cette propriété contient hello URI où hello résultats sont lorsque hello l’opération est terminée
+* **Location** : cette propriété contient l’URI de l’emplacement des résultats une fois que l’opération a été effectuée.
 
 ```
 HTTP/1.1 202 Accepted
@@ -374,7 +374,7 @@ null
 
 ### <a name="response"></a>Réponse
 
-Bonjour suivant la réponse, vous pouvez voir hello `connectionStatus` affiche sous la forme **joignable**. Lorsqu’une connexion est établie, les valeurs de latence sont fournies.
+Dans la réponse suivante, vous pouvez constater que `connectionStatus` apparaît **Joignable**. Lorsqu’une connexion est établie, les valeurs de latence sont fournies.
 
 ```json
 {
@@ -407,9 +407,9 @@ Bonjour suivant la réponse, vous pouvez voir hello `connectionStatus` affiche s
 }
 ```
 
-## <a name="check-connectivity-tooa-storage-endpoint"></a>Vérifiez le point de terminaison de stockage de connectivité tooa
+## <a name="check-connectivity-to-a-storage-endpoint"></a>Vérifier la connectivité à un point de terminaison de stockage
 
-Hello exemple suivant vérifie la hello connectivité à partir d’un compte de stockage de blog de l’ordinateur virtuel tooa.
+L’exemple suivant vérifie la connectivité entre une machine virtuelle et un compte de stockage blob.
 
 ### <a name="example"></a>Exemple
 
@@ -436,11 +436,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-Étant donné que cette opération est longue en cours d’exécution, hello URI pour le résultat de hello est retourné dans l’en-tête de réponse hello comme indiqué dans hello suivant la réponse :
+Étant donné que l’exécution de cette opération demande un certain temps, l’URI du résultat est renvoyé dans l’en-tête de réponse, comme indiqué dans la réponse suivante :
 
 **Valeurs importantes**
 
-* **Emplacement** -cette propriété contient hello URI où hello résultats sont lorsque hello l’opération est terminée
+* **Location** : cette propriété contient l’URI de l’emplacement des résultats une fois que l’opération a été effectuée.
 
 ```
 HTTP/1.1 202 Accepted
@@ -461,7 +461,7 @@ null
 
 ### <a name="response"></a>Réponse
 
-Hello exemple suivant est réponse hello à partir de l’appel d’API précédente hello en cours d’exécution. Comme la vérification de hello est réussie, hello `connectionStatus` propriété s’affiche en tant que **joignable**.  Vous trouverez détails hello concernant le nombre de hello de blob de stockage hello sauts tooreach requis et la latence.
+Voici un exemple de réponse tiré de l’exécution de l’appel d’API précédent. Si la vérification est réussie, la propriété `connectionStatus` apparaît **Joignable**.  Les détails concernant le nombre de tronçons nécessaires pour accéder à l’objet blob de stockage et la latence vous sont fournis.
 
 ```json
 {
@@ -496,7 +496,7 @@ Hello exemple suivant est réponse hello à partir de l’appel d’API précéd
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Découvrez comment de captures de paquets de tooautomate d’alertes de l’ordinateur virtuel en consultant [créer une capture de paquets déclenchées alerte](network-watcher-alert-triggered-packet-capture.md)
+Découvrez comment automatiser les captures de paquets avec des alertes de machine virtuelle en consultant [Create an alert triggered packet capture (Créer une capture de paquets déclenchée par alerte)](network-watcher-alert-triggered-packet-capture.md)
 
 Recherchez si certains types de trafic sont autorisés au sein ou en dehors de votre machine virtuelle en consultant [Check IP flow verify (Vérifier les flux IP)](network-watcher-check-ip-flow-verify-portal.md)
 

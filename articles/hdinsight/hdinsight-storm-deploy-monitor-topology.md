@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy et gérer les topologies d’Apache Storm sur HDInsight | Documents Microsoft"
-description: "Découvrez comment toodeploy, surveiller et gérer des topologies de Apache Storm à l’aide de hello du tableau de bord Storm sur HDInsight. Utilisez les outils Hadoop pour Visual Studio."
+title: "Déploiement et gestion des topologies Apache Storm sur HDInsight | Microsoft Docs"
+description: "Apprenez à déployer, surveiller et gérer des topologies Apache Storm à l’aide du tableau de bord Storm sur HDInsight. Utilisez les outils Hadoop pour Visual Studio."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,20 +16,20 @@ ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 05f05fe8dd519fe99fb771d36bfc3d28168ca85f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 34072574f83b51280e60e2f8766c6c5d5a33c307
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="deploy-and-manage-apache-storm-topologies-on-windows-based-hdinsight"></a>Déploiement et gestion des topologies Apache Storm sur HDInsight Windows
 
-Hello Storm le tableau de bord vous permet de tooeasily déployer et exécuter le cluster HDInsight de Apache Storm topologies tooyour à l’aide de votre navigateur web. Vous pouvez également utiliser toomonitor du tableau de bord hello et gérer des topologies en cours d’exécution. Si vous utilisez Visual Studio, outils de HDInsight hello pour Visual Studio fournit des fonctionnalités similaires dans Visual Studio.
+Le tableau de bord Storm vous permet de déployer et d’exécuter des topologies Apache Storm sur votre cluster HDInsight à l’aide votre navigateur web. Vous pouvez également utiliser le tableau de bord pour surveiller et gérer des topologies en cours d’exécution. Si vous utilisez Visual Studio, les outils HDInsight pour Visual Studio fournissent des fonctionnalités similaires dans Visual Studio.
 
-Hello Storm le tableau de bord et les fonctionnalités de tempête de hello Bonjour outils HDInsight s’appuient sur hello Storm REST API, qui peut être utilisé toocreate vos propres solutions de surveillance et de gestion.
+Le tableau de bord Storm et les fonctionnalités Storm des outils HDInsight s’appuient sur l’API REST Storm, qui peut être utilisée pour créer vos propres solutions d’analyse et de gestion.
 
 > [!IMPORTANT]
-> étapes de Hello dans ce document nécessitent une tempête sur le cluster HDInsight qui utilise Windows comme système d’exploitation de hello. Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Les étapes décrites dans ce document nécessitent un tableau de bord Storm sur un cluster HDInsight utilisant Windows comme système d’exploitation. Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 >
 > Pour plus d’informations sur le déploiement et la gestion des topologies avec un cluster HDInsight utilisant Linux, consultez [Déploiement et gestion des topologies Apache Storm sur HDInsight Linux](hdinsight-storm-deploy-monitor-topology-linux.md)
 
@@ -37,11 +37,11 @@ Hello Storm le tableau de bord et les fonctionnalités de tempête de hello Bonj
 
 * **Apache Storm sur HDInsight** : pour connaître les étapes de création d’un cluster, voir [Prise en main d’Apache Storm sur HDInsight](hdinsight-apache-storm-tutorial-get-started.md).
 
-* Pourquoi **tableau de bord Storm**: un navigateur web moderne qui prend en charge de HTML5.
+* Pour le **tableau de bord Storm**: un navigateur Web moderne qui prend en charge HTML5.
 
-* Pour **Visual Studio** -Windows Azure SDK 2.5.1 ou plus récent et hello outils HDInsight pour Visual Studio. Consultez [prise en main à l’aide des outils HDInsight pour Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) tooinstall et configurer les outils de hello HDInsight pour Visual Studio.
+* Pour **Visual Studio** : le Kit de développement logiciel (SDK) Azure 2.5.1 ou une version ultérieure et les outils HDInsight pour Visual Studio. Consultez la rubrique [Prise en main de HDInsight Tools pour Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) pour installer et configurer les outils HDInsight pour Visual Studio.
 
-    Une des hello versions de Visual Studio suivantes :
+    L’une des versions suivantes de Visual Studio :
 
   * Visual Studio 2012 avec Update 4
 
@@ -53,140 +53,140 @@ Hello Storm le tableau de bord et les fonctionnalités de tempête de hello Bonj
 
 ## <a name="storm-dashboard"></a>Tableau de bord Storm
 
-Hello Storm le tableau de bord est une page web disponible sur votre cluster Storm. URL de Hello est **https://&lt;nom_cluster >.azurehdinsight.net/**, où **clustername** hello désigne votre Storm sur le cluster HDInsight.
+Le tableau de bord Storm est une page web disponible sur votre cluster Storm. L’URL est **https://&lt;clustername>.azurehdinsight.net/**, où **clustername** est le nom de votre Storm sur le cluster HDInsight.
 
-À partir du haut hello Hello Storm le tableau de bord, sélectionnez **soumettre une topologie**. Suivez les instructions hello sur hello page toorun un exemple de topologie ou tooupload et exécuter une topologie que vous avez créé.
+Dans la partie supérieure du tableau de bord Storm, sélectionnez **Soumettre la topologie**. Suivez les instructions affichées sur la page pour exécuter une topologie d’exemple ou pour télécharger et exécuter une topologie que vous avez créée.
 
-![Hello envoyer la page de la topologie][storm-dashboard-submit]
+![la page d’envoi de la topologie][storm-dashboard-submit]
 
 ### <a name="storm-ui"></a>Interface utilisateur de Storm
 
-À partir de hello Storm le tableau de bord, sélectionnez hello **Storm UI** lien. Cela affiche des informations sur le cluster de hello, dans tooany Ajout en cours d’exécution topologies.
+Dans le tableau de bord Storm, sélectionnez le lien **Interface utilisateur de Storm** . Ce lien affiche les informations sur le cluster, ainsi que les topologies en cours d’exécution.
 
-![interface utilisateur de Hello storm][storm-dashboard-ui]
+![l’interface utilisateur Storm][storm-dashboard-ui]
 
 > [!NOTE]
-> Avec certaines versions d’Internet Explorer, vous pouvez constater que hello que Storm UI n’actualise pas une fois que vous avez visités tout d’abord qu’il. Par exemple, il peut ne pas affiche les topologies de nouveau hello vous avez envoyé, ou il peut afficher une topologie comme active lorsque vous l’avez désactivée précédemment. Microsoft est conscient de ce problème et recherche actuellement une solution.
+> Avec certaines versions d'Internet Explorer, vous constaterez peut-être que l'interface utilisateur Storm n'est pas actualisée après votre première visite. Par exemple, elle n’affiche pas les nouvelles topologies que vous avez soumises, ou indique qu’une topologie est active alors que vous l’avez précédemment arrêtée. Microsoft est conscient de ce problème et recherche actuellement une solution.
 
 #### <a name="main-page"></a>Page principale
 
-page principale de Hello Hello Storm UI fournit hello informations suivantes :
+La page principale de l’interface utilisateur de Storm fournit les informations suivantes :
 
-* **Résumé du cluster**: informations de base sur le cluster de Storm hello.
+* **Résumé du cluster**: des informations de base sur le cluster Storm.
 
-* **Résumé de la topologie**: une liste des topologies en cours d’exécution. Utilisez les liens hello tooview de cette section plus d’informations sur les topologies spécifiques.
+* **Résumé de la topologie**: une liste des topologies en cours d’exécution. Utilisez les liens de cette section pour afficher plus d’informations sur les topologies spécifiques.
 
-* **Résumé de superviseur**: plus d’informations sur le superviseur de Storm hello.
+* **Résumé du superviseur**: des informations sur le superviseur Storm.
 
-* **Configuration de Nimbus**: configuration Nimbus pour le cluster de hello.
+* **Configuration Nimbus**: configuration Nimbus du cluster.
 
 #### <a name="topology-summary"></a>Résumé de la topologie
 
-Sélection d’un lien à partir de hello **récapitulatif de la topologie** section affiche hello informations sur la topologie de hello suivantes :
+La sélection d’un lien de la section **Résumé de la topologie** affiche les informations suivantes sur la topologie :
 
-* **Résumé de la topologie**: informations de base sur la topologie de hello.
+* **Résumé de la topologie**:des informations de base sur la topologie.
 
-* **Actions de topologie**: actions de gestion que vous pouvez effectuer pour la topologie de hello.
+* **Actions de la topologie**: les actions de gestion que vous pouvez effectuer sur la topologie.
 
   * **Activer**: reprend le traitement d’une topologie arrêtée.
 
   * **Désactiver**: suspend une topologie en cours d’exécution.
 
-  * **Rééquilibrer**: ajuste le parallélisme hello de topologie de hello. Vous devez rééquilibrer les topologies en cours d’exécution une fois que vous avez modifié le nombre de hello de nœuds de cluster de hello. Cela permet hello topologie tooadjust parallélisme toocompensate pour hello augmenté ou diminué le nombre de nœuds de cluster de hello.
+  * **Rééquilibrer**: ajuste le parallélisme de la topologie. Il convient de rééquilibrer les topologies en cours d’exécution après avoir modifié le nombre de nœuds dans le cluster. Cela permet à la topologie d’ajuster le parallélisme pour compenser l’augmentation ou la diminution du nombre de nœuds du cluster.
 
-      Pour plus d’informations, consultez [présentation parallélisme hello d’une topologie de Storm (http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html).
+      Pour plus d’informations, consultez [Présentation du parallélisme d’une topologie Storm (http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html).
 
-  * **KILL**: met fin à une topologie Storm après hello spécifié le délai d’attente.
+  * **Supprimer**: met fin à une topologie Storm après expiration du délai spécifié.
 
-* **Statistiques de topologie**: statistiques sur la topologie de hello. Utilisez les liens hello hello **fenêtre** colonne tooset hello période hello écritures de page de hello restantes.
+* **Topology stats**: statistiques relatives à la topologie. Utilisez les liens de la colonne **Fenêtre** pour définir l’intervalle de temps des entrées restantes sur la page.
 
-* **Becs verseurs amovibles**: hello becs verseurs utilisés par la topologie de hello. Utilisez les liens hello tooview de cette section plus d’informations sur becs verseurs spécifiques.
+* **Spouts**: les spouts utilisés par la topologie. Utilisez les liens de cette section pour afficher plus d’informations sur des spouts spécifiques.
 
-* **Boulons**: hello boulons utilisés par la topologie de hello. Utilisez les liens hello tooview de cette section plus d’informations sur les boulons spécifiques.
+* **Bolts**: les bolts utilisés par la topologie. Utilisez les liens de cette section pour afficher plus d’informations sur des bolts spécifiques.
 
-* **Configuration de la topologie**: configuration hello de topologie de hello sélectionné.
+* **Configuration de la topologie**: configuration de la topologie sélectionnée.
 
 #### <a name="spout-and-bolt-summary"></a>Résumé relatif aux spouts et aux bolts
 
-En sélectionnant un bec de hello **becs verseurs amovibles** ou **boulons** sections affiche hello suit les informations d’élément de hello sélectionné :
+La sélection d’un spout à partir de la section **Spouts** ou **Bolts** affiche les informations suivantes sur l’élément sélectionné :
 
-* **Résumé des composants**: informations de base sur bec de hello ou éclair.
+* **Résumé du composant**: des informations de base sur le spout ou le bolt.
 
-* **BEC/éclair statistiques**: statistiques sur hello bec ou boulon. Utilisez les liens hello hello **fenêtre** colonne tooset hello période hello écritures de page de hello restantes.
+* **Statistiques du spout/bolt**: des statistiques relatives au spout ou au bolt. Utilisez les liens de la colonne **Fenêtre** pour définir l’intervalle de temps des entrées restantes sur la page.
 
-* **D’entrée statistiques** (boulon uniquement) : flux consommées par un éclair de hello d’entrée le plus d’informations sur hello.
+* **Statistiques d’entrée** (bolt uniquement) : des informations sur les flux d’entrée consommés par le bolt.
 
-* **Statistiques de sortie**: plus d’informations sur les flux hello émis par ce bec ou boulon.
+* **Statistiques de sortie**: des informations sur les flux de données émis par ce spout ou ce bolt.
 
-* **Les exécuteurs**: informations sur les instances de hello de bec de hello ou éclair. Sélectionnez hello **Port** entrée pour un tooview spécifique de l’exécuteur un journal d’informations de diagnostic généré pour cette instance.
+* **Exécuteurs**: informations sur les instances du spout ou du bolt. Sélectionnez l’entrée **Port** d’un exécuteur spécifique afin d’afficher le journal des informations de diagnostic généré pour cette instance.
 
 * **Erreurs**: les informations d’erreur pour ce spout ou ce bolt.
 
 ## <a name="hdinsight-tools-for-visual-studio"></a>Outils HDInsight pour Visual Studio
 
-Hello HDInsight outils peut être utilisé toosubmit c# ou hybride topologies tooyour cluster Storm. Hello suit utilisent un exemple d’application. Pour plus d’informations sur la création de vos propres topologies à l’aide des outils de HDInsight hello, consultez [C# développer des topologies à l’aide des outils de hello HDInsight pour Visual Studio](hdinsight-storm-develop-csharp-visual-studio-topology.md).
+Les outils HDInsight permettent de soumettre des topologies C# ou hybrides à votre cluster Storm. La procédure suivante utilise un exemple d’application. Pour plus d’informations sur la création de vos propres topologies à l’aide des outils HDInsight, consultez [Développement de topologies C# à l’aide des outils HDInsight pour Visual Studio](hdinsight-storm-develop-csharp-visual-studio-topology.md).
 
-Utilisez hello suivant les étapes toodeploy un tooyour exemple tempête de cluster HDInsight, puis afficher et gérer la topologie hello.
+Utilisez les étapes suivantes pour déployer un exemple sur votre Storm sur le cluster HDInsight, puis afficher et gérer la topologie.
 
-1. Si vous n’avez pas déjà installé hello dernière version de hello outils HDInsight pour Visual Studio, consultez [prise en main à l’aide des outils HDInsight pour Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md).
+1. Si vous n’avez pas encore installé la dernière version des outils HDInsight pour Visual Studio, consultez [Prise en main de HDInsight Tools pour Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md).
 
 2. Ouvrez Visual Studio, sélectionnez **Fichier** > **Nouveau** > **Projet**.
 
-3. Bonjour **nouveau projet** boîte de dialogue, développez **installé** > **modèles**, puis sélectionnez **HDInsight**. Dans la liste hello des modèles, sélectionnez **Storm exemple**. Bas hello de boîte de dialogue hello, tapez un nom pour l’application hello.
+3. Dans la boîte de dialogue **Nouveau projet**, développez **Installé** > **Modèles**, puis sélectionnez **HDInsight**. Dans la liste des modèles, sélectionnez **Exemple Storm**. En bas de la boîte de dialogue, entrez un nom pour l’application.
 
     ![image](./media/hdinsight-storm-deploy-monitor-topology/sample.png)
 
-4. Dans **l’Explorateur de solutions**, cliquez sur le projet de hello, puis sélectionnez **envoyer tooStorm sur HDInsight**.
+4. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur le projet, puis sélectionnez **Envoyer à Storm sur HDInsight**.
 
    > [!NOTE]
-   > Si vous y êtes invité, entrez les informations d’identification de connexion hello pour votre abonnement Azure. Si vous avez plusieurs abonnements, connectez-vous toohello qui contient votre Storm sur le cluster HDInsight.
+   > Si vous y êtes invité, entrez les informations d’identification de connexion pour votre abonnement Azure. Si vous disposez de plusieurs abonnements, connectez-vous à celui qui contient votre cluster Storm dans HDInsight.
 
-5. Sélectionnez votre Storm sur le cluster HDInsight à partir de hello **Cluster Storm** liste déroulante et sélectionnez **Submit**. Vous pouvez surveiller si l’envoi de hello réussit à l’aide de hello **sortie** fenêtre.
+5. Sélectionnez votre Storm sur le cluster HDInsight dans la liste déroulante **Cluster Storm**, puis sélectionnez **Envoyer**. Vous pouvez contrôler si l’envoi a bien été effectué à l’aide de la fenêtre **Sortie** .
 
-6. Lors de la topologie de hello a été envoyé avec succès, hello **Storm Topologies** pour le cluster de hello doit apparaître. Sélectionnez la topologie de hello dans hello liste tooview informations hello topologie en cours d’exécution.
+6. Lorsque la topologie a été envoyée avec succès, les **Topologies Storm** du cluster doivent apparaître. Sélectionnez la topologie à partir de la liste pour afficher des informations sur la topologie en cours d’exécution.
 
     ![Visual Studio Monitor](./media/hdinsight-storm-deploy-monitor-topology/vsmonitor.png)
 
    > [!NOTE]
    > Vous pouvez également afficher les **Topologies Storm** dans l’**Explorateur de serveurs** en développant **Azure** > **HDInsight**, puis en cliquant avec le bouton droit sur le cluster HDInsight et en sélectionnant **Affichage des topologies Storm**.
 
-    Sélectionnez la forme de hello pour hello becs verseurs amovibles ou boulons tooview d’informations sur ces composants. Une nouvelle fenêtre s’ouvre pour chaque élément sélectionné.
+    Sélectionnez la forme des spouts et bolts pour afficher des informations sur ces composants. Une nouvelle fenêtre s’ouvre pour chaque élément sélectionné.
 
    > [!NOTE]
-   > nom Hello de topologie de hello est le nom de classe hello de topologie de hello (dans ce cas, `HelloWord`,) avec un horodatage ajouté.
+   > Le nom de la topologie représente le nom de classe de la topologie (dans ce cas, `HelloWord`,) avec ajout d’un horodatage.
 
-7. À partir de hello **récapitulatif de la topologie** afficher, sélectionnez **Kill** topologie de hello toostop.
+7. Dans la vue **Résumé de la topologie**, sélectionnez **Supprimer** pour arrêter la topologie.
 
    > [!NOTE]
-   > Les topologies Storm poursuivre l’exécution jusqu'à ce qu’ils sont arrêtés ou cluster de hello est supprimé.
+   > Les topologies Storm poursuivent leur exécution jusqu'à ce qu'elles soient arrêtées ou que le cluster soit supprimé.
 
 
 ## <a name="rest-api"></a>API REST
 
-Hello Storm UI repose sur hello API REST, afin de pouvoir effectuer similaires de gestion et de la fonctionnalité d’analyse à l’aide des API REST de hello. Vous pouvez utiliser des outils personnalisés hello API REST toocreate pour gérer et surveiller les topologies de Storm.
+L’interface utilisateur Storm repose sur l’API REST, ce qui vous permet de profiter de fonctionnalités de gestion et de surveillance similaires à l’aide de l’API REST. À l'aide de l'API REST, vous pouvez créer des outils personnalisés pour gérer et surveiller les topologies Storm.
 
-Pour plus d’informations, consultez la rubrique [API REST de l’interface utilisateur Storm](https://github.com/apache/storm/blob/0.9.3-branch/STORM-UI-REST-API.md). Hello informations suivantes sont spécifiques toousing hello API REST avec Apache Storm sur HDInsight.
+Pour plus d’informations, consultez la rubrique [API REST de l’interface utilisateur Storm](https://github.com/apache/storm/blob/0.9.3-branch/STORM-UI-REST-API.md). Les informations suivantes sont spécifiques à l’utilisation de l’API REST avec Apache Storm sur HDInsight.
 
 ### <a name="base-uri"></a>URI de base
 
-Hello est de l’URI de base pour l’API REST de hello sur les clusters HDInsight **https://&lt;nom_cluster >.azurehdinsight.net/stormui/api/v1/**, où **clustername** désigne hello votre Storm sur Cluster HDInsight.
+L’URI de base pour l’API REST sur les clusters HDInsight est **https://&lt;clustername>.azurehdinsight.net/stormui/api/v1/**, où **clustername** est le nom de votre Storm sur le cluster HDInsight.
 
 ### <a name="authentication"></a>Authentification
 
-Toohello demandes API REST doivent utiliser **l’authentification de base**, de sorte que vous utilisez le nom du cluster hello HDInsight administrateur et le mot de passe.
+Les requêtes à l’API REST doivent utiliser l’ **authentification de base**avec le nom et le mot de passe d’administrateur de cluster HDInsight.
 
 > [!NOTE]
-> Étant donné que l’authentification de base est envoyée à l’aide de texte en clair, vous devez **toujours** utiliser les communications HTTPS toosecure avec cluster de hello.
+> Étant donné que l’authentification de base est envoyée en texte clair, vous devez **toujours** utiliser HTTPS pour sécuriser les communications avec le cluster.
 
 ### <a name="return-values"></a>Valeurs de retour
 
-Informations qui sont retournées à partir de hello API REST peuvent uniquement être utilisable à partir de cluster de hello ou ordinateurs virtuels sur hello même réseau virtuel Azure en tant que cluster de hello. Par exemple, nom de domaine complet de hello (FQDN) retournée pour les serveurs soigneur ne sont pas être accessible à partir de hello Internet.
+Les informations renvoyées par l’API REST sont uniquement utilisables au sein du cluster ou des machines virtuelles sur le même réseau virtuel Azure que le cluster. Par exemple, le nom de domaine complet (FQDN) retourné pour les serveurs Zookeeper n’est pas accessible à partir d’Internet.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Maintenant que vous avez appris comment topologies toodeploy et le moniteur à l’aide de hello Storm le tableau de bord, découvrez comment :
+Maintenant que vous avez appris à déployer et surveiller des topologies à l’aide du tableau de bord Storm, découvrez comment :
 
-* [Développer les topologies c# à l’aide des outils de hello HDInsight pour Visual Studio](hdinsight-storm-develop-csharp-visual-studio-topology.md)
+* [Développer des topologies C# à l’aide des outils HDInsight pour Visual Studio](hdinsight-storm-develop-csharp-visual-studio-topology.md)
 
 * [Développer des topologies basées sur Java à l’aide de Maven](hdinsight-storm-develop-java-topology.md)
 

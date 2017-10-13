@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure modèle de données d’Application Insights | Documents Microsoft"
+title: "Modèle de données d’Azure Application Insights | Microsoft Docs"
 description: "Décrit les propriétés exportées à partir de l’exportation continue dans JSON et utilisées comme filtres."
 services: application-insights
 documentationcenter: 
@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/21/2016
 ms.author: bwren
-ms.openlocfilehash: 5ff3ce7953b91cc69b5d96c0ea9b6d58a6016e61
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: a485ddd555f65473d81896effc4a3562bda71410
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="application-insights-export-data-model"></a>Modèle d’exportation de données Application Insights
-Ce tableau répertorie les propriétés hello de télémétrie envoyé à partir de hello [Application Insights](app-insights-overview.md) portal toohello de kits de développement logiciel.
+Cette table répertorie les propriétés de télémétrie envoyées à partir des Kits SDK [Application Insights](app-insights-overview.md) au portail.
 Vous verrez ces propriétés dans les données issues d’une [exportation continue](app-insights-export-telemetry.md).
 Elles apparaissent également dans les filtres de propriétés, dans [Metrics Explorer](app-insights-metrics-explorer.md) et dans [Recherche de diagnostic](app-insights-diagnostic-search.md).
 
-Points toonote :
+Points à noter :
 
-* `[0]`dans ces tables désigne un point dans le chemin d’accès de hello où vous avez tooinsert un index ; mais il n’est pas toujours 0.
+* `[0]` dans ces tables désigne un point dans le chemin d’accès au niveau duquel vous devez insérer un index ; il ne s’agit pas toujours de 0.
 * Les durées sont énoncées en dixièmes de microsecondes, donc 10000000 = 1 seconde.
-* Dates et heures sont UTC et figurent dans le format ISO hello`yyyy-MM-DDThh:mm:ss.sssZ`
+* Les dates et les heures sont indiquées au format UTC, et respectent la norme ISO `yyyy-MM-DDThh:mm:ss.sssZ`
 
 
 ## <a name="example"></a>Exemple
@@ -41,15 +41,15 @@ Points toonote :
           "base": "/",
           "hashTag": ""
         },
-        "responseCode": 200, // Sent tooclient
+        "responseCode": 200, // Sent to client
         "success": true, // Default == responseCode<400
-        // Request id becomes hello operation id of child events
+        // Request id becomes the operation id of child events
         "id": "fCOhCdCnZ9I=",  
         "name": "GET Home/Index",
         "count": 1, // 100% / sampling rate
         "durationMetric": {
           "value": 1046804.0, // 10000000 == 1 second
-          // Currently hello following fields are redundant:
+          // Currently the following fields are redundant:
           "count": 1.0,
           "min": 1046804.0,
           "max": 1046804.0,
@@ -75,14 +75,14 @@ Points toonote :
       "location": { // derived from client ip
         "continent": "North America",
         "country": "United States",
-        // last octagon is anonymized too0 at portal:
+        // last octagon is anonymized to 0 at portal:
         "clientip": "168.62.177.0",
         "province": "",
         "city": ""
       },
       "data": {
         "isSynthetic": true, // we identified source as a bot
-        // percentage of generated data sent tooportal:
+        // percentage of generated data sent to portal:
         "samplingRate": 100.0,
         "eventTime": "2016-03-21T10:05:45.7334717Z" // UTC
       },
@@ -116,11 +116,11 @@ Tous les types de données de télémétrie sont accompagnés d’une section de
 
 | Chemin | Type | Remarques |
 | --- | --- | --- |
-| context.custom.dimensions [0] |objet [ ] |Paires clé-valeur définies par le paramètre des propriétés personnalisées. Longueur maximale de clé 100, longueur maximale de valeur 1024. Plus de 100 valeurs uniques, hello propriété pouvant être recherchée, mais ne peut pas être utilisée pour la segmentation. 200 clés maximum par ikey. |
+| context.custom.dimensions [0] |objet [ ] |Paires clé-valeur définies par le paramètre des propriétés personnalisées. Longueur maximale de clé 100, longueur maximale de valeur 1024. Plus de 100 valeurs uniques, la propriété peut faire l’objet d’une recherche, mais ne peut pas être utilisée pour la segmentation. 200 clés maximum par ikey. |
 | context.custom.metrics [0] |objet [ ] |Paires clé-valeur définies par le paramètre des mesures personnalisées et par TrackMetrics. Longueur maximale de clé 100, les valeurs peuvent être numériques. |
 | context.data.eventTime |string |UTC |
-| context.data.isSynthetic |booléenne |Demande apparaît toocome à partir d’un test web ou le robot. |
-| context.data.samplingRate |number |Pourcentage de télémétrie généré par hello SDK qui est envoyé à tooportal. Plage 0.0-100.0. |
+| context.data.isSynthetic |booléenne |Requête transmise par un robot ou un test web. |
+| context.data.samplingRate |number |Pourcentage de télémétrie générée par le Kit SDK qui est envoyé vers le portail. Plage 0.0-100.0. |
 | context.device |objet |Appareil client |
 | context.device.browser |string |IE, Chrome, ... |
 | context.device.browserVersion |string |Chrome 48.0, ... |
@@ -136,14 +136,14 @@ Tous les types de données de télémétrie sont accompagnés d’une section de
 | context.device.type |string |PC, navigateur... |
 | context.location |objet |Dérivé de clientip. |
 | context.location.city |string |Dérivé de clientip, si connu |
-| context.location.clientip |string |Dernière octogone est too0 rendues anonymes. |
+| context.location.clientip |string |Dernier octogone anonyme (0). |
 | context.location.continent |string | |
 | context.location.country |string | |
 | context.location.province |string |État ou province |
-| context.operation.id |string |Éléments qui ont le même id d’opération sont affichés en tant qu’éléments associés dans le portail de hello de hello. Généralement les id de demande hello. |
+| context.operation.id |string |Les éléments qui affichent le même ID d’opération sont représentés en tant qu’éléments associés dans le portail. Généralement l’ID de requête. |
 | context.operation.name |string |nom d’URL ou de requête |
 | context.operation.parentId |string |Autorise les éléments liés imbriqués. |
-| context.session.id |string |ID d’un groupe d’opérations à partir de hello même source. Une période de 30 minutes sans opération signale la fin hello d’une session. |
+| context.session.id |string |ID d’un groupe d’opérations de la même source. Une période de 30 minutes sans opération signale la fin d’une session. |
 | context.session.isFirst |booléenne | |
 | context.user.accountAcquisitionDate |string | |
 | context.user.anonAcquisitionDate |string | |
@@ -165,7 +165,7 @@ Tous les types de données de télémétrie sont accompagnés d’une section de
 | event [0] urlData.host |string | |
 
 ## <a name="exceptions"></a>Exceptions
-Rapports [exceptions](app-insights-asp-net-exceptions.md) dans hello server et navigateur de hello.
+Signale des [exceptions](app-insights-asp-net-exceptions.md) sur le serveur et dans le navigateur.
 
 | Chemin | Type | Remarques |
 | --- | --- | --- |
@@ -194,17 +194,17 @@ Rapports [exceptions](app-insights-asp-net-exceptions.md) dans hello server et n
 | basicException [0] typeName |string | |
 
 ## <a name="trace-messages"></a>Messages de suivi
-Envoyé par [TrackTrace](app-insights-api-custom-events-metrics.md#tracktrace)et par hello [adaptateurs de journalisation](app-insights-asp-net-trace-logs.md).
+Envoyé par [TrackTrace](app-insights-api-custom-events-metrics.md#tracktrace) et par les [adaptateurs de journalisation](app-insights-asp-net-trace-logs.md).
 
 | Chemin | Type | Remarques |
 | --- | --- | --- |
 | message [0] loggerName |string | |
 | message [0] parameters |string | |
-| message [0] raw |string |message de journal Hello, longueur max 10k. |
+| message [0] raw |string |Le message du fichier journal, longueur maximale 10k. |
 | message [0] severityLevel |string | |
 
 ## <a name="remote-dependency"></a>Dépendance distante
-Envoyé par TrackDependency. Utilisé tooreport performances et l’utilisation de [appelle toodependencies](app-insights-asp-net-dependencies.md) dans hello server et les appels AJAX dans le navigateur de hello.
+Envoyé par TrackDependency. Utilisé pour consigner les performances et l’utilisation des [appels aux dépendances](app-insights-asp-net-dependencies.md) dans le serveur, et des appels AJAX dans le navigateur.
 
 | Chemin | Type | Remarques |
 | --- | --- | --- |
@@ -213,7 +213,7 @@ Envoyé par TrackDependency. Utilisé tooreport performances et l’utilisation 
 | remoteDependency [0] commandName |string |Par exemple, « home/index » |
 | remoteDependency [0] count |integer |100 / (taux d’[échantillonnage](app-insights-sampling.md) ). Par exemple, 4 =&gt; 25 %. |
 | remoteDependency [0] dependencyTypeName |string |HTTP, SQL, ... |
-| remoteDependency [0] durationMetric.value |number |Temps de toocompletion d’appel de réponse par une dépendance |
+| remoteDependency [0] durationMetric.value |number |Délai de l’appel à la fin de la réponse par la dépendance |
 | remoteDependency [0] id |string | |
 | remoteDependency [0] name |string |Url. Longueur maximale 250. |
 | remoteDependency [0] resultCode |string |à partir de la dépendance HTTP |
@@ -225,15 +225,15 @@ Envoyé par TrackDependency. Utilisé tooreport performances et l’utilisation 
 | remoteDependency [0] urlData.host |string |Longueur maximale 200 |
 
 ## <a name="requests"></a>Demandes
-Envoyées par [TrackRequest](app-insights-api-custom-events-metrics.md#trackrequest). les modules standard Hello utilisent ce temps de réponse du serveur tooreports, mesuré sur le serveur de hello.
+Envoyées par [TrackRequest](app-insights-api-custom-events-metrics.md#trackrequest). Les modules standard les utilisent pour consigner le temps de réponse du serveur, mesuré sur le serveur.
 
 | Chemin | Type | Remarques |
 | --- | --- | --- |
 | request [0] count |integer |100 / (taux d’[échantillonnage](app-insights-sampling.md) ). Par exemple, 4 =&gt; 25 %. |
-| request [0] durationMetric.value |number |Heure à partir de tooresponse qui arrivent en retard de demande. 1e7 = 1s |
+| request [0] durationMetric.value |number |Délai entre l’arrivée de la requête et la réponse. 1e7 = 1s |
 | request [0] id |string |ID d’opération |
 | request [0] name |string |GET/POST + base d’URL  Longueur maximale 250 |
-| request [0] responseCode |integer |Tooclient d’envoi de réponse HTTP |
+| request [0] responseCode |integer |Réponse HTTP envoyée au client |
 | request [0] success |booléenne |Par défaut == (responseCode &lt; 400) |
 | request [0] url |string |Sans hôte |
 | request [0] urlData.base |string | |
@@ -241,18 +241,18 @@ Envoyées par [TrackRequest](app-insights-api-custom-events-metrics.md#trackrequ
 | request [0] urlData.host |string | |
 
 ## <a name="page-view-performance"></a>Performances d’affichage de la page
-Envoyé par le navigateur de hello. Mesures hello temps tooprocess une page, à partir de l’utilisateur initiateur hello demande toodisplay complète (sauf les appels AJAX asynchrones).
+Envoyées par le navigateur. Mesure le temps de traitement d’une page, du lancement de la requête par l’utilisateur à l’affichage complet (sans les appels asynchrones AJAX).
 
 Les valeurs de contexte représentent la version de système d’exploitation et de navigateur du client.
 
 | Chemin | Type | Remarques |
 | --- | --- | --- |
-| clientPerformance [0] clientProcess.value |integer |Heure de fin de la réception de la page de hello toodisplaying hello HTML. |
+| clientPerformance [0] clientProcess.value |integer |Délai entre la fin de la réception du code HTML et l’affichage de la page. |
 | clientPerformance [0] name |string | |
-| clientPerformance [0] networkConnection.value |integer |Temps écoulé tooestablish une connexion réseau. |
-| clientPerformance [0] receiveRequest.value |integer |Heure de fin de l’envoi de hello tooreceiving de demande hello HTML dans la réponse. |
-| clientPerformance [0] sendRequest.value |integer |Heure de la demande de hello HTTP toosend prises. |
-| clientPerformance [0] total.value |integer |Heure à partir de la page de hello toodisplaying toosend hello demande de démarrage. |
+| clientPerformance [0] networkConnection.value |integer |Temps nécessaire pour l’établissement d’une connexion réseau. |
+| clientPerformance [0] receiveRequest.value |integer |Délai entre la fin de l’envoi d’une requête et la réception du code HTML en réponse. |
+| clientPerformance [0] sendRequest.value |integer |Délai nécessaire à l’envoi de la requête HTTP. |
+| clientPerformance [0] total.value |integer |Délai entre le début d’envoi de la requête et l’affichage de la page. |
 | clientPerformance [0] url |string |URL de cette requête. |
 | clientPerformance [0] urlData.base |string | |
 | clientPerformance [0] urlData.hashTag |string | |
@@ -265,7 +265,7 @@ Envoyé par trackPageView() ou [stopTrackPage](app-insights-api-custom-events-me
 | Chemin | Type | Remarques |
 | --- | --- | --- |
 | view [0] count |integer |100 / (taux d’[échantillonnage](app-insights-sampling.md) ). Par exemple, 4 =&gt; 25 %. |
-| view [0] durationMetric.value |integer |Valeur éventuellement définie dans trackPageView() ou par startTrackPage() - stopTrackPage(). Bonjour pas même en tant que valeurs de clientPerformance. |
+| view [0] durationMetric.value |integer |Valeur éventuellement définie dans trackPageView() ou par startTrackPage() - stopTrackPage(). Pas identique aux valeurs clientPerformance. |
 | view [0] name |string |Titre de la page.  Longueur maximale 250 |
 | view [0] url |string | |
 | view [0] urlData.base |string | |
@@ -294,7 +294,7 @@ Consigne les [tests web de disponibilité](app-insights-monitor-web-app-availabi
 ## <a name="metrics"></a>Mesures
 Généré par TrackMetric().
 
-valeur de métrique Hello se trouve dans context.custom.metrics[0]
+La valeur de la métrique se trouve dans context.custom.metrics[0]
 
 Par exemple :
 
@@ -335,13 +335,13 @@ Les valeurs de mesure, dans les rapports de mesure et ailleurs, sont consignées
         "sampledValue": 468.71603053650279
       }
 
-Actuellement - bien que cela peut modifier Bonjour futures - toutes les valeurs signalées par les modules du Kit de développement logiciel standard hello, `count==1` et uniquement hello `name` et `value` sont utiles. Hello seul cas où ils seraient différents serait si vous écrivez votre propre appels TrackMetric dans laquelle vous avez défini hello autres paramètres.
+Actuellement (cela peut changer à l’avenir), dans l’ensemble des valeurs consignées des modules standard du SDK, `count==1` et uniquement les champs `name` et `value` sont utiles. Le seul cas où la situation serait différente serait une configuration où vous écririez vos propres appels TrackMetric, dans lesquels vous définiriez les autres paramètres.
 
-Hello objectif hello autres champs est tooallow toobe de métriques agrégée Bonjour SDK, le portail de toohello tooreduce le trafic. Par exemple, vous pouvez décider d’accumuler un nombre défini de valeurs successives avant d’envoyer chaque rapport de mesure. Cliquez ensuite calculer hello min, max, écart type et valeur d’agrégation (somme ou moyenne) et définissez le toohello au nombre de lectures représenté par les rapports hello.
+Les autres champs ont vocation à autoriser l’agrégation des mesures dans le Kit SDK afin de réduire le trafic dans le portail. Par exemple, vous pouvez décider d’accumuler un nombre défini de valeurs successives avant d’envoyer chaque rapport de mesure. Vous calculeriez ensuite la valeur minimale, la valeur maximale, l’écart standard et la valeur agrégée (somme ou moyenne) et définir le décompte sur le nombre de valeurs représentées par le rapport.
 
-Dans les tables de hello ci-dessus, nous avons omis hello rarement des champs count, min, max, stdDev et sampledValue.
+Dans les tableaux ci-dessus, nous avons volontairement omis les champs rarement utilisés count, min, max, stdDev et sampledValue.
 
-Au lieu de l’agrégation des mesures, vous pouvez utiliser [échantillonnage](app-insights-sampling.md) si vous avez besoin de volume de hello tooreduce de télémétrie.
+Au lieu de pré-agréger les mesures, vous pouvez utiliser l’ [échantillonnage](app-insights-sampling.md) si vous avez besoin de réduire le volume de télémétrie.
 
 ### <a name="durations"></a>Durées
 Sauf mention contraire, les durées sont indiquées en dixièmes de microseconde. Ainsi, 10000000.0 représente 1s.

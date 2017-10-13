@@ -1,6 +1,6 @@
 ---
-title: "vue d’ensemble plan, offre, quotas et des abonnements de pile aaaAzure | Documents Microsoft"
-description: "Comme un opérateur cloud, je veux toounderstand Qu'azure pile plans, les offres, les quotas et les abonnements."
+title: "Vue d’ensemble des plans, des offres, des quotas et des abonnements Azure Stack | Microsoft Docs"
+description: "En tant qu’opérateur cloud, je souhaite comprendre les plans, les offres, les quotas et les abonnements Azure Stack."
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -14,64 +14,66 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 8/22/2017
 ms.author: erikje
-ms.openlocfilehash: 67f5bcfda221473b1f397668e2a3186b80d6f43c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 083ca2f0a06625810d2f90a682ba0b3110032e60
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="plan-offer-quota-and-subscription-overview"></a>Vue d’ensemble des plans, des offres, des quotas et des abonnements
 
-Azure Stack permet de fournir un large éventail de services, comme des machines virtuelles, des bases de données SQL Server, SharePoint, Exchange et même des [articles de la Place de marché Azure](azure-stack-marketplace-azure-items.md). En tant qu’opérateur cloud, vous configurez et fournissez ces services dans Azure Stack avec des plans, des offres et des quotas.
+*S’applique à : systèmes intégrés Azure Stack et Kit de développement Azure Stack*
+
+[Azure Stack](azure-stack-poc.md) permet de fournir un large éventail de services, comme des machines virtuelles, des bases de données SQL Server, SharePoint, Exchange et même des [articles de la Place de marché Azure](azure-stack-marketplace-azure-items.md). En tant qu’opérateur Azure Stack, vous configurez et fournissez ces services dans Azure Stack avec des plans, des offres et des quotas.
 
 Les offres contiennent un ou plusieurs plans, et chaque plan inclut un ou plusieurs services. En créant des plans et en les regroupant dans différentes offres, on peut contrôler :
 - les services et ressources auxquels les utilisateurs ont accès ;
-- quantité Hello de ressources que les utilisateurs peuvent consommer.
-- les régions ont accès aux ressources de toohello
+- la quantité de ressources que les utilisateurs peuvent consommer ;
+- les régions qui ont accès aux ressources.
 
 Pour fournir un service, vous suivrez les grandes étapes suivantes :
 
-1. Ajouter un service que vous souhaitez que les utilisateurs de tooyour de toodeliver.
-2. Créez un plan qui contient un ou plusieurs services. Lorsque vous créez un plan, sélectionnez ou créez des quotas qui définissent les limites des ressources hello de chaque service dans le plan de hello.
+1. Ajoutez un service que vous souhaitez fournir à vos utilisateurs.
+2. Créez un plan qui contient un ou plusieurs services. Ce faisant, vous sélectionnerez ou créerez des quotas qui définissent les limites de ressources de chacun des services du plan.
 3. Créez une offre qui contient un ou plusieurs plans (plans de base et plans d’extension facultatifs compris).
 
-Une fois que vous avez créé l’offre de hello, vos utilisateurs peuvent s’abonner services de tooit tooaccess hello et il fournit des ressources. Les utilisateurs peuvent s’abonner tooas offre de nombreuses qu’ils le souhaitent. Hello diagramme suivant montre un exemple simple d’un utilisateur qui s’est abonnée tootwo offres. Chaque offre possède un plan ou les deux, et chaque plan de leur donne accès tooservices.
+Une fois l’offre créée, vos utilisateurs peuvent s’y abonner pour accéder aux services et aux ressources qu’elle fournit. Ils peuvent s’abonner à autant d’offres qu’ils le souhaitent. Le diagramme suivant montre l’exemple simple d’un utilisateur qui s’est abonné à deux offres. Chaque offre comprend un ou deux plans, et chacun leur donne accès à des services.
 
 ![](media/azure-stack-key-features/image4.png)
 
 ## <a name="plans"></a>Abonnements
 
-Les plans regroupent un ou plusieurs services. Comme un opérateur cloud, vous [créer des plans de](azure-stack-create-plan.md) toooffer tooyour utilisateurs. À son tour, vos utilisateurs s’abonner tooyour offres toouse hello plans et services qu’ils comprennent. Lorsque vous créez des plans, assurez-vous que tooset vos quotas, définir vos plans de base et vous pouvez inclure des plans de module complémentaire facultatif.
+Les plans regroupent un ou plusieurs services. En tant qu’opérateur Azure Stack, vous [créez des plans](azure-stack-create-plan.md) à proposer à vos utilisateurs. En retour, ceux-ci s’abonnent à vos offres pour utiliser les plans et les services qu’elles comprennent. Lors de la création des plans, veillez à définir vos quotas et vos plans de base et à envisager d’inclure des plans d’extension facultatifs.
 
 ### <a name="quotas"></a>Quotas
 
-toohelp vous gérez votre capacité du cloud, vous sélectionnez ou créez un quota pour chaque service dans un plan. Quotas de définissent des limites de ressources supérieur hello qui un abonnement de l’utilisateur peut fournir ou consommer. Par exemple, un quota peut permettre un toocreate utilisateur des machines virtuelles de toofive. Les quotas peuvent limiter différentes ressources, notamment les machines virtuelles, la RAM et l’UC.
+Pour mieux gérer votre capacité cloud, vous pouvez sélectionner ou créer un quota pour chacun des services d’un plan. Les quotas définissent les limites de ressources supérieures qu’un abonnement utilisateur peut approvisionner ou consommer. Par exemple, un quota peut autoriser un utilisateur à créer jusqu’à cinq machines virtuelles. Les quotas peuvent limiter différentes ressources, notamment les machines virtuelles, la RAM et l’UC.
 
-Les quotas peuvent être configurés région par région. Par exemple, un plan comprenant des services de calcul de la région A peut avoir un quota de deux machines virtuelles, 4 Go de RAM et 10 cœurs de processeur. Dans le Kit de développement de la pile d’Azure, qu’une seule région de hello (nommé *local*) est disponible.
+Les quotas peuvent être configurés région par région. Par exemple, un plan comprenant des services de calcul de la région A peut avoir un quota de deux machines virtuelles, 4 Go de RAM et 10 cœurs de processeur. Dans le kit de développement Azure Stack, une seule région (nommée *local*) est disponible.
 
 ### <a name="base-plan"></a>Plan de base
 
-Lorsque vous créez une offre, administrateur de service hello peut inclure un plan de base. Ces plans de base sont inclus par défaut lorsqu’un utilisateur s’abonne toothat offre. Lorsqu’un utilisateur s’abonne, ils ont accès tooall hello les fournisseurs de ressources spécifiés dans les plans de base (avec les quotas correspondant hello).
+Lors de la création d’une offre, l’administrateur de services fédérés peut inclure un plan de base. Ces plans de base sont inclus par défaut lorsqu’un utilisateur s’abonne à cette offre : il a alors accès à tous les fournisseurs de ressources spécifiés dans ces plans (avec les quotas correspondants).
 
 ### <a name="add-on-plans"></a>Plans d’extension
 
-Vous pouvez également inclure des plans d’extension facultatifs dans une offre. Plans de module complémentaire ne sont pas inclus par défaut dans l’abonnement de hello. Les plans de modules complémentaires sont des plans supplémentaires (avec des quotas) disponibles dans une offre qu’un abonné peut ajouter des abonnements de tootheir. Par exemple, vous pouvez proposer un plan de base avec des ressources limitées pour une version d’évaluation et un plan de module complémentaire avec toocustomers de ressources plus importantes qui décident de service de hello tooadopt.
+Vous pouvez également inclure des plans d’extension facultatifs dans une offre. Les plans additionnels ne sont pas inclus par défaut dans l’abonnement. Les plans d’extension sont des plans supplémentaires (avec quotas), disponibles dans une offre, qu’un abonné peut ajouter à ses abonnements. Par exemple, vous pouvez proposer un plan de base avec des ressources limitées pour un essai, et un plan d’extension avec des ressources plus importantes pour les clients qui décident d’adopter le service.
 
 ## <a name="offers"></a>Offres
 
-Offres sont des groupes d’un ou plusieurs plans que vous créez afin que les utilisateurs peuvent s’abonner toothem. Par exemple, une offre Alpha peut contenir un plan A comportant un ensemble de services de calcul et un plan B comportant un ensemble de services de stockage et réseau. 
+Les offres sont des groupes d’un ou plusieurs plans créés pour que les utilisateurs puissent s’y abonner. Par exemple, une offre Alpha peut contenir un plan A comportant un ensemble de services de calcul et un plan B comportant un ensemble de services de stockage et réseau. 
 
-Lorsque vous [créer une offre](azure-stack-create-offer.md), vous devez inclure au moins un plan de base, mais vous pouvez également créer des plans de modules complémentaires que les utilisateurs peuvent ajouter tootheir abonnement.
+Lorsque vous [créez une offre](azure-stack-create-offer.md), vous devez inclure au moins un plan de base, mais vous avez également la possibilité de créer des plans d’extension que les utilisateurs pourront ajouter à leur abonnement.
 
 
 ## <a name="subscriptions"></a>Abonnements
 
-L’abonnement est la forme sous laquelle les utilisateurs accèdent aux offres. Si vous êtes un opérateur cloud chez un fournisseur de services, vos utilisateurs (clients) achètent vos services en vous abonnant tooyour offres. Si vous êtes un opérateur cloud dans votre organisation, vos utilisateurs (employés) peuvent s’abonner à des services de toohello que vous proposez sans payer. Chaque combinaison entre un utilisateur et une offre correspond à un abonnement unique. Par conséquent, un utilisateur peut avoir des offres d’abonnements toomultiple, mais chaque abonnement s’applique tooonly une offre. Plans, les offres et les quotas s’appliquent uniquement tooeach unique de l’abonnement : ils ne peuvent pas être partagés entre des abonnements. Chaque ressource créée par un utilisateur est associée à un seul abonnement.
+L’abonnement est la forme sous laquelle les utilisateurs accèdent aux offres. Si vous êtes un opérateur Azure Stack chez un fournisseur de services, vos utilisateurs (clients) achètent vos services en s’abonnant à vos offres. Si vous êtes un opérateur Azure Stack au sein d’une organisation, vos utilisateurs (employés) peuvent s’abonner gratuitement aux services que vous proposez. Chaque combinaison entre un utilisateur et une offre correspond à un abonnement unique. Par conséquent, un utilisateur peut avoir des abonnements à plusieurs offres, mais chaque abonnement s’applique à une seule offre. Les plans, les offres et les quotas s’appliquent uniquement à un abonnement donné ; ils ne sont pas partageables entre différents abonnements. Chaque ressource créée par un utilisateur est associée à un seul abonnement.
 
 
 ### <a name="default-provider-subscription"></a>Abonnement au fournisseur par défaut
 
-Hello abonnement de fournisseur par défaut est automatiquement créé lorsque vous déployez hello Kit de développement de pile Azure. Cet abonnement peut toomanage utilisée Azure pile, déployez davantage de fournisseurs de ressources et créer des plans et des offres pour les utilisateurs. Pour des raisons de licence et sécurité, ne doit pas être utilisé toorun les charges de travail client et les applications. 
+L’abonnement au fournisseur par défaut est automatiquement créé lors du déploiement du kit de développement Azure Stack. Il permet de gérer Azure Stack, de déployer d’autres fournisseurs de ressources et de créer des plans et des offres pour les utilisateurs. Pour des raisons de sécurité et de gestion des licences, il ne doit pas être utilisé pour exécuter des applications et des charges de travail de clients. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 

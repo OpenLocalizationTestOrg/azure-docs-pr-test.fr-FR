@@ -1,6 +1,6 @@
 ---
-title: aaaVirtual des tailles de machine pour les services de cloud computing de Azure | Documents Microsoft
-description: "Répertorie les tailles de machine virtuelle différente hello (et ID) pour les rôles web et de travail du service cloud Azure."
+title: Tailles des machines virtuelles pour Azure Cloud services | Microsoft Docs
+description: "Répertorie les différentes tailles de machines virtuelles (et les identifiants) des rôles web et de travail des services cloud Azure."
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 07/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 93d91a67afc352f3d18c31e0dd5cf976bf46350c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ba56eb9539a4295fdaaab523cfd2a7e1587ef54
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="sizes-for-cloud-services"></a>Tailles de services cloud
-Cette rubrique décrit hello tailles et options disponibles pour les instances de rôle de Service Cloud (rôles web et worker). Il fournit également des toobe de considérations de déploiement lorsque vous planifiez toouse ces ressources. Chaque taille a un identifiant que vous placez dans votre [fichier de définition de service](cloud-services-model-and-package.md#csdef). Prix pour chaque taille sont disponibles sur hello [tarification des Services Cloud](https://azure.microsoft.com/pricing/details/cloud-services/) page.
+Cette rubrique décrit les tailles et options disponibles pour les instances de rôle de Cloud Services (rôles web et rôles de travail). Il expose également les points à prendre en considération pour le déploiement quand vous planifiez l'utilisation de ces ressources. Chaque taille a un identifiant que vous placez dans votre [fichier de définition de service](cloud-services-model-and-package.md#csdef). Les prix pour chaque taille sont disponibles sur la page de [tarification des Services Cloud](https://azure.microsoft.com/pricing/details/cloud-services/).
 
 > [!NOTE]
-> toosee connexes des limites d’Azure, consultez [abonnement Azure et limites de Service, Quotas et contraintes](../azure-subscription-service-limits.md)
+> Pour connaître les limites d'Azure associées, consultez l'article [Abonnement Azure et limites, quotas et contraintes du service](../azure-subscription-service-limits.md)
 >
 >
 
 ## <a name="sizes-for-web-and-worker-role-instances"></a>Tailles pour les instances de rôle web et de travail
-Il existe plusieurs toochoose tailles standard à partir de sur Azure. Voici des considérations quant à certaines de ces tailles :
+Azure offre le choix entre plusieurs tailles standard. Voici des considérations quant à certaines de ces tailles :
 
-* Machines virtuelles de série D sont conçues toorun les applications qui exigent une puissance de calcul et de performances de disque temporaire. Machines virtuelles de série D fournissent des processeurs plus rapides, un taux de mémoire-cœur plus élevé et un disque SSD (SSD) pour le disque temporaire de hello. Pour plus d’informations, consultez annonce de type hello sur hello Azure blog, [nouvelles tailles de Machine virtuelle de série D](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/).
-* Série Dv2, un toohello les fonctionnalités de la série D d’origine, un processeur plus puissant. Hello série Dv2 processeur est d’environ 35 % plus rapide que hello série D à l’UC. Il est basé sur hello dernière génération 2,4 GHz Intel Xeon® E5-2673 v3 (Haswell), processeur et avec hello 2.0 de la technologie Intel Turbo Boost, peuvent atteindre la too3.1 GHz. Hello Dv2 série a hello les mêmes configurations de mémoire et de disque comme hello série D.
-* Machines virtuelles de série G offrent hello plus de mémoire et s’exécuter sur les ordinateurs hôtes qui ont des processeurs de la famille Intel Xeon E5 V3.
-* machines virtuelles de série de Hello peut être déployé sur différents types de matériel et les processeurs. taille de Hello est limitée, en fonction du matériel hello, les performances du processeur cohérent toooffer pour hello instance, quel que soit le matériel hello sur qu'il est déployé en cours d’exécution. toodetermine hello physique matériel sur lequel cette taille est déployée, requête hello virtuel du matériel à partir de hello Machine virtuelle.
-* Hello taille A0 est trop sollicité sur du matériel physique de hello. Pour cette taille spécifique, les autres déploiements de client peuvent affecter les performances de hello de votre charge de travail en cours d’exécution. les performances relatives Hello sont décrite ci-dessous comme base hello attendu, variabilité approximative de sujet tooan de 15 pour cent.
+* Les machines virtuelles de la série D sont conçues pour exécuter des applications qui nécessitent une puissance de calcul et des performances de disque temporaire supérieures. Ces machines virtuelles se caractérisent par des processeurs plus rapides, un rapport mémoire-cœur plus élevé et un disque SSD pour le disque temporaire. Pour plus d’informations, voir l’annonce suivante sur le blog Azure : [Nouvelles tailles de machines virtuelles de la série D](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/)(en anglais).
+* La série Dv2, suite de la série D d’origine, comprend un processeur plus puissant. Le processeur de la série Dv2 est environ 35 % plus rapide que le processeur de la série D. Il est basé sur la dernière génération de processeur 2,4 GHz Intel Xeon® E5-2673 v3 (Haswell) et comporte la technologie 2.0 Intel Turbo Boost, et peut atteindre 3,1 GHz. La série Dv2 a les mêmes configurations de disque et de mémoire que la série D.
+* Les machines virtuelles de la série G offrent le plus de mémoire et s’exécutent sur des hôtes équipés de processeurs de la famille Intel Xeon E5 V3.
+* Les machines virtuelles de la série A peuvent être déployées sur différents types de matériels et processeurs. La taille est limitée en fonction du matériel, pour offrir des performances de processeur cohérentes pour l’instance en cours d’exécution, quel que soit le matériel sur lequel elle est déployée. Pour déterminer le matériel physique sur lequel cette taille est déployée, interrogez le matériel virtuel à partir de la machine virtuelle.
+* La taille A0 est trop sollicitée sur le matériel physique. Pour cette taille spécifique uniquement, les autres déploiements de clients peuvent affecter les performances de la charge de travail en cours d’exécution. Les performances relatives sont décrites ci-dessous comme référence attendue, soumises à une variation approximative de 15 pour cent.
 
-Hello la taille de machine virtuelle de hello affecte la tarification de hello. taille de Hello affecte également la capacité de traitement, de mémoire et de stockage hello de machine virtuelle de hello. Les coûts de stockage sont calculés séparément en fonction des pages utilisées dans le compte de stockage hello. Pour plus d’informations, voir les pages [Tarification - Services cloud](https://azure.microsoft.com/pricing/details/cloud-services/) et [Tarification - Stockage Azure](https://azure.microsoft.com/pricing/details/storage/).
+La taille de la machine virtuelle a une incidence sur la tarification. La taille influe également sur les capacités de traitement, de mémoire et de stockage de la machine virtuelle. Les coûts de stockage sont calculés séparément en fonction des pages utilisées dans le compte de stockage. Pour plus d’informations, voir les pages [Tarification - Services cloud](https://azure.microsoft.com/pricing/details/cloud-services/) et [Tarification - Stockage Azure](https://azure.microsoft.com/pricing/details/storage/).
 
-Hello suivant considérations peut-être vous aider à choisir une taille :
+Les considérations ci-dessous peuvent vous aider à choisir une taille :
 
-* Hello tailles A8-A11 et H-série sont également appelés *instances de calcul intensif*. matériel Hello qui exécute ces tailles est conçu et optimisé pour les calculs intensifs et applications, de modélisation et de simulations de cluster applications gourmandes en réseau, y compris informatique hautes performances (HPC). Hello A8-A11 série utilise Intel Xeon E5-2670 2,6 GHz et hello H-series v3 Intel Xeon E5-2667 @ 3,2 GHz. Pour plus d’informations et pour connaître les éléments à prendre en considération sur l’utilisation de ces tailles, consultez [Tailles de machines virtuelles de calcul haute performance](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* Les tailles A8 à A11 et celles de la série H sont également appelées *instances nécessitant beaucoup de ressources système*. Le matériel qui exécute ces tailles a été conçu et optimisé pour les applications nécessitant beaucoup de ressources système et réseau, notamment les applications en cluster pour des calculs complexes, la modélisation et les simulations. La série A8-A11 utilise un processeur Intel Xeon E5-2670 cadencé à 2,6 GHZ, et la série H un processeur Intel Xeon E5-2667 v3 cadencé à 3,2 GHz. Pour plus d’informations et pour connaître les éléments à prendre en considération sur l’utilisation de ces tailles, consultez [Tailles de machines virtuelles de calcul haute performance](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 * Les séries Dv2, D et G sont idéales pour les applications qui exigent des processeurs plus rapides, de meilleures performances de disque local, ou qui ont des exigences de mémoire plus élevées. Elles offrent une combinaison puissante pour de nombreuses applications professionnelles.
-* Certains des hôtes physiques hello des centres de données Azure incompatibles avec les grandes tailles de machine virtuelle, telles que A5 à A11. Par conséquent, vous pouvez voir le message d’erreur hello **virtuels n’a pas pu tooconfigure {nom de l’ordinateur}** ou **virtuels n’a pas pu toocreate {nom de l’ordinateur}** lors du redimensionnement d’un nouveau de tooa ordinateur virtuel existant taille ; Création d’un nouvel ordinateur virtuel dans un réseau virtuel créé avant le 16 avril 2013 ; ou l’ajout d’un ordinateur virtuel tooan existant service cloud. Consultez [erreur : « Ordinateur virtuel de tooconfigure échec »](https://social.msdn.microsoft.com/Forums/9693f56c-fcd3-4d42-850e-5e3b56c7d6be/error-failed-to-configure-virtual-machine-with-a5-a6-or-a7-vm-size?forum=WAVirtualMachinesforWindows) sur le forum de support hello pour les solutions de contournement pour chaque scénario de déploiement.
-* Votre abonnement peut également limiter hello nombre de cœurs, que vous pouvez déployer dans certaines familles de taille. tooincrease un quota, contactez le Support de Azure.
+* Certains hôtes physiques des centres de données Azure ne prennent pas en charge les tailles de machines virtuelles élevées, comme A5 à A11. Ainsi, vous pouvez obtenir le message d’erreur **Échec de la configuration de la machine virtuelle {nom de la machine}** ou **Échec de la création de la machine virtuelle {nom de la machine}** pendant le redimensionnement d’une machine virtuelle existante, la création d’une machine virtuelle dans un réseau virtuel créé avant le 16 avril 2013 ou l’ajout d’une nouvelle machine virtuelle à un service cloud existant. Pour découvrir les solutions de contournement pour chaque scénario de déploiement, consultez [Erreur : « Échec de la configuration de la machine virtuelle »](https://social.msdn.microsoft.com/Forums/9693f56c-fcd3-4d42-850e-5e3b56c7d6be/error-failed-to-configure-virtual-machine-with-a5-a6-or-a7-vm-size?forum=WAVirtualMachinesforWindows) (en anglais) sur le forum d'assistance.
+* Il se peut également que votre abonnement limite le nombre de cœurs que vous pouvez déployer dans certaines familles de taille. Pour augmenter un quota, contactez le support technique Azure.
 
 ## <a name="performance-considerations"></a>Considérations relatives aux performances
-Nous avons créé concept hello de hello unité de calcul de Azure (ACU) tooprovide un moyen de comparer les performances de calcul (processeur) entre les références (SKU) de Azure et tooidentify qui référence (SKU) est plus probable toosatisfy les performances de vos besoins.  L’unité ACU est actuellement normalisée sur une machine virtuelle de petite taille (Standard_A1) correspondant à 100, et toutes les autres références représentent ensuite approximativement la rapidité avec laquelle la référence en question peut exécuter un test d’évaluation.
+Nous avons créé le concept d’unité de calcul Azure (ACU) pour pouvoir comparer les performances de calcul (UC) des références Azure et identifier la référence qui pourra satisfaire au mieux vos besoins en matière de performances.  L’unité ACU est actuellement normalisée sur une machine virtuelle de petite taille (Standard_A1) correspondant à 100, et toutes les autres références représentent ensuite approximativement la rapidité avec laquelle la référence en question peut exécuter un test d’évaluation.
 
 > [!IMPORTANT]
-> Hello ACU n'est qu’une indication. résultats Hello pour votre charge de travail peuvent varier.
+> Cette unité ACU est fournie uniquement à titre indicatif. Les résultats de votre charge de travail peuvent varier.
 >
 >
 
@@ -69,15 +69,15 @@ Nous avons créé concept hello de hello unité de calcul de Azure (ACU) tooprov
 | [G1-5](#g-series) |180 - 240* |
 | [H](#h-series) |290 - 300* |
 
-ACUs marqués avec un * utiliser Intel® Turbo technologie tooincrease processeur fréquence et fournir une amélioration des performances. Hello quantité de renforcement de hello peut varier en fonction de la taille de machine virtuelle hello, de charge de travail et d’autres charges de travail en cours d’exécution sur hello même hôte.
+Les unités ACU signalées par un astérisque (*) utilisent la technologie Intel ® Turbo pour augmenter la fréquence du processeur et améliorer les performances. Cette amélioration des performances peut varier en fonction de la taille et de la charge de travail de la machine virtuelle, et des autres charges de travail en cours d’exécution sur le même hôte.
 
 ## <a name="size-tables"></a>Tableaux des tailles
-Hello tableaux suivants indiquent les tailles de hello et ils fournissent des capacités de hello.
+Les tableaux ci-après indiquent les tailles et les capacités qu’elles offrent.
 
-* La capacité de stockage est indiquée en unités de Gio ou 1 024^3 octets. Lorsque la comparaison des disques exprimée en Go (1000 ^ 3 octets) toodisks mesurée en Gio (1024 ^ 3) souvenez-vous que les numéros de capacité dans Gio peuvent sembler inférieures. Par exemple, 1 023 Gio = 1 098,4 Go
+* La capacité de stockage est indiquée en unités de Gio ou 1 024^3 octets. Lors de la comparaison de disques mesurés en Go (1 000^3 octets) à des disques mesurés en Gio (1 024^3) n’oubliez pas que les indications de capacité en Gio peuvent sembler plus petites. Par exemple, 1 023 Gio = 1 098,4 Go
 * Le débit de disque est mesuré en opérations d’entrée/sortie par seconde (IOPS) et Mbits/s où Mbits/s = 10^6 octets par seconde.
-* Les disques de données peuvent fonctionner en mode avec ou sans mise en cache. Pour l’opération de disque de données mises en cache, le mode de cache hôte hello est défini trop**ReadOnly** ou **ReadWrite**. Pour l’opération de disque de données non mis en cache, le mode de cache hôte hello est défini trop**aucun**.
-* Bande passante réseau maximale est hello agrégées la bande passante maximale allouée et attribuée par le type de machine virtuelle. la bande passante maximale de Hello fournit des conseils pour la sélection de hello droite VM type tooensure une capacité réseau adéquate sont disponible. Lors du déplacement entre faible, modéré, haute et très élevée, le débit de hello augmente en conséquence. Les performances réseau réelles dépendent de nombreux facteurs, notamment les charges du réseau et de l’application, ainsi que les paramètres réseau de l’application.
+* Les disques de données peuvent fonctionner en mode avec ou sans mise en cache. En cas de fonctionnement du disque de données avec mise en cache, le mode de mise en cache hôte est défini sur **ReadOnly** ou **ReadWrite**. En cas de fonctionnement du disque de données sans mise en cache, le mode de mise en cache hôte est défini sur **Aucun**.
+* La bande passante réseau maximale est la bande passante maximale agrégée allouée et affectée par type de machine virtuelle. La bande passante maximale fournit des recommandations pour la sélection du bon type de machine virtuelle afin de garantir une capacité réseau adéquate. Lorsque vous évoluez entre Faible, Modéré, Élevé et Très élevé, le débit augmente en conséquence. Les performances réseau réelles dépendent de nombreux facteurs, notamment les charges du réseau et de l’application, ainsi que les paramètres réseau de l’application.
 
 ## <a name="a-series"></a>Série A
 | Taille            | Cœurs d’unité centrale | Mémoire : Gio  | Disque dur local : Gio       | Cartes réseau (max)/Bande passante réseau |
@@ -152,9 +152,9 @@ Pour plus d’informations et pour connaître les éléments à prendre en consi
 | Standard_G5     | 32        | 448          | 6 144                |8 / Extrêmement élevée |
 
 ## <a name="h-series"></a>Série H
-Machines virtuelles de série H sont hello prochaine génération informatiques hautes performances que machines virtuelles destinées à des besoins de calcul haut de gamme, telles que la modélisation moléculaire et fluides. Ces 8 et 16 noyaux VM reposent sur la technologie de processeur hello Intel Haswell E5-2667 V3 DDR4 mémoire et de stockage SSD local.
+Les machines virtuelles de la série H sont des machines virtuelles de calcul haute performance de nouvelles génération, destinées à répondre à des besoins de calcul de haut niveau, par exemple en relation avec la modélisation moléculaire et la dynamique des fluides. Les machines virtuelles à 8 et 16 cœurs reposent sur la technologie de processeur Intel Haswell E5-2667 V3 avec mémoire DDR4 et stockage SSD local.
 
-De plus toohello substantielle puissance de l’UC, hello H-series propose diverses options de mise en réseau RDMA de latence faible à l’aide de Verification InfiniBand et plusieurs configurations toosupport mémoire intensif calcul besoins en mémoire.
+En plus de la puissance substantielle du processeur, la série H offre différentes options pour des réseaux RDMA à faible latence, en utilisant FDR InfiniBand et plusieurs configurations de mémoire pouvant satisfaire des exigences de calcul nécessitant une mémoire conséquente.
 
 | Taille            | Cœurs d’unité centrale | Mémoire : Gio  | SSD local = Gio       | Cartes réseau (max)/Bande passante réseau |
 |---------------- | --------- | ------------ | -------------------- | ---------------------------- |
@@ -168,9 +168,9 @@ De plus toohello substantielle puissance de l’UC, hello H-series propose diver
 \*Compatible RDMA
 
 ## <a name="configure-sizes-for-cloud-services"></a>Configurer les tailles pour les Cloud Services
-Vous pouvez spécifier la taille de Machine virtuelle hello d’une instance de rôle dans le cadre du modèle de service hello décrite par hello [fichier de définition de service](cloud-services-model-and-package.md#csdef). taille Hello du rôle de hello détermine le nombre hello de cœurs du processeur, la capacité de mémoire hello et taille de système de fichiers local hello est allouée tooa instance en cours d’exécution. Choisissez la taille de rôle hello selon la spécification de ressources de votre application.
+Vous pouvez spécifier la taille de l’ordinateur virtuel d’une instance de rôle dans le cadre du modèle de service décrit par le [fichier de définition de service](cloud-services-model-and-package.md#csdef). La taille du rôle détermine le nombre de cœurs du processeur, la capacité de mémoire et la taille du système de fichiers local qui lui est allouée. Choisissez la taille du rôle en fonction des besoins en ressources de votre application.
 
-Voici un exemple de configuration hello rôle taille toobe [Standard_D2](#general-purpose-d) pour une instance de rôle Web :
+Voici un exemple qui montre comment configurer un rôle avec la taille [Standard_D2](#general-purpose-d) pour une instance de rôle web :
 
 ```xml
 <WorkerRole name="Worker1" vmsize="Standard_D2">
@@ -178,17 +178,17 @@ Voici un exemple de configuration hello rôle taille toobe [Standard_D2](#genera
 </WorkerRole>
 ```
 
-## <a name="changing-hello-size-of-an-existing-role"></a>Modification de la taille de hello d’un rôle existant
+## <a name="changing-the-size-of-an-existing-role"></a>Modification de la taille d’un rôle existant
 
-En tant que caractère hello de votre charge de travail change ou les nouvelles tailles de machine virtuelle sont disponibles, vous souhaiterez taille de hello toochange de votre rôle. toodo, vous devez donc modifier la taille de machine virtuelle hello dans votre fichier de définition de service (comme indiqué ci-dessus), réorganiser votre Service Cloud et le déployer. Il n’est pas possible toochange les tailles de machine virtuelle directement à partir de hello portail ou de PowerShell.
+À mesure que la nature des modifications de votre charge de travail évolue, ou si de nouvelles tailles de machine virtuelle sont disponibles, vous pouvez souhaiter modifier la taille de votre rôle. Pour ce faire, vous devez modifier la taille de machine virtuelle dans votre fichier de définition de service (comme indiqué ci-dessus), ré-empaqueter votre Service Cloud et le déployer. Il n’est pas possible de modifier la taille d’une machine virtuelle directement à partir du portail ou de PowerShell.
 
 >[!TIP]
-> Vous souhaiterez toouse différentes tailles de machine virtuelle pour votre rôle dans des environnements différents (par exemple). test ou production). Une façon toodo cela est toocreate plusieurs fichiers de définition (.csdef) de service dans votre projet, puis créer des packages de service par l’environnement de cloud computing différent lors de la génération automatisée à l’aide d’outil de CSPack hello. package de services toolearn en savoir plus sur les éléments d’un cloud de hello et toocreate, voir [Nouveautés cloud de hello services modèle et comment il package ?](cloud-services-model-and-package.md)
+> Vous devrez peut-être utiliser différentes tailles de machine virtuelle pour votre rôle dans différents environnements (par exemple : test ou production). Une manière de procéder consiste à créer plusieurs fichiers de définition de service (.csdef) dans votre projet, puis à créer différents packages de service cloud par environnement au cours de la génération automatisée à l’aide de l’outil CSPack. Pour en savoir plus sur les éléments d’un package de services cloud et comment les créer, consultez la rubrique [Qu’est-ce que le modèle Cloud Service, et comment en créer un package ?](cloud-services-model-and-package.md)
 >
 >
 
 ## <a name="get-a-list-of-sizes"></a>Obtenir une liste des tailles
-Vous pouvez utiliser PowerShell ou hello API REST tooget une liste de tailles. Hello API REST est documenté [ici](https://msdn.microsoft.com/library/azure/dn469422.aspx). Bonjour de code suivant est une commande PowerShell qui répertorie toutes les tailles de hello actuellement disponibles pour votre Service Cloud.
+PowerShell ou l’API REST permet d’obtenir la liste des tailles. L’API REST est présentée [ici](https://msdn.microsoft.com/library/azure/dn469422.aspx). Le code suivant est une commande PowerShell qui répertorie les tailles disponibles pour votre Service Cloud.
 
 ```powershell
 Get-AzureRoleSize | where SupportedByWebWorkerRoles -eq $true | select InstanceSize

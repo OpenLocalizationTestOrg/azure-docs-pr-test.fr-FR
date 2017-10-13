@@ -1,6 +1,6 @@
 ---
-title: "aaaDebug Apache Spark des travaux en cours d’exécution sur Azure HDInsight | Documents Microsoft"
-description: "Utiliser l’interface utilisateur des fils Spark UI, tâches et Spark historique server tootrack et de débogage en cours d’exécution sur un cluster Spark dans Azure HDInsight"
+title: "Déboguer des travaux Apache Spark en cours d’exécution sur Azure HDInsight | Documents Microsoft"
+description: "Utilisez l’interface utilisateur YARN, l’interface utilisateur Spark et le serveur d’historique Spark pour suivre et déboguer les tâches en cours d’exécution sur un cluster Spark dans Azure HDInsight"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,103 +16,103 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: nitinme
-ms.openlocfilehash: 33d352a5773920735aa4e5e8532b78122f381377
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bf66757cc9439a969c9f28abc0b95055ff697c3b
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="debug-apache-spark-jobs-running-on-azure-hdinsight"></a>Déboguer des travaux Apache Spark en cours d’exécution sur Azure HDInsight
 
-Dans cet article, vous allez apprendre comment tootrack et débogage et des travaux en cours d’exécution sur des clusters HDInsight à l’aide de hello fils UI, interface utilisateur Spark et hello du serveur de l’historique de Spark. Pour cet article, nous allons commencer un travail Spark à l’aide d’un ordinateur portable disponible avec le cluster Spark de hello, **apprentissage : l’analyse prédictive sur les données d’inspection de produits alimentaires à l’aide de MLLib**. Vous pouvez utiliser les étapes de hello ci-dessous tootrack une application que vous avez envoyé à l’aide de n’importe quel autre approche, par exemple, **spark-submit**.
+Cet article explique comment suivre et déboguer des travaux Spark en cours d’exécution sur des clusters HDInsight à l’aide de l’interface utilisateur YARN, de l’interface utilisateur Spark et du serveur d’historique Spark. Nous allons lancer un travail Spark à partir d’un bloc-notes disponible avec le cluster Spark, **Machine Learning : analyse prédictive des données d’inspections alimentaires à l’aide de MLLib**. Vous pouvez utiliser les étapes ci-dessous pour effectuer le suivi d’une application que vous avez envoyée selon une autre méthode, par exemple, **spark-submit**.
 
 ## <a name="prerequisites"></a>Composants requis
-Vous devez disposer de hello :
+Vous devez disposer des éléments suivants :
 
 * Un abonnement Azure. Consultez la page [Obtention d’un essai gratuit d’Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
 * Un cluster Apache Spark sur HDInsight. Pour obtenir des instructions, consultez [Création de clusters Apache Spark dans Azure HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md).
-* Démarrez bloc-notes de hello, en cours d’exécution  **[apprentissage : l’analyse prédictive sur les données d’inspection de produits alimentaires à l’aide de MLLib](hdinsight-apache-spark-machine-learning-mllib-ipython.md)**. Pour obtenir des instructions sur la façon de toorun ce bloc-notes, suivez hello lien.  
+* Vous devez normalement avoir commencé à exécuter le bloc-notes, **[Machine Learning : analyse prédictive des données d’inspections alimentaires à l’aide de MLLib](hdinsight-apache-spark-machine-learning-mllib-ipython.md)**. Pour obtenir des instructions sur l’exécution de ce bloc-notes, suivez le lien.  
 
-## <a name="track-an-application-in-hello-yarn-ui"></a>Effectuer le suivi d’une application Bonjour fils UI
-1. Lancez hello fils UI. Dans le panneau de cluster hello, cliquez sur **tableau de bord de Cluster**, puis cliquez sur **fils**.
+## <a name="track-an-application-in-the-yarn-ui"></a>Effectuer le suivi d’une application dans l’interface utilisateur YARN
+1. Lancez l’interface utilisateur YARN. Dans le panneau du cluster, cliquez sur **Tableau de bord du cluster**, puis sur **YARN**.
    
     ![Lancer l’interface utilisateur Yarn](./media/hdinsight-apache-spark-job-debugging/launch-yarn-ui.png)
    
    > [!TIP]
-   > Ou bien, vous pouvez également lancer hello l’interface utilisateur des fils de hello Ambari UI. toolaunch hello Ambari UI, à partir du Panneau de cluster hello, cliquez sur **tableau de bord de Cluster**, puis cliquez sur **tableau de bord de Cluster HDInsight**. À partir de hello Ambari UI, cliquez sur **fils**, cliquez sur **liens rapides**et cliquez sur Gestionnaire de ressources actif hello, puis cliquez sur **ResourceManager UI**.    
+   > Vous pouvez également lancer l’interface utilisateur de YARN à partir de celle d’Ambari. Pour lancer l’interface utilisateur d’Ambari, dans le panneau du cluster, cliquez sur **Tableau de bord du cluster**, puis sur **Tableau de bord de cluster HDInsight**. À partir de l’interface utilisateur d’Ambari, cliquez successivement sur **YARN**, **Quick Links** (Liens rapides), le gestionnaire de ressources actif et **ResourceManager UI** (IU de ResourceManager).    
    > 
    > 
-2. Étant donné que vous avez démarré la tâche de Spark hello Notebook portables, application hello a le nom de hello **remotesparkmagics** (il s’agit de nom hello pour toutes les applications qui sont démarrées à partir d’ordinateurs portables de hello). Cliquez sur ID de l’application hello contre tooget de nom d’application hello plus d’informations sur la tâche de hello. Cette opération lance le mode d’application hello.
+2. Étant donné que vous avez démarré le travail Spark à l’aide des blocs-notes Jupyter, l’application porte le nom **remotesparkmagics** (nom de toutes les applications démarrées à partir du bloc-notes). Cliquez sur l’ID d’application en regard du nom de l’application pour obtenir plus d’informations sur le travail. Cette action lance la vue de l’application.
    
     ![Rechercher l’ID d’application Spark](./media/hdinsight-apache-spark-job-debugging/find-application-id.png)
    
-    Pour de telles applications lancées à partir d’ordinateurs portables de hello Notebook, état de hello est toujours **en cours d’exécution** jusqu'à ce que vous quittiez bloc-notes de hello.
-3. Vue d’application hello, vous pouvez descendre davantage toofind conteneurs hello associé hello hello journaux des applications et (stdout/stderr). Vous pouvez également lancer hello Spark UI en cliquant sur hello liaison correspondante toohello **URL de suivi**, comme illustré ci-dessous. 
+    Pour les applications lancées à partir des bloc-notes Jupyter, l’état est toujours **EN COURS D’EXÉCUTION** tant que vous ne fermez pas le bloc-notes.
+3. Dans la vue de l’application, vous pouvez descendre pour rechercher les conteneurs associés à l’application et aux journaux (stdout/stderr). Vous pouvez également lancer l’interface utilisateur Spark en cliquant sur le lien qui correspond à l’ **URL de suivi**, comme indiqué ci-dessous. 
    
     ![Télécharger les journaux de conteneur](./media/hdinsight-apache-spark-job-debugging/download-container-logs.png)
 
-## <a name="track-an-application-in-hello-spark-ui"></a>Effectuer le suivi d’une application Bonjour Spark UI
-Bonjour Spark UI, vous pouvez descendre dans les travaux de Spark hello qui est générées par l’application hello lancée précédemment.
+## <a name="track-an-application-in-the-spark-ui"></a>Effectuer le suivi d’une application dans l’interface utilisateur Spark
+Dans l’interface utilisateur Spark, vous pouvez explorer les travaux Spark générés par l’application que vous avez démarrée précédemment.
 
-1. toolaunch hello Spark UI, à partir de la vue d’application hello, cliquez sur le lien hello contre hello **URL de suivi**, comme illustré dans la capture d’écran hello ci-dessus. Vous pouvez voir tous les travaux de Spark hello qui sont lancées par l’application hello en cours d’exécution dans un bloc-notes jupyter de hello.
+1. Pour lancer l’interface utilisateur Spark, dans la vue de l’application, cliquez sur le lien **URL de suivi**, comme illustré dans la capture d’écran ci-dessus. Vous pouvez y voir tous les travaux Spark lancés par l’application en cours d’exécution dans le bloc-notes Jupyter.
    
     ![Afficher les travaux Spark](./media/hdinsight-apache-spark-job-debugging/view-spark-jobs.png)
-2. Cliquez sur hello **exécuteurs** toosee les informations de traitement et de stockage pour chaque exécuteur de l’onglet. Vous pouvez également récupérer la pile des appels hello en cliquant sur hello **de threads de vidage** lien.
+2. Cliquez sur l’onglet **Exécuteurs** pour consulter les informations de traitement et de stockage pour chaque exécuteur. Vous pouvez également récupérer la pile des appels en cliquant sur le lien **Thread Dump** .
    
     ![Afficher les exécuteurs Spark](./media/hdinsight-apache-spark-job-debugging/view-spark-executors.png)
-3. Cliquez sur hello **étapes** onglet étapes de hello toosee associés application hello.
+3. Cliquez sur l’onglet **Étapes** pour consulter les étapes de l’application.
    
     ![Afficher les étapes Spark](./media/hdinsight-apache-spark-job-debugging/view-spark-stages.png)
    
     Chaque étape peut comporter plusieurs tâches dont vous pouvez afficher les statistiques d’exécution, comme illustré ci-dessous.
    
     ![Afficher les étapes Spark](./media/hdinsight-apache-spark-job-debugging/view-spark-stages-details.png) 
-4. À partir de la page de détails de l’étape hello, vous pouvez lancer visualisation de DAG. Développez hello **DAG visualisation** lier en hello haut hello, comme indiqué ci-dessous.
+4. Dans la page de détails de l’étape, vous pouvez lancer la visualisation DAG. Développez le lien **DAG Visualization** (Visualisation DAG) situé en haut de la page, comme indiqué ci-dessous.
    
     ![Afficher la visualisation DAG des étapes Spark](./media/hdinsight-apache-spark-job-debugging/view-spark-stages-dag-visualization.png)
    
-    DAG ou Direct Aclyic graphique représente hello différentes étapes application hello. Chaque zone bleue dans le graphique de hello représente une opération de Spark appelée à partir de l’application hello.
-5. À partir de la page de détails de l’étape hello, vous pouvez également lancer d’affichage de la chronologie application hello. Développez hello **événement chronologie** lier en hello haut hello, comme indiqué ci-dessous.
+    Le graphique DAG (Direct Aclyic Graph) représente les différentes étapes de l’application. Chaque rectangle bleu dans le graphique représente une opération Spark appelée à partir de l’application.
+5. Dans la page de détails de l’étape, vous pouvez également lancer la vue Chronologie de l’application. Développez le lien **Event Timeline** (Chronologie de l’événement) situé en haut de la page, comme indiqué ci-dessous.
    
     ![Afficher la chronologie d’événement des étapes Spark](./media/hdinsight-apache-spark-job-debugging/view-spark-stages-event-timeline.png)
    
-    Cela affiche les événements de Spark hello sous forme de hello d’une chronologie. affichage de la chronologie Hello est disponible à trois niveaux, sur les travaux, au sein d’un travail et d’une étape. image Hello ci-dessus capture chronologie hello pour une étape donnée.
+    Vous obtenez les événements Spark sous la forme d’une chronologie. La vue chronologie est disponible sur trois niveaux : entre différents travaux, dans un travail et dans une étape. L’image ci-dessus capture la vue chronologie pour une étape donnée.
    
    > [!TIP]
-   > Si vous sélectionnez hello **activer le zoom avant** case à cocher, vous pouvez faire défiler gauche et droite sur l’affichage de la chronologie hello.
+   > Si vous cochez la case **Activer le zoom** , vous pouvez faire défiler la vue chronologie vers la gauche et vers la droite.
    > 
    > 
-6. Autres onglets de hello Spark UI fournissent des informations utiles sur l’instance de Spark hello également.
+6. Les autres onglets de l’interface utilisateur Spark fournissent également des informations utiles sur l’instance Spark.
    
-   * Onglet stockage - si votre application crée une RDDs, vous trouverez plus d’informations sur celles figurant dans l’onglet de stockage hello.
-   * Onglet environnement - cet onglet fournit de nombreuses informations utiles sur votre instance de Spark telles que hello 
+   * Onglet Stockage : si votre application crée des RDD, vous trouverez des informations à ce sujet sous l’onglet Stockage.
+   * Onglet Environnement : cet onglet fournit de nombreuses informations utiles concernant votre instance Spark, par exemple : 
      * version de Scala ;
-     * Répertoire de journal des événements associé au cluster de hello
-     * Nombre de cœurs de l’exécuteur de l’application hello
+     * répertoire du journal des événements associé au cluster ;
+     * nombre de cœurs d’exécuteur de l’application ;
      * etc.
 
-## <a name="find-information-about-completed-jobs-using-hello-spark-history-server"></a>Rechercher des informations sur les travaux terminés à l’aide de hello Spark historique serveur
-Une fois qu’une tâche est terminée, hello plus d’informations sur les travaux hello sont conservés dans hello Spark historique serveur.
+## <a name="find-information-about-completed-jobs-using-the-spark-history-server"></a>Rechercher des informations sur les tâches terminées à l’aide du serveur d’historique Spark
+Une fois qu’un travail est terminé, les informations concernant ce travail sont conservées dans le serveur d’historique Spark.
 
-1. toolaunch hello Spark Server de l’historique, à partir du Panneau de cluster hello, cliquez sur **tableau de bord de Cluster**, puis cliquez sur **Spark historique Server**.
+1. Pour lancer le serveur d’historique Spark, dans le panneau du cluster, cliquez sur **Tableau de bord du cluster**, puis cliquez sur **Serveur d’historique Spark**.
    
     ![Lancer le serveur d’historique Spark](./media/hdinsight-apache-spark-job-debugging/launch-spark-history-server.png)
    
    > [!TIP]
-   > Ou bien, vous pouvez également lancer hello l’interface utilisateur du serveur Spark historique à partir de hello Ambari UI. toolaunch hello Ambari UI, à partir du Panneau de cluster hello, cliquez sur **tableau de bord de Cluster**, puis cliquez sur **tableau de bord de Cluster HDInsight**. À partir de hello Ambari UI, cliquez sur **Spark**, cliquez sur **liens rapides**, puis cliquez sur **l’interface utilisateur du serveur Spark historique**.
+   > Vous pouvez également lancer l’interface utilisateur du serveur d’historique Spark à partir de celle d’Ambari. Pour lancer l’interface utilisateur d’Ambari, dans le panneau du cluster, cliquez sur **Tableau de bord du cluster**, puis sur **Tableau de bord de cluster HDInsight**. À partir de l’interface utilisateur Ambari, cliquez sur **Spark**, **Quick Links** (Liens rapides), puis cliquez sur **Spark History Server UI** (Interface utilisateur du serveur d’historique Spark).
    > 
    > 
-2. Vous verrez toutes les applications hello terminée répertoriées. Cliquez sur un toodrill de ID d’application vers le bas dans une application pour plus d’informations.
+2. Les applications terminées s’affichent dans une liste. Cliquez sur un ID d’application pour obtenir plus d’informations sur l’application.
    
     ![Lancer le serveur d’historique Spark](./media/hdinsight-apache-spark-job-debugging/view-completed-applications.png)
 
 ## <a name="see-also"></a>Voir aussi
-*  [Gérer les ressources de cluster d’Apache Spark hello dans Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
+*  [Gérer les ressources du cluster Apache Spark dans Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
 
 ### <a name="for-data-analysts"></a>Pour les analystes de données
 
-* [Spark avec Machine Learning : utilisez Spark dans HDInsight pour l’analyse de la température des bâtiments à l’aide des données des systèmes HVAC](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark avec Machine Learning : Spark utilisation dans résultats de l’inspection alimentaires toopredict HDInsight](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark avec Machine Learning : Utiliser Spark dans HDInsight pour l’analyse de la température de bâtiments à l’aide de données HVAC](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
+* [Spark avec Machine Learning : Utiliser Spark dans HDInsight pour prédire les résultats de l’inspection des aliments](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Analyse des journaux de site web à l’aide de Spark dans HDInsight](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 * [Application Insight telemetry data analysis using Spark in HDInsight (Analyse des données de télémétrie Application Insight à l’aide de Spark dans HDInsight)](hdinsight-spark-analyze-application-insight-logs.md)
 * [Utiliser Caffe sur Azure HDInsight Spark pour une formation approfondie échelonnée](hdinsight-deep-learning-caffe-spark.md)
@@ -120,13 +120,13 @@ Une fois qu’une tâche est terminée, hello plus d’informations sur les trav
 ### <a name="for-spark-developers"></a>Pour les développeurs Spark
 
 * [Créer une application autonome avec Scala](hdinsight-apache-spark-create-standalone-application.md)
-* [Exécution de travaux à distance avec Livy sur un cluster Spark](hdinsight-apache-spark-livy-rest-interface.md)
-* [Utiliser le plug-in des outils HDInsight pour IntelliJ idée toocreate et soumettre des applications de Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Exécuter des tâches à distance avec Livy sur un cluster Spark](hdinsight-apache-spark-livy-rest-interface.md)
+* [Utilisation du plugin d’outils HDInsight pour IntelliJ IDEA pour créer et soumettre des applications Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
 * [Streaming Spark : Utiliser Spark dans HDInsight pour créer des applications de diffusion en continu en temps réel](hdinsight-apache-spark-eventhub-streaming.md)
-* [Utiliser des plug-in des outils HDInsight pour les applications de Spark toodebug IntelliJ idée à distance](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Use HDInsight Tools Plugin for IntelliJ IDEA to debug Spark applications remotely) (Utiliser le plug-in Outils HDInsight pour IntelliJ IDEA pour déboguer des applications Spark à distance)](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [Utiliser des bloc-notes Zeppelin avec un cluster Spark sur HDInsight](hdinsight-apache-spark-zeppelin-notebook.md)
 * [Noyaux disponibles pour le bloc-notes Jupyter dans un cluster Spark pour HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Utiliser des packages externes avec les blocs-notes Jupyter](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [Installer Notebook sur votre ordinateur et vous connecter tooan cluster HDInsight Spark](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Install Jupyter on your computer and connect to an HDInsight Spark cluster (Installer Jupyter sur un ordinateur et se connecter au cluster Spark sur HDInsight)](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 

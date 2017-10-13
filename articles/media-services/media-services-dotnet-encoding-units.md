@@ -1,6 +1,6 @@
 ---
-title: "support aaaScale du traitement en ajoutant des unités d’encodage - Azure |  Documents Microsoft"
-description: "Découvrez comment unités d’encodage tooadd toohow avec .NET"
+title: "Mettre à l’échelle le traitement multimédia en ajoutant des unités d’encodage - Azure | Microsoft Docs"
+description: "Découvrez comment ajouter des unités d’encodage avec .NET"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako;milangada;
-ms.openlocfilehash: b9f71a6487c5d136319a38a1598d60edfaa81b9e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 72a8729d22a9e76c8076d7a3347619a2163e4f09
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-tooscale-encoding-with-net-sdk"></a>Comment tooscale encodage avec le Kit de développement .NET
+# <a name="how-to-scale-encoding-with-net-sdk"></a>Mise à l’échelle de l’encodage avec le Kit de développement logiciel (SDK) .NET
 > [!div class="op_single_selector"]
 > * [Portail](media-services-portal-scale-media-processing.md)
 > * [.NET](media-services-dotnet-encoding-units.md)
@@ -32,14 +32,14 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="overview"></a>Vue d'ensemble
 > [!IMPORTANT]
-> Assurez-vous que tooreview hello [vue d’ensemble](media-services-scale-media-processing-overview.md) rubrique tooget plus d’informations sur la mise à l’échelle de media du traitement de rubrique.
+> Pour obtenir plus d’informations sur la mise à l’échelle du traitement multimédia, consultez la rubrique de [présentation](media-services-scale-media-processing-overview.md) .
 > 
 > 
 
-toochange hello réservé hello et type de numéro d’unité d’encodage des unités réservées à l’aide du Kit de développement .NET, hello suivant :
+Pour modifier le type d’unité réservée et le nombre d’unités réservées d’encodage à l’aide du Kit de développement logiciel (SDK) .NET, procédez comme suit :
 
     IEncodingReservedUnit encodingS1ReservedUnit = _context.EncodingReservedUnits.FirstOrDefault();
-    encodingS1ReservedUnit.ReservedUnitType = ReservedUnitType.Basic; // Corresponds tooS1
+    encodingS1ReservedUnit.ReservedUnitType = ReservedUnitType.Basic; // Corresponds to S1
     encodingS1ReservedUnit.Update();
     Console.WriteLine("Reserved Unit Type: {0}", encodingS1ReservedUnit.ReservedUnitType);
 
@@ -49,20 +49,20 @@ toochange hello réservé hello et type de numéro d’unité d’encodage des u
     Console.WriteLine("Number of reserved units: {0}", encodingS1ReservedUnit.CurrentReservedUnits);
 
 ## <a name="opening-a-support-ticket"></a>Ouverture d'un ticket de support
-Par défaut, chaque compte Media Services peut évoluer tooup too25 encodage et 5 à la demande de diffusion en continu unités réservées. Vous pouvez demander une limite supérieure en ouvrant un ticket de support.
+Par défaut, chaque compte Media Services a une capacité maximale de 25 unités réservées d'encodage et 5 unités réservées de streaming à la demande. Vous pouvez demander une limite supérieure en ouvrant un ticket de support.
 
 ### <a name="open-a-support-ticket"></a>Ouverture d’un ticket de support
-tooopen un ticket de support hello suivant :
+Pour ouvrir un ticket de support, procédez comme suit :
 
-1. Cliquez sur [Obtenir un support](https://manage.windowsazure.com/?getsupport=true). Si vous n’êtes pas connecté, vous allez être invité à tooenter vos informations d’identification.
+1. Cliquez sur [Obtenir un support](https://manage.windowsazure.com/?getsupport=true). Si vous n'êtes pas connecté, vous devrez entrer vos informations d'identification.
 2. Sélectionnez votre abonnement.
 3. Sous le type de support, sélectionnez « Technique ».
 4. Cliquez sur « Créer un ticket ».
-5. Sélectionnez « Azure Media Services » dans la liste des produits hello présentées sur la page suivante de hello.
+5. Sélectionnez « Azure Media Services » dans la liste de produits affichée sur la page suivante.
 6. Sélectionnez un « type de problème » approprié pour votre problème.
 7. Cliquez sur Continuer.
 8. Suivez les instructions de la page suivante, puis entrez les détails relatifs à votre problème.
-9. Cliquez sur Envoyer un ticket de hello tooopen.
+9. Cliquez sur Envoyer pour ouvrir le ticket.
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

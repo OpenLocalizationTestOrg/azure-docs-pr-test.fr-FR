@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing souhaité état Configuration avec des machines virtuelles identiques | Documents Microsoft"
-description: "À l’aide de machines virtuelles identiques avec hello extensions Azure DSC"
+title: "Utilisation de la configuration d’état souhaité avec des groupes de machines virtuelles identiques | Microsoft Docs"
+description: "Utilisation des groupes identiques de machines virtuelles avec l’extension DSC Azure"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: zjalexander
@@ -16,17 +16,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: na
 ms.date: 04/05/2017
 ms.author: zachal
-ms.openlocfilehash: a35f1ca6700aa4889978032aa512882db50d6573
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b61b0acf3072569ab733a13defb465c921d26187
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="using-virtual-machine-scale-sets-with-hello-azure-dsc-extension"></a>À l’aide de machines virtuelles identiques avec hello extensions Azure DSC
-[Machines virtuelles identiques](virtual-machine-scale-sets-overview.md) peut être utilisé avec hello [Configuration d’état souhaité (DSC) Azure](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) Gestionnaire d’extensions. Machines virtuelles identiques fournissent un moyen toodeploy et gérer un grand nombre d’ordinateurs virtuels et peuvent être distribuées configurées et l’extraction de tooload de réponse. DSC est utilisé tooconfigure hello machines virtuelles lorsqu’elles s’en ligne afin qu’ils exécutent un logiciel production hello.
+# <a name="using-virtual-machine-scale-sets-with-the-azure-dsc-extension"></a>Utilisation des groupes identiques de machines virtuelles avec l’extension DSC Azure
+Les [groupes identiques de machines virtuelles](virtual-machine-scale-sets-overview.md) peuvent être utilisés avec le gestionnaire d’extensions [Configuration d’état souhaité (DSC) Azure](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Les groupes identiques de machines virtuelles offrent un moyen de déployer et gérer un grand nombre de machines virtuelles ; vous pouvez réduire ou augmenter la taille des instances avec flexibilité pour faire face à la charge. La DSC est utilisée pour configurer les machines virtuelles à mesure de leur mise en ligne afin qu’elles exécutent le logiciel en production.
 
-## <a name="differences-between-deploying-toovirtual-machines-and-virtual-machine-scale-sets"></a>Différences entre le déploiement d’ordinateurs de tooVirtual et des machines virtuelles identiques
-structure de modèle sous-jacent Hello pour un ensemble d’échelle de machine virtuelle est légèrement différente à partir d’une seule machine virtuelle. Plus précisément, une seule machine virtuelle déploie les extensions sous le nœud de « machines virtuelles » hello. Il existe une entrée de type « extensions » où DSC est ajouté toohello modèle
+## <a name="differences-between-deploying-to-virtual-machines-and-virtual-machine-scale-sets"></a>Différences entre le déploiement de machines virtuelles et de groupes identiques de machines virtuelles
+La structure sous-jacente du modèle pour un groupe identique de machines virtuelles est légèrement différente de celle d’une machine virtuelle seule. Plus précisément, une machine virtuelle unique déploie les extensions sous le nœud « virtualMachines ». Il existe une entrée de type « extensions » où la configuration DSC est ajoutée au modèle
 
 ```
 "resources": [
@@ -65,7 +65,7 @@ structure de modèle sous-jacent Hello pour un ensemble d’échelle de machine 
       ]
 ```
 
-Un nœud de jeu de mise à l’échelle machine virtuelle a une section « Propriétés » par « VirtualMachineProfile », « extensionProfile » attribut de hello. La configuration DSC est ajoutée sous « extensions »
+Un groupe identique de machines virtuelles a une section « propriétés » avec l’attribut « VirtualMachineProfile », « extensionProfile ». La configuration DSC est ajoutée sous « extensions »
 
 ```
 "extensionProfile": {
@@ -97,14 +97,14 @@ Un nœud de jeu de mise à l’échelle machine virtuelle a une section « Prop
 ```
 
 ## <a name="behavior-for-a-virtual-machine-scale-set"></a>Comportement d’un groupe identique de machines virtuelles
-comportement Hello pour un ensemble d’échelle de machine virtuelle est le comportement toohello identiques pour une seule machine virtuelle. Lorsqu’un nouvel ordinateur virtuel est créé, il est configuré automatiquement par hello extension DSC. Si une version plus récente de hello que WMF est requis par l’extension de hello, hello machine virtuelle redémarre avant la mise en ligne. Une fois qu’il est en ligne, il les télécharge hello DSC configuration .zip et mettre en service sur hello machine virtuelle. Vous trouverez plus de détails dans [hello vue d’ensemble des extensions Azure DSC](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Le comportement d’un groupe identique de machines virtuelles est identique à celui d’une machine virtuelle seule. Lorsqu’une machine virtuelle est créée, elle est automatiquement configurée avec l’extension DSC. Si une version plus récente du WMF est requise par l’extension, la machine virtuelle redémarre avant la mise en ligne. Une fois en ligne, elle télécharge le fichier .zip de la configuration DSC et l’approvisionne sur la machine virtuelle. Vous trouverez plus de détails dans [la présentation de l’extension DSC d’Azure](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Examinez hello [modèle Azure Resource Manager pour l’extension de hello DSC](../virtual-machines/windows/extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Examinez le [modèle Azure Resource Manager pour l’extension DSC](../virtual-machines/windows/extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Découvrez comment hello [extension DSC gère en toute sécurité les informations d’identification](../virtual-machines/windows/extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+Découvrez comment [l’extension DSC gère en toute sécurité les informations d’identification](../virtual-machines/windows/extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-Pour plus d’informations sur le Gestionnaire d’extensions Azure DSC hello, consultez [Gestionnaire d’extensions Azure DSC Introduction toohello](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
+Pour plus d’informations sur le gestionnaire d’extensions DSC Azure, voir [Présentation du gestionnaire d’extensions de configuration d’état souhaité Microsoft Azure](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). 
 
-Pour plus d’informations sur PowerShell DSC, [visitez le centre de documentation PowerShell hello](https://msdn.microsoft.com/powershell/dsc/overview). 
+Pour plus informations sur DSC PowerShell, [voir le centre de documentation PowerShell](https://msdn.microsoft.com/powershell/dsc/overview). 
 

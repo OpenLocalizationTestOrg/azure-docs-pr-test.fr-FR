@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : intégration d’Azure Active Directory à Splunk Enterprise et Splunk Cloud | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Splunk Enterprise et Splunk Cloud."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Splunk Enterprise et Splunk Cloud."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,37 +13,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 3/09/2017
 ms.author: jeedes
-ms.openlocfilehash: 9bb6817cb31dce684cd9cc1c567fa3efc8906ad6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: b78e9b7161207a74880e912241d5e965b353d1c5
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-splunk-enterprise-and-splunk-cloud"></a>Didacticiel : Intégration d’Azure Active Directory avec Splunk Enterprise et Splunk Cloud
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Splunk entreprise et Splunk Cloud avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Splunk Enterprise et Splunk Cloud à Azure Active Directory (Azure AD).
 
-Intégration Splunk Enterprise et Splunk Cloud à Azure AD offre hello avantages suivants :
+L’intégration de Splunk Enterprise et Splunk Cloud à Azure AD vous offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooSplunk Enterprise et Splunk Cloud
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooSplunk Enterprise et Splunk Cloud-session unique (SSO) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure classic
+- Dans Azure AD, vous pouvez contrôler qui a accès à Splunk Enterprise et Splunk Cloud
+- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Splunk Enterprise et Splunk Cloud (via l’authentification unique) avec leur compte Azure AD
+- Vous pouvez gérer vos comptes à un emplacement central : le portail Azure Classic.
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec Splunk Enterprise et Splunk Cloud, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD à Splunk Enterprise et Splunk Cloud, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Splunk Enterprise ou Splunk Cloud avec l’authentification unique activée
 
 
 >[!NOTE]
->tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+>Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 >
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - Vous ne devez pas utiliser votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
@@ -52,186 +52,186 @@ tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recom
 ## <a name="scenario-description"></a>Description du scénario
 Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.
 
-scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de Splunk Enterprise et Splunk Cloud à partir de la galerie de hello
+1. Ajout de Splunk Enterprise et Splunk Cloud à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
 
-## <a name="add-splunk-enterprise-and-splunk-cloud-from-hello-gallery"></a>Ajouter des Splunk Enterprise et Splunk Cloud à partir de la galerie de hello
-tooconfigure hello intégration d’entreprise de Splunk et Splunk Cloud dans Azure AD, vous devez tooadd Splunk Enterprise Splunk Cloud de liste de tooyour hello galerie des applications et gérées SaaS.
+## <a name="add-splunk-enterprise-and-splunk-cloud-from-the-gallery"></a>Ajouter Splunk Enterprise et Splunk Cloud à partir de la galerie
+Pour configurer son intégration à Azure AD, vous devez ajouter Splunk Enterprise et Splunk Cloud à votre liste d’applications SaaS gérées, à partir de la galerie.
 
-**tooadd Splunk entreprise et Splunk Cloud à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Splunk Enterprise et Splunk Cloud à partir de la galerie, procédez comme suit :**
 
-1. Bonjour **portail Azure classic**, on hello du volet de navigation gauche, cliquez sur **Active Directory**.
+1. Dans le volet de navigation gauche du **portail Azure Classic**, cliquez sur **Active Directory**.
 
     ![Active Directory][1]
 
-2. À partir de hello **répertoire** liste, répertoire sélectionnez hello pour lequel vous souhaitez tooenable intégration d’annuaire.
+2. Dans la liste **Annuaire** , sélectionnez l'annuaire pour lequel vous voulez activer l'intégration d'annuaire.
 
-3. vue d’applications de hello tooopen, dans la vue active de hello, cliquez sur **Applications** dans le menu du haut hello.
+3. Pour ouvrir la vue des applications, dans la vue d'annuaire, cliquez sur **Applications** dans le menu du haut.
 
     ![Applications][2]
 
-4. Cliquez sur **ajouter** bas hello de page de hello.
+4. Cliquez sur **Ajouter** en bas de la page.
 
     ![Applications][3]
 
-5. Sur hello **comment vous souhaitez toodo** boîte de dialogue, cliquez sur **ajouter une application à partir de la galerie de hello**.
+5. Dans la boîte de dialogue **Que voulez-vous faire ?**, cliquez sur **Ajouter une application à partir de la galerie**.
 
     ![Applications][4]
 
-6. Dans la zone de recherche de hello, tapez **Splunk Enterprise ou Splunk Cloud**.
+6. Dans la zone de recherche, tapez **Splunk Enterprise ou Splunk Cloud**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_01.png)
 
-7. Dans le volet de résultats hello, sélectionnez **Splunk Enterprise et Splunk Cloud**, puis cliquez sur **Complete** application hello de tooadd.
+7. Dans le volet des résultats, sélectionnez **Splunk Enterprise et Splunk Cloud**, puis cliquez sur **Terminer** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_02.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Splunk Enterprise et Splunk Cloud, en tirant parti d’un utilisateur de test appelé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur hello équivalent Splunk Enterprise et Splunk Cloud est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Splunk Enterprise et Splunk Cloud doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Splunk Enterprise et Splunk Cloud équivalent dans Azure AD. En d’autres termes, une relation doit être établie entre un utilisateur Azure AD et un utilisateur Splunk Enterprise et Splunk Cloud associé.
 
-Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** Splunk Enterprise et Splunk Cloud.
+Pour cela, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** dans Splunk Enterprise et Splunk Cloud.
 
-tooconfigure et test Azure AD l’authentification unique avec Splunk Enterprise et Splunk Cloud, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Splunk Enterprise et Splunk Cloud, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD l’authentification unique sur](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un utilisateur de test Splunk Enterprise et Splunk Cloud](#creating-a-splunk-enterprise-and-splunk-cloud-test-user)**  -toohave de Britta Simon dans Splunk entreprise et Splunk Cloud qui est la représentation sous forme de toohello lié Azure AD de sa contrepartie.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Splunk Enterprise et Splunk Cloud](#creating-a-splunk-enterprise-and-splunk-cloud-test-user)** pour avoir un équivalent de Britta Simon dans Splunk Enterprise et Splunk Cloud, lié à la représentation Azure AD associée.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Test de l’authentification unique](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous activez l’authentification unique de Azure AD dans le portail classique de hello et configurez l’authentification unique dans votre application d’entreprise de Splunk et Splunk Cloud.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure Classic et configurer l’authentification unique dans votre application Splunk Enterprise et Splunk Cloud.
 
 
-**tooconfigure Azure AD l’authentification unique avec Splunk Enterprise et Splunk nuage, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Splunk Enterprise et Splunk Cloud, procédez comme suit :**
 
-1. Dans le portail classique hello, sur hello **Splunk Enterprise et Splunk Cloud** page d’intégration d’application, cliquez sur **configurer l’authentification unique sur** tooopen hello **configurer l’authentification unique sur** boîte de dialogue.
+1. Dans le portail Classic, sur la page d’intégration d’applications **Splunk Enterprise and Splunk Cloud**, cliquez sur **Configurer l’authentification unique** pour ouvrir la boîte de dialogue **Configurer l’authentification unique**.
      
     ![Configurer l’authentification unique][6] 
 
-2. Sur hello **Comment voulez-vous que toosign les utilisateurs sur tooSplunk Enterprise et Splunk Cloud** page, sélectionnez **Azure AD Single Sign-On**, puis cliquez sur **suivant**.
+2. Sur la page **Comment voulez-vous que les utilisateurs se connectent à Splunk Enterprise et Splunk Cloud ?**, sélectionnez **Authentification unique avec Azure AD**, puis cliquez sur **Suivant**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_03.png) 
 
-3. Sur hello **configurer les paramètres de l’application** boîte de dialogue de page, effectuer hello comme suit :
+3. Sur la page **Configurer les paramètres d’application** , procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_04.png) 
-  1. Bonjour **URL de connexion** zone de texte, tapez l’URL hello utilisée par vos utilisateurs sur toosign tooyour Splunk entreprise et votre application Splunk Cloud à l’aide de hello modèle :`https://<splunkserverUrl>/en-US/app/launcher/home`
-  2. Bonjour **identificateur** zone de texte, tapez l’URL de votre serveur Splunk hello.
-  3. Bonjour **URL de réponse** zone de texte, tapez l’URL hello avec hello modèle :`https://<splunkserver>/saml/acs`
+  1. Dans la zone de texte **URL de connexion**, tapez l’URL utilisée par les utilisateurs pour se connecter à votre application Splunk Enterprise et Splunk Cloud au format suivant : `https://<splunkserverUrl>/en-US/app/launcher/home`
+  2. Dans la zone de texte **Identificateur**, entrez de votre serveur Splunk.
+  3. Dans la zone de texte **URL de réponse**, tapez l’URL au format suivant : `https://<splunkserver>/saml/acs`
   4. Cliquez sur **Suivant**.
  
-4. Sur hello **configurer l’authentification unique à Splunk Enterprise et Splunk Cloud** page, effectuer hello comme suit :
+4. Dans la page **Configurer l’authentification unique sur Splunk Enterprise et Splunk Cloud**, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_05.png)
-  1. Cliquez sur **télécharger des métadonnées**, puis enregistrez le fichier hello sur votre ordinateur.
+  1. Cliquez sur **Télécharger les métadonnées**, puis enregistrez le fichier sur votre ordinateur.
   2. Cliquez sur **Suivant**.
 
-5. tooget SSO configuré pour votre application, contactez Splunk entreprise et l’équipe de support Splunk Cloud et par qui suit hello :
+5. Pour obtenir la configuration de l’authentification unique pour votre application, contactez l’équipe de support Splunk Enterprise et Splunk Cloud et fournissez-lui les éléments suivants :
 
-    * Hello téléchargé **federaton métadonnées**
-6. Dans le portail classique hello, sélectionnez la confirmation de la configuration de l’authentification unique hello, puis cliquez sur **suivant**.
+    * Les **métadonnées de fédération** téléchargées
+6. Dans le portail classique, sélectionnez la confirmation de la configuration de l’authentification unique, puis cliquez sur **Suivant**.
     
     ![Authentification unique Azure AD][10]
 
-7. Sur hello **Single sign-on confirmation** , cliquez sur **Complete**.  
+7. Sur la page **Confirmation de l’authentification unique**, cliquez sur **Terminer**.  
  
     ![Authentification unique Azure AD][11]
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
-Dans cette section, vous créez un utilisateur de test dans le portail classique de hello appelé Britta Simon.
+Dans cette section, vous allez créer un utilisateur de test appelé Britta Simon dans le portail Classic.
 
 ![Créer un utilisateur Azure AD][20]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure classic**, on hello du volet de navigation gauche, cliquez sur **Active Directory**.
+1. Dans le volet de navigation gauche du **portail Azure Classic**, cliquez sur **Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_09.png) 
 
-2. À partir de hello **répertoire** liste, répertoire sélectionnez hello pour lequel vous souhaitez tooenable intégration d’annuaire.
+2. Dans la liste **Annuaire** , sélectionnez l'annuaire pour lequel vous voulez activer l'intégration d'annuaire.
 
-3. liste de hello toodisplay d’utilisateurs, dans le menu hello haut de hello, cliquez sur **utilisateurs**.
+3. Pour afficher la liste des utilisateurs, dans le menu situé en haut, cliquez sur **Utilisateurs**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_03.png) 
 
-4. tooopen hello **ajouter un utilisateur** boîte de dialogue, dans la barre d’outils de hello en bas de hello, cliquez sur **ajouter un utilisateur**.
+4. Pour ouvrir la boîte de dialogue **Ajouter un utilisateur**, cliquez sur l’option **Ajouter un utilisateur** figurant dans la barre d’outils du bas.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_04.png) 
 
-5. Sur hello **faites-nous part de cet utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+5. Sur la page de boîte de dialogue **Dites-nous en plus sur cet utilisateur** , procédez comme suit :
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_05.png) 
   1. Dans Type d’utilisateur, sélectionnez Nouvel utilisateur dans votre organisation.
-  2. Bonjour, nom d’utilisateur **zone de texte**, type **BrittaSimon**.
+  2. Dans la zone de texte **Nom d’utilisateur**, entrez **BrittaSimon**.
   3. Cliquez sur **Suivant**.
 
-6.  Sur hello **profil utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+6.  Sur la page de boîte de dialogue **Profil utilisateur** , procédez comme suit :
   
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_06.png) 
-  1. Bonjour **prénom** zone de texte, type **Brian**.  
-  2. Bonjour **nom** zone de texte, type, **Simon**.
-  3. Bonjour **nom d’affichage** zone de texte, type **Britta Simon**.
-  4. Bonjour **rôle** liste, sélectionnez **utilisateur**.
+  1. Dans la zone de texte **First Name**, tapez **Britta**.  
+  2. Dans la zone de texte **Last Name**, tapez **Simon**.
+  3. Dans la zone de texte **Nom d’affichage**, entrez **Britta Simon**.
+  4. Dans la liste **Rôle**, sélectionnez **Utilisateur**.
   5. Cliquez sur **Suivant**.
 
-7. Sur hello **mot de passe temporaire Get** page de boîte de dialogue, cliquez sur **créer**.
+7. Sur la page de boîte de dialogue **Obtenir un mot de passe temporaire**, cliquez sur **créer**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_07.png) 
 
-8. Sur hello **mot de passe temporaire Get** boîte de dialogue de page, effectuer hello comme suit :
+8. Sur la page de boîte de dialogue **Obtenir un mot de passe temporaire** , procédez comme suit :
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/create_aaduser_08.png) 
-  1. Notez la valeur hello hello **nouveau mot de passe**.
+  1. Notez la valeur du **Nouveau mot de passe**.
   2. Cliquez sur **Terminé**.   
 
 ### <a name="create-a-splunk-enterprise-and-splunk-cloud-test-user"></a>Créer un utilisateur de test Splunk Enterprise et Splunk Cloud
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Splunk Enterprise et Splunk Cloud. Collaborez avec Splunk Enterprise et Splunk Cloud prise en charge team tooadd hello utilisateurs hello Splunk Enterprise et Splunk Cloud platform.
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans Splunk Enterprise et Splunk Cloud. Veuillez travailler avec l’équipe de support technique de Splunk Enterprise et Splunk Cloud pour ajouter des utilisateurs dans la plateforme Splunk Enterprise et Splunk Cloud.
 
 
-### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
+### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
 
-Dans cette section, vous activez Britta Simon toouse SSOy Azure accorder son accès tooSplunk Enterprise et le Cloud de Splunk.
+Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Splunk Enterprise et Splunk Cloud.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooSplunk Enterprise et Splunk nuage, effectuez hello comme suit :**
+**Pour affecter Britta Simon à Splunk Enterprise et Splunk Cloud, procédez comme suit :**
 
-1. Sur le portail classique hello, cliquez sur la vue applications hello tooopen, dans la vue active de hello, **Applications** dans le menu du haut hello.
+1. Pour ouvrir la vue des applications dans le portail Azure Classic, dans la vue d’annuaire, cliquez sur l’option **Applications** figurant dans le menu du haut.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Splunk Enterprise et Splunk Cloud**.
+2. Dans la liste des applications, sélectionnez **Splunk Enterprise et Splunk Cloud**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-splunk-enterprise-and-splunk-cloud-tutorial/tutorial_splunk_50.png) 
 
-3. Dans le menu hello haut de hello, cliquez sur **utilisateurs**.
+3. Dans le menu situé en haut, cliquez sur **Utilisateurs**.
 
     ![Affecter des utilisateurs][203]
 
-4. Dans la liste des utilisateurs hello, sélectionnez **Britta Simon**.
+4. Dans la liste Utilisateurs, sélectionnez **Britta Simon**.
 
-5. Dans la barre d’outils de hello en bas de hello, cliquez sur **affecter**.
+5. Dans la barre d’outils située en bas, cliquez sur **Attribuer**.
 
     ![Affecter des utilisateurs][205]
 
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous testez votre SSOonfiguration d’Active Directory Azure à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur hello Splunk Enterprise et vignette Splunk Cloud Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour Splunk Enterprise et Splunk Cloud une application.
+Lorsque vous cliquez sur la vignette Splunk Enterprise et Splunk Cloud dans le volet d’accès, vous devez être connecté automatiquement à votre application Splunk Enterprise et Splunk Cloud.
 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

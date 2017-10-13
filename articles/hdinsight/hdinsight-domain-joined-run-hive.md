@@ -1,5 +1,5 @@
 ---
-title: "stratégies de ruche aaaConfigure dans HDInsight appartenant au domaine - Azure | Documents Microsoft"
+title: "Configuration de stratégies Hive dans HDInsight joint à un domaine - Azure | Microsoft Docs"
 description: "Découvrir..."
 services: hdinsight
 documentationcenter: 
@@ -16,45 +16,45 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/25/2016
 ms.author: saurinsh
-ms.openlocfilehash: 56f2bf9d872abc5f772b886fcf91c2e2422092f4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: de537d5e39dd0d3f75ff802948c7372e4d65d127
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-hive-policies-in-domain-joined-hdinsight-preview"></a>Configuration de stratégies Hive dans HDInsight joint à un domaine (version préliminaire)
-Découvrez comment les stratégies d’Apache Ranger tooconfigure pour la ruche. Dans cet article, vous créez deux Ranger stratégies toorestrict accès toohello hivesampletable. Hello hivesampletable est fourni avec des clusters HDInsight. Une fois que vous avez configuré des stratégies de hello, vous utilisez Excel et ODBC driver tooconnect tooHive les tables dans HDInsight.
+Découvrez comment configurer des stratégies Apache Ranger pour Hive. Dans cet article, vous créez deux stratégies Ranger pour restreindre l’accès à hivesampletable. hivesampletable dispose de clusters HDInsight. Après avoir configuré les stratégies, vous utilisez Excel et le pilote ODBC pour vous connecter à des tables Hive dans HDInsight.
 
 ## <a name="prerequisites"></a>Composants requis
 * Un cluster HDInsight joint à un domaine. Consultez [Configuration de cluster HDInsight joints à un domaine](hdinsight-domain-joined-configure.md).
 * Une station de travail avec Office 2016, Office 2013 ProPlus, Office 365 Pro Plus, l’édition autonome d’Excel 2013 ou Office Professionnel Plus 2010.
 
-## <a name="connect-tooapache-ranger-admin-ui"></a>Se connecter tooApache Ranger l’interface utilisateur
-**tooconnect tooRanger Admin UI**
+## <a name="connect-to-apache-ranger-admin-ui"></a>Connexion à l’interface utilisateur Apache Ranger
+**Pour vous connecter à l’interface utilisateur Ranger**
 
-1. À partir d’un navigateur, connectez-vous tooRanger Admin UI. URL de Hello est https://&lt;nom_cluster >.azurehdinsight.net/Ranger/.
+1. Dans un navigateur, connectez-vous à l’interface utilisateur Ranger. L’URL est https://&lt;ClusterName>.azurehdinsight.net/Ranger/.
 
    > [!NOTE]
-   > Ranger utilise des informations d’identification différentes de celles du cluster Hadoop. navigateurs tooprevent à l’aide de la mise en cache des informations d’identification Hadoop, utiliser le nouveau navigateur inprivate fenêtre tooconnect toohello Ranger l’interface utilisateur.
+   > Ranger utilise des informations d’identification différentes de celles du cluster Hadoop. Pour empêcher les navigateurs d’utiliser les informations d’identification Hadoop mises en cache, utilisez une nouvelle fenêtre de navigation InPrivate pour vous connecter à l’interface utilisateur administrateur Ranger.
    >
    >
-2. Connectez-vous à l’aide du mot de passe et le nom d’utilisateur domaine hello cluster administrateur :
+2. Connectez-vous avec le nom d’utilisateur et le mot de passe du domaine de l’administrateur du cluster :
 
     ![Page d’accueil Ranger joint à un domaine HDInsight](./media/hdinsight-domain-joined-run-hive/hdinsight-domain-joined-ranger-home-page.png)
 
     Actuellement, Ranger fonctionne uniquement avec Yarn et Hive.
 
 ## <a name="create-domain-users"></a>Création d’utilisateurs du domaine
-Dans [Configuration de clusters HDInsight joints à un domaine](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad), vous avez créé hiveruser1 et hiveuser2. Vous allez utiliser le compte d’utilisateur en deux hello dans ce didacticiel.
+Dans [Configuration de clusters HDInsight joints à un domaine](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad), vous avez créé hiveruser1 et hiveuser2. Vous allez utiliser les deux comptes utilisateur dans ce didacticiel.
 
 ## <a name="create-ranger-policies"></a>Création de stratégies Ranger
-Dans cette section, vous allez créer deux stratégies Ranger pour accéder à hivesampletable. Vous accordez une autorisation select sur différents ensembles de colonnes. Les deux utilisateurs ont été créés dans [Configuration de clusters HDInsight joints à un domaine](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad).  Dans la section suivante de hello, vous allez tester les deux stratégies de hello dans Excel.
+Dans cette section, vous allez créer deux stratégies Ranger pour accéder à hivesampletable. Vous accordez une autorisation select sur différents ensembles de colonnes. Les deux utilisateurs ont été créés dans [Configuration de clusters HDInsight joints à un domaine](hdinsight-domain-joined-configure.md#create-and-configure-azure-ad-ds-for-your-azure-ad).  Dans la section suivante, vous allez tester les deux stratégies dans Excel.
 
-**stratégies de Ranger toocreate**
+**Pour créer des stratégies Ranger**
 
-1. Ouvrez l’interface utilisateur Ranger. Consultez [tooApache Ranger l’interface utilisateur de connexion](#connect-to-apache-ranager-admin-ui).
+1. Ouvrez l’interface utilisateur Ranger. Consultez [Connexion à l’interface utilisateur Apache Ranger](#connect-to-apache-ranager-admin-ui).
 2. Cliquez sur **&lt;ClusterName>_hive** sous **Hive**. Deux stratégies préconfigurées doivent s’afficher.
-3. Cliquez sur **ajouter une nouvelle stratégie**, puis entrez hello valeurs suivantes :
+3. Cliquez sur **Ajouter une nouvelle stratégie**, puis entrez les valeurs suivantes :
 
    * Nom de la stratégie : read-hivesampletable-all
    * Base de données Hive : par défaut
@@ -66,11 +66,11 @@ Dans cette section, vous allez créer deux stratégies Ranger pour accéder à h
      ![Configuration de stratégie Hive pour Ranger joint à un domaine HDInsight](./media/hdinsight-domain-joined-run-hive/hdinsight-domain-joined-configure-ranger-policy.png).
 
      > [!NOTE]
-     > Si un utilisateur de domaine n’est pas rempli dans Sélectionner un utilisateur, attendez quelques instants pour Ranger les toosync avec AAD.
+     > Si un utilisateur de domaine n’est pas renseigné dans Sélectionner un utilisateur, attendez quelques instants que Ranger se synchronise avec AAD.
      >
      >
-4. Cliquez sur **ajouter** stratégie de hello toosave.
-5. Répétez hello deux dernières étapes toocreate une autre stratégie avec hello propriétés suivantes :
+4. Cliquez sur **Ajouter** pour enregistrer la stratégie.
+5. Répétez les deux dernières étapes pour créer une autre stratégie avec les propriétés suivantes :
 
    * Nom de la stratégie : read-hivesampletable-devicemake
    * Base de données Hive : par défaut
@@ -80,54 +80,54 @@ Dans cette section, vous allez créer deux stratégies Ranger pour accéder à h
    * Autorisations : select
 
 ## <a name="create-hive-odbc-data-source"></a>Création d’une source de données ODBC Hive
-Vous trouverez des instructions Hello dans [source de données ODBC de la ruche créer](hdinsight-connect-excel-hive-odbc-driver.md).  
+Vous trouverez les instructions dans [Création d’une source de données ODBC Hive](hdinsight-connect-excel-hive-odbc-driver.md).  
 
     Propriété|Description
     ---|---
-    Data Source Name|Donner à une source de données tooyour nom
+    Data Source Name|Donnez un nom à votre source de données
     Host|Entrez &lt;HDInsightClusterName>.azurehdinsight.net. Par exemple, myHDICluster.azurehdinsight.net
-    Port|Utilisez <strong>443</strong>. (Ce port a été modifié à partir de too443 563.)
+    Port|Utilisez <strong>443</strong>. (ce port est passé de 563 à 443).
     Base de données|Utilisez <strong>Default</strong>.
     Hive Server Type|Sélectionnez <strong>Hive Server 2</strong>.
     Mechanism|Sélectionnez <strong>Azure HDInsight Service</strong>.
     HTTP Path|Laissez cette valeur vide.
-    User Name|Entrez hiveuser1@contoso158.onmicrosoft.com. Mettre à jour de nom de domaine hello s’il est différent.
-    Mot de passe|Entrez le mot de passe hello pour hiveuser1.
+    User Name|Entrez hiveuser1@contoso158.onmicrosoft.com. Mettez à jour le nom de domaine s’il est différent.
+    Mot de passe|Entrez le mot de passe pour hiveuser1.
     </table>
 
-Assurez-vous que tooclick **Test** avant d’enregistrer la source de données hello.
+Veillez à cliquer sur **Test** avant d’enregistrer la source de données.
 
 ## <a name="import-data-into-excel-from-hdinsight"></a>Importation de données dans Microsoft Excel à partir de HDInsight
-Dans la dernière section de hello, vous avez configuré deux stratégies.  hiveuser1 a hello l’autorisation select sur toutes les colonnes hello et hiveuser2 a hello l’autorisation select sur deux colonnes. Dans cette section, vous empruntez l’identité hello deux utilisateurs tooimport des données dans Excel.
+Dans la dernière section, vous avez configuré deux stratégies.  hiveuser1 a l’autorisation select sur toutes les colonnes et hiveuser2 a l’autorisation select sur deux colonnes. Dans cette section, vous représentez les deux utilisateurs pour importer des données dans Excel.
 
 1. Ouvrez un nouveau classeur ou un classeur existant dans Excel.
-2. À partir de hello **données** , cliquez sur **d’autres Sources de données**, puis cliquez sur **à partir de l’Assistant de connexion données** toolaunch hello **Assistant de connexion de données**.
+2. À partir de l’onglet **Données**, cliquez sur **À partir d’autres sources de données**, puis sur **Provenance : Assistant Connexion de données** pour lancer **l’Assistant Connexion de données**.
 
     ![Assistant Ouvrir la connexion de données][img-hdi-simbahiveodbc.excel.dataconnection]
-3. Sélectionnez **DSN ODBC** comme source de données hello, puis cliquez sur **suivant**.
-4. À partir de sources de données ODBC, sélectionnez hello source de données nom que vous avez créé à l’étape précédente de hello et puis cliquez sur **suivant**.
-5. Nouveau mot de passe hello pour cluster hello dans l’Assistant de hello, puis cliquez sur **OK**. Attendez que hello **sélectionner une base de données et de Table** tooopen de la boîte de dialogue. Cette opération peut prendre quelques secondes.
+3. Sélectionnez **DSN ODBC** comme source de données, puis cliquez sur **Suivant**.
+4. Dans Sources de données ODBC, sélectionnez le nom de la source de données que vous avez créée à l’étape précédente, puis cliquez sur **Suivant**.
+5. Entrez à nouveau le mot de passe pour le cluster dans l’Assistant, puis cliquez sur **OK**. Attendez l'ouverture de la boîte de dialogue **Sélection d'une base de données et d'une table** . Cette opération peut prendre quelques secondes.
 6. Sélectionnez **hivesampletable**, puis cliquez sur **Suivant**.
 7. Cliquez sur **Terminer**.
-8. Bonjour **importer des données** boîte de dialogue, vous pouvez modifier ou spécifier la requête de hello. toodo, cliquez sur **propriétés**. Cette opération peut prendre quelques secondes.
-9. Cliquez sur hello **définition** est du texte de la commande hello onglet :
+8. Dans la boîte de dialogue **Importation de données** , vous pouvez modifier ou spécifier la requête. Pour cela, cliquez sur **Propriétés**. Cette opération peut prendre quelques secondes.
+9. Cliquez sur l’onglet **Définition**. Le texte de commande est le suivant :
 
        SELECT * FROM "HIVE"."default"."hivesampletable"
 
-   Par des stratégies de Ranger hello que vous définies, hiveuser1 a l’autorisation select sur toutes les colonnes hello.  Par conséquent, cette requête fonctionne avec les informations d’identification de hiveuser1, mais cette requête ne fonctionne pas avec les informations d’identification de hiveuser2.
+   Selon les stratégies Ranger que vous avez définies, hiveuser1 a l’autorisation select sur toutes les colonnes.  Par conséquent, cette requête fonctionne avec les informations d’identification de hiveuser1, mais cette requête ne fonctionne pas avec les informations d’identification de hiveuser2.
 
    ![Propriétés de connexion][img-hdi-simbahiveodbc-excel-connectionproperties]
-10. Cliquez sur **OK** boîte de dialogue Propriétés de connexion tooclose hello.
-11. Cliquez sur **OK** tooclose hello **importer des données** boîte de dialogue.  
-12. Entrez à nouveau le mot de passe hello hiveuser1, puis cliquez sur **OK**. Il prend quelques secondes avant de données obtient tooExcel importé. Une fois terminé, 11 colonnes de données doivent s’afficher.
+10. Cliquez sur **OK** pour fermer la boîte de dialogue Propriétés de connexion.
+11. Cliquez sur **OK** pour fermer la boîte de dialogue **Importation de données**.  
+12. Entrez à nouveau le mot de passe pour hiveuser1 et cliquez sur **OK**. Patientez quelques secondes pour que les données soient importées dans Excel. Une fois terminé, 11 colonnes de données doivent s’afficher.
 
-stratégie de deuxième tootest hello (en lecture-hivesampletable-devicemake) que vous avez créé dans la dernière section de hello
+Pour tester la deuxième stratégie (read-hivesampletable-devicemake) que vous avez créée dans la dernière section
 
 1. Ajoutez une nouvelle feuille dans Excel.
-2. Suivez la dernière procédure tooimport hello les données de salutation.  Hello seul changement que vous prendrez est informations d’identification de toouse hiveuser2 au lieu de hiveuser1. Cela échoue car hiveuser2 a seulement deux colonnes de toosee d’autorisation. Vous obtiendra hello l’erreur suivante :
+2. Suivez la procédure précédente pour importer les données.  La seule modification à effectuer consiste à utiliser les informations d’identification de hiveuser2 au lieu de hiveuser1. Cette opération échouera, car hiveuser2 n’est autorisé à afficher que deux colonnes. Vous devez obtenir l’erreur suivante :
 
         [Microsoft][HiveODBC] (35) Error from Hive: error code: '40000' error message: 'Error while compiling statement: FAILED: HiveAccessControlException Permission denied: user [hiveuser2] does not have [SELECT] privilege on [default/hivesampletable/clientid,country ...]'.
-3. Suivez hello même données tooimport de procédure. Cette fois-ci, utilisez les informations d’identification de hiveuser2 et également modifier instruction select de hello from :
+3. Suivez la même procédure pour importer les données. Cette fois, utilisez les informations d’identification de hiveuser2 et modifiez également l’instruction select de :
 
         SELECT * FROM "HIVE"."default"."hivesampletable"
 
@@ -141,6 +141,6 @@ stratégie de deuxième tootest hello (en lecture-hivesampletable-devicemake) qu
 * Pour configurer un cluster HDInsight joint à un domaine, consultez [Configuration de clusters HDInsight joints à un domaine](hdinsight-domain-joined-configure.md).
 * Pour gérer un cluster HDInsight joint à un domaine, consultez [Gestion de clusters HDInsight joints à un domaine](hdinsight-domain-joined-manage.md).
 * Pour exécuter des requêtes Hive en utilisant SSH sur des clusters HDInsight joints au domaine, voir [Utiliser SSH avec HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md#domainjoined).
-* Pour la connexion de la ruche à l’aide de la ruche de JDBC, consultez [connecter tooHive sur Azure HDInsight à l’aide du pilote JDBC de la ruche de hello](hdinsight-connect-hive-jdbc-driver.md)
-* Pour la connexion tooHadoop Excel à l’aide de la ruche de ODBC, consultez [tooHadoop connexion Excel avec hello pilote ODBC de la ruche de Microsoft](hdinsight-connect-excel-hive-odbc-driver.md)
-* Pour la connexion tooHadoop Excel à l’aide de Power Query, consultez [tooHadoop Excel de se connecter à l’aide de Power Query](hdinsight-connect-excel-power-query.md)
+* Pour connecter Hive à l’aide de Hive JDBC, consultez [Se connecter à Hive sur Azure HDInsight à l’aide du pilote Hive JDBC](hdinsight-connect-hive-jdbc-driver.md)
+* Pour connecter Excel à Hadoop à l’aide de Hive ODBC, consultez [Connexion d’Excel à Hadoop à l’aide du pilote Microsoft Hive ODBC](hdinsight-connect-excel-hive-odbc-driver.md)
+* Pour connecter Excel à Hadoop à l’aide de Power Query, consultez [Connexion d’Excel à Hadoop à l’aide de Power Query](hdinsight-connect-excel-power-query.md)

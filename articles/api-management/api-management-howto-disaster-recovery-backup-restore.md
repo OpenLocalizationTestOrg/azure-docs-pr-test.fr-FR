@@ -1,6 +1,6 @@
 ---
-title: "aaaImplement de récupération d’urgence à l’aide de sauvegarde et de restauration dans la gestion des API Azure | Documents Microsoft"
-description: "Découvrez comment toouse sauvegarde et restauration de la récupération d’urgence tooperform dans Gestion des API Azure."
+title: "Implémenter une récupération d’urgence à l’aide d’une sauvegarde et d’une restauration dans Gestion des API Azure | Microsoft Docs"
+description: "Apprenez à utiliser la sauvegarde et la restauration pour effectuer une récupération d'urgence dans Gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 058bfb579e3a3f51fb1dac8ea37eb4fdbc83a4ad
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 07c0265490cfae733133b6e0c938f90f9b392da4
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="how-tooimplement-disaster-recovery-using-service-backup-and-restore-in-azure-api-management"></a>Comment tooimplement de récupération d’urgence à l’aide du service sauvegarde et la restauration dans la gestion des API Azure
-En choisissant toopublish et gérer votre API via la gestion des API Azure vous tirez profit de nombreuses fonctionnalités de l’infrastructure et la tolérance de panne du erreur que vous devriez autrement toodesign, implémenter et gérer. Hello plateforme Azure permet d’atténuer une grande partie de pannes potentielles à moindre coût de hello.
+# <a name="how-to-implement-disaster-recovery-using-service-backup-and-restore-in-azure-api-management"></a>Comment implémenter une récupération d'urgence à l'aide d'une sauvegarde de service et la récupérer dans Gestion des API Azure
+En choisissant de publier et de gérer vos API via la Gestion des API Azure, vous bénéficiez de nombreuses fonctionnalités de tolérance de panne et d'infrastructure que vous auriez à concevoir, implémenter et gérer sans ce service. La plateforme Azure permet de limiter une grande partie des risques de défaillance à moindres frais.
 
-toorecover des problèmes de disponibilité qui affectent la région de hello où votre service de gestion des API est hébergé vous doit être prêt tooreconstitute votre service dans une région différente à tout moment. En fonction de vos objectifs de disponibilité et l’objectif de temps de récupération, vous pouvez souhaitez tooreserve un service de sauvegarde dans une ou plusieurs régions et essayez toomaintain leur contenu synchronisé avec le service actif de hello et configuration. sauvegarde du service Hello et la fonctionnalité de restauration fournit un bloc de construction hello nécessaire pour l’implémentation de votre stratégie de récupération d’urgence.
+Pour récupérer à la suite de problèmes de disponibilité affectant la région où votre service Gestion des API est hébergé, vous devez être prêt à reconstituer votre service dans une autre région à tout moment. En fonction de vos objectifs de disponibilité et de temps de récupération, vous pouvez réserver un service de sauvegarde dans une ou plusieurs régions et tenter de maintenir la synchronisation de leur configuration et de leur contenu avec le service actif. La fonctionnalité de sauvegarde et de récupération de service fournit le bloc de construction nécessaire pour implémenter votre stratégie de récupération d'urgence.
 
-Ce guide montre comment les demandes tooauthenticate Azure Resource Manager et toobackup et restaurer vos instances de service de gestion des API.
+Ce guide montre comment authentifier des demandes Azure Resource Manager et comment sauvegarder et restaurer vos instances de service de gestion des API.
 
 > [!NOTE]
-> Hello processus de sauvegarde et restauration d’une instance de service de gestion des API pour la récupération d’urgence peut également être utilisé pour la réplication des instances de service de gestion des API dans les scénarios de mise en lots.
+> Le processus de sauvegarde et de restauration d'une instance de service de gestion des API pour la récupération d'urgence permet également de répliquer les instances de service de gestion des API dans les scénarios intermédiaires.
 >
-> À noter que chaque sauvegarde expire au bout de 30 jours. Si vous essayez de toorestore une sauvegarde après la période d’expiration hello 30 jours a expiré, la restauration de hello échoue avec une `Cannot restore: backup expired` message.
+> À noter que chaque sauvegarde expire au bout de 30 jours. Si vous essayez de restaurer une sauvegarde après l'expiration de la période de 30 jours, la restauration échoue avec un message `Cannot restore: backup expired`.
 >
 >
 
 ## <a name="authenticating-azure-resource-manager-requests"></a>Demandes d'authentification Azure Resource Manager
 > [!IMPORTANT]
-> Hello API REST pour la sauvegarde et de restauration utilise Azure Resource Manager et présente un mécanisme d’authentification autre que hello API REST pour la gestion de vos entités de gestion des API. étapes de Hello dans cette section décrivent comment les demandes tooauthenticate Azure Resource Manager. Pour plus d’informations, consultez [Demandes d'authentification Azure Resource Manager](http://msdn.microsoft.com/library/azure/dn790557.aspx).
+> L'API REST pour la sauvegarde et la restauration utilise Azure Resource Manager et dispose d'un autre mécanisme d'authentification que pour les API REST pour la gestion de vos entités de gestion des API. Les étapes de cette section décrivent comment authentifier les requêtes Azure Resource Manager. Pour plus d’informations, consultez [Demandes d'authentification Azure Resource Manager](http://msdn.microsoft.com/library/azure/dn790557.aspx).
 >
 >
 
-Toutes les tâches de hello que vous effectuez sur les ressources à l’aide de hello Azure Resource Manager doivent être authentifiés auprès d’Azure Active Directory à l’aide de hello comme suit.
+Toutes les tâches que vous effectuez sur les ressources à l'aide d’Azure Resource Manager doivent être authentifiées avec Azure Active Directory en procédant comme suit.
 
-* Ajouter un client Azure Active Directory de toohello application.
-* Définir des autorisations pour l’application hello que vous avez ajouté.
-* Obtenir le jeton de hello pour l’authentification des demandes tooAzure Gestionnaire de ressources.
+* Ajoutez une application au locataire Azure Active Directory.
+* Définissez les autorisations pour l'application que vous avez ajoutée.
+* Obtenez le jeton d'authentification des demandes pour Azure Resource Manager.
 
-première étape de Hello est toocreate une application Azure Active Directory. Connectez-vous à hello [portail classique Azure](http://manage.windowsazure.com/) à l’aide d’abonnement hello qui contient votre service de gestion des API d’instance et accédez toohello **Applications** onglet pour votre Azure Active Directory par défaut.
+La première étape consiste à créer une application Azure Active Directory. Connectez-vous au [portail Azure Classic](http://manage.windowsazure.com/) à l’aide de l’abonnement qui contient votre instance de service Gestion des API et accédez à l’onglet **Applications** pour votre annuaire Azure Active Directory par défaut.
 
 > [!NOTE]
-> Si le répertoire de hello Azure Active Directory par défaut n’est pas visible tooyour compte, administrateur de contact hello Hello de toogrant d’abonnement Azure hello requis compte tooyour d’autorisations.
+> Si le répertoire par défaut de Azure Active Directory n'est pas visible sur votre compte, contactez l'administrateur de l'abonnement Azure pour accorder les autorisations requises de votre compte.
 
 ![Création d’une application Azure Active Directory][api-management-add-aad-application]
 
-Cliquez sur **Ajouter**, **Ajouter une application développée par mon organisation**, puis choisissez **Application cliente native**. Entrez un nom descriptif et cliquez sur la flèche suivant de hello. Entrez une URL de l’espace réservé tel que `http://resources` pour hello **URI de redirection**, comme il s’agit d’un champ obligatoire, mais la valeur de hello n’est pas utilisé plus tard. Cliquez sur hello case toosave hello application.
+Cliquez sur **Ajouter**, **Ajouter une application développée par mon organisation**, puis choisissez **Application cliente native**. Saisissez un nom descriptif puis cliquez sur la flèche Suivant. Entrez une URL d'espace réservé telle que `http://resources` pour l’ **URI de redirection**, étant donné qu’il s’agit d’un champ obligatoire, mais la valeur ne sera pas utilisée par la suite. Cliquez sur la case à cocher pour enregistrer l'application.
 
-Une fois l’application hello est enregistrée, cliquez sur **configurer**, faites défiler vers le bas toohello **autorisations tooother applications** section, puis cliquez sur **ajouter application**.
+Une fois l’application enregistrée, cliquez sur **Configurer**, faites défiler la page vers le bas jusqu’à la section **Autorisations à d’autres applications** et cliquez sur **Ajouter une application**.
 
 ![Ajout d’autorisations][api-management-aad-permissions-add]
 
-Sélectionnez **Windows** **API de gestion des services Azure** et cliquez sur l’application hello case à cocher tooadd hello.
+Sélectionnez **Windows** **API de gestion des services Azure** et cliquez sur la case à cocher pour ajouter l’application.
 
 ![Ajout d’autorisations][api-management-aad-permissions]
 
-Cliquez sur **autorisations déléguées** en regard de hello nouvellement ajouté **Windows** **API de gestion des services Azure** application, la case à cocher hello pour **accéder à Azure Gestion des services (version préliminaire)**, puis cliquez sur **enregistrer**.
+Cliquez sur **Autorisations déléguées** à côté de la nouvelle application **Windows**, **API de gestion des services Azure**, cochez la case **Accès à la gestion des services Azure (aperçu)**, puis cliquez sur **Enregistrer**.
 
 ![Ajout d’autorisations][api-management-aad-delegated-permissions]
 
-Tooinvoking préalable hello API générer hello sauvegarde et restauration, il s’agit d’un jeton de tooget nécessaire. exemple Hello utilise hello [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory) jeton de nuget package tooretrieve hello.
+Avant d'appeler les API qui génèrent la sauvegarde et permettent la restauration, il est nécessaire d’obtenir un jeton. L'exemple suivant utilise le package nuget [Microsoft.IdentityModel.Clients.ActiveDirectory](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory) pour récupérer le jeton.
 
 ```c#
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
@@ -83,7 +83,7 @@ namespace GetTokenResourceManagerRequests
             var result = authenticationContext.AcquireToken("https://management.azure.com/", {application id}, new Uri({redirect uri});
 
             if (result == null) {
-                throw new InvalidOperationException("Failed tooobtain hello JWT token");
+                throw new InvalidOperationException("Failed to obtain the JWT token");
             }
 
             Console.WriteLine(result.AccessToken);
@@ -94,105 +94,105 @@ namespace GetTokenResourceManagerRequests
 }
 ```
 
-Remplacez `{tentand id}`, `{application id}`, et `{redirect uri}` à l’aide de hello suivant les instructions.
+Remplacez `{tentand id}`, `{application id}`, et `{redirect uri}` en suivant les instructions suivantes.
 
-Remplacez `{tenant id}` avec l’id de client hello Hello application Azure Active Directory que vous venez de créer. Vous pouvez accéder à des id de hello en cliquant sur **afficher les points de terminaison**.
+Remplacez `{tenant id}` avec l'ID client de l'application Azure Active Directory que vous venez de créer. Vous pouvez accéder à l'ID en cliquant sur **Afficher les points de terminaison**.
 
 ![Points de terminaison][api-management-aad-default-directory]
 
 ![Points de terminaison][api-management-endpoint]
 
-Remplacez `{application id}` et `{redirect uri}` à l’aide de hello **Id Client** et hello URL à partir de hello **URI de redirection** section à partir de votre application Azure Active Directory **configurer**  onglet.
+Remplacez `{application id}` et `{redirect uri}` à l’aide de l’**ID Client** et l’URL de la section des **URI de redirection** à partir de l’onglet **Configurer** de votre application Azure Active Directory.
 
 ![Ressources][api-management-aad-resources]
 
-Une fois que les valeurs hello sont spécifiées, exemple de code hello doit renvoyer un jeton toohello semblable l’exemple suivant.
+Une fois que les valeurs sont spécifiées, l'exemple de code doit renvoyer un jeton similaire à l'exemple suivant.
 
 ![Jeton][api-management-arm-token]
 
-Avant d’appeler hello de sauvegarde et de restauration des opérations décrites dans les sections suivantes de hello, définir l’en-tête de demande d’autorisation hello pour votre appel REST.
+Avant d'appeler les opérations de sauvegarde et de restauration décrites dans les sections suivantes, définissez l'en-tête de demande d'autorisation de votre appel REST.
 
 ```c#
 request.Headers.Add(HttpRequestHeader.Authorization, "Bearer " + token);
 ```
 
-## <a name="step1"></a>Sauvegarde d’un service Gestion des API
-tooback d’un hello de problème de service de gestion des API suivant demande HTTP :
+## <a name="step1"> </a>Sauvegarde d’un service Gestion des API
+Pour sauvegarder un service Gestion des API, envoyez la demande HTTP suivante :
 
 `POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/backup?api-version={api-version}`
 
 où :
 
-* `subscriptionId`-id d’abonnement hello contenant le service de gestion des API hello vous essayez de toobackup
-* `resourceGroupName`-une chaîne sous forme de hello de « Api - par - défaut {région service} » où `service-region` identifie hello région Azure où hello service Gestion des API que vous essayez toobackup est hébergé, par exemple,`North-Central-US`
-* `serviceName`-nom hello Hello service de gestion des API vous effectuez une sauvegarde de spécifiée au moment de sa création de hello
+* `subscriptionId` : ID de l’abonnement qui inclut le service Gestion des API que vous tentez de sauvegarder
+* `resourceGroupName` : chaîne au format « Api-Default-{service-region} », où `service-region` identifie la région Azure où est hébergé le service Gestion des API que vous tentez de sauvegarder ; par exemple `North-Central-US`
+* `serviceName` : nom du service Gestion des API que vous tentez de sauvegarder, spécifié au moment de sa création
 * `api-version` - remplacer par `2014-02-14`
 
-Dans le corps de demande de hello de hello, spécifiez le nom de compte de stockage Azure hello cible, la clé d’accès, nom de conteneur et nom de la sauvegarde :
+Dans le corps de la demande, spécifiez le nom du compte de stockage Azure cible, la clé d’accès, le nom du conteneur d’objets blob et le nom de la sauvegarde :
 
 ```
 '{  
-    storageAccount : {storage account name for hello backup},  
-    accessKey : {access key for hello account},  
+    storageAccount : {storage account name for the backup},  
+    accessKey : {access key for the account},  
     containerName : {backup container name},  
     backupName : {backup blob name}  
 }'
 ```
 
-La valeur hello Hello `Content-Type` en-tête de demande trop`application/json`.
+Définissez la valeur de l’en-tête de la demande `Content-Type` sur `application/json`.
 
-Sauvegarde est une longue opération qui peut prendre plusieurs minutes toocomplete.  Si hello demande a abouti et processus de sauvegarde hello a été lancée vous recevrez un `202 Accepted` code d’état de réponse avec un `Location` en-tête.  Vérifiez le 'GET' demande URL toohello Bonjour `Location` toofind en-tête état hello d’opération de hello. Pendant la sauvegarde de hello vous continuerez tooreceive un code d’état « 202 accepté ». Un code de réponse `200 OK` indique la réussite de l’opération de sauvegarde hello.
+La sauvegarde est une opération de longue durée qui peut prendre plusieurs minutes.  Si la demande a réussi et que le processus de sauvegarde a été lancé, vous recevez un code d’état de réponse `202 Accepted` avec un en-tête `Location`.  Envoyez des demandes « GET » à l’URL dans l’en-tête `Location` pour connaître l’état de l’opération. Lorsque la sauvegarde est en cours, vous continuez à recevoir le code d'état « 202 Accepted ». Un code de réponse `200 OK` indique que l’opération de sauvegarde a réussi.
 
-Veuillez noter hello suivant contraintes lors d’une demande de sauvegarde.
+Tenez compte des contraintes suivantes lorsque vous faites une demande de sauvegarde.
 
-* **Conteneur** spécifié dans le corps de la demande hello **doit exister**.
+* Le **conteneur** spécifié dans le corps de la demande **doit exister**.
 * Lorsque la sauvegarde est en cours, **vous ne devez tenter aucune opération de gestion des services** telle que la mise à niveau vers une version supérieure/antérieure, la modification d'un nom de domaine, etc.
-* Restauration d’un **sauvegarde est garantie uniquement pendant 30 jours** depuis le moment hello de sa création.
-* **Les données d’utilisation** utilisé pour créer des rapports d’analytique **n’est pas inclus** dans la sauvegarde de hello. Utilisez [API REST de gestion des API Azure] [ Azure API Management REST API] tooperiodically récupérer des rapports d’analytique en lieu sûr.
-* fréquence de Hello avec lequel vous effectuez des sauvegardes de service affectent votre objectif de point de récupération. toominimize il nous vous conseillons de mise en œuvre de sauvegardes régulières, ainsi que d’effectuer des sauvegardes de la demande après avoir établi l’important modifie le service de gestion des API tooyour.
-* **Modifications** configuration du service toohello effectuées (par exemple, API, stratégies, apparence portail des développeurs) lors de l’opération de sauvegarde est en cours **ne sont pas inclus dans la sauvegarde de hello et par conséquent ne sera pas conservé**.
+* La restauration d’une **sauvegarde n’est garantie que pendant 30 jours** à partir du moment de sa création.
+* Les **données d’utilisation** utilisées pour la création des rapports d’analyse **ne sont pas incluses** dans la sauvegarde. Utilisez l’[API REST de Gestion des API Azure][Azure API Management REST API] pour récupérer régulièrement les rapports d’analyse et les conserver en toute sécurité.
+* La fréquence à laquelle vous effectuez les sauvegardes du service affecte votre objectif de point de récupération. Afin de le réduire au maximum, nous vous conseillons d'implémenter des sauvegardes régulières, ainsi que des sauvegardes à la demande lorsque vous apportez des modifications importantes à votre service Gestion des API.
+* Les **modifications** de la configuration du service (par ex., API, stratégies, apparence du portail des développeurs) pendant qu’une opération de sauvegarde est en cours **peuvent ne pas être incluses dans la sauvegarde et donc être perdues**.
 
-## <a name="step2"></a>Récupération d’un service Gestion des API
-toorestore un service de gestion des API à partir d’une sauvegarde créée précédemment apporter hello suivant demande HTTP :
+## <a name="step2"> </a>Récupération d’un service Gestion des API
+Pour récupérer un service Gestion des API à partir d'une sauvegarde précédemment créée, envoyez la demande HTTP suivante :
 
 `POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/restore?api-version={api-version}`
 
 où :
 
-* `subscriptionId`-id d’abonnement hello contenant le service de gestion des API hello vous restaurez une sauvegarde dans
-* `resourceGroupName`-une chaîne sous forme de hello de « Api - par - défaut {région service} » où `service-region` identifie hello région Azure où hello service de gestion des API vous restaurez une sauvegarde dans est hébergé, par exemple,`North-Central-US`
-* `serviceName`-nom hello Hello gestion des API du service en cours de restauration dans spécifié lors de sa création hello
+* `subscriptionId` : ID de l’abonnement qui inclut le service Gestion des API que vous tentez de récupérer à partir d’une sauvegarde
+* `resourceGroupName` : chaîne au format « Api-Default-{service-region} », où `service-region` identifie la région Azure où est hébergé le service Gestion des API que vous tentez de récupérer à partir d’une sauvegarde ; par exemple `North-Central-US`
+* `serviceName` : nom du service Gestion des API à récupérer, spécifié au moment de sa création
 * `api-version` - remplacer par `2014-02-14`
 
-Dans le corps de demande de hello de hello, spécifiez l’emplacement du fichier de sauvegarde de hello, par exemple, nom de compte de stockage Azure, la clé d’accès, nom de conteneur et nom de la sauvegarde :
+Dans le corps de la demande, spécifiez l’emplacement du fichier de sauvegarde (c’est-à-dire le nom du compte de stockage Azure), la clé d’accès, le nom du conteneur d’objets blob et le nom de la sauvegarde :
 
 ```
 '{  
-    storageAccount : {storage account name for hello backup},  
-    accessKey : {access key for hello account},  
+    storageAccount : {storage account name for the backup},  
+    accessKey : {access key for the account},  
     containerName : {backup container name},  
     backupName : {backup blob name}  
 }'
 ```
 
-La valeur hello Hello `Content-Type` en-tête de demande trop`application/json`.
+Définissez la valeur de l’en-tête de la demande `Content-Type` sur `application/json`.
 
-La restauration est une longue opération qui peut prendre jusqu'à too30 ou de plusieurs minutes toocomplete.  Si la demande de hello a abouti et processus de restauration hello a été lancée vous recevrez un `202 Accepted` code d’état de réponse avec un `Location` en-tête.  Vérifiez le 'GET' demande URL toohello Bonjour `Location` toofind en-tête état hello d’opération de hello. Pendant la restauration de hello vous continuerez code d’état tooreceive « 202 accepté ». Un code de réponse `200 OK` indique la réussite de l’opération de restauration hello.
+La récupération est une opération de longue durée qui peut prendre jusqu'à 30 minutes, voire plus.  Si la demande a réussi et que le processus de récupération a été lancé, vous recevez un code d’état de réponse `202 Accepted` avec un en-tête `Location`.  Envoyez des demandes « GET » à l’URL dans l’en-tête `Location` pour connaître l’état de l’opération. Lorsque la récupération est en cours, vous continuez à recevoir le code d'état « 202 Accepted ». Un code de réponse `200 OK` indique que l’opération de récupération a réussi.
 
 > [!IMPORTANT]
-> **Hello SKU** du service hello restaurée dans **doit correspondre à** hello référence (SKU) de hello sauvegardé de service en cours de restauration.
+> Le **SKU** du service à restaurer **doit correspondre** à celui du service sauvegardé utilisé pour la restauration.
 >
-> **Modifications** configuration du service toohello effectuées (par exemple, API, stratégies, apparence portail des développeurs) lors de l’opération de restauration est en cours d’exécution **pourrait être remplacé**.
+> Les **modifications** de configuration du service (par ex., API, stratégies, apparence du portail des développeurs) pendant qu’une opération de sauvegarde est en cours **peuvent être écrasées**.
 >
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez hello suivant blogs Microsoft pour les deux procédures pas à pas différent du processus de sauvegarde/restauration hello.
+Consultez les blogs Microsoft suivants pour les deux procédures pas à pas différent du processus de sauvegarde et de restauration.
 
 * [Répliquer des comptes de gestion des API Azure](https://www.returngis.net/en/2015/06/replicate-azure-api-management-accounts/)
-  * Merci d’avoir tooGisela pour son article toothis de contribution.
+  * Merci à Gisela pour sa contribution à cet article.
 * [Gestion des API Azure : sauvegarde et restauration de la configuration](http://blogs.msdn.com/b/stuartleeks/archive/2015/04/29/azure-api-management-backing-up-and-restoring-configuration.aspx)
-  * approche Hello détaillée par Stuart ne correspond pas aux directives officielles hello, mais il est très intéressant.
+  * L'approche détaillée par Stuart ne correspond pas à l'aide officielle mais est très intéressante.
 
 [Backup an API Management service]: #step1
 [Restore an API Management service]: #step2

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure IoT préconfiguré solutions | Documents Microsoft"
-description: "Obtenir une description de hello Azure IoT préconfiguré solutions ainsi que leur architecture avec des ressources tooadditional des liens."
+title: "Solutions préconfigurées IoT Azure | Microsoft Docs"
+description: "Description des solutions préconfigurées IoT Azure et de leur architecture avec des liens vers des ressources supplémentaires."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,92 +15,92 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: bd059d08ab458fdb0b6f49b3ac469db930dab09e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: e0e79cb3b4c71c5d424f3b46af72fcb8b2f63ead
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="what-are-hello-azure-iot-suite-preconfigured-solutions"></a>Quelles sont les solutions Azure IoT Suite préconfiguré hello ?
+# <a name="what-are-the-azure-iot-suite-preconfigured-solutions"></a>Que sont les solutions préconfigurées Azure IoT Suite ?
 
-Bonjour Azure IoT préconfiguré suites sont des implémentations de modèles de solution IoT courants que vous pouvez déployer tooAzure à l’aide de votre abonnement. Vous pouvez utiliser des solutions de hello préconfiguré :
+Les solutions Azure IoT Suite préconfigurées sont des implémentations de modèles de solution IoT courants que vous pouvez déployer sur Azure en utilisant votre abonnement. Vous pouvez utiliser les solutions préconfigurées :
 
 * Comme point de départ de vos propres solutions IoT.
-* toolearn sur des modèles courants dans le développement et de conception de la solution IoT.
+* Pour en savoir plus sur les modèles courants en matière de développement et de conception d’une solution IoT.
 
-Chaque solution préconfigurée est une implémentation complète, de bout en bout qu’utilise simulées télémétrie toogenerate de périphériques.
+Chaque solution préconfigurée est une implémentation complète de bout en bout qui utilise les appareils simulés pour générer la télémétrie.
 
-Vous pouvez télécharger toocustomize de code source complet hello et étendre hello solution toomeet vos exigences IoT spécifiques.
+Vous pouvez télécharger le code source complet pour personnaliser et étendre la solution afin de répondre à vos besoins IoT spécifiques.
 
 > [!NOTE]
-> toodeploy une Hello préconfiguré solutions, visitez le site [Microsoft Azure IoT Suite][lnk-azureiotsuite]. article de Hello [prise en main des solutions IoT préconfiguré hello] [ lnk-getstarted-preconfigured] fournit plus d’informations sur comment toodeploy et une exécution de hello solutions.
+> Pour déployer l’une des solutions préconfigurées, visitez [Microsoft Azure IoT Suite][lnk-azureiotsuite]. L’article [Prise en main des solutions préconfigurées IoT][lnk-getstarted-preconfigured] fournit plus d’informations pour vous expliquer comment déployer et exécuter l’une des solutions.
 
-Hello tableau suivant montre comment les solutions hello mappent toospecific IoT fonctionnalités :
+Le tableau suivant montre le mappage entre les solutions et des fonctionnalités IoT spécifiques :
 
 | Solution | Ingestion de données | Identité d’appareil | Gestion des appareils | Commande et contrôle | Règles et actions | Analyse prédictive |
 | --- | --- | --- | --- | --- | --- | --- |
 | [Surveillance à distance][lnk-getstarted-preconfigured] |Oui |Oui |Oui |Oui |Oui |- |
 | [Maintenance prédictive][lnk-predictive-maintenance] |Oui |Oui |- |Oui |Oui |Oui |
-| [Fabrique connectée][lnk-getstarted-factory] |Oui |Oui |Oui |Oui |Oui |- |
+| [Fabrique connectée][lnk-getstarted-factory] |Oui |Oui |Oui |Oui |yes |- |
 
-* *Intégrer les données*: entrée de données au cloud toohello de mise à l’échelle.
-* *Identité de l’appareil*: appareil accès toohello solution de contrôle et de gérer les identités d’appareil unique.
+* *Données*: entrer des données à l'échelle dans le cloud.
+* *Identité de l’appareil* : gérez les identités d’appareil uniques et contrôlez l’accès de l’appareil à la solution.
 * *Gestion des appareils* : gérez les métadonnées de l’appareil et effectuez des opérations comme le redémarrage d’appareils et la mise à jour du microprogramme.
-* *Contrôle et commande*: toocause hello appareil tootake une action, envoyer des messages de périphérique de tooa du cloud de hello.
-* *Les règles et les actions*: tooact sur des données spécifiques appareil-à-cloud, hello solution back-end utilise des règles.
-* *Analytique prédictive*: hello solution back-end analyse toopredict de données de l’appareil-à-cloud lorsque des actions spécifiques doivent avoir lieu. Par exemple, analyser avion moteur télémétrie toodetermine lors de la maintenance du moteur est due.
+* *Commande et contrôle*: envoyer des messages à un appareil à partir du cloud pour lui demander d’agir.
+* *Règles et actions*: le serveur principal utilise des règles pour agir sur des données d’appareil spécifiques vers le cloud.
+* *Analyse prédictive*: le serveur principal analyse les données d’appareil vers le cloud afin de prédire le moment où des actions spécifiques devraient se produire. Par exemple, l’analyse de la télémétrie d’un moteur d'avion permet de déterminer le moment où la maintenance doit avoir lieu.
 
 ## <a name="remote-monitoring-preconfigured-solution-overview"></a>Présentation de la solution préconfigurée de surveillance à distance
 
-Nous avons choisi toodiscuss hello solution préconfigurée de contrôle à distance dans cet article, car il illustre de nombreux éléments de conception communs qui hello autre partage de solutions.
+Nous avons choisi d’aborder dans cet article la solution préconfigurée de surveillance à distance, car elle illustre de nombreux éléments de conception communs que partagent les autres solutions.
 
-Hello diagramme suivant illustre hello principaux éléments de solution de surveillance à distance de hello. Hello sections suivantes fournissent plus d’informations sur ces éléments.
+Le schéma suivant illustre les éléments clés de la solution de surveillance à distance. Les sections qui suivent fournissent des informations supplémentaires sur ces éléments.
 
 ![Architecture de la solution préconfigurée Surveillance à distance][img-remote-monitoring-arch]
 
 ## <a name="devices"></a>Appareils
 
-Lorsque vous déployez hello solution préconfigurée de surveillance à distance, quatre périphériques simulées sont préconfigurés dans solution hello qui simulent un périphérique de refroidissement. Ces appareils de simulation intègrent un modèle de température et d’humidité qui génère des données de télémétrie. Ces appareils simulés sont inclus pour :
+Lorsque vous déployez la solution préconfigurée de surveillance à distance, quatre appareils sont préconfigurés dans la solution pour simuler un appareil de refroidissement. Ces appareils de simulation intègrent un modèle de température et d’humidité qui génère des données de télémétrie. Ces appareils simulés sont inclus pour :
 
-- Illustrer le flux de bout en bout de hello des données dans les solutions hello.
+- Illustrer le trajet de bout en bout des données à travers la solution.
 - Fournir une source de données de télémétrie pratique.
-- Fournissent une cible pour les méthodes ou les commandes si vous êtes un développeur de back-end à l’aide des solutions de hello comme point de départ pour une implémentation personnalisée.
+- Fournir une cible pour les méthodes ou commandes si vous êtes un développeur de système principal en utilisant la solution comme point de départ pour une implémentation personnalisée.
 
-appareils Hello simulé dans la solution de hello peuvent répondre toohello suivant les communications du cloud sur l’appareil :
+Les appareils simulés dans la solution peuvent répondre aux communications cloud-à-appareil suivantes :
 
-- *Méthodes ([direct de méthodes][lnk-direct-methods])*: une méthode de communication bidirectionnelle où un périphérique connecté est attendu toorespond immédiatement.
-- *Commandes (messages cloud-à-appareil)*: une méthode de communication unidirectionnelle où un périphérique récupère commande hello à partir d’une file d’attente durable.
+- *Méthodes ([méthodes directes][lnk-direct-methods])* : une méthode de communication bidirectionnelle pour laquelle un appareil connecté doit répondre immédiatement.
+- *Commandes (messages cloud-à-appareil)* : une méthode de communication unidirectionnelle pour laquelle un appareil récupère la commande à partir d’une file d’attente durable.
 
 Pour une comparaison de ces différentes approches, consultez [Conseils pour les communications cloud-à-appareil][lnk-c2d-guidance].
 
-Lorsqu’un périphérique connecte tooIoT Hub dans les solutions hello préconfiguré d’abord, il envoie un concentrateur de toohello du message d’informations de périphérique. Ce message énumère les méthodes hello appareil de hello peut répondre à. Bonjour solution préconfigurée de surveillance à distance, simulations de périphériques prennent en charge ces méthodes :
+Lorsqu’un appareil se connecte pour la première fois à IoT Hub dans la solution préconfigurée, il envoie un message d’informations sur l’appareil au hub. Ce message énumère les méthodes auxquelles l’appareil peut répondre. Dans la solution préconfigurée de surveillance à distance, les appareils simulés prennent en charge les méthodes suivantes :
 
-* *Lancer la mise à jour de microprogramme*: cette méthode démarre une tâche asynchrone sur hello appareil tooperform une mise à jour du microprogramme. tâche asynchrone Hello utilise les propriétés déclarées toodeliver état des mises à jour toohello solution du tableau de bord.
-* *Redémarrez*: cette méthode provoque hello simulée périphérique tooreboot.
-* *FactoryReset*: cette méthode déclenche usine sur l’appareil simulé de hello.
+* *Lancer la mise à jour du microprogramme* : cette méthode lance une tâche asynchrone sur l’appareil pour effectuer une mise à jour du microprogramme. La tâche asynchrone utilise les propriétés signalées pour fournir des mises à jour d’état d’application sur le tableau de bord de la solution.
+* *Redémarrer* : cette méthode provoque le redémarrage de l’appareil simulé.
+* *FactoryReset* : cette méthode déclenche une réinitialisation aux paramètres d’usine sur l’appareil simulé.
 
-Lorsqu’un périphérique connecte tooIoT Hub dans les solutions hello préconfiguré d’abord, il envoie un concentrateur de toohello du message d’informations de périphérique. Ce message énumère les commandes hello appareil de hello peut répondre à. Bonjour solution préconfigurée de surveillance à distance, simulations de périphériques prennent en charge ces commandes :
+Lorsqu’un appareil se connecte pour la première fois à IoT Hub dans la solution préconfigurée, il envoie un message d’informations sur l’appareil au hub. Ce message énumère les commandes auxquelles l’appareil peut répondre. Dans la solution préconfigurée de surveillance à distance, les appareils simulés prennent en charge les commandes suivantes :
 
-* *Appareil de ping*: hello répond commande toothis avec un accusé de réception. Cette commande est utile pour la vérification de que ce périphérique hello est toujours active et à l’écoute.
-* *Démarrer la télémétrie*: fait en sorte que toostart de périphérique hello envoi de données de télémétrie.
-* *Arrêter la télémétrie*: fait en sorte que toostop de périphérique hello envoi de données de télémétrie.
-* *Modifier la température de définir le Point*: contrôles hello température simulé télémétrie valeurs hello appareil envoie. Cette commande est utile dans le cadre de tests de logique Back-end.
-* *Télémétrie de diagnostic*: contrôle si l’appareil de hello doit envoyer les températures externes hello en tant que données de télémétrie.
-* *Changement d’état périphérique*: définit hello appareil état métadonnées propriété hello des rapports de l’appareil. Cette commande est utile dans le cadre de tests de logique Back-end.
+* *Effectuer un test Ping*: l’appareil répond à cette commande par un accusé de réception. Cette commande est utile pour vérifier que l’appareil est toujours actif et en mode écoute.
+* *Démarrer la télémétrie*: demande à l’appareil de démarrer l’envoi des données de télémétrie.
+* *Démarrer la télémétrie*: demande à l’appareil d’arrêter l’envoi des données de télémétrie.
+* *Modifier la température nominale*: contrôle les valeurs de télémétrie reflétant la température simulée envoyées par l’appareil. Cette commande est utile dans le cadre de tests de logique Back-end.
+* *Diagnostiquer la télémétrie*: détermine si l’appareil doit envoyer les données de température externe sous la forme de données de télémétrie.
+* *Modifier l’état de l’appareil* : définit la propriété des métadonnées d’état de l’appareil renvoyée par l’appareil. Cette commande est utile dans le cadre de tests de logique Back-end.
 
-Vous pouvez ajouter plusieurs simulations de périphériques toohello solution qui émettent hello télémétrie même et y répondre toohello même des méthodes et des commandes.
+Vous pouvez ajouter à la solution d’autres appareils de simulation qui génèrent les mêmes données de télémétrie et répondent aux mêmes méthodes et commandes.
 
-En outre tooresponding toocommands et les méthodes, les solutions hello utilisent [jumeaux de périphérique][lnk-device-twin]. Les périphériques utilisent un appareil jumeaux tooreport propriété valeurs toohello solution back-end. tableau de bord de solution Hello utilise les valeurs de propriété appareil jumeaux tooset toonew souhaitée sur les appareils. Par exemple, au cours des rapports d’appareils hello simulée hello microprogramme mise à jour de processus hello état Hello mis à jour à l’aide des propriétés déclarées.
+En plus de répondre aux commandes et aux méthodes, la solution utilise les [représentations d’appareil][lnk-device-twin]. Les appareils utilisent les représentations pour renvoyer les valeurs de propriété au système principal de la solution. Le tableau de bord de la solution utilise les représentations d’appareil pour définir les nouvelles valeurs de propriété de votre choix sur les appareils. Par exemple, lors du processus de mise à jour du microprogramme, l’appareil simulé signale l’état de la mise à jour à l’aide des propriétés signalées.
 
 ## <a name="iot-hub"></a>IoT Hub
 
-Dans cette solution préconfigurée, hello IoT Hub correspond instance toohello *passerelle de Cloud* courant [architecture de solution IoT][lnk-what-is-azure-iot].
+Dans cette solution préconfigurée, l’instance IoT Hub correspond à une *passerelle cloud* dans une [architecture de solution IoT][lnk-what-is-azure-iot] standard.
 
-Un hub IoT reçoit la télémétrie à partir d’appareils hello à un seul point de terminaison. Un hub IoT conserve également des points de terminaison spécifique à l’appareil où chaque périphérique peut récupérer les commandes hello envoyés tooit.
+Un IoT Hub reçoit la télémétrie provenant des appareils à un seul système d’extrémité. Un IoT Hub gère également les points de terminaison spécifiques des appareils où chaque appareil peut récupérer les commandes qui lui sont envoyées.
 
-IoT hub de Hello rend les données de télémétrie hello reçu disponibles via la télémétrie du côté service hello lire le point de terminaison.
+L’IoT Hub met les données de télémétrie qu’il reçoit à disposition via un système d’extrémité de lecture de télémétrie côté service.
 
-fonctionnalité de gestion de périphérique de Hello de IoT Hub permet de vous toomanage vos propriétés de l’appareil à partir des travaux de planification et de portail de solution hello qui effectuent des opérations telles que :
+La fonctionnalité de gestion des appareils de IoT Hub vous permet de gérer les propriétés de votre appareil à partir du portail de la solution et de planifier des tâches qui effectuent diverses opérations dont les suivantes :
 
 - Redémarrage des appareils
 - Changement d’état d’appareil
@@ -108,64 +108,64 @@ fonctionnalité de gestion de périphérique de Hello de IoT Hub permet de vous 
 
 ## <a name="azure-stream-analytics"></a>Azure Stream Analytics
 
-Hello solution préconfigurée utilise trois [Analytique de flux de données Azure] [ lnk-asa] (ASA) travaux toofilter hello télémétrie des flux de données à partir d’appareils de hello :
+Cette solution préconfigurée utilise trois travaux [Azure Stream Analytics][lnk-asa] (ASA) pour filtrer le flux de télémétrie des appareils :
 
-* *DeviceInfo travail* -concentrateur d’événements sorties données tooan qui achemine le Registre des appareils appareil messages spécifiques d’inscription toohello solution. Le registre d’appareils correspond à une base de données Azure Cosmos DB. Ces messages sont envoyés lorsqu’un périphérique se connecte d’abord ou dans la réponse tooa **modifier l’état de l’appareil** commande.
-* *Travail de télémétrie* - envoie tout le stockage blob brutes de télémesure de tooAzure pour le stockage à froid et calculant des agrégations de données de télémétrie qui s’affichent dans le tableau de bord de solution hello.
-* *Travail de règles* - filtres hello des flux de données de télémétrie pour les valeurs qui dépassent les seuils de règle et sorties hello concentrateur d’événements de tooan de données. Lorsqu’une règle se déclenche, vue de tableau de bord de portail hello solutions affiche cet événement comme une nouvelle ligne dans la table d’historique alarme hello. Ces règles peuvent également déclencher une action basée sur les paramètres de hello définis sur hello **règles** et **Actions** vues dans le portail de solution hello.
+* *Tâche DeviceInfo* : envoie des données à un Event Hub qui achemine les messages relatifs à l’inscription de l’appareil dans le registre d’appareils de la solution. Le registre d’appareils correspond à une base de données Azure Cosmos DB. Ces messages sont envoyés lorsqu’un appareil se connecte d’abord ou en réponse à une commande **Modifier l’état de l’appareil**.
+* *Tâche Telemetry* : envoie toutes les données de télémétrie brutes vers Azure Blob Storage pour un stockage à froid et calcule les données de télémétrie agrégées qui s’affichent dans le tableau de bord de la solution.
+* *Tâche Rules* : filtre le flux de télémétrie sur les valeurs qui dépassent les seuils de la règle et envoie les données vers un hub d’événements. Lorsqu’une règle se déclenche, la vue du tableau de bord du portail de la solution affiche cet événement sous la forme d’une nouvelle ligne dans la table d’historique des alarmes. Ces règles peuvent également déclencher une action basée sur les paramètres définis dans les vues **Règles** et **Actions** dans le portail de la solution.
 
-Dans cette solution préconfigurée, hello ASA travaux font partie de toohello **principal solution IoT** courant [architecture de solution IoT][lnk-what-is-azure-iot].
+Dans cette solution préconfigurée, les tâches ASA font partie du **serveur principal de solution IoT** dans une [architecture de solution IoT][lnk-what-is-azure-iot] standard.
 
 ## <a name="event-processor"></a>Processeur d’événements
 
-Dans cette solution préconfigurée, processeur d’événements hello constitue une partie de hello **principal solution IoT** courant [architecture de solution IoT][lnk-what-is-azure-iot].
+Dans cette solution préconfigurée, le processeur d’événements fait partie du **serveur principal de solution IoT** dans une [architecture de solution IoT][lnk-what-is-azure-iot] standard.
 
-Hello **DeviceInfo** et **règles** les travaux ASA envoyer leurs concentrateurs tooEvent de sortie pour la remise tooother les services principaux. Hello solution utilise une [EventProcessorHost] [ lnk-event-processor] instance, en cours d’exécution un [WebJob][lnk-web-job], messages de type hello tooread à partir de ces concentrateurs d’événements. Hello **EventProcessorHost** utilise :
-- Hello **DeviceInfo** tooupdate hello unité de données dans la base de données de la base de données Cosmos hello.
-- Hello **règles** tooinvoke hello logique application et mise à jour hello alertes de données affichent dans le portail de solution hello.
+Les tâches ASA **DeviceInfo** et **Rules** envoient leur sortie vers des Event hubs pour une transmission à d’autres services principaux. La solution utilise une instance [EventPocessorHost][lnk-event-processor], qui s’exécute dans une [tâche web][lnk-web-job], pour lire les messages à partir de ces Event hubs. L’événement **EventProcessorHost** utilise :
+- Les données **DeviceInfo** pour mettre à jour les données de l’appareil dans la base de données Cosmos DB.
+- Les données de **Règles** pour appeler l’application logique et mettre à jour l’affichage des alertes dans le portail de la solution.
 
 ## <a name="device-identity-registry-device-twin-and-cosmos-db"></a>Registre d’identité des appareils, jumeau d’appareil et Cosmos DB
 
-Chaque IoT hub inclut un [registre d’identité des appareils][lnk-identity-registry] qui stocke des clés d’appareils. IoT Hub utilise ces informations authentifier les appareils : un périphérique doit être enregistré et disposer d’une clé valide avant de se connecter toohello hub.
+Chaque IoT hub inclut un [registre d’identité des appareils][lnk-identity-registry] qui stocke des clés d’appareils. IoT Hub utilise ces informations pour authentifier les appareils. Un appareil doit être enregistré et disposer d'une clé valide avant de se connecter au concentrateur.
 
-A [double de l’appareil] [ lnk-device-twin] est un document JSON géré par hello IoT Hub. Une représentation d’appareil contient :
+Une [représentation d’appareil][lnk-device-twin] est un document JSON géré par Iot Hub. Une représentation d’appareil contient :
 
-- Propriétés signalées envoyées par le concentrateur de toohello périphérique hello. Vous pouvez afficher ces propriétés dans le portail de solution hello.
-- Propriétés souhaitées que vous souhaitez toosend toohello appareil. Vous pouvez définir ces propriétés dans le portail de solution hello.
-- Balises qui existent uniquement en double d’appareil hello et non sur le périphérique de hello. Vous pouvez utiliser ces listes toofilter de balises de périphériques dans le portail de solution hello.
+- Les propriétés signalées envoyées par l’appareil vers le hub. Vous pouvez afficher ces propriétés dans le portail de la solution.
+- Les propriétés de votre choix que vous souhaitez envoyer à l’appareil. Vous pouvez définir ces propriétés dans le portail de la solution.
+- Des balises qui existent uniquement dans la représentation d’appareil et non sur l’appareil. Vous pouvez utiliser ces balises pour filtrer les listes d’appareils dans le portail de la solution.
 
-Cette solution utilise des métadonnées de périphérique jumeaux toomanage appareil. solution de Hello utilise également un Cosmos DB de base de données toostore appareil spécifiques à des solutions supplémentaires de données telles que les commandes hello pris en charge par chaque périphérique et hello historique des commandes.
+Cette solution utilise des représentations d’appareil pour gérer les métadonnées d’appareil. La solution utilise également une base de données Cosmos DB pour stocker des données d’appareil supplémentaires propres à la solution comme les commandes prises en charge par chaque appareil et l’historique des commandes.
 
-solution de Hello doit également conserver les informations de hello dans Registre des identités hello périphérique synchronisé avec le contenu de hello de base de données de la base de données Cosmos hello. Hello **EventProcessorHost** utilise hello des données à partir de **DeviceInfo** analytique de flux de données de synchronisation de hello toomanage la tâche.
+La solution doit également conserver les informations dans le registre d’identité des appareils, synchronisé avec le contenu de la base de données Cosmos DB. L’instance **EventProcessorHost** utilise les données de la tâche Stream Analytics **DeviceInfo** pour gérer la synchronisation.
 
 ## <a name="solution-portal"></a>Portail de la solution
 
 ![portail de la solution][img-dashboard]
 
-portail de solution Hello est une interface utilisateur web qui est déployé toohello cloud dans le cadre de la solution de hello préconfiguré. Il vous permet d’effectuer les opérations suivantes :
+Le portail de la solution est une interface utilisateur web qui est déployée dans le cloud dans le cadre de la solution préconfigurée. Il vous permet d’effectuer les opérations suivantes :
 
 * Afficher l’historique de télémétrie et d’alertes dans un tableau de bord.
 * Approvisionner de nouveaux appareils.
 * Gérer et surveiller des appareils.
-* Envoyer des commandes toospecific périphériques.
+* Envoyer des commandes à des appareils spécifiques.
 * Des méthodes d’appel sur des appareils spécifiques.
 * Gérer les règles et les actions.
-* Planifier toorun travaux sur un ou plusieurs périphériques.
+* Planifiez l’exécution de travaux sur un ou plusieurs appareils.
 
-Dans cette solution préconfigurée, portail de solution hello constitue une partie de hello **principal solution IoT** et fait partie intégrante hello **connectivité de traitement et d’entreprise** Bonjour classique [solution IoT architecture][lnk-what-is-azure-iot].
+Dans cette solution préconfigurée, le portail de la solution fait partie du **serveur principal de solution IoT** et de la **connectivité de traitement et d’entreprise** dans [l’architecture de solution IoT][lnk-what-is-azure-iot] standard.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 Pour plus d’informations sur les architectures de solution IoT, consultez le document [Microsoft Azure IoT services: Reference Architecture][lnk-refarch].
 
-Maintenant, vous savez quelle une solution préconfigurée est, vous pouvez commencer en déployant hello *surveillance à distance* solution préconfigurée : [prise en main des solutions hello préconfiguré] [ lnk-getstarted-preconfigured].
+À présent que vous savez en quoi consiste une solution préconfigurée, vous pouvez commencer en déployant la solution préconfigurée de *surveillance à distance* : [Prise en main des solutions préconfigurées][lnk-getstarted-preconfigured].
 
 [img-remote-monitoring-arch]: ./media/iot-suite-what-are-preconfigured-solutions/remote-monitoring-arch1.png
 [img-dashboard]: ./media/iot-suite-what-are-preconfigured-solutions/dashboard.png
 [lnk-what-is-azure-iot]: iot-suite-what-is-azure-iot.md
 [lnk-asa]: https://azure.microsoft.com/documentation/services/stream-analytics/
 [lnk-event-processor]: ../event-hubs/event-hubs-programming-guide.md#event-processor-host
-[lnk-web-job]: ../app-service-web/web-sites-create-web-jobs.md
+[lnk-web-job]: ../app-service/web-sites-create-web-jobs.md
 [lnk-identity-registry]: ../iot-hub/iot-hub-devguide-identity-registry.md
 [lnk-predictive-maintenance]: iot-suite-predictive-overview.md
 [lnk-azureiotsuite]: https://www.azureiotsuite.com/

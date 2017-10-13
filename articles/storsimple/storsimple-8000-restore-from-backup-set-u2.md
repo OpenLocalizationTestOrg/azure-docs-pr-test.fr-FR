@@ -1,6 +1,6 @@
 ---
-title: "aaaRestore un volume à partir de la sauvegarde sur une série StorSimple 8000 | Documents Microsoft"
-description: "Explique comment toouse hello toorestore de catalogue de sauvegarde de service de gestionnaire de périphériques StorSimple un volume StorSimple à partir d’un jeu de sauvegarde."
+title: "Restauration d’un volume à partir d’une sauvegarde sur un appareil de la gamme StorSimple 8000 | Microsoft Docs"
+description: "Explique comment utiliser le Catalogue de sauvegarde du service StorSimple Device Manager pour restaurer un volume StorSimple à partir d’un jeu de sauvegarde."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,132 +14,132 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 05/23/2017
 ms.author: alkohli
-ms.openlocfilehash: 0fe2e4c23a23c75ce4058a8531356c94c973c6f1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: aff0710ead4f76bb80c38e2d88fe9cd3ce6a7b48
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="restore-a-storsimple-volume-from-a-backup-set"></a>Restauration d’un volume StorSimple à partir d’un jeu de sauvegarde
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Ce didacticiel décrit l’opération de restauration hello effectuée sur un appareil de série StorSimple 8000 à l’aide d’un jeu de sauvegarde existant. Hello d’utilisation **catalogue de sauvegarde** panneau toorestore un volume à partir d’une variable locale ou sauvegarde sur le cloud. Hello **catalogue de sauvegarde** panneau affiche tous les jeux de sauvegarde hello qui sont créés lorsque des sauvegardes manuelles ou automatisées sont effectuées. opération de restauration de Hello à partir d’un jeu de sauvegarde met le volume hello en ligne immédiatement pendant le téléchargement de données en arrière-plan de hello.
+Ce didacticiel décrit la restauration d’un appareil de la gamme StorSimple 8000 à l’aide d’un jeu de sauvegarde existant. Utilisez le panneau **Catalogue de sauvegarde** pour restaurer un volume à partir d’une sauvegarde locale ou cloud. Le panneau **Catalogue de sauvegarde** affiche tous les jeux de sauvegarde créés lors de sauvegardes manuelles ou automatisées. L’opération de restauration à partir d’un jeu de sauvegarde met le volume en ligne immédiatement pendant le téléchargement des données en arrière-plan.
 
-Une autre méthode toostart la restauration est toogo trop**périphériques > [votre appareil] > Volumes**. Bonjour **Volumes** panneau, sélectionnez un volume, un menu contextuel hello tooinvoke, puis **restaurer**.
+Pour démarrer la restauration, vous pouvez également accéder à **Appareils > [Votre appareil] > Volumes**. Dans le panneau **Volumes**, cliquez sur un volume avec le bouton droit de la souris pour appeler le menu contextuel, puis sélectionnez **Restaurer**.
 
 ## <a name="before-you-restore"></a>Avant de procéder à la restauration
 
-Avant de démarrer une restauration, passez en revue hello suivant mises en garde :
+Avant de démarrer une restauration, prenez garde aux éléments suivants :
 
-* **Vous devez déconnecter volume de hello** : prendre un volume hello hors connexion sur les deux hôtes hello et hello périphérique avant de vous lancer l’opération de restauration hello. Bien que l’opération de restauration de hello met automatiquement le volume hello en ligne sur l’appareil de hello, vous devez manuellement mettre appareil hello en ligne sur l’ordinateur hôte de hello. Vous pouvez donner le volume hello en ligne sur l’ordinateur hôte de hello dès que le volume de hello est en ligne sur l’appareil de hello. (Il est inutile toowait jusqu'à la fin d’opération de restauration hello.) Pour les procédures, passez trop[mettre un volume hors connexion](storsimple-8000-manage-volumes-u2.md#take-a-volume-offline).
+* **Vous devez mettre le volume hors connexion** – Placez le volume hors connexion sur l’hôte et sur l’appareil avant de lancer une opération de restauration. Bien que l’opération de restauration mette automatiquement le volume en ligne sur l’appareil, vous devez le faire manuellement sur l’hôte. Vous pouvez mettre le volume en ligne sur l’hôte dès que le volume est en ligne sur l’appareil. (Il est inutile d’attendre la fin de l’opération de restauration.) Pour connaître les procédures, consultez [Mise hors connexion d’un volume](storsimple-8000-manage-volumes-u2.md#take-a-volume-offline).
 
-* **Type de volume après restauration** : Deleted volumes sont restaurés en fonction de type hello dans l’instantané d’hello ; autrement dit, les volumes qui ont été attachés localement sont restaurés en tant que volumes attachés localement et les volumes qui ont été assemblés sont restaurés en tant que volumes hiérarchisés.
+* **Type de volume après restauration** – Les volumes supprimés sont restaurés en fonction du type dans l’instantané. Ainsi, les volumes qui étaient épinglés localement sont restaurés comme tels et les volumes à plusieurs niveaux de même.
 
-    Pour les volumes existants, hello en cours d’utilisation type de volume de hello substitue type hello est stocké dans l’instantané d’hello. Par exemple, si vous restaurez un volume à partir d’un instantané qui a été effectuée lors du type de volume hello a été à plusieurs niveaux et que le type de volume est désormais localement épinglé (en raison d’opération de conversion tooa qui a été exécutée), volume de hello restaurée en tant qu’un volume attaché localement. De même, si un volume attaché localement a été développé et restauré par la suite à partir d’un instantané plus ancien est effectuée lorsque le volume de hello était plus petit, hello volume restauré conservera taille développée de hello en cours.
+    Pour les volumes existants, le type de volume selon l’utilisation actuelle remplace le type stocké dans l’instantané. Par exemple, si vous restaurez un volume à partir d’un instantané qui a été pris lorsque le type de volume était à plusieurs niveaux et que celui-ci est désormais épinglé localement (à la suite d’une opération de conversion), le volume sera restauré comme volume épinglé localement. De même, si un volume épinglé localement existant a été étendu puis restauré à partir d’un instantané précédent pris lorsque le volume était plus petit, le volume restauré conserve la taille étendue actuelle.
 
-    Vous ne peut pas convertir un volume à partir d’un volume de tooa attaché localement volume hiérarchisé ou à partir d’un tooa volume attaché localement à plusieurs niveaux volume alors que le volume de hello est en cours de restauration. Attendez la fin de l’opération de restauration hello, puis vous pouvez convertir le type de tooanother volume hello. Pour plus d’informations sur la conversion d’un volume, accédez trop[modifier le type de volume hello](storsimple-8000-manage-volumes-u2.md#change-the-volume-type). 
+    Vous ne pouvez pas convertir un volume à plusieurs niveaux en un volume épinglé localement, ou un volume épinglé localement en un volume à plusieurs niveaux pendant sa restauration. Vous devez attendre la fin de l’opération de restauration avant de convertir le volume en un autre type. Pour plus d’informations sur la conversion d’un volume, consultez la page [Changer de type de volume](storsimple-8000-manage-volumes-u2.md#change-the-volume-type). 
 
-* **taille du volume Hello est répercutée dans le volume de hello restauré** – il s’agit d’un aspect important si vous restaurez un volume attaché localement a été supprimé (car les volumes attachés localement sont totalement configurées). Assurez-vous que vous disposez de suffisamment d’espace avant de tenter de toorestore un volume attaché localement qui a été supprimé précédemment.
+* **La taille du volume est reflétée dans le volume restauré** : il s’agit d’un élément important si vous restaurez un volume épinglé localement qui a été supprimé (car les volumes épinglés localement sont complètement configurés). Vérifiez que vous disposez d’un espace suffisant avant d’essayer de restaurer un volume épinglé localement qui a été supprimé.
 
-* **Vous ne pouvez pas développer un volume pendant qu’il est en cours de restauration** : attendez que l’opération de restauration hello est terminée avant de tenter de volume de hello tooexpand. Pour plus d’informations sur le développement d’un volume, accédez trop[modifier un volume](storsimple-8000-manage-volumes-u2.md#modify-a-volume).
+* **Vous ne pouvez pas étendre un volume pendant sa restauration** – Attendez la fin de l’opération de restauration avant d’essayer d’étendre le volume. Pour plus d’informations sur l’extension d’un volume, consultez la page [Modifier un volume](storsimple-8000-manage-volumes-u2.md#modify-a-volume).
 
-* **Vous pouvez effectuer une sauvegarde lorsque vous restaurez un volume local** : pour les procédures accédez trop[utiliser des stratégies de sauvegarde hello le Gestionnaire de périphériques StorSimple service toomanage](storsimple-8000-manage-backup-policies-u2.md).
+* **Vous pouvez effectuer une sauvegarde lorsque vous restaurez un volume local** – Pour connaître les procédures, accédez à [Utiliser le service StorSimple Device Manager pour gérer les stratégies de sauvegarde](storsimple-8000-manage-backup-policies-u2.md).
 
-* **Vous pouvez annuler une opération de restauration** : Si vous annulez le travail de restauration hello, puis le volume de hello sera restaurée toohello état où il se trouvait avant que vous avez lancé l’opération de restauration hello. Pour les procédures, passez trop[annuler un travail](storsimple-8000-manage-jobs-u2.md#cancel-a-job).
+* **Vous pouvez annuler une opération de restauration** – Si vous annulez le travail de restauration, le volume sera restauré à l’état où il se trouvait avant le lancement de l’opération de restauration. Pour connaître les procédures, consultez la page [Annuler un travail](storsimple-8000-manage-jobs-u2.md#cancel-a-job).
 
 ## <a name="how-does-restore-work"></a>Fonctionnement du processus de restauration
 
-Pour les appareils exécutant Update 4 ou version ultérieure, une restauration basée sur une carte thermique est implémentée. Hello hôte demande des données tooaccess parviennent appareil de hello, ces demandes sont suivies et un heatmap est créé. Taux élevé d’entraîne des segments de données avec chaleur supérieure tandis que les taux inférieur traduit toochunks avec chaleur inférieur. Vous devez accéder à hello données au moins deux fois la mention toobe _à chaud_. Un fichier modifié est également marqué comme _chaud_. Une fois que vous avez lancé la restauration de hello, HYDRATATION proactive des données se produit en fonction de hello heatmap. Pour les versions antérieures à la mise à jour 4, les données de salutation sont téléchargées au cours de restauration basée sur l’accès uniquement.
+Pour les appareils exécutant Update 4 ou version ultérieure, une restauration basée sur une carte thermique est implémentée. Étant donné que l’hôte demande à accéder aux données de l’appareil, ces demandes font l’objet d’un suivi et une carte thermique est créée. Un taux de demande élevé se traduit par des segments de données avec plus de chaleur, tandis qu’un taux de demande plus faible se traduit par des segments avec moins de chaleur. Vous devez accéder aux données à deux reprises minimum pour qu’elles soient marquées comme _chaudes_. Un fichier modifié est également marqué comme _chaud_. Une fois que vous lancez la restauration, le rafraîchissement proactif des données se produit en fonction de la carte thermique. Pour les versions antérieures à Update 4, le téléchargement des données a lieu pendant la restauration basée sur l’accès uniquement.
 
-Hello suivant mises en garde s’appliquent les restaurations à partir de tooheatmap :
+Les mises en garde suivantes s’appliquent aux restaurations basées sur la carte thermique :
 
 * Le suivi de carte thermique est activé uniquement pour les volumes hiérarchisés (les volumes épinglés localement ne sont pas pris en charge).
 
-* Restauration Heatmap n’est pas prise en charge durant le clonage d’un périphérique tooanother de volume. 
+* La restauration basée sur la carte thermique n’est pas prise en charge lors du clonage d’un volume sur un autre appareil. 
 
-* S’il existe une restauration sur place et un instantané local pour hello toobe de volume restauré existe sur le périphérique de hello, nous ne pas réalimenter (comme les données sont déjà disponibles localement). 
+* Si une restauration en place et si une capture instantanée locale existent sur l’appareil pour le volume à restaurer, aucun rafraîchissement n’est nécessaire (car les données sont déjà disponibles localement). 
 
-* Par défaut, lorsque vous restaurez, hello réalimentation travaux sont lancés qui réalimenter proactive des données en fonction de hello heatmap. 
+* Par défaut, lors de la restauration, les travaux de rafraîchissement sont initiés et rafraîchissent les données de façon proactive en fonction de la carte thermique. 
 
-Dans la mise à jour 4, applets de commande Windows PowerShell peut être utilisé tooquery en cours d’exécution des travaux de la réactivation, annuler un travail de la réactivation et obtenir l’état de hello du travail de la réactivation hello.
+Dans Update 4, les cmdlets Windows PowerShell peuvent être utilisées pour interroger des travaux de rafraîchissement en cours d’exécution, annuler un travail de rafraîchissement et obtenir l’état du travail de rafraîchissement.
 
-* `Get-HcsRehydrationJob`-Cette applet de commande Obtient l’état hello du travail de la réactivation hello. Un seul travail de rafraîchissement est déclenché pour un volume.
+* `Get-HcsRehydrationJob` : cette cmdlet obtient l’état du travail de rafraîchissement. Un seul travail de rafraîchissement est déclenché pour un volume.
 
-* `Set-HcsRehydrationJob`-Cette applet de commande vous permet de toopause, arrêter, reprendre le travail de la réactivation hello, lors de la réactivation de hello est en cours d’exécution.
+* `Set-HcsRehydrationJob` : cette cmdlet vous permet d’interrompre, d’arrêter ou de reprendre le travail de rafraîchissement au cours du rafraîchissement.
 
-Pour plus d’informations sur les applets de commande de la réactivation, consultez trop[référence d’applet de commande Windows PowerShell pour StorSimple](https://technet.microsoft.com/library/dn688168.aspx).
+Pour plus d’informations sur les cmdlets de rafraîchissement, consultez le [document de référence sur les cmdlets Windows PowerShell pour StorSimple](https://technet.microsoft.com/library/dn688168.aspx).
 
-En général, avec le rafraîchissement automatique, des performances de lecture temporaires plus élevées sont attendues. magniutde réel de Hello d’améliorations dépend de divers facteurs tels que le modèle d’accès, évolution des données et le type de données. 
+En général, avec le rafraîchissement automatique, des performances de lecture temporaires plus élevées sont attendues. La véritable magnitude des améliorations dépend de divers facteurs tels que le modèle d’accès, l’évolution des données et le type de données. 
 
-toocancel un travail de la réactivation, vous pouvez utiliser l’applet de commande PowerShell hello. Si vous le souhaitez travaux de réalimentation toopermanently désactiver pour tous les hello futures restaurations, [contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md).
+Pour annuler un travail de rafraîchissement vous pouvez utiliser la cmdlet PowerShell. Si vous souhaitez désactiver définitivement les travaux de rafraîchissement pour toutes les restaurations futures, [contactez le Support Microsoft](storsimple-8000-contact-microsoft-support.md).
 
-## <a name="how-toouse-hello-backup-catalog"></a>Comment toouse hello catalogue de sauvegarde
+## <a name="how-to-use-the-backup-catalog"></a>Utilisation du catalogue de sauvegarde
 
-Hello **catalogue de sauvegarde** panneau fournit une requête qui vous permet de toonarrow votre sélection du jeu de sauvegarde. Vous pouvez filtrer hello jeux de sauvegarde qui est récupérés en fonction de hello paramètres suivants :
+Le panneau **Catalogue de sauvegarde** comprend une zone de requête qui vous permet d’affiner la sélection des jeux de sauvegarde. Vous pouvez filtrer les jeux de sauvegarde récupérés selon les paramètres suivants :
 
-* **Intervalle de temps** – hello plage de date et heure de création de jeu de sauvegarde hello.
-* **APPAREIL** – périphérique hello sur quel hello jeu de sauvegarde a été créé.
-* **Stratégie de sauvegarde** ou **Volume** – hello stratégie de sauvegarde ou volume associé à ce jeu de sauvegarde.
+* **Intervalle de temps** : plage de dates et d’heures de création du jeu de sauvegarde.
+* **Appareil** : appareil sur lequel le jeu de sauvegarde a été créé.
+* **Stratégie de sauvegarde** ou **Volume** : stratégie de sauvegarde ou volume associé à ce jeu de sauvegarde.
 
-Hello jeux de sauvegarde filtrés sont ensuite sous forme de tableau en fonction de hello suivant des attributs :
+Les jeux de sauvegarde filtrés sont ensuite affichés sous forme de tableau sur la base des attributs suivants :
 
-* **Nom** hello – nom de la stratégie de sauvegarde hello ou volume associé au jeu de sauvegarde hello.
-* **Type** : les jeux de sauvegarde peuvent être des instantanés locaux ou des instantanés cloud. Un instantané local est une sauvegarde de toutes vos données de volume stockées localement sur le périphérique de hello, tandis qu’un instantané cloud fait référence sauvegarde toohello des données de volume résidant dans le cloud de hello. Les instantanés locaux offrent un accès plus rapide, alors que les instantanés cloud sont choisis pour la résilience des données.
-* **Taille** – hello taille réelle du jeu de sauvegarde hello.
-* **Créé sur** : date de hello et l’heure de création des sauvegardes de hello. 
-* **Volumes** -hello du nombre de volumes associé au jeu de sauvegarde hello.
-* **Initiée par** : les sauvegardes hello peuvent être lancées automatiquement en fonction de tooa planification ou manuellement par un utilisateur. (Vous pouvez utiliser les sauvegardes tooschedule stratégie de sauvegarde. Vous pouvez également utiliser hello **sauvegarde** option tootake une sauvegarde interactive ou à la demande.)
+* **Nom** : nom de la stratégie de sauvegarde ou du volume associé à ce jeu de sauvegarde.
+* **Type** : les jeux de sauvegarde peuvent être des instantanés locaux ou des instantanés cloud. Un instantané local est une sauvegarde de toutes les données de volume stockées localement sur l’appareil, tandis qu’un instantané cloud correspond à la sauvegarde des données de volume résidant dans le cloud. Les instantanés locaux offrent un accès plus rapide, alors que les instantanés cloud sont choisis pour la résilience des données.
+* **Taille** : taille réelle du jeu de sauvegarde.
+* **Créé le** : date et heure auxquelles les sauvegardes ont été créées. 
+* **Volumes** : le nombre de volumes associés au jeu de sauvegarde.
+* **Initié** : les sauvegardes peuvent être lancées automatiquement suivant une planification ou manuellement par un utilisateur. (Vous pouvez utiliser une stratégie de sauvegarde pour planifier des sauvegardes. Vous pouvez également utiliser l’option **Exécuter la sauvegarde** pour effectuer une sauvegarde interactive ou à la demande.)
 
-## <a name="how-toorestore-your-storsimple-volume-from-a-backup"></a>Comment toorestore votre volume StorSimple à partir d’une sauvegarde
+## <a name="how-to-restore-your-storsimple-volume-from-a-backup"></a>Comment restaurer votre volume StorSimple à partir d’une sauvegarde
 
-Vous pouvez utiliser hello **catalogue de sauvegarde** panneau toorestore votre volume StorSimple à partir d’une sauvegarde spécifique. N’oubliez pas, toutefois, que la restauration d’un volume reprendra l’état toohello hello volume où qu'elle était lors de la sauvegarde de hello a été effectuée. Toutes les données qui a été ajoutées après l’opération de sauvegarde hello seront perdues.
+Vous pouvez utiliser le panneau **Catalogue de sauvegarde** pour restaurer votre volume StorSimple à partir d’une sauvegarde spécifique. N’oubliez pas cependant que la restauration d’un volume rétablit l’état dans lequel il se trouvait au moment de la sauvegarde. Toutes les données qui ont été ajoutées après l’opération de sauvegarde seront perdues.
 
 > [!WARNING]
-> Restauration à partir d’une sauvegarde remplace les volumes existants hello à partir de la sauvegarde de hello. Cela peut entraîner une perte de hello de toutes les données écrites après que hello sauvegarde a été effectuée.
+> La restauration à partir d’une sauvegarde remplace les volumes existants à partir de la sauvegarde. Cela peut entraîner la perte des données qui ont été écrites après la sauvegarde.
 
 
-### <a name="toorestore-your-volume"></a>toorestore votre volume.
-1. Atteindre le service du Gestionnaire de périphériques StorSimple tooyour, puis cliquez sur **catalogue de sauvegarde**.
+### <a name="to-restore-your-volume"></a>Pour restaurer votre volume
+1. Accédez à votre service StorSimple Device Manager, puis cliquez sur **Catalogue de sauvegarde**.
 
 2. Sélectionnez un jeu de sauvegarde comme suit :
    
-   1. Spécifiez la plage de temps hello.
-   2. Sélectionnez le périphérique approprié de hello.
-   3. Dans la liste déroulante hello, choisissez que vous souhaitez tooselect la stratégie de sauvegarde ou volume hello pour la sauvegarde de hello.
-   4. Cliquez sur **appliquer** tooexecute cette requête.
+   1. Indiquez l’intervalle de temps.
+   2. Sélectionnez l’appareil approprié.
+   3. Dans la liste déroulante, choisissez la stratégie de sauvegarde ou le volume pour la sauvegarde à sélectionner.
+   4. Cliquez sur **Appliquer** pour exécuter cette requête.
 
-    Hello sauvegardes associées de stratégie de sauvegarde ou volume hello sélectionné doivent apparaître dans la liste hello des jeux de sauvegarde.
+    Les sauvegardes associées au volume ou à la stratégie de sauvegarde sélectionné doivent figurer dans la liste des jeux de sauvegarde.
    
     ![Liste des jeux de sauvegarde](./media/storsimple-8000-restore-from-backup-set-u2/bucatalog.png)     
      
-3. Développez hello jeu de sauvegarde tooview hello associée des volumes. Ces volumes doivent être mis hors connexion sur l’hôte de hello et de périphérique avant de les restaurer. Accès aux volumes hello sur hello **Volumes** Panneau de votre appareil, puis hello de suivre les étapes [mettre un volume hors connexion](storsimple-8000-manage-volumes-u2.md#take-a-volume-offline) tootake hors connexion.
+3. Développez le jeu de sauvegarde pour afficher les volumes associés. Ces volumes doivent être mis hors connexion sur l’hôte et l’appareil avant leur restauration. Accédez aux volumes dans le panneau **Volumes** de votre appareil, puis suivez les étapes de la rubrique [Mise hors connexion d’un volume](storsimple-8000-manage-volumes-u2.md#take-a-volume-offline) pour les mettre hors connexion.
    
    > [!IMPORTANT]
-   > Assurez-vous que vous avez effectué des volumes hello hors connexion sur l’ordinateur hôte de hello tout d’abord, avant de mettre hors connexion les volumes hello sur le périphérique de hello. Si vous ne prenez pas les volumes hello hors connexion sur l’ordinateur hôte de hello, il pourrait endommager toodata corruption.
+   > Veillez à mettre les volumes hors connexion sur l’ordinateur hôte avant de les mettre hors connexion sur l’appareil. Sans quoi, vous vous exposez à un risque d’altération des données.
    
-4. Accédez arrière toohello **catalogue de sauvegarde** onglet et sélectionnez un jeu de sauvegarde. Avec le bouton droit et, dans le menu contextuel de hello, sélectionnez **restaurer**.
+4. Revenez à l’onglet **Catalogue de sauvegarde** et sélectionnez un jeu de sauvegarde. Cliquez dessus avec le bouton droit puis sélectionnez **Restaurer** dans le menu contextuel.
 
     ![Liste des jeux de sauvegarde](./media/storsimple-8000-restore-from-backup-set-u2/restorebu1.png)
 
-5. Vous êtes invité à confirmer l’opération. Révision Bonjour restaurer les informations et puis sélectionnez la case à cocher de confirmation hello.
+5. Vous êtes invité à confirmer l’opération. Passez en revue les informations de restauration, puis cochez la case de confirmation.
    
     ![Page Confirmation](./media/storsimple-8000-restore-from-backup-set-u2/restorebu2.png)
 
-7.  Cliquez sur **Restaurer**. Cette commande lance un travail de restauration que vous pouvez afficher en accédant à hello **travaux** page.
+7.  Cliquez sur **Restaurer**. Cette opération lance une tâche de restauration que vous pouvez afficher en accédant à la page **Tâches**.
 
     ![Page Confirmation](./media/storsimple-8000-restore-from-backup-set-u2/restorebu5.png)
 
-8. Une fois la restauration de hello est terminée, vérifiez que le contenu hello de vos volumes est remplacés par les volumes de sauvegarde de hello.
+8. Une fois la restauration terminée, vérifiez que le contenu de vos volumes a été remplacé par les volumes provenant de la sauvegarde.
 
 
-## <a name="if-hello-restore-fails"></a>Si la restauration de hello échoue
+## <a name="if-the-restore-fails"></a>Si la restauration échoue
 
-Vous recevrez une alerte si hello opération de restauration échoue pour une raison quelconque. Si cela se produit, actualisation hello liste de sauvegarde tooverify qui hello sauvegarde est toujours valide. Si la sauvegarde de hello est valide et que vous restaurez à partir du cloud de hello, puis des problèmes de connectivité peuvent être cause hello.
+Vous recevez une alerte si l’opération de restauration échoue pour une raison quelconque. Le cas échéant, actualisez la liste de sauvegarde pour vérifier que la sauvegarde est toujours valide. Si la sauvegarde est valide et que vous restaurez à partir du cloud, le problème peut être dû à des problèmes de connectivité.
 
-toocomplete hello l’opération de restauration, prendre du volume hello hors connexion sur l’ordinateur hôte de hello et recommencez l’opération de restauration hello. Notez que toutes les données de volume de toohello de modifications qui ont été effectuées au cours de hello des processus de restauration seront perdue.
+Pour terminer l’opération de restauration, mettez le volume hors connexion sur l’hôte et recommencez l’opération de restauration. Notez que toutes les modifications apportées aux données du volume pendant le processus de restauration seront perdues.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment trop[StorSimple de gérer les volumes](storsimple-8000-manage-volumes-u2.md).
-* Découvrez comment trop[utilisez hello tooadminister du service Gestionnaire de périphériques StorSimple votre appareil StorSimple](storsimple-8000-manager-service-administration.md).
+* Découvrez comment [gérer des volumes StorSimple](storsimple-8000-manage-volumes-u2.md).
+* Découvrez comment [utiliser le service StorSimple Device Manager pour gérer votre appareil StorSimple](storsimple-8000-manager-service-administration.md).
 

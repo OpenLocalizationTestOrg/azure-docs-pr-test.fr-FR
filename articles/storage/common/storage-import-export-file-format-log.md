@@ -1,6 +1,6 @@
 ---
-title: format de fichier journal aaaAzure Import/Export | Documents Microsoft
-description: "En savoir plus sur format hello de fichiers de journaux hello créé lors de l’exécution des étapes d’un travail de service d’importation/exportation."
+title: "Format de fichier journal d’Azure Import/Export | Microsoft Docs"
+description: "Découvrez-en davantage sur le format des fichiers journaux créés lors de l’exécution des étapes d’un travail du service d’importation/exportation."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 15a652455aa947922af0aa39ccefe68811a3db19
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 16234ccaf13ce1d85cfd207ed4734e683070faa6
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-importexport-service-log-file-format"></a>Format de fichier journal du service Azure Import/Export
-Lorsque hello service Microsoft Azure Import/Export exécute une action sur un lecteur dans le cadre d’un travail d’importation ou d’exportation, les journaux sont écrits tooblock BLOB hello compte de stockage associé à ce travail.  
+Lorsque le service Microsoft Azure Import/Export exécute une action sur un lecteur dans le cadre d’un travail d’importation ou d’exportation, les journaux sont écrits pour bloquer des objets blob dans le compte de stockage associé à ce travail.  
   
-Il existe deux journaux pouvant être écrits par hello service d’importation/exportation :  
+Il existe deux journaux pouvant être écrits par le service d’importation/exportation :  
   
--   journal des erreurs Hello est toujours générée dans le cas de hello d’erreur.  
+-   Le journal d’erreurs est toujours généré en cas d’erreur.  
   
--   Hello journal détaillé n’est pas activé par défaut, mais peut être activée en définissant les hello `EnableVerboseLog` propriété sur un [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) ou [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) opération.  
+-   Le journal détaillé n’est pas activé par défaut, mais il peut être activé en définissant la propriété `EnableVerboseLog` sur une opération [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) ou [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update).  
   
 ## <a name="log-file-location"></a>Emplacement du fichier journal  
-Hello dans les journaux tooblock BLOB dans le conteneur de hello ou un répertoire virtuel spécifié par hello `ImportExportStatesPath` paramètre que vous pouvez définir sur une `Put Job` opération. Hello emplacement toowhich hello dans les journaux dépend comment l’authentification est spécifiée pour la tâche hello, avec la valeur hello spécifiée pour `ImportExportStatesPath`. L’authentification pour le travail de hello peut être spécifiée via une clé de compte de stockage ou un conteneur de SAP (signature d’accès partagé).  
+Les journaux sont écrits pour bloquer des objets blob dans le conteneur ou le répertoire virtuel spécifié par le paramètre `ImportExportStatesPath`, que vous pouvez définir sur une opération `Put Job`. L’emplacement dans lequel les journaux sont écrits dépend de la façon dont l’authentification est spécifiée pour le travail, ainsi que de la valeur spécifiée pour `ImportExportStatesPath`. L’authentification du travail peut être spécifiée via une clé de compte de stockage ou une SAP (signature d’accès partagé) de conteneur.  
   
-nom de Hello du conteneur de hello ou un répertoire virtuel peut être le nom par défaut hello `waimportexport`, ou un autre conteneur ou nom de répertoire virtuel que vous spécifiez.  
+Le nom du conteneur ou du répertoire virtuel peut être le nom par défaut `waimportexport` ou le nom d’un autre conteneur ou répertoire virtuel que vous spécifiez.  
   
-tableau Hello ci-dessous montre les options possibles hello :  
+Le tableau ci-dessous présente les options possibles :  
   
-|Méthode d'authentification|Valeur de l’élément `ImportExportStatesPath`|Emplacement des objets blob de journal|  
+|Méthode d’authentification|Valeur de l’élément `ImportExportStatesPath`|Emplacement des objets blob de journal|  
 |---------------------------|----------------------------------------------|---------------------------|  
-|Clé du compte de stockage|Valeur par défaut|Un conteneur nommé `waimportexport`, qui est le conteneur par défaut de hello. Par exemple :<br /><br /> `https://myaccount.blob.core.windows.net/waimportexport`|  
-|Clé du compte de stockage|Valeur spécifiée par l’utilisateur|Un conteneur nommé par l’utilisateur de hello. Par exemple :<br /><br /> `https://myaccount.blob.core.windows.net/mylogcontainer`|  
-|SAP de conteneur|Valeur par défaut|Un répertoire virtuel nommé `waimportexport`, qui est le nom par défaut de hello, sous le conteneur hello spécifié dans hello SAS.<br /><br /> Par exemple, si hello SAS spécifié pour le travail de hello est `https://myaccount.blob.core.windows.net/mylogcontainer?sv=2012-02-12&se=2015-05-22T06%3A54%3A55Z&sr=c&sp=wl&sig=sigvalue`, puis de l’emplacement du journal hello serait`https://myaccount.blob.core.windows.net/mylogcontainer/waimportexport`|  
-|SAP de conteneur|Valeur spécifiée par l’utilisateur|Un répertoire virtuel nommé par l’utilisateur hello, sous le conteneur hello spécifié dans hello SAS.<br /><br /> Par exemple, si hello SAS spécifié pour le travail de hello est `https://myaccount.blob.core.windows.net/mylogcontainer?sv=2012-02-12&se=2015-05-22T06%3A54%3A55Z&sr=c&sp=wl&sig=sigvalue`, et hello spécifié le répertoire virtuel est appelé `mylogblobs`, puis de l’emplacement du journal hello serait `https://myaccount.blob.core.windows.net/mylogcontainer/waimportexport/mylogblobs`.|  
+|Clé du compte de stockage|Valeur par défaut|Un conteneur nommé `waimportexport`, qui est le conteneur par défaut. Par exemple :<br /><br /> `https://myaccount.blob.core.windows.net/waimportexport`|  
+|Clé du compte de stockage|Valeur spécifiée par l’utilisateur|Un conteneur nommé par l’utilisateur. Par exemple :<br /><br /> `https://myaccount.blob.core.windows.net/mylogcontainer`|  
+|SAP de conteneur|Valeur par défaut|Un répertoire virtuel nommé `waimportexport`, qui est le nom par défaut, sous le conteneur spécifié dans la SAP.<br /><br /> Par exemple, si la SAP spécifiée pour le travail est `https://myaccount.blob.core.windows.net/mylogcontainer?sv=2012-02-12&se=2015-05-22T06%3A54%3A55Z&sr=c&sp=wl&sig=sigvalue`, l’emplacement du journal serait alors `https://myaccount.blob.core.windows.net/mylogcontainer/waimportexport`|  
+|SAP de conteneur|Valeur spécifiée par l’utilisateur|Un répertoire virtuel nommé par l’utilisateur, sous le conteneur spécifié dans la SAP.<br /><br /> Par exemple, si la SAP spécifiée pour le travail est `https://myaccount.blob.core.windows.net/mylogcontainer?sv=2012-02-12&se=2015-05-22T06%3A54%3A55Z&sr=c&sp=wl&sig=sigvalue` et le répertoire virtuel spécifié est nommé `mylogblobs`, l’emplacement du journal serait `https://myaccount.blob.core.windows.net/mylogcontainer/waimportexport/mylogblobs`.|  
   
-Vous pouvez récupérer des URL hello pour erreur de hello et les journaux détaillés en appelant hello [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) opération. Hello journaux sont disponibles une fois le traitement du lecteur de hello est terminé.  
+Vous pouvez récupérer l’URL de l’erreur et les journaux détaillés en appelant l’opération [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate). Les journaux sont disponibles dès que le traitement du lecteur est terminé.  
   
 ## <a name="log-file-format"></a>Format de fichier journal  
-Hello format pour les journaux est hello même : un objet blob contenant des descriptions XML des événements hello qui s’est produite lors de la copie des objets BLOB entre le disque dur de hello et hello du compte client.  
+Le format de ces deux journaux est le même : un objet blob contenant des descriptions XML des événements qui se sont produits lors de la copie des objets blob entre le disque dur et le compte du client.  
   
-la journalisation documentée Hello contient des informations complètes sur l’état de hello d’opération de copie hello pour chaque objet blob (pour un travail d’importation) ou un fichier (pour un travail d’exportation), tandis que le journal des erreurs hello contient uniquement les informations de hello pour les objets BLOB ou des fichiers qui ont rencontré des erreurs pendant hello importer ou exporter des travaux.  
+Le journal détaillé contient des informations complètes sur l’état de l’opération de copie pour chaque objet blob (pour un travail d’importation) ou un fichier (pour un travail d’exportation), alors que le journal d’erreurs contient uniquement les informations des objets blob ou fichiers qui ont rencontré des erreurs lors du travail d’importation ou d’exportation.  
   
-format de journal détaillé Hello est indiqué ci-dessous. journal des erreurs Hello a hello même structure, mais filtre les opérations réussies.  
+Le format du journal détaillé est illustré ci-dessous. Le journal d’erreurs a la même structure mais il exclut les opérations réussies.  
 
 ```xml
 <DriveLog Version="2014-11-01">  
@@ -104,162 +104,162 @@ properties-status ::=
 </Properties>  
 ```
 
-Hello tableau suivant décrit les éléments hello du fichier journal de hello.  
+Le tableau suivant décrit les éléments du fichier journal.  
   
 |Élément XML|Type|Description|  
 |-----------------|----------|-----------------|  
 |`DriveLog`|Élément XML|Représente un journal de lecteur.|  
-|`Version`|Attribut, Chaîne|version de Hello du format de journal hello.|  
-|`DriveId`|String|Bonjour numéro de série du matériel du lecteur.|  
-|`Status`|String|État de traitement du lecteur hello. Consultez hello `Drive Status Codes` tableau ci-dessous pour plus d’informations.|  
+|`Version`|Attribut, Chaîne|Version du format du journal.|  
+|`DriveId`|String|Numéro de série du matériel du lecteur.|  
+|`Status`|String|État de traitement du lecteur. Pour plus d’informations, consultez le tableau `Drive Status Codes` ci-après.|  
 |`Blob`|Élément XML imbriqué|Représente un objet blob.|  
-|`Blob/BlobPath`|String|Hello URI d’objet blob de hello.|  
-|`Blob/FilePath`|String|fichier de toohello Hello chemin d’accès relatif sur le lecteur de hello.|  
-|`Blob/Snapshot`|DateTime|version d’instantané Hello d’objet blob hello pour un travail d’exportation uniquement.|  
-|`Blob/Length`|Entier |longueur totale de Hello du blob hello en octets.|  
-|`Blob/LastModified`|DateTime|Hello date/heure dernière modification de cet objet blob hello pour un travail d’exportation uniquement.|  
-|`Blob/ImportDisposition`|String|disposition d’objet blob hello pour un travail d’importation d’importation Hello.|  
-|`Blob/ImportDisposition/@Status`|Attribut, Chaîne|état Hello Hello disposition d’importation.|  
+|`Blob/BlobPath`|String|URI de l’objet blob.|  
+|`Blob/FilePath`|String|Chemin relatif d’accès au fichier sur le lecteur.|  
+|`Blob/Snapshot`|DateTime|Version de l’instantané de l’objet blob, pour un travail d’exportation.|  
+|`Blob/Length`|Entier |Longueur totale de l’objet blob en octets.|  
+|`Blob/LastModified`|DateTime|Date/heure de dernière modification de l’objet blob, pour un travail d’exportation.|  
+|`Blob/ImportDisposition`|String|Disposition d’importation de l’objet blob, pour un travail d’exportation uniquement.|  
+|`Blob/ImportDisposition/@Status`|Attribut, Chaîne|État de la disposition d’importation.|  
 |`PageRangeList`|Élément XML imbriqué|Représente une liste de plages de pages pour un objet blob de pages.|  
 |`PageRange`|Élément XML|Représente une plage de pages.|  
-|`PageRange/@Offset`|Attribut, Entier|Décalage de début de plage de pages hello dans l’objet blob de hello.|  
-|`PageRange/@Length`|Attribut, Entier|Longueur en octets de la plage de pages hello.|  
-|`PageRange/@Hash`|Attribut, Chaîne|Hachage de MD5 encodé en Base16 hello de plage de pages.|  
-|`PageRange/@Status`|Attribut, Chaîne|État de traitement de plage de pages hello.|  
+|`PageRange/@Offset`|Attribut, Entier|Décalage de début de la plage de pages dans l’objet blob.|  
+|`PageRange/@Length`|Attribut, Entier|Longueur en octets de la plage de pages.|  
+|`PageRange/@Hash`|Attribut, Chaîne|Hachage MD5 encodé en Base16 de la plage de pages.|  
+|`PageRange/@Status`|Attribut, Chaîne|État du traitement de la plage de pages.|  
 |`BlockList`|Élément XML imbriqué|Représente une liste de blocs pour un objet blob de blocs.|  
 |`Block`|Élément XML|Représente un bloc.|  
-|`Block/@Offset`|Attribut, Entier|Décalage de départ du bloc hello dans l’objet blob de hello.|  
-|`Block/@Length`|Attribut, Entier|Longueur en octets du bloc de hello.|  
-|`Block/@Id`|Attribut, Chaîne|ID de bloc de Hello.|  
-|`Block/@Hash`|Attribut, Chaîne|Hachage de MD5 encodé en Base16 du bloc de hello.|  
-|`Block/@Status`|Attribut, Chaîne|État de traitement hello bloc.|  
-|`Metadata`|Élément XML imbriqué|Représente les métadonnées de l’objet blob de hello.|  
-|`Metadata/@Status`|Attribut, Chaîne|État de traitement des métadonnées d’objet blob hello.|  
-|`Metadata/GlobalPath`|String|Fichier de métadonnées global toohello chemin d’accès relatif.|  
-|`Metadata/GlobalPath/@Hash`|Attribut, Chaîne|Encodé en Base16 hachage MD5 du fichier de métadonnées globales hello.|  
-|`Metadata/Path`|String|Fichier de métadonnées de toohello de chemin d’accès relatif.|  
-|`Metadata/Path/@Hash`|Attribut, Chaîne|Hachage de MD5 encodé en Base16 du fichier de métadonnées hello.|  
-|`Properties`|Élément XML imbriqué|Représente les propriétés d’objet blob hello.|  
-|`Properties/@Status`|Attribut, Chaîne|État de traitement des propriétés d’objet blob hello, par exemple, fichier introuvable, s’est terminée.|  
-|`Properties/GlobalPath`|String|Fichier de propriétés globales de toohello de chemin d’accès relatif.|  
-|`Properties/GlobalPath/@Hash`|Attribut, Chaîne|Hachage de MD5 encodé en Base16 du fichier de propriétés globales hello.|  
-|`Properties/Path`|String|Fichier de propriétés de toohello de chemin d’accès relatif.|  
-|`Properties/Path/@Hash`|Attribut, Chaîne|Hachage de MD5 encodé en Base16 du fichier de propriétés hello.|  
-|`Blob/Status`|String|État de traitement des objets blob de hello.|  
+|`Block/@Offset`|Attribut, Entier|Décalage de début du bloc dans l’objet blob.|  
+|`Block/@Length`|Attribut, Entier|Longueur du bloc en octets.|  
+|`Block/@Id`|Attribut, Chaîne|ID du bloc.|  
+|`Block/@Hash`|Attribut, Chaîne|Hachage MD5 encodé en Base16 du bloc.|  
+|`Block/@Status`|Attribut, Chaîne|État du traitement du bloc.|  
+|`Metadata`|Élément XML imbriqué|Représente les métadonnées de l’objet blob.|  
+|`Metadata/@Status`|Attribut, Chaîne|État de traitement des métadonnées de l’objet blob.|  
+|`Metadata/GlobalPath`|String|Chemin relatif d’accès au fichier de métadonnées global.|  
+|`Metadata/GlobalPath/@Hash`|Attribut, Chaîne|Hachage MD5 encodé en Base16 du fichier de métadonnées global.|  
+|`Metadata/Path`|String|Chemin relatif d’accès au fichier de métadonnées.|  
+|`Metadata/Path/@Hash`|Attribut, Chaîne|Hachage MD5 encodé en Base16 du fichier de métadonnées.|  
+|`Properties`|Élément XML imbriqué|Représente les propriétés de l’objet blob.|  
+|`Properties/@Status`|Attribut, Chaîne|État de traitement des propriétés de l’objet blob, par exemple, fichier introuvable, terminé.|  
+|`Properties/GlobalPath`|String|Chemin relatif d’accès au fichier de propriétés global.|  
+|`Properties/GlobalPath/@Hash`|Attribut, Chaîne|Hachage MD5 encodé en Base16 du fichier de propriétés global.|  
+|`Properties/Path`|String|Chemin relatif d’accès au fichier de propriétés.|  
+|`Properties/Path/@Hash`|Attribut, Chaîne|Hachage MD5 encodé en Base16 du fichier de propriétés.|  
+|`Blob/Status`|String|État du traitement de l’objet blob.|  
   
 # <a name="drive-status-codes"></a>Codes d’état du lecteur  
-Hello tableau suivant répertorie les codes d’état hello pour le traitement d’un lecteur.  
+Le tableau suivant répertorie les codes d’état pour le traitement d’un lecteur.  
   
 |Code d’état|Description|  
 |-----------------|-----------------|  
-|`Completed`|lecteur de Hello a terminé le traitement sans erreurs.|  
-|`CompletedWithWarnings`|lecteur de Hello a terminé le traitement des avertissements dans un ou plusieurs des objets BLOB par dispositions d’importation hello spécifiées pour les objets BLOB de hello.|  
-|`CompletedWithErrors`|lecteur de Hello a terminé avec des erreurs dans un ou plusieurs objets BLOB ou segments.|  
-|`DiskNotFound`|Aucun disque ne se trouve sur le lecteur de hello.|  
-|`VolumeNotNtfs`|Hello premier volume de données sur disque de hello n’est pas au format NTFS.|  
-|`DiskOperationFailed`|Une erreur inconnue s’est produite lors de l’exécution d’opérations sur le lecteur de hello.|  
+|`Completed`|Le traitement du lecteur s’est terminé sans erreurs.|  
+|`CompletedWithWarnings`|Le lecteur a terminé le traitement avec des avertissements dans un ou plusieurs objets blob selon les dispositions d’importation spécifiées pour les objets blob.|  
+|`CompletedWithErrors`|Le lecteur a terminé avec des erreurs dans un ou plusieurs objets blob ou segments.|  
+|`DiskNotFound`|Aucun disque ne se trouve sur le lecteur.|  
+|`VolumeNotNtfs`|Le premier volume de données sur le disque n’est pas au format NTFS.|  
+|`DiskOperationFailed`|Une erreur inconnue s’est produite lors de l’exécution d’opérations sur le lecteur.|  
 |`BitLockerVolumeNotFound`|Aucun volume BitLocker chiffrable n’a été trouvé.|  
-|`BitLockerNotActivated`|BitLocker n’est pas activé sur le volume de hello.|  
-|`BitLockerProtectorNotFound`|protecteur de clé de mot de passe numérique Hello n’existe pas sur le volume de hello.|  
-|`BitLockerKeyInvalid`|mot de passe numérique Hello fourni ne peut pas déverrouiller hello.|  
-|`BitLockerUnlockVolumeFailed`|Erreur inconnue s’est produite lors de la tentative de volume de hello toounlock.|  
+|`BitLockerNotActivated`|BitLocker n’est pas activé sur le volume.|  
+|`BitLockerProtectorNotFound`|Le protecteur de clé de mot de passe numérique n’existe pas sur le volume.|  
+|`BitLockerKeyInvalid`|Le mot de passe numérique fourni ne peut pas déverrouiller le volume.|  
+|`BitLockerUnlockVolumeFailed`|Une erreur inconnue s’est produite lors de la tentative de déverrouillage du volume.|  
 |`BitLockerFailed`|Une erreur inconnue s’est produite lors de l’exécution d’opérations BitLocker.|  
-|`ManifestNameInvalid`|nom du fichier manifeste Hello n’est pas valide.|  
-|`ManifestNameTooLong`|nom du fichier manifeste Hello est trop long.|  
-|`ManifestNotFound`|fichier de manifeste Hello est introuvable.|  
-|`ManifestAccessDenied`|Fichier de manifeste toohello accès est refusé.|  
-|`ManifestCorrupted`|Hello fichier manifeste est endommagé (hello contenu ne correspond pas à son hachage).|  
-|`ManifestFormatInvalid`|contenu du manifeste Hello ne respecte pas le format requis de toohello.|  
-|`ManifestDriveIdMismatch`|lecteur Hello ID dans le fichier de manifeste hello ne correspond pas hello une lecture à partir du lecteur de hello.|  
-|`ReadManifestFailed`|Un erreur d’e/s disque s’est produite lors de la lecture du manifeste de hello.|  
-|`BlobListFormatInvalid`|Hello exportation blob liste d’objets blob ne respecte pas le format requis de toohello.|  
-|`BlobRequestForbidden`|Accéder aux objets BLOB de toohello dans le compte de stockage hello est interdite. Cela est peut-être en raison de la clé de compte de stockage tooinvalid ou SAP de conteneur.|  
-|`InternalError`|Et une erreur interne s’est produite lors du traitement du lecteur de hello.|  
+|`ManifestNameInvalid`|Le nom du fichier manifeste n’est pas valide.|  
+|`ManifestNameTooLong`|Le nom du fichier manifeste est trop long.|  
+|`ManifestNotFound`|Le fichier manifeste est introuvable.|  
+|`ManifestAccessDenied`|L’accès au fichier manifeste est refusé.|  
+|`ManifestCorrupted`|Le fichier manifeste est endommagé (le contenu ne correspond pas à son hachage).|  
+|`ManifestFormatInvalid`|Le contenu du manifeste n’est pas conforme au format requis.|  
+|`ManifestDriveIdMismatch`|L’ID du lecteur dans le fichier manifeste ne correspond pas à celui lu à partir du lecteur.|  
+|`ReadManifestFailed`|Un erreur d’E/S du disque s’est produite lors de la lecture à partir du manifeste.|  
+|`BlobListFormatInvalid`|L’objet blob de la liste d’objets blob d’exportation n’est pas conforme au format requis.|  
+|`BlobRequestForbidden`|L’accès aux objets blob dans le compte de stockage est interdit. Cela peut être dû à une clé de compte de stockage ou une SAP de conteneur non valide.|  
+|`InternalError`|Une erreur interne s'est produite lors du traitement du lecteur.|  
   
 ## <a name="blob-status-codes"></a>Codes d’état de l’objet blob  
-Hello tableau suivant répertorie les codes d’état hello pour le traitement d’un objet blob.  
+Le tableau suivant répertorie les codes d’état pour le traitement d’un objet blob.  
   
 |Code d’état|Description|  
 |-----------------|-----------------|  
-|`Completed`|objet blob de Hello a terminé le traitement sans erreurs.|  
-|`CompletedWithErrors`|objet blob de Hello a terminé le traitement avec des erreurs dans une ou plusieurs plages de pages ou blocs, métadonnées ou propriétés.|  
-|`FileNameInvalid`|nom de fichier Hello n’est pas valide.|  
-|`FileNameTooLong`|nom de fichier Hello est trop long.|  
-|`FileNotFound`|fichier de Hello est introuvable.|  
-|`FileAccessDenied`|Fichier de toohello d’accès est refusé.|  
-|`BlobRequestFailed`|demande de service Blob Hello tooaccess hello blob a échoué.|  
-|`BlobRequestForbidden`|demande de service Blob Hello tooaccess hello blob est interdite. Cela est peut-être en raison de la clé de compte de stockage tooinvalid ou SAP de conteneur.|  
-|`RenameFailed`|Échec de l’objet blob de hello toorename (pour un travail d’importation) ou un fichier hello (pour un travail d’exportation).|  
-|`BlobUnexpectedChange`|Une modification inattendue s’est produite avec l’objet blob de hello (pour un travail d’exportation).|  
-|`LeasePresent`|Il existe un bail présent sur l’objet blob de hello.|  
-|`IOFailed`|Un disque ou une erreur d’e/s de réseau s’est produite lors du traitement d’objets blob de hello.|  
-|`Failed`|Une erreur inconnue s’est produite lors du traitement d’objets blob de hello.|  
+|`Completed`|Le traitement de l’objet blob s’est terminé sans erreurs.|  
+|`CompletedWithErrors`|Le traitement de l’objet blob s’est terminé avec des erreurs dans une ou plusieurs plages de pages ou blocs, métadonnées ou propriétés.|  
+|`FileNameInvalid`|Le nom du fichier n'est pas valide.|  
+|`FileNameTooLong`|Le nom du fichier est trop long.|  
+|`FileNotFound`|Le fichier est introuvable.|  
+|`FileAccessDenied`|L’accès au fichier est refusé.|  
+|`BlobRequestFailed`|La demande de service Blob pour accéder à l’objet blob a échoué.|  
+|`BlobRequestForbidden`|La demande de service Blob pour accéder à l’objet blob est interdite. Cela peut être dû à une clé de compte de stockage ou une SAP de conteneur non valide.|  
+|`RenameFailed`|Impossible de renommer l’objet blob (pour un travail d’importation) ou le fichier (pour un travail d’exportation).|  
+|`BlobUnexpectedChange`|Une modification inattendue s’est produite avec l’objet blob (pour un travail d’exportation).|  
+|`LeasePresent`|Il existe un bail sur l’objet blob.|  
+|`IOFailed`|Une erreur d’E/S du disque ou réseau s’est produite lors du traitement de l’objet blob.|  
+|`Failed`|Une erreur inconnue s’est produite lors du traitement de l’objet blob.|  
   
 ## <a name="import-disposition-status-codes"></a>Codes d’état de disposition d’importation  
-Hello tableau suivant répertorie les codes d’état hello pour résoudre une disposition d’importation.  
+Le tableau suivant répertorie les codes d’état de résolution d’une disposition d’importation.  
   
 |Code d’état|Description|  
 |-----------------|-----------------|  
-|`Created`|objet blob de Hello a été créé.|  
-|`Renamed`|objet blob de Hello a été renommé par disposition d’importation de changement de nom. Hello `Blob/BlobPath` élément contient hello URI pour l’objet blob de hello renommé.|  
-|`Skipped`|objet blob de Hello a été ignoré par `no-overwrite` disposition d’importation.|  
-|`Overwritten`|objet blob de Hello a remplacé un objet blob existant par `overwrite` disposition d’importation.|  
-|`Cancelled`|Une erreur précédente a arrêté le traitement de disposition d’importation hello.|  
+|`Created`|L’objet blob a été créé.|  
+|`Renamed`|L’objet blob a été renommé en fonction de la disposition d’importation de changement de nom. L’élément `Blob/BlobPath` contient l’URI de l’objet blob renommé.|  
+|`Skipped`|L’objet blob a été ignoré en fonction de la disposition d’importation `no-overwrite`.|  
+|`Overwritten`|L’objet blob a remplacé un objet blob existant en fonction de la disposition d’importation `overwrite`.|  
+|`Cancelled`|Une erreur précédente a arrêté le traitement de la disposition d’importation.|  
   
 ## <a name="page-rangeblock-status-codes"></a>Codes d’état de plage de pages/de bloc  
-Hello tableau suivant répertorie les codes d’état hello pour le traitement d’une plage de pages ou un bloc.  
+Le tableau suivant répertorie les codes d’état pour le traitement d’une plage de pages ou d’un bloc.  
   
 |Code d’état|Description|  
 |-----------------|-----------------|  
-|`Completed`|plage de pages Hello ou un bloc a terminé le traitement sans erreurs.|  
-|`Committed`|Hello bloc a été validé, mais pas dans hello liste complète de blocs, car les autres blocs ont a échoué, ou placez la liste complète de blocs a échoué.|  
-|`Uncommitted`|bloc de Hello est téléchargé mais non validée.|  
-|`Corrupted`|plage de pages Hello ou un bloc est endommagé (hello contenu ne correspond pas à son hachage).|  
+|`Completed`|Le traitement de la plage de pages ou du bloc s’est terminé sans erreurs.|  
+|`Committed`|Le bloc a été validé, mais pas dans la liste de blocs complète car d’autres blocs ont échoué, ou la liste de blocs complète elle-même a échoué.|  
+|`Uncommitted`|Le bloc est téléchargé mais non validé.|  
+|`Corrupted`|La plage de pages ou le bloc est endommagé (le contenu ne correspond pas à son hachage).|  
 |`FileUnexpectedEnd`|Une fin de fichier inattendue a été rencontrée.|  
 |`BlobUnexpectedEnd`|Une fin d’objet blob inattendue a été rencontrée.|  
-|`BlobRequestFailed`|Hello tooaccess hello plage de pages de la demande du service Blob ou bloc a échoué.|  
-|`IOFailed`|Un disque ou une erreur d’e/s de réseau s’est produite lors du traitement de la plage de pages hello ou un bloc.|  
-|`Failed`|Une erreur inconnue s’est produite lors du traitement de la plage de pages hello ou un bloc.|  
-|`Cancelled`|Une erreur précédente a arrêté le traitement de la plage de pages hello ou un bloc.|  
+|`BlobRequestFailed`|La demande de service Blob pour accéder à la plage de pages ou au bloc a échoué.|  
+|`IOFailed`|Une erreur d’E/S du disque ou réseau s’est produite lors du traitement de la plage de pages ou du bloc.|  
+|`Failed`|Une erreur inconnue s’est produite lors du traitement de la plage de pages ou du bloc.|  
+|`Cancelled`|Une erreur précédente a arrêté le traitement de la plage de pages ou du bloc.|  
   
 ## <a name="metadata-status-codes"></a>Codes d’état des métadonnées  
-Hello tableau suivant répertorie les codes d’état hello pour le traitement des métadonnées d’objet blob.  
+Le tableau suivant répertorie les codes d’état pour le traitement des métadonnées d’objet blob.  
   
 |Code d’état|Description|  
 |-----------------|-----------------|  
-|`Completed`|les métadonnées Hello a terminé le traitement sans erreurs.|  
-|`FileNameInvalid`|nom de fichier de métadonnées Hello n’est pas valide.|  
-|`FileNameTooLong`|nom de fichier de métadonnées Hello est trop long.|  
-|`FileNotFound`|fichier de métadonnées Hello est introuvable.|  
-|`FileAccessDenied`|Fichier de métadonnées toohello accès est refusé.|  
-|`Corrupted`|fichier de métadonnées Hello est endommagé (hello contenu ne correspond pas à son hachage).|  
-|`XmlReadFailed`|contenu de métadonnées Hello ne respecte pas le format requis de toohello.|  
-|`XmlWriteFailed`|Lors de l’écriture hello que XML a échoué.|  
-|`BlobRequestFailed`|demande de service Blob Hello tooaccess hello métadonnées a échoué.|  
-|`IOFailed`|Une erreur d’e/s disque ou réseau s’est produite lors du traitement des métadonnées de hello.|  
-|`Failed`|Une erreur inconnue s’est produite lors du traitement des métadonnées de hello.|  
-|`Cancelled`|Une erreur précédente a arrêté le traitement des métadonnées de hello.|  
+|`Completed`|Le traitement des métadonnées s’est terminé sans erreurs.|  
+|`FileNameInvalid`|Le nom du fichier de métadonnées n'est pas valide.|  
+|`FileNameTooLong`|Le nom du fichier de métadonnées est trop long.|  
+|`FileNotFound`|Le fichier de métadonnées est introuvable.|  
+|`FileAccessDenied`|L’accès au fichier de métadonnées est refusé.|  
+|`Corrupted`|Le fichier de métadonnées est endommagé (le contenu ne correspond pas à son hachage).|  
+|`XmlReadFailed`|Le contenu des métadonnées n’est pas conforme au format requis.|  
+|`XmlWriteFailed`|L’écriture des métadonnées XML a échoué.|  
+|`BlobRequestFailed`|La demande de service Blob pour accéder aux métadonnées a échoué.|  
+|`IOFailed`|Une erreur d’E/S du disque ou réseau s’est produite lors du traitement des métadonnées.|  
+|`Failed`|Une erreur inconnue s’est produite lors du traitement des métadonnées.|  
+|`Cancelled`|Une erreur précédente a arrêté le traitement des métadonnées.|  
   
 ## <a name="properties-status-codes"></a>Codes d’état des propriétés  
-Hello tableau suivant répertorie les codes d’état hello pour le traitement des propriétés d’objet blob.  
+Le tableau suivant répertorie les codes d’état pour le traitement des propriétés d’objet blob.  
   
 |Code d’état|Description|  
 |-----------------|-----------------|  
-|`Completed`|les propriétés de Hello ont terminé le traitement sans erreurs.|  
-|`FileNameInvalid`|nom de fichier de propriétés Hello n’est pas valide.|  
-|`FileNameTooLong`|nom de fichier de propriétés Hello est trop long.|  
-|`FileNotFound`|fichier de propriétés Hello est introuvable.|  
-|`FileAccessDenied`|Fichier de propriétés toohello accès est refusé.|  
-|`Corrupted`|fichier de propriétés Hello est endommagé (hello contenu ne correspond pas à son hachage).|  
-|`XmlReadFailed`|contenu des propriétés Hello ne respecte pas le format requis de toohello.|  
-|`XmlWriteFailed`|L’écriture de propriétés hello que XML a échoué.|  
-|`BlobRequestFailed`|demande de service Blob Hello tooaccess hello propriétés a échoué.|  
-|`IOFailed`|Une erreur d’e/s disque ou réseau s’est produite lors du traitement des propriétés de hello.|  
-|`Failed`|Une erreur inconnue s’est produite lors du traitement des propriétés de hello.|  
-|`Cancelled`|Une erreur précédente a arrêté le traitement des propriétés de hello.|  
+|`Completed`|Le traitement des propriétés s’est terminé sans erreurs.|  
+|`FileNameInvalid`|Le nom du fichier de propriétés n’est pas valide.|  
+|`FileNameTooLong`|Le nom du fichier de propriétés est trop long.|  
+|`FileNotFound`|Le fichier de propriétés est introuvable.|  
+|`FileAccessDenied`|L’accès au fichier de propriétés est refusé.|  
+|`Corrupted`|Le fichier de propriétés est endommagé (le contenu ne correspond pas à son hachage).|  
+|`XmlReadFailed`|Le contenu des propriétés n’est pas conforme au format requis.|  
+|`XmlWriteFailed`|L’écriture des propriétés XML a échoué.|  
+|`BlobRequestFailed`|La demande de service Blob pour accéder aux propriétés a échoué.|  
+|`IOFailed`|Une erreur d’E/S du disque ou réseau s’est produite lors du traitement des propriétés.|  
+|`Failed`|Une erreur inconnue s’est produite lors du traitement des propriétés.|  
+|`Cancelled`|Une erreur précédente a arrêté le traitement des propriétés.|  
   
 ## <a name="sample-logs"></a>Exemples de journaux  
-Hello Voici un exemple de journal détaillé.  
+Vous trouverez ci-dessous un exemple de journal détaillé.  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -296,7 +296,7 @@ Hello Voici un exemple de journal détaillé.
 </DriveLog>  
 ```  
   
-journal des erreurs Hello correspondant est indiqué ci-dessous.  
+Le journal d’erreurs correspondant est illustré ci-dessous.  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -315,7 +315,7 @@ journal des erreurs Hello correspondant est indiqué ci-dessous.
 </DriveLog>  
 ```
 
- journal des erreurs Hello pour un travail d’importation contient une erreur sur un fichier introuvable sur le lecteur d’importation hello. Notez qu’état hello des composants suivants est `Cancelled`.  
+ Le journal d’erreurs suivant pour un travail d’importation contient une erreur sur un fichier introuvable sur le lecteur d’importation. Notez que l’état des composants suivants est `Cancelled`.  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -338,7 +338,7 @@ journal des erreurs Hello correspondant est indiqué ci-dessous.
 </DriveLog>  
 ```
 
-Hello journal des erreurs pour un travail d’exportation indique que le contenu blob hello a été correctement écrit toohello lecteur, mais qu’une erreur s’est produite lors de l’exportation des propriétés de l’objet blob de hello.  
+Le journal d’erreurs suivant pour un travail d’exportation indique que le contenu de l’objet blob a été correctement écrit sur le lecteur, mais qu’une erreur s’est produite lors de l’exportation des propriétés de l’objet blob.  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  

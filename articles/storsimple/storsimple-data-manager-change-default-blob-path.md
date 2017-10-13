@@ -1,6 +1,6 @@
 ---
-title: "chemin d’accès des blob aaaChange à partir de la valeur par défaut hello | Documents Microsoft"
-description: "Apprenez comment tooset d’Azure fonctionner toorename un chemin d’accès du fichier blob (aperçu privé)"
+title: "Modifier le chemin d’accès d’objet blob par défaut | Microsoft Docs"
+description: "Découvrez comment configurer une fonction Azure pour renommer un chemin d’accès de fichier d’objet blob (version préliminaire privée)"
 services: storsimple
 documentationcenter: NA
 author: vidarmsft
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 03/16/2017
 ms.author: vidarmsft
-ms.openlocfilehash: 2c414603514223c701ab1a3bd0b81ee18f1af666
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 057d4d7370207859617eb63238bf425bfa6d3e16
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="change-a-blob-path-from-hello-default-path-private-preview"></a>Modifier un chemin d’accès de l’objet blob à partir du chemin d’accès par défaut de hello (aperçu privé)
+# <a name="change-a-blob-path-from-the-default-path-private-preview"></a>Modifier le chemin d’accès d’objet blob par défaut (version préliminaire privée)
 
-Cet article décrit comment tooset d’Azure fonction toorename un chemin de fichier blob par défaut. 
+Cet article décrit comment configurer une fonction Azure pour renommer un chemin d’accès de fichier d’objet blob par défaut. 
 
 ## <a name="prerequisites"></a>Composants requis
 
@@ -30,77 +30,77 @@ Vérifiez que vous disposez d’une définition de travail qui a été configur�
 
 ## <a name="create-an-azure-function"></a>Création d’une fonction Azure
 
-toocreate une fonction d’Azure, procédez comme hello suivant :
+Pour créer une fonction Azure, procédez comme suit :
 
-1. Accédez toohello [portail Azure](http://portal.azure.com/).
+1. Accédez au [portail Azure](http://portal.azure.com/).
 
-2. Haut hello du volet gauche de hello, cliquez sur **nouveau**. 
+2. En haut du panneau gauche, cliquez sur **Nouveau**. 
 
-3. Bonjour **recherche** , tapez **application de la fonction**, puis appuyez sur ENTRÉE.
+3. Dans la zone de **recherche**, saisissez **Function App**, puis appuyez sur Entrée.
 
-    ![Tapez « Fonction App » dans la zone de recherche hello](./media/storsimple-data-manager-change-default-blob-path/goto-function-app-resource.png)
+    ![Saisissez « Function App » dans la zone de recherche](./media/storsimple-data-manager-change-default-blob-path/goto-function-app-resource.png)
 
-4. Bonjour **résultats** , cliquez sur **fonction application**.
+4. Dans la liste **Résultats**, cliquez sur **Function App**.
 
-    ![Sélectionnez la ressource application hello fonction dans la liste des résultats hello](./media/storsimple-data-manager-change-default-blob-path/select-function-app-resource.png)
+    ![Sélectionnez la ressource Function App dans la liste des résultats](./media/storsimple-data-manager-change-default-blob-path/select-function-app-resource.png)
 
-    Hello **fonction application** fenêtre s’ouvre.
+    La fenêtre **Function App** s’ouvre.
 
-5. Cliquez sur **Créer**.
+5. Cliquez sur **Create**.
 
-    ![bouton « Créer » une fenêtre Hello application de fonction](./media/storsimple-data-manager-change-default-blob-path/create-new-function-app.png)
+    ![Bouton « Créer » de la fenêtre Function App](./media/storsimple-data-manager-change-default-blob-path/create-new-function-app.png)
 
-6. Sur hello **fonction application** Panneau de configuration, procédez comme hello suivant :
+6. Dans le panneau de configuration **Function App**, procédez comme suit :
 
-    a. Bonjour **nom de l’application** boîte, nom d’application de type hello.
+    a. Dans la zone **Nom de l’application**, saisissez le nom de l’application.
     
-    b. Bonjour **abonnement** zone, entrez un nom hello d’abonnement de hello.
+    b. Dans la zone **Abonnement**, saisissez le nom de l’abonnement.
 
-    c. Sous **groupe de ressources**, cliquez sur **nouvel**et puis hello nom du type de groupe de ressources hello.
+    c. Sous **Groupe de ressources**, cliquez sur **Créer un nouveau** et saisissez le nom du groupe de ressources.
 
-    d. Bonjour **Plan d’hébergement** , tapez **consommation Plan**.
+    d. Dans la zone **Plan d’hébergement**, saisissez **Plan de consommation**.
 
-    e. Bonjour **emplacement** boîte de type hello emplacement.
+    e. Dans la zone **Emplacement**, saisissez l’emplacement.
 
-    f. Sous **Compte de stockage**, sélectionnez un compte de stockage existant ou créez un nouveau compte de stockage. Un compte de stockage est utilisé en interne pour la fonction hello.
+    f. Sous **Compte de stockage**, sélectionnez un compte de stockage existant ou créez un nouveau compte de stockage. Un compte de stockage est utilisé en interne pour la fonction.
 
     ![Entrer les données de configuration de la nouvelle application Function App](./media/storsimple-data-manager-change-default-blob-path/enter-new-funcion-app-data.png)
 
-7. Cliquez sur **Créer**.  
-    application de fonction Hello est créée.
+7. Cliquez sur **Create**.  
+    L’application Function App est créée.
 
-8. Dans le volet gauche de hello, cliquez sur **davantage de services**et puis hello suivant :
+8. Dans le volet gauche, cliquez sur **Plus de services**, puis procédez comme suit :
     
-    a. Bonjour **filtre** , tapez **des services d’application**.
+    a. Dans la zone **Filtre**, saisissez **App Services**.
     
     b. Cliquez sur **App Services**. 
 
-    ![Lien « Plus services » dans le volet gauche de hello](./media/storsimple-data-manager-change-default-blob-path/more-services.png)
+    ![Lien « Plus de services » dans le volet gauche](./media/storsimple-data-manager-change-default-blob-path/more-services.png)
 
-9. Dans la liste de hello des services d’application, cliquez sur nom hello hello fonction app.  
-    Ouvre la page de l’application Hello (fonction).
+9. Dans la liste des services d’application, cliquez sur le nom de l’application Function App.  
+    La page de l’application Function App s’ouvre.
 
-10. Dans le volet gauche de hello, cliquez sur **nouvelle fonction**et puis hello suivant : 
+10. Dans le volet gauche, cliquez sur **Nouvelle fonction**, puis procédez comme suit : 
 
-    a. Bonjour **langage** liste, sélectionnez **c#**.
+    a. Dans la liste **Langage**, sélectionnez **C#**.
     
-    b. Dans le tableau de hello des vignettes de modèle, sélectionnez **QueueTrigger-CSharp**.
+    b. Dans le tableau de vignettes de modèle, sélectionnez **QueueTrigger-CSharp**.
 
-    c. Bonjour **nom de votre fonction** , tapez un nom pour la fonction.
+    c. Dans la zone **Nommez votre fonction**, saisissez un nom pour la fonction.
 
-    d. Bonjour **nom de la file d’attente** , tapez votre nom de définition de tâche de transformation de données.
+    d. Dans la zone **Nom de file d’attente**, saisissez le nom de la définition du travail de transformation des données.
 
-    e. Sous **connexion au compte de stockage**, cliquez sur **nouveau**, puis sélectionnez le compte hello qui correspond la tâche de transformation de données toohello.  
-        Prenez note du nom de connexion hello. nom de Hello est requis plus loin dans hello fonction Azure.
+    e. Sous **Connexion au compte de stockage**, cliquez sur **nouveau**, puis sélectionnez le compte correspondant au travail de transformation des données.  
+        Notez le nom de la connexion. Ce nom est requis plus loin dans la fonction Azure.
 
        ![Créer une fonction C#](./media/storsimple-data-manager-change-default-blob-path/create-new-csharp-function.png)
 
-    f. Cliquez sur **Créer**.  
-    Hello **fonction** fenêtre s’ouvre.
+    f. Cliquez sur **Create**.  
+    La fenêtre **Function** s’ouvre.
 
-11. Bonjour **fonction** fenêtre, exécutez _.csx_ de fichiers, puis hello suivant :
+11. Dans la fenêtre **Function**, exécutez le fichier _.csx_, puis procédez comme suit :
 
-    a. Collez hello suivant de code :
+    a. Collez le code suivant :
 
     ```
     using System;
@@ -146,7 +146,7 @@ toocreate une fonction d’Azure, procédez comme hello suivant :
         log.Info($"Blob name: {blobName}");
         log.Info($"New blob name: {newBlobName}");
 
-        // Create hello blob client.
+        // Create the blob client.
         CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
         // Container reference
@@ -169,8 +169,8 @@ toocreate une fonction d’Azure, procédez comme hello suivant :
         CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
         if (!blob.Exists())
         {
-            // Skip toocopy hello blob toonew container, if source blob doesn't exist
-            log.Info($"hello specified blob does not exist.");
+            // Skip to copy the blob to new container, if source blob doesn't exist
+            log.Info($"The specified blob does not exist.");
             log.Info($"Blob Uri: {blob.Uri}");
             return;
         }
@@ -179,7 +179,7 @@ toocreate une fonction d’Azure, procédez comme hello suivant :
         if (!blobCopy.Exists())
         {
             blobCopy.StartCopy(blob);
-            // Delete old blob, after copy toonew container
+            // Delete old blob, after copy to new container
             blob.DeleteIfExists();
             log.Info($"Blob file path renamed completed successfully");
         }
@@ -204,21 +204,21 @@ toocreate une fonction d’Azure, procédez comme hello suivant :
 
     b. Remplacez la valeur **STORAGE_CONNECTIONNAME** de la ligne 11 par la connexion à votre compte de stockage (point de référence 8c).
 
-    c. À hello gauche en haut, cliquez sur **enregistrer**.
+    c. Cliquez sur **Enregistrer** en haut à gauche.
 
     ![Enregistrer la fonction](./media/storsimple-data-manager-change-default-blob-path/save-function.png)
 
-12. toocomplete hello (fonction), ajoutez un fichier de plus de manière hello suivante :
+12. Pour terminer la fonction, ajoutez un fichier de plus en procédant comme suit :
 
     a. Cliquez sur **Afficher les fichiers**.
 
-       ![lien de « Afficher les fichiers » Hello](./media/storsimple-data-manager-change-default-blob-path/view-files.png)
+       ![Lien « Afficher les fichiers »](./media/storsimple-data-manager-change-default-blob-path/view-files.png)
 
     b. Cliquez sur **Add**.
     
     c. Saisissez **project.json** et appuyez sur Entrée.
     
-    d. Bonjour **project.json** file, collez hello suivant de code :
+    d. Collez le code suivant dans le fichier **project.json** :
 
     ```
     {
@@ -235,8 +235,8 @@ toocreate une fonction d’Azure, procédez comme hello suivant :
 
     e. Cliquez sur **Enregistrer**.
 
-Vous avez créé une fonction Azure. Cette fonction est déclenchée chaque fois qu’un nouvel objet blob est généré par la tâche de transformation de données hello.
+Vous avez créé une fonction Azure. Cette fonction est déclenchée à chaque fois qu’un nouvel objet blob est généré par le travail de transformation des données.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-[Utilisez l’interface utilisateur de gestionnaire de données StorSimple tootransform vos données](storsimple-data-manager-ui.md)
+[Utilisez l’interface utilisateur de StorSimple Data Manager pour transformer vos données](storsimple-data-manager-ui.md)

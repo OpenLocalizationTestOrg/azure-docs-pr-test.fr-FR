@@ -1,6 +1,6 @@
 ---
-title: "intégration de la passerelle de bureau avec l’extension d’Azure MFA NPS d’aaaRemote | Documents Microsoft"
-description: "Cet article décrit l’intégration de votre infrastructure de passerelle Bureau à distance avec l’authentification Multifacteur Azure à l’aide d’extension du serveur NPS (Network Policy Server) hello pour Microsoft Azure."
+title: "Intégration de la passerelle des services Bureau à distance avec l’extension de serveur NPS Azure MFA | Documents Microsoft"
+description: "Cet article décrit l’intégration de votre infrastructure de passerelle des services Bureau à distance avec Azure MFA à l’aide de l’extension de serveur NPS (Network Policy Server) pour Microsoft Azure."
 services: active-directory
 keywords: "Azure MFA, intégration de la passerelle des services Bureau à distance, Azure Active Directory, extension de serveur NPS"
 documentationcenter: 
@@ -16,51 +16,51 @@ ms.date: 08/15/2017
 ms.author: kgremban
 ms.reviewer: jsnow
 ms.custom: it-pro
-ms.openlocfilehash: ae5f6864416582bd82b787005ca787988d23a813
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6ff9a341b31e5005949dcc0ecb2591060269846e
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-#  <a name="integrate-your-remote-desktop-gateway-infrastructure-using-hello-network-policy-server-nps-extension-and-azure-ad"></a>Intégrer votre infrastructure de passerelle Bureau à distance à l’aide d’extension du serveur NPS (Network Policy Server) hello et Azure AD
+#  <a name="integrate-your-remote-desktop-gateway-infrastructure-using-the-network-policy-server-nps-extension-and-azure-ad"></a>Intégrez votre infrastructure de passerelle des services Bureau à distance à l’aide de l’extension du serveur NPS (Network Policy Server) et Azure AD
 
-Cet article fournit des détails pour l’intégration de votre infrastructure de passerelle Bureau à distance avec Azure multi-Factor Authentication (MFA) à l’aide d’extension du serveur NPS (Network Policy Server) hello pour Microsoft Azure. 
+Cet article décrit l’intégration de votre infrastructure de passerelle des services Bureau à distance avec l’authentification multifacteur (MFA) Azure à l’aide de l’extension de serveur NPS (Network Policy Server) pour Microsoft Azure. 
 
-Hello extension du Service NPS (Network Policy Server) pour Azure permet de clients toosafeguard Authentication Dial-In Service RADIUS (Remote User) l’authentification du client à l’aide d’Azure's nuage [l’authentification multifacteur (MFA)](multi-factor-authentication.md). Cette solution fournit la vérification en deux étapes pour ajouter une deuxième couche de sécurité toouser connexions et transactions.
+L’extension du Service NPS (Network Policy Server) pour Azure permet aux clients de protéger le protocole d’authentification du client RADIUS (Remote Authentication Dial-In User Service) à l’aide de [l’authentification multifacteur (MFA)](multi-factor-authentication.md) basée sur le cloud d’Azure. Cette solution fournit une vérification en deux étapes pour ajouter une deuxième couche de sécurité aux connexions et transactions utilisateur.
 
-Cet article fournit des instructions détaillées pour l’intégration de l’infrastructure de serveur NPS hello avec l’authentification Multifacteur Azure à l’aide d’extension NPS hello pour Azure. Cela permet une vérification sécurisée pour les utilisateurs qui tentent de toolog sur tooa passerelle Bureau à distance. 
+Cet article fournit des instructions détaillées étape par étape pour l’intégration de l’infrastructure de serveur NPS avec l’authentification multifacteur Azure à l’aide de l’extension de serveur NPS pour Azure. Cela permet une vérification sécurisée pour les utilisateurs tentant de se connecter à une passerelle des services Bureau à distance. 
 
-Hello stratégie réseau et les Services d’accès (NPS) permet aux entreprises de hello suivant de capacité toodo hello :
-* Définir des emplacements centraux pour la gestion de hello et contrôle des demandes du réseau en spécifiant qui peut se connecter, les heures de la journée, les connexions sont autorisées, hello durée des connexions et le niveau de hello de sécurité que les clients doivent utiliser tooconnect et ainsi de suite. Plutôt que de spécifier ces stratégies sur chaque serveur VPN ou de passerelle des services Bureau à distance (RD), ces stratégies peuvent être spécifiées une seule fois dans un emplacement central. Hello protocole RADIUS fournit hello centralisée de l’authentification, l’autorisation et gestion des comptes (AAA). 
-* Établir et appliquer les stratégies de contrôle d’intégrité de client de Protection d’accès réseau (NAP) qui détermine si les appareils sont autorisées sans restriction ou à accès restreint toonetwork ressources.
-* Fournir un moyen tooenforce authentification et l’autorisation pour les commutateurs Ethernet et des points d’accès sans fil compatibles too802.1x accès.    
+Les services de stratégie et d’accès réseau (NPS) permettent aux entreprises d’effectuer les opérations suivantes :
+* définir des emplacements centraux pour la gestion et le contrôle des demandes du réseau en spécifiant qui peut se connecter, les heures de connexion autorisées pendant la journée, la durée des connexions et le niveau de sécurité que les clients doivent utiliser pour se connecter, et autres. Plutôt que de spécifier ces stratégies sur chaque serveur VPN ou de passerelle des services Bureau à distance (RD), ces stratégies peuvent être spécifiées une seule fois dans un emplacement central. Le protocole RADIUS fournit l’authentification, l’autorisation et la gestion des comptes (AAA) centralisées. 
+* Établissez et appliquez les stratégies de contrôle d’intégrité client de Protection d’accès réseau (NAP) qui déterminent si les périphériques sont accordés avec ou sans restrictions d’accès aux ressources réseau.
+* Fournissez un moyen d’appliquer l’authentification et l’autorisation d’accès aux points d’accès sans fil et commutateurs compatibles à 802.1x.    
 
-En règle générale, les organisations utiliser NPS (RADIUS) toosimplify et centraliser la gestion de hello du VPN des stratégies. Toutefois, de nombreuses organisations également NPS toosimplify et centraliser la gestion de hello de stratégies d’autorisation de connexion de bureau Bureau à distance (bureau à distance). 
+En règle générale, les organisations utilisent le serveur NPS (RADIUS) pour simplifier et centraliser la gestion des stratégies de serveur VPN. Toutefois, de nombreuses organisations utilisent également NPS pour simplifier et centraliser la gestion des stratégies d’autorisation des connexions aux services Bureau à distance (RD CAP). 
 
-Les organisations peuvent également intégrer NPS Azure MFA tooenhance sécurité et fournir un niveau élevé de compatibilité. Cela permet de s’assurer que les utilisateurs établir toolog de vérification en deux étapes sur toohello passerelle Bureau à distance. Pour toobe les utilisateurs autorisé à accéder, ils doivent fournir leur combinaison nom d’utilisateur/mot de passe avec les informations utilisateur de hello a dans leur contrôle. Ces informations doivent être approuvées et pas facilement dupliquées, comme un numéro de téléphone portable, numéro de téléphone fixe, une application sur un appareil mobile et autres.
+Les organisations peuvent également intégrer NPS avec l’authentification multifacteur Azure pour améliorer la sécurité et fournir un niveau élevé de compatibilité. Cela permet de s’assurer que les utilisateurs établissent la vérification en deux étapes pour se connecter à la passerelle des services Bureau à distance. Pour que les utilisateurs puissent obtenir l’accès, ils doivent fournir leur combinaison de nom d’utilisateur/mot de passe ainsi que les informations dont dispose l’utilisateur. Ces informations doivent être approuvées et pas facilement dupliquées, comme un numéro de téléphone portable, numéro de téléphone fixe, une application sur un appareil mobile et autres.
 
-Disponibilité toohello préalable de hello extension NPS pour Azure, les clients qui souhaitaient vérification en deux étapes tooimplement intégré NPS Azure MFA des environnements et avaient tooconfigure et mettre à jour un serveur distinct de l’authentification Multifacteur dans l’environnement local de hello en tant que documentées dans [passerelle Bureau à distance et le serveur Azure multi-Factor Authentication utilisant RADIUS](multi-factor-authentication-get-started-server-rdg.md).
+Avant la disponibilité de l’extension de serveur NPS pour Azure, les clients qui souhaitaient mettre en œuvre la vérification en deux étapes pour les environnements de serveur NPS et l’authentification multifacteur Azure intégrées devaient configurer et gérer un serveur distinct de l’authentification multifacteur dans l’environnement local, comme décrit dans la rubrique [Passerelle des services Bureau à distance et serveur Azure MFA utilisant RADIUS](multi-factor-authentication-get-started-server-rdg.md).
 
-disponibilité Hello d’extension NPS hello pour Azure offre désormais des organisations hello choix toodeploy une solution d’authentification Multifacteur local ou une nuage MFA solution toosecure RADIUS l’authentification du client.
+La disponibilité de l’extension de serveur NPS pour Azure permet désormais aux entreprises de choisir de déployer une solution d’authentification multifacteur locale ou une solution de l’authentification multifacteur basée sur le cloud pour l’authentification client RADIUS sécurisée.
 
 ## <a name="authentication-flow"></a>Flux d’authentification
 
-Pour les utilisateurs toobe accordées à accéder aux ressources de toonetwork via une passerelle Bureau à distance, qu'ils doivent remplir les conditions de hello spécifiées dans une stratégie d’autorisation de connexion Bureau à distance (services Bureau à distance) et une stratégie d’autorisation de ressource Bureau à distance (RD RAP). Bureau à distance spécifier qui est autorisé tooconnect tooRD passerelles. Bureau à distance d spécifier les ressources réseau hello, tels que les ordinateurs de bureau à distance ou des applications à distance, que l’utilisateur hello est autorisé tooconnect toothrough hello passerelle Bureau à distance. 
+Pour que les utilisateurs puissent obtenir l’accès aux ressources réseau via une passerelle des services Bureau à distance, il leur faut remplir les conditions spécifiées dans une stratégie d'autorisation des connexions aux services Bureau à distance (RD CAP) et une stratégie d'autorisation d'accès aux ressources via les services Bureau à distance (RD RAP). Les stratégies RD CAP spécifient qui est autorisé à se connecter à des passerelles des services Bureau à distance. Les stratégies RD CAP indiquent les ressources réseau, notamment les bureaux à distance ou les applications à distance, auxquelles l’utilisateur est autorisé à se connecter via la passerelle des services Bureau à distance. 
 
-Une passerelle Bureau à distance peut être configuré toouse un magasin de stratégies centrale pour le Bureau à distance. Stratégies de bureau à distance ne peut pas utiliser une stratégie centrale, car elles sont traitées sur hello passerelle Bureau à distance. Un exemple d’un toouse de passerelle Bureau à distance configuré un magasin de stratégies centrale pour le Bureau à distance est un serveur NPS tooanother client RADIUS qui sert de magasin de stratégie centralisée hello.
+Une passerelle des services Bureau à distance peut être configurée pour utiliser un Store de stratégies central pour les stratégies RD CAP. Les stratégies de bureau à distance ne peuvent pas utiliser une stratégie centrale, car elles sont traitées sur la passerelle des services Bureau à distance. Un exemple de passerelle des services Bureau à distance configuré pour utiliser un Store de stratégies central pour les stratégies RD CAP Bureau à distance est les suivant : un client RADIUS vers un autre serveur NPS qui sert de Store de stratégies centrales.
 
-Lorsque hello extension NPS pour Azure est intégré à hello NPS et de passerelle Bureau à distance, les flux d’authentification réussie hello est la suivante :
+Lorsque l’extension de serveur NPS pour Azure est intégrée au serveur NPS et à la passerelle des services Bureau à distance, le flux d’authentification réussie est le suivant :
 
-1. serveur de passerelle Bureau à distance Hello reçoit une demande d’authentification à partir d’une ressource de tooa tooconnect utilisateur du Bureau à distance, par exemple une session Bureau à distance. Agissant comme un client RADIUS, serveur de passerelle Bureau à distance hello convertit le message de demande d’accès RADIUS tooa hello demande et envoie hello message toohello RADIUS NPS (server) sur lequel l’extension de serveur NPS hello est installée. 
-2. Hello nom d’utilisateur et mot de passe est vérifiée dans Active Directory et hello utilisateur est authentifié.
-3. Si tous les hello conditions comme spécifié dans hello de demande de connexion de serveur NPS et stratégies de réseau hello sont remplies (par exemple, l’heure du jour ou de groupe de restrictions d’appartenance), hello extension NPS déclenche une demande d’authentification secondaire avec l’authentification Multifacteur Azure. 
-4. L’authentification Multifacteur Azure communique avec Azure AD, récupère les détails de l’utilisateur hello et effectue l’authentification secondaire hello à l’aide de la méthode hello configuré par l’utilisateur hello (message texte, application mobile et ainsi de suite). 
-5. En cas de réussite de stimulation d’authentification Multifacteur de hello, Azure MFA communique extension NPS toohello hello résultat.
-6. Hello serveur NPS où hello extension est installé envoie un message d’acceptation d’accès RADIUS pour le serveur de passerelle Bureau à distance toohello hello services Bureau à distance stratégie.
-7. Hello utilisateur a accès toohello a demandé la ressource réseau via hello passerelle Bureau à distance.
+1. Le serveur de passerelle des services Bureau à distance reçoit une demande d’authentification à partir d’un utilisateur du bureau à distance pour se connecter à une ressource, par exemple une session Bureau à distance. Agissant comme un client RADIUS, le serveur de passerelle des services Bureau à distance convertit la demande en un message de demande d’accès RADIUS et envoie le message sur le serveur RADIUS (NPS) où est installée l’extension du serveur NPS. 
+2. La combinaison nom d’utilisateur et mot de passe est vérifiée dans Active Directory et l’utilisateur est authentifié.
+3. Si toutes les conditions, comme spécifié dans la demande de connexion du serveur NPS et les stratégies de réseau, sont remplies (par exemple, les restrictions d’heures de la journée ou de groupe d’appartenance), l’extension NPS déclenche une demande d’authentification secondaire avec l’authentification multifacteur Azure. 
+4. Azure MFA communique avec Azure AD pour récupérer les informations de l’utilisateur et procède à l’authentification secondaire à l’aide d’une méthode configurée par l’utilisateur (message texte, application mobile, etc.). 
+5. En cas de réussite du défi MFA, Azure MFA communique le résultat sur l’extension du serveur NPS.
+6. Le serveur NPS où est installée l’extension envoie un message d’acceptation d’accès à RADIUS pour la stratégie RD CAP sur le serveur de passerelle des services Bureau à distance.
+7. L’utilisateur a accès à la ressource réseau demandée via la passerelle des services Bureau à distance.
 
 ## <a name="prerequisites"></a>Composants requis
-Cette section détaille hello requise avant d’intégrer l’authentification Multifacteur Azure hello passerelle Bureau à distance. Avant de commencer, vous devez avoir hello suivant des conditions préalables en place.  
+Cette section détaille les conditions préalables nécessaires avant d’intégrer Azure MFA à la passerelle des services Bureau à distance. Avant de commencer, vous devez disposer des conditions requises en place suivantes.  
 
 * Infrastructure des Services Bureau à distance (RDS)
 * Licence Azure MFA
@@ -70,312 +70,312 @@ Cette section détaille hello requise avant d’intégrer l’authentification M
 * ID du GUID Azure Active Directory
 
 ### <a name="remote-desktop-services-rds-infrastructure"></a>Infrastructure des Services Bureau à distance (RDS)
-Vous devez disposer d’une infrastructure de Services Bureau à distance (RDS) de travail en place. Si vous le faites pas, vous pouvez rapidement créer cette infrastructure dans Azure utilisant hello de démarrage rapide modèle : [déploiement de créer la Collection de sessions de bureau à distance](https://github.com/Azure/azure-quickstart-templates/tree/ad20c78b36d8e1246f96bb0e7a8741db481f957f/rds-deployment). 
+Vous devez disposer d’une infrastructure de Services Bureau à distance (RDS) de travail en place. Dans le cas contraire, vous pouvez rapidement créer cette infrastructure dans Azure en utilisant le modèle de démarrage rapide suivant : [Créer un déploiement de collections de sessions de Bureau à distance](https://github.com/Azure/azure-quickstart-templates/tree/ad20c78b36d8e1246f96bb0e7a8741db481f957f/rds-deployment). 
 
-Si vous le souhaitez toomanually créer une infrastructure de services Bureau à distance sur site rapidement effectuer des tests, et suivez hello étapes toodeploy une. 
+Si vous souhaitez créer manuellement et rapidement une infrastructure RDS locale pour des tests, suivez les étapes pour déployer une. 
 **En savoir plus** : [Déployer des services RDS avec le démarrage rapide Azure](https://docs.microsoft.com/windows-server/remote/remote-desktop-services/rds-in-azure) et [Déploiement de l’infrastructure RDS de base](https://docs.microsoft.com/windows-server/remote/remote-desktop-services/rds-deploy-infrastructure). 
 
 ### <a name="licenses"></a>Licences
-Une licence pour Azure MFA est obligatoire, disponible via un abonnement Azure AD Premium, Enterprise Mobility plus Security (EMS) ou MFA. Pour plus d’informations, consultez [comment tooget Azure multi-Factor Authentication](multi-factor-authentication-versions-plans.md). À des fins de test, vous pouvez utiliser un abonnement d’évaluation.
+Une licence pour Azure MFA est obligatoire, disponible via un abonnement Azure AD Premium, Enterprise Mobility plus Security (EMS) ou MFA. Pour plus d’informations, consultez [Guide pratique pour obtenir l’authentification multifacteur Azure](multi-factor-authentication-versions-plans.md). À des fins de test, vous pouvez utiliser un abonnement d’évaluation.
 
 ### <a name="software"></a>Logiciel
-Hello, extension de serveur NPS requiert Windows Server 2008 R2 SP1 ou version ultérieure avec le service de rôle NPS hello installé. Toutes les étapes de hello dans cette section ont été effectuées à l’aide de Windows Server 2016.
+L’extension de serveur NPS requiert Windows Server 2008 R2 SP1 ou version ultérieure avec le service de rôle NPS installé. Toutes les étapes de cette section ont été effectuées à l’aide de Windows Server 2016.
 
 ### <a name="network-policy-and-access-services-nps-role"></a>Rôle des services de stratégie et d’accès réseau (NPS)
-Hello service de rôle NPS fournit le client et le serveur RADIUS de hello fonctionnalités, ainsi que de service de contrôle d’intégrité de la stratégie d’accès réseau. Ce rôle doit être installé sur au moins deux ordinateurs dans votre infrastructure : hello de passerelle Bureau à distance et un autre serveur membre ou contrôleur de domaine. Par défaut, le rôle de hello est déjà présent sur hello ordinateur configuré en tant que hello passerelle Bureau à distance.  Vous devez également installer au moins rôle NPS de hello sur un autre ordinateur, tel qu’un contrôleur de domaine ou un serveur membre.
+Le service de rôle NPS fournit la fonctionnalité serveur et client RADIUS ainsi que le service de contrôle d’intégrité de la Stratégie d’accès réseau. Ce rôle doit être installé sur au moins deux ordinateurs dans votre infrastructure : la passerelle des services Bureau à distance et un autre serveur membre ou contrôleur de domaine. Par défaut, le rôle est déjà présent sur l’ordinateur configuré en tant que passerelle des services Bureau à distance.  Vous devez également installer le rôle NPS sur au moins un autre ordinateur, tel qu’un contrôleur de domaine ou un serveur membre.
 
-Pour plus d’informations sur l’installation du rôle de serveur NPS hello de service Windows Server 2012 ou plus anciens, consultez [installer un serveur de stratégie de contrôle d’intégrité NAP](https://technet.microsoft.com/library/dd296890.aspx). Pour obtenir une description des meilleures pratiques pour NPS, y compris hello recommandation tooinstall NPS sur un contrôleur de domaine, consultez [meilleures pratiques pour NPS](https://technet.microsoft.com/library/cc771746).
+Pour plus d’informations sur l’installation du service de rôle de serveur NPS Windows Server 2012 ou versions plus ancienne, consultez [Installer un serveur de stratégie de contrôle d’intégrité NAP](https://technet.microsoft.com/library/dd296890.aspx). Pour obtenir une description des meilleures pratiques pour le serveur NPS, y compris la recommandation pour installer le serveur NPS sur un contrôleur de domaine, consultez [Meilleures pratiques pour le serveur NPS](https://technet.microsoft.com/library/cc771746).
 
 ### <a name="azure-active-directory-synched-with-on-premises-active-directory"></a>Azure Active Directory synchronisé avec Active Directory local 
-toouse hello extension serveur NPS local utilisateurs doivent être synchronisés avec Azure AD et activés pour l’authentification Multifacteur. Cette section part du principe que les utilisateurs locaux sont synchronisés avec Azure AD en utilisant AD Connect. Pour obtenir plus d’informations sur Azure AD Connect, consultez [Intégrer vos répertoires locaux avec Azure Active Directory](../active-directory/connect/active-directory-aadconnect.md). 
+Pour utiliser l’extension de serveur NPS, les utilisateurs locaux doivent être synchronisés avec Azure AD et activés pour l’authentification multifacteur. Cette section part du principe que les utilisateurs locaux sont synchronisés avec Azure AD en utilisant AD Connect. Pour obtenir plus d’informations sur Azure AD Connect, consultez [Intégrer vos répertoires locaux avec Azure Active Directory](../active-directory/connect/active-directory-aadconnect.md). 
 
 ### <a name="azure-active-directory-guid-id"></a>ID du GUID Azure Active Directory
-tooinstall NPS, vous devez tooknow hello GUID de hello Azure AD. Vous trouverez ci-dessous des instructions pour la recherche hello GUID de hello Azure AD.
+Pour installer le serveur NPS, vous devez connaître le GUID d’Azure AD. Vous trouverez ci-dessous des instructions pour rechercher le GUID d’Azure AD.
 
 ## <a name="configure-multi-factor-authentication"></a>Configurer l’authentification multifacteur 
-Cette section fournit des instructions pour l’intégration d’Azure MFA avec hello passerelle Bureau à distance. En tant qu’administrateur, vous devez configurer le service de l’authentification Multifacteur Azure hello avant que les utilisateurs peuvent s’inscrire automatiquement leurs applications ou périphériques de plusieurs facteurs.
+Cette section fournit des instructions pour l’intégration d’Azure MFA à la passerelle des services Bureau à distance. En tant qu’administrateur, vous devez configurer le service Azure MFA avant que les utilisateurs puissent inscrire automatiquement leurs applications ou périphériques multifacteur.
 
-Suivez les étapes de hello dans [prise en main d’Azure multi-Factor Authentication dans le cloud de hello](multi-factor-authentication-get-started-cloud.md) tooenable l’authentification Multifacteur pour vos utilisateurs Azure AD. 
+Suivez les étapes dans [Bien démarrer avec l’authentification multifacteur Azure dans le cloud](multi-factor-authentication-get-started-cloud.md) pour activer MFA pour vos utilisateurs Azure AD. 
 
 ### <a name="configure-accounts-for-two-step-verification"></a>Configurer des comptes pour la vérification en deux étapes
-Une fois qu’un compte a été activé pour l’authentification Multifacteur, vous ne pouvez pas vous connecter tooresources régie par hello stratégie d’authentification Multifacteur jusqu'à ce que vous avez correctement configuré un toouse appareil approuvé pour le second facteur d’authentification hello ont authentifié à l’aide de la vérification en deux étapes.
+Une fois qu’un compte a été activé pour l’authentification multifacteur, vous ne pouvez pas vous connecter aux ressources régies par la stratégie d’authentification multifacteur jusqu'à ce que vous ayez correctement configuré un périphérique approuvé à utiliser pour que le second facteur d’authentification soit authentifié à l’aide de la vérification en deux étapes.
 
-Suivez les étapes de hello dans [que signifie l’authentification multifacteur Azure pour moi ?](./end-user/multi-factor-authentication-end-user.md) toounderstand et configurer correctement vos appareils pour l’authentification Multifacteur avec votre compte d’utilisateur.
+Suivez les étapes dans [Que fait l’authentification multifacteur Azure pour moi ?](./end-user/multi-factor-authentication-end-user.md) pour comprendre et configurer correctement vos périphériques pour l’authentification multifacteur avec votre compte d’utilisateur.
 
 ## <a name="install-and-configure-nps-extension"></a>Installer et configurer l’extension NPS
-Cette section fournit des instructions pour la configuration des services Bureau à distance infrastructure toouse Azure MFA pour l’authentification du client avec hello passerelle Bureau à distance.
+Cette section fournit des instructions pour la configuration de l’infrastructure des services Bureau à distance pour utiliser Azure MFA pour l’authentification du client avec la passerelle des services Bureau à distance.
 
 ### <a name="acquire-azure-active-directory-guid-id"></a>Acquérir l’ID du GUID Azure Active Directory
 
-Dans le cadre de la configuration de hello Hello extension du serveur NPS, vous devez identification d’administrateur de toosupply et l’ID de Azure AD hello pour votre locataire Azure AD. Hello suit vous montre comment ID de tooget hello locataire.
+Dans le cadre de la configuration de l’extension de serveur NPS, vous devez fournir les informations d’identification d’administrateur et l’ID Azure AD pour votre client Azure AD. Les étapes suivantes vous expliquent comment obtenir l’ID client.
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) en tant qu’administrateur global de hello Hello Azure locataire.
-2. Bonjour barre de navigation gauche, sélectionnez hello **Azure Active Directory** icône.
+1. Connectez-vous au [portail Azure](https://portal.azure.com) en tant qu’administrateur général du client Azure.
+2. Dans la barre de navigation de gauche, sélectionnez l’icône**Azure Active Directory**.
 3. Sélectionner **Propriétés**.
-4. Dans le panneau des propriétés hello, en regard de hello ID de répertoire, cliquez sur hello **copie** icône, comme illustré ci-dessous, toocopy hello ID tooclipboard.
+4. Dans le panneau Propriétés, en regard de l’ID de répertoire, cliquez sur l’icône **Copier**, comme illustré ci-dessous, pour copier l’ID dans le presse-papiers.
 
  ![Propriétés](./media/nps-extension-remote-desktop-gateway/image1.png)
 
-### <a name="install-hello-nps-extension"></a>Installation de l’extension de serveur NPS hello
-Installer l’extension NPS hello sur un serveur qui a hello stratégie réseau et le rôle de Services d’accès (NPS) est installé. Cela fonctionne comme serveur RADIUS de hello pour votre conception. 
+### <a name="install-the-nps-extension"></a>Installer l’extension NPS
+Installez l’extension de serveur NPS sur un serveur ayant le rôle des services de stratégie réseau et d’accès réseau (NPS) est installé. Cela fonctionne comme serveur RADIUS pour votre conception. 
 
 >[!Important]
-> Assurez-vous que vous n’installez pas d’extension NPS hello sur votre serveur de passerelle Bureau à distance.
+> Assurez-vous que vous n’installez pas l’extension de serveur NPS sur votre serveur de passerelle des services Bureau à distance.
 > 
 
-1. Télécharger hello [extension NPS](https://aka.ms/npsmfa). 
-2. Copiez le serveur NPS toohello hello le programme d’installation le fichier exécutable (NpsExtnForAzureMfaInstaller.exe).
-3. Sur le serveur NPS de hello, double-cliquez sur **NpsExtnForAzureMfaInstaller.exe**. À l’invite, cliquez sur **Exécuter**.
-4. Bonjour NPS Extension pour la boîte de dialogue de l’authentification Multifacteur Azure, consultez hello le contrat de licence, vérifiez **J’accepte les conditions générales du contrat de licence toohello**, puis cliquez sur **installer**.
+1. Téléchargez [l’extension de serveur NPS](https://aka.ms/npsmfa). 
+2. Copiez le fichier exécutable du programme d’installation (NpsExtnForAzureMfaInstaller.exe) sur le serveur NPS.
+3. Sur le serveur NPS, double-cliquez sur **NpsExtnForAzureMfaInstaller.exe**. À l’invite, cliquez sur **Exécuter**.
+4. Dans l’extension de serveur NPS pour la boîte de dialogue d’Azure MFA, passez en revue les termes du contrat de licence de logiciel, cochez la case **J’accepte les conditions générales du contrat de licence**, puis cliquez sur **Installer**.
  
   ![Programme d’installation d’Azure MFA](./media/nps-extension-remote-desktop-gateway/image2.png)
 
-5. Bonjour NPS Extension pour la boîte de dialogue de l’authentification Multifacteur Azure, cliquez sur Fermer. 
+5. Dans l’extension de serveur NPS pour la boîte de dialogue d’Azure MFA, cliquez sur Fermer. 
 
   ![Extension NPS pour Azure MFA](./media/nps-extension-remote-desktop-gateway/image3.png)
 
-### <a name="configure-certificates-for-use-with-hello-nps-extension-using-a-powershell-script"></a>Configurer des certificats pour une utilisation avec l’extension de serveur NPS hello à l’aide d’un script PowerShell
-Ensuite, vous devez tooconfigure certificats pour une utilisation par des communications sécurisées hello NPS extension tooensure et l’assurance. composants du serveur NPS Hello incluent un script Windows PowerShell qui configure un certificat auto-signé à utiliser avec le serveur NPS. 
+### <a name="configure-certificates-for-use-with-the-nps-extension-using-a-powershell-script"></a>Configurer des certificats pour une utilisation avec l’extension de serveur NPS à l’aide d’un script PowerShell
+Ensuite, vous devez configurer des certificats pour une utilisation par l’extension de serveur NPS pour garantir des communications et une assurance sécurisées. Les composants de serveur NPS incluent un script Windows PowerShell qui configure un certificat auto-signé à utiliser avec le serveur NPS. 
 
-script de Hello exécute hello suivant des actions :
+Le script effectue les actions suivantes :
 
 * crée un certificat auto-signé
-* Associe la clé publique du certificat tooservice de principal sur Azure AD
-* Magasins hello certificat dans le magasin de l’ordinateur local hello
-* Utilisateur de réseau toohello de clé privée du certificat toohello accorde l’accès
+* associe la clé publique du certificat au principal du service sur Azure AD
+* stocke le certificat dans le Store de l’ordinateur local
+* accorde l’accès à la clé privée du certificat à l’utilisateur réseau
 * redémarre le service de serveur de stratégie réseau
 
-Si vous souhaitez toouse vos propres certificats, vous avez besoin de votre principal de service de certificat toohello tooassociate hello public sur Azure AD et ainsi de suite.
+Si vous souhaitez utiliser vos propres certificats, vous devez associer le public de votre certificat au principe de service sur Azure AD et ainsi de suite.
 
-script de hello de toouse, fournir les extension hello avec vos informations d’identification Azure AD Admin et hello ID de locataire Azure AD que vous avez copiée précédemment. Exécutez le script de hello sur chaque serveur NPS où vous avez installé l’extension de serveur NPS hello. Puis la hello suivant :
+Pour utiliser le script, spécifiez l’extension avec vos informations d’identification administrateur Azure AD l’ID du client Azure AD que vous avez copiée précédemment. Exécutez le script sur chaque serveur NPS où vous avez installé l’extension du serveur NPS. Faites ensuite ce qui suit :
 
 1. Ouvrez une invite administrative Windows PowerShell.
-2. À l’invite de commandes PowerShell hello, tapez **cd « c:\Program Files\Microsoft\AzureMfa\Config »**, puis appuyez sur **entrée**.
-3. Tapez _.\AzureMfsNpsExtnConfigSetup.ps1_, puis appuyez sur **ENTRÉE**. script de Hello vérifie toosee si le module Azure Active Directory PowerShell hello est installé. Le cas contraire, script de hello installe le module de hello pour vous.
+2. À l’invite de PowerShell, tapez **cd ‘c:\Program Files\Microsoft\AzureMfa\Config’**, puis appuyez sur **ENTRÉE**.
+3. Tapez _.\AzureMfsNpsExtnConfigSetup.ps1_, puis appuyez sur **ENTRÉE**. Le script vérifie si le module Azure Active Directory PowerShell est installé. Si ce n’est pas le cas, le script installe le module pour vous.
 
   ![Azure AD PowerShell](./media/nps-extension-remote-desktop-gateway/image4.png)
   
-4. Une fois le script de hello vérifie l’installation de hello du module PowerShell de hello, il affiche la boîte de dialogue module Azure Active Directory PowerShell hello. Dans la boîte de dialogue hello, entrez vos informations d’identification d’administrateur d’Azure AD et un mot de passe, puis cliquez sur **connexion**.
+4. Une fois la vérification de l’installation du module PowerShell par le script, il affiche la boîte de dialogue du module Azure Active Directory PowerShell. Dans la boîte de dialogue, entrez vos informations d’identification d’administrateur Azure AD et un mot de passe, puis cliquez sur **Connexion**.
 
   ![Ouvrez le compte Powershell](./media/nps-extension-remote-desktop-gateway/image5.png)
 
-5. Lorsque vous y êtes invité, collez l’ID de client hello copiés précédemment toohello Presse-papiers, puis appuyez sur **entrée**.
+5. Lorsque vous y êtes invité, collez l’ID client que vous avez copié précédemment dans le presse-papiers, puis appuyez sur **ENTRÉE**.
 
   ![Entrez l’ID client](./media/nps-extension-remote-desktop-gateway/image6.png)
 
-6. script de Hello crée un certificat auto-signé et effectue d’autres modifications de configuration. sortie de Hello doit être comme image hello indiqué ci-dessous.
+6. Le script crée un certificat auto-signé et effectue d’autres modifications de configuration. La sortie doit être comme l’image ci-dessous.
 
   ![Certificat auto-signé](./media/nps-extension-remote-desktop-gateway/image7.png)
 
 ## <a name="configure-nps-components-on-remote-desktop-gateway"></a>Configurer les composants de serveur NPS sur la passerelle des services Bureau à distance
-Dans cette section, vous configurez des stratégies d’autorisation des connexions hello passerelle Bureau à distance et autres paramètres de RADIUS.
+Dans cette section, configurez des stratégies d’autorisation des connexions de passerelle des services Bureau à distance et d’autres paramètres de RADIUS.
 
-flux d’authentification Hello requiert que les messages RADIUS être échangés entre hello passerelle Bureau à distance et hello serveur NPS où hello serveur NPS est installé. Cela signifie que vous devez configurer les paramètres des clients RADIUS sur la passerelle Bureau à distance et hello serveur NPS où hello NPS extension est installé. 
+Le flux d’authentification nécessite que les messages RADIUS soient échangés entre la passerelle des services Bureau à distance et le serveur NPS où est installé le serveur NPS. Cela signifie que vous devez configurer les paramètres des clients RADIUS sur la passerelle des services Bureau à distance et le serveur NPS où est installée l’extension du serveur NPS. 
 
-### <a name="configure-remote-desktop-gateway-connection-authorization-policies-toouse-central-store"></a>Configurer le magasin central toouse de stratégies d’autorisation passerelle Bureau à distance connexion
-Stratégies d’autorisation de connexion Bureau à distance (bureau à distance) spécifient hello pour le serveur de passerelle Bureau à distance se connectant tooa. Les stratégies RD CAP peuvent être stockées localement (par défaut) ou être stockées dans un Store de stratégies RD CAP central qui exécute un serveur NPS. tooconfigure l’intégration d’Azure MFA avec les services Bureau à distance, vous avez besoin d’utiliser de hello toospecify d’un magasin central.
+### <a name="configure-remote-desktop-gateway-connection-authorization-policies-to-use-central-store"></a>Configurer des stratégies de l’autorisation des connexions de passerelle des services Bureau à distance pour utiliser le Store central
+Les stratégies d’autorisation des connexions aux services Bureau à distance (RD CAP) spécifient les exigences techniques de connexion à un serveur de passerelle des services Bureau à distance. Les stratégies RD CAP peuvent être stockées localement (par défaut) ou être stockées dans un Store de stratégies RD CAP central qui exécute un serveur NPS. Pour configurer l’intégration d’Azure MFA avec les services Bureau à distance, vous devez spécifier l’utilisation d’un Store central.
 
-1. Sur le serveur de passerelle Bureau à distance hello, ouvrez **le Gestionnaire de serveur**. 
-2. Cliquez sur hello, **outils**, point trop**Services Bureau à distance**, puis cliquez sur **Gestionnaire de passerelle Bureau à distance**.
+1. Sur le serveur de passerelle des services Bureau à distance, ouvrez **Gestionnaire de serveurs**. 
+2. Dans le menu, cliquez sur **Outils**, pointez vers **Services bureau à distance** puis cliquez sur **Gestionnaire de passerelle de Bureau à distance**.
 
   ![Services Bureau à distance](./media/nps-extension-remote-desktop-gateway/image8.png)
 
-3. Dans le Gestionnaire de passerelle Bureau à distance de hello, cliquez sur  **\[nom du serveur\] (Local)**, puis cliquez sur **propriétés**.
+3. Dans le Gestionnaire de passerelle Bureau à distance, cliquez avec le bouton droit sur **\[Nom de serveur\] (Local)** et cliquez sur **Propriétés**.
 
   ![Nom du serveur](./media/nps-extension-remote-desktop-gateway/image9.png)
 
-4. Dans la boîte de dialogue de propriétés hello, sélectionnez hello **services Bureau à distance** onglet magasin.
-5. Sur l’onglet magasin de stratégies de bureau à distance de hello, sélectionnez **serveur Central exécutant NPS**. 
-6. Bonjour **Entrez une adresse IP ou le nom de serveur hello NPS** champ, de type hello adresse IP ou serveur de nom de serveur hello où vous avez installé l’extension de serveur NPS hello.
+4. Dans la boîte de dialogue Propriétés, sélectionnez l’onglet du Store**RD CAP**.
+5. Dans l’onglet Store RD CAP, sélectionnez **Serveur central exécutant NPS**. 
+6. Dans le champ **Entrer une adresse IP ou un nom du serveur exécutant NPS**, tapez le nom de serveur ou l’adresse IP du serveur où vous avez installé l’extension du serveur NPS.
 
   ![Entrez le nom ou l’adresse IP](./media/nps-extension-remote-desktop-gateway/image10.png)
   
 7. Cliquez sur **Add**.
-8. Bonjour **Secret partagé** boîte de dialogue, entrez un secret partagé, puis cliquez sur **OK**. Assurez-vous d’enregistrer ce secret partagé et de stocker les enregistrements de hello en toute sécurité.
+8. Dans la boîte de dialogue **Secret partagé**, entrez un secret partagé, puis cliquez sur **OK**. Veillez à enregistrer ce secret partagé et à stocker l’enregistrement en toute sécurité.
 
  >[!NOTE]
- >Secret partagé est utilisé approbation tooestablish entre les clients et serveurs RADIUS de hello. Créer un mot de passe long et complexe.
+ >Le secret partagé est utilisé pour établir l’approbation entre les serveurs RADIUS et les clients. Créer un mot de passe long et complexe.
  >
 
  ![Secret partagé](./media/nps-extension-remote-desktop-gateway/image11.png)
 
-9. Cliquez sur **OK** boîte de dialogue tooclose hello.
+9. Cliquez sur **OK** pour fermer la boîte de dialogue.
 
 ### <a name="configure-radius-timeout-value-on-remote-desktop-gateway-nps"></a>Configurer la valeur de délai d’expiration RADIUS sur le serveur NPS de passerelle Bureau à distance
-tooensure il est temps d’informations d’identification des utilisateurs toovalidate, effectuer une vérification en deux étapes, recevoir des réponses et répond tooRADIUS messages, il s’agit de la valeur du délai d’attente nécessaire tooadjust hello rayon.
+Pour vérifier qu’il y a suffisamment de temps pour valider les informations d’identification des utilisateurs, effectuez une vérification en deux étapes, recevez des réponses et répondez aux messages RADIUS, il est nécessaire d’ajuster la valeur de délai d’expiration RADIUS.
 
-1. Sur le serveur de passerelle Bureau à distance hello, dans le Gestionnaire de serveur, cliquez sur **outils**, puis cliquez sur **serveur NPS**. 
-2. Bonjour **NPS (Local)** de la console, développez **Clients et serveurs RADIUS**, puis sélectionnez **serveur RADIUS distant**.
+1. Sur le serveur de passerelle Bureau à distance, dans Gestionnaires de serveurs cliquez sur **Outils** puis cliquez sur **Serveur de stratégie réseau**. 
+2. Dans la console **NPS (Local)**, développez **Clients et serveurs RADIUS**, puis sélectionnez **Serveur RADIUS à distance**.
 
  ![Serveur RADIUS à distance](./media/nps-extension-remote-desktop-gateway/image12.png)
 
-3. Dans le volet d’informations hello, double-cliquez sur **groupe de serveur de passerelle TS**.
+3. Dans le volet d’informations, double-cliquez sur **GROUPE DE SERVEUR DE PASSERELLE TS**.
 
  >[!NOTE]
- >Ce groupe de serveurs RADIUS a été créé lorsque vous avez configuré le serveur central de hello pour les stratégies du serveur NPS. Hello passerelle Bureau à distance transfère RADIUS messages toothis serveur ou groupe de serveurs, si elle est supérieure à un groupe de hello.
+ >Ce groupe de serveurs RADIUS a été créé lorsque vous avez configuré le serveur central pour les stratégies du serveur NPS. La passerelle des services Bureau à distance transfère les messages RADIUS vers ce serveur ou un groupe de serveurs, s’il en existe plusieurs dans le groupe.
  >
 
-4. Bonjour **propriétés de groupe de serveurs de passerelle TS** boîte de dialogue, adresse IP de hello select ou nom de hello du serveur NPS configuré de toostore Bureau à distance, puis cliquez sur **modifier**. 
+4. Dans la boîte de dialogue **Propriétés du GROUPE DE SERVEURS DE PASSERELLE TS**, sélectionnez l’adresse IP ou le nom du serveur NPS configuré pour stocker les stratégies RD CAP, puis cliquez sur **Modifier**. 
 
  ![Groupe de serveurs de passerelle TS](./media/nps-extension-remote-desktop-gateway/image13.png)
 
-5. Bonjour **modifier le serveur RADIUS** boîte de dialogue, sélectionnez hello **l’équilibrage de charge** onglet.
-6. Bonjour **l’équilibrage de charge** onglet hello **nombre de secondes sans réponse avant que la requête est considérée comme supprimée** , modifiez la valeur par défaut de hello à partir de la valeur de 3 tooa entre 30 et 60 secondes.
-7. Bonjour **nombre de secondes entre les demandes quand le serveur est identifié comme étant indisponible** , modifiez la valeur par défaut de hello de valeur de tooa de 30 secondes est égal tooor supérieure à la valeur hello spécifié à l’étape précédente de hello.
+5. Dans la boîte de dialogue **Modifier le serveur RADIUS**, sélectionnez l’onglet **Équilibrage de charge**.
+6. Dans l’onglet **Équilibrage de charge** dans le champ **Nombre de secondes sans réponse avant que la demande ne soit considérée comme supprimée**, modifiez la valeur par défaut de 3 à une valeur comprise entre 30 et 60 secondes.
+7. Dans le champ **Nombre de secondes entre les demandes lorsque le serveur est identifié comme non disponible**, modifiez la valeur par défaut de 30 secondes à une valeur qui est égale ou supérieure à la valeur que vous avez spécifié à l’étape précédente.
 
  ![Modifier le serveur RADIUS](./media/nps-extension-remote-desktop-gateway/image14.png)
 
-8.  Cliquez sur OK à deux fois les boîtes de dialogue tooclose hello.
+8.  Cliquez deux fois sur OK pour fermer les boîtes de dialogue.
 
 ### <a name="verify-connection-request-policies"></a>Vérifiez les stratégies de demande de connexion 
-Par défaut, lorsque vous configurez la passerelle Bureau à distance de hello toouse un magasin de stratégies central pour les stratégies d’autorisation de connexion, hello passerelle Bureau à distance est le serveur NPS toohello tooforward configuré CAP demandes. serveur NPS de Hello avec l’extension de l’authentification Multifacteur Azure hello installé, de demande d’accès RADIUS processus hello. Hello suit vous montre comment les stratégie de demande de connexion par défaut de hello tooverify. 
+Par défaut, lorsque vous configurez la passerelle des services Bureau à distance pour utiliser un Store de stratégies central pour les stratégies d’autorisation de connexion, la passerelle des services Bureau à distance est configurée pour transmettre les demandes CAP au serveur NPS. Le serveur NPS avec l’extension Azure MFA installé, traite la demande d’accès RADIUS. Les étapes suivantes vous montrent comment vérifier la stratégie de demande de connexion par défaut. 
 
-1. Sur hello passerelle Bureau à distance, dans la console NPS (Local) hello, développez **stratégies**, puis sélectionnez **stratégies de demande de connexion**.
+1. Sur la passerelle des services Bureau à distance, dans la console NPS (Local), développez **Stratégies**, puis sélectionnez **Stratégies de demande de connexion**.
 2. Cliquez avec le bouton droit sur **Stratégies de demandes de connexion** et double cliquez sur **STRATÉGIE D’AUTORISATION DE PASSERELLE TS**.
-3. Bonjour **propriétés de la stratégie d’autorisation de passerelle TS** boîte de dialogue, cliquez sur hello **paramètres** onglet.
-4. Sur l’onglet **Paramètres**, sous Transfert de la demande de connexion, cliquez sur **Authentification**. Client RADIUS est configuré tooforward les demandes d’authentification.
+3. Dans la boîte de dialogue **Propriétés de la STRATÉGIE D’AUTORISATION DE PASSERELLE TS**, cliquez sur l’onglet **Paramètres**.
+4. Sur l’onglet **Paramètres**, sous Transfert de la demande de connexion, cliquez sur **Authentification**. Le client RADIUS est configuré pour transférer les demandes pour l’authentification.
 
  ![Paramètres d’authentification](./media/nps-extension-remote-desktop-gateway/image15.png)
  
 5. Cliquez sur **Annuler**. 
 
-## <a name="configure-nps-on-hello-server-where-hello-nps-extension-is-installed"></a>Configurer NPS sur le serveur hello où hello extension de serveur NPS est installé
-serveur NPS Hello où extension NPS hello est installé doit toobe tooexchange en mesure de RADIUS messages avec le serveur NPS hello hello passerelle Bureau à distance. Ce message de tooenable exchange, vous devez disposer des composants de serveur NPS de hello tooconfigure sur serveur hello où hello service d’extension du serveur NPS est installé. 
+## <a name="configure-nps-on-the-server-where-the-nps-extension-is-installed"></a>Configurer le serveur NPS sur le serveur où est installée l’extension NPS
+Le serveur NPS où est installée l’extension de serveur NPS doit être en mesure d’échanger des messages RADIUS avec le serveur NPS sur la passerelle des services Bureau à distance. Pour activer l’échange de messages, vous devez configurer les composants de serveur NPS sur le serveur où est installé le service d’extension du serveur NPS. 
 
 ### <a name="register-server-in-active-directory"></a>Enregistrer le serveur dans Active Directory
-toofunction correctement dans ce scénario, le serveur NPS de hello doit toobe inscrit dans Active Directory.
+Pour fonctionner correctement dans ce scénario, le serveur NPS doit être enregistré dans Active Directory.
 
 1. Ouvrez le **Gestionnaire de serveur**.
 2. Dans Gestionnaire de serveurs, cliquez sur **Outils** puis cliquez sur **Serveur de stratégie réseau**. 
-3. Dans la console du serveur NPS hello, cliquez sur **NPS (Local)**, puis cliquez sur **inscrire un serveur dans Active Directory**. 
+3. Dans la console NPS, cliquez avec le bouton droit sur **NPS (Local)**, puis cliquez sur **Enregistrer un serveur dans Active Directory**. 
 4. Cliquez deux fois sur **OK**.
 
  ![Enregistrement du serveur dans AD](./media/nps-extension-remote-desktop-gateway/image16.png)
 
-5. Laissez la console de hello ouvert pour la procédure suivante de hello.
+5. Laissez la console ouverte pour la procédure suivante.
 
 ### <a name="create-and-configure-radius-client"></a>Créer et configurer un client RADIUS 
-Hello passerelle Bureau à distance doit toobe configuré comme serveur RADIUS client toohello NPS. 
+La passerelle des services Bureau à distance doit être configuré comme client RADIUS sur le serveur NPS. 
 
-1. Sur serveur NPS de hello où hello extension de serveur NPS est installé, Bonjour **NPS (Local)** de la console, cliquez sur **Clients RADIUS** et cliquez sur **nouveau**.
+1. Sur le serveur NPS où l’extension de serveur NPS est installée, dans la console **NPS (Local)** de la console, cliquez avec le bouton droit sur **Clients RADIUS** et cliquez sur **Nouveau**.
 
  ![Nouveaux Clients RADIUS](./media/nps-extension-remote-desktop-gateway/image17.png)
 
-2. Bonjour **client RADIUS nouvelle** boîte de dialogue zone, fournissez un nom convivial, tel que _passerelle_, et hello adresse IP ou nom DNS du serveur de passerelle Bureau à distance hello. 
-3. Bonjour **secret partagé** et hello **confirmer le secret partagé** , saisissez hello même secret que celle utilisée précédemment.
+2. Dans la boîte de dialogue **Nouveau client RADIUS**, fournissez un nom convivial, tel que _Passerelle_ et l’adresse IP ou le nom DNS du serveur de passerelle des services Bureau à distance. 
+3. Dans les champs **Secret partagé** et **Confirmer le secret partagé**, entrez le nom secret utilisé précédemment.
 
  ![Nom et adresse](./media/nps-extension-remote-desktop-gateway/image18.png)
 
-4. Cliquez sur **OK** boîte de dialogue tooclose hello RADIUS nouveau client.
+4. Cliquez sur **OK** pour fermer la boîte de dialogue du nouveau client RADIUS.
 
 ### <a name="configure-network-policy"></a>Configurer la stratégie réseau
-Rappel hello NPS serveur hello extension de l’authentification Multifacteur Azure est le magasin de stratégie centralisée désigné hello pour hello stratégie de l’autorisation de connexion (CAP). Par conséquent, vous devez tooimplement une extrémité de fin sur les demandes de connexions valide hello NPS serveur tooauthorize.  
+Rappelez-vous que le serveur NPS avec l’extension de l’authentification multifacteur Azure est le Store de stratégies central désigné pour la stratégie d’autorisation de connexion (CAP). Par conséquent, vous devez mettre en œuvre une stratégie d’autorisation de connexion sur le serveur NPS pour autoriser les demandes de connexions valides.  
 
-1. Dans la console NPS (Local) hello, développez **stratégies**, puis cliquez sur **stratégies réseau**.
-2. Avec le bouton droit **serveurs d’accès connexions tooother**, puis cliquez sur **Dupliquer stratégie**. 
+1. Dans la console NPS (Local), développez **Stratégies**, puis cliquez sur **Stratégies réseau**.
+2. Cliquez avec le bouton droit sur **Connexions aux autres serveurs d’accès** et cliquez sur **Dupliquer la stratégie**. 
 
  ![Dupliquer la stratégie](./media/nps-extension-remote-desktop-gateway/image19.png)
 
-3. Avec le bouton droit **serveurs d’accès de copie de connexions tooother**, puis cliquez sur **propriétés**.
+3. Cliquez avec le bouton droit sur **Copie des connexions aux autres serveurs d’accès** et cliquez sur **Propriétés**.
 
  ![Propriétés du réseau](./media/nps-extension-remote-desktop-gateway/image20.png)
 
-4. Bonjour **serveurs d’accès de copie de connexions tooother** boîte de dialogue, dans le nom de la stratégie, entrez un nom approprié, tel que **RDG_CAP**. Cochez la case **Stratégie activée**, puis sélectionnez **Accorder l’accès**. Si vous le souhaitez, dans Type d’accès réseau, sélectionnez **Passerelle des services Bureau à distance** ou bien vous pouvez le laisser en tant que **Non spécifié**.
+4. Dans la boîte de dialogue **Copie des connexions sur d’autres serveurs d’accès**, dans Nom de la stratégie, entrez un nom approprié, tel que **RDG_CAP**. Cochez la case **Stratégie activée**, puis sélectionnez **Accorder l’accès**. Si vous le souhaitez, dans Type d’accès réseau, sélectionnez **Passerelle des services Bureau à distance** ou bien vous pouvez le laisser en tant que **Non spécifié**.
 
  ![Copie des connexions](./media/nps-extension-remote-desktop-gateway/image21.png)
 
-5.  Cliquez sur hello **contraintes** et vérifiez **tooconnect de clients Autoriser sans négocier une méthode d’authentification**.
+5.  Cliquez sur l’onglet **Contraintes** et cochez la case **Autoriser les clients à se connecter sans négocier une méthode d’authentification**.
 
- ![Autoriser les clients tooconnect](./media/nps-extension-remote-desktop-gateway/image22.png)
+ ![Autoriser les clients à se connecter](./media/nps-extension-remote-desktop-gateway/image22.png)
 
-6. Si vous le souhaitez, cliquez sur hello **Conditions** onglet et ajouter des conditions qui doivent être remplies pour hello connexion toobe autorisé, par exemple, l’appartenance à un groupe Windows spécifique.
+6. Si vous le souhaitez, cliquez sur l’onglet **Conditions** et ajoutez des conditions qui doivent être remplies pour la connexion autorisée, par exemple, l’appartenance à un groupe Windows spécifique.
 
  ![Conditions](./media/nps-extension-remote-desktop-gateway/image23.png)
 
-7. Cliquez sur **OK**. Lorsque le message tooview hello rubrique d’aide correspondante, cliquez sur **non**.
-8. Vérifiez que votre nouvelle stratégie est haut hello de liste hello, que la stratégie de hello est activé, et qu’il accorde un accès.
+7. Cliquez sur **OK**. Lorsque vous êtes invité à consulter la rubrique d’aide correspondante, cliquez sur **Non**.
+8. Assurez-vous que votre nouvelle stratégie s’affiche en haut de la liste, que la stratégie est activée et qu’elle accorde un accès.
 
  ![Stratégies de réseau](./media/nps-extension-remote-desktop-gateway/image24.png)
 
 ## <a name="verify-configuration"></a>Vérifier la configuration
-configuration de hello tooverify, vous devez toolog sur hello passerelle Bureau à distance avec un client RDP approprié. Être toouse qu’un compte qui est autorisé par les stratégies d’autorisation de connexion et est activé pour Azure MFA. 
+Pour vérifier la configuration, vous devez vous connecter à la passerelle des services Bureau à distance avec un client RDP approprié. Veillez à utiliser un compte autorisé par les stratégies d’autorisation de connexion et activé pour Azure MFA. 
 
-Comme indiqué dans l’image hello ci-dessous, vous pouvez utiliser hello **accès Bureau à distance par le Web** page.
+Comme indiqué dans l’image ci-dessous, vous pouvez utiliser la page **Accès Web au Bureau à distance**.
 
 ![Accès web au Bureau à distance](./media/nps-extension-remote-desktop-gateway/image25.png)
 
-Lors de l’entrée avec succès vos informations d’identification pour l’authentification principale, boîte de dialogue de connexion de bureau à distance hello présente l’état de l’initialisation de la connexion à distance, comme indiqué ci-dessous. 
+Lors de l’entrée avec succès de vos informations d’identification pour l’authentification principale, la boîte de dialogue Connexion au bureau à distance présente l’état de l’initialisation de la connexion à distance, comme indiqué ci-dessous. 
 
-Si vous authentifiez correctement avec la méthode d’authentification secondaire hello que vous avez configuré précédemment dans l’authentification Multifacteur Azure, vous êtes connecté toohello ressource. Toutefois, si l’authentification secondaire hello n’a pas réussie, refusé accès tooresource. 
+Si vous vous authentifiez correctement avec la méthode d’authentification secondaire que vous avez configurée précédemment dans Azure MFA, vous êtes connecté à la ressource. Toutefois, si l’authentification secondaire ne réussit pas, l’accès à la ressource vous est refusé. 
 
 ![Initier la connexion à distance](./media/nps-extension-remote-desktop-gateway/image26.png)
 
-Dans l’exemple hello ci-dessous, hello authentificateur application sur un appareil Windows phone est l’authentification secondaire utilisé tooprovide hello.
+Dans l’exemple ci-dessous, l’application d’authentification sur un téléphone Windows est utilisée pour fournir l’authentification secondaire.
 
 ![Comptes](./media/nps-extension-remote-desktop-gateway/image27.png)
 
-Une fois que vous avez correctement authentifié à l’aide de la méthode d’authentification secondaire hello, vous êtes connecté à hello passerelle Bureau à distance comme d’habitude. Toutefois, car vous n’êtes toouse requis une méthode d’authentification secondaire à l’aide d’une application mobile sur un appareil de confiance, hello journal lors du processus est plus sûr qu’il serait dans le cas contraire.
+Une fois que vous vous êtes correctement authentifié à l’aide de la méthode d’authentification secondaire, vous êtes connecté à la passerelle des services Bureau à distance comme d’habitude. Toutefois, étant donné que vous devez utiliser une méthode d’authentification secondaire à l’aide d’une application mobile sur un appareil approuvé, le processus de connexion est plus sûr.
 
 ### <a name="view-event-viewer-logs-for-successful-logon-events"></a>Afficher les journaux de l’Observateur d’événements pour les événements de connexion réussie
-tooview hello réussie-événements de connexion dans les journaux de l’Observateur d’événements Windows hello, vous pouvez émettre hello suivant tooquery de commande Windows PowerShell hello Services Windows Terminal Server et les journaux de sécurité Windows.
+Pour afficher les événements de connexion réussie dans les journaux de l’Observateur d’événements Windows, vous pouvez émettre la commande Windows PowerShell suivante pour interroger les journaux des Services Windows Terminal et de sécurité Windows.
 
-tooquery réussie-événements de connexion dans les journaux des opérations hello passerelle _(événements\journaux et Services Logs\Microsoft\Windows\TerminalServices-Gateway\Operational_, utilisez hello suivant de commandes :
+Pour interroger les événements de connexion réussie dans les journaux des opérations de passerelle _(Observateur d’événements\Journaux d’applications et de services\Microsoft\Windows\TerminalServices-Gateway\Opérationnel_, utilisez les commandes suivantes :
 
 * _Get-WinEvent -Logname Microsoft-Windows-TerminalServices-Gateway/Operational_ | where {$_.ID -eq '300'} | FL 
-* Cette commande affiche les événements de Windows qui montrent les utilisateur hello remplies les exigences de stratégie d’autorisation de ressource (RAP du Bureau à distance) et a été accordé l’accès.
+* Cette commande affiche les événements Windows qui indiquent que l’utilisateur a respecté les exigences de stratégies d’autorisation de ressource (RD RAP) et que l’accès lui est accordé.
 
 ![Afficher l’observateur d’événements](./media/nps-extension-remote-desktop-gateway/image28.png)
 
 * _Get-WinEvent -Logname Microsoft-Windows-TerminalServices-Gateway/Operational_ | where {$_.ID -eq '200'} | FL
-* Cette commande affiche les événements hello affichent lorsque l’utilisateur a satisfait exigences de stratégie d’autorisation de connexion.
+* Cette commande affiche les événements qui indiquent quand l’utilisateur a respecté les exigences de stratégies d’autorisation de connexion.
 
 ![Autorisation de connexion](./media/nps-extension-remote-desktop-gateway/image29.png)
 
-Vous pouvez également afficher ce journal et filtrer les ID d’événement, 300 et 200. événements d’ouverture de session réussie tooquery dans les journaux Observateur d’événements de sécurité hello, utilisez hello de commande suivante :
+Vous pouvez également afficher ce journal et filtrer les ID d’événement, 300 et 200. Pour interroger les événements de connexion réussie dans les journaux de l’observateur d’événements de sécurité, utilisez la commande suivante :
 
 * _Get-WinEvent -Logname Security_ | where {$_.ID -eq '6272'} | FL 
-* Cette commande peut être exécutée sur un serveur NPS central de hello ou hello du serveur de passerelle Bureau à distance. 
+* Cette commande peut être exécutée sur le serveur NPS central ou sur le serveur de passerelle des services Bureau à distance. 
 
 ![Événements de connexion réussie](./media/nps-extension-remote-desktop-gateway/image30.png)
 
-Vous pouvez également afficher journal de sécurité hello ou hello stratégie réseau et accéder aux Services affichage personnalisé, comme indiqué ci-dessous :
+Vous pouvez également afficher le journal de sécurité ou la vue personnalisée des services de stratégie et d’accès réseau, comme indiqué ci-dessous :
 
 ![Services de stratégie et d’accès réseau](./media/nps-extension-remote-desktop-gateway/image31.png)
 
-Sur serveur hello où vous avez installé les extensions du serveur NPS hello pour l’authentification Multifacteur Azure, vous trouverez des journaux de l’Observateur d’événements application extension toohello spécifique à _d’Application et de Services Logs\Microsoft\AzureMfa_. 
+Sur le serveur où vous avez installé l’extension de serveur NPS pour Azure MFA, vous pouvez rechercher les journaux d’application de l’Observateur d’événements spécifiques à l’extension sur _Journaux d’applications et services\Microsoft\AzureMfa_. 
 
 ![Journaux d’application de l’observateur d’événements](./media/nps-extension-remote-desktop-gateway/image32.png)
 
 ## <a name="troubleshoot-guide"></a>Guide de résolution des problèmes
 
-Si la configuration de hello ne fonctionne pas comme prévu, hello première place toostart tootroubleshoot est tooverify qui hello utilisateur toouse configuré Azure MFA. Avoir utilisateur de hello connecter toohello [portail Azure](https://portal.azure.com). Si les utilisateurs sont invités à une vérification secondaire et peuvent correctement s’authentifier, vous pouvez éliminer une configuration incorrecte d’Azure MFA.
+Si la configuration ne fonctionne pas comme prévu, la première chose à faire pour résoudre les problèmes consiste à vérifier que l’utilisateur est configuré pour utiliser Azure MFA. Connectez l’utilisateur au [portail Azure](https://portal.azure.com). Si les utilisateurs sont invités à une vérification secondaire et peuvent correctement s’authentifier, vous pouvez éliminer une configuration incorrecte d’Azure MFA.
 
-Si l’authentification Multifacteur Azure fonctionne pour les utilisateurs de hello, vous devez examiner les journaux d’événements appropriés hello. Il s’agit notamment des journaux des événements de sécurité, la passerelle opérationnelle et l’authentification Multifacteur Azure hello qui sont décrites dans la section précédente de hello. 
+Si Azure MFA fonctionne pour le ou les utilisateurs, vous devez examiner les journaux des événements pertinents. Citons notamment les journaux des événements de sécurité, de la passerelle opérationnelle et Azure MFA qui sont décrits dans la section précédente. 
 
 Voici un exemple de sortie du journal de sécurité montrant un échec d’événement de connexion (ID d’événement 6273).
 
 ![Échec de l’événement de connexion](./media/nps-extension-remote-desktop-gateway/image33.png)
 
-Est un événement associé à partir des journaux de hello AzureMFA indiquée ci-dessous :
+Voici un événement associé aux journaux AzureMFA :
 
 ![Journal Azure MFA](./media/nps-extension-remote-desktop-gateway/image34.png)
 
-tooperform avancée résoudre les options, consultez hello NPS de base de données journal des fichiers de format où hello service NPS est installé. Ces fichiers journaux sont créés dans le dossier _%SystemRoot%\System32\Logs_ comme fichiers texte délimité par des virgules. 
+Pour exécuter des options de résolution des problèmes avancée, consultez les fichiers journaux au format base de données de serveur NPS dans lesquels est installé le service NPS. Ces fichiers journaux sont créés dans le dossier _%SystemRoot%\System32\Logs_ comme fichiers texte délimité par des virgules. 
 
-Pour obtenir une description de ces fichiers journaux, consultez [Interpréter des fichiers journaux au format base de données de serveur NPS](https://technet.microsoft.com/library/cc771748.aspx). entrées Hello dans ces fichiers journaux peuvent être difficile toointerpret sans les importer dans une feuille de calcul ou une base de données. Vous pouvez rechercher plusieurs analyseurs IAS tooassist en ligne vous interpréter hello des fichiers journaux. 
+Pour obtenir une description de ces fichiers journaux, consultez [Interpréter des fichiers journaux au format base de données de serveur NPS](https://technet.microsoft.com/library/cc771748.aspx). Les entrées de ces fichiers journaux peuvent être difficiles à interpréter sans les importer dans une feuille de calcul ou une base de données. Vous pouvez rechercher plusieurs analyseurs IAS en ligne pour vous aider à interpréter les fichiers journaux. 
 
-Hello image ci-dessous montre sortie hello d’une telle téléchargeable [à contribution volontaire application](http://www.deepsoftware.com/iasviewer). 
+L’image ci-dessous montre la sortie d’une de ces [applications de logiciel à contribution volontaire](http://www.deepsoftware.com/iasviewer) téléchargeable. 
 
 ![Application de logiciel à contribution volontaire](./media/nps-extension-remote-desktop-gateway/image35.png)
 
 Enfin, pour obtenir des options de résolution des problèmes supplémentaires, vous pouvez utiliser un analyseur de protocoles, tel que [Microsoft Message Analyzer](https://technet.microsoft.com/library/jj649776.aspx). 
 
-l’image ci-dessous à partir de l’Analyseur de Message Microsoft Hello montre le trafic de réseau filtré sur le protocole RADIUS qui contient le nom d’utilisateur hello **Contoso\AliceC**.
+L’image ci-dessous depuis Microsoft Message Analyser indique le trafic réseau filtré sur le protocole RADIUS qui contient le nom d’utilisateur **Contoso\AliceC**.
 
 ![Microsoft Message Analyzer](./media/nps-extension-remote-desktop-gateway/image36.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Comment tooget Azure multi-Factor Authentication](multi-factor-authentication-versions-plans.md)
+[Comment obtenir Azure Multi-Factor Authentication ?](multi-factor-authentication-versions-plans.md)
 
 [Passerelle des services Bureau à distance et serveur Multi-Factor Authentication avec RADIUS](multi-factor-authentication-get-started-server-rdg.md)
 

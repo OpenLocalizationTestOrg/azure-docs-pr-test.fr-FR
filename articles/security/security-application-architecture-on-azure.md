@@ -1,6 +1,6 @@
 ---
-title: "sécurité aaaIntegrate dans vos conceptions architecturales Azure | Documents Microsoft"
-description: " Cet article va vous aider à comprendre l’architecture de services d’application et hello sur Azure toomake il plus facile sécurité toointegrate dans la conception et d’implémentation. "
+title: "Intégrer la sécurité dans vos conceptions architecturales Azure | Microsoft Docs"
+description: " Cet article vous aidera à comprendre l’architecture des services et des applications sur Azure, afin de faciliter l’intégration de la sécurité dans la conception et l’implémentation. "
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/23/2017
 ms.author: terrylan
-ms.openlocfilehash: cfca8a1a2766f72bc3340c4e3df0019eb8b5a1e3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91e46d690d3e7c298bc3b4020cc383ca99c43c4f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="application-architecture-on-azure"></a>Architecture des applications sur Azure
-toohelp sécuriser vos solutions cloud sur Microsoft Azure, développés à architecture est critique. Une bonne connaissance de l’architecture des services et des applications est bénéfique pour les architectes, les concepteurs et les responsables de l’implémentation. Cette base vous aide à comprendre tous les composants hello de vos solutions de cloud et le rendre plus facile de la sécurité toointegrate à tous les aspects de votre conception et d’implémentation.
+Pour sécuriser vos solutions cloud sur Microsoft Azure, vous devez disposer d’une base architecturale solide. Une bonne connaissance de l’architecture des services et des applications est bénéfique pour les architectes, les concepteurs et les responsables de l’implémentation. Ces connaissances fondamentales vous aident à comprendre tous les composants de vos solutions cloud, et facilitent l’intégration de la sécurité dans tous les aspects de votre conception et de votre implémentation.
 
-Nous avons hello suivant toohelp vous avec votre architecture enquêtes et les conceptions :
+Les éléments suivants sont conçus pour vous aider dans vos recherches et conceptions architecturales :
 
 * Éléments d’infographie relatifs à l’architecture
 * Plans d’architecture
@@ -37,21 +37,21 @@ Microsoft publie plusieurs affiches/éléments d’infographie relatifs à l’a
 * [Mise à l’échelle des services Cloud](https://azure.microsoft.com/documentation/infographics/cloud-services/)
 
 ## <a name="architectural-blueprints"></a>Plans d’architecture
-Microsoft publie un ensemble de haut niveau [architecturaux](http://aka.ms/azblueprints) montrant comment toobuild des types spécifiques de systèmes à l’aide des produits Microsoft.
+Microsoft publie un ensemble de [plans d’architecture](http://aka.ms/azblueprints) de haut niveau qui montrent comment créer des types spécifiques de systèmes à l’aide des produits Microsoft.
 Chaque plan inclut les éléments suivants :
 
 * Fichier 2D Visio 2003 plat que vous pouvez télécharger et modifier.
-* Perspective 3D colorés PDF fichier toointroduce hello plan accessible sans publics
-* Vidéo pour vous aider à la version 3D hello
+* Fichier PDF de perspective 3D en couleur pour présenter le plan à un public moins technique.
+* Vidéo qui vous guide dans la version 3D
 
 ## <a name="cloud-and-enterprise-symbol-set"></a>Jeu de symboles Cloud et Enterprise
-[Afficher hello Visio et des symboles vidéo de formation](http://aka.ms/CnESymbolsVideo) , puis [télécharger hello Cloud et le symbole de l’entreprise](http://aka.ms/CnESymbols) toohelp créer des documents techniques qui décrivent Azure, Windows Server, SQL Server et bien plus encore. Vous pouvez utiliser les symboles hello dans les diagrammes d’architecture, supports de formation, des présentations, les feuilles de données, graphisme d’information, livres blancs et même la documentation tierce si hello book trains personnes toouse les produits Microsoft. Toutefois, ils ne sont pas destinés à être utilisés dans les interfaces utilisateur.
+[Visionnez la vidéo de formation sur Visio et les symboles](http://aka.ms/CnESymbolsVideo), puis [téléchargez le jeu de symboles Cloud et Enterprise](http://aka.ms/CnESymbols) pour créer des documents techniques qui décrivent Azure, Windows Server, SQL Server, etc. Vous pouvez utiliser les symboles dans les diagrammes d’architecture, les supports de formation, les présentations, les fiches techniques, les infographies, les livres blancs et même les ouvrages tiers si le livre est destiné à former des personnes à l’utilisation des produits Microsoft. Toutefois, ils ne sont pas destinés à être utilisés dans les interfaces utilisateur.
 
 ## <a name="3d-blueprint-visio-template"></a>Modèle 3D Blueprint Visio
-Hello versions 3D de hello [plans d’Architecture](http://aka.ms/azblueprints) ont été initialement créé dans un outil non Microsoft. Un nouveau modèle Visio 2013 (et versions ultérieures) a été publié le 5 août 2015 dans le cadre d’un [cours de certification d’architecture Microsoft distribué sur EDX.ORG](https://docs.microsoft.com/azure/architecture/#microsoft-architecture-certification-course).
+Les versions 3D des [plans d'architecture Microsoft](http://aka.ms/azblueprints) ont initialement été créées avec un outil autre que Microsoft. Un nouveau modèle Visio 2013 (et versions ultérieures) a été publié le 5 août 2015 dans le cadre d’un [cours de certification d’architecture Microsoft distribué sur EDX.ORG](https://docs.microsoft.com/azure/architecture/#microsoft-architecture-certification-course).
 
-Hello modèle est également disponible en dehors du cours de hello.
+Le modèle est également disponible en dehors du cours.
 
-* [Afficher la vidéo de formation hello](http://aka.ms/3dBlueprintTemplateVideo) premier afin de savoir ce qu’il peut faire
-* Télécharger hello [Microsoft 3d modèle Visio de plan](http://aka.ms/3DBlueprintTemplate)
-* Télécharger hello [Cloud et les symboles de l’entreprise](https://docs.microsoft.com/azure/architecture/#drawing-symbol-and-icon-sets) toouse avec un modèle 3D de hello
+* [visionner la vidéo de formation](http://aka.ms/3dBlueprintTemplateVideo) afin de savoir ce qu'il peut faire.
+* Téléchargez le [modèle Microsoft 3D Blueprint Visio](http://aka.ms/3DBlueprintTemplate)
+* Téléchargez les [symboles Cloud et Enterprise](https://docs.microsoft.com/azure/architecture/#drawing-symbol-and-icon-sets) à utiliser avec le modèle 3D.

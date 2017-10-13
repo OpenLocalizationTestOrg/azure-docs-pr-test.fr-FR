@@ -1,6 +1,6 @@
 ---
-title: "contrôle d’intégrité de hello aaaMonitor des ressources d’Azure CDN | Documents Microsoft"
-description: "Découvrez comment toomonitor hello d’intégrité de vos ressources Azure CDN à l’aide de l’intégrité des ressources Azure."
+title: "Surveiller l’intégrité des ressources CDN Azure | Microsoft Docs"
+description: "Découvrez comment surveiller l’intégrité de vos ressources CDN Azure à l’aide d’Azure Resource Health."
 services: cdn
 documentationcenter: .net
 author: zhangmanling
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: 0a77e56d2fecae4bde6c83730c05375853a6638a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 37fe208f5087f318e665e76825127854b4a11c98
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="monitor-hello-health-of-azure-cdn-resources"></a>Surveiller la santé hello des ressources d’Azure CDN
+# <a name="monitor-the-health-of-azure-cdn-resources"></a>Surveiller l’intégrité des ressources CDN Azure
   
-Azure CDN Resource Health est un sous-ensemble [d’Azure Resource Health](../resource-health/resource-health-overview.md).  Vous pouvez utiliser Azure d’intégrité toomonitor hello contrôle d’intégrité des ressources CDN et recevoir des problèmes de tootroubleshoot des instructions.
+Azure CDN Resource Health est un sous-ensemble [d’Azure Resource Health](../resource-health/resource-health-overview.md).  Vous pouvez utiliser Azure Resource Health pour surveiller l’intégrité des ressources CDN et recevoir des conseils pour résoudre les problèmes.
 
 >[!IMPORTANT] 
->L’intégrité des ressources Azure CDN comptes uniquement actuellement pour la santé hello de remise globale du CDN et les fonctionnalités de l’API.  Azure CDN Resource Health ne vérifie pas les points de terminaison CDN individuels.
+>Pour le moment, Azure CDN Resource Health gère uniquement l’intégrité de la remise CDN générale et des fonctionnalités des API.  Azure CDN Resource Health ne vérifie pas les points de terminaison CDN individuels.
 >
->signaux Hello ce flux de contrôle d’intégrité Azure CDN peuvent être up minutes too15 retardées.
+>Les signaux qui alimentent Azure CDN Resource Health peuvent être retardés de 15 minutes au plus.
 
-## <a name="how-toofind-azure-cdn-resource-health"></a>Comment toofind l’intégrité des ressources Azure CDN
+## <a name="how-to-find-azure-cdn-resource-health"></a>Comment trouver Azure CDN Resource Health
 
-1. Bonjour [portail Azure](https://portal.azure.com), recherchez le profil CDN tooyour.
+1. Dans le [portail Azure](https://portal.azure.com), accédez à votre profil CDN.
 
-2. Cliquez sur hello **paramètres** bouton.
+2. Cliquez sur le bouton **Settings** .
 
     ![Bouton Paramètres](./media/cdn-resource-health/cdn-profile-settings.png)
 
@@ -42,22 +42,22 @@ Azure CDN Resource Health est un sous-ensemble [d’Azure Resource Health](../re
     ![Intégrité des ressources CDN](./media/cdn-resource-health/cdn-resource-health3.png)
 
 >[!TIP] 
->Vous pouvez également trouver des ressources CDN dans hello *l’intégrité des ressources* vignette Bonjour *aide + support* panneau.  Vous pouvez obtenir rapidement trop*aide + support* en cliquant sur hello encerclé **?** dans hello coin supérieur droit du portail de hello.
+>Vous pouvez également rechercher les ressources CDN répertoriées dans la vignette *Intégrité des ressources* du panneau *Aide + support*.  Pour accéder rapidement à *Aide + support*, cliquez sur le point d’interrogation **?** entouré d’un cercle dans l’angle supérieur droit du portail.
 >
 > ![Aide + Support](./media/cdn-resource-health/cdn-help-support.png)
 
 ## <a name="azure-cdn-specific-messages"></a>Messages propres à CDN Azure
 
-Vous trouverez les États associés tooAzure CDN l’intégrité des ressources ci-dessous.
+États liés à CDN Azure Resource Health :
 
 |Message | Action recommandée |
 |---|---|
 |Vous avez peut-être arrêté, supprimé ou incorrectement configuré un ou plusieurs points de terminaison CDN | Vous avez peut-être arrêté, supprimé ou incorrectement configuré un ou plusieurs points de terminaison CDN.|
-|Nous sommes désolés, hello service de gestion CDN est actuellement indisponible | À vérifier les mises à jour d’état ; Si le problème persiste après que hello attendu le temps de résolution, contactez le support technique.|
-|Désolé. Vos points de terminaison CDN peuvent être affectés par des problèmes courants liés à certains de nos fournisseurs CDN | À vérifier les mises à jour d’état ; Utilisez toolearn d’outil de résolution des problèmes de hello comment tootest votre origine et le point de terminaison CDN Si le problème persiste après que hello attendu le temps de résolution, contactez le support technique. |
-|Nous sommes désolés, les modifications de la configuration des points de terminaison CDN subissent des retards de propagation | À vérifier les mises à jour d’état ; Si vos modifications de configuration ne sont pas complètement propagées dans le temps de hello attendu, contactez le support technique.|
-|Nous sommes désolés, que nous rencontrons des problèmes lors du chargement du portail supplémentaire du hello | À vérifier les mises à jour d’état ; Si le problème persiste après que hello attendu le temps de résolution, contactez le support technique.|
-Nous sommes désolés, nous rencontrons des problèmes avec certains de nos fournisseurs CDN | À vérifier les mises à jour d’état ; Si le problème persiste après que hello attendu le temps de résolution, contactez le support technique. |
+|Nous sommes désolés, le service de gestion CDN n’est pas disponible pour le moment | Revenez ici pour vérifier si la situation a évolué. Si votre problème persiste passé le délai prévu de résolution, contactez le support.|
+|Désolé. Vos points de terminaison CDN peuvent être affectés par des problèmes courants liés à certains de nos fournisseurs CDN | Revenez ici pour vérifier si la situation a évolué. Utilisez l’outil de dépannage pour découvrir comment tester votre point de terminaison d’origine et CDN. Si votre problème persiste passé le délai prévu de résolution, contactez le support. |
+|Nous sommes désolés, les modifications de la configuration des points de terminaison CDN subissent des retards de propagation | Revenez ici pour vérifier si la situation a évolué. Si vos modifications de la configuration ne sont pas entièrement propagées dans le délai imparti, contactez le support technique.|
+|Nous sommes désolés, nous rencontrons des problèmes pour charger le portail supplémentaire | Revenez ici pour vérifier si la situation a évolué. Si votre problème persiste passé le délai prévu de résolution, contactez le support.|
+Nous sommes désolés, nous rencontrons des problèmes avec certains de nos fournisseurs CDN | Revenez ici pour vérifier si la situation a évolué. Si votre problème persiste passé le délai prévu de résolution, contactez le support. |
 
 ## <a name="next-steps"></a>Étapes suivantes
 

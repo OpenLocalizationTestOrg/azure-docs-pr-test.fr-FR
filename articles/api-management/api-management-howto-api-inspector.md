@@ -1,6 +1,6 @@
 ---
-title: "appels aaaTrace avec l’inspecteur de l’API - gestion des API Azure | Documents Microsoft"
-description: "Découvrez comment tootrace les appels à l’aide de hello inspecteur de l’API de gestion des API Azure."
+title: "Suivre les appels avec l’inspecteur d’API - Gestion des API Azure | Microsoft Docs"
+description: "Découvrez comment suivre les appels à l'aide de l'inspecteur d'API dans Gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,65 +14,65 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: b0c401caa8da1b789f6cfe5edf97a5f118d78f26
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a9d4d3be7f046af975f6dc25670070204848588c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-hello-api-inspector-tootrace-calls-in-azure-api-management"></a>Méthode d’appel de toouse hello tootrace d’inspecteur de l’API de gestion des API Azure
-Gestion des API fournit un inspecteur de l’API toohelp de l’outil de débogage et dépannage de votre API. Bonjour inspecteur de l’API peut être utilisé par programme et peut également être utilisé directement depuis le portail des développeurs hello. 
+# <a name="how-to-use-the-api-inspector-to-trace-calls-in-azure-api-management"></a>Utilisation de l'inspecteur d'API pour le suivi des appels dans Gestion des API Azure
+Gestion des API Azure fournit un outil Inspecteur d’API pour vous aider au débogage et à la résolution des problèmes de vos API. L'inspecteur d'API peut être utilisé par programme et directement depuis le portail des développeurs. 
 
-En outre les opérations tootracing, API inspecteur effectue également le suivi [expression de stratégie](https://msdn.microsoft.com/library/azure/dn910913.aspx) évaluations. Pour une démonstration, consultez [Cloud couvrent épisode 177 : fonctionnalités de gestion des API plus](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) et avançons too21:00.
+En plus des opérations de suivi, l'inspecteur d’API assure également le suivi des évaluations d’ [expression de stratégie](https://msdn.microsoft.com/library/azure/dn910913.aspx) . Pour une démonstration, consultez l'épisode [Cloud Cover Episode 177: More API Management Features](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) , à partir de la 21e minute.
 
 Ce guide contient une procédure détaillée pour l'utilisation de l'inspecteur d'API.
 
 > [!NOTE]
-> Traces d’inspecteur de l’API sont uniquement générées et sont accessibles pour les demandes contenant des clés d’abonnement qui appartiennent toohello [administrateur](api-management-howto-create-groups.md) compte.
+> Le suivi de l’inspecteur d’API n’est généré et mis à disposition que pour les demandes contenant des clés d’abonnement qui appartiennent au compte [administrateur](api-management-howto-create-groups.md) .
 > 
 > 
 
-## <a name="trace-call"></a> Utilisation API inspecteur tootrace un appel
-toouse inspecteur d’API, ajoutez un **ocp-apim-trace : true** demande d’appel de l’opération tooyour en-tête, puis téléchargez et inspecter trace hello à l’aide des URL de hello indiquée par hello **apim ocp-emplacement suivi** en-tête de réponse. Cela peut être effectué par programmation et peut également être effectué directement depuis le portail des développeurs hello.
+## <a name="trace-call"> </a> Utilisation de l’inspecteur d’API pour suivre un appel
+Pour utiliser l’inspecteur d’API, ajoutez un en-tête de demande **ocp-apim-trace: true** à l’appel de l’opération, puis téléchargez et inspectez le suivi avec l’URL indiquée par l’en-tête de réponse **ocp-apim-trace-location**. Cette opération peut se faire par programme ou directement depuis le portail des développeurs.
 
-Ce didacticiel montre comment les opérations de tootrace toouse hello API inspecteur à l’aide hello API calculatrice de base qui est configuré dans hello [gérer votre première API](api-management-get-started.md) didacticiel de mise en route. Si vous n’avez pas encore terminé ce didacticiel ne prend que quelques instants de tooimport hello API de calculatrice de base, ou vous pouvez utiliser une autre API de votre choix, par exemple hello Echo API. Chaque instance de service de gestion des API est préconfigurée avec une API d’écho qui peuvent être utilisé tooexperiment avec et en savoir plus sur la gestion des API. Hello Echo API renvoie toute entrée est envoyée tooit. toouse, vous pouvez appeler n’importe quel verbe HTTP et la valeur de retour hello simplement à ce que vous avez envoyé. 
+Ce didacticiel montre comment utiliser l’inspecteur d’API pour suivre les opérations à l’aide de l’API Basic Calculator qui est configurée dans le didacticiel de prise en main [Gestion de votre première API](api-management-get-started.md). Si vous n'avez pas effectué ce didacticiel, prenez quelques minutes pour importer l'API Basic Calculator. Vous pouvez également utiliser une autre API, par exemple l'API Echo. Chaque instance du service Gestion des API est pré-configurée avec une API Echo qui peut être utilisée pour faire des expériences et en savoir plus sur la gestion des API. L'API Echo renvoie ce qui lui est fourni. Pour l'utiliser, vous pouvez appeler un verbe HTTP, et la valeur de retour sera simplement ce que vous avez envoyé. 
 
-tooget démarré, cliquez sur **portail des développeurs** Bonjour portail Azure pour votre service de gestion des API. Opérations peuvent être appelées directement depuis le portail des développeurs hello qui fournit un moyen pratique de tooview et tester le fonctionnement d’une API hello.
+Pour commencer, cliquez sur **Portail des développeurs** dans le portail Azure de votre service Gestion des API. Les opérations peuvent être appelées directement depuis le portail des développeurs, ce qui permet d'afficher et de tester les opérations d'une API.
 
-> Si vous n’avez pas encore créé une instance de service de gestion des API, consultez [de créer une instance de service de gestion des API] [ Create an API Management service instance] Bonjour [prise en main Azure API Management] [ Get started with Azure API Management] didacticiel.
+> Si vous n’avez pas encore créé d’instance de service Gestion des API, consultez la page [Création d’une instance de service Gestion des API][Create an API Management service instance] dans le didacticiel [Prise en main de Gestion des API Azure][Get started with Azure API Management].
 > 
 > 
 
 ![Portail des développeurs Gestion des API][api-management-developer-portal-menu]
 
-Cliquez sur **API** dans le menu du haut hello, puis cliquez sur **calculatrice de base**.
+Cliquez sur **API** dans le menu supérieur et sélectionnez **Basic Calculator**.
 
 ![API Echo][api-management-api]
 
-Cliquez sur **essayez-la** tootry hello **ajouter deux entiers** opération.
+Cliquez sur **Essayer** pour essayer l’opération **Ajouter deux entiers**.
 
 ![Essayer][api-management-open-console]
 
-Conserver les valeurs par défaut hello et clé d’abonnement sélectionnez hello pour produit hello toouse de hello **clé d’abonnement** liste déroulante.
+Conservez les valeurs de paramètres par défaut et sélectionnez la clé d'abonnement du produit à utiliser dans la liste déroulante **subscription-key** .
 
-Par défaut dans hello portail des développeurs de hello **Ocp-Apim-Trace** en-tête est déjà défini trop**true**. Il indique si un suivi est généré.
+Par défaut, dans le portail des développeurs, l’en-tête **Ocp-Apim-Trace** est déjà défini sur **true**. Il indique si un suivi est généré.
 
 ![Envoyer][api-management-http-get]
 
-Cliquez sur **envoyer** opération hello de tooinvoke.
+Cliquez sur **Envoyer** pour appeler l'opération.
 
 ![Envoyer][api-management-send-results]
 
-Dans la réponse de hello en-têtes sera un **apim ocp-emplacement suivi** avec un toohello comme valeur l’exemple suivant.
+Les en-têtes de réponse contiennent un élément **ocp-apim-trace-location** avec une valeur similaire à celle de l'exemple qui suit.
 
 ```
 ocp-apim-trace-location : https://contosoltdxw7zagdfsprykd.blob.core.windows.net/apiinspectorcontainer/ZW3e23NsW4wQyS-SHjS0Og2-2?sv=2013-08-15&sr=b&sig=Mgx7cMHsLmVDv%2B%2BSzvg3JR8qGTHoOyIAV7xDsZbF7%2Bk%3D&se=2014-05-04T21%3A00%3A13Z&sp=r&verify_guid=a56a17d83de04fcb8b9766df38514742
 ```
 
-trace de Hello peut être téléchargé à partir de l’emplacement spécifié type hello et consulté comme illustré dans l’étape suivante de hello. Notez que seuls hello dernière 100 entrées de journal sont stockées et emplacements de journaux sont réutilisés dans la rotation. Par conséquent, si vous effectuez des appels de plus de 100 avec le suivi activé vous finalement démarrera écraser les traces de première hello en place.
+Le suivi peut être téléchargé depuis l'emplacement spécifié et examiné, comme indiqué dans l'étape suivante. Notez que seules les 100 dernières entrées de journal sont stockées et que les emplacements de journal sont réutilisés en rotation. Par conséquent, si vous effectuez plus de 100 appels en gardant le suivi activé, vous finirez par remplacer les premières entrées.
 
-## <a name="inspect-trace"></a>Inspecter la trace de hello
-valeurs hello tooreview trace de hello, téléchargez le fichier de trace de hello de hello **apim ocp-emplacement suivi** URL. Il est un fichier texte au format JSON et contient des entrées similaires toohello est l’exemple suivant.
+## <a name="inspect-trace"> </a>Inspection du suivi
+Pour examiner les valeurs du suivi, téléchargez le fichier de suivi à partir de l’URL **ocp-apim-trace-location**. Il s'agit d'un fichier texte au format JSON. Il se présente comme l'exemple ci-dessous.
 
 ```json
 {
@@ -144,7 +144,7 @@ valeurs hello tooreview trace de hello, téléchargez le fichier de trace de hel
                 "timestamp": "2015-06-23T19:51:35.2998610Z",
                 "elapsed": "00:00:00.0727522",
                 "data": {
-                    "message": "Request is being forwarded toohello backend service.",
+                    "message": "Request is being forwarded to the backend service.",
                     "request": {
                         "method": "GET",
                         "url": "http://calcapi.cloudapp.net/api/add?a=51&b=49",
@@ -219,7 +219,7 @@ valeurs hello tooreview trace de hello, téléchargez le fichier de trace de hel
                 "timestamp": "2015-06-23T19:51:35.4256650Z",
                 "elapsed": "00:00:00.1961112",
                 "data": {
-                    "message": "Response headers have been sent toohello caller. Starting toostream hello response body."
+                    "message": "Response headers have been sent to the caller. Starting to stream the response body."
                 }
             },
             {
@@ -227,7 +227,7 @@ valeurs hello tooreview trace de hello, téléchargez le fichier de trace de hel
                 "timestamp": "2015-06-23T19:51:35.4256650Z",
                 "elapsed": "00:00:00.1963155",
                 "data": {
-                    "message": "Response body streaming toohello caller is complete."
+                    "message": "Response body streaming to the caller is complete."
                 }
             }
         ]
@@ -235,15 +235,15 @@ valeurs hello tooreview trace de hello, téléchargez le fichier de trace de hel
 }
 ```
 
-## <a name="next-steps"></a>Étapes suivantes
-* Pour une démonstration du suivi des expressions de stratégie, regardez la vidéo [Cloud Cover Episode 177: More API Management Features](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/). Démonstration de hello too21:00 toosee avance rapide.
+## <a name="next-steps"> </a>Étapes suivantes
+* Pour une démonstration du suivi des expressions de stratégie, regardez la vidéo [Cloud Cover Episode 177: More API Management Features](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/). Avancez à la 21e minute pour voir la démonstration.
 
 > [!VIDEO https://channel9.msdn.com/Shows/Cloud+Cover/Episode-177-More-API-Management-Features-with-Vlad-Vinogradsky/player]
 > 
 > 
 
-[Use API Inspector tootrace a call]: #trace-call
-[Inspect hello trace]: #inspect-trace
+[Use API Inspector to trace a call]: #trace-call
+[Inspect the trace]: #inspect-trace
 [Next steps]: #next-steps
 
 [Configure API settings]: api-management-howto-create-apis.md#configure-api-settings

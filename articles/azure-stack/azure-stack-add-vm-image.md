@@ -1,6 +1,6 @@
 ---
-title: "aaaAdding une machine virtuelle de l’image tooAzure pile | Documents Microsoft"
-description: "Ajout Windows ou Linux VM image personnalisée de votre organisation pour les locataires toouse"
+title: "Ajouter une image de machine virtuelle à Azure Stack | Microsoft Docs"
+description: "Ajouter une image de machine virtuelle Windows ou Linux personnalisée de votre organisation à utiliser par les locataires"
 services: azure-stack
 documentationcenter: 
 author: SnehaGunda
@@ -12,56 +12,64 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 07/10/2017
+ms.date: 09/25/2017
 ms.author: sngun
-ms.openlocfilehash: 26dd6c289664c4d64d5932f4396ae778f3f1e1f1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: de8540397b63093457382cf427a65ea0e48b93e0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="make-a-custom-virtual-machine-image-available-in-azure-stack"></a>Mettre une image de machine virtuelle personnalisée à la disposition des utilisateurs dans Azure Stack
 
-Les administrateurs toomake machine virtuelle personnalisée images disponibles tootheir utilisateurs du cloud de Azure permet de pile. Ces images peuvent être référencés par les modèles Azure Resource Manager ou ajouté toothe Azure Marketplace UI avec la création d’un élément de Marketplace hello. 
+*S’applique à : systèmes intégrés Azure Stack et Kit de développement Azure Stack*
 
-## <a name="add-a-vm-image-toomarketplace-with-powershell"></a>Ajouter un toomarketplace d’image de machine virtuelle avec PowerShell
+Azure Stack permet aux opérateurs de mettre des images de machine virtuelle personnalisées à la disposition de leurs utilisateurs. Ces images peuvent être référencées par des modèles Azure Resource Manager ou être ajoutées à l’interface utilisateur de la Place de marché Azure au moment de la création d’un élément sur la Place de marché. 
 
-Exécution hello suivant la configuration requise à partir de hello [kit de développement](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-remote-desktop), ou à partir d’un client externe basé sur Windows si vous êtes [connectés via VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn)
+## <a name="add-a-vm-image-to-marketplace-with-powershell"></a>Ajouter une image de machine virtuelle sur la Place de marché à l’aide de PowerShell
+
+Effectuez les étapes prérequises suivantes à partir du [kit de développement](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-remote-desktop), ou à partir d’un client externe Windows si vous êtes [connecté par le biais d’un VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn)
 
 * [Installez PowerShell pour Azure Stack](azure-stack-powershell-install.md).  
 
-* Télécharger hello [toowork requis d’outils avec Azure pile](azure-stack-powershell-download.md).  
+* Téléchargez les [outils nécessaires pour utiliser Azure Stack](azure-stack-powershell-download.md).  
 
 * Préparez une image de disque dur virtuel du système d’exploitation Windows ou Linux au format VHD (et non VHDX).
    
-   * Pour les images Windows hello article [télécharger un tooAzure d’image de machine virtuelle Windows pour les déploiements de gestionnaire de ressources](../virtual-machines/windows/upload-generalized-managed.md) contient des instructions de préparation d’image Bonjour **hello préparation du disque dur virtuel pour le téléchargement** section.
-   * Pour les images de Linux, suivez les étapes de hello pour préparer l’image de hello ou utiliser une image Linux de pile Azure existante comme décrit dans l’article de hello [ordinateurs virtuels Linux de déployer sur Azure pile](azure-stack-linux.md).  
+   * Pour les images Windows, suivez les instructions sur la préparation des images fournies dans l’article [Charger une image de machine virtuelle Windows dans Azure pour des déploiements Resource Manager](../virtual-machines/windows/upload-generalized-managed.md), à la section **Préparer le disque VHD pour le chargement**.
+   * Pour les images Linux, suivez les étapes décrites dans l’article [Déployer des machines virtuelles Linux dans Azure Stack](azure-stack-linux.md) pour préparer l’image ou utiliser une image Linux existante dans Azure Stack.  
 
-Maintenant, exécutez hello suivant marketplace de la pile de Azure étapes tooadd hello image toohello :
+Effectuez maintenant les étapes suivantes pour ajouter l’image sur la Place de marché Azure Stack :
 
-1. Importer des modules de se connecter et ComputeAdmin hello :
+1. Importez les modules Connect et ComputeAdmin :
    
    ```powershell
    Set-ExecutionPolicy RemoteSigned
 
-   # import hello Connect and ComputeAdmin modules
+   # import the Connect and ComputeAdmin modules
    Import-Module .\Connect\AzureStack.Connect.psm1
    Import-Module .\ComputeAdmin\AzureStack.ComputeAdmin.psm1
    ``` 
 
-2. Se connecter tooyour environnement Azure pile. De script suivante d’exécution hello selon si votre environnement Azure pile est déployé à l’aide d’AAD ou ADFS (Assurez-vous que tooreplace hello AAD nom_client) : 
+2. Connectez-vous à votre environnement Azure Stack. Exécutez le script suivant en fonction du type de déploiement de votre environnement Azure Stack : AAD ou AD FS (veillez à remplacer les valeurs tenantName AAD, le point de terminaison GraphAudience et la valeur ArmEndpoint conformément à la configuration de votre environnement) : 
 
-   a. **Azure Active Directory**, utilisez hello suivant l’applet de commande :
+   a. Pour **AAD**, utilisez l’applet de commande suivante :
 
    ```PowerShell
-   # Create hello Azure Stack cloud administrator's AzureRM environment by using hello following cmdlet:
+   # For Azure Stack development kit, this value is set to https://adminmanagement.local.azurestack.external. To get this value for Azure Stack integrated systems, contact your service provider.
+   $ArmEndpoint = "<Resource Manager endpoint for your environment>"
+
+   # For Azure Stack development kit, this value is set to https://graph.windows.net/. To get this value for Azure Stack integrated systems, contact your service provider.
+   $GraphAudience = "<GraphAuidence endpoint for your environment>"
+
+   #Create the Azure Stack operator's AzureRM environment by using the following cmdlet:
    Add-AzureRMEnvironment `
      -Name "AzureStackAdmin" `
-     -ArmEndpoint "https://adminmanagement.local.azurestack.external" 
+     -ArmEndpoint $ArmEndpoint 
 
    Set-AzureRmEnvironment `
     -Name "AzureStackAdmin" `
-    -GraphAudience "https://graph.windows.net/"
+    -GraphAudience $GraphAudience
 
    $TenantID = Get-AzsDirectoryTenantId `
      -AADTenantName "<myDirectoryTenantName>.onmicrosoft.com" `
@@ -72,17 +80,23 @@ Maintenant, exécutez hello suivant marketplace de la pile de Azure étapes tooa
      -TenantId $TenantID 
    ```
 
-   b. **Active Directory Federation Services**, utilisez hello suivant l’applet de commande :
+   b. Pour **AD FS**, utilisez l’applet de commande suivante :
     
    ```PowerShell
-   # Create hello Azure Stack cloud administrator's AzureRM environment by using hello following cmdlet:
+   # For Azure Stack development kit, this value is set to https://adminmanagement.local.azurestack.external. To get this value for Azure Stack integrated systems, contact your service provider.
+   $ArmEndpoint = "<Resource Manager endpoint for your environment>"
+
+   # For Azure Stack development kit, this value is set to https://graph.local.azurestack.external/. To get this value for Azure Stack integrated systems, contact your service provider.
+   $GraphAudience = "<GraphAuidence endpoint for your environment>"
+
+   # Create the Azure Stack operator's AzureRM environment by using the following cmdlet:
    Add-AzureRMEnvironment `
      -Name "AzureStackAdmin" `
-     -ArmEndpoint "https://adminmanagement.local.azurestack.external"
+     -ArmEndpoint $ArmEndpoint
 
    Set-AzureRmEnvironment `
      -Name "AzureStackAdmin" `
-     -GraphAudience "https://graph.local.azurestack.external/" `
+     -GraphAudience $GraphAudience `
      -EnableAdfsAuthentication:$true
 
    $TenantID = Get-AzsDirectoryTenantId `
@@ -94,7 +108,7 @@ Maintenant, exécutez hello suivant marketplace de la pile de Azure étapes tooa
      -TenantId $TenantID 
    ```
     
-3. Ajouter l’image de machine virtuelle hello en appelant hello `Add-AzsVMImage` applet de commande. Dans l’applet de commande Add-AzsVMImage hello, attribuez-leur hello osType Windows ou Linux. Inclure le serveur de publication hello, offre, référence (SKU) et la version pour l’image de machine virtuelle hello. Consultez hello [paramètres](#parameters) section pour plus d’informations sur hello autorisé de paramètres. Ces paramètres sont utilisés par l’image de machine virtuelle Azure Resource Manager modèles tooreference hello. Voici un appel de l’exemple de script de hello :
+3. Ajoutez l’image de machine virtuelle en appelant l’applet de commande `Add-AzsVMImage`. Dans l’applet de commande Add-AzsVMImage, spécifiez Windows ou Linux comme valeur du paramètre « osType ». Indiquez l’éditeur (« publisher »), l’offre (« offer »), la référence SKU (« sku ») et la version pour l’image de machine virtuelle. Consultez la section [Paramètres](#parameters) pour plus d’informations sur les paramètres autorisés. Ces paramètres sont utilisés par les modèles Azure Resource Manager pour référencer l’image de machine virtuelle. Voici un exemple d’appel du script :
      
      ```powershell
      Add-AzsVMImage `
@@ -106,20 +120,20 @@ Maintenant, exécutez hello suivant marketplace de la pile de Azure étapes tooa
        -osDiskLocalPath 'C:\Users\AzureStackAdmin\Desktop\UbuntuServer.vhd' `
      ```
 
-commande Hello hello suivant :
+La commande exécute les actions suivantes :
 
-* Authentifie l’environnement de Azure pile toohello
-* Télécharge hello tooa de disque dur virtuel local créé le compte de stockage temporaire
-* Ajoute le référentiel d’images hello VM image toohello machine virtuelle et
+* Elle effectue l’authentification auprès de l’environnement Azure Stack.
+* Elle charge le disque VHD local dans un nouveau compte de stockage temporaire.
+* Elle ajoute l’image de machine virtuelle dans le référentiel d’images de machine virtuelle.
 * Elle crée un élément de Place de marché.
 
-tooverify commande hello s’est correctement exécutée, tooMarketplace dans le portail de hello, puis vérifiez cette image de machine virtuelle hello est disponible dans hello **virtuels** catégorie.
+Pour vous assurer que la commande s’est correctement exécutée, accédez à la Place de marché dans le portail, puis vérifiez que l’image de machine virtuelle est disponible dans la catégorie **Machines virtuelles**.
 
 ![Image de machine virtuelle correctement ajoutée](./media/azure-stack-add-vm-image/image5.PNG) 
 
 ## <a name="remove-a-vm-image-with-powershell"></a>Supprimer une image de machine virtuelle à l’aide de PowerShell
 
-Lorsque vous avez besoin n’est plus hello image de machine virtuelle que vous avez téléchargés précédemment, vous pouvez le supprimer à partir du marketplace de hello à l’aide de hello suivant l’applet de commande :
+Si vous n’avez plus besoin de l’image de machine virtuelle que vous avez chargée, vous pouvez la supprimer sur la Place de marché à l’aide de l’applet de commande suivante :
 
 ```powershell
 Remove-AzsVMImage `
@@ -133,50 +147,50 @@ Remove-AzsVMImage `
 
 | Paramètre | Description |
 | --- | --- |
-| **publisher** |segment de nom Hello Éditeur d’image de machine virtuelle hello que les utilisateurs utilisent lors du déploiement d’image de hello. Exemple : « Microsoft ». N’incluez aucun espace ou autre caractère spécial dans ce champ. |
-| **offer** |segment de nom Hello offre de hello Image de machine virtuelle que les utilisateurs utilisent lors du déploiement d’image de machine virtuelle hello. Exemple : « WindowsServer ». N’incluez aucun espace ou autre caractère spécial dans ce champ. |
-| **sku** |segment de nom Hello référence (SKU) de hello Image de machine virtuelle que les utilisateurs utilisent lors du déploiement d’image de machine virtuelle hello. Exemple : « Datacenter2016 ». N’incluez aucun espace ou autre caractère spécial dans ce champ. |
-| **version** |version Hello Hello Image de machine virtuelle que les utilisateurs utilisent lors du déploiement d’image de machine virtuelle hello. Cette version est au format de hello  *\#.\#. \#*. par exemple, « 1.0.0 ». N’incluez aucun espace ou autre caractère spécial dans ce champ. |
-| **osType** |osType Hello d’image de hello doit être 'Windows' ou 'Linux'. |
-| **osDiskLocalPath** |disque toohello du système d’exploitation du chemin d’accès local de Hello VHD que vous chargez en tant qu’un tooAzure d’image de machine virtuelle pile. |
-| **dataDiskLocalPaths** |Tableau facultatif de chemins d’accès local de hello pour les disques de données qui peuvent être téléchargés dans le cadre de l’image de machine virtuelle hello. |
-| **CreateGalleryItem** |Indicateur booléen qui détermine si un élément dans le Marketplace de toocreate. Par défaut, elle a la valeur tootrue. |
-| **title** |Hello affiche le nom de l’élément du Marketplace. Par défaut, elle a la valeur toohello Publisher-offre-référence (SKU) de l’image de machine virtuelle hello. |
-| **description** |description de Hello d’élément du Marketplace hello. |
-| **location** |image de machine virtuelle Hello emplacement toowhich hello doit être publié. Par défaut, cette valeur est définie à toolocal.|
+| **publisher** |Segment du nom de l’éditeur de l’image de machine virtuelle que les utilisateurs indiquent pour déployer l’image. Exemple : « Microsoft ». N’incluez aucun espace ou autre caractère spécial dans ce champ. |
+| **offer** |Segment du nom de l’offre de l’image de machine virtuelle que les utilisateurs indiquent pour déployer l’image. Exemple : « WindowsServer ». N’incluez aucun espace ou autre caractère spécial dans ce champ. |
+| **sku** |Segment du nom de la référence SKU de l’image de machine virtuelle que les utilisateurs indiquent pour déployer l’image. Exemple : « Datacenter2016 ». N’incluez aucun espace ou autre caractère spécial dans ce champ. |
+| **version** |Version de l’image de machine virtuelle que les utilisateurs indiquent pour déployer l’image. La version suit le format *\#.\#.\#*, par exemple, « 1.0.0 ». N’incluez aucun espace ou autre caractère spécial dans ce champ. |
+| **osType** |Type d’exploitation de l’image, qui doit être « Windows » ou « Linux ». |
+| **osDiskLocalPath** |Chemin d’accès local au disque VHD de système d’exploitation que vous chargez comme image de machine virtuelle dans Azure Stack. |
+| **dataDiskLocalPaths** |Tableau facultatif des chemins d’accès locaux des disques de données qui peuvent être chargés comme partie de l’image de machine virtuelle. |
+| **CreateGalleryItem** |Indicateur booléen qui détermine s’il faut créer un élément sur la Place de marché. Par défaut, il est défini sur true. |
+| **title** |Nom d’affichage de l’élément de la Place de marché. Par défaut, il se compose des segments Éditeur-Offre-SKU de l’image de machine virtuelle. |
+| **description** |Description de l’élément de la Place de marché. |
+| **location** |Emplacement de publication de l’image de machine virtuelle. Par défaut, cette valeur est définie sur «local ».|
 | **osDiskBlobURI** |(Facultatif) Ce script accepte également un URI de stockage Blob pour osDisk. |
-| **dataDiskBlobURIs** |Si vous le souhaitez, ce script accepte également un tableau de stockage d’objets Blob URI pour l’ajout d’image de toohello de disques de données. |
+| **dataDiskBlobURIs** |(Facultatif) Ce script accepte également un tableau d’URI de stockage Blob pour l’ajout de disques de données à l’image. |
 
-## <a name="add-a-vm-image-through-hello-portal"></a>Ajouter une image de machine virtuelle via le portail de hello
+## <a name="add-a-vm-image-through-the-portal"></a>Ajouter une image de machine virtuelle par le biais du portail
 
 > [!NOTE]
-> Cette méthode requiert la création d’élément du Marketplace hello séparément.
+> Cette méthode nécessite de créer l’élément de la Place de marché séparément.
 
-L’une des exigences pour les images est de permettre leur référencement par un URI de stockage Blob. Préparer une image de système d’exploitation Windows ou Linux au format de disque dur virtuel (pas VHDX) et puis télécharger hello image tooa compte de stockage Azure ou de la pile de Azure. Si votre image est déjà téléchargé toohello stockage d’objets Blob dans Azure ou de la pile d’Azure, vous pouvez ignorer l’étape 1.
+L’une des exigences pour les images est de permettre leur référencement par un URI de stockage Blob. Préparez une image de système d’exploitation Windows ou Linux au format VHD (pas VHDX), puis chargez cette image dans un compte de stockage Azure ou Azure Stack. Si votre image est déjà chargée dans le stockage Blob Azure ou Azure Stack, ignorez l’étape 1.
 
-1. [Télécharger un tooAzure d’image de machine virtuelle Windows pour les déploiements de gestionnaire de ressources](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-upload-image/) ou d’une image Linux, suivez les instructions de hello décrites dans hello [ordinateurs virtuels Linux de déployer sur Azure pile](azure-stack-linux.md) l’article. Vous devez comprendre hello suivant considérations avant de charger hello image :
+1. [Chargez une image de machine virtuelle Windows dans Azure pour les déploiements Resource Manager ](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-upload-image/) ou, pour une image Linux, suivez les instructions fournies dans l’article [Déployer des machines virtuelles Linux dans Azure Stack](azure-stack-linux.md). Avant de charger l’image, tenez compte des points suivants :
 
-   * Il est plus efficace tooupload une tooAzure image stockage d’objets Blob de pile à tooAzure stockage d’objets Blob, car il prend moins référentiel d’images temps toopush toohello hello image Azure pile. 
+   * Il est préférable de charger une image dans le stockage Blob Azure Stack plutôt que dans le stockage Blob Azure, car la publication d’une image dans le référentiel d’images Azure Stack est plus rapide. 
    
-   * Lors du téléchargement hello [image de machine virtuelle Windows](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-upload-image/), assurez-vous que toosubstitute hello **connexion tooAzure** étape avec hello [configurer l’environnement PowerShell de l’opérateur de pile de Azure hello](azure-stack-powershell-configure-admin.md)étape.  
+   * Quand vous chargez [l’image de machine virtuelle Windows](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-upload-image/), pensez à substituer l’étape **Se connecter à Azure** par l’étape [Configurer l’environnement PowerShell de l’opérateur Azure Stack](azure-stack-powershell-configure-admin.md).  
 
-   * Prenez note de hello URI où vous téléchargez l’image hello, qui se trouve dans hello format de stockage d’objets Blob :  *&lt;storageAccount&gt;/&lt;blobContainer&gt; / &lt;targetVHDName&gt;*.vhd
+   * Notez l’URI du stockage Blob où vous chargez l’image, au format suivant : *&lt;compteStockage&gt;/&lt;conteneurBlob&gt;/&lt;nomVHDCible&gt;*.vhd
 
-   * toomake hello accessible de manière anonyme, accédez toohello compte blob conteneur de stockage blob hello VM où l’image disque dur virtuel a été téléchargé trop**Blob,** , puis sélectionnez **la stratégie d’accès**. Si vous le souhaitez, vous pouvez à la place générer une signature d’accès partagé pour le conteneur de hello et inclure dans le cadre de l’URI d’objet blob hello.
+   * Pour rendre le stockage Blob accessible de manière anonyme, accédez au conteneur d’objets blob du compte de stockage dans lequel l’image de machine virtuelle VHD a été chargée dans **Blob**, puis sélectionnez **Stratégie d’accès**. Si vous le souhaitez, vous pouvez à la place générer une signature d’accès partagé pour le conteneur et l’inclure dans l’URI de l’objet blob.
 
-   ![Parcourir les objets BLOB du compte toostorage](./media/azure-stack-add-vm-image/image1.png)
+   ![Accéder aux objets blob du compte de stockage](./media/azure-stack-add-vm-image/image1.png)
 
-   ![Jeu d’objets blob accès toopublic](./media/azure-stack-add-vm-image/image2.png)
+   ![Définir un accès public pour les objets blob](./media/azure-stack-add-vm-image/image2.png)
 
-2. Connectez-vous à tooAzure pile sous la forme d’un administrateur de cloud > hello menu, cliquez sur **davantage de services** > **fournisseurs de ressources** > sélectionnez **de calcul**  >  **Images de machine virtuelle** > **ajouter**
+2. Connectez-vous à Azure Stack en tant qu’opérateur : dans le menu, cliquez sur **Plus de services** > **Fournisseurs de ressources** > sélectionnez **Compute** > **Images de machine virtuelle** > **Ajouter**
 
-3. Sur hello **ajouter une Image de machine virtuelle** panneau, entrez le serveur de publication hello, offre, référence (SKU) et la version de l’image de machine virtuelle hello. Ces segments de noms font référence toohello image de machine virtuelle dans les modèles de gestionnaire de ressources. Assurez-vous que tooselect le **osType** correctement. Pour **OD disque Blob URI**, entrez hello URI d’objet Blob où l’image a été téléchargée, cliquez sur **créer** toobegin création de l’Image de machine virtuelle.
+3. Dans le panneau **Ajouter une image de machine virtuelle**, entrez l’éditeur, l’offre, la référence SKU et la version de l’image de machine virtuelle. Ces segments de nom référencent l’image de machine virtuelle dans les modèles Resource Manager. Sélectionnez le **type de système d’exploitation** approprié. Dans **URI d’objet blob du disque de système d’exploitation**, entrez l’URI de l’objet blob où l’image a été chargée, puis cliquez sur **Créer** pour démarrer la création de l’image de machine virtuelle.
    
-   ![BEGIN toocreate hello image](./media/azure-stack-add-vm-image/image4.png)
+   ![Démarrer la création de l’image](./media/azure-stack-add-vm-image/image4.png)
 
-   Lorsque l’image de hello est correctement créé, hello état d’image de machine virtuelle change too'Succeeded'.
+   Une fois que l’image de machine virtuelle a été créée, son état passe à « Réussi ».
 
-4. image de machine virtuelle hello toomake plus facilement disponible pour un utilisateur dans l’interface utilisateur de hello, il est préférable de trop[créer un élément du Marketplace](azure-stack-create-and-publish-marketplace-item.md).
+4. Pour rendre une image de machine virtuelle plus rapidement disponible dans l’interface utilisateur, il est préférable de [créer un élément de Place de marché](azure-stack-create-and-publish-marketplace-item.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 

@@ -1,6 +1,6 @@
 ---
-title: "à l’aide du contenu stratégie d’autorisation de clé aaaConfigure hello portail Azure | Documents Microsoft"
-description: "Découvrez comment tooconfigure une stratégie d’autorisation pour une clé de contenu."
+title: "Configurer la stratégie d’autorisation de clé de contenu à l’aide du portail Azure | Microsoft Docs"
+description: "Apprenez à configurer une stratégie d’autorisation pour une clé de contenu."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 157fb691b7f71f4889228817e1dc64555e327d48
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 5a35c7255a1c30a693862589c14f6a22a1900790
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="configure-content-key-authorization-policy"></a>Configuration de la stratégie d’autorisation de clé de contenu
 [!INCLUDE [media-services-selector-content-key-auth-policy](../../includes/media-services-selector-content-key-auth-policy.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Microsoft Azure Media Services vous permet de toodeliver MPEG-DASH, Smooth Streaming et les flux HTTP Live Streaming (HLS) protégés avec Advanced Encryption Standard (AES) (à l’aide de clés de chiffrement 128 bits) ou [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/). AMS permet également de vous toodeliver tiret flux chiffrés avec Widevine DRM. PlayReady et Widevine sont chiffrées par hello spécification de chiffrement commun (CENC 23001-7 de norme ISO/IEC).
+Microsoft Azure Media Services vous permet de fournir des flux MPEG-DASH, Smooth Streaming et HLS (HTTP-Live-Streaming) protégés par AES (Advanced Encryption Standard) à l’aide de clés de chiffrement 128 bits ou [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/). AMS vous permet également de diffuser des flux DASH chiffrés avec Widevine DRM. PlayReady et Widewine sont chiffrés conformément à la spécification de chiffrement commun (ISO/IEC 23001-7 CENC).
 
-Media Services fournit également un **Service de remise de clé/licence** à partir desquels les clients peuvent obtenir des clés AES ou PlayReady/Widevine licences tooplay hello contenu chiffré.
+Media Services fournit également un **service de remise de clés/de licences** à partir duquel les clients peuvent obtenir des clés AES ou des licences PlayReady/Widevine pour lire le contenu chiffré.
 
-Cette rubrique montre comment toouse hello stratégie de contenu d’autorisation de clé hello tooconfigure portail Azure. clé de Hello peut être utilisée ultérieurement toodynamically chiffrer votre contenu. Notez que vous pouvez actuellement chiffrer hello suivant les formats de diffusion en continu : TLS, MPEG DASH et diffusion en continu lisse. Vous ne pouvez pas chiffrer les téléchargements progressifs.
+Cette rubrique montre comment utiliser le portail Azure pour configurer la stratégie d’autorisation de clé de contenu. Elles peuvent ensuite être utilisées pour chiffrer dynamiquement votre contenu. Notez que, actuellement, vous pouvez chiffrer les formats de diffusion en continu suivants : HLS, MPEG DASH et Smooth Streaming. Vous ne pouvez pas chiffrer les téléchargements progressifs.
 
-Lorsqu’un lecteur demande le flux de données qui a la valeur toobe dynamiquement chiffré, Media Services utilise hello configuré clé toodynamically chiffrer votre contenu à l’aide du chiffrement AES ou la gestion des droits numériques. flux de données toodecrypt hello, le lecteur hello demande clé de hello de service de distribution de clés hello. toodecide soit ou non d’utilisateur de hello autorisé clé de hello tooget, hello évalue les stratégies d’autorisation hello que vous avez spécifié pour la clé de hello.
+Lorsqu’un lecteur demande un flux de données devant être chiffré dynamiquement, Media Services utilise la clé configurée pour chiffrer dynamiquement votre contenu à l’aide du chiffrement AES ou DRM. Pour déchiffrer le flux de données, le lecteur demande la clé au service de remise de clé. Pour déterminer si l’utilisateur est autorisé à obtenir la clé, le service évalue les stratégies d’autorisation que vous avez spécifiées pour la clé.
 
-Si vous envisagez de toohave plusieurs clés de contenu ou que vous voulez toospecify un **Service de remise de clé/licence** URL de hello service de distribution de clés de Media Services, utilisez Media Services .NET SDK ou des API REST.
+Si vous prévoyez de disposer de plusieurs clés de contenu ou souhaitez spécifier une URL de **service de remise de clés/de licences** autre que le service de remise de clé Media Services, utilisez le Kit de développement logiciel (SDK) .NET Media Services ou des API REST.
 
 [Configurer la stratégie d’autorisation de clé de contenu à l’aide du Kit de développement logiciel (SDK).NET Media Services](media-services-dotnet-configure-content-key-auth-policy.md)
 
 [Configurer la stratégie d’autorisation de clé de contenu à l’aide de l’API REST Media Services](media-services-rest-configure-content-key-auth-policy.md)
 
 ### <a name="some-considerations-apply"></a>Certaines considérations s’appliquent :
-* Création de votre compte AMS un **par défaut** point de terminaison de diffusion en continu est ajoutée tooyour compte Bonjour **arrêté** état. toostart votre contenu et profitez de l’empaquetage dynamique et chiffrement dynamique, votre point de terminaison de diffusion en continu de diffusion en continu a toobe Bonjour **en cours d’exécution** état. 
+* Une fois votre compte AMS créé, un point de terminaison de streaming **par défaut** est ajouté à votre compte à l’état **Arrêté**. Pour démarrer la diffusion en continu de votre contenu et tirer parti de l’empaquetage et du chiffrement dynamiques, votre point de terminaison de streaming doit se trouver à l’état **En cours d’exécution**. 
 * Votre ressource doit contenir un ensemble de MP4 à débit adaptatif ou des fichiers de diffusion en continu lisse à débit adaptatif. Pour plus d'informations, consultez [Encoder une ressource](media-services-encode-asset.md).
-* Hello service de fourniture de clé met en cache ContentKeyAuthorizationPolicy et les objets associés (options de stratégie et les restrictions) pendant 15 minutes.  Si vous créez une stratégie ContentKeyAuthorizationPolicy et spécifiez toouse une restriction « Token », puis testez, puis mettre à jour de stratégie de hello trop « ouvrir » restriction, il prendra environ 15 minutes avant hello commutateurs toohello « Ouvert » version de stratégie de la stratégie de hello.
+* Le service de remise de clé met en cache ContentKeyAuthorizationPolicy et ses objets connexes (options de stratégie et restrictions) pendant 15 minutes.  Si vous créez une ContentKeyAuthorizationPolicy et que vous spécifiez l’utilisation d’une restriction « Jeton », puis la testez avant de mettre à jour la stratégie de restriction vers « Ouverte », vous devrez attendre environ 15 minutes avant que la stratégie bascule vers la version « Ouverte ».
 
-## <a name="how-to-configure-hello-key-authorization-policy"></a>Comment : configurer la stratégie d’autorisation de clé de hello
-stratégie d’autorisation de clé de tooconfigure hello, sélectionnez hello **PROTECTION du contenu** page.
+## <a name="how-to-configure-the-key-authorization-policy"></a>Configuration de la stratégie d’autorisation de clé
+Pour configurer la stratégie d’autorisation de clé, sélectionnez la page **PROTECTION DU CONTENU** .
 
-Media Services prend en charge plusieurs méthodes d’authentification des utilisateurs effectuant des demandes de clé. stratégie d’autorisation de clé contenu de Hello **ouvrir**, **jeton**, ou **IP** restrictions d’autorisation (**IP** peut être configuré avec REST ou .NET SDK).
+Media Services prend en charge plusieurs méthodes d’authentification des utilisateurs effectuant des demandes de clé. La stratégie d’autorisation de clé de contenu peut disposer de restrictions d’autorisation de type **ouvert**, **jeton** ou **IP** (**l’IP** peut être configurée avec REST ou le Kit de développement logiciel (SDK) .NET).
 
 ### <a name="open-restriction"></a>Restriction ouverte
-Hello **ouvrir** restriction signifie hello système fournit des tooanyone clé hello qui fait la demande. Cette restriction peut être utile à des fins de test.
+La restriction **ouverte** signifie que le système fournira la clé à toute personne effectuant une demande de clé. Cette restriction peut être utile à des fins de test.
 
 ![OpenPolicy][open_policy]
 
 ### <a name="token-restriction"></a>Restriction à jeton
-jeton de hello toochoose restreint la stratégie, appuyez sur hello **jeton** bouton.
+Pour choisir la stratégie de restriction à jeton, cliquez sur le bouton **JETON** .
 
-Hello **jeton** stratégie restreint doit être accompagnée d’un jeton émis par une **Service d’émission de jeton sécurisé** (STS). Media Services prend en charge les jetons Bonjour **des jetons Web simples** ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) format et **jeton Web JSON** format (JWT). Pour plus d’informations, consultez [Authentification à jeton JWT](http://www.gtrifonov.com/2015/01/03/jwt-token-authentication-in-azure-media-services-and-dynamic-encryption/).
+La stratégie de restriction à **jeton** doit être accompagnée d’un jeton émis par un **service de jeton sécurisé** (STS). Media Services prend en charge les jetons aux formats [SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (**Simple Web Tokens**) et JWT (**JSON Web Token**). Pour plus d’informations, consultez [Authentification à jeton JWT](http://www.gtrifonov.com/2015/01/03/jwt-token-authentication-in-azure-media-services-and-dynamic-encryption/).
 
-Media Services ne fournit pas de **services de jeton sécurisé**. Vous pouvez créer un STS personnalisé ou tirer parti des jetons de tooissue Microsoft Azure ACS. Hello STS doit être configuré toocreate un jeton signé avec hello spécifié clé et émettre les revendications que vous avez spécifié dans la configuration de restriction token hello. Hello service de distribution de clés de Media Services renvoie client de toohello clé de chiffrement hello si hello du jeton est valide et hello revendications de jeton de hello correspondent à ceux configurés pour la clé de contenu hello. Pour plus d’informations, consultez [les jetons tooissue utilisation Azure ACS](http://mingfeiy.com/acs-with-key-services).
+Media Services ne fournit pas de **services de jeton sécurisé**. Vous pouvez créer un STS personnalisé ou utiliser l’ACS Microsoft Azure pour émettre des jetons. Le STS doit être configuré pour créer un jeton signé avec la clé spécifiée et émettre les revendications spécifiées dans la configuration de restriction de jeton. Le service de remise de clé Media Services retourne la clé de chiffrement pour le client si le jeton est valide et que les revendications du jeton correspondent à celles configurées pour la clé de contenu. Pour plus d’informations, consultez [Utilisation de l’ACS Azure pour émettre des jetons](http://mingfeiy.com/acs-with-key-services).
 
-Lors de la configuration hello **jeton** stratégie restreint, vous devez définir des valeurs pour **clé de vérification**, **émetteur** et **public**. clé de vérification principale Hello contient hello clé que le jeton de hello a été signé avec, l’émetteur est hello sécurisé STS qui émet le jeton de hello. audience Hello (parfois appelé étendue) décrit l’intention de hello du jeton de hello ou autorise l’accès au jeton de hello ressource hello. Hello service de distribution de clés de Media Services valide que ces valeurs dans le jeton de hello correspondent aux valeurs hello modèle de hello.
+Lorsque vous configurez la stratégie de restriction **JETON**, vous devez définir des valeurs pour **clé de vérification**, **émetteur** et **public**. La clé de vérification principale contient la clé utilisée pour signer le jeton, l’émetteur est le service de jeton sécurisé qui émet le jeton. Le public (parfois appelé l’étendue) décrit l’objectif du jeton ou la ressource à laquelle le jeton autorise l’accès. Le service de remise de clé Media Services valide le fait que les valeurs du jeton correspondent aux valeurs du modèle.
 
 ### <a name="playready"></a>PlayReady
-Lorsque vous protégez votre contenu avec **PlayReady**, un hello choses toospecify dans votre stratégie d’autorisation est une chaîne XML qui définit le modèle de licence PlayReady hello. Par défaut, hello suivant la stratégie est définie :
+Quand vous protégez votre contenu avec **PlayReady**, vous devez spécifier dans votre stratégie d'autorisation une chaîne XML qui définisse le modèle de licence PlayReady. Par défaut, la stratégie suivante est définie :
 
 <PlayReadyLicenseResponseTemplate xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/PlayReadyTemplate/v1"><LicenseTemplates><PlayReadyLicenseTemplate><AllowTestDevices>true</AllowTestDevices><ContentKey i:type="ContentEncryptionKeyFromHeader" /><LicenseType>Nonpersistent</LicenseType><PlayRight><AllowPassingVideoContentToUnknownOutput>Allowed</AllowPassingVideoContentToUnknownOutput></PlayRight></PlayReadyLicenseTemplate></LicenseTemplates></PlayReadyLicenseResponseTemplate>
 
-Vous pouvez cliquer sur hello **importer le xml de stratégie** bouton et fournir un autre XML conforme toohello schéma XML défini [ici](media-services-playready-license-template-overview.md).
+Vous pouvez cliquer sur le bouton **importer le xml de la stratégie** et fournir un autre XML conforme au schéma XML défini [ici](media-services-playready-license-template-overview.md).
 
 ## <a name="next-step"></a>Étape suivante
 Consultez les parcours d’apprentissage de Media Services.

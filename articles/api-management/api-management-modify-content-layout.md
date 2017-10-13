@@ -1,6 +1,6 @@
 ---
-title: "contenu de la page dans le portail des développeurs dans Gestion des API Azure hello aaaModify | Documents Microsoft"
-description: "Découvrez comment tooedit page de contenu sur le portail des développeurs dans Gestion des API Azure hello."
+title: "Modifier le contenu d’une page dans le portail des développeurs dans Gestion des API Azure | Microsoft Docs"
+description: "Découvrez comment modifier le contenu d’une page dans le portail des développeurs dans Gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: antonba
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 02/09/2017
 ms.author: antonba
-ms.openlocfilehash: fd5a854e900d9512518643e593b1b59a0952621f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 708c803c36c182ed90e04731b12d4ade00ae7ffb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="modify-hello-content-and-layout-of-pages-on-hello-developer-portal-in-azure-api-management"></a>Modifier le contenu de hello et la disposition des pages sur le portail des développeurs hello dans Gestion des API Azure
-Il existe trois méthodes fondamentales toocustomize hello portail destiné aux développeurs dans Gestion des API Azure :
+# <a name="modify-the-content-and-layout-of-pages-on-the-developer-portal-in-azure-api-management"></a>Modifier le contenu et la disposition des pages dans le portail des développeurs dans Gestion des API Azure
+Il existe trois manières principales pour personnaliser le portail des développeurs dans Gestion des API Azure :
 
-* [Modifier les pages statiques et des éléments de mise en page contenu hello] [ modify-content-layout] (présentés dans ce guide)
-* [Mettre à jour les styles de hello utilisés pour les éléments de la page sur le portail des développeurs hello][customize-styles]
-* [Modifier les modèles hello utilisés pour les pages générées par le portail de hello] [ portal-templates] (par exemple, documents de l’API, produits, l’authentification des utilisateurs, etc.)
+* [Modifier le contenu des pages statiques et des éléments de mise en page][modify-content-layout] (procédure expliquée dans ce guide)
+* [Mettre à jour les styles utilisés pour les éléments de page dans le portail des développeurs][customize-styles]
+* [Modifier les modèles utilisés pour les pages générées par le portail][portal-templates] (par exemple, documents API, produits, authentification des utilisateurs, etc.)
 
-## <a name="page-structure"></a>Structure des pages du portail des développeurs
+## <a name="page-structure"> </a>Structure des pages du portail des développeurs
 
-portail des développeurs Hello est basée sur un système de gestion de contenu. mise en page Hello de chaque page s’appuie sur l’ensemble d’éléments de page petit appelé widgets :
+Le portail des développeurs s’appuie sur un système de gestion de contenu. La disposition de chaque page s’appuie sur un ensemble d’éléments de petite page appelés widgets :
 
 ![Structure de page du portail des développeurs][api-management-customization-widget-structure]
 
 Tous les widgets sont modifiables. 
-* page individuelle de Hello core contenu tooeach spécifiques se trouvent dans le widget de « Contenu » hello. Modification d’une page signifie que la modification de contenu hello ce widget.
-* Tous les éléments de mise en page sont contenus dans les widgets restantes hello. Modifications apportées aux widgets de toothese appliquera tooall pages. Ils seront tooas référencé « widgets disposition ».
+* Le contenu de base spécifique à chaque page réside dans le widget « Contenu ». La modification d’une page entraîne la modification du contenu de ce widget.
+* Tous les éléments de mise en page sont contenus dans les autres widgets. Les modifications apportées à ces widgets s’appliquent à toutes les pages. Ils sont dénommés « widgets de mise en page ».
 
-Dans la page quotidienne une modification généralement modifie uniquement le widget de contenu hello qui ont un contenu différent pour chaque page.
+Dans la modification de page standard, un utilisateur ne modifie en général que le widget Contenu qui contient un contenu différent pour chaque page.
 
-## <a name="modify-layout-widget"></a>Modifier le contenu de hello d’un widget de disposition
+## <a name="modify-layout-widget"> </a>Modification du contenu d’un widget de mise en page
 
-Contenu dans le portail des développeurs hello est modifié via le portail de publication hello qui est accessible à partir de hello portail Azure. tooreach, cliquez sur **portail de publication** à partir de la barre d’outils du service hello de votre instance de la gestion des API.
+Le contenu du portail des développeurs se modifie grâce au portail des éditeurs, accessible via le portail Azure. Pour y accéder, cliquez sur **Portail des éditeurs** à partir de la barre d’outils de services de votre instance de gestion des API.
 
 ![Portail des éditeurs][api-management-management-console]
 
-Cliquez sur le contenu de hello tooedit de ce widget, **Widgets** de hello **portail des développeurs** menu à gauche de hello. Pour cet exemple vous permet de modifier le contenu hello du widget d’en-tête hello. Sélectionnez hello **en-tête** widget à partir de la liste de hello.
+Pour modifier le contenu de ce widget, cliquez sur **Widgets** dans le menu **Portail des développeurs** sur la gauche. Pour cet exemple, modifions le contenu du widget d’en-tête. Sélectionnez le widget **En-tête** dans la liste.
 
 ![Widgets header][api-management-widgets-header]
 
-contenu Hello de hello est modifiable à partir de hello **corps** champ. Modifier le texte hello comme vous le souhaitez, puis cliquez sur **enregistrer** bas hello de page de hello.
+Le contenu de l'en-tête peut être modifié dans le champ **Corps** . Changez le texte comme vous le souhaitez, puis cliquez sur **Enregistrer** en bas de la page.
 
-Vous devez maintenant être en mesure de toosee hello nouvel en-tête sur chaque page de portail des développeurs hello.
+Vous devriez à présent pouvoir voir le nouvel en-tête sur chaque page du portail des développeurs.
 
-> Cliquez sur le portail des développeurs hello tooopen tandis que dans le portail de publication hello, **portail des développeurs** dans la barre supérieure de hello.
+> Pour ouvrir le portail des développeurs quand vous vous trouvez dans le portail des éditeurs, cliquez sur **Portail des développeurs** dans la barre supérieure.
 > 
 > 
 
-## <a name="edit-page-contents"></a>Modifier le contenu de hello d’une page
+## <a name="edit-page-contents"> </a>Modification du contenu d’une page
 
-liste de hello toosee de toutes les pages de contenu existantes, cliquez sur **contenu** de hello **portail des développeurs** menu dans le portail de publication hello.
+Pour afficher la liste de toutes les pages de contenu existantes, cliquez sur **Contenu** dans le menu **Portail des développeurs** du portail des éditeurs.
 
 ![Manage content][api-management-customization-manage-content]
 
-Cliquez sur hello **Bienvenue** page tooedit ce qui est affiché sur la page d’accueil de hello du portail des développeurs hello. Apporter des modifications de hello, afficher un aperçu si nécessaire, puis cliquez **publier maintenant** toomake les tooeveryone visible.
+Cliquez sur la page **Bienvenue** pour modifier le texte s’affichant sur la page d’accueil du portail des développeurs. Apportez les modifications de votre choix, générez-en un aperçu si nécessaire, puis cliquez sur **Publier maintenant** pour les rendre visibles pour tous.
 
-> page d’accueil Hello utilise une disposition spéciale qui lui permet de toodisplay une bannière haut hello. Cette bannière ne peut pas être modifiable à partir de hello **contenu** section. tooedit ce bannière, cliquez sur **Widgets** de hello **portail des développeurs** menu, sélectionnez **page d’accueil** de hello **couche actuelle** liste déroulante liste, puis ouvrez hello **bannière** élément sous hello **proposées section**. contenu Hello ce widget est modifiables comme toute autre page.
+> La page d’accueil utilise une configuration spéciale qui lui permet d’afficher une bannière en haut. Cette bannière n’est pas modifiable depuis la section **Contenu** . Pour modifier cette bannière, cliquez sur **Widgets** dans le menu **Portail des développeurs**, sélectionnez **Page d’accueil** dans la liste déroulante **Couche actuelle**, puis ouvrez l’élément **Bannière** sous la section **Proposé**. Le contenu de ce widget peut être modifié comme sur toute autre page.
 > 
 > 
 
-## <a name="next-steps"></a>Étapes suivantes
-* [Mettre à jour les styles de hello utilisés pour les éléments de la page sur le portail des développeurs hello][customize-styles]
-* [Modifier les modèles hello utilisés pour les pages générées par le portail de hello] [ portal-templates] (par exemple, documents de l’API, produits, l’authentification des utilisateurs, etc.)
+## <a name="next-steps"> </a>Étapes suivantes
+* [Mettre à jour les styles utilisés pour les éléments de page dans le portail des développeurs][customize-styles]
+* [Modifier les modèles utilisés pour les pages générées par le portail][portal-templates] (par exemple, documents API, produits, authentification des utilisateurs, etc.)
 
 [Structure of developer portal pages]: #page-structure
-[Modifying hello contents of a layout widget]: #modify-layout-widget
-[Edit hello contents of a page]: #edit-page-contents
+[Modifying the contents of a layout widget]: #modify-layout-widget
+[Edit the contents of a page]: #edit-page-contents
 [Next steps]: #next-steps
 
 [modify-content-layout]: api-management-modify-content-layout.md

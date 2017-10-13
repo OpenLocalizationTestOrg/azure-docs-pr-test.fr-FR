@@ -1,6 +1,6 @@
 ---
-title: aaaMicrosoft Security Response Center | Documents Microsoft
-description: "article de Hello fournit une liste d’organisé de ressources MSRC Microsoft Security Response Center () qui peuvent être utilisé tooobtain plus d’informations sur les pratiques MSRC et les recommandations."
+title: "Centre de réponse aux problèmes de sécurité Microsoft (MSRC) | Microsoft Docs"
+description: "L’article fournit une liste organisée des ressources du centre de réponse aux problèmes de sécurité Microsoft (MSRC) pouvant être utilisées pour obtenir plus d’informations sur les pratiques et recommandations MSRC."
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/09/2017
 ms.author: yurid
-ms.openlocfilehash: db261c34968e61905a5705d3a7d5fbbc8e308744
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bc47589ac769d89b2aa7f7565d08555ace3119d9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="microsoft-security-response-center"></a>Centre de réponse aux problèmes de sécurité Microsoft
-Hello MSRC Microsoft Security Response Center () est conduit par des experts en sécurité monde hello plus expérimentés. Ces experts identifient, analysent, répondent tooand résoudre les incidents de sécurité et locaux et cloud vulnérabilités autour de l’horloge hello, chaque jour de l’année de hello.
+Le centre de réponse aux problèmes de sécurité Microsoft (MSRC) est dirigé par les experts en sécurité les plus expérimentés du monde. Ces experts identifient et analysent les incidents de sécurité et les vulnérabilités du Cloud, y répondent et les résolvent en continu, chaque jour de l’année.
 
-En outre les toohello continu hello MSRC effectue en arrière-plan de hello, l’équipe MSRC hello possède un nombre de tooyou disponible de ressources afin que vous pouvez comprendre comment toosecure vos ressources Azure et les déploiements plus efficacement.
+Outre le travail continu que le MSRC effectue en arrière-plan, l’équipe MSRC met à votre disposition de nombreuses ressources afin que vous puissiez comprendre comment sécuriser vos ressources et déploiements Azure plus efficacement.
 
-## <a name="hello-msrc-blog"></a>Hello Blog MSRC
-Hello [MSRC blog](https://blogs.technet.microsoft.com/msrc/) est hello place toogo tooget hello dernières nouvelles sur quelles hello MSRC fait toohelp vous protéger contre les menaces de cloud.
+## <a name="the-msrc-blog"></a>Le blog MSRC
+Le [blog MSRC](https://blogs.technet.microsoft.com/msrc/) est l’endroit idéal pour obtenir les dernières informations sur ce que fait le MSRC pour vous protéger contre les menaces sur le Cloud.
 
 ## <a name="white-papers"></a>Livres blancs
-Hello MSRC a publié un certain nombre de [livres blancs](https://technet.microsoft.com/library/bb969102.aspx) qui vous aidera à comprendre ce qu’ils font et comment elles fonctionnent. Certains fournissent des analyses comment nous secure cloud de Microsoft hello et inclure des informations utiles sur la façon dont vous pouvez employer hello même les configurations de sécurité.
+Le MSRC a publié un certain nombre de [livres blancs](https://technet.microsoft.com/library/bb969102.aspx) qui vous aideront à comprendre ce qu’ils font et comment. Certains fournissent des informations sur la sécurisation du Cloud Microsoft et comprennent des informations utiles sur l’utilisation de configurations de sécurité similaires.
 
 ## <a name="security-researcher-engagement-and-bounty-programs"></a>Engagement des chercheurs en sécurité et des programmes de primes
-Hello MSRC prend en charge la collaboration et relations avec des chercheurs en sécurité globalement tooadvance sécurité des produits Microsoft.
+Le MSRC prend en charge la collaboration et les relations avec les chercheurs en sécurité au niveau mondial pour développer la sécurité des produits Microsoft.
 
 Les programmes de primes Microsoft paient les chercheurs pour découvrir de nouvelles techniques d’exploitation, des idées défensives atténuant les nouvelles exploitations et des vulnérabilités critiques dans les logiciels Cloud et locaux de Microsoft.
 
-En savoir plus sur ces programmes à hello [véritable trésor bogue de MSRC](https://technet.microsoft.com/security/dn425036) page et hello [MSRC blog](https://blogs.technet.microsoft.com/msrc/).
+Apprenez-en plus sur ces programmes sur la page [Primes liées aux bugs MSRC](https://technet.microsoft.com/security/dn425036) et sur le [blog MSRC](https://blogs.technet.microsoft.com/msrc/).
 
-toolearn en savoir plus sur hello MSRC, visitez hello [page d’accueil de MSRC](https://technet.microsoft.com/library/dn440717.aspx).
+Pour plus d’informations sur le MSRC, consultez la [page d’accueil du MSRC](https://technet.microsoft.com/library/dn440717.aspx).

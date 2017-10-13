@@ -1,6 +1,6 @@
 ---
-title: "aaaAnalyze des données avec Azure Machine Learning | Documents Microsoft"
-description: "Utilisez toobuild d’Azure Machine Learning un modèle basé sur les données stockées dans Azure SQL Data Warehouse prédictive d’apprentissage."
+title: "Analyse de données avec Azure Machine Learning | Microsoft Docs"
+description: "Utilisez Azure Machine Learning pour générer un modèle Machine Learning prédictif basé sur les données stockées dans Azure SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: integrate
 ms.date: 03/02/2017
 ms.author: kevin;barbkess
-ms.openlocfilehash: 337a2cd77aaad4467683827c56e5015b262b2554
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 3197948e32fe5c95b111fe5495a0e5f85966a24b
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="analyze-data-with-azure-machine-learning"></a>Analyse des données avec Azure Machine Learning
 > [!div class="op_single_selector"]
@@ -31,26 +31,26 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ce didacticiel utilise Azure Machine Learning de toobuild un modèle basé sur les données stockées dans Azure SQL Data Warehouse prédictive d’apprentissage. Plus précisément, cela génère une campagne de marketing ciblée pour Adventure Works, magasin de vélo hello, la prédiction si un client est toobuy probablement un vélo ou non.
+Ce didacticiel utilise Azure Machine Learning pour générer un modèle Machine Learning prédictif basé sur les données stockées dans Azure SQL Data Warehouse. Plus précisément, il crée une campagne marketing ciblée pour Adventure Works, le magasin de vélos, en prévoyant si un client est susceptible d’acheter ou non un vélo.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Integrating-Azure-Machine-Learning-with-Azure-SQL-Data-Warehouse/player]
 > 
 > 
 
 ## <a name="prerequisites"></a>Composants requis
-toostep dans ce didacticiel, vous devez :
+Pour parcourir ce didacticiel, vous avez besoin des éléments suivants :
 
-* un entrepôt SQL Data Warehouse préchargé avec les exemples de données AdventureWorksDW. tooprovision, consultez [créer un entrepôt de données SQL] [ Create a SQL Data Warehouse] et choisissez les données d’exemple hello tooload. Si vous disposez déjà d’un entrepôt de données, mais sans disposer d’exemples de données, vous pouvez [charger manuellement des exemples de données][load sample data manually].
+* un entrepôt SQL Data Warehouse préchargé avec les exemples de données AdventureWorksDW. Pour le configurer, consultez [Créer un Azure SQL Data Warehouse][Create a SQL Data Warehouse] et chargez les données d’exemple. Si vous disposez déjà d’un entrepôt de données, mais sans disposer d’exemples de données, vous pouvez [charger manuellement des exemples de données][load sample data manually].
 
-## <a name="1-get-hello-data"></a>1. Obtenir des données de hello
-les données de salutation sont en mode de dbo.vTargetMail hello dans la base de données AdventureWorksDW hello. tooread ces données :
+## <a name="1-get-the-data"></a>1. Obtenir les données
+Les données sont indiquées dans la vue dbo.vTargetMail de la base de données AdventureWorksDW. Pour lire ces données :
 
 1. Connectez-vous à [Azure Machine Learning Studio][Azure Machine Learning studio], puis cliquez sur Mes expériences.
 2. Cliquez sur **+NOUVEAU** et sélectionnez **Expérience vide**.
 3. Entrez le nom de votre expérience : Marketing ciblé.
-4. Hello de glisser **lecteur** module à partir du volet de modules hello dans la zone de dessin hello.
-5. Spécifiez les détails de hello de votre base de données de l’entrepôt de données SQL dans le volet de propriétés hello.
-6. Spécifiez la base de données hello **requête** tooread les données de salutation dignes d’intérêt.
+4. Faites glisser le module **Lecteur** du volet des modules dans la zone de dessin.
+5. Spécifiez les détails de votre base de données SQL Data Warehouse dans le volet Propriétés.
+6. Spécifiez la **requête** de base de données pour lire les données intéressantes.
 
 ```sql
 SELECT [CustomerKey]
@@ -72,60 +72,60 @@ SELECT [CustomerKey]
 FROM [dbo].[vTargetMail]
 ```
 
-Exécutez hello expérience en cliquant sur **exécuter** sous le canevas de l’expérience hello.
-![Exécutez hello expérience][1]
+Démarrez l’expérience en cliquant sur l’option **Démarrer** sous la zone de dessin de l’expérience.
+![Exécuter l’expérience][1]
 
-Une fois que l’expérience de hello est terminée avec succès, cliquez sur le port de sortie hello bas hello de module de lecture hello et sélectionnez **visualiser** toosee hello importé des données.
+Une fois que l’expérience s’est terminée avec succès, cliquez sur le port de sortie au bas du module Reader et sélectionnez **Visualiser** pour voir les données importées.
 ![Afficher les données importées][3]
 
-## <a name="2-clean-hello-data"></a>2. Données de salutation nettoyer
-les données de salutation tooclean, de supprimer certaines colonnes ne sont pas pertinentes pour le modèle de hello. toodo cela :
+## <a name="2-clean-the-data"></a>2. Nettoyer les données
+Pour nettoyer les données, supprimez certaines colonnes qui sont inutiles pour le modèle. Pour ce faire :
 
-1. Hello de glisser **Project Columns** module dans la zone de dessin hello.
-2. Cliquez sur **sélecteur de colonne lancement** dans toospecify de volet de propriétés hello les colonnes que vous souhaitez toodrop.
+1. Faites glisser le module **Colonnes de projet** sur la zone de dessin.
+2. Cliquez sur **Lancer le sélecteur de colonne** dans le volet Propriétés pour spécifier les colonnes que vous souhaitez supprimer.
    ![Colonnes de projet][4]
 3. Excluez deux colonnes : CustomerAlternateKey et GeographyKey.
    ![Supprimer les colonnes inutiles][5]
 
-## <a name="3-build-hello-model"></a>3. Générer le modèle de hello
-Fractionnées hello données 80-20 : 80 % tootrain un modèle d’apprentissage et 20 % tootest hello modèle. Nous mettrons à utiliser des algorithmes de « Two-Class » hello pour ce problème de classification binaire.
+## <a name="3-build-the-model"></a>3. Générer le modèle
+Nous allons fractionner les données dans la proportion 80 et 20 : 80 % pour l’apprentissage d’un modèle Machine Learning et 20 % pour tester le modèle. Nous nous engageons à utiliser des algorithmes « À deux classes » pour ce problème de classification binaire.
 
-1. Hello de glisser **fractionnement** module dans la zone de dessin hello.
-2. Entrez 0,8 pour la Fraction de lignes dans le premier jeu de données sortie hello dans le volet de propriétés hello.
+1. Faites glisser le module **Fractionner** dans la zone de dessin.
+2. Entrez 0,8 comme Fraction de lignes dans le premier jeu de données du volet Propriétés.
    ![Fractionner les données en jeu d’apprentissage et de test][6]
-3. Hello de glisser **Two-Class Boosted Decision Tree** module dans la zone de dessin hello.
-4. Hello de glisser **Train Model** module dans hello canevas et spécifier les entrées de hello. Ensuite, cliquez sur **sélecteur de colonne lancement** dans le volet de propriétés hello.
+3. Faites glisser le module **Arbre de décision optimisé à deux classes** dans la zone de dessin.
+4. Faites glisser le module **Effectuer le traitement de données pour apprentissage du modèle** dans la zone de dessin et spécifiez les entrées. Cliquez sur l’option **Lancer le sélecteur de colonne** figurant dans le volet Propriétés.
    * Première entrée : algorithme ML.
-   * Deuxième entrée : algorithme hello tootrain des données sur.
-     ![Connexion du module Train Model de hello][7]
-5. Sélectionnez hello **BikeBuyer** colonne comme hello toopredict de colonne.
-   ![Sélectionnez la colonne toopredict][8]
+   * Deuxième entrée : données sur lesquelles essayer l’algorithme.
+     ![Connecter le module Former le modèle][7]
+5. Sélectionnez la colonne **BikeBuyer** comme colonne à prédire.
+   ![Sélectionner la colonne à prédire][8]
 
-## <a name="4-score-hello-model"></a>4. Modèle de score hello
-Maintenant, nous allez tester le fonctionne d’un modèle de hello sur les données de test. Nous allons comparer algorithme hello de notre choix avec un toosee autre algorithme qui offre de meilleures performances.
+## <a name="4-score-the-model"></a>4. Notation du modèle
+Maintenant, nous allons voir comment le modèle s’exécute sur les données de test. Nous allons comparer l’algorithme de notre choix avec un autre algorithme et voir celui qui fonctionne le mieux.
 
-1. Faites glisser **Score Model** module dans la zone de dessin hello.
-    Première entrée : la deuxième entrée du modèle objet d’un apprentissage : données de Test ![modèle hello de Score][9]
-2. Hello de glisser **Two-Class Bayes Point Machine** dans le canevas de l’expérience hello. Nous allons comparer le fonctionne de cet algorithme de comparaison toohello Two-Class Boosted Decision Tree.
-3. Copier et coller hello modules Train Model et le modèle de Score hello canevas.
-4. Hello de glisser **modèle Evaluate** module dans les algorithmes de hello deux toocompare hello canevas.
-5. **Exécutez** hello expérience.
-   ![Exécutez hello expérience][10]
-6. Cliquez sur le port de sortie hello bas hello du module de modèle Evaluate hello, puis cliquez sur visualiser.
+1. Faites glisser le module **Noter le modèle** dans la zone de dessin.
+    Première entrée : modèle formé Deuxième entrée : données de test ![Notation du modèle][9]
+2. Faites glisser **Machines de points Bayes à deux classes** dans la zone de dessin de l’expérience. Nous allons comparer comment cet algorithme fonctionne par rapport à l’arbre de décision optimisé à deux classes.
+3. Copiez et collez les modules de Former le modèle et le modèle Noter le modèle dans la zone de dessin.
+4. Faites glisser le module **Évaluer le modèle** module dans la zone de dessin pour comparer les deux algorithmes.
+5. **Exécutez** l’expérience.
+   ![Exécuter l’expérience][10]
+6. Cliquez sur le port de sortie situé au bas du module Évaluer le modèle, puis sélectionnez Visualiser.
    ![Visualiser les résultats de l’évaluation][11]
 
-les métriques Hello fournies sont courbe ROC hello, n’oubliez pas de précision diagramme et courbe de courbes d’élévation. En examinant ces métriques, nous pouvons voir ce premier modèle hello effectué mieux que hello deuxième. toolook à hello que hello premier modèle a prédit, cliquez sur le port de sortie du modèle de Score de hello, puis cliquez sur visualiser.
+Les mesures fournies sont la courbe ROC (caractéristiques du fonctionnement du récepteur), le diagramme de rappel de précision et la courbe d’élévation. En examinant ces mesures, nous pouvons voir que le premier modèle fonctionne mieux que le second. Pour regarder les prévisions du premier modèle, cliquez sur le port de sortie du modèle de notation, puis cliquez sur Visualiser.
 ![Visualiser les résultats de la notation][12]
 
-Vous verrez que deux colonnes supplémentaires ajoutées tooyour test dataset.
+Vous verrez deux colonnes supplémentaires ajoutées à votre groupe de données de test.
 
-* Les probabilités notées : probabilité que hello qu’un client est un acheteur potentiel.
-* Étiquettes évaluées : hello classification effectuée par modèle hello : acheteur de vélo (1) ou non (0). Ce seuil de probabilité pour l’étiquetage a la valeur too50 % et peut être ajusté.
+* Probabilités évaluées : probabilité qu’un client soit un acheteur potentiel de vélo.
+* Étiquette de marquage : classification effectuée par le modèle – acheteur de vélo (1) ou non (0). Ce seuil de probabilité pour l’étiquetage est défini à 50 % et peut être ajusté.
 
-Comparaison des colonnes de hello BikeBuyer (réel) avec hello Scored Labels (prédiction), vous pouvez voir le modèle de hello degré. Dans les étapes suivantes, vous pouvez utiliser cette prédictions toomake de modèle pour les nouveaux clients et publier ce modèle comme un service web ou écrire tooSQL de retour de résultats entrepôt de données.
+En comparant la colonne BikeBuyer (réelle) avec les étiquettes de marquage (prévision), vous pouvez voir comment le modèle a fonctionné. Au cours des opérations suivantes, vous pouvez utiliser ce modèle pour élaborer des prévisions pour les nouveaux clients et publier ce modèle en tant que service web ou écrire les résultats dans SQL Data Warehouse.
 
 ## <a name="next-steps"></a>Étapes suivantes
-toolearn plus sur la création de modèles, d’apprentissage prédictive font référence trop[tooMachine de présentation de formation sur Azure][Introduction tooMachine Learning on Azure].
+Pour en savoir plus sur la création de modèles Machine Learning prédictifs, reportez-vous à [Introduction à Machine Learning sur Azure][Introduction to Machine Learning on Azure].
 
 <!--Image references-->
 [1]: media/sql-data-warehouse-get-started-analyze-with-azure-machine-learning/img1_reader.png
@@ -144,6 +144,6 @@ toolearn plus sur la création de modèles, d’apprentissage prédictive font r
 
 <!--Article references-->
 [Azure Machine Learning studio]:https://studio.azureml.net/
-[Introduction tooMachine Learning on Azure]:https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
+[Introduction to Machine Learning on Azure]:https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
 [load sample data manually]: sql-data-warehouse-load-sample-databases.md
 [Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md

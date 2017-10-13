@@ -1,6 +1,6 @@
 ---
-title: "aaaLoad à partir de l’entrepôt de données objet blob Azure tooAzure | Documents Microsoft"
-description: "Découvrez comment les données tooload Azure toouse PolyBase stockage d’objets blob dans SQL Data Warehouse. Charger plusieurs tables à partir de données publics dans le schéma d’entrepôt de données Contoso Retail hello."
+title: "Charger à partir d’Azure Blob vers l’entrepôt de données Azure| Microsoft Docs"
+description: "Apprenez à utiliser PolyBase pour charger des données de stockage d’objets blob Azure dans SQL Data Warehouse. Chargez quelques tables à partir de données publiques dans le schéma d’entrepôt de données Contoso Retail."
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 4b4978ccefa4d55ff5c89fba84c5e705422ddbb7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2859c1144f72fd685af89f83024df1409902ab0c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="load-data-from-azure-blob-storage-into-sql-data-warehouse-polybase"></a>Charger les données de stockage d’objets blob Azure dans SQL Data Warehouse (PolyBase)
 > [!div class="op_single_selector"]
@@ -28,37 +28,37 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Utilisez PolyBase T-SQL commandes tooload les données et de stockage d’objets blob Azure dans Azure SQL Data Warehouse. 
+Utilisez PolyBase et les commandes T-SQL pour charger les données de stockage d’objets blob Azure dans Azure SQL Data Warehouse. 
 
-tookeep il simple, ce didacticiel charge deux tables à partir d’un objet Blob de stockage Azure publics dans le schéma d’entrepôt de données Contoso Retail hello. tooload hello jeu complet de données, exécutez l’exemple de hello [charge hello complète l’entrepôt de données Contoso Retail] [ Load hello full Contoso Retail Data Warehouse] à partir du référentiel de Microsoft SQL Server Samples hello.
+En quelques mots, ce didacticiel charge deux tables de stockage d’objets blob Azure public dans le schéma d’entrepôt de données Contoso Retail. Pour charger le jeu de données, exécutez l’exemple [Load the full Contoso Retail Data Warehouse][Load the full Contoso Retail Data Warehouse] (Charger l’ensemble de l’entrepôt de données Contoso Retail) à partir du référentiel d’exemples Microsoft SQL Server.
 
 Ce didacticiel vous apprendra à effectuer les opérations suivantes :
 
-1. Configurer tooload PolyBase depuis le stockage blob Azure
+1. Configurer PolyBase pour effectuer un chargement à partir du stockage d’objets blob Azure
 2. Charger des données publiques dans votre base de données
-3. Effectuer des optimisations issue de la charge de hello.
+3. Procéder à des optimisations une fois le chargement terminé
 
 ## <a name="before-you-begin"></a>Avant de commencer
-toorun ce didacticiel, vous avez besoin d’un compte Azure qui a déjà une base de données SQL Data Warehouse. Si vous n’en disposez pas, consultez la page [Créer un entrepôt de données SQL][Create a SQL Data Warehouse].
+Pour exécuter ce didacticiel, vous avez besoin d’un compte Azure qui possède déjà une base de données SQL Data Warehouse. Si vous n’en disposez pas, consultez la page [Créer un entrepôt de données SQL][Create a SQL Data Warehouse].
 
-## <a name="1-configure-hello-data-source"></a>1. Configurer la source de données hello
-PolyBase utilise l’emplacement de T-SQL des objets externes toodefine hello et les attributs de données externes de hello. définitions de l’objet externe Hello sont stockées dans l’entrepôt de données SQL. données Hello proprement dites sont stockées en externe.
+## <a name="1-configure-the-data-source"></a>1. Configurer la source de données
+PolyBase utilise des objets externes T-SQL pour définir l’emplacement et les attributs des données externes. Les définitions d’objet externe sont stockées dans SQL Data Warehouse. Les données elles-mêmes sont stockées en externe.
 
 ### <a name="11-create-a-credential"></a>1.1. Créer des informations d’identification
-**Ignorez cette étape** si vous chargez des données publiques de Contoso hello. Vous n’avez pas besoin données publiques de sécuriser l’accès toohello car il est déjà tooanyone accessible.
+**Ignorez cette étape** si vous chargez les données publiques de Contoso. Vous n’avez pas besoin d’un accès sécurisé aux données publiques, car ces dernières sont accessibles à tous.
 
-**N’ignorez pas cette étape** si vous utilisez ce didacticiel comme modèle pour le chargement de vos propres données. tooaccess des données via les informations d’identification, hello utilisation suivant toocreate une étendue de base de données d’informations d’identification de script et ensuite l’utiliser lors de la définition d’emplacement hello hello de source de données.
+**N’ignorez pas cette étape** si vous utilisez ce didacticiel comme modèle pour le chargement de vos propres données. Pour accéder aux données par le biais d’informations d’identification, utilisez le script suivant afin de créer des informations d’identification de niveau base de données, puis définissez l’emplacement de la source de données.
 
 ```sql
 -- A: Create a master key.
 -- Only necessary if one does not already exist.
--- Required tooencrypt hello credential secret in hello next step.
+-- Required to encrypt the credential secret in the next step.
 
 CREATE MASTER KEY;
 
 
 -- B: Create a database scoped credential
--- IDENTITY: Provide any string, it is not used for authentication tooAzure storage.
+-- IDENTITY: Provide any string, it is not used for authentication to Azure storage.
 -- SECRET: Provide your Azure storage account key.
 
 
@@ -70,9 +70,9 @@ WITH
 
 
 -- C: Create an external data source
--- TYPE: HADOOP - PolyBase uses Hadoop APIs tooaccess data in Azure blob storage.
+-- TYPE: HADOOP - PolyBase uses Hadoop APIs to access data in Azure blob storage.
 -- LOCATION: Provide Azure storage account name and blob container name.
--- CREDENTIAL: Provide hello credential created in hello previous step.
+-- CREDENTIAL: Provide the credential created in the previous step.
 
 CREATE EXTERNAL DATA SOURCE AzureStorage
 WITH (
@@ -82,10 +82,10 @@ WITH (
 );
 ```
 
-Ignorer toostep 2.
+Passez à l’étape 2.
 
-### <a name="12-create-hello-external-data-source"></a>1.2. Créer la source de données externe hello
-Utilisez cette [CREATE EXTERNAL DATA SOURCE] [ CREATE EXTERNAL DATA SOURCE] emplacement de hello toostore des données de hello et type hello de données de commande. 
+### <a name="12-create-the-external-data-source"></a>1.2. Créer la source de données externe
+Utilisez la commande [CREATE EXTERNAL DATA SOURCE][CREATE EXTERNAL DATA SOURCE] pour stocker l’emplacement des données et le type de données. 
 
 ```sql
 CREATE EXTERNAL DATA SOURCE AzureStorage_west_public
@@ -97,12 +97,12 @@ WITH
 ```
 
 > [!IMPORTANT]
-> Si vous choisissez toomake votre public de conteneurs de stockage blob azure, souvenez-vous qu’en tant que propriétaire de données hello vous serez facturé pour les données frais de sortie lorsque des données quittent le centre de données hello. 
+> Si vous choisissez de rendre publics vos conteneurs de stockage d’objets blob Azure, n’oubliez pas qu’en tant que propriétaire des données vous devez vous acquitter des frais d’acheminement lorsque des données quittent le centre de données. 
 > 
 > 
 
 ## <a name="2-configure-data-format"></a>2. Configurer le format des données
-les données de Hello sont stockées dans des fichiers texte dans le stockage blob Azure, et chaque champ est séparé par un délimiteur. Exécutez ce [CREATE EXTERNAL FILE FORMAT] [ CREATE EXTERNAL FILE FORMAT] format de hello toospecify de commande de données hello dans les fichiers de texte hello. Hello Contoso données n’est pas compressé et délimités de canal.
+Les données sont stockées dans des fichiers texte dans le stockage d’objets blob Azure, et chaque champ est séparé par un délimiteur. Exécutez cette commande [CREATE EXTERNAL FILE FORMAT][CREATE EXTERNAL FILE FORMAT] pour spécifier le format des données dans les fichiers texte. Les données Contoso ne sont pas compressées et elles sont séparées par des barres verticales.
 
 ```sql
 CREATE EXTERNAL FILE FORMAT TextFileFormat 
@@ -116,21 +116,21 @@ WITH
 );
 ``` 
 
-## <a name="3-create-hello-external-tables"></a>3. Créer des tables externes hello
-Maintenant que vous avez spécifié hello données source et formats de fichier, vous êtes prêt toocreate des tables externes hello. 
+## <a name="3-create-the-external-tables"></a>3. Créer les tables externes
+Maintenant que vous avez spécifié la source des données et le format de fichier, vous êtes prêt à créer les tables externes. 
 
-### <a name="31-create-a-schema-for-hello-data"></a>3.1. Créer un schéma pour les données de salutation.
-toocreate un Bonjour de toostore place Contoso des données dans votre base de données, créer un schéma.
+### <a name="31-create-a-schema-for-the-data"></a>3.1. Créez un schéma pour les données.
+Pour créer un emplacement de stockage des données Contoso dans votre base de données, créez un schéma.
 
 ```sql
 CREATE SCHEMA [asb]
 GO
 ```
 
-### <a name="32-create-hello-external-tables"></a>3.2. Créer des tables externes hello.
-Exécutez cette hello toocreate de script DimProduct et FactOnlineSales des tables externes. Nous essayons ici est définition des noms de colonnes et les types de données et les lier à l’emplacement de toohello et le format des fichiers de stockage d’objets blob Azure hello. définition de Hello est stockée dans l’entrepôt de données SQL et les données de salutation sont toujours en hello objet Blob de stockage Azure.
+### <a name="32-create-the-external-tables"></a>3.2. Créez les tables externes.
+Exécutez ce script pour créer les tables externes DimProduct et FactOnlineSales. Nous essayons ici de définir les noms de colonnes et les types de données, et de les lier à l’emplacement et au format des fichiers de stockage d’objets blob Azure. La définition est stockée dans SQL Data Warehouse et les données se trouvent toujours dans le stockage d’objets blob Azure.
 
-Hello **emplacement** paramètre est le dossier hello sous le dossier racine de hello Bonjour objet Blob de stockage Azure. Chaque table se trouve dans un dossier spécifique.
+Le paramètre **LOCATION** désigne le dossier qui se situe sous le dossier racine du stockage d’objets blob Azure. Chaque table se trouve dans un dossier spécifique.
 
 ```sql
 
@@ -215,23 +215,23 @@ WITH
 ;
 ```
 
-## <a name="4-load-hello-data"></a>4. Charger des données hello
-Il existe des données externes tooaccess de différentes façons.  Vous pouvez interroger les données directement à partir d’une table externe hello, charger les données de hello dans de nouvelles tables de base de données ou ajouter des tables de base de données tooexisting de données externes.  
+## <a name="4-load-the-data"></a>4. Chargement des données
+Il existe plusieurs façons d’accéder aux données externes.  Vous pouvez interroger les données directement à partir de la table externe, charger les données dans de nouvelles tables de base de données, ou ajouter des données externes à des tables de base de données existantes.  
 
 ### <a name="41-create-a-new-schema"></a>4.1. Créer un schéma
-CTAS crée une table qui contient des données.  Commencez par créer un schéma pour les données de contoso hello.
+CTAS crée une table qui contient des données.  Commencez par créer un schéma pour les données Contoso.
 
 ```sql
 CREATE SCHEMA [cso]
 GO
 ```
 
-### <a name="42-load-hello-data-into-new-tables"></a>4.2. Charger des données dans de nouvelles tables hello
-données tooload à partir d’Azure stockage d’objets blob et enregistrez-le dans une table à l’intérieur de votre base de données, utilisez hello [CREATE TABLE AS SELECT (Transact-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)] instruction. Chargement avec SACT tire parti hello fortement typée des tables externes, vous disposez de données de hello created.tooload simplement dans de nouvelles tables, utilisez une [SACT] [ CTAS] instruction par table. 
+### <a name="42-load-the-data-into-new-tables"></a>4.2. Charger les données dans de nouvelles tables
+Pour charger des données à partir d’Azure Blob Storage et pour les enregistrer dans une table au sein de votre base de données, utilisez l’instruction [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)]. Le chargement avec CTAS s’appuie sur les tables externes fortement typées que vous venez de créer. Pour charger les données dans de nouvelles tables, utilisez une instruction [CTAS][CTAS] par table. 
  
-SACT crée une nouvelle table et le remplit avec des résultats d’une instruction select hello. SACT définit hello nouvelle table toohave hello les mêmes colonnes et types de données comme résultats hello Hello select (instruction). Si vous sélectionnez toutes les colonnes hello à partir d’une table externe, la nouvelle table de hello sera un réplica de types de données et des colonnes de hello dans une table externe hello.
+CTAS crée une table et la remplit avec les résultats d’une instruction select. CTAS définit la nouvelle table de manière à proposer les mêmes colonnes et les mêmes types de données que les résultats de l’instruction select. Si vous sélectionnez toutes les colonnes d’une table externe, la nouvelle table est un réplica des colonnes et des types de données dans la table externe.
 
-Dans cet exemple, nous créons des dimension de hello et table de faits hello en tant que tables distribuées de hachage. 
+Dans cet exemple, nous créons la table de dimension et la table de faits qui joueront le rôle de tables distribuées par hachage. 
 
 ```sql
 SELECT GETDATE();
@@ -241,20 +241,20 @@ CREATE TABLE [cso].[DimProduct]            WITH (DISTRIBUTION = HASH([ProductKey
 CREATE TABLE [cso].[FactOnlineSales]       WITH (DISTRIBUTION = HASH([ProductKey]  ) ) AS SELECT * FROM [asb].[FactOnlineSales]        OPTION (LABEL = 'CTAS : Load [cso].[FactOnlineSales]        ');
 ```
 
-### <a name="43-track-hello-load-progress"></a>4.3 suivre la progression du chargement hello
-Vous pouvez suivre la progression de hello de votre charge à l’aide de vues de gestion dynamique (DMV). 
+### <a name="43-track-the-load-progress"></a>4.3 Suivre la progression du chargement
+Vous pouvez suivre la progression de votre chargement à l’aide des vues de gestion dynamique (DMV). 
 
 ```sql
--- toosee all requests
+-- To see all requests
 SELECT * FROM sys.dm_pdw_exec_requests;
 
--- toosee a particular request identified by its label
+-- To see a particular request identified by its label
 SELECT * FROM sys.dm_pdw_exec_requests as r
 WHERE r.[label] = 'CTAS : Load [cso].[DimProduct]             '
       OR r.[label] = 'CTAS : Load [cso].[FactOnlineSales]        '
 ;
 
--- tootrack bytes and files
+-- To track bytes and files
 SELECT
     r.command,
     s.request_id,
@@ -278,9 +278,9 @@ ORDER BY
 ```
 
 ## <a name="5-optimize-columnstore-compression"></a>5. Optimiser la compression columnstore
-Par défaut, SQL Data Warehouse stocke la table de hello en tant qu’un index cluster columnstore. Après un chargement, certains hello lignes de données ne peuvent pas être compressé au hello columnstore.  Cela peut être dû à diverses raisons. toolearn, voir [gérer les index columnstore][manage columnstore indexes].
+Par défaut, SQL Data Warehouse stocke la table comme un index columnstore en cluster. Après un chargement, certaines lignes de données peuvent ne pas être compressées dans le columnstore.  Cela peut être dû à diverses raisons. Pour plus d’informations, consultez [Gérer les index Columnstore][manage columnstore indexes].
 
-performances des requêtes toooptimize et la compression de columnstore après un chargement, reconstruire hello table tooforce hello columnstore index toocompress toutes les lignes hello. 
+Pour optimiser les performances des requêtes et la compression du columnstore après un chargement, reconstruisez la table afin de forcer l’index columnstore à compresser toutes les lignes. 
 
 ```sql
 SELECT GETDATE();
@@ -290,14 +290,14 @@ ALTER INDEX ALL ON [cso].[DimProduct]               REBUILD;
 ALTER INDEX ALL ON [cso].[FactOnlineSales]          REBUILD;
 ```
 
-Pour plus d’informations sur la gestion des index columnstore, consultez hello [gérer les index columnstore] [ manage columnstore indexes] l’article.
+Pour plus d’informations sur la maintenance des index Columnstore, consultez l’article [Gérer les index Columnstore][manage columnstore indexes].
 
 ## <a name="6-optimize-statistics"></a>6. Optimiser les statistiques
-Il s’agit des statistiques de colonne unique toocreate meilleures immédiatement après un chargement. Les statistiques offrent plusieurs possibilités. Par exemple, si vous créez des statistiques de colonnes uniques sur toutes les colonnes qu’il peut prendre un toorebuild beaucoup de temps toutes les statistiques de hello. Si vous savez que certaines colonnes ne vont pas toobe dans les prédicats de requête, vous pouvez ignorer la création des statistiques sur les colonnes.
+Il est préférable de créer des statistiques sur une colonne immédiatement après un chargement. Les statistiques offrent plusieurs possibilités. Par exemple, si vous créez des statistiques sur une colonne pour chaque colonne, il faudra peut-être beaucoup de temps pour reconstruire toutes les statistiques. S’il est certain que des colonnes ne se trouveront pas dans les prédicats de requête, vous pouvez ignorer la création des statistiques sur ces colonnes.
 
-Si vous décidez de toocreate les statistiques de colonnes uniques sur chaque colonne de chaque table, vous pouvez utiliser les exemples de code de procédure stockée hello `prc_sqldw_create_stats` Bonjour [statistiques] [ statistics] l’article.
+Si vous décidez de créer des statistiques sur une colonne pour chaque colonne de chaque table, vous pouvez utiliser l’exemple de code de procédure stockée `prc_sqldw_create_stats` dans l’article portant sur les [statistiques][statistics].
 
-Bonjour à l’exemple suivant est un bon point de départ pour la création de statistiques. Il crée des statistiques de colonnes uniques sur chaque colonne de table de dimension hello et sur chaque colonne de jointure dans des tables de faits hello. Vous pouvez toujours ajouter des colonnes de table de faits unique ou plusieurs colonnes de statistiques tooother ultérieurement.
+L’exemple suivant est un bon point de départ pour la création de statistiques. Il permet de créer des statistiques sur une colonne pour chaque colonne de la table de dimension, et chaque colonne de jointure des tables de faits. Vous pouvez toujours ajouter ultérieurement des statistiques sur une ou plusieurs colonnes dans d’autres colonnes de table de faits.
 
 ```sql
 CREATE STATISTICS [stat_cso_DimProduct_AvailableForSaleDate] ON [cso].[DimProduct]([AvailableForSaleDate]);
@@ -344,7 +344,7 @@ CREATE STATISTICS [stat_cso_FactOnlineSales_StoreKey] ON [cso].[FactOnlineSales]
 ## <a name="achievement-unlocked"></a>Et voilà !
 Vous avez correctement chargé les données publiques dans Azure SQL Data Warehouse. Bon travail !
 
-Vous pouvez maintenant démarrer l’interrogation de tables hello à l’aide de requêtes hello suivante :
+Vous pouvez maintenant interroger les tables à l’aide de requêtes comme celle-ci :
 
 ```sql
 SELECT  SUM(f.[SalesAmount]) AS [sales_by_brand_amount]
@@ -355,7 +355,7 @@ GROUP BY p.[BrandName]
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-tooload hello complète Contoso l’entrepôt de données de vente au détail des données, utiliser un script de hello dans pour obtenir des conseils de développement plus, consultez [vue d’ensemble du développement de SQL Data Warehouse][SQL Data Warehouse development overview].
+Pour charger l’ensemble des données de l’entrepôt de données Contoso Retail, utilisez le script. Pour d’autres conseils de développement, consultez [Vue d’ensemble sur le développement SQL Data Warehouse][SQL Data Warehouse development overview].
 
 <!--Image references-->
 
@@ -377,4 +377,4 @@ tooload hello complète Contoso l’entrepôt de données de vente au détail de
 
 <!--Other Web references-->
 [Microsoft Download Center]: http://www.microsoft.com/download/details.aspx?id=36433
-[Load hello full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md
+[Load the full Contoso Retail Data Warehouse]: https://github.com/Microsoft/sql-server-samples/tree/master/samples/databases/contoso-data-warehouse/readme.md

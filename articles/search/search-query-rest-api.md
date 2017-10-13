@@ -1,6 +1,6 @@
 ---
-title: "AAA » interroger un index (API REST - Azure Search) | Documents Microsoft »"
-description: "Générer une requête de recherche dans Azure search et utilisez les paramètres toofilter et tri recherche résultats de la recherche."
+title: Interroger un index (API REST - Recherche Azure) | Microsoft Docs
+description: "Créez une requête de recherche dans Azure Search et utilisez des paramètres de recherche pour filtrer et trier les résultats de recherche."
 services: search
 documentationcenter: 
 manager: jhubbard
@@ -13,13 +13,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 01/12/2017
 ms.author: ashmaka
-ms.openlocfilehash: 2f12238b8f4b045f536489cfc8766fb68307bbe2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 49062bec233ad35cd457f9665fa94c1855343582
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="query-your-azure-search-index-using-hello-rest-api"></a>Interroger votre index Azure Search à l’aide des API REST de hello
+# <a name="query-your-azure-search-index-using-the-rest-api"></a>Interroger votre index Azure Search à l’aide de l’API REST
 > [!div class="op_single_selector"]
 >
 > * [Vue d'ensemble](search-query-overview.md)
@@ -29,37 +29,37 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-Cet article explique comment un index à l’aide de tooquery hello [API REST Azure Search](https://docs.microsoft.com/rest/api/searchservice/).
+Cet article explique comment interroger un index à l’aide de [l’API REST de la Recherche Azure](https://docs.microsoft.com/rest/api/searchservice/).
 
 Avant de commencer cette procédure, vous devez déjà avoir [créé un index de Recherche Azure](search-what-is-an-index.md) et y avoir [ajouté des données](search-what-is-data-import.md). Pour des informations générales, consultez l’article [Fonctionnement de la recherche en texte intégral dans la recherche Azure](search-lucene-query-architecture.md).
 
 ## <a name="identify-your-azure-search-services-query-api-key"></a>Identifier la clé API de requête de votre service Azure Search
-Un composant essentiel de chaque opération de recherche sur hello API REST Azure Search est hello *clé api* qui a été généré pour le service hello vous avez configuré. Avoir une clé valide établit l’approbation, sur une base de chaque demande, entre la demande d’application de hello envoi hello et service hello qui prend en charge.
+La *clé API* générée pour le service que vous avez configuré est un composant essentiel de chaque opération de recherche exécutée sur l’API REST Azure Search. L’utilisation d’une clé valide permet d’établir, en fonction de chaque demande, une relation de confiance entre l’application qui envoie la demande et le service qui en assure le traitement.
 
-1. toofind les clés de votre service api, vous pouvez vous connecter toohello [portail Azure](https://portal.azure.com/)
-2. Panneau du service tooyour accédez Azure Search
-3. Cliquez sur icône « Clés » de hello
+1. Pour accéder aux clés API de votre service, vous pouvez vous connecter au [portail Azure](https://portal.azure.com/)
+2. Accédez au panneau de votre service Azure Search
+3. Cliquez sur l’icône « Clés »
 
 Votre service inclut des *clés d’administration* et des *clés de requête*.
 
-* Vos sites principaux et secondaires *clés d’administration* accorder des droits d’accès complets tooall opérations, y compris hello capacité toomanage hello service, créer et supprimer des index, indexeurs et sources de données. Il existe deux clés afin que vous puissiez continuer clé secondaire du hello toouse si vous décidez de tooregenerate hello primary key et vice versa.
-* Votre *clés de requête* accorder l’accès en lecture seule tooindexes et des documents, et sont des applications distribuées généralement tooclient qui émettent des demandes de recherche.
+* Les *clés d’administration* principales et secondaires vous accordent des droits d’accès complets à toutes les opérations, avec notamment la possibilité de gérer le service ou de créer et supprimer des index, des indexeurs et des sources de données. Deux clés sont à votre disposition afin que vous puissiez continuer à utiliser la clé secondaire si vous décidez de régénérer la clé primaire et inversement.
+* Vos *clés de requête* vous accordent un accès en lecture seule aux index et documents ; elles sont généralement distribuées aux applications clientes qui émettent des demandes de recherche.
 
-Pour des raisons de hello d’interrogation d’un index, vous pouvez utiliser un de vos clés de requête. Vos clés d’administration peuvent également être utilisés pour les requêtes, mais vous devez utiliser une clé de requête dans votre code d’application, comme cela suit mieux hello [principe de privilège minimum](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
+Dans le cadre de l’interrogation d’un index, vous pouvez utiliser l’une de vos clés de requête. Vos clés d’administration peuvent également vous servir pour exécuter des requêtes, mais il est recommandé d’utiliser une clé de requête dans votre code d’application, car cette approche respecte davantage le [principe du moindre privilège](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 
 ## <a name="formulate-your-query"></a>Formuler votre requête
-Il existe deux façons de trop[rechercher votre index à l’aide des API REST de hello](https://docs.microsoft.com/rest/api/searchservice/Search-Documents). Une façon consiste tooissue une requête HTTP POST où vos paramètres de requête sont définis dans un objet JSON dans le corps de la demande hello. Hello autre façon est tooissue une requête HTTP GET dans lequel vos paramètres de requête sont définis dans l’URL de demande hello. POST a plusieurs [assouplie limites](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) taille hello de paramètres de requête que GET. Pour cette raison, nous vous recommandons d’utiliser POST, à moins que la situation justifie l’utilisation de GET.
+Deux méthodes permettent d’effectuer une [recherche dans un index à l’aide de l’API REST](https://docs.microsoft.com/rest/api/searchservice/Search-Documents). L’une consiste à émettre une requête HTTP POST, dans laquelle vos paramètres de requête sont définis dans un objet JSON contenu dans le corps de la requête. L’autre consiste à émettre une requête HTTP GET, dans laquelle vos paramètres de requête seront définis à l’intérieur de l’URL de requête. Notez que les limites en matière de taille des paramètres de requête sont [plus souples](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) pour la méthode POST que pour la méthode GET. Pour cette raison, nous vous recommandons d’utiliser POST, à moins que la situation justifie l’utilisation de GET.
 
-POST ou GET, vous devez tooprovide votre *nom du service*, *nom de l’index*et hello approprié *version de l’API* (version actuelle de l’API hello est `2016-09-01` au moment de hello de la publication de ce document) Bonjour URL de demande. Pour obtenir, hello *chaîne de requête* hello fin de l’URL de hello est où vous fournir les paramètres de requête hello. Voir ci-dessous pour le format d’URL hello :
+Pour les méthodes POST et GET, vous devez indiquer dans l’URL de la demande le *nom de votre service*, le *nom de l’index* ainsi que la *version d’API* appropriée (la version actuelle de l’API est celle du `2016-09-01` au moment de la publication de ce document). Pour la méthode GET, vous renseignez les paramètres de requête au niveau de la *chaîne de requête* à la fin de l’URL. Voici le format URL à utiliser :
 
     https://[service name].search.windows.net/indexes/[index name]/docs?[query string]&api-version=2016-09-01
 
-Bonjour format pour POST est hello identiques, mais uniquement avec api-version dans les paramètres de chaîne de requête hello.
+La méthode POST suit un format identique, mais seule la version d’API figure dans les paramètres de chaîne de requête.
 
 #### <a name="example-queries"></a>Exemples de requêtes
 Voici quelques exemples de requêtes effectuées sur un index nommé « hotels ». Ces requêtes sont présentées aux formats GET et POST.
 
-Rechercher les index tout entier hello hello terme « budget » et de retourner uniquement hello `hotelName` champ :
+Rechercher le terme « budget » dans la totalité de l’index et retourner uniquement le champ `hotelName` :
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=budget&$select=hotelName&api-version=2016-09-01
@@ -71,7 +71,7 @@ POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-ve
 }
 ```
 
-Appliquer un hôtels de toofind filtre toohello index moins chère que 150 $ par nuit et retourner hello `hotelId` et `description`:
+Appliquer un filtre à l’index pour trouver des hôtels à moins de 150 $ la nuit et retourner les champs `hotelId` et `description` :
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=*&$filter=baseRate lt 150&$select=hotelId,description&api-version=2016-09-01
@@ -84,7 +84,7 @@ POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-ve
 }
 ```
 
-Index de recherche hello entière, order by, un champ spécifique (`lastRenovationDate`) dans l’ordre décroissant, hello deux premiers résultats, de n’afficher que `hotelName` et `lastRenovationDate`:
+Effectuer une recherche dans l’ensemble de l’index, appliquer un tri sur un champ spécifique (`lastRenovationDate`) dans l’ordre décroissant, retenir les deux premiers résultats et afficher uniquement les champs `hotelName` et `lastRenovationDate` :
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=*&$top=2&$orderby=lastRenovationDate desc&$select=hotelName,lastRenovationDate&api-version=2016-09-01
@@ -104,11 +104,11 @@ Maintenant que vous avez formulé votre requête dans l’URL (pour GET) ou dans
 #### <a name="request-and-request-headers"></a>Requête et en-têtes de requête
 Vous devez définir deux en-têtes de requête pour GET, ou trois en-têtes pour POST :
 
-1. Hello `api-key` en-tête doit être défini de clé de requête toohello trouvé à l’étape I ci-dessus. Vous pouvez également utiliser une clé d’administration en tant que hello `api-key` en-tête, mais il est recommandé d’utiliser une clé de requête car elle exclusivement accorde l’accès en lecture seule tooindexes et des documents.
-2. Hello `Accept` en-tête doit être défini trop`application/json`.
-3. Pour valider uniquement, hello `Content-Type` en-tête doit également être défini trop`application/json`.
+1. L’en-tête `api-key` doit être défini sur la clé de requête obtenue à l’étape I ci-dessus. Vous pouvez également utiliser une clé d’administration en tant qu’en-tête `api-key`, mais il est recommandé d’utiliser une clé de requête pour pouvoir obtenir exclusivement un accès en lecture seule aux index et aux documents.
+2. L’en-tête `Accept` doit être défini sur `application/json`.
+3. Pour la méthode POST uniquement, l’en-tête `Content-Type` doit également être défini sur `application/json`.
 
-Voir ci-dessous pour un HTTP GET demande toosearch hello « hôtels » index à l’aide de hello API REST Azure Search à l’aide d’une requête simple qui recherche le terme hello « motel » :
+L’exemple ci-dessous illustre une requête HTTP GET permettant d’effectuer une recherche sur l’index « hotels » à l’aide de l’API REST de la Recherche Azure, en utilisant une simple requête portant sur la recherche du terme « motel » :
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=motel&api-version=2016-09-01
@@ -116,7 +116,7 @@ Accept: application/json
 api-key: [query key]
 ```
 
-Voici hello même exemple de requête, cette fois à l’aide de HTTP POST :
+Voici le même exemple de requête, cette fois à l’aide de HTTP POST :
 
 ```
 POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2016-09-01
@@ -129,7 +129,7 @@ api-key: [query key]
 }
 ```
 
-Une demande de requête réussie génère un Code d’état de `200 OK` et résultats de la recherche hello sont retournés en tant que JSON dans le corps de la réponse hello. Voici le hello résultats pour hello au-dessus de requête ressemble en supposant que l’index de « hôtels » de hello est remplie avec les données d’exemple hello dans [importation de données à l’aide d’Azure Search hello API REST](search-import-data-rest-api.md) (Notez que hello JSON a été mis en forme par souci de clarté).
+Une demande de requête réussie génère un code d’état `200 OK` et les résultats de recherche sont retournés au format JSON dans le corps de la réponse. Voici les résultats obtenus pour la requête ci-dessus, en supposant que l’index « hotels » contient les exemples de données fournis dans l’article [Importer des données dans Azure Search à l’aide de l’API REST](search-import-data-rest-api.md) (notez que JSON a été formaté pour plus de clarté).
 
 ```JSON
 {
@@ -162,4 +162,4 @@ Une demande de requête réussie génère un Code d’état de `200 OK` et résu
 }
 ```
 
-toolearn plus, visitez section « Réponse » hello [recherche de Documents](https://docs.microsoft.com/rest/api/searchservice/Search-Documents). Pour plus d’informations sur les autres codes d’état HTTP pouvant être renvoyés en cas d’échec, consultez la page [Codes d’état HTTP (Azure Search)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes).
+Pour plus d’informations, consultez la section « Réponse » de la page [Rechercher dans des documents](https://docs.microsoft.com/rest/api/searchservice/Search-Documents). Pour plus d’informations sur les autres codes d’état HTTP pouvant être renvoyés en cas d’échec, consultez la page [Codes d’état HTTP (Azure Search)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes).

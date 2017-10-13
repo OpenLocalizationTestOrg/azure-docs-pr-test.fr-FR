@@ -1,6 +1,6 @@
 ---
-title: aaaAzure CosmosDB Table API .NET SDK & ressources | Documents Microsoft
-description: "Découvrez les hello API de Table CosmosDB Azure, y compris les dates de publication, les dates de retrait et les modifications apportées entre chaque version."
+title: "Kit de développement logiciel (SDK) et ressources de l’API .NET Table Azure Cosmos DB | Microsoft Docs"
+description: "Découvrez l’API Table Azure Cosmos DB, notamment les dates de lancement, les dates de suppression et les modifications apportées entre chaque version."
 services: cosmos-db
 documentationcenter: .net
 author: rnagpal
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 5217f53274874489d3f10ed1ccae3330fdf91678
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7d641d4089f8bce86633b7c476f10617bc642e2b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-cosmos-db-table-net-api-download-and-release-notes"></a>API .NET Table Azure Cosmos DB : Téléchargement et notes de publication
 
@@ -27,8 +27,8 @@ ms.lasthandoff: 10/06/2017
 |---|---|
 |**Téléchargement du Kit de développement logiciel (SDK)**|[NuGet](https://aka.ms/acdbtablenuget)|
 |**Documentation de l’API**|[Documentation de référence sur l’API .NET](https://aka.ms/acdbtableapiref)|
-|**Démarrage rapide**|[Azure Cosmos DB : Générer une application avec .NET et hello API de Table](https://aka.ms/acdbtnetqs)|
-|**Didacticiel**|[Azure CosmosDB : Créer un conteneur avec hello API Graph](tutorial-develop-graph-dotnet.md)|
+|**Démarrage rapide**|[Azure Cosmos DB : Créer une application avec .NET et l’API Table](https://aka.ms/acdbtnetqs)|
+|**Didacticiel**|[Azure Cosmos DB : Créer un conteneur avec l’API Graph](tutorial-develop-graph-dotnet.md)|
 |**Infrastructure actuellement prise en charge**|[Microsoft .NET Framework 4.5](https://www.microsoft.com/download/details.aspx?id=30653)|
 
 ## <a name="release-notes"></a>Notes de publication
@@ -36,12 +36,12 @@ ms.lasthandoff: 10/06/2017
 * Préversion initiale.
 
 ## <a name="release--retirement-dates"></a>Dates de lancement et de suppression
-Microsoft enverra une notification au moins **12 mois** avant la mise hors service d’un kit de développement dans la version plus récente/prise en charge ordre toosmooth hello transition tooa.
+Microsoft fournira une notification au moins **12 mois** avant le retrait d’un Kit de développement logiciel (SDK) pour faciliter la transition vers une version plus récente/prise en charge.
 
-Nouvelles fonctionnalités et les fonctionnalités et les optimisations sont ajoutées uniquement toohello actuel SDK, par conséquent il est recommandé que vous toohello mise à niveau toujours la dernière SDK version dès que possible. 
+Les nouvelles fonctionnalités et fonctions, et les optimisations sont uniquement ajoutées au Kit SDK actuel. Par conséquent, il est recommandé de toujours passer à la dernière version du SDK dès que possible. 
 
-N’importe quel tooAzure demande Cosmos de base de données à l’aide d’un kit de développement logiciel mis hors service est rejetée par le service de hello.
+Toute requête envoyée à Azure Cosmos DB qui utilise un SDK supprimé est rejetée par le service.
 
 
 ## <a name="see-also"></a>Voir aussi
-toolearn en savoir plus sur hello API de Table de base de données Azure Cosmos, consultez [Introduction tooAzure Cosmos DB : API de Table](table-introduction.md). 
+Pour en savoir plus sur l’API Table Azure Cosmos DB, consultez [Présentation d’Azure Cosmos DB : API Table](table-introduction.md). 

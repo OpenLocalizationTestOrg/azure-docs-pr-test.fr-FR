@@ -1,6 +1,6 @@
 ---
-title: "hello d’aaaDownload Azure SDK pour PHP"
-description: "Découvrez comment toodownload et installation Bonjour Azure SDK pour PHP."
+title: "Téléchargement du Kit de développement logiciel (SDK) Azure pour PHP"
+description: "Découvrez comment télécharger et installer le Kit de développement logiciel (SDK) Azure pour PHP."
 documentationcenter: php
 services: app-service\web
 author: allclark
@@ -14,41 +14,41 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 06/01/2016
 ms.author: allclark;yaqiyang
-ms.openlocfilehash: 94f56fc4f91bb175c08b9f7a43cb221c827694a8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fd3d28b133ef8e646f5c2f1c1127f654daa61b95
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="download-hello-azure-sdk-for-php"></a>Télécharger hello Azure SDK pour PHP
+# <a name="download-the-azure-sdk-for-php"></a>Téléchargement du Kit de développement logiciel (SDK) Azure pour PHP
 ## <a name="overview"></a>Vue d'ensemble
-Hello Azure SDK pour PHP inclut des composants qui vous permettent de toodevelop, déployer et gérer des applications PHP pour Azure. Hello Azure SDK pour PHP comprend des éléments suivants de hello :
+Le Kit de développement logiciel (SDK) Azure pour PHP inclut des composants qui vous permettent de développer, de déployer et de gérer des applications PHP pour Azure. Il inclut plus précisément les éléments suivants :
 
-* **Hello des bibliothèques clientes PHP pour Azure**. L'interface de ces bibliothèques de classes permet d'accéder aux fonctionnalités Azure, telles que les services de gestion des données et les services cloud.  
-* **Hello Interface de ligne de commande Azure pour Mac, Linux et Windows (Azure CLI)**. Cet ensemble de commandes permet de déployer et de gérer des services Azure, tels que Sites Web Azure et Azure Virtual Machines. Hello travail CLI d’Azure sur n’importe quelle plateforme, notamment Windows, Linux et Mac.
+* **Bibliothèques clientes PHP pour Azure**. L'interface de ces bibliothèques de classes permet d'accéder aux fonctionnalités Azure, telles que les services de gestion des données et les services cloud.  
+* **Interface de ligne de commande Azure pour Mac, Linux et Windows (Azure CLI)**. Cet ensemble de commandes permet de déployer et de gérer des services Azure, tels que Sites Web Azure et Azure Virtual Machines. L’interface de ligne de commande Azure fonctionne sur toutes les plateformes, dont Mac, Linux et Windows.
 * **Azure PowerShell (Windows uniquement)**. Cet ensemble de cmdlets PowerShell permet de déployer et de gérer les services Azure, tels que Cloud Services et Virtual Machines.
-* **Hello émulateurs Azure (Windows uniquement)**. émulateurs de calcul et de stockage Hello sont les émulateurs locaux de services de cloud computing et des services de gestion des données qui vous permettent de tootest une application localement. les émulateurs Azure Hello s’exécutant sur Windows uniquement.
+* **Émulateurs Azure (Windows uniquement)**. Les émulateurs de stockage et de calcul sont des émulateurs locaux des services cloud et de gestion des données qui vous permettent de tester une application localement. Les émulateurs Azure fonctionnent uniquement sur Windows.
 
-les sections de Hello ci-dessous décrivent comment toodownload et installez hello composants décrits ci-dessus.
+Les sections ci-dessous présentent les procédures de téléchargement et d'installation des composants décrits plus haut.
 
-Hello instructions de cette rubrique supposent que vous avez [PHP] [ install-php] installé.
+Les instructions de cette rubrique partent du principe que [PHP][install-php] est installé.
 
 > [!NOTE]
-> Vous devez disposer de PHP 5.5 ou les bibliothèques clientes de supérieur toouse hello PHP pour Azure.
+> Vous devez disposer de PHP 5.5 ou d’une version supérieure pour utiliser les bibliothèques clientes PHP pour Azure.
 > 
 > 
 
 ## <a name="php-client-libraries-for-azure"></a>Bibliothèques clientes PHP pour Azure
-les bibliothèques clientes Hello PHP pour Azure fournissent une interface pour l’accès aux fonctionnalités Azure, telles que les services de gestion de données et services, à partir de n’importe quel système d’exploitation cloud. Ces bibliothèques peuvent être installés via hello compositeur.
+Les bibliothèques clientes PHP pour Azure fournissent une interface permettant d'accéder aux fonctionnalités Azure, telles que les services cloud et de gestion des données à partir d'un système d'exploitation. Ces bibliothèques peuvent être installées via le compositeur.
 
-Pour plus d’informations sur la façon dont toouse hello PHP les bibliothèques clientes pour Azure, consultez [comment tooUse hello Service Blob][blob-service], [comment tooUse hello Service de Table] [ table-service] et [comment tooUse hello Service file d’attente][queue-service].
+Pour plus d’informations sur l’utilisation des bibliothèques clientes PHP pour Azure, consultez les pages [Utilisation du service BLOB][blob-service], [Utilisation du service de Table][table-service] et [Utilisation du service de File d’attente][queue-service].
 
 ### <a name="install-via-composer"></a>Installation via Composer
 1. [Installez Git][install-git].
 
-    > [AZURE.NOTE] Sous Windows, vous devez la variable d’environnement PATH tooadd hello Git tooyour exécutable.
+    > [AZURE.NOTE] Sous Windows, vous devez aussi ajouter l’exécutable Git à votre variable d’environnement PATH.
 
-1. Créez un fichier nommé **composer.json** hello racine de votre projet et ajouter hello suivant tooit de code :
+1. Créez un fichier nommé **composer.json** à la racine de votre projet et ajoutez-y le code suivant :
    
         {
             "require": {
@@ -61,17 +61,17 @@ Pour plus d’informations sur la façon dont toouse hello PHP les bibliothèque
         php composer.phar install
 
 ## <a name="azure-powershell-and-azure-emulators"></a>Azure PowerShell et émulateurs Azure
-Azure PowerShell est un ensemble de cmdlets PowerShell permettant de déployer et de gérer les services Azure, tels que Cloud Services et Virtual Machines. les émulateurs Azure Hello sont les émulateurs de services de cloud computing et des services de gestion des données qui vous permettent de tootest une application localement. Ces composants sont pris en charge uniquement par Windows.
+Azure PowerShell est un ensemble de cmdlets PowerShell permettant de déployer et de gérer les services Azure, tels que Cloud Services et Virtual Machines. Les émulateurs de stockage Azure sont des émulateurs des services cloud et de gestion des données qui vous permettent de tester une application localement. Ces composants sont pris en charge uniquement par Windows.
 
-Hello recommandée tooinstall Azure PowerShell et hello émulateurs Azure est toouse hello [Microsoft Web Platform Installer][download-wpi]. Notez que vous pouvez également choisir tooinstall autres composants de développement, tels que PHP, SQL Server, hello Microsoft Drivers for SQL Server pour PHP et WebMatrix.
+Pour installer Azure PowerShell et les émulateurs Azure, il est recommandé d’utiliser [Microsoft Web Platform Installer][download-wpi]. Notez que vous pouvez également installer d'autres composants de développement, tels que PHP, SQL Server, les pilotes Microsoft pour SQL Server pour PHP et WebMatrix.
 
-Pour plus d’informations sur la façon toouse Azure PowerShell, consultez [comment tooUse Azure PowerShell][powershell-tools].
+Pour plus d’informations sur l’utilisation d’Azure PowerShell, consultez la page [Utilisation d’Azure PowerShell][powershell-tools].
 
 ## <a name="azure-cli"></a>Interface de ligne de commande Azure
-Hello CLI d’Azure est un ensemble de commandes pour déployer et gérer des services Azure, tels que les sites Web Azure et les Machines virtuelles Azure. Pour plus d’informations sur l’installation du CLI d’Azure, consultez [installation Bonjour Azure CLI](cli-install-nodejs.md).
+L’interface de ligne de commande Azure est un ensemble de commandes permettant de déployer et de gérer des services Azure, tels que Sites Web Azure et Azure Virtual Machines. Pour plus d'informations sur l'installation de l’interface de ligne de commande Azure, consultez [Installer l’interface de ligne de commande Azure](cli-install-nodejs.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations, consultez hello [centre de développement PHP](/develop/php/).
+Pour plus d’informations, consultez le [Centre pour développeurs PHP](/develop/php/).
 
 [install-php]: http://www.php.net/manual/en/install.php
 [composer-github]: https://github.com/composer/composer

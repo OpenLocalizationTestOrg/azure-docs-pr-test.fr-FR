@@ -1,6 +1,6 @@
 ---
-title: "aaaComparison de Azure sur les encodeurs de média à la demande | Documents Microsoft"
-description: "Cette rubrique compare les fonctionnalités de codage hello de ** Media Encoder Standard ** et ** Media Encoder Premium Workflow **."
+title: "Comparaison d’encodeurs multimédia à la demande Azure | Microsoft Docs"
+description: "Cette section compare les fonctionnalités d’encodage de **Media Encoder Standard** et de **Media Encoder Premium Workflow**."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: ee04ad10d8e7c5f4f3c6e91e9b7679c2aba82c99
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3bba48d5425ae47c72aca893af7c11fe270c2929
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="comparison-of-azure-on-demand-media-encoders"></a>Comparaison d’encodeurs multimédia à la demande Azure
 
-Cette rubrique compare les fonctionnalités de codage hello de **Media Encoder Standard** et **Workflow d’encodeur multimédia Premium**.
+Cette rubrique compare les fonctionnalités d’encodage de **Media Encoder Standard** et de **Media Encoder Premium Workflow**.
 
 ## <a name="video-and-audio-processing-capabilities"></a>Fonctionnalités de traitement vidéo et audio
 
-Hello tableau suivant compare les fonctionnalités hello entre Media Encoder Standard (MES) et Media Encoder Premium Workflow (MEPW). 
+Le tableau suivant compare les fonctionnalités de Media Encoder Standard (MES) et Media Encoder Premium Workflow (MEPW). 
 
 |Fonctionnalité|Media Encoder Standard|Media Encoder Premium Workflow|
 |---|---|---|
-|Appliquer une logique conditionnelle lors de l’encodage<br/>(par exemple, si une entrée hello est HD, puis encoder audio 5.1)|Non|Oui|
+|Appliquer une logique conditionnelle lors de l’encodage<br/>(par exemple, si l’entrée est en HD, encodez le type audio 5.1)|Non|Oui|
 |Sous-titres|Non|[Oui](media-services-premium-workflow-encoder-formats.md#closed_captioning)|
 |[Correction professionnelle du niveau sonore Dolby®](http://www.dolby.com/us/en/technologies/dolby-professional-loudness-solutions.pdf)<br/> avec Dialogue Intelligence™|Non|Oui|
 |Désentrelacement, inverse telecine|De base|Qualité de diffusion|
@@ -44,8 +44,8 @@ Hello tableau suivant compare les fonctionnalités hello entre Media Encoder Sta
 ## <a id="billing"></a>Compteur de facturation utilisé par chaque encodeur
 | Nom du processeur multimédia | Tarification applicable | Remarques |
 | --- | --- | --- |
-| **Media Encoder Standard** |ENCODEUR |Encodage de tâches seront facturés en fonction de la durée totale de hello, en minutes, de tous les fichiers de support hello produits sous forme de sortie, au taux hello spécifié [ici][1], sous la colonne d’encodeur hello. |
-| **Media Encoder Premium Workflow** |ENCODEUR PREMIUM |Encodage de tâches seront facturés en fonction de la durée totale de hello, en minutes, de tous les fichiers de support hello produits sous forme de sortie, au taux hello spécifié [ici][1], sous la colonne d’encodeur PREMIUM hello. |
+| **Media Encoder Standard** |ENCODEUR |Les tâches d’encodage seront facturées en fonction de la durée totale, en minutes, de tous les fichiers multimédias produits, au débit spécifié [ici][1], sous la colonne ENCODEUR. |
+| **Media Encoder Premium Workflow** |ENCODEUR PREMIUM |Les tâches d’encodage seront facturées en fonction de la durée totale, en minutes, de tous les fichiers multimédias produits, au débit spécifié [ici][1], sous la colonne ENCODEUR PREMIUM. |
 
 ## <a name="input-containerfile-formats"></a>Formats de conteneurs/fichiers d’entrée
 | Formats de conteneurs/fichiers d’entrée | Media Encoder Standard | Media Encoder Premium Workflow |
@@ -67,11 +67,11 @@ Hello tableau suivant compare les fonctionnalités hello entre Media Encoder Sta
 ## <a name="input-video-codecs"></a>Codecs vidéo d’entrée
 | Codecs vidéo d’entrée | Media Encoder Standard | Media Encoder Premium Workflow |
 | --- | --- | --- |
-| AVC 8/10 bits bits, des too4:2:2, y compris AVCIntra |8 bits 4:2:0 et 4:2:2 |Oui |
+| AVC 8 bits/10 bits, jusqu'à 4:2:2, y compris AVCIntra |8 bits 4:2:0 et 4:2:2 |Oui |
 | Avid DNxHD (dans MXF) |Oui |Oui |
 | DVCPro/DVCProHD (dans MXF) |Oui |Oui |
 | JPEG2000 |Oui |Oui |
-| MPEG-2 (profil de too422 et de niveau élevé, notamment les variantes telles que XDCAM, XDCAM HD, XDCAM IMX, CableLabs® et D10) |Profil de too422 |Oui |
+| MPEG-2 (jusqu’au profil 422 et haut niveau ; y compris les variantes telles que XDCAM, XDCAM HD, XDCAM IMX, CableLabs® et D10) |Jusqu’à un profil de 422 |Oui |
 | MPEG-1 |Oui |Oui |
 | Windows Media Video/VC-1 |Oui |Oui |
 | Canopus HQ/HQX |Non |Non |
@@ -91,7 +91,7 @@ Hello tableau suivant compare les fonctionnalités hello entre Media Encoder Sta
 | Dolby® E |Non |Oui |
 | Dolby® Digital (AC3) |Non |Oui |
 | Dolby® Digital Plus (E-AC3) |Non |Oui |
-| AAC (AAC-LC, HE-AAC et AAC-HEv2 ; des too5.1) |Oui |Oui |
+| AAC (AAC-LC, AAC-HE et AAC-HEv2 ; jusqu’à 5.1) |Oui |Oui |
 | MPEG Layer 2 |Oui |Oui |
 | MP3 (MPEG-1 Audio Layer 3) |Oui |Oui |
 | Windows Media Audio |Oui |Oui |
@@ -116,9 +116,9 @@ Hello tableau suivant compare les fonctionnalités hello entre Media Encoder Sta
 ## <a name="output-video-codecs"></a>Codecs vidéo de sortie
 | Codecs vidéo de sortie | Media Encoder Standard | Media Encoder Premium Workflow |
 | --- | --- | --- |
-| AVC (H.264 ; 8 bits ; jusqu'à tooHigh profil, niveau 5.2 ; HD Ultra de 4 Ko ; AVC Intra) |Uniquement 8 bits 4:2:0 |Oui |
+| AVC (H.264 ; 8 bits ; jusqu'au profil High, niveau 5.2 ; Ultra HD 4K ; AVC Intra) |Uniquement 8 bits 4:2:0 |Oui |
 | Avid DNxHD (dans MXF) |Non |Oui |
-| MPEG-2 (profil de too422 et de niveau élevé, notamment les variantes telles que XDCAM, XDCAM HD, XDCAM IMX, CableLabs® et D10) |Non |Oui |
+| MPEG-2 (jusqu’au profil 422 et haut niveau ; y compris les variantes telles que XDCAM, XDCAM HD, XDCAM IMX, CableLabs® et D10) |Non |Oui |
 | MPEG-1 |Non |Oui |
 | Windows Media Video/VC-1 |Non |Oui |
 | Création de miniatures JPEG |Oui |Oui |
@@ -130,14 +130,14 @@ Hello tableau suivant compare les fonctionnalités hello entre Media Encoder Sta
 | --- | --- | --- |
 | AES (SMPTE 331M et 302M, AES3-2003) |Non |Oui |
 | Dolby® Digital (AC3) |Non |Oui |
-| Dolby® Digital Plus (E-AC3) des too7.1 |Non |Oui |
-| AAC (AAC-LC, HE-AAC et AAC-HEv2 ; des too5.1) |Oui |Oui |
+| Dolby® Digital Plus (E-AC3) jusqu'à 7.1 |Non |Oui |
+| AAC (AAC-LC, AAC-HE et AAC-HEv2 ; jusqu’à 5.1) |Oui |Oui |
 | MPEG Layer 2 |Non |Oui |
 | MP3 (MPEG-1 Audio Layer 3) |Non |Oui |
 | Windows Media Audio |Non |Oui |
 
 >[!NOTE]
->Si vous codez tooDolby® Digital (AC3), hello sortie peuvent uniquement être écrites dans un fichier MP4 ISO.
+>Si vous encodez en Dolby® Digital (AC3), la sortie peut uniquement être écrite dans un fichier MP4 ISO.
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

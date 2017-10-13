@@ -1,6 +1,6 @@
 ---
-title: connecteur de Facebook aaaAdd hello dans vos applications logiques | Documents Microsoft
-description: "Vue d’ensemble du connecteur Facebook de hello avec des paramètres de l’API REST"
+title: "Ajouter le connecteur Facebook à vos applications logiques | Microsoft Docs"
+description: "Vue d’ensemble du connecteur Facebook avec les paramètres d’API REST"
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/07/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 962c6ed5d36e465de9d485d50e5c6dca6d44f470
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e10a30ccef3e81cb3d7749696453d82b8958d076
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-facebook-connector"></a>Prise en main connecteur Facebook de hello
-Se connecter tooFacebook et valider tooa chronologie, une page de flux et bien plus encore. Avec Facebook, vous pouvez effectuer les opérations suivantes :
+# <a name="get-started-with-the-facebook-connector"></a>Prise en main du connecteur Facebook
+Connectez-vous à Facebook et publiez dans un journal, obtenez un flux de page et bien plus encore. Avec Facebook, vous pouvez effectuer les opérations suivantes :
 
-* Générer des flux de votre entreprise en fonction des données hello que vous obtenez à partir de Facebook. 
+* Créer votre flux d’activité en fonction des données que vous obtenez de Facebook. 
 * Utiliser un déclencheur quand une publication est reçue.
-* Actions utilisation valider tooyour chronologie, obtenir une page de flux et bien plus encore. Ces actions Obtient une réponse et puis disposition de sortie de hello pour d’autres actions. Par exemple, lorsqu’il existe une nouvelle publication sur la chronologie, vous pouvez prendre ce poste et poussez-le tooyour vos flux sur Twitter. 
+* Utiliser des actions pour publier dans votre journal, obtenir un flux de page et bien plus encore. Ces actions obtiennent une réponse, puis mettent la sortie à la disposition d’autres actions. Par exemple, quand il y a une nouvelle publication dans votre journal, vous pouvez la transférer vers votre flux Twitter. 
 
 Vous pouvez commencer par créer une application logique. Pour cela, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="create-a-connection-toofacebook"></a>Créer un tooFacebook de connexion
-Lorsque vous ajoutez ce connecteur tooyour les applications logique, vous devez autoriser logique applications tooconnect tooyour Facebook.
+## <a name="create-a-connection-to-facebook"></a>Créer une connexion à Facebook
+Quand vous ajoutez ce connecteur à vos applications logiques, vous devez autoriser celles-ci à se connecter à votre compte Facebook.
 
-1. Se connecter tooyour compte Facebook
-2. Sélectionnez **Authorize**et pour autoriser votre tooconnect d’applications logique et utiliser votre Facebook. 
+1. Connectez-vous à votre compte Facebook.
+2. Sélectionnez **Autoriser**et permettez à vos applications logiques de se connecter à votre compte Facebook et de l’utiliser. 
 
-> [!INCLUDE [Steps toocreate a connection tooFacebook](../../includes/connectors-create-api-facebook.md)]
+> [!INCLUDE [Steps to create a connection to Facebook](../../includes/connectors-create-api-facebook.md)]
 > 
 
 
-## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
+## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
 
-Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/facebook/).
+Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/facebook/).
 
 ## <a name="more-connectors"></a>Autres connecteurs
-Revenir en arrière toohello [liste des API](apis-list.md).
+Revenir à la [liste des API](apis-list.md).

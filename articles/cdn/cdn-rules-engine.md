@@ -1,6 +1,6 @@
 ---
-title: "comportement aaaOverride HTTP à l’aide du moteur de règles d’Azure CDN hello | Documents Microsoft"
-description: "moteur de règles Hello vous permet de toocustomize comment les requêtes HTTP sont gérés par le CDN Azure, telles que le blocage de remise hello de certains types de contenu, définir une stratégie de mise en cache et modifier les en-têtes HTTP."
+title: "Remplacement du comportement HTTP à l’aide du moteur de règles Azure CDN | Microsoft Docs"
+description: "Le moteur de règles vous permet de personnaliser la manière dont Azure CDN gère les requêtes HTTP, telles que le blocage de la remise de certains types de contenu, la définition d’une stratégie de mise en cache et la modification des en-têtes HTTP."
 services: cdn
 documentationcenter: 
 author: zhangmanling
@@ -14,66 +14,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: dd7194be9dbda43180c64568d3e1f52c5c513a7e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: abfe283476206b181018d187675b47112dc5ad2f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="override-http-behavior-using-hello-azure-cdn-rules-engine"></a>Remplacer le comportement HTTP à l’aide du moteur de règles hello CDN Azure
+# <a name="override-http-behavior-using-the-azure-cdn-rules-engine"></a>Remplacement du comportement HTTP à l’aide du moteur de règles Azure CDN
 [!INCLUDE [cdn-premium-feature](../../includes/cdn-premium-feature.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-moteur de règles Hello vous permet de toocustomize comment sont gérées les demandes HTTP, telles que le blocage remise hello de certains types de contenu, la définition d’une stratégie de mise en cache et la modification des en-têtes HTTP.  Ce didacticiel va vous montrer la création d’une règle modifiera hello mise en cache de comportement des composants CDN.  Contenu vidéo est également disponible dans hello »[Voir aussi](#see-also)« section.
+Le moteur de règles vous permet de personnaliser comment sont gérées les requêtes HTTP, telles que le blocage de la remise de certains types de contenu, la définition d’une stratégie de mise en cache et la modification des en-têtes HTTP.  Ce didacticiel présente la création d’une règle qui modifie le comportement de mise en cache des ressources CDN.  Du contenu vidéo est aussi disponible dans la section «[Voir aussi](#see-also)».
 
    > [!TIP] 
-   > Pour une syntaxe de toohello référence détaillée, consultez [référence du moteur de règles](cdn-rules-engine-reference.md).
+   > Pour obtenir une référence à la syntaxe détaillée, consultez [Référence du moteur de règles](cdn-rules-engine-reference.md).
    > 
 
 
 ## <a name="tutorial"></a>Didacticiel
-1. À partir du Panneau de profil hello CDN, cliquez sur hello **gérer** bouton.
+1. Dans le panneau de profil CDN, cliquez sur le bouton **Gérer** .
    
     ![Bouton de gestion du panneau de profil CDN](./media/cdn-rules-engine/cdn-manage-btn.png)
    
-    portail de gestion CDN Hello s’ouvre.
-2. Cliquez sur hello **grand HTTP** onglet, suivi **moteur de règles**.
+    Le portail de gestion CDN s'ouvre.
+2. Cliquez sur l’onglet **HTTP volumineux**, puis sur **Moteur de règles**.
    
     Les options d'une nouvelle règle s'affichent.
    
     ![Options de nouvelle règle CDN](./media/cdn-rules-engine/cdn-new-rule.png)
    
    > [!IMPORTANT]
-   > commande Hello dans lequel plusieurs règles sont répertoriés affecte comment elles sont gérées. Une règle suivante peut remplacer les actions de hello spécifiées par une règle précédente.
+   > L'ordre dans lequel plusieurs règles sont répertoriées affecte la façon dont elles sont gérées. Une règle ultérieure peut remplacer les actions spécifiées par une règle antérieure.
    > 
    > 
-3. Entrez un nom dans hello **nom / Description** zone de texte.
-4. Identifier le type hello de hello règle s’applique à des demandes.  Par défaut, hello **toujours** condition de correspondance est sélectionnée.  Pour ce didacticiel, vous allez utiliser **Toujours** , donc conservez cette option.
+3. Entrez un nom dans la zone de texte **Nom / Description** .
+4. Identifiez le type de requêtes auxquelles la règle s'applique.  Par défaut, la condition de correspondance **Toujours** est sélectionnée.  Pour ce didacticiel, vous allez utiliser **Toujours** , donc conservez cette option.
    
    ![Condition de correspondance CDN](./media/cdn-rules-engine/cdn-request-type.png)
    
    > [!TIP]
-   > Il existe de nombreux types de correspondance conditions disponibles dans la liste déroulante de hello.  En cliquant sur hello bleu icône d’information toohello gauche de la condition de correspondance hello explique condition hello actuellement sélectionné en détail.
+   > Il existe de nombreux types de condition de correspondance disponibles dans la liste déroulante.  Cliquez sur l'icône d'information bleue à gauche de la condition de correspondance pour obtenir une explication détaillée de la condition sélectionnée.
    > 
-   >  Pour hello une liste complète des expressions conditionnelles en détail, consultez [Expressions conditionnelles du moteur de règles](cdn-rules-engine-reference-match-conditions.md).
+   >  Pour obtenir la liste complète des expressions conditionnelles en détail, consultez [Expressions conditionnelles du moteur de règles](cdn-rules-engine-reference-match-conditions.md).
    >  
-   > Pour hello une liste complète des conditions de correspondance en détail, consultez [condition correspond à moteur de règles](cdn-rules-engine-reference-match-conditions.md).
+   > Pour obtenir la liste complète des conditions de correspondance en détail, consultez [Conditions de correspondance du moteur de règles](cdn-rules-engine-reference-match-conditions.md).
    > 
    > 
-5. Cliquez sur hello  **+**  bouton ensuite trop**fonctionnalités** tooadd une nouvelle fonctionnalité.  Dans la liste déroulante hello hello gauche, sélectionnez **Force interne Max-Age**.  Dans la zone de texte hello qui s’affiche, entrez **300**.  Laissez hello restant des valeurs par défaut.
+5. Cliquez sur le bouton **+** en regard de **Fonctionnalités** pour ajouter une fonctionnalité.  Dans la liste déroulante située à gauche, sélectionnez **Forcer l'âge maximal interne**.  Dans la zone de texte qui s'affiche, entrez **300**.  Conservez les valeurs par défaut restantes.
    
    ![Fonctionnalité CDN](./media/cdn-rules-engine/cdn-new-feature.png)
    
    > [!NOTE]
-   > Comme avec les conditions de correspondance, en cliquant sur toohello d’icône d’information hello bleue à gauche de hello nouvelle fonctionnalité affichera les détails sur cette fonctionnalité.  Dans les cas de hello de **Force interne Max-Age**, nous allons substitution de l’élément multimédia hello **Cache-Control** et **Expires** en-têtes toocontrol lorsque le nœud de périmètre CDN hello actualisera hello ressource à partir de l’origine de hello.  Notre exemple de 300 secondes signifie le nœud de périmètre CDN hello mettra en cache les ressources hello pendant 5 minutes avant d’actualiser asset hello à partir de son origine.
+   > Comme avec les conditions de correspondance, en cliquez sur l'icône d'information bleue à gauche de la nouvelle fonctionnalité pour obtenir plus d'informations sur cette fonctionnalité.  Dans le cas de **Forcer l’âge maximal interne**, nous remplaçons les en-têtes **Cache-Control** et **Expires** de la ressource, afin de contrôler quand le nœud de périmètre CDN actualise la ressource à partir de l’origine.  Notre exemple de 300 secondes signifie que le nœud de périmètre CDN met la ressource en cache pendant 5 minutes avant l'actualisation de la ressource à partir de son origine.
    > 
-   > Pour hello une liste complète des fonctionnalités en détail, consultez [les détails sur les fonctionnalités du moteur de règles](cdn-rules-engine-reference-features.md).
+   > Pour obtenir la liste complète des fonctionnalités en détail, consultez [Informations sur les fonctionnalités du moteur de règles](cdn-rules-engine-reference-features.md).
    > 
    > 
-6. Cliquez sur hello **ajouter** nouvelle règle bouton toosave hello.  nouvelle règle de Hello est maintenant en attente d’approbation. Une fois qu’elle a été approuvée, hello statut deviendra **XML en attente** trop**XML Active**.
+6. Cliquez sur le bouton **Ajouter** pour enregistrer la nouvelle règle.  La nouvelle règle est en attente d'approbation. Une fois qu’elle a été approuvée, l’état passe de **XML en attente** à **XML actif**.
    
    > [!IMPORTANT]
-   > Les modifications de règles peuvent prendre jusqu'à toopropagate de minutes too90 via hello CDN.
+   > Les modifications de règles peuvent prendre jusqu’à 90 minutes avant d’être propagées à travers le CDN.
    > 
    > 
 
@@ -83,5 +83,5 @@ moteur de règles Hello vous permet de toocustomize comment sont gérées les de
 * [Conditions de correspondance du moteur de règles](cdn-rules-engine-reference-match-conditions.md)
 * [Expressions conditionnelles du moteur de règles](cdn-rules-engine-reference-conditional-expressions.md)
 * [Fonctionnalités du moteur de règles](cdn-rules-engine-reference-features.md)
-* [Le comportement par défaut HTTP à l’aide du moteur de règles hello](cdn-rules-engine.md)
+* [Remplacement du comportement HTTP par défaut à l’aide du moteur de règles](cdn-rules-engine.md)
 * [Azure Friday : les nouvelles fonctionnalités Premium puissantes du CDN Azure](https://azure.microsoft.com/documentation/videos/azure-cdns-powerful-new-premium-features/) (vidéo)

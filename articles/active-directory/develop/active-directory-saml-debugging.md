@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toodebug basé sur SAML uniques authentification tooapplications dans Azure Active Directory | Documents Microsoft"
-description: "Découvrez comment toodebug basé sur SAML uniques authentification tooapplications dans Azure Active Directory "
+title: "Débogage d’une authentification unique basée sur SAML aux applications dans Azure Active Directory | Microsoft Docs"
+description: "Découvrez comment déboguer une authentification unique basée sur SAML aux applications dans Azure Active Directory  "
 services: active-directory
 author: asmalser-msft
 documentationcenter: na
@@ -15,27 +15,27 @@ ms.date: 07/20/2017
 ms.author: asmalser
 ms.custom: aaddev
 ms.reviewer: dastrock
-ms.openlocfilehash: 846c7b3497c8842947c5b406f4362b9e06785b14
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 31447d597296bac57481dc2acb4a95ee3a104161
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-toodebug-saml-based-single-sign-on-tooapplications-in-azure-active-directory"></a>Comment toodebug basé sur SAML uniques authentification tooapplications dans Azure Active Directory
-Lors du débogage d’une intégration d’application basée sur SAML, il est souvent utile toouse un outil tel que [Fiddler](http://www.telerik.com/fiddler) toosee hello demande SAML, réponse SAML hello et hello réel jeton SAML qui est émise toohello application. En examinant le jeton SAML de hello, vous pouvez vous assurer que tous les hello attributs requis, hello nom d’utilisateur dans l’objet SAML hello et hello émetteur URI arrivent via comme prévu.
+# <a name="how-to-debug-saml-based-single-sign-on-to-applications-in-azure-active-directory"></a>Débogage d’une authentification unique basée sur SAML aux applications dans Azure Active Directory
+Lors du débogage d’une intégration d'application basée sur SAML, il est généralement conseillé d'utiliser un outil tel que [Fiddler](http://www.telerik.com/fiddler) pour afficher la requête SAML, la réponse SAML et le jeton SAML actuel émis à l'application. En examinant le jeton SAML, vous pouvez vous assurer que tous les attributs requis, le nom d'utilisateur dans l'objet SAML et l'URI de l'émetteur vous parviennent comme prévu.
 
 ![][1]
 
-Hello réponse Azure AD, qui contient le jeton SAML de hello est généralement hello qui a lieu après une redirection HTTP 302 de https://login.windows.net et toohello envoyé n’est configuré **URL de réponse** de l’application hello. 
+La réponse d'Azure AD qui contient le jeton SAML est généralement celle qui est générée après une redirection HTTP 302 depuis https://login.windows.net et qui est envoyée à **l’URL de réponse** configurée de l'application. 
 
-Vous pouvez afficher le jeton SAML de hello en sélectionnant cette ligne, puis en sélectionnant hello **inspecteurs > WebForms** onglet dans le panneau droit hello. À partir de là, avec le bouton droit hello **SAMLResponse** valeur et sélectionnez **envoyer tooTextWizard**. Puis sélectionnez **à partir de Base64** de hello **transformer** menu toodecode hello jeton et afficher son contenu.
+Vous pouvez afficher le jeton SAML en sélectionnant cette ligne, puis l’onglet **Inspecteurs > WebForms** dans le volet droit. À partir de là, cliquez sur la valeur **SAMLResponse** et sélectionnez **Send to TextWizard**. Puis sélectionnez **From Base64** à partir du menu **Transform** pour décoder le jeton et afficher son contenu.
 
-**Remarque**: demande de contenu de hello toosee cette HTTP, Fiddler peut vous demander de déchiffrement tooconfigure du trafic HTTPS, vous devez toodo.
+**Remarque**: pour afficher le contenu de cette requête HTTP, Fiddler peut vous inviter à configurer le déchiffrement du trafic HTTPS, que vous devez effectuer.
 
 ## <a name="related-articles"></a>Articles connexes
 * [Index d’articles pour la gestion des applications dans Azure Active Directory](../active-directory-apps-index.md)
-* [Configuration uniques tooapplications ouverture de session qui ne sont pas dans la galerie d’applications Azure Active Directory hello](../active-directory-saas-custom-apps.md)
-* [Comment tooCustomize les revendications émises dans hello du jeton SAML pour les applications Pre-Integrated](active-directory-saml-claims-customization.md)
+* [Configuration de l'authentification unique pour les applications ne faisant pas partie de la galerie d'applications Azure Active Directory.](../active-directory-saas-custom-apps.md)
+* [Personnalisation des revendications émises dans le jeton SAML pour les applications pré-intégrées](active-directory-saml-claims-customization.md)
 
 <!--Image references-->
 [1]: ../media/active-directory-saml-debugging/fiddler.png

@@ -1,5 +1,5 @@
 ---
-title: "aaaResources, rôles et contrôle d’accès dans Azure Application Insights | Documents Microsoft"
+title: "Ressources, rôles et contrôle d’accès dans Azure Application Insights | Microsoft Docs"
 description: "Propriétaires, collaborateurs et lecteurs des perspectives de votre organisation."
 services: application-insights
 documentationcenter: 
@@ -13,64 +13,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/17/2017
 ms.author: bwren
-ms.openlocfilehash: a6f6ca0443b5f60239f094606e124f856967d8ca
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c979a8bfbeecacc7c0bbc112e02a4b68e874c219
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="resources-roles-and-access-control-in-application-insights"></a>Contrôle d’accès, rôles et ressources dans Application Insights
-Vous pouvez contrôler qui a lu et mettre à jour des données de tooyour d’accès dans Azure [Application Insights][start], à l’aide de [contrôle d’accès basé sur un rôle dans Microsoft Azure](../active-directory/role-based-access-control-configure.md).
+Vous pouvez contrôler qui a lu et mis à jour l’accès à vos données dans Azure [Application Insights][start], à l’aide du [Contrôle d’accès basé sur les rôles dans Microsoft Azure](../active-directory/role-based-access-control-configure.md).
 
 > [!IMPORTANT]
-> Affecter toousers accès Bonjour **groupe de ressources ou d’un abonnement** toowhich votre ressource application appartienne - pas de ressource hello elle-même. Affecter hello **contributeur de composant Application Insights** rôle. Cela garantit uniform contrôle d’accès tooweb tests et des alertes, ainsi que des ressources de votre application. [En savoir plus](#access).
+> Accordez l’accès aux utilisateurs dans le **groupe de ressources ou l’abonnement** auquel appartient votre ressource d’application et non dans la ressource elle-même. Affectez le rôle de **collaborateur de composants Application Insights** . Cela garantit un contrôle d’accès uniforme aux tests et aux alertes Web, ainsi qu’aux ressources de votre application. [En savoir plus](#access).
 > 
 > 
 
 ## <a name="resources-groups-and-subscriptions"></a>Ressources, groupes et abonnements
 Quelques définitions pour commencer :
 
-* **Ressource** : une instance d’un service Microsoft Azure. Votre ressource Application Insights collecte, analyse et affiche les données de télémétrie hello envoyées à partir de votre application.  Les autres types de ressources Azure incluent des applications Web, des bases de données et des machines virtuelles.
+* **Ressource** : une instance d’un service Microsoft Azure. Votre ressource Application Insights collecte, analyse et affiche les données de télémétrie envoyées par votre application.  Les autres types de ressources Azure incluent des applications Web, des bases de données et des machines virtuelles.
   
-    Ouvrez de vos ressources, toosee hello [Azure Portal][portal], connectez-vous, puis cliquez sur toutes les ressources. toofind une ressource, tapez une partie de son nom dans le champ de filtre hello.
+    Pour voir vos ressources, ouvrez le [portail Azure][portal], connectez-vous, puis cliquez sur Toutes les ressources. Pour trouver une ressource, tapez une partie de son nom dans le champ filtre.
   
     ![Liste des ressources Azure](./media/app-insights-resources-roles-access-control/10-browse.png)
 
 <a name="resource-group"></a>
 
-* [**Groupe de ressources** ] [ group] -chaque ressource appartient tooone groupe. Un groupe est un moyen toomanage liées à des ressources, en particulier pour le contrôle d’accès. Par exemple, dans une ressource de groupe, vous pouvez placer une application Web, une application de hello de toomonitor ressource Application Insights et un tookeep de ressource de stockage données exportées.
+* [**Groupe de ressources**][group] : chaque ressource appartient à un groupe. Un groupe est un moyen pratique de gérer les ressources apparentées, en particulier pour le contrôle d’accès. Par exemple, vous pouvez placer dans un groupe de ressources une application Web, une ressource Application Insights pour surveiller l’application et une ressource de stockage pour conserver les données exportées.
 
     ![Cliquez sur Parcourir, Groupes de ressources, puis choisissez un groupe](./media/app-insights-resources-roles-access-control/11-group.png)
 
-* [**Abonnement** ](https://manage.windowsazure.com) -toouse Application Insights ou autres ressources Azure, vous vous connectez tooan abonnement Azure. Chaque groupe de ressources appartient tooone abonnement Azure, où vous choisissez votre package de prix et, s’il s’agit d’un abonnement de l’organisation, choisissez les membres hello et leurs autorisations d’accès.
-* [**Compte Microsoft** ] [ account] -hello nom d’utilisateur et mot de passe que vous utilisez toosign dans tooMicrosoft Azure abonnements, XBox Live, Outlook.com et autres services Microsoft.
+* [**Abonnement**](https://manage.windowsazure.com) : pour utiliser Application Insights ou d’autres ressources Azure, vous vous connectez à un abonnement Azure. Chaque groupe de ressources appartient à un abonnement Azure, où vous choisissez votre package de prix et, s’il s’agit d’un abonnement d’organisation, sélectionnez les membres et leurs autorisations d’accès.
+* [**Compte Microsoft**][account] : le nom d’utilisateur et le mot de passe que vous utilisez pour vous connecter aux abonnements Microsoft Azure, XBox Live, Outlook.com et autres services Microsoft.
 
-## <a name="access"></a>Contrôler l’accès dans le groupe de ressources hello
-Il est important toounderstand que dans la ressource de toohello plus que vous avez créé pour votre application, il existe également de séparer des ressources masqués pour les alertes et les tests web. Ils sont attaché toohello même [groupe de ressources](#resource-group) que votre application. Vous pouvez également placer d’autres services Azure ici, comme des sites Web ou du stockage.
+## <a name="access"></a> Contrôle de l’accès dans le groupe de ressources
+Il est important de comprendre qu’en plus de la ressource que vous avez créée pour votre application, il existe également des ressources distinctes masquées pour les alertes et les tests Web. Elles sont associées au même [groupe de ressources](#resource-group) que votre application. Vous pouvez également placer d’autres services Azure ici, comme des sites Web ou du stockage.
 
 ![Ressources dans Application Insights](./media/app-insights-resources-roles-access-control/00-resources.png)
 
-toocontrol accéder aux ressources toothese qu'il est donc recommandé :
+Pour contrôler l’accès à ces ressources, il est donc recommandé de :
 
-* Contrôler l’accès au hello **groupe de ressources ou d’un abonnement** niveau.
-* Affecter hello **contributeur de composant d’Application Insights** toousers de rôle. Cela leur permet de tooedit des tests web, les alertes et les ressources Application Insights, sans fournir d’autres services dans le groupe de hello tooany d’accès.
+* contrôler l’accès au niveau du **groupe de ressources ou de l’abonnement** .
+* affecter le rôle de **collaborateur de composants Application Insights** . Cela leur permet de modifier les tests Web, les alertes et les ressources d’Application Insights, sans donner accès aux autres services dans le groupe.
 
-## <a name="tooprovide-access-tooanother-user"></a>tooprovide tooanother utilisateur
-Vous devez disposer d’abonnement de toohello de droits de propriétaire ou un groupe de ressources hello.
+## <a name="to-provide-access-to-another-user"></a>Pour fournir l’accès à un autre utilisateur
+Vous devez disposer des droits du propriétaire de l’abonnement ou du groupe de ressources.
 
-Hello utilisateur doit avoir un [Account Microsoft][account], ou accéder aux tootheir [Account Microsoft](../active-directory/sign-up-organization.md). Vous pouvez fournir tooindividuals d’accès, ainsi que les groupes toouser définis dans Azure Active Directory.
+L’utilisateur doit avoir un [compte Microsoft][account] ou disposer d’un accès à son [compte professionnel Microsoft](../active-directory/sign-up-organization.md). Vous pouvez fournir l’accès aux personnes et aux groupes d’utilisateurs définis dans Azure Active Directory.
 
-#### <a name="navigate-toohello-resource-group"></a>Parcourir le groupe de ressources toohello
-Ajouter un utilisateur hello.
+#### <a name="navigate-to-the-resource-group"></a>Accédez au groupe de ressources
+Ajoutez l’utilisateur à cet endroit.
 
-![Dans le panneau des ressources de votre application, ouvrez Essentials, ouvrez le groupe de ressources hello et sélectionner les utilisateurs/paramètres. Cliquez sur Ajouter.](./media/app-insights-resources-roles-access-control/01-add-user.png)
+![Dans le panneau de ressources de votre application, ouvrez Essentials, puis le groupe de ressources et sélectionnez Paramètres/Utilisateurs. Cliquez sur Ajouter.](./media/app-insights-resources-roles-access-control/01-add-user.png)
 
-Ou vous pouvez aller plus loin et ajouter hello utilisateur toohello abonnement.
+Vous pouvez également monter d’un niveau supplémentaire et ajouter l’utilisateur à l’abonnement.
 
 #### <a name="select-a-role"></a>Sélectionnez un rôle
-![Sélectionnez un rôle pour le nouvel utilisateur de hello](./media/app-insights-resources-roles-access-control/03-role.png)
+![Sélectionnez un rôle pour le nouvel utilisateur](./media/app-insights-resources-roles-access-control/03-role.png)
 
-| Rôle | Dans le groupe de ressources hello |
+| Rôle | Dans le groupe de ressources |
 | --- | --- |
 | Propriétaire |Peut tout modifier, y compris l’accès utilisateur |
 | Collaborateur |Peut tout modifier, y compris l’ensemble des ressources |
@@ -84,9 +84,9 @@ Une « modification » inclut la création, la suppression et la mise à jour 
 * Alertes
 * Exportation continue
 
-#### <a name="select-hello-user"></a>Sélectionnez hello utilisateur
+#### <a name="select-the-user"></a>Sélectionnez l’utilisateur
 
-Si l’utilisateur hello souhaité n’est pas dans le répertoire de hello, vous pouvez inviter toute personne disposant d’un compte Microsoft.
+Si l’utilisateur n’est pas dans le répertoire, vous pouvez inviter toute personne disposant d’un compte Microsoft.
 (Si elle utilise des services comme Outlook.com, OneDrive, Windows Phone ou XBox Live, elle dispose d’un compte Microsoft.)
 
 ## <a name="related-content"></a>Contenu connexe

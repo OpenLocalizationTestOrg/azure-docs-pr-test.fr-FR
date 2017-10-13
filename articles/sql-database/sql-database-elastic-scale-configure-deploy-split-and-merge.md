@@ -1,5 +1,5 @@
 ---
-title: "un service de fusion et fractionnement d’aaaDeploy | Documents Microsoft"
+title: "Déployer un service de fractionnement et de fusion | Microsoft Docs"
 description: "Fractionnement et fusion avec les outils de bases de données élastiques"
 services: sql-database
 documentationcenter: 
@@ -15,58 +15,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/24/2016
 ms.author: ddove
-ms.openlocfilehash: 6fef641cbc1e73ce34a851c53298a072dade8f9d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 6e2fea882c248fa095a9d450ed54a7b4e64b45e1
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="deploy-a-split-merge-service"></a>Déployer un service de fractionnement et de fusion
-outil de fusion et fractionnement Hello vous permet de déplacer des données entre des bases de données partitionnées. Consultez [Déplacement de données entre des bases de données cloud montées en charge](sql-database-elastic-scale-overview-split-and-merge.md)
+L’outil de fractionnement et de fusion vous permet de déplacer les données entre les différentes bases de données partitionnées. Consultez [Déplacement de données entre des bases de données cloud montées en charge](sql-database-elastic-scale-overview-split-and-merge.md)
 
-## <a name="download-hello-split-merge-packages"></a>Télécharger les packages de fusion et fractionnement hello
-1. Télécharger la dernière version de NuGet hello à partir de [NuGet](http://docs.nuget.org/docs/start-here/installing-nuget).
-2. Ouvrez une invite de commandes et accédez répertoire toohello où vous avez téléchargé nuget.exe. Hello inclut commmands de PowerShell.
-3. Téléchargez hello dernière fusion et fractionnement dans l’annuaire actuel de hello avec hello commande ci-dessous :
+## <a name="download-the-split-merge-packages"></a>Téléchargement des packages du service de fractionnement/fusion
+1. Téléchargez la dernière version de NuGet à partir de [NuGet](http://docs.nuget.org/docs/start-here/installing-nuget).
+2. Ouvrez une invite de commandes et accédez au répertoire où vous avez téléchargé nuget.exe. Le téléchargement inclut les commandes PowerShell.
+3. Téléchargez le dernier package de fractionnement/fusion dans le répertoire actif à l’aide de la commande ci-dessous :
    ```
    nuget install Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge
    ```  
 
-fichiers de Hello sont placés dans un répertoire nommé **Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge.x.x.xxx.x** où *x.x.xxx.x* reflète le numéro de version hello. Recherche des fichiers de Service de fusion et fractionnement hello Bonjour **content\splitmerge\service** sous-répertoire et hello scripts PowerShell de fusion et fractionnement (et les DLL client requis) Bonjour **content\splitmerge\powershell** sous-répertoire.
+Les fichiers sont placés dans un répertoire nommé **Microsoft.Azure.SqlDatabase.ElasticScale.Service.SplitMerge.x.x.xxx.x** où *x.x.xxx.x* correspond au numéro de version. Recherchez les fichiers du service de fractionnement et de fusion dans le sous-répertoire **content\splitmerge\service** et les scripts PowerShell de fractionnement et de fusion (ainsi que les .dll clients requis) dans le sous-répertoire **content\splitmerge\powershell**.
 
 ## <a name="prerequisites"></a>Composants requis
-1. Créer une base de données de la base de données SQL Azure qui sera utilisé comme base de données de fusion et fractionnement état hello. Accédez toohello [portail Azure](https://portal.azure.com). Créez une **base de données SQL**. Donnez un nom à base de données hello et créer un nouvel administrateur et un mot de passe. Être assuré que nom de hello toorecord et le mot de passe pour une utilisation ultérieure.
-2. Vérifiez que votre serveur de base de données SQL Azure autorise des Services Azure tooconnect tooit. Dans le portail de hello hello **les paramètres de pare-feu**, vérifiez que hello **autoriser l’accès des Services de tooAzure** est défini trop**sur**. Cliquez sur hello « enregistrer » de l’icône.
+1. Créez une base de données Azure SQL DB qui servira de base de données d’état du service de fractionnement/fusion. Accédez au [portail Azure](https://portal.azure.com). Créez une **base de données SQL**. Nommez la base de données et créez un administrateur ainsi qu’un mot de passe. Veillez à enregistrer le nom et le mot de passe pour une utilisation ultérieure.
+2. Vérifiez que votre serveur Azure SQL DB autorise les services Azure à s’y connecter. Dans le portail, dans **Paramètres du pare-feu**, assurez-vous que le paramètre **Autoriser l’accès aux services Azure** est défini sur **Activé**. Cliquez sur l’icône « Enregistrer ».
    
    ![Services autorisés][1]
-3. Créez un compte de Stockage Azure qui sera utilisé comme emplacement de destination pour les diagnostics. Accédez toohello portail Azure. Dans la barre de gauche hello, cliquez sur **nouveau**, cliquez sur **données + stockage**, puis **stockage**.
-4. Créez un service cloud Azure qui contient votre service de fractionnement/fusion.  Accédez toohello portail Azure. Dans la barre de gauche hello, cliquez sur **nouveau**, puis **de calcul**, **Service Cloud**, et **créer**. 
+3. Créez un compte de Stockage Azure qui sera utilisé comme emplacement de destination pour les diagnostics. Accédez au portail Azure. Dans la barre à gauche, cliquez successivement sur **Nouveau**, **Données + stockage** et **Stockage**.
+4. Créez un service cloud Azure qui contient votre service de fractionnement/fusion.  Accédez au portail Azure. Dans la barre à gauche, cliquez successivement sur **Nouveau**, **Compute**, **Service cloud** et **Créer**. 
 
 ## <a name="configure-your-split-merge-service"></a>Configurer votre service de fractionnement et de fusion
 ### <a name="split-merge-service-configuration"></a>Configuration du service de fractionnement/fusion
-1. Dans le dossier hello où vous avez téléchargé les assemblys hello fusion et fractionnement, créer une copie de hello **ServiceConfiguration.Template.cscfg** fichier livré avec **SplitMergeService.cspkg** et renommez-la **ServiceConfiguration.cscfg**.
-2. Ouvrez **ServiceConfiguration.cscfg** dans un éditeur de texte tel que Visual Studio qui valide les entrées telles que format hello des empreintes numériques de certificat.
-3. Créer une base de données ou choisissez un tooserve de base de données existante comme base de données de statut hello pour les opérations de fusion et fractionnement et récupérer la chaîne de connexion hello de cette base de données. 
+1. Dans le dossier où vous avez téléchargé les assemblys de fractionnement et de fusion, créez une copie du fichier **ServiceConfiguration.Template.cscfg** fourni avec **SplitMergeService.cspkg** et renommez-le **ServiceConfiguration.cscfg**.
+2. Ouvrez **ServiceConfiguration.cscfg** dans un éditeur de texte de type Visual Studio qui valide les entrées telles que le format des empreintes numériques de certificat.
+3. Créez une base de données ou sélectionnez-en une qui fera office de base de données d’état pour les opérations de fractionnement-fusion et qui permettra de récupérer la chaîne de connexion de la base de données concernée. 
    
    > [!IMPORTANT]
-   > À ce stade, base de données de statut hello doit utiliser classement Latin de hello (SQL\_Latin1\_général\_CP1\_CI\_AS). Pour plus d'informations, consultez la rubrique [Nom de classement Windows (Transact-SQL)](https://msdn.microsoft.com/library/ms188046.aspx).
+   > À ce stade, la base de données de l’état doit utiliser le classement Latin (SQL\_Latin1\_General\_CP1\_CI\_AS). Pour plus d'informations, consultez la rubrique [Nom de classement Windows (Transact-SQL)](https://msdn.microsoft.com/library/ms188046.aspx).
    >
 
-   Avec la base de données SQL Azure, chaîne de connexion hello est généralement sous forme de hello :
+   Dans Azure SQL DB, la chaîne de connexion se présente généralement sous la forme suivante :
       ```
       Server=myservername.database.windows.net; Database=mydatabasename;User ID=myuserID; Password=mypassword; Encrypt=True; Connection Timeout=30
       ```
 
-4. Entrez cette chaîne de connexion dans le fichier cscfg de hello dans les deux hello **SplitMergeWeb** et **SplitMergeWorker** sections de rôle dans le paramètre de ElasticScaleMetadata hello.
-5. Pourquoi **SplitMergeWorker** rôle, entrez un stockage de tooAzure de chaîne de connexion valide pour hello **WorkerRoleSynchronizationStorageAccountConnectionString** paramètre.
+4. Entrez cette chaîne de connexion dans le fichier cscfg dans les sections de rôle **SplitMergeWeb** et **SplitMergeWorker** du paramètre ElasticScaleMetadata.
+5. Pour le rôle **SplitMergeWorker**, entrez une chaîne de connexion valide pour le stockage Azure pour le paramètre **WorkerRoleSynchronizationStorageAccountConnectionString**.
 
 ### <a name="configure-security"></a>Configurer la sécurité
-Pour obtenir des instructions détaillées tooconfigure hello sécurité hello service, consultez toohello [configuration de sécurité de fusion et fractionnement](sql-database-elastic-scale-split-merge-security-configuration.md).
+Pour obtenir des instructions détaillées permettant de configurer la sécurité du service, reportez-vous à la [configuration de la sécurité de la fusion et du fractionnement](sql-database-elastic-scale-split-merge-security-configuration.md).
 
-Pour des raisons de hello d’un déploiement de test simple pour ce didacticiel, un ensemble minimal de configuration des étapes seront effectuées service de hello tooget haut et en cours d’exécution. Les étapes suivantes permettent uniquement hello un ordinateur/compte qui exécute les toocommunicate avec le service de hello.
+Dans le cadre d’un simple déploiement de test pour ce didacticiel, le bon fonctionnement du service nécessite d’effectuer un nombre minimum d’étapes de configuration. Ces dernières permettent uniquement à l’ordinateur/au compte qui les exécute de communiquer avec le service.
 
 ### <a name="create-a-self-signed-certificate"></a>Créer un certificat auto-signé
-Créer un nouveau répertoire et à partir de cette hello execute de répertoire suivant à l’aide de la commande une [invite de commandes développeur pour Visual Studio](http://msdn.microsoft.com/library/ms229859.aspx) fenêtre :
+Créez un répertoire à partir duquel vous allez exécuter la commande suivante à l’aide d’une fenêtre [d’invite de commandes développeur pour Visual Studio](http://msdn.microsoft.com/library/ms229859.aspx) :
 
    ```
     makecert ^
@@ -77,39 +77,39 @@ Créer un nouveau répertoire et à partir de cette hello execute de répertoire
     -sv MyCert.pvk MyCert.cer
    ```
 
-Vous êtes invité à entrer une clé privée de mot de passe tooprotect hello. Entrez un mot de passe fort et confirmez-le. Vous êtes ensuite invité pour hello toobe de mot de passe utilisé après une fois de plus. Cliquez sur **Oui** à hello fin tooimport il magasin racine des autorités de Certification approuvées de toohello.
+Un mot de passe vous est demandé pour protéger la clé privée. Entrez un mot de passe fort et confirmez-le. Vous êtes ensuite de nouveau invité à entrer le mot de passe. Cliquez sur **Oui** à la fin pour l’importer dans le magasin racine des autorités de certification approuvées.
 
 ### <a name="create-a-pfx-file"></a>Création d’un fichier PFX
-Exécutez hello de commande suivante à partir de hello même fenêtre où makecert a été exécuté ; Utilisez hello même mot de passe que vous toocreate utilisé hello le certificat :
+Exécutez la commande suivante à partir de la même fenêtre que celle où makecert a été exécuté. Utilisez le même mot de passe que celui utilisé pour créer le certificat :
 
     pvk2pfx -pvk MyCert.pvk -spc MyCert.cer -pfx MyCert.pfx -pi <password>
 
-### <a name="import-hello-client-certificate-into-hello-personal-store"></a>Importer un certificat client hello dans le magasin personnel de hello
+### <a name="import-the-client-certificate-into-the-personal-store"></a>Importation du certificat client dans le magasin personnel
 1. Dans l’Explorateur Windows, double-cliquez sur **MyCert.pfx**.
-2. Bonjour **Assistant Importation de certificat** sélectionnez **utilisateur actuel** et cliquez sur **suivant**.
-3. Vérifiez le chemin d’accès du fichier hello et cliquez sur **suivant**.
-4. Type hello un mot de passe, laissez le champ **inclure toutes les propriétés étendues** activée et cliquez sur **suivant**.
-5. Laissez **magasin de certificats de sélectionner automatiquement hello [...]**  activée et cliquez sur **suivant**.
+2. Dans **l’Assistant Importation de certificat**, sélectionnez **Utilisateur actuel** et cliquez sur **Suivant**.
+3. Vérifiez le chemin d’accès au fichier et cliquez sur **Suivant**.
+4. Tapez le mot de passe, laissez l’option **Inclure toutes les propriétés étendues** activée, puis cliquez sur **Suivant**.
+5. Laissez l’option **Sélectionner automatiquement le magasin de certificats…** activée, puis cliquez sur **Suivant**.
 6. Cliquez sur **Terminer** et sur **OK**.
 
-### <a name="upload-hello-pfx-file-toohello-cloud-service"></a>Télécharger le service cloud toohello hello PFX fichier
-1. Accédez toohello [Azure Portal](https://portal.azure.com).
+### <a name="upload-the-pfx-file-to-the-cloud-service"></a>Téléchargement du fichier PFX dans le service cloud
+1. Accédez au [portail Azure](https://portal.azure.com).
 2. Sélectionnez **Services Cloud**.
-3. Sélectionnez le service de cloud computing hello que vous avez créé précédemment pour le service de fractionnement/fusion hello.
-4. Cliquez sur **certificats** sur le menu du haut hello.
-5. Cliquez sur **télécharger** dans la barre inférieure de hello.
-6. Sélectionnez le fichier PFX hello et entrez hello même mot de passe comme indiqué ci-dessus.
-7. Une fois terminé, copiez l’empreinte numérique du certificat hello hello nouvelle entrée dans la liste de hello.
+3. Sélectionnez le service cloud créé ci-dessus pour le service de fractionnement/fusion.
+4. Dans le menu supérieur, cliquez sur **Certificats** .
+5. Cliquez sur **Télécharger** dans la barre inférieure.
+6. Sélectionnez le fichier PFX et entrez le même mot de passe que ci-dessus.
+7. Lorsque vous avez terminé, copiez l’empreinte de certificat à partir de la nouvelle entrée dans la liste.
 
-### <a name="update-hello-service-configuration-file"></a>Mettre à jour le fichier de configuration de service hello
-Collez l’empreinte numérique du certificat hello copié ci-dessus dans l’attribut de valeur d’empreinte numérique hello de ces paramètres.
-Pour le rôle de travail hello :
+### <a name="update-the-service-configuration-file"></a>Mise à jour du fichier de configuration de service
+Collez l’empreinte de certificat copiée précédemment dans l’attribut d’empreinte/de valeur des paramètres suivants.
+Pour le rôle de travail :
    ```
     <Setting name="DataEncryptionPrimaryCertificateThumbprint" value="" />
     <Certificate name="DataEncryptionPrimary" thumbprint="" thumbprintAlgorithm="sha1" />
    ```
 
-Pour le rôle web hello :
+Pour le rôle web :
 
    ```
     <Setting name="AdditionalTrustedRootCertificationAuthorities" value="" />
@@ -120,50 +120,50 @@ Pour le rôle web hello :
     <Certificate name="DataEncryptionPrimary" thumbprint="" thumbprintAlgorithm="sha1" />
    ```
 
-Notez que pour les déploiements de production des certificats doivent être utilisées pour hello autorité de certification pour le chiffrement, hello du certificat de serveur et les certificats clients. Pour plus d’informations, consultez la rubrique [Configuration de la sécurité](sql-database-elastic-scale-split-merge-security-configuration.md).
+Veuillez noter que pour les déploiements de production, des certificats distincts doivent être utilisés pour l’autorité de certification, le chiffrement, le certificat de serveur et les certificats clients. Pour plus d’informations, consultez la rubrique [Configuration de la sécurité](sql-database-elastic-scale-split-merge-security-configuration.md).
 
 ## <a name="deploy-your-service"></a>Déployer votre service
-1. Accédez toohello [portail Azure](https://manage.windowsazure.com).
-2. Cliquez sur hello **Services de cloud computing** sur hello gauche et sélectionnez le service de cloud computing hello que vous avez créé précédemment.
-3. Cliquez sur **Dashboard**.
-4. Choisissez hello environnement intermédiaire, puis cliquez sur **Téléchargez un nouveau déploiement intermédiaire**.
+1. Accédez au [portail Azure](https://manage.windowsazure.com).
+2. Cliquez sur l’onglet **Services cloud** à gauche et sélectionnez le service cloud que vous avez créé précédemment.
+3. Cliquez sur **Tableau de bord**.
+4. Choisissez l’environnement intermédiaire, puis cliquez sur **Télécharger un nouveau déploiement intermédiaire**.
    
    ![Staging][3]
-5. Dans la boîte de dialogue hello, entrez une étiquette de déploiement. « Package » et « Configuration », cliquez sur 'À partir de Local', puis choisissez hello **SplitMergeService.cspkg** de fichiers et votre fichier .cscfg que vous avez configuré précédemment.
-6. Vérifiez cette case à cocher hello **déployer même si un ou plusieurs rôles contiennent une seule instance** est activée.
-7. Hello graduation bouton dans le déploiement de hello hello bas toobegin droit d’accès. Tootake attendez quelques minutes toocomplete.
+5. Dans la boîte de dialogue, entrez une étiquette de déploiement. Pour « Package » et « Configuration », cliquez sur « À partir de local » et choisissez le fichier **SplitMergeService.cspkg** et le fichier .cscfg que vous avez configuré précédemment.
+6. Assurez-vous que la case **Déployer même si un ou plusieurs rôles contiennent une seule instance** est cochée.
+7. Appuyez sur le bouton en forme de coche dans le coin inférieur droit pour commencer le déploiement. Cette opération peut prendre plusieurs minutes.
 
    ![Télécharger][4]
 
-## <a name="troubleshoot-hello-deployment"></a>Résoudre les problèmes de déploiement de hello
-Si votre rôle web échoue toocome en ligne, il est probablement un problème de configuration de sécurité hello. Vérifiez que hello que SSL est configuré comme décrit ci-dessus.
+## <a name="troubleshoot-the-deployment"></a>Résoudre les problèmes de déploiement
+Si votre rôle web ne parvient pas à être en ligne, il s’agit probablement d’un problème avec la configuration de sécurité. Vérifiez que le protocole SSL est configuré comme décrit ci-dessus.
 
-Si votre rôle de travail échoue toocome en ligne, mais il se peut que votre rôle web réussit, il est très probablement un problème de connexion toohello état de base de données que vous avez créé précédemment.
+Si votre rôle de travail ne parvient pas à être en ligne, mais que votre rôle web réussit, il s’agit probablement d’un problème de connexion à la base de données d’états que vous avez créée précédemment.
 
-* Assurez-vous que la chaîne de connexion hello dans votre fichier .cscfg est exact.
-* Vérification de la base de données et serveur de hello existent et que l’id d’utilisateur hello et le mot de passe sont corrects.
-* Pour la base de données SQL Azure, la chaîne de connexion hello doit être sous forme de hello :
+* Assurez-vous que la chaîne de connexion du fichier .cscfg ne contient aucune erreur.
+* Vérifiez que le serveur et la base de données existent et que l’identifiant utilisateur et le mot de passe sont corrects.
+* Dans Azure SQL DB, la chaîne de connexion doit se présenter sous la forme suivante :
 
    ```  
    Server=myservername.database.windows.net; Database=mydatabasename;User ID=myuserID; Password=mypassword; Encrypt=True; Connection Timeout=30
    ```
 
-* Vérifiez que nom de serveur hello ne commence pas par **https://**.
-* Vérifiez que votre serveur de base de données SQL Azure autorise des Services Azure tooconnect tooit. toodo, ouvrez https://manage.windowsazure.com et cliquez sur « Bases de données SQL » sur hello gauche, cliquez sur « Serveurs » en haut de hello, sélectionnez votre serveur. Cliquez sur **configurer** à hello principaux et vous assurer que hello **Services Azure** est défini trop « Oui ». (Consultez les conditions préalables de hello section haut hello de cet article).
+* Assurez-vous que le nom du serveur ne commence pas par **https://**.
+* Vérifiez que votre serveur Azure SQL DB autorise les services Azure à s’y connecter. Pour ce faire, ouvrez https://manage.windowsazure.com et cliquez sur « Bases de données SQL » sur la gauche, puis sur « Serveurs » en haut et sélectionnez votre serveur. Cliquez sur **Configurer** en haut et assurez-vous que le paramètre **Services Azure** est défini sur « Oui ». (voir la section « Configuration requise » en haut de cet article).
 
-## <a name="test-hello-service-deployment"></a>Tester le déploiement du service hello
+## <a name="test-the-service-deployment"></a>Tester le déploiement du service
 ### <a name="connect-with-a-web-browser"></a>Se connecter avec un navigateur Web
-Déterminer le point de terminaison hello web de votre service de fusion et fractionnement. Vous pouvez le trouver dans hello portail classique Azure en accédant de toohello **tableau de bord** de votre service cloud et sous **URL du Site** sur le côté droit de hello. Remplacez **http://** avec **https://** étant donné que les paramètres de sécurité par défaut hello désactivent le point de terminaison hello HTTP. Charger la page hello pour cette URL dans votre navigateur.
+Déterminez le point de terminaison web de votre service de fractionnement/fusion. Vous pouvez le trouver dans le portail Azure Classic en accédant au **Tableau de bord** de votre service cloud et en effectuant une recherche dans la zone **URL du site** sur le côté droit. Remplacez **http://** par **https://**, car les paramètres de sécurité par défaut désactivent le point de terminaison HTTP. Chargez la page correspondant à cette URL dans votre navigateur.
 
 ### <a name="test-with-powershell-scripts"></a>Effectuer des tests avec des scripts PowerShell
-déploiement de Hello et votre environnement peuvent être testés en exécutant des scripts PowerShell d’exemple hello inclus.
+Le déploiement et votre environnement peuvent être testés en exécutant les exemples de scripts PowerShell fournis.
 
-les fichiers de script Hello inclus sont :
+Les fichiers de script inclus sont les suivants :
 
 1. **SetupSampleSplitMergeEnvironment.ps1** : configure une couche de données de test pour la fusion et le fractionnement (voir le tableau ci-dessous pour obtenir une description détaillée)
-2. **ExecuteSampleSplitMerge.ps1** -exécute des opérations de test sur le test de hello couche données (voir le tableau ci-dessous pour une description détaillée)
-3. **GetMappings.ps1** - niveau supérieur exemple de script qui imprime état actuel de hello de mappages de partition hello.
-4. **ShardManagement.psm1** -script d’assistance qui encapsule hello ShardManagement API
+2. **ExecuteSampleSplitMerge.ps1** : exécute les opérations de test sur la couche de données de test (voir le tableau ci-dessous pour obtenir une description détaillée)
+3. **GetMappings.ps1** : exemple de script de niveau supérieur qui imprime l’état actuel des mappages de partitions.
+4. **ShardManagement.psm1** : script d’assistance qui encapsule l’API ShardManagement
 5. **SqlDatabaseHelpers.psm1** : script d’assistance pour la création et la gestion des bases de données SQL
    
    <table style="width:100%">
@@ -182,10 +182,10 @@ les fichiers de script Hello inclus sont :
        <td>3.    Crée une carte de partitions pour les bases de données concernées (supprime les cartes de partitions existantes sur ces dernières). </td>
      </tr>
      <tr>
-       <td>4.    Crée un petit exemple de table dans les deux partitions hello et remplit la table hello dans une des partitions de hello.</td>
+       <td>4.    Crée un petit exemple de table dans les deux partitions et remplit la table dans l’une des partitions.</td>
      </tr>
      <tr>
-       <td>5.    Déclare hello SchemaInfo pour une table partitionnée de hello.</td>
+       <td>5.    Déclare le SchemaInfo pour la table partitionnée.</td>
      </tr>
    </table>
    <table style="width:100%">
@@ -195,33 +195,33 @@ les fichiers de script Hello inclus sont :
      </tr>
    <tr>
        <th rowspan="4">ExecuteSampleSplitMerge.ps1 </th>
-       <td>1.    Envoie un fractionnement demande toohello fusion et fractionnement Service serveur web frontal, qui fractionne les données de salutation moitié à partir de la partition deuxième hello première partition toohello.</td>
+       <td>1.    Envoie une demande de fractionnement vers le serveur web frontal du service de fractionnement/fusion, qui fractionne la moitié des données de la première partition et les envoie vers la deuxième partition.</td>
      </tr>
      <tr>
-       <td>2.    Interroge hello serveur web frontal pour hello fractionner le statut de la demande et attend jusqu'à ce que la demande de hello se termine.</td>
+       <td>2.    Interroge le serveur Web frontal sur l’état de la demande de fractionnement et attend jusqu’à ce que la demande soit terminée.</td>
      </tr>
      <tr>
-       <td>3.    Envoie un fusion demande toohello fusion et fractionnement Service serveur web frontal, ce qui déplace les données de salutation à partir de la partition première hello deuxième partition toohello précédent.</td>
+       <td>3.    Envoie une demande de fusion vers le serveur Web frontal du service de fractionnement/fusion, qui déplace les données de la deuxième partition vers la première partition.</td>
      </tr>
      <tr>
-       <td>4.    Interroge hello serveur web frontal pour l’état de demande de fusion de hello et attend la fin de la demande de hello.</td>
+       <td>4.    Interroge le serveur web frontal sur l’état de la demande de fusion et attend jusqu’à ce que la demande soit terminée.</td>
      </tr>
    </table>
    
-## <a name="use-powershell-tooverify-your-deployment"></a>Utilisez PowerShell tooverify votre déploiement
-1. Ouvrez une nouvelle fenêtre PowerShell et accédez répertoire toohello où vous avez téléchargé le package de fusion et fractionnement hello puis naviguez jusqu’au répertoire de « powershell » hello.
-2. Créer un serveur de base de données SQL Azure (ou choisissez un serveur existant) où le Gestionnaire de carte de partitions hello et partitions seront créées.
+## <a name="use-powershell-to-verify-your-deployment"></a>Utiliser PowerShell pour vérifier le déploiement
+1. Ouvrez une nouvelle fenêtre PowerShell et accédez au répertoire dans lequel vous avez téléchargé le package de fractionnement/fusion, puis accédez au répertoire « powershell ».
+2. Créez un serveur de base de données SQL Azure (ou choisissez un serveur existant) dans lequel le Gestionnaire des cartes de partitions et les partitions seront créés.
    
    > [!NOTE]
-   > Hello SetupSampleSplitMergeEnvironment.ps1 script crée ces bases de données sur hello même serveur par le script de hello tookeep par défaut simple. Cela n’est pas une restriction de hello fusion et fractionnement Service lui-même.
+   > le script SetupSampleSplitMergeEnvironment.ps1 crée, par défaut, ces bases de données sur le même serveur pour simplifier le script. Il ne s’agit pas d’une restriction du service de fractionnement/fusion.
    >
    
-   Une connexion d’authentification SQL avec toohello d’accès en lecture/écriture qu'aux bases de données seront nécessaires pour hello toomove données du service de fusion et fractionnement et de la carte de partitions hello mise à jour. Étant donné que hello fusion et fractionnement Service s’exécute dans le cloud de hello, il ne prend pas en charge l’authentification intégrée.
+   Une connexion d’authentification SQL avec un accès en lecture/écriture aux bases de données est requis pour le service de fractionnement/fusion afin de déplacer les données et de mettre à jour la carte de partitions. Le service de fractionnement/fusion s’exécutant dans le cloud, il ne prend pas actuellement en charge l’authentification intégrée.
    
-   Vérifiez que hello Azure SQL server est configuré tooallow l’accès à partir de l’adresse IP de hello d’ordinateur hello ces scripts en cours d’exécution. Vous pouvez trouver ce paramètre sous hello Azure SQL server / configuration / adresses IP autorisées.
-3. Exécutez hello SetupSampleSplitMergeEnvironment.ps1 script toocreate hello exemple d’environnement.
+   Assurez-vous que le serveur SQL Azure est configuré pour autoriser l’accès à partir de l’adresse IP de l’ordinateur exécutant les scripts. Pour accéder à ce paramètre, sélectionnez Serveur SQL Azure / Configuration / Adresses IP autorisées.
+3. Exécutez le script SetupSampleSplitMergeEnvironment.ps1 pour créer l’exemple d’environnement.
    
-   Ce script en cours d’exécution sera effacer toutes les données de gestion de carte partitions existantes des structures sur la base de données du gestionnaire carte hello partitions et les partitions hello. Il peut être script de hello toorerun utile si vous le souhaitez carte de partitions hello toore d’initialiser ou de partitions.
+   L’exécution de ce script efface toutes les structures de données de gestion des cartes de partitions existantes dans la base de données du Gestionnaire des cartes de partitions et dans les partitions. Il peut être utile de réexécuter le script si vous souhaitez réinitialiser la carte de partitions ou les partitions.
    
    Exemple de ligne de commande :
 
@@ -232,7 +232,7 @@ les fichiers de script Hello inclus sont :
          -Password 'MySqlPassw0rd' 
          -ShardMapManagerServerName 'abcdefghij.database.windows.net'
    ```      
-4. Exécutez hello Getmappings.ps1 tooview hello mappages de script qui existent actuellement dans l’environnement d’exemple hello.
+4. Exécutez le script Getmappings.ps1 pour afficher les mappages qui existent actuellement dans l’exemple d’environnement.
    
    ```
      .\GetMappings.ps1 
@@ -242,7 +242,7 @@ les fichiers de script Hello inclus sont :
          -ShardMapManagerServerName 'abcdefghij.database.windows.net'
 
    ```         
-5. Exécutez hello ExecuteSampleSplitMerge.ps1 script tooexecute une opération split (déplacement de données de hello moitié sur les partitions deuxième hello première partition toohello), puis une opération de fusion (déplacement des données de hello sur les partitions première hello). Si vous avez configuré SSL et le point de terminaison http hello gauche désactivé, assurez-vous que vous utilisez point de terminaison hello https:// à la place.
+5. Exécutez le script ExecuteSampleSplitMerge.ps1 pour exécuter une opération de fractionnement (déplacement de la moitié des données de la première partition vers la deuxième partition), puis une opération de fusion (redéplacement des données sur la première partition). Si vous avez configuré SSL et laissé le point de terminaison http désactivé, assurez-vous d’utiliser le point de terminaison https:// à la place.
    
    Exemple de ligne de commande :
 
@@ -256,75 +256,75 @@ les fichiers de script Hello inclus sont :
          -CertificateThumbprint '0123456789abcdef0123456789abcdef01234567'
    ```      
    
-   Si vous recevez hello erreur ci-dessous, il s’agit probablement d’un problème avec le certificat du votre point de terminaison Web. Essayez de vous connecter le point de terminaison toohello Web avec votre navigateur Web favoris et vérifier s’il existe une erreur de certificat.
+   Si vous recevez l’erreur ci-dessous, il s’agit probablement d’un problème avec le certificat de votre point de terminaison web. Essayez de vous connecter au point de terminaison web avec votre navigateur web préféré et vérifiez s’il existe une erreur de certificat.
    
      ```
-     Invoke-WebRequest : hello underlying connection was closed: Could not establish trust relationship for hello SSL/TLSsecure channel.
+     Invoke-WebRequest : The underlying connection was closed: Could not establish trust relationship for the SSL/TLSsecure channel.
      ```
    
-   Si elle a réussi, sortie de hello doit ressembler à hello ci-dessous :
+   Si l’opération s’est déroulée sans erreur, le résultat doit ressembler à ce qui suit :
    
    ```
    > .\ExecuteSampleSplitMerge.ps1 -UserName 'mysqluser' -Password 'MySqlPassw0rd' -ShardMapManagerServerName 'abcdefghij.database.windows.net' -SplitMergeServiceEndpoint 'http://mysplitmergeservice.cloudapp.net' -CertificateThumbprint 0123456789abcdef0123456789abcdef01234567
    > Sending split request
    > Began split operation with id dc68dfa0-e22b-4823-886a-9bdc903c80f3
-   > Polling split-merge request status. Press Ctrl-C tooend
+   > Polling split-merge request status. Press Ctrl-C to end
    > Progress: 0% | Status: Queued | Details: [Informational] Queued request
    > Progress: 5% | Status: Starting | Details: [Informational] Starting split-merge state machine for request.
    > Progress: 5% | Status: Starting | Details: [Informational] Performing data consistency checks on target     shards.
-   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source tootarget shard.
+   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source to target shard.
    > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Waiting for reference tables copy     completion.
-   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source tootarget shard.
+   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source to target shard.
    > Progress: 44% | Status: CopyingShardedTables | Details: [Informational] Moving key range [100:110) of     Sharded tables
    > Progress: 44% | Status: CopyingShardedTables | Details: [Informational] Successfully copied key range     [100:110) for table [dbo].[MyShardedTable]
    > ...
    > ...
    > Progress: 90% | Status: Completing | Details: [Informational] Successfully deleted shardlets in table     [dbo].[MyShardedTable].
-   > Progress: 90% | Status: Completing | Details: [Informational] Deleting any temp tables that were created     while processing hello request.
+   > Progress: 90% | Status: Completing | Details: [Informational] Deleting any temp tables that were created     while processing the request.
    > Progress: 100% | Status: Succeeded | Details: [Informational] Successfully processed request.
    > Sending merge request
    > Began merge operation with id 6ffc308f-d006-466b-b24e-857242ec5f66
-   > Polling request status. Press Ctrl-C tooend
+   > Polling request status. Press Ctrl-C to end
    > Progress: 0% | Status: Queued | Details: [Informational] Queued request
    > Progress: 5% | Status: Starting | Details: [Informational] Starting split-merge state machine for request.
    > Progress: 5% | Status: Starting | Details: [Informational] Performing data consistency checks on target     shards.
-   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source tootarget shard.
+   > Progress: 20% | Status: CopyingReferenceTables | Details: [Informational] Moving reference tables from     source to target shard.
    > Progress: 44% | Status: CopyingShardedTables | Details: [Informational] Moving key range [100:110) of     Sharded tables
    > Progress: 44% | Status: CopyingShardedTables | Details: [Informational] Successfully copied key range     [100:110) for table [dbo].[MyShardedTable]
    > ...
    > ...
    > Progress: 90% | Status: Completing | Details: [Informational] Successfully deleted shardlets in table     [dbo].[MyShardedTable].
-   > Progress: 90% | Status: Completing | Details: [Informational] Deleting any temp tables that were created     while processing hello request.
+   > Progress: 90% | Status: Completing | Details: [Informational] Deleting any temp tables that were created     while processing the request.
    > Progress: 100% | Status: Succeeded | Details: [Informational] Successfully processed request.
    > 
    ```
-6. Faites des essais avec d’autres types de données. Tous ces scripts prennent un paramètre - ShardKeyType facultatif qui vous permet de type de clé toospecify hello. valeur par défaut Hello est Int32, mais vous pouvez également spécifier Int64, Guid ou binaire.
+6. Faites des essais avec d’autres types de données. Tous ces scripts nécessitent un paramètre -ShardKeyType facultatif qui vous permet de spécifier le type de clé. La valeur par défaut est Int32, mais vous pouvez également spécifier Int64, Guid ou Binary.
 
 ## <a name="create-requests"></a>Créer des requêtes
-service de Hello peut être utilisé à l’aide de l’interface utilisateur web de hello ou par l’importation et à l’aide du module de SplitMerge.psm1 PowerShell hello qui envoie vos demandes via le rôle web de hello.
+Le service peut être utilisé à l’aide de l’interface utilisateur Web ou par l’importation et l’utilisation du module PowerShell SplitMerge.psm1 qui envoie vos demandes via le rôle Web.
 
-service de Hello peut déplacer des données dans les tables partitionnées et les tables de référence. Une table partitionnée possède une colonne de clés de partitionnement et comporte des données de ligne différentes sur chaque partition. Une table de référence n’est pas partitionnée afin qu’il contient hello même ligne de données sur chaque partition. Tables de référence sont utiles pour les données qui ne changent pas souvent et sont tooJOIN utilisé avec des tables partitionnées dans les requêtes.
+Ce service peut déplacer les données dans les tables partitionnées et les tables de référence. Une table partitionnée possède une colonne de clés de partitionnement et comporte des données de ligne différentes sur chaque partition. Une table de référence n’est pas partitionnée. De ce fait, elle comporte les mêmes données de ligne sur chaque partition. Les tables de référence sont utiles pour les données qui ne changent pas souvent et qui sont utilisées pour S’ASSOCIER à des tables partitionnées dans les requêtes.
 
-Dans l’ordre tooperform une opération de fusion et fractionnement, vous devez déclarer les tables partitionnées hello et les tables de référence que vous souhaitez toohave déplacé. Cela est accompli par hello **SchemaInfo** API. Cette API méthode est Bonjour **Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.Schema** espace de noms.
+Pour effectuer une opération de fractionnement/fusion, vous devez déclarer les tables partitionnées et les tables de référence que vous souhaitez déplacer. Cette opération est effectuée avec l’API **SchemaInfo** . Cette API se trouve dans l’espace de noms **Microsoft.Azure.SqlDatabase.ElasticScale.ShardManagement.Schema** .
 
-1. Pour chaque table partitionnée, créez un **ShardedTableInfo** objet décrivant le nom de schéma de la table hello parent (facultatif, par défaut est trop « dbo »), hello du nom de la table et hello nom de colonne dans la table qui contient la clé de partitionnement hello.
-2. Pour chaque table de référence, créez un **ReferenceTableInfo** objet décrivant le nom de schéma de la table hello parent (facultatif, par défaut est trop « dbo ») et le nom de la table hello.
-3. Ajouter hello ci-dessus tooa d’objets TableInfo nouvelle **SchemaInfo** objet.
-4. Obtenir une référence tooa **ShardMapManager** objet, puis appelez **GetSchemaInfoCollection**.
-5. Ajouter hello **SchemaInfo** toohello **SchemaInfoCollection**, en fournissant le nom de mappage de partitions hello.
+1. Pour chaque table partitionnée, créez un objet **ShardedTableInfo** décrivant le nom du schéma parent de la table (facultatif, la valeur par défaut est « dbo »), le nom de la table et le nom de la colonne de cette table qui comporte la clé de partitionnement.
+2. Pour chaque table de référence, créez un objet **ReferenceTableInfo** décrivant le nom du schéma parent de la table (facultatif, la valeur par défaut est « dbo ») et le nom de la table.
+3. Ajoutez les objets TableInfo ci-dessus à un nouvel objet **SchemaInfo** .
+4. Obtenez une référence à un objet **ShardMapManager** et appelez **GetSchemaInfoCollection**.
+5. Ajoutez **SchemaInfo** à **SchemaInfoCollection**, en fournissant le nom du mappage de partitions.
 
-Un exemple de cette peut être consulté dans hello SetupSampleSplitMergeEnvironment.ps1 script.
+Le script SetupSampleSplitMergeEnvironment.ps1 contient un exemple de cette opération.
 
-service de fusion et fractionnement de Hello ne crée pas de base de données cible hello (ou le schéma des tables de base de données hello) pour vous. Ils doivent être créés au préalable avant l’envoi d’un service de toohello de demande.
+Le service de fractionnement/fusion ne crée pas la base de données cible (ou le schéma pour les tables de la base de données) à votre place. Ils doivent être créés au préalable avant d’envoyer une demande au service.
 
-## <a name="troubleshooting"></a>Résolution des problèmes
-Vous pouvez voir hello message ci-après lors de l’exécution des scripts powershell hello exemple :
+## <a name="troubleshooting"></a>Résolution de problèmes
+Le message ci-dessous peut apparaître lors de l’exécution des exemples de scripts PowerShell :
 
    ```
-   Invoke-WebRequest : hello underlying connection was closed: Could not establish trust relationship for hello SSL/TLS secure channel.
+   Invoke-WebRequest : The underlying connection was closed: Could not establish trust relationship for the SSL/TLS secure channel.
    ```
 
-Cette erreur signifie que votre certificat SSL n’est pas correctement configuré. Suivez les instructions de hello dans la section « Connexion avec un navigateur web ».
+Cette erreur signifie que votre certificat SSL n’est pas correctement configuré. Suivez les instructions de la section « Connexion avec un navigateur web ».
 
 Si vous ne pouvez pas soumettre les demandes, vous pouvez voir ceci :
 
@@ -332,7 +332,7 @@ Si vous ne pouvez pas soumettre les demandes, vous pouvez voir ceci :
 [Exception] System.Data.SqlClient.SqlException (0x80131904): Could not find stored procedure 'dbo.InsertRequest'. 
 ```
 
-Dans ce cas, recherchez votre fichier de configuration, dans le paramètre hello particulier pour **WorkerRoleSynchronizationStorageAccountConnectionString**. Cette erreur indique en général, que ce rôle de travail hello a pas pu initialiser la base de données des métadonnées de hello sur la première utilisation. 
+Dans ce cas, vérifiez votre fichier de configuration, notamment le paramètre pour **WorkerRoleSynchronizationStorageAccountConnectionString**. Cette erreur indique généralement que le rôle de travail n’a pas pu initialiser avec succès la base de données de métadonnées à la première utilisation. 
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

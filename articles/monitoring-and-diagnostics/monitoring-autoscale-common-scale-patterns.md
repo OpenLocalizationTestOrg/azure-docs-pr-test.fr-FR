@@ -1,6 +1,6 @@
 ---
-title: "aaaOverview des modèles de mise à l’échelle courants | Documents Microsoft"
-description: "Découvrez que certaines hello courantes modèles tooauto l’échelle vos ressources dans Azure."
+title: "Vue d’ensemble des modèles courants de mise à l’échelle automatique | Microsoft Docs"
+description: "Découvrez certains des modèles courants de mise à l’échelle automatique de vos ressources dans Azure."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/07/2017
 ms.author: ancav
-ms.openlocfilehash: fc5bd97852e0af01aa32940c99721ab8e21033ad
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: fce51546e041c8989d813c3935e058c52b38ba77
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="overview-of-common-autoscale-patterns"></a>Vue d’ensemble des modèles courants de mise à l’échelle automatique
-Cet article décrit certaines des hello courantes modèles tooscale vos ressources dans Azure.
+Cet article décrit certains des modèles courants de mise à l’échelle de vos ressources dans Azure.
 
-Azure à l’échelle automatique analyse s’applique uniquement tooVirtual jeux de mise à l’échelle de Machine (mise), services de cloud computing, les plans de service d’application et les environnements app service. 
+La mise à l’échelle automatique Azure Monitor s’applique uniquement aux jeux de mise à l’échelle de machine virtuelle, services cloud, plans App Service et environnements App Service. 
 
 # <a name="lets-get-started"></a>Prise en main
 
-Cet article suppose que vous êtes familiarisé avec la mise à l’échelle automatique. Vous pouvez [obtenir tooscale ici démarré votre ressource][1]. Hello Voici quelques-uns des modèles de mise à l’échelle hello courants.
+Cet article suppose que vous êtes familiarisé avec la mise à l’échelle automatique. Vous pouvez [commencer ici à mettre à l’échelle votre ressource][1]. Voici quelques modèles de mise à l’échelle courants.
 
 ## <a name="scale-based-on-cpu"></a>Mise à l’échelle en fonction du processeur
 
 Vous avez une application web (/VMSS/rôle de service cloud) et 
 
-- Vous souhaitez tooscale hors/mise à l’échelle en fonction de processeur.
-- En outre, vous souhaitez que tooensure est un nombre minimal d’instances. 
-- En outre, vous souhaitez tooensure que vous définissez un nombre de toohello le nombre maximal d’instances, à que vous pouvez faire évoluer.
+- Vous souhaitez faire augmenter/diminuer les tailles d’instance sur la base du processeur.
+- Vous souhaitez en outre vous assurer qu’il existe un nombre minimal d’instances. 
+- Vous souhaitez aussi vous assurer que vous définissez une limite maximale pour le nombre d’instances, vers lequel vous pouvez faire évoluer.
 
 ![Mise à l’échelle en fonction du processeur][2]
 
@@ -44,7 +44,7 @@ Vous avez une application web (/VMSS/rôle de service cloud) et
 Vous avez une application web (/VMSS/rôle de service cloud) et
 
 - Vous voulez 3 instances par défaut (pour les jours de la semaine)
-- Vous ne prévoyez pas le trafic sur les week-ends, et par conséquent, vous souhaitez tooscale too1 instance vers le bas sur les week-ends.
+- Vous ne prévoyez le trafic lors des week-ends et, par conséquent, vous souhaitez réduire de 1 instance les week-ends.
 
 ![Mettre à l’échelle différemment durant les week-ends et jours de la semaine][3]
 
@@ -52,16 +52,16 @@ Vous avez une application web (/VMSS/rôle de service cloud) et
 
 Vous avez une application web (/VMSS/rôle de service cloud) et 
 
-- Vous souhaitez tooscale haut/bas en fonction de l’utilisation du processeur par défaut
-- Toutefois, pendant la saison (ou des jours spécifiques qui sont importants pour votre entreprise) vous toooverride, hello par défaut et souhaitez davantage de capacité à votre disposition.
+- Vous souhaitez augmenter/diminuer la taille des instances en fonction de l’utilisation du processeur par défaut
+- Toutefois, pendant les vacances (ou des jours spécifiques qui sont importants pour votre entreprise), vous souhaitez remplacer les valeurs par défaut et avoir plus de capacité à votre disposition.
 
 ![Mettre à l’échelle différemment lors des jours fériés][4]
 
 ## <a name="scale-based-on-custom-metric"></a>Mise à l’échelle en fonction de métriques personnalisées
 
-Vous avez un serveur web frontal et un niveau d’API qui communique avec le serveur principal hello. 
+Vous avez un site web frontal et un niveau d’API qui communique avec le serveur principal. 
 
-- Vous souhaitez que le niveau de hello API tooscale basé sur des événements personnalisés dans frontal hello (exemple : vous souhaitez tooscale votre processus de validation basé sur le nombre de hello d’éléments de panier d’achat de hello)
+- Vous souhaitez mettre à l’échelle le niveau API sur la base d’événements personnalisés sur le serveur frontal (exemple : vous souhaitez mettre à l’échelle de votre processus de validation en fonction du nombre d’éléments dans le panier d’achat)
 
 ![Mise à l’échelle en fonction de métriques personnalisées][5]
 

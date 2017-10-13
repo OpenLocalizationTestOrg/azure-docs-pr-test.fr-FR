@@ -1,6 +1,6 @@
 ---
-title: aaaCreate une machine virtuelle de Linux | Documents Microsoft
-description: "Découvrez comment toocreate une machine virtuelle Linux à partir du portail Azure à l’aide de hello hello modèle de déploiement classique."
+title: "Création d’une machine virtuelle personnalisée Linux | Microsoft Docs"
+description: "Découvrez comment créer une machine virtuelle Linux personnalisée à partir du portail Azure à l’aide du modèle de déploiement classique."
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,15 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/31/2017
 ms.author: cynthn
-ms.openlocfilehash: 7591d2bd1fc642a9092f5f77d068c76b9d6ce5f5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 385102662ef46d7eca51d6e5e10ed7aa77bb1a43
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="create-a-custom-virtual-machine-running-linux"></a>Création d’une machine virtuelle personnalisée exécutant Linux
 > [!IMPORTANT] 
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello. Pour plus d’informations sur la création d’un VM Linux à l’aide de hello Gestionnaire de ressources du modèle, consultez [créer un VM Linux sur Azure à l’aide du portail de hello](../quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager. Pour plus d’informations sur la création d’une machine virtuelle Linux à l’aide du modèle Resource Manager, consultez [Création d’une machine virtuelle Linux sur Azure à l’aide du portail](../quick-create-portal.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 [!INCLUDE [virtual-machines-common-classic-createportal](../../../../includes/virtual-machines-common-classic-createportal.md)]
 

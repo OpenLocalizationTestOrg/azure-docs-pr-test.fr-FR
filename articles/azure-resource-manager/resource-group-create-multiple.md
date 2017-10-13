@@ -1,6 +1,6 @@
 ---
-title: aaaDeploy plusieurs instances de ressources Azure | Documents Microsoft
-description: "Utilisez opération de copie et de tableaux dans un tooiterate de modèle Azure Resource Manager plusieurs fois lors du déploiement de ressources."
+title: "Déploiement de plusieurs instances de ressources Azure | Microsoft Docs"
+description: "Utilisez l’opération de copie et les tableaux dans un modèle Azure Resource Manager pour effectuer une itération à plusieurs reprises lors du déploiement de ressources."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/26/2017
 ms.author: tomfitz
-ms.openlocfilehash: a3bd42f694053317c30b639c33dc4efae41a9a9b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ed8e3081d2b2e07938d7cf3aa5f95f6dde81bc66
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="deploy-multiple-instances-of-a-resource-or-property-in-azure-resource-manager-templates"></a>Déployer plusieurs instances d’une ressource ou d’une propriété dans des modèles Azure Resource Manager
-Cette rubrique vous montre comment tooiterate dans votre toocreate de modèle Azure Resource Manager plusieurs instances d’une ressource, ou plusieurs instances d’une propriété sur une ressource.
+Cette rubrique montre comment procéder à une itération dans votre modèle Azure Resource Manager pour créer plusieurs instances d’une ressource ou d’une propriété sur une ressource.
 
-Si vous avez besoin tooadd logique tooyour modèle qui vous permet de toospecify qu’une ressource est déployée, consultez [déployer de manière conditionnelle ressource](#conditionally-deploy-resource).
+Si vous devez ajouter une logique à votre modèle, qui vous permette de spécifier si une ressource est déployée, voir [Déployer une ressource de manière conditionnelle](#conditionally-deploy-resource).
 
 ## <a name="resource-iteration"></a>Itération de ressource
-Ajout de plusieurs instances d’un type de ressource, toocreate un `copy` type d’élément de ressource toohello. Dans l’élément de copie hello, vous spécifiez nombre hello des itérations et un nom pour cette boucle. valeur du nombre Hello doit être un entier positif et ne peut pas dépasser 800. Le Gestionnaire de ressources crée les ressources hello en parallèle. Par conséquent, la commande hello dans lequel ils sont créés n’est pas garantie. ressources toocreate itérée dans l’ordre, consultez [copie série](#serial-copy). 
+Pour créer plusieurs instances d’un type de ressource, ajoutez un élément `copy` au type de ressource. Dans l’élément copy, vous indiquez le nombre d’itérations et un nom pour cette boucle. La valeur de décompte doit être un entier positif et ne pas dépasser 800. Resource Manager crée les ressources en parallèle. Par conséquent, l’ordre de création n’est pas garanti. Pour créer des ressources itérées en séquence, consultez [Copie en série](#serial-copy). 
 
-Hello ressource toocreate plusieurs fois prend hello suivant le format :
+La ressource à créer plusieurs fois prend le format suivant :
 
 ```json
 {
@@ -55,7 +55,7 @@ Hello ressource toocreate plusieurs fois prend hello suivant le format :
 }
 ```
 
-Notez que hello nom de chaque ressource inclut hello `copyIndex()` fonction, qui retourne l’itération actuelle de hello dans la boucle de hello. `copyIndex()` est basé sur zéro. Hello c’est le cas, l’exemple suivant :
+Notez que le nom de chaque ressource inclut la fonction `copyIndex()`, qui renvoie l’itération actuelle de la boucle. `copyIndex()` est basé sur zéro. Si bien que l’exemple suivant :
 
 ```json
 "name": "[concat('storage', copyIndex())]",
@@ -67,7 +67,7 @@ Crée les noms suivants :
 * storage1
 * storage2.
 
-valeur d’index toooffset hello, vous pouvez passer une valeur dans la fonction de copyIndex() hello. Hello nombre d’itérations tooperform est toujours spécifié dans l’élément de copie hello, mais valeur hello copyIndex est décalé par hello spécifié valeur. Hello c’est le cas, l’exemple suivant :
+Pour décaler la valeur d’index, vous pouvez transmettre une valeur dans la fonction copyIndex(). Le nombre d’itérations à effectuer est toujours spécifié dans l’élément copy, mais la valeur de copyIndex est décalée en fonction de la valeur spécifiée. Si bien que l’exemple suivant :
 
 ```json
 "name": "[concat('storage', copyIndex(1))]",
@@ -79,7 +79,7 @@ Crée les noms suivants :
 * storage2
 * storage3
 
-opération de copie Hello est utile lorsque vous travaillez avec des tableaux, car vous pouvez itérer dans chaque élément de tableau de hello. Hello d’utilisation `length` fonction hello tableau toospecify hello termes de nombre d’itérations, et `copyIndex` tooretrieve hello actuel index hello tableau. Hello c’est le cas, l’exemple suivant :
+L’opération copy se révèle utile lorsque vous travaillez avec des tableaux, car vous pouvez itérer sur chaque élément du tableau. Utilisez la fonction `length` sur le tableau pour spécifier le nombre d’itérations, et `copyIndex` pour récupérer l’index actuel dans le tableau. Si bien que l’exemple suivant :
 
 ```json
 "parameters": { 
@@ -112,9 +112,9 @@ Crée les noms suivants :
 
 ## <a name="serial-copy"></a>Copie en série
 
-Lorsque vous utilisez hello copie élément toocreate plusieurs instances d’un type de ressource, le Gestionnaire de ressources, par défaut, déploie ces instances en parallèle. Toutefois, vous souhaiterez peut-être toospecify que hello ressources sont déployées dans la séquence. Par exemple, lors de la mise à jour d’un environnement de production, vous pouvez choisir toostagger hello et seul un certain nombre des mises à jour sont mis à jour à tout moment.
+Lorsque vous utilisez l’élément de copie pour créer plusieurs instances d’un type de ressource, Resource Manager déploie par défaut ces instances en parallèle. Toutefois, vous souhaiterez peut-être spécifier que les ressources soient déployées en séquence. Par exemple, lors de la mise à jour d’un environnement de production, vous souhaiterez échelonner les mises à jour afin que seulement un certain nombre soient mises à jour à un moment donné.
 
-Le Gestionnaire de ressources fournit des propriétés qui permettent de vous tooserially sur l’élément de copie hello déploiement plusieurs instances. Dans l’élément de copie hello, définissez `mode` trop**série** et `batchSize` nombre toohello de toodeploy d’instances à la fois. En mode série, le Gestionnaire de ressources crée une dépendance sur les instances plus haut dans la boucle de hello, afin qu’il ne démarre pas un lot jusqu'à ce que le lot précédent de hello se termine.
+Resource Manager fournit des propriétés sur l’élément de copie qui vous permettent de déployer en série plusieurs instances. Dans l’élément de copie, définissez `mode` sur **serial** et `batchSize` sur le nombre d’instances à déployer en même temps. Avec le mode série, Resource Manager crée une dépendance sur les instances précédentes de la boucle, afin de ne pas démarrer un lot tant que le précédent n’est pas terminé.
 
 ```json
 "copy": {
@@ -125,9 +125,9 @@ Le Gestionnaire de ressources fournit des propriétés qui permettent de vous to
 },
 ```
 
-Hello propriété mode accepte également **parallèles**, qui est la valeur par défaut de hello.
+La propriété mode accepte également **parallel**, qui est la valeur par défaut.
 
-tootest série copie sans créer de ressources réelles, hello utilisation suivant le modèle qui déploie des modèles imbriqués vides :
+Pour tester la copie en série sans créer de ressources réelles, utilisez le modèle suivant qui déploie des modèles imbriqués vides :
 
 ```json
 {
@@ -170,11 +170,11 @@ tootest série copie sans créer de ressources réelles, hello utilisation suiva
 }
 ```
 
-Dans l’historique de déploiement hello, notez que hello déploiements imbriquées sont traitées dans la séquence.
+Dans l’historique de déploiement, vous remarquez que les déploiements imbriqués sont traités en séquence.
 
 ![déploiement en série](./media/resource-group-create-multiple/serial-copy.png)
 
-Pour un scénario plus réaliste, hello exemple suivant déploie les deux instances à la fois d’un VM Linux à partir d’un modèle imbriqué :
+Pour un scénario plus réaliste, l’exemple suivant déploie deux instances à la fois d’une machine virtuelle Linux à partir d’un modèle imbriqué :
 
 ```json
 {
@@ -184,19 +184,19 @@ Pour un scénario plus réaliste, hello exemple suivant déploie les deux instan
         "adminUsername": {
             "type": "string",
             "metadata": {
-                "description": "User name for hello Virtual Machine."
+                "description": "User name for the Virtual Machine."
             }
         },
         "adminPassword": {
             "type": "securestring",
             "metadata": {
-                "description": "Password for hello Virtual Machine."
+                "description": "Password for the Virtual Machine."
             }
         },
         "dnsLabelPrefix": {
             "type": "string",
             "metadata": {
-                "description": "Unique DNS Name for hello Public IP used tooaccess hello Virtual Machine."
+                "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
             }
         },
         "ubuntuOSVersion": {
@@ -209,7 +209,7 @@ Pour un scénario plus réaliste, hello exemple suivant déploie les deux instan
                 "16.04.0-LTS"
             ],
             "metadata": {
-                "description": "hello Ubuntu version for hello VM. This will pick a fully patched image of this given Ubuntu version."
+                "description": "The Ubuntu version for the VM. This will pick a fully patched image of this given Ubuntu version."
             }
         }
     },
@@ -258,13 +258,13 @@ Pour un scénario plus réaliste, hello exemple suivant déploie les deux instan
 
 ## <a name="property-iteration"></a>Itération de propriété
 
-Ajout de plusieurs valeurs pour une propriété sur une ressource, toocreate un `copy` tableau dans l’élément de propriétés hello. Ce tableau contient des objets, et chaque objet a hello propriétés suivantes :
+Pour créer des valeurs multiples pour une propriété sur une ressource, ajoutez un tableau `copy` dans l’élément Propriétés. Ce tableau contient des objets possédant tous les propriétés suivantes :
 
-* nom : nom de hello de hello propriété toocreate plusieurs valeurs pour
-* Count : nombre de hello de valeurs toocreate
-* entrée - un objet qui contient la propriété hello valeurs tooassign toohello  
+* name : nom de la propriété pour laquelle créer plusieurs valeurs
+* count : nombre de valeurs à créer
+* input : objet contenant les valeurs à assigner à la propriété  
 
-Hello suivant montre l’exemple de comment tooapply `copy` propriété dataDisks de toohello sur un ordinateur virtuel :
+L’exemple suivant montre comment appliquer `copy` à la propriété dataDisks sur une machine virtuelle :
 
 ```json
 {
@@ -285,9 +285,9 @@ Hello suivant montre l’exemple de comment tooapply `copy` propriété dataDisk
       ...
 ```
 
-Notez que lorsque vous utilisez `copyIndex` à l’intérieur d’une itération de la propriété, vous devez fournir le nom hello d’itération de hello. Vous n’avez pas de nom de hello tooprovide lorsqu’il est utilisé avec l’itération de la ressource.
+Notez que, lorsque vous utilisez `copyIndex` à l’intérieur d’une itération de propriété, vous devez fournir le nom de l’itération. Il est inutile de fournir le nom quand l’itération de propriété est utilisé avec une itération de ressource.
 
-Le Gestionnaire de ressources se développe hello `copy` tableau durant le déploiement. nom de Hello du tableau de hello devient nom hello de propriété de hello. les valeurs d’entrée Hello deviennent des propriétés de l’objet hello. modèle de Hello déployé devient :
+Le Gestionnaire des ressources développe le tableau `copy` durant le déploiement. Le nom du tableau devient celui de la propriété. Les valeurs d’entrée deviennent les propriétés de l’objet. Le modèle déployé devient :
 
 ```json
 {
@@ -316,7 +316,7 @@ Le Gestionnaire de ressources se développe hello `copy` tableau durant le dépl
       ...
 ```
 
-Vous pouvez utiliser des itérations de ressource et de propriété ensemble. Référence hello propriété l’itération par nom.
+Vous pouvez utiliser des itérations de ressource et de propriété ensemble. Référencez l’itération de propriété par son nom.
 
 ```json
 {
@@ -350,7 +350,7 @@ Vous pouvez utiliser des itérations de ressource et de propriété ensemble. R�
 }
 ```
 
-Vous ne pouvez inclure qu’un seul élément de la copie dans les propriétés de hello pour chaque ressource. toospecify une boucle d’itération pour plus d’une propriété, définir plusieurs objets dans le tableau de copie hello. Chaque objet est itéré séparément. Par exemple, toocreate plusieurs instances de ces deux hello `frontendIPConfigurations` propriété et hello `loadBalancingRules` propriété sur un équilibrage de charge, définir les deux objets dans un élément de copie unique : 
+Vous ne pouvez inclure qu’un seul élément de copie dans les propriétés de chaque ressource. Pour spécifier une boucle d’itération pour plusieurs propriétés, définissez plusieurs objets dans le tableau de copie. Chaque objet est itéré séparément. Par exemple, pour créer plusieurs instances des propriétés `frontendIPConfigurations` et `loadBalancingRules` sur un équilibreur de charge, définissez les deux objets dans un élément de copie unique : 
 
 ```json
 {
@@ -398,7 +398,7 @@ Vous ne pouvez inclure qu’un seul élément de la copie dans les propriétés 
 ```
 
 ## <a name="depend-on-resources-in-a-loop"></a>En fonction des ressources dans une boucle
-Vous spécifiez qu’une ressource est déployée après une autre ressource à l’aide de hello `dependsOn` élément. toodeploy une ressource dont dépend la collection hello des ressources dans une boucle, fournir un nom hello de boucle de copie hello dans l’élément dependsOn de hello. Bonjour à l’exemple suivant montre comment toodeploy trois comptes de stockage avant de déployer hello Machine virtuelle. définition de Machine virtuelle complète Hello n’est pas affichée. Notez que cet élément de la copie hello a le nom défini trop`storagecopy` et élément de dependsOn hello pour les Machines virtuelles de hello est également défini trop`storagecopy`.
+Vous spécifiez qu’une ressource est déployée après une autre ressource à l’aide de l’élément `dependsOn`. Pour déployer une ressource qui dépend de la collection de ressources dans une boucle, vous pouvez utiliser le nom de la boucle de copie dans l’élément dependsOn. L’exemple suivant montre comment déployer trois comptes de stockage avant de déployer la machine virtuelle. La définition complète de la machine virtuelle n’est pas affichée. Notez que le nom de l’élément de copie a la valeur `storagecopy` et que l’élément dependsOn pour la machine virtuelle est également défini sur `storagecopy`.
 
 ```json
 {
@@ -434,7 +434,7 @@ Vous spécifiez qu’une ressource est déployée après une autre ressource à 
 ```
 
 ## <a name="create-multiple-instances-of-a-child-resource"></a>Création de plusieurs instances d’une ressource enfant
-Vous ne pouvez pas utiliser une boucle de copie pour une ressource enfant. toocreate plusieurs instances d’une ressource que vous définissez généralement comme imbriquées dans une autre ressource, vous devez créer à la place cette ressource en tant qu’une ressource de niveau supérieur. Vous définissez la relation de hello avec la ressource parent de hello via les propriétés de type et le nom hello.
+Vous ne pouvez pas utiliser une boucle de copie pour une ressource enfant. Pour créer plusieurs instances d’une ressource que vous définissez généralement comme imbriquée dans une autre ressource, vous devez plutôt créer cette ressource comme une ressource de niveau supérieur. Vous définissez la relation avec la ressource parente par le biais des propriétés type et name.
 
 Par exemple, supposons que vous définissez généralement un jeu de données comme une ressource enfant dans une fabrique de données.
 
@@ -456,11 +456,11 @@ Par exemple, supposons que vous définissez généralement un jeu de données co
 }]
 ```
 
-toocreate plusieurs instances de jeux de données, déplacez-la en dehors de la fabrique de données hello. Hello dataset doit être au même niveau en tant que fabrique de données hello de hello, mais il est toujours une ressource enfant hello fabrique de données. Vous conservez la relation hello entre le jeu de données et de la fabrique de données via les propriétés de type et le nom hello. Étant donné que le type n’est plus peut être déduit qu’à partir de sa position dans le modèle de hello, vous devez fournir le type hello complet au format de hello : `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`.
+Pour créer plusieurs instances de jeux de données, vous devez le déplacer en dehors de la fabrique de données. Le jeu de données doit être au même niveau que la fabrique de données, mais il est toujours une ressource enfant de la fabrique de données. Vous conservez la relation entre le jeu de données et la fabrique de données par le biais des propriétés type et name. Étant donné que le type ne peut plus peut être déduit à partir de sa position dans le modèle, vous devez fournir le type qualifié complet au format : `{resource-provider-namespace}/{parent-resource-type}/{child-resource-type}`.
 
-tooestablish une relation parent/enfant avec une instance de la fabrique de données hello, fournissez un nom pour le jeu de données hello qui inclut le nom de la ressource parent hello. Utilisez le format hello : `{parent-resource-name}/{child-resource-name}`.  
+Pour établir une relation parent/enfant avec une instance de la fabrique de données, fournissez un nom pour le jeu de données incluant le nom de la ressource parente. Utilisez le format : `{parent-resource-name}/{child-resource-name}`.  
 
-Hello exemple suivant illustre hello implémentation :
+L’exemple ci-après illustre l’implémentation :
 
 ```json
 "resources": [
@@ -485,7 +485,7 @@ Hello exemple suivant illustre hello implémentation :
 
 ## <a name="conditionally-deploy-resource"></a>Déployer une ressource de manière conditionnelle
 
-toospecify si une ressource est déployée, utilisez hello `condition` élément. valeur Hello pour cet élément résout tootrue ou false. Lorsque la valeur de hello est true, les ressources hello sont déployé. Lorsque la valeur de hello est false, les ressources hello ne sont pas déployée. Par exemple, toospecify si un compte de stockage est déployé ou un compte de stockage existant est utilisé, utilisez :
+Pour spécifier si une ressource est déployée, utilisez l’élément `condition`. La valeur de cet élément est résolue en true ou false. Lorsque la valeur est true, la ressource est déployée. Lorsque la valeur est false, la ressource n’est pas déployée. Par exemple, pour spécifier si un nouveau compte de stockage est déployé ou si un compte de stockage existant est utilisé, utilisez :
 
 ```json
 {
@@ -504,9 +504,9 @@ toospecify si une ressource est déployée, utilisez hello `condition` élément
 
 Pour obtenir un exemple d’utilisation d’une ressource nouvelle ou existante, voir [Modèle de condition New ou Existing](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResources.NewOrExisting.json).
 
-Pour obtenir un exemple de l’utilisation d’un mot de passe ou d’un ordinateur virtuel de toodeploy clé SSH, consultez [modèle de condition de nom d’utilisateur ou de SSH](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).
+Pour obtenir un exemple d’utilisation d’un mot de passe ou d’une clé SSH pour déployer une machine virtuelle, voir [Modèle de condition Username ou SSH](https://github.com/rjmax/Build2017/blob/master/Act1.TemplateEnhancements/Chapter05.ConditionalResourcesUsernameOrSsh.json).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Si vous souhaitez toolearn sur les sections hello d’un modèle, consultez [de création de modèles de gestionnaire de ressources Azure](resource-group-authoring-templates.md).
-* toolearn comment toodeploy votre modèle, consultez [déployer une application avec le modèle de gestionnaire de ressources Azure](resource-group-template-deploy.md).
+* Pour en savoir plus sur les sections d’un modèle, consultez [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
+* Pour savoir comment déployer votre modèle, consultez [Déploiement d’une application avec un modèle Azure Resource Manager](resource-group-template-deploy.md).
 

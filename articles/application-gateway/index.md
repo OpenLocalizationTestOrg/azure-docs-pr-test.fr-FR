@@ -1,8 +1,8 @@
 ---
-title: "aaaAzure documentation sur la passerelle Application - didacticiels, référence de l’API | Documents Microsoft"
-description: "Découvrez comment toodeploy un contrôleur de remise d’application cloud. Documentation illustre comment tooset configurer le routage au niveau de l’application et équilibrage de charge pour un serveur web frontal."
+title: "Documentation Azure Application Gateway - Didacticiels, informations de référence sur les API | Microsoft Docs"
+description: "Apprenez à déployer un contrôleur de remise d’applications cloud. La documentation montre comment configurer le routage et l’équilibrage des charges au niveau de l’application pour un site web frontal."
 services: application-gateway
-author: carolz
+author: czeumault
 manager: carolz
 layout: LandingPage
 ms.assetid: 
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 9351bbc5cf288fd4650e9edb89be5a601c2a13ce
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 18fdc11227a07e02df1a6b9f9711fd33c23eadb2
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="application-gateway-documentation"></a>Documentation Application Gateway
 
-Découvrez comment toodeploy passerelle d’Application, un contrôleur de remise d’application (ADC) en tant que service. Didacticiels, des références de l’API et toute autre documentation montrent la manière tooset de routage et les services qui vous permettent d’équilibrage de charge au niveau de l’application de créer un serveur frontal web évolutive et hautement disponible.
+Apprenez à déployer Application Gateway, un contrôleur de remise d’applications sous forme de service. Des didacticiels, des références d’API et d’autres documents vous montrent comment configurer des services d’équilibrage de charge et de routage au niveau de l’application qui vous permettent de créer un serveur frontal web évolutif et hautement disponible.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Découvrez comment toodeploy passerelle d’Application, un contrôleur de remis
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Démarrer avec la passerelle d’Application à l’aide de hello portail Azure</h3>
+                        <h3>Prise en main d’Application Gateway à l’aide du Portail Azure</h3>
                     </div>
                 </div>
             </div>

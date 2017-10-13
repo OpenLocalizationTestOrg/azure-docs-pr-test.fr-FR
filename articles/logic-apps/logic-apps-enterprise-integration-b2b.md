@@ -1,6 +1,6 @@
 ---
-title: solutions aaaCreate B2B - Azure Logic Apps | Documents Microsoft
-description: "Recevoir des données dans les applications de la logique à l’aide des fonctionnalités de hello B2B Bonjour Pack d’intégration Enterprise"
+title: "Créer des solutions B2B - Azure Logic Apps | Microsoft Docs"
+description: "Recevoir des données dans des applications logiques à l’aide des fonctionnalités B2B dans Enterprise Integration Pack"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: msftman
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 8f01318a0415d81c37b216f9b991c060edec2053
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0625787ddcbc0091e70b111f687e25929720ad15
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="receive-data-in-logic-apps-with-hello-b2b-features-in-hello-enterprise-integration-pack"></a>Recevoir des données dans les applications logique avec les fonctionnalités de B2B hello Bonjour Pack d’intégration Enterprise
+# <a name="receive-data-in-logic-apps-with-the-b2b-features-in-the-enterprise-integration-pack"></a>Recevoir des données dans des applications logiques à l’aide des fonctionnalités B2B dans Enterprise Integration Pack
 
-Après avoir créé un compte d’intégration qui a des partenaires et des accords, vous êtes prêt toocreate un workflow toobusiness (B2B) d’entreprise pour votre application logique avec hello [Pack d’intégration Enterprise](logic-apps-enterprise-integration-overview.md).
+Après avoir créé un compte d’intégration comportant des partenaires et des contrats, vous êtes prêt à créer un workflow interentreprises (B2B) pour votre application logique avec [Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-toouse hello AS2 et X12 actions, vous devez disposer d’un compte d’intégration d’entreprise. En savoir plus [comment toocreate une intégration compte](../logic-apps/logic-apps-enterprise-integration-accounts.md).
+Pour utiliser les actions AS2 et X12, vous devez disposer d’un compte Enterprise Integration. Découvrez [comment créer un compte Enterprise Integration](../logic-apps/logic-apps-enterprise-integration-accounts.md).
 
 ## <a name="create-a-logic-app-with-b2b-connectors"></a>Créer une application logique avec des connecteurs B2B
 
-Suivez ces étapes toocreate un B2B logique application utilise hello AS2 et X12 données de tooreceive d’actions à partir d’un partenaire commercial :
+Suivez ces étapes pour créer une application logique B2B qui utilise les actions AS2 et X12 pour recevoir des données d’un partenaire commercial :
 
-1. Créer une application logique, puis [lier votre compte d’intégration application tooyour](../logic-apps/logic-apps-enterprise-integration-accounts.md).
+1. Créez une application logique, puis [liez-la à votre compte d’intégration](../logic-apps/logic-apps-enterprise-integration-accounts.md).
 
-2. Ajouter un **demande - HTTP lors de la demande est reçue** application logique de tooyour déclencheur.
+2. Ajoutez un déclencheur **Requête - Lors de la réception d’une requête HTTP** à votre application logique.
 
     ![](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)
 
-3. tooadd hello **AS2 de décoder** action, sélectionnez **ajouter une action**.
+3. Pour ajouter l’action **Decode AS2**, sélectionnez **Ajouter une action**.
 
     ![](./media/logic-apps-enterprise-integration-b2b/transform-2.png)
 
-4. toofilter tous les toohello actions une que vous le souhaitez, entrez le mot de hello **as2** dans la zone de recherche hello.
+4. Pour filtrer toutes les actions et obtenir celle que vous souhaitez utiliser, entrez le mot **as2** dans la zone de recherche.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-5.png)
 
-5. Sélectionnez hello **AS2 - message AS2 de décoder** action.
+5. Sélectionnez l’action **AS2 - Decode AS2 message**.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-6.png)
 
-6. Ajouter hello **corps** que vous souhaitez toouse en tant qu’entrée. Dans cet exemple, sélectionnez hello le corps de requête HTTP de hello que déclencheurs hello application logique. Ou entrez une expression qui transmet les en-têtes hello Bonjour **en-têtes** champ :
+6. Ajoutez le **corps** que vous souhaitez utiliser comme entrée. Dans cet exemple, sélectionnez le corps de la demande HTTP qui a déclenché l’application logique. Ou entrez une expression qui saisit les en-têtes dans le champ **EN-TÊTES** :
 
     @triggerOutputs()['headers']
 
-7. Ajouter hello requis **en-têtes** pour AS2, que vous pouvez trouver dans les en-têtes de demande hello HTTP. Dans cet exemple, sélectionnez les en-têtes de requête HTTP de hello hello cette application de la logique de déclencheur hello.
+7. Ajoutez les **en-têtes** requis pour AS2, que vous pouvez trouver dans les en-têtes de requête HTTP. Dans cet exemple, sélectionnez les en-têtes de la requête HTTP qui déclenche l’application logique.
 
-8. À présent ajouter l’action du message Decode X12 hello. Sélectionnez **Ajouter une action**.
+8. Ajoutez maintenant l’action du message Decode X12. Sélectionnez **Ajouter une action**.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-9.png)
 
-9. toofilter tous les toohello actions une que vous le souhaitez, entrez le mot de hello **x12** dans la zone de recherche hello.
+9. Pour filtrer toutes les actions et obtenir celle que vous souhaitez utiliser, entrez le mot **x12** dans la zone de recherche.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-10.png)
 
-10. Sélectionnez hello **X12-décoder X12 message** action.
+10. Sélectionnez l’action **X12 - Decode X12 message**.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-as2message.png)
 
-11. Maintenant, vous devez spécifier hello toothis d’entrée action. Cette entrée est sortie hello à partir de l’action de AS2 hello précédente.
+11. Vous devez maintenant spécifier l’entrée de cette action. Cette entrée est le résultat de l’action AS2 précédente.
 
-    Hello contenu réel du message est dans un objet JSON et encodage base64, vous devez spécifier une expression en tant qu’entrée de hello. 
-    Entrez hello expression Bonjour suivante **X12 plats tooDECODE MESSAGE de fichier** champ d’entrée :
+    Le contenu réel du message est dans un objet JSON encodé au format Base64. Vous devez donc spécifier une expression comme entrée. 
+    Entrez l’expression suivante dans le champ de saisie **X12 FLAT FILE MESSAGE TO DECODE** (MESSAGE DE FICHIER PLAT X12 À DÉCODER) :
     
     @base64ToString(body('Decode_AS2_message')?['AS2Message']?['Content'])
 
-    Maintenant ajouter des étapes, les données de salutation X12 toodecode reçu hello partenaire commercial et les éléments dans un objet JSON de sortie. 
-    partenaire hello toonotify hello de données a été reçu, vous pouvez envoyer une réponse contenant hello AS2 Notification MDN (Message Disposition) dans une Action de réponse HTTP.
+    Ajoutez des étapes permettant de décoder les données X12 provenant d’un partenaire commercial et de générer des éléments dans un objet JSON. 
+    Pour informer le partenaire de la réception des données, vous pouvez renvoyer une réponse contenant l’élément AS2 Message Disposition Notification (MDN) dans une action Response HTTP.
 
-12. tooadd hello **réponse** action, choisissez **ajouter une action**.
+12. Pour ajouter l’action **Response**, sélectionnez **Ajouter une action**.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-14.png)
 
-13. toofilter tous les toohello actions une que vous le souhaitez, entrez le mot de hello **réponse** dans la zone de recherche hello.
+13. Pour filtrer toutes les actions et obtenir celle que vous souhaitez utiliser, entrez le mot **response** dans la zone de recherche.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-15.png)
 
-14. Sélectionnez hello **réponse** action.
+14. Sélectionner l’action **Response**.
 
     ![](./media/logic-apps-enterprise-integration-b2b/b2b-16.png)
 
-15. tooaccess hello MDN à partir de la sortie de hello Hello **message de décodage X12** action, réponse hello **corps** champ avec cette expression :
+15. Pour accéder à l’élément MDN à partir de la sortie de l’action **Decode X12 message**, définissez le champ de réponse **CORPS** à l’aide de l’expression suivante :
 
     @base64ToString(body('Decode_AS2_message')?['OutgoingMdn']?['Content'])
 
@@ -100,14 +100,14 @@ Suivez ces étapes toocreate un B2B logique application utilise hello AS2 et X12
 
     ![](./media/logic-apps-enterprise-integration-b2b/transform-5.png)  
 
-Vous avez maintenant terminé la configuration de votre application logique B2B. Dans une application réelle, vous souhaiterez toostore hello décodée X12 les données dans un magasin de données ou d’application (LOB) de line-of-business. tooconnect vos propres applications métier et utilisez ces API dans votre application logique, vous pouvez ajouter d’autres actions ou écrire des API personnalisées.
+Vous avez maintenant terminé la configuration de votre application logique B2B. Dans une application réelle, vous souhaiterez peut-être stocker les données X12 décodées dans une application métier ou un magasin de données. Pour vous connecter à vos propres applications métier puis utiliser ces API dans votre application logique, vous pouvez ajouter des actions supplémentaires ou écrire des API personnalisées.
 
 ## <a name="features-and-use-cases"></a>Fonctionnalités et cas d’usage
 
-* X12 Hello AS2 décoder et encoder les actions permettent d’échanger des données entre les partenaires commerciaux à l’aide de protocoles standard dans les applications de la logique.
-* tooexchange des données avec des partenaires commerciaux, vous pouvez utiliser AS2 et X12 avec ou sans eux.
-* actions de B2B Hello vous aider à créer facilement des partenaires et des accords dans votre compte d’intégration et de les utiliser dans une application logique.
+* Les actions de codage et de décodage AS2 et X12 permettent d’échanger des données entre les partenaires commerciaux à l’aide de protocoles standard dans les applications logiques.
+* Pour échanger des données avec des partenaires commerciaux, vous pouvez utiliser AS2 et X12 ensemble ou de façon isolée.
+* Les actions B2B facilitent la création de partenaires et de contrats dans votre compte d’intégration et leur utilisation dans une application logique.
 * En étendant votre application logique avec d’autres actions, vous pouvez envoyer et recevoir des données vers et depuis d’autres applications et services tels que SalesForce.
 
 ## <a name="learn-more"></a>En savoir plus
-[En savoir plus sur hello Pack d’intégration Enterprise](logic-apps-enterprise-integration-overview.md)
+[En savoir plus sur Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md)

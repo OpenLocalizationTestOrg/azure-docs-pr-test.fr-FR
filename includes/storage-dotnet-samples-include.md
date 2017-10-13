@@ -1,6 +1,6 @@
 ## <a name="net-sample-code-repositories"></a>Exemples de référentiel de code .NET
 
-Voici une liste de tous les référentiels de notre exemple de bibliothèque .NET de stockage Azure hello.
+Voici la liste de tous nos exemples de référentiel pour la bibliothèque cliente .NET du stockage Azure.
 
 * [Application web de la galerie photos d’Azure Blob Storage](https://azure.microsoft.com/resources/samples/storage-blobs-dotnet-webapp/)
 * [Exemples de stockage d’objets blob Azure pour .NET](https://azure.microsoft.com/resources/samples/storage-blob-dotnet-getting-started/)

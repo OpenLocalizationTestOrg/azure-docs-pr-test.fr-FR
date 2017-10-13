@@ -1,6 +1,6 @@
 ---
-title: "aaaTroubleshoot protection échecs VMware/physiques tooAzure | Documents Microsoft"
-description: "Cet article décrit les échecs de réplication d’ordinateur VMware hello courants et comment tootroubleshoot les"
+title: "Corriger les défauts de protection VMware/physiques dans Azure | Microsoft Docs"
+description: "Cet article décrit les échecs de réplication d’ordinateur VMware courants et comment les résoudre"
 services: site-recovery
 documentationcenter: 
 author: asgang
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/26/2017
 ms.author: asgang
-ms.openlocfilehash: b821e9aa2610482ba1900645fb75e75744dc442f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6ebec2e06566b1e2d6834fdd81c0d8b2801b80b9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshoot-on-premises-vmwarephysical-server-replication-issues"></a>Résoudre les problèmes locaux de réplication VMware/du serveur physique
-Vous pouvez recevoir un message d’erreur spécifique lorsque vous protégez vos machines virtuelles VMware ou les serveurs physiques à l’aide d’Azure Site Recovery. Cet article explique certaines des hello rencontrés avec tooresolve d’étapes de résolution des problèmes des messages d’erreur courants les.
+Vous pouvez recevoir un message d’erreur spécifique lorsque vous protégez vos machines virtuelles VMware ou les serveurs physiques à l’aide d’Azure Site Recovery. Cet article décrit en détail certains des messages d’erreur les plus couramment rencontrés, ainsi que les étapes de dépannage à suivre pour les résoudre.
 
 
 ## <a name="initial-replication-is-stuck-at-0"></a>La réplication initiale est bloquée à 0 %
-La plupart des échecs de réplication initiale hello que nous rencontrer sur le support technique sont en raison de problèmes tooconnectivity entre le serveur de processus-serveur source ou processus de serveur à Azure.
-La plupart des cas, vous pouvez self résoudre ces problèmes en suivant les étapes de hello répertoriées ci-dessous.
+La plupart des échecs de réplication initiale que nous rencontrons au niveau du support sont dus à des problèmes de connectivité entre le serveur source et le serveur de traitement ou le serveur de traitement et Azure.
+Dans la plupart des cas, vous pouvez résoudre vous-même ces problèmes en suivant les étapes indiquées ci-dessous.
 
-###<a name="check-hello-following-on-source-machine"></a>Vérifiez suivantes hello sur l’ordinateur SOURCE
-* À partir de la ligne de commande d’ordinateur serveur Source, utilisez Telnet tooping hello serveur de processus avec le port https (par défaut 9443) comme indiqué ci-dessous toosee si des problèmes de connectivité réseau ou des problèmes de blocage de port de pare-feu.
+###<a name="check-the-following-on-source-machine"></a>Vérifiez les points suivants sur la MACHINE SOURCE
+* À partir de la ligne de commande du serveur source, utilisez Telnet pour effectuer un test Ping sur le serveur de traitement avec le port https (par défaut 9443) comme indiqué ci-dessous. Cela vous indiquera s’il existe des problèmes de connectivité réseau ou des problèmes de blocage de port par le pare-feu.
      
     `telnet <PS IP address> <port>`
 > [!NOTE]
-    > Utilisation de Telnet, ne pas utiliser une connexion de tootest PING.  Si Telnet n’est pas installé, suivez la liste des étapes hello [ici](https://technet.microsoft.com/library/cc771275(v=WS.10).aspx)
+    > Utilisez Telnet et non PING pour tester la connectivité.  Si Telnet n’est pas installé, suivez les étapes présentées [ici](https://technet.microsoft.com/library/cc771275(v=WS.10).aspx)
 
-Impossible de tooconnect, autoriser le port entrant 9443 sur hello serveur de processus et vérifiez si hello problème toujours s’exécute. Dans certains cas, le serveur de traitement se trouvait derrière une zone DMZ, ce qui était à l’origine de ce problème.
+Si vous ne parvenez pas à vous connecter, autorisez le port entrant 9443 sur le serveur de traitement et vérifiez si le problème persiste. Dans certains cas, le serveur de traitement se trouvait derrière une zone DMZ, ce qui était à l’origine de ce problème.
 
-* Vérifier l’état de hello du service `InMage Scout VX Agent – Sentinel/OutpostStart` si elle n’est pas en cours d’exécution et vérifiez si le problème de hello existe toujours.   
+* Vérifiez l’état du service `InMage Scout VX Agent – Sentinel/OutpostStart` s’il n’est pas en cours d’exécution et vérifiez si le problème persiste.   
  
-###<a name="check-hello-following-on-process-server"></a>Vérifiez suivantes hello sur le serveur de processus
+###<a name="check-the-following-on-process-server"></a>Vérifiez les éléments suivants sur le SERVEUR DE TRAITEMENT
 
-* **Vérifiez si le serveur de processus repousse activement tooAzure de données** 
+* **Vérifiez si le serveur de traitement transmet activement des données à Azure** 
 
-À partir de l’ordinateur du serveur de processus, ouvrez hello Gestionnaire des tâches (appuyez sur Ctrl-Maj-Échap). Onglet de performances toohello, cliquez sur le lien de 'Ouvrir Moniteur de ressource'. Dans le Gestionnaire de ressources, accédez à tooNetwork onglet. Vérifiez si cbengine.exe dans « Processes with Network Activity » (Processus avec activité réseau) envoie activement de gros volume de données (en Mo).
+Sur le serveur de traitement, ouvrez le Gestionnaire des tâches (Ctrl-Maj-Échap). Accédez à l’onglet Performances, puis cliquez sur le lien « Open Resource Monitor » (Ouvrir le moniteur de ressource). Dans le Gestionnaire des ressources, accédez à l’onglet Réseau. Vérifiez si cbengine.exe dans « Processes with Network Activity » (Processus avec activité réseau) envoie activement de gros volume de données (en Mo).
 
 ![Activer la réplication](./media/site-recovery-protection-common-errors/cbengine.png)
 
-Si ce n’est pas hello les étapes répertoriées ci-dessous :
+Si ce n’est pas le cas, suivez les étapes détaillées ci-dessous :
 
-* **Vérifiez si le serveur de processus est en mesure de tooconnect objets Blob Azure**: sélectionnez et vérifiez cbengine.exe tooview hello 'Connexions TCP' toosee s’il existe une connectivité à partir de l’URL de processus serveur tooAzure stockage blob.
+* **Vérifiez si le serveur de traitement est en mesure de se connecter à Azure Blob** : sélectionnez et vérifiez cbengine.exe pour afficher les connexions TCP et voir s’il existe une connectivité du serveur de traitement à l’URL d’objet blob Azure Storage.
 
 ![Activer la réplication](./media/site-recovery-protection-common-errors/rmonitor.png)
 
-Dans le cas contraire, allez tooControl Panneau de configuration > Services, vérifiez si hello suivant services est en cours d’exécution :
+Si ce n’est pas le cas, accédez au Panneau de configuration > Services et vérifiez si les services suivants sont en cours d’exécution :
 
      * cxprocessserver
      * InMage Scout VX Agent – Sentinel/Outpost
@@ -61,33 +61,33 @@ Dans le cas contraire, allez tooControl Panneau de configuration > Services, vé
      * Microsoft Azure Site Recovery Service
      * tmansvc
      * 
-(Re) Démarrer un service qui n’est pas en cours d’exécution et vérifiez si le problème de hello existe toujours.
+(Re)démarrez les services qui ne sont pas en cours d’exécution et vérifiez si le problème persiste.
 
-* **Vérifiez si le serveur de processus est adresse IP publique de tooconnect en mesure de tooAzure via le port 443**
+* **Vérifiez si le serveur de traitement est en mesure de se connecter à l’adresse IP publique Azure via le port 443**
 
-Ouvrez hello CBEngineCurr.errlog plus récentes à partir de `%programfiles%\Microsoft Azure Recovery Services Agent\Temp` et recherchez : 443 et connexion tentative a échoué.
+Ouvrez le dernier fichier CBEngineCurr.errlog sous `%programfiles%\Microsoft Azure Recovery Services Agent\Temp` et recherchez « :443 » et « connection attempt failed ».
 
 ![Activer la réplication](./media/site-recovery-protection-common-errors/logdetails1.png)
 
-Si des problèmes, puis à partir de la ligne de commande du serveur de processus, utilisez telnet tooping votre adresse IP publique Azure (masquée dans ci-dessus image) trouvé dans hello CBEngineCurr.currLog via le port 443.
+Si vous rencontrez des problèmes, dans la ligne de commande du serveur de traitement, utilisez telnet pour effectuer un test ping avec votre adresse IP publique Azure (masquée dans l’image ci-dessus) trouvée dans le fichier CBEngineCurr.currLog via le port 443.
 
       telnet <your Azure Public IP address as seen in CBEngineCurr.errlog>  443
-Si vous êtes tooconnect impossible, puis vérifiez si le problème d’accès hello est toofirewall ou Proxy, comme décrit dans l’étape suivante.
+Si vous ne parvenez pas à vous connecter, vérifiez si le problème d’accès est dû au pare-feu ou au proxy, comme décrit dans l’étape suivante.
 
 
-* **Vérifiez si le pare-feu basé sur l’adresse IP sur le serveur de processus ne bloque l’accès**: Si vous utilisez une de règles de pare-feu basé sur l’adresse IP sur le serveur de hello, puis télécharger la liste complète des plages d’IP centre de données Microsoft Azure à partir de hello [ici ](https://www.microsoft.com/download/details.aspx?id=41653) et ajoutez-les tooensure de configuration de pare-feu tooyour qu’elles autorisent tooAzure de communication (et hello port HTTPS (443)).  Autoriser les plages d’adresses IP pour hello région Azure de votre abonnement et ouest des États-Unis (utilisé pour la gestion d’identité et contrôle d’accès).
+* **Vérifiez si le pare-feu basé sur l’adresse IP du serveur de traitement ne bloque pas l’accès** : si vous utilisez des règles de pare-feu basées sur l’adresse IP sur le serveur, téléchargez la liste complète des plages d’IP du centre de données Microsoft Azure [ici](https://www.microsoft.com/download/details.aspx?id=41653) et ajoutez-les à la configuration de votre pare-feu pour vous assurer que la communication avec Azure (et le port HTTPS (443)) est autorisée.  Autorisez les plages d’adresses IP relatives à la région de votre abonnement Azure et à la région des États-Unis de l’Ouest (utilisées pour la gestion du contrôle d’accès et des identités).
 
-* **Vérifiez si basée sur URL le pare-feu sur le serveur de processus ne bloque pas les accès**: Si vous utilisez des règles de pare-feu une URL basée sur le serveur de hello, assurez-vous de hello URL suivantes est ajoutée toofirewall configuration. 
+* **Vérifiez si le pare-feu basé sur l’URL du serveur de traitement ne bloque pas l’accès** : si vous utilisez des règles de pare-feu basées sur l’URL sur le serveur, vérifiez que les URL suivantes figurent dans la configuration du pare-feu. 
      
   `*.accesscontrol.windows.net:` : élément utilisé pour la gestion des identités et le contrôle d’accès.
 
   `*.backup.windowsazure.com:` : élément utilisé pour l’orchestration et le transfert des données de réplication.
 
-  `*.blob.core.windows.net:`Utilisé pour l’accès toohello compte de stockage qui stocke des données répliquées
+  `*.blob.core.windows.net:` : élément utilisé pour l’accès au compte de stockage qui stocke les données répliquées
 
   `*.hypervrecoverymanager.windowsazure.com:` : élément utilisé pour l’orchestration et l’administration des opérations de gestion de la réplication.
 
-  `time.nist.gov`et `time.windows.com`: utilisé toocheck synchronisation date / heure entre le système et l’heure globale.
+  `time.nist.gov` et `time.windows.com` : éléments utilisés pour vérifier la synchronisation horaire entre l’horloge système et l’heure globale.
 
 URL du **cloud Azure Government** :
 
@@ -99,21 +99,21 @@ URL du **cloud Azure Government** :
 
 `* .ugi.backup.windowsazure.us` 
 
-* **Vérifiez si les paramètres de proxy sur le serveur de traitement ne bloque pas l’accès**.  Si vous utilisez un serveur Proxy, vérifiez que la résolution de nom du serveur proxy hello par le serveur DNS hello.
-toocheck vous avez fourni au moment de hello du programme d’installation du serveur de Configuration. Accédez tooregistry clé
+* **Vérifiez si les paramètres de proxy sur le serveur de traitement ne bloque pas l’accès**.  Si vous utilisez un serveur proxy, vérifiez que le nom du serveur proxy résout le nom du serveur DNS.
+Pour vérifier les informations que vous avez fournies au moment de la configuration du serveur de configuration. Accédez à la clé de Registre
 
     `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Azure Site Recovery\ProxySettings`
 
-Maintenant, assurez-vous que hello mêmes paramètres sont utilisés par les données de toosend de l’agent Azure Site Recovery.
+Assurez-vous maintenant que les mêmes paramètres sont utilisés par l’agent Azure Site Recovery pour envoyer des données.
 Rechercher dans la sauvegarde Microsoft Azure 
 
 ![Activer la réplication](./media/site-recovery-protection-common-errors/mab.png)
 
-Ouvrez-la et cliquez sur Action > Modifier les propriétés. Sous l’onglet Configuration de Proxy, vous devez voir l’adresse proxy hello, qui doit être identique, comme indiqué par les paramètres de Registre hello. Dans le cas contraire, veuillez modifier toohello même adresse.
+Ouvrez-la et cliquez sur Action > Modifier les propriétés. Sous l’onglet Configuration du proxy, vous devez voir l’adresse du proxy, qui doit être la même que celle figurant dans les paramètres du Registre. Si ce n’est pas le cas, remplacez-la par la même adresse.
 
 ![Activer la réplication](./media/site-recovery-protection-common-errors/mabproxy.png)
 
-* **Vérifiez si la bande passante de la limitation de bande passante n’est pas limitée sur le serveur de processus**: augmenter la bande passante hello et vérifiez si le problème de hello existe toujours.
+* **Vérifiez si la bande passante de limitation n’est pas limitée sur le serveur de traitement** : augmentez la bande passante et vérifiez si le problème persiste.
 
 ##<a name="next-steps"></a>Étapes suivantes
-Si vous avez besoin d’aide, puis de valider votre requête trop[Forum sur la récupération automatique du système](https://social.msdn.microsoft.com/Forums/azure/home?forum=hypervrecovmgr). Nous avons une communauté active et un de nos ingénieurs sera tooassist en mesure de vous.
+Si vous avez besoin d’aide, posez votre question sur le [forum ASR](https://social.msdn.microsoft.com/Forums/azure/home?forum=hypervrecovmgr). Nous avons une communauté active et un de nos ingénieurs pourra vous aider.

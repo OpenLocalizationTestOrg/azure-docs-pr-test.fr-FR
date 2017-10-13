@@ -1,6 +1,6 @@
 ---
-title: "aaaSecure votre déploiement Internet of Things | Documents Microsoft"
-description: "Cet article détails comment toosecure votre déploiement IoT"
+title: "Sécuriser votre déploiement de l’Internet des objets | Microsoft Docs"
+description: "Cet article explique comment sécuriser votre déploiement IoT"
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,65 +15,65 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: yurid
-ms.openlocfilehash: befba8f2009279c2217dcd3496d529139134ec01
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: d752dd13b138cdae80dac5c0b2f84a19fe0aa670
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="secure-your-iot-deployment"></a>Sécuriser votre déploiement IoT
-Cet article fournit un niveau de détail suivant de hello pour la sécurisation de l’infrastructure de base Azure IoT Internet of Things (IoT) hello. Elle lie les détails de niveau tooimplementation pour la configuration et de déploiement de chaque composant. Il fournit également des comparaisons et des choix entre les différentes méthodes.
+Cet article fournit davantage de détails sur la sécurisation de l’infrastructure Internet des objets (IoT) basée sur Azure IoT. Il est lié à la procédure au niveau de l’implémentation pour la configuration et le déploiement de chaque composant. Il fournit également des comparaisons et des choix entre les différentes méthodes.
 
-Sécurisation du déploiement d’Azure IoT hello peut être divisé en hello suivant trois zones de sécurité :
+La sécurisation du déploiement Azure IoT peut être divisée selon les trois zones de sécurité suivantes :
 
-* **Sécurité des appareils**: hello IoT DISPOSITIF pendant qu’il est déployé dans hello générique.
-* **Sécurité de connexion**: toutes les données transmises entre les appareils IoT de hello et IoT Hub est confidentiel et de toute falsification.
-* **Sécurité de cloud computing**: en fournissant un moyen toosecure données pendant parcourt, puis il est stocké dans le cloud de hello.
+* **Sécurité de l’appareil**: sécurisation de l’appareil IoT alors que celui-ci est déployé dans la nature.
+* **Sécurité de la connexion**: s’assurer que toutes les données transmises entre l’appareil IoT et IoT Hub sont confidentielles et protégées contre la falsification.
+* **Sécurité du cloud**: fournir un moyen de sécuriser les données lorsque celles-ci transitent par le cloud ou sont stockées sur celui-ci.
 
 ![Trois zones de sécurité][img-overview]
 
 ## <a name="secure-device-provisioning-and-authentication"></a>Approvisionnement et authentification sécurisés des appareils
-Bonjour Azure IoT Suite sécurise les appareils IoT par hello deux méthodes suivantes :
+Azure IoT Suite sécurise les appareils IoT à l’aide des deux méthodes suivantes :
 
-* En fournissant une clé d’identité unique (les jetons de sécurité) pour chaque périphérique, qui peut être utilisé par toocommunicate de périphérique hello avec hello IoT Hub.
-* À l’aide d’un appareil [certificat X.509] [ lnk-x509] et la clé privée comme un toohello de périphérique signifie tooauthenticate hello IoT Hub. Cette méthode d’authentification permet de s’assurer que hello clé privée sur l’appareil de hello ne connaît pas en dehors de l’appareil de hello à tout moment, en fournissant un niveau de sécurité plus élevé.
+* En fournissant une clé d’identité unique (jetons de sécurité) pour chaque appareil, qui peut être utilisée par l’appareil pour communiquer avec IoT Hub.
+* À l’aide d’un [certificat X.509][lnk-x509] et d’une clé privée sur l’appareil en vue d’authentifier l’appareil auprès de l’IoT Hub. Cette méthode d’authentification permet de s’assurer que la clé privée sur l’appareil reste confidentielle à tout moment, offrant ainsi un niveau de sécurité plus élevé.
 
-méthode de jeton de sécurité Hello fournit l’authentification pour chaque appel effectué par hello appareil tooIoT Hub en associant l’appel de tooeach clé symétrique hello. L’authentification basée sur X.509 permet l’authentification d’une unité IoT au niveau de la couche physique de hello dans le cadre de l’établissement d’une connexion TLS hello. méthode de base de jetons de sécurité de Hello peut être utilisée sans l’authentification hello X.509 qui est un modèle moins sécurisé. Hello choix entre les méthodes hello deux est principalement dictée par hello sécurisé a besoin de l’authentification des appareils toobe et la disponibilité de stockage sécurisé sur l’appareil de hello (toostore hello en toute sécurité une clé privée).
+La méthode du jeton de sécurité fournit une authentification pour chaque appel effectué par l’appareil à IoT Hub en associant la clé symétrique à chaque appel. L’authentification basée sur le certificat X.509 permet l’authentification d’un appareil IoT au niveau physique dans le cadre de l’établissement d’une connexion TLS. La méthode basée sur le jeton de sécurité peut être utilisée sans l’authentification X.509 qui constitue un modèle moins sécurisé. Le choix entre les deux méthodes dépend principalement du niveau requis pour l’authentification de l’appareil et de la disponibilité d’un stockage sécurisé sur l’appareil (pour stocker la clé privée en toute sécurité).
 
 ## <a name="iot-hub-security-tokens"></a>Jetons de sécurité IoT Hub
-IoT Hub utilise la sécurité des jetons tooauthenticate appareils et services tooavoid envoi de clés sur le réseau de hello. En outre, la validité et la portée des jetons sont limitées dans le temps. Les Kits de développement logiciel (SDK) Azure IoT Hub génèrent automatiquement les jetons sans configuration spéciale. Certains scénarios, cependant, nécessitent hello utilisateur toogenerate et utilisent directement les jetons de sécurité. Citons notamment une utilisation directe des surfaces MQTT, AMQP ou HTTP hello hello ou implémentation hello hello jeton du modèle de service.
+IoT Hub utilise des jetons de sécurité pour authentifier les appareils et les services afin d’éviter d’envoyer des clés sur le réseau. En outre, la validité et la portée des jetons sont limitées dans le temps. Les Kits de développement logiciel (SDK) Azure IoT Hub génèrent automatiquement les jetons sans configuration spéciale. Certains scénarios requièrent toutefois que l’utilisateur génère et utilise directement des jetons de sécurité. Par exemple, il peut s’agir de l’utilisation directe des surfaces MQTT, AMQP ou HTTP, ou de l’implémentation du modèle de service de jeton.
 
-Vous trouverez plus d’informations sur la structure de hello du jeton de sécurité hello et son utilisation dans hello suivant des articles :
+Vous trouverez plus d’informations sur la structure du jeton de sécurité et son utilisation dans les articles suivants :
 
 * [Structure du jeton de sécurité][lnk-security-tokens]
 * [Utilisation de jetons SAP comme appareil][lnk-sas-tokens]
 
-Chaque IoT Hub a un [Registre des identités] [ lnk-identity-registry] qui peut être utilisé toocreate par périphérique ressources hello service, comme une file d’attente qui contient des messages cloud-à-appareil et en vol et tooallow accès toohello points de terminaison de périphérique. Hello Registre des identités IoT Hub fournit le stockage sécurisé des identités des appareils et des clés de sécurité pour une solution. Individuelles ou des groupes d’identités d’appareil peuvent être ajoutés tooan autorise la liste ou une liste de blocs, l’activation du contrôle total sur l’accès à l’appareil. Hello articles suivants fournissent plus de détails sur la structure de hello du Registre des identités hello et opérations prises en charge.
+Chaque IoT Hub dispose d’un [registre d’identité][lnk-identity-registry] servant à créer des ressources par appareil dans le service, par exemple, une file d’attente contenant des messages actuels envoyés du cloud vers l’appareil. En outre, il autorise l’accès aux points de terminaison des appareils. Le registre des identités IoT Hub stocke de manière sécurisée les identités des appareils et les clés de sécurité d’une solution. Des identités d’appareil peuvent être ajoutées à une liste verte ou une liste rouge, individuellement ou en groupe, permettant un contrôle total de l’accès à l’appareil. Les articles suivants fournissent plus de détails sur la structure du registre d’identité et les opérations prises en charge.
 
-[IoT Hub prend en charge les protocoles tels que MQTT, AMQP, and HTTP][lnk-protocols]. Chacun de ces protocoles utilisent des jetons de sécurité à partir de tooIoT de périphérique hello IoT Hub différemment :
+[IoT Hub prend en charge les protocoles tels que MQTT, AMQP, and HTTP][lnk-protocols]. Chacun de ces protocoles utilise des jetons de sécurité à partir de l’appareil IoT vers IoT Hub différemment :
 
-* AMQP : SASL simple et basée sur les revendications AMQP la sécurité ({stratégie}@sas.root. {} iothubName} dans les cas de hello de jetons d’au niveau du hub IoT ; {deviceId} en cas de l’appareil de portée des jetons).
-* MQTT : Connecter des utilisations de paquet {deviceId} comme hello {ClientId}, {IoThubhostname} / {deviceId} Bonjour **nom d’utilisateur** champ et une SAP de jeton Bonjour **mot de passe** champ.
-* HTTP : Jeton valide est dans l’en-tête de demande d’autorisation hello.
+* AMQP : sécurité basée sur des revendications AMQP et SASL PLAIN ({policyName}@sas.root.{iothubName} dans le cas de jetons de niveau IoT hub ; {deviceId} dans le cas de jetons à l’échelle de l’appareil).
+* MQTT : le paquet CONNECT utilise {deviceId} en tant que {ClientId}, {IoThubhostname}/{deviceId} dans le champ **Nom d’utilisateur** et un jeton SAS dans le champ **Mot de passe**.
+* HTTP : le jeton valide se trouve dans l’en-tête de la requête d’autorisation.
 
-Registre des identités IoT Hub peut être des informations d’identification de sécurité tooconfigure utilisé par périphérique et le contrôle d’accès. Cependant, si une solution IoT représente déjà un investissement significatif dans un [registre d’identité des appareils personnalisé et/ou un schéma d’authentification][lnk-custom-auth], vous pouvez intégrer cette infrastructure existante à IoT Hub en créant un service de jeton.
+Vous pouvez utiliser le registre d’identité IoT Hub pour configurer les informations d’identification de sécurité et le contrôle d’accès par appareil. Cependant, si une solution IoT représente déjà un investissement significatif dans un [registre d’identité des appareils personnalisé et/ou un schéma d’authentification][lnk-custom-auth], vous pouvez intégrer cette infrastructure existante à IoT Hub en créant un service de jeton.
 
 ### <a name="x509-certificate-based-device-authentication"></a>Authentification des appareils basée sur un certificat X.509
-Hello d’utilisation d’un [basée sur l’appareil un certificat X.509] [ lnk-protocols] et sa paire de clés privée et publique associée permet une authentification supplémentaire au niveau de la couche physique de hello. clé privée de Hello est stocké en toute sécurité dans le dispositif de hello et n’est pas détectable en dehors de l’appareil de hello. certificat X.509 de Hello contient plus d’informations sur l’appareil hello, telles que les ID de périphérique et d’autres détails d’organisation. Une signature de certificat de hello est générée à l’aide de clé privée de hello.
+L’utilisation d’un [certificat X.509 basé sur un appareil][lnk-protocols] et sa paire de clés privée et publique associée permet d’obtenir une authentification supplémentaire au niveau de la couche physique. La clé privée est stockée en toute sécurité dans l’appareil et n’est pas détectable en dehors de l’appareil. Le certificat X.509 contient des informations sur l’appareil, telles que l’identifiant de l’appareil et d’autres détails organisationnels. Une signature du certificat est générée à l’aide de la clé privée.
 
 Flux d’approvisionnement des appareils de haut niveau :
 
-* Associer un identificateur tooa périphérique physique : identité de l’appareil et/ou par appareil de toohello associé de certificat X.509 au cours de l’unité de fabrication ou de mise en service.
-* Créer une entrée d’identité correspondante dans IoT Hub – identité de l’appareil et les informations de périphérique associé Bonjour Registre des identités IoT Hub.
+* Associer un identificateur à un appareil physique : identité de l’appareil et/ou certificat X.509 associés à l’appareil lors de la fabrication ou de la mise en service de l’appareil.
+* Créer une entrée d’identité correspondante dans IoT Hub : identité de l’appareil et informations connexes sur l’appareil dans le Registre d’identité IoT Hub.
 * Stocker en toute sécurité l’empreinte numérique du certificat X.509 dans le Registre d’identité IoT Hub.
 
 ### <a name="root-certificate-on-device"></a>Certificat racine sur un appareil
-Lors de l’établissement d’une connexion TLS sécurisée avec IoT Hub, appareils IoT de hello authentifie IoT Hub à l’aide d’un certificat racine qui fait partie de l’appareil hello SDK. Pour que le client hello C SDK hello est situé sous le dossier de hello »\\c\\certificats » sous la racine hello de dépôt de hello. Bien que ces certificats racine soient de longue durée, ils peuvent malgré tout expirer ou être révoqués. S’il n’existe aucun moyen de mise à jour hello certificat sur l’appareil de hello, hello périphérique ne peut pas être en mesure de toosubsequently connecter toohello IoT Hub (ou tout autre service cloud). Avoir un certificat racine de moyens tooupdate hello une fois déployé appareils IoT de hello réduire de manière efficace ce risque.
+Lors de l’établissement d’une connexion TLS sécurisée avec IoT Hub, l’appareil IoT authentifie IoT Hub à l’aide d’un certificat racine qui fait partie du Kit de développement logiciel (SDK) de l’appareil. Pour le Kit de développement logiciel (SDK) du client C, le certificat se trouve dans le dossier « \\c\\certs » sous la racine du référentiel. Bien que ces certificats racine soient de longue durée, ils peuvent malgré tout expirer ou être révoqués. S’il n’existe aucun moyen de mettre à jour le certificat sur l’appareil, il est possible que celui-ci ne puisse pas se connecter ultérieurement à IoT Hub (ou tout autre service cloud). Pour minimiser ce risque, nous vous conseillons de disposer d’un moyen de mettre à jour le certificat racine une fois l’appareil IoT déployé.
 
-## <a name="securing-hello-connection"></a>Sécurisation de connexion de hello
-Connexion Internet entre appareils IoT de hello et IoT Hub est sécurisée à l’aide de la norme de sécurité TLS (Transport Layer) hello. Azure IoT prend en charge [TLS 1.2][lnk-tls12], TLS 1.1 et TLS 1.0, dans cet ordre. La prise en charge de TLS 1.0 est fournie uniquement à des fins de compatibilité descendante. Il est recommandé de toouse TLS 1.2 puisqu’il fournit hello plus de sécurité.
+## <a name="securing-the-connection"></a>Sécurisation de la connexion
+La connexion Internet entre l’appareil IoT et IoT Hub est sécurisée à l’aide de la norme TLS (Transport Layer Security). Azure IoT prend en charge [TLS 1.2][lnk-tls12], TLS 1.1 et TLS 1.0, dans cet ordre. La prise en charge de TLS 1.0 est fournie uniquement à des fins de compatibilité descendante. Il est recommandé d’utiliser TLS 1.2, qui fournit la meilleure sécurité.
 
-Azure IoT Suite prend en charge hello suivant des Suites de chiffrement, dans cet ordre.
+Azure IoT Suite prend en charge les suites de chiffrement suivantes, dans cet ordre.
 
 | Suite de chiffrement | Longueur |
 | --- | --- |
@@ -89,38 +89,38 @@ Azure IoT Suite prend en charge hello suivant des Suites de chiffrement, dans ce
 | TLS\_RSA\_WITH\_AES\_128\_CBC\_SHA (0x2f) |128 |
 | TLS\_RSA\_WITH\_3DES\_EDE\_CBC\_SHA (0xa) |112 |
 
-## <a name="securing-hello-cloud"></a>Sécurisation de cloud de hello
-Azure IoT Hub permet la définition de [stratégies de contrôle d’accès][lnk-protocols] pour chaque clé de sécurité. Il utilise hello ensemble suivant d’autorisations toogrant accès tooeach de points de terminaison de IoT Hub. Autorisations limitent tooan d’accès hello Qu'iot Hub basé sur la fonctionnalité.
+## <a name="securing-the-cloud"></a>Sécurisation du cloud
+Azure IoT Hub permet la définition de [stratégies de contrôle d’accès][lnk-protocols] pour chaque clé de sécurité. Azure IoT Hub utilise l’ensemble d’autorisations qui suit pour accorder l’accès à chaque point de terminaison IoT Hub. Les autorisations limitent l’accès à un IoT Hub selon la fonctionnalité.
 
-* **RegistryRead**. Registre des identités toohello accorde un accès en lecture. Pour plus d’informations, consultez la rubrique dédiée au [registre des identités][lnk-identity-registry].
-* **RegistryReadWrite**. Octroie accès en lecture et écriture toohello Registre des identités. Pour plus d’informations, consultez la rubrique dédiée au [registre des identités][lnk-identity-registry].
-* **ServiceConnect**. Octroie accéder toocloud service orientées communication et la surveillance des points de terminaison. Par exemple, il accorde hello récupérer correspondant des accusés de réception de remise des messages appareil-à-cloud autorisation tooback-fin cloud services tooreceive et envoyer des messages cloud-à-appareil.
-* **DeviceConnect**. Octroie accéder aux points de terminaison toodevice accessibles. Par exemple, il accorde l’autorisation des messages appareil-à-cloud toosend et recevoir des messages cloud-à-appareil. Cette autorisation est utilisée par les appareils.
+* **RegistryRead**. Accorde l’accès en lecture au registre des identités. Pour plus d’informations, consultez la rubrique dédiée au [registre des identités][lnk-identity-registry].
+* **RegistryReadWrite**. Accorde l’accès en lecture et en écriture au registre des identités. Pour plus d’informations, consultez la rubrique dédiée au [registre des identités][lnk-identity-registry].
+* **ServiceConnect**. Accorde l’accès à la communication de services cloud et à la surveillance des points de terminaison. Par exemple, elle permet aux services cloud principaux de recevoir des messages appareil-à-cloud, d’envoyer des messages cloud-à-appareil et de récupérer les accusés de remise correspondants.
+* **DeviceConnect**. Accorde l’accès aux points de terminaison côté appareil. Par exemple, elle permet d’envoyer des messages appareil-à-cloud et de recevoir des messages cloud-à-appareil. Cette autorisation est utilisée par les appareils.
 
-Il existe deux façons tooobtain **DeviceConnect** autorisations avec IoT Hub avec [les jetons de sécurité][lnk-sas-tokens]: à l’aide d’une clé d’identité de périphérique, ou une clé d’accès partagé. En outre, il est important toonote toutes les fonctionnalités accessibles à partir d’appareils exposé par la conception sur les points de terminaison avec le préfixe `/devices/{deviceId}`.
+Il existe deux façons d’obtenir des autorisations **DeviceConnect** avec IoT Hub avec [jetons de sécurité][lnk-sas-tokens] : avec une clé d’identité d’appareil ou une clé d’accès partagé. En outre, il est important de noter que toutes les fonctionnalités accessibles à partir des appareils sont exposées dès le départ sur les points de terminaison avec le préfixe `/devices/{deviceId}`.
 
-[Composants de service peuvent uniquement créer des jetons de sécurité] [ lnk-service-tokens] à l’aide des stratégies d’accès l’octroi d’autorisations approprié de hello partagé.
+Les [composants de service peuvent uniquement créer des jetons de sécurité][lnk-service-tokens] utilisant des stratégies d’accès partagé pour accorder les autorisations adaptées.
 
-IoT Hub Azure et autres services qui peuvent faire partie d’une solution de hello autoriser la gestion des utilisateurs à l’aide de hello Azure Active Directory.
+Azure IoT Hub et d’autres services pouvant faire partie de la solution autorisent la gestion des utilisateurs à l’aide d’Azure Active Directory.
 
 Les données reçues par Azure IoT Hub peuvent être utilisées par une variété de services comme Azure Stream Analytics et le stockage d’objets blob. Ces services permettent un accès en gestion. En savoir plus sur ces services et les options disponibles ci-dessous :
 
-* [Base de données Azure Cosmos][lnk-docdb]: un service de base de données évolutives et entièrement indexés pour des données semi-structurées qui gère les métadonnées pour les appareils hello vous configurez, telles que des attributs, la configuration et les propriétés de sécurité. Cosmos DB assure un traitement hautes performances et à débit élevé, ainsi qu’une indexation des données indépendante du schéma. Ce service offre également une interface de requête SQL enrichie.
-* [Analytique de flux de données Azure][lnk-asa]: flux en temps réel de traitement dans le cloud hello toorapidly vous permet de développer et déployer un informations économiques analytique solution toouncover en temps réel à partir d’appareils, capteurs, infrastructure et les applications. les données de salutation à partir de ce service entièrement géré peuvent évoluer tooany volume tout en atteignant un débit élevé, une latence faible et résilience.
-* [Services d’application Azure][lnk-appservices]: un cloud platform toobuild puissantes applications web et mobiles qui se connectent toodata n’importe où ; dans le cloud de hello ou localement. Créez des applications mobiles attrayantes pour iOS, Android et Windows. Intégrer avec votre logiciel comme un Service (SaaS) et d’entreprise des applications avec toodozens out of box connectivité des services basés sur le cloud et applications d’entreprise. Le code dans votre langage favori et l’IDE et les applications web toobuild (.NET, Node.js, PHP, Python ou Java) et API plus rapidement qu’auparavant.
-* [Logique d’applications][lnk-logicapps]: fonctionnalité de Logic Apps hello du Service d’applications Azure permet d’intégrer vos systèmes métier-IoT solution tooyour existants et d’automatiser les processus de flux de travail. Logique d’applications permet aux développeurs toodesign des flux de travail qui démarrent à partir d’un déclencheur, puis exécutent une série d’étapes, les règles et les actions qui utilisent des connecteurs puissant toointegrate avec vos processus d’entreprise. Logique d’applications offre d’emploi connectivité tooa vaste écosystème de SaaS, basé sur le cloud et des applications sur site.
-* [Stockage d’objets blob Azure][lnk-blob]: stockage cloud fiable et économique pour les données hello que vos appareils envoient toohello cloud.
+* [Azure Cosmos DB][lnk-docdb] : service de base de données évolutif et entièrement indexé pour données semi-structurées, qui gère les métadonnées (attributs, configuration, propriétés de sécurité, etc.) des appareils que vous approvisionnez. Cosmos DB assure un traitement hautes performances et à débit élevé, ainsi qu’une indexation des données indépendante du schéma. Ce service offre également une interface de requête SQL enrichie.
+* [Azure Stream Analytics][lnk-asa] : traitement des flux en temps réel dans le cloud, permettant de développer et de déployer rapidement une solution d’analyse à faible coût pour obtenir des informations en temps réel de la part des appareils, capteurs, infrastructures et applications. Les données de ce service entièrement géré peuvent être mises à l’échelle selon n’importe quel volume. Vous continuez à bénéficier d’un débit élevé, d’une faible latence et de la résilience.
+* [Azure App Services][lnk-appservices] : plateforme cloud permettant de créer de puissantes applications web et mobiles qui se connectent aux données n’importe où, que ce soit localement ou dans le cloud. Créez des applications mobiles attrayantes pour iOS, Android et Windows. Assurez l’intégration avec vos applications SaaS (Software as a Service) et d’entreprise grâce à une connectivité prête à l’emploi à des dizaines d’applications et services basés sur le cloud. Encodez dans votre environnement de développement intégré et votre langage favoris (.NET, Node.js, PHP, Python ou Java) pour créer rapidement des applications web et des API.
+* [Logic Apps][lnk-logicapps] : fonctionnalité Azure App Service qui vous aide à intégrer votre solution IoT dans vos systèmes métier existants et à automatiser les processus de flux de travail. Logic Apps permet aux développeurs de concevoir des flux de travail qui démarrent à partir d’un déclencheur et exécutent une série d’étapes — des règles et actions utilisant des connecteurs puissants pour l’intégration à vos processus d’entreprise. Logic Apps offre une connectivité prête à l’emploi vers un vaste écosystème d’applications SaaS, basées sur le cloud et locales.
+* [Blob Storage][lnk-blob] : stockage cloud fiable et économique pour les données que vos appareils envoient au cloud.
 
 ## <a name="conclusion"></a>Conclusion
-Cet article fournit une vue d’ensemble des détails au niveau de l’implémentation pour concevoir et déployer une infrastructure IoT à l’aide d’Azure IoT. Configuration de chaque composant toobe sécurisée est la clé pour la sécurisation de hello infrastructure IoT globale. le choix de conception Hello disponible dans Azure IoT permettent un certain degré de souplesse et de choix ; Toutefois, chaque choix peut avoir des implications de sécurité. Nous vous recommandons d’évaluer chacun de ces choix à l’aide d’une évaluation des risques et du coût.
+Cet article fournit une vue d’ensemble des détails au niveau de l’implémentation pour concevoir et déployer une infrastructure IoT à l’aide d’Azure IoT. La configuration de chaque composant afin qu’il soit sécurisé est essentielle pour sécuriser l’infrastructure IoT dans son ensemble. Les choix de conception disponibles dans Azure IoT offrent un certain degré de souplesse et de choix. Toutefois, chaque choix peuvent avoir des implications en matière de sécurité. Nous vous recommandons d’évaluer chacun de ces choix à l’aide d’une évaluation des risques et du coût.
 
 ## <a name="see-also"></a>Voir aussi
-Vous pouvez également découvrir hello autres et les fonctionnalités des solutions de IoT Suite préconfiguré hello :
+Vous pouvez également explorer certaines des autres fonctionnalités et capacités des solutions préconfigurées IoT Suite :
 
 * [Présentation de la solution préconfigurée de maintenance prédictive][lnk-predictive-overview]
 * [Forum Aux Questions (FAQ) relatives à IoT Suite][lnk-faq]
 
-Vous pouvez lire sur la sécurité IoT Hub dans [tooIoT d’accès contrôle Hub] [ lnk-devguide-security] Bonjour guide du développeur IoT Hub.
+Pour en savoir plus sur la sécurité d’IoT Hub, consultez la rubrique [Contrôler l’accès à IoT Hub][lnk-devguide-security] du guide du développeur IoT Hub.
 
 
 [img-overview]: media/iot-suite-security-deployment/overview.png

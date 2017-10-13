@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure SQL données entrepôt Forum aux Questions | Documents Microsoft"
+title: Foire aux questions Azure SQL Data Warehouse | Microsoft Docs
 description: "Cet article répertorie les questions fréquemment posées par les clients et les développeurs sur Azure SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: overview
 ms.date: 3/1/2017
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 09fd3f65d9507b09fcb8f477742c7d020add2755
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 4c00710ecc0c91f8407eca81b78176075fcbd6ad
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="sql-data-warehouse-frequently-asked-questions"></a>Foire aux questions SQL Data Warehouse
 
@@ -31,7 +31,7 @@ R. SQL DW propose plusieurs solutions de protection des données, comme le chiff
 
 Q : Où puis-je trouver les normes juridiques et commerciales auxquelles SQL DW est conforme ?
 
-R : Visitez hello [Microsoft Compliance] page pour différentes offres de conformité par produit par exemple, le SOC et ISO. Tout d’abord choisir par titre de la conformité, puis développez Azure hello dans l’étendue Microsoft nuage section services sur le côté droit de hello de hello page toosee quels services sont des services Azure est conformes.
+R. Consultez la page [Conformité Microsoft] pour connaître les différentes offres de conformité par produit, notamment SOC et ISO. Tout d’abord, sélectionnez le titre de conformité de votre choix, puis développez Azure dans la section des services cloud qui figurent dans le champ d’application de Microsoft, sur le côté droit de la page, pour voir quels sont les services Azure conformes.
 
 Q : Puis-je connecter Power BI ?
 
@@ -43,7 +43,7 @@ R. Consultez notre page [Limites de capacité] actuelle.
 
 Q : Pourquoi ma Mise à l’échelle/Pause/Reprise est-elle si longue ?
 
-R : Un certain nombre de facteurs peut influencer la durée hello pour les opérations de gestion de calcul. Une cause fréquente des opérations avec une durée d’exécution longue est l’annulation de transactions. Quand une opération de mise à l’échelle ou de pause est lancée, toutes les sessions entrantes sont bloquées et les requêtes sont vidées. Dans le système de type hello tooleave de commande dans un état stable, les transactions doivent être restaurées avant une opération puisse commencer. Hello plus grand nombre de hello et la plus grande taille de journal hello des transactions, opération hello plue de hello est bloquée hello système tooa stable état de restauration.
+R : Un certain nombre de facteurs peuvent influencer la durée des opérations de gestion du calcul. Une cause fréquente des opérations avec une durée d’exécution longue est l’annulation de transactions. Quand une opération de mise à l’échelle ou de pause est lancée, toutes les sessions entrantes sont bloquées et les requêtes sont vidées. Afin de laisser le système dans un état stable, les transactions doivent être annulées avant qu’une opération puisse commencer. Plus le nombre et la taille du journal des transactions sont importants, plus longtemps l’opération sera bloquée en attente de la restauration du système à un état stable.
 
 ## <a name="user-support"></a>Service client
 
@@ -73,7 +73,7 @@ R. SQL Data Warehouse prend en charge de nombreuses fonctionnalités, mais pas t
 
 Q : Prenez-vous en charge les projets de base de données dans Visual Studio ?
 
-R. À l’heure actuelle, nous ne prenons pas en charge les projets de base de données dans Visual Studio pour SQL Data Warehouse. Si vous souhaitez que toocast un tooget vote cette fonctionnalité, visitez notre User Voice [demande des fonctionnalités des projets de base de données].
+R. À l’heure actuelle, nous ne prenons pas en charge les projets de base de données dans Visual Studio pour SQL Data Warehouse. Si vous souhaitez voter pour obtenir cette fonctionnalité, visitez notre UserVoice [Demande de fonctionnalités pour les projets de base de données].
 
 Q : SQL Data Warehouse prend-il en charge les API REST ?
 
@@ -84,23 +84,23 @@ R. Oui. La plupart des fonctionnalités REST utilisables avec SQL Database sont 
 
 Q : Quels pilotes clients prenez-vous en charge ?
 
-R : Prise en charge de pilote pour l’entrepôt de données se trouvent sur hello [les chaînes de connexion] page
+R. La prise en charge des pilotes pour DW est détaillée sur la page [Chaînes de connexion].
 
 Q : Quels sont les formats de fichier pris en charge par PolyBase avec SQL Data Warehouse ?
 
 R : Orc, RC, Parquet et le texte plat délimité
 
-Q : que se connecter à l’aide de PolyBase de toofrom SQL DW ? 
+Q : À quoi puis-je me connecter à partir de SQL DW à l’aide de PolyBase ? 
 
 R : [Azure Data Lake Store] et [Azure Storage Blobs].
 
-Q : est poussée vers le bas de calcul possible lors de la connexion tooAzure d’objets BLOB de stockage ou ADLS ? 
+Q : Les automates à pile sont-ils possibles lors de la connexion à Azure Storage Blobs ou à  ADLS ? 
 
-R : non, SQL Data Warehouse PolyBase interagit uniquement les composants de stockage hello. 
+R : Non, SQL DW PolyBase interagit uniquement avec les composants de stockage. 
 
-Q : puis-je connecter tooHDI ?
+Q : Puis-je me connecter à HDI ?
 
-R : HDI pouvez utiliser ADLS ou WASB comme couche HDFS hello. Si vous avez l’un des deux comme couche HDFS, vous pouvez charger ces données dans SQL DW. Toutefois, vous ne pouvez pas générer instance HDI de poussée vers le bas calcul toohello. 
+R : HDI peut utiliser ADLS ou WASB comme couche HDFS. Si vous avez l’un des deux comme couche HDFS, vous pouvez charger ces données dans SQL DW. Toutefois, vous ne peut pas générer d’automate à pile vers l’instance HDI. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 Pour plus d’informations sur SQL Data Warehouse dans son ensemble, consultez notre page [Vue d’ensemble].
@@ -108,16 +108,16 @@ Pour plus d’informations sur SQL Data Warehouse dans son ensemble, consultez n
 
 <!-- Article references -->
 [UserVoice]: https://feedback.azure.com/forums/307516-sql-data-warehouse
-[les chaînes de connexion]: ./sql-data-warehouse-connection-strings.md
+[Chaînes de connexion]: ./sql-data-warehouse-connection-strings.md
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/azure-sqldw
 [tickets de support]: ./sql-data-warehouse-get-started-create-support-ticket.md
 [Sécurité]: ./sql-data-warehouse-overview-manage-security.md
-[Microsoft Compliance]: https://www.microsoft.com/en-us/trustcenter/compliance/complianceofferings
+[Conformité Microsoft]: https://www.microsoft.com/en-us/trustcenter/compliance/complianceofferings
 [Limites de capacité]: ./sql-data-warehouse-service-capacity-limits.md
 [Types de données]: ./sql-data-warehouse-tables-data-types.md
 [Fonctionnalités de table non prises en charge]: ./sql-data-warehouse-tables-overview.md#unsupported-table-features
 [Azure Data Lake Store]: ./sql-data-warehouse-load-from-azure-data-lake-store.md
 [Azure Storage Blobs]: ./sql-data-warehouse-load-from-azure-blob-storage-with-polybase.md
-[demande des fonctionnalités des projets de base de données]: https://feedback.azure.com/forums/307516-sql-data-warehouse/suggestions/13313247-database-project-from-visual-studio-to-support-azu
+[Demande de fonctionnalités pour les projets de base de données]: https://feedback.azure.com/forums/307516-sql-data-warehouse/suggestions/13313247-database-project-from-visual-studio-to-support-azu
 [MSDN]: https://msdn.microsoft.com/en-us/library/azure/mt163685.aspx
 [Vue d’ensemble]: ./sql-data-warehouse-overview-faq.md

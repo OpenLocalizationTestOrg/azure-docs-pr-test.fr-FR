@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure intégration du Kit de développement logiciel Android Mobile Engagement"
+title: "Intégration du SDK Android d'Azure Mobile Engagement"
 description: "Dernières mises à jour et procédures du SDK Android pour Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,28 +14,28 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/27/2016
 ms.author: piyushjo
-ms.openlocfilehash: 4ab6143771bdc0758a548abb529d6bde98fc0e4e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 26ba47b19f3a503693d60d344ad39b9eba74fe99
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toointegrate-engagement-reach-on-android"></a>Comment les tooIntegrate Engagement sur Android
+# <a name="how-to-integrate-engagement-reach-on-android"></a>Comment intégrer le module de couverture Engagement sur Android
 > [!IMPORTANT]
-> Vous devez suivre la procédure d’intégration hello décrite dans hello comment tooIntegrate Engagement sur Android document avant de suivre ce guide.
+> Vous devez suivre la procédure d'intégration décrite dans le document « Comment intégrer Engagement sur Android » avant de suivre ce guide.
 > 
 > 
 
 ## <a name="standard-integration"></a>Intégration standard
 
-Copiez les fichiers de ressources de portée de hello SDK dans votre projet :
+Copiez les fichiers de ressources du module de couverture du SDK dans votre projet :
 
-* Copiez les fichiers hello hello `res/layout` dossier fourni avec le Kit de développement logiciel de hello en hello `res/layout` dossier de votre application.
-* Copiez les fichiers hello hello `res/drawable` dossier fourni avec le Kit de développement logiciel de hello en hello `res/drawable` dossier de votre application.
+* Copiez les fichiers qui se trouvent dans le dossier `res/layout` fourni avec le SDK dans le dossier `res/layout` de votre application.
+* Copiez les fichiers qui se trouvent dans le dossier `res/drawable` fourni avec le SDK dans le dossier `res/drawable` de votre application.
 
 Modifiez le fichier `AndroidManifest.xml` :
 
-* Ajouter hello après section (entre hello `<application>` et `</application>` balises) :
+* Ajoutez la section suivante (entre les balises `<application>` et `</application>`) :
   
           <activity android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity" android:theme="@android:style/Theme.Light" android:exported="false">
             <intent-filter>
@@ -78,47 +78,47 @@ Modifiez le fichier `AndroidManifest.xml` :
               <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
             </intent-filter>
           </receiver>
-* Vous avez besoin de cette autorisation tooreplay système les notifications qui n’étaient pas activés au démarrage (sinon ils seront conservés sur le disque, mais ne s’affiche plus, vous devez tooinclude cela).
+* Vous avez besoin de cette autorisation pour afficher de nouveau les notifications système qui n'étaient pas activées au moment du démarrage (sinon elles seront conservées sur disque, mais ne s'afficheront plus).
   
           <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-* Spécifier une icône utilisée pour les notifications (à la fois dans l’application et ceux de système) en copiant et en modifiant les hello après section (entre hello `<application>` et `</application>` balises) :
+* Spécifiez une icône utilisée pour les notifications (les notifications dans l'application et les notifications système) en copiant et en modifiant la section suivante (entre les balises `<application>` et `</application>`) :
   
           <meta-data android:name="engagement:reach:notification:icon" android:value="<name_of_icon_WITHOUT_file_extension_and_WITHOUT_'@drawable/'>" />
 
 > [!IMPORTANT]
-> Cette section est **obligatoire** si vous prévoyez d'utiliser les notifications système lors de la création de campagnes de couverture. Android empêche les notifications système sans icône de s'afficher. Si vous omettez cette section, vos utilisateurs finaux seront donc pas en mesure de tooreceive les.
+> Cette section est **obligatoire** si vous prévoyez d'utiliser les notifications système lors de la création de campagnes de couverture. Android empêche les notifications système sans icône de s'afficher. Si vous omettez cette section, vos utilisateurs finaux ne pourront donc pas les recevoir.
 > 
 > 
 
-* Si vous créez des campagnes avec les notifications système à l’aide de la vue d’ensemble, vous devez hello tooadd les autorisations suivantes (après hello `</application>` balise) si manquant :
+* Si vous créez des campagnes avec notifications système qui utilisent BigPicture, vous devez ajouter les autorisations suivantes (après la balise `</application>` ) si elles sont absentes :
   
           <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
           <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
   
   * Sur Android M et si votre application cible un niveau d’API Android 23 ou supérieur, l’autorisation ``WRITE_EXTERNAL_STORAGE`` nécessite l’approbation de l’utilisateur. Veuillez lire [cette section](mobile-engagement-android-integrate-engagement.md#android-m-permissions).
-* Pour les notifications système que vous pouvez également spécifier dans hello atteindre campagne si l’appareil de hello doit sonner et/ou faire vibrer. Pour qu’il toowork, que vous avez toomake que vous avez déclaré hello suivant d’autorisation (après hello `</application>` étiquette) :
+* Pour les notifications système, vous pouvez également spécifier dans la couverture campagne si l'appareil doit sonner et/ou vibrer. Pour que cela fonctionne, vous devez déclarer l'autorisation suivante (après la balise `</application>` ) :
   
           <uses-permission android:name="android.permission.VIBRATE" />
   
-  Sans cette autorisation, Android empêche les notifications système est affichée si vous avez coché anneau de hello ou hello faire vibrer option dans le Gestionnaire d’atteindre une campagne hello.
+  Sans cette autorisation, Android empêche les notifications système de s'afficher si vous avez activé l'option Sonner ou Vibrer dans le gestionnaire de couverture campagne.
 
 ## <a name="native-push"></a>Native Push
-Maintenant que vous avez configuré le module de couverture, vous devez tooconfigure push natif toobe tooreceive en mesure de hello campagnes marketing sur les appareils hello.
+Maintenant que vous avez configuré le module Reach, vous devez configurer Native Push pour être en mesure de recevoir les campagnes sur l’appareil.
 
 Nous prenons en charge les deux services sur Android :
 
-* Les appareils Google Play : utilisez [messagerie Cloud Google] par hello suivant [comment tooIntegrate GCM avec Engagement guide](mobile-engagement-android-gcm-integrate.md) guide.
-* Les appareils Amazon : utilisez [Amazon Device Messaging] par hello suivant [comment tooIntegrate ADM avec Engagement guide](mobile-engagement-android-adm-integrate.md) guide.
+* Appareils Google Play : utilisez [Google Cloud Messaging] en suivant le guide [Comment intégrer GCM à Mobile Engagement](mobile-engagement-android-gcm-integrate.md).
+* Appareils Amazon : utilisez [Amazon Device Messaging] en suivant le guide [Comment intégrer ADM à Mobile Engagement](mobile-engagement-android-adm-integrate.md).
 
-Si vous souhaitez tootarget appareils Amazon et Google Play, ses toohave possible tout son contenu 1 AndroidManifest.xml/APK pour le développement. Mais lorsque vous soumettez tooAmazon, ils peuvent rejeter votre application s’ils trouvent le code GCM.
+Si vous voulez cibler à la fois des appareils Amazon et Google Play, il est possible d'avoir tout ce qu'il faut pour le développement au sein d'un fichier AndroidManifest.xml/APK. Quand vous soumettez votre application à Amazon, celle-ci peut être rejetée si elle contient du code GCM.
 
 Dans ce cas, vous devrez utiliser plusieurs fichiers APK.
 
-**Votre application est maintenant prêt tooreceive et affichage atteint campagnes !**
+**Votre application est maintenant prête à recevoir et afficher des couvertures campagnes.**
 
-## <a name="how-toohandle-data-push"></a>Comment les données toohandle push
+## <a name="how-to-handle-data-push"></a>Comment gérer les Push de données
 ### <a name="integration"></a>Intégration
-Si vous souhaitez que votre application toobe en mesure d’exécute un push de tooreceive les données de couverture, que vous avez toocreate une sous-classe de `com.microsoft.azure.engagement.reach.EngagementReachDataPushReceiver` et référencez-la dans hello `AndroidManifest.xml` fichier (entre hello `<application>` et/ou `</application>` balises) :
+Si vous voulez que votre application puisse recevoir des Push de données de couverture, vous devez créer une sous-classe de `com.microsoft.azure.engagement.reach.EngagementReachDataPushReceiver` et la référencer dans le fichier `AndroidManifest.xml` (entre les balises `<application>` et/ou `</application>`) :
 
             <receiver android:name="<your_sub_class_of_com.microsoft.azure.engagement.reach.EngagementReachDataPushReceiver>"
               android:exported="false">
@@ -127,7 +127,7 @@ Si vous souhaitez que votre application toobe en mesure d’exécute un push de 
               </intent-filter>
             </receiver>
 
-Vous pouvez remplacer hello `onDataPushStringReceived` et `onDataPushBase64Received` rappels. Voici un exemple :
+Ensuite, vous pouvez remplacer les rappels `onDataPushStringReceived` et `onDataPushBase64Received`. Voici un exemple :
 
             public class MyDataPushReceiver extends EngagementReachDataPushReceiver
             {
@@ -148,46 +148,46 @@ Vous pouvez remplacer hello `onDataPushStringReceived` et `onDataPushBase64Recei
             }
 
 ### <a name="category"></a>Catégorie
-paramètre de catégorie Hello est facultatif lorsque vous créez une campagne de Push de données et permet de que vous toofilter données exécute un push. Cela est utile si vous avez plusieurs récepteurs de diffusion la gestion des différents types de push de données, ou si vous souhaitez toopush différents types de `Base64` tooidentify de données et que vous souhaitez leur type avant de les analyser.
+Le paramètre de catégorie est facultatif lorsque vous créez une campagne d'envoi de données (push) et vous permet de filtrer les envois de données. Ce paramètre est utile si vous possédez plusieurs récepteurs de diffusion qui gèrent différents types de Push de données, ou si vous voulez envoyer différents types de données `Base64` et identifier leur type avant de les analyser.
 
 ### <a name="callbacks-return-parameter"></a>Paramètre de retour des rappels
-Voici quelques recommandations tooproperly handle hello paramètre de retour de `onDataPushStringReceived` et `onDataPushBase64Received`:
+Voici quelques indications qui vous aideront à gérer correctement le paramètre de retour de `onDataPushStringReceived` et de `onDataPushBase64Received` :
 
-* Un récepteur de diffusion doit retourner `null` dans le rappel hello si elles ne savent pas comment toohandle données push. Vous devez utiliser hello catégorie toodetermine si votre récepteur de diffusion doit gérer la transmission de données hello ou non.
-* Un récepteur de diffusion hello doit retourner `true` dans le rappel hello si ce dernier accepte push de données hello.
-* Un récepteur de diffusion hello doit retourner `false` dans le rappel hello s’il reconnaît le push de données hello, mais il ignore pour une raison quelconque. Par exemple, retourner `false` lorsque les données de salutation reçue ne sont pas valides.
-* Si une diffusion récepteur retourne `true` tandis que l’autre un retourne `false` pour hello même push de données, le comportement de hello n’est pas défini, vous devez le faire jamais.
+* Un récepteur de diffusion doit retourner `null` dans le rappel s'il ne sait pas comment gérer un Push de données. Vous devez utiliser la catégorie pour déterminer si votre récepteur de diffusion doit gérer ou non le Push de données.
+* L'un des récepteurs de diffusion doit retourner `true` dans le rappel s'il accepte le Push de données.
+* L'un des récepteurs de diffusion doit retourner `false` dans le rappel s'il reconnaît le Push de données, mais l'ignore pour une raison quelconque. Par exemple, `false` est retourné quand les données reçues ne sont pas valides.
+* Si un récepteur de diffusion retourne `true` alors que l'autre retourne `false` pour le même Push de données, cela signifie que le comportement n'est pas défini, ce qui est à éviter absolument.
 
-type de retour Hello est utilisé uniquement pour les statistiques de couverture hello :
+Le type de retour est utilisé uniquement pour les statistiques de couverture :
 
-* `Replied`est incrémenté si un des récepteurs de diffusion hello renvoyées `true` ou `false`.
-* `Actioned`est incrémenté uniquement si un des hello diffusion récepteurs retournés `true`.
+* `Replied` est incrémenté si l'un des récepteurs de diffusion a retourné `true` ou `false`.
+* `Actioned` est incrémenté uniquement si l'un des récepteurs de diffusion a retourné `true`.
 
-## <a name="how-toocustomize-campaigns"></a>Comment les campagnes toocustomize
-toocustomize campagnes, vous pouvez modifier les présentations hello Bonjour SDK Reach.
+## <a name="how-to-customize-campaigns"></a>Personnalisation des campagnes marketing
+Pour personnaliser des campagnes, vous pouvez modifier les dispositions fournies dans le SDK du module couverture.
 
-Vous devez conserver tous les identificateurs hello sont utilisées dans les dispositions de hello et maintenir des types hello de vues hello qui utilisent un identificateur, en particulier pour les affichages de texte et image. Certaines vues sont toohide uniquement utilisé ou affichent les zones de leur type peut être modifié. Vérifiez le code source de hello si vous envisagez de type hello de toochange d’une vue dans les dispositions de hello fourni.
+Vous devez conserver tous les identificateurs utilisés dans les dispositions et conserver les types de vues qui utilisent un identificateur, en particulier pour le texte et les images. Certaines vues sont uniquement utilisées pour masquer ou afficher des zones. Il est donc possible de modifier leur type. Vérifiez le code source si vous voulez modifier le type d'une vue dans les dispositions fournies.
 
 ### <a name="notifications"></a>Notifications
 Il existe deux types de notifications : les notifications système et les notifications dans l'application qui utilisent des fichiers de disposition différents.
 
 #### <a name="system-notifications"></a>Notifications système
-les notifications système toocustomize vous devez toouse hello **catégories**. Vous pouvez passer trop[catégories](#categories).
+Pour personnaliser les notifications système, vous devez utiliser les **catégories**. Vous pouvez accéder aux [catégories](#categories).
 
 #### <a name="in-app-notifications"></a>Notifications dans l'application
-Par défaut, une notification dans l’application est une vue qui est la méthode Android toohello ajoutées de manière dynamique actuelle activité utilisateur interface Merci toohello `addContentView()`. Il s'agit d'une superposition de notification. Superpositions de notification sont parfaites pour une intégration rapide, car ils ne nécessitent pas vous toomodify toute disposition dans votre application.
+Par défaut, une notification dans l'application est une vue qui est ajoutée dynamiquement à l'interface utilisateur de l'activité en cours grâce à la méthode Android `addContentView()`. Il s'agit d'une superposition de notification. Les superpositions de notification permettent une intégration rapide, car elles ne nécessitent pas la modification de la disposition de votre application.
 
-apparence hello toomodify votre superpositions de notification, il suffit de modifier le fichier de hello `engagement_notification_area.xml` tooyour a besoin.
+Pour modifier l'apparence de vos superpositions de notification, vous pouvez simplement modifier le fichier `engagement_notification_area.xml` selon vos besoins.
 
 > [!NOTE]
-> fichier de Hello `engagement_notification_overlay.xml` est celui utilisé toocreate hello du segment de recouvrement de la notification, elle inclut les fichiers hello `engagement_notification_area.xml`. Vous pouvez également personnaliser toosuit (par exemple pour positionner la zone de notification hello dans un segment de recouvrement hello) de vos besoins.
+> Le fichier `engagement_notification_overlay.xml` est celui qui est utilisé pour créer une superposition de notification. Il comprend le fichier `engagement_notification_area.xml`. Vous pouvez également le personnaliser pour l'adapter à vos besoins (tels que le positionnement de la zone de notification au sein de la superposition).
 > 
 > 
 
 ##### <a name="include-notification-layout-as-part-of-an-activity-layout"></a>Inclure une disposition de notification dans une disposition d'activité
-Les superpositions sont idéales pour une intégration rapide, mais peuvent être gênantes ou avoir des effets indésirables dans certains cas. Hello superposition système peut être personnalisé à un niveau d’activité, rendant les effets secondaires tooprevent facile pour les activités spéciales.
+Les superpositions sont idéales pour une intégration rapide, mais peuvent être gênantes ou avoir des effets indésirables dans certains cas. Le système de superposition peut être personnalisé au niveau de l'activité, ce qui permet d'éviter les effets indésirables pour les activités spéciales.
 
-Vous pouvez décider tooinclude à notre disposition de notification dans votre toohello Merci d’existant disposition Android **incluent** instruction. Hello Voici un exemple d’une modification `ListActivity` disposition contenant simplement un `ListView`.
+Vous pouvez inclure notre disposition de notification dans votre disposition existante grâce à l'instruction Android **include** . Voici un exemple de disposition modifiée `ListActivity` contenant uniquement `ListView`.
 
 **Avant l'intégration d'Engagement :**
 
@@ -217,33 +217,33 @@ Vous pouvez décider tooinclude à notre disposition de notification dans votre 
 
             </LinearLayout>
 
-Dans cet exemple, nous avons ajouté un conteneur parent car mise hello utilisé un affichage de liste en tant qu’élément de niveau supérieur hello. Nous avons également ajouté `android:layout_weight="1"` tooadd en mesure de toobe une vue au-dessous d’un affichage de liste configurés avec `android:layout_height="fill_parent"`.
+Dans cet exemple, nous avons ajouté un conteneur parent puisque la disposition d'origine utilisait une vue de liste comme élément de niveau supérieur. Nous avons également ajouté `android:layout_weight="1"` pour pouvoir ajouter une vue sous une vue de liste configurée avec `android:layout_height="fill_parent"`.
 
-Hello SDK Reach d’Engagement détecte automatiquement cette mise en page de notification hello est inclus dans cette activité et n’ajoute pas d’un segment de recouvrement pour cette activité.
+Le SDK du module de couverture d'Engagement détecte automatiquement que la disposition de notification est incluse dans cette activité et n'ajoutera pas de superposition pour cette activité.
 
 > [!TIP]
-> Si vous utilisez un ListActivity dans votre application, un segment de recouvrement portée visible vous empêcheront les éléments tooclicked réaction en mode hello plus. Il s'agit d'un problème connu. toowork résoudre ce problème, nous vous suggérons tooembed hello notification mise en page dans votre propre disposition de liste d’activités, comme dans l’exemple précédent hello.
+> Si vous utilisez une ListActivity dans votre application, une superposition de couverture visible vous empêchera de réagir aux clics sur les éléments de la vue de liste. Il s'agit d'un problème connu. Pour contourner ce problème, nous vous suggérons d'intégrer la disposition de notification à votre disposition d'activité de liste, comme dans l'exemple précédent.
 > 
 > 
 
 ##### <a name="disabling-application-notification-per-activity"></a>Désactivation des notifications d'application par activité
-Si vous ne souhaitez pas hello superposition toobe ajouté tooyour activité, et si vous n’incluez pas mise en page de notification hello dans votre propre mise en page, vous pouvez désactiver la superposition hello pour cette activité Bonjour `AndroidManifest.xml` en ajoutant un `meta-data` section comme dans les éléments suivants de hello exemple :
+Si vous ne voulez pas que la superposition soit ajoutée à votre activité, et si vous ne voulez pas inclure la disposition de notification dans votre propre disposition, vous pouvez désactiver la superposition pour cette activité dans `AndroidManifest.xml` en ajoutant une section `meta-data`, comme dans l'exemple suivant :
 
             <activity android:name="SplashScreenActivity">
               <meta-data android:name="engagement:notification:overlay" android:value="false"/>
             </activity>
 
 #### <a name="categories"></a> Catégories
-Lorsque vous modifiez hello fourni mises en page, vous modifiez apparence hello toutes vos notifications. Les catégories permettent toodefine que différents ciblés recherche (et éventuellement des comportements) pour les notifications. Une catégorie peut être spécifiée lorsque vous créez une campagne Reach. N'oubliez pas que les catégories vous permettent également de personnaliser les annonces et les sondages, décrits plus avant dans ce document.
+Quand vous modifiez les dispositions fournies, vous modifiez l'apparence de toutes vos notifications. Les catégories permettent de définir diverses recherches ciblées (et éventuellement des comportements) pour les notifications. Une catégorie peut être spécifiée lorsque vous créez une campagne Reach. N'oubliez pas que les catégories vous permettent également de personnaliser les annonces et les sondages, décrits plus avant dans ce document.
 
-tooregister un gestionnaire de catégorie pour les notifications, vous devez tooadd un appel lorsque l’application hello est initialisée.
+Pour inscrire un gestionnaire de catégories pour vos notifications, vous devez ajouter un appel quand l'application est initialisée.
 
 > [!IMPORTANT]
-> Veuillez lire avertissement hello sur hello android : traiter l’attribut \<android-sdk-engagement-process\> Bonjour comment tooIntegrate Engagement sur la rubrique Android avant de continuer.
+> Lisez l’avertissement concernant l’attribut android:process \<android-sdk-engagement-process\> dans la rubrique « Comment intégrer Engagement sur Android » avant de continuer.
 > 
 > 
 
-Hello exemple suivant suppose que vous les avertissement précédent hello d’accusé de réception et que vous utilisez une sous-classe de `EngagementApplication`:
+L'exemple suivant suppose que vous avez pris en compte l'avertissement précédent et que vous utilisez une sous-classe de `EngagementApplication`:
 
             public class MyApplication extends EngagementApplication
             {
@@ -256,13 +256,13 @@ Hello exemple suivant suppose que vous les avertissement précédent hello d’a
               }
             }
 
-Hello `MyNotifier` objet est mise en oeuvre de hello du Gestionnaire de catégorie de notification hello. Il s’agit d’une mise en œuvre de hello `EngagementNotifier` interface ou une sous-classe de l’implémentation par défaut de hello : `EngagementDefaultNotifier`.
+L'objet `MyNotifier` est l'implémentation du gestionnaire de catégories des notifications. Il s'agit soit d'une implémentation de l'interface `EngagementNotifier`, soit d’une sous-classe de l'implémentation par défaut : `EngagementDefaultNotifier`.
 
-Notez que hello même notifiant peut gérer plusieurs catégories, vous pouvez les enregistrer comme suit :
+Notez que le même notificateur peut gérer plusieurs catégories. Vous pouvez les inscrire de la façon suivante :
 
             reachAgent.registerNotifier(new MyNotifier(this), "myCategory", "myAnotherCategory");
 
-tooreplace hello catégorie l’implémentation par défaut, vous pouvez inscrire votre implémentation comme Bonjour l’exemple suivant :
+Pour remplacer l'implémentation de catégorie par défaut, vous pouvez inscrire votre implémentation comme dans l'exemple suivant :
 
             public class MyApplication extends EngagementApplication
             {
@@ -275,14 +275,14 @@ tooreplace hello catégorie l’implémentation par défaut, vous pouvez inscrir
               }
             }
 
-catégorie de Hello actuelle utilisée dans un gestionnaire est passé en tant que paramètre dans la plupart des méthodes que vous pouvez substituer dans `EngagementDefaultNotifier`.
+La catégorie utilisée actuellement dans le gestionnaire est passée en tant que paramètre dans la plupart des méthodes que vous pouvez remplacer dans `EngagementDefaultNotifier`.
 
 Elle est passée en tant que paramètre `String` ou indirectement dans un objet `EngagementReachContent` ayant une méthode `getCategory()`.
 
-Vous pouvez modifier la plupart des processus de création de notification hello en redéfinissant les méthodes sur `EngagementDefaultNotifier`, pour une personnalisation plus avancée sentir libre tootake un coup de œil à la documentation technique hello et au code source de hello.
+Vous pouvez modifier la plupart des processus de création de notifications en redéfinissant des méthodes dans `EngagementDefaultNotifier`. Pour une personnalisation avancée, vous pouvez consulter la documentation technique et le code source.
 
 ##### <a name="in-app-notifications"></a>Notifications dans l'application
-Si vous souhaitez simplement toouse différentes dispositions pour une catégorie spécifique, vous pouvez implémenter cela comme hello l’exemple suivant :
+Si vous voulez simplement utiliser d'autres dispositions pour une catégorie spécifique, vous pouvez implémenter ceci, comme dans l'exemple suivant :
 
             public class MyNotifier extends EngagementDefaultNotifier
             {
@@ -324,7 +324,7 @@ Si vous souhaitez simplement toouse différentes dispositions pour une catégori
 
             </RelativeLayout>
 
-Comme vous pouvez le voir, identificateur d’affichage superposition hello est différent de celui standard de hello un. Il est important que chaque disposition utilise un identificateur unique pour les superpositions.
+Comme vous pouvez le voir, l'identificateur de la vue de superposition est différent de l'identificateur standard. Il est important que chaque disposition utilise un identificateur unique pour les superpositions.
 
 **Exemple de `my_notification_area.xml` :**
 
@@ -406,14 +406,14 @@ Comme vous pouvez le voir, identificateur d’affichage superposition hello est 
 
             </merge>
 
-Comme vous pouvez le voir, identificateur de vue de zone de notification hello est différente de celle standard de hello un. Il est important que chaque disposition utilise un identificateur unique pour les zones de notification.
+Comme vous pouvez le voir, l'identificateur de vue de zone de notification est différent de l'identificateur standard. Il est important que chaque disposition utilise un identificateur unique pour les zones de notification.
 
-Cet exemple simple de la catégorie rend l’application (ou dans l’application) des notifications affichées en haut de hello d’écran hello. Nous n’a pas changé les identificateurs standard hello utilisés dans la zone de notification hello lui-même.
+Cet exemple simple de catégorie permet d'afficher les notifications d'application en haut de l'écran. Nous n'avons pas changé les identificateurs standard utilisés dans la zone de notification.
 
-Si vous souhaitez toochange que vous avez tooredefine hello `EngagementDefaultNotifier.prepareInAppArea` (méthode). Il est recommandé de toolook à la documentation technique hello et au code source de hello de `EngagementNotifier` et `EngagementDefaultNotifier` si vous souhaitez que ce niveau de personnalisation avancée.
+Si vous souhaitez les modifier, vous devez redéfinir la méthode `EngagementDefaultNotifier.prepareInAppArea` . Il est recommandé de consulter la documentation technique et le code source de `EngagementNotifier` et `EngagementDefaultNotifier` pour une personnalisation avancée.
 
 ##### <a name="system-notifications"></a>Notifications système
-En étendant `EngagementDefaultNotifier`, vous pouvez remplacer `onNotificationPrepared` notification hello tooalter qui a été préparée par l’implémentation par défaut de hello.
+En étendant `EngagementDefaultNotifier`, vous pouvez remplacer `onNotificationPrepared` pour modifier la notification préparée par l'implémentation par défaut.
 
 Par exemple :
 
@@ -426,9 +426,9 @@ Par exemple :
               return true;
             }
 
-Cet exemple montre une notification du système pour un contenu affiché sous la forme d’un événement en cours lors de la catégorie « en cours » hello est utilisée.
+Cet exemple montre une notification système pour un contenu affiché sous la forme d'un événement en cours quand la catégorie « en cours » est utilisée.
 
-Si vous souhaitez toobuild hello `Notification` de l’objet à partir de zéro, vous pouvez retourner `false` toohello méthode et appel `notify` vous-même sur hello `NotificationManager`. Dans ce cas, il est important de conserver un `contentIntent`, un `deleteIntent` et hello identificateur de notification utilisé par `EngagementReachReceiver`.
+Si vous voulez créer l'objet `Notification` à partir de zéro, vous pouvez retourner `false` à la méthode et appeler `notify` sur `NotificationManager`. Dans ce cas, il est important de conserver un `contentIntent`, un `deleteIntent` et l'identificateur de notification utilisé par `EngagementReachReceiver`.
 
 Voici un exemple correct d'une telle implémentation :
 
@@ -451,16 +451,16 @@ Voici un exemple correct d'une telle implémentation :
 
               /* Notify here instead of super class */
               NotificationManager manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-              manager.notify(getNotificationId(content), myNotification); // notice hello call tooget hello right identifier
+              manager.notify(getNotificationId(content), myNotification); // notice the call to get the right identifier
 
               /* Return false, we notify ourselves */
               return false;
             }
 
 ##### <a name="notification-only-announcements"></a>Annonces avec notifications uniquement
-Hello Hello, cliquez sur une notification annonce uniquement peut être personnalisé en substituant `EngagementDefaultNotifier.onNotifAnnouncementIntentPrepared` hello toomodify préparée `Intent`. À l’aide de cette méthode vous permet des indicateurs de hello tootune facilement.
+La gestion des clics sur les annonces avec notifications uniquement peut être personnalisée en remplaçant `EngagementDefaultNotifier.onNotifAnnouncementIntentPrepared` pour modifier le `Intent` préparé. Cette méthode permet de paramétrer les indicateurs facilement.
 
-Par exemple tooadd hello `SINGLE_TOP` indicateur :
+Par exemple, pour ajouter l'indicateur `SINGLE_TOP` :
 
             @Override
             protected Intent onNotifAnnouncementIntentPrepared(EngagementNotifAnnouncement notifAnnouncement,
@@ -470,41 +470,41 @@ Par exemple tooadd hello `SINGLE_TOP` indicateur :
               return intent;
             }
 
-Pour les utilisateurs d’Engagement hérités, notez que les notifications système sans intervention de l’URL maintenant lance application hello si elle était en arrière-plan, cette méthode peut être appelée avec une annonce sans URL de l’action. Vous devez envisager que lors de la personnalisation d’intention de hello.
+Pour les utilisateurs d'Engagement hérités, notez que les notifications système sans URL d'action lancent maintenant l'application si elle est en arrière-plan. Cette méthode peut donc être appelée avec une annonce sans URL d'action. Vous devez prendre cela en compte quand vous personnalisez l'intention.
 
 Vous pouvez également implémenter `EngagementNotifier.executeNotifAnnouncementAction` à partir de zéro.
 
 ##### <a name="notification-life-cycle"></a>Cycle de vie des notifications
-Lorsque vous utilisez la catégorie par défaut de hello, certaines méthodes de cycle de vie sont appelées sur hello `EngagementReachInteractiveContent` tooreport des statistiques et mise à jour hello campagne l’état de l’objet :
+Lorsque vous utilisez la catégorie par défaut, certaines méthodes de cycle de vie sont appelées sur l'objet `EngagementReachInteractiveContent` pour communiquer les statistiques et mettre à jour l'état de la campagne :
 
-* Lors de la notification de hello est affichée dans l’application ou placée dans la barre d’état hello, hello `displayNotification` méthode est appelée (qui fournit des statistiques) par `EngagementReachAgent` si `handleNotification` retourne `true`.
-* Si la notification de hello est fermée, hello `exitNotification` méthode est appelée, la statistique est signalée et campagnes suivants peuvent maintenant être traités.
-* Cliquez sur la notification de hello `actionNotification` est appelée, la statistique est signalée et l’intention de hello associé est lancée.
+* Lorsque la notification est affichée dans l'application ou placée dans la barre d'état, la méthode `displayNotification` est appelée (ce qui fournit les statistiques) par `EngagementReachAgent` si `handleNotification` retourne `true`.
+* Si la notification est rejetée, la méthode `exitNotification` est appelée, les statistiques sont signalées et les campagnes suivantes peuvent alors être traitées.
+* Si l'utilisateur clique sur la notification, `actionNotification` est appelé, les statistiques sont obtenues et l'intention correspondante est lancée.
 
-Si votre implémentation de `EngagementNotifier` contournements hello le comportement par défaut, vous pouvez toocall ces méthodes de cycle de vie vous-même. Hello suivant exemples illustre certains cas où le comportement par défaut de hello est ignorée :
+Si votre implémentation de `EngagementNotifier` contourne le comportement par défaut, vous devez appeler ces méthodes de cycle de vie vous-même. Les exemples suivants illustrent certains cas dans lesquels le comportement par défaut est ignoré :
 
-* Vous n'étendez pas `EngagementDefaultNotifier`, par exemple, vous avez implémenté la gestion des catégories à partir de zéro.
-* Pour les notifications système, vous a substitué hello `onNotificationPrepared` et vous avez modifié `contentIntent` ou `deleteIntent` Bonjour `Notification` objet.
-* Pour les notifications dans l’application, vous se `prepareInAppArea`, être d’au moins sûr toomap `actionNotification` tooone de vos contrôles U.I.
+* Vous n'étendez pas `EngagementDefaultNotifier`, par exemple, vous avez implémenté la gestion des catégories à partir de zéro.
+* Pour les notifications système, vous avez remplacé `onNotificationPrepared` et vous avez modifié `contentIntent` ou `deleteIntent` dans l'objet `Notification`.
+* Pour les notifications dans l'application, vous avez remplacé `prepareInAppArea`. Veillez à mapper au moins `actionNotification` à l'un des contrôles d'interface utilisateur.
 
 > [!NOTE]
-> Si `handleNotification` lève une exception, hello contenu est supprimé et `dropContent` est appelée. Ceci est signalé dans les statistiques et les campagnes suivantes peuvent être traitées.
+> Si `handleNotification` lève une exception, le contenu est supprimé et `dropContent` est appelé. Ceci est signalé dans les statistiques et les campagnes suivantes peuvent être traitées.
 > 
 > 
 
 ### <a name="announcements-and-polls"></a>Annonces et sondages
 #### <a name="layouts"></a>Mises en forme
-Vous pouvez modifier hello `engagement_text_announcement.xml`, `engagement_web_announcement.xml` et `engagement_poll.xml` toocustomize texte annonces, des annonces de web et des interrogations de fichiers.
+Vous pouvez modifier les fichiers `engagement_text_announcement.xml`, `engagement_web_announcement.xml` et `engagement_poll.xml` pour personnaliser les annonces de texte, les annonces web et les sondages.
 
-Ces fichiers partagent deux dispositions courantes pour la zone de titre hello et zone de bouton hello. mise en page Hello pour le titre de hello est `engagement_content_title.xml` et utilise hello éponyme fichier drawable pour l’arrière-plan de hello. Hello la disposition des boutons d’action et quitter hello est `engagement_button_bar.xml` et utilise hello éponyme fichier drawable pour l’arrière-plan de hello.
+Ces fichiers partagent deux dispositions pour la zone de titre et la zone de bouton. La disposition du titre est `engagement_content_title.xml` et utilise le fichier dessinable éponyme pour l'arrière-plan. La disposition des boutons d'action et de sortie est `engagement_button_bar.xml` et utilise le fichier dessinable éponyme pour l'arrière-plan.
 
-Dans un sondage, hello mise en page de question et de leur choix est dynamiquement à l’aide de plusieurs fois hello `engagement_question.xml` fichier de disposition pour les questions de hello et hello `engagement_choice.xml` fichier pour les choix de hello.
+Dans un sondage, la disposition des questions et des choix de réponses est agrandie dynamiquement grâce à plusieurs utilisations du fichier de disposition `engagement_question.xml` pour les questions et du fichier `engagement_choice.xml` pour les choix de réponses.
 
 #### <a name="categories"></a>Catégories
 ##### <a name="alternate-layouts"></a>Autres dispositions
-Telles que les notifications, catégorie de la campagne hello peut être utilisé toohave des formes différentes vos annonces et les interroge.
+Telles que les notifications, catégorie de la campagne peut être utilisée pour que les autres dispositions pour vos annonces et les sondages.
 
-Par exemple, de le toocreate une catégorie pour une annonce de texte, vous pouvez étendre `EngagementTextAnnouncementActivity` et à le référencer hello `AndroidManifest.xml` fichier :
+Par exemple, pour créer une catégorie pour une annonce de texte, vous pouvez étendre `EngagementTextAnnouncementActivity` et référencer le fichier `AndroidManifest.xml` :
 
             <activity android:name="com.your_company.MyCustomTextAnnouncementActivity">
               <intent-filter>
@@ -514,36 +514,36 @@ Par exemple, de le toocreate une catégorie pour une annonce de texte, vous pouv
               </intent-filter>
             </activity>
 
-Notez cette catégorie hello dans l’intention de hello sert de filtre de différence de hello toomake avec une activité d’annonce hello par défaut.
+Notez que la catégorie du filtre d'intention est utilisée pour faire la différence avec l'activité d'annonce par défaut.
 
-Hello SDK Reach utilise hello intention tooresolve hello droite l’activité du système pour une catégorie spécifique et qu’il revient de catégorie par défaut de hello en cas d’échec de la résolution de hello.
+Le SDK du module de couverture utilise le système d'intentions pour résoudre l'activité appropriée pour une catégorie spécifique. En cas d'échec de la résolution, la catégorie par défaut est rétablie.
 
-Vous devez tooimplement `MyCustomTextAnnouncementActivity`, si vous venez laquelle toochange hello présentation (mais conservez hello même afficher les identificateurs), vous avez simplement classe hello toodefine, telles que Bonjour l’exemple suivant :
+Vous devez ensuite implémenter `MyCustomTextAnnouncementActivity`. Si vous voulez simplement modifier la disposition (mais conserver les mêmes identificateurs de vue), il vous suffit de définir la classe comme dans l'exemple suivant :
 
             public class MyCustomTextAnnouncementActivity extends EngagementTextAnnouncementActivity
             {
               @Override
               protected String getLayoutName()
               {
-                return "my_text_announcement";  // tell super class toouse R.layout.my_text_announcement
+                return "my_text_announcement";  // tell super class to use R.layout.my_text_announcement
               }
             }
 
-catégorie de par défaut hello tooreplace des annonces de texte, remplacez simplement `android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity"` par votre implémentation.
+Pour remplacer la catégorie par défaut des annonces de texte, remplacez simplement `android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity"` par votre implémentation.
 
 Les annonces web et les sondages peuvent être personnalisés de la même manière.
 
-Les annonces de web, vous pouvez étendre `EngagementWebAnnouncementActivity` et déclarer votre activité Bonjour `AndroidManifest.xml` comme Bonjour l’exemple suivant :
+Pour les annonces du web, vous pouvez étendre `EngagementWebAnnouncementActivity` et déclarer votre activité dans `AndroidManifest.xml`, comme dans l'exemple suivant :
 
             <activity android:name="com.your_company.MyCustomWebAnnouncementActivity">
               <intent-filter>
                 <action android:name="com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT"/>
                 <category android:name="my_category" />
-                <data android:mimeType="text/html" />    <!-- only difference with text announcements in hello intent is hello data mime type -->
+                <data android:mimeType="text/html" />    <!-- only difference with text announcements in the intent is the data mime type -->
               </intent-filter>
             </activity>
 
-Pour les sondages, vous pouvez étendre `EngagementPollActivity` et déclarer votre hello en `AndroidManifest.xml` comme Bonjour l’exemple suivant :
+Pour les sondages, vous pouvez étendre `EngagementPollActivity` et déclarer votre activité dans `AndroidManifest.xml`, comme dans l'exemple suivant :
 
             <activity android:name="com.your_company.MyCustomPollActivity">
               <intent-filter>
@@ -553,13 +553,13 @@ Pour les sondages, vous pouvez étendre `EngagementPollActivity` et déclarer vo
             </activity>
 
 ##### <a name="implementation-from-scratch"></a>Implémentation à partir de zéro
-Vous pouvez implémenter des catégories pour vos activités d’annonce (et d’interrogation) sans étendre un des hello `Engagement*Activity` classes fournies par hello SDK Reach. Cela est utile par exemple si vous souhaitez toodefine une disposition qui n’utilise pas de hello même vues comme les dispositions standard hello.
+Vous pouvez implémenter des catégories pour vos activités d'annonce (et de sondage) sans étendre l'une des classes `Engagement*Activity` fournies par le SDK du module de couverture. Cela se révèle utile, par exemple, si vous voulez définir une disposition qui n'utilise pas les mêmes vues que les dispositions standard.
 
-Comme pour la personnalisation de la notification avancés, il est recommandé toolook au code source de hello d’implémentation standard de hello.
+Comme pour la personnalisation de notification avancée, il est recommandé d'examiner le code source de l'implémentation standard.
 
-Voici certains tookeep choses à l’esprit : portée lancera activité hello avec un mode spécifique (filtre intention toohello correspondant) ainsi que d’un paramètre supplémentaire qui est l’identificateur de contenu hello.
+Voici quelques points à garder à l'esprit : le module de couverture lancera l'activité avec une intention spécifique (correspondant au filtre d'intention), plus un paramètre supplémentaire qui est l'identificateur de contenu.
 
-objet contenu tooretrieve hello qui contiennent des champs hello vous avez spécifié lorsque hello de création de la campagne sur le site web de hello vous pouvez procédez comme suit :
+Pour récupérer l'objet de contenu qui contient les champs que vous avez spécifiés lors de la création de la campagne sur le site web, vous pouvez effectuer ceci :
 
             public class MyCustomTextAnnouncement extends EngagementActivity
             {
@@ -586,23 +586,23 @@ objet contenu tooretrieve hello qui contiennent des champs hello vous avez spéc
               }
             }
 
-Pour les statistiques, vous devez signaler l’affichage du contenu de hello dans hello `onResume` événement :
+Pour les statistiques, vous devez signaler le contenu qui s'affiche dans l'événement `onResume` :
 
             @Override
             protected void onResume()
             {
-             /* Mark hello content displayed */
+             /* Mark the content displayed */
              mContent.displayContent(this);
              super.onResume();
             }
 
-Ensuite, n’oubliez pas toocall soit `actionContent(this)` ou `exitContent(this)` sur l’objet de contenu hello avant l’activité hello passe en arrière-plan.
+Ensuite, n'oubliez pas d'appeler `actionContent(this)` ou `exitContent(this)` sur l'objet de contenu avant que l'activité n'aille en arrière-plan.
 
-Si vous n’appelez pas soit `actionContent` ou `exitContent`, les statistiques ne seront pas envoyées (autrement dit, aucune analytique sur une campagne de hello) et plus important encore, hello campagnes suivants ne seront pas informés qu’après le redémarrage du processus d’application hello.
+Si vous n'appelez pas `actionContent` ou `exitContent`, les statistiques ne seront pas envoyées (c'est-à-dire qu'il n'y aura pas d'analyse de la campagne). Plus important encore, les campagnes suivantes ne seront pas notifiées tant que le processus d'application n'aura pas redémarré.
 
-L’orientation ou autres modifications de configuration peut prendre de toodetermine difficile de code hello activité hello passe en arrière-plan ou non, hello rend implémentation standard que contenu de hello est signalé comme quitté si l’utilisateur de hello quitte activité hello (soit en en appuyant sur `HOME` ou `BACK`), mais pas si hello orientation change.
+Quand vous apportez des modifications concernant l'orientation ou d'autres modifications de configuration, il peut être difficile de déterminer si l'activité passe en arrière-plan ou non. L'implémentation standard garantit que le contenu est signalé comme fermé si l'utilisateur quitte l'activité (en appuyant sur `HOME` ou `BACK`), mais pas si l'orientation est modifiée.
 
-Ici est hello intéressantes dans hello implémentation :
+Voici la partie la plus intéressante de l'implémentation :
 
             @Override
             protected void onUserLeaveHint()
@@ -617,15 +617,15 @@ Ici est hello intéressantes dans hello implémentation :
               {
                 /*
                  * Exit content on exit, this is has no effect if another process method has already been
-                 * called so we don't have toocheck anything here.
+                 * called so we don't have to check anything here.
                  */
                 mContent.exitContent(this);
               }
               super.onPause();
             }
 
-Comme vous pouvez le voir, si vous avez appelé `actionContent(this)` puis terminé l’activité hello, `exitContent(this)` peut être appelée en toute sécurité sans avoir aucun effet.
+Comme vous pouvez le voir, si vous avez appelé `actionContent(this)` puis terminé l'activité, `exitContent(this)` peut être appelé sans que cela n'ait d'impact.
 
 [here]:http://developer.android.com/tools/extras/support-library.html#Downloading
-[messagerie Cloud Google]:http://developer.android.com/guide/google/gcm/index.html
+[Google Cloud Messaging]:http://developer.android.com/guide/google/gcm/index.html
 [Amazon Device Messaging]:https://developer.amazon.com/sdk/adm.html

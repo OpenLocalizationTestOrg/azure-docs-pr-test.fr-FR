@@ -1,5 +1,5 @@
 ---
-title: "éléments du marketplace aaaAzure disponibles pour la pile de Azure | Documents Microsoft"
+title: "Éléments de Place de Marché Azure disponibles pour Azure Stack | Microsoft Docs"
 description: "Ces éléments de Place de Marché Azure peuvent être utilisés dans Azure Stack."
 services: azure-stack
 documentationcenter: 
@@ -14,15 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/11/2017
 ms.author: erikje
-ms.openlocfilehash: 829e15e7051b3f10d212aeee29f269d3a32dbd3f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: ad65d0fe93a0b67772521c9020c288d0698a8cf0
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-marketplace-items-available-for-azure-stack"></a>Éléments de Place de Marché Azure disponibles pour Azure Stack
 
-Pile de Microsoft Azure prend en charge hello Azure marketplace éléments suivants :
+*S’applique à : systèmes intégrés Azure Stack et Kit de développement Azure Stack*
+
+Microsoft Azure Stack prend en charge les éléments suivants de Place de Marché Azure :
 
 |  | Nom de l’élément | Description | Éditeur |
 | --- | --- | --- | --- |
@@ -34,13 +36,13 @@ Pile de Microsoft Azure prend en charge hello Azure marketplace éléments suiva
 | ![](media/azure-stack-marketplace-azure-items/sql.png) | [SQL Server 2016 SP1 Express on Windows Server 2016](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.FreeLicenseSQLServer2016SP1ExpressWindowsServer2016?tab=Overview) | Version Express de SQL Server 2016 SP1. | Microsoft |
 | ![](media/azure-stack-marketplace-azure-items/sql.png) | [SQL Server 2016 SP1 Enterprise on Windows Server 2016 ](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.SQL2016SP1-WS2016?tab=Overview) | Plateforme de base de données pour les applications stratégiques intelligentes. | Microsoft |
 | ![](media/azure-stack-marketplace-azure-items/activemq.png) | [ActiveMQ](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.activemq?tab=Overview) | Courtier de messages Open Source dans Java. | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/akeneo.png) | [Akeneo](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.akeneo?tab=Overview) | PIM puissant conçu toosimplify des processus de gestion. | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/akeneo.png) | [Akeneo](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.akeneo?tab=Overview) | Application puissante de Gestion des informations sur les produits conçue pour simplifier les processus de gestion. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/alfrescocommunity.png) | [Alfresco Community](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.alfrescocommunity?tab=Overview) | Système ECM pour une gestion simplifiée des documents. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/apachesolr.png) | [Apache Solr](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.apachesolr?tab=Overview) | Plateforme de recherche de contenu d’entreprise Open Source fiable. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/canvaslms.png) | [Canvas LMS](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.canvaslms?tab=Overview) | Système de gestion des formations Open Source. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/cassandra.png) | [Cassandra](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.cassandra?tab=Overview) | Base de données Open Source scalable et à haute disponibilité. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/civicrm.png) | [CiviCRM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.civicrm?tab=Overview) | Système de gestion des relations simple basé sur le web. | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/cmsmadesimple.png) | [CMS Made Simple](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.cmsmadesimple?tab=Overview) | Moyen simple et rapide toocreate et gérer un site Web. | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/cmsmadesimple.png) | [CMS Made Simple](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.cmsmadesimple?tab=Overview) | Créez et gérez un site web rapidement et en toute simplicité. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/codiad.png) | [Codiad](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.codiad?tab=Overview) | IDE cloud Open Source avec un encombrement minimal. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/concrete5.png) | [Concrete5](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.concrete5?tab=Overview) | Déployez facilement des applications web, des forums, des sites web et des magasins. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/coppermine.png) | [Coppermine](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.coppermine?tab=Overview) | Galerie web polyvalente et complète. | Bitnami |
@@ -59,7 +61,7 @@ Pile de Microsoft Azure prend en charge hello Azure marketplace éléments suiva
 | ![](media/azure-stack-marketplace-azure-items/exoplatform.png) | [eXo Platform](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.exoplatform?tab=Overview) | Logiciel de réseaux sociaux Open Source conçu pour les entreprises. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/fatfreecrm.png) | [Fat Free CRM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.fatfreecrm?tab=Overview) | CRM Open Source basé sur Ruby on Rails. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/bitnami.png) | [GitLab Community Edition](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.gitlab?tab=Overview) | Logiciel de gestion Git rapide et sécurisé. | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/ghost.png) | [Ghost](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.ghost?tab=Overview) | Un toopublishing plateforme dédié. | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/ghost.png) | [Ghost](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.ghost?tab=Overview) | Plateforme dédiée à la publication. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/hadoop.png) | [Hadoop](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.hadoop?tab=Overview) | Framework pour une informatique fiable, scalable et distribuée. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/hhvm.png) | [HHVM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.hhvmstack?tab=Overview) | Environnement de développement intégré et prêt à l’emploi. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/hordegroupwarewebmail.png) | [Horde Groupware Webmail](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.hordegroupwarewebmail?tab=Overview) | Suite de communication basée sur navigateur, gratuite et prête à l’emploi pour les entreprises. | Bitnami |
@@ -68,7 +70,7 @@ Pile de Microsoft Azure prend en charge hello Azure marketplace éléments suiva
 | ![](media/azure-stack-marketplace-azure-items/joomla.png) | [Joomla!](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.joomla?tab=Overview) | CMS convivial pour la génération de site web simplifiée. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/jruby.png) | [JRuby](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.jrubystack?tab=Overview) | Implémentation Java hautes performances de Ruby. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/kafka.png) | [Kafka](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.kafka?tab=Overview) | Système de messagerie publication/abonnement puissant et distribué. | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/lamp.png) | [LAMP](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.lampstack?tab=Overview) | Environnement de développement toorun entièrement intégrée et prêt. | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/lamp.png) | [LAMP](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.lampstack?tab=Overview) | Environnement de développement intégré et prêt à l’emploi. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/lapp.png) | [LAPP](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.lappstack?tab=Overview) | Environnement de développement PHP, PostgreSQL et Apache complet. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/letschat.png) | [Let’s Chat](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.letschat?tab=Overview) | Application de messagerie Open Source persistante. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/limesurvey.png) | [LimeSurvey](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.limesurvey?tab=Overview) | Système de gestion de sondage de questions et réponses. | Bitnami |
@@ -79,14 +81,14 @@ Pile de Microsoft Azure prend en charge hello Azure marketplace éléments suiva
 | ![](media/azure-stack-marketplace-azure-items/mattermostteamedition.png) | [Mattermost Team Edition](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mattermost?tab=Overview) | Solution de messagerie d’espace de travail Open Source. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/mautic.png) | [Mautic](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mautic?tab=Overview) | Plateforme d’automatisation de marketing d’entreprise Open Source. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/mean.png) | [MEAN](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mean?tab=Overview) | Environnement de développement populaire pour MongoDB et Node.js. | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/mediawiki.png) | [MediaWiki](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mediawiki?tab=Overview) | Implémentation de wiki très puissante et scalable. | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/mediawiki.png) | [MediaWiki](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mediawiki?tab=Overview) | Implémentation de wiki puissante et évolutive. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/memcached.png) | [Memcached](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.memcached?tab=Overview) | Système de mise en cache d’objets en mémoire à hautes performances et distribué. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/modx.png) | [MODX](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.modx?tab=Overview) | CMS web intuitif. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/mongodb.png) | [MongoDB](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mongodb?tab=Overview) | Base de données NoSQL Open Source à hautes performances écrite en C++. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/moodle.png) | [Moodle](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.moodle?tab=Overview) | CMS efficace conçu pour les communautés de formation en ligne. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/multicraft.png) | [Multicraft](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.multicraft?tab=Overview) | Panneau de contrôle et solution d’hébergement de serveur Minecraft. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/mybb.png) | [MyBB](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mybb?tab=Overview) | Logiciel de forum libre et Open Source. | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/mysql.png) | [MySQL](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mysql?tab=Overview) | système de base de données les plus populaires Hello. | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/mysql.png) | [MySQL](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.mysql?tab=Overview) | Le système de base de données le plus populaire. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/nginx.png) | [Nginx](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.nginxstack?tab=Overview) | Environnement de développement PHP, MySQL et Nginx complet. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/nodejs.png) | [node.js](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.nodejs?tab=Overview) | Environnement Open Source écrit en Javascript pour une génération facile. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/odoo.png) | [Odoo](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.odoo?tab=Overview) | Système ERP et CRM qui connecte efficacement les processus d’entreprise. | Bitnami |
@@ -119,7 +121,7 @@ Pile de Microsoft Azure prend en charge hello Azure marketplace éléments suiva
 | ![](media/azure-stack-marketplace-azure-items/ruby.png) | [Ruby](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.rubystack?tab=Overview) | Environnement de développement facile à utiliser pour Ruby on Rails. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/seopanel.png) | [SEO Panel](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.seopanel?tab=Overview) | Application de gestion SEO Open Source pour le suivi de plusieurs sites web. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/shopware.png) | [Shopware](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.shopware?tab=Overview) | Plateforme de commerce électronique Open Source. | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/simplemachinesforum.png) | [Simple Machines Forum](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.simplemachinesforum?tab=Overview) | Forum simple logiciel toobuild votre propre Communauté en ligne. | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/simplemachinesforum.png) | [Simple Machines Forum](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.simplemachinesforum?tab=Overview) | Logiciel de forum simple pour créer votre propre communauté en ligne. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/spree.png) | [Spree](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.spree?tab=Overview) | Plateforme de commerce électronique facile à utiliser. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/subversion.png) | [Subversion](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.subversion?tab=Overview) | Système de gestion de versions Open Source. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/sugarcrm.png) | [SugarCRM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.sugarcrm?tab=Overview) | Solution flexible de gestion des relations client. | Bitnami |
@@ -132,10 +134,10 @@ Pile de Microsoft Azure prend en charge hello Azure marketplace éléments suiva
 | ![](media/azure-stack-marketplace-azure-items/weblate.png) | [Weblate](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.weblate?tab=Overview) | Système de gestion de traduction basé sur le web. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/webmailprophp.png) | [WebMail Pro PHP](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.webmailpro?tab=Overview) | Système de messagerie web avec fonctionnalités d’entreprise. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/wildfly.png) | [WildFly](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.wildfly?tab=Overview) | Serveur d’applications qui inclut Apache, WildFly, MySQL et Java. | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/wordpress.png) | [WordPress](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.wordpress?tab=Overview) | Hello CMS les plus populaires et prêt à atteindre. | Bitnami |
+| ![](media/azure-stack-marketplace-azure-items/wordpress.png) | [WordPress](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.wordpress?tab=Overview) | Le système CMS le plus populaire et prêt à l’emploi. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/x2enginesalescrm.png) | [X2Engine Sales CRM](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.x2enginesalescrm?tab=Overview) | Application de service client, de ventes et de marketing compacte. | Bitnami |
 | ![](media/azure-stack-marketplace-azure-items/zurmo.png) | [Zurmo](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/bitnami.zurmo?tab=Overview) | Système CRM Open Source : mobile, social et gamifié. | Bitnami |
-| ![](media/azure-stack-marketplace-azure-items/debian8.png) | [Debian 8 « Jessie » with backports kernel](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/credativ.Debian8backports?tab=Overview) | Debian GNU/Linux est une des distributions de Linux hello les plus populaires. | credativ |
+| ![](media/azure-stack-marketplace-azure-items/debian8.png) | [Debian 8 « Jessie » with backports kernel](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/credativ.Debian8backports?tab=Overview) | Debian GNU/Linux est l’une des distributions Linux les plus populaires. | credativ |
 | ![](media/azure-stack-marketplace-azure-items/kemp.png) | [LoadMaster Load Balancer ADC Content Switch](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/kemptech.vlm-azure?tab=Overview) | Équilibrage de charge ADC (Application Delivery Controller) de couche 4-7, commutateur de services de contenu et gestionnaire de trafic. | KEMP Technologies Inc. |
 | ![](media/azure-stack-marketplace-azure-items/roguewave.png) | [CentOS-based 6.9](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/RogueWave.CentOSbased69?tab=Overview) | Cette distribution de Linux est basée sur CentOS et fournie par Rogue Wave Software. | Rogue Wave Software (anciennement OpenLogic)  |
 | ![](media/azure-stack-marketplace-azure-items/roguewave.png) | [CentOS-based 7.3](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/RogueWave.CentOSbased73?tab=Overview) | Cette distribution de Linux est basée sur CentOS et fournie par Rogue Wave Software. | Rogue Wave Software (anciennement OpenLogic) |

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure solution Analytique de mise en réseau dans le journal Analytique | Documents Microsoft"
-description: "Vous pouvez utiliser hello solution Analytique de mise en réseau Azure dans les journaux du groupe de sécurité Analytique de journal tooreview réseau Azure et les journaux de la passerelle d’Application Azure."
+title: "Solution d’analytique du réseau Azure dans Log Analytics | Microsoft Docs"
+description: "Vous pouvez utiliser la Solution d’analytique du réseau Azure dans Log Analytics pour consulter les journaux de groupes de sécurité réseau et de passerelle d’application Azure."
 services: log-analytics
 documentationcenter: 
 author: richrundmsft
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/09/2017
 ms.author: richrund
-ms.openlocfilehash: 3674189786bacccc82e6708e78f14c92178e6676
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 06b67322b3812a668a515ecc357171ede1d85441
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
 # <a name="azure-networking-monitoring-solutions-in-log-analytics"></a>Solutions d’analyse réseaux Azure dans Log Analytics
 
-Analytique de journal offre hello suivant des solutions pour l’analyse de vos réseaux :
+Log Analytics propose les solutions suivantes pour la surveillance de vos réseaux :
 * Analyseur de performances réseau (NPM) pour
- * Surveiller la santé de votre réseau hello
-* Azure tooreview analytique de passerelle d’Application
+ * Surveiller l’intégrité de votre réseau
+* Azure Application Gateway Analytics à passer en revue
  * Journaux Azure Application Gateway
  * Mesures Azure Application Gateway
-* Groupe de sécurité réseau Azure analytique tooreview
+* Azure Network Security Group Analytics à passer en revue
  * Journaux Azure Network Security Group
 
 ## <a name="network-performance-monitor-npm"></a>Analyseur de performances réseau (NPM)
 
-Hello [analyse des performances réseau](log-analytics-network-performance-monitor.md) solution de gestion est un solution, qui surveille l’intégrité de hello, la disponibilité et l’accessibilité des réseaux d’analyse de réseau.  Il existe une connectivité toomonitor utilisé entre :
+La solution de gestion [Analyseur de performances réseau](log-analytics-network-performance-monitor.md) est une solution de surveillance du réseau, qui contrôle l’intégrité, la disponibilité et l’accessibilité des réseaux.  Elle est utilisée pour contrôler la connectivité entre :
 
 * le cloud public et le site local ;
 * les centres de données et les emplacements des utilisateurs (filiales) ;
@@ -42,23 +42,23 @@ Hello [analyse des performances réseau](log-analytics-network-performance-monit
 Pour plus d’informations, consultez l’[Analyseur de performances réseau](log-analytics-network-performance-monitor.md).
 
 ## <a name="azure-application-gateway-and-network-security-group-analytics"></a>Azure Application Gateway et Network Security Group Analytics
-solutions de hello toouse :
-1. Ajouter tooLog de solution de gestion hello Analytique, et
-2. Activer les diagnostics toodirect hello diagnostics tooa Analytique de journal espace de travail. Il n’est pas le stockage Blob tooAzure toowrite nécessaire hello journaux.
+Pour utiliser les solutions :
+1. Ajoutez la solution de gestion dans Log Analytics, et
+2. Activez les diagnostics pour les orienter vers un espace de travail Log Analytics. Il n’est pas nécessaire d’écrire les journaux dans le stockage Blob Azure.
 
-Vous pouvez activer les diagnostics et les solutions correspondantes hello pour un ou deux de la passerelle d’Application et les groupes de sécurité réseau.
+Vous pouvez activer les diagnostics et la solution correspondante pour Application Gateway, Networking Security Groups ou les deux.
 
-Si vous n’activez pas la journalisation des diagnostics pour un type particulier, mais que vous installez hello solution, panneaux de tableau de bord hello pour cette ressource est vides et affiche un message d’erreur.
+Si vous n’activez pas la journalisation des diagnostics pour un type de ressource en particulier, mais que vous installez la solution, les panneaux du tableau de bord de cette ressource sont vides et affichent un message d’erreur.
 
 > [!NOTE]
-> En janvier 2017, hello pris en charge la façon d’envoi de journaux à partir des passerelles d’Application et les groupes de sécurité réseau tooLog que Analytique modifié. Si vous voyez hello **Analytique de mise en réseau Azure (déconseillée)** solution, consultez trop[migration à partir de l’ancienne solution de mise en réseau d’Analytique hello](#migrating-from-the-old-networking-analytics-solution) pour connaître les étapes, vous devez toofollow.
+> En janvier 2017, la méthode prise en charge pour envoyer des journaux à Log Analytics à partir d’Application Gateways et de Network Security Groups a été modifiée. Si vous voyez la solution **Azure Networking Analytics (déconseillée)**, consultez [Migration à partir de l’ancienne solution Azure Networking](#migrating-from-the-old-networking-analytics-solution) pour connaître les étapes à suivre.
 >
 >
 
 ## <a name="review-azure-networking-data-collection-details"></a>Consulter les détails de la collecte de données réseaux Azure
-analytique de passerelle d’Application Azure Hello et solutions de gestion d’analytique de groupe de sécurité réseau hello collecter les journaux de diagnostics directement à partir des passerelles d’Application Azure et les groupes de sécurité réseau. Il n’est pas nécessaire de toowrite hello journaux tooAzure stockage d’objets Blob et aucun agent n’est requise pour la collection de données.
+Les solutions de gestion de l’analytique Azure Application Gateway et l’analytique Network Security Group collectent des journaux de diagnostic directement à partir d’Azure Application Gateways et Network Security Groups. Il n’est pas nécessaire d’écrire les journaux dans le stockage Blob Azure, et aucun agent n’est requis pour la collecte de données.
 
-Hello tableau suivant présente les méthodes de collecte de données et d’autres détails sur la façon dont les données sont collectées pour l’analytique de la passerelle d’Application Azure et analytique de groupe de sécurité réseau hello.
+Le tableau suivant présente les méthodes de collecte des données et d’autres informations sur le mode de collecte des données pour l’analytique Azure Application Gateway et l’analytique Network Security Group.
 
 | Plateforme | Agent direct | Agent Systems Center Operations Manager | Microsoft Azure | Operations Manager requis ? | Données de l’agent Operations Manager envoyées via un groupe d’administration | Fréquence de collecte |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -69,40 +69,40 @@ Hello tableau suivant présente les méthodes de collecte de données et d’aut
 
 ![Symbole d’Azure Application Gateway Analytics](./media/log-analytics-azure-networking/azure-analytics-symbol.png)
 
-Hello suivant les journaux est pris en charge pour les passerelles d’Application :
+Les journaux pris en charge pour les passerelles d’application sont les suivants :
 
 * ApplicationGatewayAccessLog
 * ApplicationGatewayPerformanceLog
 * ApplicationGatewayFirewallLog
 
-Hello suit les mesures est prises en charge pour les passerelles d’Application :
+Les métriques prises en charge pour les passerelles d’application sont les suivantes :
 
 * Débit de 5 minutes
 
-### <a name="install-and-configure-hello-solution"></a>Installer et configurer une solution de hello
-Utilisez hello suivant les instructions tooinstall et configurer une solution d’analytique hello passerelle d’Application Azure :
+### <a name="install-and-configure-the-solution"></a>Installer et configurer la solution
+Pour installer et configurer la solution d’analytique Azure Application Gateway, suivez les instructions suivantes :
 
-1. Activer la solution d’analytique de passerelle d’Application Azure hello à partir de [Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureAppGatewayAnalyticsOMS?tab=Overview) ou à l’aide de hello est décrite dans [solutions Analytique de journal ajouter à partir de la galerie des Solutions de hello](log-analytics-add-solutions.md).
-2. Activer la journalisation des diagnostics pour hello [passerelles d’Application](../application-gateway/application-gateway-diagnostics.md) vous souhaitez toomonitor.
+1. Activez la solution Azure Application Gateway Analytics depuis la [Place de marché Microsoft Azure](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureAppGatewayAnalyticsOMS?tab=Overview) ou en procédant de la manière décrite dans [Ajouter des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md).
+2. Activez la journalisation des diagnostics pour les [Application Gateways](../application-gateway/application-gateway-diagnostics.md) que vous voulez surveiller.
 
-#### <a name="enable-azure-application-gateway-diagnostics-in-hello-portal"></a>Activer les diagnostics de passerelle d’Application Azure dans le portail de hello
+#### <a name="enable-azure-application-gateway-diagnostics-in-the-portal"></a>Activer les diagnostics Azure Application Gateway dans le portail
 
-1. Bonjour portail Azure, accédez à toomonitor de ressources toohello Application Gateway
-2. Sélectionnez *les journaux de diagnostic* hello tooopen suivant page
+1. Dans le Portail Azure, accédez à la ressource Application Gateway à surveiller.
+2. Sélectionnez *Journaux de diagnostic* pour ouvrir la page suivante.
 
    ![Image de la ressource Azure Application Gateway](./media/log-analytics-azure-networking/log-analytics-appgateway-enable-diagnostics01.png)
-3. Cliquez sur *activer les diagnostics* hello tooopen suivant page
+3. Cliquez sur *Activer les diagnostics* pour ouvrir la page suivante.
 
    ![Image de la ressource Azure Application Gateway](./media/log-analytics-azure-networking/log-analytics-appgateway-enable-diagnostics02.png)
-4. tooturn des diagnostics, cliquez sur *sur* sous *état*
-5. Cliquez sur la case à cocher hello *envoyer tooLog Analytique*
+4. Pour activer les diagnostics, cliquez sur *Activé* sous *État*.
+5. Cochez la case à côté de l’option *Envoyer à Log Analytics*.
 6. Sélectionnez un espace de travail Log Analytics existant ou créez-en un.
-7. Cliquez sur la case à cocher hello sous **journal** pour chacun des toocollect de types hello journal
-8. Cliquez sur *enregistrer* tooenable la journalisation hello de diagnostics tooLog Analytique
+7. Cochez la case sous **Journal** pour chacun des types de journaux à collecter.
+8. Cliquez sur *Enregistrer* pour activer la journalisation des diagnostics dans Log Analytics.
 
 #### <a name="enable-azure-network-diagnostics-using-powershell"></a>Activez les diagnostics de réseau Azure avec PowerShell
 
-Hello PowerShell script suivant fournit un exemple de procédure tooenable journalisation des diagnostics pour les passerelles d’application.
+Le script PowerShell suivant fournit un exemple montrant comment activer la journalisation des diagnostics pour les Application Gateways.
 
 ```powershell
 $workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
@@ -115,7 +115,7 @@ Set-AzureRmDiagnosticSetting -ResourceId $gateway.ResourceId  -WorkspaceId $work
 ### <a name="use-azure-application-gateway-analytics"></a>Utiliser l’analytique Azure Application Gateway
 ![Image de la mosaïque d’analytique Azure Application Gateway](./media/log-analytics-azure-networking/log-analytics-appgateway-tile.png)
 
-Après avoir cliqué sur hello **analytique de la passerelle d’Application Azure** vignette sur hello vue d’ensemble, vous pouvez afficher des synthèses de vos journaux et procéder dans toodetails pour hello suivant des catégories :
+Une fois que vous avez cliqué sur la mosaïque **d’analytique Azure Application Gateway** dans la Vue d’ensemble, vous pouvez consulter les résumés de vos journaux et entrer dans les détails des catégories suivantes :
 
 * Journaux d’accès à la passerelle d’application
   * Erreurs client et serveur pour les journaux d’accès à la passerelle d’application
@@ -130,44 +130,44 @@ Après avoir cliqué sur hello **analytique de la passerelle d’Application Azu
 
 ![Image du tableau de bord d’analytique Azure Application Gateway](./media/log-analytics-azure-networking/log-analytics-appgateway02.png)
 
-Sur hello **analytique de la passerelle d’Application Azure** tableau de bord, passez en revue les informations de résumé hello dans un des panneaux de hello, puis cliquez sur une tooview des informations détaillées sur page de recherche de journal hello.
+Sur le tableau de bord **d’analytique Azure Application Gateway**, consultez les informations du résumé dans l’un des panneaux, puis cliquez sur l’un d’entre eux pour afficher des informations détaillées sur la page de recherche dans les journaux.
 
-Sur les pages de recherche de journal hello, vous pouvez afficher les résultats par heure, les résultats détaillés et votre historique de recherche de journal. Vous pouvez également filtrer selon les résultats de facettes toonarrow hello.
+Sur l’une des pages de recherche de journal, vous pouvez afficher les résultats par date, les résultats détaillés et votre historique de recherches de journaux. Vous pouvez également filtrer par facettes pour affiner les résultats.
 
 
 ## <a name="azure-network-security-group-analytics-solution-in-log-analytics"></a>Solution d’analytique Azure Network Security Group dans Log Analytics
 
 ![Symbole d’Azure Network Security Group Analytics](./media/log-analytics-azure-networking/azure-analytics-symbol.png)
 
-Hello suivant des journaux est pris en charge pour les groupes de sécurité réseau :
+Les fichiers journaux suivants sont pris en charge pour les groupes de sécurité réseau :
 
 * NetworkSecurityGroupEvent
 * NetworkSecurityGroupRuleCounter
 
-### <a name="install-and-configure-hello-solution"></a>Installer et configurer une solution de hello
-Utilisez hello suivant les instructions tooinstall et configurer une solution d’Analytique de mise en réseau Azure hello :
+### <a name="install-and-configure-the-solution"></a>Installer et configurer la solution
+Pour installer et configurer la solution d’analytique du réseau Azure, suivez les instructions suivantes :
 
-1. Activer la solution d’analytique de groupe de sécurité réseau Azure hello à partir de [Azure marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.AzureNSGAnalyticsOMS?tab=Overview) ou à l’aide de hello est décrite dans [solutions Analytique de journal ajouter à partir de la galerie des Solutions de hello](log-analytics-add-solutions.md).
-2. Activer la journalisation des diagnostics pour hello [groupe de sécurité réseau](../virtual-network/virtual-network-nsg-manage-log.md) ressources toomonitor.
+1. Activez la solution Azure Network Security Group Analytics depuis la [Place de marché Microsoft Azure](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/Microsoft.AzureNSGAnalyticsOMS?tab=Overview) ou en procédant de la manière décrite dans [Ajouter des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md).
+2. Activez la journalisation des diagnostics pour les ressources [Network Security Group](../virtual-network/virtual-network-nsg-manage-log.md) que vous voulez surveiller.
 
-### <a name="enable-azure-network-security-group-diagnostics-in-hello-portal"></a>Activer les diagnostics de groupe de sécurité réseau Azure dans le portail de hello
+### <a name="enable-azure-network-security-group-diagnostics-in-the-portal"></a>Activer les diagnostics Azure Network Security Group dans le portail
 
-1. Bonjour portail Azure, accédez à toomonitor de ressource de groupe de sécurité réseau toohello
-2. Sélectionnez *les journaux de diagnostic* hello tooopen suivant page
+1. Dans le Portail Azure, accédez à la ressource Network Security Group à surveiller.
+2. Sélectionnez *Journaux de diagnostic* pour ouvrir la page suivante.
 
    ![Image de la ressource Azure Network Security Group](./media/log-analytics-azure-networking/log-analytics-nsg-enable-diagnostics01.png)
-3. Cliquez sur *activer les diagnostics* hello tooopen suivant page
+3. Cliquez sur *Activer les diagnostics* pour ouvrir la page suivante.
 
    ![Image de la ressource Azure Network Security Group](./media/log-analytics-azure-networking/log-analytics-nsg-enable-diagnostics02.png)
-4. tooturn des diagnostics, cliquez sur *sur* sous *état*
-5. Cliquez sur la case à cocher hello *envoyer tooLog Analytique*
+4. Pour activer les diagnostics, cliquez sur *Activé* sous *État*.
+5. Cochez la case à côté de l’option *Envoyer à Log Analytics*.
 6. Sélectionnez un espace de travail Log Analytics existant ou créez-en un.
-7. Cliquez sur la case à cocher hello sous **journal** pour chacun des toocollect de types hello journal
-8. Cliquez sur *enregistrer* tooenable la journalisation hello de diagnostics tooLog Analytique
+7. Cochez la case sous **Journal** pour chacun des types de journaux à collecter.
+8. Cliquez sur *Enregistrer* pour activer la journalisation des diagnostics dans Log Analytics.
 
 ### <a name="enable-azure-network-diagnostics-using-powershell"></a>Activez les diagnostics de réseau Azure avec PowerShell
 
-Hello PowerShell script suivant fournit un exemple de procédure tooenable journalisation des diagnostics pour les groupes de sécurité réseau
+Le script PowerShell suivant fournit un exemple montrant comment activer la journalisation des diagnostics pour les groupes de sécurité réseau
 ```powershell
 $workspaceId = "/subscriptions/d2e37fee-1234-40b2-5678-0b2199de3b50/resourcegroups/oi-default-east-us/providers/microsoft.operationalinsights/workspaces/rollingbaskets"
 
@@ -177,7 +177,7 @@ Set-AzureRmDiagnosticSetting -ResourceId $nsg.ResourceId  -WorkspaceId $workspac
 ```
 
 ### <a name="use-azure-network-security-group-analytics"></a>Utiliser l’analytique Azure Network Security Group
-Après avoir cliqué sur hello **analytique de groupe de sécurité réseau Azure** vignette sur hello vue d’ensemble, vous pouvez afficher des synthèses de vos journaux et procéder dans toodetails pour hello suivant des catégories :
+Une fois que vous avez cliqué sur la mosaïque **d’analytique Azure Network Security Group** dans la Vue d’ensemble, vous pouvez consulter les résumés de vos journaux et entrer dans les détails des catégories suivantes :
 
 * Flux bloqués de groupe de sécurité réseau
   * Règles de groupe de sécurité réseau avec flux bloqués
@@ -190,24 +190,24 @@ Après avoir cliqué sur hello **analytique de groupe de sécurité réseau Azur
 
 ![Image du tableau de bord d’analytique Azure Network Security Group](./media/log-analytics-azure-networking/log-analytics-nsg02.png)
 
-Sur hello **analytique de groupe de sécurité réseau Azure** tableau de bord, passez en revue les informations de résumé hello dans un des panneaux de hello, puis cliquez sur une tooview des informations détaillées sur page de recherche de journal hello.
+Sur le tableau de bord **d’analytique Azure Network Security Group**, consultez les informations du résumé dans l’un des panneaux, puis cliquez sur l’un d’entre eux pour afficher des informations détaillées sur la page de recherche dans les journaux.
 
-Sur les pages de recherche de journal hello, vous pouvez afficher les résultats par heure, les résultats détaillés et votre historique de recherche de journal. Vous pouvez également filtrer selon les résultats de facettes toonarrow hello.
+Sur l’une des pages de recherche de journal, vous pouvez afficher les résultats par date, les résultats détaillés et votre historique de recherches de journaux. Vous pouvez également filtrer par facettes pour affiner les résultats.
 
-## <a name="migrating-from-hello-old-networking-analytics-solution"></a>Migration à partir de l’ancienne solution de mise en réseau d’Analytique hello
-En janvier 2017, hello pris en charge la façon d’envoi de journaux à partir des passerelles d’Application Azure et les groupes de sécurité de réseau Azure tooLog que Analytique modifié. Ces modifications permettent de hello suivant avantages :
-+ Les journaux sont écrits directement tooLog Analytique sans hello devez toouse un compte de stockage
-+ Latence est faible à partir de l’heure hello lorsque les journaux sont générés toothem soient disponibles dans le journal Analytique
+## <a name="migrating-from-the-old-networking-analytics-solution"></a>Migration à partir de l’ancienne solution Azure Networking
+En janvier 2017, la méthode prise en charge pour envoyer des journaux à Log Analytics à partir d’Azure Application Gateways et Azure Network Security Groups a été modifiée. Ces modifications présentent les avantages suivants :
++ Les journaux sont écrits directement dans Log Analytics sans avoir besoin d’utiliser un compte de stockage.
++ La durée de latence est plus courte entre le moment où les journaux sont générés et celui où ils deviennent disponibles dans Log Analytics.
 + Le nombre d’étapes de configuration est réduit.
 + Tous les types de diagnostics Azure sont au même format.
 
-solutions toouse hello mis à jour :
+Pour utiliser les solutions mises à jour :
 
-1. [Configurer toobe diagnostics provenant directement tooLog Analytique passerelles d’Application Azure](#enable-azure-application-gateway-diagnostics-in-the-portal)
-2. [Configurer toobe diagnostics envoyé des tooLog Analytique directement à partir de groupes de sécurité réseau Azure](#enable-azure-network-security-group-diagnostics-in-the-portal)
-2. Activer hello *Analytique de passerelle d’Application Azure* et hello *Analytique de groupe de sécurité de réseau Azure* solution à l’aide du processus de hello décrit dans [solutions Analytique de journal ajouter à partir de Hello galerie de Solutions](log-analytics-add-solutions.md)
-3. Mettre à jour toutes les requêtes enregistrées, les tableaux de bord ou les alertes toouse hello nouveau type de données
-  + Le type est tooAzureDiagnostics. Vous pouvez utiliser hello ResourceType toofilter tooAzure mise en réseau des journaux.
+1. [Configurez les diagnostics pour qu’ils soient directement envoyés à Log Analytics à partir d’Azure Application Gateways](#enable-azure-application-gateway-diagnostics-in-the-portal).
+2. [Configurez les diagnostics pour qu’ils soient directement envoyés à Log Analytics à partir d’Azure Network Security Groups](#enable-azure-network-security-group-diagnostics-in-the-portal).
+2. Activez la solution *d’analytique Azure Application Gateway* et *d’analytique Azure Network Security Group* en procédant de la manière décrite dans [Ajouter des solutions Log Analytics à partir de la galerie de solutions](log-analytics-add-solutions.md).
+3. Mettez à jour les requêtes, les tableaux de bord et les alertes enregistrés pour qu’ils utilisent le nouveau type de données.
+  + Le type doit être AzureDiagnostics. Vous pouvez utiliser ResourceType pour filtrer les journaux réseaux Azure.
 
     | Au lieu du paramètre... | Utilisez : |
     | --- | --- |
@@ -215,15 +215,15 @@ solutions toouse hello mis à jour :
     |`Type=NetworkApplicationgateways OperationName=ApplicationGatewayPerformance` | `Type=AzureDiagnostics ResourceType=APPLICATIONGATEWAYS OperationName=ApplicationGatewayPerformance` |
     | `Type=NetworkSecuritygroups` | `Type=AzureDiagnostics ResourceType=NETWORKSECURITYGROUPS` |
 
-   + Pour un champ qui comporte un suffixe de \_s, \_d, ou \_g dans nom hello, modification hello premier caractère toolower cas
-   + Pour un champ qui comporte un suffixe de \_o dans nom, les données de salutation est divisé en champs individuels en fonction du nom de champ hello imbriqué.
-4. Supprimer hello *Analytique de mise en réseau Azure (obsolète)* solution.
-  + Avec PowerShell, utilisez `Set-AzureOperationalInsightsIntelligencePack -ResourceGroupName <resource group that hello workspace is in> -WorkspaceName <name of hello log analytics workspace> -IntelligencePackName "AzureNetwork" -Enabled $false`.
+   + Pour tous les champs dont le suffixe est \_s, \_d ou \_g, remplacez le premier caractère du nom par une lettre minuscule.
+   + Pour tous les champs dont le suffixe est \_o, les données sont réparties en plusieurs champs, selon les noms de champs imbriqués.
+4. Supprimez la solution *Azure Networking Analytics (déconseillée)*.
+  + Si vous utilisez PowerShell, utilisez `Set-AzureOperationalInsightsIntelligencePack -ResourceGroupName <resource group that the workspace is in> -WorkspaceName <name of the log analytics workspace> -IntelligencePackName "AzureNetwork" -Enabled $false`.
 
-Les données collectées avant la modification de hello n’est pas visible dans une nouvelle solution hello. Vous pouvez continuer tooquery pour cette à l’aide de données hello ancien Type et les noms de champs.
+Les données collectées avant la modification ne seront pas visibles dans la nouvelle solution. Vous pouvez continuer à interroger ces données à l’aide de l’ancien type et des anciens noms de champs.
 
-## <a name="troubleshooting"></a>Résolution des problèmes
+## <a name="troubleshooting"></a>résolution des problèmes
 [!INCLUDE [log-analytics-troubleshoot-azure-diagnostics](../../includes/log-analytics-troubleshoot-azure-diagnostics.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Utilisez [connecter recherche Analytique de journal](log-analytics-log-searches.md) tooview détaillées des données de diagnostic Azure.
+* Utilisez les [Recherches dans les journaux dans Log Analytics](log-analytics-log-searches.md) pour afficher les données détaillées de diagnostics Azure.

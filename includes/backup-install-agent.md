@@ -1,42 +1,42 @@
-## <a name="download-install-and-register-hello-azure-backup-agent"></a>Télécharger, installer et inscrire l’agent de sauvegarde Azure hello
-Après avoir créé le coffre de sauvegarde Azure hello, un agent doit être installé sur chacun de vos ordinateurs Windows (Windows Server, Windows client, serveur de System Center Data Protection Manager ou ordinateur du serveur de sauvegarde Azure) qui permet de sauvegarder des données et applications tooAzure.
+## <a name="download-install-and-register-the-azure-backup-agent"></a>Téléchargement, installation et inscription de l’agent Azure Backup
+Après avoir créé l’archivage de sauvegarde Azure, un agent doit être installé sur chacune de vos machines Windows (Windows Server, client Windows, System Center Data Protection Manager ou Azure Backup Server) pour permettre la sauvegarde des données et des applications dans Azure.
 
-1. Connectez-vous à toohello [portail de gestion](https://manage.windowsazure.com/)
-2. Cliquez sur **Services de récupération**, puis sélectionnez le coffre de sauvegarde hello que vous souhaitez tooregister avec un serveur. page de démarrage rapide de Hello ce coffre de sauvegarde s’affiche.
+1. Connectez-vous au [portail de gestion](https://manage.windowsazure.com/)
+2. Cliquez sur **Recovery Services**, puis sélectionnez le coffre de sauvegarde que vous souhaitez enregistrer avec un serveur. La page de démarrage rapide pour ce coffre de sauvegarde apparaît.
    
     ![Démarrage rapide](./media/backup-install-agent/quickstart.png)
-3. Sur la page de démarrage rapide de hello, cliquez sur hello **pour Windows Server ou System Center Data Protection Manager ou Windows client** sous **télécharger l’Agent**. Cliquez sur **enregistrer** toocopy il toohello les ordinateur local.
+3. Dans la page de démarrage rapide, cliquez sur l’option **Pour Windows Server ou System Center Data Protection Manager ou un client Windows** sous **Télécharger l’agent**. Cliquez sur **Enregistrer** pour le copier sur l’ordinateur local.
    
     ![Enregistrer l’agent](./media/backup-install-agent/agent.png)
-4. Une fois que l’agent de hello est installé, double-cliquez sur MARSAgentInstaller.exe toolaunch hello l’installation de hello Azure Backup agent. Choisissez le dossier d’installation hello et le dossier de travail requis pour l’agent de hello. emplacement de cache de Hello spécifié doit disposer de l’espace libre qui est au moins 5 % des données de sauvegarde hello.
-5. Si vous utilisez un toohello tooconnect du serveur proxy internet, Bonjour **configuration Proxy** écran, entrez les détails du serveur proxy hello. Si vous utilisez un proxy authentifié, entrez les détails de nom et mot de passe utilisateur hello dans cet écran.
-6. agent de sauvegarde Azure Hello installe .NET Framework 4.5 et Windows PowerShell (si elle n’est disponible) installation de hello toocomplete.
-7. Une fois que l’agent de hello est installé, cliquez sur hello **continuer tooRegistration** toocontinue bouton avec les flux de travail hello.
+4. Une fois l’agent Azure Backup installé, double-cliquez sur MARSAgentInstaller.exe pour lancer l’installation. Choisissez le dossier d’installation et le dossier de travail requis pour l’agent. L’emplacement du cache spécifié doit avoir un espace libre équivalent à au moins 5 % du volume des données de sauvegarde.
+5. Si vous utilisez un serveur proxy pour vous connecter à Internet, dans l’écran **Configuration du proxy** , entrez les détails du serveur proxy. Si vous utilisez un proxy authentifié, entrez les informations de nom d’utilisateur et mot de passe dans cet écran.
+6. L’agent Azure Backup installe .NET Framework 4.5 et Windows PowerShell (s’il n’est pas déjà disponible) pour terminer l’installation.
+7. Une fois l’agent installé, cliquez sur le bouton **Procéder à l’inscription** pour continuer le flux de travail.
    
    ![S’inscrire](./media/backup-install-agent/register.png)
-8. Dans l’écran informations d’identification de coffre hello, accédez à fichier tooand hello sélectionnez coffre informations d’identification qui a été téléchargée antérieurement.
+8. Dans l’écran d’informations d’identification de l’archivage, recherchez et sélectionnez le fichier d’informations d’identification d’archivage téléchargé précédemment.
    
     ![Informations d’identification du coffre](./media/backup-install-agent/vc.png)
    
-    fichier d’informations d’identification de coffre Hello est valide uniquement pour 48 heures (après l’avoir téléchargée à partir du portail de hello). Si vous rencontrez une erreur dans cet écran (par exemple « coffre informations d’identification de fichier fourni a expiré »), connexion toohello portail Azure et informations d’identification de coffre de hello téléchargement de fichiers à nouveau.
+    Le fichier d’informations d’identification d’archivage est valide uniquement pendant 48 heures (à partir de son téléchargement depuis le portail). Si vous rencontrez une erreur dans cet écran (par exemple, « Le fichier d’informations d’identification de coffre fourni a expiré »), connectez-vous au portail Azure et retéléchargez le fichier d’informations d’identification d’archivage.
    
-    Vérifiez que ce fichier d’informations d’identification de coffre hello est disponible dans un emplacement qui est accessible par l’application d’installation de hello. Si vous rencontrez des erreurs connexes d’accès, informations d’identification du coffre copie hello tooa temporaire sur cet ordinateur et de recommencer l’opération de hello.
+    Assurez-vous que le fichier d’informations d’identification d’archivage se trouve dans un emplacement accessible par l’application d’installation. Si vous rencontrez des erreurs liées à l’accès, copiez le fichier d’informations d’identification d’archivage dans un emplacement temporaire sur cet ordinateur et recommencez l’opération.
    
-    Si vous rencontrez une erreur d’informations d’identification de coffre non valide (par exemple « non valide de coffre informations d’identification fournies ») soit hello fichier est endommagé ou ne pas avoir hello dernières informations d’identification associées service de récupération hello. Recommencez l’opération hello après avoir téléchargé un nouveau fichier d’informations d’identification de coffre à partir du portail de hello. Cette erreur se produit généralement si l’utilisateur de hello clique sur hello **informations d’identification du coffre de téléchargement** option Bonjour portail Azure, de suite. Dans ce cas, uniquement hello deuxième coffre informations d’identification du fichier est valide.
-9. Bonjour **paramètre de chiffrement** écran, vous pouvez générer un mot de passe ou fournissez une phrase secrète (16 caractères au minimum). N’oubliez pas de mot de passe toosave hello dans un emplacement sécurisé.
+    Si vous rencontrez une erreur d’informations d’identification de coffre non valides (par exemple, « Les informations d’identification de coffre fournies ne sont pas valides »), cela signifie que le fichier est endommagé ou qu’il ne possède pas les dernières informations d’identification associées au service de récupération. Recommencez l’opération après avoir téléchargé un nouveau fichier d’informations d’identification de coffre à partir du portail. Cette erreur se produit généralement si l’utilisateur clique sur l’option **Télécharger les informations d’identification de coffre** trop rapidement dans le portail Azure. Dans ce cas, seul le deuxième fichier d’informations d’identification de coffre est valide.
+9. Sur l’écran **Paramètre de chiffrement** , vous pouvez générer ou fournir une phrase secrète (16 caractères minimum). Pensez à enregistrer le mot de passe dans un emplacement sécurisé.
    
     ![Chiffrement](./media/backup-install-agent/encryption.png)
    
    > [!WARNING]
-   > Si hello le mot de passe est perdu ou oublié ; L’aide de Microsoft ne peut pas récupérer les données de sauvegarde hello. utilisateur final de Hello possède la phrase secrète de chiffrement hello et Microsoft n’a pas de visibilité hello de mot de passe utilisé par l’utilisateur final de hello. Enregistrez les fichiers hello dans un emplacement sécurisé comme requis pendant une opération de récupération.
+   > Si la phrase secrète est perdue ou oubliée, Microsoft ne peut pas vous aider à récupérer les données de sauvegarde. L’utilisateur final détient la phrase secrète de chiffrement et Microsoft n’a aucune visibilité sur cette dernière. Enregistrez le fichier dans un emplacement sécurisé, car il vous sera demandé pour les opérations de récupération.
    > 
    > 
-10. Une fois que vous cliquez sur hello **Terminer** bouton, hello est inscrit correctement toohello coffre et que vous êtes maintenant prêt toostart sauvegarde tooMicrosoft Azure.
-11. Lorsque vous utilisez Microsoft Azure Backup autonome vous pouvez modifier les paramètres de hello spécifiés au cours de flux de travail de l’inscription hello en cliquant sur hello **modifier les propriétés** option dans le composant logiciel enfichable de mmc de sauvegarde Azure hello dans.
+10. Quand vous cliquez sur le bouton **Terminer** , l’ordinateur est correctement inscrit dans l’archivage et vous êtes désormais prêt à démarrer la sauvegarde dans Microsoft Azure.
+11. Lorsque vous utilisez Microsoft Azure Backup en autonome, vous pouvez modifier les paramètres spécifiés pendant le flux de travail d’inscription en cliquant sur l’option **Modifier les propriétés** dans le composant logiciel enfichable MMC d’Azure Backup.
     
     ![Modifier les propriétés](./media/backup-install-agent/change.png)
     
-    Ou bien, lors de l’utilisation de Data Protection Manager, vous pouvez modifier les paramètres de hello spécifiées pendant le flux de travail de l’inscription hello en cliquant sur hello **configurer** option en sélectionnant **Online** sous hello **Gestion** onglet.
+    Lorsque vous utilisez Data Protection Manager, vous pouvez également modifier les paramètres spécifiés pendant l’inscription en cliquant sur l’option **Configurer** et en sélectionnant **En ligne** sous l’onglet **Gestion**.
     
     ![Configurer la sauvegarde Azure](./media/backup-install-agent/configure.png)
 

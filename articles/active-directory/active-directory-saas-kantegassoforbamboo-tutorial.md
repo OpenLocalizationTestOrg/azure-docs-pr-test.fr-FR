@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec Kantega SSO pour Bamboo | Microsoft Docs"
-description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Kantega SSO pour Bamboo."
+description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Kantega SSO pour Bamboo."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,117 +13,117 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: 8bf637ff440e8e3948db882861bee6e73f8aa879
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cc259bb6f9bdb2293b6935e45e2df52b9fee6873
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-kantega-sso-for-bamboo"></a>Didacticiel : Intégration d’Azure Active Directory avec Kantega SSO pour Bamboo
 
-Dans ce didacticiel, vous apprendrez comment toointegrate Kantega SSO pour Bamboo avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous allez apprendre à intégrer Kantega SSO pour Bamboo avec Azure Active Directory (Azure AD).
 
-Intégration Kantega SSO pour Bamboo avec Azure AD offre hello avantages suivants :
+L’intégration de Kantega SSO pour Bamboo avec Azure AD offre les avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès tooKantega SSO pour Bamboo
-- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooKantega SSO pour Bamboo (Single Sign-On) avec leurs comptes Azure AD
-- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès à Kantega SSO pour Bamboo.
+- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Kantega SSO pour Bamboo (authentification unique) avec leur compte Azure AD.
+- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
 
-Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
+Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-tooconfigure intégration d’Azure AD avec Kantega SSO pour Bamboo, vous devez hello éléments suivants :
+Pour configurer l’intégration d’Azure AD avec Kantega SSO pour Bamboo, vous avez besoin des éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Kantega SSO pour Bamboo pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
+> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
 
-tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
+Vous devez en outre suivre les recommandations ci-dessous :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
 
-1. Ajout de Kantega SSO pour Bamboo à partir de la galerie de hello
+1. Ajout de Kantega SSO pour Bamboo à partir de la galerie
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-kantega-sso-for-bamboo-from-hello-gallery"></a>Ajout de Kantega SSO pour Bamboo à partir de la galerie de hello
-intégration de hello tooconfigure de Kantega SSO pour Bamboo dans Azure AD, vous devez tooadd Kantega SSO pour Bamboo à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
+## <a name="adding-kantega-sso-for-bamboo-from-the-gallery"></a>Ajout de Kantega SSO pour Bamboo à partir de la galerie
+Pour configurer l’intégration de Kantega SSO pour Bamboo dans Azure AD, vous devez ajouter Kantega SSO pour Bamboo à partir de la galerie à la liste des applications SaaS managées.
 
-**tooadd Kantega SSO pour Bamboo à partir de la galerie hello, procédez hello comme suit :**
+**Pour ajouter Kantega SSO pour Bamboo à partir de la galerie, procédez comme suit :**
 
-1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
+1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
 
     ![Active Directory][1]
 
-2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
+2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
 
     ![Applications][2]
     
-3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
+3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche de hello, tapez **Kantega SSO pour Bamboo**.
+4. Dans la zone de recherche, tapez **Kantega SSO pour Bamboo**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_search.png)
 
-5. Dans le volet de résultats hello, sélectionnez **Kantega SSO pour Bamboo**, puis cliquez sur **ajouter** bouton application hello de tooadd.
+5. Dans le volet de résultats, sélectionnez **Kantega SSO pour Bamboo**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Kantega SSO pour Bamboo sur un utilisateur de test nommé « Britta Simon ».
 
-Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur équivalent hello Kantega SSO pour Bamboo est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Kantega SSO pour Bamboo doit toobe établie.
+Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur équivalent à l’utilisateur Azure AD dans Kantega SSO pour Bamboo. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Kantega SSO pour Bamboo associé doit être établie.
 
-Dans Kantega SSO pour Bamboo, affecter la valeur de hello de hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
+Dans Kantega SSO pour Bamboo, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **Username** pour établir la relation.
 
-tooconfigure et test Azure AD l’authentification unique avec Kantega SSO pour Bamboo, vous devez hello toocomplete suivant des blocs de construction :
+Pour configurer et tester l’authentification unique Azure AD avec Kantega SSO pour Bamboo, vous devez suivre les indications des sections suivantes :
 
-1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
-3. **[Création d’un Kantega SSO pour tester un utilisateur Bamboo](#creating-a-kantega-sso-for-bamboo-test-user)**  -toohave un équivalent de Britta Simon dans Kantega SSO pour Bamboo est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
-4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
-5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
+1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
+3. **[Création d’un utilisateur de test Kantega SSO pour Bamboo](#creating-a-kantega-sso-for-bamboo-test-user)** pour avoir un équivalent de Britta Simon dans Kantega SSO pour Bamboo qui soit lié à la représentation Azure AD associée.
+4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
+5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre Kantega SSO pour les applications Bamboo.
+Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Kantega SSO pour Bamboo.
 
-**tooconfigure Azure AD l’authentification unique avec Kantega SSO pour Bamboo, effectuez hello comme suit :**
+**Pour configurer l’authentification unique Azure AD avec Kantega SSO pour Bamboo, procédez comme suit :**
 
-1. Bonjour portail Azure, sur hello **Kantega SSO pour Bamboo** page d’intégration d’application, cliquez sur **l’authentification unique**.
+1. Sur le portail Azure, dans la page d’intégration de l’application **Kantega SSO pour Bamboo**, cliquez sur **Authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
+2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_samlbase.png)
 
-3. Dans **IDP** initiée par le mode, hello **Kantega SSO pour Bamboo domaine et les URL** section effectuer hello suivant l’étape :
+3. En mode initié **IDP**, dans la section **Domaine et URL Kantega SSO pour Bamboo**, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_url1.png)
     
-    a. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    a. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
 
-    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    b. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
 
-4. Dans **SP** mode initié, cocher **afficher les paramètres d’URL avancés** et effectuer hello suivant l’étape :
+4. En mode initié **SP**, activez **Afficher les paramètres d’URL avancés**, puis procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_url2.png)
     
-    Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
      
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs avec hello réel identificateur, URL de réponse et URL de connexion. Ces valeurs sont reçues lors de la configuration de hello du plug-in Bamboo qui est expliquée plus loin dans le didacticiel de hello.
+    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur, l’URL de réponse et l’URL de connexion réels. Ces valeurs sont reçues durant la configuration du plug-in Bamboo qui est décrite plus loin dans le didacticiel.
 
-5. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
+5. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_certificate.png) 
 
@@ -131,21 +131,21 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_general_400.png)
     
-7. Dans une fenêtre de navigateur web, connectez-vous tooyour Bamboo sur le serveur local en tant qu’administrateur.
+7. Dans une autre fenêtre de navigateur web, connectez-vous à votre serveur local Bamboo en tant qu’administrateur.
 
-8. Pointez sur représentant une roue dentée et cliquez sur hello **modules complémentaires**.
+8. Pointez sur le roue dentée, puis cliquez sur **Modules complémentaires**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon1.png)
 
-9. Sous l’onglet Modules complémentaires, cliquez sur **Find new add-ons** (Trouver de nouveaux modules complémentaires). Recherche **Kantega SSO pour Bamboo (SAML & Kerberos)** et cliquez sur **installer** bouton tooinstall hello nouveau plug-in SAML.
+9. Sous l’onglet Modules complémentaires, cliquez sur **Find new add-ons** (Trouver de nouveaux modules complémentaires). Recherchez **Kantega SSO pour Bamboo (SAML & Kerberos)**, puis cliquez sur le bouton **Installer** pour installer le nouveau plug-in SAML.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon2.png)
 
-10. installation du plug-in Hello démarre.
+10. L’installation du plug-in démarre.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon21.png)
 
-11. Une fois l’installation de hello est terminée. Cliquez sur **Fermer**.
+11. Une fois l’installation terminée. Cliquez sur **Fermer**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon33.png)
 
@@ -153,11 +153,11 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon34.png)
     
-13. Cliquez sur **configurer** tooconfigure hello nouveau plug-in.  
+13. Cliquez sur **Configurer** pour configurer le nouveau plug-in.    
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon3.png)
 
-14. Bonjour **SAML** section. Sélectionnez **Azure Active Directory (Azure AD)** de hello **ajouter le fournisseur d’identité** liste déroulante.
+14. Dans la section **SAML**. Dans le menu déroulant **Ajouter le fournisseur d’identité**, sélectionnez **Azure Active Directory (Azure AD)**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon4.png)
 
@@ -165,15 +165,15 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon5.png)
 
-16. Sur hello **propriétés de l’application** section, procédez comme suit :
+16. Dans la section **Propriétés de l’application**, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon6.png)
 
-    a. Hello de copie **URI ID d’application** valeur et l’utiliser en tant que **identificateur, les URL de réponse et les URL de connexion** sur hello **Kantega SSO pour Bamboo domaine et les URL** section dans le portail Azure.
+    a. Copiez la valeur **URI ID d'application** et utilisez-la en tant que **Identifier, Reply URL, and Sign-On URL** (Identificateur, URL de réponse et URL de connexion) dans la section **Domaine et URL Kantega SSO pour Bamboo** du portail Azure.
 
     b. Cliquez sur **Suivant**.
 
-17. Sur hello **importation de métadonnées** section, procédez comme suit :
+17. Dans la section **Metadata import** (Importation des métadonnées), procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon7.png)
 
@@ -181,23 +181,23 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     b. Cliquez sur **Suivant**.
 
-18. Sur hello **nom et l’authentification unique emplacement** section, procédez comme suit :
+18. Dans la section **Name and SSO location** (Nom et emplacement de l’authentification unique), procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon8.png)
 
-    a. Ajoutez le nom du fournisseur d’identité de hello dans **nom de fournisseur d’identité** zone de texte (par exemple, Azure AD).
+    a. Ajoutez le nom du fournisseur d’identité dans la zone de texte **Identity provider name** (Nom du fournisseur d’identité) (par exemple, Azure AD).
 
     b. Cliquez sur **Suivant**.
 
-19. Vérifier le certificat de signature hello et cliquez sur **suivant**.    
+19. Vérifiez le certificat de signature, puis cliquez sur **Suivant**.  
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon9.png)
 
-20. Sur hello **des comptes d’utilisateur Bamboo** section, procédez comme suit :
+20. Dans la section **Bamboo user accounts** (Comptes d’utilisateur Bamboo), procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon10.png)
 
-    a. Sélectionnez **créer des utilisateurs dans l’annuaire interne de Bamboo si nécessaire** et entrez le nom de hello approprié du groupe de hello pour les utilisateurs (peut être non plusieurs. groupes séparés par des virgules).
+    a. Sélectionnez **Create users in Bamboo's internal Directory if needed** (Créer des utilisateurs dans l’annuaire interne de Bamboo si nécessaire) et entrez le nom de groupe approprié pour les utilisateurs (peut être plusieurs groupes séparés par des virgules).
 
     b. Cliquez sur **Suivant**.
 
@@ -205,95 +205,95 @@ Dans cette section, vous activez Azure AD l’authentification unique sur Bonjou
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon11.png)
 
-22. Sur hello **connu des domaines pour Azure AD** section, procédez comme suit :   
+22. Dans la section **Known domains for Azure AD** (Domaines connus pour Azure AD), procédez comme suit : 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/addon12.png)
 
-    a. Sélectionnez **connu domaines** à partir du Panneau de gauche hello de page de hello.
+    a. Sélectionnez **Known domains** (Domaines connus) dans le volet gauche de la page.
 
-    b. Entrez le nom de domaine Bonjour **connu domaines** zone de texte.
+    b. Entrez le nom de domaine dans la zone de texte **Known domains** (Domaines connus).
 
     c. Cliquez sur **Enregistrer**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
+L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
 
 ![Créer un utilisateur Azure AD][100]
 
-**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
+**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
 
-1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
+1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforbamboo-tutorial/create_aaduser_01.png) 
 
-2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
+2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforbamboo-tutorial/create_aaduser_02.png) 
 
-3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
+3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforbamboo-tutorial/create_aaduser_03.png) 
 
-4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
+4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforbamboo-tutorial/create_aaduser_04.png) 
 
-    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
+    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
 
-    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
+    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
 
-    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
+    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-kantega-sso-for-bamboo-test-user"></a>Création d’un utilisateur de test Kantega SSO pour Bamboo
 
-tooenable Azure AD les utilisateurs toolog dans tooBamboo, vous devez les configurer dans Bamboo. Dans Kantega SSO pour Bamboo, cet approvisionnement est une tâche manuelle.
+Pour permettre aux utilisateurs Azure AD de se connecter à Bamboo, vous devez les attribuer dans Bamboo. Dans Kantega SSO pour Bamboo, cet approvisionnement est une tâche manuelle.
 
-**tooprovision un compte d’utilisateur, effectuez hello comme suit :**
+**Pour approvisionner un compte d’utilisateur, procédez comme suit :**
 
-1. Ouvrez une session dans tooyour Bamboo sur le serveur local en tant qu’administrateur.
+1. Connectez-vous à votre serveur local Bamboo en tant qu’administrateur.
 
-2. Pointez sur représentant une roue dentée et cliquez sur hello **gestion des utilisateurs**.
+2. Pointez sur la roue dentée, puis cliquez sur **Gestion des utilisateurs**.
 
     ![Ajouter un employé](./media/active-directory-saas-kantegassoforbamboo-tutorial/user1.png) 
 
-3. Cliquez sur **Utilisateurs**. Sous hello **ajouter un utilisateur** section, effectuez les étapes ci-dessous :
+3. Cliquez sur **Utilisateurs**. Sous la section **Add User** (Ajouter un utilisateur), procédez comme suit :
 
     ![Ajouter un employé](./media/active-directory-saas-kantegassoforbamboo-tutorial/user2.png) 
 
-    a. Bonjour **nom d’utilisateur** par courrier électronique de type hello d’utilisateur de zone de texte, comme Brittasimon@contoso.com.
+    a. Dans la zone de texte **Username** (Nom d’utilisateur), tapez l’e-mail d’un utilisateur, par exemple, Brittasimon@contoso.com.
     
-    b. Bonjour **mot de passe** zone de texte, un mot de passe hello type d’utilisateur.
+    b. Dans la zone de texte **Password** (Mot de passe), tapez le mot de passe de l’utilisateur.
 
-    c. Bonjour **confirmer le mot de passe** zone de texte, entrez à nouveau hello mot de passe de l’utilisateur.
+    c. Dans la zone de texte **Confirm Password** (Confirmer le mot de passe), entrez à nouveau le mot de passe de l’utilisateur.
     
-    d. Bonjour **nom complet** zone de texte, nom complet du type d’utilisateur hello comme Britta Simon.
+    d. Dans la zone de texte **Full Name** (Nom complet), tapez le nom complet d’un utilisateur, par exemple, Britta Simon.
     
-    e. Bonjour **messagerie** adresse de messagerie de type hello d’utilisateur de zone de texte, comme Brittasimon@contoso.com.
+    e. Dans la zone de texte **Email** (E-mail), tapez l’adresse e-mail d’un utilisateur, par exemple, Brittasimon@contoso.com.
     
     f. Cliquez sur **Enregistrer**.
 
-### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
 
-Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooKantega SSO pour Bamboo.
+Dans cette section, vous permettez à Britta Simon d’utiliser l’authentification unique Azure en lui accordant l’accès à Kantega SSO pour Bamboo.
 
 ![Affecter des utilisateurs][200] 
 
-**tooassign Britta Simon tooKantega SSO pour Bamboo, effectuez hello comme suit :**
+**Pour affecter Britta Simon à Kantega SSO pour Bamboo, procédez comme suit :**
 
-1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
+1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications hello, sélectionnez **Kantega SSO pour Bamboo**.
+2. Dans la liste des applications, sélectionnez **Kantega SSO pour Bamboo**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforbamboo-tutorial/tutorial_kantegassoforbamboo_app.png) 
 
-3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
+3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -301,7 +301,7 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
 
     ![Affecter des utilisateurs][203]
 
-5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
+5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -309,14 +309,14 @@ Dans cette section, vous activez toouse Britta Simon Azure l’authentification 
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
+Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
 
-Lorsque vous cliquez sur hello Kantega SSO pour vignette Bamboo Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour Kantega SSO pour l’application de Bamboo.
-Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md). 
+Lorsque vous cliquez sur la vignette Kantega SSO pour Bamboo dans le Panneau d'accès, vous devriez être automatiquement connecté à votre application Kantega SSO pour Bamboo.
+Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

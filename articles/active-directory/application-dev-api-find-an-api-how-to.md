@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toofind une API spécifique est nécessaire pour une application personnalisée | Documents Microsoft"
-description: "Comment tooconfigure hello autorisations tooaccess une API particulière dans votre développement application Azure AD"
+title: "Comment rechercher une API spécifique requise pour une application personnalisée | Microsoft Docs"
+description: "Comment configurer les autorisations dont vous avez besoin pour accéder à une API particulière dans l’application Azure AD que vous avez développée"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 7331129204d8b34b4ef9671749bd702f893768ff
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e0c07fd030339d025894520500d2cd948d31af45
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-toofind-a-specific-api-needed-for-a-custom-developed-application"></a>Comment toofind une API spécifique est nécessaire pour une application personnalisée
+# <a name="how-to-find-a-specific-api-needed-for-a-custom-developed-application"></a>Comment rechercher une API spécifique requise pour une application personnalisée
 
-Accès tooAPIs nécessite la configuration des étendues d’accès et des rôles. Si vous souhaitez tooexpose vos ressources d’applications web API tooclient applications, vous devez tooconfigure accès étendues et des rôles pour hello API. Si vous souhaitez un tooaccess d’application client une API web, vous devez tooconfigure autorisations tooaccess hello API dans l’inscription d’une application hello.
+L’accès aux API suppose de configurer les étendues d’accès et les rôles. Si vous souhaitez exposer aux applications clientes les API web de vos applications de ressources, vous devez configurer les étendues d’accès et les rôles de l’API. Si vous voulez qu’une application cliente puisse accéder à une API web, vous devez configurer les autorisations d’accès à l’API lors de l’inscription de l’application.
 
-## <a name="configuring-a-resource-application-tooexpose-web-apis"></a>Configuration d’un site web tooexpose d’application de ressource API
+## <a name="configuring-a-resource-application-to-expose-web-apis"></a>Configuration d’une application de ressource pour exposer les API web
 
-Lorsque vous exposez votre API web, hello API affichera Bonjour **sélectionner une API** liste lors de l’ajout d’inscription d’une application tooan autorisations. étendues d’accès tooadd, suivez les instructions de hello dans [Ajout d’accès étendues application de ressource tooyour](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#adding-access-scopes-to-your-resource-application).
+Lorsque vous exposez vos API web, l’API s’affiche dans la liste **Sélectionner une API** lorsque vous ajoutez des autorisations à l’inscription d’une application. Pour ajouter des étendues d’accès, suivez les étapes décrites dans [Ajout d’étendues d’accès à votre application de ressources](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#adding-access-scopes-to-your-resource-application).
 
-## <a name="configuring-a-client-application-tooaccess-web-apis"></a>Configuration d’un ordinateur client application tooaccess web API
+## <a name="configuring-a-client-application-to-access-web-apis"></a>Configuration d’une application cliente pour accéder aux API web
 
-Lorsque vous ajoutez d’inscription d’une application tooyour autorisations, vous pouvez **ajouter l’accès aux API** tooexposed web API. tooaccess API web, suivez les étapes de hello décrites dans [ajoutez tooaccess des informations d’identification ou des autorisations web API](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#to-add-credentials-or-permissions-to-access-web-apis).
+Lorsque vous ajoutez des autorisations à l’inscription de votre application, vous pouvez **ajouter un accès à l’API** à des API web exposées. Pour accéder aux API web, suivez les étapes décrites dans la section [Pour ajouter des informations d’identification ou des autorisations pour accéder aux API web](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#to-add-credentials-or-permissions-to-access-web-apis).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 -   [Intégration d’applications dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications)
 
--   [Présentation de manifeste de l’application hello Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-manifest)
+-   [Connaître le manifeste d’application Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-manifest)
 
 

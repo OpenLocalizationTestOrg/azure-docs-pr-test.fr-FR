@@ -1,6 +1,6 @@
 ---
-title: aaaHow toocreate une application Web avec le Cache Redis | Documents Microsoft
-description: "Découvrez comment toocreate une application Web avec le Cache Redis"
+title: "Création d’une application web avec le Cache Redis | Microsoft Docs"
+description: "Découvrez comment créer une application web avec le Cache Redis"
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 05/09/2017
 ms.author: sdanie
-ms.openlocfilehash: d3e6df97b06fdf9032570dc360944be4bd7715de
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
-ms.translationtype: MT
+ms.openlocfilehash: 21dc87b3e8c26bfbda36202b31b3b4d44be32179
+ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
+ms.translationtype: HT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/11/2017
 ---
-# <a name="how-toocreate-a-web-app-with-redis-cache"></a>Comment toocreate une application Web avec le Cache Redis
+# <a name="how-to-create-a-web-app-with-redis-cache"></a>Création d’une application web avec le Cache Redis
 > [!div class="op_single_selector"]
 > * [.NET](cache-dotnet-how-to-use-azure-redis-cache.md)
 > * [ASP.NET](cache-web-app-howto.md)
@@ -30,77 +30,77 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-Ce didacticiel montre comment toocreate et déployer une application ASP.NET web application tooa web dans Azure App Service à l’aide de Visual Studio 2017. exemple d’application Hello affiche la liste des statistiques sur les équipes à partir d’une base de données et montre les différentes façons toouse Cache Redis Azure toostore et récupérer des données à partir du cache de hello. Lorsque vous effectuez le didacticiel de hello vous avez une application web en cours d’exécution qui lit et écrit la base de données tooa, optimisée avec le Cache Redis Azure et hébergés dans Azure.
+Ce didacticiel montre comment créer et déployer une application web ASP.NET dans une application web dans Azure App Service en utilisant Visual Studio 2017. L’exemple d’application affiche une liste des statistiques d’équipe d’une base de données et montre les différentes façons d’utiliser le Cache Redis Azure pour stocker et récupérer des données à partir du cache. Lorsque vous aurez terminé le didacticiel, vous disposerez d’une application web, optimisée avec le Cache Redis Azure et hébergée dans Azure, effectuant des opérations de lecture et écriture sur une base de données.
 
 Vous apprendrez ce qui suit :
 
-* Comment toocreate un ASP.NET MVC 5 web application dans Visual Studio.
-* Comment tooaccess des données à partir d’une base de données à l’aide d’Entity Framework.
-* Comment tooimprove le débit des données et réduire la charge de la base de données en stockage et la récupération des données à l’aide du Cache Redis Azure.
-* Comment toouse un Redis triés ensemble tooretrieve hello top 5 les équipes.
-* Comment tooprovision hello ressources Azure pour l’application hello à l’aide d’un modèle de gestionnaire de ressources.
-* Comment toopublish hello tooAzure d’application à l’aide de Visual Studio.
+* comment créer une application web ASP.NET MVC 5 dans Visual Studio ;
+* comment accéder aux données à partir d’une base de données à l’aide d’Entity Framework ;
+* comment améliorer le débit des données et réduire la charge de la base de données en stockant et en récupérant des données à l’aide du Cache Redis Azure ;
+* comment utiliser un ensemble trié Redis pour récupérer les 5 meilleures équipes ;
+* comment approvisionner des ressources Azure pour l’application à l’aide d’un modèle Resource Manager ;
+* comment publier l’application sur Azure avec Visual Studio.
 
 ## <a name="prerequisites"></a>Composants requis
-didacticiel de hello toocomplete, vous devez avoir hello suivant des conditions préalables.
+Pour suivre ce didacticiel, vous devez disposer des éléments suivants :
 
 * [Compte Azure](#azure-account)
-* [Visual Studio 2017, avec hello Azure SDK pour .NET](#visual-studio-2017-with-the-azure-sdk-for-net)
+* [Visual Studio 2017 avec le Kit de développement logiciel (SDK) Azure pour .NET](#visual-studio-2017-with-the-azure-sdk-for-net)
 
 ### <a name="azure-account"></a>Compte Azure
-Vous avez besoin d’un didacticiel de hello toocomplete compte Azure. Vous pouvez :
+Pour suivre ce didacticiel, vous avez besoin d’un compte Azure. Vous pouvez :
 
-* [Ouvrir un compte Azure gratuitement](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero). Vous obtenez des crédits qui peuvent être utilisé tootry out à payer des services Azure. Même après que hello crédits épuisés, vous pouvez conserver le compte de hello et utiliser des fonctionnalités et des services Azure gratuits.
+* [Ouvrir un compte Azure gratuitement](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero). Vous obtenez des crédits que vous pouvez utiliser pour essayer des services Azure payants. Même après que les crédits sont épuisés, vous pouvez conserver le compte et utiliser les services et fonctionnalités Azure gratuits.
 * [Activez les avantages d’abonnement Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=redis_cache_hero). Votre abonnement MSDN vous donne droit chaque mois à des crédits dont vous pouvez vous servir pour les services Azure payants.
 
-### <a name="visual-studio-2017-with-hello-azure-sdk-for-net"></a>Visual Studio 2017, avec hello Azure SDK pour .NET
-didacticiel de Hello est écrit pour Visual Studio 2017 avec hello [Azure SDK pour .NET](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#azuretools). Bonjour Azure SDK 2.9.5 est inclus avec le programme d’installation de Visual Studio hello.
+### <a name="visual-studio-2017-with-the-azure-sdk-for-net"></a>Visual Studio 2017 avec le Kit de développement logiciel (SDK) Azure pour .NET
+Ce didacticiel a été rédigé pour Visual Studio 2017 avec le [Kit de développement logiciel (SDK) Azure pour .NET](https://www.visualstudio.com/news/releasenotes/vs2017-relnotes#azuretools). Le Kit de développement logiciel (SDK) version 2.9.5 est inclus dans le programme d’installation de Visual Studio.
 
-Si vous avez Visual Studio 2015, vous pouvez suivre le didacticiel hello avec hello [Azure SDK pour .NET](../dotnet-sdk.md) point 2.8.2 ou version ultérieure. [Téléchargement hello plus récentes de Windows Azure SDK pour Visual Studio 2015 ici](http://go.microsoft.com/fwlink/?linkid=518003). Visual Studio est installé automatiquement avec le Kit de développement logiciel de hello si vous n’est pas déjà installé. Certains écrans diffèrent des illustrations hello indiquées dans ce didacticiel.
+Si vous utilisez Visual Studio 2015, vous pouvez suivre le didacticiel avec le [Kit de développement logiciel (SDK) Azure pour .NET](../dotnet-sdk.md) version 2.8.2 ou ultérieure. [Cliquez ici pour télécharger la dernière version du Kit de développement logiciel (SDK) Azure pour Visual Studio 2015](http://go.microsoft.com/fwlink/?linkid=518003). Visual Studio est automatiquement installé avec le SDK si vous n’en disposez pas déjà. Certains écrans diffèrent des illustrations présentées dans ce didacticiel.
 
-Si vous avez Visual Studio 2013, vous pouvez [téléchargement hello plus récentes de Windows Azure SDK pour Visual Studio 2013](http://go.microsoft.com/fwlink/?LinkID=324322). Certains écrans diffèrent des illustrations hello indiquées dans ce didacticiel.
+Si vous utilisez Visual Studio 2013, vous pouvez [télécharger la dernière version du Kit de développement logiciel (SDK) Azure pour Visual Studio 2013](http://go.microsoft.com/fwlink/?LinkID=324322). Certains écrans diffèrent des illustrations présentées dans ce didacticiel.
 
-## <a name="create-hello-visual-studio-project"></a>Créer le projet de Visual Studio hello
+## <a name="create-the-visual-studio-project"></a>Créer le projet Visual Studio
 1. Ouvrez Visual Studio et cliquez sur **Fichier**, **Nouveau**, **Projet**.
-2. Développez hello **Visual C#** nœud Bonjour **modèles** liste, sélectionnez **Cloud**, puis cliquez sur **Application Web ASP.NET**. Vérifiez que l’option **.NET Framework 4.5.2** est sélectionnée.  Type **ContosoTeamStats** dans hello **nom** zone de texte et cliquez sur **OK**.
+2. Développez le nœud **Visual C#** dans la liste **Modèles**, sélectionnez **Cloud**, puis cliquez sur **Application web ASP.NET**. Vérifiez que l’option **.NET Framework 4.5.2** est sélectionnée.  Tapez **ContosoTeamStats** dans la zone de texte **Nom** et cliquez sur **OK**.
    
     ![Créer un projet][cache-create-project]
-3. Sélectionnez **MVC** en tant que type de projet hello. 
+3. Sélectionnez le type de projet **MVC** . 
 
-    Vérifiez que **aucune authentification** est spécifié pour hello **authentification** paramètres. Selon votre version de Visual Studio, par défaut de hello peut être défini toosomething else. toochange, cliquez sur **modifier l’authentification** et sélectionnez **aucune authentification**.
+    Vérifiez que la valeur **Aucune authentification** est spécifiée dans les paramètres **Authentification**. Selon votre version de Visual Studio, la valeur par défaut peut être différente. Pour la modifier, cliquez sur **Modifier l’authentification** et sélectionnez **Aucune authentification**.
 
-    Si vous suivez avec Visual Studio 2015, désactivez hello **hôte hello cloud** case à cocher. Vous allez [configurer hello ressources Azure](#provision-the-azure-resources) et [publier hello application tooAzure](#publish-the-application-to-azure) dans les étapes suivantes dans le didacticiel de hello. Pour obtenir un exemple de configuration d’une application Service web d’application à partir de Visual Studio en laissant **hôte hello cloud** activée, consultez [prise en main Web Apps dans Azure App Service, à l’aide d’ASP.NET et Visual Studio](../app-service-web/app-service-web-get-started-dotnet.md).
+    Si vous poursuivez la procédure avec Visual Studio 2015, décochez la case **Héberger dans le cloud**. Vous [approvisionnerez les ressources Azure](#provision-the-azure-resources) et [publierez l’application sur Azure](#publish-the-application-to-azure) au cours des étapes suivantes du didacticiel. Pour obtenir un exemple d’approvisionnement d’application web App Service à partir de Visual Studio en laissant la case à cocher **Héberger sur le cloud** activée, consultez [Prise en main de Web Apps dans Azure App Service à l’aide d’ASP.NET et Visual Studio](../app-service/app-service-web-get-started-dotnet.md).
    
     ![Sélectionner un modèle de projet][cache-select-template]
-4. Cliquez sur **OK** projet hello de toocreate.
+4. Cliquez sur **OK** pour créer le projet.
 
-## <a name="create-hello-aspnet-mvc-application"></a>Créer hello application ASP.NET MVC
-Dans cette section du didacticiel de hello, vous allez créer l’application de base hello qui lit et affiche des statistiques sur les équipes à partir d’une base de données.
+## <a name="create-the-aspnet-mvc-application"></a>Créer l’application ASP.NET MVC
+Dans cette section du didacticiel, vous allez créer l’application de base qui lit et affiche les statistiques d’équipe à partir d’une base de données.
 
-* [Ajoutez le package NuGet Entity Framework de hello](#add-the-entity-framework-nuget-package)
-* [Ajouter un modèle de hello](#add-the-model)
-* [Ajouter un contrôleur de hello](#add-the-controller)
-* [Configurer des vues de hello](#configure-the-views)
+* [Ajouter le package NuGet Entity Framework](#add-the-entity-framework-nuget-package)
+* [Ajouter le modèle](#add-the-model)
+* [Ajouter le contrôleur](#add-the-controller)
+* [Configurer les vues](#configure-the-views)
 
-### <a name="add-hello-entity-framework-nuget-package"></a>Ajoutez le package NuGet Entity Framework de hello
+### <a name="add-the-entity-framework-nuget-package"></a>Ajouter le package NuGet Entity Framework
 
-1. Cliquez sur **Gestionnaire de Package NuGet**, **Package Manager Console** de hello **outils** menu.
-2. Exécution hello après une commande à partir de hello **Package Manager Console** fenêtre.
+1. Dans le menu **Outils**, cliquez sur **Gestionnaire de package NuGet**, puis **Console du Gestionnaire de package**.
+2. Exécutez la commande suivante dans la fenêtre **Console du Gestionnaire de package**.
     
     ```
     Install-Package EntityFramework
     ```
 
-Pour plus d’informations sur ce package, consultez hello [EntityFramework](https://www.nuget.org/packages/EntityFramework/) NuGet page.
+Pour plus d’informations sur ce package, consultez la page NuGet [EntityFramework](https://www.nuget.org/packages/EntityFramework/).
 
-### <a name="add-hello-model"></a>Ajouter un modèle de hello
+### <a name="add-the-model"></a>Ajouter le modèle
 1. Cliquez avec le bouton droit sur **Modèles** dans l’**Explorateur de solutions** et sélectionnez **Ajouter**, **Classe**. 
    
     ![Ajouter un modèle][cache-model-add-class]
-2. Entrez `Team` pour le nom de la classe hello et cliquez sur **ajouter**.
+2. Entrez le nom de classe `Team` et cliquez sur **Ajouter**.
    
     ![Ajouter une classe de modèle][cache-model-add-class-dialog]
-3. Remplacez hello `using` instructions haut hello hello `Team.cs` fichier avec les éléments suivants de hello `using` instructions.
+3. Remplacez les instructions `using` au début du fichier `Team.cs` par les instructions `using` suivantes.
 
     ```c#
     using System;
@@ -110,7 +110,7 @@ Pour plus d’informations sur ce package, consultez hello [EntityFramework](htt
     ```
 
 
-1. Remplacez la définition hello Hello `Team` classe avec hello suivant extrait de code qui contient une mise à jour `Team` classe Définition ainsi que d’autres classes d’assistance de Entity Framework. Pour plus d’informations sur hello code première approche tooEntity Framework qui est utilisé dans ce didacticiel, consultez [Code premier tooa nouvelle base de données](https://msdn.microsoft.com/data/jj193542).
+1. Remplacez la définition de la classe `Team` par l’extrait de code suivant, qui contient une définition de classe `Team` mise à jour, ainsi que d’autres classes d’assistance Entity Framework. Pour plus d’informations sur l’approche Code First d’Entity Framework utilisée dans ce didacticiel, consultez [Code First pour une nouvelle base de données](https://msdn.microsoft.com/data/jj193542).
 
     ```c#
     public class Team
@@ -182,10 +182,10 @@ Pour plus d’informations sur ce package, consultez hello [EntityFramework](htt
     ```
 
 
-1. Dans **l’Explorateur de solutions**, double-cliquez sur **web.config** tooopen il.
+1. Dans l’**Explorateur de solutions**, double-cliquez sur le fichier **web.config** pour l’ouvrir.
    
     ![Web.config][cache-web-config]
-2. Ajoutez hello suit `connectionStrings` section. nom Hello hello de chaîne de connexion doit correspondre au nom hello Hello classe de contexte de base de données Entity Framework qui est `TeamContext`.
+2. Ajoutez la section `connectionStrings` suivante. Le nom de la chaîne de connexion doit correspondre au nom de la classe de contexte de base de données Entity Framework, qui est `TeamContext`.
 
     ```xml
     <connectionStrings>
@@ -193,7 +193,7 @@ Pour plus d’informations sur ce package, consultez hello [EntityFramework](htt
     </connectionStrings>
     ```
 
-    Vous pouvez ajouter hello nouvelle `connectionStrings` section afin qu’elle suive `configSections`, comme indiqué dans hello l’exemple suivant.
+    Vous pouvez ajouter la nouvelle section `connectionStrings` afin qu’elle suive `configSections`, comme illustré dans l’exemple suivant.
 
     ```xml
     <configuration>
@@ -208,23 +208,23 @@ Pour plus d’informations sur ce package, consultez hello [EntityFramework](htt
       ```
 
     > [!NOTE]
-    > Votre chaîne de connexion peut être différent selon la version de hello de Visual Studio et SQL Server Express edition utilisé didacticiel de hello toocomplete. modèle de web.config Hello doit être configuré toomatch votre installation et peut contenir `Data Source` comme des entrées `(LocalDB)\v11.0` (à partir de SQL Server Express 2012) ou `Data Source=(LocalDB)\MSSQLLocalDB` (SQL Server Express 2014 et version ultérieure). Pour plus d’informations sur les chaînes de connexion et les versions de SQL Express, consultez [SQL Server 2016 Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-2016-express-localdb).
+    > Votre chaîne de connexion peut être différente selon les versions de Visual Studio et de SQL Server Express utilisées pour suivre le didacticiel. Le modèle web.config doit être configuré pour correspondre à votre installation et peut contenir des entrées `Data Source` telles que `(LocalDB)\v11.0` (à partir de SQL Server Express 2012) ou `Data Source=(LocalDB)\MSSQLLocalDB` (à partir de SQL Server Express 2014 et versions ultérieures). Pour plus d’informations sur les chaînes de connexion et les versions de SQL Express, consultez [SQL Server 2016 Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-2016-express-localdb).
 
-### <a name="add-hello-controller"></a>Ajouter un contrôleur de hello
-1. Appuyez sur **F6** projet hello de toobuild. 
-2. Dans **l’Explorateur de solutions**, avec le bouton hello **contrôleurs** dossier et choisissez **ajouter**, **contrôleur**.
+### <a name="add-the-controller"></a>Ajouter le contrôleur
+1. Appuyez sur **F6** pour générer le projet. 
+2. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur le dossier **Contrôleurs**. Cliquez ensuite sur **Ajouter** puis sur **Contrôleur**.
    
     ![Ajouter un contrôleur][cache-add-controller]
-3. Sélectionnez **Contrôleur MVC 5 avec vues, en utilisant Entity Framework**, puis cliquez sur **Ajouter**. Si vous obtenez une erreur après avoir cliqué sur **ajouter**, assurez-vous que vous avez créé un projet de hello tout d’abord.
+3. Sélectionnez **Contrôleur MVC 5 avec vues, en utilisant Entity Framework**, puis cliquez sur **Ajouter**. Si vous obtenez une erreur après avoir cliqué sur **Ajouter**, assurez-vous que vous avez déjà généré le projet.
    
     ![Ajouter une classe de contrôleur][cache-add-controller-class]
-4. Sélectionnez **Team (ContosoTeamStats.Models)** de hello **classe de modèle** liste déroulante. Sélectionnez **TeamContext (ContosoTeamStats.Models)** de hello **classe de contexte de données** liste déroulante. Type `TeamsController` Bonjour **contrôleur** zone de texte Nom (si elle n’est pas remplie automatiquement). Cliquez sur **ajouter** toocreate hello de classe de contrôleur et ajouter des vues par défaut hello.
+4. Sélectionnez **Team (ContosoTeamStats.Models)** dans la liste déroulante **Classe de modèle**. Sélectionnez **TeamContext (ContosoTeamStats.Models)** dans la liste déroulante **Classe du contexte de données**. Tapez `TeamsController` dans la zone de texte **Nom du contrôleur** (si elle n’est pas remplie automatiquement). Cliquez sur **Ajouter** pour créer la classe de contrôleur et ajouter les vues par défaut.
    
     ![Configurer un contrôleur][cache-configure-controller]
-5. Dans **l’Explorateur de solutions**, développez **Global.asax** et double-cliquez sur **Global.asax.cs** tooopen il.
+5. Dans l’**Explorateur de solutions**, développez **Global.asax**, puis double-cliquez sur **Global.asax.cs** pour l’ouvrir.
    
     ![Global.asax.cs][cache-global-asax]
-6. Ajouter hello suivant deux `using` instructions haut hello du fichier hello sous hello autres `using` instructions.
+6. Ajoutez les deux instructions `using` suivantes au début du fichier, sous les autres instructions `using`.
 
     ```c#
     using System.Data.Entity;
@@ -232,7 +232,7 @@ Pour plus d’informations sur ce package, consultez hello [EntityFramework](htt
     ```
 
 
-1. Ajouter hello suivant la ligne de code à fin hello Hello `Application_Start` (méthode).
+1. Ajoutez la ligne de code ci-après à la fin de la méthode `Application_Start` .
 
     ```c#
     Database.SetInitializer<TeamContext>(new TeamInitializer());
@@ -242,7 +242,7 @@ Pour plus d’informations sur ce package, consultez hello [EntityFramework](htt
 1. Dans l’**Explorateur de solutions**, développez `App_Start` et double-cliquez sur `RouteConfig.cs`.
    
     ![RouteConfig.cs][cache-RouteConfig-cs]
-2. Remplacez `controller = "Home"` Bonjour suivant code Bonjour `RegisterRoutes` méthode avec `controller = "Teams"` comme indiqué dans hello l’exemple suivant.
+2. Dans le code suivant, dans la méthode `RegisterRoutes`, remplacez `controller = "Home"` par `controller = "Teams"`, comme indiqué dans l’exemple suivant.
 
     ```c#
     routes.MapRoute(
@@ -253,55 +253,55 @@ Pour plus d’informations sur ce package, consultez hello [EntityFramework](htt
     ```
 
 
-### <a name="configure-hello-views"></a>Configurer des vues de hello
-1. Dans **l’Explorateur de solutions**, développez hello **vues** dossier puis hello **Shared** dossier, puis double-cliquez sur **_Layout.cshtml**. 
+### <a name="configure-the-views"></a>Configurer les vues
+1. Dans l’**Explorateur de solutions**, développez le dossier **Vues** puis le dossier **Partagé** et double-cliquez sur **_Layout.cshtml**. 
    
     ![_Layout.cshtml][cache-layout-cshtml]
-2. Modifier le contenu hello Hello `title` élément et remplacer `My ASP.NET Application` avec `Contoso Team Stats` comme indiqué dans hello l’exemple suivant.
+2. Modifiez le contenu de l’élément `title` et remplacez `My ASP.NET Application` par `Contoso Team Stats`, comme indiqué dans l’exemple suivant.
 
     ```html
     <title>@ViewBag.Title - Contoso Team Stats</title>
     ```
 
 
-1. Bonjour `body` section, mise à jour de hello tout d’abord `Html.ActionLink` instruction et remplacer `Application name` avec `Contoso Team Stats` et remplacer `Home` avec `Teams`.
+1. Dans la section `body`, mettez à jour la première instruction `Html.ActionLink`, remplacez `Application name` par `Contoso Team Stats` et remplacez `Home` par `Teams`.
    
    * Avant : `@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })`
    * Après : `@Html.ActionLink("Contoso Team Stats", "Index", "Teams", new { area = "" }, new { @class = "navbar-brand" })`
      
      ![Modifications du code][cache-layout-cshtml-code]
-2. Appuyez sur **Ctrl + F5** toobuild et exécuter l’application hello. Cette version de l’application hello lit les résultats hello directement à partir de la base de données hello. Hello de note **créer un nouveau**, **modifier**, **détails**, et **supprimer** les actions qui ont été automatiquement ajouté toohello application par hello **Contrôleur MVC 5 avec vues, utilisant Entity Framework** structure. Dans la section suivante de hello du didacticiel de hello vous ajouterez des données de Cache Redis toooptimize hello accéder et fournissent des fonctionnalités supplémentaires toohello application.
+2. Appuyez sur **Ctrl+F5** pour générer et exécuter l’application. Cette version de l’application lit les résultats directement à partir de la base de données. Notez les actions **Créer**, **Modifier**, **Détails** et **Supprimer** qui ont été automatiquement ajoutées à l’application par le modèle automatique **Contrôleur MVC 5 avec vues, en utilisant Entity Framework**. Dans la section suivante du didacticiel, vous allez ajouter le Cache Redis pour optimiser l’accès aux données et fournir des fonctionnalités supplémentaires à l’application.
 
 ![Application de départ][cache-starter-application]
 
-## <a name="configure-hello-application-toouse-redis-cache"></a>Configurer hello application toouse Cache Redis
-Dans cette section du didacticiel de hello, vous allez configurer toostore d’application exemple hello et extraire des statistiques sur les équipes Contoso à partir d’une instance de Cache Redis Azure à l’aide de hello [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) client de cache.
+## <a name="configure-the-application-to-use-redis-cache"></a>Configurer l’application pour utiliser le Cache Redis
+Dans cette section du didacticiel, vous allez configurer l’exemple d’application pour stocker et récupérer des statistiques d’équipe Contoso à partir d’une instance de Cache Redis Azure à l’aide du client de cache [StackExchange.Redis](https://github.com/StackExchange/StackExchange.Redis) .
 
-* [Configurer l’application de hello toouse StackExchange.Redis](#configure-the-application-to-use-stackexchangeredis)
-* [Mettre à jour hello TeamsController classe tooreturn résultats à partir du cache de hello ou base de données hello](#update-the-teamscontroller-class-to-return-results-from-the-cache-or-the-database)
-* [Hello, créer, modifier, de mettre à jour et supprimer des toowork méthodes avec un cache de hello](#update-the-create-edit-and-delete-methods-to-work-with-the-cache)
-* [Mettre à jour hello équipes Index vue toowork avec le cache de hello](#update-the-teams-index-view-to-work-with-the-cache)
+* [Configurer l’application pour utiliser StackExchange.Redis](#configure-the-application-to-use-stackexchangeredis)
+* [Mettre à jour la classe TeamsController pour retourner des résultats à partir du cache ou de la base de données](#update-the-teamscontroller-class-to-return-results-from-the-cache-or-the-database)
+* [Mettre à jour les méthodes Create, Edit et Delete pour utiliser le cache](#update-the-create-edit-and-delete-methods-to-work-with-the-cache)
+* [Mettre à jour la vue Teams Index pour utiliser le cache](#update-the-teams-index-view-to-work-with-the-cache)
 
-### <a name="configure-hello-application-toouse-stackexchangeredis"></a>Configurer l’application de hello toouse StackExchange.Redis
-1. tooconfigure une application cliente dans Visual Studio à l’aide de hello package StackExchange.Redis NuGet, cliquez sur **Gestionnaire de Package NuGet**, **Package Manager Console** de hello **outils** menu.
-2. Exécution hello après une commande à partir de hello `Package Manager Console` fenêtre.
+### <a name="configure-the-application-to-use-stackexchangeredis"></a>Configurer l’application pour utiliser StackExchange.Redis
+1. Pour configurer une application cliente dans Visual Studio avec le package NuGet StackExchange.Redis, cliquez sur **Gestionnaire de package NuGet**, **Console du Gestionnaire de package** dans le menu **Outils**.
+2. Exécutez la commande suivante depuis la fenêtre `Package Manager Console`.
     
     ```
     Install-Package StackExchange.Redis
     ```
    
-    Hello NuGet package télécharge et ajoute hello obligatoire des références d’assembly pour votre tooaccess d’application client du Cache Redis Azure avec le client de cache StackExchange.Redis hello. Si vous préférez toouse une version de nom fort de hello `StackExchange.Redis` bibliothèque cliente, installation hello `StackExchange.Redis.StrongName` package.
-3. Dans **l’Explorateur de solutions**, développez hello **contrôleurs** et double-cliquez sur **TeamsController.cs** tooopen il.
+    Le package NuGet télécharge et ajoute les références d'assembly nécessaires pour que votre application cliente puisse accéder à Cache Redis Azure avec le client du cache StackExchange.Redis. Si vous préférez utiliser une version avec nom fort de la bibliothèque du client `StackExchange.Redis`, installez le package `StackExchange.Redis.StrongName`.
+3. Dans l’**Explorateur de solutions**, développez le dossier **Contrôleurs** et double-cliquez sur **TeamsController.cs** pour l’ouvrir.
    
     ![Contrôleur Teams][cache-teamscontroller]
-4. Ajouter hello suivant deux `using` instructions trop**TeamsController.cs**.
+4. Ajoutez les deux instructions `using` suivantes à **TeamsController.cs**.
 
     ```c#   
     using System.Configuration;
     using StackExchange.Redis;
     ```
 
-5. Ajouter hello suivant deux propriétés toohello `TeamsController` classe.
+5. Ajoutez les deux propriétés suivantes à la classe `TeamsController` .
 
     ```c#   
     // Redis Connection string info
@@ -320,9 +320,9 @@ Dans cette section du didacticiel de hello, vous allez configurer toostore d’a
     }
     ```
 
-6. Créer un fichier sur votre ordinateur nommé `WebAppPlusCacheAppSecrets.config` et les placer dans un emplacement qui ne sont pas vérifiées avec le code source de hello de votre application d’exemple, si vous décidez toocheck dans un emplacement. Dans cette hello exemple `AppSettingsSecrets.config` fichier se trouve dans `C:\AppSecrets\WebAppPlusCacheAppSecrets.config`.
+6. Créez un fichier nommé `WebAppPlusCacheAppSecrets.config` sur votre ordinateur et placez-le dans un emplacement qui ne sera pas archivé avec le code source de votre exemple d’application au cas où vous décideriez de l’archiver à un emplacement quelconque. Dans cet exemple, le fichier `AppSettingsSecrets.config` se trouve sous `C:\AppSecrets\WebAppPlusCacheAppSecrets.config`.
    
-    Modifier hello `WebAppPlusCacheAppSecrets.config` et ajoutez hello suivant le contenu. Si vous exécutez des application hello localement cette information est instance de Cache Redis Azure tooyour tooconnect utilisé. Plus loin dans le didacticiel de hello, vous allez configurer une instance de Cache Redis Azure et mettre à jour le mot de passe et le nom du cache hello. Si vous ne prévoyez pas toorun hello exemple d’application localement, vous pouvez ignorer la création de hello de ce fichier et les étapes suivantes hello qui font référence les fichiers hello, car lorsque vous déployez tooAzure hello application récupère les informations de connexion hello du cache à partir de l’application hello paramètre de hello Web App et non à partir de ce fichier. Depuis hello `WebAppPlusCacheAppSecrets.config` n’est pas déployée tooAzure avec votre application, vous n’en avez besoin, sauf si vous envisagez d’application de hello toorun localement.
+    Modifiez le fichier `WebAppPlusCacheAppSecrets.config` et ajoutez le contenu suivant. Si vous exécutez l’application localement, ces informations sont utilisées pour vous connecter à votre instance de Cache Redis Azure. Plus loin dans ce didacticiel, vous allez approvisionner une instance de Cache Redis Azure et mettre à jour le nom et le mot de passe du cache. Si vous ne souhaitez pas exécuter l’exemple d’application localement, vous pouvez ignorer la création de ce fichier et les étapes suivantes qui référencent le fichier. En effet, lorsque vous déployez sur Azure, l’application récupère les informations de connexion de cache à partir du paramètre d’application de l’application web et non à partir de ce fichier. Étant donné que `WebAppPlusCacheAppSecrets.config` n’est pas déployé sur Azure avec votre application, vous n’en avez pas besoin, sauf si vous souhaitez exécuter l’application localement.
 
     ```xml
     <appSettings>
@@ -331,32 +331,32 @@ Dans cette section du didacticiel de hello, vous allez configurer toostore d’a
     ```
 
 
-1. Dans **l’Explorateur de solutions**, double-cliquez sur **web.config** tooopen il.
+1. Dans l’**Explorateur de solutions**, double-cliquez sur le fichier **web.config** pour l’ouvrir.
    
     ![Web.config][cache-web-config]
-2. Ajoutez hello suivant `file` attribut toohello `appSettings` élément. Si vous avez utilisé un autre nom de fichier ou un emplacement, remplacez par les valeurs hello ceux indiqués dans l’exemple de hello.
+2. Ajoutez l’attribut `file` suivant à l’élément `appSettings`. Si vous avez utilisé un autre nom de fichier ou un autre emplacement, remplacez ces valeurs pour celles indiquées dans l’exemple.
    
    * Avant : `<appSettings>`
    * Après : ` <appSettings file="C:\AppSecrets\WebAppPlusCacheAppSecrets.config">`
      
-   Hello ASP.NET runtime fusionne contenu hello du fichier externe de hello avec balisage hello Bonjour `<appSettings>` élément. Hello runtime ignore l’attribut de fichier hello si hello spécifié ne se trouve. Vos secrets (cache tooyour chaîne hello connexion) ne sont pas inclus dans le cadre du code source de hello pour une application hello. Lorsque vous déployez votre tooAzure d’application web, hello `WebAppPlusCacheAppSecrests.config` fichier ne sera pas déployé (c’est ce que vous souhaitez). Il existe plusieurs façons toospecify ces clés secrètes dans Azure, et dans ce didacticiel qu’ils sont configurés automatiquement pour vous lorsque vous [configurer hello ressources Azure](#provision-the-azure-resources) dans une étape ultérieure du didacticiel. Pour plus d’informations sur l’utilisation des clés secrètes dans Azure, consultez [meilleures pratiques pour le déploiement de mots de passe et d’autres données sensibles tooASP.NET et Azure App Service](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure).
+   Le runtime ASP.NET fusionne le contenu du fichier externe avec le balisage dans l’élément `<appSettings>`. Le runtime ignore l’attribut de fichier si le fichier spécifié est introuvable. Vos secrets (la chaîne de connexion à votre cache) ne sont pas inclus dans le code source de l’application. Lorsque vous déployez votre application web sur Azure, le fichier `WebAppPlusCacheAppSecrests.config` n’est pas déployé (c’est ce que vous souhaitez). Il existe plusieurs façons de spécifier ces secrets dans Azure. Ils seront configurés automatiquement pour vous lorsque vous [approvisionnerez les ressources Azure](#provision-the-azure-resources) plus loin dans ce didacticiel. Pour en savoir plus sur l’utilisation des secrets dans Azure, voir [Meilleures pratiques portant sur le déploiement de mots de passe et autres données sensibles dans ASP.NET et Azure App Service](http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure).
 
-### <a name="update-hello-teamscontroller-class-tooreturn-results-from-hello-cache-or-hello-database"></a>Mettre à jour hello TeamsController classe tooreturn résultats à partir du cache de hello ou base de données hello
-Dans cet exemple, les statistiques sur les équipes peuvent être récupérés à partir de la base de données hello ou à partir du cache de hello. Statistiques sur les équipes sont stockés dans le cache de hello sous la forme sérialisée `List<Team>`et également comme un ensemble trié à l’aide des types de données Redis. Lors de la récupération des éléments d’un ensemble trié, vous pouvez récupérer certains éléments, récupérer tous les éléments ou effectuer une requête sur certains éléments. Dans cet exemple, vous devez interroger ensemble hello triée pour les équipes top 5 hello classés par nombre de wins.
+### <a name="update-the-teamscontroller-class-to-return-results-from-the-cache-or-the-database"></a>Mettre à jour la classe TeamsController pour retourner des résultats à partir du cache ou de la base de données
+Dans cet exemple, les statistiques d’équipe peuvent être récupérées à partir de la base de données ou à partir du cache. Les statistiques d’équipe sont stockées dans le cache comme `List<Team>`sérialisé et comme ensemble trié à l’aide des types de données Redis. Lors de la récupération des éléments d’un ensemble trié, vous pouvez récupérer certains éléments, récupérer tous les éléments ou effectuer une requête sur certains éléments. Dans cet exemple, vous allez interroger l’ensemble trié pour trouver les 5 meilleures équipes, classées par nombre de victoires.
 
 > [!NOTE]
-> Il n’est pas requis toostore hello statistiques sur les équipes dans plusieurs formats dans le cache de hello dans l’ordre toouse Cache Redis Azure. Ce didacticiel utilise plusieurs formats toodemonstrate certaines des différentes façons de hello et différents types de données, vous pouvez utiliser les données toocache.
+> Il n’est pas nécessaire de stocker les statistiques d’équipe dans plusieurs formats dans le cache pour utiliser le Cache Redis Azure. Ce didacticiel utilise plusieurs formats pour illustrer certaines façons de mettre des données en cache et les différents types de données que vous pouvez utiliser à cette fin.
 > 
 > 
 
-1. Ajoutez hello suivant `using` instructions toohello `TeamsController.cs` fichier en haut hello avec hello autres `using` instructions.
+1. Ajoutez les instructions `using` suivantes au début du fichier `TeamsController.cs`, avec les autres instructions `using`.
 
     ```c#   
     using System.Diagnostics;
     using Newtonsoft.Json;
     ```
 
-2. Remplacez hello actuel `public ActionResult Index()` implémentation de méthode avec hello après mise en oeuvre.
+2. Remplacez la méthode d’implémentation `public ActionResult Index()` actuelle par l’implémentation suivante.
 
     ```c#
     // GET: Teams
@@ -370,16 +370,16 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
                 PlayGames();
                 break;
 
-            case "clearCache": // Clear hello results from hello cache.
+            case "clearCache": // Clear the results from the cache.
                 ClearCachedTeams();
                 break;
 
-            case "rebuildDB": // Rebuild hello database with sample data.
+            case "rebuildDB": // Rebuild the database with sample data.
                 RebuildDB();
                 break;
         }
 
-        // Measure hello time it takes tooretrieve hello results.
+        // Measure the time it takes to retrieve the results.
         Stopwatch sw = Stopwatch.StartNew();
 
         switch(resultType)
@@ -388,15 +388,15 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
                 teams = GetFromSortedSet();
                 break;
 
-            case "teamsSortedSetTop5": // Retrieve hello top 5 teams from hello sorted set.
+            case "teamsSortedSetTop5": // Retrieve the top 5 teams from the sorted set.
                 teams = GetFromSortedSetTop5();
                 break;
 
-            case "teamsList": // Retrieve teams from hello cached List<Team>.
+            case "teamsList": // Retrieve teams from the cached List<Team>.
                 teams = GetFromList();
                 break;
 
-            case "fromDB": // Retrieve results from hello database.
+            case "fromDB": // Retrieve results from the database.
             default:
                 teams = GetFromDB();
                 break;
@@ -405,7 +405,7 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
         sw.Stop();
         double ms = sw.ElapsedTicks / (Stopwatch.Frequency / (1000.0));
 
-        // Add hello elapsed time of hello operation toohello ViewBag.msg.
+        // Add the elapsed time of the operation to the ViewBag.msg.
         ViewBag.msg += " MS: " + ms.ToString();
 
         return View(teams);
@@ -413,9 +413,9 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
     ```
 
 
-1. Ajouter hello suivant trois méthodes toohello `TeamsController` hello tooimplement de classe `playGames`, `clearCache`, et `rebuildDB` types d’action de hello switch, instruction ajoutée dans l’extrait de code précédent hello.
+1. Ajoutez les trois méthodes suivantes à la classe `TeamsController` pour implémenter les types d’action `playGames`, `clearCache` et `rebuildDB` de l’instruction switch ajoutée dans l’extrait de code précédent.
    
-    Hello `PlayGames` méthode met à jour les statistiques sur les équipes hello en simulant une saison des jeux et enregistre hello de base de données de résultats toohello efface hello maintenant les données à partir du cache de hello est obsolète.
+    La méthode `PlayGames` met à jour les statistiques d’équipe en simulant une saison de jeux, enregistre les résultats dans la base de données et efface les données désormais obsolètes à partir du cache.
 
     ```c#
     void PlayGames()
@@ -434,13 +434,13 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
     }
     ```
 
-    Hello `RebuildDB` méthode réinitialise hello base de données avec l’ensemble des équipes, par défaut de hello génère des statistiques pour les et efface hello maintenant les données à partir du cache de hello est obsolète.
+    La méthode `RebuildDB` réinitialise la base de données avec l’ensemble d’équipes par défaut, génère des statistiques pour ces équipes et efface les données désormais obsolètes à partir du cache.
 
     ```c#
     void RebuildDB()
     {
         ViewBag.msg += "Rebuilding DB. ";
-        // Delete and re-initialize hello database with sample data.
+        // Delete and re-initialize the database with sample data.
         db.Database.Delete();
         db.Database.Initialize(true);
 
@@ -449,7 +449,7 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
     }
     ```
 
-    Hello `ClearCachedTeams` méthode supprime toutes les statistiques de l’équipe de mise en cache à partir du cache de hello.
+    La méthode `ClearCachedTeams` supprime du cache toutes les statistiques d’équipe mises en cache.
 
     ```c#
     void ClearCachedTeams()
@@ -462,9 +462,9 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
     ```
 
 
-1. Ajouter hello suivant quatre méthodes toohello `TeamsController` hello tooimplement de classe différentes façons de récupérer des statistiques sur les équipes hello à partir du cache de hello et base de données hello. Chacune de ces méthodes retourne une `List<Team>` qui est ensuite affiché en vue de hello.
+1. Ajoutez les quatre méthodes suivantes à la classe `TeamsController` pour implémenter les différentes façons de récupérer les statistiques d’équipe à partir du cache et de la base de données. Chacune de ces méthodes retourne un `List<Team>` qui est ensuite affiché par la vue.
    
-    Hello `GetFromDB` méthode lit les statistiques sur les équipes hello à partir de la base de données hello.
+    La méthode `GetFromDB` lit les statistiques d’équipe à partir de la base de données.
    
     ```c#
     List<Team> GetFromDB()
@@ -478,7 +478,7 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
     }
     ```
 
-    Hello `GetFromList` méthode lit les statistiques sur les équipes hello cache sous la forme sérialisée `List<Team>`. S’il existe une absence dans le cache, statistiques sur les équipes hello sont lus à partir de la base de données hello et ensuite stockées dans le cache de hello pour la prochaine fois. Dans cet exemple, nous utilisons JSON.NET sérialisation tooserialize hello .NET objets tooand à partir du cache de hello. Pour plus d’informations, consultez [comment les objets dans le Cache Redis Azure toowork avec .NET](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache).
+    La méthode `GetFromList` lit les statistiques d’équipe à partir du cache en tant que `List<Team>` sérialisé. En cas d’absence dans le cache, les statistiques d’équipe sont lues à partir de la base de données, puis stockées dans le cache pour la prochaine fois. Dans cet exemple, nous utilisons la sérialisation JSON.NET pour sérialiser les objets .NET vers et depuis le cache. Pour plus d’informations, consultez la rubrique [Utilisation des objets .NET dans le cache Redis Azure](cache-dotnet-how-to-use-azure-redis-cache.md#work-with-net-objects-in-the-cache).
 
     ```c#
     List<Team> GetFromList()
@@ -499,21 +499,21 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
             // Get from database and store in cache
             teams = GetFromDB();
 
-            ViewBag.msg += "Storing results toocache. ";
+            ViewBag.msg += "Storing results to cache. ";
             cache.StringSet("teamsList", JsonConvert.SerializeObject(teams));
         }
         return teams;
     }
     ```
 
-    Hello `GetFromSortedSet` méthode lit les statistiques sur les équipes hello à partir d’un ensemble trié mis en cache. S’il existe une absence dans le cache, statistiques sur les équipes hello sont lus à partir de la base de données hello et stockées dans le cache de hello sous la forme d’un ensemble trié.
+    La méthode `GetFromSortedSet` lit les statistiques d’équipe à partir d’un ensemble trié en cache. En cas d’absence dans le cache, les statistiques d’équipe sont lues à partir de la base de données, puis stockées dans le cache en tant qu’ensemble trié.
 
     ```c#
     List<Team> GetFromSortedSet()
     {
         List<Team> teams = null;
         IDatabase cache = Connection.GetDatabase();
-        // If hello key teamsSortedSet is not present, this method returns a 0 length collection.
+        // If the key teamsSortedSet is not present, this method returns a 0 length collection.
         var teamsSortedSet = cache.SortedSetRangeByRankWithScores("teamsSortedSet", order: Order.Descending);
         if (teamsSortedSet.Count() > 0)
         {
@@ -532,10 +532,10 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
             // Read from DB
             teams = GetFromDB();
 
-            ViewBag.msg += "Storing results toocache. ";
+            ViewBag.msg += "Storing results to cache. ";
             foreach (var t in teams)
             {
-                Console.WriteLine("Adding toosorted set: {0} - {1}", t.Name, t.Wins);
+                Console.WriteLine("Adding to sorted set: {0} - {1}", t.Name, t.Wins);
                 cache.SortedSetAdd("teamsSortedSet", JsonConvert.SerializeObject(t), t.Wins);
             }
         }
@@ -543,7 +543,7 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
     }
     ```
 
-    Hello `GetFromSortedSetTop5` méthode lit l’ensemble d’équipes 5 à partir de la mise en cache de hello triées supérieur hello. Il commence par la vérification du cache de hello existence hello Hello `teamsSortedSet` clé. Si cette clé n’est pas présente, hello `GetFromSortedSet` méthode est appelée statistiques sur les équipes tooread hello et les stocker dans le cache de hello. Ensuite, hello ensemble trié mis en cache est interrogé pour hello top 5 équipes qui sont retournées.
+    La méthode `GetFromSortedSetTop5` lit les 5 meilleures équipes à partir de l’ensemble trié en cache. Elle commence par vérifier l’existence de la clé `teamsSortedSet` dans le cache. Si cette clé n’est pas présente, la méthode `GetFromSortedSet` est appelée pour lire les statistiques d’équipe et les stocker dans le cache. Ensuite, l’ensemble trié mis en cache est interrogé de façon à trouver les 5 meilleures équipes, qui sont retournées.
 
     ```c#
     List<Team> GetFromSortedSetTop5()
@@ -551,19 +551,19 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
         List<Team> teams = null;
         IDatabase cache = Connection.GetDatabase();
 
-        // If hello key teamsSortedSet is not present, this method returns a 0 length collection.
+        // If the key teamsSortedSet is not present, this method returns a 0 length collection.
         var teamsSortedSet = cache.SortedSetRangeByRankWithScores("teamsSortedSet", stop: 4, order: Order.Descending);
         if(teamsSortedSet.Count() == 0)
         {
-            // Load hello entire sorted set into hello cache.
+            // Load the entire sorted set into the cache.
             GetFromSortedSet();
 
-            // Retrieve hello top 5 teams.
+            // Retrieve the top 5 teams.
             teamsSortedSet = cache.SortedSetRangeByRankWithScores("teamsSortedSet", stop: 4, order: Order.Descending);
         }
 
         ViewBag.msg += "Retrieving top 5 teams from cache. ";
-        // Get hello top 5 teams from hello sorted set
+        // Get the top 5 teams from the sorted set
         teams = new List<Team>();
         foreach (var team in teamsSortedSet)
         {
@@ -573,14 +573,14 @@ Dans cet exemple, les statistiques sur les équipes peuvent être récupérés �
     }
     ```
 
-### <a name="update-hello-create-edit-and-delete-methods-toowork-with-hello-cache"></a>Hello, créer, modifier, de mettre à jour et supprimer des toowork méthodes avec un cache de hello
-code de génération de modèles automatique Hello qui a été généré comme partie de cet exemple inclut des méthodes tooadd, modifier et supprimer des équipes. Chaque fois qu’une équipe est ajoutée, modifiée ou supprimée, les données de salutation dans le cache de hello devient obsolètes. Dans cette section, que vous allez modifier ces hello tooclear de trois méthodes mis en cache les équipes afin que le cache de hello ne sera pas synchronisé avec la base de données hello.
+### <a name="update-the-create-edit-and-delete-methods-to-work-with-the-cache"></a>Mettre à jour les méthodes Create, Edit et Delete pour utiliser le cache
+Le code de génération de modèles automatique qui a été généré dans le cadre de cet exemple inclut des méthodes permettant d’ajouter, modifier et supprimer des équipes. Chaque fois qu’une équipe est ajoutée, modifiée ou supprimée, les données dans le cache deviennent obsolètes. Dans cette section, vous allez modifier ces trois méthodes pour effacer les équipes en cache, de sorte que le cache ne soit pas désynchronisé avec la base de données.
 
-1. Parcourir toohello `Create(Team team)` méthode Bonjour `TeamsController` classe. Ajouter un appel toohello `ClearCachedTeams` méthode, comme indiqué dans hello l’exemple suivant.
+1. Accédez à la méthode `Create(Team team)` dans la classe `TeamsController`. Ajoutez un appel à la méthode `ClearCachedTeams` , comme indiqué dans l’exemple suivant.
 
     ```c#
     // POST: Teams/Create
-    // tooprotect from overposting attacks, please enable hello specific properties you want toobind to, for 
+    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -590,8 +590,8 @@ code de génération de modèles automatique Hello qui a été généré comme p
         {
             db.Teams.Add(team);
             db.SaveChanges();
-            // When a team is added, hello cache is out of date.
-            // Clear hello cached teams.
+            // When a team is added, the cache is out of date.
+            // Clear the cached teams.
             ClearCachedTeams();
             return RedirectToAction("Index");
         }
@@ -601,11 +601,11 @@ code de génération de modèles automatique Hello qui a été généré comme p
     ```
 
 
-1. Parcourir toohello `Edit(Team team)` méthode Bonjour `TeamsController` classe. Ajouter un appel toohello `ClearCachedTeams` méthode, comme indiqué dans hello l’exemple suivant.
+1. Accédez à la méthode `Edit(Team team)` dans la classe `TeamsController`. Ajoutez un appel à la méthode `ClearCachedTeams` , comme indiqué dans l’exemple suivant.
 
     ```c#
     // POST: Teams/Edit/5
-    // tooprotect from overposting attacks, please enable hello specific properties you want toobind to, for 
+    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
     // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -615,8 +615,8 @@ code de génération de modèles automatique Hello qui a été généré comme p
         {
             db.Entry(team).State = EntityState.Modified;
             db.SaveChanges();
-            // When a team is edited, hello cache is out of date.
-            // Clear hello cached teams.
+            // When a team is edited, the cache is out of date.
+            // Clear the cached teams.
             ClearCachedTeams();
             return RedirectToAction("Index");
         }
@@ -625,7 +625,7 @@ code de génération de modèles automatique Hello qui a été généré comme p
     ```
 
 
-1. Parcourir toohello `DeleteConfirmed(int id)` méthode Bonjour `TeamsController` classe. Ajouter un appel toohello `ClearCachedTeams` méthode, comme indiqué dans hello l’exemple suivant.
+1. Accédez à la méthode `DeleteConfirmed(int id)` dans la classe `TeamsController`. Ajoutez un appel à la méthode `ClearCachedTeams` , comme indiqué dans l’exemple suivant.
 
     ```c#
     // POST: Teams/Delete/5
@@ -636,23 +636,23 @@ code de génération de modèles automatique Hello qui a été généré comme p
         Team team = db.Teams.Find(id);
         db.Teams.Remove(team);
         db.SaveChanges();
-        // When a team is deleted, hello cache is out of date.
-        // Clear hello cached teams.
+        // When a team is deleted, the cache is out of date.
+        // Clear the cached teams.
         ClearCachedTeams();
         return RedirectToAction("Index");
     }
     ```
 
 
-### <a name="update-hello-teams-index-view-toowork-with-hello-cache"></a>Mettre à jour hello équipes Index vue toowork avec le cache de hello
-1. Dans **l’Explorateur de solutions**, développez hello **vues** dossier, puis hello **équipes** dossier, puis double-cliquez sur **Index.cshtml**.
+### <a name="update-the-teams-index-view-to-work-with-the-cache"></a>Mettre à jour la vue Teams Index pour utiliser le cache
+1. Dans l’**Explorateur de solutions**, développez le dossier **Vues** puis le dossier **Équipes**, et double-cliquez sur **Index.cshtml**.
    
     ![Index.cshtml][cache-views-teams-index-cshtml]
-2. Haut hello du fichier de hello, recherchez hello après l’élément de paragraphe.
+2. Au début du fichier, recherchez l’élément de paragraphe suivant.
    
     ![Table d’actions][cache-teams-index-table]
    
-    Il s’agit de lien de hello toocreate une nouvelle équipe. Remplacez l’élément de paragraphe hello avec hello tableau suivant. Cette table comporte des liens d’action pour la création d’une nouvelle équipe, la lecture d’une nouvelle saison des jeux, l’effacement du cache de hello, récupérant les équipes de hello cache hello dans plusieurs formats, la récupération des équipes de hello à partir de la base de données hello et la reconstruction de base de données avec les données exemple nouvelle hello.
+    Il s’agit du lien permettant de créer une équipe. Remplacez l’élément de paragraphe par la table suivante. Cette table contient des liens d’action pour créer une nouvelle équipe, jouer une nouvelle saison de jeux, effacer le cache, récupérer les équipes à partir du cache dans plusieurs formats, récupérer les équipes à partir de la base de données et reconstruire la base de données avec de nouvelles données d’exemple.
 
     ```html
     <table class="table">
@@ -686,125 +686,125 @@ code de génération de modèles automatique Hello qui a été généré comme p
     ```
 
 
-1. Défiler vers le bas de hello toohello **Index.cshtml** et ajoutez les suivant hello `tr` élément afin qu’il soit hello dernière ligne hello dernière table dans le fichier de hello.
+1. Faites défiler le fichier **Index.cshtml`tr` vers le bas pour visualiser la fin du fichier, puis ajoutez l’élément**  suivant, de sorte qu’il représente la dernière ligne de la dernière table du fichier.
    
     ```html
     <tr><td colspan="5">@ViewBag.Msg</td></tr>
     ```
    
-    Cette ligne affiche la valeur hello `ViewBag.Msg` qui contient un rapport d’état sur l’opération en cours hello. Hello `ViewBag.Msg` est définie lorsque vous cliquez sur un des liens d’action hello à partir de l’étape précédente de hello.   
+    Cette ligne affiche la valeur `ViewBag.Msg` qui contient un rapport d’état sur l’opération en cours. La valeur `ViewBag.Msg` est définie lorsque vous cliquez sur l’un des liens d’action à l’étape précédente.   
    
     ![Message d’état][cache-status-message]
-2. Appuyez sur **F6** projet hello de toobuild.
+2. Appuyez sur **F6** pour générer le projet.
 
-## <a name="provision-hello-azure-resources"></a>Configurer hello ressources Azure
-toohost votre application dans Azure, vous devez d’abord configurer hello des services Azure que votre application requiert. exemple d’application Hello dans ce didacticiel utilise hello suivant des services Azure.
+## <a name="provision-the-azure-resources"></a>Approvisionner les ressources Azure
+Pour héberger votre application dans Azure, vous devez d’abord approvisionner les services Azure requis par votre application. L’exemple d’application de ce didacticiel utilise les services Azure suivants.
 
 * Cache Redis Azure
 * Application web App Service
 * Base de données SQL
 
-toodeploy ces services tooa nouvelle ou existante de la ressource de groupe de votre choix, cliquez sur hello suivant **déployer tooAzure** bouton.
+Pour déployer ces services vers un groupe de ressources de votre choix, nouveau ou existant, cliquez sur le bouton **Déployer dans Azure** ci-dessous.
 
-[! [Déploiement tooAzure] [deploybutton]](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-redis-cache-sql-database%2Fazuredeploy.json)
+[![Déploiement sur Azure][deploybutton]](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-redis-cache-sql-database%2Fazuredeploy.json)
 
-Cela **déployer tooAzure** bouton utilise hello [créer une application Web ainsi que le Cache Redis et la base de données SQL](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-redis-cache-sql-database) [Azure Quickstart](https://github.com/Azure/azure-quickstart-templates) modèle tooprovision ces services et le jeu de hello chaîne de connexion pour le paramètre hello hello et de base de données SQL de l’application pour hello chaîne de connexion du Cache Redis Azure.
+Le bouton **Déployer dans Azure** utilise le modèle de [démarrage rapide Microsoft Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-web-app-redis-cache-sql-database) [Création d’une application web, du Cache Redis et d’une base de données SQL](https://github.com/Azure/azure-quickstart-templates) pour approvisionner ces services et définir la chaîne de connexion pour la base de données SQL et le paramètre d’application de la chaîne de connexion du Cache Redis Azure.
 
 > [!NOTE]
 > Si vous ne possédez pas de compte Azure, vous pouvez [créer un compte Azure gratuit](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=redis_cache_hero) en quelques minutes.
 > 
 > 
 
-En cliquant sur hello **déployer tooAzure** bouton vous permet de toohello portail Azure et lance hello le processus de création de ressources hello décrits par le modèle de hello.
+Le bouton **Déployer dans Azure** vous permet d’accéder au Portail Azure et lance le processus de création des ressources décrit par le modèle.
 
-![Déployer tooAzure][cache-deploy-to-azure-step-1]
+![Déployer dans Azure][cache-deploy-to-azure-step-1]
 
-1. Bonjour **notions de base** section, sélectionnez toouse d’abonnement Azure hello, sélectionnez un groupe de ressources existant ou créez-en un et spécifier l’emplacement du groupe de ressources hello.
-2. Bonjour **paramètres** section, spécifiez une **connexion administrateur** (n’utilisez pas **admin**), **mot de passe administrateur**et  **Nom de base de données**. Hello autres paramètres sont configurés pour un Service d’applications libre qui héberge le plan et les options de faible coût de hello de base de données SQL et du Cache Redis Azure, qui ne sont fournis avec un niveau gratuit.
+1. Dans la section des **paramètres de base**, sélectionnez l’abonnement Azure à utiliser et un groupe de ressources existant ou créez-en un nouveau et spécifiez l’emplacement du groupe de ressources.
+2. Dans la section **Paramètres**, spécifiez un **nom de connexion administrateur** (n’utilisez pas **admin**), un **mot de passe de connexion administrateur** et un **nom de base de données**. Les autres paramètres sont configurés pour un plan d’hébergement Free App Service et des options moins coûteuses pour la base de données SQL et le Cache Redis Azure, qui ne sont pas fournis avec un niveau Gratuit.
 
-    ![Déployer tooAzure][cache-deploy-to-azure-step-2]
+    ![Déployer dans Azure][cache-deploy-to-azure-step-2]
 
-3. Après avoir configuré les paramètres de hello souhaité, faites défiler fin toohello de page de hello hello lecture et les conditions et vérifiez hello **J’accepte les termes du contrat de toohello et conditions susmentionnées** case à cocher.
-4. toobegin configurer les ressources hello, cliquez sur **bon**.
+3. Après avoir configuré les paramètres souhaités, faites défiler jusqu’à la fin de la page, lisez les termes et conditions et cochez la case **J’accepte les termes et conditions mentionnés ci-dessus**.
+4. Pour commencer l’approvisionnement des ressources, cliquez sur **Purchase** (Acheter).
 
-progression de hello tooview de votre déploiement, cliquez sur l’icône de hello et cliquez sur **déploiement démarré**.
+Pour afficher la progression de votre déploiement, cliquez sur l’icône de notification, puis cliquez sur **Le déploiement a commencé**.
 
 ![Le déploiement a commencé][cache-deployment-started]
 
-Vous pouvez afficher l’état hello de votre déploiement sur hello **Microsoft.Template** panneau.
+Vous pouvez visualiser l’état de votre déploiement dans le panneau **Microsoft.Template** .
 
-![Déployer tooAzure][cache-deploy-to-azure-step-3]
+![Déployer dans Azure][cache-deploy-to-azure-step-3]
 
-Lors de la configuration est terminée, vous pouvez publier votre tooAzure d’application à partir de Visual Studio.
+Une fois l’approvisionnement terminé, vous pouvez publier votre application sur Azure à partir de Visual Studio.
 
 > [!NOTE]
-> Toutes les erreurs qui peuvent se produire pendant le processus d’approvisionnement de hello sont affichés sur hello **Microsoft.Template** panneau. Les erreurs courantes sont liées à un trop grand nombre de serveurs SQL ou de plans d’hébergement Free App Service par abonnement. Corrigez les erreurs et redémarrer le processus de hello en cliquant sur **redéployer** sur hello **Microsoft.Template** panneau ou hello **déployer tooAzure** bouton dans ce didacticiel.
+> Les erreurs susceptibles de se produire pendant le processus d’approvisionnement sont affichées dans le panneau **Microsoft.Template** . Les erreurs courantes sont liées à un trop grand nombre de serveurs SQL ou de plans d’hébergement Free App Service par abonnement. Corrigez les erreurs et redémarrez le processus en cliquant sur **Redéployer** dans le panneau **Microsoft.Template** ou sur le bouton **Déployer dans Azure** de ce didacticiel.
 > 
 > 
 
-## <a name="publish-hello-application-tooazure"></a>Publier hello application tooAzure
-Dans cette étape du didacticiel de hello, vous allez publier hello application tooAzure et l’exécuter dans le cloud de hello.
+## <a name="publish-the-application-to-azure"></a>Publier l’application sur Azure
+Dans cette étape du didacticiel, vous allez publier l’application sur Azure et l’exécuter dans le cloud.
 
-1. Avec le bouton hello **ContosoTeamStats** de projet dans Visual Studio et choisissez **publier**.
+1. Cliquez avec le bouton droit sur le projet **ContosoTeamStats** dans Visual Studio, puis choisissez **Publier**.
    
     ![Publier][cache-publish-app]
 2. Cliquez sur **Microsoft Azure App Service**, choisissez **Select Existing** (Sélectionner existant), puis cliquez sur **Publier**.
    
     ![Publier][cache-publish-to-app-service]
-3. Sélectionnez l’abonnement hello utilisé lors de la création hello ressources Azure, développez groupe de ressources hello contenant des ressources hello et sélectionnez hello souhaité de l’application Web. Si vous avez utilisé hello **déployer tooAzure** bouton commence par le nom de votre application Web **site Web** suivi par des caractères supplémentaires.
+3. Sélectionnez l’abonnement utilisé lors de la création des ressources Azure, développez le groupe de ressources contenant les ressources et sélectionnez l’application web souhaitée. Si vous avez utilisé le bouton **Déployer dans Azure**, le nom de votre application web commence par **webSite** et contient des caractères supplémentaires.
    
     ![Sélectionner l’application web][cache-select-web-app]
-4. Cliquez sur **OK** hello toobegin processus de publication. Après quelques instants hello processus de publication est terminée et un navigateur est lancé par hello, exemple d’application en cours d’exécution. Si vous obtenez une erreur DNS lors de la validation ou de la publication et hello pour le processus de fourniture hello ressources Azure pour l’application hello récemment terminée, patientez quelques instants, puis réessayez.
+4. Cliquez sur **OK** pour démarrer le processus de publication. Après quelques instants, le processus de publication se termine et un navigateur s’ouvre. L’exemple d’application y est exécuté. Si vous obtenez une erreur DNS lors de la validation ou de la publication et que le processus d’approvisionnement des ressources Azure pour l’application vient de se terminer, attendez un instant et réessayez.
    
     ![Cache ajouté][cache-added-to-application]
 
-Hello tableau suivant décrit chaque lien d’action à partir de l’exemple d’application hello.
+Le tableau suivant décrit chaque lien d’action de l’exemple d’application.
 
 | Action | Description |
 | --- | --- |
 | Création |Crée une équipe. |
-| Play Season |Lire une saison des jeux, des statistiques de mise à jour hello équipe, et désactivez les obsolète des données de l’équipe à partir du cache de hello. |
-| Clear Cache |Statistiques d’équipe hello clair à partir du cache de hello. |
-| List from Cache |Récupérer les statistiques d’équipe hello à partir du cache de hello. S’il existe une absence dans le cache, les statistiques hello de charge à partir de la base de données hello et enregistrer toohello cache pour la prochaine fois. |
-| Sorted Set from Cache |Extraire les statistiques équipe hello cache hello à l’aide d’un ensemble trié. S’il existe une absence dans le cache, les statistiques hello de charge à partir de la base de données hello et enregistrer cache toohello à l’aide d’un ensemble trié. |
-| Top 5 Teams from Cache |Extraire les équipes de 5 premières hello cache hello à l’aide d’un ensemble trié. S’il existe une absence dans le cache, les statistiques hello de charge à partir de la base de données hello et enregistrer cache toohello à l’aide d’un ensemble trié. |
-| Load from DB |Récupérer les statistiques hello équipe à partir de la base de données hello. |
-| Rebuild DB |Reconstruire la base de données hello et recharger les exemples de données team. |
+| Play Season |Joue une saison de jeux, met à jour les statistiques d’équipe et efface les données d’équipe obsolètes du cache. |
+| Clear Cache |Efface les statistiques d’équipe du cache. |
+| List from Cache |Récupère les statistiques d’équipe à partir cache. En cas d’absence dans le cache, charge les statistiques à partir de la base de données et les enregistre dans le cache pour la prochaine fois. |
+| Sorted Set from Cache |Récupère les statistiques d’équipe du cache à l’aide d’un ensemble trié. En cas d’absence dans le cache, charge les statistiques à partir de la base de données et les enregistre dans le cache à l’aide d’un ensemble trié. |
+| Top 5 Teams from Cache |Récupère les 5 meilleures équipes à partir du cache à l’aide d’un ensemble trié. En cas d’absence dans le cache, charge les statistiques à partir de la base de données et les enregistre dans le cache à l’aide d’un ensemble trié. |
+| Load from DB |Récupère les statistiques d’équipe à partir de la base de données. |
+| Rebuild DB |Reconstruit la base de données et la recharge avec les exemples de données d’équipe. |
 | Edit / Details / Delete |Modifie une équipe, affiche les détails d’une équipe, supprime une équipe. |
 
-Cliquez sur certaines des actions de hello et faire des essais avec la récupération des données de salutation à partir de sources différentes de hello. Pas les différences de hello dans hello temps toocomplete hello différentes façons de récupérer des données de salutation à partir de la base de données hello et cache de hello.
+Cliquez sur certaines actions et essayez de récupérer les données de différentes sources. Notez que le temps nécessaire pour récupérer les données à partir de la base de données et du cache varie selon la méthode utilisée.
 
-## <a name="delete-hello-resources-when-you-are-finished-with-hello-application"></a>Supprimer des ressources de hello lorsque vous avez terminé avec l’application hello
-Lorsque vous avez terminé avec l’application hello du didacticiel de l’exemple, vous pouvez supprimer hello Azure utilisées dans tooconserve commande coût des ressources et des ressources. Si vous utilisez hello **déployer tooAzure** bouton Bonjour [configurer hello ressources Azure](#provision-the-azure-resources) section et toutes vos ressources sont contenus dans hello même groupe de ressources, vous pouvez les supprimer ensemble dans un opération en supprimant le groupe de ressources hello.
+## <a name="delete-the-resources-when-you-are-finished-with-the-application"></a>Supprimer les ressources une fois la procédure liée à l’application terminée
+Lorsque vous avez terminé avec l’exemple d’application du didacticiel, vous pouvez supprimer les ressources Azure utilisées afin de réduire les coûts et de préserver les ressources. Si vous utilisez le bouton **Déployer dans Azure** dans la section [Approvisionner les ressources Azure](#provision-the-azure-resources) et que toutes vos ressources se trouvent dans le même groupe de ressources, vous pouvez les supprimer en une seule opération en supprimant le groupe de ressources.
 
-1. Connectez-vous à toohello [portail Azure](https://portal.azure.com) et cliquez sur **groupes de ressources**.
-2. Nom de votre groupe de ressources dans hello hello de type **filtrer les éléments...**  zone de texte.
-3. Cliquez sur **...**  toohello à droite de votre groupe de ressources.
+1. Connectez-vous au [Portail Azure](https://portal.azure.com) et cliquez sur **Groupes de ressources**.
+2. Tapez le nom de votre groupe de ressources dans la zone de texte **Filtrer des éléments...** .
+3. Cliquez sur **…** à droite de votre groupe de ressources.
 4. Cliquez sur **Supprimer**.
    
     ![Supprimer][cache-delete-resource-group]
-5. Hello nom de type votre groupe de ressources et cliquez sur **supprimer**.
+5. Tapez le nom de votre groupe de ressources et cliquez sur **Supprimer**.
    
     ![Confirmation de suppression][cache-delete-confirm]
 
-Une fois les ressources de hello quelques instants groupe et toutes ses ressources de relation contenant-contenus sont supprimés.
+Après quelques instants, le groupe de ressources et toutes les ressources qu’il contient sont supprimés.
 
 > [!IMPORTANT]
-> Notez que la suppression d’un groupe de ressources est irréversible et ce groupe de ressources hello et toutes les ressources hello qu’il contient sont supprimés définitivement. Assurez-vous que vous ne supprimez pas accidentellement groupe de ressource incorrect hello ou des ressources. Si vous avez créé des ressources hello pour l’hébergement de cet exemple à l’intérieur d’un groupe de ressources existant, vous pouvez supprimer individuellement chaque ressource à partir de leurs panneaux respectifs.
+> Notez que la suppression d’un groupe de ressources est irréversible et que le groupe de ressources, ainsi que toutes les ressources qu’il contient, sont supprimés définitivement. Veillez à ne pas supprimer accidentellement des ressources ou un groupe de ressources incorrects. Si vous avez créé les ressources pour l’hébergement de cet exemple à l’intérieur d’un groupe de ressources existant, vous pouvez supprimer individuellement chaque ressource à partir de leurs panneaux respectifs.
 > 
 > 
 
-## <a name="run-hello-sample-application-on-your-local-machine"></a>Exécutez l’exemple d’application hello sur votre ordinateur local
-application de hello toorun localement sur votre ordinateur, vous avez besoin d’un cache Azure Redis Cache d’instance dans le toocache vos données. 
+## <a name="run-the-sample-application-on-your-local-machine"></a>Exécuter l’exemple d’application sur votre ordinateur local
+Pour exécuter l’application localement sur votre ordinateur, vous avez besoin d’une instance de Cache Redis Azure dans laquelle mettre en cache vos données. 
 
-* Si vous avez publié votre tooAzure application comme décrit dans la section précédente de hello, vous pouvez utiliser l’instance de Cache Redis Azure hello qui a été configuré lors de cette étape.
-* Si vous avez une autre instance de Cache Redis Azure existante, vous pouvez utiliser ce toorun cet exemple localement.
-* Si vous devez toocreate une instance de Cache Redis Azure, vous pouvez suivre les étapes de hello dans [créer un cache](cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache).
+* Si vous avez publié votre application sur Azure comme décrit dans la section précédente, vous pouvez utiliser l’instance de Cache Redis Azure approvisionnée lors de cette étape.
+* Si vous avez une autre instance de Cache Redis Azure, vous pouvez l’utiliser pour exécuter cet exemple localement.
+* Si vous avez besoin de créer une instance de Cache Redis Azure, vous pouvez suivre les étapes de la section [Création d’un cache](cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache).
 
-Une fois que vous avez sélectionnée ou créée hello cache toouse, parcourir le cache toohello Bonjour portail Azure et récupérer hello [nom d’hôte](cache-configure.md#properties) et [clés d’accès](cache-configure.md#access-keys) pour votre cache. Pour obtenir des instructions, consultez la page [Configuration des paramètres de cache Redis](cache-configure.md#configure-redis-cache-settings).
+Une fois que vous avez sélectionné ou créé le cache à utiliser, accédez au cache dans le Portail Azure et récupérez le [nom d’hôte](cache-configure.md#properties) et les [clés d’accès](cache-configure.md#access-keys) pour votre cache. Pour obtenir des instructions, consultez la page [Configuration des paramètres de cache Redis](cache-configure.md#configure-redis-cache-settings).
 
-1. Ouvrez hello `WebAppPlusCacheAppSecrets.config` fichier que vous avez créé au cours de hello [configurer hello application toouse Cache Redis](#configure-the-application-to-use-redis-cache) étape de ce didacticiel à l’aide de l’éditeur hello de votre choix.
-2. Modifier hello `value` d’attribut et remplacez `MyCache.redis.cache.windows.net` avec hello [nom d’hôte](cache-configure.md#properties) de votre cache et spécifiez soit hello [clé primaire ou secondaire](cache-configure.md#access-keys) de votre cache en tant que mot de passe hello.
+1. Ouvrez le fichier `WebAppPlusCacheAppSecrets.config` que vous avez créé au cours de l’étape [Configurer l’application pour utiliser le Cache Redis](#configure-the-application-to-use-redis-cache) de ce didacticiel à l’aide de l’éditeur de votre choix.
+2. Modifiez l’attribut `value` et remplacez `MyCache.redis.cache.windows.net` par le [nom d’hôte](cache-configure.md#properties) de votre cache, puis spécifiez la [clé primaire ou secondaire](cache-configure.md#access-keys) de votre cache en tant que mot de passe.
 
     ```xml
     <appSettings>
@@ -813,26 +813,26 @@ Une fois que vous avez sélectionnée ou créée hello cache toouse, parcourir l
     ```
 
 
-1. Appuyez sur **Ctrl + F5** application hello de toorun.
+1. Appuyez sur **Ctrl+F5** pour exécuter l’application.
 
 > [!NOTE]
-> Notez qu’étant donné que l’application hello, y compris la base de données hello, s’exécute localement et le Cache Redis hello est hébergé dans Azure, hello cache peut apparaître toounder-réaliser hello de bases de données. Pour de meilleures performances, hello application cliente et l’instance de Cache Redis Azure doit être Bonjour même emplacement. 
+> Notez que, dans la mesure où l’application (y compris la base de données) s’exécute localement et où le Cache Redis est hébergé dans Azure, il est possible que le cache réduise les performances de la base de données. Pour de meilleures performances, l’application cliente et l’instance de Cache Redis Azure doivent se trouver au même emplacement. 
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* En savoir plus sur [mise en route avec ASP.NET MVC 5](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started) sur hello [ASP.NET](http://asp.net/) site.
-* Pour plus d’exemples de création d’une application Web ASP.NET dans le Service d’applications, consultez [créer et déployer une application de web ASP.NET dans Azure App Service](https://github.com/Microsoft/HealthClinic.biz/wiki/Create-and-deploy-an-ASP.NET-web-app-in-Azure-App-Service) de hello [HealthClinic.biz](https://github.com/Microsoft/HealthClinic.biz) 2015 connexion [démonstration](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/).
-  * Pour plus des Démarrages rapides à partir de la démonstration de HealthClinic.biz hello, consultez [Démarrages rapides outils de développement Azure](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts).
-* En savoir plus sur hello [Code premier tooa nouvelle base de données](https://msdn.microsoft.com/data/jj193542) approche tooEntity Framework qui est utilisé dans ce didacticiel.
-* Apprenez-en davantage sur les [applications web dans Azure App Service](../app-service-web/app-service-web-overview.md).
-* Découvrez comment trop[moniteur](cache-how-to-monitor.md) votre cache Bonjour portail Azure.
+* Consultez [Prise en main d’ASP.NET MVC 5](http://www.asp.net/mvc/overview/getting-started/introduction/getting-started) sur le site [ASP.NET](http://asp.net/) pour en savoir plus.
+* Pour plus d’exemples de création d’une application web ASP.NET dans App Service, voir [Création d’une application web ASP.NET dans Azure App Service](https://github.com/Microsoft/HealthClinic.biz/wiki/Create-and-deploy-an-ASP.NET-web-app-in-Azure-App-Service) dans la [démonstration](https://github.com/Microsoft/HealthClinic.biz) de 2015 Connect pour [HealthClinic.biz](https://blogs.msdn.microsoft.com/visualstudio/2015/12/08/connectdemos-2015-healthclinic-biz/).
+  * Pour d’autres démarrages rapides à partir de la démonstration pour HealthClinic.biz, consultez [Azure Developer Tools Quickstarts](https://github.com/Microsoft/HealthClinic.biz/wiki/Azure-Developer-Tools-Quickstarts)(Démarrages rapides avec les outils de développement Azure).
+* Apprenez-en plus sur l’approche d’Entity Framework [Code First pour une nouvelle base de données](https://msdn.microsoft.com/data/jj193542) utilisée dans ce didacticiel.
+* Apprenez-en davantage sur les [applications web dans Azure App Service](../app-service/app-service-web-overview.md).
+* Découvrez comment [surveiller](cache-how-to-monitor.md) votre cache dans le Portail Azure.
 * Explorez les fonctionnalités Premium du Cache Redis Azure
   
-  * [La persistance tooconfigure Premium Azure Redis cache](cache-how-to-premium-persistence.md)
-  * [Comment tooconfigure clustering Premium Azure Redis cache](cache-how-to-premium-clustering.md)
-  * [Comment tooconfigure réseau virtuel prend en charge un Premium Azure Redis cache](cache-how-to-premium-vnet.md)
-  * Consultez hello [Azure Redis Cache-FAQ](cache-faq.md#what-redis-cache-offering-and-size-should-i-use) pour plus d’informations sur la taille, le débit et la bande passante avec des caches de niveau premium.
+  * [Comment configurer la persistance pour un Cache Redis Azure Premium](cache-how-to-premium-persistence.md)
+  * [Comment configurer le clustering pour un Cache Redis Azure Premium](cache-how-to-premium-clustering.md)
+  * [Comment configurer la prise en charge de réseau virtuel pour un Cache Redis Azure Premium](cache-how-to-premium-vnet.md)
+  * Pour plus d’informations sur la taille, le débit et la bande passante des caches Premium, voir le [Forum aux questions sur le Cache Redis Azure](cache-faq.md#what-redis-cache-offering-and-size-should-i-use) .
 
 <!-- IMAGES -->
 [cache-starter-application]: ./media/cache-web-app-howto/cache-starter-application.png
